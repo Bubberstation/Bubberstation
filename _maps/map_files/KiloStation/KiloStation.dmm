@@ -14965,6 +14965,12 @@
 /obj/structure/sign/warning/vacuum/external,
 /turf/closed/wall,
 /area/station/maintenance/starboard)
+"exh" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/warning/docking,
+/turf/closed/wall,
+/area/station/hallway/secondary/entry)
 "exz" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
@@ -38584,7 +38590,7 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/spawner/random/structure/crate,
 /mob/living/simple_animal/chicken{
-	atmos_requirements = list("min_oxy"=0,"max_oxy"=0,"min_tox"=0,"max_tox"=1,"min_co2"=0,"max_co2"=0,"min_n2"=0,"max_n2"=0);
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
 	desc = "A timeless classic.";
 	name = "Kentucky"
 	},
@@ -47899,7 +47905,7 @@
 "nFN" = (
 /obj/machinery/igniter/incinerator_ordmix,
 /mob/living/simple_animal/chicken{
-	atmos_requirements = list("min_oxy"=0,"max_oxy"=0,"min_tox"=0,"max_tox"=1,"min_co2"=0,"max_co2"=0,"min_n2"=0,"max_n2"=0);
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
 	desc = "A timeless classic.";
 	name = "Kentucky"
 	},
@@ -64069,7 +64075,7 @@
 	},
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	desc = "A station exclusive. Consumption may result in seizures, blindness, drunkenness, or even death.";
-	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko=30);
+	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko = 30);
 	name = "Kilo-Kocktail";
 	pixel_x = 5;
 	pixel_y = 5
@@ -73037,6 +73043,11 @@
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
+"uPf" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
 "uPm" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -75975,11 +75986,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"vFc" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/misc/asteroid/airless,
-/area/space/nearstation)
 "vFk" = (
 /obj/machinery/ai_slipper{
 	uses = 10
@@ -126261,7 +126267,7 @@ rCi
 qUb
 hUL
 sab
-pZj
+slC
 nuh
 lAB
 bPX
@@ -126518,10 +126524,10 @@ fSC
 mjU
 kPE
 pBR
-tla
+pZj
+uPf
 lAB
-lAB
-lAB
+bPX
 bUN
 bUN
 bUN
@@ -126775,10 +126781,10 @@ fSC
 hev
 cyc
 kwM
-xbx
-cOT
-wNr
-gJj
+tla
+lAB
+lAB
+lAB
 bUN
 bUN
 bUN
@@ -127032,10 +127038,10 @@ fSC
 lia
 qYy
 vtF
-mkk
-rCi
-mkk
-jEK
+xbx
+cOT
+wNr
+gJj
 bUN
 bUN
 bUN
@@ -127289,10 +127295,10 @@ iWT
 iOW
 mnK
 iOW
-vOW
-aeu
-aeu
-vFc
+mkk
+rCi
+mkk
+exh
 bUN
 bUN
 bUN
