@@ -1,5 +1,5 @@
 /datum/job/clown
-	veteran_only = TRUE
+	veteran_only = FALSE
 
 /datum/job/mime
-	veteran_only = TRUE
+	veteran_only = FALSE
