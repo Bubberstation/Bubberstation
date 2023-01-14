@@ -1,4 +1,4 @@
-https://github.com/Skyrat-SS13/Skyrat-tg/pull/5
+https://github.com/ReturnToZender/Bubberstation/pull/5
 
 ## Title: Remove Veteran Status
 
@@ -26,5 +26,5 @@ Removes the veteran status requirement on certain jobs and races
 
 ### Credits:
 
-Kilmented - 
+Kilmented - Original fix
 JerryWester - Modularization
