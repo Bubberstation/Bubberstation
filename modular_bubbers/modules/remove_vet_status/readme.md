@@ -26,5 +26,5 @@ Removes the veteran status requirement on certain jobs and races
 
 ### Credits:
 
-Kilmented - Original fix
-JerryWester - Modularization
+- Kilmented - Original fix
+- JerryWester - Modularization
