@@ -1,6 +1,6 @@
 <!-- This should be copy-pasted into the root of your module folder as readme.md>
 
-https://github.com/Skyrat-SS13/Skyrat-tg/pull/<!--PR Number-->
+https://github.com/ReturnToZender/Bubberstation/pull/<!--PR Number-->
 
 ## \<Title Here> <!--Title of your addition.-->
 
