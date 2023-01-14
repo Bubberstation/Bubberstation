@@ -46,7 +46,7 @@ ALERT_DELTA_DOWNTO Destruction of the station is still imminent. All crew are in
 ALERT_GAMMA The Solar Federation has placed this system under Gamma Alert status. This galactic system is facing a ZK-Class Reality Failure Scenario. Security Personnel is authorized full access to lethal equipment to enforce Martial Law. Failure to follow emergency procedures is punishable by death. This is not a drill.
 
 ## How long until someone can be put in cryo if they are SSD
-CRYO_MIN_SSD_TIME 15
+CRYO_MIN_SSD_TIME 1
 
 ## log subtler emotes in game.txt
 #LOG_SUBTLER
@@ -55,7 +55,7 @@ CRYO_MIN_SSD_TIME 15
 #AUTOTRANSFER
 
 ## Enables starting transfer votes by the crew at large.
-#ALLOW_VOTE_TRANSFER
+ALLOW_VOTE_TRANSFER
 
 ## autovote initial delay (deciseconds in real time) before first automatic transfer vote call (default 120 minutes)
 ## Set to 0 to disable the subsystem altogether.
@@ -111,7 +111,7 @@ SSDECAY_DISABLE_NESTS
 
 ## Toggles if the events system uses admin votes or public votes
 ## Comment out for public votes
-#EVENTS_PUBLIC_VOTING
+EVENTS_PUBLIC_VOTING
 
 ## If we use admin votes, do we use chaos or all event vote?
 ADMIN_EVENT_USES_CHAOS
@@ -123,13 +123,13 @@ LOW_CHAOS_EVENT_SYSTEM
 LOG_EVENT_VOTES
 
 ## Do we allow consecutive catastrophic events?
-ALLOW_CONSECUTIVE_CATASTROPIC_EVENTS
+#ALLOW_CONSECUTIVE_CATASTROPIC_EVENTS
 
 ## What is the most amount of time the next event can run?
-EVENT_FREQUENCY_UPPER 12000
+EVENT_FREQUENCY_UPPER 30000
 
 ## What is the least amount of time the next event can run?
-EVENT_FREQUENCY_LOWER 9000
+EVENT_FREQUENCY_LOWER 15000
 
 ## Ticket ping frequency. Set 0 for disable that subsystem. 3000 - 5 minutes, 600 - 1 minute.
 TICKET_PING_FREQUENCY 0
