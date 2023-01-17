@@ -142,14 +142,14 @@ Lizard subspecies: ASHWALKERS
 	name = "Ash Walker"
 	id = SPECIES_LIZARD_ASH
 	mutantlungs = /obj/item/organ/internal/lungs/lavaland
-	mutantbrain = /obj/item/organ/internal/brain/primitive
+	mutantbrain = /obj/item/organ/internal/brain
 	species_traits = list(
 		MUTCOLORS,
 		EYECOLOR,
 		LIPS,
 	)
 	inherent_traits = list(
-		//TRAIT_LITERATE,
+		TRAIT_LITERATE,
 		TRAIT_VIRUSIMMUNE,
 	)
 	species_language_holder = /datum/language_holder/lizard/ash
