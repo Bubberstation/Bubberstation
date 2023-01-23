@@ -9,7 +9,7 @@
 * **Code:** https://github.com/Bubberstation/Bubberstation
 * **tgstation Wiki:** https://tgstation13.org/wiki/Main_Page
 * **Skyrat Codedocs:** https://skyrat-ss13.github.io/Skyrat-tg/
-* **Bubberstation Discord:** https://discord.gg/AvjrTqnqEx
+* **Bubberstation Discord:** https://discord.gg/39dUpb5weB
 * **Coderbus Discord:** https://discord.gg/Vh8TJp9
 
 This is Bubberstation's downstream fork of Skyrat, which is in turn a fork of tgstation.
@@ -53,7 +53,7 @@ All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 a
 
 See LICENSE and GPLv3.txt for more details.
 
-The TGS DMAPI is licensed as a subproject under the MIT license.
+The TGS DMAPI API is licensed as a subproject under the MIT license.
 
 See the footer of [code/__DEFINES/tgs.dm](./code/__DEFINES/tgs.dm) and [code/modules/tgs/LICENSE](./code/modules/tgs/LICENSE) for the MIT license.
 
