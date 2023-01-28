@@ -69,7 +69,19 @@
 		TRAIT_LITERATE,
 	)
 	inherent_biotypes = MOB_HUMANOID
-	mutant_bodyparts = list("wings" = "None")
+	mutant_bodyparts = list()
+	default_mutant_bodyparts = list(
+		"tail" = "None",
+		"snout" = "None",
+		"horns" = "None",
+		"ears" = "None",
+		"legs" = "None",
+		"taur" = "None",
+		"fluff" = "None",
+		"wings" = "None",
+		"head_acc" = "None",
+		"neck_acc" = "None"
+	)
 	exotic_bloodtype = "U"
 	use_skintones = TRUE
 	mutantheart = /obj/item/organ/internal/heart/hemophage
@@ -85,8 +97,6 @@
 	var/blood_to_health_multiplier = 1
 	/// The current status of our tumor. If PULSATING_TUMOR_MISSING, all tumor-corrupted organs will start to decay rapidly. If PULSATING_TUMOR_INACTIVE, no enhanced regeneration.
 	var/tumor_status = PULSATING_TUMOR_MISSING
-
-	veteran_only = TRUE
 
 
 /datum/species/hemophage/check_roundstart_eligible()
