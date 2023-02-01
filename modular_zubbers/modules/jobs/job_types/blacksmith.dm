@@ -1,4 +1,4 @@
-/datum/job/curator
+/datum/job/blacksmith
 	title = JOB_BLACKSMITH
 	description = "Smith wares, Sell them."
 	department_head = list(JOB_HEAD_OF_PERSONNEL)
@@ -9,8 +9,8 @@
 	config_tag = "BLACKSMITH"
 	exp_granted_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/curator
-	plasmaman_outfit = /datum/outfit/plasmaman/curator
+	outfit = /datum/outfit/job/blacksmith
+	plasmaman_outfit = /datum/outfit/plasmaman/curator //Not sure how this works. Leaving it alone.
 
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SRV
@@ -33,7 +33,7 @@
 	voice_of_god_silence_power = 3
 	rpg_title = "Ye olde Smithy"
 
-/datum/outfit/job/curator
+/datum/outfit/job/blacksmith
 	name = "Blacksmith"
 	jobtype = /datum/job/blacksmith
 
@@ -50,7 +50,7 @@
 
 
 
-
+/* This section gives all languages to the curator. Not sure the blacksmith needs it. Probably a hold over from using curator as a base.
 /datum/outfit/job/curator/post_equip(mob/living/carbon/human/translator, visualsOnly = FALSE)
 	..()
 
@@ -58,4 +58,4 @@
 		return
 
 	translator.grant_all_languages(source=LANGUAGE_CURATOR)
-	translator.remove_blocked_language(GLOB.all_languages, source=LANGUAGE_ALL)
+	translator.remove_blocked_language(GLOB.all_languages, source=LANGUAGE_ALL)*/
