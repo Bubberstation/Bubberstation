@@ -4638,9 +4638,15 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "bEU" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/obj/item/camera,
+/obj/item/camera_film,
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
-/obj/structure/reagent_crafting_bench,
 /turf/open/floor/iron,
 /area/station/commons/storage/art)
 "bFr" = (
@@ -28210,9 +28216,23 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "kcs" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/chisel{
+	pixel_y = 7
+	},
 /obj/machinery/camera/directional/south,
-/obj/machinery/light/small/directional/south,
-/obj/structure/reagent_water_basin,
 /turf/open/floor/iron,
 /area/station/commons/storage/art)
 "kcu" = (
@@ -39687,9 +39707,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/solars/port/fore)
 "oeQ" = (
-/obj/structure/reagent_forge,
+/obj/structure/table,
+/obj/item/paper_bin/construction,
+/obj/item/airlock_painter,
+/obj/machinery/airalarm/directional/east,
+/obj/item/rcl/pre_loaded,
 /turf/open/floor/iron,
-/area/station/maintenance/starboard/greater)
+/area/station/commons/storage/art)
 "oeR" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
@@ -39834,16 +39858,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "ohn" = (
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/wood/fifty,
-/turf/open/floor/iron,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/greater)
 "ohp" = (
 /obj/structure/table,
@@ -43492,14 +43508,9 @@
 /turf/open/floor/iron,
 /area/station/security/courtroom)
 "pyc" = (
-/obj/machinery/door/window/right/directional/south{
-	name = "Library Desk";
-	req_access = list("library")
-	},
-/obj/structure/table/wood,
-/obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron,
-/area/station/commons/storage/art)
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
+/turf/open/floor/wood,
+/area/station/commons/lounge)
 "pyd" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -52598,10 +52609,11 @@
 /turf/open/floor/plating,
 /area/station/security/warden)
 "sEh" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/light_switch/directional/east,
+/obj/effect/landmark/event_spawn,
+/obj/machinery/light/small/directional/south,
+/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
-/area/station/commons/storage/art)
+/area/station/maintenance/starboard/greater)
 "sEk" = (
 /obj/structure/extinguisher_cabinet/directional/east,
 /obj/effect/turf_decal/tile/neutral{
@@ -58058,6 +58070,11 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos)
 "uwU" = (
+/obj/machinery/light_switch/directional/east,
+/obj/machinery/light/small/directional/east,
+/obj/structure/easel,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
 /turf/open/floor/iron,
 /area/station/commons/storage/art)
 "uxa" = (
@@ -67440,8 +67457,9 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "xMY" = (
-/obj/structure/reagent_anvil,
-/turf/open/floor/iron,
+/obj/item/storage/box/lights/mixed,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/greater)
 "xNb" = (
 /obj/structure/cable,
@@ -67584,6 +67602,10 @@
 /obj/machinery/status_display/ai/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
+"xPg" = (
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/wood,
+/area/station/commons/lounge)
 "xPh" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -68379,9 +68401,8 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "ydq" = (
-/obj/machinery/light/small/directional/east,
-/obj/effect/landmark/start/blacksmith,
-/turf/open/floor/iron,
+/obj/structure/closet/firecloset,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/greater)
 "ydr" = (
 /obj/machinery/camera/directional/east{
@@ -105182,11 +105203,11 @@ xww
 vFB
 fRS
 tUv
-sEh
+rAg
 uwU
-uwU
+oeQ
+khA
 pyc
-hkG
 qVt
 nGK
 sew
@@ -105440,10 +105461,10 @@ jsv
 tlZ
 aPF
 unL
-ohn
-xMY
 unL
-hkG
+unL
+unL
+xPg
 fge
 wSs
 jGA
@@ -105698,7 +105719,7 @@ sDs
 jYi
 unL
 ydq
-oeQ
+vmE
 unL
 gcW
 auy
@@ -105954,8 +105975,8 @@ dFp
 fRS
 tUv
 unL
-unL
-unL
+ohn
+sEh
 unL
 ghq
 yaO
@@ -106212,7 +106233,7 @@ usY
 huX
 hNC
 hCl
-hCl
+xMY
 unL
 xQS
 yaO
@@ -108018,7 +108039,7 @@ rTg
 fWA
 jsL
 nnf
-vmE
+izp
 xZb
 guD
 izp

@@ -6027,7 +6027,7 @@
 /turf/open/floor/iron/large,
 /area/station/hallway/primary/central)
 "bQf" = (
-/obj/structure/reagent_forge,
+/obj/structure/chair/sofa/bench/corner,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "bQr" = (
@@ -11146,7 +11146,7 @@
 "dqZ" = (
 /obj/structure/flora/ocean/longseaweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/medical/medbay/lobby)
@@ -16611,7 +16611,7 @@
 /obj/structure/flora/ocean/coral,
 /obj/structure/flora/ocean/glowweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -19786,16 +19786,9 @@
 	},
 /area/station/hallway/primary/fore)
 "fIw" = (
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/structure/chair/sofa/bench{
+	dir = 8
+	},
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "fIQ" = (
@@ -19839,7 +19832,7 @@
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central/fore)
 "fJT" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/chair/stool/directional/south,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "fJV" = (
@@ -22512,6 +22505,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/hangover,
 /obj/machinery/light/directional/south,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -32209,7 +32203,7 @@
 /turf/open/floor/plating,
 /area/station/ai_monitored/turret_protected/aisat/foyer)
 "jlf" = (
-/obj/structure/reagent_anvil,
+/obj/structure/chair/sofa/bench,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "jlp" = (
@@ -32810,7 +32804,7 @@
 "jtG" = (
 /obj/structure/flora/ocean/glowweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/medical/medbay/lobby)
@@ -37666,7 +37660,8 @@
 /turf/open/floor/engine/o2,
 /area/station/engineering/atmos)
 "kJm" = (
-/obj/effect/landmark/start/blacksmith,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/table,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "kJp" = (
@@ -37947,7 +37942,7 @@
 /area/station/cargo/office)
 "kMZ" = (
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -38826,7 +38821,7 @@
 "kZc" = (
 /obj/structure/flora/ocean/seaweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -39038,7 +39033,7 @@
 "lcC" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -39266,10 +39261,6 @@
 "lfI" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
-/obj/machinery/door/airlock{
-	name = "Departures Lounge";
-	req_access = list("library")
-	},
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "lfO" = (
@@ -45925,11 +45916,9 @@
 /turf/open/floor/engine,
 /area/station/science/ordnance/storage)
 "mSR" = (
-/obj/machinery/door/window/right/directional/south{
-	name = "Library Desk";
-	req_access = list("library")
+/obj/structure/chair/sofa/bench/left{
+	dir = 8
 	},
-/obj/structure/table/glass,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "mSV" = (
@@ -49581,7 +49570,8 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/science/xenobiology)
 "nQy" = (
-/obj/structure/reagent_water_basin,
+/obj/structure/table/glass,
+/obj/effect/landmark/start/hangover,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "nQG" = (
@@ -50259,7 +50249,7 @@
 /obj/structure/flora/ocean/longseaweed,
 /obj/structure/flora/ocean/glowweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -51144,7 +51134,7 @@
 /area/station/command/heads_quarters/qm)
 "onY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "ooa" = (
@@ -59334,6 +59324,13 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/starboard/greater)
+"qAc" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/chair/stool/directional/east{
+	pixel_x = 6
+	},
+/turf/open/floor/wood/large,
+/area/station/hallway/secondary/exit/departure_lounge)
 "qAj" = (
 /obj/effect/turf_decal/box,
 /obj/structure/disposalpipe/trunk{
@@ -63581,7 +63578,7 @@
 "rJK" = (
 /obj/structure/flora/ocean/longseaweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -70025,7 +70022,7 @@
 "tvN" = (
 /obj/structure/flora/rock,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -75410,7 +75407,10 @@
 /turf/open/floor/noslip,
 /area/station/service/janitor)
 "uSw" = (
-/obj/structure/reagent_crafting_bench,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/chair/stool/directional/west{
+	pixel_x = -6
+	},
 /turf/open/floor/wood/large,
 /area/station/hallway/secondary/exit/departure_lounge)
 "uSx" = (
@@ -83499,7 +83499,7 @@
 /area/station/security/courtroom)
 "xlC" = (
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /mob/living/basic/carp/mega/shorki{
 	obj_damage = 0
@@ -83659,11 +83659,11 @@
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/bush/grassy,
 /obj/structure/flora/bush/flowers_yw,
+/obj/structure/railing,
 /obj/machinery/camera/directional/north{
 	c_tag = "Departures - Lounge";
 	name = "departures camera"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/grass,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xnl" = (
@@ -83922,6 +83922,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
+"xpW" = (
+/obj/structure/chair/stool/directional/north{
+	pixel_y = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/hallway/secondary/exit/departure_lounge)
 "xqb" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -126926,7 +126932,7 @@ wse
 ykh
 aqi
 dGw
-gUU
+qAc
 oZW
 aqs
 cyd
@@ -127183,8 +127189,8 @@ nzw
 ykh
 xnf
 fJT
-onY
-fJT
+kJm
+xpW
 oZW
 oZW
 iRo
@@ -127439,8 +127445,8 @@ fYs
 bcY
 ykh
 aqi
-kJm
-gUU
+oZW
+uSw
 onY
 gUU
 pgA
@@ -127696,9 +127702,9 @@ azq
 wkm
 ykh
 qSF
-uSw
 oZW
-fJT
+oZW
+oZW
 oZW
 giv
 wiy
@@ -127953,8 +127959,8 @@ djz
 qye
 ykh
 pgk
-nQy
-oZW
+yep
+oZF
 lfI
 oZW
 gJE
@@ -128211,8 +128217,8 @@ hzF
 ykh
 aqi
 jlf
-oZW
-fJT
+nQy
+oZF
 oZW
 gxu
 tuq
@@ -128470,7 +128476,7 @@ wtQ
 bQf
 fIw
 mSR
-oZW
+aqs
 gvt
 tuq
 ucR

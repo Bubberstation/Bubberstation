@@ -3409,6 +3409,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "bcT" = (
+/obj/structure/extinguisher_cabinet/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -9520,14 +9521,12 @@
 /turf/closed/wall,
 /area/station/tcommsat/computer)
 "cOb" = (
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/structure/rack,
+/obj/item/storage/box/lights/mixed{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/storage/box/lights/tubes,
 /turf/open/floor/iron/checker,
 /area/station/commons/storage/emergency/port)
 "cOi" = (
@@ -12006,9 +12005,9 @@
 /turf/open/floor/plating/snowed/icemoon,
 /area/mine/laborcamp/security)
 "dBB" = (
+/obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/firealarm/directional/south,
-/obj/structure/reagent_crafting_bench,
 /turf/open/floor/iron/checker,
 /area/station/commons/storage/emergency/port)
 "dBJ" = (
@@ -19626,6 +19625,7 @@
 /area/station/service/kitchen/coldroom)
 "fUr" = (
 /obj/machinery/airalarm/directional/south,
+/obj/structure/closet/emcloset,
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
 "fUI" = (
@@ -29138,9 +29138,9 @@
 	},
 /area/station/service/chapel)
 "iTy" = (
+/obj/machinery/space_heater,
 /obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/bot_white,
-/obj/structure/reagent_anvil,
 /turf/open/floor/iron/checker,
 /area/station/commons/storage/emergency/port)
 "iTB" = (
@@ -38254,12 +38254,9 @@
 /area/station/medical/psychology)
 "lGz" = (
 /obj/structure/table,
-/obj/machinery/door/window/right/directional/south{
-	name = "Library Desk";
-	req_access = list("library")
-	},
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/iron,
-/area/station/commons/storage/emergency/port)
+/area/station/hallway/primary/port)
 "lGK" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/button/door{
@@ -51013,11 +51010,17 @@
 /turf/open/floor/plating,
 /area/station/maintenance/solars/starboard/fore)
 "pHy" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
 /obj/item/radio/intercom/directional/south,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
 /obj/machinery/camera/directional/east{
 	c_tag = "Port Emergency Storage"
 	},
-/obj/structure/reagent_water_basin,
 /turf/open/floor/iron/checker,
 /area/station/commons/storage/emergency/port)
 "pHD" = (
@@ -52175,7 +52178,6 @@
 /obj/structure/sign/poster/official/help_others{
 	pixel_x = -32
 	},
-/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/iron/checker,
 /area/station/commons/storage/emergency/port)
 "qaE" = (
@@ -54073,10 +54075,10 @@
 /area/station/hallway/primary/starboard)
 "qGW" = (
 /obj/machinery/light/small/directional/south,
+/obj/structure/reagent_dispensers/watertank,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/effect/turf_decal/bot_white,
-/obj/structure/reagent_forge,
 /turf/open/floor/iron/checker,
 /area/station/commons/storage/emergency/port)
 "qHg" = (
@@ -62340,6 +62342,10 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
+"tmw" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "tmA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -67236,14 +67242,13 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/security/office)
 "uLX" = (
+/obj/machinery/door/airlock{
+	name = "Port Emergency Storage"
+	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/airlock{
-	name = "Departures Lounge";
-	req_access = list("library")
-	},
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/storage/emergency/port)
 "uMq" = (
@@ -231544,7 +231549,7 @@ jOt
 ozw
 ons
 gpp
-gpp
+lGz
 pMv
 qaD
 dBB
@@ -232058,8 +232063,8 @@ hDU
 slI
 ons
 gpp
-gpp
-lGz
+tmw
+pMv
 bcT
 iTy
 tKI
