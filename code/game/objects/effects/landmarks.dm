@@ -145,10 +145,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Curator"
 	icon_state = "Curator"
 
-/obj/effect/landmark/start/blacksmith
-	name = "Blacksmith"
-	icon_state = "Curator"
-
 /obj/effect/landmark/start/lawyer
 	name = "Lawyer"
 	icon_state = "Lawyer"
