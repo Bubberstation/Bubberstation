@@ -100,12 +100,14 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// Basically, if this is set to 5, then for every 5 threat, one midround roll will be added.
 	/// The equation this is used in rounds up, meaning that if this is set to 5, and you have 6
 	/// threat, then you will get 2 midround rolls.
-	var/threat_per_midround_roll = 7
+	var/threat_per_midround_roll = 12
+	//BUBBER EDIT: ORIGINAL	//var/threat_per_midround_roll = 7
 
 	/// A number between -5 and +5.
 	/// A negative value will give a more peaceful round and
 	/// a positive value will give a round with higher threat.
-	var/threat_curve_centre = 0
+	var/threat_curve_centre = -1
+	//BUBBER EDIT: ORIGINAL	//var/threat_curve_centre = 0
 
 	/// A number between 0.5 and 4.
 	/// Higher value will favour extreme rounds and
@@ -141,13 +143,16 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 	/// The extra chance multiplier that a heavy impact midround ruleset will run next time.
 	/// For example, if this is set to 50, then the next heavy roll will be about 50% more likely to happen.
-	var/hijacked_random_event_injection_chance_modifier = 50
+	var/hijacked_random_event_injection_chance_modifier = 25
+	//BUBBER EDIT: ORIGINAL	//var/hijacked_random_event_injection_chance_modifier = 50
 
 	/// Any midround before this point is guaranteed to be light
-	var/midround_light_upper_bound = 25 MINUTES
+	var/midround_light_upper_bound = 40 MINUTES
+	//BUBBER EDIT: ORIGINAL	//var/midround_light_upper_bound = 25 MINUTES
 
 	/// Any midround after this point is guaranteed to be heavy
-	var/midround_heavy_lower_bound = 55 MINUTES
+	var/midround_heavy_lower_bound = 90 MINUTES
+	//BUBBER EDIT: ORIGINAL	//var/midround_heavy_lower_bound = 55 MINUTES
 
 	/// If there are less than this many players readied, threat level will be lowered.
 	/// This number should be kept fairly low, as there are other measures that population
