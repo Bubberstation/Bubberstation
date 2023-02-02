@@ -25334,7 +25334,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/mining{
-	name = "Cargo Bay"
+	name = "Cargo Bay";
+	req_access = list("mineral_storeroom")
 	},
 /turf/open/floor/stone,
 /area/station/maintenance/central)
@@ -44203,6 +44204,7 @@
 	normaldoorcontrol = 1;
 	specialfunctions = 4
 	},
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/stone,
 /area/station/commons/vacant_room/commissary)
 "pzW" = (

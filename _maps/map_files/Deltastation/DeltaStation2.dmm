@@ -4086,7 +4086,8 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
-	name = "Delivery Office"
+	name = "Delivery Office";
+	req_access = list("mineral_storeroom")
 	},
 /turf/open/floor/stone,
 /area/station/service/barber)
@@ -67084,7 +67085,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/mining/glass{
-	name = "Delivery Office"
+	name = "Delivery Office";
+	req_access = list("mineral_storeroom")
 	},
 /turf/open/floor/stone,
 /area/station/service/barber)

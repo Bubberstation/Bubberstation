@@ -47044,7 +47044,8 @@
 	},
 /obj/machinery/door/airlock/mining/glass{
 	id_tag = "cargooffice";
-	name = "Cargo Office"
+	name = "Cargo Office";
+	req_access = list("mineral_storeroom")
 	},
 /turf/open/floor/stone,
 /area/station/commons/vacant_room/commissary)
@@ -69314,7 +69315,8 @@
 	},
 /obj/machinery/door/airlock/mining/glass{
 	id_tag = "cargooffice";
-	name = "Cargo Office"
+	name = "Cargo Office";
+	req_access = list("mineral_storeroom")
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
