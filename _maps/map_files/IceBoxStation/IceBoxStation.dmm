@@ -21271,6 +21271,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
+"gwy" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/stone,
+/area/station/commons/vacant_room/commissary)
 "gwJ" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 5
@@ -40465,6 +40473,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/railroad,
 /turf/open/floor/stone,
 /area/station/commons/vacant_room/commissary)
 "mwh" = (
@@ -42022,13 +42031,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"mXn" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/stone,
-/area/station/commons/vacant_room/commissary)
 "mXq" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -53271,9 +53273,12 @@
 /turf/open/floor/iron/large,
 /area/station/medical/treatment_center)
 "qsR" = (
-/obj/structure/reagent_crafting_bench,
-/turf/closed/wall,
-/area/station/commons/storage/emergency/port)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/stone,
+/area/station/commons/vacant_room/commissary)
 "qta" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
@@ -56657,12 +56662,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
 "rwF" = (
+/obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/railroad,
 /turf/open/floor/stone,
 /area/station/commons/vacant_room/commissary)
 "rwG" = (
@@ -65536,12 +65539,9 @@
 /turf/open/floor/iron,
 /area/station/commons/fitness)
 "uke" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/stone,
-/area/station/commons/vacant_room/commissary)
+/obj/structure/reagent_crafting_bench,
+/turf/closed/wall,
+/area/station/commons/storage/emergency/port)
 "ukf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /turf/open/floor/iron/dark,
@@ -67389,6 +67389,7 @@
 "uOM" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/stone,
 /area/station/commons/vacant_room/commissary)
 "uOS" = (
@@ -231506,7 +231507,7 @@ ozw
 ons
 gpp
 lGz
-qsR
+uke
 qaD
 dBB
 tKI
@@ -232539,7 +232540,7 @@ bXm
 bXm
 gst
 gVP
-mXn
+rwF
 hdf
 gVF
 aFN
@@ -232797,8 +232798,8 @@ jNk
 gst
 auh
 sTQ
+gwy
 mwg
-rwF
 utB
 jTk
 gst
@@ -233053,10 +233054,10 @@ pNK
 wlm
 gst
 vkm
-mXn
+rwF
 uOM
 kLK
-mwg
+gwy
 haw
 gst
 byl
@@ -233310,9 +233311,9 @@ aKs
 bbP
 gst
 gma
-mXn
-mXn
-uke
+rwF
+rwF
+qsR
 xtY
 khx
 gst
@@ -233567,8 +233568,8 @@ sJr
 qbS
 gst
 brf
-mXn
-uke
+rwF
+qsR
 mMa
 fyJ
 sdh
