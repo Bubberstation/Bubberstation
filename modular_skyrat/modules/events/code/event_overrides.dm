@@ -57,8 +57,8 @@
  * Upped to ensure lowpop steamroll does not happen
  */
 /datum/round_event_control/spider_infestation
-	// min_players = 70
-	max_occurrences = 0
+	min_players = 40 //ZUBBERS EDIT CHANGE, ORIGINAL: //min_players = 70
+	max_occurrences = 1 //ZUBBERS EDIT CHANGE, ORIGINAL: //max_occurrences = 0
 
 /**
  * Meteor Waves
@@ -95,8 +95,11 @@
  * Removed:
  * Does not have policy. Will re-add if/when policy is added
  */
-/datum/round_event_control/operative
-	max_occurrences = 0
+// ZUBBERS EDIT BEGIN
+/* /datum/round_event_control/operative
+/	max_occurrences = 0
+*/
+//* ZUBBERS EDIT END.
 
 /**
  * Ninja
@@ -132,5 +135,9 @@
  * Removed:
  * Paperwork Error is too intrusive and should be staff-only.
  */
+/* ZUBBERS EDIT START
 /datum/round_event_control/bureaucratic_error
 	max_occurrences = 0
+*/
+// ZUBBERS EDIT END
+
