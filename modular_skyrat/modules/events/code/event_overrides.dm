@@ -95,11 +95,9 @@
  * Removed:
  * Does not have policy. Will re-add if/when policy is added
  */
-// BUBBERS EDIT BEGIN
-/* /datum/round_event_control/operative
-/	max_occurrences = 0
-*/
-//* BUBBERS EDIT END.
+/datum/round_event_control/operative
+	//max_occurrences = 0
+	min_players = 20 //Bubberstation edit
 
 /**
  * Ninja
