@@ -20,7 +20,7 @@
 		#include "map_files\Deltastation\DeltaStation2_bubber.dmm"
 		#include "map_files\KiloStation\KiloStation_bubber.dmm"
 		#include "map_files\MetaStation\MetaStation_bubber.dmm"
-		#include "map_files\IceBoxStation\IceBoxStation._bubberdmm"
+		#include "map_files\IceBoxStation\IceBoxStation_bubber.dmm"
 		#include "map_files\tramstation\tramstation_bubber.dmm"
 		#include "map_files\VoidRaptor\VoidRaptor_bubber.dmm"
 		#ifdef CIBUILDING
