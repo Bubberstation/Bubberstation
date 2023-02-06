@@ -1127,17 +1127,15 @@
 /turf/open/floor/wood,
 /area/station/maintenance/department/engine/atmos)
 "ary" = (
+/obj/structure/table/reinforced,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 9
 	},
-/obj/machinery/door/window/right/directional/south{
-	req_access = list("mineral_storeroom")
+/obj/machinery/recharger{
+	pixel_y = 3
 	},
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/window/reinforced/spawner/west,
-/obj/structure/table/wood,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "arF" = (
@@ -4799,8 +4797,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/structure/reagent_crafting_bench,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "bvK" = (
 /obj/effect/turf_decal/stripes/line{
@@ -5438,8 +5435,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/power_room)
 "bIz" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/machinery/light/warm/directional/south,
-/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "bIJ" = (
@@ -6787,7 +6786,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "cde" = (
 /obj/machinery/computer/shuttle/labor,
@@ -6906,12 +6905,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
 /obj/machinery/requests_console/auto_name/directional/south,
 /obj/machinery/camera/directional/south{
 	c_tag = "Firing Range";
 	name = "dormitories camera"
 	},
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "ceN" = (
 /obj/effect/spawner/random/structure/crate,
@@ -9696,9 +9699,7 @@
 /area/station/maintenance/port/fore)
 "cVI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/table/wood,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "cVP" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line,
@@ -11145,7 +11146,7 @@
 "dqZ" = (
 /obj/structure/flora/ocean/longseaweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/medical/medbay/lobby)
@@ -13103,7 +13104,10 @@
 /obj/effect/turf_decal/caution/stand_clear/red{
 	dir = 4
 	},
-/turf/open/floor/stone,
+/obj/machinery/door/window/right/directional/west{
+	name = "Range"
+	},
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "dPe" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -14363,7 +14367,11 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/stone,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "efi" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -16603,7 +16611,7 @@
 /obj/structure/flora/ocean/coral,
 /obj/structure/flora/ocean/glowweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -22386,8 +22394,7 @@
 	},
 /area/station/medical/virology)
 "gvG" = (
-/obj/structure/reagent_anvil,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "gvI" = (
 /obj/structure/cable,
@@ -26318,7 +26325,7 @@
 /area/station/engineering/atmos/hfr_room)
 "hBc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "hBl" = (
 /obj/structure/table/reinforced,
@@ -32797,7 +32804,7 @@
 "jtG" = (
 /obj/structure/flora/ocean/glowweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/medical/medbay/lobby)
@@ -34828,7 +34835,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "jXw" = (
 /obj/item/wrench,
@@ -36480,8 +36487,9 @@
 	},
 /area/station/commons/vacant_room)
 "kxd" = (
-/obj/structure/reagent_forge,
-/turf/open/floor/stone,
+/obj/structure/training_machine,
+/obj/item/target/syndicate,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "kxf" = (
 /obj/structure/disposalpipe/trunk,
@@ -36677,8 +36685,7 @@
 /area/station/medical/storage)
 "kyN" = (
 /obj/machinery/light/warm/directional/north,
-/obj/structure/reagent_water_basin,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "kyQ" = (
 /obj/effect/turf_decal/delivery,
@@ -37526,12 +37533,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/obj/item/reagent_containers/cup/beaker/large,
-/obj/item/reagent_containers/cup/beaker/large,
-/obj/item/reagent_containers/cup/primitive_centrifuge,
-/obj/structure/closet/crate/wooden,
-/obj/item/wrench/makeshift,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "kHT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -37940,7 +37942,7 @@
 /area/station/cargo/office)
 "kMZ" = (
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -38819,7 +38821,7 @@
 "kZc" = (
 /obj/structure/flora/ocean/seaweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -39031,7 +39033,7 @@
 "lcC" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -39453,13 +39455,15 @@
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 6
 	},
-/obj/machinery/door/window/right/directional/north{
-	name = "Deliveries";
-	req_access = list("mineral_storeroom")
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/hazardvest{
+	pixel_x = 4;
+	pixel_y = 4
 	},
-/obj/structure/window/reinforced/spawner/west,
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/table/wood,
+/obj/item/clothing/suit/hazardvest{
+	pixel_x = -4;
+	pixel_y = 4
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "lig" = (
@@ -46068,6 +46072,10 @@
 /area/station/hallway/primary/aft)
 "mUU" = (
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 4;
+	name = "Gun Range"
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -47427,95 +47435,6 @@
 "nmJ" = (
 /turf/open/floor/iron/smooth_large,
 /area/station/construction/mining/aux_base)
-"nmL" = (
-/obj/structure/closet/crate/miningcar,
-/obj/item/stack/rods/fifty{
-	pixel_x = -1;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = -13;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/iron/fifty{
-	pixel_x = 9;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/wood/fifty,
-/obj/structure/railroad,
-/obj/item/weaponcrafting/silkstring,
-/obj/item/weaponcrafting/silkstring,
-/obj/item/weaponcrafting/silkstring,
-/obj/item/weaponcrafting/silkstring,
-/obj/item/weaponcrafting/silkstring,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/leather,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/bone,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/obj/item/stack/sheet/sinew,
-/turf/open/floor/stone,
-/area/station/science/auxlab/firing_range)
 "nnf" = (
 /obj/machinery/firealarm/directional/north,
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
@@ -50068,16 +49987,18 @@
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/hallway/primary/fore)
 "nVD" = (
+/obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 10
 	},
-/obj/machinery/door/window/right/directional/north{
-	name = "Deliveries";
-	req_access = list("mineral_storeroom")
+/obj/item/stack/sheet/iron/fifty{
+	pixel_x = 9;
+	pixel_y = 3
 	},
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/window/reinforced/spawner/west,
-/obj/structure/table/wood,
+/obj/item/stack/rods/fifty{
+	pixel_x = -1;
+	pixel_y = 3
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "nVN" = (
@@ -50328,7 +50249,7 @@
 /obj/structure/flora/ocean/longseaweed,
 /obj/structure/flora/ocean/glowweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -50741,7 +50662,10 @@
 /obj/effect/turf_decal/loading_area/red{
 	dir = 8
 	},
-/turf/open/floor/stone,
+/obj/machinery/door/window/left/directional/east{
+	name = "Range"
+	},
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "ogw" = (
 /obj/structure/cable,
@@ -53297,8 +53221,7 @@
 "oTc" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
-	name = "Cargo Lobby";
-	req_access = list("mineral_storeroom")
+	name = "Cargo Lobby"
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -55102,6 +55025,10 @@
 /turf/open/floor/pod/light,
 /area/station/service/chapel)
 "pqu" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 4
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -55109,7 +55036,10 @@
 /obj/effect/turf_decal/caution/stand_clear/red{
 	dir = 4
 	},
-/turf/open/floor/stone,
+/obj/machinery/door/window/left/directional/west{
+	name = "Range"
+	},
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "pqA" = (
 /obj/structure/disposalpipe/segment{
@@ -63648,7 +63578,7 @@
 "rJK" = (
 /obj/structure/flora/ocean/longseaweed,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -65340,7 +65270,10 @@
 	},
 /area/station/science/ordnance/storage)
 "sje" = (
-/turf/open/floor/stone,
+/obj/structure/railing{
+	pixel_y = -5
+	},
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "sjl" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
@@ -66060,6 +65993,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "stA" = (
@@ -69717,11 +69652,14 @@
 /turf/open/floor/grass,
 /area/station/hallway/secondary/exit/departure_lounge)
 "tqB" = (
+/obj/structure/railing{
+	pixel_y = -5
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "tqC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -70084,7 +70022,7 @@
 "tvN" = (
 /obj/structure/flora/rock,
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /turf/open/misc/asteroid,
 /area/station/commons/dorms)
@@ -74360,12 +74298,14 @@
 /obj/effect/turf_decal/loading_area/red{
 	dir = 8
 	},
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 4;
-	name = "Cargo Lobby";
-	req_access = list("mineral_storeroom")
+/obj/machinery/door/window/right/directional/east{
+	name = "Range"
 	},
-/turf/open/floor/stone,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "uCS" = (
 /obj/effect/spawner/structure/window/reinforced/tinted,
@@ -76366,14 +76306,16 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/cargo/storage)
 "viv" = (
+/obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/dark_red/filled/line,
-/obj/machinery/door/window/right/directional/north{
-	name = "Deliveries";
-	req_access = list("mineral_storeroom")
+/obj/item/gun_maintenance_supplies{
+	pixel_x = 3;
+	pixel_y = 5
 	},
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/window/reinforced/spawner/west,
-/obj/structure/table/wood,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = -13;
+	pixel_y = 3
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "viA" = (
@@ -78223,10 +78165,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
-"vIg" = (
-/obj/effect/landmark/start/blacksmith,
-/turf/open/floor/stone,
-/area/station/science/auxlab/firing_range)
 "vIv" = (
 /turf/closed/wall/r_wall,
 /area/station/ai_monitored/command/nuke_storage)
@@ -78349,8 +78287,10 @@
 /turf/open/floor/iron/herringbone,
 /area/station/service/theater)
 "vKy" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/machinery/light/warm/directional/north,
-/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "vKz" = (
@@ -83559,7 +83499,7 @@
 /area/station/security/courtroom)
 "xlC" = (
 /obj/effect/spawner/liquids_spawner{
-	reagent_list = list(/datum/reagent/water=600)
+	reagent_list = list(/datum/reagent/water = 600)
 	},
 /mob/living/basic/carp/mega/shorki{
 	obj_damage = 0
@@ -84257,14 +84197,16 @@
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 5
 	},
+/obj/structure/closet/crate/secure{
+	desc = "A secure crate containing various materials for building a customised test-site.";
+	name = "Test Site Materials Crate"
+	},
+/obj/item/target/syndicate,
+/obj/item/target/alien,
+/obj/item/target/clown,
+/obj/item/target,
 /obj/machinery/light_switch/directional/east,
 /obj/effect/turf_decal/bot,
-/obj/machinery/door/window/right/directional/south{
-	req_access = list("mineral_storeroom")
-	},
-/obj/structure/window/reinforced/spawner/west,
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/table/wood,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "xsY" = (
@@ -85933,8 +85875,17 @@
 	},
 /area/station/science/research)
 "xSl" = (
+/obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 1
+	},
+/obj/item/gun/energy/laser/practice{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/gun/energy/laser/practice{
+	pixel_x = -11;
+	pixel_y = 1
 	},
 /obj/structure/extinguisher_cabinet/directional/north{
 	pixel_x = 6
@@ -85942,12 +85893,6 @@
 /obj/machinery/firealarm/directional/north{
 	pixel_x = -7
 	},
-/obj/machinery/door/window/right/directional/south{
-	req_access = list("mineral_storeroom")
-	},
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/window/reinforced/spawner/west,
-/obj/structure/table/wood,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/auxlab/firing_range)
 "xSp" = (
@@ -85991,7 +85936,7 @@
 /area/station/security/execution/transfer)
 "xSv" = (
 /obj/machinery/light/warm/directional/south,
-/turf/open/floor/stone,
+/turf/open/floor/engine,
 /area/station/science/auxlab/firing_range)
 "xSy" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -117519,8 +117464,8 @@ bRb
 fiN
 kxd
 sje
-vIg
-nmL
+gvG
+kxd
 qTC
 dov
 gXL
@@ -118033,7 +117978,7 @@ rkh
 fiN
 bvI
 sje
-sje
+gvG
 jXo
 qTC
 iGy
@@ -118290,7 +118235,7 @@ tsM
 fiN
 cVI
 sje
-sje
+gvG
 hBc
 qTC
 tUf
