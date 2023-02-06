@@ -1,5 +1,5 @@
 /datum/language/common
-	name = "Sol"
+	name = "Galactic Common" //BUBBERS EDIT CHANGE, ORIGINAL: name = "Sol"
 	desc = "A mixture of Esperanto and Modern Latin established as \"The language of Humanity\" by the Sol Federation in its early days. "
 	space_chance = 60
 	syllables = list(

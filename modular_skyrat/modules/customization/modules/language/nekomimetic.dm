@@ -1,3 +1,6 @@
-// Nekomimetic, my beloved
+/*/ Nekomimetic, my beloved
 /datum/language/nekomimetic
-	secret = TRUE
+*/
+	secret = FALSE //BUBBERSTATION EDIT ORIGINAL secret = FALSE
+
+//BUBBERSTATION EDIT REMOVAL

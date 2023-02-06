@@ -34,11 +34,11 @@
 /datum/language_holder/skeleton
 	understood_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
-		/datum/language/terrum = list(LANGUAGE_ATOM)
+		/datum/language/piratespeak = list(LANGUAGE_ATOM) //BUBBERSTATION EDIT, ORIGINAL /datum/language/terrum
 	)
 	spoken_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
-		/datum/language/terrum = list(LANGUAGE_ATOM)
+		/datum/language/piratespeak = list(LANGUAGE_ATOM) //BUBBERSTATION EDIT, ORIGINAL /datum/language/terrum
 	)
 
 /datum/language_holder/golem/bone
@@ -54,11 +54,11 @@
 /datum/language_holder/felinid
 	understood_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
-		/datum/language/yangyu = list(LANGUAGE_ATOM)
+		/datum/language/nekomimetic = list(LANGUAGE_ATOM) //BUBBERSTATION EDIT, ORIGINAL /datum/language/yangyu
 	)
 	spoken_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
-		/datum/language/yangyu = list(LANGUAGE_ATOM)
+		/datum/language/nekomimetic = list(LANGUAGE_ATOM) //BUBBERSTATION EDIT, ORIGINAL /datum/language/yangyu
 	)
 
 /datum/language_holder/mushroom
