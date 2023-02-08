@@ -76,7 +76,8 @@
 
 //Flags in the players table in the db
 #define DB_FLAG_EXEMPT 1
-#define DB_FLAGS_AGE_CONFIRMED 1 << 4 //BUBBERS ADDITION
+#define DB_FLAG_AGE_CONFIRMED 1 << 4 //BUBBERS ADDITION
+
 
 #define DEFAULT_CYBORG_NAME "Default Cyborg Name"
 

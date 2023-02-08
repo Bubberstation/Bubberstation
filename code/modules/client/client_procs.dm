@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	view_size.setZoomMode()
 	Master.UpdateTickRate()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
-	handle_age_gate() //Bubberstation Edit
+	handle_age_confirmation() //Bubberstation Edit
 	fully_created = TRUE
 
 //////////////

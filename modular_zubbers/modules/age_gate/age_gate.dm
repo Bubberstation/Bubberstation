@@ -1,8 +1,8 @@
 /datum/config_entry/flag/age_confirmation
-	default = TRUE
+	default = TRUE //for testing, this should be false before it's merged to master
 
 /client/proc/handle_age_confirmation()
-	if(!CONFIG_GET(AGE_CONFIRMATION))
+	if(!CONFIG_GET(flag/age_confirmation))
 		return
 
 	var/dbAvailable = SSdbcore.Connect()
@@ -16,10 +16,10 @@
 		return
 
 	if(dbAvailable && !src.set_db_player_flags())
-			message_admins("Unable to retrieve player flags, user will be asked again the next time they join!.")
-			log_access("Age confirmation unable to use DB, failed to retrieve player flags for player: [client?.ckey]")
-			to_chat(usr, span_warning("Unable to retrieve player flags, you will be asked again the next time you join!"))
-			dbAvailable = FALSE
+		message_admins("Unable to retrieve player flags, user will be asked again the next time they join!.")
+		log_access("Age confirmation unable to use DB, failed to retrieve player flags for player: [ckey]")
+		to_chat(usr, span_warning("Unable to retrieve player flags, you will be asked again the next time you join!"))
+		dbAvailable = FALSE
 
 	//set_db_player_flags might sleep
 	if(!src)
@@ -32,7 +32,7 @@
 	var/isAdult = prompt_player_for_age()
 	if(!isAdult)
 		to_chat(usr, "You must be 18 years or older to play on this server.")
-		qdel(client) //kick client
+		qdel(src) //kick client
 		return
 
 	log_access("[ckey] sucessfully verified their age!")
