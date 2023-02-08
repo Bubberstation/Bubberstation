@@ -9,7 +9,7 @@
 	if(!dbAvailable)
 		message_admins("Age confirmation enabled but no DB was found. Users will be asked every time they join, even if they've joined previously!") //TODO tell user to enable DB or where to turn off age gate
 		log_access("Age confirmation enabled but unable to contact DB! User will be asked again the next time they join!")
-		to_chat(usr, span_warning("Unable to connect to DB, you will be asked again the next time you join!"))
+		to_chat(usr, span_warning("Unable to connect to DB, you will be asked to confirm your age again the next time you join!"))
 
 	//Connect() might have slept, make sure our client is still there.
 	if(!src)
@@ -18,7 +18,7 @@
 	if(dbAvailable && !src.set_db_player_flags())
 		message_admins("Unable to retrieve player flags, user will be asked again the next time they join!.")
 		log_access("Age confirmation unable to use DB, failed to retrieve player flags for player: [ckey]")
-		to_chat(usr, span_warning("Unable to retrieve player flags, you will be asked again the next time you join!"))
+		to_chat(usr, span_warning("Unable to retrieve player flags, you will be asked to confirm your age again the next time you join!"))
 		dbAvailable = FALSE
 
 	//set_db_player_flags might sleep
@@ -32,6 +32,7 @@
 	var/isAdult = prompt_player_for_age()
 	if(!isAdult)
 		to_chat(usr, "You must be 18 years or older to play on this server.")
+		log_access("[ckey] answered the prompt with not being an adult. They will be kicked.") //TODO: This message is garbage and should be reworded
 		qdel(src) //kick client
 		return
 
