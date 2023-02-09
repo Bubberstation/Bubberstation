@@ -20,9 +20,10 @@
 		)
 
 	mail_goodies = list(
-		/obj/item/book/random = 44,
-		/obj/item/book/manual/random = 5,
-		/obj/item/book/granter/action/spell/blind/wgw = 1,
+		/obj/item/stack/sheet/mineral/coal/ten = 20,
+		/obj/item/stack/sheet/mineral/iron = 5,
+		/obj/item/stack/sheet/mineral/silver = 5,
+		/obj/item/stack/sheet/mineral/gold = 5,
 	)
 
 	family_heirlooms = list(/obj/item/pen/fountain, /obj/item/forging/hammer, /obj/item/forging/tongs)
