@@ -12779,8 +12779,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "dLv" = (
-/obj/effect/spawner/random/structure/crate_empty,
-/obj/effect/spawner/random/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/iron,
 /area/station/maintenance/central/greater)
 "dLH" = (
@@ -21515,10 +21515,10 @@
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
 "gwy" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/stairs/south,
+/obj/structure/rack,
+/obj/effect/spawner/random/maintenance/three,
 /turf/open/floor/iron,
-/area/station/hallway/primary/central)
+/area/station/maintenance/central/greater)
 "gwJ" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 5
@@ -22378,17 +22378,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/brig/upper)
-"gIM" = (
-/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
-	color = "#0000ff";
-	name = "Supply multi deck pipe adapter"
-	},
-/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
-	color = "#ff0000";
-	name = "Scrubbers multi deck pipe adapter"
-	},
-/turf/open/floor/iron,
-/area/station/maintenance/central/greater)
 "gIY" = (
 /turf/closed/wall,
 /area/station/medical/medbay/central)
@@ -27618,11 +27607,6 @@
 "ipf" = (
 /turf/open/genturf,
 /area/icemoon/underground/unexplored/rivers/deep/shoreline)
-"ipr" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/maintenance/three,
-/turf/open/floor/iron,
-/area/station/maintenance/central/greater)
 "ipw" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/maintenance/two,
@@ -34074,12 +34058,6 @@
 /obj/structure/sign/poster/official/obey,
 /turf/closed/wall/r_wall,
 /area/station/security/prison/visit)
-"kmi" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
-/area/station/maintenance/central/greater)
 "kmH" = (
 /obj/effect/spawner/random/entertainment/cigar,
 /obj/structure/table,
@@ -37501,6 +37479,11 @@
 	},
 /turf/open/floor/plating/snowed/icemoon,
 /area/icemoon/surface/outdoors/nospawn)
+"llW" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/stairs/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central)
 "llZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -41118,6 +41101,17 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
+"myv" = (
+/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
+	color = "#0000ff";
+	name = "Supply multi deck pipe adapter"
+	},
+/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
+	color = "#ff0000";
+	name = "Scrubbers multi deck pipe adapter"
+	},
+/turf/open/floor/iron,
+/area/station/maintenance/central/greater)
 "myC" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office"
@@ -52768,6 +52762,12 @@
 	dir = 4
 	},
 /area/station/service/chapel)
+"pYB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/station/maintenance/central/greater)
 "pYF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -56663,6 +56663,11 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
+"rib" = (
+/obj/effect/spawner/random/structure/crate_empty,
+/obj/effect/spawner/random/maintenance/two,
+/turf/open/floor/iron,
+/area/station/maintenance/central/greater)
 "rig" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/maintenance,
@@ -72379,11 +72384,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen/diner)
-"wbJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/iron,
-/area/station/maintenance/central/greater)
 "wbN" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -169536,7 +169536,7 @@ nNK
 uPZ
 vWB
 wBW
-gwy
+llW
 dnq
 jII
 jII
@@ -171079,16 +171079,16 @@ uPZ
 gOy
 gOy
 gOy
-kmi
-kmi
-kmi
-kmi
-kmi
-kmi
-kmi
-kmi
-kmi
-kmi
+pYB
+pYB
+pYB
+pYB
+pYB
+pYB
+pYB
+pYB
+pYB
+pYB
 eFK
 iYb
 iYb
@@ -171345,8 +171345,8 @@ wkf
 wkf
 wkf
 wkf
-kmi
-kmi
+pYB
+pYB
 nKG
 iYb
 iDt
@@ -171603,7 +171603,7 @@ wkf
 wkf
 wkf
 uHm
-gIM
+myv
 wkf
 iYb
 iDt
@@ -172107,11 +172107,11 @@ iYb
 iYb
 rZL
 djo
-wbJ
+dLv
 aKh
-dLv
-dLv
-ipr
+rib
+rib
+gwy
 iYb
 iDt
 iDt
@@ -172374,10 +172374,10 @@ udC
 iDt
 iDt
 iDt
-iDt
 xPu
 iDt
 xPu
+iDt
 iDt
 iDt
 iDt
@@ -172631,10 +172631,10 @@ udC
 udC
 iDt
 iDt
-iDt
 aaD
 wqT
 aaD
+iDt
 iDt
 iDt
 iDt
@@ -172888,10 +172888,10 @@ udC
 udC
 iDt
 iDt
-iDt
 alW
 wVz
 alW
+iDt
 iDt
 iDt
 iDt
@@ -173144,12 +173144,12 @@ udC
 udC
 iDt
 iDt
-iDt
 vcj
 vcj
 tLc
 vcj
 vcj
+iDt
 aVq
 iDt
 xMq
@@ -236111,7 +236111,7 @@ dxK
 gfb
 gfb
 wkf
-kmi
+pYB
 gfb
 gfb
 eqy
@@ -236368,7 +236368,7 @@ qRs
 jST
 eOv
 odN
-kmi
+pYB
 dpH
 gfb
 fNJ
@@ -236882,7 +236882,7 @@ oyb
 mqD
 iYb
 dkb
-kmi
+pYB
 iYb
 ePU
 dUp
