@@ -57,6 +57,7 @@
 		HAIR,
 		FACEHAIR,
 		LIPS,
+		MUTCOLORS,
 		DRINKSBLOOD,
 	)
 	inherent_traits = list(
