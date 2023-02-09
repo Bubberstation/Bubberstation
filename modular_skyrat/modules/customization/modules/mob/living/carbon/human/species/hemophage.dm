@@ -105,7 +105,6 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	) //Bubberstation change. Allows them to use the mutant bodyparts of other species like anthromorph.
 
-	veteran_only = FALSE
 
 
 /datum/species/hemophage/check_roundstart_eligible()
