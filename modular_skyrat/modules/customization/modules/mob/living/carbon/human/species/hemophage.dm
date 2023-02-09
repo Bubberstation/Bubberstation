@@ -492,7 +492,7 @@
 		to_chat(hemophage, span_warning("[victim] reeks of garlic! You can't bring yourself to drain such tainted blood."))
 		return
 
-	if(!do_after(hemophage, 15 SECONDS, target = victim)) //Takes a lot more time. Stops people from just abusing it.
+	if(!do_after(hemophage, 6 SECONDS, target = victim)) //Takes a lot more time. Stops people from just abusing it.
 		hemophage.balloon_alert(hemophage, "stopped feeding")
 		return
 
