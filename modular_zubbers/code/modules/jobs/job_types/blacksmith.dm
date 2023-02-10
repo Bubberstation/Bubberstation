@@ -21,7 +21,6 @@
 
 	mail_goodies = list(
 		/obj/item/stack/sheet/mineral/coal/ten = 20,
-		/obj/item/stack/sheet/mineral/iron = 5,
 		/obj/item/stack/sheet/mineral/silver = 5,
 		/obj/item/stack/sheet/mineral/gold = 5,
 	)
