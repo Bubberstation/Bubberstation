@@ -14,6 +14,13 @@
 	start_when = 10
 	announce_when = 3
 	anomaly_path = /obj/effect/anomaly/dimensional
+	/// What theme should the anomaly initially apply to the area?
+	var/anomaly_theme
+
+/datum/round_event/anomaly/anomaly_dimensional/apply_anomaly_properties(obj/effect/anomaly/dimensional/new_anomaly)
+	if (!anomaly_theme)
+		return
+	new_anomaly.prepare_area(new_theme_path = anomaly_theme)
 
 /datum/round_event/anomaly/anomaly_dimensional/announce(fake)
 	priority_announce("Localized dimensional instability detected on long range scanners. Expected location: [impact_area.name].", "Anomaly Alert")
