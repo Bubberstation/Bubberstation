@@ -8355,7 +8355,8 @@
 	},
 /obj/effect/mapping_helpers/mail_sorting/service/theater,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron,
 /area/station/maintenance/department/crew_quarters/bar)
 "bTJ" = (
 /obj/structure/lattice,
@@ -13946,7 +13947,6 @@
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/aft)
 "dos" = (
-/obj/machinery/power/port_gen/pacman/pre_loaded,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
@@ -15694,7 +15694,7 @@
 /area/station/maintenance/starboard/aft)
 "dKx" = (
 /obj/effect/decal/cleanable/oil,
-/obj/effect/spawner/random/structure/table_or_rack,
+/obj/effect/spawner/random/engineering/atmospherics_portable,
 /turf/open/floor/iron,
 /area/station/maintenance/department/crew_quarters/bar)
 "dKz" = (
@@ -16161,13 +16161,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch"
-	},
-/obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
+/mob/living/basic/cockroach,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/maintenance/department/crew_quarters/bar)
@@ -18526,6 +18520,7 @@
 	},
 /obj/machinery/light/small/directional/north,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "euF" = (
@@ -20923,7 +20918,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/mob/living/basic/cockroach,
+/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/maintenance/department/crew_quarters/bar)
@@ -21827,6 +21822,9 @@
 /obj/effect/spawner/random/trash/garbage,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/event_spawn,
+/obj/structure/deployable_barricade/wooden{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/maintenance/department/crew_quarters/bar)
 "fjf" = (
@@ -24176,7 +24174,10 @@
 /area/station/medical/medbay)
 "fOP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/engineering/atmospherics_portable,
+/obj/effect/spawner/random/structure/table_or_rack,
+/obj/structure/deployable_barricade/wooden{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "fPf" = (
@@ -48392,10 +48393,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/power/apc/auto_name/directional/north,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/plating,
+/obj/machinery/power/apc/auto_name/directional/north,
+/turf/open/floor/iron,
 /area/station/maintenance/department/crew_quarters/bar)
 "lIt" = (
 /obj/machinery/door/firedoor,
@@ -79807,6 +79808,15 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/item/stack/sheet/sinew{
+	amount = 30
+	},
+/obj/item/stack/sheet/bone{
+	amount = 12
+	},
+/obj/item/stack/sheet/bone{
+	amount = 12
+	},
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "twq" = (
@@ -83595,6 +83605,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "urh" = (
@@ -93986,6 +93997,13 @@
 /area/station/command/heads_quarters/hop)
 "wPy" = (
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Maintenance Hatch"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -135855,7 +135873,7 @@ msR
 mDq
 qaB
 qAV
-uqX
+eYQ
 qAV
 jSy
 oZb
@@ -136626,7 +136644,7 @@ mhs
 sBX
 fxn
 qAV
-uqX
+eYQ
 qAV
 tLb
 jgN
@@ -138168,7 +138186,7 @@ sWo
 hJP
 goi
 qAV
-eYQ
+gIx
 bQy
 rhh
 jEF
