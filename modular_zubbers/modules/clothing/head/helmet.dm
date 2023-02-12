@@ -4,5 +4,6 @@
 	desc = "Standard issue helmet for Civil Protection."
 	icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
-	icon_state = "hardsuit0-metrocop"
-	inhand_icon_state = "hardsuit0-metrocop"
+	icon_state = "metrocopHelm"
+	inhand_icon_state = null
+	armor_type = /datum/armor/head_helmet

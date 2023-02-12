@@ -9,19 +9,9 @@
 	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hardsuit-metrocop"
-	inhand_icon_state = "hardsuit-metrocop"
+	inhand_icon_state =  null
 	blood_overlay_type = "hardsuit-metrocop"
-	armor_type = /datum/armor/metrocopArmor
-
-/datum/armor/metrocopArmor
-	melee = 40
-	bullet = 25
-	laser = 30
-	energy = 30
-	bomb = 25
-	fire = 50
-	acid = 50
-	wound = 10
+	armor_type =/datum/armor/suit_armor
 
 /obj/item/clothing/suit/armor/metrocopriot //Sprite done by Gat1Day#2892
 	name = "Riot Civil Protection Suit"
@@ -29,7 +19,7 @@
 	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "hardsuit-metrocop-RL"
-	inhand_icon_state = "hardsuit-metrocop-RL"
+	inhand_icon_state =  null
 	blood_overlay_type = "hardsuit-metrocop-RL"
 	armor_type = /datum/armor/armor_riot
 
