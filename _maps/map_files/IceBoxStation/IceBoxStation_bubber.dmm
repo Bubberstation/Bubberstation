@@ -8834,8 +8834,8 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	shuttle_id = "whiteship_home";
 	name = "SS13: Auxiliary Dock, Station-Port";
+	shuttle_id = "whiteship_home";
 	width = 35
 	},
 /turf/open/floor/plating/snowed/icemoon,
@@ -19522,8 +19522,8 @@
 "fPx" = (
 /obj/docking_port/stationary/random/icemoon{
 	dir = 8;
-	shuttle_id = "pod_lavaland";
-	name = "lavaland"
+	name = "lavaland";
+	shuttle_id = "pod_lavaland"
 	},
 /turf/open/misc/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors/nospawn)
@@ -26646,21 +26646,21 @@
 	dir = 8
 	},
 /obj/machinery/button/flasher{
-	pixel_y = -32;
 	id = "hopflash";
-	pixel_x = 8
-	},
-/obj/machinery/button/door/directional/south{
-	pixel_x = -8;
-	req_access = list("hop");
-	id = "hopqueue";
-	name = "Queue Shutters Control"
-	},
-/obj/machinery/button/door/directional/south{
 	pixel_x = 8;
+	pixel_y = -32
+	},
+/obj/machinery/button/door/directional/south{
+	id = "hopqueue";
+	name = "Queue Shutters Control";
+	pixel_x = -8;
+	req_access = list("hop")
+	},
+/obj/machinery/button/door/directional/south{
+	id = "hop";
 	name = "Privacy Shutters Control";
-	req_access = list("hop");
-	id = "hop"
+	pixel_x = 8;
+	req_access = list("hop")
 	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
@@ -26721,9 +26721,9 @@
 	dir = 4
 	},
 /obj/machinery/button/door/directional/west{
-	pixel_y = 8;
 	id = "nt_rep_priv";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	pixel_y = 8
 	},
 /obj/machinery/button/door/directional/west{
 	id = "nt_rep_wild";
@@ -26910,8 +26910,8 @@
 	dir = 8;
 	dwidth = 8;
 	height = 11;
-	shuttle_id = "ferry_home";
 	name = "Port Bay 2";
+	shuttle_id = "ferry_home";
 	width = 20
 	},
 /turf/open/floor/plating/snowed/icemoon,
@@ -37482,8 +37482,8 @@
 "llZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
-	name = "Wildlife Observation Shutters";
-	id = "nt_rep_wild"
+	id = "nt_rep_wild";
+	name = "Wildlife Observation Shutters"
 	},
 /turf/open/floor/plating,
 /area/command/heads_quarters/captain/private/nt_rep)
@@ -41097,14 +41097,8 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "myv" = (
-/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
-	color = "#0000ff";
-	name = "Supply multi deck pipe adapter"
-	},
-/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
-	color = "#ff0000";
-	name = "Scrubbers multi deck pipe adapter"
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/maintenance/central/greater)
 "myC" = (
@@ -45277,11 +45271,6 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
-"nKG" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
-/area/station/maintenance/central/greater)
 "nKK" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 10
@@ -46191,8 +46180,8 @@
 "nVD" = (
 /obj/structure/table/wood,
 /obj/machinery/libraryscanner{
-	pixel_y = 5;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 5
 	},
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/machinery/light/small/directional/east,
@@ -46649,8 +46638,8 @@
 "odn" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder{
-	pixel_y = 14;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 14
 	},
 /obj/item/camera_film{
 	pixel_x = -6
@@ -50117,8 +50106,8 @@
 "piy" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
-	name = "Privacy Shutter";
-	id = "nt_rep_priv"
+	id = "nt_rep_priv";
+	name = "Privacy Shutter"
 	},
 /turf/open/floor/plating,
 /area/command/heads_quarters/captain/private/nt_rep)
@@ -51439,8 +51428,8 @@
 	},
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/bottle/champagne{
-	pixel_y = 18;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 18
 	},
 /obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
 	pixel_x = -7;
@@ -65340,8 +65329,8 @@
 	dir = 8;
 	dwidth = 1;
 	height = 13;
-	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
+	shuttle_id = "arrivals_stationary";
 	width = 5
 	},
 /turf/open/misc/asteroid/snow/icemoon,
@@ -171337,8 +171326,8 @@ wkf
 wkf
 wkf
 pYB
-pYB
-nKG
+myv
+wkf
 iYb
 iDt
 iDt
@@ -171594,7 +171583,7 @@ wkf
 wkf
 wkf
 uHm
-myv
+txI
 wkf
 iYb
 iDt
