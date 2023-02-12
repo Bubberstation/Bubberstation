@@ -30,7 +30,6 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 0.75
 	speedmod = -0.2
-	stunmod = 1.25
 	custom_worn_icons = list(
 		LOADOUT_ITEM_HEAD = TESHARI_HEAD_ICON,
 		LOADOUT_ITEM_MASK = TESHARI_MASK_ICON,
