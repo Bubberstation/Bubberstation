@@ -26,7 +26,7 @@
 	)
 	digitigrade_customization = DIGITIGRADE_NEVER
 	disliked_food = GROSS | FRIED
-	liked_food = MEAT | GORE | SUGAR |VEGETABLES
+	liked_food = MEAT | GORE | SUGAR |VEGETABLES | RAW
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 0.75
 	speedmod = -0.2
