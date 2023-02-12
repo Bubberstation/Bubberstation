@@ -9,8 +9,8 @@
 	name = "Valentines!"
 	holidayID = VALENTINES
 	typepath = /datum/round_event/valentines
-	weight = -1 //forces it to be called, regardless of weight
-	max_occurrences = 1
+	weight = 0
+	max_occurrences = 0
 	earliest_start = 0 MINUTES
 	category = EVENT_CATEGORY_HOLIDAY
 	description = "Puts people on dates! They must protect each other. Sometimes a vengeful third wheel spawns."
