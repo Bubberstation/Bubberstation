@@ -48,13 +48,10 @@
 	desc = "Worn by the commander of Space Station 13."
 	icon_state = "capcloak"
 
-/*
 /obj/item/clothing/neck/cloak/hop
 	name = "head of personnel's cloak"
 	desc = "Worn by the Head of Personnel. It smells faintly of bureaucracy."
-	icon = 'icons/obj/clothing/cloaks.dmi'
-	icon_state = "hopcloak_bubbers"
-*/ // moved to modular_zubbers
+	icon_state = "hopcloak_bubbers" // BUBBERS ADDITION
 
 /obj/item/clothing/neck/cloak/skill_reward
 	var/associated_skill_path = /datum/skill
