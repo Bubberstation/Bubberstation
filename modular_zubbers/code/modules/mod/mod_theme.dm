@@ -1,11 +1,7 @@
 /datum/mod_theme/asset_protection
 	name = "Asset Protection"
 	desc = "A weaker version of the Apocryphal Modsuit, chiefly worn by Nanotrasen Asset Protection."
-	extended_desc = "An even more costly version of the Magnate model, the corporate suit is a thermally insulated, \
-		anti-corrosion coated suit for high-ranking CentCom Officers, deploying pristine protective armor and \
-		advanced actuators, feeling practically weightless when turned on. Scraping the paint of this suit is \
-		counted as a war-crime and reason for immediate execution in over fifty Nanotrasen space stations. \
-		The resemblance to a Gorlex Marauder helmet is purely coincidental."
+	extended_desc = "A weaker version of the Apocryphal Modsuit meant for the Nanotrasen Asset Protection Division. This suit boasts higher speed and advanced actuators that make moving feel almost weightless, with advanced features for the savvy bodyguard."
 	default_skin = "asset_protection"
 	armor_type = /datum/armor/mod_theme_ap
 	resistance_flags = FIRE_PROOF|ACID_PROOF
