@@ -45,6 +45,7 @@
 		"name",
 		"job",
 		"is_robot", //SKYRAT EDIT ADDITION - Displaying robotic species Icon
+		"is_dnr", //BUBBERSTATION EDIT ADDITION - Displays DNR status
 		"life_status",
 		"suffocation",
 		"toxin",
@@ -260,6 +261,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
+
+		// BUBBERSTATION EDIT BEGIN: Add DNR status
+		// If sensors are above living tracking, set DNR state
+		if (sensor_mode >= SENSOR_LIVING)
+			entry["is_dnr"] = HAS_TRAIT(tracked_living_mob, TRAIT_DNR)
+		// BUBBERSTATION EDIT END
 
 		// Binary living/dead status
 		if (sensor_mode >= SENSOR_LIVING)
