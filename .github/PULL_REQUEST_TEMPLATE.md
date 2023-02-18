@@ -5,19 +5,7 @@
 
 <!-- Describe The Pull Request. Please be sure every change is documented or this can delay review and even discourage maintainers from merging your PR! -->
 
-## How This Contributes To The Skyrat Roleplay Experience
-
-<!-- Please add a short description of why you think these changes would benefit the game and the roleplay atmosphere of the server. If you can't justify it in words, it might not be worth adding. -->
-
-## Proof of Testing
-
-<!-- Include any screenshots/videos/debugging steps of the code functioning successfully, between the </summary> and </details> code blocks. -->
-<!-- To our mappers and spriters: Posting screenshots of content INSIDE EDITORS (aseprite, PDN, SDMM, ect) is NOT valid proof of testing. Please make sure that you COMPILE the game and provide PROOF you tested your edits. -->
-
-<details>
-<summary>Screenshots/Videos</summary>
-  
-</details>
+<!-- Please make sure to actually test your PRs. If you have not tested your PR mention it. -->
 
 ## Changelog
 
