@@ -11811,7 +11811,6 @@
 	color = "#ad6836"
 	},
 /obj/item/reagent_containers/cup/primitive_centrifuge,
-/obj/item/reagent_containers/cup/mortar,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
@@ -16539,6 +16538,8 @@
 	},
 /obj/item/forging/billow,
 /obj/item/forging/tongs,
+/obj/item/forging/hammer,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "fTa" = (
@@ -17276,12 +17277,14 @@
 /area/station/science/auxlab)
 "gii" = (
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "Public Garden Maintenance Hatch"
+	name = "Barbershop Maintenance Hatch";
+	req_access = "73"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/airlock/unres,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/smooth,
 /area/station/service/hydroponics/garden)
 "gil" = (
@@ -20266,6 +20269,7 @@
 /obj/effect/turf_decal/trimline/green/filled/corner{
 	dir = 8
 	},
+/obj/machinery/vending/access/command,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "hiu" = (
@@ -28527,8 +28531,10 @@
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
 "kiT" = (
-/obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/chem_master{
+	name = "CraftMaster 2900"
+	},
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "kja" = (
@@ -34139,6 +34145,7 @@
 	amount = 30
 	},
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "mgi" = (
@@ -34746,6 +34753,7 @@
 "mpA" = (
 /obj/structure/reagent_crafting_bench,
 /obj/machinery/light/directional/north,
+/obj/machinery/newscaster/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/cargo/blacksmith)
 "mpF" = (
@@ -43930,6 +43938,10 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/starboard/central)
+"pBN" = (
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/carpet/donk,
+/area/station/command/heads_quarters/qm)
 "pBT" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office"
@@ -45050,6 +45062,7 @@
 	dir = 4
 	},
 /obj/structure/dresser,
+/obj/item/radio/intercom/directional/west,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/qm)
 "pXi" = (
@@ -55899,6 +55912,7 @@
 /obj/item/reagent_containers/cup/beaker/large{
 	pixel_x = -2
 	},
+/obj/item/radio/intercom/directional/west,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "tJY" = (
@@ -110050,7 +110064,7 @@ xtu
 arE
 iRL
 iRL
-uBH
+pBN
 uBH
 oSI
 arE
