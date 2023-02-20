@@ -44957,9 +44957,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
-"nAs" = (
-/turf/closed/wall,
-/area/station/security/checkpoint/supply)
 "nAv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45295,10 +45292,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
-"nDB" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/station/security/checkpoint/supply)
 "nDE" = (
 /turf/closed/wall/r_wall,
 /area/station/security/prison/garden)
@@ -47747,6 +47740,9 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/rd)
+"ooj" = (
+/turf/closed/wall,
+/area/station/security/checkpoint/supply)
 "ool" = (
 /obj/effect/mapping_helpers/iannewyear,
 /turf/open/floor/carpet,
@@ -48444,9 +48440,13 @@
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/rods/fifty,
+/obj/item/stack/sheet/mineral/coal/ten{
+	amount = 50
+	},
 /obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
-/obj/item/stack/sheet/mineral/coal/ten,
+/obj/item/stack/sheet/mineral/coal/ten{
+	amount = 50
+	},
 /obj/item/stack/sheet/sinew{
 	amount = 30
 	},
@@ -62092,6 +62092,10 @@
 /obj/structure/cable/multilayer/multiz,
 /turf/open/floor/plating,
 /area/mine/storage)
+"sIQ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/security/checkpoint/supply)
 "sJi" = (
 /obj/machinery/vending/donksofttoyvendor,
 /turf/open/floor/iron/dark/textured,
@@ -231692,8 +231696,8 @@ wam
 wam
 gOI
 oMk
-nDB
-nDB
+sIQ
+sIQ
 bxt
 qjQ
 gAe
@@ -231949,7 +231953,7 @@ wam
 wam
 wxT
 ajw
-nDB
+sIQ
 woZ
 fdT
 qjQ
@@ -232206,7 +232210,7 @@ irD
 pzX
 gdN
 ajw
-nDB
+sIQ
 mMP
 dQV
 qjQ
@@ -232462,8 +232466,8 @@ iaF
 ajw
 ajw
 vVN
-nAs
-nAs
+ooj
+ooj
 lBe
 nNM
 qjQ
@@ -232976,7 +232980,7 @@ kXr
 kXr
 ajw
 oVf
-nAs
+ooj
 wxI
 jdA
 qjQ
