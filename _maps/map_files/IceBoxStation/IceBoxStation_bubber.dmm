@@ -4886,7 +4886,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "bxJ" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
@@ -13190,7 +13190,7 @@
 	},
 /obj/effect/landmark/start/depsec/supply,
 /turf/open/floor/iron,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "dQZ" = (
 /obj/machinery/door/window/left/directional/north{
 	base_state = "right";
@@ -17385,7 +17385,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "fdY" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/hidden,
 /turf/closed/wall,
@@ -27310,8 +27310,17 @@
 /turf/open/floor/glass,
 /area/station/security/lockers)
 "igL" = (
-/obj/structure/cable/multilayer/multiz,
 /obj/effect/turf_decal/stripes/box,
+/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
+	color = "#ff0000";
+	dir = 8;
+	name = "Scrubbers multi deck pipe adapter"
+	},
+/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
+	color = "#0000ff";
+	dir = 8;
+	name = "Supply multi deck pipe adapter"
+	},
 /turf/open/floor/plating,
 /area/mine/storage)
 "igQ" = (
@@ -30599,7 +30608,7 @@
 	},
 /obj/item/clothing/mask/whistle,
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "jdJ" = (
 /obj/structure/chair/wood,
 /turf/open/floor/carpet,
@@ -38773,7 +38782,7 @@
 	dir = 6
 	},
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "lBo" = (
 /obj/effect/spawner/random/engineering/tracking_beacon,
 /turf/open/floor/carpet,
@@ -42308,7 +42317,7 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "mMS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -44948,6 +44957,9 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
+"nAs" = (
+/turf/closed/wall,
+/area/station/security/checkpoint/supply)
 "nAv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45283,6 +45295,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
+"nDB" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/security/checkpoint/supply)
 "nDE" = (
 /turf/closed/wall/r_wall,
 /area/station/security/prison/garden)
@@ -45960,7 +45976,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "nNQ" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -53250,8 +53266,17 @@
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
 "qam" = (
-/obj/structure/cable/multilayer/multiz,
 /obj/effect/turf_decal/stripes/box,
+/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
+	color = "#ff0000";
+	dir = 8;
+	name = "Scrubbers multi deck pipe adapter"
+	},
+/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
+	color = "#0000ff";
+	dir = 8;
+	name = "Supply multi deck pipe adapter"
+	},
 /turf/open/floor/plating,
 /area/station/commons/storage/mining)
 "qau" = (
@@ -54444,9 +54469,9 @@
 	name = "Mining Dock"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/supply/mining,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/any/supply/general,
+/obj/effect/mapping_helpers/airlock/access/any/supply/mining,
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "qum" = (
@@ -55373,7 +55398,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "qJT" = (
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/plating/snowed/icemoon,
@@ -58538,7 +58563,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "rFI" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -62061,16 +62086,10 @@
 /turf/open/floor/iron/large,
 /area/station/engineering/storage)
 "sIO" = (
-/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
-	color = "#0000ff";
-	name = "Supply multi deck pipe adapter"
-	},
-/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
-	color = "#ff0000";
-	name = "Scrubbers multi deck pipe adapter"
-	},
 /obj/effect/turf_decal/stripes/box,
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable/multilayer/multiz,
 /turf/open/floor/plating,
 /area/mine/storage)
 "sJi" = (
@@ -65671,7 +65690,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "tOO" = (
 /obj/structure/sign/warning/no_smoking/circle/directional/west,
 /obj/machinery/light/directional/west,
@@ -69895,7 +69914,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "vgD" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/iron/fifty,
@@ -73999,7 +74018,7 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "wpc" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
@@ -74552,7 +74571,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/cargo/storage)
+/area/station/security/checkpoint/supply)
 "wxL" = (
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 1
@@ -75614,16 +75633,10 @@
 /turf/closed/wall,
 /area/station/hallway/primary/central/fore)
 "wMz" = (
-/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
-	color = "#0000ff";
-	name = "Supply multi deck pipe adapter"
-	},
-/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
-	color = "#ff0000";
-	name = "Scrubbers multi deck pipe adapter"
-	},
 /obj/effect/turf_decal/stripes/box,
-/obj/structure/cable,
+/obj/structure/cable/multilayer/multiz,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/commons/storage/mining)
 "wMP" = (
@@ -231679,8 +231692,8 @@ wam
 wam
 gOI
 oMk
-maT
-maT
+nDB
+nDB
 bxt
 qjQ
 gAe
@@ -231936,7 +231949,7 @@ wam
 wam
 wxT
 ajw
-maT
+nDB
 woZ
 fdT
 qjQ
@@ -232193,7 +232206,7 @@ irD
 pzX
 gdN
 ajw
-maT
+nDB
 mMP
 dQV
 qjQ
@@ -232449,8 +232462,8 @@ iaF
 ajw
 ajw
 vVN
-kXr
-kXr
+nAs
+nAs
 lBe
 nNM
 qjQ
@@ -232963,7 +232976,7 @@ kXr
 kXr
 ajw
 oVf
-kXr
+nAs
 wxI
 jdA
 qjQ
