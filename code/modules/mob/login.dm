@@ -88,6 +88,7 @@
 
 	add_click_catcher()
 
+
 	sync_mind()
 
 	//Reload alternate appearances
@@ -102,8 +103,9 @@
 	if(client)
 		if(client.view_size)
 			client.view_size.resetToDefault() // Resets the client.view in case it was changed.
-		else
-			client.change_view(getScreenSize(client.prefs.read_preference(/datum/preference/toggle/widescreen)))
+		if((client?.prefs?.read_preference(/datum/preference/toggle/widescreen)))
+			var/val = client?.prefs.read_preference(/datum/preference/numeric/icon_size)
+			INVOKE_ASYNC(client, /client.verb/SetWindowIconSize, val)
 
 		if(client.player_details.player_actions.len)
 			for(var/datum/action/A in client.player_details.player_actions)

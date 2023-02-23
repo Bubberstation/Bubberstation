@@ -1043,19 +1043,22 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
 
-/client/proc/change_view(new_size)
-	if (isnull(new_size))
-		CRASH("change_view called without argument.")
-
-	view = new_size
-	SEND_SIGNAL(src, COMSIG_VIEW_SET, new_size)
-	mob.hud_used.screentip_text.update_view()
-	apply_clickcatcher()
-	mob.reload_fullscreen()
-	if (isliving(mob))
-		var/mob/living/M = mob
-		M.update_damage_hud()
-	attempt_auto_fit_viewport()
+/client/proc/change_view(new_size, forced)
+	if((!prefs?.read_preference(/datum/preference/toggle/widescreen)))
+		if (isnull(new_size))
+			CRASH("change_view called without argument.")
+		view = new_size
+		apply_clickcatcher()
+		mob?.reload_fullscreen()
+		if (isliving(mob))
+			var/mob/living/M = mob
+			M.update_damage_hud()
+		attempt_auto_fit_viewport()
+	else
+		apply_clickcatcher()
+		mob?.reload_fullscreen()
+		if(forced)
+			view = new_size
 
 /client/proc/generate_clickcatcher()
 	if(!void)
@@ -1222,6 +1225,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	SEND_SOUND(usr, sound(null))
 	tgui_panel?.stop_music()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds"))
+
+/// Used in skin.dmf to scale on hotkeys.
+/client/verb/ScaleHotkey(number as num)
+	var/lastsize = text2num(winget(src, "mapwindow.map", "icon-size"))
+	var/newpref = lastsize + number
+	SetWindowIconSize(newpref)
 
 /client/verb/toggle_fullscreen()
 	set name = "Toggle Fullscreen"
