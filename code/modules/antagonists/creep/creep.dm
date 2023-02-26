@@ -115,11 +115,11 @@
 				heirloom_thief.target = obsessionmind//while you usually wouldn't need this for stealing, we need the name of the obsession
 				heirloom_thief.steal_target = family_heirloom
 				objectives += heirloom_thief
-			if("jealous")
-				var/datum/objective/assassinate/jealous/jealous = new
-				jealous.owner = owner
-				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
-				objectives += jealous
+//			if("jealous")    //BUBBERSTATION EDIT START
+//				var/datum/objective/assassinate/jealous/jealous = new
+//				jealous.owner = owner
+//				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
+//				objectives += jealous //BUBBERSTATION EDIT END
 
 	objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
 	for(var/datum/objective/O in objectives)
@@ -163,49 +163,49 @@
 //////////////////////////////////////////////////
 
 /datum/objective/assassinate/obsessed //just a creepy version of assassinate
-
-/datum/objective/assassinate/obsessed/update_explanation_text()
-	..()
-	if(target?.current)
-		explanation_text = "Murder [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
-	else
-		message_admins("WARNING! [ADMIN_LOOKUPFLW(owner)] obsessed objectives forged without an obsession!")
-		explanation_text = "Free Objective"
-
-/datum/objective/assassinate/jealous //assassinate, but it changes the target to someone else in the previous target's department. cool, right?
-	var/datum/mind/old //the target the coworker was picked from.
-
-/datum/objective/assassinate/jealous/update_explanation_text()
-	..()
-	old = find_coworker(target)
-	if(target?.current && old)
-		explanation_text = "Murder [target.name], [old]'s coworker."
-	else
-		explanation_text = "Free Objective"
-
-
-/datum/objective/assassinate/jealous/proc/find_coworker(datum/mind/oldmind)//returning null = free objective
-	if(is_unassigned_job(oldmind.assigned_role))
-		return
-	var/list/viable_coworkers = list()
-	var/list/all_coworkers = list()
-	var/our_departments = oldmind.assigned_role.departments_bitflags
-	for(var/mob/living/carbon/human/human_alive in GLOB.alive_mob_list)
-		if(!human_alive.mind)
-			continue
-		if(human_alive == oldmind.current || human_alive.mind.assigned_role.faction != FACTION_STATION || human_alive.mind.has_antag_datum(/datum/antagonist/obsessed))
-			continue //the jealousy target has to have a job, and not be the obsession or obsessed.
-		all_coworkers += human_alive.mind
-		if(!(our_departments & human_alive.mind.assigned_role.departments_bitflags))
-			continue
-		viable_coworkers += human_alive.mind
-
-	if(length(viable_coworkers))//find someone in the same department
-		target = pick(viable_coworkers)
-	else if(length(all_coworkers))//find someone who works on the station
-		target = pick(all_coworkers)
-	return oldmind
-
+//BUBBERSTATION EDIT START//
+// /datum/objective/assassinate/obsessed/update_explanation_text()
+//	..()
+//	if(target?.current)
+//		explanation_text = "Murder [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
+//	else
+//		message_admins("WARNING! [ADMIN_LOOKUPFLW(owner)] obsessed objectives forged without an obsession!")
+//		explanation_text = "Free Objective"
+//
+//	/datum/objective/assassinate/jealous //assassinate, but it changes the target to someone else in the previous target's department. cool, right?
+//	var/datum/mind/old //the target the coworker was picked from.
+//
+//	/datum/objective/assassinate/jealous/update_explanation_text()
+//	..()
+//	old = find_coworker(target)
+//	if(target?.current && old)
+//		explanation_text = "Murder [target.name], [old]'s coworker."
+//	else
+//		explanation_text = "Free Objective"
+//
+//
+//	/datum/objective/assassinate/jealous/proc/find_coworker(datum/mind/oldmind)//returning null = free objective
+//	if(is_unassigned_job(oldmind.assigned_role))
+//		return
+//	var/list/viable_coworkers = list()
+//	var/list/all_coworkers = list()
+//	var/our_departments = oldmind.assigned_role.departments_bitflags
+//	for(var/mob/living/carbon/human/human_alive in GLOB.alive_mob_list)
+//		if(!human_alive.mind)
+//			continue
+//		if(human_alive == oldmind.current || human_alive.mind.assigned_role.faction != FACTION_STATION || human_alive.mind.has_antag_datum(/datum/antagonist/obsessed))
+//			continue //the jealousy target has to have a job, and not be the obsession or obsessed.
+//		all_coworkers += human_alive.mind
+//		if(!(our_departments & human_alive.mind.assigned_role.departments_bitflags))
+//			continue
+//		viable_coworkers += human_alive.mind
+//
+//	if(length(viable_coworkers))//find someone in the same department
+//		target = pick(viable_coworkers)
+//	else if(length(all_coworkers))//find someone who works on the station
+//		target = pick(all_coworkers)
+//	return oldmind
+//BUBBERSTATION EDIT END//
 
 /datum/objective/spendtime //spend some time around someone, handled by the obsessed trauma since that ticks
 	name = "spendtime"
