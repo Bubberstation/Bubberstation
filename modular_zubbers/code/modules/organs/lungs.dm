@@ -1,10 +1,7 @@
 //CODERS NOTE. ALL VALUES IN HERE ARE IN KELVIN AND MOLS, NOT CELCIUS OR KPA.\\
 //Replacement for Skyrats custom lungs.
 /obj/item/organ/internal/lungs/cold
-	name = "cold-adapted lungs"
-	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
 	desc = "A set of lungs that pre-filter and warm air via several self-contained circulatory systems before exposing them to the sensitive lining of mucus within. Very susceptible to heat."
-	icon_state = "lungs_cold"
 	cold_message = "a chilling - slightly painful and though bearable, an utterly bitter sensation"
 	cold_level_1_threshold = 208
 	cold_level_2_threshold = 200
@@ -25,10 +22,7 @@
 
 
 /obj/item/organ/internal/lungs/hot
-	name = "heat-adapted lungs"
-	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
 	desc = "A blackened pair of lungs - seemingly adapted with thick mucus membranes to resist harsh heating... Making them more susceptible to freezing as a result."
-	icon_state = "lungs_heat"
 	cold_message = "the freezing cold with every breath you take"
 	cold_level_1_threshold = 256
 	cold_level_2_threshold = 220
@@ -49,9 +43,7 @@
 
 /obj/item/organ/internal/lungs/toxin
 	name = "pollution-adapted lungs"
-	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
 	desc = "A set of lungs almost vaguely similar to the black-frilled lungs of Ashwalkers; capable of scrubbing plasma and carbon dioxide without negative effects - at the cost of resistance to temperature surges."
-	icon_state = "lungs_toxin"
 	safe_plasma_max = 25
 	safe_co2_max = 40
 
@@ -75,10 +67,7 @@
 	heat_damage_type = BURN
 
 /obj/item/organ/internal/lungs/oxy
-	name = "low-oxygen-adapted lungs"
-	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
 	desc = "A set of lungs specifically adapted to low-level, extremophile environments, though more susceptible to internal damage as a result."
-	icon_state = "lungs_toxin"
 	safe_oxygen_min = 5
 	safe_oxygen_max = 30
 	safe_co2_max = 15
