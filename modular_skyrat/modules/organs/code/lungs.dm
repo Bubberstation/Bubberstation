@@ -1,5 +1,6 @@
 //CODERS NOTE. ALL VALUES IN HERE ARE IN KELVIN AND MOLS, NOT CELCIUS OR KPA.\\
-
+//This file has been migrated to modular_zubbers.
+/*
 /obj/item/organ/internal/lungs/cold
 	name = "cold-adapted lungs"
 	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
@@ -100,3 +101,4 @@
 	cold_level_2_damage = COLD_GAS_DAMAGE_LEVEL_2
 	cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
 	cold_damage_type = BURN
+\*
