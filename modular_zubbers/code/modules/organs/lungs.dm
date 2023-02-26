@@ -100,3 +100,4 @@
 	cold_level_2_damage = COLD_GAS_DAMAGE_LEVEL_2
 	cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
 	cold_damage_type = BURN
+
