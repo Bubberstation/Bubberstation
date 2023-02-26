@@ -45,7 +45,9 @@
 	name = "pollution-adapted lungs"
 	desc = "A set of lungs almost vaguely similar to the black-frilled lungs of Ashwalkers; capable of scrubbing plasma and carbon dioxide without negative effects - at the cost of resistance to temperature surges."
 	safe_plasma_max = 25
-	safe_co2_max = 40
+	safe_co2_max = 60
+	safe_oxygen_max = 50
+	safe_nitro_max = 40
 
 	cold_message = "the freezing cold with every breath you take"
 	cold_level_1_threshold = 248
@@ -68,9 +70,10 @@
 
 /obj/item/organ/internal/lungs/oxy
 	desc = "A set of lungs specifically adapted to low-level, extremophile environments, though more susceptible to internal damage as a result."
-	safe_oxygen_min = 5
+	safe_oxygen_min = 8
 	safe_oxygen_max = 30
-	safe_co2_max = 15
+	safe_co2_max = 25
+	safe_nitro_max = 50
 
 	hot_message = "the searing heat with every breath you take"
 	heat_level_1_threshold = 335
