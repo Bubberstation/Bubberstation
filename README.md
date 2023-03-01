@@ -9,7 +9,7 @@
 * **Code:** https://github.com/Bubberstation/Bubberstation
 * **tgstation Wiki:** https://tgstation13.org/wiki/Main_Page
 * **Skyrat Codedocs:** https://skyrat-ss13.github.io/Skyrat-tg/
-* **Bubberstation Discord:** https://discord.gg/39dUpb5weB
+* **Bubberstation Discord:** https://discord.gg/AvjrTqnqEx
 * **Coderbus Discord:** https://discord.gg/Vh8TJp9
 
 This is Bubberstation's downstream fork of Skyrat, which is in turn a fork of tgstation.
