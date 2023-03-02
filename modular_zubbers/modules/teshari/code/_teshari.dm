@@ -18,7 +18,6 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
 		TRAIT_EASILY_WOUNDED,
-		TRAIT_EASYDISMEMBER,
 	)
 	default_mutant_bodyparts = list(
 		"tail" = ACC_RANDOM,
