@@ -1050,13 +1050,9 @@
 /datum/antagonist/changeling/roundend_report()
 	var/list/parts = list()
 
-	// SKYRAT EDIT REMOVAL START
-	/*
 	var/changeling_win = TRUE
 	if(!owner.current)
 		changeling_win = FALSE
-	*/
-	// SKYRAT EDIT REMOVAL END
 
 	parts += printplayer(owner)
 	parts += "<b>Genomes Extracted:</b> [absorbed_count]<br>"
@@ -1064,26 +1060,17 @@
 	if(objectives.len)
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			// SKYRAT EDIT START - No greentext
-			/*
 			if(objective.check_completion())
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_greentext("Success!</b>")]"
 			else
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 				changeling_win = FALSE
-			*/
-			parts += "<b>Objective #[count]</b>: [objective.explanation_text]"
-			// SKYRAT EDIT END - No greentext
 			count++
 
-	// SKYRAT EDIT REMOVAL START - No greentext
-	/*
 	if(changeling_win)
 		parts += span_greentext("The changeling was successful!")
 	else
 		parts += span_redtext("The changeling has failed.")
-	*/
-	// SKYRAT EDIT REMOVAL END - No greentext
 
 	return parts.Join("<br>")
 
