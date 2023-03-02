@@ -75,7 +75,7 @@
 		JOB_AI,
 		JOB_CYBORG,
 	)
-		enemy_roles = list(
+	enemy_roles = list(
 		JOB_AI,
 		JOB_CAPTAIN,
 		JOB_DETECTIVE,
@@ -210,7 +210,7 @@
 		JOB_AI,
 		JOB_CYBORG,
 	)
-		enemy_roles = list(
+	enemy_roles = list(
 		JOB_AI,
 		JOB_CAPTAIN,
 		JOB_DETECTIVE,
