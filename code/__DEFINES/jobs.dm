@@ -87,6 +87,7 @@
 #define JOB_PSYCHOLOGIST "Psychologist"
 #define JOB_BARBER "Barber" // SKYRAT EDIT ADDITION
 #define JOB_BOUNCER "Service Guard" // SKYRAT EDIT ADDITION
+#define JOB_BLACKSMITH "Blacksmith" //Budder Edit.
 //ERTs
 #define JOB_ERT_DEATHSQUAD "Death Commando"
 #define JOB_ERT_COMMANDER "Emergency Response Team Commander"
@@ -173,6 +174,7 @@
 #define JOB_DISPLAY_ORDER_BOUNCER 43 //SKYRAT EDIT ADDITION
 #define JOB_DISPLAY_ORDER_ENGINEER_GUARD 44 //SKYRAT EDIT ADDITION
 #define JOB_DISPLAY_ORDER_CUSTOMS_AGENT 45 //SKYRAT EDIT ADDITION
+#define JOB_DISPLAY_ORDER_BLACKSMITH 46 //Budder Edit.
 
 #define DEPARTMENT_UNASSIGNED "No Department"
 
