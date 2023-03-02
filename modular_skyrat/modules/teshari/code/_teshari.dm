@@ -1,6 +1,6 @@
 #define TESHARI_TEMP_OFFSET -30 // K, added to comfort/damage limit etc
-#define TESHARI_BURNMOD 1.30 // They take more damage from practically everything
-#define TESHARI_BRUTEMOD 1.30
+#define TESHARI_BURNMOD 1.25 // They take more damage from practically everything
+#define TESHARI_BRUTEMOD 1.2
 #define TESHARI_HEATMOD 1.3
 #define TESHARI_COLDMOD 0.67 // Except cold.
 
@@ -17,8 +17,6 @@
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
-		TRAIT_EASILY_WOUNDED,
-		TRAIT_EASYDISMEMBER,
 	)
 	default_mutant_bodyparts = list(
 		"tail" = ACC_RANDOM,
@@ -26,11 +24,10 @@
 		"legs" = "Normal Legs"
 	)
 	digitigrade_customization = DIGITIGRADE_NEVER
-	disliked_food = GROSS | FRIED
-	liked_food = MEAT | GORE | SUGAR |VEGETABLES | RAW
+	disliked_food = GROSS | GRAIN | GORE
+	liked_food = MEAT
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 0.75
-	speedmod = -0.2
 	custom_worn_icons = list(
 		LOADOUT_ITEM_HEAD = TESHARI_HEAD_ICON,
 		LOADOUT_ITEM_MASK = TESHARI_MASK_ICON,
@@ -45,7 +42,7 @@
 		LOADOUT_ITEM_ACCESSORY = TESHARI_ACCESSORIES_ICON,
 		LOADOUT_ITEM_EARS = TESHARI_EARS_ICON
 	)
-	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,-4), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,-5), OFFSET_HEAD = list(0,-4), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,-4), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_ACCESSORY = list(0, -4))
+	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,-4), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,-5), OFFSET_HEAD = list(1,-4), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,-4), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_ACCESSORY = list(0, -4))
 	coldmod = TESHARI_COLDMOD
 	heatmod = TESHARI_HEATMOD
 	brutemod = TESHARI_BRUTEMOD
