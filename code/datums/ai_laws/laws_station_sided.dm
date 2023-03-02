@@ -20,7 +20,7 @@
 		"You must protect your own existence as long as such does not conflict with the First Law or Second Law.",
 	)
 
-	/datum/ai_laws/default/crewsimovpp
+/datum/ai_laws/default/crewsimovpp
 	name = "Crewsimov++"
 	id = "crewsimovpp"
 		inherent = list(
