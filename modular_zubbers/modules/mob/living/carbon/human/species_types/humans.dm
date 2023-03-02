@@ -9,6 +9,7 @@
 	)
 	inherent_traits = list(
 		TRAIT_CAN_USE_FLIGHT_POTION,
+		TRAIT_NOHARDCRIT,
 	)
 	mutant_bodyparts = list("wings" = "None")
 	use_skintones = 1
