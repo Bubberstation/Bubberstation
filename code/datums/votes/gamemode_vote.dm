@@ -11,7 +11,7 @@
 	)
 	message = "Vote for the next rounds ruleset."
 
-/datum/vote/proc/is_accessible_vote()
+/datum/vote/is_accessible_vote()
 	return TRUE
 
 /datum/vote/gamemode_vote/finalize_vote(winning_option)
@@ -19,7 +19,8 @@
 		return
 
 	if(winning_option == CHOICE_EXTENDED)
-		dynamic_forced_extended, TRUE
+		GLOB.dynamic_forced_extended = TRUE
+		return
 
 	CRASH("[type] wasn't passed a valid winning choice. (Got: [winning_option || "null"])")
 
