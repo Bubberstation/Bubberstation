@@ -6,7 +6,7 @@
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a hungry shapeshifting blobby creature."
 
-	/datum/round_event/ghost_role/morph
+/datum/round_event/ghost_role/morph
 	minimum_required = 1
 	role_name = "morphling"
 
