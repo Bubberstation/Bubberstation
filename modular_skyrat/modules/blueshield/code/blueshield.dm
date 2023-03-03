@@ -64,7 +64,7 @@
 	belt = /obj/item/modular_computer/pda/security
 
 	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
-	id_trim = /datum/id_trim/job/blueshield //BUBBER EDIT
+	id_trim = /datum/id_trim/job/blueshield
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"
