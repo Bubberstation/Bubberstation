@@ -202,27 +202,27 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 		our_mind.failed_special_equipment = null
 	qdel(src)
 	return TRUE
-
-/datum/objective/assassinate
-	name = "assasinate"
-	martyr_compatible = TRUE
-	admin_grantable = TRUE
-	var/target_role_type = FALSE
-
-
-/datum/objective/assassinate/check_completion()
-	return completed || (!considered_alive(target) || considered_afk(target) || considered_exiled(target))
-
-/datum/objective/assassinate/update_explanation_text()
-	..()
-	if(target?.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] ONCE." //SKYRAT EDIT CHANGE
-	else
-		explanation_text = "Free objective."
-
-/datum/objective/assassinate/admin_edit(mob/admin)
-	admin_simple_target_pick(admin)
-
+//BUBBERSTATION EDIT START//
+//	/datum/objective/assassinate
+//	name = "assasinate"
+//	martyr_compatible = TRUE
+//	admin_grantable = TRUE
+//	var/target_role_type = FALSE
+//
+//
+//	/datum/objective/assassinate/check_completion()
+//	return completed || (!considered_alive(target) || considered_afk(target) || considered_exiled(target))
+//
+//	/datum/objective/assassinate/update_explanation_text()
+//	..()
+//	if(target?.current)
+//		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] ONCE." //SKYRAT EDIT CHANGE
+//	else
+//		explanation_text = "Free objective."
+//
+//	/datum/objective/assassinate/admin_edit(mob/admin)
+//	admin_simple_target_pick(admin)
+//BUBBERSTATION EDIT END//
 /datum/objective/mutiny
 	name = "mutiny"
 	martyr_compatible = 1
@@ -252,15 +252,15 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/maroon/check_completion()
 	if (!target)
 		return TRUE
-	if (!considered_alive(target))
-		return TRUE
+//BUBBERSTATION EDIT//	if (!considered_alive(target))
+//BUBBERSTATION EDIT//		return TRUE
 	if (!target.current.onCentCom() && !target.current.onSyndieBase())
 		return TRUE
 	return FALSE
 
 /datum/objective/maroon/update_explanation_text()
 	if(target?.current)
-		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role], from escaping alive."
+		explanation_text = "Maroon [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role], on the station."
 	else
 		explanation_text = "Free objective."
 
