@@ -156,6 +156,6 @@
 	name = "skrell liver"
 	icon_state = "liver"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
-	alcohol_tolerance = 5
+	alcohol_tolerance = 0.002
 	toxTolerance = 10 //can shrug off up to 10u of toxins.
 	liver_resistance = 1.2 * LIVER_DEFAULT_TOX_RESISTANCE // +20%
