@@ -55,6 +55,7 @@
 	uniform = /obj/item/clothing/under/rank/prisoner
 	belt = null
 	ears = null
+	r_pocket = /obj/item/stack/spacecash/c200
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 
 /datum/outfit/job/prisoner/pre_equip(mob/living/carbon/human/H)
