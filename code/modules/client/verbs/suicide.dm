@@ -19,8 +19,7 @@
 		if(mmi.brainmob)
 			mmi.brainmob.suiciding = suicide_state
 
-//SKYRAT EDIT REMOVAL BEGIN - SUICIDE_VERB
-/*
+//SKYRAT EDIT REMOVAL BEGIN - SUICIDE_VERB //BUBBER EDIT BEGIN
 /mob/living/carbon/human/verb/suicide()
 	set hidden = TRUE
 	if(!canSuicide())
@@ -168,8 +167,7 @@
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		death(FALSE)
 		ghostize(FALSE) // Disallows reentering body and disassociates mind
-*/
-//SKYRAT EDIT REMOVAL END
+//SKYRAT EDIT REMOVAL END //BUBBER EDIT BEGIN
 
 //SKYRAT EDIT PAI START - Returns ability to leave your PAI
 /mob/living/silicon/pai/verb/suicide()
