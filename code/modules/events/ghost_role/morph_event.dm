@@ -1,4 +1,5 @@
-/*/datum/round_event_control/morph
+/* //BUBBER EDIT START
+/datum/round_event_control/morph
 	name = "Spawn Morph"
 	typepath = /datum/round_event/ghost_role/morph
 	weight = 0 //Admin only
@@ -6,7 +7,7 @@
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a hungry shapeshifting blobby creature."
 
-/datum/round_event/ghost_role/morph
+	/datum/round_event/ghost_role/morph
 	minimum_required = 1
 	role_name = "morphling"
 
@@ -31,4 +32,4 @@
 	S.log_message("was spawned as a morph by an event.", LOG_GAME)
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
-*/
+*/ //BUBBER EDIT END
