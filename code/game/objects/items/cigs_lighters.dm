@@ -165,7 +165,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	/// Should we smoke all of the chems in the cig before it runs out. Splits each puff to take a portion of the overall chems so by the end you'll always have consumed all of the chems inside.
 	var/smoke_all = FALSE
 	/// How much damage this deals to the lungs per drag.
-	var/lung_harm = 1
+	var/lung_harm = 0.1
 	/// If, when glorf'd, we will choke on this cig forever
 	var/choke_forever = FALSE
 	/// When choking, what is the maximum amount of time we COULD choke for
@@ -442,17 +442,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 60
 	smoketime = 2 MINUTES
 	smoke_all = TRUE
-	lung_harm = 1.5
+	lung_harm = -1
 	list_reagents = list(/datum/reagent/drug/nicotine = 10, /datum/reagent/medicine/omnizine = 15)
 
 /obj/item/clothing/mask/cigarette/shadyjims
 	desc = "A Shady Jim's Super Slims cigarette."
-	lung_harm = 1.5
+	lung_harm = 0.1
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/toxin/lipolicide = 4, /datum/reagent/ammonia = 2, /datum/reagent/toxin/plantbgone = 1, /datum/reagent/toxin = 1.5)
 
 /obj/item/clothing/mask/cigarette/xeno
 	desc = "A Xeno Filtered brand cigarette."
-	lung_harm = 2
+	lung_harm = -1
 	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
 // Rollies.
