@@ -1,4 +1,4 @@
-/datum/round_event_control/morph
+/*/datum/round_event_control/morph
 	name = "Spawn Morph"
 	typepath = /datum/round_event/ghost_role/morph
 	weight = 0 //Admin only
@@ -10,7 +10,7 @@
 	minimum_required = 1
 	role_name = "morphling"
 
-/datum/round_event/ghost_role/morph/spawn_role()
+ /datum/round_event/ghost_role/morph/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ALIEN, ROLE_ALIEN)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
@@ -31,3 +31,4 @@
 	S.log_message("was spawned as a morph by an event.", LOG_GAME)
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
+*/
