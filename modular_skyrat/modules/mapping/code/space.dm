@@ -9,14 +9,14 @@
 	description = "Cybersun would like to remind it's employees that any battle cruiser will be apropriately maintained, as will it's crew."
 	suffix = "forgottenship_skyrat.dmm"
 	always_place = TRUE
-*/
+
 /datum/map_template/ruin/space/skyrat/interdynefob
 	name = "DS-2"
 	id = "interdynefob"
 	description = "If DS-1 was so good..."
 	suffix = "interdynefob.dmm"
 	always_place = TRUE
-
+*/ //BUBBER EDIT: DS-2 OFF BUBBER.
 /datum/map_template/ruin/space/skyrat/derelictferry
 	id = "derelictferry"
 	suffix = "derelictferry.dmm"
@@ -166,7 +166,7 @@
 	name = "Port Tarkon"
 	id = "escapefromtarkon"
 	description = "An ambitious goal, A step forward, A trial run for the Tarkon drill, ment to implant mining stations within meteors. Decades of disaster have, however, left this one... Unattended for far too long."
-	always_place = TRUE
+	always_place = FALSE
 
 /obj/modular_map_root/port_tarkon
 	config_file = "strings/modular_maps/skyrat/PortTarkon.toml"
