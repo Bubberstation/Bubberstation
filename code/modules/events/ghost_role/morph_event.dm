@@ -1,4 +1,4 @@
-/datum/round_event_control/morph
+ /datum/round_event_control/morph
 	name = "Spawn Morph"
 	typepath = /datum/round_event/ghost_role/morph
 	weight = 0 //Admin only
@@ -31,4 +31,3 @@
 	S.log_message("was spawned as a morph by an event.", LOG_GAME)
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN
-
