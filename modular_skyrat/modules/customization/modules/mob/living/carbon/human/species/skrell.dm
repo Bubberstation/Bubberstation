@@ -12,6 +12,8 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_LITERATE,
+		TRAIT_WATER_BREATHING,
+		TRAIT_HARDLY_WOUNDED,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	brutemod = 1.70
@@ -23,9 +25,9 @@
 	species_language_holder = /datum/language_holder/skrell
 	mutant_bodyparts = list()
 	mutanttongue = /obj/item/organ/internal/tongue/skrell
-	toxic_food = DAIRY | MEAT
+	toxic_food = DAIRY
 	disliked_food = RAW | CLOTH
-	liked_food = TOXIC | FRUIT | VEGETABLES
+	liked_food = TOXIC | FRUIT | VEGETABLES | SEAFOOD
 	payday_modifier = 0.75
 	default_mutant_bodyparts = list("skrell_hair" = ACC_RANDOM)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -136,18 +138,18 @@
 	cold_message = "You can't stand the freezing cold with every breath you take!"
 	cold_level_1_threshold = 248
 	cold_level_2_threshold = 220
-	cold_level_3_threshold = 170
-	cold_level_1_damage = COLD_GAS_DAMAGE_LEVEL_2 //Keep in mind with gas damage levels, you can set these to be negative, if you want someone to heal, instead.
+	cold_level_3_threshold = 100
+	cold_level_1_damage = COLD_GAS_DAMAGE_LEVEL_1 //Keep in mind with gas damage levels, you can set these to be negative, if you want someone to heal, instead.
 	cold_level_2_damage = COLD_GAS_DAMAGE_LEVEL_2
 	cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
 	cold_damage_type = BRUTE
 
 
 	hot_message = "You can't stand the searing heat with every breath you take!"
-	heat_level_1_threshold = 318
-	heat_level_2_threshold = 348
+	heat_level_1_threshold = 380
+	heat_level_2_threshold = 400
 	heat_level_3_threshold = 1000
-	heat_level_1_damage = HEAT_GAS_DAMAGE_LEVEL_2
+	heat_level_1_damage = HEAT_GAS_DAMAGE_LEVEL_1
 	heat_level_2_damage = HEAT_GAS_DAMAGE_LEVEL_2
 	heat_level_3_damage = HEAT_GAS_DAMAGE_LEVEL_3
 	heat_damage_type = BURN
@@ -158,4 +160,4 @@
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	alcohol_tolerance = 0.002
 	toxTolerance = 10 //can shrug off up to 10u of toxins.
-	liver_resistance = 1.2 * LIVER_DEFAULT_TOX_RESISTANCE // +20%
+	liver_resistance = 0.8 * LIVER_DEFAULT_TOX_RESISTANCE // -20%
