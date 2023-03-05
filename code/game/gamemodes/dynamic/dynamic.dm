@@ -116,13 +116,13 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// Equivalent to threat_curve_centre, but for the budget split.
 	/// A negative value will weigh towards midround rulesets, and a positive
 	/// value will weight towards roundstart ones.
-	var/roundstart_split_curve_centre = 1
+	var/roundstart_split_curve_centre = 2.5
 
 	/// A number between 0.5 and 4.
 	/// Equivalent to threat_curve_width, but for the budget split.
 	/// Higher value will favour more variance in splits and
 	/// lower value rounds closer to the average.
-	var/roundstart_split_curve_width = 1.8
+	var/roundstart_split_curve_width = 2
 
 	/// The minimum amount of time for antag random events to be hijacked.
 	var/random_event_hijack_minimum = 10 MINUTES
@@ -147,7 +147,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/midround_light_upper_bound = 25 MINUTES
 
 	/// Any midround after this point is guaranteed to be heavy
-	var/midround_heavy_lower_bound = 55 MINUTES
+	var/midround_heavy_lower_bound = 75 MINUTES
 
 	/// If there are less than this many players readied, threat level will be lowered.
 	/// This number should be kept fairly low, as there are other measures that population
@@ -160,7 +160,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// For example, if `low_pop_maximum_threat` is 50, `low_pop_player_threshold` is 20,
 	/// and the number of readied players is 10, then the highest threat that can roll is
 	/// lerp(50, 100, 10 / 20), AKA 75.
-	var/low_pop_maximum_threat = 40
+	var/low_pop_maximum_threat = 25
 
 	/// The chance for latejoins to roll when ready
 	var/latejoin_roll_chance = 50
