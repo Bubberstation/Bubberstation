@@ -290,6 +290,7 @@
 	human.skin_tone = "albino"
 	human.hair_color = "#1d1d1d"
 	human.hairstyle = "Pompadour (Big)"
+	human.dna.features["mcolor"] = "#fff4e6" //Bubber Edit
 	human.update_mutant_bodyparts(TRUE)
 	human.update_body(TRUE)
 
