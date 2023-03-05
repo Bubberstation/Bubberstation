@@ -16,7 +16,7 @@
 	description = "If DS-1 was so good..."
 	suffix = "interdynefob.dmm"
 	always_place = FALSE
-	unpickable = TRUE //BUBBER EDIT: DS-2 OFF BUBBER
+*/ //BUBBER EDIT: DS-2 OFF BUBBER
 
 /datum/map_template/ruin/space/skyrat/derelictferry
 	id = "derelictferry"
