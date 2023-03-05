@@ -1,7 +1,7 @@
 /datum/station_trait/carp_infestation
 	name = "Carp infestation"
 	trait_type = STATION_TRAIT_NEGATIVE
-	weight = 5
+	weight = 3
 	show_in_report = TRUE
 	report_message = "Dangerous fauna is present in the area of this station."
 	trait_to_give = STATION_TRAIT_CARP_INFESTATION
@@ -100,7 +100,7 @@
 /datum/station_trait/overflow_job_bureaucracy
 	name = "Overflow bureaucracy mistake"
 	trait_type = STATION_TRAIT_NEGATIVE
-	weight = 0 //SKYRAT EDIT: - CHANGES WEIGHT FROM FIVE TO ZERO
+	weight = 2 //BUBBERS EDIT: FUCK SKYRAT WE WANT BUREAUCRACY, OLD SKYRAT WEIGHT: 0
 	show_in_report = TRUE
 	var/chosen_job_name
 
@@ -137,7 +137,7 @@
 /datum/station_trait/bot_languages
 	name = "Bot Language Matrix Malfunction"
 	trait_type = STATION_TRAIT_NEGATIVE
-	weight = 4
+	weight = 2
 	show_in_report = TRUE
 	report_message = "Your station's friendly bots have had their language matrix fried due to an event, resulting in some strange and unfamiliar speech patterns."
 	trait_to_give = STATION_TRAIT_BOTS_GLITCHED
@@ -282,7 +282,7 @@
 	report_message = "A radioactive stormfront is passing through your station's system. Expect an increased likelihood of radiation storms passing over your station, as well the potential for multiple radiation storms to occur during your shift."
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = NONE
-	weight = 0 //SKYRAT EDIT CHANGE - ORIGINAL: weight = 0
+	weight = 1 //BUBBERS EDIT CHANGE - ORIGINAL: weight = 0
 	event_control_path = /datum/round_event_control/radiation_storm
 	weight_multiplier = 1.5
 	max_occurrences_modifier = 0 //SKYRAT EDIT CHANGE - ORIGINAL: max_occurrences_modifier = 0
