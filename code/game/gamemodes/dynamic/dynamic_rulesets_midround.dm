@@ -303,6 +303,7 @@
 	cost = 10
 	required_type = /mob/living/silicon/ai
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/malf_ai)
+	var/required_heads_of_staff = 2
 
 /datum/dynamic_ruleset/midround/malf/trim_candidates()
 	..()
@@ -349,8 +350,8 @@
 	antag_flag_override = ROLE_WIZARD
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 1
-	cost = 10
+	weight = 2
+	cost = 12
 	requirements = REQUIREMENTS_VERY_HIGH_THREAT_NEEDED
 	flags = HIGH_IMPACT_RULESET
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
@@ -442,10 +443,10 @@
 	antag_flag = ROLE_BLOB
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	minimum_round_time = 35 MINUTES
-	weight = 3
-	cost = 8
-	minimum_players = 25
+	minimum_round_time = 45 MINUTES
+	weight = 4
+	cost = 10
+	minimum_players = 40
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
@@ -475,9 +476,9 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	minimum_round_time = 35 MINUTES
-	weight = 3
+	weight = 4
 	cost = 10
-	minimum_players = 25
+	minimum_players = 35
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_living/blob_infection/trim_candidates()
@@ -517,7 +518,7 @@
 	weight = 5
 	cost = 10
 	minimum_players = 25
-	repeatable = TRUE
+	repeatable = FALSE
 	var/list/vents = list()
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
@@ -615,7 +616,7 @@
 	antag_flag_override = ROLE_SPACE_DRAGON
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 4
+	weight = 3
 	cost = 7
 	minimum_players = 25
 	repeatable = TRUE
@@ -704,6 +705,8 @@
 	minimum_players = 30
 	repeatable = TRUE
 	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_NINJA_HOLDING_FACILITY) // I mean, no one uses the nets anymore but whateva
+	minimum_required_age = 7
+	var/required_heads_of_staff = 1
 
 	var/list/spawn_locs = list()
 
@@ -742,8 +745,8 @@
 	required_candidates = 0
 	weight = 3
 	cost = 8
-	minimum_players = 27
-	repeatable = TRUE
+	minimum_players = 32
+	repeatable = FALSE
 	var/spawncount = 2
 
 /datum/dynamic_ruleset/midround/spiders/execute()
