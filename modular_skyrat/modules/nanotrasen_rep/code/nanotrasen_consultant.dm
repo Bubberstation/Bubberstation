@@ -128,7 +128,7 @@
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	name = "\proper nanotrasen consultant's locker"
-	req_access = list(ACCESS_REPRESENTATIVE) //BUBBER EDIT
+	req_access = list(ACCESS_NTREP) //BUBBER EDIT
 	icon_state = "cc"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	door_anim_time = 0 //CONVERT THESE DOORS YOU LAZY ASSHATS
