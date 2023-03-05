@@ -2460,17 +2460,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/mine/eva/lower)
-"aNK" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/turf/open/floor/plating/snowed/icemoon,
-/area/icemoon/surface/outdoors/nospawn)
 "aNP" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -6580,8 +6569,8 @@
 /obj/item/defibrillator/loaded{
 	pixel_y = 3
 	},
-/obj/item/clothing/gloves/color/latex/nitrile,
-/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/item/clothing/gloves/latex/nitrile,
+/obj/item/clothing/gloves/latex/nitrile,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "bVv" = (
@@ -6962,7 +6951,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Chief Medical Officer's Desk";
-	departmentType = 5;
 	name = "Chief Medical Officer's Requests Console"
 	},
 /obj/item/toy/figure/cmo{
@@ -9746,7 +9734,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Security";
-	departmentType = 5;
 	name = "Security Requests Console"
 	},
 /turf/open/floor/iron/dark/textured_corner{
@@ -18822,11 +18809,11 @@
 "fAo" = (
 /obj/structure/table/wood,
 /obj/item/clothing/under/suit/red,
-/obj/item/candle{
+/obj/item/flashlight/flare/candle{
 	pixel_x = -8;
 	pixel_y = 4
 	},
-/obj/item/candle{
+/obj/item/flashlight/flare/candle{
 	pixel_x = 8;
 	pixel_y = 4
 	},
@@ -21261,7 +21248,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Security";
-	departmentType = 5;
 	name = "Security Requests Console"
 	},
 /obj/item/book/manual/wiki/security_space_law,
@@ -21394,9 +21380,6 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/south,
-/obj/structure/chair/office{
-	dir = 8
-	},
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office)
 "gpK" = (
@@ -24173,9 +24156,10 @@
 "hiq" = (
 /obj/machinery/requests_console/directional/north{
 	department = "Robotics";
-	departmentType = 5;
 	name = "Robotics Requests Console";
-	receive_ore_updates = 1
+	receive_ore_updates = 1;
+	assistance_requestable = 1;
+	anon_tips_receiver = 1
 	},
 /obj/machinery/light/directional/north,
 /obj/machinery/rnd/production/circuit_imprinter/department/science,
@@ -25222,7 +25206,7 @@
 /area/station/commons/lounge)
 "hzz" = (
 /obj/structure/table/glass,
-/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/latex,
 /obj/item/healthanalyzer,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/science,
@@ -28425,9 +28409,7 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
+/obj/machinery/barsign/all_access/directional/north,
 /turf/open/floor/wood/parquet,
 /area/station/commons/lounge)
 "iyd" = (
@@ -30108,8 +30090,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/requests_console/directional/north{
 	department = "Engineering";
-	departmentType = 4;
-	name = "Engineering Requests Console"
+	name = "Engineering Requests Console";
+	anon_tips_receiver = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -30668,7 +30650,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Telecomms Admin";
-	departmentType = 5;
 	name = "Telecomms Requests Console"
 	},
 /turf/open/floor/iron,
@@ -30690,7 +30671,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/mix)
 "jew" = (
-/obj/item/candle{
+/obj/item/flashlight/flare/candle{
 	pixel_x = -7;
 	pixel_y = 3
 	},
@@ -31771,7 +31752,6 @@
 /obj/machinery/requests_console/directional/north{
 	assistance_requestable = 1;
 	department = "Chapel";
-	departmentType = 1;
 	name = "Chapel Requests Console"
 	},
 /turf/open/floor/iron/dark,
@@ -35988,7 +35968,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Security";
-	departmentType = 5;
 	name = "Security Requests Console"
 	},
 /obj/effect/turf_decal/tile/red,
@@ -36500,7 +36479,6 @@
 /obj/item/extinguisher,
 /obj/machinery/requests_console/directional/north{
 	department = "Science";
-	departmentType = 2;
 	name = "Science Requests Console";
 	receive_ore_updates = 1;
 	supplies_requestable = 1
@@ -37018,7 +36996,7 @@
 /area/mine/living_quarters)
 "kYE" = (
 /obj/structure/table,
-/obj/item/candle,
+/obj/item/flashlight/flare/candle,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "kYF" = (
@@ -37697,7 +37675,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Security";
-	departmentType = 5;
 	name = "Security Requests Console"
 	},
 /obj/effect/turf_decal/tile/red{
@@ -38246,9 +38223,7 @@
 /turf/open/floor/iron/freezer,
 /area/station/command/heads_quarters/captain)
 "lrL" = (
-/obj/structure/sign/barsign{
-	pixel_y = -32
-	},
+/obj/machinery/barsign/all_access/directional/south,
 /turf/open/floor/wood/parquet,
 /area/station/commons/lounge)
 "lrN" = (
@@ -39031,7 +39006,7 @@
 /area/station/hallway/primary/aft)
 "lEO" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/open/floor/plating,
 /area/station/service/bar/atrium)
 "lEP" = (
@@ -39304,7 +39279,6 @@
 /obj/machinery/requests_console/directional/south{
 	assistance_requestable = 1;
 	department = "Janitorial";
-	departmentType = 1;
 	name = "Janitorial Requests Console"
 	},
 /turf/open/floor/iron,
@@ -40461,7 +40435,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/latex,
 /obj/item/clothing/mask/surgical,
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/turf_decal/tile/neutral/full,
@@ -42305,8 +42279,8 @@
 /obj/item/defibrillator/loaded{
 	pixel_y = 3
 	},
-/obj/item/clothing/gloves/color/latex/nitrile,
-/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/item/clothing/gloves/latex/nitrile,
+/obj/item/clothing/gloves/latex/nitrile,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "mMM" = (
@@ -42573,7 +42547,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/cmo)
 "mQE" = (
-/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/latex,
 /obj/item/clothing/mask/surgical,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table/glass,
@@ -42751,7 +42725,7 @@
 	pixel_x = -1;
 	pixel_y = 6
 	},
-/obj/item/candle/infinite{
+/obj/item/flashlight/flare/candle/infinite{
 	pixel_x = -11;
 	pixel_y = 11
 	},
@@ -43075,7 +43049,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Captain's Desk";
-	departmentType = 5;
 	name = "Captain's Requests Console"
 	},
 /turf/open/floor/wood,
@@ -44013,7 +43986,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Head of Security's Desk";
-	departmentType = 5;
 	name = "Head of Security Requests Console"
 	},
 /obj/machinery/button/door/directional/north{
@@ -45721,7 +45693,6 @@
 /obj/structure/table/glass,
 /obj/item/computer_disk/medical,
 /obj/item/computer_disk/medical,
-/obj/item/computer_disk/chemistry,
 /obj/machinery/status_display/evac/directional/north,
 /obj/effect/turf_decal/tile/blue/full,
 /turf/open/floor/iron/dark,
@@ -46477,7 +46448,7 @@
 /area/station/service/kitchen)
 "nTK" = (
 /obj/structure/table/glass,
-/obj/structure/sign/barsign{
+/obj/machinery/barsign{
 	chosen_sign = "thecavern";
 	icon_state = "thecavern";
 	pixel_y = 32
@@ -51307,7 +51278,7 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
 "ptO" = (
-/obj/structure/sign/barsign,
+/obj/machinery/barsign,
 /turf/closed/wall,
 /area/station/service/bar/atrium)
 "ptQ" = (
@@ -51505,7 +51476,6 @@
 /obj/machinery/requests_console/directional/east{
 	assistance_requestable = 1;
 	department = "Engineering";
-	departmentType = 3;
 	name = "Engineering Requests Console";
 	supplies_requestable = 1
 	},
@@ -56864,7 +56834,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Head of Personnel's Desk";
-	departmentType = 5;
 	name = "Head of Personnel's Requests Console"
 	},
 /turf/open/floor/iron,
@@ -57064,7 +57033,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Research Director's Desk";
-	departmentType = 5;
 	name = "Research Director's Requests Console";
 	receive_ore_updates = 1
 	},
@@ -58897,7 +58865,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Security";
-	departmentType = 5;
 	name = "Security Requests Console"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -63235,7 +63202,6 @@
 	},
 /obj/machinery/requests_console/directional/west{
 	department = "Cargo Bay";
-	departmentType = 2;
 	name = "Cargo Bay Requests Console";
 	supplies_requestable = 1
 	},
@@ -65677,7 +65643,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Security";
-	departmentType = 5;
 	name = "Security Requests Console"
 	},
 /obj/item/radio/intercom/directional/south{
@@ -66268,7 +66233,6 @@
 "tYl" = (
 /obj/machinery/requests_console/directional/west{
 	department = "Science";
-	departmentType = 2;
 	name = "Science Requests Console";
 	receive_ore_updates = 1;
 	supplies_requestable = 1
@@ -66950,7 +66914,6 @@
 /obj/machinery/requests_console/directional/south{
 	assistance_requestable = 1;
 	department = "Medbay";
-	departmentType = 1;
 	name = "Medbay Requests Console"
 	},
 /turf/open/floor/iron/white,
@@ -67870,7 +67833,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Bridge";
-	departmentType = 5;
 	name = "Bridge Requests Console"
 	},
 /turf/open/floor/iron,
@@ -68383,7 +68345,6 @@
 	announcementConsole = 1;
 	assistance_requestable = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
 	name = "Chief Engineer's Requests Console";
 	supplies_requestable = 1
 	},
@@ -69280,9 +69241,9 @@
 /obj/item/grenade/chem_grenade,
 /obj/machinery/requests_console/directional/north{
 	department = "Circuits Lab";
-	departmentType = 2;
 	name = "Circuits Lab Requests Console";
-	receive_ore_updates = 1
+	receive_ore_updates = 1;
+	supplies_requestable = 1
 	},
 /turf/open/floor/iron,
 /area/station/science/explab)
@@ -71631,8 +71592,8 @@
 /obj/machinery/light/directional/north,
 /obj/machinery/requests_console/directional/north{
 	department = "Genetics";
-	departmentType = 2;
-	name = "Genetics Requests Console"
+	name = "Genetics Requests Console";
+	supplies_requestable = 1
 	},
 /obj/effect/landmark/start/hangover/closet,
 /turf/open/floor/iron/dark,
@@ -72203,7 +72164,7 @@
 /area/station/science/xenobiology)
 "vPE" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/latex,
 /obj/item/surgical_drapes,
 /obj/item/razor,
 /obj/machinery/airalarm/directional/north,
@@ -72981,7 +72942,6 @@
 "waE" = (
 /obj/machinery/requests_console/directional/north{
 	department = "Cargo Bay";
-	departmentType = 2;
 	name = "Cargo Bay Requests Console";
 	supplies_requestable = 1
 	},
@@ -73377,7 +73337,7 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/latex,
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
 "whb" = (
@@ -73989,7 +73949,6 @@
 /obj/machinery/requests_console/directional/south{
 	assistance_requestable = 1;
 	department = "Atmospherics";
-	departmentType = 3;
 	name = "Atmospherics Requests Console";
 	supplies_requestable = 1
 	},
@@ -77189,7 +77148,6 @@
 /obj/machinery/requests_console/directional/south{
 	assistance_requestable = 1;
 	department = "Chemistry";
-	departmentType = 1;
 	name = "Chemistry Requests Console"
 	},
 /turf/open/floor/iron/white,
@@ -78951,7 +78909,6 @@
 "xNu" = (
 /obj/machinery/requests_console/directional/west{
 	department = "Cargo Bay";
-	departmentType = 2;
 	name = "Cargo Bay Requests Console";
 	supplies_requestable = 1
 	},
@@ -80017,7 +79974,6 @@
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
 	department = "Bridge";
-	departmentType = 5;
 	name = "Bridge Requests Console"
 	},
 /turf/open/floor/wood,
@@ -219590,7 +219546,7 @@ bln
 bln
 bln
 sEB
-aNK
+eqd
 sEB
 bln
 bln
