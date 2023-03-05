@@ -61,6 +61,11 @@
 	if((quirk_flags & QUIRK_HUMAN_ONLY) && !ishuman(new_holder))
 		CRASH("Human only quirk attempted to be added to non-human mob.")
 
+	//BUBBER EDIT ADDITION - Slime-specific quirk check
+	if(quirk_flags & QUIRK_SLIMEPERSON_ONLY && !isroundstartslime(new_holder)) //I don't think we want this quirk on non-slimes.
+		CRASH("Slime-only quirk attempted to be added to a non-slimeperson.")
+	//BUBBER EDIT END
+
 	if(new_holder.has_quirk(type))
 		CRASH("Quirk attempted to be added to mob which already had this quirk.")
 

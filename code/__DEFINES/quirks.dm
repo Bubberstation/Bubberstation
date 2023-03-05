@@ -12,3 +12,7 @@
 #define QUIRK_CHANGES_APPEARANCE (1<<2)
 /// The only thing this quirk effects is mood so it should be disabled if mood is
 #define QUIRK_MOODLET_BASED (1<<3)
+
+//BUBBER EDIT ADDITION - Slime specific traits
+/// This quirk can only be applied to roundstartslimes
+#define QUIRK_SLIMEPERSON_ONLY (1<<4)
