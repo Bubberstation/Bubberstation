@@ -108,7 +108,7 @@
 /datum/station_trait/filled_maint
 	name = "Filled up maintenance"
 	trait_type = STATION_TRAIT_POSITIVE
-	weight = 5
+	weight = 6
 	show_in_report = TRUE
 	report_message = "Our workers accidentally forgot more of their personal belongings in the maintenace areas."
 	blacklist = list(/datum/station_trait/empty_maint)
@@ -120,7 +120,7 @@
 /datum/station_trait/quick_shuttle
 	name = "Quick Shuttle"
 	trait_type = STATION_TRAIT_POSITIVE
-	weight = 5
+	weight = 4
 	show_in_report = TRUE
 	report_message = "Due to proximity to our supply station, the cargo shuttle will have a quicker flight time to your cargo department."
 	blacklist = list(/datum/station_trait/slow_shuttle)
@@ -204,7 +204,7 @@
 /datum/station_trait/deathrattle_department/medical
 	name = "Deathrattled Medical"
 	trait_flags = NONE
-	weight = 1
+	weight = 2
 	department_to_apply_to = DEPARTMENT_BITFLAG_MEDICAL
 	department_name = "Medical"
 
@@ -236,7 +236,7 @@
 	name = "Wallets!"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
-	weight = 10
+	weight = 5
 	report_message = "It has become temporarily fashionable to use a wallet, so everyone on the station has been issued one."
 
 /datum/station_trait/wallets/New()
