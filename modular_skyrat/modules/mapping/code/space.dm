@@ -15,8 +15,9 @@
 	id = "interdynefob"
 	description = "If DS-1 was so good..."
 	suffix = "interdynefob.dmm"
-	always_place = TRUE
+	always_place = FALSE
 	unpickable = TRUE
+
 /datum/map_template/ruin/space/skyrat/derelictferry
 	id = "derelictferry"
 	suffix = "derelictferry.dmm"
