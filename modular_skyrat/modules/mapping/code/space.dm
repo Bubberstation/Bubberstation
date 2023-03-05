@@ -10,14 +10,13 @@
 	suffix = "forgottenship_skyrat.dmm"
 	always_place = TRUE
 */
-/*
 /datum/map_template/ruin/space/skyrat/interdynefob
 	name = "DS-2"
 	id = "interdynefob"
 	description = "If DS-1 was so good..."
 	suffix = "interdynefob.dmm"
 	always_place = TRUE
-*/ //BUBBER EDIT: DS-2 OFF BUBBER.
+	unpickable = TRUE
 /datum/map_template/ruin/space/skyrat/derelictferry
 	id = "derelictferry"
 	suffix = "derelictferry.dmm"
@@ -53,6 +52,12 @@
 	suffix = "alientoollab.dmm"
 	name = "Abductor Replication Facility"
 	description = "A mad doctor's dreams were dashed when he finally disclosed to both his funders that each other existed, leaving behind his work for the looters."
+
+/datum/map_template/ruin/space/skyrat/dangerous_research
+	id = "dangerous_research"
+	suffix = "dangerous_research.dmm"
+	name = "Nanotrasen Research Facility"
+	description = "A small, recently abandoned research outpost, perhaps there's time to see what went wrong before Nanotrasen wipes it from their records?"
 
 /datum/map_template/ruin/space/skyrat/codealpha
 	id = "codealpha"
