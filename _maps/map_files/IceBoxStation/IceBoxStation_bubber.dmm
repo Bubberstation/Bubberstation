@@ -14665,7 +14665,8 @@
 /area/station/maintenance/port/aft)
 "eoR" = (
 /obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
+	name = "NT Consultant's Office";
+	req_access = ACCESS_NTREP
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
@@ -26453,7 +26454,8 @@
 /area/station/security/brig/upper)
 "hTx" = (
 /obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
+	name = "NT Consultant's Office";
+	req_access = ACCESS_NTREP
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
