@@ -9,6 +9,8 @@
 	var/value = 0
 	/// Flags related to this quirk.
 	var/quirk_flags = QUIRK_HUMAN_ONLY
+	/// Flags related to species whitelists.
+	var/quirk_whitelist_flags = 0 //BUBBER EDIT - Species whitelists
 	/// Reference to the mob currently tied to this quirk datum. Quirks are not singletons.
 	var/mob/living/quirk_holder
 	/// Text displayed when this quirk is assigned to a mob (and not transferred)
@@ -66,6 +68,12 @@
 
 	if(quirk_holder)
 		CRASH("Attempted to add quirk to a holder when it already has a holder.")
+
+	//BUBBER EDIT ADDITION START - Species quirks
+	//We silently fail if a whitelisted quirk *somehow* got into someone's preferences.
+	if(quirk_whitelist_flags & QUIRK_SLIMEPERSON_ONLY && !isroundstartslime(new_holder))
+		return
+	//BUBBER EDIT ADDITION END
 
 	quirk_holder = new_holder
 	quirk_holder.quirks += src
