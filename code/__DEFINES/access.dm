@@ -33,7 +33,7 @@
 /// Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.
 #define ACCESS_HOP "hop"
 //ACCESS FOR THE NTRep's personal quarters in mapping.
-#define ACCESS_REPRESENTATIVE "representative"
+#define ACCESS_NTREP "representative"
 //BUBBER EDIT END: Add NTRep Access
 
 
@@ -357,8 +357,8 @@
 	ACCESS_HOP, \
 	ACCESS_QM, \
 	ACCESS_RD, \
-	ACCESS_REPRESENTATIVE, \
-	) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS //BUBBER EDIT: Added ACCESS_REPRESENTATIVE to PRIVATE_COMMAND_ACCESS
+	ACCESS_NTREP, \
+	) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS //BUBBER EDIT: Added ACCESS_NTREP to PRIVATE_COMMAND_ACCESS
 
 /// Captains private rooms. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN)
 #define CAPTAIN_ACCESS list( \
