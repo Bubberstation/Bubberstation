@@ -45,7 +45,7 @@
 				stack_trace("[icon_state] (from [type]), which should be [burnt ? "NOT burnt, IS" : "burnt, IS NOT"]")
 				previous_errors[type] = TRUE
 
-	if(mapload && prob(33))
+	if(mapload && prob(7))
 		MakeDirty()
 
 	if(is_station_level(z))
