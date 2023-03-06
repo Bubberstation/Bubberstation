@@ -1,12 +1,11 @@
 /datum/species/human/felinid
-	use_skintones = NO_SKINTONES
+	use_skintones = FALSE
+	//This list overrides the one found within /datum/species/human. If that list every changes this might need to alos be updated.
 	species_traits = list(
 		MUTCOLORS,
 		EYECOLOR,
 		HAIR,
 		FACEHAIR,
 		LIPS,
-		HAS_FLESH,
-		HAS_BONE,
 	)
 
