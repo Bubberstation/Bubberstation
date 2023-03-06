@@ -253,10 +253,12 @@
 /datum/reagent/water/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with water can help put them out!
 	. = ..()
 	if(methods & TOUCH)
-		if(HAS_TRAIT(exposed_mob, TRAIT_HYDROPHILIC)) //BUBBER EDIT - Hydrophilic trait
+		//BUBBER EDIT ADDITION START - Species quirks; Hydrophilic trait
+		if(HAS_TRAIT(exposed_mob, TRAIT_HYDROPHILIC))
 			exposed_mob.blood_volume = max(exposed_mob.blood_volume - 30, 0) //So we don't end up with slimes going to -2535% blood.
 			to_chat(exposed_mob, span_warning("The water causes you to melt away!"))
 			return
+		//BUBBER EDIT ADDITION END
 
 		exposed_mob.extinguish_mob() // extinguish removes all fire stacks
 	if(methods & VAPOR)
