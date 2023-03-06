@@ -148,6 +148,7 @@ export const QuirksPage = (props, context) => {
         const {
           max_positive_quirks: maxPositiveQuirks,
           quirk_blacklist: quirkBlacklist,
+          // BUBBER EDIT ADDITION - Species quirks
           quirk_species_whitelist: quirkSpeciesWhitelist,
           quirk_info: quirkInfo,
         } = quirks_data.quirks; // SKYRAT EDIT - Quirks balance refactor
