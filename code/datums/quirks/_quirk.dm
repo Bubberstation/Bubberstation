@@ -10,7 +10,7 @@
 	/// Flags related to this quirk.
 	var/quirk_flags = QUIRK_HUMAN_ONLY
 	/// Flags related to species whitelists.
-	var/quirk_whitelist_flags = 0 //BUBBER EDIT - Species whitelists
+	var/quirk_whitelist_flags //BUBBER EDIT - Species whitelists // Whitelist bitflags in code/__DEFINES/~~bubber_defines/quirk_whitelist.dm
 	/// Reference to the mob currently tied to this quirk datum. Quirks are not singletons.
 	var/mob/living/quirk_holder
 	/// Text displayed when this quirk is assigned to a mob (and not transferred)
