@@ -100,7 +100,7 @@
 /datum/station_trait/overflow_job_bureaucracy
 	name = "Overflow bureaucracy mistake"
 	trait_type = STATION_TRAIT_NEGATIVE
-	weight = 2 //BUBBERS EDIT: FUCK SKYRAT WE WANT BUREAUCRACY, OLD SKYRAT WEIGHT: 0
+	weight = 1 //BUBBERS EDIT: FUCK SKYRAT WE WANT BUREAUCRACY, OLD SKYRAT WEIGHT: 0
 	show_in_report = TRUE
 	var/chosen_job_name
 
@@ -282,7 +282,7 @@
 	report_message = "A radioactive stormfront is passing through your station's system. Expect an increased likelihood of radiation storms passing over your station, as well the potential for multiple radiation storms to occur during your shift."
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = NONE
-	weight = 1 //BUBBERS EDIT CHANGE - ORIGINAL: weight = 0
+	weight = 0 //SKYRAT EDIT CHANGE - ORIGINAL: weight = 0
 	event_control_path = /datum/round_event_control/radiation_storm
 	weight_multiplier = 1.5
 	max_occurrences_modifier = 0 //SKYRAT EDIT CHANGE - ORIGINAL: max_occurrences_modifier = 0
