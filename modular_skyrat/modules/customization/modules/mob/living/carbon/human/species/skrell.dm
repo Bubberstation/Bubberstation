@@ -21,7 +21,7 @@
 	exotic_blood = /datum/reagent/copper
 	bodytemp_normal = (BODYTEMP_NORMAL + 70)
 	bodytemp_heat_damage_limit = FIRE_MINIMUM_TEMPERATURE_TO_SPREAD
-	bodytemp_cold_damage_limit = (T20C + 10)
+	bodytemp_cold_damage_limit = (T20C - 30)
 	species_language_holder = /datum/language_holder/skrell
 	mutant_bodyparts = list()
 	mutanttongue = /obj/item/organ/internal/tongue/skrell
@@ -161,6 +161,10 @@
 	alcohol_tolerance = 0.002
 	toxTolerance = 10 //can shrug off up to 10u of toxins.
 	liver_resistance = 0.8 * LIVER_DEFAULT_TOX_RESISTANCE // -20%
+
+/datum/species/skrell/get_species_description()
+	return "Hailing from another realm, skrell are adaptable to their enviroment \
+		and intend to make this new realm their home to escape the inquisition."
 
 /datum/species/skrell/get_species_lore()
 	return list(
