@@ -42,7 +42,6 @@
 	pixel_x = 11;
 	pixel_y = 3
 	},
-/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/cargo)
 "as" = (
@@ -254,7 +253,6 @@
 /area/ruin/syndicate_lava_base/bar)
 "bL" = (
 /obj/effect/mob_spawn/ghost_role/human/ds2/prisoner,
-/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/iron/dark/small,
 /area/ruin/syndicate_lava_base/cargo)
 "bR" = (
@@ -712,9 +710,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north{
-	req_access = list("syndicate")
-	},
 /obj/machinery/vending/wardrobe/syndie_wardrobe{
 	onstation = 0
 	},
@@ -1308,11 +1303,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/medbay)
-"jk" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_lava_base/engineering)
 "jm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -2164,9 +2154,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/west{
-	req_access = list("syndicate")
-	},
 /obj/structure/table/glass,
 /obj/machinery/reagentgrinder,
 /obj/item/stack/sheet/mineral/plasma{
@@ -3279,9 +3266,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north{
-	req_access = list("syndicate")
-	},
 /turf/open/floor/iron/checker,
 /area/ruin/syndicate_lava_base/dormitories)
 "yd" = (
@@ -4456,7 +4440,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/vending/wardrobe/sec_wardrobe/red,
-/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_lava_base/cargo)
 "Gs" = (
@@ -4488,9 +4471,6 @@
 "GF" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north{
-	req_access = list("syndicate")
-	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/testlab)
 "GS" = (
@@ -5150,6 +5130,10 @@
 /obj/item/storage/box/rndboards{
 	pixel_y = 4
 	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil{
+	pixel_y = 6
+	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/testlab)
 "LL" = (
@@ -5583,7 +5567,6 @@
 	dir = 1
 	},
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate_command/masteratarms,
-/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/syndicate_lava_base/cargo)
 "Pd" = (
@@ -5635,7 +5618,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/virology)
 "PE" = (
-/obj/item/stack/cable_coil,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -6329,9 +6311,6 @@
 /turf/open/floor/iron/dark/side,
 /area/ruin/syndicate_lava_base/testlab)
 "UY" = (
-/obj/machinery/power/apc/auto_name/directional/north{
-	req_access = list("syndicate")
-	},
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/bar)
@@ -6969,9 +6948,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north{
-	req_access = list("syndicate")
-	},
 /obj/machinery/vending/syndichem{
 	onstation = 0
 	},
@@ -10299,7 +10275,7 @@ Lq
 Lq
 Lq
 Lq
-jk
+Qa
 jf
 Kv
 pq
