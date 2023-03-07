@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/get_status_tab_items()
 	. += ..()
 	if(!stat)
-		. += text("Emitter Integrity: [holochassis_health * (100 / HOLOCHASSIS_MAX_HEALTH)].")
+		. += text("Emitter Integrity: [holochassis_health * (100 / HOLOCHASSIS_MAX_HEALTH)]% ([holochassis_health]/[HOLOCHASSIS_MAX_HEALTH]).")
 	else
 		. += text("Systems nonfunctional.")
 
