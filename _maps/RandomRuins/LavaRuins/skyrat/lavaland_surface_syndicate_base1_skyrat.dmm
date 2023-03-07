@@ -93,10 +93,9 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/syndicate_lava_base/bar)
 "aN" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "aQ" = (
 /obj/effect/turf_decal/tile/dark_red/half{
@@ -135,8 +134,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "bb" = (
@@ -343,8 +340,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "cn" = (
@@ -506,6 +501,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_lava_base/cargo)
+"dA" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/smooth_half,
+/area/ruin/syndicate_lava_base/engineering)
 "dF" = (
 /obj/machinery/suit_storage_unit/syndicate/chameleon{
 	name = "suit storage unit";
@@ -745,13 +745,10 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/testlab)
 "fB" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/computer/atmos_control/nocontrol/incinerator{
 	dir = 1;
 	atmos_chambers = list("syndieincinerator"="DS-2 Incinerator Chamber")
 	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/syndicate_lava_base/engineering)
@@ -1179,9 +1176,6 @@
 	icon_state = "box_1"
 	},
 /obj/item/circuitboard/machine/smes,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "iz" = (
@@ -1267,8 +1261,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/syndicate_lava_base/engineering)
 "jh" = (
@@ -1303,6 +1295,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/medbay)
+"jk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_lava_base/engineering)
 "jm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1621,12 +1619,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_lava_base/cargo)
 "lX" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/window/reinforced/survival_pod,
 /obj/structure/window/reinforced/survival_pod{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/structure/table,
 /obj/item/stack/sheet/mineral/plastitanium,
@@ -1742,6 +1737,11 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/bar)
+"mC" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/syndicate_lava_base/engineering)
 "mD" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
@@ -2676,8 +2676,6 @@
 /turf/open/floor/wood/tile,
 /area/ruin/syndicate_lava_base/dormitories)
 "uu" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/computer/turbine_computer{
 	dir = 1;
@@ -3670,6 +3668,14 @@
 	},
 /turf/open/misc/grass,
 /area/ruin/syndicate_lava_base/bar)
+"Av" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/syndicate_lava_base/engineering)
 "Aw" = (
 /obj/structure/ore_box,
 /obj/structure/railing{
@@ -3688,7 +3694,6 @@
 "AC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/engineering)
 "AG" = (
@@ -3763,8 +3768,6 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_lava_base/medbay)
 "Bo" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -4341,6 +4344,11 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/cargo)
+"FB" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_lava_base/engineering)
 "FC" = (
 /obj/machinery/suit_storage_unit/syndicate/chameleon,
 /turf/open/floor/noslip/tram_platform,
@@ -4916,8 +4924,6 @@
 /obj/machinery/vending/engivend{
 	onstation = 0
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/syndicate_lava_base/engineering)
 "Kx" = (
@@ -5182,8 +5188,6 @@
 	pixel_y = -12;
 	pixel_x = -2
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "LU" = (
@@ -5631,6 +5635,8 @@
 	default_raw_text = "<h1>Gorlex Engineering</h1><p>New to setting up a turbine, operative? This neat little guide and set-up should teach you how, step by step.</p><p>The first step is setting up the burn chamber. The Air alarm is unlocked for syndicate access, and a single scrubber in the area is inactive. That is our burn chamber's scrubber. Set it to scoop up any gas you don't want in it - anything but plasma and oxygen - and set it on expanded reach.</p><p>Next is setting up the Plasma Mixer. A good ratio is somewhere between 30-70 and 40-60 Plasma and Oxygen, respectively. Don't forget to max out the mixer's pressure, else it'll only dribble in the gas!</p><p>Once that is done, make sure to activate the two digital valves on the floor. One will allow O2 to be brought to the mixer, and the other one will lead the gas mix directly into the chamber.</p><p>With the burn being ready, two last things are needed. First, you'll need to set up the ship's scrubbers system to actively pump into space the excess gasses (Water vapour, Co2) the burn will produce. If you want, you can select a gas to filter out, but that isn't necessary. Once everything is set up, flick the igniter switch on, turn on the turbine at the terminal, and watch that fire shine bright!</p>";
 	name = "paper- 'Gorlex Engineering Division - Turbine Easy-Set Guide'"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_half,
 /area/ruin/syndicate_lava_base/engineering)
 "PS" = (
@@ -9849,7 +9855,7 @@ Lq
 Lq
 Lq
 Lq
-UO
+mC
 lA
 mz
 fc
@@ -9910,8 +9916,8 @@ BH
 BH
 BH
 UO
-UO
-lA
+mC
+aN
 rc
 Ak
 kv
@@ -9971,8 +9977,8 @@ Lg
 Lg
 fE
 UO
-UO
-lA
+mC
+aN
 wO
 mb
 Zs
@@ -10032,7 +10038,7 @@ xh
 dL
 Cy
 AK
-AK
+Av
 Bo
 ps
 Ns
@@ -10092,10 +10098,10 @@ Lq
 lY
 lm
 fE
+jk
+jk
 Qa
-Qa
-aN
-aN
+OM
 AC
 Lq
 ZG
@@ -10153,11 +10159,11 @@ Lq
 Lg
 Lg
 fE
-Qa
+jk
 iw
 cl
 pq
-pq
+dA
 uu
 Sa
 pC
@@ -10214,7 +10220,7 @@ Lq
 xy
 eE
 fE
-Qa
+jk
 aX
 LS
 WZ
@@ -10275,11 +10281,11 @@ Lq
 Lq
 Lq
 Lq
-Qa
+jk
 jf
 Kv
 pq
-pq
+dA
 lX
 nY
 bV
@@ -10336,11 +10342,11 @@ ab
 ab
 ab
 Lq
-Qa
-Qa
-OM
-OM
-OM
+jk
+jk
+FB
+FB
+FB
 To
 To
 To
