@@ -1,5 +1,5 @@
 /// Chance that the traitor could roll hijack if the pop limit is met.
-#define HIJACK_PROB 10
+#define HIJACK_PROB 0
 /// Hijack is unavailable as a random objective below this player count.
 #define HIJACK_MIN_PLAYERS 50
 
@@ -7,7 +7,7 @@
 #define MARTYR_PROB 20
 
 /// Chance the traitor gets a kill objective. If this prob fails, they will get a steal objective instead.
-#define KILL_PROB 50
+#define KILL_PROB 0
 /// If a kill objective is rolled, chance that it is to destroy the AI.
 #define DESTROY_AI_PROB(denominator) (100 / denominator)
 
