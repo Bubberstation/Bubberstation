@@ -2,7 +2,7 @@
 	name = "Destroy Protolathe"
 	objectives = list(
 		/datum/traitor_objective/destroy_machinery = 1,
-		/datum/traitor_objective/destroy_machinery/high_risk = 1
+		/datum/traitor_objective/destroy_machinery/high_risk = 0
 	)
 
 /datum/traitor_objective/destroy_machinery
@@ -16,7 +16,7 @@
 	progression_maximum = 10 MINUTES
 
 	/// The maximum amount of this type of objective a traitor can have.
-	var/maximum_allowed = 2
+	var/maximum_allowed = 0
 	/// The possible target machinery and the jobs tied to each one.
 	var/list/applicable_jobs = list(
 		JOB_RESEARCH_DIRECTOR = /obj/machinery/rnd/production/protolathe/department/science,
