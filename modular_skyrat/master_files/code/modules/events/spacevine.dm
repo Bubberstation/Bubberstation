@@ -431,6 +431,7 @@
 			. = expected_damage
 
 // Has a chance to plant more kudzu when crossed or hit
+/*
 /datum/spacevine_mutation/seeding
 	name = "Seeding"
 	hue = "#68b95d"
@@ -461,6 +462,9 @@
 			addtimer(CALLBACK(living_hitter, /mob/living/proc/plant_kudzu), 1 MINUTES)
 	. = expected_damage
 
+
+*/
+//CONTAIN THIS BITCH
 // Has a chance to electrocute mobs that hit it
 /datum/spacevine_mutation/electrify
 	name = "Electrified"
