@@ -223,7 +223,7 @@
 	weight = 4
 	cost = 6
 	requirements = list(101,101,50,10,10,10,10,10,10,10)
-	repeatable = TRUE
+	repeatable = FALSE
 
 /datum/dynamic_ruleset/latejoin/heretic_smuggler/execute()
 	var/mob/picked_mob = pick(candidates)
