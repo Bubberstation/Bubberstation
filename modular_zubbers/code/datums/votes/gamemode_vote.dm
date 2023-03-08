@@ -15,11 +15,12 @@
 	return TRUE
 
 /datum/vote/gamemode_vote/finalize_vote(winning_option)
-	if(winning_option == CHOICE_DYNAMIC)
-		return
-
 	if(winning_option == CHOICE_EXTENDED)
 		GLOB.dynamic_forced_extended = TRUE
+		return
+
+	else
+		GLOB.dynamic_forced_extended = FALSE
 		return
 
 	CRASH("[type] wasn't passed a valid winning choice. (Got: [winning_option || "null"])")
