@@ -19,7 +19,7 @@
 	/// The objective period at which we consider if it is an 'objective'. Set to 0 to accept all objectives.
 	var/objective_period = 15 MINUTES
 	/// The maximum number of objectives we can get within this period.
-	var/maximum_objectives_in_period = 3
+	var/maximum_objectives_in_period = 0
 
 	/// Who we're stealing eyes from
 	var/mob/living/victim
