@@ -45,6 +45,8 @@ SUBSYSTEM_DEF(statpanels)
 			" ",
 			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]",
 			" ",
+			"Gamemode: [GLOB.dynamic_forced_extended ? "Extended" : "Dynamic"]", // BUBBERSTATION ADDITION
+			" ",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Station Time: [station_time_timestamp()]",
 			"Round Timer: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[worldtime2text()]" : worldtime2text()]",
