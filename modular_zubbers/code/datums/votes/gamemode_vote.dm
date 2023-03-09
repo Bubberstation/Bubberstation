@@ -1,6 +1,6 @@
 // BUTTERSTATION ADDITION
 
-#define CHOICE_EXTENDED "Extended Ruleset (Low Threats)"
+#define CHOICE_EXTENDED "Extended Ruleset (Minimal Threats)"
 #define CHOICE_DYNAMIC "Dynamic Ruleset (Normal Threats)"
 
 /datum/vote/gamemode_vote
