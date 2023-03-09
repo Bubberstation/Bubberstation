@@ -19,7 +19,7 @@
 		GLOB.dynamic_forced_extended = TRUE
 		return
 
-	else
+	if(winning_option == CHOICE_DYNAMIC)
 		GLOB.dynamic_forced_extended = FALSE
 		return
 
