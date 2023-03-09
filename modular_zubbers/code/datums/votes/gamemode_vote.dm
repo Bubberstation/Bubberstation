@@ -9,9 +9,9 @@
 		CHOICE_EXTENDED,
 		CHOICE_DYNAMIC,
 	)
-	message = "Vote for the next rounds ruleset."
+	message = "Vote for the current rounds ruleset."
 
-/datum/vote/is_accessible_vote()
+/datum/vote/gamemode_vote/is_accessible_vote()
 	return TRUE
 
 /datum/vote/gamemode_vote/finalize_vote(winning_option)
@@ -19,11 +19,12 @@
 		GLOB.dynamic_forced_extended = TRUE
 		return
 
-	else
+	if(winning_option == CHOICE_DYNAMIC)
 		GLOB.dynamic_forced_extended = FALSE
 		return
 
-	CRASH("[type] wasn't passed a valid winning choice. (Got: [winning_option || "null"])")
+	else
+		CRASH("[type] wasn't passed a valid winning choice. (Got: [winning_option || "null"])")
 
 #undef CHOICE_EXTENDED
 #undef CHOICE_DYNAMIC
