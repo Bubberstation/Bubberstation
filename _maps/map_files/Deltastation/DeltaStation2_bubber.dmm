@@ -7893,6 +7893,10 @@
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
+/obj/item/storage/box/rubbershot,
+/obj/item/storage/box/rubbershot,
+/obj/item/storage/box/rubbershot,
+/obj/item/storage/box/rubbershot,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "bOU" = (
@@ -44713,8 +44717,20 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/microfusion,
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun{
+	pixel_y = 6
+	},
+/obj/item/gun/energy/e_gun{
+	pixel_y = -5
+	},
+/obj/item/gun/energy/e_gun{
+	pixel_y = -3
+	},
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun{
+	pixel_y = 3
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "kNw" = (
@@ -61339,6 +61355,26 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/brig)
+"oYa" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/rack,
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = 5
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = 2
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -1
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -7
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -4
+	},
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "oYe" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -97525,8 +97561,22 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/cmg,
+/obj/structure/rack,
+/obj/item/gun/energy/laser{
+	pixel_y = -5
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = -3
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = -1
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = 7
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = 6
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "xHW" = (
@@ -153104,7 +153154,7 @@ rlU
 bLs
 pDt
 pDt
-pDt
+oYa
 otJ
 bOT
 wTu

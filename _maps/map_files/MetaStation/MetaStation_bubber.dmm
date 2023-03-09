@@ -276,8 +276,20 @@
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "agc" = (
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun{
+	pixel_y = 5
+	},
+/obj/item/gun/energy/e_gun{
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun{
+	pixel_y = -3
+	},
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun{
+	pixel_y = 3
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "ago" = (
@@ -29579,6 +29591,10 @@
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
+/obj/item/storage/box/rubbershot,
+/obj/item/storage/box/rubbershot,
+/obj/item/storage/box/rubbershot,
+/obj/item/storage/box/rubbershot,
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "ktZ" = (
@@ -39343,9 +39359,23 @@
 /area/station/maintenance/starboard/aft)
 "nMw" = (
 /obj/machinery/airalarm/directional/north,
-/obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/microfusion,
 /obj/effect/turf_decal/delivery/red,
+/obj/structure/rack,
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = 5
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = 2
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -1
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -4
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -7
+	},
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "nMz" = (
@@ -40444,6 +40474,12 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/armory,
 /turf/open/floor/iron/dark,
 /area/station/security/lockers)
+"ofV" = (
+/obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/effect/turf_decal/bot,
+/mob/living/simple_animal/bot/secbot/beepsky/armsky,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "ofZ" = (
 /obj/machinery/vending/hydroseeds{
 	slogan_delay = 700
@@ -60356,8 +60392,22 @@
 /area/station/security/brig)
 "uWr" = (
 /obj/effect/turf_decal/delivery/red,
-/obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/cmg,
+/obj/structure/rack,
+/obj/item/gun/energy/laser{
+	pixel_y = 6
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = -1
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = -5
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = -3
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = 7
+	},
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "uWt" = (
@@ -96905,7 +96955,7 @@ tms
 kVU
 tJE
 kVU
-tJE
+ofV
 fzi
 wTp
 jxV
