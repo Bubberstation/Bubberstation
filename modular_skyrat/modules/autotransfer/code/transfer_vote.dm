@@ -29,7 +29,7 @@
 	if(forced)
 		return TRUE
 
-	if(!CONFIG_GET(flag/autotransfer))
+	if(!CONFIG_GET(flag/autotransfer) || !CONFIG_GET(flag/allow_vote_transfer))
 		if(by_who)
 			to_chat(by_who, span_warning("Transfer voting is disabled."))
 		return FALSE
