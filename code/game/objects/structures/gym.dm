@@ -130,6 +130,9 @@
 		user.add_mood_event("exercise", /datum/mood_event/exercise)
 		to_chat(user, finishmessage)
 		user.apply_status_effect(/datum/status_effect/exercised)
+		// BUBBERSTATION EDIT START
+		user.apply_status_effect(/datum/status_effect/workout_buff)
+		// BUBBERSTATION EDIT END
 
 /obj/structure/weightmachine/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
