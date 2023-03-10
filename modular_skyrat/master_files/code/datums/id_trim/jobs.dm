@@ -52,6 +52,7 @@
 	trim_state = "trim_blueshield"
 	department_color = COLOR_COMMAND_BLUE
 	subdepartment_color = COLOR_CENTCOM_BLUE // Not the other way around. I think.
+	orbit_icon = "shield-dog"
 	sechud_icon_state = SECHUD_BLUESHIELD
 	extra_access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_COURT, ACCESS_CARGO, ACCESS_GATEWAY) // Someone needs to come back and order these alphabetically, this is a nightmare
 	minimal_access = list(
@@ -66,6 +67,7 @@
 	trim_state = "trim_centcom"
 	department_color = COLOR_GREEN
 	subdepartment_color = COLOR_GREEN
+	orbit_icon = "clipboard-check"
 	sechud_icon_state = SECHUD_NT_CONSULTANT
 	extra_access = list()
 	//BUBBER EDIT START
@@ -81,6 +83,7 @@
 	assignment = "Security Medic"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_securitymedic"
+	orbit_icon = "heart-pulse"
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
 	sechud_icon_state = SECHUD_SECURITY_MEDIC
@@ -101,6 +104,7 @@
 	assignment = "Corrections Officer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_corrections_officer"
+	orbit_icon = "hands-bound"
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
 	sechud_icon_state = SECHUD_CORRECTIONS_OFFICER
@@ -116,6 +120,7 @@
 	trim_state = "trim_barber"
 	department_color = COLOR_SERVICE_LIME
 	subdepartment_color = COLOR_SERVICE_LIME
+	orbit_icon = "scissors"
 	sechud_icon_state = SECHUD_BARBER
 	extra_access = list()
 	minimal_access = list(ACCESS_THEATRE, ACCESS_MAINT_TUNNELS, ACCESS_BARBER, ACCESS_SERVICE)
