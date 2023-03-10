@@ -32,10 +32,6 @@
 #define ACCESS_CAPTAIN "captain"
 /// Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.
 #define ACCESS_HOP "hop"
-//ACCESS FOR THE NTRep's personal quarters in mapping.
-#define ACCESS_NTREP "representative"
-//BUBBER EDIT END: Add NTRep Access
-
 
 /// Security's General Access. In mapping, grants access to spaces such as to the "meeting room" or firing range, as well as being the general access that Tablet/Computer Programs check for "heads". Also unlocks other types of security equipment.
 #define ACCESS_SECURITY "security"

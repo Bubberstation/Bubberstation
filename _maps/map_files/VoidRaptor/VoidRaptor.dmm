@@ -12263,8 +12263,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/corporate{
 	name = "Consultant's Quarters"
+	req_access = list("representative")
 	},
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/wood/end,
 /obj/effect/turf_decal/siding/wood{
@@ -29698,13 +29698,13 @@
 /area/station/engineering/atmos/pumproom)
 "iGu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/corporate{
 	id_tag = "consultantdoor";
 	name = "Consultant's Office"
+	req_access = list("representative")
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
