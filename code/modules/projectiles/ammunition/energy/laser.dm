@@ -3,7 +3,6 @@
 	e_cost = 83
 	select_name = "kill"
 /obj/item/ammo_casing/energy/laser/revolver
-	projectile_type = /obj/projectile/beam/laser
 	e_cost = 100
 	select_name = "kill"
 /obj/item/ammo_casing/energy/laser/hellfire
