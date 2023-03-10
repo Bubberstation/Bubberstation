@@ -26409,7 +26409,8 @@
 "gqA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch"
+	name = "Maintenance Hatch";
+	req_access = ACCESS_NTREP
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -35234,7 +35235,8 @@
 /area/station/maintenance/port)
 "iAQ" = (
 /obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
+	name = "NT Consultant's Office";
+	req_access = ACCESS_NTREP
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
