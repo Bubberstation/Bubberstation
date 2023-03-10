@@ -259,6 +259,10 @@
 	name = "Buzzcut"
 	icon_state = "hair_buzzcut"
 
+/datum/sprite_accessory/hair/chinbob
+	name = "Chin-Length Bob Cut"
+	icon_state = "hair_chinbob"
+
 /datum/sprite_accessory/hair/comet
 	name = "Comet"
 	icon_state = "hair_comet"
@@ -814,6 +818,10 @@
 /datum/sprite_accessory/hair/wisp
 	name = "Wisp"
 	icon_state = "hair_wisp"
+
+/datum/sprite_accessory/hair/ziegler
+	name = "Ziegler"
+	icon_state = "hair_ziegler"
 
 /*
 /////////////////////////////////////
