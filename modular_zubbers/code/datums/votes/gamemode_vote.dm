@@ -12,7 +12,7 @@
 	message = "Vote for the current rounds ruleset."
 
 /datum/vote/gamemode_vote/is_accessible_vote()
-	return TRUE
+	return FALSE
 
 /datum/vote/gamemode_vote/finalize_vote(winning_option)
 	if(winning_option == CHOICE_EXTENDED)
