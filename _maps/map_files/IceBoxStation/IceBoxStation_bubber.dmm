@@ -15087,18 +15087,20 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun,
-/obj/item/gun/energy/e_gun{
-	pixel_y = 6
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = 5
 	},
-/obj/item/gun/energy/e_gun{
-	pixel_y = -5
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -7
 	},
-/obj/item/gun/energy/e_gun{
-	pixel_y = 1
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -4
 	},
-/obj/item/gun/energy/e_gun{
-	pixel_y = 3
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = -1
+	},
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_y = 2
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
@@ -17782,10 +17784,22 @@
 	pixel_y = 30;
 	req_access = list("armory")
 	},
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun{
+	pixel_x = 3;
+	pixel_y = -3
+	},
 /obj/effect/turf_decal/tile/red/half{
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
+/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory/upper)
 "fkj" = (
