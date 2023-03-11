@@ -97,9 +97,8 @@
 /obj/effect/spawner/armory_spawn/cmg
 	icon_state = "random_rifle"
 	gun_count = 3
-	vertical_guns = FALSE
 	guns = list(
-		/obj/item/storage/box/gunset/cmg,
-		/obj/item/storage/box/gunset/cmg,
-		/obj/item/storage/box/gunset/cmg,
+		/obj/item/gun/ballistic/automatic/cmg,
+		/obj/item/gun/ballistic/automatic/cmg,
+		/obj/item/gun/ballistic/automatic/cmg,
 	)
