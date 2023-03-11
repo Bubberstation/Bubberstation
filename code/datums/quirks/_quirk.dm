@@ -72,7 +72,7 @@
 	//BUBBER EDIT ADDITION START - Species quirks
 	//We silently fail if a whitelisted quirk *somehow* got into someone's preferences.
 	if(quirk_whitelist_flags & QUIRK_SLIMEPERSON_ONLY && !isroundstartslime(new_holder))
-		return
+		CRASH("Attempted to add quirk [name] to [quirk_holder], but the species is ineligible for it!")
 	//BUBBER EDIT ADDITION END
 
 	quirk_holder = new_holder
