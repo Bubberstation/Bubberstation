@@ -1,6 +1,6 @@
 /datum/quirk/hydrophilic
 	name = "Hydrophilic"
-	desc = "(Slimeperson only) Your molecules are highly hydrophilic - or, in layman's terms, dissolve very well in water."
+	desc = "(Slimeperson only) Your molecules are highly hydrophilic - or, in layman's terms, dissolve very well in water. You should probably stay away from it..."
 	icon = "bug" // I can't be asked to make an icon for this, my spritework sucks.
 	value = 0
 	quirk_flags = QUIRK_HUMAN_ONLY
