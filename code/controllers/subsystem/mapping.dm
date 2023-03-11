@@ -157,8 +157,6 @@ SUBSYSTEM_DEF(mapping)
 	initialize_reserved_level(base_transit.z_value)
 	calculate_default_z_level_gravities()
 
-	SSvote.initiate_vote(/datum/vote/gamemode_vote, "gamemode vote", forced = TRUE) // BUBBERSTATION ADDITION
-
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/mapping/fire(resumed)
