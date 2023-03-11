@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb_continuous = list("smacks", "strucks", "cracks", "beats", "purifies")
 	attack_verb_simple = list("smack", "struck", "crack", "beat", "purify")
+	slot_flags = 0
 
 /obj/item/clothing/head/mitre
 	name = "papal mitre"
