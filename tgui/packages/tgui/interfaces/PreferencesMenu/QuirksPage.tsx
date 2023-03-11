@@ -220,7 +220,7 @@ export const QuirksPage = (props, context) => {
             // If the selected species is NOT in the list, do not give the quirk
             // Otherwise, give the quirk
             if (whitelist.indexOf(currentSpeciesName) === -1) {
-              return `This quirk is whitelisted to ${whitelistSpeciesName}!`;
+              return `This quirk can only be taken by ${whitelistSpeciesName}!`;
             }
           }
 
