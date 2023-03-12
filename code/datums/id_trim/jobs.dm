@@ -784,6 +784,7 @@
 		ACCESS_COMMAND,
 		ACCESS_EVA,
 		ACCESS_BRIG_ENTRANCE,
+		ACCESS_WEAPONS, //BUBBER EDIT
 		)
 	extra_access = list()
 	minimal_wildcard_access = list(
