@@ -31,8 +31,8 @@
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/rank/rnd/scientist/skyrat/hlscience
-	name = "science team uniform"
-	desc = "A simple semi-formal uniform consisting of a grayish-blue shirt and off-white slacks, paired with a ridiculous, but mandatory, tie."
+	name = "ridiculous scientist outfit"
+	desc = "The tie is mandatory."
 	icon_state = "hl_scientist"
 	can_adjust = FALSE
 
@@ -72,7 +72,7 @@
 
 /*
 *	OVERRIDES
-*	ORION TODO: look over these when TG finishes their science resprites (any day now...)
+*	Remind Orion to look over these when TG finishes their science resprites
 */
 
 /obj/item/clothing/under/rank/rnd/scientist

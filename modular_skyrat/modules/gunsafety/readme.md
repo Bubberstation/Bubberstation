@@ -24,4 +24,3 @@ Adds a huge QOL feature, GUN SAFTIES.
 
 ### Credits:
 Gandalf2k15 - OG code
-Paxilmaniac - Turned it into a component
