@@ -47,7 +47,7 @@
 /datum/traitor_objective/kidnapping/New(datum/uplink_handler/handler)
 	. = ..()
 	AddComponent(/datum/component/traitor_objective_limit_per_time, \
-		/datum/traitor_objective/kidnapping, \
+		/datum/traitor_objective/assassinate, \
 		time_period = objective_period, \
 		maximum_objectives = maximum_objectives_in_period \
 	)
@@ -56,28 +56,28 @@
 	progression_minimum = 0 MINUTES
 	progression_maximum = 30 MINUTES
 	target_jobs = list(
-		// Cargo
-		/datum/job/cargo_technician,
-		// Engineering
-		/datum/job/atmospheric_technician,
-		/datum/job/station_engineer,
 		// Medical
-		/datum/job/chemist,
 		/datum/job/doctor,
 		/datum/job/paramedic,
 		/datum/job/psychologist,
+		/datum/job/chemist,
+		// Service
+		/datum/job/clown,
+		/datum/job/botanist,
+		/datum/job/janitor,
+		/datum/job/mime,
+		/datum/job/lawyer,
+		/datum/job/chaplain,
+		/datum/job/bartender,
+		/datum/job/curator,
+		// Cargo
+		/datum/job/cargo_technician,
 		// Science
 		/datum/job/geneticist,
 		/datum/job/roboticist,
-		// Service
-		/datum/job/bartender,
-		/datum/job/botanist,
-		/datum/job/chaplain,
-		/datum/job/clown,
-		/datum/job/curator,
-		/datum/job/janitor,
-		/datum/job/lawyer,
-		/datum/job/mime,
+		// Engineering
+		/datum/job/station_engineer,
+		/datum/job/atmospheric_technician,
 	)
 
 /datum/traitor_objective/kidnapping/less_common
@@ -91,14 +91,14 @@
 	progression_minimum = 0 MINUTES
 	progression_maximum = 45 MINUTES
 	target_jobs = list(
-		// Cargo
-		/datum/job/shaft_miner,
 		// Medical
 		/datum/job/virologist,
-		// Science
-		/datum/job/scientist,
+		// Cargo
+		/datum/job/shaft_miner,
 		// Service
 		/datum/job/cook,
+		// Science
+		/datum/job/scientist,
 	)
 
 	progression_reward = list(4 MINUTES, 8 MINUTES)
@@ -109,16 +109,15 @@
 	progression_minimum = 15 MINUTES
 	progression_maximum = 60 MINUTES
 	target_jobs = list(
-		// Heads of staff
-		/datum/job/chief_engineer,
-		/datum/job/chief_medical_officer,
-		/datum/job/head_of_personnel,
-		/datum/job/research_director,
-		/datum/job/quartermaster,
 		// Security
-		/datum/job/detective,
 		/datum/job/security_officer,
 		/datum/job/warden,
+		/datum/job/detective,
+		// Heads of staff
+		/datum/job/head_of_personnel,
+		/datum/job/chief_medical_officer,
+		/datum/job/research_director,
+		/datum/job/quartermaster,
 	)
 
 	progression_reward = list(8 MINUTES, 12 MINUTES)
@@ -128,8 +127,8 @@
 /datum/traitor_objective/kidnapping/captain
 	progression_minimum = 30 MINUTES
 	target_jobs = list(
-		/datum/job/captain,
 		/datum/job/head_of_security,
+		/datum/job/captain
 	)
 
 	progression_reward = list(12 MINUTES, 16 MINUTES)
