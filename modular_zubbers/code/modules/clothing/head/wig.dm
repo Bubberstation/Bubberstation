@@ -7,40 +7,40 @@
 	var/mob/living/carbon/holder
 	var/item_path
 
-/obj/item/clothing/head/wig/attackby(obj/item/I, mob/living/user)
+/obj/item/clothing/head/wig/attackby(obj/item/attachment, mob/living/user)
 	. = ..()
 	//Checks if the item is in the list of items available
 	for(var/type in HEAD_ACCESSORIES_PATHS)	
-		if(istype(I, type))
+		if(istype(attachment, type))
 			item_path = type
 			break
 
 	if(item_path && !head_accessory)
-		add_head_accessory(I)
+		add_head_accessory(attachment)
 	else
-		to_chat(user, span_notice("You can't put \the [I.name] on the head of \the [holder.name]"))
+		to_chat(user, span_notice("You can't put \the [attachment.name] on the head of \the [holder.name]"))
 		return
 
-/obj/item/clothing/head/wig/proc/add_head_accessory(obj/item/clothing/I)
+/obj/item/clothing/head/wig/proc/add_head_accessory(obj/item/clothing/attachment)
 	//Get the mutable_appearance ready
-	head_accessory_MA = mutable_appearance(I.worn_icon)
-	head_accessory_MA.icon_state = I.icon_state
-	I.forceMove(src) //Put the item in the wig
+	head_accessory_MA = mutable_appearance(attachment.worn_icon)
+	head_accessory_MA.icon_state = attachment.icon_state
+	attachment.forceMove(src) //Put the item in the wig
 
 	if(holder)
 		holder.add_overlay(head_accessory_MA)
 		overlay_on = TRUE
 
-	head_accessory = I
+	head_accessory = attachment
 
 /obj/item/clothing/head/wig/attack_hand_secondary(mob/user)
 	..()
 	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(head_accessory)
-		remove_head_accessory(head_accessory, user)
+		remove_head_accessory(user)
 
-/obj/item/clothing/head/wig/proc/remove_head_accessory(obj/item/clothing/I, mob/user)
+/obj/item/clothing/head/wig/proc/remove_head_accessory(mob/user)
 	user.put_in_active_hand(head_accessory)
 
 	head_accessory = null
