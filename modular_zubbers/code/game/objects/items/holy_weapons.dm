@@ -18,7 +18,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/32x48_head.dmi'
 	icon_state = "mitre"
 
-/obj/item/clothing/suit/chaplain/papal
+/obj/item/clothing/suit/chaplainsuit/armor/papal
 	name = "papal robe"
 	desc = "A short cape over a cassock, worn by bishops and popes in traditional Christianity"
 	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
@@ -29,8 +29,8 @@
 
 /obj/item/storage/box/holy/papal
 	name = "Papal Kit"
-	typepath_for_preview = /obj/item/clothing/suit/chaplain/papal
+	typepath_for_preview = /obj/item/clothing/suit/chaplainsuit/armor/papal
 
 /obj/item/storage/box/holy/papal/PopulateContents()
 	new /obj/item/clothing/head/mitre(src)
-	new /obj/item/clothing/suit/chaplain/papal(src)
+	new /obj/item/clothing/suit/chaplainsuit/armor/papal(src)
