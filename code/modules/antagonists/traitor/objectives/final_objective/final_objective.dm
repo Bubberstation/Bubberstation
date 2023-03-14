@@ -6,7 +6,7 @@
 		/datum/traitor_objective/ultimate/space_dragon = 1,
 		/datum/traitor_objective/ultimate/supermatter_cascade = 1,
 	)
-	weight = 100
+	weight = 0
 
 /datum/traitor_objective/ultimate
 	abstract_type = /datum/traitor_objective/ultimate
