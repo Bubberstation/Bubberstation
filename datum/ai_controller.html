@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ai_controller - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ai_controller.html#var">Var Details</a> - <a href="datum/ai_controller.html#proc">Proc Details</a></header>
+<main>
+<h1>ai_controller <aside>/<a href="datum.html">datum</a>/<a href="datum/ai_controller.html">ai_controller</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 7"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/ai_movement">ai_movement</a></th><td>Reference to the movement datum we use. Is a type on initialize but becomes a ref afterwards.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/ai_status">ai_status</a></th><td>Current status of AI (OFF/ON)</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/ai_traits">ai_traits</a></th><td>Bitfield of traits for this AI to handle extra behavior</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/behavior_args">behavior_args</a></th><td>Stored arguments for behaviors given during their initial creation</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/behavior_cooldowns">behavior_cooldowns</a></th><td>Current actions and their respective last time ran as an assoc list.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/blackboard">blackboard</a></th><td>This is a list of variables the AI uses and can be mutated by actions. When an action is performed you pass this list and any relevant keys for the variables it can mutate.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/continue_processing_when_client">continue_processing_when_client</a></th><td>Can the AI remain in control if there is a client?</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/current_behaviors">current_behaviors</a></th><td>Current actions being performed by the AI.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/current_movement_target">current_movement_target</a></th><td>Current movement target of the AI, generally set by decision making.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/failed_planning_cooldown">failed_planning_cooldown</a></th><td>Cooldown for new plans, to prevent AI from going nuts if it can't think of new plans and looping on end</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/idle_behavior">idle_behavior</a></th><td>The idle behavior this AI performs when it has no actions.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/max_target_distance">max_target_distance</a></th><td>distance to give up on target</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/movement_cooldown">movement_cooldown</a></th><td>Cooldown until next movement</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/movement_delay">movement_delay</a></th><td>Delay between movements. This is on the controller so we can keep the movement datum singleton</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/movement_target_source">movement_target_source</a></th><td>Identifier for what last touched our movement target, so it can be cleared conditionally</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/pathing_attempts">pathing_attempts</a></th><td>Tracks recent pathing attempts, if we fail too many in a row we fail our current plans.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/paused_until">paused_until</a></th><td>AI paused time</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/pawn">pawn</a></th><td>The atom this controller is controlling</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/planned_behaviors">planned_behaviors</a></th><td>Current actions planned to be performed by the AI in the upcoming plan</td></tr>
+            <tr><th><a href="datum/ai_controller.html#var/planning_subtrees">planning_subtrees</a></th><td>All subtrees this AI has available, will run them in order, so make sure they're in the order you want them to run. On initialization of this type, it will start as a typepath(s) and get converted to references of ai_subtrees found in SSai_controllers when init_subtrees() is called</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/PossessPawn">PossessPawn</a></th><td>Proc to move from one pawn to another, this will destroy the target's existing controller.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/ProcessBehavior">ProcessBehavior</a></th><td>It's still in the plan, don't add it again to current_behaviors but do keep it in the planned behavior list so its not cancelled</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/SelectBehaviors">SelectBehaviors</a></th><td>This is where you decide what actions are taken by the AI.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/TryPossessPawn">TryPossessPawn</a></th><td>Abstract proc for initializing the pawn to the new controller</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/UnpossessPawn">UnpossessPawn</a></th><td>Proc for deinitializing the pawn to the old controller</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/able_to_plan">able_to_plan</a></th><td>Are we close enough to engage?
+Determines whether the AI can currently make a new plan</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/able_to_run">able_to_run</a></th><td>Returns TRUE if the ai controller can actually run at the moment.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/change_ai_movement_type">change_ai_movement_type</a></th><td>Overrides the current ai_movement of this controller with a new one</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/get_access">get_access</a></th><td>Use this proc to define how your controller defines what access the pawn has for the sake of pathfinding, likely pointing to whatever ID slot is relevant</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/get_human_examine_text">get_human_examine_text</a></th><td>If this controller is applied to a human subtype, this proc will be called to generate examine text</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/get_minimum_distance">get_minimum_distance</a></th><td>Returns the minimum required distance to preform one of our current behaviors. Honestly this should just be cached or something but fuck you</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/get_setup_mob_ai_status">get_setup_mob_ai_status</a></th><td>Mobs have more complicated factors about whether their AI should be on or not</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/init_subtrees">init_subtrees</a></th><td>Loops over the subtrees in planning_subtrees and looks at the ai_controllers to grab a reference, ENSURE planning_subtrees ARE TYPEPATHS AND NOT INSTANCES/REFERENCES BEFORE EXECUTING THIS</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/on_stat_changed">on_stat_changed</a></th><td>Turn the controller on or off based on if you're alive, we only register to this if the flag is present so don't need to check again</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/process">process</a></th><td>Runs any actions that are currently running</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/queue_behavior">queue_behavior</a></th><td>Call this to add a behavior to the stack.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/replace_planning_subtrees">replace_planning_subtrees</a></th><td>Completely replaces the planning_subtrees with a new set based on argument provided, list provided must contain specifically typepaths</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/set_ai_status">set_ai_status</a></th><td>This proc handles changing ai status, and starts/stops processing if required.</td></tr>
+            <tr><th><a href="datum/ai_controller.html#proc/set_movement_target">set_movement_target</a></th><td>Sets the current movement target, with an optional param to override the movement behavior</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ai_movement"><aside class="declaration">var </aside>ai_movement
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ai_movement.html">ai_movement</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 44"/></a></h3>
+        <p>Reference to the movement datum we use. Is a type on initialize but becomes a ref afterwards.</p><h3 id="var/ai_status"><aside class="declaration">var </aside>ai_status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 19"/></a></h3>
+        <p>Current status of AI (OFF/ON)</p><h3 id="var/ai_traits"><aside class="declaration">var </aside>ai_traits
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 11"/></a></h3>
+        <p>Bitfield of traits for this AI to handle extra behavior</p><h3 id="var/behavior_args"><aside class="declaration">var </aside>behavior_args
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 27"/></a></h3>
+        <p>Stored arguments for behaviors given during their initial creation</p><h3 id="var/behavior_cooldowns"><aside class="declaration">var </aside>behavior_cooldowns
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 17"/></a></h3>
+        <p>Current actions and their respective last time ran as an assoc list.</p><h3 id="var/blackboard"><aside class="declaration">var </aside>blackboard
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 25"/></a></h3>
+        <p>This is a list of variables the AI uses and can be mutated by actions. When an action is performed you pass this list and any relevant keys for the variables it can mutate.</p><h3 id="var/continue_processing_when_client"><aside class="declaration">var </aside>continue_processing_when_client
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 31"/></a></h3>
+        <p>Can the AI remain in control if there is a client?</p><h3 id="var/current_behaviors"><aside class="declaration">var </aside>current_behaviors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 15"/></a></h3>
+        <p>Current actions being performed by the AI.</p><h3 id="var/current_movement_target"><aside class="declaration">var </aside>current_movement_target
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 21"/></a></h3>
+        <p>Current movement target of the AI, generally set by decision making.</p><h3 id="var/failed_planning_cooldown"><aside class="declaration">var </aside>failed_planning_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 35"/></a></h3>
+        <p>Cooldown for new plans, to prevent AI from going nuts if it can't think of new plans and looping on end</p><h3 id="var/idle_behavior"><aside class="declaration">var </aside>idle_behavior
+            <aside>&ndash; /<a href="datum.html">datum</a>/idle_behavior</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 40"/></a></h3>
+        <p>The idle behavior this AI performs when it has no actions.</p><h3 id="var/max_target_distance"><aside class="declaration">var </aside>max_target_distance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 33"/></a></h3>
+        <p>distance to give up on target</p><h3 id="var/movement_cooldown"><aside class="declaration">var </aside>movement_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 46"/></a></h3>
+        <p>Cooldown until next movement</p><h3 id="var/movement_delay"><aside class="declaration">var </aside>movement_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 48"/></a></h3>
+        <p>Delay between movements. This is on the controller so we can keep the movement datum singleton</p><h3 id="var/movement_target_source"><aside class="declaration">var </aside>movement_target_source
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 23"/></a></h3>
+        <p>Identifier for what last touched our movement target, so it can be cleared conditionally</p><h3 id="var/pathing_attempts"><aside class="declaration">var </aside>pathing_attempts
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 29"/></a></h3>
+        <p>Tracks recent pathing attempts, if we fail too many in a row we fail our current plans.</p><h3 id="var/paused_until"><aside class="declaration">var </aside>paused_until
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 52"/></a></h3>
+        <p>AI paused time</p><h3 id="var/pawn"><aside class="declaration">var </aside>pawn
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 9"/></a></h3>
+        <p>The atom this controller is controlling</p><h3 id="var/planned_behaviors"><aside class="declaration">var </aside>planned_behaviors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 13"/></a></h3>
+        <p>Current actions planned to be performed by the AI in the upcoming plan</p><h3 id="var/planning_subtrees"><aside class="declaration">var </aside>planning_subtrees
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 37"/></a></h3>
+        <p>All subtrees this AI has available, will run them in order, so make sure they're in the order you want them to run. On initialization of this type, it will start as a typepath(s) and get converted to references of ai_subtrees found in SSai_controllers when init_subtrees() is called</p><h2 id="proc">Proc Details</h2><h3 id="proc/PossessPawn"><aside class="declaration">proc </aside>PossessPawn<aside>(/<a href="atom.html">atom</a>/new_pawn) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 95"/></a></aside>
+        </h3>
+        <p>Proc to move from one pawn to another, this will destroy the target's existing controller.</p><h3 id="proc/ProcessBehavior"><aside class="declaration">proc </aside>ProcessBehavior<aside>(delta_time, /<a href="datum.html">datum</a>/<a href="datum/ai_behavior.html">ai_behavior</a>/behavior) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 282"/></a></aside>
+        </h3>
+        <p>It's still in the plan, don't add it again to current_behaviors but do keep it in the planned behavior list so its not cancelled</p><h3 id="proc/SelectBehaviors"><aside class="declaration">proc </aside>SelectBehaviors<aside>(delta_time) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L220">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 220"/></a></aside>
+        </h3>
+        <p>This is where you decide what actions are taken by the AI.</p><h3 id="proc/TryPossessPawn"><aside class="declaration">proc </aside>TryPossessPawn<aside>(/<a href="atom.html">atom</a>/new_pawn) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 133"/></a></aside>
+        </h3>
+        <p>Abstract proc for initializing the pawn to the new controller</p><h3 id="proc/UnpossessPawn"><aside class="declaration">proc </aside>UnpossessPawn<aside>(destroy) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 137"/></a></aside>
+        </h3>
+        <p>Proc for deinitializing the pawn to the old controller</p><h3 id="proc/able_to_plan"><aside class="declaration">proc </aside>able_to_plan<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 212"/></a></aside>
+        </h3>
+        <p>Are we close enough to engage?
+Determines whether the AI can currently make a new plan</p><h3 id="proc/able_to_run"><aside class="declaration">proc </aside>able_to_run<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 148"/></a></aside>
+        </h3>
+        <p>Returns TRUE if the ai controller can actually run at the moment.</p><h3 id="proc/change_ai_movement_type"><aside class="declaration">proc </aside>change_ai_movement_type<aside>(/<a href="datum.html">datum</a>/<a href="datum/ai_movement.html">ai_movement</a>/new_movement) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 76"/></a></aside>
+        </h3>
+        <p>Overrides the current ai_movement of this controller with a new one</p><h3 id="proc/get_access"><aside class="declaration">proc </aside>get_access<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 320"/></a></aside>
+        </h3>
+        <p>Use this proc to define how your controller defines what access the pawn has for the sake of pathfinding, likely pointing to whatever ID slot is relevant</p><h3 id="proc/get_human_examine_text"><aside class="declaration">proc </aside>get_human_examine_text<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 335"/></a></aside>
+        </h3>
+        <p>If this controller is applied to a human subtype, this proc will be called to generate examine text</p><h3 id="proc/get_minimum_distance"><aside class="declaration">proc </aside>get_minimum_distance<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L324">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 324"/></a></aside>
+        </h3>
+        <p>Returns the minimum required distance to preform one of our current behaviors. Honestly this should just be cached or something but fuck you</p><h3 id="proc/get_setup_mob_ai_status"><aside class="declaration">proc </aside>get_setup_mob_ai_status<aside>(/<a href="mob.html">mob</a>/mob_pawn) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 118"/></a></aside>
+        </h3>
+        <p>Mobs have more complicated factors about whether their AI should be on or not</p><h3 id="proc/init_subtrees"><aside class="declaration">proc </aside>init_subtrees<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 85"/></a></aside>
+        </h3>
+        <p>Loops over the subtrees in planning_subtrees and looks at the ai_controllers to grab a reference, ENSURE planning_subtrees ARE TYPEPATHS AND NOT INSTANCES/REFERENCES BEFORE EXECUTING THIS</p><h3 id="proc/on_stat_changed"><aside class="declaration">proc </aside>on_stat_changed<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, new_stat) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 301"/></a></aside>
+        </h3>
+        <p>Turn the controller on or off based on if you're alive, we only register to this if the flag is present so don't need to check again</p><h3 id="proc/process"><aside class="parent"><a title="/datum" href="datum.html#proc/process">&uarr;</a></aside>process<aside>(delta_time) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 157"/></a></aside>
+        </h3>
+        <p>Runs any actions that are currently running</p><h3 id="proc/queue_behavior"><aside class="declaration">proc </aside>queue_behavior<aside>(behavior_type, ...) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 261"/></a></aside>
+        </h3>
+        <p>Call this to add a behavior to the stack.</p><h3 id="proc/replace_planning_subtrees"><aside class="declaration">proc </aside>replace_planning_subtrees<aside>(/list/typepaths_of_new_subtrees) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 80"/></a></aside>
+        </h3>
+        <p>Completely replaces the planning_subtrees with a new set based on argument provided, list provided must contain specifically typepaths</p><h3 id="proc/set_ai_status"><aside class="declaration">proc </aside>set_ai_status<aside>(new_ai_status) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 243"/></a></aside>
+        </h3>
+        <p>This proc handles changing ai status, and starts/stops processing if required.</p><h3 id="proc/set_movement_target"><aside class="declaration">proc </aside>set_movement_target<aside>(source, /<a href="atom.html">atom</a>/target, /<a href="datum.html">datum</a>/<a href="datum/ai_movement.html">ai_movement</a>/new_movement) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/ai/_ai_controller.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;ai&#x2F;_ai_controller.dm 69"/></a></aside>
+        </h3>
+        <p>Sets the current movement target, with an optional param to override the movement behavior</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

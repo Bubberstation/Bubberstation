@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;libraryconsole&#x2F;bookmanagement - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var">Var Details</a> - <a href="obj/machinery/computer/libraryconsole/bookmanagement.html#proc">Proc Details</a></header>
+<main>
+<h1>bookmanagement <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/libraryconsole.html">libraryconsole</a>/<a href="obj/machinery/computer/libraryconsole/bookmanagement.html">bookmanagement</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L270">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 270"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/buffer_book">buffer_book</a></th><td>The name of the book being checked out</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/can_spawn_lore">can_spawn_lore</a></th><td>Can spawn secret lore item</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/checkout_page">checkout_page</a></th><td>The current page we're on in the checkout listing</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/checkout_page_count">checkout_page_count</a></th><td>The current max amount of checkout pages allowed</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/checkouts">checkouts</a></th><td>List of checked out books, /datum/borrowbook</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/dynamic_inv_load">dynamic_inv_load</a></th><td>Should we load our inventory from the bookselves in our area?</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/ignore_hash">ignore_hash</a></th><td>Toggled if some bit of code wants to override hashing and allow for page updates</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/inventory">inventory</a></th><td>List of book info datums to display to the user as our &quot;inventory&quot;</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/inventory_page">inventory_page</a></th><td>The current page we're on in the inventory</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/inventory_page_count">inventory_page_count</a></th><td>The current max amount of inventory pages allowed</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/newscaster_cooldown">newscaster_cooldown</a></th><td>Our cooldown on publishing books to the newscaster's &quot;book club&quot; channel</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/printer_cooldown">printer_cooldown</a></th><td>Our cooldown on using the printer</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/scanner">scanner</a></th><td>Book scanner that will be used when uploading books to the Archive</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/screen_state">screen_state</a></th><td>The screen we're currently on, sent to the ui</td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#var/show_dropdown">show_dropdown</a></th><td>Should we show the buttons required for changing screens?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/libraryconsole/bookmanagement.html#proc/attempt_print">attempt_print</a></th><td>Call this proc to attempt a print. It will return false if the print failed, true otherwise, longside some ux
+Accepts a callback to call when the print &quot;finishes&quot;</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/buffer_book"><aside class="declaration">var </aside>buffer_book
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/book_info.html">book_info</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 290"/></a></h3>
+        <p>The name of the book being checked out</p><h3 id="var/can_spawn_lore"><aside class="declaration">var </aside>can_spawn_lore
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 284"/></a></h3>
+        <p>Can spawn secret lore item</p><h3 id="var/checkout_page"><aside class="declaration">var </aside>checkout_page
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L296">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 296"/></a></h3>
+        <p>The current page we're on in the checkout listing</p><h3 id="var/checkout_page_count"><aside class="declaration">var </aside>checkout_page_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 294"/></a></h3>
+        <p>The current max amount of checkout pages allowed</p><h3 id="var/checkouts"><aside class="declaration">var </aside>checkouts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L292">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 292"/></a></h3>
+        <p>List of checked out books, /datum/borrowbook</p><h3 id="var/dynamic_inv_load"><aside class="declaration">var </aside>dynamic_inv_load
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 304"/></a></h3>
+        <p>Should we load our inventory from the bookselves in our area?</p><h3 id="var/ignore_hash"><aside class="declaration">var </aside>ignore_hash
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L306">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 306"/></a></h3>
+        <p>Toggled if some bit of code wants to override hashing and allow for page updates</p><h3 id="var/inventory"><aside class="declaration">var </aside>inventory
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L298">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 298"/></a></h3>
+        <p>List of book info datums to display to the user as our &quot;inventory&quot;</p><h3 id="var/inventory_page"><aside class="declaration">var </aside>inventory_page
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 302"/></a></h3>
+        <p>The current page we're on in the inventory</p><h3 id="var/inventory_page_count"><aside class="declaration">var </aside>inventory_page_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L300">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 300"/></a></h3>
+        <p>The current max amount of inventory pages allowed</p><h3 id="var/newscaster_cooldown"><aside class="declaration">var </aside>newscaster_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L312">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 312"/></a></h3>
+        <p>Our cooldown on publishing books to the newscaster's &quot;book club&quot; channel</p><h3 id="var/printer_cooldown"><aside class="declaration">var </aside>printer_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 310"/></a></h3>
+        <p>Our cooldown on using the printer</p><h3 id="var/scanner"><aside class="declaration">var </aside>scanner
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 308"/></a></h3>
+        <p>Book scanner that will be used when uploading books to the Archive</p><h3 id="var/screen_state"><aside class="declaration">var </aside>screen_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L286">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 286"/></a></h3>
+        <p>The screen we're currently on, sent to the ui</p><h3 id="var/show_dropdown"><aside class="declaration">var </aside>show_dropdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 288"/></a></h3>
+        <p>Should we show the buttons required for changing screens?</p><h2 id="proc">Proc Details</h2><h3 id="proc/attempt_print"><aside class="declaration">proc </aside>attempt_print<aside>(/<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/call_after) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/library/lib_machines.dm#L641">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;library&#x2F;lib_machines.dm 641"/></a></aside>
+        </h3>
+        <p>Call this proc to attempt a print. It will return false if the print failed, true otherwise, longside some ux
+Accepts a callback to call when the print &quot;finishes&quot;</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

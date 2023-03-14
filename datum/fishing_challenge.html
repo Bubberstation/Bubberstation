@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;fishing_challenge - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/fishing_challenge.html#var">Var Details</a> - <a href="datum/fishing_challenge.html#proc">Proc Details</a></header>
+<main>
+<h1>fishing_challenge <aside>/<a href="datum.html">datum</a>/<a href="datum/fishing_challenge.html">fishing_challenge</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/background">background</a></th><td>Background image from /datum/asset/simple/fishing_minigame</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/bait_taken">bait_taken</a></th><td>Did the game get past the baiting phase, used to track if bait should be consumed afterwards</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/completed">completed</a></th><td>Is it finished (either by win/lose or window closing)</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/difficulty">difficulty</a></th><td>Minigame difficulty</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/fish_ai">fish_ai</a></th><td>Fish AI type to use</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/fishing_line">fishing_line</a></th><td>Fishing line visual</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/lure">lure</a></th><td>Lure visual</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/max_distance">max_distance</a></th><td>Max distance we can move from the spot</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/reward_path">reward_path</a></th><td>Result path</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/special_effects">special_effects</a></th><td>Rule modifiers (eg weighted bait)</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/start_time">start_time</a></th><td>When the ui minigame phase started</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/used_rod">used_rod</a></th><td>Rod that is used for the challenge</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#var/user">user</a></th><td>Fishing mob</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#proc/Destroy">Destroy</a></th><td>Fish minigame properties
+Enable special parameters</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#proc/handle_click">handle_click</a></th><td>Create fishing line visuals</td></tr>
+            <tr><th><a href="datum/fishing_challenge.html#proc/interrupt">interrupt</a></th><td>Challenge interrupted by something external</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/background"><aside class="declaration">var </aside>background
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 34"/></a></h3>
+        <p>Background image from /datum/asset/simple/fishing_minigame</p><h3 id="var/bait_taken"><aside class="declaration">var </aside>bait_taken
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 18"/></a></h3>
+        <p>Did the game get past the baiting phase, used to track if bait should be consumed afterwards</p><h3 id="var/completed"><aside class="declaration">var </aside>completed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 12"/></a></h3>
+        <p>Is it finished (either by win/lose or window closing)</p><h3 id="var/difficulty"><aside class="declaration">var </aside>difficulty
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 22"/></a></h3>
+        <p>Minigame difficulty</p><h3 id="var/fish_ai"><aside class="declaration">var </aside>fish_ai
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 14"/></a></h3>
+        <p>Fish AI type to use</p><h3 id="var/fishing_line"><aside class="declaration">var </aside>fishing_line
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/beam.html">beam</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 42"/></a></h3>
+        <p>Fishing line visual</p><h3 id="var/lure"><aside class="declaration">var </aside>lure
+            <aside>&ndash; /<a href="obj.html">obj</a>/effect/fishing_lure</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 32"/></a></h3>
+        <p>Lure visual</p><h3 id="var/max_distance"><aside class="declaration">var </aside>max_distance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 37"/></a></h3>
+        <p>Max distance we can move from the spot</p><h3 id="var/reward_path"><aside class="declaration">var </aside>reward_path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 20"/></a></h3>
+        <p>Result path</p><h3 id="var/special_effects"><aside class="declaration">var </aside>special_effects
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 16"/></a></h3>
+        <p>Rule modifiers (eg weighted bait)</p><h3 id="var/start_time"><aside class="declaration">var </aside>start_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 10"/></a></h3>
+        <p>When the ui minigame phase started</p><h3 id="var/used_rod"><aside class="declaration">var </aside>used_rod
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/fishing_rod.html">fishing_rod</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 30"/></a></h3>
+        <p>Rod that is used for the challenge</p><h3 id="var/user"><aside class="declaration">var </aside>user
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 28"/></a></h3>
+        <p>Fishing mob</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/datum" href="datum.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>(force, ...) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 65"/></a></aside>
+        </h3>
+        <p>Fish minigame properties
+Enable special parameters</p><h3 id="proc/handle_click"><aside class="declaration">proc </aside>handle_click<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 86"/></a></aside>
+        </h3>
+        <p>Create fishing line visuals</p><h3 id="proc/interrupt"><aside class="declaration">proc </aside>interrupt<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/fishing/fishing_minigame.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;fishing&#x2F;fishing_minigame.dm 100"/></a></aside>
+        </h3>
+        <p>Challenge interrupted by something external</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

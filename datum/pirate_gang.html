@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;pirate_gang - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/pirate_gang.html#var">Var Details</a> - <a href="datum/pirate_gang.html#proc">Proc Details</a></header>
+<main>
+<h1>pirate_gang <aside>/<a href="datum.html">datum</a>/<a href="datum/pirate_gang.html">pirate_gang</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 17"/></a></h1>
+
+<p>datum for a pirate team that is spawning to attack the station.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/name">name</a></th><td>name of this gang, for spawning feedback</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/possible_answers">possible_answers</a></th><td>what the station can say in response, first item pays the pirates, second item rejects it.</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/response_not_enough">response_not_enough</a></th><td>station pays the pirates... but doesn't have enough cash.</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/response_received">response_received</a></th><td>station responds to message and pays the pirates</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/response_too_late">response_too_late</a></th><td>station pays the pirates, but after the ship spawned</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/ship_name">ship_name</a></th><td>the random ship name chosen from pirates.json</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/ship_name_pool">ship_name_pool</a></th><td>the key to the json list of pirate names</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/ship_template_id">ship_template_id</a></th><td>the ship they load in on.</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/threat_content">threat_content</a></th><td>the contents of the message sent to the station.
+%SHIPNAME in the content will be replaced with the pirate ship's name
+%PAYOFF in the content will be replaced with the requested credits.</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#var/threat_title">threat_title</a></th><td>inbound message title the station recieves</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/pirate_gang.html#proc/can_roll">can_roll</a></th><td>whether this pirate gang can roll today. this is called when the global list initializes, so
+returning FALSE means it cannot show up at all for the entire round.</td></tr>
+            <tr><th><a href="datum/pirate_gang.html#proc/generate_message">generate_message</a></th><td>returns a new comm_message datum from this pirate gang</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 19"/></a></h3>
+        <p>name of this gang, for spawning feedback</p><h3 id="var/possible_answers"><aside class="declaration">var </aside>possible_answers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 34"/></a></h3>
+        <p>what the station can say in response, first item pays the pirates, second item rejects it.</p><h3 id="var/response_not_enough"><aside class="declaration">var </aside>response_not_enough
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 41"/></a></h3>
+        <p>station pays the pirates... but doesn't have enough cash.</p><h3 id="var/response_received"><aside class="declaration">var </aside>response_received
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 37"/></a></h3>
+        <p>station responds to message and pays the pirates</p><h3 id="var/response_too_late"><aside class="declaration">var </aside>response_too_late
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 39"/></a></h3>
+        <p>station pays the pirates, but after the ship spawned</p><h3 id="var/ship_name"><aside class="declaration">var </aside>ship_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 22"/></a></h3>
+        <p>the random ship name chosen from pirates.json</p><h3 id="var/ship_name_pool"><aside class="declaration">var </aside>ship_name_pool
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 26"/></a></h3>
+        <p>the key to the json list of pirate names</p><h3 id="var/ship_template_id"><aside class="declaration">var </aside>ship_template_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 24"/></a></h3>
+        <p>the ship they load in on.</p><h3 id="var/threat_content"><aside class="declaration">var </aside>threat_content
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 32"/></a></h3>
+        <p>the contents of the message sent to the station.
+%SHIPNAME in the content will be replaced with the pirate ship's name
+%PAYOFF in the content will be replaced with the requested credits.</p><h3 id="var/threat_title"><aside class="declaration">var </aside>threat_title
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 28"/></a></h3>
+        <p>inbound message title the station recieves</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_roll"><aside class="declaration">proc </aside>can_roll<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 49"/></a></aside>
+        </h3>
+        <p>whether this pirate gang can roll today. this is called when the global list initializes, so
+returning FALSE means it cannot show up at all for the entire round.</p><h3 id="proc/generate_message"><aside class="declaration">proc </aside>generate_message<aside>(payoff) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/pirate/pirate_gangs.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;pirate&#x2F;pirate_gangs.dm 53"/></a></aside>
+        </h3>
+        <p>returns a new comm_message datum from this pirate gang</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

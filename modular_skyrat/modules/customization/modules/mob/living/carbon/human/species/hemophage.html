@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define">Define Details</a></header>
+<main>
+<h1>modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm 
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/HEMOPHAGE_DRAIN_AMOUNT">HEMOPHAGE_DRAIN_AMOUNT</a></th><td>Maximum an Hemophage will drain, they will drain less if they hit their cap.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/NORMAL_BLOOD_DRAIN">NORMAL_BLOOD_DRAIN</a></th><td>How much blood do Hemophages normally lose per second (visible effect is every two seconds, so twice this value).</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/MINIMUM_VOLUME_FOR_REGEN">MINIMUM_VOLUME_FOR_REGEN</a></th><td>Minimum amount of blood that you can reach via blood regeneration, regeneration will stop below this.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/MINIMUM_LIGHT_THRESHOLD_FOR_REGEN">MINIMUM_LIGHT_THRESHOLD_FOR_REGEN</a></th><td>Minimum amount of light for Hemophages to be considered in pure darkness, and therefore be allowed to heal just like in a closet.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/TUMORLESS_ORGAN_DAMAGE">TUMORLESS_ORGAN_DAMAGE</a></th><td>How much organ damage do all hemophage organs take per second when the tumor is removed?</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/TUMORLESS_ORGAN_DAMAGE_MAX">TUMORLESS_ORGAN_DAMAGE_MAX</a></th><td>How much damage can their organs take at maximum when the tumor isn't present anymore?</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/HEMOPHAGE_SPAWN_TEXT">HEMOPHAGE_SPAWN_TEXT</a></th><td>Some starter text sent to the Hemophage initially, because Hemophages have shit to do to stay alive.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/BLOOD_REGEN_BRUTE_AMOUNT">BLOOD_REGEN_BRUTE_AMOUNT</a></th><td>How much brute damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/BLOOD_REGEN_BURN_AMOUNT">BLOOD_REGEN_BURN_AMOUNT</a></th><td>How much burn damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/BLOOD_REGEN_TOXIN_AMOUNT">BLOOD_REGEN_TOXIN_AMOUNT</a></th><td>How much toxin damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/BLOOD_REGEN_CELLULAR_AMOUNT">BLOOD_REGEN_CELLULAR_AMOUNT</a></th><td>How much cellular damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/DORMANT_STATE_START_MESSAGE">DORMANT_STATE_START_MESSAGE</a></th><td>The message displayed in the hemophage's chat when they enter their dormant state.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/DORMANT_STATE_END_MESSAGE">DORMANT_STATE_END_MESSAGE</a></th><td>The message displayed in the hemophage's chat when they leave their dormant state.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/DORMANT_DAMAGE_MULTIPLIER">DORMANT_DAMAGE_MULTIPLIER</a></th><td>How high should the damage multiplier to the Hemophage be when they're in a dormant state?</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/DORMANT_BLOODLOSS_MULTIPLIER">DORMANT_BLOODLOSS_MULTIPLIER</a></th><td>By how much the blood drain will be divided when the tumor is in a dormant state.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/GENERIC_CORRUPTED_ORGAN_DESC">GENERIC_CORRUPTED_ORGAN_DESC</a></th><td>Generic description for the corrupted organs that don't have one.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/PULSATING_TUMOR_ACTIVE">PULSATING_TUMOR_ACTIVE</a></th><td>We have a tumor, it's active.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/PULSATING_TUMOR_DORMANT">PULSATING_TUMOR_DORMANT</a></th><td>We have a tumor, it's dormant.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/PULSATING_TUMOR_MISSING">PULSATING_TUMOR_MISSING</a></th><td>We don't have a tumor.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/ORGAN_TUMOR_CORRUPTED">ORGAN_TUMOR_CORRUPTED</a></th><td>Organ flag for organs of hemophage origin, or organs that have since been infected by an hemophage's tumor.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/FLOATING_POINT_ERROR_AVOIDING_FACTOR">FLOATING_POINT_ERROR_AVOIDING_FACTOR</a></th><td>Just a conversion factor that ensures there's no weird floating point errors when blood is draining.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/MINIMUM_BLOOD_REGENING_REAGENT_RATIO">MINIMUM_BLOOD_REGENING_REAGENT_RATIO</a></th><td>The minimum ratio of reagents that need to have the <code>REAGENT_BLOOD_REGENERATING</code> chemical_flags for the Hemophage not to violently vomit upon consumption.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/TUMOR_DISLIKED_FOOD_DISGUST">TUMOR_DISLIKED_FOOD_DISGUST</a></th><td>How much disgust we're at after eating/drinking something the tumor doesn't like.</td></tr>
+        <tr><th><a href="modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.html#define/HEMOPHAGE_VOMIT_PURGE_RATIO">HEMOPHAGE_VOMIT_PURGE_RATIO</a></th><td>The ratio of reagents that get purged while a Hemophage vomits from trying to eat/drink something that their tumor doesn't like.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/BLOOD_REGEN_BRUTE_AMOUNT"><aside class="declaration">#define </aside>BLOOD_REGEN_BRUTE_AMOUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L18">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 18"/></a>
+    </h3>
+    <p>How much brute damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</p><h3 id="define/BLOOD_REGEN_BURN_AMOUNT"><aside class="declaration">#define </aside>BLOOD_REGEN_BURN_AMOUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L20">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 20"/></a>
+    </h3>
+    <p>How much burn damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</p><h3 id="define/BLOOD_REGEN_CELLULAR_AMOUNT"><aside class="declaration">#define </aside>BLOOD_REGEN_CELLULAR_AMOUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L24">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 24"/></a>
+    </h3>
+    <p>How much cellular damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</p><h3 id="define/BLOOD_REGEN_TOXIN_AMOUNT"><aside class="declaration">#define </aside>BLOOD_REGEN_TOXIN_AMOUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L22">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 22"/></a>
+    </h3>
+    <p>How much toxin damage their body regenerates per second (calculated every two seconds) while under the proper conditions.</p><h3 id="define/DORMANT_BLOODLOSS_MULTIPLIER"><aside class="declaration">#define </aside>DORMANT_BLOODLOSS_MULTIPLIER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L33">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 33"/></a>
+    </h3>
+    <p>By how much the blood drain will be divided when the tumor is in a dormant state.</p><h3 id="define/DORMANT_DAMAGE_MULTIPLIER"><aside class="declaration">#define </aside>DORMANT_DAMAGE_MULTIPLIER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L31">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 31"/></a>
+    </h3>
+    <p>How high should the damage multiplier to the Hemophage be when they're in a dormant state?</p><h3 id="define/DORMANT_STATE_END_MESSAGE"><aside class="declaration">#define </aside>DORMANT_STATE_END_MESSAGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L29">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 29"/></a>
+    </h3>
+    <p>The message displayed in the hemophage's chat when they leave their dormant state.</p><h3 id="define/DORMANT_STATE_START_MESSAGE"><aside class="declaration">#define </aside>DORMANT_STATE_START_MESSAGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L27">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 27"/></a>
+    </h3>
+    <p>The message displayed in the hemophage's chat when they enter their dormant state.</p><h3 id="define/FLOATING_POINT_ERROR_AVOIDING_FACTOR"><aside class="declaration">#define </aside>FLOATING_POINT_ERROR_AVOIDING_FACTOR
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L49">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 49"/></a>
+    </h3>
+    <p>Just a conversion factor that ensures there's no weird floating point errors when blood is draining.</p><h3 id="define/GENERIC_CORRUPTED_ORGAN_DESC"><aside class="declaration">#define </aside>GENERIC_CORRUPTED_ORGAN_DESC
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L36">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 36"/></a>
+    </h3>
+    <p>Generic description for the corrupted organs that don't have one.</p><h3 id="define/HEMOPHAGE_DRAIN_AMOUNT"><aside class="declaration">#define </aside>HEMOPHAGE_DRAIN_AMOUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L2">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 2"/></a>
+    </h3>
+    <p>Maximum an Hemophage will drain, they will drain less if they hit their cap.</p><h3 id="define/HEMOPHAGE_SPAWN_TEXT"><aside class="declaration">#define </aside>HEMOPHAGE_SPAWN_TEXT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L15">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 15"/></a>
+    </h3>
+    <p>Some starter text sent to the Hemophage initially, because Hemophages have shit to do to stay alive.</p><h3 id="define/HEMOPHAGE_VOMIT_PURGE_RATIO"><aside class="declaration">#define </aside>HEMOPHAGE_VOMIT_PURGE_RATIO
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L56">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 56"/></a>
+    </h3>
+    <p>The ratio of reagents that get purged while a Hemophage vomits from trying to eat/drink something that their tumor doesn't like.</p><h3 id="define/MINIMUM_BLOOD_REGENING_REAGENT_RATIO"><aside class="declaration">#define </aside>MINIMUM_BLOOD_REGENING_REAGENT_RATIO
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L52">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 52"/></a>
+    </h3>
+    <p>The minimum ratio of reagents that need to have the <code>REAGENT_BLOOD_REGENERATING</code> chemical_flags for the Hemophage not to violently vomit upon consumption.</p><h3 id="define/MINIMUM_LIGHT_THRESHOLD_FOR_REGEN"><aside class="declaration">#define </aside>MINIMUM_LIGHT_THRESHOLD_FOR_REGEN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L8">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 8"/></a>
+    </h3>
+    <p>Minimum amount of light for Hemophages to be considered in pure darkness, and therefore be allowed to heal just like in a closet.</p><h3 id="define/MINIMUM_VOLUME_FOR_REGEN"><aside class="declaration">#define </aside>MINIMUM_VOLUME_FOR_REGEN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L6">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 6"/></a>
+    </h3>
+    <p>Minimum amount of blood that you can reach via blood regeneration, regeneration will stop below this.</p><h3 id="define/NORMAL_BLOOD_DRAIN"><aside class="declaration">#define </aside>NORMAL_BLOOD_DRAIN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L4">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 4"/></a>
+    </h3>
+    <p>How much blood do Hemophages normally lose per second (visible effect is every two seconds, so twice this value).</p><h3 id="define/ORGAN_TUMOR_CORRUPTED"><aside class="declaration">#define </aside>ORGAN_TUMOR_CORRUPTED
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L46">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 46"/></a>
+    </h3>
+    <p>Organ flag for organs of hemophage origin, or organs that have since been infected by an hemophage's tumor.</p><h3 id="define/PULSATING_TUMOR_ACTIVE"><aside class="declaration">#define </aside>PULSATING_TUMOR_ACTIVE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L39">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 39"/></a>
+    </h3>
+    <p>We have a tumor, it's active.</p><h3 id="define/PULSATING_TUMOR_DORMANT"><aside class="declaration">#define </aside>PULSATING_TUMOR_DORMANT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L41">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 41"/></a>
+    </h3>
+    <p>We have a tumor, it's dormant.</p><h3 id="define/PULSATING_TUMOR_MISSING"><aside class="declaration">#define </aside>PULSATING_TUMOR_MISSING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L43">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 43"/></a>
+    </h3>
+    <p>We don't have a tumor.</p><h3 id="define/TUMORLESS_ORGAN_DAMAGE"><aside class="declaration">#define </aside>TUMORLESS_ORGAN_DAMAGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L10">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 10"/></a>
+    </h3>
+    <p>How much organ damage do all hemophage organs take per second when the tumor is removed?</p><h3 id="define/TUMORLESS_ORGAN_DAMAGE_MAX"><aside class="declaration">#define </aside>TUMORLESS_ORGAN_DAMAGE_MAX
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L12">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 12"/></a>
+    </h3>
+    <p>How much damage can their organs take at maximum when the tumor isn't present anymore?</p><h3 id="define/TUMOR_DISLIKED_FOOD_DISGUST"><aside class="declaration">#define </aside>TUMOR_DISLIKED_FOOD_DISGUST
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L54">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 54"/></a>
+    </h3>
+    <p>How much disgust we're at after eating/drinking something the tumor doesn't like.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

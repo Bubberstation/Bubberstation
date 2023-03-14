@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;events - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/events.html#var">Var Details</a> - <a href="datum/controller/subsystem/events.html#proc">Proc Details</a></header>
+<main>
+<h1>events <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/events.html">events</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/events.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 1"/></a></h1>
+
+<p>This file is used to denote event weight and occurence overrides.</p>
+<p>Events can be overriden for a multitude of reasons however each override will have a reason.</p>
+<p>Event subsystem</p>
+<p>Overriden min and max start times:
+To accomodate for much longer rounds.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/admin_only">admin_only</a></th><td>Is the current vote admin only?</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/generated_actions">generated_actions</a></th><td>A reference to our generated actions, for deletion later.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/last_event_chaos_level">last_event_chaos_level</a></th><td>What was the last chaos level run?</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/low_chaos_needs_reset">low_chaos_needs_reset</a></th><td>Have we run the low chaos event system, meaning we need reset?</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/low_chaos_timer_lower">low_chaos_timer_lower</a></th><td>The min amount of time till the next low chaos event</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/low_chaos_timer_upper">low_chaos_timer_upper</a></th><td>Ditto, but max</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/possible_events">possible_events</a></th><td>A list of events that can be chosen from</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/scheduled_low_chaos">scheduled_low_chaos</a></th><td>Our next random low event timer</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/show_votes">show_votes</a></th><td>If we are not admin only, do we show the votes and vote outcome?</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/timer_id">timer_id</a></th><td>Our current timer ID.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/vote_end_time">vote_end_time</a></th><td>When the vote will end</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/vote_in_progress">vote_in_progress</a></th><td>Is there currently a vote in progress?</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/votes">votes</a></th><td>List of current events and votes</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/cancel_vote">cancel_vote</a></th><td>Cancels a vote outright, and does not execute the event.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/check_vote">check_vote</a></th><td>Checks what someone has voted for, if anything.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/end_vote">end_vote</a></th><td>Ends the vote there and then, and executes the event.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/get_eligible_players">get_eligible_players</a></th><td>Returns any eligible to vote players.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/populate_event_list">populate_event_list</a></th><td>Set our events to the chaos levels.
+Builds the list of possible events depending on what type of vote it is.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/register_vote">register_vote</a></th><td>Simply registeres someones vote.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/reschedule_low_chaos">reschedule_low_chaos</a></th><td>Reschedules our low-chaos event timer</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/reset">reset</a></th><td>Proc to reset the vote system to be ready for a new vote.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/start_player_vote">start_player_vote</a></th><td>Set our events to the chaos levels.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/start_vote_admin">start_vote_admin</a></th><td>Starts a vote.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/trigger_low_chaos_event">trigger_low_chaos_event</a></th><td>Triggers a random low chaos event</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/vote_message">vote_message</a></th><td>Sends the user a formatted message</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/admin_only"><aside class="declaration">var </aside>admin_only
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L24">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 24"/></a></h3>
+        <p>Is the current vote admin only?</p><h3 id="var/generated_actions"><aside class="declaration">var </aside>generated_actions
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L34">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 34"/></a></h3>
+        <p>A reference to our generated actions, for deletion later.</p><h3 id="var/last_event_chaos_level"><aside class="declaration">var </aside>last_event_chaos_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L42">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 42"/></a></h3>
+        <p>What was the last chaos level run?</p><h3 id="var/low_chaos_needs_reset"><aside class="declaration">var </aside>low_chaos_needs_reset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L44">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 44"/></a></h3>
+        <p>Have we run the low chaos event system, meaning we need reset?</p><h3 id="var/low_chaos_timer_lower"><aside class="declaration">var </aside>low_chaos_timer_lower
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L38">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 38"/></a></h3>
+        <p>The min amount of time till the next low chaos event</p><h3 id="var/low_chaos_timer_upper"><aside class="declaration">var </aside>low_chaos_timer_upper
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L40">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 40"/></a></h3>
+        <p>Ditto, but max</p><h3 id="var/possible_events"><aside class="declaration">var </aside>possible_events
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L22">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 22"/></a></h3>
+        <p>A list of events that can be chosen from</p><h3 id="var/scheduled_low_chaos"><aside class="declaration">var </aside>scheduled_low_chaos
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L36">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 36"/></a></h3>
+        <p>Our next random low event timer</p><h3 id="var/show_votes"><aside class="declaration">var </aside>show_votes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L26">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 26"/></a></h3>
+        <p>If we are not admin only, do we show the votes and vote outcome?</p><h3 id="var/timer_id"><aside class="declaration">var </aside>timer_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L32">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 32"/></a></h3>
+        <p>Our current timer ID.</p><h3 id="var/vote_end_time"><aside class="declaration">var </aside>vote_end_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L30">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 30"/></a></h3>
+        <p>When the vote will end</p><h3 id="var/vote_in_progress"><aside class="declaration">var </aside>vote_in_progress
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L28">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 28"/></a></h3>
+        <p>Is there currently a vote in progress?</p><h3 id="var/votes"><aside class="declaration">var </aside>votes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L20">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 20"/></a></h3>
+        <p>List of current events and votes</p><h2 id="proc">Proc Details</h2><h3 id="proc/cancel_vote"><aside class="declaration">proc </aside>cancel_vote<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L199">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 199"/></a></aside>
+        </h3>
+        <p>Cancels a vote outright, and does not execute the event.</p><h3 id="proc/check_vote"><aside class="declaration">proc </aside>check_vote<aside>(ckey) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L319">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 319"/></a></aside>
+        </h3>
+        <p>Checks what someone has voted for, if anything.</p><h3 id="proc/end_vote"><aside class="declaration">proc </aside>end_vote<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L215">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 215"/></a></aside>
+        </h3>
+        <p>Ends the vote there and then, and executes the event.</p><h3 id="proc/get_eligible_players"><aside class="declaration">proc </aside>get_eligible_players<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L206">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 206"/></a></aside>
+        </h3>
+        <p>Returns any eligible to vote players.</p><h3 id="proc/populate_event_list"><aside class="declaration">proc </aside>populate_event_list<aside>(amount_of_options) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L181">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 181"/></a></aside>
+        </h3>
+        <p>Set our events to the chaos levels.
+Builds the list of possible events depending on what type of vote it is.</p><h3 id="proc/register_vote"><aside class="declaration">proc </aside>register_vote<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/round_event_control.html">round_event_control</a>/event) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L296">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 296"/></a></aside>
+        </h3>
+        <p>Simply registeres someones vote.</p><h3 id="proc/reschedule_low_chaos"><aside class="declaration">proc </aside>reschedule_low_chaos<aside>(time) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L47">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 47"/></a></aside>
+        </h3>
+        <p>Reschedules our low-chaos event timer</p><h3 id="proc/reset"><aside class="declaration">proc </aside>reset<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L283">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 283"/></a></aside>
+        </h3>
+        <p>Proc to reset the vote system to be ready for a new vote.</p><h3 id="proc/start_player_vote"><aside class="declaration">proc </aside>start_player_vote<aside>(public_outcome) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L122">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 122"/></a></aside>
+        </h3>
+        <p>Set our events to the chaos levels.</p><h3 id="proc/start_vote_admin"><aside class="declaration">proc </aside>start_vote_admin<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L68">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 68"/></a></aside>
+        </h3>
+        <p>Starts a vote.</p><h3 id="proc/trigger_low_chaos_event"><aside class="declaration">proc </aside>trigger_low_chaos_event<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L55">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 55"/></a></aside>
+        </h3>
+        <p>Triggers a random low chaos event</p><h3 id="proc/vote_message"><aside class="declaration">proc </aside>vote_message<aside>(/<a href="mob.html">mob</a>/user, message) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/event_vote/code/event_vote.dm#L279">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;event_vote&#x2F;code&#x2F;event_vote.dm 279"/></a></aside>
+        </h3>
+        <p>Sends the user a formatted message</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

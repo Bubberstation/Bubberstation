@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;species&#x2F;hemophage - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/species/hemophage.html#var">Var Details</a> - <a href="datum/species/hemophage.html#proc">Proc Details</a></header>
+<main>
+<h1>hemophage <aside>/<a href="datum.html">datum</a>/<a href="datum/species.html">species</a>/<a href="datum/species/hemophage.html">hemophage</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L59">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 59"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/species/hemophage.html#var/blood_to_health_multiplier">blood_to_health_multiplier</a></th><td>Current multiplier for how much blood they spend healing themselves for every point of damage healed.</td></tr>
+            <tr><th><a href="datum/species/hemophage.html#var/bloodloss_speed_multiplier">bloodloss_speed_multiplier</a></th><td>Current multiplier for how fast their blood drains on spec_life(). Higher values mean it goes down faster.</td></tr>
+            <tr><th><a href="datum/species/hemophage.html#var/tumor_status">tumor_status</a></th><td>The current status of our tumor. If PULSATING_TUMOR_MISSING, all tumor-corrupted organs will start to decay rapidly. If PULSATING_TUMOR_INACTIVE, no enhanced regeneration.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/species/hemophage.html#proc/in_closet">in_closet</a></th><td>Simple helper proc that returns whether or not the given hemophage is in a closet subtype (but not in any bodybag subtype).</td></tr>
+            <tr><th><a href="datum/species/hemophage.html#proc/in_total_darkness">in_total_darkness</a></th><td>Simple helper proc that returns whether or not the given hemophage is in total darkness.</td></tr>
+            <tr><th><a href="datum/species/hemophage.html#proc/toggle_dormant_tumor_vulnerabilities">toggle_dormant_tumor_vulnerabilities</a></th><td>Simple helper to toggle the hemophage's vulnerability (or lack thereof) based on the status of their tumor. Ideally, eventually, this should all be moved into the tumor, and shouldn't be handled by the species' code at all.
+This proc contains no check whatsoever, to avoid redundancy of null checks and such. That being said, it shouldn't be used by anything but the tumor, if you have to call it outside of that, you probably have gone wrong somewhere.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/blood_to_health_multiplier"><aside class="declaration">var </aside>blood_to_health_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L105">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 105"/></a></h3>
+        <p>Current multiplier for how much blood they spend healing themselves for every point of damage healed.</p><h3 id="var/bloodloss_speed_multiplier"><aside class="declaration">var </aside>bloodloss_speed_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L103">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 103"/></a></h3>
+        <p>Current multiplier for how fast their blood drains on spec_life(). Higher values mean it goes down faster.</p><h3 id="var/tumor_status"><aside class="declaration">var </aside>tumor_status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L107">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 107"/></a></h3>
+        <p>The current status of our tumor. If PULSATING_TUMOR_MISSING, all tumor-corrupted organs will start to decay rapidly. If PULSATING_TUMOR_INACTIVE, no enhanced regeneration.</p><h2 id="proc">Proc Details</h2><h3 id="proc/in_closet"><aside class="declaration">proc </aside>in_closet<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/hemophage) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L212">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 212"/></a></aside>
+        </h3>
+        <p>Simple helper proc that returns whether or not the given hemophage is in a closet subtype (but not in any bodybag subtype).</p><h3 id="proc/in_total_darkness"><aside class="declaration">proc </aside>in_total_darkness<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/hemophage) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L217">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 217"/></a></aside>
+        </h3>
+        <p>Simple helper proc that returns whether or not the given hemophage is in total darkness.</p><h3 id="proc/toggle_dormant_tumor_vulnerabilities"><aside class="declaration">proc </aside>toggle_dormant_tumor_vulnerabilities<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/hemophage) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/mob/living/carbon/human/species/hemophage.dm#L227">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species&#x2F;hemophage.dm 227"/></a></aside>
+        </h3>
+        <p>Simple helper to toggle the hemophage's vulnerability (or lack thereof) based on the status of their tumor. Ideally, eventually, this should all be moved into the tumor, and shouldn't be handled by the species' code at all.
+This proc contains no check whatsoever, to avoid redundancy of null checks and such. That being said, it shouldn't be used by anything but the tumor, if you have to call it outside of that, you probably have gone wrong somewhere.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

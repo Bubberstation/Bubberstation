@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;syndicate_contract - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/syndicate_contract.html#var">Var Details</a> - <a href="datum/syndicate_contract.html#proc">Proc Details</a></header>
+<main>
+<h1>syndicate_contract <aside>/<a href="datum.html">datum</a>/<a href="datum/syndicate_contract.html">syndicate_contract</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L5">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 5"/></a></h1>
+
+<p>The message that will be sent from the container emote.
+What was inputted by the user.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/contract">contract</a></th><td>Reference to the objective datum</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/id">id</a></th><td>Unique ID tied to the contract</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/payout_type">payout_type</a></th><td>TC payout size, will be small, medium, or large.</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/ransom">ransom</a></th><td>A number in multiples of 100, anywhere from 2500 credits to 7500, station cost when someone is kidnapped</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/status">status</a></th><td>If the contract is the contractor's current one</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/target_rank">target_rank</a></th><td>Target's job</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/victim_belongings">victim_belongings</a></th><td>List of the items the victim had on them prior to kidnapping.</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#var/wanted_message">wanted_message</a></th><td>Mad-libs style wanted message, just flavor.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/finish_enter">finish_enter</a></th><td>Called when person is finished shoving in, awards ransome money</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/generate">generate</a></th><td>Generation of the contract, called on New()</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/handle_extraction">handle_extraction</a></th><td>Handler to find a valid turn and launch victim collector</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/handle_victim_experience">handle_victim_experience</a></th><td>They're off to holding - handle the return timer and give some text about what's going on.</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/launch_extraction_pod">launch_extraction_pod</a></th><td>Launch the pod to collect our victim.</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/return_victim">return_victim</a></th><td>We're returning the victim</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/victim_stage_five">victim_stage_five</a></th><td>Continued victim handling, some unconsciousness</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/victim_stage_four">victim_stage_four</a></th><td>Continued victim handling</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/victim_stage_one">victim_stage_one</a></th><td>Adds omnizine and begins the victim handling</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/victim_stage_three">victim_stage_three</a></th><td>Continued victim handling, flashes them as well</td></tr>
+            <tr><th><a href="datum/syndicate_contract.html#proc/victim_stage_two">victim_stage_two</a></th><td>Continued victim handling</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/contract"><aside class="declaration">var </aside>contract
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/objective.html">objective</a>/contract</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L11">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 11"/></a></h3>
+        <p>Reference to the objective datum</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L7">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 7"/></a></h3>
+        <p>Unique ID tied to the contract</p><h3 id="var/payout_type"><aside class="declaration">var </aside>payout_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L17">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 17"/></a></h3>
+        <p>TC payout size, will be small, medium, or large.</p><h3 id="var/ransom"><aside class="declaration">var </aside>ransom
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L15">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 15"/></a></h3>
+        <p>A number in multiples of 100, anywhere from 2500 credits to 7500, station cost when someone is kidnapped</p><h3 id="var/status"><aside class="declaration">var </aside>status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L9">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 9"/></a></h3>
+        <p>If the contract is the contractor's current one</p><h3 id="var/target_rank"><aside class="declaration">var </aside>target_rank
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L13">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 13"/></a></h3>
+        <p>Target's job</p><h3 id="var/victim_belongings"><aside class="declaration">var </aside>victim_belongings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L21">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 21"/></a></h3>
+        <p>List of the items the victim had on them prior to kidnapping.</p><h3 id="var/wanted_message"><aside class="declaration">var </aside>wanted_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L19">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 19"/></a></h3>
+        <p>Mad-libs style wanted message, just flavor.</p><h2 id="proc">Proc Details</h2><h3 id="proc/finish_enter"><aside class="declaration">proc </aside>finish_enter<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L162">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 162"/></a></aside>
+        </h3>
+        <p>Called when person is finished shoving in, awards ransome money</p><h3 id="proc/generate"><aside class="declaration">proc </aside>generate<aside>(blacklist) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L30">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 30"/></a></aside>
+        </h3>
+        <p>Generation of the contract, called on New()</p><h3 id="proc/handle_extraction"><aside class="declaration">proc </aside>handle_extraction<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L61">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 61"/></a></aside>
+        </h3>
+        <p>Handler to find a valid turn and launch victim collector</p><h3 id="proc/handle_victim_experience"><aside class="declaration">proc </aside>handle_victim_experience<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L176">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 176"/></a></aside>
+        </h3>
+        <p>They're off to holding - handle the return timer and give some text about what's going on.</p><h3 id="proc/launch_extraction_pod"><aside class="declaration">proc </aside>launch_extraction_pod<aside>(/<a href="turf.html">turf</a>/empty_pod_turf) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L75">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 75"/></a></aside>
+        </h3>
+        <p>Launch the pod to collect our victim.</p><h3 id="proc/return_victim"><aside class="declaration">proc </aside>return_victim<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L228">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 228"/></a></aside>
+        </h3>
+        <p>We're returning the victim</p><h3 id="proc/victim_stage_five"><aside class="declaration">proc </aside>victim_stage_five<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L217">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 217"/></a></aside>
+        </h3>
+        <p>Continued victim handling, some unconsciousness</p><h3 id="proc/victim_stage_four"><aside class="declaration">proc </aside>victim_stage_four<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L212">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 212"/></a></aside>
+        </h3>
+        <p>Continued victim handling</p><h3 id="proc/victim_stage_one"><aside class="declaration">proc </aside>victim_stage_one<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L188">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 188"/></a></aside>
+        </h3>
+        <p>Adds omnizine and begins the victim handling</p><h3 id="proc/victim_stage_three"><aside class="declaration">proc </aside>victim_stage_three<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L204">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 204"/></a></aside>
+        </h3>
+        <p>Continued victim handling, flashes them as well</p><h3 id="proc/victim_stage_two"><aside class="declaration">proc </aside>victim_stage_two<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contract.dm#L198">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contract.dm 198"/></a></aside>
+        </h3>
+        <p>Continued victim handling</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

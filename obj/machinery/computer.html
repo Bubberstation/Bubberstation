@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer.html#var">Var Details</a> - <a href="obj/machinery/computer.html#proc">Proc Details</a></header>
+<main>
+<h1>computer <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/authenticated">authenticated</a></th><td>Are we authenticated to use this? Used by things like comms console, security and medical data, and apc controller.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/brightness_on">brightness_on</a></th><td>How bright we are when turned on.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/character_preview_view">character_preview_view</a></th><td>The character preview view for the UI.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/connectable">connectable</a></th><td>Determines if the computer can connect to other computers (no arcades, etc.)</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/icon_keyboard">icon_keyboard</a></th><td>Icon_state of the keyboard overlay.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/icon_screen">icon_screen</a></th><td>Icon_state of the emissive screen overlay.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/keyboard_change_icon">keyboard_change_icon</a></th><td>Should we render an unique icon for the keyboard when off?</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#var/time_to_unscrew">time_to_unscrew</a></th><td>Time it takes to deconstruct with a screwdriver.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer.html#proc/create_character_preview_view">create_character_preview_view</a></th><td>Creates a character preview view for the UI.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#proc/expunge_record_info">expunge_record_info</a></th><td>Expunges info from a record.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#proc/has_auth">has_auth</a></th><td>Detects whether a user can use buttons on the machine</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#proc/insert_new_record">insert_new_record</a></th><td>Inserts a new record into GLOB.manifest.general. Requires a photo to be taken.</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#proc/secure_login">secure_login</a></th><td>Secure login</td></tr>
+            <tr><th><a href="obj/machinery/computer.html#proc/update_preview">update_preview</a></th><td>Takes a record and updates the character preview view to match it.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/authenticated"><aside class="declaration">var </aside>authenticated
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 21"/></a></h3>
+        <p>Are we authenticated to use this? Used by things like comms console, security and medical data, and apc controller.</p><h3 id="var/brightness_on"><aside class="declaration">var </aside>brightness_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 11"/></a></h3>
+        <p>How bright we are when turned on.</p><h3 id="var/character_preview_view"><aside class="declaration">var </aside>character_preview_view
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/map_view.html">map_view</a>/<a href="atom/movable/screen/map_view/char_preview.html">char_preview</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 25"/></a></h3>
+        <p>The character preview view for the UI.</p><h3 id="var/connectable"><aside class="declaration">var </aside>connectable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/connecting_computer/code/_computer.dm#L3">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;connecting_computer&#x2F;code&#x2F;_computer.dm 3"/></a></h3>
+        <p>Determines if the computer can connect to other computers (no arcades, etc.)</p><h3 id="var/icon_keyboard"><aside class="declaration">var </aside>icon_keyboard
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 13"/></a></h3>
+        <p>Icon_state of the keyboard overlay.</p><h3 id="var/icon_screen"><aside class="declaration">var </aside>icon_screen
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 17"/></a></h3>
+        <p>Icon_state of the emissive screen overlay.</p><h3 id="var/keyboard_change_icon"><aside class="declaration">var </aside>keyboard_change_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 15"/></a></h3>
+        <p>Should we render an unique icon for the keyboard when off?</p><h3 id="var/time_to_unscrew"><aside class="declaration">var </aside>time_to_unscrew
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 19"/></a></h3>
+        <p>Time it takes to deconstruct with a screwdriver.</p><h2 id="proc">Proc Details</h2><h3 id="proc/create_character_preview_view"><aside class="declaration">proc </aside>create_character_preview_view<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 221"/></a></aside>
+        </h3>
+        <p>Creates a character preview view for the UI.</p><h3 id="proc/expunge_record_info"><aside class="declaration">proc </aside>expunge_record_info<aside>(/<a href="datum.html">datum</a>/<a href="datum/record.html">record</a>/<a href="datum/record/crew.html">crew</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 243"/></a></aside>
+        </h3>
+        <p>Expunges info from a record.</p><h3 id="proc/has_auth"><aside class="declaration">proc </aside>has_auth<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 247"/></a></aside>
+        </h3>
+        <p>Detects whether a user can use buttons on the machine</p><h3 id="proc/insert_new_record"><aside class="declaration">proc </aside>insert_new_record<aside>(/<a href="mob.html">mob</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/photo.html">photo</a>/mugshot) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L265">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 265"/></a></aside>
+        </h3>
+        <p>Inserts a new record into GLOB.manifest.general. Requires a photo to be taken.</p><h3 id="proc/secure_login"><aside class="declaration">proc </aside>secure_login<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 289"/></a></aside>
+        </h3>
+        <p>Secure login</p><h3 id="proc/update_preview"><aside class="declaration">proc </aside>update_preview<aside>(/<a href="mob.html">mob</a>/user, assigned_view, /<a href="datum.html">datum</a>/<a href="datum/record.html">record</a>/<a href="datum/record/crew.html">crew</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/computer/_computer.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;_computer.dm 231"/></a></aside>
+        </h3>
+        <p>Takes a record and updates the character preview view to match it.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

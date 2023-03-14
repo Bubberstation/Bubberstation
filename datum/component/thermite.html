@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;thermite - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/thermite.html#var">Var Details</a> - <a href="datum/component/thermite.html#proc">Proc Details</a></header>
+<main>
+<h1>thermite <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/thermite.html">thermite</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/amount">amount</a></th><td>Amoumt of thermite on parent</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/blacklist">blacklist</a></th><td>Blacklist of turfs that cannot have thermite on it</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/burn_require">burn_require</a></th><td>Amount of thermite required to burn through parent</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/burn_timer">burn_timer</a></th><td>The timer for burning parent</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/fakefire">fakefire</a></th><td>The thermite fire overlay</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/immunelist">immunelist</a></th><td>List of turfs that are immune to thermite</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/overlay">overlay</a></th><td>The thermite overlay</td></tr>
+            <tr><th><a href="datum/component/thermite.html#var/resistlist">resistlist</a></th><td>List of turfs that take extra thermite to burn through</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/thermite.html#proc/attackby_react">attackby_react</a></th><td>attackby reaction, ignites the thermite if its a flame creating object</td></tr>
+            <tr><th><a href="datum/component/thermite.html#proc/burn_parent">burn_parent</a></th><td>Used to actually melt parent</td></tr>
+            <tr><th><a href="datum/component/thermite.html#proc/clean_react">clean_react</a></th><td>wash reaction, used to clean off thermite from parent</td></tr>
+            <tr><th><a href="datum/component/thermite.html#proc/delete_fire">delete_fire</a></th><td>Used to delete the fake fire overlay</td></tr>
+            <tr><th><a href="datum/component/thermite.html#proc/flame_react">flame_react</a></th><td>fire_act reaction, has to be the correct temperature</td></tr>
+            <tr><th><a href="datum/component/thermite.html#proc/thermite_melt">thermite_melt</a></th><td>Used to begin the thermite burning process</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/amount"><aside class="declaration">var </aside>amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 4"/></a></h3>
+        <p>Amoumt of thermite on parent</p><h3 id="var/blacklist"><aside class="declaration">var </aside>blacklist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 15"/></a></h3>
+        <p>Blacklist of turfs that cannot have thermite on it</p><h3 id="var/burn_require"><aside class="declaration">var </aside>burn_require
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 6"/></a></h3>
+        <p>Amount of thermite required to burn through parent</p><h3 id="var/burn_timer"><aside class="declaration">var </aside>burn_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 10"/></a></h3>
+        <p>The timer for burning parent</p><h3 id="var/fakefire"><aside class="declaration">var </aside>fakefire
+            <aside>&ndash; /<a href="obj.html">obj</a>/effect/overlay/thermite</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 12"/></a></h3>
+        <p>The thermite fire overlay</p><h3 id="var/immunelist"><aside class="declaration">var </aside>immunelist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 22"/></a></h3>
+        <p>List of turfs that are immune to thermite</p><h3 id="var/overlay"><aside class="declaration">var </aside>overlay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 8"/></a></h3>
+        <p>The thermite overlay</p><h3 id="var/resistlist"><aside class="declaration">var </aside>resistlist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 28"/></a></h3>
+        <p>List of turfs that take extra thermite to burn through</p><h2 id="proc">Proc Details</h2><h3 id="proc/attackby_react"><aside class="declaration">proc </aside>attackby_react<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/thing, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 149"/></a></aside>
+        </h3>
+        <p>attackby reaction, ignites the thermite if its a flame creating object</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/source - The source of the attack</li>
+<li>obj/item/thing - Item being attacked by</li>
+<li>mob/user - The user behind the attack</li>
+<li>params - params</li>
+</ul><h3 id="proc/burn_parent"><aside class="declaration">proc </aside>burn_parent<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 96"/></a></aside>
+        </h3>
+        <p>Used to actually melt parent</p>
+<p>Arguments:</p>
+<ul>
+<li>mob/user - The user that ignited the thermite</li>
+</ul><h3 id="proc/clean_react"><aside class="declaration">proc </aside>clean_react<aside>(/<a href="datum.html">datum</a>/source, strength) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 118"/></a></aside>
+        </h3>
+        <p>wash reaction, used to clean off thermite from parent</p><h3 id="proc/delete_fire"><aside class="declaration">proc </aside>delete_fire<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 109"/></a></aside>
+        </h3>
+        <p>Used to delete the fake fire overlay</p><h3 id="proc/flame_react"><aside class="declaration">proc </aside>flame_react<aside>(/<a href="datum.html">datum</a>/source, exposed_temperature, exposed_volume) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 133"/></a></aside>
+        </h3>
+        <p>fire_act reaction, has to be the correct temperature</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/source - The source of the flame</li>
+<li>exposed_temperature - The temperature of the flame hitting the thermite</li>
+<li>exposed_volume - The volume of the flame</li>
+</ul><h3 id="proc/thermite_melt"><aside class="declaration">proc </aside>thermite_melt<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/thermite.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;thermite.dm 81"/></a></aside>
+        </h3>
+        <p>Used to begin the thermite burning process</p>
+<p>Arguments:</p>
+<ul>
+<li>mob/user - The user igniting the thermite</li>
+</ul></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

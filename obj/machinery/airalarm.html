@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;airalarm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/airalarm.html#var">Var Details</a> - <a href="obj/machinery/airalarm.html#proc">Proc Details</a></header>
+<main>
+<h1>airalarm <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/airalarm.html">airalarm</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/aidisabled">aidisabled</a></th><td>Boolean to prevent AI from tampering with this alarm.</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/alarm_manager">alarm_manager</a></th><td>Represents a signel source of atmos alarms, complains to all the listeners if one of our thresholds is violated</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/buildstage">buildstage</a></th><td>Current build stage. [AIRALARM_BUILD_COMPLETE], [AIRALARM_BUILD_NO_WIRES], [AIRALARM_BUILD_NO_CIRCUIT]</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/danger_level">danger_level</a></th><td>Current alert level of our air alarm.
+<a href="code/__DEFINES/atmospherics/atmos_machinery.html#define/AIR_ALARM_ALERT_NONE" title="AIR_ALARM_ALERT_NONE">AIR_ALARM_ALERT_NONE</a>, [AIR_ALARM_ALERT_MINOR], [AIR_ALARM_ALERT_SEVERE]</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/locked">locked</a></th><td>Boolean for whether the current air alarm can be tweaked by players or not.</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/my_area">my_area</a></th><td>A reference to the area we are in</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/selected_mode">selected_mode</a></th><td>Currently selected mode of the alarm. An instance of <a href="datum/air_alarm_mode.html" title="/datum/air_alarm_mode">/datum/air_alarm_mode</a>.</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/shorted">shorted</a></th><td>Boolean of whether alarm is currently shorted. Mess up some functionalities.</td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#var/tlv_collection">tlv_collection</a></th><td>An assoc list of <a href="datum/tlv.html" title="/datum/tlv">datum/tlv</a>s, indexed by &quot;pressure&quot;, &quot;temperature&quot;, and <a href="datum/gas.html" title="/datum/gas">datum/gas</a> typepaths.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/airalarm.html#proc/check_danger">check_danger</a></th><td>Check the current air and update our danger level.
+<a href="obj/machinery/airalarm.html#var/danger_level" title="/obj/machinery/airalarm">/obj/machinery/airalarm/var/danger_level</a></td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/aidisabled"><aside class="declaration">var </aside>aidisabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 27"/></a></h3>
+        <p>Boolean to prevent AI from tampering with this alarm.</p><h3 id="var/alarm_manager"><aside class="declaration">var </aside>alarm_manager
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/alarm_handler.html">alarm_handler</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 35"/></a></h3>
+        <p>Represents a signel source of atmos alarms, complains to all the listeners if one of our thresholds is violated</p><h3 id="var/buildstage"><aside class="declaration">var </aside>buildstage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 32"/></a></h3>
+        <p>Current build stage. [AIRALARM_BUILD_COMPLETE], [AIRALARM_BUILD_NO_WIRES], [AIRALARM_BUILD_NO_CIRCUIT]</p><h3 id="var/danger_level"><aside class="declaration">var </aside>danger_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 17"/></a></h3>
+        <p>Current alert level of our air alarm.
+<a href="code/__DEFINES/atmospherics/atmos_machinery.html#define/AIR_ALARM_ALERT_NONE" title="AIR_ALARM_ALERT_NONE">AIR_ALARM_ALERT_NONE</a>, [AIR_ALARM_ALERT_MINOR], [AIR_ALARM_ALERT_SEVERE]</p><h3 id="var/locked"><aside class="declaration">var </aside>locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 25"/></a></h3>
+        <p>Boolean for whether the current air alarm can be tweaked by players or not.</p><h3 id="var/my_area"><aside class="declaration">var </aside>my_area
+            <aside>&ndash; /<a href="area.html">area</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 22"/></a></h3>
+        <p>A reference to the area we are in</p><h3 id="var/selected_mode"><aside class="declaration">var </aside>selected_mode
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/air_alarm_mode.html">air_alarm_mode</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 20"/></a></h3>
+        <p>Currently selected mode of the alarm. An instance of <a href="datum/air_alarm_mode.html" title="/datum/air_alarm_mode">/datum/air_alarm_mode</a>.</p><h3 id="var/shorted"><aside class="declaration">var </aside>shorted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 29"/></a></h3>
+        <p>Boolean of whether alarm is currently shorted. Mess up some functionalities.</p><h3 id="var/tlv_collection"><aside class="declaration">var </aside>tlv_collection
+            <aside>&ndash; /list/datum/tlv</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 42"/></a></h3>
+        <p>An assoc list of <a href="datum/tlv.html" title="/datum/tlv">datum/tlv</a>s, indexed by &quot;pressure&quot;, &quot;temperature&quot;, and <a href="datum/gas.html" title="/datum/gas">datum/gas</a> typepaths.</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_danger"><aside class="declaration">proc </aside>check_danger<aside>(/<a href="turf.html">turf</a>/location, /<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/environment, exposed_temperature) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/atmospherics/machinery/air_alarm/_air_alarm.dm#L436">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;air_alarm&#x2F;_air_alarm.dm 436"/></a></aside>
+        </h3>
+        <p>Check the current air and update our danger level.
+<a href="obj/machinery/airalarm.html#var/danger_level" title="/obj/machinery/airalarm">/obj/machinery/airalarm/var/danger_level</a></p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

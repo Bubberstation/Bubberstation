@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;nifsoft - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/nifsoft.html#var">Var Details</a> - <a href="datum/nifsoft.html#proc">Proc Details</a></header>
+<main>
+<h1>nifsoft <aside>/<a href="datum.html">datum</a>/<a href="datum/nifsoft.html">nifsoft</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L4">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 4"/></a></h1>
+
+<p>The base NIFSoft</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/activation_cost">activation_cost</a></th><td>What is the power cost to activate the program?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/active">active</a></th><td>Is the program active?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/active_cost">active_cost</a></th><td>Does the what power cost does the program have while active?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/active_mode">active_mode</a></th><td>Does the program have an active mode?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/buying_category">buying_category</a></th><td>What catagory is the NIFSoft under?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/compatible_nifs">compatible_nifs</a></th><td>What NIF models can this software be installed on?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/cooldown">cooldown</a></th><td>Does the NIFSoft have a cooldown?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/cooldown_duration">cooldown_duration</a></th><td>How long is the cooldown for?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/linked_mob">linked_mob</a></th><td>Who is the NIF currently linked to?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/mutually_exclusive_programs">mutually_exclusive_programs</a></th><td>Is the program mutually exclusive with another program?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/name">name</a></th><td>What is the name of the NIFSoft?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/on_cooldown">on_cooldown</a></th><td>Is the NIFSoft currently on cooldown?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/program_desc">program_desc</a></th><td>A description of what the program does. This is used when looking at programs in the NIF, along with installing them from the store.</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/program_name">program_name</a></th><td>What is the name of the program when looking at the program from inside of a NIF? This is good if you want to mask a NIFSoft's name.</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/purchase_price">purchase_price</a></th><td>How much does the program cost to buy in credits?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#var/single_install">single_install</a></th><td>Can the program be installed with other instances of itself?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/nifsoft.html#proc/activate">activate</a></th><td>Activates the parent NIFSoft</td></tr>
+            <tr><th><a href="datum/nifsoft.html#proc/on_emp">on_emp</a></th><td>How does the NIFSoft react if the user is EMP'ed?</td></tr>
+            <tr><th><a href="datum/nifsoft.html#proc/refund_activation_cost">refund_activation_cost</a></th><td>Refunds the activation cost of a NIFSoft.</td></tr>
+            <tr><th><a href="datum/nifsoft.html#proc/remove_cooldown">remove_cooldown</a></th><td>Removes the cooldown from a NIFSoft</td></tr>
+            <tr><th><a href="datum/nifsoft.html#proc/restore_name">restore_name</a></th><td>Restores the name of the NIFSoft to default.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/activation_cost"><aside class="declaration">var </aside>activation_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L32">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 32"/></a></h3>
+        <p>What is the power cost to activate the program?</p><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L28">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 28"/></a></h3>
+        <p>Is the program active?</p><h3 id="var/active_cost"><aside class="declaration">var </aside>active_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L30">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 30"/></a></h3>
+        <p>Does the what power cost does the program have while active?</p><h3 id="var/active_mode"><aside class="declaration">var </aside>active_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L26">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 26"/></a></h3>
+        <p>Does the program have an active mode?</p><h3 id="var/buying_category"><aside class="declaration">var </aside>buying_category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L18">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 18"/></a></h3>
+        <p>What catagory is the NIFSoft under?</p><h3 id="var/compatible_nifs"><aside class="declaration">var </aside>compatible_nifs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L40">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 40"/></a></h3>
+        <p>What NIF models can this software be installed on?</p><h3 id="var/cooldown"><aside class="declaration">var </aside>cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L34">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 34"/></a></h3>
+        <p>Does the NIFSoft have a cooldown?</p><h3 id="var/cooldown_duration"><aside class="declaration">var </aside>cooldown_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L38">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 38"/></a></h3>
+        <p>How long is the cooldown for?</p><h3 id="var/linked_mob"><aside class="declaration">var </aside>linked_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L14">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 14"/></a></h3>
+        <p>Who is the NIF currently linked to?</p><h3 id="var/mutually_exclusive_programs"><aside class="declaration">var </aside>mutually_exclusive_programs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L23">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 23"/></a></h3>
+        <p>Is the program mutually exclusive with another program?</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L6">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 6"/></a></h3>
+        <p>What is the name of the NIFSoft?</p><h3 id="var/on_cooldown"><aside class="declaration">var </aside>on_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L36">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 36"/></a></h3>
+        <p>Is the NIFSoft currently on cooldown?</p><h3 id="var/program_desc"><aside class="declaration">var </aside>program_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L10">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 10"/></a></h3>
+        <p>A description of what the program does. This is used when looking at programs in the NIF, along with installing them from the store.</p><h3 id="var/program_name"><aside class="declaration">var </aside>program_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L8">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 8"/></a></h3>
+        <p>What is the name of the program when looking at the program from inside of a NIF? This is good if you want to mask a NIFSoft's name.</p><h3 id="var/purchase_price"><aside class="declaration">var </aside>purchase_price
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L16">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 16"/></a></h3>
+        <p>How much does the program cost to buy in credits?</p><h3 id="var/single_install"><aside class="declaration">var </aside>single_install
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L21">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 21"/></a></h3>
+        <p>Can the program be installed with other instances of itself?</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L66">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 66"/></a></aside>
+        </h3>
+        <p>Activates the parent NIFSoft</p><h3 id="proc/on_emp"><aside class="declaration">proc </aside>on_emp<aside>(emp_severity) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L111">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 111"/></a></aside>
+        </h3>
+        <p>How does the NIFSoft react if the user is EMP'ed?</p><h3 id="proc/refund_activation_cost"><aside class="declaration">proc </aside>refund_activation_cost<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L98">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 98"/></a></aside>
+        </h3>
+        <p>Refunds the activation cost of a NIFSoft.</p><h3 id="proc/remove_cooldown"><aside class="declaration">proc </aside>remove_cooldown<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L103">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 103"/></a></aside>
+        </h3>
+        <p>Removes the cooldown from a NIFSoft</p><h3 id="proc/restore_name"><aside class="declaration">proc </aside>restore_name<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/modular_implants/code/nifsofts.dm#L107">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;modular_implants&#x2F;code&#x2F;nifsofts.dm 107"/></a></aside>
+        </h3>
+        <p>Restores the name of the NIFSoft to default.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

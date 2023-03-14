@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;json_savefile - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/json_savefile.html#var">Var Details</a> - <a href="datum/json_savefile.html#proc">Proc Details</a></header>
+<main>
+<h1>json_savefile <aside>/<a href="datum.html">datum</a>/<a href="datum/json_savefile.html">json_savefile</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 6"/></a></h1>
+
+<p>A savefile implementation that handles all data using json.
+Also saves it using JSON too, fancy.
+If you pass in a null path, it simply acts as a memory tree instead, and cannot be saved.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/json_savefile.html#var/auto_save">auto_save</a></th><td>If this is set to true, calling set_entry or remove_entry will automatically call save(), this does not catch modifying a sub-tree, nor do I know how to do that</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/json_savefile.html#proc/get_entry">get_entry</a></th><td>Gets an entry from the json tree, with an optional default value.
+If no key is specified it throws the entire tree at you instead</td></tr>
+            <tr><th><a href="datum/json_savefile.html#proc/import_byond_savefile">import_byond_savefile</a></th><td>Traverses the entire dir tree of the given savefile and dynamically assembles the tree from it</td></tr>
+            <tr><th><a href="datum/json_savefile.html#proc/remove_entry">remove_entry</a></th><td>Removes the given key from the tree</td></tr>
+            <tr><th><a href="datum/json_savefile.html#proc/set_entry">set_entry</a></th><td>Sets an entry in the tree to the given value</td></tr>
+            <tr><th><a href="datum/json_savefile.html#proc/wipe">wipe</a></th><td>Wipes the entire tree</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/auto_save"><aside class="declaration">var </aside>auto_save
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 10"/></a></h3>
+        <p>If this is set to true, calling set_entry or remove_entry will automatically call save(), this does not catch modifying a sub-tree, nor do I know how to do that</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_entry"><aside class="declaration">proc </aside>get_entry<aside>(key, default_value) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 24"/></a></aside>
+        </h3>
+        <p>Gets an entry from the json tree, with an optional default value.
+If no key is specified it throws the entire tree at you instead</p><h3 id="proc/import_byond_savefile"><aside class="declaration">proc </aside>import_byond_savefile<aside>(/savefile/savefile) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 61"/></a></aside>
+        </h3>
+        <p>Traverses the entire dir tree of the given savefile and dynamically assembles the tree from it</p><h3 id="proc/remove_entry"><aside class="declaration">proc </aside>remove_entry<aside>(key) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 36"/></a></aside>
+        </h3>
+        <p>Removes the given key from the tree</p><h3 id="proc/set_entry"><aside class="declaration">proc </aside>set_entry<aside>(key, value) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 30"/></a></aside>
+        </h3>
+        <p>Sets an entry in the tree to the given value</p><h3 id="proc/wipe"><aside class="declaration">proc </aside>wipe<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/json_savefile.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;json_savefile.dm 43"/></a></aside>
+        </h3>
+        <p>Wipes the entire tree</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

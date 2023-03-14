@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;ai.dm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/ai.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/ai.dm 
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_MAX_PATH_LENGTH">AI_MAX_PATH_LENGTH</a></th><td>For JPS pathing, the maximum length of a path we'll try to generate. Should be modularized depending on what we're doing later on</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FAILED_PLANNING_COOLDOWN">AI_FAILED_PLANNING_COOLDOWN</a></th><td>Cooldown on planning if planning failed last time</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_CONTROLLER_INCOMPATIBLE">AI_CONTROLLER_INCOMPATIBLE</a></th><td>Flags for ai_behavior new()</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_BEHAVIOR_REQUIRE_MOVEMENT">AI_BEHAVIOR_REQUIRE_MOVEMENT</a></th><td>Does this task require movement from the AI before it can be performed?</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_BEHAVIOR_MOVE_AND_PERFORM">AI_BEHAVIOR_MOVE_AND_PERFORM</a></th><td>Does this task let you perform the action while you move closer? (Things like moving and shooting)</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_BEHAVIOR_KEEP_MOVE_TARGET_ON_FINISH">AI_BEHAVIOR_KEEP_MOVE_TARGET_ON_FINISH</a></th><td>Does finishing this task not null the current movement target?</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_BEHAVIOR_KEEP_MOVING_TOWARDS_TARGET_ON_FINISH">AI_BEHAVIOR_KEEP_MOVING_TOWARDS_TARGET_ON_FINISH</a></th><td>Does finishing this task make the AI stop moving towards the target?</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION">AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION</a></th><td>Does this behavior NOT block planning?</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/STOP_MOVING_WHEN_PULLED">STOP_MOVING_WHEN_PULLED</a></th><td>AI flags
+Don't move if being pulled</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/CAN_ACT_WHILE_DEAD">CAN_ACT_WHILE_DEAD</a></th><td>Continue processing even if dead</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/SUBTREE_RETURN_FINISH_PLANNING">SUBTREE_RETURN_FINISH_PLANNING</a></th><td>This subtree should cancel any further planning, (Including from other subtrees)</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/RESIST_SUBTREE_PROB">RESIST_SUBTREE_PROB</a></th><td>probability that the pawn should try resisting out of restraints</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/SHOULD_RESIST">SHOULD_RESIST</a></th><td>macro for whether it's appropriate to resist right now, used by resist subtree</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/IS_DEAD_OR_INCAP">IS_DEAD_OR_INCAP</a></th><td>macro for whether the pawn can act, used generally to prevent some horrifying ai disasters</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_NEXT_HUNGRY">BB_NEXT_HUNGRY</a></th><td>time until we should next eat, set by the generic hunger subtree</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_FOOD_TARGET">BB_FOOD_TARGET</a></th><td>what we're going to eat next</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_PATH_TO_USE">BB_PATH_TO_USE</a></th><td>Path we should use next time we use the JPS movement datum</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_SONG_INSTRUMENT">BB_SONG_INSTRUMENT</a></th><td>song instrument blackboard, set by instrument subtrees</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_SONG_LINES">BB_SONG_LINES</a></th><td>song lines blackboard, set by default on controllers</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HAUNTED_ITEM_ATTACK_HAUNT_CHANCE">HAUNTED_ITEM_ATTACK_HAUNT_CHANCE</a></th><td>Haunted item controller defines
+Chance for haunted item to haunt someone</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HAUNTED_ITEM_ESCAPE_GRASP_CHANCE">HAUNTED_ITEM_ESCAPE_GRASP_CHANCE</a></th><td>Chance for haunted item to try to get itself let go.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HAUNTED_ITEM_AGGRO_ADDITION">HAUNTED_ITEM_AGGRO_ADDITION</a></th><td>Amount of aggro you get when picking up a haunted item</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_TO_HAUNT_LIST">BB_TO_HAUNT_LIST</a></th><td>Blackboard keys for haunted items</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_HAUNT_TARGET">BB_HAUNT_TARGET</a></th><td>Actual mob the item is haunting at the moment</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_HAUNTED_THROW_ATTEMPT_COUNT">BB_HAUNTED_THROW_ATTEMPT_COUNT</a></th><td>Amount of successful hits in a row this item has had</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_LIKES_EQUIPPER">BB_LIKES_EQUIPPER</a></th><td>If true, tolerates the equipper holding/equipping the hauntium</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/CURSED_VIEW_RANGE">CURSED_VIEW_RANGE</a></th><td>Cursed item controller defines
+how far a cursed item will still try to chase a target</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_CURSE_TARGET">BB_CURSE_TARGET</a></th><td>Actual mob the item is haunting at the moment</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_TARGET_SLOT">BB_TARGET_SLOT</a></th><td>Where the item wants to land on</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_CURSED_THROW_ATTEMPT_COUNT">BB_CURSED_THROW_ATTEMPT_COUNT</a></th><td>Amount of successful hits in a row this item has had</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_MOD_TARGET">BB_MOD_TARGET</a></th><td>Mob the MOD is trying to attach to</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_MOD_IMPLANT">BB_MOD_IMPLANT</a></th><td>The implant the AI was created from</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/MOD_AI_RANGE">MOD_AI_RANGE</a></th><td>Range for a MOD AI controller.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_VENDING_CURRENT_TARGET">BB_VENDING_CURRENT_TARGET</a></th><td>Vending machine AI controller blackboard keys</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_CUSTOMER_CURRENT_ORDER">BB_CUSTOMER_CURRENT_ORDER</a></th><td>Robot customer AI controller blackboard keys</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_CUSTOMER_SAID_CANT_FIND_SEAT_LINE">BB_CUSTOMER_SAID_CANT_FIND_SEAT_LINE</a></th><td>Robot customer has said their can't find seat line at least once. Used to rate limit how often they'll complain after the first time.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_HOSTILE_ORDER_MODE">BB_HOSTILE_ORDER_MODE</a></th><td>Hostile AI controller blackboard keys</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_HOSTILE_VISION_RANGE">BB_HOSTILE_VISION_RANGE</a></th><td>Basically, what is our vision/hearing range.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_HOSTILE_COMMAND_COOLDOWN">AI_HOSTILE_COMMAND_COOLDOWN</a></th><td>After either being given a verbal order or a pointing order, ignore further of each for this duration</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HOSTILE_COMMAND_NONE">HOSTILE_COMMAND_NONE</a></th><td>Don't do anything (will still react to stuff around them though)</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HOSTILE_COMMAND_ATTACK">HOSTILE_COMMAND_ATTACK</a></th><td>Will attack a target.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HOSTILE_COMMAND_FOLLOW">HOSTILE_COMMAND_FOLLOW</a></th><td>Will follow a target.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_SIMPLE_CARRY_ITEM">BB_SIMPLE_CARRY_ITEM</a></th><td>Dog AI controller blackboard keys</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_DOG_VISION_RANGE">AI_DOG_VISION_RANGE</a></th><td>Basically, what is our vision/hearing range for picking up on things to fetch</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_DOG_PET_FRIEND_PROB">AI_DOG_PET_FRIEND_PROB</a></th><td>What are the odds someone petting us will become our friend?</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FETCH_IGNORE_DURATION">AI_FETCH_IGNORE_DURATION</a></th><td>After this long without having fetched something, we clear our ignore list</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_DOG_HEEL_DURATION">AI_DOG_HEEL_DURATION</a></th><td>After being ordered to heel, we spend this long chilling out</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_DOG_COMMAND_COOLDOWN">AI_DOG_COMMAND_COOLDOWN</a></th><td>After either being given a verbal order or a pointing order, ignore further of each for this duration</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_DOG_HARASS_FRUSTRATE_TIME">AI_DOG_HARASS_FRUSTRATE_TIME</a></th><td>If the dog is set to harass someone but doesn't bite them for this long, give up</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/DOG_COMMAND_NONE">DOG_COMMAND_NONE</a></th><td>Don't do anything (will still react to stuff around them though)</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/DOG_COMMAND_FETCH">DOG_COMMAND_FETCH</a></th><td>Will try to pick up and bring back whatever you point to</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/DOG_COMMAND_ATTACK">DOG_COMMAND_ATTACK</a></th><td>Will get within a few tiles of whatever you point at and continually growl/bark. If the target is a living mob who gets too close, the dog will attack them with bites</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BANE_BATMAN">BB_BANE_BATMAN</a></th><td>bane ai</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_CURRENT_HUNTING_TARGET">BB_CURRENT_HUNTING_TARGET</a></th><td>Hunting BB keys</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_MOB_TIP_REACTING">BB_BASIC_MOB_TIP_REACTING</a></th><td>Basic Mob Keys
+Tipped blackboards
+Bool that means a basic mob will start reacting to being tipped in it's planning</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_MOB_TIPPER">BB_BASIC_MOB_TIPPER</a></th><td>the motherfucker who tipped us</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_MOB_CURRENT_TARGET">BB_BASIC_MOB_CURRENT_TARGET</a></th><td>Targetting subtrees</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_MOB_EXECUTION_TARGET">BB_BASIC_MOB_EXECUTION_TARGET</a></th><td>some behaviors that check current_target also set this on deep crit mobs</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_MOB_RETALIATE_LIST">BB_BASIC_MOB_RETALIATE_LIST</a></th><td>List of mobs who have damaged us</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_MOB_FLEEING">BB_BASIC_MOB_FLEEING</a></th><td>Flag to set on or off if you want your mob to prioritise running away</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BASIC_FOODS">BB_BASIC_FOODS</a></th><td>list of foods this mob likes</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BABIES_PARTNER_TYPES">BB_BABIES_PARTNER_TYPES</a></th><td>Baby-making blackboard
+Types of animal we can make babies with.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BABIES_CHILD_TYPES">BB_BABIES_CHILD_TYPES</a></th><td>Types of animal that we make as a baby.</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BABIES_TARGET">BB_BABIES_TARGET</a></th><td>Current partner target</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/BB_BILEWORM_SPEW_BILE">BB_BILEWORM_SPEW_BILE</a></th><td>Bileworm AI keys</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION"><aside class="declaration">#define </aside>AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 26"/></a>
+    </h3>
+    <p>Does this behavior NOT block planning?</p><h3 id="define/AI_BEHAVIOR_KEEP_MOVE_TARGET_ON_FINISH"><aside class="declaration">#define </aside>AI_BEHAVIOR_KEEP_MOVE_TARGET_ON_FINISH
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 22"/></a>
+    </h3>
+    <p>Does finishing this task not null the current movement target?</p><h3 id="define/AI_BEHAVIOR_KEEP_MOVING_TOWARDS_TARGET_ON_FINISH"><aside class="declaration">#define </aside>AI_BEHAVIOR_KEEP_MOVING_TOWARDS_TARGET_ON_FINISH
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 24"/></a>
+    </h3>
+    <p>Does finishing this task make the AI stop moving towards the target?</p><h3 id="define/AI_BEHAVIOR_MOVE_AND_PERFORM"><aside class="declaration">#define </aside>AI_BEHAVIOR_MOVE_AND_PERFORM
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 20"/></a>
+    </h3>
+    <p>Does this task let you perform the action while you move closer? (Things like moving and shooting)</p><h3 id="define/AI_BEHAVIOR_REQUIRE_MOVEMENT"><aside class="declaration">#define </aside>AI_BEHAVIOR_REQUIRE_MOVEMENT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 18"/></a>
+    </h3>
+    <p>Does this task require movement from the AI before it can be performed?</p><h3 id="define/AI_CONTROLLER_INCOMPATIBLE"><aside class="declaration">#define </aside>AI_CONTROLLER_INCOMPATIBLE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 15"/></a>
+    </h3>
+    <p>Flags for ai_behavior new()</p><h3 id="define/AI_DOG_COMMAND_COOLDOWN"><aside class="declaration">#define </aside>AI_DOG_COMMAND_COOLDOWN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 180"/></a>
+    </h3>
+    <p>After either being given a verbal order or a pointing order, ignore further of each for this duration</p><h3 id="define/AI_DOG_HARASS_FRUSTRATE_TIME"><aside class="declaration">#define </aside>AI_DOG_HARASS_FRUSTRATE_TIME
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 182"/></a>
+    </h3>
+    <p>If the dog is set to harass someone but doesn't bite them for this long, give up</p><h3 id="define/AI_DOG_HEEL_DURATION"><aside class="declaration">#define </aside>AI_DOG_HEEL_DURATION
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 178"/></a>
+    </h3>
+    <p>After being ordered to heel, we spend this long chilling out</p><h3 id="define/AI_DOG_PET_FRIEND_PROB"><aside class="declaration">#define </aside>AI_DOG_PET_FRIEND_PROB
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 174"/></a>
+    </h3>
+    <p>What are the odds someone petting us will become our friend?</p><h3 id="define/AI_DOG_VISION_RANGE"><aside class="declaration">#define </aside>AI_DOG_VISION_RANGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 172"/></a>
+    </h3>
+    <p>Basically, what is our vision/hearing range for picking up on things to fetch</p><h3 id="define/AI_FAILED_PLANNING_COOLDOWN"><aside class="declaration">#define </aside>AI_FAILED_PLANNING_COOLDOWN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 12"/></a>
+    </h3>
+    <p>Cooldown on planning if planning failed last time</p><h3 id="define/AI_FETCH_IGNORE_DURATION"><aside class="declaration">#define </aside>AI_FETCH_IGNORE_DURATION
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 176"/></a>
+    </h3>
+    <p>After this long without having fetched something, we clear our ignore list</p><h3 id="define/AI_HOSTILE_COMMAND_COOLDOWN"><aside class="declaration">#define </aside>AI_HOSTILE_COMMAND_COOLDOWN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 152"/></a>
+    </h3>
+    <p>After either being given a verbal order or a pointing order, ignore further of each for this duration</p><h3 id="define/AI_MAX_PATH_LENGTH"><aside class="declaration">#define </aside>AI_MAX_PATH_LENGTH
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 8"/></a>
+    </h3>
+    <p>For JPS pathing, the maximum length of a path we'll try to generate. Should be modularized depending on what we're doing later on</p><h3 id="define/BB_BABIES_CHILD_TYPES"><aside class="declaration">#define </aside>BB_BABIES_CHILD_TYPES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 237"/></a>
+    </h3>
+    <p>Types of animal that we make as a baby.</p><h3 id="define/BB_BABIES_PARTNER_TYPES"><aside class="declaration">#define </aside>BB_BABIES_PARTNER_TYPES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 235"/></a>
+    </h3>
+    <p>Baby-making blackboard
+Types of animal we can make babies with.</p><h3 id="define/BB_BABIES_TARGET"><aside class="declaration">#define </aside>BB_BABIES_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 239"/></a>
+    </h3>
+    <p>Current partner target</p><h3 id="define/BB_BANE_BATMAN"><aside class="declaration">#define </aside>BB_BANE_BATMAN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 201"/></a>
+    </h3>
+    <p>bane ai</p><h3 id="define/BB_BASIC_FOODS"><aside class="declaration">#define </aside>BB_BASIC_FOODS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 231"/></a>
+    </h3>
+    <p>list of foods this mob likes</p><h3 id="define/BB_BASIC_MOB_CURRENT_TARGET"><aside class="declaration">#define </aside>BB_BASIC_MOB_CURRENT_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 218"/></a>
+    </h3>
+    <p>Targetting subtrees</p><h3 id="define/BB_BASIC_MOB_EXECUTION_TARGET"><aside class="declaration">#define </aside>BB_BASIC_MOB_EXECUTION_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 222"/></a>
+    </h3>
+    <p>some behaviors that check current_target also set this on deep crit mobs</p><h3 id="define/BB_BASIC_MOB_FLEEING"><aside class="declaration">#define </aside>BB_BASIC_MOB_FLEEING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L228">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 228"/></a>
+    </h3>
+    <p>Flag to set on or off if you want your mob to prioritise running away</p><h3 id="define/BB_BASIC_MOB_RETALIATE_LIST"><aside class="declaration">#define </aside>BB_BASIC_MOB_RETALIATE_LIST
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 225"/></a>
+    </h3>
+    <p>List of mobs who have damaged us</p><h3 id="define/BB_BASIC_MOB_TIPPER"><aside class="declaration">#define </aside>BB_BASIC_MOB_TIPPER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 215"/></a>
+    </h3>
+    <p>the motherfucker who tipped us</p><h3 id="define/BB_BASIC_MOB_TIP_REACTING"><aside class="declaration">#define </aside>BB_BASIC_MOB_TIP_REACTING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 213"/></a>
+    </h3>
+    <p>Basic Mob Keys
+Tipped blackboards
+Bool that means a basic mob will start reacting to being tipped in it's planning</p><h3 id="define/BB_BILEWORM_SPEW_BILE"><aside class="declaration">#define </aside>BB_BILEWORM_SPEW_BILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 243"/></a>
+    </h3>
+    <p>Bileworm AI keys</p><h3 id="define/BB_CURRENT_HUNTING_TARGET"><aside class="declaration">#define </aside>BB_CURRENT_HUNTING_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 205"/></a>
+    </h3>
+    <p>Hunting BB keys</p><h3 id="define/BB_CURSED_THROW_ATTEMPT_COUNT"><aside class="declaration">#define </aside>BB_CURSED_THROW_ATTEMPT_COUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 112"/></a>
+    </h3>
+    <p>Amount of successful hits in a row this item has had</p><h3 id="define/BB_CURSE_TARGET"><aside class="declaration">#define </aside>BB_CURSE_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 108"/></a>
+    </h3>
+    <p>Actual mob the item is haunting at the moment</p><h3 id="define/BB_CUSTOMER_CURRENT_ORDER"><aside class="declaration">#define </aside>BB_CUSTOMER_CURRENT_ORDER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 129"/></a>
+    </h3>
+    <p>Robot customer AI controller blackboard keys</p><h3 id="define/BB_CUSTOMER_SAID_CANT_FIND_SEAT_LINE"><aside class="declaration">#define </aside>BB_CUSTOMER_SAID_CANT_FIND_SEAT_LINE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 138"/></a>
+    </h3>
+    <p>Robot customer has said their can't find seat line at least once. Used to rate limit how often they'll complain after the first time.</p><h3 id="define/BB_FOOD_TARGET"><aside class="declaration">#define </aside>BB_FOOD_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 53"/></a>
+    </h3>
+    <p>what we're going to eat next</p><h3 id="define/BB_HAUNTED_THROW_ATTEMPT_COUNT"><aside class="declaration">#define </aside>BB_HAUNTED_THROW_ATTEMPT_COUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 96"/></a>
+    </h3>
+    <p>Amount of successful hits in a row this item has had</p><h3 id="define/BB_HAUNT_TARGET"><aside class="declaration">#define </aside>BB_HAUNT_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 94"/></a>
+    </h3>
+    <p>Actual mob the item is haunting at the moment</p><h3 id="define/BB_HOSTILE_ORDER_MODE"><aside class="declaration">#define </aside>BB_HOSTILE_ORDER_MODE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 142"/></a>
+    </h3>
+    <p>Hostile AI controller blackboard keys</p><h3 id="define/BB_HOSTILE_VISION_RANGE"><aside class="declaration">#define </aside>BB_HOSTILE_VISION_RANGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 150"/></a>
+    </h3>
+    <p>Basically, what is our vision/hearing range.</p><h3 id="define/BB_LIKES_EQUIPPER"><aside class="declaration">#define </aside>BB_LIKES_EQUIPPER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 98"/></a>
+    </h3>
+    <p>If true, tolerates the equipper holding/equipping the hauntium</p><h3 id="define/BB_MOD_IMPLANT"><aside class="declaration">#define </aside>BB_MOD_IMPLANT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 117"/></a>
+    </h3>
+    <p>The implant the AI was created from</p><h3 id="define/BB_MOD_TARGET"><aside class="declaration">#define </aside>BB_MOD_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 115"/></a>
+    </h3>
+    <p>Mob the MOD is trying to attach to</p><h3 id="define/BB_NEXT_HUNGRY"><aside class="declaration">#define </aside>BB_NEXT_HUNGRY
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 51"/></a>
+    </h3>
+    <p>time until we should next eat, set by the generic hunger subtree</p><h3 id="define/BB_PATH_TO_USE"><aside class="declaration">#define </aside>BB_PATH_TO_USE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 55"/></a>
+    </h3>
+    <p>Path we should use next time we use the JPS movement datum</p><h3 id="define/BB_SIMPLE_CARRY_ITEM"><aside class="declaration">#define </aside>BB_SIMPLE_CARRY_ITEM
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 164"/></a>
+    </h3>
+    <p>Dog AI controller blackboard keys</p><h3 id="define/BB_SONG_INSTRUMENT"><aside class="declaration">#define </aside>BB_SONG_INSTRUMENT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 60"/></a>
+    </h3>
+    <p>song instrument blackboard, set by instrument subtrees</p><h3 id="define/BB_SONG_LINES"><aside class="declaration">#define </aside>BB_SONG_LINES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 62"/></a>
+    </h3>
+    <p>song lines blackboard, set by default on controllers</p><h3 id="define/BB_TARGET_SLOT"><aside class="declaration">#define </aside>BB_TARGET_SLOT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 110"/></a>
+    </h3>
+    <p>Where the item wants to land on</p><h3 id="define/BB_TO_HAUNT_LIST"><aside class="declaration">#define </aside>BB_TO_HAUNT_LIST
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 92"/></a>
+    </h3>
+    <p>Blackboard keys for haunted items</p><h3 id="define/BB_VENDING_CURRENT_TARGET"><aside class="declaration">#define </aside>BB_VENDING_CURRENT_TARGET
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 122"/></a>
+    </h3>
+    <p>Vending machine AI controller blackboard keys</p><h3 id="define/CAN_ACT_WHILE_DEAD"><aside class="declaration">#define </aside>CAN_ACT_WHILE_DEAD
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 32"/></a>
+    </h3>
+    <p>Continue processing even if dead</p><h3 id="define/CURSED_VIEW_RANGE"><aside class="declaration">#define </aside>CURSED_VIEW_RANGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 104"/></a>
+    </h3>
+    <p>Cursed item controller defines
+how far a cursed item will still try to chase a target</p><h3 id="define/DOG_COMMAND_ATTACK"><aside class="declaration">#define </aside>DOG_COMMAND_ATTACK
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 190"/></a>
+    </h3>
+    <p>Will get within a few tiles of whatever you point at and continually growl/bark. If the target is a living mob who gets too close, the dog will attack them with bites</p><h3 id="define/DOG_COMMAND_FETCH"><aside class="declaration">#define </aside>DOG_COMMAND_FETCH
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L188">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 188"/></a>
+    </h3>
+    <p>Will try to pick up and bring back whatever you point to</p><h3 id="define/DOG_COMMAND_NONE"><aside class="declaration">#define </aside>DOG_COMMAND_NONE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 186"/></a>
+    </h3>
+    <p>Don't do anything (will still react to stuff around them though)</p><h3 id="define/HAUNTED_ITEM_AGGRO_ADDITION"><aside class="declaration">#define </aside>HAUNTED_ITEM_AGGRO_ADDITION
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 89"/></a>
+    </h3>
+    <p>Amount of aggro you get when picking up a haunted item</p><h3 id="define/HAUNTED_ITEM_ATTACK_HAUNT_CHANCE"><aside class="declaration">#define </aside>HAUNTED_ITEM_ATTACK_HAUNT_CHANCE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 85"/></a>
+    </h3>
+    <p>Haunted item controller defines
+Chance for haunted item to haunt someone</p><h3 id="define/HAUNTED_ITEM_ESCAPE_GRASP_CHANCE"><aside class="declaration">#define </aside>HAUNTED_ITEM_ESCAPE_GRASP_CHANCE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 87"/></a>
+    </h3>
+    <p>Chance for haunted item to try to get itself let go.</p><h3 id="define/HOSTILE_COMMAND_ATTACK"><aside class="declaration">#define </aside>HOSTILE_COMMAND_ATTACK
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 158"/></a>
+    </h3>
+    <p>Will attack a target.</p><h3 id="define/HOSTILE_COMMAND_FOLLOW"><aside class="declaration">#define </aside>HOSTILE_COMMAND_FOLLOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 160"/></a>
+    </h3>
+    <p>Will follow a target.</p><h3 id="define/HOSTILE_COMMAND_NONE"><aside class="declaration">#define </aside>HOSTILE_COMMAND_NONE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 156"/></a>
+    </h3>
+    <p>Don't do anything (will still react to stuff around them though)</p><h3 id="define/IS_DEAD_OR_INCAP"><aside class="declaration">#define </aside>IS_DEAD_OR_INCAP
+            <aside>(source)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 46"/></a>
+    </h3>
+    <p>macro for whether the pawn can act, used generally to prevent some horrifying ai disasters</p><h3 id="define/MOD_AI_RANGE"><aside class="declaration">#define </aside>MOD_AI_RANGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 119"/></a>
+    </h3>
+    <p>Range for a MOD AI controller.</p><h3 id="define/RESIST_SUBTREE_PROB"><aside class="declaration">#define </aside>RESIST_SUBTREE_PROB
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 42"/></a>
+    </h3>
+    <p>probability that the pawn should try resisting out of restraints</p><h3 id="define/SHOULD_RESIST"><aside class="declaration">#define </aside>SHOULD_RESIST
+            <aside>(source)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 44"/></a>
+    </h3>
+    <p>macro for whether it's appropriate to resist right now, used by resist subtree</p><h3 id="define/STOP_MOVING_WHEN_PULLED"><aside class="declaration">#define </aside>STOP_MOVING_WHEN_PULLED
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 30"/></a>
+    </h3>
+    <p>AI flags
+Don't move if being pulled</p><h3 id="define/SUBTREE_RETURN_FINISH_PLANNING"><aside class="declaration">#define </aside>SUBTREE_RETURN_FINISH_PLANNING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/ai.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 37"/></a>
+    </h3>
+    <p>This subtree should cancel any further planning, (Including from other subtrees)</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

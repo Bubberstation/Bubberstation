@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;contractor_hub - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/contractor_hub.html#var">Var Details</a> - <a href="datum/contractor_hub.html#proc">Proc Details</a></header>
+<main>
+<h1>contractor_hub <aside>/<a href="datum.html">datum</a>/<a href="datum/contractor_hub.html">contractor_hub</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L3">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/assigned_contracts">assigned_contracts</a></th><td>List of all contract datums the contractor has available</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/assigned_targets">assigned_targets</a></th><td>used as a blacklist to make sure we're not assigning targets already assigned</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/contract_TC_to_redeem">contract_TC_to_redeem</a></th><td>Amount of TC that has yet to be redeemed</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/contract_paid_out">contract_paid_out</a></th><td>How many TC you've paid out in contracts</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/contract_rep">contract_rep</a></th><td>How much reputation the contractor has</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/contractor_items">contractor_items</a></th><td>Static of contractor_item subtypes</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/contracts_completed">contracts_completed</a></th><td>NUmber of how many contracts you've done</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/current_contract">current_contract</a></th><td>Reference to the current contract datum</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/hub_items">hub_items</a></th><td>What contractor items can be purchased</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/purchased_items">purchased_items</a></th><td>List of what the contractor's purchased</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#var/start_index">start_index</a></th><td>Current index number for contract IDs</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/contractor_hub.html#proc/create_contracts">create_contracts</a></th><td>Create initial list of contracts</td></tr>
+            <tr><th><a href="datum/contractor_hub.html#proc/create_hub_items">create_hub_items</a></th><td>Generates a list of all valid hub items to set for purchase</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/assigned_contracts"><aside class="declaration">var </aside>assigned_contracts
+            <aside>&ndash; /list/datum/syndicate_contract</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L15">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 15"/></a></h3>
+        <p>List of all contract datums the contractor has available</p><h3 id="var/assigned_targets"><aside class="declaration">var </aside>assigned_targets
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L17">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 17"/></a></h3>
+        <p>used as a blacklist to make sure we're not assigning targets already assigned</p><h3 id="var/contract_TC_to_redeem"><aside class="declaration">var </aside>contract_TC_to_redeem
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L23">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 23"/></a></h3>
+        <p>Amount of TC that has yet to be redeemed</p><h3 id="var/contract_paid_out"><aside class="declaration">var </aside>contract_paid_out
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L21">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 21"/></a></h3>
+        <p>How many TC you've paid out in contracts</p><h3 id="var/contract_rep"><aside class="declaration">var </aside>contract_rep
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L5">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 5"/></a></h3>
+        <p>How much reputation the contractor has</p><h3 id="var/contractor_items"><aside class="declaration">var </aside>contractor_items
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L11">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 11"/></a></h3>
+        <p>Static of contractor_item subtypes</p><h3 id="var/contracts_completed"><aside class="declaration">var </aside>contracts_completed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L19">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 19"/></a></h3>
+        <p>NUmber of how many contracts you've done</p><h3 id="var/current_contract"><aside class="declaration">var </aside>current_contract
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/syndicate_contract.html">syndicate_contract</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L13">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 13"/></a></h3>
+        <p>Reference to the current contract datum</p><h3 id="var/hub_items"><aside class="declaration">var </aside>hub_items
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L7">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 7"/></a></h3>
+        <p>What contractor items can be purchased</p><h3 id="var/purchased_items"><aside class="declaration">var </aside>purchased_items
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L9">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 9"/></a></h3>
+        <p>List of what the contractor's purchased</p><h3 id="var/start_index"><aside class="declaration">var </aside>start_index
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L25">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 25"/></a></h3>
+        <p>Current index number for contract IDs</p><h2 id="proc">Proc Details</h2><h3 id="proc/create_contracts"><aside class="declaration">proc </aside>create_contracts<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/owner) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L35">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 35"/></a></aside>
+        </h3>
+        <p>Create initial list of contracts</p><h3 id="proc/create_hub_items"><aside class="declaration">proc </aside>create_hub_items<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/contractor/code/datums/contractor_hub.dm#L28">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;contractor&#x2F;code&#x2F;datums&#x2F;contractor_hub.dm 28"/></a></aside>
+        </h3>
+        <p>Generates a list of all valid hub items to set for purchase</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;overlay&#x2F;status_display_text - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/overlay/status_display_text.html#var">Var Details</a> - <a href="obj/effect/overlay/status_display_text.html#proc">Proc Details</a></header>
+<main>
+<h1>status_display_text <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/overlay/status_display_text.html">effect/overlay/status_display_text</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/status_display.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;status_display.dm 242"/></a></h1>
+
+<p>Nice overlay to make text smoothly scroll with no client updates after setup.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/overlay/status_display_text.html#var/char_widths">char_widths</a></th><td>Width of each character, including kerning gap afterwards.
+We don't use rich text or anything fancy, so we can bake these values.</td></tr>
+            <tr><th><a href="obj/effect/overlay/status_display_text.html#var/message">message</a></th><td>The message this overlay is displaying.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/overlay/status_display_text.html#proc/generate_text">generate_text</a></th><td>Generate the actual maptext.
+Arguments:</td></tr>
+            <tr><th><a href="obj/effect/overlay/status_display_text.html#proc/measure_width">measure_width</a></th><td>A hyper-streamlined version of MeasureText that doesn't support different fonts, rich formatting, or multiline.
+But it also doesn't require a client.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/char_widths"><aside class="declaration">var </aside>char_widths
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/status_display.dm#L254">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;status_display.dm 254"/></a></h3>
+        <p>Width of each character, including kerning gap afterwards.
+We don't use rich text or anything fancy, so we can bake these values.</p><h3 id="var/message"><aside class="declaration">var </aside>message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/status_display.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;status_display.dm 247"/></a></h3>
+        <p>The message this overlay is displaying.</p><h2 id="proc">Proc Details</h2><h3 id="proc/generate_text"><aside class="declaration">proc </aside>generate_text<aside>(text, center, text_color) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/status_display.dm#L331">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;status_display.dm 331"/></a></aside>
+        </h3>
+        <p>Generate the actual maptext.
+Arguments:</p>
+<ul>
+<li>text - the text to display</li>
+<li>center - center the text if TRUE, otherwise left-align</li>
+<li>text_color - the text color</li>
+</ul><h3 id="proc/measure_width"><aside class="declaration">proc </aside>measure_width<aside>(text) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/machinery/status_display.dm#L312">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;status_display.dm 312"/></a></aside>
+        </h3>
+        <p>A hyper-streamlined version of MeasureText that doesn't support different fonts, rich formatting, or multiline.
+But it also doesn't require a client.</p>
+<p>Returns the width in pixels</p>
+<p>Arguments:</p>
+<ul>
+<li>text - the text to measure</li>
+</ul></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

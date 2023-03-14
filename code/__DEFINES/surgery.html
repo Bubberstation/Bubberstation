@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;surgery.dm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/surgery.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/surgery.dm 
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/surgery.html#define/ORGAN_SYNTHETIC">ORGAN_SYNTHETIC</a></th><td>Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/ORGAN_FROZEN">ORGAN_FROZEN</a></th><td>Frozen organs, don't deteriorate</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/ORGAN_FAILING">ORGAN_FAILING</a></th><td>Failing organs perform damaging effects until replaced or fixed</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/ORGAN_VITAL">ORGAN_VITAL</a></th><td>Currently only the brain</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/ORGAN_EDIBLE">ORGAN_EDIBLE</a></th><td>is a snack? :D</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/ORGAN_SYNTHETIC_EMP">ORGAN_SYNTHETIC_EMP</a></th><td>Synthetic organ affected by an EMP. Deteriorates over time.</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/SURGERY_STEP_FAIL">SURGERY_STEP_FAIL</a></th><td>When the surgery step fails :(</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/SURGERY_IGNORE_CLOTHES">SURGERY_IGNORE_CLOTHES</a></th><td>Will allow the surgery to bypass clothes</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/SURGERY_SELF_OPERABLE">SURGERY_SELF_OPERABLE</a></th><td>Will allow the surgery to be performed by the user on themselves.</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/SURGERY_REQUIRE_RESTING">SURGERY_REQUIRE_RESTING</a></th><td>Will allow the surgery to work on mobs that aren't lying down.</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/SURGERY_REQUIRE_LIMB">SURGERY_REQUIRE_LIMB</a></th><td>Will allow the surgery to work only if there's a limb.</td></tr>
+        <tr><th><a href="code/__DEFINES/surgery.html#define/SURGERY_REQUIRES_REAL_LIMB">SURGERY_REQUIRES_REAL_LIMB</a></th><td>Will allow the surgery to work only if there's a real (eg. not pseudopart) limb.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ORGAN_EDIBLE"><aside class="declaration">#define </aside>ORGAN_EDIBLE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 11"/></a>
+    </h3>
+    <p>is a snack? :D</p><h3 id="define/ORGAN_FAILING"><aside class="declaration">#define </aside>ORGAN_FAILING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 7"/></a>
+    </h3>
+    <p>Failing organs perform damaging effects until replaced or fixed</p><h3 id="define/ORGAN_FROZEN"><aside class="declaration">#define </aside>ORGAN_FROZEN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 5"/></a>
+    </h3>
+    <p>Frozen organs, don't deteriorate</p><h3 id="define/ORGAN_SYNTHETIC"><aside class="declaration">#define </aside>ORGAN_SYNTHETIC
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 3"/></a>
+    </h3>
+    <p>Synthetic organs, or cybernetic organs. Reacts to EMPs and don't deteriorate or heal</p><h3 id="define/ORGAN_SYNTHETIC_EMP"><aside class="declaration">#define </aside>ORGAN_SYNTHETIC_EMP
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 13"/></a>
+    </h3>
+    <p>Synthetic organ affected by an EMP. Deteriorates over time.</p><h3 id="define/ORGAN_VITAL"><aside class="declaration">#define </aside>ORGAN_VITAL
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 9"/></a>
+    </h3>
+    <p>Currently only the brain</p><h3 id="define/SURGERY_IGNORE_CLOTHES"><aside class="declaration">#define </aside>SURGERY_IGNORE_CLOTHES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 22"/></a>
+    </h3>
+    <p>Will allow the surgery to bypass clothes</p><h3 id="define/SURGERY_REQUIRES_REAL_LIMB"><aside class="declaration">#define </aside>SURGERY_REQUIRES_REAL_LIMB
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 30"/></a>
+    </h3>
+    <p>Will allow the surgery to work only if there's a real (eg. not pseudopart) limb.</p><h3 id="define/SURGERY_REQUIRE_LIMB"><aside class="declaration">#define </aside>SURGERY_REQUIRE_LIMB
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 28"/></a>
+    </h3>
+    <p>Will allow the surgery to work only if there's a limb.</p><h3 id="define/SURGERY_REQUIRE_RESTING"><aside class="declaration">#define </aside>SURGERY_REQUIRE_RESTING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 26"/></a>
+    </h3>
+    <p>Will allow the surgery to work on mobs that aren't lying down.</p><h3 id="define/SURGERY_SELF_OPERABLE"><aside class="declaration">#define </aside>SURGERY_SELF_OPERABLE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 24"/></a>
+    </h3>
+    <p>Will allow the surgery to be performed by the user on themselves.</p><h3 id="define/SURGERY_STEP_FAIL"><aside class="declaration">#define </aside>SURGERY_STEP_FAIL
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/surgery.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;surgery.dm 18"/></a>
+    </h3>
+    <p>When the surgery step fails :(</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

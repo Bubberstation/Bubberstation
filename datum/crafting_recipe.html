@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;crafting_recipe - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/crafting_recipe.html#var">Var Details</a> - <a href="datum/crafting_recipe.html#proc">Proc Details</a></header>
+<main>
+<h1>crafting_recipe <aside>/<a href="datum.html">datum</a>/<a href="datum/crafting_recipe.html">crafting_recipe</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 10"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/always_available">always_available</a></th><td>Set to FALSE if it needs to be learned first.</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/blacklist">blacklist</a></th><td>type paths of items explicitly not allowed as an ingredient</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/category">category</a></th><td>where it shows up in the crafting UI</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/chem_catalysts">chem_catalysts</a></th><td>like tool_behaviors but for reagents</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/machinery">machinery</a></th><td>Required machines for the craft, set the assigned value of the typepath to CRAFTING_MACHINERY_CONSUME or CRAFTING_MACHINERY_USE. Lazy associative list: type_path key -&gt; flag value.</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/name">name</a></th><td>in-game display name</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/non_craftable">non_craftable</a></th><td>Whether the result can be crafted with a crafting menu button</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/one_per_turf">one_per_turf</a></th><td>Should only one object exist on the same turf?</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/parts">parts</a></th><td>type paths of items that will be placed in the result</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/reaction">reaction</a></th><td>Chemical reaction described in the recipe</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/reqs">reqs</a></th><td>type paths of items consumed associated with how many are needed</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/result">result</a></th><td>type path of item resulting from this craft</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/result_amount">result_amount</a></th><td>Resulting amount (for stacks only)</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/steps">steps</a></th><td>Steps needed to achieve the result</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/structures">structures</a></th><td>Required structures for the craft, set the assigned value of the typepath to CRAFTING_STRUCTURE_CONSUME or CRAFTING_STRUCTURE_USE. Lazy associative list: type_path key -&gt; flag value.</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/time">time</a></th><td>time in seconds. Remember to use the SECONDS define!</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/tool_behaviors">tool_behaviors</a></th><td>String defines of items needed but not consumed. Lazy list.</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#var/tool_paths">tool_paths</a></th><td>Type paths of items needed but not consumed. Lazy list.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#proc/atmos_pipe_check">atmos_pipe_check</a></th><td>Check if the pipe used for atmospheric device crafting is the proper one</td></tr>
+            <tr><th><a href="datum/crafting_recipe.html#proc/check_requirements">check_requirements</a></th><td>Run custom pre-craft checks for this recipe, don't add feedback messages in this because it will spam the client</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/always_available"><aside class="declaration">var </aside>always_available
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 32"/></a></h3>
+        <p>Set to FALSE if it needs to be learned first.</p><h3 id="var/blacklist"><aside class="declaration">var </aside>blacklist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 16"/></a></h3>
+        <p>type paths of items explicitly not allowed as an ingredient</p><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 30"/></a></h3>
+        <p>where it shows up in the crafting UI</p><h3 id="var/chem_catalysts"><aside class="declaration">var </aside>chem_catalysts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 28"/></a></h3>
+        <p>like tool_behaviors but for reagents</p><h3 id="var/machinery"><aside class="declaration">var </aside>machinery
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 34"/></a></h3>
+        <p>Required machines for the craft, set the assigned value of the typepath to CRAFTING_MACHINERY_CONSUME or CRAFTING_MACHINERY_USE. Lazy associative list: type_path key -&gt; flag value.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 12"/></a></h3>
+        <p>in-game display name</p><h3 id="var/non_craftable"><aside class="declaration">var </aside>non_craftable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 42"/></a></h3>
+        <p>Whether the result can be crafted with a crafting menu button</p><h3 id="var/one_per_turf"><aside class="declaration">var </aside>one_per_turf
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 38"/></a></h3>
+        <p>Should only one object exist on the same turf?</p><h3 id="var/parts"><aside class="declaration">var </aside>parts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 26"/></a></h3>
+        <p>type paths of items that will be placed in the result</p><h3 id="var/reaction"><aside class="declaration">var </aside>reaction
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/chemical_reaction.html">chemical_reaction</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 44"/></a></h3>
+        <p>Chemical reaction described in the recipe</p><h3 id="var/reqs"><aside class="declaration">var </aside>reqs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 14"/></a></h3>
+        <p>type paths of items consumed associated with how many are needed</p><h3 id="var/result"><aside class="declaration">var </aside>result
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 18"/></a></h3>
+        <p>type path of item resulting from this craft</p><h3 id="var/result_amount"><aside class="declaration">var </aside>result_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 48"/></a></h3>
+        <p>Resulting amount (for stacks only)</p><h3 id="var/steps"><aside class="declaration">var </aside>steps
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 40"/></a></h3>
+        <p>Steps needed to achieve the result</p><h3 id="var/structures"><aside class="declaration">var </aside>structures
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 36"/></a></h3>
+        <p>Required structures for the craft, set the assigned value of the typepath to CRAFTING_STRUCTURE_CONSUME or CRAFTING_STRUCTURE_USE. Lazy associative list: type_path key -&gt; flag value.</p><h3 id="var/time"><aside class="declaration">var </aside>time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 24"/></a></h3>
+        <p>time in seconds. Remember to use the SECONDS define!</p><h3 id="var/tool_behaviors"><aside class="declaration">var </aside>tool_behaviors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 20"/></a></h3>
+        <p>String defines of items needed but not consumed. Lazy list.</p><h3 id="var/tool_paths"><aside class="declaration">var </aside>tool_paths
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 22"/></a></h3>
+        <p>Type paths of items needed but not consumed. Lazy list.</p><h2 id="proc">Proc Details</h2><h3 id="proc/atmos_pipe_check"><aside class="declaration">proc </aside>atmos_pipe_check<aside>(/<a href="mob.html">mob</a>/user, /list/collected_requirements) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 82"/></a></aside>
+        </h3>
+        <p>Check if the pipe used for atmospheric device crafting is the proper one</p><h3 id="proc/check_requirements"><aside class="declaration">proc </aside>check_requirements<aside>(/<a href="mob.html">mob</a>/user, /list/collected_requirements) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/crafting/_recipes.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;_recipes.dm 75"/></a></aside>
+        </h3>
+        <p>Run custom pre-craft checks for this recipe, don't add feedback messages in this because it will spam the client</p>
+<p>user: The /mob that initiated the crafting
+collected_requirements: A list of lists of /obj/item instances that satisfy reqs. Top level list is keyed by requirement path.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;mobs.dm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/mobs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/mobs.dm 
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BLOOD_REGEN_FACTOR">BLOOD_REGEN_FACTOR</a></th><td>How efficiently humans regenerate blood.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BLOOD_STOP_TEMP">BLOOD_STOP_TEMP</a></th><td>Temperature at which blood loss and regen stops. <a href="mob/living/carbon/human.html#proc/handle_blood" title="/mob/living/carbon/human">/mob/living/carbon/human/proc/handle_blood</a></td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BP_BLOCK_CHANGE_SPECIES">BP_BLOCK_CHANGE_SPECIES</a></th><td>Bodypart does not get replaced during set_species()</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_ORGANIC">BODYTYPE_ORGANIC</a></th><td>The limb is organic.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_ROBOTIC">BODYTYPE_ROBOTIC</a></th><td>The limb is robotic.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_HUMANOID">BODYTYPE_HUMANOID</a></th><td>The limb fits the human mold. This is not meant to be literal, if the sprite &quot;fits&quot; on a human, it is &quot;humanoid&quot;, regardless of origin.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_DIGITIGRADE">BODYTYPE_DIGITIGRADE</a></th><td>The limb is digitigrade.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_MONKEY">BODYTYPE_MONKEY</a></th><td>The limb fits the monkey mold.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_SNOUTED">BODYTYPE_SNOUTED</a></th><td>The limb is snouted.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_LARVA_PLACEHOLDER">BODYTYPE_LARVA_PLACEHOLDER</a></th><td>A placeholder bodytype for xeno larva, so their limbs cannot be attached to anything.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_ALIEN">BODYTYPE_ALIEN</a></th><td>The limb is from a xenomorph.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_CUSTOM">BODYTYPE_CUSTOM</a></th><td>The limb fits a modular custom shape</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_TAUR">BODYTYPE_TAUR</a></th><td>The limb fits a taur body</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_HIDE_SHOES">BODYTYPE_HIDE_SHOES</a></th><td>The limb causes shoes to no longer be displayed, useful for taurs.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYTYPE_ALT_FACEWEAR_LAYER">BODYTYPE_ALT_FACEWEAR_LAYER</a></th><td>The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DIGITIGRADE_NEVER">DIGITIGRADE_NEVER</a></th><td>The species does not have digitigrade legs in generation.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DIGITIGRADE_OPTIONAL">DIGITIGRADE_OPTIONAL</a></th><td>The species can have digitigrade legs in generation</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DIGITIGRADE_FORCED">DIGITIGRADE_FORCED</a></th><td>The species is forced to have digitigrade legs in generation.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DIGITIGRADE_LEGS">DIGITIGRADE_LEGS</a></th><td>Digitigrade's prefs, used in features for legs if you're meant to be a Digitigrade.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BEAT_FAST">BEAT_FAST</a></th><td>Heartbeat is beating fast for hard crit</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BEAT_SLOW">BEAT_SLOW</a></th><td>Heartbeat is beating slow for soft crit</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BEAT_NONE">BEAT_NONE</a></th><td>Heartbeat is gone... He's dead Jim :(</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOCK_NOGLOVES">SHOCK_NOGLOVES</a></th><td>Flags used by the flags parameter of electrocute act.
+Makes it so that the shock doesn't take gloves into account.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOCK_TESLA">SHOCK_TESLA</a></th><td>Used when the shock is from a tesla bolt.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOCK_ILLUSION">SHOCK_ILLUSION</a></th><td>Used when an illusion shocks something. Makes the shock deal stamina damage and not trigger certain secondary effects.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOCK_NOSTUN">SHOCK_NOSTUN</a></th><td>The shock doesn't stun.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOCK_SUPPRESS_MESSAGE">SHOCK_SUPPRESS_MESSAGE</a></th><td>No default message is sent from the shock</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/INCORPOREAL_MOVE_BASIC">INCORPOREAL_MOVE_BASIC</a></th><td>normal movement, see: <a href="mob/living.html#var/incorporeal_move" title="/mob/living">/mob/living/var/incorporeal_move</a></td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/INCORPOREAL_MOVE_SHADOW">INCORPOREAL_MOVE_SHADOW</a></th><td>leaves a trail of shadows</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/INCORPOREAL_MOVE_JAUNT">INCORPOREAL_MOVE_JAUNT</a></th><td>is blocked by holy water/salt</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CLOTHING_NUTRITION_GAIN">CLOTHING_NUTRITION_GAIN</a></th><td>How much nutrition eating clothes as moth gives and drains</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/RECENT_EXAMINE_MAX_WINDOW">RECENT_EXAMINE_MAX_WINDOW</a></th><td>How long it takes for an examined atom to be removed from recent_examines. Should be the max of the below time windows</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXAMINE_MORE_WINDOW">EXAMINE_MORE_WINDOW</a></th><td>If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EYE_CONTACT_WINDOW">EYE_CONTACT_WINDOW</a></th><td>If you examine another mob who's successfully examined you during this duration of time, you two try to make eye contact. Cute!</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/YAWN_PROPAGATION_EXAMINE_WINDOW">YAWN_PROPAGATION_EXAMINE_WINDOW</a></th><td>If you yawn while someone nearby has examined you within this time frame, it will force them to yawn as well. Tradecraft!</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EYE_CONTACT_RANGE">EYE_CONTACT_RANGE</a></th><td>How far away you can be to make eye contact with someone while examining</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CAN_SUCCUMB">CAN_SUCCUMB</a></th><td>Returns whether or not the given mob can succumb</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANDING_UP">STANDING_UP</a></th><td>Mob is standing up, usually associated with lying_angle value of 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/LYING_DOWN">LYING_DOWN</a></th><td>Mob is lying down, usually associated with lying_angle values of 90 or 270.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PIXEL_Y_OFFSET_LYING">PIXEL_Y_OFFSET_LYING</a></th><td>How much a mob's sprite should be moved when they're lying down</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SPAWN_MEGAFAUNA">SPAWN_MEGAFAUNA</a></th><td>Define for spawning megafauna instead of a mob for cave gen</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SQUASHED_SHOULD_BE_DOWN">SQUASHED_SHOULD_BE_DOWN</a></th><td>Squash flags. For squashable element
+Whether or not the squashing requires the squashed mob to be lying down</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SQUASHED_SHOULD_BE_GIBBED">SQUASHED_SHOULD_BE_GIBBED</a></th><td>Whether or not to gib when the squashed mob is moved over</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/THROW_MODE_DISABLED">THROW_MODE_DISABLED</a></th><td>Throw modes, defines whether or not to turn off throw mode after</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/TOTAL_LAYERS">TOTAL_LAYERS</a></th><td>Total number of layers for mob overlays
+KEEP THIS UP-TO-DATE OR SHIT WILL BREAK
+Also consider updating layers_to_offset</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MUTATIONS_LAYER">MUTATIONS_LAYER</a></th><td>Mutations layer - Tk headglows, cold resistance glow, etc</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODY_BEHIND_LAYER">BODY_BEHIND_LAYER</a></th><td>Mutantrace features (tail when looking south) that must appear behind the body parts</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYPARTS_LOW_LAYER">BODYPARTS_LOW_LAYER</a></th><td>Layer for bodyparts that should appear behind every other bodypart - Mostly, legs when facing WEST or EAST</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYPARTS_LAYER">BODYPARTS_LAYER</a></th><td>Layer for most bodyparts, appears above BODYPARTS_LOW_LAYER and below BODYPARTS_HIGH_LAYER</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODY_ADJ_LAYER">BODY_ADJ_LAYER</a></th><td>Mutantrace features (snout, body markings) that must appear above the body parts</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODY_LAYER">BODY_LAYER</a></th><td>Underwear, undershirts, socks, eyes, lips(makeup)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/FRONT_MUTATIONS_LAYER">FRONT_MUTATIONS_LAYER</a></th><td>Mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DAMAGE_LAYER">DAMAGE_LAYER</a></th><td>Damage indicators (cuts and burns)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODY_FRONT_UNDER_CLOTHES">BODY_FRONT_UNDER_CLOTHES</a></th><td>This layer is used for things that shouldn't be over clothes, but should be over mutations</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/UNIFORM_LAYER">UNIFORM_LAYER</a></th><td>Jumpsuit clothing layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ID_LAYER">ID_LAYER</a></th><td>ID card layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ID_CARD_LAYER">ID_CARD_LAYER</a></th><td>ID card layer (might be deprecated)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODYPARTS_HIGH_LAYER">BODYPARTS_HIGH_LAYER</a></th><td>Layer for bodyparts that should appear above every other bodypart - Currently only used for hands</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GLOVES_LAYER">GLOVES_LAYER</a></th><td>Gloves layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOES_LAYER">SHOES_LAYER</a></th><td>Shoes layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EARS_LAYER">EARS_LAYER</a></th><td>Ears layer (Spessmen have ears? Wow)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SUIT_LAYER">SUIT_LAYER</a></th><td>Suit layer (armor, coats, etc.)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GLASSES_LAYER">GLASSES_LAYER</a></th><td>Glasses layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BELT_LAYER">BELT_LAYER</a></th><td>Belt layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SUIT_STORE_LAYER">SUIT_STORE_LAYER</a></th><td>Suit storage layer (tucking a gun or baton underneath your armor)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/NECK_LAYER">NECK_LAYER</a></th><td>Neck layer (for wearing ties and bedsheets)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BACK_LAYER">BACK_LAYER</a></th><td>Back layer (for backpacks and equipment on your back)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HAIR_LAYER">HAIR_LAYER</a></th><td>Hair layer (mess with the fro and you got to go!)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/FACEMASK_LAYER">FACEMASK_LAYER</a></th><td>Facemask layer (gas masks, breath masks, etc.)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAD_LAYER">HEAD_LAYER</a></th><td>Head layer (hats, helmets, etc.)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HANDCUFF_LAYER">HANDCUFF_LAYER</a></th><td>Handcuff layer (when your hands are cuffed)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/LEGCUFF_LAYER">LEGCUFF_LAYER</a></th><td>Legcuff layer (when your feet are cuffed)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HANDS_LAYER">HANDS_LAYER</a></th><td>Hands layer (for the actual hand, not the arm... I think?)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BODY_FRONT_LAYER">BODY_FRONT_LAYER</a></th><td>Body front layer. Usually used for mutant bodyparts that need to be in front of stuff (e.g. cat ears)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ABOVE_BODY_FRONT_GLASSES_LAYER">ABOVE_BODY_FRONT_GLASSES_LAYER</a></th><td>Special body layer that actually require to be above the hair (e.g. lifted welding goggles)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ABOVE_BODY_FRONT_HEAD_LAYER">ABOVE_BODY_FRONT_HEAD_LAYER</a></th><td>Special body layer for the rare cases where something on the head needs to be above everything else (e.g. flowers)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/WOUND_LAYER">WOUND_LAYER</a></th><td>Bleeding wound icons</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HALO_LAYER">HALO_LAYER</a></th><td>Blood cult ascended halo layer, because there's currently no better solution for adding/removing</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/FIRE_LAYER">FIRE_LAYER</a></th><td>Fire layer when you're on fire</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXTERNAL_FRONT">EXTERNAL_FRONT</a></th><td>Draws organ on the BODY_FRONT_LAYER</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXTERNAL_ADJACENT">EXTERNAL_ADJACENT</a></th><td>Draws organ on the BODY_ADJ_LAYER</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXTERNAL_BEHIND">EXTERNAL_BEHIND</a></th><td>Draws organ on the BODY_BEHIND_LAYER</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ALL_EXTERNAL_OVERLAYS">ALL_EXTERNAL_OVERLAYS</a></th><td>Draws organ on all EXTERNAL layers</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXTERNAL_RESTYLE_PLANT">EXTERNAL_RESTYLE_PLANT</a></th><td>This organ allows restyle through plant restyling (like secateurs)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXTERNAL_RESTYLE_FLESH">EXTERNAL_RESTYLE_FLESH</a></th><td>This organ allows restyling with flesh restyling stuff (surgery or something idk)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXTERNAL_RESTYLE_ENAMEL">EXTERNAL_RESTYLE_ENAMEL</a></th><td>This organ allows restyling with enamel restyling (like a fucking file or something?). It's for horns and shit</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/UNDER_SUIT_LAYER">UNDER_SUIT_LAYER</a></th><td>The layer underneath the suit</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/UNDER_HEAD_LAYER">UNDER_HEAD_LAYER</a></th><td>The layer underneath the head (for hats)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ABOVE_SHOES_LAYER">ABOVE_SHOES_LAYER</a></th><td>The layer above shoes</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ABOVE_BODY_FRONT_LAYER">ABOVE_BODY_FRONT_LAYER</a></th><td>The layer above mutant body parts</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/RESIZE_DEFAULT_SIZE">RESIZE_DEFAULT_SIZE</a></th><td>The default mob sprite size (used for shrinking or enlarging the mob sprite to regular size)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CLIENT_FROM_VAR">CLIENT_FROM_VAR</a></th><td>Get the client from the var</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/VOMIT_TOXIC">VOMIT_TOXIC</a></th><td>The mob will vomit a green color</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/VOMIT_PURPLE">VOMIT_PURPLE</a></th><td>The mob will vomit a purple color</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/NO_BUCKLE_LYING">NO_BUCKLE_LYING</a></th><td>Possible value of <a href="atom/movable.html#var/buckle_lying" title="/atom/movable">/atom/movable/buckle_lying</a>. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_ADMIN">HEAL_ADMIN</a></th><td>Special flag that means this heal is an admin heal and goes above and beyond
+Note, this includes things like removing suicide status and handcuffs / legcuffs, use with slight caution.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_BRUTE">HEAL_BRUTE</a></th><td>Heals all brute damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_BURN">HEAL_BURN</a></th><td>Heals all burn damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_TOX">HEAL_TOX</a></th><td>Heals all toxin damage, slime people included.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_OXY">HEAL_OXY</a></th><td>Heals all oxyloss.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_CLONE">HEAL_CLONE</a></th><td>Heals all cellular damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_STAM">HEAL_STAM</a></th><td>Heals all stamina damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_LIMBS">HEAL_LIMBS</a></th><td>Restore all limbs to their initial state.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_ORGANS">HEAL_ORGANS</a></th><td>Heals all organs from failing.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_REFRESH_ORGANS">HEAL_REFRESH_ORGANS</a></th><td>A &quot;super&quot; heal organs, this refreshes all organs entirely, deleting old and replacing them with new.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_WOUNDS">HEAL_WOUNDS</a></th><td>Removes all wounds.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_TRAUMAS">HEAL_TRAUMAS</a></th><td>Removes all brain traumas, not including permanent ones.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_ALL_REAGENTS">HEAL_ALL_REAGENTS</a></th><td>Removes all reagents present.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_NEGATIVE_DISEASES">HEAL_NEGATIVE_DISEASES</a></th><td>Removes all non-positive diseases.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_TEMP">HEAL_TEMP</a></th><td>Restores body temperature back to nominal.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_BLOOD">HEAL_BLOOD</a></th><td>Restores blood levels to normal.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_NEGATIVE_MUTATIONS">HEAL_NEGATIVE_MUTATIONS</a></th><td>Removes all non-positive mutations (neutral included).</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_STATUS">HEAL_STATUS</a></th><td>Removes status effects with this flag set that also have remove_on_fullheal = TRUE.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_CC_STATUS">HEAL_CC_STATUS</a></th><td>Same as above, removes all CC related status effects with this flag set that also have remove_on_fullheal = TRUE.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_RESTRAINTS">HEAL_RESTRAINTS</a></th><td>Deletes any restraints on the mob (handcuffs / legcuffs)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_DAMAGE">HEAL_DAMAGE</a></th><td>Combination flag to only heal the main damage types.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_BODY">HEAL_BODY</a></th><td>Combination flag to only heal things messed up things about the mob's body itself.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_AFFLICTIONS">HEAL_AFFLICTIONS</a></th><td>Combination flag to heal negative things affecting the mob.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAL_ALL">HEAL_ALL</a></th><td>Full heal that isn't admin forced</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ADMIN_HEAL_ALL">ADMIN_HEAL_ALL</a></th><td>Heals everything and is as strong as / is an admin heal</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/READING_CHECK_LITERACY">READING_CHECK_LITERACY</a></th><td>Checking flags for [/mob/proc/can_read()]</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/NO_REPLACE">NO_REPLACE</a></th><td>In dynamic human icon gen we don't replace the held item.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEALING_TOUCH_ANYONE">HEALING_TOUCH_ANYONE</a></th><td>Flags for whether you can heal yourself or not or only</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ABOVE_BODY_FRONT_GLASSES_LAYER"><aside class="declaration">#define </aside>ABOVE_BODY_FRONT_GLASSES_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L717">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 717"/></a>
+    </h3>
+    <p>Special body layer that actually require to be above the hair (e.g. lifted welding goggles)</p><h3 id="define/ABOVE_BODY_FRONT_HEAD_LAYER"><aside class="declaration">#define </aside>ABOVE_BODY_FRONT_HEAD_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L719">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 719"/></a>
+    </h3>
+    <p>Special body layer for the rare cases where something on the head needs to be above everything else (e.g. flowers)</p><h3 id="define/ABOVE_BODY_FRONT_LAYER"><aside class="declaration">#define </aside>ABOVE_BODY_FRONT_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L800">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 800"/></a>
+    </h3>
+    <p>The layer above mutant body parts</p><h3 id="define/ABOVE_SHOES_LAYER"><aside class="declaration">#define </aside>ABOVE_SHOES_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L798">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 798"/></a>
+    </h3>
+    <p>The layer above shoes</p><h3 id="define/ADMIN_HEAL_ALL"><aside class="declaration">#define </aside>ADMIN_HEAL_ALL
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L870">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 870"/></a>
+    </h3>
+    <p>Heals everything and is as strong as / is an admin heal</p><h3 id="define/ALL_EXTERNAL_OVERLAYS"><aside class="declaration">#define </aside>ALL_EXTERNAL_OVERLAYS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L778">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 778"/></a>
+    </h3>
+    <p>Draws organ on all EXTERNAL layers</p><h3 id="define/BACK_LAYER"><aside class="declaration">#define </aside>BACK_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L701">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 701"/></a>
+    </h3>
+    <p>Back layer (for backpacks and equipment on your back)</p><h3 id="define/BEAT_FAST"><aside class="declaration">#define </aside>BEAT_FAST
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 156"/></a>
+    </h3>
+    <p>Heartbeat is beating fast for hard crit</p><h3 id="define/BEAT_NONE"><aside class="declaration">#define </aside>BEAT_NONE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 160"/></a>
+    </h3>
+    <p>Heartbeat is gone... He's dead Jim :(</p><h3 id="define/BEAT_SLOW"><aside class="declaration">#define </aside>BEAT_SLOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 158"/></a>
+    </h3>
+    <p>Heartbeat is beating slow for soft crit</p><h3 id="define/BELT_LAYER"><aside class="declaration">#define </aside>BELT_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L695">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 695"/></a>
+    </h3>
+    <p>Belt layer</p><h3 id="define/BLOOD_REGEN_FACTOR"><aside class="declaration">#define </aside>BLOOD_REGEN_FACTOR
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 25"/></a>
+    </h3>
+    <p>How efficiently humans regenerate blood.</p><h3 id="define/BLOOD_STOP_TEMP"><aside class="declaration">#define </aside>BLOOD_STOP_TEMP
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 28"/></a>
+    </h3>
+    <p>Temperature at which blood loss and regen stops. <a href="mob/living/carbon/human.html#proc/handle_blood" title="/mob/living/carbon/human">/mob/living/carbon/human/proc/handle_blood</a></p><h3 id="define/BODYPARTS_HIGH_LAYER"><aside class="declaration">#define </aside>BODYPARTS_HIGH_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L683">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 683"/></a>
+    </h3>
+    <p>Layer for bodyparts that should appear above every other bodypart - Currently only used for hands</p><h3 id="define/BODYPARTS_LAYER"><aside class="declaration">#define </aside>BODYPARTS_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L656">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 656"/></a>
+    </h3>
+    <p>Layer for most bodyparts, appears above BODYPARTS_LOW_LAYER and below BODYPARTS_HIGH_LAYER</p><h3 id="define/BODYPARTS_LOW_LAYER"><aside class="declaration">#define </aside>BODYPARTS_LOW_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L654">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 654"/></a>
+    </h3>
+    <p>Layer for bodyparts that should appear behind every other bodypart - Mostly, legs when facing WEST or EAST</p><h3 id="define/BODYTYPE_ALIEN"><aside class="declaration">#define </aside>BODYTYPE_ALIEN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 93"/></a>
+    </h3>
+    <p>The limb is from a xenomorph.</p><h3 id="define/BODYTYPE_ALT_FACEWEAR_LAYER"><aside class="declaration">#define </aside>BODYTYPE_ALT_FACEWEAR_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 102"/></a>
+    </h3>
+    <p>The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear</p><h3 id="define/BODYTYPE_CUSTOM"><aside class="declaration">#define </aside>BODYTYPE_CUSTOM
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 96"/></a>
+    </h3>
+    <p>The limb fits a modular custom shape</p><h3 id="define/BODYTYPE_DIGITIGRADE"><aside class="declaration">#define </aside>BODYTYPE_DIGITIGRADE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 85"/></a>
+    </h3>
+    <p>The limb is digitigrade.</p><h3 id="define/BODYTYPE_HIDE_SHOES"><aside class="declaration">#define </aside>BODYTYPE_HIDE_SHOES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 100"/></a>
+    </h3>
+    <p>The limb causes shoes to no longer be displayed, useful for taurs.</p><h3 id="define/BODYTYPE_HUMANOID"><aside class="declaration">#define </aside>BODYTYPE_HUMANOID
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 83"/></a>
+    </h3>
+    <p>The limb fits the human mold. This is not meant to be literal, if the sprite &quot;fits&quot; on a human, it is &quot;humanoid&quot;, regardless of origin.</p><h3 id="define/BODYTYPE_LARVA_PLACEHOLDER"><aside class="declaration">#define </aside>BODYTYPE_LARVA_PLACEHOLDER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 91"/></a>
+    </h3>
+    <p>A placeholder bodytype for xeno larva, so their limbs cannot be attached to anything.</p><h3 id="define/BODYTYPE_MONKEY"><aside class="declaration">#define </aside>BODYTYPE_MONKEY
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 87"/></a>
+    </h3>
+    <p>The limb fits the monkey mold.</p><h3 id="define/BODYTYPE_ORGANIC"><aside class="declaration">#define </aside>BODYTYPE_ORGANIC
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 79"/></a>
+    </h3>
+    <p>The limb is organic.</p><h3 id="define/BODYTYPE_ROBOTIC"><aside class="declaration">#define </aside>BODYTYPE_ROBOTIC
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 81"/></a>
+    </h3>
+    <p>The limb is robotic.</p><h3 id="define/BODYTYPE_SNOUTED"><aside class="declaration">#define </aside>BODYTYPE_SNOUTED
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 89"/></a>
+    </h3>
+    <p>The limb is snouted.</p><h3 id="define/BODYTYPE_TAUR"><aside class="declaration">#define </aside>BODYTYPE_TAUR
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 98"/></a>
+    </h3>
+    <p>The limb fits a taur body</p><h3 id="define/BODY_ADJ_LAYER"><aside class="declaration">#define </aside>BODY_ADJ_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L658">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 658"/></a>
+    </h3>
+    <p>Mutantrace features (snout, body markings) that must appear above the body parts</p><h3 id="define/BODY_BEHIND_LAYER"><aside class="declaration">#define </aside>BODY_BEHIND_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L652">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 652"/></a>
+    </h3>
+    <p>Mutantrace features (tail when looking south) that must appear behind the body parts</p><h3 id="define/BODY_FRONT_LAYER"><aside class="declaration">#define </aside>BODY_FRONT_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L715">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 715"/></a>
+    </h3>
+    <p>Body front layer. Usually used for mutant bodyparts that need to be in front of stuff (e.g. cat ears)</p><h3 id="define/BODY_FRONT_UNDER_CLOTHES"><aside class="declaration">#define </aside>BODY_FRONT_UNDER_CLOTHES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L667">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 667"/></a>
+    </h3>
+    <p>This layer is used for things that shouldn't be over clothes, but should be over mutations</p><h3 id="define/BODY_LAYER"><aside class="declaration">#define </aside>BODY_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L660">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 660"/></a>
+    </h3>
+    <p>Underwear, undershirts, socks, eyes, lips(makeup)</p><h3 id="define/BP_BLOCK_CHANGE_SPECIES"><aside class="declaration">#define </aside>BP_BLOCK_CHANGE_SPECIES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 75"/></a>
+    </h3>
+    <p>Bodypart does not get replaced during set_species()</p><h3 id="define/CAN_SUCCUMB"><aside class="declaration">#define </aside>CAN_SUCCUMB
+            <aside>(target)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L558">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 558"/></a>
+    </h3>
+    <p>Returns whether or not the given mob can succumb</p><h3 id="define/CLIENT_FROM_VAR"><aside class="declaration">#define </aside>CLIENT_FROM_VAR
+            <aside>(I)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L806">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 806"/></a>
+    </h3>
+    <p>Get the client from the var</p><h3 id="define/CLOTHING_NUTRITION_GAIN"><aside class="declaration">#define </aside>CLOTHING_NUTRITION_GAIN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L443">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 443"/></a>
+    </h3>
+    <p>How much nutrition eating clothes as moth gives and drains</p><h3 id="define/DAMAGE_LAYER"><aside class="declaration">#define </aside>DAMAGE_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L664">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 664"/></a>
+    </h3>
+    <p>Damage indicators (cuts and burns)</p><h3 id="define/DIGITIGRADE_FORCED"><aside class="declaration">#define </aside>DIGITIGRADE_FORCED
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 147"/></a>
+    </h3>
+    <p>The species is forced to have digitigrade legs in generation.</p><h3 id="define/DIGITIGRADE_LEGS"><aside class="declaration">#define </aside>DIGITIGRADE_LEGS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 149"/></a>
+    </h3>
+    <p>Digitigrade's prefs, used in features for legs if you're meant to be a Digitigrade.</p><h3 id="define/DIGITIGRADE_NEVER"><aside class="declaration">#define </aside>DIGITIGRADE_NEVER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 143"/></a>
+    </h3>
+    <p>The species does not have digitigrade legs in generation.</p><h3 id="define/DIGITIGRADE_OPTIONAL"><aside class="declaration">#define </aside>DIGITIGRADE_OPTIONAL
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 145"/></a>
+    </h3>
+    <p>The species can have digitigrade legs in generation</p><h3 id="define/EARS_LAYER"><aside class="declaration">#define </aside>EARS_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L689">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 689"/></a>
+    </h3>
+    <p>Ears layer (Spessmen have ears? Wow)</p><h3 id="define/EXAMINE_MORE_WINDOW"><aside class="declaration">#define </aside>EXAMINE_MORE_WINDOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L545">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 545"/></a>
+    </h3>
+    <p>If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()</p><h3 id="define/EXTERNAL_ADJACENT"><aside class="declaration">#define </aside>EXTERNAL_ADJACENT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L774">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 774"/></a>
+    </h3>
+    <p>Draws organ on the BODY_ADJ_LAYER</p><h3 id="define/EXTERNAL_BEHIND"><aside class="declaration">#define </aside>EXTERNAL_BEHIND
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L776">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 776"/></a>
+    </h3>
+    <p>Draws organ on the BODY_BEHIND_LAYER</p><h3 id="define/EXTERNAL_FRONT"><aside class="declaration">#define </aside>EXTERNAL_FRONT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L772">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 772"/></a>
+    </h3>
+    <p>Draws organ on the BODY_FRONT_LAYER</p><h3 id="define/EXTERNAL_RESTYLE_ENAMEL"><aside class="declaration">#define </aside>EXTERNAL_RESTYLE_ENAMEL
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L786">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 786"/></a>
+    </h3>
+    <p>This organ allows restyling with enamel restyling (like a fucking file or something?). It's for horns and shit</p><h3 id="define/EXTERNAL_RESTYLE_FLESH"><aside class="declaration">#define </aside>EXTERNAL_RESTYLE_FLESH
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L784">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 784"/></a>
+    </h3>
+    <p>This organ allows restyling with flesh restyling stuff (surgery or something idk)</p><h3 id="define/EXTERNAL_RESTYLE_PLANT"><aside class="declaration">#define </aside>EXTERNAL_RESTYLE_PLANT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L782">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 782"/></a>
+    </h3>
+    <p>This organ allows restyle through plant restyling (like secateurs)</p><h3 id="define/EYE_CONTACT_RANGE"><aside class="declaration">#define </aside>EYE_CONTACT_RANGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L552">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 552"/></a>
+    </h3>
+    <p>How far away you can be to make eye contact with someone while examining</p><h3 id="define/EYE_CONTACT_WINDOW"><aside class="declaration">#define </aside>EYE_CONTACT_WINDOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L547">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 547"/></a>
+    </h3>
+    <p>If you examine another mob who's successfully examined you during this duration of time, you two try to make eye contact. Cute!</p><h3 id="define/FACEMASK_LAYER"><aside class="declaration">#define </aside>FACEMASK_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L705">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 705"/></a>
+    </h3>
+    <p>Facemask layer (gas masks, breath masks, etc.)</p><h3 id="define/FIRE_LAYER"><aside class="declaration">#define </aside>FIRE_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L725">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 725"/></a>
+    </h3>
+    <p>Fire layer when you're on fire</p><h3 id="define/FRONT_MUTATIONS_LAYER"><aside class="declaration">#define </aside>FRONT_MUTATIONS_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L662">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 662"/></a>
+    </h3>
+    <p>Mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)</p><h3 id="define/GLASSES_LAYER"><aside class="declaration">#define </aside>GLASSES_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L693">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 693"/></a>
+    </h3>
+    <p>Glasses layer</p><h3 id="define/GLOVES_LAYER"><aside class="declaration">#define </aside>GLOVES_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L685">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 685"/></a>
+    </h3>
+    <p>Gloves layer</p><h3 id="define/HAIR_LAYER"><aside class="declaration">#define </aside>HAIR_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L703">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 703"/></a>
+    </h3>
+    <p>Hair layer (mess with the fro and you got to go!)</p><h3 id="define/HALO_LAYER"><aside class="declaration">#define </aside>HALO_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L723">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 723"/></a>
+    </h3>
+    <p>Blood cult ascended halo layer, because there's currently no better solution for adding/removing</p><h3 id="define/HANDCUFF_LAYER"><aside class="declaration">#define </aside>HANDCUFF_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L709">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 709"/></a>
+    </h3>
+    <p>Handcuff layer (when your hands are cuffed)</p><h3 id="define/HANDS_LAYER"><aside class="declaration">#define </aside>HANDS_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L713">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 713"/></a>
+    </h3>
+    <p>Hands layer (for the actual hand, not the arm... I think?)</p><h3 id="define/HEAD_LAYER"><aside class="declaration">#define </aside>HEAD_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L707">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 707"/></a>
+    </h3>
+    <p>Head layer (hats, helmets, etc.)</p><h3 id="define/HEALING_TOUCH_ANYONE"><aside class="declaration">#define </aside>HEALING_TOUCH_ANYONE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L880">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 880"/></a>
+    </h3>
+    <p>Flags for whether you can heal yourself or not or only</p><h3 id="define/HEAL_ADMIN"><aside class="declaration">#define </aside>HEAL_ADMIN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L820">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 820"/></a>
+    </h3>
+    <p>Special flag that means this heal is an admin heal and goes above and beyond
+Note, this includes things like removing suicide status and handcuffs / legcuffs, use with slight caution.</p><h3 id="define/HEAL_AFFLICTIONS"><aside class="declaration">#define </aside>HEAL_AFFLICTIONS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L865">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 865"/></a>
+    </h3>
+    <p>Combination flag to heal negative things affecting the mob.</p><h3 id="define/HEAL_ALL"><aside class="declaration">#define </aside>HEAL_ALL
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L868">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 868"/></a>
+    </h3>
+    <p>Full heal that isn't admin forced</p><h3 id="define/HEAL_ALL_REAGENTS"><aside class="declaration">#define </aside>HEAL_ALL_REAGENTS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L844">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 844"/></a>
+    </h3>
+    <p>Removes all reagents present.</p><h3 id="define/HEAL_BLOOD"><aside class="declaration">#define </aside>HEAL_BLOOD
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L850">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 850"/></a>
+    </h3>
+    <p>Restores blood levels to normal.</p><h3 id="define/HEAL_BODY"><aside class="declaration">#define </aside>HEAL_BODY
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L863">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 863"/></a>
+    </h3>
+    <p>Combination flag to only heal things messed up things about the mob's body itself.</p><h3 id="define/HEAL_BRUTE"><aside class="declaration">#define </aside>HEAL_BRUTE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L822">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 822"/></a>
+    </h3>
+    <p>Heals all brute damage.</p><h3 id="define/HEAL_BURN"><aside class="declaration">#define </aside>HEAL_BURN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L824">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 824"/></a>
+    </h3>
+    <p>Heals all burn damage.</p><h3 id="define/HEAL_CC_STATUS"><aside class="declaration">#define </aside>HEAL_CC_STATUS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L856">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 856"/></a>
+    </h3>
+    <p>Same as above, removes all CC related status effects with this flag set that also have remove_on_fullheal = TRUE.</p><h3 id="define/HEAL_CLONE"><aside class="declaration">#define </aside>HEAL_CLONE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L830">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 830"/></a>
+    </h3>
+    <p>Heals all cellular damage.</p><h3 id="define/HEAL_DAMAGE"><aside class="declaration">#define </aside>HEAL_DAMAGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L861">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 861"/></a>
+    </h3>
+    <p>Combination flag to only heal the main damage types.</p><h3 id="define/HEAL_LIMBS"><aside class="declaration">#define </aside>HEAL_LIMBS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L834">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 834"/></a>
+    </h3>
+    <p>Restore all limbs to their initial state.</p><h3 id="define/HEAL_NEGATIVE_DISEASES"><aside class="declaration">#define </aside>HEAL_NEGATIVE_DISEASES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L846">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 846"/></a>
+    </h3>
+    <p>Removes all non-positive diseases.</p><h3 id="define/HEAL_NEGATIVE_MUTATIONS"><aside class="declaration">#define </aside>HEAL_NEGATIVE_MUTATIONS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L852">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 852"/></a>
+    </h3>
+    <p>Removes all non-positive mutations (neutral included).</p><h3 id="define/HEAL_ORGANS"><aside class="declaration">#define </aside>HEAL_ORGANS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L836">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 836"/></a>
+    </h3>
+    <p>Heals all organs from failing.</p><h3 id="define/HEAL_OXY"><aside class="declaration">#define </aside>HEAL_OXY
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L828">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 828"/></a>
+    </h3>
+    <p>Heals all oxyloss.</p><h3 id="define/HEAL_REFRESH_ORGANS"><aside class="declaration">#define </aside>HEAL_REFRESH_ORGANS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L838">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 838"/></a>
+    </h3>
+    <p>A &quot;super&quot; heal organs, this refreshes all organs entirely, deleting old and replacing them with new.</p><h3 id="define/HEAL_RESTRAINTS"><aside class="declaration">#define </aside>HEAL_RESTRAINTS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L858">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 858"/></a>
+    </h3>
+    <p>Deletes any restraints on the mob (handcuffs / legcuffs)</p><h3 id="define/HEAL_STAM"><aside class="declaration">#define </aside>HEAL_STAM
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L832">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 832"/></a>
+    </h3>
+    <p>Heals all stamina damage.</p><h3 id="define/HEAL_STATUS"><aside class="declaration">#define </aside>HEAL_STATUS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L854">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 854"/></a>
+    </h3>
+    <p>Removes status effects with this flag set that also have remove_on_fullheal = TRUE.</p><h3 id="define/HEAL_TEMP"><aside class="declaration">#define </aside>HEAL_TEMP
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L848">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 848"/></a>
+    </h3>
+    <p>Restores body temperature back to nominal.</p><h3 id="define/HEAL_TOX"><aside class="declaration">#define </aside>HEAL_TOX
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L826">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 826"/></a>
+    </h3>
+    <p>Heals all toxin damage, slime people included.</p><h3 id="define/HEAL_TRAUMAS"><aside class="declaration">#define </aside>HEAL_TRAUMAS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L842">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 842"/></a>
+    </h3>
+    <p>Removes all brain traumas, not including permanent ones.</p><h3 id="define/HEAL_WOUNDS"><aside class="declaration">#define </aside>HEAL_WOUNDS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L840">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 840"/></a>
+    </h3>
+    <p>Removes all wounds.</p><h3 id="define/ID_CARD_LAYER"><aside class="declaration">#define </aside>ID_CARD_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L681">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 681"/></a>
+    </h3>
+    <p>ID card layer (might be deprecated)</p><h3 id="define/ID_LAYER"><aside class="declaration">#define </aside>ID_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L679">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 679"/></a>
+    </h3>
+    <p>ID card layer</p><h3 id="define/INCORPOREAL_MOVE_BASIC"><aside class="declaration">#define </aside>INCORPOREAL_MOVE_BASIC
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L384">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 384"/></a>
+    </h3>
+    <p>normal movement, see: <a href="mob/living.html#var/incorporeal_move" title="/mob/living">/mob/living/var/incorporeal_move</a></p><h3 id="define/INCORPOREAL_MOVE_JAUNT"><aside class="declaration">#define </aside>INCORPOREAL_MOVE_JAUNT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 386"/></a>
+    </h3>
+    <p>is blocked by holy water/salt</p><h3 id="define/INCORPOREAL_MOVE_SHADOW"><aside class="declaration">#define </aside>INCORPOREAL_MOVE_SHADOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L385">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 385"/></a>
+    </h3>
+    <p>leaves a trail of shadows</p><h3 id="define/LEGCUFF_LAYER"><aside class="declaration">#define </aside>LEGCUFF_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L711">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 711"/></a>
+    </h3>
+    <p>Legcuff layer (when your feet are cuffed)</p><h3 id="define/LYING_DOWN"><aside class="declaration">#define </aside>LYING_DOWN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L564">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 564"/></a>
+    </h3>
+    <p>Mob is lying down, usually associated with lying_angle values of 90 or 270.</p><h3 id="define/MUTATIONS_LAYER"><aside class="declaration">#define </aside>MUTATIONS_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L650">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 650"/></a>
+    </h3>
+    <p>Mutations layer - Tk headglows, cold resistance glow, etc</p><h3 id="define/NECK_LAYER"><aside class="declaration">#define </aside>NECK_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L699">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 699"/></a>
+    </h3>
+    <p>Neck layer (for wearing ties and bedsheets)</p><h3 id="define/NO_BUCKLE_LYING"><aside class="declaration">#define </aside>NO_BUCKLE_LYING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L814">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 814"/></a>
+    </h3>
+    <p>Possible value of <a href="atom/movable.html#var/buckle_lying" title="/atom/movable">/atom/movable/buckle_lying</a>. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.</p><h3 id="define/NO_REPLACE"><aside class="declaration">#define </aside>NO_REPLACE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L877">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 877"/></a>
+    </h3>
+    <p>In dynamic human icon gen we don't replace the held item.</p><h3 id="define/PIXEL_Y_OFFSET_LYING"><aside class="declaration">#define </aside>PIXEL_Y_OFFSET_LYING
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L567">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 567"/></a>
+    </h3>
+    <p>How much a mob's sprite should be moved when they're lying down</p><h3 id="define/READING_CHECK_LITERACY"><aside class="declaration">#define </aside>READING_CHECK_LITERACY
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L873">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 873"/></a>
+    </h3>
+    <p>Checking flags for [/mob/proc/can_read()]</p><h3 id="define/RECENT_EXAMINE_MAX_WINDOW"><aside class="declaration">#define </aside>RECENT_EXAMINE_MAX_WINDOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L543">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 543"/></a>
+    </h3>
+    <p>How long it takes for an examined atom to be removed from recent_examines. Should be the max of the below time windows</p><h3 id="define/RESIZE_DEFAULT_SIZE"><aside class="declaration">#define </aside>RESIZE_DEFAULT_SIZE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L803">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 803"/></a>
+    </h3>
+    <p>The default mob sprite size (used for shrinking or enlarging the mob sprite to regular size)</p><h3 id="define/SHOCK_ILLUSION"><aside class="declaration">#define </aside>SHOCK_ILLUSION
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L378">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 378"/></a>
+    </h3>
+    <p>Used when an illusion shocks something. Makes the shock deal stamina damage and not trigger certain secondary effects.</p><h3 id="define/SHOCK_NOGLOVES"><aside class="declaration">#define </aside>SHOCK_NOGLOVES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 374"/></a>
+    </h3>
+    <p>Flags used by the flags parameter of electrocute act.
+Makes it so that the shock doesn't take gloves into account.</p><h3 id="define/SHOCK_NOSTUN"><aside class="declaration">#define </aside>SHOCK_NOSTUN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L380">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 380"/></a>
+    </h3>
+    <p>The shock doesn't stun.</p><h3 id="define/SHOCK_SUPPRESS_MESSAGE"><aside class="declaration">#define </aside>SHOCK_SUPPRESS_MESSAGE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L382">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 382"/></a>
+    </h3>
+    <p>No default message is sent from the shock</p><h3 id="define/SHOCK_TESLA"><aside class="declaration">#define </aside>SHOCK_TESLA
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 376"/></a>
+    </h3>
+    <p>Used when the shock is from a tesla bolt.</p><h3 id="define/SHOES_LAYER"><aside class="declaration">#define </aside>SHOES_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L687">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 687"/></a>
+    </h3>
+    <p>Shoes layer</p><h3 id="define/SPAWN_MEGAFAUNA"><aside class="declaration">#define </aside>SPAWN_MEGAFAUNA
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L570">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 570"/></a>
+    </h3>
+    <p>Define for spawning megafauna instead of a mob for cave gen</p><h3 id="define/SQUASHED_SHOULD_BE_DOWN"><aside class="declaration">#define </aside>SQUASHED_SHOULD_BE_DOWN
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L575">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 575"/></a>
+    </h3>
+    <p>Squash flags. For squashable element
+Whether or not the squashing requires the squashed mob to be lying down</p><h3 id="define/SQUASHED_SHOULD_BE_GIBBED"><aside class="declaration">#define </aside>SQUASHED_SHOULD_BE_GIBBED
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L577">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 577"/></a>
+    </h3>
+    <p>Whether or not to gib when the squashed mob is moved over</p><h3 id="define/STANDING_UP"><aside class="declaration">#define </aside>STANDING_UP
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L562">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 562"/></a>
+    </h3>
+    <p>Mob is standing up, usually associated with lying_angle value of 0.</p><h3 id="define/SUIT_LAYER"><aside class="declaration">#define </aside>SUIT_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L691">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 691"/></a>
+    </h3>
+    <p>Suit layer (armor, coats, etc.)</p><h3 id="define/SUIT_STORE_LAYER"><aside class="declaration">#define </aside>SUIT_STORE_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L697">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 697"/></a>
+    </h3>
+    <p>Suit storage layer (tucking a gun or baton underneath your armor)</p><h3 id="define/THROW_MODE_DISABLED"><aside class="declaration">#define </aside>THROW_MODE_DISABLED
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L602">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 602"/></a>
+    </h3>
+    <p>Throw modes, defines whether or not to turn off throw mode after</p><h3 id="define/TOTAL_LAYERS"><aside class="declaration">#define </aside>TOTAL_LAYERS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L647">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 647"/></a>
+    </h3>
+    <p>Total number of layers for mob overlays
+KEEP THIS UP-TO-DATE OR SHIT WILL BREAK
+Also consider updating layers_to_offset</p><h3 id="define/UNDER_HEAD_LAYER"><aside class="declaration">#define </aside>UNDER_HEAD_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L794">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 794"/></a>
+    </h3>
+    <p>The layer underneath the head (for hats)</p><h3 id="define/UNDER_SUIT_LAYER"><aside class="declaration">#define </aside>UNDER_SUIT_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L792">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 792"/></a>
+    </h3>
+    <p>The layer underneath the suit</p><h3 id="define/UNIFORM_LAYER"><aside class="declaration">#define </aside>UNIFORM_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L670">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 670"/></a>
+    </h3>
+    <p>Jumpsuit clothing layer</p><h3 id="define/VOMIT_PURPLE"><aside class="declaration">#define </aside>VOMIT_PURPLE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L811">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 811"/></a>
+    </h3>
+    <p>The mob will vomit a purple color</p><h3 id="define/VOMIT_TOXIC"><aside class="declaration">#define </aside>VOMIT_TOXIC
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L809">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 809"/></a>
+    </h3>
+    <p>The mob will vomit a green color</p><h3 id="define/WOUND_LAYER"><aside class="declaration">#define </aside>WOUND_LAYER
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L721">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 721"/></a>
+    </h3>
+    <p>Bleeding wound icons</p><h3 id="define/YAWN_PROPAGATION_EXAMINE_WINDOW"><aside class="declaration">#define </aside>YAWN_PROPAGATION_EXAMINE_WINDOW
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/mobs.dm#L549">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 549"/></a>
+    </h3>
+    <p>If you yawn while someone nearby has examined you within this time frame, it will force them to yawn as well. Tradecraft!</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

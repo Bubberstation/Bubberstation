@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;bodypart - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/bodypart.html#var">Var Details</a> - <a href="obj/item/bodypart.html#proc">Proc Details</a></header>
+<main>
+<h1>bodypart <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/attack_type">attack_type</a></th><td>Type of an attack from this limb does. Arms will do punches, Legs for kicks, and head for bites. (TO ADD: tactical chestbumps)</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/aux_zone_markings">aux_zone_markings</a></th><td>A list of all our aux zone markings(hands)</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/base_limb_id">base_limb_id</a></th><td>What is our normal limb ID? used for squashing legs.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/biological_state">biological_state</a></th><td>A bitfield of biological states, exclusively used to determine which wounds this limb will get,
+as well as how easily it will happen.
+Set to BIO_FLESH_BONE because most species have both flesh and bone in their limbs.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/bleed_overlay_icon">bleed_overlay_icon</a></th><td>If we're bleeding, which icon are we displaying on this part</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/body_damage_coeff">body_damage_coeff</a></th><td>A mutiplication of the burn and brute damage that the limb's stored damage contributes to its attached mob's overall wellbeing.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/body_part">body_part</a></th><td>bitflag used to check which clothes cover this bodypart</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/body_zone">body_zone</a></th><td>BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/bodypart_disabled">bodypart_disabled</a></th><td>Controls if the limb is disabled. TRUE means it is disabled (similar to being removed, but still present for the sake of targeted interactions).</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/bodypart_trait_source">bodypart_trait_source</a></th><td>The name of the trait source that the organ gives. Should not be altered during the events of gameplay, and will cause problems if it is.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/bodypart_traits">bodypart_traits</a></th><td>Traits that are given to the holder of the part. If you want an effect that changes this, don't add directly to this. Use the add_bodypart_trait() proc</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/bodytype">bodytype</a></th><td>A bitfield of bodytypes for clothing, surgery, and misc information</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/brute_dam">brute_dam</a></th><td>The current amount of brute damage the limb has</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/brute_reduction">brute_reduction</a></th><td>Amount subtracted from brute damage inflicted on the limb.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/brutestate">brutestate</a></th><td>Used in determining overlays for limb damage states. As the mob receives more burn/brute damage, their limbs update to reflect.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/burn_dam">burn_dam</a></th><td>The current amount of burn damage the limb has</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/burn_reduction">burn_reduction</a></th><td>Amount subtracted from burn damage inflicted on the limb.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/cached_bleed_rate">cached_bleed_rate</a></th><td>Our current bleed rate. Cached, update with refresh_bleed_rate()</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/can_be_disabled">can_be_disabled</a></th><td>Whether it is possible for the limb to be disabled whatsoever. TRUE means that it is possible.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/can_be_surgically_removed">can_be_surgically_removed</a></th><td>Whether or not this bodypart can be surgically removed. Independant of the <code>dismemberable</code> variable,
+meaning that you can have one and not the other, both or none, and all will still work. This only
+affects amputation and augmentation surgeries.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/change_exempt_flags">change_exempt_flags</a></th><td>Defines when a bodypart should not be changed. Example: BP_BLOCK_CHANGE_SPECIES prevents the limb from being overwritten on species gain</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/cremation_progress">cremation_progress</a></th><td>Gradually increases while burning when at full damage, destroys the limb when at 100</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/current_gauze">current_gauze</a></th><td>If we have a gauze wrapping currently applied</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/current_splint">current_splint</a></th><td>If we have a splint currently applied</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/current_style">current_style</a></th><td>The bodypart's currently applied style's name. Only necessary for bodyparts that come in multiple
+variants, like prosthetics and cyborg bodyparts.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/disabled_wound_penalty">disabled_wound_penalty</a></th><td>When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/disabling_threshold_percentage">disabling_threshold_percentage</a></th><td>Handles limb disabling by damage. If 0 (0%), a limb can't be disabled via damage. If 1 (100%), it is disabled at max limb damage. Anything between is the percentage of damage against maximum limb damage needed to disable the limb.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/dismemberable">dismemberable</a></th><td>whether the limb can be mutilated, including dismemberment for appendages and heads, and disembowelment for chests. TRUE means it can be subjected to these effects.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/dmg_overlay_type">dmg_overlay_type</a></th><td>the type of damage overlay (if any) to use when this bodypart is bruised/burned.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/draw_color">draw_color</a></th><td>The actual color a limb is drawn as, set by /proc/update_limb()</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/embedded_objects">embedded_objects</a></th><td>List of obj/item's embedded inside us. Managed by embedded components, do not modify directly</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/external_organs">external_organs</a></th><td>A list of all the external organs we've got stored to draw horns, wings and stuff with (special because we are actually in the limbs unlike normal organs :/ )</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/generic_bleedstacks">generic_bleedstacks</a></th><td>How much generic bleedstacks we have on this bodypart</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/grasped_by">grasped_by</a></th><td>If something is currently grasping this bodypart and trying to staunch bleeding (see <a href="obj/item/hand_item/self_grasp.html" title="/obj/item/hand_item/self_grasp">/obj/item/hand_item/self_grasp</a>)</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/held_index">held_index</a></th><td>are we a hand? if so, which one!</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/husk_type">husk_type</a></th><td>The type of husk for building an iconstate</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/icon_greyscale">icon_greyscale</a></th><td>The icon for Organic limbs using greyscale</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/icon_husk">icon_husk</a></th><td>The icon for husked limbs</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/icon_invisible">icon_invisible</a></th><td>The icon for invisible limbs</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/icon_static">icon_static</a></th><td>The icon for non-greyscale limbs</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/is_dimorphic">is_dimorphic</a></th><td>Is there a sprite difference between male and female?</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/is_husked">is_husked</a></th><td>Whether the bodypart (and the owner) is husked.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/is_invisible">is_invisible</a></th><td>Whether the bodypart (and the owner) is invisible through invisibleman trait.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/is_pseudopart">is_pseudopart</a></th><td>For limbs that don't really exist, eg chainsaws</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/last_maxed">last_maxed</a></th><td>So we know if we need to scream if this limb hits max damage</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/limb_id">limb_id</a></th><td>The ID of a species used to generate the icon. Needs to match the icon_state portion in the limbs file!</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/markings">markings</a></th><td>A list of all of our bodypart markings.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/markings_alpha">markings_alpha</a></th><td>The alpha override of our markings.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/max_damage">max_damage</a></th><td>The maximum brute OR burn damage a bodypart can take. Once we hit this cap, no more damage of either type!</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/organic_render">organic_render</a></th><td>Do we use an organic render for this robotic limb?</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/owner">owner</a></th><td>The mob that &quot;owns&quot; this limb
+DO NOT MODIFY DIRECTLY. Use set_owner()</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/plaintext_zone">plaintext_zone</a></th><td>The body zone of this part in english (&quot;chest&quot;, &quot;left arm&quot;, etc) without the species attached to it</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/rendered_bp_icon">rendered_bp_icon</a></th><td>What icon do we use to render this limb? Ususally used by robotic limb augments.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/scars">scars</a></th><td>The scars currently afflicting this body part</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/scars_covered_by_clothes">scars_covered_by_clothes</a></th><td>A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/should_draw_greyscale">should_draw_greyscale</a></th><td>Limbs need this information as a back-up incase they are generated outside of a carbon (limbgrower)</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/unarmed_attack_effect">unarmed_attack_effect</a></th><td>what visual effect is used when this limb is used to strike someone.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/unarmed_attack_sound">unarmed_attack_sound</a></th><td>Sounds when this bodypart is used in an umarmed attack</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/unarmed_attack_verb">unarmed_attack_verb</a></th><td>the verb used for an unarmed attack when using this limb, such as arm.unarmed_attack_verb = punch</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/unarmed_damage_high">unarmed_damage_high</a></th><td>Highest possible punch damage this bodypart can ive.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/unarmed_damage_low">unarmed_damage_low</a></th><td>Lowest possible punch damage this bodypart can give. If this is set to 0, unarmed attacks will always miss.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/unarmed_stun_threshold">unarmed_stun_threshold</a></th><td>Damage at which attacks from this bodypart will stun</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/variable_color">variable_color</a></th><td>An &quot;override&quot; color that can be applied to ANY limb, greyscale or not.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/wound_damage_multiplier">wound_damage_multiplier</a></th><td>Our current stored wound damage multiplier</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/wound_resistance">wound_resistance</a></th><td>This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#var/wounds">wounds</a></th><td>The wounds currently afflicting this body part</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/_embed_object">_embed_object</a></th><td>INTERNAL PROC, DO NOT USE
+Properly sets us up to manage an inserted embeded object</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/_unembed_object">_unembed_object</a></th><td>INTERNAL PROC, DO NOT USE
+Cleans up any attachment we have to the embedded object, removes it from our list</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/adjustBleedStacks">adjustBleedStacks</a></th><td>Modifies our generic bleedstacks. You must use this to change the variable
+Takes the amount to adjust by, and the lowest amount we're allowed to have post adjust</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/attempt_feature_restyle">attempt_feature_restyle</a></th><td>Asks the external organs inside the limb if they can restyle</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/can_attach_limb">can_attach_limb</a></th><td>Checks if you can attach a limb, returns TRUE if you can.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/change_appearance">change_appearance</a></th><td>A multi-purpose setter for all things immediately important to the icon and iconstate of the limb.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/check_for_injuries">check_for_injuries</a></th><td>Called when a bodypart is checked for injuries.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/check_wounding">check_wounding</a></th><td>check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/check_woundings_mods">check_woundings_mods</a></th><td>check_wounding_mods() is where we handle the various modifiers of a wound roll</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/dismember">dismember</a></th><td>Remove target limb from it's owner, with side effects.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/drop_limb">drop_limb</a></th><td>limb removal. The &quot;special&quot; argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/generate_husk_key">generate_husk_key</a></th><td>Generates a cache key specifically for husks</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/get_limb_icon">get_limb_icon</a></th><td>Generates an /image for the limb to be used as an overlay</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/get_mangled_state">get_mangled_state</a></th><td>get_mangled_state() is relevant for flesh and bone bodyparts, and returns whether this bodypart has mangled skin, mangled bone, or both (or neither i guess)</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/get_modified_bleed_rate">get_modified_bleed_rate</a></th><td>Returns our bleed rate, taking into account laying down and grabbing the limb</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/get_organs">get_organs</a></th><td>since organs aren't actually stored in the bodypart themselves while attached to a person, we have to query the owner for what we should have</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/get_wound_type">get_wound_type</a></th><td>Get whatever wound of the given type is currently attached to this limb, if any</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/on_attempt_feature_restyle">on_attempt_feature_restyle</a></th><td>Invoke async so we dont break signals</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/on_attempt_feature_restyle_mob">on_attempt_feature_restyle_mob</a></th><td>Someone used a restyling thingymajigga on our limb owner</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/on_owner_nolimbdisable_trait_gain">on_owner_nolimbdisable_trait_gain</a></th><td>Called when TRAIT_NOLIMBDISABLE is added to the owner.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/on_owner_nolimbdisable_trait_loss">on_owner_nolimbdisable_trait_loss</a></th><td>Called when TRAIT_NOLIMBDISABLE is removed from the owner.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/on_paralysis_trait_gain">on_paralysis_trait_gain</a></th><td>Called when TRAIT_PARALYSIS is added to the limb.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/on_paralysis_trait_loss">on_paralysis_trait_loss</a></th><td>Called when TRAIT_PARALYSIS is removed from the limb.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/painless_wound_roll">painless_wound_roll</a></th><td>Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/recolor_external_organs">recolor_external_organs</a></th><td>apply_gauze() is used to- well, apply gauze to a bodypart</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/refresh_bleed_rate">refresh_bleed_rate</a></th><td>Refresh the cache of our rate of bleeding sans any modifiers
+ANYTHING ADDED TO THIS PROC NEEDS TO CALL IT WHEN IT'S EFFECT CHANGES</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/replace_limb">replace_limb</a></th><td>Try to attach this bodypart to a mob, while replacing one if it exists, does nothing if it fails.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/reset_appearance">reset_appearance</a></th><td>Resets the base appearance of a limb to it's default values.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/setBleedStacks">setBleedStacks</a></th><td>Embedded objects effect bleed rate, gotta refresh lads
+Sets our generic bleedstacks</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/set_brute_dam">set_brute_dam</a></th><td>Proc to hook behavior associated to the change of the brute_dam variable's value.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/set_burn_dam">set_burn_dam</a></th><td>Proc to hook behavior associated to the change of the burn_dam variable's value.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/set_can_be_disabled">set_can_be_disabled</a></th><td>Proc to change the value of the <code>can_be_disabled</code> variable and react to the event of its change.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/set_disabled">set_disabled</a></th><td>Proc to change the value of the <code>disabled</code> variable and react to the event of its change.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/set_icon_static">set_icon_static</a></th><td></td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/set_owner">set_owner</a></th><td>Proc to change the value of the <code>owner</code> variable and react to the event of its change.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/synchronize_bodytypes">synchronize_bodytypes</a></th><td>Transfer existing hair properties to the new human.
+Makes sure that the owner's bodytype flags match the flags of all of it's parts.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/try_attach_limb">try_attach_limb</a></th><td>Attach src to target mob if able, returns FALSE if it fails to.</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/try_dismember">try_dismember</a></th><td>try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin and bone mangled, to actually roll for it</td></tr>
+            <tr><th><a href="obj/item/bodypart.html#proc/update_wounds">update_wounds</a></th><td>update_wounds() is called whenever a wound is gained or lost on this bodypart, as well as if there's a change of some kind on a bone wound possibly changing disabled status</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/attack_type"><aside class="declaration">var </aside>attack_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 173"/></a></h3>
+        <p>Type of an attack from this limb does. Arms will do punches, Legs for kicks, and head for bites. (TO ADD: tactical chestbumps)</p><h3 id="var/aux_zone_markings"><aside class="declaration">var </aside>aux_zone_markings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/bodyparts/code/_mutant_bodyparts.dm#L5">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;bodyparts&#x2F;code&#x2F;_mutant_bodyparts.dm 5"/></a></h3>
+        <p>A list of all our aux zone markings(hands)</p><h3 id="var/base_limb_id"><aside class="declaration">var </aside>base_limb_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/bodyparts/code/_mutant_bodyparts.dm#L9">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;bodyparts&#x2F;code&#x2F;_mutant_bodyparts.dm 9"/></a></h3>
+        <p>What is our normal limb ID? used for squashing legs.</p><h3 id="var/biological_state"><aside class="declaration">var </aside>biological_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 32"/></a></h3>
+        <p>A bitfield of biological states, exclusively used to determine which wounds this limb will get,
+as well as how easily it will happen.
+Set to BIO_FLESH_BONE because most species have both flesh and bone in their limbs.</p>
+<p>This has absolutely no meaning for robotic limbs.</p><h3 id="var/bleed_overlay_icon"><aside class="declaration">var </aside>bleed_overlay_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 116"/></a></h3>
+        <p>If we're bleeding, which icon are we displaying on this part</p><h3 id="var/body_damage_coeff"><aside class="declaration">var </aside>body_damage_coeff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 78"/></a></h3>
+        <p>A mutiplication of the burn and brute damage that the limb's stored damage contributes to its attached mob's overall wellbeing.</p><h3 id="var/body_part"><aside class="declaration">var </aside>body_part
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 58"/></a></h3>
+        <p>bitflag used to check which clothes cover this bodypart</p><h3 id="var/body_zone"><aside class="declaration">var </aside>body_zone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 52"/></a></h3>
+        <p>BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone</p><h3 id="var/bodypart_disabled"><aside class="declaration">var </aside>bodypart_disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 68"/></a></h3>
+        <p>Controls if the limb is disabled. TRUE means it is disabled (similar to being removed, but still present for the sake of targeted interactions).</p><h3 id="var/bodypart_trait_source"><aside class="declaration">var </aside>bodypart_trait_source
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 191"/></a></h3>
+        <p>The name of the trait source that the organ gives. Should not be altered during the events of gameplay, and will cause problems if it is.</p><h3 id="var/bodypart_traits"><aside class="declaration">var </aside>bodypart_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 189"/></a></h3>
+        <p>Traits that are given to the holder of the part. If you want an effect that changes this, don't add directly to this. Use the add_bodypart_trait() proc</p><h3 id="var/bodytype"><aside class="declaration">var </aside>bodytype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 34"/></a></h3>
+        <p>A bitfield of bodytypes for clothing, surgery, and misc information</p><h3 id="var/brute_dam"><aside class="declaration">var </aside>brute_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 83"/></a></h3>
+        <p>The current amount of brute damage the limb has</p><h3 id="var/brute_reduction"><aside class="declaration">var </aside>brute_reduction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 94"/></a></h3>
+        <p>Amount subtracted from brute damage inflicted on the limb.</p><h3 id="var/brutestate"><aside class="declaration">var </aside>brutestate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 80"/></a></h3>
+        <p>Used in determining overlays for limb damage states. As the mob receives more burn/brute damage, their limbs update to reflect.</p><h3 id="var/burn_dam"><aside class="declaration">var </aside>burn_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 85"/></a></h3>
+        <p>The current amount of burn damage the limb has</p><h3 id="var/burn_reduction"><aside class="declaration">var </aside>burn_reduction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 96"/></a></h3>
+        <p>Amount subtracted from burn damage inflicted on the limb.</p><h3 id="var/cached_bleed_rate"><aside class="declaration">var </aside>cached_bleed_rate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 149"/></a></h3>
+        <p>Our current bleed rate. Cached, update with refresh_bleed_rate()</p><h3 id="var/can_be_disabled"><aside class="declaration">var </aside>can_be_disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 73"/></a></h3>
+        <p>Whether it is possible for the limb to be disabled whatsoever. TRUE means that it is possible.</p><h3 id="var/can_be_surgically_removed"><aside class="declaration">var </aside>can_be_surgically_removed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/surgery/bodyparts/_bodyparts.dm#L5">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 5"/></a></h3>
+        <p>Whether or not this bodypart can be surgically removed. Independant of the <code>dismemberable</code> variable,
+meaning that you can have one and not the other, both or none, and all will still work. This only
+affects amputation and augmentation surgeries.</p><h3 id="var/change_exempt_flags"><aside class="declaration">var </aside>change_exempt_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 36"/></a></h3>
+        <p>Defines when a bodypart should not be changed. Example: BP_BLOCK_CHANGE_SPECIES prevents the limb from being overwritten on species gain</p><h3 id="var/cremation_progress"><aside class="declaration">var </aside>cremation_progress
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 90"/></a></h3>
+        <p>Gradually increases while burning when at full damage, destroys the limb when at 100</p><h3 id="var/current_gauze"><aside class="declaration">var </aside>current_gauze
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/bodypart_aid.html">bodypart_aid</a>/<a href="datum/bodypart_aid/gauze.html">gauze</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 158"/></a></h3>
+        <p>If we have a gauze wrapping currently applied</p><h3 id="var/current_splint"><aside class="declaration">var </aside>current_splint
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/bodypart_aid.html">bodypart_aid</a>/<a href="datum/bodypart_aid/splint.html">splint</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 160"/></a></h3>
+        <p>If we have a splint currently applied</p><h3 id="var/current_style"><aside class="declaration">var </aside>current_style
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/surgery/bodyparts/_bodyparts.dm#L8">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 8"/></a></h3>
+        <p>The bodypart's currently applied style's name. Only necessary for bodyparts that come in multiple
+variants, like prosthetics and cyborg bodyparts.</p><h3 id="var/disabled_wound_penalty"><aside class="declaration">var </aside>disabled_wound_penalty
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 142"/></a></h3>
+        <p>When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.</p><h3 id="var/disabling_threshold_percentage"><aside class="declaration">var </aside>disabling_threshold_percentage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 71"/></a></h3>
+        <p>Handles limb disabling by damage. If 0 (0%), a limb can't be disabled via damage. If 1 (100%), it is disabled at max limb damage. Anything between is the percentage of damage against maximum limb damage needed to disable the limb.</p><h3 id="var/dismemberable"><aside class="declaration">var </aside>dismemberable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 107"/></a></h3>
+        <p>whether the limb can be mutilated, including dismemberment for appendages and heads, and disembowelment for chests. TRUE means it can be subjected to these effects.</p><h3 id="var/dmg_overlay_type"><aside class="declaration">var </aside>dmg_overlay_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 114"/></a></h3>
+        <p>the type of damage overlay (if any) to use when this bodypart is bruised/burned.</p><h3 id="var/draw_color"><aside class="declaration">var </aside>draw_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 49"/></a></h3>
+        <p>The actual color a limb is drawn as, set by /proc/update_limb()</p><h3 id="var/embedded_objects"><aside class="declaration">var </aside>embedded_objects
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 60"/></a></h3>
+        <p>List of obj/item's embedded inside us. Managed by embedded components, do not modify directly</p><h3 id="var/external_organs"><aside class="declaration">var </aside>external_organs
+            <aside>&ndash; /list/obj/item/organ/external</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 170"/></a></h3>
+        <p>A list of all the external organs we've got stored to draw horns, wings and stuff with (special because we are actually in the limbs unlike normal organs :/ )</p><h3 id="var/generic_bleedstacks"><aside class="declaration">var </aside>generic_bleedstacks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 151"/></a></h3>
+        <p>How much generic bleedstacks we have on this bodypart</p><h3 id="var/grasped_by"><aside class="declaration">var </aside>grasped_by
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/hand_item/self_grasp.html">hand_item/self_grasp</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 167"/></a></h3>
+        <p>If something is currently grasping this bodypart and trying to staunch bleeding (see <a href="obj/item/hand_item/self_grasp.html" title="/obj/item/hand_item/self_grasp">/obj/item/hand_item/self_grasp</a>)</p><h3 id="var/held_index"><aside class="declaration">var </aside>held_index
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 62"/></a></h3>
+        <p>are we a hand? if so, which one!</p><h3 id="var/husk_type"><aside class="declaration">var </aside>husk_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 18"/></a></h3>
+        <p>The type of husk for building an iconstate</p><h3 id="var/icon_greyscale"><aside class="declaration">var </aside>icon_greyscale
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 10"/></a></h3>
+        <p>The icon for Organic limbs using greyscale</p><h3 id="var/icon_husk"><aside class="declaration">var </aside>icon_husk
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 14"/></a></h3>
+        <p>The icon for husked limbs</p><h3 id="var/icon_invisible"><aside class="declaration">var </aside>icon_invisible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 16"/></a></h3>
+        <p>The icon for invisible limbs</p><h3 id="var/icon_static"><aside class="declaration">var </aside>icon_static
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 12"/></a></h3>
+        <p>The icon for non-greyscale limbs</p><h3 id="var/is_dimorphic"><aside class="declaration">var </aside>is_dimorphic
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 47"/></a></h3>
+        <p>Is there a sprite difference between male and female?</p><h3 id="var/is_husked"><aside class="declaration">var </aside>is_husked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 39"/></a></h3>
+        <p>Whether the bodypart (and the owner) is husked.</p><h3 id="var/is_invisible"><aside class="declaration">var </aside>is_invisible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 41"/></a></h3>
+        <p>Whether the bodypart (and the owner) is invisible through invisibleman trait.</p><h3 id="var/is_pseudopart"><aside class="declaration">var </aside>is_pseudopart
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 64"/></a></h3>
+        <p>For limbs that don't really exist, eg chainsaws</p><h3 id="var/last_maxed"><aside class="declaration">var </aside>last_maxed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 147"/></a></h3>
+        <p>So we know if we need to scream if this limb hits max damage</p><h3 id="var/limb_id"><aside class="declaration">var </aside>limb_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 43"/></a></h3>
+        <p>The ID of a species used to generate the icon. Needs to match the icon_state portion in the limbs file!</p><h3 id="var/markings"><aside class="declaration">var </aside>markings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/bodyparts/code/_mutant_bodyparts.dm#L3">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;bodyparts&#x2F;code&#x2F;_mutant_bodyparts.dm 3"/></a></h3>
+        <p>A list of all of our bodypart markings.</p><h3 id="var/markings_alpha"><aside class="declaration">var </aside>markings_alpha
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/bodyparts/code/_mutant_bodyparts.dm#L7">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;bodyparts&#x2F;code&#x2F;_mutant_bodyparts.dm 7"/></a></h3>
+        <p>The alpha override of our markings.</p><h3 id="var/max_damage"><aside class="declaration">var </aside>max_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 87"/></a></h3>
+        <p>The maximum brute OR burn damage a bodypart can take. Once we hit this cap, no more damage of either type!</p><h3 id="var/organic_render"><aside class="declaration">var </aside>organic_render
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 164"/></a></h3>
+        <p>Do we use an organic render for this robotic limb?</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 23"/></a></h3>
+        <p>The mob that &quot;owns&quot; this limb
+DO NOT MODIFY DIRECTLY. Use set_owner()</p><h3 id="var/plaintext_zone"><aside class="declaration">var </aside>plaintext_zone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 54"/></a></h3>
+        <p>The body zone of this part in english (&quot;chest&quot;, &quot;left arm&quot;, etc) without the species attached to it</p><h3 id="var/rendered_bp_icon"><aside class="declaration">var </aside>rendered_bp_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 162"/></a></h3>
+        <p>What icon do we use to render this limb? Ususally used by robotic limb augments.</p><h3 id="var/scars"><aside class="declaration">var </aside>scars
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 135"/></a></h3>
+        <p>The scars currently afflicting this body part</p><h3 id="var/scars_covered_by_clothes"><aside class="declaration">var </aside>scars_covered_by_clothes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 145"/></a></h3>
+        <p>A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest</p><h3 id="var/should_draw_greyscale"><aside class="declaration">var </aside>should_draw_greyscale
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 102"/></a></h3>
+        <p>Limbs need this information as a back-up incase they are generated outside of a carbon (limbgrower)</p><h3 id="var/unarmed_attack_effect"><aside class="declaration">var </aside>unarmed_attack_effect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 177"/></a></h3>
+        <p>what visual effect is used when this limb is used to strike someone.</p><h3 id="var/unarmed_attack_sound"><aside class="declaration">var </aside>unarmed_attack_sound
+            <aside>&ndash; /sound</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 179"/></a></h3>
+        <p>Sounds when this bodypart is used in an umarmed attack</p><h3 id="var/unarmed_attack_verb"><aside class="declaration">var </aside>unarmed_attack_verb
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 175"/></a></h3>
+        <p>the verb used for an unarmed attack when using this limb, such as arm.unarmed_attack_verb = punch</p><h3 id="var/unarmed_damage_high"><aside class="declaration">var </aside>unarmed_damage_high
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 184"/></a></h3>
+        <p>Highest possible punch damage this bodypart can ive.</p><h3 id="var/unarmed_damage_low"><aside class="declaration">var </aside>unarmed_damage_low
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 182"/></a></h3>
+        <p>Lowest possible punch damage this bodypart can give. If this is set to 0, unarmed attacks will always miss.</p><h3 id="var/unarmed_stun_threshold"><aside class="declaration">var </aside>unarmed_stun_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 186"/></a></h3>
+        <p>Damage at which attacks from this bodypart will stun</p><h3 id="var/variable_color"><aside class="declaration">var </aside>variable_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 104"/></a></h3>
+        <p>An &quot;override&quot; color that can be applied to ANY limb, greyscale or not.</p><h3 id="var/wound_damage_multiplier"><aside class="declaration">var </aside>wound_damage_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 137"/></a></h3>
+        <p>Our current stored wound damage multiplier</p><h3 id="var/wound_resistance"><aside class="declaration">var </aside>wound_resistance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 140"/></a></h3>
+        <p>This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound</p><h3 id="var/wounds"><aside class="declaration">var </aside>wounds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 132"/></a></h3>
+        <p>The wounds currently afflicting this body part</p><h2 id="proc">Proc Details</h2><h3 id="proc/_embed_object"><aside class="declaration">proc </aside>_embed_object<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/embed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1032">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1032"/></a></aside>
+        </h3>
+        <p>INTERNAL PROC, DO NOT USE
+Properly sets us up to manage an inserted embeded object</p><h3 id="proc/_unembed_object"><aside class="declaration">proc </aside>_unembed_object<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/unembed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1042">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1042"/></a></aside>
+        </h3>
+        <p>INTERNAL PROC, DO NOT USE
+Cleans up any attachment we have to the embedded object, removes it from our list</p><h3 id="proc/adjustBleedStacks"><aside class="declaration">proc </aside>adjustBleedStacks<aside>(adjust_by, minimum) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1059">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1059"/></a></aside>
+        </h3>
+        <p>Modifies our generic bleedstacks. You must use this to change the variable
+Takes the amount to adjust by, and the lowest amount we're allowed to have post adjust</p><h3 id="proc/attempt_feature_restyle"><aside class="declaration">proc </aside>attempt_feature_restyle<aside>(/<a href="atom.html">atom</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/trimmer, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/original_target, body_zone, restyle_type, style_speed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/restyling.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;restyling.dm 32"/></a></aside>
+        </h3>
+        <p>Asks the external organs inside the limb if they can restyle</p><h3 id="proc/can_attach_limb"><aside class="declaration">proc </aside>can_attach_limb<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/new_limb_owner, special) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 302"/></a></aside>
+        </h3>
+        <p>Checks if you can attach a limb, returns TRUE if you can.</p><h3 id="proc/change_appearance"><aside class="declaration">proc </aside>change_appearance<aside>(icon, id, greyscale, dimorphic) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1212"/></a></aside>
+        </h3>
+        <p>A multi-purpose setter for all things immediately important to the icon and iconstate of the limb.</p><h3 id="proc/check_for_injuries"><aside class="declaration">proc </aside>check_for_injuries<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/examiner, /list/check_list) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 257"/></a></aside>
+        </h3>
+        <p>Called when a bodypart is checked for injuries.</p>
+<p>Modifies the check_list list with the resulting report of the limb's status.</p><h3 id="proc/check_wounding"><aside class="declaration">proc </aside>check_wounding<aside>(woundtype, damage, wound_bonus, bare_wound_bonus, attack_direction) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/wounds.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds.dm 58"/></a></aside>
+        </h3>
+        <p>check_wounding() is where we handle rolling for, selecting, and applying a wound if we meet the criteria</p>
+<p>We generate a &quot;score&quot; for how woundable the attack was based on the damage and other factors discussed in <a href="obj/item/bodypart.html#proc/check_woundings_mods" title="/obj/item/bodypart">/obj/item/bodypart/proc/check_woundings_mods</a>, then go down the list from most severe to least severe wounds in that category.
+We can promote a wound from a lesser to a higher severity this way, but we give up if we have a wound of the given type and fail to roll a higher severity, so no sidegrades/downgrades</p>
+<p>Arguments:</p>
+<ul>
+<li>woundtype- Either WOUND_BLUNT, WOUND_SLASH, WOUND_PIERCE, or WOUND_BURN based on the attack type.</li>
+<li>damage- How much damage is tied to this attack, since wounding potential scales with damage in an attack (see: WOUND_DAMAGE_EXPONENT)</li>
+<li>wound_bonus- The wound_bonus of an attack</li>
+<li>bare_wound_bonus- The bare_wound_bonus of an attack</li>
+</ul><h3 id="proc/check_woundings_mods"><aside class="declaration">proc </aside>check_woundings_mods<aside>(wounding_type, damage, wound_bonus, bare_wound_bonus) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/wounds.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds.dm 140"/></a></aside>
+        </h3>
+        <p>check_wounding_mods() is where we handle the various modifiers of a wound roll</p>
+<p>A short list of things we consider: any armor a human target may be wearing, and if they have no wound armor on the limb, if we have a bare_wound_bonus to apply, plus the plain wound_bonus
+We also flick through all of the wounds we currently have on this limb and add their threshold penalties, so that having lots of bad wounds makes you more liable to get hurt worse
+Lastly, we add the inherent wound_resistance variable the bodypart has (heads and chests are slightly harder to wound), and a small bonus if the limb is already disabled</p>
+<p>Arguments:</p>
+<ul>
+<li>It's the same ones on [/obj/item/bodypart/proc/receive_damage]</li>
+</ul><h3 id="proc/dismember"><aside class="declaration">proc </aside>dismember<aside>(dam_type, silent) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 7"/></a></aside>
+        </h3>
+        <p>Remove target limb from it's owner, with side effects.</p><h3 id="proc/drop_limb"><aside class="declaration">proc </aside>drop_limb<aside>(special, dismembered) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 86"/></a></aside>
+        </h3>
+        <p>limb removal. The &quot;special&quot; argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.</p><h3 id="proc/generate_husk_key"><aside class="declaration">proc </aside>generate_husk_key<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/mob/living/carbon/carbon_update_icons.dm#L556">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_update_icons.dm 556"/></a></aside>
+        </h3>
+        <p>Generates a cache key specifically for husks</p><h3 id="proc/get_limb_icon"><aside class="declaration">proc </aside>get_limb_icon<aside>(dropped) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L844">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 844"/></a></aside>
+        </h3>
+        <p>Generates an /image for the limb to be used as an overlay</p><h3 id="proc/get_mangled_state"><aside class="declaration">proc </aside>get_mangled_state<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 161"/></a></aside>
+        </h3>
+        <p>get_mangled_state() is relevant for flesh and bone bodyparts, and returns whether this bodypart has mangled skin, mangled bone, or both (or neither i guess)</p>
+<p>Dismemberment for flesh and bone requires the victim to have the skin on their bodypart destroyed (either a critical cut or piercing wound), and at least a hairline fracture
+(severe bone), at which point we can start rolling for dismembering. The attack must also deal at least 10 damage, and must be a brute attack of some kind (sorry for now, cakehat, maybe later)</p>
+<p>Returns: BODYPART_MANGLED_NONE if we're fine, BODYPART_MANGLED_FLESH if our skin is broken, BODYPART_MANGLED_BONE if our bone is broken, or BODYPART_MANGLED_BOTH if both are broken and we're up for dismembering</p><h3 id="proc/get_modified_bleed_rate"><aside class="declaration">proc </aside>get_modified_bleed_rate<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1113"/></a></aside>
+        </h3>
+        <p>Returns our bleed rate, taking into account laying down and grabbing the limb</p><h3 id="proc/get_organs"><aside class="declaration">proc </aside>get_organs<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L401">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 401"/></a></aside>
+        </h3>
+        <p>since organs aren't actually stored in the bodypart themselves while attached to a person, we have to query the owner for what we should have</p><h3 id="proc/get_wound_type"><aside class="declaration">proc </aside>get_wound_type<aside>(checking_type) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/wounds.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds.dm 175"/></a></aside>
+        </h3>
+        <p>Get whatever wound of the given type is currently attached to this limb, if any</p><h3 id="proc/on_attempt_feature_restyle"><aside class="declaration">proc </aside>on_attempt_feature_restyle<aside>(/<a href="atom.html">atom</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/trimmer, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/original_target, body_zone, restyle_type, style_speed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/restyling.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;restyling.dm 26"/></a></aside>
+        </h3>
+        <p>Invoke async so we dont break signals</p><h3 id="proc/on_attempt_feature_restyle_mob"><aside class="declaration">proc </aside>on_attempt_feature_restyle_mob<aside>(/<a href="atom.html">atom</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/trimmer, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/original_target, body_zone, restyle_type, style_speed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/restyling.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;restyling.dm 18"/></a></aside>
+        </h3>
+        <p>Someone used a restyling thingymajigga on our limb owner</p><h3 id="proc/on_owner_nolimbdisable_trait_gain"><aside class="declaration">proc </aside>on_owner_nolimbdisable_trait_gain<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/source) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L741">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 741"/></a></aside>
+        </h3>
+        <p>Called when TRAIT_NOLIMBDISABLE is added to the owner.</p><h3 id="proc/on_owner_nolimbdisable_trait_loss"><aside class="declaration">proc </aside>on_owner_nolimbdisable_trait_loss<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/source) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L749">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 749"/></a></aside>
+        </h3>
+        <p>Called when TRAIT_NOLIMBDISABLE is removed from the owner.</p><h3 id="proc/on_paralysis_trait_gain"><aside class="declaration">proc </aside>on_paralysis_trait_gain<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a>/source) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L723">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 723"/></a></aside>
+        </h3>
+        <p>Called when TRAIT_PARALYSIS is added to the limb.</p><h3 id="proc/on_paralysis_trait_loss"><aside class="declaration">proc </aside>on_paralysis_trait_loss<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a>/source) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L732">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 732"/></a></aside>
+        </h3>
+        <p>Called when TRAIT_PARALYSIS is removed from the limb.</p><h3 id="proc/painless_wound_roll"><aside class="declaration">proc </aside>painless_wound_roll<aside>(wounding_type, phantom_wounding_dmg, wound_bonus, bare_wound_bonus, sharpness) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/wounds.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds.dm 2"/></a></aside>
+        </h3>
+        <p>Allows us to roll for and apply a wound without actually dealing damage. Used for aggregate wounding power with pellet clouds</p><h3 id="proc/recolor_external_organs"><aside class="declaration">proc </aside>recolor_external_organs<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1207"/></a></aside>
+        </h3>
+        <p>apply_gauze() is used to- well, apply gauze to a bodypart</p>
+<p>As of the Wounds 2 PR, all bleeding is now bodypart based rather than the old bleedstacks system, and 90% of standard bleeding comes from flesh wounds (the exception is embedded weapons).
+The same way bleeding is totaled up by bodyparts, gauze now applies to all wounds on the same part. Thus, having a slash wound, a pierce wound, and a broken bone wound would have the gauze
+applying blood staunching to the first two wounds, while also acting as a sling for the third one. Once enough blood has been absorbed or all wounds with the ACCEPTS_GAUZE flag have been cleared,
+the gauze falls off.</p>
+<p>Arguments:</p>
+<ul>
+<li>gauze- Just the gauze stack we're taking a sheet from to apply here</li>
+</ul>
+<p>seep_gauze() is for when a gauze wrapping absorbs blood or pus from wounds, lowering its absorption capacity.</p>
+<p>The passed amount of seepage is deducted from the bandage's absorption capacity, and if we reach a negative absorption capacity, the bandages falls off and we're left with nothing.</p>
+<p>Arguments:</p>
+<ul>
+<li>seep_amt - How much absorption capacity we're removing from our current bandages (think, how much blood or pus are we soaking up this tick?)
+Loops through all of the bodypart's external organs and update's their color.</li>
+</ul><h3 id="proc/refresh_bleed_rate"><aside class="declaration">proc </aside>refresh_bleed_rate<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1080">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1080"/></a></aside>
+        </h3>
+        <p>Refresh the cache of our rate of bleeding sans any modifiers
+ANYTHING ADDED TO THIS PROC NEEDS TO CALL IT WHEN IT'S EFFECT CHANGES</p><h3 id="proc/replace_limb"><aside class="declaration">proc </aside>replace_limb<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/limb_owner, special) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 290"/></a></aside>
+        </h3>
+        <p>Try to attach this bodypart to a mob, while replacing one if it exists, does nothing if it fails.</p><h3 id="proc/reset_appearance"><aside class="declaration">proc </aside>reset_appearance<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1240"/></a></aside>
+        </h3>
+        <p>Resets the base appearance of a limb to it's default values.</p><h3 id="proc/setBleedStacks"><aside class="declaration">proc </aside>setBleedStacks<aside>(set_to) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L1053">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 1053"/></a></aside>
+        </h3>
+        <p>Embedded objects effect bleed rate, gotta refresh lads
+Sets our generic bleedstacks</p><h3 id="proc/set_brute_dam"><aside class="declaration">proc </aside>set_brute_dam<aside>(new_value) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L574">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 574"/></a></aside>
+        </h3>
+        <p>Proc to hook behavior associated to the change of the brute_dam variable's value.</p><h3 id="proc/set_burn_dam"><aside class="declaration">proc </aside>set_burn_dam<aside>(new_value) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L584">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 584"/></a></aside>
+        </h3>
+        <p>Proc to hook behavior associated to the change of the burn_dam variable's value.</p><h3 id="proc/set_can_be_disabled"><aside class="declaration">proc </aside>set_can_be_disabled<aside>(new_can_be_disabled) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L698">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 698"/></a></aside>
+        </h3>
+        <p>Proc to change the value of the <code>can_be_disabled</code> variable and react to the event of its change.</p><h3 id="proc/set_disabled"><aside class="declaration">proc </aside>set_disabled<aside>(new_disabled) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L640">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 640"/></a></aside>
+        </h3>
+        <p>Proc to change the value of the <code>disabled</code> variable and react to the event of its change.</p><h3 id="proc/set_icon_static"><aside class="declaration">proc </aside>set_icon_static<aside>(new_icon) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/customization/modules/surgery/bodyparts/_bodyparts.dm#L26">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;customization&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 26"/></a></aside>
+        </h3>
+        <hh1 id="this-should-only-be-ran-by-augments-if-you-dont-know-what-youre-doing-you-shouldnt-be-touching-this">This should only be ran by augments, if you don't know what you're doing, you shouldn't be touching this.</hh1>
+<p>A setter for the <code>icon_static</code> variable of the bodypart. Runs through <code>icon_exists()</code> for sanity, and it won't
+change anything in the event that the check fails.</p>
+<p>Arguments:</p>
+<ul>
+<li>new_icon - The new icon filepath that you want to replace <code>icon_static</code> with.</li>
+</ul><h3 id="proc/set_owner"><aside class="declaration">proc </aside>set_owner<aside>(new_owner) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/_bodyparts.dm#L656">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;_bodyparts.dm 656"/></a></aside>
+        </h3>
+        <p>Proc to change the value of the <code>owner</code> variable and react to the event of its change.</p><h3 id="proc/synchronize_bodytypes"><aside class="declaration">proc </aside>synchronize_bodytypes<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/carbon_owner) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L428">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 428"/></a></aside>
+        </h3>
+        <p>Transfer existing hair properties to the new human.
+Makes sure that the owner's bodytype flags match the flags of all of it's parts.</p><h3 id="proc/try_attach_limb"><aside class="declaration">proc </aside>try_attach_limb<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/new_limb_owner, special) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L312">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 312"/></a></aside>
+        </h3>
+        <p>Attach src to target mob if able, returns FALSE if it fails to.</p><h3 id="proc/try_dismember"><aside class="declaration">proc </aside>try_dismember<aside>(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/dismemberment.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;dismemberment.dm 183"/></a></aside>
+        </h3>
+        <p>try_dismember() is used, once we've confirmed that a flesh and bone bodypart has both the skin and bone mangled, to actually roll for it</p>
+<p>Mangling is described in the above proc, <a href="obj/item/bodypart.html#proc/get_mangled_state" title="/obj/item/bodypart">/obj/item/bodypart/proc/get_mangled_state</a>. This simply makes the roll for whether we actually dismember or not
+using how damaged the limb already is, and how much damage this blow was for. If we have a critical bone wound instead of just a severe, we add +10% to the roll.
+Lastly, we choose which kind of dismember we want based on the wounding type we hit with. Note we don't care about all the normal mods or armor for this</p>
+<p>Arguments:</p>
+<ul>
+<li>wounding_type: Either WOUND_BLUNT, WOUND_SLASH, or WOUND_PIERCE, basically only matters for the dismember message</li>
+<li>wounding_dmg: The damage of the strike that prompted this roll, higher damage = higher chance</li>
+<li>wound_bonus: Not actually used right now, but maybe someday</li>
+<li>bare_wound_bonus: ditto above</li>
+</ul><h3 id="proc/update_wounds"><aside class="declaration">proc </aside>update_wounds<aside>(replaced) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/bodyparts/wounds.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;bodyparts&#x2F;wounds.dm 194"/></a></aside>
+        </h3>
+        <p>update_wounds() is called whenever a wound is gained or lost on this bodypart, as well as if there's a change of some kind on a bone wound possibly changing disabled status</p>
+<p>Covers tabulating the damage multipliers we have from wounds (burn specifically), as well as deleting our gauze wrapping if we don't have any wounds that can use bandaging</p>
+<p>Arguments:</p>
+<ul>
+<li>replaced- If true, this is being called from the remove_wound() of a wound that's being replaced, so the bandage that already existed is still relevant, but the new wound hasn't been added yet</li>
+</ul></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

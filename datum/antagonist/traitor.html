@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;antagonist&#x2F;traitor - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/antagonist/traitor.html#var">Var Details</a> - <a href="datum/antagonist/traitor.html#proc">Proc Details</a></header>
+<main>
+<h1>traitor <aside>/<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a>/<a href="datum/antagonist/traitor.html">traitor</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 1"/></a></h1>
+
+<p>Progresionless traitor</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/employer">employer</a></th><td>the name of the antag flavor this traitor has.</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/ending_objective">ending_objective</a></th><td>The final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/give_uplink">give_uplink</a></th><td>give this traitor an uplink?</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/is_hijacker">is_hijacker</a></th><td>if TRUE, this traitor will always get hijacking as their final objective</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/progression_enabled">progression_enabled</a></th><td>If the traitor should have progression enabled or not on their uplink</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/traitor_flavor">traitor_flavor</a></th><td>assoc list of strings set up after employer is given</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/uplink_handler">uplink_handler</a></th><td>The uplink handler that this traitor belongs to.</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#var/uplink_ref">uplink_ref</a></th><td>reference to the uplink this traitor was given, if they were.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#proc/forge_ending_objective">forge_ending_objective</a></th><td></td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#proc/forge_escape_objective">forge_escape_objective</a></th><td>Forges a single escape objective and adds it to this datum's objective list.</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#proc/forge_single_generic_objective">forge_single_generic_objective</a></th><td>Adds a generic kill or steal objective to this datum's objective list.</td></tr>
+            <tr><th><a href="datum/antagonist/traitor.html#proc/forge_traitor_objectives">forge_traitor_objectives</a></th><td>Generates a complete set of traitor objectives up to the traitor objective limit, including non-generic objectives such as martyr and hijack.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/employer"><aside class="declaration">var </aside>employer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 20"/></a></h3>
+        <p>the name of the antag flavor this traitor has.</p><h3 id="var/ending_objective"><aside class="declaration">var </aside>ending_objective
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/objective.html">objective</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/modules/antagonists/traitor/datums/datum_traitor.dm#L8">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datums&#x2F;datum_traitor.dm 8"/></a></h3>
+        <p>The final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.</p><h3 id="var/give_uplink"><aside class="declaration">var </aside>give_uplink
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 15"/></a></h3>
+        <p>give this traitor an uplink?</p><h3 id="var/is_hijacker"><aside class="declaration">var </aside>is_hijacker
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 17"/></a></h3>
+        <p>if TRUE, this traitor will always get hijacking as their final objective</p><h3 id="var/progression_enabled"><aside class="declaration">var </aside>progression_enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/modules/antagonists/traitor/datums/datum_traitor.dm#L4">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datums&#x2F;datum_traitor.dm 4"/></a></h3>
+        <p>If the traitor should have progression enabled or not on their uplink</p><h3 id="var/traitor_flavor"><aside class="declaration">var </aside>traitor_flavor
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 23"/></a></h3>
+        <p>assoc list of strings set up after employer is given</p><h3 id="var/uplink_handler"><aside class="declaration">var </aside>uplink_handler
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/uplink_handler.html">uplink_handler</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 29"/></a></h3>
+        <p>The uplink handler that this traitor belongs to.</p><h3 id="var/uplink_ref"><aside class="declaration">var </aside>uplink_ref
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/datum_traitor.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;datum_traitor.dm 26"/></a></h3>
+        <p>reference to the uplink this traitor was given, if they were.</p><h2 id="proc">Proc Details</h2><h3 id="proc/forge_ending_objective"><aside class="declaration">proc </aside>forge_ending_objective<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/modules/antagonists/_common/objectives.dm#L57">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;modules&#x2F;antagonists&#x2F;_common&#x2F;objectives.dm 57"/></a></aside>
+        </h3>
+        <hh2 id="forge-ending-objective">forge_ending_objective</hh2>
+<p>Forges the endgame objective and adds it to this datum's objective list.</p><h3 id="proc/forge_escape_objective"><aside class="declaration">proc </aside>forge_escape_objective<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/modules/antagonists/_common/objectives.dm#L82">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;modules&#x2F;antagonists&#x2F;_common&#x2F;objectives.dm 82"/></a></aside>
+        </h3>
+        <p>Forges a single escape objective and adds it to this datum's objective list.</p><h3 id="proc/forge_single_generic_objective"><aside class="declaration">proc </aside>forge_single_generic_objective<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/modules/antagonists/_common/objectives.dm#L33">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;modules&#x2F;antagonists&#x2F;_common&#x2F;objectives.dm 33"/></a></aside>
+        </h3>
+        <p>Adds a generic kill or steal objective to this datum's objective list.</p><h3 id="proc/forge_traitor_objectives"><aside class="declaration">proc </aside>forge_traitor_objectives<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/modules/antagonists/_common/objectives.dm#L15">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;modules&#x2F;antagonists&#x2F;_common&#x2F;objectives.dm 15"/></a></aside>
+        </h3>
+        <p>Generates a complete set of traitor objectives up to the traitor objective limit, including non-generic objectives such as martyr and hijack.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

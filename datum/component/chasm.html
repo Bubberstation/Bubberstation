@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;chasm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/chasm.html#var">Var Details</a> - <a href="datum/component/chasm.html#proc">Proc Details</a></header>
+<main>
+<h1>chasm <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/chasm.html">chasm</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/chasm.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chasm.dm 5"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/chasm.html#var/falling_atoms">falling_atoms</a></th><td>List of refs to falling objects -&gt; how many levels deep we've fallen</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/chasm.html#proc/left_chasm">left_chasm</a></th><td>Called when something has left the chasm depths storage.
+Arguments</td></tr>
+            <tr><th><a href="datum/component/chasm.html#proc/on_revive">on_revive</a></th><td>Called if something comes back to life inside the pit. Expected sources are badmins and changelings.
+Ethereals should take enough damage to be smashed and not revive.</td></tr>
+            <tr><th><a href="datum/component/chasm.html#proc/remove_storage">remove_storage</a></th><td>Deletes the chasm storage object and removes empty weakrefs from global list</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/falling_atoms"><aside class="declaration">var </aside>falling_atoms
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/chasm.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chasm.dm 12"/></a></h3>
+        <p>List of refs to falling objects -&gt; how many levels deep we've fallen</p><h2 id="proc">Proc Details</h2><h3 id="proc/left_chasm"><aside class="declaration">proc </aside>left_chasm<aside>(/<a href="atom.html">atom</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/gone) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/chasm.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chasm.dm 207"/></a></aside>
+        </h3>
+        <p>Called when something has left the chasm depths storage.
+Arguments</p>
+<ul>
+<li>source - Chasm object holder.</li>
+<li>gone - Item which has just left the chasm contents.</li>
+</ul><h3 id="proc/on_revive"><aside class="declaration">proc </aside>on_revive<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/escapee) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/chasm.dm#L220">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chasm.dm 220"/></a></aside>
+        </h3>
+        <p>Called if something comes back to life inside the pit. Expected sources are badmins and changelings.
+Ethereals should take enough damage to be smashed and not revive.</p>
+<p>Arguments</p>
+<ul>
+<li>escapee - Lucky guy who just came back to life at the bottom of a hole.</li>
+</ul><h3 id="proc/remove_storage"><aside class="declaration">proc </aside>remove_storage<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/datums/components/chasm.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chasm.dm 50"/></a></aside>
+        </h3>
+        <p>Deletes the chasm storage object and removes empty weakrefs from global list</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

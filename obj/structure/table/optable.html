@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;table&#x2F;optable - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/table/optable.html#var">Var Details</a> - <a href="obj/structure/table/optable.html#proc">Proc Details</a></header>
+<main>
+<h1>optable <aside>/<a href="obj.html">obj</a>/<a href="obj/structure/table/optable.html">structure/table/optable</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/objects/structures/tables_racks.dm#L695">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 695"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#var/numbing_capable">numbing_capable</a></th><td>Is the Operating table able to preform numbing?</td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#var/stasis_capable">stasis_capable</a></th><td>Is the table able to put patients in stasis?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#proc/chill_out">chill_out</a></th><td>Is the patient already numbed?
+Used to numb a patient and apply stasis to them if enabled.</td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#proc/mark_patient">mark_patient</a></th><td>Any mob that enters our tile will be marked as a potential patient. They will be turned into a patient if they lie down.</td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#proc/recheck_patient">recheck_patient</a></th><td>Someone on our tile just lied down, got up, moved in, or moved out.
+potential_patient is the mob that had one of those four things change.
+The check is a bit broad so we can find a replacement patient.</td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#proc/thaw_them">thaw_them</a></th><td>Used to remove the effects of stasis and numbing when a patient is unbuckled</td></tr>
+            <tr><th><a href="obj/structure/table/optable.html#proc/unmark_patient">unmark_patient</a></th><td>Unmark the potential patient.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/numbing_capable"><aside class="declaration">var </aside>numbing_capable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/game/objects/structures/tables_racks.dm#L12">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 12"/></a></h3>
+        <p>Is the Operating table able to preform numbing?</p><h3 id="var/stasis_capable"><aside class="declaration">var </aside>stasis_capable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/game/objects/structures/tables_racks.dm#L10">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 10"/></a></h3>
+        <p>Is the table able to put patients in stasis?</p><h2 id="proc">Proc Details</h2><h3 id="proc/chill_out"><aside class="declaration">proc </aside>chill_out<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/game/objects/structures/tables_racks.dm#L16">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 16"/></a></aside>
+        </h3>
+        <p>Is the patient already numbed?
+Used to numb a patient and apply stasis to them if enabled.</p><h3 id="proc/mark_patient"><aside class="declaration">proc </aside>mark_patient<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/potential_patient) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/objects/structures/tables_racks.dm#L735">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 735"/></a></aside>
+        </h3>
+        <p>Any mob that enters our tile will be marked as a potential patient. They will be turned into a patient if they lie down.</p><h3 id="proc/recheck_patient"><aside class="declaration">proc </aside>recheck_patient<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/potential_patient) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/objects/structures/tables_racks.dm#L754">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 754"/></a></aside>
+        </h3>
+        <p>Someone on our tile just lied down, got up, moved in, or moved out.
+potential_patient is the mob that had one of those four things change.
+The check is a bit broad so we can find a replacement patient.</p><h3 id="proc/thaw_them"><aside class="declaration">proc </aside>thaw_them<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/master_files/code/game/objects/structures/tables_racks.dm#L31">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;master_files&#x2F;code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 31"/></a></aside>
+        </h3>
+        <p>Used to remove the effects of stasis and numbing when a patient is unbuckled</p><h3 id="proc/unmark_patient"><aside class="declaration">proc </aside>unmark_patient<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/potential_patient) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/game/objects/structures/tables_racks.dm#L743">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;tables_racks.dm 743"/></a></aside>
+        </h3>
+        <p>Unmark the potential patient.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

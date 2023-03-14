@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;text.dm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/text.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/text.dm 
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/text.html#define/FOURSPACES">FOURSPACES</a></th><td>Does 4 spaces. Used as a makeshift tabulator.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT">MAPTEXT</a></th><td>Prepares a text to be used for maptext. Use this so it doesn't look hideous.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT_VCR_OSD_MONO">MAPTEXT_VCR_OSD_MONO</a></th><td>Prepares a text to be used for maptext, using a font that can handle larger text better.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/WXH_TO_HEIGHT">WXH_TO_HEIGHT</a></th><td>Macro from Lummox used to get height from a MeasureText proc.
+resolves the MeasureText() return value once, then resolves the height, then sets return_var to that.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/SANITIZE_FILENAME">SANITIZE_FILENAME</a></th><td>Removes characters incompatible with file names.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/STRIP_HTML_SIMPLE">STRIP_HTML_SIMPLE</a></th><td>Simply removes the &lt; and &gt; characters, and limits the length of the message.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/STRIP_HTML_FULL">STRIP_HTML_FULL</a></th><td>Removes everything enclose in &lt; and &gt; inclusive of the bracket, and limits the length of the message.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/STRING_DIRECTORY">STRING_DIRECTORY</a></th><td>Folder directory for strings</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/BRAIN_DAMAGE_FILE">BRAIN_DAMAGE_FILE</a></th><td>File location for brain damage traumas</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/ION_FILE">ION_FILE</a></th><td>File location for AI ion laws</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/PIRATE_NAMES_FILE">PIRATE_NAMES_FILE</a></th><td>File location for pirate names</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/REDPILL_FILE">REDPILL_FILE</a></th><td>File location for redpill questions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/ARCADE_FILE">ARCADE_FILE</a></th><td>File location for arcade names</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/BOOMER_FILE">BOOMER_FILE</a></th><td>File location for boomer meme catchphrases</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/LOCATIONS_FILE">LOCATIONS_FILE</a></th><td>File location for locations on the station</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/WANTED_FILE">WANTED_FILE</a></th><td>File location for wanted posters messages</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/VISTA_FILE">VISTA_FILE</a></th><td>File location for really dumb suggestions memes</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/FLESH_SCAR_FILE">FLESH_SCAR_FILE</a></th><td>File location for flesh wound descriptions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/BONE_SCAR_FILE">BONE_SCAR_FILE</a></th><td>File location for bone wound descriptions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/SCAR_LOC_FILE">SCAR_LOC_FILE</a></th><td>File location for scar wound descriptions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/EXODRONE_FILE">EXODRONE_FILE</a></th><td>File location for exodrone descriptions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/CLOWN_NONSENSE_FILE">CLOWN_NONSENSE_FILE</a></th><td>File location for clown honk descriptions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/CULT_SHUTTLE_CURSE">CULT_SHUTTLE_CURSE</a></th><td>File location for cult shuttle curse descriptions</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/EIGENSTASIUM_FILE">EIGENSTASIUM_FILE</a></th><td>File location for eigenstasium lines</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/HALLUCINATION_FILE">HALLUCINATION_FILE</a></th><td>File location for hallucination lines</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/NINJA_FILE">NINJA_FILE</a></th><td>File location for ninja lines</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ARCADE_FILE"><aside class="declaration">#define </aside>ARCADE_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 40"/></a>
+    </h3>
+    <p>File location for arcade names</p><h3 id="define/BONE_SCAR_FILE"><aside class="declaration">#define </aside>BONE_SCAR_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 52"/></a>
+    </h3>
+    <p>File location for bone wound descriptions</p><h3 id="define/BOOMER_FILE"><aside class="declaration">#define </aside>BOOMER_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 42"/></a>
+    </h3>
+    <p>File location for boomer meme catchphrases</p><h3 id="define/BRAIN_DAMAGE_FILE"><aside class="declaration">#define </aside>BRAIN_DAMAGE_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 32"/></a>
+    </h3>
+    <p>File location for brain damage traumas</p><h3 id="define/CLOWN_NONSENSE_FILE"><aside class="declaration">#define </aside>CLOWN_NONSENSE_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 58"/></a>
+    </h3>
+    <p>File location for clown honk descriptions</p><h3 id="define/CULT_SHUTTLE_CURSE"><aside class="declaration">#define </aside>CULT_SHUTTLE_CURSE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 60"/></a>
+    </h3>
+    <p>File location for cult shuttle curse descriptions</p><h3 id="define/EIGENSTASIUM_FILE"><aside class="declaration">#define </aside>EIGENSTASIUM_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 62"/></a>
+    </h3>
+    <p>File location for eigenstasium lines</p><h3 id="define/EXODRONE_FILE"><aside class="declaration">#define </aside>EXODRONE_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 56"/></a>
+    </h3>
+    <p>File location for exodrone descriptions</p><h3 id="define/FLESH_SCAR_FILE"><aside class="declaration">#define </aside>FLESH_SCAR_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 50"/></a>
+    </h3>
+    <p>File location for flesh wound descriptions</p><h3 id="define/FOURSPACES"><aside class="declaration">#define </aside>FOURSPACES
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 2"/></a>
+    </h3>
+    <p>Does 4 spaces. Used as a makeshift tabulator.</p><h3 id="define/HALLUCINATION_FILE"><aside class="declaration">#define </aside>HALLUCINATION_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 64"/></a>
+    </h3>
+    <p>File location for hallucination lines</p><h3 id="define/ION_FILE"><aside class="declaration">#define </aside>ION_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 34"/></a>
+    </h3>
+    <p>File location for AI ion laws</p><h3 id="define/LOCATIONS_FILE"><aside class="declaration">#define </aside>LOCATIONS_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 44"/></a>
+    </h3>
+    <p>File location for locations on the station</p><h3 id="define/MAPTEXT"><aside class="declaration">#define </aside>MAPTEXT
+            <aside>(text)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 5"/></a>
+    </h3>
+    <p>Prepares a text to be used for maptext. Use this so it doesn't look hideous.</p><h3 id="define/MAPTEXT_VCR_OSD_MONO"><aside class="declaration">#define </aside>MAPTEXT_VCR_OSD_MONO
+            <aside>(text)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 8"/></a>
+    </h3>
+    <p>Prepares a text to be used for maptext, using a font that can handle larger text better.</p><h3 id="define/NINJA_FILE"><aside class="declaration">#define </aside>NINJA_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 66"/></a>
+    </h3>
+    <p>File location for ninja lines</p><h3 id="define/PIRATE_NAMES_FILE"><aside class="declaration">#define </aside>PIRATE_NAMES_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 36"/></a>
+    </h3>
+    <p>File location for pirate names</p><h3 id="define/REDPILL_FILE"><aside class="declaration">#define </aside>REDPILL_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 38"/></a>
+    </h3>
+    <p>File location for redpill questions</p><h3 id="define/SANITIZE_FILENAME"><aside class="declaration">#define </aside>SANITIZE_FILENAME
+            <aside>(text)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 19"/></a>
+    </h3>
+    <p>Removes characters incompatible with file names.</p><h3 id="define/SCAR_LOC_FILE"><aside class="declaration">#define </aside>SCAR_LOC_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 54"/></a>
+    </h3>
+    <p>File location for scar wound descriptions</p><h3 id="define/STRING_DIRECTORY"><aside class="declaration">#define </aside>STRING_DIRECTORY
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 28"/></a>
+    </h3>
+    <p>Folder directory for strings</p><h3 id="define/STRIP_HTML_FULL"><aside class="declaration">#define </aside>STRIP_HTML_FULL
+            <aside>(text, limit)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 25"/></a>
+    </h3>
+    <p>Removes everything enclose in &lt; and &gt; inclusive of the bracket, and limits the length of the message.</p><h3 id="define/STRIP_HTML_SIMPLE"><aside class="declaration">#define </aside>STRIP_HTML_SIMPLE
+            <aside>(text, limit)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 22"/></a>
+    </h3>
+    <p>Simply removes the &lt; and &gt; characters, and limits the length of the message.</p><h3 id="define/VISTA_FILE"><aside class="declaration">#define </aside>VISTA_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 48"/></a>
+    </h3>
+    <p>File location for really dumb suggestions memes</p><h3 id="define/WANTED_FILE"><aside class="declaration">#define </aside>WANTED_FILE
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 46"/></a>
+    </h3>
+    <p>File location for wanted posters messages</p><h3 id="define/WXH_TO_HEIGHT"><aside class="declaration">#define </aside>WXH_TO_HEIGHT
+            <aside>(measurement, return_var)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/text.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 12"/></a>
+    </h3>
+    <p>Macro from Lummox used to get height from a MeasureText proc.
+resolves the MeasureText() return value once, then resolves the height, then sets return_var to that.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

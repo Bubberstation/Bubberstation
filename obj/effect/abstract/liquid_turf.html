@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;abstract&#x2F;liquid_turf - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/abstract/liquid_turf.html#var">Var Details</a> - <a href="obj/effect/abstract/liquid_turf.html#proc">Proc Details</a></header>
+<main>
+<h1>liquid_turf <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/abstract/liquid_turf.html">effect/abstract/liquid_turf</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/liquids/code/liquid_systems/liquid_effect.dm#L1">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;liquids&#x2F;code&#x2F;liquid_systems&#x2F;liquid_effect.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/abstract/liquid_turf.html#var/liquid_state_messages">liquid_state_messages</a></th><td>State-specific message chunks for examine_turf()</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/abstract/liquid_turf.html#proc/add_liquid_overlay">add_liquid_overlay</a></th><td>Add liquid effect overlay.</td></tr>
+            <tr><th><a href="obj/effect/abstract/liquid_turf.html#proc/add_state_layer">add_state_layer</a></th><td>Add over and underlays for different liquid states.</td></tr>
+            <tr><th><a href="obj/effect/abstract/liquid_turf.html#proc/examine_turf">examine_turf</a></th><td>Handles COMSIG_PARENT_EXAMINE for the turf.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/liquid_state_messages"><aside class="declaration">var </aside>liquid_state_messages
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/liquids/code/liquid_systems/liquid_effect.dm#L40">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;liquids&#x2F;code&#x2F;liquid_systems&#x2F;liquid_effect.dm 40"/></a></h3>
+        <p>State-specific message chunks for examine_turf()</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_liquid_overlay"><aside class="declaration">proc </aside>add_liquid_overlay<aside>(overlay_state, overlay_layer, overlay_plane) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/liquids/code/liquid_systems/liquid_effect.dm#L205">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;liquids&#x2F;code&#x2F;liquid_systems&#x2F;liquid_effect.dm 205"/></a></aside>
+        </h3>
+        <p>Add liquid effect overlay.</p>
+<p>Arguments:</p>
+<ul>
+<li>overlay_state - the icon state of the new overlay</li>
+<li>overlay_layer - the layer</li>
+<li>overlay_plane - the plane</li>
+</ul><h3 id="proc/add_state_layer"><aside class="declaration">proc </aside>add_state_layer<aside>(state, has_top) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/liquids/code/liquid_systems/liquid_effect.dm#L223">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;liquids&#x2F;code&#x2F;liquid_systems&#x2F;liquid_effect.dm 223"/></a></aside>
+        </h3>
+        <p>Add over and underlays for different liquid states.</p>
+<p>Arguments:</p>
+<ul>
+<li>state - the stage number.</li>
+<li>has_top - if this stage has a top.</li>
+</ul><h3 id="proc/examine_turf"><aside class="declaration">proc </aside>examine_turf<aside>(/<a href="turf.html">turf</a>/source, /<a href="mob.html">mob</a>/examiner, /list/examine_list) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/modular_skyrat/modules/liquids/code/liquid_systems/liquid_effect.dm#L554">
+        <img src="git.png" width="16" height="16" title="modular_skyrat&#x2F;modules&#x2F;liquids&#x2F;code&#x2F;liquid_systems&#x2F;liquid_effect.dm 554"/></a></aside>
+        </h3>
+        <p>Handles COMSIG_PARENT_EXAMINE for the turf.</p>
+<p>Adds reagent info to examine text.
+Arguments:</p>
+<ul>
+<li>source - the turf we're peekin at</li>
+<li>examiner - the user</li>
+<li>examine_text - the examine list</li>
+</ul></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

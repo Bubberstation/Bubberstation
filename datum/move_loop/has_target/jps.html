@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;move_loop&#x2F;has_target&#x2F;jps - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/move_loop/has_target/jps.html#var">Var Details</a> - <a href="datum/move_loop/has_target/jps.html#proc">Proc Details</a></header>
+<main>
+<h1>jps <aside>/<a href="datum.html">datum</a>/<a href="datum/move_loop.html">move_loop</a>/<a href="datum/move_loop/has_target.html">has_target</a>/<a href="datum/move_loop/has_target/jps.html">jps</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 365"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/avoid">avoid</a></th><td>A perticular turf to avoid</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/id">id</a></th><td>An ID card representing what access we have and what doors we can open. Kill me</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/is_pathing">is_pathing</a></th><td>Bool used to determine if we're already making a path in JPS. this prevents us from re-pathing while we're already busy.</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/max_path_length">max_path_length</a></th><td>Max amount of steps to search</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/minimum_distance">minimum_distance</a></th><td>Minimum distance to the target before path returns</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/movement_path">movement_path</a></th><td>A list for the path we're currently following</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/on_finish_callback">on_finish_callback</a></th><td>Callback to invoke once we make a path</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/repath_cooldown">repath_cooldown</a></th><td>Cooldown for repathing, prevents spam</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/repath_delay">repath_delay</a></th><td>How often we're allowed to recalculate our path</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/simulated_only">simulated_only</a></th><td>Whether we consider turfs without atmos simulation (AKA do we want to ignore space)</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#var/skip_first">skip_first</a></th><td>Should we skip the first step? This is the tile we're currently on, which breaks some things</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#proc/on_finish_pathing">on_finish_pathing</a></th><td>Called when a path has finished being created</td></tr>
+            <tr><th><a href="datum/move_loop/has_target/jps.html#proc/recalculate_path">recalculate_path</a></th><td>Tries to calculate a new path for this moveloop.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/avoid"><aside class="declaration">var </aside>avoid
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L377">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 377"/></a></h3>
+        <p>A perticular turf to avoid</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/card/id.html">card/id</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L373">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 373"/></a></h3>
+        <p>An ID card representing what access we have and what doors we can open. Kill me</p><h3 id="var/is_pathing"><aside class="declaration">var </aside>is_pathing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L385">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 385"/></a></h3>
+        <p>Bool used to determine if we're already making a path in JPS. this prevents us from re-pathing while we're already busy.</p><h3 id="var/max_path_length"><aside class="declaration">var </aside>max_path_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 369"/></a></h3>
+        <p>Max amount of steps to search</p><h3 id="var/minimum_distance"><aside class="declaration">var </aside>minimum_distance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L371">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 371"/></a></h3>
+        <p>Minimum distance to the target before path returns</p><h3 id="var/movement_path"><aside class="declaration">var </aside>movement_path
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 381"/></a></h3>
+        <p>A list for the path we're currently following</p><h3 id="var/on_finish_callback"><aside class="declaration">var </aside>on_finish_callback
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L389">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 389"/></a></h3>
+        <p>Callback to invoke once we make a path</p><h3 id="var/repath_cooldown"><aside class="declaration">var </aside>repath_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L383">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 383"/></a></h3>
+        <p>Cooldown for repathing, prevents spam</p><h3 id="var/repath_delay"><aside class="declaration">var </aside>repath_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 367"/></a></h3>
+        <p>How often we're allowed to recalculate our path</p><h3 id="var/simulated_only"><aside class="declaration">var </aside>simulated_only
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L375">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 375"/></a></h3>
+        <p>Whether we consider turfs without atmos simulation (AKA do we want to ignore space)</p><h3 id="var/skip_first"><aside class="declaration">var </aside>skip_first
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L379">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 379"/></a></h3>
+        <p>Should we skip the first step? This is the tile we're currently on, which breaks some things</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_finish_pathing"><aside class="declaration">proc </aside>on_finish_pathing<aside>(/list/path) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L441">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 441"/></a></aside>
+        </h3>
+        <p>Called when a path has finished being created</p><h3 id="proc/recalculate_path"><aside class="declaration">proc </aside>recalculate_path<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/controllers/subsystem/movement/movement_types.dm#L432">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;movement&#x2F;movement_types.dm 432"/></a></aside>
+        </h3>
+        <p>Tries to calculate a new path for this moveloop.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

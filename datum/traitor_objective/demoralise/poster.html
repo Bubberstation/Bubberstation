@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;traitor_objective&#x2F;demoralise&#x2F;poster - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/traitor_objective/demoralise/poster.html#var">Var Details</a> - <a href="datum/traitor_objective/demoralise/poster.html#proc">Proc Details</a></header>
+<main>
+<h1>poster <aside>/<a href="datum.html">datum</a>/<a href="datum/traitor_objective.html">traitor_objective</a>/<a href="datum/traitor_objective/demoralise.html">demoralise</a>/<a href="datum/traitor_objective/demoralise/poster.html">poster</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/objectives/demoralise_poster.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;objectives&#x2F;demoralise_poster.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/traitor_objective/demoralise/poster.html#var/granted_posters">granted_posters</a></th><td>Have we handed out a box of stuff yet?</td></tr>
+            <tr><th><a href="datum/traitor_objective/demoralise/poster.html#var/posters">posters</a></th><td>All of the posters the traitor gets, if this list is empty they've failed</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/traitor_objective/demoralise/poster.html#proc/on_poster_destroy">on_poster_destroy</a></th><td>Handles a poster being destroyed, increasing your progress towards failure.</td></tr>
+            <tr><th><a href="datum/traitor_objective/demoralise/poster.html#proc/on_triggered_trap">on_triggered_trap</a></th><td>Called if someone gets glass stuck in their hand from one of your posters.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/granted_posters"><aside class="declaration">var </aside>granted_posters
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/objectives/demoralise_poster.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;objectives&#x2F;demoralise_poster.dm 12"/></a></h3>
+        <p>Have we handed out a box of stuff yet?</p><h3 id="var/posters"><aside class="declaration">var </aside>posters
+            <aside>&ndash; /list/obj/structure/sign/poster/traitor</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/objectives/demoralise_poster.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;objectives&#x2F;demoralise_poster.dm 14"/></a></h3>
+        <p>All of the posters the traitor gets, if this list is empty they've failed</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_poster_destroy"><aside class="declaration">proc </aside>on_poster_destroy<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure/sign.html">structure/sign</a>/<a href="obj/structure/sign/poster.html">poster</a>/<a href="obj/structure/sign/poster/traitor.html">traitor</a>/poster) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/objectives/demoralise_poster.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;objectives&#x2F;demoralise_poster.dm 72"/></a></aside>
+        </h3>
+        <p>Handles a poster being destroyed, increasing your progress towards failure.</p>
+<p>Arguments</p>
+<ul>
+<li>poster - A poster which someone just ripped up.</li>
+</ul><h3 id="proc/on_triggered_trap"><aside class="declaration">proc </aside>on_triggered_trap<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/victim) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/antagonists/traitor/objectives/demoralise_poster.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;traitor&#x2F;objectives&#x2F;demoralise_poster.dm 62"/></a></aside>
+        </h3>
+        <p>Called if someone gets glass stuck in their hand from one of your posters.</p>
+<p>Arguments</p>
+<ul>
+<li>victim - A mob who just got something stuck in their hand.</li>
+</ul></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

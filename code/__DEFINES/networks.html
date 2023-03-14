@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;networks.dm - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/networks.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/networks.dm 
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/networks.html#define/NETWORK_NAME_COMBINE">NETWORK_NAME_COMBINE</a></th><td>To debug networks use this to check
+We do some macro magic to make sure the strings are created at compile time rather than runtime
+We do it this way so that if someone changes any of the names of networks we don't have to hunt down
+all the constants though all the files for them.  hurrah!
+Ugh, couldn't get recursive stringafy to work in byond for some reason</td></tr>
+        <tr><th><a href="code/__DEFINES/networks.html#define/__STATION_NETWORK_ROOT">__STATION_NETWORK_ROOT</a></th><td>Station network names.  Used as the root networks for main parts of the station</td></tr>
+        <tr><th><a href="code/__DEFINES/networks.html#define/__NETWORK_LIMBO">__NETWORK_LIMBO</a></th><td>various sub networks pieces</td></tr>
+        <tr><th><a href="code/__DEFINES/networks.html#define/NETWORK_TABLETS">NETWORK_TABLETS</a></th><td>Various combined subnetworks</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/simple_network_name_fix">simple_network_name_fix</a></th>
+                <td>Network name should be all caps and no punctuation except for _ and . between domains
+This does a quick an dirty fix to a network name to make sure it works</td></tr>
+        <tr><th><a href="code/__DEFINES/networks.html#define/NETWORK_PORT_DISCONNECTED">NETWORK_PORT_DISCONNECTED</a></th><td>Port protocol.  A port is just a list with a few vars that are used to send signals
+that something is refreshed or updated.  These macros make it faster rather than
+calling procs</td></tr>
+        <tr><th><a href="code/__DEFINES/networks.html#define/NETWORK_ERROR_OK">NETWORK_ERROR_OK</a></th><td>Error codes</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/NETWORK_ERROR_OK"><aside class="declaration">#define </aside>NETWORK_ERROR_OK
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm 79"/></a>
+    </h3>
+    <p>Error codes</p><h3 id="define/NETWORK_NAME_COMBINE"><aside class="declaration">#define </aside>NETWORK_NAME_COMBINE
+            <aside>(L, R)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm 14"/></a>
+    </h3>
+    <p>To debug networks use this to check
+We do some macro magic to make sure the strings are created at compile time rather than runtime
+We do it this way so that if someone changes any of the names of networks we don't have to hunt down
+all the constants though all the files for them.  hurrah!
+Ugh, couldn't get recursive stringafy to work in byond for some reason</p><h3 id="define/NETWORK_PORT_DISCONNECTED"><aside class="declaration">#define </aside>NETWORK_PORT_DISCONNECTED
+            <aside>(LIST)</aside>
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm 71"/></a>
+    </h3>
+    <p>Port protocol.  A port is just a list with a few vars that are used to send signals
+that something is refreshed or updated.  These macros make it faster rather than
+calling procs</p><h3 id="define/NETWORK_TABLETS"><aside class="declaration">#define </aside>NETWORK_TABLETS
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm 34"/></a>
+    </h3>
+    <p>Various combined subnetworks</p><h3 id="define/__NETWORK_LIMBO"><aside class="declaration">#define </aside>__NETWORK_LIMBO
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm 23"/></a>
+    </h3>
+    <p>various sub networks pieces</p><h3 id="define/__STATION_NETWORK_ROOT"><aside class="declaration">#define </aside>__STATION_NETWORK_ROOT
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/__DEFINES/networks.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;networks.dm 17"/></a>
+    </h3>
+    <p>Station network names.  Used as the root networks for main parts of the station</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>

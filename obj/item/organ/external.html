@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;organ&#x2F;external - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/organ/external.html#var">Var Details</a> - <a href="obj/item/organ/external.html#proc">Proc Details</a></header>
+<main>
+<h1>external <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/organ.html">organ</a>/<a href="obj/item/organ/external.html">external</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 6"/></a></h1>
+
+<p>System for drawing organs with overlays. These overlays are drawn directly on the bodypart, attached to a person or not
+Works in tandem with the /datum/sprite_accessory datum to generate sprites
+Unlike normal organs, we're actually inside a persons limbs at all times</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/all_layers">all_layers</a></th><td>Convert the bitflag define into the actual layer define</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/apply_color_to_layer">apply_color_to_layer</a></th><td>FALSE will set the color on the organ, TRUE will call get_overlay_color() for every layer and put it directly on the overlay</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/cache_key">cache_key</a></th><td>Key of the icon states of all the sprite_datums for easy caching</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/color_source">color_source</a></th><td>Where does this organ inherit it's color from?</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/dna_block">dna_block</a></th><td>With what DNA block do we mutate in mutate_feature() ? For genetics</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/draw_color">draw_color</a></th><td>The color this organ draws with. Updated by bodypart/inherit_color()</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/external_bodytypes">external_bodytypes</a></th><td>Does this organ have any bodytypes to pass to it's ownerlimb?</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/feature_key">feature_key</a></th><td>Defines what kind of 'organ' we're looking at. Sprites have names like 'm_mothwings_firemoth'. 'mothwings' would then be feature_key</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/layers">layers</a></th><td>Sometimes we need multiple layers, for like the back, middle and front of the person</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/ownerlimb">ownerlimb</a></th><td>Reference to the limb we're inside of</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/preference">preference</a></th><td>The savefile_key of the preference this relates to. Used for the preferences UI.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/render_key">render_key</a></th><td>Similar to feature key, but overrides it in the case you need more fine control over the iconstate, like with Tails.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/restyle_flags">restyle_flags</a></th><td>Which flags does a 'modification tool' need to have to restyle us, if it all possible (located in code/_DEFINES/mobs)</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/sprite_datum">sprite_datum</a></th><td>Sprite datum we use to draw on the bodypart</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/stored_feature_id">stored_feature_id</a></th><td>Stores the dna.features[feature_key], used for external organs that can be surgically removed or inserted.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/use_mob_sprite_as_obj_sprite">use_mob_sprite_as_obj_sprite</a></th><td>Set to EXTERNAL_BEHIND, EXTERNAL_FRONT or EXTERNAL_ADJACENT if you want to draw one of those layers as the object sprite. FALSE to use your own</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/Initialize">Initialize</a></th><td>mob_sprite is optional if you havent set sprite_datums for the object, and is used mostly to generate sprite_datums from a persons DNA
+For _mob_sprite we make a distinction between &quot;Round Snout&quot; and &quot;round&quot;. Round Snout is the name of the sprite datum, while &quot;round&quot; would be part of the sprite
+I'm sorry</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/attempt_feature_restyle">attempt_feature_restyle</a></th><td>Restyles the external organ from a list of valid options</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/bitflag_to_layer">bitflag_to_layer</a></th><td>Converts a bitflag to the right layer. I'd love to make this a static index list, but byond made an attempt on my life when i did</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/can_draw_on_bodypart">can_draw_on_bodypart</a></th><td>Check whether we can draw the overlays. You generally don't want lizard snouts to draw over an EVA suit</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/generate_and_retrieve_overlays">generate_and_retrieve_overlays</a></th><td>Add the overlays we need to draw on a person. Called from _bodyparts.dm</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/generate_icon_cache">generate_icon_cache</a></th><td>Generate a unique key based on our sprites. So that if we've aleady drawn these sprites, they can be found in the cache and wont have to be drawn again (blessing and curse)</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/get_global_feature_list">get_global_feature_list</a></th><td>Return a dumb glob list for this specific feature (called from parse_sprite)</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/get_overlay_color">get_overlay_color</a></th><td>Return a color for our specific layer</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/get_sprite_datum">get_sprite_datum</a></th><td>Because all the preferences have names like &quot;Beautiful Sharp Snout&quot; we need to get the sprite datum with the actual important info</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/get_valid_restyles">get_valid_restyles</a></th><td>Helper proc to fetch a list of styles a player might want to restyle their features into during the round : returns list(&quot;Cabbage&quot; = /datum/sprite_accessory/cabbage)</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/inherit_color">inherit_color</a></th><td>Give the organ it's color. Force will override the existing one.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/mutant_bodyparts_layertext">mutant_bodyparts_layertext</a></th><td>This exists so sprite accessories can still be per-layer without having to include that layer's
+number in their sprite name, which causes issues when those numbers change.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/mutate_feature">mutate_feature</a></th><td>Update our features after something changed our appearance</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/on_attempt_feature_restyle">on_attempt_feature_restyle</a></th><td>Invoke async so we dont break signals</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/override_color">override_color</a></th><td>Colorizes the limb it's inserted to, if required.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/set_sprite">set_sprite</a></th><td>Change our accessory sprite, using the accesssory name. If you need to change the sprite for something, use simple_change_sprite()</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/simple_change_sprite">simple_change_sprite</a></th><td>Also give the icon to the obj
+If you need to change an external_organ for simple one-offs, use this. Pass the accessory type : /datum/accessory/something</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/transfer_to_limb">transfer_to_limb</a></th><td>Transfers the organ to the limb, and to the limb's owner, if it has one.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/all_layers"><aside class="declaration">var </aside>all_layers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 16"/></a></h3>
+        <p>Convert the bitflag define into the actual layer define</p><h3 id="var/apply_color_to_layer"><aside class="declaration">var </aside>apply_color_to_layer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 45"/></a></h3>
+        <p>FALSE will set the color on the organ, TRUE will call get_overlay_color() for every layer and put it directly on the overlay</p><h3 id="var/cache_key"><aside class="declaration">var </aside>cache_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 30"/></a></h3>
+        <p>Key of the icon states of all the sprite_datums for easy caching</p><h3 id="var/color_source"><aside class="declaration">var </aside>color_source
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 43"/></a></h3>
+        <p>Where does this organ inherit it's color from?</p><h3 id="var/dna_block"><aside class="declaration">var </aside>dna_block
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 35"/></a></h3>
+        <p>With what DNA block do we mutate in mutate_feature() ? For genetics</p><h3 id="var/draw_color"><aside class="declaration">var </aside>draw_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 41"/></a></h3>
+        <p>The color this organ draws with. Updated by bodypart/inherit_color()</p><h3 id="var/external_bodytypes"><aside class="declaration">var </aside>external_bodytypes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 48"/></a></h3>
+        <p>Does this organ have any bodytypes to pass to it's ownerlimb?</p><h3 id="var/feature_key"><aside class="declaration">var </aside>feature_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 19"/></a></h3>
+        <p>Defines what kind of 'organ' we're looking at. Sprites have names like 'm_mothwings_firemoth'. 'mothwings' would then be feature_key</p><h3 id="var/layers"><aside class="declaration">var </aside>layers
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 14"/></a></h3>
+        <p>Sometimes we need multiple layers, for like the back, middle and front of the person</p><h3 id="var/ownerlimb"><aside class="declaration">var </aside>ownerlimb
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 38"/></a></h3>
+        <p>Reference to the limb we're inside of</p><h3 id="var/preference"><aside class="declaration">var </aside>preference
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 25"/></a></h3>
+        <p>The savefile_key of the preference this relates to. Used for the preferences UI.</p><h3 id="var/render_key"><aside class="declaration">var </aside>render_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 21"/></a></h3>
+        <p>Similar to feature key, but overrides it in the case you need more fine control over the iconstate, like with Tails.</p><h3 id="var/restyle_flags"><aside class="declaration">var </aside>restyle_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 50"/></a></h3>
+        <p>Which flags does a 'modification tool' need to have to restyle us, if it all possible (located in code/_DEFINES/mobs)</p><h3 id="var/sprite_datum"><aside class="declaration">var </aside>sprite_datum
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/sprite_accessory.html">sprite_accessory</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 28"/></a></h3>
+        <p>Sprite datum we use to draw on the bodypart</p><h3 id="var/stored_feature_id"><aside class="declaration">var </aside>stored_feature_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 23"/></a></h3>
+        <p>Stores the dna.features[feature_key], used for external organs that can be surgically removed or inserted.</p><h3 id="var/use_mob_sprite_as_obj_sprite"><aside class="declaration">var </aside>use_mob_sprite_as_obj_sprite
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 32"/></a></h3>
+        <p>Set to EXTERNAL_BEHIND, EXTERNAL_FRONT or EXTERNAL_ADJACENT if you want to draw one of those layers as the object sprite. FALSE to use your own</p><h2 id="proc">Proc Details</h2><h3 id="proc/Initialize"><aside class="parent"><a title="/atom" href="atom.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(mapload, mob_sprite) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 56"/></a></aside>
+        </h3>
+        <p>mob_sprite is optional if you havent set sprite_datums for the object, and is used mostly to generate sprite_datums from a persons DNA
+For _mob_sprite we make a distinction between &quot;Round Snout&quot; and &quot;round&quot;. Round Snout is the name of the sprite datum, while &quot;round&quot; would be part of the sprite
+I'm sorry</p><h3 id="proc/attempt_feature_restyle"><aside class="declaration">proc </aside>attempt_feature_restyle<aside>(/<a href="atom.html">atom</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/trimmer, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/original_target, body_zone, restyle_type, style_speed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/restyling.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;restyling.dm 69"/></a></aside>
+        </h3>
+        <p>Restyles the external organ from a list of valid options</p><h3 id="proc/bitflag_to_layer"><aside class="declaration">proc </aside>bitflag_to_layer<aside>(layer) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 227"/></a></aside>
+        </h3>
+        <p>Converts a bitflag to the right layer. I'd love to make this a static index list, but byond made an attempt on my life when i did</p><h3 id="proc/can_draw_on_bodypart"><aside class="declaration">proc </aside>can_draw_on_bodypart<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/human) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 246"/></a></aside>
+        </h3>
+        <p>Check whether we can draw the overlays. You generally don't want lizard snouts to draw over an EVA suit</p><h3 id="proc/generate_and_retrieve_overlays"><aside class="declaration">proc </aside>generate_and_retrieve_overlays<aside>(/list/overlay_list, image_dir, image_layer, physique) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 145"/></a></aside>
+        </h3>
+        <p>Add the overlays we need to draw on a person. Called from _bodyparts.dm</p><h3 id="proc/generate_icon_cache"><aside class="declaration">proc </aside>generate_icon_cache<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 201"/></a></aside>
+        </h3>
+        <p>Generate a unique key based on our sprites. So that if we've aleady drawn these sprites, they can be found in the cache and wont have to be drawn again (blessing and curse)</p><h3 id="proc/get_global_feature_list"><aside class="declaration">proc </aside>get_global_feature_list<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 242"/></a></aside>
+        </h3>
+        <p>Return a dumb glob list for this specific feature (called from parse_sprite)</p><h3 id="proc/get_overlay_color"><aside class="declaration">proc </aside>get_overlay_color<aside>(draw_layer) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 281"/></a></aside>
+        </h3>
+        <p>Return a color for our specific layer</p><h3 id="proc/get_sprite_datum"><aside class="declaration">proc </aside>get_sprite_datum<aside>(sprite) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 237"/></a></aside>
+        </h3>
+        <p>Because all the preferences have names like &quot;Beautiful Sharp Snout&quot; we need to get the sprite datum with the actual important info</p><h3 id="proc/get_valid_restyles"><aside class="declaration">proc </aside>get_valid_restyles<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/restyling.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;restyling.dm 4"/></a></aside>
+        </h3>
+        <p>Helper proc to fetch a list of styles a player might want to restyle their features into during the round : returns list(&quot;Cabbage&quot; = /datum/sprite_accessory/cabbage)</p><h3 id="proc/inherit_color"><aside class="declaration">proc </aside>inherit_color<aside>(force) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 259"/></a></aside>
+        </h3>
+        <p>Give the organ it's color. Force will override the existing one.</p><h3 id="proc/mutant_bodyparts_layertext"><aside class="declaration">proc </aside>mutant_bodyparts_layertext<aside>(layer) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 211"/></a></aside>
+        </h3>
+        <p>This exists so sprite accessories can still be per-layer without having to include that layer's
+number in their sprite name, which causes issues when those numbers change.</p><h3 id="proc/mutate_feature"><aside class="declaration">proc </aside>mutate_feature<aside>(features, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/human) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 250"/></a></aside>
+        </h3>
+        <p>Update our features after something changed our appearance</p><h3 id="proc/on_attempt_feature_restyle"><aside class="declaration">proc </aside>on_attempt_feature_restyle<aside>(/<a href="atom.html">atom</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/trimmer, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/original_target, body_zone, restyle_type, style_speed) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/restyling.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;restyling.dm 60"/></a></aside>
+        </h3>
+        <p>Invoke async so we dont break signals</p><h3 id="proc/override_color"><aside class="declaration">proc </aside>override_color<aside>(rgb_value) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L277">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 277"/></a></aside>
+        </h3>
+        <p>Colorizes the limb it's inserted to, if required.</p><h3 id="proc/set_sprite"><aside class="declaration">proc </aside>set_sprite<aside>(accessory_name) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 191"/></a></aside>
+        </h3>
+        <p>Change our accessory sprite, using the accesssory name. If you need to change the sprite for something, use simple_change_sprite()</p><h3 id="proc/simple_change_sprite"><aside class="declaration">proc </aside>simple_change_sprite<aside>(accessory_type) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 178"/></a></aside>
+        </h3>
+        <p>Also give the icon to the obj
+If you need to change an external_organ for simple one-offs, use this. Pass the accessory type : /datum/accessory/something</p><h3 id="proc/transfer_to_limb"><aside class="parent"><a title="/obj/item/organ" href="obj/item/organ.html#proc/transfer_to_limb">&uarr;</a></aside>transfer_to_limb<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/bodypart.html">bodypart</a>/bodypart, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/bodypart_owner) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/2095f2e8cb4d851b3e9f65c9d1379ae036798294/code/modules/surgery/organs/external/_external_organs.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;surgery&#x2F;organs&#x2F;external&#x2F;_external_organs.dm 120"/></a></aside>
+        </h3>
+        <p>Transfers the organ to the limb, and to the limb's owner, if it has one.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/2095f2e8cb4d851b3e9f65c9d1379ae036798294">2095f2e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>
