@@ -2,7 +2,7 @@
 	name = "energy revolver"
 	desc = "An advanced energy revolver with the capacity to shoot both electrodes and lasers."
 	force = 7
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser)
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser/revolver)
 	ammo_x_offset = 1
 	charge_sections = 4
 	fire_delay = 4
@@ -14,11 +14,11 @@
 	obj_flags = UNIQUE_RENAME
 	cell_type = /obj/item/stock_parts/cell/blueshield
 	pin = /obj/item/firing_pin/implant/mindshield
-	selfcharge = TRUE
+	selfcharge = FALSE
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
-	maxcharge = 1500
+	maxcharge = 1000
 	chargerate = 300
 
 /obj/item/gun/energy/e_gun/revolver/pdw9 //The chad gun.
