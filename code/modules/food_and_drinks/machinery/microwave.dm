@@ -85,10 +85,10 @@
 /obj/machinery/microwave/RefreshParts()
 	. = ..()
 	efficiency = 0
-	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		efficiency += M.rating
-	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
-		max_n_of_items = 10 * M.rating
+	for(var/datum/stock_part/micro_laser/micro_laser in component_parts)
+		efficiency += micro_laser.tier
+	for(var/datum/stock_part/matter_bin/matter_bin in component_parts)
+		max_n_of_items = 10 * matter_bin.tier
 		break
 
 /obj/machinery/microwave/examine(mob/user)
@@ -308,6 +308,7 @@
 				ingredients += S
 		if(loaded)
 			to_chat(user, span_notice("You insert [loaded] items into \the [src]."))
+			update_appearance()
 		return
 
 	if(O.w_class <= WEIGHT_CLASS_NORMAL && !istype(O, /obj/item/storage) && !user.combat_mode)

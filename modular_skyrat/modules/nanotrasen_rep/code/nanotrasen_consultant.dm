@@ -68,7 +68,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/centcom)
 
-	id = /obj/item/card/id/advanced/centcom
+	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
 	id_trim = /datum/id_trim/job/nanotrasen_consultant
 
 /obj/item/radio/headset/heads/nanotrasen_consultant
@@ -101,7 +101,7 @@
 	name = "Nanotrasen Consultant Plasmaman"
 
 	uniform = /obj/item/clothing/under/plasmaman/centcom_official
-	gloves = /obj/item/clothing/gloves/color/captain //Too iconic to be replaced with a plasma version
+	gloves = /obj/item/clothing/gloves/captain //Too iconic to be replaced with a plasma version
 	head = /obj/item/clothing/head/helmet/space/plasmaman/centcom_official
 
 /obj/item/modular_computer/pda/nanotrasen_consultant
@@ -128,7 +128,7 @@
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	name = "\proper nanotrasen consultant's locker"
-	req_access = list(ACCESS_CAPTAIN, ACCESS_CENT_GENERAL)
+	req_access = list(ACCESS_NTREP) //BUBBER EDIT
 	icon_state = "cc"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	door_anim_time = 0 //CONVERT THESE DOORS YOU LAZY ASSHATS

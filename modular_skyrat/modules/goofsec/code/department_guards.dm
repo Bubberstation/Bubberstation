@@ -214,7 +214,6 @@
 	trim_state = "trim_calhoun"
 	department_color = COLOR_SCIENCE_PINK
 	subdepartment_color = COLOR_SCIENCE_PINK
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_SCIENCE_GUARD
 	extra_access = list(
 		ACCESS_AUX_BASE,
@@ -319,7 +318,6 @@
 	trim_state = "trim_orderly"
 	department_color = COLOR_MEDICAL_BLUE
 	subdepartment_color = COLOR_MEDICAL_BLUE
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_ORDERLY
 	extra_access = list(
 		ACCESS_BRIG_ENTRANCE,
@@ -417,7 +415,6 @@
 	trim_state = "trim_engiguard"
 	department_color = COLOR_ENGINEERING_ORANGE
 	subdepartment_color = COLOR_ENGINEERING_ORANGE
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_ENGINEERING_GUARD
 	extra_access = list(
 		ACCESS_ATMOSPHERICS,
@@ -521,7 +518,6 @@
 	trim_state = "trim_customs"
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_CUSTOMS_AGENT
 	extra_access = list(
 		ACCESS_BRIG_ENTRANCE,
@@ -617,12 +613,12 @@
 	assignment = "Bouncer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_bouncer"
-	orbit_icon = "shield-heart"
 	department_color = COLOR_SERVICE_LIME
 	subdepartment_color = COLOR_SERVICE_LIME // Personally speaking I'd have one of these with sec colors but I'm being authentic
 	sechud_icon_state = SECHUD_BOUNCER
 	extra_access = list(
 		ACCESS_BAR,
+		ACCESS_SERVICE,
 		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
@@ -634,6 +630,7 @@
 	)
 	minimal_access = list(
 		ACCESS_BAR,
+		ACCESS_SERVICE,
 		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
@@ -734,6 +731,54 @@
 	icon_state = "prison_baton"
 	valid_areas = list(/area/station/security/prison, /area/station/security/processing, /area/shuttle/escape)
 
+/datum/supply_pack/security/baton_prison
+	name = "Prison Baton Crate"
+	desc = "Contains an extra baton for Corrections Officers. \
+		Just in case you hated the idea of a normal baton in their hands."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/prison)
+
+/datum/supply_pack/service/baton_service
+	name = "Service Baton Crate"
+	desc = "Contains an extra baton for Service Guards."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/service)
+
+/datum/supply_pack/medical/baton_medical
+	name = "Medical Baton Crate"
+	desc = "Contains an extra baton for Orderlies."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/medical)
+
+/datum/supply_pack/engineering/baton_engineering
+	name = "Engineering Baton Crate"
+	desc = "Contains an extra baton for Engineering Guards."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/engineering)
+
+/datum/supply_pack/science/baton_science
+	name = "Science Baton Crate"
+	desc = "Contains an extra baton for Science Guards."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/science)
+
+/datum/supply_pack/misc/baton_cargo
+	name = "Cargo Baton Crate"
+	desc = "Contains an extra baton for Customs Agents."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/cargo)
 /*
 * Garment Bags
 */

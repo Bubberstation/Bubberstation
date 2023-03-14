@@ -10,7 +10,7 @@
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
-	exp_required_type_department = EXP_TYPE_COMMAND
+	exp_required_type_department = EXP_TYPE_SECURITY //Bubber Edit: Blueshields should be good sec.
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "BLUESHIELD"
 
@@ -49,7 +49,6 @@
 	uniform = /obj/item/clothing/under/rank/blueshield
 	suit = /obj/item/clothing/suit/armor/vest/blueshield
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	id = /obj/item/card/id/advanced/centcom
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
@@ -64,6 +63,7 @@
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/modular_computer/pda/security
 
+	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
 	id_trim = /datum/id_trim/job/blueshield
 
 /datum/outfit/plasmaman/blueshield
