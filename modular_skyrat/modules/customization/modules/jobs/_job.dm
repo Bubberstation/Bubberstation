@@ -159,6 +159,9 @@
 /datum/job/shaft_miner
 	required_languages = null
 
+/datum/job/blacksmith
+	required_languages = null
+
 /datum/job/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
