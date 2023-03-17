@@ -21,7 +21,7 @@
 // Centcom or the captain
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain/get_access()
 	var/list/access_list = ..()
-	access_list += ACCESS_CENT_GENERAL
+	access_list += ACCESS_NTREP
 	access_list += ACCESS_CAPTAIN
 	return access_list
 
