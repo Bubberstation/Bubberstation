@@ -85,7 +85,7 @@
 	var/obj/item/radio/headset/ears = null
 
 	//Wheter the Parrot should come with a headset
-	var/spawn_headset = TRUE
+	var/spawn_headset = FALSE
 
 	//The thing the parrot is currently interested in. This gets used for items the parrot wants to pick up, mobs it wants to steal from,
 	//mobs it wants to attack or mobs that have attacked it
