@@ -1,7 +1,7 @@
 /// Maximum an Hemophage will drain, they will drain less if they hit their cap.
-#define HEMOPHAGE_DRAIN_AMOUNT 75 //Hemophages are now more lethal when they drain living people. This changes the charge of unwilling feeding to assault by proxy, instead of battery - Bubberstation change
-/// How much blood do Hemophages normally lose per second (visible effect is every two seconds, so twice this value).
-#define NORMAL_BLOOD_DRAIN 0.150 //.025 increase to make them need more blood.
+#define HEMOPHAGE_DRAIN_AMOUNT 75
+//Normal Blood Drain
+#define NORMAL_BLOOD_DRAIN 0.150
 /// Minimum amount of blood that you can reach via blood regeneration, regeneration will stop below this.
 #define MINIMUM_VOLUME_FOR_REGEN (BLOOD_VOLUME_BAD + 1) // We do this to avoid any jankiness, and because we want to ensure that they don't fall into a state where they're constantly passing out in a locker.
 /// Minimum amount of light for Hemophages to be considered in pure darkness, and therefore be allowed to heal just like in a closet.
@@ -28,7 +28,7 @@
 /// The message displayed in the hemophage's chat when they leave their dormant state.
 #define DORMANT_STATE_END_MESSAGE "You feel a rush through your veins, as you can tell your tumor is pulsating at a regular pace once again. You no longer feel incredibly vulnerable, and exercise isn't as difficult anymore."
 /// How high should the damage multiplier to the Hemophage be when they're in a dormant state?
-#define DORMANT_DAMAGE_MULTIPLIER 1.5 //Dormancy shouldn't be a 3x damage multiplier from all sources -Bubberstation change.
+#define DORMANT_DAMAGE_MULTIPLIER 1.5
 /// By how much the blood drain will be divided when the tumor is in a dormant state.
 #define DORMANT_BLOODLOSS_MULTIPLIER 10
 
@@ -112,7 +112,7 @@
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/mutant,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
-	) //Bubberstation change. Allows them to use the mutant bodyparts of other species like anthromorph.
+	) //Bubberstation Change
 
 
 
