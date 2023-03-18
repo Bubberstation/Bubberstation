@@ -1,6 +1,6 @@
 /// Maximum an Hemophage will drain, they will drain less if they hit their cap.
 #define HEMOPHAGE_DRAIN_AMOUNT 75
-//Normal Blood Drain
+/// How much blood do Hemophages normally lose per second (visible effect is every two seconds, so twice this value).
 #define NORMAL_BLOOD_DRAIN 0.150
 /// Minimum amount of blood that you can reach via blood regeneration, regeneration will stop below this.
 #define MINIMUM_VOLUME_FOR_REGEN (BLOOD_VOLUME_BAD + 1) // We do this to avoid any jankiness, and because we want to ensure that they don't fall into a state where they're constantly passing out in a locker.
