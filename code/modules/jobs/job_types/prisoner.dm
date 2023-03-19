@@ -54,7 +54,7 @@
 	id_trim = /datum/id_trim/job/prisoner
 	uniform = /obj/item/clothing/under/rank/prisoner
 	belt = null
-	ears = null
+	ears = /obj/item/radio/headset
 	shoes = /obj/item/clothing/shoes/sneakers/orange
 
 /datum/outfit/job/prisoner/pre_equip(mob/living/carbon/human/H)
