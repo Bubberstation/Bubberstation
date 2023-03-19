@@ -35,6 +35,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/prisoner
 	gloves = /obj/item/clothing/gloves/color/plasmaman/black
 	head = /obj/item/clothing/head/helmet/space/plasmaman/prisoner
+	ears = /obj/item/radio/headset
 
 /datum/outfit/plasmaman/medical
 	name = "Medical Plasmaman"
