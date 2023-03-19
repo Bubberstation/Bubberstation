@@ -4,7 +4,7 @@
 		/obj/item/clothing/suit/armor/metrocop = 5,
 	)
 	premium += list(
-		/obj/item/clothing/suit/armor/metrocopriot = 3,
+		/obj/item/clothing/suit/armor/metrocopriot = 1,
 	)
 	. = ..()
 
