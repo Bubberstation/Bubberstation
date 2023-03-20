@@ -47,7 +47,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	  * If it is seven the range is:
 	  * 0-6, 7-13, 14-20, 21-27, 28-34, 35-41, 42-48, 49-55, 56-62, 63+
 	  */
-	var/pop_per_requirement = 10
+	var/pop_per_requirement = 10 //BUBBER EDIT: Original 6
 	/// Number of players who were ready on roundstart.
 	var/roundstart_pop_ready = 0
 	/// List of candidates used on roundstart rulesets.
