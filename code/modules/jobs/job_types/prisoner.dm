@@ -46,17 +46,6 @@
 	target_record.crimes += past_crime
 	to_chat(crewmember, span_warning("You are imprisoned for \"[crime_name]\"."))
 
-/datum/outfit/job/prisoner
-	name = "Prisoner"
-	jobtype = /datum/job/prisoner
-
-	id = /obj/item/card/id/advanced/prisoner
-	id_trim = /datum/id_trim/job/prisoner
-	uniform = /obj/item/clothing/under/rank/prisoner
-	belt = null
-	ears = /obj/item/radio/headset
-	shoes = /obj/item/clothing/shoes/sneakers/orange
-
 /datum/outfit/job/prisoner/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(prob(1)) // D BOYYYYSSSSS
