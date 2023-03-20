@@ -763,6 +763,7 @@
 	prereq_ids = list("micro_bluespace", "janitor")
 	design_ids = list(
 		"bag_holding",
+		"ore_silo"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
@@ -777,7 +778,6 @@
 		"bluespace_coffeepot",
 		"bs_rped",
 		"minerbag_holding",
-		"ore_silo",
 		"phasic_scanning",
 		"plumbing_receiver",
 		"roastingstick",

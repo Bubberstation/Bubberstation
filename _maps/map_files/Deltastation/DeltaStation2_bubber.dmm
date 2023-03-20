@@ -3730,7 +3730,6 @@
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/cmo)
 "aSm" = (
-/obj/machinery/ore_silo,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
@@ -90487,6 +90486,17 @@
 /area/station/engineering/atmos)
 "vZE" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/book/granter/martial/plasma_fist{
+	uses = 0;
+	pixel_y = 8
+	},
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/right{
+	req_access = list("vault")
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
 "vZL" = (
@@ -144614,8 +144624,8 @@ lhY
 vZE
 ldU
 tcG
-vZE
-vZE
+aSm
+aSm
 lhY
 aad
 mjz
@@ -145640,9 +145650,9 @@ tpZ
 aad
 lhY
 yah
-vZE
+aSm
 xrd
-vZE
+aSm
 aSm
 lhY
 aad

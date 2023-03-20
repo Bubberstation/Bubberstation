@@ -32228,8 +32228,18 @@
 /turf/closed/wall,
 /area/command/heads_quarters/captain/private/nt_rep)
 "jlD" = (
-/obj/machinery/ore_silo,
 /obj/effect/turf_decal/bot,
+/obj/item/book/granter/action/spell/fireball{
+	uses = 0;
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/right{
+	req_access = list("vault")
+	},
 /turf/open/floor/engine,
 /area/station/ai_monitored/command/nuke_storage)
 "jlK" = (

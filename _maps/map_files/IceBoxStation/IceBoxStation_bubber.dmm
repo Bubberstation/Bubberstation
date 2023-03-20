@@ -13934,8 +13934,19 @@
 /area/station/maintenance/aft/greater)
 "edn" = (
 /obj/effect/turf_decal/bot_white/right,
-/obj/machinery/ore_silo,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/guardiancreator/tech{
+	used = 1;
+	pixel_y = 3
+	},
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/right{
+	dir = 4;
+	req_access = list("vault")
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
 "edv" = (
