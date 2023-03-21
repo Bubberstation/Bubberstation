@@ -1,0 +1,9 @@
+/datum/language/xenocommon
+	secret = FALSE
+
+
+/datum/language_holder/proc/can_speak_language(xenocommon)
+	var/atom/movable/ouratom = get_atom()
+	var/can_speak_language_path = organ/internal/tongue/xeno || ouratom.could_speak_language(xenocommon)
+	return (can_speak_language_path && has_language(xenocommon, TRUE))
+

@@ -13,5 +13,4 @@
 /datum/language/piratespeak
 	secret = TRUE
 
-/datum/language/xenocommon
-	secret = TRUE
+
