@@ -353,7 +353,8 @@
 	ACCESS_HOP, \
 	ACCESS_QM, \
 	ACCESS_RD, \
-) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS
+	ACCESS_NTREP, \
+	) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS //BUBBER EDIT: Added ACCESS_NTREP to PRIVATE_COMMAND_ACCESS
 
 /// Captains private rooms. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN)
 #define CAPTAIN_ACCESS list( \
