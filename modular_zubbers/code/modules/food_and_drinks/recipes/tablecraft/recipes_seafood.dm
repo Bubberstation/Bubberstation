@@ -3,7 +3,7 @@
 	reqs = list(
 		/obj/item/food/fishmeat = 1,
 		/obj/item/food/boiledrice = 1,
-		/datum/reagent/consumable/flour = 1
+		/datum/reagent/consumable/sugar = 1
 	)
 	result = /obj/item/food/nekoroll
 	category = CAT_SEAFOOD
@@ -13,7 +13,7 @@
 	reqs = list(
 		/obj/item/food/fishmeat = 2,
 		/obj/item/food/boiledrice = 4,
-		/datum/reagent/consumable/flour = 2
+		/datum/reagent/consumable/sugar = 2
 	)
 	result = /obj/item/food/bignekoroll
 	category = CAT_SEAFOOD
