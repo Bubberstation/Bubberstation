@@ -6,6 +6,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
+		/datum/reagent/consumable/sugar = 1,
 	)
 	tastes = list("rice" = 1, "fish" = 1, "cuteness" = 1)
 	foodtypes = GRAIN | MEAT
@@ -19,6 +20,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
+		/datum/reagent/consumable/sugar = 2,
 	)
 	tastes = list("rice" = 1, "fish" = 1, "wastefulness" = 1)
 	foodtypes = GRAIN | MEAT
