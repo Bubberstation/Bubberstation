@@ -14,7 +14,7 @@
 	obj_flags = UNIQUE_RENAME
 	cell_type = /obj/item/stock_parts/cell/blueshield
 	pin = /obj/item/firing_pin/implant/mindshield
-	selfcharge = FALSE
+	selfcharge = TRUE
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
