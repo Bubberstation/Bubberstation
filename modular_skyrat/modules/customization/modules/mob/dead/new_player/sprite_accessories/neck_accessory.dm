@@ -24,4 +24,4 @@
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_HUMANOID)
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	color_src = USE_MATRIXED_COLORS
-	ckey_whitelist = list("whirlsam" = TRUE)
+//	ckey_whitelist = list("whirlsam" = TRUE)
