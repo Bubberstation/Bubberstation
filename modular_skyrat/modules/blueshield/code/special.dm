@@ -16,6 +16,7 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	selfcharge = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
+	worn_icon = null
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
