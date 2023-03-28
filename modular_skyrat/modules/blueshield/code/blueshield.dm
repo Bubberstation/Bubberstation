@@ -54,6 +54,8 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	backpack_contents = list(
 		/obj/item/storage/box/gunset/blueshield = 1,
+		/obj/item/gun/energy/e_gun/revolver = 1,
+		/obj/item/storage/medkit/tactical/blueshield = 1,
 		/obj/item/melee/baton/security/loaded = 1,)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
@@ -63,7 +65,7 @@
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/modular_computer/pda/security
 
-	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
+	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/job/blueshield
 
 /datum/outfit/plasmaman/blueshield

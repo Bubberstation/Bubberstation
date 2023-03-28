@@ -119,3 +119,8 @@
 /obj/item/ammo_casing/energy/nanite/cryo
 	projectile_type = /obj/projectile/energy/cryo
 	select_name = "cryo"
+
+/obj/item/ammo_casing/energy/laser/blueshield
+	projectile_type = /obj/projectile/beam/laser
+	e_cost = 120
+	select_name = "kill"
