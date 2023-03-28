@@ -64,6 +64,7 @@
 	head = /obj/item/clothing/head/beret/blueshield
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/modular_computer/pda/security
+	r_pocket = /obj/item/flashlight/seclite
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/job/blueshield
