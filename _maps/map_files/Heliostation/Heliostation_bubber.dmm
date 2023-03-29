@@ -3197,6 +3197,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
+/obj/machinery/dish_drive/bullet{
+	succrange = 2
+	},
 /turf/open/floor/iron,
 /area/station/security/range)
 "alD" = (
@@ -5570,23 +5573,10 @@
 /area/station/ai_monitored/security/armory)
 "asU" = (
 /obj/structure/rack,
-/obj/item/gun/energy/laser{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/gun/energy/laser{
-	pixel_x = -1;
-	pixel_y = 3
-	},
-/obj/item/gun/energy/laser{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/gun/energy/laser{
-	pixel_x = 5;
-	pixel_y = -5
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/melee/hammer,
+/obj/item/melee/hammer,
+/obj/item/melee/hammer,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "asV" = (
@@ -5617,14 +5607,14 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/ammo_workbench,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "atb" = (
 /obj/structure/rack,
-/obj/item/gun/energy/ionrifle,
-/obj/item/gun/energy/temperature/security,
-/obj/item/clothing/suit/hooded/ablative,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/clothing/suit/hooded/ablative,
+/obj/item/gun/energy/temperature/security,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "atd" = (
@@ -36245,16 +36235,14 @@
 /area/station/engineering/supermatter/room)
 "dbH" = (
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/gun/energy/e_gun,
-/obj/item/gun/energy/e_gun{
-	pixel_x = 4;
-	pixel_y = -4
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/storage/barricade{
+	pixel_y = 5
+	},
+/obj/item/storage/barricade,
+/obj/item/storage/barricade{
+	pixel_y = -5
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "dbT" = (
@@ -51374,6 +51362,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/smartgun,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "loz" = (
@@ -56237,12 +56226,13 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/sorting)
 "nOj" = (
-/obj/machinery/flasher/portable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/box,
 /obj/structure/sign/poster/official/enlist{
 	pixel_y = -32
 	},
+/obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/cmg,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "nOI" = (
@@ -57175,9 +57165,10 @@
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "opt" = (
-/obj/machinery/flasher/portable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/box,
+/obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/microfusion,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "opG" = (
@@ -58796,8 +58787,8 @@
 	name = "kanden plushie";
 	desc = "What are they up to today?"
 	},
-/turf/open/floor/plating,
-/area/station/maintenance/aft/lesser)
+/turf/open/misc/asteroid/airless,
+/area/centcom/asteroid)
 "pgD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -65273,10 +65264,11 @@
 /obj/structure/cable,
 /turf/open/space/basic)
 "sCC" = (
-/obj/machinery/flasher/portable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/box,
 /obj/item/radio/intercom/directional/south,
+/obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/shotguns,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "sDb" = (
@@ -67800,16 +67792,23 @@
 /area/station/science/xenobiology)
 "tXG" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/shotgun/riot{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/gun/ballistic/shotgun/riot,
-/obj/item/gun/ballistic/shotgun/riot{
-	pixel_x = 4;
-	pixel_y = -4
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/gars{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/gars{
+	pixel_x = 3;
+	pixel_y = -2
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "tXX" = (
@@ -106338,7 +106337,7 @@ kNp
 kNp
 nPb
 cCZ
-pgA
+gQf
 ncL
 kHY
 kJa
@@ -133157,7 +133156,7 @@ aad
 aad
 aad
 aad
-aad
+pgA
 aad
 aab
 aab
