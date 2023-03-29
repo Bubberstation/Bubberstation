@@ -10,6 +10,9 @@
 	attack_verb_continuous = list("smacks", "strucks", "cracks", "beats", "purifies")
 	attack_verb_simple = list("smack", "struck", "crack", "beat", "purify")
 
+/obj/item/nullrod/papal_staff/get_belt_overlay()
+	return mutable_appearance('icons/blanks/32x32.dmi', "nothing")
+
 /obj/item/clothing/head/mitre
 	name = "papal mitre"
 	desc = "A traditional headdress, worn by bishops and popes in traditional Christianity"
