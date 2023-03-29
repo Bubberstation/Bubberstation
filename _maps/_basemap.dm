@@ -22,6 +22,7 @@
 		#include "map_files\IceBoxStation\IceBoxStation_bubber.dmm"
 		#include "map_files\tramstation\tramstation_bubber.dmm"
 		#include "map_files\VoidRaptor\VoidRaptor_bubber.dmm"
+		#include "map_files\Heliostation\Heliostation_bubber.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
