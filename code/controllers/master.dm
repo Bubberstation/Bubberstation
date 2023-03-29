@@ -259,7 +259,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	SSvote.initiate_vote(/datum/vote/gamemode_vote, "gamemode vote", forced = TRUE) // BUBBERSTATION ADDITION
 
 
 
