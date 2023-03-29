@@ -4,7 +4,7 @@
 	weight = 10
 	min_players = 30
 	earliest_start = 45 MINUTES
-	max_occurrences = 2
+	max_occurrences = 2 //BUBBER EDIT: FIXES THIS DAMN CARP EVENT.
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Summons a school of space carp."
 
