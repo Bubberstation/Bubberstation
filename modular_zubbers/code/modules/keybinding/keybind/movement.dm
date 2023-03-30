@@ -3,6 +3,7 @@
 	name = "pixel_tilt_east"
 	full_name = "Pixel Tilt Right"
 	category = CATEGORY_MOVEMENT
+	keybind_signal = COMSIG_KB_MOB_PIXELTILT_LEFT
 
 /datum/keybinding/mob/tilt_right/down(client/user)
 	. = ..()
@@ -17,6 +18,7 @@
 	name = "pixel_tilt_west"
 	full_name = "Pixel Tilt Left"
 	category = CATEGORY_MOVEMENT
+	keybind_signal = COMSIG_KB_MOB_PIXELTILT_RIGHT
 
 /datum/keybinding/mob/tilt_left/down(client/user)
 	. = ..()

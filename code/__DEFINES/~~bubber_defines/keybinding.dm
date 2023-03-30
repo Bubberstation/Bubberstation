@@ -1,0 +1,2 @@
+#define COMSIG_KB_MOB_PIXELTILT_LEFT "keybinding_mob_pixeltilt_left"
+#define COMSIG_KB_MOB_PIXELTILT_RIGHT "keybinding_mob_pixeltilt_right"
