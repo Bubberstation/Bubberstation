@@ -4,10 +4,9 @@
 	say_mod = "mars"
 	default_mutant_bodyparts = list(
 		"tail" = "Shadekin",
-		"snout" = ACC_RANDOM,
+		"snout" = "None",
 		"horns" = "None",
 		"ears" = "Shadekin",
-		"legs" = "Plantigrade",
 		"taur" = "None",
 		"fluff" = "None",
 		"wings" = "None",
