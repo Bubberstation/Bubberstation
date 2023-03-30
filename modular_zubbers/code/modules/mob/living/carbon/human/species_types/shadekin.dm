@@ -3,16 +3,16 @@
 	id = SPECIES_SHADEKIN
 	say_mod = "mars"
 	default_mutant_bodyparts = list(
-		"mcolor" = "FFFFFF",
-		"mcolor2" = "FFFFFF",
-		"mcolor3" = "FFFFFF",
-		"mam_tail" = "Shadekin",
-		"mam_ears" = "Shadekin",
-		"deco_wings" = "None",
-		"taur" = "None",
+		"tail" = "Shadekin",
+		"snout" = ACC_RANDOM,
 		"horns" = "None",
+		"ears" = "Shadekin",
 		"legs" = "Plantigrade",
-		"meat_type" = "Mammalian"
+		"taur" = "None",
+		"fluff" = "None",
+		"wings" = "None",
+		"head_acc" = "None",
+		"neck_acc" = "None"
 	)
 
 	bodypart_overrides = list(
