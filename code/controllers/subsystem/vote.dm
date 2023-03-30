@@ -299,6 +299,22 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/ui_close(mob/user)
 	voting -= user.client?.ckey
 
+//BUBBERSTATION ADDITION START
+
+SUBSYSTEM_DEF(gamemodevote)
+    name = "Gamemode Vote"
+    wait = 1 SECONDS
+    flags = SS_KEEP_TIMING | SS_NO_FIRE
+    init_order = INIT_ORDER_GAMEMODEVOTE
+    init_stage = INITSTAGE_LATE
+
+/datum/controller/subsystem/gamemodevote/Initialize()
+    SSvote.initiate_vote(/datum/vote/gamemode_vote, "gamemode vote", forced = TRUE)
+
+    return SS_INIT_SUCCESS
+
+//BUBBERSTATION ADDITON END
+
 /// Mob level verb that allows players to vote on the current vote.
 /mob/verb/vote()
 	set category = "OOC"
