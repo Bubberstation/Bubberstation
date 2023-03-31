@@ -9,18 +9,18 @@
 		CHOICE_EXTENDED,
 		CHOICE_DYNAMIC,
 	)
-	message = "Vote for the current rounds ruleset."
+	message = "Vote for the next rounds ruleset."
 
 /datum/vote/gamemode_vote/is_accessible_vote()
 	return FALSE
 
 /datum/vote/gamemode_vote/finalize_vote(winning_option)
 	if(winning_option == CHOICE_EXTENDED)
-		GLOB.dynamic_forced_extended = TRUE
+		rustg_file_write("Extended", "DYNAMIC_THREAT_VOTE_PATH")
 		return
 
 	if(winning_option == CHOICE_DYNAMIC)
-		GLOB.dynamic_forced_extended = FALSE
+		rustg_file_write("Dynamic", "DYNAMIC_THREAT_VOTE_PATH")
 		return
 
 	else

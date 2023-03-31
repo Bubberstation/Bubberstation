@@ -453,6 +453,7 @@
 				send2adminchat("Server", "The Emergency Shuttle has docked with the station.")
 				priority_announce("[SSshuttle.emergency] has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, ANNOUNCER_SHUTTLEDOCK, "Priority")
 				ShuttleDBStuff()
+				SSvote.initiate_vote(/datum/vote/gamemode_vote, "gamemode vote", forced = TRUE)
 
 
 		if(SHUTTLE_DOCKED)
