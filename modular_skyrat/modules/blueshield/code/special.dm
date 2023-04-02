@@ -1,5 +1,4 @@
 /obj/item/gun/energy/e_gun/revolver //The virgin gun.
-
 	name = "X-R12 energy revolver"
 	desc = "An experimental model advanced energy weapon with the capacity to shoot both electrodes and lasers, used by many private defense contractors from Romulus to New Moscow, its also rather heavy and would certainly hurt to get pistol whipped by."
 	force = 16
@@ -8,7 +7,7 @@
 	charge_sections = 4
 	fire_delay = 4
 	icon = 'modular_skyrat/modules/blueshield/icons/energy.dmi'
-	icon_state = "bsgun"
+	icon_state = "bsalt"
 	inhand_icon_state = "minidisable"
 	lefthand_file = 'modular_skyrat/modules/blueshield/icons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/blueshield/icons/guns_righthand.dmi'
