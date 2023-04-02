@@ -22,7 +22,7 @@
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
-	maxcharge = 1000
+	maxcharge = 1200
 	chargerate = 300
 
 /obj/item/gun/energy/e_gun/revolver/pdw9 //The chad gun.
