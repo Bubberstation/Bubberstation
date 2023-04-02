@@ -1,7 +1,7 @@
 /obj/item/gun/energy/e_gun/revolver //The virgin gun.
 	name = "X-R12 energy revolver"
 	desc = "An experimental model advanced energy weapon with the capacity to shoot both electrodes and lasers, used by many private defense contractors from Romulus to New Moscow, its also rather heavy and would certainly hurt to get pistol whipped by."
-	force = 22
+	force = 16
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser/blueshield)
 	ammo_x_offset = 1
 	charge_sections = 4
