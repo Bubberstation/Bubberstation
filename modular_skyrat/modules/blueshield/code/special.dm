@@ -16,7 +16,7 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	selfcharge = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
-	worn_icon = modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi
+	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
 	worn_icon_state = "bsrevolver"
 
 /obj/item/stock_parts/cell/blueshield
