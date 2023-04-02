@@ -1,7 +1,7 @@
 /obj/item/gun/energy/e_gun/revolver //The virgin gun.
 	name = "X-R12 energy revolver"
 	desc = "An experimental model advanced energy weapon with the capacity to shoot both electrodes and lasers, used by many private defense contractors from Romulus to New Moscow, its also rather heavy and would certainly hurt to get pistol whipped by."
-	force = 16
+	force = 22
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser/blueshield)
 	ammo_x_offset = 1
 	charge_sections = 4
@@ -16,7 +16,8 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	selfcharge = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
-	worn_icon = null
+	worn_icon = modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi
+	worn_icon_state = "bsrevolver"
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
