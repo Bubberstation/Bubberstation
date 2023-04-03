@@ -87,6 +87,8 @@ GLOBAL_LIST_EMPTY(flora_uprooting_tools_typepaths)
 	disallowed_tools = GLOB.flora_disallowed_tools_typepaths[type]
 	uprooting_tools = GLOB.flora_uprooting_tools_typepaths[type]
 
+//BUBBER EDIT START - MOVED TO MODULAR
+/*
 /obj/structure/flora/attackby(obj/item/used_item, mob/living/user, params)
 	if(user.combat_mode)
 		return ..()
@@ -128,6 +130,8 @@ GLOBAL_LIST_EMPTY(flora_uprooting_tools_typepaths)
 
 	if(harvest(user))
 		after_harvest(user)
+*/
+//BUBBER EDIT END
 
 /obj/structure/flora/attack_hand(mob/user, list/modifiers)
 	. = ..()
