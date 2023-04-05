@@ -88,10 +88,15 @@
 "fC" = (
 /obj/structure/headpike/bone,
 /obj/effect/mapping_helpers/no_lava,
-/turf/template_noop,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/template_noop)
 "fV" = (
-/obj/structure/geyser,
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "gn" = (
@@ -104,20 +109,32 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "hd" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
+/obj/structure/closet/crate/wooden,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore{
+	pixel_y = 3
 	},
-/obj/structure/closet/xenoarch/ashwalker_version,
+/obj/item/pickaxe,
+/obj/item/pickaxe{
+	pixel_y = 3
+	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "hr" = (
-/obj/structure/closet/crate/wooden,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/rack/shelf{
+	icon = 'modular_skyrat/modules/mapping/icons/unique/furniture.dmi';
+	icon_state = "empty_shelf_1"
+	},
 /obj/item/screwdriver/ashwalker,
 /obj/item/crowbar/ashwalker,
 /obj/item/wrench/ashwalker,
 /obj/item/wirecutters/ashwalker,
 /obj/item/hatchet/wooden,
 /obj/item/weldingtool/mini,
+/obj/structure/stone_tile/slab,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "hL" = (
@@ -166,7 +183,8 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "iP" = (
-/obj/item/flashlight/flare/candle/infinite,
+/obj/structure/stone_tile/block,
+/obj/item/shovel,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "iZ" = (
@@ -190,11 +208,10 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "jL" = (
-/obj/structure/flora/ash/seraka,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
+/obj/structure/mineral_door/dungeon{
+	color = "#878787"
 	},
-/turf/open/misc/asteroid/basalt/lava_land_surface,
+/turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/ash_walkers)
 "ku" = (
 /mob/living/simple_animal/chicken{
@@ -240,14 +257,13 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "mh" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/storage/bag/ore,
-/obj/item/storage/bag/ore{
-	pixel_y = 3
+/obj/structure/bed/maint,
+/obj/structure/curtain/bounty,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
 	},
-/obj/item/pickaxe,
-/obj/item/pickaxe{
-	pixel_y = 3
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
 	},
 /obj/structure/stone_tile/slab,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
@@ -361,19 +377,12 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "ot" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/leather{
+	amount = 35
 	},
-/obj/structure/rack/shelf{
-	icon = 'modular_skyrat/modules/mapping/icons/unique/furniture.dmi';
-	icon_state = "empty_shelf_1"
-	},
-/obj/item/screwdriver/ashwalker,
-/obj/item/crowbar/ashwalker,
-/obj/item/wrench/ashwalker,
-/obj/item/wirecutters/ashwalker,
-/obj/item/hatchet/wooden,
-/obj/item/weldingtool/mini,
+/obj/item/stack/sheet/cloth/ten,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "pn" = (
@@ -438,9 +447,10 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "qy" = (
-/obj/structure/stone_tile/block/cracked{
+/obj/structure/stone_tile/surrounding_tile{
 	dir = 1
 	},
+/obj/item/flashlight/flare/candle/infinite,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "qW" = (
@@ -540,31 +550,8 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "tl" = (
-/obj/structure/rack/shelf{
-	icon = 'modular_skyrat/modules/mapping/icons/unique/furniture.dmi';
-	icon_state = "empty_shelf_1"
-	},
-/obj/item/spear/bonespear,
-/obj/item/spear/bonespear{
-	pixel_y = 5
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
-"tR" = (
-/obj/structure/bed/maint,
-/obj/structure/curtain/bounty,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
+/obj/structure/stone_tile/surrounding/burnt,
+/obj/structure/stone_tile/center/burnt,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "ug" = (
@@ -582,15 +569,14 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "vB" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
 /obj/structure/closet/crate/wooden,
-/obj/item/stack/sheet/iron/twenty,
-/obj/item/stack/sheet/leather{
-	amount = 35
-	},
-/obj/item/stack/sheet/cloth/ten,
+/obj/item/screwdriver/ashwalker,
+/obj/item/crowbar/ashwalker,
+/obj/item/wrench/ashwalker,
+/obj/item/wirecutters/ashwalker,
+/obj/item/hatchet/wooden,
+/obj/item/weldingtool/mini,
+/obj/structure/stone_tile/slab,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "wp" = (
@@ -621,8 +607,7 @@
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "wR" = (
-/obj/structure/flora/ash/cacti,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
+/turf/open/space/basic,
 /area/ruin/unpowered/ash_walkers)
 "wS" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -731,10 +716,10 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Bs" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
+/obj/structure/stone_tile/block{
+	dir = 8
 	},
-/obj/structure/flora/ash/stem_shroom,
+/obj/structure/stone_tile/block,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "BJ" = (
@@ -806,7 +791,6 @@
 /area/ruin/unpowered/ash_walkers)
 "EL" = (
 /obj/structure/stone_tile/slab,
-/obj/effect/decal/cleanable/blood,
 /obj/structure/headpike/bone,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -824,7 +808,10 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Fz" = (
-/obj/structure/flora/ash/tall_shroom,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/item/flashlight/flare/candle/infinite,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "FA" = (
@@ -906,7 +893,8 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "JD" = (
-/obj/structure/flora/ash/leaf_shroom,
+/obj/structure/stone_tile/slab/burnt,
+/obj/structure/stone_tile/slab/burnt,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "JN" = (
@@ -937,7 +925,12 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Ly" = (
-/turf/closed/wall/mineral/wood,
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center/burnt,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Lz" = (
 /obj/structure/reagent_forge,
@@ -982,7 +975,7 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Mq" = (
-/obj/structure/flora/ash/cap_shroom,
+/obj/structure/closet/xenoarch/ashwalker_version,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Mv" = (
@@ -1059,7 +1052,21 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "NM" = (
-/obj/structure/barricade/wooden,
+/obj/structure/rack/shelf{
+	icon = 'modular_skyrat/modules/mapping/icons/unique/furniture.dmi';
+	icon_state = "empty_shelf_1"
+	},
+/obj/item/spear/bonespear,
+/obj/item/spear/bonespear{
+	pixel_y = 5
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/slab,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "NP" = (
@@ -1190,14 +1197,21 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "PJ" = (
-/obj/structure/flora/ash/seraka,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center/cracked,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "PK" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
-/obj/structure/flora/ash/cacti,
+/obj/item/flashlight/flare/candle/infinite,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Qe" = (
@@ -1426,17 +1440,18 @@
 /area/ruin/unpowered/ash_walkers)
 "XV" = (
 /obj/effect/mapping_helpers/no_lava,
-/turf/template_noop,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/template_noop)
 "Yq" = (
-/obj/structure/flora/ash/stem_shroom,
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "Zn" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/flora/ash/cacti,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
+/area/template_noop)
 "ZW" = (
 /obj/structure/stone_tile/block/burnt{
 	dir = 4
@@ -1448,105 +1463,103 @@
 mv
 mv
 mv
-mv
-mv
-Ly
-Ly
+pE
+pE
 cm
-Ly
-Ly
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
+pE
+pE
+pE
+pE
+pE
+cm
+pE
+pE
+pE
+pE
+pE
+pE
+pE
+pE
+cm
+pE
 mv
 "}
 (2,1,1) = {"
 mv
-mv
-mv
-Ly
+pE
 cm
-Ly
+pE
 mu
-mh
+dw
 mu
-Ly
-Ly
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
+pE
+pE
+Nf
+dw
+bH
+dw
+dw
+RR
+pE
+cm
+pE
+MR
+FL
+FL
+pE
+pE
 "}
 (3,1,1) = {"
-mv
-mv
-Ly
-Ly
+pE
+pE
 mu
-bH
+mZ
 AG
 HF
 OJ
-Nf
-Ly
+dw
+pE
+sl
+dw
+hr
+dw
 NM
-NM
-NM
-mv
-mv
-mv
-Ly
-Ly
-Ly
-cm
-Ly
-mv
+pE
+pE
+UR
+PG
+pD
+ZW
+Uw
+La
+pE
 "}
 (4,1,1) = {"
-mv
-mv
-Ly
-sl
+pE
+dw
 HF
 NV
 Qw
 pn
 WW
-tR
+mh
 cm
+pE
+Ly
+dw
+dw
+vB
+pE
+oe
+dw
+dw
+XQ
 mZ
-mZ
-NM
-NM
-Ly
-cm
-Ly
-MR
-FL
-FL
-Ly
-Ly
+NV
+EQ
+pE
 "}
 (5,1,1) = {"
-mv
-mv
 cm
 LO
 Vw
@@ -1558,21 +1571,21 @@ Uh
 WD
 mZ
 mZ
-mZ
-Ly
-Ly
-UR
-PG
-pD
-ZW
-Uw
-La
-Ly
+dw
+PJ
+pE
+cm
+Qe
+xl
+ab
+HF
+ky
+Gx
+nb
+pE
 "}
 (6,1,1) = {"
-mv
-mv
-Ly
+pE
 mu
 qs
 dw
@@ -1582,58 +1595,10 @@ mZ
 dw
 KS
 dw
+WJ
+dw
 WW
-PJ
-Ly
-oe
-dw
-dw
-XQ
 mZ
-NV
-EQ
-Ly
-"}
-(7,1,1) = {"
-mv
-mv
-Ly
-Ly
-Vw
-Ox
-zI
-WM
-NV
-DP
-OR
-mZ
-dw
-NV
-cm
-Qe
-xl
-ab
-HF
-ky
-Gx
-nb
-Ly
-"}
-(8,1,1) = {"
-mv
-mv
-mv
-Ly
-RR
-tl
-St
-dw
-mS
-HF
-pE
-mZ
-dw
-dw
 KS
 ku
 sS
@@ -1644,21 +1609,21 @@ OJ
 cm
 pE
 "}
-(9,1,1) = {"
-mv
-mv
-mv
-Ly
-Ly
-cm
-Um
-Qe
-ww
-cm
+(7,1,1) = {"
 pE
+pE
+Vw
+Ox
+zI
+WM
+NV
+DP
+OR
 mZ
-KS
-KU
+mZ
+mZ
+dw
+NV
 dw
 Vw
 mZ
@@ -1667,23 +1632,23 @@ LI
 Ts
 DL
 Mk
-Ly
+pE
 "}
-(10,1,1) = {"
+(8,1,1) = {"
 mv
-mv
-mv
-mv
-mv
-NM
-vB
-JD
-lH
-ot
+pE
+dw
+mZ
+St
+dw
+mS
 HF
-Mq
-WJ
-OJ
+pE
+mZ
+mZ
+mZ
+dw
+dw
 cm
 qr
 zI
@@ -1692,57 +1657,107 @@ rP
 HF
 SX
 OG
-Ly
+pE
 "}
-(11,1,1) = {"
+(9,1,1) = {"
 mv
-mv
-mv
-mv
-mv
-NM
-NM
-hr
+pE
+pE
+cm
+Um
 mZ
-jL
-zI
+ww
+cm
+pE
 mZ
-JN
 mZ
-Ly
-Ly
+mZ
+KS
+KU
+pE
+pE
 Xe
 ij
 VT
 UL
 UL
-Og
-Ly
+UL
+pE
+"}
+(10,1,1) = {"
+mv
+mv
+mv
+pE
+zI
+mZ
+mZ
+mZ
+lH
+mZ
+mZ
+mZ
+WJ
+OJ
+mZ
+pE
+pE
+cm
+JN
+KS
+dw
+dw
+pE
+"}
+(11,1,1) = {"
+mv
+mv
+mv
+jL
+dw
+dw
+dw
+dw
+dw
+dw
+dw
+dw
+JN
+mZ
+mZ
+mZ
+mZ
+OJ
+JN
+tl
+KS
+dw
+pE
 "}
 (12,1,1) = {"
 mv
 mv
 mv
-mv
-mv
-mv
-NM
-hd
-Mq
 pE
 HF
+Mq
+ot
+hd
+mZ
+mZ
+mZ
 mZ
 dw
 mZ
 mZ
-Ly
-Ly
-cm
+mZ
+mZ
+mZ
+OJ
+JD
 JN
-KS
-dw
-Ly
-Ly
+pE
+pE
 "}
 (13,1,1) = {"
 mv
@@ -1756,18 +1771,18 @@ pE
 UL
 zI
 mZ
-Mq
+mZ
 St
 dw
 WW
 mZ
 mZ
-OJ
-Qe
+mZ
+mZ
 Qe
 xl
 cm
-mv
+Zn
 "}
 (14,1,1) = {"
 mv
@@ -1785,14 +1800,14 @@ mZ
 mZ
 mZ
 KS
-fV
 mZ
-Mq
+mZ
+mZ
 mZ
 mZ
 pE
 pE
-mv
+Zn
 "}
 (15,1,1) = {"
 pE
@@ -1807,17 +1822,17 @@ pE
 cm
 Kr
 mZ
-PK
+NV
 Qw
 dw
 WW
 zI
 mZ
-Fz
+mZ
 cm
 pE
 fC
-mv
+Zn
 "}
 (16,1,1) = {"
 pE
@@ -1835,7 +1850,7 @@ Kr
 Oc
 qW
 mZ
-OJ
+qy
 Uh
 mZ
 NV
@@ -1860,7 +1875,7 @@ KS
 dw
 mZ
 Ra
-iP
+mZ
 dw
 dw
 dw
@@ -1883,9 +1898,9 @@ FA
 KS
 MD
 Ox
-zI
-iP
-NV
+Fz
+mZ
+PK
 DP
 mZ
 NR
@@ -1911,13 +1926,13 @@ OJ
 St
 dw
 mS
-Zn
+HF
 mZ
 mZ
 cm
 pE
 fC
-mv
+Zn
 "}
 (20,1,1) = {"
 mv
@@ -1931,18 +1946,18 @@ cm
 pE
 QG
 mZ
-Bs
-VT
-UL
-dw
-UL
-LC
-zI
+mZ
+mZ
+KU
+KS
+Ts
+mZ
+mZ
 mZ
 mZ
 pE
 pE
-mv
+Zn
 "}
 (21,1,1) = {"
 mv
@@ -1955,8 +1970,131 @@ pE
 pE
 Qe
 HF
-fV
+mZ
+mZ
+mZ
 KU
+dw
+Ts
+mZ
+mZ
+mZ
+mZ
+MF
+cm
+Zn
+"}
+(22,1,1) = {"
+mv
+mv
+mv
+pE
+zI
+mZ
+mZ
+mZ
+mZ
+mZ
+lH
+NV
+UL
+fV
+dw
+Ts
+mZ
+mZ
+mZ
+aK
+mZ
+pE
+pE
+"}
+(23,1,1) = {"
+mv
+mv
+mv
+jL
+dw
+dw
+dw
+dw
+dw
+dw
+dw
+dw
+dw
+dw
+KS
+Ts
+mZ
+mZ
+mZ
+mZ
+mZ
+PF
+pE
+"}
+(24,1,1) = {"
+mv
+mv
+mv
+pE
+HF
+mZ
+mZ
+mZ
+mZ
+mZ
+mZ
+KU
+dw
+Yq
+Qe
+HF
+mZ
+mZ
+mZ
+mZ
+MF
+Do
+pE
+"}
+(25,1,1) = {"
+mv
+mv
+mv
+pE
+cm
+Os
+Os
+cm
+mZ
+NV
+VT
+fV
+KS
+Bs
+LC
+zI
+mZ
+mZ
+mZ
+mZ
+mZ
+eA
+pE
+"}
+(26,1,1) = {"
+mv
+pE
+pE
+pE
+FL
+mZ
+mZ
+hL
+dw
+dw
 pE
 pE
 KS
@@ -1964,139 +2102,39 @@ Qe
 cm
 pE
 zI
-Mq
 mZ
+mZ
+eU
+mZ
+eU
 cm
-mv
 "}
-(22,1,1) = {"
-mv
-mv
-mv
-mv
-mv
-mv
-NM
-Mq
-mZ
-mZ
-mZ
-qy
-cm
-NB
-NV
-zI
-Uw
-dw
-Ts
-aK
-mZ
-Ly
-Ly
-"}
-(23,1,1) = {"
-mv
-mv
-mv
-mv
-mv
-mv
-NM
-mZ
-mZ
-mZ
-Mq
-KU
-PB
-sI
-OJ
-HF
-NV
-dw
-Bc
-mZ
-mZ
-PF
-Ly
-"}
-(24,1,1) = {"
-mv
-mv
-mv
-mv
-mv
-Ly
-cm
-Os
-Os
-cm
-mZ
-Mk
-Ol
-zI
-mZ
-mZ
-Mv
+(27,1,1) = {"
 pE
-HF
-wR
-MF
-mZ
-Ly
-"}
-(25,1,1) = {"
-mv
-mv
-mv
 pE
-Ly
-Ly
-FL
-mZ
-mZ
-hL
-mZ
-KU
-pE
-Lz
-zI
-Og
-MS
-cm
-eA
-mZ
-wR
-mZ
-Ly
-"}
-(26,1,1) = {"
-mv
-mv
-Ly
-Ly
 mu
 EH
 Cp
 UL
 zI
 hL
-mZ
-OJ
-pE
+dw
+dw
 cm
-VX
-nY
-pE
-pE
+NB
+NV
+zI
+Uw
+dw
+iP
 mZ
 mZ
-wR
-eU
-cm
+mZ
+mZ
+mc
+pE
 "}
-(27,1,1) = {"
-mv
-mv
+(28,1,1) = {"
 cm
 Pr
 sI
@@ -2106,81 +2144,62 @@ LI
 Ts
 cm
 pE
+KU
+PB
+sI
+OJ
+HF
+NV
+dw
+Bc
+mZ
+lH
 mZ
 mZ
+SF
 pE
-pE
-cm
-pE
-eU
-PJ
-mc
-mZ
-mZ
-Ly
 "}
-(28,1,1) = {"
-mv
-mv
-Ly
+(29,1,1) = {"
+pE
 Ts
 mZ
 mZ
 OJ
 Qe
 HF
-La
-Ly
+wR
+pE
+Mk
+Ol
+zI
 mZ
 mZ
-Yq
+Mv
+pE
+HF
 mZ
-Do
-SF
 mZ
-JD
-PJ
 mZ
-Ly
-Ly
+mZ
+Ne
+pE
 "}
-(29,1,1) = {"
-mv
-mv
-Ly
+(30,1,1) = {"
+pE
 mu
 hX
 Vw
 Og
-pF
-Hr
-eO
-Ly
-PJ
-mZ
-mZ
-MF
-Mq
 wR
-mZ
-mZ
-PJ
-Ne
-Ly
-mv
-"}
-(30,1,1) = {"
-mv
-mv
-Ly
-Ly
-Ly
-WB
-qr
-Ly
-cm
-Ly
-Ly
+wR
+La
+pE
+KU
+pE
+Lz
+zI
+Og
+MS
 cm
 mZ
 NV
@@ -2188,59 +2207,55 @@ VT
 UL
 UL
 zI
-MF
-mZ
-Ly
-Ly
-mv
+pE
 "}
 (31,1,1) = {"
-mv
-mv
-mv
-mv
-Ly
-cm
-Ly
-Ly
-mv
-mv
-mv
 pE
-Ly
-Ly
+pE
+pE
+WB
+qr
+pF
+Hr
+eO
+pE
+OJ
+pE
+cm
+VX
+nY
+pE
+pE
+mZ
+pE
 LE
 tg
 SE
-Ly
-Ly
-cm
-Ly
-mv
-mv
+pE
+pE
 "}
 (32,1,1) = {"
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-Ly
-Ly
+pE
 cm
-Ly
-Ly
-mv
-mv
-mv
-mv
-mv
+pE
+pE
+cm
+pE
+pE
+cm
+pE
+pE
+pE
+pE
+pE
+cm
+pE
+pE
+pE
+pE
+pE
+pE
+pE
 "}
