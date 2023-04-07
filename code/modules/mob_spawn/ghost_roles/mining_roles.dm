@@ -255,6 +255,7 @@
 
 	spawned_human.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
+	spawned_human.grant_language(/datum/language/ashtongue)	// Bubber Addition - Ashtongue Fix
 	//spawned_human.remove_language(/datum/language/common) -Nonmodular removal. Allows Ashwalkers to speak common and properly learn other languages.
 	team.players_spawned += (spawned_human.key)
 	eggshell.egg = null
