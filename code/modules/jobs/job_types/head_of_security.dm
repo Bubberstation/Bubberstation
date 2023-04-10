@@ -97,8 +97,10 @@
 	var/static/list/hosgun_list
 	if(!hosgun_list)
 		hosgun_list = list()
-		for(var/obj/item/storage/box/hosgun/box as anything in typesof(/obj/item/storage/box/hos))
+		for(var/obj/item/storage/box/hosgun/box as anything in typesof(/obj/item/storage/box/hosgun))
 			hosgun_list[initial(box.name)] = box
 	return hosgun_list
+
+/obj/item/storage/box/hosgun/Populate_contents()
 
 
