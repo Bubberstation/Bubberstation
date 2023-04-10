@@ -54,6 +54,8 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	backpack_contents = list(
 		/obj/item/storage/box/gunset/blueshield = 1,
+		/obj/item/gun/energy/e_gun/revolver = 1,
+		/obj/item/storage/medkit/tactical/blueshield = 1,
 		/obj/item/melee/baton/security/loaded = 1,)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
