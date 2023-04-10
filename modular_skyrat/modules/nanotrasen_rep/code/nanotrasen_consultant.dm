@@ -44,7 +44,7 @@
 	name = "Nanotrasen Consultant"
 	jobtype = /datum/job/nanotrasen_consultant
 
-	belt = /obj/item/modular_computer/pda/nanotrasen_consultant
+	belt = /obj/item/storage/belt/security/peacekeeper
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/nanotrasen_consultant
 	gloves = /obj/item/clothing/gloves/combat
@@ -55,6 +55,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
 		/obj/item/storage/box/gunset/nanotrasen_consultant = 1,
+		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
 		)
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)
@@ -124,7 +125,9 @@
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
-
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	name = "\proper nanotrasen consultant's locker"
