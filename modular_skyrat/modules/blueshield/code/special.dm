@@ -22,7 +22,7 @@
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
 	maxcharge = 1200
-	chargerate = 105
+	chargerate = 105 //Hit your shot and don't complain, it's self recharging.
 
 /obj/item/gun/energy/e_gun/revolver/pdw9 //The gun fit for a real man
 	name = "PDW-9 taser pistol"
