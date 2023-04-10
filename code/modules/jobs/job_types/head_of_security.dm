@@ -54,7 +54,6 @@
 	suit_store = /obj/item/gun/energy/e_gun //KEPLER EDIT RESTORATION
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/storage/box/gunset/glock18_hos = 1, //SKYRAT EDIT ADDITION
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/modular_computer/pda/heads/hos =1,
 		)
@@ -87,3 +86,19 @@
 	head = null
 	mask = /obj/item/clothing/mask/gas/sechailer
 	internals_slot = ITEM_SLOT_SUITSTORE
+
+/obj/item/choice_beacon/head_of_security
+	name = "gun choice beacon"
+	desc = "whatever you choose will determine the outcome of space station 13 and the fate of the company so choose wisely.""
+	company_source = "Romulus Shipping Company"
+	company_message = span_bold("Copy that [user] supply pod enroute!")
+
+/obj/item/choice_beacon/head_of_security/generate_display_names()
+	var/static/list/hosgun_list
+	if(!hosgun_list)
+		hosgun_list = list()
+		for(var/obj/item/storage/box/hosgun/box as anything in typesof(/obj/item/storage/box/hos))
+			hosgun_list[initial(box.name)] = box
+	return hosgun_list
+
+
