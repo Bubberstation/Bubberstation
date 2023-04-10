@@ -57,7 +57,7 @@
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/gunset/glock17 = 1,
 		)
-	belt = /obj/item/storage/belt/security/full = 1,
+	belt = /obj/item/storage/belt/security/full
 	ears = /obj/item/radio/headset/headset_sec/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	gloves = /obj/item/clothing/gloves/color/black/security //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/gloves/color/black
