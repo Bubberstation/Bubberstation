@@ -1,7 +1,7 @@
-/obj/item/gun/energy/e_gun/revolver //The virgin gun.
+/obj/item/gun/energy/e_gun/revolver //The gun fit for a kitsune
 	name = "X-R12 energy revolver"
 	desc = "An experimental model advanced energy weapon with the capacity to shoot both electrodes and lasers, used by many private defense contractors from Romulus to New Moscow, its also rather heavy and would certainly hurt to get pistol whipped by."
-	force = 16
+	force = 12
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/laser/blueshield)
 	ammo_x_offset = 1
 	charge_sections = 4
@@ -22,9 +22,9 @@
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"
 	maxcharge = 1200
-	chargerate = 300
+	chargerate = 105
 
-/obj/item/gun/energy/e_gun/revolver/pdw9 //The chad gun.
+/obj/item/gun/energy/e_gun/revolver/pdw9 //The gun fit for a real man
 	name = "PDW-9 taser pistol"
 	desc = "A military grade energy sidearm, used by many militia forces throughout the local sector. It comes with an internally recharging battery which is slow to recharge."
 	ammo_x_offset = 2
@@ -34,7 +34,7 @@
 
 /obj/item/stock_parts/cell/pdw9
 	name = "internal pistol power cell"
-	maxcharge = 1000
+	maxcharge = 1200
 	chargerate = 300
 	var/obj/item/gun/energy/e_gun/revolver/pdw9/parent
 
