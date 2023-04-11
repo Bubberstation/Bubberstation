@@ -994,10 +994,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 //This is lazy and does not work
 
-/datum/objective/kidnapping/proc/replace_in_name(replace, word)
-	name = replacetext(name, replace, word)
-	description = replacetext(description, replace, word)
-
+/datum/objective/kidnapping
 	name = "Kidnap %TARGET% the %JOB TITLE% and deliver them to %AREA%"
 	description = "%TARGET% holds extremely important information regarding secret NT projects - and you'll need to kidnap and deliver them to %AREA%, where our transport pod will be waiting. \
 		You'll get additional reward if %TARGET% is delivered alive."
@@ -1013,6 +1010,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/pod_called = FALSE
 	/// All stripped victims belongings
 	var/list/victim_belogings = list()
+
+/datum/objective/kidnapping/proc/replace_in_name(replace, word)
+	name = replacetext(name, replace, word)
+	description = replacetext(description, replace, word)
 
 /datum/objective/kidnapping/generate_objective(datum/mind/generating_for, list/possible_duplicates)
 
