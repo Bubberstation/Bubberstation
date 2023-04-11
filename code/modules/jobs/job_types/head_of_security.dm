@@ -94,7 +94,7 @@
 	name = "gun choice beacon"
 	desc = "whatever you choose will determine the outcome of space station 13 and the fate of the company so choose wisely."
 	company_source = "Romulus Shipping Company"
-	company_message = span_bold("Copy that [user] supply pod enroute!")
+	company_message = span_bold("Copy that SS13, supply pod enroute!")
 
 
 /obj/item/choice_beacon/head_of_security/generate_display_names()
