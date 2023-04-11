@@ -11,6 +11,7 @@
 
 /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	name = "\improper rowland revolver cylinder"
+	max_ammo = 6
 	ammo_type = /obj/item/ammo_casing/b460
 	caliber = CALIBER_460
 
@@ -26,13 +27,15 @@
 /obj/item/storage/bag/b460reloadpouch/Initialize(mapload)
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL
-	atom_storage.max_total_storage = 24
-	atom_storage.max_slots = 1
+	atom_storage.max_total_storage = 30
+	atom_storage.max_slots = 2
 	atom_storage.numerical_stacking = TRUE
-	atom_storage.can_hold = typecacheof(list(/obj/item/ammo_casing/b460))
+	atom_storage.set_holdable(list(
+		/obj/item/ammo_casing/b460,
+		))
 
 /obj/item/storage/bag/b460reloadpouch/PopulateContents()
-	.=..()
+	. = ..()
 	new /obj/item/ammo_casing/b460(src)
 	new /obj/item/ammo_casing/b460(src)
 	new /obj/item/ammo_casing/b460(src)
