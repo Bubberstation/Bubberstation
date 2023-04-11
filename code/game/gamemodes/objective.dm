@@ -993,17 +993,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return (istype(user_area, dropoff) && istype(target_area, dropoff))
 
 //This is lazy and does not work
-/datum/objective/kidnapping
-	name = "Kidnap Personnel"
-	objectives = list(
-		list(
-			/datum/traitor_objective/kidnapping/common = 20,
-			/datum/traitor_objective/kidnapping/less_common = 1,
-		) = 4,
-		/datum/objective/kidnapping/uncommon = 3,
-		/datum/objective/kidnapping/rare = 2,
-		/datum/objective/kidnapping/captain = 1
-	)
 
 /datum/objective/kidnapping/proc/replace_in_name(replace, word)
 	name = replacetext(name, replace, word)
@@ -1024,70 +1013,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/pod_called = FALSE
 	/// All stripped victims belongings
 	var/list/victim_belogings = list()
-
-/datum/objective/kidnapping/common
-	target_jobs = list(
-		// Medical
-		/datum/job/doctor,
-		/datum/job/paramedic,
-		/datum/job/psychologist,
-		/datum/job/chemist,
-		// Service
-		/datum/job/clown,
-		/datum/job/botanist,
-		/datum/job/janitor,
-		/datum/job/mime,
-		/datum/job/lawyer,
-		/datum/job/chaplain,
-		/datum/job/bartender,
-		/datum/job/curator,
-		// Cargo
-		/datum/job/cargo_technician,
-		// Science
-		/datum/job/geneticist,
-		/datum/job/roboticist,
-		// Engineering
-		/datum/job/station_engineer,
-		/datum/job/atmospheric_technician,
-	)
-
-/datum/objective/kidnapping/less_common
-	target_jobs = list(
-		/datum/job/assistant
-	)
-
-/datum/objective/kidnapping/uncommon //Hard to fish out victims
-	target_jobs = list(
-		// Medical
-		/datum/job/virologist,
-		// Cargo
-		/datum/job/shaft_miner,
-		// Service
-		/datum/job/cook,
-		// Science
-		/datum/job/scientist,
-	)
-
-/datum/objective/kidnapping/rare
-	progression_minimum = 15 MINUTES
-	progression_maximum = 60 MINUTES
-	target_jobs = list(
-		// Security
-		/datum/job/security_officer,
-		/datum/job/warden,
-		/datum/job/detective,
-		// Heads of staff
-		/datum/job/head_of_personnel,
-		/datum/job/chief_medical_officer,
-		/datum/job/research_director,
-		/datum/job/quartermaster,
-	)
-
-/datum/objective/kidnapping/captain
-	target_jobs = list(
-		/datum/job/head_of_security,
-		/datum/job/captain
-	)
 
 /datum/objective/kidnapping/generate_objective(datum/mind/generating_for, list/possible_duplicates)
 
