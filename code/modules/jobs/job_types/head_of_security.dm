@@ -89,7 +89,7 @@
 
 /obj/item/choice_beacon/head_of_security
 	name = "gun choice beacon"
-	desc = "whatever you choose will determine the outcome of space station 13 and the fate of the company so choose wisely.""
+	desc = "whatever you choose will determine the outcome of space station 13 and the fate of the company so choose wisely."
 	company_source = "Romulus Shipping Company"
 	company_message = span_bold("Copy that [user] supply pod enroute!")
 
@@ -101,6 +101,7 @@
 			hosgun_list[initial(box.name)] = box
 	return hosgun_list
 
-/obj/item/storage/box/hosgun/Populate_contents()
-
+/obj/item/storage/box/hosgun/glock/PopulateContents()
+	. = ..()
+	new /obj/item/gun/ballistic/automatic/pistol/m45a5/nomag(src)
 
