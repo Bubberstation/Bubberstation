@@ -992,9 +992,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	return (istype(user_area, dropoff) && istype(target_area, dropoff))
 
-//This is lazy but will work for now
+//This is lazy and does not work
 /datum/objective/kidnapping
-
 	name = "Kidnap Personnel"
 	objectives = list(
 		list(
@@ -1006,7 +1005,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/kidnapping/captain = 1
 	)
 
-/datum/objective/kidnapping
+/datum/objective/kidnapping/proc/replace_in_name(replace, word)
+	name = replacetext(name, replace, word)
+	description = replacetext(description, replace, word)
+
 	name = "Kidnap %TARGET% the %JOB TITLE% and deliver them to %AREA%"
 	description = "%TARGET% holds extremely important information regarding secret NT projects - and you'll need to kidnap and deliver them to %AREA%, where our transport pod will be waiting. \
 		You'll get additional reward if %TARGET% is delivered alive."
