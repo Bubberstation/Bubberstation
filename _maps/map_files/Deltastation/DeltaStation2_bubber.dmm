@@ -126,7 +126,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "aby" = (
 /turf/open/floor/wood,
@@ -1480,7 +1489,6 @@
 /area/station/commons/dorms)
 "aqW" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/storage/barricade{
 	pixel_y = -5
 	},
@@ -1488,6 +1496,7 @@
 /obj/item/storage/barricade{
 	pixel_y = 5
 	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "arc" = (
@@ -2631,12 +2640,15 @@
 /turf/open/floor/iron/dark,
 /area/station/service/library)
 "aEs" = (
-/obj/structure/closet/secure_closet/contraband/armory,
-/obj/machinery/light/directional/east,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/effect/spawner/random/maintenance/three,
-/obj/effect/spawner/random/contraband/armory,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/siding/dark_red,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "aEz" = (
 /obj/structure/disposalpipe/segment{
@@ -2693,20 +2705,6 @@
 /obj/item/clothing/under/rank/civilian/lawyer/black/skirt,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
-"aFl" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/melee/hammer,
-/obj/item/melee/hammer,
-/obj/item/melee/hammer,
-/obj/item/storage/box/firingpins,
-/obj/item/storage/box/firingpins,
-/obj/item/gun/energy/e_gun/dragnet{
-	pixel_y = 6
-	},
-/obj/item/gun/energy/e_gun/dragnet,
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "aFo" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
@@ -7934,12 +7932,12 @@
 /turf/open/floor/iron/diagonal,
 /area/station/medical/break_room)
 "bOT" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/closet/ammunitionlocker/useful,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "bOU" = (
@@ -14718,7 +14716,13 @@
 /area/station/service/hydroponics)
 "dwU" = (
 /obj/structure/cable,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "dwV" = (
 /obj/machinery/door/firedoor,
@@ -15787,6 +15791,20 @@
 /obj/machinery/status_display/ai/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
+"dLt" = (
+/obj/structure/rack,
+/obj/item/melee/hammer,
+/obj/item/melee/hammer,
+/obj/item/melee/hammer,
+/obj/item/storage/box/firingpins,
+/obj/item/storage/box/firingpins,
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_y = 6
+	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "dLu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/delivery,
@@ -21863,6 +21881,14 @@
 /obj/item/pen,
 /turf/open/floor/wood,
 /area/station/service/library/abandoned)
+"fjB" = (
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/machinery/light/directional/east,
+/obj/effect/spawner/random/maintenance/three,
+/obj/effect/spawner/random/contraband/armory,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "fjQ" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -27234,7 +27260,6 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "gzP" = (
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
@@ -27248,6 +27273,7 @@
 /obj/item/gun/energy/disabler{
 	pixel_y = -2
 	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "gzQ" = (
@@ -27740,7 +27766,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 9
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "gFK" = (
 /obj/machinery/vending/hydroseeds,
@@ -29136,12 +29168,14 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel)
 "gYv" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/mob/living/simple_animal/bot/secbot/beepsky/armsky,
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "gYz" = (
 /obj/structure/cable,
@@ -30585,6 +30619,33 @@
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/wood,
 /area/station/maintenance/starboard/aft)
+"hrB" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/bulletproof/old{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/armor/bulletproof/old{
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/armor/bulletproof/old{
+	pixel_x = 7;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet/alt{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/clothing/head/helmet/alt{
+	pixel_y = 6
+	},
+/obj/item/clothing/head/helmet/alt{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "hrG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -32898,8 +32959,8 @@
 	pixel_y = -3
 	},
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/gun/grenadelauncher,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "hYa" = (
@@ -34843,6 +34904,28 @@
 /obj/structure/table/glass,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
+"iuT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/herringbone,
+/area/station/ai_monitored/security/armory)
 "iuU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -36482,8 +36565,8 @@
 	},
 /obj/item/storage/lockbox/loyalty,
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/airalarm/directional/north,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "iRm" = (
@@ -41583,7 +41666,16 @@
 	dir = 1
 	},
 /obj/machinery/holopad,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "jYM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -41823,14 +41915,6 @@
 	dir = 1
 	},
 /area/station/medical/morgue)
-"kbM" = (
-/obj/machinery/light/directional/east,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/dish_drive/bullet{
-	succrange = 6
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "kbN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -44781,7 +44865,6 @@
 /turf/open/floor/iron,
 /area/station/security/detectives_office/private_investigators_office)
 "kNk" = (
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
@@ -44793,6 +44876,7 @@
 /obj/item/gun/energy/e_gun{
 	pixel_y = -7
 	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "kNw" = (
@@ -45229,6 +45313,44 @@
 /obj/effect/turf_decal/tile/neutral/full,
 /turf/open/floor/iron/large,
 /area/station/medical/virology)
+"kSZ" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/armor/riot{
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_y = 8
+	},
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/shield/riot{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/shield/riot{
+	pixel_y = -8
+	},
+/obj/item/shield/riot{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "kTd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -47776,44 +47898,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/theater)
-"lzS" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = -7;
-	pixel_y = -6
-	},
-/obj/item/clothing/suit/armor/riot{
-	pixel_y = -6
-	},
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = 7;
-	pixel_y = -6
-	},
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 8
-	},
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/item/shield/riot{
-	pixel_x = -8;
-	pixel_y = -8
-	},
-/obj/item/shield/riot{
-	pixel_y = -8
-	},
-/obj/item/shield/riot{
-	pixel_x = 8;
-	pixel_y = -8
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "lAg" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -50800,7 +50884,6 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/engineering/atmos/pumproom)
 "mnT" = (
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
@@ -50812,6 +50895,7 @@
 /obj/item/gun/energy/laser{
 	pixel_y = -7
 	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "mnW" = (
@@ -54842,7 +54926,6 @@
 /area/station/security/brig)
 "nlZ" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/radio/intercom/directional/north,
 /obj/item/storage/box/firingpins,
 /obj/item/grenade/barrier{
@@ -54852,6 +54935,7 @@
 /obj/item/grenade/barrier{
 	pixel_x = 6
 	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "nma" = (
@@ -56608,7 +56692,12 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/siding/dark_red,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "nIY" = (
 /obj/machinery/duct,
@@ -59403,10 +59492,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "otJ" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/firealarm/directional/west,
 /obj/structure/closet/secure_closet/smartgun,
 /obj/machinery/light/directional/west,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "ouc" = (
@@ -61445,6 +61534,14 @@
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
 /area/station/service/chapel)
+"oWx" = (
+/obj/structure/rack,
+/obj/item/gun/energy/ionrifle,
+/obj/item/clothing/suit/hooded/ablative,
+/obj/item/gun/energy/temperature/security,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "oWA" = (
 /obj/structure/bed,
 /obj/item/bedsheet/mime,
@@ -61740,7 +61837,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "pbP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -62265,33 +62365,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/theater)
-"phf" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/bulletproof/old{
-	pixel_x = -7;
-	pixel_y = -3
-	},
-/obj/item/clothing/suit/armor/bulletproof/old{
-	pixel_y = -3
-	},
-/obj/item/clothing/suit/armor/bulletproof/old{
-	pixel_x = 7;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/helmet/alt{
-	pixel_x = -7;
-	pixel_y = 6
-	},
-/obj/item/clothing/head/helmet/alt{
-	pixel_y = 6
-	},
-/obj/item/clothing/head/helmet/alt{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "phn" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -64027,7 +64100,7 @@
 /area/station/science/circuits)
 "pDt" = (
 /obj/machinery/flasher/portable,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "pDy" = (
@@ -64511,10 +64584,7 @@
 /area/station/cargo/blacksmith)
 "pIX" = (
 /obj/structure/chair/office,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "pJf" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -64673,6 +64743,21 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/station/cargo/drone_bay)
+"pKD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
+/area/station/ai_monitored/security/armory)
 "pKM" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/tile/neutral{
@@ -65907,6 +65992,45 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel)
+"pYb" = (
+/obj/item/storage/secure/safe/directional/east,
+/obj/structure/rack,
+/obj/item/clothing/glasses/hud/security/sunglasses/redsec{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/redsec{
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/redsec{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/sec/redsec{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/clothing/head/helmet/sec/redsec{
+	pixel_y = 6
+	},
+/obj/item/clothing/head/helmet/sec/redsec{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/armor/vest/alt/sec/redsec{
+	pixel_x = -7;
+	pixel_y = -5
+	},
+/obj/item/clothing/suit/armor/vest/alt/sec/redsec{
+	pixel_y = -5
+	},
+/obj/item/clothing/suit/armor/vest/alt/sec/redsec{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "pYh" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -67066,6 +67190,14 @@
 	},
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den/gaming)
+"qnm" = (
+/obj/machinery/light/directional/east,
+/obj/machinery/dish_drive/bullet{
+	succrange = 6
+	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "qnr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -67703,33 +67835,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
-"qwp" = (
-/obj/structure/rack,
-/obj/structure/sign/nanotrasen{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/flashlight/seclite{
-	pixel_x = 2;
-	pixel_y = 7
-	},
-/obj/item/flashlight/seclite{
-	pixel_x = 2
-	},
-/obj/item/flashlight/seclite{
-	pixel_x = 2;
-	pixel_y = -7
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "qwv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -72933,14 +73038,6 @@
 /obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/commons/fitness/recreation)
-"rLv" = (
-/obj/structure/rack,
-/obj/item/gun/energy/ionrifle,
-/obj/item/clothing/suit/hooded/ablative,
-/obj/item/gun/energy/temperature/security,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "rLx" = (
 /obj/machinery/status_display/evac/directional/east,
 /obj/structure/chair{
@@ -73212,9 +73309,6 @@
 /area/station/engineering/storage/tech)
 "rOS" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
 /obj/machinery/button/door/directional/south{
 	id = "armouryaccess";
 	name = "Armoury Access";
@@ -73229,6 +73323,7 @@
 	pixel_y = 2
 	},
 /obj/item/key/security,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "rOU" = (
@@ -73824,6 +73919,29 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"rUP" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/sec{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/sec,
+/obj/item/clothing/head/helmet/sec{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/armor/vest/alt/sec{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/suit/armor/vest/alt/sec,
+/obj/item/clothing/suit/armor/vest/alt/sec{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "rUV" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -78621,45 +78739,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/vault,
 /area/station/commons/fitness/recreation)
-"tcw" = (
-/obj/item/storage/secure/safe/directional/east,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/rack,
-/obj/item/clothing/glasses/hud/security/sunglasses/redsec{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/hud/security/sunglasses/redsec{
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/hud/security/sunglasses/redsec{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet/sec/redsec{
-	pixel_x = -7;
-	pixel_y = 6
-	},
-/obj/item/clothing/head/helmet/sec/redsec{
-	pixel_y = 6
-	},
-/obj/item/clothing/head/helmet/sec/redsec{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec/redsec{
-	pixel_x = -7;
-	pixel_y = -5
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec/redsec{
-	pixel_y = -5
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec/redsec{
-	pixel_x = 7;
-	pixel_y = -5
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "tcx" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -78784,7 +78863,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "teA" = (
 /obj/structure/displaycase/captain,
@@ -85383,6 +85471,33 @@
 /obj/effect/turf_decal/tile/green/anticorner/contrasted,
 /turf/open/floor/iron,
 /area/station/security/courtroom)
+"uKR" = (
+/obj/structure/rack,
+/obj/structure/sign/nanotrasen{
+	pixel_x = 32
+	},
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = 2
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = 2;
+	pixel_y = -7
+	},
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "uKY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
@@ -86290,7 +86405,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/dark_red/corner,
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "uVZ" = (
 /obj/structure/cable,
@@ -88612,7 +88732,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/siding/dark_red,
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "vxi" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -92094,9 +92216,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "wow" = (
-/obj/effect/turf_decal/bot,
 /obj/structure/rack/gunrack,
 /obj/effect/spawner/armory_spawn/shotguns,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "wox" = (
@@ -92606,7 +92728,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "wtE" = (
 /obj/effect/landmark/start/hangover,
@@ -94621,7 +94743,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "wTF" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -95716,29 +95841,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
-"xjE" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/clothing/head/helmet/sec{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet/sec,
-/obj/item/clothing/head/helmet/sec{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/suit/armor/vest/alt/sec,
-/obj/item/clothing/suit/armor/vest/alt/sec{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai_monitored/security/armory)
 "xjF" = (
 /obj/structure/railing/corner{
 	dir = 1
@@ -97812,12 +97914,12 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "xHR" = (
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
 /obj/structure/rack/gunrack,
 /obj/effect/spawner/armory_spawn/cmg,
+/obj/effect/turf_decal/tile/dark_red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "xHW" = (
@@ -99727,7 +99829,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/ai_monitored/security/armory)
 "yhH" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -153659,7 +153770,7 @@ yhE
 yhE
 yhE
 jYK
-vxf
+iuT
 gYv
 cdr
 jhr
@@ -154168,11 +154279,11 @@ jNM
 sRd
 bLs
 aqW
-wTu
+aEs
 wow
-phf
-lzS
-aFl
+hrB
+kSZ
+dLt
 dwU
 wtB
 bLs
@@ -154430,7 +154541,7 @@ teo
 teo
 teo
 teo
-teo
+pKD
 pbN
 bLs
 hEF
@@ -154682,12 +154793,12 @@ aaa
 aad
 bLs
 bLs
-aEs
-xjE
-tcw
-qwp
-rLv
-kbM
+fjB
+rUP
+pYb
+uKR
+oWx
+qnm
 bLs
 bLs
 aaa
