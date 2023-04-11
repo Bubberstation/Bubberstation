@@ -28,7 +28,7 @@
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL
 	atom_storage.max_total_storage = 30
-	atom_storage.max_slots = 2
+	atom_storage.max_slots = 30
 	atom_storage.numerical_stacking = TRUE
 	atom_storage.set_holdable(list(
 		/obj/item/ammo_casing/b460,
