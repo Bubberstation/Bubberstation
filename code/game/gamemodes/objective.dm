@@ -1020,8 +1020,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/area/dropoff_area
 	/// Have we called the pod yet?
 	var/pod_called = FALSE
-	/// How much TC do we get from sending the target alive
-	var/alive_bonus = 0
 	/// All stripped victims belongings
 	var/list/victim_belogings = list()
 
@@ -1210,21 +1208,18 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/datum/bank_account/cargo_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
 
 	if(cargo_account) //Just in case
-		cargo_account.adjust_money(-min(rand(1000, 3000), cargo_account.account_balance)) //Not so much, especially for competent cargo. Plus this can't be mass-triggered like it has been done with contractors
+		cargo_account.adjust_money(-min(rand(3000, 6000), cargo_account.account_balance)) //Not so much, especially for competent cargo. Plus this can't be mass-triggered like it has been done with contractors
 
 	priority_announce("One of your crew was captured by a rival organisation - we've needed to pay their ransom to bring them back. As is policy we've taken a portion of the station's funds to offset the overall cost.", "Nanotrasen Asset Protection", has_important_message = TRUE)
 
 	addtimer(CALLBACK(src, PROC_REF(handle_victim), sent_mob), 1.5 SECONDS)
 
 	if(sent_mob != victim)
-		fail_objective(penalty_cost = telecrystal_penalty)
 		source.startExitSequence(source)
 		return
 
 	if(sent_mob.stat != DEAD)
-		telecrystal_reward += alive_bonus
-
-	succeed_objective()
+	completed
 	source.startExitSequence(source)
 
 /datum/objective/kidnapping/proc/handle_victim(mob/living/carbon/human/sent_mob)
