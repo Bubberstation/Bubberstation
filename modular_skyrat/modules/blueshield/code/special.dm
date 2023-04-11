@@ -18,6 +18,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
 	worn_icon_state = "bsrevolver"
+	company_flag = COMPANY_ROMULUS
 
 /obj/item/stock_parts/cell/blueshield
 	name = "internal revolver power cell"

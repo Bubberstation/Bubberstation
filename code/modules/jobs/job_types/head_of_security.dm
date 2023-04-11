@@ -55,7 +55,8 @@
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
 		/obj/item/flashlight/seclite = 1,
-		/obj/item/modular_computer/pda/heads/hos =1,
+		/obj/item/modular_computer/pda/heads/hos = 1,
+		/obj/item/storage/box/gunset/glock18_hos = 1,
 		)
 	belt = /obj/item/storage/belt/security/full
 	ears = /obj/item/radio/headset/heads/hos/alt
@@ -87,11 +88,14 @@
 	mask = /obj/item/clothing/mask/gas/sechailer
 	internals_slot = ITEM_SLOT_SUITSTORE
 
+//TEST THIS OUT WHEN NEEDED
+
 /obj/item/choice_beacon/head_of_security
 	name = "gun choice beacon"
 	desc = "whatever you choose will determine the outcome of space station 13 and the fate of the company so choose wisely."
 	company_source = "Romulus Shipping Company"
 	company_message = span_bold("Copy that [user] supply pod enroute!")
+
 
 /obj/item/choice_beacon/head_of_security/generate_display_names()
 	var/static/list/hosgun_list
@@ -103,5 +107,10 @@
 
 /obj/item/storage/box/hosgun/glock/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/m45a5/nomag(src)
+	new /obj/item/storage/box/gunset/glock18_hos(src)
+
+/obj/item/storage/box/hosgun/revolver/PopulateContents()
+	. = ..()
+	new /obj/item/storage/box/gunset/hos_revolver(src)
+
 
