@@ -287,8 +287,7 @@
 /area/station/science/research)
 "agc" = (
 /obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
-/obj/machinery/holopad,
+/obj/machinery/ammo_workbench,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "ago" = (
@@ -15169,6 +15168,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/mob/living/simple_animal/bot/secbot/beepsky/armsky,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "fzl" = (
@@ -31609,6 +31609,13 @@
 "kZx" = (
 /turf/closed/wall,
 /area/station/science/lab)
+"kZF" = (
+/obj/effect/turf_decal/trimline/dark_red/filled/corner,
+/obj/machinery/holopad{
+	pixel_y = 16
+	},
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "kZG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -39510,11 +39517,9 @@
 /area/station/science/xenobiology)
 "nJu" = (
 /obj/structure/closet/secure_closet/security/sec,
-/obj/effect/turf_decal/tile/red/half/contrasted{
-	dir = 4
-	},
 /obj/item/clothing/mask/gas/sechailer,
 /obj/item/clothing/head/helmet/sec/peacekeeper,
+/obj/effect/turf_decal/tile/red/anticorner/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/security/lockers)
 "nJA" = (
@@ -44331,10 +44336,15 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "pti" = (
-/obj/structure/closet/secure_closet/security/sec,
-/obj/effect/turf_decal/tile/red/anticorner/contrasted,
-/obj/item/clothing/mask/gas/sechailer,
-/obj/item/clothing/head/helmet/sec/peacekeeper,
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/machinery/recharger{
+	pixel_x = 6;
+	pixel_y = 2
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/lockers)
 "ptE" = (
@@ -59112,14 +59122,13 @@
 /turf/open/floor/plating,
 /area/station/medical/abandoned)
 "upR" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/security/sec,
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/head/helmet/sec/peacekeeper,
 /turf/open/floor/iron/dark,
 /area/station/security/lockers)
 "upT" = (
@@ -59876,15 +59885,14 @@
 	},
 /area/station/medical/medbay/lobby)
 "uBP" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
 /obj/structure/cable,
 /obj/machinery/newscaster/directional/east,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/security/sec,
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/head/helmet/sec/peacekeeper,
 /turf/open/floor/iron/dark,
 /area/station/security/lockers)
 "uCq" = (
@@ -97660,7 +97668,7 @@ tms
 kVU
 tJE
 kVU
-tJE
+kZF
 fzi
 wTp
 jxV
