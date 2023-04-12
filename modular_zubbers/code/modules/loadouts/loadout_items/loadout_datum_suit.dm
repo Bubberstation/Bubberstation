@@ -13,4 +13,4 @@
 /datum/loadout_item/suit/runner_winter
  name = "Winter Runner Jacket"
  item_path = /obj/item/clothing/suit/jacket/runner/winter
- donator_only = TRUE //Dono item for Kan3
+ ckeywhitelist = list("kan3")
