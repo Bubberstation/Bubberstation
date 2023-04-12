@@ -29,8 +29,8 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "ca" = (
-/obj/structure/window/reinforced/spawner/north,
-/obj/structure/window/reinforced/spawner/west,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/chair/stool/directional/south{
 	can_buckle = 1;
 	name = "FOOLS-SIT-DOWNER";
@@ -278,13 +278,13 @@
 /turf/open/floor/mineral/titanium/purple,
 /area/shuttle/escape)
 "qM" = (
-/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "rb" = (
-/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/reagent_dispensers/watertank{
 	name = "HATERADE";
 	desc = "Use this to water down those salty haters."
@@ -377,7 +377,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "xc" = (
-/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/chair/stool/directional/south{
 	can_buckle = 1;
 	name = "FOOLS-SIT-DOWNER";
@@ -386,7 +386,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "xA" = (
-/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/table,
 /obj/item/tank/internals/anesthetic,
 /obj/item/clothing/mask/breath/medical{
@@ -762,7 +762,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "QD" = (
-/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "QN" = (
@@ -770,9 +770,7 @@
 /area/shuttle/escape)
 "QW" = (
 /obj/machinery/power/shuttle_engine/heater,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "Rh" = (
@@ -789,7 +787,7 @@
 /obj/machinery/stasis{
 	dir = 4
 	},
-/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Sv" = (
@@ -933,7 +931,7 @@
 /area/shuttle/escape)
 "YS" = (
 /obj/structure/window/reinforced/spawner,
-/obj/structure/window/reinforced/spawner/east,
+/obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/chair/stool/directional/south{
 	can_buckle = 1;
 	name = "FOOLS-SIT-DOWNER";
