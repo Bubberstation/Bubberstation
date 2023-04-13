@@ -105,10 +105,10 @@
 			hosgun_list[initial(box.name)] = box
 	return hosgun_list
 
-/obj/item/storage/box/hosgun/glock
+/obj/item/storage/box/hosgun
 	name = "Glock 18"
 
-/obj/item/storage/box/hosgun/glock/PopulateContents()
+/obj/item/storage/box/hosgun/PopulateContents()
 	. = ..()
 	new /obj/item/storage/box/gunset/glock18_hos(src)
 	new /obj/item/ammo_box/c9mm(src)
