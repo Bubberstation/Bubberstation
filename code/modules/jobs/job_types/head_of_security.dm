@@ -106,24 +106,34 @@
 	return hosgun_list
 
 /obj/item/storage/box/hosgun
-	name = "Glock 18"
+	name = "Classic 3-round burst pistol 9mm"
 
 /obj/item/storage/box/hosgun/PopulateContents()
-	. = ..()
 	new /obj/item/storage/box/gunset/glock18_hos(src)
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/storage/box/hecu_rations(src)
+	new /obj/item/storage/fancy/cigarettes/cigars(src)
 
 /obj/item/storage/box/hosgun/revolver
-	name = "Heavy Revolver .460"
+	name = "Romulus Officer Heavy Revolver .460"
 
 /obj/item/storage/box/hosgun/revolver/PopulateContents()
-	. = ..()
 	new /obj/item/storage/box/gunset/hos_revolver(src)
 	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/storage/box/nri_rations(src)
+	new /obj/item/knife/combat(src)
+
+/obj/item/storage/box/hosgun/glock
+	name = "Solaris Police Dual 9mm Pistol"
+
+/obj/item/storage/box/hosgun/glock/PopulateContents()
+	new /obj/item/storage/box/gunset/glock17(src)
+	new /obj/item/storage/box/gunset/glock17(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper/sol(src)
+	new /obj/item/clothing/neck/tie/red(src)
+	new /obj/item/storage/pill_bottle/probital(src)
 
