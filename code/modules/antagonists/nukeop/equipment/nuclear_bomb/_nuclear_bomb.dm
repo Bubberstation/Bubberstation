@@ -536,9 +536,13 @@ GLOBAL_VAR(station_nuke_source)
 
 	// The nuke was on the station zlevel
 	if(bomb_location && is_station_level(bomb_location.z))
+//BUBBER EDIT REMOVAL
+/* who.
 		// Nuke missed, it's in space
 		if(istype(nuke_area, /area/space))
 			detonation_status = DETONATION_NEAR_MISSED_STATION
+*/
+//BUBBER EDIT END
 
 		// Nuke missed, it'stoo far from the station
 		else if((bomb_location.x < (128 - NUKE_RADIUS)) \
