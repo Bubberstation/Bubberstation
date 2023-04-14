@@ -17,10 +17,10 @@
 
 /obj/item/storage/bag/b460reloadpouch
 	name = "reload pouch"
-	desc = "A pouch for holding loose casings for .460 Rowland ammo. incompatible with anything else"
+	desc = "A pouch for holding loose casings for .460 Rowland ammo. incompatible with anything else. Fit on your belt too"
 	icon = 'modular_zubbers/icons/obj/pouches.dmi'
 	icon_state = "reloadpouch"
-	slot_flags = ITEM_SLOT_POCKETS
+	slot_flags = ITEM_SLOT_POCKETS | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
 
