@@ -55,6 +55,7 @@
 		/obj/item/evidencebag = 1,
 		/obj/item/modular_computer/pda/warden = 1,
 		/obj/item/flashlight/seclite = 1,
+		/obj/item/storage/box/gunset/glock17 = 1,
 		)
 	belt = /obj/item/storage/belt/security/full
 	ears = /obj/item/radio/headset/headset_sec/alt
@@ -64,7 +65,6 @@
 	shoes = /obj/item/clothing/shoes/jackboots/sec
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
-	r_hand = /obj/item/storage/box/gunset/glock17
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
