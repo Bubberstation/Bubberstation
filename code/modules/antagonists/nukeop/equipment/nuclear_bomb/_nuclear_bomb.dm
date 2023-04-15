@@ -545,7 +545,7 @@ GLOBAL_VAR(station_nuke_source)
 //BUBBER EDIT END
 
 		// Nuke missed, it'stoo far from the station
-		else if((bomb_location.x < (128 - NUKE_RADIUS)) \
+		if((bomb_location.x < (128 - NUKE_RADIUS)) \
 			|| (bomb_location.x > (128 + NUKE_RADIUS)) \
 			|| (bomb_location.y < (128 - NUKE_RADIUS)) \
 			|| (bomb_location.y > (128 + NUKE_RADIUS)))
