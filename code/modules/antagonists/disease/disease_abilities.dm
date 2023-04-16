@@ -315,9 +315,9 @@ new /datum/disease_ability/symptom/powerful/youth
 /datum/disease_ability/symptom/mild/hidden//BUBBER CHANGE
 	name = "Stealth Adaption"//Symptom to increase Sentient Virus base stealth
 	symptoms = list(/datum/symptom/hidden)
-	cost = 0
-	required_total_points = 0
-	start_with = TRUE
+	cost = 0//Cost is 0 because the virus will already have this by default.
+	required_total_points = 0//Available at start if refunded.
+	start_with = TRUE//Starts the virus with the symptom. For balancing reasons.
 	short_desc = "Allows for greater stealth."
 	long_desc = "Hightens your stealth very slightly."
 
