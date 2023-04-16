@@ -312,6 +312,15 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /******MILD******/
 
+/datum/disease_ability/symptom/mild/hidden//BUBBER CHANGE
+	name = "Stealth Adaption"//Symptom to increase Sentient Virus base stealth
+	symptoms = list(/datum/symptom/hidden)
+	cost = 0
+	required_total_points = 0
+	start_with = TRUE
+	short_desc = "Allows for greater stealth."
+	long_desc = "Hightens your stealth very slightly."
+
 /datum/disease_ability/symptom/mild/cough
 	name = "Involuntary Coughing"
 	symptoms = list(/datum/symptom/cough)
