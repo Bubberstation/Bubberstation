@@ -1,7 +1,7 @@
 /datum/symptom/hidden
 	name = "Stealth" //Bubber Virus Symptom, for balancing Sentient Viruses
 	desc = "An adaption for a virus to become more stealthy."
-	stealth = 2
+	stealth = 2//Just a small increase
 	resistance = 0
 	stage_speed = 0
 	transmittable = 0
