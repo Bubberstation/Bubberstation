@@ -30,7 +30,6 @@
 /datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user)
 	SIGNAL_HANDLER
 	//if it behaves like a shovel
-	if(attacking_item.tool_behaviour == TOOL_SHOVEL)
 		//flip the allow plant-- we either cover or uncover the plantable bit
 		allow_plant = !allow_plant
 		atom_parent.balloon_alert_to_viewers("[allow_plant ? "uncovered" : "covered"] the growing place!")
