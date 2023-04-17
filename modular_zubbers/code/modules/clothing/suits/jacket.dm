@@ -12,7 +12,7 @@
  icon = 'modular_zubbers/icons/obj/clothing/runnerjacketdono.dmi'
 
 /obj/item/clothing/suit/jacket/runner/syndicate //Sprite by kay#7181 (Donater item: Kan3)
- name = "Sydnicate Runner Jacket"
+ name = "Syndicate Runner Jacket"
  icon_state = "runner_syndi"
  desc = ""
  icon = 'modular_zubbers/icons/obj/clothing/runnerjacketdono.dmi'
