@@ -3,8 +3,6 @@
 	access = ACCESS_SECURITY
 	crate_type = /obj/structure/closet/crate/secure/gear
 
-// SKYRAT EDIT REMOVAL BEGIN - CARGO ARMAMENTS
-/*
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
 	desc = "Contains three boxes of beanbag shotgun shells, three boxes \
@@ -19,8 +17,6 @@
 					/obj/item/ammo_box/c38/iceblox,
 				)
 	crate_name = "ammo crate"
-*/
-// SKYRAT EDIT REMOVAL END
 
 // SKYRAT EDIT REMOVAL BEGIN - Moved to modular
 /*
@@ -221,8 +217,6 @@
 	contains = list(/obj/item/storage/box/chemimp)
 	crate_name = "chemical implant crate"
 
-// SKYRAT EDIT REMOVAL BEGIN - CARGO ARMAMENTS
-/*
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
 	desc = "For when the enemy absolutely needs to be replaced with lead. \
@@ -241,8 +235,7 @@
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/gun/energy/e_gun/dragnet = 3)
 	crate_name = "\improper DRAGnet crate"
-*/
-// SKYRAT EDIT REMOVAL END
+
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
 	desc = "Contains two Energy Guns, capable of firing both nonlethal and lethal \
@@ -368,8 +361,6 @@
 				)
 	crate_name = "swat crate"
 
-// SKYRAT EDIT REMOVAL BEGIN - CARGO ARMAMENTS
-/*
 /datum/supply_pack/security/armory/thermal
 	name = "Thermal Pistol Crate"
 	desc = "Contains a pair of holsters each with two experimental thermal pistols, \
@@ -399,5 +390,3 @@
 		/obj/item/ammo_box/magazine/wt550m9 = 4,
 	)
 	crate_name = "Ammo box"
-*/
-// SKYRAT EDIT REMOVAL END
