@@ -30,7 +30,7 @@
 	desc = "A self-defense weapon that exhausts organic targets, weakening them until they collapse."
 	icon_state = "disabler"
 	inhand_icon_state = null
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler/skyrat) // SKYRAT EDIT: 	ammo_type = list(/obj/item/ammo_casing/energy/disabler)
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler)
 	ammo_x_offset = 2
 	cell_type = /obj/item/stock_parts/cell/super // SKYRAT EDIT ADDITION
 
