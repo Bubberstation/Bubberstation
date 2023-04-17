@@ -199,6 +199,13 @@
 			render_list += "<span class='info ml-1'>Subject Major Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY)].</span>\n"
 			if(advanced)
 				render_list += "<span class='info ml-1'>Subject Minor Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY)].</span>\n"
+				// Allergies
+			for(var/datum/quirk/quirky as anything in target.quirks)
+				if(istype(quirky, /datum/quirk/item_quirk/allergic))
+					var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
+					var/allergies = allergies_quirk.allergy_string
+					render_list += "<span class='alert ml-1'><b>Subject is extremely allergic to the following chemicals:</b></span>\n"
+					render_list += "<span class='alert ml-2'><b>[allergies]</b></span>\n"
 
 	if (HAS_TRAIT(target, TRAIT_IRRADIATED))
 		render_list += "<span class='alert ml-1'>Subject is irradiated. Supply toxin healing.</span>\n"
