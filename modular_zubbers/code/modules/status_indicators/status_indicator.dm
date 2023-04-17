@@ -1,10 +1,10 @@
 
 GLOBAL_LIST_INIT(potential_indicators, list(
-	STUNNED = image(icon = 'modular_skyrat/master_files/icons/mob/status_indicators.dmi', icon_state = STUNNED),
-	WEAKEN = image(icon = 'modular_skyrat/master_files/icons/mob/status_indicators.dmi', icon_state = WEAKEN),
-	PARALYSIS = image(icon = 'modular_skyrat/master_files/icons/mob/status_indicators.dmi', icon_state = PARALYSIS),
-	SLEEPING = image(icon = 'modular_skyrat/master_files/icons/mob/status_indicators.dmi', icon_state = SLEEPING),
-	CONFUSED = image(icon = 'modular_skyrat/master_files/icons/mob/status_indicators.dmi', icon_state = CONFUSED),
+	STUNNED = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = STUNNED),
+	WEAKEN = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = WEAKEN),
+	PARALYSIS = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = PARALYSIS),
+	SLEEPING = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = SLEEPING),
+	CONFUSED = image(icon = 'modular_zubbers/icons/mob/status_indicators.dmi', icon_state = CONFUSED),
 ))
 
 /datum/component/status_indicator
@@ -56,8 +56,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	attached_mob = parent
 	// The Basics
 	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(cut_indicators_overlays))
-	RegisterSignal(parent, COMSIG_CARBON_HEALTH_UPDATE, PROC_REF(status_indicator_evaluate))
-	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(check_indicators))
+	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(status_indicator_evaluate))
 	// When things actually happen
 	RegisterSignal(parent, COMSIG_LIVING_STATUS_STUN, PROC_REF(status_indicator_evaluate))
 	RegisterSignal(parent, COMSIG_LIVING_STATUS_KNOCKDOWN, PROC_REF(status_indicator_evaluate))
@@ -75,7 +74,6 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 /datum/component/status_indicator/UnregisterFromParent()
 	QDEL_NULL(status_indicators)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_DEATH)
-	UnregisterSignal(attached_mob, COMSIG_CARBON_HEALTH_UPDATE)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_STUN)
 	UnregisterSignal(attached_mob, COMSIG_LIVING_STATUS_KNOCKDOWN)
