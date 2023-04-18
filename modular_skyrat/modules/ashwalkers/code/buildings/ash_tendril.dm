@@ -3,21 +3,37 @@
 
 //this is for revitalizing/preserving regen cores
 /obj/structure/lavaland/ash_walker/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(!istype(attacking_item, /obj/item/organ/internal/monster_core/regenerative_core))
-		return ..()
+	if(istype(attacking_item, /obj/item/organ/internal/monster_core/regenerative_core))
+		if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
+			balloon_alert(user, "must be an ashwalker!")
+			return
 
-	if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
-		balloon_alert(user, "must be an ashwalker!")
+		var/obj/item/organ/internal/monster_core/regenerative_core/regen_core = attacking_item
+
+		if(!regen_core.preserve())
+			balloon_alert(user, "organ decayed!")
+			return
+		playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		balloon_alert_to_viewers("[src] revitalizes [regen_core]!")
 		return
 
-	var/obj/item/organ/internal/monster_core/regenerative_core/regen_core = attacking_item
+	if(istype(attacking_item, /obj/item/stack/ore/glass))
+		if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
+			balloon_alert(user, "must be an ashwalker!")
+			return
 
-	if(!regen_core.preserve())
-		balloon_alert(user, "organ decayed!")
-		return
-	playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
-	balloon_alert_to_viewers("[src] revitalizes [regen_core]!")
-	return
+		var/obj/item/stack/stack = attacking_item
+		if(!stack.use(4))
+			balloon_alert(user, "not enough!")
+			return
+
+		playsound(src, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		balloon_alert_to_viewers("[src] molds dirt into mulch!")
+
+		var/obj/item/farming_mulch/mulch = new
+		user.put_in_hands(mulch)
+
+	return ..()
 
 //this is for logging the destruction of the tendril
 /obj/structure/lavaland/ash_walker/Destroy()

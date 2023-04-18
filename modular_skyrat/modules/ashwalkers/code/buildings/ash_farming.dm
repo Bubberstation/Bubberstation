@@ -1,4 +1,6 @@
 /datum/component/simple_farm
+	///Have we prepared this turf for planting?
+	var/soiled
 	///whether we limit the amount of plants you can have per turf
 	var/one_per_turf = TRUE
 	///the reference to the movable parent the component is attached to
@@ -26,8 +28,26 @@
 /**
  * check_attack is meant to listen for the comsig_parent_attackby signal, where it essentially functions like the attackby proc
  */
-/datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user)
+/datum/component/simple_farm/proc/check_attack(atom/source, obj/item/attacking_item, mob/user)
 	SIGNAL_HANDLER
+
+	if(istype(attacking_item, /obj/item/farming_mulch))
+		if(soiled)
+			to_chat(user, span_warning("\The [source] is already prepared for planting!"))
+			return
+		user.visible_message(
+			span_notice("[user] begins applying \the [attacking_item] on \the [source].."),
+			ignored_mobs = user
+		)
+		if(!do_after(user, 4 SECONDS, source))
+			return
+		to_chat(user, span_notice("You apply \the [attacking_item], preparing \the [source] for planting."))
+		source.color = COLOR_BROWNER_BROWN
+		soiled = TRUE
+		return
+
+	if(!soiled)
+		return
 
 	//if its a seed, lets try to plant
 	if(istype(attacking_item, /obj/item/seeds))
@@ -54,7 +74,10 @@
 /datum/component/simple_farm/proc/check_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("You are able to plant seeds here!")
+	if(soiled)
+		examine_list += span_notice("You are able to plant seeds here!")
+	else
+		examine_list += span_notice("You could probably set up a farm here..")
 
 /obj/structure/simple_farm
 	name = "simple farm"
