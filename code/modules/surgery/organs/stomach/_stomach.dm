@@ -185,6 +185,8 @@
 	if(CONFIG_GET(flag/disable_human_mood))
 		handle_hunger_slowdown(human)
 
+	//BUBBER EDIT START
+	/*
 	// If we did anything more then just set and throw alerts here I would add bracketing
 	// But well, it is all we do, so there's not much point bothering with it you get me?
 	switch(nutrition)
@@ -196,6 +198,8 @@
 			human.throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			human.throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/starving)
+	*/
+	human.hud_used?.nutrition?.update_icon()
 
 ///for when mood is disabled and hunger should handle slowdowns
 /obj/item/organ/internal/stomach/proc/handle_hunger_slowdown(mob/living/carbon/human/human)

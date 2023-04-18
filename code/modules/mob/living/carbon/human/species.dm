@@ -343,6 +343,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		ORGAN_SLOT_TONGUE = mutanttongue,
 		ORGAN_SLOT_LIVER = mutantliver,
 		ORGAN_SLOT_STOMACH = mutantstomach,
+		//BUBBER EDIT START
+		ORGAN_SLOT_BLADDER = mutantbladder,
+		//BUBBER EDIT END
 	)
 
 	for(var/slot in assoc_to_keys(slot_mutantorgans))

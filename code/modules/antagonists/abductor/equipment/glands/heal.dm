@@ -41,6 +41,12 @@
 		replace_stomach(stomach)
 		return
 
+//BUBBER EDIT START
+	var/obj/item/organ/internal/bladder/bladder = owner.getorganslot(ORGAN_SLOT_BLADDER)
+	if((!bladder && !HAS_TRAIT(owner, TRAIT_NOTHIRST)) || (bladder && ((bladder.damage > bladder.high_threshold) || (bladder.organ_flags & ORGAN_SYNTHETIC))))
+		replace_bladder(stomach)
+		return
+//BUBBER EDIT END
 	var/obj/item/organ/internal/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	if(!eyes || (eyes && ((eyes.damage > eyes.low_threshold) || (eyes.organ_flags & ORGAN_SYNTHETIC))))
 		replace_eyes(eyes)

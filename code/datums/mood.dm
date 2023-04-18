@@ -93,6 +93,9 @@
 		if(MOOD_LEVEL_HAPPY4)
 			set_sanity(sanity + 0.6 * delta_time, SANITY_NEUTRAL, SANITY_MAXIMUM)
 	handle_nutrition()
+	//BUBBER EDIT START
+	handle_thirst()
+	//BUBBER EDIT END
 
 	// 0.416% is 15 successes / 3600 seconds. Calculated with 2 minute
 	// mood runtime, so 50% average uptime across the hour.

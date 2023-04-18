@@ -453,6 +453,9 @@
 	var/turf/T = get_turf(src)
 	if(!blood)
 		adjust_nutrition(-lost_nutrition)
+		//BUBBER EDIT START
+		adjust_hydration(-(lost_nutrition * 1.25))
+		//BUBBER EDIT END
 		adjustToxLoss(-3)
 
 	for(var/i=0 to distance)

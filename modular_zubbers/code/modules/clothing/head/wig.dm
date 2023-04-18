@@ -1,3 +1,12 @@
+#define HEAD_ACCESSORIES_PATHS list(\
+	/obj/item/clothing/head,\
+	/obj/item/clothing/glasses,\
+	/obj/item/reagent_containers/cup/bucket,\
+	/obj/item/paper,\
+	/obj/item/nullrod/fedora,\
+)
+
+
 /obj/item/clothing/head/wig
 	var/obj/item/clothing/head/head_accessory
 	var/mutable_appearance/head_accessory_MA
@@ -10,7 +19,7 @@
 /obj/item/clothing/head/wig/attackby(obj/item/attachment, mob/living/user)
 	. = ..()
 	//Checks if the item is in the list of items available
-	for(var/type in HEAD_ACCESSORIES_PATHS)	
+	for(var/type in HEAD_ACCESSORIES_PATHS)
 		if(istype(attachment, type))
 			item_path = type
 			break
@@ -71,3 +80,5 @@
 
 	holder = null
 	. = ..()
+
+#undef HEAD_ACCESSORIES_PATHS

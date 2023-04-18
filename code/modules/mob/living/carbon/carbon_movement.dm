@@ -15,6 +15,15 @@
 			adjust_nutrition(-(HUNGER_FACTOR/10))
 			if(m_intent == MOVE_INTENT_RUN)
 				adjust_nutrition(-(HUNGER_FACTOR/10))
+		//BUBBER EDIT START
+		if(HAS_TRAIT(src, TRAIT_NOTHIRST))
+			set_hydration(HYDRATION_LEVEL_HYDRATED - 1)
+		else if(hydration && stat != DEAD)
+			adjust_hydration(-(THIRST_FACTOR/5))
+			if(m_intent == MOVE_INTENT_RUN) //running make you very thoisty
+				adjust_hydration(-((THIRST_FACTOR/5) * 3))
+		//BUBBER EDIT END
+
 
 
 /mob/living/carbon/set_usable_legs(new_value)
