@@ -62,6 +62,5 @@
 	new /obj/item/ammo_casing/b460(src)
 
 /obj/item/storage/box/gunset/hos_revolver/PopulateContents()
-	. = ..()
 	new /obj/item/gun/ballistic/revolver/hos_revolver(src)
 	new /obj/item/storage/bag/b460reloadpouch(src)
