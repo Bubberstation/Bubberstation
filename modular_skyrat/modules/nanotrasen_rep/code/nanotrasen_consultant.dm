@@ -125,9 +125,6 @@
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
-	new /obj/item/ammo_box/magazine/m45a5(src)
-	new /obj/item/ammo_box/magazine/m45a5(src)
-	new /obj/item/ammo_box/magazine/m45a5(src)
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	name = "\proper nanotrasen consultant's locker"
