@@ -44,7 +44,7 @@
 	name = "Nanotrasen Consultant"
 	jobtype = /datum/job/nanotrasen_consultant
 
-	belt = /obj/item/storage/belt/security/peacekeeper
+	belt = /obj/item/storage/belt/holster/energy/disabler
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/nanotrasen_consultant
 	gloves = /obj/item/clothing/gloves/combat
@@ -54,12 +54,8 @@
 	head = /obj/item/clothing/head/nanotrasen_consultant
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
-<<<<<<< HEAD
-		/obj/item/storage/box/gunset/nanotrasen_consultant = 0, //BUBBER EDIT: NO HEADS OF STAFF GUNS
-=======
-		/obj/item/storage/box/gunset/nanotrasen_consultant = 1,
+		/obj/item/gun/energy/e_gun/mini = 1, //KEPLER EDIT: for self defense, not for combat!
 		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
->>>>>>> upstream/master
 		)
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)

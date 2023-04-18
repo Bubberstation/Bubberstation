@@ -17,7 +17,7 @@
 	new /obj/item/radio/headset/heads/captain/alt(src)
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/storage/belt/sabre(src)
-	new /obj/item/gun/energy/e_gun(src) // SKYRAT EDIT BUBBER REVERT - ORIGINAL: new /obj/item/storage/box/gunset/pdh(src)
+	new /obj/item/storage/box/gunset/m1911_captains(src)//KEPLER EDIT
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/storage/photo_album/captain(src)
 
