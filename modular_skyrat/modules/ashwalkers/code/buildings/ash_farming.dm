@@ -39,11 +39,12 @@
 			span_notice("[user] begins applying \the [attacking_item] on \the [source].."),
 			ignored_mobs = user
 		)
-		if(!do_after(user, 4 SECONDS, source))
+		if(!do_after(user, 4 SECONDS, source) || QDELETED(attacking_item))
 			return
 		to_chat(user, span_notice("You apply \the [attacking_item], preparing \the [source] for planting."))
 		source.color = COLOR_BROWNER_BROWN
 		soiled = TRUE
+		qdel(attacking_item)
 		return
 
 	if(!soiled)
