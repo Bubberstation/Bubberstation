@@ -2267,7 +2267,7 @@
 	desc = "A well-stocked supply point full of robust tools to protect one's virginity whilst incarcerated.";
 	extra_price = 40;
 	name = "\improper Prison Tabletop Society";
-	premium = list(/obj/item/pen/fourcolor = 5, /obj/item/rcl = 2, /obj/item/toy/crayon/spraycan = 2, /obj/item/clothing/shoes/wheelys/rollerskates = 3, /obj/item/melee/skateboard = 1);
+	premium = list(/obj/item/pen/fourcolor=5,/obj/item/rcl=2,/obj/item/toy/crayon/spraycan=2,/obj/item/clothing/shoes/wheelys/rollerskates=3,/obj/item/melee/skateboard=1);
 	product_ads = "Protect your virginity today!;You're already in security's dungeon, now all you need are dragons, and dice!;Either come play some Space Catan, or Chad is going to show you who's the boss of the prison gym again!;Want to be a powergaming fuck AND not get banned? Try TTRPGs today!"
 	},
 /turf/open/floor/iron/dark,
@@ -57637,6 +57637,23 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
+"qbj" = (
+/obj/effect/turf_decal/tile/dark/half,
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/green/mid_joiner{
+	dir = 1
+	},
+/obj/machinery/door/window/survival_pod{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/storage/box/disks_plantgene,
+/obj/item/storage/box/disks_plantgene,
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/iron/half,
+/area/station/service/hydroponics)
 "qbl" = (
 /obj/effect/turf_decal/siding/thinplating,
 /obj/machinery/door/firedoor,
@@ -59115,6 +59132,21 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/main)
+"qvF" = (
+/obj/effect/turf_decal/tile/dark/half,
+/obj/effect/turf_decal/trimline/green/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/green/mid_joiner{
+	dir = 1
+	},
+/obj/machinery/door/window/survival_pod{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/plantgenes,
+/turf/open/floor/iron/half,
+/area/station/service/hydroponics)
 "qvU" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -77808,7 +77840,7 @@
 	extra_price = 10;
 	fair_market_price = 10;
 	name = "\improper Warden's Hot Drinks";
-	premium = list(/obj/item/seeds/coffee = 2, /obj/item/seeds/coffee/robusta = 2, /obj/item/seeds/tea = 2)
+	premium = list(/obj/item/seeds/coffee=2,/obj/item/seeds/coffee/robusta=2,/obj/item/seeds/tea=2)
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/prison/mess)
@@ -123186,7 +123218,7 @@ jGl
 jio
 hzT
 mqk
-jio
+qvF
 kVC
 fLp
 nhJ
@@ -123443,7 +123475,7 @@ jGl
 jio
 hzT
 mqk
-jio
+qbj
 rMh
 fLp
 tzs

@@ -40145,7 +40145,7 @@
 /area/station/science/lab)
 "jFV" = (
 /obj/effect/spawner/random/structure/girder{
-	loot = list(/obj/structure/falsewall = 50, /turf/closed/wall = 50);
+	loot = list(/obj/structure/falsewall=50,/turf/closed/wall=50);
 	name = "falsewall or wall spawner"
 	},
 /turf/open/floor/plating,
@@ -51965,6 +51965,16 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/corporate_showroom)
+"mBB" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/item/storage/box/disks_plantgene,
+/obj/item/storage/box/disks_plantgene,
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/iron,
+/area/station/service/hydroponics)
 "mBD" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L9"
@@ -60530,7 +60540,7 @@
 /area/station/service/kitchen)
 "oHS" = (
 /obj/effect/spawner/random/structure/girder{
-	loot = list(/obj/structure/falsewall = 50, /turf/closed/wall = 50);
+	loot = list(/obj/structure/falsewall=50,/turf/closed/wall=50);
 	name = "falsewall or wall spawner"
 	},
 /turf/open/floor/plating,
@@ -64124,7 +64134,7 @@
 /area/station/engineering/atmos)
 "pDL" = (
 /obj/effect/spawner/random/structure/girder{
-	loot = list(/obj/structure/falsewall = 50, /turf/closed/wall = 50);
+	loot = list(/obj/structure/falsewall=50,/turf/closed/wall=50);
 	name = "falsewall or wall spawner"
 	},
 /turf/open/floor/plating,
@@ -70346,8 +70356,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/machinery/hydroponics/constructable,
 /obj/machinery/light/directional/west,
+/obj/structure/table/glass,
+/obj/machinery/plantgenes,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "rdu" = (
@@ -130597,7 +130608,7 @@ mrw
 ogZ
 hwo
 dwN
-rID
+mBB
 rdr
 oYs
 oYs

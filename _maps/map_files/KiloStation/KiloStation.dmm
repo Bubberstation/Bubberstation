@@ -19851,7 +19851,11 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "fLv" = (
-/turf/open/floor/glass,
+/obj/structure/table,
+/obj/machinery/smartfridge/disks,
+/obj/item/storage/box/disks_plantgene,
+/obj/item/storage/box/disks_plantgene,
+/turf/open/floor/iron,
 /area/station/service/hydroponics)
 "fLx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -38608,7 +38612,7 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/spawner/random/structure/crate,
 /mob/living/simple_animal/chicken{
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
+	atmos_requirements = list("min_oxy"=0,"max_oxy"=0,"min_tox"=0,"max_tox"=1,"min_co2"=0,"max_co2"=0,"min_n2"=0,"max_n2"=0);
 	desc = "A timeless classic.";
 	name = "Kentucky"
 	},
@@ -41597,7 +41601,9 @@
 /area/station/service/bar/atrium)
 "lMh" = (
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/glass,
+/obj/structure/table,
+/obj/machinery/plantgenes,
+/turf/open/floor/iron,
 /area/station/service/hydroponics)
 "lMo" = (
 /obj/effect/turf_decal/tile/blue{
@@ -47875,7 +47881,7 @@
 "nFN" = (
 /obj/machinery/igniter/incinerator_ordmix,
 /mob/living/simple_animal/chicken{
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
+	atmos_requirements = list("min_oxy"=0,"max_oxy"=0,"min_tox"=0,"max_tox"=1,"min_co2"=0,"max_co2"=0,"min_n2"=0,"max_n2"=0);
 	desc = "A timeless classic.";
 	name = "Kentucky"
 	},
@@ -64142,7 +64148,7 @@
 	},
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	desc = "A station exclusive. Consumption may result in seizures, blindness, drunkenness, or even death.";
-	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko = 30);
+	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko=30);
 	name = "Kilo-Kocktail";
 	pixel_x = 5;
 	pixel_y = 5
@@ -120078,7 +120084,7 @@ rYx
 udF
 rSN
 xHP
-fLv
+rbO
 rbO
 lsZ
 wLC
@@ -120849,7 +120855,7 @@ rYx
 scc
 kxf
 nAH
-fLv
+rbO
 rbO
 wYk
 qVz
