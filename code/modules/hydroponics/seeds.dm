@@ -79,11 +79,23 @@
 		icon_harvest = "[species]-harvest"
 
 	if(!nogenes)
+		// Bubber edit
+		genes += new /datum/plant_gene/core/lifespan(lifespan)
+		genes += new /datum/plant_gene/core/endurance(endurance)
+		genes += new /datum/plant_gene/core/weed_rate(weed_rate)
+		genes += new /datum/plant_gene/core/weed_chance(weed_chance)
+		if(yield != -1)
+			genes += new /datum/plant_gene/core/yield(yield)
+			genes += new /datum/plant_gene/core/production(production)
+		if(potency != -1)
+			genes += new /datum/plant_gene/core/potency(potency)
+			genes += new /datum/plant_gene/core/instability(instability)
+
 		for(var/plant_gene in genes)
 			if(ispath(plant_gene))
 				genes -= plant_gene
 				genes += new plant_gene
-
+				
 		// Go through all traits in their genes and call on_new_seed from them.
 		for(var/datum/plant_gene/trait/traits in genes)
 			traits.on_new_seed(src)
