@@ -54,7 +54,7 @@
 	head = /obj/item/clothing/head/nanotrasen_consultant
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
-		/obj/item/gun/energy/e_gun/mini = 1, //KEPLER EDIT: for self defense, not for combat!
+		/obj/item/storage/box/gunset/nanotrasen_consultant = 1, //BUBBER EDIT TAKE 2
 		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
 		)
 
