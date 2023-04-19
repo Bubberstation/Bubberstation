@@ -342,14 +342,14 @@
 
 /obj/item/gun/ballistic/automatic/pistol/pdh/nomag
 	spawnwithmagazine = FALSE
-
+//BUBBER EDIT, RUBBER AMMO LIKE ORIGINAL SKYRAT INTENDED
 /obj/item/storage/box/gunset/pdh/PopulateContents()
 	. = ..()
 	new /obj/item/gun/ballistic/automatic/pistol/pdh/nomag(src)
 	new /obj/item/ammo_box/magazine/multi_sprite/pdh(src)
 	new /obj/item/ammo_box/magazine/multi_sprite/pdh(src)
-	new /obj/item/ammo_box/magazine/multi_sprite/pdh(src)
-	new /obj/item/ammo_box/magazine/multi_sprite/pdh(src)
+	new /obj/item/ammo_box/magazine/multi_sprite/pdh/rubber(src)
+	new /obj/item/ammo_box/magazine/multi_sprite/pdh/rubber(src)
 
 /*
 *	CORPO

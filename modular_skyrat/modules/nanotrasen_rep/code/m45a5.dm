@@ -36,10 +36,10 @@
 	caliber = CALIBER_460
 	projectile_type = /obj/projectile/bullet/b460
 
+//BUBBER EDIT HERE
 /obj/projectile/bullet/b460
-	name = ".460 RM JHP bullet"
-	damage = 30
-	wound_bonus = 30
-	weak_against_armour = TRUE
-	speed = 2 //Previously 2.25. Now compensates for ammo count.
-
+	name = ".460 RM High Velocity bullet"
+	damage = 38
+	wound_bonus = 5
+	armour_penetration = 10
+	speed = 4

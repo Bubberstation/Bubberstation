@@ -6,9 +6,8 @@
 	icon_state = "tracker"
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
 	company_flag = COMPANY_ROMULUS
-	projectile_damage_multiplier = 1.6 //48 Damages, still a lot but not too much
-//With the damage multipler, it would crit in 4, kill in 6. Does not take into account armours.
-
+//	projectile_damage_multiplier = 1.6
+//RESTORE THIS FUNCTIONALITY IF NEEDED
 /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	name = "\improper rowland revolver cylinder"
 	max_ammo = 6
@@ -64,3 +63,52 @@
 /obj/item/storage/box/gunset/hos_revolver/PopulateContents()
 	new /obj/item/gun/ballistic/revolver/hos_revolver(src)
 	new /obj/item/storage/bag/b460reloadpouch(src)
+
+//TEST THIS OUT WHEN NEEDED
+
+/obj/item/choice_beacon/head_of_security
+	name = "gun choice beacon"
+	desc = "whatever you choose will determine the outcome of space station 13. so choose wisely."
+	company_source = "Romulus Shipping Company"
+	company_message = span_bold("Copy that SS13, supply pod enroute!")
+
+
+/obj/item/choice_beacon/head_of_security/generate_display_names()
+	var/static/list/hosgun_list
+	if(!hosgun_list)
+		hosgun_list = list()
+		for(var/obj/item/storage/box/hosgun/box as anything in typesof(/obj/item/storage/box/hosgun))
+			hosgun_list[initial(box.name)] = box
+	return hosgun_list
+
+/obj/item/storage/box/hosgun
+	name = "Classic 3-round burst pistol 9mm"
+
+/obj/item/storage/box/hosgun/PopulateContents()
+	new /obj/item/storage/box/gunset/glock18_hos(src)
+	new /obj/item/ammo_box/c9mm(src)
+	new /obj/item/ammo_box/c9mm(src)
+	new /obj/item/storage/box/hecu_rations(src)
+	new /obj/item/storage/fancy/cigarettes/cigars(src)
+
+/obj/item/storage/box/hosgun/revolver
+	name = "Romulus Officer Heavy Revolver .460"
+
+/obj/item/storage/box/hosgun/revolver/PopulateContents()
+	new /obj/item/storage/box/gunset/hos_revolver(src)
+	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
+	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
+	new /obj/item/storage/box/nri_rations(src)
+	new /obj/item/knife/combat(src)
+
+/obj/item/storage/box/hosgun/glock
+	name = "Solaris Police Dual 9mm Pistol"
+
+/obj/item/storage/box/hosgun/glock/PopulateContents()
+	new /obj/item/storage/box/gunset/glock17(src)
+	new /obj/item/storage/box/gunset/glock17(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper/sol(src)
+	new /obj/item/clothing/neck/tie/red(src)
+	new /obj/item/storage/pill_bottle/probital(src)
