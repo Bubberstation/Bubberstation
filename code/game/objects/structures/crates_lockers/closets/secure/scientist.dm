@@ -18,6 +18,8 @@
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
 	new /obj/item/storage/photo_album/rd(src)
 	new /obj/item/storage/box/skillchips/science(src)
+	new /obj/item/gun/energy/e_gun/mini(src) //BUBBER EDIT ADDITION
+	new /obj/item/clothing/suit/armor/vest/alt/sec(src) //BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/research_director/populate_contents_immediate()
 	. = ..()
