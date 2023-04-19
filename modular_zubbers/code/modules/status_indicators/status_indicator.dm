@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 /datum/component/status_indicator
 	var/list/status_indicators = null // Will become a list as needed. Contains our status indicator objects. Note, they are actually added to overlays, this just keeps track of what exists.
 	var/mob/living/attached_mob
+	COOLDOWN_DECLARE(status_indicator_cooldown)
 
 /// Returns true if the mob is weakened. Also known as floored.
 /datum/component/status_indicator/proc/is_weakened()
@@ -89,6 +90,9 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 /// Receives signals to update on carbon health updates. Checks if the mob is dead - if true, removes all the indicators. Then, we determine what status indicators the mob should carry or remove.
 /datum/component/status_indicator/proc/status_indicator_evaluate()
 	SIGNAL_HANDLER
+	if(!COOLDOWN_FINISHED(src, status_indicator_cooldown))
+		return
+	COOLDOWN_START(src, status_indicator_cooldown, 1 SECONDS) // Race conditions are fun, lets avoid them
 	if(attached_mob.stat == DEAD)
 		return
 	else
@@ -148,9 +152,10 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 
 /// Cuts all the indicators on a mob in a loop.
 /datum/component/status_indicator/proc/cut_indicators_overlays()
-	SIGNAL_HANDLER
-	for(var/prospective_indicator in status_indicators)
+
+	for(var/prospective_indicator in GLOB.potential_indicators)
 		attached_mob.cut_overlay(prospective_indicator)
+		attached_mob.cut_overlay(GLOB.potential_indicators[prospective_indicator])
 
 /// Refreshes the indicators over a mob's head. Should only be called when adding or removing a status indicator with the above procs,
 /// or when the mob changes size visually for some reason.
