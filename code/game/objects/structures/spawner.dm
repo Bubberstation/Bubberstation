@@ -91,7 +91,7 @@
 /obj/structure/spawner/mining/wumborian
 	name = "wumborian fugu den"
 	desc = "A den housing a nest of wumborian fugus, how do they all even fit in there?"
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/fugu)
+	mob_types = list(/mob/living/basic/wumborian_fugu)
 
 /obj/structure/spawner/nether
 	name = "netherworld link"
