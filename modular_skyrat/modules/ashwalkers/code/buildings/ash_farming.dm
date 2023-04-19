@@ -34,18 +34,9 @@
 	if(istype(attacking_item, /obj/item/farming_mulch))
 		if(soiled)
 			to_chat(user, span_warning("\The [source] is already prepared for planting!"))
-			return
-		user.visible_message(
-			span_notice("[user] begins applying \the [attacking_item] on \the [source].."),
-			ignored_mobs = user
-		)
-		if(!do_after(user, 4 SECONDS, source) || QDELETED(attacking_item))
-			return
-		to_chat(user, span_notice("You apply \the [attacking_item], preparing \the [source] for planting."))
-		source.color = COLOR_BROWNER_BROWN
-		soiled = TRUE
-		qdel(attacking_item)
-		return
+			return COMPONENT_CANCEL_ATTACK_CHAIN
+		INVOKE_ASYNC(src, PROC_REF(mulchify))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(!soiled)
 		return
@@ -68,6 +59,9 @@
 		atom_parent.balloon_alert_to_viewers("seed has been planted!")
 		locate_farm.update_appearance()
 		locate_farm.late_setup()
+
+/datum/component/simple_farm/proc/mulchify(obj/item/farming_mulch/mulch, mob/living/user)
+
 
 /**
  * check_examine is meant to listen for the comsig_parent_examine signal, where it will put additional information in the examine
