@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 /atom/movable/screen/plane_master/game_world_upper_fov_hidden/status_indicator
 	name = "Status Indicator Plane"
 	documentation = "Status Indicator Plane"
-	plane = GAME_PLANE_UPPER_FOV_HIDDEN
+	plane = PLANE_STATUS_INDICATOR
 	start_hidden = FALSE
 
 #undef STATUS_INDICATOR_Y_OFFSET
