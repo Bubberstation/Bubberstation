@@ -53,6 +53,7 @@
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
+		/obj/item/modular_computer/pda/warden = 1,
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/gunset/glock17 = 1,
 		)
@@ -62,7 +63,7 @@
 	gloves = /obj/item/clothing/gloves/color/black/security //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/hats/warden //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/head/hats/warden/red
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	l_pocket = /obj/item/modular_computer/pda/warden
+	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 
 	backpack = /obj/item/storage/backpack/security
