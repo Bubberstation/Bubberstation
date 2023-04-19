@@ -142,7 +142,7 @@
 *	12.7x30mm
 *	FMJ | JHP | BEANBAG
 */
-
+//BUBBER STATION EDIT, MADE THE BLEEDING LESS-HELLISH AND MADE THE RUBBER ROUND MORE VIABLE
 /obj/item/ammo_casing/b12mm
 	name = "12.7x30mm FMJ casing"
 	desc = "A 12.7x30mm FMJ casing."
@@ -154,7 +154,7 @@
 /obj/projectile/bullet/b12mm
 	name = "12.7x30mm bullet"
 	damage = 35
-	wound_bonus = 30
+	wound_bonus = 15
 	speed = 1
 
 /obj/item/ammo_casing/b12mm/rubber
@@ -168,8 +168,8 @@
 
 /obj/projectile/bullet/b12mm/rubber
 	name = "12.7x30mm beanbag slug"
-	damage = 10
-	stamina = 35
+	damage = 21
+	stamina = 40
 	ricochets_max = 6
 	ricochet_incidence_leeway = 0
 	ricochet_chance = 130
