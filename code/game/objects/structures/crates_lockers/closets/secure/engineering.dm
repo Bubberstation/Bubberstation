@@ -21,6 +21,8 @@
 	new /obj/item/storage/box/gas_miner_beacons(src) // SKYRAT EDIT ADDITION
 	new /obj/item/construction/plumbing/engineering(src) //SKYRAT EDIT ADDITION
 	new /obj/item/circuitboard/machine/rodstopper(src) //SKYRAT EDIT ADDITION
+	new /obj/item/clothing/suit/armor/vest/alt/sec(src) //BUBBER EDIT ADDITION
+	new /obj/item/storage/box/gunset/m1911_captains(src) //BUBBER EDIT ADDITION PENDING TESTING
 
 /obj/structure/closet/secure_closet/engineering_chief/populate_contents_immediate()
 	. = ..()
