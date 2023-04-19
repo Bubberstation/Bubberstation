@@ -93,6 +93,8 @@
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/cmo(src)
 	new /obj/item/storage/lockbox/medal/med(src)
+	new /obj/item/gun/energy/e_gun/mini(src) //BUBBER EDIT ADDITION
+	new /obj/item/clothing/suit/armor/vest/alt/sec(src) //BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/chief_medical/populate_contents_immediate()
 	. = ..()
