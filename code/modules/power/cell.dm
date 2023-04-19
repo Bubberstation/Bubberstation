@@ -315,7 +315,7 @@
 
 /obj/item/stock_parts/cell/mini_egun
 	name = "miniature energy gun power cell"
-	maxcharge = 600
+	maxcharge = 1200 //BUBBER EDIT
 
 /obj/item/stock_parts/cell/hos_gun
 	name = "X-01 multiphase energy gun power cell"

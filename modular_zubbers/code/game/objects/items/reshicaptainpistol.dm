@@ -1,5 +1,5 @@
 /obj/item/storage/box/gunset/m1911_captains
-	name = "m1911 gunset"
+	name = "m1911c gunset"
 	desc = "contain a rather heavy pistol"
 
 /obj/item/storage/box/gunset/m1911_captains/PopulateContents()
