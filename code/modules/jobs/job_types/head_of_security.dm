@@ -51,7 +51,7 @@
 	id_trim = /datum/id_trim/job/head_of_security
 	uniform = /obj/item/clothing/under/rank/security/head_of_security
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
-	suit_store = /obj/item/gun/energy/e_gun //KEPLER EDIT RESTORATION
+	suit_store = /obj/item/gun/energy/e_gun //BUBBER EDIT RESTORATION
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
 		/obj/item/flashlight/seclite = 1,
