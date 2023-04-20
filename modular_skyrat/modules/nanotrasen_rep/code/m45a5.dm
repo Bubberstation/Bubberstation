@@ -42,4 +42,4 @@
 	damage = 38
 	wound_bonus = 5
 	armour_penetration = 10
-	speed = 4
+	speed = 0.4
