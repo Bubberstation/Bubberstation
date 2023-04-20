@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 /datum/component/status_indicator
 	var/list/status_indicators = null // Will become a list as needed. Contains our status indicator objects. Note, they are actually added to overlays, this just keeps track of what exists.
 	var/mob/living/attached_mob
+	var/running // We can run many times at once, but that's bad. Don't need constant updates.
 	COOLDOWN_DECLARE(status_indicator_cooldown)
 
 /// Returns true if the mob is weakened. Also known as floored.
@@ -126,22 +127,22 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 
 /// Adds a status indicator to the mob. Takes an image as an argument. If it exists, it won't dupe it.
 /datum/component/status_indicator/proc/add_status_indicator(image/prospective_indicator)
+	if(running)
+		return FALSE
+	running = TRUE
 	if(get_status_indicator(prospective_indicator)) // No duplicates, please.
 		return
-
 	prospective_indicator = GLOB.potential_indicators[prospective_indicator]
-	prospective_indicator.loc = src
 	LAZYADD(status_indicators, prospective_indicator)
 	handle_status_indicators(prospective_indicator)
 
 /// Similar to add_status_indicator() but removes it instead, and nulls the list if it becomes empty as a result.
 /datum/component/status_indicator/proc/remove_status_indicator(image/prospective_indicator)
-	prospective_indicator = get_status_indicator(prospective_indicator)
 
+	prospective_indicator = get_status_indicator(prospective_indicator)
 	attached_mob.cut_overlay(prospective_indicator)
 	LAZYREMOVE(status_indicators, prospective_indicator)
 	handle_status_indicators(prospective_indicator)
-
 /// Finds a status indicator on a mob.
 /datum/component/status_indicator/proc/get_status_indicator(image/prospective_indicator)
 
@@ -206,6 +207,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 		// Adding the margin space every time saves a conditional check on the last iteration,
 		// and it won't cause any issues since no more icons will be added, and the var is not used for anything else.
 		current_x_position += STATUS_INDICATOR_ICON_X_SIZE + STATUS_INDICATOR_ICON_MARGIN
+	running = FALSE
 
 /datum/component/status_indicator/proc/get_icon_scale(livingmob)
 	if(!iscarbon(livingmob)) // normal mobs are always 1 for scale - hopefully all borgs and simplemobs get this one
