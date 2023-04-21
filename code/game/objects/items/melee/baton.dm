@@ -385,21 +385,18 @@
 
 /obj/item/melee/baton/security
 	name = "stun baton"
-	desc = "A stun baton for incapacitating people with."
-	desc_controls = "Left click to stun, right click to harm."
+	desc = "A stun baton for incapacitating people with. Left click to stun, right click to harm."
+
 	icon_state = "stunbaton"
 	inhand_icon_state = "baton"
 	worn_icon_state = "baton"
 
 	force = 10
-	wound_bonus = 0
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 
-	armor_type = /datum/armor/baton_security
-
 	throwforce = 7
-	stamina_damage = 35 // SKYRAT EDIT - 4 baton crit now (Original: 45)
+	stamina_damage = 60
 	knockdown_time = 5 SECONDS
 	clumsy_knockdown_time = 15 SECONDS
 	cooldown = 2.5 SECONDS
@@ -416,11 +413,6 @@
 	var/can_remove_cell = TRUE
 	var/convertible = TRUE //if it can be converted with a conversion kit
 
-/datum/armor/baton_security
-	bomb = 50
-	fire = 80
-	acid = 80
-
 /obj/item/melee/baton/security/Initialize(mapload)
 	. = ..()
 	if(preload_cell_type)
@@ -428,20 +420,20 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, PROC_REF(convert))
+	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, .proc/convert)
 	update_appearance()
 
 /obj/item/melee/baton/security/get_cell()
 	return cell
 
-/obj/item/melee/baton/security/suicide_act(mob/living/user)
+/obj/item/melee/baton/security/suicide_act(mob/user)
 	if(cell?.charge && active)
 		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		. = (FIRELOSS)
 		attack(user, user)
-		return FIRELOSS
 	else
 		user.visible_message(span_suicide("[user] is shoving the [name] down their throat! It looks like [user.p_theyre()] trying to commit suicide!"))
-		return OXYLOSS
+		. = (OXYLOSS)
 
 /obj/item/melee/baton/security/Destroy()
 	if(cell)
@@ -577,12 +569,12 @@
  * After a period of time, we then check to see what stun duration we give.
  */
 /obj/item/melee/baton/security/additional_effects_non_cyborg(mob/living/target, mob/living/user)
-	target.set_jitter_if_lower(40 SECONDS)
-	// target.set_confusion_if_lower(10 SECONDS) // SKYRAT EDIT REMOVAL
-	target.set_stutter_if_lower(16 SECONDS)
+	target.set_timed_status_effect(40 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
+	target.set_timed_status_effect(10 SECONDS, /datum/status_effect/confusion, only_if_higher = TRUE)
+	target.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
-	addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), target), 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, target), 2 SECONDS)
 
 /// After the initial stun period, we check to see if the target needs to have the stun applied.
 /obj/item/melee/baton/security/proc/apply_stun_effect_end(mob/living/target)
@@ -590,8 +582,7 @@
 	if(!target.IsKnockdown())
 		to_chat(target, span_warning("Your muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
 
-	if(!trait_check)
-		target.Knockdown(knockdown_time)
+	target.Knockdown(knockdown_time * (trait_check ? 0.1 : 1))
 
 /obj/item/melee/baton/security/get_wait_description()
 	return span_danger("The baton is still charging!")
@@ -624,7 +615,7 @@
 		scramble_mode()
 		for(var/loops in 1 to rand(6, 12))
 			scramble_time = rand(5, 15) / (1 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(scramble_mode)), scramble_time*loops * (1 SECONDS))
+			addtimer(CALLBACK(src, .proc/scramble_mode), scramble_time*loops * (1 SECONDS))
 
 /obj/item/melee/baton/security/proc/scramble_mode()
 	if (!cell || cell.charge < cell_hit_cost)
