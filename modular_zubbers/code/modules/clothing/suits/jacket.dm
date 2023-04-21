@@ -22,4 +22,3 @@
  icon_state = "runner_winter"
  desc = ""
  icon = 'modular_zubbers/icons/obj/clothing/runnerjacketdono.dmi'
-
