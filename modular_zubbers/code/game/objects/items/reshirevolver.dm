@@ -119,7 +119,7 @@
 	Congratulation on your assignment to space station 13.<br>
 	You are given the choices between one of our three heroes from the past!<br>
 	Yes, you did read that correctly. I'm sure you're excited.<br>
-	Classic Head of Security; It contains the glock 18, a box of cigar and two box of ammo for your pistol, You can print more from autolathe or if you were to purchase OR research the lethal ammunition disk<br>
-	Romulus Officer; It contains the HR-460 which is a rare revolver from romulus chambered in .460 Rowland Magnum, you'll get no speedloader but atleast you get pouches to reload it with. Comes with the classic red security loadout<br>
-	Solaris International Contractor; Contains two .45 Pistol originally intended for replcement of the captain pistol, comes with an expensive necktie and the chief of police uniform. Painkiller included.<br>
+	Classic Head of Security; It contains the Glock 18, a box of cigar and two box of ammo for your pistol, You can print more from autolathe or if you were to purchase OR research the lethal ammunition disk<br>
+	Romulus Officer; It contains the Heavy Revolver .460 Military Spec, a rare revolver from romulus chambered in .460 Rowland Magnum, you'll get no speedloader but atleast you get pouches to reload it with. Comes with the classic red security loadout<br>
+	Solaris International Contractor; Contains two M1911 Custom originally intended as replacement of the captain pistol, comes with an expensive necktie and the chief of police uniform. Painkiller included.<br>
 	- Rowley"}
