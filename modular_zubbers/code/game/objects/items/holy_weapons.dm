@@ -4,6 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "papal_staff"
 	inhand_icon_state = "papal_staff"
+	belt_icon_state = "nothing"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
