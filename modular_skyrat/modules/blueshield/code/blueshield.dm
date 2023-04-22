@@ -54,6 +54,8 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	backpack_contents = list(
 		/obj/item/storage/box/gunset/blueshield = 1,
+		/obj/item/gun/energy/e_gun/revolver = 1,
+		/obj/item/storage/medkit/tactical/blueshield = 1,
 		/obj/item/melee/baton/security/loaded = 1,)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
@@ -62,6 +64,7 @@
 	head = /obj/item/clothing/head/beret/blueshield
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/modular_computer/pda/security
+	r_pocket = /obj/item/flashlight/seclite
 
 	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/job/blueshield
