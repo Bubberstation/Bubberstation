@@ -13421,7 +13421,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/mob/living/simple_animal/pet/cat/pancake,
 /turf/open/floor/wood/parquet,
 /area/station/medical/psychology)
 "eQT" = (
@@ -62084,6 +62083,15 @@
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
+	},
+/mob/living/simple_animal/pet/cat{
+	desc = "Their name is pancake! They're very social, snuggly, and a bit dumb... But nonetheless, a good cat!";
+	icon = 'modular_zubbers/icons/mob/simple/pets.dmi';
+	icon_dead = "pancake_dead";
+	icon_living = "pancake";
+	icon_state = "pancake";
+	minbodytemp = 0;
+	name = "Pancake"
 	},
 /turf/open/floor/wood/parquet,
 /area/station/medical/psychology)
