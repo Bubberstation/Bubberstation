@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(apply_pref_on_login))
 
 /datum/component/status_indicator/proc/apply_pref_on_login()
-	var/atom/movable/screen/plane_master/game_world_upper_fov_hidden/status_indicator/local_status = locate() in attached_mob.client.screen
+	var/atom/movable/screen/plane_master/game_world_upper_fov_hidden/local_status = locate() in attached_mob.client.screen
 	if(local_status)
 		. = attached_mob.client.prefs.read_preference(/datum/preference/toggle/enable_status_indicators)
 		local_status.alpha = (.) ? 255 : 0
@@ -209,11 +209,13 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	var/mysize = (passed_mob.dna?.current_body_size ? passed_mob.dna.current_body_size : DEFAULT_MOB_SCALE)
 	return mysize
 
+/*
 /atom/movable/screen/plane_master/game_world_upper_fov_hidden/status_indicator
 	name = "Status Indicator Plane"
 	documentation = "Status Indicator Plane"
 	plane = GAME_PLANE_UPPER_FOV_HIDDEN
 	start_hidden = FALSE
+*/
 
 #undef STATUS_INDICATOR_Y_OFFSET
 #undef STATUS_INDICATOR_ICON_X_SIZE
