@@ -420,7 +420,7 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, .proc/convert)
+	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, PROC_REF(convert))
 	update_appearance()
 
 /obj/item/melee/baton/security/get_cell()
