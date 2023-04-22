@@ -55,7 +55,6 @@
 		/obj/item/evidencebag = 1,
 		/obj/item/modular_computer/pda/warden = 1,
 		/obj/item/flashlight/seclite = 1,
-		/obj/item/storage/box/gunset/glock17 = 1,
 		)
 	belt = /obj/item/storage/belt/security/full
 	ears = /obj/item/radio/headset/headset_sec/alt

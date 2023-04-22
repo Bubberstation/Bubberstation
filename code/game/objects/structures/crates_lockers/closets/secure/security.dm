@@ -91,6 +91,7 @@
 	new /obj/item/clothing/under/rank/security/warden/formal(src)
 	new /obj/item/clothing/suit/jacket/warden/blue(src) //SKYRAT ADDITION - FORMAL COAT
 	//new /obj/item/clothing/under/rank/security/warden/skirt(src) SKYRAT EDIT REMOVAL
+	new /obj/item/storage/box/gunset/glock17(src)	//Bubber Addition - Glock17 for Warden
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
