@@ -6,3 +6,9 @@
 	icon_state = "pancake"
 	icon_living = "pancake"
 	icon_dead = "pancake_dead"
+	butcher_results = list()
+	minbodytemp = TCMB
+	maxbodytemp = T0C + 40
+	unique_pet = TRUE
+	health = 100
+	maxHealth = 100
