@@ -44,3 +44,4 @@
 /datum/sprite_accessory/horns/bubber/big/highrisehorns //end of sprites by Scuhf_#6640
 	name = "High-rise Horns"
 	icon_state = "highrisehorns"
+
