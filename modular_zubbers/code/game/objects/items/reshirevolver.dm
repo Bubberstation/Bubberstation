@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/revolver/hos_revolver
 	name = "\improper HR-460MS 'Tracker'"
-	desc = "A brutally effectve revolver by Romulus officers prior to destruction of the planet, if the initial damage did not kill, the bleedout would. Uses the brutal .460 Rowland ammo."
+	desc = "A brutally effectve revolver by Romulus officers prior to destruction of the planet, While not as powerful as their Nanotrasen counterpart, the high-velocity bullet swiftly dispatch armoured target. Chambered in .460 Rowland Magnum."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi'
 	icon_state = "tracker"
@@ -10,7 +10,7 @@
 //RESTORE THIS FUNCTIONALITY IF NEEDED
 /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	name = "\improper rowland revolver cylinder"
-	max_ammo = 6
+	max_ammo = 7
 	ammo_type = /obj/item/ammo_casing/b460
 	caliber = CALIBER_460
 
