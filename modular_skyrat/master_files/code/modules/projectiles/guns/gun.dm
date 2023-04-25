@@ -215,6 +215,9 @@
 			. += "<br>It has <b>[span_abductor("✌︎︎♌︎︎♎︎︎◆︎︎♍︎︎⧫︎︎❄︎♏︎♍︎♒︎")]</b> engraved into the photon accelerator."
 		if(COMPANY_REMOVED)
 			. += "<br>It has had <b>[span_grey("all identifying marks scrubbed off")].</b>"
+		if(COMPANY_ROMULUS)
+			. += "<br>It has <b><i>[span_blue("Romulus Technology")]</i></b> etched into the barrel."
+
 
 /obj/item/gun/proc/fire_select()
 	var/mob/living/carbon/human/user = usr
