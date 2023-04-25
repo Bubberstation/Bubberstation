@@ -26,7 +26,7 @@
 	/// The length of the knockdown applied to the user on clumsy_check()
 	var/clumsy_knockdown_time = 18 SECONDS
 	/// How much stamina damage we deal on a successful hit against a living, non-cyborg mob.
-	var/stamina_damage = 55 //KEPLER EDIT BACK TO 55, SKYRAT HAD IT 35 FOR SOME ATROCIOUS REASON
+	var/stamina_damage = 55 //BUBBER EDIT BACK TO 55, SKYRAT HAD IT 35 FOR SOME ATROCIOUS REASON
 	/// Can we stun cyborgs?
 	var/affect_cyborg = FALSE
 	/// The path of the default sound to play when we stun something.
