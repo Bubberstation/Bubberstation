@@ -92,7 +92,7 @@
 	new /obj/item/clothing/under/rank/security/warden/formal(src)
 	new /obj/item/clothing/suit/jacket/warden/blue(src) //SKYRAT ADDITION - FORMAL COAT
 	//new /obj/item/clothing/under/rank/security/warden/skirt(src) SKYRAT EDIT REMOVAL
-	new /obj/item/storage/box/gunset/glock17(src)	//Bubber Addition - Glock17 for Warden
+	new /obj/item/storage/box/gunset/glock17(src)	//Bubber Addition - Glock17 for Warden @KathrinBailey please delete the other one next time, you added this in and it doubled when I already gave the warden a glock
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
@@ -102,7 +102,7 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
-	new /obj/item/storage/box/gunset/glock17(src)//BUBBER EDIT
+
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
