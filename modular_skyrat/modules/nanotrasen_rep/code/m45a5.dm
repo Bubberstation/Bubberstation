@@ -41,5 +41,5 @@
 	name = ".460 RM High Velocity bullet"
 	damage = 38
 	wound_bonus = 5
-	armour_penetration = 10
-	speed = 0.4
+	armour_penetration = 20
+	speed = 0.2

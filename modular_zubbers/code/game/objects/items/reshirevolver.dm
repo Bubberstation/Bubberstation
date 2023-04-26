@@ -123,3 +123,17 @@
 	Romulus Officer; It contains the Heavy Revolver .460 Military Spec, a rare revolver from romulus chambered in .460 Rowland Magnum, you'll get no speedloader but atleast you get pouches to reload it with. Comes with the classic red security loadout<br>
 	Solaris International Contractor; Contains two M1911 Custom originally intended as replacement of the captain pistol, comes with an expensive necktie and the chief of police uniform. Painkiller included.<br>
 	- Rowley"}
+
+//Special Ammo for 460
+
+/obj/item/ammo_casing/b460/hp
+	name = ".460 Rowland Magnum Hollow Point bullet casing"
+	desc = "A .460 Rowland magnum casing."
+	projectile_type = /obj/projectile/bullet/b460/hp
+
+/obj/projectile/bullet/b460/hp
+	name = ".460 RM Low Velocity Hollow Point bullet"
+	damage = 30 //same base damage as a 9mm and .45, still hurt
+	bare_wound_bonus = 40
+	armour_penetration = -20 //I would normally use the code for weaker armour but this is so that it's more effective vs mob
+	speed = 2.4 //Slow so you can dodge
