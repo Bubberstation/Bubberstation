@@ -30,7 +30,6 @@
 		"Collector",
 		"Maintenance Dweller",
 		"Hobbyist",
-		"Intern",
 		"Visitor",
 		"Gamer",
 	)
