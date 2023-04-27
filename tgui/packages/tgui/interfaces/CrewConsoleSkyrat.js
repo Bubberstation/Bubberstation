@@ -113,7 +113,6 @@ const CrewTableEntry = (props, context) => {
     assignment,
     ijob,
     is_robot,
-    is_dnr,
     life_status,
     oxydam,
     toxdam,
@@ -156,7 +155,6 @@ const CrewTableEntry = (props, context) => {
         ) : (
           <Icon name="skull" color="#801308" size={1} />
         )}
-        {!life_status && is_dnr ? ' (DNR)' : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (

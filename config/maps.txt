@@ -14,17 +14,23 @@ Format:
 endmap
 
 map metastation
+	#default
+	minplayers 25
+	#voteweight 0.5
 	votable
 endmap
 
 map deltastation
+	minplayers 50
 	votable
 endmap
 
 map kilostation
+	votable
 endmap
 
 map icebox
+	minplayers 25
 	votable
 endmap
 
@@ -40,10 +46,7 @@ endmap
 
 ##SKYRAT MAPS##
 
-map blueshift
-	votable
-endmap
-
 map voidraptor
+	maxplayers 100
 	votable
 endmap

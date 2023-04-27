@@ -185,6 +185,10 @@
 "bG" = (
 /obj/structure/fans/tiny,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/machinery/door/window/survival_pod{
+	req_access = list("syndicate");
+	name = "Slime Pacification Chamber"
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/testlab)
 "bI" = (
@@ -442,6 +446,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/medbay)
+"eh" = (
+/obj/structure/window/reinforced/survival_pod,
+/obj/structure/window/reinforced/survival_pod{
+	dir = 8
+	},
+/obj/structure/window/reinforced/survival_pod,
+/turf/open/floor/engine,
+/area/ruin/syndicate_lava_base/testlab)
 "ej" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 4
@@ -474,6 +486,7 @@
 /area/ruin/syndicate_lava_base/testlab)
 "ex" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/testlab)
 "ey" = (
@@ -553,7 +566,7 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/cargo)
 "fs" = (
-/obj/effect/turf_decal/tile/blue/darkblue{
+/obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -937,9 +950,6 @@
 /area/ruin/syndicate_lava_base/cargo)
 "ji" = (
 /obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -948,7 +958,7 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_lava_base/testlab)
 "jj" = (
-/obj/effect/turf_decal/tile/blue/darkblue{
+/obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -965,7 +975,7 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_lava_base/main)
 "jn" = (
-/obj/effect/turf_decal/tile/blue/darkblue{
+/obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
 /obj/machinery/medical_kiosk,
@@ -1620,9 +1630,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/main)
-"qk" = (
-/turf/closed/mineral/volcanic,
-/area/lavaland/surface/outdoors)
 "qr" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -1662,7 +1669,7 @@
 /turf/open/floor/stone,
 /area/ruin/syndicate_lava_base/bar)
 "qL" = (
-/obj/effect/turf_decal/tile/blue/darkblue,
+/obj/effect/turf_decal/tile/dark_blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -1694,6 +1701,7 @@
 	dir = 4
 	},
 /obj/item/storage/bag/xeno,
+/obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/testlab)
 "qV" = (
@@ -1756,7 +1764,7 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/engineering)
 "rE" = (
-/obj/effect/turf_decal/tile/blue/darkblue,
+/obj/effect/turf_decal/tile/dark_blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -1948,7 +1956,7 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/dormitories)
 "uX" = (
-/obj/effect/turf_decal/tile/blue/darkblue{
+/obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -2651,6 +2659,7 @@
 	dir = 4;
 	name = "BZ Pump"
 	},
+/obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/testlab)
 "Bn" = (
@@ -3093,6 +3102,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/main)
+"Fx" = (
+/obj/structure/window/reinforced/survival_pod,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_lava_base/testlab)
 "Fz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -3327,6 +3340,7 @@
 /area/ruin/syndicate_lava_base/engineering)
 "HZ" = (
 /obj/machinery/monkey_recycler,
+/obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/testlab)
 "Ig" = (
@@ -3537,6 +3551,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/testlab)
 "Ko" = (
@@ -3782,9 +3797,6 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_lava_base/testlab)
 "Ml" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
 /obj/structure/window/reinforced/survival_pod{
 	dir = 4
 	},
@@ -4505,9 +4517,6 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_lava_base/medbay)
 "Tw" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -4588,9 +4597,6 @@
 /turf/open/floor/iron/smooth_edge,
 /area/ruin/syndicate_lava_base/cargo)
 "UB" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
 /obj/structure/window/reinforced/survival_pod{
 	dir = 8
 	},
@@ -4834,6 +4840,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/testlab)
 "Xd" = (
@@ -4915,11 +4922,6 @@
 	c_tag = "Xenobio East";
 	dir = 4;
 	network = list("fsci")
-	},
-/obj/machinery/door/window/survival_pod{
-	req_access = list("syndicate");
-	dir = 1;
-	name = "Slime Pacification Chamber"
 	},
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 8
@@ -5115,7 +5117,7 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/main)
 "Zc" = (
-/obj/effect/turf_decal/tile/blue/darkblue{
+/obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -5268,38 +5270,38 @@ aa
 aa
 aa
 aa
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -5327,42 +5329,42 @@ aa
 aa
 aa
 ag
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -5418,13 +5420,13 @@ ab
 ab
 ab
 ab
-qk
-qk
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -5480,11 +5482,11 @@ ab
 ab
 ab
 ab
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 "}
@@ -5543,8 +5545,8 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (6,1,1) = {"
@@ -5601,8 +5603,8 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 aa
 "}
@@ -5661,14 +5663,14 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (8,1,1) = {"
 aa
 aa
-qk
+ag
 ag
 ab
 ag
@@ -5719,15 +5721,15 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 aa
 "}
 (9,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -5779,14 +5781,14 @@ ab
 ab
 ab
 ab
-qk
+ag
 ag
 aa
 "}
 (10,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -5818,9 +5820,9 @@ RL
 UX
 Zd
 Ku
-Ku
+Fx
 ji
-ch
+eh
 Jt
 Ow
 OW
@@ -5838,14 +5840,14 @@ ab
 ab
 ab
 ab
-qk
+ag
 ag
 aa
 "}
 (11,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Va
@@ -5898,13 +5900,13 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (12,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Zz
@@ -5957,13 +5959,13 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (13,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Zz
@@ -6016,13 +6018,13 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (14,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Zz
@@ -6075,12 +6077,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (15,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6134,12 +6136,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (16,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6193,12 +6195,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (17,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6252,12 +6254,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (18,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6311,12 +6313,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (19,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6369,14 +6371,14 @@ SE
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (20,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Zz
@@ -6428,14 +6430,14 @@ SE
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (21,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Zz
@@ -6486,15 +6488,15 @@ JS
 SE
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 aa
 "}
 (22,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 Zz
@@ -6546,14 +6548,14 @@ Vb
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (23,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6606,14 +6608,14 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (24,1,1) = {"
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6665,14 +6667,14 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (25,1,1) = {"
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6724,15 +6726,15 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (26,1,1) = {"
 aa
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 NT
@@ -6783,15 +6785,15 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (27,1,1) = {"
 aa
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ca
@@ -6842,15 +6844,15 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (28,1,1) = {"
 aa
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 NT
@@ -6901,14 +6903,14 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (29,1,1) = {"
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -6959,15 +6961,15 @@ Tx
 Tx
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (30,1,1) = {"
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7018,15 +7020,15 @@ yB
 Tx
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (31,1,1) = {"
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7078,13 +7080,13 @@ jk
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (32,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7137,13 +7139,13 @@ Tx
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (33,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7196,13 +7198,13 @@ Tx
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (34,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7255,12 +7257,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (35,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7314,12 +7316,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (36,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7372,13 +7374,13 @@ Tx
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (37,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7432,12 +7434,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (38,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7490,13 +7492,13 @@ Tx
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (39,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7550,13 +7552,13 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (40,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7609,13 +7611,13 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (41,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7668,13 +7670,13 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (42,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7727,12 +7729,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (43,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7786,12 +7788,12 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 "}
 (44,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7844,13 +7846,13 @@ Lq
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (45,1,1) = {"
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7903,14 +7905,14 @@ Lq
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (46,1,1) = {"
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -7961,16 +7963,16 @@ Lq
 QS
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 aa
 "}
 (47,1,1) = {"
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -8021,16 +8023,16 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 "}
 (48,1,1) = {"
 aa
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -8079,8 +8081,8 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 aa
 "}
@@ -8089,8 +8091,8 @@ aa
 aa
 aa
 aa
-qk
-qk
+ag
+ag
 ab
 ab
 ab
@@ -8138,8 +8140,8 @@ ab
 ab
 ab
 ab
-qk
-qk
+ag
+ag
 aa
 aa
 "}
@@ -8149,25 +8151,19 @@ aa
 aa
 aa
 aa
-qk
-qk
-qk
+ag
+ag
+ag
 ab
 ab
 ab
 ab
 ab
-qk
-qk
-qk
-qk
-qk
-ab
-ab
-ab
-ab
-ab
-ab
+ag
+ag
+ag
+ag
+ag
 ab
 ab
 ab
@@ -8195,9 +8191,15 @@ ab
 ab
 ab
 ab
-qk
-qk
-qk
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8209,53 +8211,53 @@ aa
 aa
 aa
 aa
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8270,49 +8272,49 @@ aa
 aa
 aa
 aa
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
-qk
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa

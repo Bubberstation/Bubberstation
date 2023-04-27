@@ -235,14 +235,11 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/allow_spawn(mob/user, silent = FALSE)
-	if(!(user.key in team.players_spawned))// Repurpose this to give a slight blurb on spawning in.
-		to_chat(user, span_notice("The Necropolis welcomes a new Servant. Listen to your fellow Ashwalkers, learn and be observant. Do not go out of your way to bring hostiles to your tribe."))
-	//if(!silent) //We remove this in order to allow people to respawn indefinitely without a snide comment.
-		//to_chat(user, span_warning("You have exhausted your usefulness to the Necropolis."))
-	if(!team) //Nonmodular addition. This wont be changed anytime soon, and should fix errors when attempting to adminspawn it.
-		to_chat(user, span_warning("The Necropolis is in Anarchy! The binds that Hold your Kin together have fallen apart. No further life can be produced here."))
-		return FALSE
-	return TRUE //Always return true (Infinite Egg Takes)
+	if(!(user.key in team.players_spawned))//one per person unless you get a bonus spawn
+		return TRUE
+	if(!silent)
+		to_chat(user, span_warning("You have exhausted your usefulness to the Necropolis."))
+	return FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/special(mob/living/carbon/human/spawned_human)
 	// SKYRAT EDIT MOVE
@@ -255,7 +252,7 @@
 
 	spawned_human.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
-	//spawned_human.remove_language(/datum/language/common) -Nonmodular removal. Allows Ashwalkers to speak common and properly learn other languages.
+	spawned_human.remove_language(/datum/language/common)
 	team.players_spawned += (spawned_human.key)
 	eggshell.egg = null
 	QDEL_NULL(eggshell)
@@ -297,7 +294,7 @@
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/special(mob/living/new_spawn)
 	. = ..()
-	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_SPAWNER) // SKYRAT EDIT CHANGE - ORIGINAL: new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_mind)
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms
 	name = "Syndicate Comms Agent"

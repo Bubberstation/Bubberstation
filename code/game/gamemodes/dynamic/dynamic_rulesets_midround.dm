@@ -3,12 +3,7 @@
 /// The probability to replace an existing law with an ion law instead of adding a new ion law.
 #define REPLACE_LAW_WITH_ION_PROB 10
 
-//////////////////////////////////////////////
-//                                          //
-//            MIDROUND RULESETS             //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Rulesets
 /datum/dynamic_ruleset/midround // Can be drafted once in a while during a round
 	ruletype = "Midround"
 	var/midround_ruleset_style
@@ -211,12 +206,7 @@
 	return ..()
 
 
-//////////////////////////////////////////////
-//                                          //
-//           SYNDICATE TRAITORS             //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Traitor Ruleset (From Living)
 /datum/dynamic_ruleset/midround/from_living/autotraitor
 	name = "Syndicate Sleeper Agent"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
@@ -237,15 +227,6 @@
 		JOB_CYBORG,
 		ROLE_POSITRONIC_BRAIN,
 	)
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 35
 	cost = 3
@@ -335,12 +316,7 @@
 			new_malf_ai.add_ion_law(generate_ion_law())
 	return TRUE
 
-//////////////////////////////////////////////
-//                                          //
-//              WIZARD (GHOST)              //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Wizard Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/wizard
 	name = "Wizard"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -368,12 +344,7 @@
 	..()
 	new_character.forceMove(pick(GLOB.wizardstart))
 
-//////////////////////////////////////////////
-//                                          //
-//          NUCLEAR OPERATIVES (MIDROUND)   //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Nuclear Operatives Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear
 	name = "Nuclear Assault"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -382,6 +353,7 @@
 	antag_datum = /datum/antagonist/nukeop
 	enemy_roles = list(
 		JOB_AI,
+		JOB_CYBORG,
 		JOB_CAPTAIN,
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
@@ -429,12 +401,7 @@
 		return
 	return ..()
 
-//////////////////////////////////////////////
-//                                          //
-//              BLOB (GHOST)                //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Blob Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/blob
 	name = "Blob"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -452,7 +419,7 @@
 	var/body = applicant.become_overmind()
 	return body
 
-/// Infects a random player, making them explode into a blob.
+/// Midround Blob Infection Ruleset (From Living)
 /datum/dynamic_ruleset/midround/from_living/blob_infection
 	name = "Blob Infection"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -500,12 +467,7 @@
 	blob_antag.mind.special_role = antag_flag
 	return ..()
 
-//////////////////////////////////////////////
-//                                          //
-//           XENOMORPH (GHOST)              //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Xenomorph Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph
 	name = "Alien Infestation"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -547,26 +509,13 @@
 	log_dynamic("[key_name(new_xeno)] was spawned as an alien by the midround ruleset.")
 	return new_xeno
 
-//////////////////////////////////////////////
-//                                          //
-//           NIGHTMARE (GHOST)              //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Nightmare Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/nightmare
 	name = "Nightmare"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
 	antag_datum = /datum/antagonist/nightmare
 	antag_flag = ROLE_NIGHTMARE
 	antag_flag_override = ROLE_ALIEN
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
@@ -601,12 +550,7 @@
 	log_dynamic("[key_name(S)] was spawned as a Nightmare by the midround ruleset.")
 	return S
 
-//////////////////////////////////////////////
-//                                          //
-//           SPACE DRAGON (GHOST)           //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Space Dragon Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/space_dragon
 	name = "Space Dragon"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -645,11 +589,7 @@
 	priority_announce("A large organic energy flux has been recorded near of [station_name()], please stand-by.", "Lifesign Alert")
 	return S
 
-//////////////////////////////////////////////
-//                                          //
-//           ABDUCTORS    (GHOST)           //
-//                                          //
-//////////////////////////////////////////////
+/// Midround Abductors Ruleset (From Ghosts)
 #define ABDUCTOR_MAX_TEAMS 4
 
 /datum/dynamic_ruleset/midround/from_ghosts/abductors
@@ -660,7 +600,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 2
 	required_applicants = 2
-	weight = 2
+	weight = 4
 	cost = 7
 	minimum_players = 25
 	repeatable = TRUE
@@ -686,12 +626,7 @@
 
 #undef ABDUCTOR_MAX_TEAMS
 
-//////////////////////////////////////////////
-//                                          //
-//            SPACE NINJA (GHOST)           //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Space Ninja Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/space_ninja
 	name = "Space Ninja"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -727,12 +662,7 @@
 	log_dynamic("[key_name(ninja)] was spawned as a Space Ninja by the midround ruleset.")
 	return ninja
 
-//////////////////////////////////////////////
-//                                          //
-//            SPIDERS     (GHOST)           //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Spiders Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/spiders
 	name = "Spiders"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -750,7 +680,7 @@
 	create_midwife_eggs(spawncount)
 	return ..()
 
-/// Revenant ruleset
+/// Midround Revenant Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/revenant
 	name = "Revenant"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
@@ -796,7 +726,7 @@
 	log_game("[key_name(revenant)] was spawned as a revenant by the midround ruleset.")
 	return revenant
 
-/// Sentient Disease ruleset
+/// Midround Sentient Disease Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/sentient_disease
 	name = "Sentient Disease"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -816,20 +746,12 @@
 	log_game("[key_name(virus)] was spawned as a sentient disease by the midround ruleset.")
 	return virus
 
-/// Space Pirates ruleset
+/// Midround Space Pirates Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/pirates
 	name = "Space Pirates"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_flag = "Space Pirates"
 	required_type = /mob/dead/observer
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 0
 	weight = 4
@@ -846,7 +768,7 @@
 	send_pirate_threat()
 	return ..()
 
-/// Obsessed ruleset
+/// Midround Obsessed Ruleset (From Living)
 /datum/dynamic_ruleset/midround/from_living/obsessed
 	name = "Obsessed"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
@@ -856,14 +778,6 @@
 		JOB_AI,
 		JOB_CYBORG,
 		ROLE_POSITRONIC_BRAIN,
-	)
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
 	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
@@ -891,7 +805,7 @@
 	log_game("[key_name(obsessed)] was made Obsessed by the midround ruleset.")
 	return TRUE
 
-/// Space Changeling ruleset
+/// Midround Space Changeling Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/changeling_midround
 	name = "Space Changeling"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT
@@ -912,7 +826,7 @@
 	log_dynamic("[key_name(body)] was spawned as a space changeling by the midround ruleset.")
 	return body
 
-/// Paradox Clone ruleset
+/// Midround Paradox Clone Ruleset (From Ghosts)
 /datum/dynamic_ruleset/midround/from_ghosts/paradox_clone
 	name = "Paradox Clone"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_LIGHT

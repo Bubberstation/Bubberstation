@@ -75,17 +75,8 @@
 		JOB_AI,
 		JOB_CYBORG,
 	)
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 7
+	weight = 11
 	cost = 5
 	requirements = list(5,5,5,5,5,5,5,5,5,5)
 	repeatable = TRUE
@@ -119,6 +110,7 @@
 	)
 	enemy_roles = list(
 		JOB_AI,
+		JOB_CYBORG,
 		JOB_CAPTAIN,
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
@@ -127,7 +119,7 @@
 	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 2
+	weight = 1
 	delay = 1 MINUTES // Prevents rule start while head is offstation.
 	cost = 10
 	requirements = list(101,101,70,40,30,20,20,20,20,20)
@@ -210,17 +202,8 @@
 		JOB_AI,
 		JOB_CYBORG,
 	)
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 4
+	weight = 8
 	cost = 6
 	requirements = list(101,101,50,10,10,10,10,10,10,10)
 	repeatable = TRUE

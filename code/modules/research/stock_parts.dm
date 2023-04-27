@@ -16,7 +16,7 @@ If you create T5+ please take a pass at mech_fabricator.dm. The parts being good
 
 /obj/item/storage/part_replacer/Initialize(mapload)
 	. = ..()
-	create_storage(type = /datum/storage/rped)
+	create_storage(storage_type = /datum/storage/rped)
 
 // check to see if this rped have atleast one circuitboard
 /obj/item/storage/part_replacer/proc/has_an_circuitboard()
@@ -78,7 +78,7 @@ If you create T5+ please take a pass at mech_fabricator.dm. The parts being good
 
 /obj/item/storage/part_replacer/proc/play_rped_sound()
 	//Plays the sound for RPED exhanging or installing parts.
-	if(alt_sound && prob(0.01))
+	if(alt_sound && prob(1))
 		playsound(src, alt_sound, 40, TRUE)
 	else
 		playsound(src, pshoom_or_beepboopblorpzingshadashwoosh, 40, TRUE)

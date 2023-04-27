@@ -33,6 +33,15 @@
 	max_occurrences = 0
 
 /**
+ * Changeling
+ *
+ * Removed for:
+ * Already being handled by dynamic, it shouldn't be spawning from two places at once.
+ */
+/datum/round_event_control/changeling
+	max_occurrences = 0
+
+/**
  * Radiation storm
  *
  * Removed for:
@@ -57,8 +66,8 @@
  * Upped to ensure lowpop steamroll does not happen
  */
 /datum/round_event_control/spider_infestation
-	min_players = 70
-	max_occurrences = 1 //BUBBERS EDIT CHANGE, ORIGINAL: //max_occurrences = 0
+	// min_players = 70
+	max_occurrences = 0
 
 /**
  * Meteor Waves
@@ -96,8 +105,7 @@
  * Does not have policy. Will re-add if/when policy is added
  */
 /datum/round_event_control/operative
-	//max_occurrences = 0
-	min_players = 20 //Bubberstation edit
+	max_occurrences = 0
 
 /**
  * Ninja
@@ -133,9 +141,5 @@
  * Removed:
  * Paperwork Error is too intrusive and should be staff-only.
  */
-/* BUBBERS EDIT START
 /datum/round_event_control/bureaucratic_error
 	max_occurrences = 0
-*/
-// BUBBERS EDIT END
-

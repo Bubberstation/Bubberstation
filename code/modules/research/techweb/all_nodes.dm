@@ -243,6 +243,7 @@
 		"plant_analyzer",
 		"plunger",
 		"pushbroom",
+		"rwd",
 		"razor",
 		"screwdriver",
 		"secateurs",
@@ -621,6 +622,7 @@
 		"solarcontrol",
 		"stack_console",
 		"stack_machine",
+		"suit_storage_unit",
 		"tank_compressor",
 		"tesla_coil",
 		"thermomachine",
@@ -651,7 +653,7 @@
 		"rtd_loaded",
 		"sheetifier",
 		"weldingmask",
-
+		"bolter_wrench",
 		//SKYRAT EDIT START - RESEARCH DESIGNS
 		"engine_goggles_prescription",
 		"mesons_prescription",
@@ -1016,7 +1018,7 @@
 		"borg_upgrade_defibrillator",
 		"borg_upgrade_expandedsynthesiser",
 		"borg_upgrade_piercinghypospray",
-		"borg_upgrade_pinpointer",
+		//"borg_upgrade_pinpointer", // SKYRAT EDIT REMOVAL
 		"borg_upgrade_surgicalprocessor",
 
 		//SKYRAT EDIT START - RESEARCH DESIGNS

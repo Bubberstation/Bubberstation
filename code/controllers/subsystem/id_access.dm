@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(id_access)
 			"pdas" = list(),
 		),
 		"[ACCESS_HOP]" = list(
-			"regions" = list(REGION_GENERAL, REGION_SUPPLY),
+			"regions" = list(REGION_GENERAL),
 			"head" = JOB_HEAD_OF_PERSONNEL,
 			"templates" = list(),
 			"pdas" = list(),
@@ -328,7 +328,6 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access["[ACCESS_CENT_CAPTAIN]"] = "Code Gold"
 	desc_by_access["[ACCESS_CENT_BAR]"] = "Code Scotch"
 	desc_by_access["[ACCESS_BARBER]"] = "Barber" // SKYRAT EDIT ADD - BARBER UPDATE
-	desc_by_access["[ACCESS_BLACKSMITH]"] = "Blacksmith's Workshop" // BUBBER EDIT ADD - BLACKSMITH UPDATE
 
 /**
  * Returns the access bitflags associated with any given access level.
