@@ -77,4 +77,3 @@
 
 /obj/item/ai_module/malf/display_laws()
 	return
-
