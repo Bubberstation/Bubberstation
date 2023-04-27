@@ -6,7 +6,7 @@
 	min_players = 10
 	category = EVENT_CATEGORY_JANITORIAL
 	description = "The scrubbers release a tide of mostly harmless froth."
-	admin_setup = /datum/event_admin_setup/listed_options/scrubber_overflow
+	admin_setup = list(/datum/event_admin_setup/listed_options/scrubber_overflow)
 
 /datum/round_event/scrubber_overflow
 	announce_when = 1
@@ -60,11 +60,11 @@
 	)
 	//needs to be chemid unit checked at some point
 
-/datum/round_event/scrubber_overflow/announce_deadchat(random)
+/datum/round_event/scrubber_overflow/announce_deadchat(random, cause)
 	if(!forced_reagent_type)
 		//nothing out of the ordinary, so default announcement
 		return ..()
-	deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered!", "<b>Scrubber Overflow: [initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered[cause ? " by [cause]" : ""]!", "<b>Scrubber Overflow: [initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/round_event/scrubber_overflow/announce(fake)
 	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "Atmospherics alert")
@@ -85,7 +85,7 @@
 	if(!scrubbers.len)
 		return kill()
 
-/datum/round_event_control/scrubber_overflow/can_spawn_event(players_amt)
+/datum/round_event_control/scrubber_overflow/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -132,6 +132,8 @@
 	max_occurrences = 1
 	earliest_start = 35 MINUTES
 	description = "The scrubbers release a tide of moderately harmless froth."
+	min_wizard_trigger_potency = 0
+	max_wizard_trigger_potency = 4
 
 /datum/round_event/scrubber_overflow/threatening
 	danger_chance = 10
@@ -145,6 +147,8 @@
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
 	description = "The scrubbers release a tide of mildly harmless froth."
+	min_wizard_trigger_potency = 3
+	max_wizard_trigger_potency = 6
 
 /datum/round_event/scrubber_overflow/catastrophic
 	danger_chance = 30

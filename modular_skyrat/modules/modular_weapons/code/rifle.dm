@@ -16,8 +16,8 @@
 	mag_type = /obj/item/ammo_box/magazine/cm68
 	fire_delay = 5
 	can_suppress = FALSE
-	burst_size = 0
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC)
+	burst_size = 1
+	actions_types = list()
 	mag_display = FALSE
 	mag_display_ammo = FALSE
 	empty_indicator = FALSE

@@ -37,6 +37,7 @@
 
 /obj/effect/mob_spawn/ghost_role/human/ds2
 	name = "DS2 personnel"
+	use_outfit_name = TRUE
 	prompt_name = "DS2 personnel"
 	you_are_text = "You are a syndicate operative, employed in a top secret research facility developing biological weapons."
 	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue operating as best you can, and try to keep a low profile."
@@ -52,6 +53,7 @@
 	important_text = "You are still subject to standard prisoner policy and must Adminhelp before antagonizing DS2."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
+	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/security/prison
 	outfit = /datum/outfit/ds2/prisoner
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate
@@ -63,6 +65,8 @@
 	flavour_text = "The Sothran Syndicate has found it fit to send a forward operating base to Sector 13 to monitor NT's operations. Your orders are maintaining the ship's integrity and keeping a low profile as well as possible."
 	important_text = "You are not an antagonist. Adminhelp before antagonizing station crew."
 	outfit = /datum/outfit/ds2/syndicate
+	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/halls
+	spawner_job_path = /datum/job/ds2
 	loadout_enabled = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate_command
@@ -74,15 +78,17 @@
 	flavour_text = "The Sothran Syndicate has found it fit to send you to help command the forward operating base in Sector 13. Your orders are commanding the crew of DS-2 while keeping a low profile as well as possible."
 	important_text = "Keep yourself to the same standards as Command Policy. You are not an antagonist and must Adminhelp before antagonizing station crew."
 	outfit = /datum/outfit/ds2/syndicate_command
+	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/halls
+	spawner_job_path = /datum/job/ds2
 	loadout_enabled = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate/special(mob/living/new_spawn)
 	. = ..()
-	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_SPAWNER)
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate_command/special(mob/living/new_spawn)
 	. = ..()
-	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_SPAWNER)
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate/service
 	outfit = /datum/outfit/ds2/syndicate/service
@@ -626,9 +632,11 @@
 
 /datum/id_trim/away/hotel
 	assignment = "Hotel Staff"
+	access = list(ACCESS_TWIN_NEXUS_STAFF)
 
 /datum/id_trim/away/hotel/manager
 	assignment = "Hotel Manager"
+	access = list(ACCESS_TWIN_NEXUS_STAFF, ACCESS_TWIN_NEXUS_MANAGER)
 
 /datum/id_trim/away/hotel/security
 	assignment = "Hotel Security"

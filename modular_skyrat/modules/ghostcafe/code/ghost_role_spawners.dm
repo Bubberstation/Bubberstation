@@ -11,7 +11,6 @@
 	uses = 10000000000000
 	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "robostorage"
-	mob_name = "a cafe robot"
 	anchored = TRUE
 	density = FALSE
 	you_are_text = "You are a Cafe Robot!"
@@ -41,7 +40,6 @@
 	uses = 10000000000000
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	mob_name = "a cafe visitor"
 	density = FALSE
 	outfit = /datum/outfit/ghostcafe
 	you_are_text = "You are a Cafe Visitor!"

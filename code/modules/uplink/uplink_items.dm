@@ -65,8 +65,13 @@
 	var/restricted = FALSE
 	/// Can this item be deconstructed to unlock certain techweb research nodes?
 	var/illegal_tech = TRUE
-	// String to be shown instead of the price, e.g for the Random item.
+	/// String to be shown instead of the price, e.g for the Random item.
 	var/cost_override_string = ""
+	/// Whether this item locks all other items from being purchased. Used by syndicate balloon and a few other purchases.
+	/// Can't be purchased if you've already bought other things
+	/// Uses the purchase log, so items purchased that are not visible in the purchase log will not count towards this.
+	/// However, they won't be purchasable afterwards.
+	var/lock_other_purchases = FALSE
 
 /datum/uplink_item/New()
 	. = ..()
@@ -83,11 +88,32 @@
 /datum/uplink_item/proc/get_discount()
 	return pick(4;0.75,2;0.5,1;0.25)
 
+	var/static/list/discount_types = list(
+		TRAITOR_DISCOUNT_SMALL = 4,
+		TRAITOR_DISCOUNT_AVERAGE = 2,
+		TRAITOR_DISCOUNT_BIG = 1,
+	)
+
+	return get_discount_value(pick_weight(discount_types))
+
+/// Receives a traitor discount type value, returns the amount by which we will reduce the price
+/datum/uplink_item/proc/get_discount_value(discount_type)
+	switch(discount_type)
+		if(TRAITOR_DISCOUNT_BIG)
+			return 0.75
+		if(TRAITOR_DISCOUNT_AVERAGE)
+			return 0.5
+		else
+			return 0.25
+
+/// Spawns an item and logs its purchase
 /datum/uplink_item/proc/purchase(mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
 	var/atom/A = spawn_item(item, user, uplink_handler, source)
 	log_uplink("[key_name(user)] purchased [src] for [cost] telecrystals from [source]'s uplink")
 	if(purchase_log_vis && uplink_handler.purchase_log)
 		uplink_handler.purchase_log.LogPurchase(A, src, cost)
+	if(lock_other_purchases)
+		uplink_handler.shop_locked = TRUE
 
 /datum/uplink_item/proc/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
 	if(!spawn_path)

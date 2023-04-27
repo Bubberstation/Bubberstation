@@ -26,6 +26,7 @@
 	disliked_food = CLOTH
 	liked_food = GRAIN | MEAT
 	payday_modifier = 0.75
+	species_language_holder = /datum/language_holder/tajaran
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_MAMMAL
 	bodypart_overrides = list(
@@ -99,8 +100,8 @@
 	cat.dna.features["mcolor"] = main_color
 	cat.dna.features["mcolor2"] = second_color
 	cat.dna.features["mcolor3"] = second_color
-	cat.dna.species.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Mammal, Short", MUTANT_INDEX_COLOR_LIST = list(main_color, main_color, main_color))
-	cat.dna.species.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(second_color, main_color, main_color))
-	cat.dna.species.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat, normal", MUTANT_INDEX_COLOR_LIST = list(main_color, second_color, second_color))
-	cat.update_mutant_bodyparts(TRUE)
+	cat.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Mammal, Short", MUTANT_INDEX_COLOR_LIST = list(main_color, main_color, main_color))
+	cat.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(second_color, main_color, main_color))
+	cat.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Cat, normal", MUTANT_INDEX_COLOR_LIST = list(main_color, second_color, second_color))
+	regenerate_organs(cat, src, visual_only = TRUE)
 	cat.update_body(TRUE)

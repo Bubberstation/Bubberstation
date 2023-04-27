@@ -787,7 +787,9 @@
 		ACCESS_WEAPONS, //BUBBER EDIT
 		ACCESS_BLACKSMITH, //BUBBER EDIT
 		)
-	extra_access = list()
+	extra_access = list(
+		ACCESS_TELEPORTER,
+		)
 	minimal_wildcard_access = list(
 		ACCESS_QM,
 	)

@@ -52,7 +52,7 @@
 	ammo_type = /obj/item/ammo_casing/realistic/a762x39
 	caliber = "a762x39"
 	max_ammo = 20
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_RUBBER, AMMO_TYPE_AP)
 
 /obj/item/ammo_box/magazine/multi_sprite/assault_ops_rifle/rubber
@@ -89,6 +89,7 @@
 	burst_size = 1
 	fire_delay = 0.8
 	projectile_damage_multiplier = 0.6
+	actions_types = list()
 	pin = /obj/item/firing_pin/implant/pindicate
 	company_flag = COMPANY_REMOVED
 
@@ -100,7 +101,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 40
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_RUBBER, AMMO_TYPE_HOLLOWPOINT)
 
 /obj/item/ammo_box/magazine/multi_sprite/assault_ops_smg/rubber
@@ -138,6 +139,7 @@
 	fire_select_modes = list(SELECT_SEMI_AUTOMATIC)
 	burst_size = 1
 	fire_delay = 1.5
+	actions_types = list()
 	pin = /obj/item/firing_pin/implant/pindicate
 	company_flag = COMPANY_REMOVED
 
@@ -149,7 +151,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	caliber = CALIBER_SHOTGUN
 	max_ammo = 7
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_RUBBER, AMMO_TYPE_AP, AMMO_TYPE_HOLLOWPOINT, AMMO_TYPE_IHDF, AMMO_TYPE_INCENDIARY)
 
 /obj/item/ammo_box/magazine/multi_sprite/assault_ops_shotgun/rubbershot
@@ -218,7 +220,7 @@
 	ammo_type = /obj/item/ammo_casing/p50
 	caliber = CALIBER_50
 	max_ammo = 5
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_RUBBER, AMMO_TYPE_AP)
 
 /obj/item/ammo_box/magazine/multi_sprite/assault_ops_sniper/sleepytime
