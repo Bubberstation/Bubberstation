@@ -128,7 +128,7 @@
 	Yes, you did read that correctly. I'm sure you're excited.<br>
 	Classic Head of Security; It contains the Glock 18, a box of cigar and two box of ammo for your pistol, You can print more from autolathe or if you were to purchase OR research the lethal ammunition disk<br>
 	Romulus Officer; It contains the Heavy Revolver .460 Military Spec, a rare revolver from romulus chambered in .460 Rowland Magnum, you'll get no speedloader but atleast you get pouches to reload it with. Comes with the classic red security loadout<br>
-	Solaris International Contractor; Contains two M1911 Custom originally intended as replacement of the captain pistol, comes with an expensive necktie and the chief of police uniform. Painkiller included.<br>
+	Solaris International Contractor; Contains two M1911 Custom originally intended as replacement of the captain pistol, A hitman personal weapon of choice. comes with an expensive necktie and the chief of police uniform. Painkiller included.<br>
 	- Rowley"}
 
 //Special Ammo for 460
@@ -158,7 +158,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/b460_hp
-	name = ".460 Rowland Magnum Low Velocity Hollow Point Bullet Casing"
+	name = ".460 Rowland Magnum Rose Bullet Casing"
 	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_hp"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -183,15 +183,15 @@
 
 //AMMO ITSELF
 /obj/item/ammo_casing/b460/hp
-	name = ".460 Rowland Magnum Hollow Point bullet casing"
-	desc = "A .460 Rowland magnum casing."
+	name = ".460 Rowland Magnum Rose bullet casing"
+	desc = "A .460 Rowland magnum casing, great against flesh, extremely bad against armour"
 	projectile_type = /obj/projectile/bullet/b460/hp
 
 /obj/projectile/bullet/b460/hp
-	name = ".460 RM Low Velocity Hollow Point bullet"
-	damage = 60
+	name = ".460 RM Rose bullet"
+	damage = 60 //Don't worry, even just a level 2 armour will make this thing fucking worthless
 	bare_wound_bonus = 40
-	speed = 2.4 //Slow so you can dodge
+	speed = 4 //Slow so you can dodge
 	weak_against_armour = TRUE
 	dismemberment = 1
 
