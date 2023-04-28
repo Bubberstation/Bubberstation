@@ -151,7 +151,6 @@
 	prereq_ids = list("weaponry")
 	design_ids = list(
 		"b460_print",
-		"b460_rose",
 		"b460_trac",
 		"b460_rubber",
 		"b460_softpoint"
@@ -170,6 +169,9 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+
+//SCRAPPED
+/*
 /datum/design/b460_rose
 	name = ".460 Rowland Magnum Rose Bullet Casing"
 	desc = "soft point bullet casing for any gun that can chamber .460 Rowland Magnum."
@@ -181,7 +183,7 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
+*/
 /datum/design/b460_trac
 	name = ".460 Rowland Magnum Tracking Bullet Casing"
 	desc = "tracking bullet casing for any gun that can chamber .460 Rowland Magnum."
@@ -202,6 +204,18 @@
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
 	build_path = /obj/item/ammo_casing/b460/rubber
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/b460_softpoint
+	name = ".460 Rowland Magnum Soft Point Bullet Casing"
+	desc = "soft point expanding bullet casing for any gun that can chamber .460 Rowland Magnum."
+	id = "b460_softpoint"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/titanium = 1500)
+	build_path = /obj/item/ammo_casing/b460/softpoint
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -230,9 +244,24 @@
 	name = ".460 RM Rose bullet"
 	damage = 60 //Don't worry, even just a level 2 armour will make this thing fucking worthless
 	bare_wound_bonus = 40
-	speed = 2.4 //Slow so you can dodge
+	speed = 3 //Slow so you can dodge
+	armour_penetration = 0
 	weak_against_armour = TRUE
 	dismemberment = 1
+
+/obj/item/ammo_casing/b460/softpoint
+	name = ".460 Rowland Magnum Low Velocity Soft Point bullet casing"
+	desc = "A .460 Rowland magnum casing, great against flesh, exceptionally bad against armour"
+	projectile_type = /obj/projectile/bullet/b460/softpoint
+
+/obj/projectile/bullet/b460/softpoint
+	name = ".460 RM Softpoint bullet"
+	damage = 45 //Ballistic Softpoint, will probably kill you in a lot of circumstances
+	wound_bonus = 10
+	bare_wound_bonus = 40
+	speed = 3 //Slow so you can dodge
+	armour_penetration = 0
+	weak_against_armour = TRUE
 
 /obj/item/ammo_casing/b460/trac
 	name = ".460 Rowland Magnum \"TRAC\" bullet casing"
