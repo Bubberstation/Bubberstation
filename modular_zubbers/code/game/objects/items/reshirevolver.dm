@@ -153,7 +153,7 @@
 		"b460_print",
 		"b460_hp",
 		"b460_trac",
-		"b460_sp",
+		"b460_rubber",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4500)
 
@@ -171,7 +171,7 @@
 
 /datum/design/b460_hp
 	name = ".460 Rowland Magnum Rose Bullet Casing"
-	desc = "hollow point bullet casing for any gun that can chamber .460 Rowland Magnum."
+	desc = "soft point bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_hp"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
@@ -194,13 +194,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 
-/datum/design/b460_sp
-	name = ".460 Rowland Magnum Soft Point Bullet Casing"
+/datum/design/b460_rubber
+	name = ".460 Rowland Magnum Rubber Bullet Casing"
 	desc = "rubber bullet casing for any gun that can chamber .460 Rowland Magnum."
-	id = "b460_sp"
+	id = "b460_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
-	build_path = /obj/item/ammo_casing/b460/sp
+	build_path = /obj/item/ammo_casing/b460/rubber
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -208,14 +208,14 @@
 
 //AMMO ITSELF
 
-/obj/item/ammo_casing/b460/sp
-	name = ".460 Rowland Magnum Soft Point bullet casing"
+/obj/item/ammo_casing/b460/rubber
+	name = ".460 Rowland Magnum Rubber bullet casing"
 	desc = "A .460 Rowland magnum casing, ideal for giving people lots of pains"
-	projectile_type = /obj/projectile/bullet/b460/sp
+	projectile_type = /obj/projectile/bullet/b460/rubber
 
-/obj/projectile/bullet/b460/sp
-	name = ".460 RM Soft Point bullet"
-	damage = 18
+/obj/projectile/bullet/b460/rubber
+	name = ".460 RM Rubber bullet"
+	damage = 10
 	stamina = 45
 	armour_penetration = 0
 	speed = 0.7 //back to normal speed!
