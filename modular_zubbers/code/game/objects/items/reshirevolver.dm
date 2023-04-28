@@ -143,4 +143,5 @@
 	damage = 60
 	bare_wound_bonus = 40
 	speed = 2.4 //Slow so you can dodge
-
+	weak_against_armour = TRUE
+	dismemberment = 1
