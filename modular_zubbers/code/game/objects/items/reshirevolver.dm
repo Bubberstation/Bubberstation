@@ -1,5 +1,5 @@
 /obj/item/gun/ballistic/revolver/hos_revolver
-	name = "\improper HR-460MS 'Peckers'"
+	name = "\improper HR-460MS 'Wood Pecker'"
 	desc = "A medium sized revolver used by Romulus Officers prior to the destruction of the planet, this one is a military spec variant chambered in the high velocity .460 rowland magnum."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	icon = 'modular_zubbers/icons/obj/reshi40x32.dmi'
@@ -17,7 +17,7 @@
 	name = "\improper HR-460OS 'Tracker'"
 	desc = "A brutally effectve revolver by Romulus officers prior to destruction of the planet, While not as powerful as their Nanotrasen counterpart, the high-velocity bullet swiftly dispatch armoured target. Chambered in .460 Rowland Magnum."
 	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi'
-	icon_state = "trackertracker"
+	icon_state = "tracker"
 	projectile_damage_multiplier = 1.6
 
 
