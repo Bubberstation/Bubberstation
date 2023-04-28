@@ -28,6 +28,8 @@
 	max_ammo = 8 //Previously 15, then previously 10. Locked to 8, as you can now restock .460 Magnum which was unintended due to its strong nature.
 	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
 
+
+//BUBBER EDIT BELOW
 /obj/item/ammo_casing/b460
 	name = ".460 Rowland Magnum High Velocity bullet casing"
 	desc = "A .460 Rowland magnum casing."
@@ -36,7 +38,6 @@
 	caliber = CALIBER_460
 	projectile_type = /obj/projectile/bullet/b460
 
-//BUBBER EDIT HERE
 /obj/projectile/bullet/b460
 	name = ".460 RM High Velocity bullet"
 	damage = 40
