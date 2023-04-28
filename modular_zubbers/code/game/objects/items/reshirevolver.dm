@@ -140,7 +140,7 @@
 
 /obj/projectile/bullet/b460/hp
 	name = ".460 RM Low Velocity Hollow Point bullet"
-	damage = 30 //same base damage as a 9mm and .45, still hurt
+	damage = 60
 	bare_wound_bonus = 40
-	armour_penetration = -20 //I would normally use the code for weaker armour but this is so that it's more effective vs mob
 	speed = 2.4 //Slow so you can dodge
+
