@@ -29,7 +29,7 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
 
 /obj/item/ammo_casing/b460
-	name = ".460 Rowland Magnum bullet casing"
+	name = ".460 Rowland Magnum High Velocity bullet casing"
 	desc = "A .460 Rowland magnum casing."
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/ammo_cartridges.dmi'
 	icon_state = "sl-casing"

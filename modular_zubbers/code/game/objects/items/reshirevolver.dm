@@ -133,6 +133,55 @@
 
 //Special Ammo for 460
 
+/datum/techweb_node/rowlandmagnumresearch
+	id = "romulus_ammo"
+	display_name = "Romulus Technology"
+	description = "From the field of Romulus."
+	prereq_ids = list("weaponry")
+	design_ids = list(
+		"b460_print",
+		"b460_hp",
+		"b460_trac",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4500)
+
+/datum/design/b460_print
+	name = ".460 Rowland Magnum High Velocity Bullet Casing"
+	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
+	id = "b460_print"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 1000) //Print a lot or something
+	build_path = /obj/item/ammo_casing/b460
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/b460_hp
+	name = ".460 Rowland Magnum Low Velocity Hollow Point Bullet Casing"
+	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
+	id = "b460_hp"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
+	build_path = /obj/item/ammo_casing/b460/hp
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/b460_trac
+	name = ".460 Rowland Magnum Tracking Bullet Casing"
+	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
+	id = "b460_trac"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/plasma= 1000, /datum/material/gold = 1500)
+	build_path = /obj/item/ammo_casing/b460/trac
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+//AMMO ITSELF
 /obj/item/ammo_casing/b460/hp
 	name = ".460 Rowland Magnum Hollow Point bullet casing"
 	desc = "A .460 Rowland magnum casing."
@@ -145,3 +194,32 @@
 	speed = 2.4 //Slow so you can dodge
 	weak_against_armour = TRUE
 	dismemberment = 1
+
+/obj/item/ammo_casing/b460/trac
+	name = ".460 Rowland Magnum \"TRAC\" bullet casing"
+	desc = "A .460 Rowland magnum casing."
+	projectile_type = /obj/projectile/bullet/b460/trac
+
+/obj/projectile/bullet/b460/trac
+	name = ".460 TRAC bullet"
+	damage = 25
+	ricochets_max = 3 //You don't escape the law
+	ricochet_chance = 50
+	ricochet_shoots_firer = FALSE
+	ricochet_auto_aim_range = 3
+	ricochet_auto_aim_angle = 30
+	ricochet_incidence_leeway = 40
+	armour_penetration = 0
+
+/obj/projectile/bullet/b460/trac/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/mob/living/carbon/M = target
+	if(!istype(M))
+		return
+	var/obj/item/implant/tracking/c38/imp
+	for(var/obj/item/implant/tracking/c38/TI in M.implants) //checks if the target already contains a tracking implant
+		imp = TI
+		return
+	if(!imp)
+		imp = new /obj/item/implant/tracking/c38(M)
+		imp.implant(M)
