@@ -120,6 +120,7 @@
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/storage/box/nri_rations(src)
 	new /obj/item/knife/combat(src)
+	new /obj/item/clothing/gloves/color/black(src)
 
 /obj/item/storage/box/hosgun/glock
 	name = "Solaris International Contractor Dual .45 Pistol"
@@ -185,11 +186,11 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 */
 /datum/design/b460_trac
-	name = ".460 Rowland Magnum Tracking Bullet Casing"
+	name = ".460 Rowland Magnum Smart Bullet Casing"
 	desc = "tracking bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_trac"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/plasma= 2000, /datum/material/gold = 1500)
+	materials = list(/datum/material/iron = 1000, /datum/material/plasma= 2000, /datum/material/gold = 1500, /datum/material/titanium = 3500)
 	build_path = /obj/item/ammo_casing/b460/trac
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -264,20 +265,20 @@
 	weak_against_armour = TRUE
 
 /obj/item/ammo_casing/b460/trac
-	name = ".460 Rowland Magnum \"TRAC\" bullet casing"
-	desc = "A .460 Rowland magnum casing."
+	name = ".460 Rowland Magnum smart bullet casing"
+	desc = "A .460 Rowland magnum casing. this one is loaded with a smart micro technology that can seek out target and even track them"
 	projectile_type = /obj/projectile/bullet/b460/trac
 
 /obj/projectile/bullet/b460/trac
 	name = ".460 TRAC bullet"
 	damage = 25
 	ricochets_max = 3 //You don't escape the law
-	ricochet_chance = 50
+	ricochet_chance = 55
 	ricochet_shoots_firer = FALSE
-	ricochet_auto_aim_range = 3
-	ricochet_auto_aim_angle = 30
-	ricochet_incidence_leeway = 40
-	armour_penetration = 0
+	ricochet_auto_aim_range = 5
+	ricochet_auto_aim_angle = 90
+	ricochet_incidence_leeway = 0
+	armour_penetration = 5
 
 /obj/projectile/bullet/b460/trac/on_hit(atom/target, blocked = FALSE)
 	. = ..()
