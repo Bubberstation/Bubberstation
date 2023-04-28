@@ -63,20 +63,20 @@
 	new /obj/item/ammo_casing/b460(src)
 	new /obj/item/ammo_casing/b460(src)
 	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
-	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
+	new /obj/item/ammo_casing/b460/rubber(src)
 
 /obj/item/storage/box/gunset/hos_revolver/PopulateContents()
 	new /obj/item/gun/ballistic/revolver/hos_revolver(src)
@@ -151,9 +151,10 @@
 	prereq_ids = list("weaponry")
 	design_ids = list(
 		"b460_print",
-		"b460_hp",
+		"b460_rose",
 		"b460_trac",
 		"b460_rubber",
+		"b460_softpoint"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4500)
 
@@ -169,13 +170,13 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/b460_hp
+/datum/design/b460_rose
 	name = ".460 Rowland Magnum Rose Bullet Casing"
 	desc = "soft point bullet casing for any gun that can chamber .460 Rowland Magnum."
-	id = "b460_hp"
+	id = "b460_rose"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
-	build_path = /obj/item/ammo_casing/b460/hp
+	build_path = /obj/item/ammo_casing/b460/rose
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -220,12 +221,12 @@
 	armour_penetration = 0
 	speed = 0.7 //back to normal speed!
 
-/obj/item/ammo_casing/b460/hp
+/obj/item/ammo_casing/b460/rose
 	name = ".460 Rowland Magnum Rose bullet casing"
 	desc = "A .460 Rowland magnum casing, great against flesh, extremely bad against armour"
-	projectile_type = /obj/projectile/bullet/b460/hp
+	projectile_type = /obj/projectile/bullet/b460/rose
 
-/obj/projectile/bullet/b460/hp
+/obj/projectile/bullet/b460/rose
 	name = ".460 RM Rose bullet"
 	damage = 60 //Don't worry, even just a level 2 armour will make this thing fucking worthless
 	bare_wound_bonus = 40
