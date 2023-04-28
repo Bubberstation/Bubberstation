@@ -44,7 +44,6 @@
 	name = "Nanotrasen Consultant"
 	jobtype = /datum/job/nanotrasen_consultant
 
-	belt = /obj/item/storage/belt/holster/energy/disabler
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/nanotrasen_consultant
 	gloves = /obj/item/clothing/gloves/combat
