@@ -33,8 +33,8 @@
 /obj/item/storage/bag/b460reloadpouch/Initialize(mapload)
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL
-	atom_storage.max_total_storage = 35
-	atom_storage.max_slots = 35
+	atom_storage.max_total_storage = 70
+	atom_storage.max_slots = 70 //hold 20 more than a bluespace trash bag, which was how I used to reload these revolver
 	atom_storage.numerical_stacking = TRUE
 	atom_storage.set_holdable(list(
 		/obj/item/ammo_casing/b460,
@@ -63,9 +63,20 @@
 	new /obj/item/ammo_casing/b460(src)
 	new /obj/item/ammo_casing/b460(src)
 	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
+	new /obj/item/ammo_casing/b460/sp(src)
 
 /obj/item/storage/box/gunset/hos_revolver/PopulateContents()
 	new /obj/item/gun/ballistic/revolver/hos_revolver(src)
@@ -89,7 +100,7 @@
 	return hosgun_list
 
 /obj/item/storage/box/hosgun
-	name = "Classic 3-round burst pistol 9mm"
+	name = "Classic Head of Security 3-round burst pistol 9mm"
 
 /obj/item/storage/box/hosgun/PopulateContents()
 	new /obj/item/storage/box/gunset/glock18_hos(src)
@@ -128,7 +139,7 @@
 	Yes, you did read that correctly! I'm sure you're excited!<br>
 	Classic Head of Security: It contains the Glock 18, a box of cigars and two boxes of ammunition for your pistol. You can print more from the autolathe by hacking it, Or from the ammo workbench if you were to purchase or research the lethal ammunition disk you can obtain special ammunition type.<br>
 	Romulus Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic red security loadout.<br>
-	Solaris International Contractor: Contains two Custom M1911s originally intended as replacement of the captain's pistol. Comes with an expensive necktie and a Sol chief of police uniform. Painkillers included.<br>
+	Solaris International Contractor: Contains two Custom M1911s originally intended as replacement of the captain's pistol. Comes with an expensive red neosilk necktie and the Sol chief of police uniform. Painkillers included.<br>
 	- Rowley"}
 
 //Special Ammo for 460
@@ -136,18 +147,19 @@
 /datum/techweb_node/rowlandmagnumresearch
 	id = "romulus_ammo"
 	display_name = "Romulus Technology"
-	description = "From the field of Romulus."
+	description = "From the field of Romulus comes special ammo."
 	prereq_ids = list("weaponry")
 	design_ids = list(
 		"b460_print",
 		"b460_hp",
 		"b460_trac",
+		"b460_sp",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4500)
 
 /datum/design/b460_print
 	name = ".460 Rowland Magnum High Velocity Bullet Casing"
-	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
+	desc = "high velocity bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_print"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 1000) //Print a lot or something
@@ -159,7 +171,7 @@
 
 /datum/design/b460_hp
 	name = ".460 Rowland Magnum Rose Bullet Casing"
-	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
+	desc = "hollow point bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_hp"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
@@ -171,17 +183,43 @@
 
 /datum/design/b460_trac
 	name = ".460 Rowland Magnum Tracking Bullet Casing"
-	desc = "bullet casing for any gun that can chamber .460 Rowland Magnum."
+	desc = "tracking bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_trac"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/plasma= 1000, /datum/material/gold = 1500)
+	materials = list(/datum/material/iron = 1000, /datum/material/plasma= 2000, /datum/material/gold = 1500)
 	build_path = /obj/item/ammo_casing/b460/trac
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+
+/datum/design/b460_sp
+	name = ".460 Rowland Magnum Soft Point Bullet Casing"
+	desc = "rubber bullet casing for any gun that can chamber .460 Rowland Magnum."
+	id = "b460_sp"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
+	build_path = /obj/item/ammo_casing/b460/sp
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 //AMMO ITSELF
+
+/obj/item/ammo_casing/b460/sp
+	name = ".460 Rowland Magnum Soft Point bullet casing"
+	desc = "A .460 Rowland magnum casing, ideal for giving people lots of pains"
+	projectile_type = /obj/projectile/bullet/b460/sp
+
+/obj/projectile/bullet/b460/sp
+	name = ".460 RM Soft Point bullet"
+	damage = 18
+	stamina = 45
+	armour_penetration = 0
+	speed = 0.7 //back to normal speed!
+
 /obj/item/ammo_casing/b460/hp
 	name = ".460 Rowland Magnum Rose bullet casing"
 	desc = "A .460 Rowland magnum casing, great against flesh, extremely bad against armour"
@@ -223,3 +261,15 @@
 	if(!imp)
 		imp = new /obj/item/implant/tracking/c38(M)
 		imp.implant(M)
+
+//Clothings stuff...?
+/*
+/obj/item/storage/belt/security/peacekeeper/hos_revolver
+	name = "peacekeeper belt"
+	desc = "This belt can hold security gear like handcuffs and flashes. It has a holster for a gun."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
+	icon_state = "peacekeeperbelt"
+	worn_icon_state = "peacekeeperbelt"
+*/
+
