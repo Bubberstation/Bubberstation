@@ -39,7 +39,7 @@
 //BUBBER EDIT HERE
 /obj/projectile/bullet/b460
 	name = ".460 RM High Velocity bullet"
-	damage = 38
+	damage = 40
 	wound_bonus = 5
 	armour_penetration = 20
 	speed = 0.2

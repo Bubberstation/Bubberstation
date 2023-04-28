@@ -123,12 +123,12 @@
 /obj/item/paper/hos_gun_notes
 	name = "READ THIS"
 	default_raw_text = {"HOS Note<br>
-	Congratulation on your assignment to space station 13.<br>
-	You are given the choices between one of our three heroes from the past!<br>
-	Yes, you did read that correctly. I'm sure you're excited.<br>
-	Classic Head of Security; It contains the Glock 18, a box of cigar and two box of ammo for your pistol, You can print more from autolathe or if you were to purchase OR research the lethal ammunition disk<br>
-	Romulus Officer; It contains the Heavy Revolver .460 Military Spec, a rare revolver from romulus chambered in .460 Rowland Magnum, you'll get no speedloader but atleast you get pouches to reload it with. Comes with the classic red security loadout<br>
-	Solaris International Contractor; Contains two M1911 Custom originally intended as replacement of the captain pistol, A hitman personal weapon of choice. comes with an expensive necktie and the chief of police uniform. Painkiller included.<br>
+	Congratulations on your assignment to Space Station 13!<br>
+	You are being given a choice to sport the loadout of one of our three heroes from the past!<br>
+	Yes, you did read that correctly! I'm sure you're excited!<br>
+	Classic Head of Security: It contains the Glock 18, a box of cigars and two boxes of ammunition for your pistol. You can print more from the autolathe by hacking it, Or from the ammo workbench if you were to purchase or research the lethal ammunition disk you can obtain special ammunition type.<br>
+	Romulus Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic red security loadout.<br>
+	Solaris International Contractor: Contains two Custom M1911s originally intended as replacement of the captain's pistol. Comes with an expensive necktie and a Sol chief of police uniform. Painkillers included.<br>
 	- Rowley"}
 
 //Special Ammo for 460
@@ -191,7 +191,7 @@
 	name = ".460 RM Rose bullet"
 	damage = 60 //Don't worry, even just a level 2 armour will make this thing fucking worthless
 	bare_wound_bonus = 40
-	speed = 4 //Slow so you can dodge
+	speed = 2.4 //Slow so you can dodge
 	weak_against_armour = TRUE
 	dismemberment = 1
 
