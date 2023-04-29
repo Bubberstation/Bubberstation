@@ -28,7 +28,7 @@
 
 /obj/item/storage/box/gunset/m1911red_hos/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/m1911/captains/red/no_mag(src)
+	new /obj/item/gun/ballistic/automatic/pistol/m1911/captains/red/nomag(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
@@ -40,7 +40,7 @@
 
 /obj/item/storage/box/gunset/m1911blue_hos/PopulateContents()
 	. = ..()
-	new /obj/item/gun/ballistic/automatic/pistol/m1911/captains/blue/no_mag(src)
+	new /obj/item/gun/ballistic/automatic/pistol/m1911/captains/blue/nomag(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 	new /obj/item/ammo_box/magazine/m45(src)
@@ -62,9 +62,9 @@
 	fire_delay = 2.15
 	spread = 8
 	semi_auto = TRUE
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT, SELECT_FULLY_AUTOMATIC)
+	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT)
 
-/obj/item/gun/ballistic/automatic/pistol/m1911/captains/red
+/obj/item/gun/ballistic/automatic/pistol/m1911/captains/red/nomag
 	spawnwithmagazine = 0
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/captains/blue/nomag
