@@ -61,7 +61,7 @@
 	mag_display = FALSE
 	mag_display_ammo = FALSE
 	company_flag = COMPANY_CANTALAN
-	projectile_damage_multiplier = 0.5
+	projectile_damage_multiplier = 0.7 //BUBBER EDIT, TESTING NEEDED
 
 /obj/item/gun/ballistic/automatic/pistol/g18/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")

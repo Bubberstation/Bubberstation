@@ -2,11 +2,15 @@
 	name = "X-R12 energy revolver" //BUBBER EDIT pretty much the whole file is just bubber edit
 	desc = "An experimental model advanced energy weapon with the capacity to shoot both electrodes and lasers, used by many private defense contractors from Romulus to New Moscow, its also rather heavy and would certainly hurt to get pistol whipped by." //BUBBER EDIT
 	force = 12
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler/hos, /obj/item/ammo_casing/energy/laser/blueshield)
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/hos, /obj/item/ammo_casing/energy/laser/blueshield, /obj/item/ammo_casing/energy/electrode/blueshield)
+	select_name = "stun"
+	fire_sound = 'sound/weapons/taser.ogg'
+	e_cost = 200
+	harmful = FALSE
 	ammo_x_offset = 1
 	charge_sections = 4
 	fire_delay = 4
-	icon = 'modular_skyrat/modules/blueshield/icons/energy.dmi'
+	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi' //BUBBER EDIT
 	icon_state = "bsalt" //BUBBER EDIT
 	inhand_icon_state = "minidisable"
 	lefthand_file = 'modular_skyrat/modules/blueshield/icons/guns_lefthand.dmi'

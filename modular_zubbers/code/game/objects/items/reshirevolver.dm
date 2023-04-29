@@ -119,18 +119,16 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/storage/box/nri_rations(src)
-	new /obj/item/knife/combat(src)
+	new /obj/item/knife/combat/survival(src)
 	new /obj/item/clothing/gloves/color/black(src)
 
 /obj/item/storage/box/hosgun/glock
-	name = "Solaris International Contractor Dual .45 Pistol"
+	name = "Underworld Stylistic Dual .45 Pistol"
 
 /obj/item/storage/box/hosgun/glock/PopulateContents()
-	new /obj/item/storage/box/gunset/m1911_captains(src)
-	new /obj/item/storage/box/gunset/m1911_captains(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper/sol(src)
-	new /obj/item/clothing/neck/tie/red/hitman(src)
-	new /obj/item/storage/pill_bottle/probital(src)
+	new /obj/item/storage/box/gunset/m1911red_hos(src)
+	new /obj/item/storage/box/gunset/m1911blue_hos(src)
+	new /obj/item/knife/combat(src)
 
 /obj/item/paper/hos_gun_notes
 	name = "READ THIS"
@@ -140,7 +138,7 @@
 	Yes, you did read that correctly! I'm sure you're excited!<br>
 	Classic Head of Security: It contains the Glock 18, a box of cigars and two boxes of ammunition for your pistol. You can print more from the autolathe by hacking it, Or from the ammo workbench if you were to purchase or research the lethal ammunition disk you can obtain special ammunition type.<br>
 	Romulus Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic red security loadout.<br>
-	Solaris International Contractor: Contains two Custom M1911s originally intended as replacement of the captain's pistol. Comes with an expensive red neosilk necktie and the Sol chief of police uniform. Painkillers included.<br>
+	Underworld Stylistic Devil: Contains two Custom M1911s originally intended as replacement of the captain's pistol that has been modified even further for combatting supernatural forces. Red jacket and awesome sword not included, comes with a complimentary knife though if you run out of ammo<br>
 	- Rowley"}
 
 //Special Ammo for 460
@@ -292,6 +290,16 @@
 	if(!imp)
 		imp = new /obj/item/implant/tracking/c38(M)
 		imp.implant(M)
+
+//We modularising everything so I'm just gonna shove any auxilary edit I made into my files for now
+
+/obj/item/ammo_casing/energy/laser/blueshield
+	e_cost = 100
+
+/obj/item/ammo_casing/energy/electrode/blueshield
+	projectile_type = /obj/projectile/energy/electrode
+	e_cost = 700
+
 
 //Clothings stuff...?
 /*
