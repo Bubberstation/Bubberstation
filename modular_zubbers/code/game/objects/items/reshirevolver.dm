@@ -280,10 +280,10 @@
 	damage = 25 //Low damage comparatively since the main upside is it can home in on target
 	armour_penetration = 25 //It still need to break armour else you're kinda skewed
 	ricochets_max = 3 //You don't escape the law
-	ricochet_chance = 80
+	ricochet_chance = 100
 	ricochet_shoots_firer = FALSE
 	ricochet_auto_aim_range = 5
-	ricochet_auto_aim_angle = 90
+	ricochet_auto_aim_angle = 310
 	ricochet_incidence_leeway = 0
 
 /obj/projectile/bullet/b460/trac
