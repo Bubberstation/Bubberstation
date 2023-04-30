@@ -23,7 +23,7 @@
 //Devil may cry reference here
 
 /obj/item/storage/box/gunset/m1911red_hos
-	name = "m1911c gunset"
+	name = "m1911c red gunset"
 	desc = "contain a rather heavy pistol"
 
 /obj/item/storage/box/gunset/m1911red_hos/PopulateContents()
@@ -35,7 +35,7 @@
 	new /obj/item/ammo_box/magazine/m45a5(src)
 
 /obj/item/storage/box/gunset/m1911blue_hos
-	name = "m1911c gunset"
+	name = "m1911c blue gunset"
 	desc = "contain a rather heavy pistol"
 
 /obj/item/storage/box/gunset/m1911blue_hos/PopulateContents()
@@ -47,7 +47,7 @@
 	new /obj/item/ammo_box/magazine/m45(src)
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/captains/red
-	name = "m1911ms 'Bonnie'"
+	name = "M1911OS 'Bonnie'"
 	desc = "A slow heavy hitting pistol for those that favours accuracy, chambered in .460 and stamped with genuine gold and the grips are made of rare Romulus taiga woods"
 	icon_state = "m1911red"
 	mag_type = /obj/item/ammo_box/magazine/m45a5
@@ -55,7 +55,7 @@
 	projectile_damage_multiplier = 0.7 //If it was just straight up using the .460 as usual then this thing would be hilariously overpowered
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/captains/blue
-	name = "m1911ms 'Clyde'"
+	name = "M1911MS 'Clyde'"
 	desc = "A fast heavy hitting pistol for those that favours burst damages output over precision, chambered in .45 and stamped with some sort of glowing blue metal in the shape of Romulus Technology logo."
 	icon_state = "m1911blue"
 	burst_size = 3
