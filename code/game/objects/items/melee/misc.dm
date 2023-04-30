@@ -67,7 +67,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
 	obj_flags = UNIQUE_RENAME
-	force = 18 //Bubber Edit: origin is 15, had to buff it up to 21 then to 18 so that it would still be fair
+	force = 19 //Bubber Edit: origin is 15, had to buff it up to 21 then to 18 so that it would still be fair
 	throwforce = 10
 	demolition_mod = 0.75 //but not metal
 	w_class = WEIGHT_CLASS_BULKY

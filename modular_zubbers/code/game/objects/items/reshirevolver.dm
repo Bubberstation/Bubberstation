@@ -29,7 +29,7 @@
 	slot_flags = ITEM_SLOT_POCKETS | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
-	worn_icon = NULL
+	worn_icon = null
 
 /obj/item/storage/bag/b460reloadpouch/Initialize(mapload)
 	. = ..()
@@ -308,9 +308,9 @@
 
 /obj/item/ammo_casing/energy/laser/blueshield
 	e_cost = 100
-	projectile type = /obj/projectile/energy/laser/blueshield
+	projectile type = /obj/projectile/beam/laser/blueshield
 
-/obj/projectile/energy/laser/blueshield
+/obj/projectile/beam/laser/blueshield
 	damage = 25
 
 /obj/item/ammo_casing/energy/electrode/blueshield
