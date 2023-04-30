@@ -308,10 +308,6 @@
 
 /obj/item/ammo_casing/energy/laser/blueshield
 	e_cost = 100
-	projectile type = /obj/projectile/beam/laser/blueshield
-
-/obj/projectile/beam/laser/blueshield
-	damage = 25
 
 /obj/item/ammo_casing/energy/electrode/blueshield
 	projectile_type = /obj/projectile/energy/electrode
