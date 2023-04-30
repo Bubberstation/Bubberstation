@@ -29,6 +29,7 @@
 	slot_flags = ITEM_SLOT_POCKETS | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
+	worn_icon = NULL
 
 /obj/item/storage/bag/b460reloadpouch/Initialize(mapload)
 	. = ..()
@@ -184,7 +185,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 */
 /datum/design/b460_trac
-	name = ".460 Rowland Magnum Smart Bullet Casing"
+	name = ".460 Rowland Magnum Tracking Bullet Casing"
 	desc = "tracking bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_trac"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -229,10 +230,12 @@
 
 /obj/projectile/bullet/b460/rubber
 	name = ".460 RM Rubber bullet"
-	damage = 10
+	damage = 15 //Don't try to kill people with this!
 	stamina = 45
-	armour_penetration = 0
+	armour_penetration = 0 //it shouldn't be weak against armour so just set it to no armour penetration is fine
 	speed = 0.7 //back to normal speed!
+	wound_bonus = 0 //Rubber bullet are designed to not pierce the skin, would not make sense it does
+	bare_wound_bonus = 0
 
 /obj/item/ammo_casing/b460/rose
 	name = ".460 Rowland Magnum Rose bullet casing"
@@ -243,7 +246,7 @@
 	name = ".460 RM Rose bullet"
 	damage = 60 //Don't worry, even just a level 2 armour will make this thing fucking worthless
 	bare_wound_bonus = 40
-	speed = 3 //Slow so you can dodge
+	speed = 2.4 //Slow so you can dodge
 	armour_penetration = 0
 	weak_against_armour = TRUE
 	dismemberment = 1
@@ -256,26 +259,36 @@
 /obj/projectile/bullet/b460/softpoint
 	name = ".460 RM Softpoint bullet"
 	damage = 45 //Ballistic Softpoint, will probably kill you in a lot of circumstances
-	wound_bonus = 10
-	bare_wound_bonus = 40
-	speed = 3 //Slow so you can dodge
+	wound_bonus = 25
+	bare_wound_bonus = 50
+	speed = 1.6 //Slow so you can dodge
 	armour_penetration = 0
 	weak_against_armour = TRUE
 
 /obj/item/ammo_casing/b460/trac
-	name = ".460 Rowland Magnum smart bullet casing"
-	desc = "A .460 Rowland magnum casing. this one is loaded with a smart micro technology that can seek out target and even track them"
+	name = ".460 Rowland Magnum tracking bullet casing"
+	desc = "A .460 Rowland magnum casing. this one is loaded with a micro gps technology that can track target."
 	projectile_type = /obj/projectile/bullet/b460/trac
 
-/obj/projectile/bullet/b460/trac
-	name = ".460 TRAC bullet"
-	damage = 25
+/obj/item/ammo_casing/b460/bouncing
+	name = ".460 Rowland Magnum Smart bullet casing"
+	desc = "A .460 Rowland magnum casing. This one has a smart sensor that seeks out the nearest target upon impacting a wall to ricochet and hit your target for you"
+	projectile_type = /obj/projectile/bullet/b460/bouncing
+
+/obj/projectile/bullet/b460/bouncing
+	name = ".460 Smart bullet"
+	damage = 25 //Low damage comparatively since the main upside is it can home in on target
+	armour_penetration = 25 //It still need to break armour else you're kinda skewed
 	ricochets_max = 3 //You don't escape the law
-	ricochet_chance = 55
+	ricochet_chance = 80
 	ricochet_shoots_firer = FALSE
 	ricochet_auto_aim_range = 5
 	ricochet_auto_aim_angle = 90
 	ricochet_incidence_leeway = 0
+
+/obj/projectile/bullet/b460/trac
+	name = ".460 TRAC bullet"
+	damage = 22 //You shouldn't be trying to kill people with this
 	armour_penetration = 5
 
 /obj/projectile/bullet/b460/trac/on_hit(atom/target, blocked = FALSE)
@@ -295,10 +308,14 @@
 
 /obj/item/ammo_casing/energy/laser/blueshield
 	e_cost = 100
+	projectile type = /obj/projectile/energy/laser/blueshield
+
+/obj/projectile/energy/laser/blueshield
+	damage = 25
 
 /obj/item/ammo_casing/energy/electrode/blueshield
 	projectile_type = /obj/projectile/energy/electrode
-	e_cost = 700
+	e_cost = 600
 
 
 //Clothings stuff...?
