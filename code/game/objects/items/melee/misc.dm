@@ -67,8 +67,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
 	obj_flags = UNIQUE_RENAME
-//	force = 15	//Bubber Edit: Original
-	force = 21
+	force = 18 //Bubber Edit: origin is 15, had to buff it up to 21 then to 18 so that it would still be fair
 	throwforce = 10
 	demolition_mod = 0.75 //but not metal
 	w_class = WEIGHT_CLASS_BULKY
@@ -79,7 +78,7 @@
 	attack_verb_simple = list("slash", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 1000)
-	wound_bonus = 10
+	wound_bonus = 25 //Bubber Edit: increased its wound chance from 10 to 25
 	bare_wound_bonus = 25
 
 /obj/item/melee/sabre/Initialize(mapload)

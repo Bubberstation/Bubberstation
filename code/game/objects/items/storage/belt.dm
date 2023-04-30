@@ -804,6 +804,14 @@
 	inhand_icon_state = "sheath"
 	worn_icon_state = "sheath"
 	w_class = WEIGHT_CLASS_BULKY
+	block_chance = 25 //Bubber Edit, added block chance to mimic that of the original skyrat rapier sheath being able to block
+
+//Bubber Edit, low projectile block with sheath
+/obj/item/storage/belt/sabre/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK)
+		final_block_chance = 10 //Don't bring a sword to a gunfight
+	return ..()
+
 
 /obj/item/storage/belt/sabre/Initialize(mapload)
 	. = ..()
