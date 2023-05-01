@@ -650,7 +650,7 @@
 	assignment = "Hotel Security"
 
 /datum/id_trim/away/tarkon
-	assignment = "P-T Cargo Personnel"
+	assignment = "P-T Cargo Personell"
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_WEAPONS, ACCESS_TARKON)
 
 /datum/id_trim/away/tarkon/sec
