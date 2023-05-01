@@ -1,7 +1,6 @@
 /datum/id_trim/job/blacksmith //Place Holder. You'll probably wanna come by and set these up correctly.
 	assignment = "Blacksmith"
 	trim_state = "trim_cargotechnician"
-	orbit_icon = "box"
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
 	sechud_icon_state = SECHUD_CARGO_TECHNICIAN
