@@ -3,6 +3,7 @@
 	id = SPECIES_DWARF
 	examine_limb_id = SPECIES_HUMAN
 	species_traits = list(
+		MUTCOLORS,
 		EYECOLOR,
 		HAIR,
 		FACEHAIR,
@@ -16,7 +17,7 @@
 		TRAIT_LITERATE,
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/dwarven
-	use_skintones = 1
+	use_skintones = 0
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 0.75
