@@ -1,6 +1,10 @@
 /obj/item/pai_card/attack_ghost(mob/user)
 	ghost_activate(user)
 
+/**
+ * Checks if the user is allowed to be a pAI, and if so, creates a new pAI mob.
+ * Assuming the pAI card itself is empty of a personality.
+ */
 /obj/item/pai_card/proc/ghost_activate(mob/user)
 	if(pai)
 		return FALSE
