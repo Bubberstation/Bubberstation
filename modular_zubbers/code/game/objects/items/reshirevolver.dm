@@ -234,16 +234,16 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/b460_bouncing
-	name ".460 Rowland Magnum Bouncing Bullet Casing"
+	name = ".460 Rowland Magnum Bouncing Bullet Casing"
 	desc = "smart bouncing bullet casing capable of tracking enemy"
 	id = "b460_bouncing"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 400, /datum/material/plastic = 1000)
+	materials = list(/datum/material/iron = 100, /datum/material/plastic = 800)
 	build_path = /obj/item/ammo_casing/b460/bouncing
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
-	departmental_flags = DEPARTMENTAL_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 //AMMO ITSELF
 
