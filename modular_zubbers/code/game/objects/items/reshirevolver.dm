@@ -1,3 +1,14 @@
+//ROMULUS REVOLVER
+
+/obj/item/ammo_box/b460 //MOSTLY EXIST SO I CAN TEST WITHOUT HAVING TO PAINSTAKINGLY RELOAD BY HAND
+	name = "speed loader (.460)"
+	desc = "Designed to quickly reload revolvers used by Romulus officers."
+	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi'
+	icon_state = "460"
+	ammo_type = /obj/item/ammo_casing/b460
+	max_ammo = 7
+	multiple_sprites = AMMO_BOX_PER_BULLET
+
 /obj/item/gun/ballistic/revolver/hos_revolver
 	name = "\improper HR-460MS 'Wood Pecker'"
 	desc = "A medium sized revolver used by Romulus Officers prior to the destruction of the planet, this one is a military spec variant chambered in the high velocity .460 rowland magnum."
