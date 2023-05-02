@@ -153,7 +153,8 @@
 		"b460_print",
 		"b460_trac",
 		"b460_rubber",
-		"b460_softpoint"
+		"b460_softpoint",
+		"b460_bouncing"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4500)
 
@@ -189,7 +190,7 @@
 	desc = "tracking bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_trac"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/plasma= 2000, /datum/material/gold = 1500, /datum/material/titanium = 3500)
+	materials = list(/datum/material/iron = 700, /datum/material/plasma= 1000, /datum/material/gold = 500, /datum/material/titanium = 500)
 	build_path = /obj/item/ammo_casing/b460/trac
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -202,7 +203,7 @@
 	desc = "rubber bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/silver = 1000)
+	materials = list(/datum/material/iron = 800, /datum/material/silver = 100)
 	build_path = /obj/item/ammo_casing/b460/rubber
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -214,12 +215,24 @@
 	desc = "soft point expanding bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_softpoint"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/titanium = 1500)
+	materials = list(/datum/material/iron = 100, /datum/material/titanium = 800)
 	build_path = /obj/item/ammo_casing/b460/softpoint
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/b460_bouncing
+	name ".460 Rowland Magnum Bouncing Bullet Casing"
+	desc = "smart bouncing bullet casing capable of tracking enemy"
+	id = "b460_bouncing"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 400, /datum/material/plastic = 1000)
+	build_path = /obj/item/ammo_casing/b460/bouncing
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENTAL_BITFLAG_SECURITY
 
 //AMMO ITSELF
 
