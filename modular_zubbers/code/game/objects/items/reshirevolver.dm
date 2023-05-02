@@ -138,7 +138,7 @@
 	You are being given a choice to sport the loadout of one of our three heroes from the past!<br>
 	Yes, you did read that correctly! I'm sure you're excited!<br>
 	Classic Head of Security: It contains the Glock 18, a box of cigars and two boxes of ammunition for your pistol. You can print more from the autolathe by hacking it, Or from the ammo workbench if you were to purchase or research the lethal ammunition disk you can obtain special ammunition type.<br>
-	Romulus Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic red security loadout.<br>
+	Romulus Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic red security loadout. if you need more ammo, you can research Romulus Technology Node.<br>
 	Underworld Stylistic Devil: Contains two Custom M1911s originally intended as replacement of the captain's pistol that has been modified even further for combatting supernatural forces. Red jacket and awesome sword not included, comes with a complimentary knife though if you run out of ammo<br>
 	- Rowley"}
 
