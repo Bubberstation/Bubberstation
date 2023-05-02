@@ -53,6 +53,7 @@
 	mag_type = /obj/item/ammo_box/magazine/m45a5
 	fire_delay = 4.25
 	projectile_damage_multiplier = 0.7 //If it was just straight up using the .460 as usual then this thing would be hilariously overpowered
+	dual_wield_spread = 1
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/captains/blue
 	name = "M1911MS 'Clyde'"
@@ -60,9 +61,10 @@
 	icon_state = "m1911blue"
 	burst_size = 3
 	fire_delay = 2.15
-	spread = 8
+	spread = 4
 	semi_auto = TRUE
 	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT)
+	dual_wield_spread = 1 //Wouldn't make sense they're unviable to use at the same time
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/captains/red/nomag
 	spawnwithmagazine = 0
