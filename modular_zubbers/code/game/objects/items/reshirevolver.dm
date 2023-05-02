@@ -290,7 +290,7 @@
 
 /obj/projectile/bullet/b460/bouncing
 	name = ".460 Smart bullet"
-	damage = 25 //Low damage comparatively since the main upside is it can home in on target
+	damage = 27 //Low damage comparatively since the main upside is it can home in on target
 	armour_penetration = 25 //It still need to break armour else you're kinda skewed
 	ricochets_max = 3 //You don't escape the law
 	ricochet_chance = 100
@@ -323,7 +323,6 @@
 	e_cost = 100
 
 /obj/item/ammo_casing/energy/electrode/blueshield
-	projectile_type = /obj/projectile/energy/electrode
 	e_cost = 600
 
 
