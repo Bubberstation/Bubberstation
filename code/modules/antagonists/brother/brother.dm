@@ -82,7 +82,7 @@
 
 /datum/antagonist/brother/greet()
 	var/brother_text = get_brother_names()
-	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role] of [brother_text]."))
+	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role] of [brother_text]. Remember, You are here to make the game more enjoyable, do not needlessly kill people unrelated to your objective, you must escalate from talking to fighting unless it is not possible to do so. And remember, do not play to get greentext, play to make it fun for others"))
 	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
 	owner.announce_objectives()
 	give_meeting_area()
