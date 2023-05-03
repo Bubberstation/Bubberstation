@@ -135,6 +135,8 @@
 	new /obj/item/clothing/suit/armor/vest/expeditionary_corps(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper(src)
 	new /obj/item/storage/belt/security/webbing(src)
+	new /obj/item/clothing/shoes/combat/expeditionary_corps(src)
+	new /obj/item/clothing/head/beret/durathread/hos(src)
 
 /obj/item/storage/box/hosgun/glock
 	name = "Underworld Stylistic Dual .45 Pistol"
