@@ -111,6 +111,8 @@
 			hosgun_list[initial(box.name)] = box
 	return hosgun_list
 
+//KIT STARTS HERE
+
 /obj/item/storage/box/hosgun
 	name = "Classic Head of Security 3-round burst pistol 9mm"
 
@@ -122,17 +124,17 @@
 	new /obj/item/storage/fancy/cigarettes/cigars(src)
 
 /obj/item/storage/box/hosgun/revolver
-	name = "Romulus Officer Heavy Revolver .460"
+	name = "Romulus Expeditionary Officer Heavy Revolver .460"
 
 /obj/item/storage/box/hosgun/revolver/PopulateContents()
 	new /obj/item/storage/box/gunset/hos_revolver(src)
-	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
-	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/storage/box/nri_rations(src)
 	new /obj/item/knife/combat/survival(src)
-	new /obj/item/clothing/gloves/color/black(src)
+	new /obj/item/clothing/under/rank/expeditionary_corps/leader(src)
+	new /obj/item/clothing/gloves/color/black/expeditionary_corps(src)
+	new /obj/item/clothing/suit/armor/vest/expeditionary_corps(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper(src)
+	new /obj/item/storage/belt/security/webbing(src)
 
 /obj/item/storage/box/hosgun/glock
 	name = "Underworld Stylistic Dual .45 Pistol"
@@ -141,6 +143,11 @@
 	new /obj/item/storage/box/gunset/m1911red_hos(src)
 	new /obj/item/storage/box/gunset/m1911blue_hos(src)
 	new /obj/item/knife/combat(src)
+	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
+	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
+	new /obj/item/clothing/gloves/color/black(src)
 
 /obj/item/paper/hos_gun_notes
 	name = "READ THIS"
@@ -149,8 +156,8 @@
 	You are being given a choice to sport the loadout of one of our three heroes from the past!<br>
 	Yes, you did read that correctly! I'm sure you're excited!<br>
 	Classic Head of Security: It contains the Glock 18, a box of cigars and two boxes of ammunition for your pistol. You can print more from the autolathe by hacking it, Or from the ammo workbench if you were to purchase or research the lethal ammunition disk you can obtain special ammunition type.<br>
-	Romulus Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic red security loadout. if you need more ammo, you can research Romulus Technology Node.<br>
-	Underworld Stylistic Devil: Contains two Custom M1911s originally intended as replacement of the captain's pistol that has been modified even further for combatting supernatural forces. Red jacket and awesome sword not included, comes with a complimentary knife though if you run out of ammo<br>
+	Romulus Expeditionary Officer: It contains the Heavy Revolver .460 Military Spec, a rare revolver from Romulus chambered in .460 Rowland Magnum. You get no speedloader included in the kit but at the very least you get a pouch to hold your ammo. Comes with the classic expeditionary corps gear minus the helmet due to some safety concerns. if you need more ammo, you can research Romulus Technology Node.<br>
+	Underworld Stylistic Devil: Contains two Custom M1911s originally intended as replacement of the captain's pistol that has been modified even further for combatting supernatural forces. Red security gear included, comes with a complimentary knife though if you run out of ammo<br>
 	- Rowley"}
 
 //Special Ammo for 460
@@ -338,6 +345,16 @@
 
 
 //Clothings stuff...?
+
+/obj/item/clothing/under/rank/expeditionary_corps/leader
+	name = "expeditionary corps leader uniform"
+	armor_type = /datum/armor/security_head_of_security
+
+/obj/item/clothing/head/beret/durathread/hos
+	name = "expeditionary corps leader beret"
+	desc = "A durathread reinforced beret used by Romulus expeditionary corps leader"
+	armor_type = /datum/armor/hats_hos
+
 /*
 /obj/item/storage/belt/security/peacekeeper/hos_revolver
 	name = "peacekeeper belt"
