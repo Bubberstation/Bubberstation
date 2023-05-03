@@ -2,7 +2,10 @@
 	title = JOB_CAPTAIN
 	description = "Be responsible for the station, manage your Heads of Staff, \
 		keep the crew alive, be prepared to do anything and everything or die \
-		horribly trying."
+		horribly trying.\
+		<b> While you have access to SOOC, you are not a member of security\
+		Your priority is to protect the nuclear authentication disk\
+		Even if you must die trying.</b>" //bubber edit
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list("CentCom")
 	faction = FACTION_STATION

@@ -1,7 +1,10 @@
 /datum/job/security_officer
 	title = JOB_SECURITY_OFFICER
 	description = "Protect company assets, follow the Standard Operating \
-		Procedure, eat donuts."
+		Procedure, eat donuts.\
+		While you are not expected to know every aspect of the space law or corporate regulation.\
+		You are expected to have it open for reference.\
+		<b>YOU ARE HERE TO PROVIDE SECURITY. NOT HUNT DOWN AND ELIMINATE EVERY TREATS THAT EXIST.</b>" //bubber edit
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION

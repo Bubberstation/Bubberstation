@@ -1,7 +1,9 @@
 /datum/job/head_of_security
 	title = JOB_HEAD_OF_SECURITY
 	description = "Coordinate security personnel, ensure they are not corrupt, \
-		make sure every department is protected."
+		make sure every department is protected.\
+		<B> While you are armed with lethal weapon, you are expected to arrest people\
+		You are not here to hunt down every threat of the station.</b>" //bubber edit
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_CAPTAIN)
 	head_announce = list(RADIO_CHANNEL_SECURITY)

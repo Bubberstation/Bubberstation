@@ -1,6 +1,7 @@
 /datum/job/security_medic
 	title = JOB_SECURITY_MEDIC
-	description = "Patch up officers and prisoners, realize you don't have the tools to Tend Wounds, barge into Medbay and tell them how to do their jobs"
+	description = "Patch up officers and prisoners, realize you don't have the tools to Tend Wounds, barge into Medbay and tell them how to do their jobs\
+	<b> YOU ARE A MEDIC, YOU ARE NOT HERE TO HUNT DOWN ANTAGONIST.</b>" //bubber edit
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
