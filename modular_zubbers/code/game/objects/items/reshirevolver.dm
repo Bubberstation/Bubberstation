@@ -98,7 +98,7 @@
 
 /obj/item/choice_beacon/head_of_security
 	name = "gun choice beacon"
-	desc = "whatever you choose will determine the outcome of space station 13. so choose wisely."
+	desc = "Nanotrasen approved head of security kits used by various heroes of the past."
 	company_source = "Romulus Shipping Company"
 	company_message = span_bold("Copy that SS13, supply pod enroute!")
 
