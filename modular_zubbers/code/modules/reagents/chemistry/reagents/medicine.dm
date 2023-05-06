@@ -5,6 +5,7 @@
 	reagent_state = LIQUID
 	ph = 8.5
 	color = "#5dc1f0"
+	overdose_threshold = 60
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/carbon/M)
 	if(M.losebreath >= 5)
@@ -102,12 +103,12 @@
 	ph = 9.7
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/carbon/M)
-	M.adjustOxyLoss(-4*REAGENTS_EFFECT_MULTIPLIER, FALSE)
+	M.adjustOxyLoss(-10*REAGENTS_EFFECT_MULTIPLIER, FALSE)
 	..()
 	. = 1
 
 /datum/reagent/medicine/dexalin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(6*REAGENTS_EFFECT_MULTIPLIER, FALSE)
+	M.adjustOxyLoss(18*REAGENTS_EFFECT_MULTIPLIER, FALSE)
 	..()
 	. = 1
 
