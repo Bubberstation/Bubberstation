@@ -159,7 +159,7 @@
 	. = 1
 
 /datum/reagent/medicine/propanol_sulfadiazine
-	name = "Silver Sulfadiazine"
+	name = "Propanol Sulfadiazine"
 	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. It is mildly poisonous taken orally or by injection. If overdosed, deals moderate toxin damage."
 	reagent_state = LIQUID
 	ph = 7.2
