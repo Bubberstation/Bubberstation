@@ -4,14 +4,13 @@
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "papal_staff"
 	inhand_icon_state = "papal_staff"
+	belt_icon_state = "baguette"
+	worn_icon_state = "baguette"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb_continuous = list("smacks", "strucks", "cracks", "beats", "purifies")
 	attack_verb_simple = list("smack", "struck", "crack", "beat", "purify")
-
-/obj/item/nullrod/papal_staff/get_belt_overlay()
-	return mutable_appearance('icons/blanks/32x32.dmi', "nothing")
 
 /obj/item/clothing/head/mitre
 	name = "papal mitre"
