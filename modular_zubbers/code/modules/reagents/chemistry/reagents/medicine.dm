@@ -154,7 +154,7 @@
 	. = 1
 
 /datum/reagent/medicine/styptic_powder/overdose_process(mob/living/M)
-	M.adjustToxLoss(2*REAGENTS_EFFECT_MULTIPLIER, FALSE)
+	M.adjustToxLoss(10*REAGENTS_EFFECT_MULTIPLIER, FALSE)
 	..()
 	. = 1
 
@@ -200,6 +200,6 @@
 	. = 1
 
 /datum/reagent/medicine/propanol_sulfadiazine/overdose_process(mob/living/M)
-	M.adjustToxLoss(2*REAGENTS_EFFECT_MULTIPLIER, FALSE)
+	M.adjustToxLoss(10*REAGENTS_EFFECT_MULTIPLIER, FALSE)
 	..()
 	. = 1
