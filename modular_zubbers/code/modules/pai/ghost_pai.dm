@@ -1,4 +1,5 @@
 /obj/item/pai_card/attack_ghost(mob/user)
+	. = ..()
 	ghost_activate(user)
 
 /**
@@ -7,13 +8,13 @@
  */
 /obj/item/pai_card/proc/ghost_activate(mob/user)
 	if(pai)
-		return FALSE
+		return
 	var/pai_ask = tgui_alert(user, "Become a pAI? (Warning, You can no longer be revived, and all past lives will be forgotten!)", "Confirm", list("Yes","No"))
 	if(pai_ask != "Yes" || QDELETED(src))
 		return
 	var/pai_ckey = user.ckey
 	if(!user.client || !isobserver(user) || is_banned_from(pai_ckey, ROLE_PAI))
-		return FALSE
+		return
 	if(!SSpai.candidates[pai_ckey])
 		to_chat(user, span_warning("Personality Matrix Corrupted! Please reload Personality file (Open the pAI submit window and click the load button before trying again)"))
 		return
@@ -24,4 +25,4 @@
 	ghost_pai.key = candidate.ckey
 	set_personality(ghost_pai)
 	SSpai.candidates -= pai_ckey
-	return TRUE
+	return
