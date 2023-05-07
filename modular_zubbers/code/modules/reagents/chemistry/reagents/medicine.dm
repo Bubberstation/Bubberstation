@@ -2,7 +2,6 @@
 /datum/reagent/medicine/inaprovaline
 	name = "Inaprovaline"
 	description = "Stabilizes the breathing of patients. Good for those in critical condition."
-	reagent_state = LIQUID
 	ph = 8.5
 	color = "#5dc1f0"
 	overdose_threshold = 60
@@ -15,7 +14,6 @@
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
 	description = "Restores bruising. Overdose causes it instead."
-	reagent_state = LIQUID
 	color = "#fc2626"
 	overdose_threshold = 30
 	ph = 5
@@ -33,7 +31,6 @@
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
 	description = "Restores fire damage. Overdose causes it instead."
-	reagent_state = LIQUID
 	color = "#ffc400"
 	overdose_threshold = 30
 	ph = 9
@@ -51,7 +48,6 @@
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
 	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
-	reagent_state = LIQUID
 	color = "#6aff00"
 	overdose_threshold = 30
 	taste_description = "a roll of gauze"
@@ -72,7 +68,6 @@
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
 	description = "Slowly heals all types of damage, and has a high overdose threshold. Overdose instead causes it."
-	reagent_state = LIQUID
 	color = "#e650c0"
 	overdose_threshold = 50 //you can apply one full patch and slowly heal for a while.
 	taste_description = "grossness"
@@ -97,7 +92,6 @@
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
 	description = "A compound of oxygen bonded to iron dissolved in acetone, which is effective at oxygenating blood. Overdose induces respiratory failure."
-	reagent_state = LIQUID
 	color = "#13d2f0"
 	overdose_threshold = 30
 	ph = 9.7
@@ -115,7 +109,6 @@
 /datum/reagent/medicine/styptic_powder
 	name = "Styptic Powder"
 	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. It is poisonous if taken orally or by injection. If overdosed, deals moderate toxin damage."
-	reagent_state = LIQUID
 	color = "#FF9696"
 	ph = 6.7
 	metabolization_rate = 5 * REAGENTS_METABOLISM
@@ -161,7 +154,6 @@
 /datum/reagent/medicine/propanol_sulfadiazine
 	name = "Propanol Sulfadiazine"
 	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. It is mildly poisonous taken orally or by injection. If overdosed, deals moderate toxin damage."
-	reagent_state = LIQUID
 	ph = 7.2
 	color = "#ffeac9"
 	metabolization_rate = 5 * REAGENTS_METABOLISM
