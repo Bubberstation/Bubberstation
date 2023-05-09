@@ -122,6 +122,7 @@
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/storage/box/hecu_rations(src)
 	new /obj/item/storage/fancy/cigarettes/cigars(src)
+	new /obj/item/clothing/neck/tie/red/hitman(src)
 
 /obj/item/storage/box/hosgun/revolver
 	name = "Romulus Expeditionary Officer Heavy Revolver .460"
@@ -137,6 +138,7 @@
 	new /obj/item/storage/belt/security/webbing(src)
 	new /obj/item/clothing/shoes/combat/expeditionary_corps(src)
 	new /obj/item/clothing/head/beret/durathread/hos(src)
+	new /obj/item/storage/secure/briefcase/white/mcr_loadout/tacticool(src)
 
 /obj/item/storage/box/hosgun/glock
 	name = "Underworld Stylistic Dual .45 Pistol"
