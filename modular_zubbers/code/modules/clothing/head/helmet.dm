@@ -9,7 +9,7 @@
 	armor_type = /datum/armor/head_helmet
 
 /obj/item/clothing/head/helmet/abductor/fake
-	name = "kabrus utility helmet"
+	name = "Kabrus Utility Helmet"
 	desc = "A very plain helmet used by the Greys of the Kabrus Mining Site. This helmet only protects the wearer from wind and rain it seems."
 	icon_state = "alienhelmet"
 	inhand_icon_state = null
