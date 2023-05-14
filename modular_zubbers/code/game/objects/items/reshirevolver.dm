@@ -225,7 +225,7 @@
 	desc = "rubber bullet casing for any gun that can chamber .460 Rowland Magnum."
 	id = "b460_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 800, /datum/material/silver = 100)
+	materials = list(/datum/material/iron = 100, /datum/material/silver = 100)
 	build_path = /obj/item/ammo_casing/b460/rubber
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -249,7 +249,7 @@
 	desc = "smart bouncing bullet casing capable of tracking enemy"
 	id = "b460_bouncing"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = 100, /datum/material/plastic = 800)
+	materials = list(/datum/material/iron = 100, /datum/material/silver = 500)
 	build_path = /obj/item/ammo_casing/b460/bouncing
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -320,6 +320,15 @@
 	ricochet_auto_aim_range = 5
 	ricochet_auto_aim_angle = 310
 	ricochet_incidence_leeway = 0
+
+/obj/item/ammo_casing/b460/hi
+	name = ".460 Rowland Magnum High Impact casing"
+	desc = "Getting shot by this thing would definitely fuck you up"
+	projectile_type = /obj/projectile/bullet/b460/hi
+
+/obj/projectile/bullet/b460/hi
+	name = ".460 High Impact"
+	damage = 30
 
 /obj/projectile/bullet/b460/trac
 	name = ".460 TRAC bullet"

@@ -153,7 +153,7 @@
 	initial_flow = 1.5
 	gauzed_clot_rate = 0.8
 	internal_bleeding_chance = 30
-	internal_bleeding_coefficient = 1.25
+	internal_bleeding_coefficient = 0.5 //bubber edit
 	threshold_minimum = 30
 	threshold_penalty = 20
 	status_effect_type = /datum/status_effect/wound/pierce/moderate

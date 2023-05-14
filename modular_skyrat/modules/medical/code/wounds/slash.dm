@@ -278,7 +278,7 @@
 	severity = WOUND_SEVERITY_MODERATE
 	initial_flow = 2
 	minimum_flow = 0.5
-	clot_rate = 0.05
+	clot_rate = 0.1//Bubber Edit
 	threshold_minimum = 20
 	threshold_penalty = 10
 	status_effect_type = /datum/status_effect/wound/slash/moderate
@@ -294,7 +294,7 @@
 	severity = WOUND_SEVERITY_SEVERE
 	initial_flow = 3.25
 	minimum_flow = 2.75
-	clot_rate = 0.03
+	clot_rate = 0.05//Bubber Edit
 	threshold_minimum = 50
 	threshold_penalty = 25
 	demotes_to = /datum/wound/slash/moderate
