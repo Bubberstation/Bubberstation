@@ -323,12 +323,29 @@
 
 /obj/item/ammo_casing/b460/hi
 	name = ".460 Rowland Magnum High Impact casing"
-	desc = "Getting shot by this thing would definitely fuck you up"
+	desc = "High Impact Rowland Magnum, extremely effective at knocking people off their feet. quickly lose effectiveness over range however"
 	projectile_type = /obj/projectile/bullet/b460/hi
+
+
 
 /obj/projectile/bullet/b460/hi
 	name = ".460 High Impact"
-	damage = 30
+	damage = 45
+	knockdown = 2 SECONDS
+	dismemberment = 0 //If this thing cause dismemberment it would be literally unbeatable
+	paralyze = 1 SECONDS //An extremely brief stun meant to stop you from pulling out your gun or something
+	stutter = 20 SECONDS
+	var/tile_dropoff = 10
+	var/tile_dropoff_s = 10
+
+/obj/projectile/bullet/b460/hi/Range()
+	..()
+	if(damage > 0)
+		damage -= tile_dropoff
+	if(stamina > 0)
+		stamina -= tile_dropoff_s
+	if(damage < 0 && stamina < 0)
+		qdel(src)
 
 /obj/projectile/bullet/b460/trac
 	name = ".460 TRAC bullet"
@@ -356,6 +373,15 @@
 /obj/item/ammo_casing/energy/electrode/blueshield
 	e_cost = 600
 
+//Debugging item
+
+/obj/item/ammo_box/advanced/b460testing
+	name = "rowland magnum ammo box"
+	desc = "you should not be seeing this"
+	icon = 'modular_skyrat/modules/shotgunrebalance/icons/shotbox.dmi'
+	icon_state = "slug"
+	ammo_type = /obj/item/ammo_casing/b460/hi
+	max_ammo = 15
 
 //Clothings stuff...?
 
