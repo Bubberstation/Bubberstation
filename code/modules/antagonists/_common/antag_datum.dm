@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/greet()
 	if(!silent)
 		to_chat(owner.current, span_big("You are \the [src]."))
-		to_chat(owner.current, span_infoplain(span_doyourjobidiot("Do not rush for greentext at all costs. You are not here to play-to-win or powergame. This is not a PvP focused server. Do not wordlessly kill, there is an expectation of reasonable conflict escalation here, rather than resorting to mechanics as a first line. It is unacceptable to walk up to somebody and simply stab them.. Round Removal is not tolerated here, this includes making a body unreasonably difficult to recover. Please Ahelp if you believe you need to RR somebody. (E.g A person consistently hunting you after death.)"))) //BUBBER EDIT ANTAG SHOULD NOT BE A NUISANCE. PROBABLY
+		to_chat(owner.current, span_infoplain(span_doyourjobidiot("Doing your objective is not an excuse to break the rules.)"))) //BUBBER EDIT ANTAG SHOULD NOT BE A NUISANCE. PROBABLY
 
 /**
  * Proc that sends fluff or instructional messages to the player when they lose this antag datum.

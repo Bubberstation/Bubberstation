@@ -3,7 +3,7 @@
 	description = "Watch over the Brig and Prison Wing, release prisoners when \
 		their time is up, issue equipment to security, be a security officer when \
 		they all eventually die.\
-		<b> YOU ARE NOT HERE TO HUNT DOWN ANTAGONIST.<b>" //bubber edit
+		YOU ARE NOT HERE TO HUNT DOWN ANTAGONIST." //bubber edit
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
