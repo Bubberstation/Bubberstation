@@ -27,8 +27,8 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/lace.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/lace_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/lace_righthand.dmi'
-	icon_state = "lilacheels"
-	inhand_icon_state = "lilacheels"
+	icon_state = "lacygloves"
+	inhand_icon_state = "lacygloves"
 
 /obj/item/clothing/neck/lace_collar
 	name = "heart choker"
