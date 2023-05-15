@@ -59,3 +59,15 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/lace_righthand.dmi'
 	icon_state = "whitebow"
 	inhand_icon_state = "whitebow"
+
+/obj/item/clothing/suit/cloak/lilac
+	name = "warm cloak"
+	desc = "A cloak made from an unwordly soft fabric, wearing it makes you feel warm."
+	icon = 'modular_zubbers/icons/obj/clothing/lace.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/lace.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/lace_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/lace_righthand.dmi'
+	icon_state = "lilaccloak"
+	inhand_icon_state = "lilaccloak"
+	body_parts_covered = CHEST|LEGS|ARMS
+	supports_variations_flags = NONE
