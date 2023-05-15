@@ -10,7 +10,7 @@
 	supports_variations_flags = CLOTHING_NO_VARIATION
 	can_adjust = FALSE
 
-/obj/item/clothing/shoes/fancy_heels/lace
+/obj/item/clothing/shoes/fancy_heels/drag/lace
 	name = "elegant heels"
 	desc = "A quality pair of heels that delicately shines in the light, wearing gives you extra feminine mystique."
 	icon = 'modular_zubbers/icons/obj/clothing/lace.dmi'
