@@ -11,7 +11,7 @@
 
 /obj/item/gun/ballistic/revolver/hos_revolver
 	name = "\improper HR-460MS 'Wood Pecker'"
-	desc = "A medium sized revolver used by Romulus Officers prior to the destruction of the planet, this one is a military spec variant chambered in the high velocity .460 rowland magnum."
+	desc = "A heavy revolver used by Romulus Officers prior to the destruction of the planet, this one is a military spec variant chambered in the high velocity .460 rowland magnum."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	icon = 'modular_zubbers/icons/obj/reshi40x32.dmi'
 	icon_state = "microtracker"
@@ -327,16 +327,15 @@
 	projectile_type = /obj/projectile/bullet/b460/hi
 
 
-
 /obj/projectile/bullet/b460/hi
 	name = ".460 High Impact"
 	damage = 45
-	knockdown = 2 SECONDS
+	knockdown = 3 SECONDS
 	dismemberment = 0 //If this thing cause dismemberment it would be literally unbeatable
 	paralyze = 1 SECONDS //An extremely brief stun meant to stop you from pulling out your gun or something
 	stutter = 20 SECONDS
 	var/tile_dropoff = 10
-	var/tile_dropoff_s = 10
+	var/tile_dropoff_s = 5
 
 /obj/projectile/bullet/b460/hi/Range()
 	..()
