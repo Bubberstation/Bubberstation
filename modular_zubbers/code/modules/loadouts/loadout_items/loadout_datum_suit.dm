@@ -30,7 +30,7 @@
  item_path = /obj/item/clothing/suit/cloak/lilac
  ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/head/lace_cloak
+/datum/loadout_item/head/lace_bow
  name = "Hair Bow"
  item_path = /obj/item/clothing/head/costume/hairbow
  donator_only = TRUE
@@ -45,7 +45,7 @@
  item_path = /obj/item/clothing/neck/lace_collar
  donator_only = TRUE
 
-/datum/loadout_item/neck/lace_gloves
+/datum/loadout_item/gloves/lace_gloves
  name = "Lace Gloves"
  item_path = /obj/item/clothing/gloves/evening/lace
  donator_only = TRUE
