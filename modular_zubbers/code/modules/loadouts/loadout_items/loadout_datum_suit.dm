@@ -22,7 +22,7 @@
 
 /obj/item/clothing/shoes/fancy_heels/lace_heels
  name = "Elegant Heels"
- item_path = /obj/item/clothing/shoes/fancy_heels/drag/lace_heels
+ item_path = /obj/item/clothing/shoes/lace_heels
  ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/lace_cloak
