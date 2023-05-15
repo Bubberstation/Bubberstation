@@ -15,7 +15,7 @@
  item_path = /obj/item/clothing/suit/jacket/runner/winter
  ckeywhitelist = list("kan3")
 
-/datum/loadout_item/under/lace_dress
+/datum/loadout_item/under/formal/lace_dress
  name = "Lilac Dress"
  item_path = /obj/item/clothing/under/rank/lace
  ckeywhitelist = list("thedragmeme")
