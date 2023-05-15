@@ -655,6 +655,10 @@
 	name = "Ronin"
 	icon_state = "hair_ronin"
 
+/datum/sprite_accessory/hair/royal_curls
+	name = "Royal Curls"
+	icon_state = "royal_curls"
+
 /datum/sprite_accessory/hair/shaved
 	name = "Shaved"
 	icon_state = "hair_shaved"
