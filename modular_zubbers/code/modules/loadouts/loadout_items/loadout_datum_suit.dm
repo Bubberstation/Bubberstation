@@ -20,9 +20,9 @@
 	item_path = /obj/item/clothing/under/rank/lace
 	ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/under/formal/lace_dress
+/datum/loadout_item/under/formal/lace_heels
 	name = "Elegant Heels"
-	item_path = /obj/item/clothing/shoes/lace_heels
+	item_path = /obj/item/clothing/shoes/latex_heels/lace
 	ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/lace_cloak
