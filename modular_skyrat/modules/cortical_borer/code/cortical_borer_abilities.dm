@@ -621,6 +621,53 @@
 	cortical_owner.human_host.log_message(logging_text, LOG_GAME)
 	StartCooldown()
 
+/datum/action/cooldown/borer/produce_offspring_general//Symbiote/Diveworm specialties for producing normal eggs with the Hivelord only eggs
+	name = "Produce Offspring"
+	cooldown_time = 2 MINUTES
+	button_icon_state = "reproduce"
+	chemical_cost = 200
+
+/datum/action/cooldown/borer/produce_offspring_general/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/basic/cortical_borer/cortical_owner = owner
+	if(!(cortical_owner.upgrade_flags & BORER_ALONE_PRODUCTION) && !cortical_owner.inside_human())
+		owner.balloon_alert(owner, "host required")
+		return
+	cortical_owner.chemical_storage -= chemical_cost
+	produce_egg()
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.getorganslot(ORGAN_SLOT_BRAIN)
+	if(victim_brain)
+		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25 * cortical_owner.host_harm_multiplier)
+		var/eggroll = rand(1,100)
+		if(eggroll <= 75)
+			switch(eggroll)
+				if(1 to 34)
+					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_BASIC)
+				if(35 to 60)
+					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
+				if(61 to 71)
+					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_SURGERY)
+				if(72 to 75)
+					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+	to_chat(cortical_owner.human_host, span_warning("Your brain begins to hurt..."))
+	var/turf/borer_turf = get_turf(cortical_owner)
+	new /obj/effect/decal/cleanable/vomit(borer_turf)
+	playsound(borer_turf, 'sound/effects/splat.ogg', 50, TRUE)
+	var/logging_text = "[key_name(cortical_owner)] gave birth at [loc_name(borer_turf)]"
+	cortical_owner.log_message(logging_text, LOG_GAME)
+	owner.balloon_alert(owner, "egg laid")
+	StartCooldown()
+/datum/action/cooldown/borer/produce_offspring_general/proc/produce_egg()
+	var/mob/living/basic/cortical_borer/cortical_owner = owner
+	var/turf/borer_turf = get_turf(cortical_owner)
+	var/obj/effect/mob_spawn/ghost_role/borer_egg/spawned_egg = new /obj/effect/mob_spawn/ghost_role/borer_egg(borer_turf)
+	spawned_egg.generation = (cortical_owner.generation + 1)
+	cortical_owner.children_produced++
+	if(cortical_owner.children_produced == GLOB.objective_egg_egg_number)
+		GLOB.successful_egg_number += 1
+
 //we need a way to produce offspring
 /datum/action/cooldown/borer/produce_offspring
 	name = "Produce Offspring"

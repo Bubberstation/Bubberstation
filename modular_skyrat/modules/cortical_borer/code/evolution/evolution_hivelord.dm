@@ -21,7 +21,7 @@
 	desc = "Boost your speed by a large amount."
 	gain_text = "And as I watched, the Cortical Borer was able to complete the course in just over half the time it had last week."
 	tier = 2
-	unlocked_evolutions = list(/datum/borer_evolution/hivelord/stealth_mode)
+	unlocked_evolutions = list(/datum/borer_evolution/hivelord/produce_offspring)
 
 /datum/borer_evolution/hivelord/movespeed/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()
@@ -33,7 +33,7 @@
 	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
 	mutually_exclusive = TRUE//Borers have to dedicate themselves to making eggs now
 	tier = 3
-	unlocked_evolutions = list(/datum/borer_evolution/hivelord/produce_offspring)
+	unlocked_evolutions = list(/datum/borer_evolution/hivelord/stealth_mode)
 
 /datum/borer_evolution/hivelord/produce_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()

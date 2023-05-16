@@ -78,3 +78,15 @@
 /datum/borer_evolution/synthetic_chems_negative/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()
 	cortical_owner.potential_chemicals |= added_chemicals
+
+/datum/borer_evolution/produce_offspring_general
+	name = "Produce Offspring"
+	desc = "Produce an egg, which your host will vomit up. This is expensive."
+	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
+	evo_cost = 6
+	tier = 6
+
+/datum/borer_evolution/produce_offspring_general/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+		. = ..()
+		var/datum/action/cooldown/borer/produce_offspring_general/attack_action = new()
+		attack_action.Grant(cortical_owner)

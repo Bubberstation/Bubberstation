@@ -103,6 +103,7 @@
 		/datum/borer_evolution/sugar_immunity,
 		/datum/borer_evolution/synthetic_borer,
 		/datum/borer_evolution/synthetic_chems_positive,
+		/datum/borer_evolution/produce_offspring_general,
 	)
 
 /datum/borer_evolution/symbiote/revive_host/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
