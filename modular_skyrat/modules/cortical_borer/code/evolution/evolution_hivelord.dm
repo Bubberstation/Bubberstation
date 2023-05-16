@@ -2,44 +2,43 @@
 	evo_type = BORER_EVOLUTION_HIVELORD
 
 // T1
-/datum/borer_evolution/hivelord/produce_offspring
-	name = "Produce Offspring"
-	desc = "Produce an egg, which your host will vomit up."
-	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
-	tier = 1
-	unlocked_evolutions = list(/datum/borer_evolution/hivelord/blood_chemical)
-	evo_cost = 1
-
-/datum/borer_evolution/hivelord/produce_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
-	. = ..()
-	var/datum/action/cooldown/borer/produce_offspring/attack_action = new()
-	attack_action.Grant(cortical_owner)
-
-// T2
 /datum/borer_evolution/hivelord/blood_chemical
 	name = "Learn Blood Chemical"
 	desc = "Learn a synthesizable chemical from the blood of your host."
 	gain_text = "As we were dissecting a former host monkey's fecal matter, I noticed a high concentration of banana matter, despite us not feeding them any for the past week."
-	tier = 2
+	tier = 1
 	unlocked_evolutions = list(/datum/borer_evolution/hivelord/movespeed)
+	evo_cost = 1//added the correct evo cost for this new tier
 
 /datum/borer_evolution/hivelord/blood_chemical/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()
 	var/datum/action/cooldown/borer/learn_bloodchemical/attack_action = new()
 	attack_action.Grant(cortical_owner)
 
-// T3
+// T2
 /datum/borer_evolution/hivelord/movespeed
 	name = "Increased Energy"
 	desc = "Boost your speed by a large amount."
 	gain_text = "And as I watched, the Cortical Borer was able to complete the course in just over half the time it had last week."
-	mutually_exclusive = TRUE
-	tier = 3
+	tier = 2
 	unlocked_evolutions = list(/datum/borer_evolution/hivelord/stealth_mode)
 
 /datum/borer_evolution/hivelord/movespeed/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()
 	cortical_owner.add_movespeed_modifier(/datum/movespeed_modifier/borer_speed)
+
+/datum/borer_evolution/hivelord/produce_offspring//Moving T1 Egg production to T3 to limit borer pop
+	name = "Produce Offspring"
+	desc = "Produce an egg, which your host will vomit up."
+	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
+	mutually_exclusive = TRUE//Borers have to dedicate themselves to making eggs now
+	tier = 3
+	unlocked_evolutions = list(/datum/borer_evolution/hivelord/produce_offspring)
+
+/datum/borer_evolution/hivelord/produce_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+	. = ..()
+	var/datum/action/cooldown/borer/produce_offspring/attack_action = new()
+	attack_action.Grant(cortical_owner)
 
 // T4
 /datum/borer_evolution/hivelord/stealth_mode
