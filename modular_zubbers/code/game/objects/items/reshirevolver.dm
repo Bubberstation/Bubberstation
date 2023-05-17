@@ -131,13 +131,11 @@
 	new /obj/item/storage/box/gunset/hos_revolver(src)
 	new /obj/item/storage/box/nri_rations(src)
 	new /obj/item/knife/combat/survival(src)
-	new /obj/item/clothing/under/rank/expeditionary_corps/leader(src)
-	new /obj/item/clothing/gloves/color/black/expeditionary_corps(src)
-	new /obj/item/clothing/suit/armor/vest/expeditionary_corps(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper(src)
-	new /obj/item/storage/belt/security/webbing(src)
-	new /obj/item/clothing/shoes/combat/expeditionary_corps(src)
-	new /obj/item/clothing/head/beret/durathread/hos(src)
+	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
+	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
+	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/storage/secure/briefcase/white/mcr_loadout/tacticool(src)
 
 /obj/item/storage/box/hosgun/glock
@@ -147,11 +145,13 @@
 	new /obj/item/storage/box/gunset/m1911red_hos(src)
 	new /obj/item/storage/box/gunset/m1911blue_hos(src)
 	new /obj/item/knife/combat(src)
-	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
-	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
-	new /obj/item/clothing/gloves/color/black(src)
+	new /obj/item/clothing/under/rank/expeditionary_corps/leader(src)
+	new /obj/item/clothing/gloves/color/black/expeditionary_corps(src)
+	new /obj/item/clothing/suit/armor/vest/expeditionary_corps(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper(src)
+	new /obj/item/storage/belt/security/webbing(src)
+	new /obj/item/clothing/shoes/combat/expeditionary_corps(src)
+	new /obj/item/clothing/head/beret/durathread/hos(src)
 
 /obj/item/paper/hos_gun_notes
 	name = "READ THIS"
