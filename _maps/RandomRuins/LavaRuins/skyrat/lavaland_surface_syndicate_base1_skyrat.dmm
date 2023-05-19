@@ -800,7 +800,7 @@
 /area/ruin/syndicate_lava_base/main)
 "ik" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/encryptionkey/syndicate,
+/obj/item/encryptionkey/headset_syndicate/interdyne,
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "im" = (
@@ -958,12 +958,6 @@
 /obj/item/storage/box/beakers/bluespace,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/medbay)
-"kr" = (
-/obj/effect/turf_decal/trimline/dark_red/end{
-	dir = 8
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "ku" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -2062,9 +2056,6 @@
 "wL" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/cl)
-"wR" = (
-/turf/open/floor/iron/dark/textured_large,
-/area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "wS" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2133,8 +2124,8 @@
 /area/ruin/syndicate_lava_base/bar)
 "xL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/mannequin,
 /obj/machinery/light/small/directional/north,
+/obj/structure/mannequin,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/cargo)
 "xM" = (
@@ -2463,13 +2454,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/misc/grass,
 /area/ruin/syndicate_lava_base/bar)
-"Av" = (
-/obj/machinery/shower/directional/east{
-	desc = "The HS-452. Installed recently by the Donk Co. Hygiene Division.";
-	name = "emergency shower"
-	},
-/turf/closed/wall/mineral/plastitanium,
-/area/ruin/syndicate_lava_base/main)
 "Aw" = (
 /obj/structure/ore_box,
 /obj/structure/railing{
@@ -2488,6 +2472,9 @@
 /area/ruin/syndicate_lava_base/medbay)
 "AJ" = (
 /obj/effect/turf_decal/stripes,
+/obj/effect/mob_spawn/ghost_role/human/ds2/syndicate/enginetech{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/engineering)
 "AK" = (
@@ -2629,7 +2616,7 @@
 /area/ruin/syndicate_lava_base/engineering)
 "BS" = (
 /obj/machinery/door/airlock/mining/glass{
-	name = "Cargo Bay"
+	name = "Misc. Storage"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/structure/barricade/wooden/crude,
@@ -2714,13 +2701,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/dormitories)
-"CH" = (
-/obj/machinery/light/directional/west,
-/obj/effect/turf_decal/trimline/dark_red/end{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "CJ" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -2766,18 +2746,6 @@
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating/airless,
 /area/ruin/syndicate_lava_base/engineering)
-"CT" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/warning{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/warning,
-/obj/machinery/quantumpad{
-	map_pad_id = "interdyne";
-	map_pad_link_id = "ds2";
-	name = "quantum pad to DS-2"
-	},
-/turf/open/floor/circuit/off,
-/area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "CU" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
@@ -2810,12 +2778,6 @@
 	},
 /turf/open/floor/iron/smooth_edge,
 /area/ruin/syndicate_lava_base/medbay)
-"Dh" = (
-/obj/effect/turf_decal/trimline/dark_red/end{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "Dk" = (
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/bar)
@@ -3376,7 +3338,8 @@
 "Jg" = (
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/machinery/door/airlock{
-	name = "Barbers"
+	name = ""The Barbers"";
+	desc = "Actually a torture and interrogation room. No barber to be found."
 	},
 /obj/structure/barricade/wooden/crude,
 /obj/structure/barricade/wooden,
@@ -3681,6 +3644,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/testlab)
 "LN" = (
@@ -3817,12 +3781,6 @@
 /obj/machinery/seed_extractor,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_lava_base/bar)
-"Ns" = (
-/obj/machinery/vending/dorms{
-	onstation = 0
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_lava_base/dormitories)
 "Nx" = (
 /obj/machinery/door/poddoor{
 	id = "interdynedorms"
@@ -3879,9 +3837,6 @@
 "Oo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
-	},
-/obj/effect/mob_spawn/ghost_role/human/ds2/syndicate/enginetech{
-	dir = 4
 	},
 /obj/machinery/light/small/directional/east{
 	dir = 8
@@ -4166,7 +4121,7 @@
 /obj/item/gun/ballistic/automatic/pistol/aps,
 /obj/item/clothing/head/hats/hos/beret/syndicate,
 /obj/item/clothing/suit/armor/vest/warden/syndicate,
-/obj/item/encryptionkey/syndicate,
+/obj/item/encryptionkey/headset_syndicate/interdyne,
 /turf/open/floor/wood,
 /area/ruin/syndicate_lava_base/cargo)
 "Ri" = (
@@ -4230,6 +4185,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/testlab)
 "RN" = (
@@ -4556,7 +4512,7 @@
 /obj/item/gun/ballistic/revolver/syndicate,
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate/winter,
 /obj/item/clothing/head/hats/hos/syndicate,
-/obj/item/encryptionkey/syndicate,
+/obj/item/encryptionkey/headset_syndicate/interdyne,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/cl)
 "Vi" = (
@@ -4688,10 +4644,6 @@
 "Wx" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_lava_base/main)
-"WB" = (
-/obj/effect/turf_decal/trimline/dark_red/end,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "WG" = (
 /obj/structure/mannequin,
 /turf/open/floor/iron/dark,
@@ -4752,10 +4704,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
-/area/ruin/syndicate_lava_base/medbay)
-"Xl" = (
-/obj/structure/table/optable,
-/turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/medbay)
 "Xn" = (
 /obj/effect/decal/cleanable/blood/gibs/up{
@@ -5774,9 +5722,9 @@ Zn
 IF
 ex
 OW
-oA
-oA
-oA
+ab
+ab
+ab
 KQ
 Vb
 Vb
@@ -5833,9 +5781,9 @@ Mv
 Mv
 AW
 OW
-wR
-CH
-wR
+ab
+ab
+ab
 Vb
 FK
 IT
@@ -5892,9 +5840,9 @@ Fq
 Fq
 Fq
 OW
-WB
-CT
-Dh
+ab
+ab
+ab
 Vb
 nq
 YV
@@ -5951,9 +5899,9 @@ OW
 OW
 OW
 oA
-wR
-kr
-wR
+oA
+oA
+oA
 Vb
 Vb
 Vb
@@ -6258,7 +6206,7 @@ CB
 JS
 jP
 jk
-Ns
+JS
 SE
 Nx
 ab
@@ -6710,7 +6658,7 @@ nh
 Zq
 Wx
 qt
-Av
+qt
 qt
 Wx
 sd
@@ -7351,7 +7299,7 @@ ab
 ab
 ab
 ZX
-Xl
+RP
 dy
 dy
 BT
