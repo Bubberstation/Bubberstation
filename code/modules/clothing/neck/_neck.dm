@@ -315,10 +315,11 @@
 	fire = 50
 	acid = 40
 
-/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE)
+/* /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE)
 	if(!ismonkey(M))
 		return FALSE
 	return ..()
+*/ //BUBBER EDIT: Restores wearing collars
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = sanitize_name(tgui_input_text(user, "Would you like to change the name on the tag?", "Pet Naming", "Spot", MAX_NAME_LEN))
@@ -363,7 +364,6 @@
 			new /obj/item/holochip(get_turf(user),true_price)
 	else
 		to_chat(user, span_warning("There is no export value for [I] or any items within it."))
-		
 	return .
 
 /obj/item/clothing/neck/beads
