@@ -17,10 +17,10 @@
 	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/eyebrow
-         key = "eyebrow"
-	 key_third_person = "raises an eyebrow"
-	 message = "Raises an eyebrow."
-	 emote_type = EMOTE_VISIBLE
+	key = "eyebrow"
+	key_third_person = "raises an eyebrow"
+	message = "Raises an eyebrow."
+	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/audio/cackle
 	key = "cackle"
