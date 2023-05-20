@@ -13,7 +13,7 @@
 /datum/emote/living/mlem
 	key = "mlem"
 	key_third_person = "mlems"
-	message = "sticks their tongue for a moment. Mlem!"
+	message = "sticks their tongue out for a moment. Mlem!"
 	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/audio/cackle
@@ -47,22 +47,6 @@
 	message_mime = "chitters silently!"
 	vary = TRUE
 	sound = 'modular_zubbers/sound/voice/moth/mothchitter2.ogg'
-
-/datum/emote/living/audio/boowomp
-	key = "boowomp"
-	key_third_person = "boowomps"
-	message = "produces a sad boowomp."
-	message_mime = "produces a silent boowomp."
-	vary = TRUE
-	sound = 'modular_zubbers/sound/voice/boowomp.ogg'
-
-/datum/emote/living/audio/eyebrow2
-	key = "eyebrow2"
-	key_third_person = "eyebrows2"
-	message = "<b>raises an eyebrow.</b>"
-	message_mime = "<b>raises an eyebrow with quaking force!</b>"
-	vary = TRUE
-	sound = 'modular_zubbers/sound/voice/vineboom.ogg'
 
 /datum/emote/living/audio/eyebrow3
 	key = "eyebrow3"
