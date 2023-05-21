@@ -291,7 +291,7 @@
 
 						//Inform machine that its finished & cleanup
 						new_machine.RefreshParts()
-						new_machine.on_construction()
+						new_machine.on_construction(user)
 						components = null
 					qdel(src)
 				return
