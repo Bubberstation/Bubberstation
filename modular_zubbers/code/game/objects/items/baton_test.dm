@@ -932,7 +932,7 @@
 		additional_effects_non_cyborg(target, user)
 	return TRUE
 
-/obj/item/melee/baton/proc/set_batoned(mob/living/target, mob/living/user, cooldown)
+/obj/item/melee/alt_baton/proc/set_batoned(mob/living/target, mob/living/user, cooldown)
 	if(!cooldown)
 		return
 
