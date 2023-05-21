@@ -74,7 +74,7 @@
 	medical_record_text = "Patient's snout seems to have a cluster of nerves in the tip, would advise against direct contact."
 	value = -2
 	mob_trait = TRAIT_SENSITIVESNOUT
-	icon = "fingerprint"
+	icon = FA_ICON_FINGERPRINT
 
 /datum/quirk/sensitivesnout/post_add()
 	quirk_holder.apply_status_effect(/datum/status_effect/sensitivesnout)
