@@ -52,7 +52,6 @@
 	icon_state = "m1911red"
 	mag_type = /obj/item/ammo_box/magazine/m45a5
 	fire_delay = 4.25
-	projectile_damage_multiplier = 0.7 //If it was just straight up using the .460 as usual then this thing would be hilariously overpowered
 	dual_wield_spread = 1
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/captains/blue

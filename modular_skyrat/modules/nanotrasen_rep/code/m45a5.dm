@@ -40,7 +40,8 @@
 
 /obj/projectile/bullet/b460
 	name = ".460 RM High Velocity bullet"
-	damage = 40
-	wound_bonus = 5
-	armour_penetration = 20
+	damage = 28
+	wound_bonus = 0
+	bare_wound_bonus = 0
+	armour_penetration = 35//Relatively low damage but makes up for that by being nearly undodgable and manual reload
 	speed = 0.2
