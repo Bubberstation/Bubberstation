@@ -404,6 +404,7 @@
 	inhand_icon_state = "baton"
 	worn_icon_state = "baton"
 	force = 10
+	wound_bonus = 0
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 	armor_type = /datum/armor/baton_security
@@ -425,6 +426,11 @@
 	var/can_remove_cell = TRUE
 	var/convertible = TRUE //if it can be converted with a conversion kit
 
+/datum/armor/baton_security
+	bomb = 50
+	fire = 80
+	acid = 80
+
 /obj/item/melee/baton/security/Initialize(mapload)
 	. = ..()
 	if(preload_cell_type)
@@ -438,14 +444,14 @@
 /obj/item/melee/baton/security/get_cell()
 	return cell
 
-/obj/item/melee/baton/security/suicide_act(mob/user)
+/obj/item/melee/baton/security/suicide_act(mob/living/user)
 	if(cell?.charge && active)
 		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-		. = (FIRELOSS)
 		attack(user, user)
+		return FIRELOSS
 	else
 		user.visible_message(span_suicide("[user] is shoving the [name] down their throat! It looks like [user.p_theyre()] trying to commit suicide!"))
-		. = (OXYLOSS)
+		return OXYLOSS
 
 /obj/item/melee/baton/security/Destroy()
 	if(cell)
@@ -581,9 +587,9 @@
  * After a period of time, we then check to see what stun duration we give.
  */
 /obj/item/melee/baton/security/additional_effects_non_cyborg(mob/living/target, mob/living/user)
-	target.set_timed_status_effect(40 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
-	target.set_timed_status_effect(10 SECONDS, /datum/status_effect/confusion, only_if_higher = TRUE)
-	target.set_timed_status_effect(16 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
+	target.set_jitter_if_lower(40 SECONDS)
+	// target.set_confusion_if_lower(10 SECONDS) // SKYRAT EDIT REMOVAL
+	target.set_stutter_if_lower(16 SECONDS)
 
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
 	addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), target), 2 SECONDS)
@@ -594,7 +600,8 @@
 	if(!target.IsKnockdown())
 		to_chat(target, span_warning("Your muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
 
-	target.Knockdown(knockdown_time * (trait_check ? 0.1 : 1))
+	if(!trait_check)
+		target.Knockdown(knockdown_time)
 
 /obj/item/melee/baton/security/get_wait_description()
 	return span_danger("The baton is still charging!")

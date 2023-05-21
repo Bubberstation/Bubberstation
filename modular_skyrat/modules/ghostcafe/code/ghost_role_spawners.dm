@@ -8,11 +8,13 @@
 /obj/effect/mob_spawn/ghost_role/robot/ghostcafe
 	name = "Cafe Robotic Storage"
 	prompt_name = "a ghost cafe robot"
-	uses = 10000000000000
+	infinite_use = TRUE
+	deletes_on_zero_uses_left = FALSE
 	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "robostorage"
 	anchored = TRUE
 	density = FALSE
+	spawner_job_path = /datum/job/ghostcafe
 	you_are_text = "You are a Cafe Robot!"
 	flavour_text = "Who could have thought? This awesome local cafe accepts cyborgs too!"
 	mob_type = /mob/living/silicon/robot/model/roleplay
@@ -37,10 +39,12 @@
 /obj/effect/mob_spawn/ghost_role/human/ghostcafe
 	name = "Cafe Sleeper"
 	prompt_name = "a ghost cafe human"
-	uses = 10000000000000
+	infinite_use = TRUE
+	deletes_on_zero_uses_left = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	density = FALSE
+	spawner_job_path = /datum/job/ghostcafe
 	outfit = /datum/outfit/ghostcafe
 	you_are_text = "You are a Cafe Visitor!"
 	flavour_text = "You are off-duty and have decided to visit your favourite cafe. Enjoy yourself."

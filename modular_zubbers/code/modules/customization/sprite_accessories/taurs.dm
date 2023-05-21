@@ -4,7 +4,6 @@
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
 	taur_mode = STYLE_TAUR_PAW
 	color_src = MUTCOLORS
-	extra = FALSE
 
 /datum/sprite_accessory/taur/shadekin_long
 	name = "Shadekin Big Tail"
@@ -12,4 +11,3 @@
 	icon = 'modular_zubbers/icons/customization/taur.dmi'
 	taur_mode = STYLE_TAUR_PAW
 	color_src = MUTCOLORS
-	extra = FALSE
