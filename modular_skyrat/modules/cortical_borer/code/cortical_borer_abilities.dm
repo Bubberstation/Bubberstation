@@ -637,6 +637,7 @@
 		owner.balloon_alert(owner, "host required")
 		return
 	cortical_owner.chemical_storage -= chemical_cost
+	cortical_owner.chemical_evolution -= chemical_evo_points
 	produce_egg()
 	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.getorganslot(ORGAN_SLOT_BRAIN)
 	if(victim_brain)
