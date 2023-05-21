@@ -626,6 +626,7 @@
 	cooldown_time = 2 MINUTES
 	button_icon_state = "reproduce"
 	chemical_cost = 200
+	chemical_evo_points = 5
 
 /datum/action/cooldown/borer/produce_offspring_general/Trigger(trigger_flags)
 	. = ..()
@@ -647,9 +648,9 @@
 					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_BASIC)
 				if(35 to 60)
 					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
-				if(61 to 71)
+				if(61 to 73)
 					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_SURGERY)
-				if(72 to 75)
+				if(74 to 75)//really small chance to get a lobotomy trauma
 					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 	to_chat(cortical_owner.human_host, span_warning("Your brain begins to hurt..."))
 	var/turf/borer_turf = get_turf(cortical_owner)
