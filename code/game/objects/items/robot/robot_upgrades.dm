@@ -117,9 +117,9 @@
 	if(.)
 		for(var/obj/item/pickaxe/drill/cyborg/D in R.model)
 			R.model.remove_module(D, TRUE)
-		for(var/obj/item/shovel/S in R.model)
+/*		for(var/obj/item/shovel/S in R.model)
 			R.model.remove_module(S, TRUE)
-
+*/
 		var/obj/item/pickaxe/drill/cyborg/diamond/DD = new /obj/item/pickaxe/drill/cyborg/diamond(R.model)
 		R.model.basic_modules += DD
 		R.model.add_module(DD, FALSE, TRUE)

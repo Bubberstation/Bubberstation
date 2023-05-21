@@ -327,6 +327,7 @@
 	ACCESS_WEAPONS, \
 	ACCESS_XENOBIOLOGY, \
 	ACCESS_BARBER, \
+	ACCESS_BLACKSMITH, \
 ) // SKYRAT EDIT ADDITION
 
 /// Command staff/secure accesses, think bridge/armoury, ai_upload, notably access to modify ID cards themselves. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND)
@@ -355,7 +356,8 @@
 	ACCESS_HOP, \
 	ACCESS_QM, \
 	ACCESS_RD, \
-) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS
+	ACCESS_NTREP, \
+	) // SKYRAT EDIT - Added ACCESS_CE and ACCESS_CMO to PRIVATE_COMMAND_ACCESS //BUBBER EDIT: Added ACCESS_NTREP to PRIVATE_COMMAND_ACCESS
 
 /// Captains private rooms. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN)
 #define CAPTAIN_ACCESS list( \
@@ -548,7 +550,7 @@
 	/obj/item/modular_computer/pda/cargo = list(REGION_SUPPLY), \
 	/obj/item/modular_computer/pda/shaftminer = list(REGION_SUPPLY), \
 	/obj/item/modular_computer/pda/chaplain = list(REGION_GENERAL), \
-	/obj/item/modular_computer/pda/lawyer = list(REGION_GENERAL), \
+	/obj/item/modular_computer/pda/lawyer = list(REGION_GENERAL, REGION_SECURITY), \
 	/obj/item/modular_computer/pda/botanist = list(REGION_GENERAL), \
 	/obj/item/modular_computer/pda/roboticist = list(REGION_RESEARCH), \
 	/obj/item/modular_computer/pda/curator = list(REGION_GENERAL), \

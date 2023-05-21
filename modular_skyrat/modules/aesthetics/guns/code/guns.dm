@@ -71,9 +71,7 @@
 	inhand_icon_state = "riot_shotgun_syndie"
 	can_be_sawn_off = FALSE
 	can_suppress = FALSE
-
-/obj/item/gun/ballistic/shotgun/riot/syndicate/give_manufacturer_examine()
-	AddComponent(/datum/component/manufacturer_examine, COMPANY_SCARBOROUGH)
+	company_flag = COMPANY_SCARBOROUGH
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "\improper Peacekeeper combat shotgun"
@@ -268,9 +266,7 @@
 	can_suppress = TRUE
 	can_unsuppress = TRUE
 	weapon_weight = WEAPON_LIGHT
-
-/obj/item/gun/ballistic/automatic/sniper_rifle/modular/syndicate/give_manufacturer_examine()
-	AddComponent(/datum/component/manufacturer_examine, COMPANY_SCARBOROUGH)
+	company_flag = COMPANY_SCARBOROUGH
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/modular/blackmarket  //Normal sniper but epic
 	name = "SA-107 anti-materiel rifle"
@@ -291,6 +287,7 @@
 	fire_delay = 55 //Slightly smaller than standard sniper
 	burst_size = 1
 	slot_flags = ITEM_SLOT_BACK
+	fire_select_modes = list(SELECT_SEMI_AUTOMATIC) //SKYRAT EDIT CHANGE
 	mag_display = TRUE
 
 /obj/item/gun/ballistic/automatic/ar/modular
@@ -352,9 +349,7 @@
 	fire_delay = 5
 	fire_sound_volume = 90
 	mag_type = /obj/item/ammo_box/magazine/multi_sprite/ostwind/arg75
-
-/obj/item/gun/ballistic/automatic/ar/modular/model75/give_manufacturer_examine()
-	AddComponent(/datum/component/manufacturer_examine, COMPANY_NANOTRASEN)
+	company_flag = COMPANY_NANOTRASEN
 
 /obj/item/ammo_box/magazine/multi_sprite/ostwind/arg75
 	name = "\improper ARG-75 magazine"

@@ -181,8 +181,8 @@
 		/obj/item/food/donut/caramel = 10,
 		/obj/item/food/donut/matcha = 10,
 		/obj/item/food/donut/blumpkin = 5,
-		/obj/item/clothing/mask/whistle = 5,
-		/obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/clothing/mask/whistle = 10,
+		/obj/item/melee/baton = 5
 	)
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
@@ -194,13 +194,14 @@
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
 	shoes = /obj/item/clothing/shoes/jackboots
-	head =  /obj/item/clothing/head/helmet/blueshirt/skyrat
-	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat
-	r_pocket = /obj/item/assembly/flash/handheld
-	l_pocket = /obj/item/restraints/handcuffs/cable/pink
+	head =  /obj/item/clothing/head/beret/sec/science
+	suit = /obj/item/clothing/suit/armor/vest/alt
+	r_pocket = /obj/item/reagent_containers/spray/pepper
+	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/science = 1,
-		/obj/item/storage/box/gunset/pepperball = 1,
+		/obj/item/gun/energy/disabler = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack/science
@@ -283,8 +284,8 @@
 		/obj/item/food/donut/caramel = 10,
 		/obj/item/food/donut/matcha = 10,
 		/obj/item/food/donut/blumpkin = 5,
-		/obj/item/clothing/mask/whistle = 5,
-		/obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/clothing/mask/whistle = 10,
+		/obj/item/melee/baton = 5
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
@@ -297,13 +298,15 @@
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head =  /obj/item/clothing/head/helmet/blueshirt/skyrat/guard
+	head =  /obj/item/clothing/head/beret/sec/medical
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly
-	r_pocket = /obj/item/assembly/flash/handheld
-	l_pocket = /obj/item/restraints/handcuffs/cable/blue
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	r_pocket = /obj/item/reagent_containers/spray/pepper
+	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/medical = 1,
-		/obj/item/storage/box/gunset/pepperball = 1,
+		/obj/item/gun/energy/disabler = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack/medic
@@ -381,8 +384,8 @@
 		/obj/item/food/donut/caramel = 10,
 		/obj/item/food/donut/matcha = 10,
 		/obj/item/food/donut/blumpkin = 5,
-		/obj/item/clothing/mask/whistle = 5,
-		/obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/clothing/mask/whistle = 10,
+		/obj/item/melee/baton = 5
 	)
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
@@ -394,13 +397,14 @@
 	ears = /obj/item/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/workboots
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
-	head =  /obj/item/clothing/head/helmet/blueshirt/skyrat/guard
+	head =  /obj/item/clothing/head/beret/sec/engineering
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/engineering_guard
-	r_pocket = /obj/item/assembly/flash/handheld
-	l_pocket = /obj/item/restraints/handcuffs/cable/yellow
+	r_pocket = /obj/item/reagent_containers/spray/pepper
+	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/engineering = 1,
-		/obj/item/storage/box/gunset/pepperball = 1,
+		/obj/item/gun/energy/disabler = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack/industrial
@@ -484,8 +488,8 @@
 		/obj/item/food/donut/caramel = 10,
 		/obj/item/food/donut/matcha = 10,
 		/obj/item/food/donut/blumpkin = 5,
-		/obj/item/clothing/mask/whistle = 5,
-		/obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/clothing/mask/whistle = 10,
+		/obj/item/melee/baton = 5
 	)
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
@@ -497,14 +501,15 @@
 	ears = /obj/item/radio/headset/headset_cargo
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent
-	head =  /obj/item/clothing/head/helmet/blueshirt/skyrat/guard
+	head =  /obj/item/clothing/head/beret/sec/cargo
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent
 	glasses = /obj/item/clothing/glasses/hud/gun_permit
-	r_pocket = /obj/item/assembly/flash/handheld
-	l_pocket = /obj/item/restraints/handcuffs/cable/orange
+	r_pocket = /obj/item/reagent_containers/spray/pepper
+	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/cargo = 1,
-		/obj/item/storage/box/gunset/pepperball = 1,
+		/obj/item/gun/energy/disabler = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack
@@ -581,8 +586,8 @@
 		/obj/item/food/donut/caramel = 10,
 		/obj/item/food/donut/matcha = 10,
 		/obj/item/food/donut/blumpkin = 5,
-		/obj/item/clothing/mask/whistle = 5,
-		/obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/clothing/mask/whistle = 10,
+		/obj/item/melee/baton = 5
 	)
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
@@ -594,15 +599,16 @@
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
 	shoes = /obj/item/clothing/shoes/sneakers/black
-	head =  /obj/item/clothing/head/helmet/blueshirt/skyrat/guard
-	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/guard
-	l_pocket = /obj/item/restraints/handcuffs/cable/green
-	r_pocket = /obj/item/assembly/flash/handheld
+	head =  /obj/item/clothing/head/beret/sec/service
+	suit = /obj/item/clothing/suit/armor/vest/alt
+	l_pocket = /obj/item/restraints/handcuffs
+	r_pocket = /obj/item/reagent_containers/spray/pepper
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/service = 1,
-		/obj/item/storage/box/gunset/pepperball = 1,
+		/obj/item/gun/energy/disabler = 1,
+		/obj/item/holosign_creator/security = 1
 		)
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel

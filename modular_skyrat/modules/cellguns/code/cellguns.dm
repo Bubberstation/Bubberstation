@@ -10,9 +10,7 @@
 	var/list/installedcells = list()
 
 	automatic_charge_overlays = FALSE //This is needed because Cell based guns use their own custom overlay system.
-
-/obj/item/gun/energy/cell_loaded/give_gun_safeties()
-	return
+	has_gun_safety = TRUE
 
 /obj/item/gun/energy/cell_loaded/examine(mob/user)
 	. = ..()

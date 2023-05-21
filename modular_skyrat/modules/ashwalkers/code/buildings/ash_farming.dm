@@ -1,6 +1,4 @@
 /datum/component/simple_farm
-	///whether you can actually farm it at the moment
-	var/allow_plant = FALSE
 	///whether we limit the amount of plants you can have per turf
 	var/one_per_turf = TRUE
 	///the reference to the movable parent the component is attached to
@@ -13,8 +11,6 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	atom_parent = parent
-	//important to allow people to just straight up set allowing to plant
-	allow_plant = set_plant
 	one_per_turf = set_turf_limit
 	pixel_shift = set_shift
 	//now lets register the signals
@@ -32,11 +28,6 @@
  */
 /datum/component/simple_farm/proc/check_attack(datum/source, obj/item/attacking_item, mob/user)
 	SIGNAL_HANDLER
-	//if it behaves like a shovel
-	if(attacking_item.tool_behaviour == TOOL_SHOVEL)
-		//flip the allow plant-- we either cover or uncover the plantable bit
-		allow_plant = !allow_plant
-		atom_parent.balloon_alert_to_viewers("[allow_plant ? "uncovered" : "covered"] the growing place!")
 
 	//if its a seed, lets try to plant
 	if(istype(attacking_item, /obj/item/seeds))
@@ -61,11 +52,9 @@
  * check_examine is meant to listen for the comsig_parent_examine signal, where it will put additional information in the examine
  */
 /datum/component/simple_farm/proc/check_examine(datum/source, mob/user, list/examine_list)
-	if(allow_plant)
-		examine_list += span_notice("You are able to plant seeds here!")
+	SIGNAL_HANDLER
 
-	else
-		examine_list += span_warning("You need to use a shovel before you can plant seeds here!")
+	examine_list += span_notice("You are able to plant seeds here!")
 
 /obj/structure/simple_farm
 	name = "simple farm"
@@ -236,7 +225,3 @@
 			creating_obj = planted_seed.type
 
 		new creating_obj(get_turf(src))
-
-/turf/open/misc/asteroid/basalt/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/simple_farm)

@@ -24,7 +24,7 @@
 	. = ..()
 	packin_up()
 
-/obj/machinery/computer/cargo/express/on_construction(mob/user)
+/obj/machinery/computer/cargo/express/on_construction()
 	. = ..()
 	packin_up()
 

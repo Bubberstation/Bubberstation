@@ -121,10 +121,7 @@
 		holochange.name = "[holochange.credits] credit holochip"
 		if(ishuman(user))
 			var/mob/living/carbon/human/paying_customer = user
-			var/successfully_put_in_hands
-			ASYNC //Put_in_hands can sleep, we don't want that to block this proc.
-				successfully_put_in_hands = paying_customer.put_in_hands(holochange)
-			if(!successfully_put_in_hands)
+			if(!INVOKE_ASYNC(paying_customer, TYPE_PROC_REF(/mob, put_in_hands), holochange))
 				user.pulling = holochange
 		else
 			user.pulling = holochange

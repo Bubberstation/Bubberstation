@@ -150,7 +150,7 @@
 		/obj/item/clothing/shoes/sneakers/brown = 1,
 	)
 
-	access_lists["[ACCESS_CENT_GENERAL]"] = list( // CC Rep Shiz
+	access_lists["[ACCESS_NTREP]"] = list( // CC Rep Shiz // BUBBER EDIT: NEW NTREP ACCESS
 		/obj/item/clothing/head/nanotrasen_consultant = 1,
 		/obj/item/clothing/head/nanotrasen_consultant/beret = 1,
 		/obj/item/clothing/head/beret/centcom_formal/nt_consultant = 1,

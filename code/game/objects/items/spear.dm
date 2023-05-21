@@ -39,13 +39,9 @@
 /obj/item/spear/Initialize(mapload)
 	. = ..()
 	force = force_unwielded
-	//decent in a pinch, but pretty bad.
 	AddComponent(/datum/component/jousting)
 
-	AddComponent(/datum/component/butchering, \
-		speed = 10 SECONDS, \
-		effectiveness = 70, \
-	)
+	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 30)
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force_unwielded, \
 		force_wielded = force_wielded, \

@@ -146,7 +146,8 @@
 		/mob/living/proc/emote_rpurr,
 		/mob/living/proc/emote_purr,
 		/mob/living/proc/emote_moo,
-		/mob/living/proc/emote_honk1
+		/mob/living/proc/emote_honk1,
+		/mob/living/proc/emote_mggaow
 	)
 	all_emotes += skyrat_living_emotes
 
@@ -1018,3 +1019,8 @@
 	set name = "| Mark Turf |"
 	set category = "Emotes+"
 	usr.emote("turf", intentional = TRUE)
+
+/mob/living/proc/emote_mggaow()
+	set name = "> Mggaow"
+	set category = "Emotes+"
+	usr.emote("mggaow", intentional = TRUE)
