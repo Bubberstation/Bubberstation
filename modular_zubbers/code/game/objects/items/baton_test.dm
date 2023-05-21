@@ -846,7 +846,7 @@
 
 	return CONTEXTUAL_SCREENTIP_SET
 
-/obj/item/melee/baton/proc/baton_attack(mob/living/target, mob/living/user, modifiers)
+/obj/item/melee/alt_baton/proc/baton_attack(mob/living/target, mob/living/user, modifiers)
 	. = BATON_ATTACKING
 
 	if(clumsy_check(user, target))
@@ -892,7 +892,7 @@
 	if(desc)
 		target.visible_message(desc["visible"], desc["local"])
 
-/obj/item/melee/baton/proc/check_parried(mob/living/carbon/human/human_target, mob/living/user)
+/obj/item/melee/alt_baton/proc/check_parried(mob/living/carbon/human/human_target, mob/living/user)
 	if(!ishuman(human_target))
 		return
 	if (human_target.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
@@ -901,7 +901,7 @@
 	if(check_martial_counter(human_target, user))
 		return TRUE
 
-/obj/item/melee/baton/proc/finalize_baton_attack(mob/living/target, mob/living/user, modifiers, in_attack_chain = TRUE)
+/obj/item/melee/alt_baton/proc/finalize_baton_attack(mob/living/target, mob/living/user, modifiers, in_attack_chain = TRUE)
 	if(!in_attack_chain && HAS_TRAIT_FROM(target, TRAIT_IWASBATONED, REF(user)))
 		return BATON_ATTACK_DONE
 
@@ -971,8 +971,7 @@
 /obj/item/melee/alt_baton/proc/additional_effects_cyborg(mob/living/target, mob/living/user)
 	return
 
-/*
-/obj/item/melee/baton/proc/clumsy_check(mob/living/user, mob/living/intented_target)
+/obj/item/melee/alt_baton/proc/clumsy_check(mob/living/user, mob/living/intented_target)
 	if(!active || !HAS_TRAIT(user, TRAIT_CLUMSY) || prob(50))
 		return FALSE
 	user.visible_message(span_danger("[user] accidentally hits [user.p_them()]self over the head with [src]! What a doofus!"), span_userdanger("You accidentally hit yourself over the head with [src]!"))
@@ -999,7 +998,7 @@
 	if(stun_animation)
 		user.do_attack_animation(user)
 	return
-*/
+
 /obj/item/melee/alt_baton/security
 	name = "alternate stun baton"
 	desc = "A unqiue stunbaton that does cause muscle paralysis but rather cause painful exhaustion every hit."
