@@ -655,10 +655,6 @@
 	name = "Ronin"
 	icon_state = "hair_ronin"
 
-/datum/sprite_accessory/hair/royal_curls
-	name = "Royal Curls"
-	icon_state = "royal_curls"
-
 /datum/sprite_accessory/hair/shaved
 	name = "Shaved"
 	icon_state = "hair_shaved"
@@ -2224,7 +2220,7 @@
 /datum/sprite_accessory/moth_wings/plasmafire
 	name = "Plasmafire"
 	icon_state = "plasmafire"
-	
+
 /datum/sprite_accessory/moth_wings/moffra
 	name = "Moffra"
 	icon_state = "moffra"
@@ -2311,7 +2307,7 @@
 /datum/sprite_accessory/moth_antennae/plasmafire
 	name = "Plasmafire"
 	icon_state = "plasmafire"
-	
+
 /datum/sprite_accessory/moth_antennae/moffra
 	name = "Moffra"
 	icon_state = "moffra"
