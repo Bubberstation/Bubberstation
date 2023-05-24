@@ -10,7 +10,7 @@
 	supports_variations_flags = CLOTHING_NO_VARIATION
 	can_adjust = FALSE
 
-/obj/item/clothing/shoes/latex_heels/lace
+/obj/item/clothing/shoes/fancy_heels/drag/lace
 	name = "elegant heels"
 	desc = "A quality pair of heels that delicately shines in the light, wearing gives you extra feminine mystique."
 	icon = 'modular_zubbers/icons/obj/clothing/lace.dmi'
@@ -19,6 +19,10 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/lace_righthand.dmi'
 	icon_state = "lilacheels"
 	inhand_icon_state = "lilacheels"
+
+/obj/item/clothing/shoes/fancy_heels/drag/lace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('modular_skyrat/modules/modular_items/lewd_items/sounds/highheel1.ogg' = 1, 'modular_skyrat/modules/modular_items/lewd_items/sounds/highheel2.ogg' = 1), 70)
 
 /obj/item/clothing/gloves/evening/lace
 	name = "lace gloves"
