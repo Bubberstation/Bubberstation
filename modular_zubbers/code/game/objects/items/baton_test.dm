@@ -747,7 +747,7 @@
 	/// Used interally, you don't want to modify
 	var/cooldown_check = 0
 	/// Default wait time until can stun again.
-	var/cooldown = (4 SECONDS)
+	var/cooldown = (2.5 SECONDS)
 	/// The length of the knockdown applied to a struck living, non-cyborg mob.
 	var/knockdown_time = (1.5 SECONDS)
 	/// If affect_cyborg is TRUE, this is how long we stun cyborgs for on a hit.
@@ -1019,7 +1019,7 @@
 	stamina_damage = 55
 	knockdown_time = 0 SECONDS //Shouldn't knock down. Unless you're a clown
 	clumsy_knockdown_time = 15 SECONDS
-	cooldown = 2.5 SECONDS
+	cooldown = 0.8 SECONDS
 	on_stun_sound = 'sound/weapons/egloves.ogg'
 	on_stun_volume = 50
 	active = FALSE
