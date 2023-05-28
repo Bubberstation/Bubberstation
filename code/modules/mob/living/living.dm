@@ -1119,12 +1119,14 @@
 	. = TRUE
 	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || staminaloss > STAMINA_THRESHOLD_HARD_RESIST) //SKYRAT EDIT CHANGE: if(pulledby.grab_state || resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS))
 		var/altered_grab_state = pulledby.grab_state
-		if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however - SKYRAT EDIT CHANGE: if((resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS)) && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
+		if(resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //BUBBER EDIT CHANGE: if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
 			altered_grab_state++
 		if(staminaloss > STAMINA_THRESHOLD_HARD_RESIST)
 			altered_grab_state++
+		/*	//BUBBER EDIT REMOVAL
 		if(body_position == LYING_DOWN)
 			altered_grab_state++
+		*/ //BUBBER EDIT REMOVAL END
 		var/mob/living/M = pulledby
 		if(M.staminaloss > STAMINA_THRESHOLD_HARD_RESIST)
 			altered_grab_state-- //SKYRAT EDIT END
@@ -1144,7 +1146,7 @@
 			pulledby.stop_pulling()
 			return FALSE
 		else
-			adjustStaminaLoss(rand(10,15))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty
+			adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty//BUBBER EDIT CHANGE: adjustStaminaLoss(rand(10,15))
 			visible_message("<span class='danger'>[src] struggles as they fail to break free of [pulledby]'s grip!</span>", \
 							"<span class='warning'>You struggle as you fail to break free of [pulledby]'s grip!</span>", null, null, pulledby)
 			to_chat(pulledby, "<span class='danger'>[src] struggles as they fail to break free of your grip!</span>")
