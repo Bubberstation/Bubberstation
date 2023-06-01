@@ -1,6 +1,6 @@
 /obj/item/circuitboard/machine/plantgenes
 	name = "Plant DNA Manipulator (Machine Board)"
-	icon_state = "service"
+	greyscale_colors = CIRCUIT_COLOR_SERVICE
 	build_path = /obj/machinery/plantgenes
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 1,
