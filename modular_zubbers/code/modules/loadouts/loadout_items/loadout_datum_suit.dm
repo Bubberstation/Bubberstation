@@ -14,3 +14,8 @@
 	name = "Winter Runner Jacket"
 	item_path = /obj/item/clothing/suit/jacket/runner/winter
 	ckeywhitelist = list("kan3")
+
+/datum/loadout_item/suit/apron/outlast
+	name = "Leather Apron"
+	item_path = /obj/item/clothing/suit/apron/outlast/leather
+	restricted_roles = list(JOB_MEDICAL_DOCTOR)
