@@ -1,20 +1,9 @@
-#define MINESWEEPER_BEGINNER 1
-#define MINESWEEPER_INTERMEDIATE 2
-#define MINESWEEPER_EXPERT 3
-#define MINESWEEPER_CUSTOM 4
-
-#define MINESWEEPER_CONTINUE 0
-#define MINESWEEPER_DEAD 1
-#define MINESWEEPER_VICTORY 2
-#define MINESWEEPER_IDLE 3
-
 /datum/computer_file/program/minesweeper
 	filename = "minesweeper"
 	filedesc = "Nanotrasen Micro Arcade: Minesweeper"
 	program_icon_state = "arcade"
 	extended_desc = "A port of the classic game 'Minesweeper', redesigned to run on tablets."
 	requires_ntnet = FALSE
-	network_destination = "arcade network"
 	size = 6
 	tgui_id = "NtosMinesweeper"
 	program_icon = "gamepad"
@@ -67,10 +56,6 @@
 	if(!board.host && computer)
 		board.host = computer
 
-	var/obj/item/computer_hardware/printer/printer
-	if(istype(board.host, /obj/item/modular_computer))
-		var/obj/item/modular_computer/comp = board.host
-		printer = comp.all_components[MC_PRINT]
 
 	switch(action)
 		if("PRG_do_tile")
@@ -127,24 +112,6 @@
 			board.flag_mode = !board.flag_mode
 			return TRUE
 
-		if("PRG_tickets")
-			board.play_snd('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg')
-			if(!printer && istype(board.host, /obj/item/modular_computer))
-				computer.visible_message(span_notice("Hardware error: A printer is required to redeem tickets."))
-				return
-			if(printer.stored_paper <= 0 && istype(board.host, /obj/item/modular_computer))
-				computer.visible_message(span_notice("Hardware error: Printer is out of paper."))
-				return
-			else
-				computer.visible_message(span_notice("\The [computer] prints out paper."))
-				if(board.ticket_count >= 1)
-					new /obj/item/stack/arcadeticket((get_turf(computer)), 1)
-					to_chat(user, span_notice("[src] dispenses a ticket!"))
-					board.ticket_count -= 1
-					printer.stored_paper -= 1
-				else
-					to_chat(user, span_notice("You don't have any stored tickets!"))
-				return TRUE
 
 /datum/minesweeper
 	var/ticket_count = 0
@@ -177,11 +144,11 @@
 	COOLDOWN_DECLARE(new_game_cd)
 
 /datum/minesweeper/proc/play_snd(sound)
-	if(istype(host, /obj/item/modular_computer))
+	/*if(istype(host, /obj/item/modular_computer))
 		var/obj/item/modular_computer/comp = host
-		comp.play_computer_sound(sound, 50, 0)
-	else
-		playsound(get_turf(host), sound, 50, 0, extrarange = -3, falloff = 10)
+		playsound(get_turf(), sound, 50, 0)
+	else*/
+	playsound(get_turf(host), sound, 50, 0, extrarange = -3, falloff_exponent = 10)
 
 /datum/minesweeper/proc/vis_msg(msg, local_msg)
 	if(istype(host, /obj/item/modular_computer))
@@ -296,10 +263,6 @@
 					new /obj/item/sbeacondrop/bomb(host.loc)
 				if(2)
 					itemname = "a rocket launcher"
-					new /obj/item/gun/ballistic/rocketlauncher/unrestricted(host.loc)
-					new /obj/item/ammo_casing/caseless/rocket/hedp(host.loc)
-					new /obj/item/ammo_casing/caseless/rocket/hedp(host.loc)
-					new /obj/item/ammo_casing/caseless/rocket/hedp(host.loc)
 				if(3)
 					itemname = "two bags of c4"
 					new /obj/item/storage/backpack/duffelbag/syndie/c4(host.loc)

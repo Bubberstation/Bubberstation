@@ -1,3 +1,12 @@
+#define MINESWEEPER_BEGINNER 1
+#define MINESWEEPER_INTERMEDIATE 2
+#define MINESWEEPER_EXPERT 3
+#define MINESWEEPER_CUSTOM 4
+
+#define MINESWEEPER_CONTINUE 0
+#define MINESWEEPER_DEAD 1
+#define MINESWEEPER_VICTORY 2
+#define MINESWEEPER_IDLE 3
 /obj/machinery/computer/arcade/minesweeper
 	name = "Minesweeper"
 	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."
@@ -19,13 +28,13 @@
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user, special_state)
 	. = ..()
-	if(!is_operational())
+	if(!is_operational)
 		return
 	if(board.game_status == MINESWEEPER_IDLE || board.game_status == MINESWEEPER_DEAD || board.game_status == MINESWEEPER_VICTORY)
 		if(obj_flags & EMAGGED)
-			playsound(loc, 'modular_zubbers/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'modular_zubbers/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff_exponent = 10)
 		else
-			playsound(loc, 'modular_zubbers/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'modular_zubbers/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff_exponent = 10)
 
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
@@ -33,8 +42,9 @@
 	add_fingerprint(user)
 
 /obj/machinery/computer/arcade/minesweeper/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(!is_operational())
+	if(!is_operational)
 		return
 	if(!ui)
 		ui = new(user, src, "Minesweeper", name)
