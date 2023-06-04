@@ -51,7 +51,6 @@
 	name = "ice blast"
 	damage = 5
 	range = 200
-	nodamage = FALSE
 	temperature = -75
 	slowdown = FALSE
 
