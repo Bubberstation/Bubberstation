@@ -7,6 +7,8 @@
  * Assuming the pAI card itself is empty of a personality.
  */
 /obj/item/pai_card/proc/ghost_activate(mob/user)
+	if(!SSticker.HasRoundStarted())
+		return
 	if(pai)
 		return
 	var/pai_ask = tgui_alert(user, "Become a pAI? (Warning, You can no longer be revived, and all past lives will be forgotten!)", "Confirm", list("Yes","No"))
