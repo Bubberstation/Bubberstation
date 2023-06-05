@@ -138,7 +138,7 @@
 				if(!user.combat_mode)
 					spawned_mob.faction |= FACTION_NEUTRAL
 				else
-					spawned_mob.faction |= "slime"
+					spawned_mob.faction |= FACTION_SLIME
 				playsound(user, 'sound/effects/splat.ogg', 50, TRUE)
 				user.visible_message(span_warning("[user] spits out [spawned_mob]!"), span_warning("You spit out [spawned_mob]!"))
 				return 600
@@ -482,10 +482,10 @@
 			return 450
 
 		if(SLIME_ACTIVATE_MAJOR)
-			to_chat(user, span_warning("You feel your body rapidly crystallizing..."))
+			to_chat(user, span_warning("You feel your body rapidly hardening..."))
 			if(do_after(user, 120, target = user))
 				to_chat(user, span_warning("You feel solid."))
-				user.set_species(pick(/datum/species/golem/adamantine))
+				user.set_species(/datum/species/golem)
 				return
 			to_chat(user, span_notice("You stop feeding [src], and your body returns to its slimelike state."))
 
@@ -776,6 +776,7 @@
 	SEND_SIGNAL(switchy_mob, COMSIG_SIMPLEMOB_TRANSFERPOTION, user)
 	switchy_mob.faction = user.faction.Copy()
 	switchy_mob.copy_languages(user, LANGUAGE_MIND)
+	switchy_mob.update_atom_languages()
 	user.death()
 	to_chat(switchy_mob, span_notice("In a quick flash, you feel your consciousness flow into [switchy_mob]!"))
 	to_chat(switchy_mob, span_warning("You are now [switchy_mob]. Your allegiances, alliances, and role is still the same as it was prior to consciousness transfer!"))
@@ -995,20 +996,18 @@
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "potgrey"
 
-/obj/item/slimepotion/slime/slimeradio/attack(mob/living/M, mob/user)
-	if(!ismob(M))
+/obj/item/slimepotion/slime/slimeradio/attack(mob/living/radio_head, mob/user)
+	if(!isanimal_or_basicmob(radio_head))
+		to_chat(user, span_warning("[radio_head] is too complex for the potion!"))
 		return
-	if(!isanimal(M))
-		to_chat(user, span_warning("[M] is too complex for the potion!"))
-		return
-	if(M.stat)
-		to_chat(user, span_warning("[M] is dead!"))
+	if(radio_head.stat)
+		to_chat(user, span_warning("[radio_head] is dead!"))
 		return
 
-	to_chat(user, span_notice("You feed the potion to [M]."))
-	to_chat(M, span_notice("Your mind tingles as you are fed the potion. You can hear radio waves now!"))
+	to_chat(user, span_notice("You feed the potion to [radio_head]."))
+	to_chat(radio_head, span_notice("Your mind tingles as you are fed the potion. You can hear radio waves now!"))
 	var/obj/item/implant/radio/slime/imp = new(src)
-	imp.implant(M, user)
+	imp.implant(radio_head, user)
 	qdel(src)
 
 ///Definitions for slime products that don't have anywhere else to go (Floor tiles, blueprints).
@@ -1021,7 +1020,7 @@
 	inhand_icon_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	mats_per_unit = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5)
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
@@ -1038,7 +1037,7 @@
 	inhand_icon_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	mats_per_unit = list(/datum/material/iron=500)
+	mats_per_unit = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5)
 	throwforce = 10
 	throw_speed = 0.1
 	throw_range = 28

@@ -115,14 +115,9 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	item_path = /obj/item/clothing/under/rank/security/warden/peacekeeper/sol
 	restricted_roles = list(JOB_WARDEN)
 
-/datum/loadout_item/under/jumpsuit/peacetrouse
-	name = "Peacekeeper Trousers"
-	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_SECURITY_MEDIC)
-
 /datum/loadout_item/under/jumpsuit/security_trousers
 	name = "Security Trousers"
-	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers/red
+	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/under/jumpsuit/solofficer
@@ -473,6 +468,10 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 /datum/loadout_item/under/miscellaneous/tactical_skirt
 	name = "Tacticool Skirtleneck"
 	item_path = /obj/item/clothing/under/syndicate/tacticool/skirt //This has been rebalanced in modular_skyrat\master_files\code\modules\clothing\under\syndicate.dm
+
+/datum/loadout_item/under/miscellaneous/tactical_pants
+	name = "Tactical Pants"
+	item_path = /obj/item/clothing/under/pants/tactical
 
 /datum/loadout_item/under/miscellaneous/blastwave_uniform
 	name = "Blastwave Uniform"
