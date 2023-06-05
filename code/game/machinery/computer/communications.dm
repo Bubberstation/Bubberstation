@@ -1,6 +1,5 @@
 #define IMPORTANT_ACTION_COOLDOWN (60 SECONDS)
 #define EMERGENCY_ACCESS_COOLDOWN (30 SECONDS)
-#define MAX_STATUS_LINE_LENGTH 40
 
 #define STATE_BUYING_SHUTTLE "buying_shuttle"
 #define STATE_CHANGING_STATUS "changing_status"
@@ -95,6 +94,9 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 /obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
+	// All maps should have at least 1 comms console
+	REGISTER_REQUIRED_MAP_ITEM(1, INFINITY)
+
 	GLOB.shuttle_caller_list += src
 	AddComponent(/datum/component/gps, "Secured Communications Signal")
 
@@ -130,7 +132,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 /obj/machinery/computer/communications/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/battlecruiser))
-		if(!user.mind?.has_antag_datum(/datum/antagonist/traitor))
+		if(!IS_TRAITOR(user))
 			to_chat(user, span_danger("You get the feeling this is a bad idea."))
 			return
 		var/obj/item/card/emag/battlecruiser/caller_card = emag_card
@@ -233,14 +235,6 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			if (!message_index)
 				return
 			LAZYREMOVE(messages, LAZYACCESS(messages, message_index))
-		/* SKYRAT EDIT REMOVAL START
-		if ("emergency_meeting")
-			if(!check_holidays(APRIL_FOOLS))
-				return
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
-			emergency_meeting(usr)
-		*/ // SKYRAT EDIT REMOVAL END
 		if ("makePriorityAnnouncement")
 			if (!authenticated_as_silicon_or_captain(usr) && !syndicate)
 				return
@@ -468,10 +462,10 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			if(!pre_911_check(usr))
 				return
 			calling_911(usr, "Marshals", EMERGENCY_RESPONSE_POLICE)
-		if ("callBreachControl")
+		if ("callTheCatmos")
 			if(!pre_911_check(usr))
 				return
-			calling_911(usr, "Breach Control", EMERGENCY_RESPONSE_ATMOS)
+			calling_911(usr, "Advanced Atmospherics", EMERGENCY_RESPONSE_ATMOS)
 		if ("callTheParameds")
 			if(!pre_911_check(usr))
 				return
@@ -774,41 +768,24 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 
 	return length(CONFIG_GET(keyed_list/cross_server)) > 0
 
-/**
- * Call an emergency meeting
- *
- * Comm Console wrapper for the Communications subsystem wrapper for the call_emergency_meeting world proc.
- * Checks to make sure the proc can be called, and handles relevant feedback, logging and timing.
- * See the SScommunications proc definition for more detail, in short, teleports the entire crew to
- * the bridge for a meetup. Should only really happen during april fools.
- * Arguments:
- * * user - Mob who called the meeting
- */
-/obj/machinery/computer/communications/proc/emergency_meeting(mob/living/user)
-	if(!SScommunications.can_make_emergency_meeting(user))
-		to_chat(user, span_alert("The emergency meeting button doesn't seem to work right now. Please stand by."))
-		return
-	SScommunications.emergency_meeting(user)
-	deadchat_broadcast(" called an emergency meeting from [span_name("[get_area_name(usr, TRUE)]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
-
-
 /obj/machinery/computer/communications/proc/make_announcement(mob/living/user)
 	var/is_ai = issilicon(user)
 	if(!SScommunications.can_announce(user, is_ai))
 		to_chat(user, span_alert("Intercomms recharging. Please stand by."))
 		return
 	var/input = tgui_input_text(user, "Message to announce to the station crew", "Announcement")
-	if(!input || !user.canUseTopic(src, !issilicon(usr)))
+	if(!input || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(user.try_speak(input))
 		//Adds slurs and so on. Someone should make this use languages too.
-		input = user.treat_message(input)
+		var/list/input_data = user.treat_message(input)
+		input = input_data["message"]
 	else
 		//No cheating, mime/random mute guy!
 		input = "..."
 		user.visible_message(
-			span_notice("You leave the mic on in awkward silence..."),
 			span_notice("[user] holds down [src]'s announcement button, leaving the mic on in awkward silence."),
+			span_notice("You leave the mic on in awkward silence..."),
 			span_hear("You hear an awkward silence, somehow."),
 			vision_distance = 4,
 		)
@@ -927,15 +904,16 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	hacker.log_message("hacked a communications console, resulting in: [picked_option].", LOG_GAME, log_globally = TRUE)
 	switch(picked_option)
 		if(HACK_PIRATE) // Triggers pirates, which the crew may be able to pay off to prevent
+			var/datum/game_mode/dynamic/dynamic = SSticker.mode
+			var/list/pirate_rulesets = list(
+				/datum/dynamic_ruleset/midround/pirates,
+				/datum/dynamic_ruleset/midround/dangerous_pirates,
+			)
 			priority_announce(
 				"Attention crew: sector monitoring reports a massive jump-trace from an enemy vessel destined for your system. Prepare for imminent hostile contact.",
 				"[command_name()] High-Priority Update",
 			)
-
-			var/datum/round_event_control/pirates/pirate_event = locate() in SSevents.control
-			if(!pirate_event)
-				CRASH("hack_console() attempted to run pirates, but could not find an event controller!")
-			addtimer(CALLBACK(pirate_event, TYPE_PROC_REF(/datum/round_event_control, runEvent)), rand(20 SECONDS, 1 MINUTES))
+			dynamic.picking_specific_rule(pick(pirate_rulesets), forced = TRUE, ignore_cost = TRUE)
 
 		if(HACK_FUGITIVES) // Triggers fugitives, which can cause confusion / chaos as the crew decides which side help
 			priority_announce(
@@ -943,10 +921,7 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 				"[command_name()] High-Priority Update",
 			)
 
-			var/datum/round_event_control/fugitives/fugitive_event = locate() in SSevents.control
-			if(!fugitive_event)
-				CRASH("hack_console() attempted to run fugitives, but could not find an event controller!")
-			addtimer(CALLBACK(fugitive_event, TYPE_PROC_REF(/datum/round_event_control, runEvent)), rand(20 SECONDS, 1 MINUTES))
+			force_event_after(/datum/round_event_control/fugitives, "[hacker] hacking a communications console", rand(20 SECONDS, 1 MINUTES))
 
 		if(HACK_THREAT) // Force an unfavorable situation on the crew
 			priority_announce(
@@ -1014,3 +989,10 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 #undef STATE_CHANGING_STATUS
 #undef STATE_MAIN
 #undef STATE_MESSAGES
+
+//SKYRAT EDIT ADDITION
+#undef EMERGENCY_RESPONSE_POLICE
+#undef EMERGENCY_RESPONSE_ATMOS
+#undef EMERGENCY_RESPONSE_EMT
+#undef EMERGENCY_RESPONSE_EMAG
+//SKYRAT EDIT END

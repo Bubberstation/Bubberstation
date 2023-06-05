@@ -37,9 +37,10 @@
 /obj/item/clothing/head/helmet/swat/ds
 	name = "SWAT helmet"
 	desc = "A robust and spaceworthy helmet with a small cross on it along with 'IP' written across the earpad."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "swat_ds"
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION
 
 /obj/item/clothing/head/beret/sec/syndicate
 	name = "brig officer's beret"
@@ -132,12 +133,12 @@
 	soft_type = "ds"
 
 //Maid Outfit
-/obj/item/clothing/head/maidheadband/syndicate
+/obj/item/clothing/head/costume/maidheadband/syndicate
 	name = "tactical maid headband"
 	desc = "Tacticute."
 	icon_state = "syndimaid_headband"
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/costume.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/costume.dmi'
 
 /obj/item/clothing/gloves/combat/maid
 	name = "combat maid sleeves"
