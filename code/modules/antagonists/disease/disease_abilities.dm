@@ -294,7 +294,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/medium
 	cost = 4
-	required_total_points =6
+	required_total_points =6//Bubber edit, orginally 8
 	category = "Symptom"
 
 /datum/disease_ability/symptom/medium/heal
@@ -303,7 +303,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/powerful
 	cost = 4
-	required_total_points = 10
+	required_total_points = 10//Bubber edit, orginally 16
 	category = "Symptom (Strong)"
 
 /datum/disease_ability/symptom/powerful/heal
