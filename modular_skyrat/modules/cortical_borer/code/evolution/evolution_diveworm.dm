@@ -103,7 +103,7 @@
 		/datum/borer_evolution/sugar_immunity,
 		/datum/borer_evolution/synthetic_borer,
 		/datum/borer_evolution/synthetic_chems_negative,
-		/datum/borer_evolution/produce_offspring_general,//diveworms get the option just in case they need to egg a living host
+		/datum/borer_evolution/produce_offspring_general,//BUBBER EDIT-diveworms get the option just in case they need to egg a living host
 	)
 
 /datum/borer_evolution/diveworm/empowered_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)

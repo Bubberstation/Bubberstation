@@ -620,7 +620,7 @@
 	cortical_owner.log_message(logging_text, LOG_GAME)
 	cortical_owner.human_host.log_message(logging_text, LOG_GAME)
 	StartCooldown()
-
+//Bubber addition (GENERAL EGG PRODUCTION PATH)
 /datum/action/cooldown/borer/produce_offspring_general//Symbiote/Diveworm specialties for producing normal eggs with the Hivelord only eggs
 	name = "Produce Offspring"
 	cooldown_time = 2 MINUTES
@@ -713,7 +713,7 @@
 	cortical_owner.log_message(logging_text, LOG_GAME)
 	owner.balloon_alert(owner, "egg laid")
 	StartCooldown()
-
+//Proc end
 /datum/action/cooldown/borer/produce_offspring/proc/no_host_egg()
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
 	cortical_owner.health = max(cortical_owner.health, 1, cortical_owner.health -= OUT_OF_HOST_EGG_COST)

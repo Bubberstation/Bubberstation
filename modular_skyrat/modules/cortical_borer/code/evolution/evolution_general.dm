@@ -79,7 +79,7 @@
 	. = ..()
 	cortical_owner.potential_chemicals |= added_chemicals
 
-/datum/borer_evolution/produce_offspring_general
+/datum/borer_evolution/produce_offspring_general//Bubber Edit
 	name = "Produce Offspring"
 	desc = "Produce an egg, which your host will vomit up. This is expensive."
 	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
