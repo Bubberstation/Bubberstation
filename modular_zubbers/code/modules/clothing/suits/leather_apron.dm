@@ -9,7 +9,7 @@
  name = "Leather Apron"
  icon_state = "leatherapron"
  desc = "A somewhat sterile apron made from thick leather."
- icon = 'modular_zubbers/icons/obj/clothing/leather_apron.dmi'
+ icon = 'modular_zubbers/icons/obj/clothing/suit/leathericon.dmi'
  allowed = list(
   /obj/item/bonesetter,
   /obj/item/cautery,
