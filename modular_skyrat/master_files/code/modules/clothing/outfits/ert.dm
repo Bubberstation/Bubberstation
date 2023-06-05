@@ -12,7 +12,7 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	glasses = /obj/item/clothing/glasses/hud/toggle/thermal
-	l_pocket = /obj/item/flashlight/
+	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	belt = /obj/item/storage/belt/security/full
 	l_hand = /obj/item/gun/energy/pulse/carbine/loyalpin // if this is still bulky make it not bulky and storable on belt/back/bag/exosuit
