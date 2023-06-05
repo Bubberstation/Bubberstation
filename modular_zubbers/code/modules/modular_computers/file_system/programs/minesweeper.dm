@@ -27,7 +27,7 @@
 	)
 
 /datum/computer_file/program/minesweeper/ui_data(mob/user)
-	var/list/data = get_header_data()
+	var/list/data = list()
 
 	data["board_data"] = board.board_data
 	data["game_status"] = board.game_status
