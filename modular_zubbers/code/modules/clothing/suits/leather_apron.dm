@@ -8,7 +8,7 @@
 /obj/item/clothing/suit/outlast/leather //Sprite by pacertest#0001
  name = "Leather Apron"
  icon_state = "leatherapron"
- desc = "A somewhat sterile apron made from thick leather."
+ desc = "A somewhat sterile apron made from thick leather, perfect for sawing limbs off without getting your uniform bloody."
  icon = 'modular_zubbers/icons/obj/clothing/suit/leathericon.dmi'
  allowed = list(
   /obj/item/bonesetter,
