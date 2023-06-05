@@ -1,11 +1,11 @@
-/obj/item/clothing/suit/apron/outlast //Sprite by pacertest#0001
+/obj/item/clothing/suit/outlast //Sprite by pacertest#0001
  name = "Leather Apron"
  worn_icon = 'modular_zubbers/icons/mob/clothing/suits/leather_apron.dmi'
  inhand_icon_state = null
  body_parts_covered = CHEST|GROIN
  supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/suit/apron/outlast/leather //Sprite by pacertest#0001
+/obj/item/clothing/suit/outlast/leather //Sprite by pacertest#0001
  name = "Leather Apron"
  icon_state = "leatherapron"
  desc = "A somewhat sterile apron made from thick leather."
