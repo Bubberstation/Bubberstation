@@ -49,9 +49,7 @@
 "cZ" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/mapping_helpers/broken_floor,
-/obj/structure/closet/crate{
-	icon_state = "crateopen"
-	},
+/obj/structure/closet/crate/preopen,
 /obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plating/airless,
 /area/station/maintenance/department/crew_quarters/dorms)
@@ -187,6 +185,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/central/lesser)
+"id" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sink/directional/south,
+/obj/structure/mirror/directional/north,
+/obj/item/soap/nanotrasen,
+/turf/open/floor/iron/smooth,
+/area/station/maintenance/department/crew_quarters/dorms)
 "jG" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/mapping_helpers/broken_floor,
@@ -365,6 +370,11 @@
 /obj/structure/holosign/barrier/engineering,
 /turf/open/floor/iron/freezer,
 /area/template_noop)
+"qW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor,
+/area/station/maintenance/department/crew_quarters/dorms)
 "ro" = (
 /obj/item/stack/ore/iron,
 /turf/open/misc/asteroid/airless,
@@ -598,6 +608,11 @@
 	name = "Maintenance Hatch"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/turf/open/floor/iron/smooth,
+/area/station/maintenance/department/crew_quarters/dorms)
+"Dz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/engineering/canister,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/crew_quarters/dorms)
 "DP" = (
@@ -2061,10 +2076,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+NT
+DP
+NT
 "}
 (30,1,1) = {"
 AN
@@ -2097,10 +2112,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+NT
+id
+NT
 "}
 (31,1,1) = {"
 AN
@@ -2133,10 +2148,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+NT
+NT
+NT
 "}
 (32,1,1) = {"
 AN
@@ -2169,10 +2184,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+qW
+NT
+gs
 "}
 (33,1,1) = {"
 AN
@@ -2205,10 +2220,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+DP
+NT
+gs
 "}
 (34,1,1) = {"
 AN
@@ -2241,10 +2256,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+Go
+NT
+gs
 "}
 (35,1,1) = {"
 AN
@@ -2277,10 +2292,10 @@ AN
 AN
 AN
 AN
-AN
-AN
-AN
-AN
+MR
+Dz
+NT
+gs
 "}
 (36,1,1) = {"
 AN
