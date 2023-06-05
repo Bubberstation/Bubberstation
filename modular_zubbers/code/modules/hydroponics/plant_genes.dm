@@ -1,5 +1,5 @@
 /datum/plant_gene
-	var/mutability_flags =  PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
+	mutability_flags = PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
 /datum/plant_gene/reagent
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE

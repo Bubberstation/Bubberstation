@@ -103,6 +103,7 @@
 	else
 		..()
 
+//? Eventually refactor this into TGUI?
 /obj/machinery/plantgenes/ui_interact(mob/user)
 	. = ..()
 	if(!user)
