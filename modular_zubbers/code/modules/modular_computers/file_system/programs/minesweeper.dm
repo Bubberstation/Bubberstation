@@ -395,3 +395,13 @@
 
 /datum/minesweeper/proc/KABLOOEY()
 	explosion(get_turf(host),0,1,rand(1,3),rand(1,5))
+
+#undef MINESWEEPER_BEGINNER
+#undef MINESWEEPER_INTERMEDIATE
+#undef MINESWEEPER_EXPERT
+#undef MINESWEEPER_CUSTOM
+
+#undef MINESWEEPER_CONTINUE
+#undef MINESWEEPER_DEAD
+#undef MINESWEEPER_VICTORY
+#undef MINESWEEPER_IDLE
