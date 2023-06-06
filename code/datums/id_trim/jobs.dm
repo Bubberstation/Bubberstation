@@ -670,6 +670,7 @@
 	extra_access = list(
 		ACCESS_PLUMBING,
 		ACCESS_VIROLOGY,
+		ACCESS_MORGUE_SECURE,
 		)
 	minimal_access = list(
 		ACCESS_MECH_MEDICAL,
