@@ -1,12 +1,3 @@
-#define MINESWEEPER_BEGINNER 1
-#define MINESWEEPER_INTERMEDIATE 2
-#define MINESWEEPER_EXPERT 3
-#define MINESWEEPER_CUSTOM 4
-
-#define MINESWEEPER_CONTINUE 0
-#define MINESWEEPER_DEAD 1
-#define MINESWEEPER_VICTORY 2
-#define MINESWEEPER_IDLE 3
 /obj/machinery/computer/arcade/minesweeper
 	name = "Minesweeper"
 	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."

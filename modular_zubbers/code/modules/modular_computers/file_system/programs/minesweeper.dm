@@ -1,3 +1,13 @@
+#define MINESWEEPER_BEGINNER 1
+#define MINESWEEPER_INTERMEDIATE 2
+#define MINESWEEPER_EXPERT 3
+#define MINESWEEPER_CUSTOM 4
+
+#define MINESWEEPER_CONTINUE 0
+#define MINESWEEPER_DEAD 1
+#define MINESWEEPER_VICTORY 2
+#define MINESWEEPER_IDLE 3
+
 /datum/computer_file/program/minesweeper
 	filename = "minesweeper"
 	filedesc = "Nanotrasen Micro Arcade: Minesweeper"
@@ -255,27 +265,12 @@
 	if(result == MINESWEEPER_VICTORY)
 		play_snd('modular_zubbers/sound/arcade/minesweeper_win.ogg')
 		host.say("You cleared the board of all mines! Congratulations!")
-		if(emaggable && host.obj_flags & EMAGGED && value >= 1)
-			var/itemname
-			switch(rand(1,3))
-				if(1)
-					itemname = "a syndicate bomb beacon"
-					new /obj/item/sbeacondrop/bomb(host.loc)
-				if(2)
-					itemname = "a rocket launcher"
-				if(3)
-					itemname = "two bags of c4"
-					new /obj/item/storage/backpack/duffelbag/syndie/c4(host.loc)
-					new /obj/item/storage/backpack/duffelbag/syndie/x4(host.loc)
-			message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
-			vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
-		else
-			ticket_count += value
+		ticket_count += value
 
 	if(result == MINESWEEPER_DEAD && emaggable && (host.obj_flags & EMAGGED))
 		// One crossed wire, one wayward pinch of potassium chlorate, ONE ERRANT TWITCH
 		// AND
-		KABLOOEY()
+		//KABLOOEY() Not... yet
 
 	if(result)
 		time_frozen = REALTIMEOFDAY - starting_time
@@ -409,4 +404,5 @@
 	return FALSE
 
 /datum/minesweeper/proc/KABLOOEY()
-	explosion(get_turf(host),1,3,rand(1,5),rand(1,10))
+	explosion(get_turf(host),0,1,rand(1,3),rand(1,5))
+#undef
