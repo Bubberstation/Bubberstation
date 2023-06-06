@@ -257,7 +257,7 @@
 		host.say("You cleared the board of all mines! Congratulations!")
 		ticket_count += value
 
-	if(result == MINESWEEPER_DEAD && emaggable && (host.obj_flags & EMAGGED))
+	//if(result == MINESWEEPER_DEAD && emaggable && (host.obj_flags & EMAGGED))
 		// One crossed wire, one wayward pinch of potassium chlorate, ONE ERRANT TWITCH
 		// AND
 		//KABLOOEY() Not... yet
