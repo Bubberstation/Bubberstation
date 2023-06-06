@@ -1,13 +1,3 @@
-#define MINESWEEPER_BEGINNER 1
-#define MINESWEEPER_INTERMEDIATE 2
-#define MINESWEEPER_EXPERT 3
-#define MINESWEEPER_CUSTOM 4
-
-#define MINESWEEPER_CONTINUE 0
-#define MINESWEEPER_DEAD 1
-#define MINESWEEPER_VICTORY 2
-#define MINESWEEPER_IDLE 3
-
 /datum/computer_file/program/minesweeper
 	filename = "minesweeper"
 	filedesc = "Nanotrasen Micro Arcade: Minesweeper"
@@ -405,4 +395,3 @@
 
 /datum/minesweeper/proc/KABLOOEY()
 	explosion(get_turf(host),0,1,rand(1,3),rand(1,5))
-#undef
