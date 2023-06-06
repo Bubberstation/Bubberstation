@@ -345,7 +345,7 @@
 			if(find_in_mines(list(scanx+x-1,scany+y-1)))
 				mine_count++
 
-	if(mine_count == 0) // There are no mines around me! Select every square adjacent!
+	if(mine_count == FALSE) // There are no mines around me! Select every square adjacent!
 		board_data[x][y] = "minesweeper_empty.png"
 		for(var/scanx=-1, scanx<2, scanx++) // -1, 0, 1
 			for(var/scany=-1, scany<2, scany++)
