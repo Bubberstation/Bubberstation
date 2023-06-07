@@ -1,4 +1,4 @@
-#define SENSORS_UPDATE_PERIOD 10 SECONDS //Why is this not a global define, why do I have to define it again
+#define SENSORS_UPDATE_PERIOD 15 SECONDS //Why is this not a global define, why do I have to define it again
 
 
 /obj/machinery/computer/crew
