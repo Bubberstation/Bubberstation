@@ -44,7 +44,7 @@
 	name = "Nanotrasen Consultant"
 	jobtype = /datum/job/nanotrasen_consultant
 
-	belt = /obj/item/storage/belt/security/peacekeeper
+	belt = /obj/item/modular_computer/pda/nanotrasen_consultant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/nanotrasen_consultant
 	gloves = /obj/item/clothing/gloves/combat
@@ -55,7 +55,6 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
 		/obj/item/storage/box/gunset/nanotrasen_consultant = 1,
-		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
 		)
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)
@@ -69,7 +68,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/centcom)
 
-	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
+	id = /obj/item/card/id/advanced/centcom
 	id_trim = /datum/id_trim/job/nanotrasen_consultant
 
 /obj/item/radio/headset/heads/nanotrasen_consultant
@@ -125,13 +124,11 @@
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
 	new /obj/item/ammo_box/magazine/m45a5(src)
-	new /obj/item/ammo_box/magazine/m45a5(src)
-	new /obj/item/ammo_box/magazine/m45a5(src)
-	new /obj/item/ammo_box/magazine/m45a5(src)
+
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	name = "\proper nanotrasen consultant's locker"
-	req_access = list(ACCESS_NTREP) //BUBBER EDIT
+	req_access = list(ACCESS_CAPTAIN, ACCESS_CENT_GENERAL)
 	icon_state = "cc"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	door_anim_time = 0 //CONVERT THESE DOORS YOU LAZY ASSHATS
@@ -148,6 +145,7 @@
 	new /obj/item/radio/headset/heads/nanotrasen_consultant(src)
 	new /obj/item/clothing/glasses/sunglasses/gar/giga(src)
 	new /obj/item/clothing/gloves/combat(src)
+	new /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant(src)
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/centcom/nt_consultant(src)

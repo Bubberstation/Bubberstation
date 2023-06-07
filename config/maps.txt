@@ -13,15 +13,20 @@ Format:
 	votable (is this map votable)
 endmap
 
+map birdshot
+	#default
+	maxplayers 66
+	votable
+endmap
+
 map metastation
+	minplayers 25
+	#voteweight 0.5
 	votable
 endmap
 
 map deltastation
 	votable
-endmap
-
-map kilostation
 endmap
 
 map icebox
@@ -31,6 +36,12 @@ endmap
 map tramstation
 	minplayers 35
 endmap
+
+map northstar
+	minplayers 50
+	votable
+endmap
+
 
 map runtimestation
 endmap
