@@ -51,36 +51,13 @@
 	for(var/checked_component in required_components)
 		var/set_direction = text2dir(checked_component)
 		var/turf/checked_turf = get_step(checked_rune, set_direction)
-		var/atom/movable/atom_check
-		if(ispath(required_components[checked_component], /mob/living))
-			var/fallback
-			for(var/mob/living/checked_mob in checked_turf)
-				if(checked_mob.stat == CONSCIOUS)
-					if(isnull(fallback))
-						fallback = checked_mob
-					continue
-
-				atom_check = checked_mob
-
-			atom_check ||= fallback
-
-		else
-			atom_check = locate(required_components[checked_component]) in checked_turf
-
-
+		var/atom_check = locate(required_components[checked_component]) in checked_turf.contents
 		if(!atom_check)
 			ritual_fail(checked_rune)
 			return FALSE
 
 		if(is_type_in_list(atom_check, consumed_components))
-			if(isliving(atom_check))
-				var/mob/living/sacrifice = atom_check
-				sacrifice.dust(TRUE, TRUE)
-			else if(isstack(atom_check))
-				var/obj/item/stack/stack = atom_check
-				stack.use(1)
-			else
-				qdel(atom_check)
+			qdel(atom_check)
 			checked_rune.balloon_alert_to_viewers("[checked_component] component has been consumed...")
 
 		else

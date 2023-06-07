@@ -5,7 +5,6 @@
 	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi'
 	icon_state = "tracker"
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
-	company_flag = COMPANY_ROMULUS
 	projectile_damage_multiplier = 1.6 //48 Damages, still a lot but not too much
 //With the damage multipler, it would crit in 4, kill in 6. Does not take into account armours.
 
