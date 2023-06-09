@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(round_survey)
 	to_chat(src, "Thanks for your feedback!")
 
 /mob/verb/need_less_antags()
-	set name = "Needs Less Chaos"
+	set name = "Needs Less Antags"
 	set category = "Survey"
 	set desc = "Indicate Current Round Mood"
 	GLOB.needs_less_antags |= usr
