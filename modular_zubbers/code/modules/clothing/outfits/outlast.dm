@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/leatherapron //Sprite by pacertest#0001
+/obj/item/clothing/suit/leatherapron //Sprite by pacertest on discord
 	name = "Leather Apron"
 	desc = "A somewhat sterile apron made from thick leather, perfect for sawing limbs off without getting your uniform bloody."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
@@ -21,13 +21,13 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 	)
-/obj/item/clothing/glasses/surgerygoggles //Sprite by pacertest#0001
+/obj/item/clothing/glasses/surgerygoggles //Sprite by pacertest on discord
 	name = "Surgery Goggles"
 	desc = "A pair of goggles worn to protect the eyes from viscera flying off a patient, a wonderful development in medical technology."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "surgerygoggles"
-/obj/item/clothing/gloves/longrubbergloves //Sprite by pacertest#0001
+/obj/item/clothing/gloves/longrubbergloves //Sprite by pacertest on discord
 	name = "Long Rubber Gloves"
 	desc = "Pricy somewhat sterile gloves that are thicker than latex, these ones extend almost past the elbow. Excellent grip ensures very fast carrying of patients along with the faster use time of various chemical related items."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
