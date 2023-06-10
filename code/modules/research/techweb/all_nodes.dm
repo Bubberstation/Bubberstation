@@ -473,6 +473,7 @@
 		"limbdesign_felinid",
 		"limbdesign_lizard",
 		"limbdesign_plasmaman",
+		"limbdesign_hemophage",//bubber addition
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 6500)
 	discount_experiments = list(

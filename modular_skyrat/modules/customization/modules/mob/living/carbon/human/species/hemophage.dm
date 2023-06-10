@@ -68,6 +68,7 @@
 		FACEHAIR,
 		LIPS,
 		DRINKSBLOOD,
+		MUTCOLORS,//Bubber addition, Mutant colors
 	)
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -83,7 +84,7 @@
 		"legs" = "Normal Legs"
 	)
 	exotic_bloodtype = "U"
-	use_skintones = TRUE
+	use_skintones = 0//Bubber edit, originally TRUE, enables mutant colors.
 	mutantheart = /obj/item/organ/internal/heart/hemophage
 	mutantliver = /obj/item/organ/internal/liver/hemophage
 	mutantstomach = /obj/item/organ/internal/stomach/hemophage
