@@ -667,10 +667,13 @@
 	department_color = COLOR_MEDICAL_BLUE
 	subdepartment_color = COLOR_MEDICAL_BLUE
 	sechud_icon_state = SECHUD_MEDICAL_DOCTOR
+	//BUBBER EDIT START
 	extra_access = list(
 		ACCESS_PLUMBING,
 		ACCESS_VIROLOGY,
+		ACCESS_MORGUE_SECURE,
 		)
+	//BUBBER EDIT END
 	minimal_access = list(
 		ACCESS_MECH_MEDICAL,
 		ACCESS_MEDICAL,
