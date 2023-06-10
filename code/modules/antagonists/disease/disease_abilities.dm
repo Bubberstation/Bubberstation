@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 new /datum/disease_ability/action/cough,
 new /datum/disease_ability/action/sneeze,
 new /datum/disease_ability/action/infect,
+new /datum/disease_ability/symptom/mild/hidden,//BUBBER EDIT-New SYMPTOM
 new /datum/disease_ability/symptom/mild/cough,
 new /datum/disease_ability/symptom/mild/sneeze,
 new /datum/disease_ability/symptom/medium/shedding,
@@ -242,8 +243,9 @@ new /datum/disease_ability/symptom/powerful/youth
 /datum/disease_ability/action/infect
 	name = "Secrete Infection"
 	actions = list(/datum/action/cooldown/disease_infect)
-	cost = 2
-	required_total_points = 3
+	cost = 0//Bubber edit, originally 2
+	required_total_points = 0//Bubber edit, orginally 3
+	start_with = TRUE//Bubber edit, orginally FALSE
 	short_desc = "Cause all objects your host is touching to become infectious for a limited time, spreading your infection to anyone who touches them."
 	long_desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds. This includes the floor, if they are not wearing shoes, and any items they are holding, if they are not wearing gloves.<br>Cooldown: 40 seconds"
 
@@ -311,6 +313,15 @@ new /datum/disease_ability/symptom/powerful/youth
 	category = "Symptom (Strong+)"
 
 /******MILD******/
+
+/datum/disease_ability/symptom/mild/hidden//BUBBER CHANGE
+	name = "Adaption"//Symptom to increase Sentient Virus base Stealth+Resistance
+	symptoms = list(/datum/symptom/hidden)
+	cost = 0//Cost is 0 because the virus will already have this by default.
+	required_total_points = 0//Available at start if refunded.
+	start_with = TRUE//Starts the virus with the symptom. For balancing reasons.
+	short_desc = "Hightens your stealth and resistance."
+	long_desc = "An adaptation that allows for greater stealth and resistance."
 
 /datum/disease_ability/symptom/mild/cough
 	name = "Involuntary Coughing"
