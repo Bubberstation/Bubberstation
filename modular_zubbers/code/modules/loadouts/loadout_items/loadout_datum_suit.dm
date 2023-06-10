@@ -23,3 +23,4 @@
 /datum/loadout_item/suit/leather_apron
 	name = "Leather Apron"
 	item_path = /obj/item/clothing/suit/leatherapron
+	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
