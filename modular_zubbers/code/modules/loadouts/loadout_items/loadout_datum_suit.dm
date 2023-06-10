@@ -19,3 +19,7 @@
 	name = "Silk Shawl"
 	item_path = /obj/item/clothing/suit/cloak/shawl
 	ckeywhitelist = list("thedragmeme")
+
+/datum/loadout_item/suit/leather_apron
+	name = "Leather Apron"
+	item_path = /obj/item/clothing/suit/leatherapron
