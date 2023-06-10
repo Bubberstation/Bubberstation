@@ -35,5 +35,5 @@
     desc = "Pricy somewhat sterile gloves that are thicker than latex, these ones extend almost past the elbow. Excellent grip ensures very fast carrying of patients along with the faster use time of various chemical related items."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
-    icon_state = "longrubber"'
+    icon_state = "longrubber"
     clothing_traits = list(TRAIT_QUICKER_CARRY, TRAIT_FASTMED)
