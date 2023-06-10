@@ -22,14 +22,12 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
 	)
-
 /obj/item/clothing/glasses/surgerygoggles //Sprite by pacertest#0001
 	name = "Surgery Goggles"
 	desc = "A pair of goggles worn to protect the eyes from viscera flying off a patient, a wonderful development in medical technology."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "surgerygoggles"
-
 /obj/item/clothing/gloves/longrubbergloves //Sprite by pacertest#0001
     name = "Long Rubber Gloves"
     desc = "Pricy somewhat sterile gloves that are thicker than latex, these ones extend almost past the elbow. Excellent grip ensures very fast carrying of patients along with the faster use time of various chemical related items."
