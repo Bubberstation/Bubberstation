@@ -1117,12 +1117,14 @@
 	. = TRUE
 	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || staminaloss > STAMINA_THRESHOLD_HARD_RESIST) //SKYRAT EDIT CHANGE: if(pulledby.grab_state || resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS))
 		var/altered_grab_state = pulledby.grab_state
-		if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however - SKYRAT EDIT CHANGE: if((resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS)) && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
+		if(resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //BUBBER EDIT CHANGE: if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
 			altered_grab_state++
 		if(staminaloss > STAMINA_THRESHOLD_HARD_RESIST)
 			altered_grab_state++
+		/*	//BUBBER EDIT REMOVAL
 		if(body_position == LYING_DOWN)
 			altered_grab_state++
+		*/ //BUBBER EDIT REMOVAL END
 		var/mob/living/M = pulledby
 		if(M.staminaloss > STAMINA_THRESHOLD_HARD_RESIST)
 			altered_grab_state-- //SKYRAT EDIT END
@@ -1142,7 +1144,7 @@
 			pulledby.stop_pulling()
 			return FALSE
 		else
-			adjustStaminaLoss(rand(10,15))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty
+			adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty//BUBBER EDIT CHANGE: adjustStaminaLoss(rand(10,15))
 			visible_message("<span class='danger'>[src] struggles as they fail to break free of [pulledby]'s grip!</span>", \
 							"<span class='warning'>You struggle as you fail to break free of [pulledby]'s grip!</span>", null, null, pulledby)
 			to_chat(pulledby, "<span class='danger'>[src] struggles as they fail to break free of your grip!</span>")
@@ -1435,40 +1437,40 @@
 
 		if(WABBAJACK_ANIMAL)
 			var/picked_animal = pick(
-				/mob/living/basic/carp,
-				/mob/living/simple_animal/hostile/bear,
-				/mob/living/simple_animal/hostile/mushroom,
-				/mob/living/basic/statue,
 				/mob/living/basic/bat,
-				/mob/living/simple_animal/hostile/retaliate/goat,
-				/mob/living/simple_animal/hostile/killertomato,
-				/mob/living/basic/giant_spider,
-				/mob/living/basic/giant_spider/hunter,
-				/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
+				/mob/living/basic/butterfly,
+				/mob/living/basic/carp,
 				/mob/living/basic/carp/magic,
 				/mob/living/basic/carp/magic/chaos,
-				/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-				/mob/living/simple_animal/hostile/asteroid/goliath/beast,
-				/mob/living/simple_animal/hostile/headcrab,
-				/mob/living/simple_animal/hostile/morph,
+				/mob/living/basic/chick,
+				/mob/living/basic/chicken,
+				/mob/living/basic/cow,
+				/mob/living/basic/giant_spider,
+				/mob/living/basic/giant_spider/hunter,
+				/mob/living/basic/headslug,
+				/mob/living/basic/killer_tomato,
+				/mob/living/basic/lizard,
+				/mob/living/basic/mouse,
+				/mob/living/basic/pet/dog/breaddog,
+				/mob/living/basic/pet/dog/corgi,
+				/mob/living/basic/pet/dog/pug,
+				/mob/living/basic/statue,
 				/mob/living/basic/stickman,
 				/mob/living/basic/stickman/dog,
-				/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
-				/mob/living/simple_animal/hostile/gorilla,
-				/mob/living/simple_animal/parrot,
-				/mob/living/basic/pet/dog/corgi,
 				/mob/living/simple_animal/crab,
-				/mob/living/basic/pet/dog/pug,
+				/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
+				/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+				/mob/living/simple_animal/hostile/bear,
+				/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
+				/mob/living/simple_animal/hostile/gorilla,
+				/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
+				/mob/living/simple_animal/hostile/morph,
+				/mob/living/simple_animal/hostile/mushroom,
+				/mob/living/simple_animal/hostile/retaliate/goat,
+				/mob/living/simple_animal/parrot,
 				/mob/living/simple_animal/pet/cat,
-				/mob/living/basic/mouse,
-				/mob/living/simple_animal/chicken,
-				/mob/living/basic/cow,
-				/mob/living/simple_animal/hostile/lizard,
-				/mob/living/simple_animal/pet/fox,
-				/mob/living/simple_animal/butterfly,
 				/mob/living/simple_animal/pet/cat/cak,
-				/mob/living/basic/pet/dog/breaddog,
-				/mob/living/simple_animal/chick,
+				/mob/living/simple_animal/pet/fox,
 			)
 			new_mob = new picked_animal(loc)
 
