@@ -11,9 +11,12 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 	list(
 		/obj/item/ammo_casing/spent = 1,
 		/obj/item/ammo_casing/shotgun/buckshot/spent = 1,
+	) = 100,
+	list(
+		/obj/item/bong = 10,
+		/obj/item/bong/lungbuster = 5,
+		/obj/item/extinguisher/crafted = 1,
 	) = 50,
-	/obj/item/bong = 10,
-	/obj/item/bong/lungbuster = 5,
 	list(
 		/obj/item/book/bible = 100,
 		/obj/item/book/bible/booze = 50,
@@ -50,7 +53,21 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/electronics/apc = 1,
 		/obj/item/electronics/firealarm = 1,
 		/obj/item/electronics/firelock = 1,
-	) = 10,
+	) = 50,
+	list(
+		/obj/item/food/badrecipe = 5,
+		/obj/item/food/badrecipe/moldy = 10,
+		/obj/item/food/badrecipe/moldy/bacteria = 25,
+		/obj/item/food/egg/rotten = 10,
+		/obj/item/food/boiledegg/rotten = 5,
+		/obj/item/food/breadslice/moldy = 10,
+		/obj/item/food/breadslice/moldy/bacteria = 25,
+		/obj/item/food/deadmouse = 10,
+		/obj/item/food/deadmouse/moldy = 25,
+	) = 100,
+	/obj/item/food/drug/moon_rock = 1,
+	/obj/item/food/drug/saturnx = 1,
+
 
 ))
 
@@ -65,7 +82,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	) = 75,
 	list(
 		/obj/item/analyzer = 5,
-		/obj/item/crowbar = 5,
+		/obj/item/crowbar = 20,
 		/obj/item/crowbar/red = 5,
 		/obj/item/crowbar/large = 3,
 		/obj/item/crowbar/large/emergency = 3,
@@ -89,7 +106,10 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/bait_can/worm = 10,
 		/obj/item/bait_can/worm/premium = 1,
 		/obj/item/cutting_board = 5,
-
+		/obj/item/fish_feed = 20,
+		/obj/item/fishing_hook = 10,
+		/obj/item/fishing_line = 5,
+		/obj/item/fishing_rod = 5,
 	) = 25,
 	list(
 		/obj/item/bedsheet/dorms = 10,
@@ -126,8 +146,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/disk/nuclear/fake = 1,
 		/obj/item/disk/nuclear/fake/obvious = 5,
 		/obj/item/dualsaber/toy = 5,
-
-
+		/obj/item/extendohand = 25,
+		/obj/item/fakeartefact = 50,
 
 	) = 100,
 	/obj/item/blank_coffee_cartridge = 10,
@@ -223,9 +243,202 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	) = 50,
 	/obj/item/dyespray = 10,
 	/obj/item/emptysandbag = 5,
+	/obj/item/experi_scanner = 5,
+	list(
+		/obj/item/extinguisher = 100,
+		/obj/item/extinguisher/empty = 50,
+		/obj/item/extinguisher/advanced = 5,
+		/obj/item/extinguisher/advanced/empty = 10,
+		/obj/item/extinguisher/mini = 25,
+		/obj/item/extinguisher/mini/empty = 10,
+	)
+	/obj/item/extinguisher_refill = 20,
+	list(
+		/obj/item/flashlight = 25,
+		/obj/item/flashlight/flare = 50
+		/obj/item/flashlight/glowstick = 10,
+		/obj/item/flashlight/glowstick/blue = 10,
+		/obj/item/flashlight/glowstick/cyan = 10,
+		/obj/item/flashlight/glowstick/orange = 10,
+		/obj/item/flashlight/glowstick/pink = 10,
+		/obj/item/flashlight/glowstick/red = 10,
+		/obj/item/flashlight/glowstick/yellow = 10,
+		/obj/item/flashlight/lamp = 10,
+		/obj/item/flashlight/lamp/bananalamp = 5,
+		/obj/item/flashlight/lamp/green = 5,
+		/obj/item/flashlight/lantern = 5,
+		/obj/item/flashlight/lantern/jade = 1,
+		/obj/item/flashlight/pen = 5,
+		/obj/item/flashlight/pen/paramedic = 5,
+		/obj/item/flashlight/seclite = 10,
+	) = 100,
+	list(
+		/obj/item/food/ant_candy = 5,
+		/obj/item/food/bowled/amanitajelly = 1,
+		/obj/item/food/bowled/spacylibertyduff = 1,
+		/obj/item/food/bowled/wish = 5,
+		/obj/item/food/brain_pate = 5,
+		/obj/item/food/branrequests = 10,
+		/obj/item/food/breadslice/spidermeat = 5,
+		/obj/item/food/breadslice/xenomeat = 5,
+		/obj/item/food/bubblegum/wake_up = 1,
+		/obj/item/food/bubblegum/bubblegum = 1,
+		/obj/item/food/bubblegum/wake_up = 1,
+		/obj/item/food/burger/appendix = 1,
+		/obj/item/food/burger/brain = 1,
+		/obj/item/food/burger/catburger = 1,
+		/obj/item/food/burger/human = 1,
+		/obj/item/food/burger/rat = 5,
+		/obj/item/food/burger/soylent = 1,
+		/obj/item/food/burger/xeno = 1,
+		/obj/item/food/butter/on_a_stick = 10,
+		/obj/item/food/butterdog = 5,
+		/obj/item/food/cakeslice/mothmallow = 1,
+		/obj/item/food/candiedapple = 1,
+		/obj/item/food/candy = 5,
+		/obj/item/food/candy/bronx = 20,
+		/obj/item/food/candy_corn = 1,
+		/obj/item/food/candy_corn/prison = 20,
+		/obj/item/food/candyheart = 1,
+		/obj/item/food/canned/beans = 200,
+		/obj/item/food/canned/desert_snails = 1,
+		/obj/item/food/canned/envirochow = 25,
+		/obj/item/food/canned/jellyfish = 1,
+		/obj/item/food/canned/larvae = 1,
+		/obj/item/food/canned/peaches = 25,
+		/obj/item/food/canned/peaches/maint = 200,
+		/obj/item/food/canned/pine_nuts = 1,
+		/obj/item/food/canned/tomatoes = 25,
+		/obj/item/food/canned/tuna = 50,
+		/obj/item/food/cheesiehonkers = 10,
+		/obj/item/food/chips = 10,
+		/obj/item/food/chips/shrimp = 5,
+		/obj/item/food/chococoin = 5,
+		/obj/item/food/chocolatebar = 10,
+		/obj/item/food/chocolateegg = 5,
+		/obj/item/food/cnds = 25,
+		/obj/item/food/cnds/banana_honk = 10,
+		/obj/item/food/cnds/pretzel = 25,
+		/obj/item/food/cnds/caramel = 25,
+		/obj/item/food/cnds/peanut_butter = 25
+		/obj/item/food/cnds/random = 100,
+		/obj/item/food/cornchips/random = 100,
+		/obj/item/food/dankpocket = 5,
+		/obj/item/food/donkpocket = 25,
+		/obj/item/food/donkpocket/berry = 5,
+		/obj/item/food/donkpocket/honk = 10,
+		/obj/item/food/donkpocket/pizza = 10,
+		/obj/item/food/donkpocket/spicy = 5,
+		/obj/item/food/donkpocket/teriyaki = 5
+		/obj/item/food/donut/chaos = 25,
+		/obj/item/food/egg = 25,
+		/obj/item/food/egg/gland = 75,
+		/obj/item/food/energybar = 75,
+		/obj/item/food/fried_chicken = 50,
+		/obj/item/food/gumball = 75,
+		/obj/item/food/hotdog = 100,
+		/obj/item/food/kebab/human = 75,
+		/obj/item/food/kebab/monkey = 75,
+		/obj/item/food/kebab/rat = 100,
+		/obj/item/food/kebab/rat/double = 100,
+		/obj/item/food/kebab/tail = 50,
+		/obj/item/food/lasagna = 25,
+		/obj/item/food/lollipop = 75,
+		/obj/item/food/meatclown = 100,
+		/obj/item/food/meatloaf_slice = 25,
+		/obj/item/food/mint = 50,
+		/obj/item/food/no_raisin = 75,
+		/obj/item/food/nugget = 100,
+		/obj/item/food/peanuts = 25,
+		/obj/item/food/peanuts/ban_appeal = 75,
+		/obj/item/food/peanuts/barbecue = 25,
+		/obj/item/food/peanuts/honey_roasted = 25,
+		/obj/item/food/peanuts/random = 100,
+		/obj/item/food/peanuts/salted = 50,
+		/obj/item/food/peanuts/wasabi = 75,
+		/obj/item/food/pickle = 75,
+		/obj/item/food/pie/cream = 100,
+		/obj/item/food/pigblanket = 50
+
+	) = 100,
+	list(
+		/obj/item/food/meat/slab/bear = 10,
+		/obj/item/food/meat/slab/bugmeat = 50,
+		/obj/item/food/meat/slab/chicken = 10,
+		/obj/item/food/meat/slab/corgi = 25,
+		/obj/item/food/meat/slab/gorilla = 5,
+		/obj/item/food/meat/slab/human = 25,
+		/obj/item/food/meat/slab/human/mutant/ethereal = 5,
+		/obj/item/food/meat/slab/human/mutant/fly = 10,
+		/obj/item/food/meat/slab/human/mutant/golem = 5,
+		/obj/item/food/meat/slab/human/mutant/lizard = 5,
+		/obj/item/food/meat/slab/human/mutant/moth = 5,
+		/obj/item/food/meat/slab/human/mutant/plant = 10,
+		/obj/item/food/meat/slab/human/mutant/shadow = 5,
+		/obj/item/food/meat/slab/human/mutant/skeleton = 10,
+		/obj/item/food/meat/slab/human/mutant/slime = 5,
+		/obj/item/food/meat/slab/human/mutant/zombie = 100,
+		/obj/item/food/meat/slab/meatproduct = 10,
+		/obj/item/food/meat/slab/monkey = 50,
+		/obj/item/food/meat/slab/mothroach = 25,
+		/obj/item/food/meat/slab/mouse = 25,
+		/obj/item/food/meat/slab/penguin = 5,
+		/obj/item/food/meat/slab/pig = 25,
+		/obj/item/food/meat/slab/pug = 5,
+		/obj/item/food/meat/slab/rawcrab = 5,
+		/obj/item/food/meat/slab/spider = 75,
+		/obj/item/food/meat/slab/synthmeat = 50,
+		/obj/item/food/meat/slab/xeno = 25
+		/obj/item/food/meatball = 50,
+		/obj/item/food/meatball/bear = 5,
+		/obj/item/food/meatball/chicken = 5,
+		/obj/item/food/meatball/corgi = 5,
+		/obj/item/food/meatball/human = 50,
+		/obj/item/food/meatball/xeno = 25,
+		/obj/item/food/monkeycube = 100,
+		/obj/item/food/monkeycube/bee = 25,
+		/obj/item/food/monkeycube/chicken = 25,
+
+	) = 100,
+	list(
+		/obj/item/food/grown/aloe = 25,
+		/obj/item/food/grown/ambrosia/deus = 1,
+		/obj/item/food/grown/ambrosia/vulgaris = 5,
+		/obj/item/food/grown/banana = 75,
+		/obj/item/food/grown/berries/poison = 50,
+		/obj/item/food/grown/berries = 75,
+		/obj/item/food/grown/berries/glow = 25,
+		/obj/item/food/grown/bungopit = 200,
+		/obj/item/food/grown/cannabis = 25,
+		/obj/item/food/grown/citrus/orange = 50,
+		/obj/item/food/grown/citrus/lemon = 25,
+		/obj/item/food/grown/ghost_chili = 10,
+		/obj/item/food/grown/herbs = 25,
+		/obj/item/food/grown/icepepper = 10,
+		/obj/item/food/grown/jumpingbeans = 25,
+		/obj/item/food/grown/laugh = 5,
+		/obj/item/food/grown/mushroom/amanita = 5,
+		/obj/item/food/grown/mushroom/glowshroom = 10,
+		/obj/item/food/grown/mushroom/glowshroom/glowcap = 5,
+		/obj/item/food/grown/mushroom/glowshroom/shadowshroom = 5,
+		/obj/item/food/grown/mushroom/libertycap = 10,
+		/obj/item/food/grown/mushroom/odious_puffball = 200,
+		/obj/item/food/grown/mushroom/reishi = 25,
+		/obj/item/food/grown/onion = 25,
+		/obj/item/food/grown/poppy = 25,
+		/obj/item/food/grown/poppy/opiumpoppy = 25,
+		/obj/item/food/grown/pumpkin = 25,
+		/obj/item/food/grown/rainbow_flower = 25,
+		/obj/item/food/grown/random = 100
+		/obj/item/food/grown/rose = 25,
+		/obj/item/food/grown/shell/eggy = 25,
+		/obj/item/food/grown/tea/catnip = 25,
+		/obj/item/food/grown/tomato = 75,
 
 
 
+
+	) = 100,
 
 
 
@@ -359,7 +572,12 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/mask/gas/welding = 1
 	) = 25,
 	/obj/item/clothing/shoes/galoshes = 5,
+	list(
 
+
+
+
+	)
 
 ))
 
@@ -488,7 +706,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/dnainjector/tourmut = 1,
 		/obj/item/dnainjector/twoleftfeet = 1,
 		/obj/item/dnainjector/wackymut = 10,
-	)
+	) = 10
 	/obj/item/dog_bone = 5,
 	/obj/item/door_seal = 5,
 	list(
@@ -507,14 +725,19 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/encryptionkey/translation/teshari = 1,
 		/obj/item/encryptionkey/translation/uncommon = 1,
 		/obj/item/encryptionkey/translation/vox = 1,
-
-
-
-
-	)
-
-
-
+		/obj/item/encryptionkey/translation/vulpkanin = 1,
+		/obj/item/encryptionkey/translation/yangyu = 1,
+	) = 5,
+	/obj/item/etherealballdeployer = 5,
+	list(
+		/obj/item/firing_pin/clown = 100,
+		/obj/item/firing_pin/clown/ultra = 50,
+		/obj/item/firing_pin/explorer = 25,
+		/obj/item/firing_pin/paywall/luxury = 50,
+		/obj/item/firing_pin/tag/blue = 5,
+		/obj/item/firing_pin/tag/red = 5,
+		/obj/item/firing_pin/test_range = 10
+	) = 5,
 
 
 
@@ -596,6 +819,16 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/device/traitor_announcer = 1,
 	/obj/item/dice/d20/fate/stealth/one_use = 1,
 	/obj/item/dnainjector/h2m = 1,
+	/obj/item/flashlight/flashdark = 1,
+	/obj/item/food/burger/ghost = 1,
+	/obj/item/food/burger/crazy = 1,
+	/obj/item/food/grown/banana/bunch = 1,
+	/obj/item/food/grown/banana/bombanana = 1,
+	/obj/item/food/grown/citrus/orange_3d = 1,
+	/obj/item/food/grown/firelemon = 1,
+	/obj/item/food/grown/kudzupod = 1,
+	/obj/item/food/monkeycube/gorilla = 5,
+	/obj/item/food/monkeycube/syndicate = 5,
 
 
 
