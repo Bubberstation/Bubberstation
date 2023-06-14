@@ -40,6 +40,13 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		//SKYRAT EDIT ADDITION END
 	)
 
+	//BUBBER EDIT ADDITION START - Species quirks
+	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
+	var/static/list/quirk_species_whitelist = list(
+		list("Hydrophilic", "[SPECIES_SLIMESTART]")
+	)
+	//BUBBER EDIT ADDITION END
+
 /datum/controller/subsystem/processing/quirks/Initialize()
 	get_quirks()
 	return SS_INIT_SUCCESS

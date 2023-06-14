@@ -20,6 +20,8 @@ GLOBAL_LIST(veteran_players)
 /proc/is_veteran_player(client/user)
 	if(isnull(user))
 		return FALSE
+	return TRUE //Bubberstation Edit, unlocks all Veteran features for everyone
+	/*
 	if(GLOB.veteran_players[user.ckey])
 		return TRUE
 	if(check_rights_for(user, R_ADMIN))
@@ -27,5 +29,5 @@ GLOBAL_LIST(veteran_players)
 	if(GLOB.deadmins[user.ckey])
 		return TRUE
 	return FALSE
-
+*/
 #undef VETERANPLAYERS

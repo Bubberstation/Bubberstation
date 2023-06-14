@@ -1,10 +1,10 @@
 /datum/round_event_control/carp_migration
 	name = "Carp Migration"
 	typepath = /datum/round_event/carp_migration
-	weight = 15
-	min_players = 12
-	earliest_start = 10 MINUTES
-	max_occurrences = 6
+	weight = 10
+	min_players = 30
+	earliest_start = 45 MINUTES
+	max_occurrences = 2 //BUBBER EDIT: FIXES THIS DAMN CARP EVENT.
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Summons a school of space carp."
 	min_wizard_trigger_potency = 0

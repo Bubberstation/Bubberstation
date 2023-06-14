@@ -55,3 +55,27 @@
 	value = -6
 	mob_trait = TRAIT_NOGUNS
 	icon = FA_ICON_GUN
+
+/datum/quirk/sensitivesnout
+	name = "Sensitive Snout"
+	desc = "Your snout has always been sensitive, and it really hurts when someone pokes it!"
+	gain_text = span_notice("Your snout is awfully sensitive.")
+	lose_text = span_notice("Your snout feels numb.")
+	medical_record_text = "Patient's snout seems to have a cluster of nerves in the tip, would advise against direct contact."
+	value = -2
+	mob_trait = TRAIT_SENSITIVESNOUT
+	icon = FA_ICON_FINGERPRINT
+
+/datum/quirk/sensitivesnout/post_add()
+	quirk_holder.apply_status_effect(/datum/status_effect/sensitivesnout)
+
+/datum/quirk/sensitivesnout/remove()
+	quirk_holder.remove_status_effect(/datum/status_effect/sensitivesnout)
+
+/datum/status_effect/sensitivesnout
+	id = "sensitivesnout"
+	duration = -1
+	alert_type = null
+
+/datum/status_effect/sensitivesnout/get_examine_text()
+	return span_warning("[owner.p_their(TRUE)] snout is rather bappable...")

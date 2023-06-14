@@ -2,7 +2,8 @@
 	projectile_type = /obj/projectile/beam/laser
 	e_cost = 63
 	select_name = "kill"
-
+/obj/item/ammo_casing/energy/laser/revolver
+	e_cost = 100
 /obj/item/ammo_casing/energy/laser/hellfire
 	projectile_type = /obj/projectile/beam/laser/hellfire
 	e_cost = 100
@@ -119,3 +120,6 @@
 /obj/item/ammo_casing/energy/nanite/cryo
 	projectile_type = /obj/projectile/energy/cryo
 	select_name = "cryo"
+
+/obj/item/ammo_casing/energy/laser/blueshield
+	e_cost = 100

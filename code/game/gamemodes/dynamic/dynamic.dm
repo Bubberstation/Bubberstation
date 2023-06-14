@@ -105,7 +105,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	/// A number between -5 and +5.
 	/// A negative value will give a more peaceful round and
 	/// a positive value will give a round with higher threat.
-	var/threat_curve_centre = 0
+	//var/threat_curve_centre = 0	//Bubber Edit: Original
+	var/threat_curve_centre = -2	//Bubber Edit: Lowered threat curve
 
 	/// A number between 0.5 and 4.
 	/// Higher value will favour extreme rounds and

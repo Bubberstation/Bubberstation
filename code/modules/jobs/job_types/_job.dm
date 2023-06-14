@@ -511,6 +511,11 @@
 			var/gender = player_client.prefs.read_preference(/datum/preference/choiced/gender)
 			real_name = species.random_name(gender, TRUE)
 	dna.update_dna_identity()
+	// BOOB EDIT START
+	if(get_taur_mode() == STYLE_TAUR_SNAKE)
+		RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 0.6, -6)
+		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SNAKE, 15, -6)
+	// BOOB EDIT END
 
 
 /mob/living/silicon/ai/apply_prefs_job(client/player_client, datum/job/job)
