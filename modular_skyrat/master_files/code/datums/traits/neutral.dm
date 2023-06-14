@@ -206,7 +206,7 @@
 	value = 0
 	mob_trait = TRAIT_SENSITIVESNOUT
 	icon = FA_ICON_FINGERPRINT
-*/ BUBBER EDIT MOVE END
+*/ // BUBBER EDIT MOVE END
 
 /datum/quirk/overweight
 	name = "Overweight"

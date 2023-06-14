@@ -56,6 +56,7 @@
 	mob_trait = TRAIT_NOGUNS
 	icon = FA_ICON_GUN
 
+//BUBBER EDIT MOVE BEGIN - NEGATIVE SENSITIVE SNOUT
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
 	desc = "Your snout has always been sensitive, and it really hurts when someone pokes it!"
@@ -79,3 +80,4 @@
 
 /datum/status_effect/sensitivesnout/get_examine_text()
 	return span_warning("[owner.p_their(TRUE)] snout is rather bappable...")
+// BUBBER EDIT MOVE END
