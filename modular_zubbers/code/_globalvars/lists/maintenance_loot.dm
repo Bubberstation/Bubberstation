@@ -7,28 +7,35 @@
 
 
 GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto chemistry items
-	/obj/item/ammo_box/foambox = 5,
 	list(
-		/obj/item/ammo_casing/spent = 1,
-		/obj/item/ammo_casing/shotgun/buckshot/spent = 1,
-	) = 100,
-	list(
-		/obj/item/bong = 10,
+		/obj/item/bong = 15,
 		/obj/item/bong/lungbuster = 5,
-		/obj/item/extinguisher/crafted = 1,
+		/obj/item/extinguisher/crafted = 10,
+		/obj/item/lead_pipe = 25
 	) = 50,
 	list(
 		/obj/item/book/bible = 100,
 		/obj/item/book/bible/booze = 50,
 		/obj/item/book/fish_catalog = 25,
+		/obj/item/infuser_book = 5
 	) = 25,
 	list(
-		/obj/item/bouquet = 1,
-		/obj/item/bouquet/poppy = 1,
-		/obj/item/bouquet/rose = 1,
-		/obj/item/bouquet/sunflower = 1
-	) = 10,
-	/obj/item/broken_bottle = 100,
+		/obj/item/ammo_casing/spent = 1,
+		/obj/item/ammo_casing/shotgun/buckshot/spent = 1,
+		/obj/item/broken_bottle = 75,
+		/obj/item/grown/bananapeel = 75,
+		/obj/item/grown/corncob = 50,
+		/obj/item/inflatable/door/torn = 25,
+		/obj/item/inflatable/torn = 75,
+		/obj/item/kitchen/fork/plastic = 25,
+		/obj/item/kitchen/spoon/plastic = 25,
+		/obj/item/knife/plastic = 10,
+		/obj/item/light/bulb/broken = 25,
+		/obj/item/light/tube/broken = 25,
+		/obj/item/match = 10,
+
+
+	) = 300,
 	/obj/item/broken_missile = 5,
 	/obj/item/c_tube = 100,
 	/obj/item/cane = 10,
@@ -64,10 +71,22 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/food/breadslice/moldy/bacteria = 25,
 		/obj/item/food/deadmouse = 10,
 		/obj/item/food/deadmouse/moldy = 25,
-	) = 100,
+		/obj/item/food/pizzaslice/ants = 10,
+		/obj/item/food/pizzaslice/moldy = 10,
+		/obj/item/food/pizzaslice/moldy/bacteria = 25,
+		/obj/item/food/spidereggs = 50
+		/obj/item/food/spiderleg = 50,
+		/obj/item/food/spiderling = 50,
+		/obj/item/food/spiderlollipop = 25
+	) = 200,
 	/obj/item/food/drug/moon_rock = 1,
 	/obj/item/food/drug/saturnx = 1,
-
+	list(
+		/obj/item/inflatable = 3,
+		/obj/item/inflatable/door = 1
+	) = 25,
+	/obj/item/kirbyplants/random = 10,
+	/obj/item/knife/shiv = 1,
 
 ))
 
@@ -78,7 +97,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	list(
 		/obj/item/airlock_painter = 1,
 		/obj/item/airlock_painter/decal = 1,
-		/obj/item/airlock_painter/decal/tile = 1
+		/obj/item/airlock_painter/decal/tile = 1,
+		/obj/item/hand_labeler = 1
 	) = 75,
 	list(
 		/obj/item/analyzer = 5,
@@ -89,7 +109,29 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/crowbar/large/old = 1,
 		/obj/item/cultivator = 3,
 		/obj/item/cultivator/rake = 5,
+		/obj/item/geiger_counter = 5,
+		/obj/item/mining_scanner = 5,
+
 	) = 100,
+	list(
+		/obj/item/hatchet = 1,
+		/obj/item/hatchet/wooden = 1,
+		/obj/item/hatchet/cutterblade = 1,
+		/obj/item/kitchen/fork = 5,
+		/obj/item/kitchen/rollingpin = 15,
+		/obj/item/kitchen/spoon = 5,
+		/obj/item/knife/kitchen = 5,
+		/obj/item/knife/butcher = 1,
+		/obj/item/knife/combat/survival = 5,
+		/obj/item/melee/baseball_bat = 10,
+		/obj/item/melee/chainofcommand/tailwhip = 1,
+		/obj/item/melee/chainofcommand/tailwhip/kitty = 1,
+		/obj/item/melee/flyswatter = 20,
+		/obj/item/melee/roastingstick = 15
+	) = 50,
+	list(
+		/obj/item/lighter = 25,
+	) = 25,
 	list(
 		/obj/item/assembly/health = 25,
 		/obj/item/assembly/igniter = 100,
@@ -116,6 +158,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/bedsheet/dorms_double = 1
 	) = 10,
 	list(
+		/obj/item/ammo_box/foambox = 5,
 		/obj/item/a_gift = 100,
 		/obj/item/bikehorn = 50,
 		/obj/item/bikehorn/airhorn = 25,
@@ -148,6 +191,36 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/dualsaber/toy = 5,
 		/obj/item/extendohand = 25,
 		/obj/item/fakeartefact = 50,
+		/obj/item/gavelhammer = 25,
+		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted = 5,
+		/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted = 1,
+		/obj/item/gun/ballistic/automatic/pistol/toy = 10,
+		/obj/item/gun/ballistic/automatic/toy/unrestricted = 5,
+		/obj/item/gun/ballistic/shotgun/toy/unrestricted = 25,
+		/obj/item/gun/ballistic/shotgun/toy/crossbow = 25
+		/obj/item/gun/magic/wand/nothing = 5,
+		/obj/item/hairbrush = 20,
+		/obj/item/hairbrush/comb = 10,
+		/obj/item/bouquet = 5,
+		/obj/item/bouquet/poppy = 5,
+		/obj/item/bouquet/rose = 5,
+		/obj/item/bouquet/sunflower = 5,
+		/obj/item/hhmirror = 5,
+		/obj/item/hot_potato/harmless/toy = 25,
+		/obj/item/hourglass = 10,
+		/obj/item/inspector = 10,
+		/obj/item/inspector/clown = 20,
+		/obj/item/laser_pointer/red = 5,
+		/obj/item/laser_pointer/green = 5,
+		/obj/item/laser_pointer/purple = 5,
+		/obj/item/laser_pointer/blue = 5,
+		/obj/item/latexballoon = 25,
+		/obj/item/lipstick/quantum = 5,
+		/obj/item/lipstick/random = 20,
+		/obj/item/melee/skateboard = 10,
+		/obj/item/melee/skateboard/improvised = 40,
+		/obj/item/melee/skateboard/pro = 5
+		/obj/item/melee/skateboard/hoverboard = 1,
 
 	) = 100,
 	/obj/item/blank_coffee_cartridge = 10,
@@ -202,6 +275,10 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/clothing/mask/gas/cyborg = 10,
 		/obj/item/clothing/mask/gas/explorer = 5,
 		/obj/item/clothing/mask/gas/glass = 50,
+		/obj/item/gas_filter = 50,
+		/obj/item/gas_filter/damaged = 100,
+		/obj/item/gas_filter/plasmaman = 25,
+		/obj/item/gas_filter/vox = 25,
 	) = 100,
 	list(
 		/obj/item/coin/adamantine = 1,
@@ -218,7 +295,9 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/coin/thunderdome = 1,
 		/obj/item/coin/titanium = 1,
 		/obj/item/coin/twoheaded = 1,
-		/obj/item/coin/uranium = 2
+		/obj/item/coin/uranium = 2,
+		/obj/item/mining_voucher = 3,
+
 	) = 75,
 	list(
 		/obj/item/computer_disk = 25,
@@ -298,7 +377,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/candy = 5,
 		/obj/item/food/candy/bronx = 20,
 		/obj/item/food/candy_corn = 1,
-		/obj/item/food/candy_corn/prison = 20,
+		/obj/item/food/candy_corn/prison = 200,
 		/obj/item/food/candyheart = 1,
 		/obj/item/food/canned/beans = 200,
 		/obj/item/food/canned/desert_snails = 1,
@@ -358,7 +437,28 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/peanuts/wasabi = 75,
 		/obj/item/food/pickle = 75,
 		/obj/item/food/pie/cream = 100,
-		/obj/item/food/pigblanket = 50
+		/obj/item/food/pigblanket = 50,
+		/obj/item/food/pistachios = 100,
+		/obj/item/food/popcorn = 100,
+		/obj/item/food/ready_donk = 200,
+		/obj/item/food/ready_donk/donkhiladas = 200,
+		/obj/item/food/ready_donk/mac_n_cheese = 200,
+		/obj/item/food/rofflewaffles = 25,
+		/obj/item/food/salad/aesirsalad = 5,
+		/obj/item/food/salad/gumbo = 5,
+		/obj/item/food/salad/validsalad = 50,
+		/obj/item/food/sausage = 100,
+		/obj/item/food/sausage/american = 100,
+		/obj/item/food/semki = 100,
+		/obj/item/food/sosjerky = 100,
+		/obj/item/food/soylentgreen = 100,
+		/obj/item/food/soylenviridians = 50,
+		/obj/item/food/syndicake = 75,
+		/obj/item/food/tatortot = 100,
+		/obj/item/food/tofu/prison = 200,
+
+
+
 
 	) = 100,
 	list(
@@ -389,15 +489,23 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/meat/slab/spider = 75,
 		/obj/item/food/meat/slab/synthmeat = 50,
 		/obj/item/food/meat/slab/xeno = 25
-		/obj/item/food/meatball = 50,
-		/obj/item/food/meatball/bear = 5,
-		/obj/item/food/meatball/chicken = 5,
-		/obj/item/food/meatball/corgi = 5,
-		/obj/item/food/meatball/human = 50,
-		/obj/item/food/meatball/xeno = 25,
+		/obj/item/food/raw_meatball = 50,
+		/obj/item/food/raw_meatball/bear = 5,
+		/obj/item/food/raw_meatball/chicken = 5,
+		/obj/item/food/raw_meatball/corgi = 5,
+		/obj/item/food/raw_meatball/human = 50,
+		/obj/item/food/raw_meatball/xeno = 25,
 		/obj/item/food/monkeycube = 100,
 		/obj/item/food/monkeycube/bee = 25,
 		/obj/item/food/monkeycube/chicken = 25,
+		/obj/item/food/raw_meatloaf = 25,
+		/obj/item/food/raw_patty = 25,
+		/obj/item/food/raw_patty/bear = 5,
+		/obj/item/food/raw_patty/chicken = 5,
+		/obj/item/food/raw_patty/corgi = 5,
+		/obj/item/food/raw_patty/human = 25,
+		/obj/item/food/raw_patty/xeno = 25,
+		/obj/item/food/raw_sausage = 50,
 
 	) = 100,
 	list(
@@ -434,11 +542,35 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/grown/shell/eggy = 25,
 		/obj/item/food/grown/tea/catnip = 25,
 		/obj/item/food/grown/tomato = 75,
-
-
-
-
 	) = 100,
+	/obj/item/grown/log/tree = 25,
+	/obj/item/gun/syringe/blowgun = 5,
+	list(
+		/obj/item/instrument/accordion = 10,
+		/obj/item/instrument/banjo = 10,
+		/obj/item/instrument/bikehorn = 5,
+		/obj/item/instrument/bilehorn = 1,
+		/obj/item/instrument/eguitar = 5,
+		/obj/item/instrument/glockenspiel = 10,
+		/obj/item/instrument/guitar = 10,
+		/obj/item/instrument/harmonica = 10,
+		/obj/item/instrument/musicalmoth = 10,
+		/obj/item/instrument/musicalduffy = 1,
+		/obj/item/instrument/piano_synth = 5,
+		/obj/item/instrument/piano_synth/headphones = 3,
+		/obj/item/instrument/piano_synth/headphones/spacepods = 1,
+		/obj/item/instrument/recorder = 5,
+		/obj/item/instrument/saxophone = 10,
+		/obj/item/instrument/saxophone/spectral = 1,
+		/obj/item/instrument/trombone = 10,
+		/obj/item/instrument/trombone/spectral = 1,
+		/obj/item/instrument/trumpet = 10,
+		/obj/item/instrument/trumpet/spectral = 1,
+		/obj/item/instrument/violin = 10,
+		/obj/item/instrument/violin/golden = 1
+	) = 25
+
+
 
 
 
@@ -469,10 +601,12 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/blood_filter = 10,
 		/obj/item/bonesetter = 25,
 		/obj/item/cautery = 50,
-		/obj/item/cautery/ashwalker = 25,
 		/obj/item/circular_saw = 10,
-		/obj/item/circular_saw/ashwalker = 5,
 		/obj/item/defibrillator = 1
+		/obj/item/healthanalyzer = 100,
+		/obj/item/healthanalyzer/disease = 25,
+		/obj/item/healthanalyzer/wound = 50,
+		/obj/item/hemostat = 75,
 
 	) = 50,
 	/obj/item/book/codex_gigas = 10,
@@ -572,12 +706,131 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/mask/gas/welding = 1
 	) = 25,
 	/obj/item/clothing/shoes/galoshes = 5,
+	/obj/item/fur_dyer = 5,
 	list(
+		/obj/item/gps = 100,
+		/obj/item/gps/engineering = 50,
+		/obj/item/gps/mining = 50,
+		/obj/item/gps/science = 25
+	) = 25,
+	list(
+		/obj/item/grenade/chem_grenade/cleaner = 200,
+		/obj/item/grenade/chem_grenade/colorful = 100,
+		/obj/item/grenade/chem_grenade/antiweed = 75,
+		/obj/item/grenade/barrier = 25,
+		/obj/item/grenade/antigravity = 1,
+		/obj/item/grenade/chem_grenade/glitter/blue = 100,
+		/obj/item/grenade/chem_grenade/glitter/pink = 100,
+		/obj/item/grenade/chem_grenade/glitter/white = 100,
+		/obj/item/grenade/chem_grenade/metalfoam = 100,
+		/obj/item/grenade/chem_grenade/smart_metal_foam = 75,
+		/obj/item/grenade/chem_grenade/teargas = 25,
+		/obj/item/grenade/firecracker = 25,
+		/obj/item/grenade/flashbang = 10,
+		/obj/item/grenade/mirage = 5,
+		/obj/item/grenade/smokebomb = 100,
+		/obj/item/grenade/stingbang = 1,
+	) = 50,
+	list(
+		/obj/item/holosign_creator = 1,
+		/obj/item/holosign_creator/janibarrier = 1,
+		/obj/item/holosign_creator/atmos = 1,
+		/obj/item/holosign_creator/engineering = 1,
+		/obj/item/holosign_creator/security = 1,
+	) = 50,
+	list(
+		/obj/item/inducer = 1,
+		/obj/item/inducer/sci = 1
+	) = 50,
+	/obj/item/market_uplink/blackmarket = 15,
+	list(
+		/obj/item/megaphone = 10,
+		/obj/item/megaphone/cargo = 5,
+		/obj/item/megaphone/clown = 5,
+		/obj/item/megaphone/command = 1,
+		/obj/item/megaphone/sec = 1
+	) = 75,
+	/obj/item/mending_globule = 15,
+	list(
+		/obj/item/mod/core/ethereal = 25,
+		/obj/item/mod/core/standard = 5,
+		/obj/item/mod/core/plasma = 10,
+		/obj/item/mod/construction/broken_core = 75,
+
+		/obj/item/mod/construction/boots = 30,
+		/obj/item/mod/construction/chestplate = 30,
+		/obj/item/mod/construction/gauntlets = 30,
+		/obj/item/mod/construction/helmet = 30,
+		/obj/item/mod/construction/shell = 30,
+
+		/obj/item/mod/construction/plating = 5,
+		/obj/item/mod/construction/plating/atmospheric = 3,
+		/obj/item/mod/construction/plating/engineering = 3,
+		/obj/item/mod/construction/plating/medical = 3,
+		/obj/item/mod/construction/plating/security = 1,
+
+		/obj/item/mod/module/ash_accretion = 5,
+		/obj/item/mod/module/atrocinator = 5,
+		/obj/item/mod/module/balloon = 100,
+		/obj/item/mod/module/bikehorn = 75,
+		/obj/item/mod/module/clamp = 50,
+		/obj/item/mod/module/constructor = 5,
+		/obj/item/mod/module/criminalcapture/patienttransport = 5,
+		/obj/item/mod/module/defibrillator = 5,
+		/obj/item/mod/module/demoralizer = 25,
+		/obj/item/mod/module/disposal_connector = 25,
+		/obj/item/mod/module/dna_lock = 5,
+		/obj/item/mod/module/drill = 5,
+		/obj/item/mod/module/flashlight = 100,
+		/obj/item/mod/module/gps = 50,
+		/obj/item/mod/module/hat_stabilizer = 100,
+		/obj/item/mod/module/health_analyzer = 50,
+		/obj/item/mod/module/hydraulic = 25,
+		/obj/item/mod/module/longfall = 5,
+		/obj/item/mod/module/magboot = 5,
+		/obj/item/mod/module/magnet = 5,
+		/obj/item/mod/module/magnetic_harness = 5,
+		/obj/item/mod/module/megaphone = 100,
+		/obj/item/mod/module/microwave_beam = 100,
+		/obj/item/mod/module/mister = 50,
+		/obj/item/mod/module/mister/atmos = 25,
+		/obj/item/mod/module/mouthhole = 100,
+		/obj/item/mod/module/orebag = 25,
+		/obj/item/mod/module/organ_thrower = 100,
+		/obj/item/mod/module/paper_dispenser = 100,
+		/obj/item/mod/module/pathfinder = 5,
+		/obj/item/mod/module/plasma_stabilizer = 50,
+		/obj/item/mod/module/plate_compression = 5,
+		/obj/item/mod/module/quick_carry = 5,
+		/obj/item/mod/module/rad_protection = 5,
+		/obj/item/mod/module/reagent_scanner = 5,
+		/obj/item/mod/module/signlang_radio = 100,
+		/obj/item/mod/module/sphere_transform = 5,
+		/obj/item/mod/module/springlock = 100,
+		/obj/item/mod/module/stamp = 100,
+		/obj/item/mod/module/storage = 50,
+		/obj/item/mod/module/surgical_processor = 25,
+		/obj/item/mod/module/t_ray = 50,
+		/obj/item/mod/module/tanner = 100,
+		/obj/item/mod/module/tether = 25,
+		/obj/item/mod/module/thermal_regulator = 5,
+		/obj/item/mod/module/thread_ripper = 5,
+		/obj/item/mod/module/visor/diaghud = 5,
+		/obj/item/mod/module/visor/medhud = 5,
+		/obj/item/mod/module/visor/meson = 5,
+		/obj/item/mod/module/visor/rave = 100,
+		/obj/item/mod/module/visor/sechud = 1,
+		/obj/item/mod/module/waddle = 100,
+		/obj/item/mod/module/welding = 25
+
+		/obj/item/mod/paint = 100,
 
 
 
 
-	)
+
+	) = 50
+
 
 ))
 
@@ -727,6 +980,8 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/encryptionkey/translation/vox = 1,
 		/obj/item/encryptionkey/translation/vulpkanin = 1,
 		/obj/item/encryptionkey/translation/yangyu = 1,
+		/obj/item/language_manual/roundstart_species = 1,
+
 	) = 5,
 	/obj/item/etherealballdeployer = 5,
 	list(
@@ -738,12 +993,16 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/firing_pin/tag/red = 5,
 		/obj/item/firing_pin/test_range = 10
 	) = 5,
-
-
-
-
-
-
+	list(
+		/obj/item/implanter/mortis = 10,
+		/obj/item/implanter/sad_trombone = 10,
+		/obj/item/implanter/tracking = 1,
+		/obj/item/implanter/tracking/gps = 1,
+		/obj/item/implantpad = 5
+	) = 5,
+	/obj/item/lightreplacer = 25,
+	/obj/item/locator = 5,
+	/obj/item/mmi = 10,
 
 
 ))
@@ -752,17 +1011,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 
 GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/a_gift/anything = 100,
-	list(
-		/obj/item/clothing/head/helmet/abductor/fake = 10,
-		/obj/item/abductor/mind_device = 1,
-		/obj/item/abductor/gizmo = 1,
-		/obj/item/abductor/silencer = 1,
-		/obj/item/cautery/alien = 1,
-		/obj/item/circular_saw/alien = 1,
-		/obj/item/clothing/head/helmet/abductor = 1,
-
-
-	) = 25,
 	/obj/item/ai_module/toy_ai = 100,
 	/obj/item/anomaly_releaser = 25,
 	/obj/item/bombcore/training = 10,
@@ -829,9 +1077,23 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/food/grown/kudzupod = 1,
 	/obj/item/food/monkeycube/gorilla = 5,
 	/obj/item/food/monkeycube/syndicate = 5,
-
-
-
+	/obj/item/greentext = 10,
+	/obj/item/grenade/chem_grenade/teargas/moustache = 10,
+	list(
+		/obj/item/grenade/clusterbuster/antiweed = 1,
+		/obj/item/grenade/clusterbuster/cleaner = 1,
+		/obj/item/grenade/clusterbuster/metalfoam = 1,
+		/obj/item/grenade/clusterbuster/smoke = 1,
+		/obj/item/grenade/clusterbuster/soap = 1,
+		/obj/item/grenade/clusterbuster/teargas = 1
+	) = 10,
+	/obj/item/gun/ballistic/revolver/russian = 25,
+	/obj/item/gun/energy/gravity_gun = 5,
+	/obj/item/gun/energy/laser/practice/sc_laser = 5,
+	/obj/item/gun/energy/meteorgun/pen = 1,
+	/obj/item/hot_potato = 10,
+	/obj/item/lazarus_injector = 25,
+	/obj/item/lighter/bright = 1,
 
 
 
