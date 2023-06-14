@@ -328,20 +328,13 @@
 
 /datum/job/science_guard //See orderly
 
-/datum/job/scientist
+/datum/job/security_medic
 	alt_titles = list(
-		"Scientist",
-		"Circuitry Designer",
-		"Xenobiologist",
-		"Cytologist",
-		"Plasma Researcher",
-		"Anomalist",
-		"Lab Technician",
-		"Theoretical Physicist",
-		"Ordnance Technician",
-		"Xenoarchaeologist",
-		"Research Assistant",
-		"Graduate Student",
+		"Security Medic",
+		"Field Medic",
+		"Security Corpsman",
+		"Brig Physician",
+		"Combat Medic",
 	)
 
 /datum/job/security_officer
