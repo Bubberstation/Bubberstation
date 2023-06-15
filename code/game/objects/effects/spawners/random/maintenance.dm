@@ -17,7 +17,15 @@
 	alpha = 100
 
 /obj/effect/spawner/random/maintenance/proc/get_effective_lootcount()
+
 	var/effective_lootcount = spawn_loot_count
+
+	//Blubberstation change: Makes it so that lots of loot only spawns on tables and such, and not bare floors.
+	for(var/atom/movable/M as anything in src.loc.contents)
+		if(GLOB.typecache_elevated_structures[M.type]) //Are we an elevated structure?
+			effective_lootcount *= 5
+			break
+	//End of blubberstation change.
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
 		effective_lootcount = FLOOR(spawn_loot_count * 1.5, 1)
