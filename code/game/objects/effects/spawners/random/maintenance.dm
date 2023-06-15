@@ -21,10 +21,11 @@
 	var/effective_lootcount = spawn_loot_count
 
 	//Blubberstation change: Makes it so that lots of loot only spawns on tables and such, and not bare floors.
-	for(var/atom/movable/M as anything in src.loc.contents)
-		if(GLOB.typecache_elevated_structures[M.type]) //Are we an elevated structure?
-			effective_lootcount *= 5
-			break
+	if(src.loc && isfloorturf(src.loc)) //Putting a check for src.loc here because unittests spawn things in nullspace xd
+		for(var/atom/movable/M as anything in src.loc.contents)
+			if(GLOB.typecache_elevated_structures[M.type]) //Are we an elevated structure?
+				effective_lootcount *= 5
+				break
 	//End of blubberstation change.
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
