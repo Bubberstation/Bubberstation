@@ -12,6 +12,7 @@
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
+	gravity_setup()
 
 /mob/living/prepare_huds()
 	..()
@@ -348,7 +349,7 @@
 		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
 			//SKYRAT EDIT START - Tail coiling
 			if(ishuman(M))
-				if(zone_selected == BODY_ZONE_PRECISE_GROIN && M.getorganslot(ORGAN_SLOT_EXTERNAL_TAIL) && src.getorganslot(ORGAN_SLOT_EXTERNAL_TAIL))
+				if(zone_selected == BODY_ZONE_PRECISE_GROIN && M.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL) && src.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL))
 					M.visible_message(span_warning("[src] coils their tail with [AM], wow is that okay in public?!"), "[src] has entwined their tail with yours!")
 					to_chat(src, "You entwine your tail with [AM]")
 				else
@@ -590,6 +591,7 @@
 		return
 	if(new_resting == resting)
 		return
+
 	. = resting
 	resting = new_resting
 	if(new_resting)
@@ -668,8 +670,7 @@
 /mob/living/proc/on_lying_down(new_lying_angle)
 	if(layer == initial(layer)) //to avoid things like hiding larvas.
 		layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	ADD_TRAIT(src, TRAIT_UI_BLOCKED, LYING_DOWN_TRAIT)
-	ADD_TRAIT(src, TRAIT_PULL_BLOCKED, LYING_DOWN_TRAIT)
+	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), LYING_DOWN_TRAIT)
 	set_density(FALSE) // We lose density and stop bumping passable dense things.
 	if(HAS_TRAIT(src, TRAIT_FLOORED) && !(dir & (NORTH|SOUTH)))
 		setDir(pick(NORTH, SOUTH)) // We are and look helpless.
@@ -681,11 +682,8 @@
 	if(layer == LYING_MOB_LAYER)
 		layer = initial(layer)
 	set_density(initial(density)) // We were prone before, so we become dense and things can bump into us again.
-	REMOVE_TRAIT(src, TRAIT_UI_BLOCKED, LYING_DOWN_TRAIT)
-	REMOVE_TRAIT(src, TRAIT_PULL_BLOCKED, LYING_DOWN_TRAIT)
+	remove_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), LYING_DOWN_TRAIT)
 	body_position_pixel_y_offset = 0
-
-
 
 //Recursive function to find everything a mob is holding. Really shitty proc tbh.
 /mob/living/get_contents()
@@ -907,7 +905,7 @@
 		reagents.clear_reagents()
 
 	if(heal_flags & HEAL_ADMIN)
-		suiciding = FALSE
+		REMOVE_TRAIT(src, TRAIT_SUICIDED, REF(src))
 
 	updatehealth()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -1119,12 +1117,14 @@
 	. = TRUE
 	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || staminaloss > STAMINA_THRESHOLD_HARD_RESIST) //SKYRAT EDIT CHANGE: if(pulledby.grab_state || resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS))
 		var/altered_grab_state = pulledby.grab_state
-		if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however - SKYRAT EDIT CHANGE: if((resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS)) && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
+		if(resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //BUBBER EDIT CHANGE: if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
 			altered_grab_state++
 		if(staminaloss > STAMINA_THRESHOLD_HARD_RESIST)
 			altered_grab_state++
+		/*	//BUBBER EDIT REMOVAL
 		if(body_position == LYING_DOWN)
 			altered_grab_state++
+		*/ //BUBBER EDIT REMOVAL END
 		var/mob/living/M = pulledby
 		if(M.staminaloss > STAMINA_THRESHOLD_HARD_RESIST)
 			altered_grab_state-- //SKYRAT EDIT END
@@ -1144,7 +1144,7 @@
 			pulledby.stop_pulling()
 			return FALSE
 		else
-			adjustStaminaLoss(rand(10,15))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty
+			adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty //SKYRAT EDIT CHANGE: //adjustStaminaLoss(rand(15,20))//failure to escape still imparts a pretty serious penalty//BUBBER EDIT CHANGE: adjustStaminaLoss(rand(10,15))
 			visible_message("<span class='danger'>[src] struggles as they fail to break free of [pulledby]'s grip!</span>", \
 							"<span class='warning'>You struggle as you fail to break free of [pulledby]'s grip!</span>", null, null, pulledby)
 			to_chat(pulledby, "<span class='danger'>[src] struggles as they fail to break free of your grip!</span>")
@@ -1166,10 +1166,15 @@
 /mob/living/proc/get_visible_name()
 	return name
 
-/mob/living/update_gravity(gravity)
-	. = ..()
-	if(!SSticker.HasRoundStarted())
-		return
+/mob/living/proc/update_gravity(gravity)
+	// Handle movespeed stuff
+	var/speed_change = max(0, gravity - STANDARD_GRAVITY)
+	if(speed_change)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/gravity, multiplicative_slowdown=speed_change)
+	else
+		remove_movespeed_modifier(/datum/movespeed_modifier/gravity)
+
+	// Time to add/remove gravity alerts. sorry for the mess it's gotta be fast
 	var/atom/movable/screen/alert/gravity_alert = alerts[ALERT_GRAVITY]
 	switch(gravity)
 		if(-INFINITY to NEGATIVE_GRAVITY)
@@ -1233,6 +1238,8 @@
 	..()
 	cameraFollow = null
 
+/// Checks if this mob can be actively tracked by cameras / AI.
+/// Can optionally be passed a user, which is the mob tracking.
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
 	if(SEND_SIGNAL(src, COMSIG_LIVING_CAN_TRACK, user) & COMPONENT_CANT_TRACK)
@@ -1244,9 +1251,9 @@
 		return FALSE
 	if(is_away_level(T.z))
 		return FALSE
-	if(onSyndieBase() && !(ROLE_SYNDICATE in user.faction))
+	if(onSyndieBase() && !(ROLE_SYNDICATE in user?.faction))
 		return FALSE
-	if(user != null && src == user)
+	if(!isnull(user) && src == user)
 		return FALSE
 	if(invisibility || alpha == 0)//cloaked
 		return FALSE
@@ -1261,24 +1268,54 @@
 /mob/living/can_hold_items(obj/item/I)
 	return usable_hands && ..()
 
-/mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
-	if(!(mobility_flags & MOBILITY_UI) && !floor_okay)
+/mob/living/can_perform_action(atom/movable/target, action_bitflags)
+	if(!istype(target))
+		CRASH("Missing target arg for can_perform_action")
+
+	// If the MOBILITY_UI bitflag is not set it indicates the mob's hands are cutoff, blocked, or handcuffed
+	// Note - AI's and borgs have the MOBILITY_UI bitflag set even though they don't have hands
+	// Also if it is not set, the mob could be incapcitated, knocked out, unconscious, asleep, EMP'd, etc.
+	if(!(mobility_flags & MOBILITY_UI) && !(action_bitflags & ALLOW_RESTING))
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
-	if(be_close && !Adjacent(M) && (M.loc != src))
-		if(no_tk)
-			to_chat(src, span_warning("You are too far away!"))
+
+	// NEED_HANDS is already checked by MOBILITY_UI for humans so this is for silicons
+	if((action_bitflags & NEED_HANDS))
+		if(!can_hold_items(isitem(target) ? target : null)) // almost redundant if it weren't for mobs
+			to_chat(src, span_warning("You don't have the physical ability to do this!"))
 			return FALSE
-		var/datum/dna/D = has_dna()
-		if(!D || !D.check_mutation(/datum/mutation/human/telekinesis) || !tkMaxRangeCheck(src, M))
-			to_chat(src, span_warning("You are too far away!"))
-			return FALSE
-	if(need_hands && !can_hold_items(isitem(M) ? M : null)) //almost redundant if it weren't for mobs,
-		to_chat(src, span_warning("You don't have the physical ability to do this!"))
-		return FALSE
-	if(!no_dexterity && !ISADVANCEDTOOLUSER(src))
+
+	if(!Adjacent(target) && (target.loc != src))
+		if(issilicon(src) && !ispAI(src))
+			if(!(action_bitflags & ALLOW_SILICON_REACH)) // silicons can ignore range checks (except pAIs)
+				to_chat(src, span_warning("You are too far away!"))
+				return FALSE
+		else // just a normal carbon mob
+			if((action_bitflags & FORBID_TELEKINESIS_REACH))
+				to_chat(src, span_warning("You are too far away!"))
+				return FALSE
+
+			var/datum/dna/mob_DNA = has_dna()
+			if(!mob_DNA || !mob_DNA.check_mutation(/datum/mutation/human/telekinesis) || !tkMaxRangeCheck(src, target))
+				to_chat(src, span_warning("You are too far away!"))
+				return FALSE
+
+	if((action_bitflags & NEED_DEXTERITY) && !ISADVANCEDTOOLUSER(src))
 		to_chat(src, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
+
+	if((action_bitflags & NEED_LITERACY) && !is_literate())
+		to_chat(src, span_warning("You can't comprehend any of this!"))
+		return FALSE
+
+	if((action_bitflags & NEED_LIGHT) && !has_light_nearby() && !has_nightvision())
+		to_chat(src, span_warning("You need more light to do this!"))
+		return FALSE
+
+	if((action_bitflags & NEED_GRAVITY) && !has_gravity())
+		to_chat(src, span_warning("You need gravity to do this!"))
+		return FALSE
+
 	return TRUE
 
 /mob/living/proc/can_use_guns(obj/item/G)//actually used for more than guns!
@@ -1318,8 +1355,7 @@
 		return
 
 	notransform = TRUE
-	ADD_TRAIT(src, TRAIT_IMMOBILIZED, MAGIC_TRAIT)
-	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, MAGIC_TRAIT)
+	add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), MAGIC_TRAIT)
 	icon = null
 	cut_overlays()
 	invisibility = INVISIBILITY_ABSTRACT
@@ -1401,40 +1437,40 @@
 
 		if(WABBAJACK_ANIMAL)
 			var/picked_animal = pick(
+				/mob/living/basic/bat,
+				/mob/living/basic/butterfly,
 				/mob/living/basic/carp,
-				/mob/living/simple_animal/hostile/bear,
-				/mob/living/simple_animal/hostile/mushroom,
-				/mob/living/simple_animal/hostile/netherworld/statue,
-				/mob/living/simple_animal/hostile/retaliate/bat,
-				/mob/living/simple_animal/hostile/retaliate/goat,
-				/mob/living/simple_animal/hostile/killertomato,
-				/mob/living/simple_animal/hostile/giant_spider,
-				/mob/living/simple_animal/hostile/giant_spider/hunter,
-				/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
 				/mob/living/basic/carp/magic,
 				/mob/living/basic/carp/magic/chaos,
-				/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-				/mob/living/simple_animal/hostile/asteroid/goliath/beast,
-				/mob/living/simple_animal/hostile/headcrab,
-				/mob/living/simple_animal/hostile/morph,
+				/mob/living/basic/chick,
+				/mob/living/basic/chicken,
+				/mob/living/basic/cow,
+				/mob/living/basic/giant_spider,
+				/mob/living/basic/giant_spider/hunter,
+				/mob/living/basic/headslug,
+				/mob/living/basic/killer_tomato,
+				/mob/living/basic/lizard,
+				/mob/living/basic/mouse,
+				/mob/living/basic/pet/dog/breaddog,
+				/mob/living/basic/pet/dog/corgi,
+				/mob/living/basic/pet/dog/pug,
+				/mob/living/basic/statue,
 				/mob/living/basic/stickman,
 				/mob/living/basic/stickman/dog,
-				/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
-				/mob/living/simple_animal/hostile/gorilla,
-				/mob/living/simple_animal/parrot,
-				/mob/living/basic/pet/dog/corgi,
 				/mob/living/simple_animal/crab,
-				/mob/living/basic/pet/dog/pug,
+				/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
+				/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+				/mob/living/simple_animal/hostile/bear,
+				/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
+				/mob/living/simple_animal/hostile/gorilla,
+				/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
+				/mob/living/simple_animal/hostile/morph,
+				/mob/living/simple_animal/hostile/mushroom,
+				/mob/living/simple_animal/hostile/retaliate/goat,
+				/mob/living/simple_animal/parrot,
 				/mob/living/simple_animal/pet/cat,
-				/mob/living/basic/mouse,
-				/mob/living/simple_animal/chicken,
-				/mob/living/basic/cow,
-				/mob/living/simple_animal/hostile/lizard,
-				/mob/living/simple_animal/pet/fox,
-				/mob/living/simple_animal/butterfly,
 				/mob/living/simple_animal/pet/cat/cak,
-				/mob/living/basic/pet/dog/breaddog,
-				/mob/living/simple_animal/chick,
+				/mob/living/simple_animal/pet/fox,
 			)
 			new_mob = new picked_animal(loc)
 
@@ -1647,12 +1683,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
  * Handles effects happening when mob is on normal fire
  *
  * Vars:
- * * delta_time
+ * * seconds_per_tick
  * * times_fired
  * * fire_handler: Current fire status effect that called the proc
  */
 
-/mob/living/proc/on_fire_stack(delta_time, times_fired, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+/mob/living/proc/on_fire_stack(seconds_per_tick, times_fired, datum/status_effect/fire_handler/fire_stacks/fire_handler)
 	return
 
 //Mobs on Fire end
@@ -1824,8 +1860,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			updatehealth()
 		if(NAMEOF(src, resize))
 			update_transform()
-		if(NAMEOF(src, lighting_alpha))
-			sync_lighting_plane_alpha()
+		if(NAMEOF(src, lighting_cutoff))
+			sync_lighting_plane_cutoff()
 
 
 /mob/living/vv_get_header()
@@ -1839,7 +1875,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
 			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
 			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
-			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
+			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[get_organ_loss(ORGAN_SLOT_BRAIN)]</a>
 			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
 		</font>
 	"}
@@ -2080,9 +2116,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(CONSCIOUS)
 			if(stat >= UNCONSCIOUS)
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
-			ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, STAT_TRAIT)
-			ADD_TRAIT(src, TRAIT_INCAPACITATED, STAT_TRAIT)
-			ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+			add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED), STAT_TRAIT)
 		if(SOFT_CRIT)
 			if(stat >= UNCONSCIOUS)
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT) //adding trait sources should come before removing to avoid unnecessary updates
@@ -2101,10 +2135,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(CONSCIOUS)
 			if(. >= UNCONSCIOUS)
 				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
-			REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, STAT_TRAIT)
-			REMOVE_TRAIT(src, TRAIT_INCAPACITATED, STAT_TRAIT)
-			REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
-			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED, TRAIT_CRITICAL_CONDITION), STAT_TRAIT)
 		if(SOFT_CRIT)
 			if(pulledby)
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT) //adding trait sources should come before removing to avoid unnecessary updates
@@ -2150,8 +2181,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 				set_body_position(LYING_DOWN)
 				set_lying_angle(buckled.buckle_lying)
 	else
-		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, BUCKLED_TRAIT)
-		REMOVE_TRAIT(src, TRAIT_FLOORED, BUCKLED_TRAIT)
+		remove_traits(list(TRAIT_IMMOBILIZED, TRAIT_FLOORED), BUCKLED_TRAIT)
 		if(.) // We unbuckled from something.
 			var/atom/movable/old_buckled = .
 			if(old_buckled.buckle_lying == 0 && (resting || HAS_TRAIT(src, TRAIT_FLOORED))) // The buckle forced us to stay up (like a chair)
@@ -2310,14 +2340,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Proc to append behavior to the condition of being handsblocked. Called when the condition starts.
 /mob/living/proc/on_handsblocked_start()
 	drop_all_held_items()
-	ADD_TRAIT(src, TRAIT_UI_BLOCKED, TRAIT_HANDS_BLOCKED)
-	ADD_TRAIT(src, TRAIT_PULL_BLOCKED, TRAIT_HANDS_BLOCKED)
+	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_HANDS_BLOCKED)
 
 
 /// Proc to append behavior to the condition of being handsblocked. Called when the condition ends.
 /mob/living/proc/on_handsblocked_end()
-	REMOVE_TRAIT(src, TRAIT_UI_BLOCKED, TRAIT_HANDS_BLOCKED)
-	REMOVE_TRAIT(src, TRAIT_PULL_BLOCKED, TRAIT_HANDS_BLOCKED)
+	remove_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_HANDS_BLOCKED)
 
 
 /// Returns the attack damage type of a living mob such as [BRUTE].
@@ -2491,12 +2519,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if (faction.Find(friend_ref))
 		return FALSE
 	faction |= friend_ref
-	if (ai_controller)
-		var/list/friends = ai_controller.blackboard[BB_FRIENDS_LIST]
-		if (!friends)
-			friends = list()
-		friends[WEAKREF(new_friend)] = TRUE
-		ai_controller.blackboard[BB_FRIENDS_LIST] = friends
+	ai_controller?.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, new_friend)
+
 	SEND_SIGNAL(src, COMSIG_LIVING_BEFRIENDED, new_friend)
 	return TRUE
 
@@ -2507,12 +2531,8 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if (!faction.Find(friend_ref))
 		return FALSE
 	faction -= friend_ref
-	if (ai_controller)
-		var/list/friends = ai_controller.blackboard[BB_FRIENDS_LIST]
-		if (!friends)
-			return
-		friends[WEAKREF(old_friend)] = FALSE
-		ai_controller.blackboard[BB_FRIENDS_LIST] = friends
+	ai_controller?.remove_thing_from_blackboard_key(BB_FRIENDS_LIST, old_friend)
+
 	SEND_SIGNAL(src, COMSIG_LIVING_UNFRIENDED, old_friend)
 	return TRUE
 

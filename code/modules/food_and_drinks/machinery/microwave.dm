@@ -24,8 +24,9 @@
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/microwave
 	pass_flags = PASSTABLE
-	light_color = LIGHT_COLOR_YELLOW
+	light_color = LIGHT_COLOR_DIM_YELLOW
 	light_power = 3
+	anchored_tabletop_offset = 6
 	var/wire_disabled = FALSE // is its internal wire cut?
 	var/operating = FALSE
 	/// How dirty is it?
@@ -53,8 +54,6 @@
 	wires = new /datum/wires/microwave(src)
 	create_reagents(100)
 	soundloop = new(src, FALSE)
-	set_on_table()
-
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/microwave/Exited(atom/movable/gone, direction)
@@ -77,10 +76,6 @@
 	QDEL_NULL(wires)
 	QDEL_NULL(soundloop)
 	return ..()
-
-/obj/machinery/microwave/set_anchored(anchorvalue)
-	. = ..()
-	set_on_table()
 
 /obj/machinery/microwave/RefreshParts()
 	. = ..()
@@ -327,7 +322,7 @@
 	return ..()
 
 /obj/machinery/microwave/attack_hand_secondary(mob/user, list/modifiers)
-	if(user.canUseTopic(src, !issilicon(usr)))
+	if(user.can_perform_action(src, ALLOW_SILICON_REACH))
 		if(!length(ingredients))
 			balloon_alert(user, "it's empty!")
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -337,7 +332,7 @@
 /obj/machinery/microwave/ui_interact(mob/user)
 	. = ..()
 
-	if(operating || panel_open || !anchored || !user.canUseTopic(src, !issilicon(user)))
+	if(operating || panel_open || !anchored || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(isAI(user) && (machine_stat & NOPOWER))
 		return
@@ -352,7 +347,7 @@
 	var/choice = show_radial_menu(user, src, isAI(user) ? ai_radial_options : radial_options, require_near = !issilicon(user))
 
 	// post choice verification
-	if(operating || panel_open || !anchored || !user.canUseTopic(src, !issilicon(user)))
+	if(operating || panel_open || !anchored || !user.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(isAI(user) && (machine_stat & NOPOWER))
 		return
@@ -520,18 +515,13 @@
 	open = FALSE
 	update_appearance()
 
-/// Go on top of a table if we're anchored & not varedited
-/obj/machinery/microwave/proc/set_on_table()
-	var/obj/structure/table/counter = locate(/obj/structure/table) in get_turf(src)
-	if(anchored && counter && !pixel_y)
-		pixel_y = 6
-	else if(!anchored)
-		pixel_y = initial(pixel_y)
-
 /// Type of microwave that automatically turns it self on erratically. Probably don't use this outside of the holodeck program "Microwave Paradise".
-/// You could also live your life with a microwave that will continously run in the background of everything and drain any hint of power. I think the former makes more sense.
+/// You could also live your life with a microwave that will continously run in the background of everything while also not having any power draw. I think the former makes more sense.
 /obj/machinery/microwave/hell
 	desc = "Cooks and boils stuff. This one appears to be a bit... off."
+	use_power = NO_POWER_USE
+	idle_power_usage = 0
+	active_power_usage = 0
 
 /obj/machinery/microwave/hell/Initialize(mapload)
 	. = ..()
