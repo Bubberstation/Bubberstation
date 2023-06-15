@@ -103,17 +103,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	changing_turf = TRUE
 	qdel(src) //Just get the side effects and call Destroy
 	//We do this here so anything that doesn't want to persist can clear itself
-	var/list/old_comp_lookup = comp_lookup?.Copy()
-	var/list/old_signal_procs = signal_procs?.Copy()
+	var/list/old_comp_lookup = _comp_lookup?.Copy()
+	var/list/old_signal_procs = _signal_procs?.Copy()
 	var/turf/new_turf = new path(src)
 
 	// WARNING WARNING
 	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
 	if(old_comp_lookup)
-		LAZYOR(new_turf.comp_lookup, old_comp_lookup)
+		LAZYOR(new_turf._comp_lookup, old_comp_lookup)
 	if(old_signal_procs)
-		LAZYOR(new_turf.signal_procs, old_signal_procs)
+		LAZYOR(new_turf._signal_procs, old_signal_procs)
 
 	for(var/datum/callback/callback as anything in post_change_callbacks)
 		callback.InvokeAsync(new_turf)
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			lighting_object.update()
 
 	// If we're space, then we're either lit, or not, and impacting our neighbors, or not
-	if(isspaceturf(src) && CONFIG_GET(flag/starlight))
+	if(isspaceturf(src))
 		var/turf/open/space/lit_turf = src
 		// This also counts as a removal, so we need to do a full rebuild
 		if(!ispath(old_type, /turf/open/space))
@@ -166,14 +166,14 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			lit_turf.enable_starlight()
 
 	// If we're a cordon we count against a light, but also don't produce any ourselves
-	else if (istype(src, /turf/cordon) && CONFIG_GET(flag/starlight))
+	else if (istype(src, /turf/cordon))
 		// This counts as removing a source of starlight, so we need to update the space tile to inform it
 		if(!ispath(old_type, /turf/open/space))
 			for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
 				space_tile.update_starlight()
 
 	// If we're not either, but were formerly a space turf, then we want light
-	else if(ispath(old_type, /turf/open/space) && CONFIG_GET(flag/starlight))
+	else if(ispath(old_type, /turf/open/space))
 		for(var/turf/open/space/space_tile in RANGE_TURFS(1, src))
 			space_tile.enable_starlight()
 	//SKYRAT EDIT ADDITION
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 		var/list/giver_gases = mix.gases
 		for(var/giver_id in giver_gases)
-			ASSERT_GAS(giver_id, total)
+			ASSERT_GAS_IN_LIST(giver_id, total_gases)
 			total_gases[giver_id][MOLES] += giver_gases[giver_id][MOLES]
 
 	total.temperature = energy / heat_cap

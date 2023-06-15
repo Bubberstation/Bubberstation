@@ -32,9 +32,8 @@ GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 
 	// This path is really hot. this is faster
 	// Really this should be a global var or something, but lets not think about that yes?
-	if(CONFIG_GET(flag/starlight))
-		for(var/turf/open/space/space_tile in RANGE_TURFS(1, affected_turf))
-			space_tile.enable_starlight()
+	for(var/turf/open/space/space_tile in RANGE_TURFS(1, affected_turf))
+		space_tile.enable_starlight()
 
 	needs_update = TRUE
 	SSlighting.objects_queue += src
@@ -51,12 +50,6 @@ GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 	return ..()
 
 /datum/lighting_object/proc/update()
-#ifdef VISUALIZE_LIGHT_UPDATES
-	affected_turf.add_atom_colour(COLOR_BLUE_LIGHT, ADMIN_COLOUR_PRIORITY)
-	animate(affected_turf, 10, color = null)
-	addtimer(CALLBACK(affected_turf, /atom/proc/remove_atom_colour, ADMIN_COLOUR_PRIORITY, COLOR_BLUE_LIGHT), 10, TIMER_UNIQUE|TIMER_OVERRIDE)
-#endif
-
 	// To the future coder who sees this and thinks
 	// "Why didn't he just use a loop?"
 	// Well my man, it's because the loop performed like shit.
