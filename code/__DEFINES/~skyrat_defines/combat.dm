@@ -17,7 +17,7 @@
 #define CLICK_CD_RANGE_TIRED 5 //#define CLICK_CD_RANGE 4, so 25% slower
 
 //Grab breakout odds
-#define OVERSIZED_GRAB_RESIST_BONUS 10 /// For those with the oversized trait, they get this.
+#define OVERSIZED_GRAB_RESIST_BONUS 0 // BUBBER EDIT- With this oversized are just as good at grabs as anyone else.
 
 // Damage modifiers
 #define OVERSIZED_HARM_DAMAGE_BONUS 5 /// Those with the oversized trait do 5 more damage.
