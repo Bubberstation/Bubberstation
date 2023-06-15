@@ -117,11 +117,14 @@
 	///A reference to the paired_spines, since for some fucking reason tail spines are tied to the spines themselves.
 	var/obj/item/organ/external/spines/paired_spines
 
-/obj/item/organ/external/tail/lizard/Insert(mob/living/carbon/reciever, special, drop_if_replaced)
+//BUBBER FIX START
+//This edit atempts to bandaid the spine wagging issue and should be overriden the moment someone else figures it out
+/obj/item/organ/external/tail/lizard/Insert(mob/living/carbon/receiver, special, drop_if_replaced)
 	. = ..()
-	if(.)
-		paired_spines = ownerlimb.owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_SPINES)
-		paired_spines?.paired_tail = src
+	paired_spines = ownerlimb.owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_SPINES)
+	if(!paired_spines)
+		return ..()
+	paired_spines?.paired_tail = src
 
 /obj/item/organ/external/tail/lizard/Remove(mob/living/carbon/organ_owner, special, moving)
 	. = ..()
@@ -131,10 +134,12 @@
 
 /obj/item/organ/external/tail/lizard/start_wag()
 	. = ..()
-
+	if(!paired_spines) //The insert proc is not getting called, and I can't find the missing implementation
+		paired_spines = ownerlimb.owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_SPINES)
 	if(paired_spines)
 		var/datum/bodypart_overlay/mutant/spines/accessory = paired_spines.bodypart_overlay
 		accessory.wagging = TRUE
+//BUBBER FIX END
 
 /obj/item/organ/external/tail/lizard/stop_wag()
 	. = ..()

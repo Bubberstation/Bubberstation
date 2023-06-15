@@ -40,8 +40,9 @@
 
 	return TRUE
 
-
-/obj/item/organ/external/tail/Insert(mob/living/carbon/reciever, special, drop_if_replaced)
+//BUBBER FIX START
+/obj/item/organ/external/tail/Insert(mob/living/carbon/receiver, special, drop_if_replaced)
+//BUBBER FIX END
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_WAG_ABLE)
 		wag_flags |= WAG_ABLE
 	return ..()
