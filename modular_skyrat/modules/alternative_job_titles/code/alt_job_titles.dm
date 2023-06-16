@@ -328,6 +328,22 @@
 
 /datum/job/science_guard //See orderly
 
+/datum/job/scientist
+	alt_titles = list(
+		"Scientist",
+		"Circuitry Designer",
+		"Xenobiologist",
+		"Cytologist",
+		"Plasma Researcher",
+		"Anomalist",
+		"Lab Technician",
+		"Theoretical Physicist",
+		"Ordnance Technician",
+		"Xenoarchaeologist",
+		"Research Assistant",
+		"Graduate Student",
+	)
+
 /datum/job/security_officer
 	alt_titles = list(
 		"Security Officer",
