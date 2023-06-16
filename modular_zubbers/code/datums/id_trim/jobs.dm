@@ -22,3 +22,11 @@
 		ACCESS_QM,
 		)
 	job = /datum/job/blacksmith
+
+/datum/id_trim/job/blueshield
+	minimal_wildcard_access = list()
+	template_access = list() //Blueshield can no longer make themselves any other Command member
+
+/datum/id_trim/job/nanotrasen_consultant
+	minimal_wildcard_access = list()
+	template_access = list() //NTRep can no longer make themselves any other Command member
