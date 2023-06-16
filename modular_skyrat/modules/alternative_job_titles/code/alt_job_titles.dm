@@ -328,15 +328,6 @@
 
 /datum/job/science_guard //See orderly
 
-/datum/job/security_medic
-	alt_titles = list(
-		"Security Medic",
-		"Field Medic",
-		"Security Corpsman",
-		"Brig Physician",
-		"Combat Medic",
-	)
-
 /datum/job/security_officer
 	alt_titles = list(
 		"Security Officer",
