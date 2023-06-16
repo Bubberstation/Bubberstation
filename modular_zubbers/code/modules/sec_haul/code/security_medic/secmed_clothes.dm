@@ -1,6 +1,7 @@
 /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic
 	name = "security medic labcoat"
 	desc = "A lightweight vest worn by the Security Medic."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/labcoat.dmi'
 	icon_state = "secmed_labcoat" //Icon located in modular_skyrat/master_files/icons/(obj or mob)/clothing/suits/labcoat.dmi
 	blood_overlay_type = "armor"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -31,8 +32,8 @@
 /obj/item/clothing/suit/hazardvest/security_medic
 	name = "security medic vest"
 	desc = "A lightweight vest worn by the Security Medic."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "secmed_vest"
 	worn_icon_state = "secmed_vest"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -56,8 +57,8 @@
 /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	name = "security medic armor vest"
 	desc = "A security medic's armor vest, with little pockets for little things."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "secmed_armor"
 	worn_icon_state = "secmed_armor"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -66,16 +67,16 @@
 /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
 	name = "security medic uniform"
 	desc = "A lightly armored uniform worn by Nanotrasen's Asset Protection Medical Corps."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/uniform_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "security_medic_jumpsuit"
 
 /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	name = "security medic turtleneck"
 	desc = "A comfy turtleneck with a white armband, denoting the wearer as a security medic."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_medic_turtleneck"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
