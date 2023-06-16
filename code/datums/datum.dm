@@ -18,32 +18,34 @@
 	var/gc_destroyed
 
 	/// Active timers with this datum as the target
-	var/list/active_timers
+	var/list/_active_timers
 	/// Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))
-	var/list/status_traits
+	var/list/_status_traits
 
 	/**
 	  * Components attached to this datum
 	  *
-	  * Lazy associated list in the structure of `type:component/list of components`
+	  * Lazy associated list in the structure of `type -> component/list of components`
 	  */
-	var/list/datum_components
+	var/list/_datum_components
 	/**
 	  * Any datum registered to receive signals from this datum is in this list
 	  *
-	  * Lazy associated list in the structure of `signal:registree/list of registrees`
+	  * Lazy associated list in the structure of `signal -> registree/list of registrees`
 	  */
-	var/list/comp_lookup
-	/// Lazy associated list in the structure of `signals:proctype` that are run when the datum receives that signal
-	var/list/list/datum/callback/signal_procs
+	var/list/_comp_lookup
+	/// Lazy associated list in the structure of `target -> list(signal -> proctype)` that are run when the datum receives that signal
+	var/list/list/_signal_procs
 
 	/// Datum level flags
 	var/datum_flags = NONE
 
+#ifndef EXPERIMENT_515_DONT_CACHE_REF
 	/// A cached version of our \ref
 	/// The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
 	/// This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled
 	var/cached_ref
+#endif
 
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
@@ -105,9 +107,9 @@
 	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
 	weak_reference = null //ensure prompt GCing of weakref.
 
-	if(active_timers)
-		var/list/timers = active_timers
-		active_timers = null
+	if(_active_timers)
+		var/list/timers = _active_timers
+		_active_timers = null
 		for(var/datum/timedevent/timer as anything in timers)
 			if (timer.spent && !(timer.flags & TIMER_DELETE_ME))
 				continue
@@ -120,7 +122,7 @@
 	#endif
 
 	//BEGIN: ECS SHIT
-	var/list/dc = datum_components
+	var/list/dc = _datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
 		if(length(all_components))
@@ -131,15 +133,15 @@
 			qdel(C, FALSE, TRUE)
 		dc.Cut()
 
-	clear_signal_refs()
+	_clear_signal_refs()
 	//END: ECS SHIT
 
 	return QDEL_HINT_QUEUE
 
 ///Only override this if you know what you're doing. You do not know what you're doing
 ///This is a threat
-/datum/proc/clear_signal_refs()
-	var/list/lookup = comp_lookup
+/datum/proc/_clear_signal_refs()
+	var/list/lookup = _comp_lookup
 	if(lookup)
 		for(var/sig in lookup)
 			var/list/comps = lookup[sig]
@@ -149,10 +151,10 @@
 			else
 				var/datum/component/comp = comps
 				comp.UnregisterSignal(src, sig)
-		comp_lookup = lookup = null
+		_comp_lookup = lookup = null
 
-	for(var/target in signal_procs)
-		UnregisterSignal(target, signal_procs[target])
+	for(var/target in _signal_procs)
+		UnregisterSignal(target, _signal_procs[target])
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()
@@ -181,13 +183,20 @@
 	to_chat(target, txt_changed_vars())
 #endif
 
-///Return a LIST for serialize_datum to encode! Not the actual json!
-/datum/proc/serialize_list(list/options)
-	CRASH("Attempted to serialize datum [src] of type [type] without serialize_list being implemented!")
+/// Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list
+/datum/proc/serialize_list(list/options, list/semvers)
+	SHOULD_CALL_PARENT(TRUE)
 
-///Accepts a LIST from deserialize_datum. Should return src or another datum.
+	. = list()
+	.["tag"] = tag
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
+
+///Accepts a LIST from deserialize_datum. Should return whether or not the deserialization was successful.
 /datum/proc/deserialize_list(json, list/options)
-	CRASH("Attempted to deserialize datum [src] of type [type] without deserialize_list being implemented!")
+	SHOULD_CALL_PARENT(TRUE)
+	return TRUE
 
 ///Serializes into JSON. Does not encode type.
 /datum/proc/serialize_json(list/options)
@@ -239,11 +248,10 @@
 			return
 	var/typeofdatum = jsonlist["DATUM_TYPE"] //BYOND won't directly read if this is just put in the line below, and will instead runtime because it thinks you're trying to make a new list?
 	var/datum/D = new typeofdatum
-	var/datum/returned = D.deserialize_list(jsonlist, options)
-	if(!isdatum(returned))
+	if(!D.deserialize_list(jsonlist, options))
 		qdel(D)
 	else
-		return returned
+		return D
 
 /**
  * Callback called by a timer to end an associative-list-indexed cooldown.
@@ -348,6 +356,8 @@
 	var/filter = get_filter(name)
 	if(!filter)
 		return
+	// This can get injected by the filter procs, we want to support them so bye byeeeee
+	new_params -= "type"
 	animate(filter, new_params, time = time, easing = easing, loop = loop)
 	modify_filter(name, new_params)
 

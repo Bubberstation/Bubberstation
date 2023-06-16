@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	. += ..()
 	if(summoner)
 		var/healthpercent = health_percentage(summoner)
-		. += "Summoner Health: [round(healthpercent, 0.5)]%"
+		. += "Summoner Health: [round(healthpercent, 0.5)]% ([summoner.health]/[summoner.maxHealth])"
 	if(!COOLDOWN_FINISHED(src, manifest_cooldown))
 		. += "Manifest/Recall Cooldown Remaining: [DisplayTimeText(COOLDOWN_TIMELEFT(src, manifest_cooldown))]"
 
@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		forceMove(summoner.loc)
 		new /obj/effect/temp_visual/guardian/phase(loc)
 
-/mob/living/simple_animal/hostile/guardian/canSuicide()
+/mob/living/simple_animal/hostile/guardian/can_suicide()
 	return FALSE
 
 /mob/living/simple_animal/hostile/guardian/proc/is_deployed()
@@ -423,6 +423,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			adjustBruteLoss(60)
 		if(EXPLODE_LIGHT)
 			adjustBruteLoss(30)
+
+	return TRUE
 
 /mob/living/simple_animal/hostile/guardian/gib()
 	death(TRUE)

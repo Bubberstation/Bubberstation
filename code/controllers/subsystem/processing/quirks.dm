@@ -29,14 +29,23 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Prosthetic Limb", "Quadruple Amputee", "Body Purist"),
 		list("Quadruple Amputee", "Paraplegic"),
 		list("Quadruple Amputee", "Frail"),
+		list("Mute", "Social Anxiety"),
+		list("Mute", "Soft-Spoken"),
+		list("Stormtrooper Aim", "Big Hands"),
 		//SKYRAT EDIT ADDITION BEGIN
 		list("Nerve Stapled", "Pacifist"),
 		list("Nerve Stapled", "Nearsighted"),
-		list("No Guns", "Chunky Fingers", "Stormtrooper Aim"),
-		list("Mute", "Social Anxiety"),
+		list("No Guns", "Big Hands", "Stormtrooper Aim"),
 		list("No Guns", "Pacifist")
 		//SKYRAT EDIT ADDITION END
 	)
+
+	//BUBBER EDIT ADDITION START - Species quirks
+	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
+	var/static/list/quirk_species_whitelist = list(
+		list("Hydrophilic", "[SPECIES_SLIMESTART]")
+	)
+	//BUBBER EDIT ADDITION END
 
 /datum/controller/subsystem/processing/quirks/Initialize()
 	get_quirks()
@@ -222,5 +231,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 
 	return new_quirks
 
+#undef EXP_ASSIGN_WAYFINDER
 #undef RANDOM_QUIRK_BONUS
 #undef MINIMUM_RANDOM_QUIRKS

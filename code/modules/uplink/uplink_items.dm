@@ -1,6 +1,3 @@
-#define TRAITOR_DISCOUNT_BIG "big_discount"
-#define TRAITOR_DISCOUNT_AVERAGE "average_discount"
-#define TRAITOR_DISCOUNT_SMALL "small_discount"
 
 // TODO: Work into reworked uplinks.
 /// Selects a set number of unique items from the uplink, and deducts a percentage discount from them
@@ -69,8 +66,13 @@
 	var/restricted = FALSE
 	/// Can this item be deconstructed to unlock certain techweb research nodes?
 	var/illegal_tech = TRUE
-	// String to be shown instead of the price, e.g for the Random item.
+	/// String to be shown instead of the price, e.g for the Random item.
 	var/cost_override_string = ""
+	/// Whether this item locks all other items from being purchased. Used by syndicate balloon and a few other purchases.
+	/// Can't be purchased if you've already bought other things
+	/// Uses the purchase log, so items purchased that are not visible in the purchase log will not count towards this.
+	/// However, they won't be purchasable afterwards.
+	var/lock_other_purchases = FALSE
 
 /datum/uplink_item/New()
 	. = ..()
@@ -93,7 +95,11 @@
 		TRAITOR_DISCOUNT_BIG = 1,
 	)
 
-	switch(pick_weight(discount_types))
+	return get_discount_value(pick_weight(discount_types))
+
+/// Receives a traitor discount type value, returns the amount by which we will reduce the price
+/datum/uplink_item/proc/get_discount_value(discount_type)
+	switch(discount_type)
 		if(TRAITOR_DISCOUNT_BIG)
 			return 0.75
 		if(TRAITOR_DISCOUNT_AVERAGE)
@@ -107,6 +113,8 @@
 	log_uplink("[key_name(user)] purchased [src] for [cost] telecrystals from [source]'s uplink")
 	if(purchase_log_vis && uplink_handler.purchase_log)
 		uplink_handler.purchase_log.LogPurchase(A, src, cost)
+	if(lock_other_purchases)
+		uplink_handler.shop_locked = TRUE
 
 /// Spawns an item in the world
 /datum/uplink_item/proc/spawn_item(spawn_path, mob/user, datum/uplink_handler/uplink_handler, atom/movable/source)
@@ -156,7 +164,3 @@
 
 /// Code that enables the ability to have limited stock that is shared by different items
 /datum/shared_uplink_stock
-
-#undef TRAITOR_DISCOUNT_BIG
-#undef TRAITOR_DISCOUNT_AVERAGE
-#undef TRAITOR_DISCOUNT_SMALL

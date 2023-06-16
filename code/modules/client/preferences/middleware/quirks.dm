@@ -45,6 +45,7 @@
 		"max_positive_quirks" = MAX_QUIRKS,
 		"quirk_info" = quirk_info,
 		"quirk_blacklist" = SSquirks.quirk_blacklist,
+		"quirk_species_whitelist" = SSquirks.quirk_species_whitelist, //BUBBER EDIT - Species quirks
 	)
 
 /datum/preference_middleware/quirks/on_new_character(mob/user)

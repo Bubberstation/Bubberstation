@@ -57,6 +57,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "policealt"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_MONKEY_VARIATION
 
 ///WARDEN
 /obj/item/clothing/under/rank/security/warden/peacekeeper/sol
@@ -74,21 +75,7 @@
 
 // End Police Uniforms
 
-///SECMED
-/obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
-	name = "security medic scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards and acid, along with some light padding. This one is in a deep red."
-	armor_type = /datum/armor/red_sec
-
 /// PRISONER
-
-/datum/armor/red_sec
-	melee = 10
-	bio = 10
-	fire = 30
-	acid = 30
-	wound = 10
-
 /obj/item/clothing/under/rank/prisoner/protcust
 	name = "protective custody prisoner jumpsuit"
 	desc = "A mustard coloured prison jumpsuit, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
@@ -145,6 +132,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/prisoner/syndicate
 	name = "syndicate prisoner jumpsuit"

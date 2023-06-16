@@ -1,3 +1,5 @@
+#define VERY_LATE_ARRIVAL_TOAST_PROB 20
+
 SUBSYSTEM_DEF(job)
 	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
@@ -579,6 +581,14 @@ SUBSYSTEM_DEF(job)
 
 		setup_alt_job_items(wageslave, job, player_client) // SKYRAT EDIT ADDITION - ALTERNATIVE_JOB_TITLES
 
+		if(EMERGENCY_PAST_POINT_OF_NO_RETURN && prob(VERY_LATE_ARRIVAL_TOAST_PROB))
+			// SKYRAT EDIT CHANGE START - Lizards
+			if(islizard(equipping))
+				equipping.equip_to_slot_or_del(new /obj/item/food/breadslice/root(equipping), ITEM_SLOT_MASK)
+			else
+				equipping.equip_to_slot_or_del(new /obj/item/food/griddle_toast(equipping), ITEM_SLOT_MASK)
+			// SKYRAT EDIT CHANGE END - Lizards
+
 	job.after_spawn(equipping, player_client)
 
 /datum/controller/subsystem/job/proc/handle_auto_deadmin_roles(client/C, rank)
@@ -914,6 +924,7 @@ SUBSYSTEM_DEF(job)
 		destination = pick(GLOB.jobspawn_overrides[M.mind.assigned_role.title])
 		destination.JoinPlayerHere(M, FALSE)
 		return TRUE
+
 	if(latejoin_trackers.len)
 		destination = pick(latejoin_trackers)
 		destination.JoinPlayerHere(M, buckle)
@@ -1009,20 +1020,20 @@ SUBSYSTEM_DEF(job)
 		"[JP_HIGH]" = "High Priority",
 	)
 
-/obj/item/paper/fluff/spare_id_safe_code
+/obj/item/paper/paperslip/corporate/fluff/spare_id_safe_code
 	name = "Nanotrasen-Approved Spare ID Safe Code"
 	desc = "Proof that you have been approved for Captaincy, with all its glory and all its horror."
 
-/obj/item/paper/fluff/spare_id_safe_code/Initialize(mapload)
+/obj/item/paper/paperslip/corporate/fluff/spare_id_safe_code/Initialize(mapload)
 	var/safe_code = SSid_access.spare_id_safe_code
 	default_raw_text = "Captain's Spare ID safe code combination: [safe_code ? safe_code : "\[REDACTED\]"]<br><br>The spare ID can be found in its dedicated safe on the bridge.<br><br>If your job would not ordinarily have Head of Staff access, your ID card has been specially modified to possess it."
 	return ..()
 
-/obj/item/paper/fluff/emergency_spare_id_safe_code
+/obj/item/paper/paperslip/corporate/fluff/emergency_spare_id_safe_code
 	name = "Emergency Spare ID Safe Code Requisition"
 	desc = "Proof that nobody has been approved for Captaincy. A skeleton key for a skeleton shift."
 
-/obj/item/paper/fluff/emergency_spare_id_safe_code/Initialize(mapload)
+/obj/item/paper/paperslip/corporate/fluff/emergency_spare_id_safe_code/Initialize(mapload)
 	var/safe_code = SSid_access.spare_id_safe_code
 	default_raw_text = "Captain's Spare ID safe code combination: [safe_code ? safe_code : "\[REDACTED\]"]<br><br>The spare ID can be found in its dedicated safe on the bridge."
 	return ..()
@@ -1033,7 +1044,7 @@ SUBSYSTEM_DEF(job)
 	if(!id_safe_code)
 		CRASH("Cannot promote [new_captain.real_name] to Captain, there is no id_safe_code.")
 
-	var/paper = new /obj/item/paper/fluff/spare_id_safe_code()
+	var/paper = new /obj/item/folder/biscuit/confidential/spare_id_safe_code()
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
@@ -1059,7 +1070,7 @@ SUBSYSTEM_DEF(job)
 
 /// Send a drop pod containing a piece of paper with the spare ID safe code to loc
 /datum/controller/subsystem/job/proc/send_spare_id_safe_code(loc)
-	new /obj/effect/pod_landingzone(loc, /obj/structure/closet/supplypod/centcompod, new /obj/item/paper/fluff/emergency_spare_id_safe_code())
+	new /obj/effect/pod_landingzone(loc, /obj/structure/closet/supplypod/centcompod, new /obj/item/folder/biscuit/confidential/emergency_spare_id_safe_code())
 	safe_code_timer_id = null
 	safe_code_request_loc = null
 
@@ -1129,9 +1140,10 @@ SUBSYSTEM_DEF(job)
 		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_SPECIES)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_SPECIES
 
-	if(length_char(player.client.prefs.read_preference(/datum/preference/text/flavor_text)) <= FLAVOR_TEXT_CHAR_REQUIREMENT)
-		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_FLAVOUR
+	if(CONFIG_GET(flag/min_flavor_text))
+		if(length_char(player.client.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+			return JOB_UNAVAILABLE_FLAVOUR
 
 
 	//SKYRAT EDIT END
@@ -1144,3 +1156,5 @@ SUBSYSTEM_DEF(job)
 		return JOB_UNAVAILABLE_GENERIC
 
 	return JOB_AVAILABLE
+
+#undef VERY_LATE_ARRIVAL_TOAST_PROB

@@ -45,12 +45,14 @@
 #define ROLE_DRIFTING_CONTRACTOR "Drifting Contractor"
 #define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
 #define ROLE_MUTANT "Mutated Abomination"
+#define ROLE_CLOCK_CULTIST "Clock Cultist"
 // SKYRAT EDIT END
 
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"
 #define ROLE_PROVOCATEUR "Provocateur"
 #define ROLE_SYNDICATE_INFILTRATOR "Syndicate Infiltrator"
+#define ROLE_STOWAWAY_CHANGELING "Stowaway Changeling"
 
 // Other roles
 #define ROLE_SYNDICATE "Syndicate"
@@ -165,6 +167,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HERETIC_SMUGGLER = 0,
 	ROLE_PROVOCATEUR = 14,
 	ROLE_SYNDICATE_INFILTRATOR = 0,
+	ROLE_STOWAWAY_CHANGELING = 0,
 
 	// I'm not too sure why these are here, but they're not moving.
 	ROLE_PAI = 0,

@@ -35,7 +35,7 @@
 
 		else if(iscarbon(object_to_check))
 			var/mob/living/carbon/mob_to_check = object_to_check
-			for(var/organ in mob_to_check.internal_organs)
+			for(var/organ in mob_to_check.organs)
 				found_organ = organ
 				found_organ.organ_flags ^= ORGAN_FROZEN
 
@@ -127,7 +127,7 @@
 
 /// Like add_image_to_client, but will add the image from a list of clients
 /proc/add_image_to_clients(image/image_to_remove, list/show_to)
-	for(var/client/add_to as anything in show_to)
+	for(var/client/add_to in show_to)
 		add_to.images += image_to_remove
 
 /// Removes an image from a client's `.images`. Useful as a callback.
@@ -136,7 +136,7 @@
 
 /// Like remove_image_from_client, but will remove the image from a list of clients
 /proc/remove_image_from_clients(image/image_to_remove, list/hide_from)
-	for(var/client/remove_from as anything in hide_from)
+	for(var/client/remove_from in hide_from)
 		remove_from.images -= image_to_remove
 
 
@@ -238,6 +238,9 @@
 
 ///Calls the show_candidate_poll_window() to all eligible ghosts
 /proc/poll_candidates(question, jobban_type, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE, list/group = null)
+	if (group.len == 0)
+		return list()
+
 	var/time_passed = world.time
 	if (!question)
 		question = "Would you like to be a special role?"
@@ -246,7 +249,7 @@
 		if(!candidate_mob.key || !candidate_mob.client || (ignore_category && GLOB.poll_ignore[ignore_category] && (candidate_mob.ckey in GLOB.poll_ignore[ignore_category])))
 			continue
 		//SKYRAT EDIT ADDITION BEGIN
-		if(is_banned_from(candidate_mob.ckey, BAN_GHOST_TAKEOVER))
+		if(is_banned_from(candidate_mob.ckey, BAN_GHOST_TAKEOVER) || is_banned_from(candidate_mob.ckey, BAN_ANTAGONIST))
 			to_chat(candidate_mob, "There was a ghost prompt for: [question], unfortunately you are banned from ghost takeovers.")
 			continue
 		//SKYRAT EDIT END
