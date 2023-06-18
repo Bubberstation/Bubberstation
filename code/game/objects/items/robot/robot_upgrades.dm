@@ -556,9 +556,9 @@
 			return FALSE
 		if((R_TRAIT_WIDE in robot.model.model_features) || (R_TRAIT_TALL in robot.model.model_features))
 			to_chat(usr, span_warning("This unit's chassis cannot be enlarged any further."))
-			return FALSE
-		// SKYRAT EDIT END
-*/ // BUBBER EDIT REMOVAL
+			return FALSE*/
+		// SKYRAT EDIT END - BUBBER EDIT REMOVAL
+
 
 		robot.notransform = TRUE
 		var/prev_lockcharge = robot.lockcharge
