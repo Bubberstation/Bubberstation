@@ -1,7 +1,7 @@
 /datum/species/abductor
 	name = "Abductor"
 	id = SPECIES_ABDUCTOR
-	sexes = FALSE
+	sexes = TRUE//ZUBBER EDIT
 	species_traits = list(
 		NOEYESPRITES,
 		NO_UNDERWEAR,

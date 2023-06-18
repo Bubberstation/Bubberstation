@@ -5,6 +5,8 @@
 	species_traits = list(
 		LIPS,
 		HAS_MARKINGS,
+		HAIR,//Bubber edit, give them HAIR
+		FACEHAIR,//Bubber edit
 	)
 	inherent_traits = list(
 		TRAIT_CAN_USE_FLIGHT_POTION,
