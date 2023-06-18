@@ -550,7 +550,7 @@
 		if(robot.hasExpanded)
 			to_chat(usr, span_warning("This unit already has an expand module installed!"))
 			return FALSE
-		// SKYRAT EDIT BEGIN
+/* 		// SKYRAT EDIT BEGIN - BUBBER EDIT REMOVAL
 		if(robot.model.model_select_icon == "nomod")
 			to_chat(usr, span_warning("Default models cannot take expand or shrink upgrades."))
 			return FALSE
@@ -558,6 +558,7 @@
 			to_chat(usr, span_warning("This unit's chassis cannot be enlarged any further."))
 			return FALSE
 		// SKYRAT EDIT END
+*/ // BUBBER EDIT REMOVAL
 
 		robot.notransform = TRUE
 		var/prev_lockcharge = robot.lockcharge
@@ -759,7 +760,7 @@
 	var/obj/item/pushbroom/cyborg/BR = locate() in R.model.modules
 	if (BR)
 		R.model.remove_module(BR, TRUE)
-		
+
 /obj/item/borg/upgrade/condiment_synthesizer
 	name = "Service Cyborg Condiment Synthesiser"
 	desc = "An upgrade to the service model cyborg, allowing it to produce solid condiments."
@@ -787,7 +788,7 @@
 	var/obj/item/reagent_containers/borghypo/condiment_synthesizer/cynthesizer = locate() in install.model.modules
 	if (cynthesizer)
 		install.model.remove_module(cynthesizer, TRUE)
-			
+
 /obj/item/borg/upgrade/silicon_knife
 	name = "Service Cyborg Kitchen Toolset"
 	desc = "An upgrade to the service model cyborg, to help process foods."
@@ -795,7 +796,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
 	model_flags = BORG_MODEL_SERVICE
-			
+
 /obj/item/borg/upgrade/silicon_knife/action(mob/living/silicon/robot/install, user = usr)
 	. = ..()
 	if(!.)
@@ -815,15 +816,15 @@
 	var/obj/item/knife/kitchen/silicon/snife = locate() in install.model.modules
 	if (snife)
 		install.model.remove_module(snife, TRUE)
-			
+
 /obj/item/borg/upgrade/service_apparatus
 	name = "Service Cyborg Service Apparatus"
 	desc = "An upgrade to the service model cyborg, to help handle foods and paper."
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
-	model_flags = BORG_MODEL_SERVICE			
-			
+	model_flags = BORG_MODEL_SERVICE
+
 /obj/item/borg/upgrade/service_apparatus/action(mob/living/silicon/robot/install, user = usr)
 	. = ..()
 	if(!.)
@@ -843,15 +844,15 @@
 	var/obj/item/borg/apparatus/service/saparatus = locate() in install.model.modules
 	if (saparatus)
 		install.model.remove_module(saparatus, TRUE)
-			
+
 /obj/item/borg/upgrade/rolling_table
 	name = "Service Cyborg Rolling Table Dock"
 	desc = "An upgrade to the service model cyborg, to help provide mobile service."
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
-	model_flags = BORG_MODEL_SERVICE			
-			
+	model_flags = BORG_MODEL_SERVICE
+
 /obj/item/borg/upgrade/rolling_table/action(mob/living/silicon/robot/install, user = usr)
 	. = ..()
 	if(!.)
@@ -870,7 +871,7 @@
 		return FALSE
 	var/obj/item/rolling_table_dock/rtable = locate() in install.model.modules
 	if (rtable)
-		install.model.remove_module(rtable, TRUE)			
+		install.model.remove_module(rtable, TRUE)
 
 ///This isn't an upgrade or part of the same path, but I'm gonna just stick it here because it's a tool used on cyborgs.
 //A reusable tool that can bring borgs back to life. They gotta be repaired first, though.
