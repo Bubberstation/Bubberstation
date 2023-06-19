@@ -11,7 +11,7 @@
 		Nri = list(fax_name = "NRI", fax_id = "NRI", color = "orange", emag_needed = FALSE),
 		Ombrux = list(fax_name = "Ombrux", fax_id = "Ombrux", color = "orange", emag_needed = TRUE),
 		Soato = list(fax_name = "Soato", fax_id = "Soato", color = "orange", emag_needed = TRUE),
-		SolFed = list(fax_name = "SFI", fax_id = "SFI", color = "orange", emag_needed = FALSE),
+		SolFed = list(fax_name = "SBI", fax_id = "SBI", color = "orange", emag_needed = FALSE),
 		Irs = list(fax_name = "IRS", fax_id = "IRS", color = "orange", emag_needed = FALSE),
 		WizFed = list(fax_name = "Wizard Fed", fax_id = "WizFed", color = "blue", emag_needed = TRUE),
 		Union = list(fax_name = "Union", fax_id = "Union", color = "orange", emag_needed = TRUE),
