@@ -134,6 +134,7 @@
 	. = ..()
 	active_portal_pairs = list()
 
+/* Bubberstation change: Removes portal dispelling.
 /obj/item/hand_tele/pre_attack(atom/target, mob/user, params)
 	if(try_dispel_portal(target, user))
 		return TRUE
@@ -149,6 +150,7 @@
 /obj/item/hand_tele/afterattack(atom/target, mob/user)
 	try_dispel_portal(target, user)
 	. = ..()
+*/
 
 /obj/item/hand_tele/pre_attack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
 	var/portal_location = last_portal_location
