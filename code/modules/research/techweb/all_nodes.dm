@@ -455,6 +455,10 @@
 		"bodymedicell",
 		"clotmedicell",
 		//SKYRAT EDIT END  -
+
+		//BUBBER EDIT START
+		"crewmonitor",
+		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	required_experiments = list(/datum/experiment/dissection/nonhuman)
