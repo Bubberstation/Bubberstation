@@ -1644,7 +1644,7 @@
 		"stunrevolver",
 
 		//SKYRAT EDIT START - RESEARCH DESIGNS
-		"medigunspeed",
+		"medigun_speed",
 		//SKYRAT EDIT END - RESEARCH DESIGNS
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
