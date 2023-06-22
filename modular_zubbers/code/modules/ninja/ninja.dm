@@ -2,6 +2,9 @@
 	belt = /obj/item/melee/baton/telescopic/pocket_energy_tonfa
 	implants = list(/obj/item/implant/krav_maga, /obj/item/implant/freedom)
 
+/obj/item/mod/module/dna_lock/reinforced
+	removable = FALSE
+
 /obj/item/mod/module/weapon_recall
 	accepted_type = /obj/item/melee/baton/telescopic/pocket_energy_tonfa
 
@@ -84,3 +87,4 @@
 		else
 			ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
 			ninja.dna.update_dna_identity()
+
