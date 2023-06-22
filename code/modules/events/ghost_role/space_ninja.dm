@@ -31,8 +31,8 @@
 	ninja.key = key
 	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
 	spawned_mobs += ninja
-// SKYRAT EDIT ADDITION BEGIN: Preference Ninjas
-	var/loadme = tgui_input_list(ninja, "Do you wish to load your character slot?", "Load Character?", list("Yes!", "No, I want to be random!"), default = "No, I want to be random!", timeout = 60 SECONDS)
+// SKYRAT EDIT ADDITION BEGIN: Preference Ninjas - BUBBER EDIT - Moved to ninja module
+/* 	var/loadme = tgui_input_list(ninja, "Do you wish to load your character slot?", "Load Character?", list("Yes!", "No, I want to be random!"), default = "No, I want to be random!", timeout = 60 SECONDS)
 	var/codename
 	if(loadme == "Yes!")
 		ninja.client?.prefs?.safe_transfer_prefs_to(ninja)
@@ -43,7 +43,10 @@
 		ninja.dna.update_dna_identity()
 	else
 		ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
-		ninja.dna.update_dna_identity()
+		ninja.dna.update_dna_identity() // BUBBER EDIT: MOVED TO NINJA MODULE
+*/
+	sleep(1 SECONDS) // BUBBER EDIT - Ninja Module
+	apply_ninja_prefs(ninja) // BUBBER EDIT - Ninja Module
 
 // SKYRAT EDIT ADDITION END: Preference Ninjas
 	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a space ninja by an event.")
