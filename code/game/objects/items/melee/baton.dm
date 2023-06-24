@@ -413,7 +413,7 @@
 	armor_type = /datum/armor/baton_security
 	throwforce = 7
 	force_say_chance = 50
-	stamina_damage = 60 //Bubberstation change: 60 (tg) to 35 (skyrat) to 45 (bubberstation) :^)
+	stamina_damage = 45 //Bubberstation change: 60 (tg) to 35 (skyrat) to 45 (bubberstation) :^)
 	knockdown_time = 0 //Bubberstation change 5 SECONDS to 0.
 	clumsy_knockdown_time = 3 SECONDS //Bubberstation change 15 SECONDS to 3.
 	cooldown = 2 SECONDS //Bubberstation change 2.5 SECONDS to 2 SECONDS.
