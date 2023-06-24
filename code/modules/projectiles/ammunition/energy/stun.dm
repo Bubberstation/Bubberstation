@@ -18,12 +18,12 @@
 /obj/item/ammo_casing/energy/disabler
 	projectile_type = /obj/projectile/beam/disabler
 	select_name = "disable"
-	e_cost = 50
+	e_cost = 25 //Bubberstation change: 50 > 25
 	fire_sound = 'sound/weapons/taser2.ogg'
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/disabler/hos
-	e_cost = 60
+	e_cost = 30 //Bubberstation change: 60 > 30
 
 // SKYRAT ADDITION START
 /obj/item/ammo_casing/energy/disabler/skyrat

@@ -12,7 +12,7 @@
 		return
 
 	to_chat(src, span_notice("You're too exhausted to keep going..."))
-	add_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED), STAMINA)
+	add_traits(list(TRAIT_INCAPACITATED, TRAIT_HANDS_BLOCKED, TRAIT_FLOORED), STAMINA) //Bubberstation Change, removes TRAIT_IMMOBILIZED, but adds TRAIT_HANDS_BLOCKED. You can still move around in stamcrit. bit you can't use items.
 	if(getStaminaLoss() < 162) // Puts you a little further into the initial stamcrit, makes stamcrit harder to outright counter with chems. //SKYRAT EDIT CHANGE
 		adjustStaminaLoss(30, FALSE)
 

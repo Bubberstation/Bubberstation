@@ -413,10 +413,10 @@
 	armor_type = /datum/armor/baton_security
 	throwforce = 7
 	force_say_chance = 50
-	stamina_damage = 35 // SKYRAT EDIT - 4 baton crit now (Original: 60)
-	knockdown_time = 5 SECONDS
-	clumsy_knockdown_time = 15 SECONDS
-	cooldown = 2.5 SECONDS
+	stamina_damage = 60 //Bubberstation change: 60 (tg) to 35 (skyrat) to 45 (bubberstation) :^)
+	knockdown_time = 0 //Bubberstation change 5 SECONDS to 0.
+	clumsy_knockdown_time = 3 SECONDS //Bubberstation change 15 SECONDS to 3.
+	cooldown = 2 SECONDS //Bubberstation change 2.5 SECONDS to 2 SECONDS.
 	on_stun_sound = 'sound/weapons/egloves.ogg'
 	on_stun_volume = 50
 	active = FALSE
@@ -595,6 +595,8 @@
 	target.set_stutter_if_lower(16 SECONDS)
 
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
+
+/* Bubberstation change: Removes knockdown effect from security batons.
 	addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), target), 2 SECONDS)
 
 /// After the initial stun period, we check to see if the target needs to have the stun applied.
@@ -605,6 +607,7 @@
 
 	if(!trait_check)
 		target.Knockdown(knockdown_time)
+*/
 
 /obj/item/melee/baton/security/get_wait_description()
 	return span_danger("The baton is still charging!")
