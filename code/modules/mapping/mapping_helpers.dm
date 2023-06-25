@@ -306,6 +306,11 @@
 	if(target.air_sensor_chamber_id)
 		target.setup_chamber_link()
 
+	///SKYRAT EDIT START
+	if(target.nitrogen)
+		target.nitrogen()
+	///SKYRAT EDIT ENF
+
 	target.update_appearance()
 	qdel(src)
 
@@ -391,6 +396,18 @@
 		var/area/area = get_area(target)
 		log_mapping("[src] at [AREACOORD(src)] [(area.type)] tried to adjust [target]'s tlv to no_checks but it's already changed!")
 	target.tlv_no_checks = TRUE
+
+//SKYRAT EDIT START
+/obj/effect/mapping_helpers/airalarm/nitrogen
+	name = "airalarm nitrogen tlv helper"
+	icon_state = "airalarm_tlv_no_checks_helper"
+
+/obj/effect/mapping_helpers/airalarm/nitrogen/payload(obj/machinery/airalarm/target)
+	if(target.nitrogen)
+		var/area/area = get_area(target)
+		log_mapping("[src] at [AREACOORD(src)] [(area.type)] tried to adjust [target]'s tlv to nitrogen but it's already changed!")
+	target.nitrogen = TRUE
+///SKYRAT EDIT END
 
 /obj/effect/mapping_helpers/airalarm/link
 	name = "airalarm link helper"

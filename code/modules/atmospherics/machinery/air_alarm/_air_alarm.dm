@@ -59,6 +59,10 @@
 	/// Used for air alarm helper called tlv_no_ckecks to remove alarm thresholds.
 	var/tlv_no_checks = FALSE
 
+	///SKYRAT EDIT START
+	///Used for air alarm helper called nitrogen to designate Oxygen as hazardous.
+	var/nitrogen = FALSE
+	///SKYRAT EDIT END
 
 	///Warning message spoken by air alarms
 	var/warning_message = null
@@ -651,6 +655,21 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 /obj/machinery/airalarm/proc/set_tlv_no_checks()
 	tlv_collection["temperature"] = new /datum/tlv/no_checks
 	tlv_collection["pressure"] = new /datum/tlv/no_checks
+
+///SKYRAT EDIT START
+///Used for air alarm nitrogen helper, which designates Oxygen as hazardous
+/obj/machinery/airalarm/proc/nitrogen()
+	var/list/meta_info = GLOB.meta_gas_info // shorthand
+	for(var/gas_path in meta_info)
+		if(ispath(gas_path, /datum/gas/oxygen))
+			tlv_collection[gas_path] = new /datum/tlv/dangerous
+		else if(ispath(gas_path, /datum/gas/carbon_dioxide))
+			tlv_collection[gas_path] = new /datum/tlv/carbon_dioxide
+		else if(meta_info[gas_path][META_GAS_DANGER])
+			tlv_collection[gas_path] = new /datum/tlv/dangerous
+		else
+			tlv_collection[gas_path] = new /datum/tlv/no_checks
+///SKYRAT EDIT END
 
 ///Used for air alarm link helper, which connects air alarm to a sensor with corresponding chamber_id
 /obj/machinery/airalarm/proc/setup_chamber_link()
