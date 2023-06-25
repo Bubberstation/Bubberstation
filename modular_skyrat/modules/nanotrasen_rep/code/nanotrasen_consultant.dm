@@ -76,7 +76,7 @@
 	desc = "An official Central Command headset."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/headset_com
-	keyslot2 = new /obj/item/encryptionkey/headset_cent
+	//keyslot2 = new /obj/item/encryptionkey/headset_cent
 
 /obj/item/radio/headset/heads/nanotrasen_consultant/alt
 	name = "\proper the nanotrasen consultant's bowman headset"
