@@ -9,6 +9,50 @@
 # Traits - Station (for station relatied edits), CentCom (for edits on the CC map), Mining (for edits on Lavaland)
 # More can be found in code\__DEFINES\maps.dm
 
+## Bubberstation changes
+
+# Bubber Metastation Blacksmith
+[templates.metastation_blacksmith]
+map_files = ["metastation_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/metastation/"
+required_map = "MetaStation.dmm"
+coordinates = [76, 148, 1]
+trait_name = "Station"
+
+# Bubber Deltastation Blacksmith
+[templates.deltastation_blacksmith]
+map_files = ["deltastation_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/deltastation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [149, 149, 1]
+trait_name = "Station"
+
+# Bubber Voidraptor Blacksmith
+[templates.voidraptor_blacksmith]
+map_files = ["voidraptor_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/voidraptor/"
+required_map = "VoidRaptor.dmm"
+coordinates = [142, 92, 1]
+trait_name = "Station"
+
+# Bubber Icebox Blacksmith
+[templates.icebox_blacksmith]
+map_files = ["icebox_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/icebox/"
+required_map = "IceBoxStation.dmm"
+coordinates = [89, 104, 3]
+trait_name = "Station"
+
+# Bubber Northstar Blacksmith
+[templates.northstar_blacksmith]
+map_files = ["northstar_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/northstar/"
+required_map = "north_star.dmm"
+coordinates = [87, 122, 1]
+trait_name = "Station"
+
+## End of Bubberstation changes
+
 # CENTRAL COMMAND MAP TEMPLATES
 # CC Ferry Dock - Admin Shuttle
 [templates.centcom_ferry_dock]
