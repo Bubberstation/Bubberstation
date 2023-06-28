@@ -24,6 +24,7 @@
 	job = /datum/job/blacksmith
 
 /datum/id_trim/job/blueshield
+	extra_access = list(ACCESS_SECURITY, ACCESS_COURT, ACCESS_CARGO, ACCESS_GATEWAY) //Blueshield loses Brig access and cannot perform arrests.
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN) //Blueshield can no longer change to any other ID trim
 
