@@ -5,8 +5,6 @@
 /datum/outfit/job/blueshield
 	id = /obj/item/card/id/advanced/silver
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
-	backpack_contents = list(
-		/obj/item/storage/box/gunset/blueshield = 0,
-	)
+	backpack_contents = list()
 	r_pocket = /obj/item/melee/baton/telescopic
 //Making the Blueshield have a silver ID, which cannot receive All Access by default.
