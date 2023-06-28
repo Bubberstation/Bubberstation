@@ -24,7 +24,11 @@
 	job = /datum/job/blacksmith
 
 /datum/id_trim/job/blueshield
-	extra_access = list(ACCESS_SECURITY, ACCESS_COURT, ACCESS_CARGO, ACCESS_GATEWAY) //Blueshield loses Brig access and cannot perform arrests.
+	extra_access = list(ACCESS_COURT, ACCESS_CARGO, ACCESS_GATEWAY) //Blueshield loses Brig and Security access and cannot perform arrests.
+	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_ENGINEERING, ACCESS_MAINT_TUNNELS, ACCESS_RESEARCH,
+		ACCESS_RC_ANNOUNCE, ACCESS_COMMAND, ACCESS_WEAPONS,
+	) //Blueshield loses access to the Detective's office.
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN) //Blueshield can no longer change to any other ID trim
 
