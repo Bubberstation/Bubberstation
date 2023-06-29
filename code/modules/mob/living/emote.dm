@@ -65,7 +65,7 @@
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
-		L.Unconscious(40)
+		L.Paralyze(40,ignore_can_stun=TRUE) //Bubberstation change: Collapsing paralyzes you instead of setting you unconcious.
 
 /datum/emote/living/cough
 	key = "cough"
