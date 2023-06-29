@@ -12,6 +12,7 @@
 	agent = "Quantum Entanglement"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "A disease discovered in an Interdyne laboratory caused by subjection to timesteam correction technology."
+	bypasses_immunity = TRUE//Bubber addition
 	severity = DISEASE_SEVERITY_UNCURABLE
 	var/heartswap = TRUE
 

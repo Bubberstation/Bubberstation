@@ -155,3 +155,17 @@
 			else
 				to_chat(user, span_notice("You don't have any stored tickets!"))
 			return TRUE
+
+/obj/machinery/computer/arcade/minesweeper/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
+	do_sparks(5, 1, src)
+	obj_flags |= EMAGGED
+	if(board.game_status != MINESWEEPER_CONTINUE)
+		to_chat(user, span_warning("An ominous tune plays from the arcade's speakers!"))
+		playsound(user, 'modular_zubbers/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)
+	else	//Can't let you do that, star fox!
+		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
+		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
+		board.game_status = MINESWEEPER_IDLE
