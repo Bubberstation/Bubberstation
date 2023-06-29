@@ -87,7 +87,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stock_parts/cell/high/empty = 25,
 		/obj/item/stock_parts/cell/lead = 200,
 		/obj/item/stock_parts/cell/potato = 100,
-		/obj/item/stock_parts/manipulator = 100,
 		/obj/item/stock_parts/matter_bin = 100,
 		/obj/item/stock_parts/micro_laser = 100,
 		/obj/item/stock_parts/scanning_module = 100,
