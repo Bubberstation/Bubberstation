@@ -1,4 +1,4 @@
-/obj/item/clothing/gloves/tactical_maid
+/obj/item/clothing/gloves/tactical_maid //Donor item for skyefree
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	name = "tactical maid sleeves"

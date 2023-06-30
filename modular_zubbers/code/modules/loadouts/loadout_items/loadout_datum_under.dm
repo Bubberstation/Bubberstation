@@ -19,7 +19,7 @@
 	item_path = /obj/item/clothing/under/rank/lace
 	ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/under/miscellaneous/tactical_maid
+/datum/loadout_item/under/miscellaneous/tactical_maid //Donor item for skyefree
 	name = "Tactical Maid Costume"
 	item_path = /obj/item/clothing/under/misc/maid/tactical
 	donator_only = TRUE

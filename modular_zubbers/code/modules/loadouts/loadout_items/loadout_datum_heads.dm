@@ -36,7 +36,7 @@
 	item_path = /obj/item/clothing/head/costume/hairbow
 	donator_only = TRUE
 
-/datum/loadout_item/head/tactical_maid_headband
+/datum/loadout_item/head/tactical_maid_headband //Donor item for skyefree
 	name = "Tactical Maid Headband"
 	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
 	donator_only = TRUE

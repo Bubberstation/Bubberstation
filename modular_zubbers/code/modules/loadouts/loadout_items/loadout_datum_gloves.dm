@@ -8,7 +8,7 @@
 	item_path = /obj/item/clothing/gloves/longrubbergloves
 	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
 
-/datum/loadout_item/gloves/tactical_maid_gloves
+/datum/loadout_item/gloves/tactical_maid_gloves //Donor item for skyefree
 	name = "Tactical Maid Gloves"
 	item_path = /obj/item/clothing/gloves/tactical_maid
 	donator_only = TRUE

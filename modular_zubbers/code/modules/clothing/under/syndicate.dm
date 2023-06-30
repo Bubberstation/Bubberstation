@@ -1,8 +1,8 @@
-/obj/item/clothing/under/misc/maid/tactical//Request Set by Skyeefree
+/obj/item/clothing/under/misc/maid/tactical //Donor item for skyefree
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/syndicate.dmi'
 	name = "Tactical maid outfit"
-	desc = "For the aspiring janitor who wishes to look cute and tactical."
+	desc = "A 'tactical' skirtleneck fashioned to the likeness of a maid outfit."
 	icon_state = "syndimaid"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	dying_key = DYE_REGISTRY_JUMPSKIRT
