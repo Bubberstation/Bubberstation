@@ -1,0 +1,6 @@
+/obj/item/clothing/gloves/tactical_maid
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
+	name = "tactical maid sleeves"
+	desc = "'Tactical' cleaning gloves."
+	icon_state = "syndimaid_arms"

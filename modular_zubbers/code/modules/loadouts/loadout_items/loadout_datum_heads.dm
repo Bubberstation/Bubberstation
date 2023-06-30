@@ -35,3 +35,8 @@
 	name = "Hair Bow"
 	item_path = /obj/item/clothing/head/costume/hairbow
 	donator_only = TRUE
+
+/datum/loadout_item/head/tactical_maid_headband
+	name = "Tactical Maid Headband"
+	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
+	donator_only = TRUE
