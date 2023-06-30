@@ -6,8 +6,14 @@
 
 /area/station/maintenance/starboard/lower
 	name = "Lower Starboard Maintenance"
-	icon_state = "starboardmaint" // This and port need their own icons
+	icon_state = "starboardmaint"
 
 /area/station/maintenance/port/lower
 	name = "Lower Port Maintenance"
 	icon_state = "portmaint"
+
+/area/station/engineering/atmos/control_center
+	name = "Atmospherics Control Center"
+
+/area/station/engineering/atmos/experiment_room
+	name = "Atmospherics Experimentation Room"
