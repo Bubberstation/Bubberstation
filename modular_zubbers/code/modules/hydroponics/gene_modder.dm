@@ -28,7 +28,7 @@
 
 /obj/machinery/plantgenes/RefreshParts() // Comments represent the max you can set per tier, respectively. seeds.dm [219] clamps these for us but we don't want to mislead the viewer.
 	. = ..()
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/servo/M in component_parts)
 		if(M.rating > 3)
 			max_potency = 95
 		else
