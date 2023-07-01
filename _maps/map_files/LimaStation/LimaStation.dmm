@@ -1286,11 +1286,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
 "aEj" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 10
+/obj/structure/table/glass,
+/obj/item/toy/mecha/phazon{
+	pixel_y = 8
 	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
+/turf/open/floor/carpet/royalblue,
+/area/station/command/bridge)
 "aEA" = (
 /obj/structure/table,
 /obj/item/clothing/shoes/sneakers/orange{
@@ -26059,6 +26060,12 @@
 /obj/effect/turf_decal/tile/green/opposingcorners,
 /turf/open/floor/iron/checker,
 /area/station/service/hydroponics)
+"khy" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 10
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "khA" = (
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
@@ -40195,13 +40202,6 @@
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central)
-"psV" = (
-/obj/structure/table/glass,
-/obj/item/toy/mecha/phazon{
-	pixel_y = 8
-	},
-/turf/open/floor/carpet/royalblue,
-/area/station/command/bridge)
 "ptl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -49832,6 +49832,7 @@
 	c_tag = "Command - Port Bridge";
 	dir = 8
 	},
+/obj/machinery/vending/access/command,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "sRl" = (
@@ -162844,7 +162845,7 @@ gHa
 qgW
 lhh
 lhh
-aEj
+khy
 juM
 hOp
 juM
@@ -168343,7 +168344,7 @@ lZo
 mPh
 aFd
 hTS
-psV
+aEj
 dSp
 oSx
 dTl
