@@ -17892,10 +17892,7 @@
 /turf/open/floor/plating,
 /area/station/tcommsat/server)
 "hbQ" = (
-/obj/structure/table,
-/obj/item/toy/mecha/phazon{
-	pixel_y = 8
-	},
+/obj/machinery/vending/access/command,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "hbV" = (
@@ -20684,8 +20681,12 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos/upper)
 "igQ" = (
-/turf/open/space/basic,
-/area/station/maintenance/starboard/lower)
+/obj/structure/table/glass,
+/obj/item/toy/mecha/phazon{
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/station/command/bridge)
 "igZ" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -25674,6 +25675,12 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
+"kbe" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 10
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "kbn" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
@@ -34390,6 +34397,12 @@
 /obj/machinery/door/poddoor/incinerator_atmos_aux,
 /turf/open/floor/engine/vacuum,
 /area/station/maintenance/disposal/incinerator)
+"nlZ" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 6
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "nmq" = (
 /obj/machinery/camera{
 	c_tag = "Science - Xenobiology Central Upper";
@@ -56536,12 +56549,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/engine/air,
 /area/station/engineering/atmos/upper)
-"vxM" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 6
-	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
 "vxY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -57617,12 +57624,6 @@
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
-"vUO" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 10
-	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
 "vUS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -102017,10 +102018,10 @@ dnW
 qnM
 eTD
 xhh
-igQ
-igQ
-igQ
-igQ
+ymg
+ymg
+ymg
+ymg
 bkS
 wWd
 vku
@@ -102274,10 +102275,10 @@ cFa
 hBc
 vhT
 xhh
-igQ
-igQ
-igQ
-igQ
+ymg
+ymg
+ymg
+ymg
 bkS
 jkB
 vku
@@ -160279,7 +160280,7 @@ kTS
 lhd
 lhd
 lhd
-vxM
+nlZ
 juM
 hOp
 juM
@@ -162849,7 +162850,7 @@ gHa
 qgW
 lhh
 lhh
-vUO
+kbe
 juM
 hOp
 juM
@@ -168348,7 +168349,7 @@ lZo
 mPh
 aFd
 hTS
-dSp
+igQ
 dSp
 oSx
 dTl
