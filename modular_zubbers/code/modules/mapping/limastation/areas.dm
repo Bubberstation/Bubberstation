@@ -17,3 +17,6 @@
 
 /area/station/engineering/atmos/experiment_room
 	name = "Atmospherics Experimentation Room"
+
+/area/station/service/hydroponics/park
+	name = "Park"
