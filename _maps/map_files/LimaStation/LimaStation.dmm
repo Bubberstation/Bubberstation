@@ -1286,10 +1286,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
 "aEj" = (
-/obj/structure/lattice,
-/obj/effect/spawner/random/structure/grille,
-/turf/open/space/basic,
-/area/station/maintenance/port/lower)
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 10
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "aEA" = (
 /obj/structure/table,
 /obj/item/clothing/shoes/sneakers/orange{
@@ -17892,7 +17893,15 @@
 /turf/open/floor/plating,
 /area/station/tcommsat/server)
 "hbQ" = (
-/obj/machinery/vending/access/command,
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/machinery/recharger{
+	pixel_x = 8;
+	pixel_y = 3
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "hbV" = (
@@ -20681,12 +20690,11 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos/upper)
 "igQ" = (
-/obj/structure/table/glass,
-/obj/item/toy/mecha/phazon{
-	pixel_y = 8
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 6
 	},
-/turf/open/floor/carpet/royalblue,
-/area/station/command/bridge)
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "igZ" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -25675,12 +25683,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
-"kbe" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 10
-	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
 "kbn" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
@@ -34397,12 +34399,6 @@
 /obj/machinery/door/poddoor/incinerator_atmos_aux,
 /turf/open/floor/engine/vacuum,
 /area/station/maintenance/disposal/incinerator)
-"nlZ" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 6
-	},
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
 "nmq" = (
 /obj/machinery/camera{
 	c_tag = "Science - Xenobiology Central Upper";
@@ -40199,6 +40195,13 @@
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central)
+"psV" = (
+/obj/structure/table/glass,
+/obj/item/toy/mecha/phazon{
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/station/command/bridge)
 "ptl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -49823,17 +49826,8 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/hallway/secondary/service)
 "sRk" = (
-/obj/structure/table,
 /obj/machinery/light/directional/west,
-/obj/machinery/recharger{
-	pixel_x = 8;
-	pixel_y = 3
-	},
 /obj/item/radio/intercom/directional/west,
-/obj/machinery/recharger{
-	pixel_x = -4;
-	pixel_y = 3
-	},
 /obj/machinery/camera{
 	c_tag = "Command - Port Bridge";
 	dir = 8
@@ -83236,7 +83230,7 @@ ymg
 ymg
 ymg
 ymg
-aEj
+tGM
 iIH
 dJd
 iIH
@@ -160280,7 +160274,7 @@ kTS
 lhd
 lhd
 lhd
-nlZ
+igQ
 juM
 hOp
 juM
@@ -162850,7 +162844,7 @@ gHa
 qgW
 lhh
 lhh
-kbe
+aEj
 juM
 hOp
 juM
@@ -168349,7 +168343,7 @@ lZo
 mPh
 aFd
 hTS
-igQ
+psV
 dSp
 oSx
 dTl
