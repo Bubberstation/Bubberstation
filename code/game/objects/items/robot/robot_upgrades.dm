@@ -267,9 +267,9 @@
 
 /obj/item/borg/upgrade/lavaproof
 	name = "mining cyborg lavaproof chassis"
-	desc = "An upgrade kit to apply specialized coolant systems and insulation layers to a mining cyborg's chassis, enabling them to withstand exposure to molten rock."
+	desc = "An upgrade kit to apply specialized coolant systems and insulation layers to a mining cyborg's chassis, enabling them to withstand exposure to molten rock and liquid plasma."
 	icon_state = "ash_plating"
-	resistance_flags = LAVA_PROOF | FIRE_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
@@ -277,12 +277,12 @@
 /obj/item/borg/upgrade/lavaproof/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		ADD_TRAIT(R, TRAIT_LAVA_IMMUNE, type)
+		R.add_traits(list(TRAIT_LAVA_IMMUNE, TRAIT_SNOWSTORM_IMMUNE), type)
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		REMOVE_TRAIT(R, TRAIT_LAVA_IMMUNE, type)
+		R.remove_traits(list(TRAIT_LAVA_IMMUNE, TRAIT_SNOWSTORM_IMMUNE), type)
 
 /obj/item/borg/upgrade/selfrepair
 	name = "self-repair module"
@@ -550,14 +550,15 @@
 		if(robot.hasExpanded)
 			to_chat(usr, span_warning("This unit already has an expand module installed!"))
 			return FALSE
-		// SKYRAT EDIT BEGIN
+/* 		// SKYRAT EDIT BEGIN - BUBBER EDIT REMOVAL
 		if(robot.model.model_select_icon == "nomod")
 			to_chat(usr, span_warning("Default models cannot take expand or shrink upgrades."))
 			return FALSE
 		if((R_TRAIT_WIDE in robot.model.model_features) || (R_TRAIT_TALL in robot.model.model_features))
 			to_chat(usr, span_warning("This unit's chassis cannot be enlarged any further."))
-			return FALSE
-		// SKYRAT EDIT END
+			return FALSE*/
+		// SKYRAT EDIT END - BUBBER EDIT REMOVAL
+
 
 		robot.notransform = TRUE
 		var/prev_lockcharge = robot.lockcharge

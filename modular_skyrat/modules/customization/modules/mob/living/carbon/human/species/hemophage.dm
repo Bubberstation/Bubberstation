@@ -74,8 +74,7 @@
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_NOHUNGER,
-		TRAIT_NOBREATH,
-		TRAIT_VIRUSIMMUNE,
+		TRAIT_NOBREATH,//Bubber edit, removes Virus Immune.
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_LITERATE,
 	)
@@ -312,9 +311,8 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "biohazard",
 			SPECIES_PERK_NAME = "Viral Symbiosis",
-			SPECIES_PERK_DESC = "Hemophages, due to their condition, cannot get infected by \
-								other viruses and don't actually require an external source of oxygen \
-								to stay alive.",
+			SPECIES_PERK_DESC = "Hemophages, due to their condition don't actually require an external source of oxygen \
+								to stay alive.", // BUBBER EDIT
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
