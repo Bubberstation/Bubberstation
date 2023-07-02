@@ -312,7 +312,7 @@
 			SPECIES_PERK_ICON = "biohazard",
 			SPECIES_PERK_NAME = "Viral Symbiosis",
 			SPECIES_PERK_DESC = "Hemophages, due to their condition don't actually require an external source of oxygen \
-								to stay alive.",
+								to stay alive.", // BUBBER EDIT
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
