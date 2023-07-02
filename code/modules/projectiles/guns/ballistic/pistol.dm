@@ -71,6 +71,7 @@
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
+	dual_wield_spread = 50 // Bubberstation edit. Great for point blank, awful for anything else. The recoil alone kicks up your sights so bad, you have literally no clue where this thing is gonna kick you to.
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold
 	desc = "A gold plated Desert Eagle folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."

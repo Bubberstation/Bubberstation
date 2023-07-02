@@ -166,7 +166,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	/// Should we smoke all of the chems in the cig before it runs out. Splits each puff to take a portion of the overall chems so by the end you'll always have consumed all of the chems inside.
 	var/smoke_all = FALSE
 	/// How much damage this deals to the lungs per drag.
-	var/lung_harm = 1
+	var/lung_harm = 0.1 // Bubberstation edit, makes cigs not give you stage four lung cancer after two. You'd need to smoke ten times the amount of cigarettes as before in order to get the same amount of damage.
 	/// If, when glorf'd, we will choke on this cig forever
 	var/choke_forever = FALSE
 	/// When choking, what is the maximum amount of time we COULD choke for
@@ -444,17 +444,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 60
 	smoketime = 2 MINUTES
 	smoke_all = TRUE
-	lung_harm = 1.5
+	lung_harm = -1 // Bubberstation edit, fun addition. The special syndicate cigs now heal you! Fun!
 	list_reagents = list(/datum/reagent/drug/nicotine = 10, /datum/reagent/medicine/omnizine = 15)
 
 /obj/item/clothing/mask/cigarette/shadyjims
 	desc = "A Shady Jim's Super Slims cigarette."
-	lung_harm = 1.5
+	lung_harm = 0.1 // Bubberstation edit. Ten times the amount of cigs smoke for the same previous damage.
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/toxin/lipolicide = 4, /datum/reagent/ammonia = 2, /datum/reagent/toxin/plantbgone = 1, /datum/reagent/toxin = 1.5)
 
 /obj/item/clothing/mask/cigarette/xeno
 	desc = "A Xeno Filtered brand cigarette."
-	lung_harm = 2
+	lung_harm = -2 // Bubberstation edit. Same as Syndicate cigarettes, but stronger at the cost of y'know Krokodil.
 	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
 // Rollies.
@@ -541,7 +541,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	inhand_icon_off = "candyoff"
 	type_butt = /obj/item/food/candy_trash
 	heat = 473.15 // Lowered so that the sugar can be carmalized, but not burnt.
-	lung_harm = 0.5
+	lung_harm = 0 // Bubberstation edit, supposed to be more like an Aesthetic thing, taste good, and not do any damage.
 	list_reagents = list(/datum/reagent/consumable/sugar = 20)
 	choke_time_max = 70 SECONDS // This shit really is deadly
 
