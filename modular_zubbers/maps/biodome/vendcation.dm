@@ -25,7 +25,7 @@
 	default_price = PAYCHECK_CREW * 0.7
 	extra_price = PAYCHECK_COMMAND
 	payment_department = NO_FREEBIES
-	light_mask = "wardrobe-light-mask"
+//	light_mask = "wardrobe-light-mask"
 	light_color = LIGHT_COLOR_ELECTRIC_CYAN
 
 /obj/item/vending_refill/vacation
