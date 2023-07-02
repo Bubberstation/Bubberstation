@@ -39,10 +39,7 @@
 			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
 			spark_system.start()
 
-/datum/computer_file/program/revelation/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
+/datum/computer_file/program/revelation/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	switch(action)
 		if("PRG_arm")
 			armed = !armed
@@ -64,7 +61,7 @@
 	return temp
 
 /datum/computer_file/program/revelation/ui_data(mob/user)
-	var/list/data = get_header_data()
+	var/list/data = list()
 
 	data["armed"] = armed
 

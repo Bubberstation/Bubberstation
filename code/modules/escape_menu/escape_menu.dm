@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(escape_menus)
 	page_holder = new(client)
 	show_page()
 
-	RegisterSignal(client, COMSIG_PARENT_QDELETING, PROC_REF(on_client_qdel))
+	RegisterSignal(client, COMSIG_QDELETING, PROC_REF(on_client_qdel))
 	RegisterSignal(client, COMSIG_CLIENT_MOB_LOGIN, PROC_REF(on_client_mob_login))
 
 	if (!isnull(ckey))
@@ -80,8 +80,8 @@ GLOBAL_LIST_EMPTY(escape_menus)
 	switch (menu_page)
 		if (PAGE_HOME)
 			show_home_page()
-		if (PAGE_LEAVE_BODY)
-			show_leave_body_page()
+		//if (PAGE_LEAVE_BODY) //SKYRAT EDIT REMOVAL
+			//show_leave_body_page() //SKYRAT EDIT REMOVAL
 		else
 			CRASH("Unknown escape menu page: [menu_page]")
 

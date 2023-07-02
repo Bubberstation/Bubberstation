@@ -29,8 +29,11 @@
 //Launching Shuttles to CentCom
 #define NOLAUNCH -1
 #define UNLAUNCHED 0
+/// This shuttle launched to head to end game (or has arrived there), it will not update further
 #define ENDGAME_LAUNCHED 1
 #define EARLY_LAUNCHED 2
+/// "Endgame transit" denotes shuttles which "fly into the sunset" when the round ends, such as the whiteship.
+/// These shuttles leave when the main emergency shuttle does but don't dock anywhere (to save space), so this counts as "escaped".
 #define ENDGAME_TRANSIT 3
 
 //positive value = cannot puchase
@@ -91,3 +94,13 @@
 #define SHUTTLE_UNLOCK_BUBBLEGUM "bubblegum"
 #define SHUTTLE_UNLOCK_MEDISIM "holodeck"
 #define SHUTTLE_UNLOCK_NARNAR "narnar"
+
+//Shuttle Events
+
+///Self destruct if this is returned in process
+#define SHUTTLE_EVENT_CLEAR 2
+
+///spawned stuff should float by the window and not hit the shuttle
+#define SHUTTLE_EVENT_MISS_SHUTTLE 1 << 0
+///spawned stuff should hit the shuttle
+#define SHUTTLE_EVENT_HIT_SHUTTLE 1 << 1

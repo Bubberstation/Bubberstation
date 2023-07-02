@@ -50,9 +50,9 @@
 	if(!istype(M))
 		return FALSE
 	//SKYRAT EDIT ADDITION
-	if(HAS_TRAIT(M, TRAIT_OVERSIZED))
+	/*if(HAS_TRAIT(M, TRAIT_OVERSIZED))
 		to_chat(M, span_warning("You are far too big for this!"))
-		return FALSE
+		return FALSE*/                                   //BUBBER EDIT: commented out this Skyrat change.
 	//SKYRAT EDIT END
 	if(do_after(M, get_enter_delay(M), src, timed_action_flags = IGNORE_HELD_ITEM, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
 		mob_enter(M)

@@ -21,7 +21,7 @@
 	/// Our internal techweb for limbgrower designs.
 	var/datum/techweb/autounlocking/stored_research
 	/// All the categories of organs we can print.
-	var/list/categories = list(SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL, RND_CATEGORY_LIMBS_OTHER, RND_CATEGORY_LIMBS_DIGITIGRADE)
+	var/list/categories = list(SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL, RND_CATEGORY_LIMBS_OTHER, RND_CATEGORY_LIMBS_DIGITIGRADE, SPECIES_HEMOPHAGE)//BUBBER EDIT-Adds Hemophage to the list.
 	///Designs imported from technology disks that we can print.
 	var/list/imported_designs = list()
 
@@ -185,7 +185,10 @@
 			use_power(power)
 			flick("limbgrower_fill", src)
 			icon_state = "limbgrower_idleon"
-			selected_category = params["active_tab"]
+			var/temp_category = params["active_tab"]
+			if( ! (temp_category in categories) )
+				return FALSE //seriously come on
+			selected_category = temp_category
 			addtimer(CALLBACK(src, PROC_REF(build_item), consumed_reagents_list), production_speed * production_coefficient)
 			return TRUE
 
@@ -254,8 +257,8 @@
 		reagents.maximum_volume += our_beaker.volume
 		our_beaker.reagents.trans_to(src, our_beaker.reagents.total_volume)
 	production_coefficient = 1.25
-	for(var/datum/stock_part/manipulator/our_manipulator in component_parts)
-		production_coefficient -= our_manipulator.tier * 0.25
+	for(var/datum/stock_part/servo/our_servo in component_parts)
+		production_coefficient -= our_servo.tier * 0.25
 	production_coefficient = clamp(production_coefficient, 0, 1) // coefficient goes from 1 -> 0.75 -> 0.5 -> 0.25
 
 /obj/machinery/limbgrower/examine(mob/user)

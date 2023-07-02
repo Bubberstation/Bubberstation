@@ -1,10 +1,3 @@
-///Will execute a single command after the cooldown based on player votes.
-#define DEMOCRACY_MODE (1<<0)
-///Allows each player to do a single command every cooldown.
-#define ANARCHY_MODE (1<<1)
-///Mutes the democracy mode messages send to orbiters at the end of each cycle. Useful for when the cooldown is so low it'd get spammy.
-#define MUTE_DEMOCRACY_MESSAGES (1<<2)
-
 /**
  * Deadchat Plays Things - The Componenting
  *
@@ -37,7 +30,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ORBIT_BEGIN, PROC_REF(orbit_begin))
 	RegisterSignal(parent, COMSIG_ATOM_ORBIT_STOP, PROC_REF(orbit_stop))
 	RegisterSignal(parent, COMSIG_VV_TOPIC, PROC_REF(handle_vv_topic))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	deadchat_mode = _deadchat_mode
 	inputs = _inputs
 	input_cooldown = _input_cooldown

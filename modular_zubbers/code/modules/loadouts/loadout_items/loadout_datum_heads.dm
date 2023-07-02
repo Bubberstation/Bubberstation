@@ -1,3 +1,8 @@
+/datum/loadout_item/head/alien_fake
+	name = "Kabrus Utility Helmet"
+	item_path = /obj/item/clothing/head/helmet/abductor/fake
+	donator_only = TRUE //Dono item for MyphicBowser
+
 /datum/loadout_item/head/hats/warden/drill
 	name = "warden's campaign hat"
 	item_path = /obj/item/clothing/head/hats/warden/drill
@@ -25,3 +30,8 @@
 	item_path = /obj/item/clothing/head/nanotasen_consultant/drill
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
+
+/datum/loadout_item/head/lace_bow
+	name = "Hair Bow"
+	item_path = /obj/item/clothing/head/costume/hairbow
+	donator_only = TRUE

@@ -392,6 +392,7 @@
 	desc = "A great meal all round. Not a cord of wood."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "meatball"
+	inhand_icon_state = "meatball"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
 	tastes = list("meat" = 1)
 	foodtypes = MEAT
@@ -720,6 +721,7 @@
 	)
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
 	w_class = WEIGHT_CLASS_SMALL
+	foodtypes = MEAT | FRUIT
 
 /obj/item/food/meatclown/Initialize(mapload)
 	. = ..()

@@ -49,7 +49,7 @@
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	value = value && preferences && is_allowed(preferences)
 
-	var/obj/item/organ/internal/eyes/eyes_organ = target.getorgan(/obj/item/organ/internal/eyes)
+	var/obj/item/organ/internal/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/internal/eyes)
 	target.emissive_eyes = value
 	if (istype(eyes_organ))
 		eyes_organ.is_emissive = value
@@ -68,17 +68,33 @@
 /datum/preference/toggle/eye_emissives/proc/is_allowed(datum/preferences/preferences)
 	return preferences.read_preference(/datum/preference/toggle/allow_emissives)
 
-// Body Markings
+// Body Markings - This isn't used anymore and thus I'm making it not do anything.
 
 /datum/preference/toggle/mutant_toggle/body_markings
 	savefile_key = "body_markings_toggle"
 	relevant_mutant_bodypart = "body_markings"
+
+/datum/preference/toggle/mutant_toggle/body_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/toggle/mutant_toggle/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 
 /datum/preference/choiced/mutant_choice/body_markings
 	savefile_key = "feature_body_markings"
 	relevant_mutant_bodypart = "body_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 	default_accessory_type = /datum/sprite_accessory/body_markings/none
+
+/datum/preference/choiced/mutant_choice/body_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/choiced/mutant_choice/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 
 /datum/preference/tri_color/body_markings
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
@@ -87,12 +103,27 @@
 	relevant_mutant_bodypart = "body_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
 
+/datum/preference/tri_color/body_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/tri_color/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/tri_bool/body_markings
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "body_markings_emissive"
 	relevant_mutant_bodypart = "body_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
+
+/datum/preference/tri_bool/body_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/tri_bool/body_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 
 /// Tails
 
@@ -338,17 +369,28 @@
 	relevant_mutant_bodypart = "moth_antennae"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_antennae
 
-/// Moth Markings
+/// Moth Markings - They don't work, and we use regular markings for those anyway, so we're going to disable them.
 
 /datum/preference/toggle/mutant_toggle/moth_markings
 	savefile_key = "moth_markings_toggle"
 	relevant_mutant_bodypart = "moth_markings"
+
+/datum/preference/toggle/mutant_toggle/moth_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
 
 /datum/preference/choiced/mutant_choice/moth_markings
 	savefile_key = "feature_moth_markings"
 	relevant_mutant_bodypart = "moth_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_markings
 	default_accessory_type = /datum/sprite_accessory/moth_markings/none
+
+/datum/preference/choiced/mutant_choice/moth_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/choiced/mutant_choice/moth_markings/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
 
 /datum/preference/tri_color/moth_markings
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
@@ -357,12 +399,26 @@
 	relevant_mutant_bodypart = "moth_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_markings
 
+/datum/preference/tri_color/moth_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/tri_color/moth_markings/apply_to_human(mob/living/carbon/human/target, value)
+	return FALSE
+
 /datum/preference/tri_bool/moth_markings
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "moth_markings_emissive"
 	relevant_mutant_bodypart = "moth_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_markings
+
+/datum/preference/tri_bool/moth_markings/is_accessible(datum/preferences/preferences)
+	. = ..() // Got to do this because of linters.
+	return FALSE
+
+/datum/preference/tri_bool/moth_markings/apply_to_human(mob/living/carbon/human/target, value)
+	return FALSE
 
 /// Fluff
 
@@ -416,6 +472,14 @@
 
 	return data
 
+/datum/preference/choiced/mutant_choice/ipc_screen/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	var/species_path = preferences?.read_preference(/datum/preference/choiced/species)
+	if(!ispath(species_path, /datum/species/synthetic)) // This is what we do so it doesn't show up on non-synthetics.
+		return
+
+	return ..()
+
+
 /datum/preference/color/mutant/ipc_screen_color
 	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -427,6 +491,8 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_screen_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_SCREEN
+	check_mode = TRICOLOR_CHECK_ACCESSORY
+	type_to_check = /datum/preference/choiced/mutant_choice/ipc_screen
 
 /// IPC Antennas
 
@@ -443,12 +509,16 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_color"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
+	check_mode = TRICOLOR_CHECK_ACCESSORY
+	type_to_check = /datum/preference/choiced/mutant_choice/synth_antenna
 
 /datum/preference/tri_bool/synth_antenna_emissive
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ipc_antenna_emissive"
 	relevant_mutant_bodypart = MUTANT_SYNTH_ANTENNA
+	check_mode = TRICOLOR_CHECK_ACCESSORY
+	type_to_check = /datum/preference/choiced/mutant_choice/synth_antenna
 
 /// IPC Chassis
 
@@ -733,3 +803,69 @@
 	relevant_mutant_bodypart = "neck_acc"
 	type_to_check = /datum/preference/toggle/mutant_toggle/neck_acc
 
+/datum/preference/choiced/mutant_choice/pod_hair
+	savefile_key = "feature_pod_hair"
+	main_feature_name = "Hairstyle"
+	category = PREFERENCE_CATEGORY_FEATURES
+	relevant_mutant_bodypart = "pod_hair"
+	default_accessory_type = /datum/sprite_accessory/pod_hair/ivy
+	should_generate_icons = TRUE
+	generate_icons = TRUE
+
+/datum/preference/choiced/mutant_choice/pod_hair/init_possible_values()
+	var/list/values = list()
+
+	var/icon/pod_head = icon('icons/mob/species/human/bodyparts_greyscale.dmi', "pod_head_m")
+	pod_head.Blend(COLOR_GREEN, ICON_MULTIPLY)
+
+	for (var/pod_name in GLOB.pod_hair_list)
+		var/datum/sprite_accessory/pod_hair/pod_hair = GLOB.pod_hair_list[pod_name]
+		if(pod_hair.locked)
+			continue
+
+		var/icon/icon_with_hair = new(pod_head)
+		var/icon/icon_adj = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
+		var/icon/icon_front = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
+		icon_front.Blend(COLOR_MAGENTA, ICON_MULTIPLY)
+		icon_adj.Blend(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
+		icon_adj.Blend(icon_front, ICON_OVERLAY)
+		icon_with_hair.Blend(icon_adj, ICON_OVERLAY)
+		icon_with_hair.Scale(64, 64)
+		icon_with_hair.Crop(15, 64, 15 + 31, 64 - 31)
+
+		values[pod_hair.name] = icon_with_hair
+
+	return values
+
+/datum/preference/choiced/mutant_choice/pod_hair/is_part_enabled(datum/preferences/preferences)
+	return TRUE
+
+/datum/preference/choiced/mutant_choice/pod_hair/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	var/species_path = preferences?.read_preference(/datum/preference/choiced/species)
+	if(!ispath(species_path, /datum/species/pod)) // This is what we do so it doesn't show up on non-podpeople.
+		return
+
+	return ..()
+
+/datum/preference/choiced/mutant_choice/pod_hair/compile_constant_data()
+	var/list/data = ..()
+
+	data[SUPPLEMENTAL_FEATURE_KEY] = "pod_hair_color"
+
+	return data
+
+/datum/preference/tri_color/pod_hair_color
+	category = PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "pod_hair_color"
+	relevant_mutant_bodypart = "pod_hair"
+	type_to_check = /datum/preference/choiced/mutant_choice/pod_hair
+
+/datum/preference/toggle/emissive/pod_hair_emissive
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "pod_hair_emissive"
+	relevant_mutant_bodypart = "pod_hair"
+	// This makes it so that it appears only when we have pod hair or allow mismatched parts.
+	check_mode = TRICOLOR_CHECK_ACCESSORY
+	type_to_check = /datum/preference/choiced/mutant_choice/pod_hair

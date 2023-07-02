@@ -1,6 +1,6 @@
 /datum/opposing_force_equipment/other
 	category = OPFOR_EQUIPMENT_CATEGORY_OTHER
-
+/*
 /datum/opposing_force_equipment/other/uplink
 	item_type = /obj/item/uplink/opfor
 	name = "Syndicate Uplink"
@@ -20,7 +20,7 @@
 	item_type = /obj/item/stack/telecrystal/twenty
 	name = "20 Raw Telecrystals"
 	description = "A bundle of telecrystals in their rawest and purest form; can be utilized on active uplinks to increase their telecrystal count."
-
+*/
 /datum/opposing_force_equipment/other/cashcase
 	item_type = /obj/item/storage/secure/briefcase/syndie
 	name = "Syndicate Briefcase Full of Cash"
@@ -54,7 +54,7 @@
 	item_type = /obj/effect/gibspawner/generic
 	description = "A dusty crate from the back of the Syndicate warehouse. Rumored to contain a valuable assortment of items, \
 			but you never know. Contents are sorted to always be worth 50 TC."
-	admin_note = "WARNING: There is no guarantee of what will come out of this. Contents equal to 50 TC."
+	admin_note = "WARNING: Unless there is very-good reason, avoid giving this out, equals about 50tc worth of items and could be almost anything traitor related."
 	var/telecrystal_count = 50
 
 /datum/opposing_force_equipment/other/surplus/on_issue(mob/living/target)
@@ -81,4 +81,4 @@
 	description = "A dusty SUPER-SIZED crate from the back of the Syndicate warehouse. Rumored to contain a valuable assortment of items, \
 			but you never know. Contents are sorted to always be worth 125 TC."
 	telecrystal_count = 125
-	admin_note = "WARNING: Extremely high TC count, absolutely no guarantee whatsoever of what will come out of this. Contents equal to 125 TC."
+	admin_note = "WARNING: This should only be given out for events, absolutely no guarantee whatsoever of what will come out of this. Contents equal to 125 TC."

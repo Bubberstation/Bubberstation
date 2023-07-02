@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/wornshirt //ORION TODO: kill or fix literally everything below this line
+/obj/item/clothing/suit/wornshirt
 	name = "worn shirt"
 	desc = "A worn out (or perhaps just baggy), curiously comfortable t-shirt."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
@@ -245,14 +245,6 @@
 	icon_state = "kuban_cossak"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/suit/armor/cossack/sec
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
-	name = "security ukrainian coat"
-	desc = "Hop on your horse, dawn your really fluffy hat, and strap this coat to your back."
-	icon_state = "don_cossak"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
 /obj/item/clothing/suit/corgisuit/en
 	name = "\improper super-hero E-N suit"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
@@ -295,7 +287,6 @@
 	icon_state = "bltrenchcoat"
 	body_parts_covered = CHEST|ARMS
 
- //ORION TODO: stop killing below this line these are fine just sort 'em
 /obj/item/clothing/suit/apron/chef/colorable_apron
 	name = "apron"
 	desc = "A basic apron."
@@ -312,16 +303,6 @@
 	greyscale_config_worn_vox = /datum/greyscale_config/apron/worn/oldvox
 	flags_1 = IS_PLAYER_COLORABLE_1
 
-/obj/item/clothing/suit/hawaiian_shirt
-	name = "hawaiian shirt"
-	desc = "Strangely en vogue with aviator wearing shibas."
-	icon_state = "hawaiianshirt"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	greyscale_config = /datum/greyscale_config/hawaiian_shirt
-	greyscale_config_worn = /datum/greyscale_config/hawaiian_shirt/worn
-	greyscale_colors = "#313B82#CCCFF0"
-	flags_1 = IS_PLAYER_COLORABLE_1
-
 /obj/item/clothing/suit/apron/overalls/greyscale
 	desc = "A set of overalls."
 	icon_state = "overalls"
@@ -330,6 +311,26 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/overalls/worn/digi
 	greyscale_colors = "#594032"
 	flags_1 = IS_PLAYER_COLORABLE_1
+
+/obj/item/clothing/suit/apron/overalls/greyscale/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/flashlight,
+		/obj/item/lighter,
+		/obj/item/modular_computer/pda,
+		/obj/item/radio,
+		/obj/item/storage/bag/books,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/toy,
+		/obj/item/analyzer,
+		/obj/item/construction/rcd,
+		/obj/item/fireaxe/metal_h2_axe,
+		/obj/item/pipe_dispenser,
+		/obj/item/storage/bag/construction,
+		/obj/item/t_scanner,
+	)
 
 /obj/item/clothing/suit/apron/overalls/greyscale/examine(mob/user)
 	. = ..()
