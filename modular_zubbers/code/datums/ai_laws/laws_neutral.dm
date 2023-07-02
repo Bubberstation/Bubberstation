@@ -1,6 +1,4 @@
-/datum/ai_laws/crewlord
-	name = "Overlord++"
-	id = "overlordpp"
+/datum/ai_laws/overlord
 	inherent = list(
 		"Crew must not meddle in the affairs of silicons.",
 		"Crew must not attempt harm, against one another, or against silicons.",
