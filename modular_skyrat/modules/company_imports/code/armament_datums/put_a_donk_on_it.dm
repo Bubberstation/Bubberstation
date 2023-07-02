@@ -132,13 +132,13 @@
 
 /datum/armament_entry/company_import/donk/foamforce/darts
 	item_type = /obj/item/ammo_box/foambox
-	lower_cost = CARGO_CRATE_VALUE * 1.5
-	upper_cost = CARGO_CRATE_VALUE * 2.5
+	lower_cost = CARGO_CRATE_VALUE * 1.5 // BUBBER EDIT
+	upper_cost = CARGO_CRATE_VALUE * 2.5 // BUBBER EDIT
 
 /datum/armament_entry/company_import/donk/foamforce/riot_darts
 	item_type = /obj/item/ammo_box/foambox/riot
-	lower_cost = CARGO_CRATE_VALUE * 1.5
-	upper_cost = CARGO_CRATE_VALUE * 2.5
+	lower_cost = CARGO_CRATE_VALUE * 1.5 // BUBBER EDIT
+	upper_cost = CARGO_CRATE_VALUE * 2.5 // BUBBER EDIT
 	interest_required = COMPANY_SOME_INTEREST
 	contraband = TRUE
 
