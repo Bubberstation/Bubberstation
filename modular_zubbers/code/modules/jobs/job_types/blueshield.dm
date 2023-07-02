@@ -7,4 +7,5 @@
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	backpack_contents = list()
 	r_pocket = /obj/item/melee/baton/telescopic
+	l_pocket = /obj/item/knife/combat
 //Making the Blueshield have a silver ID, which cannot receive All Access by default.
