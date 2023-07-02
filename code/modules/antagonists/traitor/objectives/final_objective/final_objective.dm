@@ -12,10 +12,10 @@
 
 /datum/traitor_objective/ultimate
 	abstract_type = /datum/traitor_objective/ultimate
-	progression_minimum = 200 MINUTES //BUBBER EDIT original: 140 MINUTES
+	progression_minimum = 180 MINUTES //BUBBER EDIT original: 140 MINUTES
 	needs_reward = FALSE
 
-	var/progression_points_in_objectives = 100 MINUTES //BUBBER EDIT original: 20 MINUTES
+	var/progression_points_in_objectives = 30 MINUTES //BUBBER EDIT original: 20 MINUTES
 
 /// Determines if this final objective can be taken. Should be put into every final objective's generate function.
 /datum/traitor_objective/ultimate/can_generate_objective(generating_for, list/possible_duplicates)
