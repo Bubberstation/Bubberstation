@@ -38,7 +38,7 @@
 			icon_to_use = worn_icon_vox
 
 	if(suit_supports_variations_flags && (supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
-		icon_to_use = 'modular_skyrat/master_files/icons/mob/mod.dmi'
+		icon_to_use = 'modular_zubbers/icons/mob/mod.dmi'
 		icon_state_to_use = "[module_icon_state]_digi"
 
 	var/add_overlay = TRUE
@@ -52,14 +52,14 @@
 		. += module_icon
 
 	if(has_head_sprite)
-		icon_to_use = 'modular_skyrat/master_files/icons/mob/mod.dmi'
+		icon_to_use = 'modular_zubbers/icons/mob/mod.dmi'
 		icon_state_to_use = "[module_icon_state]_head"
 
 		if(suit_supports_variations_flags && (supports_variations_flags & CLOTHING_SNOUTED_VARIATION))
 			icon_state_to_use = "[icon_state_to_use]_muzzled"
 
 		if(is_new_vox)
-			icon_to_use = 'modular_skyrat/modules/better_vox/icons/clothing/mod_modules.dmi'
+			icon_to_use = 'modular_zubbers/icons/clothing/mod.dmi'
 			icon_state_to_use = module_icon_state
 
 		var/mutable_appearance/additional_module_icon = mutable_appearance(icon_to_use, icon_state_to_use, layer = standing.layer + 0.1)
