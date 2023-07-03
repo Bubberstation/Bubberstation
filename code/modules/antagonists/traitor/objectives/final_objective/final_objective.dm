@@ -12,15 +12,13 @@
 
 /datum/traitor_objective/ultimate
 	abstract_type = /datum/traitor_objective/ultimate
-	progression_minimum = 200 MINUTES //BUBBER EDIT original: 140 MINUTES
+	progression_minimum = 140 MINUTES
 	needs_reward = FALSE
 
-	var/progression_points_in_objectives = 100 MINUTES //BUBBER EDIT original: 20 MINUTES
+	var/progression_points_in_objectives = 20 MINUTES
 
 /// Determines if this final objective can be taken. Should be put into every final objective's generate function.
 /datum/traitor_objective/ultimate/can_generate_objective(generating_for, list/possible_duplicates)
-	if(world.time <= 150 MINUTES) //BUBBER EDIT ADD: hard check for round timer, no final objectives before 2.5 hrs (roundend vote currently at 2hrs25)
-		return FALSE
 	if(handler.get_completion_progression(/datum/traitor_objective) < progression_points_in_objectives)
 		return FALSE
 	if(SStraitor.get_taken_count(type) > 0) // Prevents multiple people from ever getting the same final objective.
