@@ -499,6 +499,7 @@
 	ACCESS_MINING_STATION, \
 	ACCESS_QM, \
 	ACCESS_SHIPPING, \
+	ACCESS_BLACKSMITH, \
 	ACCESS_VAULT, \
 )
 /// Name for the Command region.

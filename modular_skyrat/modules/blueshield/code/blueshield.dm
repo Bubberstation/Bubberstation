@@ -1,12 +1,12 @@
 /datum/job/blueshield
 	title = JOB_BLUESHIELD
-	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean."
+	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean." // BUBBER EDIT
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "All Command Staff and Central Command when applicable"
+	supervisors = "All Command Staff and Central Command when applicable" // BUBBER EDIT
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
