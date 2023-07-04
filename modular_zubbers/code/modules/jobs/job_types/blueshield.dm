@@ -1,6 +1,7 @@
 /datum/job/blueshield
+	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean."
+	supervisors = "All Command Staff and Central Command when applicable"
 	exp_required_type_department = EXP_TYPE_SECURITY
-
 	departments_list = list(
 		/datum/job_department/command,
 	)
