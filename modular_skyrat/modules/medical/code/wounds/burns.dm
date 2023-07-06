@@ -254,6 +254,8 @@
 	threshold_minimum = 40
 	threshold_penalty = 30 // burns cause significant decrease in limb integrity compared to other wounds
 	status_effect_type = /datum/status_effect/wound/burn/moderate
+	treatable_by = list(/obj/item/flashlight/pen/paramedic, /obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh) //BUBBER EDIT ADD: makes second degree burns require treatment.
+	infestation_rate = 0.025 //BUBBER EDIT ADD: aprox. 25 minutes to sepsis
 	flesh_damage = 5
 	scar_keyword = "burnmoderate"
 
@@ -296,3 +298,10 @@
 	desc = "Patient is suffering extreme burns from a strange brand marking, creating serious risk of infection and greatly reduced limb integrity."
 	examine_desc = "appears to have holy symbols painfully branded into their flesh, leaving severe burns."
 	occur_text = "chars rapidly into a strange pattern of holy symbols, burned into the flesh."
+
+//BUBBER EDIT ADD: burn buffs
+/datum/wound/burn/wound_injury(datum/wound/old_wound, attack_direction)
+	if(!victim.blood_volume || (victim.dna && ((HAS_TRAIT(victim, TRAIT_NOBLOOD)))))
+		return
+	else
+		victim.blood_volume = clamp(victim.blood_volume - 25, 0, BLOOD_VOLUME_MAXIMUM)
