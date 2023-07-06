@@ -455,6 +455,10 @@
 		"bodymedicell",
 		"clotmedicell",
 		//SKYRAT EDIT END  -
+
+		//BUBBER EDIT START
+		"crewmonitor",
+		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	required_experiments = list(/datum/experiment/dissection/nonhuman)
@@ -1233,6 +1237,9 @@
 		"arcade_battle",
 		"arcade_orion",
 		"slotmachine",
+		//BUBBER EDIT START
+		"minesweeper",
+		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3250)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = 3000)
@@ -1640,7 +1647,7 @@
 		"stunrevolver",
 
 		//SKYRAT EDIT START - RESEARCH DESIGNS
-		"medigunspeed",
+		"medigun_speed",
 		//SKYRAT EDIT END - RESEARCH DESIGNS
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
