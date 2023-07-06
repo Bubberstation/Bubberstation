@@ -350,7 +350,7 @@
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "biodome_medbay_lift";
 	name = "Medbay Lift Control Panel";
-	preset_destination_names = list("2"="Lower                Medbay","3"="Upper                Medbay")
+	preset_destination_names = list("2"="Lower                                Medbay","3"="Upper                                Medbay")
 	},
 /obj/structure/railing{
 	dir = 4
@@ -1413,6 +1413,9 @@
 	},
 /turf/open/openspace,
 /area/station/ai_monitored/turret_protected/ai)
+"ayH" = (
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "ayJ" = (
 /obj/machinery/vending/tool,
 /obj/effect/turf_decal/siding/wood{
@@ -5793,7 +5796,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                Access","3"="Storage                Zone")
+	preset_destination_names = list("2"="Engineering                                Access","3"="Storage                                Zone")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -7828,6 +7831,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/cytology)
+"cOn" = (
+/obj/machinery/conveyor_switch/oneway{
+	dir = 8;
+	id = "garbage";
+	name = "disposal conveyor"
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "cOq" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -12206,7 +12217,7 @@
 	},
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_science_lift";
-	preset_destination_names = list("2"="Lower                Research","3"="Upper                Research")
+	preset_destination_names = list("2"="Lower                                Research","3"="Upper                                Research")
 	},
 /turf/open/floor/plating,
 /area/station/science/research)
@@ -26147,7 +26158,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
 "jLF" = (
-/obj/machinery/door/poddoor/massdriver_trash,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/machinery/mineral/stacking_machine{
+	output_dir = 2;
+	stack_amt = 10
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "jMr" = (
@@ -28154,7 +28169,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                Access","3"="Storage                Zone")
+	preset_destination_names = list("2"="Engineering                                Access","3"="Storage                                Zone")
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -29883,6 +29898,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
+"lah" = (
+/obj/machinery/conveyor{
+	id = "garbage"
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "lax" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/door/window/right/directional/north{
@@ -30027,14 +30048,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "ldP" = (
-/obj/machinery/disposal/delivery_chute{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/structure/window/reinforced/spawner/directional/east,
-/turf/open/floor/plating/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "ldW" = (
 /obj/structure/frame/computer,
@@ -35118,10 +35136,14 @@
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "mRT" = (
-/obj/machinery/conveyor{
-	id = "garbage"
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/disposal/delivery_chute{
+	dir = 1
 	},
-/turf/open/floor/iron,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
 /area/station/maintenance/disposal)
 "mSg" = (
 /turf/closed/wall/r_wall,
@@ -35865,7 +35887,6 @@
 /turf/open/floor/plating,
 /area/station/science/robotics/lab)
 "nfh" = (
-/obj/machinery/recycler,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "garbage"
@@ -36217,6 +36238,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/engine_smes)
+"nmy" = (
+/obj/structure/lattice,
+/obj/machinery/door/poddoor/massdriver_trash,
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "nmZ" = (
 /obj/structure/chair,
 /turf/open/floor/iron/dark/smooth_large,
@@ -36464,10 +36490,6 @@
 /turf/open/floor/grass,
 /area/station/service/kitchen/diner)
 "nqN" = (
-/obj/machinery/mineral/stacking_machine{
-	output_dir = 2;
-	stack_amt = 10
-	},
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
@@ -37093,10 +37115,11 @@
 /area/station/commons/dorms)
 "nCC" = (
 /obj/machinery/conveyor{
+	dir = 4;
 	id = "garbage"
 	},
-/obj/effect/spawner/random/maintenance/two,
-/turf/open/floor/iron,
+/obj/machinery/recycler,
+/turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "nCE" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -50148,7 +50171,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_brig_lift";
 	name = "Brig Lift Control Panel";
-	preset_destination_names = list("2"="Lower                Brig","3"="Upper                Brig")
+	preset_destination_names = list("2"="Lower                                Brig","3"="Upper                                Brig")
 	},
 /obj/structure/railing{
 	dir = 1
@@ -52458,11 +52481,6 @@
 /turf/closed/wall,
 /area/station/commons/fitness)
 "tgy" = (
-/obj/machinery/conveyor_switch/oneway{
-	dir = 8;
-	id = "garbage";
-	name = "disposal conveyor"
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
@@ -55328,6 +55346,13 @@
 /obj/effect/spawner/random/structure/crate_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
+"ulO" = (
+/obj/machinery/conveyor{
+	id = "garbage"
+	},
+/obj/effect/spawner/random/maintenance/two,
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "ulQ" = (
 /obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/floor/plating,
@@ -109804,7 +109829,7 @@ tGB
 wyE
 tgy
 rXx
-fsA
+ayH
 snN
 oyW
 gSj
@@ -110059,10 +110084,10 @@ hNy
 oyW
 nfh
 nqN
-aPc
+cOn
 ldP
-oyW
-uFB
+fsA
+ayH
 oyW
 gNh
 khL
@@ -110314,12 +110339,12 @@ tzy
 hNy
 hNy
 oyW
-uHL
-mRT
 nCC
+jLF
+aPc
 mRT
-iYN
-dAm
+oyW
+uFB
 oyW
 uZp
 bRU
@@ -110571,12 +110596,12 @@ tzy
 plH
 hNy
 oyW
-oyW
-oyW
-oyW
-oyW
-oyW
-jLF
+uHL
+lah
+ulO
+lah
+iYN
+dAm
 oyW
 gNh
 bRU
@@ -110827,13 +110852,13 @@ tzy
 idz
 tzy
 hNy
-hNy
-hNy
-hNy
-hNy
-hNy
 oyW
-vtU
+oyW
+oyW
+oyW
+oyW
+oyW
+nmy
 oyW
 uZp
 bRU
