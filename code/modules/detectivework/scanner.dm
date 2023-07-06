@@ -135,8 +135,14 @@
 			LAZYADD(det_data[DETSCAN_CATEGORY_FINGERS], md5(scanned_human.dna?.unique_identity))
 
 	else if(!ismob(scanned_atom))
-
-		det_data[DETSCAN_CATEGORY_FINGERS] = GET_ATOM_FINGERPRINTS(scanned_atom)
+		//Bubberstation change: Support for new fingerprints.
+		var/list/found_fingerprints = GET_ATOM_FINGERPRINTS(scanned_atom)
+		if(length(found_fingerprints))
+			det_data[DETSCAN_CATEGORY_FINGERS] = list()
+			for(var/k in found_fingerprints)
+				det_data[DETSCAN_CATEGORY_FINGERS] += found_fingerprints[k]
+			shuffle(det_data[DETSCAN_CATEGORY_FINGERS])
+		//End of bubberstation change.
 
 		// Only get reagents from non-mobs.
 		for(var/datum/reagent/present_reagent as anything in scanned_atom.reagents?.reagent_list)
