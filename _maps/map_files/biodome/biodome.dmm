@@ -364,7 +364,7 @@
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "biodome_medbay_lift";
 	name = "Medbay Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay")
 	},
 /obj/structure/railing{
 	dir = 4
@@ -938,6 +938,9 @@
 "apS" = (
 /turf/closed/wall,
 /area/station/science/explab)
+"apW" = (
+/turf/open/floor/stone,
+/area/station/maintenance/department/cargo)
 "aqd" = (
 /turf/open/openspace,
 /area/station/maintenance/department/science)
@@ -4508,6 +4511,7 @@
 /obj/effect/turf_decal/trimline/red/real_red/line{
 	dir = 4
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "bFq" = (
@@ -5893,7 +5897,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -8282,6 +8286,7 @@
 /obj/effect/turf_decal/trimline/red/real_red/line{
 	dir = 4
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "cVZ" = (
@@ -9057,13 +9062,6 @@
 	},
 /turf/open/floor/iron/dark/airless,
 /area/station/science/ordnance/freezerchamber)
-"dkl" = (
-/obj/machinery/light/small/directional/north,
-/obj/effect/turf_decal/trimline/neutral/filled/warning{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "dky" = (
 /obj/machinery/camera/autoname/directional/west{
 	c_tag = "Storage - Tech"
@@ -10908,9 +10906,10 @@
 /turf/open/floor/grass,
 /area/station/biodome/fore)
 "dSM" = (
-/obj/machinery/light/warm/directional/east,
-/turf/open/openspace,
-/area/station/biodome)
+/obj/structure/holosign/barrier/atmos/tram,
+/obj/machinery/light/small/directional/west,
+/turf/open/floor/plating,
+/area/station/biodome/aft)
 "dSP" = (
 /obj/effect/turf_decal/tile/neutral/diagonal_centre,
 /obj/effect/turf_decal/siding/dark_blue{
@@ -11767,6 +11766,15 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"elj" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/green/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/iron/herringbone,
+/area/station/hallway/primary/central)
 "elq" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/solars/port/aft)
@@ -12135,12 +12143,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
-"etg" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/station/service/hydroponics/garden)
 "etl" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/corner{
@@ -12415,7 +12417,7 @@
 	},
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_science_lift";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research")
 	},
 /turf/open/floor/plating,
 /area/station/science/research)
@@ -12568,7 +12570,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/obj/machinery/light/directional/east,
 /obj/structure/sign/directions/evac/directional/east{
 	dir = 1;
 	pixel_y = 7
@@ -12828,6 +12829,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/prison/visit)
+"eFD" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "eFE" = (
 /obj/machinery/computer/message_monitor{
 	dir = 1
@@ -13754,9 +13761,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/server)
-"eSy" = (
-/turf/open/floor/stone,
-/area/station/maintenance/department/cargo)
 "eSK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -13773,13 +13777,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
-"eSP" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/east,
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
 "eTi" = (
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -14610,10 +14607,6 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/trimline/red/real_red/corner,
-/obj/effect/turf_decal/trimline/brown/corner{
-	dir = 1;
-	pixel_x = 16
-	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "fjN" = (
@@ -16336,6 +16329,7 @@
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 8
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "fPM" = (
@@ -16863,6 +16857,12 @@
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
+"fYh" = (
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "fYk" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -17784,7 +17784,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/obj/machinery/light/directional/east,
 /obj/effect/turf_decal/trimline/red/real_red/arrow_cw{
 	dir = 4
 	},
@@ -21064,6 +21063,11 @@
 /obj/item/kirbyplants/photosynthetic,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/ai_monitored/turret_protected/ai)
+"hFt" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/trimline/neutral/filled/warning,
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "hFy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -26102,6 +26106,10 @@
 /obj/structure/sign/departments/telecomms/directional/east,
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
+"jAP" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning,
+/turf/open/floor/stone,
+/area/station/maintenance/department/cargo)
 "jAX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -28732,7 +28740,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -29084,12 +29092,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
-"kBC" = (
-/obj/effect/turf_decal/trimline/neutral/filled/warning{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "kBD" = (
 /obj/effect/spawner/random/structure/girder,
 /turf/open/floor/plating,
@@ -34406,10 +34408,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
-"moW" = (
-/obj/effect/turf_decal/trimline/brown/filled/warning,
-/turf/open/floor/stone,
-/area/station/maintenance/department/cargo)
 "moX" = (
 /obj/structure/chair/stool/bar/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -34484,12 +34482,6 @@
 	dir = 1
 	},
 /area/station/science/lab)
-"mqa" = (
-/obj/effect/turf_decal/trimline/neutral/filled/warning{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "mqf" = (
 /obj/structure/railing{
 	dir = 4
@@ -35876,13 +35868,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
-"mRv" = (
-/obj/machinery/light/small/directional/north,
-/obj/effect/turf_decal/trimline/neutral/filled/warning{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "mRz" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -44995,6 +44980,7 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "qfq" = (
@@ -46548,9 +46534,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/solars/starboard/aft)
 "qHa" = (
-/obj/structure/railing{
-	dir = 8
-	},
 /obj/effect/turf_decal/trimline/green/filled/warning{
 	dir = 1
 	},
@@ -46819,14 +46802,11 @@
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
 "qLS" = (
-/obj/machinery/power/apc/auto_name/directional/south,
-/obj/structure/cable,
-/obj/effect/turf_decal/trimline/red/real_red/line,
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 1
+/obj/structure/sign/directions/security/directional/west{
+	dir = 2
 	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/aft)
+/turf/open/floor/wood/large,
+/area/station/hallway/primary/aft)
 "qLW" = (
 /obj/structure/railing/corner{
 	dir = 1
@@ -48140,6 +48120,10 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/library)
+"rip" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/command/bridge)
 "riq" = (
 /obj/machinery/computer/atmos_alert{
 	dir = 1
@@ -51275,7 +51259,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_brig_lift";
 	name = "Brig Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig")
 	},
 /obj/structure/railing{
 	dir = 1
@@ -56698,11 +56682,12 @@
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/captain)
 "uoD" = (
-/obj/effect/turf_decal/trimline/neutral/filled/warning{
-	dir = 1
-	},
-/turf/open/floor/iron,
-/area/station/service/hydroponics/garden)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/command/bridge)
 "uoU" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/landmark/start/assistant,
@@ -57797,6 +57782,12 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"uKU" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/station/service/hydroponics/garden)
 "uKY" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/engine/hull,
@@ -57853,10 +57844,12 @@
 /turf/open/floor/plating/plasma,
 /area/station/maintenance/space_hut/plasmaman)
 "uMt" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/trimline/neutral/filled/warning,
-/turf/open/floor/iron,
-/area/station/hallway/primary/port)
+/obj/machinery/light/small/directional/north,
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "uMw" = (
 /obj/machinery/atmospherics/components/tank/oxygen{
 	dir = 8
@@ -60714,11 +60707,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "vOV" = (
-/obj/effect/turf_decal/trimline/green/filled/warning{
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
 	dir = 1
 	},
-/turf/open/floor/iron/herringbone,
-/area/station/hallway/primary/central)
+/turf/open/floor/iron,
+/area/station/service/hydroponics/garden)
 "vOY" = (
 /obj/machinery/duct,
 /turf/open/floor/iron/terracotta,
@@ -61501,6 +61494,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
+"wdS" = (
+/obj/machinery/light/small/directional/north,
+/obj/effect/turf_decal/trimline/neutral/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "wdV" = (
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/stone,
@@ -61937,6 +61937,9 @@
 /obj/item/coffee_cartridge/fancy{
 	pixel_x = 3;
 	pixel_y = -1
+	},
+/obj/structure/sign/directions/security/directional/east{
+	dir = 2
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
@@ -63009,7 +63012,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/trimline/yellow/line,
 /obj/effect/turf_decal/trimline/brown/line{
-	dir = 5
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
@@ -64301,6 +64304,13 @@
 /obj/structure/lattice,
 /turf/open/openspace,
 /area/station/biodome/aft)
+"wXS" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "wXT" = (
 /obj/structure/railing{
 	dir = 5
@@ -64894,6 +64904,11 @@
 /obj/structure/railing/corner,
 /turf/open/floor/grass,
 /area/station/science/genetics)
+"xiy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/aft)
 "xiC" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -111212,7 +111227,7 @@ wfX
 uvj
 odw
 oBj
-eSy
+apW
 wfX
 ajG
 wLu
@@ -147973,7 +147988,7 @@ pNg
 gRj
 cFR
 cFR
-eSP
+wXS
 cFR
 cFR
 cFR
@@ -151306,13 +151321,13 @@ sCM
 txv
 oLd
 txv
-uMt
+hFt
 rYH
 nDd
 nDd
 nDd
 xmp
-uoD
+vOV
 cJX
 xMk
 vAK
@@ -151563,13 +151578,13 @@ sCM
 txv
 oLd
 txv
-uMt
+hFt
 nDd
 nDd
 nDd
 nDd
 nDd
-uoD
+vOV
 cJX
 iXd
 nDd
@@ -154137,7 +154152,7 @@ jeH
 bDH
 bDH
 ihh
-etg
+uKU
 lRJ
 efu
 ufX
@@ -163155,7 +163170,7 @@ rAq
 rAq
 rAq
 rAq
-qHa
+elj
 sjl
 pkB
 pkB
@@ -163412,7 +163427,7 @@ rAq
 rAq
 rAq
 rAq
-vOV
+qHa
 pHy
 xfC
 pkB
@@ -165407,8 +165422,8 @@ hoS
 tre
 hIE
 dJN
-mRv
-kBC
+wdS
+eFD
 dJN
 gHY
 sCD
@@ -168491,8 +168506,8 @@ eKM
 gVp
 nRC
 dJN
-dkl
-mqa
+uMt
+fYh
 dJN
 cwe
 cUo
@@ -170625,7 +170640,7 @@ oxa
 fQt
 fQs
 jpN
-neH
+xiy
 wEM
 cqw
 rVR
@@ -171398,7 +171413,7 @@ vaX
 vaX
 neH
 fWN
-qLS
+igV
 jAa
 wdv
 xXi
@@ -173941,11 +173956,11 @@ wOn
 ofe
 rAq
 rAq
-rAq
-rAq
-uaa
-fQs
-fQs
+bsz
+xTI
+dSM
+koU
+wXL
 fQs
 fQs
 ofe
@@ -174236,7 +174251,7 @@ pEc
 hBU
 hBU
 jre
-hUL
+qLS
 aGH
 hUL
 hUL
@@ -174451,7 +174466,7 @@ meU
 meU
 ofe
 rbH
-gRD
+rip
 ofe
 rAq
 rAq
@@ -174464,7 +174479,7 @@ fQs
 fQs
 ofe
 cGT
-uVv
+uoD
 nOL
 jTJ
 nOL
@@ -174704,7 +174719,7 @@ rAq
 rAq
 rAq
 rAq
-dSM
+rAq
 rAq
 ofe
 gRD
@@ -175998,7 +176013,7 @@ pGm
 pGm
 jzd
 tiN
-jzd
+pmH
 pGm
 eZB
 eZB
@@ -176746,7 +176761,7 @@ sGo
 sBt
 wfX
 iHx
-moW
+jAP
 eyB
 vCl
 tcP
