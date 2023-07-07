@@ -101,7 +101,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "abW" = (
@@ -366,7 +365,7 @@
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "biodome_medbay_lift";
 	name = "Medbay Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                Medbay","3"="Upper                                                                                                                                Medbay")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                Medbay")
 	},
 /obj/structure/railing{
 	dir = 4
@@ -647,6 +646,10 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/openspace,
 /area/station/maintenance/starboard/lesser)
+"alr" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "als" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5885,7 +5888,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                Access","3"="Storage                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -10239,6 +10242,7 @@
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Gas to Cold Loop"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "dGD" = (
@@ -11613,6 +11617,11 @@
 	},
 /turf/open/floor/wood,
 /area/station/cargo/office)
+"egY" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "egZ" = (
 /obj/structure/bed{
 	dir = 4
@@ -12387,7 +12396,7 @@
 	},
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_science_lift";
-	preset_destination_names = list("2"="Lower                                                                                                                                Research","3"="Upper                                                                                                                                Research")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                Research")
 	},
 /turf/open/floor/plating,
 /area/station/science/research)
@@ -23073,7 +23082,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "isx" = (
@@ -24474,6 +24482,11 @@
 	},
 /turf/open/openspace,
 /area/station/service/hydroponics/garden)
+"iXf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/station/engineering/supermatter/room)
 "iXi" = (
 /obj/machinery/door/window/right/directional/north,
 /obj/machinery/door/window/right/directional/south,
@@ -26255,6 +26268,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/science/ordnance)
+"jEH" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "jEM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -26773,7 +26790,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "jNZ" = (
@@ -28701,7 +28717,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                Access","3"="Storage                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -28961,7 +28977,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "kAi" = (
@@ -29526,6 +29541,7 @@
 	dir = 1;
 	name = "Atmos to Loop"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "kJA" = (
@@ -35076,7 +35092,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "mDG" = (
@@ -35861,6 +35879,7 @@
 /area/station/maintenance/department/security/brig)
 "mSB" = (
 /obj/structure/closet/firecloset,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "mSJ" = (
@@ -40538,6 +40557,7 @@
 	},
 /obj/structure/closet/toolcloset,
 /obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "oyI" = (
@@ -43610,6 +43630,7 @@
 	dir = 1;
 	name = "Cold Loop to Gas"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "pFX" = (
@@ -43979,7 +44000,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
 /obj/machinery/meter,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "pMx" = (
@@ -44414,8 +44434,11 @@
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "pVe" = (
-/obj/machinery/light/directional/west,
-/turf/open/floor/engine,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "pVf" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_atmos{
@@ -44635,9 +44658,12 @@
 /turf/open/floor/iron,
 /area/station/science/genetics)
 "qaT" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/structure/cable/layer3,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "qaU" = (
@@ -44876,6 +44902,7 @@
 	},
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/glasses/meson/engine,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "qeM" = (
@@ -46431,7 +46458,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "qGF" = (
@@ -47267,15 +47293,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/fore)
 "qUH" = (
-/obj/machinery/door/firedoor,
-/obj/structure/cable,
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Laser Room"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/engineering/supermatter/room)
+/obj/structure/flora/bush/jungle/c/style_random,
+/obj/machinery/light/directional/south,
+/turf/open/floor/grass,
+/area/station/biodome/fore)
 "qUL" = (
 /obj/effect/turf_decal/trimline/blue/end{
 	dir = 8
@@ -48801,7 +48822,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "ruD" = (
@@ -51189,7 +51209,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_brig_lift";
 	name = "Brig Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                Brig","3"="Upper                                                                                                                                Brig")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                Brig")
 	},
 /obj/structure/railing{
 	dir = 1
@@ -53190,6 +53210,7 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Engineering - Coolant Freezers"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "tau" = (
@@ -53280,7 +53301,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "tbD" = (
@@ -56062,6 +56082,7 @@
 "ucH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "ucK" = (
@@ -57234,7 +57255,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "uCp" = (
@@ -60391,6 +60411,10 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
+"vKU" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/station/engineering/supermatter/room)
 "vKY" = (
 /obj/effect/spawner/random/trash/food_packaging,
 /turf/open/misc/asteroid/airless,
@@ -60887,7 +60911,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /obj/structure/cable/layer3,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "vUu" = (
@@ -61781,7 +61804,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "wky" = (
@@ -62531,6 +62553,7 @@
 	c_tag = "Engineering - Supermatter Aft";
 	network = list("ss13","engine")
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "wvB" = (
@@ -63335,6 +63358,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "wIf" = (
@@ -65936,7 +65960,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /obj/structure/cable/layer3,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "xFw" = (
@@ -103716,7 +103739,7 @@ bdN
 hNy
 siV
 qeL
-gXp
+jEH
 oLx
 oLx
 kEZ
@@ -103729,7 +103752,7 @@ nlO
 nlO
 nlO
 owj
-pVe
+gvA
 lCl
 kzz
 igj
@@ -103909,7 +103932,7 @@ qCN
 cfU
 eBC
 eBC
-gwG
+qUH
 oLQ
 dcR
 vsb
@@ -103974,7 +103997,7 @@ hNy
 siV
 mSB
 gXp
-oLx
+alr
 ncM
 gym
 oJQ
@@ -103986,7 +104009,7 @@ lKy
 cvV
 sOd
 xFv
-gXp
+nlO
 nXS
 fxi
 siV
@@ -104231,7 +104254,7 @@ hNy
 siV
 oyH
 mDF
-oLx
+alr
 fjh
 lBW
 lBW
@@ -104242,8 +104265,8 @@ wAi
 uXD
 tnA
 tnA
-vUr
 qaT
+nlO
 nXS
 dBz
 siV
@@ -104486,7 +104509,7 @@ hmD
 bdN
 hNy
 siV
-aJm
+pVe
 aJm
 kAb
 fjh
@@ -104500,7 +104523,7 @@ uXD
 wOk
 wOk
 vUr
-gXp
+nlO
 nXS
 quP
 siV
@@ -104757,7 +104780,7 @@ wAi
 uXD
 uXD
 qGD
-gXp
+nlO
 nXS
 qkS
 siV
@@ -105000,7 +105023,7 @@ fEs
 bdN
 hNy
 siV
-ict
+iXf
 dxV
 kAb
 fjh
@@ -105014,7 +105037,7 @@ pSY
 myo
 tIT
 wkm
-gXp
+nlO
 siV
 cuF
 siV
@@ -105257,7 +105280,7 @@ jpp
 bdN
 hNy
 siV
-ict
+iXf
 gLM
 kAb
 fjh
@@ -105771,7 +105794,7 @@ hNy
 hNy
 hNy
 siV
-ict
+iXf
 ict
 jNJ
 ppF
@@ -106030,7 +106053,7 @@ hNy
 siV
 wIa
 gjj
-oLx
+alr
 cqh
 kPl
 meW
@@ -106042,7 +106065,7 @@ kPl
 meW
 kDP
 isp
-gXp
+nlO
 jLf
 cCZ
 vFo
@@ -106285,8 +106308,8 @@ hNy
 cCZ
 kci
 tfD
-tIc
-tIc
+egY
+egY
 cXZ
 wfH
 fJq
@@ -106555,8 +106578,8 @@ jLf
 siV
 siV
 uSw
-qUH
-jLf
+mAv
+uSw
 siV
 ycH
 gNx
@@ -106813,7 +106836,7 @@ dxV
 dxV
 olu
 kXb
-dxV
+vKU
 siV
 old
 gNx
