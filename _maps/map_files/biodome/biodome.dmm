@@ -364,7 +364,7 @@
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "biodome_medbay_lift";
 	name = "Medbay Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay")
 	},
 /obj/structure/railing{
 	dir = 4
@@ -516,6 +516,9 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
 "ajG" = (
@@ -631,6 +634,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/grimy,
 /area/station/commons/vacant_room/commissary)
 "alk" = (
@@ -974,7 +978,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "aqX" = (
-/obj/effect/spawner/structure/window,
+/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 4;
@@ -1664,11 +1668,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "aDk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/wood/large,
-/area/station/commons/storage/primary)
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "aDw" = (
 /obj/machinery/light/small/directional/west,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -1808,6 +1811,7 @@
 "aFC" = (
 /obj/effect/decal/cleanable/greenglow,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "aFI" = (
@@ -2210,6 +2214,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "aMV" = (
@@ -2564,8 +2569,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
 "aSS" = (
-/turf/open/floor/glass/reinforced,
-/area/station/maintenance/department/security)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood/large,
+/area/station/hallway/primary/aft)
 "aSX" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
@@ -5780,6 +5789,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/commons/fitness)
+"cdq" = (
+/obj/effect/spawner/random/structure/grille,
+/turf/open/floor/glass/reinforced,
+/area/station/maintenance/starboard/lesser)
 "cdt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
@@ -5910,7 +5923,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -6092,12 +6105,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "ciw" = (
-/obj/machinery/light/small/directional/west,
-/obj/structure/reagent_dispensers/watertank{
-	pixel_x = -1
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/maintenance/fore/greater)
+/area/station/maintenance/aft/upper)
 "cix" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -7359,6 +7371,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
 "cEC" = (
@@ -8179,6 +8192,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "cTX" = (
@@ -9861,15 +9875,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
 "dzO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/trimline/dark/line,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/aft)
+/obj/effect/mapping_helpers/burnt_floor,
+/obj/effect/spawner/random/structure/grille,
+/turf/open/floor/plating,
+/area/station/maintenance/port/central)
 "dAd" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
@@ -10545,6 +10554,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
+"dKY" = (
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "dMg" = (
 /obj/machinery/ore_silo,
 /turf/open/floor/circuit/green{
@@ -12166,6 +12180,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/engine_smes)
+"etm" = (
+/obj/structure/sign/directions/security/directional/west,
+/turf/open/floor/wood/large,
+/area/station/hallway/primary/aft)
 "etn" = (
 /obj/structure/chair/office,
 /obj/machinery/button/door/directional/west{
@@ -12434,7 +12452,7 @@
 	},
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_science_lift";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research")
 	},
 /turf/open/floor/plating,
 /area/station/science/research)
@@ -15047,6 +15065,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "frT" = (
@@ -15500,6 +15519,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "fAe" = (
@@ -15800,6 +15820,9 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
+"fFR" = (
+/turf/open/floor/glass/reinforced,
+/area/station/maintenance/aft/upper)
 "fFW" = (
 /obj/structure/table,
 /obj/item/paper_bin/carbon{
@@ -16509,8 +16532,8 @@
 /turf/open/floor/stone,
 /area/station/biodome/fore)
 "fSu" = (
-/obj/effect/spawner/random/structure/grille,
-/turf/open/misc/asteroid/dug,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "fSA" = (
 /obj/structure/chair/office{
@@ -18504,6 +18527,10 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron,
 /area/station/security/prison)
+"gEv" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "gEz" = (
 /obj/machinery/grill,
 /obj/effect/spawner/random/food_or_drink/condiment,
@@ -19259,6 +19286,8 @@
 /area/station/biodome/aft)
 "gTp" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/spawner/random/trash/food_packaging,
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/lesser)
 "gTu" = (
@@ -19267,6 +19296,7 @@
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
 "gTD" = (
@@ -19672,6 +19702,13 @@
 	},
 /turf/open/floor/iron,
 /area/station/science/research)
+"hcc" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/aft/upper)
 "hch" = (
 /obj/item/radio/intercom/directional/south,
 /obj/structure/closet/secure_closet/medical1,
@@ -19787,6 +19824,10 @@
 	dir = 4
 	},
 /area/station/hallway/secondary/service)
+"hdW" = (
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/glass/reinforced,
+/area/station/maintenance/aft/upper)
 "hdY" = (
 /obj/structure/ladder,
 /obj/structure/lattice/catwalk,
@@ -20192,6 +20233,7 @@
 /obj/structure/railing{
 	dir = 6
 	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/misc/asteroid,
 /area/station/maintenance/central/greater)
 "hlL" = (
@@ -20250,7 +20292,6 @@
 /turf/open/floor/carpet/red,
 /area/station/hallway/secondary/exit/departure_lounge)
 "hmK" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
@@ -21699,7 +21740,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/glass/reinforced,
 /area/station/maintenance/aft/upper)
 "hTu" = (
 /obj/machinery/power/apc/auto_name/directional/east,
@@ -21958,7 +21999,9 @@
 /area/station/biodome/fore)
 "hXg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/iron/grimy,
 /area/station/commons/vacant_room/commissary)
 "hXj" = (
@@ -22205,10 +22248,6 @@
 /area/station/commons/vacant_room/office)
 "ibJ" = (
 /obj/effect/landmark/navigate_destination/tools,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/public/glass{
 	name = "Primary Tool Hut"
 	},
@@ -22921,6 +22960,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "ioR" = (
@@ -23224,7 +23264,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/floor/plating,
+/turf/open/floor/glass,
 /area/station/maintenance/port/greater)
 "iux" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -24187,6 +24227,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
 "iOc" = (
@@ -25492,6 +25533,7 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "jpi" = (
@@ -27724,6 +27766,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
 "kfd" = (
@@ -28769,7 +28812,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -30432,6 +30475,7 @@
 /area/station/command/bridge)
 "kYp" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "kYB" = (
@@ -32676,6 +32720,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "lKb" = (
@@ -33132,6 +33177,8 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/commons/vacant_room/commissary)
 "lTK" = (
@@ -36525,6 +36572,8 @@
 "ncT" = (
 /obj/effect/spawner/random/trash/food_packaging,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "ncV" = (
@@ -36921,6 +36970,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
 "niK" = (
@@ -39290,6 +39342,7 @@
 "nZK" = (
 /obj/effect/spawner/random/trash/food_packaging,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "nZW" = (
@@ -39654,6 +39707,7 @@
 "ofl" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/trash/mess,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "ofo" = (
@@ -40231,7 +40285,7 @@
 /obj/structure/chair/stool/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/cyan,
+/turf/open/floor/carpet,
 /area/station/commons/storage/art)
 "oqy" = (
 /obj/effect/landmark/event_spawn,
@@ -41178,7 +41232,6 @@
 /turf/open/floor/stone,
 /area/station/biodome)
 "oHH" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -41798,7 +41851,7 @@
 /area/station/maintenance/starboard/central)
 "oUu" = (
 /obj/effect/spawner/random/structure/crate_loot,
-/turf/open/floor/plating,
+/turf/open/floor/glass/reinforced,
 /area/station/maintenance/aft/upper)
 "oUv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -44006,7 +44059,7 @@
 /area/station/maintenance/port/central)
 "pKX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/carpet/cyan,
+/turf/open/floor/carpet,
 /area/station/commons/storage/emergency)
 "pLa" = (
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -44066,6 +44119,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/spawner/random/trash/grime,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
 "pMd" = (
@@ -45576,6 +45630,10 @@
 /area/station/ai_monitored/turret_protected/aisat/foyer)
 "qoa" = (
 /obj/item/radio/intercom/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
 "qod" = (
@@ -47168,6 +47226,8 @@
 "qRv" = (
 /obj/effect/decal/cleanable/robot_debris,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "qRA" = (
@@ -47300,7 +47360,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/floor/plating,
+/turf/open/floor/glass/reinforced,
 /area/station/maintenance/aft/upper)
 "qTK" = (
 /obj/effect/spawner/random/clothing/twentyfive_percent_cyborg_mask,
@@ -48312,7 +48372,8 @@
 	},
 /area/station/biodome/fore)
 "rkI" = (
-/turf/open/floor/iron/white/small,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "rkQ" = (
 /obj/structure/frame/machine,
@@ -49123,6 +49184,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/oil/streak,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/misc/asteroid,
 /area/station/maintenance/central/greater)
 "ryG" = (
@@ -49843,7 +49905,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/grimy,
 /area/station/commons/vacant_room/commissary)
@@ -50221,7 +50282,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "rUl" = (
@@ -50554,7 +50615,7 @@
 /area/station/service/hydroponics)
 "rZE" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 6
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -51298,7 +51359,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_brig_lift";
 	name = "Brig Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig")
 	},
 /obj/structure/railing{
 	dir = 1
@@ -51394,6 +51455,7 @@
 /area/station/hallway/secondary/entry)
 "sqw" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "srl" = (
@@ -53375,11 +53437,9 @@
 /turf/closed/wall,
 /area/station/biodome)
 "tby" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/glass/reinforced,
-/area/station/maintenance/department/security)
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/central)
 "tbB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /obj/machinery/meter,
@@ -53622,9 +53682,6 @@
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
 "tfN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/commons/vacant_room/commissary)
@@ -53743,6 +53800,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/misc/asteroid,
 /area/station/maintenance/central/greater)
 "tiN" = (
@@ -53758,6 +53816,7 @@
 "tiX" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "tje" = (
@@ -54306,6 +54365,9 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
 "tte" = (
@@ -55579,6 +55641,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
+"tPr" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/station/maintenance/fore/greater)
 "tPt" = (
 /obj/item/chair/stool,
 /turf/open/floor/wood,
@@ -56510,12 +56576,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "uld" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/glass/reinforced,
-/area/station/maintenance/department/security)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood/large,
+/area/station/commons/storage/primary)
 "ulg" = (
 /turf/open/floor/glass/reinforced,
 /area/station/maintenance/starboard/lesser)
@@ -56745,6 +56811,8 @@
 /area/station/hallway/secondary/construction/engineering)
 "ups" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "upu" = (
@@ -57055,6 +57123,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "uuK" = (
@@ -57563,6 +57632,7 @@
 "uGw" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/openspace,
 /area/station/maintenance/starboard/lesser)
 "uGB" = (
@@ -60497,10 +60567,9 @@
 	c_tag = "Storage - Empty Dispensary"
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/commons/vacant_room/commissary)
 "vKL" = (
@@ -61291,6 +61360,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
+"vZf" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/glass/reinforced,
+/area/station/maintenance/aft/upper)
 "vZj" = (
 /obj/machinery/suit_storage_unit/medical,
 /turf/open/floor/iron/dark,
@@ -61616,6 +61689,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "wfp" = (
@@ -62115,6 +62189,7 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
 "wme" = (
@@ -62435,6 +62510,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
 "wqb" = (
@@ -63073,6 +63149,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/trash/grille_or_waste,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "wAW" = (
@@ -63541,6 +63618,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/engineering/storage)
 "wJu" = (
@@ -63683,10 +63761,9 @@
 /turf/open/floor/wood/large,
 /area/station/biodome/fore)
 "wMF" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/central/greater)
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/iron,
+/area/station/maintenance/port/central)
 "wNb" = (
 /obj/structure/bed/dogbed/runtime,
 /obj/item/toy/cattoy,
@@ -64041,12 +64118,16 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "wSu" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 4
+/obj/machinery/door/airlock/public/glass{
+	name = "Primary Tool Hut"
 	},
-/turf/open/floor/iron,
-/area/station/engineering/storage)
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood/large,
+/area/station/commons/storage/primary)
 "wSw" = (
 /obj/structure/ladder,
 /turf/open/floor/plating,
@@ -64754,6 +64835,10 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
 /area/station/security/prison/workout)
+"xfc" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/grimy,
+/area/station/commons/vacant_room/commissary)
 "xfp" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -65091,6 +65176,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "xlE" = (
@@ -65425,10 +65511,9 @@
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "xsO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/station/maintenance/aft/upper)
+/area/station/maintenance/starboard/central)
 "xtg" = (
 /obj/structure/chair/stool/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -65603,6 +65688,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/misc/asteroid,
 /area/station/maintenance/central/greater)
 "xwm" = (
@@ -88144,7 +88230,7 @@ aMB
 uhn
 aMB
 pSz
-cJU
+jcP
 cJU
 pKF
 rRv
@@ -90469,7 +90555,7 @@ cCZ
 cCZ
 cCZ
 pKF
-hgp
+wMF
 cJU
 lHf
 htc
@@ -91226,10 +91312,10 @@ ivB
 cJU
 cgO
 pKF
-tyi
+dzO
+cJU
 cJU
 dBC
-jcP
 jDW
 pKF
 hNy
@@ -92837,7 +92923,7 @@ bqj
 bqj
 bqj
 bqj
-vUn
+lgW
 oAe
 oAe
 oAe
@@ -93351,7 +93437,7 @@ cCZ
 hNy
 hNy
 bqj
-vUn
+lgW
 oAe
 hNy
 hNy
@@ -93608,7 +93694,7 @@ vtU
 hNy
 hNy
 bqj
-vUn
+lgW
 lkK
 oAe
 hNy
@@ -93865,7 +93951,7 @@ cCZ
 hNy
 hNy
 bqj
-vUn
+lgW
 gRN
 pAD
 hNy
@@ -94044,7 +94130,7 @@ pKF
 kKJ
 gxB
 pKF
-cJU
+rZH
 iBE
 shB
 dBC
@@ -97976,7 +98062,7 @@ bTO
 vtU
 bqj
 wfo
-wMF
+hUd
 fAd
 mby
 gRN
@@ -99664,7 +99750,7 @@ rsj
 vpU
 hiv
 jlt
-dYQ
+tPr
 rba
 jlt
 czJ
@@ -100287,7 +100373,7 @@ ttj
 vaA
 lGg
 sIb
-wSu
+sIb
 xVL
 lOH
 tQT
@@ -101231,7 +101317,7 @@ gcN
 sBz
 sBz
 bnk
-dYQ
+tPr
 wLC
 sBz
 isM
@@ -104316,7 +104402,7 @@ dYQ
 uiF
 nOY
 sBz
-ciw
+ydf
 dYQ
 dZv
 sBz
@@ -104633,7 +104719,7 @@ aPT
 kyF
 oAe
 wJI
-oAe
+rkI
 oAe
 oAe
 oAe
@@ -104891,7 +104977,7 @@ nyU
 oAe
 gRN
 oAe
-rkI
+oAe
 wJI
 gkC
 eoL
@@ -107457,7 +107543,7 @@ oAe
 jew
 jew
 fTB
-fSu
+oAe
 oAe
 gRN
 ewP
@@ -107715,7 +107801,7 @@ oAe
 oAe
 oAe
 oAe
-oAe
+fSu
 gRN
 vVY
 oAe
@@ -110486,8 +110572,8 @@ dDE
 hNy
 hNy
 btj
-uZp
-uZp
+tby
+xsO
 ykP
 uZp
 jjV
@@ -157570,7 +157656,7 @@ sJE
 woD
 sZj
 xoz
-syt
+fVb
 fVb
 fVb
 iuv
@@ -157827,10 +157913,10 @@ vhi
 kSr
 nUx
 ikk
-pSH
 vyS
 vyS
-pSH
+vyS
+vyS
 wOd
 ikk
 ple
@@ -159889,7 +159975,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 fJC
 vxC
 vxC
@@ -160146,7 +160232,7 @@ fJC
 fJC
 nGY
 wum
-xsO
+bDR
 fJC
 fJC
 kFl
@@ -160403,7 +160489,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 fJC
 fJC
 qWS
@@ -160660,7 +160746,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 uKI
 dtB
 vxC
@@ -160917,7 +161003,7 @@ dST
 dST
 dST
 vxC
-xsO
+bDR
 fJC
 gDp
 dhT
@@ -161174,7 +161260,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 fJC
 fJC
 jon
@@ -161431,7 +161517,7 @@ fJC
 fJC
 mhT
 mqM
-xsO
+bDR
 vxC
 fJC
 fJC
@@ -161688,7 +161774,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 vxC
 sFP
 fJC
@@ -161945,7 +162031,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 vxC
 dtB
 uoa
@@ -162202,7 +162288,7 @@ dST
 dST
 dST
 vxC
-xsO
+bDR
 qWS
 wKx
 ePh
@@ -162459,7 +162545,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 fJC
 vxC
 dtB
@@ -162716,10 +162802,10 @@ fJC
 fJC
 oAz
 bJS
-xsO
+bDR
 fJC
 vxC
-fJC
+dOp
 gRq
 bzQ
 lyp
@@ -162973,7 +163059,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 kSk
 fJC
 fJC
@@ -163230,7 +163316,7 @@ fJC
 fJC
 fJC
 vxC
-xsO
+bDR
 fJC
 fJC
 gFQ
@@ -163487,7 +163573,7 @@ dST
 dST
 dST
 vxC
-xsO
+bDR
 fJC
 fJC
 fJC
@@ -164001,8 +164087,8 @@ fJC
 fJC
 wlv
 aUx
-xsO
-fJC
+bDR
+ciw
 fJC
 sWf
 gRq
@@ -164516,9 +164602,9 @@ fJC
 fJC
 vxC
 dOp
-fJC
-fJC
-fJC
+ciw
+ciw
+ciw
 gRq
 gRq
 gRq
@@ -164775,14 +164861,14 @@ jKM
 jKM
 jKM
 vxC
+ciw
 fJC
-fJC
-fJC
-fJC
+fFR
+fFR
 oUu
-fJC
+fFR
 hTp
-yaA
+hdW
 fJC
 cBp
 toX
@@ -165032,14 +165118,14 @@ vDi
 vKp
 lTG
 ajE
+hcc
 pkE
-pkE
-pkE
-pkE
-pkE
-pkE
+vZf
+vZf
+vZf
+vZf
 qTJ
-fJC
+fFR
 pxM
 fJC
 toX
@@ -165798,7 +165884,7 @@ bnX
 maE
 fug
 ppS
-mrF
+xfc
 akZ
 uZV
 cUz
@@ -171709,14 +171795,14 @@ ukv
 jAa
 xXP
 xXi
-dzO
-wRo
-wRo
+oFk
+hUL
+etm
 ibJ
-oHH
+pyW
 oHH
 hmK
-aDk
+rVt
 pyW
 eXy
 hUL
@@ -171967,11 +172053,11 @@ jAa
 vFw
 hBU
 rZE
-hUL
-hUL
-eXy
+aSS
+aSS
+wSu
 qoa
-niI
+uld
 cEo
 niI
 cav
@@ -175311,9 +175397,9 @@ mXg
 uEl
 kSo
 uEl
-aSS
-aSS
-aSS
+uEl
+uEl
+uEl
 uEl
 uEl
 luP
@@ -175568,9 +175654,9 @@ aHv
 aHv
 aHv
 eGA
-tby
-tby
-uld
+aHv
+aHv
+eGA
 eGA
 aHv
 fuo
@@ -177115,9 +177201,9 @@ eZB
 iKA
 ulg
 ulg
-isa
+cdq
 ulg
-ulg
+eZB
 cEV
 cEV
 cEV
@@ -177372,7 +177458,7 @@ eZB
 aku
 ulg
 ulg
-eZB
+cdq
 ulg
 voY
 ksQ
@@ -177597,8 +177683,8 @@ eZB
 eZB
 eZB
 eZB
-ups
-gTp
+eQc
+ogc
 qzY
 eZB
 eZB
@@ -177855,7 +177941,7 @@ kUh
 bEG
 eZB
 eZB
-ups
+eQc
 avN
 cwR
 cub
@@ -178112,7 +178198,7 @@ gtW
 gtW
 ulB
 eZB
-ups
+eQc
 ekm
 bPy
 tAd
@@ -178369,7 +178455,7 @@ fKO
 gtW
 cJd
 eZB
-ups
+eQc
 avN
 eZB
 hKD
@@ -178626,7 +178712,7 @@ fFW
 rBr
 qed
 cCx
-gTp
+ogc
 avN
 xuP
 hKD
@@ -178883,8 +178969,8 @@ vJC
 xxh
 cSq
 eZB
-ups
-ups
+eQc
+eQc
 sBq
 hKD
 hHc
@@ -180170,7 +180256,7 @@ xFb
 xGg
 vyP
 gTp
-jgZ
+gEv
 hKD
 hHc
 haf
@@ -180199,7 +180285,7 @@ wkW
 fwe
 qcV
 eZB
-jgZ
+dKY
 dET
 avN
 ouU
@@ -180426,7 +180512,7 @@ oJl
 blA
 ckq
 eZB
-ups
+eQc
 qzY
 hKD
 dUQ
@@ -180940,7 +181026,7 @@ meJ
 meJ
 meJ
 eZB
-ups
+eQc
 avN
 hKD
 hKD
@@ -181228,7 +181314,7 @@ ePj
 wCf
 eUK
 avN
-jgZ
+aDk
 ouU
 ouU
 hHc
