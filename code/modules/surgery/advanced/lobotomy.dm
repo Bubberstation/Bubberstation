@@ -69,7 +69,9 @@
 		for(var/datum/brain_trauma/T as anything in target.get_traumas() )
 			if(T.resilience >= TRAUMA_RESILIENCE_ABSOLUTE)
 				continue
-			T.resilence = max(TRAUMA_RESILIENCE_BASIC,T.resilence-1)
+			if(T.resilence == TRAUMA_RESILIENCE_WOUND)
+				continue
+			T.resilence = clamp(T.resilence-1,TRAUMA_RESILIENCE_BASIC,TRAUMA_RESILIENCE_LOBOTOMY)
 
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
