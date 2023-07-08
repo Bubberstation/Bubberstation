@@ -34,6 +34,7 @@
 	preop_sound = 'sound/surgery/scalpel1.ogg'
 	success_sound = 'sound/surgery/scalpel2.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
+	repeatable = TRUE //Bubberstation change: Makes lobotomies repeatable
 
 /datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
@@ -60,7 +61,16 @@
 	)
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
 
-	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	// Bubberstation change: Lowers the resilence of all traumas that didn't get cured. Lobotomies can have a chance not to heal lobotomy-tier traumas. Causes brain damage per lobotomy.
+	var/obj/item/organ/internal/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(target_brain)
+		target_brain.apply_organ_damage(20)
+		target.cure_all_traumas(rand(TRAUMA_RESILIENCE_SURGERY,TRAUMA_RESILIENCE_LOBOTOMY))
+		for(var/datum/brain_trauma/T as anything in target.get_traumas() )
+			if(T.resilience >= TRAUMA_RESILIENCE_ABSOLUTE)
+				continue
+			T.resilence = max(TRAUMA_RESILIENCE_BASIC,T.resilence-1)
+
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 	if(prob(75)) // 75% chance to get a trauma from this
