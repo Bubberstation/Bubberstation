@@ -19,7 +19,7 @@
 
 	var/working = FALSE
 	var/obj/item/yarn/ball
-	var/static/list/knitables = list(/obj/item/clothing/head/beret/knitted, /obj/item/clothing/suit/costume/ianshirt, /obj/item/clothing/suit/toggle/jacket/sweater, /obj/item/clothing/suit/costume/ghost_sheet, /obj/item/clothing/neck/scarf/knitted, /obj/item/clothing/neck/large_scarf/knitted, /obj/item/clothing/head/beanie/knitted, /obj/item/clothing/gloves/color/grey/protects_cold, /obj/item/clothing/suit/hooded/wintercoat/skyrat, /obj/item/clothing/neck/mantle, /obj/item/clothing/accessory/armband/knitted, /obj/item/clothing/under/misc/pj/red, /obj/item/clothing/under/misc/pj/blue)//Add more? Get Radial thumbnails fixed.
+	var/static/list/knitables = list(/obj/item/clothing/head/beret/knitted, /obj/item/clothing/suit/costume/ianshirt, /obj/item/clothing/suit/toggle/jacket/sweater, /obj/item/clothing/suit/costume/ghost_sheet, /obj/item/clothing/neck/scarf/knitted, /obj/item/clothing/head/beanie/knitted, /obj/item/clothing/gloves/color/grey/protects_cold, /obj/item/clothing/suit/hooded/wintercoat/skyrat, /obj/item/clothing/neck/mantle, /obj/item/clothing/accessory/armband/knitted, /obj/item/clothing/under/misc/pj/red, /obj/item/clothing/under/misc/pj/blue)//Add more? Get Radial thumbnails fixed.
 	var/static/list/name2knit
 
 /obj/item/knittingneedles/verb/remove_yarn()
@@ -169,5 +169,11 @@
 	new /obj/item/yarn/green(src)
 	new /obj/item/yarn/purple(src)
 	new /obj/item/yarn/yellow(src)
+
+/datum/supply_pack/goody/knittingsupplies
+	name = "Knitting Supplies"
+	desc = "A crate full of knitting supplies. You'd have to be planning some serious knitting to want this. Contains three boxes of yarn and a pair of knitting needles."
+	cost = PAYCHECK_CREW*5
+	contains = list(/obj/item/storage/box/yarn, /obj/item/storage/box/yarn, /obj/item/storage/box/yarn, /obj/item/knittingneedles)
 
 //https://github.com/Aurorastation/Aurora.3/pull/4749 is the main originator of the art from what I can tell. If others are responsible, please alert me!
