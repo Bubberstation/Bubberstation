@@ -19,7 +19,7 @@
 
 	var/working = FALSE
 	var/obj/item/yarn/ball
-	var/static/list/knitables = list(/obj/item/clothing/under/dress/skirt/skyrat/turtleskirt_knit)//Add more?? Test this!!!
+	var/static/list/knitables = list(/obj/item/clothing/head/beret/knitted, /obj/item/clothing/suit/costume/ianshirt, /obj/item/clothing/suit/toggle/jacket/sweater, /obj/item/clothing/suit/costume/ghost_sheet, /obj/item/clothing/neck/scarf/knitted, /obj/item/clothing/neck/large_scarf/knitted, /obj/item/clothing/head/beanie/knitted, /obj/item/clothing/gloves/color/grey/protects_cold, /obj/item/clothing/suit/hooded/wintercoat/skyrat, /obj/item/clothing/neck/mantle, /obj/item/clothing/accessory/armband/knitted, /obj/item/clothing/under/misc/pj/red, /obj/item/clothing/under/misc/pj/blue)//Add more? Get Radial thumbnails fixed.
 	var/static/list/name2knit
 
 /obj/item/knittingneedles/verb/remove_yarn()
