@@ -364,7 +364,7 @@
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "biodome_medbay_lift";
 	name = "Medbay Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Medbay")
 	},
 /obj/structure/railing{
 	dir = 4
@@ -648,7 +648,8 @@
 /area/station/engineering/atmos/hfr_room)
 "alo" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/openspace,
+/obj/item/food/meat/slab/human/mutant/skeleton,
+/turf/open/misc/beach/sand,
 /area/station/maintenance/starboard/lesser)
 "als" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1581,7 +1582,7 @@
 /turf/open/floor/plating,
 /area/station/biodome/fore)
 "aBG" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/commons/storage/emergency)
 "aBV" = (
 /obj/effect/spawner/random/entertainment/plushie_delux,
@@ -4075,10 +4076,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "bwC" = (
-/obj/structure/table/reinforced,
-/obj/effect/spawner/random/clothing/pirate_or_bandana,
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/structure/closet/secure_closet/nanotrasen_consultant/station,
+/obj/item/assembly/flash/handheld,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "bwK" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/clothing/gloves/latex/nitrile,
@@ -4533,11 +4534,11 @@
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/qm)
 "bEJ" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/lesser)
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "bES" = (
 /obj/item/plate,
 /obj/item/food/meat/slab,
@@ -5968,7 +5969,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -6080,6 +6081,11 @@
 "chi" = (
 /turf/closed/wall,
 /area/station/science/robotics/lab)
+"chr" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "chx" = (
 /obj/structure/window/reinforced/spawner/directional/east{
 	layer = 2.9
@@ -6207,6 +6213,7 @@
 /obj/structure/disposalpipe/trunk/multiz/down{
 	dir = 1
 	},
+/obj/structure/ladder,
 /turf/open/floor/plating,
 /area/station/hallway/primary/central/fore)
 "cjL" = (
@@ -8483,8 +8490,12 @@
 /turf/open/floor/plating/rust,
 /area/station/biodome/fore)
 "cYR" = (
-/turf/closed/wall/mineral/wood/nonmetal,
-/area/station/commons/toilet/auxiliary)
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/obj/structure/table/wood,
+/obj/item/papercutter,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/hop)
 "cZe" = (
 /obj/effect/spawner/random/trash/garbage{
 	spawn_loot_count = 3;
@@ -8633,16 +8644,6 @@
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
 "dbn" = (
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/machinery/camera/autoname/directional/west{
-	c_tag = "Command - Head of Personnel Office"
-	},
-/obj/item/storage/box/ids,
-/obj/item/storage/box/pdas{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/structure/table/wood,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "dbu" = (
@@ -8868,7 +8869,7 @@
 /area/station/commons/locker)
 "dfu" = (
 /obj/structure/sign/poster/official/moth_hardhat,
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/biodome)
 "dfx" = (
 /obj/machinery/smartfridge/extract/preloaded,
@@ -10619,6 +10620,21 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
+"dKY" = (
+/obj/structure/table/wood,
+/obj/item/folder/yellow,
+/obj/item/folder/white{
+	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_y = 6
+	},
+/obj/item/folder/blue{
+	pixel_y = 9
+	},
+/obj/machinery/light/directional/east,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "dMg" = (
 /obj/machinery/ore_silo,
 /turf/open/floor/circuit/green{
@@ -10676,7 +10692,7 @@
 /turf/open/floor/wood/large,
 /area/station/service/theater)
 "dNi" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/hydroponics)
 "dNl" = (
 /obj/structure/table,
@@ -11162,7 +11178,7 @@
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
 "dUI" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/hallway/secondary/service)
 "dUK" = (
 /obj/machinery/door/firedoor,
@@ -11311,7 +11327,7 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 5
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/hallway/primary/aft)
 "dXZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -11740,6 +11756,16 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/central)
+"ehB" = (
+/obj/structure/disposalpipe/junction/flip,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/aft)
 "ehD" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
@@ -12522,7 +12548,7 @@
 	},
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_science_lift";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Research")
 	},
 /turf/open/floor/plating,
 /area/station/science/research)
@@ -13936,6 +13962,11 @@
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
+"eUh" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "eUt" = (
 /obj/structure/dresser,
 /turf/open/floor/glass/reinforced,
@@ -15679,9 +15710,21 @@
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
 "fAQ" = (
-/obj/structure/railing/corner,
-/turf/open/openspace,
-/area/station/biodome/aft)
+/obj/structure/table/wood,
+/obj/item/camera_film{
+	pixel_x = 6
+	},
+/obj/item/camera_film{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/camera{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/machinery/status_display/ai/directional/east,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "fAY" = (
 /turf/closed/wall/r_wall/fakewood,
 /area/station/command/heads_quarters/hop)
@@ -16012,7 +16055,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
 "fIX" = (
-/turf/closed/wall,
+/turf/closed/wall/mineral/wood,
 /area/station/commons/toilet/auxiliary)
 "fIZ" = (
 /obj/machinery/light/directional/east,
@@ -17939,6 +17982,8 @@
 /obj/effect/turf_decal/trimline/brown/arrow_cw{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "grL" = (
@@ -18734,6 +18779,13 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/station/service/library)
+"gFZ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/transit_tube,
+/turf/open/openspace,
+/area/station/biodome/aft)
 "gGb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -19608,7 +19660,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1
+	dir = 9
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
@@ -20426,10 +20478,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
 "hnq" = (
-/obj/structure/filingcabinet/chestdrawer{
-	pixel_y = 2
-	},
 /obj/structure/sign/clock/directional/west,
+/obj/machinery/computer/security/mining{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "hnv" = (
@@ -21291,15 +21343,13 @@
 /turf/open/misc/asteroid,
 /area/station/cargo/miningdock)
 "hGY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/fax{
+	fax_name = "Head of Personnel's Office";
+	name = "Head of Personnel's Fax Machine"
 	},
-/obj/machinery/firealarm/directional/west,
-/obj/item/kirbyplants/random,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "hHc" = (
 /turf/open/space/openspace,
@@ -21484,6 +21534,22 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
+"hKR" = (
+/obj/structure/table/wood,
+/obj/item/stamp/centcom{
+	pixel_y = 8
+	},
+/obj/item/stamp{
+	pixel_x = -6
+	},
+/obj/item/stamp/denied{
+	pixel_x = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/carpet/executive,
+/area/command/heads_quarters/captain/private/nt_rep)
 "hKX" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/bag/tray/cafeteria,
@@ -21794,6 +21860,17 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/science/research)
+"hRu" = (
+/obj/machinery/firealarm/directional/west,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/table/wood,
+/obj/item/storage/box/ids,
+/obj/item/storage/box/pdas{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/hop)
 "hRM" = (
 /obj/machinery/light/cold/directional/east,
 /obj/item/radio/intercom/directional/east,
@@ -21920,8 +21997,12 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "hUr" = (
-/turf/closed/wall/mineral/wood/nonmetal,
-/area/station/maintenance/department/crew_quarters/bar)
+/obj/machinery/light/directional/west,
+/obj/machinery/computer/records/security{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/hop)
 "hUs" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -22930,9 +23011,17 @@
 /turf/open/floor/iron/herringbone,
 /area/station/service/chapel/office)
 "ilA" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/lesser)
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/machinery/fax{
+	fax_name = "Nanotrasen Consultant's Office";
+	name = "Nanotrasen Consultant's Fax Machine"
+	},
+/obj/machinery/newscaster/directional/south,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "imi" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -23396,7 +23485,7 @@
 /turf/open/floor/plating,
 /area/station/command/meeting_room)
 "iuz" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen/diner)
 "iuH" = (
 /obj/effect/spawner/random/trash/garbage{
@@ -23412,7 +23501,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/lesser)
 "iuL" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/biodome)
 "iuT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -23543,7 +23632,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
 "ixe" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/biodome/aft)
 "ixg" = (
 /obj/structure/cable,
@@ -24147,6 +24236,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/security/prison/workout)
+"iJT" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "iKd" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/door/poddoor/shutters/window/preopen{
@@ -24165,7 +24264,6 @@
 /area/station/maintenance/department/security/brig)
 "iKq" = (
 /obj/machinery/holopad,
-/obj/machinery/light/directional/west,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
@@ -24314,7 +24412,7 @@
 /turf/open/floor/iron/white/diagonal,
 /area/station/science/robotics/lab)
 "iMD" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/bar)
 "iME" = (
 /obj/effect/spawner/structure/window,
@@ -27693,6 +27791,15 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
+"kaD" = (
+/obj/machinery/light/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control";
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "kaG" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/machinery/light/small/directional/west,
@@ -28063,7 +28170,7 @@
 /turf/open/floor/iron,
 /area/station/security/prison/garden)
 "khd" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/hallway/primary/central)
 "khm" = (
 /obj/machinery/duct,
@@ -28139,7 +28246,7 @@
 /area/space/nearstation)
 "kiZ" = (
 /obj/structure/falsewall/wood,
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/open/floor/plating,
 /area/station/service/library/lounge)
 "kjb" = (
 /obj/structure/cable,
@@ -28487,8 +28594,9 @@
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "knH" = (
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "knN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
 	dir = 8
@@ -28953,7 +29061,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
+	preset_destination_names = list("2"="Engineering                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Access","3"="Storage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Zone")
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -33136,6 +33244,16 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/aft)
+"lPI" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "lPK" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/decal/cleanable/dirt,
@@ -34435,6 +34553,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
+"mkf" = (
+/obj/structure/transit_tube,
+/obj/structure/railing/corner,
+/turf/open/openspace,
+/area/station/biodome/aft)
 "mkm" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "N2O Storage"
@@ -34771,6 +34894,7 @@
 	c_tag = "Civilian - Disposals"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/engineering/vending_restock,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "mqC" = (
@@ -35524,6 +35648,10 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/grass,
 /area/station/biodome)
+"mGU" = (
+/obj/effect/spawner/random/clothing/pirate_or_bandana,
+/turf/open/misc/beach/sand,
+/area/station/maintenance/starboard/lesser)
 "mGW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -37067,9 +37195,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
 "nhh" = (
-/obj/effect/spawner/random/clothing/pirate_or_bandana,
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/structure/filingcabinet/chestdrawer,
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "nhj" = (
 /obj/structure/chair/stool/directional/north,
 /turf/open/floor/iron,
@@ -37741,6 +37870,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
+"nuX" = (
+/obj/effect/spawner/random/trash/mess,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/lesser)
 "nve" = (
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/airalarm/directional/east,
@@ -37896,6 +38031,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
+"nxJ" = (
+/turf/open/misc/beach/sand,
+/area/station/maintenance/starboard/lesser)
 "nxM" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
@@ -38000,7 +38138,7 @@
 	},
 /area/station/service/chapel)
 "nzE" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/bar/backroom)
 "nzK" = (
 /obj/machinery/atmospherics/components/binary/valve,
@@ -38744,10 +38882,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "nMA" = (
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "nMG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -38782,7 +38921,7 @@
 /area/station/hallway/primary/starboard)
 "nNe" = (
 /obj/machinery/door/firedoor/border_only,
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/library)
 "nNh" = (
 /obj/machinery/door/firedoor/border_only{
@@ -38906,7 +39045,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "nPx" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/hallway/primary/aft)
 "nPz" = (
 /obj/effect/turf_decal/siding/dark{
@@ -39009,8 +39148,8 @@
 /obj/structure/disposalpipe/trunk/multiz{
 	dir = 2
 	},
-/obj/effect/spawner/random/engineering/vending_restock,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/ladder,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "nQW" = (
@@ -39891,11 +40030,9 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "ofl" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/trash/mess,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/falsewall,
 /turf/open/floor/plating,
-/area/station/maintenance/starboard/lesser)
+/area/command/heads_quarters/captain/private/nt_rep)
 "ofo" = (
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
@@ -40133,11 +40270,9 @@
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
 "ojO" = (
-/obj/item/toy/sword,
-/obj/effect/landmark/generic_maintenance_landmark,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/structure/filingcabinet/employment,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "ojX" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -41635,7 +41770,7 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/security/prison)
 "oLQ" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/theater)
 "oMa" = (
 /obj/machinery/camera/directional/south{
@@ -41652,6 +41787,11 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
+"oMm" = (
+/obj/effect/spawner/random/clothing/pirate_or_bandana,
+/obj/item/toy/sword,
+/turf/open/misc/beach/sand,
+/area/station/maintenance/starboard/lesser)
 "oMn" = (
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
@@ -41668,6 +41808,15 @@
 	},
 /turf/open/floor/carpet/black,
 /area/station/service/chapel)
+"oMx" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/transit_tube/curved{
+	dir = 1
+	},
+/turf/open/openspace,
+/area/station/biodome/aft)
 "oMz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -41983,6 +42132,13 @@
 "oTe" = (
 /turf/open/openspace,
 /area/station/ai_monitored/security/armory)
+"oTh" = (
+/obj/machinery/modular_computer/preset/command{
+	dir = 8
+	},
+/obj/machinery/light_switch/directional/south,
+/turf/open/floor/carpet/executive,
+/area/command/heads_quarters/captain/private/nt_rep)
 "oTF" = (
 /obj/structure/altar_of_gods,
 /obj/item/book/bible,
@@ -42950,7 +43106,7 @@
 /turf/open/misc/asteroid,
 /area/station/maintenance/port/central)
 "pkB" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/library/lounge)
 "pkE" = (
 /obj/structure/disposalpipe/segment,
@@ -43209,6 +43365,17 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
+"pos" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/office,
+/obj/effect/landmark/start/nanotrasen_consultant,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "pov" = (
 /turf/closed/wall,
 /area/station/medical/break_room)
@@ -44136,7 +44303,7 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen/diner)
 "pIA" = (
 /turf/open/misc/asteroid/dug,
@@ -44450,7 +44617,7 @@
 /turf/closed/wall,
 /area/station/biodome/fore)
 "pOn" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/construction)
 "pOB" = (
 /obj/effect/turf_decal/siding/green{
@@ -45431,7 +45598,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/maintenance/department/crew_quarters/bar)
 "qiz" = (
 /obj/structure/disposalpipe/sorting/mail/flip,
@@ -47703,7 +47870,7 @@
 	},
 /area/station/science/research)
 "qVs" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/commons/storage/tools)
 "qVB" = (
 /obj/structure/cable,
@@ -47915,6 +48082,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/effect/landmark/generic_maintenance_landmark,
 /turf/open/floor/iron,
 /area/station/cargo/drone_bay)
 "qYi" = (
@@ -48000,6 +48168,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/circuit,
 /area/station/science/robotics/mechbay)
+"qZL" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/obj/item/pen/fountain,
+/turf/open/floor/carpet/executive,
+/area/command/heads_quarters/captain/private/nt_rep)
 "qZM" = (
 /obj/machinery/exodrone_launcher,
 /turf/open/floor/plating,
@@ -48983,6 +49159,15 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
+"rrP" = (
+/obj/machinery/camera/autoname/directional/west{
+	c_tag = "Command - Head of Personnel Office"
+	},
+/obj/machinery/computer/cargo/request{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/hop)
 "rrR" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/item/kirbyplants/photosynthetic,
@@ -48997,13 +49182,11 @@
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "rsv" = (
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	fax_name = "Head of Personnel's Office";
-	name = "Head of Personnel's Fax Machine"
-	},
 /obj/machinery/newscaster/directional/west,
 /obj/structure/sign/calendar/directional/north,
+/obj/structure/filingcabinet/chestdrawer{
+	pixel_y = 2
+	},
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "rsA" = (
@@ -49360,7 +49543,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/hallway/secondary/service)
 "rxU" = (
 /obj/effect/turf_decal/plaque{
@@ -51350,23 +51533,7 @@
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/security/office)
 "skV" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin/carbon{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/machinery/recharger{
-	pixel_x = 5;
-	pixel_y = 2
-	},
-/obj/machinery/requests_console/directional/south{
-	department = "Head of Personnel's Desk";
-	name = "Head of Personnel's Requests Console"
-	},
-/obj/effect/mapping_helpers/requests_console/announcement,
-/obj/effect/mapping_helpers/requests_console/information,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/machinery/light_switch/directional/west,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "skW" = (
@@ -51483,7 +51650,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "snd" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen/coldroom)
 "snk" = (
 /obj/machinery/airalarm/directional/north,
@@ -51582,7 +51749,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_brig_lift";
 	name = "Brig Lift Control Panel";
-	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig")
+	preset_destination_names = list("2"="Lower                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig","3"="Upper                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Brig")
 	},
 /obj/structure/railing{
 	dir = 1
@@ -52079,7 +52246,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "syw" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen)
 "syB" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -52253,7 +52420,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen/coldroom)
 "sBg" = (
 /obj/item/reagent_containers/condiment/milk,
@@ -54571,16 +54738,13 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "trX" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/trimline/red/real_red/line{
-	dir = 4
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "nt_rep_priv";
+	name = "Privacy Shutter"
 	},
-/obj/effect/turf_decal/trimline/brown/line{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/aft)
+/turf/open/floor/plating,
+/area/command/heads_quarters/captain/private/nt_rep)
 "tse" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair{
@@ -55574,6 +55738,26 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
+"tIU" = (
+/obj/machinery/light_switch/directional/west,
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/paper_bin/carbon{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/effect/mapping_helpers/requests_console/announcement,
+/obj/effect/mapping_helpers/requests_console/information,
+/obj/machinery/requests_console/directional/south{
+	department = "Head of Personnel's Desk";
+	name = "Head of Personnel's Requests Console"
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/hop)
 "tIY" = (
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
@@ -56109,9 +56293,13 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/disposal/incinerator)
 "tUb" = (
-/obj/effect/spawner/random/trash/mess,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/lesser)
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/landmark/start/nanotrasen_consultant,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/carpet/executive,
+/area/command/heads_quarters/captain/private/nt_rep)
 "tUf" = (
 /obj/structure/railing{
 	dir = 4
@@ -56620,7 +56808,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "ufJ" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/commons/storage/primary)
 "ufX" = (
 /obj/machinery/door/airlock{
@@ -56645,7 +56833,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen/coldroom)
 "ugu" = (
 /obj/structure/table/glass,
@@ -57982,6 +58170,21 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
+"uHO" = (
+/obj/effect/turf_decal/trimline/red/real_red/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/aft)
 "uHP" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -58035,7 +58238,7 @@
 /turf/open/floor/carpet/donk,
 /area/station/security/prison/mess)
 "uIR" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/commons/storage/art)
 "uIS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -58064,7 +58267,7 @@
 /turf/open/openspace,
 /area/station/hallway/primary/starboard)
 "uJp" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/maintenance/radshelter/civil)
 "uJr" = (
 /obj/structure/lattice/catwalk,
@@ -60144,7 +60347,7 @@
 /turf/closed/wall,
 /area/station/maintenance/aft/upper)
 "vxL" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/commons/lounge)
 "vxS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -60957,10 +61160,14 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/fore/greater)
 "vMF" = (
-/obj/structure/table/reinforced,
-/obj/item/food/meat/slab/human/mutant/skeleton,
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/office,
+/obj/effect/landmark/start/nanotrasen_consultant,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "vMH" = (
 /obj/effect/turf_decal/tile/yellow/diagonal_edge,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -61560,10 +61767,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "vXL" = (
-/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
-/obj/item/papercutter,
-/obj/structure/table/wood,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "vXN" = (
@@ -61845,7 +62052,7 @@
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 4
 	},
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/hallway/primary/aft)
 "wdA" = (
 /obj/effect/turf_decal/stripes/line{
@@ -61927,7 +62134,7 @@
 /turf/open/floor/iron,
 /area/station/security/prison/workout)
 "weR" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/service/library)
 "weT" = (
 /obj/machinery/medical_kiosk,
@@ -62539,6 +62746,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
+"wmL" = (
+/obj/machinery/photocopier,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "wmM" = (
 /obj/structure/closet/secure_closet/chemical,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -64402,9 +64613,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
 "wSw" = (
-/obj/structure/ladder,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/lesser)
+/obj/structure/cable,
+/turf/open/floor/carpet/executive,
+/area/command/heads_quarters/captain/private/nt_rep)
 "wSx" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 8
@@ -64941,6 +65152,11 @@
 /obj/structure/bookcase/manuals/engineering,
 /turf/open/floor/plating/elevatorshaft,
 /area/station/maintenance/department/science)
+"xaT" = (
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/cable,
+/turf/open/floor/carpet/executive,
+/area/command/heads_quarters/captain/private/nt_rep)
 "xbr" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -65297,7 +65513,7 @@
 /turf/open/floor/plating,
 /area/station/biodome)
 "xiJ" = (
-/turf/closed/wall/mineral/wood/nonmetal,
+/turf/closed/wall/mineral/wood,
 /area/station/engineering/storage/tech)
 "xiM" = (
 /obj/effect/mapping_helpers/airlock/access/all/service/bar,
@@ -66599,6 +66815,19 @@
 /obj/structure/sign/warning/vacuum/external/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/solars/starboard/aft)
+"xIf" = (
+/obj/machinery/door/airlock/corporate{
+	name = "NT Consultant's Office"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/command/heads_quarters/captain/private/nt_rep)
 "xIs" = (
 /obj/structure/mineral_door/wood{
 	name = "Maintenance Bar"
@@ -67623,9 +67852,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "xZE" = (
-/obj/structure/curtain/bounty,
-/turf/open/floor/wood/parquet,
-/area/station/maintenance/starboard/lesser)
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/wood,
+/area/command/heads_quarters/captain/private/nt_rep)
 "xZF" = (
 /obj/structure/disposalpipe/trunk/multiz{
 	dir = 4
@@ -67731,17 +67962,11 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "ybl" = (
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/structure/cable,
-/obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/lesser)
+/turf/closed/wall,
+/area/command/heads_quarters/captain/private/nt_rep)
 "ybs" = (
-/turf/open/openspace,
+/obj/item/food/meat/slab/human/mutant/skeleton,
+/turf/open/misc/beach/sand,
 /area/station/maintenance/starboard/lesser)
 "ybB" = (
 /obj/effect/spawner/random/structure/table_fancy,
@@ -99814,7 +100039,7 @@ eBC
 eBC
 eBC
 klK
-hUr
+uSa
 jYV
 eRr
 vxL
@@ -102886,12 +103111,12 @@ sBz
 gbD
 fGv
 aLk
-cYR
-cYR
-cYR
-cYR
-cYR
-cYR
+fIX
+fIX
+fIX
+fIX
+fIX
+fIX
 faO
 vHU
 eBC
@@ -103143,12 +103368,12 @@ sBz
 cYQ
 gwG
 aLk
-cYR
+fIX
 aKy
 yct
 ogl
 oTZ
-cYR
+fIX
 ftr
 vHU
 krW
@@ -103400,7 +103625,7 @@ sBz
 jFC
 fsz
 aLk
-cYR
+fIX
 fIX
 fIX
 qJB
@@ -103657,12 +103882,12 @@ sBz
 rwj
 gwG
 niK
-cYR
+fIX
 wXD
 dTs
 etX
 nve
-cYR
+fIX
 hjh
 fWl
 eBC
@@ -103914,12 +104139,12 @@ ndl
 qGx
 bOw
 aLk
-cYR
-cYR
-cYR
-cYR
-cYR
-cYR
+fIX
+fIX
+fIX
+fIX
+fIX
+fIX
 hpw
 fWl
 eBC
@@ -164580,10 +164805,10 @@ sZD
 ggF
 qmF
 wzi
-hUr
+uSa
 vDd
 mey
-hUr
+uSa
 nds
 wmf
 sAZ
@@ -165097,7 +165322,7 @@ aMV
 ujU
 dpL
 ctI
-hUr
+uSa
 qBL
 gwg
 gwg
@@ -165354,7 +165579,7 @@ aMV
 ujU
 cgH
 cbX
-hUr
+uSa
 qBL
 gwg
 aYZ
@@ -165608,9 +165833,9 @@ wYO
 uAr
 xJc
 dIF
-hUr
-hUr
-hUr
+uSa
+uSa
+uSa
 qin
 aQH
 gwg
@@ -169707,7 +169932,7 @@ pGm
 pGm
 feT
 ggF
-fuu
+uJp
 mJo
 cSg
 bXh
@@ -170221,7 +170446,7 @@ dtv
 pGm
 quf
 ggF
-fuu
+uJp
 yif
 pqv
 bYs
@@ -171029,13 +171254,13 @@ oxa
 oxa
 oxa
 oxa
-oxa
+mkf
 mvV
-oxa
-oxa
-oxa
-fQt
-fQs
+gFZ
+gFZ
+gFZ
+oMx
+apy
 jpN
 nFB
 wEM
@@ -171286,14 +171511,14 @@ fQs
 fQs
 fQs
 fQs
-fAQ
-rrF
-apy
-apy
-apy
-apy
-apy
-jpN
+lgo
+gti
+sAB
+sAB
+sAB
+ycX
+sAB
+uqA
 neH
 fWN
 dBn
@@ -171545,12 +171770,12 @@ fQs
 fQs
 lgo
 usa
-sAB
-sAB
-sAB
-ycX
-sAB
-uqA
+vaX
+vaX
+vaX
+vaX
+vaX
+vaX
 neH
 fWN
 naK
@@ -171803,11 +172028,11 @@ fQs
 lgo
 gti
 vaX
-vaX
-vaX
-vaX
-vaX
-vaX
+koA
+dUG
+oht
+xpN
+hMD
 neH
 fWN
 igV
@@ -172060,11 +172285,11 @@ fQs
 lgo
 gti
 vaX
-koA
-dUG
-oht
-xpN
-hMD
+aGi
+qLH
+jXK
+pNi
+mYe
 neH
 fWN
 ukv
@@ -172317,11 +172542,11 @@ fQs
 lgo
 sza
 vaX
-aGi
+oUU
 qLH
-jXK
-pNi
-mYe
+lQM
+fKP
+hMD
 eij
 qIG
 dCe
@@ -172574,11 +172799,11 @@ fQs
 lgo
 gti
 vaX
-oUU
-qLH
-lQM
-fKP
-hMD
+uTf
+tub
+klX
+wkI
+vaX
 neH
 kTB
 gPJ
@@ -172831,11 +173056,11 @@ iCJ
 lgo
 gti
 vaX
-uTf
-tub
-klX
-wkI
-vaX
+fKq
+qLH
+nZD
+fKP
+nuT
 neH
 rBT
 hSy
@@ -173088,10 +173313,10 @@ iCJ
 iCJ
 qTB
 vaX
-fKq
+aGi
 qLH
-nZD
-fKP
+ttS
+cAF
 nuT
 neH
 eUy
@@ -173345,11 +173570,11 @@ qvT
 xMG
 gti
 vaX
-aGi
-qLH
-ttS
-cAF
-nuT
+xvt
+xQt
+buB
+iDh
+vaX
 neH
 uVy
 sQN
@@ -173602,10 +173827,10 @@ fAY
 fAY
 rUb
 vaX
-xvt
-xQt
-buB
-iDh
+vaX
+vaX
+vaX
+vaX
 vaX
 bIU
 cxe
@@ -173858,12 +174083,12 @@ fAY
 rsv
 hnq
 xkP
-vaX
-vaX
-vaX
-vaX
-vaX
-vaX
+rrP
+hRu
+hUr
+cYR
+tIU
+fAY
 neH
 cxe
 igV
@@ -175900,7 +176125,7 @@ bxZ
 tQi
 tjf
 tjf
-tjf
+ehB
 tjf
 tjf
 tjf
@@ -176157,10 +176382,10 @@ dGl
 rTY
 biu
 bdk
-msd
+uHO
 msd
 bFh
-trX
+msd
 grI
 dPW
 pYD
@@ -176412,13 +176637,13 @@ jzd
 tiN
 pmH
 pGm
-eZB
-eZB
-eZB
-eZB
-eZB
 ybl
-eZB
+ybl
+xIf
+trX
+trX
+ybl
+lPI
 jpN
 jpN
 jpN
@@ -176668,17 +176893,17 @@ pGm
 bGv
 iAV
 bGv
-eZB
-dfk
-mvF
-eZB
+pGm
+wmL
+kaD
+iJT
 wSw
-uHX
-eQc
+xaT
+ybl
+eUh
 eZB
 ybs
-ybs
-ybs
+nxJ
 ckA
 bsP
 ukj
@@ -176926,16 +177151,16 @@ dnj
 krZ
 tjK
 lqK
-eZB
+ybl
 xZE
-eZB
-eZB
+pos
+hKR
 tUb
-eQc
+ybl
+nuX
 eZB
-ybs
-ybs
-ybs
+mvF
+oMm
 ckA
 vLA
 ukj
@@ -177183,16 +177408,16 @@ qmR
 cIh
 nev
 xSW
-eZB
+ybl
 nhh
 vMF
-eZB
-avN
-ogc
-eZB
-ybs
-ybs
-ybs
+qZL
+oTh
+ybl
+eUh
+chr
+nxJ
+dfk
 kPb
 lrg
 ukj
@@ -177440,16 +177665,16 @@ iQB
 oAd
 upv
 fTd
-eZB
+ybl
 ojO
 nMA
 bEJ
 ilA
-eQc
+ybl
+eUh
 eZB
-ybs
-ybs
-ybs
+mGU
+nxJ
 ckA
 bsP
 nGD
@@ -177697,13 +177922,13 @@ hHu
 ieL
 kfx
 sVA
-eZB
+ybl
 knH
 bwC
-eZB
-dfL
+dKY
+fAQ
 ofl
-eZB
+eUh
 eZB
 eZB
 alo
@@ -177955,11 +178180,11 @@ dRX
 kfx
 kvE
 lqK
-eZB
-eZB
-eZB
-eZB
-eQc
+ybl
+ybl
+ybl
+ybl
+ybl
 ogc
 qzY
 eZB
@@ -178732,7 +178957,7 @@ gtW
 cJd
 eZB
 eQc
-avN
+dfL
 eZB
 hKD
 pzj
