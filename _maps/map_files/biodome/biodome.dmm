@@ -10254,10 +10254,10 @@
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
 "dGl" = (
-/obj/machinery/duct,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
+/obj/structure/lattice,
+/obj/structure/grille/broken,
+/turf/open/space/basic,
+/area/space/nearstation)
 "dGo" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light_switch/directional/south,
@@ -13387,6 +13387,10 @@
 "eNd" = (
 /turf/closed/wall/r_wall/fakewood,
 /area/station/tcommsat/server)
+"eNf" = (
+/obj/structure/sign/warning/vacuum/external/directional/south,
+/turf/open/floor/plating,
+/area/station/maintenance/central/greater)
 "eNi" = (
 /obj/structure/table/glass,
 /obj/machinery/fax{
@@ -15222,6 +15226,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/smooth_half,
 /area/station/security/warden)
+"fud" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating,
+/area/station/maintenance/aft/upper)
 "fug" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 1;
@@ -15933,6 +15942,16 @@
 /obj/structure/sign/warning/vacuum/external/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
+"fJn" = (
+/obj/machinery/door/airlock/external{
+	name = "Atmospherics External Access"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/central/greater)
 "fJq" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
 /turf/open/floor/engine,
@@ -27309,8 +27328,8 @@
 "jWb" = (
 /obj/machinery/duct,
 /obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/station/science/research)
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "jWd" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
 /turf/open/floor/plating,
@@ -43974,10 +43993,15 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "pJa" = (
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/structure/cable,
+/obj/machinery/door/airlock/external{
+	name = "Atmospherics External Access"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plating,
-/area/station/science/breakroom)
+/area/station/maintenance/central/greater)
 "pJc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -56322,10 +56346,10 @@
 /turf/open/floor/plating/plasma,
 /area/station/maintenance/space_hut/plasmaman)
 "ueD" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/maintenance/aft/upper)
+/area/station/science/breakroom)
 "ueU" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -63457,6 +63481,11 @@
 	},
 /turf/open/floor/carpet,
 /area/station/service/chapel/funeral)
+"wFe" = (
+/obj/machinery/duct,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/science/research)
 "wFv" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -92932,7 +92961,7 @@ hNy
 hNy
 hNy
 bqj
-bqj
+pJa
 bqj
 bqj
 bqj
@@ -93188,9 +93217,9 @@ bxM
 cCZ
 cCZ
 vtU
-cCZ
-cCZ
-cCZ
+oAe
+eNf
+oAe
 cCZ
 vtU
 cCZ
@@ -93445,9 +93474,9 @@ bxM
 cCZ
 cCZ
 vtU
-cCZ
-cCZ
-cCZ
+oAe
+fJn
+oAe
 cCZ
 vtU
 cCZ
@@ -94472,7 +94501,7 @@ vtU
 bxM
 bxM
 bxM
-hnA
+dGl
 bxM
 bxM
 bxM
@@ -164618,7 +164647,7 @@ fJC
 fJC
 fJC
 vxC
-ueD
+fud
 wSu
 wSu
 wSu
@@ -165064,7 +165093,7 @@ sSS
 mkP
 nYc
 ejh
-pJa
+ueD
 fia
 phW
 cbf
@@ -168656,7 +168685,7 @@ kkx
 pnz
 xtX
 qIe
-jWb
+wFe
 bBk
 jeh
 kAO
@@ -173028,7 +173057,7 @@ bzj
 phX
 csT
 rSx
-dGl
+jWb
 cLA
 dJN
 oei
