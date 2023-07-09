@@ -10254,10 +10254,10 @@
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
 "dGl" = (
-/obj/effect/spawner/random/trash/food_packaging,
+/obj/machinery/duct,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/science/breakroom)
+/area/station/maintenance/department/science)
 "dGo" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light_switch/directional/south,
@@ -27306,6 +27306,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
+"jWb" = (
+/obj/machinery/duct,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/science/research)
 "jWd" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
 /turf/open/floor/plating,
@@ -43855,7 +43860,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/yellow/diagonal_edge,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -43970,10 +43974,10 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "pJa" = (
-/obj/machinery/duct,
+/obj/effect/spawner/random/trash/food_packaging,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/maintenance/department/science)
+/area/station/science/breakroom)
 "pJc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -56318,10 +56322,10 @@
 /turf/open/floor/plating/plasma,
 /area/station/maintenance/space_hut/plasmaman)
 "ueD" = (
-/obj/machinery/duct,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/station/science/research)
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating,
+/area/station/maintenance/aft/upper)
 "ueU" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -63453,11 +63457,6 @@
 	},
 /turf/open/floor/carpet,
 /area/station/service/chapel/funeral)
-"wFe" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating,
-/area/station/maintenance/aft/upper)
 "wFv" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -164619,7 +164618,7 @@ fJC
 fJC
 fJC
 vxC
-wFe
+ueD
 wSu
 wSu
 wSu
@@ -165065,7 +165064,7 @@ sSS
 mkP
 nYc
 ejh
-dGl
+pJa
 fia
 phW
 cbf
@@ -168657,7 +168656,7 @@ kkx
 pnz
 xtX
 qIe
-ueD
+jWb
 bBk
 jeh
 kAO
@@ -173029,7 +173028,7 @@ bzj
 phX
 csT
 rSx
-pJa
+dGl
 cLA
 dJN
 oei
