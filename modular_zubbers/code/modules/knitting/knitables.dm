@@ -7,10 +7,10 @@
 	attachment_slot = null
 
 /obj/item/clothing/neck/scarf/knitted
-	name = "black scarf"
+	name = "Knitted scarf"
 	greyscale_colors = "#4A4A4B#4A4A4B"
 /obj/item/clothing/head/beanie/knitted
-	name = "beanie"
+	name = "Knitted beanie"
 	desc = "A stylish knitted beanie. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their heads."
 	icon_state = 'beanie_cloth'
 /obj/item/clothing/head/beret/knitted
