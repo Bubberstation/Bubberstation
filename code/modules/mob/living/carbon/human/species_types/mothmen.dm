@@ -5,6 +5,8 @@
 	species_traits = list(
 		LIPS,
 		HAS_MARKINGS,
+		HAIR,
+		FACEHAIR,
 	)
 	inherent_traits = list(
 		TRAIT_CAN_USE_FLIGHT_POTION,
@@ -72,23 +74,30 @@
 	return 'sound/voice/moth/scream_moth.ogg'
 
 /datum/species/moth/get_species_description()
-	return "Hailing from a planet that was lost long ago, the moths travel \
-		the galaxy as a nomadic people aboard a colossal fleet of ships, seeking a new homeland."
+	return "The Fluffy and loving moths are known for their big, colorful wings, \
+	their beautiful smiles and their adorable squeaks. But don't let these traits fool you, \
+	these moths are cunning and almsot certainly evil."
 
 /datum/species/moth/get_species_lore()
 	return list(
-		"Their homeworld lost to the ages, the moths live aboard the Grand Nomad Fleet. \
-		Made up of what could be found, bartered, repaired, or stolen the armada is a colossal patchwork \
-		built on a history of politely flagging travelers down and taking their things. Occasionally a moth \
-		will decide to leave the fleet, usually to strike out for fortunes to send back home.",
+		"Lore written by Mef",
+		
+		"Eons ago, the moths lost their homeworld to some event unknown to them in the current age. \
+		Their exodus left them on what's called the Grand Nomadic Fleet, hosting the majority of the universe's moth populations. \
+		It was estimated by many historians that the Moths called the Grand Nomadic Fleet their permanent home for about 400 years, \
+		bringing up the question, \"What happened to their homeworld that was so cataclysmic that none know about it to this day?\".",
 
-		"Nomadic life produces a tight-knit culture, with moths valuing their friends, family, and vessels highly. \
-		Moths are gregarious by nature and do best in communal spaces. This has served them well on the galactic stage, \
-		maintaining a friendly and personable reputation even in the face of hostile encounters. \
-		It seems that the galaxy has come to accept these former pirates.",
+		"In recent years, though, the stability of the Grand Nomadic Fleet has been taken into question, \
+		with multiple fragments flying around with their own goals and ideals, though the original fleet remains the largest. \
+		One of the most dividing issues for the Nomad Fleet was when they scouted a planet that piqued their interest, \
+		a dwarf planet orbiting far from its sun. The planet is dark and covered with sparce vegetation aside from Mushrooms and Fungi, \
+		which dominate the planet's environment with massive Mushroom trees and many bioluminescent vegetation and insects. \
+		The planet has earned the name \"Motmaviitraklenestekomo\", or Moffenelle for none-moths.",
 
-		"Surprisingly, living together in a giant fleet hasn't flattened variance in dialect and culture. \
-		These differences are welcomed and encouraged within the fleet for the variety that they bring.",
+		"The settling of this planet has called for much concern within the fleet, as the planet is simply too small to support the bulk of the Fleet, \
+		leaving a cloud of ships orbitting the planet while esteemed and upper-class moths live on the planet during its colonisation. \
+		It's estimated by sociologists that the planet could support about 41% of the current Fleet, excluding the schisms of the Fleet, \
+		so approximately 37% of the entire Mothic Population aboard Nomadic Fleets.",
 	)
 
 /datum/species/moth/create_pref_unique_perks()
