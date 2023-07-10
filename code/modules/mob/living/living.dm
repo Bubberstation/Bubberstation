@@ -1120,7 +1120,7 @@
 
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
-	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || staminaloss > STAMINA_THRESHOLD_HARD_RESIST) //SKYRAT EDIT CHANGE: if(pulledby.grab_state || resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS))
+	if(pulledby.grab_state || body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) || staminaloss > STAMINA_THRESHOLD_HARD_RESIST || HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA)) //SKYRAT EDIT CHANGE: if(pulledby.grab_state || resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS)), BUBBERSTATION ADDED HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA)
 		var/altered_grab_state = pulledby.grab_state
 		if(resting || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //BUBBER EDIT CHANGE: if(body_position == LYING_DOWN || HAS_TRAIT(src, TRAIT_GRABWEAKNESS) && pulledby.grab_state < GRAB_KILL) //If prone, resisting out of a grab is equivalent to 1 grab state higher. won't make the grab state exceed the normal max, however
 			altered_grab_state++
@@ -1140,6 +1140,10 @@
 		if(HAS_TRAIT(pulledby, TRAIT_OVERSIZED))
 			resist_chance -= OVERSIZED_GRAB_RESIST_BONUS
 		//SKYRAT EDIT END
+		//BUBBERSTATION EDIT ADD
+		if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
+			altered_grab_state++
+		//BUBBERSTATION EDIT END
 		resist_chance = (resist_chance/altered_grab_state) ///Resist chance divided by the value imparted by your grab state. It isn't until you reach neckgrab that you gain a penalty to escaping a grab.
 		if(prob(resist_chance))
 			visible_message(span_danger("[src] breaks free of [pulledby]'s grip!"), \
