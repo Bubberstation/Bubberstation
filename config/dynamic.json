@@ -3,164 +3,323 @@
 	"Roundstart": {
 		"Traitors": {
 			"cost": 8,
-			"scaling_cost": 9,
-			"weight": 0,
+			"scaling_cost": 8,
+			"weight": 100,
 			"required_candidates": 1,
-			"minimum_required_age": 0,
-			"requirements": [
-				10,
-				10,
-				10,
-				10,
-				10,
-				10,
-				10,
-				10,
-				10,
-				10
-			],
-			"antag_cap": {
-				"denominator": 24
-			},
-			"protected_roles": [
-				"Prisoner",
-				"Blueshield",
-				"Corrections Officer",
-				"Security Officer",
-				"Warden",
-				"Detective",
-				"Head of Security",
-				"Captain",
-				"Nanotrasen Consultant",
-				"Head of Personnel",
-				"Chief Engineer",
-				"Chief Medical Officer",
-				"Research Director",
-				"Quartermaster"
-			],
-			"restricted_roles": [
-				"Cyborg"
-			]
-		},
-
-		"Blood Brothers": {
-			"weight": 0
-		},
-
-		"Changelings": {
-			"weight": 0
-		},
-
-		"Heretics": {
-			"weight": 0
-		},
-
-		"Wizard": {
-			"weight": 0
-		},
-
-		"Blood Cult": {
-			"weight": 0
-		},
-
-		"Nuclear Emergency": {
-			"weight": 0
-		},
-
-		"Revolution": {
-			"weight": 0
-		}
-	},
-
-	"Midround": {
-		"Syndicate Sleeper Agent": {
-			"weight": 0
+			"antag_cap": 5,
+			"minimum_players": 0
 		},
 
 		"Malfunctioning AI": {
-			"weight": 0
+			"cost": 30,
+			"scaling_cost": 30,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 40
 		},
-
+		
+		"Blood Brothers": {
+			"cost": 8,
+			"scaling_cost": 16,
+			"weight": 25,
+			"required_candidates": 2,
+			"antag_cap": 4,
+			"minimum_players": 30
+		},
+		
+		"Changelings": {
+			"cost": 12,
+			"scaling_cost": 18,
+			"weight": 10,
+			"required_candidates": 1,
+			"antag_cap": 4,
+			"minimum_players": 30
+		},
+		
+		"Heretics": {
+			"cost": 12,
+			"scaling_cost": 12,
+			"weight": 25,
+			"required_candidates": 1,
+			"antag_cap": 4,
+			"minimum_players": 20
+		},
+		
 		"Wizard": {
+			"cost": 36,
+			"scaling_cost": 64,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 40
+		},
+		
+		"Blood Cult": {
+			"cost": 24,
+			"scaling_cost": 12,
+			"weight": 0,
+			"required_candidates": 2,
+			"antag_cap": 4,
+			"minimum_players": 30
+		},
+		
+		"Nuclear Emergency": {
+			"cost": 36,
+			"scaling_cost": 8,
+			"weight": 0,
+			"required_candidates": 4,
+			"antag_cap": 6,
+			"minimum_players": 40
+		},
+		
+		"Revolution": {
+			"cost": 20,
+			"scaling_cost": 8,
+			"weight": 10,
+			"required_candidates": 1,
+			"antag_cap": 2,
+			"minimum_players": 30
+		},
+		
+		"Extended": {
 			"weight": 0
 		},
-
-		"Nuclear Assault": {
-			"weight": 0
+		
+		"Clown Operatives": {
+			"cost": 36,
+			"scaling_cost": 8,
+			"weight": 0,
+			"required_candidates": 4,
+			"antag_cap": 6,
+			"minimum_players": 40
 		},
-
-		"Blob": {
-			"weight": 0
+		
+		"Meteor": {
+			"cost": 50,
+			"scaling_cost": 50,
+			"weight": 0,
+			"minimum_players": 40
 		},
-
-		"Blob Infection": {
-			"weight": 0
-		},
-
-		"Alien Infestation": {
-			"weight": 0
-		},
-
-		"Nightmare": {
-			"weight": 0
-		},
-
-		"Space Dragon": {
-			"weight": 0
-		},
-
-		"Abductors": {
-			"weight": 0
-		},
-
-		"Space Ninja": {
-			"weight": 0
-		},
-
-		"Spiders": {
-			"weight": 0
-		},
-
-		"Revenant": {
-			"weight": 0
-		},
-
-		"Sentient Disease": {
-			"weight": 0
-		},
-
-		"Space Pirates": {
-			"weight": 0
-		},
-
-		"Obsessed": {
-			"weight": 0
-		},
-
-		"Space Changeling": {
-			"weight": 0
-		},
-
-		"Paradox Clone": {
-			"weight": 0
+		
+		"Nations": {
+			"cost": 50,
+			"scaling_cost": 0,
+			"weight": 0,
+			"minimum_players": 50
 		}
+
+	},
+
+	"Midround": {		
+		"Syndicate Sleeper Agent": {
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 100,
+			"required_candidates": 1,
+			"antag_cap": 5,
+			"minimum_players": 0
+		},	
+		
+		"Malfunctioning AI": {
+			"cost": 30,
+			"scaling_cost": 30,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 50
+		},	
+		
+		"Wizard": {
+			"cost": 36,
+			"scaling_cost": 64,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 40
+		},
+		
+		"Nuclear Assault": {
+			"cost": 36,
+			"scaling_cost": 8,
+			"weight": 0,
+			"required_candidates": 4,
+			"antag_cap": 6,
+			"minimum_players": 40
+		},
+		
+		"Blob": {
+			"cost": 24,
+			"scaling_cost": 24,
+			"weight": 3,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 40
+		},	
+		
+		"Blob Infection": {
+			"cost": 24,
+			"scaling_cost": 24,
+			"weight": 5,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 40
+		},	
+		
+		"Alien Infestation": {
+			"cost": 36,
+			"scaling_cost": 24,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 3,
+			"minimum_players": 50
+		},		
+		
+		"Nightmare": {
+			"cost": 12,
+			"scaling_cost": 12,
+			"weight": 20,
+			"required_candidates": 1,
+			"antag_cap": 3,
+			"minimum_players": 30
+		},	
+		
+		"Space Dragon": {
+			"cost": 36,
+			"scaling_cost": 36,
+			"weight": 5,
+			"required_candidates": 1,
+			"antag_cap": 2,
+			"minimum_players": 40
+		},
+		
+		"Abductors": {
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 25,
+			"required_candidates": 2,
+			"antag_cap": 3,
+			"minimum_players": 30
+		},
+		
+		"Space Ninja": {
+			"cost": 24,
+			"scaling_cost": 24,
+			"weight": 10,
+			"required_candidates": 1,
+			"antag_cap": 2,
+			"minimum_players": 40
+		},
+		
+		"Spiders": {
+			"cost": 30,
+			"scaling_cost": 24,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 4,
+			"minimum_players": 50
+		},	
+		
+		"Revenant": {
+			"cost": 12,
+			"scaling_cost": 12,
+			"weight": 20,
+			"required_candidates": 1,
+			"antag_cap": 3,
+			"minimum_players": 30
+		},	
+		
+		"Sentient Disease": {
+			"cost": 18,
+			"scaling_cost": 18,
+			"weight": 10,
+			"required_candidates": 1,
+			"antag_cap": 2,
+			"minimum_players": 40
+		},	
+		
+		"Space Pirates": {
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 10,
+			"required_candidates": 3,
+			"antag_cap": 5,
+			"minimum_players": 40
+		},		
+		
+		"Dangerous Space Pirates": {
+			"cost": 16,
+			"scaling_cost": 8,
+			"weight": 10,
+			"required_candidates": 3,
+			"antag_cap": 4,
+			"minimum_players": 40		
+		},
+		
+		"Obsessed": {
+			"cost": 4,
+			"scaling_cost": 4,
+			"weight": 20,
+			"required_candidates": 1,
+			"antag_cap": 4,
+			"minimum_players": 10		
+		},	
+		
+		"Space Changeling": {
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 20,
+			"required_candidates": 1,
+			"antag_cap": 3,
+			"minimum_players": 30		
+		},
+		
+		"Paradox Clone": {
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 5,
+			"minimum_players": 0		
+		}
+	
 	},
 
 	"Latejoin": {
 		"Syndicate Infiltrator": {
-			"weight": 0
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 100,
+			"required_candidates": 1,
+			"antag_cap": 5,
+			"minimum_players": 0		
 		},
-
+		
 		"Provocateur": {
-			"weight": 0
+			"cost": 8,
+			"scaling_cost": 8,
+			"weight": 0,
+			"required_candidates": 1,
+			"antag_cap": 1,
+			"minimum_players": 40		
 		},
-
+		
 		"Heretic Smuggler": {
-			"weight": 0
+			"cost": 12,
+			"scaling_cost": 12,
+			"weight": 10,
+			"required_candidates": 1,
+			"antag_cap": 4,
+			"minimum_players": 30		
 		},
-
+		
 		"Stowaway Changeling": {
-			"weight": 0
+			"cost": 12,
+			"scaling_cost": 12,
+			"weight": 25,
+			"required_candidates": 1,
+			"antag_cap": 3,
+			"minimum_players": 30		
 		}
 	}
 }

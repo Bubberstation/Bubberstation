@@ -1,0 +1,36 @@
+/datum/dynamic_ruleset
+
+	protected_roles = list( /// If set, and config flag protect_roles_from_antagonist is true, then the rule will not pick players from these roles.
+		JOB_CAPTAIN,
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_HEAD_OF_SECURITY,
+		JOB_RESEARCH_DIRECTOR,
+		JOB_CHIEF_ENGINEER,
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_CYBORG,
+		JOB_WARDEN,
+		JOB_DETECTIVE,
+		JOB_SECURITY_OFFICER,
+		JOB_SECURITY_OFFICER_MEDICAL,
+		JOB_SECURITY_OFFICER_ENGINEERING,
+		JOB_SECURITY_OFFICER_SCIENCE,
+		JOB_SECURITY_OFFICER_SUPPLY,
+		JOB_CORRECTIONS_OFFICER,
+		JOB_QUARTERMASTER,
+		JOB_BLUESHIELD,
+		JOB_NT_REP
+	)
+
+	enemy_roles = list( //The roles the ruleset considers an enemy. This is used for "required_enemies" calculations. Basically put all validhunters here. :^)
+		JOB_CAPTAIN,
+		JOB_DETECTIVE,
+		JOB_HEAD_OF_SECURITY,
+		JOB_WARDEN,
+		JOB_SECURITY_OFFICER,
+		JOB_SECURITY_OFFICER_MEDICAL,
+		JOB_SECURITY_OFFICER_ENGINEERING,
+		JOB_SECURITY_OFFICER_SCIENCE,
+		JOB_SECURITY_OFFICER_SUPPLY,
+		JOB_AI,
+		JOB_BLUESHIELD
+	)
