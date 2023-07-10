@@ -182,7 +182,8 @@
 /datum/supply_pack/knittingsupplies
 	name = "Knitting Supplies"
 	desc = "A crate full of knitting supplies. You'd have to be planning some serious knitting to want this. Contains three boxes of yarn and two pairs of knitting needles."
-	cost = CARGO_CRATE_VALUE * 2
+	group = "Miscellaneous Supplies"
+	cost = CARGO_CRATE_VALUE * 1.8
 	contains = list(/obj/item/storage/box/yarn,
 	/obj/item/storage/box/yarn,
 	/obj/item/storage/box/yarn,
