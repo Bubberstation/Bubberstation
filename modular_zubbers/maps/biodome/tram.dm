@@ -22,7 +22,7 @@
 /obj/effect/landmark/tram/boat/middle
 	name = "Central Boat Dock"
 	specific_lift_id = BOAT_TRAM
-	platform_code = BOAT_TRAMCENTRAL
+	platform_code = BOAT_TRAM_CENTRAL
 	tgui_icons = list("Cargo" = "box")
 
 /obj/effect/landmark/tram/boat/aft
