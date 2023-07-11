@@ -1237,6 +1237,9 @@
 		"arcade_battle",
 		"arcade_orion",
 		"slotmachine",
+		//BUBBER EDIT START
+		"minesweeper",
+		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3250)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = 3000)
