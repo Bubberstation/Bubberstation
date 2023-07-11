@@ -76,7 +76,7 @@
 /datum/species/moth/get_species_description()
 	return "The Fluffy and loving moths are known for their big, colorful wings, \
 	their beautiful smiles and their adorable squeaks. But don't let these traits fool you, \
-	these moths are cunning and almsot certainly evil."
+	these moths are cunning and almost certainly evil."
 
 /datum/species/moth/get_species_lore()
 	return list(
