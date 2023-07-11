@@ -114,9 +114,9 @@
 	strip_delay = 80
 
 /datum/armor/armor_hos
-	melee = 40
-	bullet = 35
-	laser = 40
+	melee = 40 // BUBBER EDIT - OG: 30
+	bullet = 35 // BUBBER EDIT - OG: 30
+	laser = 40 // BUBBER EDIT - OG: 30
 	energy = 40
 	bomb = 25
 	fire = 70
