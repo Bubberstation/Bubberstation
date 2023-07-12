@@ -419,6 +419,11 @@
 "ahk" = (
 /turf/open/floor/plating,
 /area/station/science/ordnance/testlab)
+"ahl" = (
+/obj/effect/landmark/event_spawn,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "ahq" = (
 /turf/closed/wall/r_wall,
 /area/station/medical/medbay/lobby)
@@ -11174,8 +11179,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "dTq" = (
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/rack,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "dTs" = (
@@ -12338,6 +12345,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/large,
 /area/station/cargo/miningdock)
+"err" = (
+/obj/machinery/drone_dispenser,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "erE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/directional/south,
@@ -13913,12 +13925,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"eQz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "eQG" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 6
@@ -23670,6 +23676,12 @@
 	},
 /turf/open/openspace,
 /area/station/service/hydroponics/garden)
+"isA" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "isM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -25124,11 +25136,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
-"iXr" = (
-/obj/effect/landmark/event_spawn,
-/obj/machinery/light/small/directional/south,
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "iXv" = (
 /obj/structure/sign/poster/official/random/directional/east,
 /obj/machinery/light/warm/directional/east,
@@ -38083,6 +38090,17 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
+"nox" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Drone Maintenance"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/robotics,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "noy" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -39387,11 +39405,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
-"nLr" = (
-/obj/machinery/drone_dispenser,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "nLz" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/start/prisoner,
@@ -43925,6 +43938,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/science/research)
+"pnD" = (
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/plating,
+/area/station/maintenance/department/science)
 "pnI" = (
 /obj/structure/railing,
 /turf/open/floor/iron/herringbone,
@@ -62037,13 +62055,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/fore/greater)
-"vMC" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plating,
-/area/station/maintenance/department/science)
 "vMF" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/office,
@@ -66153,16 +66164,9 @@
 /turf/open/floor/iron/herringbone,
 /area/station/hallway/primary/central)
 "xcG" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Drone Maintenance"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/science/robotics,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/station/maintenance/department/science)
+/area/station/commons/dorms)
 "xdd" = (
 /obj/effect/mapping_helpers/airlock/access/any/supply/blacksmith,
 /obj/machinery/door/airlock/maintenance,
@@ -159565,7 +159569,7 @@ phJ
 phJ
 phJ
 pPn
-phJ
+xcG
 yap
 phJ
 phJ
@@ -176772,7 +176776,7 @@ hHc
 hHc
 hHc
 jpl
-dTq
+pnD
 paE
 paE
 paE
@@ -177029,7 +177033,7 @@ hHc
 hHc
 hHc
 jpl
-xcG
+nox
 jpl
 jpl
 sYP
@@ -177286,8 +177290,8 @@ hHc
 hHc
 hHc
 pae
-eQz
-iXr
+isA
+ahl
 jpl
 urw
 cLA
@@ -177543,8 +177547,8 @@ hHc
 hHc
 hHc
 jpl
-nLr
-vMC
+err
+dTq
 jpl
 sfJ
 cLA
