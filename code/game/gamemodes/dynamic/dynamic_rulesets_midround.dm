@@ -423,6 +423,11 @@
 	minimum_players = 25
 	repeatable = TRUE
 
+/datum/dynamic_ruleset/midround/from_ghosts/blob/acceptable(population=0, threat=0)
+	if (SSmapping.is_planetary())
+		return FALSE
+	return ..()
+
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
 	var/body = applicant.become_overmind()
 	return body
@@ -454,6 +459,11 @@
 	cost = 10
 	minimum_players = 25
 	repeatable = TRUE
+
+/datum/dynamic_ruleset/midround/from_living/blob_infection/acceptable(population=0, threat=0)
+	if (SSmapping.is_planetary())
+		return FALSE
+	return ..()
 
 /datum/dynamic_ruleset/midround/from_living/blob_infection/trim_candidates()
 	..()

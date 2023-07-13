@@ -15,7 +15,7 @@
 	if(EMERGENCY_PAST_POINT_OF_NO_RETURN) // no blobs if the shuttle is past the point of no return
 		return FALSE
 
-	if(SSmapping.config.planetary)
+	if(SSmapping.is_planetary())
 		return FALSE
 
 	return ..()
