@@ -19,6 +19,6 @@
 	.=..()
 	new /obj/item/storage/secure/briefcase(src)
 	new /obj/item/storage/belt/security/full(src)
-	new /obj/item/gun/energy/disabler(src)
+	new /obj/item/gun/energy/laser/hellgun/blueshield(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/skyrat/blueshield(src)
 	new /obj/item/storage/medkit/tactical/blueshield(src)
