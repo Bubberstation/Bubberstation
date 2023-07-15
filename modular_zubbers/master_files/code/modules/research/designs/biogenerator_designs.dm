@@ -56,7 +56,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/grenadine
-	name = "Grenadine"
+	name = "Grenadine Syrup"
 	id = "grenadine"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
