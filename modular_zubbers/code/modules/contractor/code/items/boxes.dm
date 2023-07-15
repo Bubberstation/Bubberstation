@@ -13,9 +13,8 @@
 		/obj/item/storage/box/syndie_kit/imp_freedom,
 		/obj/item/storage/box/syndie_kit/imp_stealth, // new - 8tc, exepensive for here but most 'practical' stealth option available
 		/obj/item/crowbar/power/syndicate,
-		/obj/item/card/emag, // new - 4tc
+		/obj/item/card/emag, // new - 4tc, about same tier as a doorjack or jaws very versatile but situational. maybe promotes cyborg play
 		/obj/item/card/emag/doorjack, // new - 3tc, similar to the jaws of life but more convenient
 		/obj/item/storage/box/syndie_kit/emp,
-		/obj/item/shield/energy,
-		/obj/item/mod/module/jetpack/advanced // new - doesn't have a direct cost but easily is one of the better items here
+		/obj/item/shield/energy
 	)
