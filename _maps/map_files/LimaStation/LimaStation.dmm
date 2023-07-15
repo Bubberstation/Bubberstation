@@ -1781,7 +1781,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "aOH" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/camera{
@@ -7428,8 +7428,14 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "dcs" = (
-/turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "Bar Privacy Shutters";
+	dir = 4
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/station/service/bar)
 "dcA" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 4
@@ -9317,15 +9323,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/upper)
-"dNV" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "barshutters";
-	name = "Bar Privacy Shutters";
-	dir = 4
-	},
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/station/service/bar)
 "dNX" = (
 /obj/structure/sign/warning/secure_area,
 /turf/closed/wall/r_wall,
@@ -9431,15 +9428,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
-"dQP" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "libraryshutters";
-	name = "Library Security Shutters";
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/station/service/library)
 "dQQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -24506,7 +24494,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "jCK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor,
@@ -27579,6 +27567,20 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/solars/port/fore)
+"kIG" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/door/poddoor/preopen{
+	id = "Engineering";
+	name = "Engineering Security Door"
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "TechShutters";
+	name = "Tech Storage Shutters";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/engineering/storage/tech)
 "kIL" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/window/spawner/directional/west,
@@ -27903,7 +27905,7 @@
 "kPY" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "kQc" = (
 /obj/structure/window/spawner/directional/east,
 /turf/open/floor/iron,
@@ -31946,20 +31948,6 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/pharmacy)
-"mnQ" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "Engineering Security Door"
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "TechShutters";
-	name = "Tech Storage Shutters";
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/station/engineering/storage/tech)
 "mnT" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -39463,7 +39451,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "paN" = (
 /obj/structure/sign/poster/random/directional/north,
 /turf/open/floor/iron,
@@ -41918,7 +41906,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "pWp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -43824,7 +43812,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "qFq" = (
 /obj/structure/chair{
 	dir = 4
@@ -46508,7 +46496,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "rFS" = (
 /obj/machinery/camera{
 	c_tag = "Port Hallway - Security";
@@ -55209,8 +55197,14 @@
 /turf/open/floor/iron/freezer,
 /area/station/service/kitchen/coldroom)
 "uQX" = (
-/turf/closed/wall/r_wall,
-/area/station/engineering/atmos/storage/gas)
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "libraryshutters";
+	name = "Library Security Shutters";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/service/library)
 "uQZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -61268,7 +61262,7 @@
 "xnR" = (
 /obj/structure/stairs/west,
 /turf/open/floor/iron,
-/area/station/engineering/atmos/storage/gas)
+/area/station/engineering/lobby)
 "xnZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -86372,8 +86366,8 @@ iIH
 iIH
 xnR
 pWa
-uQX
-uQX
+nvb
+nvb
 ymg
 ymg
 iIH
@@ -86627,10 +86621,10 @@ hna
 iIH
 iIH
 rFK
-dcs
+beP
 jCC
 aOC
-uQX
+nvb
 ymg
 ymg
 ymg
@@ -86884,10 +86878,10 @@ tGt
 iIH
 iIH
 rFK
-dcs
-dcs
+beP
+beP
 aOC
-uQX
+nvb
 ymg
 ymg
 ymg
@@ -87141,10 +87135,10 @@ mVO
 iIH
 iIH
 qFh
-dcs
-dcs
+beP
+beP
 pav
-uQX
+nvb
 ymg
 ymg
 ymg
@@ -87400,8 +87394,8 @@ iIH
 iIH
 qFh
 pav
-uQX
-uQX
+nvb
+nvb
 ymg
 ymg
 iIH
@@ -87657,7 +87651,7 @@ ffh
 iIH
 kPY
 kPY
-uQX
+nvb
 ymg
 ymg
 ymg
@@ -148315,8 +148309,8 @@ pwV
 mKB
 jsh
 mna
-mnQ
-mnQ
+kIG
+kIG
 mna
 mna
 hZo
@@ -154703,7 +154697,7 @@ djv
 cYE
 fKD
 iXA
-dQP
+uQX
 wcR
 mBu
 uRs
@@ -155217,7 +155211,7 @@ ocQ
 cYE
 fKD
 gnj
-dQP
+uQX
 wcR
 wcR
 fth
@@ -161410,10 +161404,10 @@ qIo
 mgj
 owR
 owR
-dNV
+dcs
 syh
 ibn
-dNV
+dcs
 owR
 owR
 owR
