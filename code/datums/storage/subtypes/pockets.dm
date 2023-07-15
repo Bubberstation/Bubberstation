@@ -105,7 +105,9 @@
 		list(/obj/item/screwdriver/power,
 		/obj/item/ammo_casing/caseless/rocket,
 		/obj/item/clothing/mask/cigarette/pipe,
-		/obj/item/toy/crayon/spraycan)
+		/obj/item/toy/crayon/spraycan,
+		/obj/item/seeds,
+		/obj/item/card)
 		)
 
 /datum/storage/pockets/shoes/clown/New()
@@ -140,7 +142,9 @@
 		list(/obj/item/screwdriver/power,
 		/obj/item/ammo_casing/caseless/rocket,
 		/obj/item/clothing/mask/cigarette/pipe,
-		/obj/item/toy/crayon/spraycan)
+		/obj/item/toy/crayon/spraycan,
+		/obj/item/seeds,
+		/obj/item/card)
 		)
 
 /datum/storage/pockets/pocketprotector
