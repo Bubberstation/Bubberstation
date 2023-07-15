@@ -69,3 +69,27 @@
 		S.forceMove(D)
 		D.injector = S
 	return ..()
+
+/obj/item/ammo_casing/pill
+	name = "launched pill"
+	desc = "An alternative function of the blowgun."
+	slot_flags = null
+	projectile_type = /obj/projectile/bullet/dart/pill
+	firing_effect_type = null
+
+/obj/item/ammo_casing/pill/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	if(!loaded_projectile)
+		return
+	if(istype(loc, /obj/item/gun/syringe/blowgun))
+		var/obj/item/gun/syringe/blowgun/SG = loc
+		if(!SG.syringes.len)
+			return
+
+		var/obj/item/reagent_containers/pill/S = SG.syringes[1]
+
+		S.reagents.trans_to(loaded_projectile, S.reagents.total_volume, transfered_by = user)
+		loaded_projectile.name = S.name
+		loaded_projectile.icon_state = S.icon_state
+		SG.syringes.Remove(S)
+		qdel(S)
+	return ..()

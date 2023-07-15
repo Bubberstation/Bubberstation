@@ -177,7 +177,7 @@
 
 /obj/item/gun/syringe/blowgun
 	name = "blowgun"
-	desc = "Fire syringes at a short distance."
+	desc = "Fire syringes or pills at a short distance."
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "blowgun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -201,3 +201,32 @@
 	user.adjustStaminaLoss(20)
 	user.adjustOxyLoss(20)
 	return ..()
+/obj/item/gun/syringe/blowgun/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
+	..()
+	if(istype(A, /obj/item/reagent_containers/pill))
+		if(syringes.len < max_syringes)
+			if(!user.transferItemToLoc(A, src))
+				return FALSE
+			balloon_alert(user, "[A.name] loaded")
+			syringes += A
+			recharge_newshot()
+			update_appearance()
+			playsound(loc, load_sound, 40)
+			return TRUE
+		else
+			balloon_alert(user, "it's already full!")
+	return FALSE
+
+/obj/item/gun/syringe/blowgun/recharge_newshot()
+	if(!syringes.len)
+		return
+	//SKYRAT EDIT SMARTDARTS
+	if(istype(syringes[length(syringes)], /obj/item/reagent_containers/syringe/smartdart))
+		chambered = new /obj/item/ammo_casing/syringegun/dart(src)
+		return
+	if(istype(syringes[length(syringes)], /obj/item/reagent_containers/pill))
+		chambered = new /obj/item/ammo_casing/pill(src)
+	else
+		chambered = new /obj/item/ammo_casing/syringegun(src)
+	//SKYRAT EDIT SMARTDARTS END
+	chambered.newshot()

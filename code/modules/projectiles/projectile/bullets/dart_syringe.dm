@@ -48,3 +48,35 @@
 
 /obj/projectile/bullet/dart/piercing
 	inject_flags = INJECT_CHECK_PENETRATE_THICK
+
+/obj/projectile/bullet/dart/pill
+	name = "pill"
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "pill"
+	damage = 0
+	embedding = null
+	shrapnel_type = null
+	inject_flags = null
+
+/obj/projectile/bullet/spitball/Initialize(mapload)
+	. = ..()
+	create_reagents(50, NO_REACT)
+
+/obj/projectile/bullet/dart/pill/on_hit(atom/target, blocked = FALSE)
+	if(iscarbon(target))
+		var/mob/living/carbon/human/H = target
+		if(blocked != 100) // not completely blocked
+			if((H.wear_mask) || (H.head && (H.head.flags_inv & HIDEFACE))) //Only transfers reagents if it can land in the open mouth
+				blocked = 100
+				target.visible_message(span_danger("\The [src] hits [target]'s clothing!"), \
+									   span_userdanger("You are hit by \the [src]!"))
+				return BULLET_ACT_HIT
+			else
+				reagents.trans_to(H, reagents.total_volume, methods = INGEST)
+				target.visible_message(span_danger("\The [src] lands directly in [target]'s mouth!"), \
+									   span_userdanger("EWWWW you just swallowed \a [src]!"))
+				return BULLET_ACT_HIT
+	..(target, blocked)
+	reagents.flags &= ~(NO_REACT)
+	reagents.handle_reactions()
+	return BULLET_ACT_HIT
