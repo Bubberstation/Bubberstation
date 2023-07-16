@@ -10815,7 +10815,7 @@
 "dNn" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
 /obj/machinery/firealarm/directional/west,
-/obj/machinery/oven/range,
+/obj/machinery/griddle,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "dNw" = (
@@ -11644,9 +11644,8 @@
 	},
 /area/station/medical/medbay/central)
 "ebK" = (
-/obj/structure/table,
-/obj/machinery/microwave,
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
+/obj/machinery/oven/range,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "ebO" = (
@@ -37690,9 +37689,10 @@
 /turf/open/floor/stone,
 /area/station/biodome)
 "ngg" = (
-/obj/machinery/griddle,
 /obj/item/radio/intercom/directional/west,
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
+/obj/machinery/microwave,
+/obj/structure/table,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "ngn" = (
@@ -39224,8 +39224,9 @@
 	pixel_x = -25;
 	req_access = list("kitchen")
 	},
-/obj/machinery/griddle,
 /obj/machinery/light/warm/directional/west,
+/obj/machinery/microwave,
+/obj/structure/table,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "nJl" = (
@@ -40148,7 +40149,7 @@
 "nXY" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
 /obj/structure/sign/clock/directional/west,
-/obj/machinery/oven/range,
+/obj/machinery/griddle,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "nYc" = (
@@ -47093,6 +47094,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
+/obj/machinery/keycard_auth/directional/east,
 /turf/open/floor/wood,
 /area/station/command/bridge)
 "qwl" = (
@@ -53806,11 +53808,13 @@
 	id = "hopflash";
 	pixel_y = -32
 	},
-/obj/machinery/keycard_auth/directional/south{
-	pixel_x = 26
-	},
 /obj/machinery/button/ticket_machine{
-	pixel_x = 32
+	pixel_x = 32;
+	pixel_y = 4
+	},
+/obj/machinery/keycard_auth/directional/east{
+	pixel_x = 33;
+	pixel_y = -6
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
@@ -65468,6 +65472,10 @@
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
+	},
+/obj/machinery/keycard_auth/directional/east{
+	pixel_x = 37;
+	pixel_y = -8
 	},
 /turf/open/floor/iron/white/side{
 	dir = 8
