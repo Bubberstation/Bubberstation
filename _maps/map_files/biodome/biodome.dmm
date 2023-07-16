@@ -7655,11 +7655,11 @@
 /turf/open/floor/iron/smooth_half,
 /area/station/security/lockers)
 "cHh" = (
-/obj/item/clothing/head/hats/tophat,
-/obj/item/gun/magic/wand/nothing,
-/mob/living/basic/rabbit/trefoil,
-/turf/open/floor/wood,
-/area/station/service/abandoned_gambling_den)
+/obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/white/smooth_large,
+/area/station/service/kitchen)
 "cHk" = (
 /obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/water/jungle/biodome,
@@ -11648,7 +11648,7 @@
 /area/station/medical/medbay/central)
 "ebK" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "ebO" = (
@@ -11952,8 +11952,17 @@
 /turf/open/floor/engine/co2,
 /area/station/engineering/atmos)
 "eij" = (
-/obj/effect/turf_decal/tile/dark_green/full,
-/obj/machinery/oven/range,
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/condiment/enzyme{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 10
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "ein" = (
@@ -13302,8 +13311,7 @@
 /area/station/hallway/primary/central/aft)
 "eHD" = (
 /obj/effect/turf_decal/tile/dark_green/full,
-/obj/machinery/holopad,
-/obj/effect/turf_decal/bot,
+/obj/machinery/oven/range,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "eHG" = (
@@ -14178,9 +14186,11 @@
 /area/station/engineering/supermatter)
 "eVd" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 1
+	dir = 6
 	},
-/mob/living/basic/pet/dog/corgi/puppy/slime,
+/mob/living/simple_animal/pet/penguin/baby{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/station/science/breakroom)
 "eVp" = (
@@ -25675,10 +25685,11 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "jfn" = (
-/obj/effect/turf_decal/tile/dark_green/opposingcorners,
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor/iron/white,
-/area/station/service/kitchen)
+/obj/item/clothing/head/hats/tophat,
+/obj/item/gun/magic/wand/nothing,
+/mob/living/basic/rabbit/trefoil,
+/turf/open/floor/wood,
+/area/station/service/abandoned_gambling_den)
 "jft" = (
 /obj/item/fishing_line,
 /turf/open/misc/beach/coast/corner{
@@ -31828,14 +31839,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/storage/gas)
 "ljV" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/mob/living/simple_animal/pet/penguin/baby{
-	dir = 8
-	},
-/turf/open/floor/grass,
-/area/station/science/breakroom)
+/obj/effect/turf_decal/tile/dark_green/opposingcorners,
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/iron/white,
+/area/station/service/kitchen)
 "ljW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45201,10 +45208,12 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/office)
 "pMI" = (
-/obj/effect/turf_decal/tile/dark_green/full,
-/obj/machinery/griddle,
-/turf/open/floor/iron/white/smooth_large,
-/area/station/service/kitchen)
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/pet/dog/corgi/puppy/slime,
+/turf/open/floor/grass,
+/area/station/science/breakroom)
 "pMK" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 4
@@ -50521,7 +50530,6 @@
 /area/space/nearstation)
 "rBF" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/mapping_helpers/airlock/access/all/science/general,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -66550,17 +66558,8 @@
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "xkU" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder{
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/condiment/enzyme{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 10
-	},
+/obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/griddle,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "xkX" = (
@@ -102041,7 +102040,7 @@ dUI
 eBC
 dit
 lpd
-ebK
+ljV
 pCn
 sxh
 frG
@@ -102299,10 +102298,10 @@ qmS
 rpA
 sVp
 byH
+cHh
 eHD
-eij
 vrS
-pMI
+xkU
 ldW
 plq
 nej
@@ -102555,11 +102554,11 @@ dUI
 lUu
 vHU
 lpd
-jfn
+ebK
 vrS
 biW
 vrS
-pMI
+xkU
 ldW
 ajU
 nej
@@ -102812,9 +102811,9 @@ dUI
 eBC
 vHU
 syw
-ebK
+ljV
 pCn
-xkU
+eij
 dHv
 dFr
 uZy
@@ -166520,7 +166519,7 @@ hAo
 eWZ
 czJ
 ydq
-eVd
+pMI
 sSS
 mkP
 nYc
@@ -166782,7 +166781,7 @@ cFw
 enk
 pkS
 yak
-ljV
+eVd
 wMf
 phW
 xIU
@@ -183798,7 +183797,7 @@ otw
 kxf
 aeX
 qKY
-cHh
+jfn
 gvj
 tfG
 axw
