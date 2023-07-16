@@ -10,19 +10,19 @@
 	specific_lift_id = TRAM_BOAT
 
 /obj/effect/landmark/tram/boat/fore
-	name = "Fore Boat Dock"
+	name = "Fore Platform"
 	specific_lift_id = TRAM_BOAT
 	platform_code = TRAM_BOAT_FORE
 	tgui_icons = list("Departures" = "plane-departure", "Science" = "flask")
 
 /obj/effect/landmark/tram/boat/middle
-	name = "Central Boat Dock"
+	name = "Central Platform"
 	specific_lift_id = TRAM_BOAT
 	platform_code = TRAM_BOAT_CENTRAL
 	tgui_icons = list("Cargo" = "box")
 
 /obj/effect/landmark/tram/boat/aft
-	name = "Aft Boat Dock"
+	name = "Aft Platform"
 	specific_lift_id = TRAM_BOAT
 	platform_code = TRAM_BOAT_AFT
 	tgui_icons = list("Command" = "bullhorn")

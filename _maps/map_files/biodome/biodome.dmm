@@ -349,7 +349,7 @@
 /obj/machinery/elevator_control_panel/directional/east{
 	linked_elevator_id = "biodome_medbay_lift";
 	name = "Medbay Lift Control Panel";
-	preset_destination_names = list("2"="Lower Medbay","3"="Upper Medbay")
+	preset_destination_names = list("2" = "Lower Medbay", "3" = "Upper Medbay")
 	},
 /obj/structure/railing{
 	dir = 4
@@ -1884,9 +1884,9 @@
 /area/station/service/lawoffice)
 "aII" = (
 /obj/structure/bed/dogbed/ian,
-/mob/living/basic/pet/dog/corgi/ian,
 /obj/item/toy/beach_ball,
 /obj/machinery/airalarm/directional/north,
+/mob/living/basic/pet/dog/corgi/ian,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "aIQ" = (
@@ -3029,10 +3029,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
 "beF" = (
-/mob/living/basic/sheep,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/mob/living/basic/sheep,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "beL" = (
@@ -5532,7 +5532,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering Access","3"="Storage Zone")
+	preset_destination_names = list("2" = "Engineering Access", "3" = "Storage Zone")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -8828,10 +8828,10 @@
 /turf/open/floor/wood/tile,
 /area/station/service/janitor)
 "dqE" = (
+/obj/structure/window/reinforced/spawner/directional/west,
 /mob/living/basic/pet/dog/corgi/puppy/void{
 	dir = 4
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/grass,
 /area/station/science/research)
 "dqI" = (
@@ -10551,8 +10551,8 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/checkpoint/medical)
 "dYj" = (
-/mob/living/simple_animal/bot/mulebot/paranormal,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/mob/living/simple_animal/bot/mulebot/paranormal,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
 "dYG" = (
@@ -11640,7 +11640,7 @@
 	},
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_science_lift";
-	preset_destination_names = list("2"="Lower Research","3"="Upper Research")
+	preset_destination_names = list("2" = "Lower Research", "3" = "Upper Research")
 	},
 /turf/open/floor/plating,
 /area/station/science/research)
@@ -11913,12 +11913,12 @@
 /turf/open/floor/plating,
 /area/station/hallway/primary/aft)
 "eEd" = (
-/mob/living/simple_animal/pet/penguin/baby{
-	dir = 8
-	},
 /obj/machinery/camera/directional/north{
 	c_tag = "Research - Xenobiology Pals  Pen";
 	network = list("ss13","rd")
+	},
+/mob/living/simple_animal/pet/penguin/baby{
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/station/science/research)
@@ -12026,8 +12026,8 @@
 /turf/open/floor/iron/dark,
 /area/station/science/circuits)
 "eFN" = (
-/mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /obj/machinery/duct,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
 /turf/open/floor/wood/tile,
 /area/station/maintenance/fore/greater)
 "eFQ" = (
@@ -12455,9 +12455,9 @@
 /area/station/security/prison/mess)
 "eMW" = (
 /obj/structure/filingcabinet/chestdrawer,
-/mob/living/simple_animal/parrot/poly,
 /obj/machinery/incident_display/delam/directional/north,
 /obj/effect/turf_decal/tile/neutral/full,
+/mob/living/simple_animal/parrot/poly,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "eMY" = (
@@ -13738,8 +13738,8 @@
 /turf/open/floor/plating,
 /area/station/science/server)
 "flA" = (
-/mob/living/carbon/human/species/monkey,
 /obj/structure/flora/bush/jungle/c/style_random,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "flV" = (
@@ -15058,15 +15058,15 @@
 /turf/open/space/basic,
 /area/space)
 "fNp" = (
-/mob/living/simple_animal/hostile/retaliate/goat{
-	atmos_requirements = list("min_oxy"=1,"max_oxy"=0,"min_plas"=0,"max_plas"=1,"min_co2"=0,"max_co2"=5,"min_n2"=0,"max_n2"=0);
-	desc = "Not known for their pleasant disposition. This one seems a bit more hardy to the cold.";
-	minbodytemp = 150;
-	name = "Snowy Pete"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
+	},
+/mob/living/simple_animal/hostile/retaliate/goat{
+	atmos_requirements = list("min_oxy" = 1, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0);
+	desc = "Not known for their pleasant disposition. This one seems a bit more hardy to the cold.";
+	minbodytemp = 150;
+	name = "Snowy Pete"
 	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
@@ -19302,7 +19302,7 @@
 /obj/machinery/elevator_control_panel{
 	linked_elevator_id = "biodome_warehouse_lift";
 	name = "Warehouse Lift Control Panel";
-	preset_destination_names = list("2"="Warehouse Access","3"="Warehouse Upper Access")
+	preset_destination_names = list("2" = "Warehouse Access", "3" = "Warehouse Upper Access")
 	},
 /obj/effect/spawner/random/structure/table,
 /turf/open/openspace,
@@ -19608,12 +19608,12 @@
 "hEn" = (
 /obj/structure/bed/dogbed/mcgriff,
 /obj/item/food/beef_wellington_slice,
-/mob/living/basic/pet/dog/pug/mcgriff,
 /obj/machinery/camera{
 	c_tag = "Security - Warden's Office";
 	dir = 9
 	},
 /obj/machinery/newscaster/directional/north,
+/mob/living/basic/pet/dog/pug/mcgriff,
 /turf/open/floor/carpet,
 /area/station/security/warden)
 "hEr" = (
@@ -21985,10 +21985,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
-"iBA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/station/maintenance/fore/greater)
 "iBE" = (
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
@@ -24240,15 +24236,15 @@
 /turf/open/floor/carpet,
 /area/station/service/theater)
 "jyE" = (
-/mob/living/simple_animal/bot/secbot/pingsky{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable/layer1,
 /obj/machinery/ai_slipper{
 	uses = 10
+	},
+/mob/living/simple_animal/bot/secbot/pingsky{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
@@ -24702,11 +24698,11 @@
 /area/station/commons/dorms/laundry)
 "jHK" = (
 /obj/structure/bed/dogbed/renault,
-/mob/living/simple_animal/pet/fox/renault,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/duct,
+/mob/living/simple_animal/pet/fox/renault,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "jHS" = (
@@ -26757,7 +26753,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
-	preset_destination_names = list("2"="Engineering Access","3"="Storage Zone")
+	preset_destination_names = list("2" = "Engineering Access", "3" = "Storage Zone")
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -31531,10 +31527,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "mgZ" = (
-/mob/living/basic/pig,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/mob/living/basic/pig,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "mhf" = (
@@ -33459,13 +33455,13 @@
 /area/station/security/prison)
 "mWw" = (
 /obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #2";
-	suffix = "#2"
-	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
 	location = "QM #2"
+	},
+/mob/living/simple_animal/bot/mulebot{
+	home_destination = "QM #2";
+	suffix = "#2"
 	},
 /turf/open/floor/wood/parquet,
 /area/station/cargo/storage)
@@ -37828,9 +37824,9 @@
 /turf/open/openspace/airless,
 /area/space)
 "oDl" = (
-/mob/living/carbon/human/species/monkey,
 /obj/structure/flora/bush/jungle/c/style_random,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "oDR" = (
@@ -38349,10 +38345,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/cargo/lobby)
-"oND" = (
-/obj/effect/spawner/random/trash/mess,
-/turf/open/water/jungle/biodome,
-/area/station/maintenance/fore/greater)
 "oNX" = (
 /obj/machinery/power/turbine/turbine_outlet{
 	dir = 4
@@ -38440,7 +38432,7 @@
 /obj/machinery/elevator_control_panel/directional/west{
 	linked_elevator_id = "biodome_captain_lift";
 	name = "Captain's Lifts Control Panel";
-	preset_destination_names = list("2"="Quarters","3"="Bridge")
+	preset_destination_names = list("2" = "Quarters", "3" = "Bridge")
 	},
 /turf/open/openspace,
 /area/station/command/heads_quarters/captain)
@@ -38992,10 +38984,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
-"pbW" = (
-/obj/effect/decal/cleanable/blood/gibs/torso,
-/turf/open/water/jungle/biodome,
-/area/station/maintenance/central/greater)
 "pcf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -39436,12 +39424,12 @@
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "pka" = (
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/bot,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/mob/living/simple_animal/bot/secbot/beepsky/armsky,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "pkh" = (
@@ -45845,10 +45833,10 @@
 /turf/open/floor/plating,
 /area/station/construction/mining/aux_base)
 "rHx" = (
-/mob/living/carbon/human/species/monkey,
 /obj/structure/railing{
 	dir = 1
 	},
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/station/science/genetics)
 "rHy" = (
@@ -46867,7 +46855,6 @@
 /turf/open/floor/carpet,
 /area/station/cargo/storage)
 "scl" = (
-/obj/effect/decal/cleanable/insectguts,
 /obj/effect/spawner/random/maintenance,
 /obj/effect/turf_decal/weather/dirt{
 	dir = 9
@@ -47444,7 +47431,7 @@
 /obj/machinery/elevator_control_panel/directional/north{
 	linked_elevator_id = "biodome_brig_lift";
 	name = "Brig Lift Control Panel";
-	preset_destination_names = list("2"="Lower Brig","3"="Upper Brig")
+	preset_destination_names = list("2" = "Lower Brig", "3" = "Upper Brig")
 	},
 /obj/structure/railing{
 	dir = 1
@@ -49855,10 +49842,6 @@
 	},
 /turf/open/floor/iron/terracotta/small,
 /area/station/biodome/aft)
-"tlk" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/water/jungle/biodome,
-/area/station/maintenance/central/greater)
 "tln" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -50056,8 +50039,8 @@
 /area/station/hallway/primary/starboard)
 "tnL" = (
 /obj/structure/window/reinforced/spawner/directional/west,
-/mob/living/basic/pet/dog/corgi/puppy/slime,
 /obj/structure/sign/departments/xenobio/directional/north,
+/mob/living/basic/pet/dog/corgi/puppy/slime,
 /turf/open/floor/grass,
 /area/station/science/research)
 "toN" = (
@@ -51463,13 +51446,13 @@
 /area/station/command/heads_quarters/rd)
 "tQI" = (
 /obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #1";
-	suffix = "#1"
-	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
 	location = "QM #1"
+	},
+/mob/living/simple_animal/bot/mulebot{
+	home_destination = "QM #1";
+	suffix = "#1"
 	},
 /turf/open/floor/wood/parquet,
 /area/station/cargo/storage)
@@ -52805,10 +52788,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/security/brig)
-"uwu" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/water/jungle/biodome,
-/area/station/maintenance/central/greater)
 "uwY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -53557,7 +53536,6 @@
 /area/station/command/heads_quarters/cmo)
 "uNV" = (
 /obj/item/melee/fakebeesword,
-/obj/effect/decal/cleanable/blood,
 /turf/open/water/jungle/biodome,
 /area/station/maintenance/central/greater)
 "uNX" = (
@@ -55454,8 +55432,8 @@
 /turf/open/floor/iron/dark,
 /area/station/command/teleporter)
 "vAK" = (
-/mob/living/basic/butterfly,
 /obj/effect/spawner/random/structure/billboard,
+/mob/living/basic/butterfly,
 /turf/open/openspace,
 /area/station/service/hydroponics/garden)
 "vAM" = (
@@ -56267,10 +56245,10 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "vRd" = (
-/mob/living/carbon/human/species/monkey,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "vRx" = (
@@ -57546,8 +57524,8 @@
 /turf/open/floor/iron/terracotta/small,
 /area/station/biodome/fore)
 "wnC" = (
-/mob/living/carbon/human/species/monkey,
 /obj/item/radio/intercom/directional/north,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/station/science/genetics)
 "wnD" = (
@@ -58614,11 +58592,11 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "wGu" = (
-/mob/living/basic/lizard/wags_his_tail,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/event_spawn,
+/mob/living/basic/lizard/wags_his_tail,
 /turf/open/floor/wood/tile,
 /area/station/service/janitor)
 "wGE" = (
@@ -58820,11 +58798,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark/small,
 /area/station/science/genetics)
-"wLG" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/effect/decal/cleanable/blood,
-/turf/open/water/jungle/biodome,
-/area/station/maintenance/central/greater)
 "wLI" = (
 /obj/item/radio/intercom/directional/north,
 /obj/structure/tank_dispenser{
@@ -58890,8 +58863,8 @@
 "wNb" = (
 /obj/structure/bed/dogbed/runtime,
 /obj/item/toy/cattoy,
-/mob/living/simple_animal/pet/cat/runtime,
 /obj/effect/turf_decal/tile/dark_blue/full,
+/mob/living/simple_animal/pet/cat/runtime,
 /turf/open/floor/iron/white/small,
 /area/station/command/heads_quarters/cmo)
 "wNi" = (
@@ -60991,8 +60964,8 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xEG" = (
-/mob/living/basic/carp/pet/lia,
 /obj/structure/bed/dogbed/lia,
+/mob/living/basic/carp/pet/lia,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "xEH" = (
@@ -61385,7 +61358,6 @@
 /area/station/service/theater)
 "xLe" = (
 /obj/machinery/light/small/directional/east,
-/obj/effect/spawner/random/trash/mess,
 /turf/open/water/jungle/biodome,
 /area/station/maintenance/fore/greater)
 "xLp" = (
@@ -97916,7 +97888,7 @@ jlt
 hUS
 sRF
 cSc
-oND
+dwV
 dwV
 sRF
 oGU
@@ -101595,8 +101567,8 @@ dSY
 vDl
 rrp
 gsa
-wLG
-pbW
+bHm
+bHm
 bSh
 hNy
 cCZ
@@ -101852,7 +101824,7 @@ gRe
 bBy
 rrp
 sjT
-tlk
+bHm
 uNV
 bSh
 hNy
@@ -102109,7 +102081,7 @@ cam
 aFW
 gsa
 bjh
-uwu
+bHm
 bSh
 bSh
 hNy
@@ -103826,7 +103798,7 @@ sBz
 sBz
 vPp
 pkm
-iBA
+sBz
 xix
 wEc
 qAb
