@@ -3421,8 +3421,8 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
 "biW" = (
-/obj/structure/table,
 /obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/oven/range,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "bjh" = (
@@ -5304,7 +5304,7 @@
 /obj/effect/spawner/random/entertainment/arcade{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "bRw" = (
 /obj/effect/turf_decal/delivery,
@@ -5445,7 +5445,7 @@
 /area/station/biodome/fore)
 "bTR" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "bUd" = (
 /obj/machinery/light/directional/east,
@@ -7651,10 +7651,9 @@
 /turf/open/floor/iron/smooth_half,
 /area/station/security/lockers)
 "cHh" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/holosign_creator/robot_seat/restaurant,
 /obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/oven/range,
+/obj/machinery/oven/range,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "cHk" = (
@@ -10363,10 +10362,10 @@
 /area/station/service/hydroponics)
 "dFr" = (
 /obj/structure/table,
-/obj/machinery/reagentgrinder{
-	pixel_y = 9
-	},
 /obj/effect/turf_decal/tile/dark_green/full,
+/obj/item/book/manual/chef_recipes,
+/obj/item/holosign_creator/robot_seat/restaurant,
+/obj/effect/spawner/random/food_or_drink/cake_ingredients,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "dFs" = (
@@ -10815,7 +10814,7 @@
 "dNn" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
 /obj/machinery/firealarm/directional/west,
-/obj/machinery/griddle,
+/obj/machinery/deepfryer,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "dNw" = (
@@ -11645,7 +11644,7 @@
 /area/station/medical/medbay/central)
 "ebK" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
-/obj/machinery/oven/range,
+/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "ebO" = (
@@ -11948,6 +11947,11 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/engine/co2,
 /area/station/engineering/atmos)
+"eij" = (
+/obj/effect/turf_decal/tile/dark_green/opposingcorners,
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/turf/open/floor/iron/white,
+/area/station/service/kitchen)
 "ein" = (
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/wood/tile,
@@ -11983,7 +11987,10 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "ejv" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -13290,12 +13297,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "eHD" = (
-/obj/structure/table,
-/obj/item/storage/bag/tray,
-/obj/item/knife/kitchen{
-	pixel_y = 2
-	},
 /obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "eHG" = (
@@ -14169,7 +14173,13 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "eVd" = (
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/mob/living/simple_animal/pet/penguin/baby{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "eVp" = (
 /obj/item/stack/ore/iron,
@@ -14862,12 +14872,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "fia" = (
-/obj/structure/chair/comfy/lime{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
-/turf/open/floor/plating,
+/obj/structure/chair/comfy/beige{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "fio" = (
 /turf/closed/wall/r_wall,
@@ -15175,8 +15185,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/security)
 "foK" = (
-/obj/effect/spawner/random/trash/food_packaging,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "foR" = (
 /obj/structure/sign/poster/official/enlist/directional/south,
@@ -15369,7 +15381,6 @@
 /area/station/cargo/warehouse)
 "frG" = (
 /obj/effect/landmark/event_spawn,
-/obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "frL" = (
@@ -19338,11 +19349,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/central)
 "gKW" = (
-/obj/structure/table,
-/obj/machinery/processor{
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "gLc" = (
@@ -22223,7 +22231,7 @@
 "hUa" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/donkpockets,
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "hUb" = (
 /obj/effect/spawner/random/engineering/vending_restock,
@@ -25665,7 +25673,17 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "jfn" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/condiment/enzyme{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 10
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "jft" = (
@@ -30767,9 +30785,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "kQF" = (
-/obj/effect/spawner/random/food_or_drink/condiment,
 /obj/machinery/light/directional/west,
-/turf/open/floor/plating,
+/obj/item/chair/stool/bamboo,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "kQG" = (
 /obj/item/paperplane{
@@ -31817,10 +31835,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/storage/gas)
 "ljV" = (
-/obj/machinery/vending/dinnerware,
-/obj/effect/turf_decal/tile/dark_green/opposingcorners,
-/turf/open/floor/iron/white,
-/area/station/service/kitchen)
+/obj/item/clothing/head/hats/tophat,
+/obj/item/gun/magic/wand/nothing,
+/mob/living/basic/rabbit/trefoil,
+/turf/open/floor/wood,
+/area/station/service/abandoned_gambling_den)
 "ljW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -35088,7 +35107,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "mkZ" = (
 /turf/open/floor/iron/white,
@@ -37691,7 +37710,6 @@
 "ngg" = (
 /obj/item/radio/intercom/directional/west,
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
-/obj/machinery/microwave,
 /obj/structure/table,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
@@ -40149,16 +40167,16 @@
 "nXY" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
 /obj/structure/sign/clock/directional/west,
-/obj/machinery/griddle,
+/obj/structure/table,
+/obj/machinery/microwave,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
 "nYc" = (
-/obj/machinery/holopad,
 /obj/machinery/firealarm/directional/east,
-/obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "nYl" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -40268,7 +40286,6 @@
 /area/station/engineering/lobby)
 "oae" = (
 /obj/effect/turf_decal/tile/dark_green/opposingcorners,
-/obj/machinery/deepfryer,
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/service/kitchen)
@@ -42037,9 +42054,9 @@
 /turf/open/floor/iron/dark,
 /area/station/science/circuits)
 "oFA" = (
-/obj/effect/spawner/random/trash/food_packaging,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "oFB" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -42703,7 +42720,7 @@
 "oSe" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "oSK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -45188,11 +45205,12 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/office)
 "pMI" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/obj/effect/turf_decal/tile/dark_green/full,
-/turf/open/floor/iron/white/smooth_large,
-/area/station/service/kitchen)
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/mob/living/basic/pet/dog/corgi/puppy/slime,
+/turf/open/floor/grass,
+/area/station/science/breakroom)
 "pMK" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 4
@@ -51021,11 +51039,10 @@
 /area/station/construction)
 "rMy" = (
 /obj/structure/table,
-/obj/item/reagent_containers/condiment/enzyme,
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 5
-	},
 /obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/processor{
+	pixel_y = 12
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "rMD" = (
@@ -51403,14 +51420,12 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/security/warden)
 "rTI" = (
-/obj/structure/chair/comfy/lime{
-	dir = 4
-	},
 /obj/machinery/camera/directional/west{
 	c_tag = "Research - Break Room";
 	network = list("ss13","rd")
 	},
-/turf/open/floor/plating,
+/obj/item/chair/stool/bamboo,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "rTW" = (
 /obj/structure/barricade/wooden,
@@ -52968,8 +52983,12 @@
 	},
 /area/station/science/robotics/lab)
 "sxh" = (
-/obj/machinery/holopad,
-/obj/effect/turf_decal/bot,
+/obj/structure/table,
+/obj/item/storage/bag/tray,
+/obj/item/knife/kitchen{
+	pixel_y = 2
+	},
+/obj/item/kitchen/rollingpin,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "sxi" = (
@@ -54180,10 +54199,8 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/cryo)
 "sSS" = (
-/obj/effect/spawner/random/food_or_drink/snack,
-/obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/plating,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "sSU" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -56658,9 +56675,9 @@
 /turf/open/floor/engine,
 /area/station/science/cytology)
 "tKM" = (
-/obj/effect/mapping_helpers/burnt_floor,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "tKO" = (
 /obj/machinery/door/airlock/research{
@@ -59621,11 +59638,9 @@
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/rd)
 "uTW" = (
-/obj/effect/spawner/random/food_or_drink/snack,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/plating,
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "uUe" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -65139,11 +65154,8 @@
 /area/station/medical/treatment_center)
 "wMf" = (
 /obj/structure/table,
-/obj/item/clothing/head/hats/tophat,
-/obj/item/gun/magic/wand/nothing,
-/mob/living/basic/rabbit/trefoil,
 /obj/machinery/light/broken/directional/south,
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "wMo" = (
 /obj/effect/turf_decal/stripes/line{
@@ -65819,9 +65831,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "wXy" = (
-/obj/effect/spawner/random/trash/food_packaging,
 /obj/machinery/light_switch/directional/west,
-/turf/open/floor/plating,
+/mob/living/basic/pet/dog/corgi/puppy/void{
+	dir = 4
+	},
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "wXC" = (
 /obj/structure/disposalpipe/segment{
@@ -66542,9 +66556,8 @@
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/hop)
 "xkU" = (
-/obj/structure/table,
-/obj/effect/spawner/random/food_or_drink/cake_ingredients,
 /obj/effect/turf_decal/tile/dark_green/full,
+/obj/machinery/griddle,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/kitchen)
 "xkX" = (
@@ -67381,7 +67394,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "xBf" = (
 /obj/structure/holosign/barrier/atmos/tram,
@@ -68834,11 +68847,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "yak" = (
-/obj/effect/spawner/random/trash/food_packaging,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/grass,
 /area/station/science/breakroom)
 "yap" = (
 /obj/machinery/door/firedoor,
@@ -69018,7 +69033,7 @@
 /area/station/hallway/primary/central/aft)
 "ydq" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/plating,
+/turf/open/floor/wood/large,
 /area/station/science/breakroom)
 "ydw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -102023,7 +102038,7 @@ dUI
 eBC
 dit
 lpd
-ljV
+ebK
 pCn
 sxh
 frG
@@ -102281,10 +102296,10 @@ qmS
 rpA
 sVp
 byH
-vrS
-biW
 eHD
-pMI
+biW
+vrS
+xkU
 ldW
 plq
 nej
@@ -102537,10 +102552,10 @@ dUI
 lUu
 vHU
 lpd
-ebK
+eij
 vrS
-biW
 cHh
+vrS
 xkU
 ldW
 ajU
@@ -102796,8 +102811,8 @@ vHU
 syw
 ebK
 pCn
-dHv
 jfn
+dHv
 dFr
 uZy
 gIC
@@ -166502,7 +166517,7 @@ hAo
 eWZ
 czJ
 ydq
-eVd
+pMI
 sSS
 mkP
 nYc
@@ -183780,7 +183795,7 @@ otw
 kxf
 aeX
 qKY
-hmV
+ljV
 gvj
 tfG
 axw
