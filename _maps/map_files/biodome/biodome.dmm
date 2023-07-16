@@ -24243,10 +24243,10 @@
 /area/station/science/ordnance)
 "iDN" = (
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/siding/yellow{
+/obj/structure/stairs/south,
+/turf/open/floor/iron/stairs{
 	dir = 1
 	},
-/turf/open/floor/plating,
 /area/station/command/heads_quarters/captain)
 "iDZ" = (
 /turf/open/floor/carpet/royalblue,
@@ -42588,22 +42588,6 @@
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "oPo" = (
-/obj/structure/industrial_lift/public,
-/obj/effect/landmark/lift_id{
-	specific_lift_id = "biodome_captain_lift"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/landmark/start/captain,
-/obj/machinery/elevator_control_panel/directional/west{
-	linked_elevator_id = "biodome_captain_lift";
-	name = "Captain's Lifts Control Panel";
-	preset_destination_names = list("2"="Quarters","3"="Bridge")
-	},
 /turf/open/openspace,
 /area/station/command/heads_quarters/captain)
 "oPs" = (
@@ -51904,13 +51888,9 @@
 /area/station/tcommsat/server)
 "sbJ" = (
 /obj/machinery/light/dim/directional/west,
-/obj/machinery/button/elevator/directional/east{
-	id = "biodome_captain_lift"
+/turf/open/floor/iron/stairs{
+	dir = 1
 	},
-/obj/machinery/lift_indicator/directional/east{
-	linked_elevator_id = "biodome_captain_lift"
-	},
-/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/captain)
 "sbM" = (
 /obj/item/target,
@@ -62412,16 +62392,9 @@
 /area/station/science/xenobiology)
 "vTw" = (
 /obj/machinery/light/dim/directional/east,
-/obj/machinery/button/elevator/directional/east{
-	id = "biodome_captain_lift"
-	},
-/obj/machinery/lift_indicator/directional/east{
-	linked_elevator_id = "biodome_captain_lift"
-	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/warning{
 	dir = 1
 	},
-/obj/effect/landmark/start/blueshield,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/captain)
 "vTD" = (
@@ -67331,6 +67304,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/effect/landmark/start/captain,
 /turf/open/floor/wood,
 /area/station/command/bridge)
 "xAa" = (
