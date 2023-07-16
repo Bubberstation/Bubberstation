@@ -1,19 +1,13 @@
 name: PR Labeler
-
 on:
-  push:
-    branches:
-      - master
-  pull_request_target:
-
+  schedule:
+    - cron: '*/5 * * * *'
 jobs:
-  Label:
+  labeler:
     runs-on: ubuntu-latest
     steps:
-      - name: Apply labels based on changed files
-        if: github.event_name != 'push'
-        uses: actions/labeler@main
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          sync-labels: true
-          configuration-path: .github/labeler.yml
+      - uses: paulfantom/periodic-labeler@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          LABEL_MAPPINGS_FILE: .github/labeler.yml
