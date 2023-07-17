@@ -909,6 +909,7 @@
 	extra_access = list(
 		ACCESS_GENETICS,
 		ACCESS_XENOBIOLOGY,
+		ACCESS_MORGUE_SECURE,
 		)
 	template_access = list(
 		ACCESS_CAPTAIN,

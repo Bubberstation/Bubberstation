@@ -25,6 +25,13 @@
 /obj/item/ammo_casing/energy/laser/hos
 	e_cost = 120
 
+/obj/item/ammo_casing/energy/laser/musket
+	projectile_type = /obj/projectile/beam/laser/musket
+	e_cost = 1000
+
+/obj/item/ammo_casing/energy/laser/musket/prime
+	projectile_type = /obj/projectile/beam/laser/musket/prime
+
 /obj/item/ammo_casing/energy/laser/practice
 	projectile_type = /obj/projectile/beam/practice
 	select_name = "practice"
@@ -121,5 +128,22 @@
 	projectile_type = /obj/projectile/energy/cryo
 	select_name = "cryo"
 
-/obj/item/ammo_casing/energy/laser/blueshield
-	e_cost = 100
+///not exactly an energy ammo casing, but it's used by the laser gatling.
+/obj/item/ammo_casing/laser
+	name = "laser casing"
+	desc = "You shouldn't be seeing this."
+	caliber = CALIBER_LASER
+	icon_state = "s-casing-live"
+	base_icon_state = "s-casing-live"
+	slot_flags = null
+	projectile_type = /obj/projectile/beam
+	fire_sound = 'sound/weapons/laser.ogg'
+	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/energy
+
+/obj/item/ammo_casing/laser/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
+
+/obj/item/ammo_casing/laser/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]"
