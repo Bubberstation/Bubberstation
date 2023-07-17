@@ -17,6 +17,14 @@
 /datum/emote/living/custom/check_cooldown(mob/user, intentional)
 	return TRUE
 
+
+/datum/emote/imaginary_friend/custom/check_cooldown(mob/user, intentional)
+	return TRUE
+
+
+/datum/emote/living/blush
+	sound = 'modular_skyrat/modules/emotes/sound/emotes/blush.ogg'
+
 /datum/emote/living/quill
 	key = "quill"
 	key_third_person = "quills"
@@ -54,7 +62,7 @@
 	return
 
 /datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
-	if(intentional && !HAS_TRAIT(user, TRAIT_FREERUNNING) && !isobserver(user))
+	if(intentional && (!HAS_TRAIT(user, TRAIT_FREERUNNING) && !HAS_TRAIT(user, TRAIT_STYLISH)) && !isobserver(user))
 		user.balloon_alert(user, "not nimble enough!")
 		return FALSE
 	return ..()
@@ -519,3 +527,11 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/effects/glassbash.ogg'
+
+/datum/emote/living/mggaow
+	key = "mggaow"
+	key_third_person = "meows loudly"
+	message = "meows loudly!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'

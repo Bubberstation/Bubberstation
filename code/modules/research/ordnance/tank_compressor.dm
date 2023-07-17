@@ -58,7 +58,7 @@
 			return ..()
 		inserted_tank = tank_item
 		last_recorded_pressure = 0
-		RegisterSignal(inserted_tank, COMSIG_PARENT_QDELETING, PROC_REF(tank_destruction))
+		RegisterSignal(inserted_tank, COMSIG_QDELETING, PROC_REF(tank_destruction))
 		update_appearance()
 		return
 	if(istype(item, /obj/item/computer_disk))
@@ -236,7 +236,7 @@
 	if(gone == inserted_disk)
 		inserted_disk = null
 	if(gone == inserted_tank)
-		UnregisterSignal(inserted_tank, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(inserted_tank, COMSIG_QDELETING)
 		inserted_tank = null
 		update_appearance()
 	return ..()
@@ -344,3 +344,7 @@
 			single_record_data["gases"] += list(initial(gas_path.name) = record.gas_data[gas_path])
 		data["records"] += list(single_record_data)
 	return data
+
+#undef TANK_COMPRESSOR_PRESSURE_LIMIT
+#undef TANK_COMPRESSOR_MAX_TRANSFER_RATE
+#undef SIGNIFICANT_AMOUNT_OF_MOLES

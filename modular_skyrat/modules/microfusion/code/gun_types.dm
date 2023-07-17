@@ -4,7 +4,9 @@
 	icon_state = "mcr01"
 	inhand_icon_state = "mcr01"
 	shaded_charge = TRUE
-	company_flag = COMPANY_MICRON
+
+/obj/item/gun/microfusion/mcr01/give_manufacturer_examine()
+	AddComponent(/datum/component/manufacturer_examine, COMPANY_MICRON)
 
 /// Gun for cargo crates.
 /obj/item/gun/microfusion/mcr01/advanced
@@ -25,7 +27,7 @@
 		/obj/item/microfusion_gun_attachment/pulse,
 		/obj/item/microfusion_gun_attachment/grip,
 		/obj/item/microfusion_gun_attachment/rail,
-		/obj/item/microfusion_gun_attachment/black_camo,
+		/obj/item/microfusion_gun_attachment/camo,
 	)
 
 //For syndicate uplink.
@@ -48,7 +50,6 @@
 
 /obj/effect/spawner/armory_spawn/microfusion
 	icon_state = "random_rifle"
-	gun_count = 4
 	guns = list(
 		/obj/item/gun/microfusion/mcr01,
 		/obj/item/gun/microfusion/mcr01,

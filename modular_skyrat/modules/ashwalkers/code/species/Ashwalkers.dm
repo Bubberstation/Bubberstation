@@ -1,5 +1,5 @@
 /datum/species/lizard/ashwalker
-	mutanteyes = /obj/item/organ/internal/eyes/night_vision
+	mutanteyes = /obj/item/organ/internal/eyes/night_vision/ashwalker
 	burnmod = 0.8
 	brutemod = 0.9
 
@@ -33,7 +33,7 @@
 
 /datum/component/ash_age
 	/// the amount of minutes after each upgrade
-	var/stage_time = 10 MINUTES
+	var/stage_time = 20 MINUTES
 	/// the current stage of the ash
 	var/current_stage = 0
 	/// the time when upgraded/attached
@@ -50,7 +50,7 @@
 	evo_time = world.time
 	// when the rune successfully completes the age ritual, it will send the signal... do the proc when we receive the signal
 	RegisterSignal(human_target, COMSIG_RUNE_EVOLUTION, PROC_REF(check_evolution))
-	RegisterSignal(human_target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(human_target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/ash_age/proc/check_evolution()
 	SIGNAL_HANDLER

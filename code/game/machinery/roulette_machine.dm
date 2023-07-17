@@ -139,7 +139,7 @@
 			return FALSE
 
 		if(my_card)
-			if(istype(player_card, /obj/item/card/id/departmental_budget)) // Are they using a department ID
+			if(IS_DEPARTMENTAL_CARD(player_card)) // Are they using a department ID
 				say("You cannot gamble with the department budget!")
 				playsound(src, 'sound/machines/buzz-two.ogg', 30, TRUE)
 				return FALSE
@@ -193,7 +193,7 @@
 			name = msg
 			desc = "Owned by [player_card.registered_account.account_holder], draws directly from [user.p_their()] account."
 			my_card = player_card
-			RegisterSignal(my_card, COMSIG_PARENT_QDELETING, PROC_REF(on_my_card_deleted))
+			RegisterSignal(my_card, COMSIG_QDELETING, PROC_REF(on_my_card_deleted))
 			to_chat(user, span_notice("You link the wheel to your account."))
 			power_change()
 			return
@@ -457,6 +457,15 @@
 
 	new /obj/effect/pod_landingzone(drop_location(), toLaunch)
 	qdel(src)
+
+#undef ROULETTE_DOZ_COL_PAYOUT
+#undef ROULETTE_BET_1TO12
+#undef ROULETTE_BET_13TO24
+#undef ROULETTE_BET_25TO36
+
+#undef ROULETTE_BET_2TO1_FIRST
+#undef ROULETTE_BET_2TO1_SECOND
+#undef ROULETTE_BET_2TO1_THIRD
 
 #undef ROULETTE_SINGLES_PAYOUT
 #undef ROULETTE_SIMPLE_PAYOUT

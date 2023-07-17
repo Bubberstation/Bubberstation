@@ -1,16 +1,16 @@
 /datum/job/blueshield
 	title = JOB_BLUESHIELD
-	description = "Protect heads of staff, get your fancy gun stolen, cry as the captain touches the supermatter."
+	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean." // BUBBER EDIT
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Central Command and the Nanotrasen Consultant"
+	supervisors = "All Command Staff and Central Command when applicable" // BUBBER EDIT
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
-	exp_required_type_department = EXP_TYPE_SECURITY //Bubber Edit: Blueshields should be good sec.
+	exp_required_type_department = EXP_TYPE_COMMAND
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "BLUESHIELD"
 
@@ -47,14 +47,15 @@
 	name = "Blueshield"
 	jobtype = /datum/job/blueshield
 	uniform = /obj/item/clothing/under/rank/blueshield
-	suit = /obj/item/clothing/suit/armor/vest/blueshield
+	suit = /obj/item/clothing/suit/armor/vest/blueshield/jacket
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	id = /obj/item/card/id/advanced/centcom
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	backpack_contents = list(
 		/obj/item/storage/box/gunset/blueshield = 1,
-		/obj/item/melee/baton/security/loaded = 1,)
+	)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
@@ -63,7 +64,6 @@
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/modular_computer/pda/security
 
-	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
 	id_trim = /datum/id_trim/job/blueshield
 
 /datum/outfit/plasmaman/blueshield
@@ -71,39 +71,3 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
-
-/obj/item/storage/box/gunset/blueshield
-	name = "CMG-1 gunset"
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/storage/box/gunset/blueshield/PopulateContents()
-	. = ..()
-	new /obj/item/gun/ballistic/automatic/cmg/nomag(src)
-	new /obj/item/ammo_box/magazine/multi_sprite/cmg(src)
-	new /obj/item/ammo_box/magazine/multi_sprite/cmg(src)
-	new /obj/item/ammo_box/magazine/multi_sprite/cmg/lethal(src)
-	new /obj/item/ammo_box/magazine/multi_sprite/cmg/lethal(src)
-	new /obj/item/suppressor/nanotrasen(src)
-
-/obj/item/suppressor/nanotrasen
-	name = "NT-S suppressor"
-	desc = "A Nanotrasen brand small-arms suppressor, including a large NT logo stamped on the side."
-
-/obj/item/ammo_casing/energy/laser/hellfire/bs
-	projectile_type = /obj/projectile/beam/laser/hellfire
-	e_cost = 83 //Lets it squeeze out a few more shots
-	select_name = "maim"
-
-/obj/item/gun/energy/laser/hellgun/blueshield
-	name = "\improper Allstar SC-3 PDW 'Hellfire'"
-	desc = "A prototype energy carbine, despite NT's ban on hellfire weaponry due to negative press. \
-		Allstar continued to work on it, compacting it into a small form-factor for personal defense. \
-		As part of the Asset Retention Program created by Nanotrasen, Allstar's prototype began to be put into use."
-	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
-	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
-	lefthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_lefthand.dmi'
-	righthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_righthand.dmi'
-	icon_state = "hellfirepdw"
-	worn_icon_state = "hellfirepdw"
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire/bs)
-	company_flag = COMPANY_ALLSTAR

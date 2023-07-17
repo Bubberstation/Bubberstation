@@ -56,6 +56,7 @@
 		/obj/item/detective_scanner = 1,
 		/obj/item/melee/baton = 1,
 		/obj/item/storage/box/evidence = 1,
+		/obj/item/flashlight/seclite = 1,
 		)
 	belt = /obj/item/modular_computer/pda/detective
 	ears = /obj/item/radio/headset/headset_sec/alt

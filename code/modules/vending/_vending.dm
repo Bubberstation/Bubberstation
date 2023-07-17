@@ -62,8 +62,9 @@
 	armor_type = /datum/armor/machinery_vending
 	circuit = /obj/item/circuitboard/machine/vendor
 	payment_department = ACCOUNT_SRV
-	light_power = 0.5
+	light_power = 0.7
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	voice_filter = "aderivative"
 
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -164,10 +165,11 @@
 	  * Is this item on station or not
 	  *
 	  * if it doesn't originate from off-station during mapload, everything is free
+	  * if it's off-station during mapload, it's also safe from the brand intelligence event
 	  */
-	var/onstation = TRUE //if it doesn't originate from off-station during mapload, everything is free
-	///A variable to change on a per instance basis on the map that allows the instance to force cost and ID requirements
-	var/onstation_override = FALSE //change this on the object on the map to override the onstation check. DO NOT APPLY THIS GLOBALLY.
+	var/onstation = TRUE
+	///A variable to change on a per instance basis on the map that allows the instance to force cost and ID requirements. DO NOT APPLY THIS GLOBALLY.
+	var/onstation_override = FALSE
 
 	var/list/vending_machine_input = list()
 	///Display header on the input view
@@ -184,7 +186,6 @@
 
 	/// used for narcing on underages
 	var/obj/item/radio/sec_radio
-
 
 /**
  * Initialize the vending machine
@@ -207,6 +208,12 @@
 		build_inv = TRUE
 	. = ..()
 	wires = new /datum/wires/vending(src)
+
+	if(SStts.tts_enabled)
+		var/static/vendor_voice_by_type = list()
+		if(!vendor_voice_by_type[type])
+			vendor_voice_by_type[type] = pick(SStts.available_speakers)
+		voice = vendor_voice_by_type[type]
 
 	if(build_inv) //non-constructable vending machine
 		build_inventories()
@@ -706,7 +713,7 @@
 						buckle_mob(C, force=TRUE)
 						C.visible_message(span_danger("[C] is pinned underneath [src]!"), \
 							span_userdanger("You are pinned down by [src]!"))
-					if(3) // glass candy
+					if(3, 4) // glass candy // SKYRAT EDIT CHANGE - Original 3
 						crit_rebate = 50
 						for(var/i in 1 to num_shards)
 							var/obj/item/shard/shard = new /obj/item/shard(get_turf(C))
@@ -715,20 +722,22 @@
 							C.hitby(shard, skipcatch = TRUE, hitpush = FALSE)
 							shard.embedding = list()
 							shard.updateEmbedding()
-					if(4) // paralyze this binch
+					if(4, 5) // paralyze this binch // SKYRAT EDIT CHANGE - Original 4
 						// the new paraplegic gets like 4 lines of losing their legs so skip them
 						visible_message(span_danger("[C]'s spinal cord is obliterated with a sickening crunch!"), ignored_mobs = list(C))
 						C.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic)
-					if(5) // limb squish!
+					if(6) // limb squish! // SKYRAT EDIT CHANGE - Original 5
 						for(var/i in C.bodyparts)
 							var/obj/item/bodypart/squish_part = i
 							if(IS_ORGANIC_LIMB(squish_part))
 								var/type_wound = pick(list(/datum/wound/blunt/critical, /datum/wound/blunt/severe, /datum/wound/blunt/moderate))
-								squish_part.force_wound_upwards(type_wound)
+								squish_part.force_wound_upwards(type_wound, wound_source = "crushing by vending machine")
 							else
 								squish_part.receive_damage(brute=30)
 						C.visible_message(span_danger("[C]'s body is maimed underneath the mass of [src]!"), \
 							span_userdanger("Your body is maimed underneath the mass of [src]!"))
+					// SKYRAT EDIT REMOVAL BEGIN
+					/*
 					if(6) // skull squish!
 						var/obj/item/bodypart/head/O = C.get_bodypart(BODY_ZONE_HEAD)
 						if(O)
@@ -738,13 +747,15 @@
 								O.drop_organs()
 								qdel(O)
 								new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
+					*/
+					// SKYRAT EDIT REMOVAL END
 
 				if(prob(30))
 					C.apply_damage(max(0, squish_damage - crit_rebate), forced=TRUE, spread_damage=TRUE) // the 30% chance to spread the damage means you escape breaking any bones
 				else
 					C.take_bodypart_damage((squish_damage - crit_rebate)*0.5, wound_bonus = 5) // otherwise, deal it to 2 random limbs (or the same one) which will likely shatter something
 					C.take_bodypart_damage((squish_damage - crit_rebate)*0.5, wound_bonus = 5)
-				C.AddElement(/datum/element/squish, 80 SECONDS)
+				// C.AddElement(/datum/element/squish, 80 SECONDS) // SKYRAT EDIT REMOVAL
 			else
 				L.visible_message(span_danger("[L] is crushed by [src]!"), \
 				span_userdanger("You are crushed by [src]!"))
@@ -1119,7 +1130,7 @@
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 	vend_ready = TRUE
 
-/obj/machinery/vending/process(delta_time)
+/obj/machinery/vending/process(seconds_per_tick)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return PROCESS_KILL
 	if(!active)
@@ -1129,12 +1140,12 @@
 		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(last_slogan + slogan_delay <= world.time && slogan_list.len > 0 && !shut_up && DT_PROB(2.5, delta_time))
+	if(last_slogan + slogan_delay <= world.time && slogan_list.len > 0 && !shut_up && SPT_PROB(2.5, seconds_per_tick))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
 
-	if(shoot_inventory && DT_PROB(shoot_inventory_chance, delta_time))
+	if(shoot_inventory && SPT_PROB(shoot_inventory_chance, seconds_per_tick))
 		throw_item()
 /**
  * Speak the given message verbally
@@ -1433,7 +1444,7 @@
 	max_integrity = 700
 	max_loaded_items = 40
 	light_mask = "greed-light-mask"
-	custom_materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT * 5)
+	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/machinery/vending/custom/greed/Initialize(mapload)
 	. = ..()
@@ -1447,3 +1458,5 @@
 	slogan_list = list("[GLOB.deity] says: It's your divine right to buy!")
 	add_filter("vending_outline", 9, list("type" = "outline", "color" = COLOR_VERY_SOFT_YELLOW))
 	add_filter("vending_rays", 10, list("type" = "rays", "size" = 35, "color" = COLOR_VIVID_YELLOW))
+
+#undef MAX_VENDING_INPUT_AMOUNT

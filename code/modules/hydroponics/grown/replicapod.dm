@@ -67,12 +67,12 @@
 	. = ..()
 	RegisterSignals(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT), PROC_REF(on_reagent_add))
 	RegisterSignal(reagents, COMSIG_REAGENTS_DEL_REAGENT, PROC_REF(on_reagent_del))
-	RegisterSignal(reagents, COMSIG_PARENT_QDELETING, PROC_REF(on_reagents_del))
+	RegisterSignal(reagents, COMSIG_QDELETING, PROC_REF(on_reagents_del))
 
 /// Handles the seeds' reagents datum getting deleted.
 /obj/item/seeds/replicapod/proc/on_reagents_del(datum/reagents/reagents)
 	SIGNAL_HANDLER
-	UnregisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_QDELETING))
 	return NONE
 
 /// Handles reagents getting added to this seed.
@@ -136,12 +136,12 @@
 						make_podman = TRUE
 						break
 				else
-					if(M.ckey == ckey && M.stat == DEAD && !M.suiciding)
+					if(M.ckey == ckey && M.stat == DEAD && !HAS_TRAIT(M, TRAIT_SUICIDED) && !HAS_TRAIT(M, TRAIT_MIND_TEMPORARILY_GONE))
 						make_podman = TRUE
 						break
 		else //If the player has ghosted from his corpse before blood was drawn, his ckey is no longer attached to the mob, so we need to match up the cloned player through the mind key
 			for(var/mob/M in GLOB.player_list)
-				if(mind && M.mind && ckey(M.mind.key) == ckey(mind.key) && M.ckey && M.client && M.stat == DEAD && !M.suiciding)
+				if(mind && M.mind && ckey(M.mind.key) == ckey(mind.key) && M.ckey && M.client && M.stat == DEAD && !HAS_TRAIT(M, TRAIT_SUICIDED))
 					if(isobserver(M))
 						var/mob/dead/observer/O = M
 						if(!O.can_reenter_corpse)
@@ -165,7 +165,7 @@
 			return result
 
 		// Make sure they can still interact with the parent hydroponics tray.
-		if(!user.canUseTopic(parent, be_close = TRUE))
+		if(!user.can_perform_action(parent))
 			to_chat(user, text = "You are no longer able to harvest the seeds from [parent]!", type = MESSAGE_TYPE_INFO)
 			return result
 
@@ -196,8 +196,8 @@
 	podman.faction |= factions
 	if(!features["mcolor"])
 		features["mcolor"] = "#59CE00"
-	if(!features["pod_hair"])
-		features["pod_hair"] = pick(GLOB.pod_hair_list)
+	/*if(!features["pod_hair"])
+		features["pod_hair"] = pick(GLOB.pod_hair_list)*/ //SKYRAT EDIT - Tricolor Pod Hair
 
 	for(var/V in quirks)
 		new V(podman)

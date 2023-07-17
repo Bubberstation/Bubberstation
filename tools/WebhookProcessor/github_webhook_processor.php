@@ -28,7 +28,8 @@ define('F_SECRET_PR', 1<<1);
 
 $hookSecret = '08ajh0qj93209qj90jfq932j32r';
 $apiKey = '209ab8d879c0f987d06a09b9d879c0f987d06a09b9d8787d0a089c';
-$repoOwnerAndName = "tgstation/tgstation";
+$repoOwnerAndName = "tgstation/tgstation"; // this is just the repository auto-updates happen from
+$repoAutoTaggerWhitelist = array("tgstation", "TerraGov-Marine-Corps");
 $servers = array();
 $enable_live_tracking = true;
 $path_to_script = 'tools/WebhookProcessor/github_webhook_processor.php';
@@ -212,6 +213,11 @@ function check_tag_and_replace($payload, $title_tag, $label, &$array_to_add_labe
 }
 
 function set_labels($payload, $labels, $remove) {
+	global $repoAutoTaggerWhitelist;
+	if(!in_array($payload['repository']['name'], $repoAutoTaggerWhitelist)) {
+		return;
+	}
+
 	$existing = get_labels($payload);
 	$tags = array();
 
@@ -276,6 +282,7 @@ function tag_pr($payload, $opened) {
 
 	check_tag_and_replace($payload, '[dnm]', 'Do Not Merge', $tags);
 	check_tag_and_replace($payload, '[no gbp]', 'GBP: No Update', $tags);
+	check_tag_and_replace($payload, '[april fools]', 'April Fools', $tags);
 
 	return array($tags, $remove);
 }
@@ -707,15 +714,9 @@ function checkchangelog($payload) {
 					$tags[] = 'Quality of Life';
 				}
 				break;
-			case 'soundadd':
-				if($item != 'added a new sound thingy') {
+			case 'sound':
+				if($item != 'added/modified/removed audio or sound effects') {
 					$tags[] = 'Sound';
-				}
-				break;
-			case 'sounddel':
-				if($item != 'removed an old sound thingy') {
-					$tags[] = 'Sound';
-					$tags[] = 'Removal';
 				}
 				break;
 			case 'add':
@@ -732,15 +733,9 @@ function checkchangelog($payload) {
 					$tags[] = 'Removal';
 				}
 				break;
-			case 'imageadd':
-				if($item != 'added some icons and images') {
+			case 'image':
+				if($item != 'added/modified/removed some icons or images') {
 					$tags[] = 'Sprites';
-				}
-				break;
-			case 'imagedel':
-				if($item != 'deleted some icons and images') {
-					$tags[] = 'Sprites';
-					$tags[] = 'Removal';
 				}
 				break;
 			case 'typo':

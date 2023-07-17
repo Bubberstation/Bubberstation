@@ -5,7 +5,7 @@
 	icon_state = "vapecart"
 	fill_icon_state = "vapecart"
 	volume = 50
-	possible_transfer_amounts = list()
+	has_variable_transfer_amount = FALSE
 	list_reagents = list(/datum/reagent/drug/nicotine = 50)
 	fill_icon_thresholds = list(0, 5, 20, 40)
 	custom_price = PAYCHECK_CREW
@@ -43,7 +43,7 @@
 			to_chat(user, span_notice("You scribble illegibly on the label of the vape cart!"))
 			return
 		var/new_title = stripped_input(user, "What would you like to label the vape cart?", name, null, 53)
-		if(!user.canUseTopic(src, be_close = TRUE))
+		if(!user.can_perform_action(src))
 			return
 		if(user.get_active_held_item() != attacked_item)
 			return

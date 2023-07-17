@@ -11,8 +11,6 @@
 	var/sight = NONE
 	/// see_invisible values
 	var/see_invis
-	/// see_in_dark values
-	var/see_dark
 	/// What the client is seeing "out of", client.eye
 	var/datum/weakref/client_eye
 	/// Weakref to the mob we're mirroring off
@@ -31,8 +29,6 @@
 	sight_changed(mirror_off)
 	RegisterSignal(mirror_off, COMSIG_MOB_SEE_INVIS_CHANGE, PROC_REF(invis_changed))
 	invis_changed(mirror_off)
-	RegisterSignal(mirror_off, COMSIG_MOB_SEE_IN_DARK_CHANGE, PROC_REF(in_dark_changed))
-	in_dark_changed(mirror_off)
 	RegisterSignal(mirror_off, COMSIG_MOB_LOGIN, PROC_REF(on_login))
 	RegisterSignal(mirror_off, COMSIG_MOB_LOGOUT, PROC_REF(on_logout))
 	if(mirror_off.client)
@@ -43,7 +39,6 @@
 	// Note: we explicitly do NOT use setters here, since it would break the behavior
 	paint_to.sight = sight
 	paint_to.see_invisible = see_invis
-	paint_to.see_in_dark = see_dark
 	if(paint_to.client)
 		var/atom/eye = client_eye?.resolve()
 		if(eye)
@@ -67,11 +62,6 @@
 	see_invis = source.see_invisible
 	on_update()
 
-/datum/visual_data/proc/in_dark_changed(mob/source)
-	SIGNAL_HANDLER
-	see_dark = source.see_in_dark
-	on_update()
-
 /datum/visual_data/proc/on_login(mob/source)
 	SIGNAL_HANDLER
 	// visual data can be created off login, so conflicts here are inevitable
@@ -92,10 +82,10 @@
 /datum/visual_data/proc/set_eye(atom/new_eye)
 	var/atom/old_eye = client_eye?.resolve()
 	if(old_eye)
-		UnregisterSignal(old_eye, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(old_eye, COMSIG_QDELETING)
 	if(new_eye)
 		// Need to update any party's client.eyes
-		RegisterSignal(new_eye, COMSIG_PARENT_QDELETING, PROC_REF(eye_deleted))
+		RegisterSignal(new_eye, COMSIG_QDELETING, PROC_REF(eye_deleted))
 	client_eye = WEAKREF(new_eye)
 	on_update()
 

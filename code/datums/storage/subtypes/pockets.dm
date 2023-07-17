@@ -75,11 +75,14 @@
 	. = ..()
 	set_holdable(list(
 		/obj/item/knife,
+		/obj/item/spess_knife,
 		/obj/item/switchblade,
+		/obj/item/boxcutter,
 		/obj/item/pen,
 		/obj/item/scalpel,
-		/obj/item/reagent_containers/syringe,
 		/obj/item/dnainjector,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/hypospray/medipen,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/implanter,
@@ -90,6 +93,7 @@
 		/obj/item/ammo_box/magazine/m9mm,
 		/obj/item/ammo_box/magazine/m10mm,
 		/obj/item/ammo_box/magazine/m45,
+		/obj/item/ammo_box/magazine/toy/pistol,
 		/obj/item/ammo_casing,
 		/obj/item/lipstick,
 		/obj/item/clothing/mask/cigarette,
@@ -101,13 +105,17 @@
 		list(/obj/item/screwdriver/power,
 		/obj/item/ammo_casing/caseless/rocket,
 		/obj/item/clothing/mask/cigarette/pipe,
-		/obj/item/toy/crayon/spraycan)
+		/obj/item/toy/crayon/spraycan, // BUBBER EDIT ADDITION
+		/obj/item/seeds, // BUBBER EDIT ADDITION
+		/obj/item/card, // BUBBER EDIT ADDITION
+		)
 		)
 
 /datum/storage/pockets/shoes/clown/New()
 	. = ..()
 	set_holdable(list(
 		/obj/item/knife,
+		/obj/item/spess_knife,
 		/obj/item/switchblade,
 		/obj/item/pen,
 		/obj/item/scalpel,
@@ -135,7 +143,10 @@
 		list(/obj/item/screwdriver/power,
 		/obj/item/ammo_casing/caseless/rocket,
 		/obj/item/clothing/mask/cigarette/pipe,
-		/obj/item/toy/crayon/spraycan)
+		/obj/item/toy/crayon/spraycan, // BUBBER EDIT ADDITION
+		/obj/item/seeds, // BUBBER EDIT ADDITION
+		/obj/item/card, // BUBBER EDIT ADDITION
+		)
 		)
 
 /datum/storage/pockets/pocketprotector

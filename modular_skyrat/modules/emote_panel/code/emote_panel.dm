@@ -146,7 +146,8 @@
 		/mob/living/proc/emote_rpurr,
 		/mob/living/proc/emote_purr,
 		/mob/living/proc/emote_moo,
-		/mob/living/proc/emote_honk1
+		/mob/living/proc/emote_honk1,
+		/mob/living/proc/emote_mggaow
 	)
 	all_emotes += skyrat_living_emotes
 
@@ -234,11 +235,11 @@
 			if(current_mob.dna.species.type in allowed_species_synth)
 				available_emotes += synth_emotes
 			// Checking if can wag tail
-			var/obj/item/organ/external/tail/tail = current_mob.getorganslot(ORGAN_SLOT_EXTERNAL_TAIL)
+			var/obj/item/organ/external/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 			if(!(tail?.wag_flags & WAG_ABLE))
 				available_emotes -= /mob/living/carbon/human/proc/emote_wag
 			// Checking if has wings
-			if(!current_mob.getorganslot(ORGAN_SLOT_EXTERNAL_WINGS))
+			if(!current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS))
 				available_emotes -= /mob/living/carbon/human/proc/emote_wing
 		if(isalien(src))
 			available_emotes += alien_emotes
@@ -1018,3 +1019,8 @@
 	set name = "| Mark Turf |"
 	set category = "Emotes+"
 	usr.emote("turf", intentional = TRUE)
+
+/mob/living/proc/emote_mggaow()
+	set name = "> Mggaow"
+	set category = "Emotes+"
+	usr.emote("mggaow", intentional = TRUE)

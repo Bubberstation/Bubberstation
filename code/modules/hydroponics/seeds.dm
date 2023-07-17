@@ -79,6 +79,18 @@
 		icon_harvest = "[species]-harvest"
 
 	if(!nogenes)
+		// START Bubber edit
+		genes += new /datum/plant_gene/core/lifespan(lifespan)
+		genes += new /datum/plant_gene/core/endurance(endurance)
+		genes += new /datum/plant_gene/core/weed_rate(weed_rate)
+		genes += new /datum/plant_gene/core/weed_chance(weed_chance)
+		if(yield != -1)
+			genes += new /datum/plant_gene/core/yield(yield)
+			genes += new /datum/plant_gene/core/production(production)
+		if(potency != -1)
+			genes += new /datum/plant_gene/core/potency(potency)
+			genes += new /datum/plant_gene/core/instability(instability)
+		// END Bubber edit
 		for(var/plant_gene in genes)
 			if(ispath(plant_gene))
 				genes -= plant_gene
@@ -456,14 +468,14 @@
 		var/choice = tgui_input_list(usr, "What would you like to change?", "Seed Alteration", list("Plant Name", "Seed Description", "Product Description"))
 		if(isnull(choice))
 			return
-		if(!user.canUseTopic(src, be_close = TRUE))
+		if(!user.can_perform_action(src))
 			return
 		switch(choice)
 			if("Plant Name")
 				var/newplantname = reject_bad_text(tgui_input_text(user, "Write a new plant name", "Plant Name", plantname, 20))
 				if(isnull(newplantname))
 					return
-				if(!user.canUseTopic(src, be_close = TRUE))
+				if(!user.can_perform_action(src))
 					return
 				name = "[lowertext(newplantname)]"
 				plantname = newplantname
@@ -471,7 +483,7 @@
 				var/newdesc = tgui_input_text(user, "Write a new seed description", "Seed Description", desc, 180)
 				if(isnull(newdesc))
 					return
-				if(!user.canUseTopic(src, be_close = TRUE))
+				if(!user.can_perform_action(src))
 					return
 				desc = newdesc
 			if("Product Description")
@@ -480,7 +492,7 @@
 				var/newproductdesc = tgui_input_text(user, "Write a new product description", "Product Description", productdesc, 180)
 				if(isnull(newproductdesc))
 					return
-				if(!user.canUseTopic(src, be_close = TRUE))
+				if(!user.can_perform_action(src))
 					return
 				productdesc = newproductdesc
 
@@ -545,7 +557,7 @@
 /obj/item/seeds/proc/create_graft()
 	var/obj/item/graft/snip = new(loc, graft_gene)
 	snip.parent_name = plantname
-	snip.name += "([plantname])"
+	snip.name += " ([plantname])"
 
 	// Copy over stats so the graft can outlive its parent.
 	snip.lifespan = lifespan

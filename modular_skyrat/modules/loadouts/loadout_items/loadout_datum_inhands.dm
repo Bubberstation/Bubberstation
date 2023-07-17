@@ -39,6 +39,10 @@ GLOBAL_LIST_INIT(loadout_inhand_items, generate_loadout_items(/datum/loadout_ite
 	name = "Secure Briefcase"
 	item_path = /obj/item/storage/secure/briefcase
 
+/datum/loadout_item/inhand/skub
+	name = "Skub"
+	item_path = /obj/item/skub
+
 /datum/loadout_item/inhand/skateboard
 	name = "Skateboard"
 	item_path = /obj/item/melee/skateboard
@@ -90,3 +94,7 @@ GLOBAL_LIST_INIT(loadout_inhand_items, generate_loadout_items(/datum/loadout_ite
 /datum/loadout_item/inhand/flag_nri
 	name = "Folded Novaya Rossiyskaya Imperiya Flag"
 	item_path = /obj/item/sign/flag/nri
+
+/datum/loadout_item/inhand/flag_azulea
+	name = "Folded Azulea Flag"
+	item_path = /obj/item/sign/flag/azulea

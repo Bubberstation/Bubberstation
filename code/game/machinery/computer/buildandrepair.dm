@@ -20,7 +20,7 @@
 					state = 1
 				return
 			if(P.tool_behaviour == TOOL_WELDER)
-				if(!P.tool_start_check(user, amount=0))
+				if(!P.tool_start_check(user, amount=1))
 					return
 
 				to_chat(user, span_notice("You start deconstructing the frame..."))
@@ -161,7 +161,7 @@
 						new_computer.component_parts += movable_part
 
 					new_computer.RefreshParts()
-					new_computer.on_construction()
+					new_computer.on_construction(user)
 
 				qdel(src)
 				return
