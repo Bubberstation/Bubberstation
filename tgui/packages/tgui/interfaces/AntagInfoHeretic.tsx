@@ -196,13 +196,12 @@ const InformationSection = (props, context) => {
 
 const ObjectivePrintout = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { objectives } = data; // SKYRAT EDIT BELOW - ORIGINAL: In order to ascend, you have these tasks to fulfill:
+  const { objectives } = data;
   return (
     <Stack.Item>
       <Stack vertical fill>
         <Stack.Item bold>
-          Your OPFOR objectives are your primary ones, but to ascend, your
-          objectives are:
+          In order to ascend, you have these tasks to fulfill:
         </Stack.Item>
         <Stack.Item>
           {(!objectives && 'None!') ||
