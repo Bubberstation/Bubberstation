@@ -145,6 +145,8 @@
 		Original Name: [original_name], New Name: [patient.dna.real_name]. \
 		This may be a false positive from changing from a humanized monkey into a character, so be careful.")
 
+	SSquirks.AssignQuirks(patient, patient.client) // BUBBER EDIT ADDITON
+
 	open_machine()
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 
