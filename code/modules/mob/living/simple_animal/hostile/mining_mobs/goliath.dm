@@ -222,12 +222,8 @@
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
 			continue
 		visible_message(span_danger("[src] grabs hold of [L]!"))
-//BUBBER EDIT START
-/*
-		L.Stun(100)
-*/
-		L.Stun(75)
-//BUBBER EDIT END
+
+		L.Stun(75) // BUBBER EDIT, ORIGINAL: 100 Stun
 		L.adjustBruteLoss(rand(10,15))
 		latched = TRUE
 	if(!latched)
