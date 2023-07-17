@@ -204,6 +204,9 @@
 	podman.hardset_dna(null, null, null, podman.real_name, blood_type, new /datum/species/pod, features) // Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
 	podman.set_cloned_appearance()
 
+	if(get_gene(/datum/plant_gene/trait/teleport)) //BUBBERSTATION EDIT - If Bluespace Activity was grafted to the replica pod, the resulting podman gets a permanent Bluespace Prophet trauma.
+		podman.gain_trauma(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE) // END BUBBERSTATION EDIT
+
 	//Get the most plentiful reagent, if there's none: get water
 	var/list/most_plentiful_reagent = list(/datum/reagent/water = 0)
 	for(var/reagent in reagents_add)
