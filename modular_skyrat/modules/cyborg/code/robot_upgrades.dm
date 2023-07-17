@@ -133,7 +133,7 @@
 		return FALSE
 	if(!(R_TRAIT_WIDE in borg.model.model_features))
 		to_chat(usr, span_warning("This unit's chassis does not support this module."))
-		return FALSE
+		return FALSE	
 
 	var/obj/item/dogborg_tongue/dogtongue = new /obj/item/dogborg_tongue(borg.model)
 	borg.model.basic_modules += dogtongue

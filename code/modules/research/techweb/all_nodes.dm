@@ -162,6 +162,7 @@
 
 		//SKYRAT EDIT START - RESEARCH DESIGNS
 		"affection_module",
+		"affectionmodule2"
 		//SKYRAT EDIT END - RESEARCH DESIGNS
 	)
 
