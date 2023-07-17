@@ -50,7 +50,7 @@
 					qdel(organ) //so the brain isn't transfered to the head when the head drops.
 					continue
 				var/org_zone = check_zone(organ.zone) //both groin and chest organs.
-				if(org_zone == BODY_ZONE_CHEST)
+				if(org_zone == BODY_ZONE_CHEST && organ.drop_when_organ_spilling) //Zubbers change, checks for drop_when_organ_spilling
 					organ.Remove(src)
 					organ.forceMove(Tsec)
 					organ.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
@@ -61,6 +61,8 @@
 				continue
 			if(no_organs && !istype(organ, /obj/item/organ/internal/brain))
 				qdel(organ)
+				continue
+			if(!organ.drop_when_organ_spilling) //Zubbers change, checks for drop_when_organ_spilling
 				continue
 			organ.Remove(src)
 			organ.forceMove(Tsec)
