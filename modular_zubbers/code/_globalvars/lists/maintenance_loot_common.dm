@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/briefcase/medical = 25,
 		/obj/item/storage/briefcase/virology = 25,
 		/obj/item/storage/secure/briefcase/syndie = 1
-	) = 50,
+	) = 100,
 	list(
 		/obj/item/stock_parts/capacitor = 100,
 		/obj/item/stock_parts/cell = 10,
@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stock_parts/subspace/treatment = 25,
 		/obj/item/stock_parts/card_reader = 50,
 		/obj/item/stock_parts/water_recycler = 100
-	) = 100,
+	) = 250,
 	list(
 		/obj/item/stack/arcadeticket/thirty = 25,
 		/obj/item/stack/cable_coil = 50,
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stack/sheet/titaniumglass = 25,
 		/obj/item/stack/sheet/titaniumglass/fifty = 1,
 		/obj/item/stack/sheet/xenochitin = 15
-	) = 200,
+	) = 300,
 	list(
 		/obj/item/stack/tile/carpet/black/fifty = 100,
 		/obj/item/stack/tile/carpet/blue/fifty = 100,
@@ -253,14 +253,14 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/reagent_containers/hypospray/medipen/morphine = 1,
 		/obj/item/reagent_containers/hypospray/medipen/mutadone = 1,
 		/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 5,
-		/obj/item/reagent_containers/hypospray/medipen/penacid = 10
+		/obj/item/reagent_containers/hypospray/medipen/penacid = 5
 	) = 50,
 	list(
 		/obj/item/poster/random_contraband = 10,
 		/obj/item/poster/random_official = 10,
-		/obj/item/sign/random = 10,
+		/obj/item/sign/random = 5,
 		/obj/item/poster/quirk/crew/random = 1
-	) = 100,
+	) = 200,
 	list(
 		/obj/item/airlock_painter = 1,
 		/obj/item/airlock_painter/decal = 1,
@@ -302,6 +302,12 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stamp/mime = 1,
 		/obj/item/stamp/syndicate = 1,
 		/obj/item/stamp/void = 5,
+		/obj/item/tape/random = 50,
+		/obj/item/taperecorder = 50,
+		/obj/item/taperecorder/empty = 25,
+		/obj/item/toner = 25
+	) = 150,
+	list(
 		/obj/item/sticker/assistant = 1,
 		/obj/item/sticker/clown = 1,
 		/obj/item/sticker/frown = 1,
@@ -327,12 +333,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/sticker/syndicate/larva = 1,
 		/obj/item/sticker/syndicate/op = 1,
 		/obj/item/sticker/syndicate/trap = 1,
-		/obj/item/sticker/toolbox = 1,
-		/obj/item/tape/random = 50,
-		/obj/item/taperecorder = 50,
-		/obj/item/taperecorder/empty = 25,
-		/obj/item/toner = 25
-	) = 25,
+		/obj/item/sticker/toolbox = 1
+	) = 75,
 	list(
 		/obj/item/analyzer = 5,
 		/obj/item/crowbar = 75,
@@ -389,7 +391,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/wirebrush = 25,
 		/obj/item/wirecutters = 50,
 		/obj/item/wrench = 50
-	) = 125,
+	) = 200,
 	list(
 		/obj/item/hatchet = 1,
 		/obj/item/hatchet/wooden = 1,
@@ -430,7 +432,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/fancy/cigarettes/cigpack_xeno = 50,
 		/obj/item/storage/fancy/cigarettes/dromedaryco = 25,
 		/obj/item/storage/fancy/cigarettes/khi = 25
-	) = 25,
+	) = 50,
 	list(
 		/obj/item/perfume/amber = 1,
 		/obj/item/perfume/cherry = 1,
@@ -442,7 +444,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/perfume/strawberry = 1,
 		/obj/item/perfume/vanilla = 1,
 		/obj/item/perfume/wood = 1
-	) = 25,
+	) = 10,
 	list(
 		/obj/item/assembly/health = 25,
 		/obj/item/assembly/igniter = 100,
@@ -618,7 +620,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	list(
 		/obj/item/book/manual/random = 1,
 		/obj/item/book/random = 10
-	) = 50,
+	) = 25,
 	list(
 		/obj/item/burner = 5,
 		/obj/item/burner/fuel = 1,
@@ -633,7 +635,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	list(
 		/obj/item/cardpack/resin = 1,
 		/obj/item/cardpack/series_one = 1
-	) = 25,
+	) = 10,
 	/obj/item/chair/plastic = 50,
 	/obj/item/chisel = 5,
 	/obj/item/clothing/ears/earmuffs = 50,
@@ -679,7 +681,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/tank/internals/plasmaman = 25,
 		/obj/item/tank/internals/plasmaman/belt = 25,
 		/obj/item/tank/jetpack/improvised = 10
-	) = 100,
+	) = 150,
 	list(
 		/obj/item/coin/adamantine = 1,
 		/obj/item/coin/antagtoken = 5,
@@ -706,10 +708,10 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/computer_disk/ordnance = 1,
 		/obj/item/computer_disk/security = 1,
 		/obj/item/computer_disk/advanced = 5,
-		/obj/item/computer_disk/maintenance/camera = 10,
-		/obj/item/computer_disk/maintenance/modsuit_control = 10,
-		/obj/item/computer_disk/maintenance/scanner = 10,
-		/obj/item/computer_disk/maintenance/theme = 10,
+		/obj/item/computer_disk/maintenance/camera = 20,
+		/obj/item/computer_disk/maintenance/modsuit_control = 20,
+		/obj/item/computer_disk/maintenance/scanner = 20,
+		/obj/item/computer_disk/maintenance/theme = 20,
 		/obj/item/computer_disk/virus/clown = 1,
 		/obj/item/computer_disk/virus/mime = 1,
 		/obj/item/disk/data = 25,
@@ -739,7 +741,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/extinguisher/advanced/empty = 10,
 		/obj/item/extinguisher/mini = 25,
 		/obj/item/extinguisher/mini/empty = 10
-	) = 100,
+	) = 150,
 	/obj/item/extinguisher_refill = 20,
 	list(
 		/obj/item/flashlight = 25,
@@ -759,7 +761,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/flashlight/pen = 5,
 		/obj/item/flashlight/pen/paramedic = 5,
 		/obj/item/flashlight/seclite = 10
-	) = 100,
+	) = 150,
 	list(
 		/obj/item/food/ant_candy = 5,
 		/obj/item/food/bowled/amanitajelly = 1,
@@ -910,7 +912,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/fish_case/random = 100,
 		/obj/item/storage/fish_case/syndicate = 10,
 		/obj/item/storage/wallet/random = 200
-	) = 100,
+	) = 150,
 	list(
 		/obj/item/food/meat/slab/bear = 10,
 		/obj/item/food/meat/slab/bugmeat = 50,
@@ -956,7 +958,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/raw_patty/human = 25,
 		/obj/item/food/raw_patty/xeno = 25,
 		/obj/item/food/raw_sausage = 50
-	) = 100,
+	) = 150,
 	list(
 		/obj/item/food/grown/aloe = 25,
 		/obj/item/food/grown/ambrosia/deus = 1,
@@ -991,9 +993,9 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/grown/shell/eggy = 25,
 		/obj/item/food/grown/tea/catnip = 25,
 		/obj/item/food/grown/tomato = 75
-	) = 100,
+	) = 75,
 	list(
-		/obj/item/seeds/random = 200,
+		/obj/item/seeds/random = 150,
 		/obj/item/seeds/aloe = 25,
 		/obj/item/seeds/amanita = 25,
 		/obj/item/seeds/cannabis = 25,
@@ -1010,7 +1012,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/seeds/shrub = 25,
 		/obj/item/seeds/starthistle/corpse_flower = 10,
 		/obj/item/seeds/tea/catnip = 10
-	) = 200,
+	) = 150,
 	list(
 		/obj/item/reagent_containers/cup/glass/bottle/absinthe = 25,
 		/obj/item/reagent_containers/cup/glass/bottle/absinthe/premium = 50,

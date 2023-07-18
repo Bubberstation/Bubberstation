@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
-	/obj/item/aicard/aitater = 25,
+	/obj/item/aicard/aitater = 10,
 	/obj/item/ammo_box/foambox/riot = 50,
 	/obj/item/survivalcapsule = 25,
 	/obj/item/table_clock = 50,
@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/ammo_casing/shotgun/hp = 1,
 		/obj/item/ammo_casing/shotgun/hunter = 1,
 		/obj/item/ammo_casing/shotgun/iceblox = 1,
-		/obj/item/ammo_casing/shotgun/improvised = 100,
+		/obj/item/ammo_casing/shotgun/improvised = 200,
 		/obj/item/ammo_casing/shotgun/incapacitate = 1,
 		/obj/item/ammo_casing/shotgun/incendiary = 1,
 		/obj/item/ammo_casing/shotgun/ion = 1,
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/ammo_casing/shotgun/rubbershot = 100,
 		/obj/item/ammo_casing/shotgun/stunslug = 25,
 		/obj/item/ammo_casing/shotgun/techshell = 75
-	) = 75,
+	) = 100,
 	/obj/item/analyzer/ranged = 1,
 	list(
 		/obj/item/autosurgeon/organ/nif/disposable = 10,
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/clothing/head/collectable/welding = 1,
 		/obj/item/clothing/head/collectable/wizard = 1,
 		/obj/item/clothing/head/collectable/xenom = 1
-	) = 25,
+	) = 50,
 	/obj/item/clothing/mask/gas/sechailer = 10,
 	/obj/item/clothing/suit/hooded/bloated_human = 5,
 	list(
@@ -104,9 +104,9 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/rsf = 10,
 		/obj/item/rsf/cookiesynth = 5,
 		/obj/item/rwd/loaded = 10
-	) = 5,
+	) = 10,
 	/obj/item/cortical_cage = 5,
-	/obj/item/detective_scanner = 25,
+	/obj/item/detective_scanner = 15,
 	list(
 		/obj/item/dnainjector/chavmut = 10,
 		/obj/item/dnainjector/clever = 1,
@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/dnainjector/tourmut = 1,
 		/obj/item/dnainjector/twoleftfeet = 1,
 		/obj/item/dnainjector/wackymut = 10
-	) = 10,
+	) = 25,
 	/obj/item/dog_bone = 5,
 	/obj/item/door_seal = 5,
 	list(
@@ -148,8 +148,8 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/encryptionkey/translation/vulpkanin = 1,
 		/obj/item/encryptionkey/translation/yangyu = 1,
 		/obj/item/language_manual/roundstart_species = 1
-	) = 5,
-	/obj/item/etherealballdeployer = 5,
+	) = 10,
+	/obj/item/etherealballdeployer = 10,
 	list(
 		/obj/item/firing_pin/clown = 100,
 		/obj/item/firing_pin/clown/ultra = 50,
@@ -158,14 +158,14 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/firing_pin/tag/blue = 5,
 		/obj/item/firing_pin/tag/red = 5,
 		/obj/item/firing_pin/test_range = 10
-	) = 5,
+	) = 10,
 	list(
 		/obj/item/implanter/mortis = 10,
 		/obj/item/implanter/sad_trombone = 10,
 		/obj/item/implanter/tracking = 1,
 		/obj/item/implanter/tracking/gps = 1,
 		/obj/item/implantpad = 5
-	) = 5,
+	) = 10,
 	/obj/item/lightreplacer = 25,
 	/obj/item/locator = 5,
 	/obj/item/mmi = 10,
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 	list(
 		/obj/item/restraints/legcuffs/beartrap = 10,
 		/obj/item/restraints/legcuffs/beartrap/prearmed = 1
-	) = 10,
+	) = 20,
 	list(
 		/obj/item/storage/medkit = 300,
 		/obj/item/storage/medkit/regular = 200,

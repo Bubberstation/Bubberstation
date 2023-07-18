@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/stack/medical/splint/improvised = 25,
 		/obj/item/thermometer = 10,
 		/obj/item/thermometer/pen = 10
-	) = 50,
+	) = 75,
 	list(
 		/obj/item/book/bible = 100,
 		/obj/item/book/bible/booze = 50,
@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/trash/vendor_trash/rice_crackers = 5,
 		/obj/item/trash/waffles = 5
 	) = 300,
-	/obj/item/broken_missile = 5,
+	/obj/item/broken_missile = 1,
 	/obj/item/c_tube = 100,
 	/obj/item/cane = 10,
 	/obj/item/card/emagfake = 5,
@@ -121,11 +121,12 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 	/obj/item/clothing/suit/hazardvest = 25,
 	/obj/item/coffee_cartridge/bootleg = 5,
 	/obj/item/coffee_cartridge = 10,
-	/obj/item/coupon = 10,
-	/obj/item/dice/d20 = 20,
-	/obj/item/dice/d6 = 5,
-	/obj/item/dice/d6/ebony = 1,
-	/obj/item/dice/d6/space = 1,
+	list(
+		/obj/item/dice/d20 = 20,
+		/obj/item/dice/d6 = 5,
+		/obj/item/dice/d6/ebony = 1,
+		/obj/item/dice/d6/space = 1,
+	) = 20,
 	/obj/item/ectoplasm = 1,
 	list(
 		/obj/item/electronics/airalarm = 1,
@@ -133,7 +134,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/electronics/apc = 1,
 		/obj/item/electronics/firealarm = 1,
 		/obj/item/electronics/firelock = 1
-	) = 50,
+	) = 100,
 	list(
 		/obj/item/food/badrecipe = 5,
 		/obj/item/food/badrecipe/moldy = 10,
@@ -196,7 +197,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/inflatable/door = 1,
 		/obj/item/oxygen_candle = 1
 	) = 75,
-	/obj/item/kirbyplants/random = 10,
+	/obj/item/kirbyplants/random = 20,
 	list(
 		/obj/item/knife/shiv = 1,
 		/obj/item/pickaxe/improvised = 1,
@@ -210,7 +211,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/soap/nanotrasen = 25,
 		/obj/item/soap/syndie = 10
 	) = 50,
-	/obj/item/weaponcrafting/receiver = 100,
-	/obj/item/weaponcrafting/stock = 100,
-	/obj/item/wirerod = 100
+	/obj/item/weaponcrafting/receiver = 25,
+	/obj/item/weaponcrafting/stock = 25,
+	/obj/item/wirerod = 25
 ))

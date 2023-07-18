@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	/obj/item/binoculars = 10,
 	/obj/item/biopsy_tool = 25,
 	/obj/item/pai_card = 10,
-	/obj/item/reagent_containers/spray/cleaner = 75,
+	/obj/item/reagent_containers/spray/cleaner = 50,
 	list(
 		/obj/item/vending_refill/assist = 1,
 		/obj/item/vending_refill/autodrobe = 1,
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/storage/fancy/candle_box = 200,
 		/obj/item/storage/inflatable = 200,
 		/obj/item/storage/lockbox/dueling = 25
-	) = 150,
+	) = 200,
 	list(
 		/obj/item/blood_filter = 10,
 		/obj/item/bonesetter = 25,
@@ -189,16 +189,16 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/surgical_drapes = 50,
 		/obj/item/surgical_processor = 25,
 		/obj/item/surgicaldrill = 25
-	) = 50,
+	) = 100,
 	/obj/item/book/codex_gigas = 10,
 	list(
 		/obj/item/book/granter/crafting_recipe/boneyard_notes = 1,
-		/obj/item/book/granter/crafting_recipe/cooking_sweets_101 = 10,
+		/obj/item/book/granter/crafting_recipe/cooking_sweets_101 = 5,
 		/obj/item/book/granter/crafting_recipe/death_sandwich = 1,
 		/obj/item/book/granter/crafting_recipe/pipegun_prime = 1,
 		/obj/item/book/granter/crafting_recipe/trash_cannon = 1,
-		/obj/item/book/granter/sign_language = 10
-	) = 75,
+		/obj/item/book/granter/sign_language = 5
+	) = 100,
 	list(
 		/obj/item/bot_assembly/cleanbot = 100,
 		/obj/item/bot_assembly/ed209 = 25,
@@ -264,7 +264,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/shoes/jackboots/timbs = 5,
 		/obj/item/clothing/shoes/sports = 5,
 		/obj/item/storage/belt/champion = 5
-	) = 25,
+	) = 75,
 	list(
 		/obj/item/clothing/gloves/color/fyellow = 100,
 		/obj/item/clothing/gloves/color/ffyellow = 25,
@@ -274,19 +274,19 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/gloves/color/red = 50,
 		/obj/item/clothing/gloves/color/red/insulated = 10,
 		/obj/item/clothing/gloves/cut = 25
-	) = 75,
+	) = 100,
 	list(
 		/obj/item/clothing/suit/armor/bulletproof/old = 5,
 		/obj/item/clothing/head/helmet/old = 10,
-		/obj/item/clothing/head/helmet/toggleable/justice = 5,
-		/obj/item/clothing/head/helmet/toggleable/justice/escape = 5
-	) = 10,
+		/obj/item/clothing/head/helmet/toggleable/justice = 3,
+		/obj/item/clothing/head/helmet/toggleable/justice/escape = 3
+	) = 20,
 	list(
 		/obj/item/clothing/head/utility/welding = 10,
 		/obj/item/clothing/glasses/welding = 5,
 		/obj/item/clothing/mask/gas/welding = 1
-	) = 25,
-	/obj/item/clothing/shoes/galoshes = 5,
+	) = 50,
+	/obj/item/clothing/shoes/galoshes = 10,
 	list(
 		/obj/item/gps = 100,
 		/obj/item/gps/engineering = 50,
@@ -308,9 +308,9 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/grenade/firecracker = 25,
 		/obj/item/grenade/flashbang = 10,
 		/obj/item/grenade/mirage = 5,
-		/obj/item/grenade/smokebomb = 100,
+		/obj/item/grenade/smokebomb = 200,
 		/obj/item/grenade/stingbang = 1
-	) = 50,
+	) = 75,
 	list(
 		/obj/item/holosign_creator = 1,
 		/obj/item/holosign_creator/janibarrier = 1,
@@ -321,7 +321,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	list(
 		/obj/item/inducer = 1,
 		/obj/item/inducer/sci = 1
-	) = 50,
+	) = 25,
 	/obj/item/market_uplink/blackmarket = 15,
 	list(
 		/obj/item/megaphone = 10,
@@ -329,8 +329,8 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/megaphone/clown = 5,
 		/obj/item/megaphone/command = 1,
 		/obj/item/megaphone/sec = 1
-	) = 75,
-	/obj/item/mending_globule = 15,
+	) = 25,
+	/obj/item/mending_globule = 5,
 	list(
 		/obj/item/mod/core/ethereal = 25,
 		/obj/item/mod/core/standard = 5,
@@ -403,7 +403,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/mod/module/waddle = 100,
 		/obj/item/mod/module/welding = 25,
 		/obj/item/mod/paint = 100
-	) = 50,
+	) = 100,
 	/obj/item/nif_repair_kit = 10,
 	/obj/item/nifsoft_remover = 5,
 	/obj/item/pet_carrier = 20,
@@ -442,7 +442,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/reagent_containers/cup/bottle/traitor = 25,
 		/obj/item/reagent_containers/cup/bottle/water = 75,
 		/obj/item/reagent_containers/cup/bottle/welding_fuel = 100
-	) = 100,
+	) = 150,
 	list(
 		/obj/item/skillchip/appraiser = 100,
 		/obj/item/skillchip/basketweaving = 100,
@@ -460,5 +460,5 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/skillchip/useless_adapter = 200,
 		/obj/item/skillchip/wine_taster = 100,
 		/obj/item/skillchip/xenoarch_magnifier = 25
-	) = 25
+	) = 50
 ))
