@@ -1,3 +1,16 @@
+GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
+	/obj/item/clothing/head/beret/knitted,
+	/obj/item/clothing/suit/costume/ianshirt,
+	/obj/item/clothing/suit/toggle/jacket/sweater,
+	/obj/item/clothing/suit/costume/ghost_sheet,
+	/obj/item/clothing/neck/scarf/knitted,
+	/obj/item/clothing/head/beanie/knitted,
+	/obj/item/clothing/gloves/color/grey/protects_cold,
+	/obj/item/clothing/suit/hooded/wintercoat/skyrat,
+	/obj/item/clothing/neck/mantle,
+	/obj/item/clothing/accessory/armband/knitted,
+	/obj/item/clothing/under/misc/pj,)))//When adding more, make sure the thumbnails work!
+
 /obj/item/knittingneedles
 	name = "knitting needles"
 	desc = "Silver knitting needles used for stitching yarn."
@@ -18,18 +31,7 @@
 
 	var/working = FALSE
 	var/obj/item/yarn/ball
-	var/static/list/knitables = list(/obj/item/clothing/head/beret/knitted,
-	/obj/item/clothing/suit/costume/ianshirt,
-	/obj/item/clothing/suit/toggle/jacket/sweater,
-	/obj/item/clothing/suit/costume/ghost_sheet,
-	/obj/item/clothing/neck/scarf/knitted,
-	/obj/item/clothing/head/beanie/knitted,
-	/obj/item/clothing/gloves/color/grey/protects_cold,
-	/obj/item/clothing/suit/hooded/wintercoat/skyrat,
-	/obj/item/clothing/neck/mantle,
-	/obj/item/clothing/accessory/armband/knitted,
-	/obj/item/clothing/under/misc/pj/red,)//Add more? Get Radial thumbnails fixed.
-	var/static/list/name2knit
+	var/list/name2knit
 
 /obj/item/knittingneedles/verb/remove_yarn()
 	set name = "Remove Yarn"
@@ -89,11 +91,11 @@
 
 	if (!name2knit)
 		name2knit = list()
-		for(var/obj/thing as anything in knitables)
+		for(var/obj/thing as anything in GLOB.KNITABLES)
 			name2knit[initial(thing.name)] = thing
 
 	var/list/options = list()
-	for (var/obj/item/clothing/i as anything in knitables)
+	for (var/obj/item/clothing/i as anything in GLOB.KNITABLES)
 		var/image/radial_button = image(icon = initial(i.icon), icon_state = initial(i.icon_state))
 		options[initial(i.name)] = radial_button
 	var/knit_name = show_radial_menu(user, user, options, radius = 42, tooltips = TRUE)
