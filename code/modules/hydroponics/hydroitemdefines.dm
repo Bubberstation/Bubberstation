@@ -586,6 +586,7 @@
 	attack_verb_simple = list("slash", "slice", "cut", "claw")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
+/*
 ///Catch right clicks so we can stylize!
 /obj/item/secateurs/pre_attack_secondary(atom/target, mob/living/user, params)
 	if(user.combat_mode)
@@ -595,7 +596,8 @@
 
 ///Send a signal to whatever we clicked and ask them if they wanna be PLANT RESTYLED YEAAAAAAAH
 /obj/item/secateurs/proc/restyle(atom/target, mob/living/user)
-	SEND_SIGNAL(target, COMSIG_ATOM_RESTYLE, user, target, user.zone_selected, EXTERNAL_RESTYLE_PLANT, 6 SECONDS)
+	SEND_SIGNAL(target, COMSIG_ATOM_RESTYLE, user, target, user.zone_selected, EXTERNAL_RESTYLE_PLANT, 6 SECONDS)*/ //BUBBERSTATION EDIT - Restyling doesn't work, so the rightclick is being co-opted for podpeople cloning.
+
 
 /obj/item/geneshears
 	name = "Botanogenetic Plant Shears"

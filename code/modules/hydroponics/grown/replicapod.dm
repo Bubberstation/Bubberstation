@@ -55,6 +55,9 @@
 	var/factions
 	var/list/quirks
 	var/sampleDNA
+	var/originspecies//BUBBER EDIT - For podperson appearance restoration
+	var/list/mutation_index
+	var/list/mutant_bodyparts //END BUBBER EDIT
 	var/contains_sample = FALSE
 	var/being_harvested = FALSE
 
@@ -201,8 +204,17 @@
 
 	for(var/V in quirks)
 		new V(podman)
-	podman.hardset_dna(null, null, null, podman.real_name, blood_type, new /datum/species/pod, features) // Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
-	podman.set_cloned_appearance()
+	if(originspecies && istype(originspecies, /datum/species/pod))// BUBBER EDIT - Podpeople don't get scrambled
+		podman.hardset_dna(sampleDNA, mutation_index, null, realName, blood_type, new /datum/species/pod, features)
+		podman.client?.prefs?.apply_prefs_to(podman, icon_updates = TRUE, visuals_only = TRUE)
+		log_game("[key_name(podman)] has been fully cloned in a Replica Pod at [loc_name(src)]")
+		if(podman.dna.real_name != realName)
+			message_admins("[key_name_admin(podman)]'s name does not match the name assigned to the graft they were cloned from. \
+			Original Name: [realName], New Name: [podman.dna.real_name]. \
+			This may be a false positive from inserting the brain of a non-pod into a podperson's corpse before taking a cutting.")
+	else
+		podman.hardset_dna(null, null, null, podman.real_name, blood_type, new /datum/species/pod, features) // Discard SE's and UI's, podman cloning is inaccurate for non-pods, and always makes them a podman.
+		podman.set_cloned_appearance()//END BUBBER EDIT
 
 	//Get the most plentiful reagent, if there's none: get water
 	var/list/most_plentiful_reagent = list(/datum/reagent/water = 0)

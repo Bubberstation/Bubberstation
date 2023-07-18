@@ -986,6 +986,33 @@
 			to_chat(user, "<span class='warning'>You integrate the grafted plant limb onto [myseed.plantname], but it does not accept the [snip.stored_trait.get_name()] trait from the [snip].</span>")
 		qdel(snip)
 		return
+	else if(istype(O, /obj/item/graft_podperson)) //BUBBERSTATION EDIT - For podperson replica cloning
+		if(myseed && myseed.species == "replicapod")
+			var/obj/item/seeds/replicapod/pod = myseed
+			var/obj/item/graft_podperson/graft = O
+			if(pod.ckey)//So we don't overwrite someone's pod with a new person
+				to_chat(user, span_warning("This pod already has a replica growing inside!"))
+				return FALSE
+			else
+				pod.ckey = graft.ckey
+				pod.realName = graft.realName
+				pod.mind = graft.mind
+				pod.blood_gender = graft.blood_gender
+				pod.blood_type = graft.blood_type
+				pod.features = graft.features
+				pod.factions = graft.factions
+				pod.quirks = graft.quirks
+				pod.sampleDNA = graft.sampleDNA
+				pod.originspecies = graft.originspecies //BUBBER EDIT - For podperson appearance restoration
+				pod.mutation_index = graft.mutation_index
+				pod.mutant_bodyparts = graft.mutant_bodyparts
+				to_chat(user, "<span class='notice'>You carefully integrate the [graft.name] onto [myseed.plantname], and it begins growing into a replica of them.</span>")
+				qdel(graft)
+			return
+
+		else
+			to_chat(user, span_warning("The cutting cant integrate with anything but a replica pod!"))
+			return FALSE //END BUBBERSTATION EDIT
 
 	else if(istype(O, /obj/item/storage/bag/plants))
 		attack_hand(user)
