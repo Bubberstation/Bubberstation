@@ -53,7 +53,7 @@ jobs:
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           cargo install ripgrep --features pcre2
           tools/bootstrap/python -c ''
-      - name: Misc Checks
+      - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh tgstation.dme
           bash tools/ci/check_changelogs.sh
@@ -66,14 +66,11 @@ jobs:
           tools/bootstrap/python -m define_sanity.check
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
-      - name: Output Annotations
-        id: linter
-        run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1    
-      - name: Process Annotations
+      - name: Annotate Lints
         uses: yogstation13/DreamAnnotate@v2
-        if: always()
-        with: 
+        if: success() || failure()
+        with:
           outputFile: output-annotations.txt
 
   compile_all_maps:
