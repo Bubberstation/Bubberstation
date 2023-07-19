@@ -197,29 +197,7 @@ const InformationSection = (props, context) => {
     </Stack.Item>
   );
 };
-// BUBBER EDIT BEGIN
-const ObjectivePrintout = (props, context) => {
-  const { data } = useBackend<Info>(context);
-  const { objectives } = data;
-  return (
-    <Stack.Item>
-      <Stack vertical fill>
-        <Stack.Item bold>
-          In order to ascend, you have these tasks to fulfill:
-        </Stack.Item>
-        <Stack.Item>
-          {(!objectives && 'None!') ||
-            objectives.map((objective) => (
-              <Stack.Item key={objective.count}>
-                {objective.count}: {objective.explanation}
-              </Stack.Item>
-            ))}
-        </Stack.Item>
-      </Stack>
-    </Stack.Item>
-  );
-};
-// BUBBER EDIT END
+
 const ResearchedKnowledge = (props, context) => {
   const { data } = useBackend<KnowledgeInfo>(context);
   const { learnedKnowledge } = data;
