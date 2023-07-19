@@ -46,11 +46,7 @@ GLOBAL_LIST_EMPTY(scream_types)
 
 /datum/scream_type/lizard
 	name = "Lizard Scream"
-	male_screamsounds = list(
-		'sound/voice/lizard/lizard_scream_1.ogg',
-		'sound/voice/lizard/lizard_scream_2.ogg',
-		'sound/voice/lizard/lizard_scream_3.ogg',
-	)
+	male_screamsounds = list('sound/voice/lizard/lizard_scream_1.ogg', 'sound/voice/lizard/lizard_scream_3.ogg') // BUBBER EDIT REVERT
 	female_screamsounds = null
 
 /datum/scream_type/lizard2
