@@ -60,6 +60,9 @@
 	name = "AI Upload Board"
 	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."
 	id = "aiupload"
+	//Bubber Station Edit Start
+	build_type = IMPRINTER
+	//Bubber Station Edit End
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/computer/aiupload
 	category = list(
@@ -71,6 +74,9 @@
 	name = "Cyborg Upload Board"
 	desc = "Allows for the construction of circuit boards used to build a Cyborg Upload Console."
 	id = "borgupload"
+	//Bubber Station Edit Start
+	build_type = IMPRINTER
+	//Bubber Station Edit End
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =SHEET_MATERIAL_AMOUNT, /datum/material/diamond =SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/computer/borgupload
 	category = list(

@@ -6,6 +6,9 @@
 	name = "AI Core Board"
 	desc = "Allows for the construction of circuit boards used to build new AI cores."
 	id = "aicore"
+	//Bubber Station Edit Start
+	build_type = IMPRINTER
+	//Bubber Station Edit End
 	build_path = /obj/item/circuitboard/aicore
 	category = list(
 		RND_CATEGORY_AI + RND_SUBCATEGORY_AI_CORE
