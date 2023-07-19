@@ -1,4 +1,4 @@
-/obj/item/codeword_granter
+/* /obj/item/codeword_granter
 	name = "codeword manual"
 	desc = "A black manual with a red S lovingly inscribed on the cover by only the finest of presses from a factory."
 	icon = 'modular_zubbers/code/modules/opposing_force/icons/items.dmi'
@@ -83,3 +83,4 @@
 
 	var/obj/item/clockwork/clockwork_slab/slab = new
 	user.put_in_hands(slab, FALSE)
+ */
