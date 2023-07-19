@@ -1,4 +1,4 @@
-datum/loadout_item/pocket_items/donator/secateurs/old//Dono item for .burningcold
+/datum/loadout_item/pocket_items/donator/secateurs/old//Dono item for .burningcold
 	name = "Old Secateurs"
 	item_path = /obj/item/secateurs/old
 
