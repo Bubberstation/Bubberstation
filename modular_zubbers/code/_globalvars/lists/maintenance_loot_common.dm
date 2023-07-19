@@ -883,9 +883,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/box/foodpack/nt = 25,
 		/obj/item/storage/box/foodpack/nt/burger = 50, // I am biased
 		/obj/item/storage/box/foodpack/nt/chicken_sammy = 25,
-		/obj/item/storage/box/foodpack/tiziria = 25,
-		/obj/item/storage/box/foodpack/tiziria/roll = 25,
-		/obj/item/storage/box/foodpack/tiziria/stir_fry = 25,
 		/obj/item/storage/box/foodpack/yangyu = 25,
 		/obj/item/storage/box/foodpack/yangyu/beef_rice = 25,
 		/obj/item/storage/box/foodpack/yangyu/sushi = 25,

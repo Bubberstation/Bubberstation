@@ -21,7 +21,6 @@ GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when s
 	/obj/item/trash/empty_food_tray = 25,
 	/obj/item/trash/empty_side_pack/moth = 25,
 	/obj/item/trash/empty_side_pack/nt = 25,
-	/obj/item/trash/empty_side_pack/tiziria = 25,
 	/obj/item/trash/empty_side_pack/yangyu = 25,
 	/obj/item/trash/energybar = 50,
 	/obj/item/trash/flare = 100,

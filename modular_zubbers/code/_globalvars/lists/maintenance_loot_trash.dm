@@ -86,7 +86,6 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/trash/empty_food_tray = 25,
 		/obj/item/trash/empty_side_pack/moth = 25,
 		/obj/item/trash/empty_side_pack/nt = 25,
-		/obj/item/trash/empty_side_pack/tiziria = 25,
 		/obj/item/trash/empty_side_pack/yangyu = 25,
 		/obj/item/trash/energybar = 50,
 		/obj/item/trash/flare = 100,
