@@ -18,7 +18,6 @@
 #define ROLE_WIZARD "Wizard"
 // SKYRAT EDIT START
 #define ROLE_ASSAULT_OPERATIVE "Assault Operative"
-#define ROLE_OPFOR_CANDIDATE "OPFOR Candidate"
 // SKYRAT EDIT END
 
 // Midround roles
