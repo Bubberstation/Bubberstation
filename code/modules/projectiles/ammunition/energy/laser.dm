@@ -147,3 +147,6 @@
 /obj/item/ammo_casing/laser/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state]"
+
+/obj/item/ammo_casing/energy/laser/blueshield // BUBBER ADDITION
+	e_cost = 100
