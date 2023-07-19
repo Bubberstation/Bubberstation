@@ -27,7 +27,7 @@
 #define FOOTSTEP_MOB_SLIME "footstep_slime"
 #define FOOTSTEP_OBJ_MACHINE "footstep_machine"
 #define FOOTSTEP_OBJ_ROBOT "footstep_robot"
-#define FOOTSTEP_MOB_SNAKE 9 // BOOB EDIT
+#define FOOTSTEP_MOB_SNAKE 9 // BUBBER EDIT
 
 //priority defines for the footstep_override element
 #define STEP_SOUND_NO_PRIORITY 0

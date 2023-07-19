@@ -11,7 +11,7 @@
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/projectile_dampener,
-		/obj/item/mod/module/status_readout/generic,
+		/obj/item/mod/module/status_readout,
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
