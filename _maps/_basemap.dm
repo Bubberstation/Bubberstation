@@ -20,6 +20,7 @@
 		// SKYRAT EDIT END
 		// BUBBER EDIT ADDITION START
 		#include "map_files\biodome\biodome.dmm"
+		#include "map_files\Fuckstation\fuckstation.dmm"
 		// BUBBER EDIT ADDITION END
 
 		#ifdef CIBUILDING
