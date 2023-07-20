@@ -1,17 +1,14 @@
 /datum/species/abductor
 	name = "Abductor"
 	id = SPECIES_ABDUCTOR
-	sexes = FALSE
-	species_traits = list(
-		NOEYESPRITES,
-		NO_UNDERWEAR,
-	)
+	sexes = TRUE // Bubber edit
 	inherent_traits = list(
+		TRAIT_NO_UNDERWEAR,
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_NOBLOOD,
-		TRAIT_NO_DEBRAIN_OVERLAY,
+		TRAIT_CHUNKYFINGERS_IGNORE_BATON,
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/abductor
 	mutantstomach = null

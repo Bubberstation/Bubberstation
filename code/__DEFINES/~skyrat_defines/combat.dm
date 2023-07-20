@@ -1,4 +1,4 @@
-#define PUNCH_STAMINA_MULTIPLIER 2.6
+#define PUNCH_STAMINA_MULTIPLIER 1.5 //BUBBER EDIT - original 2.6
 
 //Stamina threshold from which resisting a grab becomes hard
 #define STAMINA_THRESHOLD_HARD_RESIST 80
@@ -17,7 +17,10 @@
 #define CLICK_CD_RANGE_TIRED 5 //#define CLICK_CD_RANGE 4, so 25% slower
 
 //Grab breakout odds
-#define OVERSIZED_GRAB_RESIST_BONUS 10 /// For those with the oversized trait, they get this.
+#define OVERSIZED_GRAB_RESIST_BONUS 0 // BUBBER EDIT- With this oversized are just as good at grabs as anyone else.
+
+//Grab breakout bonus for akulas when at 10+ wet_stacks
+#define AKULA_GRAB_RESIST_BONUS 10
 
 // Damage modifiers
 #define OVERSIZED_HARM_DAMAGE_BONUS 5 /// Those with the oversized trait do 5 more damage.

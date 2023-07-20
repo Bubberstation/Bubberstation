@@ -188,6 +188,8 @@
 /// BLOODCULT
 	//Special, for anything that's basically internal
 #define ACCESS_BLOODCULT "bloodcult"
+/// HUNTERS
+#define ACCESS_HUNTER "hunter"
 
 /// - - - END ACCESS IDS - - -
 
@@ -497,6 +499,7 @@
 	ACCESS_MINING_STATION, \
 	ACCESS_QM, \
 	ACCESS_SHIPPING, \
+	ACCESS_BLACKSMITH, \
 	ACCESS_VAULT, \
 )
 /// Name for the Command region.

@@ -68,10 +68,6 @@
 	mode = AREA_SPAWN_MODE_MOUNT_WALL
 
 // Job spawners
-/datum/area_spawn/secmed_landmark
-	target_areas = list(/area/station/security/medical, /area/station/security/brig)
-	desired_atom = /obj/effect/landmark/start/security_medic
-
 /datum/area_spawn/barber_landmark
 	target_areas = list(/area/station/service/salon, /area/station/hallway/secondary/service)
 	desired_atom = /obj/effect/landmark/start/barber
