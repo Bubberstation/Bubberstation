@@ -25,11 +25,11 @@
 	icon_state = "nobl_plush"
 	squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
 
-/obj/item/toy/plush/doubleeared_synth
+/obj/item/toy/plush/chirp_plush
 	name = "Chirping Synth Plushie"
 	desc = "It's warm to the touch."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-	icon_state = "doubleeared_synth"
+	icon_state = "chirp_plush"
 	attack_verb_continuous = list("chirps", "chimes")
 	attack_verb_simple = list("chirps")
 	squeak_override = list('sound/machines/beep.ogg' = 1)
