@@ -74,6 +74,8 @@
 		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
 	)
 
+	if(is_station_level(z))
+		GLOB.station_windows.Add(src)
 	if (flags_1 & ON_BORDER_1)
 		AddElement(/datum/element/connect_loc, loc_connections)
 
@@ -386,6 +388,7 @@
 	set_density(FALSE)
 	air_update_turf(TRUE, FALSE)
 	update_nearby_icons()
+	GLOB.station_windows.Remove(src)
 	return ..()
 
 /obj/structure/window/Move()
