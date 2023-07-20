@@ -29,7 +29,7 @@
 	name = "Chirping Synth Plushie"
 	desc = "It's warm to the touch."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-	icon_state = "chirp_plush"
+	icon_state = "chirp_plush"//Sprited by Kan3/kaylexi
 	attack_verb_continuous = list("chirps", "chimes")
 	attack_verb_simple = list("chirps")
 	squeak_override = list('sound/machines/beep.ogg' = 1)
