@@ -99,6 +99,7 @@
 	max_occurrences = 1 //should only ever happen once
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
+	description = "A cortical borer has appeared on station. It will also attempt to produce eggs, and will attempt to gather willing hosts and learn chemicals through the blood."
 
 /datum/round_event/ghost_role/cortical_borer
 	announce_when = 400
@@ -111,7 +112,7 @@
 
 /datum/round_event/ghost_role/cortical_borer/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components/unary/vent_pump))
 		if(QDELETED(temp_vent))
 			continue
 		if(is_station_level(temp_vent.loc.z) && !temp_vent.welded)
@@ -161,7 +162,7 @@
 	var/list/vents = list()
 
 /datum/dynamic_ruleset/midround/from_ghosts/cortical_borer/execute()
-	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components/unary/vent_pump))
 		if(QDELETED(temp_vent))
 			continue
 		if(is_station_level(temp_vent.loc.z) && !temp_vent.welded)

@@ -13,8 +13,6 @@
 
 	///Tightness of the ropes can be low, medium and hard. This var works as multiplier for arousal and pleasure recieved while wearing this item
 	var/tightness = SHIBARI_TIGHTNESS_LOW
-	///Rope amount yielded from this apparel
-	var/rope_amount = 1
 
 	///should this clothing item use the emissive system
 	var/glow = FALSE
@@ -151,7 +149,7 @@
 //stuff to apply processing on equip and add mood event for perverts
 /obj/item/clothing/under/shibari/groin/equipped(mob/living/user, slot)
 	var/mob/living/carbon/human/hooman = user
-	slowdown = hooman?.dna?.species?.bodytype & BODYTYPE_TAUR ? 4 : 0
+	slowdown = hooman?.bodytype & BODYTYPE_TAUR ? 4 : 0
 	return..()
 
 //processing stuff
@@ -169,9 +167,8 @@
 
 /obj/item/clothing/under/shibari/full
 	name = "shibari fullbody ropes"
-	desc = "Bondage ropes that covers whole body"
+	desc = "Bondage ropes that cover the whole body."
 	icon_state = "shibari_fullbody"
-	rope_amount = 2
 
 	greyscale_config = /datum/greyscale_config/shibari_clothes/fullbody
 	greyscale_config_worn = /datum/greyscale_config/shibari_worn/fullbody

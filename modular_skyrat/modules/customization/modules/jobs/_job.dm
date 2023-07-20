@@ -60,9 +60,6 @@
 /datum/job/warden
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 
-/datum/job/security_medic
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-
 /datum/job/blueshield
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 
@@ -117,25 +114,83 @@
 /datum/job/prisoner
 	required_languages = null
 
-/datum/job/station_engineer
-	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
+// START OF BUBBERSTATION ADDITION
 
-/datum/job/atmospheric_technician
-	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
+/datum/job/mime
+	required_languages = null
 
-/datum/job/orderly
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
-/datum/job/science_guard
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
-/datum/job/customs_agent
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+/datum/job/clown
+	required_languages = null
 
 /datum/job/bouncer
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
+/datum/job/barber
+	required_languages = null
+
+/datum/job/bartender
+	required_languages = null
+
+/datum/job/chaplain
+	required_languages = null
+
+// END OF BUBBERSTATION ADDITION
+
+// ENGINEERING (BUBBERSTATION ADDITION)
+
+/datum/job/station_engineer
+	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
+	required_languages = null // BUBBERSTATION ADDITION
+
+/datum/job/atmospheric_technician
+	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
+	required_languages = null // BUBBERSTATION ADDITION
+
 /datum/job/engineering_guard
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+// CARGO (BUBBERSTATION ADDITION)
+/datum/job/cargo_technician
+	required_languages = null
+
+/datum/job/shaft_miner
+	required_languages = null
+
+/datum/job/blacksmith
+	required_languages = null
+
+/datum/job/customs_agent
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+// MEDICAL (BUBBERSTATION ADDITION)
+
+/datum/job/chemist
+	required_languages = null
+
+/datum/job/doctor
+	required_languages = null
+
+/datum/job/paramedic
+	required_languages = null
+
+/datum/job/geneticist
+	required_languages = null
+
+/datum/job/virologist
+	required_languages = null // damara dent-head
+
+/datum/job/orderly
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+// SCIENCE (BUBBERSTATION ADDITION)
+
+/datum/job/scientist
+	required_languages = null
+
+/datum/job/roboticist
+	required_languages = null
+
+/datum/job/science_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/job/proc/has_required_languages(datum/preferences/pref)

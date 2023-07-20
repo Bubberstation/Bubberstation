@@ -33,6 +33,11 @@
 	icon_state = "hair_glamourh"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+/datum/sprite_accessory/hair/royal_curls
+	name = "Royal Curls"
+	icon_state = "royal_curls"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+
 //Podpeople hair
 /datum/sprite_accessory/hair/podmale
 	name = "Pod Male"

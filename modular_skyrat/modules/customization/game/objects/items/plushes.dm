@@ -635,3 +635,22 @@
 	attack_verb_continuous = list("blushes", "hugs", "whips")
 	attack_verb_simple = list("blush", "hug", "whip")
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)
+
+//Donation reward for Kitsun
+/obj/item/toy/plush/skyrat/jecca
+	name = "sexy snoodle plushie"
+	desc = "For some reason, this plushie is rather shiny, with glistening, glittering scales, and its ruby colored eyes seem to be rather enticing and full of mischievous, lewd thoughts behind them."
+	icon_state = "plushie_jecca"
+	attack_verb_continuous = list("sighs")
+	attack_verb_simple = list("sigh")
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/female/female_sigh.ogg' = 1)
+	gender = FEMALE
+
+//Donation reward for BriareosBlue
+/obj/item/toy/plush/skyrat/courier_synth
+	name = "courier synth plushie"
+	desc = "This synth plushie looks about ready to deliver hugs and beeps straight to the heart! The tag seems to have an advertisement for a delivery company on it..."
+	icon_state = "plushie_courier"
+	attack_verb_continuous = list("delivers", "export scans", "dwoops", "bwuhs", "stamps")
+	attack_verb_simple = list("deliver", "export scan", "dwoop", "bwuh", "stamp")
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)

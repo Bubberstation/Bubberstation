@@ -103,7 +103,7 @@
 	var/mob/user = get(loc, /mob)
 	if(!istype(user))
 		return
-	if(user.mind && HAS_TRAIT(user.mind, TRAIT_CANNOT_OPEN_PRESENTS))
+	if(HAS_MIND_TRAIT(user, TRAIT_CANNOT_OPEN_PRESENTS))
 		var/turf/floor = get_turf(src)
 		var/obj/item/thing = new /obj/item/a_gift/anything(floor)
 		if(!atom_storage.attempt_insert(thing, user, override = TRUE))
@@ -377,12 +377,8 @@
 	atom_storage.set_holdable(cant_hold_list = list(/obj/item/storage/backpack/satchel/flat)) //muh recursive backpacks)
 
 /obj/item/storage/backpack/satchel/flat/PopulateContents()
-	var/datum/supply_pack/imports/contraband/smuggled_goods = new
-	for(var/items in 1 to 2)
-		var/smuggled_goods_type = pick(smuggled_goods.contains)
-		new smuggled_goods_type(src)
-
-	qdel(smuggled_goods)
+	for(var/items in 1 to 4)
+		new /obj/effect/spawner/random/contraband(src)
 
 /obj/item/storage/backpack/satchel/flat/with_tools/PopulateContents()
 	new /obj/item/stack/tile/iron/base(src)
@@ -594,19 +590,20 @@
 	inhand_icon_state = "duffel-syndiemed"
 
 /obj/item/storage/backpack/duffelbag/syndie/surgery/PopulateContents()
-	new /obj/item/scalpel(src)
-	new /obj/item/hemostat(src)
-	new /obj/item/retractor(src)
-	new /obj/item/circular_saw(src)
-	new /obj/item/bonesetter(src)
-	new /obj/item/surgicaldrill(src)
-	new /obj/item/cautery(src)
+	new /obj/item/scalpel/advanced(src)
+	new /obj/item/retractor/advanced(src)
+	new /obj/item/cautery/advanced(src)
 	new /obj/item/surgical_drapes(src)
+	new /obj/item/reagent_containers/medigel/sterilizine(src)
+	new /obj/item/surgicaldrill(src)
+	new /obj/item/bonesetter(src)
+	new /obj/item/blood_filter(src)
+	new /obj/item/stack/medical/bone_gel(src)
+	new /obj/item/stack/sticky_tape/surgical(src)
+	new /obj/item/roller(src)
 	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/mmi/syndie(src)
-	new /obj/item/blood_filter(src)
-	new /obj/item/stack/medical/bone_gel(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo
 	name = "ammunition duffel bag"

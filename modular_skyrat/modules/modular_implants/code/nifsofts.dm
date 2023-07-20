@@ -68,18 +68,21 @@
 	if(active)
 		activate()
 
-	if(!parent_nif)
-		return ..()
+	linked_mob = null
 
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif
-	installed_nif.loaded_nifsofts.Remove(src)
-	parent_nif = null
+	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	if(installed_nif)
+		installed_nif.loaded_nifsofts.Remove(src)
 
 	return ..()
 
 /// Activates the parent NIFSoft
 /datum/nifsoft/proc/activate()
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif
+	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+
+	if(!installed_nif)
+		stack_trace("NIFSoft [src] activated on a null parent!") // NIFSoft is -really- broken
+		return FALSE
 
 	if(installed_nif.broken)
 		installed_nif.balloon_alert(installed_nif.linked_mob, "your NIF is broken")
@@ -104,14 +107,16 @@
 		active = TRUE
 
 	if(cooldown)
-		addtimer(CALLBACK(src, .proc/remove_cooldown), cooldown_duration)
+		addtimer(CALLBACK(src, PROC_REF(remove_cooldown)), cooldown_duration)
 		on_cooldown = TRUE
 
 	return TRUE
 
 ///Refunds the activation cost of a NIFSoft.
 /datum/nifsoft/proc/refund_activation_cost()
-	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif
+	var/obj/item/organ/internal/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
+	if(!installed_nif)
+		return
 	installed_nif.change_power_level(-activation_cost)
 
 ///Removes the cooldown from a NIFSoft
@@ -134,7 +139,7 @@
 		scrambled_name += pick(random_characters)
 
 	program_name = scrambled_name
-	addtimer(CALLBACK(src, .proc/restore_name), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(restore_name)), 60 SECONDS)
 
 /datum/nifsoft/ui_state(mob/user)
 	return GLOB.conscious_state

@@ -1,4 +1,5 @@
 /obj/item/clothing/suit/armor
+	name = "armor"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	allowed = null
@@ -68,6 +69,16 @@
 	acid = 50
 	wound = 20
 
+/datum/armor/pmc
+	melee = 40
+	bullet = 50
+	laser = 60
+	energy = 50
+	bomb = 50
+	bio = 100
+	acid = 50
+	wound = 20
+
 /obj/item/clothing/suit/armor/vest/marine/security
 	name = "large tactical armor vest"
 	icon_state = "marine_security"
@@ -80,6 +91,13 @@
 	name = "tactical medic's armor vest"
 	icon_state = "marine_medic"
 	body_parts_covered = CHEST|GROIN
+
+/obj/item/clothing/suit/armor/vest/marine/pmc
+	desc = "A set of the finest mass produced, stamped plasteel armor plates, for an all-around door-kicking and ass-smashing."
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	clothing_flags = THICKMATERIAL
+	armor_type = /datum/armor/pmc
 
 /obj/item/clothing/suit/armor/vest/old
 	name = "degrading armor vest"
@@ -112,47 +130,11 @@
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
-	// SKYRAT EDIT ADDITION START
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Greatcoat" = list(
-			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "hos",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "hos"
-		),
-		"Trenchcoat" = list(
-			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "hostrench",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "hostrench"
-		),
-		"Navy Blue Jacket" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "hosbluejacket",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "hosbluejacket"
-		),
-		"Trenchcloak" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "trenchcloak",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "trenchcloak"
-		),
-		"Black" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "hos_black",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "hos_black",
-			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
-		)
-	)
-	/// SKYRAT EDIT ADDITION END
 
 /datum/armor/armor_hos
-	melee = 30
-	bullet = 30
-	laser = 30
+	melee = 40 // BUBBER EDIT - OG: 30
+	bullet = 35 // BUBBER EDIT - OG: 30
+	laser = 40 // BUBBER EDIT - OG: 30
 	energy = 40
 	bomb = 25
 	fire = 70
@@ -179,7 +161,6 @@
 	icon_state = "hosformal"
 	inhand_icon_state = "hostrench"
 	body_parts_covered = CHEST|GROIN|ARMS
-	current_skin = "hosformal"	//SKYRAT EDIT ADDITION - prevents reskinning (but not toggling!)
 
 /obj/item/clothing/suit/armor/hos/hos_formal/Initialize(mapload)
 	. = ..()
@@ -206,15 +187,15 @@
 			RESKIN_WORN_ICON_STATE = "warden_alt"
 		),
 		"Standard" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
 			RESKIN_ICON_STATE = "vest_warden",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "vest_warden",
 		),
 		"Peacekeeper" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
+			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
 			RESKIN_ICON_STATE = "peacekeeper_trench_warden",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
+			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
 			RESKIN_WORN_ICON_STATE = "peacekeeper_trench_warden",
 			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
 		)
@@ -622,3 +603,23 @@
 	inhand_icon_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dog_fashion = null
+
+/obj/item/clothing/suit/armor/militia
+	name = "station defender's coat"
+	desc = "A well worn uniform used by militia across the frontier, it's thick padding useful for cushioning blows."
+	icon_state = "militia"
+	inhand_icon_state = "b_suit"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	armor_type = /datum/armor/coat_militia
+
+/datum/armor/coat_militia
+	melee = 40
+	bullet = 40
+	laser = 30
+	energy = 25
+	bomb = 50
+	fire = 40
+	acid = 50
+	wound = 30

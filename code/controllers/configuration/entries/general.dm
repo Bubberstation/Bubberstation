@@ -162,6 +162,10 @@
 /// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
 /datum/config_entry/flag/log_timers_on_bucket_reset
 
+/// Log human readable versions of json log entries
+/datum/config_entry/flag/log_as_human_readable
+	default = TRUE
+
 /// allows admins with relevant permissions to have their own ooc colour
 /datum/config_entry/flag/allow_admin_ooccolor
 
@@ -259,6 +263,9 @@
 /datum/config_entry/string/hostedby
 
 /datum/config_entry/flag/norespawn
+
+/datum/config_entry/number/respawn_delay
+	default = 0
 
 /datum/config_entry/flag/usewhitelist
 
@@ -428,8 +435,6 @@
 	min_val = 0
 
 /datum/config_entry/flag/irc_first_connection_alert // do we notify the irc channel when somebody is connecting for the first time?
-
-/datum/config_entry/flag/check_randomizer
 
 /datum/config_entry/string/ipintel_email
 

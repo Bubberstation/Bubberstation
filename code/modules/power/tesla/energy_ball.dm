@@ -14,7 +14,7 @@
 /obj/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
-	icon = 'icons/obj/engine/energy_ball.dmi'
+	icon = 'icons/obj/machines/engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	anchored = TRUE
 	appearance_flags = LONG_GLIDE
@@ -237,15 +237,6 @@
 		/obj/structure/lattice = FALSE,
 		/obj/structure/grille = FALSE,
 		/obj/structure/frame/machine = FALSE,
-		//SKYRAT EDIT ADDITION BEGIN
-		/obj/machinery/particle_accelerator/control_box = FALSE,
-		/obj/structure/particle_accelerator/fuel_chamber = FALSE,
-		/obj/structure/particle_accelerator/particle_emitter/center = FALSE,
-		/obj/structure/particle_accelerator/particle_emitter/left = FALSE,
-		/obj/structure/particle_accelerator/particle_emitter/right = FALSE,
-		/obj/structure/particle_accelerator/power_box = FALSE,
-		/obj/structure/particle_accelerator/end_cap = FALSE,
-		//SKYRAT EDIT END
 	))
 
 	//Ok so we are making an assumption here. We assume that view() still calculates from the center out.

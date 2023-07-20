@@ -136,6 +136,7 @@
 /obj/effect/visible_heretic_influence/proc/show_presence()
 	animate(src, alpha = 255, time = 15 SECONDS)
 
+/* Bubberstation change: hugboxes heretic stuff
 /obj/effect/visible_heretic_influence/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
@@ -182,6 +183,7 @@
 	var/datum/effect_system/reagents_explosion/explosion = new()
 	explosion.set_up(1, get_turf(human_user), TRUE, 0)
 	explosion.start(src)
+*/
 
 /obj/effect/visible_heretic_influence/examine(mob/user)
 	. = ..()
@@ -191,7 +193,7 @@
 	var/mob/living/carbon/human/human_user = user
 	to_chat(human_user, span_userdanger("Your mind burns as you stare at the tear!"))
 	human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
-	human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
+	// human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) Bubberstation change: Hugboxes heretics.
 
 /obj/effect/heretic_influence
 	name = "reality smash"
@@ -257,16 +259,13 @@
 
 	being_drained = TRUE
 	balloon_alert(user, "draining influence...")
-	RegisterSignal(user, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 	if(!do_after(user, 10 SECONDS, src))
 		being_drained = FALSE
 		balloon_alert(user, "interrupted!")
-		UnregisterSignal(user, COMSIG_PARENT_EXAMINE)
 		return
 
 	// We don't need to set being_drained back since we delete after anyways
-	UnregisterSignal(user, COMSIG_PARENT_EXAMINE)
 	balloon_alert(user, "influence drained")
 
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
@@ -288,19 +287,6 @@
 
 	GLOB.reality_smash_track.num_drained++
 	qdel(src)
-
-/*
- * Signal proc for [COMSIG_PARENT_EXAMINE], registered on the user draining the influence.
- *
- * Gives a chance for examiners to see that the heretic is interacting with an infuence.
- */
-/obj/effect/heretic_influence/proc/on_examine(atom/source, mob/user, list/examine_list)
-	SIGNAL_HANDLER
-
-	if(prob(50))
-		return
-
-	examine_list += span_warning("[source]'s hand seems to be glowing a [span_hypnophrase("strange purple")]...")
 
 /*
  * Add a mind to the list of tracked minds,

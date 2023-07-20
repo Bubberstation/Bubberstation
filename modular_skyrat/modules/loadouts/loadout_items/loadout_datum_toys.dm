@@ -19,6 +19,10 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 	name = "Carp Plushie"
 	item_path = /obj/item/toy/plush/carpplushie
 
+/datum/loadout_item/toys/shark
+	name = "Shark Plushie"
+	item_path = /obj/item/toy/plush/shark
+
 /datum/loadout_item/toys/lizard_greyscale
 	name = "Greyscale Lizard Plushie"
 	item_path = /obj/item/toy/plush/lizard_plushie
@@ -256,6 +260,14 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 /datum/loadout_item/toys/adventurous_synth
 	name = "Adventurous Synth Plushie"
 	item_path = /obj/item/toy/plush/skyrat/plushie_synthia
+
+/datum/loadout_item/toys/jecca
+	name = "Sexy Snoodle Plushie"
+	item_path = /obj/item/toy/plush/skyrat/jecca
+
+/datum/loadout_item/toys/courier_synth
+	name = "Courier Synth Plushie"
+	item_path = /obj/item/toy/plush/skyrat/courier_synth
 
 /*
 *	CARDS
