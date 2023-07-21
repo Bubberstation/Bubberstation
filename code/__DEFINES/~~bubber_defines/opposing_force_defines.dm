@@ -1,1 +1,0 @@
-#define OPFOR_EQUIPMENT_CATEGORY_ANTAGONIST_POWERS "Antagonist Powers"
