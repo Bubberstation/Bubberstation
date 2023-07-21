@@ -9736,6 +9736,12 @@
 /obj/structure/flora/grass/jungle/a/style_2,
 /turf/open/misc/beach/sand,
 /area/station/maintenance/radshelter/civil)
+"dsP" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/openspace,
+/area/station/security/brig)
 "dsR" = (
 /obj/structure/spider/stickyweb,
 /turf/open/misc/asteroid/airless,
@@ -24152,6 +24158,7 @@
 /obj/machinery/camera/directional/east{
 	c_tag = "Security - Prison Lobby"
 	},
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/security/brig)
 "iAH" = (
@@ -33160,7 +33167,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/turf/open/floor/fakebasalt,
+/turf/open/floor/carpet/blue,
 /area/station/security/brig/entrance)
 "lCx" = (
 /obj/machinery/door/airlock/atmos/glass{
@@ -50599,7 +50606,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/turf/open/floor/fakebasalt,
+/turf/open/floor/carpet/blue,
 /area/station/security/brig/entrance)
 "rzW" = (
 /obj/structure/stairs/wood{
@@ -58971,6 +58978,7 @@
 /obj/effect/turf_decal/trimline/red/end{
 	dir = 8
 	},
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/security/brig)
 "uCx" = (
@@ -59986,7 +59994,7 @@
 /obj/effect/turf_decal/trimline/red/warning{
 	dir = 8
 	},
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/security/brig)
 "uWr" = (
@@ -177402,7 +177410,7 @@ rJk
 xzG
 mbH
 iwf
-rWr
+dsP
 fpE
 tgi
 oKs
