@@ -9,6 +9,7 @@
  * It also has a special feature where if it is tossed at a space ninja who owns it (determined by the ninja suit), the ninja will catch the katana instead of being hit by it.
  *
  */
+ //BUBERSTATION NOTICE: See the modular bubberstation file for true values.
 /obj/item/energy_katana
 	name = "energy katana"
 	desc = "A katana infused with strong energy."
@@ -48,8 +49,8 @@
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	if(!target.density)
-		jaunt?.teleport(user, target)
+	//BUBBERSTATION CHANGE: Remove jaunt density check in favor of custom check.
+	jaunt?.teleport(user, target)
 
 /obj/item/energy_katana/equipped(mob/user, slot, initial)
 	. = ..()
