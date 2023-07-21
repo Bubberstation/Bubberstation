@@ -66,8 +66,10 @@ jobs:
           tools/bootstrap/python -m define_sanity.check
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
+      - name: Output Annotations
+        run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1    
-      - name: Annotate Lints
+      - name: Process Annotations
         uses: yogstation13/DreamAnnotate@v2
         if: success() || failure()
         with:
