@@ -72,7 +72,7 @@
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_LITERATE,
 		TRAIT_DRINKS_BLOOD,
-		TRAIT_USES_SKINTONES,
+		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_HUMANOID | MOB_ORGANIC
 	default_mutant_bodyparts = list(
