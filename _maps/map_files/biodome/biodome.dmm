@@ -15777,6 +15777,18 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
+"fwE" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "rdoffice";
+	name = "Research Director's Shutters"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "rdoffice";
+	name = "Research Director's Shutters"
+	},
+/turf/open/floor/plating,
+/area/station/command/heads_quarters/rd)
 "fwG" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Chapel"
@@ -27891,7 +27903,7 @@
 "jUo" = (
 /obj/machinery/camera/motion/directional/south{
 	c_tag = "AI Minisat - External Fore";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /turf/open/space/openspace,
 /area/space)
@@ -30958,7 +30970,7 @@
 	},
 /obj/machinery/camera/directional/north{
 	c_tag = "AI Minisat - Tube Station";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /turf/open/floor/plating,
 /area/station/ai_monitored/turret_protected/aisat/foyer)
@@ -34473,7 +34485,7 @@
 "lYZ" = (
 /obj/machinery/camera/directional/east{
 	c_tag = "AI Minisat - Foyer";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -36176,7 +36188,7 @@
 "mCS" = (
 /obj/machinery/camera/motion/directional/west{
 	c_tag = "AI Minisat - Upper External Starboard";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /turf/open/floor/engine/hull/reinforced,
 /area/space/nearstation)
@@ -37340,7 +37352,7 @@
 	},
 /obj/machinery/camera/directional/south{
 	c_tag = "AI Minisat - Teleporter";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /obj/machinery/button/door/directional/south{
 	id = "teledoor";
@@ -37423,7 +37435,7 @@
 /area/station/maintenance/department/science)
 "naC" = (
 /obj/machinery/camera/motion/directional/north{
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /obj/structure/cable/multilayer/multiz/cable_2,
 /turf/open/floor/engine/hull/reinforced,
@@ -42414,6 +42426,11 @@
 /obj/effect/turf_decal/tile/purple/anticorner{
 	dir = 4
 	},
+/obj/machinery/button/door/directional/east{
+	id = "rdoffice";
+	req_access = list("rd");
+	name = "Privacy Control"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "oIr" = (
@@ -44413,7 +44430,7 @@
 "puk" = (
 /obj/machinery/camera/motion/directional/east{
 	c_tag = "AI Minisat - External Port";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /turf/open/floor/engine/hull/reinforced,
 /area/space/nearstation)
@@ -54226,7 +54243,7 @@
 "sQx" = (
 /obj/machinery/camera/directional/east{
 	c_tag = "AI Minisat - Chamber Starboard";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /turf/open/floor/glass/reinforced,
 /area/station/ai_monitored/turret_protected/ai)
@@ -57813,7 +57830,7 @@
 	},
 /obj/machinery/camera/directional/south{
 	c_tag = "AI Minisat - Chargebay";
-	network = list("ss13","minisat")
+	network = list("minisat")
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
@@ -59130,6 +59147,10 @@
 /area/station/maintenance/port/lesser)
 "uES" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "rdoffice";
+	name = "Research Director's Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/rd)
 "uFc" = (
@@ -68261,6 +68282,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/station/service/theater)
+"xLa" = (
+/obj/effect/turf_decal/trimline/purple/line,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1
+	},
+/obj/machinery/button/door/directional/north{
+	id = "mechbay";
+	name = "Mech Bay Shutters Control";
+	req_access = list("robotics")
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/fore)
 "xLe" = (
 /obj/machinery/light/small/directional/east,
 /turf/open/water/jungle/biodome,
@@ -167049,7 +167082,7 @@ cSp
 cSp
 xpM
 phW
-cwW
+xLa
 kME
 uck
 pGm
@@ -169342,7 +169375,7 @@ upO
 pPe
 tcQ
 dCg
-uES
+fwE
 glS
 tQF
 fAz
