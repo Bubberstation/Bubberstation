@@ -40,7 +40,7 @@
 #define COLOR_RED_LIGHT "#FF3333"
 #define COLOR_FIRE_LIGHT_RED "#B61C1C"
 #define COLOR_MAROON "#800000"
-#define COLOR_SECURITY_RED "#CB0000"
+#define COLOR_SECURITY_RED "#3F6E9E" // bubber edit - this is blue now - OLD: #CB0000
 #define COLOR_VIVID_RED "#FF3232"
 #define COLOR_LIGHT_GRAYISH_RED "#E4C7C5"
 #define COLOR_SOFT_RED "#FA8282"
@@ -70,9 +70,9 @@
 #define COLOR_TEAL "#008080"
 #define COLOR_BLUE "#0000FF"
 #define COLOR_STRONG_BLUE "#1919c8"
-#define COLOR_CENTCOM_BLUE "#134975"
+#define COLOR_CENTCOM_BLUE "#449455" // bubber edit - this is green now - OLD: #134975
 #define COLOR_BRIGHT_BLUE "#2CB2E8"
-#define COLOR_COMMAND_BLUE "#1B67A5"
+#define COLOR_COMMAND_BLUE "#E8BB61" // bubber edit - this is gold now - OLD: #1B67A5
 #define COLOR_MEDICAL_BLUE "#5B97BC"
 #define COLOR_MODERATE_BLUE "#555CC2"
 #define COLOR_AMETHYST "#822BFF"

@@ -1,5 +1,6 @@
 // MODULAR ID TRIM ACCESS OVERRIDES GO HERE!!
 
+/* BUBBER EDIT - REMOVAL
 /datum/id_trim/job/head_of_security
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	subdepartment_color = COLOR_ASSEMBLY_BLACK // This actually is the shade of grey formerly used by the static icons! Didn't have to add anything extra! Just thought that was neat.
@@ -18,7 +19,7 @@
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
-
+*/
 
 /datum/id_trim/job/chief_engineer/New()
 	. = ..()
@@ -64,8 +65,8 @@
 /datum/id_trim/job/nanotrasen_consultant
 	assignment = "Nanotrasen Consultant"
 	trim_state = "trim_centcom"
-	department_color = COLOR_GREEN
-	subdepartment_color = COLOR_GREEN
+	department_color = COLOR_COMMAND_BLUE // BUBBER EDIT - OLD: department_color = COLOR_GREEN
+	subdepartment_color = COLOR_CENTCOM_BLUE // BUBBER EDIT - OLD: dsubdepartment_color = COLOR_GREEN
 	sechud_icon_state = SECHUD_NT_CONSULTANT
 	extra_access = list()
 	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG_ENTRANCE, ACCESS_COURT, ACCESS_WEAPONS,
@@ -80,7 +81,7 @@
 
 /datum/id_trim/job/corrections_officer
 	assignment = "Corrections Officer"
-	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_icon = 'modular_zubbers/icons/obj/card.dmi' // BUBBER EDIT - OLD: trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_corrections_officer"
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
