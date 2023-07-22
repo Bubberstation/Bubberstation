@@ -25,7 +25,7 @@
 
 /datum/id_trim/job/security_medic
 	assignment = "Security Medic"
-	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_icon = 'modular_zubbers/icons/obj/card.dmi'
 	trim_state = "trim_securitymedic"
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
