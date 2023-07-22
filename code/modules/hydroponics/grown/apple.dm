@@ -46,5 +46,4 @@
 	name = "golden apple"
 	desc = "Emblazoned upon the apple is the word 'Kallisti'."
 	icon_state = "goldapple"
-	distill_reagent = null
-	wine_power = 50
+	distill_reagent = /datum/reagent/consumable/ethanol/goldschlager //BUBBER EDIT - Addition

@@ -122,6 +122,7 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
+	distill_reagent = /datum/reagent/consumable/ethanol/hiveminderaser //BUBBER EDIT - Addition
 
 // Harebell
 /obj/item/seeds/harebell

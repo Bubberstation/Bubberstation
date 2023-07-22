@@ -96,8 +96,7 @@
 	desc = "So lubricated, you might slip through space-time."
 	icon_state = "bluespacetomato"
 	bite_consumption_mod = 3
-	distill_reagent = null
-	wine_power = 80
+	distill_reagent = /datum/reagent/consumable/ethanol/the_juice //BUBBER EDIT - Addition
 
 // Killer Tomato
 /obj/item/seeds/tomato/killer

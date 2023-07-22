@@ -105,7 +105,7 @@
 	name = "rainbow cannabis leaf"
 	desc = "Is it supposed to be glowing like that...?"
 	icon_state = "megacannabis"
-	wine_power = 60
+	distill_reagent = /datum/reagent/consumable/ethanol/hippies_delight //BUBBER EDIT - Addition
 
 /obj/item/food/grown/cannabis/death
 	seed = /obj/item/seeds/cannabis/death

@@ -62,6 +62,7 @@
 	icon_state = "fairygrassclump"
 	bite_consumption_mod = 1
 	stacktype = /obj/item/stack/tile/fairygrass
+	distill_reagent = /datum/reagent/consumable/ethanol/wizz_fizz //BUBBER EDIT - Addition
 
 // Carpet
 /obj/item/seeds/grass/carpet

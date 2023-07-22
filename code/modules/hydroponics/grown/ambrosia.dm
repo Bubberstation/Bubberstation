@@ -75,5 +75,4 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 3
 	seed = /obj/item/seeds/ambrosia/gaia
-	wine_power = 70
-	wine_flavor = "the earthmother's blessing"
+	distill_reagent = /datum/reagent/consumable/ethanol/champagne //BUBBER EDIT - Addition

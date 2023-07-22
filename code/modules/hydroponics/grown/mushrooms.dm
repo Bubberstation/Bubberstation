@@ -221,6 +221,7 @@
 	name = "jupiter cup"
 	desc = "A strange red mushroom, its surface is moist and slick. You wonder how many tiny worms have met their fate inside."
 	icon_state = "jupitercup"
+	distill_reagent = /datum/reagent/consumable/ethanol/pod_tesla
 
 // Glowshroom
 /obj/item/seeds/glowshroom
@@ -324,7 +325,7 @@
 	icon_state = "shadowshroom"
 	effect_path = /obj/structure/glowshroom/shadowshroom
 	tastes = list("shadow" = 1, "mushroom" = 1)
-	wine_power = 60
+	distill_reagent = /datum/reagent/consumable/ethanol/singulo //BUBBER EDIT - Addition
 
 /obj/item/food/grown/mushroom/glowshroom/shadowshroom/attack_self(mob/user)
 	. = ..()

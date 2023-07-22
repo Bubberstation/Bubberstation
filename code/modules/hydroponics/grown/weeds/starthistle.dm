@@ -75,3 +75,4 @@
 	foodtypes = VEGETABLES
 	wine_power = 35
 	tastes = list("thistle" = 2, "artichoke" = 1)
+	distill_reagent = /datum/reagent/consumable/ethanol/gargle_blaster //BUBBER EDIT - Addition

@@ -53,6 +53,7 @@
 	bite_consumption_mod = 5
 	foodtypes = FRUIT
 	wine_power = 30
+	distill_reagent = /datum/reagent/consumable/ethanol/antifreeze //BUBBER EDIT - Addition
 
 // Ghost Chili
 /obj/item/seeds/chili/ghost
