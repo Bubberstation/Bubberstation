@@ -10,3 +10,8 @@
 		egg_rper.set_stat(CONSCIOUS)
 		user.mind.transfer_to(egg_rper)
 	return BRUTELOSS
+
+
+/obj/item/food/egg/Destroy()
+	qdel(egg_rper)
+	. = ..()
