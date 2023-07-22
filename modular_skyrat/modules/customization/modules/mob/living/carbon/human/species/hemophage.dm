@@ -67,24 +67,22 @@
 		HAIR,
 		FACEHAIR,
 		LIPS,
-		DRINKSBLOOD,
-		MUTCOLORS,//Bubber addition, Mutant colors
-	)
-	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
+		TRAIT_OXYIMMUNE,
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_LITERATE,
+		TRAIT_DRINKS_BLOOD,
+		MUTCOLORS,//Bubber addition, Mutant colors
 	)
 	inherent_biotypes = MOB_HUMANOID | MOB_ORGANIC
 	default_mutant_bodyparts = list(
 		"legs" = "Normal Legs"
 	)
 	exotic_bloodtype = "U"
-	use_skintones = 0//Bubber edit, originally TRUE, enables mutant colors.
 	mutantheart = /obj/item/organ/internal/heart/hemophage
 	mutantliver = /obj/item/organ/internal/liver/hemophage
 	mutantstomach = /obj/item/organ/internal/stomach/hemophage
