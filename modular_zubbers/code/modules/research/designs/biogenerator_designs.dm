@@ -44,7 +44,7 @@
 	id = "berryjuice"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
-	make_reagent = /datum/reagent/consumable/orangejuice
+	make_reagent = /datum/reagent/consumable/berryjuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/berryjuice
