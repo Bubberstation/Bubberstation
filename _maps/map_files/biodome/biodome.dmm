@@ -17029,9 +17029,12 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/engineering/atmos/mix)
 "fSC" = (
-/obj/machinery/light/directional/north,
-/obj/machinery/telecomms/relay/preset/station,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/effect/decal/cleanable/robot_debris/up,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/radio,
+/obj/structure/broken_flooring/singular/directional/east,
+/turf/open/floor/circuit/off,
 /area/station/tcommsat/server)
 "fSR" = (
 /obj/effect/landmark/start/assistant,
@@ -23256,10 +23259,6 @@
 /obj/structure/plaque/static_plaque/golden/commission/biodome,
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
-"iji" = (
-/obj/structure/ladder,
-/turf/open/floor/iron/dark/telecomms,
-/area/station/tcommsat/server)
 "ijq" = (
 /obj/machinery/door/window/left/directional/north{
 	base_state = "right";
@@ -34074,11 +34073,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "lRL" = (
-/obj/machinery/camera/directional/west{
-	c_tag = "Engineering - Telecomms Upper Relay";
-	network = list("tcomms")
-	},
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/effect/decal/cleanable/robot_debris/down,
+/obj/structure/broken_flooring/singular/directional/south,
+/turf/open/floor/circuit/off,
 /area/station/tcommsat/server)
 "lRV" = (
 /turf/open/floor/glass/reinforced,
@@ -51692,9 +51689,13 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/storage/gas)
 "rUN" = (
-/obj/structure/ladder,
-/obj/structure/sign/departments/telecomms/directional/east,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/item/disk/nuclear/fake/obvious,
+/obj/item/ai_module/toy_ai,
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/effect/decal/cleanable/robot_debris/limb,
+/obj/effect/decal/cleanable/oil/streak,
+/obj/structure/broken_flooring/plating/directional/east,
+/turf/open/floor/circuit/off,
 /area/station/tcommsat/server)
 "rUW" = (
 /obj/structure/table/glass,
@@ -105471,10 +105472,10 @@ mAi
 jZC
 rQm
 lEp
-bNM
+fhc
 dyu
 fhc
-iji
+dTP
 jpp
 rQm
 gMZ
@@ -105729,7 +105730,7 @@ jZC
 dTP
 dTP
 dTP
-dTP
+ylF
 qZF
 dTP
 dTP
