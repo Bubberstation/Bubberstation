@@ -3764,11 +3764,6 @@
 	dir = 1
 	},
 /area/station/biodome/fore)
-"bok" = (
-/obj/item/stack/cable_coil,
-/obj/structure/lattice,
-/turf/open/space/openspace,
-/area/space/nearstation)
 "bon" = (
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/carpet/red,
@@ -4815,6 +4810,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
+"bIu" = (
+/obj/item/stack/cable_coil,
+/turf/open/misc/asteroid/airless,
+/area/station/asteroid)
 "bIF" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/effect/decal/cleanable/dirt,
@@ -14028,8 +14027,8 @@
 "eQu" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/purple,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/open/misc/asteroid/airless,
+/area/station/asteroid)
 "eQy" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 5
@@ -19980,11 +19979,6 @@
 	},
 /turf/open/floor/holofloor/dark,
 /area/station/science/cytology)
-"gVu" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/purple,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "gVx" = (
 /obj/structure/sign/warning/vacuum/directional/west,
 /turf/open/floor/plating,
@@ -23305,8 +23299,8 @@
 "iji" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/purple,
-/turf/open/misc/asteroid/airless,
-/area/station/asteroid)
+/turf/open/space/openspace,
+/area/space/nearstation)
 "ijq" = (
 /obj/machinery/door/window/left/directional/north{
 	base_state = "right";
@@ -28420,9 +28414,8 @@
 /area/station/maintenance/central/greater)
 "kbT" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/purple,
-/turf/open/space/openspace,
+/turf/open/space/basic,
 /area/space/nearstation)
 "kbW" = (
 /turf/closed/wall/mineral/bamboo,
@@ -34975,9 +34968,10 @@
 /turf/open/floor/carpet,
 /area/station/service/chapel)
 "mfo" = (
-/obj/item/stack/cable_coil,
-/turf/open/misc/asteroid/airless,
-/area/station/asteroid)
+/obj/effect/turf_decal/siding/wood/end,
+/obj/effect/turf_decal/weather/sand,
+/turf/open/floor/wood/large,
+/area/station/biodome/fore)
 "mfv" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/iron/white,
@@ -36359,6 +36353,11 @@
 "mGl" = (
 /turf/open/floor/circuit/green,
 /area/station/engineering/storage/tech)
+"mGm" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/purple,
+/turf/open/space/basic,
+/area/station/solars/starboard/fore)
 "mGs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -36491,8 +36490,9 @@
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "mIE" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/purple,
+/obj/structure/lattice,
+/obj/structure/lattice,
+/obj/structure/lattice,
 /turf/open/space/openspace,
 /area/space/nearstation)
 "mIF" = (
@@ -44655,11 +44655,6 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
-"pys" = (
-/obj/effect/turf_decal/siding/wood/end,
-/obj/effect/turf_decal/weather/sand,
-/turf/open/floor/wood/large,
-/area/station/biodome/fore)
 "pyI" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -56992,6 +56987,12 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/qm)
+"tLA" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/purple,
+/turf/open/space/openspace,
+/area/space/nearstation)
 "tLI" = (
 /obj/structure/disposalpipe/trunk,
 /turf/closed/wall,
@@ -59830,6 +59831,9 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
 /area/station/engineering/engine_smes)
+"uRb" = (
+/turf/open/floor/iron/herringbone,
+/area/space)
 "uRn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -60111,8 +60115,7 @@
 /turf/open/floor/plating/rust,
 /area/station/commons/toilet/auxiliary)
 "uXo" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
+/obj/item/stack/cable_coil,
 /obj/structure/lattice,
 /turf/open/space/openspace,
 /area/space/nearstation)
@@ -87102,7 +87105,7 @@ cCZ
 cCZ
 cCZ
 cCZ
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -87358,9 +87361,9 @@ cCZ
 cCZ
 cCZ
 cCZ
-eQu
+kbT
 eXQ
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -87860,7 +87863,7 @@ vtU
 vsD
 cCZ
 vtU
-eQu
+kbT
 xVv
 xVv
 xVv
@@ -87886,7 +87889,7 @@ vtU
 miq
 miq
 miq
-eQu
+kbT
 vtU
 cCZ
 vsD
@@ -88888,7 +88891,7 @@ vtU
 vsD
 cCZ
 vtU
-eQu
+kbT
 xVv
 xVv
 xVv
@@ -88914,7 +88917,7 @@ vtU
 miq
 miq
 miq
-eQu
+kbT
 vtU
 cCZ
 vsD
@@ -89670,11 +89673,11 @@ cCZ
 cCZ
 cCZ
 cCZ
-eQu
+kbT
 kcX
 kcX
 kcX
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -90184,11 +90187,11 @@ cCZ
 cCZ
 cCZ
 cCZ
-eQu
+kbT
 kcX
 kcX
 kcX
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -90687,7 +90690,7 @@ vtU
 vsD
 cCZ
 vtU
-eQu
+kbT
 miq
 miq
 miq
@@ -90713,7 +90716,7 @@ vtU
 xVv
 xVv
 xVv
-eQu
+kbT
 vtU
 cCZ
 vsD
@@ -91715,7 +91718,7 @@ vtU
 vsD
 cCZ
 vtU
-eQu
+kbT
 miq
 miq
 miq
@@ -91741,7 +91744,7 @@ vtU
 xVv
 xVv
 xVv
-eQu
+kbT
 vtU
 cCZ
 vsD
@@ -109089,7 +109092,7 @@ mpe
 nvF
 mpe
 mpe
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -109336,7 +109339,7 @@ cCZ
 vtU
 cCZ
 cCZ
-eQu
+kbT
 mpe
 mpe
 mpe
@@ -110117,7 +110120,7 @@ mpe
 mpe
 mpe
 mpe
-gVu
+mGm
 cCZ
 cCZ
 cCZ
@@ -110364,7 +110367,7 @@ cCZ
 aWF
 cCZ
 cCZ
-eQu
+kbT
 mpe
 mpe
 mpe
@@ -111402,7 +111405,7 @@ mpe
 mpe
 nvF
 mpe
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -111649,7 +111652,7 @@ cCZ
 aWF
 cCZ
 cCZ
-eQu
+kbT
 mpe
 mpe
 mpe
@@ -112430,7 +112433,7 @@ mpe
 nvF
 mpe
 mpe
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -112677,7 +112680,7 @@ cCZ
 aWF
 cCZ
 cCZ
-gVu
+mGm
 nvF
 nvF
 nvF
@@ -113190,7 +113193,7 @@ aWF
 cCZ
 vtU
 cCZ
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -113446,7 +113449,7 @@ cCZ
 aWF
 cCZ
 vtU
-eQu
+kbT
 fiA
 snP
 snP
@@ -113704,7 +113707,7 @@ aWF
 vtU
 vtU
 cCZ
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -113972,7 +113975,7 @@ nvF
 nvF
 nvF
 nvF
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -114219,7 +114222,7 @@ cCZ
 vtU
 cCZ
 cCZ
-eQu
+kbT
 mpe
 mpe
 mpe
@@ -115000,7 +115003,7 @@ mpe
 mpe
 nvF
 mpe
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -115247,7 +115250,7 @@ cCZ
 aWF
 cCZ
 cCZ
-eQu
+kbT
 mpe
 mpe
 mpe
@@ -116285,7 +116288,7 @@ mpe
 mpe
 mpe
 mpe
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -116532,7 +116535,7 @@ cCZ
 aWF
 cCZ
 cCZ
-eQu
+kbT
 mpe
 mpe
 mpe
@@ -117313,7 +117316,7 @@ mpe
 mpe
 mpe
 mpe
-eQu
+kbT
 cCZ
 cCZ
 cCZ
@@ -117560,7 +117563,7 @@ cCZ
 aWF
 cCZ
 cCZ
-eQu
+kbT
 mpe
 nvF
 mpe
@@ -157781,7 +157784,7 @@ ukp
 hHc
 kQJ
 hHc
-hHc
+uRb
 hHc
 hHc
 hHc
@@ -162280,10 +162283,10 @@ hNy
 rRv
 rRv
 dUQ
-mIE
+iji
 fxf
 fxf
-mIE
+iji
 dUQ
 uWU
 hNy
@@ -163299,19 +163302,19 @@ hHc
 hNy
 uWU
 rRv
-mIE
+iji
 rRv
-mIE
+iji
 rRv
 rRv
 oIv
 rRv
 rRv
 dUQ
-kbT
+tLA
 fxf
 fxf
-mIE
+iji
 dUQ
 rRv
 vKY
@@ -164331,7 +164334,7 @@ dUQ
 oIv
 dUQ
 rRv
-mfo
+bIu
 lvG
 rRv
 oYs
@@ -164578,7 +164581,7 @@ hHc
 hHc
 hHc
 hNy
-mIE
+iji
 rgm
 rgm
 dUQ
@@ -164835,7 +164838,7 @@ hHc
 hNy
 hNy
 hNy
-mIE
+iji
 rgm
 rgm
 dUQ
@@ -166628,7 +166631,7 @@ hHc
 hHc
 hHc
 hHc
-mIE
+iji
 rRv
 rgm
 rgm
@@ -166884,7 +166887,7 @@ hHc
 hHc
 hHc
 hHc
-mIE
+iji
 sbq
 lvG
 lvG
@@ -167142,7 +167145,7 @@ hHc
 hHc
 hHc
 hHc
-mIE
+iji
 rRv
 rgm
 rgm
@@ -168048,8 +168051,8 @@ fJC
 pxM
 vxC
 vxC
-vxC
-vxC
+dST
+dST
 vxC
 hNy
 hHc
@@ -171055,7 +171058,7 @@ jzd
 nfE
 bLh
 eLV
-pys
+mfo
 iyE
 mit
 cSg
@@ -185267,7 +185270,7 @@ kWt
 hHc
 dUQ
 rRv
-iji
+eQu
 rRv
 rRv
 rRv
@@ -185277,7 +185280,7 @@ rRv
 rRv
 rRv
 rRv
-iji
+eQu
 rRv
 rRv
 rRv
@@ -185285,7 +185288,7 @@ tmB
 rRv
 rRv
 hHc
-mIE
+iji
 dUQ
 hHc
 hHc
@@ -185295,7 +185298,7 @@ dUQ
 hHc
 hHc
 dUQ
-mIE
+iji
 hHc
 dUQ
 hHc
@@ -186063,7 +186066,7 @@ cvk
 lgw
 lgw
 lgw
-uXo
+mIE
 hHc
 hHc
 hHc
@@ -186809,7 +186812,7 @@ kWt
 hHc
 dUQ
 hHc
-iji
+eQu
 rRv
 rRv
 rRv
@@ -186819,7 +186822,7 @@ rRv
 rRv
 rRv
 rRv
-iji
+eQu
 hHc
 hHc
 hHc
@@ -186827,7 +186830,7 @@ lgw
 hHc
 hHc
 hHc
-mIE
+iji
 dUQ
 hHc
 hHc
@@ -186837,7 +186840,7 @@ dUQ
 hHc
 hHc
 dUQ
-mIE
+iji
 hHc
 dUQ
 hHc
@@ -188351,7 +188354,7 @@ kWt
 hHc
 dUQ
 hHc
-mIE
+iji
 dUQ
 hHc
 hHc
@@ -188361,7 +188364,7 @@ dUQ
 hHc
 hHc
 dUQ
-mIE
+iji
 hHc
 hHc
 hHc
@@ -188369,7 +188372,7 @@ lgw
 hHc
 hHc
 hHc
-mIE
+iji
 dUQ
 hHc
 hHc
@@ -188379,7 +188382,7 @@ dUQ
 hHc
 hHc
 dUQ
-mIE
+iji
 hHc
 dUQ
 hHc
@@ -188620,11 +188623,11 @@ whc
 whc
 hHc
 hHc
-mIE
+iji
 dUQ
 lgw
 dUQ
-mIE
+iji
 hHc
 hHc
 ltW
@@ -189392,7 +189395,7 @@ hHc
 hHc
 hHc
 dUQ
-bok
+uXo
 lgw
 dUQ
 dUQ
@@ -189648,11 +189651,11 @@ ltW
 ltW
 hHc
 hHc
-mIE
+iji
 dUQ
 lgw
 dUQ
-mIE
+iji
 hHc
 hHc
 whc
@@ -189893,7 +189896,7 @@ kWt
 hHc
 dUQ
 hHc
-mIE
+iji
 dUQ
 hHc
 hHc
@@ -189903,7 +189906,7 @@ dUQ
 hHc
 hHc
 dUQ
-mIE
+iji
 hHc
 hHc
 hHc
@@ -189911,7 +189914,7 @@ tmB
 hHc
 hHc
 hHc
-mIE
+iji
 dUQ
 hHc
 hHc
@@ -189921,7 +189924,7 @@ dUQ
 hHc
 hHc
 dUQ
-mIE
+iji
 hHc
 dUQ
 hHc
@@ -190677,9 +190680,9 @@ hHc
 hHc
 hHc
 hHc
-mIE
+iji
 gIV
-mIE
+iji
 hHc
 hHc
 hHc
@@ -190935,7 +190938,7 @@ hHc
 hHc
 hHc
 hHc
-mIE
+iji
 hHc
 hHc
 hHc
