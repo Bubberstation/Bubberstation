@@ -863,6 +863,12 @@
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/maintenance/disposal/incinerator)
+"aoE" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/purple,
+/turf/open/space/openspace,
+/area/space/nearstation)
 "aoF" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -3439,11 +3445,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/herringbone,
 /area/station/service/chapel)
-"biG" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/purple,
-/turf/open/misc/asteroid/airless,
-/area/station/asteroid)
 "biP" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
@@ -10346,11 +10347,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/stone,
 /area/station/hallway/primary/starboard)
-"dDx" = (
-/obj/item/stack/cable_coil,
-/obj/structure/lattice,
-/turf/open/space/openspace,
-/area/space/nearstation)
 "dDE" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/solars/starboard/fore)
@@ -14025,10 +14021,11 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "eQu" = (
-/obj/structure/broken_flooring/pile/directional/east,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/fore/greater)
+/obj/structure/lattice,
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/space/openspace,
+/area/space/nearstation)
 "eQy" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 5
@@ -14678,12 +14675,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/stone,
 /area/station/biodome/fore)
-"fbR" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/purple,
-/turf/open/space/openspace,
-/area/space/nearstation)
 "fbX" = (
 /obj/structure/dresser,
 /obj/item/pinpointer/nuke,
@@ -17667,6 +17658,7 @@
 /obj/effect/spawner/structure/window/hollow/reinforced/directional{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
 "gcM" = (
@@ -34976,11 +34968,10 @@
 /turf/open/floor/carpet,
 /area/station/service/chapel)
 "mfo" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/openspace,
-/area/space/nearstation)
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/purple,
+/turf/open/misc/asteroid/airless,
+/area/station/asteroid)
 "mfv" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/iron/white,
@@ -42123,6 +42114,7 @@
 /obj/effect/spawner/structure/window/hollow/reinforced/directional{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
 "oBT" = (
@@ -56468,6 +56460,10 @@
 /obj/structure/flora/bush/flowers_pp/style_random,
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
+"tCy" = (
+/obj/item/stack/cable_coil,
+/turf/open/misc/asteroid/airless,
+/area/station/asteroid)
 "tCM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -60185,11 +60181,6 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
-"uYj" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/purple,
-/turf/open/space/basic,
-/area/station/solars/starboard/fore)
 "uYn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -60489,10 +60480,6 @@
 /obj/effect/landmark/start/warden,
 /turf/open/floor/carpet/blue,
 /area/station/security/warden)
-"vdp" = (
-/obj/item/stack/cable_coil,
-/turf/open/misc/asteroid/airless,
-/area/station/asteroid)
 "vdw" = (
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating,
@@ -62126,6 +62113,11 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet)
+"vHG" = (
+/obj/item/stack/cable_coil,
+/obj/structure/lattice,
+/turf/open/space/openspace,
+/area/space/nearstation)
 "vHH" = (
 /obj/effect/spawner/random/trash/moisture,
 /obj/effect/spawner/random/food_or_drink/pizzaparty,
@@ -63294,6 +63286,11 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
+"wdx" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/purple,
+/turf/open/space/basic,
+/area/station/solars/starboard/fore)
 "wdz" = (
 /obj/effect/turf_decal/trimline/dark/line{
 	dir = 4
@@ -68176,6 +68173,7 @@
 /obj/effect/spawner/structure/window/hollow/reinforced/directional{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/greater)
 "xIb" = (
@@ -101910,8 +101908,8 @@ jlt
 tkE
 dYQ
 qjM
-eQu
-hGq
+hrK
+dYQ
 eFi
 ung
 aUt
@@ -110120,7 +110118,7 @@ mpe
 mpe
 mpe
 mpe
-uYj
+wdx
 cCZ
 cCZ
 cCZ
@@ -112680,7 +112678,7 @@ cCZ
 aWF
 cCZ
 cCZ
-uYj
+wdx
 nvF
 nvF
 nvF
@@ -163311,7 +163309,7 @@ oIv
 rRv
 rRv
 dUQ
-fbR
+aoE
 fxf
 fxf
 iji
@@ -164334,7 +164332,7 @@ dUQ
 oIv
 dUQ
 rRv
-vdp
+tCy
 lvG
 rRv
 oYs
@@ -185270,7 +185268,7 @@ kWt
 hHc
 dUQ
 rRv
-biG
+mfo
 rRv
 rRv
 rRv
@@ -185280,7 +185278,7 @@ rRv
 rRv
 rRv
 rRv
-biG
+mfo
 rRv
 rRv
 rRv
@@ -186066,7 +186064,7 @@ cvk
 lgw
 lgw
 lgw
-mfo
+eQu
 hHc
 hHc
 hHc
@@ -186812,7 +186810,7 @@ kWt
 hHc
 dUQ
 hHc
-biG
+mfo
 rRv
 rRv
 rRv
@@ -186822,7 +186820,7 @@ rRv
 rRv
 rRv
 rRv
-biG
+mfo
 hHc
 hHc
 hHc
@@ -189395,7 +189393,7 @@ hHc
 hHc
 hHc
 dUQ
-dDx
+vHG
 lgw
 dUQ
 dUQ
