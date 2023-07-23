@@ -35,7 +35,7 @@
 	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD //50% hungrier
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/oversized)
 	var/obj/item/organ/internal/stomach/old_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(old_stomach) || old_stomach.organ_flags & ORGAN_SYNTHETIC_FROM_SPECIES || old_stomach.organ_traits & TRAIT_NOHUNGER)	//BUBBERSTATION EDIT: it sure would be strange to give normal stomachs to races that can't process reagents or need to eat
+	if(!istype(old_stomach) || old_stomach.organ_flags & ORGAN_SYNTHETIC_FROM_SPECIES || old_stomach.organ_traits & TRAIT_NOHUNGER)	//BUBBERSTATION EDIT: it sure would be strange to give normal stomachs to species that can't process reagents or need to eat
 		return
 	old_stomach.Remove(human_holder, special = TRUE)
 	qdel(old_stomach)
