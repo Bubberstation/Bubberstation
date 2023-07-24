@@ -7,3 +7,4 @@
 	cost = 16  //Cost of syndicate advanced teleporter (8) plus an energy sword (8). Funny enough, this is the same cost as a dsword.
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //Don't want ops teleporting like crazy.
 	cant_discount = TRUE //Until this is balanced, no funny discounts.
+	refundable = TRUE //Prototype item that people might not like.
