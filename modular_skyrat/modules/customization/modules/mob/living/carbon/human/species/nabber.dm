@@ -12,22 +12,20 @@
 /datum/species/nabber
 	name = "Giant Armored Serpentid"
 	id = SPECIES_NABBER
-	bodytype = BODYTYPE_CUSTOM
 	eyes_icon = 'modular_skyrat/modules/organs/icons/nabber_eyes.dmi'
 	can_augment = FALSE
 	veteran_only = FALSE //Change in the future.
-	species_traits = list(
-		MUTCOLORS,
-		EYECOLOR,
-		LIPS,
-		NO_UNDERWEAR
-	)
+
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CHUNKYFINGERS_IGNORE_BATON,
 		TRAIT_PUSHIMMUNE,
 		TRAIT_RESISTHIGHPRESSURE,
-		TRAIT_RESISTLOWPRESSURE
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_MUTANT_COLORS,
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_SLIP_ALL,
+
 	)
 	no_equip_flags = ITEM_SLOT_FEET | ITEM_SLOT_OCLOTHING | ITEM_SLOT_SUITSTORE
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -43,22 +41,12 @@
 		"moth_antennae" = "None"
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/insect
-	liked_food = RAW
-	disliked_food = CLOTH | GRAIN | FRIED | TOXIC | GORE | GROSS
-	toxic_food = DAIRY
+
 	always_customizable = FALSE
-	payday_modifier = 0.75
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 10)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 25)
-	// Need balancing
-	speedmod = 1
-	armor = 10
-	brutemod = 0.8
-	burnmod = 1.4
-	coldmod = 0.8
-	heatmod = 2
-	stunmod = 1
+
 	mutantbrain = /obj/item/organ/internal/brain/nabber
 	mutanteyes = /obj/item/organ/internal/eyes/nabber
 	mutantlungs = /obj/item/organ/internal/lungs/nabber
