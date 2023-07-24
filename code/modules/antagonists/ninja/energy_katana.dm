@@ -9,7 +9,6 @@
  * It also has a special feature where if it is tossed at a space ninja who owns it (determined by the ninja suit), the ninja will catch the katana instead of being hit by it.
  *
  */
- //BUBERSTATION NOTICE: See the modular bubberstation file for true values.
 /obj/item/energy_katana
 	name = "energy katana"
 	desc = "A katana infused with strong energy."
@@ -36,11 +35,11 @@
 	max_integrity = 200
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/datum/effect_system/spark_spread/spark_system
-	var/datum/action/innate/dash/ninja/jaunt
+	var/datum/action/innate/dash/jaunt = /datum/action/innate/dash/ninja //BUBBERSTATION CHANGE: Modular Jaunt
 
 /obj/item/energy_katana/Initialize(mapload)
 	. = ..()
-	jaunt = new(src)
+	jaunt = new jaunt(src) //BUBBERSTATION CHANGE: Modular Jaunt
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -49,7 +48,7 @@
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	//BUBBERSTATION CHANGE: Remove jaunt density check in favor of custom check.
+	//BUBBERSTATION CHANGE: Removed jaunt density check in favor of custom check.
 	jaunt?.teleport(user, target)
 
 /obj/item/energy_katana/equipped(mob/user, slot, initial)
@@ -73,6 +72,13 @@
 	charge_rate = 350 //SKYRAT EDIT CHANGE - ORIGINAL: 200
 	beam_length = 1 SECONDS
 	recharge_sound = null
+
+//Bubberstation Change: Adds density check to teleport proc.
+/datum/action/innate/dash/ninja/teleport(mob/user, atom/target)
+	if(target.density)
+		return FALSE
+	. = ..()
+//Bubberstation change end.
 
 /datum/action/innate/dash/ninja/GiveAction(mob/viewer) //this action should be invisible, as its handled by right-click
 	return
