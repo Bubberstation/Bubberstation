@@ -4,5 +4,6 @@
 	progression_minimum = 30 MINUTES
 	item = /obj/item/energy_katana/advanced
 
-	cost = 16
-	purchasable_from = ~UPLINK_CLOWN_OPS
+	cost = 16  //Cost of syndicate advanced teleporter (8) plus an energy sword (8). Funny enough, this is the same cost as a dsword.
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS) //Don't want ops teleporting like crazy.
+	cant_discount = TRUE //Until this is balanced, no funny discounts.
