@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(round_survey)
 	name = "Round Survey"
 	wait = 10 MINUTES
 	flags = SS_BACKGROUND
+	runlevels = RUNLEVEL_GAME
 
 /datum/controller/subsystem/round_survey/fire()
 	var/message_string = "Current Round Survey Results : \n"
@@ -44,17 +45,23 @@ SUBSYSTEM_DEF(round_survey)
 		to_chat(i, "The current survey period has expired, please let your voice be heard and vote in the survey tab again!")
 
 	message_admins(message_string)
-	reset()
+//	reset()
 
-/datum/controller/subsystem/round_survey/proc/reset()
-	QDEL_LIST(GLOB.needs_chaos)
-	QDEL_LIST(GLOB.needs_less_chaos)
-	QDEL_LIST(GLOB.needs_antags)
-	QDEL_LIST(GLOB.needs_less_antags)
-	QDEL_LIST(GLOB.needs_emergency)
-	QDEL_LIST(GLOB.needs_less_emergency)
+/* /datum/controller/subsystem/round_survey/proc/reset()
+	for(var/i in GLOB.needs_chaos)
+		GLOB.needs_chaos -= i
+	for(var/i in GLOB.needs_less_chaos)
+		GLOB.needs_less_chaos -= i
+	for(var/i in GLOB.needs_antags)
+		GLOB.needs_antags -= i
+	for(var/i in GLOB.needs_less_antags)
+		GLOB.needs_less_antags -= i
+	for(var/i in GLOB.needs_emergency)
+		GLOB.needs_emergency -= i
+	for(var/i in GLOB.needs_less_emergency)
+		GLOB.needs_less_emergency -= i
 
-
+ */
 
 
 
