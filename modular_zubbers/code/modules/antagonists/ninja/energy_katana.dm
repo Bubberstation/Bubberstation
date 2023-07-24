@@ -76,7 +76,7 @@
 /datum/action/innate/dash/ninja/advanced
 	current_charges = 3
 	max_charges = 3
-	charge_rate = 20 SECONDS
+	charge_rate = 30 SECONDS
 
 /datum/action/innate/dash/ninja/advanced/proc/has_dense_obj(var/turf/T)
 	for(var/obj/checked_object in T)
