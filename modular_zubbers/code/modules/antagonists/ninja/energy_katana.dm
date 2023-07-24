@@ -86,7 +86,7 @@
 
 	if(target)
 		target = get_turf(target)
-		while(target && (target.density || get_dist(user,target) > 5 || src.has_dense_obj(target)))
+		while(target && (target.density || get_dist(user,target) > 6 || src.has_dense_obj(target)))
 			var/turf/old_target = target
 			target = get_step(target,get_dir(target,user))
 			if(!target || target == old_target) //Bad turf or didn't even do anything.
