@@ -30,8 +30,6 @@
 	var/stance_cooldown = 4 SECONDS
 	var/stance_block_chance_duration = 2 SECONDS
 
-	var/teleport_range = 5
-
 	jaunt = /datum/action/innate/dash/ninja/advanced
 
 /obj/item/energy_katana/advanced/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
@@ -88,7 +86,7 @@
 
 	if(target)
 		target = get_turf(target)
-		while(target && (target.density || get_dist(user,target) > teleport_range || src.has_dense_obj(target)))
+		while(target && (target.density || get_dist(user,target) > 5 || src.has_dense_obj(target)))
 			var/turf/old_target = target
 			target = get_step(target,get_dir(target,user))
 			if(!target || target == old_target) //Bad turf or didn't even do anything.
