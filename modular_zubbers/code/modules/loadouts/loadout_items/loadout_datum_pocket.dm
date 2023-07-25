@@ -2,6 +2,6 @@
 	name = "Old Secateurs"
 	item_path = /obj/item/secateurs/old
 
-/datum/loadout_item/pocket_items/donator/flask/juice//Dono item for .burningcold
+/datum/loadout_item/pocket_items/donator/flask/bast//Dono item for .burningcold
 	name = "Flask of Something"
 	item_path = /obj/item/reagent_containers/cup/glass/flask/juice
