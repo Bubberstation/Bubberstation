@@ -463,3 +463,16 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	ASSERT(prefs, "User attempted to export preferences while preferences were null!") // what the fuck
 
 	prefs.savefile.export_json_to_client(usr, ckey)
+
+//BUBBERSTATION EDIT START: client verb that forces all tgui windows to close
+
+/client/verb/close_tgui()
+	set name = "Close TGUI"
+	set category = "OOC"
+
+	log_tgui(src, "Closing all TGUI windows.", context = "verb/close_tgui")
+	var/closed_windows = SStgui.close_user_uis(usr)
+
+	to_chat(usr, span_notice("All TGUI windows have been closed. (Closed [closed_windows] windows.)"))
+
+//BUBBERSTATION EDIT END
