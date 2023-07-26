@@ -286,7 +286,7 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/on_open(datum/tgui/ui)
 	LAZYOR(ui.src_object.open_uis, ui)
-	ui.user.tgui_open_uis |= ui
+	ui.user.tgui_open_uis |= ui	//BUBBERSTATION EDIT: patch to make tgui_open_uis actually keep track of open windows
 	all_uis |= ui
 
 /**
