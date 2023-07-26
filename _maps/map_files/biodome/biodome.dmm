@@ -4568,11 +4568,25 @@
 /area/station/maintenance/port/greater)
 "bCE" = (
 /obj/structure/cable,
-/obj/structure/closet/secure_closet/brig{
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/window/brigdoor/security/cell{
 	id = "Cell 1";
-	name = "Cell 1 locker"
+	name = "Cell 1";
+	dir = 1
 	},
-/obj/machinery/light/small/directional/east,
+/obj/effect/turf_decal/trimline/red/filled/end{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 8
+	},
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "bCH" = (
@@ -7527,10 +7541,9 @@
 /turf/open/floor/iron,
 /area/station/science/genetics)
 "cCS" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/smooth_large,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/station/security/brig)
 "cCZ" = (
 /turf/open/space/basic,
@@ -16970,8 +16983,26 @@
 /area/station/hallway/primary/central/aft)
 "fPM" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/window/brigdoor/security/cell{
+	id = "Cell 3";
+	name = "Cell 3";
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/end{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 8
+	},
+/turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "fPN" = (
 /obj/structure/fireplace,
@@ -31894,29 +31925,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/terracotta/small,
 /area/station/biodome/fore)
-"leA" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/window/brigdoor/security/cell{
-	id = "Cell 1";
-	name = "Cell 1";
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/end{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 8
-	},
-/turf/open/floor/iron/smooth_large,
-/area/station/security/brig)
 "leC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
@@ -37236,6 +37244,15 @@
 	},
 /turf/open/misc/asteroid,
 /area/station/cargo/miningdock)
+"mRq" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/machinery/flasher/directional/west{
+	id = "Cell 3"
+	},
+/turf/open/floor/iron/smooth_large,
+/area/station/security/brig)
 "mRt" = (
 /obj/structure/table,
 /obj/machinery/recharger{
@@ -51815,12 +51832,9 @@
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
 "rSj" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/obj/machinery/flasher/directional/west{
-	id = "Cell 3"
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "rSn" = (
@@ -53027,12 +53041,12 @@
 /turf/open/floor/plating/airless,
 /area/station/solars/starboard/fore)
 "snV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 locker"
+	},
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "soa" = (
@@ -55543,14 +55557,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/department/cargo)
 "ths" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
-	dir = 4
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 1
 	},
 /turf/open/floor/iron/smooth_half,
 /area/station/security/brig)
@@ -63446,11 +63457,14 @@
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
 "vZK" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 1
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 4
 	},
 /turf/open/floor/iron/smooth_half,
 /area/station/security/brig)
@@ -69092,26 +69106,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "xQo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/window/brigdoor/security/cell{
-	id = "Cell 3";
-	name = "Cell 3";
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/end{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
-	dir = 8
-	},
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "xQr" = (
@@ -173600,8 +173600,8 @@ xUL
 ltj
 amJ
 kDe
-fPM
-vZK
+cCS
+ths
 hIV
 smW
 mvG
@@ -173856,9 +173856,9 @@ jbE
 xLQ
 ltj
 nlc
-cCS
-leA
-ths
+rSj
+bCE
+vZK
 mvG
 iJB
 mvG
@@ -174372,7 +174372,7 @@ ltj
 iCF
 uaZ
 ltj
-vZK
+ths
 hIV
 smW
 mvG
@@ -174626,7 +174626,7 @@ qVs
 xXi
 xLQ
 ltj
-bCE
+snV
 pkL
 mjR
 gqY
@@ -175141,9 +175141,9 @@ xXi
 mLZ
 ltj
 amJ
-rSj
-fPM
-vZK
+mRq
+cCS
+ths
 hIV
 jqJ
 eSc
@@ -175399,9 +175399,9 @@ xLQ
 ltj
 xJN
 tse
-xQo
+fPM
 gqY
-snV
+xQo
 cTv
 peP
 pSM
@@ -175914,7 +175914,7 @@ bti
 aAb
 imZ
 pTm
-vZK
+ths
 hIV
 pmL
 jvc
@@ -176685,7 +176685,7 @@ pTY
 jQf
 sEW
 bSX
-vZK
+ths
 vMM
 tgi
 uQE
