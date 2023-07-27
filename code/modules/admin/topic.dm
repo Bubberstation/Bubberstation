@@ -1456,6 +1456,9 @@
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
 
 	else if(href_list["centcomlookup"])
+		if(href_list) // BUBBER EDIT BEGIN - Crash Bandaid
+			message_admins("a naughty admin was prevented from hanging the server sending an external query.")
+			return // BUBBER EDIT END - Crash Bandaid
 		if(!check_rights(R_ADMIN))
 			return
 
