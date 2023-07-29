@@ -6,6 +6,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	vis_flags = VIS_INHERIT_ID // Important for interaction with and visualization of openspace.
 	luminosity = 1
 
+	///what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
+	///used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration
+	var/mob/oranges_ear/assigned_oranges_ear
+
 	/// Turf bitflags, see code/__DEFINES/flags.dm
 	var/turf_flags = NONE
 
@@ -54,7 +58,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/dynamic_lumcount = 0
 
 	///Bool, whether this turf will always be illuminated no matter what area it is in
-	var/always_lit = FALSE
+	///Makes it look blue, be warned
+	var/space_lit = FALSE
 
 	var/tmp/lighting_corners_initialised = FALSE
 
@@ -125,10 +130,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(!SSmapping.plane_offset_blacklist["[plane]"])
 			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
 
-		var/turf/T = SSmapping.get_turf_above(src)
+		var/turf/T = GET_TURF_ABOVE(src)
 		if(T)
 			T.multiz_turf_new(src, DOWN)
-		T = SSmapping.get_turf_below(src)
+		T = GET_TURF_BELOW(src)
 		if(T)
 			T.multiz_turf_new(src, UP)
 
@@ -146,15 +151,11 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src)
 
-	// visibilityChanged() will never hit any path with side effects during mapload
-	if (!mapload)
-		visibilityChanged()
-
 	for(var/atom/movable/content as anything in src)
 		Entered(content, null)
 
 	var/area/our_area = loc
-	if(!our_area.area_has_base_lighting && always_lit) //Only provide your own lighting if the area doesn't for you
+	if(!our_area.area_has_base_lighting && space_lit) //Only provide your own lighting if the area doesn't for you
 		var/mutable_appearance/overlay = GLOB.fullbright_overlays[GET_TURF_PLANE_OFFSET(src) + 1]
 		add_overlay(overlay)
 
@@ -185,12 +186,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
-	var/turf/T = SSmapping.get_turf_above(src)
-	if(T)
-		T.multiz_turf_del(src, DOWN)
-	T = SSmapping.get_turf_below(src)
-	if(T)
-		T.multiz_turf_del(src, UP)
+	if(GET_LOWEST_STACK_OFFSET(z))
+		var/turf/T = GET_TURF_ABOVE(src)
+		if(T)
+			T.multiz_turf_del(src, DOWN)
+		T = GET_TURF_BELOW(src)
+		if(T)
+			T.multiz_turf_del(src, UP)
 	if(force)
 		..()
 		//this will completely wipe turf state
@@ -198,7 +200,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		for(var/A in B.contents)
 			qdel(A)
 		return
-	visibilityChanged()
 	QDEL_LIST(blueprint_data)
 	flags_1 &= ~INITIALIZED_1
 	requires_activation = FALSE
@@ -211,7 +212,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 /// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
 /// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
-/turf/clear_signal_refs()
+/turf/_clear_signal_refs()
 	return
 
 /turf/attack_hand(mob/user, list/modifiers)
@@ -219,6 +220,24 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(.)
 		return
 	user.Move_Pulled(src)
+
+/// Call to move a turf from its current area to a new one
+/turf/proc/change_area(area/old_area, area/new_area)
+	//dont waste our time
+	if(old_area == new_area)
+		return
+
+	//move the turf
+	old_area.turfs_to_uncontain += src
+	new_area.contents += src
+	new_area.contained_turfs += src
+
+	//changes to make after turf has moved
+	on_change_area(old_area, new_area)
+
+/// Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)
+/turf/proc/on_change_area(area/old_area, area/new_area)
+	transfer_area_lighting(old_area, new_area)
 
 /turf/proc/multiz_turf_del(turf/T, dir)
 	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
@@ -238,15 +257,23 @@ GLOBAL_LIST_EMPTY(station_turfs)
  * * exclude_mobs - If TRUE, ignores dense mobs on the turf.
  * * source_atom - If this is not null, will check whether any contents on the turf can block this atom specifically. Also ignores itself on the turf.
  * * ignore_atoms - Check will ignore any atoms in this list. Useful to prevent an atom from blocking itself on the turf.
+ * * type_list - are we checking for types of atoms to ignore and not physical atoms
  */
-/turf/proc/is_blocked_turf(exclude_mobs = FALSE, source_atom = null, list/ignore_atoms)
+/turf/proc/is_blocked_turf(exclude_mobs = FALSE, source_atom = null, list/ignore_atoms, type_list = FALSE)
 	if(density)
 		return TRUE
 
 	for(var/atom/movable/movable_content as anything in contents)
-		// We don't want to block ourselves or consider any ignored atoms.
-		if((movable_content == source_atom) || (movable_content in ignore_atoms))
+		// We don't want to block ourselves
+		if((movable_content == source_atom))
 			continue
+		// dont consider ignored atoms or their types
+		if(length(ignore_atoms))
+			if(!type_list && (movable_content in ignore_atoms))
+				continue
+			else if(type_list && is_type_in_list(movable_content, ignore_atoms))
+				continue
+
 		// If the thing is dense AND we're including mobs or the thing isn't a mob AND if there's a source atom and
 		// it cannot pass through the thing on the turf,  we consider the turf blocked.
 		if(movable_content.density && (!exclude_mobs || !ismob(movable_content)))
@@ -289,7 +316,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()
 /turf/proc/zFall(atom/movable/falling, levels = 1, force = FALSE, falling_from_move = FALSE)
 	var/direction = DOWN
-	if(falling.has_gravity() == NEGATIVE_GRAVITY)
+	if(falling.has_gravity() <= NEGATIVE_GRAVITY)
 		direction = UP
 	var/turf/target = get_step_multiz(src, direction)
 	if(!target)
@@ -575,12 +602,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		return FALSE
 	if(QDELETED(src)) //skyrat edit: fix createanddestroy
 		return FALSE
-	AddComponent(/datum/component/acid, acidpwr, acid_volume)
-	for(var/obj/O in src)
-		if(underfloor_accessibility < UNDERFLOOR_INTERACTABLE && HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
-			continue
-
-		O.acid_act(acidpwr, acid_volume)
+	AddComponent(/datum/component/acid, acidpwr, acid_volume, GLOB.acid_overlay)
 
 	return . || TRUE
 
@@ -618,31 +640,35 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/AllowDrop()
 	return TRUE
 
-/turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE, purge_ratio = 0.1)
+/turf/proc/add_vomit_floor(mob/living/M, vomit_type = VOMIT_TOXIC, purge_ratio = 0.1)
 
-	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
+	var/obj/effect/decal/cleanable/vomit/vomit
+	if (vomit_type == VOMIT_NEBULA)
+		vomit = new /obj/effect/decal/cleanable/vomit/nebula(src, M.get_static_viruses())
+	else
+		vomit = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
 
 	//if the vomit combined, apply toxicity and reagents to the old vomit
-	if (QDELETED(V))
-		V = locate() in src
-	if(!V)
+	if (QDELETED(vomit))
+		vomit = locate() in src
+	if(!vomit)
 		return
 	// Apply the proper icon set based on vomit type
-	if(toxvomit == VOMIT_PURPLE)
-		V.icon_state = "vomitpurp_[pick(1,4)]"
-	else if (toxvomit == VOMIT_TOXIC)
-		V.icon_state = "vomittox_[pick(1,4)]"
+	if(vomit_type == VOMIT_PURPLE)
+		vomit.icon_state = "vomitpurp_[pick(1,4)]"
+	else if (vomit_type == VOMIT_TOXIC)
+		vomit.icon_state = "vomittox_[pick(1,4)]"
 	//SKYRAT EDIT START - Nanite Slurry
-	else if (toxvomit == VOMIT_NANITE)
-		V.name = "metallic slurry"
-		V.desc = "A puddle of metallic slurry that looks vaguely like very fine sand. It almost seems like it's moving..."
-		V.icon_state = "vomitnanite_[pick(1,4)]"
+	else if (vomit_type == VOMIT_NANITE)
+		vomit.name = "metallic slurry"
+		vomit.desc = "A puddle of metallic slurry that looks vaguely like very fine sand. It almost seems like it's moving..."
+		vomit.icon_state = "vomitnanite_[pick(1,4)]"
 	// SKYRAT EDIT END
 	if (purge_ratio && iscarbon(M))
-		clear_reagents_to_vomit_pool(M, V, purge_ratio)
+		clear_reagents_to_vomit_pool(M, vomit, purge_ratio)
 
 /proc/clear_reagents_to_vomit_pool(mob/living/carbon/M, obj/effect/decal/cleanable/vomit/V, purge_ratio = 0.1)
-	var/obj/item/organ/internal/stomach/belly = M.getorganslot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/internal/stomach/belly = M.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!belly?.reagents.total_volume)
 		return
 	var/chemicals_lost = belly.reagents.total_volume * purge_ratio

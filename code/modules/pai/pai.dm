@@ -37,6 +37,8 @@
 	var/can_transmit = TRUE
 	/// The card we inhabit
 	var/obj/item/pai_card/card
+	/// The maximum distance we can travel away from our pai card
+	var/leashed_distance = 5
 	/// The current chasis that will appear when in holoform
 	var/chassis = "repairbot"
 	/// Toggles whether the pAI can hold encryption keys or not
@@ -146,9 +148,10 @@
 	return ..()
 
 // See software.dm for Topic()
-/mob/living/silicon/pai/canUseTopic(atom/movable/movable, be_close = FALSE, no_dexterity = FALSE, no_tk = FALSE, need_hands = FALSE, floor_okay = FALSE)
-	// Resting is just an aesthetic feature for them.
-	return ..(movable, be_close, no_dexterity, no_tk, need_hands, TRUE)
+/mob/living/silicon/pai/can_perform_action(atom/movable/target, action_bitflags)
+	action_bitflags |= ALLOW_RESTING // Resting is just an aesthetic feature for them
+	action_bitflags &= ~ALLOW_SILICON_REACH // They don't get long reach like the rest of silicons
+	return ..(target, action_bitflags)
 
 /mob/living/silicon/pai/Destroy()
 	QDEL_NULL(atmos_analyzer)
@@ -164,18 +167,21 @@
 	return ..()
 
 /mob/living/silicon/pai/emag_act(mob/user)
-	handle_emag(user)
+	return handle_emag(user)
 
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()
 	. += "Its master ID string seems to be [(!master_name || emagged) ? "empty" : master_name]."
+	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
+	. += get_silicon_flavortext()
+	//SKYRAT EDIT ADDITION END
 
 /mob/living/silicon/pai/get_status_tab_items()
 	. += ..()
 	if(!stat)
-		. += text("Emitter Integrity: [holochassis_health * (100 / HOLOCHASSIS_MAX_HEALTH)].")
+		. += "Emitter Integrity: [holochassis_health * (100 / HOLOCHASSIS_MAX_HEALTH)]."
 	else
-		. += text("Systems nonfunctional.")
+		. += "Systems nonfunctional."
 
 /mob/living/silicon/pai/handle_atom_del(atom/deleting_atom)
 	if(deleting_atom == hacking_cable)
@@ -213,22 +219,34 @@
 		var/newcardloc = pai_card
 		pai_card = new(newcardloc)
 		pai_card.set_personality(src)
-	forceMove(pai_card)
 	card = pai_card
-	addtimer(VARSET_CALLBACK(src, holochassis_ready, TRUE), HOLOCHASSIS_INIT_TIME)
+	forceMove(pai_card)
+	addtimer(VARSET_WEAK_CALLBACK(src, holochassis_ready, TRUE), HOLOCHASSIS_INIT_TIME)
 	if(!holoform)
-		ADD_TRAIT(src, TRAIT_IMMOBILIZED, PAI_FOLDED)
-		ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, PAI_FOLDED)
-	desc = "A pAI hard-light holographics emitter. This one appears in the form of a [chassis]."
+		add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), PAI_FOLDED)
+	update_appearance(UPDATE_DESC)
 
 	RegisterSignal(src, COMSIG_LIVING_CULT_SACRIFICED, PROC_REF(on_cult_sacrificed))
+
+/mob/living/silicon/pai/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	check_distance()
+
+/// Checks if we're in range of our pai card
+/mob/living/silicon/pai/proc/check_distance()
+	SIGNAL_HANDLER
+	if (get_dist(get_turf(card), get_turf(src)) <= leashed_distance)
+		return
+	to_chat(src, span_warning("You moved out of range of your holotransmitter!"))
+	new /obj/effect/temp_visual/guardian/phase/out(loc)
+	forceMove(get_turf(card))
 
 /mob/living/silicon/pai/make_laws()
 	laws = new /datum/ai_laws/pai()
 	return TRUE
 
-/mob/living/silicon/pai/process(delta_time)
-	holochassis_health = clamp((holochassis_health + (HOLOCHASSIS_REGEN_PER_SECOND * delta_time)), -50, HOLOCHASSIS_MAX_HEALTH)
+/mob/living/silicon/pai/process(seconds_per_tick)
+	holochassis_health = clamp((holochassis_health + (HOLOCHASSIS_REGEN_PER_SECOND * seconds_per_tick)), -50, HOLOCHASSIS_MAX_HEALTH)
 
 /mob/living/silicon/pai/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	. = ..()
@@ -247,6 +265,15 @@
 	set_health(maxHealth - getBruteLoss() - getFireLoss())
 	update_stat()
 	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
+
+/mob/living/silicon/pai/update_desc(updates)
+	desc = "A hard-light holographic avatar representing a pAI. This one appears in the form of a [chassis]."
+	return ..()
+
+/mob/living/silicon/pai/update_icon_state()
+	icon_state = resting ? "[chassis]_rest" : "[chassis]"
+	held_state = "[chassis]"
+	return ..()
 
 /**
  * Resolves the weakref of the pai's master.
@@ -423,3 +450,12 @@
 	for(var/mob/living/cultist as anything in invokers)
 		to_chat(cultist, span_cultitalic("You don't think this is what Nar'Sie had in mind when She asked for blood sacrifices..."))
 	return STOP_SACRIFICE
+
+/// Updates the distance we can be from our pai card
+/mob/living/silicon/pai/proc/increment_range(increment_amount)
+	var/new_distance = leashed_distance + increment_amount
+	if (new_distance < HOLOFORM_MIN_RANGE || new_distance > HOLOFORM_MAX_RANGE)
+		return
+	leashed_distance = new_distance
+	if (increment_amount < 0)
+		check_distance()

@@ -28,8 +28,6 @@
 	wander = TRUE
 	loot = list(/obj/effect/gibspawner/xeno, /obj/item/stack/sheet/bluespace_crystal/fifty, /obj/item/key/gateway, /obj/item/uber_teleporter)
 	movement_type = FLYING
-	///Resonance cascade's chance of spawning. Can be decreased by using Xen crystals on Nihilanth
-	var/cascade_chance = 60
 
 /obj/item/stack/sheet/bluespace_crystal/fifty
 	amount = 50
@@ -41,7 +39,7 @@
 	damage_type = BURN
 	light_range = 2
 	armor_flag = ENERGY
-	light_color = LIGHT_COLOR_YELLOW
+	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	nondirectional_sprite = TRUE

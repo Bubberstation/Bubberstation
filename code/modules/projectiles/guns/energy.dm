@@ -133,7 +133,7 @@
 	// Sometimes ammo_type has paths, sometimes it has atom.
 	for (var/atom/item in ammo_type)
 		qdel(item)
-		ammo_type -= item
+	ammo_type = null
 
 	return ..()
 
@@ -143,21 +143,21 @@
 		update_appearance()
 	return ..()
 
-/obj/item/gun/energy/process(delta_time)
+/obj/item/gun/energy/process(seconds_per_tick)
 	if(selfcharge && cell && cell.percent() < 100)
-		charge_timer += delta_time
+		charge_timer += seconds_per_tick
 		if(charge_timer < charge_delay)
 			return
 		charge_timer = 0
 		cell.give(100)
 		if(!chambered) //if empty chamber we try to charge a new shot
 			recharge_newshot(TRUE)
-		SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD) //SKYRAT EDIT ADDITION
 		update_appearance()
 
 /obj/item/gun/energy/attack_self(mob/living/user as mob)
 	if(ammo_type.len > 1 && can_select)
 		select_fire(user)
+	return ..()
 
 /obj/item/gun/energy/can_shoot()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
@@ -192,7 +192,7 @@
 		process_chamber() // If the gun was drained and then recharged, load a new shot.
 	return ..()
 
-/obj/item/gun/energy/process_burst(mob/living/user, atom/target, message = TRUE, params = null, zone_override="", sprd = 0, randomized_gun_spread = 0, randomized_bonus_spread = 0, rand_spr = 0, iteration = 0)
+/obj/item/gun/energy/process_burst(mob/living/user, atom/target, message = TRUE, params = null, zone_override="", randomized_gun_spread = 0, randomized_bonus_spread = 0, rand_spr = 0, iteration = 0)
 	if(!chambered && can_shoot())
 		process_chamber() // Ditto.
 	return ..()
@@ -210,7 +210,6 @@
 	chambered = null
 	recharge_newshot(TRUE)
 	update_appearance()
-	SEND_SIGNAL(src, COMSIG_UPDATE_AMMO_HUD) //SKYRAT EDIT ADDITION
 
 /obj/item/gun/energy/update_icon_state()
 	var/skip_inhand = initial(inhand_icon_state) //only build if we aren't using a preset inhand icon
@@ -303,7 +302,7 @@
 		var/obj/projectile/energy/loaded_projectile = E.loaded_projectile
 		if(!loaded_projectile)
 			. = ""
-		else if(loaded_projectile.nodamage || !loaded_projectile.damage || loaded_projectile.damage_type == STAMINA)
+		else if(loaded_projectile.damage <= 0 || loaded_projectile.damage_type == STAMINA)
 			user.visible_message(span_danger("[user] tries to light [A.loc == user ? "[user.p_their()] [A.name]" : A] with [src], but it doesn't do anything. Dumbass."))
 			playsound(user, E.fire_sound, 50, TRUE)
 			playsound(user, loaded_projectile.hitsound, 50, TRUE)

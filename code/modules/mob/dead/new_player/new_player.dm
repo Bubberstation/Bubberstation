@@ -1,3 +1,5 @@
+///Cooldown for the Reset Lobby Menu HUD verb
+#define RESET_HUD_INTERVAL 15 SECONDS
 /mob/dead/new_player
 	flags_1 = NONE
 	invisibility = INVISIBILITY_ABSTRACT
@@ -15,7 +17,8 @@
 	var/ineligible_for_roles = FALSE
 	/// Used to track if the player's jobs menu sent a message saying it successfully mounted.
 	var/jobs_menu_mounted = FALSE
-
+	///Cooldown for the Reset Lobby Menu HUD verb
+	COOLDOWN_DECLARE(reset_hud_cooldown)
 
 /mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
@@ -30,14 +33,41 @@
 	. = ..()
 
 	GLOB.new_player_list += src
+	add_verb(src, /mob/dead/new_player/proc/reset_menu_hud)
 
 /mob/dead/new_player/Destroy()
 	GLOB.new_player_list -= src
 
 	return ..()
 
+/mob/dead/new_player/mob_negates_gravity()
+	return TRUE //no need to calculate if they have gravity.
+
 /mob/dead/new_player/prepare_huds()
 	return
+
+/mob/dead/new_player/Topic(href, href_list)
+	if (usr != src)
+		return
+
+	if (!client)
+		return
+
+	if (client.interviewee)
+		return
+
+	if (href_list["viewpoll"])
+		var/datum/poll_question/poll = locate(href_list["viewpoll"]) in GLOB.polls
+		poll_player(poll)
+
+	if (href_list["votepollref"])
+		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
+		vote_on_poll_handler(poll, href_list)
+
+/mob/dead/new_player/get_status_tab_items()
+	. = ..()
+	if(!SSticker.HasRoundStarted()) //only show this when the round hasn't started yet
+		. += "Readiness status: [ready ? "" : "Not "]Readied Up!"
 
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/dead/new_player/proc/make_me_an_observer()
@@ -74,6 +104,7 @@
 		observer.real_name = observer.client.prefs.read_preference(/datum/preference/name/real_name)
 		observer.name = observer.real_name
 		observer.client.init_verbs()
+		observer.client.player_details.time_of_death = world.time
 	observer.update_appearance()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	deadchat_broadcast(" has observed.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
@@ -109,6 +140,8 @@
 		//SKYRAT EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
+		if(JOB_UNAVAILABLE_AGE)
+			return "Your character is not old enough for [jobtitle]."
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 
@@ -208,7 +241,7 @@
 	if(humanc) //These procs all expect humans
 		// BEGIN SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES
 		var/chosen_rank = humanc.client?.prefs.alt_job_titles[rank] || rank
-		GLOB.data_core.manifest_inject(humanc, humanc.client)
+		GLOB.manifest.inject(humanc, humanc.client)
 		if(SSshuttle.arrivals)
 			SSshuttle.arrivals.QueueAnnounce(humanc, chosen_rank)
 		else
@@ -218,6 +251,7 @@
 
 		humanc.increment_scar_slot()
 		humanc.load_persistent_scars()
+		SSpersistence.load_modular_persistence(humanc.get_organ_slot(ORGAN_SLOT_BRAIN)) // SKYRAT EDIT ADDITION - MODULAR_PERSISTENCE
 
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
@@ -356,3 +390,21 @@
 	// Add verb for re-opening the interview panel, fixing chat and re-init the verbs for the stat panel
 	add_verb(src, /mob/dead/new_player/proc/open_interview)
 	add_verb(client, /client/verb/fix_tgui_panel)
+
+///Resets the Lobby Menu HUD, recreating and reassigning it to the new player
+/mob/dead/new_player/proc/reset_menu_hud()
+	set name = "Reset Lobby Menu HUD"
+	set category = "OOC"
+	var/mob/dead/new_player/new_player = usr
+	if(!COOLDOWN_FINISHED(new_player, reset_hud_cooldown))
+		to_chat(new_player, span_warning("You must wait <b>[DisplayTimeText(COOLDOWN_TIMELEFT(new_player, reset_hud_cooldown))]</b> before resetting the Lobby Menu HUD again!"))
+		return
+	if(!new_player?.client)
+		return
+	COOLDOWN_START(new_player, reset_hud_cooldown, RESET_HUD_INTERVAL)
+	qdel(new_player.hud_used)
+	create_mob_hud()
+	to_chat(new_player, span_info("Lobby Menu HUD reset. You may reset the HUD again in <b>[DisplayTimeText(RESET_HUD_INTERVAL)]</b>."))
+	hud_used.show_hud(hud_used.hud_version)
+
+#undef RESET_HUD_INTERVAL

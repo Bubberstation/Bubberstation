@@ -8,6 +8,7 @@
 	key = MUTANT_SYNTH_SCREEN
 	generic = "Screen"
 	relevent_layers = list(BODY_FRONT_UNDER_CLOTHES)
+	organ_type = /obj/item/organ/external/synth_screen
 
 /datum/sprite_accessory/screen/none
 	name = "None"
@@ -146,9 +147,10 @@
 	generic = "Antenna"
 	relevent_layers = list(BODY_ADJ_LAYER)
 	genetic = FALSE
+	organ_type = /obj/item/organ/external/synth_antenna
 
-/datum/sprite_accessory/antenna/is_hidden(mob/living/carbon/human/wearer, obj/item/bodypart/bodypart)
-	if(!wearer.head || !bodypart)
+/datum/sprite_accessory/antenna/is_hidden(mob/living/carbon/human/wearer)
+	if(!wearer.head)
 		return FALSE
 	if(key in wearer.try_hide_mutant_parts)
 		return TRUE
@@ -156,8 +158,9 @@
 	if(istype(wearer.head, /obj/item/clothing/head/mod))
 		return FALSE
 //	Hide accessory if flagged to do so
-	if((wearer.head.flags_inv & HIDEHAIR || (wearer.wear_mask && (wearer.wear_mask.flags_inv & HIDEHAIR))) \
-		&& !(wearer.head.flags_inv & SHOWSPRITEEARS || wearer.wear_mask.flags_inv & SHOWSPRITEEARS))
+	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
+		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
+		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
 		return TRUE
 
 /datum/sprite_accessory/antenna/none
@@ -201,7 +204,7 @@
 /datum/sprite_accessory/synth_chassis/default
 	name = "Default Chassis"
 	icon_state = "ipc"
-	color_src = MUTCOLORS //Here it's used to tell apart greyscalling
+	color_src = MUTANT_COLOR //Here it's used to tell apart greyscalling
 
 /datum/sprite_accessory/synth_chassis/synth
 	name = "Dark Chassis"
@@ -211,7 +214,7 @@
 	name = "Human Chassis"
 	icon = BODYPART_ICON_HUMAN
 	icon_state = "human"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 	dimorphic = TRUE
 
 /datum/sprite_accessory/synth_chassis/android
@@ -223,7 +226,7 @@
 	name = "Mammal Chassis"
 	icon = BODYPART_ICON_SYNTHMAMMAL
 	icon_state = "synthmammal"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 	dimorphic = TRUE
 	is_digi_compatible = TRUE
 
@@ -231,7 +234,7 @@
 	name = "Lizard Chassis"
 	icon = BODYPART_ICON_SYNTHLIZARD
 	icon_state = "synthliz"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 	dimorphic = TRUE
 	is_digi_compatible = TRUE
 
@@ -292,7 +295,7 @@
 
 /datum/sprite_accessory/synth_head/default
 	name = "Default Head"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 
 /datum/sprite_accessory/synth_head/synth
 	name = "Dark Head"
@@ -302,7 +305,7 @@
 	name = "Human Head"
 	icon = BODYPART_ICON_HUMAN
 	icon_state = "human"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 	dimorphic = TRUE
 
 /datum/sprite_accessory/synth_head/android
@@ -314,20 +317,20 @@
 	name = "Mammal Head"
 	icon = BODYPART_ICON_SYNTHMAMMAL
 	icon_state = "synthmammal"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 	dimorphic = TRUE
 
 /datum/sprite_accessory/synth_head/lizard
 	name = "Lizard Head"
 	icon = BODYPART_ICON_SYNTHLIZARD
 	icon_state = "synthliz"
-	color_src = MUTCOLORS
+	color_src = MUTANT_COLOR
 	dimorphic = TRUE
 
 /datum/sprite_accessory/synth_head/mcgreyscale
 	name = "Morpheus Cyberkinetics (Greyscale)"
 	icon_state = "mcgipc"
-	color_src = MUTCOLORS //Here it's used to tell apart greyscalling
+	color_src = MUTANT_COLOR //Here it's used to tell apart greyscalling
 
 /datum/sprite_accessory/synth_head/bishopcyberkinetics
 	name = "Bishop Cyberkinetics"

@@ -24,8 +24,9 @@
 	if(dextrous)
 		. = list("<span class='info'>This is [icon2html(src)] \a <b>[src]</b>!\n[desc]", EXAMINE_SECTION_BREAK) //SKYRAT EDIT CHANGE
 		for(var/obj/item/held_item in held_items)
-			if(!(held_item.item_flags & ABSTRACT))
-				. += "It has [held_item.get_examine_string(user)] in its [get_held_index_name(get_held_index_of_item(held_item))]."
+			if(held_item.item_flags & (ABSTRACT|EXAMINE_SKIP|HAND_ITEM))
+				continue
+			. += "It has [held_item.get_examine_string(user)] in its [get_held_index_name(get_held_index_of_item(held_item))]."
 		if(internal_storage && !(internal_storage.item_flags & ABSTRACT))
 			. += "It is holding [internal_storage.get_examine_string(user)] in its internal storage."
 		. += "</span>"
@@ -51,7 +52,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/guardian/dextrous/can_equip(obj/item/equipped_item, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+/mob/living/simple_animal/hostile/guardian/dextrous/can_equip(obj/item/equipped_item, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE)
 	switch(slot)
 		if(ITEM_SLOT_DEX_STORAGE)
 			if(internal_storage)
@@ -69,13 +70,13 @@
 		return ITEM_SLOT_DEX_STORAGE
 	return ..()
 
-/mob/living/simple_animal/hostile/guardian/dextrous/equip_to_slot(obj/item/equipped_item, slot)
+/mob/living/simple_animal/hostile/guardian/dextrous/equip_to_slot(obj/item/equipping, slot, initial = FALSE, redraw_mob = FALSE, indirect_action = FALSE)
 	if(!..())
 		return
 
 	switch(slot)
 		if(ITEM_SLOT_DEX_STORAGE)
-			internal_storage = equipped_item
+			internal_storage = equipping
 			update_inv_internal_storage()
 		else
 			to_chat(src, span_danger("You are trying to equip this item to an unsupported inventory slot. Report this to a coder!"))

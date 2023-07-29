@@ -8,15 +8,17 @@
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/glock.dmi'
 	icon_state = "glock"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/g17
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/g17
 	can_suppress = FALSE
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
 	fire_delay = 1.90
-	company_flag = COMPANY_CANTALAN
 	projectile_damage_multiplier = 0.5
+
+/obj/item/gun/ballistic/automatic/pistol/g17/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_CANTALAN)
 
 /obj/item/gun/ballistic/automatic/pistol/g17/add_seclight_point()
 	return
@@ -29,7 +31,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 17
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/g17/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -49,7 +51,7 @@
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/glock.dmi'
 	icon_state = "glock_spec"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/g18
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/g18
 	can_suppress = FALSE
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
@@ -58,10 +60,13 @@
 	burst_size = 3
 	fire_delay = 2.10
 	spread = 8
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	mag_display = FALSE
 	mag_display_ammo = FALSE
-	company_flag = COMPANY_CANTALAN
 	projectile_damage_multiplier = 0.5
+
+/obj/item/gun/ballistic/automatic/pistol/g18/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_CANTALAN)
 
 /obj/item/gun/ballistic/automatic/pistol/g18/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -74,7 +79,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 33
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/g18/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -94,13 +99,15 @@
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/glock.dmi'
 	icon_state = "glock_mesa"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/ladon // C o m p a t i b i l i t y .
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/ladon // C o m p a t i b i l i t y .
 	fire_sound = 'modular_skyrat/master_files/sound/weapons/glock17_fire.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
 	fire_delay = 0.9
-	company_flag = null
+
+/obj/item/gun/ballistic/automatic/pistol/g17/mesa/give_manufacturer_examine()
+	return
 
 /obj/item/gun/ballistic/automatic/pistol/g17/mesa/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -118,13 +125,15 @@
 	icon_state = "pdh"
 	inhand_icon_state = "pdh"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pdh
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pdh
 	can_suppress = FALSE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
-	company_flag = COMPANY_ARMADYNE
+
+/obj/item/gun/ballistic/automatic/pistol/pdh/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/gun/ballistic/automatic/pistol/pdh/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -134,7 +143,7 @@
 	desc = "A prestigious 12mm sidearm normally seen in the hands of SolFed special operation units due to its reliable and time-tested design. Now's one of those times that pays to be the strong, silent type."
 	icon_state = "pdh_alt"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pdh
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pdh
 	can_suppress = FALSE
 	fire_sound = 'sound/weapons/gun/pistol/shot_suppressed.ogg'
 	fire_delay = 8
@@ -149,7 +158,7 @@
 	ammo_type = /obj/item/ammo_casing/b12mm
 	caliber = CALIBER_12MM
 	max_ammo = 8
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(
 		AMMO_TYPE_LETHAL,
 		AMMO_TYPE_HOLLOWPOINT,
@@ -169,13 +178,13 @@
 	desc = "A prestigious ballistic sidearm, from Armadyne's military division, normally given to high-ranking corporate agents. It has a 3 round burst mode and uses .357 Magnum ammunition."
 	icon_state = "pdh_corpo"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pdh_corpo
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pdh_corpo
 	can_suppress = FALSE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
 	burst_size = 3
 	fire_delay = 2
 	spread = 5
-	company_flag = COMPANY_ARMADYNE
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 
 /obj/item/ammo_box/magazine/multi_sprite/pdh_corpo
 	name = "\improper PDH-6M magazine"
@@ -185,7 +194,7 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	caliber = CALIBER_357
 	max_ammo = 14
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(
 		AMMO_TYPE_LETHAL,
 	)
@@ -200,13 +209,13 @@
 	desc = "A sidearm used by Armadyne corporate agents who didn't make the cut for the Corpo model. Chambered in .38 special."
 	icon_state = "pdh_striker"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pdh_striker
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pdh_striker
 	can_suppress = FALSE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
 	burst_size = 3
 	fire_delay = 2
 	spread = 9
-	company_flag = COMPANY_ARMADYNE
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 
 /obj/item/ammo_box/magazine/multi_sprite/pdh_striker
 	name = "\improper PDH-6M magazine"
@@ -216,7 +225,7 @@
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = CALIBER_38
 	max_ammo = 10
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(
 		AMMO_TYPE_LETHAL,
 	)
@@ -230,9 +239,8 @@
 	desc = "A modern ballistic sidearm, used primarily by law enforcement, chambered in 9x25mm."
 	fire_delay = 1.95
 	icon_state = "pdh_peacekeeper"
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pdh_peacekeeper
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pdh_peacekeeper
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/pistol_fire.ogg'
-	company_flag = COMPANY_ARMADYNE
 	projectile_damage_multiplier = 0.5
 
 /obj/item/ammo_box/magazine/multi_sprite/pdh_peacekeeper
@@ -243,7 +251,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 16
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/pdh_peacekeeper/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -270,15 +278,17 @@
 	icon_state = "ladon"
 	inhand_icon_state = "ladon"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/ladon
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/ladon
 	can_suppress = FALSE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/pistol_fire.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
 	fire_delay = 4.20
-	company_flag = COMPANY_ARMADYNE
 	projectile_damage_multiplier = 0.7
+
+/obj/item/gun/ballistic/automatic/pistol/ladon/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/gun/ballistic/automatic/pistol/ladon/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -291,7 +301,7 @@
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = CALIBER_10MM
 	max_ammo = 12
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/ladon/hp
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
@@ -315,13 +325,15 @@
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/makarov.dmi'
 	icon_state = "makarov"
 	w_class = WEIGHT_CLASS_SMALL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/makarov
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/makarov
 	can_suppress = TRUE
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
-	company_flag = COMPANY_IZHEVSK
 	projectile_damage_multiplier = 0.6
+
+/obj/item/gun/ballistic/automatic/pistol/makarov/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
 
 /obj/item/ammo_box/magazine/multi_sprite/makarov
 	name = "\improper R-C Makarov magazine"
@@ -331,7 +343,7 @@
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = CALIBER_10MM
 	max_ammo = 6
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/makarov/hp
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
@@ -355,14 +367,16 @@
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/mk58.dmi'
 	icon_state = "mk58"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/mk58
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/mk58
 	can_suppress = FALSE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/pistol_fire.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
-	company_flag = COMPANY_ARMADYNE
 	projectile_damage_multiplier = 0.5
+
+/obj/item/gun/ballistic/automatic/pistol/mk58/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/ammo_box/magazine/multi_sprite/mk58
 	name = "\improper MK-58 magazine"
@@ -372,7 +386,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 12
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/mk58/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -400,10 +414,12 @@
 	inhand_icon_state = "firefly"
 	fire_delay = 1.95
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/firefly
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/firefly
 	can_suppress = FALSE
-	company_flag = COMPANY_ARMADYNE
 	projectile_damage_multiplier = 0.5
+
+/obj/item/gun/ballistic/automatic/pistol/firefly/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/gun/ballistic/automatic/pistol/firefly/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -417,7 +433,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 12
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/firefly/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -443,7 +459,7 @@
 	icon_state = "croon"
 	inhand_icon_state = "croon"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/croon
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/croon
 	can_suppress = FALSE
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	rack_sound = 'sound/weapons/gun/smg/smgrack.ogg'
@@ -452,10 +468,12 @@
 	burst_size = 3
 	fire_delay = 2.10
 	spread = 25
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	mag_display = FALSE
 	mag_display_ammo = FALSE
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT)
-	company_flag = COMPANY_IZHEVSK
+
+/obj/item/gun/ballistic/automatic/croon/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
 
 /obj/item/ammo_box/magazine/multi_sprite/croon
 	name = "\improper Croon magazine"
@@ -465,7 +483,7 @@
 	ammo_type = /obj/item/ammo_casing/b6mm
 	caliber = CALIBER_6MM
 	max_ammo = 15
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_RUBBER, AMMO_TYPE_IHDF)
 
 /obj/item/ammo_box/magazine/multi_sprite/croon/rubber
@@ -489,18 +507,20 @@
 	icon_state = "dozer"
 	inhand_icon_state = "dozer"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/dozer
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/dozer
 	can_suppress = TRUE
 	mag_display = FALSE
 	mag_display_ammo = FALSE
 	burst_size = 2
 	fire_delay = 1.90
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_BURST_SHOT)
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 	rack_sound = 'sound/weapons/gun/smg/smgrack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
-	company_flag = COMPANY_ARMADYNE
+
+/obj/item/gun/ballistic/automatic/dozer/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/ammo_box/magazine/multi_sprite/dozer
 	name = "\improper Dozer magazine"
@@ -510,7 +530,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 8
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_HOLLOWPOINT, AMMO_TYPE_INCENDIARY, AMMO_TYPE_AP)
 
 /obj/item/ammo_box/magazine/multi_sprite/dozer/hp
@@ -541,15 +561,21 @@
 	inhand_icon_state = "dmr"
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
-	mag_type = /obj/item/ammo_box/magazine/dmr
+	accepted_magazine_type = /obj/item/ammo_box/magazine/dmr
 	fire_delay = 1.7
 	can_suppress = FALSE
-	burst_size = 3
 	can_bayonet = FALSE
 	mag_display = TRUE
 	fire_sound_volume = 60
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/sniper_fire.ogg'
-	company_flag = COMPANY_ARMADYNE
+
+/obj/item/gun/ballistic/automatic/dmr/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
+/obj/item/gun/ballistic/automatic/dmr/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/ammo_box/magazine/dmr
 	name = "\improper Gen-2 Ripper magazine"
@@ -559,7 +585,7 @@
 	ammo_type = /obj/item/ammo_casing/b577
 	caliber = CALIBER_B577
 	max_ammo = 25
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /*
 *	ZETA
@@ -573,10 +599,12 @@
 	lefthand_file = 'modular_skyrat/modules/sec_haul/icons/guns/inhands/lefthand.dmi'
 	icon_state = "zeta"
 	inhand_icon_state = "zeta"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/zeta
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/zeta
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/revolver_fire.ogg'
 	fire_delay = 3
-	company_flag = COMPANY_BOLT
+
+/obj/item/gun/ballistic/revolver/zeta/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_BOLT)
 
 /obj/item/ammo_box/magazine/internal/cylinder/zeta
 	name = "\improper Zeta-6 cylinder"
@@ -591,7 +619,7 @@
 	icon_state = "speedloader"
 	ammo_type = /obj/item/ammo_casing/c10mm
 	max_ammo = 6
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	caliber = CALIBER_10MM
 	start_empty = TRUE
 
@@ -610,11 +638,13 @@
 	lefthand_file = 'modular_skyrat/modules/sec_haul/icons/guns/inhands/lefthand.dmi'
 	icon_state = "revolution"
 	inhand_icon_state = "revolution"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/revolution
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/revolution
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/revolver_fire.ogg'
 	fire_delay = 1.90
-	company_flag = COMPANY_BOLT
 	projectile_damage_multiplier = 0.5
+
+/obj/item/gun/ballistic/revolver/revolution/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_BOLT)
 
 /obj/item/ammo_box/magazine/internal/cylinder/revolution
 	name = "\improper Revolution-8 cylinder"
@@ -629,7 +659,7 @@
 	icon_state = "speedloader"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 8
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	caliber = CALIBER_9MM
 	start_empty = TRUE
 
@@ -653,7 +683,7 @@
 	inhand_icon_state = "smartgun_worn"
 	worn_icon = 'modular_skyrat/modules/sec_haul/icons/guns/smartgun.dmi'
 	worn_icon_state = "smartgun_worn"
-	mag_type = /obj/item/ammo_box/magazine/smartgun
+	accepted_magazine_type = /obj/item/ammo_box/magazine/smartgun
 	actions_types = null
 	can_suppress = FALSE
 	can_bayonet = FALSE
@@ -673,7 +703,9 @@
 	load_empty_sound = 'modular_skyrat/modules/sec_haul/sound/chaingun_magout.ogg'
 	var/recharge_time = 5 SECONDS
 	var/recharging = FALSE
-	company_flag = COMPANY_ARMADYNE
+
+/obj/item/gun/ballistic/automatic/smartgun/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/gun/ballistic/automatic/smartgun/process_chamber()
 	. = ..()
@@ -748,33 +780,39 @@
 	worn_icon_state = "g11_worn"
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/g11
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/g11
 	can_suppress = FALSE
-	burst_size = 3
 	fire_delay = 0.5
 	spread = 10
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/ltrifle_fire.ogg'
 	can_bayonet = TRUE
-	company_flag = COMPANY_OLDARMS
+
+/obj/item/gun/ballistic/automatic/g11/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
+/obj/item/gun/ballistic/automatic/g11/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/ammo_box/magazine/multi_sprite/g11
 	name = "\improper G-11 magazine"
 	desc = "A magazine for the G-11 rifle, meant to be filled with angry propellant cubes. Chambered for 4.73mm."
 	icon = 'modular_skyrat/modules/sec_haul/icons/guns/mags.dmi'
 	icon_state = "g11"
-	ammo_type = /obj/item/ammo_casing/caseless/b473
+	ammo_type = /obj/item/ammo_casing/b473
 	caliber = CALIBER_473MM
 	max_ammo = 50
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/g11/hp
-	ammo_type = /obj/item/ammo_casing/caseless/b473/hp
+	ammo_type = /obj/item/ammo_casing/b473/hp
 	round_type = AMMO_TYPE_HOLLOWPOINT
 
 /obj/item/ammo_box/magazine/multi_sprite/g11/ihdf
-	ammo_type = /obj/item/ammo_casing/caseless/b473/ihdf
+	ammo_type = /obj/item/ammo_casing/b473/ihdf
 	round_type = AMMO_TYPE_IHDF
 
 /*
@@ -787,10 +825,12 @@
 	icon_state = "riotshotgun"
 	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
 	inhand_icon_state = "shotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/m23
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/m23
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
-	company_flag = COMPANY_BOLT
+
+/obj/item/gun/ballistic/shotgun/m23/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_BOLT)
 
 /obj/item/ammo_box/magazine/internal/shot/m23
 	name = "m23 shotgun internal magazine"
@@ -816,10 +856,12 @@
 	vary_fire_sound = TRUE
 	fire_sound = 'modular_skyrat/modules/aesthetics/guns/sound/shotgun_light.ogg'
 	fire_delay = 5
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/as2
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/as2
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
-	company_flag = COMPANY_ARMADYNE
+
+/obj/item/gun/ballistic/shotgun/automatic/as2/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/ammo_box/magazine/internal/shot/as2
 	name = "shotgun internal magazine"
@@ -846,21 +888,23 @@
 	worn_icon_state = "norwind_worn"
 	alt_icons = TRUE
 	alt_icon_state = "norwind_worn"
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/norwind
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/norwind
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	actions_types = null
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/ltrifle_fire.ogg'
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC)
 	burst_size = 1
 	fire_delay = 10
-	company_flag = COMPANY_ARMADYNE
+	actions_types = list()
 
 /obj/item/gun/ballistic/automatic/norwind/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 1.75)
+
+/obj/item/gun/ballistic/automatic/norwind/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/gun/ballistic/automatic/norwind/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -873,7 +917,7 @@
 	ammo_type = /obj/item/ammo_casing/b12mm
 	caliber = CALIBER_12MM
 	max_ammo = 8
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_HOLLOWPOINT, AMMO_TYPE_RUBBER)
 
 /obj/item/ammo_box/magazine/multi_sprite/norwind/hp
@@ -902,22 +946,26 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
 	inhand_icon_state = "vintorez"
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/vintorez
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/vintorez
 	suppressed = TRUE
 	can_unsuppress = FALSE
 	can_bayonet = FALSE
 	mag_display = FALSE
 	mag_display_ammo = FALSE
-	burst_size = 2
 	fire_delay = 4
 	spread = 10
 	fire_sound = 'sound/weapons/gun/smg/shot_suppressed.ogg'
-	company_flag = COMPANY_OLDARMS
 	projectile_damage_multiplier = 0.5
 
 /obj/item/gun/ballistic/automatic/vintorez/Initialize(mapload)
 	. = ..()
+
 	AddComponent(/datum/component/scope, range_modifier = 1.5)
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
+/obj/item/gun/ballistic/automatic/vintorez/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
 
 /obj/item/ammo_box/magazine/multi_sprite/vintorez
 	name = "\improper VKC magazine"
@@ -927,7 +975,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 20
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/vintorez/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -957,17 +1005,23 @@
 	icon_state = "pcr"
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pcr
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pcr
 	fire_delay = 1.80
 	can_suppress = FALSE
-	burst_size = 5
 	spread = 10
 	can_bayonet = FALSE
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/smg_fire.ogg'
-	company_flag = COMPANY_BOLT
 	projectile_damage_multiplier = 0.5
+
+/obj/item/gun/ballistic/automatic/pcr/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
+/obj/item/gun/ballistic/automatic/pcr/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_BOLT)
 
 /obj/item/gun/ballistic/automatic/pcr/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -980,7 +1034,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
 	max_ammo = 32
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/pcr/hp
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
@@ -1006,17 +1060,25 @@
 	worn_icon_state = "ostwind_worn"
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/pitbull
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/pitbull
 	fire_delay = 4.20
 	can_suppress = FALSE
 	burst_size = 3
 	spread = 15
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/sfrifle_fire.ogg'
 	can_bayonet = TRUE
-	company_flag = COMPANY_BOLT
 	projectile_damage_multiplier = 0.7
+
+/obj/item/gun/ballistic/automatic/pitbull/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
+/obj/item/gun/ballistic/automatic/pitbull/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_BOLT)
 
 /obj/item/gun/ballistic/automatic/pitbull/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")
@@ -1029,7 +1091,7 @@
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = CALIBER_10MM
 	max_ammo = 24
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/multi_sprite/pitbull/hp
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
@@ -1061,16 +1123,24 @@
 	alt_icon_state = "ostwind_worn"
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
-	mag_type = /obj/item/ammo_box/magazine/multi_sprite/ostwind
+	accepted_magazine_type = /obj/item/ammo_box/magazine/multi_sprite/ostwind
 	spread = 10
 	fire_delay = 2
 	can_suppress = FALSE
 	burst_size = 2
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	can_bayonet = TRUE
-	company_flag = COMPANY_ARMADYNE
+
+/obj/item/gun/ballistic/automatic/ostwind/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
+/obj/item/gun/ballistic/automatic/ostwind/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_ARMADYNE)
 
 /obj/item/ammo_box/magazine/multi_sprite/ostwind
 	name = "\improper DTR-6 magazine"
@@ -1080,7 +1150,7 @@
 	ammo_type = /obj/item/ammo_casing/b6mm
 	caliber = CALIBER_6MM
 	max_ammo = 30
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	possible_types = list(AMMO_TYPE_LETHAL, AMMO_TYPE_RUBBER, AMMO_TYPE_IHDF)
 
 /obj/item/ammo_box/magazine/multi_sprite/ostwind/rubber

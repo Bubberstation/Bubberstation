@@ -37,19 +37,31 @@
 	non_craftable = TRUE
 
 /datum/crafting_recipe/food/reaction/New()
-	..()
+	. = ..()
 	if(!reaction)
 		return
-	var/datum/chemical_reaction/chemical_reaction = new reaction // This could use GLOB.chemical_reactions_list if it was initialized by now
-	reqs = chemical_reaction.required_reagents
-	chem_catalysts = chemical_reaction.required_catalysts
-	if (chemical_reaction.results.len)
+
+	if(length(GLOB.chemical_reactions_list))
+		setup_chemical_reaction_details(GLOB.chemical_reactions_list[reaction])
+	else
+		// May be called before chemical reactions list is instantiated
+		var/datum/chemical_reaction/chemical_reaction = new reaction()
+		setup_chemical_reaction_details(chemical_reaction)
+		qdel(chemical_reaction)
+
+/**
+ * Sets up information for our recipe based on the chemical reaction we have set.
+ */
+/datum/crafting_recipe/food/reaction/proc/setup_chemical_reaction_details(datum/chemical_reaction/chemical_reaction)
+	reqs = chemical_reaction.required_reagents?.Copy()
+	chem_catalysts = chemical_reaction.required_catalysts?.Copy()
+	if(isnull(result) && length(chemical_reaction.results))
 		result = chemical_reaction.results[1]
 		result_amount = chemical_reaction.results[result]
 
 /datum/crafting_recipe/food/reaction/candle
 	reaction = /datum/chemical_reaction/candlefication
-	result = /obj/item/candle
+	result = /obj/item/flashlight/flare/candle
 	category = CAT_CAKE
 
 /datum/crafting_recipe/food/reaction/tofu
@@ -251,6 +263,10 @@
 	result = /obj/item/food/pastrybase
 	category = CAT_BREAD
 
+/datum/crafting_recipe/food/knife/butterslice
+	reqs = list(/obj/item/food/butter = 1)
+	result = /obj/item/food/butterslice
+
 /datum/crafting_recipe/food/knife/doughball
 	reqs = list(/obj/item/food/doughslice = 1)
 	result = /obj/item/food/bait/doughball
@@ -406,8 +422,8 @@
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/grill/grilled_cheese_sandwich
-	reqs = list(/obj/item/food/cheese_sandwich = 1)
-	result = /obj/item/food/grilled_cheese_sandwich
+	reqs = list(/obj/item/food/sandwich/cheese = 1)
+	result = /obj/item/food/sandwich/cheese/grilled
 	category = CAT_BREAD
 
 /datum/crafting_recipe/food/grill/moonfish
@@ -503,7 +519,7 @@
 	result = /datum/reagent/consumable/flour
 
 /datum/crafting_recipe/food/grinder/butter
-	reqs = list(/datum/reagent/consumable/milk = 15)
+	reqs = list(/datum/reagent/consumable/milk = MILK_TO_BUTTER_COEFF)
 	result = /obj/item/food/butter
 	steps = list("Put into grinder and mix")
 
@@ -596,10 +612,6 @@
 	reqs = list(/obj/item/food/tempehstarter = 1)
 	result = /obj/item/food/tempeh
 
-/datum/crafting_recipe/food/processor/yakiimo
-	reqs = list(/obj/item/food/grown/potato/sweet = 1)
-	result = /obj/item/food/yakiimo
-
 /datum/crafting_recipe/food/processor/popsicle_stick
 	reqs = list(/obj/item/grown/log = 1)
 	result = /obj/item/popsicle_stick
@@ -629,11 +641,6 @@
 	reqs = list(/obj/item/food/spaghetti/raw = 1)
 	result = /obj/item/food/spaghetti/boiledspaghetti
 	category = CAT_SPAGHETTI
-
-/datum/crafting_recipe/food/microwave/khinkali
-	reqs = list(/obj/item/food/rawkhinkali = 1)
-	result = /obj/item/food/khinkali
-	category = CAT_BREAD
 
 /datum/crafting_recipe/food/microwave/onionrings
 	reqs = list(/obj/item/food/onion_slice = 1)
@@ -757,7 +764,7 @@
 /datum/crafting_recipe/food/oven/yakiimo
 	reqs = list(/obj/item/food/grown/potato/sweet = 1)
 	result = /obj/item/food/yakiimo
-	category = CAT_SALAD
+	category = CAT_MISCFOOD
 
 // Machinery: Drying rack
 /datum/crafting_recipe/food/drying

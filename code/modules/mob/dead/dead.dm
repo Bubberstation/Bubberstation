@@ -23,19 +23,11 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		add_verb(src, /mob/dead/proc/server_hop)
 	set_focus(src)
 	become_hearing_sensitive()
-	log_mob_tag("CREATED: [key_name(src)] \[[src.type]\]")
+	log_mob_tag("TAG: [tag] CREATED: [key_name(src)] \[[src.type]\]")
 	return INITIALIZE_HINT_NORMAL
 
 /mob/dead/canUseStorage()
 	return FALSE
-
-/mob/dead/abstract_move(atom/destination)
-	var/turf/old_turf = get_turf(src)
-	var/turf/new_turf = get_turf(destination)
-	if (old_turf?.z != new_turf?.z)
-		var/same_z_layer = (GET_TURF_PLANE_OFFSET(old_turf) == GET_TURF_PLANE_OFFSET(new_turf))
-		on_changed_z_level(old_turf, new_turf, same_z_layer)
-	return ..()
 
 /mob/dead/get_status_tab_items()
 	. = ..()
@@ -82,7 +74,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 	var/client/C = client
 	to_chat(C, span_notice("Sending you to [pick]."))
-	new /atom/movable/screen/splash(null, C)
+	new /atom/movable/screen/splash(null, null, C)
 
 	notransform = TRUE
 	sleep(2.9 SECONDS) //let the animation play

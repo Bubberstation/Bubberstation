@@ -1,4 +1,3 @@
-/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR AUTOMATIC.DM
 /obj/item/gun/ballistic/automatic
 	w_class = WEIGHT_CLASS_NORMAL
 	can_suppress = TRUE
@@ -54,7 +53,7 @@
 	actions_types = list()
 	mag_display = TRUE
 	empty_indicator = TRUE
-	mag_type = /obj/item/ammo_box/magazine/smgm9mm
+	accepted_magazine_type = /obj/item/ammo_box/magazine/smgm9mm
 	pin = null
 	bolt_type = BOLT_TYPE_LOCKING
 	show_bolt_icon = FALSE
@@ -72,7 +71,7 @@
 	icon_state = "c20r"
 	inhand_icon_state = "c20r"
 	selector_switch_icon = TRUE
-	mag_type = /obj/item/ammo_box/magazine/smgm45
+	accepted_magazine_type = /obj/item/ammo_box/magazine/smgm45
 	fire_delay = 2
 	burst_size = 3
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -96,12 +95,16 @@
 	update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
+	name = "\improper WT-550 Autorifle"
+	desc = "Recalled by Nanotrasen due to public backlash around heat distribution resulting in unintended discombobulation. \
+		This outcry was fabricated through various Syndicate-backed misinformation operations to force Nanotrasen to abandon \
+		its ballistics weapon program, cornering them into the energy weapons market. Most often found today in the hands of pirates, \
+		underfunded security personnel, cargo technicians, theoritical physicists and gang bangers out on the rim. \
+		Light-weight and fully automatic. Uses 4.6x30mm rounds."
 	icon_state = "wt550"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"
-	mag_type = /obj/item/ammo_box/magazine/wt550m9
+	accepted_magazine_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	can_suppress = FALSE
 	burst_size = 1
@@ -122,7 +125,7 @@
 	desc = "An ancient 9mm submachine gun pattern updated and simplified to lower costs, though perhaps simplified too much."
 	icon_state = "plastikov"
 	inhand_icon_state = "plastikov"
-	mag_type = /obj/item/ammo_box/magazine/plastikov9mm
+	accepted_magazine_type = /obj/item/ammo_box/magazine/plastikov9mm
 	burst_size = 5
 	spread = 25
 	can_suppress = FALSE
@@ -136,7 +139,7 @@
 	name = "\improper Type U3 Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
 	icon_state = "miniuzi"
-	mag_type = /obj/item/ammo_box/magazine/uzim9mm
+	accepted_magazine_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
@@ -151,7 +154,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "m90"
 	selector_switch_icon = TRUE
-	mag_type = /obj/item/ammo_box/magazine/m556
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m556
 	can_suppress = FALSE
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
 	burst_size = 3
@@ -179,8 +182,8 @@
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted(src)
 	update_appearance()
 
-/obj/item/gun/ballistic/automatic/m90/afterattack_secondary(atom/target, mob/living/user, flag, params)
-	underbarrel.afterattack(target, user, flag, params)
+/obj/item/gun/ballistic/automatic/m90/afterattack_secondary(atom/target, mob/living/user, proximity_flag, click_parameters)
+	underbarrel.afterattack(target, user, proximity_flag, click_parameters)
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /obj/item/gun/ballistic/automatic/m90/attackby(obj/item/A, mob/user, params)
@@ -207,7 +210,7 @@
 	selector_switch_icon = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/tommygunm45
+	accepted_magazine_type = /obj/item/ammo_box/magazine/tommygunm45
 	can_suppress = FALSE
 	burst_size = 1
 	actions_types = list()
@@ -226,11 +229,10 @@
 	icon_state = "arg"
 	inhand_icon_state = "arg"
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/m556
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m556
 	can_suppress = FALSE
 	burst_size = 3
 	fire_delay = 1
-
 
 // L6 SAW //
 
@@ -242,7 +244,7 @@
 	base_icon_state = "l6"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/mm712x82
+	accepted_magazine_type = /obj/item/ammo_box/magazine/mm712x82
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 1
 	actions_types = list()
@@ -275,7 +277,7 @@
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
-	if(!user.canUseTopic(src))
+	if(!user.can_perform_action(src))
 		return
 	cover_open = !cover_open
 	balloon_alert(user, "cover [cover_open ? "opened" : "closed"]")
@@ -312,56 +314,10 @@
 	..()
 
 /obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, params)
-	if(!cover_open && istype(A, mag_type))
+	if(!cover_open && istype(A, accepted_magazine_type))
 		balloon_alert(user, "open the cover!")
 		return
 	..()
-
-
-
-// SNIPER //
-
-/obj/item/gun/ballistic/automatic/sniper_rifle
-	name = "sniper rifle"
-	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
-	icon_state = "sniper"
-	w_class = WEIGHT_CLASS_BULKY
-	inhand_icon_state = "sniper"
-	worn_icon_state = null
-	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
-	fire_sound_volume = 90
-	load_sound = 'sound/weapons/gun/sniper/mag_insert.ogg'
-	rack_sound = 'sound/weapons/gun/sniper/rack.ogg'
-	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
-	recoil = 2
-	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
-	fire_delay = 4 SECONDS
-	burst_size = 1
-	w_class = WEIGHT_CLASS_NORMAL
-	slot_flags = ITEM_SLOT_BACK
-	actions_types = list()
-	mag_display = TRUE
-	suppressor_x_offset = 3
-	suppressor_y_offset = 3
-
-/obj/item/gun/ballistic/automatic/sniper_rifle/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/scope, range_modifier = 2)
-
-/obj/item/gun/ballistic/automatic/sniper_rifle/reset_semicd()
-	. = ..()
-	if(suppressed)
-		playsound(src, 'sound/machines/eject.ogg', 25, TRUE, ignore_walls = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
-	else
-		playsound(src, 'sound/machines/eject.ogg', 50, TRUE)
-
-/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
-	name = "syndicate sniper rifle"
-	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
-	can_suppress = TRUE
-	can_unsuppress = TRUE
-	pin = /obj/item/firing_pin/implant/pindicate
 
 // Old Semi-Auto Rifle //
 
@@ -370,9 +326,13 @@
 	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
 	icon_state = "surplus"
 	inhand_icon_state = "moistnugget"
+	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	worn_icon_state = null
 	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/m10mm/rifle
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m10mm/rifle
 	fire_delay = 30
 	burst_size = 1
 	can_unsuppress = TRUE
@@ -390,7 +350,7 @@
 	icon_state = "oldrifle"
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "arg"
-	mag_type = /obj/item/ammo_box/magazine/recharge
+	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge
 	empty_indicator = TRUE
 	fire_delay = 2
 	can_suppress = FALSE
@@ -398,4 +358,3 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
-*/

@@ -38,16 +38,11 @@
 	target.dna.update_body_size()
 
 	for(var/organ_key in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_PENIS, ORGAN_SLOT_BREASTS, ORGAN_SLOT_ANUS))
-		var/obj/item/organ/external/genital/gent = target.getorganslot(organ_key)
+		var/obj/item/organ/external/genital/gent = target.get_organ_slot(organ_key)
 		if(gent)
 			gent.aroused = prefs.arousal_preview
 			gent.update_sprite_suffix()
-
-	if(prefs && length(prefs.augments))
-		for(var/key in prefs.augments)
-			var/datum/augment_item/aug = GLOB.augment_items[prefs.augments[key]]
-			aug.apply(target, prefs = prefs)
-//SKYRAT EDIT END
+	//SKYRAT EDIT END
 
 /datum/preference/choiced/species/compile_constant_data()
 	var/list/data = list()
@@ -61,7 +56,7 @@
 		data[species_id]["desc"] = species.get_species_description()
 		data[species_id]["lore"] = species.get_species_lore()
 		data[species_id]["icon"] = sanitize_css_class_name(species.name)
-		data[species_id]["use_skintones"] = species.use_skintones
+		data[species_id]["use_skintones"] = (TRAIT_USES_SKINTONES in species.inherent_traits)
 		data[species_id]["sexes"] = species.sexes
 		data[species_id]["enabled_features"] = species.get_features()
 		data[species_id]["perks"] = species.get_species_perks()

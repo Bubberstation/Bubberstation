@@ -22,14 +22,26 @@ const MATERIAL_ICONS: Record<string, [number, string][]> = {
     [17, 'sheet-gold_2'],
     [34, 'sheet-gold_3'],
   ],
-  'diamond': [[0, 'sheet-diamond']],
+  'diamond': [
+    [0, 'sheet-diamond'],
+    [17, 'sheet-diamond_2'],
+    [34, 'sheet-diamond_3'],
+  ],
   'plasma': [
     [0, 'sheet-plasma'],
     [17, 'sheet-plasma_2'],
     [34, 'sheet-plasma_3'],
   ],
-  'uranium': [[0, 'sheet-uranium']],
-  'bananium': [[0, 'sheet-bananium']],
+  'uranium': [
+    [0, 'sheet-uranium'],
+    [17, 'sheet-uranium_2'],
+    [34, 'sheet-uranium_3'],
+  ],
+  'bananium': [
+    [0, 'sheet-bananium'],
+    [17, 'sheet-bananium_2'],
+    [34, 'sheet-bananium_3'],
+  ],
   'titanium': [
     [0, 'sheet-titanium'],
     [17, 'sheet-titanium_2'],
@@ -50,18 +62,17 @@ export type MaterialIconProps = {
   materialName: string;
 
   /**
-   * The amount of material. One sheet is 2,000 units. By default, the icon
-   * attempts to render a full stack (200,000 units).
+   * The number of sheets of the material.
    */
-  amount?: number;
+  sheets?: number;
 };
 
 /**
  * A 32x32 material icon. Animates between different stack sizes of the given
  * material.
  */
-export const MaterialIcon = (props: MaterialIconProps) => {
-  const { materialName, amount } = props;
+export const MaterialIcon = (props: MaterialIconProps, context) => {
+  const { materialName, sheets = 0 } = props;
   const icons = MATERIAL_ICONS[materialName];
 
   if (!icons) {
@@ -70,10 +81,7 @@ export const MaterialIcon = (props: MaterialIconProps) => {
 
   let activeIdx = 0;
 
-  while (
-    icons[activeIdx + 1] &&
-    icons[activeIdx + 1][0] <= (amount ?? 200_000) / 2_000
-  ) {
+  while (icons[activeIdx + 1] && icons[activeIdx + 1][0] <= sheets) {
     activeIdx += 1;
   }
 

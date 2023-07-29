@@ -13,7 +13,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_HULK_ATTACK, PROC_REF(hulk_hit))
 	RegisterSignal(parent, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(unarmed_hit))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(hand_hit))
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_hit))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby_hit))
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_WRENCH), PROC_REF(tool_hit))
 	RegisterSignal(parent, COMSIG_ATOM_BUMPED, PROC_REF(bumped_hit))
 	RegisterSignal(parent, COMSIG_ATOM_INTERCEPT_Z_FALL, PROC_REF(intercept_z_fall))
@@ -29,7 +29,7 @@
 		COMSIG_ATOM_HULK_ATTACK,
 		COMSIG_LIVING_UNARMED_ATTACK,
 		COMSIG_ATOM_ATTACK_HAND,
-		COMSIG_PARENT_ATTACKBY,
+		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ATOM_TOOL_ACT(TOOL_WRENCH),
 		COMSIG_ATOM_BUMPED,
 		COMSIG_ATOM_INTERCEPT_Z_FALL,
@@ -108,7 +108,7 @@
 			)
 			return
 
-		var/obj/item/organ/internal/tongue/licking_tongue = user.getorganslot(ORGAN_SLOT_TONGUE)
+		var/obj/item/organ/internal/tongue/licking_tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
 		if(licking_tongue)
 			dust_mob(source, user,
 				span_danger("As [user] hesitantly leans in and licks [atom_source] everything goes silent before [user.p_their()] body starts to glow and burst into flames before flashing to ash!"),
@@ -180,7 +180,7 @@
 		return
 
 	if(atom_source.Adjacent(user)) //if the item is stuck to the person, kill the person too instead of eating just the item.
-		var/vis_msg = span_danger("[user] reaches out and touches [atom_source] with [item], inducing a resonance... [item] starts to glow briefly before the light continues up to [user]'s body. [user.p_they(TRUE)] bursts into flames before flashing into dust!")
+		var/vis_msg = span_danger("[user] reaches out and touches [atom_source] with [item], inducing a resonance... [item] starts to glow briefly before the light continues up to [user]'s body. [user.p_They()] burst[user.p_s()] into flames before flashing into dust!")
 		var/mob_msg = span_userdanger("You reach out and touch [atom_source] with [item]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"")
 		dust_mob(source, user, vis_msg, mob_msg)
 
@@ -213,7 +213,8 @@
 /datum/component/supermatter_crystal/proc/intercept_z_fall(datum/source, list/falling_movables, levels)
 	SIGNAL_HANDLER
 	for(var/atom/movable/hit_object as anything in falling_movables)
-		bumped_hit(hit_object)
+		bumped_hit(parent, hit_object)
+	return FALL_INTERCEPTED | FALL_NO_MESSAGE
 
 /datum/component/supermatter_crystal/proc/dust_mob(datum/source, mob/living/nom, vis_msg, mob_msg, cause)
 	var/atom/atom_source = source
@@ -227,7 +228,7 @@
 		cause = "contact"
 	nom.visible_message(vis_msg, mob_msg, span_hear("You hear an unearthly noise as a wave of heat washes over you."))
 	atom_source.investigate_log("has been attacked ([cause]) by [key_name(nom)]", INVESTIGATE_ENGINE)
-	add_memory_in_range(atom_source, 7, MEMORY_SUPERMATTER_DUSTED, list(DETAIL_PROTAGONIST = nom, DETAIL_WHAT_BY = atom_source), story_value = STORY_VALUE_OKAY, memory_flags = MEMORY_CHECK_BLIND_AND_DEAF)
+	add_memory_in_range(atom_source, 7, /datum/memory/witness_supermatter_dusting, protagonist = nom, antagonist = atom_source)
 	playsound(get_turf(atom_source), 'sound/effects/supermatter.ogg', 50, TRUE)
 	consume(atom_source, nom)
 
@@ -259,10 +260,13 @@
 				message_admins("[atom_source] has consumed [consumed_object], [suspicion] [ADMIN_JMP(atom_source)].")
 			atom_source.investigate_log("has consumed [consumed_object] - [suspicion].", INVESTIGATE_ENGINE)
 		qdel(consumed_object)
-	if(!iseffect(consumed_object) && isitem(consumed_object))
-		var/obj/item/consumed_item = consumed_object
-		object_size = consumed_item.w_class
-		matter_increase += 70 * object_size
+	if(!iseffect(consumed_object) && !isliving(consumed_object))
+		if(isitem(consumed_object))
+			var/obj/item/consumed_item = consumed_object
+			object_size = consumed_item.w_class
+			matter_increase += 70 * object_size
+		else
+			matter_increase += min(0.5 * consumed_object.max_integrity, 1000)
 
 	//Some poor sod got eaten, go ahead and irradiate people nearby.
 	radiation_pulse(atom_source, max_range = 6, threshold = 1.2 / max(object_size, 1), chance = 10 * object_size)

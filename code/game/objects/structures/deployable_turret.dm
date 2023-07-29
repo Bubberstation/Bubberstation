@@ -37,6 +37,13 @@
 	var/obj/spawned_on_undeploy
 	/// How long it takes for a wrench user to undeploy the object
 	var/undeploy_time = 3 SECONDS
+	/// If TRUE, the turret will not become unanchored when not mounted
+	var/always_anchored = FALSE
+
+/obj/machinery/deployable_turret/Initialize(mapload)
+	. = ..()
+	if(always_anchored)
+		set_anchored(TRUE)
 
 /obj/machinery/deployable_turret/Destroy()
 	target = null
@@ -71,7 +78,8 @@
 		buckled_mob.pixel_y = buckled_mob.base_pixel_y
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.resetToDefault()
-	set_anchored(FALSE)
+	if(!always_anchored)
+		set_anchored(FALSE)
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
 
@@ -194,7 +202,7 @@
 	var/turf/targets_from = get_turf(src)
 	if(QDELETED(target))
 		target = target_turf
-	var/obj/projectile/projectile_to_fire = new projectile_type
+	var/obj/projectile/projectile_to_fire = new projectile_type(targets_from)
 	playsound(src, firesound, 75, TRUE)
 	projectile_to_fire.preparePixelProjectile(target, targets_from)
 	projectile_to_fire.firer = user
@@ -229,7 +237,7 @@
 
 /obj/item/gun_control
 	name = "turret controls"
-	icon = 'icons/obj/weapons/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT | NOBLUDGEON | DROPDEL

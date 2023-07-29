@@ -30,7 +30,6 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
-	GLOB.navigation_computers += src
 	actions += new /datum/action/innate/shuttledocker_rotate(src)
 	actions += new /datum/action/innate/shuttledocker_place(src)
 
@@ -50,8 +49,6 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	. = ..()
-	GLOB.navigation_computers -= src
-
 	if(my_port?.get_docked())
 		my_port.delete_after = TRUE
 		my_port.shuttle_id = null
@@ -191,12 +188,11 @@
 
 	QDEL_LIST(the_eye.placed_images)
 
-	for(var/V in the_eye.placement_images)
-		var/image/I = V
+	for(var/image/place_spots as anything in the_eye.placement_images)
 		var/image/newI = image('icons/effects/alphacolors.dmi', the_eye.loc, "blue")
-		newI.loc = I.loc //It is highly unlikely that any landing spot including a null tile will get this far, but better safe than sorry.
+		newI.loc = place_spots.loc //It is highly unlikely that any landing spot including a null tile will get this far, but better safe than sorry.
 		newI.layer = NAVIGATION_EYE_LAYER
-		SET_PLANE_EXPLICIT(newI, ABOVE_GAME_PLANE, V)
+		SET_PLANE_EXPLICIT(newI, ABOVE_GAME_PLANE, place_spots)
 		newI.mouse_opacity = 0
 		the_eye.placed_images += newI
 
@@ -321,8 +317,9 @@
 
 /mob/camera/ai_eye/remote/shuttle_docker/update_remote_sight(mob/living/user)
 	user.set_sight(BLIND|SEE_TURFS)
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	user.sync_lighting_plane_alpha()
+	// Pale blue, should look nice I think
+	user.lighting_color_cutoffs = list(30, 40, 50)
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /datum/action/innate/shuttledocker_rotate

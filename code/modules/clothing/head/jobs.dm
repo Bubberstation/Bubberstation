@@ -12,19 +12,77 @@
 	desc = "The commander in chef's head wear."
 	strip_delay = 10
 	equip_delay_other = 10
-
 	dog_fashion = /datum/dog_fashion/head/chef
-	///the chance that the movements of a mouse inside of this hat get relayed to the human wearing the hat
+	/// The chance that the movements of a mouse inside of this hat get relayed to the human wearing the hat
 	var/mouse_control_probability = 20
+	/// Allowed time between movements
+	COOLDOWN_DECLARE(move_cooldown)
 
-/obj/item/clothing/head/utility/chefhat/Initialize(mapload)
-	. = ..()
-
-	create_storage(type = /datum/storage/pockets/chefhat)
-
+/// Admin variant of the chef hat where every mouse pilot input will always be transferred to the wearer
 /obj/item/clothing/head/utility/chefhat/i_am_assuming_direct_control
 	desc = "The commander in chef's head wear. Upon closer inspection, there seem to be dozens of tiny levers, buttons, dials, and screens inside of this hat. What the hell...?"
 	mouse_control_probability = 100
+
+/obj/item/clothing/head/utility/chefhat/Initialize(mapload)
+	. = ..()
+	create_storage(storage_type = /datum/storage/pockets/chefhat)
+
+/obj/item/clothing/head/utility/chefhat/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	var/mob/living/basic/new_boss = get_mouse(arrived)
+	if(!new_boss)
+		return
+	RegisterSignal(new_boss, COMSIG_MOB_PRE_EMOTED, PROC_REF(on_mouse_emote))
+	RegisterSignal(new_boss, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_mouse_moving))
+	RegisterSignal(new_boss, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(on_mouse_moving))
+
+/obj/item/clothing/head/utility/chefhat/Exited(atom/movable/gone, direction)
+	. = ..()
+	var/mob/living/basic/old_boss = get_mouse(gone)
+	if(!old_boss)
+		return
+	UnregisterSignal(old_boss, list(COMSIG_MOB_PRE_EMOTED, COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE))
+
+/// Returns a mob stored inside a mob container, if there is one
+/obj/item/clothing/head/utility/chefhat/proc/get_mouse(atom/possible_mouse)
+	if (!ispickedupmob(possible_mouse))
+		return
+	var/obj/item/clothing/head/mob_holder/mousey_holder = possible_mouse
+	return locate(/mob/living/basic) in mousey_holder.contents
+
+/// Relays emotes emoted by your boss to the hat wearer for full immersion
+/obj/item/clothing/head/utility/chefhat/proc/on_mouse_emote(mob/living/source, key, emote_message, type_override)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/wearer = loc
+	if(!wearer || wearer.incapacitated(IGNORE_RESTRAINTS))
+		return
+	if (!prob(mouse_control_probability))
+		return COMPONENT_CANT_EMOTE
+	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob, emote), key, type_override, emote_message, FALSE)
+	return COMPONENT_CANT_EMOTE
+
+/// Relays movement made by the mouse in your hat to the wearer of the hat
+/obj/item/clothing/head/utility/chefhat/proc/on_mouse_moving(mob/living/source, atom/moved_to)
+	SIGNAL_HANDLER
+	if (!prob(mouse_control_probability) || !COOLDOWN_FINISHED(src, move_cooldown))
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // Didn't roll well enough or on cooldown
+
+	var/mob/living/carbon/wearer = loc
+	if(!wearer || wearer.incapacitated(IGNORE_RESTRAINTS))
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // Not worn or can't move
+
+	var/move_direction = get_dir(wearer, moved_to)
+	if(!wearer.Process_Spacemove(move_direction))
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // Currently drifting in space
+	if(!has_gravity() || !isturf(wearer.loc))
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // Not in a location where we can move
+
+	step_towards(wearer, moved_to)
+	var/move_delay = wearer.cached_multiplicative_slowdown
+	if (ISDIAGONALDIR(move_direction))
+		move_delay *= sqrt(2)
+	COOLDOWN_START(src, move_cooldown, move_delay)
+	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /obj/item/clothing/head/utility/chefhat/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to become a chef."))
@@ -34,14 +92,6 @@
 	user.say("BOOORK!", forced = "chef hat suicide")
 	playsound(user, 'sound/machines/ding.ogg', 50, TRUE)
 	return FIRELOSS
-
-/obj/item/clothing/head/utility/chefhat/relaymove(mob/living/user, direction)
-	if(!ismouse(user) || !isliving(loc) || !prob(mouse_control_probability))
-		return
-	var/mob/living/L = loc
-	if(L.incapacitated(IGNORE_RESTRAINTS)) //just in case
-		return
-	step_towards(L, get_step(L, direction))
 
 //Captain
 /obj/item/clothing/head/hats/caphat
@@ -133,7 +183,7 @@
 /obj/item/clothing/head/fedora/det_hat/Initialize(mapload)
 	. = ..()
 
-	create_storage(type = /datum/storage/pockets/small/fedora/detective)
+	create_storage(storage_type = /datum/storage/pockets/small/fedora/detective)
 
 	new flask_path(src)
 
@@ -143,7 +193,7 @@
 
 /obj/item/clothing/head/fedora/det_hat/AltClick(mob/user)
 	. = ..()
-	if(loc != user || !user.canUseTopic(src, be_close = TRUE, no_dexterity = TRUE, no_tk = FALSE, need_hands = TRUE))
+	if(loc != user || !user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS))
 		return
 	if(candy_cooldown < world.time)
 		var/obj/item/food/candy_corn/CC = new /obj/item/food/candy_corn(src)
@@ -169,11 +219,15 @@
 
 //Security
 /obj/item/clothing/head/hats/hos
+	name = "generic head of security hat"
+	desc = "Please contact the Nanotrasen Costuming Department if found."
+	armor_type = /datum/armor/hats_hos
+	strip_delay = 8 SECONDS
+
+/obj/item/clothing/head/hats/hos/cap
 	name = "head of security cap"
 	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
-	armor_type = /datum/armor/hats_hos
 	icon_state = "hoscap"
-	strip_delay = 80
 
 /datum/armor/hats_hos
 	melee = 40
@@ -186,9 +240,17 @@
 	acid = 60
 	wound = 10
 
-/obj/item/clothing/head/hats/hos/syndicate
+/obj/item/clothing/head/hats/hos/cap/syndicate
 	name = "syndicate cap"
 	desc = "A black cap fit for a high ranking syndicate officer."
+
+/obj/item/clothing/head/hats/hos/shako
+	name = "sturdy shako"
+	desc = "Wearing this makes you want to shout \"Down and give me twenty!\" at someone."
+	icon_state = "hosshako"
+	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	worn_x_dimension = 64
+	worn_y_dimension = 64
 
 /obj/item/clothing/head/hats/hos/beret
 	name = "head of security's beret"
@@ -196,13 +258,12 @@
 	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	greyscale_colors = "#39393f#FFCE5B"
-	current_skin = "beret_badge"	//SKYRAT EDIT ADDITION - prevents reskinning the hat; (RESKINNING NEEDS A CODE REWRITE SO IT STOPS SPREADING TO SUBTYPES OR CAN AT LEAST BE SET TO FALSE)
+	greyscale_colors = "#39393f#f0cc8f"
 
 /obj/item/clothing/head/hats/hos/beret/navyhos
 	name = "head of security's formal beret"
 	desc = "A special beret with the Head of Security's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
-	greyscale_colors = "#3C485A#FFCE5B"
+	greyscale_colors = "#638799#f0cc8f"
 
 /obj/item/clothing/head/hats/hos/beret/syndicate
 	name = "syndicate beret"
@@ -324,16 +385,16 @@
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#a52f29#F2F2F2"
-	armor_type = /datum/armor/beret_sec
+	armor_type = /datum/armor/cosmetic_sec
 	strip_delay = 60
 	dog_fashion = null
 	flags_1 = NONE
 
-/datum/armor/beret_sec
-	melee = 35
-	bullet = 30
-	laser = 30
-	energy = 40
+/datum/armor/cosmetic_sec
+	melee = 30
+	bullet = 25
+	laser = 25
+	energy = 35
 	bomb = 25
 	fire = 20
 	acid = 50
@@ -342,12 +403,12 @@
 /obj/item/clothing/head/beret/sec/navywarden
 	name = "warden's beret"
 	desc = "A special beret with the Warden's insignia emblazoned on it. For wardens with class."
-	greyscale_colors = "#3C485A#00AEEF"
+	greyscale_colors = "#638799#ebebeb"
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/sec/navyofficer
 	desc = "A special beret with the security insignia emblazoned on it. For officers with class."
-	greyscale_colors = "#3C485A#FF0000"
+	greyscale_colors = "#638799#a52f29"
 
 //Science
 /obj/item/clothing/head/beret/science
@@ -384,6 +445,22 @@
 	name = "blue surgery cap"
 	icon_state = "surgicalcap"
 	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
+	flags_inv = HIDEHAIR //Cover your head doctor!
+
+/obj/item/clothing/head/utility/surgerycap/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
+	balloon_alert(user, "[flags_inv & HIDEHAIR ? "loosening" : "tightening"] strings...")
+	if(!do_after(user, 3 SECONDS, src))
+		return
+	flags_inv ^= HIDEHAIR
+	balloon_alert(user, "[flags_inv & HIDEHAIR ? "tightened" : "loosened "] strings")
+	return TRUE
+
+/obj/item/clothing/head/utility/surgerycap/examine(mob/user)
+	. = ..()
+	. += span_notice("Use in hand to [flags_inv & HIDEHAIR ? "loosen" : "tighten"] the strings.")
 
 /obj/item/clothing/head/utility/surgerycap/purple
 	name = "burgundy surgery cap"
@@ -400,17 +477,16 @@
 	icon_state = "surgicalcapcmo"
 	desc = "The CMO's medical surgery cap to prevent their hair from entering the insides of the patient!"
 
+/obj/item/clothing/head/utility/surgerycap/black
+	name = "black surgery cap"
+	icon_state = "surgicalcapblack"
+	desc = "A black medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
+
 //Engineering
 /obj/item/clothing/head/beret/engi
 	name = "engineering beret"
 	desc = "Might not protect you from radiation, but definitely will protect you from looking unfashionable!"
 	greyscale_colors = "#FFBC30"
-	flags_1 = NONE
-
-/obj/item/clothing/head/beret/atmos
-	name = "atmospheric beret"
-	desc = "While \"pipes\" and \"style\" might not rhyme, this beret sure makes you feel like they should!"
-	greyscale_colors = "#FFDE15"
 	flags_1 = NONE
 
 //Cargo
@@ -426,20 +502,11 @@
 	desc = "You got red text today kid, but it doesn't mean you have to like it."
 	icon_state = "curator"
 
-//Miscellaneous
-/obj/item/clothing/head/beret/black
-	name = "black beret"
-	desc = "A black beret, perfect for war veterans and dark, brooding, anti-hero mimes."
-	icon_state = "beret"
-	greyscale_config = /datum/greyscale_config/beret
-	greyscale_config_worn = /datum/greyscale_config/beret/worn
-	greyscale_colors = "#3f3c40"
-
 /obj/item/clothing/head/beret/durathread
 	name = "durathread beret"
 	desc = "A beret made from durathread, its resilient fibers provide some protection to the wearer."
 	icon_state = "beret_badge"
-	icon_preview = 'icons/obj/previews.dmi'
+	icon_preview = 'icons/obj/fluff/previews.dmi'
 	icon_state_preview = "beret_durathread"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
@@ -462,7 +529,7 @@
 
 /obj/item/clothing/head/beret/highlander/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
+	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER_TRAIT)
 
 //CentCom
 /obj/item/clothing/head/beret/centcom_formal
@@ -491,3 +558,13 @@
 	fire = 100
 	acid = 90
 	wound = 10
+
+//Independant Militia
+/obj/item/clothing/head/beret/militia
+	name = "\improper Militia General's Beret"
+	desc = "A rallying cry for the inhabitants of the Spinward Sector, the heroes that wear this keep the horrors of the galaxy at bay. Call them, and they'll be there in a minute!"
+	icon_state = "beret_badge"
+	greyscale_config = /datum/greyscale_config/beret_badge
+	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_colors = "#43523d#a2abb0"
+	armor_type = /datum/armor/cosmetic_sec

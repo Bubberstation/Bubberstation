@@ -172,7 +172,7 @@
 /datum/ash_ritual/summon_lavaland_creature/ritual_success(obj/effect/ash_rune/success_rune)
 	. = ..()
 	var/mob_type = pick(
-		/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+		/mob/living/basic/mining/goliath,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
 		/mob/living/simple_animal/hostile/asteroid/brimdemon,
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
@@ -344,7 +344,7 @@
 	if(find_animal.sentience_type != SENTIENCE_ORGANIC)
 		return
 
-	find_animal.faction = list("neutral")
+	find_animal.faction = list(FACTION_NEUTRAL)
 
 	if(ishostile(find_animal))
 		var/mob/living/simple_animal/hostile/hostile_animal = find_animal

@@ -83,7 +83,7 @@
 		return
 	switch(mode)
 		if(HUG_MODE_NICE)
-			if(isanimal(attacked_mob))
+			if(isanimal_or_basicmob(attacked_mob))
 				var/list/modifiers = params2list(params)
 				if (!user.combat_mode && !LAZYACCESS(modifiers, RIGHT_CLICK))
 					attacked_mob.attack_hand(user, modifiers) //This enables borgs to get the floating heart icon and mob emote from simple_animal's that have petbonus == true.
@@ -298,12 +298,13 @@
 	/// Harm alarm cooldown
 	COOLDOWN_DECLARE(alarm_cooldown)
 
-/obj/item/harmalarm/emag_act(mob/user)
+/obj/item/harmalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")
+		balloon_alert(user, "safeties shorted")
 	else
-		to_chat(user, "<font color='red'>You reset the safeties on [src]!</font>")
+		balloon_alert(user, "safeties reset")
+	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)
 	var/safety = !(obj_flags & EMAGGED)
@@ -322,7 +323,7 @@
 
 	if(safety == TRUE)
 		user.visible_message("<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>", \
-			span_userdanger("The siren pierces your hearing and confuses you!"), \
+			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"), \
 			span_danger("The siren pierces your hearing!"))
 		for(var/mob/living/carbon/carbon in get_hearers_in_view(9, user))
 			if(carbon.get_ear_protection())
@@ -353,3 +354,14 @@
 		playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 130, 3)
 		COOLDOWN_START(src, alarm_cooldown, HARM_ALARM_NO_SAFETY_COOLDOWN)
 		user.log_message("used an emagged Cyborg Harm Alarm", LOG_ATTACK)
+
+#undef HUG_MODE_NICE
+#undef HUG_MODE_HUG
+#undef HUG_MODE_SHOCK
+#undef HUG_MODE_CRUSH
+
+#undef HUG_SHOCK_COOLDOWN
+#undef HUG_CRUSH_COOLDOWN
+
+#undef HARM_ALARM_NO_SAFETY_COOLDOWN
+#undef HARM_ALARM_SAFETY_COOLDOWN

@@ -4,14 +4,15 @@
 	build_path = /obj/machinery/ltsrbt
 	req_components = list(
 		/obj/item/stack/ore/bluespace_crystal = 2,
-		/obj/item/stock_parts/subspace/ansible = 1,
-		/obj/item/stock_parts/micro_laser = 1,
+		/datum/stock_part/ansible = 1,
+		/datum/stock_part/micro_laser = 1,
 		/datum/stock_part/scanning_module = 2)
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
 
 /obj/machinery/ltsrbt
 	name = "Long-To-Short-Range-Bluespace-Transceiver"
 	desc = "The LTSRBT is a compact teleportation machine for receiving and sending items outside the station and inside the station.\nUsing teleportation frequencies stolen from NT it is near undetectable.\nEssential for any illegal market operations on NT stations.\n"
+	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "exonet_node"
 	circuit = /obj/item/circuitboard/machine/ltsrbt
 	density = TRUE
@@ -56,8 +57,8 @@
 	recharge_cooldown = recharge_time
 
 	power_efficiency = 0
-	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
-		power_efficiency += laser.rating
+	for(var/datum/stock_part/micro_laser/laser in component_parts)
+		power_efficiency += laser.tier
 	// Shouldn't happen but you never know.
 	if(!power_efficiency)
 		power_efficiency = 1
@@ -69,12 +70,12 @@
 		return
 	queue += purchase
 
-/obj/machinery/ltsrbt/process(delta_time)
+/obj/machinery/ltsrbt/process(seconds_per_tick)
 	if(machine_stat & NOPOWER)
 		return
 
 	if(recharge_cooldown > 0)
-		recharge_cooldown -= delta_time
+		recharge_cooldown -= seconds_per_tick
 		return
 
 	var/turf/T = get_turf(src)

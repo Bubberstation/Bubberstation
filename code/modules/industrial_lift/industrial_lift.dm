@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(lifts)
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
 	appearance_flags = PIXEL_SCALE|KEEP_TOGETHER //no TILE_BOUND since we're potentially multitile
 	// If we don't do this, we'll build our overlays early, and fuck up how we're rendered
-	blocks_emissive = NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 	///ID used to determine what lift types we can merge with
 	var/lift_id = BASIC_LIFT_ID
@@ -102,11 +102,11 @@ GLOBAL_LIST_EMPTY(lifts)
 /obj/structure/industrial_lift/proc/set_movement_registrations(list/turfs_to_set)
 	for(var/turf/turf_loc as anything in turfs_to_set || locs)
 		RegisterSignal(turf_loc, COMSIG_ATOM_EXITED, PROC_REF(UncrossedRemoveItemFromLift))
-		RegisterSignals(turf_loc, list(COMSIG_ATOM_ENTERED,COMSIG_ATOM_INITIALIZED_ON), PROC_REF(AddItemOnLift))
+		RegisterSignals(turf_loc, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON), PROC_REF(AddItemOnLift))
 
 ///unset our movement registrations from turfs that no longer contain us (or every loc if turfs_to_unset is unspecified)
 /obj/structure/industrial_lift/proc/unset_movement_registrations(list/turfs_to_unset)
-	var/static/list/registrations = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_ATOM_INITIALIZED_ON)
+	var/static/list/registrations = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
 	for(var/turf/turf_loc as anything in turfs_to_unset || locs)
 		UnregisterSignal(turf_loc, registrations)
 
@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(lifts)
 	lift_load -= potential_rider
 	changed_gliders -= potential_rider
 
-	UnregisterSignal(potential_rider, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE))
+	UnregisterSignal(potential_rider, list(COMSIG_QDELETING, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE))
 
 /obj/structure/industrial_lift/proc/AddItemOnLift(datum/source, atom/movable/new_lift_contents)
 	SIGNAL_HANDLER
@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(lifts)
 		ADD_TRAIT(new_lift_contents, TRAIT_CANNOT_BE_UNBUCKLED, BUCKLED_TRAIT)
 
 	lift_load += new_lift_contents
-	RegisterSignal(new_lift_contents, COMSIG_PARENT_QDELETING, PROC_REF(RemoveItemFromLift))
+	RegisterSignal(new_lift_contents, COMSIG_QDELETING, PROC_REF(RemoveItemFromLift))
 
 	return TRUE
 
@@ -393,17 +393,23 @@ GLOBAL_LIST_EMPTY(lifts)
 					qdel(victim_machine)
 
 			for(var/mob/living/collided in dest_turf.contents)
+				var/damage_multiplier = collided.maxHealth * 0.01
 				if(lift_master_datum.ignored_smashthroughs[collided.type])
 					continue
 				to_chat(collided, span_userdanger("[src] collides into you!"))
 				playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
-				var/damage = rand(9, 28) * collision_lethality
-				collided.apply_damage(2 * damage, BRUTE, BODY_ZONE_HEAD)
-				collided.apply_damage(2 * damage, BRUTE, BODY_ZONE_CHEST)
-				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_LEG)
-				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_LEG)
-				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_ARM)
-				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_ARM)
+				var/damage = 0
+				if(prob(15)) //sorry buddy, luck wasn't on your side
+					damage = 29 * collision_lethality * damage_multiplier
+				else
+					damage = rand(7, 21) * collision_lethality * damage_multiplier
+				collided.apply_damage(2 * damage, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
+				collided.apply_damage(3 * damage, BRUTE, BODY_ZONE_CHEST, wound_bonus = 21)
+				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_LEG, wound_bonus = 14)
+				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_LEG, wound_bonus = 14)
+				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_ARM, wound_bonus = 14)
+				collided.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_ARM, wound_bonus = 14)
+				log_combat(src, collided, "collided with")
 
 				if(QDELETED(collided)) //in case it was a mob that dels on death
 					continue
@@ -418,7 +424,10 @@ GLOBAL_LIST_EMPTY(lifts)
 				var/datum/callback/land_slam = new(collided, TYPE_PROC_REF(/mob/living/, tram_slam_land))
 				collided.throw_at(throw_target, 200 * collision_lethality, 4 * collision_lethality, callback = land_slam)
 
-				SEND_SIGNAL(src, COMSIG_TRAM_COLLISION)
+				//increment the hit counter signs
+				if(ismob(collided) && collided.client)
+					SSpersistence.tram_hits_this_round++
+					SEND_SIGNAL(src, COMSIG_TRAM_COLLISION, SSpersistence.tram_hits_this_round)
 
 	unset_movement_registrations(exited_locs)
 	group_move(things_to_move, going)
@@ -790,7 +799,7 @@ GLOBAL_LIST_EMPTY(lifts)
 	name = "tram"
 	desc = "A tram for tramversing the station."
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "titanium"
+	icon_state = "textured_large"
 	layer = TRAM_FLOOR_LAYER
 	base_icon_state = null
 	smoothing_flags = NONE
@@ -814,27 +823,21 @@ GLOBAL_LIST_EMPTY(lifts)
 	create_multitile_platform = TRUE
 
 /obj/structure/industrial_lift/tram/white
-	icon_state = "titanium_white"
+	icon_state = "textured_white_large"
+
+/obj/structure/industrial_lift/tram/purple
+	icon_state = "titanium_purple"
 
 /obj/structure/industrial_lift/tram/subfloor
-	name = "tram"
-	desc = "A tram for tramversing the station."
 	icon_state = "tram_subfloor"
+
+/obj/structure/industrial_lift/tram/subfloor/window
+	icon_state = "tram_subfloor_window"
 
 /datum/armor/structure_industrial_lift
 	melee = 50
 	fire = 80
 	acid = 50
-
-/obj/structure/industrial_lift/tram/accessible
-	icon_state = "titanium_accessible_north"
-
-/obj/structure/industrial_lift/tram/accessible/north
-	icon_state = "titanium_accessible_north"
-
-/obj/structure/industrial_lift/tram/accessible/south
-	icon_state = "titanium_accessible_south"
-
 
 /obj/structure/industrial_lift/tram/AddItemOnLift(datum/source, atom/movable/AM)
 	. = ..()
@@ -867,7 +870,6 @@ GLOBAL_LIST_EMPTY(lifts)
  * Tram finds its location at this point before fully unlocking controls to the user.
  */
 /obj/structure/industrial_lift/tram/proc/unlock_controls()
-	visible_message(span_notice("[src]'s controls are now unlocked."))
 	for(var/obj/structure/industrial_lift/tram/tram_part as anything in lift_master_datum.lift_platforms) //only thing everyone needs to know is the new location.
 		tram_part.set_travelling(FALSE)
 		lift_master_datum.set_controls(LIFT_PLATFORM_UNLOCKED)

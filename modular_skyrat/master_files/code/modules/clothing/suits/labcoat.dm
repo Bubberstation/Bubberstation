@@ -1,6 +1,3 @@
-/obj/item/clothing/suit/toggle/labcoat
-	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/labcoat_digi.dmi'
-
 /obj/item/clothing/suit/toggle/labcoat/skyrat
 	name = "SR LABCOAT SUIT DEBUG"
 	desc = "REPORT THIS IF FOUND"
@@ -51,3 +48,9 @@
 	name = "medical labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
 	icon_state = "labcoat_gen"
+
+/obj/item/clothing/suit/toggle/labcoat/Initialize(mapload)
+	. = ..()
+	allowed += list(
+		/obj/item/handheld_soulcatcher,
+	)

@@ -1,7 +1,7 @@
 /obj/machinery/quantumpad
 	name = "quantum pad"
 	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
-	icon = 'icons/obj/telescience.dmi'
+	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "qpad-idle"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
@@ -42,12 +42,12 @@
 /obj/machinery/quantumpad/RefreshParts()
 	. = ..()
 	var/E = 0
-	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		E += C.rating
+	for(var/datum/stock_part/capacitor/capacitor in component_parts)
+		E += capacitor.tier
 	power_efficiency = E
 	E = 0
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		E += M.rating
+	for(var/datum/stock_part/servo/servo in component_parts)
+		E += servo.tier
 	teleport_speed = initial(teleport_speed)
 	teleport_speed -= (E*10)
 	teleport_cooldown = initial(teleport_cooldown)

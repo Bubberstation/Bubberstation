@@ -1,8 +1,3 @@
-/turf
-	///what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
-	///used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration
-	var/mob/oranges_ear/assigned_oranges_ear
-
 /** # Oranges Ear
  *
  * turns out view() spends a significant portion of its processing time generating lists of contents of viewable turfs which includes EVERYTHING on it visible
@@ -79,7 +74,7 @@
 /**
  * returns every hearaing movable in view to the turf of source not taking into account lighting
  * useful when you need to maintain always being able to hear something if a sound is emitted from it and you can see it (and youre in range).
- * otherwise this is just a more expensive version of get_hearers_in_LOS()
+ * otherwise this is just a more expensive version of get_hearers_in_LOS().
  *
  * * view_radius - what radius search circle we are using, worse performance as this increases
  * * source - object at the center of our search area. everything in get_turf(source) is guaranteed to be part of the search area
@@ -105,25 +100,22 @@
 
 	var/list/assigned_oranges_ears = SSspatial_grid.assign_oranges_ears(hearables_from_grid)
 
-	var/old_luminosity = center_turf.luminosity
-	center_turf.luminosity = 6 //man if only we had an inbuilt dview()
-
-	//this is the ENTIRE reason all this shit is worth it due to how view() and the contents list works and can be optimized
+	//this is the ENTIRE reason all this shit is worth it due to how view()-like procs and the contents list works and can be optimized
 	//internally, the contents list is secretly two linked lists, one for /obj's and one for /mob's (/atom/movable counts as /obj here)
 	//by default, for(var/atom/name in view()) iterates through both the /obj linked list then the /mob linked list of each turf
 	//but because what we want are only a tiny proportion of all movables, most of the things in the /obj contents list are not what we're looking for
-	//while every mob can hear. for this case view() has an optimization to only look through 1 of these lists if it can (eg youre only looking for mobs)
+	//while every mob can hear. for this case view() and similar procs have an optimization to only look through 1 of these lists if it can (eg youre only looking for mobs)
 	//so by representing every hearing contents on a turf with a single /mob/oranges_ear containing references to all of them, we are:
 	//1. making view() only go through the smallest of the two linked lists per turf, which contains the type we're looking for at the end
 	//2. typechecking all mobs in the output to only actually return mobs of type /mob/oranges_ear
 	//on a whole this can outperform iterating through all movables in view() by ~2x especially when hearables are a tiny percentage of movables in view
-	for(var/mob/oranges_ear/ear in view(view_radius, center_turf))
+	//using hearers is a further optimization of that because for our purposes its the same as view except we dont have to set center's luminosity to 6 and then unset it
+	for(var/mob/oranges_ear/ear in hearers(view_radius, center_turf))
 		. += ear.references
 
 	for(var/mob/oranges_ear/remaining_ear as anything in assigned_oranges_ears)//we need to clean up our mess
 		remaining_ear.unassign()
 
-	center_turf.luminosity = old_luminosity
 	return .
 
 /**
@@ -188,13 +180,13 @@
 ///Calculate if two atoms are in sight, returns TRUE or FALSE
 /proc/inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
 	var/turf/T
-	if(X1==X2)
-		if(Y1==Y2)
+	if(X1 == X2)
+		if(Y1 == Y2)
 			return TRUE //Light cannot be blocked on same tile
 		else
 			var/s = SIGN(Y2-Y1)
 			Y1+=s
-			while(Y1!=Y2)
+			while(Y1 != Y2)
 				T=locate(X1,Y1,Z)
 				if(IS_OPAQUE_TURF(T))
 					return FALSE
@@ -206,7 +198,7 @@
 		var/signY = SIGN(Y2-Y1)
 		if(X1<X2)
 			b+=m
-		while(X1!=X2 || Y1!=Y2)
+		while(X1 != X2 || Y1 != Y2)
 			if(round(m*X1+b-Y1))
 				Y1+=signY //Line exits tile vertically
 			else
@@ -348,19 +340,27 @@
 
 ///Returns the open turf next to the center in a specific direction
 /proc/get_open_turf_in_dir(atom/center, dir)
-	var/turf/open/get_turf = get_ranged_target_turf(center, dir, 1)
+	var/turf/open/get_turf = get_step(center, dir)
 	if(istype(get_turf))
 		return get_turf
 
 ///Returns a list with all the adjacent open turfs. Clears the list of nulls in the end.
 /proc/get_adjacent_open_turfs(atom/center)
-	. = list(
-		get_open_turf_in_dir(center, NORTH),
-		get_open_turf_in_dir(center, SOUTH),
-		get_open_turf_in_dir(center, EAST),
-		get_open_turf_in_dir(center, WEST)
-		)
-	list_clear_nulls(.)
+	var/list/hand_back = list()
+	// Inlined get_open_turf_in_dir, just to be fast
+	var/turf/open/new_turf = get_step(center, NORTH)
+	if(istype(new_turf))
+		hand_back += new_turf
+	new_turf = get_step(center, SOUTH)
+	if(istype(new_turf))
+		hand_back += new_turf
+	new_turf = get_step(center, EAST)
+	if(istype(new_turf))
+		hand_back += new_turf
+	new_turf = get_step(center, WEST)
+	if(istype(new_turf))
+		hand_back += new_turf
+	return hand_back
 
 ///Returns a list with all the adjacent areas by getting the adjacent open turfs
 /proc/get_adjacent_open_areas(atom/center)

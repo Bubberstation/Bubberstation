@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_INTERDYNE = RADIO_TOKEN_INTERDYNE, //SKYRAT EDIT ADDITION - Mapping
 	RADIO_CHANNEL_GUILD = RADIO_TOKEN_GUILD, //SKYRAT EDIT ADDITION - Mapping
 	RADIO_CHANNEL_TARKON = RADIO_TOKEN_TARKON, //SKYRAT EDIT ADDITION - MAPPING
+	RADIO_CHANNEL_SOLFED = RADIO_TOKEN_SOLFED, //SKYRAT EDIT ADDITION - SOLFED
 	RADIO_CHANNEL_SYNDICATE = RADIO_TOKEN_SYNDICATE,
 	RADIO_CHANNEL_SUPPLY = RADIO_TOKEN_SUPPLY,
 	RADIO_CHANNEL_SERVICE = RADIO_TOKEN_SERVICE,
@@ -27,7 +28,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	worn_icon_state = "headset"
-	custom_materials = list(/datum/material/iron=75)
+	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 0.75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -97,14 +98,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/MouseDrop(mob/over, src_location, over_location)
 	var/mob/headset_user = usr
-	if((headset_user == over) && headset_user.canUseTopic(src, be_close = TRUE, no_dexterity = FALSE, no_tk = TRUE))
+	if((headset_user == over) && headset_user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return attack_self(headset_user)
 	return ..()
 
 /// Grants all the languages this headset allows the mob to understand via installed chips.
 /obj/item/radio/headset/proc/grant_headset_languages(mob/grant_to)
 	for(var/language in language_list)
-		grant_to.grant_language(language, understood = TRUE, spoken = FALSE, source = LANGUAGE_RADIOKEY)
+		grant_to.grant_language(language, language_flags = UNDERSTOOD_LANGUAGE, source = LANGUAGE_RADIOKEY)
 
 /obj/item/radio/headset/equipped(mob/user, slot, initial)
 	. = ..()
@@ -116,7 +117,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/dropped(mob/user, silent)
 	. = ..()
 	for(var/language in language_list)
-		user.remove_language(language, understood = TRUE, spoken = FALSE, source = LANGUAGE_RADIOKEY)
+		user.remove_language(language, language_flags = UNDERSTOOD_LANGUAGE, source = LANGUAGE_RADIOKEY)
 
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
 
@@ -206,9 +207,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = /obj/item/encryptionkey/headset_srvsec
 
 /obj/item/radio/headset/headset_srvmed
-	name = "psychology headset"
+	name = "service medical headset"
 	desc = "A headset allowing the wearer to communicate with medbay and service."
-	icon_state = "med_headset"
+	icon_state = "srv_headset"
 	keyslot = /obj/item/encryptionkey/headset_srvmed
 
 /obj/item/radio/headset/headset_com
@@ -319,7 +320,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\improper CentCom bowman headset"
 	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
 	icon_state = "cent_headset_alt"
-	keyslot = null
+	keyslot2 = null
 
 /obj/item/radio/headset/headset_cent/alt/Initialize(mapload)
 	. = ..()
@@ -410,7 +411,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(istype(mob_loc) && mob_loc.get_item_by_slot(slot_flags) == src)
 		// Remove all the languages we may not be able to know anymore
 		for(var/language in old_language_list)
-			mob_loc.remove_language(language, understood = TRUE, spoken = FALSE, source = LANGUAGE_RADIOKEY)
+			mob_loc.remove_language(language, language_flags = UNDERSTOOD_LANGUAGE, source = LANGUAGE_RADIOKEY)
 
 		// And grant all the languages we definitely should know now
 		grant_headset_languages(mob_loc)

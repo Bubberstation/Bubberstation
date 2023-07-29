@@ -14,13 +14,11 @@
 
 /datum/action/cooldown/mob_cooldown/lava_swoop/Grant(mob/M)
 	. = ..()
-	ADD_TRAIT(M, TRAIT_LAVA_IMMUNE, REF(src))
-	ADD_TRAIT(M, TRAIT_NOFIRE, REF(src))
+	M.add_traits(list(TRAIT_LAVA_IMMUNE, TRAIT_NOFIRE), REF(src))
 
 /datum/action/cooldown/mob_cooldown/lava_swoop/Remove(mob/M)
 	. = ..()
-	REMOVE_TRAIT(M, TRAIT_LAVA_IMMUNE, REF(src))
-	REMOVE_TRAIT(M, TRAIT_NOFIRE, REF(src))
+	M.remove_traits(list(TRAIT_LAVA_IMMUNE, TRAIT_NOFIRE), REF(src))
 
 /datum/action/cooldown/mob_cooldown/lava_swoop/Activate(atom/target_atom)
 	StartCooldown(360 SECONDS, 360 SECONDS)
@@ -40,7 +38,7 @@
 		return
 	// stop swooped target movement
 	swooping = TRUE
-	owner.set_density(FALSE)
+	ADD_TRAIT(owner, TRAIT_UNDENSE, SWOOPING_TRAIT)
 	owner.visible_message(span_boldwarning("[owner] swoops up high!"))
 
 	var/negative
@@ -117,7 +115,7 @@
 	for(var/mob/M in range(7, owner))
 		shake_camera(M, 15, 1)
 
-	owner.set_density(TRUE)
+	REMOVE_TRAIT(owner, TRAIT_UNDENSE, SWOOPING_TRAIT)
 	SLEEP_CHECK_DEATH(1, owner)
 	swooping = FALSE
 	if(!lava_success)
@@ -203,11 +201,11 @@
 	duration = 10
 
 /obj/effect/temp_visual/dragon_flight
-	icon = 'icons/mob/simple/lavaland/64x64megafauna.dmi'
+	icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
 	icon_state = "dragon"
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = GAME_PLANE_UPPER_FOV_HIDDEN
-	pixel_x = -16
+	pixel_x = -32
 	duration = 10
 	randomdir = FALSE
 
@@ -221,7 +219,7 @@
 	else
 		animate(src, pixel_x = SWOOP_HEIGHT*0.1, pixel_z = SWOOP_HEIGHT*0.15, time = 3, easing = BOUNCE_EASING)
 	sleep(0.3 SECONDS)
-	icon_state = "swoop"
+	icon_state = "dragon_swoop"
 	if(negative)
 		animate(src, pixel_x = -SWOOP_HEIGHT, pixel_z = SWOOP_HEIGHT, time = 7)
 	else

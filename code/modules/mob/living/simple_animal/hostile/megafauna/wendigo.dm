@@ -34,8 +34,6 @@ Difficulty: Hard
 	aggro_vision_range = 18 // man-eating for a reason
 	speed = 6
 	move_to_delay = 6
-	rapid_melee = 8 // every 1/4 second
-	melee_queue_distance = 18 // as far as possible really, need this because of charging and teleports
 	ranged = TRUE
 	pixel_x = -16
 	base_pixel_x = -16
@@ -293,7 +291,7 @@ Difficulty: Hard
 /obj/item/wendigo_blood
 	name = "bottle of wendigo blood"
 	desc = "A bottle of viscous red liquid... You're not actually going to drink this, are you?"
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 
 /obj/item/wendigo_blood/attack_self(mob/living/user)
@@ -330,11 +328,12 @@ Difficulty: Hard
 /obj/item/wendigo_skull
 	name = "wendigo skull"
 	desc = "A bloody skull torn from a murderous beast, the soulless eye sockets seem to constantly track your movement."
-	icon = 'icons/obj/ice_moon/artifacts.dmi'
+	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "wendigo_skull"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 
+#undef WENDIGO_ENRAGED
 #undef WENDIGO_CIRCLE_SHOTCOUNT
 #undef WENDIGO_CIRCLE_REPEATCOUNT
 #undef WENDIGO_SPIRAL_SHOTCOUNT

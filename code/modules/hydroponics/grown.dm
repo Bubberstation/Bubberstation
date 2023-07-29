@@ -11,7 +11,7 @@
 
 // Base type. Subtypes are found in /grown dir. Lavaland-based subtypes can be found in mining/ash_flora.dm
 /obj/item/food/grown
-	icon = 'icons/obj/hydroponics/harvest.dmi'
+	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "berrypile"
 	worn_icon = 'icons/mob/clothing/head/hydroponics.dmi'
 	name = "fresh produce" // so recipe text doesn't say 'snack'
@@ -40,6 +40,8 @@
 	var/filling_color
 	/// If the grown food has an alternaitve icon state to use in places.
 	var/alt_icon
+	/// Should we pixel offset ourselves at init? for mapping
+	var/offset_at_init = TRUE
 
 /obj/item/food/grown/Initialize(mapload, obj/item/seeds/new_seed)
 	if(!tastes)
@@ -56,8 +58,9 @@
 		stack_trace("Grown object created without a seed. WTF")
 		return INITIALIZE_HINT_QDEL
 
-	pixel_x = base_pixel_x + rand(-5, 5)
-	pixel_y = base_pixel_y + rand(-5, 5)
+	if(offset_at_init)
+		pixel_x = base_pixel_x + rand(-5, 5)
+		pixel_y = base_pixel_y + rand(-5, 5)
 
 	make_dryable()
 

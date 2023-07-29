@@ -9,6 +9,8 @@
 	var/value = 0
 	/// Flags related to this quirk.
 	var/quirk_flags = QUIRK_HUMAN_ONLY
+	/// Flags related to species whitelists.
+	var/quirk_whitelist_flags //BUBBER EDIT - Species whitelists // Whitelist bitflags in code/__DEFINES/~~bubber_defines/quirk_whitelist.dm
 	/// Reference to the mob currently tied to this quirk datum. Quirks are not singletons.
 	var/mob/living/quirk_holder
 	/// Text displayed when this quirk is assigned to a mob (and not transferred)
@@ -67,6 +69,12 @@
 	if(quirk_holder)
 		CRASH("Attempted to add quirk to a holder when it already has a holder.")
 
+	//BUBBER EDIT ADDITION START - Species quirks
+	//We silently fail if a whitelisted quirk *somehow* got into someone's preferences.
+	if(quirk_whitelist_flags & QUIRK_SLIMEPERSON_ONLY && !isroundstartslime(new_holder))
+		CRASH("Attempted to add quirk [name] to [quirk_holder], but the species is ineligible for it!")
+	//BUBBER EDIT ADDITION END
+
 	quirk_holder = new_holder
 	quirk_holder.quirks += src
 	// If we weren't passed a client source try to use a present one
@@ -90,7 +98,7 @@
 		else
 			RegisterSignal(quirk_holder, COMSIG_MOB_LOGIN, PROC_REF(on_quirk_holder_first_login))
 
-	RegisterSignal(quirk_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_holder_qdeleting))
+	RegisterSignal(quirk_holder, COMSIG_QDELETING, PROC_REF(on_holder_qdeleting))
 
 	return TRUE
 
@@ -99,7 +107,7 @@
 	if(!quirk_holder)
 		CRASH("Attempted to remove quirk from the current holder when it has no current holder.")
 
-	UnregisterSignal(quirk_holder, list(COMSIG_MOB_LOGIN, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(quirk_holder, list(COMSIG_MOB_LOGIN, COMSIG_QDELETING))
 
 	quirk_holder.quirks -= src
 
@@ -173,7 +181,7 @@
 
 	var/mob/living/carbon/human/human_holder = quirk_holder
 
-	var/where = human_holder.equip_in_one_of_slots(quirk_item, valid_slots, qdel_on_fail = FALSE) || default_location
+	var/where = human_holder.equip_in_one_of_slots(quirk_item, valid_slots, qdel_on_fail = FALSE, indirect_action = TRUE) || default_location
 
 	if(where == LOCATION_BACKPACK)
 		open_backpack = TRUE

@@ -7,6 +7,7 @@
 	icon_state = "mantis_blade"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_1 = CONDUCT_1
+	sharpness = SHARP_EDGED
 	force = 25
 	armour_penetration = 20
 	item_flags = NEEDS_PERMIT //Beepers gets angry if you get caught with this.
@@ -28,6 +29,8 @@
 	icon_state = "mantis_blade"
 
 /obj/item/organ/internal/cyberimp/arm/armblade/emag_act()
+	if(obj_flags & EMAGGED)
+		return FALSE
 	for(var/datum/weakref/created_item in items_list)
 	to_chat(usr, span_notice("You unlock [src]'s integrated energy arm blade! You madman!"))
 	items_list += WEAKREF(new /obj/item/melee/implantarmblade/energy(src))
@@ -36,7 +39,7 @@
 /obj/item/organ/internal/cyberimp/arm/hacker
 	name = "hacking arm implant"
 	desc = "An small arm implant containing an advanced screwdriver, wirecutters, and multitool designed for engineers and on-the-field machine modification. Actually legal, despite what the name may make you think."
-	icon ='modular_skyrat/modules/fixing_missing_icons/items_cyborg.dmi' //skyrat edit
+	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "multitool_cyborg"
 	items_to_create = list(/obj/item/screwdriver/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/abductor/implant)
 
@@ -48,6 +51,7 @@
 /obj/item/implant_mounted_chainsaw
 	name = "integrated chainsaw"
 	desc = "A chainsaw that conceals inside your arm."
+	icon = 'icons/obj/weapons/chainsaw.dmi'
 	icon_state = "chainsaw_on"
 	inhand_icon_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -64,15 +68,18 @@
 	toolspeed = 1
 
 /obj/item/organ/internal/cyberimp/arm/botany/emag_act()
+	if(obj_flags & EMAGGED)
+		return FALSE
 	for(var/datum/weakref/created_item in items_list)
 	to_chat(usr, span_notice("You unlock [src]'s deluxe landscaping equipment!"))
 	items_list += WEAKREF(new /obj/item/implant_mounted_chainsaw(src)) //time to landscape the station
+	obj_flags |= EMAGGED
 	return TRUE
 
 /obj/item/multitool/abductor/implant
 	name = "multitool"
 	desc = "An optimized, highly advanced stripped-down multitool able to interface with electronics far better than its standard counterpart."
-	icon = 'modular_skyrat/modules/fixing_missing_icons/items_cyborg.dmi' //skyrat edit
+	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "multitool_cyborg"
 
 /obj/item/organ/internal/cyberimp/arm/janitor
@@ -81,10 +88,13 @@
 	items_to_create = list(/obj/item/lightreplacer, /obj/item/holosign_creator, /obj/item/soap/nanotrasen, /obj/item/reagent_containers/spray/cyborg_drying, /obj/item/mop/advanced, /obj/item/paint/paint_remover, /obj/item/reagent_containers/cup/beaker/large, /obj/item/reagent_containers/spray/cleaner) //Beaker if for refilling sprays
 
 /obj/item/organ/internal/cyberimp/arm/janitor/emag_act()
+	if(obj_flags & EMAGGED)
+		return FALSE
 	for(var/datum/weakref/created_item in items_list)
 	to_chat(usr, span_notice("You unlock [src]'s integrated deluxe cleaning supplies!"))
 	items_list += WEAKREF(new /obj/item/soap/syndie(src)) //We add not replace.
 	items_list += WEAKREF(new /obj/item/reagent_containers/spray/cyborg_lube(src))
+	obj_flags |= EMAGGED
 	return TRUE
 
 /obj/item/organ/internal/cyberimp/arm/lighter
@@ -93,7 +103,10 @@
 	items_to_create = list(/obj/item/lighter/greyscale) //Hilariously useless.
 
 /obj/item/organ/internal/cyberimp/arm/lighter/emag_act()
+	if(obj_flags & EMAGGED)
+		return FALSE
 	for(var/datum/weakref/created_item in items_list)
 	to_chat(usr, span_notice("You unlock [src]'s integrated Zippo lighter! Finally, classy smoking!"))
 	items_list += WEAKREF(new /obj/item/lighter(src)) //Now you can choose between bad and worse!
+	obj_flags |= EMAGGED
 	return TRUE

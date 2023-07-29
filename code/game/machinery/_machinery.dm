@@ -86,7 +86,7 @@
  */
 /obj/machinery
 	name = "machinery"
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/machines/fax.dmi'
 	desc = "Some kind of machine."
 	verb_say = "beeps"
 	verb_yell = "blares"
@@ -100,7 +100,7 @@
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-	initial_language_holder = /datum/language_holder/synthetic
+	initial_language_holder = /datum/language_holder/speaking_machine
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
@@ -163,7 +163,7 @@
 
 /obj/machinery/Initialize(mapload)
 	. = ..()
-	GLOB.machines += src
+	SSmachines.register_machine(src)
 
 	if(ispath(circuit, /obj/item/circuitboard))
 		circuit = new circuit(src)
@@ -181,6 +181,7 @@
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_BOTS_GLITCHED))
 		randomize_language_if_on_station()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_MACHINE, src)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -189,12 +190,11 @@
 	power_change()
 	if(use_power == NO_POWER_USE)
 		return
-
 	update_current_power_usage()
 	setup_area_power_relationship()
 
 /obj/machinery/Destroy()
-	GLOB.machines.Remove(src)
+	SSmachines.unregister_machine(src)
 	end_processing()
 	dump_inventory_contents()
 
@@ -202,8 +202,8 @@
 		// Don't delete the stock part singletons
 		for (var/atom/atom_part in component_parts)
 			qdel(atom_part)
-
 		component_parts.Cut()
+		component_parts = null
 
 	QDEL_NULL(circuit)
 	unset_static_power()
@@ -289,7 +289,6 @@
 /obj/machinery/proc/process_atmos()//If you dont use process why are you here
 	return PROCESS_KILL
 
-
 ///Called when we want to change the value of the machine_stat variable. Holds bitflags.
 /obj/machinery/proc/set_machine_stat(new_value)
 	if(new_value == machine_stat)
@@ -312,13 +311,17 @@
 
 /obj/machinery/emp_act(severity)
 	. = ..()
-	if(use_power && !machine_stat && !(. & EMP_PROTECT_SELF))
-		use_power(7500/severity)
-		new /obj/effect/temp_visual/emp(loc)
+	if(!use_power || machine_stat || (. & EMP_PROTECT_SELF))
+		return
+	use_power(7500/severity)
+	new /obj/effect/temp_visual/emp(loc)
 
-		if(prob(70/severity))
-			var/datum/language_holder/machine_languages = get_language_holder()
-			machine_languages.selected_language = machine_languages.get_random_spoken_language()
+	if(!prob(70/severity))
+		return
+	if (!length(GLOB.uncommon_roundstart_languages))
+		return
+	remove_all_languages(source = LANGUAGE_EMP)
+	grant_random_uncommon_language(source = LANGUAGE_EMP)
 
 /**
  * Opens the machine.
@@ -326,10 +329,11 @@
  * Will update the machine icon and any user interfaces currently open.
  * Arguments:
  * * drop - Boolean. Whether to drop any stored items in the machine. Does not include components.
+ * * density - Boolean. Whether to make the object dense when it's open.
  */
-/obj/machinery/proc/open_machine(drop = TRUE)
+/obj/machinery/proc/open_machine(drop = TRUE, density_to_set = FALSE)
 	state_open = TRUE
-	set_density(FALSE)
+	set_density(density_to_set)
 	if(drop)
 		dump_inventory_contents()
 	update_appearance()
@@ -394,9 +398,9 @@
 /obj/machinery/proc/can_be_occupant(atom/movable/occupant_atom)
 	return occupant_typecache ? is_type_in_typecache(occupant_atom, occupant_typecache) : isliving(occupant_atom)
 
-/obj/machinery/proc/close_machine(atom/movable/target)
+/obj/machinery/proc/close_machine(atom/movable/target, density_to_set = TRUE)
 	state_open = FALSE
-	set_density(TRUE)
+	set_density(density_to_set)
 	if(!target)
 		for(var/atom in loc)
 			if (!(can_be_occupant(atom)))
@@ -674,7 +678,7 @@
 	..()
 	if(!can_interact(usr))
 		return TRUE
-	if(!usr.canUseTopic(src))
+	if(!usr.can_perform_action(src, ALLOW_SILICON_REACH))
 		return TRUE
 	add_fingerprint(usr)
 	update_last_used(usr)
@@ -780,14 +784,17 @@
 	idle_power_usage = initial(idle_power_usage) * (1 + parts_energy_rating)
 	active_power_usage = initial(active_power_usage) * (1 + parts_energy_rating)
 	update_current_power_usage()
+	SEND_SIGNAL(src, COMSIG_MACHINERY_REFRESH_PARTS)
 
-/obj/machinery/proc/default_pry_open(obj/item/crowbar)
+/obj/machinery/proc/default_pry_open(obj/item/crowbar, close_after_pry = FALSE, open_density = FALSE, closed_density = TRUE)
 	. = !(state_open || panel_open || is_operational || (flags_1 & NODECONSTRUCT_1)) && crowbar.tool_behaviour == TOOL_CROWBAR
 	if(!.)
 		return
 	crowbar.play_tool_sound(src, 50)
 	visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open \the [src]."))
-	open_machine()
+	open_machine(density_to_set = open_density)
+	if (close_after_pry) //Should it immediately close after prying? (If not, it must be closed elsewhere)
+		close_machine(density_to_set = closed_density)
 
 /obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
 	. = (panel_open || ignore_panel) && !(flags_1 & NODECONSTRUCT_1) && crowbar.tool_behaviour == TOOL_CROWBAR
@@ -805,17 +812,23 @@
 		return ..() //we don't have any parts.
 	spawn_frame(disassembled)
 
-	for(var/datum/part in component_parts)
+	for(var/part in component_parts)
 		if(istype(part, /datum/stock_part))
 			var/datum/stock_part/datum_part = part
 			new datum_part.physical_object_type(loc)
 		else
 			var/obj/item/obj_part = part
 			obj_part.forceMove(loc)
+			if(istype(obj_part, /obj/item/circuitboard/machine))
+				var/obj/item/circuitboard/machine/board = obj_part
+				for(var/component in board.req_components) //loop through all stack components and spawn them
+					if(!ispath(component, /obj/item/stack))
+						continue
+					var/obj/item/stack/stack_path = component
+					new stack_path(loc, board.req_components[component])
 
 	LAZYCLEARLIST(component_parts)
 	return ..()
-
 
 /**
  * Spawns a frame where this machine is. If the machine was not disassmbled, the
@@ -905,46 +918,6 @@
 	to_chat(user, span_notice("You rotate [src]."))
 	return TRUE
 
-/obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
-	if(!(isfloorturf(loc) || isindestructiblefloor(loc)) && !anchored)
-		to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
-		return FAILED_UNFASTEN
-	return SUCCESSFUL_UNFASTEN
-
-/obj/proc/default_unfasten_wrench(mob/user, obj/item/wrench, time = 20) //try to unwrench an object in a WONDERFUL DYNAMIC WAY
-	if((flags_1 & NODECONSTRUCT_1) || wrench.tool_behaviour != TOOL_WRENCH)
-		return CANT_UNFASTEN
-
-	var/turf/ground = get_turf(src)
-	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
-		return CANT_UNFASTEN
-	var/can_be_unfasten = can_be_unfasten_wrench(user)
-	if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
-		return can_be_unfasten
-	if(time)
-		to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
-	wrench.play_tool_sound(src, 50)
-	var/prev_anchored = anchored
-	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
-	if(!wrench.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
-		return FAILED_UNFASTEN
-	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
-		return CANT_UNFASTEN
-	to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
-	set_anchored(!anchored)
-	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	SEND_SIGNAL(src, COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH, anchored)
-	return SUCCESSFUL_UNFASTEN
-
-/obj/proc/unfasten_wrench_check(prev_anchored, mob/user) //for the do_after, this checks if unfastening conditions are still valid
-	if(anchored != prev_anchored)
-		return FALSE
-	if(can_be_unfasten_wrench(user, TRUE) != SUCCESSFUL_UNFASTEN) //if we aren't explicitly successful, cancel the fuck out
-		return FALSE
-	return TRUE
-
 /obj/machinery/proc/exchange_parts(mob/user, obj/item/storage/part_replacer/replacer_tool)
 	if(!istype(replacer_tool))
 		return FALSE
@@ -972,29 +945,33 @@
 	 * if the rped first picked up a tier 3 part AND THEN a tier 4 part
 	 * tier 3 would be installed and the loop would break and check for the next required component thus
 	 * completly ignoring the tier 4 component inside
+	 * we also ignore stack components inside the RPED cause we dont exchange that
 	 */
-	var/list/part_list = replacer_tool.get_sorted_parts()
-	for(var/datum/primary_part_base as anything in component_parts)
+	var/list/part_list = replacer_tool.get_sorted_parts(ignore_stacks = TRUE)
+	if(!part_list.len)
+		return FALSE
+	for(var/primary_part_base as anything in component_parts)
+		//we exchanged all we could time to bail
+		if(!part_list.len)
+			break
+
 		var/current_rating
 		var/required_type
 
-		if (istype(primary_part_base, /datum/stock_part))
+		//we dont exchange circuitboards cause thats dumb
+		if(istype(primary_part_base, /obj/item/circuitboard))
+			continue
+		else if(istype(primary_part_base, /datum/stock_part))
 			var/datum/stock_part/primary_stock_part = primary_part_base
 			current_rating = primary_stock_part.tier
 			required_type = primary_stock_part.physical_object_base_type
 		else
 			var/obj/item/primary_stock_part_item = primary_part_base
 			current_rating = primary_stock_part_item.get_part_rating()
-
 			for(var/design_type in machine_board.req_components)
-				if(!ispath(primary_stock_part_item.type, design_type))
-					continue
-
-				required_type = design_type
-
-		if (isnull(required_type))
-			// Not an error, happens with circuitboards.
-			continue
+				if(ispath(primary_stock_part_item.type, design_type))
+					required_type = design_type
+					break
 
 		for(var/obj/item/secondary_part in part_list)
 			if(!istype(secondary_part, required_type))
@@ -1006,27 +983,22 @@
 				if(checked_cell.rigged || checked_cell.corrupted)
 					checked_cell.charge = checked_cell.maxcharge
 					checked_cell.explode()
+					break
 			if(secondary_part.get_part_rating() > current_rating)
-				if(istype(secondary_part,/obj/item/stack)) //conveniently this will mean primary_part is also a stack and I will kill the first person to prove me wrong
-					var/obj/item/stack/primary_stack = primary_part_base
-					var/obj/item/stack/secondary_stack = secondary_part
-					var/used_amt = primary_stack.get_amount()
-					if(!secondary_stack.use(used_amt))
-						continue //if we don't have the exact amount to replace we don't
-					var/obj/item/stack/secondary_inserted = new secondary_stack.merge_type(null,used_amt)
-					component_parts += secondary_inserted
-				else
-					if(replacer_tool.atom_storage.attempt_remove(secondary_part, src))
-						if (istype(primary_part_base, /datum/stock_part))
-							var/stock_part_datum = GLOB.stock_part_datums_per_object[secondary_part.type]
-							if (isnull(stock_part_datum))
-								CRASH("[secondary_part] ([secondary_part.type]) did not have a stock part datum (was trying to find [primary_part_base])")
-							component_parts += stock_part_datum
-							qdel(secondary_part)
-						else
-							component_parts += secondary_part
-							secondary_part.forceMove(src)
-							part_list -= secondary_part //have to manually remove cause we are no longer refering replacer_tool.contents & forceMove wont remove it from th list
+				//store name of part incase we qdel it below
+				var/secondary_part_name = secondary_part.name
+				if(replacer_tool.atom_storage.attempt_remove(secondary_part, src))
+					if (istype(primary_part_base, /datum/stock_part))
+						var/stock_part_datum = GLOB.stock_part_datums_per_object[secondary_part.type]
+						if (isnull(stock_part_datum))
+							CRASH("[secondary_part] ([secondary_part.type]) did not have a stock part datum (was trying to find [primary_part_base])")
+						component_parts += stock_part_datum
+						part_list -= secondary_part //have to manually remove cause we are no longer refering replacer_tool.contents
+						qdel(secondary_part)
+					else
+						component_parts += secondary_part
+						secondary_part.forceMove(src)
+						part_list -= secondary_part //have to manually remove cause we are no longer refering replacer_tool.contents
 
 				component_parts -= primary_part_base
 
@@ -1038,8 +1010,8 @@
 				else
 					physical_part = primary_part_base
 
-				replacer_tool.atom_storage.attempt_insert(physical_part, user, TRUE)
-				to_chat(user, span_notice("[capitalize(physical_part.name)] replaced with [secondary_part.name]."))
+				replacer_tool.atom_storage.attempt_insert(physical_part, user, TRUE, force = STORAGE_SOFT_LOCKED)
+				to_chat(user, span_notice("[capitalize(physical_part.name)] replaced with [secondary_part_name]."))
 				shouldplaysound = TRUE //Only play the sound when parts are actually replaced!
 				break
 
@@ -1053,54 +1025,55 @@
 	var/list/part_count = list()
 
 	for(var/component_part in component_parts)
-		var/component_name
+		var/obj/item/component_ref
 
 		if (istype(component_part, /datum/stock_part))
 			var/datum/stock_part/stock_part = component_part
-			component_name = initial(stock_part.physical_object_type.name)
+			component_ref = stock_part.physical_object_reference
 		else
-			var/atom/stock_part = component_part
-			component_name = stock_part.name
+			component_ref = component_part
+			for(var/obj/item/counted_part in part_count)
+				//e.g. 2 beakers though they have the same type are still 2 different objects so component_ref wont keep them unique so we look for that type ourselves and increment it
+				if(istype(counted_part, component_ref.type))
+					part_count[counted_part]++
+					component_ref = null
+					break
+			//looks like we already counted an type of this obj reference, time to bail
+			if(!component_ref)
+				continue
 
-		if(part_count[component_name])
-			part_count[component_name]++
+		if(part_count[component_ref])
+			part_count[component_ref]++
 			continue
+		part_count[component_ref] = 1
 
-		if(isstack(component_part))
-			var/obj/item/stack/stack_part = component_part
-			part_count[component_name] = stack_part.amount
-		else
-			part_count[component_name] = 1
+		// we infer the required stack stuff inside the machine from the circuitboards requested components
+		if(istype(component_ref, /obj/item/circuitboard/machine))
+			var/obj/item/circuitboard/machine/board = component_ref
+			for(var/component as anything in board.req_components)
+				if(!ispath(component, /obj/item/stack))
+					continue
+				part_count[component] = board.req_components[component]
 
-	var/list/printed_components = list()
 
 	var/text = span_notice("It contains the following parts:")
-	for(var/component_part_base in component_parts)
-		var/atom/component_part
-		var/component_name
-
-		if (istype(component_part_base, /datum/stock_part))
-			var/datum/stock_part/stock_part = component_part_base
-			component_part = stock_part.physical_object_reference
-			component_name = initial(stock_part.physical_object_type.name)
+	for(var/component_part in part_count)
+		var/part_name
+		var/icon/html_icon
+		var/icon_state
+		//infer name & icon of part. stacks are just type paths so we have to get their initial values
+		if(ispath(component_part, /obj/item/stack))
+			var/obj/item/stack/stack_ref = component_part
+			part_name = initial(stack_ref.singular_name)
+			html_icon = initial(stack_ref.icon)
+			icon_state = initial(stack_ref.icon_state)
 		else
-			component_part = component_part_base
-			component_name = component_part.name
-
-		if (!istype(component_part))
-			stack_trace("[component_part_base] is not an /atom or a /datum/stock_part (or did not make one)")
-			continue
-
-		if(printed_components[component_name])
-			continue //already printed so skip
-
-		var/part_name = component_name
-		if (isstack(component_part))
-			var/obj/item/stack/stack_part = component_part
-			part_name = stack_part.singular_name
-
-		text += span_notice("[icon2html(component_part, user)] [part_count[component_name]] [part_name]\s.")
-		printed_components[component_name] = TRUE
+			var/obj/item/part = component_part
+			part_name = part.name
+			html_icon = part.icon
+			icon_state = part.icon_state
+		//merge icon & name into text
+		text += span_notice("[icon2html(html_icon, user, icon_state)] [part_count[component_part]] [part_name]\s.")
 
 	return text
 
@@ -1109,8 +1082,6 @@
 	if(machine_stat & BROKEN)
 		. += span_notice("It looks broken and non-functional.")
 	if(!(resistance_flags & INDESTRUCTIBLE))
-		if(resistance_flags & ON_FIRE)
-			. += span_warning("It's on fire!")
 		var/healthpercent = (atom_integrity/max_integrity) * 100
 		switch(healthpercent)
 			if(50 to 99)
@@ -1126,7 +1097,7 @@
 		. += display_parts(user, TRUE)
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
-/obj/machinery/proc/on_construction()
+/obj/machinery/proc/on_construction(mob/user)
 	return
 
 //called on deconstruction before the final deletion
@@ -1192,3 +1163,7 @@
 	if(isliving(user))
 		last_used_time = world.time
 		last_user_mobtype = user.type
+
+/// Called if this machine is supposed to be a sabotage machine objective.
+/obj/machinery/proc/add_as_sabotage_target()
+	return

@@ -27,16 +27,16 @@
 	if(!(iscarbon(victim) && victim.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)))
 		return
 	if(codephrase != "")
-		victim.gain_trauma(new /datum/brain_trauma/very_special/induced_hypnosis(codephrase), TRAUMA_RESILIENCE_BASIC)
+		victim.gain_trauma(new /datum/brain_trauma/very_special/induced_hypnosis(codephrase), TRAUMA_RESILIENCE_MAGIC)
 	else
 		codephrase = "Obey."
-		victim.gain_trauma(new /datum/brain_trauma/very_special/induced_hypnosis(codephrase), TRAUMA_RESILIENCE_BASIC)
+		victim.gain_trauma(new /datum/brain_trauma/very_special/induced_hypnosis(codephrase), TRAUMA_RESILIENCE_MAGIC)
 
 /obj/item/clothing/glasses/hypno/dropped(mob/user)//Removing hypnosis on unequip
 	. = ..()
 	if(!(victim.glasses == src))
 		return
-	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_BASIC)
+	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 	victim = null
 
 /obj/item/clothing/glasses/hypno/Destroy()
@@ -45,7 +45,7 @@
 		return
 	if(!(victim.glasses == src))
 		return
-	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_BASIC)
+	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 
 /obj/item/clothing/glasses/hypno/attack_self(mob/user)//Setting up hypnotising phrase
 	. = ..()
@@ -106,6 +106,7 @@
 /datum/brain_trauma/very_special/induced_hypnosis/New(phrase)
 	if(!phrase)
 		qdel(src)
+		return
 	hypnotic_phrase = phrase
 	try
 		target_phrase = new("(\\b[REGEX_QUOTE(hypnotic_phrase)]\\b)", "ig")
@@ -133,9 +134,9 @@
 	owner.clear_alert("hypnosis")
 	..()
 
-/datum/brain_trauma/very_special/induced_hypnosis/on_life(delta_time, times_fired)
+/datum/brain_trauma/very_special/induced_hypnosis/on_life(seconds_per_tick, times_fired)
 	..()
-	if(!(DT_PROB(1, delta_time)))
+	if(!(SPT_PROB(1, seconds_per_tick)))
 		return
 	switch(rand(1, 2))
 		if(1)

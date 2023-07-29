@@ -13,7 +13,7 @@
 	var/list/display_message = list(
 		span_notice("Something wet falls out of their pocket and hits the ground. Is that... [name]?"),
 		span_warning("Oh shit! All your pocket [name] fell out!"))
-	AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg', MEMORY_SPAGHETTI_SPILL)
+	AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg', /datum/memory/lost_spaghetti)
 
 	return ..()
 
@@ -22,6 +22,9 @@
 	desc = "Now that's a nic'e pasta!"
 	icon_state = "spaghetti"
 	tastes = list("pasta" = 1)
+
+/obj/item/food/spaghetti/make_bakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/food/spaghetti/boiledspaghetti, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
 
 /obj/item/food/spaghetti/raw/make_microwaveable()
 	AddElement(/datum/element/microwavable, /obj/item/food/spaghetti/boiledspaghetti)
@@ -125,7 +128,7 @@
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 6,
-		/datum/reagent/liquidgibs = 3,
+		/datum/reagent/consumable/liquidgibs = 3,
 	)
 	tastes = list("noodles" = 1, "meat" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES

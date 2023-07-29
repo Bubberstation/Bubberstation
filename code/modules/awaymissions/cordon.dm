@@ -11,7 +11,7 @@
 	density = TRUE
 	blocks_air = TRUE
 	init_air = FALSE
-	always_lit = TRUE
+	space_lit = TRUE
 	bullet_bounce_sound = null
 	turf_flags = NOJAUNT
 	baseturfs = /turf/cordon
@@ -41,6 +41,12 @@
 
 /turf/cordon/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return FALSE
+
+/turf/cordon/Bumped(atom/movable/bumped_atom)
+	. = ..()
+
+	if(HAS_TRAIT(bumped_atom, TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT)) //we could feasibly reach the border, so just dont
+		dump_in_space(bumped_atom)
 
 /// Area used in conjuction with the cordon turf to create a fully functioning world border.
 /area/misc/cordon

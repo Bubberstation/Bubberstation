@@ -2,7 +2,7 @@
 /obj/machinery/pdapainter
 	name = "\improper Tablet & ID Painter"
 	desc = "A painting machine that can be used to paint PDAs and trim IDs. To use, simply insert the item and choose the desired preset."
-	icon = 'icons/obj/pda.dmi'
+	icon = 'icons/obj/machines/pda.dmi'
 	icon_state = "pdapainter"
 	base_icon_state = "pdapainter"
 	density = TRUE
@@ -110,7 +110,7 @@
 /obj/machinery/pdapainter/attackby(obj/item/O, mob/living/user, params)
 	if(machine_stat & BROKEN)
 		if(O.tool_behaviour == TOOL_WELDER && !user.combat_mode)
-			if(!O.tool_start_check(user, amount=0))
+			if(!O.tool_start_check(user, amount=1))
 				return
 			user.visible_message(span_notice("[user] is repairing [src]."), \
 							span_notice("You begin repairing [src]..."), \
@@ -238,6 +238,7 @@
  */
 /obj/machinery/pdapainter/proc/eject_id_card(mob/living/user)
 	if(stored_id_card)
+		GLOB.manifest.modify(stored_id_card.registered_name, stored_id_card.assignment, stored_id_card.get_trim_assignment())
 		if(user && !issilicon(user) && in_range(src, user))
 			user.put_in_hands(stored_id_card)
 		else

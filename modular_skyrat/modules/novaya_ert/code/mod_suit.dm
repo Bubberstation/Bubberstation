@@ -29,7 +29,7 @@
 			MOD_ICON_OVERRIDE = 'modular_skyrat/modules/novaya_ert/icons/mod.dmi',
 			MOD_WORN_ICON_OVERRIDE = 'modular_skyrat/modules/novaya_ert/icons/wornmod.dmi',
 			HELMET_FLAGS = list(
-				UNSEALED_LAYER = NECK_LAYER,
+				UNSEALED_LAYER = HEAD_LAYER,
 				UNSEALED_CLOTHING = SNUG_FIT,
 				SEALED_CLOTHING = THICKMATERIAL|STOPSPRESSUREDAMAGE,
 				SEALED_INVISIBILITY =  HIDEFACIALHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT,
@@ -54,15 +54,15 @@
 	)
 
 /datum/armor/mod_theme_frontline
-	melee = 40
-	bullet = 50
-	laser = 30
-	energy = 40
-	bomb = 50
+	melee = 50
+	bullet = 60
+	laser = 40
+	energy = 50
+	bomb = 60
 	bio = 100
-	fire = 40
-	acid = 75
-	wound = 20
+	fire = 50
+	acid = 80
+	wound = 25
 
 /obj/item/mod/control/pre_equipped/frontline
 	theme = /datum/mod_theme/frontline
@@ -71,28 +71,12 @@
 		/obj/item/mod/module/flashlight,
 	)
 
-/obj/item/mod/control/pre_equipped/frontline/pirate
-	applied_modules = list(
-		/obj/item/mod/module/storage/large_capacity,
-		/obj/item/mod/module/thermal_regulator,
-		/obj/item/mod/module/status_readout/generic,
-		/obj/item/mod/module/tether,
-		/obj/item/mod/module/magboot,
-		/obj/item/mod/module/flashlight,
-		/obj/item/mod/module/magnetic_harness,
-		/obj/item/mod/module/t_ray
-	)
-	default_pins = list(
-		/obj/item/mod/module/tether,
-		/obj/item/mod/module/magboot,
-	)
-
 /obj/item/mod/control/pre_equipped/frontline/ert
 	applied_cell = /obj/item/stock_parts/cell/hyper
 	applied_modules = list(
 		/obj/item/mod/module/storage/syndicate,
 		/obj/item/mod/module/thermal_regulator,
-		/obj/item/mod/module/status_readout/generic,
+		/obj/item/mod/module/status_readout/operational,
 		/obj/item/mod/module/auto_doc,
 		/obj/item/mod/module/visor/thermal,
 		/obj/item/mod/module/jetpack/advanced,
@@ -104,13 +88,96 @@
 		/obj/item/mod/module/magboot/advanced,
 	)
 
+/datum/mod_theme/policing
+	name = "policing"
+	desc = "A Novaya Rossiyskaya Imperiya Internal Affairs Collegia general purpose protective suit, designed for coreworld patrols."
+	extended_desc = "An Apadyne Technologies outsourced, then modified for frontier use by the responding imperial police precinct, MODsuit model, \
+		designed for reassuring panicking civilians than participating in active combat. The suit's thin plastitanium armor plating is durable against environment and projectiles, \
+		and comes with a built-in miniature power redistribution system to protect against energy weaponry; albeit ineffectively. \
+		Thanks to the modifications of the local police, additional armoring has been added to its legs and arms, at the cost of an increased system load."
+	default_skin = "policing"
+	armor_type = /datum/armor/mod_theme_policing
+	complexity_max = DEFAULT_MAX_COMPLEXITY - 1
+	charge_drain = DEFAULT_CHARGE_DRAIN * 1.25
+	slowdown_inactive = 1.5
+	slowdown_active = 0.5
+	allowed_suit_storage = list(
+		/obj/item/flashlight,
+		/obj/item/tank/internals,
+		/obj/item/ammo_box,
+		/obj/item/ammo_casing,
+		/obj/item/restraints/handcuffs,
+		/obj/item/assembly/flash,
+		/obj/item/melee/baton,
+		/obj/item/knife/combat,
+		/obj/item/shield/riot,
+		/obj/item/gun,
+	)
+	skins = list(
+		"policing" = list(
+			MOD_ICON_OVERRIDE = 'modular_skyrat/modules/novaya_ert/icons/mod.dmi',
+			MOD_WORN_ICON_OVERRIDE = 'modular_skyrat/modules/novaya_ert/icons/wornmod.dmi',
+			HELMET_FLAGS = list(
+				UNSEALED_LAYER = HEAD_LAYER,
+				UNSEALED_CLOTHING = SNUG_FIT,
+				SEALED_CLOTHING = THICKMATERIAL|STOPSPRESSUREDAMAGE,
+				SEALED_INVISIBILITY =  HIDEFACIALHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT,
+				SEALED_COVER = HEADCOVERSMOUTH|HEADCOVERSEYES|PEPPERPROOF,
+			),
+			CHESTPLATE_FLAGS = list(
+				UNSEALED_CLOTHING = THICKMATERIAL,
+				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
+				SEALED_INVISIBILITY = HIDEJUMPSUIT|HIDETAIL,
+			),
+			GAUNTLETS_FLAGS = list(
+				UNSEALED_CLOTHING = THICKMATERIAL,
+				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
+				CAN_OVERSLOT = TRUE,
+			),
+			BOOTS_FLAGS = list(
+				UNSEALED_CLOTHING = THICKMATERIAL,
+				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
+				CAN_OVERSLOT = TRUE,
+			),
+		),
+	)
+
+/datum/armor/mod_theme_policing
+	melee = 40
+	bullet = 50
+	laser = 30
+	energy = 30
+	bomb = 60
+	bio = 100
+	fire = 75
+	acid = 75
+	wound = 20
+
+/obj/item/mod/control/pre_equipped/policing
+	theme = /datum/mod_theme/policing
+	applied_modules = list(
+		/obj/item/mod/module/storage/large_capacity,
+		/obj/item/mod/module/thermal_regulator,
+		/obj/item/mod/module/status_readout/operational,
+		/obj/item/mod/module/tether,
+		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/paper_dispenser,
+		/obj/item/mod/module/magnetic_harness
+	)
+	default_pins = list(
+		/obj/item/mod/module/tether,
+		/obj/item/mod/module/magboot,
+	)
+
 ///Unrelated-to-Spider-Clan version of the module.
-/obj/item/mod/module/status_readout/generic
-	name = "MOD status readout module"
-	desc = "A once-common module, this technology went unfortunately out of fashion; \
-		but still remaining in older suit variations. This hooks into the suit's spine, \
+/obj/item/mod/module/status_readout/operational
+	name = "MOD operational status readout module"
+	desc = "A once-common module, this technology unfortunately went out of fashion in the safer regions of space; \
+		however, it remained in use everywhere else. This particular unit hooks into the suit's spine, \
 		capable of capturing and displaying all possible biometric data of the wearer; sleep, nutrition, fitness, fingerprints, \
-		and even useful information such as their overall health and wellness."
+		and even useful information such as their overall health and wellness. The vitals monitor also comes with a speaker, loud enough \
+		to alert anyone nearby that someone has, in fact, died. This specific unit has a clock and operational ID readout."
+	show_time = TRUE
 
 ///Blatant copy of the adrenaline boost module.
 /obj/item/mod/module/auto_doc
@@ -163,7 +230,7 @@
 		SEND_SIGNAL(src, COMSIG_MODULE_DEACTIVATED)
 		return FALSE
 
-	if(!allowed_in_phaseout && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
+	if(!(allow_flags & MODULE_ALLOW_PHASEOUT) && istype(mod.wearer.loc, /obj/effect/dummy/phased_mob))
 		to_chat(mod.wearer, span_warning("You cannot activate this right now."))
 		return FALSE
 
@@ -233,10 +300,10 @@
 	UnregisterSignal(mod.wearer, COMSIG_LIVING_HEALTH_UPDATE)
 
 /obj/item/mod/module/auto_doc/on_install()
-	RegisterSignal(mod, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(mod, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
 
 /obj/item/mod/module/auto_doc/on_uninstall(deleting)
-	UnregisterSignal(mod, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(mod, COMSIG_ATOM_ATTACKBY)
 
 /obj/item/mod/module/auto_doc/attackby(obj/item/attacking_item, mob/user, params)
 	if(charge_boost(attacking_item, user))

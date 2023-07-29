@@ -26,9 +26,6 @@ const MilkingMachineContent = (props, context) => {
   const {
     mobName,
     mobCanLactate,
-    cellName,
-    cellMaxCharge,
-    cellCurrentCharge,
     beaker,
     BeakerName,
     beakerMaxVolume,
@@ -92,22 +89,6 @@ const MilkingMachineContent = (props, context) => {
           <Stack.Item grow>
             <Stack vertical>
               <Stack.Item>
-                {cellName && (
-                  <Section
-                    backgroundColor={palette.SectionBackgroundColor}
-                    textAlign="center">
-                    Cell: {cellName}
-                  </Section>
-                )}
-                {!cellName && (
-                  <Section
-                    backgroundColor={palette.SectionBackgroundColor}
-                    textAlign="center">
-                    No power source
-                  </Section>
-                )}
-              </Stack.Item>
-              <Stack.Item grow={1}>
                 <Section
                   bold
                   backgroundColor={palette.SectionBackgroundColor}
@@ -148,7 +129,7 @@ const MilkingMachineContent = (props, context) => {
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
-              <Stack.Item grow={1}>
+              <Stack.Item>
                 <Section
                   bold
                   backgroundColor={palette.SectionBackgroundColor}
@@ -338,26 +319,7 @@ const MilkingMachineContent = (props, context) => {
           </Stack.Item>
           <Stack.Item grow>
             <Stack vertical>
-              <Stack>
-                <Stack.Item grow>
-                  {cellCurrentCharge !== null && cellMaxCharge !== null && (
-                    <Section
-                      backgroundColor={palette.SectionBackgroundColor}
-                      textAlign="center">
-                      Capacity: {Math.round(cellCurrentCharge)} {' / '}{' '}
-                      {Math.round(cellMaxCharge)}
-                    </Section>
-                  )}
-                  {cellCurrentCharge === null && cellMaxCharge === null && (
-                    <Section
-                      backgroundColor={palette.SectionBackgroundColor}
-                      textAlign="center">
-                      Capacity: n/a
-                    </Section>
-                  )}
-                </Stack.Item>
-              </Stack>
-              <Stack.Item grow>
+              <Stack.Item>
                 {beaker !== null && (
                   <Section
                     bold
@@ -588,7 +550,6 @@ const modeButtonStates = (Name, data, palette, context) => {
   if (
     data.mobName !== null &&
     ModeNameCapital !== Name &&
-    data.cellName !== null &&
     data.current_selected_organ !== null
   ) {
     return (
@@ -607,7 +568,7 @@ const modeButtonStates = (Name, data, palette, context) => {
   } else if (
     data.mobName !== null &&
     ModeNameCapital === Name &&
-    (data.cellName !== null || data.current_selected_organ !== null)
+    data.current_selected_organ !== null
   ) {
     return (
       <Box as="div" m={1}>
@@ -623,7 +584,7 @@ const modeButtonStates = (Name, data, palette, context) => {
     );
   } else if (
     ModeNameCapital !== Name &&
-    (data.current_selected_organ === null || data.cellName === null) === true
+    (data.current_selected_organ === null) === true
   ) {
     return (
       <Box as="div" m={1}>
@@ -638,10 +599,7 @@ const modeButtonStates = (Name, data, palette, context) => {
         />
       </Box>
     );
-  } else if (
-    ModeNameCapital === Name &&
-    (data.cellName === null || data.current_selected_organ === null)
-  ) {
+  } else if (ModeNameCapital === Name && data.current_selected_organ === null) {
     return (
       <Box as="div" m={1}>
         <Button

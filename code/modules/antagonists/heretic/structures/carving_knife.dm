@@ -3,7 +3,7 @@
 	name = "carving knife"
 	desc = "A small knife made of cold steel, pure and perfect. Its sharpness can carve into titanium itself - \
 		but only few can evoke the dangers that lurk beneath reality."
-	icon = 'icons/obj/eldritch.dmi'
+	icon = 'icons/obj/antags/eldritch.dmi'
 	icon_state = "rune_carver"
 	flags_1 = CONDUCT_1
 	sharpness = SHARP_EDGED
@@ -168,7 +168,7 @@
 /obj/structure/trap/eldritch
 	name = "elder carving"
 	desc = "Collection of unknown symbols, they remind you of days long gone..."
-	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	/// A tip displayed to heretics who examine the rune carver. Explains what the rune does.
 	var/carver_tip
 	/// Reference to trap owner mob
@@ -244,6 +244,6 @@
 	carbon_victim.adjust_confusion(5 SECONDS)
 	carbon_victim.set_jitter_if_lower(20 SECONDS)
 	carbon_victim.set_dizzy_if_lower(40 SECONDS)
-	carbon_victim.adjust_blindness(2)
+	carbon_victim.adjust_temp_blindness(4 SECONDS)
 	carbon_victim.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 	playsound(src, 'sound/magic/blind.ogg', 75, TRUE)

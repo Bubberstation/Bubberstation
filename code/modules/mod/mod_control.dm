@@ -105,10 +105,11 @@
 	extended_desc = theme.extended_desc
 	slowdown_inactive = theme.slowdown_inactive
 	slowdown_active = theme.slowdown_active
+	activation_step_time = theme.activation_step_time
 	complexity_max = theme.complexity_max
 	ui_theme = theme.ui_theme
 	charge_drain = theme.charge_drain
-	wires = new /datum/wires/mod(src)
+	set_wires(new /datum/wires/mod(src))
 	if(length(req_access))
 		locked = TRUE
 	new_core?.install(src)
@@ -135,7 +136,7 @@
 		part.siemens_coefficient = theme.siemens_coefficient
 	for(var/obj/item/part as anything in mod_parts)
 		RegisterSignal(part, COMSIG_ATOM_DESTRUCTION, PROC_REF(on_part_destruction))
-		RegisterSignal(part, COMSIG_PARENT_QDELETING, PROC_REF(on_part_deletion))
+		RegisterSignal(part, COMSIG_QDELETING, PROC_REF(on_part_deletion))
 	set_mod_skin(new_skin || theme.default_skin)
 	update_speed()
 	RegisterSignal(src, COMSIG_ATOM_EXITED, PROC_REF(on_exit))
@@ -222,7 +223,7 @@
 	. = ..()
 	. += "<i>[extended_desc]</i>"
 
-/obj/item/mod/control/process(delta_time)
+/obj/item/mod/control/process(seconds_per_tick)
 	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
 		seconds_electrified--
 	if(!get_charge() && active && !activating)
@@ -231,12 +232,12 @@
 	var/malfunctioning_charge_drain = 0
 	if(malfunctioning)
 		malfunctioning_charge_drain = rand(1,20)
-	subtract_charge((charge_drain + malfunctioning_charge_drain)*delta_time)
+	subtract_charge((charge_drain + malfunctioning_charge_drain)*seconds_per_tick)
 	update_charge_alert()
 	for(var/obj/item/mod/module/module as anything in modules)
-		if(malfunctioning && module.active && DT_PROB(5, delta_time))
+		if(malfunctioning && module.active && SPT_PROB(5, seconds_per_tick))
 			module.on_deactivation(display_message = TRUE)
-		module.on_process(delta_time)
+		module.on_process(seconds_per_tick)
 
 /obj/item/mod/control/equipped(mob/user, slot)
 	..()
@@ -422,9 +423,10 @@
 	else
 		return ..()
 
-/obj/item/mod/control/emag_act(mob/user)
+/obj/item/mod/control/emag_act(mob/user, obj/item/card/emag/emag_card)
 	locked = !locked
 	balloon_alert(user, "suit access [locked ? "locked" : "unlocked"]")
+	return TRUE
 
 /obj/item/mod/control/emp_act(severity)
 	. = ..()
@@ -439,9 +441,12 @@
 	if(wearer.stat < UNCONSCIOUS && prob(10))
 		wearer.emote("scream")
 
+/obj/item/mod/control/visual_equipped(mob/user, slot, initial = FALSE)
+	if(slot & slot_flags)
+		set_wearer(user)
+
 /obj/item/mod/control/on_outfit_equip(mob/living/carbon/human/outfit_wearer, visuals_only, item_slot)
-	if(visuals_only)
-		set_wearer(outfit_wearer) //we need to set wearer manually since it doesnt call equipped
+	. = ..()
 	quick_activation()
 
 /obj/item/mod/control/doStrip(mob/stripper, mob/owner)
@@ -453,19 +458,20 @@
 		retract(null, part)
 	return ..()
 
-/obj/item/mod/control/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
-	. = ..()
-	for(var/obj/item/mod/module/module as anything in modules)
-		var/list/module_icons = module.generate_worn_overlay(standing)
-		if(!length(module_icons))
-			continue
-		. += module_icons
-
 /obj/item/mod/control/update_icon_state()
 	icon_state = "[skin]-[base_icon_state][active ? "-sealed" : ""]"
 	return ..()
 
 /obj/item/mod/control/proc/set_wearer(mob/living/carbon/human/user)
+	if (wearer == user)
+		// This should also not happen.
+		// This path is hit when equipping an outfit with visualsOnly, but only sometimes, and this eventually gets called twice.
+		// I'm not sure this proc should ever be being called by visualsOnly, but it is,
+		// and this was an emergency patch.
+		return
+	else if (!isnull(wearer))
+		stack_trace("set_wearer() was called with a new wearer without unset_wearer() being called")
+
 	wearer = user
 	SEND_SIGNAL(src, COMSIG_MOD_WEARER_SET, wearer)
 	RegisterSignal(wearer, COMSIG_ATOM_EXITED, PROC_REF(on_exit))
@@ -564,6 +570,7 @@
 	modules += new_module
 	complexity += new_module.complexity
 	new_module.mod = src
+	new_module.RegisterSignal(src, COMSIG_ITEM_GET_WORN_OVERLAYS, TYPE_PROC_REF(/obj/item/mod/module, add_module_overlay))
 	new_module.on_install()
 	if(wearer)
 		new_module.on_equip()
@@ -588,6 +595,7 @@
 		old_module.on_suit_deactivation(deleting = deleting)
 		if(old_module.active)
 			old_module.on_deactivation(display_message = !deleting, deleting = deleting)
+	old_module.UnregisterSignal(src, COMSIG_ITEM_GET_WORN_OVERLAYS)
 	old_module.on_uninstall(deleting = deleting)
 	QDEL_LIST_ASSOC_VAL(old_module.pinned_to)
 	old_module.mod = null

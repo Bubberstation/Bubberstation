@@ -1,6 +1,3 @@
-#define REVOLUTION_VICTORY 1
-#define STATION_VICTORY 2
-
 /datum/dynamic_ruleset
 	/// For admin logging and round end screen.
 	// If you want to change this variable name, the force latejoin/midround rulesets
@@ -99,11 +96,11 @@
 	..()
 
 /datum/dynamic_ruleset/roundstart // One or more of those drafted at roundstart
-	ruletype = "Roundstart"
+	ruletype = ROUNDSTART_RULESET
 
 // Can be drafted when a player joins the server
 /datum/dynamic_ruleset/latejoin
-	ruletype = "Latejoin"
+	ruletype = LATEJOIN_RULESET
 
 /// By default, a rule is acceptable if it satisfies the threat level/population requirements.
 /// If your rule has extra checks, such as counting security officers, do that in ready() instead
@@ -112,15 +109,15 @@
 	indice_pop = min(requirements.len,round(population/pop_per_requirement)+1)
 
 	if(minimum_players > population)
-		log_game("DYNAMIC: FAIL: [src] failed acceptable: minimum_players ([minimum_players]) > population ([population])")
+		log_dynamic("FAIL: [src] failed acceptable: minimum_players ([minimum_players]) > population ([population])")
 		return FALSE
 
 	if(maximum_players > 0 && population > maximum_players)
-		log_game("DYNAMIC: FAIL: [src] failed acceptable: maximum_players ([maximum_players]) < population ([population])")
+		log_dynamic("FAIL: [src] failed acceptable: maximum_players ([maximum_players]) < population ([population])")
 		return FALSE
 
 	if (threat_level < requirements[indice_pop])
-		log_game("DYNAMIC: FAIL: [src] failed acceptable: threat_level ([threat_level]) < requirement ([requirements[indice_pop]])")
+		log_dynamic("FAIL: [src] failed acceptable: threat_level ([threat_level]) < requirement ([requirements[indice_pop]])")
 		return FALSE
 
 	return TRUE
@@ -202,7 +199,7 @@
 	if (required_candidates <= candidates.len)
 		return TRUE
 
-	log_game("DYNAMIC: FAIL: [src] does not have enough candidates ([required_candidates] needed, [candidates.len] found)")
+	log_dynamic("FAIL: [src] does not have enough candidates ([required_candidates] needed, [candidates.len] found)")
 	return FALSE
 
 /// Here you can remove candidates that do not meet your requirements.
@@ -262,7 +259,7 @@
 			for(var/role in exclusive_roles)
 				var/datum/job/job = SSjob.GetJob(role)
 
-				if((role in candidate_client.prefs.job_preferences) && SSjob.check_job_eligibility(candidate_player, job, "Dynamic Roundstart TC", add_job_to_log = TRUE)==JOB_AVAILABLE)
+				if((role in candidate_client.prefs.job_preferences) && SSjob.check_job_eligibility(candidate_player, job, "Dynamic Roundstart TC", add_job_to_log = TRUE) == JOB_AVAILABLE)
 					exclusive_candidate = TRUE
 					break
 

@@ -13,22 +13,21 @@
 	rack_sound = 'sound/weapons/gun/l6/l6_rack.ogg'
 	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
 	fire_sound_volume = 70
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_FULLY_AUTOMATIC)
 	weapon_weight = WEAPON_HEAVY
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	spread = 18
-	mag_type = /obj/item/ammo_box/magazine/smartgun_drum
+	accepted_magazine_type = /obj/item/ammo_box/magazine/smartgun_drum
 	can_suppress = FALSE
 	fire_delay = 0.15
 	bolt_type = BOLT_TYPE_OPEN
 	show_bolt_icon = FALSE
 	tac_reloads = FALSE
 	burst_size = 1
+	actions_types = list()
 	pin = /obj/item/firing_pin/implant/mindshield
 	mag_display_ammo = FALSE
 	mag_display = FALSE
-	company_flag = COMPANY_NANOTRASEN
 	fire_sound_volume = 30
 	/// If the gun's dustcover is open or not
 	var/cover_open = FALSE
@@ -37,7 +36,13 @@
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/Initialize(mapload)
 	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
 	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/gun/ballistic/automatic/smart_machine_gun/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	. = ..()
@@ -51,7 +56,7 @@
 		. += span_notice("It seems like you could use an <b>empty hand</b> to remove the magazine.")
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/attack_hand_secondary(mob/user, list/modifiers)
-	if(!user.canUseTopic(src))
+	if(!user.can_perform_action(src))
 		return
 	cover_open = !cover_open
 	to_chat(user, span_notice("You [cover_open ? "open" : "close"] [src]'s cover."))
@@ -72,7 +77,7 @@
 	return ..()
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/attackby(obj/item/attack_item, mob/user, params)
-	if(!cover_open && istype(attack_item, mag_type))
+	if(!cover_open && istype(attack_item, accepted_magazine_type))
 		to_chat(user, span_warning("[src]'s dust cover prevents a magazine from being fit."))
 		return
 	..()
@@ -89,7 +94,7 @@
 	name = "smartgun drum (10x28mm caseless)"
 	icon = 'modular_skyrat/modules/marines/icons/items/ammo.dmi'
 	icon_state = "smartgun_drum"
-	ammo_type = /obj/item/ammo_casing/smart/caseless/a10x28
+	ammo_type = /obj/item/ammo_casing/smart/a10x28
 	caliber = "a10x28"
 	max_ammo = 500
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
@@ -111,11 +116,15 @@
 		var/obj/projectile/bullet/smart/smart_proj = loaded_projectile
 		smart_proj.ignored_factions = iff_factions.Copy()
 
-/obj/item/ammo_casing/smart/caseless
+/obj/item/ammo_casing/smart
 	firing_effect_type = null
-	heavy_metal = FALSE
+	is_cased_ammo = FALSE
 
-/obj/item/ammo_casing/smart/caseless/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
+/obj/item/ammo_casing/smart/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
+
+/obj/item/ammo_casing/smart/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
 	if (!..()) //failed firing
 		return FALSE
 	if(istype(fired_from, /obj/item/gun))
@@ -125,11 +134,11 @@
 	qdel(src)
 	return TRUE
 
-/obj/item/ammo_casing/smart/caseless/update_icon_state()
+/obj/item/ammo_casing/smart/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)]"
 
-/obj/item/ammo_casing/smart/caseless/a10x28
+/obj/item/ammo_casing/smart/a10x28
 	name = "10x28mm bullet"
 	desc = "A 10x28m caseless bullet."
 	icon_state = "792x57-casing"

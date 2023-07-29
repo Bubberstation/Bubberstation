@@ -7,9 +7,12 @@
 	desc = "Automagically transforms into a random arcade machine. If you see this while in a shift, please create a bug report."
 	icon_state = "arcade"
 	loot = list(
-		/obj/machinery/computer/arcade/orion_trail = 49,
-		/obj/machinery/computer/arcade/battle = 49,
+		//BUBBER EDIT START
+		/obj/machinery/computer/arcade/orion_trail = 33,
+		/obj/machinery/computer/arcade/battle = 33,
+		/obj/machinery/computer/arcade/minesweeper = 32,
 		/obj/machinery/computer/arcade/amputation = 2,
+		//BUBBER EDIT END
 	)
 
 /obj/effect/spawner/random/entertainment/musical_instrument
@@ -60,6 +63,7 @@
 		/obj/item/coin/adamantine = 2,
 		/obj/item/coin/mythril = 2,
 		/obj/item/coin/runite = 2,
+		/obj/item/food/chococoin = 2,
 		/obj/item/coin/twoheaded = 1,
 		/obj/item/coin/antagtoken = 1,
 	)
@@ -269,13 +273,13 @@
 		// rare plushies
 		/obj/item/toy/plush/carpplushie = 3,
 		/obj/item/toy/plush/lizard_plushie/green = 3,
-		/obj/item/toy/plush/space_lizard_plushie = 3,
+		/obj/item/toy/plush/lizard_plushie/space/green = 3,
 		/obj/item/toy/plush/awakenedplushie = 3,
 		/obj/item/toy/plush/goatplushie = 3,
 		/obj/item/toy/plush/rouny = 3,
 		/obj/item/toy/plush/abductor = 3,
 		/obj/item/toy/plush/abductor/agent = 3,
-		/obj/item/toy/plush/greek_cucumber = 3,
+		/obj/item/toy/plush/shark = 3,
 		// super rare plushies
 		/obj/item/toy/plush/bubbleplush = 2,
 		/obj/item/toy/plush/ratplush = 2,

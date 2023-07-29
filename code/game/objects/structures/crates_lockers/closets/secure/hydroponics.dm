@@ -11,3 +11,5 @@
 	new /obj/item/cultivator(src)
 	new /obj/item/hatchet(src)
 	new /obj/item/secateurs(src)
+	for(var/i in 1 to 2)
+		new /obj/item/storage/box/disks_plantgene(src) // BUBBER EDIT ADDITION

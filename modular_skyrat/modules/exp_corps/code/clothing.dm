@@ -4,17 +4,15 @@
 	icon_state = "exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
-	armor_type = /datum/armor/rank_expeditionary_corps
+	armor_type = /datum/armor/clothing_under/rank_expeditionary_corps
 	strip_delay = 7 SECONDS
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
-/datum/armor/rank_expeditionary_corps
-	bio = 10
+/datum/armor/clothing_under/rank_expeditionary_corps
 	fire = 15
 	acid = 15
-	wound = 5
 
 /obj/item/storage/belt/military/expeditionary_corps
 	name = "expeditionary corps chest rig"
@@ -95,7 +93,7 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/gloves/color/chief_engineer/expeditionary_corps
+/obj/item/clothing/gloves/chief_engineer/expeditionary_corps
 	name = "expeditionary corps insulated gloves"
 	icon_state = "exp_corps_eng"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
@@ -112,7 +110,7 @@
 	fire = 80
 	acid = 50
 
-/obj/item/clothing/gloves/color/latex/nitrile/expeditionary_corps
+/obj/item/clothing/gloves/latex/nitrile/expeditionary_corps
 	name = "expeditionary corps medic gloves"
 	icon_state = "exp_corps_med"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
@@ -151,9 +149,9 @@
 /obj/item/clothing/suit/armor/vest/expeditionary_corps
 	name = "expeditionary corps armor vest"
 	desc = "An armored vest that provides okay protection against most types of damage."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "exp_corps"
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor_type = /datum/armor/vest_expeditionary_corps
 	cold_protection = CHEST|GROIN|ARMS
@@ -187,8 +185,8 @@
 	name = "expeditionary corps helmet"
 	desc = "A robust helmet worn by Expeditionary Corps troopers. Alt+click it to toggle the NV system."
 	icon_state = "exp_corps"
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	armor_type = /datum/armor/helmet_expeditionary_corps
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	var/nightvision = FALSE
@@ -227,19 +225,17 @@
 
 /obj/item/clothing/head/helmet/expeditionary_corps/proc/enable_nv(mob/user)
 	if(current_user)
-		var/obj/item/organ/internal/eyes/my_eyes = current_user.getorgan(/obj/item/organ/internal/eyes)
+		var/obj/item/organ/internal/eyes/my_eyes = current_user.get_organ_by_type(/obj/item/organ/internal/eyes)
 		if(my_eyes)
-			my_eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-			my_eyes.see_in_dark = 8
+			my_eyes.color_cutoffs = list(10, 30, 10)
 			my_eyes.flash_protect = FLASH_PROTECTION_SENSITIVE
 		current_user.add_client_colour(/datum/client_colour/glass_colour/lightgreen)
 
 /obj/item/clothing/head/helmet/expeditionary_corps/proc/disable_nv()
 	if(current_user)
-		var/obj/item/organ/internal/eyes/my_eyes = current_user.getorgan(/obj/item/organ/internal/eyes)
+		var/obj/item/organ/internal/eyes/my_eyes = current_user.get_organ_by_type(/obj/item/organ/internal/eyes)
 		if(my_eyes)
-			my_eyes.lighting_alpha = initial(my_eyes.lighting_alpha)
-			my_eyes.see_in_dark = initial(my_eyes.see_in_dark)
+			my_eyes.color_cutoffs = initial(my_eyes.color_cutoffs)
 			my_eyes.flash_protect = initial(my_eyes.flash_protect)
 		current_user.remove_client_colour(/datum/client_colour/glass_colour/lightgreen)
 		current_user.update_sight()

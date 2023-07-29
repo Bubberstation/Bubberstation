@@ -1,17 +1,12 @@
 /datum/species/humanoid
 	name = "Humanoid"
 	id = SPECIES_HUMANOID
-	species_traits = list(MUTCOLORS,
-		EYECOLOR,
-		LIPS,
-		HAIR,
-		FACEHAIR
-	)
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_LITERATE,
+		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
@@ -40,8 +35,8 @@
 	human.dna.features["mcolor"] = main_color
 	human.dna.features["mcolor2"] = main_color
 	human.dna.features["mcolor3"] = main_color
-	human.dna.species.mutant_bodyparts["horns"] = list(MUTANT_INDEX_NAME = "Curled", MUTANT_INDEX_COLOR_LIST = list(secondary_color, secondary_color, secondary_color))
+	human.dna.mutant_bodyparts["horns"] = list(MUTANT_INDEX_NAME = "Curled", MUTANT_INDEX_COLOR_LIST = list(secondary_color, secondary_color, secondary_color))
 	human.hairstyle = "Cornrows"
 	human.hair_color = "#2b2b2b"
-	human.update_mutant_bodyparts(TRUE)
+	regenerate_organs(human, src, visual_only = TRUE)
 	human.update_body(TRUE)

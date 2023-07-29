@@ -33,7 +33,7 @@
 		follow_speed = _follow_speed
 	RegisterSignal(parent, COMSIG_HOSTILE_MOB_LOST_TARGET, PROC_REF(lost_target))
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(toggle_follow))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	parent_mob = parent
 
 /datum/component/follow/Destroy(force, silent)
@@ -48,7 +48,7 @@
 
 /datum/component/follow/proc/toggle_follow(datum/source, mob/living/living_user)
 	SIGNAL_HANDLER
-	if(!istype(living_user) || !living_user.canUseTopic(parent_mob, TRUE))
+	if(!istype(living_user) || !living_user.can_perform_action(parent_mob))
 		return
 	following = !following
 	if(following)

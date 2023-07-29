@@ -5,11 +5,12 @@
 		"wings" = ACC_RANDOM,
 		"moth_antennae" = ACC_RANDOM,
 	)
-	species_traits = list(
-		LIPS,
-		HAS_MARKINGS,
+	inherent_traits = list(
+		TRAIT_HAS_MARKINGS,
+		TRAIT_CAN_USE_FLIGHT_POTION,
+		TRAIT_TACKLING_WINGED_ATTACKER,
 		TRAIT_ANTENNAE,
-		MUTCOLORS,
+		TRAIT_MUTANT_COLORS,
 	)
 
 /datum/species/moth/randomize_features(mob/living/carbon/human/human_mob)
@@ -32,8 +33,8 @@
 
 /datum/species/moth/prepare_human_for_preview(mob/living/carbon/human/moth)
 	moth.dna.features["mcolor"] = "#E5CD99"
-	moth.dna.species.mutant_bodyparts["moth_antennae"] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
-	moth.dna.species.mutant_bodyparts["moth_markings"] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
-	moth.dna.species.mutant_bodyparts["wings"] = list(MUTANT_INDEX_NAME = "Moth (Plain)", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
-	moth.update_mutant_bodyparts(TRUE)
+	moth.dna.mutant_bodyparts["moth_antennae"] = list(MUTANT_INDEX_NAME = "Plain", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+	moth.dna.mutant_bodyparts["moth_markings"] = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+	moth.dna.mutant_bodyparts["wings"] = list(MUTANT_INDEX_NAME = "Moth (Plain)", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
+	regenerate_organs(moth, src, visual_only = TRUE)
 	moth.update_body(TRUE)

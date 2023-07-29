@@ -6,10 +6,9 @@
 // Defines for whether an accessory should have one or three colors to choose for
 #define USE_ONE_COLOR		31
 #define USE_MATRIXED_COLORS	32
-// Defines for some extra species traits
-#define REVIVES_BY_HEALING	33
-#define ROBOTIC_LIMBS		34
-#define ROBOTIC_DNA_ORGANS	35
+// Defines for some extra inherent traits
+#define TRAIT_REVIVES_BY_HEALING "trait_revives_by_healing"
+#define TRAIT_ROBOTIC_DNA_ORGANS "trait_robotic_dna_organs"
 //Also.. yes for some reason specie traits and accessory defines are together
 
 //Defines for processing reagents, for synths, IPC's and Vox
@@ -38,11 +37,26 @@
 #define MUTANT_INDEX_COLOR_LIST		"color"
 #define MUTANT_INDEX_EMISSIVE_LIST	"emissive"
 
+// Defines for markings indexes
+#define MARKING_INDEX_COLOR 1
+#define MARKING_INDEX_EMISSIVE 2
+
 //The color list that is passed to color matrixed things when a person is husked
 #define HUSK_COLOR_LIST list(list(0.64, 0.64, 0.64, 0), list(0.64, 0.64, 0.64, 0), list(0.64, 0.64, 0.64, 0), list(0, 0, 0, 1))
 
 /// Organ slot external
+#define ORGAN_SLOT_EXTERNAL_CAP "cap"
+#define ORGAN_SLOT_EXTERNAL_EARS "ears_external" // I hate having to do this, hopefully I'll be able to remove this soon with an external ears refactor.
+#define ORGAN_SLOT_EXTERNAL_FLUFF "fluff"
+#define ORGAN_SLOT_EXTERNAL_HEAD_ACCESSORY "head_accessory"
+#define ORGAN_SLOT_EXTERNAL_MOTH_MARKINGS "moth_markings"
+#define ORGAN_SLOT_EXTERNAL_NECK_ACCESSORY "neck_accessory"
+#define ORGAN_SLOT_EXTERNAL_SKRELL_HAIR "skrell_hair"
+#define ORGAN_SLOT_EXTERNAL_SYNTH_ANTENNA "synth_antenna"
+#define ORGAN_SLOT_EXTERNAL_SYNTH_SCREEN "synth_screen"
 #define ORGAN_SLOT_EXTERNAL_TAUR "taur"
+#define ORGAN_SLOT_EXTERNAL_XENODORSAL "xenodorsal"
+#define ORGAN_SLOT_EXTERNAL_XENOHEAD "xenohead"
 
 //Defines for an accessory to be randomed
 #define ACC_RANDOM		"random"
@@ -54,9 +68,15 @@
 #define BODY_SIZE_MIN 0.8
 
 //In inches
+#define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
 #define PENIS_MAX_GIRTH 15
+#define PENIS_DEFAULT_GIRTH 5 // a lil big but not by much
 #define PENIS_MIN_LENGTH 1
 #define PENIS_MAX_LENGTH 20
+#define PENIS_DEFAULT_LENGTH 6 //still a lil long but not insane
+
+#define TESTICLES_MIN_SIZE 0
+#define TESTICLES_MAX_SIZE 3
 
 #define SHEATH_NONE	"None"
 #define SHEATH_NORMAL "Sheath"
@@ -114,6 +134,7 @@
 #define SPECIES_GHOUL "ghoul"
 #define SPECIES_TESHARI "teshari"
 #define SPECIES_HEMOPHAGE "hemophage"
+#define SPECIES_FELINE_PRIMITIVE "primitive_felinid"
 
 #define SPECIES_MUTANT "mutant"
 #define SPECIES_MUTANT_INFECTIOUS "infectious_mutant"

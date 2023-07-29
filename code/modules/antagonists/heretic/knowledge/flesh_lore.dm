@@ -253,6 +253,7 @@
 	mob_to_summon = /mob/living/simple_animal/hostile/heretic_summon/raw_prophet
 	cost = 1
 	route = PATH_FLESH
+	poll_ignore_define = POLL_IGNORE_RAW_PROPHET
 
 /datum/heretic_knowledge/blade_upgrade/flesh
 	name = "Bleeding Steel"
@@ -292,11 +293,12 @@
 	mob_to_summon = /mob/living/simple_animal/hostile/heretic_summon/stalker
 	cost = 1
 	route = PATH_FLESH
+	poll_ignore_define = POLL_IGNORE_STALKER
 
 /datum/heretic_knowledge/ultimate/flesh_final
 	name = "Priest's Final Hymn"
 	desc = "The ascension ritual of the Path of Flesh. \
-		Bring 4 corpses to a transumation rune to complete the ritual. \
+		Bring 4 corpses to a transmutation rune to complete the ritual. \
 		When completed, you gain the ability to shed your human form \
 		and become the Lord of the Night, a supremely powerful creature. \
 		Just the act of transforming causes nearby heathens great fear and trauma. \

@@ -1,7 +1,7 @@
 /obj/machinery/power/emitter
 	name = "emitter"
 	desc = "A heavy-duty industrial laser, often used in containment fields and power generation."
-	icon = 'icons/obj/engine/singularity.dmi' //ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
+	icon = 'icons/obj/machines/engine/singularity.dmi' //SKYRAT EDIT CHANGE - ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "emitter"
 	base_icon_state = "emitter"
 
@@ -11,6 +11,7 @@
 	circuit = /obj/item/circuitboard/machine/emitter
 
 	use_power = NO_POWER_USE
+	can_change_cable_layer = TRUE
 
 	/// The icon state used by the emitter when it's on.
 	var/icon_state_on = "emitter_+a"
@@ -60,7 +61,7 @@
 /obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	RefreshParts()
-	wires = new /datum/wires/emitter(src)
+	set_wires(new /datum/wires/emitter(src))
 	if(welded)
 		if(!anchored)
 			set_anchored(TRUE)
@@ -76,6 +77,12 @@
 	welded = TRUE
 	. = ..()
 
+/obj/machinery/power/emitter/cable_layer_change_checks(mob/living/user, obj/item/tool)
+	if(welded)
+		balloon_alert(user, "unweld first!")
+		return FALSE
+	return TRUE
+
 /obj/machinery/power/emitter/set_anchored(anchorvalue)
 	. = ..()
 	if(!anchored && welded) //make sure they're keep in sync in case it was forcibly unanchored by badmins or by a megafauna.
@@ -87,15 +94,15 @@
 	var/fire_shoot_delay = 12 SECONDS
 	var/min_fire_delay = 2.4 SECONDS
 	var/power_usage = 350
-	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
-		max_fire_delay -= 2 SECONDS * laser.rating
-		min_fire_delay -= 0.4 SECONDS * laser.rating
-		fire_shoot_delay -= 2 SECONDS * laser.rating
+	for(var/datum/stock_part/micro_laser/laser in component_parts)
+		max_fire_delay -= 2 SECONDS * laser.tier
+		min_fire_delay -= 0.4 SECONDS * laser.tier
+		fire_shoot_delay -= 2 SECONDS * laser.tier
 	maximum_fire_delay = max_fire_delay
 	minimum_fire_delay = min_fire_delay
 	fire_delay = fire_shoot_delay
-	for(var/obj/item/stock_parts/manipulator/manipulator in component_parts)
-		power_usage -= 50 * manipulator.rating
+	for(var/datum/stock_part/servo/servo in component_parts)
+		power_usage -= 50 * servo.tier
 	update_mode_power_usage(ACTIVE_POWER_USE, power_usage)
 
 /obj/machinery/power/emitter/examine(mob/user)
@@ -175,7 +182,7 @@
 	togglelock(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/machinery/power/emitter/process(delta_time)
+/obj/machinery/power/emitter/process(seconds_per_tick)
 	if(machine_stat & (BROKEN))
 		return
 	if(!welded || (!powernet && active_power_usage))
@@ -198,7 +205,7 @@
 		update_appearance()
 		investigate_log("regained power and turned ON at [AREACOORD(src)]", INVESTIGATE_ENGINE)
 	if(charge <= 80)
-		charge += 2.5 * delta_time
+		charge += 2.5 * seconds_per_tick
 	if(!check_delay() || manual == TRUE)
 		return FALSE
 	fire_beam()
@@ -265,7 +272,7 @@
 		return TRUE
 
 	if(welded)
-		if(!item.tool_start_check(user, amount=0))
+		if(!item.tool_start_check(user, amount=1))
 			return TRUE
 		user.visible_message(span_notice("[user.name] starts to cut the [name] free from the floor."), \
 			span_notice("You start to cut [src] free from the floor..."), \
@@ -281,7 +288,7 @@
 	if(!anchored)
 		to_chat(user, span_warning("[src] needs to be wrenched to the floor!"))
 		return TRUE
-	if(!item.tool_start_check(user, amount=0))
+	if(!item.tool_start_check(user, amount=1))
 		return TRUE
 	user.visible_message(span_notice("[user.name] starts to weld the [name] to the floor."), \
 		span_notice("You start to weld [src] to the floor..."), \
@@ -370,13 +377,13 @@
 	projectile_type = initial(projectile_type)
 	projectile_sound = initial(projectile_sound)
 
-/obj/machinery/power/emitter/emag_act(mob/user)
+/obj/machinery/power/emitter/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	locked = FALSE
 	obj_flags |= EMAGGED
-	if(user)
-		user.visible_message(span_warning("[user.name] emags [src]."), span_notice("You short out the lock."))
+	balloon_alert(user, "id lock shorted out")
+	return TRUE
 
 
 /obj/machinery/power/emitter/prototype
@@ -427,7 +434,7 @@
 	auto.Grant(buckled_mob, src)
 
 /datum/action/innate/proto_emitter
-	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	///Stores the emitter the user is currently buckled on
 	var/obj/machinery/power/emitter/prototype/proto_emitter
 	///Stores the mob instance that is buckled to the emitter
@@ -480,6 +487,7 @@
 
 /obj/item/turret_control
 	name = "turret controls"
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT | NOBLUDGEON

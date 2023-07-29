@@ -16,7 +16,6 @@
 
 /** Mob related */
 #define ALERT_SUCCUMB "succumb"
-#define ALERT_BLIND "blind"
 #define ALERT_BUCKLED "buckled"
 #define ALERT_HANDCUFFED "handcuffed"
 #define ALERT_LEGCUFFED "legcuffed"
@@ -24,6 +23,7 @@
 #define ALERT_IRRADIATED "irradiated"
 #define ALERT_EMBEDDED_OBJECT "embeddedobject"
 #define ALERT_SHOES_KNOT "shoealert"
+#define ALERT_RADIOACTIVE_AREA "radioactive_area"
 
 //antag related
 #define ALERT_HYPNOSIS "hypnosis"

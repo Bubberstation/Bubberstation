@@ -28,7 +28,7 @@
 		src.after_tame = after_tame
 	src.unique = unique
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(try_tame))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(try_tame))
 	RegisterSignal(parent, COMSIG_SIMPLEMOB_SENTIENCEPOTION, PROC_REF(on_tame)) //Instantly succeeds
 	RegisterSignal(parent, COMSIG_SIMPLEMOB_TRANSFERPOTION, PROC_REF(on_tame)) //Instantly succeeds
 
@@ -46,7 +46,7 @@
 	atom_parent.balloon_alert(attacker, "fed")
 	if(unique || !already_friends(attacker))
 		if(prob(current_tame_chance)) //note: lack of feedback message is deliberate, keep them guessing!
-			on_tame(attacker, food)
+			on_tame(source, attacker, food)
 		else
 			current_tame_chance += bonus_tame_chance
 
@@ -61,7 +61,7 @@
 	return living_parent.faction.Find(REF(potential_friend))
 
 ///Ran once taming succeeds
-/datum/component/tameable/proc/on_tame(mob/living/tamer, atom/food)
+/datum/component/tameable/proc/on_tame(datum/source, mob/living/tamer, atom/food)
 	SIGNAL_HANDLER
 	after_tame?.Invoke(tamer, food)//Run custom behavior if needed
 

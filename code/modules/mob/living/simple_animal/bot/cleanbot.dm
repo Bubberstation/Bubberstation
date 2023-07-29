@@ -19,6 +19,7 @@
 	hackables = "cleaning software"
 	path_image_color = "#993299"
 	greyscale_config = /datum/greyscale_config/buckets_cleanbot
+	possessed_message = "You are a cleanbot! Clean the station to the best of your ability!"
 	///the bucket used to build us.
 	var/obj/item/reagent_containers/cup/bucket/build_bucket
 
@@ -91,7 +92,7 @@
 	)
 
 /mob/living/simple_animal/bot/cleanbot/autopatrol
-	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_PAI_CONTROLLABLE
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT
 
 /mob/living/simple_animal/bot/cleanbot/medbay
 	name = "Scrubs, MD"
@@ -205,7 +206,7 @@
 		return
 
 	var/mob/living/carbon/stabbed_carbon = AM
-	if(!(stabbed_carbon.mind.assigned_role.title in stolen_valor))
+	if(stabbed_carbon.mind && !(stabbed_carbon.mind.assigned_role.title in stolen_valor))
 		stolen_valor += stabbed_carbon.mind.assigned_role.title
 		update_titles()
 
@@ -229,9 +230,10 @@
 
 	if(weapon)
 		weapon.force = initial(weapon.force)
-	if(user)
-		to_chat(user, span_danger("[src] buzzes and beeps."))
+	balloon_alert(user, "safeties disabled")
+	audible_message(span_danger("[src] buzzes oddly!"))
 	get_targets() //recalibrate target list
+	return TRUE
 
 /mob/living/simple_animal/bot/cleanbot/process_scan(atom/scan_target)
 	if(iscarbon(scan_target))
@@ -425,7 +427,7 @@
 /mob/living/simple_animal/bot/cleanbot/ui_data(mob/user)
 	var/list/data = ..()
 
-	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user)|| isAdminGhostAI(user))
+	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
 		data["custom_controls"]["clean_blood"] = janitor_mode_flags & CLEANBOT_CLEAN_BLOOD
 		data["custom_controls"]["clean_trash"] = janitor_mode_flags & CLEANBOT_CLEAN_TRASH
 		data["custom_controls"]["clean_graffiti"] = janitor_mode_flags & CLEANBOT_CLEAN_DRAWINGS
@@ -448,3 +450,5 @@
 		if("clean_graffiti")
 			janitor_mode_flags ^= CLEANBOT_CLEAN_DRAWINGS
 	get_targets()
+
+#undef CLEANBOT_CLEANING_TIME

@@ -34,6 +34,7 @@
 		/obj/effect/particle_effect/sparks,
 		/obj/effect/pod_landingzone,
 		/obj/effect/client_image_holder,
+		/obj/effect/light_emitter/podbay,
 	))
 
 	var/turf/oldTurf //Keeps track of where the user was at if they use the "teleport to centcom" button, so they can go back
@@ -191,13 +192,13 @@
 		////////////////////////////UTILITIES//////////////////
 		if("gamePanel")
 			holder.holder.Game()
-			SSblackbox.record_feedback("tally", "admin_verb", 1, "Game Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			SSblackbox.record_feedback("tally", "admin_verb", 1, "Game Panel") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 			. = TRUE
 		if("buildMode")
 			var/mob/holder_mob = holder.mob
 			if (holder_mob && (holder.holder?.rank_flags() & R_BUILD))
 				togglebuildmode(holder_mob)
-				SSblackbox.record_feedback("tally", "admin_verb", 1, "Toggle Build Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+				SSblackbox.record_feedback("tally", "admin_verb", 1, "Toggle Build Mode") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 			. = TRUE
 		if("loadDataFromPreset")
 			var/list/savedData = params["payload"]
@@ -715,7 +716,7 @@
 				launchList |= typecache_filter_list_reverse(acceptable_turf.contents, ignored_atoms) //filter a random turf from the acceptableTurfs list and add it to the launchList
 				if (iswallturf(acceptable_turf))
 					launchList += acceptable_turf
-	updateSelector() //Call updateSelector(), which, if we are launching one at a time (launchChoice==2), will move to the next turf that will be launched
+	updateSelector() //Call updateSelector(), which, if we are launching one at a time (launchChoice == 2), will move to the next turf that will be launched
 	//UpdateSelector() is here (instead if the if(1) switch block) because it also moves the selector to nullspace (to hide it) if needed
 
 /datum/centcom_podlauncher/proc/launch(turf/target_turf) //Game time started
@@ -892,3 +893,9 @@ GLOBAL_DATUM_INIT(podlauncher, /datum/centcom_podlauncher, new)
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
 	alpha = 0
+
+#undef LAUNCH_ALL
+#undef LAUNCH_ORDERED
+#undef LAUNCH_RANDOM
+#undef TAB_BAY
+#undef TAB_POD

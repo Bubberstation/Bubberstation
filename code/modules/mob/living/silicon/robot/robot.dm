@@ -3,7 +3,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	ADD_TRAIT(src, TRAIT_CAN_STRIP, INNATE_TRAIT)
+	add_traits(list(TRAIT_CAN_STRIP, TRAIT_FORCED_STANDING), INNATE_TRAIT)
 	AddComponent(/datum/component/tippable, \
 		tip_time = 3 SECONDS, \
 		untip_time = 2 SECONDS, \
@@ -14,7 +14,7 @@
 		roleplay_emotes = list(/datum/emote/living/human/buzz, /datum/emote/living/human/buzz2, /datum/emote/living/human/beep, /datum/emote/living/human/beep2), \
 		roleplay_callback = CALLBACK(src, PROC_REF(untip_roleplay))) // SKYRAT EDIT CHANGE
 
-	wires = new /datum/wires/robot(src)
+	set_wires(new /datum/wires/robot(src))
 	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cyborg)
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
@@ -79,24 +79,23 @@
 	toner = tonermax
 	diag_hud_set_borgcell()
 	logevent("System brought online.")
+
+	log_silicon("New cyborg [key_name(src)] created with [connected_ai ? "master AI: [key_name(connected_ai)]" : "no master AI"]")
+	log_current_laws()
+
 	alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER, ALARM_CAMERA, ALARM_BURGLAR, ALARM_MOTION), list(z))
 	RegisterSignal(alert_control.listener, COMSIG_ALARM_LISTENER_TRIGGERED, PROC_REF(alarm_triggered))
 	RegisterSignal(alert_control.listener, COMSIG_ALARM_LISTENER_CLEARED, PROC_REF(alarm_cleared))
 	alert_control.listener.RegisterSignal(src, COMSIG_LIVING_DEATH, TYPE_PROC_REF(/datum/alarm_listener, prevent_alarm_changes))
 	alert_control.listener.RegisterSignal(src, COMSIG_LIVING_REVIVE, TYPE_PROC_REF(/datum/alarm_listener, allow_alarm_changes))
 
-/mob/living/silicon/robot/model/syndicate/Initialize(mapload)
+/mob/living/silicon/robot/set_suicide(suicide_state)
 	. = ..()
-	laws = new /datum/ai_laws/syndicate_override()
-	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 5)
-
-/mob/living/silicon/robot/model/syndicate/create_modularInterface()
-	if(!modularInterface)
-		modularInterface = new /obj/item/modular_computer/pda/silicon/cyborg/syndicate(src)
-		modularInterface.saved_identification = real_name
-		modularInterface.saved_job = "Cyborg"
-	return ..()
-
+	if(mmi)
+		if(mmi.brain)
+			mmi.brain.suicided = suicide_state
+		if(suicide_state && mmi.brainmob)
+			ADD_TRAIT(mmi.brainmob, TRAIT_SUICIDED, REF(src))
 
 /**
  * Sets the tablet theme and icon
@@ -106,10 +105,10 @@
  */
 /mob/living/silicon/robot/proc/set_modularInterface_theme()
 	if(istype(model, /obj/item/robot_model/syndicate) || emagged)
-		modularInterface.device_theme = "syndicate"
+		modularInterface.device_theme = PDA_THEME_SYNDICATE
 		modularInterface.icon_state = "tablet-silicon-syndicate"
 	else
-		modularInterface.device_theme = "ntos"
+		modularInterface.device_theme = PDA_THEME_NTOS
 		modularInterface.icon_state = "tablet-silicon"
 		modularInterface.icon_state_powered = "tablet-silicon"
 		modularInterface.icon_state_unpowered = "tablet-silicon"
@@ -117,30 +116,12 @@
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 /mob/living/silicon/robot/Destroy()
-	var/atom/T = drop_location()//To hopefully prevent run time errors.
-	if(mmi && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
-		if(T)
-			mmi.forceMove(T)
-		if(mmi.brainmob)
-			if(mmi.brainmob.stat == DEAD)
-				mmi.brainmob.set_stat(CONSCIOUS)
-			mind.transfer_to(mmi.brainmob)
-			mmi.update_appearance()
-		else
-			to_chat(src, span_boldannounce("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
-			ghostize()
-			stack_trace("Borg MMI lacked a brainmob")
-		mmi = null
-	if(modularInterface)
-		QDEL_NULL(modularInterface)
 	if(connected_ai)
 		set_connected_ai(null)
 	if(shell)
 		GLOB.available_ai_shells -= src
-	else
-		if(T && istype(radio) && istype(radio.keyslot))
-			radio.keyslot.forceMove(T)
-			radio.keyslot = null
+
+	QDEL_NULL(modularInterface)
 	QDEL_NULL(wires)
 	QDEL_NULL(model)
 	QDEL_NULL(eye_lights)
@@ -151,7 +132,8 @@
 	QDEL_NULL(spark_system)
 	QDEL_NULL(alert_control)
 	QDEL_LIST(upgrades)
-	cell = null
+	QDEL_NULL(cell)
+	QDEL_NULL(robot_suit)
 	return ..()
 
 /mob/living/silicon/robot/Topic(href, href_list)
@@ -159,12 +141,6 @@
 	//Show alerts window if user clicked on "Show alerts" in chat
 	if(href_list["showalerts"])
 		alert_control.ui_interact(src)
-	// SKYRAT EDIT ADDITION -- Customization
-	if(href_list["lookup_info"])
-		tgui.holder = src
-		tgui.ui_interact(usr) //datum has a tgui component, here we open the window
-	// SKYRAT EDIT END
-
 
 /mob/living/silicon/robot/get_cell()
 	return cell
@@ -305,8 +281,9 @@
 
 
 /mob/living/silicon/robot/proc/after_tip_over(mob/user)
-	if(hat)
+	if(hat && !HAS_TRAIT(hat, TRAIT_NODROP))
 		hat.forceMove(drop_location())
+
 	unbuckle_all_mobs()
 
 ///For any special cases for robots after being righted.
@@ -492,7 +469,7 @@
 	if(!lamp_functional)
 		return
 	lamp_functional = FALSE
-	playsound(src, 'sound/effects/glass_step.ogg', 50)
+	playsound(src, 'sound/effects/footstep/glass_step.ogg', 50)
 	toggle_headlamp(TRUE)
 	to_chat(src, span_danger("Your headlamp is broken! You'll need a human to help replace it."))
 
@@ -526,51 +503,61 @@
 	lampButton?.update_appearance()
 	update_icons()
 
-/mob/living/silicon/robot/proc/deconstruct()
+/mob/living/silicon/robot/proc/cyborg_deconstruct()
 	SEND_SIGNAL(src, COMSIG_BORG_SAFE_DECONSTRUCT)
 	if(shell)
 		undeploy()
-	var/turf/T = get_turf(src)
+	var/turf/drop_to = drop_location()
 	if (robot_suit)
-		robot_suit.forceMove(T)
-		robot_suit.l_leg.forceMove(T)
-		robot_suit.l_leg = null
-		robot_suit.r_leg.forceMove(T)
-		robot_suit.r_leg = null
-		new /obj/item/stack/cable_coil(T, robot_suit.chest.wired)
-		robot_suit.chest.forceMove(T)
-		robot_suit.chest.wired = FALSE
-		robot_suit.chest = null
-		robot_suit.l_arm.forceMove(T)
-		robot_suit.l_arm = null
-		robot_suit.r_arm.forceMove(T)
-		robot_suit.r_arm = null
-		robot_suit.head.forceMove(T)
-		robot_suit.head.flash1.forceMove(T)
-		robot_suit.head.flash1.burn_out()
-		robot_suit.head.flash1 = null
-		robot_suit.head.flash2.forceMove(T)
-		robot_suit.head.flash2.burn_out()
-		robot_suit.head.flash2 = null
-		robot_suit.head = null
-		robot_suit.update_appearance()
+		robot_suit.drop_all_parts(drop_to)
+
 	else
-		new /obj/item/robot_suit(T)
-		new /obj/item/bodypart/leg/left/robot(T)
-		new /obj/item/bodypart/leg/right/robot(T)
-		new /obj/item/stack/cable_coil(T, 1)
-		new /obj/item/bodypart/chest/robot(T)
-		new /obj/item/bodypart/arm/left/robot(T)
-		new /obj/item/bodypart/arm/right/robot(T)
-		new /obj/item/bodypart/head/robot(T)
-		var/b
-		for(b=0, b!=2, b++)
-			var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
-			F.burn_out()
-	if (cell) //Sanity check.
-		cell.forceMove(T)
-		cell = null
+		new /obj/item/robot_suit(drop_to)
+		new /obj/item/bodypart/leg/left/robot(drop_to)
+		new /obj/item/bodypart/leg/right/robot(drop_to)
+		new /obj/item/stack/cable_coil(drop_to, 1)
+		new /obj/item/bodypart/chest/robot(drop_to)
+		new /obj/item/bodypart/arm/left/robot(drop_to)
+		new /obj/item/bodypart/arm/right/robot(drop_to)
+		new /obj/item/bodypart/head/robot(drop_to)
+		for(var/i in 1 to 2)
+			var/obj/item/assembly/flash/handheld/borgeye = new(drop_to)
+			borgeye.burn_out()
+
+	cell?.forceMove(drop_to) // Cell can be null, if removed beforehand
+	radio?.keyslot?.forceMove(drop_to)
+	radio?.keyslot = null
+
+	dump_into_mmi(drop_to)
+
 	qdel(src)
+
+
+/// Dumps the current occupant of the cyborg into an MMI at the passed location
+/// Returns the borg's MMI on success
+/mob/living/silicon/robot/proc/dump_into_mmi(atom/at_location = drop_location())
+	if(isnull(mmi))
+		return
+
+	var/obj/item/mmi/removing = mmi
+	mmi.forceMove(at_location) // Nulls it out via exited
+
+	if(isnull(mind)) // no one to transfer, just leave the MMI.
+		return mmi
+
+	if(removing.brainmob)
+		if(removing.brainmob.stat == DEAD)
+			removing.brainmob.set_stat(CONSCIOUS)
+		mind.transfer_to(removing.brainmob)
+		removing.update_appearance()
+
+	else
+		to_chat(src, span_boldannounce("Oops! Something went very wrong, your MMI was unable to receive your mind. \
+			You have been ghosted. Please make a bug report so we can fix this bug."))
+		ghostize()
+		stack_trace("Borg MMI lacked a brainmob")
+
+	return mmi
 
 /mob/living/silicon/robot/proc/notify_ai(notifytype, oldname, newname)
 	if(!connected_ai)
@@ -587,7 +574,7 @@
 		if(AI_NOTIFICATION_CYBORG_DISCONNECTED) //Tampering with the wires
 			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Remote telemetry lost with [name].")]<br>")
 
-/mob/living/silicon/robot/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
+/mob/living/silicon/robot/can_perform_action(atom/movable/target, action_bitflags)
 	if(lockcharge || low_power_mode)
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
@@ -632,14 +619,13 @@
 			set_sight(initial(sight))
 		else
 			set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		set_see_in_dark(8)
 		set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
 	set_invis_see(initial(see_invisible))
-	set_see_in_dark(initial(see_in_dark))
 	var/new_sight = initial(sight)
-	lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -648,24 +634,20 @@
 
 	if(sight_mode & BORGMESON)
 		new_sight |= SEE_TURFS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		set_see_in_dark(1)
+		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(5, 15, 5))
 
 	if(sight_mode & BORGMATERIAL)
 		new_sight |= SEE_OBJS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		set_see_in_dark(1)
+		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(20, 25, 40))
 
 	if(sight_mode & BORGXRAY)
 		new_sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 		set_invis_see(SEE_INVISIBLE_LIVING)
-		set_see_in_dark(8)
 
 	if(sight_mode & BORGTHERM)
 		new_sight |= SEE_MOBS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, list(25, 8, 5))
 		set_invis_see(min(see_invisible, SEE_INVISIBLE_LIVING))
-		set_see_in_dark(8)
 
 	if(see_override)
 		set_invis_see(see_override)
@@ -731,17 +713,17 @@
 		hud_used.update_robot_modules_display()
 
 	if (hasExpanded)
-		//resize = 0.5 //ORIGINAL
-		resize = 0.8 //SKYRAT EDIT CHANGE - CYBORG
 		hasExpanded = FALSE
-		update_transform()
+		//update_transform(0.5) // Original
+		update_transform(0.8) // SKYRAT EDIT CHANGE
+
 	//SKYRAT EDIT ADDITION BEGIN - CYBORG
 	if (hasShrunk)
 		hasShrunk = FALSE
-		resize = (4/3)
-		update_transform()
+		update_transform(4/3)
 	hasAffection = FALSE //Just so they can get the affection modules back if they want them.
 	//SKYRAT EDIT ADDITION END
+
 	logevent("Chassis model has been reset.")
 	log_silicon("CYBORG: [key_name(src)] has reset their cyborg model.")
 	model.transform_to(/obj/item/robot_model)
@@ -755,9 +737,6 @@
 
 	return TRUE
 
-/mob/living/silicon/robot/model/syndicate/ResetModel()
-	return
-
 /mob/living/silicon/robot/proc/has_model()
 	if(!model || model.type == /obj/item/robot_model)
 		. = FALSE
@@ -770,9 +749,8 @@
 		hands.icon_state = model.model_select_icon
 
 	REMOVE_TRAITS_IN(src, MODEL_TRAIT)
-	if(model.model_traits)
-		for(var/trait in model.model_traits)
-			ADD_TRAIT(src, trait, MODEL_TRAIT)
+	if(length(model.model_traits))
+		add_traits(model.model_traits, MODEL_TRAIT)
 
 	hat_offset = model.hat_offset
 
@@ -791,11 +769,17 @@
 	*Drones and pAIs might do this, after all.
 */
 /mob/living/silicon/robot/Exited(atom/movable/gone, direction)
-	if(hat && hat == gone)
+	. = ..()
+	if(hat == gone)
 		hat = null
 		if(!QDELETED(src)) //Don't update icons if we are deleted.
 			update_icons()
-	return ..()
+
+	if(gone == cell)
+		cell = null
+
+	if(gone == mmi)
+		mmi = null
 
 ///Use this to add upgrades to robots. It'll register signals for when the upgrade is moved or deleted, if not single use.
 /mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade, mob/user)
@@ -816,7 +800,7 @@
 	upgrades += new_upgrade
 	new_upgrade.forceMove(src)
 	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, PROC_REF(remove_from_upgrades))
-	RegisterSignal(new_upgrade, COMSIG_PARENT_QDELETING, PROC_REF(on_upgrade_deleted))
+	RegisterSignal(new_upgrade, COMSIG_QDELETING, PROC_REF(on_upgrade_deleted))
 	logevent("Hardware [new_upgrade] installed successfully.")
 
 ///Called when an upgrade is moved outside the robot. So don't call this directly, use forceMove etc.
@@ -826,7 +810,7 @@
 		return
 	old_upgrade.deactivate(src)
 	upgrades -= old_upgrade
-	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 ///Called when an applied upgrade is deleted.
 /mob/living/silicon/robot/proc/on_upgrade_deleted(obj/item/borg/upgrade/old_upgrade)
@@ -834,7 +818,7 @@
 	if(!QDELETED(src))
 		old_upgrade.deactivate(src)
 	upgrades -= old_upgrade
-	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 /**
  * make_shell: Makes an AI shell out of a cyborg unit
@@ -984,10 +968,12 @@
 		for(var/i in connected_ai.aicamera.stored)
 			aicamera.stored[i] = TRUE
 
-/mob/living/silicon/robot/proc/charge(datum/source, amount, repairs)
+/mob/living/silicon/robot/proc/charge(datum/source, amount, repairs, sendmats)
 	SIGNAL_HANDLER
 	if(model)
 		model.respawn_consumable(src, amount * 0.005)
+		if(sendmats)
+			model.restock_consumable()
 	if(cell)
 		cell.charge = min(cell.charge + amount, cell.maxcharge)
 	if(repairs)

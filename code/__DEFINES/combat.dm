@@ -45,6 +45,7 @@
 
 /// Armor values that are used for damage
 #define ARMOR_LIST_DAMAGE(...) list(BIO, BOMB, BULLET, ENERGY, LASER, MELEE, WOUND)
+
 /// Armor values that are used for durability
 #define ARMOR_LIST_DURABILITY(...) list(ACID, FIRE)
 
@@ -66,11 +67,26 @@
 #define EFFECT_PARALYZE "paralyze"
 #define EFFECT_IMMOBILIZE "immobilize"
 //Bitflags defining which status effects could be or are inflicted on a mob
+/// If set, this mob can be stunned.
 #define CANSTUN (1<<0)
+/// If set, this mob can be knocked down (or stamcrit)
 #define CANKNOCKDOWN (1<<1)
+/// If set, this mob can be knocked unconscious via status effect.
+/// NOTE, does not mean immune to sleep. Unconscious and sleep are two different things.
+/// NOTE, does not relate to the unconscious stat either. Only the status effect.
 #define CANUNCONSCIOUS (1<<2)
+/// If set, this mob can be grabbed or pushed when bumped into
 #define CANPUSH (1<<3)
+/// Mob godmode. Prevents most statuses and damage from being taken, but is more often than not a crapshoot. Use with caution.
 #define GODMODE (1<<4)
+
+DEFINE_BITFIELD(status_flags, list(
+	"CAN STUN" = CANSTUN,
+	"CAN KNOCKDOWN" = CANKNOCKDOWN,
+	"CAN UNCONSCIOUS" = CANUNCONSCIOUS,
+	"CAN PUSH" = CANPUSH,
+	"GOD MODE" = GODMODE,
+))
 
 //Health Defines
 #define HEALTH_THRESHOLD_CRIT 0
@@ -86,6 +102,7 @@
 #define CLICK_CD_THROW 8
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_RAPID 2
+#define CLICK_CD_HYPER_RAPID 1
 #define CLICK_CD_CLICK_ABILITY 6
 #define CLICK_CD_BREAKOUT 100
 #define CLICK_CD_HANDCUFFED 10
@@ -195,7 +212,7 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 ///  Example: c20, shotguns, m90
 #define BOLT_TYPE_STANDARD 1
 ///Gun has a bolt, it is open when ready to fire. The gun can never have a chambered bullet with no magazine, but the bolt stays ready when a mag is removed.
-///  Example: Some SMGs, the L6
+///  Example: Tomson, Uzi, the L6 SAW
 #define BOLT_TYPE_OPEN 2
 ///Gun has no moving bolt mechanism, it cannot be racked. Also dumps the entire contents when emptied instead of a magazine.
 ///  Example: Break action shotguns, revolvers
@@ -214,12 +231,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define AMMO_BOX_ONE_SPRITE 0
 ///ammo box will have a different state for each bullet; <icon_state>-<bullets left>
 #define AMMO_BOX_PER_BULLET 1
-///ammo box will have a different state for full and empty; <icon_state>-max_ammo and <icon_state>-0
+/// Ammo box will have a different sprite for any ammo at all, and no ammo, <icon_state>-full <icon_state>-empty
 #define AMMO_BOX_FULL_EMPTY 2
-//SKYRAT EDIT ADDITON BEGIN - SEC_HAUL
-///ammo box will have a different state for full and empty; <icon_state>-full and <icon_state>-0
-#define AMMO_BOX_FULL_EMPTY_BASIC 3
-//SKYRAT EDIT END
 
 #define SUPPRESSED_NONE 0
 #define SUPPRESSED_QUIET 1 ///standard suppressed
@@ -322,6 +335,8 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define ARMOR_WEAKENED_MULTIPLIER 2
 /// Armor can't block more than this as a percentage
 #define ARMOR_MAX_BLOCK 90
+/// Calculates the new armour value after armour penetration. Can return negative values, and those must be caught.
+#define PENETRATE_ARMOUR(armour, penetration) (penetration == 100 ? 0 : 100 * (armour - penetration) / (100 - penetration))
 
 /// Return values used in item/melee/baton/baton_attack.
 /// Does a normal item attack.
@@ -330,3 +345,13 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BATON_ATTACK_DONE 2
 /// The baton attack is still going. baton_effect() is called.
 #define BATON_ATTACKING 3
+
+// Defines for combo attack component
+/// LMB Attack
+#define LEFT_ATTACK "Left Attack"
+/// RMB Attack
+#define RIGHT_ATTACK "Right Attack"
+/// Steps for the combo
+#define COMBO_STEPS "steps"
+/// The proc the combo calls
+#define COMBO_PROC "proc"

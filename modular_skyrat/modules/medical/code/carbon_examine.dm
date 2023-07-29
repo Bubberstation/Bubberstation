@@ -1,14 +1,14 @@
 /mob/living/carbon/examine_more(mob/user)
 	. = ..()
 	var/msg = list(span_notice("<i>You examine [src] closer, and note the following...</i>"))
-	var/t_His = p_their(TRUE)
-	var/t_He = p_they(TRUE)
+	var/t_His = p_Their()
+	var/t_He = p_They()
 	var/t_Has = p_have()
 
 	var/any_bodypart_damage = FALSE
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/LB = X
-		if(LB.is_pseudopart)
+		if(LB.bodypart_flags & BODYPART_PSEUDOPART)
 			continue
 		var/limb_max_damage = LB.max_damage
 		var/status = ""
@@ -82,7 +82,7 @@
 			if(part.body_zone in covered_zones)
 				continue
 			if(part.limb_id != (dna.species.examine_limb_id ? dna.species.examine_limb_id : dna.species.id))
-				. += "[span_info("[p_they(TRUE)] [p_have()] \an [part.name].")]"
+				. += "[span_info("[p_They()] [p_have()] \an [part.name].")]"
 
 
 	return msg

@@ -83,6 +83,7 @@
 	restore_position(rider)
 	unequip_buckle_inhands(rider)
 	rider.updating_glide_size = TRUE
+	UnregisterSignal(rider, COMSIG_LIVING_TRY_PULL)
 	if(!movable_parent.has_buckled_mobs())
 		qdel(src)
 
@@ -93,6 +94,18 @@
 	var/atom/movable/movable_parent = parent
 	handle_vehicle_layer(movable_parent.dir)
 	handle_vehicle_offsets(movable_parent.dir)
+
+	if(rider.pulling == source)
+		rider.stop_pulling()
+	RegisterSignal(rider, COMSIG_LIVING_TRY_PULL, PROC_REF(on_rider_try_pull))
+
+/// This proc is called when the rider attempts to grab the thing they're riding, preventing them from doing so.
+/datum/component/riding/proc/on_rider_try_pull(mob/living/rider_pulling, atom/movable/target, force)
+	SIGNAL_HANDLER
+	if(target == parent)
+		var/mob/living/ridden = parent
+		ridden.balloon_alert(rider_pulling, "not while riding it!")
+		return COMSIG_LIVING_CANCEL_PULL
 
 /// Some ridable atoms may want to only show on top of the rider in certain directions, like wheelchairs
 /datum/component/riding/proc/handle_vehicle_layer(dir)
@@ -186,6 +199,11 @@
 	if(!islist(offsets))
 		return FALSE
 	riding_offsets["[index]"] = offsets
+
+/datum/component/riding/proc/set_vehicle_offsets(list/offsets)
+	if(!islist(offsets))
+		return FALSE
+	directional_vehicle_offsets = offsets
 
 /**
  * This proc is used to see if we have the appropriate key to drive this atom, if such a key is needed. Returns FALSE if we don't have what we need to drive.

@@ -10,7 +10,7 @@
 	desc = "A revolving rifle chambered in .38. "
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/guns/projectile40x32.dmi'
 	icon_state = "revolving-rifle"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38 //This is just a detective's revolver but it's too big for bags..
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38 //This is just a detective's revolver but it's too big for bags..
 	pixel_x = -4 // It's centred on a 40x32 pixel spritesheet.
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY // The entire purpose of this is that it's a bulky rifle instead of a revolver.
@@ -19,24 +19,16 @@
 	inhand_y_dimension = 64
 	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/64x_guns_left.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/64x_guns_right.dmi'
-	pixel_x = -8
 	inhand_icon_state = "revolving"
-	company_flag = COMPANY_IZHEVSK
 
-/obj/item/gun/ballistic/revolver/rifle/improvised
-	name = "\improper improvised .38 revolving rifle"
-	desc = "A crudely made revolving rifle. It fires .38 rounds. The cylinder doesn't rotate very well."
-	icon_state = "revolving-rifle"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38	//TAs far as improvised weapons go, this is fairly decent, this isn't half bad.
-	fire_delay = 15
-	recoil = 1
-	company_flag = null
+/obj/item/gun/ballistic/revolver/rifle/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
 
 /obj/item/gun/ballistic/revolver/rifle/gold
 	name = "\improper .45 revolving rifle"
 	desc = "A gold trimmed revolving rifle! It fires .45 bullets."
 	icon_state = "revolving-rifle-gold"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev45	//Gold! We're using .45 because TG's 10mm does 40 damage, this does 30.
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev45	//Gold! We're using .45 because TG's 10mm does 40 damage, this does 30.
 	w_class = WEIGHT_CLASS_BULKY
 	inhand_icon_state = "revolving_gold"
 

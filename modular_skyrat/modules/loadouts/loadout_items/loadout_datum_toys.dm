@@ -8,6 +8,9 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 *	PLUSHIES
 */
 
+/datum/loadout_item/toys/pre_equip_item(datum/outfit/outfit, datum/outfit/outfit_important_for_life, mob/living/carbon/human/equipper, visuals_only = FALSE)  // these go in the backpack
+	return FALSE
+
 /datum/loadout_item/toys/bee
 	name = "Bee Plushie"
 	item_path = /obj/item/toy/plush/beeplushie
@@ -15,6 +18,10 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 /datum/loadout_item/toys/carp
 	name = "Carp Plushie"
 	item_path = /obj/item/toy/plush/carpplushie
+
+/datum/loadout_item/toys/shark
+	name = "Shark Plushie"
+	item_path = /obj/item/toy/plush/shark
 
 /datum/loadout_item/toys/lizard_greyscale
 	name = "Greyscale Lizard Plushie"
@@ -245,6 +252,22 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 /datum/loadout_item/toys/tracy
 	name = "Creature Plushie"
 	item_path = /obj/item/toy/plush/skyrat/tracy
+
+/datum/loadout_item/toys/dog_plushie
+	name = "Black Dog Plushie"
+	item_path = /obj/item/toy/plush/skyrat/dog
+
+/datum/loadout_item/toys/adventurous_synth
+	name = "Adventurous Synth Plushie"
+	item_path = /obj/item/toy/plush/skyrat/plushie_synthia
+
+/datum/loadout_item/toys/jecca
+	name = "Sexy Snoodle Plushie"
+	item_path = /obj/item/toy/plush/skyrat/jecca
+
+/datum/loadout_item/toys/courier_synth
+	name = "Courier Synth Plushie"
+	item_path = /obj/item/toy/plush/skyrat/courier_synth
 
 /*
 *	CARDS

@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
-#define SPACE_KEY "space"
 // We support two different map formats
 // It is kinda possible to process them together, but if we split them up
 // I can make optimization decisions more easily
@@ -107,6 +106,9 @@
 	var/static/regex/var_edits_tgm = new(@'^\t([A-z]*) = (.*?);?$')
 	/// Pulls out model paths for DMM
 	var/static/regex/model_path = new(@'(\/[^\{]*?(?:\{.*?\})?)(?:,|$)', "g")
+
+	/// If we are currently loading this map
+	var/loading = FALSE
 
 	#ifdef TESTING
 	var/turfsSkipped = 0
@@ -250,9 +252,13 @@
 
 #define MAPLOADING_CHECK_TICK \
 	if(TICK_CHECK) { \
-		SSatoms.map_loader_stop(); \
-		stoplag(); \
-		SSatoms.map_loader_begin(); \
+		if(loading) { \
+			SSatoms.map_loader_stop(REF(src)); \
+			stoplag(); \
+			SSatoms.map_loader_begin(REF(src)); \
+		} else { \
+			stoplag(); \
+		} \
 	}
 
 // Do not call except via load() above.
@@ -260,7 +266,8 @@
 	PRIVATE_PROC(TRUE)
 	// Tell ss atoms that we're doing maploading
 	// We'll have to account for this in the following tick_checks so it doesn't overflow
-	SSatoms.map_loader_begin()
+	loading = TRUE
+	SSatoms.map_loader_begin(REF(src))
 
 	// Loading used to be done in this proc
 	// We make the assumption that if the inner procs runtime, we WANT to do cleanup on them, but we should stil tell our parents we failed
@@ -273,14 +280,18 @@
 			sucessful = _dmm_load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop, new_z)
 
 	// And we are done lads, call it off
-	SSatoms.map_loader_stop()
+	SSatoms.map_loader_stop(REF(src))
+	loading = FALSE
 
 	if(new_z)
 		for(var/z_index in bounds[MAP_MINZ] to bounds[MAP_MAXZ])
 			SSmapping.build_area_turfs(z_index)
 
 	if(!no_changeturf)
-		for(var/turf/T as anything in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
+		var/list/turfs = block(
+			locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
+			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
+		for(var/turf/T as anything in turfs)
 			//we do this after we load everything in. if we don't, we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
 
@@ -407,7 +418,7 @@
 
 			var/list/cache = modelCache[gset.gridLines[i]]
 			if(!cache)
-				SSatoms.map_loader_stop()
+				SSatoms.map_loader_stop(REF(src))
 				CRASH("Undefined model key in DMM: [gset.gridLines[i]]")
 			build_coordinate(cache, locate(true_xcrd, ycrd, zcrd), no_afterchange, placeOnTop, new_z)
 
@@ -540,7 +551,7 @@
 					continue
 				var/list/cache = modelCache[model_key]
 				if(!cache)
-					SSatoms.map_loader_stop()
+					SSatoms.map_loader_stop(REF(src))
 					CRASH("Undefined model key in DMM: [model_key]")
 				build_coordinate(cache, locate(xcrd, ycrd, zcrd), no_afterchange, placeOnTop, new_z)
 
@@ -797,11 +808,11 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
 	index = members.len
+	var/area/old_area
 	if(members[index] != /area/template_noop)
-		var/area/area_instance
 		if(members_attributes[index] != default_list)
 			world.preloader_setup(members_attributes[index], members[index])//preloader for assigning  set variables on atom creation
-		area_instance = loaded_areas[members[index]]
+		var/area/area_instance = loaded_areas[members[index]]
 		if(!area_instance)
 			var/area_type = members[index]
 			// If this parsed map doesn't have that area already, we check the global cache
@@ -814,7 +825,7 @@ GLOBAL_LIST_EMPTY(map_model_default)
 			loaded_areas[area_type] = area_instance
 
 		if(!new_z)
-			var/area/old_area = crds.loc
+			old_area = crds.loc
 			old_area.turfs_to_uncontain += crds
 			area_instance.contained_turfs.Add(crds)
 		area_instance.contents.Add(crds)
@@ -842,6 +853,10 @@ GLOBAL_LIST_EMPTY(map_model_default)
 
 		if(GLOB.use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
 			world.preloader_load(instance)
+	// If this isn't template work, we didn't change our turf and we changed area, then we've gotta handle area lighting transfer
+	else if(!no_changeturf && old_area)
+		// Don't do contain/uncontain stuff, this happens a few lines up when the area actally changes
+		crds.on_change_area(old_area, crds.loc)
 	MAPLOADING_CHECK_TICK
 
 	//finally instance all remainings objects/mobs
@@ -950,6 +965,7 @@ GLOBAL_LIST_EMPTY(map_model_default)
 
 /datum/parsed_map/Destroy()
 	..()
+	SSatoms.map_loader_stop(REF(src)) // Just in case, I don't want to double up here
 	if(turf_blacklist)
 		turf_blacklist.Cut()
 	parsed_bounds.Cut()
@@ -957,3 +973,9 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	grid_models.Cut()
 	gridSets.Cut()
 	return QDEL_HINT_HARDDEL_NOW
+
+#undef MAP_DMM
+#undef MAP_TGM
+#undef MAP_UNKNOWN
+#undef TRIM_TEXT
+#undef MAPLOADING_CHECK_TICK

@@ -1,7 +1,7 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
-	icon = 'icons/obj/power.dmi' //ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
+	icon = 'icons/obj/machines/wallmounts.dmi' //SKYRAT EDIT CHANGE - ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "light-nopower"
 	base_icon_state = "light"
 	desc = "Make dark."
@@ -13,23 +13,22 @@
 	///Range of the light emitted when powered, but off
 	var/light_on_range = 1
 
-/obj/machinery/light_switch/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/light_switch,
-	))
-
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 
 /obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
+
+	AddComponent(/datum/component/redirect_attack_hand_from_turf)
+
+	AddComponent(/datum/component/usb_port, list(
+		/obj/item/circuit_component/light_switch,
+	))
 	if(istext(area))
 		area = text2path(area)
 	if(ispath(area))
 		area = GLOB.areas_by_type[area]
 	if(!area)
 		area = get_area(src)
-
 	if(!name)
 		name = "light switch ([area.name])"
 
@@ -85,6 +84,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 		return
 	if(!(machine_stat & (BROKEN|NOPOWER)))
 		power_change()
+
+/obj/machinery/light_switch/deconstruct(disassembled = TRUE)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		new /obj/item/wallframe/light_switch(loc)
+	qdel(src)
+
+/obj/item/wallframe/light_switch
+	name = "light switch"
+	desc = "An unmounted light switch. Attach it to a wall to use."
+	icon = 'icons/obj/machines/wallmounts.dmi'
+	icon_state = "light-nopower"
+	result_path = /obj/machinery/light_switch
+	pixel_shift = 26
 
 /obj/item/circuit_component/light_switch
 	display_name = "Light Switch"

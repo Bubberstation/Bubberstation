@@ -127,7 +127,7 @@
  * See: [/obj/item/proc/melee_attack_chain]
  */
 /atom/proc/attackby(obj/item/attacking_item, mob/user, params)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
@@ -142,7 +142,7 @@
  * See: [/obj/item/proc/melee_attack_chain]
  */
 /atom/proc/attackby_secondary(obj/item/weapon, mob/user, params)
-	var/signal_result = SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY_SECONDARY, weapon, user, params)
+	var/signal_result = SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY_SECONDARY, weapon, user, params)
 
 	if(signal_result & COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -156,9 +156,12 @@
 	return ..() || ((obj_flags & CAN_BE_HIT) && attacking_item.attack_atom(src, user, params))
 
 /mob/living/attackby(obj/item/attacking_item, mob/living/user, params)
+	if(can_perform_surgery(user, params))
+		return TRUE
+
 	if(..())
 		return TRUE
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(attacking_item.attack_speed)
 	return attacking_item.attack(src, user, params)
 
 /mob/living/attackby_secondary(obj/item/weapon, mob/living/user, params)
@@ -166,7 +169,10 @@
 
 	// Normal attackby updates click cooldown, so we have to make up for it
 	if (result != SECONDARY_ATTACK_CALL_NORMAL)
-		user.changeNext_move(CLICK_CD_MELEE)
+		if(weapon.secondary_attack_speed)
+			user.changeNext_move(weapon.secondary_attack_speed)
+		else
+			user.changeNext_move(weapon.attack_speed)
 
 	return result
 
@@ -225,11 +231,11 @@
 
 /// The equivalent of the standard version of [/obj/item/proc/attack] but for non mob targets.
 /obj/item/proc/attack_atom(atom/attacked_atom, mob/living/user, params)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, attacked_atom, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_ATOM, attacked_atom, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(attack_speed)
 	user.do_attack_animation(attacked_atom)
 	attacked_atom.attacked_by(src, user)
 
@@ -257,7 +263,7 @@
 	var/damage = attacking_item.force
 	if(mob_biotypes & MOB_ROBOTIC)
 		damage *= attacking_item.demolition_mod
-	apply_damage(damage, attacking_item.damtype)
+	apply_damage(damage, attacking_item.damtype, attacking_item = attacking_item)
 	if(attacking_item.damtype == BRUTE && prob(33))
 		attacking_item.add_mob_blood(src)
 		var/turf/location = get_turf(src)

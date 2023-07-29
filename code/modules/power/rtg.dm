@@ -4,7 +4,7 @@
 /obj/machinery/power/rtg
 	name = "radioisotope thermoelectric generator"
 	desc = "A simple nuclear power generator, used in small outposts to reliably provide power for decades."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "rtg"
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -28,8 +28,8 @@
 /obj/machinery/power/rtg/RefreshParts()
 	. = ..()
 	var/part_level = 0
-	for(var/obj/item/stock_parts/SP in component_parts)
-		part_level += SP.rating
+	for(var/datum/stock_part/stock_part in component_parts)
+		part_level += stock_part.tier
 
 	power_gen = initial(power_gen) * part_level
 
@@ -55,7 +55,7 @@
 
 /obj/machinery/power/rtg/abductor
 	name = "Void Core"
-	icon = 'icons/obj/abductor.dmi'
+	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "core"
 	desc = "An alien power source that produces energy seemingly out of nowhere."
 	circuit = /obj/item/circuitboard/machine/abductor/core
@@ -76,7 +76,7 @@
 
 /obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/Proj)
 	. = ..()
-	if(!going_kaboom && istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)))
+	if(!going_kaboom && istype(Proj) && Proj.damage > 0 && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)))
 		log_bomber(Proj.firer, "triggered a", src, "explosion via projectile")
 		overload()
 
@@ -88,6 +88,8 @@
 		qdel(src)
 	else
 		overload()
+
+	return TRUE
 
 /obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
 	overload()

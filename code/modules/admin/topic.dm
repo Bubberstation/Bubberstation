@@ -83,31 +83,6 @@
 		else message_admins("[key_name_admin(usr)] FAILED to create '[href_list["makeAntag"]]' with a parameter of '[opt]'.")
 // SKYRAT EDIT END -- ONE CLICK ANTAG
 
-	else if(href_list["forceevent"])
-		if(!check_rights(R_FUN))
-			return
-		var/datum/round_event_control/E = locate(href_list["forceevent"]) in SSevents.control
-		if(E)
-			E.admin_setup(usr)
-			var/datum/round_event/event = E.runEvent()
-			if(event.cancel_event)
-				return
-			if(event.announce_when>0)
-				event.processing = FALSE
-				var/prompt = tgui_alert(usr, "Would you like to alert the crew?", "Alert", list("Yes", "No", "Cancel"))
-				switch(prompt)
-					if("Yes")
-						event.announce_chance = 100
-					if("Cancel")
-						event.kill()
-						return
-					if("No")
-						event.announce_chance = 0
-				event.processing = TRUE
-			message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
-			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
-		return
-
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
 
@@ -886,7 +861,7 @@
 					status = "<font color='red'><b>Dead</b></font>"
 			health_description = "Status: [status]"
 			health_description += "<br>Brute: [lifer.getBruteLoss()] - Burn: [lifer.getFireLoss()] - Toxin: [lifer.getToxLoss()] - Suffocation: [lifer.getOxyLoss()]"
-			health_description += "<br>Clone: [lifer.getCloneLoss()] - Brain: [lifer.getOrganLoss(ORGAN_SLOT_BRAIN)] - Stamina: [lifer.getStaminaLoss()]"
+			health_description += "<br>Clone: [lifer.getCloneLoss()] - Brain: [lifer.get_organ_loss(ORGAN_SLOT_BRAIN)] - Stamina: [lifer.getStaminaLoss()]"
 		else
 			health_description = "This mob type has no health to speak of."
 
@@ -933,14 +908,13 @@
 
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Add)
-				var/newtime = null
-				newtime = input(usr, "How many jebs do you want?", "Add wanted posters", "[newtime]") as num|null
-				if(!newtime)
-					to_chat(src.owner, "Setting to amount of positions filled for the job", confidential = TRUE)
-					job.total_positions = job.current_positions
-					log_job_debug("[key_name(usr)] set the job cap for [job.title] to [job.total_positions]")
+				var/newslots = null
+				newslots = input(usr, "How many job slots do you want?", "Add job slots", "[newslots]") as num|null
+				if(!isnull(newslots))
+					to_chat(src.owner, "Job slots for [job.title] set to [newslots]" , confidential = TRUE)
+					job.total_positions = newslots
+					log_job_debug("[key_name(usr)] set the job cap for [job.title] to [newslots]")
 					break
-				job.total_positions = newtime
 
 		src.manage_free_slots()
 
@@ -1128,8 +1102,7 @@
 		if(!ismob(M))
 			to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
 			return
-		var/datum/language_holder/H = M.get_language_holder()
-		H.open_language_menu(usr)
+		M.get_language_holder().open_language_menu(usr)
 
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN))
@@ -1188,6 +1161,15 @@
 			to_chat(usr, "This can only be used on instances on mindless mobs", confidential = TRUE)
 			return
 		M.mind_initialize()
+
+	else if(href_list["player_ticket_history"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/target_ckey = href_list["player_ticket_history"]
+		GLOB.player_ticket_history.cache_history_for_ckey(target_ckey)
+		GLOB.player_ticket_history.user_selections[usr.ckey] = target_ckey
+		GLOB.player_ticket_history.ui_interact(usr)
+		return
 
 	else if(href_list["create_object"])
 		if(!check_rights(R_SPAWN))
@@ -1367,7 +1349,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/code = random_nukecode()
-		for(var/obj/machinery/nuclearbomb/selfdestruct/SD in GLOB.nuke_list)
+		for(var/obj/machinery/nuclearbomb/selfdestruct/SD as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct))
 			SD.r_code = code
 		message_admins("[key_name_admin(usr)] has set the self-destruct \
 			code to \"[code]\".")
@@ -1541,20 +1523,22 @@
 	else if(href_list["slowquery"])
 		if(!check_rights(R_ADMIN))
 			return
+
+		var/data = list("key" = usr.key)
 		var/answer = href_list["slowquery"]
 		if(answer == "yes")
-			log_query_debug("[usr.key] | Reported a server hang")
 			if(tgui_alert(usr, "Did you just press any admin buttons?", "Query server hang report", list("Yes", "No")) == "Yes")
 				var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
 				if(response)
-					log_query_debug("[usr.key] | [response]")
+					data["response"] = response
+			logger.Log(LOG_CATEGORY_DEBUG_SQL, "server hang", data)
 		else if(answer == "no")
-			log_query_debug("[usr.key] | Reported no server hang")
+			logger.Log(LOG_CATEGORY_DEBUG_SQL, "no server hang", data)
 
 	else if(href_list["ctf_toggle"])
 		if(!check_rights(R_ADMIN))
 			return
-		toggle_id_ctf(usr, "centcom")
+		toggle_id_ctf(usr, CTF_GHOST_CTF_GAME_ID)
 
 	else if(href_list["rebootworld"])
 		if(!check_rights(R_ADMIN))
@@ -1815,3 +1799,24 @@
 		if(!paper_to_show)
 			return
 		paper_to_show.ui_interact(usr)
+	// SKYRAT ADDITION START
+	else if(href_list["pass_opfor_candidate"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/datum/game_mode/dynamic/dynamic = SSticker.mode
+		if(!dynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
+			message_admins("An OPFOR candidate could not be selected.")
+
+	// SKYRAT ADDITION END
+	else if(href_list["play_internet"])
+		if(!check_rights(R_SOUND))
+			return
+
+		var/credit = href_list["credit"]
+		var/link_url = href_list["play_internet"]
+		if(!link_url)
+			return
+
+		web_sound(usr, link_url, credit)
+

@@ -17,6 +17,7 @@
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/cup/beaker,
 		/obj/item/reagent_containers/cup/bottle,
+		/obj/item/reagent_containers/cup/tube,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
@@ -46,8 +47,8 @@
 	. = ..()
 	allowed += list(
 		/obj/item/melee/baton/telescopic,
-		/obj/item/gun/energy/cell_loaded/medigun, //SKYRAT EDIT MEDIGUNS
-		/obj/item/storage/medkit //SKYRAT EDIT - ADDITION
+		/obj/item/gun/energy/cell_loaded/medigun, //SKYRAT EDIT ADDITION - MEDIGUNS
+		/obj/item/storage/medkit, //SKYRAT EDIT ADDITION
 	)
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic
@@ -56,13 +57,13 @@
 	icon_state = "labcoat_paramedic"
 	inhand_icon_state = null
 
-//START SKYRAT EDIT - ADDITION
-/obj/item/clothing/suit/toggle/labcoat/paramedic/Initialize()
+//START SKYRAT EDIT ADDITION
+/obj/item/clothing/suit/toggle/labcoat/paramedic/Initialize(mapload)
 	. = ..()
 	allowed += list(
 		/obj/item/storage/medkit,
 	)
-//END SKYRAT EDIT- ADDITION
+//END SKYRAT EDIT
 
 /obj/item/clothing/suit/toggle/labcoat/mad
 	name = "\proper The Mad's labcoat"
@@ -93,6 +94,15 @@
 	. = ..()
 	allowed += /obj/item/storage/bag/bio
 
+/obj/item/clothing/suit/toggle/labcoat/coroner
+	name = "coroner labcoat"
+	desc = "A suit that protects against minor chemical spills. Has a black stripe on the shoulder."
+	icon_state = "labcoat_coroner"
+
+/obj/item/clothing/suit/toggle/labcoat/coroner/Initialize(mapload)
+	. = ..()
+	allowed += /obj/item/autopsy_scanner
+
 /obj/item/clothing/suit/toggle/labcoat/science
 	name = "scientist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
@@ -111,4 +121,3 @@
 	name = "interdyne labcoat"
 	desc = "More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads."
 	icon_state = "labcoat_robo"
-

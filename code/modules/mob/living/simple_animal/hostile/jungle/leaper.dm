@@ -42,13 +42,18 @@
 
 /obj/projectile/leaper/on_hit(atom/target, blocked = FALSE)
 	..()
+	if (!isliving(target))
+		return
+	var/mob/living/bubbled = target
 	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		C.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)
+		bubbled.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)
 		return
 	if(isanimal(target))
-		var/mob/living/simple_animal/L = target
-		L.adjustHealth(25)
+		var/mob/living/simple_animal/bubbled_animal = bubbled
+		bubbled_animal.adjustHealth(25)
+		return
+	if (isbasicmob(target))
+		bubbled.adjustBruteLoss(25)
 
 /obj/projectile/leaper/on_range()
 	var/turf/T = get_turf(src)
@@ -101,20 +106,22 @@
 	playsound(src,'sound/effects/snap.ogg',50, TRUE, -1)
 	return ..()
 
-/obj/structure/leaper_bubble/proc/on_entered(datum/source, atom/movable/AM)
+/obj/structure/leaper_bubble/proc/on_entered(datum/source, atom/movable/bubbled)
 	SIGNAL_HANDLER
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(!istype(L, /mob/living/simple_animal/hostile/jungle/leaper))
-			playsound(src,'sound/effects/snap.ogg',50, TRUE, -1)
-			L.Paralyze(50)
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
-				C.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)
-			if(isanimal(L))
-				var/mob/living/simple_animal/A = L
-				A.adjustHealth(25)
-			qdel(src)
+	if(!isliving(bubbled) || istype(bubbled, /mob/living/simple_animal/hostile/jungle/leaper))
+		return
+	var/mob/living/bubbled_mob = bubbled
+
+	playsound(src,'sound/effects/snap.ogg',50, TRUE, -1)
+	bubbled_mob.Paralyze(50)
+	if(iscarbon(bubbled_mob))
+		bubbled_mob.reagents.add_reagent(/datum/reagent/toxin/leaper_venom, 5)
+	else if(isanimal(bubbled_mob))
+		var/mob/living/simple_animal/bubbled_animal = bubbled_mob
+		bubbled_animal.adjustHealth(25)
+	else if(isbasicmob(bubbled_mob))
+		bubbled_mob.adjustBruteLoss(25)
+	qdel(src)
 
 /datum/reagent/toxin/leaper_venom
 	name = "Leaper venom"
@@ -124,9 +131,9 @@
 	taste_description = "french cuisine"
 	taste_mult = 1.3
 
-/datum/reagent/toxin/leaper_venom/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+/datum/reagent/toxin/leaper_venom/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
 	if(volume >= 10)
-		M.adjustToxLoss(5 * REAGENTS_EFFECT_MULTIPLIER * delta_time, 0)
+		M.adjustToxLoss(5 * REM * seconds_per_tick, 0)
 	..()
 
 /obj/effect/temp_visual/leaper_crush
@@ -179,7 +186,7 @@
 		if(!hopping)
 			Hop()
 
-/mob/living/simple_animal/hostile/jungle/leaper/Life(delta_time = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/jungle/leaper/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	update_icons()
 
@@ -208,7 +215,7 @@
 	if(z != target.z)
 		return
 	hopping = TRUE
-	set_density(FALSE)
+	ADD_TRAIT(src, TRAIT_UNDENSE, LEAPING_TRAIT)
 	pass_flags |= PASSMOB
 	notransform = TRUE
 	var/turf/new_turf = locate((target.x + rand(-3,3)),(target.y + rand(-3,3)),target.z)
@@ -221,7 +228,7 @@
 	throw_at(new_turf, max(3,get_dist(src,new_turf)), 1, src, FALSE, callback = CALLBACK(src, PROC_REF(FinishHop)))
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/FinishHop()
-	set_density(TRUE)
+	REMOVE_TRAIT(src, TRAIT_UNDENSE, LEAPING_TRAIT)
 	notransform = FALSE
 	pass_flags &= ~PASSMOB
 	hopping = FALSE
@@ -238,12 +245,12 @@
 	addtimer(CALLBACK(src, PROC_REF(BellyFlopHop), new_turf), 30)
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/BellyFlopHop(turf/T)
-	set_density(FALSE)
+	ADD_TRAIT(src, TRAIT_UNDENSE, LEAPING_TRAIT)
 	throw_at(T, get_dist(src,T),1,src, FALSE, callback = CALLBACK(src, PROC_REF(Crush)))
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/Crush()
 	hopping = FALSE
-	set_density(TRUE)
+	REMOVE_TRAIT(src, TRAIT_UNDENSE, LEAPING_TRAIT)
 	notransform = FALSE
 	playsound(src, 'sound/effects/meteorimpact.ogg', 200, TRUE)
 	for(var/mob/living/L in orange(1, src))

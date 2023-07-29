@@ -36,6 +36,7 @@
 
 /obj/item/reagent_containers/cup/soda_cans/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi'
+	icon_state = null
 
 /obj/item/reagent_containers/cup/soda_cans/skyrat/attack(mob/M, mob/living/user)
 	if(istype(M, /mob/living/carbon) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
@@ -52,7 +53,7 @@
 
 /obj/item/reagent_containers/cup/soda_cans/skyrat/bullet_act(obj/projectile/P)
 	. = ..()
-	if(!(P.nodamage) && P.damage_type == BRUTE && !QDELETED(src))
+	if(P.damage > 0 && P.damage_type == BRUTE && !QDELETED(src))
 		var/obj/item/trash/can/skyrat/crushed_can = new /obj/item/trash/can/skyrat(src.loc)
 		crushed_can.icon_state = icon_state
 		var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))

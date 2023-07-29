@@ -3,7 +3,7 @@
 	desc = "A repurposed toilet with re-arranged piping and an attached flamethrower. Why would anyone build this?"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toiletbong"
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 	var/emagged = FALSE
 	var/smokeradius = 1
@@ -101,7 +101,11 @@
 	if(!emagged)
 		emagged = TRUE
 		smokeradius = 2
-		to_chat(user, span_boldwarning("The [emag_card.name] falls into the toilet. You fish it back out. Looks like you broke the toilet."))
+		balloon_alert(user, "toilet broke")
+		if (emag_card)
+			to_chat(user, span_boldwarning("The [emag_card] falls into the toilet. You fish it back out. Looks like you broke the toilet."))
+		return TRUE
+	return FALSE
 
 /obj/structure/toiletbong/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/card/emag))

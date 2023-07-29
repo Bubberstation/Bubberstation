@@ -154,7 +154,7 @@
 
 	if(!team)
 		team = new()
-		var/obj/machinery/nuclearbomb/selfdestruct/nuke = locate() in GLOB.nuke_list
+		var/obj/machinery/nuclearbomb/selfdestruct/nuke = SSmachines.get_machines_by_type(/obj/machinery/nuclearbomb/selfdestruct)[1]
 		if(nuke.r_code == NUKE_CODE_UNSET)
 			nuke.r_code = random_nukecode()
 		team.nuke = nuke
@@ -165,7 +165,7 @@
 			spawner.antag_team = team
 			if(candidates.len > 0)
 				var/mob/our_candidate = candidates[1]
-				spawner.create(our_candidate)
+				spawner.create_from_ghost(our_candidate)
 				spawner.antag_team.players_spawned += (our_candidate.ckey)
 				candidates.Splice(1, 2)
 				notify_ghosts(

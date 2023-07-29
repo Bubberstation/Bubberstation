@@ -2,7 +2,7 @@
 	name = "\improper Automatic Robotic Factory 5000"
 	desc = "A large metallic machine with an entrance and an exit. A sign on \
 		the side reads, 'Mass robot production facility'"
-	icon = 'icons/obj/recycling.dmi'
+	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
 	density = TRUE
@@ -17,7 +17,7 @@
 	/// The countdown itself
 	var/obj/effect/countdown/transformer/countdown
 	/// The master AI , assigned when placed down with the ability.
-	var/mob/living/silicon/ai/masterAI
+	var/mob/living/silicon/ai/master_ai
 
 /obj/machinery/transformer_rp/Initialize(mapload)
 	// On us
@@ -65,7 +65,7 @@
 		return FALSE
 	var/mob/living/silicon/robot/cyborg = new /mob/living/silicon/robot(loc)
 	cyborg.key = target_ghost.key
-	cyborg.set_connected_ai(masterAI)
+	cyborg.set_connected_ai(master_ai)
 	cyborg.lawsync()
 	cyborg.lawupdate = TRUE
 	stored_cyborgs--

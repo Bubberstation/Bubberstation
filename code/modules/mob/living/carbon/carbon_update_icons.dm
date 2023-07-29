@@ -32,31 +32,40 @@
 	if(slot_flags & (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET))
 		update_pockets()
 
-//IMPORTANT: Multiple animate() calls do not stack well, so try to do them all at once if you can.
-/mob/living/carbon/perform_update_transform()
-	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
-	var/final_pixel_y = pixel_y
-	var/final_dir = dir
-	var/changed = 0
-	if(lying_angle != lying_prev && rotate_on_lying)
-		changed++
-		ntransform.TurnTo(lying_prev , lying_angle)
-		if(!lying_angle) //Lying to standing
-			final_pixel_y = base_pixel_y
-		else //if(lying != 0)
-			if(lying_prev == 0) //Standing to lying
-				pixel_y = base_pixel_y
-				final_pixel_y = base_pixel_y + PIXEL_Y_OFFSET_LYING
-				if(dir & (EAST|WEST)) //Facing east or west
-					final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
-	if(resize != RESIZE_DEFAULT_SIZE)
-		changed++
-		ntransform.Scale(resize)
-		resize = RESIZE_DEFAULT_SIZE
-
-	if(changed)
-		SEND_SIGNAL(src, COMSIG_PAUSE_FLOATING_ANIM, 0.3 SECONDS)
-		animate(src, transform = ntransform, time = (lying_prev == 0 || lying_angle == 0) ? 2 : 0, pixel_y = final_pixel_y, dir = final_dir, easing = (EASE_IN|EASE_OUT))
+/// Updates features and clothing attached to a specific limb with limb-specific offsets
+/mob/living/carbon/proc/update_features(feature_key)
+	switch(feature_key)
+		if(OFFSET_UNIFORM)
+			update_worn_undersuit()
+		if(OFFSET_ID)
+			update_worn_id()
+		if(OFFSET_GLOVES)
+			update_worn_gloves()
+		if(OFFSET_GLASSES)
+			update_worn_glasses()
+		if(OFFSET_EARS)
+			update_inv_ears()
+		if(OFFSET_SHOES)
+			update_worn_shoes()
+		if(OFFSET_S_STORE)
+			update_suit_storage()
+		if(OFFSET_FACEMASK)
+			update_worn_mask()
+		if(OFFSET_HEAD)
+			update_worn_head()
+		if(OFFSET_FACE)
+			dna?.species?.handle_body(src) // updates eye icon
+			update_worn_mask()
+		if(OFFSET_BELT)
+			update_worn_belt()
+		if(OFFSET_BACK)
+			update_worn_back()
+		if(OFFSET_SUIT)
+			update_worn_oversuit()
+		if(OFFSET_NECK)
+			update_worn_neck()
+		if(OFFSET_HELD)
+			update_held_items()
 
 /mob/living/carbon
 	var/list/overlays_standing[TOTAL_LAYERS]
@@ -424,7 +433,7 @@
 	remove_overlay(HANDCUFF_LAYER)
 	if(handcuffed && !(handcuffed.item_flags & ABSTRACT)) //SKYRAT EDIT ADDED !(handcuffed.item_flags & ABSTRACT)
 		var/mutable_appearance/handcuff_overlay = mutable_appearance('icons/mob/simple/mob.dmi', "handcuff1", -HANDCUFF_LAYER)
-		if(handcuffed.blocks_emissive)
+		if(handcuffed.blocks_emissive != EMISSIVE_BLOCK_NONE)
 			handcuff_overlay.overlays += emissive_blocker(handcuff_overlay.icon, handcuff_overlay.icon_state, src, alpha = handcuff_overlay.alpha)
 
 		overlays_standing[HANDCUFF_LAYER] = handcuff_overlay
@@ -457,8 +466,6 @@
 /mob/living/carbon/proc/update_hud_back(obj/item/I)
 	return
 
-
-
 //Overlays for the worn overlay so you can overlay while you overlay
 //eg: ammo counters, primed grenade flashing, etc.
 //"icon_file" is used automatically for inhands etc. to make sure it gets the right inhand file
@@ -470,10 +477,9 @@
 	RETURN_TYPE(/list)
 
 	. = list()
-	if(!blocks_emissive)
-		return
-
-	. += emissive_blocker(standing.icon, standing.icon_state, src, alpha = standing.alpha)
+	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
+		. += emissive_blocker(standing.icon, standing.icon_state, src, alpha = standing.alpha)
+	SEND_SIGNAL(src, COMSIG_ITEM_GET_WORN_OVERLAYS, ., standing, isinhands, icon_file)
 
 ///Checks to see if any bodyparts need to be redrawn, then does so. update_limb_data = TRUE redraws the limbs to conform to the owner.
 /mob/living/carbon/proc/update_body_parts(update_limb_data)
@@ -487,7 +493,7 @@
 		var/old_key = icon_render_keys?[limb.body_zone] //Checks the mob's icon render key list for the bodypart
 		icon_render_keys[limb.body_zone] = (limb.is_husked) ? limb.generate_husk_key().Join() : limb.generate_icon_key().Join() //Generates a key for the current bodypart
 
-		if(icon_render_keys[limb.body_zone] != old_key) //If the keys match, that means the limb doesn't need to be redrawn
+		if(icon_render_keys[limb.body_zone] != old_key || get_top_offset() != last_top_offset) //If the keys match, that means the limb doesn't need to be redrawn
 			needs_update += limb
 
 	var/list/missing_bodyparts = get_missing_limbs()
@@ -502,12 +508,18 @@
 	//GENERATE NEW LIMBS
 	var/list/new_limbs = list()
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
-		if(limb in needs_update) //Checks to see if the limb needs to be redrawn
+		if(limb in needs_update)
 			var/bodypart_icon = limb.get_limb_icon()
+			if(!istype(limb, /obj/item/bodypart/leg))
+				var/top_offset = get_top_offset()
+				for(var/image/image as anything in bodypart_icon)
+					image.pixel_y += top_offset
 			new_limbs += bodypart_icon
 			limb_icon_cache[icon_render_keys[limb.body_zone]] = bodypart_icon //Caches the icon with the bodypart key, as it is new
 		else
 			new_limbs += limb_icon_cache[icon_render_keys[limb.body_zone]] //Pulls existing sprites from the cache
+		last_top_offset = get_top_offset()
+
 
 	remove_overlay(BODYPARTS_LAYER)
 
@@ -516,6 +528,18 @@
 
 	apply_overlay(BODYPARTS_LAYER)
 
+/// This looks at the chest and legs of the mob and decides how much our chest, arms, and head should be adjusted. This is useful for limbs that are larger or smaller than the scope of normal human height while keeping the feet anchored to the bottom of the tile
+/mob/living/carbon/proc/get_top_offset()
+	var/from_chest
+	var/from_leg
+	for(var/obj/item/bodypart/leg/leg_checked in bodyparts)
+		if(leg_checked.top_offset > from_leg || isnull(from_leg)) // We find the tallest leg available
+			from_leg = leg_checked.top_offset
+	if(isnull(from_leg))
+		from_leg = 0 // If we have no legs, we set this to zero to avoid any math issues that might stem from it being NULL
+	for(var/obj/item/bodypart/chest/chest_checked in bodyparts) // Take the height from the chest
+		from_chest = chest_checked.top_offset
+	return (from_chest + from_leg) // The total hight of the chest and legs together
 
 /////////////////////////
 // Limb Icon Cache 2.0 //
@@ -541,18 +565,13 @@
 		. += "-[draw_color]"
 	if(is_invisible)
 		. += "-invisible"
-	for(var/obj/item/organ/external/external_organ as anything in external_organs)
-		if(!external_organ.can_draw_on_bodypart(owner))
+	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
+		if(!overlay.can_draw_on_bodypart(owner))
 			continue
-		. += "-[jointext(external_organ.generate_icon_cache(), "-")]"
-
-	// SKYRAT EDIT ADDITION - CACHING MARKINGS
-	for(var/key in markings)
-		. += limb_id == "digitigrade" ? ("digitigrade_1_" + body_zone) : body_zone
-		. += "-[key]"
-		. += "-[markings[key][1]]"
-	// SKYRAT EDIT END
-
+		. += "-[jointext(overlay.generate_icon_cache(), "-")]"
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human_owner = owner
+		. += "-[human_owner.get_mob_height()]"
 	return .
 
 ///Generates a cache key specifically for husks
@@ -562,32 +581,42 @@
 	. += "[husk_type]"
 	. += "-husk"
 	. += "-[body_zone]"
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human_owner = owner
+		. += "-[human_owner.get_mob_height()]"
 	return .
 
 /obj/item/bodypart/head/generate_icon_key()
 	. = ..()
-	. += "-[facial_hairstyle]"
-	. += "-[facial_hair_color]"
-	if(facial_hair_gradient_style)
-		. += "-[facial_hair_gradient_style]"
-		if(hair_gradient_color)
-			. += "-[facial_hair_gradient_color]"
+	if(lip_style)
+		. += "-[lip_style]"
+		. += "-[lip_color]"
+
 	if(facial_hair_hidden)
 		. += "-FACIAL_HAIR_HIDDEN"
-	if(is_blushing)
-		. += "-IS_BLUSHING"
+	else
+		. += "-[facial_hairstyle]"
+		. += "-[override_hair_color || fixed_hair_color || facial_hair_color]"
+		. += "-[facial_hair_alpha]"
+		if(gradient_styles?[GRADIENT_FACIAL_HAIR_KEY])
+			. += "-[gradient_styles[GRADIENT_FACIAL_HAIR_KEY]]"
+			. += "-[gradient_colors[GRADIENT_FACIAL_HAIR_KEY]]"
+
+	if(show_eyeless)
+		. += "-SHOW_EYELESS"
 	if(show_debrained)
 		. += "-SHOW_DEBRAINED"
 		return .
 
-	. += "-[hair_style]"
-	. += "-[fixed_hair_color || override_hair_color || hair_color]"
-	if(hair_gradient_style)
-		. += "-[hair_gradient_style]"
-		if(hair_gradient_color)
-			. += "-[hair_gradient_color]"
 	if(hair_hidden)
 		. += "-HAIR_HIDDEN"
+	else
+		. += "-[hairstyle]"
+		. += "-[override_hair_color || fixed_hair_color || hair_color]"
+		. += "-[hair_alpha]"
+		if(gradient_styles?[GRADIENT_HAIR_KEY])
+			. += "-[gradient_styles[GRADIENT_HAIR_KEY]]"
+			. += "-[gradient_colors[GRADIENT_HAIR_KEY]]"
 
 	return .
 

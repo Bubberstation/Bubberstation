@@ -9,7 +9,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/iron=500, /datum/material/glass=500)
+	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass= SMALL_MATERIAL_AMOUNT * 5)
 	w_class = WEIGHT_CLASS_SMALL
 	var/turf/pointer_loc
 	var/energy = 10
@@ -120,8 +120,7 @@
 		var/mob/living/silicon/S = target
 		log_combat(user, S, "shone in the sensors", src)
 		//chance to actually hit the eyes depends on internal component
-		if(prob(effectchance * diode.rating))
-			S.flash_act(affect_silicon = 1)
+		if(prob(effectchance * diode.rating) && S.flash_act(affect_silicon = TRUE))
 			S.Paralyze(rand(100,200))
 			to_chat(S, span_danger("Your sensors were overloaded by a laser!"))
 			outmsg = span_notice("You overload [S] by shining [src] at [S.p_their()] sensors.")
@@ -166,16 +165,16 @@
 
 	//laser pointer image
 	icon_state = "pointer_[pointer_icon_state]"
-	var/image/I = image('icons/obj/weapons/guns/projectiles.dmi',targloc,pointer_icon_state,10)
+	var/mutable_appearance/laser = mutable_appearance('icons/obj/weapons/guns/projectiles.dmi', pointer_icon_state, 10)
 	var/list/modifiers = params2list(params)
 	if(modifiers)
 		if(LAZYACCESS(modifiers, ICON_X))
-			I.pixel_x = (text2num(LAZYACCESS(modifiers, ICON_X)) - 16)
+			laser.pixel_x = (text2num(LAZYACCESS(modifiers, ICON_X)) - 16)
 		if(LAZYACCESS(modifiers, ICON_Y))
-			I.pixel_y = (text2num(LAZYACCESS(modifiers, ICON_Y)) - 16)
+			laser.pixel_y = (text2num(LAZYACCESS(modifiers, ICON_Y)) - 16)
 	else
-		I.pixel_x = target.pixel_x + rand(-5,5)
-		I.pixel_y = target.pixel_y + rand(-5,5)
+		laser.pixel_x = target.pixel_x + rand(-5,5)
+		laser.pixel_y = target.pixel_y + rand(-5,5)
 
 	if(outmsg)
 		to_chat(user, outmsg)
@@ -191,14 +190,14 @@
 			to_chat(user, span_warning("[src]'s battery is overused, it needs time to recharge!"))
 			recharge_locked = TRUE
 
-	targloc.flick_overlay_view(I, 10)
+	targloc.flick_overlay_view(laser, 1 SECONDS)
 	icon_state = "pointer"
 
-/obj/item/laser_pointer/process(delta_time)
+/obj/item/laser_pointer/process(seconds_per_tick)
 	if(!diode)
 		recharging = FALSE
 		return PROCESS_KILL
-	if(DT_PROB(10 + diode.rating*10 - recharge_locked*1, delta_time)) //t1 is 20, 2 40
+	if(SPT_PROB(10 + diode.rating*10 - recharge_locked*1, seconds_per_tick)) //t1 is 20, 2 40
 		energy += 1
 		if(energy >= max_energy)
 			energy = max_energy

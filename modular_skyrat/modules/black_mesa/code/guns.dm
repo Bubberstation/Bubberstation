@@ -3,7 +3,7 @@
 	desc = "A special laser beam sniper rifle designed by a certain now defunct research facility."
 	icon_state = "ctfmarksman"
 	inhand_icon_state = "ctfmarksman"
-	mag_type = /obj/item/ammo_box/magazine/recharge/marksman
+	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/marksman
 	force = 15
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 4 SECONDS
@@ -14,13 +14,13 @@
 	AddComponent(/datum/component/scope, range_modifier = 1.5)
 
 /obj/item/ammo_box/magazine/recharge/marksman
-	ammo_type = /obj/item/ammo_casing/caseless/laser/marksman
+	ammo_type = /obj/item/ammo_casing/laser/marksman
 	max_ammo = 5
 
-/obj/item/ammo_casing/caseless/laser/marksman
+/obj/item/ammo_casing/laser/marksman
 	projectile_type = /obj/projectile/beam/marksman
 
-/obj/item/ammo_casing/caseless/laser/marksman/Initialize(mapload)
+/obj/item/ammo_casing/laser/marksman/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/delete_on_drop)
 
@@ -42,11 +42,9 @@
 	righthand_file ='modular_skyrat/modules/gunsgalore/icons/guns/gunsgalore_righthand.dmi'
 	icon_state = "mp5"
 	inhand_icon_state = "mp5"
-	selector_switch_icon = TRUE
-	mag_type = /obj/item/ammo_box/magazine/mp5
+	accepted_magazine_type = /obj/item/ammo_box/magazine/mp5
 	bolt_type = BOLT_TYPE_LOCKING
 	can_suppress = TRUE
-	burst_size = 3
 	fire_delay = 1.25
 	spread = 2.5
 	mag_display = TRUE
@@ -65,6 +63,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	projectile_damage_multiplier = 0.7
 
+/obj/item/gun/ballistic/automatic/mp5/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
+
 /obj/item/ammo_box/magazine/mp5
 	name = "MP5 magazine (10mm Auto)"
 	desc = "Magazines taking 10mm ammunition; it fits in the MP5."
@@ -73,4 +76,4 @@
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = CALIBER_10MM
 	max_ammo = 30
-	multiple_sprites = AMMO_BOX_FULL_EMPTY_BASIC
+	multiple_sprites = AMMO_BOX_FULL_EMPTY

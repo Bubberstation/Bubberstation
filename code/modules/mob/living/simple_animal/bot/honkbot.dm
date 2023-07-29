@@ -9,7 +9,7 @@
 	radio_key = /obj/item/encryptionkey/headset_service //doesn't have security key
 	radio_channel = RADIO_CHANNEL_SERVICE //Doesn't even use the radio anyway.
 	bot_type = HONK_BOT
-	bot_mode_flags = BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED | BOT_MODE_PAI_CONTROLLABLE | BOT_MODE_AUTOPATROL
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT | BOT_MODE_AUTOPATROL
 	hackables = "sound control systems"
 	path_image_color = "#FF69B4"
 	data_hud_type = DATA_HUD_SECURITY_BASIC //show jobs
@@ -17,6 +17,7 @@
 	baton_type = /obj/item/bikehorn
 	cuff_type = /obj/item/restraints/handcuffs/cable/zipties/fake/used
 	security_mode_flags = SECBOT_CHECK_WEAPONS | SECBOT_HANDCUFF_TARGET
+	possessed_message = "You are a honkbot! Make sure the crew are having a great time!"
 
 	///Keeping track of how much we honk to prevent spamming it
 	var/limiting_spam = FALSE
@@ -67,7 +68,7 @@
 		return
 
 	current_target.set_stutter(40 SECONDS)
-	var/obj/item/organ/internal/ears/target_ears = current_target.getorganslot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/internal/ears/target_ears = current_target.get_organ_slot(ORGAN_SLOT_EARS)
 	if(target_ears && !HAS_TRAIT(current_target, TRAIT_DEAF))
 		target_ears.adjustEarDamage(0, 5) //far less damage than the H.O.N.K.
 	current_target.set_jitter_if_lower(100 SECONDS)

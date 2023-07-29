@@ -7,6 +7,7 @@
 	static_lighting = FALSE
 
 	base_lighting_alpha = 255
+	base_lighting_color = COLOR_STARLIGHT
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
@@ -16,6 +17,8 @@
 	flags_1 = CAN_BE_DIRTY_1
 	sound_environment = SOUND_AREA_SPACE
 	ambient_buzz = null //Space is deafeningly quiet
+	min_ambience_cooldown = 195 SECONDS //length of ambispace.ogg
+	max_ambience_cooldown = 200 SECONDS
 
 /area/space/nearstation
 	icon_state = "space_near"
@@ -32,5 +35,8 @@
 /area/misc/testroom
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
+	// Mobs should be able to see inside the testroom
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 	name = "Test Room"
 	icon_state = "test_room"

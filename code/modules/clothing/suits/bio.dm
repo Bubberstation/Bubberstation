@@ -14,6 +14,11 @@
 	resistance_flags = ACID_PROOF
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 
+/obj/item/clothing/head/bio_hood/Initialize(mapload)
+	. = ..()
+	if(flags_inv & HIDEFACE)
+		AddComponent(/datum/component/clothing_fov_visor, FOV_90_DEGREES)
+
 /datum/armor/head_bio_hood
 	bio = 100
 	fire = 30
@@ -129,4 +134,4 @@
 
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/Initialize(mapload)
 	. = ..()
-	allowed += list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/cane)
+	allowed += list(/obj/item/book/bible, /obj/item/nullrod, /obj/item/cane)

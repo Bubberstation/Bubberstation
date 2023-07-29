@@ -1,5 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"cB" = (
+"cZ" = (
+/obj/machinery/porta_turret/syndicate/energy{
+	dir = 4
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/ruin/caravan/syndicate1)
+"dc" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
@@ -18,12 +24,6 @@
 	environment_smash = 0
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/ruin/caravan/syndicate1)
-"cZ" = (
-/obj/machinery/porta_turret/syndicate/energy{
-	dir = 4
-	},
-/turf/closed/wall/mineral/plastitanium,
 /area/shuttle/ruin/caravan/syndicate1)
 "ie" = (
 /turf/closed/wall/mineral/plastitanium,
@@ -90,10 +90,9 @@
 /turf/open/floor/plating,
 /area/shuttle/ruin/caravan/syndicate1)
 "YY" = (
-/obj/machinery/power/apc/highcap/ten_k/directional/west{
-	name = "Syndicate Fighter Power Controller";
-	req_access = list("syndicate")
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /obj/machinery/computer/security{
 	dir = 1;
 	network = list("caravansyndicate1")
@@ -118,7 +117,7 @@ Jv
 UZ
 qu
 tO
-cB
+dc
 YY
 qu
 UZ

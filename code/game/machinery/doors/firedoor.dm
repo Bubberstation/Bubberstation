@@ -244,11 +244,12 @@
 
 		if(!checked_turf)
 			continue
-		if(isclosedturf(checked_turf))
+
+		RegisterSignal(checked_turf, COMSIG_TURF_CHANGE, PROC_REF(adjacent_change))
+		RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results))
+		if(!isopenturf(checked_turf))
 			continue
 		process_results(checked_turf)
-		RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results))
-
 
 /obj/machinery/door/firedoor/proc/unregister_adjacent_turfs(atom/old_loc)
 	if(!loc)
@@ -262,7 +263,13 @@
 		if(!checked_turf)
 			continue
 
+		UnregisterSignal(checked_turf, COMSIG_TURF_CHANGE)
 		UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE)
+
+// If a turf adjacent to us changes, recalc our affecting areas when it's done yeah?
+/obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
+	SIGNAL_HANDLER
+	post_change_callbacks += CALLBACK(src, PROC_REF(CalculateAffectingAreas))
 
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
@@ -427,14 +434,15 @@
 		if(place == my_area)
 			place.alarm_manager.clear_alarm(ALARM_FIRE, place)
 
-/obj/machinery/door/firedoor/emag_act(mob/user, obj/item/card/emag/emag_type)
+/obj/machinery/door/firedoor/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
-	if(istype(emag_type, /obj/item/card/emag/doorjack)) //Skip doorjack-specific code
-		var/obj/item/card/emag/doorjack/digital_crowbar = emag_type
+		return FALSE
+	if(istype(emag_card, /obj/item/card/emag/doorjack)) //Skip doorjack-specific code
+		var/obj/item/card/emag/doorjack/digital_crowbar = emag_card
 		digital_crowbar.use_charge(user)
 	obj_flags |= EMAGGED
 	INVOKE_ASYNC(src, PROC_REF(open))
+	return TRUE
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
 	if(panel_open || operating)
@@ -509,7 +517,7 @@
 	return
 
 /obj/machinery/door/firedoor/try_to_weld_secondary(obj/item/weldingtool/W, mob/user)
-	if(!W.tool_start_check(user, amount=0))
+	if(!W.tool_start_check(user, amount=1))
 		return
 	user.visible_message(span_notice("[user] starts [welded ? "unwelding" : "welding"] [src]."), span_notice("You start welding [src]."))
 	if(W.use_tool(src, user, DEFAULT_STEP_TIME, volume=50))
@@ -534,7 +542,7 @@
 			return
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(handle_held_open_adjacency))
 		RegisterSignal(user, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(handle_held_open_adjacency))
-		RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(handle_held_open_adjacency))
+		RegisterSignal(user, COMSIG_QDELETING, PROC_REF(handle_held_open_adjacency))
 		handle_held_open_adjacency(user)
 	else
 		close()
@@ -561,7 +569,7 @@
 	correct_state()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(user, COMSIG_LIVING_SET_BODY_POSITION)
-	UnregisterSignal(user, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(user, COMSIG_QDELETING)
 	if(user)
 		user.balloon_alert_to_viewers("released [src]", "released [src]")
 
@@ -850,7 +858,7 @@
 				user.visible_message(span_notice("[user] begins cutting apart [src]'s frame..."), \
 					span_notice("You begin slicing [src] apart..."))
 
-				if(attacking_object.use_tool(src, user, DEFAULT_STEP_TIME, volume=50, amount=1))
+				if(attacking_object.use_tool(src, user, DEFAULT_STEP_TIME, volume=50))
 					if(constructionStep != CONSTRUCTION_NO_CIRCUIT)
 						return
 					user.visible_message(span_notice("[user] cuts apart [src]!"), \
@@ -900,3 +908,4 @@
 #undef CONSTRUCTION_PANEL_OPEN
 #undef CONSTRUCTION_NO_CIRCUIT
 #undef REACTIVATION_DELAY
+#undef DEFAULT_STEP_TIME

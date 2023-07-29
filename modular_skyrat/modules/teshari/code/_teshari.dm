@@ -1,6 +1,4 @@
 #define TESHARI_TEMP_OFFSET -30 // K, added to comfort/damage limit etc
-#define TESHARI_BURNMOD 1.25 // They take more damage from practically everything
-#define TESHARI_BRUTEMOD 1.2
 #define TESHARI_HEATMOD 1.3
 #define TESHARI_COLDMOD 0.67 // Except cold.
 
@@ -8,15 +6,13 @@
 	name = "Teshari"
 	id = SPECIES_TESHARI
 	eyes_icon = 'modular_skyrat/modules/organs/icons/teshari_eyes.dmi'
-	species_traits = list(MUTCOLORS,
-		EYECOLOR,
-		NO_UNDERWEAR,
-		HAS_MARKINGS,
-		)
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
+		TRAIT_MUTANT_COLORS,
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_HAS_MARKINGS,
 	)
 	default_mutant_bodyparts = list(
 		"tail" = ACC_RANDOM,
@@ -24,10 +20,9 @@
 		"legs" = "Normal Legs"
 	)
 	digitigrade_customization = DIGITIGRADE_NEVER
-	disliked_food = GROSS | GRAIN | GORE
-	liked_food = MEAT
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 0.75
+	mutanttongue = /obj/item/organ/internal/tongue/teshari
 	custom_worn_icons = list(
 		LOADOUT_ITEM_HEAD = TESHARI_HEAD_ICON,
 		LOADOUT_ITEM_MASK = TESHARI_MASK_ICON,
@@ -42,11 +37,8 @@
 		LOADOUT_ITEM_ACCESSORY = TESHARI_ACCESSORIES_ICON,
 		LOADOUT_ITEM_EARS = TESHARI_EARS_ICON
 	)
-	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,-4), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,-5), OFFSET_HEAD = list(1,-4), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,-4), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_ACCESSORY = list(0, -4))
 	coldmod = TESHARI_COLDMOD
 	heatmod = TESHARI_HEATMOD
-	brutemod = TESHARI_BRUTEMOD
-	burnmod = TESHARI_BURNMOD
 	bodytemp_normal = BODYTEMP_NORMAL + TESHARI_TEMP_OFFSET
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + TESHARI_TEMP_OFFSET)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + TESHARI_TEMP_OFFSET)
@@ -60,6 +52,12 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/teshari,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/teshari,
 	)
+
+
+/obj/item/organ/internal/tongue/teshari
+	liked_foodtypes = MEAT
+	disliked_foodtypes = GROSS | GRAIN
+
 
 /datum/species/teshari/random_name(gender, unique, lastname)
 	if(unique)
@@ -77,7 +75,7 @@
 	var/ear_color = "#e4c49b"
 
 	tesh.dna.features["mcolor"] = base_color
-	tesh.dna.species.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Teshari Feathers Upright", MUTANT_INDEX_COLOR_LIST = list(ear_color, ear_color, ear_color))
-	tesh.dna.species.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
-	tesh.update_mutant_bodyparts(TRUE)
+	tesh.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Teshari Feathers Upright", MUTANT_INDEX_COLOR_LIST = list(ear_color, ear_color, ear_color))
+	tesh.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
+	regenerate_organs(tesh, src, visual_only = TRUE)
 	tesh.update_body(TRUE)

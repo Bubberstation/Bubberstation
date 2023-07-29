@@ -11,10 +11,19 @@
 /datum/emote/living/custom
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 	cooldown = 0
+	stat_allowed = SOFT_CRIT
 
 //me-verb emotes should not have a cooldown check
 /datum/emote/living/custom/check_cooldown(mob/user, intentional)
 	return TRUE
+
+
+/datum/emote/imaginary_friend/custom/check_cooldown(mob/user, intentional)
+	return TRUE
+
+
+/datum/emote/living/blush
+	sound = 'modular_skyrat/modules/emotes/sound/emotes/blush.ogg'
 
 /datum/emote/living/quill
 	key = "quill"
@@ -53,7 +62,7 @@
 	return
 
 /datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
-	if(intentional && !HAS_TRAIT(user, TRAIT_FREERUNNING) && !isobserver(user))
+	if(intentional && (!HAS_TRAIT(user, TRAIT_FREERUNNING) && !HAS_TRAIT(user, TRAIT_STYLISH)) && !isobserver(user))
 		user.balloon_alert(user, "not nimble enough!")
 		return FALSE
 	return ..()
@@ -447,12 +456,12 @@
 	var/image/gloveimg = image('icons/effects/effects.dmi', slapped, "slapglove", slapped.layer + 0.1)
 	gloveimg.pixel_y = -5
 	gloveimg.pixel_x = 0
-	flick_overlay(gloveimg, GLOB.clients, 10)
+	flick_overlay_view(gloveimg, 1 SECONDS)
 
 	// And animate the attack!
-	animate(gloveimg, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = -5, pixel_z = 0, time = 3)
-	animate(time = 1)
-	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT)
+	animate(gloveimg, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = -5, pixel_z = 0, time = 0.3 SECONDS)
+	animate(time = 0.1 SECONDS)
+	animate(alpha = 0, time = 0.3 SECONDS, easing = CIRCULAR_EASING|EASE_OUT)
 
 //Froggie Revolution
 /datum/emote/living/warble
@@ -518,3 +527,11 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/effects/glassbash.ogg'
+
+/datum/emote/living/mggaow
+	key = "mggaow"
+	key_third_person = "meows loudly"
+	message = "meows loudly!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'

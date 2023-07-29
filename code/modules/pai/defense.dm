@@ -23,8 +23,7 @@
 			set_derpspeech(INFINITY)
 			to_chat(src, span_danger("Warning: Vocabulary databank corrupted."))
 	if(prob(40))
-		mind.language_holder.selected_language = get_random_spoken_language()
-
+		set_active_language(get_random_spoken_language())
 
 /mob/living/silicon/pai/ex_act(severity, target)
 	take_holo_damage(50 * severity)
@@ -38,6 +37,8 @@
 		if(EXPLODE_LIGHT)
 			fold_in(force = 1)
 			Paralyze(200)
+
+	return TRUE
 
 /mob/living/silicon/pai/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	if(!user.combat_mode)
@@ -61,7 +62,7 @@
 		src.visible_message(span_warning("The electrically-charged projectile disrupts [src]'s holomatrix, forcing [src] to fold in!"))
 	. = ..(Proj)
 
-/mob/living/silicon/pai/ignite_mob()
+/mob/living/silicon/pai/ignite_mob(silent)
 	return FALSE
 
 /mob/living/silicon/pai/proc/take_holo_damage(amount)

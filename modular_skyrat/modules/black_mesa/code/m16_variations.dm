@@ -11,9 +11,10 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/m16/vintage/oldarms
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m16/vintage/oldarms
 	fire_delay = 3.5
 	burst_size = 1
+	actions_types = list()
 	fire_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/fire/m16_fire.ogg'
 	fire_sound_volume = 50
 	rack_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/sfrifle_cock.ogg'
@@ -21,8 +22,11 @@
 	load_empty_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/sfrifle_magin.ogg'
 	eject_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/sfrifle_magout.ogg'
 	alt_icons = TRUE
-	fire_select_modes = list(SELECT_SEMI_AUTOMATIC, SELECT_FULLY_AUTOMATIC)
 
+/obj/item/gun/ballistic/automatic/m16/oldarms/Initialize(mapload)
+	. = ..()
+
+	AddComponent(/datum/component/automatic_fire, fire_delay)
 
 /obj/item/ammo_box/magazine/m16/vintage/oldarms
 	name = "old-fashioned mk-11.4 rifle magazine"

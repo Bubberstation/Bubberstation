@@ -1,6 +1,6 @@
 /obj/item/modular_computer/pda/contractor
 	name = "contract PDA"
-	icon = 'icons/obj/contractor_tablet.dmi'
+	icon = 'icons/obj/antags/contractor_tablet.dmi'
 	icon_state = "tablet"
 	icon_state_unpowered = "tablet"
 	icon_state_powered = "tablet"
@@ -25,7 +25,6 @@
 	var/datum/computer_file/program/contract_uplink/uplink = locate() in stored_files
 
 	active_program = uplink
-	uplink.program_state = PROGRAM_STATE_ACTIVE
 
 	var/datum/computer_file/program/messenger/msg = locate() in stored_files
 	if(msg)

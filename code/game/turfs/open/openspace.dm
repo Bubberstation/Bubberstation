@@ -1,12 +1,15 @@
 /turf/open/openspace
 	name = "open space"
 	desc = "Watch your step!"
-	icon_state = "invisible"
+	// We don't actually draw openspace, but it needs to have color
+	// In its icon state so we can count it as a "non black" tile
+	icon_state = MAP_SWITCH("pure_white", "invisible")
 	baseturfs = /turf/open/openspace
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pathing_pass_method = TURF_PATHING_PASS_PROC
+	plane = TRANSPARENT_FLOOR_PLANE
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 
@@ -16,9 +19,13 @@
 /turf/open/openspace/airless/planetary
 	planetary_atmos = TRUE
 
+// Reminder, any behavior code written here needs to be duped to /turf/open/space/openspace
+// I am so sorry
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_INITIALIZED_ON, PROC_REF(on_atom_created))
+	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
+		stack_trace("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
+	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_atom_created))
 	var/area/our_area = loc
 	if(istype(our_area, /area/space))
 		force_no_gravity = TRUE
@@ -29,7 +36,7 @@
 	AddElement(/datum/element/turf_z_transparency)
 
 /turf/open/openspace/ChangeTurf(path, list/new_baseturfs, flags)
-	UnregisterSignal(src, COMSIG_ATOM_INITIALIZED_ON)
+	UnregisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
 	return ..()
 
 /**
@@ -49,15 +56,13 @@
 	if(movable.set_currently_z_moving(CURRENTLY_Z_FALLING))
 		zFall(movable, falling_from_move = TRUE)
 /**
- * Drops movables spawned on this turf only after they are successfully initialized.
- * so flying mobs, qdeleted movables and things that were moved somewhere else during
- * Initialize() won't fall by accident.
+ * Drops movables spawned on this turf after they are successfully initialized.
+ * so that spawned movables that should fall to gravity, will fall.
  */
 /turf/open/openspace/proc/on_atom_created(datum/source, atom/created_atom)
 	SIGNAL_HANDLER
 	if(ismovable(created_atom))
-		//Drop it only when it's finished initializing, not before.
-		addtimer(CALLBACK(src, PROC_REF(zfall_if_on_turf), created_atom), 0 SECONDS)
+		zfall_if_on_turf(created_atom)
 
 /turf/open/openspace/proc/zfall_if_on_turf(atom/movable/movable)
 	if(QDELETED(movable) || movable.loc != src)
@@ -152,14 +157,23 @@
 		return TRUE
 	return FALSE
 
+/turf/open/openspace/replace_floor(turf/open/new_floor_path, flags)
+	if (!initial(new_floor_path.overfloor_placed))
+		ChangeTurf(new_floor_path, flags = flags)
+		return
+	// Create plating under tiled floor we try to create directly onto the air
+	PlaceOnTop(/turf/open/floor/plating, flags = flags)
+	PlaceOnTop(new_floor_path, flags = flags)
+
 /turf/open/openspace/icemoon
 	name = "ice chasm"
 	baseturfs = /turf/open/openspace/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
-	var/replacement_turf = /turf/open/misc/asteroid/snow/icemoon
-	/// Replaces itself with replacement_turf if the turf below this one is in a no ruins allowed area (usually ruins themselves)
+	/// Replaces itself with replacement_turf if the turf has the no ruins allowed flag (usually ruins themselves)
 	var/protect_ruin = TRUE
+	/// The turf that will replace this one if the turf below has the no ruins allowed flag. we use this one so we don't get any potential double whammies
+	var/replacement_turf = /turf/open/misc/asteroid/snow/icemoon/do_not_chasm
 	/// If true mineral turfs below this openspace turf will be mined automatically
 	var/drill_below = TRUE
 

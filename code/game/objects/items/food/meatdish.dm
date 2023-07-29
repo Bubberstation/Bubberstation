@@ -226,8 +226,9 @@
 		/datum/reagent/consumable/nutriment/vitamin = 5,
 		/datum/reagent/consumable/nutriment/protein = 2,
 	)
-	tastes = list("rice and meat" = 4, "lettuce" = 2, "soy sauce" = 2)
 	foodtypes = SEAFOOD | MEAT | VEGETABLES
+	tastes = list("rice and meat" = 4, "lettuce" = 2, "soy sauce" = 2)
+	trash_type = /obj/item/reagent_containers/cup/bowl
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/fish_poke
@@ -240,8 +241,9 @@
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 		/datum/reagent/consumable/nutriment/protein = 2,
 	)
-	tastes = list("rice and fish" = 4, "lettuce" = 2, "soy sauce" = 2)
 	foodtypes = SEAFOOD | VEGETABLES
+	tastes = list("rice and fish" = 4, "lettuce" = 2, "soy sauce" = 2)
+	trash_type = /obj/item/reagent_containers/cup/bowl
 	w_class = WEIGHT_CLASS_SMALL
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
@@ -390,6 +392,7 @@
 	desc = "A great meal all round. Not a cord of wood."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "meatball"
+	inhand_icon_state = "meatball"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
 	tastes = list("meat" = 1)
 	foodtypes = MEAT
@@ -658,6 +661,7 @@
 
 /obj/item/food/nugget
 	name = "chicken nugget"
+	desc = "A \"chicken\" nugget vaguely shaped like something."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 2,
@@ -718,6 +722,7 @@
 	)
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
 	w_class = WEIGHT_CLASS_SMALL
+	foodtypes = MEAT | FRUIT
 
 /obj/item/food/meatclown/Initialize(mapload)
 	. = ..()
@@ -813,6 +818,7 @@
 
 /obj/item/food/kebab/fiesta
 	name = "fiesta skewer"
+	desc = "Variety of meats and vegetables on a stick."
 	icon_state = "fiestaskewer"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 12,

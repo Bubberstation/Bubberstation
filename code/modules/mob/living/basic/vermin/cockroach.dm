@@ -2,13 +2,15 @@
 	name = "cockroach"
 	desc = "This station is just crawling with bugs."
 	icon_state = "cockroach"
-	icon_dead = "cockroach" //Make this work
+	icon_dead = "cockroach_no_animation"
 	density = FALSE
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	mob_size = MOB_SIZE_TINY
+	held_w_class = WEIGHT_CLASS_TINY
 	health = 1
 	maxHealth = 1
 	speed = 1.25
+	can_be_held = TRUE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 
@@ -23,7 +25,7 @@
 	speak_emote = list("chitters")
 
 	basic_mob_flags = DEL_ON_DEATH
-	faction = list("hostile", FACTION_MAINT_CREATURES)
+	faction = list(FACTION_HOSTILE, FACTION_MAINT_CREATURES)
 
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 270
@@ -39,17 +41,22 @@
 	AddElement(/datum/element/death_drops, roach_drops)
 	AddElement(/datum/element/swabable, cockroach_cell_line, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 7)
 	AddElement(/datum/element/basic_body_temp_sensitive, 270, INFINITY)
-	AddComponent(/datum/component/squashable, squash_chance = 50, squash_damage = 1)
+	AddComponent( \
+		/datum/component/squashable, \
+		squash_chance = 50, \
+		squash_damage = 1, \
+		squash_flags = SQUASHED_SHOULD_BE_GIBBED|SQUASHED_ALWAYS_IF_DEAD|SQUASHED_DONT_SQUASH_IN_CONTENTS, \
+	)
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
-
-/mob/living/basic/cockroach/death(gibbed)
-	if(GLOB.station_was_nuked) //If the nuke is going off, then cockroaches are invincible. Keeps the nuke from killing them, cause cockroaches are immune to nukes.
-		return
-	..()
+	ADD_TRAIT(src, TRAIT_NUKEIMMUNE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, INNATE_TRAIT)
 
 /mob/living/basic/cockroach/ex_act() //Explosions are a terrible way to handle a cockroach.
 	return FALSE
 
+// Roach goop is the gibs to drop
+/mob/living/basic/cockroach/spawn_gibs()
+	return
 
 /datum/ai_controller/basic_controller/cockroach
 	blackboard = list(
@@ -57,11 +64,11 @@
 		BB_PET_TARGETTING_DATUM = new /datum/targetting_datum/not_friends(),
 	)
 
-	ai_traits = STOP_MOVING_WHEN_PULLED | STOP_ACTING_WHILE_DEAD
+	ai_traits = STOP_MOVING_WHEN_PULLED
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/cockroach,
+		/datum/ai_planning_subtree/random_speech/insect,
 		/datum/ai_planning_subtree/find_and_hunt_target/roach,
 	)
 
@@ -83,7 +90,7 @@
 	melee_damage_upper = 10
 	obj_damage = 10
 	gold_core_spawnable = HOSTILE_SPAWN
-	faction = list("hostile", FACTION_MAINT_CREATURES)
+	faction = list(FACTION_HOSTILE, FACTION_MAINT_CREATURES)
 	ai_controller = /datum/ai_controller/basic_controller/cockroach/glockroach
 	cockroach_cell_line = CELL_LINE_TABLE_GLOCKROACH
 
@@ -94,7 +101,7 @@
 /datum/ai_controller/basic_controller/cockroach/glockroach
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/random_speech/cockroach,
+		/datum/ai_planning_subtree/random_speech/insect,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/basic_ranged_attack_subtree/glockroach, //If we are attacking someone, this will prevent us from hunting
 		/datum/ai_planning_subtree/find_and_hunt_target/roach,
@@ -118,7 +125,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
-	faction = list("hostile", FACTION_MAINT_CREATURES)
+	faction = list(FACTION_HOSTILE, FACTION_MAINT_CREATURES)
 	sharpness = SHARP_POINTY
 	ai_controller = /datum/ai_controller/basic_controller/cockroach/hauberoach
 	cockroach_cell_line = CELL_LINE_TABLE_HAUBEROACH
@@ -126,7 +133,13 @@
 /mob/living/basic/cockroach/hauberoach/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/caltrop, min_damage = 10, max_damage = 15, flags = (CALTROP_BYPASS_SHOES | CALTROP_SILENT))
-	AddComponent(/datum/component/squashable, squash_chance = 100, squash_damage = 1, squash_callback = TYPE_PROC_REF(/mob/living/basic/cockroach/hauberoach, on_squish))
+	AddComponent( \
+		/datum/component/squashable, \
+		squash_chance = 100, \
+		squash_damage = 1, \
+		squash_flags = SQUASHED_SHOULD_BE_GIBBED|SQUASHED_ALWAYS_IF_DEAD|SQUASHED_DONT_SQUASH_IN_CONTENTS, \
+		squash_callback = TYPE_PROC_REF(/mob/living/basic/cockroach/hauberoach, on_squish), \
+	)
 
 ///Proc used to override the squashing behavior of the normal cockroach.
 /mob/living/basic/cockroach/hauberoach/proc/on_squish(mob/living/cockroach, mob/living/living_target)
@@ -137,10 +150,11 @@
 		return TRUE
 	living_target.visible_message(span_notice("[living_target] squashes [cockroach], not even noticing its spike."), span_notice("You squashed [cockroach], not even noticing its spike."))
 	return FALSE
+
 /datum/ai_controller/basic_controller/cockroach/hauberoach
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/random_speech/cockroach,
+		/datum/ai_planning_subtree/random_speech/insect,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/hauberoach,  //If we are attacking someone, this will prevent us from hunting
 		/datum/ai_planning_subtree/find_and_hunt_target/roach,
@@ -155,7 +169,7 @@
 /datum/ai_controller/basic_controller/cockroach/sewer
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/random_speech/cockroach,
+		/datum/ai_planning_subtree/random_speech/insect,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/sewer,
 		/datum/ai_planning_subtree/find_and_hunt_target/roach,
@@ -176,7 +190,7 @@
 /datum/ai_controller/basic_controller/cockroach/mobroach
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/random_speech/cockroach,
+		/datum/ai_planning_subtree/random_speech/insect,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/basic_ranged_attack_subtree/mobroach, //If we are attacking someone, this will prevent us from hunting
 		/datum/ai_planning_subtree/find_and_hunt_target/roach,

@@ -40,8 +40,7 @@
 		/obj/item/storage/box/rubbershot = 10
 	)
 	rpg_title = "Jailor"
-	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_BOLD_SELECT_TEXT | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
-
+	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT
 
 /datum/outfit/job/warden
 	name = "Warden"
@@ -53,8 +52,10 @@
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
+		/obj/item/modular_computer/pda/warden = 1,
+		/obj/item/flashlight/seclite = 1,
 		)
-	belt = /obj/item/modular_computer/pda/warden
+	belt = /obj/item/storage/belt/security/full
 	ears = /obj/item/radio/headset/headset_sec/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	gloves = /obj/item/clothing/gloves/color/black/security //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/gloves/color/black

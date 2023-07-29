@@ -32,7 +32,7 @@
 /obj/effect/nettingportal/Initialize(mapload)
 	. = ..()
 	var/obj/item/beacon/teletarget = null
-	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
+	for(var/obj/machinery/computer/teleporter/com as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/computer/teleporter))
 		var/atom/target = com.target_ref?.resolve()
 		if(target)
 			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
@@ -61,7 +61,6 @@
 /obj/projectile/energy/trap
 	name = "energy snare"
 	icon_state = "e_snare"
-	nodamage = TRUE
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 4
 
@@ -80,8 +79,6 @@
 /obj/projectile/energy/trap/cyborg
 	name = "Energy Bola"
 	icon_state = "e_snare"
-	nodamage = TRUE
-	paralyze = 0
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
 

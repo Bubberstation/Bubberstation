@@ -38,7 +38,7 @@
 	)
 
 	veteran_only = TRUE
-	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_BOLD_SELECT_TEXT | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS
+	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 
 /datum/outfit/job/nanotrasen_consultant
 	name = "Nanotrasen Consultant"
@@ -101,7 +101,7 @@
 	name = "Nanotrasen Consultant Plasmaman"
 
 	uniform = /obj/item/clothing/under/plasmaman/centcom_official
-	gloves = /obj/item/clothing/gloves/color/captain //Too iconic to be replaced with a plasma version
+	gloves = /obj/item/clothing/gloves/captain //Too iconic to be replaced with a plasma version
 	head = /obj/item/clothing/head/helmet/space/plasmaman/centcom_official
 
 /obj/item/modular_computer/pda/nanotrasen_consultant
@@ -145,6 +145,7 @@
 	new /obj/item/radio/headset/heads/nanotrasen_consultant(src)
 	new /obj/item/clothing/glasses/sunglasses/gar/giga(src)
 	new /obj/item/clothing/gloves/combat(src)
+	new /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant(src)
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/centcom/nt_consultant(src)

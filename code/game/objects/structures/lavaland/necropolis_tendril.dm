@@ -6,7 +6,7 @@
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "tendril"
 
-	faction = list("mining")
+	faction = list(FACTION_MINING)
 	max_mobs = 3
 	max_integrity = 250
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/tendril)
@@ -20,7 +20,7 @@
 
 
 /obj/structure/spawner/lavaland/goliath
-	mob_types = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril)
+	mob_types = list(/mob/living/basic/mining/goliath)
 
 /obj/structure/spawner/lavaland/legion
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril)

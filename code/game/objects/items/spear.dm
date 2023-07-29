@@ -1,5 +1,6 @@
 //spears
 /obj/item/spear
+	icon = 'icons/obj/weapons/spear.dmi'
 	icon_state = "spearglass0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -13,7 +14,7 @@
 	demolition_mod = 0.75
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)
 	armour_penetration = 10
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass= HALF_SHEET_MATERIAL_AMOUNT * 2)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
@@ -39,12 +40,12 @@
 	. = ..()
 	force = force_unwielded
 	//decent in a pinch, but pretty bad.
-	AddComponent(/datum/component/jousting)
+	AddComponent(/datum/component/jousting, \
+		max_tile_charge = 9, \
+		min_tile_charge = 6, \
+		)
 
-	AddComponent(/datum/component/butchering, \
-		speed = 10 SECONDS, \
-		effectiveness = 70, \
-	)
+	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 30)
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force_unwielded, \
 		force_wielded = force_wielded, \
@@ -69,6 +70,7 @@
 		if(/obj/item/shard/plasma)
 			force = 11
 			throwforce = 21
+			custom_materials = list(/datum/material/iron= HALF_SHEET_MATERIAL_AMOUNT, /datum/material/alloy/plasmaglass= HALF_SHEET_MATERIAL_AMOUNT * 2)
 			icon_prefix = "spearplasma"
 			force_unwielded = 11
 			force_wielded = 19
@@ -78,6 +80,7 @@
 			throwforce = 21
 			throw_range = 8
 			throw_speed = 5
+			custom_materials = list(/datum/material/iron= HALF_SHEET_MATERIAL_AMOUNT, /datum/material/alloy/titaniumglass= HALF_SHEET_MATERIAL_AMOUNT * 2)
 			wound_bonus = -10
 			force_unwielded = 13
 			force_wielded = 18
@@ -88,6 +91,7 @@
 			throwforce = 22
 			throw_range = 9
 			throw_speed = 5
+			custom_materials = list(/datum/material/iron= HALF_SHEET_MATERIAL_AMOUNT, /datum/material/alloy/plastitaniumglass= HALF_SHEET_MATERIAL_AMOUNT * 2)
 			wound_bonus = -10
 			bare_wound_bonus = 20
 			force_unwielded = 13
@@ -144,7 +148,7 @@
 	. += span_notice("Alt-click to set your war cry.")
 
 /obj/item/spear/explosive/AltClick(mob/user)
-	if(user.canUseTopic(src, be_close = TRUE))
+	if(user.can_perform_action(src))
 		..()
 		if(istype(user) && loc == user)
 			var/input = tgui_input_text(user, "What do you want your war cry to be? You will shout it when you hit someone in melee.", "War Cry", max_length = 50)
@@ -209,15 +213,16 @@
 	icon_prefix = "bone_spear"
 	name = "bone spear"
 	desc = "A haphazardly-constructed yet still deadly weapon. The pinnacle of modern technology."
-	force = 8 //SKYRAT EDIT
+
 	throwforce = 22
-	reach = 2 // SKYRAT EDIT
 	armour_penetration = 15 //Enhanced armor piercing
+	custom_materials = list(/datum/material/bone = HALF_SHEET_MATERIAL_AMOUNT * 7)
+	force_unwielded = 8 // SKYRAT EDIT CHANGE - ORIGINAL: 12
+	force_wielded = 16 // SKYRAT EDIT CHANGE - ORIGINAL: 20
 
-
-/obj/item/spear/bonespear/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=8, force_wielded=16, icon_wielded="[icon_prefix]1") //SKYRAT EDIT
+	//SKYRAT EDIT ADDITION BEGIN - increases bone spear range to 2
+	reach = 2
+	//SKYRAT EDIT ADDITION END
 
 /*
  * Bamboo Spear
@@ -230,5 +235,6 @@
 	desc = "A haphazardly-constructed bamboo stick with a sharpened tip, ready to poke holes into unsuspecting people."
 
 	throwforce = 22	//Better to throw
+	custom_materials = list(/datum/material/bamboo = SHEET_MATERIAL_AMOUNT * 20)
 	force_unwielded = 10
 	force_wielded = 18

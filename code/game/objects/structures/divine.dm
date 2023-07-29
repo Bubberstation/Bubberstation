@@ -1,7 +1,7 @@
 /obj/structure/sacrificealtar
 	name = "sacrificial altar"
 	desc = "An altar designed to perform blood sacrifice for a deity. Alt-click it to sacrifice a buckled creature."
-	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "sacrificealtar"
 	anchored = TRUE
 	density = FALSE
@@ -9,7 +9,7 @@
 
 /obj/structure/sacrificealtar/AltClick(mob/living/user)
 	..()
-	if(!istype(user) || !user.canUseTopic(src, be_close = TRUE))
+	if(!istype(user) || !user.can_perform_action(src))
 		return
 	if(!has_buckled_mobs())
 		return
@@ -24,7 +24,7 @@
 /obj/structure/healingfountain
 	name = "healing fountain"
 	desc = "A fountain containing the waters of life."
-	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "fountain"
 	anchored = TRUE
 	density = TRUE

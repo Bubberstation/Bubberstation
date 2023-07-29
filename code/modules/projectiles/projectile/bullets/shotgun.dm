@@ -82,7 +82,7 @@
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
 
 /obj/projectile/bullet/pellet/shotgun_rubbershot
-	name = "rubbershot pellet"
+	name = "rubber shot pellet"
 	damage = 3
 	stamina = 11
 	sharpness = NONE
@@ -128,3 +128,12 @@
 /obj/projectile/bullet/scattershot
 	icon_state = "pellet"
 	damage = 24
+
+//Breaching Ammo
+
+/obj/projectile/bullet/shotgun_breaching
+	name = "12g breaching round"
+	desc = "A breaching round designed to destroy airlocks and windows with only a few shots. Ineffective against other targets."
+	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
+	damage = 5 //does shit damage to everything except doors and windows
+	demolition_mod = 200 //one shot to break a window or grille, or two shots to breach an airlock door

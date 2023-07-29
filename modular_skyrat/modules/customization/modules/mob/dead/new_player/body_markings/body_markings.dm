@@ -27,16 +27,16 @@
 	var/list/colors
 	switch(default_color)
 		if(DEFAULT_PRIMARY)
-			colors = features["mcolor"]
+			colors = sanitize_hexcolor(features["mcolor"])
 		if(DEFAULT_SECONDARY)
-			colors = features["mcolor2"]
+			colors = sanitize_hexcolor(features["mcolor2"])
 		if(DEFAULT_TERTIARY)
-			colors = features["mcolor3"]
+			colors = sanitize_hexcolor(features["mcolor3"])
 		if(DEFAULT_SKIN_OR_PRIMARY)
-			if(pref_species && pref_species.use_skintones)
-				colors = features["skin_color"]
+			if(pref_species && !(TRAIT_USES_SKINTONES in pref_species.inherent_traits))
+				colors = sanitize_hexcolor(features["skin_color"])
 			else
-				colors = features["mcolor"]
+				colors = sanitize_hexcolor(features["mcolor"])
 		else
 			colors = default_color
 
@@ -64,6 +64,12 @@
 /datum/body_marking/other/flushed_cheeks
 	name = "Flushed Cheeks"
 	icon_state = "flushed_cheeks"
+	default_color = "#CCCCCC"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/other/cyclops
+	name = "Cyclopean Eye"
+	icon_state = "cyclops"
 	default_color = "#CCCCCC"
 	affected_bodyparts = HEAD
 
@@ -541,6 +547,22 @@
 	icon_state = "xeno"
 	affected_bodyparts = HEAD
 	recommended_species = list(SPECIES_XENO)
+
+/datum/body_marking/tertiary/dtiger
+	name = "Dark Tiger Body"
+	icon_state = "dtiger"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/tertiary/ltiger
+	name = "Light Tiger Body"
+	icon_state = "ltiger"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/tertiary/lbelly
+	name = "Light Belly"
+	icon_state = "lbelly"
+	affected_bodyparts = CHEST
+
 
 /datum/body_marking/tattoo
 	icon = 'modular_skyrat/master_files/icons/mob/body_markings/tattoo_markings.dmi'

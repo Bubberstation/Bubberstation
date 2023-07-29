@@ -117,7 +117,7 @@
 			to_chat(user, span_warning("You must be holding \the [src] to continue!"))
 			return
 		var/chosen_price = tgui_input_number(user, "Set price", "Price", new_custom_price)
-		if(!chosen_price || QDELETED(user) || QDELETED(src) || !user.canUseTopic(src, be_close = TRUE, no_dexterity = FALSE, no_tk = TRUE) || loc != user)
+		if(!chosen_price || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH) || loc != user)
 			return
 		new_custom_price = chosen_price
 		to_chat(user, span_notice("[src] will now give things a [new_custom_price] cr tag."))
@@ -169,10 +169,10 @@
 /obj/item/universal_scanner/proc/export_scan(obj/target, mob/user)
 	// Before you fix it:
 	// yes, checking manifests is a part of intended functionality.
-	var/datum/export_report/ex = export_item_and_contents(target, dry_run = TRUE)
+	var/datum/export_report/report = export_item_and_contents(target, dry_run = TRUE)
 	var/price = 0
-	for(var/x in ex.total_amount)
-		price += ex.total_value[x]
+	for(var/exported_datum in report.total_amount)
+		price += report.total_value[exported_datum]
 	if(price)
 		to_chat(user, span_notice("Scanned [target], value: <b>[price]</b> credits[target.contents.len ? " (contents included)" : ""]."))
 	else
@@ -227,7 +227,7 @@
 /obj/item/barcode
 	name = "barcode tag"
 	desc = "A tiny tag, associated with a crewmember's account. Attach to a wrapped item to give that account a portion of the wrapped item's profit."
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "barcode"
 	w_class = WEIGHT_CLASS_TINY
 	//All values inherited from the sales tagger it came from.

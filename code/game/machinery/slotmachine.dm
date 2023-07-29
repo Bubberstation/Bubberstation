@@ -17,13 +17,14 @@
 /obj/machinery/computer/slot_machine
 	name = "slot machine"
 	desc = "Gambling for the antisocial."
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "slots"
 	icon_keyboard = null
 	icon_screen = "slots_screen"
 	density = TRUE
 	circuit = /obj/item/circuitboard/computer/slot_machine
 	light_color = LIGHT_COLOR_BROWN
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_SET_MACHINE // don't need to be literate to play slots
 	var/money = 3000 //How much money it has CONSUMED
 	var/plays = 0
 	var/working = FALSE
@@ -62,12 +63,12 @@
 		give_payout(balance)
 	return ..()
 
-/obj/machinery/computer/slot_machine/process(delta_time)
+/obj/machinery/computer/slot_machine/process(seconds_per_tick)
 	. = ..() //Sanity checks.
 	if(!.)
 		return .
 
-	money += round(delta_time / 2) //SPESSH MAJICKS
+	money += round(seconds_per_tick / 2) //SPESSH MAJICKS
 
 /obj/machinery/computer/slot_machine/update_icon_state()
 	if(machine_stat & BROKEN)
@@ -126,14 +127,16 @@
 	else
 		return ..()
 
-/obj/machinery/computer/slot_machine/emag_act()
+/obj/machinery/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(4, 0, src.loc)
 	spark_system.start()
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	balloon_alert(user, "machine rigged")
+	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_interact(mob/living/user)
 	. = ..()
@@ -353,11 +356,12 @@
 
 	return amount
 
-#undef SEVEN
-#undef SPIN_TIME
-#undef JACKPOT
 #undef BIG_PRIZE
+#undef COIN
+#undef HOLOCHIP
+#undef JACKPOT
+#undef REEL_DEACTIVATE_DELAY
+#undef SEVEN
 #undef SMALL_PRIZE
 #undef SPIN_PRICE
-#undef HOLOCHIP
-#undef COIN
+#undef SPIN_TIME

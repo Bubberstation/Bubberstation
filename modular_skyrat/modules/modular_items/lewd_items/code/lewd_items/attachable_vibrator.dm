@@ -36,8 +36,8 @@
 /// Creates the designs for the color choice radial menu
 /obj/item/clothing/sextoy/eggvib/proc/populate_vib_designs()
 	vib_designs = list(
-		"pink" = image(icon = src.icon, icon_state = "[initial(icon_state)]_pink_low[(istype(src, /obj/item/clothing/sextoy/eggvib/signalvib)) ? "_on" : ""]"),
-		"teal" = image(icon = src.icon, icon_state = "[initial(icon_state)]_teal_low[(istype(src, /obj/item/clothing/sextoy/eggvib/signalvib)) ? "_on" : ""]"))
+		"pink" = image(icon = src.icon, icon_state = "[initial(base_icon_state)]_pink_low[(istype(src, /obj/item/clothing/sextoy/eggvib/signalvib)) ? "_on" : ""]"),
+		"teal" = image(icon = src.icon, icon_state = "[initial(base_icon_state)]_teal_low[(istype(src, /obj/item/clothing/sextoy/eggvib/signalvib)) ? "_on" : ""]"))
 
 /obj/item/clothing/sextoy/eggvib/AltClick(mob/user)
 	if(!color_changed)
@@ -110,7 +110,7 @@
 			toy_on = FALSE
 			playsound(loc, 'sound/weapons/magout.ogg', 20, TRUE, ignore_walls = FALSE)
 
-/obj/item/clothing/sextoy/eggvib/equipped(mob/living/carbon/human/user, slot, initial)
+/obj/item/clothing/sextoy/eggvib/lewd_equipped(mob/living/carbon/human/user, slot, initial)
 	. = ..()
 	if(!istype(user))
 		return
@@ -121,21 +121,21 @@
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 
-/obj/item/clothing/sextoy/eggvib/process(delta_time)
+/obj/item/clothing/sextoy/eggvib/process(seconds_per_tick)
 	if(!toy_on)
 		return
 	var/mob/living/carbon/human/target = loc
 	if(!istype(target))
 		return
 	if(vibration_mode == "low")
-		target.adjust_arousal(0.5 * delta_time)
-		target.adjust_pleasure(0.5 * delta_time)
+		target.adjust_arousal(0.5 * seconds_per_tick)
+		target.adjust_pleasure(0.5 * seconds_per_tick)
 	if(vibration_mode == "medium")
-		target.adjust_arousal(0.6 * delta_time)
-		target.adjust_pleasure(0.6 * delta_time)
+		target.adjust_arousal(0.6 * seconds_per_tick)
+		target.adjust_pleasure(0.6 * seconds_per_tick)
 	if(vibration_mode == "high")
-		target.adjust_arousal(0.7 * delta_time)
-		target.adjust_pleasure(0.7 * delta_time)
+		target.adjust_arousal(0.7 * seconds_per_tick)
+		target.adjust_pleasure(0.7 * seconds_per_tick)
 
 /*
 *	SIGNALLER CONTROLLED EGG

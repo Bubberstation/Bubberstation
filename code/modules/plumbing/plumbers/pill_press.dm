@@ -13,7 +13,7 @@
 	///maximum size of a patch
 	var/max_patch_volume = 40
 	///maximum size of a bottle
-	var/max_bottle_volume = 30
+	var/max_bottle_volume = 50
 	//SKYRAT EDIT HYPOVIALS maximum size of a vial
 	var/max_vial_volume = 60
 	///current operating product (pills or patches)
@@ -48,7 +48,7 @@
 
 	AddComponent(/datum/component/plumbing/simple_demand, bolt, layer)
 
-/obj/machinery/plumbing/pill_press/process(delta_time)
+/obj/machinery/plumbing/pill_press/process(seconds_per_tick)
 	if(machine_stat & NOPOWER)
 		return
 	if(reagents.total_volume >= current_volume)
@@ -94,7 +94,7 @@
 			stored_products -= AM
 			AM.forceMove(drop_location())
 
-	use_power(active_power_usage * delta_time)
+	use_power(active_power_usage * seconds_per_tick)
 
 /obj/machinery/plumbing/pill_press/proc/load_styles()
 	//expertly copypasted from chemmasters

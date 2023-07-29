@@ -64,7 +64,7 @@
 		UnregisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	return ..()
 
-/datum/wound/blunt/handle_process(delta_time, times_fired)
+/datum/wound/blunt/handle_process(seconds_per_tick, times_fired)
 	. = ..()
 	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group && world.time > next_trauma_cycle)
 		if(active_trauma)
@@ -79,12 +79,12 @@
 
 	regen_ticks_current++
 	if(victim.body_position == LYING_DOWN)
-		if(DT_PROB(30, delta_time))
+		if(SPT_PROB(30, seconds_per_tick))
 			regen_ticks_current += 1
-		if(victim.IsSleeping() && DT_PROB(30, delta_time))
+		if(victim.IsSleeping() && SPT_PROB(30, seconds_per_tick))
 			regen_ticks_current += 1
 
-	if(!is_bone_limb && DT_PROB(severity * 1.5, delta_time))
+	if(!is_bone_limb && SPT_PROB(severity * 1.5, seconds_per_tick))
 		victim.take_bodypart_damage(rand(1, severity * 2), wound_bonus=CANT_WOUND)
 		victim.adjustStaminaLoss(rand(2, severity * 2.5))
 		if(prob(33))
@@ -124,7 +124,7 @@
 		return
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
-		if(NOBLOOD in human_victim.dna?.species.species_traits)
+		if(HAS_TRAIT(human_victim, TRAIT_NOBLOOD))
 			return
 
 	if(limb.body_zone == BODY_ZONE_CHEST && victim.blood_volume && prob(internal_bleeding_chance + wounding_dmg))
@@ -146,13 +146,13 @@
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
 
 
-/datum/wound/blunt/get_examine_description(mob/user)
+/datum/wound/blunt/get_wound_description(mob/user)
 	if(!limb.current_gauze && !gelled && !taped)
 		return ..()
 
 	var/list/msg = list()
 	if(!limb.current_gauze)
-		msg += "[victim.p_their(TRUE)] [limb.plaintext_zone] [examine_desc]"
+		msg += "[victim.p_Their()] [limb.plaintext_zone] [examine_desc]"
 	else
 		var/sling_condition = ""
 		// how much life we have left in these bandages
@@ -166,7 +166,7 @@
 			if(4 to INFINITY)
 				sling_condition = "tightly"
 
-		msg += "[victim.p_their(TRUE)] [limb.plaintext_zone] is [sling_condition] fastened in a sling of [limb.current_gauze.name]"
+		msg += "[victim.p_Their()] [limb.plaintext_zone] is [sling_condition] fastened in a sling of [limb.current_gauze.name]"
 
 	if(taped)
 		msg += ", [span_notice("and appears to be reforming itself under some surgical tape!")]"
@@ -293,12 +293,17 @@
 
 
 /datum/wound/blunt/moderate/treat(obj/item/I, mob/user)
-	if(victim == user)
-		victim.visible_message(span_danger("[user] begins resetting [victim.p_their()] [limb.plaintext_zone] with [I]."), span_warning("You begin resetting your [limb.plaintext_zone] with [I]..."))
-	else
-		user.visible_message(span_danger("[user] begins resetting [victim]'s [limb.plaintext_zone] with [I]."), span_notice("You begin resetting [victim]'s [limb.plaintext_zone] with [I]..."))
+	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
+	var/self_penalty_mult = user == victim ? 1.5 : 1
+	var/scanned_mult = scanned ? 0.5 : 1
+	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
+	if(victim == user)
+		victim.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] resetting [victim.p_their()] [limb.plaintext_zone] with [I]."), span_warning("You begin resetting your [limb.plaintext_zone] with [I][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+	else
+		user.visible_message(span_danger("[user] begins [scanned ? "expertly" : ""] resetting [victim]'s [limb.plaintext_zone] with [I]."), span_notice("You begin resetting [victim]'s [limb.plaintext_zone] with [I][scanned ? ", keeping the holo-image's indications in mind" : ""]..."))
+
+	if(!do_after(user, treatment_delay, target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(victim == user)
@@ -364,7 +369,7 @@
 	regen_ticks_needed = 240 // ticks every 2 seconds, 480 seconds, so roughly 8 minutes default
 
 // doesn't make much sense for "a" bone to stick out of your head
-/datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE, attack_direction = null)
+/datum/wound/blunt/critical/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE, attack_direction = null, wound_source = "Unknown")
 	if(L.body_zone == BODY_ZONE_HEAD)
 		occur_text = "splits open, exposing a bare, cracked skull through the flesh and blood"
 		examine_desc = "has an unsettling indent, with bits of skull poking out"

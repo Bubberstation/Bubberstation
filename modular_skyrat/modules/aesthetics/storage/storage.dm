@@ -86,6 +86,18 @@
 	icon_state = "medbox"
 
 /*
+// Engineering
+*/
+/obj/item/storage/box/metalfoam
+	icon_state = "engibox"
+
+/obj/item/storage/box/smart_metal_foam
+	icon_state = "engibox"
+
+/obj/item/storage/box/material
+	icon_state = "engibox"
+
+/*
 // Security
 */
 /obj/item/storage/box/rubbershot
@@ -100,6 +112,9 @@
 	icon_state = "secbox_xl"
 	illustration = "beanbag"
 
+/obj/item/storage/box/breacherslug
+	icon_state = "secbox_xl"
+	illustration = "breacherslug"
 
 /obj/item/storage/box/evidence
 	icon_state = "secbox"

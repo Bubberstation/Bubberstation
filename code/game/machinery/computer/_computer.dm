@@ -1,6 +1,6 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
 	max_integrity = 200
@@ -131,7 +131,7 @@
 	. = ..()
 	if(!can_interact(user))
 		return
-	if(!user.canUseTopic(src, be_close = !issilicon(user)) || !is_operational)
+	if(!user.can_perform_action(src, ALLOW_SILICON_REACH) || !is_operational)
 		return
 
 /obj/machinery/computer/ui_interact(mob/user, datum/tgui/ui)

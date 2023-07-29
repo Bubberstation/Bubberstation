@@ -21,20 +21,12 @@
 /datum/element/high_fiver/proc/on_offer(obj/item/source, mob/living/carbon/offerer)
 	SIGNAL_HANDLER
 
-	if(locate(/mob/living/carbon) in orange(1, offerer))
-		offerer.visible_message(
-			span_notice("[offerer] raises [offerer.p_their()] arm, looking for a high-five!"),
-			span_notice("You post up, looking for a high-five!"),
-			vision_distance = 2,
-		)
-		offerer.apply_status_effect(/datum/status_effect/offering, source, /atom/movable/screen/alert/give/highfive)
-
-	else
-		offerer.visible_message(
-			span_danger("[offerer] raises [offerer.p_their()] arm, looking around for a high-five, but there's no one around!"),
-			span_warning("You post up, looking for a high-five, but find no one to accept it..."),
-			vision_distance = 4,
-		)
+	offerer.visible_message(
+		span_notice("[offerer] raises [offerer.p_their()] arm, looking for a high-five!"),
+		span_notice("You post up, looking for a high-five!"),
+		vision_distance = 2,
+	)
+	offerer.apply_status_effect(/datum/status_effect/offering/no_item_received/high_five, source, /atom/movable/screen/alert/give/highfive)
 
 	return COMPONENT_OFFER_INTERRUPT
 
@@ -63,8 +55,8 @@
 		return COMPONENT_OFFER_INTERRUPT
 
 	playsound(offerer, 'sound/weapons/slap.ogg', min(50 * slappers_giver, 300), TRUE, 1)
-	offerer.mind.add_memory(MEMORY_HIGH_FIVE, list(DETAIL_DEUTERAGONIST = taker, DETAIL_HIGHFIVE_TYPE = descriptor), story_value = STORY_VALUE_OKAY)
-	taker.mind.add_memory(MEMORY_HIGH_FIVE, list(DETAIL_DEUTERAGONIST = offerer, DETAIL_HIGHFIVE_TYPE = descriptor), story_value = STORY_VALUE_OKAY)
+	offerer.add_mob_memory(/datum/memory/high_five, deuteragonist = taker, high_five_type = descriptor, high_ten = high_ten)
+	taker.add_mob_memory(/datum/memory/high_five, deuteragonist = offerer, high_five_type = descriptor, high_ten = high_ten)
 
 	if(high_ten)
 		to_chat(taker, span_nicegreen("You give high-tenning [offerer] your all!"))
@@ -89,4 +81,5 @@
 		offerer.add_mood_event(descriptor, /datum/mood_event/high_five)
 		taker.add_mood_event(descriptor, /datum/mood_event/high_five)
 
+	offerer.remove_status_effect(/datum/status_effect/offering/no_item_received/high_five)
 	return COMPONENT_OFFER_INTERRUPT

@@ -5,7 +5,7 @@
 	suicide_cry = "FOR MYSELF!!"
 	var/greet_message = ""
 
-/datum/antagonist/survivalist/proc/forge_objectives()
+/datum/antagonist/survivalist/forge_objectives()
 	var/datum/objective/survive/survive = new
 	survive.owner = owner
 	objectives += survive
@@ -42,3 +42,11 @@
 	magic.owner = owner
 	objectives += magic
 	..()
+
+/datum/antagonist/survivalist/magic/on_gain()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_MAGICALLY_GIFTED, REF(src))
+
+/datum/antagonist/survivalist/magic/on_removal()
+	REMOVE_TRAIT(owner, TRAIT_MAGICALLY_GIFTED, REF(src))
+	return..()

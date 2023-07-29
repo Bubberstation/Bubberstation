@@ -137,11 +137,11 @@
 	them.visible_message(span_warning("[user] starts tying [them]'s groin!"),\
 		span_userdanger("[user] starts tying your groin!"),\
 		span_hear("You hear ropes being tightened."))
-	if(!do_mob(user, them, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60))
+	if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60, them))
 		return
 	var/obj/item/stack/shibari_rope/split_rope = null
 	var/slow = 0
-	if(them.dna.species.bodytype & BODYTYPE_TAUR)
+	if(them.bodytype & BODYTYPE_TAUR)
 		split_rope = split_stack(null, 2)
 		slow = 4
 	else
@@ -173,7 +173,7 @@
 	them.visible_message(span_warning("[user] starts tying [them]'s chest!"),\
 		span_userdanger("[user] starts tying your chest!"),\
 		span_hear("You hear ropes being tightened."))
-	if(!do_mob(user, them, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60))
+	if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60, them))
 		return
 	var/obj/item/stack/shibari_rope/split_rope = split_stack(null, 1)
 	if(split_rope)
@@ -197,7 +197,7 @@
 	them.visible_message(span_warning("[user] starts tying [them]'s hands!"),\
 		span_userdanger("[user] starts tying your hands!"),\
 		span_hear("You hear ropes being tightened."))
-	if(!do_mob(user, them, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60))
+	if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60, them))
 		return
 	var/obj/item/stack/shibari_rope/split_rope = split_stack(null, 1)
 	if(split_rope)
@@ -218,13 +218,13 @@
 	if(them.shoes)
 		to_chat(user, span_warning("They're already wearing something on this slot!"))
 		return
-	if(them.dna.species.bodytype & BODYTYPE_TAUR)
+	if(them.bodytype & BODYTYPE_TAUR)
 		to_chat(user, span_warning("You can't tie their feet, they're a taur!"))
 		return
 	them.visible_message(span_warning("[user] starts tying [them]'s feet!"),\
 		span_userdanger("[user] starts tying your feet!"),\
 		span_hear("You hear ropes being tightened."))
-	if(!do_mob(user, them, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60))
+	if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60, them))
 		return
 	var/obj/item/stack/shibari_rope/split_rope = split_stack(null, 1)
 	if(split_rope)
@@ -247,10 +247,10 @@
 			them.visible_message(span_warning("[user] starts tying [them]'s chest!"),\
 				span_userdanger("[user] starts tying your chest!"),\
 				span_hear("You hear ropes being tightened."))
-			if(!do_mob(user, them, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60))
+			if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60, them))
 				return
 			var/slow = 0
-			if(them.dna.species.bodytype & BODYTYPE_TAUR)
+			if(them.bodytype & BODYTYPE_TAUR)
 				slow = 4
 			var/obj/item/stack/shibari_rope/split_rope = split_stack(null, 1)
 			if(split_rope)
@@ -279,11 +279,11 @@
 			them.visible_message(span_warning("[user] starts tying [them]'s groin!"),\
 				span_userdanger("[user] starts tying your groin!"),\
 				span_hear("You hear ropes being tightened."))
-			if(!do_mob(user, them, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60))
+			if(!do_after(user, HAS_TRAIT(user, TRAIT_RIGGER) ? 20 : 60, them))
 				return
 			var/obj/item/stack/shibari_rope/split_rope = null
 			var/slow = 0
-			if(them.dna.species.bodytype & BODYTYPE_TAUR)
+			if(them.bodytype & BODYTYPE_TAUR)
 				split_rope = split_stack(null, 2)
 				slow = 4
 			else

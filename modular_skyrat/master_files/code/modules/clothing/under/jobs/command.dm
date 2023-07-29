@@ -43,11 +43,12 @@
 	desc = "A classic bodyguard's suit, with custom-fitted Blueshield-Blue cuffs and a Nanotrasen insignia over one of the pockets."
 	icon_state = "blueshield"
 	strip_delay = 50
-	armor_type = /datum/armor/rank_blueshield
+	armor_type = /datum/armor/clothing_under/rank_blueshield
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
+	alt_covers_chest = TRUE
 
-/datum/armor/rank_blueshield
+/datum/armor/clothing_under/rank_blueshield
 	melee = 10
 	bullet = 5
 	laser = 5
@@ -64,6 +65,7 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/rank/blueshield/turtleneck
 	name = "blueshield's turtleneck"
@@ -78,6 +80,7 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 /*
 *	NT CONSULTANT
@@ -102,6 +105,7 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
 
 /*
 *	UNASSIGNED (Any head of staff)
@@ -114,7 +118,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
-	armor_type = /datum/armor/utility_syndicate
+	armor_type = /datum/armor/clothing_under/utility_syndicate
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/rank/captain/skyrat/imperial/generic

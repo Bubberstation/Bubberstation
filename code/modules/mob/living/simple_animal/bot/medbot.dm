@@ -33,6 +33,7 @@
 	data_hud_type = DATA_HUD_MEDICAL_ADVANCED
 	hackables = "health processor circuits"
 	path_image_color = "#DDDDFF"
+	possessed_message = "You are a medbot! Ensure good health among the crew to the best of your ability!"
 
 	/// drop determining variable
 	var/healthanalyzer = /obj/item/healthanalyzer
@@ -71,7 +72,7 @@
 	COOLDOWN_DECLARE(last_tipping_action_voice)
 
 /mob/living/simple_animal/bot/medbot/autopatrol
-	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_PAI_CONTROLLABLE
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT
 
 /mob/living/simple_animal/bot/medbot/stationary
 	medical_mode_flags = MEDBOT_DECLARE_CRIT | MEDBOT_STATIONARY_MODE | MEDBOT_SPEAK_MODE
@@ -137,7 +138,7 @@
 
 	skin = new_skin
 	update_appearance()
-	if(!CONFIG_GET(flag/no_default_techweb_link))
+	if(!CONFIG_GET(flag/no_default_techweb_link) && !linked_techweb)
 		linked_techweb = SSresearch.science_tech
 
 	AddComponent(/datum/component/tippable, \
@@ -226,18 +227,18 @@
 	if(health < current_health) //if medbot took some damage
 		step_to(src, (get_step_away(src,user)))
 
-/mob/living/simple_animal/bot/medbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/medbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(!(bot_cover_flags & BOT_COVER_EMAGGED))
 		return
 	medical_mode_flags &= ~MEDBOT_DECLARE_CRIT
-	if(user)
-		to_chat(user, span_notice("You short out [src]'s reagent synthesis circuits."))
+	balloon_alert(user, "reagent synthesis circuits shorted")
 	audible_message(span_danger("[src] buzzes oddly!"))
 	flick("medibot_spark", src)
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	if(user)
 		oldpatient = user
+	return TRUE
 
 /mob/living/simple_animal/bot/medbot/process_scan(mob/living/carbon/human/H)
 	if(H.stat == DEAD)
@@ -374,7 +375,14 @@
 				)
 				playsound(src, pick(i_need_scissors), 70)
 			else
-				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
+				var/static/list/messagevoice = list(
+					"Delicious!" = 'sound/voice/medbot/delicious.ogg',
+					"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',
+					"Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',
+					"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',
+					"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',
+					"Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg',
+				)
 				var/message = pick(messagevoice)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
@@ -436,7 +444,7 @@
 	if(!(loc == C.loc) && !(isturf(C.loc) && isturf(loc)))
 		return FALSE
 
-	if(C.suiciding)
+	if(HAS_TRAIT_FROM_ONLY(C, TRAIT_SUICIDED, REF(C)))
 		return FALSE //Kevorkian school of robotic medical assistants.
 
 	if(bot_cover_flags & BOT_COVER_EMAGGED) //Everyone needs our medicine. (Our medicine is toxins)
@@ -554,7 +562,7 @@
 			C.visible_message(span_danger("[src] is trying to tend the wounds of [patient]!"), \
 				span_userdanger("[src] is trying to tend your wounds!"))
 
-			if(do_mob(src, patient, 10 SECONDS)) //SKYRAT EDIT: Increased time as tradeoff for automated healing. ORIGINAL: if(do_mob(src, patient, 20))
+			if(do_after(src, 10 SECONDS, patient)) //SKYRAT EDIT: Increased time as tradeoff for automated healing. ORIGINAL: if(do_after(src, 2 SECONDS, patient))
 				if((get_dist(src, patient) <= 1) && (bot_mode_flags & BOT_MODE_ON) && assess_patient(patient))
 					var/healies = heal_amount
 					var/obj/item/storage/medkit/medkit = medkit_type

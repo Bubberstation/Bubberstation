@@ -52,8 +52,8 @@
 */
 /obj/item/clothing/suit/armor/vest/blueshirt/skyrat
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi' //ORION TODO: deptguard vests need to be moved to a plain vest/skyrat subtype when suits.dmi gets split on our side
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi' //(Above) sci guard will get just the original blueshirt vest when that happens
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	unique_reskin = null
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
@@ -86,11 +86,12 @@
 */
 /obj/item/clothing/head/helmet/blueshirt/skyrat
 	//Effectively the same as TG's blueshirt, including icon. The /skyrat path makes it easier for sorting.
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi' //ORION TODO: same as vests; needs to be moved to a plain helmet/skyrat when the hats.dmi is split
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi' //Sci guard will get the plain TG version of this item too
+	//The base one is used for science guards, and the sprite is unchanged
 	unique_reskin = null
 
 /obj/item/clothing/head/helmet/blueshirt/skyrat/guard //Version of the blueshirt helmet without a blue line. Used by all dept guards right now.
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "mallcop_helm"
 	worn_icon_state = "mallcop_helm"
 
@@ -144,7 +145,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 
 /obj/effect/landmark/start/bouncer
-	name = "Bouncer"
+	name = "Service Guard"
 	icon_state = "Bouncer"
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 
@@ -214,7 +215,6 @@
 	trim_state = "trim_calhoun"
 	department_color = COLOR_SCIENCE_PINK
 	subdepartment_color = COLOR_SCIENCE_PINK
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_SCIENCE_GUARD
 	extra_access = list(
 		ACCESS_AUX_BASE,
@@ -319,7 +319,6 @@
 	trim_state = "trim_orderly"
 	department_color = COLOR_MEDICAL_BLUE
 	subdepartment_color = COLOR_MEDICAL_BLUE
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_ORDERLY
 	extra_access = list(
 		ACCESS_BRIG_ENTRANCE,
@@ -417,7 +416,6 @@
 	trim_state = "trim_engiguard"
 	department_color = COLOR_ENGINEERING_ORANGE
 	subdepartment_color = COLOR_ENGINEERING_ORANGE
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_ENGINEERING_GUARD
 	extra_access = list(
 		ACCESS_ATMOSPHERICS,
@@ -521,7 +519,6 @@
 	trim_state = "trim_customs"
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
-	orbit_icon = "shield-heart"
 	sechud_icon_state = SECHUD_CUSTOMS_AGENT
 	extra_access = list(
 		ACCESS_BRIG_ENTRANCE,
@@ -617,12 +614,12 @@
 	assignment = "Bouncer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_bouncer"
-	orbit_icon = "shield-heart"
 	department_color = COLOR_SERVICE_LIME
 	subdepartment_color = COLOR_SERVICE_LIME // Personally speaking I'd have one of these with sec colors but I'm being authentic
 	sechud_icon_state = SECHUD_BOUNCER
 	extra_access = list(
 		ACCESS_BAR,
+		ACCESS_SERVICE,
 		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
@@ -634,6 +631,7 @@
 	)
 	minimal_access = list(
 		ACCESS_BAR,
+		ACCESS_SERVICE,
 		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
@@ -696,7 +694,10 @@
 							span_hear("You hear a faint electrical spark."))
 		balloon_alert(user, "emagged")
 		playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+		obj_flags |= EMAGGED
 		emagged = TRUE
+		return TRUE
+	return FALSE
 
 /obj/item/melee/baton/security/loaded/departmental/medical
 	name = "medical stun baton"
@@ -734,6 +735,54 @@
 	icon_state = "prison_baton"
 	valid_areas = list(/area/station/security/prison, /area/station/security/processing, /area/shuttle/escape)
 
+/datum/supply_pack/security/baton_prison
+	name = "Prison Baton Crate"
+	desc = "Contains an extra baton for Corrections Officers. \
+		Just in case you hated the idea of a normal baton in their hands."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/prison)
+
+/datum/supply_pack/service/baton_service
+	name = "Service Baton Crate"
+	desc = "Contains an extra baton for Service Guards."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/service)
+
+/datum/supply_pack/medical/baton_medical
+	name = "Medical Baton Crate"
+	desc = "Contains an extra baton for Orderlies."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/medical)
+
+/datum/supply_pack/engineering/baton_engineering
+	name = "Engineering Baton Crate"
+	desc = "Contains an extra baton for Engineering Guards."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/engineering)
+
+/datum/supply_pack/science/baton_science
+	name = "Science Baton Crate"
+	desc = "Contains an extra baton for Science Guards."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/science)
+
+/datum/supply_pack/misc/baton_cargo
+	name = "Cargo Baton Crate"
+	desc = "Contains an extra baton for Customs Agents."
+	cost = CARGO_CRATE_VALUE * 2
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/melee/baton/security/loaded/departmental/cargo)
 /*
 * Garment Bags
 */

@@ -75,7 +75,7 @@
 
 /mob/living/simple_animal/hostile/mining_drone/examine(mob/user)
 	. = ..()
-	var/t_He = p_they(TRUE)
+	var/t_He = p_They()
 	var/t_him = p_them()
 	var/t_s = p_s()
 	if(health < maxHealth)
@@ -208,12 +208,16 @@
 	var/mob/living/simple_animal/hostile/mining_drone/user = owner
 	if(user.sight & SEE_TURFS)
 		user.clear_sight(SEE_TURFS)
-		user.lighting_alpha = initial(user.lighting_alpha)
+		user.lighting_cutoff_red += 5
+		user.lighting_cutoff_green += 15
+		user.lighting_cutoff_blue += 5
 	else
 		user.add_sight(SEE_TURFS)
-		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		user.lighting_cutoff_red -= 5
+		user.lighting_cutoff_green -= 15
+		user.lighting_cutoff_blue -= 5
 
-	user.sync_lighting_plane_alpha()
+	user.sync_lighting_plane_cutoff()
 
 	to_chat(user, span_notice("You toggle your meson vision [(user.sight & SEE_TURFS) ? "on" : "off"]."))
 
@@ -269,7 +273,7 @@
 	name = "minebot melee upgrade"
 	desc = "A minebot upgrade."
 	icon_state = "door_electronics"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/assemblies/module.dmi'
 
 /obj/item/mine_bot_upgrade/afterattack(mob/living/simple_animal/hostile/mining_drone/minebot, mob/user, proximity)
 	. = ..()
@@ -306,7 +310,7 @@
 	name = "minebot AI upgrade"
 	desc = "Can be used to grant sentience to minebots. It's incompatible with minebot armor and melee upgrades, and will override them."
 	icon_state = "door_electronics"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/assemblies/module.dmi'
 	sentience_type = SENTIENCE_MINEBOT
 	var/base_health_add = 5 //sentient minebots are penalized for beign sentient; they have their stats reset to normal plus these values
 	var/base_damage_add = 1 //this thus disables other minebot upgrades

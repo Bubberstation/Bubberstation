@@ -1,7 +1,7 @@
 /obj/structure/frame
 	name = "frame"
 	desc = "A generic looking construction frame. One day this will be something greater."
-	icon = 'icons/obj/stock_parts.dmi'
+	icon = 'icons/obj/assemblies/stock_parts.dmi'
 	icon_state = "box_0"
 	density = TRUE
 	max_integrity = 250
@@ -231,6 +231,14 @@
 				state = 2
 				circuit.forceMove(drop_location())
 				components.Remove(circuit)
+				//spawn stack components from the circuitboards requested components since they no longer exist inside components
+				for(var/component in circuit.req_components)
+					if(!ispath(component, /obj/item/stack))
+						continue
+					var/obj/item/stack/stack_path = component
+					var/stack_amount = circuit.req_components[component] - req_components[component]
+					if(stack_amount > 0)
+						new stack_path(drop_location(), stack_amount)
 				circuit = null
 				if(components.len == 0)
 					to_chat(user, span_notice("You remove the circuit board."))
@@ -268,7 +276,6 @@
 							new_machine.circuit.moveToNullspace()
 							QDEL_NULL(new_machine.circuit)
 						for(var/obj/old_part in new_machine.component_parts)
-							// Move to nullspace and delete.
 							old_part.moveToNullspace()
 							qdel(old_part)
 
@@ -284,7 +291,7 @@
 
 						//Inform machine that its finished & cleanup
 						new_machine.RefreshParts()
-						new_machine.on_construction()
+						new_machine.on_construction(user)
 						components = null
 					qdel(src)
 				return
@@ -298,9 +305,8 @@
 					return
 
 				var/obj/item/storage/part_replacer/replacer = P
-				var/list/added_components = list()
+				var/play_sound = FALSE
 				var/list/part_list = replacer.get_sorted_parts() //parts sorted in order of tier
-
 				for(var/path in req_components)
 					var/target_path
 					if(ispath(path, /datum/stock_part))
@@ -310,39 +316,30 @@
 						target_path = path
 
 					var/obj/item/part
-					while(req_components[path] > 0 && (part = locate(target_path) in part_list))
+					while(req_components[path] > 0 && (part = look_for(part_list, target_path, ispath(path, /obj/item/stack/ore/bluespace_crystal) ? /obj/item/stack/sheet/bluespace_crystal : null)))
 						part_list -= part
 						if(istype(part,/obj/item/stack))
 							var/obj/item/stack/S = part
 							var/used_amt = min(round(S.get_amount()), req_components[path])
+							var/stack_name = S.singular_name
 							if(!used_amt || !S.use(used_amt))
 								continue
-							var/NS = new S.merge_type(src, used_amt)
-							added_components[NS] = path
 							req_components[path] -= used_amt
-						else
-							added_components[part] = path
-							if(replacer.atom_storage.attempt_remove(part, src))
-								req_components[path]--
+							to_chat(user, span_notice("You add [used_amt] [stack_name] to [src]."))
+							play_sound = TRUE
+						else if(replacer.atom_storage.attempt_remove(part, src))
+							var/stock_part_datum = GLOB.stock_part_datums_per_object[part.type]
+							if (!isnull(stock_part_datum))
+								components += stock_part_datum
+								qdel(part)
+							else
+								components += part
+								part.forceMove(src)
+							req_components[path]--
+							to_chat(user, span_notice("You add [part] to [src]."))
+							play_sound = TRUE
 
-				for(var/obj/item/part in added_components)
-					if(istype(part,/obj/item/stack))
-						var/obj/item/stack/incoming_stack = part
-						for(var/obj/item/stack/merge_stack in components)
-							if(incoming_stack.can_merge(merge_stack))
-								incoming_stack.merge(merge_stack)
-								if(QDELETED(incoming_stack))
-									break
-					if(!QDELETED(part)) //If we're a stack and we merged we might not exist anymore
-						var/stock_part_datum = GLOB.stock_part_datums_per_object[part.type]
-						if (!isnull(stock_part_datum))
-							components += stock_part_datum
-							qdel(part)
-						else
-							components += part
-							part.forceMove(src)
-					to_chat(user, span_notice("You add [part] to [src]."))
-				if(added_components.len)
+				if(play_sound)
 					replacer.play_rped_sound()
 				return
 
@@ -352,31 +349,25 @@
 
 				var/stock_part_path
 
-				if (ispath(stock_part_base, /obj/item))
+				if(ispath(stock_part_base, /obj/item))
 					stock_part_path = stock_part_base
-				else if (ispath(stock_part_base, /datum/stock_part))
+				else if(ispath(stock_part_base, /datum/stock_part))
 					var/datum/stock_part/stock_part_datum_type = stock_part_base
 					stock_part_path = initial(stock_part_datum_type.physical_object_type)
 				else
 					stack_trace("Bad stock part in req_components: [stock_part_base]")
 					continue
 
-				if (!istype(P, stock_part_path))
+				//if we require an bluespace crystall and we have an full sheet of them we can allow that
+				if(ispath(stock_part_path, /obj/item/stack/ore/bluespace_crystal) && istype(P, /obj/item/stack/sheet/bluespace_crystal))
+					//allow it
+				else if(!istype(P, stock_part_path))
 					continue
 
 				if(isstack(P))
 					var/obj/item/stack/S = P
 					var/used_amt = min(round(S.get_amount()), req_components[stock_part_path])
-
 					if(used_amt && S.use(used_amt))
-						var/obj/item/stack/NS = locate(S.merge_type) in components
-
-						if(!NS)
-							NS = new S.merge_type(src, used_amt)
-							components += NS
-						else
-							NS.add(used_amt)
-
 						req_components[stock_part_path] -= used_amt
 						to_chat(user, span_notice("You add [P] to [src]."))
 					return
@@ -413,6 +404,18 @@
 			return FALSE
 	if(user.combat_mode)
 		return ..()
+
+/// returns instance of path1 in list else path2 in list
+/obj/structure/frame/machine/proc/look_for(list/parts, path1, path2 = null)
+	//look for path1 in list
+	var/part = locate(path1) in parts
+	if(!isnull(part))
+		return part
+
+	//optional look for path2 in list
+	if(!isnull(path2))
+		part = locate(path2) in parts
+	return part
 
 /obj/structure/frame/machine/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

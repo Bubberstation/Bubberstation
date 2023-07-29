@@ -45,7 +45,7 @@
 		. = TRUE
 
 	// Handling nearsightnedness
-	if(. && is_nearsighted())
+	if(. && is_nearsighted_currently())
 		if((rel_x >= NEARSIGHTNESS_FOV_BLINDNESS || rel_x <= -NEARSIGHTNESS_FOV_BLINDNESS) || (rel_y >= NEARSIGHTNESS_FOV_BLINDNESS || rel_y <= -NEARSIGHTNESS_FOV_BLINDNESS))
 			return FALSE
 
@@ -57,6 +57,8 @@
 		if(fov_type > highest_fov)
 			highest_fov = fov_type
 	fov_view = highest_fov
+	if(HAS_TRAIT(src, TRAIT_EXPANDED_FOV))
+		fov_view += 30
 	update_fov_client()
 
 /// Updates the FOV for the client.

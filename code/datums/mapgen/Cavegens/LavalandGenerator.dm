@@ -3,7 +3,7 @@
 	weighted_closed_turf_types = list(/turf/closed/mineral/random/volcanic = 1)
 
 	weighted_mob_spawn_list = list(
-		/mob/living/simple_animal/hostile/asteroid/goliath/beast/random = 50,
+		/mob/living/basic/mining/goliath/random = 50,
 		/obj/structure/spawner/lavaland/goliath = 3,
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 40,
 		/obj/structure/spawner/lavaland = 2,
@@ -39,3 +39,7 @@
 	smoothing_iterations = 50
 	birth_limit = 4
 	death_limit = 3
+
+/datum/map_generator/cave_generator/lavaland/ruin_version
+	weighted_open_turf_types = list(/turf/open/misc/asteroid/basalt/lava_land_surface/no_ruins = 1)
+	weighted_closed_turf_types = list(/turf/closed/mineral/random/volcanic/do_not_chasm = 1)

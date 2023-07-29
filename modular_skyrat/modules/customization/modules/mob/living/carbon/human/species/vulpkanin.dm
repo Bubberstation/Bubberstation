@@ -1,30 +1,23 @@
 /datum/species/vulpkanin
 	name = "Vulpkanin"
 	id = SPECIES_VULP
-	species_traits = list(
-		MUTCOLORS,
-		EYECOLOR,
-		LIPS,
-		HAIR,
-		FACEHAIR,
-	)
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_LITERATE,
+		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
+	mutanttongue = /obj/item/organ/internal/tongue/vulpkanin
 	default_mutant_bodyparts = list(
 		"tail" = ACC_RANDOM,
 		"snout" = ACC_RANDOM,
 		"ears" = ACC_RANDOM,
 		"legs" = "Normal Legs"
 	)
-	liked_food = RAW | MEAT
-	disliked_food = CLOTH
-	toxic_food = TOXIC
+	species_language_holder = /datum/language_holder/vulpkanin
 	payday_modifier = 0.75
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_MAMMAL
@@ -36,6 +29,13 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
+
+
+/obj/item/organ/internal/tongue/vulpkanin
+	liked_foodtypes = RAW | MEAT
+	disliked_foodtypes = CLOTH
+	toxic_foodtypes = TOXIC
+
 
 /datum/species/vulpkanin/randomize_features(mob/living/carbon/human/human_mob)
 	var/main_color
@@ -70,6 +70,7 @@
 		markings = assemble_body_markings_from_set(BMS, passed_features, src)
 	return markings
 
+/*	Runtime in vulpkanin.dm,78: pick() from empty list
 /datum/species/vulpkanin/random_name(gender,unique,lastname)
 	var/randname
 	if(gender == MALE)
@@ -83,9 +84,23 @@
 		randname += " [pick(GLOB.last_names_vulp)]"
 
 	return randname
+*/
 
 /datum/species/vulpkanin/get_species_description()
 	return placeholder_description
 
 /datum/species/vulpkanin/get_species_lore()
 	return list(placeholder_lore)
+
+/datum/species/vulpkanin/prepare_human_for_preview(mob/living/carbon/human/vulp)
+	var/main_color = "#FF8800"
+	var/second_color = "#FFFFFF"
+
+	vulp.dna.features["mcolor"] = main_color
+	vulp.dna.features["mcolor2"] = second_color
+	vulp.dna.features["mcolor3"] = second_color
+	vulp.dna.mutant_bodyparts["snout"] = list(MUTANT_INDEX_NAME = "Mammal, Long", MUTANT_INDEX_COLOR_LIST = list(main_color, main_color, main_color))
+	vulp.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Husky", MUTANT_INDEX_COLOR_LIST = list(second_color, main_color, main_color))
+	vulp.dna.mutant_bodyparts["ears"] = list(MUTANT_INDEX_NAME = "Wolf", MUTANT_INDEX_COLOR_LIST = list(main_color, second_color, second_color))
+	regenerate_organs(vulp, src, visual_only = TRUE)
+	vulp.update_body(TRUE)

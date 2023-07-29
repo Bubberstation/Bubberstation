@@ -70,7 +70,7 @@
 	name = "Birthday cake"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
-		/obj/item/candle = 1,
+		/obj/item/flashlight/flare/candle = 1,
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/consumable/caramel = 2
 	)
@@ -247,4 +247,13 @@
 		/obj/item/food/grown/plum = 2
 	)
 	result = /obj/item/food/cake/plum
+	category = CAT_CAKE
+
+/datum/crafting_recipe/food/weddingcake
+	name = "Wedding cake"
+	reqs = list(
+		/obj/item/food/cake/plain = 4,
+		/datum/reagent/consumable/sugar = 120,
+	)
+	result = /obj/item/food/cake/wedding
 	category = CAT_CAKE
