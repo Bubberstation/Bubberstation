@@ -7,3 +7,8 @@
 	name = "Long Rubber Gloves"
 	item_path = /obj/item/clothing/gloves/longrubbergloves
 	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
+
+/datum/loadout_item/gloves/aerostatic_gloves
+	name = "Aerostatic Gloves"
+	item_path = /obj/item/clothing/gloves/aerostaticgloves
+
