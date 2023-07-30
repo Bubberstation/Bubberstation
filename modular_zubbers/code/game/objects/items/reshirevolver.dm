@@ -44,3 +44,5 @@
 	. = ..()
 	new /obj/item/gun/ballistic/revolver/hos_revolver(src)
 	new /obj/item/storage/bag/b460reloadpouch(src)
+
+#undef AMMO_GIVEN_ON_START
