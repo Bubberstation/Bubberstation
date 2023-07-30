@@ -1,7 +1,6 @@
 /obj/item/gun/ballistic/revolver/hos_revolver
 	name = "\improper HR-460MS 'Tracker'"
 	desc = "A brutally effectve revolver by Romulus officers prior to destruction of the planet, if the initial damage did not kill, the bleedout would. Uses the brutal .460 Rowland ammo."
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi'
 	icon_state = "tracker"
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
