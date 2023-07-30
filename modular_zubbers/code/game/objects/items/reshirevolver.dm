@@ -1,3 +1,5 @@
+#define AMMO_GIVEN_ON_START 24
+
 /obj/item/gun/ballistic/revolver/hos_revolver
 	name = "\improper HR-460MS 'Tracker'"
 	desc = "A brutally effectve revolver by Romulus officers prior to destruction of the planet, if the initial damage did not kill, the bleedout would. Uses the brutal .460 Rowland ammo."
@@ -35,30 +37,8 @@
 
 /obj/item/storage/bag/b460reloadpouch/PopulateContents()
 	. = ..()
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
-	new /obj/item/ammo_casing/b460(src)
+	for(var/i in 1 to AMMO_GIVEN_ON_START)
+		new /obj/item/ammo_casing/b460(src)
 
 /obj/item/storage/box/gunset/hos_revolver/PopulateContents()
 	. = ..()
