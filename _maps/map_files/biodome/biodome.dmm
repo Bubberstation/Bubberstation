@@ -1917,6 +1917,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
+"aGy" = (
+/obj/structure/sign/poster/official/space_cops/directional/north,
+/turf/open/floor/iron/smooth_half,
+/area/station/security/lockers)
 "aGA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -2333,6 +2337,8 @@
 	c_tag = "Security - Locker Room"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/rack,
+/obj/machinery/syndicatebomb/training,
 /turf/open/floor/iron/smooth_half,
 /area/station/security/lockers)
 "aNE" = (
@@ -3594,9 +3600,8 @@
 /turf/open/floor/iron/stairs/left,
 /area/station/biodome/fore)
 "bks" = (
-/obj/machinery/light/directional/west,
 /obj/structure/cable,
-/turf/open/floor/iron/smooth_half,
+/turf/open/floor/iron/smooth_large,
 /area/station/security/lockers)
 "bkB" = (
 /obj/machinery/door/airlock/atmos/glass{
@@ -9506,6 +9511,10 @@
 "dmA" = (
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
+"dmD" = (
+/obj/effect/turf_decal/tile/red/full,
+/turf/open/floor/iron/dark/smooth_half,
+/area/station/security/office)
 "dmQ" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
@@ -16235,8 +16244,7 @@
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/aft)
 "fBz" = (
-/obj/structure/rack,
-/obj/machinery/syndicatebomb/training,
+/obj/machinery/vending/wardrobe/sec_wardrobe/red,
 /turf/open/floor/iron/smooth_half,
 /area/station/security/lockers)
 "fBH" = (
@@ -20997,10 +21005,11 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "hmh" = (
-/obj/structure/sign/poster/official/space_cops/directional/north,
-/obj/structure/cable,
-/turf/open/floor/iron/smooth_half,
-/area/station/security/lockers)
+/obj/structure/extinguisher_cabinet/directional/south,
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner,
+/turf/open/floor/iron/smooth_large,
+/area/station/security/brig)
 "hml" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -33063,10 +33072,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "lxV" = (
+/obj/machinery/light/directional/south,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
 	},
-/obj/machinery/light/directional/south,
 /obj/effect/turf_decal/trimline/red/filled/mid_joiner,
 /turf/open/floor/iron/smooth_half,
 /area/station/security/brig)
@@ -36092,6 +36101,13 @@
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
+"mvy" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Equipment Room"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/turf/open/floor/iron/dark/smooth_half,
+/area/station/security/office)
 "mvF" = (
 /obj/item/shovel,
 /turf/open/misc/beach/sand,
@@ -39234,6 +39250,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
+"nAb" = (
+/obj/structure/closet/secure_closet/security/sec,
+/obj/structure/cable,
+/turf/open/floor/iron/smooth_half,
+/area/station/security/lockers)
 "nAj" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 8
@@ -47059,7 +47080,6 @@
 /area/station/service/lawoffice)
 "qlT" = (
 /obj/machinery/firealarm/directional/north,
-/obj/structure/cable,
 /turf/open/floor/iron/smooth_half,
 /area/station/security/lockers)
 "qlZ" = (
@@ -47400,10 +47420,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
 "qrF" = (
-/obj/structure/extinguisher_cabinet/directional/south,
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/effect/turf_decal/trimline/red/filled/mid_joiner,
-/turf/open/floor/iron/smooth_half,
+/turf/closed/wall,
 /area/station/security/brig)
 "qrH" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -51524,6 +51541,7 @@
 "rLd" = (
 /obj/structure/closet/secure_closet/security/sec,
 /obj/machinery/airalarm/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/iron/smooth_half,
 /area/station/security/lockers)
 "rLe" = (
@@ -177980,7 +177998,7 @@ iwf
 wnV
 fpE
 tgi
-oKs
+qrF
 egm
 xhx
 auM
@@ -178236,9 +178254,9 @@ iwf
 iwf
 rWr
 fpE
-smW
+hmh
 qrF
-egm
+dmD
 fht
 skK
 dgf
@@ -178493,9 +178511,9 @@ plE
 cEF
 xbr
 gAM
-smW
 oKs
-egm
+uox
+mvy
 hUJ
 vTi
 vTi
@@ -178750,10 +178768,10 @@ dUY
 taA
 dUY
 dUY
-dUY
 lxV
 uox
-hmh
+aGy
+eZQ
 vTi
 fby
 cMB
@@ -179009,8 +179027,8 @@ cxC
 kIj
 uox
 uox
-uox
 qlT
+eZQ
 vTi
 fnb
 aRh
@@ -179265,9 +179283,9 @@ eIp
 qgI
 vdm
 uox
-nsD
+nAb
 bks
-eZQ
+bks
 vTi
 dAV
 fFr
@@ -179522,7 +179540,7 @@ cWD
 cnA
 gEQ
 uox
-upW
+nsD
 doc
 cwu
 vTi
