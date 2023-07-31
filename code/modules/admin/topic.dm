@@ -197,7 +197,7 @@
 		if(tgui_alert(usr, "This will end the round, are you SURE you want to do this?", "Confirmation", list("Yes", "No")) == "Yes")
 			if(tgui_alert(usr, "Final Confirmation: End the round NOW?", "Confirmation", list("Yes", "No")) == "Yes")
 				message_admins(span_adminnotice("[key_name_admin(usr)] has ended the round."))
-				SSticker.force_ending = TRUE //Yeah there we go APC destroyed mission accomplished
+				SSticker.force_ending = ADMIN_FORCE_END_ROUND //Yeah there we go APC destroyed mission accomplished
 				return
 			else
 				message_admins(span_adminnotice("[key_name_admin(usr)] decided against ending the round."))
@@ -1456,6 +1456,9 @@
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
 
 	else if(href_list["centcomlookup"])
+		if(href_list) // BUBBER EDIT BEGIN - Crash Bandaid
+			message_admins("a naughty admin was prevented from hanging the server sending an external query.")
+			return // BUBBER EDIT END - Crash Bandaid
 		if(!check_rights(R_ADMIN))
 			return
 
