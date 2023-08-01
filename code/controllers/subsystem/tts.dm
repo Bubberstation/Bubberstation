@@ -89,7 +89,9 @@ SUBSYSTEM_DEF(tts)
 	rustg_file_write(json_encode(available_speakers), "data/cached_tts_voices.json")
 	rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 	return TRUE
-
+/datum/controller/subsystem/tts/establish_connection_to_tts() // BUBBER EDIT BEGIN - CRASH BANDAID
+	message_admins("a naughty admin was prevented from hanging the server sending an external query.")
+	return // BUBBER EDIT END
 /datum/controller/subsystem/tts/Initialize()
 	if(!CONFIG_GET(string/tts_http_url))
 		return SS_INIT_NO_NEED
@@ -107,6 +109,9 @@ SUBSYSTEM_DEF(tts)
 
 	var/channel = SSsounds.random_available_channel()
 	for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[turf_source.z])//observers always hear through walls
+		if(QDELING(listening_mob))
+			stack_trace("TTS tried to play a sound to a deleted mob.")
+			continue
 		var/volume_to_play_at = listening_mob.client?.prefs.read_preference(/datum/preference/numeric/sound_tts_volume)
 		var/tts_pref = listening_mob.client?.prefs.read_preference(/datum/preference/choiced/sound_tts)
 		if(volume_to_play_at == 0 || (tts_pref == TTS_SOUND_OFF))
