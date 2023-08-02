@@ -358,11 +358,6 @@
 /obj/item/clothing/neck/scarf/christmas
 	name = "christmas scarf"
 	greyscale_colors = "#038000#960000"
-	
-/obj/item/clothing/neck/shemagh
-	name = "Shemagh"
-	desc = "An oversized shemagh, for those with a keen sense of fashion, or those operating tactically."
-	icon_state = "shemagh"
 
 /obj/item/clothing/neck/large_scarf
 	name = "large scarf"
