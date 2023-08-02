@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/head/beret/knitted,
 	/obj/item/clothing/suit/costume/ianshirt,
 	/obj/item/clothing/suit/toggle/jacket/sweater,
-	/obj/item/clothing/suit/costume/ghost_sheet,
+	/obj/item/clothing/suit/costume/ghost_sheet/knitted,//Needed to prevent BAD things, do not change.
 	/obj/item/clothing/neck/scarf/knitted,
 	/obj/item/clothing/head/beanie/knitted,
 	/obj/item/clothing/gloves/color/grey/protects_cold,
@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/neck/mantle,
 	/obj/item/clothing/accessory/armband/knitted,
 	/obj/item/clothing/under/misc/pj,)))//When adding more, make sure the thumbnails work!
+	//If there's a significant stat/armor boost from something, consider making a knitted version!
 
 /obj/item/knittingneedles
 	name = "knitting needles"
@@ -29,14 +30,14 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	attack_verb_simple = list("stab")
 	sharpness = SHARP_POINTY
 
-	var/working = FALSE
+	var/working = FALSE//We must start not working
 	var/obj/item/yarn/ball
 	var/list/name2knit
 
 /obj/item/knittingneedles/verb/remove_yarn()
 	set name = "Remove Yarn"
 	set category = "Object"
-	set src in usr
+	set src in usr//USR is our player here, and SRC is the knitting needles.
 
 	if(!ball)
 		to_chat(usr, span_warning("There is no yarn on \the [src]!"))
@@ -51,6 +52,9 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	H.put_in_hands(ball)
 	ball = null
 	to_chat(usr, span_warning("You remove \the [ball] from \the [src]."))
+	update_icon_state()
+	update_inhand_icon()
+	update_overlays()
 
 /obj/item/knittingneedles/Destroy()
 	if(ball)
@@ -62,15 +66,14 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 		if(ball)
 			to_chat(user, "There is \the [ball] between the needles.")
 
-	if(ball)
-		var/mutable_appearance/yarn_overlay = mutable_appearance(icon, "[ball.icon_state]")
-		if(ball.color)
-			yarn_overlay.color = ball.color
-		else
-			yarn_overlay.appearance_flags = RESET_COLOR
-		add_overlay(yarn_overlay)
+	if(working == TRUE)
+		icon_state = "knittingneedles_on"
 	else
-		cut_overlays()
+		icon_state = initial(icon_state)
+
+	update_icon_state()
+	update_inhand_icon()
+	update_overlays()
 
 /obj/item/knittingneedles/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/yarn))
@@ -78,6 +81,9 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 			O.forceMove(src)
 			ball = O
 			to_chat(user, span_notice("You place \the [O] in \the [src]"))
+			update_icon_state()
+			update_inhand_icon()
+			update_overlays()
 		return TRUE
 
 /obj/item/knittingneedles/attack_self(mob/user as mob)
@@ -105,10 +111,16 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 
 	user.visible_message("<b>[user]</b> begins knitting something soft and cozy.")
 	working = TRUE
+	update_icon_state()
+	update_inhand_icon()
+	update_overlays()
 
 	if(!do_after(user,2 MINUTES))
 		to_chat(user, span_warning("Your concentration is broken!"))
 		working = FALSE
+		update_icon_state()
+		update_inhand_icon()
+		update_overlays()
 		return
 
 	var/obj/item/clothing/S = new type_path(get_turf(user))
@@ -117,6 +129,9 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	qdel(ball)
 	ball = null
 	working = FALSE
+	update_icon_state()
+	update_inhand_icon()
+	update_overlays()
 	user.visible_message("<b>[user]</b> finishes working on \the [S].")
 
 
