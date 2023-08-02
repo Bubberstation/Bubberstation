@@ -65,8 +65,8 @@
 #define SLAP_SIDE		4
 
 /obj/item/donator/transponder
-	name = "broken Helian transponder"
-	desc = "Used by Helians to communicate with their mothership, the screen is cracked and its edges scuffed. This one has seen better days."
+	name = "broken transponder"
+	desc = "Used by aliens to communicate with their home planet, the screen is cracked and its edges scuffed. This one has seen better days."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_left.dmi'

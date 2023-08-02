@@ -90,7 +90,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	name = "aerostatic bomber jacket"
-	desc = "A jacket once worn by the Air Force during the Antecentennial Revolution, there are quite a few pockets on the inside, mostly for storing notebooks and compasses."
+	desc = "A jacket once popular by the Air Force during the Antecentennial Revolution, there are quite a few pockets on the inside, helpful for keeping that emergency oxygen tank close by."
 	icon_state = "aerostatic_bomber_jacket"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 

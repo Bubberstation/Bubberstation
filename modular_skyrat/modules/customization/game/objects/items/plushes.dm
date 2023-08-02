@@ -319,13 +319,13 @@
 	squeak_override = list('sound/effects/crunchybushwhack1.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fox/mia
-	name = "Mia’s fox plushie"
-	desc = "A small stuffed silver fox with a collar tag that says “Eavy” and a tiny bell in its fluffy tail."
+	name = "Strange fox plushie"
+	desc = "A small stuffed silver fox with a collar, looks strange."
 	icon_state = "miafox"
 
 /obj/item/toy/plush/skyrat/fox/kailyn
 	name = "teasable fox plushie"
-	desc = "A familiar looking vixen in a peacekeeper attire, perfect for everyone who intends on venturing in the dark alone! There's a little tag which tells you to not boop its nose."
+	desc = "A vixen in a peacekeeper attire, perfect for everyone who intends on venturing in the dark alone! There's a little tag which tells you to boop its nose."
 	icon_state = "teasefox"
 	attack_verb_continuous = list("sneezes on", "detains", "tazes")
 	attack_verb_simple = list("sneeze on", "detain", "taze")
@@ -518,7 +518,7 @@
 // Donation reward for shyshadow
 /obj/item/toy/plush/skyrat/plushie_winrow
 	name = "dark and brooding lizard plush"
-	desc = "An almost intimidating black lizard plush, this one's got a little beret to come with it! Best not to separate the two. Its eyes shine with suggestion, no maidens?"
+	desc = "An almost intimidating black lizard plush, this one's got a little beret to come with it! Best not to separate the two. It sorta smells bad."
 	icon_state = "plushie_shyshadow"
 
 // Donation reward for Dudewithatude

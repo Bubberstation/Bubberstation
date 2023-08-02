@@ -1,5 +1,5 @@
 /datum/loadout_item/toys/miafoxplush
-	name = "Mia’s fox plushie"
+	name = "Strange fox plushie"
 	item_path = /obj/item/toy/plush/skyrat/fox/mia
 //ckeywhitelist = list("fuzlet")
 
@@ -30,7 +30,7 @@
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/ryddid
-	name = "The Ryddid"
+	name = "The Rizz"
 	item_path = /obj/item/clothing/suit/jacket/ryddid
 	//ckeywhitelist = list("grunnyyy")
 
@@ -45,12 +45,12 @@
 	//ckeywhitelist = list("grunnyyy")
 
 /datum/loadout_item/gloves/hypnoring_coffee
-	name = "Hypnodemon's Ring"
+	name = "Liquid Gold Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/coffeepot
 	//ckeywhitelist = list("coffeepot")
 
 /datum/loadout_item/gloves/hypnoring_bippy
-	name = "Hypnodemon's Ring"
+	name = "Liquid Silver Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
 	//ckeywhitelist = list("bippys")
 
@@ -97,28 +97,28 @@
 	//ckeywhitelist = list("goldenalpharex")
 
 /datum/loadout_item/under/jumpsuit/plasmaman_jax
-	name = "XuraCorp Biohazard Underfitting"
+	name = "Custom Biohazard Underfitting"
 	item_path = /obj/item/clothing/under/plasmaman/jax2
 	//ckeywhitelist = list("candlejax")
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_SCIENCE_GUARD, JOB_VIROLOGIST, JOB_GENETICIST)
 
 /datum/loadout_item/head/emissionhelm
-	name = "Emission's Helmet"
+	name = "Specialised Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax
 	//ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/head/anahelm
-	name = "Azulean's Enviro-Helmet"
+	name = "Skullshape Enviro-Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
 //	ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/under/jumpsuit/emissionsuit
-	name = "Emission's Suit"
+	name = "Specialised Suit"
 	item_path = /obj/item/clothing/under/plasmaman/candlejax
 	//ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/under/jumpsuit/anasuit
-	name = "Azulean's Enviro-Suit"
+	name = "Skeleton shape Enviro-Suit"
 	item_path = /obj/item/clothing/under/plasmaman/candlejax2
 //	ckeywhitelist = list("candlejax")
 
@@ -133,27 +133,27 @@
 	//ckeywhitelist = list("slippyjoe")
 
 /datum/loadout_item/shoes/britches_shoes
-	name = "Britches' shoes"
+	name = "Cute clown shoes"
 	item_path = /obj/item/clothing/shoes/clown_shoes/britches
 	//ckeywhitelist = list("bloodrite")
 
 /datum/loadout_item/under/jumpsuit/britches_dress
-	name = "Britches' dress"
+	name = "Cute clown dress"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/britches
 	//ckeywhitelist = list("bloodrite")
 
 /datum/loadout_item/mask/britches_mask
-	name = "Britches' mask"
+	name = "Cute clown mask"
 	item_path = /obj/item/clothing/mask/gas/britches
 	//ckeywhitelist = list("bloodrite")
 
 /datum/loadout_item/mask/luchador_mask
-	name = "Mask of El Red Templar"
+	name = "Mask of A Lucha Warror"
 	item_path = /obj/item/clothing/mask/luchador/enzo
 	//ckeywhitelist = list("enzoman")
 
 /datum/loadout_item/mask/nightlight_mask
-	name = "FIR-36 Rebreather"
+	name = "Heavy Duty Rebreather"
 	item_path = /obj/item/clothing/mask/gas/nightlight
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee")
 
@@ -173,7 +173,7 @@
 	ckeywhitelist = list("ChillyLobster")
 
 /datum/loadout_item/mask/kindle_mask
-	name = "Kindle's mask"
+	name = "Cheap wolf mask"
 	item_path = /obj/item/clothing/mask/animal/kindle
 	//ckeywhitelist = list("theooz")
 
@@ -183,12 +183,12 @@
 	//ckeywhitelist = list("random516")
 
 /datum/loadout_item/gloves/blutigen_wraps
-	name = "Blutigen Wraps"
+	name = "Bandage like Wraps"
 	item_path = /obj/item/clothing/gloves/fingerless/blutigen_wraps
 	//ckeywhitelist = list("random516")
 
 /datum/loadout_item/suit/blutigen_kimono
-	name = "Blutigen Kimono"
+	name = "Fancy Blue Kimono"
 	item_path = /obj/item/clothing/suit/blutigen_kimono
 	//ckeywhitelist = list("random516")
 
@@ -220,17 +220,17 @@
 	//ckeywhitelist = list("netrakyram")
 
 /datum/loadout_item/neck/kiaracloak
-	name = "Kiara's cloak"
+	name = "Cloner cloak"
 	item_path = /obj/item/clothing/neck/cloak/inferno
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/neck/kiaracollar
-	name = "Kiara's collar"
+	name = "Inferno collar"
 	item_path = /obj/item/clothing/neck/inferno_collar
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/pocket_items/kiaramedal
-	name = "Insignia of Steele"
+	name = "Insignia of Swag"
 	item_path = /obj/item/clothing/accessory/medal/steele
 	//ckeywhitelist = list("inferno707")
 
@@ -255,7 +255,7 @@
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/neck/zuliecloak
-	name = "Project: Zul-E"
+	name = "Project: Upright"
 	item_path = /obj/item/clothing/suit/hooded/cloak/zuliecloak
 	//ckeywhitelist = list("asky")
 
@@ -393,12 +393,12 @@
 	//ckeywhitelist = list("kaynite")
 
 /datum/loadout_item/suit/tenrai_coat
-	name = "Tenrai Coat"
+	name = "Kitsunes Labcoat"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/tenrai
 	//ckeywhitelist = list("cimika")
 
 /datum/loadout_item/neck/fluffycloak
-	name = "Fluffy Cloak"
+	name = "Minty Cloak"
 	item_path = /obj/item/clothing/neck/cloak/fluffycloak
 	//ckeywhitelist = list("realwinterfrost")
 
@@ -599,7 +599,7 @@
 //	ckeywhitelist = list("october23")
 
 /datum/loadout_item/pocket_items/transponder
-	name = "Broken Helian Transponder"
+	name = "Broken Transponder"
 	item_path = /obj/item/donator/transponder
 //	ckeywhitelist = list("glacii")
 
