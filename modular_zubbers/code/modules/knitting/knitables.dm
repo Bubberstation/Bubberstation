@@ -34,19 +34,35 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
-/obj/item/clothing/neck/mantle/knitted
+/obj/item/clothing/neck/mantle/recolorable/knitted
 	name = "Knitted Mantle"
 	desc = "A decorative drape over the shoulders. This one looks simple, but is quite soft to the touch."
 
-/obj/item/clothing/neck/mantle/regal_knitted
-	name = "Knitted Regal Mantle"
-	desc = "A decorative drape over the shoulders. This one is soft to the touch."
 /obj/item/clothing/suit/hooded/wintercoat/knitted
-	name = "Knitted winter coat"
+	name = "Knitted Winter Coat"
 	desc = "A knitted coat, made of yarn. It's soft to the touch, and quite warm!"
-	hoodtype = /obj/item/clothing/head/hooded/winterhood/skyrat
+	icon = 'icons/obj/clothing/suits/wintercoat.dmi'
+	icon_state = "coatwinter"
+	worn_icon = 'icons/mob/clothing/suits/wintercoat.dmi'
+	inhand_icon_state = "coatwinter"
+	body_parts_covered = CHEST|GROIN|ARMS
+	armor_type = /datum/armor/hooded_wintercoat
+	hood_down_overlay_suffix = "_hood"
+	var/zipped = FALSE
 	cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/head/hooded/winterhood/knitted
+	name = "winter hood"
+	desc = "A cozy winter hood attached to a heavy winter coat."
+	icon = 'icons/obj/clothing/head/winterhood.dmi'
+	icon_state = "hood_winter"
+	worn_icon = 'icons/mob/clothing/head/winterhood.dmi'
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	flags_inv = HIDEHAIR|HIDEEARS
+	armor_type = /datum/armor/hooded_winterhood
 
 /obj/item/clothing/gloves/color/grey/protects_cold/knitted
 	name = "Knitted Gloves"

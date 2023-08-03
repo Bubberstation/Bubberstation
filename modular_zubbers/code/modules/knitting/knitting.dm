@@ -7,8 +7,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/head/beanie/knitted,
 	/obj/item/clothing/gloves/color/grey/protects_cold/knitted,
 	/obj/item/clothing/suit/hooded/wintercoat/knitted,
-	/obj/item/clothing/neck/mantle/knitted,
-	/obj/item/clothing/neck/mantle/regal_knitted,
+	/obj/item/clothing/neck/mantle/recolorable/knitted,
 	/obj/item/clothing/accessory/armband/knitted,
 	/obj/item/clothing/under/misc/pj/red/knitted,)))//When adding more, make sure the thumbnails work!
 	//If there's a significant stat/armor boost from something, consider making a knitted version!
@@ -24,11 +23,14 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	icon_state = "knittingneedles"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 5
+	force = 0
+	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
-	attack_verb_continuous = list("stabs")
-	attack_verb_simple = list("stab")
+	var/hit_sound = 'sound/weapons/tap.ogg'
+	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*0.75)
+	attack_verb_continuous = list("pokes, stabs")
+	attack_verb_simple = list("stab, poke")
 	sharpness = SHARP_POINTY
 
 	var/working = FALSE//We must start not working
