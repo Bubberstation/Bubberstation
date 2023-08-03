@@ -9,15 +9,6 @@
 /obj/item/clothing/suit/costume/ghost_sheet/knitted
 	name = "Ghost Costume"
 	desc = "A totally spooky ghost costume! It appears to have been knitted."
-
-/obj/item/clothing/neck/scarf/knitted_large
-	name = "Large Knitted Scarf"
-	desc = "Did your grandmother make this?"
-	icon = 'previews.dmi'
-	icon_state = "large_scarf_stripe"
-	greyscale_colors = "#4A4A4B#4A4A4B"
-	cold_protection = NECK
-	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 /obj/item/clothing/neck/scarf/knitted
 	name = "Knitted Scarf"
 	desc = "Did your grandmother make this?"
@@ -87,11 +78,13 @@
 /obj/item/clothing/under/sweater/knitted
 	name = "Knitted Sweater"
 	desc = "A warm looking sweater. It'll keep your top warm...But there's nothing to say for your legs with this cozy bit of clothing."
+	icon = 'previews.dmi'
 	icon_state = "cableknit_top"
 
 /obj/item/clothing/suit/sweater/knitted_top
 	name = "Knitted Shirt"
 	desc = "A knitted top. Seems cozy!"
+	icon = 'previews.dmi'
 	icon_state = "turtleskirt_top"
 	body_parts_covered = CHEST|GROIN
 	cold_protection = CHEST|GROIN
