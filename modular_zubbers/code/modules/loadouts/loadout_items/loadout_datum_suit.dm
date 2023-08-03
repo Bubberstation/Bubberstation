@@ -29,4 +29,4 @@
 	name = "Collared Vest"
 	item_path = /obj/item/clothing/suit/armor/vest/collared_vest
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_NT_REP)
-	donator_only = TRUE
+	donator_only = TRUE//Dono item for offwrldr
