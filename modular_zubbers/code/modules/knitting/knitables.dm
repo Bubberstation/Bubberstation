@@ -48,7 +48,6 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor_type = /datum/armor/hooded_wintercoat
 	hood_down_overlay_suffix = "_hood"
-	var/zipped = FALSE
 	cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
