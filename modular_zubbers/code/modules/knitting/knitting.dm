@@ -1,17 +1,30 @@
+#define BASELINE_KNITTING_TIME (2 MINUTES)
 GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
-	/obj/item/clothing/head/beret/knitted,
-	/obj/item/clothing/under/sweater/knitted,
-	/obj/item/clothing/under/sweater/keyhole/knitted,
-	/obj/item/clothing/suit/costume/ghost_sheet/knitted,//Needed to prevent BAD things, do not change.
+	/obj/item/clothing/accessory/armband/knitted,
+	/obj/item/clothing/suit/costume/ghost_sheet/knitted,
+	/obj/item/clothing/neck/scarf/knitted_large,
 	/obj/item/clothing/neck/scarf/knitted,
 	/obj/item/clothing/head/beanie/knitted,
-	/obj/item/clothing/gloves/color/grey/protects_cold/knitted,
-	/obj/item/clothing/suit/hooded/wintercoat/knitted,
+	/obj/item/clothing/head/beret/knitted,
 	/obj/item/clothing/neck/mantle/recolorable/knitted,
-	/obj/item/clothing/accessory/armband/knitted,
-	/obj/item/clothing/under/misc/pj/red/knitted,)))//When adding more, make sure the thumbnails work!
+	/obj/item/clothing/suit/hooded/wintercoat/knitted,
+	/obj/item/clothing/head/hooded/winterhood/knitted,
+	/obj/item/clothing/gloves/color/grey/protects_cold/knitted,
+	/obj/item/clothing/under/misc/pj/red/knitted,
+	/obj/item/clothing/under/sweater/knitted,
+	/obj/item/clothing/suit/sweater/knitted_top,
+	/obj/item/clothing/neck/cloak/knitable,
+	)))//When adding more, make sure the thumbnails work!
 	//If there's a significant stat/armor boost from something, consider making a knitted version!
 	//Make a knitable version for any stat changes or to prevent something like EVERY mantle/coat from being knitable.
+/datum/skill/knitting
+	name = "Knitting"
+	title = "Knitter"
+	desc = "Warmth, softness, yarn; the whole station will be covered in softness before I am done knitting."
+	modifiers = list(SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5))
+	skill_item_path = /obj/item/clothing/neck/cloak/skill_reward/knitting
+
+knitting_speed = ((/datum/skill/knitting, SKILL_SPEED_MODIFIER) * BASELINE_KNITTING_TIME)
 /obj/item/knittingneedles
 	name = "knitting needles"
 	desc = "Silver knitting needles used for stitching yarn."
@@ -104,7 +117,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	working = TRUE
 	update_icon_knitting()
 
-	if(!do_after(user,2 MINUTES))
+	if(!do_after(user, knitting_speed))
 		to_chat(user, span_warning("Your concentration is broken!"))
 		working = FALSE
 		update_icon_knitting()
@@ -116,6 +129,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	qdel(ball)
 	ball = null
 	working = FALSE
+	user.mind.adjust_experience(/datum/skill/knitting, 75)//experiment with EXP amounts, 75 might be high/low, but knitting is REALLY slow.
 	update_icon_knitting()
 	user.visible_message("<b>[user]</b> finishes working on \the [S].")
 
@@ -222,3 +236,4 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	crate_name = "Knitting Supplies"
 	crate_type = /obj/structure/closet/crate/wooden
 //https://github.com/Aurorastation/Aurora.3/pull/4749 is the main originator of the art from what I can tell. If others are responsible, please alert me!
+#undef BASELINE_KNITTING_TIME
