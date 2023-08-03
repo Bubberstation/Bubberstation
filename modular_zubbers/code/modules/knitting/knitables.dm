@@ -41,9 +41,9 @@
 /obj/item/clothing/neck/mantle/regal_knitted
 	name = "Knitted Regal Mantle"
 	desc = "A decorative drape over the shoulders. This one is soft to the touch."
-/obj/item/clothing/suit/hooded/wintercoat/skyrat/knitted
+/obj/item/clothing/suit/hooded/wintercoat/knitted
 	name = "Knitted winter coat"
-	desc = "A dark gray winter coat with bronze-gold detailing. All of it is clearly made of yarn, and it's soft to the touch."
+	desc = "A knitted coat, made of yarn. It's soft to the touch, and quite warm!"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/skyrat
 	cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT

@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/neck/scarf/knitted,
 	/obj/item/clothing/head/beanie/knitted,
 	/obj/item/clothing/gloves/color/grey/protects_cold/knitted,
-	/obj/item/clothing/suit/hooded/wintercoat/skyrat/knitted,
+	/obj/item/clothing/suit/hooded/wintercoat/knitted,
 	/obj/item/clothing/neck/mantle/knitted,
 	/obj/item/clothing/neck/mantle/regal_knitted,
 	/obj/item/clothing/accessory/armband/knitted,
@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 		new /obj/effect/particle_effect/sparks(loc)
 		var/obj/item/organ/internal/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(brain)
-			brain.set_organ_damage(BRAIN_DAMAGE_DEATH)
+			qdel(brain)
 
 /obj/item/yarn/suicide_act(mob/living/user)
 	if(prob(30))
