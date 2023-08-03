@@ -24,3 +24,9 @@
 	name = "Leather Apron"
 	item_path = /obj/item/clothing/suit/leatherapron
 	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
+
+/datum/loadout_item/suit/collared_vest
+	name = "Collared Vest"
+	item_path = /obj/item/clothing/suit/armor/vest/collared_vest
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_NT_REP)
+	donator_only = TRUE
