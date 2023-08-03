@@ -142,9 +142,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	else
 		user.visible_message(span_suicide("[user] begins knitting something out of bluespace energy! They flash out of the air a few times before dropping dead!"))
 		new /obj/effect/particle_effect/sparks(loc)
-		var/obj/item/organ/internal/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
-		if(brain)
-			qdel(brain)
+	return OXYLOSS
 
 /obj/item/yarn/suicide_act(mob/living/user)
 	if(prob(30))
