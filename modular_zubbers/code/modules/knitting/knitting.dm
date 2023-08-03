@@ -20,25 +20,12 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 var/base_knitting_duration = 2 MINUTES
 var/knitting_duration
 
-/datum/skill/knitting
+/datum/skill/knit
 	name = "Knitting"
 	title = "Knitter"
 	desc = "Warmth, softness, yarn; the whole station will be covered in softness before I am done knitting."
 	modifiers = list(SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5))
-	skill_item_path = /obj/item/clothing/neck/cloak/skill_reward/knitting
-	var/list/levelUpMessages = list("You feel more confident knitting!",
-		"You feel more confident handling needles!",
-		"Knitting clothes feels easier!",
-		"Knitting has never felt easier!",
-		"Your needles feel more comfortable in your hand!",
-		"You feel like you can knit as quick as the flash!",
-		"Your knitting skills feel unrivaled!",)
-
-
-if(user.mind)
-	knitting_duration = ((user.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER)**base_knitting_duration))
-
-
+	skill_item_path = /obj/item/clothing/neck/cloak/skill_reward/knit
 
 /obj/item/knittingneedles
 	name = "knitting needles"
@@ -132,6 +119,8 @@ if(user.mind)
 	working = TRUE
 	update_icon_knitting()
 
+	var/knitting_duration = ((user?.mind.get_skill_modifier(/datum/skill/knit, SKILL_SPEED_MODIFIER) * base_knitting_duration))
+
 	if(!do_after(user, knitting_duration))
 		to_chat(user, span_warning("Your concentration is broken!"))
 		working = FALSE
@@ -144,7 +133,7 @@ if(user.mind)
 	qdel(ball)
 	ball = null
 	working = FALSE
-	user.mind?.adjust_experience(/datum/skill/knitting, 75)//experiment with EXP amounts, 75 might be high/low, but knitting is REALLY slow.
+	user.mind?.adjust_experience(/datum/skill/knit, 75)//experiment with EXP amounts, 75 might be high/low, but knitting is REALLY slow.
 	update_icon_knitting()
 	user.visible_message("<b>[user]</b> finishes working on \the [S].")
 

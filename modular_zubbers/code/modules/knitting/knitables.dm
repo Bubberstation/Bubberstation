@@ -97,7 +97,7 @@
 	cold_protection = CHEST|GROIN
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
-/obj/item/clothing/neck/cloak/skill_reward/knitting
+/obj/item/clothing/neck/cloak/skill_reward/knit
 	name = "Legendary Knitting Cloak"
 	desc = "A cloak only those truly devoted to knitting can aquire."
 	icon = 'previews.dmi'
