@@ -52,9 +52,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	H.put_in_hands(ball)
 	ball = null
 	to_chat(usr, span_warning("You remove \the [ball] from \the [src]."))
-	update_icon_state()
-	update_inhand_icon()
-	update_overlays()
+	update_icon_knitting()
 
 /obj/item/knittingneedles/Destroy()
 	if(ball)
@@ -65,15 +63,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	if(..(user, 1))
 		if(ball)
 			to_chat(user, "There is \the [ball] between the needles.")
-
-	if(working == TRUE)
-		icon_state = "knittingneedles_on"
-	else
-		icon_state = initial(icon_state)
-
-	update_icon_state()
-	update_inhand_icon()
-	update_overlays()
+	update_icon_knitting()
 
 /obj/item/knittingneedles/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/yarn))
@@ -81,9 +71,7 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 			O.forceMove(src)
 			ball = O
 			to_chat(user, span_notice("You place \the [O] in \the [src]"))
-			update_icon_state()
-			update_inhand_icon()
-			update_overlays()
+			update_icon_knitting()
 		return TRUE
 
 /obj/item/knittingneedles/attack_self(mob/user as mob)
@@ -111,16 +99,12 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 
 	user.visible_message("<b>[user]</b> begins knitting something soft and cozy.")
 	working = TRUE
-	update_icon_state()
-	update_inhand_icon()
-	update_overlays()
+	update_icon_knitting()
 
 	if(!do_after(user,2 MINUTES))
 		to_chat(user, span_warning("Your concentration is broken!"))
 		working = FALSE
-		update_icon_state()
-		update_inhand_icon()
-		update_overlays()
+		update_icon_knitting()
 		return
 
 	var/obj/item/clothing/S = new type_path(get_turf(user))
@@ -129,17 +113,45 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	qdel(ball)
 	ball = null
 	working = FALSE
-	update_icon_state()
-	update_inhand_icon()
-	update_overlays()
+	update_icon_knitting()
 	user.visible_message("<b>[user]</b> finishes working on \the [S].")
 
+/obj/item/knittingneedles/proc/update_icon_knitting()
+	if(working == TRUE)
+		icon_state = "knittingneedles_on"
+		inhand_icon_state = "knittingneedles_on"
+	else
+		icon_state = initial(icon_state)
+		inhand_icon_state = initial(inhand_icon_state)
 
+	if(ball)
+		var/mutable_appearance/yarn_overlay = mutable_appearance(icon, "[ball.icon_state]")
+		if(ball.color)
+			yarn_overlay.color = ball.color
+		else
+			yarn_overlay.appearance_flags = RESET_COLOR
+		add_overlay(yarn_overlay)
+	else
+		cut_overlays()
 
 /obj/item/knittingneedles/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] stabs their [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return BRUTELOSS
+	if(prob(30))
+		user.visible_message(span_suicide("[user] stabs their [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		return BRUTELOSS
+	else
+		user.visible_message(span_suicide("[user] begins knitting something out of bluespace energy! They flash out of the air a few times before dropping dead!"))
+		new /obj/effect/particle_effect/sparks(loc)
+		var/obj/item/organ/internal/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
+		if(brain)
+			brain.set_organ_damage(BRAIN_DAMAGE_DEATH)
 
+/obj/item/yarn/suicide_act(mob/living/user)
+	if(prob(30))
+		user.visible_message(span_suicide("[user] wraps their [src] around [user.p_their()] [pick("neck", "throat")]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		return OXYLOSS
+	else
+		user.visible_message(span_suicide("[user] begins making their yarn into something. The clothing seems to come to life with unimaginable rage as it strangles them!"))
+		return OXYLOSS
 
 /obj/item/yarn
 	name = "ball of yarn"
