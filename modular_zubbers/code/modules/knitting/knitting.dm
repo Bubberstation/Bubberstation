@@ -1,17 +1,18 @@
 GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/head/beret/knitted,
-	/obj/item/clothing/suit/costume/ianshirt,
-	/obj/item/clothing/suit/toggle/jacket/sweater,
+	/obj/item/clothing/under/sweater/knitted,
+	/obj/item/clothing/under/sweater/keyhole/knitted,
 	/obj/item/clothing/suit/costume/ghost_sheet/knitted,//Needed to prevent BAD things, do not change.
 	/obj/item/clothing/neck/scarf/knitted,
 	/obj/item/clothing/head/beanie/knitted,
-	/obj/item/clothing/gloves/color/grey/protects_cold,
-	/obj/item/clothing/suit/hooded/wintercoat/skyrat,
-	/obj/item/clothing/neck/mantle,
+	/obj/item/clothing/gloves/color/grey/protects_cold/knitted,
+	/obj/item/clothing/suit/hooded/wintercoat/skyrat/knitted,
+	/obj/item/clothing/neck/mantle/knitted,
+	/obj/item/clothing/neck/mantle/regal_knitted,
 	/obj/item/clothing/accessory/armband/knitted,
-	/obj/item/clothing/under/misc/pj,)))//When adding more, make sure the thumbnails work!
+	/obj/item/clothing/under/misc/pj/red/knitted,)))//When adding more, make sure the thumbnails work!
 	//If there's a significant stat/armor boost from something, consider making a knitted version!
-
+	//Make a knitable version for any stat changes or to prevent something like EVERY mantle/coat from being knitable.
 /obj/item/knittingneedles
 	name = "knitting needles"
 	desc = "Silver knitting needles used for stitching yarn."
