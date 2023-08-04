@@ -2,4 +2,4 @@
 *	. = ..()
 *	user.set_suicide(TRUE)
 *	user.final_checkout(src)
-*/ bubber comment. modularity bgone
+bubber comment modularity bgone */
