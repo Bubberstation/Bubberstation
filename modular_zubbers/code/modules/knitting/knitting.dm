@@ -34,7 +34,6 @@ var/knitting_duration
 	righthand_file = "knittingneedles_rh"
 	belt_icon_state = "knittingneedles"
 	icon_state = "knittingneedles"
-	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 0
