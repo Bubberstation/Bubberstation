@@ -1,4 +1,4 @@
-//PUT ALL ITEMS THAT NEED TO BE CHANGED FOR A KNITABLE SPRITE HERE
+//PUT ALL ITEMS THAT NEED TO BE CHANGED FOR A KNITTABLE SPRITE HERE
 
 /obj/item/clothing/accessory/armband/knitted
 	name = "Armband"
@@ -17,7 +17,7 @@
 /obj/item/clothing/neck/scarf/knitted
 	name = "Knitted Scarf"
 	desc = "Did your grandmother make this?"
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "scarf_cloth"
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	worn_icon_state = "scarf_base"
@@ -28,7 +28,7 @@
 /obj/item/clothing/head/beanie/knitted
 	name = "Knitted Beanie"
 	desc = "A stylish knitted beanie. The perfect winter accessory!."
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "beanie_cloth"
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
 	cold_protection = HEAD
@@ -37,7 +37,7 @@
 /obj/item/clothing/head/beret/knitted
 	name = "Knitted Beret"
 	desc = "A knitted beret. How fancy!"
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "beret_flat"
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
@@ -97,7 +97,7 @@
 /obj/item/clothing/under/sweater/knitted
 	name = "Knitted Sweater"
 	desc = "A warm looking sweater. It'll keep your top warm...But there's nothing to say for your legs with this cozy bit of clothing."
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "cableknit_top"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 	worn_icon_state = "cableknit_top"
@@ -105,7 +105,7 @@
 /obj/item/clothing/suit/sweater/knitted_top
 	name = "Knitted Shirt"
 	desc = "A knitted top. Seems cozy!"
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "turtleskirt_top"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 	worn_icon_state = "turtleskirt_top"
@@ -116,18 +116,18 @@
 /obj/item/clothing/neck/cloak/skill_reward/knit
 	name = "Legendary Knitting Cloak"
 	desc = "A cloak only those truly devoted to knitting can aquire."
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "knitting_cloak"
-	worn_icon = 'knitables_worn.dmi'
+	worn_icon = 'knittables_worn.dmi'
 	worn_icon_state = "cloak_knitting"
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE
 
-/obj/item/clothing/neck/cloak/knitable
-	name = "Knitable Cloak"
+/obj/item/clothing/neck/cloak/knittable
+	name = "Knittable Cloak"
 	desc = "A hand-knit cloak."
-	icon = 'knitables.dmi'
+	icon = 'knittables.dmi'
 	icon_state = "cloak_colorable"
-	worn_icon = 'knitables_worn.dmi'
+	worn_icon = 'knittables_worn.dmi'
 	worn_icon_state = "cloak_colorable_sheet"

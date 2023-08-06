@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
+GLOBAL_LIST_INIT(KNITTABLES, typecacheof(list(
 	/obj/item/clothing/accessory/armband/knitted,
 	/obj/item/clothing/suit/costume/ghost_sheet/knitted,
 	/obj/item/clothing/neck/scarf/knitted,
@@ -10,10 +10,10 @@ GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/under/misc/pj/red/knitted,
 	/obj/item/clothing/under/sweater/knitted,
 	/obj/item/clothing/suit/sweater/knitted_top,
-	/obj/item/clothing/neck/cloak/knitable,
+	/obj/item/clothing/neck/cloak/knittable,
 	)))//When adding more, make sure the thumbnails work!
 	//If there's a significant stat/armor boost from something, consider making a knitted version!
-	//Make a knitable version for any stat changes or to prevent something like EVERY mantle/coat from being knitable.
+	//Make a knittable version for any stat changes or to prevent something like EVERY mantle/coat from being knittable.
 
 var/base_knitting_duration = 2 MINUTES
 var/knitting_duration
@@ -101,11 +101,11 @@ var/knitting_duration
 
 	if (!name2knit)
 		name2knit = list()
-		for(var/obj/thing as anything in GLOB.KNITABLES)
+		for(var/obj/thing as anything in GLOB.KNITTABLES)
 			name2knit[initial(thing.name)] = thing
 
 	var/list/options = list()
-	for (var/obj/item/clothing/i as anything in GLOB.KNITABLES)
+	for (var/obj/item/clothing/i as anything in GLOB.KNITTABLES)
 		var/image/radial_button = image(icon = initial(i.icon), icon_state = initial(i.icon_state))
 		options[initial(i.name)] = radial_button
 	var/knit_name = show_radial_menu(user, user, options, radius = 42, tooltips = TRUE)
