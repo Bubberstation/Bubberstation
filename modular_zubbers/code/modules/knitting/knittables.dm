@@ -31,6 +31,7 @@
 	icon = 'knittables.dmi'
 	icon_state = "beanie_cloth"
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
+	worn_icon_state = "beanie_base"
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
