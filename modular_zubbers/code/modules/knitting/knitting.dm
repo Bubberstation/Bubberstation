@@ -1,4 +1,4 @@
-//Code credit to https://github.com/Aurorastation/Aurora.3/pull/13114, https://github.com/Aurorastation/Aurora.3/pull/12179 and https://github.com/Aurorastation/Aurora.3/pull/4749
+//Code credit to https://github.com/Aurorastation/Aurora.3/pull/13114, https://github.com/Aurorastation/Aurora.3/pull/11932, https://github.com/Aurorastation/Aurora.3/pull/12179 and https://github.com/Aurorastation/Aurora.3/pull/4749
 GLOBAL_LIST_INIT(KNITTABLES, typecacheof(list(
 	/obj/item/clothing/accessory/armband/knitted,
 	/obj/item/clothing/suit/costume/ghost_sheet/knitted,
