@@ -1073,5 +1073,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/instrument/trumpet/spectral = 1,
 		/obj/item/instrument/violin = 10,
 		/obj/item/instrument/violin/golden = 1
-	) = 25
+	) = 25,
+	/obj/item/paper/fluff/stations/soap = 50
 ))

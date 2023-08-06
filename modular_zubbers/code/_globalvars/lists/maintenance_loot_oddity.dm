@@ -42,7 +42,6 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 		/obj/item/storage/belt/chameleon = 1,
 		/obj/item/storage/belt/chameleon/broken = 10,
 		/obj/item/storage/belt/holster/chameleon = 1,
-		/obj/item/storage/belt/holster/chameleon/broken = 10,
 		/obj/item/clothing/gloves/combat = 5,
 		/obj/item/clothing/gloves/tackler/combat = 10,
 		/obj/item/clothing/gloves/tackler/combat/insulated = 5,

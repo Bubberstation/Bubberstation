@@ -407,10 +407,10 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	/obj/item/rack_parts = 75,
 	/obj/item/reagent_containers/blood/random = 50,
 	list(
-		/obj/item/reagent_containers/cup/bottle/acidic_buffer = 100,
+		/obj/item/reagent_containers/cup/bottle/acidic_buffer = 200,
 		/obj/item/reagent_containers/cup/bottle/amanitin = 10,
 		/obj/item/reagent_containers/cup/bottle/ammonia = 25,
-		/obj/item/reagent_containers/cup/bottle/basic_buffer = 100,
+		/obj/item/reagent_containers/cup/bottle/basic_buffer = 200,
 		/obj/item/reagent_containers/cup/bottle/chlorine = 25,
 		/obj/item/reagent_containers/cup/bottle/clownstears = 10,
 		/obj/item/reagent_containers/cup/bottle/diethylamine = 50,
@@ -456,5 +456,23 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/skillchip/useless_adapter = 200,
 		/obj/item/skillchip/wine_taster = 100,
 		/obj/item/skillchip/xenoarch_magnifier = 25
-	) = 50
+	) = 50,
+	list(
+		/obj/item/folder/ancient_paperwork = 1,
+		/obj/item/folder/biscuit/unsealed = 10,
+		/obj/item/folder/blue = 25,
+		/obj/item/folder/red = 25,
+		/obj/item/folder/syndicate = 1,
+		/obj/item/folder/white = 25,
+		/obj/item/folder/yellow = 25,
+		/obj/item/paper/fake_report = 50,
+		/obj/item/paper/joker = 5,
+		/obj/item/paper/pamphlet/centcom/visitor_info = 10,
+		/obj/item/paper/pamphlet/cybernetics = 10,
+		/obj/item/paper/pamphlet/gateway = 10,
+		/obj/item/paper/pamphlet/radstorm = 10,
+		/obj/item/paper/pamphlet/ruin/spacehotel = 10,
+		/obj/item/paper/pamphlet/violent_video_games = 50,
+		/obj/item/paper/paperslip/fortune = 100
+	) = 100
 ))

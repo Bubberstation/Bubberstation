@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/light/tube/broken = 25,
 		/obj/item/match = 10,
 		/obj/item/newspaper = 5,
-		/obj/item/paper/crumpled = 20,
+		/obj/item/paper/crumpled = 50,
 		/obj/item/paper/pamphlet/violent_video_games = 5,
 		/obj/item/photo/old = 10,
 		/obj/item/reagent_containers/cup/glass/colocup = 75,
