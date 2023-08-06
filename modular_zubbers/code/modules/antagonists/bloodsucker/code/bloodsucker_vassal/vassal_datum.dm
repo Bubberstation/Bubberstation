@@ -76,14 +76,15 @@
 	owner.current.log_message("has been deconverted from Vassalization by [implanter]!", LOG_ATTACK, color="#960000")
 	return COMPONENT_MINDSHIELD_DECONVERTED
 
-/datum/antagonist/vassal/proc/on_examine(datum/source, mob/examiner, examine_text)
+/datum/antagonist/vassal/proc/on_examined(datum/source, mob/examiner, examine_text)
 	SIGNAL_HANDLER
 	var/vassal_examine = return_vassal_examine(examiner)
 	if(vassal_examine)
 		examine_text += vassal_examine
 
+
 /datum/antagonist/vassal/on_gain()
-	RegisterSignal(owner.current, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(owner.current, COMSIG_ATOM_EXAMINE, PROC_REF(on_examined))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
 	/// Enslave them to their Master
 	if(!master || !istype(master, master))
