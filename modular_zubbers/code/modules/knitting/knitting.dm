@@ -1,7 +1,6 @@
 GLOBAL_LIST_INIT(KNITABLES, typecacheof(list(
 	/obj/item/clothing/accessory/armband/knitted,
 	/obj/item/clothing/suit/costume/ghost_sheet/knitted,
-	/obj/item/clothing/neck/scarf/knitted_large,
 	/obj/item/clothing/neck/scarf/knitted,
 	/obj/item/clothing/head/beanie/knitted,
 	/obj/item/clothing/head/beret/knitted,
