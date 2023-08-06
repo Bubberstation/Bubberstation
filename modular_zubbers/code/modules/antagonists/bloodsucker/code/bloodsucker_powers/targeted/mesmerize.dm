@@ -109,9 +109,9 @@
 		return
 
 	var/power_time = 9 SECONDS + level_current * 1.5 SECONDS
-	if(IS_MONSTERHUNTER(mesmerized_target))
+	/*if(IS_MONSTERHUNTER(mesmerized_target))
 		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
-		return
+		return*/
 	if(HAS_TRAIT_FROM(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
 		owner.balloon_alert(owner, "[mesmerized_target] is already in a hypnotic gaze.")
 		return

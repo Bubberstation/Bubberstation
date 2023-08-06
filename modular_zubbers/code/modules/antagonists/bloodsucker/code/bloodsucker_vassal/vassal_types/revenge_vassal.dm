@@ -3,7 +3,7 @@
  *
  * Has the goal to 'get revenge' when their Master dies.
  */
-/datum/antagonist/vassal/revenge
+/datum/antagonist/vassal/vassal_types/revenge
 	name = "\improper Revenge Vassal"
 	roundend_category = "abandoned Vassals"
 	show_in_roundend = FALSE
@@ -15,9 +15,9 @@
 		They additionally maintain your Vassals after your departure, rather than become aimless."
 
 	///all ex-vassals brought back into the fold.
-	var/list/datum/antagonist/ex_vassal/ex_vassals = list()
+	var/list/datum/antagonist/vassal/vassal_types/ex_vassal/ex_vassals = list()
 
-/datum/antagonist/vassal/revenge/roundend_report()
+/datum/antagonist/vassal/vassal_types/revenge/roundend_report()
 	var/list/report = list()
 	report += printplayer(owner)
 	if(objectives.len)
@@ -26,22 +26,22 @@
 	// Now list their vassals
 	if(ex_vassals.len)
 		report += "<span class='header'>The Vassals brought back into the fold were...</span>"
-		for(var/datum/antagonist/ex_vassal/all_vassals as anything in ex_vassals)
+		for(var/datum/antagonist/vassal/vassal_types/ex_vassal/all_vassals as anything in ex_vassals)
 			if(!all_vassals.owner)
 				continue
 			report += "<b>[all_vassals.owner.name]</b> the [all_vassals.owner.assigned_role.title]"
 
 	return report.Join("<br>")
 
-/datum/antagonist/vassal/revenge/on_gain()
+/datum/antagonist/vassal/vassal_types/revenge/on_gain()
 	. = ..()
 	RegisterSignal(master, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_master_death))
 
-/datum/antagonist/vassal/revenge/on_removal()
+/datum/antagonist/vassal/vassal_types/revenge/on_removal()
 	UnregisterSignal(master, BLOODSUCKER_FINAL_DEATH)
 	return ..()
 
-/datum/antagonist/vassal/revenge/ui_static_data(mob/user)
+/datum/antagonist/vassal/vassal_types/revenge/ui_static_data(mob/user)
 	var/list/data = list()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
 		var/list/power_data = list()
@@ -54,7 +54,7 @@
 
 	return data + ..()
 
-/datum/antagonist/vassal/revenge/proc/on_master_death(datum/antagonist/bloodsucker/bloodsuckerdatum, mob/living/carbon/master)
+/datum/antagonist/vassal/vassal_types/revenge/proc/on_master_death(datum/antagonist/bloodsucker/bloodsuckerdatum, mob/living/carbon/master)
 	SIGNAL_HANDLER
 
 	show_in_roundend = TRUE

@@ -11,6 +11,7 @@
 	hud_icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bloodsucker_icons.dmi'
 	ui_name = "AntagInfoBloodsucker"
 	preview_outfit = /datum/outfit/bloodsucker_outfit
+	/*
 	tip_theme = "spookyconsole"
 	antag_tips = list(
 		"You are a Bloodsucker, an undead blood-seeking monster living aboard Space Station 13.",
@@ -18,6 +19,7 @@
 		"Use your Antagonist UI page to enter a Clan and learn how your Powers work.",
 		"While not in a Clan, you will be unable to rank up, Feed, or do any other Bloodsucker activities.",
 	)
+*/
 
 	/// How much blood we have, starting off at default blood levels.
 	var/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
@@ -82,10 +84,10 @@
 	/// Antagonists that cannot be Vassalized no matter what
 	var/static/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
-		/datum/antagonist/monsterhunter,
+		/*/datum/antagonist/monsterhunter,*/
 		/datum/antagonist/changeling,
 		/datum/antagonist/cult,
-		/datum/antagonist/ert/safety_moth,
+		/*/datum/antagonist/ert/safety_moth,*/
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(

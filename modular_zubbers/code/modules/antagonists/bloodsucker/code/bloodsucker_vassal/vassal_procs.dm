@@ -17,14 +17,14 @@
 	var/returnString = "\[<span class='warning'>"
 	var/returnIcon = ""
 	// Vassals and Bloodsuckers recognize eachother, while Monster Hunters can see Vassals.
-	if(!IS_BLOODSUCKER(viewer) && !IS_VASSAL(viewer) && !IS_MONSTERHUNTER(viewer))
+	if(!IS_BLOODSUCKER(viewer) && !IS_VASSAL(viewer))
 		return FALSE
 	// Am I Viewer's Vassal?
 	if(master.owner == viewer.mind)
 		returnString += "This [carbon_current.dna.species.name] bears YOUR mark!"
 		returnIcon = "[icon2html('modular_zubbers/code/modules/antagonists/bloodsucker/icons/vampiric.dmi', world, "vassal")]"
 	// Am I someone ELSE'S Vassal?
-	else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer))
+	else if(IS_BLOODSUCKER(viewer))
 		returnString += "This [carbon_current.dna.species.name] bears the mark of <span class='boldwarning'>[master.return_full_name()][master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
 		returnIcon = "[icon2html('modular_zubbers/code/modules/antagonists/bloodsucker/icons/vampiric.dmi', world, "vassal_grey")]"
 	// Are you serving the same master as I am?

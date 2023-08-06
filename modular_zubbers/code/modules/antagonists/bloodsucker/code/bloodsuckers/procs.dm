@@ -108,7 +108,7 @@
 			continue
 		if(all_vassals.special_type == REVENGE_VASSAL)
 			continue
-		all_vassals.owner.add_antag_datum(/datum/antagonist/ex_vassal)
+		all_vassals.owner.add_antag_datum(/datum/antagonist/vassal/vassal_types/ex_vassal)
 		all_vassals.owner.remove_antag_datum(/datum/antagonist/vassal)
 
 /**

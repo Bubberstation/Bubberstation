@@ -11,6 +11,7 @@
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bloodsucker_icons.dmi'
+	/* refactor this into tgui antag info
 	tip_theme = "spookyconsole"
 	antag_tips = list(
 		"You are a Vassal, enslaved to your Vampiric Master, you obey their instructions above all else.",
@@ -19,6 +20,7 @@
 		"Help ensure your Master is safe from Daylight! Solar flares will bombard the station periodically, and if your Master is exposed, they will burn alive.",
 		"Your Master can optionally upgrade you into the Favorite Vassal. Depending on their Clan, you will get different benefits.",
 	)
+*/
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master

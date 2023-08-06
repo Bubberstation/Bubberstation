@@ -22,8 +22,8 @@
 		. += span_cult(vamp_desc)
 	if(IS_VASSAL(user) && vassal_desc != "")
 		. += span_cult(vassal_desc)
-	if(IS_MONSTERHUNTER(user) && hunter_desc != "")
-		. += span_cult(hunter_desc)
+	/*if(IS_MONSTERHUNTER(user) && hunter_desc != "")
+		. += span_cult(hunter_desc)*/
 
 /// This handles bolting down the structure.
 /obj/structure/bloodsucker/proc/bolt(mob/user)

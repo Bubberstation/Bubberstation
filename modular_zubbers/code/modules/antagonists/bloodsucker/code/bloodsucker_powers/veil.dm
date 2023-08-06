@@ -44,9 +44,7 @@
 /datum/action/cooldown/bloodsucker/veil/proc/veil_user()
 	// Change Name/Voice
 	var/mob/living/carbon/human/user = owner
-	user.name_override = user.dna.species.random_name(user.gender)
-	user.name = user.name_override
-	user.SetSpecialVoice(user.name_override)
+	RegisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME, PROC_REF(return_veil_disguise))
 	to_chat(owner, span_warning("You mystify the air around your person. Your identity is now altered."))
 
 	// Store Prev Appearance
@@ -76,7 +74,7 @@
 	//user.eye_color = random_eye_color()
 	if(prev_disfigured)
 		REMOVE_TRAIT(user, TRAIT_DISFIGURED, null)
-	user.dna.features = random_features()
+	//user.dna.features = random_features()
 
 	// Apply Appearance
 	user.update_body() // Outfit and underware, also body.
@@ -91,9 +89,8 @@
 	var/mob/living/carbon/human/user = owner
 
 	// Revert Identity
-	user.UnsetSpecialVoice()
-	user.name_override = null
-	user.name = user.real_name
+	UnregisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME)
+	//user.name = user.real_name
 
 	// Revert Appearance
 	user.gender = prev_gender
@@ -137,3 +134,11 @@
 
 /obj/effect/particle_effect/fluid/smoke/vampsmoke/fade_out(frames = 0.8 SECONDS)
 	..(frames)
+
+
+/datum/action/cooldown/bloodsucker/veil/proc/return_veil_disguise(mob/living/carbon/human/source, list/identity)
+	SIGNAL_HANDLER
+	identity[VISIBLE_NAME_FACE] = source.dna.species.random_name(source.gender)
+	identity[VISIBLE_NAME_ID] = ""
+
+	source.SetSpecialVoice(identity[VISIBLE_NAME_FACE])

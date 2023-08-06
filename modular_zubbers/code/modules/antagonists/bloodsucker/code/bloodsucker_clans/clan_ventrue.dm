@@ -23,7 +23,7 @@
 		if(bloodsuckerdatum.bloodsucker_level < VENTRUE_MAX_LEVEL)
 			return ..()
 		return FALSE
-	var/datum/antagonist/vassal/favorite/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal/favorite)
+	var/datum/antagonist/vassal/vassal_types/favorite/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal/vassal_types/favorite)
 	if(!vassaldatum)
 		return FALSE
 	// Purchase Power Prompt
@@ -84,7 +84,7 @@
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 	vassaldatum.LevelUpPowers()
 
-/datum/bloodsucker_clan/ventrue/interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/favorite/vassaldatum)
+/datum/bloodsucker_clan/ventrue/interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassal_types/favorite/vassaldatum)
 	. = ..()
 	if(.)
 		return TRUE

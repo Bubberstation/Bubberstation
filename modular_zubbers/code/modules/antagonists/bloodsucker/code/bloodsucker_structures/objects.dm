@@ -45,7 +45,7 @@
 
 /obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
 	. = ..()
-	if(user.mind.has_antag_datum(/datum/antagonist/ex_vassal) || user.mind.has_antag_datum(/datum/antagonist/vassal/revenge))
+	if(user.mind.has_antag_datum(/datum/antagonist/vassal/vassal_types/ex_vassal) || user.mind.has_antag_datum(/datum/antagonist/vassal/vassal_types/revenge))
 		. += span_notice("Seems to be just about the same color as your Master's...")
 
 //////////////////////
