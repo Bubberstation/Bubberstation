@@ -1190,7 +1190,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 //Donation reward for RealWinterFrost
 /obj/item/clothing/neck/cloak/fluffycloak
-	name = "Cloak of the Fluffy One"
+	name = "Minty cloak"
 	desc = "A cloak that feels almost cold to the touch, although its actually just the colors."
 	icon_state = "fluffycloak"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
