@@ -1,3 +1,4 @@
+//Code credit to https://github.com/Aurorastation/Aurora.3/pull/13114 and https://github.com/Aurorastation/Aurora.3/pull/12179
 GLOBAL_LIST_INIT(KNITTABLES, typecacheof(list(
 	/obj/item/clothing/accessory/armband/knitted,
 	/obj/item/clothing/suit/costume/ghost_sheet/knitted,
@@ -25,7 +26,7 @@ var/knitting_duration
 	modifiers = list(SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5))
 	skill_item_path = /obj/item/clothing/neck/cloak/skill_reward/knit
 
-/obj/item/knittingneedles
+/obj/item/knittingneedles //https://github.com/Aurorastation/Aurora.3/pull/4749, Kitting Needles - Fernando Gonzales - resilynn.
 	name = "knitting needles"
 	desc = "Silver knitting needles used for stitching yarn."
 	icon = 'knitting.dmi'
@@ -169,7 +170,7 @@ var/knitting_duration
 		user.visible_message(span_suicide("[user] begins making their yarn into something. The clothing seems to come to life with unimaginable rage as it strangles them!"))
 		return OXYLOSS
 
-/obj/item/yarn
+/obj/item/yarn//Credit to https://github.com/Aurorastation/Aurora.3/pull/15321
 	name = "ball of yarn"
 	desc = "A ball of yarn, this one is white."
 	icon = 'knitting.dmi'
@@ -236,4 +237,4 @@ var/knitting_duration
 	/obj/item/knittingneedles)
 	crate_name = "Knitting Supplies"
 	crate_type = /obj/structure/closet/crate/wooden
-//https://github.com/Aurorastation/Aurora.3/pull/4749 is the main originator of the art from what I can tell. If others are responsible, please alert me!
+
