@@ -148,7 +148,7 @@
 	//ckeywhitelist = list("bloodrite")
 
 /datum/loadout_item/mask/luchador_mask
-	name = "Mask of A Lucha Warror"
+	name = "Mask of A Lucha Warrior"
 	item_path = /obj/item/clothing/mask/luchador/enzo
 	//ckeywhitelist = list("enzoman")
 

@@ -518,7 +518,7 @@
 // Donation reward for shyshadow
 /obj/item/toy/plush/skyrat/plushie_winrow
 	name = "dark and brooding lizard plush"
-	desc = "An almost intimidating black lizard plush, this one's got a little beret to come with it! Best not to separate the two. It sorta smells bad."
+	desc = "An almost intimidating black lizard plush, this one's got a little beret to come with it! Best not to separate the two.
 	icon_state = "plushie_shyshadow"
 
 // Donation reward for Dudewithatude

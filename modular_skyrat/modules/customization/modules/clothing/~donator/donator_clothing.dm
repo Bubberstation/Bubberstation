@@ -689,7 +689,7 @@
 
 // Donation reward for Enzoman
 /obj/item/clothing/mask/luchador/enzo
-	name = "mask of A Lucha Warror"
+	name = "mask of A Lucha Warrior"
 	desc = "A mask belonging to a warrior of lucha. Taking it from them is not recommended."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/mask.dmi'
@@ -761,7 +761,7 @@
 // Donation reward for CandleJax
 /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
 	name = "Skullshape environment helmet"
-	desc = "A new Enviro-Helmet, adjusted for the unique skull shape typical of some Plasmamen."
+	desc = "A new Enviro-Helmet, adjusted for the unique skull shape for non-human Plasmamen."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "anahead"
@@ -776,7 +776,7 @@
 
 // Donation reward for CandleJax
 /obj/item/clothing/under/plasmaman/candlejax2
-	name = "skeleton shame environment suit"
+	name = "skeleton shape environment suit"
 	desc = "An Enviro-Suit. Fitted to the the form of some other species who fell into plasma."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
