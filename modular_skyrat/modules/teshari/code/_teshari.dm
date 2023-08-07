@@ -52,8 +52,8 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/teshari,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/teshari,
 	)
-	species_cookie = /obj/item/food/meat/slab//give them meat for a snack
-	meat = /obj/item/food/meat/slab/chicken//It is what it is.
+	species_cookie = /obj/item/food/meat/slab//Bubber edit-give them meat for a snack
+	meat = /obj/item/food/meat/slab/chicken//Bubber edit-It is what it is.
 
 
 /obj/item/organ/internal/tongue/teshari
