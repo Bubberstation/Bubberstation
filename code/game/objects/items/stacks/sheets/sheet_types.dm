@@ -164,16 +164,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
 
-/obj/item/stack/sheet/iron/Initialize(mapload)
-	. = ..()
-	var/static/list/tool_behaviors = list(
-		TOOL_WELDER = list(
-			SCREENTIP_CONTEXT_LMB = "Craft iron rods",
-			SCREENTIP_CONTEXT_RMB = "Craft floor tiles",
-		),
-	)
-	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
-
 /obj/item/stack/sheet/iron/examine(mob/user)
 	. = ..()
 	. += span_notice("You can build a wall girder (unanchored) by right clicking on an empty floor.")
@@ -622,7 +612,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cardboard
-	novariants = TRUE
 	grind_results = list(/datum/reagent/cellulose = 10)
 	material_type = /datum/material/cardboard
 

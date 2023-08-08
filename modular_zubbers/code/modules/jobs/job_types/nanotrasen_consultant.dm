@@ -1,3 +1,8 @@
+/datum/job/nanotrasen_consultant
+	departments_list = list(
+		/datum/job_department/command,
+	)
+//Making the NT consultant Command, not Central Command.
 /datum/outfit/job/nanotrasen_consultant
 	id = /obj/item/card/id/advanced/silver
 

@@ -1,3 +1,4 @@
+/* This file is now unused in favor of the one in the modular zubbers file.
 //as of:10/28/2019:
 //boxstation: ~153 loot items spawned
 //metastation: ~183 loot items spawned
@@ -301,7 +302,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/shield/buckler = 1,
 		/obj/item/throwing_star = 1,
 		/obj/item/weldingtool/hugetank = 1,
-		/obj/item/fishing_rod/master = 1,
+		/obj/item/fishing_rod/telescopic/master = 1,
 		/obj/item/spess_knife = 1,
 		) = 1,
 
@@ -342,8 +343,9 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		) = 1,
 
 	list(//misc
-		/obj/item/book/granter/crafting_recipe/pipegun_prime = 1,
+		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 1,
 		/obj/item/book/granter/crafting_recipe/trash_cannon = 1,
+		/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime = 1,
 		/obj/item/book/granter/sign_language = 1,
 		/obj/item/disk/nuclear/fake = 1,
 		/obj/item/skillchip/brainwashing = 1,
@@ -408,3 +410,4 @@ GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spa
 			/obj/item/coin/silver,
 			/obj/item/coin/titanium,
 		))
+*/

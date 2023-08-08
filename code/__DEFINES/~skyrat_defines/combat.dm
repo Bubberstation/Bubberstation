@@ -19,6 +19,9 @@
 //Grab breakout odds
 #define OVERSIZED_GRAB_RESIST_BONUS 0 // BUBBER EDIT- With this oversized are just as good at grabs as anyone else.
 
+//Grab breakout bonus for akulas when at 10+ wet_stacks
+#define AKULA_GRAB_RESIST_BONUS 10
+
 // Damage modifiers
 #define OVERSIZED_HARM_DAMAGE_BONUS 5 /// Those with the oversized trait do 5 more damage.
 
