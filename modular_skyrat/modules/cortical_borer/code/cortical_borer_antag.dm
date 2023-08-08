@@ -155,7 +155,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
-	cost = 15
+	cost = 12
 	minimum_players = 20
 	repeatable = TRUE
 	/// List of on-station vents
