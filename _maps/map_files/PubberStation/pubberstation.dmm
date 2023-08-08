@@ -1113,6 +1113,10 @@
 /obj/machinery/power/turbine/inlet_compressor,
 /turf/open/floor/engine/airless,
 /area/station/maintenance/disposal/incinerator)
+"bwe" = (
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/white,
+/area/station/science)
 "bwR" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/ai_module/reset,
@@ -1527,6 +1531,10 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/theater)
+"bYF" = (
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron,
+/area/station/cargo/storage)
 "bYI" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron,
@@ -1835,6 +1843,13 @@
 /obj/structure/closet/crate/freezer,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
+"crM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron,
+/area/station/cargo/storage)
 "crQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /obj/machinery/meter,
@@ -7102,6 +7117,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science)
+"jlN" = (
+/obj/machinery/vending/dorms,
+/turf/open/floor/iron,
+/area/station/common/wrestling/arena)
 "jlP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
@@ -9890,6 +9909,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
+"mWB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "mXz" = (
@@ -13101,6 +13127,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
+"rqp" = (
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron,
+/area/station/cargo/warehouse)
 "rqY" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/vg_decals/numbers/two,
@@ -14614,7 +14644,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "tBm" = (
-/obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -15108,6 +15137,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/janitor)
+"ucp" = (
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "ucN" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
@@ -102452,9 +102485,9 @@ fSF
 mvS
 mgr
 bbe
-fto
-fto
-fto
+jlN
+mvS
+mvS
 fto
 fto
 fto
@@ -102482,7 +102515,7 @@ vLL
 vLL
 vLL
 vLL
-vLL
+rqp
 hxV
 hxV
 hxV
@@ -102692,7 +102725,7 @@ iOD
 ihr
 ksR
 ihr
-nxf
+keB
 tZM
 tZM
 tZM
@@ -102703,7 +102736,7 @@ tZM
 tZM
 tZM
 tZM
-nxf
+keB
 vqe
 nhy
 fto
@@ -102739,7 +102772,7 @@ vLL
 vLL
 vLL
 vLL
-vLL
+rqp
 hxV
 hxV
 hxV
@@ -103523,9 +103556,9 @@ tGT
 xUm
 wim
 qor
-hxV
-pxX
-hxV
+bYF
+crM
+bYF
 rCF
 rCF
 rCF
@@ -104748,7 +104781,7 @@ iOD
 ihr
 ksR
 ihr
-nxf
+keB
 tZM
 tZM
 tZM
@@ -104759,7 +104792,7 @@ tZM
 tZM
 tZM
 tZM
-nxf
+keB
 dql
 ehf
 fto
@@ -109441,9 +109474,9 @@ bAq
 fPP
 gyY
 wAv
-tzz
+tEK
 tBm
-tzz
+tEK
 ruy
 hxG
 cfZ
@@ -116344,9 +116377,9 @@ fRA
 gdO
 jyY
 xOf
-jBL
-jBL
-jBL
+lGA
+lGA
+lGA
 xOf
 bJf
 xOf
@@ -118154,9 +118187,9 @@ dBb
 kql
 dBb
 lmx
-hwE
-hwE
-hwE
+ucp
+ucp
+ucp
 sMe
 krA
 qlz
@@ -119676,9 +119709,9 @@ vCt
 jtu
 vCt
 vCt
-lfc
-mWq
-lfc
+dMA
+vlw
+dMA
 lFh
 lFh
 lFh
@@ -120704,9 +120737,9 @@ pUT
 dGH
 nkU
 cTG
-dMA
-vlw
-dMA
+lfc
+mWB
+lfc
 vpu
 fvD
 fvD
@@ -125330,10 +125363,10 @@ agK
 jRU
 lZK
 mhg
-dMA
-vlw
-dMA
-ocB
+lfc
+mWB
+lfc
+lRp
 ocB
 ocB
 lRp
@@ -126377,7 +126410,7 @@ tDN
 tDN
 tDN
 tDN
-tDN
+bwe
 tDN
 iQf
 tDN
@@ -126615,9 +126648,9 @@ qPq
 qPq
 qPq
 qPq
-lfc
-mWq
-lfc
+dMA
+vlw
+dMA
 lRp
 uhu
 lIv
@@ -126633,8 +126666,8 @@ iQf
 iQf
 iQf
 iQf
-iQf
-iQf
+tDN
+bwe
 tDN
 lTZ
 tDN
@@ -126891,7 +126924,7 @@ tDN
 tDN
 tDN
 tDN
-tDN
+bwe
 tDN
 iQf
 tDN
@@ -127148,7 +127181,7 @@ pFc
 nFX
 nFX
 nFX
-nFX
+awi
 tDN
 iQf
 tDN
@@ -128899,12 +128932,12 @@ vUm
 vUm
 vUm
 vUm
+exD
 vUm
 vUm
 vUm
 vUm
-vUm
-vUm
+exD
 vUm
 vUm
 vUm
@@ -129156,12 +129189,12 @@ vUm
 vUm
 vUm
 vUm
-vUm
+exD
 vUm
 uQU
 vUm
 vUm
-vUm
+exD
 vUm
 vUm
 vUm
@@ -129413,12 +129446,12 @@ vUm
 vUm
 vUm
 vUm
+exD
 vUm
 vUm
 vUm
 vUm
-vUm
-vUm
+exD
 vUm
 vUm
 vUm
