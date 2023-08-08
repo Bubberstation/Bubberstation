@@ -4,7 +4,6 @@ GLOBAL_LIST_INIT(KNITTABLES, typecacheof(list(
 	/obj/item/clothing/suit/costume/ghost_sheet/knitted,
 	/obj/item/clothing/neck/scarf/knitted,
 	/obj/item/clothing/head/beanie/knitted,
-	/obj/item/clothing/head/beret/knitted,
 	/obj/item/clothing/neck/mantle/recolorable/knitted,
 	/obj/item/clothing/suit/hooded/wintercoat/knitted,
 	/obj/item/clothing/gloves/color/grey/protects_cold/knitted,

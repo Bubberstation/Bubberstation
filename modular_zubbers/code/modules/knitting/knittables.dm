@@ -21,7 +21,9 @@
 	icon_state = "scarf_cloth"
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	worn_icon_state = "scarf_base"
-	greyscale_colors = "#4A4A4B#4A4A4B"
+	greyscale_colors = "#EEEEEE#EEEEEE"
+	greyscale_config = /datum/greyscale_config/scarf
+	greyscale_config_worn = /datum/greyscale_config/scarf/worn
 	cold_protection = NECK
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
@@ -32,20 +34,20 @@
 	icon_state = "beanie_cloth"
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
 	worn_icon_state = "beanie_base"
-	cold_protection = HEAD
-	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
-
-/obj/item/clothing/head/beret/knitted
-	name = "Knitted Beret"
-	desc = "A knitted beret. How fancy!"
-	icon = 'knittables.dmi'
-	icon_state = "beret_flat"
+	greyscale_config = /datum/greyscale_config/beanie
+	greyscale_config_worn = /datum/greyscale_config/beanie/worn
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/neck/mantle/recolorable/knitted
 	name = "Knitted Mantle"
 	desc = "A decorative drape over the shoulders. This one looks simple, but is quite soft to the touch."
+	greyscale_colors = "#ffffff"
+	greyscale_config = /datum/greyscale_config/mantle
+	greyscale_config_worn = /datum/greyscale_config/mantle/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/mantle/worn/teshari
+	greyscale_config_worn_better_vox = /datum/greyscale_config/mantle/worn/newvox
+	greyscale_config_worn_vox = /datum/greyscale_config/mantle/worn/oldvox
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	worn_icon_state = "mantle"
 
@@ -100,6 +102,9 @@
 	desc = "A warm looking sweater. It'll keep your top warm...But there's nothing to say for your legs with this cozy bit of clothing."
 	icon = 'knittables.dmi'
 	icon_state = "cableknit_top"
+	greyscale_config = /datum/greyscale_config/cableknit_sweater
+	greyscale_config_worn = /datum/greyscale_config/cableknit_sweater/worn
+	greyscale_colors = "#b2a484"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 	worn_icon_state = "cableknit_top"
 
