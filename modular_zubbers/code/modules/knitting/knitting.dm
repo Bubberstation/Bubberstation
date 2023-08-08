@@ -30,8 +30,6 @@ var/knitting_duration
 	desc = "Silver knitting needles used for stitching yarn."
 	icon = 'knitting.dmi'
 	inhand_icon_state = "knittingneedles"
-	lefthand_file = "knittingneedles_lh"
-	righthand_file = "knittingneedles_rh"
 	belt_icon_state = "knittingneedles"
 	icon_state = "knittingneedles"
 	w_class = WEIGHT_CLASS_SMALL
