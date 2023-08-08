@@ -34,7 +34,7 @@
 	wound_bonus = -50
 
 /obj/item/ammo_casing/c45/hp
-	name = ".460 Ceres hollow-point bullet"
+	name = ".460 Ceres hollow-point bullet casing"
 	desc = "A .460 hollow-point bullet casing. Very lethal against unarmored opponents. Suffers against armor."
 	projectile_type = /obj/projectile/bullet/c45/hp
 	advanced_print_req = TRUE
@@ -97,14 +97,14 @@
 	wound_bonus = -50
 
 /obj/item/ammo_casing/a556/ap
-	name = ".277 Aestus armor-piercing casing"
+	name = ".277 Aestus armor-piercing bullet casing"
 	desc = "A .277 armor-piercing bullet casing.\
 	<br><br>\
 	<i>ARMOR PIERCING: Increased armor piercing capabilities. What did you expect?"
 	caliber = CALIBER_A556
 	projectile_type = /obj/projectile/bullet/a556/ap
 	advanced_print_req = TRUE
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_AP
 
 /obj/projectile/bullet/a556/ap
 	name = ".277 armor-piercing bullet"
@@ -142,7 +142,7 @@
 	<br><br>\
 	<i>ARMOR-PIERCING: Improved armor-piercing capabilities, in return for less outright damage.</i>"
 	projectile_type = /obj/projectile/bullet/a762/ap
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_AP
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/a762/ap
@@ -183,11 +183,11 @@
 	embedding = null
 
 /obj/item/ammo_casing/c34/ap
-	name = ".34 armor-piercing bullet"
+	name = ".34 armor-piercing bullet casing"
 	desc = "A .34 armor-piercing bullet casing."
 	caliber = "c34acp"
 	projectile_type = /obj/projectile/bullet/c34/ap
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_AP
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/c34/ap
@@ -197,11 +197,11 @@
 	wound_bonus = -75
 
 /obj/item/ammo_casing/c34_incendiary
-	name = ".34 incendiary bullet"
+	name = ".34 incendiary bullet casing"
 	desc = "A .34 incendiary bullet casing."
 	caliber = "c34acp"
 	projectile_type = /obj/projectile/bullet/incendiary/c34_incendiary
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_TEMP
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/incendiary/c34_incendiary
@@ -224,14 +224,14 @@
 	name = "4.2x30mm armor-piercing bullet casing"
 	desc = "A 4.2x30mm armor-piercing bullet casing."
 	projectile_type = /obj/projectile/bullet/c42x30mm/ap
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_AP
 	advanced_print_req = TRUE
 
 /obj/item/ammo_casing/c42x30mm/inc
 	name = "4.2x30mm incendiary bullet casing"
 	desc = "A 4.2x30mm incendiary bullet casing."
 	projectile_type = /obj/projectile/bullet/incendiary/c42x30mm
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_TEMP
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/c42x30mm
@@ -284,7 +284,7 @@
 /obj/item/ammo_casing/c12mm/ap
 	name = "12mm Magnum armor-piercing bullet casing"
 	desc = "A 12mm Magnum bullet casing with a titanium core."
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_AP
 	projectile_type = /obj/projectile/bullet/c12mm/ap
 	advanced_print_req = TRUE
 
@@ -297,7 +297,7 @@
 /obj/item/ammo_casing/c12mm/fire
 	name = "12mm Magnum incendiary bullet casing"
 	desc = "A 12mm Magnum bullet casing with a magnesium coated tip meant for setting things on fire."
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 0.5)
+	custom_materials = AMMO_MATS_TEMP
 	projectile_type = /obj/projectile/bullet/incendiary/c12mm
 	advanced_print_req = TRUE
 

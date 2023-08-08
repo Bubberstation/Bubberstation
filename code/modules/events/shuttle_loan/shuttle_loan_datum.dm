@@ -118,7 +118,7 @@
 	spawn_list.Add(/obj/structure/closet/crate/hydroponics)
 
 	for(var/i in 1 to 8)
-		spawn_list.Add(/mob/living/simple_animal/hostile/bee/toxin)
+		spawn_list.Add(/mob/living/basic/bee/toxin)
 
 	for(var/i in 1 to 5)
 		var/decal = pick(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/insectguts)
@@ -163,7 +163,7 @@
 	logging_desc = "Pizza delivery"
 
 /datum/shuttle_loan_situation/pizza_delivery/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
-	var/naughtypizza = list(/obj/item/pizzabox/bomb, /obj/item/pizzabox/margherita/robo) //oh look another blacklist, for pizza nonetheless!
+	var/naughtypizza = list(/obj/item/pizzabox/bomb /*/obj/item/pizzabox/margherita/robo*/) // SKYRAT EDIT: oh look another blacklist, for pizza nonetheless! removes borg pizza
 	var/nicepizza = list(/obj/item/pizzabox/margherita, /obj/item/pizzabox/meat, /obj/item/pizzabox/vegetable, /obj/item/pizzabox/mushroom)
 	for(var/i in 1 to 6)
 		spawn_list.Add(pick(prob(5) ? naughtypizza : nicepizza))
@@ -180,11 +180,11 @@
 
 	spawn_list.Add(/mob/living/basic/syndicate/russian)
 	spawn_list.Add(/mob/living/basic/syndicate/russian/ranged) //drops a mateba
-	spawn_list.Add(/mob/living/simple_animal/hostile/bear/russian)
+	spawn_list.Add(/mob/living/basic/bear/russian)
 	if(prob(75))
 		spawn_list.Add(/mob/living/basic/syndicate/russian)
 	if(prob(50))
-		spawn_list.Add(/mob/living/simple_animal/hostile/bear/russian)
+		spawn_list.Add(/mob/living/basic/bear/russian)
 
 /datum/shuttle_loan_situation/spider_gift
 	sender = "CentCom Diplomatic Corps"

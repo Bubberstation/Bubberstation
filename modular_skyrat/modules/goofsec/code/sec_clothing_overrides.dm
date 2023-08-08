@@ -228,6 +228,7 @@
 		var/mob/living/carbon/carbon_user = user
 		carbon_user.head_update(src, forced = TRUE)
 
+
 //Beret replacement
 /obj/item/clothing/head/security_garrison
 	name = "security garrison cap"
@@ -236,7 +237,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "garrison_black"
 	uses_advanced_reskins = TRUE
-	armor_type = /datum/armor/head_security_garrison
+	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	unique_reskin = list(
@@ -250,17 +251,6 @@
 		),
 	)
 
-//Normal Cap
-
-/datum/armor/head_security_garrison
-	melee = 30
-	bullet = 25
-	laser = 25
-	energy = 35
-	bomb = 25
-	fire = 20
-	acid = 50
-
 /obj/item/clothing/head/security_cap
 	name = "security cap"
 	desc = "A robust cap with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
@@ -268,7 +258,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "security_cap_black"
 	uses_advanced_reskins = TRUE
-	armor_type = /datum/armor/head_security_cap
+	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 	dog_fashion = null
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
@@ -286,15 +276,6 @@
 			RESKIN_WORN_ICON_STATE = "security_cap_white"
 		),
 	)
-
-/datum/armor/head_security_cap
-	melee = 30
-	bullet = 25
-	laser = 25
-	energy = 35
-	bomb = 25
-	fire = 20
-	acid = 50
 
 /obj/item/clothing/head/hats/hos/cap
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
@@ -543,9 +524,11 @@
 */
 //Officer
 /obj/item/clothing/under/rank/security/officer
+	desc = "A tactical security uniform for officers, complete with a Lopland belt buckle."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_black"
+	alt_covers_chest = TRUE
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
 		"Black Variant" = list(
@@ -561,6 +544,18 @@
 			RESKIN_WORN_ICON_STATE = "security_white"
 		),
 	)
+
+/obj/item/clothing/under/rank/security/officer/formal
+	unique_reskin = null // prevents you from losing the unique sprite
+
+/obj/item/clothing/under/rank/security/officer/skirt
+	name = "security battle dress"
+	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt."
+	worn_icon_state = "security_skirt"
+	icon_state = "security_skirt"
+	uses_advanced_reskins = FALSE
+	unique_reskin = null
+	alt_covers_chest = FALSE
 
 //Warden
 /obj/item/clothing/under/rank/security/warden
@@ -620,21 +615,16 @@
 //
 // This code overrides security's jumpskirt preference, as we're not going to be giving them jumpskirts
 //
-/datum/outfit/job/security/pre_equip(mob/living/carbon/human/affected_mob)
-	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Peacekeeper uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
-		affected_mob.jumpsuit_style = PREF_SUIT
-	. = ..()
 
 /datum/outfit/job/hos/pre_equip(mob/living/carbon/human/affected_mob)
 	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Peacekeeper uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
+		to_chat(affected_mob, span_alertwarning("Lopland Head of Security uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
 		affected_mob.jumpsuit_style = PREF_SUIT
 	. = ..()
 
 /datum/outfit/job/warden/pre_equip(mob/living/carbon/human/affected_mob)
 	if(affected_mob.jumpsuit_style == PREF_SKIRT)
-		to_chat(affected_mob, span_alertwarning("Lopland Peacekeeper uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
+		to_chat(affected_mob, span_alertwarning("Lopland Warden uniforms don't include a skirt variant! You've been equipped with a jumpsuit instead."))
 		affected_mob.jumpsuit_style = PREF_SUIT
 	. = ..()
 

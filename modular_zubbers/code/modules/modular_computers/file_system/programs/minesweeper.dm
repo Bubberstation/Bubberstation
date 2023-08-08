@@ -255,12 +255,35 @@
 	if(result == MINESWEEPER_VICTORY)
 		play_snd('modular_zubbers/sound/arcade/minesweeper_win.ogg')
 		host.say("You cleared the board of all mines! Congratulations!")
+		if(emaggable && host.obj_flags & EMAGGED && value >= 1)
+			var/itemname
+			switch(rand(1,3))
+				if(1)
+					itemname = "plastic explosives"
+					new /obj/item/grenade/c4
+					new /obj/item/grenade/c4
+				if(2)
+					itemname = "grenade launcher"
+					new /obj/item/gun/grenadelauncher
+					new /obj/item/grenade/frag
+					new /obj/item/grenade/frag
+					new /obj/item/grenade/frag
+					new /obj/item/grenade/frag
+				if(3)
+					itemname = "concussion grenades"
+					new /obj/item/grenade/syndieminibomb/concussion
+					new /obj/item/grenade/syndieminibomb/concussion
+					new /obj/item/grenade/syndieminibomb/concussion
+					new /obj/item/grenade/syndieminibomb/concussion
+
+			message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
+			vis_msg(span_notice("[host] dispenses [itemname]!"), span_notice("You hear a chime and a clunk."))
 		ticket_count += value
 
-	//if(result == MINESWEEPER_DEAD && emaggable && (host.obj_flags & EMAGGED))
+	if(result == MINESWEEPER_DEAD && emaggable && (host.obj_flags & EMAGGED))
 		// One crossed wire, one wayward pinch of potassium chlorate, ONE ERRANT TWITCH
 		// AND
-		//KABLOOEY() Not... yet
+		KABLOOEY()
 
 	if(result)
 		time_frozen = REALTIMEOFDAY - starting_time

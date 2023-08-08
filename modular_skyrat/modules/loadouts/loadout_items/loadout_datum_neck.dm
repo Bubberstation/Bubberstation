@@ -127,6 +127,10 @@ GLOBAL_LIST_INIT(loadout_necks, generate_loadout_items(/datum/loadout_item/neck)
 	name = "Choker"
 	item_path = /obj/item/clothing/neck/human_petcollar/choker
 
+/datum/loadout_item/neck/thinchoker
+	name = "Thin Choker"
+	item_path = /obj/item/clothing/neck/human_petcollar/thinchoker
+
 /datum/loadout_item/neck/collar
 	name = "Collar"
 	item_path = /obj/item/clothing/neck/human_petcollar
@@ -251,7 +255,7 @@ GLOBAL_LIST_INIT(loadout_necks, generate_loadout_items(/datum/loadout_item/neck)
 /datum/loadout_item/neck/stethoscope
 	name = "Stethoscope"
 	item_path = /obj/item/clothing/neck/stethoscope
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER)
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT
 
 /datum/loadout_item/neck/maid
 	name = "Maid Neck Cover"

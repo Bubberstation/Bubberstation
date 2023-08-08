@@ -112,11 +112,10 @@
 /// Gets him mad at you if you're a species he's not racist towards, and provides the 50% to block attacks in the first and fourth phases
 /mob/living/simple_animal/hostile/megafauna/gladiator/adjustHealth(amount, updating_health, forced)
 	get_angry()
-	if(prob(block_chance) && (phase == 1) && !stunned)
-		balloon_alert_to_viewers("damage blocked!")
-		return FALSE
-	else if(prob(block_chance) && (phase == 4) && !stunned)
-		balloon_alert_to_viewers("damage blocked!")
+	if(prob(block_chance) && (phase == 1 || phase == 4) && !stunned)
+		var/our_turf = get_turf(src)
+		new /obj/effect/temp_visual/block(our_turf, COLOR_YELLOW)
+		playsound(src, 'sound/weapons/parry.ogg', BLOCK_SOUND_VOLUME * 2, vary = TRUE) // louder because lavaland low pressure maybe?
 		return FALSE
 	. = ..()
 	update_phase()
@@ -320,7 +319,7 @@
 						)
 	say(message = pick(spin_messages))
 	spinning = TRUE
-	animate(src, color = "#ff6666", 10)
+	animate(src, color = "#ff6666", 1 SECONDS)
 	SLEEP_CHECK_DEATH(5, src)
 	var/list/spinningturfs = list()
 	var/current_angle = 360
@@ -349,7 +348,7 @@
 		if(!spinning)
 			break
 		sleep(0.75) //addtimer(CALLBACK(src, PROC_REF(convince_zonespace_to_let_me_use_sleeps)), 2 WEEKS)
-	animate(src, color = initial(color), 3)
+	animate(src, color = initial(color), 0.3 SECONDS)
 	sleep(1)
 	spinning = FALSE
 
@@ -366,7 +365,7 @@
 							"COME ON!!",
 						)
 	say(message = pick(charge_messages))
-	animate(src, color = "#ff6666", 3)
+	animate(src, color = "#ff6666", 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(4, src)
 	face_atom(target)
 	minimum_distance = 0
@@ -380,7 +379,7 @@
 	minimum_distance = initial(minimum_distance)
 	chargetiles = 0
 	playsound(src, 'modular_skyrat/modules/gladiator/Clang_cut.ogg', 75, 0)
-	animate(src, color = initial(color), 5)
+	animate(src, color = initial(color), 0.5 SECONDS)
 	update_phase()
 	sleep(CEILING(MARKED_ONE_STUN_DURATION * modifier, 1))
 	stunned = FALSE
