@@ -94,6 +94,11 @@
 			set_sanity(sanity + 0.6 * seconds_per_tick, SANITY_NEUTRAL, SANITY_MAXIMUM)
 	handle_nutrition()
 
+	//Bubberstation change start: Adds death mood event.
+	if(mood_level >= MOOD_LEVEL_HAPPY2 && sanity_level >= SANITY_GREAT)
+		clear_mood_event("death")
+	//Bubberstation change end: Adds death mood event.
+
 	// 0.416% is 15 successes / 3600 seconds. Calculated with 2 minute
 	// mood runtime, so 50% average uptime across the hour.
 	if(HAS_TRAIT(mob_parent, TRAIT_DEPRESSION) && SPT_PROB(0.416, seconds_per_tick))
@@ -106,6 +111,10 @@
 	SIGNAL_HANDLER
 
 	if (last_stat == DEAD && mob_parent.stat != DEAD)
+		//Bubberstation change start: Adds death mood event.
+		if(!HAS_TRAIT(mob_parent, TRAIT_I_DO_NOT_FEAR_DEATH))
+			add_mood_event("death",/datum/mood_event/death)
+		//Bubberstation change end: Adds death mood event.
 		START_PROCESSING(SSmood, src)
 	else if (last_stat != DEAD && mob_parent.stat == DEAD)
 		STOP_PROCESSING(SSmood, src)
