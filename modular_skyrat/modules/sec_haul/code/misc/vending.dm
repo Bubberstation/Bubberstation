@@ -12,6 +12,7 @@
 		/obj/item/storage/box/evidence = 6,
 		/obj/item/flashlight/seclite = 6,
 		/obj/item/restraints/legcuffs/bola/energy = 10,
+		/obj/item/bodycam_upgrade = 6,//Bubber addition.
 	)
 	premium = list(
 		/obj/item/storage/belt/security/webbing = 4,
