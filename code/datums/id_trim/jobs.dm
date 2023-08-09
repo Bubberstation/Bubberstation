@@ -652,6 +652,7 @@
 		ACCESS_LAWYER,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SERVICE,
+		ACCESS_SECURITY,//Bubber addition, needed for bodycams to work ideally.
 		)
 	extra_access = list()
 	template_access = list(
