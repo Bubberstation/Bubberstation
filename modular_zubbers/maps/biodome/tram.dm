@@ -28,7 +28,7 @@
 /obj/effect/landmark/tram/boat/aft
 	name = "Aft Boat Dock"
 	specific_lift_id = BOAT_TRAM
-	platform_code = BOAT_TRAM
+	platform_code = BOAT_TRAM_AFT
 	tgui_icons = list("Command" = "bullhorn")
 
 //These are the buttons
