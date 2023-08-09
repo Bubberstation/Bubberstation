@@ -15,6 +15,12 @@
 	premium = list(
 		/obj/item/pai_card = 2,
 	)
+
+	/// BUBBER EDIT
+	contraband = list(
+		/obj/item/implanter/imaginary_friend = 2,
+	)
+	///
 	refill_canister = /obj/item/vending_refill/modularpc
 	default_price = PAYCHECK_CREW
 	extra_price = PAYCHECK_COMMAND

@@ -519,3 +519,32 @@
 	real_name = "[owner.real_name]?"
 	name = real_name
 	human_image = icon('icons/mob/simple/lavaland/lavaland_monsters.dmi', icon_state = "curseblob")
+
+/// Bubber Edit
+/obj/item/implant/imaginary_friend
+	name = "Imaginary Friend implant"
+	desc = "Gives you a new friend!"
+
+/obj/item/implant/imaginary_friend/get_data()
+	var/dat = {"<b>Implant Specifications:</b><BR>
+				<b>Name:</b> Imaginary Friend Implant<BR>
+				<b>Life:</b> 9 Hours<BR>
+				"}
+	return dat
+
+/obj/item/implant/imaginary_friend/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	. = ..()
+	if(.)
+		var/mob/living/carbon/new_friend_target = target
+		new_friend_target.gain_trauma(/datum/brain_trauma/special/imaginary_friend, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/obj/item/implant/imaginary_friend/removed(mob/target, silent = FALSE, special = FALSE)
+	. = ..()
+	if(.)
+		var/mob/living/carbon/new_friend_target = target
+		new_friend_target.cure_trauma_type(/datum/brain_trauma/special/imaginary_friend, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/obj/item/implanter/imaginary_friend
+	name = "implanter (Imaginary Friend)"
+	imp_type = /obj/item/implant/imaginary_friend
+///
