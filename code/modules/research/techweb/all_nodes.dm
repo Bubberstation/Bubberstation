@@ -463,6 +463,10 @@
 		"bodymedicell",
 		"clotmedicell",
 		//SKYRAT EDIT END  -
+
+		//BUBBER EDIT START
+		"crewmonitor",
+		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	required_experiments = list(/datum/experiment/autopsy/nonhuman)
@@ -478,6 +482,7 @@
 		"limbdesign_felinid",
 		"limbdesign_lizard",
 		"limbdesign_plasmaman",
+		"limbdesign_hemophage",//bubber addition
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 6500)
 	discount_experiments = list(
@@ -1058,7 +1063,7 @@
 		"borg_upgrade_defibrillator",
 		"borg_upgrade_expandedsynthesiser",
 		"borg_upgrade_piercinghypospray",
-		//"borg_upgrade_pinpointer", // SKYRAT EDIT REMOVAL
+		"borg_upgrade_pinpointer",
 		"borg_upgrade_surgicalprocessor",
 
 		//SKYRAT EDIT START - RESEARCH DESIGNS
@@ -1250,6 +1255,9 @@
 		"arcade_battle",
 		"arcade_orion",
 		"slotmachine",
+		//BUBBER EDIT START
+		"minesweeper",
+		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3250)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = 3000)

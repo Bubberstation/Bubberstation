@@ -117,9 +117,9 @@
 	if(.)
 		for(var/obj/item/pickaxe/drill/cyborg/D in R.model)
 			R.model.remove_module(D, TRUE)
-		for(var/obj/item/shovel/S in R.model)
+/*		for(var/obj/item/shovel/S in R.model)
 			R.model.remove_module(S, TRUE)
-
+*/
 		var/obj/item/pickaxe/drill/cyborg/diamond/DD = new /obj/item/pickaxe/drill/cyborg/diamond(R.model)
 		R.model.basic_modules += DD
 		R.model.add_module(DD, FALSE, TRUE)
@@ -550,14 +550,15 @@
 		if(robot.hasExpanded)
 			to_chat(usr, span_warning("This unit already has an expand module installed!"))
 			return FALSE
-		// SKYRAT EDIT BEGIN
+/* 		// SKYRAT EDIT BEGIN - BUBBER EDIT REMOVAL
 		if(robot.model.model_select_icon == "nomod")
 			to_chat(usr, span_warning("Default models cannot take expand or shrink upgrades."))
 			return FALSE
 		if((R_TRAIT_WIDE in robot.model.model_features) || (R_TRAIT_TALL in robot.model.model_features))
 			to_chat(usr, span_warning("This unit's chassis cannot be enlarged any further."))
-			return FALSE
-		// SKYRAT EDIT END
+			return FALSE*/
+		// SKYRAT EDIT END - BUBBER EDIT REMOVAL
+
 
 		robot.notransform = TRUE
 		var/prev_lockcharge = robot.lockcharge

@@ -80,7 +80,7 @@
 /datum/greyscale_modify_menu/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "GreyscaleModifyMenu")
+		ui = new(user, target, "GreyscaleModifyMenu")
 		ui.open()
 
 /datum/greyscale_modify_menu/ui_data(mob/user)

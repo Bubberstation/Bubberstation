@@ -32,12 +32,8 @@
 
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/butchering, \
-		speed = 6 SECONDS, \
-		effectiveness = 110, \
-	)
-	//technically it's huge and bulky, but this provides an incentive to use it
-	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
+	AddComponent(/datum/component/butchering, speed = 7 SECONDS, effectiveness = 40)
+	AddComponent(/datum/component/two_handed, force_unwielded = 0, force_wielded = 20)
 
 /obj/item/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)
