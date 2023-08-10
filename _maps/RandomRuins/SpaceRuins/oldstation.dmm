@@ -537,6 +537,31 @@
 /obj/structure/sign/poster/official/science,
 /turf/closed/wall,
 /area/ruin/space/ancientstation/delta/hall)
+"cv" = (
+/obj/structure/alien/weeds,
+/obj/structure/closet/crate/engineering{
+	name = "camera assembly crate"
+	},
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/stack/cable_coil,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/iron/dark,
+/area/ruin/space/ancientstation/delta/ai)
 "cw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/transit_tube/station/reverse/flipped,
@@ -4064,11 +4089,6 @@
 /obj/structure/frame/machine,
 /turf/open/floor/engine/airless,
 /area/ruin/space/ancientstation/beta/supermatter)
-"tV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/firealarm/directional/west,
-/turf/open/floor/iron/white,
-/area/ruin/space/ancientstation/delta/rnd)
 "tW" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/shutters{
@@ -6691,6 +6711,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/hall)
+"Mk" = (
+/obj/machinery/light/small/directional/south,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plating{
+	initial_gas_mix = "co2=6;o2=16;n2=82;TEMP=293.15"
+	},
+/area/ruin/space/ancientstation/delta/hall)
 "Mr" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -7970,36 +7998,6 @@
 /obj/effect/spawner/random/trash/garbage,
 /turf/open/floor/iron/airless,
 /area/ruin/space/ancientstation/beta/hall)
-"VL" = (
-/obj/machinery/light/small/directional/south,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/bulb,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/turf/open/floor/plating{
-	initial_gas_mix = "co2=6;o2=16;n2=82;TEMP=293.15"
-	},
-/area/ruin/space/ancientstation/delta/hall)
 "VS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
@@ -8599,31 +8597,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/ruin/space/ancientstation/delta/rnd)
-"ZW" = (
-/obj/structure/alien/weeds,
-/obj/structure/closet/crate/engineering{
-	name = "camera assembly crate"
-	},
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/stack/cable_coil,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/west,
-/turf/open/floor/iron/dark,
-/area/ruin/space/ancientstation/delta/ai)
 "ZZ" = (
 /obj/structure/transit_tube{
 	dir = 4;
@@ -13878,7 +13851,7 @@ Gz
 Lx
 LH
 Bu
-VL
+Mk
 Gz
 JR
 Gz
@@ -14208,7 +14181,7 @@ wx
 ma
 kw
 Sa
-tV
+kw
 iq
 ze
 WV
@@ -15184,7 +15157,7 @@ ad
 ar
 be
 bp
-ZW
+cv
 cY
 ad
 ad

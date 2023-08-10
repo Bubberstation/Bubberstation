@@ -110,6 +110,11 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter/russian)
+"hx" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/fugitive_locator,
+/turf/open/floor/pod/dark,
+/area/shuttle/hunter/russian)
 "iM" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -178,6 +183,25 @@
 /obj/item/ammo_box/a762,
 /obj/item/ammo_box/a762,
 /turf/open/floor/pod/dark,
+/area/shuttle/hunter/russian)
+"pq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small/directional/north,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/wrench,
+/obj/item/crowbar,
+/obj/machinery/button/door/directional/north{
+	id = "russia_ship_bolt_n";
+	name = "External Bolt Control";
+	normaldoorcontrol = 1;
+	req_access = list("hunter");
+	specialfunctions = 4
+	},
+/obj/item/soap,
+/turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter/russian)
 "qF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
@@ -331,24 +355,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter/russian)
-"Cu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/critter{
-	anchorable = 0;
-	anchored = 1;
-	desc = "A large wood and steel-reinforced crate.";
-	name = "voytek's crate"
-	},
-/mob/living/basic/bear{
-	desc = "A very friendly yet still extremely menacing space-bear. Comrade until the end.";
-	name = "Voytek"
-	},
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/hunter/russian)
 "CB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -364,24 +370,6 @@
 	dir = 8
 	},
 /turf/closed/wall/mineral/titanium/survival,
-/area/shuttle/hunter/russian)
-"Du" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small/directional/north,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/wrench,
-/obj/item/crowbar,
-/obj/machinery/button/door/directional/north{
-	id = "russia_ship_bolt_n";
-	name = "External Bolt Control";
-	normaldoorcontrol = 1;
-	req_access = list("hunter");
-	specialfunctions = 4
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/hunter/russian)
 "Dw" = (
 /obj/effect/turf_decal/bot,
@@ -430,6 +418,24 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/hunter/russian)
+"FI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/critter{
+	anchorable = 0;
+	anchored = 1;
+	desc = "A large wood and steel-reinforced crate.";
+	name = "voytek's crate"
+	},
+/mob/living/basic/bear{
+	desc = "A very friendly yet still extremely menacing space-bear. Comrade until the end.";
+	name = "Voytek"
+	},
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/hunter/russian)
 "FK" = (
 /obj/machinery/light/small/directional/south,
 /obj/effect/turf_decal/stripes/line,
@@ -448,12 +454,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/hunter/russian)
-"GF" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/reagent_dispensers/watertank,
-/obj/item/soap,
-/turf/open/floor/pod/dark,
 /area/shuttle/hunter/russian)
 "IV" = (
 /obj/structure/table,
@@ -803,7 +803,7 @@ Zf
 Gh
 ho
 JU
-GF
+hx
 LW
 xd
 yr
@@ -868,7 +868,7 @@ Me
 Me
 Me
 Me
-Cu
+FI
 XW
 Me
 iV
@@ -904,7 +904,7 @@ iV
 Me
 Me
 Me
-Du
+pq
 UV
 Me
 iV
