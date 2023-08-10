@@ -1694,7 +1694,7 @@
 			. = TRUE
 
 /obj/machinery/door/airlock/proc/user_allowed(mob/living/silicon/user) // BUBBER EDIT - Whole Proc Replaced For Silicon Interaction Power Draw
-	if(user.get_power(demand = 350, distance = (get_dist(src,user)), atom = src))
+	if(user.get_power(demand = 125, distance = (get_dist(src,user)), atom = src)) // Upgrade your cells!
 		return (issilicon(user) && canAIControl(user)) || isAdminGhostAI(user)
 
 /obj/machinery/door/airlock/proc/shock_restore(mob/user)

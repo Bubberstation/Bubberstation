@@ -5,8 +5,11 @@
 	if(iscyborg(src)) // if we're a cyborg, we have a cell.
 		robot = src
 		cell = robot.cell
-	if(cell && cell.use(demand * distance)) // More distance means more draw
-		balloon_alert(robot, "used [demand * distance]")
+	if(isAI(src))
+		return TRUE
+	var/true_cost = demand * (distance > 2 ? distance : 0)
+	if(cell && cell.use(true_cost)) // More distance means more draw - point blank is free.
+		balloon_alert(robot, true_cost ? "used [true_cost] charge" : "no charge used")
 		Beam(BeamTarget = atom, time = 1 SECONDS)
 		. = TRUE
 	else // Use the area power, if we need to.
