@@ -153,6 +153,8 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/spawn_sunbeam,					/*SKYRAT EDIT ADDITION*/
 	/client/proc/intensity_credits_panel,		/*SKYRAT EDIT ADDITION*/
 	/client/proc/toggle_bsa,					/*SKYRAT EDIT ADDITION*/
+	/client/proc/try_stop_delam, /*SKYRAT EDIT ADDITION*/
+	/client/proc/toggle_delam_suppression, /*SKYRAT EDIT ADDITION*/
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -257,6 +259,8 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/reload_interactions,	/*SKYRAT EDIT ADDITION*/
 	/client/proc/test_area_spawner,		/*AUTOMAPPER - SKYRAT EDIT ADDITION*/
 	/client/proc/toggle_liquid_debug,	/*SKYRAT EDIT ADDITION*/
+
+	/client/proc/debug_maintenance_loot //Bubberstation addition.
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, GLOBAL_PROC_REF(release)))
 GLOBAL_PROTECT(admin_verbs_possess)
