@@ -1693,8 +1693,9 @@
 			user_toggle_open(usr)
 			. = TRUE
 
-/obj/machinery/door/airlock/proc/user_allowed(mob/user)
-	return (issilicon(user) && canAIControl(user)) || isAdminGhostAI(user)
+/obj/machinery/door/airlock/proc/user_allowed(mob/living/silicon/user) // BUBBER EDIT - Whole Proc Replaced For Silicon Interaction Power Draw
+	if(user.get_power(demand = 350, distance = (get_dist(src,user)), atom = src))
+		return (issilicon(user) && canAIControl(user)) || isAdminGhostAI(user)
 
 /obj/machinery/door/airlock/proc/shock_restore(mob/user)
 	if(!user_allowed(user))
