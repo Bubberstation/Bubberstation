@@ -6,5 +6,5 @@
 	for(var/datum/job/job as anything in subtypesof(/datum/job))
 		if(!(initial(job.job_flags) & JOB_CREW_MEMBER))
 			continue
-		if(!(job in cyber_trait.job_to_cybernetic))
-			TEST_FAIL("Job [job] does not have an assigned cybernetic for [cyber_trait.type] station trait.")
+/* 		if(!(job in cyber_trait.job_to_cybernetic)) // BUBBER EDIT - I don't CARE we don't USE THIS.
+			TEST_FAIL("Job [job] does not have an assigned cybernetic for [cyber_trait.type] station trait.") */
