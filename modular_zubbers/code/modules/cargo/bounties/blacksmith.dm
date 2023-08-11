@@ -13,7 +13,25 @@
 	wanted_types = list(/obj/item/restraints/handcuffs = TRUE) //This includes reagent cuffs
 
 /datum/bounty/item/blacksmith/staff
-	name = "Reagent staff"
+	name = "Staff"
 	description = "A respected religious figure is visiting CentCom, but lost their staff on the way there! Send a replacement as soon as possible."
 	reward = CARGO_CRATE_VALUE * 5
 	wanted_types = list(/obj/item/forging/reagent_weapon/staff = TRUE)
+
+/datum/bounty/item/blacksmith/swords
+	name = "Swords"
+	description = "Our interns mosins have broken down, ship some swords so they have something to fight with."
+	required_count = 3
+	reward = CARGO_CRATE_VALUE * 24
+	wanted_types = list(/obj/item/forging/reagent_weapon/sword)
+
+/datum/bounty/item/blacksmith/armor
+	name = "Armor piece"
+	description = "Our security commander wants a new piece of plate armor to decorate his office. Send them some immeadiately"
+	required_count = 2
+	reward = CARGO_CRATE_VALUE * 20
+	wanted_types = list(/obj/item/clothing/shoes/forging_plate_boots = TRUE,
+						/obj/item/clothing/head/helmet/forging_plate_helmet = TRUE,
+						/obj/item/clothing/gloves/forging_plate_gloves = TRUE,
+						/obj/item/clothing/suit/armor/forging_plate_armor = TRUE\
+						)
