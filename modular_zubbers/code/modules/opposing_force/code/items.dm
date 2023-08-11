@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/code/modules/opposing_force/icons/items.dmi'
 	icon_state = "codeword_book"
 	/// Number of charges the book has, limits the number of times it can be used.
-	var/charges = 1
+	charges = 1
 
 
 /obj/item/codeword_granter/attack_self(mob/living/user)
@@ -43,7 +43,7 @@
 		use_charge(user)
 
 
-/obj/item/codeword_granter/proc/use_charge(mob/user)
+/obj/item/codeword_granter/use_charge(mob/user)
 	charges--
 
 	if(!charges)
@@ -52,32 +52,6 @@
 		new /obj/item/book/manual/random(src_turf)
 		qdel(src)
 
-
-/obj/item/antag_granter
-	icon = 'modular_zubbers/code/modules/opposing_force/icons/items.dmi'
-	/// What antag datum to give
-	var/antag_datum = /datum/antagonist/traitor
-	/// What to tell the user when they use the granter
-	var/user_message = ""
-
-
-/obj/item/antag_granter/attack(mob/living/target_mob, mob/living/user, params)
-	. = ..()
-
-	if(target_mob != user) // As long as you're attacking yourself it counts.
-		return
-	attack_self(user)
-
-
-/obj/item/antag_granter/attack_self(mob/user, modifiers)
-	. = ..()
-	if(!isliving(user) || !user.mind)
-		return FALSE
-
-	to_chat(user, span_notice(user_message))
-	user.mind.add_antag_datum(antag_datum)
-	qdel(src)
-	return TRUE
 
 /obj/item/antag_granter/changeling
 	name = "viral injector"

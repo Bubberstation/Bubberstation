@@ -18,3 +18,14 @@
 	name = "Lilac Dress"
 	item_path = /obj/item/clothing/under/rank/lace
 	ckeywhitelist = list("thedragmeme")
+
+/datum/loadout_item/under/miscellaneous/medrscrubs
+	name = "Security Medic's Scrubs"
+	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/under/miscellaneous/tactical_maid //Donor item for skyefree
+	name = "Tactical Maid Costume"
+	item_path = /obj/item/clothing/under/misc/maid/tactical
+	donator_only = TRUE
+

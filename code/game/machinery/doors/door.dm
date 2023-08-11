@@ -69,7 +69,6 @@
 	update_freelook_sight()
 	air_update_turf(TRUE, TRUE)
 	register_context()
-	GLOB.airlocks += src
 	if(elevator_mode)
 		if(elevator_linked_id)
 			elevator_status = LIFT_PLATFORM_LOCKED
@@ -129,7 +128,6 @@
 
 /obj/machinery/door/Destroy()
 	update_freelook_sight()
-	GLOB.airlocks -= src
 	if(elevator_mode)
 		GLOB.elevator_doors -= src
 	if(spark_system)
@@ -387,10 +385,10 @@
 	use_power(active_power_usage)
 	do_animate("opening")
 	set_opacity(0)
-	sleep(0.5 SECONDS)
+	SLEEP_NOT_DEL(0.5 SECONDS)
 	set_density(FALSE)
 	flags_1 &= ~PREVENT_CLICK_UNDER_1
-	sleep(0.5 SECONDS)
+	SLEEP_NOT_DEL(0.5 SECONDS)
 	layer = initial(layer)
 	update_appearance()
 	set_opacity(0)
@@ -424,10 +422,10 @@
 
 	do_animate("closing")
 	layer = closingLayer
-	sleep(0.5 SECONDS)
+	SLEEP_NOT_DEL(0.5 SECONDS)
 	set_density(TRUE)
 	flags_1 |= PREVENT_CLICK_UNDER_1
-	sleep(0.5 SECONDS)
+	SLEEP_NOT_DEL(0.5 SECONDS)
 	update_appearance()
 	if(visible && !glass)
 		set_opacity(1)
@@ -537,7 +535,7 @@
 	. = ..()
 
 /// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Open up when someone casts knock.
-/obj/machinery/door/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, mob/living/caster)
+/obj/machinery/door/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, atom/caster)
 	SIGNAL_HANDLER
 
 	INVOKE_ASYNC(src, PROC_REF(open))

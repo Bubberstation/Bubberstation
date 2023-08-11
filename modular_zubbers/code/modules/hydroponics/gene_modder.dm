@@ -1,7 +1,7 @@
 /obj/machinery/plantgenes
 	name = "plant DNA manipulator"
 	desc = "An advanced device designed to manipulate plant genetic makeup."
-	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon =  'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "dnamod"
 	base_icon_state = "dnamod"
 	var/working_state = "dnamod"
