@@ -77,6 +77,10 @@
 				chosen_type = pick(subtypesof(/datum/bounty/item/botany))
 			if(CIV_JOB_ATMOS)
 				chosen_type = pick(subtypesof(/datum/bounty/item/atmospherics))
+			//BUBBER EDIT START
+			if(CIV_JOB_SMITH)
+				chosen_type = pick(subtypesof(/datum/bounty/item/blacksmith))
+			//BUBBER EDIT END
 		bounty_ref = new chosen_type
 		if(bounty_ref.can_get())
 			bounty_succeeded = TRUE
