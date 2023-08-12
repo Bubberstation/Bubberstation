@@ -33,11 +33,11 @@
 	wanted_types = list(/obj/item/clothing/shoes/forging_plate_boots = TRUE,
 						/obj/item/clothing/head/helmet/forging_plate_helmet = TRUE,
 						/obj/item/clothing/gloves/forging_plate_gloves = TRUE,
-						/obj/item/clothing/suit/armor/forging_plate_armor = TRUE\
+						/obj/item/clothing/suit/armor/forging_plate_armor = TRUE,
 						)
 
 /datum/bounty/item/blacksmith/katana
 	name = "Katana"
 	description = "One of our Researchers is going to a Space Anime Convention and wants to show off a real katana! Ship one so he stops pestering us."
 	reward = CARGO_CRATE_VALUE * 6
-	wanted_types = list(/obj/item/forging/reagent_weapon/katana)
+	wanted_types = list(/obj/item/forging/reagent_weapon/katana = TRUE)
