@@ -33,7 +33,7 @@
 	wanted_types = list(/obj/item/clothing/shoes/forging_plate_boots = TRUE,
 						/obj/item/clothing/head/helmet/forging_plate_helmet = TRUE,
 						/obj/item/clothing/gloves/forging_plate_gloves = TRUE,
-						/obj/item/clothing/suit/armor/forging_plate_armor = TRUE,
+						/obj/item/clothing/suit/armor/forging_plate_armor = TRUE
 						)
 
 /datum/bounty/item/blacksmith/katana
