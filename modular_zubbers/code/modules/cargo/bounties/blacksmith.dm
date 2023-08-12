@@ -20,7 +20,7 @@
 
 /datum/bounty/item/blacksmith/swords
 	name = "Swords"
-	description = "Our interns mosins have broken down, ship some swords so they have something to fight with."
+	description = "Our interns' mosins have broken down, ship some swords so they have something to fight with."
 	required_count = 3
 	reward = CARGO_CRATE_VALUE * 24
 	wanted_types = list(/obj/item/forging/reagent_weapon/sword)
