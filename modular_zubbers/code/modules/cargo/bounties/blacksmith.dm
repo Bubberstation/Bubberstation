@@ -2,7 +2,7 @@
 	name = "Cortical Borer Cage"
 	description = "One of Nanotrasen's partner stations is undergoing a borer infestation and would like to capture some life specimen for research. Ship some off to CentCom right away."
 	reward = CARGO_CRATE_VALUE * 14
-	required_count = 3
+	required_count = 2
 	wanted_types = list(/obj/item/cortical_cage = TRUE)
 
 /datum/bounty/item/blacksmith/cuffs
