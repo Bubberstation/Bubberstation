@@ -493,8 +493,8 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
 
 	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
-	else
-		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h))
+//	else // BUBBER EDIT REMOVAL
+//		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
 	//SKYRAT EDIT END
 
 	..()
