@@ -1062,19 +1062,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/station/cargo/miningdock)
-"aso" = (
-/obj/structure/table,
-/obj/item/poster/random_official{
-	pixel_y = 1
-	},
-/obj/item/poster/random_official{
-	pixel_y = 6
-	},
-/obj/item/poster/random_official{
-	pixel_y = 10
-	},
-/turf/open/floor/wood,
-/area/station/security/brig)
 "ass" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/techstorage/tcomms_all,
@@ -8655,6 +8642,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron,
 /area/station/science/research)
+"cXj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/station/command/teleporter)
 "cXm" = (
 /obj/effect/spawner/random/structure/table_or_rack,
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -24524,8 +24517,9 @@
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
 "iDk" = (
-/turf/open/floor/iron/dark,
-/area/station/command/teleporter)
+/mob/living/basic/crab,
+/turf/open/water/jungle/biodome,
+/area/station/maintenance/starboard/central)
 "iDp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -25132,6 +25126,17 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
+"iPY" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "teleportershutters";
+	name = "Teleporter Shutters"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/iron/dark,
+/area/station/command/teleporter)
 "iQg" = (
 /obj/machinery/recharge_station,
 /obj/structure/cable,
@@ -26516,13 +26521,6 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/station/medical/morgue)
-"jqJ" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/obj/structure/flora/rock/pile/jungle/style_random,
-/turf/open/water/jungle/biodome,
-/area/station/biodome/aft)
 "jqK" = (
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/plating,
@@ -30123,14 +30121,9 @@
 /turf/open/floor/wood/large,
 /area/station/service/barber)
 "kAI" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "teleportershutters";
-	name = "Teleporter Shutters"
-	},
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark,
 /area/station/command/teleporter)
 "kAN" = (
@@ -36026,6 +36019,19 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
+"mvc" = (
+/obj/structure/table,
+/obj/item/poster/random_official{
+	pixel_y = 1
+	},
+/obj/item/poster/random_official{
+	pixel_y = 6
+	},
+/obj/item/poster/random_official{
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/station/security/brig)
 "mvg" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -40501,7 +40507,7 @@
 "nVu" = (
 /obj/structure/closet/crate/grave,
 /obj/item/bouquet/sunflower,
-/turf/open/misc/dirt,
+/turf/open/misc/dirt/jungle/dark,
 /area/station/asteroid)
 "nVA" = (
 /obj/effect/turf_decal/stripes/line{
@@ -43906,6 +43912,13 @@
 /obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/wood,
 /area/station/service/janitor)
+"pfg" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/obj/structure/flora/rock/pile/jungle/style_random,
+/turf/open/water/jungle/biodome,
+/area/station/biodome/aft)
 "pfn" = (
 /obj/machinery/vending/wallmed/directional/east,
 /obj/structure/disposalpipe/junction/flip{
@@ -65173,9 +65186,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/project)
 "wzV" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 1
-	},
 /turf/open/floor/iron/dark,
 /area/station/command/teleporter)
 "wzW" = (
@@ -69176,10 +69186,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/janitor,
 /turf/open/floor/plating,
 /area/station/commons/toilet)
-"xRM" = (
-/mob/living/basic/crab,
-/turf/open/water/jungle/biodome,
-/area/station/maintenance/starboard/central)
 "xRU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -69901,12 +69907,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/station/science/ordnance/bomb)
-"yeX" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark,
-/area/station/command/teleporter)
 "yfa" = (
 /obj/machinery/light/warm/directional/west,
 /turf/open/floor/iron,
@@ -108477,7 +108477,7 @@ qKr
 bJY
 sjt
 aiZ
-jqJ
+pfg
 gzQ
 fPs
 xjp
@@ -110283,8 +110283,8 @@ frW
 frW
 frW
 frW
+iPY
 kAI
-wzV
 vxa
 lCa
 axX
@@ -110540,9 +110540,9 @@ frW
 frW
 frW
 frW
+iPY
 kAI
 wzV
-iDk
 lNs
 axX
 fio
@@ -111056,7 +111056,7 @@ wls
 bpN
 cBF
 hOX
-wzV
+kAI
 vwY
 qpq
 fio
@@ -111312,8 +111312,8 @@ aNh
 hUr
 hUr
 lHt
-yeX
-yeX
+cXj
+cXj
 doi
 vAE
 fio
@@ -114370,7 +114370,7 @@ tzy
 hSH
 hNy
 tzy
-xRM
+iDk
 plH
 hNy
 oyW
@@ -114881,7 +114881,7 @@ wfX
 hNy
 hNy
 tzy
-xRM
+iDk
 tzy
 tzy
 tzy
@@ -115912,7 +115912,7 @@ tzy
 tzy
 hNy
 hNy
-xRM
+iDk
 hNy
 hNy
 hNy
@@ -174576,7 +174576,7 @@ iJB
 mvG
 nAj
 plE
-aso
+mvc
 pSM
 vje
 rRy
