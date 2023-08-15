@@ -1016,6 +1016,22 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
 	)
 
+/datum/design/borg_upgrade_advcutter
+	name = "Advanced Plasma Cutter"
+	id = "borg_upgrade_advcutter"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/advcutter
+	materials = list(
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma =SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5,
+	)
+	construction_time = 40
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
 /datum/design/borg_upgrade_holding
 	name = "Ore Satchel of Holding"
 	id = "borg_upgrade_holding"
@@ -1237,6 +1253,17 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING
 	)
 
+/datum/design/borg_upgrade_ewelder //BUBBER EDIT added in techweb and printing of Borg E welder.
+	name = "Electrical Welder"
+	id = "borg_upgrade_ewelder"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/electric_welder
+	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 2)
+	construction_time = 120
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING
+	)
+
 /datum/design/borg_upgrade_circuit_app
 	name = "Circuit Manipulator"
 	id = "borg_upgrade_circuitapp"
@@ -1265,6 +1292,17 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/pinpointer
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
+	construction_time = 120
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
+	)
+//BUBBER EDIT added the monitor upgrade
+/datum/design/borg_upgrade_monitor
+	name = "Crew Monitor"
+	id = "borg_upgrade_monitor"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/crew_monitor
+	materials = list(/datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	construction_time = 120
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
