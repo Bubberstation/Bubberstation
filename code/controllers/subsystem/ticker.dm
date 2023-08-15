@@ -236,7 +236,7 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 
 	mode = new /datum/game_mode/dynamic
-
+	SSgamemode.init_storyteller() // BUBBER EDIT ADDITION
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0

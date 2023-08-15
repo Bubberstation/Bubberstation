@@ -105,7 +105,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		SSticker.mode.admin_panel()
-
+		SSgamemode.admin_panel(usr) // BUBBER EDIT - STORYTELLER
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
 			return
