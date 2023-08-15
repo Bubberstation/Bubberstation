@@ -70,6 +70,7 @@
 	ears = /obj/item/radio/headset/interdyne/command
 	id = /obj/item/card/id/advanced/silver/generic
 	id_trim = /datum/id_trim/syndicom/skyrat/interdyne/deckofficer
+	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle //Bubberstation Edit
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deckofficer
 	name = "Interdyne Deck Officer"

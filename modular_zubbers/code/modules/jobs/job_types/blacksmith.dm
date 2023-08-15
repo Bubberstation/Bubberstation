@@ -15,6 +15,8 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_CAR
 	display_order = JOB_DISPLAY_ORDER_BLACKSMITH
+	bounty_types = CIV_JOB_SMITH
+
 	departments_list = list(
 		/datum/job_department/cargo,
 		)

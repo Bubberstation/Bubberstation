@@ -22,7 +22,8 @@
 
 #define STATION_TARGET_BUFFER 25
 
-
+///The coefficient for the amount of dosh that's collected everytime some is earned or received.
+#define DEBT_COLLECTION_COEFF 0.75
 
 #define MAX_GRANT_DPT 500
 
@@ -64,6 +65,9 @@
 #define CIV_JOB_GROW 12
 #define CIV_JOB_ATMOS 13
 #define CIV_JOB_RANDOM 14
+//BUBBER EDIT START
+#define CIV_JOB_SMITH 21 //By making this higher we avoid having to maintain this value if more bounties are added upstream
+//BUBBER EDIT END
 
 //By how much should the station's inflation value be multiplied by when dividing the civilian bounty's reward?
 #define BOUNTY_MULTIPLIER 10

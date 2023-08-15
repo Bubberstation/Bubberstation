@@ -7,14 +7,14 @@
 /datum/preference/choiced/parallax/init_possible_values()
 	return list(
 		PARALLAX_INSANE,
-		PARALLAX_HIGH,
-		PARALLAX_MED,
-		PARALLAX_LOW,
+//		PARALLAX_HIGH, // BUBBER EDIT BEGIN - You have it or you don't. You always look good.
+//		PARALLAX_MED,
+//		PARALLAX_LOW, // BUBBER EDIT END
 		PARALLAX_DISABLE,
 	)
 
 /datum/preference/choiced/parallax/create_default_value()
-	return PARALLAX_HIGH
+	return PARALLAX_DISABLE // BUBBER EDIT - Aesthetic
 
 /datum/preference/choiced/parallax/apply_to_client(client/client, value)
 	client.mob?.hud_used?.update_parallax_pref(client?.mob)
