@@ -4,8 +4,8 @@ SUBSYSTEM_DEF(gamemode)
 	name = "Gamemode"
 	init_order = INIT_ORDER_GAMEMODE
 	runlevels = RUNLEVEL_GAME
-
-	wait = 20
+	flags = SS_BACKGROUND | SS_KEEP_TIMING
+	wait = 2 SECONDS
 
 	/// List of our event tracks for fast access during for loops.
 	var/list/event_tracks = EVENT_TRACKS

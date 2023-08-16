@@ -1,8 +1,8 @@
-/datum/round_event_control/can_spawn_event(players_amt, allow_magic = FALSE)
+/* /datum/round_event_control/can_spawn_event(players_amt, allow_magic = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(intensity_restriction && !GLOB.intense_event_credits)
-		return FALSE
+		return FALSE */
 
 /datum/round_event_control/run_event(random = FALSE, announce_chance_override = null, admin_forced = FALSE, event_cause)
 	. = ..()
