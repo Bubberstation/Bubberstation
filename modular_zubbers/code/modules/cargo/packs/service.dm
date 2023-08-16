@@ -4,3 +4,4 @@
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list(/obj/machinery/jukebox)
 	crate_type = /obj/structure/closet/crate/large
+	access_view = ACCESS_BAR
