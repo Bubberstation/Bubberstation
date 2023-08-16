@@ -14,6 +14,7 @@
 	M.AdjustImmobilized(-40 * REM * seconds_per_tick)
 	M.adjustStaminaLoss(-2 * REM * seconds_per_tick, 0)
 	M.set_jitter_if_lower(5 SECONDS)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 8) * REM * seconds_per_tick, required_organ_flag = affected_organ_flags)//Bubber edit-Adds brain damage.
 	if(SPT_PROB(2.5, seconds_per_tick))
 		M.emote(pick("twitch", "shiver"))
 	..()

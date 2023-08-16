@@ -94,8 +94,8 @@
 /datum/round_event_control/cortical_borer
 	name = "Cortical Borer Infestation"
 	typepath = /datum/round_event/ghost_role/cortical_borer
-	weight = 10
-	min_players = 999
+	weight = 7
+	min_players = 30//Bubber change, Should NOT have been 999, fixed to 30.
 	max_occurrences = 1 //should only ever happen once
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
@@ -125,7 +125,7 @@
 				vents += temp_vent
 	if(!length(vents))
 		return MAP_ERROR
-	var/list/mob/dead/observer/candidates = poll_ghost_candidates("Do you want to spawn as a cortical borer?", ROLE_PAI, FALSE, 10 SECONDS, POLL_IGNORE_CORTICAL_BORER)
+	var/list/mob/dead/observer/candidates = poll_ghost_candidates("Do you want to spawn as a cortical borer?", ROLE_BORER, FALSE, 20 SECONDS, POLL_IGNORE_CORTICAL_BORER)//Bubber edit, adds more time for borer spawns, fixes borer polling ban type.
 	if(!length(candidates))
 		return NOT_ENOUGH_PLAYERS
 	var/living_number = max(length(GLOB.player_list) / POP_PER_BORER, 1)
@@ -151,13 +151,14 @@
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
+		JOB_CHIEF_MEDICAL_OFFICER,//Bubber addition
 	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
 	cost = 15
 	minimum_players = 20
-	repeatable = TRUE
+	repeatable = FALSE//Fixed, was TRUE, allowing Repeat events.
 	/// List of on-station vents
 	var/list/vents = list()
 

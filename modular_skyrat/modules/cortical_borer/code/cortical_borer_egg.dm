@@ -8,7 +8,7 @@
 	mob_name = "cortical borer"
 	///Type of mob that will be spawned
 	mob_type = /mob/living/basic/cortical_borer
-	role_ban = ROLE_ALIEN
+	role_ban = ROLE_BORER
 	show_flavor = FALSE
 	prompt_name = "cortical borer"
 	you_are_text = "You are a Cortical Borer."
