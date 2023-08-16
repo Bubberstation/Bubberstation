@@ -27293,6 +27293,7 @@
 "jEM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
 "jEW" = (
@@ -31904,7 +31905,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/terracotta/small,
+/turf/open/floor/stone,
 /area/station/biodome/fore)
 "leC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -37285,6 +37286,7 @@
 /obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "mSN" = (
@@ -54777,10 +54779,11 @@
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central)
 "sTC" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/poddoor/shutters{
+	id = "maint2"
+	},
 /turf/open/floor/plating,
-/area/station/service/abandoned_gambling_den)
+/area/station/maintenance/port/central)
 "sTK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/effect/turf_decal/siding/wideplating_new/corner{
@@ -91486,7 +91489,7 @@ pKF
 cJU
 pKF
 sUT
-cJU
+aoY
 pKF
 pKF
 xNE
@@ -93282,7 +93285,7 @@ hNy
 pKF
 pKF
 pKF
-aoY
+sTC
 pKF
 dEY
 ezI
@@ -184042,7 +184045,7 @@ lzy
 eZB
 gyD
 mSJ
-sTC
+tIY
 tcu
 eZB
 eZB
@@ -184299,7 +184302,7 @@ eZB
 eZB
 ecq
 jEM
-sTC
+wYZ
 yfU
 wYZ
 wYZ
