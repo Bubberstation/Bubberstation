@@ -825,6 +825,9 @@
 	cortical_owner.balloon_alert(owner, "egg laid")
 	StartCooldown()
 
+
+//Bubber addition below
+
 //Produce an Egg, General Path.
 /datum/action/cooldown/borer/produce_offspring_parasitic
 	name = "Produce Parasitic Egg"
@@ -888,7 +891,8 @@
 
 /datum/action/cooldown/borer/torment/Trigger(trigger_flags)
 	. = ..()
-	()
+	if(!.)
+		return FALSE
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
 	if(!cortical_owner.inside_human())
 		owner.balloon_alert(owner, "host required")
@@ -903,6 +907,7 @@
 		switch(tormetroll)
 		if(1 to 34)
 			owner.set_eye_blur_if_lower(10 SECONDS)
+			owner.set_pacifism_if_lower(20 SECONDS)
 		if (35 to 49)
 			owner.set_confusion_if_lower(10 SECONDS)
 		if (50 to 79)

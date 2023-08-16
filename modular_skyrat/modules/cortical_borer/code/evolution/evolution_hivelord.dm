@@ -37,7 +37,7 @@
 	gain_text = "The way that a Cortical Borer produces an egg is a strange one. So far, we have not seen how it produces one, or it doing so outside a host."
 	tier = 3
 	mutually_exclusive = TRUE
-	unlocked_evolutions = list(/datum/borer_evolution/hivelord/stealth_mode)
+	unlocked_evolutions = list(/datum/borer_evolution/hivelord/stealth_mode, /datum/borer_evolution/hivelord/torment)
 	evo_cost = 3
 
 /datum/borer_evolution/hivelord/produce_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
@@ -46,7 +46,7 @@
 	attack_action.Grant(cortical_owner)
 
 
-// T4
+// T4 + TORMENT
 /datum/borer_evolution/hivelord/stealth_mode
 	name = "Stealth Mode"
 	desc = "While in stealth mode, your presence is much less noticable in hosts, but you do not gain passive benefits."
@@ -59,6 +59,21 @@
 	. = ..()
 	var/datum/action/cooldown/borer/stealth_mode/attack_action = new()
 	attack_action.Grant(cortical_owner)
+
+
+//Bubber addition
+/datum/borer_evolution/hivelord/torment
+	name = "Torment Host"
+	desc = "Cause a host pain in order to stop them from disobeying you."
+	gain_text = "Some worms seemed to writhe in their hosts, causing them to drop and scream for hours on end..."
+	tier = 4
+	evo_cost = 2
+
+/datum/borer_evolution/hivelord/torment/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+	. = ..()
+	var/datum/action/cooldown/borer/torment/attack_action = new()
+	attack_action.Grant(cortical_owner)
+//Addition end
 
 // T5
 /datum/borer_evolution/hivelord/produce_offspring_alone

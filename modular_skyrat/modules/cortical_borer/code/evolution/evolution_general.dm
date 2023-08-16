@@ -80,6 +80,7 @@
 	. = ..()
 	cortical_owner.potential_chemicals |= added_chemicals
 
+//Bubber addition
 /datum/borer_evolution/produce_offspring_parasitic
 	name = "Produce Offspring"
 	desc = "Use a significant amount of effort to produce an egg."

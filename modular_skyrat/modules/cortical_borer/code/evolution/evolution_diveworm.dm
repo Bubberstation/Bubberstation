@@ -47,6 +47,7 @@
 		/datum/reagent/drug/opium,
 		/datum/reagent/drug/mushroomhallucinogen,
 		/datum/reagent/inverse/oculine,
+		/datum/reagent/inverse/lidocaine, //Bubber chem addition, entirely for letting diveworms be mean.
 	)
 
 /datum/borer_evolution/diveworm/expanded_chemicals/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
@@ -74,6 +75,7 @@
 	unlocked_evolutions = list(
 		/datum/borer_evolution/diveworm/harm_increase/t2,
 		/datum/borer_evolution/diveworm/empowered_offspring,
+		/datum/borer_evolution/diveworm/torment,
 	)
 
 /datum/borer_evolution/diveworm/harm_increase/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
@@ -92,6 +94,21 @@
 	tier = -1
 	unlocked_evolutions = list()
 
+//Bubber addition
+/datum/borer_evolution/diveworm/torment
+	name = "Torment Host"
+	desc = "Cause a host pain in order to stop them from disobeying you."
+	gain_text = "Some worms seemed to writhe in their hosts, causing them to drop and scream for hours on end..."
+	tier = 4
+	evo_cost = 2
+
+/datum/borer_evolution/diveworm/torment/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+	. = ..()
+	var/datum/action/cooldown/borer/torment/attack_action = new()
+	attack_action.Grant(cortical_owner)
+//Addition end
+
+
 // T5
 /datum/borer_evolution/diveworm/empowered_offspring
 	name = "Empowered Offspring"
@@ -109,3 +126,5 @@
 	. = ..()
 	var/datum/action/cooldown/borer/empowered_offspring/attack_action = new()
 	attack_action.Grant(cortical_owner)
+
+
