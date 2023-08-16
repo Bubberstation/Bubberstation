@@ -1073,9 +1073,6 @@
 		//SKYRAT EDIT START - RESEARCH DESIGNS
 		"borg_upgrade_surgicaltools",
 		//SKYRAT EDIT END - RESEARCH DESIGNS
-		//Bubber EDIT Start
-		"borg_upgrade_monitor",
-		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 

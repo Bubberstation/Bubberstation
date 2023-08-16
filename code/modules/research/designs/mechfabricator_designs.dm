@@ -1054,8 +1054,6 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
 	)
 
-/dat
-
 /datum/design/borg_syndicate_module
 	name = "Illegal Modules"
 	id = "borg_syndicate_module"
@@ -1294,18 +1292,6 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/pinpointer
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
-	construction_time = 120
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
-	)
-
-	//BUBBER EDIT added the monitor upgrade
-/datum/design/borg_upgrade_monitor
-	name = "Crew Monitor"
-	id = "borg_upgrade_monitor"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/crew_monitor
-	materials = list(/datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5)
 	construction_time = 120
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL

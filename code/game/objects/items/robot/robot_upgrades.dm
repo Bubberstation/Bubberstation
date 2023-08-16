@@ -654,35 +654,6 @@
 		if (RPED)
 			R.model.remove_module(RPED, TRUE)
 
-//BUBBER EDIT, re-adding the crew monitor, but now as an upgrade!
-/obj/item/borg/upgrade/crew_monitor
-	name = "Crew Monitoring chip"
-	desc = "Built in tracking, that lets your Medical machine track enabled suit vitals."
-	icon_state = "cyborg_upgrade2"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical)
-	model_flags = BORG_MODEL_MEDICAL
-
-/obj/item/borg/upgrade/crew_monitor/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/sensor_device/CM = locate() in R.model.modules
-		if(CM)
-			to_chat(user, span_warning("This unit is already equipped with monitoring software!"))
-			return FALSE
-
-		CM = new(R.model)
-		R.model.basic_modules += CM
-		R.model.add_module(CM, FALSE, TRUE)
-
-/obj/item/borg/upgrade/crew_monitor/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		var/obj/item/sensor_device/CM = locate() in R.model.modules
-		if (CM)
-			R.model.remove_module(CM, TRUE)
-
-
 /obj/item/borg/upgrade/pinpointer
 	name = "medical cyborg crew pinpointer"
 	desc = "A crew pinpointer module for the medical cyborg. Permits remote access to the crew monitor."
@@ -727,6 +698,7 @@
 
 /datum/action/item_action/crew_monitor
 	name = "Interface With Crew Monitor"
+	button_icon =  "scanner"
 
 /obj/item/borg/upgrade/transform
 	name = "borg model picker (Standard)"
