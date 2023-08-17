@@ -11,7 +11,7 @@
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_roles |= protected_roles
 
-/datum/round_event_control/antagonist/can_spawn_event(popchecks = TRUE)
+/datum/round_event_control/antagonist/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
 	if(!.)
 		return
@@ -33,7 +33,7 @@
 	/// Prompt players for consent to turn them into antags before doing so. Dont allow this for roundstart.
 	var/prompted_picking = FALSE
 
-/datum/round_event_control/antagonist/solo/can_spawn_event(popchecks = TRUE)
+/datum/round_event_control/antagonist/solo/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
 	if(!.)
 		return
@@ -156,7 +156,7 @@
 	min_players = 35
 	max_occurrences = 1
 
-/datum/round_event_control/antagonist/solo/wizard/can_spawn_event(popchecks = TRUE)
+/datum/round_event_control/antagonist/solo/wizard/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
 	if(!.)
 		return
