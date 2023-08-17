@@ -81,7 +81,7 @@
 	cortical_owner.potential_chemicals |= added_chemicals
 
 //Bubber addition
-/datum/borer_evolution/produce_offspring_parasitic
+/datum/borer_evolution/produce_offspring_parasitic//This is for non-hivelords, but hivelords CAN take it, because that's easy to do.
 	name = "Produce Offspring"
 	desc = "Use a significant amount of effort to produce an egg."
 	gain_text = "Some worms had difficulty reproducing. This did not stop them."

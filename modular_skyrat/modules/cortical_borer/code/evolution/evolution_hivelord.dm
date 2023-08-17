@@ -66,7 +66,7 @@
 	name = "Torment Host"
 	desc = "Cause a host pain in order to stop them from disobeying you."
 	gain_text = "Some worms seemed to writhe in their hosts, causing them to drop and scream for hours on end..."
-	tier = 4
+	tier = -1
 	evo_cost = 2
 
 /datum/borer_evolution/hivelord/torment/on_evolve(mob/living/basic/cortical_borer/cortical_owner)

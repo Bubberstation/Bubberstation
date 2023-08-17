@@ -888,7 +888,6 @@
 	button_icon_state = "blind"
 	cooldown_time = 30 SECONDS
 	chemical_cost = 120
-
 /datum/action/cooldown/borer/torment/Trigger(trigger_flags)
 	. = ..()
 	if(!.)
@@ -900,20 +899,22 @@
 	if(cortical_owner.host_sugar())
 		owner.balloon_alert(owner, "cannot function with sugar in host")
 		return
-	owner.span_boldwarning("You feel a horrible pain in your head, and can barely stay conscious!")
-	owner.emote("scream")
-	owner.adjustStaminaLoss(50)
-	var/tormetroll = rand(1,100)
-		switch(tormetroll)
+	if(cortical_owner.human_host.stat == DEAD)
+		return
+	to_chat(cortical_owner.human_host, span_warning("You feel a horrible pain in your head, and can barely stay conscious!"))
+	cortical_owner.human_host.emote("scream")
+	cortical_owner.human_host.adjustStaminaLoss(50)
+	cortical_owner.human_host.Paralyze(10 SECONDS)
+	switch(rand(1,100))
 		if(1 to 34)
-			owner.set_eye_blur_if_lower(10 SECONDS)
-			owner.set_pacifism_if_lower(20 SECONDS)
+			cortical_owner.human_host.set_eye_blur_if_lower(10 SECONDS)
+			cortical_owner.human_host.set_silence_if_lower(10 SECONDS)
 		if (35 to 49)
-			owner.set_confusion_if_lower(10 SECONDS)
+			cortical_owner.human_host.set_confusion_if_lower(15 SECONDS)
 		if (50 to 79)
-			owner.set_drugginess_if_lower(15 SECONDS)
+			cortical_owner.human_host.set_drugginess_if_lower(15 SECONDS)
 		if (80 to 100)
-			owner.set_hallucinations_if_lower(25 SECONDS)
+			cortical_owner.human_host.set_hallucinations_if_lower(25 SECONDS)
 
 #undef CHEMICALS_PER_UNIT
 #undef CHEMICAL_SECOND_DIVISOR

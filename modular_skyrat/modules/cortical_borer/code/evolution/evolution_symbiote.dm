@@ -60,7 +60,6 @@
 	name = "Expanded Chemical List"
 	desc = "Gain access to a new list of helpful chemicals to the unlockable list."
 	gain_text = "The chemicals the worms seem capable of synthesizing are truly remarkable, their hosts are able to get up from amazing amounts of harm."
-	mutually_exclusive = TRUE
 	tier = 4
 	evo_cost = 2
 	unlocked_evolutions = list(/datum/borer_evolution/symbiote/harm_decrease/t2)
