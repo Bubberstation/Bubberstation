@@ -116,7 +116,7 @@
 /obj/item/borg/upgrade/advcutter/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/plasmacutter/adv/AC = locate() in R.model.modules
+		var/obj/item/gun/energy/plasmacutter/brg/AC = locate() in R.model.modules
 		if(AC)
 			to_chat(user, span_warning("This unit is already equipped with A plasma Cutter!"))
 			return FALSE
@@ -127,7 +127,7 @@
 /obj/item/borg/upgrade/advcutter/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/gun/energy/plasmacutter/adv/AC in R.model.modules)
+		for(var/obj/item/gun/energy/plasmacutter/brg/AC in R.model.modules)
 			R.model.remove_module(AC, TRUE)
 
 /obj/item/borg/upgrade/ddrill
