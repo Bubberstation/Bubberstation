@@ -472,7 +472,6 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
@@ -993,7 +992,7 @@
 	dir = 4;
 	dwidth = 9;
 	height = 25;
-	name = "Burgerstation Evacuation Bay";
+	name = "Burgerstation Evacuation Dock";
 	shuttle_id = "emergency_home";
 	width = 29
 	},
@@ -2037,6 +2036,12 @@
 /obj/effect/spawner/random/decoration/glowstick,
 /turf/open/floor/plating,
 /area/station/maintenance/law)
+"baG" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "baL" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
@@ -2632,17 +2637,6 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
-"bsr" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 11;
-	height = 18;
-	name = "SS13: Station Ferry Dock";
-	shuttle_id = "whiteship_home";
-	width = 36
-	},
-/turf/open/space/basic,
-/area/space)
 "bst" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 1
@@ -2947,6 +2941,23 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/common/pool)
+"bBf" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "External Docking Port"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "bBi" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
@@ -6682,6 +6693,11 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/library)
+"dCj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/station/command/cc_dock)
 "dCk" = (
 /obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/plating,
@@ -6997,6 +7013,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/service/janitor)
+"dJx" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/light/small/directional/east,
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "dJB" = (
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
@@ -7966,6 +7988,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "elO" = (
@@ -9569,7 +9592,7 @@
 	dir = 8;
 	dwidth = 4;
 	height = 7;
-	name = "Cargo Bay";
+	name = "Burgerstation Cargo Bay";
 	shuttle_id = "cargo_home";
 	width = 12
 	},
@@ -9941,7 +9964,6 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/machinery/light/directional/south,
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark,
@@ -10451,6 +10473,12 @@
 	},
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
+"fsv" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/light/small/directional/west,
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "fsA" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
@@ -10952,10 +10980,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
-"fDw" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/hallway/secondary/entry)
 "fDy" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -11634,11 +11658,12 @@
 /area/station/cargo/lobby)
 "fUv" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/pump/on/general/visible{
+	dir = 4;
+	target_pressure = 400
+	},
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/computer)
 "fUD" = (
@@ -12956,6 +12981,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
+"gDC" = (
+/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/command/cc_dock)
 "gDF" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
@@ -13565,6 +13597,17 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
+"gTk" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 11;
+	height = 24;
+	name = "Burgerstation Guest Dock";
+	shuttle_id = "whiteship_home";
+	width = 35
+	},
+/turf/open/space/basic,
+/area/space)
 "gTH" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -16204,6 +16247,18 @@
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/engine,
 /area/station/maintenance/disposal)
+"iht" = (
+/obj/docking_port/stationary{
+	dheight = 3;
+	dir = 1;
+	dwidth = 8;
+	height = 11;
+	name = "Burgerstation Command Dock";
+	shuttle_id = "ferry_home";
+	width = 20
+	},
+/turf/open/space/basic,
+/area/space)
 "ihQ" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio1";
@@ -19909,6 +19964,7 @@
 /area/station/security/processing)
 "jYY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "jZa" = (
@@ -21832,6 +21888,21 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
+"kWU" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "External Docking Port"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "kXv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -25262,6 +25333,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/customs)
+"mHu" = (
+/obj/machinery/light/directional/south,
+/turf/open/floor/carpet/blue,
+/area/blueshield)
 "mHz" = (
 /obj/structure/table,
 /obj/item/stack/sheet/iron/fifty,
@@ -26111,7 +26186,8 @@
 /area/station/hallway/primary/port)
 "ndd" = (
 /obj/docking_port/stationary/mining_home{
-	dir = 8
+	dir = 8;
+	name = "Burgerstation Mining Dock"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -27663,10 +27739,10 @@
 /obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/machinery/camera/autoname/directional/north{
 	dir = 9
 	},
+/obj/structure/sign/warning/vacuum/external/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "nTH" = (
@@ -28926,7 +29002,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "oBq" = (
@@ -29257,6 +29332,8 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "oLA" = (
@@ -30012,12 +30089,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/station/medical/virology)
-"pfd" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/delivery,
-/obj/structure/cable,
-/turf/open/floor/iron,
-/area/station/command/cc_dock)
 "pfs" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/structure/cable,
@@ -30585,13 +30656,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
-"ptQ" = (
-/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
-	dir = 1
-	},
-/obj/structure/sign/warning/vacuum/external/directional/north,
-/turf/open/floor/iron/dark,
-/area/station/command/cc_dock)
 "ptR" = (
 /obj/effect/turf_decal/trimline/dark/filled/warning{
 	dir = 8
@@ -32871,6 +32935,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/library)
+"qvA" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "qwo" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
@@ -38203,16 +38271,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
-"tew" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 13;
-	name = "port bay 2";
-	shuttle_id = "ferry_home";
-	width = 5
-	},
-/turf/open/space/basic,
-/area/space)
 "teC" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -46297,6 +46355,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery/aft)
+"xnm" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/command/cc_dock)
 "xnw" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/glass/reinforced,
@@ -46555,22 +46619,6 @@
 /obj/machinery/duct,
 /turf/open/floor/wood,
 /area/station/service/bar)
-"xux" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/iron,
-/area/station/command/cc_dock)
 "xuI" = (
 /obj/machinery/door/password/voice{
 	password = "hunter2"
@@ -68127,7 +68175,7 @@ stM
 stM
 stM
 stM
-gKF
+stM
 stM
 stM
 stM
@@ -68135,7 +68183,7 @@ eeA
 jpO
 ulZ
 jgs
-kVf
+mHu
 tUX
 pKB
 ggF
@@ -68392,7 +68440,7 @@ eeA
 hMz
 ulZ
 xSO
-ulZ
+kVf
 tUX
 pKB
 ggF
@@ -68899,9 +68947,9 @@ stM
 stM
 stM
 stM
-stM
-stM
-stM
+azA
+izm
+izm
 izm
 tUX
 tUX
@@ -69156,10 +69204,10 @@ stM
 stM
 stM
 stM
-stM
-stM
-stM
-izm
+woT
+woT
+xIG
+woT
 xIG
 nTg
 rID
@@ -69412,13 +69460,13 @@ stM
 stM
 stM
 stM
-stM
-stM
-stM
-azA
-izm
-woT
-oLZ
+iht
+gEm
+qvA
+fsv
+xnm
+kWU
+ttu
 elM
 fgU
 xIG
@@ -69670,13 +69718,13 @@ stM
 stM
 stM
 stM
-stM
-stM
-woT
-woT
-xIG
+gEm
+qvA
+dJx
+baG
+bBf
 oLr
-tAx
+dCj
 ceB
 gLs
 pKB
@@ -69927,12 +69975,12 @@ stM
 stM
 stM
 stM
-stM
-tew
-gEm
-pfd
-xux
-oLZ
+woT
+woT
+xIG
+woT
+xIG
+gDC
 pcV
 akn
 xIG
@@ -70184,12 +70232,12 @@ stM
 stM
 stM
 stM
-stM
-stM
-woT
-woT
-xIG
-ptQ
+azA
+izm
+izm
+izm
+wbF
+ttu
 pcV
 tap
 xIG
@@ -70443,9 +70491,9 @@ stM
 stM
 stM
 stM
-azA
+stM
 izm
-wbF
+woT
 ttu
 wWr
 uCm
@@ -70703,7 +70751,7 @@ stM
 stM
 izm
 woT
-oLZ
+ttu
 pcV
 dpE
 eIl
@@ -70959,9 +71007,9 @@ stM
 stM
 stM
 izm
-wbF
-oLZ
-tAx
+woT
+ttu
+pcV
 dpE
 eIl
 aCO
@@ -71216,7 +71264,7 @@ stM
 stM
 stM
 izm
-wbF
+woT
 oLZ
 jYY
 fQs
@@ -71473,7 +71521,7 @@ stM
 stM
 stM
 izm
-pbU
+xIG
 jHp
 tAx
 wgk
@@ -71725,7 +71773,7 @@ stM
 stM
 stM
 stM
-gKF
+stM
 stM
 stM
 eEr
@@ -72233,7 +72281,7 @@ iYg
 iYg
 izm
 izm
-izm
+azA
 izm
 mFY
 mFY
@@ -86633,9 +86681,9 @@ tjb
 krv
 izm
 izm
+stM
 izm
-izm
-izm
+stM
 stM
 izm
 stM
@@ -86890,18 +86938,18 @@ bYi
 koC
 izm
 izm
-izm
-izm
-stM
-stM
-izm
-stM
-stM
-izm
-stM
-stM
-izm
-stM
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
+cuV
 stM
 stM
 axc
@@ -87147,17 +87195,17 @@ iZr
 krv
 izm
 izm
-izm
-izm
+stM
+azA
 stM
 stM
-izm
+azA
 stM
 stM
-izm
+azA
 stM
 stM
-izm
+azA
 stM
 stM
 stM
@@ -87405,16 +87453,16 @@ krv
 izm
 izm
 stM
-izm
 stM
 stM
-izm
 stM
 stM
-izm
 stM
 stM
-izm
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -87662,16 +87710,16 @@ krv
 izm
 stM
 stM
-izm
 stM
 stM
-izm
 stM
 stM
-izm
 stM
 stM
-izm
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -87918,18 +87966,18 @@ koC
 krv
 stM
 stM
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
-cuV
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -88176,16 +88224,16 @@ bIk
 stM
 stM
 stM
-azA
 stM
 stM
-azA
 stM
 stM
-azA
 stM
 stM
-azA
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -88420,7 +88468,7 @@ stM
 stM
 stM
 stM
-stM
+gKF
 stM
 stM
 stM
@@ -88941,7 +88989,7 @@ stM
 stM
 stM
 stM
-gKF
+stM
 stM
 stM
 stM
@@ -91525,7 +91573,7 @@ stM
 stM
 stM
 stM
-bsr
+stM
 stM
 stM
 stM
@@ -91780,10 +91828,10 @@ stM
 stM
 stM
 stM
-rWd
-tho
-tho
-rWd
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -92037,10 +92085,10 @@ stM
 stM
 stM
 stM
-rWd
-pPt
-pPt
-rWd
+stM
+stM
+gTk
+stM
 stM
 stM
 stM
@@ -92294,10 +92342,10 @@ stM
 stM
 stM
 stM
-hZv
-pPt
-bDk
-hZv
+rWd
+tho
+tho
+rWd
 stM
 stM
 stM
@@ -92553,7 +92601,7 @@ izm
 izm
 hZv
 pPt
-fDw
+bDk
 hZv
 hZv
 rWd
@@ -95141,7 +95189,7 @@ gKF
 stM
 stM
 stM
-izm
+azA
 qBi
 xZb
 seg
@@ -97197,7 +97245,7 @@ stM
 stM
 stM
 stM
-izm
+azA
 qBi
 oxD
 oxD
