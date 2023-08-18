@@ -993,7 +993,7 @@
 	dir = 4;
 	dwidth = 9;
 	height = 25;
-	name = "DeltaStation emergency evac bay";
+	name = "Burgerstation Evacuation Bay";
 	shuttle_id = "emergency_home";
 	width = 29
 	},
@@ -1356,6 +1356,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/west,
+/obj/machinery/light/small/directional/west,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "aGg" = (
@@ -2627,10 +2628,10 @@
 /obj/docking_port/stationary{
 	dir = 8;
 	dwidth = 11;
-	height = 24;
-	name = "SS13: Auxiliary Dock, Station-Fore";
+	height = 18;
+	name = "SS13: Station Ferry Dock";
 	shuttle_id = "whiteship_home";
-	width = 35
+	width = 36
 	},
 /turf/open/space/basic,
 /area/space)
@@ -16081,14 +16082,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/engineering)
-"icg" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/obj/machinery/light/small/directional/north,
-/obj/machinery/camera/autoname/directional/north,
-/turf/open/floor/plating,
-/area/station/hallway/secondary/entry)
 "ick" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -31327,23 +31320,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
-"pLu" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/hallway/secondary/entry)
 "pLF" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/table,
@@ -33235,7 +33211,7 @@
 	dir = 1;
 	dwidth = 1;
 	height = 13;
-	name = "bubber arrivals";
+	name = "Burgerstation Arrivals Dock";
 	shuttle_id = "arrivals_stationary";
 	width = 5
 	},
@@ -40719,6 +40695,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/firealarm/directional/east,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "uqq" = (
@@ -48188,8 +48165,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/light/small/directional/west,
-/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "yiO" = (
@@ -92316,18 +92291,18 @@ stM
 stM
 stM
 stM
+rWd
+tho
+tho
+rWd
 stM
-rWd
-tho
-rWd
-izm
-izm
-izm
-izm
-izm
-rWd
-tho
-rWd
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -92573,8 +92548,8 @@ stM
 izm
 izm
 izm
-izm
 rWd
+pPt
 bDk
 hZv
 hZv
@@ -92583,8 +92558,8 @@ hZv
 rWd
 hZv
 hZv
-icg
-rWd
+izm
+izm
 izm
 izm
 izm
@@ -92831,7 +92806,7 @@ hZv
 hZv
 hZv
 hZv
-hZv
+qOT
 qOT
 hZv
 cin
@@ -92840,7 +92815,7 @@ dGv
 tku
 kuc
 hZv
-pLu
+hZv
 hZv
 hZv
 rWd
