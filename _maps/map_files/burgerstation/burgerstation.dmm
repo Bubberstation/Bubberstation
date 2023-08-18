@@ -13397,7 +13397,8 @@
 /area/station/science/server)
 "gOM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8
+	dir = 8;
+	external_pressure_bound = 121.325
 	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
@@ -17824,7 +17825,8 @@
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "iZz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8
+	dir = 8;
+	external_pressure_bound = 121.325
 	},
 /turf/open/floor/fake_snow/safe,
 /area/station/maintenance/xenobio_disposals)
@@ -20170,7 +20172,9 @@
 "khW" = (
 /obj/machinery/light/cold/directional/west,
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 121.325
+	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "khX" = (
@@ -32615,7 +32619,8 @@
 /area/station/command/heads_quarters/hop)
 "qpX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1
+	dir = 1;
+	external_pressure_bound = 121.325
 	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
