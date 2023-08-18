@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 	var/waittime_h = 1800
 
 	/// Maximum amount of threat allowed to generate.
-	var/max_threat_level = 0 // BUBBER EDIT - Disables Dynamic for Storyteller
+	var/max_threat_level = 1 // BUBBER EDIT - Disables Dynamic for Storyteller
 
 	/// The extra chance multiplier that a heavy impact midround ruleset will run next time.
 	/// For example, if this is set to 50, then the next heavy roll will be about 50% more likely to happen.
