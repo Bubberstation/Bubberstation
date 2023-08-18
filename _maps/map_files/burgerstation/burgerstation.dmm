@@ -1530,6 +1530,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/maintenance/department/engineering/atmos/hfr_maint)
+"aKO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "aKR" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
@@ -1929,13 +1938,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
-"aXz" = (
-/obj/effect/spawner/random/entertainment/arcade{
-	dir = 8
-	},
-/obj/structure/sign/departments/restroom/directional/east,
-/turf/open/floor/wood,
-/area/station/commons/lounge)
 "aXK" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden{
 	dir = 6
@@ -3072,9 +3074,6 @@
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "bEx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/floor,
@@ -3082,6 +3081,7 @@
 	codes_txt = "patrol;next_patrol=hall6";
 	location = "hall5"
 	},
+/obj/structure/disposalpipe/junction/yjunction,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
 "bEE" = (
@@ -3127,9 +3127,20 @@
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "bGD" = (
-/obj/structure/sign/warning/no_smoking/circle/directional/east,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/item/reagent_containers/cup/glass/coffee{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/structure/desk_bell{
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/cup/rag,
+/obj/effect/turf_decal/siding/dark_green,
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee desk"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "bHc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -3232,7 +3243,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/glass/reinforced,
 /area/station/ai_monitored/turret_protected/ai)
 "bKC" = (
 /obj/machinery/door/airlock/external{
@@ -3585,13 +3596,9 @@
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "bTw" = (
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "bUd" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
@@ -4052,6 +4059,13 @@
 /obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/dark/corner,
 /area/station/engineering/atmos/hallway)
+"cgI" = (
+/mob/living/basic/crab/coffee,
+/obj/machinery/newscaster/directional/east{
+	name = "Jim Norton's Quebecois Coffee newscaster"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "cgQ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -4902,16 +4916,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
-"cCK" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/hallway/primary/starboard)
 "cCU" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/soup_pot/material,
@@ -5781,6 +5785,12 @@
 	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/fore)
+"deH" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "dff" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -6946,6 +6956,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/checker,
 /area/station/hallway/secondary/recreation)
+"dIV" = (
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "dJa" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
@@ -7277,13 +7291,13 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "dUo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/spawner/random/decoration/glowstick,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "dUr" = (
@@ -7521,6 +7535,19 @@
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted,
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
+"ebG" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "Toilet1";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/toilet/locker)
 "ebU" = (
 /obj/structure/chair{
 	dir = 4;
@@ -7558,10 +7585,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/security/courtroom)
-"ecn" = (
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "ecy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7597,7 +7620,7 @@
 "eds" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/landmark/start/cyborg,
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/glass/reinforced,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "edN" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -8034,14 +8057,11 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/fore)
 "eon" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "eoo" = (
 /obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/iron,
@@ -8443,18 +8463,25 @@
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/qm)
 "eyT" = (
-/obj/machinery/light/small/directional/east,
-/obj/structure/toilet{
-	dir = 8
+/obj/item/clothing/head/soft/green{
+	color = "#00a62e";
+	desc = "It's a baseball hat in a tastefull green colour.";
+	name = "Jim Norton's Quebecois Coffee cap"
 	},
-/obj/machinery/button/door/directional/south{
-	id = "Arrivals_Toilet2";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
+/obj/item/clothing/suit/apron/chef{
+	name = "Jim Norton's Quebecois Coffee apron"
 	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/item/paper{
+	default_raw_text = "Jim Norton's Quebecois Coffee.         You see, in 2265 the Quebecois had finally had enough of Canada's shit, and went to the one place that wasn't corrupted by Canuckistan.Je vais au seul endroit qui n'a pas ??? corrompu par les Canadiens ... ESPACE.";
+	name = "Coffee Shop";
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/structure/sink/directional/west{
+	name = "Jim Norton's Quebecois Coffee sink"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "eyX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -8711,15 +8738,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/service/salon)
-"eEL" = (
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 8
-	},
-/obj/machinery/airalarm/directional/west,
-/turf/open/floor/iron/dark/corner{
-	dir = 1
-	},
-/area/station/hallway/primary/port)
 "eFa" = (
 /obj/effect/turf_decal/trimline/white/line,
 /obj/structure/cable,
@@ -8853,19 +8871,6 @@
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
 /area/station/security/interrogation)
-"eHE" = (
-/obj/machinery/door/airlock{
-	id_tag = "Arrivals_Toilet2";
-	name = "Toilet Unit 2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "eHO" = (
 /obj/structure/table/reinforced/rglass,
 /obj/item/radio/intercom/command,
@@ -9548,6 +9553,10 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
+"eWB" = (
+/obj/structure/cable,
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/station/commons/lounge)
 "eWC" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -9889,10 +9898,17 @@
 /obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
+"fgr" = (
+/mob/living/basic/crab/coffee,
+/turf/closed/wall,
+/area/station/service/hydroponics)
 "fgu" = (
 /obj/effect/turf_decal/vg_decals/atmos/plasma,
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
+"fgv" = (
+/turf/closed/wall,
+/area/station/common/cafeteria)
 "fgC" = (
 /obj/machinery/duct,
 /obj/effect/turf_decal/tile/green/half/contrasted,
@@ -10401,6 +10417,16 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
+"frt" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 2
+	},
+/obj/effect/mapping_helpers/mail_sorting/service/theater,
+/turf/open/floor/iron/checker,
+/area/station/hallway/primary/central/aft)
 "frv" = (
 /turf/open/floor/iron/chapel,
 /area/station/service/chapel)
@@ -11010,8 +11036,14 @@
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "fFQ" = (
-/turf/closed/wall,
-/area/station/commons/toilet/restrooms)
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 1
+	},
+/obj/structure/chair/stool/bar/directional/east{
+	name = "Jim Norton's Quebecois Coffee stool"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "fGb" = (
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -11131,8 +11163,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tcomms)
 "fHU" = (
-/obj/machinery/light/directional/east,
-/obj/item/kirbyplants/potty,
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "fIj" = (
@@ -11229,11 +11260,24 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "fKr" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/item/storage/box/coffeepack{
+	pixel_x = 15;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/cup/glass/bottle/juice/cream{
+	pixel_x = 15;
+	pixel_y = 2
+	},
+/obj/machinery/coffeemaker/impressa,
+/obj/structure/sign/chalkboard_menu{
+	pixel_y = 31
+	},
+/obj/effect/turf_decal/trimline/green/filled/line,
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee desk"
+	},
+/turf/open/floor/iron/dark,
+/area/station/common/cafeteria)
 "fKx" = (
 /obj/effect/spawner/liquids_spawner{
 	reagent_list = list(/datum/reagent/water=300)
@@ -11657,12 +11701,6 @@
 /obj/machinery/camera/autoname/directional/east{
 	dir = 6
 	},
-/turf/open/floor/iron/dark,
-/area/station/security/checkpoint/customs)
-"fVY" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/basic/crab/coffee,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/customs)
 "fWv" = (
@@ -12219,10 +12257,31 @@
 /turf/open/floor/iron,
 /area/station/engineering/storage/tech)
 "gno" = (
-/obj/structure/sink/kitchen/directional/east,
-/obj/structure/mirror/directional/west,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/structure/window/spawner/directional/west,
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/liqueur{
+	pixel_x = -5;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/korta_nectar{
+	pixel_x = 5;
+	pixel_y = 16
+	},
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/caramel{
+	pixel_x = 15;
+	pixel_y = 16
+	},
+/obj/item/storage/fancy/coffee_condi_display{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 10
+	},
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee desk"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "gnH" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Bridge Access"
@@ -12879,6 +12938,12 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/button/door/directional/west{
+	id = "Toilet2";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "gDF" = (
@@ -12957,7 +13022,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/glass/reinforced,
 /area/station/ai_monitored/turret_protected/ai)
 "gFG" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -13248,7 +13313,10 @@
 	},
 /area/station/hallway/primary/starboard)
 "gNc" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	id_tag = "Toilet4";
+	name = "Unit 4"
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/locker)
 "gNu" = (
@@ -13348,6 +13416,7 @@
 /obj/effect/spawner/random/bureaucracy/crayon,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "gPL" = (
@@ -14048,7 +14117,7 @@
 /area/station/command/heads_quarters/hos)
 "hhx" = (
 /obj/machinery/light/directional/south,
-/obj/item/kirbyplants/potty,
+/obj/machinery/restaurant_portal/bar,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "hhy" = (
@@ -14731,8 +14800,9 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "hvZ" = (
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "hwp" = (
 /obj/machinery/anesthetic_machine,
 /obj/machinery/light/no_nightlight/directional/south,
@@ -14831,7 +14901,7 @@
 /turf/open/floor/iron/white,
 /area/station/science)
 "hzs" = (
-/obj/machinery/restaurant_portal/bar,
+/obj/structure/sign/poster/official/jim_nortons/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "hzx" = (
@@ -15337,9 +15407,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/law)
 "hLb" = (
-/obj/structure/extinguisher_cabinet/directional/south,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "hLl" = (
 /obj/machinery/computer/shuttle/labor{
 	dir = 4
@@ -16548,6 +16620,12 @@
 	},
 /obj/machinery/light/small/directional/west,
 /obj/effect/landmark/start/assistant,
+/obj/machinery/button/door/directional/west{
+	id = "Toilet2";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/locker)
 "isW" = (
@@ -16894,6 +16972,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
+"iDa" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/commons/lounge)
 "iDp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/directional/west,
@@ -17333,10 +17419,11 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "iOr" = (
-/obj/effect/spawner/random/structure/table_or_rack,
-/obj/effect/spawner/costume/butler,
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
+/obj/item/kirbyplants/fern{
+	name = "Jim Norton's Quebecois Coffee neglected fern"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "iOs" = (
 /obj/machinery/computer/security,
 /turf/open/floor/iron/dark,
@@ -17396,6 +17483,9 @@
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/light/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "iQj" = (
@@ -17901,9 +17991,11 @@
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
 "jeH" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "jfa" = (
 /obj/machinery/newscaster/directional/north,
 /obj/effect/spawner/random/vending/snackvend,
@@ -18797,7 +18889,7 @@
 /area/station/command/gateway)
 "jzv" = (
 /obj/effect/landmark/start/botanist,
-/turf/open/floor/iron,
+/turf/open/floor/glass/reinforced,
 /area/station/service/hydroponics)
 "jzP" = (
 /obj/machinery/newscaster/directional/north,
@@ -19315,17 +19407,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/station/command/gateway)
-"jNp" = (
-/obj/machinery/light/small/directional/east,
-/obj/machinery/recharge_station,
-/obj/machinery/button/door/directional/south{
-	id = "Arrivals_Toilet4";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "jNs" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
@@ -19665,6 +19746,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
+/obj/structure/sign/poster/official/jim_nortons/directional/west,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -19747,13 +19829,34 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "jXf" = (
-/obj/machinery/duct,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/firealarm/directional/west,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/machinery/light_switch/directional/north,
+/obj/item/reagent_containers/cup/glass/mug{
+	pixel_x = 13;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/cup/glass/mug{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/mug{
+	pixel_x = 13;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/cup/glass/shaker{
+	pixel_x = -2;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/cup/glass/ice{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/structure/window/spawner/directional/west,
+/obj/effect/turf_decal/trimline/green/filled/line,
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee desk"
+	},
+/turf/open/floor/iron/dark,
+/area/station/common/cafeteria)
 "jXp" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/vg_decals/numbers/five,
@@ -20361,7 +20464,6 @@
 /area/station/hallway/primary/aft)
 "kpn" = (
 /obj/effect/landmark/start/bouncer,
-/obj/machinery/airalarm/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
@@ -20526,6 +20628,16 @@
 	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/aft)
+"ksN" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/commons/lounge)
 "ksP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -21642,10 +21754,10 @@
 /area/station/ai_monitored/turret_protected/ai_upload)
 "kUE" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
 /area/station/service/salon)
 "kUQ" = (
@@ -22633,6 +22745,15 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
+"lsz" = (
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 1
+	},
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee table"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "lsC" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -22667,10 +22788,7 @@
 /turf/open/floor/wood,
 /area/station/hallway/secondary/recreation)
 "ltA" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/iron,
+/turf/open/floor/glass/reinforced,
 /area/station/service/hydroponics)
 "ltP" = (
 /obj/effect/turf_decal/trimline/white/line,
@@ -23066,6 +23184,18 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /turf/open/floor/iron,
 /area/station/engineering/storage/tech)
+"lES" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 1
+	},
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee table"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "lEY" = (
 /obj/structure/mirror/directional/east,
 /obj/structure/sink/directional/west,
@@ -23662,18 +23792,26 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/recreation)
 "lUQ" = (
-/obj/structure/toilet{
-	dir = 8
+/obj/structure/sign/poster/official/cleanliness/directional/east,
+/obj/effect/turf_decal/bot,
+/obj/structure/noticeboard/directional/north,
+/obj/item/reagent_containers/condiment/sugar{
+	pixel_y = 4
 	},
-/obj/machinery/button/door/directional/south{
-	id = "Arrivals_Toilet1";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
+/obj/item/storage/pill_bottle/happinesspsych{
+	pixel_x = -4;
+	pixel_y = -1
 	},
-/obj/machinery/light/small/broken/directional/east,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/item/storage/box/coffeepack,
+/obj/item/storage/box/coffeepack/robusta,
+/obj/item/reagent_containers/condiment/soymilk,
+/obj/item/reagent_containers/condiment/milk,
+/obj/structure/closet/secure_closet/freezer/empty/open{
+	name = "Jim Norton's Quebecois Coffee freezer"
+	},
+/obj/effect/turf_decal/trimline/green/filled/line,
+/turf/open/floor/iron/dark,
+/area/station/common/cafeteria)
 "lUS" = (
 /obj/machinery/computer/rdconsole{
 	dir = 8
@@ -24040,12 +24178,9 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "mea" = (
-/obj/effect/mapping_helpers/mail_sorting/service/theater,
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "mej" = (
@@ -24493,6 +24628,13 @@
 /obj/machinery/atmospherics/pipe/bridge_pipe/yellow/visible,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"mpe" = (
+/obj/structure/chair/sofa/bench/corner{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/carpet/green,
+/area/station/commons/lounge)
 "mpu" = (
 /obj/machinery/door/airlock/command{
 	name = "Teleport Access"
@@ -24638,9 +24780,9 @@
 /area/station/medical/storage)
 "mtz" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
 /area/station/hallway/primary/fore)
 "mtC" = (
@@ -25097,6 +25239,18 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
+"mGR" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Bar"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "mGX" = (
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
 	dir = 5
@@ -25430,12 +25584,6 @@
 /obj/effect/spawner/random/food_or_drink/cups,
 /turf/open/floor/iron/grimy,
 /area/station/service/bar)
-"mPV" = (
-/obj/effect/spawner/random/entertainment/arcade{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/station/commons/lounge)
 "mQd" = (
 /obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted{
 	dir = 1
@@ -26293,13 +26441,6 @@
 	dir = 1
 	},
 /area/station/engineering/atmos/hallway)
-"nlH" = (
-/obj/machinery/door/airlock{
-	id_tag = "Arrivals_Toilet4";
-	name = "Toilet Unit 4"
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "nlI" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -26437,6 +26578,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
+"nqn" = (
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "nqr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26622,6 +26768,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
+"nwF" = (
+/obj/structure/sign/poster/official/jim_nortons/directional/north,
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "nwP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -26734,6 +26884,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/common/pool)
+"nAw" = (
+/obj/machinery/door/airlock{
+	id_tag = "Toilet3";
+	name = "Unit 3"
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/toilet/locker)
 "nAL" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -26852,6 +27009,15 @@
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/science/tele_sci)
+"nEi" = (
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 1
+	},
+/obj/structure/chair/stool/bar/directional/west{
+	name = "Jim Norton's Quebecois Coffee stool"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "nED" = (
 /obj/structure/sink/kitchen/directional/west,
 /obj/effect/turf_decal/tile/green/half/contrasted{
@@ -27383,7 +27549,6 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "nPo" = (
-/obj/structure/chair/stool/bar/directional/west,
 /obj/structure/sign/warning/no_smoking/circle/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -27782,6 +27947,56 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/station/cargo/sorting)
+"oci" = (
+/obj/structure/table/wood,
+/obj/structure/window/spawner/directional/west,
+/obj/structure/window/spawner/directional/south,
+/obj/item/food/donut/caramel{
+	pixel_x = 12;
+	pixel_y = 11
+	},
+/obj/item/food/donut/caramel{
+	pixel_x = 12;
+	pixel_y = 8
+	},
+/obj/item/food/donut/caramel{
+	pixel_x = 12;
+	pixel_y = 5
+	},
+/obj/item/food/donut/caramel{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/obj/item/food/donut/caramel{
+	pixel_x = 12;
+	pixel_y = -1
+	},
+/obj/item/food/donut/jelly{
+	pixel_x = -2;
+	pixel_y = 13
+	},
+/obj/item/food/donut/jelly{
+	pixel_x = -2;
+	pixel_y = 10
+	},
+/obj/item/food/donut/jelly{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/food/donut/jelly{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/food/donut/jelly{
+	pixel_x = -2
+	},
+/obj/item/food/donut/jelly{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/siding/dark_green,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "ocj" = (
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
@@ -28436,6 +28651,10 @@
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron/checker,
 /area/station/engineering/atmos/control_center)
+"osW" = (
+/obj/structure/cable,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/station/commons/lounge)
 "otm" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/camera/autoname/directional/south,
@@ -28767,7 +28986,6 @@
 /area/station/solars/port/aft)
 "oDe" = (
 /obj/machinery/light/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "oDl" = (
@@ -28907,6 +29125,7 @@
 /area/station/command/corporate_suite)
 "oHy" = (
 /obj/structure/table/wood,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "oHC" = (
@@ -29268,6 +29487,7 @@
 /obj/structure/chair/sofa/bench/left{
 	dir = 4
 	},
+/obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/carpet/green,
 /area/station/commons/lounge)
 "oRA" = (
@@ -29929,6 +30149,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"phT" = (
+/obj/machinery/door/airlock{
+	id_tag = "Toilet2";
+	name = "Unit 2"
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/toilet/locker)
 "pie" = (
 /turf/closed/wall/r_wall,
 /area/station/security/holding_cell)
@@ -29980,10 +30207,6 @@
 "pjJ" = (
 /turf/open/floor/wood,
 /area/station/service/bar)
-"pjL" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
-/area/station/commons/lounge)
 "pjO" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -30437,10 +30660,6 @@
 	dir = 8
 	},
 /area/station/service/chapel)
-"pvj" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/wood,
-/area/station/commons/lounge)
 "pvl" = (
 /turf/open/floor/plating,
 /area/station/maintenance/pool_maintenance)
@@ -30685,6 +30904,11 @@
 /obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
+"pBF" = (
+/obj/effect/landmark/start/assistant,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "pBG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -30844,9 +31068,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "pGh" = (
-/obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
-/area/station/commons/lounge)
+/area/station/common/cafeteria)
 "pGn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -31713,8 +31936,8 @@
 /area/station/engineering/atmos/pumproom)
 "qaM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "qaN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -32328,6 +32551,12 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "Toilet3";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/locker)
 "qnW" = (
@@ -32726,6 +32955,12 @@
 /obj/effect/landmark/start/chaplain,
 /turf/open/floor/carpet,
 /area/station/service/chapel)
+"qxt" = (
+/obj/machinery/camera/autoname/directional/west{
+	dir = 10
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "qya" = (
 /obj/machinery/smartfridge,
 /turf/open/floor/iron,
@@ -32832,6 +33067,12 @@
 	dir = 4
 	},
 /area/station/service/chapel)
+"qBG" = (
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 1
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "qBQ" = (
 /obj/effect/landmark/start/cook,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -33213,11 +33454,11 @@
 /area/station/command/heads_quarters/hos)
 "qKP" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
 /area/station/commons/lounge)
 "qKZ" = (
@@ -33309,9 +33550,7 @@
 /area/station/security/prison/safe)
 "qNh" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/machinery/camera/autoname/directional/west{
-	dir = 2
-	},
+/obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/security/processing)
 "qNj" = (
@@ -33615,6 +33854,17 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"qUN" = (
+/obj/effect/turf_decal/tile/green/half/contrasted{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron/checker,
+/area/station/hallway/primary/starboard)
 "qVg" = (
 /turf/open/floor/engine/n2o,
 /area/station/engineering/atmos)
@@ -34118,12 +34368,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/science)
-"rhN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/station/commons/lounge)
 "rhX" = (
 /obj/structure/chair{
 	dir = 1
@@ -34275,6 +34519,16 @@
 	},
 /turf/open/floor/plating,
 /area/station/security/lockers)
+"rkX" = (
+/obj/machinery/door/window/right/directional/west{
+	name = "Jim Norton's Quebecois Coffee"
+	},
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 8
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "rlw" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -34540,6 +34794,10 @@
 	dir = 1
 	},
 /area/station/hallway/primary/fore)
+"rtl" = (
+/obj/machinery/light/warm/directional/south,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "rts" = (
 /obj/structure/disposaloutlet{
 	dir = 4
@@ -34549,6 +34807,9 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
+"rtw" = (
+/turf/open/floor/glass/reinforced,
+/area/station/security/office)
 "rtD" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/iron/dark,
@@ -34862,6 +35123,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
+"rCS" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/wood,
+/area/station/commons/lounge)
 "rCV" = (
 /obj/structure/chair/stool/directional/north,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -35089,6 +35355,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "rJA" = (
@@ -35138,7 +35407,7 @@
 "rKP" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/landmark/start/cyborg,
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/glass/reinforced,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "rKZ" = (
 /obj/machinery/photocopier,
@@ -35325,15 +35594,12 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "rPi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/item/kirbyplants/fern{
+	name = "Jim Norton's Quebecois Coffee neglected fern"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/effect/spawner/random/decoration/glowstick,
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "rPu" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -35762,6 +36028,53 @@
 /obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/iron/white,
 /area/station/science)
+"sbf" = (
+/obj/structure/table/wood,
+/obj/structure/window/spawner/directional/east,
+/obj/structure/window/spawner/directional/south,
+/obj/item/food/donut/plain{
+	pixel_x = 9;
+	pixel_y = 11
+	},
+/obj/item/food/donut/plain{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/item/food/donut/plain{
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/food/donut/plain{
+	pixel_x = 9;
+	pixel_y = 1
+	},
+/obj/item/food/donut/plain{
+	pixel_x = 9;
+	pixel_y = -3
+	},
+/obj/item/food/donut/choco{
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/food/donut/choco{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/food/donut/choco{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/food/donut/choco{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/food/donut/choco{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/dark_green,
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "sbm" = (
 /obj/machinery/shower/directional/north,
 /obj/effect/landmark/start/assistant,
@@ -36941,6 +37254,19 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"sDO" = (
+/obj/structure/window/spawner/directional/west,
+/obj/effect/turf_decal/siding/dark_green{
+	dir = 8
+	},
+/obj/machinery/disposal/bin{
+	name = "Jim Norton's Quebecois Coffee disposal unit"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "sDS" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -37495,15 +37821,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/solars/aisat)
-"sUm" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/duct,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plating,
-/area/station/commons/toilet/restrooms)
 "sUB" = (
 /obj/effect/spawner/random/engineering/tank,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -37779,18 +38096,18 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "tca" = (
-/obj/machinery/door/airlock{
-	id_tag = "Arrivals_Toilet1";
-	name = "Toilet Unit 1"
+/obj/machinery/microwave{
+	pixel_x = 1;
+	pixel_y = 6;
+	name = "Jim Norton's Quebecois Coffee microwave oven"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/effect/turf_decal/trimline/green/filled/line,
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee desk"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/machinery/light/warm/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/common/cafeteria)
 "tch" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -38751,7 +39068,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/telecomms,
+/turf/open/floor/glass/reinforced,
 /area/station/ai_monitored/turret_protected/ai)
 "tyS" = (
 /obj/machinery/door/airlock/engineering/glass{
@@ -39912,6 +40229,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
+"uga" = (
+/obj/machinery/door/airlock{
+	id_tag = "Toilet1";
+	name = "Unit 1"
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/station/commons/toilet/locker)
 "ugb" = (
 /obj/effect/spawner/liquids_spawner{
 	reagent_list = list(/datum/reagent/water=300)
@@ -40113,17 +40437,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
-"ujk" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 12;
-	height = 18;
-	name = "Pubberstation emergency evac bay";
-	shuttle_id = "emergency_home";
-	width = 32
-	},
-/turf/open/space/basic,
-/area/space)
 "ujm" = (
 /obj/effect/turf_decal/vg_decals/atmos/nitrogen,
 /turf/open/floor/engine/n2,
@@ -40271,16 +40584,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/gateway)
-"ums" = (
-/obj/effect/turf_decal/tile/green/half/contrasted{
-	dir = 8
-	},
-/obj/machinery/camera/autoname/directional/west{
-	dir = 10
-	},
-/obj/item/radio/intercom/directional/west,
-/turf/open/floor/iron/checker,
-/area/station/hallway/primary/starboard)
 "umu" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -40329,11 +40632,14 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "unq" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "unx" = (
 /obj/effect/spawner/random/engineering/tracking_beacon,
 /obj/structure/cable,
@@ -40829,9 +41135,7 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "uzD" = (
-/obj/machinery/camera/autoname/directional/east{
-	dir = 10
-	},
+/obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/plating,
 /area/station/solars/starboard/aft)
 "uzQ" = (
@@ -40841,6 +41145,13 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
+"uzX" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "uAm" = (
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 4
@@ -40851,15 +41162,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/prison/workout)
-"uAt" = (
-/obj/structure/chair/sofa/bench/corner{
-	dir = 1
-	},
-/obj/machinery/camera/autoname/directional/east{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/station/commons/lounge)
 "uAy" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
@@ -40889,8 +41191,9 @@
 /area/station/command/heads_quarters/hop)
 "uBk" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
 /area/station/hallway/primary/central/aft)
 "uBr" = (
@@ -41272,12 +41575,13 @@
 /turf/open/floor/carpet/blue,
 /area/station/service/lawoffice)
 "uMp" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
+/area/station/common/cafeteria)
 "uMt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -41392,8 +41696,7 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
 "uPd" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "uPD" = (
@@ -42041,10 +42344,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/station/service/library/artgallery)
-"viQ" = (
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/station/commons/lounge)
 "viY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/effect/turf_decal/siding/blue{
@@ -42133,19 +42432,6 @@
 /obj/effect/spawner/random/bureaucracy/folder,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
-"vkh" = (
-/obj/machinery/button/door/directional/south{
-	id = "Arrivals_Toilet3";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
-	},
-/obj/machinery/light/small/directional/east,
-/obj/structure/toilet{
-	dir = 8
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "vkm" = (
 /obj/structure/transit_tube/curved/flipped,
 /turf/open/space/basic,
@@ -42588,6 +42874,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/lab)
+"vxF" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
+/turf/open/floor/plating,
+/area/station/common/cafeteria)
 "vxT" = (
 /obj/machinery/light/dim/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -43332,19 +43626,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal/incinerator)
-"vPF" = (
-/obj/machinery/door/airlock{
-	id_tag = "Arrivals_Toilet3";
-	name = "Toilet Unit 3"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "vPN" = (
 /obj/structure/bodycontainer/crematorium{
 	dir = 4;
@@ -43494,10 +43775,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/common/wrestling/arena)
-"vSI" = (
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
 "vSN" = (
 /obj/machinery/computer/mecha{
 	dir = 8
@@ -44491,10 +44768,13 @@
 /turf/open/floor/iron/checker,
 /area/station/engineering/atmos/control_center)
 "wvF" = (
-/obj/machinery/duct,
+/obj/effect/turf_decal/siding/dark_green,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/structure/table/wood{
+	name = "Jim Norton's Quebecois Coffee desk"
+	},
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "wvN" = (
 /obj/machinery/libraryscanner,
 /turf/open/floor/wood,
@@ -44830,14 +45110,8 @@
 /turf/open/floor/iron/white,
 /area/station/science/cytology)
 "wEU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
+/turf/open/floor/wood/tile,
+/area/station/common/cafeteria)
 "wFg" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/light/floor,
@@ -45442,11 +45716,10 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "wVn" = (
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/turf/open/floor/iron/showroomfloor,
-/area/station/commons/toilet/restrooms)
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "wVB" = (
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45477,6 +45750,23 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
+"wWM" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/public/glass{
+	name = "Bar"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "wWY" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 1
@@ -45616,6 +45906,16 @@
 /obj/machinery/meter,
 /turf/closed/wall,
 /area/station/maintenance/pool_maintenance)
+"xbH" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/commons/lounge)
 "xbI" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
@@ -46191,6 +46491,9 @@
 /area/station/cargo/storage)
 "xrt" = (
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "xrM" = (
@@ -46271,6 +46574,7 @@
 /obj/structure/chair/sofa/bench/corner{
 	dir = 8
 	},
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/carpet/green,
 /area/station/commons/lounge)
 "xuf" = (
@@ -46330,6 +46634,15 @@
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/glass/reinforced,
 /area/station/hallway/primary/fore)
+"xvO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/station/common/cafeteria)
 "xwk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46830,6 +47143,9 @@
 "xIs" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/corner{
 	dir = 1
@@ -47778,6 +48094,12 @@
 "yfW" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light/small/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "Toilet4";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/locker)
 "ygb" = (
@@ -63534,9 +63856,9 @@ stM
 stM
 stM
 stM
+stM
+stM
 eWC
-stM
-stM
 stM
 stM
 stM
@@ -67360,7 +67682,7 @@ rwk
 dEZ
 npp
 bAf
-qnS
+ebG
 bAf
 isR
 bAf
@@ -67617,11 +67939,11 @@ rwk
 nix
 bud
 bAf
-gNc
+uga
 bAf
-gNc
+phT
 bAf
-gNc
+nAw
 bAf
 gNc
 bAf
@@ -69152,11 +69474,11 @@ cAq
 fQB
 cAq
 cAq
+cAq
 fQB
 bet
 mNY
 bet
-fQB
 fQB
 fQB
 pBo
@@ -69409,12 +69731,12 @@ jST
 qFy
 jST
 jST
+jST
 sIC
 hau
 mWR
 qJO
 jST
-eEL
 wCZ
 jST
 jST
@@ -69666,11 +69988,11 @@ oJq
 oJq
 oJq
 oJq
+oJq
 gWf
 dyA
 spI
 dyA
-oJq
 oJq
 oJq
 oJq
@@ -69923,11 +70245,11 @@ kGr
 keN
 mCB
 kGr
+kGr
 xyt
 nfT
 kWn
 kgm
-ied
 ied
 fng
 kHy
@@ -70180,12 +70502,12 @@ pjQ
 pjQ
 pjQ
 wez
+wez
 vPP
 ouT
 yaJ
 ouT
 vPP
-wez
 vPP
 mnw
 mnw
@@ -70439,11 +70761,11 @@ pjQ
 pTm
 jCx
 jCx
+jCx
 nBt
 jCx
-jCx
 oRp
-uAt
+ero
 mnw
 ezO
 urd
@@ -70696,8 +71018,8 @@ pjQ
 nFB
 oLY
 aLj
+aLj
 nBt
-pjL
 ojn
 cBr
 iFo
@@ -70953,8 +71275,8 @@ pjQ
 pTm
 jCx
 jCx
-nBt
 jCx
+nBt
 jCx
 aua
 xtK
@@ -71207,11 +71529,11 @@ vNf
 pjQ
 pjQ
 pjQ
-kbq
+iDa
 jCx
 kbq
+jCx
 nBt
-jCx
 hhx
 mnw
 mnw
@@ -71467,8 +71789,8 @@ kpn
 gPs
 gAD
 vnL
+rCS
 nBt
-jCx
 jCx
 mvI
 uWr
@@ -71721,11 +72043,11 @@ tHZ
 mPH
 kNz
 oqU
-sWV
+ksN
 toy
 sWV
+jCx
 fzE
-vyO
 vyO
 gRp
 uWr
@@ -71978,11 +72300,11 @@ gCN
 lKh
 kNz
 dTo
-shJ
+eWB
 oga
 shJ
+jCx
 uhO
-vyO
 vyO
 kDT
 usj
@@ -72235,11 +72557,11 @@ gCN
 xET
 kNz
 rhd
-oga
+osW
 shJ
 oga
+jCx
 hlb
-vyO
 vyO
 kDT
 usj
@@ -72492,11 +72814,11 @@ gCN
 iLy
 kNz
 soV
-shJ
+eWB
 oga
 shJ
+jCx
 hlb
-vyO
 vyO
 kDT
 usj
@@ -72749,11 +73071,11 @@ gCN
 xET
 kNz
 rhd
-oga
+osW
 shJ
 oga
+jCx
 hlb
-vyO
 vyO
 kDT
 usj
@@ -73006,11 +73328,11 @@ dCN
 oKn
 kNz
 dTo
-shJ
+eWB
 oga
 shJ
+jCx
 uhO
-vyO
 vyO
 kDT
 usj
@@ -73263,11 +73585,11 @@ dCN
 xET
 kNz
 fRE
-wze
+xbH
 hVc
 wze
+jCx
 dtI
-vyO
 vyO
 flN
 uWr
@@ -73523,8 +73845,8 @@ iBj
 oHy
 jCx
 pir
-nBt
 jCx
+nBt
 jCx
 mvI
 uWr
@@ -73780,8 +74102,8 @@ faS
 qfU
 slQ
 xeu
+slQ
 aTr
-pjL
 oDe
 mnw
 mnw
@@ -74034,14 +74356,14 @@ dPd
 maq
 xFa
 fHU
-viQ
+jCx
 joj
 jCx
 jCx
-jCx
-rhN
+rCS
+ojn
 txH
-ero
+mpe
 mnw
 crI
 ttE
@@ -74295,7 +74617,7 @@ uPd
 jCx
 jCx
 jCx
-jCx
+rCS
 jCx
 gpT
 iFo
@@ -74549,10 +74871,10 @@ fJU
 lPd
 vPP
 hzs
-aXz
-mPV
 jCx
-pvj
+jCx
+jCx
+rCS
 jCx
 ilb
 cOH
@@ -74804,12 +75126,12 @@ rLP
 hNZ
 hhZ
 hOY
-fFQ
-fFQ
-fFQ
-fFQ
+fgv
+nqn
+uzX
 wVn
-fFQ
+wVn
+xvO
 pGh
 vPP
 vPP
@@ -75060,14 +75382,14 @@ hhZ
 hhZ
 hhZ
 wVB
-fFQ
-fFQ
+fgv
+fgv
+rkX
+sDO
 gno
-gno
-gno
-ecn
-fFQ
-fFQ
+pGh
+aKO
+pGh
 fFQ
 iOr
 mnw
@@ -75317,22 +75639,22 @@ hJF
 hJF
 hJF
 vat
-sUm
+fgv
 jXf
 bTw
-wvF
+pBF
 wvF
 qaM
 unq
 hLb
-fFQ
+lES
 eon
 uMp
-uMp
-uMp
-uMp
-uMp
-uMp
+scF
+scF
+scF
+scF
+scF
 dUo
 uBk
 xrt
@@ -75572,17 +75894,17 @@ wjC
 mxc
 isw
 cAh
-hJF
+fgr
 hhZ
-fFQ
+fgv
 fKr
 jeH
-hvZ
+wEU
 bGD
 hvZ
-jeH
-vSI
-fFQ
+hLb
+pGh
+nEi
 wEU
 sip
 sip
@@ -75831,16 +76153,16 @@ bMO
 pSk
 hJF
 hhZ
-fFQ
+fgv
 tca
-fFQ
-eHE
-fFQ
-vPF
-fFQ
-nlH
-fFQ
 wEU
+wEU
+oci
+pGh
+unq
+pGh
+qBG
+rtl
 sip
 lHW
 lQL
@@ -76088,16 +76410,16 @@ ffb
 ufR
 fLD
 hhZ
-fFQ
+fgv
 lUQ
-fFQ
+cgI
 eyT
+sbf
+pGh
+unq
+pGh
 fFQ
-vkh
-fFQ
-jNp
-fFQ
-wEU
+dIV
 sip
 tOJ
 dhH
@@ -76345,15 +76667,15 @@ ffb
 uJD
 hJF
 scF
-fFQ
-fFQ
-fFQ
-fFQ
-fFQ
-fFQ
-fFQ
-fFQ
-fFQ
+fgv
+fgv
+fgv
+fgv
+fgv
+nwF
+unq
+pGh
+lsz
 wEU
 sip
 sNQ
@@ -76606,11 +76928,11 @@ scF
 scF
 scF
 skY
-wvc
-wvc
-wvc
-wvc
-wvc
+vxF
+deH
+unq
+pGh
+nEi
 rPi
 sip
 smJ
@@ -76864,11 +77186,11 @@ xAV
 gHX
 mSE
 qbc
+mGR
+wWM
+mGR
 qbc
 qbc
-qbc
-qbc
-cCK
 sip
 sip
 sip
@@ -77122,10 +77444,10 @@ hJF
 mSE
 qbc
 qTS
+qUN
 ajU
-ums
 jVi
-buu
+qxt
 aiA
 aiA
 uiY
@@ -77391,7 +77713,7 @@ ayG
 ayG
 ayG
 lbs
-caV
+frt
 whz
 caV
 jjt
@@ -77620,11 +77942,11 @@ azN
 eJf
 eCZ
 gIt
-jbw
+ltA
 jzv
-jbw
+ltA
 gfL
-jbw
+ltA
 jzv
 ltA
 upr
@@ -83780,9 +84102,9 @@ iji
 ggp
 dHS
 uZU
-uZU
-uZU
-uZU
+rtw
+rtw
+rtw
 uZU
 fpX
 bPo
@@ -84808,9 +85130,9 @@ hIa
 ggp
 wQx
 uZU
-uZU
-uZU
-uZU
+rtw
+rtw
+rtw
 uZU
 vHR
 rzg
@@ -94074,7 +94396,7 @@ izm
 cCn
 mGZ
 fsD
-fVY
+fsD
 jGP
 lHT
 xYh
@@ -95111,9 +95433,9 @@ opO
 opO
 dWi
 jak
-sVl
+arS
 ugA
-sVl
+arS
 fat
 dWi
 opO
@@ -95368,9 +95690,9 @@ lAR
 lAR
 dWi
 jfa
-sVl
+arS
 dml
-sVl
+arS
 vmu
 dWi
 lAR
@@ -97409,7 +97731,7 @@ stM
 stM
 stM
 stM
-ujk
+stM
 stM
 izm
 izm
