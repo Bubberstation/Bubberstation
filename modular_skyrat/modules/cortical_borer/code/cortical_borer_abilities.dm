@@ -888,6 +888,7 @@
 	button_icon_state = "blind"
 	cooldown_time = 30 SECONDS
 	chemical_cost = 120
+
 /datum/action/cooldown/borer/torment/Trigger(trigger_flags)
 	. = ..()
 	if(!.)
@@ -901,6 +902,7 @@
 		return
 	if(cortical_owner.human_host.stat == DEAD)
 		return
+	cortical_owner.chemical_storage -= chemical_cost
 	to_chat(cortical_owner.human_host, span_warning("You feel a horrible pain in your head, and can barely stay conscious!"))
 	cortical_owner.human_host.emote("scream")
 	cortical_owner.human_host.adjustStaminaLoss(50)
