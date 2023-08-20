@@ -4663,6 +4663,12 @@
 "csa" = (
 /turf/open/floor/plating/airless,
 /area/station/solars/starboard/aft)
+"cse" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/lower)
 "csw" = (
 /obj/structure/table,
 /obj/machinery/ecto_sniffer,
@@ -14742,6 +14748,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/detective,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/security/detectives_office)
 "huc" = (
@@ -15513,6 +15520,12 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
+"hMD" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/grimy,
+/area/station/security/detectives_office)
 "hNj" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
 /obj/structure/disposalpipe/segment{
@@ -31544,6 +31557,12 @@
 	dir = 4
 	},
 /area/station/hallway/primary/starboard)
+"pOw" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/lower)
 "pOz" = (
 /turf/closed/wall,
 /area/station/medical/medbay/central)
@@ -38259,6 +38278,7 @@
 "ted" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office)
 "tel" = (
@@ -45480,6 +45500,12 @@
 /obj/effect/landmark/start/clown,
 /turf/open/floor/carpet,
 /area/station/service/theater)
+"wNY" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/power/apc/auto_name/directional/north,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/lower)
 "wOw" = (
 /obj/structure/railing{
 	dir = 1
@@ -80292,11 +80318,11 @@ pvZ
 toh
 dCK
 hFw
-lZx
-lZx
+hMD
+hMD
 ted
 htS
-pbf
+pOw
 qbc
 fRO
 gzH
@@ -80553,7 +80579,7 @@ lZx
 wmP
 wSG
 pWk
-gCo
+cse
 jEI
 lxZ
 gzH
@@ -80810,7 +80836,7 @@ wwn
 pWk
 pWk
 pWk
-gCo
+wNY
 qbc
 vGS
 gzH
