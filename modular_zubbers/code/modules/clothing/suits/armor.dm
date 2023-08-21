@@ -23,3 +23,11 @@
 	blood_overlay_type = "hardsuit-metrocop-RL"
 	armor_type = /datum/armor/armor_riot
 
+/obj/item/clothing/suit/armor/vest/collared_vest//Sprite done by offwrldr
+	name = "Collared Vest"
+	desc = "An armored vest with an attached collar, adorned with a blue stripe on the right breastplate. It is unlikely the collar adds any additional protective qualities."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
+	icon_state = "Vest_Front"
+	inhand_icon_state = null
+	armor_type = /datum/armor/suit_armor
