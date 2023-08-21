@@ -26,7 +26,6 @@
 	desc = "Become immune to the ill effects of sugar in you or a host."
 	gain_text = "Of the biggest ones, a few have managed to resist the effects of sugar. Truly concerning if we wish to keep them contained."
 	evo_cost = 5
-	unlocked_evolutions = list(/datum/borer_evolution/produce_offspring_parasitic)
 	tier = 6
 
 /datum/borer_evolution/sugar_immunity/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
@@ -80,15 +79,4 @@
 	. = ..()
 	cortical_owner.potential_chemicals |= added_chemicals
 
-//Bubber addition
-/datum/borer_evolution/produce_offspring_parasitic//This is for non-hivelords, but hivelords CAN take it, because that's easy to do.
-	name = "Produce Offspring"
-	desc = "Use a significant amount of effort to produce an egg."
-	gain_text = "Some worms had difficulty reproducing. This did not stop them."
-	tier = 7
-	evo_cost = 6
 
-/datum/borer_evolution/produce_offspring_parasitic/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
-	. = ..()
-	var/datum/action/cooldown/borer/produce_offspring_parasitic/attack_action = new()
-	attack_action.Grant(cortical_owner)

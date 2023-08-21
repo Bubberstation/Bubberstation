@@ -34,6 +34,5 @@
 		M.drop_all_held_items()
 	..()
 	M.adjustToxLoss(1 * REM * delta_time, FALSE, required_biotype = affected_biotype)
-	//M.adjustOrganLoss(ORGAN_SLOT_BRAIN, (rand(5, 10) / 10) * REM * delta_time, required_organ_flag = affected_organ_flags)//deals a lethal amount of brain damage.
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 8) * REM * delta_time, required_organ_flag = affected_organ_flags)
 	return ..()

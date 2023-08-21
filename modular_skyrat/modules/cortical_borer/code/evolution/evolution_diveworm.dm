@@ -120,6 +120,7 @@
 		/datum/borer_evolution/sugar_immunity,
 		/datum/borer_evolution/synthetic_borer,
 		/datum/borer_evolution/synthetic_chems_negative,
+		/datum/borer_evolution/diveworm/produce_offspring_parasitic,
 	)
 
 /datum/borer_evolution/diveworm/empowered_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
@@ -128,3 +129,15 @@
 	attack_action.Grant(cortical_owner)
 
 
+//Bubber addition
+/datum/borer_evolution/diveworm/produce_offspring_parasitic//Egg Production. Egg.
+	name = "Produce Offspring"
+	desc = "Use a significant amount of effort to produce an egg."
+	gain_text = "Some worms had difficulty reproducing. This did not stop them."
+	tier = 6
+	evo_cost = 6
+
+/datum/borer_evolution/produce_offspring_parasitic/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+	. = ..()
+	var/datum/action/cooldown/borer/produce_offspring_parasitic/attack_action = new()
+	attack_action.Grant(cortical_owner)

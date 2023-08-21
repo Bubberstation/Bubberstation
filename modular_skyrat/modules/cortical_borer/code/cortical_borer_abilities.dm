@@ -2,7 +2,6 @@
 #define CHEMICAL_SECOND_DIVISOR (5 SECONDS)
 #define OUT_OF_HOST_EGG_COST 50
 #define BLOOD_CHEM_OBJECTIVE 5
-#define PARASITIC_EGG_COST_STAT 1
 #define PARASITIC_EGG_COST_CHEM 200
 
 // Parent of all borer actions
@@ -834,7 +833,7 @@
 	cooldown_time = 1 MINUTES
 	button_icon_state = "reproduce"
 	chemical_cost = PARASITIC_EGG_COST_CHEM
-	stat_evo_points = PARASITIC_EGG_COST_STAT
+	stat_evo_points = 1
 
 /datum/action/cooldown/borer/produce_offspring_parasitic/Trigger(trigger_flags)
 	. = ..()
@@ -871,7 +870,6 @@
 	cortical_owner.log_message(logging_text, LOG_GAME)
 	owner.balloon_alert(owner, "egg laid")
 	StartCooldown()
-
 /datum/action/cooldown/borer/produce_offspring_parasitic/proc/produce_egg()
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
 	var/turf/borer_turf = get_turf(cortical_owner)
@@ -880,7 +878,6 @@
 	cortical_owner.children_produced++
 	if(cortical_owner.children_produced == GLOB.objective_egg_egg_number)
 		GLOB.successful_egg_number += 1
-
 
 /datum/action/cooldown/borer/torment
 	name = "Torment Host"
@@ -917,10 +914,61 @@
 			cortical_owner.human_host.set_drugginess_if_lower(15 SECONDS)
 		if (80 to 100)
 			cortical_owner.human_host.set_hallucinations_if_lower(25 SECONDS)
+	var/logging_text = "[key_name(cortical_owner)] tormented [key_name(cortical_owner.human_host)].]"
+	cortical_owner.log_message(logging_text, LOG_GAME)
+
+/datum/action/cooldown/borer/produce_offspring_symbiotic
+	name = "Produce Parasitic Egg"
+	cooldown_time = 1 MINUTES
+	button_icon_state = "reproduce"
+	chemical_cost = PARASITIC_EGG_COST_CHEM
+	stat_evo_points = 2
+
+/datum/action/cooldown/borer/produce_offspring_symbiotic/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/basic/cortical_borer/cortical_owner = owner
+	if(!(cortical_owner.upgrade_flags & BORER_ALONE_PRODUCTION) && !cortical_owner.inside_human())//Checks that the borer can't produce eggs alone, AND that they have a host.
+		owner.balloon_alert(owner, "host required")
+		return
+	for(var/ckey_check in GLOB.willing_hosts)
+		if((ckey_check != cortical_owner.human_host.ckey))//Checks that they have a willing host.
+			owner.balloon_alert(owner, "Host is unwilling!")
+			return
+	cortical_owner.chemical_storage -= chemical_cost//Removes the chemical cost
+	cortical_owner.stat_evolution -= stat_evo_points//Removes Stat cost
+	produce_egg()
+	var/obj/item/organ/internal/brain/victim_brain = cortical_owner.human_host.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(victim_brain)
+		cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25 * cortical_owner.host_harm_multiplier)
+		var/eggroll = rand(1,100)
+		if(eggroll <= 75)
+			switch(eggroll)
+				if(1 to 34)
+					cortical_owner.human_host.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1.15 * cortical_owner.host_harm_multiplier))//test this number out!
+				if(35 to 75)
+					cortical_owner.human_host.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_BASIC)
+	to_chat(cortical_owner.human_host, span_warning("Your brain begins to hurt..."))
+	var/turf/borer_turf = get_turf(cortical_owner)
+	new /obj/effect/decal/cleanable/vomit(borer_turf)
+	playsound(borer_turf, 'sound/effects/splat.ogg', 50, TRUE)
+	var/logging_text = "[key_name(cortical_owner)] gave birth at [loc_name(borer_turf)]"
+	cortical_owner.log_message(logging_text, LOG_GAME)
+	owner.balloon_alert(owner, "egg laid")
+	StartCooldown()
+
+/datum/action/cooldown/borer/produce_offspring_symbiotic/proc/produce_egg()
+	var/mob/living/basic/cortical_borer/cortical_owner = owner
+	var/turf/borer_turf = get_turf(cortical_owner)
+	var/obj/effect/mob_spawn/ghost_role/borer_egg/spawned_egg = new /obj/effect/mob_spawn/ghost_role/borer_egg(borer_turf)
+	spawned_egg.generation = (cortical_owner.generation + 1)
+	cortical_owner.children_produced++
+	if(cortical_owner.children_produced == GLOB.objective_egg_egg_number)
+		GLOB.successful_egg_number += 1
 
 #undef CHEMICALS_PER_UNIT
 #undef CHEMICAL_SECOND_DIVISOR
 #undef OUT_OF_HOST_EGG_COST
 #undef BLOOD_CHEM_OBJECTIVE
-#undef PARASITIC_EGG_COST_STAT
 #undef PARASITIC_EGG_COST_CHEM
