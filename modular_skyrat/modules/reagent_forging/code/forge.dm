@@ -561,14 +561,14 @@
 /// Handles weapon reagent imbuing
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
-	//if(!ishuman(user))
-		//to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
-		//return
+	/*if(!ishuman(user)) // Bubberstation Edit Begin
+		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		return
 
-	//var/mob/living/carbon/human/human_user = user
-	//if(!is_species(human_user, /datum/species/lizard/ashwalker) && !is_species(human_user, /datum/species/human/felinid/primitive))
-		//to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
-		//return
+	var/mob/living/carbon/human/human_user = user
+	if(!is_species(human_user, /datum/species/lizard/ashwalker) && !is_species(human_user, /datum/species/human/felinid/primitive))
+		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		return*/ //Bubberstation Edit End
 
 	in_use = TRUE
 	balloon_alert_to_viewers("imbuing...")
@@ -611,14 +611,14 @@
 /// Handles clothing imbuing, extremely similar to weapon imbuing but not in the same proc because of how uhh... goofy the way this has to be done is
 /obj/structure/reagent_forge/proc/handle_clothing_imbue(obj/attacking_item, mob/living/user)
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
-	//if(!ishuman(user))
-		//to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
-		//return
+	/*if(!ishuman(user)) //Bubberstation Edit Begin
+		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		return
 
-	//var/mob/living/carbon/human/human_user = user
-	//if(!is_species(human_user, /datum/species/lizard/ashwalker) && !is_species(human_user, /datum/species/human/felinid/primitive))
-		//to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
-		//return
+	var/mob/living/carbon/human/human_user = user
+	if(!is_species(human_user, /datum/species/lizard/ashwalker) && !is_species(human_user, /datum/species/human/felinid/primitive))
+		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+		return*/ //Bubberstation Edit End
 
 	in_use = TRUE
 	balloon_alert_to_viewers("imbuing...")
