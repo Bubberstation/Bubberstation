@@ -5255,10 +5255,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron,
 /area/station/engineering/engine_smes)
-"cDt" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/plating,
-/area/station/engineering/main)
 "cDv" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 1;
@@ -6761,6 +6757,12 @@
 /obj/machinery/shower/directional/south,
 /turf/open/floor/iron/white,
 /area/station/security/lockers)
+"dsz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/station/engineering/engine_smes)
 "dsC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7144,6 +7146,7 @@
 /area/station/science/circuits)
 "dCD" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/engineering/engine_smes)
 "dCE" = (
@@ -10805,9 +10808,9 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/common/wrestling/arena)
 "fjw" = (
-/obj/machinery/recharge_station,
 /obj/structure/sign/warning/engine_safety/directional/south,
 /obj/effect/turf_decal/stripes/line,
+/obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/iron,
 /area/station/engineering/engine_smes)
 "fjG" = (
@@ -13385,11 +13388,6 @@
 "gqg" = (
 /turf/open/floor/iron/white,
 /area/station/science/circuits)
-"gqk" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron,
-/area/station/engineering/engine_smes)
 "gqr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/closed/wall/r_wall,
@@ -32019,6 +32017,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood/parquet,
 /area/station/medical/psychology)
+"pag" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/iron,
+/area/station/engineering/engine_smes)
 "pap" = (
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
 /obj/structure/extinguisher_cabinet/directional/south,
@@ -42541,6 +42543,7 @@
 "tKK" = (
 /obj/effect/decal/cleanable/oil,
 /obj/item/stack/cable_coil/five,
+/obj/machinery/light/directional/east,
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "tKR" = (
@@ -42720,8 +42723,9 @@
 /turf/open/floor/carpet,
 /area/station/medical/psychology)
 "tPl" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/newscaster/directional/west,
+/obj/machinery/light/directional/west,
+/obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/iron,
 /area/station/engineering/engine_smes)
 "tPn" = (
@@ -44512,10 +44516,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
-"uCR" = (
-/obj/machinery/light/directional/north,
-/turf/open/floor/plating,
-/area/station/engineering/main)
 "uDb" = (
 /obj/machinery/chem_heater/withbuffer,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -45501,12 +45501,6 @@
 /obj/effect/spawner/random/decoration/glowstick,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
-"vaC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/engineering/engine_smes)
 "vaO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -47020,6 +47014,7 @@
 /area/station/security/holding_cell)
 "vKC" = (
 /obj/structure/reflector/double,
+/obj/machinery/light/directional/west,
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "vKD" = (
@@ -75861,9 +75856,9 @@ fHC
 paB
 qpg
 tEU
-ndJ
-eSv
-aiL
+snQ
+snQ
+snQ
 oLm
 xzw
 tEU
@@ -76118,9 +76113,9 @@ bXJ
 paB
 orJ
 fdv
-fdv
-fdv
-fdv
+ndJ
+eSv
+aiL
 fdv
 fdv
 fdv
@@ -76374,11 +76369,11 @@ jhM
 qwD
 mmW
 wSn
-grz
-swv
-oKj
-swv
-lwB
+fdv
+fdv
+fdv
+fdv
+fdv
 swv
 puv
 swv
@@ -77146,7 +77141,7 @@ oie
 paB
 mJJ
 grz
-uCR
+swv
 pyi
 edS
 swv
@@ -77403,9 +77398,9 @@ uuP
 lDO
 rQJ
 grz
-swv
-edS
-swv
+ibe
+ibe
+xgu
 tII
 cve
 gjA
@@ -77662,7 +77657,7 @@ mJJ
 grz
 ibe
 ibe
-xgu
+ibe
 tKK
 swv
 swv
@@ -77916,11 +77911,11 @@ bDs
 eAg
 paB
 txL
-grz
-ibe
-ibe
-ibe
-cDt
+xkH
+xkH
+xkH
+xkH
+xkH
 swv
 wEN
 swv
@@ -78174,9 +78169,9 @@ teJ
 hSb
 orJ
 xkH
-xkH
-xkH
-xkH
+gGh
+rqG
+pag
 xkH
 xkH
 xkH
@@ -78432,8 +78427,8 @@ bqV
 bBG
 edN
 gGh
-rqG
-gqk
+rzQ
+jVR
 tPl
 fjw
 xlo
@@ -78691,7 +78686,7 @@ edN
 gGh
 rzQ
 dCD
-jVR
+dtY
 cDg
 xlo
 okA
@@ -78946,7 +78941,7 @@ bqV
 qpg
 xlo
 aFu
-vaC
+dtY
 tnG
 gWg
 muM
@@ -79205,7 +79200,7 @@ lev
 rku
 mwE
 dHB
-dtY
+dsz
 iIt
 xlo
 oXq
