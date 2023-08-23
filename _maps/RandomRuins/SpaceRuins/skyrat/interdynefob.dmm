@@ -1159,6 +1159,13 @@
 	},
 /area/ruin/space/has_grav/skyrat/interdynefob/service/diner)
 "eT" = (
+/obj/structure/table,
+/obj/item/analyzer{
+	pixel_y = 10
+	},
+/obj/item/pipe_dispenser{
+	pixel_x = -3
+	},
 /obj/machinery/power/terminal{
 	dir = 1
 	},
@@ -3071,11 +3078,25 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
+/obj/structure/table,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
+	},
+/obj/item/storage/box/stockparts/basic{
+	pixel_x = -3;
+	pixel_y = 11
+	},
+/obj/item/storage/box/stockparts/basic{
+	pixel_x = 5;
+	pixel_y = 8
+	},
+/obj/item/storage/box/stockparts/basic,
+/obj/item/storage/part_replacer{
+	pixel_x = -2;
+	pixel_y = -12
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/skyrat/interdynefob/engineering)
@@ -6573,6 +6594,9 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/engineering)
 "EB" = (
 /obj/effect/turf_decal/bot,
+/obj/machinery/vending/engivend{
+	onstation = 0
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/skyrat/interdynefob/engineering)
 "EC" = (
