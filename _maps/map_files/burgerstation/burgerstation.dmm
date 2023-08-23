@@ -427,7 +427,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/supply/mining,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "aiL" = (
@@ -2606,7 +2605,7 @@
 "blQ" = (
 /obj/item/kirbyplants/random/fullysynthetic,
 /obj/machinery/light/small/red/directional/east,
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
 "bmD" = (
 /obj/structure/disposalpipe/segment{
@@ -3455,7 +3454,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -5527,7 +5525,6 @@
 /area/space/nearstation)
 "cNZ" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/station/command/cc_dock)
@@ -10148,7 +10145,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Four";
 	space_dir = 4
@@ -11664,7 +11660,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "fBH" = (
@@ -12825,7 +12820,6 @@
 /area/station/cargo/sorting)
 "gea" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -13502,7 +13496,6 @@
 /area/station/common/pool)
 "gtL" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -13970,7 +13963,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "command_dock_airlocks"
 	},
@@ -17889,6 +17881,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/security/processing)
 "isN" = (
@@ -18784,6 +18779,9 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/directional/west,
+/obj/machinery/gulag_item_reclaimer{
+	pixel_x = -29
+	},
 /turf/open/floor/iron/white,
 /area/station/security/processing)
 "iQQ" = (
@@ -18815,7 +18813,7 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
 "iRU" = (
 /obj/machinery/door/airlock/command/glass{
@@ -24109,7 +24107,6 @@
 /area/station/command/heads_quarters/cmo)
 "lkq" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -27734,7 +27731,6 @@
 /area/station/service/hydroponics)
 "mVg" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
@@ -28172,23 +28168,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
-"nfS" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Gulag Shuttle Airlock"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
-/obj/structure/cable,
-/turf/open/floor/iron,
-/area/station/security/processing)
 "nfT" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/sign/directions/security/directional/north{
@@ -28421,7 +28400,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/airalarm/directional/west,
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
 "nmw" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
@@ -29489,7 +29468,6 @@
 	name = "External Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
 /turf/open/floor/plating,
 /area/station/service/chapel)
 "nOD" = (
@@ -29686,7 +29664,6 @@
 	name = "Security Escape Airlock";
 	space_dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit/departure_lounge)
 "nTH" = (
@@ -33536,6 +33513,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/processing)
 "pKB" = (
@@ -34160,7 +34140,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
@@ -35639,6 +35618,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron,
 /area/station/security/processing)
 "qGV" = (
@@ -36027,7 +36007,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "qPg" = (
@@ -36947,7 +36926,6 @@
 	name = "Escape Pod Two";
 	space_dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/station/maintenance/department/prison)
@@ -40792,7 +40770,7 @@
 	name = "Second Thoughts Windoor"
 	},
 /obj/structure/cable,
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
 "sVD" = (
 /obj/structure/rack/shelf,
@@ -43536,7 +43514,7 @@
 "uhu" = (
 /obj/item/kirbyplants/random/fullysynthetic,
 /obj/machinery/light/small/red/directional/west,
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
 "uhx" = (
 /obj/structure/rack,
@@ -44718,7 +44696,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -45685,7 +45662,6 @@
 /obj/machinery/door/airlock/external{
 	name = "External Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /turf/open/floor/plating,
 /area/station/construction)
 "vfv" = (
@@ -46218,7 +46194,6 @@
 /area/station/engineering/atmos)
 "vqI" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -48282,7 +48257,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
 "woT" = (
@@ -50969,7 +50943,7 @@
 "xEV" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/structure/sign/flag/nanotrasen/directional/north,
-/turf/open/floor/circuit/green/anim,
+/turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
 "xFa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -81989,7 +81963,7 @@ stM
 izm
 stM
 tKl
-nfS
+xiD
 tKl
 stM
 tKl
