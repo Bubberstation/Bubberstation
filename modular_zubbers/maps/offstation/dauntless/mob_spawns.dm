@@ -21,8 +21,8 @@
 	name = "Syndicate Opperative"
 	prompt_name = "a Syndicate Opperative"
 	you_are_text = "an opperative assigned to the Syndicate Spy Vessel Dauntless, employed onboard for reasons that are yours"
-	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor NanoTrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are to maintain the ship's integrity and keep a low profile"
-	important_text = "You are NOT an antagonist and the round does not center the Dauntless. You MUST submit an Opfor or Adminhelp when esculating against the station and its crew"
+	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor NanoTrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are to maintain the ship's integrity and keep a low profile."
+	important_text = "You are NOT an antagonist and the round does not center the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
 	outfit = /datum/outfit/dauntless/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command
@@ -30,13 +30,13 @@
 	prompt_name = "a Syndicate leader"
 	you_are_text = "a Syndicate Command Opperative assigned to lead the SSV Dauntless and guide it forward in its goals"
 	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor NanoTrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are help lead the Dauntless while ensuring a low profile is maintained."
-	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Dauntless. You MUST submit an Opfor or Adminhelp when esculating against the station and its crew"
+	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
 	outfit = /datum/outfit/dauntless/command
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner
-	name = "Syndicate Prisoner"
-	prompt_name = "a Syndicate prisoner"
-	you_are_text = "You are a prisoner onboard an unknown syndicate vessel"
+	name = "Syndicate Hostage"
+	prompt_name = "a Syndicate hostage"
+	you_are_text = "You are a hostage onboard an unknown syndicate vessel"
 	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
 	important_text = "You are not an antagonist. You are still bound to the Reasonable Man rule. Dauntless personnel can throw you into lava if you antagonize them"
 	outfit = /datum/outfit/dauntless/prisoner
