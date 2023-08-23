@@ -101,7 +101,16 @@
 /datum/round_event_control/antagonist/solo/traitor
 	antag_flag = ROLE_TRAITOR
 	antag_datum = /datum/antagonist/traitor
-	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_roles = list(
+		"Prisoner",
+		"Security Officer",
+		"Warden",
+		"Detective",
+		"Head of Security",
+		"Captain",
+		"Blueshield",
+		"Nanotrasen Consultant",
+	)
 	restricted_roles = list("AI", "Cyborg")
 
 /datum/round_event_control/antagonist/solo/traitor/roundstart
