@@ -113,9 +113,12 @@
 	)
 	restricted_roles = list("AI", "Cyborg")
 
-/datum/round_event_control/antagonist/solo/traitor/roundstart
+/datum/round_event_control/antagonist/solo/traitor/can_spawn_event(popchecks = TRUE, allow_magic)
+	. = ..()
+	return FALSE
+/* /datum/round_event_control/antagonist/solo/traitor/roundstart
 	name = "Traitors"
-	roundstart = TRUE
+	roundstart = TRUE */
 
 /datum/round_event_control/antagonist/solo/traitor/midround
 	name = "Sleeper Agents (Traitors)"
@@ -128,6 +131,10 @@
 	restricted_roles = list("AI", "Cyborg")
 	weight = 4
 	min_players = 20
+
+/datum/round_event_control/antagonist/solo/changeling/can_spawn_event(popchecks = TRUE, allow_magic)
+	. = ..()
+	return FALSE
 
 /datum/round_event_control/antagonist/solo/changeling/roundstart
 	name = "Changelings"
@@ -144,6 +151,10 @@
 	restricted_roles = list("AI", "Cyborg")
 	weight = 4
 	min_players = 20
+
+/datum/round_event_control/antagonist/solo/heretic/can_spawn_event(popchecks = TRUE, allow_magic)
+	. = ..()
+	return FALSE
 
 /datum/round_event_control/antagonist/solo/heretic/roundstart
 	name = "Heretics"
