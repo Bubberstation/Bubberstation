@@ -2720,7 +2720,6 @@
 /obj/structure/closet/crate/freezer/blood,
 /obj/machinery/light/cold/directional/south,
 /obj/effect/turf_decal/weather/snow,
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/cryo)
 "bqL" = (
@@ -5619,7 +5618,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/pandemic,
-/obj/machinery/light_switch/directional/north,
+/obj/structure/reagent_dispensers/wall/virusfood/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "cSb" = (
@@ -17152,6 +17151,14 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door_buttons/access_button{
+	dir = 1;
+	idDoor = "virology_airlock_exterior";
+	idSelf = "virology_airlock_control";
+	name = "Virology Access Button";
+	req_access = list("virology");
+	pixel_x = 24
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "hYv" = (
@@ -19328,6 +19335,7 @@
 "jfw" = (
 /obj/effect/turf_decal/tile/blue/diagonal_edge,
 /obj/machinery/light/directional/east,
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "jfE" = (
@@ -21466,6 +21474,11 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/central)
+"kcm" = (
+/obj/effect/turf_decal/tile/blue/diagonal_edge,
+/obj/structure/cable,
+/turf/open/floor/iron/white,
+/area/station/medical/storage)
 "kcy" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Morgue"
@@ -29162,14 +29175,6 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter/room)
-"nIq" = (
-/obj/structure/plasticflaps/opaque,
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=1";
-	location = "Medical"
-	},
-/turf/open/floor/plating,
-/area/station/medical/cryo)
 "nIv" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
@@ -32597,10 +32602,13 @@
 /turf/open/floor/iron,
 /area/station/cargo/blacksmith)
 "ppp" = (
-/obj/effect/turf_decal/tile/blue/diagonal_edge,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/south,
-/turf/open/floor/iron/white,
+/obj/machinery/door/window/left/directional/north{
+	name = "Medical Deliveries";
+	req_access = list("medical")
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/iron/freezer,
 /area/station/medical/storage)
 "ppr" = (
 /obj/machinery/modular_computer/preset/research{
@@ -33264,6 +33272,16 @@
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
+"pEE" = (
+/obj/effect/turf_decal/tile/dark_green/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/light_switch/directional/north{
+	pixel_x = 3;
+	pixel_y = 31
+	},
+/turf/open/floor/iron/white,
+/area/station/medical/virology)
 "pET" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -33469,12 +33487,9 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/aft)
 "pJW" = (
-/obj/machinery/door/window/left/directional/north{
-	name = "Medical Deliveries";
-	req_access = list("medical")
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/iron/freezer,
+/obj/structure/closet/crate/freezer/blood,
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/cryo)
 "pKj" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -37086,6 +37101,8 @@
 "rnj" = (
 /obj/effect/turf_decal/tile/blue/diagonal_edge,
 /obj/machinery/computer/department_orders/medical,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "rnl" = (
@@ -37226,6 +37243,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "rqc" = (
@@ -38636,6 +38654,14 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door_buttons/access_button{
+	idDoor = "virology_airlock_interior";
+	idSelf = "virology_airlock_control";
+	name = "Virology Access Button";
+	pixel_x = 24;
+	pixel_y = 8;
+	req_access = list("virology")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "rZd" = (
@@ -40274,6 +40300,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door_buttons/airlock_controller{
+	idExterior = "virology_airlock_exterior";
+	idInterior = "virology_airlock_interior";
+	idSelf = "virology_airlock_control";
+	name = "Virology Access Console";
+	pixel_x = 24;
+	pixel_y = 24;
+	req_access = list("virology")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "sGj" = (
@@ -42490,6 +42525,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/command/bridge)
+"tJk" = (
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=1";
+	location = "Medical"
+	},
+/turf/open/floor/plating,
+/area/station/medical/storage)
 "tJs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible,
 /obj/machinery/computer/atmos_control/mix_tank{
@@ -44556,13 +44599,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"uEw" = (
-/obj/effect/turf_decal/tile/dark_green/half/contrasted{
-	dir = 1
-	},
-/obj/structure/reagent_dispensers/wall/virusfood/directional/north,
-/turf/open/floor/iron/white,
-/area/station/medical/virology)
 "uEx" = (
 /obj/effect/spawner/random/structure/closet_maintenance,
 /turf/open/floor/plating,
@@ -84089,7 +84125,7 @@ kTd
 qbx
 ewI
 ppp
-fxM
+tJk
 egK
 kFb
 fVg
@@ -84601,7 +84637,7 @@ fxM
 fxM
 fxM
 smB
-kce
+kcm
 rfa
 fxM
 ltj
@@ -85374,7 +85410,7 @@ ezc
 jEb
 uSh
 pJW
-nIq
+jEb
 ltj
 kFb
 iCE
@@ -86913,7 +86949,7 @@ fgn
 fpW
 bPt
 sBP
-jZa
+pEE
 iYa
 iGP
 mqm
@@ -87427,7 +87463,7 @@ aJM
 iuc
 cGe
 bPU
-uEw
+jZa
 fTe
 tcJ
 wiW
