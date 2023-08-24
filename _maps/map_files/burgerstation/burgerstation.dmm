@@ -2884,11 +2884,10 @@
 /area/station/hallway/primary/starboard)
 "buz" = (
 /obj/effect/mapping_helpers/broken_floor,
+/obj/item/radio/intercom/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	filter_types = list(/datum/gas/carbon_dioxide,/datum/gas/oxygen);
 	dir = 4
 	},
-/obj/item/radio/intercom/directional/west,
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_holding_cell)
 "buD" = (
@@ -9568,6 +9567,9 @@
 	name = "Break Room"
 	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/medical/break_room)
 "eCs" = (
@@ -14845,6 +14847,9 @@
 /area/station/engineering/gravity_generator)
 "gQI" = (
 /obj/structure/sink/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/medical/break_room)
 "gQZ" = (
@@ -15671,6 +15676,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
+"hka" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/effect/turf_decal/trimline/white/arrow_ccw,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "hkb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/engineering{
@@ -16338,13 +16351,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/hallway/secondary/recreation)
-"hxc" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	filter_types = list(/datum/gas/carbon_dioxide,/datum/gas/oxygen);
-	dir = 4
-	},
-/turf/open/floor/iron/dark/telecomms,
-/area/station/ai_monitored/turret_protected/ai)
 "hxu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/structure/disposalpipe/junction{
@@ -21675,6 +21681,17 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/common/cafeteria)
+"jXr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/carpet/red,
+/area/station/medical/break_room)
+"jXt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/carpet/red,
+/area/station/medical/break_room)
 "jXE" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -24165,6 +24182,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/security/prison/upper)
+"leo" = (
+/obj/structure/chair/stool/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/station/medical/break_room)
 "leu" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
@@ -46575,13 +46599,6 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science)
-"vkP" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	filter_types = list(/datum/gas/carbon_dioxide,/datum/gas/oxygen);
-	dir = 8
-	},
-/turf/open/floor/iron/dark/telecomms,
-/area/station/ai_monitored/turret_protected/ai)
 "vkR" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -77026,7 +77043,7 @@ aFl
 hEM
 hEM
 dVm
-hxc
+rMz
 tyR
 uvJ
 fSx
@@ -77540,7 +77557,7 @@ aFl
 hEM
 hEM
 dVm
-vkP
+rMz
 tyR
 xQp
 slZ
@@ -86882,7 +86899,7 @@ orX
 cXT
 cDk
 jqE
-vRo
+leo
 vRo
 lfm
 aTm
@@ -87136,11 +87153,11 @@ eeD
 mvB
 kif
 orX
-cXT
+hka
 eCp
-jqE
-jqE
-jqE
+jXt
+jXt
+jXr
 sBa
 sBa
 hnj
