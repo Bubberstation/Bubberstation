@@ -7254,12 +7254,12 @@
 /turf/open/floor/carpet,
 /area/station/service/theater)
 "dAZ" = (
+/obj/structure/cable,
 /obj/machinery/power/solar_control{
 	dir = 1;
-	id = "starboardsolar";
-	name = "Starboard Quarter Solar Control"
+	id = "aftportsolar";
+	name = "Aft Port Solar Control"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/station/solars/port/aft)
 "dBa" = (
@@ -7874,6 +7874,7 @@
 	req_access = list("bar")
 	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/service/bar)
 "dPe" = (
@@ -8187,7 +8188,7 @@
 /area/station/maintenance/department/medical)
 "dYQ" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Starboard Quarter Solar Access"
+	name = "Starboard Solar Access"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -11662,6 +11663,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "fvY" = (
@@ -12181,6 +12183,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark,
 /area/station/science/tele_sci)
+"fGR" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/camera/autoname/directional/south,
+/turf/open/floor/iron/dark/corner,
+/area/station/hallway/primary/starboard)
 "fGX" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /obj/machinery/light/directional/south,
@@ -13242,6 +13249,7 @@
 /area/station/security/prison/upper)
 "ghZ" = (
 /obj/machinery/power/tracker,
+/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/station/solars/starboard/aft)
 "gin" = (
@@ -14749,7 +14757,8 @@
 "gOM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
-	external_pressure_bound = 121.325
+	external_pressure_bound = 101.325;
+	pressure_checks = 1
 	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
@@ -16193,11 +16202,13 @@
 /turf/open/floor/plating,
 /area/station/security/detectives_office)
 "htW" = (
-/obj/machinery/camera/autoname/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
 /obj/item/radio/intercom/directional/west,
+/obj/machinery/camera/motion/directional/west{
+	c_tag = "Secure Bunker"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/secure_bunker)
 "huc" = (
@@ -16744,6 +16755,7 @@
 	location = "Bar"
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/service/bar)
 "hGe" = (
@@ -17766,6 +17778,7 @@
 /area/station/maintenance/disposal)
 "ihs" = (
 /obj/machinery/power/tracker,
+/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/station/solars/port/aft)
 "ihD" = (
@@ -18091,9 +18104,10 @@
 /area/station/science/robotics/lab)
 "ipM" = (
 /obj/machinery/power/solar_control{
-	id = "foreport";
-	name = "Port Bow Solar Control"
+	id = "aisolar";
+	name = "AI Solar Control"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/solars/aisat)
 "ipN" = (
@@ -18858,7 +18872,7 @@
 /obj/machinery/power/solar_control{
 	dir = 1;
 	id = "starboardsolar";
-	name = "Starboard Quarter Solar Control"
+	name = "Starboard Solar Control"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -19442,9 +19456,9 @@
 /area/station/medical/virology)
 "iYe" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/freon,
 /obj/effect/turf_decal/weather/snow,
 /obj/item/radio/intercom/directional/north,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
 "iYg" = (
@@ -19514,8 +19528,10 @@
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "iZz" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8;
+	external_pressure_bound = 101.325;
+	pressure_checks = 1
 	},
 /turf/open/floor/catwalk_floor,
 /area/station/science/xenobiology)
@@ -21684,6 +21700,7 @@
 "jXr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/carpet/red,
 /area/station/medical/break_room)
 "jXt" = (
@@ -24300,6 +24317,8 @@
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/commons/locker)
 "lgB" = (
@@ -25588,6 +25607,10 @@
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"lKO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/turf/open/floor/circuit/telecomms,
+/area/station/ai_monitored/turret_protected/ai)
 "lLd" = (
 /obj/structure/reagent_dispensers/plumbed,
 /turf/open/floor/plating,
@@ -26304,8 +26327,9 @@
 /turf/closed/wall,
 /area/station/service/bar)
 "mbc" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4;
+	external_pressure_bound = 121.325
 	},
 /turf/open/floor/catwalk_floor,
 /area/station/science/xenobiology)
@@ -28170,7 +28194,8 @@
 /area/station/medical/medbay/central)
 "mVM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
+	dir = 4;
+	external_pressure_bound = 121.325
 	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
@@ -29236,6 +29261,11 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/bureaucracy/folder,
 /obj/effect/turf_decal/tile/red/fourcorners,
+/obj/machinery/door/window/brigdoor/right/directional/west{
+	req_access = list("armory");
+	name = "Warden's Desk"
+	},
+/obj/machinery/door/window/left/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "nyk" = (
@@ -30855,6 +30885,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
+"oig" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/machinery/ai_slipper,
+/turf/open/floor/circuit/telecomms,
+/area/station/ai_monitored/turret_protected/ai)
 "oio" = (
 /obj/effect/turf_decal/tile/dark_green/half/contrasted,
 /obj/structure/cable,
@@ -35608,7 +35643,8 @@
 "qpX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	external_pressure_bound = 121.325
+	external_pressure_bound = 101.325;
+	pressure_checks = 1
 	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
@@ -39040,7 +39076,8 @@
 /area/station/service/chapel)
 "rQt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
+	dir = 4;
+	external_pressure_bound = 121.325
 	},
 /obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/iron/dark/telecomms,
@@ -43977,6 +44014,14 @@
 /obj/structure/sign/warning/no_smoking/directional/north,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/engineering/atmos/storage/gas)
+"uby" = (
+/obj/machinery/shower/directional/north,
+/obj/effect/turf_decal/bot,
+/obj/machinery/camera/autoname/directional/south{
+	dir = 5
+	},
+/turf/open/floor/iron/dark,
+/area/station/science/xenobiology)
 "ubA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45071,8 +45116,8 @@
 /area/station/maintenance/department/crew_quarters/dorms)
 "uzC" = (
 /obj/machinery/door/window/brigdoor/security/cell/left/directional/west{
-	name = "Cell 2";
-	id = "Cell 2"
+	name = "Cell 1";
+	id = "Cell 1"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -45703,6 +45748,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "uPD" = (
@@ -47121,7 +47167,8 @@
 "vxP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
-	external_pressure_bound = 121.325
+	external_pressure_bound = 101.325;
+	pressure_checks = 1
 	},
 /obj/machinery/camera/autoname/directional/north{
 	dir = 9
@@ -51202,6 +51249,12 @@
 /obj/item/book/manual/wiki/medicine,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
+"xvs" = (
+/obj/machinery/shower/directional/south,
+/obj/effect/turf_decal/bot,
+/obj/machinery/camera/autoname/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/science/xenobiology)
 "xvA" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -51875,7 +51928,9 @@
 /turf/open/floor/iron/checker,
 /area/station/cargo/blacksmith)
 "xKB" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	external_pressure_bound = 121.325
+	},
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "xKR" = (
@@ -68958,14 +69013,14 @@ tNg
 oCS
 oCS
 tNg
-oCS
-oCS
+tNg
+tNg
 tNg
 oCS
 oCS
 tNg
-oCS
-oCS
+tNg
+tNg
 ihs
 izm
 cuV
@@ -76784,8 +76839,8 @@ hEM
 hEM
 qKL
 aMD
-dVm
-sNj
+lKO
+oig
 rrJ
 rrJ
 uvJ
@@ -77042,7 +77097,7 @@ kbA
 aFl
 hEM
 hEM
-dVm
+lKO
 rMz
 tyR
 uvJ
@@ -83019,7 +83074,7 @@ pOw
 qbc
 fQI
 gzH
-xUZ
+fGR
 hfe
 ewh
 dsC
@@ -94612,7 +94667,7 @@ mIL
 mIL
 lui
 lui
-aTd
+xvs
 pPg
 myk
 sqb
@@ -95644,7 +95699,7 @@ aTd
 pPg
 myk
 sqb
-itZ
+uby
 lui
 lui
 mIL
@@ -97724,7 +97779,7 @@ csa
 ohs
 ohs
 csa
-csa
+ohs
 ghZ
 izm
 cuV
