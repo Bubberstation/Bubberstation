@@ -106,7 +106,7 @@
 	interest_required = COMPANY_SOME_INTEREST
 	interest_addition = COMPANY_INTEREST_GAIN_BIG
 
- /datum/armament_entry/company_import/nri_surplus/firearm/shotgun_revolver
+/datum/armament_entry/company_import/nri_surplus/firearm/shotgun_revolver
 	item_type = /obj/item/gun/ballistic/revolver/cin_shotgun_revolver
 	lower_cost = CARGO_CRATE_VALUE * 3
 	upper_cost = CARGO_CRATE_VALUE * 4
@@ -122,11 +122,11 @@
 	interest_addition = COMPANY_INTEREST_GAIN_BIG
 
 /* BUBBERSTATION EDIT REMOVAL
-	/datum/armament_entry/company_import/nri_surplus/firearm/anti_materiel_rifle
-		item_type = /obj/item/gun/ballistic/automatic/cin_amr
-		lower_cost = CARGO_CRATE_VALUE * 8
-		upper_cost = CARGO_CRATE_VALUE * 10
-		interest_required = COMPANY_HIGH_INTEREST
-		restricted = TRUE
-		interest_addition = COMPANY_INTEREST_GAIN_BIG
+/datum/armament_entry/company_import/nri_surplus/firearm/anti_materiel_rifle
+	item_type = /obj/item/gun/ballistic/automatic/cin_amr
+	lower_cost = CARGO_CRATE_VALUE * 8
+	upper_cost = CARGO_CRATE_VALUE * 10
+	interest_required = COMPANY_HIGH_INTEREST
+	restricted = TRUE
+	interest_addition = COMPANY_INTEREST_GAIN_BIG
 */
