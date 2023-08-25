@@ -33,55 +33,55 @@
 	item_type = /obj/item/ammo_box/advanced/pepperballs
 
 /* BUBBERSTATION EDIT REMOVAL
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/m1911_lethals
-		item_type = /obj/item/ammo_box/c45
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/wt550_lethals
-		item_type = /obj/item/ammo_box/c46x30mm
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/wt550_piercing
-		item_type = /obj/item/ammo_box/c46x30mm/ap
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/wt550_rubber
-		item_type = /obj/item/ammo_box/c46x30mm/rubber
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
-		item_type = /obj/item/ammo_box/c9mm
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_hp
-		item_type = /obj/item/ammo_box/c9mm/hp
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_rubber
-		item_type = /obj/item/ammo_box/c9mm/rubber
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_lethal
-		item_type = /obj/item/ammo_box/c10mm
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_hp
-		item_type = /obj/item/ammo_box/c10mm/hp
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_rubber
-		item_type = /obj/item/ammo_box/c10mm/rubber
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_lethal
-		item_type = /obj/item/ammo_box/c56mm
-		lower_cost = CARGO_CRATE_VALUE * 1.25
-		upper_cost = CARGO_CRATE_VALUE * 1.5
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_rubber
-		item_type = /obj/item/ammo_box/c56mm/rubber
-		lower_cost = CARGO_CRATE_VALUE * 1.25
-		upper_cost = CARGO_CRATE_VALUE * 1.5
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_hunting
-		item_type = /obj/item/ammo_box/c56mm/hunting
-		lower_cost = CARGO_CRATE_VALUE * 1.25
-		upper_cost = CARGO_CRATE_VALUE * 1.5
-	
-	/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_blank
-		item_type = /obj/item/ammo_box/c56mm/blank
-		lower_cost = CARGO_CRATE_VALUE * 0.1
-		upper_cost = CARGO_CRATE_VALUE * 0.3
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/m1911_lethals
+	item_type = /obj/item/ammo_box/c45
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/wt550_lethals
+	item_type = /obj/item/ammo_box/c46x30mm
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/wt550_piercing
+	item_type = /obj/item/ammo_box/c46x30mm/ap
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/wt550_rubber
+	item_type = /obj/item/ammo_box/c46x30mm/rubber
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
+	item_type = /obj/item/ammo_box/c9mm
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_hp
+	item_type = /obj/item/ammo_box/c9mm/hp
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_rubber
+	item_type = /obj/item/ammo_box/c9mm/rubber
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_lethal
+	item_type = /obj/item/ammo_box/c10mm
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_hp
+	item_type = /obj/item/ammo_box/c10mm/hp
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_rubber
+	item_type = /obj/item/ammo_box/c10mm/rubber
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_lethal
+	item_type = /obj/item/ammo_box/c56mm
+	lower_cost = CARGO_CRATE_VALUE * 1.25
+	upper_cost = CARGO_CRATE_VALUE * 1.5
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_rubber
+	item_type = /obj/item/ammo_box/c56mm/rubber
+	lower_cost = CARGO_CRATE_VALUE * 1.25
+	upper_cost = CARGO_CRATE_VALUE * 1.5
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_hunting
+	item_type = /obj/item/ammo_box/c56mm/hunting
+	lower_cost = CARGO_CRATE_VALUE * 1.25
+	upper_cost = CARGO_CRATE_VALUE * 1.5
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_blank
+	item_type = /obj/item/ammo_box/c56mm/blank
+	lower_cost = CARGO_CRATE_VALUE * 0.1
+	upper_cost = CARGO_CRATE_VALUE * 0.3
 */
 
 // Revolver speedloaders
