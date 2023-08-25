@@ -1366,6 +1366,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/science/rd,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "aEe" = (
@@ -6208,9 +6209,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen/coldroom)
-"dbt" = (
-/turf/closed/wall,
-/area/station/command/bridge)
 "dbG" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/stripes/line,
@@ -9368,6 +9366,8 @@
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "ewo" = (
@@ -14764,7 +14764,6 @@
 /area/station/security/brig/entrance)
 "gLi" = (
 /obj/effect/turf_decal/tile/green/fourcorners,
-/obj/structure/table/glass,
 /obj/machinery/door/window/left/directional/south{
 	name = "Hydroponics Desk";
 	req_access = list("hydroponics")
@@ -14772,6 +14771,7 @@
 /obj/machinery/door/window/left/directional/north,
 /obj/machinery/door/firedoor,
 /obj/item/hot_potato/harmless/toy,
+/obj/structure/table/reinforced,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "gLs" = (
@@ -19522,6 +19522,7 @@
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "iTJ" = (
@@ -25480,6 +25481,7 @@
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "lxZ" = (
@@ -38687,6 +38689,8 @@
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
+/obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "rvp" = (
@@ -39980,6 +39984,7 @@
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "rZC" = (
@@ -80370,7 +80375,7 @@ tGK
 izm
 hjU
 eEr
-dbt
+eEr
 fmQ
 eEr
 rzN
@@ -80626,11 +80631,11 @@ stM
 stM
 tGK
 hjU
-dbt
+eEr
 mtV
 wpv
 dyq
-gyW
+rzN
 gPm
 lEW
 szL
@@ -80887,7 +80892,7 @@ tIV
 bFT
 the
 uBJ
-gyW
+rzN
 gyW
 nBD
 gyW
@@ -81143,8 +81148,8 @@ tKl
 eEr
 eEr
 eEr
-dbt
-gyW
+eEr
+rzN
 nJr
 uVt
 jhJ
