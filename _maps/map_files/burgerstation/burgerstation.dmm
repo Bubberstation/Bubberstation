@@ -3852,7 +3852,7 @@
 /obj/effect/spawner/random/exotic/snow_gear,
 /obj/effect/turf_decal/weather/snow,
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "bSc" = (
 /obj/structure/table/glass/plasmaglass,
@@ -5159,7 +5159,7 @@
 	dir = 1
 	},
 /obj/item/wrench,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "cyz" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -5900,6 +5900,9 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "cVl" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "cVm" = (
@@ -7915,7 +7918,6 @@
 	req_access = list("bar")
 	},
 /obj/effect/turf_decal/delivery,
-/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/service/bar)
 "dPe" = (
@@ -13651,7 +13653,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/weather/snow,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "gpH" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -14632,8 +14634,8 @@
 /obj/effect/turf_decal/tile/green/fourcorners,
 /obj/structure/table/glass,
 /obj/machinery/door/window/left/directional/south{
-	name = "Botany Desk";
-	req_access = list("botany")
+	name = "Hydroponics Desk";
+	req_access = list("hydroponics")
 	},
 /obj/machinery/door/window/left/directional/north,
 /turf/open/floor/iron,
@@ -16038,8 +16040,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/machinery/camera/autoname/directional/east,
 /obj/item/radio/intercom/directional/east,
+/obj/machinery/light/warm/directional/east,
+/obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "hqr" = (
@@ -16790,7 +16793,6 @@
 	location = "Bar"
 	},
 /obj/machinery/door/firedoor,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/service/bar)
 "hGe" = (
@@ -17915,11 +17917,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
-"ijR" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted,
-/obj/effect/turf_decal/tile/yellow/half/contrasted,
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/secondary/exit)
 "ikc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -19156,9 +19153,8 @@
 	},
 /obj/effect/turf_decal/weather/snow,
 /obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/tlv_cold_room,
 /obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "iPC" = (
 /obj/effect/spawner/random/entertainment/arcade{
@@ -20675,7 +20671,7 @@
 /obj/structure/cable,
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "jxD" = (
 /obj/structure/fireplace,
@@ -20901,7 +20897,7 @@
 /obj/effect/turf_decal/weather/snow,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light_switch/directional/north,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "jDs" = (
 /obj/effect/landmark/start/hangover/closet,
@@ -23897,6 +23893,7 @@
 /obj/effect/spawner/random/trash/soap,
 /obj/structure/sign/departments/maint/directional/west,
 /obj/item/wirebrush,
+/obj/item/plunger,
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "kUv" = (
@@ -27178,7 +27175,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 6
 	},
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "mrQ" = (
 /turf/closed/wall,
@@ -40514,6 +40511,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
+"srt" = (
+/obj/item/kirbyplants/random,
+/obj/machinery/light/warm/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/cargo/storage)
 "srK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/trimline/white/line{
@@ -42184,6 +42186,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/structure/sign/poster/official/random/directional/south,
+/obj/machinery/light/warm/directional/south,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "tfA" = (
@@ -43777,7 +43780,7 @@
 /obj/item/radio/intercom/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "tQL" = (
 /obj/machinery/computer/crew,
@@ -44512,7 +44515,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /obj/structure/fans/tiny,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "uiB" = (
 /obj/machinery/mass_driver/ordnance{
@@ -46533,6 +46536,15 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/command/cc_dock)
+"vdH" = (
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/sign/poster/official/random/directional/north,
+/obj/machinery/light/warm/directional/north,
+/turf/open/floor/iron,
+/area/station/cargo/storage)
 "vdK" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
@@ -47990,7 +48002,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "vKL" = (
 /obj/effect/turf_decal/vg_decals/numbers/four,
@@ -48899,6 +48911,10 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/effect/spawner/random/food_or_drink/seed{
+	spawn_all_loot = 1;
+	spawn_random_offset = 1
+	},
 /obj/item/plant_analyzer,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
@@ -48947,7 +48963,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/duct,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
+/turf/open/floor/iron/freezer,
 /area/station/science/xenobiology)
 "wif" = (
 /obj/structure/table/wood,
@@ -52420,10 +52436,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/customs)
-"xRm" = (
-/obj/effect/spawner/random/structure/tank_holder,
-/turf/open/floor/plating,
-/area/station/maintenance/department/security/upper)
 "xRw" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -53249,6 +53261,10 @@
 /area/station/hallway/secondary/entry)
 "yiO" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
+"yiW" = (
+/obj/effect/spawner/random/structure/chair_maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "yjf" = (
@@ -65300,8 +65316,8 @@ kHo
 nFF
 kHo
 hvF
-gRv
-stM
+ckk
+ckk
 stM
 stM
 stM
@@ -65557,8 +65573,8 @@ mRT
 mRT
 mRT
 bjq
+rWl
 gRv
-stM
 stM
 stM
 stM
@@ -65814,8 +65830,8 @@ tqA
 tqA
 mRT
 cmZ
+yiW
 gRv
-stM
 stM
 stM
 stM
@@ -66071,8 +66087,8 @@ aPF
 pgp
 mRT
 bjq
+rWl
 gRv
-stM
 stM
 stM
 stM
@@ -66328,8 +66344,8 @@ laB
 wPw
 mRT
 bjq
-gRv
-stM
+ckk
+ckk
 stM
 stM
 stM
@@ -68140,7 +68156,7 @@ jJl
 qqV
 ruL
 wLw
-hsY
+vdH
 shk
 bjf
 bjf
@@ -69442,7 +69458,7 @@ vkV
 bjf
 bjf
 vcI
-vhu
+srt
 fAd
 fUQ
 eIb
@@ -81441,7 +81457,7 @@ vVN
 jYX
 exx
 bpP
-xRm
+lZd
 oAA
 xmK
 fRp
@@ -88675,7 +88691,7 @@ xdi
 wkS
 reA
 mEs
-ijR
+kKj
 hPq
 eqv
 mHz
@@ -91806,7 +91822,7 @@ emj
 vWI
 vWI
 vWI
-emj
+vWI
 vWI
 vWI
 vWI
