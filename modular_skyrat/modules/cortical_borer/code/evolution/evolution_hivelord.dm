@@ -87,6 +87,7 @@
 		/datum/borer_evolution/synthetic_borer,
 		/datum/borer_evolution/synthetic_chems_positive,
 		/datum/borer_evolution/synthetic_chems_negative,
+		/datum/borer_evolution/invasive
 	)
 
 /datum/borer_evolution/hivelord/produce_offspring_alone/on_evolve(mob/living/basic/cortical_borer/cortical_owner)

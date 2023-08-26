@@ -517,7 +517,7 @@
 	var/list/usable_hosts = list()
 	for(var/mob/living/carbon/human/listed_human in range(1, cortical_owner))
 		// no non-human hosts
-		if(!ishuman(listed_human) || ismonkey(listed_human))
+		if(!ishuman(listed_human))//Bubber edit, allows monkey hosts
 			continue
 		// cannot have multiple borers (for now)
 		if(listed_human.has_borer())
@@ -549,7 +549,7 @@
 
 /datum/action/cooldown/borer/choosing_host/proc/enter_host(mob/living/carbon/human/singular_host)
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
-	if(check_for_bio_protection(singular_host))
+	if(check_for_bio_protection(singular_host) && !(cortical_owner.upgrade_flags & BORER_INVASIVE))//Bubber edit, Borer_Invasive flag
 		owner.balloon_alert(owner, "target head too protected!")
 		return
 	if(singular_host.has_borer())

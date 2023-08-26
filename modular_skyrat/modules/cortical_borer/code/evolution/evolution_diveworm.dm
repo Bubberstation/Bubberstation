@@ -121,6 +121,7 @@
 		/datum/borer_evolution/synthetic_borer,
 		/datum/borer_evolution/synthetic_chems_negative,
 		/datum/borer_evolution/diveworm/produce_offspring_parasitic,
+		/datum/borer_evolution/invasive
 	)
 
 /datum/borer_evolution/diveworm/empowered_offspring/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
@@ -137,7 +138,7 @@
 	tier = 6
 	evo_cost = 6
 
-/datum/borer_evolution/produce_offspring_parasitic/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+/datum/borer_evolution/diveworm/produce_offspring_parasitic/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()
 	var/datum/action/cooldown/borer/produce_offspring_parasitic/attack_action = new()
 	attack_action.Grant(cortical_owner)

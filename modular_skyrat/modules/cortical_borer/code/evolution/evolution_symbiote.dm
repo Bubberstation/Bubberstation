@@ -119,7 +119,7 @@
 	tier = 6
 	evo_cost = 6
 
-/datum/borer_evolution/produce_offspring_symbiotic/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+/datum/borer_evolution/symbiote/produce_offspring_symbiotic/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
 	. = ..()
 	var/datum/action/cooldown/borer/produce_offspring_symbiotic/attack_action = new()
 	attack_action.Grant(cortical_owner)

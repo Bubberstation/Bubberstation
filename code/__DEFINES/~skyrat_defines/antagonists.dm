@@ -40,6 +40,8 @@
 #define BORER_HIDING (1<<3)
 /// If the borer can produce eggs without a host
 #define BORER_ALONE_PRODUCTION (1<<4)
+/// If the borer can go through protective clothing. Bubber Addition.
+#define BORER_INVASIVE (1<<5)
 
 // Clock cultist
 #define IS_CLOCK(mob) ((FACTION_CLOCK in mob.faction) || mob?.mind?.has_antag_datum(/datum/antagonist/clock_cultist))

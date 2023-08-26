@@ -79,4 +79,14 @@
 	. = ..()
 	cortical_owner.potential_chemicals |= added_chemicals
 
+/datum/borer_evolution/invasive
+	name = "Invasive Boring"
+	desc = "Invade hosts through most protective clothing."
+	gain_text = "Some worms have infested researchers who handled them. Whether this was due to faulty biohazard gear or a new adaptation is too early to tell..."
+	evo_cost = 5
+	tier = 6
+
+/datum/borer_evolution/invasive/on_evolve(mob/living/basic/cortical_borer/cortical_owner)
+	. = ..()
+	cortical_owner.upgrade_flags |= BORER_INVASIVE
 
