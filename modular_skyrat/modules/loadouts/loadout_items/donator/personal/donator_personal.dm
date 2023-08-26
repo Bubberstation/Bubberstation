@@ -702,7 +702,7 @@
 /datum/loadout_item/inhand/officialcat
 	name = "Official Cat Stamp"
 	item_path = /obj/item/stamp/cat
-//	ckeywhitelist = list("kathrinbailey")
+	ckeywhitelist = list("kathrinbailey")
 
 /datum/loadout_item/inhand/hardlight_wheelchair
 	name = "Hardlight Wheelchair Projector"
