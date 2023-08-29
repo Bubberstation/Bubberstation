@@ -60,5 +60,5 @@
 	desc = "A small bottle. Contains prescription strength promethazine."
 	list_reagents = list(/datum/reagent/medicine/promethazine = 30)
 	fill_icon_state = null
-	icon = 'modular_skyrat/modules/morenarcotics/icons/crack.dmi'
+	icon = 'modular_zubbers/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "promethazine"
