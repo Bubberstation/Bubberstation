@@ -1241,7 +1241,11 @@
 		if (!reagent)
 			continue
 		sum_purity += reagent.purity
-		remove_reagent(_reagent, (multiplier * cached_required_reagents[_reagent]), safety = 1)
+		// remove_reagent(_reagent, (multiplier * cached_required_reagents[_reagent]), safety = 1)
+		// BUBBER EDIT START - checks for flag before removing reagents
+		if(!(selected_reaction.reaction_flags_bubber & REACTION_KEEP_INSTANT_REQUIREMENTS))
+			remove_reagent(_reagent, (multiplier * cached_required_reagents[_reagent]), safety = 1)
+		// BUBBER EDIT END
 	sum_purity /= cached_required_reagents.len
 
 	for(var/product in selected_reaction.results)
