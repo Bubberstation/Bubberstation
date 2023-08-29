@@ -1554,6 +1554,7 @@
 "aIB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/security/detectives_office/private_investigators_office)
 "aIG" = (
@@ -20820,6 +20821,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
+"jii" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/station/security/detectives_office/private_investigators_office)
 "jil" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
@@ -21189,7 +21195,6 @@
 /area/station/science/ordnance/testlab)
 "joI" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -26506,6 +26511,8 @@
 /obj/structure/fluff/paper/stack{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/security/detectives_office/private_investigators_office)
 "lGv" = (
@@ -33066,6 +33073,14 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"oEb" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/security/detective,
+/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/station/security/detectives_office)
 "oEh" = (
 /obj/machinery/disposal/delivery_chute{
 	dir = 4
@@ -38316,6 +38331,8 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "qRM" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office/private_investigators_office)
 "qRZ" = (
@@ -47097,6 +47114,10 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/station/cargo/sorting)
+"uIe" = (
+/obj/machinery/vending/wardrobe/det_wardrobe,
+/turf/open/floor/iron/grimy,
+/area/station/security/detectives_office)
 "uIi" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
@@ -48009,6 +48030,7 @@
 /area/station/security/brig/entrance)
 "vbb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office/private_investigators_office)
 "vbc" = (
@@ -51827,6 +51849,11 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
 /area/station/engineering/main)
+"wLp" = (
+/obj/structure/filingcabinet,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/grimy,
+/area/station/security/detectives_office)
 "wLq" = (
 /obj/effect/mapping_helpers/airlock/access/all/command/gateway,
 /obj/machinery/door/airlock/command/glass{
@@ -52142,8 +52169,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "wSG" = (
-/obj/machinery/vending/wardrobe/det_wardrobe,
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office)
 "wTe" = (
@@ -85111,7 +85139,7 @@ axM
 jpy
 wof
 bxT
-qyu
+uIe
 qyu
 qyu
 gZf
@@ -85632,7 +85660,7 @@ hMD
 lEk
 wwn
 lZx
-ujn
+wLp
 wof
 fRO
 gzH
@@ -86143,7 +86171,7 @@ xtv
 aHu
 wof
 wof
-wof
+oEb
 wof
 wof
 wof
@@ -86400,7 +86428,7 @@ unA
 unA
 unA
 rHk
-iGl
+jii
 gCo
 qGY
 gCo
