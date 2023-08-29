@@ -9,6 +9,7 @@
 		/obj/item/borg/projectile_dampen,
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/pillow,
+		/obj/item/borg/cyborghug/peacekeeper
 	)
 	emag_modules = list(
 		/obj/item/reagent_containers/borghypo/peace/hacked,
