@@ -197,7 +197,10 @@
 		if(plush.stuffed)
 			return FALSE
 	for(var/mob/M in owner.held_items) //makes sure to check hands for your tiny friends!
-		return FALSE
+		if(!isliving(M)) //ghosts ain't people
+			continue
+		if(istype(M, /mob/living/simple_animal/pet) || istype(M, /mob/living/basic/pet) || M.ckey)
+			return FALSE
 
 	return TRUE
 
