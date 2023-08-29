@@ -4444,6 +4444,22 @@
 	dir = 1
 	},
 /area/station/hallway/secondary/exit)
+"bZy" = (
+/obj/structure/table,
+/obj/item/inspector{
+	pixel_x = -5;
+	pixel_y = 11
+	},
+/obj/item/inspector{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/inspector{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/turf/open/floor/iron/dark,
+/area/station/security/office)
 "bZz" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern{
@@ -18779,6 +18795,13 @@
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
+"igs" = (
+/obj/structure/table,
+/obj/item/hourglass{
+	pixel_y = 10
+	},
+/turf/open/floor/iron/dark,
+/area/station/security/office)
 "igt" = (
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -24662,6 +24685,17 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
+"kLH" = (
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 1;
+	name = "security time-out chair";
+	desc = "A chair meant for misbehaving security officers. Was designated as the time-out chair after the Head of Security realized that it doesn't look good to put security officers in public-facing cells."
+	},
+/turf/open/floor/iron/dark,
+/area/station/security/office)
 "kLO" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -46639,7 +46673,7 @@
 /obj/effect/turf_decal/stripes/red/end{
 	dir = 1
 	},
-/obj/item/storage/box/flashes,
+/obj/item/gun/energy/ionrifle,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "uhF" = (
@@ -92891,13 +92925,13 @@ fsK
 uxt
 ggp
 ggp
-uZU
+igs
 uZU
 uZU
 fKW
 uZU
 uZU
-uZU
+bZy
 igx
 igx
 xqI
@@ -93147,7 +93181,7 @@ ggp
 ggp
 ggp
 ggp
-lIe
+kLH
 lIe
 lVN
 lIe
