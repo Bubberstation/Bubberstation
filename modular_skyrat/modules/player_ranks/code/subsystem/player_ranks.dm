@@ -81,7 +81,10 @@ SUBSYSTEM_DEF(player_ranks)
  * * user - The client to verify the veteran status of.
  */
 /datum/controller/subsystem/player_ranks/proc/is_veteran(client/user)
-	if(!istype(user))
+
+// BUBBER EDIT REMOVAL - Down with sponsored metacliques and player elistism systems.
+	return TRUE
+/* 	if(!istype(user))
 		CRASH("Invalid user type provided to is_veteran(), expected 'client' and obtained '[user ? user.type : "null"]'.")
 
 	if(GLOB.veteran_list[user.ckey])
@@ -90,7 +93,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(is_admin(user))
 		return TRUE
 
-	return FALSE
+	return FALSE */
 
 
 /// Handles loading donators either via SQL or using the legacy system,

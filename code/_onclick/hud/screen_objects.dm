@@ -18,7 +18,7 @@
 	/// A reference to the object in the slot. Grabs or items, generally.
 	var/obj/master = null
 	/// A reference to the owner HUD, if any.
-	VAR_PRIVATE/datum/hud/hud = null
+	var/datum/hud/hud = null // BUBBER EDIT - Unprivate this for hot editing.
 	/**
 	 * Map name assigned to this object.
 	 * Automatically set by /client/proc/add_obj_to_map.

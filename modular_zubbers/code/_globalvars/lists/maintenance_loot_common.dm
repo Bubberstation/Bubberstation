@@ -19,7 +19,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/bag/chemistry = 25,
 		/obj/item/storage/bag/construction = 25,
 		/obj/item/storage/bag/mail = 25,
-		/obj/item/storage/bag/material = 25,
 		/obj/item/storage/bag/money = 25,
 		/obj/item/storage/bag/money/vault = 1,
 		/obj/item/storage/bag/ore = 25,
@@ -702,7 +701,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	) = 75,
 	list(
 		/obj/item/computer_disk = 25,
-		/obj/item/computer_disk/atmos = 1,
 		/obj/item/computer_disk/engineering = 1,
 		/obj/item/computer_disk/medical = 1,
 		/obj/item/computer_disk/ordnance = 1,

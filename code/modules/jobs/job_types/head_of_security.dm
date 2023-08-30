@@ -123,7 +123,6 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
-	new /obj/item/storage/box/nri_rations(src)
 	new /obj/item/knife/combat(src)
 
 /obj/item/storage/box/hosgun/glock
