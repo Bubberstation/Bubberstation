@@ -47,7 +47,7 @@
 		/datum/reagent/drug/opium,
 		/datum/reagent/drug/mushroomhallucinogen,
 		/datum/reagent/inverse/oculine,
-		/datum/reagent/inverse/lidocaine, //Bubber chem addition, entirely for letting diveworms be mean.
+		/datum/reagent/lidopaine/borer_version, //Bubber chem addition, entirely for letting diveworms be mean.
 	)
 
 /datum/borer_evolution/diveworm/expanded_chemicals/on_evolve(mob/living/basic/cortical_borer/cortical_owner)

@@ -918,7 +918,7 @@
 	cortical_owner.log_message(logging_text, LOG_GAME)
 
 /datum/action/cooldown/borer/produce_offspring_symbiotic
-	name = "Produce Parasitic Egg"
+	name = "Produce Symbiotic Egg"
 	cooldown_time = 1 MINUTES
 	button_icon_state = "reproduce"
 	chemical_cost = PARASITIC_EGG_COST_CHEM
