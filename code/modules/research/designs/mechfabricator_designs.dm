@@ -1038,6 +1038,22 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
 	)
 
+/datum/design/borg_upgrade_advcutter
+	name = "Advanced Plasma Cutter"
+	id = "borg_upgrade_advcutter"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/advcutter
+	materials = list(
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma =SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5,
+	)
+	construction_time = 40
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MINING
+	)
+
 /datum/design/borg_syndicate_module
 	name = "Illegal Modules"
 	id = "borg_syndicate_module"
@@ -1243,6 +1259,17 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/circuit_app
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SMALL_MATERIAL_AMOUNT*5)
+	construction_time = 120
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING
+	)
+
+/datum/design/borg_upgrade_ewelder //BUBBER EDIT added in techweb and printing of Borg E welder.
+	name = "Electrical Welder"
+	id = "borg_upgrade_ewelder"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/electric_welder
+	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5, /datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 2)
 	construction_time = 120
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING

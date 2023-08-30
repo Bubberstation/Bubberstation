@@ -1050,6 +1050,10 @@
 		"advanced_materials",
 		"inducer_module",
 		// SKYRAT EDIT ADD END
+		//BUBBER EDIT ADD START
+		"borg_upgrade_ewelder",
+		"borg_upgrade_advcutter",
+		//BUBBER EDIT ADD END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
