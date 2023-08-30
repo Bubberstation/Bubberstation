@@ -179,7 +179,7 @@
 			stress_reaction()
 	else
 		stress = max(stress - (2 * seconds_per_tick), 0)
-
+/* BUBBER EDIT - MOVED TO ZUBBERS
 /datum/brain_trauma/severe/monophobia/proc/check_alone()
 	var/check_radius = 7
 	if(owner.is_blind())
@@ -189,7 +189,7 @@
 			continue
 		if(istype(M, /mob/living/simple_animal/pet) || istype(M, /mob/living/basic/pet) || M.ckey)
 			return FALSE
-	return TRUE
+	return TRUE */
 
 /datum/brain_trauma/severe/monophobia/proc/stress_reaction()
 	if(owner.stat != CONSCIOUS)
