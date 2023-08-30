@@ -108,6 +108,7 @@
 	return TRUE
 
 /// Adds a single fingerprint
+/* BUBBERSTATION CHANGE: NERFS FINGERPRINTS. SEE MODULAR ZUBBERS FILE.
 /datum/forensics/proc/add_fingerprint(mob/living/suspect, ignoregloves = FALSE)
 	if(!isliving(suspect))
 		if(!iscameramob(suspect))
@@ -131,6 +132,7 @@
 		var/full_print = md5(human_suspect.dna.unique_identity)
 		LAZYSET(fingerprints, full_print, full_print)
 	return TRUE
+*/
 
 /// Adds the given list into fibers
 /datum/forensics/proc/add_fiber_list(list/fibers)
