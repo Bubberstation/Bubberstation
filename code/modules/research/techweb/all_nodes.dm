@@ -2208,7 +2208,7 @@
 	design_ids = list(
 		"advanced_camera",
 		"ai_cam_upgrade",
-		"borg_syndicate_module",
+		// "borg_syndicate_module", BUBBERSTATION CHANGE: MOVED TO /datum/techweb_node/borg_syndicate_module.
 		"decloner",
 		"donksoft_refill",
 		"donksofttoyvendor",
