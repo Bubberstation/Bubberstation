@@ -127,6 +127,14 @@
 	var/full_charge = FALSE
 	armor_type = /datum/armor/power_apc
 
+	// BUBBERS ADDITION START - CLOCKWORK CULT
+	/// How many ticks should pass between draining
+	var/clock_drain_interval = 10
+	/// Current tick
+	var/clock_current_cycle = 0
+	/// How much charge should be drained per tick during a pulse
+	var/clock_drain_base = 5
+	// BUBBERS ADDITION END
 /datum/armor/power_apc
 	melee = 20
 	bullet = 20
@@ -260,14 +268,14 @@
 	area.apc = null
 	area = null
 
-/obj/machinery/power/apc/Exited(atom/movable/gone, direction)
-	. = ..()
-	if(gone == cell)
+/obj/machinery/power/apc/handle_atom_del(atom/deleting_atom)
+	if(deleting_atom == cell)
 		cell = null
 		charging = APC_NOT_CHARGING
 		update_appearance()
 		if(!QDELING(src))
 			SStgui.update_uis(src)
+	return ..()
 
 /obj/machinery/power/apc/examine(mob/user)
 	. = ..()
@@ -612,14 +620,13 @@
 
 		// SKYRAT ADDITION START - CLOCK CULT
 		if(integration_cog)
-			var/power_delta = clamp(cell.charge - 50, 0, 50)
-			GLOB.clock_power = min(round(GLOB.clock_power + (power_delta / 2.5)) , GLOB.max_clock_power) // Will continue to siphon even if full just so the APCs aren't completely silent about having an issue (since power will regularly be full)
-			cell.charge -= power_delta * (integration_cog.set_up ? 1 : 2)
-			add_load(power_delta * (integration_cog.set_up ? 1 : 2)) // Twice the drained power if not set up yet
-			charging = APC_NOT_CHARGING
-			chargecount = 0
-			if(cell.charge <= 50)
-				cell.charge = 0
+			clock_current_cycle += 1
+			if(clock_current_cycle >= clock_drain_interval)
+				var/power_delta = clamp(cell.charge - (clock_drain_base * clock_drain_interval), 0, (clock_drain_base * clock_drain_interval))
+				GLOB.clock_power = min(round(GLOB.clock_power + (power_delta / 2.5)) , GLOB.max_clock_power) // Will continue to siphon even if full just so the APCs aren't completely silent about having an issue (since power will regularly be full)
+				cell.charge -= power_delta * (integration_cog.set_up ? 1 : 2)
+				add_load(power_delta * (integration_cog.set_up ? 1 : 2)) // Twice the drained power if not set up yet
+				clock_current_cycle = 0
 		// SKYRAT ADDITION END
 
 	else // no cell, switch everything off
