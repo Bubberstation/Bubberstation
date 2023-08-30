@@ -549,7 +549,7 @@
 
 /datum/action/cooldown/borer/choosing_host/proc/enter_host(mob/living/carbon/human/singular_host)
 	var/mob/living/basic/cortical_borer/cortical_owner = owner
-	if(check_for_bio_protection(singular_host) && !(cortical_owner.upgrade_flags & BORER_INVASIVE))//Bubber edit, Borer_Invasive flag
+	if(check_for_bio_protection(singular_host) && !(cortical_owner.upgrade_flags & BORER_INVASIVE))//Bubber edit, Borer_Invasive flag-ANY BORER WITH THE INVASIVE FLAG CAN ENTER BIOPROTECTED HOSTS
 		owner.balloon_alert(owner, "target head too protected!")
 		return
 	if(singular_host.has_borer())
