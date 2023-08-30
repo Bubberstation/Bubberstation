@@ -571,7 +571,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		if(pressure <= WARNING_LOW_PRESSURE)
 			warning_message = "Danger! Low pressure detected."
 			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE)
 			warning_message = "Danger! High pressure detected."
