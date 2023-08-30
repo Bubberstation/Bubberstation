@@ -57,9 +57,9 @@
 			var/chemname = temp.name
 			chems += chemname
 	if(.)
-		return "[.]. [english_list(chems, and_text = require_all_chems ? " and " : " or ")]"
+		return "[.]. [english_list(chems)]"
 
-	return english_list(chems, and_text = require_all_chems ? " and " : " or ")
+	return english_list(chems)
 //End of Bubberstation change: Holywater + Neurine cures magic traumas.
 
 /datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool)
