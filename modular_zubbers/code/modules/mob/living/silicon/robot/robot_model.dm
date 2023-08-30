@@ -8,11 +8,12 @@
 		/obj/item/extinguisher,
 		/obj/item/borg/projectile_dampen,
 		/obj/item/pillow,
-		/obj/item/borg/cyborghug/peacekeeper
+		/obj/item/borg/cyborghug/peacekeeper,
+		/obj/item/reagent_containers/borghypo/peace
 	)
 	emag_modules = list(
-		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/security/loaded,
-		/obj/item/clothing/mask/gas/sechailer/cyborg
+		/obj/item/clothing/mask/gas/sechailer/cyborg,
+		/obj/item/reagent_containers/borghypo/peace/hacked
 	)
