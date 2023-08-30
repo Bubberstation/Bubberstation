@@ -127,6 +127,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 /datum/gas_mixture/proc/return_temperature()
 	return temperature
 
+/datum/gas_mixture/proc/set_temperature(new_temp)
+
 /// Calculate volume in liters
 /datum/gas_mixture/proc/return_volume()
 	return max(0, volume)
