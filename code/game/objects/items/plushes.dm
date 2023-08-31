@@ -112,7 +112,7 @@
 	. = ..()
 	if(gone == grenade)
 		grenade = null
-
+/* BUBBER EDIT - MOVED TO ZUBBERS
 /obj/item/toy/plush/attack_self(mob/user)
 	. = ..()
 	if(stuffed || grenade)
@@ -121,7 +121,7 @@
 			user.log_message("activated a hidden grenade in [src].", LOG_VICTIM)
 			grenade.arm_grenade(user, msg = FALSE, volume = 10)
 	else
-		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww..."))
+		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww..."))*/
 
 /obj/item/toy/plush/attackby(obj/item/I, mob/living/user, params)
 	if(I.get_sharpness())
