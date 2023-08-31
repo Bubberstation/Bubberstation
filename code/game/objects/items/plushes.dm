@@ -108,8 +108,9 @@
 
 	return ..()
 
-/obj/item/toy/plush/handle_atom_del(atom/A)
-	if(A == grenade)
+/obj/item/toy/plush/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == grenade)
 		grenade = null
 	..()
 /* BUBBER EDIT - MOVED TO ZUBBERS
@@ -120,6 +121,9 @@
 		if(grenade && !grenade.active)
 			user.log_message("activated a hidden grenade in [src].", LOG_VICTIM)
 			grenade.arm_grenade(user, msg = FALSE, volume = 10)
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_notice("You feel your heart warm up... You don't feel so alone."))
+
 	else
 		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww...")) */
 
@@ -148,7 +152,6 @@
 		else
 			to_chat(user, span_notice("You remove the grenade from [src]."))
 			user.put_in_hands(grenade)
-			grenade = null
 		return
 	if(isgrenade(I))
 		if(stuffed)
