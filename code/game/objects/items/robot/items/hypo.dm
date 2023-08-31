@@ -10,7 +10,6 @@
 		/datum/reagent/medicine/lidocaine\
 	) //SKYRAT EDIT line 10 added Lidocaine
 #define EXPANDED_MEDICAL_REAGENTS list(\
-		/datum/reagent/medicine/haloperidol,\
 		/datum/reagent/medicine/inacusiate,\
 		/datum/reagent/medicine/mannitol,\
 		/datum/reagent/medicine/mutadone,\
