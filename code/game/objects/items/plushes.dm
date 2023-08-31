@@ -112,7 +112,7 @@
 	if(A == grenade)
 		grenade = null
 	..()
-
+/* BUBBER EDIT - MOVED TO ZUBBERS
 /obj/item/toy/plush/attack_self(mob/user)
 	. = ..()
 	if(stuffed || grenade)
@@ -124,9 +124,7 @@
 			to_chat(user, span_notice("You feel your heart warm up... You don't feel so alone."))
 
 	else
-		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww..."))
-		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
-			to_chat(user, span_warning("You remember that even stitched companions can't stop the solitude building up inside your heart..."))
+		to_chat(user, span_notice("You try to pet [src], but it has no stuffing. Aww...")) */
 
 /obj/item/toy/plush/attackby(obj/item/I, mob/living/user, params)
 	if(I.get_sharpness())
