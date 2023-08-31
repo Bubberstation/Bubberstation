@@ -1,12 +1,5 @@
-/datum/brain_trauma/severe/monophobia/proc/check_alone()
-	var/check_radius = 7
-	if(owner.is_blind())
-		check_radius = 1
-	for(var/mob/M in oview(owner, check_radius))
-		if(!isliving(M)) //ghosts ain't people
-			continue
-		if(istype(M, /mob/living/simple_animal/pet) || istype(M, /mob/living/basic/pet) || M.ckey)
-			return FALSE
+/datum/brain_trauma/severe/monophobia/check_alone()
+	. = ..()
 	for(var/obj/item/toy/plush/plush in oview(owner, 1))
 		if(plush.stuffed)
 			return FALSE
@@ -18,4 +11,3 @@
 			continue
 		if(istype(M, /mob/living/simple_animal/pet) || istype(M, /mob/living/basic/pet) || M.ckey)
 			return FALSE
-	return TRUE
