@@ -46,7 +46,6 @@
 		/obj/structure/spider/stickyweb = 50,
 		/obj/effect/mine/stun = 1,
 		/obj/effect/mine/sound/bwoink = 1,
-		/obj/effect/mine/shrapnel/sting = 1,
 		/obj/effect/mine/kickmine = 1,
 	)
 
@@ -275,7 +274,7 @@
 /obj/effect/spawner/random/burgerstation/odd
 	icon_state = "random_odd"
 	loot = list(
-		/obj/structure/moisture_trap = 1000,
+		/obj/structure/moisture_trap = 2000,
 		/obj/machinery/biogenerator = 20,
 		/obj/machinery/chem_dispenser/mutagen = 1,
 		/obj/machinery/chem_dispenser/mutagensaltpeter = 1,
