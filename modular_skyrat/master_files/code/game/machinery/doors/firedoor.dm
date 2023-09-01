@@ -12,16 +12,7 @@
 	if(density && !welded && !operating)
 		balloon_alert(user, "opening...")
 		if(do_after(user, 5 SECONDS, target = src)) //BUBBERSTATION CHANGE: 10 SECONDS TO 5 SECONDS.
-			// BUBBERSTATION CHANGE START: FIXES TG/SKYRAT FIREDOOR CONFLICT.
-			if(welded || operating)
-				balloon_alert(user, "opening failed!")
-				return FALSE
-
-			if(density)
-				open()
-			else
-				close()
-			// BUBBERSTATION CHANGE END: FIXES TG/SKYRAT FIREDOOR CONFLICT.
+			try_to_crowbar_secondary(null,user) // BUBBERSTATION CHANGE: FIXES TG/SKYRAT FIREDOOR CONFLICT.
 			return TRUE
 	return FALSE
 

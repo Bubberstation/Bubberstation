@@ -557,8 +557,10 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 	if(density)
 		open()
+		/* BUBBERSTATION CHANGE: Crowbar secondary actually permanently opens firelocks.
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
+		BUBBERSTATION CHANGE END. */
 	else
 		close()
 
