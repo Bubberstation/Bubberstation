@@ -2684,7 +2684,9 @@
 /turf/open/floor/iron/white,
 /area/station/science)
 "biL" = (
-/obj/machinery/air_sensor/zauker_tank,
+/obj/machinery/air_sensor/plasma_tank{
+	chamber_id = "security_plasma"
+	},
 /turf/open/floor/engine/plasma{
 	initial_gas_mix = "plasma=250;TEMP=293.15"
 	},
