@@ -67,8 +67,6 @@
 		/obj/structure/closet/crate/large/hats = 10,
 		/obj/structure/closet/emcloset = 200,
 		/obj/structure/closet/firecloset = 400,
-		/obj/structure/closet/gimmick/russian = 50,
-		/obj/structure/closet/gimmick/tacticool = 50,
 		/obj/structure/closet/l3closet = 50,
 		/obj/structure/closet/l3closet/janitor = 25,
 		/obj/structure/closet/l3closet/scientist = 25,
