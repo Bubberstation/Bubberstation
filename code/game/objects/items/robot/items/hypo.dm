@@ -10,6 +10,7 @@
 		/datum/reagent/medicine/lidocaine\
 	) //SKYRAT EDIT line 10 added Lidocaine
 #define EXPANDED_MEDICAL_REAGENTS list(\
+		/datum/reagent/medicine/haloperidol,\
 		/datum/reagent/medicine/inacusiate,\
 		/datum/reagent/medicine/mannitol,\
 		/datum/reagent/medicine/mutadone,\
@@ -18,7 +19,7 @@
 		/datum/reagent/medicine/pen_acid,\
 		/datum/reagent/medicine/rezadone,\
 		/datum/reagent/medicine/sal_acid\
-	) //BUBBER EDIT removed haloperidol line 13
+	)
 #define HACKED_MEDICAL_REAGENTS list(\
 		/datum/reagent/toxin/cyanide,\
 		/datum/reagent/toxin/acid/fluacid,\
@@ -182,6 +183,12 @@
 	if(injectee.try_inject(user, user.zone_selected, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE | (bypass_protection ? INJECT_CHECK_PENETRATE_THICK : 0)))
 		// This is the in-between where we're storing the reagent we're going to inject the injectee with
 		// because we cannot specify a singular reagent to transfer in trans_to
+		//Bubber Edit Begin - Add Do_after Injection Time
+		injectee.visible_message(span_danger("[user] is trying to inject [injectee]!"), \
+								span_userdanger("[user] is trying to inject you!"))		
+		if(!do_after(user, CHEM_INTERACT_DELAY(1 SECONDS, user), injectee, extra_checks = CALLBACK(injectee, TYPE_PROC_REF(/mob/living, try_inject), user, null)))
+			return
+		//Bubber Edit End - Add Do_after Injection Time
 		var/datum/reagents/hypospray_injector = new()
 		stored_reagents.remove_reagent(selected_reagent.type, amount_per_transfer_from_this)
 		hypospray_injector.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
@@ -247,9 +254,9 @@
 /obj/item/reagent_containers/borghypo/AltClick(mob/living/user)
 	. = ..()
 /* SKYRAT REMOVAL START - Changing transfer amounts is now handled by the parent proc in modular files.
-	if(user.stat == DEAD || user != loc) 
+	if(user.stat == DEAD || user != loc)
 		return //IF YOU CAN HEAR ME SET MY TRANSFER AMOUNT TO 1
-	change_transfer_amount(user)	
+	change_transfer_amount(user)
 */ // SKYRAT REMOVAL END
 
 /// Default Medborg Hypospray
@@ -387,7 +394,7 @@
 		shaker.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
 	return .
-	
+
 /obj/item/reagent_containers/borghypo/condiment_synthesizer // Solids! Condiments! The borger uprising!
 	name = "Condiment Synthesizer"
 	desc = "An advanced condiment synthesizer"
@@ -397,7 +404,7 @@
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 40 //Costs double the power of the borgshaker due to synthesizing solids
 	recharge_time = 6 //Double the recharge time too, for the same reason.
-	dispensed_temperature = WATER_MATTERSTATE_CHANGE_TEMP 
+	dispensed_temperature = WATER_MATTERSTATE_CHANGE_TEMP
 	default_reagent_types = EXPANDED_SERVICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/condiment_synthesizer/ui_interact(mob/user, datum/tgui/ui)
@@ -423,9 +430,9 @@
 	data["reagents"] = condiments
 	data["selectedReagent"] = selected_reagent?.name
 	return data
-		
+
 /obj/item/reagent_containers/borghypo/condiment_synthesizer/attack(mob/M, mob/user)
-	return 
+	return
 
 /obj/item/reagent_containers/borghypo/condiment_synthesizer/afterattack(obj/target, mob/user, proximity)
 	. = ..()
@@ -450,7 +457,7 @@
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 	shaker.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 	balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
-	
+
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
 	name = "cyborg shaker"
