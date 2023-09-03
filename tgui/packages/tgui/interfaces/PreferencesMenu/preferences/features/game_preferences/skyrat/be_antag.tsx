@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../../base';
+/* import { CheckboxInput, FeatureToggle } from '../../base';
 
 export const be_antag_pref: FeatureToggle = {
   name: 'Be antagonist',
@@ -6,3 +6,4 @@ export const be_antag_pref: FeatureToggle = {
   description: 'Toggles whether you wish to be an antagonist or not.',
   component: CheckboxInput,
 };
+ */
