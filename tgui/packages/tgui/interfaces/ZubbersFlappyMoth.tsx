@@ -1,3 +1,6 @@
+import { useBackend } from '../backend';
+import { NtosWindow } from '../layouts';
+
 // The player character
 type FlapMoth = {
   position: number; // y position
@@ -39,3 +42,14 @@ class FlapMinigame {
     };
   }
 }
+
+export const ZubbersFlappyMoth = (props, context) => {
+  const { act, data } = useBackend(context);
+  return (
+    <NtosWindow width={600} height={572}>
+      <NtosWindow.Content>
+        <FlapMinigame />
+      </NtosWindow.Content>
+    </NtosWindow>
+  );
+};

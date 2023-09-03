@@ -8,7 +8,7 @@
 	requires_ntnet = FALSE
 	size = 4 //By all means less complex than minesweeper
 
-	tgui_id = "Flappymoth"
+	tgui_id = "ZubbersFlappyMoth"
 
 	program_icon_state = "arcade"
 	program_icon = "gamepad"
