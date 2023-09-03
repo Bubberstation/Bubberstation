@@ -3,7 +3,7 @@ import { useBackend } from '../backend';
 import { Box, Button, Knob, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Minesweeper = (props, context) => {
+export const ZubbersMinesweeper = (props, context) => {
   return (
     <Window width={600} height={518} resizable>
       <Window.Content>
