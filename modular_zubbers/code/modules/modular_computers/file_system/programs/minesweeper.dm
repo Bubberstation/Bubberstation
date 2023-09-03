@@ -8,7 +8,7 @@
 	requires_ntnet = FALSE
 	size = 6
 
-	tgui_id = "NtosMinesweeper"
+	tgui_id = "ZubbersNtosMinesweeper"
 
 	program_icon_state = "arcade"
 	program_icon = "gamepad"

@@ -47,7 +47,7 @@
 	if(!is_operational)
 		return
 	if(!ui)
-		ui = new(user, src, "Minesweeper", name)
+		ui = new(user, src, "ZubbersMinesweeper", name)
 		ui.open()
 
 /obj/machinery/computer/arcade/minesweeper/ui_assets(mob/user)
