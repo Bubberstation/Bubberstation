@@ -1,2 +1,3 @@
-/datum/computer_file/program/ntnetdownload
-	show_categories += PROGRAM_CATEGORY_GAME
+/datum/computer_file/program/ntnetdownload/New()
+	. = ..()
+	show_categories += list(PROGRAM_CATEGORY_GAME)
