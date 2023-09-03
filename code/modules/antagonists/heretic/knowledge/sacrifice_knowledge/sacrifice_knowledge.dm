@@ -198,8 +198,12 @@
 	heretic_datum.total_sacrifices++
 	heretic_datum.knowledge_points += 2
 
+	begin_sacrifice(sacrifice)
+
+	/* BUBBERSTATION CHANGE: NO DISEMBOWEL ON FAIL
 	if(!begin_sacrifice(sacrifice))
 		disembowel_target(sacrifice)
+	BUBBERSTATION END CHANGE: NO DISEMBOWEL ON FAIL */
 
 /**
  * This proc is called from [proc/sacrifice_process] after the heretic successfully sacrifices [sac_target].)
@@ -209,6 +213,7 @@
  * Arguments
  * * sac_target - the mob being sacrificed.
  */
+ /* BUBBERSTATION CHANGE: MOVES SACRIFICING TO THE MODULAR.
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/begin_sacrifice(mob/living/carbon/human/sac_target)
 	. = FALSE
 
@@ -504,6 +509,6 @@
 	)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target))
-
+END OF BUBBERSTATION CHANGE: MOVES SACRIFICING TO THE MODULAR. */
 #undef SACRIFICE_SLEEP_DURATION
 #undef SACRIFICE_REALM_DURATION
