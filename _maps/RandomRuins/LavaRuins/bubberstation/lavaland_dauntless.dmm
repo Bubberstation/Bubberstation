@@ -2865,6 +2865,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/machinery/defibrillator_mount/directional/south,
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "qQ" = (
@@ -3559,30 +3560,8 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "tY" = (
-/obj/structure/rack/shelf,
-/obj/item/ai_module/supplied/freeform{
-	pixel_y = 7
-	},
-/obj/item/ai_module/supplied/freeform{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/ai_module/reset/purge{
-	pixel_y = -4
-	},
-/obj/item/ai_module/reset/purge{
-	pixel_x = -2;
-	pixel_y = -7
-	},
-/obj/effect/turf_decal/trimline/dark_red/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark_red/line,
-/obj/machinery/posialert/directional/east{
-	radio_key = /obj/item/encryptionkey/headset_syndicate/interdyne
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
+/turf/closed/indestructible/rock,
+/area/lavaland/surface/outdoors)
 "ua" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -3933,6 +3912,28 @@
 /obj/item/choice_beacon/music,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
+"wb" = (
+/obj/structure/rack/shelf,
+/obj/item/ai_module/supplied/freeform{
+	pixel_y = 7
+	},
+/obj/item/ai_module/supplied/freeform{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/ai_module/reset/purge{
+	pixel_y = -4
+	},
+/obj/item/ai_module/reset/purge{
+	pixel_x = -2;
+	pixel_y = -7
+	},
+/obj/effect/turf_decal/trimline/dark_red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_red/line,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "wd" = (
 /obj/structure/rack,
 /obj/item/cultivator,
@@ -5610,10 +5611,6 @@
 "Eh" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/dark_red/fourcorners,
-/obj/item/mmi/posibrain{
-	pixel_y = 8
-	},
-/obj/item/mmi/posibrain,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "Ej" = (
@@ -5648,6 +5645,10 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/item/mod/module/defibrillator,
+/obj/item/storage/belt/security/medic/alternate{
+	name = "Syndicate Medical Belt"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
@@ -6498,6 +6499,10 @@
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
+"Im" = (
+/obj/machinery/suit_storage_unit/syndicate/softsuit,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "Io" = (
 /obj/structure/sign/painting/library{
 	pixel_y = 30
@@ -9710,6 +9715,10 @@
 yl
 yl
 yl
+yl
+yl
+yl
+yl
 BR
 BR
 BR
@@ -9729,12 +9738,10 @@ BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
-BR
+yl
+yl
+yl
+yl
 BR
 BR
 BR
@@ -9769,6 +9776,27 @@ yl
 "}
 (2,1,1) = {"
 yl
+yl
+yl
+yl
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
 BR
 BR
 BR
@@ -9779,62 +9807,107 @@ BR
 BR
 BR
 BR
-BR
-BR
-fT
-fT
-fT
-fT
-fT
-BR
-BR
+tY
+tY
+tY
+tY
+tY
+tY
 BR
 BR
 BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
 BR
 BR
 yl
 "}
 (3,1,1) = {"
 yl
+yl
+BR
+BR
+BR
+BR
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+fT
+fT
+fT
+fT
+fT
+tY
+tY
+tY
+tY
+tY
+tY
 BR
 BR
 BR
 BR
 BR
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+tY
+tY
+BR
+yl
+"}
+(4,1,1) = {"
+yl
+yl
+BR
+BR
+tY
+tY
+tY
 fT
 fT
 fT
@@ -9852,16 +9925,16 @@ fT
 fT
 fT
 fT
+tY
+tY
+tY
 BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
-BR
+tY
+tY
+tY
 fT
 fT
 fT
@@ -9886,14 +9959,16 @@ fT
 fT
 fT
 fT
+tY
 BR
-yl
+BR
 "}
-(4,1,1) = {"
+(5,1,1) = {"
+yl
 BR
-BR
-BR
-BR
+tY
+tY
+tY
 fT
 fT
 fT
@@ -9947,12 +10022,14 @@ tA
 My
 fT
 fT
+tY
 BR
 BR
 "}
-(5,1,1) = {"
+(6,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 fT
@@ -10008,12 +10085,14 @@ fa
 tA
 fT
 fT
-BR
+tY
+tY
 BR
 "}
-(6,1,1) = {"
+(7,1,1) = {"
 BR
-BR
+tY
+tY
 fT
 fT
 fT
@@ -10070,10 +10149,12 @@ tA
 fT
 fT
 fT
+tY
 BR
 "}
-(7,1,1) = {"
+(8,1,1) = {"
 BR
+tY
 fT
 fT
 fT
@@ -10131,10 +10212,12 @@ tA
 fT
 fT
 fT
+tY
 BR
 "}
-(8,1,1) = {"
+(9,1,1) = {"
 BR
+tY
 fT
 fT
 Xz
@@ -10192,10 +10275,12 @@ tA
 zZ
 fT
 fT
+tY
 BR
 "}
-(9,1,1) = {"
+(10,1,1) = {"
 BR
+tY
 fT
 fT
 kC
@@ -10253,10 +10338,12 @@ wK
 UB
 Ay
 fT
+tY
 BR
 "}
-(10,1,1) = {"
+(11,1,1) = {"
 BR
+tY
 fT
 fT
 En
@@ -10314,10 +10401,12 @@ wK
 UB
 IN
 fT
+tY
 BR
 "}
-(11,1,1) = {"
+(12,1,1) = {"
 BR
+tY
 fT
 fT
 En
@@ -10375,10 +10464,12 @@ wK
 UB
 IN
 fT
+tY
 BR
 "}
-(12,1,1) = {"
+(13,1,1) = {"
 BR
+tY
 fT
 fT
 En
@@ -10436,10 +10527,12 @@ wK
 UB
 Ay
 fT
+tY
 BR
 "}
-(13,1,1) = {"
+(14,1,1) = {"
 BR
+tY
 fT
 fT
 En
@@ -10497,10 +10590,12 @@ wK
 UB
 IN
 fT
+tY
 BR
 "}
-(14,1,1) = {"
+(15,1,1) = {"
 BR
+tY
 fT
 fT
 kC
@@ -10558,10 +10653,12 @@ wK
 UB
 IN
 fT
+tY
 BR
 "}
-(15,1,1) = {"
+(16,1,1) = {"
 BR
+tY
 fT
 fT
 Xz
@@ -10619,10 +10716,12 @@ ho
 ho
 fT
 fT
+tY
 BR
 "}
-(16,1,1) = {"
+(17,1,1) = {"
 BR
+tY
 fT
 fT
 fT
@@ -10680,11 +10779,13 @@ fT
 fT
 fT
 fT
+tY
 BR
 "}
-(17,1,1) = {"
+(18,1,1) = {"
 BR
-BR
+tY
+tY
 fT
 fT
 fT
@@ -10741,11 +10842,13 @@ fT
 fT
 fT
 fT
+tY
 BR
 "}
-(18,1,1) = {"
+(19,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 fT
@@ -10802,11 +10905,13 @@ fT
 fT
 fT
 fT
+tY
 BR
 "}
-(19,1,1) = {"
+(20,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 fT
@@ -10863,11 +10968,13 @@ fT
 fT
 fT
 fT
+tY
 BR
 "}
-(20,1,1) = {"
+(21,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 fT
@@ -10924,11 +11031,13 @@ Dn
 Dn
 Dn
 fT
+tY
 BR
 "}
-(21,1,1) = {"
+(22,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -10985,11 +11094,13 @@ xV
 Kf
 gO
 fT
+tY
 BR
 "}
-(22,1,1) = {"
+(23,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11046,11 +11157,13 @@ xV
 Kf
 xs
 fT
+tY
 BR
 "}
-(23,1,1) = {"
+(24,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11107,11 +11220,13 @@ xV
 Dv
 fT
 fT
+tY
 BR
 "}
-(24,1,1) = {"
+(25,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11168,11 +11283,13 @@ Dn
 zZ
 fT
 fT
+tY
 BR
 "}
-(25,1,1) = {"
+(26,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11229,11 +11346,13 @@ xV
 LT
 fT
 fT
+tY
 BR
 "}
-(26,1,1) = {"
+(27,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11290,11 +11409,13 @@ Sn
 EB
 ne
 fT
+tY
 BR
 "}
-(27,1,1) = {"
+(28,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11351,11 +11472,13 @@ Sn
 EB
 At
 fT
+tY
 BR
 "}
-(28,1,1) = {"
+(29,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11412,11 +11535,13 @@ Au
 Au
 Au
 fT
+tY
 BR
 "}
-(29,1,1) = {"
+(30,1,1) = {"
+yl
 BR
-BR
+tY
 fT
 fT
 fT
@@ -11473,11 +11598,13 @@ BH
 BH
 fT
 fT
+tY
 BR
 "}
-(30,1,1) = {"
+(31,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 fT
@@ -11534,11 +11661,13 @@ NV
 BH
 fT
 fT
+tY
 BR
 "}
-(31,1,1) = {"
+(32,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 yO
@@ -11595,11 +11724,13 @@ ln
 BH
 fT
 fT
+tY
 BR
 "}
-(32,1,1) = {"
+(33,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 Pi
@@ -11656,11 +11787,13 @@ SX
 Kt
 fT
 fT
+tY
 BR
 "}
-(33,1,1) = {"
+(34,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 Pi
@@ -11717,11 +11850,13 @@ Jf
 tR
 fT
 fT
+tY
 BR
 "}
-(34,1,1) = {"
+(35,1,1) = {"
 BR
 BR
+tY
 fT
 fT
 Pi
@@ -11778,11 +11913,13 @@ PN
 tR
 fT
 fT
+tY
 BR
 "}
-(35,1,1) = {"
+(36,1,1) = {"
 BR
-BR
+tY
+tY
 fT
 fT
 Pi
@@ -11839,10 +11976,12 @@ zg
 zZ
 fT
 fT
+tY
 BR
 "}
-(36,1,1) = {"
+(37,1,1) = {"
 BR
+tY
 fT
 fT
 fT
@@ -11871,7 +12010,7 @@ Qy
 DM
 gL
 wX
-QY
+Im
 zw
 Xv
 fj
@@ -11900,10 +12039,12 @@ QL
 BH
 fT
 fT
+tY
 BR
 "}
-(37,1,1) = {"
+(38,1,1) = {"
 BR
+tY
 fT
 fT
 fT
@@ -11932,7 +12073,7 @@ fd
 hK
 nY
 up
-QY
+Im
 zw
 vE
 zK
@@ -11961,10 +12102,12 @@ gW
 If
 MZ
 fT
+tY
 BR
 "}
-(38,1,1) = {"
+(39,1,1) = {"
 BR
+tY
 fT
 fT
 fT
@@ -12022,10 +12165,12 @@ fT
 fT
 fT
 fT
+tY
 BR
 "}
-(39,1,1) = {"
+(40,1,1) = {"
 BR
+tY
 fT
 fT
 tJ
@@ -12082,11 +12227,13 @@ fT
 fT
 fT
 fT
-BR
+tY
+tY
 BR
 "}
-(40,1,1) = {"
+(41,1,1) = {"
 BR
+tY
 fT
 fT
 dg
@@ -12143,11 +12290,13 @@ fT
 fT
 fT
 fT
+tY
 BR
 BR
 "}
-(41,1,1) = {"
+(42,1,1) = {"
 BR
+tY
 fT
 fT
 dg
@@ -12183,7 +12332,7 @@ vY
 Bm
 pW
 Qn
-tY
+wb
 Bl
 LP
 xS
@@ -12204,11 +12353,13 @@ fT
 fT
 fT
 fT
+tY
 BR
 BR
 "}
-(42,1,1) = {"
+(43,1,1) = {"
 BR
+tY
 fT
 fe
 dg
@@ -12264,12 +12415,14 @@ FV
 fT
 fT
 fT
-BR
+tY
+tY
 BR
 BR
 "}
-(43,1,1) = {"
+(44,1,1) = {"
 BR
+tY
 fT
 xm
 FD
@@ -12325,12 +12478,14 @@ FV
 fT
 fT
 fT
+tY
 BR
 BR
 BR
 "}
-(44,1,1) = {"
+(45,1,1) = {"
 BR
+tY
 fT
 xm
 Li
@@ -12386,12 +12541,14 @@ fT
 fT
 fT
 fT
+tY
 BR
 BR
 BR
 "}
-(45,1,1) = {"
+(46,1,1) = {"
 BR
+tY
 fT
 xm
 jX
@@ -12446,13 +12603,15 @@ fT
 fT
 fT
 fT
+tY
+tY
 BR
 BR
-BR
-BR
+yl
 "}
-(46,1,1) = {"
+(47,1,1) = {"
 BR
+tY
 fT
 bi
 xm
@@ -12506,14 +12665,16 @@ fT
 fT
 fT
 fT
+tY
+tY
 BR
 BR
 BR
-BR
-BR
+yl
 "}
-(47,1,1) = {"
+(48,1,1) = {"
 BR
+tY
 fT
 fT
 fT
@@ -12564,18 +12725,20 @@ fT
 fT
 fT
 fT
-BR
-BR
-BR
-BR
+tY
+tY
+tY
+tY
 BR
 BR
 BR
 yl
+yl
 "}
-(48,1,1) = {"
+(49,1,1) = {"
 BR
-BR
+tY
+tY
 fT
 fT
 fT
@@ -12621,24 +12784,26 @@ fT
 fT
 fT
 fT
+tY
+tY
+tY
+tY
+tY
 BR
 BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
+yl
 yl
 yl
 "}
-(49,1,1) = {"
+(50,1,1) = {"
 BR
 BR
-BR
-BR
+tY
+tY
+tY
 fT
 fT
 ai
@@ -12668,87 +12833,27 @@ BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
-BR
+tY
+tY
+tY
+tY
+tY
+tY
 fT
 fT
 fT
 fT
+tY
+tY
+tY
+tY
+tY
 BR
 BR
 BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
-yl
-yl
-yl
-yl
-yl
-"}
-(50,1,1) = {"
-yl
-BR
-BR
-BR
-BR
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-fT
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-yl
-yl
 yl
 yl
 yl
@@ -12758,6 +12863,134 @@ yl
 "}
 (51,1,1) = {"
 yl
+BR
+BR
+BR
+tY
+tY
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+tY
+tY
+tY
+tY
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+tY
+tY
+tY
+tY
+tY
+tY
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+"}
+(52,1,1) = {"
+yl
+yl
+yl
+BR
+BR
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+tY
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+"}
+(53,1,1) = {"
+yl
+yl
+yl
 yl
 BR
 BR
@@ -12786,23 +13019,23 @@ BR
 BR
 BR
 BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
-BR
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
+yl
 yl
 yl
 yl
