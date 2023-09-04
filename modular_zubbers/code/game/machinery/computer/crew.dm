@@ -1,5 +1,6 @@
+#define UNKNOWN_JOB_ID 802
 
-/datum/crewmonitor
+/datm/crewmonitor
 	// Note that jobs divisible by 10 are considered heads of staff, and bolded
 	jobs = list(
 		//Centcom off-station.
@@ -11,24 +12,37 @@
 		JOB_CENTCOM_RESEARCH_OFFICER = 14,
 		JOB_CENTCOM_BARTENDER = 15,
 		JOB_CENTCOM_CUSTODIAN = 16,
+		JOB_CENTCOM_VIP = 17,
+		JOB_CENTCOM_THUNDERDOME_OVERSEER = 18,
+		JOB_CENTCOM_PRIVATE_SECURITY = 19,
 
 		//ERT
-		JOB_ERT_DEATHSQUAD = 20,
-		JOB_ERT_COMMANDER = 30,
-		JOB_ERT_OFFICER = 31,
-		JOB_ERT_ENGINEER = 32,
-		JOB_ERT_MEDICAL_DOCTOR = 33,
-		JOB_ERT_CLOWN = 34,
-		JOB_ERT_CHAPLAIN = 35,
-		JOB_ERT_JANITOR = 36,
+		JOB_ERT_COMMANDER = 20,
+		JOB_ERT_DEATHSQUAD = 21,
+		JOB_ERT_OFFICER = 22,
+		JOB_ERT_ENGINEER = 23,
+		JOB_ERT_MEDICAL_DOCTOR = 24,
+		JOB_ERT_CLOWN = 25,
+		JOB_ERT_CHAPLAIN = 26,
+		JOB_ERT_JANITOR = 27,
+
+		//Naval
+		JOB_NAVAL_FLEET_ADMIRAL = 30,
+		JOB_NAVAL_ADMIRAL = 31,
+		JOB_NAVAL_REAR_ADMIRAL = 32,
+		JOB_NAVAL_CAPTAIN = 33,
+		JOB_NAVAL_COMMANDER = 34,
+		JOB_NAVAL_LTCR = 35,
+		JOB_NAVAL_LIEUTENANT = 36,
+		JOB_NAVAL_ENSIGN = 37,
 
 		//Centcom on-station
-		JOB_NT_REP = 40, // SKYRAT EDIT ADDITION
-		JOB_BLUESHIELD = 41, // SKYRAT EDIT ADDITION
+		JOB_NT_REP = 40,
+		JOB_BLUESHIELD = 41,
 
 		//Heads
-		JOB_CAPTAIN = 50
-		JOB_HEAD_OF_PERSONNEL = 60
+		JOB_CAPTAIN = 50,
+		JOB_HEAD_OF_PERSONNEL = 60,
 		JOB_HEAD_OF_SECURITY = 70,
 		JOB_CHIEF_MEDICAL_OFFICER = 80,
 		JOB_RESEARCH_DIRECTOR = 90,
@@ -80,8 +94,24 @@
 		JOB_BARBER = 709,
 		JOB_CLOWN = 711,
 		JOB_MIME = 712,
+		JOB_BLACKSMITH = 713,
 
 		//Slaves
-		JOB_ASSISTANT = 999
+		JOB_ASSISTANT = 801,
+		//UNKNOWN_JOB_ID is 802,
+		JOB_PRISONER = 803,
+
+		//Off-station,
+		JOB_SPACE_POLICE = 901,
+		JOB_SOLFED = 902,
+		JOB_SOLFED_LIASON = 903
 
 	)
+
+/datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "CrewConsoleBubbers")
+		ui.open()
+
+#undef UNKNOWN_JOB_ID

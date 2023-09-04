@@ -36,7 +36,7 @@ const jobToColor = (jobId) => {
     return COLORS.department.security;
   }
   if (jobId === 80) {
-    return COLORS.department.medical;
+    return COLORS.department.medbay;
   }
   if (jobId === 90) {
     return COLORS.department.science;
@@ -65,6 +65,12 @@ const jobToColor = (jobId) => {
   if (jobId >= 700 && jobId < 800) {
     return COLORS.department.service;
   }
+  if (jobId == 801) {
+    return COLORS.department.assistant;
+  }
+  if (jobId == 803) {
+    return COLORS.department.prisoner;
+  }
   return COLORS.department.other;
 };
 
@@ -84,7 +90,7 @@ const HealthStat = (props) => {
   );
 };
 
-export const CrewConsoleSkyrat = () => {
+export const CrewConsoleBubbers = () => {
   return (
     <Window title="Crew Monitor" width={600} height={600}>
       <Window.Content scrollable>
@@ -98,7 +104,7 @@ export const CrewConsoleSkyrat = () => {
 
 const CrewTable = (props, context) => {
   const { act, data } = useBackend(context);
-  const sensors = s.brutedam + s.burndam + s.toxdam + s.oxydam > 0 ? sortBy((s) => -(s.brutedam + s.burndam + s.toxdam + s.oxydam))(data.sensors ?? []) : sortBy((s) => s.ijob)(data.sensors ?? []);
+  const sensors = sortBy((s) => (s.brutedam + s.burndam + s.toxdam + s.oxydam >= 50 ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam) : s.ijob))(data.sensors ?? []);
   return (
     <Table cellpadding="3">
       <Table.Row>
