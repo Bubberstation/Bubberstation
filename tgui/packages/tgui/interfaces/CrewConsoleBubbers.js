@@ -26,27 +26,9 @@ const jobToColor = (jobId) => {
   if (jobId >= 0 && jobId < 50) {
     return COLORS.department.centcom;
   }
-  if (jobId === 50) {
+  if (jobId >= 50 jobId < 200) {
     return COLORS.department.captain;
   }
-  if (jobId === 60) {
-    return COLORS.department.service;
-  }
-  if (jobId === 70) {
-    return COLORS.department.security;
-  }
-  if (jobId === 80) {
-    return COLORS.department.medbay;
-  }
-  if (jobId === 90) {
-    return COLORS.department.science;
-  }
-  if (jobId === 100) {
-    return COLORS.department.engineering;
-  }
-  if (jobId === 110) {
-    return COLORS.department.cargo;
-  }  
   if (jobId >= 200 && jobId < 300) {
     return COLORS.department.security;
   }
@@ -154,7 +136,7 @@ const CrewTableEntry = (props, context) => {
         {assignment !== undefined ? ` (${assignment})` : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
-        {is_robot ? <Icon name="steam" color="#EFEFEF" size={1} /> : <Icon name="user" color="#EFEFEF" size={1} />}
+        {is_robot ? <Icon name="square-steam" color="#EFEFEF" size={1} /> : <Icon name="user" color="#EFEFEF" size={1} />}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined && life_status ? (
