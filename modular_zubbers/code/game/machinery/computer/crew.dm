@@ -1,5 +1,3 @@
-#define UNKNOWN_JOB_ID 802
-
 /datm/crewmonitor
 	// Note that jobs divisible by 10 are considered heads of staff, and bolded
 	jobs = list(
@@ -113,5 +111,3 @@
 	if (!ui)
 		ui = new(user, src, "CrewConsoleBubbers")
 		ui.open()
-
-#undef UNKNOWN_JOB_ID

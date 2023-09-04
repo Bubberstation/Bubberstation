@@ -104,7 +104,7 @@ export const CrewConsoleBubbers = () => {
 
 const CrewTable = (props, context) => {
   const { act, data } = useBackend(context);
-  const sensors = sortBy((s) => (s.brutedam + s.burndam + s.toxdam + s.oxydam >= 50 ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam) : s.ijob))(data.sensors ?? []);
+  const sensors = sortBy((s) => (s.brutedam + s.burndam + s.toxdam + s.oxydam > 50 ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam) : s.ijob))(data.sensors ?? []);
   return (
     <Table cellpadding="3">
       <Table.Row>
