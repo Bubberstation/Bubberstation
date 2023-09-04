@@ -179,7 +179,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/stack/medical/mesh = 25,
 		/obj/item/stack/medical/ointment = 50,
 		/obj/item/stack/medical/poultice = 50,
-		/obj/item/stack/medical/splint = 50,
 		/obj/item/stack/medical/suture = 25,
 		/obj/item/stack/sticky_tape/surgical = 25,
 		/obj/item/storage/organbox = 25,
