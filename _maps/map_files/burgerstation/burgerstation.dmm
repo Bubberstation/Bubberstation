@@ -2677,10 +2677,6 @@
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
-"bfy" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/station/hallway/secondary/entry)
 "bfW" = (
 /obj/effect/spawner/random/burgerstation/odd,
 /turf/open/floor/plating,
@@ -8302,6 +8298,9 @@
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/structure/sign/directions/lavaland/directional/east{
+	pixel_y = -40
+	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/fore)
 "dEH" = (
@@ -9379,6 +9378,9 @@
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
 	dir = 8
 	},
+/obj/structure/sign/directions/medical/directional/east{
+	pixel_y = -32
+	},
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
 "ecF" = (
@@ -10366,14 +10368,13 @@
 /area/station/medical/medbay/lobby)
 "ewk" = (
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/grille,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
-/obj/structure/cable,
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/effect/spawner/structure/electrified_grille,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "ewo" = (
@@ -10580,6 +10581,9 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
+	},
+/obj/structure/sign/directions/lavaland/directional/east{
+	pixel_y = -40
 	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
@@ -11045,6 +11049,7 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
+/obj/structure/sign/warning/electric_shock/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "eHW" = (
@@ -18891,7 +18896,7 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
 	},
-/obj/structure/sign/departments/cargo/directional/west,
+/obj/structure/sign/departments/vault/directional/west,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -21464,12 +21469,11 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/grille,
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
-/obj/structure/cable,
+/obj/effect/spawner/structure/electrified_grille,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "iTJ" = (
@@ -26286,6 +26290,7 @@
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/machinery/light/floor,
+/obj/structure/sign/warning/electric_shock/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "kQB" = (
@@ -28030,12 +28035,11 @@
 "lxY" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/grille,
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
-/obj/structure/cable,
+/obj/effect/spawner/structure/electrified_grille,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "lxZ" = (
@@ -32282,6 +32286,9 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/green,
+/obj/structure/sign/directions/lavaland/directional/east{
+	pixel_y = -40
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "nnr" = (
@@ -39490,6 +39497,9 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/green/half/contrasted,
+/obj/structure/sign/directions/lavaland/directional/east{
+	pixel_y = -40
+	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/fore)
 "qjg" = (
@@ -42738,14 +42748,13 @@
 /area/station/maintenance/port)
 "rvb" = (
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/grille,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
-/obj/structure/cable,
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/effect/spawner/structure/electrified_grille,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "rvd" = (
@@ -44130,12 +44139,11 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/grille,
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
 	name = "Test Chamber Blast Door"
 	},
-/obj/structure/cable,
+/obj/effect/spawner/structure/electrified_grille,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "rZC" = (
@@ -104663,7 +104671,7 @@ jqD
 hZv
 hZv
 hZv
-bfy
+hZv
 ezh
 gpP
 xVJ
