@@ -78,6 +78,9 @@
 
 // Outfits --------------
 
+/datum/outfit/dauntless
+	name = "Dauntless"
+
 //Dauntless Hostage
 
 /datum/outfit/dauntless/prisoner
