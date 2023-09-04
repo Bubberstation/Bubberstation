@@ -80,7 +80,7 @@
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
-		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && obscurity_examine_pref || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref)
+		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && obscurity_examine_pref || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT - EXAMINE PREFS
 		custom_species = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.name : holder_human.dna.features["custom_species"]
 		flavor_text = obscured ? "Obscured" :  holder_human.dna.features["flavor_text"]
 		custom_species_lore = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.get_species_lore() : holder_human.dna.features["custom_species_lore"]
