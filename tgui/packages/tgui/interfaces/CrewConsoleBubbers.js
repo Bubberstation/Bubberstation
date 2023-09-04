@@ -26,7 +26,7 @@ const jobToColor = (jobId) => {
   if (jobId >= 0 && jobId < 50) {
     return COLORS.department.centcom;
   }
-  if (jobId >= 50 jobId < 200) {
+  if (jobId >= 50 && jobId < 200) {
     return COLORS.department.captain;
   }
   if (jobId >= 200 && jobId < 300) {
