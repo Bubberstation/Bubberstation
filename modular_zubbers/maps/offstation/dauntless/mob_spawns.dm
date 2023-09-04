@@ -112,9 +112,13 @@
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/syndicatestaff
 	back = /obj/item/storage/backpack/satchel
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/sharpener = 1,
+		)
 	suit = /obj/item/clothing/suit/apron/chef
 	head = /obj/item/clothing/head/soft/mime
-	r_pocket = /obj/item/sharpener
 
 /datum/outfit/dauntless/syndicate/enginetech
 	name = "Dauntless Engineer"
@@ -158,9 +162,13 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
 	back = /obj/item/storage/backpack/security/redsec
+	backpack_contents = list(
+		/obj/item/flashlight/seclite = 1,
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		)
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	r_pocket = /obj/item/flashlight/seclite
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/interdyne
 
