@@ -29,5 +29,5 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/collared_vest.dmi'
 	icon_state = "vest_worn"
-	inhand_icon_state = "vest_hand"
+	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
