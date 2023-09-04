@@ -1,4 +1,4 @@
-/datm/crewmonitor
+/datum/crewmonitor
 	// Note that jobs divisible by 10 are considered heads of staff, and bolded
 	jobs = list(
 		//Centcom off-station.
