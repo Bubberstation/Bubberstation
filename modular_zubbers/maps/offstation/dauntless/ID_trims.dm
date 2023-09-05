@@ -3,7 +3,7 @@
 //Dauntless
 
 /datum/id_trim/syndicom/bubberstation/dauntless
-	assignment = "Dauntless Opperative"
+	assignment = "Dauntless Operative"
 	trim_state = "trim_unknown"
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_SYNDIE_RED

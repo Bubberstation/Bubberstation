@@ -9,7 +9,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	prompt_name = "Dauntless Personnel"
-	you_are_text = "You are a syndicate operative, employed on a top secret spy vessel hidden on lavaland"
+	you_are_text = "You are a syndicate Operative, employed on a top secret spy vessel hidden on lavaland"
 	flavour_text = "Unfortinately, your hated enemy, NanoTrasen, has started mining in this sector. Continue working the best you can, and keep a low profile"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
@@ -18,17 +18,17 @@
 	spawner_job_path = /datum/job/dauntless
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
-	name = "Syndicate Opperative"
-	prompt_name = "a Syndicate Opperative"
-	you_are_text = "an opperative assigned to the Syndicate Spy Vessel Dauntless, employed onboard for reasons that are yours"
+	name = "Syndicate Operative"
+	prompt_name = "a Syndicate Operative"
+	you_are_text = "an Operative assigned to the Syndicate Spy Vessel Dauntless, employed onboard for reasons that are yours"
 	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor NanoTrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are to maintain the ship's integrity and keep a low profile."
 	important_text = "You are NOT an antagonist and the round does not center the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
 	outfit = /datum/outfit/dauntless/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command
-	name = "Syndicate Command Opperative"
+	name = "Syndicate Command Operative"
 	prompt_name = "a Syndicate leader"
-	you_are_text = "a Syndicate Command Opperative assigned to lead the SSV Dauntless and guide it forward in its goals"
+	you_are_text = "a Syndicate Command Operative assigned to lead the SSV Dauntless and guide it forward in its goals"
 	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor NanoTrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are help lead the Dauntless while ensuring a low profile is maintained."
 	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
 	outfit = /datum/outfit/dauntless/command
@@ -97,7 +97,7 @@
 //Dauntless Roles
 
 /datum/outfit/dauntless/syndicate
-	name = "Dauntless Opperative"
+	name = "Dauntless Opporative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/interdyne
