@@ -37800,6 +37800,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"pCZ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/port/aft)
 "pDS" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
@@ -43047,7 +43053,7 @@
 "rBe" = (
 /obj/machinery/door/airlock/silver{
 	name = "Bathroom";
-	id = "captain_bathroom"
+	id_tag = "captain_bathroom"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/machinery/door/firedoor,
@@ -51117,12 +51123,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/orange,
 /area/station/engineering/break_room)
-"uPw" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/port/aft)
 "uPD" = (
 /obj/machinery/camera/autoname/directional/west,
 /obj/machinery/light/small/directional/west,
@@ -54987,6 +54987,10 @@
 	dir = 1
 	},
 /area/station/common/wrestling/arena)
+"wsP" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/station/tcommsat/server)
 "wsY" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -76256,7 +76260,7 @@ fAd
 fAd
 fAd
 fAd
-hei
+pCZ
 qsc
 iSZ
 eSg
@@ -76770,8 +76774,8 @@ pjI
 pjI
 pjI
 xGu
-uPw
-eLk
+pjI
+wsP
 vXD
 wpV
 pge
@@ -81912,7 +81916,7 @@ naS
 aUF
 cVm
 fHC
-fHC
+bXJ
 paB
 wSn
 fdv
@@ -82169,7 +82173,7 @@ nBC
 fRt
 orU
 fHC
-bXJ
+fHC
 paB
 nHx
 fdv

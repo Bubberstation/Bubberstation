@@ -116,7 +116,6 @@
 		/obj/structure/closet/crate/trashcart = 50,
 		/obj/structure/closet/crate/wooden = 200,
 		/obj/structure/closet/preopen = 1000,
-		/obj/structure/closet/supplypod = 1,
 		/obj/structure/rack = 1000,
 		/obj/structure/rack/shelf = 200,
 		/obj/structure/rack/shelf/wooden = 100,
