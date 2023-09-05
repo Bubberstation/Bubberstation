@@ -3314,11 +3314,11 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
 "sO" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer2{
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering)
+/area/lavaland/surface/outdoors)
 "sQ" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -5213,7 +5213,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Cc" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/components/binary/volume_pump/on/layer2{
+	dir = 8
+	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "Cd" = (
