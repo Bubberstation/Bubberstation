@@ -2363,13 +2363,13 @@
 	name = "Vault";
 	id_tag = "syndiship_vault"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "ob" = (
@@ -6099,7 +6099,8 @@
 	id = "syndiship_vault";
 	specialfunctions = 4;
 	normaldoorcontrol = 1;
-	name = "Vault Bolt Control"
+	name = "Vault Bolt Control";
+	req_access = list("syndicate_leader")
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -6773,7 +6774,8 @@
 	specialfunctions = 4;
 	id = "syndiship_vault";
 	normaldoorcontrol = 1;
-	name = "Vault Bolt Control"
+	name = "Vault Bolt Control";
+	req_access = list("syndicate_leader")
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -8714,7 +8716,7 @@
 /obj/machinery/door/window/survival_pod{
 	dir = 8;
 	heat_proof = 1;
-	req_access = list("syndicate")
+	req_access = list("syndicate_leader")
 	},
 /obj/item/paper_bin,
 /obj/item/pen/survival,
@@ -9316,6 +9318,9 @@
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
+	},
+/obj/machinery/computer/libraryconsole/bookmanagement{
+	pixel_y = 7
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
