@@ -81,6 +81,16 @@
 /datum/outfit/dauntless
 	name = "Dauntless"
 
+/datum/outfit/dauntless/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
+	var/obj/item/card/id/id_card = syndicate.wear_id
+	if(istype(id_card))
+		id_card.registered_name = syndicate.real_name
+		id_card.update_label()
+		id_card.update_icon()
+
+	handlebank(syndicate)
+	return ..()
+
 //Dauntless Hostage
 
 /datum/outfit/dauntless/prisoner

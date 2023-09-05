@@ -5759,7 +5759,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "EE" = (
-/obj/machinery/conveyor,
 /obj/effect/spawner/random/trash/garbage{
 	pixel_x = 4;
 	pixel_y = 5
@@ -5768,6 +5767,9 @@
 /obj/item/trash/can/food/peaches{
 	pixel_x = 6;
 	pixel_y = -6
+	},
+/obj/machinery/conveyor{
+	id = "syndidisp"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
@@ -5778,6 +5780,9 @@
 	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/trimline/purple/filled/warning,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "EG" = (
@@ -7803,6 +7808,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "Pf" = (
