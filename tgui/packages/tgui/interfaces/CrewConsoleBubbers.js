@@ -47,10 +47,10 @@ const jobToColor = (jobId) => {
   if (jobId >= 700 && jobId < 800) {
     return COLORS.department.service;
   }
-  if (jobId == 801) {
+  if (jobId === 801) {
     return COLORS.department.assistant;
   }
-  if (jobId == 803) {
+  if (jobId === 803) {
     return COLORS.department.prisoner;
   }
   return COLORS.department.other;
