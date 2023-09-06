@@ -471,7 +471,8 @@
 	},
 /obj/structure/bed/dogbed,
 /mob/living/basic/pet/fox{
-	name = "Rhials"
+	name = "Rhials";
+	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
@@ -2847,11 +2848,12 @@
 	pixel_x = -4;
 	pixel_y = -2
 	},
-/obj/item/storage/box/stockparts/basic{
-	pixel_x = 8
+/obj/item/storage/box/stockparts/deluxe{
+	pixel_x = 10
 	},
-/obj/item/storage/box/stockparts/basic{
-	pixel_y = 6
+/obj/item/storage/box/stockparts/deluxe{
+	pixel_y = 10;
+	pixel_x = 4
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
@@ -3289,12 +3291,21 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "sK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/stockparts/deluxe,
-/obj/item/storage/box/stockparts/deluxe,
-/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe{
+	pixel_x = -6;
+	pixel_y = 10
+	},
 /obj/item/storage/part_replacer,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
+	},
+/obj/item/storage/box/stockparts/basic{
+	pixel_y = -3;
+	pixel_x = 5
+	},
+/obj/item/storage/box/stockparts/basic{
+	pixel_x = 10;
+	pixel_y = 8
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
@@ -6351,7 +6362,9 @@
 	name = "Office Shutters"
 	},
 /obj/structure/bed/dogbed,
-/mob/living/basic/pet/syndifox,
+/mob/living/basic/pet/syndifox{
+	faction = list("neutral","Syndicate")
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "Ha" = (
@@ -9658,6 +9671,7 @@
 /obj/item/storage/toolbox/syndicate{
 	pixel_y = 5
 	},
+/obj/item/stack/cable_coil,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "Zx" = (
