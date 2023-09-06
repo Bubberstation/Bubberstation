@@ -4115,6 +4115,10 @@
 /obj/structure/reagent_dispensers/wall/peppertank/directional/west,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
+"wY" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
 "xa" = (
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/south,
@@ -7810,7 +7814,9 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/obj/machinery/camera/autoname/directional/west,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "Pf" = (
@@ -11126,7 +11132,7 @@ WU
 MA
 Kd
 Fe
-Vo
+wY
 xt
 Au
 Au
