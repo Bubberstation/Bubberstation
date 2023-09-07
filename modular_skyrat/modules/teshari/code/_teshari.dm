@@ -52,6 +52,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant/teshari,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant/teshari,
 	)
+	meat = /obj/item/food/meat/slab/chicken //BUBBERSTATION CHANGE
 
 
 /obj/item/organ/internal/tongue/teshari
