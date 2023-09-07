@@ -86,7 +86,11 @@ export const CrewConsoleBubbers = () => {
 
 const CrewTable = (props, context) => {
   const { act, data } = useBackend(context);
-  const sensors = sortBy((s) => (s.brutedam + s.burndam + s.toxdam + s.oxydam > 50 ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam) : s.ijob))(data.sensors ?? []);
+  const sensors = sortBy((s) =>
+    s.brutedam + s.burndam + s.toxdam + s.oxydam > 50
+      ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam)
+      : s.ijob
+  )(data.sensors ?? []);
   return (
     <Table cellpadding="3">
       <Table.Row>
@@ -136,7 +140,11 @@ const CrewTableEntry = (props, context) => {
         {assignment !== undefined ? ` (${assignment})` : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
-        {is_robot ? <Icon name="square-steam" color="#EFEFEF" size={1} /> : <Icon name="user" color="#EFEFEF" size={1} />}
+        {is_robot ? (
+          <Icon name="steam" color="#EFEFEF" size={1} />
+        ) : (
+          <Icon name="user" color="#EFEFEF" size={1} />
+        )}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined && life_status ? (
