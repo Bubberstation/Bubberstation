@@ -7,3 +7,8 @@
 	name = "Chirpy Synth Plushie"
 	item_path = /obj/item/toy/plush/chirp_plush
 	donator_only = TRUE //Donor item for potatomedic.
+
+/datum/loadout_item/toys/bigdeer_plush
+	name = "Big Deer Plushie"
+	item_path = /obj/item/toy/plush/bigdeer_plush
+	donator_only = FALSE //Donor item for Gavla
