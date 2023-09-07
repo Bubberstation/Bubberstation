@@ -3787,7 +3787,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "vd" = (
 /obj/machinery/vending/engivend{
-	onstation = 0
+	onstation = 0;
+	skyrat_products = list(/obj/item/clothing/glasses/meson/engine = 5, /obj/item/construction/rcd/loaded = 0, /obj/item/storage/pouch/material = 2, /obj/item/storage/bag/construction = 2)
 	},
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/cold/directional/south,
@@ -7700,15 +7701,6 @@
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
-"On" = (
-/obj/effect/turf_decal/trimline/purple/line{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/service)
 "Op" = (
 /obj/machinery/computer/monitor,
 /turf/open/floor/mineral/plastitanium/red,
@@ -11951,7 +11943,7 @@ gS
 JJ
 ZS
 Pq
-On
+EN
 kr
 EN
 bG
