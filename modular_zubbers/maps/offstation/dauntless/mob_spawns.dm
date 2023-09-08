@@ -1,4 +1,6 @@
-/datum/job/dauntless // Skyrat Akula Crap
+/datum/job/dauntless // Job Define
+	title = ROLE_DAUNTLESS
+	policy_index = ROLE_DAUNTLESS
 	akula_outfit = /datum/outfit/akula
 
 // Dauntless Ghost Spawners
