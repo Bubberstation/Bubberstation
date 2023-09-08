@@ -2438,6 +2438,9 @@
 	},
 /obj/item/reagent_containers/condiment/enzyme,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/microwave{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -7093,7 +7096,6 @@
 /obj/effect/turf_decal/trimline/dark_red/corner{
 	dir = 1
 	},
-/obj/machinery/disposal/bin,
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 1
 	},
@@ -9495,7 +9497,9 @@
 /obj/effect/turf_decal/siding{
 	dir = 1
 	},
-/obj/effect/spawner/random/food_or_drink/pizzaparty,
+/obj/effect/spawner/random/food_or_drink/pizzaparty{
+	loot = list(/obj/item/pizzabox/margherita = 2, /obj/item/pizzabox/meat = 2, /obj/item/pizzabox/mushroom = 2, /obj/item/pizzabox/pineapple = 2, /obj/item/pizzabox/vegetable = 2)
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
