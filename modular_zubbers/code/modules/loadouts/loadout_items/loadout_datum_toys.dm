@@ -10,5 +10,4 @@
 
 /datum/loadout_item/toys/bigdeer_plush
 	name = "Big Deer Plushie"
-	item_path = /obj/item/toy/plush/bigdeer_plush
-	donator_only = FALSE //Donor item for Gavla
+	item_path = /obj/item/toy/plush/bigdeer_plush	//Donor item for Gavla
