@@ -6185,6 +6185,7 @@
 /area/station/common/pool)
 "cEZ" = (
 /obj/structure/statue/uranium/nuke,
+/obj/structure/marker_beacon/green,
 /turf/open/floor/carpet/green,
 /area/station/service/greenroom)
 "cFM" = (
@@ -6521,6 +6522,10 @@
 /obj/machinery/light_switch/directional/west,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
+"cPo" = (
+/obj/structure/marker_beacon/green,
+/turf/open/floor/mineral/uranium,
+/area/station/service/greenroom)
 "cPp" = (
 /obj/effect/decal/cleanable/greenglow/filled,
 /turf/open/floor/plating,
@@ -9375,6 +9380,7 @@
 	name = "Starboard Solar Access"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/solars/starboard/aft)
 "dYV" = (
@@ -9541,9 +9547,6 @@
 	},
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
 	dir = 8
-	},
-/obj/structure/sign/directions/medical/directional/east{
-	pixel_y = -32
 	},
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
@@ -10113,13 +10116,6 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron/white,
 /area/station/security/prison/mess)
-"eol" = (
-/obj/effect/turf_decal/tile/red/half/contrasted{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/central/fore)
 "eon" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -14475,10 +14471,6 @@
 /obj/structure/closet/wardrobe/robotics_black,
 /turf/open/floor/iron,
 /area/station/science/robotics/lab)
-"fVB" = (
-/obj/machinery/light/small/red/directional/west,
-/turf/open/floor/mineral/uranium,
-/area/station/service/greenroom)
 "fVD" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -22057,7 +22049,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "iZJ" = (
-/obj/effect/spawner/random/burgerstation/loot,
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
@@ -22882,7 +22873,6 @@
 	},
 /obj/structure/sign/warning/cold_temp/directional/south,
 /obj/structure/sign/warning/gas_mask/directional/north,
-/obj/structure/fans/tiny,
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/server)
 "jqq" = (
@@ -27795,7 +27785,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "llt" = (
-/obj/structure/table/wood,
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /turf/closed/wall,
@@ -30255,10 +30244,6 @@
 /obj/effect/spawner/random/trash/graffiti,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
-"mkD" = (
-/obj/machinery/light/floor,
-/turf/closed/wall,
-/area/station/medical/medbay/central)
 "mkG" = (
 /obj/machinery/door/morgue{
 	name = "Confession Booth (Chaplain)";
@@ -31524,8 +31509,8 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/newscaster/directional/east,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/newscaster/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/command)
 "mLB" = (
@@ -32436,7 +32421,20 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
-/obj/machinery/suit_storage_unit/standard_unit,
+/obj/structure/rack,
+/obj/item/gps{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/gps{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/gps,
+/obj/item/gps{
+	pixel_x = 4;
+	pixel_y = -4
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "nfn" = (
@@ -35548,6 +35546,10 @@
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
+"osG" = (
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/iron/checker,
+/area/station/cargo/blacksmith)
 "osI" = (
 /obj/machinery/atmospherics/components/binary/pump/on/cyan/visible{
 	dir = 1;
@@ -51892,11 +51894,6 @@
 /obj/effect/spawner/random/structure/girder,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
-"uRK" = (
-/obj/structure/table/wood,
-/obj/machinery/firealarm/directional/south,
-/turf/closed/wall,
-/area/station/cargo/blacksmith)
 "uRX" = (
 /obj/effect/landmark/start/ai/secondary,
 /obj/item/radio/intercom/directional/east{
@@ -53997,6 +53994,7 @@
 "vGO" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/marker_beacon/green,
 /turf/open/floor/mineral/uranium,
 /area/station/service/greenroom)
 "vGS" = (
@@ -55205,10 +55203,12 @@
 /area/station/service/hydroponics)
 "whm" = (
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/station/cargo/lobby)
 "who" = (
@@ -55686,8 +55686,11 @@
 /turf/open/floor/carpet/blue,
 /area/station/security/courtroom)
 "wrJ" = (
-/obj/item/greentext/quiet,
 /obj/structure/table/wood/fancy/green,
+/obj/item/food/burger/green{
+	pixel_y = 6;
+	tastes = list("bad design" = 2, "green" = 2)
+	},
 /turf/open/floor/carpet/green,
 /area/station/service/greenroom)
 "wrN" = (
@@ -58138,10 +58141,6 @@
 /obj/machinery/duct,
 /turf/open/floor/wood,
 /area/station/service/bar)
-"xuq" = (
-/obj/machinery/light/small/red/directional/east,
-/turf/open/floor/mineral/uranium,
-/area/station/service/greenroom)
 "xuC" = (
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/east,
@@ -78896,7 +78895,7 @@ xdh
 nbd
 bek
 bRr
-bRr
+osG
 llt
 jVZ
 eLk
@@ -79411,7 +79410,7 @@ sHk
 bRr
 bSV
 bHc
-uRK
+xdh
 kBo
 eLk
 eLk
@@ -89637,7 +89636,7 @@ wUV
 hLQ
 wUV
 wUV
-eol
+wUV
 jVI
 gJB
 qpj
@@ -97114,7 +97113,7 @@ pOz
 pOz
 pOz
 pOz
-mkD
+pOz
 nIz
 pOz
 tke
@@ -107924,8 +107923,8 @@ cCE
 brz
 cNa
 exh
+cPo
 aXX
-fVB
 cEZ
 exh
 cNa
@@ -108439,7 +108438,7 @@ brz
 cNa
 exh
 vGO
-xuq
+aXX
 cEZ
 exh
 cNa
