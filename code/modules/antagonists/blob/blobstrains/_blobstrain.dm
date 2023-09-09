@@ -166,4 +166,4 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 	return
 
 /datum/blobstrain/proc/examine(mob/user)
-	return list("<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
+	return list("<b>Current Blob Size:</b> [span_notice("[overmind.blobs_legit.len]")].") //BUBBERSTATION CHANGE: HUGBOXES BLOB

@@ -5,7 +5,7 @@
 #define OVERMIND_STARTING_REROLLS 1 // Free strain rerolls at the start
 #define OVERMIND_STARTING_MIN_PLACE_TIME (1 MINUTES) // Minimum time before the core can be placed
 #define OVERMIND_STARTING_AUTO_PLACE_TIME (6 MINUTES) // After this time, randomly place the core somewhere viable
-#define OVERMIND_WIN_CONDITION_AMOUNT 400 // Blob structures required to win
+// BUBBERSTATION CHANGE: HUGBOXES BLOB #define OVERMIND_WIN_CONDITION_AMOUNT 400 // Blob structures required to win
 #define OVERMIND_ANNOUNCEMENT_MIN_SIZE 75 // Once the blob has this many structures, announce their presence
 #define OVERMIND_ANNOUNCEMENT_MAX_TIME (10 MINUTES) // If the blob hasn't reached the minimum size before this time, announce their presence
 #define OVERMIND_MAX_CAMERA_STRAY "3x3" // How far the overmind camera is allowed to stray from blob tiles. 3x3 is 1 tile away, 5x5 2 tiles etc
@@ -13,8 +13,7 @@
 
 // Generic blob defines
 
-//#define BLOB_BASE_POINT_RATE 2 // Base amount of points per process()
-#define BLOB_BASE_POINT_RATE 2.5 // SKYRAT EDIT CHANGE
+#define BLOB_BASE_POINT_RATE 2 // Base amount of points per process()
 #define BLOB_EXPAND_COST 4 // Price to expand onto a new tile
 #define BLOB_ATTACK_REFUND 2 // Points 'refunded' when the expand attempt actually attacks something instead
 #define BLOB_BRUTE_RESIST 0.5 // Brute damage taken gets multiplied by this value

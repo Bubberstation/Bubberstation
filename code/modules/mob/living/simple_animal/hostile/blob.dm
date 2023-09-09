@@ -46,7 +46,8 @@
 /mob/living/simple_animal/hostile/blob/get_status_tab_items()
 	. = ..()
 	if(overmind)
-		. += "Blobs to Win: [overmind.blobs_legit.len]/[overmind.blobwincount]"
+		. += "<b>Current Blob Size:</b> [span_notice("[overmind.blobs_legit.len]")]." //BUBBERSTATION CHANGE: HUGBOXES BLOB
+
 
 /mob/living/simple_animal/hostile/blob/blob_act(obj/structure/blob/B)
 	if(stat != DEAD && health < maxHealth)

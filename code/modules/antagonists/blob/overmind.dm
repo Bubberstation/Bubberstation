@@ -43,8 +43,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/autoplace_max_time = OVERMIND_STARTING_AUTO_PLACE_TIME // Automatically place the core in a random spot
 	var/list/blobs_legit = list()
 	var/max_count = 0 //The biggest it got before death
+	/* BUBBERSTATION CHANGE: HUGBOXES BLOB
 	var/blobwincount = OVERMIND_WIN_CONDITION_AMOUNT
 	var/victory_in_progress = FALSE
+	BUBBERSTATION END CHANGE: HUGBOXES BLOB */
 	var/rerolling = FALSE
 	var/announcement_size = OVERMIND_ANNOUNCEMENT_MIN_SIZE // Announce the biohazard when this size is reached
 	var/announcement_time
@@ -144,6 +146,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			// If we get here, it means yes: the blob is kill
 			SSticker.news_report = BLOB_DESTROYED
 			qdel(src)
+	/* BUBBERSTATION CHANGE: HUGBOXES BLOB
 	else if(!victory_in_progress && (blobs_legit.len >= blobwincount))
 		victory_in_progress = TRUE
 		priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
@@ -151,17 +154,19 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		max_blob_points = INFINITY
 		blob_points = INFINITY
 		addtimer(CALLBACK(src, PROC_REF(victory)), 450)
+	BUBBERSTATION CHANGE END: HUGBOXES BLOB */
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
 		to_chat(src, span_boldnotice("You have gained another free strain re-roll."))
 		free_strain_rerolls = 1
 
-	if(!victory_in_progress && max_count < blobs_legit.len)
-		max_count = blobs_legit.len
+	//if(!victory_in_progress && max_count < blobs_legit.len) BUBBERSTATION CHANGE: HUGBOXES BLOB
+	max_count = blobs_legit.len //Bubberstation change: Hugboxes blob
 
 	if(announcement_time && (world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
 		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK5)
 		has_announced = TRUE
 
+/* BUBBERSTATION CHANGE: HUGBOXES BLOB
 /mob/camera/blob/proc/victory()
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	sleep(10 SECONDS)
@@ -208,6 +213,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	to_chat(world, span_blob("[real_name] consumed the station in an unstoppable tide!"))
 	SSticker.news_report = BLOB_WIN
 	SSticker.force_ending = FORCE_END_ROUND
+BUBBERSTATION CHANGE END: HUGBOXES BLOB */
 
 /mob/camera/blob/Destroy()
 	QDEL_NULL(blobstrain)
@@ -308,7 +314,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(blob_core)
 		. += "Core Health: [blob_core.get_integrity()]"
 		. += "Power Stored: [blob_points]/[max_blob_points]"
-		. += "Blobs to Win: [blobs_legit.len]/[blobwincount]"
+		// BUBBERSTATION CHANGE: HUGBOXES BLOB. += "Blobs to Win: [blobs_legit.len]/[blobwincount]"
 	if(free_strain_rerolls)
 		. += "You have [free_strain_rerolls] Free Strain Reroll\s Remaining"
 	if(!placed)

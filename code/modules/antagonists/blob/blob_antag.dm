@@ -18,9 +18,14 @@
 	//Display max blobpoints for blebs that lost
 	if(isovermind(owner.current)) //embarrasing if not
 		var/mob/camera/blob/overmind = owner.current
+		/* BUBBERSTATION CHANGE: HUGBOXES BLOB
 		if(!overmind.victory_in_progress) //if it won this doesn't really matter
 			var/point_report = "<br><b>[owner.name]</b> took over [overmind.max_count] tiles at the height of its growth."
 			return basic_report+point_report
+		*/
+		var/point_report = "<br><b>[owner.name]</b> took over [overmind.max_count] tiles at the height of its growth."
+		return basic_report+point_report
+		//BUBBERSTATION CHANGE END: HUGBOXES BLOB
 	return basic_report
 
 /datum/antagonist/blob/greet()
@@ -85,7 +90,8 @@
 	pop_action.Grant(owner.current)
 
 /datum/objective/blob_takeover
-	explanation_text = "Reach critical mass!"
+	explanation_text = "Grow as large as possible!" //BUBBERSTATION CHANGE: HUGBOXES BLOB
+	completed = TRUE // BUBBERSTATION CHANGE: HUGBOXES BLOB
 
 //Non-overminds get this on blob antag assignment
 /datum/action/innate/blobpop
@@ -151,7 +157,7 @@
 	if(owner?.current)
 		var/mob/camera/blob/blob_cam = owner.current
 		if(istype(blob_cam))
-			. += "(Progress: [length(blob_cam.blobs_legit)]/[blob_cam.blobwincount])"
+			. += "<b>Current Blob Size:</b> [span_notice("[blob_cam.blobs_legit.len]")]." //BUBBERSTATION CHANGE: HUGBOXES BLOB
 
 /// A subtype of blob meant to represent the infective version.
 /datum/antagonist/blob/infection

@@ -247,7 +247,7 @@
 		to_chat(user, "<b>The analyzer beeps once, then reports:</b><br>")
 		SEND_SOUND(user, sound('sound/machines/ping.ogg'))
 		if(overmind)
-			to_chat(user, "<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
+			to_chat(user, "<b>Current Blob Size:</b> [span_notice("[overmind.blobs_legit.len]")]." )//BUBBERSTATION CHANGE: HUGBOXES BLOB
 			to_chat(user, chemeffectreport(user).Join("\n"))
 		else
 			to_chat(user, "<b>Blob core neutralized. Critical mass no longer attainable.</b>")
