@@ -809,7 +809,7 @@
 		//obj/item/reagent_containers/condiment/enzyme, //bubber-edit
 		//obj/item/reagent_containers/dropper, //bubber-edit
 		/obj/item/rsf,
-		//obj/item/storage/bag/tray, //bubber-edit
+		/obj/item/storage/bag/tray,
 		/obj/item/pen,
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/extinguisher/mini,
