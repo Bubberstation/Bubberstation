@@ -3,13 +3,13 @@
 	icon_state = "hair_hyenamane"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
-/datum/sprite_accessory/hair/taggot_franny
+/datum/sprite_accessory/hair/tailhair
 	name = "Tail Hair"
 	icon_state = "hair_tailhair"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
-/datum/sprite_accessory/hair/whor_eee
-	name = "((((((Hairfre))))))"
+/datum/sprite_accessory/hair/hairfre
+	name = "Hairfre"
 	icon_state = "hair_hairfre"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
