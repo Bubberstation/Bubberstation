@@ -31,6 +31,7 @@ type Data = {
   priority: BooleanLike;
   round_duration: string;
   alert_level: { name: string; color: string }; // SKYRAT EDIT ADDITION - Alert level on jobs menu
+  threat_level: { name: string; color: string }; // Bubbers edit addition - threat level on jobs menu
 };
 
 export const JobEntry: SFC<{
@@ -129,6 +130,13 @@ export const JobSelection = (props, context) => {
                 <NoticeBox color={data.alert_level.color}>
                   The current alert level is: {data.alert_level.name}
                 </NoticeBox>
+              }
+              {
+                // BUBBERSTATION EDIT ADDITION - Threat Level on jobs menu
+                <NoticeBox color={data.threat_level.color}>
+                  The current Threat level is: {data.threat_level.name}
+                </NoticeBox>
+                // BUBBERSTATION EDIT END
               }
               <span style={{ 'color': 'grey' }}>
                 It is currently {data.round_duration} into the shift.
