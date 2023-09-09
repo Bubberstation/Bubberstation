@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	color = blobstrain.complementary_color
 	if(blob_core)
 		blob_core.update_appearance()
-	SSshuttle.registerHostileEnvironment(src)
+	//SSshuttle.registerHostileEnvironment(src) BUBBERSTATION CHANGE: I WANT TO GET OFF MR. BLOB'S WILD RIDE
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
