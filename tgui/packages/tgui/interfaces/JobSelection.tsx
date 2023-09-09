@@ -133,9 +133,14 @@ export const JobSelection = (props, context) => {
               }
               {
                 // BUBBERSTATION EDIT ADDITION - Threat Level on jobs menu
-                <NoticeBox color={data.threat_level.color}>
-                  The current Threat level is: {data.threat_level.name}
-                </NoticeBox>
+                data.threat_level && (
+                  <NoticeBox info>
+                    The current threat level is:{' '}
+                    <span style={{ 'color': data.threat_level.color }}>
+                      {data.threat_level.name}
+                    </span>
+                  </NoticeBox>
+                )
                 // BUBBERSTATION EDIT END
               }
               <span style={{ 'color': 'grey' }}>
