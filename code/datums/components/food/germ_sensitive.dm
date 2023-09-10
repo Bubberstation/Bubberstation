@@ -1,13 +1,19 @@
 // Don't eat off the floor or hold parent object with dirty hands, you'll get sick
 
 /// Time needed for bacteria to infect the parent object
-#define GERM_EXPOSURE_DELAY (5 SECONDS) // Five-second rule
+#define GERM_EXPOSURE_DELAY ((20 MINUTES) * 0.25) //BUBBERSTATION CHANGE: INCREASED TIME.
 
 /// Possible diseases
+/* BUBBERSTATION CHANGE: DISEASES CHANGE
 GLOBAL_LIST_INIT(floor_diseases, list(
 	/datum/disease/advance/nebula_nausea = 2,
 	/datum/disease/advance/gastritium = 2,
 	/datum/disease/advance/carpellosis = 1,
+))
+*/
+
+GLOBAL_LIST_INIT(floor_diseases, list(
+	/datum/disease/advance/floorfood = 1
 ))
 
 /// Makes items infective if left on floor, also sending corresponding signals to parent
