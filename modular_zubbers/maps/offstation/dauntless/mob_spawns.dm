@@ -102,10 +102,6 @@
 	id = /obj/item/card/id/advanced/prisoner/ds2
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/prisoner
 
-/datum/outfit/dauntless/prisoner/post_equip(mob/living/carbon/human/syndicate) //So they don't get shot by turrets
-	syndicate.faction |= ROLE_SYNDICATE
-	return ..()
-
 //Dauntless Roles
 
 /datum/outfit/dauntless/syndicate
