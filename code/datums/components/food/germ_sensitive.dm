@@ -1,7 +1,7 @@
 // Don't eat off the floor or hold parent object with dirty hands, you'll get sick
 
 /// Time needed for bacteria to infect the parent object
-#define GERM_EXPOSURE_DELAY ((20 MINUTES) * 0.25) //BUBBERSTATION CHANGE: INCREASED TIME.
+#define GERM_EXPOSURE_DELAY (2 MINUTES) //BUBBERSTATION CHANGE: INCREASED TIME.
 
 /// Possible diseases
 /* BUBBERSTATION CHANGE: DISEASES CHANGE
