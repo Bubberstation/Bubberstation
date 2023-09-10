@@ -651,6 +651,9 @@
 /obj/structure/curtain,
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/shower/directional/south{
+	dir = 1
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "dX" = (
@@ -7894,6 +7897,8 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Pu" = (
@@ -8855,6 +8860,9 @@
 	},
 /obj/structure/curtain,
 /obj/machinery/firealarm/directional/west,
+/obj/machinery/shower/directional/south{
+	dir = 1
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "TS" = (
@@ -9365,6 +9373,18 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
+"Xd" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/trimline/dark_blue/line{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "Xh" = (
 /obj/structure/cable,
 /obj/machinery/firealarm/directional/north,
@@ -10202,7 +10222,7 @@ Qp
 rS
 xA
 TO
-il
+Qp
 fT
 fT
 fT
@@ -11340,7 +11360,7 @@ BJ
 Um
 Os
 Os
-Os
+Xd
 RE
 JG
 nS
