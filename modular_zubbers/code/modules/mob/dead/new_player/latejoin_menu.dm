@@ -4,7 +4,7 @@
 		var/datum/game_mode/dynamic/mode = SSticker.mode
 		var/threat_level
 		var/threat_color
-		if(!shown_threat) //Possibly not generated.
+		if(!mode.shown_threat) //Possibly not generated.
 			if(threat_level == 0) //Actually generated but actually greenshift.
 				threat_level = "White Dwarf ([mode.shown_threat])"
 				threat_color = "white"
