@@ -40,7 +40,7 @@
 	scan()
 
 /obj/item/t_scanner/proc/scan()
-	t_ray_scan(loc,emagged = obj_flags & EMAGGED)
+	t_ray_scan(loc,emagged = obj_flags & EMAGGED) //BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
 
 /proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 3, emagged = FALSE) //BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
 	if(!ismob(viewer) || !viewer.client)

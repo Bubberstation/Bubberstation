@@ -363,7 +363,7 @@
 
 /obj/item/storage/backpack/satchel/flat/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE_EMAG) //BUBBERS EDIT:
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE_EMAG) //BUBBERS EDIT: FIXES GHOST METAGAMING, EMAG FUNCTION FOR TRAY SUPPORTED
 	atom_storage.max_total_storage = 15
 	atom_storage.set_holdable(cant_hold_list = list(/obj/item/storage/backpack/satchel/flat)) //muh recursive backpacks)
 
