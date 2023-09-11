@@ -40,14 +40,14 @@
 	scan()
 
 /obj/item/t_scanner/proc/scan()
-	t_ray_scan(loc)
+	t_ray_scan(loc,emagged = obj_flags & EMAGGED)
 
-/proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 3)
+/proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 3, emagged = FALSE) //BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
 	if(!ismob(viewer) || !viewer.client)
 		return
 	var/list/t_ray_images = list()
 	for(var/obj/O in orange(distance, viewer) )
-		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE))
+		if(HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE) || (emagged && HAS_TRAIT(O, TRAIT_T_RAY_VISIBLE_EMAG))) //BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
 			var/image/I = new(loc = get_turf(O))
 			var/mutable_appearance/MA = new(O)
 			MA.alpha = 128
@@ -56,3 +56,13 @@
 			t_ray_images += I
 	if(t_ray_images.len)
 		flick_overlay_global(t_ray_images, list(viewer.client), flick_time)
+
+//BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
+/obj/item/t_scanner/emag_act(mob/user, obj/item/card/emag/emag_card)
+	obj_flags ^= EMAGGED
+	if(obj_flags & EMAGGED)
+		balloon_alert(user, "T-ray frequency upgraded!")
+	else
+		balloon_alert(user, "T-ray frequency reset!")
+	return TRUE
+//END OF BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
