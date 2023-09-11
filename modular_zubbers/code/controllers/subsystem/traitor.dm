@@ -26,7 +26,7 @@
 	var/start_time = REALTIMEOFDAY
 
 	for(var/datum/uplink_item/u_item as anything in uplink_items)
-		if(!u_item.item || !isitem(u_item.item) || u_item.limited_stock >= 0 || u_item.restricted || u_item.cost > SATCHEL_TC_LIMIT)
+		if(!u_item.item || !ispath(u_item.item,/obj/item) || u_item.limited_stock >= 0 || u_item.restricted || u_item.cost > SATCHEL_TC_LIMIT)
 			continue
 		if((u_item.purchasable_from == UPLINK_NUKE_OPS) || (u_item.purchasable_from == UPLINK_CLOWN_OPS) || (u_item.purchasable_from == (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS))) //No clown ops or nuke ops exclusive items (or both).
 			continue
