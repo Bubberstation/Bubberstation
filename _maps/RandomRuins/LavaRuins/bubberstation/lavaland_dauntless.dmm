@@ -1309,9 +1309,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "hV" = (
-/obj/structure/cable,
 /obj/machinery/light/cold/directional/north,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service,
+/obj/machinery/chem_master/condimaster,
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -2199,6 +2198,21 @@
 /obj/item/toy/plush/abductor/agent,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding)
+"nd" = (
+/obj/structure/dresser,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/button/door/directional/north{
+	name = "Dorm 3";
+	id = "syndidorm_3";
+	specialfunctions = 4;
+	normaldoorcontrol = 1
+	},
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "ne" = (
 /obj/machinery/power/shuttle_engine/large,
 /turf/open/lava/smooth/lava_land_surface,
@@ -3019,6 +3033,12 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
+	},
+/obj/machinery/button/door/directional/north{
+	name = "Dorm 1";
+	id = "syndidorm_1";
+	specialfunctions = 4;
+	normaldoorcontrol = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -5114,12 +5134,6 @@
 "Bs" = (
 /obj/structure/chair/comfy/black,
 /obj/machinery/light/small/directional/north,
-/obj/machinery/button/door/directional/north{
-	name = "Dorm 1";
-	id = "syndidorm_1";
-	specialfunctions = 4;
-	normaldoorcontrol = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
@@ -5881,6 +5895,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
+"EP" = (
+/obj/structure/dresser,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/button/door/directional/north{
+	name = "Dorm 2";
+	id = "syndidorm_2";
+	specialfunctions = 4;
+	normaldoorcontrol = 1
+	},
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "ER" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /turf/open/floor/engine/n2,
@@ -7158,19 +7187,6 @@
 /obj/item/circuitboard/machine/recycler,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
-"KO" = (
-/obj/structure/chair/comfy/black,
-/obj/machinery/button/door/directional/north{
-	name = "Dorm 3";
-	id = "syndidorm_3";
-	specialfunctions = 4;
-	normaldoorcontrol = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "KS" = (
 /obj/machinery/biogenerator,
 /turf/open/floor/iron/dark/smooth_large,
@@ -8761,7 +8777,7 @@
 /obj/machinery/door/window/survival_pod{
 	dir = 8;
 	heat_proof = 1;
-	req_access = list("syndicate_leader")
+	req_access = list("Syndicate")
 	},
 /obj/item/paper_bin,
 /obj/item/pen/survival,
@@ -9487,6 +9503,7 @@
 "XS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -9584,12 +9601,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Yv" = (
 /obj/structure/chair/comfy/black,
-/obj/machinery/button/door/directional/north{
-	name = "Dorm 2";
-	id = "syndidorm_2";
-	specialfunctions = 4;
-	normaldoorcontrol = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
@@ -10922,7 +10933,7 @@ ph
 Dx
 sQ
 bE
-ro
+EP
 fz
 vv
 aR
@@ -11048,7 +11059,7 @@ Dx
 Wp
 uJ
 bE
-KO
+Yv
 kM
 qE
 aR
@@ -11174,7 +11185,7 @@ ju
 xM
 JX
 bE
-ro
+nd
 fz
 vv
 aR
@@ -11191,7 +11202,7 @@ Ne
 Ec
 aR
 hV
-mL
+XS
 ke
 oy
 WU
