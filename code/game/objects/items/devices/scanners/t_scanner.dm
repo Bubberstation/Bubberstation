@@ -61,8 +61,8 @@
 /obj/item/t_scanner/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "T-ray frequency upgraded!")
+		balloon_alert(user, "t-ray frequency upgraded!")
 	else
-		balloon_alert(user, "T-ray frequency reset!")
+		balloon_alert(user, "t-ray frequency reset!")
 	return TRUE
 //END OF BUBBERSTATION CHANGE: ADDS EMAG FUNCTION
