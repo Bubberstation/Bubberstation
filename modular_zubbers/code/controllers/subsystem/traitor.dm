@@ -26,9 +26,11 @@
 	var/start_time = REALTIMEOFDAY
 
 	for(var/datum/uplink_item/u_item as anything in uplink_items)
-		if(!u_item.item || !ispath(u_item.item,/obj/item) || u_item.limited_stock >= 0 || u_item.restricted || u_item.cost > SATCHEL_TC_LIMIT)
+		if(!u_item.item || u_item.limited_stock >= 0 || u_item.restricted || u_item.cost > SATCHEL_TC_LIMIT)
 			continue
 		if((u_item.purchasable_from == UPLINK_NUKE_OPS) || (u_item.purchasable_from == UPLINK_CLOWN_OPS) || (u_item.purchasable_from == (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS))) //No clown ops or nuke ops exclusive items (or both).
+			continue
+		if(ispath(u_item.item,/obj/item)) //Accepts only items. For some reason Skyrat made it so that a debug /obj/effect can be a spawn objection for some reason.
 			continue
 		if(ispath(u_item.item,/obj/item/storage)) //This solves a lot of nonsense balance problems and storage recursion issues. Seriously. 2TC for a fuckton of EMPs???? 2TC for very explosive mailbombs???? hello?????
 			continue
@@ -38,7 +40,7 @@
 
 	if(!isnull(start_time))
 		var/tracked_time = (REALTIMEOFDAY - start_time) / 10
-		var/complete_message = "Geenrated [length(smuggler_satchel_items)] possible smuggler satchel traitor items in [tracked_time] second[tracked_time == 1 ? "" : "s"]!"
+		var/complete_message = "Generated [length(smuggler_satchel_items)] possible smuggler satchel traitor items in [tracked_time] second[tracked_time == 1 ? "" : "s"]!"
 		to_chat(world, span_boldannounce(complete_message))
 		log_world(complete_message)
 
