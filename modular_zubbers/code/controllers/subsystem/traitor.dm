@@ -26,7 +26,9 @@
 	var/start_time = REALTIMEOFDAY
 
 	for(var/datum/uplink_item/u_item as anything in uplink_items)
-		if(!u_item.item || u_item.limited_stock >= 0 || u_item.restricted || u_item.cost > SATCHEL_TC_LIMIT || (u_item.purchasable_from == UPLINK_NUKE_OPS) || (u_item.purchasable_from == UPLINK_CLOWN_OPS) || (u_item.purchasable_from == (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS))) //The == is intentional here. I don't want to include nuke op or clown op exclusive items..
+		if(!u_item.item || !isitem(u_item.item) || u_item.limited_stock >= 0 || u_item.restricted || u_item.cost > SATCHEL_TC_LIMIT)
+			continue
+		if((u_item.purchasable_from == UPLINK_NUKE_OPS) || (u_item.purchasable_from == UPLINK_CLOWN_OPS) || (u_item.purchasable_from == (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS))) //No clown ops or nuke ops exclusive items (or both).
 			continue
 		if(ispath(u_item.item,/obj/item/storage)) //This solves a lot of nonsense balance problems and storage recursion issues. Seriously. 2TC for a fuckton of EMPs???? 2TC for very explosive mailbombs???? hello?????
 			continue
