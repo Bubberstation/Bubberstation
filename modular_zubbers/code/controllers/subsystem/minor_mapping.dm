@@ -58,7 +58,7 @@
 		for(var/turf/bad_turf in blacklisted_turfs)
 			if(bad_turf.z != picked_turf.z)
 				continue
-			if(get_dist(bad_turf,picked_turf) <= 12) //Too close!
+			if(get_dist(bad_turf,picked_turf) < 12) //Too close!
 				has_bad_turf = TRUE
 				break
 
