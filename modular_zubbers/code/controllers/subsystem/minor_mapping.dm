@@ -16,6 +16,8 @@
 				continue
 			if(detected_turf.planetary_atmos) //Make sure it is actually on station.
 				continue
+			if(detected_turf.initial_gas_mix == OPENTURF_DEFAULT_ATMOS) //Make sure it's actually accessible.
+				continue
 			if(detected_turf.underfloor_accessibility > UNDERFLOOR_HIDDEN) //Make sure it can have an underfloor.
 				continue
 			var/bad_turf = FALSE
