@@ -64,7 +64,7 @@
 	// Change Appearance
 	user.gender = pick(MALE, FEMALE, PLURAL)
 	user.skin_tone = random_skin_tone()
-	user.hairstyle = random_hairstyle(user.gender)
+	user.hairstyle = random_hairstyle()
 	user.facial_hairstyle = pick(random_facial_hairstyle(user.gender), "Shaved")
 	user.hair_color = random_short_color()
 	user.facial_hair_color = user.hair_color
