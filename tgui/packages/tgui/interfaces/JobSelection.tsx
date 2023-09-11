@@ -31,7 +31,7 @@ type Data = {
   priority: BooleanLike;
   round_duration: string;
   alert_level: { name: string; color: string }; // SKYRAT EDIT ADDITION - Alert level on jobs menu
-  threat_level: { name: string; color: string }; // Bubbers edit addition - threat level on jobs menu
+  threat_level: { name: string; color: string; color_shadow: string }; // Bubbers edit addition - threat level on jobs menu
 };
 
 export const JobEntry: SFC<{
@@ -133,14 +133,20 @@ export const JobSelection = (props, context) => {
               }
               {
                 // BUBBERSTATION EDIT ADDITION - Threat Level on jobs menu
-                data.threat_level && (
-                  <NoticeBox info>
-                    The current threat level is:{' '}
-                    <span style={{ 'color': data.threat_level.color }}>
-                      {data.threat_level.name}
-                    </span>
-                  </NoticeBox>
-                )
+                data.threat_level &&
+                  data.threat_level.color &&
+                  data.threat_level.color_shadow && (
+                    <NoticeBox info>
+                      The current threat level is:{' '}
+                      <span
+                        style={{
+                          'color': data.threat_level.color,
+                          'text-shadow': data.threat_level.color_shadow,
+                        }}>
+                        {data.threat_level.name}
+                      </span>
+                    </NoticeBox>
+                  )
                 // BUBBERSTATION EDIT END
               }
               <span style={{ 'color': 'grey' }}>

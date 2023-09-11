@@ -322,12 +322,18 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 		. += generate_report_footnote()
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
+
+	///BUBBERSTATION CHANGE: NO ALERT LEVEL CHANGE, NEWSCASTER THREAT REPORT.
+	priority_announce("A threat advisory has been copied and printed to all communications consoles and public newcasters.", "Nanotrasen Department of Intelligence Threat Advisory",'sound/misc/announce.ogg')
+	GLOB.news_network.submit_article(random_redact(.,10 + min_threat*0.3), "Central Command Status Summary", "Station Announcements", null) //Plebians get a redacted version :^)
+	/*
 	if(greenshift)
 		priority_announce("Thanks to the tireless efforts of our security and intelligence divisions, there are currently no credible threats to [station_name()]. All station construction projects have been authorized. Have a secure shift!", "Security Report", SSstation.announcer.get_rand_report_sound())
 	else
 		priority_announce("A summary has been copied and printed to all communications consoles.", "Security level elevated.", ANNOUNCER_INTERCEPT)
 		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
 			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
+	END OF BUBBERSTATION CHANGE*/
 
 /// Generate the advisory level depending on the shown threat level.
 /datum/game_mode/dynamic/proc/generate_advisory_level()
