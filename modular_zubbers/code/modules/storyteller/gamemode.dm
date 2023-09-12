@@ -382,6 +382,27 @@ SUBSYSTEM_DEF(gamemode)
 				med_crew++
 			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
 				sec_crew++
+	update_pop_scaling()
+
+/datum/controller/subsystem/gamemode/proc/update_pop_scaling()
+	for(var/track in event_tracks)
+		var/low_pop_bound = min_pop_thresholds[track]
+		var/high_pop_bound = pop_scale_thresholds[track]
+		var/scale_penalty = pop_scale_penalties[track]
+
+		var/perceived_pop = min(max(low_pop_bound, active_players), high_pop_bound)
+
+		var/divisor = high_pop_bound - low_pop_bound
+		/// If the bounds are equal, we'd be dividing by zero or worse, if upper is smaller than lower, we'd be increasing the factor, just make it 1 and continue.
+		/// this is only a problem for bad configs
+		if(divisor <= 0)
+			current_pop_scale_multipliers[track] = 1
+			continue
+		var/scalar = (perceived_pop - low_pop_bound) / divisor
+		var/penalty = scale_penalty - (scale_penalty * scalar)
+		var/calculated_multiplier = 1 - (penalty / 100)
+
+		current_pop_scale_multipliers[track] = calculated_multiplier
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event)
 	. = event.preRunEvent()
