@@ -1,4 +1,4 @@
-/obj/item/gun/energy/ionrifle
+/obj/item/gun/energy/ionrifle //SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	name = "ion rifle"
 	desc = "A man-portable anti-armor weapon designed to disable mechanical threats at range."
 	icon_state = "ionrifle"
@@ -192,6 +192,14 @@
 	inhand_icon_state = "adv_plasmacutter"
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
+
+/obj/item/gun/energy/plasmacutter/brg // Bubber Edit Plasma cutter for Mining cyborg, recharges on power.
+	name = "advanced plasma cutter"
+	icon_state = "adv_plasmacutter"
+	inhand_icon_state = "adv_plasmacutter"
+	force = 15
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/brg)
+	use_cyborg_cell = TRUE
 
 #define AMMO_SELECT_BLUE 1
 #define AMMO_SELECT_ORANGE 2
