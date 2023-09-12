@@ -1,4 +1,4 @@
-/datum/round_event_control/antagonist
+/* /datum/round_event_control/antagonist
 	reoccurence_penalty_multiplier = 0
 	track = EVENT_TRACK_ROLESET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
@@ -97,7 +97,7 @@
 
 /datum/round_event/antagonist/solo/proc/add_datum_to_mind(datum/mind/antag_mind)
 	antag_mind.add_antag_datum(antag_datum)
-
+/*
 /datum/round_event_control/antagonist/solo/traitor
 	antag_flag = ROLE_TRAITOR
 	antag_datum = /datum/antagonist/traitor
@@ -116,9 +116,9 @@
 /datum/round_event_control/antagonist/solo/traitor/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
 	return FALSE
-/* /datum/round_event_control/antagonist/solo/traitor/roundstart
+/datum/round_event_control/antagonist/solo/traitor/roundstart
 	name = "Traitors"
-	roundstart = TRUE */
+	roundstart = TRUE
 
 /datum/round_event_control/antagonist/solo/traitor/midround
 	name = "Sleeper Agents (Traitors)"
@@ -187,4 +187,5 @@
 
 /datum/round_event/antagonist/solo/wizard/add_datum_to_mind(datum/mind/antag_mind)
 	. = ..()
-	antag_mind.current.forceMove(pick(GLOB.wizardstart))
+	antag_mind.current.forceMove(pick(GLOB.wizardstart)) */
+ */

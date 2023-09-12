@@ -9,6 +9,8 @@
 	///The types of loan events already run (and to be excluded if the event triggers).
 	admin_setup = list(/datum/event_admin_setup/listed_options/shuttle_loan)
 	var/list/run_situations = list()
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
 
 /datum/round_event_control/shuttle_loan/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()

@@ -7,7 +7,8 @@
 	category = EVENT_CATEGORY_JANITORIAL
 	description = "The scrubbers release a tide of mostly harmless froth."
 	admin_setup = list(/datum/event_admin_setup/listed_options/scrubber_overflow)
-
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
 /datum/round_event/scrubber_overflow
 	announce_when = 1
 	start_when = 5

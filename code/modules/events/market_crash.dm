@@ -9,7 +9,8 @@
 	weight = 10
 	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Temporarily increases the prices of vending machines."
-
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
 /datum/round_event/market_crash
 	/// This counts the number of ticks that the market crash event has been processing, so that we don't call vendor price updates every tick, but we still iterate for other mechanics that use inflation.
 	var/tick_counter = 1

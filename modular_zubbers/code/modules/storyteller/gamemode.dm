@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(gamemode)
 	/// Our storyteller. He progresses our trackboards and picks out events
 	var/datum/storyteller/storyteller
 	/// Result of the storyteller vote. Defaults to the guide.
-	var/voted_storyteller = /datum/storyteller/jester
+	var/voted_storyteller = /datum/storyteller/guide
 	/// List of all the storytellers. Populated at init. Associative from type
 	var/list/storytellers = list()
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
@@ -244,7 +244,7 @@ SUBSYSTEM_DEF(gamemode)
 			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
 				continue
 
-		if(midround_antag_pref && !candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+		if(midround_antag_pref)
 			continue
 
 		if(job_ban && is_banned_from(candidate.ckey, list(job_ban, ROLE_SYNDICATE)))
@@ -736,6 +736,12 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)
 	/// Find the winner
+	/// Hijacking the proc because we don't have a vote right now..
+	var/datum/storyteller/storyteller = pick(storytellers)
+	message_admins("We picked [storyteller]")
+	voted_storyteller = storyteller
+	if(storyteller)
+		return
 	for(var/storyteller_type in storytellers)
 		var/datum/storyteller/storyboy = storytellers[storyteller_type]
 		if(storyboy.name == winner_name)
@@ -743,6 +749,10 @@ SUBSYSTEM_DEF(gamemode)
 			break
 
 /datum/controller/subsystem/gamemode/proc/init_storyteller()
+		/// Hijacking the proc because we don't have a vote right now..
+	var/datum/storyteller/storyteller_pick = pick(storytellers)
+	message_admins("We picked [storyteller_pick] for this rounds storyteller, randomly.")
+	voted_storyteller = storyteller_pick
 	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
 		return
 	set_storyteller(voted_storyteller)

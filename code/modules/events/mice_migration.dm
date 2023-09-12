@@ -4,7 +4,8 @@
 	weight = 10
 	category = EVENT_CATEGORY_ENTITIES
 	description = "A horde of mice arrives, and perhaps even the Rat King themselves."
-
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_DESTRUCTIVE)
 /datum/round_event/mice_migration
 	var/minimum_mice = 5
 	var/maximum_mice = 15

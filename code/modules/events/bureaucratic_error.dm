@@ -5,7 +5,7 @@
 	weight = 5
 	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Randomly opens and closes job slots, along with changing the overflow role."
-	track = EVENT_TRACK_MODERATE
+	track = EVENT_TRACK_MAJOR // Yes, it's annoying.
 	tags = list(TAG_COMMUNAL)
 
 /datum/round_event/bureaucratic_error
