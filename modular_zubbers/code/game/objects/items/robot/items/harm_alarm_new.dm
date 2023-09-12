@@ -3,7 +3,18 @@
 
 /obj/item/harmalarm/bubbers
 	desc = "Releases a harmless blast that confuses most organics. Use in case of hostile blue whales."
+	var/alarm_phrase = "HARM"
 
+/obj/item/harmalarm/bubbers/AltClick(mob/living/user)
+	var/str = reject_bad_text(tgui_input_text(user, "What would your alarm like to broadcast?", "Alarm Phrase", alarm_phrase, MAX_NAME_LEN)) //Limit of 42 characters.
+	if(!str)
+		to_chat(user, span_warning("Invalid text!"))
+		return
+	if(length(str) <= 2)
+		to_chat(user, span_warning("Too short!"))
+		return
+	alarm_phrase = str
+	to_chat(user, span_notice("You set the alarm phrase to '[str]'."))
 
 /obj/item/harmalarm/bubbers/attack_self(mob/user)
 	var/safety = !(obj_flags & EMAGGED)
@@ -29,7 +40,7 @@
 				continue
 			carbon.adjust_confusion(6 SECONDS)
 
-		audible_message("<blink><font face='Franklin Gothic Medium' size='7'>HARM</font></blink>")
+		audible_message("<blink><font face='Franklin Gothic Medium' size='6'>[alarm_phrase]</font></blink>")
 		playsound(get_turf(src), 'modular_zubbers/sound/ai/alan_davies.ogg', 70)
 		COOLDOWN_START(src, alarm_cooldown, HARM_ALARM_SAFETY_COOLDOWN)
 		user.log_message("used a Cyborg Harm Alarm", LOG_ATTACK)
@@ -37,7 +48,7 @@
 			var/mob/living/silicon/robot/robot_user = user
 			to_chat(robot_user.connected_ai, "<br>[span_notice("NOTICE - 'HARM ALARM' used by: [user]")]<br>")
 	else
-		user.audible_message("<font color='red' size='7'>BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZT</font>")
+		user.audible_message("<font color='red' size='9'>[alarm_phrase]</font>")
 		for(var/mob/living/carbon/carbon in get_hearers_in_view(9, user))
 			var/bang_effect = carbon.soundbang_act(2, 0, 0, 5)
 			switch(bang_effect)
