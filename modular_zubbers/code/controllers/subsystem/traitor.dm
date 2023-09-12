@@ -44,4 +44,4 @@
 		to_chat(world, span_boldannounce(complete_message))
 		log_world(complete_message)
 
-#undef SATCHEL_TC_
+#undef SATCHEL_TC_LIMIT
