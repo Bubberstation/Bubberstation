@@ -2651,12 +2651,12 @@
 /turf/open/floor/iron,
 /area/station/command/cc_dock)
 "baH" = (
-/obj/machinery/atmospherics/components/tank/air{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted,
 /obj/effect/turf_decal/box,
 /obj/machinery/light/directional/south,
+/obj/machinery/atmospherics/components/tank{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/corner,
 /area/station/engineering/atmos/asteroid)
 "baL" = (
@@ -13972,6 +13972,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
 /area/station/security/processing)
+"fun" = (
+/obj/structure/marker_beacon/burgundy,
+/obj/structure/lattice/catwalk,
+/obj/structure/transit_tube/station/dispenser/reverse{
+	dir = 8
+	},
+/turf/open/space,
+/area/space/nearstation)
 "fus" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -110238,7 +110246,7 @@ stM
 stM
 stM
 stM
-azA
+fun
 izm
 izm
 izm
