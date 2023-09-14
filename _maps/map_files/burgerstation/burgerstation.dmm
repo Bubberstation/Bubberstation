@@ -4421,7 +4421,6 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/autoname,
-/obj/structure/cable,
 /obj/machinery/duct,
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
@@ -14040,14 +14039,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/corrections_officer)
-"fsB" = (
-/obj/structure/mineral_door/wood{
-	color = "#888888"
-	},
-/obj/structure/barricade/wooden/crude,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/department/engineering/central)
 "fsD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -19109,6 +19100,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/holopad,
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "hpG" = (
@@ -28018,6 +28012,9 @@
 /obj/machinery/camera/autoname/directional/west{
 	dir = 10
 	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "kNi" = (
@@ -33116,6 +33113,9 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "mFO" = (
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "mFX" = (
@@ -46880,10 +46880,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"rQj" = (
-/obj/effect/landmark/atmospheric_sanity/ignore_area,
-/turf/open/floor/carpet/red,
-/area/station/maintenance/department/engineering/central)
 "rQn" = (
 /obj/structure/chair/pew{
 	dir = 1
@@ -90732,7 +90728,7 @@ oIY
 oIY
 oIY
 tkE
-fsB
+tkE
 oIY
 oIY
 oIY
@@ -92274,7 +92270,7 @@ vZw
 knZ
 gaT
 knZ
-rQj
+knZ
 gaT
 knZ
 oKT
