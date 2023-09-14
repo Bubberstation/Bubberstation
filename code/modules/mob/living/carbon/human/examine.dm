@@ -491,14 +491,15 @@
 			var/datum/sprite_accessory/genital/G = GLOB.sprite_accessories[genital][dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
 			if(G)
 				if(!(G.is_hidden(src)))
-					. += "<span class='notice'>[t_He] has exposed genitals... <a href='?src=[REF(src)];lookup_info=genitals'>Look closer...</a></span>"
+					. += "<span class='notice'>[t_He] [t_has] exposed genitals... <a href='?src=[REF(src)];lookup_info=genitals'>Look closer...</a></span>"
 					break
 
 	var/flavor_text_link
 	/// The first 1-FLAVOR_PREVIEW_LIMIT characters in the mob's "flavor_text" DNA feature. FLAVOR_PREVIEW_LIMIT is defined in flavor_defines.dm.
 	var/preview_text = copytext_char((dna.features["flavor_text"]), 1, FLAVOR_PREVIEW_LIMIT)
 	// What examine_tgui.dm uses to determine if flavor text appears as "Obscured".
-	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
+	var/obscurity_examine_pref = (client.prefs.read_preference(/datum/preference/toggle/obscurity_examine)) //BUBBERSTATION EDIT
+	var/face_obscured = (wear_mask && (wear_mask.flags_inv & HIDEFACE) && obscurity_examine_pref) || (head && (head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT
 
 	if (!(face_obscured))
 		flavor_text_link = span_notice("[preview_text]... <a href='?src=[REF(src)];lookup_info=open_examine_panel'>Look closer?</a>")
