@@ -4,16 +4,10 @@
 #define GERM_EXPOSURE_DELAY (2 MINUTES) //BUBBERSTATION CHANGE: INCREASED TIME.
 
 /// Possible diseases
-/* BUBBERSTATION CHANGE: DISEASES CHANGE
 GLOBAL_LIST_INIT(floor_diseases, list(
 	/datum/disease/advance/nebula_nausea = 2,
 	/datum/disease/advance/gastritium = 2,
 	/datum/disease/advance/carpellosis = 1,
-))
-*/
-
-GLOBAL_LIST_INIT(floor_diseases, list(
-	/datum/disease/advance/floorfood = 1
 ))
 
 /// Makes items infective if left on floor, also sending corresponding signals to parent
@@ -119,7 +113,7 @@ GLOBAL_LIST_INIT(floor_diseases, list(
 		return
 	infective = TRUE
 
-	var/random_disease = pick_weight(GLOB.floor_diseases)
+	var/random_disease = /datum/disease/advance/floorfood //BUBBERSTATION CHANGE: DISEASE CHANGE
 	parent.AddComponent(/datum/component/infective, new random_disease, weak = TRUE)
 
 /datum/component/germ_sensitive/proc/wash()

@@ -20,25 +20,40 @@
 	var/max_symptoms = rand(3,4)
 
 	var/regex/vowel = regex("\[aeiou\]","i")
-	var/regex/consonant = regex("\[^aeiou\]","i") //I am considering y a consonant in this case.
+	var/regex/consonant = regex("\[^aeiou'\]","i") //I am considering y a consonant in this case. Also this can include spaces and other special stuff.
+	var/regex/acceptable_characters = regex("\[^\\w\]","i")
+
 	var/use_vowel = !prob(80) //Code optimization
 	name = ""
 
 	for(var/i in 1 to max_symptoms)
 		var/datum/symptom/chosen_symptom = pick_n_take(possible_symptoms)
-		if(chosen_symptom)
-			var/datum/symptom/S = new chosen_symptom
-			symptoms += S
-			for(var/j in 1 to rand(2,4))
-				var/chosen_letter = use_vowel ? vowel.Find(S.name) : consonant.Find(S.name)
-				if(chosen_letter)
-					name = "[name][chosen_letter]"
-					use_vowel = !use_vowel
+		if(!chosen_symptom)
+			continue
+		var/datum/symptom/S = new chosen_symptom
+		symptoms += S
+		var/chosen_letter_pos = 1
+		for(var/j in 1 to rand(2,4))
+			chosen_letter_pos = use_vowel ? vowel.Find(S.name,chosen_letter_pos) : consonant.Find(S.name,chosen_letter_pos)
+			if(!chosen_letter_pos)
+				chosen_letter_pos = 1
+				break
+			var/chosen_letter = copytext(S.name,chosen_letter_pos,chosen_letter_pos+1)
+			if(chosen_letter)
+				name = "[name][chosen_letter]"
+				use_vowel = !use_vowel
+
+	if(name)
+		name = acceptable_characters.Replace(name,"")
 
 	if(!name)
-		name = "Coder's disease"
+		name = "Coder's Disease"
 	else
-		name = "[capitalize(name)]'s disease"
+		if(!use_vowel) //Last letter was a vowel
+			name = "[name]sis"
+		else //Last letter was a consonant
+			name = "[name]ia"
+		name = capitalize(lowertext(trim(name)))
 
 	Refresh()
 
