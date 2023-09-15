@@ -123,8 +123,11 @@ SUBSYSTEM_DEF(jukeboxes)
 					volume = round(volume,1)
 					if(volume < 50)
 						var/volume_mod = 1 - (volume / 50)
-						song_played.x = (jukebox.x - M.x) * volume_mod
-						song_played.y = (jukebox.x - M.x) * volume_mod
+						song_played.x = clamp(jukebox.x - M.x,-1,1) * volume_mod * 10
+						song_played.y = clamp(jukebox.y - M.y,-1,1) * volume_mod * 10
+					else
+						song_played.x = 0
+						song_played.y = 0
 
 				if(volume < 1)
 					song_played.status |= SOUND_MUTE
