@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(jukeboxes)
 				//BUBBERSTATION CHANGE END, CUSTOM FALLOFF
 			else
 				song_played.status = SOUND_MUTE | SOUND_UPDATE	//Setting volume = 0 doesn't let the sound properties update at all, which is lame.
-			M.playsound_local(null, null, volume, channel = jukeinfo[2], sound_to_use = song_played, max_distance = 0) //BUBBERSTATION CHANGE, CUSTOM FALLOFF.
+			M.playsound_local(null, null, volume, channel = jukeinfo[2], sound_to_use = song_played) //BUBBERSTATION CHANGE, CUSTOM FALLOFF.
 			CHECK_TICK
 	return
 
