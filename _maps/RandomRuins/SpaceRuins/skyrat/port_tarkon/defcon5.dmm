@@ -620,6 +620,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/cargo)
+"dN" = (
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
 "dP" = (
 /obj/effect/turf_decal/tile/brown/half,
 /obj/effect/decal/cleanable/dirt,
@@ -1218,6 +1223,13 @@
 /obj/machinery/door/firedoor/solid,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
+"hs" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
 "hu" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/iron/airless,
@@ -1885,6 +1897,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/centerhall)
+"kP" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/port_tarkon/centerhall)
 "kR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
@@ -2214,6 +2230,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+"mF" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
 "mG" = (
 /obj/effect/turf_decal/tile/brown/anticorner{
 	dir = 8
@@ -2326,11 +2348,21 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/mining)
 "nu" = (
+<<<<<<< Updated upstream
 /obj/machinery/light/dim/directional/south,
 /obj/effect/turf_decal/tile/blue/half,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/trauma)
+=======
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
+>>>>>>> Stashed changes
 "nx" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
@@ -2794,6 +2826,7 @@
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 6
 	},
+/obj/item/solar_assembly,
 /turf/open/misc/asteroid/airless,
 /area/solars/tarkon)
 "qk" = (
@@ -4150,6 +4183,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/secoff)
+"zw" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
 "zy" = (
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 8
@@ -4434,6 +4474,13 @@
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/port_tarkon/mining)
+"Bu" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
 "By" = (
 /obj/effect/spawner/random/trash/food_packaging,
 /turf/open/floor/iron,
@@ -4726,7 +4773,12 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
+<<<<<<< Updated upstream
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/holosign_creator/atmos,
+>>>>>>> Stashed changes
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon/toolstorage)
 "CY" = (
@@ -5157,6 +5209,13 @@
 /obj/item/shovel,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space/has_grav)
+"FL" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/item/solar_assembly,
+/turf/open/misc/asteroid/airless,
+/area/solars/tarkon)
 "FN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5396,6 +5455,7 @@
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 10
 	},
+/obj/item/solar_assembly,
 /turf/open/misc/asteroid/airless,
 /area/solars/tarkon)
 "Hc" = (
@@ -10371,9 +10431,9 @@ sv
 LJ
 LJ
 LJ
-Qn
+dN
 UJ
-IL
+nu
 LJ
 Ft
 Mr
@@ -10444,11 +10504,11 @@ zo
 LJ
 LJ
 LJ
-Qn
+dN
 UJ
-IL
+nu
 LJ
-gX
+mF
 Mr
 WB
 LJ
@@ -10589,11 +10649,11 @@ Qx
 Qx
 av
 av
-av
+Bu
 OR
 UJ
-uU
-av
+hs
+Bu
 qi
 UJ
 uU
@@ -10739,7 +10799,7 @@ Gy
 Hb
 Mr
 Al
-Gy
+zw
 Pl
 UJ
 fw
@@ -10813,7 +10873,7 @@ Ft
 UJ
 IL
 LJ
-gX
+mF
 Mr
 co
 LJ
@@ -10884,11 +10944,11 @@ LJ
 LJ
 Qn
 UJ
-IL
+nu
 LJ
 Yc
 Mr
-ye
+FL
 LJ
 WY
 WY
@@ -11726,8 +11786,8 @@ Ae
 Ae
 Ae
 yS
-nu
-Ki
+ah
+kP
 ta
 Jq
 Ki
