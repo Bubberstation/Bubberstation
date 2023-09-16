@@ -1,6 +1,6 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
 
-#define KEEP_ROUNDS_MAP 3
+#define KEEP_ROUNDS_MAP 4 //BUBBERSTATION CHANGE: 3 -> 4
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -19,6 +19,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/saved_modes = list(1,2,3)
 	var/list/saved_maps = list()
 	var/list/blocked_maps = list()
+	var/list/restricted_maps = list() //BUBBERSTATION CHANGE: ADDS RESTRICTED MAPS
 	var/list/saved_trophies = list()
 	var/list/picture_logging_information = list()
 	var/list/obj/structure/sign/picture_frame/photo_frames
@@ -285,6 +286,10 @@ SUBSYSTEM_DEF(persistence)
 				run++
 		if(run >= 2) //If run twice in the last KEEP_ROUNDS_MAP + 1 (including current) rounds, disable map for voting and rotation.
 			blocked_maps += VM.map_name
+		//BUBBERSTATION CHANGE START: Adds restricted maps.
+		else if(run >= 1)
+			restricted_maps += WM.map_name
+		//BUBBERSTATION CHANGE END: Adds restricted maps.
 
 /// Puts trophies into trophy cases.
 /datum/controller/subsystem/persistence/proc/set_up_trophies()
