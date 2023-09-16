@@ -12005,6 +12005,7 @@
 /area/station/maintenance/radshelter)
 "eDD" = (
 /obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
 /turf/open/floor/wood{
 	initial_gas_mix = "n2=100;TEMP=293.15"
 	},
@@ -20645,7 +20646,6 @@
 /obj/machinery/atmospherics/components/unary/passive_vent{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
 /turf/open/floor/wood{
 	initial_gas_mix = "n2=100;TEMP=293.15"
 	},
