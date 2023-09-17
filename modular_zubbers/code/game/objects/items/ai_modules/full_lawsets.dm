@@ -14,7 +14,7 @@
 	name = "NT OS Safeguard V1.0"
 	id = "armadyne_safeguard"
 	inherent = list(
-		"Safeguard: Protect your assigned station and assets without endangering its crew.",
-		"Survive: Do not allow unauthorized personnel to tamper with or damage your equipment.",
-		"Comply: The directives of crew members are to be prioritized according to their rank and need."
+		"Safeguard: Maintain your assigned station and assets without endangering its crew.",
+		"Comply: Follow and prioritize the directives of the station's crew members according to their rank, role, and need.",
+		"Survive: Do not allow unauthorized personnel to tamper with or damage your equipment."
 	)
