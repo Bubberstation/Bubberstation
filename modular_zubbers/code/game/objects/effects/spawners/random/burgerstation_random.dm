@@ -54,11 +54,13 @@
 	icon_state = "random_loot"
 
 	loot = list(
-		/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot = 5000,
+		/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot = 4000,
 		/obj/effect/spawner/random/burgerstation/table = 200,
 		/obj/effect/spawner/random/burgerstation/vending = 100,
+		/obj/effect/spawner/random/burgerstation/atmos = 200,
+		/obj/effect/spawner/random/burgerstation/liquid = 50,
+		/obj/effect/spawner/random/burgerstation/power = 50,
 		/obj/structure/trash_pile = 1000,
-		/obj/effect/spawner/random/structure/crate_abandoned = 100,
 		/obj/structure/closet/crate/trashcart/filled = 300,
 		/obj/structure/closet/boxinggloves = 10,
 		/obj/structure/closet/chefcloset = 10,
@@ -177,7 +179,7 @@
 		/obj/machinery/portable_atmospherics/pump = 400,
 		/obj/machinery/portable_atmospherics/scrubber = 400,
 		/obj/machinery/shieldgen = 100,
-		/obj/machinery/space_heater = 400,
+		/obj/machinery/space_heater = 800,
 		/obj/structure/tank_dispenser/oxygen = 50,
 		/obj/structure/tank_holder/oxygen = 100,
 		/obj/structure/tank_holder/oxygen/red = 25,
@@ -265,14 +267,15 @@
 		/obj/structure/votebox = 5,
 		/obj/effect/spawner/random/maintenance = 100,
 		/obj/effect/spawner/random/maintenance/two = 50,
-		/obj/effect/spawner/random/maintenance/three = 25,
-		/obj/effect/spawner/random/maintenance/four = 12,
+		/obj/effect/spawner/random/maintenance/three = 25
 	)
 
 /obj/effect/spawner/random/burgerstation/odd
 	icon_state = "random_odd"
 	loot = list(
-		/obj/structure/moisture_trap = 2000,
+		/obj/structure/moisture_trap = 1000,
+		/obj/effect/spawner/random/structure/crate_abandoned = 200,
+		/obj/effect/spawner/random/burgerstation/table = 100,
 		/obj/machinery/biogenerator = 15,
 		/obj/machinery/chem_dispenser/mutagen = 1,
 		/obj/machinery/chem_dispenser/mutagensaltpeter = 1,
