@@ -3786,6 +3786,10 @@
 	dir = 1
 	},
 /area/station/common/pool)
+"bxI" = (
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/upper)
 "bxL" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -6910,8 +6914,8 @@
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
 "cLC" = (
-/turf/closed/wall,
-/area/station/command)
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/upper)
 "cLD" = (
 /obj/effect/spawner/random/structure/tank_holder,
 /obj/effect/decal/cleanable/cobweb,
@@ -8008,13 +8012,13 @@
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hos)
 "diM" = (
-/obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "diO" = (
@@ -21063,11 +21067,6 @@
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/wood,
 /area/station/engineering/break_room)
-"hTH" = (
-/obj/effect/spawner/random/burgerstation/loot,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/station/maintenance/department/security/upper)
 "hTL" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/yellow/warning,
@@ -23089,7 +23088,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "iKI" = (
-/obj/effect/spawner/random/structure/grille,
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	location = "Command";
+	name = "Command"
+	},
 /turf/open/floor/plating,
 /area/station/command)
 "iKK" = (
@@ -26949,6 +26953,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
+"khz" = (
+/obj/machinery/door/window/left/directional/west{
+	name = "Command Deliveries";
+	req_access = list("command")
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/engine,
+/area/station/command)
 "khE" = (
 /obj/machinery/atmospherics/pipe/bridge_pipe/green/visible{
 	dir = 4
@@ -33609,6 +33621,7 @@
 "mBQ" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/decoration/glowstick,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/upper)
 "mBS" = (
@@ -48373,7 +48386,6 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "sck" = (
-/obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -48386,6 +48398,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
+/obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit)
 "sco" = (
@@ -55080,6 +55093,12 @@
 "uBJ" = (
 /obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/iron/dark/small,
+/area/station/command)
+"uBO" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/any/command/minisat,
+/obj/effect/mapping_helpers/airlock/autoname,
+/turf/open/floor/plating,
 /area/station/command)
 "uBU" = (
 /obj/effect/spawner/random/burgerstation/liquid,
@@ -91356,7 +91375,7 @@ pdb
 fmQ
 pdb
 pdb
-pdb
+khz
 rzN
 nHA
 mpi
@@ -91869,8 +91888,8 @@ tIV
 bFT
 the
 uBJ
-pdb
-iKI
+uBO
+bxI
 gyW
 gyW
 nBD
@@ -92384,7 +92403,7 @@ uAy
 tKi
 nAT
 bpP
-hTH
+cLC
 gyW
 mBd
 nGH
