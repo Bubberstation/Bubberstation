@@ -218,7 +218,7 @@
 
 /mob/living/carbon/Topic(href, href_list)
 	..()
-	if(href_list["embedded_object"] && usr.can_perform_action(src, NEED_DEXTERITY))
+	if(href_list["embedded_object"])
 		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
 		if(!L)
 			return
@@ -607,9 +607,6 @@
 	if(HAS_TRAIT(src, TRAIT_XRAY_VISION))
 		new_sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 
-	if(see_override)
-		set_invis_see(see_override)
-
 	if(SSmapping.level_trait(z, ZTRAIT_NOXRAY))
 		new_sight = NONE
 
@@ -927,17 +924,16 @@
 /mob/living/carbon/can_be_revived()
 	if(!get_organ_by_type(/obj/item/organ/internal/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)) || HAS_TRAIT(src, TRAIT_HUSK))
 		return FALSE
-//SKYRAT EDIT ADDITION - DNR TRAIT
-	if(HAS_TRAIT(src, TRAIT_DNR))
-		return FALSE
-//SKYRAT EDIT ADDITION END - DNR TRAIT
-
+//SKYRAT EDIT ADDITION - DNR TRAIT // BUBBER EDIT REMOVAL
+//	if(HAS_TRAIT(src, TRAIT_DNR))
+//		return FALSE
+//SKYRAT EDIT ADDITION END - DNR TRAIT // BUBBER EDIT REMOVAL
 	return ..()
 
 /mob/living/carbon/proc/can_defib()
 //SKYRAT EDIT ADDITION - DNR TRAIT
-	if(HAS_TRAIT(src, TRAIT_DNR)) //This is also added when a ghost DNR's!
-		return DEFIB_FAIL_DNR
+//	if(HAS_TRAIT(src, TRAIT_DNR)) //This is also added when a ghost DNR's! // BUBBER EDIT REMOVAL
+//		return DEFIB_FAIL_DNR
 //SKYRAT EDIT ADDITION END - DNR TRAIT
 	if (HAS_TRAIT(src, TRAIT_SUICIDED))
 		return DEFIB_FAIL_SUICIDE
