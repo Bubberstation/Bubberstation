@@ -3,7 +3,6 @@
 
 /datum/vote/map_vote/get_vote_result(list/non_voters)
 	for(var/option in choices)
-		var/choice_count = choices[option]
 		if(option in SSpersistence.restricted_maps)
 			choices[option] *= (1 - MAP_VOTE_RECENT_PENALTY)
 	. = ..()
@@ -20,9 +19,8 @@
 
 	for(var/option in choices)
 		returned_text += "\n[span_bold(option)]: [choices[option]]"
-
-	if(option in SSpersistence.restricted_maps)
-		returned_text += " ([100 - MAP_VOTE_RECENT_PENALTY*100]% from being played recently)"
+		if(option in SSpersistence.restricted_maps)
+			returned_text += " ([100 - MAP_VOTE_RECENT_PENALTY*100]% from being played recently)"
 
 	returned_text += "\n"
 	returned_text += get_winner_text(all_winners, real_winner, non_voters)

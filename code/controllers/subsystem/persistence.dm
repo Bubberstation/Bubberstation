@@ -288,7 +288,7 @@ SUBSYSTEM_DEF(persistence)
 			blocked_maps += VM.map_name
 		//BUBBERSTATION CHANGE START: Adds restricted maps.
 		else if(run >= 1)
-			restricted_maps += WM.map_name
+			restricted_maps += VM.map_name
 		//BUBBERSTATION CHANGE END: Adds restricted maps.
 
 /// Puts trophies into trophy cases.
