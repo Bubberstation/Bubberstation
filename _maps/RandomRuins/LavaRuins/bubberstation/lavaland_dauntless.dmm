@@ -530,8 +530,16 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 5
+	},
 /obj/item/trash/can{
 	pixel_x = -9
+	},
+/obj/item/pen{
+	pixel_x = -2;
+	pixel_y = 5
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -1510,7 +1518,9 @@
 /obj/effect/turf_decal/vg_decals/numbers/five{
 	dir = 8
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/engine/hull{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
 /area/lavaland/surface/outdoors)
 "jg" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
@@ -1553,7 +1563,9 @@
 /obj/effect/turf_decal/vg_decals/numbers/six{
 	dir = 8
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/engine/hull{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
 /area/lavaland/surface/outdoors)
 "jr" = (
 /obj/effect/turf_decal/trimline/purple/line{
@@ -4130,6 +4142,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/item/seeds/chili,
+/obj/item/seeds/pumpkin,
+/obj/item/seeds/coffee,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "wv" = (
@@ -5200,7 +5215,9 @@
 /obj/effect/turf_decal/vg_decals/numbers/one{
 	dir = 8
 	},
-/turf/open/floor/engine/hull,
+/turf/open/floor/engine/hull{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
 /area/lavaland/surface/outdoors)
 "Bx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
