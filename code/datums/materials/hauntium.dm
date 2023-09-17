@@ -15,8 +15,10 @@
 
 /datum/material/hauntium/on_applied_obj(obj/o, amount, material_flags)
 	. = ..()
-	o.make_haunted(INNATE_TRAIT, "#f8f8ff")
+	if(isitem(o))
+		o.AddElement(/datum/element/haunted)
 
 /datum/material/hauntium/on_removed_obj(obj/o, amount, material_flags)
 	. = ..()
-	o.remove_haunted(INNATE_TRAIT)
+	if(isitem(o))
+		o.RemoveElement(/datum/element/haunted)

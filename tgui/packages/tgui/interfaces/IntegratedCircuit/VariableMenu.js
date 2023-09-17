@@ -1,7 +1,6 @@
 import { Box, Stack, Section, Button, Input, Dropdown, Icon } from '../../components';
 import { Component } from 'inferno';
 import { shallowDiffers } from 'common/react';
-import { VARIABLE_ASSOC_LIST, VARIABLE_LIST, VARIABLE_NOT_A_LIST } from './constants';
 
 export class VariableMenu extends Component {
   constructor() {
@@ -70,7 +69,7 @@ export class VariableMenu extends Component {
                             {val.name}
                           </Box>
                         </Stack.Item>
-                        <Stack.Item>
+                        <Stack.Item minWidth="80px">
                           <Button textAlign="center" fluid color={val.color}>
                             {val.datatype}
                           </Button>
@@ -127,68 +126,42 @@ export class VariableMenu extends Component {
                   />
                 </Stack.Item>
                 <Stack.Item>
-                  <Dropdown
-                    options={types}
-                    displayText={variable_type}
-                    className="IntegratedCircuit__BlueBorder"
-                    color="black"
-                    width="100%"
-                    over
-                    onSelected={(selectedVal) =>
-                      this.setState({
-                        variable_type: selectedVal,
-                      })
-                    }
-                  />
-                </Stack.Item>
-                <Stack.Item>
                   <Stack fill>
                     <Stack.Item grow>
+                      <Dropdown
+                        options={types}
+                        displayText={variable_type}
+                        className="IntegratedCircuit__BlueBorder"
+                        color="black"
+                        width="100%"
+                        over
+                        onSelected={(selectedVal) =>
+                          this.setState({
+                            variable_type: selectedVal,
+                          })
+                        }
+                      />
+                    </Stack.Item>
+                    <Stack.Item>
                       <Button
                         height="100%"
                         color="green"
                         onClick={(e) =>
-                          onAddVariable(
-                            variable_name,
-                            variable_type,
-                            VARIABLE_NOT_A_LIST,
-                            e
-                          )
+                          onAddVariable(variable_name, variable_type, false, e)
                         }
                         fluid>
                         <IconButton icon="plus" />
                       </Button>
                     </Stack.Item>
-                    <Stack.Item grow>
+                    <Stack.Item>
                       <Button
                         height="100%"
                         color="green"
                         onClick={(e) =>
-                          onAddVariable(
-                            variable_name,
-                            variable_type,
-                            VARIABLE_LIST,
-                            e
-                          )
+                          onAddVariable(variable_name, variable_type, true, e)
                         }
                         fluid>
-                        <IconButton icon="list-ol" />
-                      </Button>
-                    </Stack.Item>
-                    <Stack.Item grow>
-                      <Button
-                        height="100%"
-                        color="green"
-                        onClick={(e) =>
-                          onAddVariable(
-                            variable_name,
-                            variable_type,
-                            VARIABLE_ASSOC_LIST,
-                            e
-                          )
-                        }
-                        fluid>
-                        <IconButton icon="table-list" />
+                        <IconButton icon="list" />
                       </Button>
                     </Stack.Item>
                   </Stack>

@@ -56,8 +56,8 @@
 	src.expiration = expiration
 
 /datum/component/anti_magic/Destroy(force, silent)
-	drain_antimagic = null
-	expiration = null
+	QDEL_NULL(drain_antimagic)
+	QDEL_NULL(expiration)
 	return ..()
 
 /datum/component/anti_magic/proc/register_antimagic_signals(datum/on_what)

@@ -18,7 +18,8 @@
 /obj/item/mecha_parts/mecha_equipment/medical/sleeper
 	name = "mounted sleeper"
 	desc = "Equipment for medical exosuits. A mounted sleeper that stabilizes patients and can inject reagents in the exosuit's reserves."
-	icon_state = "mecha_sleeper"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
 	energy_drain = 20
 	range = MECHA_MELEE
 	equip_cooldown = 20
@@ -43,7 +44,10 @@
 	)
 	return data
 
-/obj/item/mecha_parts/mecha_equipment/medical/sleeper/handle_ui_act(action, list/params)
+/obj/item/mecha_parts/mecha_equipment/medical/sleeper/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
 	switch(action)
 		if("eject")
 			go_out()
@@ -240,7 +244,8 @@
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun
 	name = "exosuit syringe gun"
 	desc = "Equipment for medical exosuits. A chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur."
-	icon_state = "mecha_syringegun"
+	icon = 'icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "syringegun"
 	range = MECHA_MELEE|MECHA_RANGED
 	equip_cooldown = 10
 	energy_drain = 10
@@ -287,14 +292,16 @@
 	return list(
 		"snowflake_id" = MECHA_SNOWFLAKE_ID_SYRINGE,
 		"mode" = mode == FIRE_SYRINGE_MODE ? "Launch" : "Analyze",
-		"mode_label" = "Action",
 		"syringe" = LAZYLEN(syringes),
 		"max_syringe" = max_syringes,
 		"reagents" = reagents.total_volume,
 		"total_reagents" = reagents.maximum_volume,
 	)
 
-/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/handle_ui_act(action, list/params)
+/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
 	if(action == "change_mode")
 		mode = !mode
 		return TRUE

@@ -16,8 +16,7 @@
 
 /obj/vehicle/sealed/car/generate_actions()
 	. = ..()
-	if(!isnull(key_type))
-		initialize_controller_action_type(/datum/action/vehicle/sealed/remove_key, VEHICLE_CONTROL_DRIVE)
+	initialize_controller_action_type(/datum/action/vehicle/sealed/remove_key, VEHICLE_CONTROL_DRIVE)
 	if(car_traits & CAN_KIDNAP)
 		initialize_controller_action_type(/datum/action/vehicle/sealed/dump_kidnapped_mobs, VEHICLE_CONTROL_DRIVE)
 
@@ -30,16 +29,15 @@
 		mob_try_forced_enter(M, kidnapped)
 	return ..()
 
-/obj/vehicle/sealed/car/mob_try_exit(mob/future_pedestrian, mob/user, silent = FALSE)
-	if(future_pedestrian != user || !(LAZYACCESS(occupants, future_pedestrian) & VEHICLE_CONTROL_KIDNAPPED))
-		mob_exit(future_pedestrian, silent)
+/obj/vehicle/sealed/car/mob_try_exit(mob/M, mob/user, silent = FALSE)
+	if(M != user || !(LAZYACCESS(occupants, M) & VEHICLE_CONTROL_KIDNAPPED))
+		mob_exit(M, silent)
 		return TRUE
-	if (escape_time > 0)
-		to_chat(user, span_notice("You push against the back of \the [src]'s trunk to try and get out."))
-		if(!do_after(user, escape_time, target = src))
-			return FALSE
+	to_chat(user, span_notice("You push against the back of \the [src]'s trunk to try and get out."))
+	if(!do_after(user, escape_time, target = src))
+		return FALSE
 	to_chat(user,span_danger("[user] gets out of [src]."))
-	mob_exit(future_pedestrian, silent)
+	mob_exit(M, silent)
 	return TRUE
 
 /obj/vehicle/sealed/car/attack_hand(mob/living/user, list/modifiers)
@@ -60,8 +58,7 @@
 	if(occupant_amount() >= max_occupants)
 		return FALSE
 	var/atom/old_loc = loc
-	var/enter_delay = get_enter_delay(kidnapped)
-	if(enter_delay == 0 || do_after(forcer, enter_delay, kidnapped, extra_checks=CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/car, is_car_stationary), old_loc)))
+	if(do_after(forcer, get_enter_delay(kidnapped), kidnapped, extra_checks=CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/car, is_car_stationary), old_loc)))
 		mob_forced_enter(kidnapped, silent)
 		return TRUE
 	return FALSE

@@ -38,7 +38,6 @@
 
 /obj/effect/abstract/particle_holder/Destroy(force)
 	QDEL_NULL(particles)
-	parent = null
 	return ..()
 
 /// Non movables don't delete contents on destroy, so we gotta do this

@@ -16,8 +16,8 @@
 
 /datum/status_effect/ghoul/Destroy()
 	master_mind = null
-	on_made_callback = null
-	on_lost_callback = null
+	QDEL_NULL(on_made_callback)
+	QDEL_NULL(on_lost_callback)
 	return ..()
 
 /datum/status_effect/ghoul/on_creation(

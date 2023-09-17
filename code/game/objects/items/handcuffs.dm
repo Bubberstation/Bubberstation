@@ -608,6 +608,3 @@
 	. = ..()
 	if(effectReference)
 		QDEL_NULL(effectReference)
-
-#undef HANDCUFFS_TYPE_WEAK
-#undef HANDCUFFS_TYPE_STRONG

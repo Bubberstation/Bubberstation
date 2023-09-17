@@ -460,7 +460,7 @@
 	begin_month = AUGUST
 	begin_day = 24
 
-/datum/holiday/ukraine/getStationPrefix()
+/datum/holiday/indigenous/getStationPrefix()
 	return pick("Kyiv", "Ukraine")
 
 // SEPTEMBER

@@ -11,7 +11,7 @@
 	speak_emote = list("telepathically cries")
 	speed = 2
 	move_to_delay = 2
-	projectiletype = /obj/projectile/temp/ice_demon
+	projectiletype = /obj/projectile/temp/basilisk/ice
 	projectilesound = 'sound/weapons/pierce.ogg'
 	ranged = TRUE
 	ranged_message = "manifests ice"
@@ -47,16 +47,12 @@
 	. = ..()
 	AddElement(/datum/element/simple_flying)
 
-/obj/projectile/temp/ice_demon
+/obj/projectile/temp/basilisk/ice
 	name = "ice blast"
-	icon_state = "ice_2"
 	damage = 5
-	damage_type = BURN
-	armor_flag = ENERGY
-	speed = 1
-	pixel_speed_multiplier = 0.25
 	range = 200
 	temperature = -75
+	slowdown = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/ice_demon/OpenFire()
 	ranged_cooldown = world.time + ranged_cooldown_time

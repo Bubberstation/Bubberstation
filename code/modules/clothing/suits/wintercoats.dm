@@ -384,10 +384,7 @@
 
 /obj/item/clothing/suit/hooded/wintercoat/medical/coroner/Initialize(mapload)
 	. = ..()
-	allowed += list(
-		/obj/item/autopsy_scanner,
-		/obj/item/scythe,
-	)
+	allowed += /obj/item/autopsy_scanner
 
 /obj/item/clothing/head/hooded/winterhood/medical/coroner
 	desc = "A white winter coat hood."

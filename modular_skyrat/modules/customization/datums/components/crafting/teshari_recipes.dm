@@ -1,16 +1,11 @@
-/datum/crafting_recipe/food/reaction/piru_dough
-	reaction = /datum/chemical_reaction/food/piru_dough
-	result = /obj/item/food/piru_dough
-	category = CAT_TESHARI
-
-/datum/chemical_reaction/food/piru_dough
-	required_reagents = list(
+/datum/crafting_recipe/food/piru_dough
+	name = "Piru dough"
+	reqs = list(
 		/datum/reagent/consumable/piru_flour = 15,
 		/datum/reagent/consumable/muli_juice = 10,
 	)
-	mix_message = "The ingredients form a dough."
-	reaction_flags = REACTION_INSTANT
-	resulting_food_path = /obj/item/food/piru_dough
+	result = /obj/item/food/piru_dough
+	category = CAT_TESHARI
 
 /datum/crafting_recipe/food/spiced_jerky
 	name = "Spiced Jerky"

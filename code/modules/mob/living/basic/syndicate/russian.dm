@@ -32,7 +32,7 @@
 
 /mob/living/basic/syndicate/russian/ranged/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ranged_attacks, casing_type = casingtype, projectile_sound = projectilesound, cooldown_time = 1 SECONDS)
+	AddElement(/datum/element/ranged_attacks, casingtype, projectilesound)
 
 /mob/living/basic/syndicate/russian/ranged/lootless
 	loot = list()

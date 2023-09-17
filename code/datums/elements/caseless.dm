@@ -8,7 +8,7 @@
 	argument_hash_start_idx = 2
 	var/reusable = FALSE
 
-/datum/element/caseless/Attach(datum/target, reusable = FALSE)
+/datum/element/caseless/Attach(datum/target, reusable)
 	. = ..()
 	if(!isammocasing(target))
 		return ELEMENT_INCOMPATIBLE
@@ -17,8 +17,9 @@
 
 /datum/element/caseless/proc/on_fired_casing(obj/item/ammo_casing/shell, atom/target, mob/living/user, fired_from, randomspread, spread, zone_override, params, distro, obj/projectile/proj)
 	SIGNAL_HANDLER
-	if(isnull(proj))
+	if(!proj)
 		return
+
 	if(reusable)
 		proj.AddElement(/datum/element/projectile_drop, shell.type)
 
@@ -26,4 +27,4 @@
 		var/obj/item/gun/shot_from = fired_from
 		if(shot_from.chambered == shell)
 			shot_from.chambered = null //Nuke it. Nuke it now.
-	QDEL_NULL(shell)
+	qdel(shell)

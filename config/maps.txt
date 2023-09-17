@@ -13,11 +13,15 @@ Format:
 	votable (is this map votable)
 endmap
 
-# Production-level maps.
-
 map birdshot
 	#default
 	maxplayers 66
+	votable
+endmap
+
+map metastation
+	minplayers 25
+	#voteweight 0.5
 	votable
 endmap
 
@@ -29,10 +33,8 @@ map icebox
 	votable
 endmap
 
-map metastation
-	minplayers 25
-	#voteweight 0.5
-	votable
+map tramstation
+	minplayers 35
 endmap
 
 map northstar
@@ -40,20 +42,11 @@ map northstar
 	votable
 endmap
 
-map tramstation
-	minplayers 35
-	votable
-endmap
 
-# Debug-only maps.
-
-map gateway_test
+map runtimestation
 endmap
 
 map multiz_debug
-endmap
-
-map runtimestation
 endmap
 
 ##SKYRAT MAPS##

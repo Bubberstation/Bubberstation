@@ -5,7 +5,6 @@
 /client/Destroy()
 	if(GLOB.mentors[src])
 		GLOB.mentors -= src
-
 	return ..()
 
 /client/proc/mentor_client_procs(href_list)
@@ -30,20 +29,17 @@
 			mentor_unfollow()
 		return TRUE
 
-/client/proc/mentor_datum_set()
+/client/proc/mentor_datum_set(admin)
 	mentor_datum = GLOB.mentor_datums[ckey]
-	if(!mentor_datum && is_admin(src)) // admin with no mentor datum? let's fix that
+	if(!mentor_datum && check_rights_for(src, R_ADMIN,0)) // admin with no mentor datum?let's fix that
 		new /datum/mentors(ckey)
-
 	if(mentor_datum)
 		mentor_datum.owner = src
 		GLOB.mentors[src] = TRUE
 		add_mentor_verbs()
-
-		if(check_rights_for(src, R_ADMIN) && prefs.read_preference(/datum/preference/toggle/admin/auto_dementor))
+		if(check_rights_for(src, R_ADMIN,0) && prefs.read_preference(/datum/preference/toggle/admin/auto_dementor))
 			cmd_mentor_dementor()
 
-
 /client/proc/is_mentor() // admins are mentors too.
-	if(mentor_datum || check_rights_for(src, R_ADMIN))
+	if(mentor_datum || check_rights_for(src, R_ADMIN,0))
 		return TRUE

@@ -58,7 +58,7 @@
 		deltimer(burn_timer)
 		burn_timer = null
 	if(burn_callback)
-		burn_callback = null
+		QDEL_NULL(burn_callback)
 	if(fakefire)
 		QDEL_NULL(fakefire)
 	return ..()

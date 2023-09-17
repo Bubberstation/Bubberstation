@@ -9,6 +9,7 @@
 	mob_biotypes = MOB_SPIRIT
 	maxHealth = 40
 	health = 40
+	healable = 0
 	speak_emote = list("hisses")
 	emote_hear = list("wails.","screeches.")
 	response_help_continuous = "puts their hand through"

@@ -86,7 +86,7 @@
 
 /atom/movable/screen/escape_menu/home_button/Destroy()
 	escape_menu = null
-	on_click_callback = null
+	QDEL_NULL(on_click_callback)
 
 	return ..()
 

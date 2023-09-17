@@ -16,36 +16,13 @@ function SS13.istype(thing, type)
 end
 
 function SS13.new(type, ...)
-	local datum = SS13.new_untracked(type, table.unpack({...}))
+	local datum = dm.global_proc("_new", type, { ... })
 	if datum then
 		local references = SS13.state.vars.references
 		references:add(datum)
 		SS13.state:call_proc("clear_on_delete", datum)
 		return datum
 	end
-end
-
-function SS13.type(string_type)
-	return dm.global_proc("_text2path", string_type)
-end
-
-function SS13.qdel(datum)
-	if SS13.is_valid(datum) then
-		dm.global_proc("qdel", datum)
-		return true
-	end
-	return false
-end
-
-function SS13.new_untracked(type, ...)
-	return dm.global_proc("_new", type, { ... })
-end
-
-function SS13.is_valid(datum)
-	if datum and not datum:is_null() and not datum:get_var("gc_destroyed") then
-		return true
-	end
-	return false
 end
 
 function SS13.await(thing_to_call, proc_to_call, ...)
@@ -61,7 +38,7 @@ function SS13.await(thing_to_call, proc_to_call, ...)
 		sleep()
 	end
 	local return_value, runtime_message = promise_vars.return_value, promise_vars.runtime_message
-	SS13.stop_tracking(promise)
+	dm.global_proc("qdel", promise)
 	return return_value, runtime_message
 end
 
@@ -70,7 +47,7 @@ function SS13.wait(time, timer)
 	local timedevent = dm.global_proc("_addtimer", callback, time * 10, 8, timer, debug.info(1, "sl"))
 	coroutine.yield()
 	dm.global_proc("deltimer", timedevent, timer)
-	SS13.stop_tracking(callback)
+	dm.global_proc("qdel", callback)
 end
 
 function SS13.register_signal(datum, signal, func, make_easy_clear_function)
@@ -100,7 +77,7 @@ function SS13.register_signal(datum, signal, func, make_easy_clear_function)
 		SS13.signal_handlers[datum]["_cleanup"] = {
 			func = function(datum)
 				SS13.signal_handler_cleanup(datum)
-				SS13.stop_tracking(cleanup_callback)
+				dm.global_proc("qdel", cleanup_callback)
 			end,
 			callback = cleanup_callback,
 		}
@@ -131,10 +108,6 @@ function SS13.register_signal(datum, signal, func, make_easy_clear_function)
 	return callback
 end
 
-function SS13.stop_tracking(datum)
-	SS13.state:call_proc("let_soft_delete", datum)
-end
-
 function SS13.unregister_signal(datum, signal, callback)
 	local function clear_handler(handler_info)
 		if not handler_info then
@@ -145,7 +118,7 @@ function SS13.unregister_signal(datum, signal, callback)
 		end
 		local handler_callback = handler_info.callback
 		handler_callback:call_proc("UnregisterSignal", datum, signal)
-		SS13.stop_tracking(handler_callback)
+		dm.global_proc("qdel", handler_callback)
 	end
 
 	if not SS13.signal_handlers then
@@ -207,7 +180,7 @@ function SS13.set_timeout(time, func, timer)
 	SS13.timeouts[callback] = function()
 		SS13.timeouts[callback] = nil
 		dm.global_proc("deltimer", timedevent, timer)
-		SS13.stop_tracking(callback)
+		dm.global_proc("qdel", callback)
 		func()
 	end
 	local path = { "SS13", "timeouts", dm.global_proc("WEAKREF", callback) }

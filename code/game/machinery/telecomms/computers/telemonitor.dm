@@ -98,7 +98,6 @@
 			screen = MAIN_VIEW
 			return TRUE
 	return TRUE
-
 /obj/machinery/computer/telecomms/monitor/attackby()
 	. = ..()
 	updateUsrDialog()

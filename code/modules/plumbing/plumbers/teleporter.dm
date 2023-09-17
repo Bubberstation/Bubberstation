@@ -4,6 +4,8 @@
 	desc = "A bluespace anchor for chemicals. Does not require power. Use a multitool linked to a Chemical Recipient on this machine to start teleporting reagents."
 	icon_state = "beacon"
 	density = FALSE
+	///category for plumbing RCD
+	category="Distribution"
 
 	///whoever we teleport our chems to
 	var/obj/machinery/plumbing/receiver/target = null
@@ -72,7 +74,7 @@
 		return
 
 	var/obj/item/multitool/M = I
-	M.set_buffer(src)
+	M.buffer = src
 	to_chat(user, span_notice("You store linkage information in [I]'s buffer."))
 	return TRUE
 

@@ -548,5 +548,3 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
 #undef LINE2_X
 #undef LINE2_Y
 #undef STATUS_DISPLAY_FONT_DATUM
-
-#undef SCROLL_PADDING

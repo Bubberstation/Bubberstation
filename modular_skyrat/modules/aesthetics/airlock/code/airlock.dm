@@ -131,12 +131,11 @@
 		pre_light_range = door_light_range
 		pre_light_power = door_light_power
 		if(has_environment_lights)
-			set_light(l_range = pre_light_range, l_power = pre_light_power, l_color = pre_light_color, l_on = TRUE)
+			set_light(pre_light_range, pre_light_power, pre_light_color, TRUE)
 			if(multi_tile)
-				filler.set_light(l_range = pre_light_range, l_power = pre_light_power, l_color = pre_light_color, l_on = TRUE)
+				filler.set_light(pre_light_range, pre_light_power, pre_light_color)
 	else
 		lights_overlay = ""
-		set_light(l_on = FALSE)
 
 	var/mutable_appearance/lights_appearance = mutable_appearance(overlays_file, lights_overlay, FLOAT_LAYER, src, ABOVE_LIGHTING_PLANE)
 
@@ -383,20 +382,11 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/highsec/highsec.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/highsec/overlays.dmi'
 
-//MULTI-TILE
-
-/obj/machinery/door/airlock/multi_tile
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/glass.dmi'
-	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/glass_overlays.dmi'
-	bound_width = 64
-
-/obj/machinery/door/airlock/multi_tile/glass
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/glass.dmi'
-	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/glass_overlays.dmi'
-
-/obj/machinery/door/airlock/multi_tile/metal
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
-	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/metal_overlays.dmi'
+//GLASS
+/obj/machinery/door/airlock/glass_large
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/multi_tile.dmi'
+	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/multi_tile/overlays.dmi'
+	multi_tile = TRUE
 
 //ASSEMBLYS
 /obj/structure/door_assembly/door_assembly_public

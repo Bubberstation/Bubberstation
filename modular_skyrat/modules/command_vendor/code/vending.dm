@@ -38,7 +38,6 @@
 		/obj/item/storage/backpack/captain = 1,
 		/obj/item/storage/backpack/satchel/cap = 1,
 		/obj/item/storage/backpack/duffelbag/captain = 1,
-		/obj/item/storage/backpack/messenger/cap = 1,
 		/obj/item/clothing/shoes/sneakers/brown = 1,
 
 		// BLUESHIELD
@@ -54,7 +53,6 @@
 		/obj/item/storage/backpack/blueshield = 1,
 		/obj/item/storage/backpack/satchel/blueshield = 1,
 		/obj/item/storage/backpack/duffelbag/blueshield = 1,
-		/obj/item/storage/backpack/messenger/blueshield = 1,
 		/obj/item/clothing/shoes/laceup = 1,
 	)
 	access_lists["[ACCESS_HOP]"] = list( // Best head btw
@@ -75,7 +73,6 @@
 		/obj/item/storage/backpack/head_of_personnel = 1,
 		/obj/item/storage/backpack/satchel/head_of_personnel = 1,
 		/obj/item/storage/backpack/duffelbag/head_of_personnel = 1,
-		/obj/item/storage/backpack/messenger/head_of_personnel = 1,
 		/obj/item/clothing/shoes/sneakers/brown = 1,
 	)
 	access_lists["[ACCESS_CMO]"] = list(

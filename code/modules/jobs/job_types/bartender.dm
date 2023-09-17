@@ -48,8 +48,7 @@
 	jobtype = /datum/job/bartender
 
 	id_trim = /datum/id_trim/job/bartender
-	neck = /obj/item/clothing/neck/bowtie
-	uniform = /obj/item/clothing/under/costume/buttondown/slacks/service
+	uniform = /obj/item/clothing/under/rank/civilian/bartender
 	suit = /obj/item/clothing/suit/armor/vest
 	backpack_contents = list(
 		/obj/item/storage/box/beanbag = 1,

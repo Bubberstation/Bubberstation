@@ -63,10 +63,14 @@
 	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_SECONDARY)
 
 /datum/component/tippable/Destroy()
-	pre_tipped_callback = null
-	post_tipped_callback = null
-	post_untipped_callback = null
-	roleplay_callback = null
+	if(pre_tipped_callback)
+		QDEL_NULL(pre_tipped_callback)
+	if(post_tipped_callback)
+		QDEL_NULL(post_tipped_callback)
+	if(post_untipped_callback)
+		QDEL_NULL(post_untipped_callback)
+	if(roleplay_callback)
+		QDEL_NULL(roleplay_callback)
 	return ..()
 
 /**

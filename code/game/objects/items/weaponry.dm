@@ -581,7 +581,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	gender = PLURAL
 	icon = 'icons/effects/magic.dmi'
 	icon_state = "ectoplasm"
-	grind_results = list(/datum/reagent/hauntium = 25) //can be ground into hauntium
 
 /obj/item/ectoplasm/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is inhaling [src]! It looks like [user.p_theyre()] trying to visit the astral plane!"))
@@ -832,8 +831,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	inhand_icon_state = "baseball_bat_metal"
 	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3.5)
 	resistance_flags = NONE
-	force = 20
-	throwforce = 20
+	force = 12
+	throwforce = 15
 	mob_thrower = TRUE
 	block_sound = 'sound/weapons/effects/batreflect.ogg'
 
@@ -867,13 +866,13 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		/mob/living/basic/ant,
 		/mob/living/basic/butterfly,
 		/mob/living/basic/cockroach,
-		/mob/living/basic/spider/growing/spiderling,
+		/mob/living/basic/spiderling,
 		/mob/living/basic/bee,
 		/obj/effect/decal/cleanable/ants,
 		/obj/item/queen_bee,
 	))
 	strong_against = typecacheof(list(
-		/mob/living/basic/spider/giant,
+		/mob/living/basic/giant_spider,
 	))
 
 

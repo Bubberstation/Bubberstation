@@ -1,7 +1,6 @@
 /**
  * Attached to a mob with an AI controller, passes things which have damaged it to a blackboard.
  * The AI controller is responsible for doing anything with that information.
- * Differs from the element as it passes new entries through a callback.
  */
 /datum/component/ai_retaliate_advanced
 	/// Callback to a mob for custom behaviour
@@ -13,12 +12,6 @@
 
 	src.post_retaliate_callback = post_retaliate_callback
 	parent.AddElement(/datum/element/relay_attackers)
-
-	ADD_TRAIT(parent, TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM, type)
-
-/datum/component/ai_retaliate_advanced/Destroy(force, silent)
-	post_retaliate_callback = null
-	return ..()
 
 /datum/component/ai_retaliate_advanced/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))

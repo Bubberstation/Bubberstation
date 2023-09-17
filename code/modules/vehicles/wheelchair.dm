@@ -30,6 +30,7 @@
 	if(!bell_attached)
 		return
 	initialize_controller_action_type(/datum/action/vehicle/ridden/wheelchair/bell, VEHICLE_CONTROL_DRIVE)
+	AddElement(/datum/element/noisy_movement, volume = 75)
 
 /obj/vehicle/ridden/wheelchair/Initialize(mapload)
 	. = ..()
@@ -37,7 +38,6 @@
 	wheels_overlay = image(icon, overlay_icon, ABOVE_MOB_LAYER)
 	ADD_TRAIT(src, TRAIT_NO_IMMOBILIZE, INNATE_TRAIT)
 	AddComponent(/datum/component/simple_rotation) //Since it's technically a chair I want it to have chair properties
-	AddElement(/datum/element/noisy_movement, volume = 75)
 
 /obj/vehicle/ridden/wheelchair/atom_destruction(damage_flag)
 	new /obj/item/stack/rods(drop_location(), 1)

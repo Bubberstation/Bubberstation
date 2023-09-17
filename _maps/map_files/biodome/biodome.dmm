@@ -2958,6 +2958,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/effect/spawner/random/trash/graffiti{
+	spawn_loot_chance = 35;
+	spawn_loot_count = 3
+	},
 /turf/open/floor/wood/large,
 /area/station/service/janitor)
 "aYY" = (
@@ -3948,7 +3952,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "brP" = (
-/mob/living/basic/mining/goldgrub,
+/mob/living/simple_animal/hostile/asteroid/goldgrub,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
 "brQ" = (
@@ -4567,9 +4571,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/window/brigdoor/security/cell{
-	dir = 1;
 	id = "Cell 1";
-	name = "Cell 1"
+	name = "Cell 1";
+	dir = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/end{
 	dir = 1
@@ -11965,7 +11969,7 @@
 /turf/open/openspace,
 /area/station/biodome/aft)
 "eer" = (
-/mob/living/basic/spider/giant/hunter/flesh,
+/mob/living/basic/giant_spider/hunter/flesh,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
 "eeu" = (
@@ -13094,6 +13098,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hos)
+"eBu" = (
+/obj/structure/lattice,
+/turf/closed/wall,
+/area/station/cargo/miningdock)
 "eBy" = (
 /obj/machinery/flasher/directional/east{
 	id = "brigentry"
@@ -13193,10 +13201,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/station/biodome/fore)
-"eDH" = (
-/obj/structure/girder,
-/turf/open/water/jungle/biodome,
-/area/station/biodome/aft)
 "eDM" = (
 /obj/structure/chess/blackknight,
 /obj/effect/turf_decal/tile/blue/fourcorners,
@@ -16848,7 +16852,7 @@
 /area/station/maintenance/central/greater)
 "fOu" = (
 /obj/structure/girder,
-/turf/open/water/jungle/biodome,
+/turf/open/floor/plating,
 /area/station/biodome)
 "fOw" = (
 /obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
@@ -16967,9 +16971,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/window/brigdoor/security/cell{
-	dir = 1;
 	id = "Cell 3";
-	name = "Cell 3"
+	name = "Cell 3";
+	dir = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/end{
 	dir = 1
@@ -18515,6 +18519,10 @@
 /obj/effect/spawner/random/entertainment/cigarette_pack,
 /turf/open/floor/iron/grimy,
 /area/station/hallway/secondary/entry)
+"gsa" = (
+/mob/living/simple_animal/hostile/blob/blobspore/independent,
+/turf/open/misc/dirt/jungle/wasteland,
+/area/station/maintenance/central/greater)
 "gsc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -18832,10 +18840,9 @@
 /obj/structure/industrial_lift/tram{
 	icon_state = "titanium"
 	},
-/obj/effect/landmark/tram/platform/boat/aft,
+/obj/effect/landmark/tram/boat/aft,
 /obj/machinery/computer/tram_controls/boat,
-/obj/structure/table/wood/fancy/black,
-/obj/effect/landmark/tram/nav/boat/main,
+/obj/effect/landmark/lift_id/boat,
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
 "gxh" = (
@@ -19099,8 +19106,8 @@
 /obj/machinery/button/door/directional/north{
 	id = "teleportershutters";
 	name = "Teleporter Shutters";
-	pixel_y = -24;
-	req_access = list("command")
+	req_access = list("command");
+	pixel_y = -24
 	},
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
@@ -24297,7 +24304,7 @@
 /turf/open/floor/wood/large,
 /area/station/service/kitchen/diner)
 "izf" = (
-/obj/effect/landmark/tram/platform/boat/fore,
+/obj/effect/landmark/tram/boat/fore,
 /turf/open/water/jungle/biodome,
 /area/station/biodome/fore)
 "izy" = (
@@ -25462,7 +25469,7 @@
 	},
 /area/station/command/heads_quarters/cmo)
 "iXz" = (
-/obj/effect/landmark/tram/platform/boat/middle,
+/obj/effect/landmark/tram/boat/middle,
 /turf/open/water/jungle/biodome,
 /area/station/biodome)
 "iXJ" = (
@@ -26056,6 +26063,16 @@
 /obj/item/clothing/head/cone,
 /turf/open/misc/beach/sand,
 /area/station/maintenance/radshelter/civil)
+"jhq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/spawner/random/trash/graffiti{
+	spawn_loot_chance = 35;
+	spawn_loot_count = 3
+	},
+/turf/open/floor/wood/large,
+/area/station/service/janitor)
 "jhv" = (
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating/airless,
@@ -28047,8 +28064,8 @@
 	dir = 9
 	},
 /obj/machinery/computer/shuttle/mining{
-	dir = 8;
-	req_access = null
+	req_access = null;
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/cargo/miningdock)
@@ -28551,6 +28568,10 @@
 "kbF" = (
 /turf/open/floor/bamboo/tatami,
 /area/station/commons/lounge)
+"kbR" = (
+/mob/living/simple_animal/hostile/blob/blobspore/independent,
+/turf/open/floor/plating/reinforced,
+/area/station/maintenance/central/greater)
 "kbT" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/purple,
@@ -33341,6 +33362,7 @@
 /area/station/commons/lounge)
 "lCn" = (
 /obj/machinery/airalarm/directional/east,
+/obj/structure/table,
 /obj/item/flashlight/lamp/green,
 /obj/structure/table,
 /turf/open/floor/wood/large,
@@ -35393,9 +35415,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/window/brigdoor/security/cell{
-	dir = 1;
 	id = "Cell 2";
-	name = "Cell 2"
+	name = "Cell 2";
+	dir = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/end{
 	dir = 1
@@ -36673,6 +36695,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/commons/locker)
+"mIE" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/space/openspace,
+/area/space/nearstation)
 "mIF" = (
 /obj/structure/cable,
 /obj/effect/spawner/random/trash/food_packaging,
@@ -39420,6 +39448,7 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/engineering/atmos/mix)
 "nEB" = (
+/mob/living/basic/amoung,
 /turf/open/misc/asteroid,
 /area/station/maintenance/central/greater)
 "nEO" = (
@@ -42027,6 +42056,10 @@
 /turf/open/floor/engine/co2,
 /area/station/engineering/atmos)
 "oyh" = (
+/obj/effect/spawner/random/trash/graffiti{
+	spawn_loot_chance = 35;
+	spawn_loot_count = 3
+	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
@@ -42256,6 +42289,7 @@
 /area/station/maintenance/port/greater)
 "oBb" = (
 /obj/structure/table/reinforced,
+/obj/item/computer_disk/atmos,
 /obj/item/computer_disk/engineering,
 /obj/item/computer_disk/engineering,
 /obj/item/computer_disk/engineering,
@@ -42665,8 +42699,8 @@
 	},
 /obj/machinery/button/door/directional/east{
 	id = "rdoffice";
-	name = "Privacy Control";
-	req_access = list("rd")
+	req_access = list("rd");
+	name = "Privacy Control"
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
@@ -45009,7 +45043,7 @@
 /area/station/engineering/atmos)
 "pAM" = (
 /obj/structure/spider/stickyweb,
-/mob/living/basic/spider/giant/hunter/flesh,
+/mob/living/basic/giant_spider/hunter/flesh,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
 "pAP" = (
@@ -47533,7 +47567,7 @@
 "qvR" = (
 /obj/structure/girder,
 /obj/machinery/button/tram/boat/middle,
-/turf/open/water/jungle/biodome,
+/turf/open/floor/plating,
 /area/station/biodome)
 "qvT" = (
 /obj/effect/turf_decal/delivery,
@@ -47842,6 +47876,7 @@
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/blob/blobspore/independent,
 /obj/item/shard,
 /turf/open/floor/plating/reinforced,
 /area/station/maintenance/central/greater)
@@ -50966,6 +51001,10 @@
 /obj/item/canvas/twentythree_nineteen,
 /turf/open/floor/wood/large,
 /area/station/service/library/lounge)
+"rBp" = (
+/obj/structure/lattice,
+/turf/closed/mineral/random/stationside/asteroid/porus,
+/area/station/asteroid)
 "rBr" = (
 /obj/structure/table,
 /obj/item/stamp/head/qm,
@@ -53704,9 +53743,10 @@
 /obj/structure/industrial_lift/tram{
 	icon_state = "titanium"
 	},
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/chair/sofa/bench/tram/solo{
 	dir = 1
 	},
+/obj/structure/deployable_barricade/metal,
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
 "sBf" = (
@@ -57241,6 +57281,12 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/qm)
+"tLA" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/purple,
+/turf/open/space/openspace,
+/area/space/nearstation)
 "tLI" = (
 /obj/structure/disposalpipe/trunk,
 /turf/closed/wall,
@@ -65403,8 +65449,10 @@
 /obj/structure/industrial_lift/tram{
 	icon_state = "titanium"
 	},
-/obj/structure/chair/comfy/shuttle,
-/obj/effect/landmark/lift_id/boat,
+/obj/structure/chair/sofa/bench/tram/solo,
+/obj/structure/deployable_barricade/metal{
+	dir = 1
+	},
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
 "wEe" = (
@@ -70248,11 +70296,6 @@
 "ylL" = (
 /turf/open/floor/carpet/royalblack,
 /area/station/service/library)
-"ylP" = (
-/obj/effect/turf_decal/weather/dirt,
-/obj/structure/girder,
-/turf/open/water/jungle/biodome,
-/area/station/biodome/aft)
 
 (1,1,1) = {"
 cCZ
@@ -108984,7 +109027,7 @@ ugl
 dSY
 vDl
 rrp
-rrp
+gsa
 bHm
 bHm
 bSh
@@ -109497,7 +109540,7 @@ rji
 nRY
 tlk
 aFW
-rrp
+gsa
 bjh
 bHm
 bSh
@@ -110005,7 +110048,7 @@ oAe
 bSh
 ghk
 wSk
-wSk
+kbR
 oAe
 txT
 rGK
@@ -111262,9 +111305,9 @@ pnf
 pnf
 pnf
 pnf
-eDH
+wtu
 qzf
-ylP
+wtu
 eXH
 loN
 qwT
@@ -117442,7 +117485,7 @@ vCB
 xQh
 hNy
 hNy
-hNy
+rBp
 kPb
 fDK
 mfd
@@ -117698,8 +117741,8 @@ tbV
 tbV
 tbV
 tbV
-tbV
-tbV
+eBu
+eBu
 kPb
 tDE
 pZt
@@ -163623,7 +163666,7 @@ oIv
 rRv
 rRv
 dUQ
-iji
+tLA
 fxf
 fxf
 iji
@@ -174455,7 +174498,7 @@ pGm
 sZD
 sZD
 sZD
-eqB
+jhq
 tpZ
 iUC
 lyr
@@ -186378,7 +186421,7 @@ cvk
 lgw
 lgw
 lgw
-dUQ
+mIE
 hHc
 hHc
 hHc

@@ -19,8 +19,7 @@
 	if(evidencebagEquip(I, user))
 		return 1
 
-/obj/item/evidencebag/Exited(atom/movable/gone, direction)
-	. = ..()
+/obj/item/evidencebag/handle_atom_del(atom/A)
 	cut_overlays()
 	w_class = initial(w_class)
 	icon_state = initial(icon_state)
@@ -57,11 +56,8 @@
 	if(!isturf(I.loc)) //If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
 		if(I.loc.atom_storage) //in a container.
 			I.loc.atom_storage.remove_single(user, I, src)
-		if(!user.is_holding(I) || HAS_TRAIT(I, TRAIT_NODROP))
+		if(!user.dropItemToGround(I))
 			return
-
-	if(QDELETED(I))
-		return
 
 	user.visible_message(span_notice("[user] puts [I] into [src]."), span_notice("You put [I] inside [src]."),\
 	span_hear("You hear a rustle as someone puts something into a plastic bag."))

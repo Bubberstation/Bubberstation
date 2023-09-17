@@ -988,7 +988,7 @@
 /area/station/engineering/atmos/pumproom)
 "aoB" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Entertainment Center"
 	},
 /turf/open/floor/iron/large,
@@ -7079,7 +7079,7 @@
 	},
 /area/station/hallway/primary/central/aft)
 "cgl" = (
-/mob/living/basic/spider/giant/hunter/scrawny,
+/mob/living/basic/giant_spider/hunter/scrawny,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/electrical)
 "cgt" = (
@@ -11510,7 +11510,7 @@
 /turf/open/floor/iron/white/diagonal,
 /area/station/science/research)
 "dxr" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Arrivals"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -15824,15 +15824,10 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/secondary/service)
 "eEi" = (
+/obj/structure/closet/secure_closet/smartgun,
 /obj/effect/turf_decal/tile/dark_red/anticorner,
 /obj/structure/sign/poster/official/twelve_gauge/directional/east,
 /obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/storage/box/teargas{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/item/gun/grenadelauncher,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "eEp" = (
@@ -17403,7 +17398,7 @@
 /area/station/engineering/atmos/storage)
 "fbk" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/basic/spider/giant/tarantula/scrawny,
+/mob/living/basic/giant_spider/tarantula/scrawny,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/electrical)
 "fbl" = (
@@ -21477,7 +21472,7 @@
 /area/station/maintenance/port/greater)
 "gmL" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Recreation Area"
 	},
 /obj/structure/disposalpipe/segment,
@@ -21689,11 +21684,11 @@
 /area/station/medical/medbay/central)
 "gra" = (
 /obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/microfusion,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/spawner/random/armory/e_gun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "grg" = (
@@ -22652,12 +22647,12 @@
 /area/station/ai_monitored/turret_protected/ai_upload)
 "gEO" = (
 /obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/cmg,
 /obj/effect/turf_decal/tile/dark_red/anticorner{
 	dir = 4
 	},
 /obj/structure/sign/poster/official/ion_rifle/directional/east,
 /obj/effect/turf_decal/delivery,
-/obj/effect/spawner/random/armory/laser_gun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "gEV" = (
@@ -25679,7 +25674,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Medbay"
 	},
 /obj/structure/disposalpipe/segment,
@@ -26945,7 +26940,7 @@
 /area/station/cargo/miningdock)
 "hQx" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Arrivals"
 	},
@@ -29289,7 +29284,7 @@
 /area/station/maintenance/aft/upper)
 "ixm" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Pool"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -35510,6 +35505,7 @@
 /area/station/commons/lounge)
 "kjG" = (
 /obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/shotguns,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},
@@ -35518,7 +35514,6 @@
 /obj/machinery/digital_clock/directional/north{
 	pixel_y = 37
 	},
-/obj/effect/spawner/random/armory/shotgun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "kjL" = (
@@ -43874,7 +43869,7 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/solars/port/aft)
 "myv" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Cargo Lobby"
 	},
 /obj/machinery/door/firedoor,
@@ -45436,7 +45431,7 @@
 /area/station/hallway/primary/aft)
 "mUU" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Gun Range"
 	},
@@ -52467,7 +52462,7 @@
 	},
 /area/station/engineering/main)
 "oTc" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Cargo Lobby"
 	},
@@ -52698,7 +52693,7 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/port/aft)
 "oVP" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Recreation Area"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -53234,7 +53229,7 @@
 /area/station/commons/dorms)
 "pcK" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Entertainment Center"
 	},
@@ -56000,7 +55995,7 @@
 	},
 /area/station/medical/virology)
 "pRr" = (
-/mob/living/basic/spider/giant/hunter/scrawny,
+/mob/living/basic/giant_spider/hunter/scrawny,
 /obj/machinery/light/small/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/status_display/ai/directional/south,
@@ -56135,7 +56130,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Library"
 	},
@@ -56955,7 +56950,7 @@
 "qbl" = (
 /obj/effect/turf_decal/siding/thinplating,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Arrivals"
 	},
@@ -62925,7 +62920,7 @@
 /turf/open/floor/iron/freezer,
 /area/station/medical/chemistry)
 "rLK" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Recreation Area"
 	},
 /obj/machinery/door/firedoor,
@@ -71121,7 +71116,7 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/electrical)
 "tWY" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	name = "Primary Tool Storage"
 	},
 /obj/machinery/door/firedoor,
@@ -78737,7 +78732,7 @@
 /area/station/hallway/primary/fore)
 "wbx" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Arrivals"
 	},
@@ -81874,7 +81869,7 @@
 /area/station/ai_monitored/command/storage/eva)
 "wUC" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/public/glass{
+/obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	name = "Game Room"
 	},
@@ -84443,7 +84438,7 @@
 /area/station/hallway/primary/central)
 "xKx" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/basic/spider/giant/hunter/scrawny,
+/mob/living/basic/giant_spider/hunter/scrawny,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/electrical)

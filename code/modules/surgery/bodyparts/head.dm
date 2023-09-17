@@ -93,7 +93,7 @@
 	var/datum/worn_feature_offset/worn_face_offset
 
 /obj/item/bodypart/head/Destroy()
-	QDEL_NULL(brainmob) //order is sensitive, see warning in Exited() below
+	QDEL_NULL(brainmob) //order is sensitive, see warning in handle_atom_del() below
 	QDEL_NULL(brain)
 	QDEL_NULL(eyes)
 	QDEL_NULL(ears)
@@ -106,21 +106,21 @@
 	QDEL_NULL(worn_face_offset)
 	return ..()
 
-/obj/item/bodypart/head/Exited(atom/movable/gone, direction)
-	if(gone == brain)
+/obj/item/bodypart/head/handle_atom_del(atom/head_atom)
+	if(head_atom == brain)
 		brain = null
 		update_icon_dropped()
 		if(!QDELETED(brainmob)) //this shouldn't happen without badminnery.
 			message_admins("Brainmob: ([ADMIN_LOOKUPFLW(brainmob)]) was left stranded in [src] at [ADMIN_VERBOSEJMP(src)] without a brain!")
 			brainmob.log_message(", brainmob, was left stranded in [src] without a brain", LOG_GAME)
-	if(gone == brainmob)
+	if(head_atom == brainmob)
 		brainmob = null
-	if(gone == eyes)
+	if(head_atom == eyes)
 		eyes = null
 		update_icon_dropped()
-	if(gone == ears)
+	if(head_atom == ears)
 		ears = null
-	if(gone == tongue)
+	if(head_atom == tongue)
 		tongue = null
 	return ..()
 
@@ -165,6 +165,7 @@
 				user.visible_message(span_warning("[user] saws [src] open and pulls out a brain!"), span_notice("You saw [src] open and pull out a brain."))
 			if(brainmob)
 				brainmob.container = null
+				brainmob.forceMove(brain)
 				brain.brainmob = brainmob
 				brainmob = null
 			if(violent_removal && prob(rand(80, 100))) //ghetto surgery can damage the brain.
@@ -190,8 +191,7 @@
 
 /obj/item/bodypart/head/update_limb(dropping_limb, is_creating)
 	. = ..()
-	if(!isnull(owner))
-		real_name = owner.real_name
+	real_name = owner.real_name
 	if(HAS_TRAIT(owner, TRAIT_HUSK))
 		real_name = "Unknown"
 	update_hair_and_lips(dropping_limb, is_creating)

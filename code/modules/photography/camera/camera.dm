@@ -1,7 +1,7 @@
 
 #define CAMERA_PICTURE_SIZE_HARD_LIMIT 21
 
-/obj/item/camera
+/obj/item/camera//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
 	name = "camera"
 	icon = 'icons/obj/art/camera.dmi'
 	desc = "A polaroid camera."

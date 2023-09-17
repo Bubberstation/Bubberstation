@@ -5,7 +5,6 @@ import { prevNextCamera, selectCameras, CameraConsoleContent } from './CameraCon
 
 type Data = {
   mapRef: string;
-  can_spy: boolean;
   activeCamera: Camera;
   cameras: Camera[];
 };
@@ -30,7 +29,7 @@ export const NtosSecurEye = (props, context) => {
 /** Displays info and controls for the current camera */
 const CameraControls = (props, context) => {
   const { act, data } = useBackend<Data>(context);
-  const { can_spy, activeCamera, mapRef } = data;
+  const { activeCamera, mapRef } = data;
   const cameras = selectCameras(data.cameras);
   const [prevCameraName, nextCameraName] = prevNextCamera(
     cameras,
@@ -44,13 +43,6 @@ const CameraControls = (props, context) => {
         {(activeCamera && activeCamera.name) || '—'}
       </div>
       <div className="CameraConsole__toolbarRight">
-        {can_spy && (
-          <Button
-            icon="magnifying-glass"
-            tooltip="Track Person"
-            onClick={() => act('start_tracking')}
-          />
-        )}
         <Button
           icon="chevron-left"
           disabled={!prevCameraName}

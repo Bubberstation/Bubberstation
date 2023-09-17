@@ -87,17 +87,18 @@ export const RecordPrint = (props, context) => {
             Missing
           </Button>
           <Button
-            // SKYRAT EDIT REMOVE START - REMOVE INNOCENT CHECK, ALLOWS RAPSHEETS TO BE PRINTED WITHOUT ANY CRIMES HAVING BEEN LOGGED
+            // SKYRAT EDIT REMOVE - REMOVE INNOCENT CHECK, ALLOWS RAPSHEETS TO BE PRINTED WITHOUT ANY CRIMES HAVING BEEN LOGGED
             // disabled={innocent}
             // SKYRA EDIT REMOVE END
             icon="file-alt"
             onClick={() => swapTabs(PRINTOUT.Rapsheet)}
             selected={printType === PRINTOUT.Rapsheet}
-            tooltip={`Prints a standard paper with the record on it.`} // SKYRAT EDIT CHANGE START - ORIGINAL:
-            // tooltip={`Prints a standard paper with the record on it.${
-            //  innocent ? ' (Requires crimes)' : ''
+            // SKYRAT EDIT MODIFY - REMOVE "REQUIRES CRIMES" FROM TOOLTIP
+            // tooltip={`Prints a standard paper with the record on it. ${
+            // innocent && ' (Requires crimes)'
             // }`}
-            // SKYRAT EDIT CHANGE END
+            tooltip={`Prints a standard paper with the record on it.`}
+            // SKYRAT EDIT MODIFY END
             tooltipPosition="bottom">
             Rapsheet
           </Button>
@@ -107,7 +108,7 @@ export const RecordPrint = (props, context) => {
             onClick={() => swapTabs(PRINTOUT.Wanted)}
             selected={printType === PRINTOUT.Wanted}
             tooltip={`Prints a poster with mugshot and crimes.${
-              innocent ? ' (Requires crimes)' : ''
+              innocent && ' (Requires crimes)'
             }`}
             tooltipPosition="bottom">
             Wanted

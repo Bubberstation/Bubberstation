@@ -153,10 +153,10 @@
 				var/obj/machinery/telecomms/T = heldmultitool.buffer
 				. = add_new_link(T, operator)
 		if("buffer")
-			heldmultitool.set_buffer(src)
+			heldmultitool.buffer = src
 			. = TRUE
 		if("flush")
-			heldmultitool.set_buffer(null)
+			heldmultitool.buffer = null
 			. = TRUE
 
 	add_act(action, params)

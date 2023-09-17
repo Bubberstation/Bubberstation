@@ -42,7 +42,7 @@
 	src.time_to_remove = time_to_remove
 
 /datum/component/effect_remover/Destroy(force, silent)
-	on_clear_callback = null
+	QDEL_NULL(on_clear_callback)
 	return ..()
 
 /datum/component/effect_remover/RegisterWithParent()

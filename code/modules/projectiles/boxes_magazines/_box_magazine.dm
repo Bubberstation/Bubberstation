@@ -50,15 +50,6 @@
 	QDEL_LIST(stored_ammo)
 	return ..()
 
-/obj/item/ammo_box/Exited(atom/movable/gone, direction)
-	. = ..()
-	if(gone in stored_ammo)
-		remove_from_stored_ammo(gone)
-
-/obj/item/ammo_box/proc/remove_from_stored_ammo(atom/movable/gone)
-	stored_ammo -= gone
-	update_appearance()
-
 /obj/item/ammo_box/add_weapon_description()
 	AddElement(/datum/element/weapon_description, attached_proc = PROC_REF(add_notes_box))
 
@@ -93,19 +84,19 @@
 		return
 
 	for(var/i in max(1, stored_ammo.len) to max_ammo)
-		stored_ammo += new round_check(src)
+		stored_ammo += new round_check() //SKYRAT EDTI CHANGE - SEC_HUAL - Moving to nullspace seems to help with lag.
 	update_appearance()
 
-///gets a round from the magazine, if keep is TRUE the round will be moved to the bottom of the list.
+///gets a round from the magazine, if keep is TRUE the round will stay in the gun
 /obj/item/ammo_box/proc/get_round(keep = FALSE)
-	var/ammo_len = length(stored_ammo)
-	if (!ammo_len)
+	if (!stored_ammo.len)
 		return null
-	var/casing = stored_ammo[ammo_len]
-	if (keep)
-		stored_ammo -= casing
-		stored_ammo.Insert(1,casing)
-	return casing
+	else
+		var/b = stored_ammo[stored_ammo.len]
+		stored_ammo -= b
+		if (keep)
+			stored_ammo.Insert(1,b)
+		return b
 
 ///puts a round into the magazine
 /obj/item/ammo_box/proc/give_round(obj/item/ammo_casing/R, replace_spent = 0)
@@ -115,7 +106,7 @@
 
 	if (stored_ammo.len < max_ammo)
 		stored_ammo += R
-		R.forceMove(src)
+		R.moveToNullspace() //SKYRAT EDTI CHANGE - SEC_HUAL - Moving to nullspace seems to help with lag.
 		return TRUE
 
 	//for accessibles magazines (e.g internal ones) when full, start replacing spent ammo
@@ -126,7 +117,7 @@
 				AC.forceMove(get_turf(src.loc))
 
 				stored_ammo += R
-				R.forceMove(src)
+				R.moveToNullspace() //SKYRAT EDTI CHANGE - SEC_HUAL - Moving to nullspace seems to help with lag.
 				return TRUE
 	return FALSE
 
@@ -213,8 +204,11 @@
 	return boolets
 
 ///list of every bullet in the magazine
-/obj/item/ammo_box/magazine/proc/ammo_list()
-	return stored_ammo.Copy()
+/obj/item/ammo_box/magazine/proc/ammo_list(drop_list = FALSE)
+	var/list/L = stored_ammo.Copy()
+	if(drop_list)
+		stored_ammo.Cut()
+	return L
 
 ///drops the entire contents of the magazine on the floor
 /obj/item/ammo_box/magazine/proc/empty_magazine()
@@ -222,3 +216,14 @@
 	for(var/obj/item/ammo in stored_ammo)
 		ammo.forceMove(turf_mag)
 		stored_ammo -= ammo
+
+/obj/item/ammo_box/magazine/handle_atom_del(atom/A)
+	stored_ammo -= A
+	update_appearance()
+
+//SKRYAT EDIT ADDITION BEGIN - SEC_HAUL
+/obj/item/ammo_box/Destroy()
+	. = ..()
+	for(var/i in stored_ammo)
+		qdel(i)
+//SKYRAT EDIT END

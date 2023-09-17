@@ -16,19 +16,25 @@
 	health = 100
 	speed = 0
 	faction = list(FACTION_ILLUSION)
-	del_on_death = TRUE
+	var/life_span = INFINITY //how long until they despawn
+	var/mob/living/parent_mob
+	var/multiply_chance = 0 //if we multiply on hit
+	del_on_death = 1
 	death_message = "vanishes into thin air! It was a fake!"
-	/// Weakref to what we're copying
-	var/datum/weakref/parent_mob_ref
-	/// Prob of getting a clone on attack
-	var/multiply_chance = 0
 
-/mob/living/simple_animal/hostile/illusion/proc/Copy_Parent(mob/living/original, life = 5 SECONDS, hp = 100, damage = 0, replicate = 0)
+
+/mob/living/simple_animal/hostile/illusion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+	..()
+	if(world.time > life_span)
+		death()
+
+
+/mob/living/simple_animal/hostile/illusion/proc/Copy_Parent(mob/living/original, life = 50, hp = 100, damage = 0, replicate = 0 )
 	appearance = original.appearance
-	parent_mob_ref = WEAKREF(original)
+	parent_mob = original
 	setDir(original.dir)
-	maxHealth = hp
-	updatehealth() // re-cap health to new value
+	life_span = world.time+life
+	health = hp
 	melee_damage_lower = damage
 	melee_damage_upper = damage
 	multiply_chance = replicate
@@ -36,28 +42,25 @@
 	transform = initial(transform)
 	pixel_x = base_pixel_x
 	pixel_y = base_pixel_y
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living, death)), life)
+
 
 /mob/living/simple_animal/hostile/illusion/examine(mob/user)
-	var/mob/living/parent_mob = parent_mob_ref?.resolve()
 	if(parent_mob)
 		return parent_mob.examine(user)
-	return ..()
+	else
+		return ..()
+
 
 /mob/living/simple_animal/hostile/illusion/AttackingTarget()
 	. = ..()
-	if(!. || !isliving(target) || !prob(multiply_chance))
-		return
-	var/mob/living/hitting_target = target
-	if(hitting_target.stat == DEAD)
-		return
-	var/mob/living/parent_mob = parent_mob_ref?.resolve()
-	if(isnull(parent_mob))
-		return
-	var/mob/living/simple_animal/hostile/illusion/new_clone = new(loc)
-	new_clone.Copy_Parent(parent_mob, 8 SECONDS, health / 2, melee_damage_upper, multiply_chance / 2)
-	new_clone.faction = faction.Copy()
-	new_clone.GiveTarget(target)
+	if(. && isliving(target) && prob(multiply_chance))
+		var/mob/living/L = target
+		if(L.stat == DEAD)
+			return
+		var/mob/living/simple_animal/hostile/illusion/M = new(loc)
+		M.faction = faction.Copy()
+		M.Copy_Parent(parent_mob, 80, health/2, melee_damage_upper, multiply_chance/2)
+		M.GiveTarget(L)
 
 ///////Actual Types/////////
 

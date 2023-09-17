@@ -36,7 +36,6 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/popcorn)
 
 /obj/item/grown/corncob
-	seed = /obj/item/seeds/corn
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
 	icon_state = "corncob"
@@ -90,10 +89,5 @@
 		user.put_in_hands(S)
 	snap_pops -= 1
 	if(!snap_pops)
-		new /obj/item/grown/corncob/snap(user.loc)
+		new /obj/item/grown/corncob(user.loc)
 		qdel(src)
-
-/obj/item/grown/corncob/snap
-	seed = /obj/item/seeds/corn/snapcorn
-	name = "snap corn cob"
-	desc = "A reminder of pranks gone by."

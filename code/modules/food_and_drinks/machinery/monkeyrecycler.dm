@@ -99,5 +99,5 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	. = ..()
 	if(istype(I))
 		to_chat(user, span_notice("You log [src] in the multitool's buffer."))
-		I.set_buffer(src)
+		I.buffer = src
 		return TRUE

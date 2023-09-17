@@ -9,7 +9,7 @@
 	movedelay = 1.25
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	lights_power = 7
-	step_energy_drain = 12 //slightly higher energy drain since you movin those wheels FAST
+	step_energy_drain = 15 //slightly higher energy drain since you movin those wheels FAST
 	armor_type = /datum/armor/mecha_clarke
 	equip_by_category = list(
 		MECHA_L_ARM = null,
@@ -19,17 +19,15 @@
 		MECHA_ARMOR = list(),
 	)
 	max_equip_by_category = list(
-		MECHA_L_ARM = 1,
-		MECHA_R_ARM = 1,
-		MECHA_UTILITY = 5,
+		MECHA_UTILITY = 3,
 		MECHA_POWER = 1,
 		MECHA_ARMOR = 1,
 	)
 	wreckage = /obj/structure/mecha_wreckage/clarke
 	mech_type = EXOSUIT_MODULE_CLARKE
 	enter_delay = 40
-	mecha_flags = IS_ENCLOSED | HAS_LIGHTS | MMI_COMPATIBLE | OMNIDIRECTIONAL_ATTACKS
-	accesses = list(ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_MINING)
+	mecha_flags = ADDING_ACCESS_POSSIBLE | IS_ENCLOSED | HAS_LIGHTS | MMI_COMPATIBLE | OMNIDIRECTIONAL_ATTACKS
+	internals_req_access = list(ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_MINING)
 	allow_diagonal_movement = FALSE
 	pivot_step = TRUE
 
@@ -61,7 +59,8 @@
 /obj/item/mecha_parts/mecha_equipment/orebox_manager
 	name = "ore storage module"
 	desc = "An automated ore box management device."
-	icon_state = "mecha_bin"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "bin"
 	equipment_slot = MECHA_UTILITY
 	detachable = FALSE
 
@@ -74,21 +73,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/orebox_manager/get_snowflake_data()
-	var/list/contents = chassis.ore_box?.contents
-	var/list/contents_grouped = list()
-	for(var/obj/item/stack/ore/item as anything in contents)
-		if(isnull(contents_grouped[item.icon_state]))
-			var/ore_data = list()
-			ore_data["name"] = item.name
-			ore_data["icon"] = item.icon_state
-			ore_data["amount"] = item.amount
-			contents_grouped[item.icon_state] = ore_data
-		else
-			contents_grouped[item.icon_state]["amount"] += item.amount
-	var/list/data = list(
-		"snowflake_id" = MECHA_SNOWFLAKE_ID_OREBOX_MANAGER,
-		"contents" = contents_grouped,
-		)
+	var/list/data = list("snowflake_id" = MECHA_SNOWFLAKE_ID_OREBOX_MANAGER)
+	data["cargo"] = length(chassis.ore_box?.contents)
 	return data
 
 /obj/item/mecha_parts/mecha_equipment/orebox_manager/ui_act(action, list/params)
@@ -100,7 +86,6 @@
 		if(isnull(cached_ore_box))
 			return FALSE
 		cached_ore_box.dump_box_contents()
-		playsound(chassis, 'sound/weapons/tap.ogg', 50, TRUE)
 		log_message("Dumped [cached_ore_box].", LOG_MECHA)
 		return TRUE
 

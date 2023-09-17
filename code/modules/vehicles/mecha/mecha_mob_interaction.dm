@@ -11,7 +11,7 @@
 			to_chat(M, span_warning("Access denied. [name] is secured with a DNA lock."))
 			log_message("Permission denied (DNA LOCK).", LOG_MECHA)
 			return
-	if((mecha_flags & ID_LOCK_ON) && !allowed(M))
+	if(!operation_allowed(M))
 		to_chat(M, span_warning("Access denied. Insufficient operation keycodes."))
 		log_message("Permission denied (No keycode).", LOG_MECHA)
 		return
@@ -183,8 +183,6 @@
 	is_currently_ejecting = TRUE
 	if(do_after(user, has_gravity() ? exit_delay : 0 , target = src))
 		to_chat(user, span_notice("You exit the mech."))
-		if(cabin_sealed)
-			set_cabin_seal(user, FALSE)
 		mob_exit(user, silent = TRUE)
 	else
 		to_chat(user, span_notice("You stop exiting the mech. Weapons are enabled again."))

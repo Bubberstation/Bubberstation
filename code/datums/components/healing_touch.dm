@@ -71,7 +71,7 @@
 	return ..()
 
 /datum/component/healing_touch/Destroy(force, silent)
-	extra_checks = null
+	QDEL_NULL(extra_checks)
 	return ..()
 
 /// Validate our target, and interrupt the attack chain to start healing it if it is allowed

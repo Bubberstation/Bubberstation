@@ -444,8 +444,3 @@
 			return "Severe"
 		if(WOUND_SEVERITY_CRITICAL)
 			return "Critical"
-
-/// Returns what string is displayed when a limb that has sustained this wound is examined
-/// (This is examining the LIMB ITSELF, when it's not attached to someone.)
-/datum/wound/proc/get_limb_examine_description()
-	return

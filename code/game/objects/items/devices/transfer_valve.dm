@@ -33,14 +33,16 @@
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return TRUE
 
-/obj/item/transfer_valve/Exited(atom/movable/gone, direction)
+/obj/item/transfer_valve/handle_atom_del(atom/deleted_atom)
 	. = ..()
-	if(gone == tank_one)
+	if(deleted_atom == tank_one)
 		tank_one = null
 		update_appearance()
-	else if(gone == tank_two)
+		return
+	if(deleted_atom == tank_two)
 		tank_two = null
 		update_appearance()
+		return
 
 /obj/item/transfer_valve/attackby(obj/item/item, mob/user, params)
 	if(istype(item, /obj/item/tank))
@@ -150,7 +152,7 @@
 		T.Translate(-13, 0)
 		J.transform = T
 		underlays = list(J)
-
+	
 	if(wired)
 		cable_overlay = mutable_appearance(icon, icon_state = "valve_cables", layer = layer + 0.05, appearance_flags = KEEP_TOGETHER)
 		add_overlay(cable_overlay)
@@ -158,12 +160,12 @@
 	else if(cable_overlay)
 		cut_overlay(cable_overlay, TRUE)
 		cable_overlay = null
-
+	
 	worn_icon_state = "[initial(worn_icon_state)][tank_two ? "l" : ""][tank_one ? "r" : ""]"
 	if(ishuman(loc)) //worn
 		var/mob/living/carbon/human/human = loc
 		human.update_worn_back()
-
+	
 	if(!attached_device)
 		return
 
@@ -301,12 +303,14 @@
 				split_gases()
 				valve_open = FALSE
 				tank_one.forceMove(drop_location())
+				tank_one = null
 				. = TRUE
 		if("tanktwo")
 			if(tank_two)
 				split_gases()
 				valve_open = FALSE
 				tank_two.forceMove(drop_location())
+				tank_two = null
 				. = TRUE
 		if("toggle")
 			toggle_valve()

@@ -11,6 +11,8 @@
 	preview_outfit = /datum/outfit/ninja_preview
 	///Whether or not this ninja will obtain objectives
 	var/give_objectives = TRUE
+	///Whether or not this ninja receives the standard equipment
+	var/give_equipment = TRUE
 
 /**
  * Proc that equips the space ninja outfit on a given individual.  By default this is the owner of the antagonist datum.
@@ -117,9 +119,9 @@
 	operative.regenerate_icons()
 	SSquirks.AssignQuirks(operative, operative.client, TRUE, TRUE, null, FALSE, operative)
 
-	equip_space_ninja(owner.current)
-	owner.current.add_quirk(/datum/quirk/freerunning)
-	owner.current.add_quirk(/datum/quirk/light_step)
+	if(give_equipment)
+		equip_space_ninja(owner.current)
+
 	owner.current.mind.set_assigned_role(SSjob.GetJobType(/datum/job/space_ninja))
 	owner.current.mind.special_role = ROLE_NINJA
 	operative.mind.active = TRUE // BUBBED EDIT END

@@ -1,3 +1,4 @@
+
 // GENERIC PROJECTILE
 
 /obj/projectile/beam/ctf
@@ -25,6 +26,7 @@
 	. = ..()
 	AddElement(/datum/element/delete_on_drop)
 
+
 /obj/item/ammo_casing/laser/ctf
 	projectile_type = /obj/projectile/beam/ctf/
 
@@ -45,11 +47,14 @@
 	. = ..()
 	AddElement(/datum/element/delete_on_drop)
 
+
 /obj/item/ammo_box/magazine/recharge/ctf/rifle
 	ammo_type = /obj/item/ammo_casing/laser/ctf/rifle
 
+
 /obj/item/ammo_casing/laser/ctf/rifle
 	projectile_type = /obj/projectile/beam/ctf/rifle
+
 
 /obj/projectile/beam/ctf/rifle
 	damage = 45
@@ -80,10 +85,12 @@
 	ammo_type = /obj/item/ammo_casing/laser/ctf/shotgun
 	max_ammo = 6
 
+
 /obj/item/ammo_casing/laser/ctf/shotgun
 	projectile_type = /obj/projectile/beam/ctf/shotgun
 	pellets = 6
 	variance = 25
+
 
 /obj/projectile/beam/ctf/shotgun
 	damage = 15
@@ -98,10 +105,6 @@
 	inhand_icon_state = "ctfmarksman"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/marksman
 	fire_delay = 1 SECONDS
-
-/obj/item/gun/ballistic/automatic/laser/ctf/marksman/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/scope, range_modifier = 1.7)
 
 /obj/item/ammo_box/magazine/recharge/ctf/marksman
 	ammo_type = /obj/item/ammo_casing/laser/ctf/marksman
@@ -128,12 +131,15 @@
 	. = ..()
 	AddElement(/datum/element/delete_on_drop)
 
+
 /obj/item/ammo_box/magazine/recharge/ctf/deagle
 	ammo_type = /obj/item/ammo_casing/laser/ctf/deagle
 	max_ammo = 7
 
+
 /obj/item/ammo_casing/laser/ctf/deagle
 	projectile_type = /obj/projectile/beam/ctf/deagle
+
 
 /obj/projectile/beam/ctf/deagle
 	icon_state = "bullet"
@@ -201,7 +207,7 @@
 	///Icon state to be fed into the shielded component
 	var/team_shield_icon = "shield-old"
 	var/max_charges = 150
-	var/recharge_start_delay = 12 SECONDS
+	var/recharge_start_delay = 20 SECONDS
 	var/charge_increment_delay = 1 SECONDS
 	var/charge_recovery = 30
 	var/lose_multiple_charges = TRUE
@@ -223,6 +229,7 @@
 	greyscale_config = /datum/greyscale_config/ctf_light
 	greyscale_config_worn = /datum/greyscale_config/ctf_light/worn
 	slowdown = -0.25
+
 	max_charges = 30
 
 // RED TEAM GUNS
@@ -242,6 +249,7 @@
 	light_color = COLOR_SOFT_RED
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 
+
 // Shotgun
 /obj/item/gun/ballistic/shotgun/ctf/red
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/red
@@ -256,6 +264,7 @@
 	icon_state = "laser"
 	light_color = COLOR_SOFT_RED
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+
 
 // DMR
 /obj/item/gun/ballistic/automatic/laser/ctf/marksman/red
@@ -272,6 +281,7 @@
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
+
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/red
@@ -318,6 +328,7 @@
 	icon_state = "bluelaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
+
 // DMR
 /obj/item/gun/ballistic/automatic/laser/ctf/marksman/blue
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/marksman/blue
@@ -329,6 +340,7 @@
 	projectile_type = /obj/projectile/beam/ctf/marksman/blue
 
 /obj/projectile/beam/ctf/marksman/blue
+
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/blue
@@ -362,6 +374,7 @@
 	light_color = COLOR_VERY_PALE_LIME_GREEN
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 
+
 // Shotgun
 /obj/item/gun/ballistic/shotgun/ctf/green
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/green
@@ -376,6 +389,7 @@
 	icon_state = "xray"
 	light_color = COLOR_VERY_PALE_LIME_GREEN
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
+
 
 // DMR
 /obj/item/gun/ballistic/automatic/laser/ctf/marksman/green
@@ -392,6 +406,7 @@
 	tracer_type = /obj/effect/projectile/tracer/xray
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	impact_type = /obj/effect/projectile/impact/xray
+
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/green
@@ -425,6 +440,7 @@
 	light_color = COLOR_VERY_SOFT_YELLOW
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
 
+
 // Shotgun
 /obj/item/gun/ballistic/shotgun/ctf/yellow
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ctf/shotgun/yellow
@@ -439,6 +455,7 @@
 	icon_state = "gaussstrong"
 	light_color = COLOR_VERY_SOFT_YELLOW
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
+
 
 // DMR
 /obj/item/gun/ballistic/automatic/laser/ctf/marksman/yellow
@@ -455,6 +472,7 @@
 	tracer_type = /obj/effect/projectile/tracer/solar
 	muzzle_type = /obj/effect/projectile/muzzle/solar
 	impact_type = /obj/effect/projectile/impact/solar
+
 
 // Instakill
 /obj/item/gun/energy/laser/instakill/ctf/yellow

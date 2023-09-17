@@ -19,11 +19,7 @@
 	SIGNAL_HANDLER
 	if(target.z == user.z)
 		return
-	var/turf/checked_turf = get_turf(target)
-	while(!isnull(checked_turf))
-		checked_turf = checked_turf.above()
-		if(checked_turf?.z == user.z)
-			INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item, handle_openspace_click), checked_turf, user, user.CanReach(checked_turf, source), click_parameters)
-			break
-
+	var/turf/turf_above = get_step_multiz(target, UP)
+	if(turf_above?.z == user.z)
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item, handle_openspace_click), turf_above, user, user.CanReach(turf_above, source), click_parameters)
 	return COMPONENT_AFTERATTACK_PROCESSED_ITEM

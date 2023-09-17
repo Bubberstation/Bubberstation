@@ -126,12 +126,13 @@
 	robust_searching = 1
 	has_clickbox = FALSE
 	var/dwarf_mob = FALSE
-	var/snow_legion = FALSE
 	var/mob/living/carbon/human/stored_mob
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/content_barfer)
+	if(prob(5))
+		new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(loc)
+		return INITIALIZE_HINT_QDEL
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf
 	name = "dwarf legion"
@@ -148,24 +149,18 @@
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
 	visible_message(span_warning("The skulls on [src] wail in anger as they flee from their dying host!"))
-	if (!isnull(stored_mob))
-		stored_mob = null
-		return ..()
-
-	// We didn't contain a real body so spawn a random one
-	var/turf/our_turf = get_turf(src)
-	if(our_turf)
-		if(from_spawner)
-			new /obj/effect/mob_spawn/corpse/human/charredskeleton(our_turf)
+	var/turf/T = get_turf(src)
+	if(T)
+		if(stored_mob)
+			stored_mob.forceMove(get_turf(src))
+			stored_mob = null
+		else if(from_spawner)
+			new /obj/effect/mob_spawn/corpse/human/charredskeleton(T)
 		else if(dwarf_mob)
-			new /obj/effect/mob_spawn/corpse/human/legioninfested/dwarf(our_turf)
-		else if(snow_legion)
-			new /obj/effect/mob_spawn/corpse/human/legioninfested/snow(our_turf)
-
-			new /obj/effect/mob_spawn/corpse/human/legioninfested/dwarf(our_turf)
+			new /obj/effect/mob_spawn/corpse/human/legioninfested/dwarf(T)
 		else
-			new /obj/effect/mob_spawn/corpse/human/legioninfested(our_turf)
-	return ..()
+			new /obj/effect/mob_spawn/corpse/human/legioninfested(T)
+	..(gibbed)
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril
 	from_spawner = TRUE
@@ -310,7 +305,6 @@
 	loot = list(/obj/item/organ/internal/monster_core/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
 	weather_immunities = list(TRAIT_SNOWSTORM_IMMUNE)
-	snow_legion = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow/make_legion(mob/living/carbon/human/H)
 	return new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow(H.loc)

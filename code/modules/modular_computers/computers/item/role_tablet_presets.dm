@@ -91,19 +91,18 @@
 	greyscale_colors = "#FAFAFA#000099#B347BC"
 	inserted_item = /obj/item/pen/fountain
 	starting_programs = list(
-		/datum/computer_file/program/borg_monitor,
-		/datum/computer_file/program/budgetorders,
 		/datum/computer_file/program/crew_manifest,
-		/datum/computer_file/program/robocontrol,
-		/datum/computer_file/program/science,
 		/datum/computer_file/program/status,
+		/datum/computer_file/program/science,
+		/datum/computer_file/program/robocontrol,
+		/datum/computer_file/program/budgetorders,
 		/datum/computer_file/program/signal_commander,
 	)
 
 /obj/item/modular_computer/pda/heads/quartermaster
 	name = "quartermaster PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
-	greyscale_colors = "#c4b787#18191e#8b4c31"
+	greyscale_colors = "#D6B328#6506CA#927444"
 	inserted_item = /obj/item/pen/survival
 	stored_paper = 20
 	starting_programs = list(
@@ -156,8 +155,6 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#D99A2E#69DBF3#E3DF3D"
 	starting_programs = list(
-		/datum/computer_file/program/alarm_monitor,
-		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/supermatter_monitor,
 	)
 
@@ -166,9 +163,8 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#EEDC43#00E5DA#727272"
 	starting_programs = list(
-		/datum/computer_file/program/alarm_monitor,
 		/datum/computer_file/program/atmosscan,
-		/datum/computer_file/program/supermatter_monitor,
+		/datum/computer_file/program/alarm_monitor,
 	)
 
 /**
@@ -181,7 +177,6 @@
 	greyscale_colors = "#FAFAFA#000099#B347BC"
 	starting_programs = list(
 		/datum/computer_file/program/atmosscan,
-		/datum/computer_file/program/science,
 		/datum/computer_file/program/signal_commander,
 	)
 
@@ -190,9 +185,7 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#484848#0099CC#D94927"
 	starting_programs = list(
-		/datum/computer_file/program/science,
 		/datum/computer_file/program/robocontrol,
-		/datum/computer_file/program/borg_monitor,
 	)
 
 /obj/item/modular_computer/pda/geneticist
@@ -254,7 +247,7 @@
 
 /obj/item/modular_computer/pda/cargo
 	name = "cargo technician PDA"
-	greyscale_colors = "#8b4c31#2c2e32"
+	greyscale_colors = "#D6B328#6506CA"
 	stored_paper = 20
 	starting_programs = list(
 		/datum/computer_file/program/shipping,
@@ -265,10 +258,7 @@
 /obj/item/modular_computer/pda/shaftminer
 	name = "shaft miner PDA"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
-	greyscale_colors = "#927444#8b4c31#4c202d"
-	starting_programs = list(
-		/datum/computer_file/program/skill_tracker,
-	)
+	greyscale_colors = "#927444#D6B328#6C3BA1"
 
 /**
  * Service
@@ -278,7 +268,6 @@
 	name = "janitor PDA"
 	greyscale_colors = "#933ea8#235AB2"
 	starting_programs = list(
-		/datum/computer_file/program/skill_tracker,
 		/datum/computer_file/program/radar/custodial_locator,
 	)
 

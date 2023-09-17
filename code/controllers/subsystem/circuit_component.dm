@@ -28,6 +28,8 @@ SUBSYSTEM_DEF(circuit_component)
 
 		to_call.user = null
 		to_call.InvokeAsync()
+		qdel(to_call)
+
 
 		if(MC_TICK_CHECK)
 			return
@@ -74,6 +76,7 @@ SUBSYSTEM_DEF(circuit_component)
 			instant_run_currentrun.Cut(1,2)
 			to_call.user = null
 			to_call.InvokeAsync(received_inputs)
+			qdel(to_call)
 
 	if(length(instant_run_stack))
 		instant_run_callbacks_to_run = pop(instant_run_stack)

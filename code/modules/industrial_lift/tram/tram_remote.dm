@@ -1,3 +1,5 @@
+#define TRAMCTRL_INBOUND 1
+#define TRAMCTRL_OUTBOUND 0
 #define TRAMCTRL_FAST 1
 #define TRAMCTRL_SAFE 0
 
@@ -11,7 +13,7 @@
 	desc = "A remote control that can be linked to a tram. This can only go well."
 	w_class = WEIGHT_CLASS_TINY
 	///desired tram direction
-	var/direction = INBOUND
+	var/direction = TRAMCTRL_INBOUND
 	///fast and fun, or safe and boring
 	var/mode = TRAMCTRL_FAST
 	///weakref to the tram piece we control
@@ -35,10 +37,10 @@
 ///set tram control direction
 /obj/item/tram_remote/attack_self_secondary(mob/user)
 	switch(direction)
-		if(INBOUND)
-			direction = OUTBOUND
-		if(OUTBOUND)
-			direction = INBOUND
+		if(TRAMCTRL_INBOUND)
+			direction = TRAMCTRL_OUTBOUND
+		if(TRAMCTRL_OUTBOUND)
+			direction = TRAMCTRL_INBOUND
 	update_appearance()
 	balloon_alert(user, "[direction ? "< inbound" : "outbound >"]")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -75,9 +77,9 @@
 		icon_state = "tramremote_nis"
 		return
 	switch(direction)
-		if(INBOUND)
+		if(TRAMCTRL_INBOUND)
 			icon_state = "tramremote_ib"
-		if(OUTBOUND)
+		if(TRAMCTRL_OUTBOUND)
 			icon_state = "tramremote_ob"
 
 /obj/item/tram_remote/update_overlays()
@@ -105,9 +107,9 @@
 	var/destination_platform = null
 	var/platform = 0
 	switch(direction)
-		if(INBOUND)
+		if(TRAMCTRL_INBOUND)
 			platform = clamp(tram_part.idle_platform.platform_code - 1, 1, INFINITY)
-		if(OUTBOUND)
+		if(TRAMCTRL_OUTBOUND)
 			platform = clamp(tram_part.idle_platform.platform_code + 1, 1, INFINITY)
 	if(platform == tram_part.idle_platform.platform_code)
 		balloon_alert(user, "invalid command!")
@@ -146,5 +148,7 @@
 		balloon_alert(user, "link failed!")
 	update_appearance()
 
+#undef TRAMCTRL_INBOUND
+#undef TRAMCTRL_OUTBOUND
 #undef TRAMCTRL_FAST
 #undef TRAMCTRL_SAFE

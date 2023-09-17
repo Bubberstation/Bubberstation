@@ -51,7 +51,6 @@
 	ckey_to_cooldown = null
 	if(generated_point_of_interest)
 		SSpoints_of_interest.remove_point_of_interest(parent)
-	on_removal = null
 	return ..()
 
 /datum/component/deadchat_control/proc/deadchat_react(mob/source, message)

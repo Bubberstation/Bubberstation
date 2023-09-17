@@ -76,7 +76,6 @@
 	bot.medkit_type = medkit
 	bot.healthanalyzer = bot.contents[4]
 
-	///if you add a new one don't forget to update /obj/item/storage/medkit/attackby()
 	if (istype(medkit, /obj/item/storage/medkit/fire))
 		bot.skin = "ointment"
 	else if (istype(medkit, /obj/item/storage/medkit/toxin))
@@ -87,8 +86,6 @@
 		bot.skin = "brute"
 	else if (istype(medkit, /obj/item/storage/medkit/advanced))
 		bot.skin = "advanced"
-	else if (istype(src, /obj/item/storage/medkit/tactical))
-		bot.skin = "bezerk"
 
 	bot.damagetype_healer = initial(medkit.damagetype_healed) ? initial(medkit.damagetype_healed) : BRUTE
 	bot.update_appearance()

@@ -187,9 +187,9 @@ Behavior that's still missing from this component that original food items had t
 	setup_initial_reagents(initial_reagents)
 
 /datum/component/edible/Destroy(force, silent)
-	after_eat = null
-	on_consume = null
-	check_liked = null
+	QDEL_NULL(after_eat)
+	QDEL_NULL(on_consume)
+	QDEL_NULL(check_liked)
 	return ..()
 
 /// Sets up the initial reagents of the food.

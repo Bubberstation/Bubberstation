@@ -37,7 +37,7 @@ for excluded_file in excluded_files:
         post_error(f"Excluded file {full_file_path} does not exist, please remove it!")
         sys.exit(1)
 
-file_extensions = ("dm", "dmf")
+file_extensions = (".dm", ".dmf")
 
 reading = False
 lines = []
@@ -55,12 +55,6 @@ with open(file_reference, 'r') as file:
             break
         elif not reading:
             continue
-        # SKYRAT EDIT START - Modular unit tests
-        elif line == "// SKYRAT EDIT START":
-            continue
-        elif line == "// SKYRAT EDIT END":
-            continue
-        # SKYRAT EDIT END
 
         lines.append(line)
 
@@ -70,12 +64,7 @@ fail_no_include = False
 
 scannable_files = []
 for file_extension in file_extensions:
-    compiled_directory = f"{scannable_directory}/**/*.{file_extension}"
-    scannable_files += glob.glob(compiled_directory, recursive=True)
-
-if len(scannable_files) == 0:
-    post_error(f"No files were found in {scannable_directory}. Ticked File Enforcement has failed!")
-    sys.exit(1)
+    scannable_files += glob.glob(scannable_directory + f"**/*.{file_extension}", recursive=True)
 
 for code_file in scannable_files:
     dm_path = ""
@@ -84,10 +73,6 @@ for code_file in scannable_files:
         dm_path = code_file.replace('/', '\\')
     else:
         dm_path = os.path.basename(code_file)
-        # SKYRAT EDIT START - Modular unit tests - have to append this again after it gets removed; this was not designed upstream with subfolders for unit tests in mind so we must cope.
-        if("~skyrat/" in code_file):
-            dm_path = "~skyrat\\" + dm_path
-        # SKYRAT EDIT END
 
     included = f"#include \"{dm_path}\"" in lines
 
@@ -163,4 +148,4 @@ for (index, line) in enumerate(lines):
         post_error(f"The include at line {index + offset} is out of order ({line}, expected {sorted_lines[index]})")
         sys.exit(1)
 
-print(green(f"Ticked File Enforcement: [{file_reference}] All includes (for {len(scannable_files)} scanned files) are in order!"))
+print(green(f"Ticked File Enforcement: [{file_reference}] All includes are in order!"))

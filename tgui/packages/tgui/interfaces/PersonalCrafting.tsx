@@ -209,9 +209,7 @@ export const PersonalCrafting = (props, context) => {
               recipe.category === activeCategory)))
     ),
     sortBy<Recipe>((recipe) => [
-      activeCategory === 'Can Make'
-        ? 99 - Object.keys(recipe.reqs).length
-        : Number(craftability[recipe.ref]),
+      -Number(craftability[recipe.ref]),
       recipe.name.toLowerCase(),
     ]),
   ])(data.recipes);

@@ -54,7 +54,6 @@
 
 /mob/living/basic/tree/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/seethrough_mob)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_PINE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 	var/static/list/death_loot = list(/obj/item/stack/sheet/mineral/wood)
 	AddElement(/datum/element/death_drops, death_loot)

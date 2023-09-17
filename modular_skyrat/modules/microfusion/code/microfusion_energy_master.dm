@@ -132,14 +132,14 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/gun/microfusion/Exited(atom/movable/gone, direction)
-	. = ..()
-	if(gone == cell)
+/obj/item/gun/microfusion/handle_atom_del(atom/to_handle)
+	if(to_handle == cell)
 		cell = null
 		update_appearance()
-	else if(gone == phase_emitter)
+	if(to_handle == phase_emitter)
 		phase_emitter = null
 		update_appearance()
+	return ..()
 
 /obj/item/gun/microfusion/can_shoot()
 	return !QDELETED(cell) ? (cell.charge >= microfusion_lens.e_cost) : FALSE
@@ -613,7 +613,7 @@
 	if(sound_cell_remove)
 		playsound(src, sound_cell_remove, sound_cell_remove_volume, sound_cell_remove_vary)
 	old_cell.update_appearance()
-	old_cell.parent_gun = null
+	cell.parent_gun = null
 	cell = null
 	update_appearance()
 

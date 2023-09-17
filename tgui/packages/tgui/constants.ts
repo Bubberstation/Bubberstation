@@ -22,7 +22,7 @@ export const UI_CLOSE = -1;
 export const COLORS = {
   // Department colors
   department: {
-    captain: '#1373c1', // BUBBERS EDIT - Crew Monitor Updates
+    captain: '#c06616',
     security: '#e74c3c',
     medbay: '#3498db',
     science: '#9b59b6',
@@ -30,8 +30,6 @@ export const COLORS = {
     cargo: '#f39c12',
     service: '#6ca729', // SKYRAT EDIT - Crew Monitor Updates
     centcom: '#00c100',
-    assistant: '#c1c1c1', // BUBBERS EDIT - Crew Monitor Updates
-    prisoner: '#e2a200', // BUBBERS EDIT - Crew Monitor Updates
     other: '#c38312',
   },
   // Damage type colors

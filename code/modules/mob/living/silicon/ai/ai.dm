@@ -44,6 +44,7 @@
 	var/obj/item/multitool/aiMulti
 	///Weakref to the bot the ai's commanding right now
 	var/datum/weakref/bot_ref
+	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever
 
 	//MALFUNCTION
@@ -52,6 +53,7 @@
 	var/can_dominate_mechs = FALSE
 	var/shunted = FALSE //1 if the AI is currently shunted. Used to differentiate between shunted and ghosted/braindead
 	var/obj/machinery/ai_voicechanger/ai_voicechanger = null // reference to machine that holds the voicechanger
+	var/control_disabled = FALSE // Set to 1 to stop AI from interacting via Click()
 	var/malfhacking = FALSE // More or less a copy of the above var, so that malf AIs can hack and still get new cyborgs -- NeoFite
 	var/malf_cooldown = 0 //Cooldown var for malf modules, stores a worldtime + cooldown
 
@@ -62,8 +64,7 @@
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
 
-	///The internal tool used to track players visible through cameras.
-	var/datum/trackable/ai_tracking_tool
+	var/datum/trackable/track = new
 
 	var/last_tablet_note_seen = null
 	var/can_shunt = TRUE
@@ -78,7 +79,7 @@
 	var/mob/camera/ai_eye/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
-	var/acceleration = TRUE
+	var/acceleration = 1
 
 	var/obj/structure/ai_core/deactivated/linked_core //For exosuit control
 	var/mob/living/silicon/robot/deployed_shell = null //For shell control
@@ -190,24 +191,11 @@
 	builtInCamera = new (src)
 	builtInCamera.network = list("ss13")
 
-	ai_tracking_tool = new(src)
-	RegisterSignal(src, COMSIG_TRACKABLE_TRACKING_TARGET, PROC_REF(on_track_target))
-
 	add_traits(list(TRAIT_PULL_BLOCKED, TRAIT_HANDS_BLOCKED), ROUNDSTART_TRAIT)
 
 	alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER, ALARM_CAMERA, ALARM_BURGLAR, ALARM_MOTION), list(z), camera_view = TRUE)
 	RegisterSignal(alert_control.listener, COMSIG_ALARM_LISTENER_TRIGGERED, PROC_REF(alarm_triggered))
 	RegisterSignal(alert_control.listener, COMSIG_ALARM_LISTENER_CLEARED, PROC_REF(alarm_cleared))
-
-/mob/living/silicon/ai/weak_syndie
-	radio = /obj/item/radio/headset/silicon/ai/evil
-	radio_enabled = TRUE
-	interaction_range = 1
-	sprint = 5
-
-/mob/living/silicon/ai/weak_syndie/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
-	. = ..()
-	laws = new /datum/ai_laws/syndicate_override
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -215,8 +203,7 @@
 	switch(_key)
 		if("`", "0")
 			if(cam_prev)
-				if(ai_tracking_tool.tracking)
-					ai_tracking_tool.set_tracking(FALSE)
+				cameraFollow = null //stop following something, we want to jump away.
 				eyeobj.setLoc(cam_prev)
 			return
 		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
@@ -227,8 +214,7 @@
 				return
 			if(cam_hotkeys[_key]) //if this is false, no hotkey for this slot exists.
 				cam_prev = eyeobj.loc
-				if(ai_tracking_tool.tracking)
-					ai_tracking_tool.set_tracking(FALSE)
+				cameraFollow = null //stop following something, we want to jump away.
 				eyeobj.setLoc(cam_hotkeys[_key])
 				return
 	return ..()
@@ -244,7 +230,6 @@
 	QDEL_NULL(robot_control)
 	QDEL_NULL(aiMulti)
 	QDEL_NULL(alert_control)
-	QDEL_NULL(ai_tracking_tool)
 	malfhack = null
 	current = null
 	bot_ref = null
@@ -254,7 +239,6 @@
 	if(ai_voicechanger)
 		ai_voicechanger.owner = null
 		ai_voicechanger = null
-	UnregisterSignal(src, COMSIG_TRACKABLE_TRACKING_TARGET)
 	return ..()
 
 /// Removes all malfunction-related abilities from the AI
@@ -401,20 +385,6 @@
 /mob/living/silicon/ai/cancel_camera()
 	view_core()
 
-/mob/living/silicon/ai/verb/ai_camera_track()
-	set name = "track"
-	set hidden = TRUE //Don't display it on the verb lists. This verb exists purely so you can type "track Oldman Robustin" and follow his ass
-
-	ai_tracking_tool.set_tracked_mob(src)
-
-///Called when an AI finds their tracking target.
-/mob/living/silicon/ai/proc/on_track_target(datum/trackable/source, mob/living/target)
-	SIGNAL_HANDLER
-	if(eyeobj)
-		eyeobj.setLoc(get_turf(target))
-	else
-		view_core()
-
 /mob/living/silicon/ai/verb/toggle_anchor()
 	set category = "AI Commands"
 	set name = "Toggle Floor Bolts"
@@ -534,7 +504,24 @@
 		else
 			to_chat(src, span_notice("Unable to project to the holopad."))
 	if(href_list["track"])
-		ai_tracking_tool.set_tracked_mob(src, href_list["track"])
+		var/string = href_list["track"]
+		trackable_mobs()
+		var/list/trackeable = list()
+		trackeable += track.humans + track.others
+		var/list/target = list()
+		for(var/I in trackeable)
+			var/datum/weakref/to_resolve = trackeable[I]
+			var/mob/to_track = to_resolve.resolve()
+			if(!to_track || to_track.name != string)
+				continue
+			target += to_track
+		if(name == string)
+			target += src
+		if(length(target))
+			cam_prev = get_turf(eyeobj)
+			ai_actual_track(pick(target))
+		else
+			to_chat(src, "Target is not on or near any active cameras on the station.")
 		return
 	if (href_list["ai_take_control"]) //Mech domination
 		var/obj/vehicle/sealed/mecha/M = locate(href_list["ai_take_control"]) in GLOB.mechas_list
@@ -573,13 +560,12 @@
 	if(QDELETED(C))
 		return FALSE
 
+	if(!tracking)
+		cameraFollow = null
+
 	if(QDELETED(eyeobj))
 		view_core()
 		return
-
-	if(ai_tracking_tool.tracking)
-		ai_tracking_tool.set_tracking(FALSE)
-
 	// ok, we're alive, camera is good and in our network...
 	eyeobj.setLoc(get_turf(C))
 	return TRUE
@@ -648,8 +634,7 @@
 	set category = "AI Commands"
 	set name = "Jump To Network"
 	unset_machine()
-	if(ai_tracking_tool.tracking)
-		ai_tracking_tool.set_tracking(FALSE)
+	cameraFollow = null
 	var/cameralist[0]
 
 	if(incapacitated())
@@ -879,6 +864,7 @@
 		new_core.circuit.battery = battery
 		ai_restore_power()//So the AI initially has power.
 		control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
+		interaction_range = 0
 		radio_enabled = FALSE //No talking on the built-in radio for you either!
 		forceMove(card)
 		card.AI = src
@@ -998,7 +984,7 @@
 	update_sight()
 	if(client.eye != src)
 		var/atom/AT = client.eye
-		AT?.get_remote_view_fullscreens(src)
+		AT.get_remote_view_fullscreens(src)
 	else
 		clear_fullscreen("remote_view", 0)
 
@@ -1161,14 +1147,6 @@
 	else if(.)
 		REMOVE_TRAIT(src, TRAIT_INCAPACITATED, POWER_LACK_TRAIT)
 
-/mob/living/silicon/ai/proc/show_camera_list()
-	var/list/cameras = get_camera_list(network)
-	var/camera = tgui_input_list(src, "Choose which camera you want to view", "Cameras", cameras)
-	if(isnull(camera))
-		return
-	if(isnull(cameras[camera]))
-		return
-	switchCamera(cameras[camera])
 
 /mob/living/silicon/on_handsblocked_start()
 	return // AIs have no hands

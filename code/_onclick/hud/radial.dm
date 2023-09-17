@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/Destroy()
 	Reset()
 	hide()
-	custom_check_callback = null
+	QDEL_NULL(custom_check_callback)
 	. = ..()
 
 /*

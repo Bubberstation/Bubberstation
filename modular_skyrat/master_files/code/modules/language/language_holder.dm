@@ -6,21 +6,22 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 /datum/language_holder_adjustor/New()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(handle_new_player))
 
-/datum/language_holder_adjustor/proc/handle_new_player(datum/source, mob/living/carbon/human/new_crewmember, rank)
+/datum/language_holder_adjustor/proc/handle_new_player(datum/source, mob/living/new_crewmember, rank)
 	SIGNAL_HANDLER
 
 	// sanity checking because we really do not want to be causing any runtimes
-	if(!istype(new_crewmember))
+	if(!ishuman(new_crewmember))
 		return
 	if(isnull(new_crewmember.mind))
 		return
 
-	var/datum/language_holder/language_holder = new_crewmember.get_language_holder()
+	var/mob/living/carbon/human/new_human = new_crewmember
+	var/datum/language_holder/language_holder = new_human.get_language_holder()
 
 	if(isnull(language_holder))
 		return
 
-	language_holder.adjust_languages_to_prefs(new_crewmember.client?.prefs)
+	language_holder.adjust_languages_to_prefs(new_human.client?.prefs)
 
 /datum/language_holder_adjustor/Destroy()
 	..()
@@ -33,24 +34,13 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 
 	// remove the innate languages (like common, and other species languages) and instead use the language prefs
 	// do not remove any languages granted by spawners, which are denoted by source = LANGUAGE_SPAWNER
-	remove_languages_by_source(list(LANGUAGE_MIND, LANGUAGE_ATOM, LANGUAGE_SPECIES))
+	remove_all_languages(source = LANGUAGE_MIND)
+	remove_all_languages(source = LANGUAGE_ATOM)
 
 	for(var/lang_path in preferences.languages)
 		grant_language(lang_path)
 
 	get_selected_language()
-
-/// Removes every language whose source(s) match the provided source list arg
-/datum/language_holder/proc/remove_languages_by_source(list/sources)
-	if(!length(sources))
-		return
-	for(var/language in understood_languages)
-		for(var/source in sources)
-			remove_language(language, ALL, source)
-	// in most cases spoken_languages should be empty by now, but just in case we should remove what's left
-	for(var/language in spoken_languages)
-		for(var/source in sources)
-			remove_language(language, ALL, source)
 
 //************************************************
 //*        Specific language holders              *

@@ -196,11 +196,11 @@
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/imports/specialops]
 	pack.generate(pick_n_take(empty_shuttle_turfs))
 
-	spawn_list.Add(/mob/living/basic/spider/giant)
-	spawn_list.Add(/mob/living/basic/spider/giant)
-	spawn_list.Add(/mob/living/basic/spider/giant/nurse)
+	spawn_list.Add(/mob/living/basic/giant_spider)
+	spawn_list.Add(/mob/living/basic/giant_spider)
+	spawn_list.Add(/mob/living/basic/giant_spider/nurse)
 	if(prob(50))
-		spawn_list.Add(/mob/living/basic/spider/giant/hunter)
+		spawn_list.Add(/mob/living/basic/giant_spider/hunter)
 
 	var/turf/victim_turf = pick_n_take(empty_shuttle_turfs)
 

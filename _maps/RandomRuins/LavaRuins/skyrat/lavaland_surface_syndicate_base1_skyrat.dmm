@@ -844,8 +844,7 @@
 /area/ruin/syndicate_lava_base/bar)
 "hY" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "interdyneo2";
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
 	},
 /turf/open/floor/engine/o2,
@@ -1997,8 +1996,7 @@
 /area/ruin/syndicate_lava_base/medbay)
 "ve" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "interdynen2";
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
 	},
 /turf/open/floor/engine/n2,
@@ -2766,8 +2764,7 @@
 "BS" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "interdyneserver";
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
 	external_pressure_bound = 120;
 	name = "server vent"
@@ -4531,7 +4528,7 @@
 	},
 /obj/machinery/door/window/survival_pod{
 	dir = 4;
-	name = "Virology Airlock";
+	name = "Virology airlock";
 	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/stripes/red/full,
