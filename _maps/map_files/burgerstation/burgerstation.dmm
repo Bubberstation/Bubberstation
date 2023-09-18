@@ -6582,13 +6582,14 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "cCE" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 8
-	},
 /obj/machinery/computer/shuttle/mining{
 	dir = 4
 	},
 /obj/machinery/mining_weather_monitor/directional/south,
+/obj/effect/turf_decal/tile/purple/opposingcorners,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "cCP" = (
@@ -8698,9 +8699,6 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/directional/east{
-	dir = 6
-	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "dsN" = (
@@ -8866,12 +8864,13 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/hop)
 "dwy" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 4
-	},
 /obj/structure/table,
 /obj/item/stack/rods/fifty,
 /obj/effect/spawner/random/trash/janitor_supplies,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "dwB" = (
@@ -9896,6 +9895,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
+/obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/iron/dark{
 	initial_gas_mix = "n2=100;TEMP=293.15"
 	},
@@ -12577,6 +12577,7 @@
 "eLi" = (
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
+/obj/item/kirbyplants/random/fullysynthetic,
 /turf/open/floor/carpet/red{
 	initial_gas_mix = "n2=100;TEMP=293.15"
 	},
@@ -15614,6 +15615,7 @@
 /obj/machinery/airalarm/directional/west,
 /obj/effect/spawner/random/contraband/permabrig_gear,
 /obj/item/poster/random_official,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/corrections_officer)
 "fNx" = (
@@ -15943,6 +15945,13 @@
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/qm)
+"fVc" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/station/construction/mining/aux_base)
 "fVd" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/item/circuitboard/machine/stasis,
@@ -16845,9 +16854,6 @@
 	name = "Auxiliary Base Construction Zone"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/aux_base,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/station/construction/mining/aux_base)
 "goc" = (
@@ -18513,6 +18519,15 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/gateway)
+"gSV" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/turf/open/floor/iron/dark{
+	initial_gas_mix = "n2=100;TEMP=293.15"
+	},
+/area/station/maintenance/gag_room)
 "gSX" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -30783,6 +30798,10 @@
 	network = list("auxbase");
 	pixel_y = -28
 	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "lrK" = (
@@ -31156,13 +31175,16 @@
 /turf/open/floor/mineral/titanium,
 /area/station/command/gateway)
 "lyL" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 8
-	},
 /obj/machinery/computer/camera_advanced/base_construction/aux{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/cobweb,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "lzq" = (
@@ -32158,15 +32180,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
-"lTf" = (
-/obj/machinery/vending/boozeomat/all_access,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/turf/open/floor/iron/dark{
-	initial_gas_mix = "n2=100;TEMP=293.15"
-	},
-/area/station/maintenance/gag_room)
 "lTj" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -40408,7 +40421,6 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "oXG" = (
@@ -42399,7 +42411,6 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/east,
-/obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "pJo" = (
@@ -44876,8 +44887,6 @@
 /area/station/science/genetics)
 "qzH" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron/dark,
@@ -48779,6 +48788,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engineering/central)
 "rWW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
 "rXa" = (
@@ -49011,6 +49023,10 @@
 /area/station/security/warden)
 "sbn" = (
 /obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "sbo" = (
@@ -49417,6 +49433,9 @@
 	},
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/east{
+	dir = 6
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
@@ -51064,6 +51083,10 @@
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "sNG" = (
@@ -54987,7 +55010,6 @@
 	name = "Auxiliary Base Construction"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/aux_base,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -59857,14 +59879,15 @@
 /turf/open/floor/iron/checker,
 /area/station/engineering/atmos/control_center)
 "waZ" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 4
-	},
 /obj/structure/table,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/pipe_dispenser,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/yellow/opposingcorners{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "wbb" = (
@@ -64483,6 +64506,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
+"xQP" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/security/corrections_officer)
 "xQU" = (
 /obj/structure/closet/toolcloset,
 /obj/effect/turf_decal/stripes/line{
@@ -94800,7 +94828,7 @@ izm
 bok
 mQt
 alt
-alt
+xQP
 iIW
 iQQ
 hkj
@@ -102902,8 +102930,8 @@ dvu
 hgk
 tcL
 dPI
-lTf
-xpt
+gSV
+gSV
 xpt
 izm
 izm
@@ -113930,7 +113958,7 @@ uGQ
 wsF
 vLR
 aSu
-cyu
+fVc
 exh
 cNa
 cNa
@@ -114444,7 +114472,7 @@ lCi
 fFc
 vLR
 jXj
-cyu
+fVc
 gnI
 umX
 cNa
@@ -114958,7 +114986,7 @@ cNa
 cNa
 mHn
 cyu
-cyu
+fVc
 exh
 cNa
 cNa
