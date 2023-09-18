@@ -54,12 +54,12 @@
 	icon_state = "random_loot"
 
 	loot = list(
-		/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot = 4000,
+		/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot = 3000,
 		/obj/effect/spawner/random/burgerstation/table = 200,
-		/obj/effect/spawner/random/burgerstation/vending = 100,
-		/obj/effect/spawner/random/burgerstation/atmos = 200,
-		/obj/effect/spawner/random/burgerstation/liquid = 50,
-		/obj/effect/spawner/random/burgerstation/power = 50,
+		/obj/effect/spawner/random/burgerstation/vending = 200,
+		/obj/effect/spawner/random/burgerstation/atmos = 400,
+		/obj/effect/spawner/random/burgerstation/liquid = 100,
+		/obj/effect/spawner/random/burgerstation/power = 100,
 		/obj/structure/trash_pile = 1000,
 		/obj/structure/closet/crate/trashcart/filled = 300,
 		/obj/structure/closet/boxinggloves = 10,
