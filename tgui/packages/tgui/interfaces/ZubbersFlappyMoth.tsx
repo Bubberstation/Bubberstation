@@ -91,7 +91,7 @@ class FlapMinigame {
     let newPosition = player.position + seconds * player.velocity;
     // let newVelocity = player.velocity; why
 
-    // bounding the position
+    // Bounding the position so we don't flap our way out
     if (newPosition < 0) {
       newPosition = 0;
       player.velocity = 0;
