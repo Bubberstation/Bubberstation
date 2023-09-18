@@ -56,12 +56,14 @@
 	loot = list(
 		/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot = 3000,
 		/obj/effect/spawner/random/burgerstation/table = 200,
-		/obj/effect/spawner/random/burgerstation/vending = 200,
-		/obj/effect/spawner/random/burgerstation/atmos = 400,
-		/obj/effect/spawner/random/burgerstation/liquid = 100,
+		/obj/effect/spawner/random/burgerstation/vending = 100,
+		/obj/effect/spawner/random/burgerstation/atmos = 500,
+		/obj/effect/spawner/random/burgerstation/liquid = 300,
 		/obj/effect/spawner/random/burgerstation/power = 100,
 		/obj/structure/trash_pile = 1000,
-		/obj/structure/closet/crate/trashcart/filled = 300,
+		/obj/structure/closet/crate/trashcart/filled = 400,
+		/obj/item/storage/bag/trash/filled = 100,
+		/obj/effect/decal/cleanable/garbage = 100,
 		/obj/structure/closet/boxinggloves = 10,
 		/obj/structure/closet/chefcloset = 10,
 		/obj/structure/closet/crate/decorations = 100,
@@ -272,9 +274,9 @@
 
 /obj/effect/spawner/random/burgerstation/odd
 	icon_state = "random_odd"
+	spawn_loot_chance = 100
 	loot = list(
-		/obj/structure/moisture_trap = 1000,
-		/obj/effect/spawner/random/structure/crate_abandoned = 200,
+		/obj/effect/spawner/random/structure/crate_abandoned = 600,
 		/obj/effect/spawner/random/burgerstation/table = 100,
 		/obj/machinery/biogenerator = 15,
 		/obj/machinery/chem_dispenser/mutagen = 1,
@@ -293,7 +295,7 @@
 		/obj/machinery/griddle = 10,
 		/obj/machinery/grill = 10,
 		/obj/machinery/harvester = 5,
-		/obj/machinery/hydroponics/constructable = 300,
+		/obj/machinery/hydroponics/constructable = 200,
 		/obj/machinery/icecream_vat = 40,
 		/obj/machinery/limbgrower = 5,
 		/obj/machinery/medical_kiosk = 30,
