@@ -774,7 +774,6 @@
 "eD" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/effect/turf_decal/trimline/purple/filled/warning,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/researcher,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "eF" = (
@@ -814,7 +813,9 @@
 /obj/structure/disposaloutlet{
 	dir = 1
 	},
-/turf/open/floor/engine/plasma,
+/turf/open/floor/engine{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "eT" = (
 /obj/machinery/hydroponics/constructable,
@@ -4807,7 +4808,9 @@
 /obj/machinery/igniter{
 	id = "syndiship_igniter"
 	},
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "zI" = (
 /obj/effect/turf_decal/trimline/dark_red/corner{
@@ -7682,7 +7685,9 @@
 /obj/structure/disposaloutlet{
 	dir = 8
 	},
-/turf/open/floor/engine/plasma,
+/turf/open/floor/engine{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "Na" = (
 /obj/machinery/power/apc/auto_name/directional/north,
