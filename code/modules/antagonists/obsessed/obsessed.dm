@@ -69,7 +69,7 @@
 
 /datum/antagonist/obsessed/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
+	var/datum/objective/assassinate/kill = new // ZUBBER EDIT
 	kill.owner = owner
 	kill.target = obsessionmind
 	var/obj/family_heirloom
