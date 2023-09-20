@@ -296,6 +296,7 @@
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog = 3)
 	crate_name = "dreadnog crate"
 
+/* BUBBER EDIT - No craftable slappy
 /datum/supply_pack/imports/giant_wrench_parts
 	name = "Big Slappy parts"
 	desc = "Illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
@@ -303,3 +304,4 @@
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
+*/
