@@ -795,6 +795,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
+/obj/item/reagent_containers/condiment/quality_oil,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "eK" = (
@@ -1076,24 +1077,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "gL" = (
-/obj/structure/table/reinforced,
-/obj/item/grenade/barrier{
-	pixel_x = 10;
-	pixel_y = 3
-	},
-/obj/item/grenade/barrier{
-	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/item/grenade/barrier,
-/obj/item/grenade/barrier{
-	pixel_x = -8;
-	pixel_y = -2
-	},
-/obj/item/grenade/barrier{
-	pixel_x = -4;
-	pixel_y = 4
-	},
+/obj/structure/closet/secure_closet/interdynefob/mod_locker,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "gM" = (
@@ -2193,8 +2177,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "mW" = (
 /obj/machinery/computer/security{
-	dir = 8;
-	network = list("ds2")
+	dir = 8
 	},
 /obj/machinery/button/door/directional/south{
 	name = "Window Shutters";
@@ -2361,6 +2344,10 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/paper{
+	name = "paper - 'Explosives Warning'";
+	default_raw_text = "Hello agent! We're excited to haveyou working in the chemistry lab. Though, please mind the explosive bulkheads located a few meters above your head.While it's rare, we don't want the Dauntless to suffer a catastrophic chain reaction! She's a very volatile ship, so good luck!"
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
 "nR" = (
@@ -2436,7 +2423,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -2504,14 +2490,13 @@
 /obj/structure/table,
 /obj/item/clothing/accessory/armband/hydro{
 	name = "Service Armband";
-	pixel_x = 8;
+	pixel_x = 23;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/condiment/enzyme,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/microwave{
-	pixel_y = 8
-	},
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/storage/belt/military/snack,
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -2611,7 +2596,7 @@
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;
-	req_access = list("syndicate");
+	req_access = list("syndicate_leader");
 	shoot_cyborgs = 1
 	},
 /turf/open/floor/circuit/red,
@@ -2765,10 +2750,27 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "pJ" = (
-/obj/structure/closet/secure_closet/interdynefob/mod_locker,
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/table/reinforced,
+/obj/item/grenade/barrier,
+/obj/item/grenade/barrier{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/grenade/barrier{
+	pixel_x = 10;
+	pixel_y = 3
+	},
+/obj/item/grenade/barrier{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/item/grenade/barrier{
+	pixel_x = 5;
+	pixel_y = 10
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "pK" = (
@@ -3404,10 +3406,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/item/paper{
-	name = "paper - 'Explosives Warning'";
-	default_raw_text = "Hello agent! We're excited tohaveyou working in the chemistry lab. Though, please mind the explosive bulkheads located a few meters above your head.While it's rare, we don't want the Dauntless to suffer a catastrophic chain reaction! She's a very volatile ship, so good luck!"
-	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
 "sO" = (
@@ -3628,9 +3626,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
 "tM" = (
 /obj/structure/table,
-/obj/item/storage/belt/military/snack,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
+/obj/machinery/microwave{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -5947,8 +5945,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "EK" = (
 /obj/machinery/computer/security{
-	dir = 4;
-	network = list("ds2")
+	dir = 4
 	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
@@ -7547,10 +7544,25 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Me" = (
 /obj/structure/table,
-/obj/item/knife,
-/obj/item/kitchen/rollingpin,
-/obj/item/reagent_containers/condiment/peppermill,
-/obj/item/reagent_containers/condiment/saltshaker,
+/obj/item/knife{
+	pixel_y = 3;
+	pixel_x = 6
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/condiment/peppermill{
+	pixel_y = 15;
+	pixel_x = 11
+	},
+/obj/item/reagent_containers/condiment/saltshaker{
+	pixel_y = 9;
+	pixel_x = 11
+	},
+/obj/item/reagent_containers/condiment/enzyme{
+	pixel_x = 12
+	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -7571,6 +7583,7 @@
 /obj/item/reagent_containers/condiment/flour,
 /obj/item/reagent_containers/condiment/flour,
 /obj/effect/turf_decal/bot_blue,
+/obj/item/reagent_containers/condiment/quality_oil,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Mg" = (
@@ -7582,7 +7595,7 @@
 "Mh" = (
 /obj/machinery/door/window/survival_pod{
 	dir = 1;
-	req_access = list("Syndicate");
+	req_access = list("syndicate");
 	name = "Holding Cell"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7697,6 +7710,14 @@
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command/corporateliaison,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
+"Nc" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 6;
+	pixel_y = -8;
+	pixel_x = 8
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Nd" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -8450,6 +8471,7 @@
 "Rn" = (
 /obj/structure/closet/crate/trashcart/laundry,
 /obj/effect/spawner/random/trash/janitor_supplies,
+/obj/item/mop,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Rr" = (
@@ -12329,7 +12351,7 @@ kE
 uv
 kE
 fd
-hK
+Nc
 nY
 up
 Im
