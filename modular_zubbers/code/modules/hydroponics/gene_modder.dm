@@ -75,35 +75,36 @@
 	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
 		update_icon()
 		return
+	else if(default_unfasten_wrench(user, I))
+		return
 	if(default_deconstruction_crowbar(I))
 		return
 	if(iscyborg(user))
 		return
 
 	if(istype(I, /obj/item/seeds))
-		if (operation)
-			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
-			return
-		if(!user.transferItemToLoc(I, src))
-			return
-		eject_seed()
-		insert_seed(I)
-		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
-		interact(user)
+		if(seed)
+			to_chat(user, "<span class='warning'>A sample is already loaded into the machine!</span>")
+		else
+			if(!user.temporarilyRemoveItemFromInventory(I))
+				return
+			insert_seed(I)
+			to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
+			interact(user)
+		return
 	else if(istype(I, /obj/item/disk/plantgene))
 		if (operation)
 			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
 			return
+		eject_disk()
 		if(!user.transferItemToLoc(I, src))
 			return
-		eject_disk()
 		disk = I
 		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
 		interact(user)
 	else
 		..()
 
-//? Eventually refactor this into TGUI?
 /obj/machinery/plantgenes/ui_interact(mob/user)
 	. = ..()
 	if(!user)
@@ -255,31 +256,34 @@
 	popup.open()
 
 
-/obj/machinery/plantgenes/Topic(href, list/href_list)
+/obj/machinery/plantgenes/Topic(var/href, var/list/href_list)
 	if(..())
 		return
 	usr.set_machine(src)
 
 	if(href_list["eject_seed"] && !operation)
-		var/obj/item/I = usr.get_active_held_item()
-		if(istype(I, /obj/item/seeds))
-			if(!usr.transferItemToLoc(I, src))
-				return
-			eject_seed()
-			insert_seed(I)
-			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+		if (seed)
+			seed.forceMove(drop_location())
+			seed.verb_pickup()
+			seed = null
+			update_genes()
+			update_icon()
 		else
-			eject_seed()
+			var/obj/item/I = usr.get_active_held_item()
+			if (istype(I, /obj/item/seeds))
+				if(!usr.temporarilyRemoveItemFromInventory(I))
+					return
+				insert_seed(I)
+				to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
+		update_icon()
 	else if(href_list["eject_disk"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
+		eject_disk()
 		if(istype(I, /obj/item/disk/plantgene))
 			if(!usr.transferItemToLoc(I, src))
 				return
-			eject_disk()
 			disk = I
 			to_chat(usr, "<span class='notice'>You add [I] to the machine.</span>")
-		else
-			eject_disk()
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
 		if(!operation) // Wait for confirmation
 			operation = "insert"
@@ -369,22 +373,12 @@
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if(Adjacent(usr) && !issilicon(usr))
 			if (!usr.put_in_hands(disk))
 				disk.forceMove(drop_location())
 		else
 			disk.forceMove(drop_location())
 		disk = null
-		update_genes()
-
-/obj/machinery/plantgenes/proc/eject_seed()
-	if (seed && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
-			if (!usr.put_in_hands(seed))
-				seed.forceMove(drop_location())
-		else
-			seed.forceMove(drop_location())
-		seed = null
 		update_genes()
 
 /obj/machinery/plantgenes/proc/update_genes()
