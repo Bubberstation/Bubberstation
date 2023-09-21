@@ -1726,6 +1726,7 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/effect/turf_decal/vg_decals/numbers/four,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "kp" = (
@@ -4647,9 +4648,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "yV" = (
-/obj/item/stack/sheet/plastitaniumglass/fifty,
+/obj/item/stack/sheet/plastitaniumglass/fifty{
+	pixel_y = 3;
+	pixel_x = 3
+	},
 /obj/item/stack/sheet/mineral/plastitanium{
-	amount = 50
+	amount = 50;
+	pixel_y = 7
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark,
@@ -7859,8 +7864,18 @@
 	dir = 9
 	},
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/rglass/fifty,
-/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/rglass/fifty{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/stack/sheet/iron/fifty{
+	pixel_y = 10;
+	pixel_x = 7
+	},
+/obj/item/storage/box/gas_miner_beacons/syndicate{
+	pixel_y = 11;
+	pixel_x = -11
+	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "Oj" = (
