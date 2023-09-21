@@ -183,6 +183,11 @@
 	if(wounding_dmg < DISMEMBER_MINIMUM_DAMAGE)
 		return
 
+	//BUBBERSTATION CHANGE: DISMEMBER ONLY WORKS IF THE TARGET IS DEAD
+	if(owner && owner.stat != DEAD)
+		return
+	//BUBBERSTATION CHANGE END
+
 	var/base_chance = wounding_dmg
 	base_chance += (get_damage() / max_damage * 50) // how much damage we dealt with this blow, + 50% of the damage percentage we already had on this bodypart
 
