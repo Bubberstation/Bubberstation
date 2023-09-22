@@ -289,6 +289,7 @@
 
 // Personal Defense Weapons (For when the pharmacist must become the harmacist)
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/deforest/defense
 	subcategory = "Personal Defense Equipment"
 	interest_addition = COMPANY_INTEREST_GAIN_AVERAGE
@@ -299,6 +300,7 @@
 	item_type = /obj/item/gun/ballistic/automatic/pistol/firefly
 	lower_cost = CARGO_CRATE_VALUE * 2
 	upper_cost = CARGO_CRATE_VALUE * 3
+*/
 
 #undef PRICE_FIRST_AID_BASIC_LOWER
 #undef PRICE_FIRST_AID_BASIC_HIGHER
