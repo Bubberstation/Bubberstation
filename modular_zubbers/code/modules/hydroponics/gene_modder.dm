@@ -373,7 +373,7 @@
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
-		if(Adjacent(usr) && !issilicon(usr))
+		if(Adjacent(usr) && !issiliconoradminghost(usr))
 			if (!usr.put_in_hands(disk))
 				disk.forceMove(drop_location())
 		else
