@@ -256,7 +256,7 @@
 	popup.open()
 
 
-/obj/machinery/plantgenes/Topic(var/href, var/list/href_list)
+/obj/machinery/plantgenes/Topic(href, list/href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -334,7 +334,7 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
-						disk.update_name()
+						disk.update_disk_name()
 						qdel(seed)
 						seed = null
 						update_icon()
@@ -373,7 +373,7 @@
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if(Adjacent(usr) && !issilicon(usr))
 			if (!usr.put_in_hands(disk))
 				disk.forceMove(drop_location())
 		else
@@ -439,13 +439,11 @@
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/*
-/obj/item/disk/plantgene/proc/update_name()
+/obj/item/disk/plantgene/proc/update_disk_name()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else
 		name = "plant data disk"
-*/
 
 /obj/item/disk/plantgene/attack_self(mob/user)
 	read_only = !read_only
