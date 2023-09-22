@@ -1,4 +1,4 @@
-#define SATCHEL_TC_LIMIT 3
+#define SATCHEL_TC_LIMIT 2
 
 /datum/controller/subsystem/traitor
 
