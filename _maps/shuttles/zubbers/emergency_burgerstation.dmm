@@ -523,6 +523,13 @@
 "pS" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"qa" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/obj/structure/curtain/cloth/fancy/mechanical/start_closed{
+	id = "shuttle_curtains_north"
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape/luxury)
 "qr" = (
 /obj/machinery/scanner_gate/luxury_shuttle{
 	name = "first class ticket field"
@@ -1266,7 +1273,7 @@
 /area/shuttle/escape)
 "Or" = (
 /obj/machinery/button/curtain{
-	id = "shuttle_curtain";
+	id = "shuttle_curtains_west";
 	pixel_y = 24
 	},
 /turf/open/floor/mineral/gold,
@@ -1434,11 +1441,11 @@
 /area/shuttle/escape)
 "VW" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
-/obj/structure/curtain/cloth/fancy/mechanical/start_closed{
-	id = "shuttle_curtain_north"
-	},
 /obj/item/restraints/legcuffs/beartrap/prearmed{
 	name = "poor people trap"
+	},
+/obj/structure/curtain/cloth/fancy/mechanical/start_closed{
+	id = "shuttle_curtains_west"
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape/luxury)
@@ -2098,7 +2105,7 @@ Bm
 iB
 fP
 dv
-rR
+qa
 rR
 rR
 rR
