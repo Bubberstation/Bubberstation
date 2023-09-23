@@ -1,6 +1,8 @@
 /// Use in fish tables to denote miss chance.
 #define FISHING_DUD "dud"
 
+
+/* BUBBERSTATION CHANGE: SEE FISHING_ZUBBERS.dm FOR NEW DEFINES.
 // Baseline fishing difficulty levels
 #define FISHING_DEFAULT_DIFFICULTY 15
 
@@ -10,7 +12,7 @@
 #define DISLIKED_BAIT_DIFFICULTY_MOD 15
 /// Difficulty modifier when our fisherman has the trait TRAIT_SETTLER
 #define SETTLER_DIFFICULTY_MOD -5
-
+*/
 
 #define FISH_TRAIT_MINOR_DIFFICULTY_BOOST 5
 
