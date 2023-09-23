@@ -331,7 +331,6 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
-							seed.genes -= G
 							disk.gene = gene
 						disk.update_disk_name()
 						qdel(seed)
