@@ -315,10 +315,9 @@
 					repaint_seed()
 				if("extract")
 					if(disk && !disk.read_only)
-						disk.gene = G
 						seed.genes -= G
+						var/datum/plant_gene/core/gene = G
 						if(istype(G, /datum/plant_gene/core))
-							var/datum/plant_gene/core/gene = G
 							if(istype(G, /datum/plant_gene/core/potency))
 								gene.value = min(gene.value, max_potency)
 							else if(istype(G, /datum/plant_gene/core/lifespan))
@@ -333,6 +332,8 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
+						disk.gene = gene
+						to_chat(usr, "<span class='notice'>You add [gene] to the disk. and delete [G] from the seed.</span>")
 						disk.update_disk_name()
 						qdel(seed)
 						seed = null
