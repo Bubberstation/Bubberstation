@@ -102,6 +102,7 @@
 /datum/armament_entry/company_import/nri_surplus/firearm
 	subcategory = "Firearms"
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/nri_surplus/firearm/makarov
 	item_type = /obj/item/gun/ballistic/automatic/pistol/makarov
 	lower_cost = CARGO_CRATE_VALUE * 3
@@ -115,6 +116,7 @@
 	upper_cost = CARGO_CRATE_VALUE * 4
 	interest_required = COMPANY_SOME_INTEREST
 	interest_addition = COMPANY_INTEREST_GAIN_BIG
+*/
 
 /datum/armament_entry/company_import/nri_surplus/firearm/plasma_thrower
 	item_type = /obj/item/gun/energy/laser/plasma_thrower
@@ -123,6 +125,7 @@
 	interest_required = COMPANY_SOME_INTEREST
 	interest_addition = COMPANY_INTEREST_GAIN_BIG
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/nri_surplus/firearm/anti_materiel_rifle
 	item_type = /obj/item/gun/ballistic/automatic/cin_amr
 	lower_cost = CARGO_CRATE_VALUE * 8
@@ -130,3 +133,4 @@
 	interest_required = COMPANY_HIGH_INTEREST
 	restricted = TRUE
 	interest_addition = COMPANY_INTEREST_GAIN_BIG
+*/
