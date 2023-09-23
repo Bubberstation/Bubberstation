@@ -51,14 +51,12 @@
 	id_trim = /datum/id_trim/job/head_of_security
 	uniform = /obj/item/clothing/under/rank/security/head_of_security
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
-	suit_store = /obj/item/gun/energy/e_gun //KEPLER EDIT RESTORATION
+	suit_store = /obj/item/gun/energy/e_gun
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/flashlight/seclite = 1,
-		/obj/item/modular_computer/pda/heads/hos = 1,
-		/obj/item/choice_beacon/head_of_security = 1,
+		/obj/item/choice_beacon/head_of_security = 1, // BUBBER EDIT ADDITION
 		)
-	belt = /obj/item/storage/belt/security/full
+	belt = /obj/item/modular_computer/pda/heads/hos
 	ears = /obj/item/radio/headset/heads/hos/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	gloves = /obj/item/clothing/gloves/color/black/security //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/gloves/color/black
@@ -70,6 +68,7 @@
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
+	messenger = /obj/item/storage/backpack/messenger/sec
 
 	box = /obj/item/storage/box/survival/security
 	chameleon_extras = list(
@@ -88,7 +87,7 @@
 	mask = /obj/item/clothing/mask/gas/sechailer
 	internals_slot = ITEM_SLOT_SUITSTORE
 
-//TEST THIS OUT WHEN NEEDED
+//BUBBER EDIT ADDITION BEGIN
 
 /obj/item/choice_beacon/head_of_security
 	name = "gun choice beacon"
@@ -124,7 +123,6 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
-	new /obj/item/storage/box/nri_rations(src)
 	new /obj/item/knife/combat(src)
 
 /obj/item/storage/box/hosgun/glock
@@ -136,4 +134,4 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper/sol(src)
 	new /obj/item/clothing/neck/tie/red(src)
 	new /obj/item/storage/pill_bottle/probital(src)
-
+// BUBBER EDIT ADDITION END

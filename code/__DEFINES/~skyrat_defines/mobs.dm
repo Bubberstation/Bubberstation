@@ -4,6 +4,8 @@
 
 #define HUMAN_HEALTH_MODIFIER 1.35
 
+#define HUMAN_MAXHEALTH MAX_LIVING_HEALTH * HUMAN_HEALTH_MODIFIER
+
 /// Used for Nanite Slurry vomit. The mob will vomit a nanite puddle.
 #define VOMIT_NANITE 3
 
@@ -12,7 +14,7 @@
 #define UNDERWEAR_HIDE_UNDIES (1<<2)
 
 //Appends to the bottom of Defib fails - DNR TRAIT
-#define DEFIB_FAIL_DNR (1<<11)
+//#define DEFIB_FAIL_DNR (1<<11) //BUBBER EDIT REMOVAL
 
 ///Defines for icons used for modular bodyparts, created to make it easier to relocate the module or files if necessary.
 #define BODYPART_ICON_HUMAN 'modular_skyrat/modules/bodyparts/icons/human_parts_greyscale.dmi'

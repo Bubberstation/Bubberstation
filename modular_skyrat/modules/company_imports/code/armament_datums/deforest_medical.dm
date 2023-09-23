@@ -35,13 +35,6 @@
 	stock_mult = 3
 	interest_addition = COMPANY_INTEREST_GAIN_PITIFUL
 
-/datum/armament_entry/company_import/deforest/first_aid/splint
-	item_type = /obj/item/stack/medical/splint/twelve
-	lower_cost = CARGO_CRATE_VALUE * PRICE_FIRST_AID_BASIC_LOWER
-	upper_cost = CARGO_CRATE_VALUE * PRICE_FIRST_AID_BASIC_HIGHER
-	stock_mult = 3
-	interest_addition = COMPANY_INTEREST_GAIN_PITIFUL
-
 /datum/armament_entry/company_import/deforest/first_aid/bruise_pack
 	item_type = /obj/item/stack/medical/bruise_pack
 	lower_cost = CARGO_CRATE_VALUE * PRICE_FIRST_AID_MEDIUM_LOWER
@@ -296,6 +289,7 @@
 
 // Personal Defense Weapons (For when the pharmacist must become the harmacist)
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/deforest/defense
 	subcategory = "Personal Defense Equipment"
 	interest_addition = COMPANY_INTEREST_GAIN_AVERAGE
@@ -306,6 +300,7 @@
 	item_type = /obj/item/gun/ballistic/automatic/pistol/firefly
 	lower_cost = CARGO_CRATE_VALUE * 2
 	upper_cost = CARGO_CRATE_VALUE * 3
+*/
 
 #undef PRICE_FIRST_AID_BASIC_LOWER
 #undef PRICE_FIRST_AID_BASIC_HIGHER
