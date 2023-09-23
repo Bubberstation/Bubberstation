@@ -333,6 +333,7 @@
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
 						disk.gene = gene
+						to_chat(usr, "<span class='notice'>You add [gene] to the disk.</span>")
 						disk.update_disk_name()
 						qdel(seed)
 						seed = null
