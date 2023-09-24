@@ -281,4 +281,4 @@ const ALTTITLES = {
 export const JOB2ICON = { ...BASEICONS, ...ALTTITLES } as const;
 // SKYRAT EDIT END
 
-export type AvailableJob = keyof typeof JOB2ICON;
+// export type AvailableJob = keyof typeof JOB2ICON;
