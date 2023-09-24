@@ -742,7 +742,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/rsf/cookiesynth,
-		/obj/item/harmalarm,
+		/obj/item/harmalarm/bubbers, //BUBBERTATION CHANGE
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
 		/obj/item/borg/cyborghug/peacekeeper,
