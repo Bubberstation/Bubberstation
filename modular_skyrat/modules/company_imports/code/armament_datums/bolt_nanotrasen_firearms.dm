@@ -52,6 +52,7 @@
 	upper_cost = CARGO_CRATE_VALUE * 2.5
 	interest_addition = COMPANY_INTEREST_GAIN_AVERAGE
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/nanotrasen_bolt_weapons/lethal_sidearm/g17
 	item_type = /obj/item/gun/ballistic/automatic/pistol/g17
 	lower_cost = CARGO_CRATE_VALUE * 4
@@ -66,6 +67,7 @@
 	item_type = /obj/item/gun/ballistic/automatic/pistol/m1911
 	lower_cost = CARGO_CRATE_VALUE * 5
 	upper_cost = CARGO_CRATE_VALUE * 7
+*/
 
 /datum/armament_entry/company_import/nanotrasen_bolt_weapons/lethal_sidearm/energy_holster
 	item_type = /obj/item/storage/belt/holster/energy/thermal
@@ -90,6 +92,7 @@
 	lower_cost = CARGO_CRATE_VALUE * 10
 	upper_cost = CARGO_CRATE_VALUE * 15
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/nanotrasen_bolt_weapons/longarm/wt550
 	item_type = /obj/item/gun/ballistic/automatic/wt550
 	lower_cost = CARGO_CRATE_VALUE * 10
@@ -99,3 +102,4 @@
 	item_type = /obj/item/gun/ballistic/automatic/cmg
 	lower_cost = CARGO_CRATE_VALUE * 10
 	upper_cost = CARGO_CRATE_VALUE * 15
+*/

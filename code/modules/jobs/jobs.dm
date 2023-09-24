@@ -32,6 +32,8 @@ GLOBAL_LIST_INIT(exp_specialmap, list(
 		ROLE_GHOST_CAFE,
 		ROLE_PORT_TARKON,
 		//Skyrat Edit Start - End Custom Ghost roles
+
+		ROLE_DAUNTLESS //BUBBERSATION EDIT
 		), // Ghost roles
 	EXP_TYPE_GHOST = list() // dead people, observers
 ))

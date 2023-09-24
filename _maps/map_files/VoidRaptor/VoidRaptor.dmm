@@ -15824,10 +15824,15 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/secondary/service)
 "eEi" = (
-/obj/structure/closet/secure_closet/smartgun,
 /obj/effect/turf_decal/tile/dark_red/anticorner,
 /obj/structure/sign/poster/official/twelve_gauge/directional/east,
 /obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/storage/box/teargas{
+	pixel_x = 1;
+	pixel_y = -2
+	},
+/obj/item/gun/grenadelauncher,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "eEp" = (
@@ -21684,11 +21689,11 @@
 /area/station/medical/medbay/central)
 "gra" = (
 /obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/microfusion,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},
 /obj/effect/turf_decal/delivery,
+/obj/effect/spawner/random/armory/e_gun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "grg" = (
@@ -22647,12 +22652,12 @@
 /area/station/ai_monitored/turret_protected/ai_upload)
 "gEO" = (
 /obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/cmg,
 /obj/effect/turf_decal/tile/dark_red/anticorner{
 	dir = 4
 	},
 /obj/structure/sign/poster/official/ion_rifle/directional/east,
 /obj/effect/turf_decal/delivery,
+/obj/effect/spawner/random/armory/laser_gun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "gEV" = (
@@ -35505,7 +35510,6 @@
 /area/station/commons/lounge)
 "kjG" = (
 /obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/shotguns,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},
@@ -35514,6 +35518,7 @@
 /obj/machinery/digital_clock/directional/north{
 	pixel_y = 37
 	},
+/obj/effect/spawner/random/armory/shotgun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "kjL" = (

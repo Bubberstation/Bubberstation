@@ -66,6 +66,10 @@
 		var/org_zone = check_zone(organ.zone)
 		if(org_zone != BODY_ZONE_CHEST)
 			continue
+		//BUBBERSTATION CHANGE: FIXES ORGAN SPILLING.
+		if(!organ.drop_when_organ_spilling)
+			continue
+		//BUBBERSTATION CHANGE END.
 		organ.Remove(chest_owner)
 		organ.forceMove(chest_owner.loc)
 		. += organ

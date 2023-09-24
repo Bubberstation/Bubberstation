@@ -1427,6 +1427,7 @@
 		"drill",
 		"mecha_kineticgun",
 		"mining_equipment_vendor",
+		"interdyne_mining_equipment_vendor", //Bubberstation Edit
 		"ore_redemption",
 		"plasmacutter",
 		"rangemod",
