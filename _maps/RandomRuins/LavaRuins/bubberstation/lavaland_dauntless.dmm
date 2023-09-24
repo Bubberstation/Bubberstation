@@ -5695,7 +5695,7 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "DJ" = (
-/obj/structure/bed/roller,
+/obj/structure/bed/medical/emergency,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 4
 	},
@@ -7184,7 +7184,9 @@
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Ks" = (
-/obj/machinery/recycler,
+/obj/machinery/recycler{
+	dir = 8
+	},
 /obj/machinery/conveyor{
 	id = "syndidisp";
 	dir = 4
@@ -9286,7 +9288,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
 	},
-/obj/structure/bed/roller,
+/obj/structure/bed/medical/emergency,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white/diagonal,
