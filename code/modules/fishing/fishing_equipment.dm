@@ -162,14 +162,14 @@
 
 /obj/item/fishing_hook/stabilized
 	name = "gyro-stabilized hook"
-	desc = "A quirky hook that grants the user a better control of the tool, allowing them to move the hook both and up and down when reeling in, otherwise keeping it stabilized."
+	desc = "A quirky hook that grants the user a better control of the tool, allowing them to move the bait both and up and down when reeling in, otherwise keeping it in place."
 	icon_state = "gyro"
 	fishing_hook_traits = FISHING_HOOK_BIDIRECTIONAL
 	rod_overlay_icon_state = "hook_gyro_overlay"
 
 /obj/item/fishing_hook/stabilized/examine(mob/user)
 	. = ..()
-	. += span_notice("While fishing, you can hold the <b>Ctrl</b> key to move the bait down, rather than up.")
+	. += span_notice("While fishing, you can hold the <b>Right</b> Mouse Button to move the bait down, rather than up.")
 
 /obj/item/fishing_hook/jaws
 	name = "jawed hook"
@@ -188,7 +188,10 @@
 /obj/item/storage/toolbox/fishing/Initialize(mapload)
 	. = ..()
 	// Can hold fishing rod despite the size
-	var/static/list/exception_cache = typecacheof(/obj/item/fishing_rod)
+	var/static/list/exception_cache = typecacheof(
+		/obj/item/fishing_rod,
+		/obj/item/fishing_line,
+	)
 	atom_storage.exception_hold = exception_cache
 
 /obj/item/storage/toolbox/fishing/PopulateContents()
@@ -203,6 +206,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 5
 	throwforce = 5
+
+/obj/item/storage/toolbox/fishing/small/Initialize(mapload)
+	. = ..()
+	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL //It can still hold a fishing rod
 
 /obj/item/storage/toolbox/fishing/small/PopulateContents()
 	new /obj/item/fishing_rod(src)
