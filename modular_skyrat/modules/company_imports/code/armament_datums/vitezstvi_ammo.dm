@@ -32,6 +32,7 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/pepperball
 	item_type = /obj/item/ammo_box/advanced/pepperballs
 
+/* BUBBERSTATION EDIT REMOVAL
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/m1911_lethals
 	item_type = /obj/item/ammo_box/c45
 
@@ -81,6 +82,7 @@
 	item_type = /obj/item/ammo_box/c56mm/blank
 	lower_cost = CARGO_CRATE_VALUE * 0.1
 	upper_cost = CARGO_CRATE_VALUE * 0.3
+*/
 
 // Revolver speedloaders
 
