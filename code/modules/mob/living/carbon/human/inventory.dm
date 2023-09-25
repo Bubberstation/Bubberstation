@@ -264,7 +264,11 @@
 
 			update_worn_oversuit()
 	else if(I == w_uniform)
-		if(invdrop)
+		// BUBBER EDIT START - PREVENTS DROPPING FROM SYNTHS
+		// Since this always runs on carbons we dont need to check if the loc is one
+		var/mob/living/carbon/human/H = I.loc
+		if(invdrop && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (IS_ORGANIC_LIMB(H.get_bodypart(BODY_ZONE_CHEST))))
+		// BUBBER EDIT END
 			if(r_store)
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
 			if(l_store)
