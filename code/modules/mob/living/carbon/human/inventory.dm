@@ -266,7 +266,7 @@
 	else if(I == w_uniform)
 		// BUBBER EDIT START - PREVENTS DROPPING FROM SYNTHS
 		// Since this always runs on carbons we dont need to check if the loc is one
-		var/mob/living/carbon/human/H = I.loc
+		var/mob/living/carbon/human/H = I.src
 		if(invdrop && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (IS_ORGANIC_LIMB(H.get_bodypart(BODY_ZONE_CHEST))))
 		// BUBBER EDIT END
 			if(r_store)
