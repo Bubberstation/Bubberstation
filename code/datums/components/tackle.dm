@@ -172,7 +172,7 @@
 			var/obj/item/bodypart/head/hed = user.get_bodypart(BODY_ZONE_HEAD)
 			if(hed)
 				hed.receive_damage(brute = 15, updating_health = TRUE, wound_bonus = CANT_WOUND)
-			user.gain_trauma(/datum/brain_trauma/mild/concussion)
+			// user.gain_trauma(/datum/brain_trauma/mild/concussion) BUBBERSTATION CHANGE: REMOVES CONCUSSION ON MOB HIT.
 
 		if(-4 to -2) // glancing blow at best
 			user.visible_message(span_warning("[user] lands a weak [tackle_word] on [target], briefly knocking [target.p_them()] off-balance!"), span_userdanger("You land a weak [tackle_word] on [target], briefly knocking [target.p_them()] off-balance!"), ignored_mobs = target)
@@ -182,6 +182,11 @@
 			if(ishuman(target) && !T.has_movespeed_modifier(/datum/movespeed_modifier/shove))
 				T.add_movespeed_modifier(/datum/movespeed_modifier/shove) // maybe define a slightly more severe/longer slowdown for this
 				addtimer(CALLBACK(T, TYPE_PROC_REF(/mob/living/carbon, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH * 2)
+			// BUBBERSTATION CHANGE: ADDS PASSIVE GRAB
+			if(ishuman(target) && ishuman(user))
+				INVOKE_ASYNC(S.dna.species, TYPE_PROC_REF(/datum/species, grab), S, T)
+				S.setGrabState(GRAB_PASSIVE)
+			// END OF BUBBERSTATION CHANGE
 
 		if(-1 to 0) // decent hit, both parties are about equally inconvenienced
 			user.visible_message(span_warning("[user] lands a passable [tackle_word] on [target], sending them both tumbling!"), span_userdanger("You land a passable [tackle_word] on [target], sending you both tumbling!"), ignored_mobs = target)
@@ -191,6 +196,11 @@
 			target.Paralyze(0.5 SECONDS)
 			user.Knockdown(2 SECONDS)
 			target.Knockdown(2.5 SECONDS)
+			// BUBBERSTATION CHANGE: ADDS AGGRESSIVE GRAB
+			if(ishuman(target) && ishuman(user))
+				INVOKE_ASYNC(S.dna.species, TYPE_PROC_REF(/datum/species, grab), S, T)
+				S.setGrabState(GRAB_AGGRESSIVE)
+			// END OF BUBBERSTATION CHANGE
 
 		if(1 to 2) // solid hit, tackler has a slight advantage
 			user.visible_message(span_warning("[user] lands a solid [tackle_word] on [target], knocking them both down hard!"), span_userdanger("You land a solid [tackle_word] on [target], knocking you both down hard!"), ignored_mobs = target)
@@ -200,12 +210,18 @@
 			target.Paralyze(0.5 SECONDS)
 			user.Knockdown(1 SECONDS)
 			target.Knockdown(2 SECONDS)
+			// BUBBERSTATION CHANGE: ADDS AGGRESSIVE GRAB
+			if(ishuman(target) && ishuman(user))
+				INVOKE_ASYNC(S.dna.species, TYPE_PROC_REF(/datum/species, grab), S, T)
+				S.setGrabState(GRAB_AGGRESSIVE)
+			// END OF BUBBERSTATION CHANGE
 
 		if(3 to 4) // really good hit, the target is definitely worse off here. Without positive modifiers, this is as good a tackle as you can land
 			user.visible_message(span_warning("[user] lands an expert [tackle_word] on [target], knocking [target.p_them()] down hard while landing on [user.p_their()] feet with a passive grip!"), span_userdanger("You land an expert [tackle_word] on [target], knocking [target.p_them()] down hard while landing on your feet with a passive grip!"), ignored_mobs = target)
 			to_chat(target, span_userdanger("[user] lands an expert [tackle_word] on you, knocking you down hard and maintaining a passive grab!"))
 
-			user.SetKnockdown(0)
+			// Ignore_canstun has to be true, or else a stunimmune user would stay knocked down.
+			user.SetKnockdown(0, ignore_canstun = TRUE)
 			user.get_up(TRUE)
 			user.forceMove(get_turf(target))
 			target.adjustStaminaLoss(40)
@@ -213,7 +229,7 @@
 			target.Knockdown(3 SECONDS)
 			if(ishuman(target) && ishuman(user))
 				INVOKE_ASYNC(S.dna.species, TYPE_PROC_REF(/datum/species, grab), S, T)
-				S.setGrabState(GRAB_PASSIVE)
+				S.setGrabState(GRAB_AGGRESSIVE) //BUBBERSTATION CHANGE: PASSIVE TO AGGRESSIVE.
 
 		if(5 to INFINITY) // absolutely BODIED
 			var/stamcritted_user = HAS_TRAIT_FROM(user, TRAIT_INCAPACITATED, STAMINA)
@@ -228,7 +244,8 @@
 				user.visible_message(span_warning("[user] lands a monster [tackle_word] on [target], knocking [target.p_them()] senseless and applying an aggressive pin!"), span_userdanger("You land a monster [tackle_word] on [target], knocking [target.p_them()] senseless and applying an aggressive pin!"), ignored_mobs = target)
 				to_chat(target, span_userdanger("[user] lands a monster [tackle_word] on you, knocking you senseless and aggressively pinning you!"))
 
-				user.SetKnockdown(0)
+				// Ignore_canstun has to be true, or else a stunimmune user would stay knocked down.
+				user.SetKnockdown(0, ignore_canstun = TRUE)
 				user.get_up(TRUE)
 				user.forceMove(get_turf(target))
 				target.adjustStaminaLoss(40)
