@@ -8,7 +8,21 @@
 	base_active_power_usage = 0
 	base_idle_power_usage = 0
 
-	var/obj/item/organ/internal/brain/synth/brain_link
+	var/mob/living/carbon/human/synth_owner
+
+/obj/item/modular_computer/pda/silicon/Initialize(mapload)
+	. = ..()
+	synth_owner = loc.loc
+	if(!istype(synth_owner))
+		synth_owner = null
+		stack_trace("[type] initialized outside of a silicon, deleting.")
+		return INITIALIZE_HINT_QDEL
+
+/obj/item/modular_computer/synth/get_ntnet_status()
+	if(synth_owner.stat != DEAD)
+		return ..()
+	return FALSE
+
 
 /obj/item/modular_computer/synth/get_messenger_ending()
 	return " Sent from my internal computer."
