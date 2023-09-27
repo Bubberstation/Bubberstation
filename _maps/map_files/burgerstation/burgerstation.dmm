@@ -28444,7 +28444,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
 "krh" = (
-/obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -36829,7 +36828,7 @@
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
 /obj/structure/closet/emcloset,
 /obj/structure/sign/poster/random/directional/south,
-/turf/open/floor/glass/reinforced,
+/turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "noz" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -37397,6 +37396,11 @@
 /obj/structure/sign/poster/random/directional/north,
 /turf/open/floor/iron/white,
 /area/station/security/prison/toilet)
+"nAp" = (
+/obj/effect/spawner/random/structure/grille,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "nAs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -45530,7 +45534,7 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "qra" = (
-/obj/effect/spawner/random/structure/grille,
+/obj/structure/grille,
 /turf/open/floor/plating,
 /area/station/ai_monitored/turret_protected/ai)
 "qre" = (
@@ -47391,7 +47395,7 @@
 	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /mob/living/basic/crab/evil/kreb,
-/turf/open/floor/glass/reinforced,
+/turf/open/misc/beach/sand,
 /area/station/hallway/secondary/exit/departure_lounge)
 "rbM" = (
 /obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
@@ -51245,6 +51249,10 @@
 "stM" = (
 /turf/open/space/basic,
 /area/space)
+"stZ" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/exit/departure_lounge)
 "suj" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/random/structure/steam_vent,
@@ -59820,6 +59828,10 @@
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/iron/grimy,
 /area/station/service/library)
+"vzm" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/station/ai_monitored/turret_protected/aisat_interior)
 "vzn" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
@@ -60030,9 +60042,6 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "vCL" = (
-/obj/structure/chair{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -60040,7 +60049,9 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/east,
-/obj/structure/closet/emcloset,
+/obj/structure/chair{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/secondary/exit/departure_lounge)
 "vCQ" = (
@@ -65109,6 +65120,7 @@
 	dir = 6
 	},
 /obj/structure/sign/warning/no_smoking/circle/directional/east,
+/obj/structure/closet/emcloset,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xxP" = (
@@ -67299,6 +67311,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"yjq" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/exit/departure_lounge)
 "yjz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -89800,7 +89816,7 @@ bFV
 bFV
 bFV
 bFV
-bFV
+vzm
 iYg
 hAx
 qon
@@ -93398,7 +93414,7 @@ bFV
 bFV
 bFV
 bFV
-bFV
+vzm
 lKm
 lfJ
 lFh
@@ -104734,12 +104750,12 @@ izm
 izm
 izm
 izm
-mEu
-mEu
-mEu
-mEu
-mEu
-mEu
+nAp
+nAp
+nAp
+nAp
+nAp
+nAp
 igx
 woz
 wOs
@@ -117892,9 +117908,9 @@ hAR
 dWi
 eWV
 dWi
-sYt
+stZ
 xxx
-sYt
+yjq
 dWi
 req
 dWi
