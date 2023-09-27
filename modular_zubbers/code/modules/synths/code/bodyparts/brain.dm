@@ -10,7 +10,7 @@
 
 	var/mob/living/carbon/human/synth_owner
 
-/obj/item/modular_computer/pda/synth/Initialize(mapload)
+/obj/item/modular_computer/synth/Initialize(mapload)
 	. = ..()
 	synth_owner = loc.loc
 	if(!istype(synth_owner))
