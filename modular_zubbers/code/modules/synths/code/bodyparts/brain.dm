@@ -10,12 +10,12 @@
 
 	var/mob/living/carbon/human/synth_owner
 
-/obj/item/modular_computer/pda/silicon/Initialize(mapload)
+/obj/item/modular_computer/pda/synth/Initialize(mapload)
 	. = ..()
 	synth_owner = loc.loc
 	if(!istype(synth_owner))
 		synth_owner = null
-		stack_trace("[type] initialized outside of a silicon, deleting.")
+		stack_trace("[type] initialized outside of a synth, deleting.")
 		return INITIALIZE_HINT_QDEL
 
 /obj/item/modular_computer/synth/get_ntnet_status()
