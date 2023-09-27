@@ -1,0 +1,19 @@
+/obj/item/organ/internal/brain/synth
+	var/obj/item/modular_computer/synth/internal_computer = new /obj/item/modular_computer/synth
+	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
+
+/obj/item/modular_computer/synth
+	name = "Synthetic internal computer"
+
+	base_active_power_usage = 0
+	base_idle_power_usage = 0
+
+/datum/action/item_action/synth/open_internal_computer
+	name = "Open internal computer"
+	desc = "Open the built in ntos computer"
+	check_flags = AB_CHECK_CONSCIOUS
+
+/datum/action/item_action/synth/open_internal_computer/Trigger(trigger_flags)
+	. = ..()
+	//for(var/obj/item/organ/internal/brain/synth/O in owner.organs)
+	//	O.internal_computer.turn_on(owner)
