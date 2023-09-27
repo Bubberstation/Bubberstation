@@ -8,6 +8,11 @@
 	base_active_power_usage = 0
 	base_idle_power_usage = 0
 
+	var/obj/item/organ/internal/brain/synth/brain_link
+
+/obj/item/modular_computer/synth/get_messenger_ending()
+	return " Sent from my internal computer."
+
 /datum/action/item_action/synth/open_internal_computer
 	name = "Open internal computer"
 	desc = "Open the built in ntos computer"
@@ -15,5 +20,6 @@
 
 /datum/action/item_action/synth/open_internal_computer/Trigger(trigger_flags)
 	. = ..()
-	//for(var/obj/item/organ/internal/brain/synth/O in owner.organs)
-	//	O.internal_computer.turn_on(owner)
+	var/obj/item/organ/internal/brain/synth/I = target
+	I.internal_computer.physical = owner
+	I.internal_computer.interact(owner)
