@@ -122,6 +122,7 @@
 #define ROLE_GHOST_CAFE "Ghost Cafe Visitor"
 #define ROLE_PORT_TARKON "Port Tarkon Survivor"
 //SKYRAT EDIT END
+#define ROLE_DAUNTLESS "Dauntless Syndicate" //BUBBERSTATION EDIT
 
 
 /// This defines the antagonists you can operate with in the settings.
