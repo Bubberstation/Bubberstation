@@ -1,7 +1,6 @@
 /obj/item/organ/internal/brain/synth
 	var/obj/item/modular_computer/synth/internal_computer = new /obj/item/modular_computer/synth
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
-
 /obj/item/modular_computer/synth
 	name = "Synthetic internal computer"
 
@@ -27,6 +26,10 @@
 /obj/item/modular_computer/synth/get_messenger_ending()
 	return " Sent from my internal computer."
 
+/obj/item/modular_computer/synth/ui_state(mob/user)
+	if(user.can_perform_action(user, ALLOW_RESTING|NEED_LITERACY))
+		return UI_INTERACTIVE
+	return UI_CLOSE
 /datum/action/item_action/synth/open_internal_computer
 	name = "Open internal computer"
 	desc = "Open the built in ntos computer"
