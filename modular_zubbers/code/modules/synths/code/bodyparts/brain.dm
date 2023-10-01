@@ -27,9 +27,9 @@
 	return " Sent from my internal computer."
 
 /obj/item/modular_computer/synth/ui_state(mob/user)
-	if(user.can_perform_action(user, ALLOW_RESTING|NEED_LITERACY))
-		return UI_INTERACTIVE
-	return UI_CLOSE
+	if(user.can_perform_action(synth_owner, ALLOW_RESTING|NEED_LITERACY))
+		return GLOB.always_state
+	return GLOB.never_state
 /datum/action/item_action/synth/open_internal_computer
 	name = "Open internal computer"
 	desc = "Open the built in ntos computer"
