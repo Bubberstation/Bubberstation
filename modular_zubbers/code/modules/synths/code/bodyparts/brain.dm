@@ -7,29 +7,28 @@
 	base_active_power_usage = 0
 	base_idle_power_usage = 0
 
-	var/mob/living/carbon/human/synth_owner
-
 /obj/item/modular_computer/synth/Initialize(mapload)
 	. = ..()
-	synth_owner = loc.loc
-	if(!istype(synth_owner))
-		synth_owner = null
-		stack_trace("[type] initialized outside of a synth, deleting.")
-		return INITIALIZE_HINT_QDEL
 
-/obj/item/modular_computer/synth/get_ntnet_status()
+/*/obj/item/modular_computer/synth/get_ntnet_status()
 	if(synth_owner.stat != DEAD)
 		return ..()
-	return FALSE
-
+	return FALSE*/
 
 /obj/item/modular_computer/synth/get_messenger_ending()
 	return " Sent from my internal computer."
 
-/obj/item/modular_computer/synth/ui_state(mob/user)
-	if(user.can_perform_action(synth_owner, ALLOW_RESTING|NEED_LITERACY))
-		return GLOB.always_state
-	return GLOB.never_state
+/*
+I give up, this is how borgs have their own menu coded in.
+Snowflake codes the interaction check because the default tgui one does not work as we want it.
+*/
+/mob/living/carbon/human/can_interact_with(atom/A, treat_mob_as_adjacent)
+	. = ..()
+	if(istype(A, /obj/item/modular_computer/synth))
+		var/obj/item/modular_computer/synth/C = A
+		if(Adjacent(C.physical))
+			. = TRUE
+
 /datum/action/item_action/synth/open_internal_computer
 	name = "Open internal computer"
 	desc = "Open the built in ntos computer"
