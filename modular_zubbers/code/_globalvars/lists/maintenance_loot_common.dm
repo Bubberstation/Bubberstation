@@ -866,7 +866,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/food/tatortot = 100,
 		/obj/item/food/tofu/prison = 200,
 		/obj/item/reagent_containers/condiment/mayonnaise = 100,
-		/obj/item/reagent_containers/condiment/cooking_oil = 25,
 		/obj/item/reagent_containers/condiment/cornmeal = 25,
 		/obj/item/reagent_containers/condiment/cherryjelly = 10,
 		/obj/item/reagent_containers/condiment/peanut_butter = 10,
