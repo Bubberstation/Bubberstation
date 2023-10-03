@@ -31329,6 +31329,11 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/station/asteroid)
+"lhC" = (
+/obj/structure/sign/poster/random/directional/south,
+/obj/effect/spawner/random/structure/girder,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard)
 "lhL" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
@@ -31818,10 +31823,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/solars/aisat)
-"lqr" = (
-/obj/structure/sign/poster/random/directional/north,
-/turf/open/floor/plating,
-/area/station/maintenance/port/aft)
 "lqt" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -32999,6 +33000,14 @@
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
+"lMy" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard)
 "lMI" = (
 /obj/effect/turf_decal/trimline/dark/filled/warning,
 /obj/machinery/light/small/directional/south,
@@ -41516,14 +41525,6 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
-"oRE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard)
 "oRK" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -55441,6 +55442,13 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"tNm" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/service/hydroponics/garden/abandoned)
 "tNr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -56439,6 +56447,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/command)
+"ugx" = (
+/obj/structure/sign/poster/random/directional/south,
+/obj/effect/spawner/random/burgerstation/blocking,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard)
 "ugy" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 1
@@ -59856,6 +59869,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"vqd" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/aft)
 "vqk" = (
 /obj/effect/spawner/random/structure/chair_maintenance{
 	dir = 1
@@ -79961,7 +79978,7 @@ izm
 izm
 izm
 izm
-ckk
+gRv
 xkC
 mTo
 neD
@@ -86451,7 +86468,7 @@ qpX
 pge
 sBY
 eLk
-lqr
+lLc
 wPM
 rvw
 rdH
@@ -94685,7 +94702,7 @@ pFh
 hKn
 tFe
 nxU
-nxU
+aeu
 nxU
 nxU
 nxU
@@ -94946,7 +94963,7 @@ hrv
 nxU
 nxU
 nxU
-nxU
+aeu
 hrv
 oIY
 stM
@@ -95462,7 +95479,7 @@ hPI
 hPI
 qEq
 oIY
-stM
+izm
 stM
 stM
 stM
@@ -95719,7 +95736,7 @@ knZ
 knZ
 uah
 ilP
-stM
+izm
 stM
 stM
 stM
@@ -98032,7 +98049,7 @@ uJv
 uJv
 oIY
 oIY
-stM
+izm
 stM
 stM
 stM
@@ -107017,13 +107034,13 @@ xGV
 emj
 vWI
 vWI
+vqd
 vWI
-vWI
 xCa
 xCa
 xCa
 xCa
-soF
+tNm
 xCa
 xCa
 xCa
@@ -114206,7 +114223,7 @@ tiv
 fFc
 vnk
 xzy
-vnk
+lCi
 wqQ
 qLK
 izm
@@ -114426,10 +114443,10 @@ vPl
 fcX
 mkW
 wqQ
+lCi
 uGQ
-mwx
-ulQ
 wqQ
+lCi
 hhG
 tuV
 xJU
@@ -114684,10 +114701,10 @@ uJA
 eqi
 dLn
 eqi
-ulQ
+fcX
 xvk
-lCi
-hhG
+vnk
+ugx
 tuV
 tuV
 tuV
@@ -115231,7 +115248,7 @@ wvE
 vWU
 wvE
 rse
-vnk
+ulQ
 vlC
 lVL
 wqQ
@@ -115458,8 +115475,8 @@ vYJ
 ygw
 gPU
 dWi
-ulQ
-uGQ
+fcX
+fcX
 lgf
 tuV
 wAj
@@ -115477,7 +115494,7 @@ sVR
 aZz
 duQ
 aPx
-oRE
+pbG
 vLR
 vLR
 vLR
@@ -115639,7 +115656,7 @@ qRf
 qRf
 bQy
 exD
-stM
+azA
 stM
 stM
 stM
@@ -115989,7 +116006,7 @@ qpl
 wIC
 tAH
 rMS
-aJQ
+lMy
 aJQ
 wLY
 vLR
@@ -117010,7 +117027,7 @@ ygb
 ygb
 mPO
 lCi
-hhG
+lhC
 xqV
 ael
 phs
@@ -117438,7 +117455,7 @@ moS
 ped
 jpK
 exD
-oDU
+all
 oDU
 stM
 stM
@@ -128065,11 +128082,11 @@ stM
 stM
 stM
 stM
-stM
+mFJ
 koc
 dAF
 koc
-stM
+mFJ
 stM
 stM
 stM
