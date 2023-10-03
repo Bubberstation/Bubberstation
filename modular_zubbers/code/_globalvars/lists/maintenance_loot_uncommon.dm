@@ -168,7 +168,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/reagent_containers/cup/beaker = 100,
 		/obj/item/reagent_containers/cup/beaker/large = 10,
 		/obj/item/retractor = 25,
-		/obj/item/roller = 50,
 		/obj/item/scalpel = 50,
 		/obj/item/sensor_device = 1,
 		/obj/item/sequence_scanner = 25,
