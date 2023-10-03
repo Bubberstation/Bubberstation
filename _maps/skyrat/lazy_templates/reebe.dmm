@@ -68,6 +68,10 @@
 /obj/structure/fluff/clockwork/blind_eye,
 /turf/open/floor/bronze,
 /area/ruin/powered/reebe)
+"hU" = (
+/obj/structure/fluff/clockwork/alloy_shards,
+/turf/open/floor/bronze/flat,
+/area/ruin/powered/reebe)
 "iJ" = (
 /turf/open/floor/bronze,
 /area/ruin/powered/reebe)
@@ -101,6 +105,10 @@
 	},
 /turf/open/floor/bronze/filled,
 /area/ruin/powered/reebe)
+"mj" = (
+/obj/structure/destructible/clockwork/gear_base/powered/prosperity_prism,
+/turf/open/floor/bronze/flat,
+/area/ruin/powered/reebe)
 "mx" = (
 /obj/effect/rune/convert,
 /turf/open/floor/bronze/flat,
@@ -116,10 +124,6 @@
 "mL" = (
 /turf/open/indestructible/reebe_void,
 /area/ruin/powered/reebe/space)
-"nh" = (
-/obj/structure/destructible/clockwork/gear_base/powered/prosperity_prism,
-/turf/open/floor/bronze/flat,
-/area/ruin/powered/reebe)
 "nx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/bronze,
@@ -206,10 +210,6 @@
 /obj/effect/landmark/late_cog_portals,
 /turf/open/floor/bronze/flat,
 /area/ruin/powered/reebe)
-"uT" = (
-/obj/structure/fluff/clockwork/alloy_shards,
-/turf/open/floor/bronze/flat,
-/area/ruin/powered/reebe)
 "ve" = (
 /obj/effect/spawner/structure/window/bronze,
 /turf/open/floor/bronze,
@@ -217,16 +217,22 @@
 "vA" = (
 /obj/structure/table/bronze,
 /obj/item/gun/ballistic/rifle/lionhunter/clockwork,
-/obj/item/ammo_box/strilka310/lionhunter/clock{
+/obj/item/ammo_box/a762/lionhunter/clock{
 	pixel_x = 12;
 	pixel_y = 9
 	},
-/obj/item/ammo_box/strilka310/lionhunter/clock{
+/obj/item/ammo_box/a762/lionhunter/clock{
 	pixel_x = -12;
 	pixel_y = 9
 	},
-/obj/item/ammo_box/strilka310/lionhunter/clock{
+/obj/item/ammo_box/a762/lionhunter/clock{
 	pixel_y = 9
+	},
+/turf/open/floor/bronze/flat,
+/area/ruin/powered/reebe)
+"vV" = (
+/obj/effect/rune/teleport{
+	cultist_name = "Reebe"
 	},
 /turf/open/floor/bronze/flat,
 /area/ruin/powered/reebe)
@@ -290,6 +296,10 @@
 	},
 /turf/open/floor/bronze,
 /area/ruin/powered/reebe)
+"Cj" = (
+/obj/structure/door_assembly/door_assembly_bronze/clock,
+/turf/open/floor/bronze/flat,
+/area/ruin/powered/reebe)
 "FD" = (
 /obj/effect/portal/permanent/one_way/reebe/leaving,
 /turf/open/floor/bronze/filled,
@@ -345,9 +355,13 @@
 /obj/structure/fluff/clockwork/blind_eye,
 /turf/open/floor/bronze,
 /area/ruin/powered/reebe)
-"On" = (
-/obj/effect/rune/teleport,
-/turf/open/floor/bronze/flat,
+"Nh" = (
+/obj/item/ectoplasm,
+/turf/open/indestructible/reebe_void,
+/area/ruin/powered/reebe/space)
+"Nw" = (
+/obj/structure/door_assembly/door_assembly_bronze/clock,
+/turf/open/floor/bronze,
 /area/ruin/powered/reebe)
 "Os" = (
 /obj/item/stack/sheet/mineral/wood,
@@ -379,7 +393,7 @@
 /obj/machinery/door/airlock/bronze,
 /turf/open/floor/bronze,
 /area/ruin/powered/reebe)
-"PD" = (
+"PZ" = (
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern,
 /turf/open/floor/bronze/flat,
 /area/ruin/powered/reebe)
@@ -436,16 +450,8 @@
 /obj/item/clockwork/weapon/brass_spear,
 /turf/open/floor/bronze/filled,
 /area/ruin/powered/reebe)
-"UJ" = (
-/obj/structure/door_assembly/door_assembly_bronze/clock,
-/turf/open/floor/bronze,
-/area/ruin/powered/reebe)
 "Vv" = (
 /obj/structure/fluff/clockwork/clockgolem_remains,
-/turf/open/floor/bronze/flat,
-/area/ruin/powered/reebe)
-"Xu" = (
-/obj/structure/door_assembly/door_assembly_bronze/clock,
 /turf/open/floor/bronze/flat,
 /area/ruin/powered/reebe)
 "XZ" = (
@@ -1160,7 +1166,7 @@ ve
 My
 yd
 qS
-UJ
+Nw
 xd
 Pi
 xd
@@ -1464,7 +1470,7 @@ QX
 QX
 ve
 yL
-Xu
+Cj
 xd
 iJ
 ve
@@ -1632,7 +1638,7 @@ ny
 Bm
 Pi
 Pi
-PD
+PZ
 qS
 qS
 ve
@@ -1641,7 +1647,7 @@ ve
 qS
 aj
 xd
-UJ
+Nw
 aj
 qS
 qS
@@ -1681,7 +1687,7 @@ Pi
 iJ
 qS
 Pi
-uT
+hU
 iJ
 xd
 Pi
@@ -1787,7 +1793,7 @@ qS
 Pi
 xd
 iJ
-uT
+hU
 Pi
 sw
 oh
@@ -1836,7 +1842,7 @@ ve
 ve
 qS
 qS
-nh
+mj
 Pi
 Pi
 Pi
@@ -1984,7 +1990,7 @@ QX
 QX
 ve
 iJ
-On
+vV
 FM
 iJ
 ve
@@ -2919,7 +2925,7 @@ mL
 mL
 mL
 mL
-mL
+Nh
 mL
 mL
 mL

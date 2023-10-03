@@ -795,7 +795,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/obj/item/reagent_containers/condiment/quality_oil,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "eK" = (
@@ -5695,7 +5694,7 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "DJ" = (
-/obj/structure/bed/roller,
+/obj/structure/bed/medical/emergency,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 4
 	},
@@ -6059,10 +6058,6 @@
 /obj/item/food/canned/pine_nuts{
 	pixel_x = 10;
 	pixel_y = -9
-	},
-/obj/item/reagent_containers/condiment/quality_oil{
-	pixel_x = 3;
-	pixel_y = -2
 	},
 /obj/item/food/fishmeat/moonfish{
 	pixel_y = -11
@@ -7184,7 +7179,9 @@
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Ks" = (
-/obj/machinery/recycler,
+/obj/machinery/recycler{
+	dir = 8
+	},
 /obj/machinery/conveyor{
 	id = "syndidisp";
 	dir = 4
@@ -7584,7 +7581,6 @@
 /obj/item/reagent_containers/condiment/flour,
 /obj/item/reagent_containers/condiment/flour,
 /obj/effect/turf_decal/bot_blue,
-/obj/item/reagent_containers/condiment/quality_oil,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Mg" = (
@@ -9286,7 +9282,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
 	},
-/obj/structure/bed/roller,
+/obj/structure/bed/medical/emergency,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white/diagonal,

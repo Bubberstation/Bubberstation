@@ -87,7 +87,6 @@
 		/datum/reagent/consumable/blackpepper,\
 		/datum/reagent/consumable/capsaicin,\
 		/datum/reagent/consumable/coco,\
-		/datum/reagent/consumable/cooking_oil,\
 		/datum/reagent/consumable/cornmeal,\
 		/datum/reagent/consumable/corn_starch,\
 		/datum/reagent/consumable/eggwhite,\
