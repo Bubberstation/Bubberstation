@@ -90,8 +90,8 @@
 	keyslot = new /obj/item/encryptionkey/headset_medsec
 
 /obj/structure/closet/secure_closet/security_medic
-	name = "security medics's locker"
-	req_access = list(ACCESS_SECURITY)
+	name = "security medic's locker"
+	req_access = list(ACCESS_BRIG)
 	icon = 'modular_skyrat/modules/sec_haul/icons/lockers/closet.dmi'
 	icon_state = "secmed"
 
