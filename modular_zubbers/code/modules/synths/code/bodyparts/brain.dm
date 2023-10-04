@@ -1,5 +1,5 @@
 /obj/item/organ/internal/brain/synth
-	var/obj/item/modular_computer/synth/internal_computer = new /obj/item/modular_computer/synth
+	var/obj/item/modular_computer/pda/synth/internal_computer = new /obj/item/modular_computer/pda/synth
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 
 /obj/item/organ/internal/brain/synth/Insert(mob/living/carbon/user, special, drop_if_replaced, no_id_transfer)
@@ -9,7 +9,7 @@
 /obj/item/organ/internal/brain/synth/Remove(mob/living/carbon/target, special, no_id_transfer)
 	. = ..()
 
-/obj/item/modular_computer/synth
+/obj/item/modular_computer/pda/synth
 	name = "Synthetic internal computer"
 
 	base_active_power_usage = 0
@@ -17,7 +17,7 @@
 
 	var/obj/item/organ/internal/brain/synth/owner_brain
 
-/obj/item/modular_computer/synth/get_messenger_ending()
+/obj/item/modular_computer/pda/synth/get_messenger_ending()
 	return " Sent from my internal computer."
 
 /*
@@ -26,8 +26,8 @@ Snowflake codes the interaction check because the default tgui one does not work
 */
 /mob/living/carbon/human/can_interact_with(atom/A, treat_mob_as_adjacent)
 	. = ..()
-	if(istype(A, /obj/item/modular_computer/synth))
-		var/obj/item/modular_computer/synth/C = A
+	if(istype(A, /obj/item/modular_computer/pda/synth))
+		var/obj/item/modular_computer/pda/synth/C = A
 		if(Adjacent(C.owner_brain.owner) || Adjacent(C.owner_brain))
 			. = TRUE
 
