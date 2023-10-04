@@ -165,7 +165,7 @@
 	examine_text = "It looks like it's rotting."
 	mob_types = list(/mob/living/basic/mold/diseased_rat)
 	spawn_cooldown = 5 SECONDS
-	preferred_atmos_conditions = "TEMP=312"
+	preferred_atmos_conditions = "miasma=10;TEMP=296" //BUBBERSTATION CHANGE
 
 /datum/mold_type/disease/core_defense(obj/structure/mold/structure/core/core)
 	core.visible_message(span_warning("[core] emits a cloud!"))
@@ -271,7 +271,7 @@
 	structure_light_color = LIGHT_COLOR_LAVENDER
 	examine_text = "It feels damp and smells of rat poison."
 	mob_types = list(/mob/living/basic/spider/giant/)
-	preferred_atmos_conditions = "miasma=10;TEMP=296" //BUBBERSTATION CHANGE
+	preferred_atmos_conditions = "co2=80;TEMP=296" //BUBBERSTATION CHANGE
 	resistance_flags = UNACIDABLE | ACID_PROOF
 
 /datum/mold_type/toxic/core_defense(obj/structure/mold/structure/core/core)
