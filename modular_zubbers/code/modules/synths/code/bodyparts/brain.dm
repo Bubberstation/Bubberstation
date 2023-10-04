@@ -5,9 +5,11 @@
 /obj/item/organ/internal/brain/synth/Insert(mob/living/carbon/user, special, drop_if_replaced, no_id_transfer)
 	. = ..()
 	internal_computer.owner_brain = src
+	internal_computer.physical = owner
 
 /obj/item/organ/internal/brain/synth/Remove(mob/living/carbon/target, special, no_id_transfer)
 	. = ..()
+	internal_computer.physical = src
 /datum/action/item_action/synth/open_internal_computer
 	name = "Open internal computer"
 	desc = "Open the built in ntos computer"

@@ -10,6 +10,24 @@
 /obj/item/modular_computer/synth/get_messenger_ending()
 	return " Sent from my internal computer."
 
+/obj/item/modular_computer/synth/RemoveID(mob/user)
+	if(!computer_id_slot)
+		return ..()
+
+	if(crew_manifest_update)
+		GLOB.manifest.modify(computer_id_slot.registered_name, computer_id_slot.assignment, computer_id_slot.get_trim_assignment())
+
+	if(user && !issilicon(user) && in_range(owner_brain.owner, user))
+		user.put_in_hands(computer_id_slot)
+	else if(owner_brain.owner)
+		computer_id_slot.forceMove(owner_brain.owner.loc)
+	else
+		computer_id_slot.forceMove(owner_brain.loc)
+
+	computer_id_slot = null
+	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	balloon_alert(user, "removed ID")
+
 /*
 I give up, this is how borgs have their own menu coded in.
 Snowflake codes the interaction check because the default tgui one does not work as I want it.
@@ -32,7 +50,7 @@ Attacking a synth with an id loads it into its slot.. pain and probably shitcode
 		return ..()
 	var/obj/item/organ/internal/brain/synth/B = T.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(B))
-		if(do_after(user, 1.5 SECONDS))
+		if(do_after(user, 3 SECONDS))
 			B.internal_computer.InsertID(src, user)
 		return
 	return ..()
