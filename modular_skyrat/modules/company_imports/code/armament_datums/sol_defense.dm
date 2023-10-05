@@ -17,6 +17,7 @@
 	item_type = /obj/item/clothing/suit/armor/vest/alt
 	cost = PAYCHECK_CREW * 3
 
+/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/sol_defense/case
 	subcategory = "Weapon Cases"
 
@@ -113,3 +114,4 @@
 	item_type = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
 	contraband = TRUE
+	*/
