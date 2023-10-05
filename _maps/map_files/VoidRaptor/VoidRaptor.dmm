@@ -3264,6 +3264,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/item/storage/box/bandages{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
 	},
@@ -10028,6 +10031,10 @@
 /obj/item/multitool,
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/item/storage/box/bandages{
+	pixel_x = 4;
+	pixel_y = 5
+	},
 /turf/open/floor/engine,
 /area/station/tcommsat/computer)
 "day" = (
@@ -12128,8 +12135,6 @@
 	dir = 10
 	},
 /obj/structure/table,
-/obj/item/pai_card,
-/obj/item/pai_card,
 /obj/item/pai_card,
 /turf/open/floor/iron/white,
 /area/station/hallway/primary/fore)
@@ -15969,12 +15974,7 @@
 /obj/effect/turf_decal/tile/dark_red/anticorner,
 /obj/structure/sign/poster/official/twelve_gauge/directional/east,
 /obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/storage/box/teargas{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/item/gun/grenadelauncher,
+/obj/structure/closet/secure_closet/armory_kiboko,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "eEp" = (
@@ -21861,11 +21861,11 @@
 /area/station/medical/medbay/central)
 "gra" = (
 /obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/microfusion,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/spawner/random/armory/e_gun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "grg" = (
@@ -22828,7 +22828,7 @@
 	},
 /obj/structure/sign/poster/official/ion_rifle/directional/east,
 /obj/effect/turf_decal/delivery,
-/obj/effect/spawner/random/armory/laser_gun,
+/obj/effect/spawner/armory_spawn/smg,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "gEV" = (
@@ -23981,8 +23981,6 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "gUW" = (
 /obj/structure/table,
-/obj/item/pai_card,
-/obj/item/pai_card,
 /obj/item/pai_card,
 /turf/open/floor/wood/large,
 /area/station/commons/fitness/recreation/entertainment)
@@ -25146,6 +25144,9 @@
 /obj/item/storage/medkit/regular,
 /obj/item/storage/backpack/satchel/explorer,
 /obj/machinery/light/directional/south,
+/obj/item/storage/box/bandages{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
@@ -26939,13 +26940,13 @@
 "hMN" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/bot,
-/obj/item/storage/box{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/radio/headset/headset_eng{
 	pixel_x = -4;
 	pixel_y = 3
+	},
+/obj/item/storage/box/bandages{
+	pixel_x = 4;
+	pixel_y = 5
 	},
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/lobby)
@@ -30230,6 +30231,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/item/storage/box/bandages{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/freezer,
 /area/station/medical/treatment_center)
 "iHi" = (
@@ -31414,7 +31418,6 @@
 	pixel_x = -4;
 	pixel_y = 10
 	},
-/obj/item/storage/box/gunset,
 /obj/item/storage/medkit/tactical/blueshield,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -35838,6 +35841,7 @@
 /area/station/commons/lounge)
 "kjG" = (
 /obj/structure/rack/gunrack,
+/obj/effect/spawner/armory_spawn/shotguns,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},
@@ -35846,7 +35850,6 @@
 /obj/machinery/digital_clock/directional/north{
 	pixel_y = 37
 	},
-/obj/effect/spawner/random/armory/shotgun,
 /turf/open/floor/engine,
 /area/station/ai_monitored/security/armory)
 "kjL" = (
@@ -39810,6 +39813,9 @@
 	dir = 10
 	},
 /obj/machinery/firealarm/directional/south,
+/obj/item/storage/box/bandages{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "llF" = (
@@ -40870,6 +40876,10 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/glasses/meson/engine,
+/obj/item/storage/box/bandages{
+	pixel_x = 4;
+	pixel_y = 5
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/main)
 "lAS" = (
@@ -47726,7 +47736,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/table,
+/obj/structure/closet/l3closet/security,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "nvc" = (
@@ -55218,6 +55229,9 @@
 	id = "paramed_dispatch_desk";
 	name = "Desk Shutters"
 	},
+/obj/item/storage/box/bandages{
+	pixel_y = 15
+	},
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "puQ" = (
@@ -58636,10 +58650,6 @@
 /obj/machinery/recharger{
 	pixel_x = 5;
 	pixel_y = 2
-	},
-/obj/item/stock_parts/cell/blueshield{
-	pixel_x = -5;
-	pixel_y = 10
 	},
 /obj/machinery/newscaster/directional/north,
 /obj/machinery/light_switch/directional/north{
@@ -72628,6 +72638,10 @@
 /obj/structure/table,
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
+	},
+/obj/item/storage/box/bandages{
+	pixel_y = 16;
+	pixel_x = -6
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/cargo/storage)
