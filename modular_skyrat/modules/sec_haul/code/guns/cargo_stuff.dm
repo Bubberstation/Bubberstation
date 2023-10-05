@@ -1,4 +1,3 @@
-/* BUBBERSTATION EDIT REMOVAL
 /datum/supply_pack/security/armory/cmg
 	name = "Carwo 'Sindano' Submachinegun Crate"
 	desc = "Three entirely proprietary Sindano kits, chambered in .35 Sol Short. Each kit contains three empty magazines and a box each of incapacitator and lethal rounds."
