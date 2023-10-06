@@ -11360,7 +11360,6 @@
 /area/station/command)
 "ejw" = (
 /obj/structure/cable,
-/obj/structure/sign/warning/firing_range/directional/north,
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
 	},
@@ -45022,6 +45021,14 @@
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/station/tcommsat/server)
+"pPH" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/sign/warning/firing_range/directional/north,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/fore)
 "pPL" = (
 /obj/machinery/power/solar{
 	id = "aftport";
@@ -46405,7 +46412,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4;
-	external_pressure_bound = 121.325
+	external_pressure_bound = 131.325
 	},
 /turf/open/floor/circuit/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
@@ -107645,7 +107652,7 @@ xcR
 xcR
 xcR
 sQZ
-lns
+pPH
 rpt
 wEH
 clM
