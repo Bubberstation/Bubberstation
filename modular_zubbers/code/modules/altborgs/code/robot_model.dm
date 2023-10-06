@@ -1,4 +1,4 @@
-/obj/item/robot_model/centcom
+/obj/item/robot_model/centcom //Sprites by QuartzAdachi
 	name = "Central Command"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
