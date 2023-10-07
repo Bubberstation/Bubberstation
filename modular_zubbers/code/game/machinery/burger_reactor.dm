@@ -79,7 +79,7 @@
 			var/explosion_strength = min(M.last_tritium_consumption*5,10)
 			explosion(M, devastation_range = 1 + explosion_strength*0.1, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
 			if(!QDELETED(M))
-				QDEL(M) //Don't know why it'd live after this, but just in case.
+				qdel(M) //Don't know why it'd live after this, but just in case.
 
 /datum/wires/rbmk2
 	holder_type = /obj/machinery/power/rbmk2
