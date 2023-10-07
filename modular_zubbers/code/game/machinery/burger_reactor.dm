@@ -361,7 +361,8 @@
 		return
 
 	if(!active)
-		var/meter_icon_num = CEILING( min(base_mix.gases[GAS_TRITIUM] / 100, 1) * 5, 1)
+		base_mix.assert_gas(GAS_TRITIUM)
+		var/meter_icon_num = CEILING( min(base_mix.gases[GAS_TRITIUM][MOLES] / 100, 1) * 5, 1)
 		if(meter_icon_num > 0)
 			meter_overlay.alpha = 255
 			meter_overlay.icon_state = "platform_rod_glow_[meter_icon_num]"
@@ -391,7 +392,8 @@
 	var/datum/gas_mixture/consumed_mix = base_mix.remove(amount_to_consume)
 
 	//Do power generation here.
-	last_tritium_consumption = consumed_mix.gases[GAS_TRITIUM]
+	consumed_mix.assert_gas(GAS_TRITIUM)
+	last_tritium_consumption = consumed_mix.gases[GAS_TRITIUM][MOLES]
 	radiation_pulse(src,min(last_tritium_consumption*0.25,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
 	if(powernet)
 		last_power_generation = last_tritium_consumption * power_efficiency
