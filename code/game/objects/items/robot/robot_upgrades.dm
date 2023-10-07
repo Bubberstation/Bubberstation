@@ -104,32 +104,6 @@
 	if (.)
 		R.ionpulse = FALSE
 
-//BUBBER EDIT Re-added removed upgrade, Plasma cutter
-/obj/item/borg/upgrade/advcutter
-	name = "mining cyborg advanced plasma cutter"
-	desc = "An upgrade for the mining cyborgs plasma cutter, bringing it to advanced operation."
-	icon_state = "cyborg_upgrade3"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/miner)
-	model_flags = BORG_MODEL_MINER
-
-/obj/item/borg/upgrade/advcutter/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/gun/energy/plasmacutter/brg/AC = locate() in R.model.modules
-		if(AC)
-			to_chat(user, span_warning("This unit is already equipped with A plasma Cutter!"))
-			return FALSE
-		AC = new(R.model)
-		R.model.basic_modules += AC
-		R.model.add_module(AC, FALSE, TRUE)
-
-/obj/item/borg/upgrade/advcutter/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		for(var/obj/item/gun/energy/plasmacutter/brg/AC in R.model.modules)
-			R.model.remove_module(AC, TRUE)
-
 /obj/item/borg/upgrade/ddrill
 	name = "mining cyborg diamond drill"
 	desc = "A diamond drill replacement for the mining model's standard drill."
