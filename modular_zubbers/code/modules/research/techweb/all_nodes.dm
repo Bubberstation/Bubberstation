@@ -1,5 +1,5 @@
 // RESEARCH NODES
-
+/*
 /datum/techweb_node/botanygene
 	id = "botanygenes"
 	display_name = "Experimental Botanical Engineering"
@@ -12,7 +12,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 // MODULAR ADDITIONS AND REMOVALS
-
+*/
 // MEDICAL
 /datum/techweb_node/adv_biotech/New()
 	. = ..()
