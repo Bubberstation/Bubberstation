@@ -745,41 +745,6 @@
 		if (C)
 			R.model.remove_module(C, TRUE)
 
-	//BUBBER EDIT Cyborg welding tool upgrade, electrical
-/obj/item/borg/upgrade/electric_welder
-	name = "Electrical Welding Tool"
-	desc = "An engineering cyborg upgrade no longer using fossil fuels, but rather power!."
-	icon_state = "cyborg_upgrade1"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
-	model_flags = BORG_MODEL_ENGINEERING
-
-/obj/item/borg/upgrade/electric_welder/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/weldingtool/electric/ET = locate() in R.model.modules
-		if(ET)
-			to_chat(user, span_warning("This unit is already equipped with a Electrical welder!"))
-			return FALSE
-
-		ET= new(R.model)
-		R.model.basic_modules += ET
-		R.model.add_module(ET, FALSE, TRUE)
-
-		for(var/obj/item/weldingtool/largetank/cyborg/OW in R.model)//  Removes orginal welding tool when installed
-			R.model.remove_module(OW, TRUE)
-
-/obj/item/borg/upgrade/electric_welder/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		var/obj/item/weldingtool/electric/ET = locate() in R.model.modules
-		if (ET)
-			R.model.remove_module(ET, TRUE)
-
-			var/obj/item/weldingtool/largetank/cyborg/OW = new (R.model) //  Adds Orginal welder when Upgrade removed
-			R.model.basic_modules += OW
-			R.model.add_module(OW, FALSE, TRUE)
-
 /obj/item/borg/upgrade/beaker_app
 	name = "beaker storage apparatus"
 	desc = "A supplementary beaker storage apparatus for medical cyborgs."
