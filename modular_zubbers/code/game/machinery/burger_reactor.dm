@@ -7,7 +7,6 @@
 		/obj/item/stack/sheet/mineral/uranium = 4,
 		/obj/item/stack/ore/bluespace_crystal = 1,
 		/datum/stock_part/capacitor = 4,
-		/datum/stock_part/micro_laser = 2,
 		/datum/stock_part/matter_bin = 2,
 		/datum/stock_part/servo = 4
 	)
@@ -63,13 +62,28 @@
 
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
-	air_contents.assert_gas(/datum/gas/nitrogen)
 	air_contents.gases[/datum/gas/tritium][MOLES] = 50
-	air_contents.gases[/datum/gas/nitrogen][MOLES] = 25
 
+
+
+/obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)
+	. = ..()
+	if(loc && istype(loc,/obj/machinery/power/rbmk2))
+		var/obj/machinery/power/rbmk2/M = loc
+		if(QDELETED(src) || QDELETED(M))
+			M.stored_rod = null
+		else
+			M.remove_rod()
+		if(!QDELETED(M))
+			radiation_pulse(M,min(M.last_tritium_consumption*100,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
+			var/explosion_strength = min(M.last_tritium_consumption*5,10)
+			explosion(M, devastation_range = 1 + explosion_strength*0.1, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
+			if(!QDELETED(M))
+				QDEL(M) //Don't know why it'd live after this, but just in case.
 
 /datum/wires/rbmk2
-
+	holder_type = /obj/machinery/power/rbmk2
+	proper_name = "RB-MK2"
 
 /datum/wires/rbmk2/New(atom/holder)
 	wires = list(
@@ -79,6 +93,7 @@
 		WIRE_THROW,
 		WIRE_LOCKDOWN
 	)
+	add_duds(2)
 	. = ..()
 
 /datum/wires/rbmk2/interactable(mob/user)
@@ -157,12 +172,21 @@
 	var/last_tritium_consumption = 0
 
 	//Unupgradable stats.
-	var/gas_consumption_base = 0.01 //How much gas gets consumed.
-	var/gas_consumption_heat = 0.01 //How much gas gets consumed, in moles, per 1000 kelvin.
+
+	//SSmachines runs once every 2 seconds.
+	//50 moles of tritium at room temperature generation should last ~120 minutes.
+	//Thus, the consumption rate should be 50/(120*60*0.5) = 0.01388888888
+
+	var/gas_consumption_base = 0.014 //How much gas gets consumed, in moles, per cycle.
+	var/gas_consumption_heat = 0.02 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
+
+	//18 unupgraded of these things should be equal to 1 supermatter setup, which is like 1MW.
+	//Which means that 0.014*18 consumed should be 1000000 W.
+	// (1000000/ (0.014*18)) = 3968253
 
 	//Upgradable stats.
-	var/tritium_consumption_amount = 1 //What percentage of tritium is actually "deleted" when processed. Remaining tritium is leaked out. Improved via microlasers.
-	var/power_efficiency = 100000 //How many joules of power to add per mole of tritium processed. Improved via capacitors.
+	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed. Improved via capacitors. Arbitrary number.
+	var/power_efficiency = 1 //A multiplier of base_power_generation. Improved via capacitors.
 	var/vent_pressure = 300 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
 	var/buffer_gas_thermal_conductivity = 0.1 //Lower is better. Improved via matter bins.
 
@@ -181,8 +205,6 @@
 	remove_rod()
 	. = ..()
 
-
-
 /obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
 	. = ..()
 	stored_rod = new /obj/item/tank/rbmk2_rod/preloaded(src)
@@ -191,16 +213,15 @@
 
 /obj/machinery/power/rbmk2/attackby(obj/item/attacking_item, mob/living/user, params)
 
-	if(user.combat_mode) //Hit the machine.
-		return ..()
+	if(!user.combat_mode)
 
-	if(panel_open && is_wire_tool(attacking_item)) //Show the wires.
-		return wires.interact(user)
+		if(panel_open && is_wire_tool(attacking_item)) //Show the wires.
+			return wires.interact(user)
 
-	if(!active && istype(attacking_item,/obj/item/tank/rbmk2_rod/)) //Insert a rod.
-		return add_rod(attacking_item)
+		if(!active && istype(attacking_item,/obj/item/tank/rbmk2_rod/)) //Insert a rod.
+			return add_rod(attacking_item)
 
-	return
+	. = ..()
 
 //Deconstruct.
 /obj/machinery/power/rbmk2/crowbar_act(mob/living/user, obj/item/attack_item)
@@ -288,12 +309,6 @@
 		power_efficiency_mul += new_capacitor.tier * 0.25
 	power_efficiency = initial(power_efficiency) * power_efficiency_mul
 
-	//Requires x2 microlasers
-	var/tritium_consumption_sub = 0
-	for(var/datum/stock_part/micro_laser/new_micro_laser in component_parts)
-		tritium_consumption_sub += new_micro_laser.tier * 2.5
-	tritium_consumption_amount = initial(tritium_consumption_amount) - tritium_consumption_sub
-
 	//Requires x2 matter bins
 	var/thermal_conductivity_divisor = 0
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
@@ -319,12 +334,11 @@
 		. += span_warning("It it is missing a RB-MK2 reactor rod.")
 
 	if(active)
-		. += "It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)] per cycle."
+		. += "It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)]."
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
-	. += "It is running at <b>[power_efficiency*100]%</b> power generation."
-	. += "It is consuming <b>[100*(1-tritium_consumption_amount)] less tritium."
+	. += "It is running at <b>[power_efficiency*100]%</b> power efficiency."
 	. += "It has a thermal conductivity rating of <b>[buffer_gas_thermal_conductivity*100]%."
 	. += "It can output in environments up to <b>[vent_pressure]kPa</b>."
 
@@ -356,13 +370,12 @@
 		return
 
 	var/datum/gas_mixture/base_mix = stored_rod.air_contents
-	if(!base_mix)
+	if(!base_mix || !base_mix.gases)
 		meter_overlay.alpha = 0
 		return
 
-	if(!active)
-		base_mix.assert_gas(GAS_TRITIUM)
-		var/meter_icon_num = CEILING( min(base_mix.gases[GAS_TRITIUM][MOLES] / 100, 1) * 5, 1)
+	if(!active && base_mix.gases[/datum/gas/tritium])
+		var/meter_icon_num = CEILING( min(base_mix.gases[/datum/gas/tritium][MOLES] / 100, 1) * 5, 1)
 		if(meter_icon_num > 0)
 			meter_overlay.alpha = 255
 			meter_overlay.icon_state = "platform_rod_glow_[meter_icon_num]"
@@ -388,22 +401,25 @@
 	if(!amount_to_consume)
 		return
 
-	//Remove gas from the main mix to be processed. This gas is effectively deleted.
+	//Remove gas from the rod to be processed.
 	var/datum/gas_mixture/consumed_mix = base_mix.remove(amount_to_consume)
 
 	//Do power generation here.
-	consumed_mix.assert_gas(GAS_TRITIUM)
-	last_tritium_consumption = consumed_mix.gases[GAS_TRITIUM][MOLES]
-	radiation_pulse(src,min(last_tritium_consumption*0.25,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
-	if(powernet)
-		last_power_generation = last_tritium_consumption * power_efficiency
-		if(last_power_generation)
-			src.add_avail(last_power_generation)
-
-	var/datum/gas_mixture/leaked_mix = consumed_mix.remove_specific(GAS_TRITIUM, last_tritium_consumption*tritium_consumption_amount)
+	consumed_mix.assert_gas(/datum/gas/tritium)
+	if(consumed_mix.gases && consumed_mix.gases[/datum/gas/tritium])
+		last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
+		radiation_pulse(src,min(last_tritium_consumption*0.25,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
+		if(powernet)
+			last_power_generation = last_tritium_consumption * power_efficiency
+			if(last_power_generation)
+				src.add_avail(last_power_generation)
+		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.80) //80% of used tritium gets deleted. The rest gets thrown into the air.
+		var/our_heat_capacity = consumed_mix.heat_capacity()
+		if(our_heat_capacity > 0)
+			consumed_mix.temperature += 100/our_heat_capacity
 
 	//The gasses that we consumed go back into the air.
-	buffer_gasses.merge(leaked_mix)
+	buffer_gasses.merge(consumed_mix)
 
 	//Vent excess gas, if we can.
 	if(venting && isturf(loc))
