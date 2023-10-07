@@ -158,8 +158,6 @@
 
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED
 
-	wires = /datum/wires/rbmk2
-
 	circuit = /obj/item/circuitboard/machine/rbmk2
 
 	var/active = FALSE
@@ -195,6 +193,7 @@
 
 /obj/machinery/power/rbmk2/Initialize(mapload)
 	. = ..()
+	set_wires(new /datum/wires/rbmk2(src))
 	buffer_gasses = new()
 	heat_overlay = mutable_appearance(icon, "platform_heat", alpha=0)
 	meter_overlay = mutable_appearance(icon, "platform_rod_glow_5", alpha=0)
