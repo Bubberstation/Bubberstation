@@ -8,7 +8,9 @@
 		WIRE_ACTIVATE,
 		WIRE_DISABLE,
 		WIRE_THROW,
-		WIRE_LOCKDOWN
+		WIRE_LOCKDOWN,
+		WIRE_SAFETY,
+		WIRE_LIMIT
 	)
 	add_duds(2)
 	. = ..()
@@ -16,7 +18,6 @@
 /datum/wires/rbmk2/interactable(mob/user)
 	if(!..())
 		return FALSE
-	return
 	var/obj/machinery/power/rbmk2/M = holder
 	return M.panel_open
 
@@ -27,6 +28,8 @@
 	. += "The power light is [M.active ? "yellow" : "off"]."
 	. += "The occupancy light is [M.stored_rod ? "orange" : "off"]."
 	. += "The vent light is [M.venting ? "green" : "flashing red"]."
+	. += "The safety light is [M.safety ? "blue" : "flashing yellow"]."
+	. += "The heat transfer limiter digitial display reads [25 + M.limit]%"
 
 /datum/wires/rbmk2/on_pulse(wire)
 	var/obj/machinery/power/rbmk2/M = holder
@@ -41,6 +44,10 @@
 			M.remove_rod()
 		if(WIRE_LOCKDOWN)
 			M.venting = !M.venting
+		if(WIRE_SAFETY)
+			M.toggle(FALSE)
+		if(WIRE_LIMIT)
+			M.limit = (M.limit + 5) % M.limit_max
 
 /datum/wires/rbmk2/on_cut(wire, mend, source)
 	var/obj/machinery/power/rbmk2/M = holder
@@ -59,3 +66,8 @@
 		if(WIRE_LOCKDOWN)
 			if(mend)
 				M.venting = FALSE
+		if(WIRE_SAFETY)
+			M.safety = mend
+		if(WIRE_LIMIT)
+			if(mend)
+				M.limit = 0

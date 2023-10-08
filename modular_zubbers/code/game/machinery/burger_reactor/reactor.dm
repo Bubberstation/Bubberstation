@@ -15,9 +15,13 @@
 
 	circuit = /obj/item/circuitboard/machine/rbmk2
 
-	var/active = FALSE
-	var/overclocked = FALSE
-	var/venting = TRUE
+	var/active = FALSE //Is this machine active?
+	var/overclocked = FALSE //Is this machine overclocked, consuming more tritium?
+	var/venting = TRUE //Is this machine venting the gasses?
+	var/safety = TRUE //Is the safety active?
+	var/limit = 0 //10 is added to this, so it's 10.
+	var/limit_max = 25 //10 is added to this, so it's 35.
+
 
 	var/obj/item/tank/rbmk2_rod/stored_rod
 	var/datum/gas_mixture/buffer_gasses //Gas that has yet to be leaked out due to not venting fast enough.
@@ -54,11 +58,8 @@
 	heat_overlay.appearance_flags |= RESET_COLOR
 	meter_overlay = mutable_appearance(icon, "platform_rod_glow_5", alpha=255)
 	heat_overlay.appearance_flags |= RESET_COLOR
-	add_overlay(heat_overlay)
-	add_overlay(meter_overlay)
 	connect_to_network()
 	process() //Process once to update everything.
-
 
 /obj/machinery/power/rbmk2/return_analyzable_air()
 	. = list()
@@ -76,26 +77,48 @@
 	update_appearance()
 
 /obj/machinery/power/rbmk2/attackby(obj/item/attacking_item, mob/living/user, params)
-
 	if(!user.combat_mode)
-
-		if(panel_open && is_wire_tool(attacking_item)) //Show the wires.
-			return wires.interact(user)
-
 		if(!active && istype(attacking_item,/obj/item/tank/rbmk2_rod/)) //Insert a rod.
 			return add_rod(attacking_item)
-
 	. = ..()
+
+/obj/machinery/power/rbmk2/multitool_act(mob/living/user, obj/item/multitool/tool)
+	if(panel_open)
+		wires.interact(user)
+		return TRUE
+
+/obj/machinery/power/rbmk2/multitool_act_secondary(mob/living/user, obj/item/tool)
+	if(panel_open)
+		wires.interact(user)
+		return TRUE
+
+/obj/machinery/power/rbmk2/wirecutter_act(mob/living/user, obj/item/tool)
+	if(panel_open)
+		wires.interact(user)
+		return TRUE
+
+/obj/machinery/power/rbmk2/wirecutter_act_secondary(mob/living/user, obj/item/tool)
+	if(panel_open)
+		wires.interact(user)
+		return TRUE
 
 //Deconstruct.
 /obj/machinery/power/rbmk2/crowbar_act(mob/living/user, obj/item/attack_item)
 	if(!active && default_deconstruction_crowbar(attack_item))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return TRUE
+
+/obj/machinery/power/rbmk2/crowbar_act_secondary(mob/living/user, obj/item/attack_item)
+	if(!active && default_deconstruction_crowbar(attack_item))
+		return TRUE
 
 //Open the panel.
 /obj/machinery/power/rbmk2/screwdriver_act(mob/living/user, obj/item/attack_item)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, attack_item))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return TRUE
+
+/obj/machinery/power/rbmk2/screwdriver_act_secondary(mob/living/user, obj/item/attack_item)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, attack_item))
+		return TRUE
 
 /obj/machinery/power/rbmk2/on_set_panel_open(old_value)
 	. = ..()
@@ -104,7 +127,11 @@
 //Toggle the reactor on/off.
 /obj/machinery/power/rbmk2/wrench_act(mob/living/user, obj/item/tool)
 	if(toggle())
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return TRUE
+
+/obj/machinery/power/rbmk2/wrench_act_secondary(mob/living/user, obj/item/tool)
+	if(toggle())
+		return TRUE
 
 //Remove the rod.
 /obj/machinery/power/rbmk2/AltClick(mob/living/user)
@@ -137,8 +164,6 @@
 	update_appearance()
 	START_PROCESSING(SSmachines, src)
 	return TRUE
-
-
 
 /obj/machinery/power/rbmk2/proc/toggle(var/desired_state=!active)
 
@@ -204,7 +229,7 @@
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
 	. += "It is running at <b>[power_efficiency*100]%</b> power efficiency."
-	. += "It has a thermal conductivity rating of <b>[buffer_gas_thermal_conductivity*100]%</b>."
+	. += "It an internal gas buffer volume of <b>[vent_volume]L</b>."
 	. += "It can output in environments up to <b>[vent_pressure]kPa</b>."
 
 /obj/machinery/power/rbmk2/update_icon_state()
@@ -219,61 +244,59 @@
 
 	return ..()
 
-
 /obj/machinery/power/rbmk2/update_overlays()
 	. = ..()
-	if(panel_open)
-		. += "platform_panel"
+	if(panel_open) . += "platform_panel"
+	. += heat_overlay
+	. += meter_overlay
 
 /obj/machinery/power/rbmk2/process()
 
-	heat_overlay.color = heat2colour(buffer_gasses.temperature)
-	heat_overlay.alpha = min(buffer_gasses.temperature * (1/200),255)
-
 	if(!stored_rod)
 		meter_overlay.alpha = 0
+		heat_overlay.alpha = 0
+		update_appearance()
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 	if(!rod_mix || !rod_mix.gases)
 		meter_overlay.alpha = 0
+		heat_overlay.alpha = 0
+		update_appearance()
 		return
+
+	if(active && safety && rod_mix.return_pressure() > TANK_FRAGMENT_PRESSURE*0.75)
+		toggle(FALSE)
+
+	 //I have no fucking clue why, but not doing this causes shit to not work.
+
+	heat_overlay.color = heat2colour(rod_mix.temperature)
+	heat_overlay.alpha = min(rod_mix.temperature * (1/500) * 255,255)
 
 	if(!active && rod_mix.gases[/datum/gas/tritium])
 		var/meter_icon_num = CEILING( min(rod_mix.gases[/datum/gas/tritium][MOLES] / 100, 1) * 5, 1)
 		if(meter_icon_num > 0)
 			meter_overlay.alpha = 255
 			meter_overlay.icon_state = "platform_rod_glow_[meter_icon_num]"
+			var/return_pressure_mod = rod_mix.return_pressure() / TANK_FRAGMENT_PRESSURE
+			meter_overlay.color = rgb(return_pressure_mod*255,255 - return_pressure_mod*255,0)
 		else
 			meter_overlay.alpha = 0
 	else
 		meter_overlay.alpha = 0
 
+	update_appearance()
+
 	var/turf/T
+	var/datum/gas_mixture/turf_air
 	if(isturf(loc))
 		T = loc
+		turf_air = T.return_air()
 
-	//Transfer heat/cooling from liquid to rod. Stolen from pipes.
-	if(T && T.liquids && T.liquids.liquid_state >= LIQUID_STATE_FOR_HEAT_EXCHANGERS)
-		var/total_heat_capacity = rod_mix.heat_capacity()
-		var/partial_heat_capacity = total_heat_capacity * ( rod_mix.heat_capacity() / rod_mix.volume )
-		if(partial_heat_capacity > 0)
-			var/liquid_temperature = T.liquids.temp
-			var/liquid_heat_capacity = T.liquids.total_reagents * REAGENT_HEAT_CAPACITY
-			var/delta_temperature = (rod_mix.temperature - liquid_temperature)
-			if(liquid_heat_capacity > 0)
-				var/heat_to_add = CALCULATE_CONDUCTION_ENERGY(WINDOW_HEAT_TRANSFER_COEFFICIENT * delta_temperature, liquid_heat_capacity, partial_heat_capacity)
-				rod_mix.temperature += heat_to_add / total_heat_capacity
-				if(!T.liquids.immutable)
-					T.liquids.temp += heat_to_add / liquid_heat_capacity
-
-	if(T)
-		var/datum/gas_mixture/turf_air = T.return_air()
-		if(turf_air)
-			//Share the temperature of the rod with the turf's air.
-			rod_mix.temperature_share(turf_air, T.thermal_conductivity*0.25)
-
-	if(!active || !powernet)
+	if(!active)
+		if(turf_air && venting)
+			buffer_gasses.pump_gas_to(turf_air,vent_pressure*2) //Goodbye, buffer gasses.
+			transfer_rod_temperature(turf_air,bonus_cooling=40)
 		return
 
 	var/amount_to_consume = gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat*(overclocked ? 1.25 : 1)
@@ -296,22 +319,57 @@
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
 			consumed_mix.temperature += 800/our_heat_capacity
+	else
+		toggle(FALSE)
 
 	//The gasses that we consumed go into the buffer, to be released in the air.
 	buffer_gasses.merge(consumed_mix)
 
-	//Vent excess gas, if we can.
-	if(venting && T)
-		var/datum/gas_mixture/turf_air = T.return_air()
-		if(turf_air)
-			buffer_gasses.pump_gas_to(turf_air,vent_pressure)
-			turf_air.temperature_share(rod_mix, OPEN_HEAT_TRANSFER_COEFFICIENT) //Cool/Heat the rod directly.
-
 	//Share the remaining temperature with the rod mix itself.
-	buffer_gasses.temperature_share(rod_mix, OPEN_HEAT_TRANSFER_COEFFICIENT)
+	transfer_rod_temperature(buffer_gasses)
 
 	if(buffer_gasses.return_pressure() > TANK_FRAGMENT_PRESSURE) //uh oh, backflow!
 		buffer_gasses.equalize(rod_mix)
 
+	//Vent excess gas.
+	if(turf_air && venting)
+		buffer_gasses.pump_gas_to(turf_air,vent_pressure) //Goodbye, buffer gasses.
+		transfer_rod_temperature(turf_air,bonus_cooling=-10)
+
 	return TRUE
 
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(var/datum/gas_mixture/gas_source,var/bonus_cooling=0)
+
+	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
+
+	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
+	if(rod_mix_heat_capacity <= 0)
+		return FALSE
+
+	var/gas_source_heat_capacity = gas_source.heat_capacity()
+	if(gas_source_heat_capacity <= 0)
+		return FALSE
+
+	var/rod_mix_temperature = rod_mix.temperature
+	var/gas_source_temperature = gas_source.temperature
+
+	var/rod_mix_energy = (rod_mix_temperature*rod_mix_heat_capacity)
+	var/gas_source_energy = (gas_source_temperature*gas_source_heat_capacity)
+
+	var/total_energy = rod_mix_energy + gas_source_energy
+
+	var/limit_percent = (10 + src.limit + rand(-10,5))/100
+
+	var/random_variance_cooling = active ? rand(2,5) : 20
+	var/random_variance_heating = active ? rand(10,50) : 10
+
+	var/energy_for_rod = clamp(total_energy*limit_percent,(rod_mix_temperature-max(0,random_variance_cooling+bonus_cooling))*rod_mix_heat_capacity,(rod_mix_temperature+random_variance_heating)*rod_mix_heat_capacity)
+	energy_for_rod = clamp(energy_for_rod,rod_mix_energy*0,75,rod_mix_energy*1.5)
+	energy_for_rod = clamp(energy_for_rod,total_energy*0.25,total_energy)
+
+	var/energy_for_gas_source = total_energy - energy_for_rod
+
+	rod_mix.temperature = energy_for_rod / gas_source_heat_capacity
+	gas_source.temperature = energy_for_gas_source / rod_mix_heat_capacity
+
+	return TRUE
