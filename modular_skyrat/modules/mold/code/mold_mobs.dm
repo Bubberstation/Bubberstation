@@ -182,8 +182,8 @@
 	maxHealth = 20 //BUBBERSTATION CHANGE
 	health = 20 //BUBBERSTATION CHANGE
 
-	melee_damage_lower = 5
-	melee_damage_upper = 8
+	melee_damage_lower = 5 // BUBBERSTATION CHANGE
+	melee_damage_upper = 8 // BUBBERSTATION CHANGE
 	obj_damage = 20
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "sting"
