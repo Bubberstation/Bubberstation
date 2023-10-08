@@ -4,7 +4,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 20,
 		/datum/reagent/toxin = 1,
-		/datum/reagent/consumable/cooking_oil = 5,
+		/datum/reagent/consumable/nutriment/fat/oil = 5,
 	)
 	icon_state = "bearsteak"
 	tastes = list("meat" = 1)
