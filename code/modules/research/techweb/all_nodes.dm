@@ -430,9 +430,6 @@
 		"piercesyringe",
 		"plasmarefiller",
 		"smoke_machine",
-		//BUBBER EDIT START
-		"crewmonitor",
-		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	required_experiments = list(/datum/experiment/autopsy/nonhuman)
@@ -448,7 +445,6 @@
 		"limbdesign_felinid",
 		"limbdesign_lizard",
 		"limbdesign_plasmaman",
-		"limbdesign_hemophage",//bubber addition
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 6500)
 	discount_experiments = list(
@@ -1002,10 +998,6 @@
 		"borg_upgrade_lavaproof",
 		"borg_upgrade_rped",
 		"borg_upgrade_hypermod",
-		//BUBBER EDIT ADD START
-		"borg_upgrade_ewelder",
-		"borg_upgrade_advcutter",
-		//BUBBER EDIT ADD END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
@@ -1202,9 +1194,6 @@
 		"arcade_battle",
 		"arcade_orion",
 		"slotmachine",
-		//BUBBER EDIT START
-		"minesweeper",
-		//BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3250)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = 3000)
@@ -1443,7 +1432,6 @@
 		"drill",
 		"mecha_kineticgun",
 		"mining_equipment_vendor",
-		"interdyne_mining_equipment_vendor", //Bubberstation Edit
 		"ore_redemption",
 		"plasmacutter",
 		"rangemod",
