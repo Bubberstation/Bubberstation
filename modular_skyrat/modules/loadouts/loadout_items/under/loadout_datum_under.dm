@@ -174,6 +174,28 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	item_path = /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit/skirt
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 
+/datum/loadout_item/under/jumpsuit/cargo
+	name = "Cargo Technician's Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/cargo/tech
+	restricted_roles = list(JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER, JOB_CUSTOMS_AGENT)
+
+/datum/loadout_item/under/jumpsuit/cargo/shorts
+	name = "Cargo Technician's Shorts"
+	item_path = /obj/item/clothing/under/rank/cargo/tech/alt
+
+/datum/loadout_item/under/jumpsuit/cargo/skirt
+	name = "Cargo Technician's Skirt"
+	item_path = /obj/item/clothing/under/rank/cargo/tech/skirt
+
+/datum/loadout_item/under/jumpsuit/cargo/skirt/alt
+	name = "Cargo Technician's Shortskirt"
+	item_path = /obj/item/clothing/under/rank/cargo/tech/skirt/alt
+
+/datum/loadout_item/under/jumpsuit/cargo/qm
+	name = "Quartermaster's Uniform"
+	item_path = /obj/item/clothing/under/rank/cargo/qm
+	restricted_roles = list(JOB_QUARTERMASTER)
+
 /datum/loadout_item/under/jumpsuit/utility
 	name = "Utility Uniform"
 	item_path = /obj/item/clothing/under/misc/skyrat/utility
@@ -278,6 +300,10 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 /datum/loadout_item/under/miscellaneous/pants_blackshorts
 	name = "Recolorable Ripped Jean Shorts"
 	item_path = /obj/item/clothing/under/shorts/skyrat/shorts_ripped
+
+/datum/loadout_item/under/miscellaneous/shortershorts
+	name = "Recolorable Shorter Shorts"
+	item_path = /obj/item/clothing/under/shorts/skyrat/shortershorts
 
 /datum/loadout_item/under/miscellaneous/shorts
 	name = "Recolorable Shorts"
@@ -649,10 +675,6 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 /datum/loadout_item/under/formal/black_suitskirt
 	name = "Black Suitskirt"
 	item_path = /obj/item/clothing/under/suit/black/skirt
-
-/datum/loadout_item/under/formal/black_twopiece
-	name = "Black Two-Piece Suit"
-	item_path = /obj/item/clothing/under/suit/blacktwopiece
 
 /datum/loadout_item/under/formal/black_lawyer_suit
 	name = "Black Lawyer Suit"

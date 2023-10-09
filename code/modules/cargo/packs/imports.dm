@@ -296,6 +296,7 @@
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog = 3)
 	crate_name = "dreadnog crate"
 
+/* BUBBER EDIT - No craftable slappy
 /datum/supply_pack/imports/giant_wrench_parts
 	name = "Big Slappy parts"
 	desc = "Illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
@@ -303,3 +304,18 @@
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
+
+/datum/supply_pack/imports/materials_market
+	name = "Galactic Materials Market Crate"
+	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/circuitboard/machine/materials_market = 1,
+		/obj/item/stack/sheet/iron = 5,
+		/obj/item/stack/cable_coil/five = 2,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stock_parts/card_reader = 1
+	)
+	crate_name = "materials market crate"
+	crate_type = /obj/structure/closet/crate
+*/

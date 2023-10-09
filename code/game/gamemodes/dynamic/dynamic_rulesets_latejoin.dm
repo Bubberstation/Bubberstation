@@ -17,9 +17,9 @@
 		else if (!((antag_preference || antag_flag) in P.client.prefs.be_special) || is_banned_from(P.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
 			candidates.Remove(P)
 		// SKYRAT EDIT ADDITION - PROTECTED JOBS
-		else if(P.client?.prefs && !P.client.prefs.read_preference(/datum/preference/toggle/be_antag))
+/* 		else if(P.client?.prefs && !P.client.prefs.read_preference(/datum/preference/toggle/be_antag)) // BUBBER EDIT
 			candidates.Remove(P)
-			continue
+			continue */
 		else if(is_banned_from(P.client?.ckey, BAN_ANTAGONIST))
 			candidates.Remove(P)
 			continue
@@ -38,8 +38,8 @@
 				job_check++ // Checking for "enemies" (such as sec officers). To be counters, they must either not be candidates to that rule, or have a job that restricts them from it
 
 	var/threat = round(mode.threat_level/10)
-
-	if (job_check < required_enemies[threat])
+	var/ruleset_forced = (GLOB.dynamic_forced_rulesets[type] || RULESET_NOT_FORCED) == RULESET_FORCE_ENABLED
+	if (!ruleset_forced && job_check < required_enemies[threat])
 		log_dynamic("FAIL: [src] is not ready, because there are not enough enemies: [required_enemies[threat]] needed, [job_check] found")
 		return FALSE
 
@@ -208,6 +208,7 @@
 		JOB_HEAD_OF_SECURITY,
 		JOB_PRISONER,
 		JOB_SECURITY_OFFICER,
+		JOB_CHAPLAIN, // BUBBER EDIT ADDITION
 		JOB_WARDEN,
 	)
 	restricted_roles = list(

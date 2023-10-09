@@ -40,18 +40,17 @@
 #ifndef UNIT_TESTS // This is a decently hefty thing to generate while unit testing, so we should skip it.
 	if(!heretic_level_generated)
 		heretic_level_generated = TRUE
-		log_game("Generating z-level for heretic sacrifices...")
+		log_game("Loading heretic lazytemplate for heretic sacrifices...")
 		INVOKE_ASYNC(src, PROC_REF(generate_heretic_z_level))
 #endif
 
 /// Generate the sacrifice z-level.
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/generate_heretic_z_level()
-	var/datum/map_template/heretic_sacrifice_level/new_level = new()
-	if(!new_level.load_new_z())
-		log_game("The heretic sacrifice z-level failed to load.")
-		message_admins("The heretic sacrifice z-level failed to load. Heretic sacrifices won't be teleported to the shadow realm. \
+	if(!SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_HERETIC_SACRIFICE))
+		log_game("The heretic sacrifice template failed to load.")
+		message_admins("The heretic sacrifice lazy template failed to load. Heretic sacrifices won't be teleported to the shadow realm. \
 			If you want, you can spawn an /obj/effect/landmark/heretic somewhere to stop that from happening.")
-		CRASH("Failed to initialize heretic sacrifice z-level!")
+		CRASH("Failed to lazy load heretic sacrifice template!")
 
 /datum/heretic_knowledge/hunt_and_sacrifice/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
@@ -377,7 +376,10 @@
 		var/datum/antagonist/heretic/victim_heretic = sac_target.mind?.has_antag_datum(/datum/antagonist/heretic)
 		victim_heretic.knowledge_points -= 3
 	else
-		sac_target.gain_trauma(/datum/brain_trauma/mild/phobia/heresy, TRAUMA_RESILIENCE_MAGIC)
+	//BUBBER EDIT START - makes the phobia curable
+		sac_target.gain_trauma(/datum/brain_trauma/mild/phobia/heresy, TRAUMA_RESILIENCE_SURGERY /*TRAUMA_RESILIENCE_MAGIC*/)
+	//BUBBER EDIT END
+
 	// Wherever we end up, we sure as hell won't be able to explain
 	sac_target.adjust_timed_status_effect(40 SECONDS, /datum/status_effect/speech/slurring/heretic)
 	sac_target.adjust_stutter(40 SECONDS)
