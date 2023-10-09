@@ -50,7 +50,10 @@ Attacking a synth with an id loads it into its slot.. pain and probably shitcode
 		return ..()
 	var/obj/item/organ/internal/brain/synth/B = T.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(B))
-		if(do_after(user, 3 SECONDS))
-			B.internal_computer.InsertID(src, user)
-		return
+		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
+			balloon_alert(user, "Inserting id")
+			if(do_after(user, 3 SECONDS))
+				balloon_alert(user, "Inserted")
+				B.internal_computer.InsertID(src, user)
+			return
 	return ..()
