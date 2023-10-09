@@ -108,7 +108,6 @@
 	name = "Classic 3-round burst pistol 9mm"
 
 /obj/item/storage/box/hosgun/PopulateContents()
-	new /obj/item/storage/box/gunset/glock18_hos(src)
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/storage/box/hecu_rations(src)
@@ -129,8 +128,6 @@
 	name = "Solaris Police Dual 9mm Pistol"
 
 /obj/item/storage/box/hosgun/glock/PopulateContents()
-	new /obj/item/storage/box/gunset/glock17(src)
-	new /obj/item/storage/box/gunset/glock17(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper/sol(src)
 	new /obj/item/clothing/neck/tie/red(src)
 	new /obj/item/storage/pill_bottle/probital(src)
