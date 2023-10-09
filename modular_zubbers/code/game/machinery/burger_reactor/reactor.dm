@@ -266,7 +266,7 @@
 
 	if(active && venting)
 		heat_overlay.color = heat2colour(rod_mix.temperature)
-		heat_overlay.alpha = min(10 + rod_mix.temperature * (1/1000) * 255,255)
+		heat_overlay.alpha = min(5 + rod_mix.temperature * (1/1000) * 255,255)
 	else
 		heat_overlay.alpha = 0
 
