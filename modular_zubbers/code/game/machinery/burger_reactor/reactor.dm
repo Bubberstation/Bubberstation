@@ -195,7 +195,7 @@
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
 		vent_volume_mul += new_matter_bin.tier * 0.5
 	vent_volume = initial(vent_volume) * vent_volume_mul
-	buffer_gasses.volume = vent_volume
+	if(buffer_gasses) buffer_gasses.volume = vent_volume
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0
