@@ -19,36 +19,28 @@
 	var/overclocked = FALSE //Is this machine overclocked, consuming more tritium?
 	var/venting = TRUE //Is this machine venting the gasses?
 	var/safety = TRUE //Is the safety active?
-	var/limit = 0 //10 is added to this, so it's 10.
-	var/limit_max = 25 //10 is added to this, so it's 35.
+	var/cooling_limiter = 0 //Current cooling limiter amount.
+	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
 
-
-	var/obj/item/tank/rbmk2_rod/stored_rod
+	var/obj/item/tank/rbmk2_rod/stored_rod //Currently stored rbmk2 rod.
 	var/datum/gas_mixture/buffer_gasses //Gas that has yet to be leaked out due to not venting fast enough.
-	var/last_power_generation = 0
-	var/last_tritium_consumption = 0
+	var/mutable_appearance/heat_overlay //Vent heat overlay.
+	var/mutable_appearance/meter_overlay //Inactive tritium meter display.
 
-	//Unupgradable stats.
+	var/last_power_generation = 0 //Display purposes. Do not edit.
+	var/last_tritium_consumption = 0 //Display purposes. Do not edit.
 
-	//SSmachines runs once every 2 seconds.
-	//50 moles of tritium at room temperature generation should last ~120 minutes.
-	//Thus, the consumption rate should be 50/(120*60*0.5) = 0.01388888888
-
-	var/gas_consumption_base = 0.014 //How much gas gets consumed, in moles, per cycle.
+	var/gas_consumption_base = 0.001 //How much gas gets consumed, in moles, per cycle.
 	var/gas_consumption_heat = 0.02 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
-	//18 unupgraded of these things should be equal to 1 supermatter setup, which is like 1MW. (1000000W)
-	//Which means that 0.014*18 consumed should be 1000000 W.
-	// (1000000 / (0.014*18)) = 3968253
+	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
 
 	//Upgradable stats.
-	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed. Improved via capacitors.
-	var/power_efficiency = 1 //A multiplier of base_power_generation. Improved via capacitors.
+	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/vent_volume = 300 //Improved via matter bins.
+	var/vent_volume = 300 //How large is the buffer vent, in liters. Improved via matter bins.
 
-	var/mutable_appearance/heat_overlay
-	var/mutable_appearance/meter_overlay
+
 
 /obj/machinery/power/rbmk2/Initialize(mapload)
 	. = ..()
@@ -265,13 +257,18 @@
 		update_appearance()
 		return
 
-	if(active && safety && rod_mix.return_pressure() > TANK_FRAGMENT_PRESSURE*0.75)
+	stored_rod.handle_tolerances(2)
+
+	if(active && safety && (rod_mix.return_pressure() > TANK_LEAK_PRESSURE*0.8 || rod_mix.temperature > TANK_MELT_TEMPERATURE*0.8))
 		toggle(FALSE)
 
 	 //I have no fucking clue why, but not doing this causes shit to not work.
 
-	heat_overlay.color = heat2colour(rod_mix.temperature)
-	heat_overlay.alpha = min(rod_mix.temperature * (1/500) * 255,255)
+	if(active && venting)
+		heat_overlay.color = heat2colour(rod_mix.temperature)
+		heat_overlay.alpha = min(10 + rod_mix.temperature * (1/1000) * 255,255)
+	else
+		heat_overlay.alpha = 0
 
 	if(!active && rod_mix.gases[/datum/gas/tritium])
 		var/meter_icon_num = CEILING( min(rod_mix.gases[/datum/gas/tritium][MOLES] / 100, 1) * 5, 1)
@@ -296,10 +293,10 @@
 	if(!active)
 		if(turf_air && venting)
 			buffer_gasses.pump_gas_to(turf_air,vent_pressure*2) //Goodbye, buffer gasses.
-			transfer_rod_temperature(turf_air,bonus_cooling=40)
+			transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
 		return
 
-	var/amount_to_consume = gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat*(overclocked ? 1.25 : 1)
+	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat)*(overclocked ? 1.25 : 1)*(0.75 + power_efficiency*0.25)
 	if(!amount_to_consume)
 		return
 
@@ -318,7 +315,7 @@
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.80) //80% of used tritium gets deleted. The rest gets thrown into the air.
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
-			consumed_mix.temperature += 800/our_heat_capacity
+			consumed_mix.temperature += (800/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency
 	else
 		toggle(FALSE)
 
@@ -334,11 +331,11 @@
 	//Vent excess gas.
 	if(turf_air && venting)
 		buffer_gasses.pump_gas_to(turf_air,vent_pressure) //Goodbye, buffer gasses.
-		transfer_rod_temperature(turf_air,bonus_cooling=-10)
+		transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE)
 
 	return TRUE
 
-/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(var/datum/gas_mixture/gas_source,var/bonus_cooling=0)
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(var/datum/gas_mixture/gas_source,var/allow_cooling_limiter=TRUE)
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
@@ -353,23 +350,19 @@
 	var/rod_mix_temperature = rod_mix.temperature
 	var/gas_source_temperature = gas_source.temperature
 
-	var/rod_mix_energy = (rod_mix_temperature*rod_mix_heat_capacity)
-	var/gas_source_energy = (gas_source_temperature*gas_source_heat_capacity)
 
-	var/total_energy = rod_mix_energy + gas_source_energy
+	var/delta_temperature = rod_mix_temperature - gas_source_temperature
+	if(delta_temperature == 0)
+		return FALSE
 
-	var/limit_percent = (10 + src.limit + rand(-10,5))/100
 
-	var/random_variance_cooling = active ? rand(2,5) : 20
-	var/random_variance_heating = active ? rand(10,50) : 10
+	var/energy_transfer = delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity/(rod_mix_heat_capacity+gas_source_heat_capacity)
 
-	var/energy_for_rod = clamp(total_energy*limit_percent,(rod_mix_temperature-max(0,random_variance_cooling+bonus_cooling))*rod_mix_heat_capacity,(rod_mix_temperature+random_variance_heating)*rod_mix_heat_capacity)
-	energy_for_rod = clamp(energy_for_rod,rod_mix_energy*0,75,rod_mix_energy*1.5)
-	energy_for_rod = clamp(energy_for_rod,total_energy*0.25,total_energy)
+	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)
+	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
+		temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
 
-	var/energy_for_gas_source = total_energy - energy_for_rod
-
-	rod_mix.temperature = energy_for_rod / gas_source_heat_capacity
-	gas_source.temperature = energy_for_gas_source / rod_mix_heat_capacity
+	rod_mix.temperature -= temperature_change*0.65
+	gas_source.temperature += temperature_change
 
 	return TRUE
