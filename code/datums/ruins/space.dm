@@ -126,6 +126,12 @@
 	name = "Derelict 8"
 	description = "An auxiliary storage bay might be the least respected room on any functional station, but studies show they are the least likely to be hit in an artillery strike."
 
+/datum/map_template/ruin/space/derelict9
+	id = "derelict9"
+	suffix = "derelict9.dmm"
+	name = "Derelict 9"
+	description = "Someone already found this high-security supply cache already, but were unable to get inside. Perhaps the next visitor will have more luck."
+
 /datum/map_template/ruin/space/empty_shell
 	id = "empty-shell"
 	suffix = "emptyshell.dmm"
@@ -322,11 +328,14 @@ suffix = "whiteshipruin_box.dmm"*/
 	name = "Cleric's Den"
 	description = "Once part of a larger monastery, this holy order of long dead clerics practiced far less non-violence than they preached. Appears to have been untouched by looters, however. Odd."
 
+/* BUBBERSTATION REMOVAL ADD
 /datum/map_template/ruin/space/forgottenship
 	id = "forgottenship"
 	suffix = "forgottenship.dmm"
 	name = "Syndicate Forgotten Ship"
 	description = "Seemingly abandoned ship went of course right into NT controlled space. It seems that malfunction caused most systems to turn off, except for sleepers."
+
+BUBBERSTATION REMOVAL END */
 
 /datum/map_template/ruin/space/old_syndie_infiltrator
 	id = "old_infiltrator"
