@@ -46,7 +46,6 @@
 	})
 "bZ" = (
 /turf/open/floor/iron/stairs{
-	baseturfs = /turf/open/floor/iron/stairs;
 	dir = 1
 	},
 /area/awaymission/secret/powered{
@@ -313,6 +312,14 @@
 	ambient_buzz = null;
 	name = "construct"
 	})
+"iG" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/baseturf_helper/asteroid,
+/turf/closed/indestructible/sandstone{
+	desc = "A wall.";
+	name = "wall"
+	},
+/area/space)
 "iL" = (
 /obj/effect/light_emitter/interlink,
 /obj/effect/turf_decal/tile/neutral/half{
@@ -597,6 +604,20 @@
 /obj/machinery/telecomms/server/presets/command,
 /obj/effect/light_emitter/interlink,
 /turf/open/floor/circuit/telecomms/mainframe,
+/area/awaymission/secret/powered{
+	ambience_index = null;
+	ambient_buzz = null;
+	name = "construct"
+	})
+"oo" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/landmark/carpspawn,
+/turf/open/water/beach{
+	color = "#e5e3e3";
+	desc = "It is water.";
+	name = "water";
+	planetary_atmos = 0
+	},
 /area/awaymission/secret/powered{
 	ambience_index = null;
 	ambient_buzz = null;
@@ -1201,7 +1222,6 @@
 	})
 "AK" = (
 /turf/open/floor/iron/stairs{
-	baseturfs = /turf/open/floor/iron/stairs;
 	dir = 8
 	},
 /area/awaymission/secret/powered{
@@ -1415,9 +1435,7 @@
 	name = "construct"
 	})
 "FA" = (
-/turf/open/floor/iron/stairs{
-	baseturfs = /turf/open/floor/iron/stairs
-	},
+/turf/open/floor/iron/stairs,
 /area/awaymission/secret/powered{
 	ambience_index = null;
 	ambient_buzz = null;
@@ -1447,7 +1465,6 @@
 	})
 "Gn" = (
 /turf/open/floor/iron/stairs{
-	baseturfs = /turf/open/floor/iron/stairs;
 	dir = 4
 	},
 /area/awaymission/secret/powered{
@@ -1970,6 +1987,18 @@
 /obj/item/chair,
 /obj/effect/decal/remains/human,
 /turf/open/floor/iron/small,
+/area/awaymission/secret/powered{
+	ambience_index = null;
+	ambient_buzz = null;
+	name = "construct"
+	})
+"TF" = (
+/obj/effect/landmark/carpspawn,
+/turf/open/floor/iron{
+	base_icon_state = "rockyash";
+	icon = 'icons/turf/mining.dmi';
+	icon_state = "rockyash"
+	},
 /area/awaymission/secret/powered{
 	ambience_index = null;
 	ambient_buzz = null;
@@ -2662,7 +2691,7 @@ GI
 GI
 GI
 GI
-GI
+iG
 GI
 GI
 GI
@@ -37702,7 +37731,7 @@ jq
 jq
 jq
 jq
-jq
+oo
 jq
 jq
 jq
@@ -50156,7 +50185,7 @@ xA
 xA
 lB
 xA
-xA
+TF
 xA
 xA
 Fe
