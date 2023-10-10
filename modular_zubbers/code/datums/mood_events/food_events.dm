@@ -22,7 +22,9 @@
 	. = ..()
 	var/mob/living/carbon/human/O = owner
 	if(istype(O))
-		if((prob(0.1 + (qheal_strength * 0.1 * (O.health/O.maxHealth)))) && O.stat != HARD_CRIT)
+		if(O.stat == HARD_CRIT)
+			return
+		if(prob(0.5 + (qheal_strength * 0.1)))
 			if(qheal_strength > 1)
 				healpwr = 2
 			O.heal_bodypart_damage(brute = healpwr, burn = healpwr, required_bodytype = BODYTYPE_ORGANIC)
