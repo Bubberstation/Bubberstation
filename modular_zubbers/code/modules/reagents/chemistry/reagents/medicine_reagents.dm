@@ -4,12 +4,14 @@
 	color = "#c4603c"
 	taste_description = "organ tissue"
 	ph = 13
+	burning_temperature = 30
+	burning_volume = 0.2
 	metabolization_rate = REAGENTS_METABOLISM
 
 /datum/reagent/medicine/xlasyn/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	if(affected_mob.bodytemperature < T0C)
-		var/base_heal = (0.00001 * (affected_mob.bodytemperature ** 2) - 6) * REM * seconds_per_tick * rand()
-		if(base_heal >= 1)
+		var/base_heal = REAGENTS_METABOLISM * (0.00001 * (affected_mob.bodytemperature ** 2) + 0.5)*0.1
+		if(base_heal >= 0.1)
 			affected_mob.adjustOrganLoss(ORGAN_SLOT_APPENDIX,base_heal*0.1)
 			affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN,base_heal*0.1)
 			affected_mob.adjustOrganLoss(ORGAN_SLOT_EARS,base_heal*0.25)
@@ -21,7 +23,6 @@
 			affected_mob.adjustOrganLoss(ORGAN_SLOT_TONGUE,base_heal*0.25)
 			affected_mob.adjustOrganLoss(ORGAN_SLOT_VOICE,base_heal*0.25)
 		. = TRUE
-	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (affected_mob.bodytemperature ** 2) + 0.75)
 	..()
 
 /datum/reagent/medicine/coagulant/synthetic

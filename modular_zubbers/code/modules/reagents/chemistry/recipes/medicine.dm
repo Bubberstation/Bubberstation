@@ -1,6 +1,7 @@
 /datum/chemical_reaction/medicine/xlasyn
 	results = list(/datum/reagent/medicine/xlasyn = 2)
 	required_reagents = list(/datum/reagent/medicine/c2/synthflesh=1,/datum/reagent/medicine/clonexadone=1,/datum/reagent/toxin/mutagen=1)
+	required_catalysts = list(/datum/reagent/iron = 5)
 	required_temp = 100
 	optimal_temp = 235
 	overheat_temp = 200
@@ -14,7 +15,7 @@
 	rate_up_lim = 20
 	purity_min = 0.3
 	reaction_flags = REACTION_PH_VOL_CONSTANT
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_ORGAN
+	reaction_tags = REACTION_TAG_MODERATE | REACTION_TAG_HEALING | REACTION_TAG_ORGAN
 
 /datum/chemical_reaction/medicine/synth_coagulant
 	results = list(/datum/reagent/medicine/coagulant/synthetic = 1)
