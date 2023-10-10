@@ -30,7 +30,7 @@
 			continue
 		if((u_item.purchasable_from == UPLINK_NUKE_OPS) || (u_item.purchasable_from == UPLINK_CLOWN_OPS) || (u_item.purchasable_from == (UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS))) //No clown ops or nuke ops exclusive items (or both).
 			continue
-		if(ispath(u_item.item,/obj/item)) //Accepts only items. For some reason Skyrat made it so that a debug /obj/effect can be a spawn objection for some reason.
+		if(!ispath(u_item.item,/obj/item)) //Accepts only items. For some reason Skyrat made it so that a debug /obj/effect can be a spawn objection for some reason.
 			continue
 		if(ispath(u_item.item,/obj/item/storage)) //This solves a lot of nonsense balance problems and storage recursion issues. Seriously. 2TC for a fuckton of EMPs???? 2TC for very explosive mailbombs???? hello?????
 			continue
