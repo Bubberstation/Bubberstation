@@ -21,16 +21,14 @@
 			if(detected_turf.underfloor_accessibility > UNDERFLOOR_HIDDEN) //Make sure it can have an underfloor.
 				continue
 			var/bad_turf = FALSE
-			var/good_turf = FALSE
-			for(var/atom/movable/M as anything in detected_turf.contents) //Place under dense unanchored objects
-				if(!M.density)
+			for(var/atom/movable/M as anything in detected_turf.contents)
+				if(!M.density) //If it's not dense, then don't worry about it.
 					continue
-				if(M.anchored) //There might be some machine that cannot be disassembled here.
-					bad_turf = TRUE
-				else
-					good_turf = TRUE
-					break
-			if(good_turf && !bad_turf)
+				if(!M.anchored) //If it's not anchored, then don't worry about it.
+					continue
+				bad_turf = TRUE
+				break
+			if(!bad_turf)
 				var/area/A = detected_turf.loc
 				if(A.area_flags & PERSISTENT_ENGRAVINGS) //This is maintenance and prison.
 					possible_satchel_turfs_maint += detected_turf
