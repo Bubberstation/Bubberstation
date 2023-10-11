@@ -1,9 +1,9 @@
 /obj/machinery/power/rbmk2
 	name = "\improper RB-MK2 reactor"
 	desc = "Radioscopical Bluespace Mark 2 reactor, or RB MK2 for short, is a new state-of-the-art power generation technology that uses bluespace magic \
-	to directly transfer radioactive tritium particles into energy with minimal external heat generation (compared to open-air combustion). \
-	While it is said this is safer than a Supermatter Crystal, improper cooling management of internal as well external gasses may lead to a mini-nuclear meltdown.\n\
-	To start up a reactor, fill a RB-MK2 rod up with tritium, or a mix of gas containing tritium, and insert it into the reactor. The tritium will slowly get processed into energy."
+	to directly convert tritium particles into energy with minimal heat generation. \
+	Improper cooling management of internal as well external gasses may lead to EXPLOSIONS.\n\
+	To start up a reactor, <b>partially</b> fill a RB-MK2 rod up with a moderator gas and tritium, and insert it into the reactor. The tritium will slowly get consumed into energy, based on internal temperatue."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "platform"
 	base_icon_state = "platform"
@@ -11,7 +11,16 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 
+
+	atom_integrity = 300
+	max_integrity = 300
+
+
+	uses_integrity = TRUE
+
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED
+
+	resistance_flags = FIRE_PROOF
 
 	circuit = /obj/item/circuitboard/machine/rbmk2
 
@@ -21,6 +30,7 @@
 	var/safety = TRUE //Is the safety active?
 	var/cooling_limiter = 0 //Current cooling limiter amount.
 	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
+	var/jammed = FALSE //Is the reactor ejection system jammed?
 
 	var/obj/item/tank/rbmk2_rod/stored_rod //Currently stored rbmk2 rod.
 	var/datum/gas_mixture/buffer_gasses //Gas that has yet to be leaked out due to not venting fast enough.
@@ -40,7 +50,16 @@
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
 	var/vent_volume = 300 //How large is the buffer vent, in liters. Improved via matter bins.
 
+	armor_type = /datum/armor/rbmk2
 
+/datum/armor/rbmk2
+	melee = 50
+	bullet = 20
+	laser = 10
+	energy = 100
+	bomb = 30
+	fire = 90
+	acid = 50
 
 /obj/machinery/power/rbmk2/Initialize(mapload)
 	. = ..()
@@ -59,7 +78,33 @@
 	. += buffer_gasses
 
 /obj/machinery/power/rbmk2/Destroy()
+
+	if(SSticker.IsRoundInProgress())
+		var/turf/T = get_turf(src)
+		message_admins("[src] deleted at [ADMIN_VERBOSEJMP(T)]")
+		log_game("[src] deleted at [AREACOORD(T)]")
+		investigate_log("deleted at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+
 	remove_rod()
+
+	qdel(wires)
+	set_wires(null)
+
+	. = ..()
+
+/obj/machinery/power/rbmk2/deconstruct(disassembled = TRUE)
+
+	if(flags_1 & NODECONSTRUCT_1)
+		return
+
+	if(!disassembled && stored_rod)
+		//Uh oh.
+		var/turf/T = get_turf(src)
+		message_admins("[src] exploded due to damage at [ADMIN_VERBOSEJMP(T)]")
+		log_game("[src] exploded due to damage [AREACOORD(T)]")
+		investigate_log("exploded due to damage [AREACOORD(T)]", INVESTIGATE_ENGINE)
+		stored_rod.take_damage(1000,armour_penetration=100)
+
 	. = ..()
 
 /obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
@@ -71,82 +116,74 @@
 /obj/machinery/power/rbmk2/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(!user.combat_mode)
 		if(!active && istype(attacking_item,/obj/item/tank/rbmk2_rod/)) //Insert a rod.
-			return add_rod(attacking_item)
+			src.add_fingerprint(user)
+			attacking_item.add_fingerprint(user)
+			return add_rod(user,attacking_item)
 	. = ..()
-
-/obj/machinery/power/rbmk2/multitool_act(mob/living/user, obj/item/multitool/tool)
-	if(panel_open)
-		wires.interact(user)
-		return TRUE
-
-/obj/machinery/power/rbmk2/multitool_act_secondary(mob/living/user, obj/item/tool)
-	if(panel_open)
-		wires.interact(user)
-		return TRUE
-
-/obj/machinery/power/rbmk2/wirecutter_act(mob/living/user, obj/item/tool)
-	if(panel_open)
-		wires.interact(user)
-		return TRUE
-
-/obj/machinery/power/rbmk2/wirecutter_act_secondary(mob/living/user, obj/item/tool)
-	if(panel_open)
-		wires.interact(user)
-		return TRUE
-
-//Deconstruct.
-/obj/machinery/power/rbmk2/crowbar_act(mob/living/user, obj/item/attack_item)
-	if(!active && default_deconstruction_crowbar(attack_item))
-		return TRUE
-
-/obj/machinery/power/rbmk2/crowbar_act_secondary(mob/living/user, obj/item/attack_item)
-	if(!active && default_deconstruction_crowbar(attack_item))
-		return TRUE
-
-//Open the panel.
-/obj/machinery/power/rbmk2/screwdriver_act(mob/living/user, obj/item/attack_item)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, attack_item))
-		return TRUE
-
-/obj/machinery/power/rbmk2/screwdriver_act_secondary(mob/living/user, obj/item/attack_item)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, attack_item))
-		return TRUE
 
 /obj/machinery/power/rbmk2/on_set_panel_open(old_value)
 	. = ..()
 	update_appearance()
 
-//Toggle the reactor on/off.
-/obj/machinery/power/rbmk2/wrench_act(mob/living/user, obj/item/tool)
-	if(toggle())
-		return TRUE
-
-/obj/machinery/power/rbmk2/wrench_act_secondary(mob/living/user, obj/item/tool)
-	if(toggle())
-		return TRUE
+/obj/machinery/power/rbmk2/proc/force_unjam(obj/item/attacking_item,mob/living/user,damage_to_deal=50)
+	if(!jammed)
+		return FALSE
+	if(atom_integrity <= damage_to_deal)
+		balloon_alert(user, "too damaged!")
+		return FALSE
+	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user,FALSE))
+		take_damage(damage_to_deal,armour_penetration=100)
+		balloon_alert(user, "unjammed!")
+	return TRUE
 
 //Remove the rod.
 /obj/machinery/power/rbmk2/AltClick(mob/living/user)
-	if(!active && stored_rod && remove_rod())
+	if(!active && stored_rod)
+		src.add_fingerprint(user)
+		stored_rod.add_fingerprint(user)
+		if(remove_rod(user))
+			balloon_alert(user, "rod removed!")
 		return TRUE
 
-/obj/machinery/power/rbmk2/proc/remove_rod()
+/obj/machinery/power/rbmk2/proc/remove_rod(mob/living/user,do_throw=FALSE)
 	if(!stored_rod)
 		return FALSE
-	if(active)
+	if(active && !jammed)
 		return FALSE
 	var/turf/T = get_turf(src)
 	if(!T)
 		return FALSE
-	stored_rod.forceMove(T)
+	if(do_throw)
+		if(jammed)
+			if(prob(80))
+				take_damage(0.5,armour_penetration=100,sound_effect=FALSE)
+				stored_rod.take_damage(0.5,armour_penetration=100)
+				playsound(src, pick('sound/effects/structure_stress/pop1.ogg','sound/effects/structure_stress/pop2.ogg','sound/effects/structure_stress/pop3.ogg'), 50, TRUE, extrarange = -3)
+				return FALSE
+			else //Yes. Spamming the eject button can unjam it.
+				jam(user,FALSE) //We did it!
+				toggle_active(user,FALSE) //Turning it off.
+				playsound(src, 'sound/machines/shutter.ogg', 50, TRUE, extrarange = -3)
+				return FALSE
+		stored_rod.forceMove(T)
+		stored_rod.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(3,6),5)
+		playsound(src, 'sound/weapons/gun/general/grenade_launch.ogg', 50, TRUE, extrarange = -3)
+	else
+		if(jammed)
+			return FALSE
+		stored_rod.forceMove(T)
+		playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = -1, extrarange = -3)
 	stored_rod = null
 	meter_overlay.alpha = 0
 	update_appearance()
-	playsound(src, 'sound/machines/eject.ogg', 50, TRUE, extrarange = -3)
+	if(user)
+		message_admins("[src] had a rod removed by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)].")
+		user.log_message("removed a rod from [src]", LOG_GAME)
+		investigate_log("had a rod removed by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 	return TRUE
 
-/obj/machinery/power/rbmk2/proc/add_rod(var/obj/item/tank/rbmk2_rod/desired_rod)
-	if(stored_rod && !remove_rod())
+/obj/machinery/power/rbmk2/proc/add_rod(mob/living/user,obj/item/tank/rbmk2_rod/desired_rod)
+	if(stored_rod && !remove_rod(user))
 		return FALSE
 	if(active)
 		return FALSE
@@ -155,29 +192,96 @@
 	meter_overlay.alpha = 255
 	update_appearance()
 	START_PROCESSING(SSmachines, src)
+	playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = 1, extrarange = -3)
+	if(user)
+		var/turf/T = get_turf(src)
+		message_admins("[src] had a rod inserted by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)].")
+		user.log_message("inserted a rod into [src]", LOG_GAME)
+		investigate_log("had a rod inserted by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 	return TRUE
 
-/obj/machinery/power/rbmk2/proc/toggle(var/desired_state=!active)
+
+/obj/machinery/power/rbmk2/proc/jam(mob/living/user,desired_state=!jammed)
+
+	if(jammed == desired_state)
+		return
+
+	if(!active && desired_state) //Can't jam when already open
+		return
+
+	var/turf/T = get_turf(src)
+	if(user)
+		message_admins("[src] was jammed due to damage by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
+		user.log_message("jammed [src]", LOG_GAME)
+		investigate_log("jammed due to damage by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+	else
+		message_admins("[src] was jammed due to damage at [ADMIN_VERBOSEJMP(T)]")
+		log_game("[src] jammed due to damage at [AREACOORD(T)]")
+		investigate_log("jammed due to damage at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+
+	jammed = desired_state
+
+	playsound(src, 'sound/effects/pressureplate.ogg', 50, TRUE, extrarange = -3)
+
+	return TRUE
+
+/obj/machinery/power/rbmk2/proc/toggle_active(mob/living/user,desired_state=!active)
 
 	if(active == desired_state)
 		return
 
-	if(desired_state)
+	if(!force && desired_state)
 		if(!stored_rod)
-			to_chat(usr, span_warning("There is no rod inserted in [src]!"))
 			return
 		if(!anchored)
-			to_chat(usr, span_warning("[src] needs to be anchored first!"))
 			return
+
+	if(jammed)
+		return
 
 	active = desired_state
 
 	if(!active)
 		meter_overlay.alpha = 0
 
+	if(active)
+		var/turf/T = get_turf(src)
+		if(user)
+			message_admins("[src] was turned on by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
+			user.log_message("turned on [src]", LOG_GAME)
+			investigate_log("was turned on by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+		else
+			message_admins("[src] was turned on at [ADMIN_VERBOSEJMP(T)]")
+			log_game("[src] was turned on at [AREACOORD(T)]")
+			investigate_log("was turned on at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+
 	update_appearance()
 
 	playsound(src, 'sound/machines/eject.ogg', 50, TRUE, extrarange = -3)
+
+	return TRUE
+
+/obj/machinery/power/rbmk2/proc/toggle_vents(mob/living/user,desired_state=!venting)
+
+	if(desired_state == venting)
+		return FALSE
+
+	venting = desired_state
+
+	if(!venting)
+		var/turf/T = get_turf(src)
+		if(user)
+			message_admins("[src] had vents turned off by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
+			user.log_message("had vents turned off by [src]", LOG_GAME)
+			investigate_log("had vents turned off by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+		else
+			message_admins("[src] had vents turned off at [ADMIN_VERBOSEJMP(T)]")
+			log_game("[src] had vents turned off at [AREACOORD(T)]")
+			investigate_log("had vents turned off at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+
+	update_appearance()
+
+	playsound(src, 'sound/machines/creak.ogg', 50, TRUE, extrarange = -3)
 
 	return TRUE
 
@@ -215,6 +319,12 @@
 	if(!stored_rod)
 		. += span_warning("It it is missing a RB-MK2 reactor rod.")
 
+	if(!venting)
+		. += span_warning("The vents are closed.")
+
+	if(jammed)
+		. += span_danger("It's jammed!")
+
 	if(active)
 		. += "It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)]."
 
@@ -228,7 +338,10 @@
 
 	if(stored_rod)
 		if(active)
-			icon_state = "[base_icon_state]_closed"
+			if(jammed)
+				icon_state = "[base_icon_state]_jammed"
+			else
+				icon_state = "[base_icon_state]_closed"
 		else
 			icon_state = "[base_icon_state]_open"
 	else
@@ -242,100 +355,7 @@
 	. += heat_overlay
 	. += meter_overlay
 
-/obj/machinery/power/rbmk2/process()
-
-	if(!stored_rod)
-		meter_overlay.alpha = 0
-		heat_overlay.alpha = 0
-		update_appearance()
-		return
-
-	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
-	if(!rod_mix || !rod_mix.gases)
-		meter_overlay.alpha = 0
-		heat_overlay.alpha = 0
-		update_appearance()
-		return
-
-	stored_rod.handle_tolerances(2)
-
-	if(active && safety && (rod_mix.return_pressure() > TANK_LEAK_PRESSURE*0.8 || rod_mix.temperature > TANK_MELT_TEMPERATURE*0.8))
-		toggle(FALSE)
-
-	 //I have no fucking clue why, but not doing this causes shit to not work.
-
-	if(active && venting)
-		heat_overlay.color = heat2colour(rod_mix.temperature)
-		heat_overlay.alpha = min(5 + rod_mix.temperature * (1/1000) * 255,255)
-	else
-		heat_overlay.alpha = 0
-
-	if(!active && rod_mix.gases[/datum/gas/tritium])
-		var/meter_icon_num = CEILING( min(rod_mix.gases[/datum/gas/tritium][MOLES] / 100, 1) * 5, 1)
-		if(meter_icon_num > 0)
-			meter_overlay.alpha = 255
-			meter_overlay.icon_state = "platform_rod_glow_[meter_icon_num]"
-			var/return_pressure_mod = rod_mix.return_pressure() / TANK_FRAGMENT_PRESSURE
-			meter_overlay.color = rgb(return_pressure_mod*255,255 - return_pressure_mod*255,0)
-		else
-			meter_overlay.alpha = 0
-	else
-		meter_overlay.alpha = 0
-
-	update_appearance()
-
-	var/turf/T
-	var/datum/gas_mixture/turf_air
-	if(isturf(loc))
-		T = loc
-		turf_air = T.return_air()
-
-	if(!active)
-		if(turf_air && venting)
-			buffer_gasses.pump_gas_to(turf_air,vent_pressure*2) //Goodbye, buffer gasses.
-			transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
-		return
-
-	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat)*(overclocked ? 1.25 : 1)*(0.75 + power_efficiency*0.25)
-	if(!amount_to_consume)
-		return
-
-	//Remove gas from the rod to be processed.
-	var/datum/gas_mixture/consumed_mix = rod_mix.remove(amount_to_consume)
-
-	//Do power generation here.
-	consumed_mix.assert_gas(/datum/gas/tritium)
-	if(consumed_mix.gases && consumed_mix.gases[/datum/gas/tritium])
-		last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
-		radiation_pulse(src,min( (last_tritium_consumption/0.02)*4 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
-		if(powernet)
-			last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation
-			if(last_power_generation)
-				src.add_avail(last_power_generation)
-		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.80) //80% of used tritium gets deleted. The rest gets thrown into the air.
-		var/our_heat_capacity = consumed_mix.heat_capacity()
-		if(our_heat_capacity > 0)
-			consumed_mix.temperature += (800/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency
-	else
-		toggle(FALSE)
-
-	//The gasses that we consumed go into the buffer, to be released in the air.
-	buffer_gasses.merge(consumed_mix)
-
-	//Share the remaining temperature with the rod mix itself.
-	transfer_rod_temperature(buffer_gasses)
-
-	if(buffer_gasses.return_pressure() > TANK_FRAGMENT_PRESSURE) //uh oh, backflow!
-		buffer_gasses.equalize(rod_mix)
-
-	//Vent excess gas.
-	if(turf_air && venting)
-		buffer_gasses.pump_gas_to(turf_air,vent_pressure) //Goodbye, buffer gasses.
-		transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE)
-
-	return TRUE
-
-/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(var/datum/gas_mixture/gas_source,var/allow_cooling_limiter=TRUE)
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE)
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
@@ -350,11 +370,9 @@
 	var/rod_mix_temperature = rod_mix.temperature
 	var/gas_source_temperature = gas_source.temperature
 
-
 	var/delta_temperature = rod_mix_temperature - gas_source_temperature
 	if(delta_temperature == 0)
 		return FALSE
-
 
 	var/energy_transfer = delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity/(rod_mix_heat_capacity+gas_source_heat_capacity)
 

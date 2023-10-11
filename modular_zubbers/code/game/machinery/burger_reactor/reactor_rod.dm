@@ -13,21 +13,23 @@
 
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
-	air_contents.gases[/datum/gas/tritium][MOLES] = 50
-
-
+	air_contents.assert_gas(/datum/gas/water_vapor)
+	air_contents.gases[/datum/gas/tritium][MOLES] = 60
+	air_contents.gases[/datum/gas/water_vapor][MOLES] = 10
 
 /obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)
+
+	if(!loc || !istype(loc,/obj/machinery/power/rbmk2))
+		return ..()
+
+	var/obj/machinery/power/rbmk2/M = loc
+	M.stored_rod = null
+	M.active = FALSE
+	M.jammed = FALSE
+	src.forceMove(get_turf(M))
+	radiation_pulse(M,min(M.last_tritium_consumption*100,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
+	var/explosion_strength = min(M.last_tritium_consumption*5,10)
+	explosion(M, devastation_range = 1 + explosion_strength*0.1, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
 	. = ..()
-	if(loc && istype(loc,/obj/machinery/power/rbmk2))
-		var/obj/machinery/power/rbmk2/M = loc
-		if(QDELETED(src) || QDELETED(M))
-			M.stored_rod = null
-		else
-			M.remove_rod()
-		if(!QDELETED(M))
-			radiation_pulse(M,min(M.last_tritium_consumption*100,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
-			var/explosion_strength = min(M.last_tritium_consumption*5,10)
-			explosion(M, devastation_range = 1 + explosion_strength*0.1, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
-			if(!QDELETED(M))
-				qdel(M) //Don't know why it'd live after this, but just in case.
+	if(!QDELETED(M))
+		qdel(M) //Don't know why it'd live after this, but just in case.

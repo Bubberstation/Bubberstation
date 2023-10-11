@@ -15,6 +15,9 @@
 	add_duds(2)
 	. = ..()
 
+/datum/wires/rbmk2/emp_pulse()
+	return TRUE //Handled already in the RBMK.
+
 /datum/wires/rbmk2/interactable(mob/user)
 	if(!..())
 		return FALSE
@@ -37,15 +40,15 @@
 		if(WIRE_OVERCLOCK)
 			M.overclocked = !M.overclocked
 		if(WIRE_ACTIVATE)
-			M.toggle()
+			M.toggle_active(usr)
 		if(WIRE_DISABLE)
-			M.toggle(FALSE)
+			M.toggle_active(usr,FALSE)
 		if(WIRE_THROW)
-			M.remove_rod()
+			M.remove_rod(usr,do_throw=TRUE)
 		if(WIRE_LOCKDOWN)
-			M.venting = !M.venting
+			M.toggle_vents(usr)
 		if(WIRE_SAFETY)
-			M.toggle(FALSE)
+			M.toggle_active(usr,FALSE)
 		if(WIRE_LIMIT)
 			M.cooling_limiter = (M.cooling_limiter + 10) % M.cooling_limiter_max
 
@@ -56,18 +59,28 @@
 			if(mend)
 				M.overclocked = FALSE
 		if(WIRE_ACTIVATE)
-			M.toggle(mend)
+			M.toggle_active(usr,mend)
 		if(WIRE_DISABLE)
 			if(mend)
-				M.toggle(FALSE)
+				M.toggle_active(usr,FALSE)
 		if(WIRE_THROW)
 			if(mend)
-				M.remove_rod()
+				M.remove_rod(usr,do_throw=TRUE)
 		if(WIRE_LOCKDOWN)
 			if(mend)
-				M.venting = FALSE
+				M.toggle_vents(usr,FALSE)
 		if(WIRE_SAFETY)
 			M.safety = mend
+			if(!mend)
+				var/turf/T = get_turf(M)
+				if(usr)
+					message_admins("[src] had the safety wire cut by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_VERBOSEJMP(T)].")
+					usr.log_message("cut the safety wire of [M]", LOG_GAME)
+					M.investigate_log("had the safety wire cut by [key_name(usr)] at [AREACOORD(M)].", INVESTIGATE_ENGINE)
+				else
+					message_admins("[src] had the safety wire cut at [ADMIN_VERBOSEJMP(T)]")
+					log_game("[src] had the safety wire cut at [AREACOORD(T)]")
+					M.investigate_log("had the safety wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 		if(WIRE_LIMIT)
 			if(mend)
 				M.cooling_limiter = 0
