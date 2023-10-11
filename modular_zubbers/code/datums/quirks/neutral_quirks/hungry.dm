@@ -1,3 +1,5 @@
+#define QUIRK_HUNGRY_MOD 2
+
 /datum/quirk/item_quirk/hungry
 	name = "Hungry"
 	desc = "For some reason, you get hungrier faster than others"
@@ -8,6 +10,14 @@
 	quirk_flags = QUIRK_HUMAN_ONLY
 	mail_goodies = list(/obj/item/food/chips)
 
-/datum/quirk/item_quirk/hungry/process(seconds_per_tick)
-	quirk_holder.adjust_nutrition(-(HUNGER_FACTOR * 3 * seconds_per_tick)) //This is about double of what is defined in _stomach.dm
+/datum/quirk/item_quirk/hungry/add(client/client_source)
+	var/mob/living/carbon/human/H = quirk_holder
+	if(istype(H))
+		H.physiology.hunger_mod *= QUIRK_HUNGRY_MOD
 
+/datum/quirk/item_quirk/hungry/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(istype(H))
+		H.physiology.hunger_mod /= QUIRK_HUNGRY_MOD
+
+#undef QUIRK_HUNGRY_MOD
