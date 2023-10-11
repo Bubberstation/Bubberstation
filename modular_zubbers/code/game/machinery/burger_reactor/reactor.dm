@@ -11,10 +11,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 
-
-	atom_integrity = 300
 	max_integrity = 300
-
 
 	uses_integrity = TRUE
 
