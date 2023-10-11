@@ -4,6 +4,7 @@
 	name = "Hungry"
 	desc = "For some reason, you get hungrier faster than others"
 	value = 0
+	icon = FA_ICON_HAMBURGER
 	gain_text = span_notice("You feel like your stomach is bottomless")
 	lose_text = span_notice("You no longer feel like your stomach is bottomless")
 	medical_record_text = "Patient exhibits a significantly faster metabolism"
