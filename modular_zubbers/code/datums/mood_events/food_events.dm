@@ -12,12 +12,12 @@
 
 	/// Used to determine how good our heal is
 	var/qheal_strength = 0
-	var/healpwr = 1
+	var/healpwr = 3
 
 /datum/status_effect/food/quality_healing/on_creation(mob/living/new_owner, _qheal_strength)
 	qheal_strength = _qheal_strength
 	if(qheal_strength > 2) //Godlike food is pretty hard to achieve (Unless you're a moff) and should be rewarded
-		healpwr = 2
+		healpwr = 5
 	return ..()
 
 /datum/status_effect/food/quality_healing/tick(seconds_between_ticks)
