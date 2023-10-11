@@ -8,7 +8,7 @@
 
 /datum/status_effect/food/quality_healing
 	id = "food_quality_healing"
-	duration = 5 MINUTES
+	status_type = STATUS_EFFECT_REPLACE //The last food you ate should be the one to affect it
 
 	/// Used to determine how good our heal is
 	var/qheal_strength = 0
@@ -16,6 +16,8 @@
 
 /datum/status_effect/food/quality_healing/on_creation(mob/living/new_owner, _qheal_strength)
 	qheal_strength = _qheal_strength
+	if(qheal_strength > 2) //Godlike food is pretty hard to achieve (Unless you're a moff) and should be rewarded
+		healpwr = 2
 	return ..()
 
 /datum/status_effect/food/quality_healing/tick(seconds_between_ticks)
@@ -24,9 +26,7 @@
 	if(istype(O))
 		if(O.stat == HARD_CRIT)
 			return
-		if(prob(0.5 + (qheal_strength * 0.1)))
-			if(qheal_strength > 1)
-				healpwr = 2
+		if(prob(5 + (qheal_strength * 2.5))) //Very tiny and in no way combat viable, might pick you up from crit in a very rare case
 			O.heal_bodypart_damage(brute = healpwr, burn = healpwr, required_bodytype = BODYTYPE_ORGANIC)
 			for(var/obj/item/organ/internal/stomach/S in O.organs)
 				S.apply_organ_damage((S.healing_factor * healpwr))
