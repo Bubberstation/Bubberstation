@@ -1,3 +1,6 @@
+#define WIRE_VENT_DIRECTION "Vent Direction"
+#define WIRE_VENT_POWER "Vent Power"
+
 /datum/wires/rbmk2
 	holder_type = /obj/machinery/power/rbmk2
 	proper_name = "RB-MK2"
@@ -6,13 +9,13 @@
 	wires = list(
 		WIRE_OVERCLOCK,
 		WIRE_ACTIVATE,
-		WIRE_DISABLE,
 		WIRE_THROW,
-		WIRE_LOCKDOWN,
+		WIRE_VENT_POWER,
+		WIRE_VENT_DIRECTION,
 		WIRE_SAFETY,
-		WIRE_LIMIT
+		WIRE_LIMIT,
+		WIRE_POWER
 	)
-	add_duds(2)
 	. = ..()
 
 /datum/wires/rbmk2/emp_pulse()
@@ -28,10 +31,14 @@
 	var/obj/machinery/power/rbmk2/M = holder
 	. = list()
 	. += "The overclock light is [M.overclocked ? "blinking blue" : "off"]."
-	. += "The power light is [M.active ? "yellow" : "off"]."
-	. += "The occupancy light is [M.stored_rod ? "orange" : "off"]."
-	. += "The vent light is [M.venting ? "green" : "flashing red"]."
-	. += "The safety light is [M.safety ? "blue" : "flashing yellow"]."
+	. += "The power light is [M.power && M.powernet ? "yellow" : "off"]."
+	. += "The processing light is [M.active ? "green" : "off"]."
+	. += "The occupancy light is [M.stored_rod ? "purple" : "off"]."
+	if(M.vent_reverse_direction)
+		. += "The vent light is [M.venting ? "flashing orange and white" : "flashing red"]."
+	else
+		. += "The vent light is [M.venting ? "green" : "flashing red"]."
+	. += "The safety light is [M.safety ? "blue" : "flashing red"]."
 	. += "The cooling limiter display reads [M.cooling_limiter]%"
 
 /datum/wires/rbmk2/on_pulse(wire)
@@ -41,16 +48,21 @@
 			M.overclocked = !M.overclocked
 		if(WIRE_ACTIVATE)
 			M.toggle_active(usr)
-		if(WIRE_DISABLE)
-			M.toggle_active(usr,FALSE)
 		if(WIRE_THROW)
 			M.remove_rod(usr,do_throw=TRUE)
-		if(WIRE_LOCKDOWN)
+		if(WIRE_VENT_POWER)
 			M.toggle_vents(usr)
+			if(isliving(usr))
+				M.shock(usr,0.125)
+		if(WIRE_VENT_DIRECTION)
+			M.toggle_reverse_vents(usr)
 		if(WIRE_SAFETY)
 			M.toggle_active(usr,FALSE)
 		if(WIRE_LIMIT)
 			M.cooling_limiter = (M.cooling_limiter + 10) % M.cooling_limiter_max
+		if(WIRE_POWER)
+			if(isliving(usr))
+				M.shock(usr,0.5)
 
 /datum/wires/rbmk2/on_cut(wire, mend, source)
 	var/obj/machinery/power/rbmk2/M = holder
@@ -60,15 +72,16 @@
 				M.overclocked = FALSE
 		if(WIRE_ACTIVATE)
 			M.toggle_active(usr,mend)
-		if(WIRE_DISABLE)
-			if(mend)
-				M.toggle_active(usr,FALSE)
 		if(WIRE_THROW)
 			if(mend)
 				M.remove_rod(usr,do_throw=TRUE)
-		if(WIRE_LOCKDOWN)
+		if(WIRE_VENT_POWER)
+			M.toggle_vents(usr,mend)
+			if(isliving(usr))
+				M.shock(usr,0.25)
+		if(WIRE_VENT_DIRECTION)
 			if(mend)
-				M.toggle_vents(usr,FALSE)
+				M.toggle_reverse_vents(usr,FALSE)
 		if(WIRE_SAFETY)
 			M.safety = mend
 			if(!mend)
@@ -84,8 +97,26 @@
 		if(WIRE_LIMIT)
 			if(mend)
 				M.cooling_limiter = 0
+		if(WIRE_POWER)
+			M.power = mend
+			if(!mend)
+				var/turf/T = get_turf(M)
+				if(usr)
+					message_admins("[src] had the power wire cut by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_VERBOSEJMP(T)].")
+					usr.log_message("cut the power wire of [M]", LOG_GAME)
+					M.investigate_log("had the power wire cut by [key_name(usr)] at [AREACOORD(M)].", INVESTIGATE_ENGINE)
+				else
+					message_admins("[src] had the power wire cut at [ADMIN_VERBOSEJMP(T)]")
+					log_game("[src] had the power wire cut at [AREACOORD(T)]")
+					M.investigate_log("had the power wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
+			if(isliving(usr))
+				M.shock(usr)
 
 /datum/wires/rbmk2/can_reveal_wires(mob/user)
 	if(HAS_TRAIT(user, TRAIT_KNOW_ENGI_WIRES))
 		return TRUE
 	return ..()
+
+
+#undef WIRE_VENT_DIRECTION
+#undef WIRE_VENT_POWER

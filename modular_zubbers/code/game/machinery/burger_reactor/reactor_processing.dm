@@ -14,8 +14,12 @@
 		return
 
 	if(venting)
-		heat_overlay.color = heat2colour(rod_mix.temperature)
-		heat_overlay.alpha = min(5 + rod_mix.temperature * (1/1000) * 255,255)
+		if(vent_reverse_direction)
+			heat_overlay.color = heat2colour(buffer_gasses.temperature)
+			heat_overlay.alpha = min(5 + buffer_gasses.temperature * (1/1000) * 255,255)
+		else
+			heat_overlay.color = heat2colour(rod_mix.temperature)
+			heat_overlay.alpha = min(5 + rod_mix.temperature * (1/1000) * 255,255)
 	else
 		heat_overlay.alpha = 0
 
@@ -40,7 +44,7 @@
 		turf_air = T.return_air()
 
 	if(!active)
-		if(turf_air && venting)
+		if(turf_air && venting && !vent_reverse_direction)
 			buffer_gasses.pump_gas_to(turf_air,vent_pressure*2) //Goodbye, buffer gasses.
 			transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
 		return
@@ -57,8 +61,8 @@
 	if(consumed_mix.gases && consumed_mix.gases[/datum/gas/tritium])
 		last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
 		radiation_pulse(src,min( (last_tritium_consumption/0.02)*4 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
-		if(powernet)
-			last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation
+		if(power && powernet)
+			last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation * (overclocked ? 0.9 : 1)
 			if(last_power_generation)
 				src.add_avail(last_power_generation)
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
@@ -81,8 +85,11 @@
 
 	//Vent excess gas.
 	if(turf_air && venting)
-		buffer_gasses.pump_gas_to(turf_air,vent_pressure) //Goodbye, buffer gasses.
-		transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE)
+		if(vent_reverse_direction)
+			turf_air.pump_gas_to(buffer_gasses,vent_pressure) //Hello, turf gasses.
+		else
+			buffer_gasses.pump_gas_to(turf_air,vent_pressure) //Goodbye, buffer gasses.
+			transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE)
 
 	if(prob(5))
 		playsound(src, 'sound/misc/metal_creak.ogg', 50, TRUE, extrarange = -3)

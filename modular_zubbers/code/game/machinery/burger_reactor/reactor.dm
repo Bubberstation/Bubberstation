@@ -22,8 +22,10 @@
 	circuit = /obj/item/circuitboard/machine/rbmk2
 
 	var/active = FALSE //Is this machine active?
+	var/power = TRUE //Is this machine giving power?
 	var/overclocked = FALSE //Is this machine overclocked, consuming more tritium?
 	var/venting = TRUE //Is this machine venting the gasses?
+	var/vent_reverse_direction = FALSE //Is this machine venting in the reverse direction (sucking)?
 	var/safety = TRUE //Is the safety active?
 	var/cooling_limiter = 0 //Current cooling limiter amount.
 	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
@@ -174,7 +176,6 @@
 	meter_overlay.alpha = 0
 	update_appearance()
 	if(user)
-		message_admins("[src] had a rod removed by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)].")
 		user.log_message("removed a rod from [src]", LOG_GAME)
 		investigate_log("had a rod removed by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 	return TRUE
@@ -191,8 +192,6 @@
 	START_PROCESSING(SSmachines, src)
 	playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = 1, extrarange = -3)
 	if(user)
-		var/turf/T = get_turf(src)
-		message_admins("[src] had a rod inserted by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)].")
 		user.log_message("inserted a rod into [src]", LOG_GAME)
 		investigate_log("had a rod inserted by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 	return TRUE
@@ -208,11 +207,9 @@
 
 	var/turf/T = get_turf(src)
 	if(user)
-		message_admins("[src] was jammed due to damage by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
 		user.log_message("jammed [src]", LOG_GAME)
 		investigate_log("jammed due to damage by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 	else
-		message_admins("[src] was jammed due to damage at [ADMIN_VERBOSEJMP(T)]")
 		log_game("[src] jammed due to damage at [AREACOORD(T)]")
 		investigate_log("jammed due to damage at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
@@ -244,11 +241,9 @@
 	if(active)
 		var/turf/T = get_turf(src)
 		if(user)
-			message_admins("[src] was turned on by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
 			user.log_message("turned on [src]", LOG_GAME)
 			investigate_log("was turned on by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 		else
-			message_admins("[src] was turned on at [ADMIN_VERBOSEJMP(T)]")
 			log_game("[src] was turned on at [AREACOORD(T)]")
 			investigate_log("was turned on at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
@@ -268,17 +263,36 @@
 	if(!venting)
 		var/turf/T = get_turf(src)
 		if(user)
-			message_admins("[src] had vents turned off by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
 			user.log_message("had vents turned off by [src]", LOG_GAME)
 			investigate_log("had vents turned off by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
 		else
-			message_admins("[src] had vents turned off at [ADMIN_VERBOSEJMP(T)]")
 			log_game("[src] had vents turned off at [AREACOORD(T)]")
 			investigate_log("had vents turned off at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
 	update_appearance()
 
 	playsound(src, 'sound/machines/creak.ogg', 50, TRUE, extrarange = -3)
+
+	return TRUE
+
+/obj/machinery/power/rbmk2/proc/toggle_reverse_vents(mob/living/user,desired_state=!vent_reverse_direction)
+
+	if(desired_state == vent_reverse_direction)
+		return FALSE
+
+	if(venting) //Can't change when they're already on.
+		return FALSE
+
+	vent_reverse_direction = desired_state
+
+	if(vent_reverse_direction)
+		var/turf/T = get_turf(src)
+		if(user)
+			user.log_message("had vents set in reverse by [src]", LOG_GAME)
+			investigate_log("had vents set in reverse by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
+		else
+			log_game("[src] had vents set in reverse at [AREACOORD(T)]")
+			investigate_log("had vents set in reverse at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
 	return TRUE
 
@@ -310,7 +324,7 @@
 
 	. += "It is[!active?"n't":""] running."
 
-	if(!powernet)
+	if(!power || !powernet)
 		. += span_warning("It is not connected to a power cable.")
 
 	if(!stored_rod)
@@ -380,4 +394,12 @@
 	rod_mix.temperature -= temperature_change*0.65
 	gas_source.temperature += temperature_change
 
+	return TRUE
+
+/obj/machinery/power/rbmk2/proc/shock(mob/living/victim,shock_multiplier=1)
+	if(!powernet)
+		return FALSE
+	if(!electrocute_mob(victim, powernet, src, shock_multiplier, TRUE))
+		return FALSE
+	do_sparks(5, TRUE, src)
 	return TRUE
