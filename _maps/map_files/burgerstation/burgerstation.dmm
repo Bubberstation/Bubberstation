@@ -569,10 +569,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
-"akU" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/station/engineering/rbmk2)
 "ala" = (
 /obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
 /turf/open/floor/iron/dark,
@@ -9389,11 +9385,6 @@
 "dzc" = (
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
-"dzl" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/burgundy,
-/turf/open/space/basic,
-/area/station/engineering/rbmk2)
 "dzp" = (
 /obj/effect/spawner/random/burgerstation/liquid,
 /turf/open/floor/plating,
@@ -22415,7 +22406,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/station/engineering/rbmk2)
 "hVg" = (
 /obj/machinery/vending/autodrobe/all_access,
@@ -27570,14 +27561,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/hallway/primary/aft)
-"jNS" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "jOa" = (
 /obj/machinery/computer/rdconsole{
 	dir = 8
@@ -37204,9 +37187,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
-"ngx" = (
-/turf/closed/wall/r_wall,
-/area/space/nearstation)
 "ngy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -42550,12 +42530,6 @@
 	},
 /turf/open/floor/iron/dark/corner,
 /area/station/engineering/atmos/hallway)
-"oZm" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "oZC" = (
 /obj/effect/turf_decal/trimline/dark/filled/warning,
 /obj/effect/turf_decal/box/corners,
@@ -64732,6 +64706,7 @@
 	alpha = 150;
 	dir = 1
 	},
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/engine/hull/reinforced{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
@@ -65782,14 +65757,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
-"xkB" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "xkC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -90059,7 +90026,7 @@ cTu
 nPc
 dKM
 dKM
-ngx
+dKM
 cuV
 mFY
 cuV
@@ -90830,10 +90797,10 @@ dns
 dMR
 vPc
 wXS
-jNS
-oZm
-oZm
-xkB
+sKg
+dBJ
+dBJ
+toK
 cuV
 azA
 stM
@@ -91859,7 +91826,7 @@ cVf
 dKM
 dKM
 dKM
-dzl
+hWj
 izm
 izm
 cuV
@@ -92116,7 +92083,7 @@ dMR
 wJK
 aoj
 hUV
-akU
+mFY
 izm
 izm
 cuV
@@ -92373,7 +92340,7 @@ dMR
 dKM
 dKM
 dKM
-dzl
+hWj
 izm
 izm
 cuV
@@ -93144,7 +93111,7 @@ dMR
 vPc
 wXS
 sKg
-oZm
+dBJ
 dBJ
 toK
 cuV
@@ -94171,7 +94138,7 @@ vVx
 gyw
 dKM
 dKM
-ngx
+dKM
 cuV
 mFY
 cuV
