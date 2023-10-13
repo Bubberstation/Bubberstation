@@ -4,7 +4,9 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "pinwheel"
-	inhand_icon_state = "pinwheel" //a reference to the hit movie Up
+	inhand_icon_state = null
+	lefthand_file = null
+	righthand_file = null
 	armor_type = /datum/armor/none
 	toggle_message = "You spin your hat's spinner."
 	alt_toggle_message = "You stop your hat's spinner."
