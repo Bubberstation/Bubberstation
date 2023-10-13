@@ -40,3 +40,7 @@
 	name = "Tactical Maid Headband"
 	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
 	donator_only = TRUE
+
+/datum/loadout_item/head/pinwheel_hat //sprites by Keila.
+	name = "Pinwheel hat"
+	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
