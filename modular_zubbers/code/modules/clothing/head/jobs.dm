@@ -26,3 +26,11 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "repdrill"
+
+/obj/item/clothing/head/beret/medical/coroner
+	name = "coroner beret"
+	desc = "For harvesting organs in style!"
+	icon_state = "beret_badge_med"
+	greyscale_config = /datum/greyscale_config/beret_badge
+	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_colors = "#3E3E48#FFFFFF"
