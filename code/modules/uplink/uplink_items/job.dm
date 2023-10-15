@@ -341,7 +341,7 @@
 
 /datum/uplink_item/role_restricted/evil_seedling
 	name = "Evil Seedling"
-	desc = "A rare seed we have recovered that grows into a dangerous species that will aid you with your tasks!"
+	desc = "A rare seed we have recovered that grows into a dangerous species that will aid you with your tasks! Only good for one harvest!" //Bubberstation change: No repeated harvest.
 	item = /obj/item/seeds/seedling/evil
-	cost = 8
+	cost = 3 //Bubberstation change: 8 to 3.
 	restricted_roles = list(JOB_BOTANIST)
