@@ -516,7 +516,7 @@
 	description = "It may be harvested multiple times from the same plant."
 	icon = "cubes-stacked"
 	/// Don't allow replica pods to be multi harvested, please.
-	seed_blacklist = list(/obj/item/seeds/replicapod)
+	seed_blacklist = list(/obj/item/seeds/replicapod,/obj/item/seeds/seedling,/obj/item/seeds/seedling/evil) //BUBBERSTATION CHANGE: ADDS SEEDLINGS.
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
 /*
