@@ -6,6 +6,10 @@
 	name = "Crewsimov++ Core AI module"
 	law_id = "crewsimovpp"
 
+/obj/item/ai_module/core/full/ntos
+	name = "NTOS v3.0"
+	law_id = "ntos"
+
 /obj/item/ai_module/core/full/armadyne_safeguard
 	name = "'NT OS Safeguard V1.0"
 	law_id = "armadyne_safeguard"
