@@ -17,6 +17,7 @@
 	item_type = /obj/item/clothing/suit/armor/vest/alt
 	cost = PAYCHECK_CREW * 3
 
+/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/sol_defense/case
 	subcategory = "Weapon Cases"
 
@@ -27,14 +28,14 @@
 /datum/armament_entry/company_import/sol_defense/case/carwo
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/empty
 	cost = PAYCHECK_COMMAND * 2
-
+*/
 /datum/armament_entry/company_import/sol_defense/sidearm
 	subcategory = "Sidearms"
-
 /datum/armament_entry/company_import/sol_defense/sidearm/eland
 	item_type = /obj/item/gun/ballistic/revolver/sol
 	cost = PAYCHECK_COMMAND * 4
 
+/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/sol_defense/sidearm/wespe
 	item_type = /obj/item/gun/ballistic/automatic/pistol/sol
 	cost = PAYCHECK_COMMAND * 4
@@ -46,6 +47,7 @@
 /datum/armament_entry/company_import/sol_defense/sidearm/takbok
 	item_type = /obj/item/gun/ballistic/revolver/takbok
 	cost = PAYCHECK_COMMAND * 6
+*/
 
 // Lethal anything that's not a pistol, requires high company interest
 
@@ -57,6 +59,7 @@
 	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
 	cost = PAYCHECK_COMMAND * 6
 
+/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/sol_defense/longarm/sindano
 	item_type = /obj/item/gun/ballistic/automatic/sol_smg
 	cost = PAYCHECK_COMMAND * 6
@@ -113,3 +116,4 @@
 	item_type = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
 	contraband = TRUE
+	*/
