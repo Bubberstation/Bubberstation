@@ -6,7 +6,7 @@
 /// an attack must do this much damage after armor in order to roll for being a wound (so pressure damage/being on fire doesn't proc it)
 #define WOUND_MINIMUM_DAMAGE 14 //BUBBERSTATION CHANGE 5 -> 14
 /// an attack must do this much damage after armor in order to be eliigible to dismember a suitably mushed bodypart
-#define DISMEMBER_MINIMUM_DAMAGE 25 //BUBBERSTATION CHANGE: 10 -> 25
+#define DISMEMBER_MINIMUM_DAMAGE 26 //BUBBERSTATION CHANGE: 10 -> 26
 /// If an attack rolls this high with their wound (including mods), we try to outright dismember the limb. Note 250 is high enough that with a perfect max roll of 145 (see max cons'd damage), you'd need +100 in mods to do this
 #define WOUND_DISMEMBER_OUTRIGHT_THRESH 250
 /// set wound_bonus on an item or attack to this to disable checking wounding for the attack
