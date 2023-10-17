@@ -118,8 +118,9 @@
 
 /obj/item/storage/box/hosgun/revolver/PopulateContents()
 	new /obj/item/storage/box/gunset/hos_revolver(src)
-	new	/obj/item/clothing/neck/cloak/hos/redsec(src)
+	new /obj/item/clothing/neck/cloak/hos/redsec(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/skirt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
 	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
 	new /obj/item/knife/combat(src)
