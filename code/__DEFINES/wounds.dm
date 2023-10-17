@@ -1,12 +1,12 @@
 // ~wound damage/rolling defines
 /// the cornerstone of the wound threshold system, your base wound roll for any attack is rand(1, damage^this), after armor reduces said damage. See [/obj/item/bodypart/proc/check_wounding]
-#define WOUND_DAMAGE_EXPONENT 1.4
+#define WOUND_DAMAGE_EXPONENT 1.3 //BUBBERSTATION CHANGE: 1.4 -> 1.3.
 /// any damage dealt over this is ignored for damage rolls unless the target has the frail quirk (35^1.4=145, for reference)
-#define WOUND_MAX_CONSIDERED_DAMAGE 35
+#define WOUND_MAX_CONSIDERED_DAMAGE 45 //BUBBERSTATION CHANGE: 35 -> 45 (45^1.3 = 140)
 /// an attack must do this much damage after armor in order to roll for being a wound (so pressure damage/being on fire doesn't proc it)
-#define WOUND_MINIMUM_DAMAGE 5
+#define WOUND_MINIMUM_DAMAGE 14 //BUBBERSTATION CHANGE 5 -> 14
 /// an attack must do this much damage after armor in order to be eliigible to dismember a suitably mushed bodypart
-#define DISMEMBER_MINIMUM_DAMAGE 10
+#define DISMEMBER_MINIMUM_DAMAGE 29 //BUBBERSTATION CHANGE: 10 -> 29
 /// If an attack rolls this high with their wound (including mods), we try to outright dismember the limb. Note 250 is high enough that with a perfect max roll of 145 (see max cons'd damage), you'd need +100 in mods to do this
 #define WOUND_DISMEMBER_OUTRIGHT_THRESH 250
 /// set wound_bonus on an item or attack to this to disable checking wounding for the attack
