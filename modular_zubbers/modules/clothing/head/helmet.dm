@@ -11,8 +11,8 @@
 	clothing_flags = null
 	flags_cover = null
 	flags_inv = null
-	toggle_message = "You spin your hat's spinner."
-	alt_toggle_message = "You stop your hat's spinner."
+	toggle_message = "You stop the spinner on"
+	alt_toggle_message = "You spin the spinner on"
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	///Cooldown for toggling the spinner.
 	COOLDOWN_DECLARE(pinwheel_toggle_cooldown)
