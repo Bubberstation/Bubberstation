@@ -8,6 +8,9 @@
 	lefthand_file = null
 	righthand_file = null
 	armor_type = /datum/armor/none
+	clothing_flags = null
+	flags_cover = null
+	flags_inv = null
 	toggle_message = "You spin your hat's spinner."
 	alt_toggle_message = "You stop your hat's spinner."
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
