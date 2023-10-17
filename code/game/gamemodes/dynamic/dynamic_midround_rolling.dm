@@ -52,9 +52,21 @@
 				log_dynamic("FAIL: [ruleset] was disabled.")
 			continue
 
+		/* BUBBERSTATION CHANGE START: REMOVES MIDROUND BUDGET CHECKS IN FAVOR OF NEW ONE.
 		if (mid_round_budget < ruleset.cost)
 			log_dynamic("FAIL: [ruleset] is too expensive, and cannot be bought. Midround budget: [mid_round_budget], ruleset cost: [ruleset.cost]")
 			continue
+		BUBBERSTATION CHANGE END: REMOVES MIDROUND BUDGET CHECKS IN FAVOR OF NEW ONE. */
+
+		//BUBBERSTATION CHANGE START: CAPS MIDROUND BUDGET BASED ON PLAYERCOUNT.
+		var/starting_mid_round_budget = (threat_level - initial_round_start_budget) //What we started with.
+		var/adjusted_mid_round_budget = min(starting_mid_round_budget,GLOB.alive_player_list.len) //Adjusted due to player pop.
+		var/actual_mid_round_budget = mid_round_budget - (starting_mid_round_budget - adjusted_mid_round_budget) //Subtract the difference.
+
+		if(actual_mid_round_budget < ruleset.cost)
+			log_dynamic("FAIL: [ruleset] is too expensive, and cannot be bought. Midround budget: [mid_round_budget] (ADJUSTED: [actual_mid_round_budget]), ruleset cost: [ruleset.cost]")
+			continue
+		//BUBBERSTATION CHANGE END: CAPS MIDROUND BUDGET BASED ON PLAYERCOUNT.
 
 		if (ruleset.minimum_round_time > world.time - SSticker.round_start_time)
 			log_dynamic("FAIL: [ruleset] is trying to run too early. Minimum round time: [ruleset.minimum_round_time], current round time: [world.time - SSticker.round_start_time]")
