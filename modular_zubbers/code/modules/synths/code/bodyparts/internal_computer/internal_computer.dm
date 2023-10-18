@@ -38,6 +38,12 @@
 		return NTNET_LOW_SIGNAL
 	return NTNET_NO_SIGNAL
 
+/obj/item/modular_computer/synth/Destroy()
+	physical = null
+	owner_brain.internal_computer = null
+	owner_brain = null
+	return ..()
+
 /*
 I give up, this is how borgs have their own menu coded in.
 Snowflake codes the interaction check because the default tgui one does not work as I want it.

@@ -22,5 +22,5 @@
 	I.internal_computer.interact(owner)
 
 /obj/item/organ/internal/brain/synth/Destroy()
-	qdel(internal_computer)
+	QDEL_NULL(internal_computer)
 	return ..()
