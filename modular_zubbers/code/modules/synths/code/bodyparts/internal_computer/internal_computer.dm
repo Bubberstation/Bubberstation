@@ -40,7 +40,6 @@
 
 /obj/item/modular_computer/synth/Destroy()
 	physical = null
-	owner_brain.internal_computer = null
 	owner_brain = null
 	return ..()
 
