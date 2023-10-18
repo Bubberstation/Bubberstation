@@ -94,11 +94,11 @@
 	if(prob(5))
 		playsound(src, 'sound/misc/metal_creak.ogg', 50, TRUE, extrarange = -3)
 
-	stored_rod.handle_tolerances(2)
+	stored_rod.handle_tolerances(2 * 0.125) //Don't make it take as much damage.
 
 	if(!jammed && safety && (rod_mix.return_pressure() > TANK_LEAK_PRESSURE*0.8 || rod_mix.temperature > TANK_MELT_TEMPERATURE*0.8))
-		var/damage_mod = (1 - atom_integrity/max_integrity)
-		var/jam_chance = (80 - (damage_mod * 90)) - (venting ? 0 : 40)  //Atmos optimization. Less chance to jam if the vents are off.
+		var/health_percent = atom_integrity/max_integrity
+		var/jam_chance = 80 - (health_percent * 100) - (venting ? 0 : 40)
 		if(jam_chance > 0 && prob(jam_chance))
 			jam(null,TRUE)
 		else

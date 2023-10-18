@@ -10,6 +10,16 @@
 	flags_1 = CONDUCT_1
 	slot_flags = null //they have no straps!
 	force = 8
+	armor_type = /datum/armor/reactor_rod
+
+/datum/armor/reactor_rod
+	melee = 25
+	bullet = 20
+	laser = 10
+	energy = 100
+	bomb = 30
+	fire = 90
+	acid = 50
 
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
@@ -29,7 +39,7 @@
 	src.forceMove(get_turf(M))
 	radiation_pulse(M,min(M.last_tritium_consumption*100,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
 	var/explosion_strength = min(M.last_tritium_consumption*5,10)
-	explosion(M, devastation_range = 1 + explosion_strength*0.1, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
+	explosion(M, devastation_range = 0, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
 	. = ..()
 	if(!QDELETED(M))
 		qdel(M) //Don't know why it'd live after this, but just in case.
