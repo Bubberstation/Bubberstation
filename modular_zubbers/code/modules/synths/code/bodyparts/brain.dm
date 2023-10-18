@@ -10,6 +10,7 @@
 /obj/item/organ/internal/brain/synth/Remove(mob/living/carbon/target, special, no_id_transfer)
 	. = ..()
 	internal_computer.physical = src
+
 /datum/action/item_action/synth/open_internal_computer
 	name = "Open internal computer"
 	desc = "Open the built in ntos computer"
@@ -19,3 +20,7 @@
 	. = ..()
 	var/obj/item/organ/internal/brain/synth/I = target
 	I.internal_computer.interact(owner)
+
+/obj/item/organ/internal/brain/synth/Destroy()
+	qdel(internal_computer)
+	return ..()
