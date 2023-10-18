@@ -46,8 +46,9 @@ Snowflake codes the interaction check because the default tgui one does not work
 	. = ..()
 	if(istype(A, /obj/item/modular_computer/synth))
 		var/obj/item/modular_computer/synth/C = A
-		if(Adjacent(C.owner_brain.owner) || Adjacent(C.owner_brain))
+		if(Adjacent(C.physical))
 			. = TRUE
+	return
 
 /*
 So, I am not snowflaking more code.. except this
