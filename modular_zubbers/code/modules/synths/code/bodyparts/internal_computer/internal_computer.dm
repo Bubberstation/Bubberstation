@@ -5,10 +5,9 @@
 	base_active_power_usage = 0
 	base_idle_power_usage = 0
 
-	var/obj/item/organ/internal/brain/synth/owner_brain
+	long_ranged = TRUE //Synths have good antenae
 
-/obj/item/modular_computer/synth/get_messenger_ending()
-	return " Sent from my internal computer."
+	var/obj/item/organ/internal/brain/synth/owner_brain
 
 /obj/item/modular_computer/synth/RemoveID(mob/user)
 	if(!computer_id_slot)
@@ -19,14 +18,23 @@
 
 	if(user && !issilicon(user) && in_range(owner_brain.owner, user))
 		user.put_in_hands(computer_id_slot)
-	else if(owner_brain.owner)
-		computer_id_slot.forceMove(owner_brain.owner.loc)
 	else
-		computer_id_slot.forceMove(owner_brain.loc)
+		computer_id_slot.forceMove(physical.loc) //We actually update the physical on brain removal/insert
 
 	computer_id_slot = null
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 	balloon_alert(user, "removed ID")
+
+/obj/item/modular_computer/internal_computer/get_ntnet_status()
+	// NTNet is down and we are not connected via wired connection. The synth is no more
+	if(!find_functional_ntnet_relay() || !owner_brain.owner)
+		return NTNET_NO_SIGNAL
+	var/turf/current_turf = get_turf(owner_brain.owner)
+	if(is_station_level(current_turf.z))
+		return NTNET_GOOD_SIGNAL
+	else if(long_ranged)
+		return NTNET_LOW_SIGNAL
+	return NTNET_NO_SIGNAL
 
 /*
 I give up, this is how borgs have their own menu coded in.
@@ -51,9 +59,23 @@ Attacking a synth with an id loads it into its slot.. pain and probably shitcode
 	var/obj/item/organ/internal/brain/synth/B = T.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(B))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "Inserting id")
-			if(do_after(user, 3 SECONDS))
+			balloon_alert(user, "Inserting id...")
+			if(do_after(user, 5 SECONDS))
 				balloon_alert(user, "Inserted")
 				B.internal_computer.InsertID(src, user)
+			return
+	return ..()
+
+/obj/item/modular_computer/pda/attack(mob/living/target_mob, mob/living/user, params)
+	var/mob/living/carbon/human/T = target_mob
+	if(!istype(T))
+		return ..()
+	var/obj/item/organ/internal/brain/synth/B = T.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(istype(B))
+		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
+			balloon_alert(user, "Interfacing....")
+			if(do_after(user, 5 SECONDS))
+				balloon_alert(user, "Connected!")
+				B.internal_computer.interact(user)
 			return
 	return ..()

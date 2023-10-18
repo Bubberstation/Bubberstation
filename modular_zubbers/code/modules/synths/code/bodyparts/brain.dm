@@ -18,5 +18,4 @@
 /datum/action/item_action/synth/open_internal_computer/Trigger(trigger_flags)
 	. = ..()
 	var/obj/item/organ/internal/brain/synth/I = target
-	I.internal_computer.physical = owner
 	I.internal_computer.interact(owner)
