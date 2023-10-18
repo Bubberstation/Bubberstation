@@ -7,6 +7,8 @@
 
 	long_ranged = TRUE //Synths have good antenae
 
+	hardware_flag = PROGRAM_CONSOLE
+
 	var/obj/item/organ/internal/brain/synth/owner_brain
 
 /obj/item/modular_computer/synth/RemoveID(mob/user)
@@ -25,7 +27,7 @@
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 	balloon_alert(user, "removed ID")
 
-/obj/item/modular_computer/internal_computer/get_ntnet_status()
+/obj/item/modular_computer/synth/get_ntnet_status()
 	// NTNet is down and we are not connected via wired connection. The synth is no more
 	if(!find_functional_ntnet_relay() || !owner_brain.owner)
 		return NTNET_NO_SIGNAL
