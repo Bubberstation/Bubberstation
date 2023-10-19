@@ -31,7 +31,7 @@
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
 	sechud_icon_state = SECHUD_SECURITY_MEDIC
 	extra_access = list(ACCESS_DETECTIVE)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG_ENTRANCE, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG_ENTRANCE, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_MORGUE)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_HOS, ACCESS_CHANGE_IDS)
 
 /datum/id_trim/job/security_medic/New()
@@ -53,4 +53,3 @@
 
 /datum/id_trim/job/nanotrasen_consultant
 	minimal_wildcard_access = list()
-	template_access = list(ACCESS_CAPTAIN) //NTRep can no longer change to any other ID trim
