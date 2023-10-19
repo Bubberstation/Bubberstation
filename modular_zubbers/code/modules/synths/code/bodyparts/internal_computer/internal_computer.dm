@@ -18,7 +18,7 @@
 	if(crew_manifest_update)
 		GLOB.manifest.modify(computer_id_slot.registered_name, computer_id_slot.assignment, computer_id_slot.get_trim_assignment())
 
-	if(user && !issilicon(user) && in_range(owner_brain.owner, user))
+	if(user && !issilicon(user) && in_range(physical, user))
 		user.put_in_hands(computer_id_slot)
 	else
 		computer_id_slot.forceMove(physical.loc) //We actually update the physical on brain removal/insert
@@ -31,7 +31,7 @@
 	// NTNet is down and we are not connected via wired connection. The synth is no more
 	if(!find_functional_ntnet_relay() || !owner_brain.owner)
 		return NTNET_NO_SIGNAL
-	var/turf/current_turf = get_turf(owner_brain.owner)
+	var/turf/current_turf = get_turf(physical)
 	if(is_station_level(current_turf.z))
 		return NTNET_GOOD_SIGNAL
 	else if(long_ranged)
