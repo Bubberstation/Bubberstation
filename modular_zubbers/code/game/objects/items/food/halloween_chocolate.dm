@@ -87,18 +87,17 @@
 
 
 /obj/item/food/candy/kit_catgirl_metaclique_bar
-	name = "kit-cat-clique bar"
-	desc = "The #1 choice (and only choice) for catgirls all across the station!"
+	name = "cat-cat bar"
+	desc = "The #1 choice for cat people all across the station! Now with 100% less chocolate!"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "kit_catgirl_metaclique_bar"
 	trash_type = /obj/item/trash/candy/kit_catgirl_metaclique_bar
 	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 1,
-		/datum/reagent/consumable/coco = 1,
+		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/pax/catnip = 5
 	)
-	tastes = list("exclusion" = 1)
+	tastes = list("chocolate?" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
@@ -123,8 +122,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/candy/elon_musk_bar
-	name = "elongated musket bar"
-	desc = "The #1 choice for wealthy men experiencing a midlife crisis! And pirates!"
+	name = "musket bar"
+	desc = "The #1 choice for pirates!"
 	icon = 'modular_zubbers/icons/obj/food/halloween_chocolate.dmi'
 	icon_state = "elon_musk_bar"
 	trash_type = /obj/item/trash/candy/elon_musk_bar
@@ -134,7 +133,7 @@
 		/datum/reagent/consumable/sugar = 3,
 		/datum/reagent/gunpowder = 5
 	)
-	tastes = list("looking into it" = 1)
+	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
