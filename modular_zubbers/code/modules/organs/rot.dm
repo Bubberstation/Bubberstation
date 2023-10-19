@@ -1,6 +1,6 @@
 /obj/item/organ/apply_organ_damage(damage_amount, maximum = maxHealth, required_organ_flag = NONE) // Miasma on damage.
 	. = ..()
-	if(.)
+	if(damage >= maxHealth / 2) // Severely damaged organs emit miasma.
 		rot()
 
 #define ROT_MOLES 0.1

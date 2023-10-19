@@ -18,7 +18,7 @@
 	///The mode of the scrubber (ATMOS_DIRECTION_SCRUBBING or ATMOS_DIRECTION_SIPHONING)
 	var/scrubbing = ATMOS_DIRECTION_SCRUBBING
 	///The list of gases we are filtering
-	var/list/filter_types = list(/datum/gas/carbon_dioxide)
+	var/list/filter_types = list(/datum/gas/carbon_dioxide, /datum/gas/miasma) // BUBBER EDIT - Remove the Miasma
 	///Rate of the scrubber to remove gases from the air
 	var/volume_rate = 200
 	///is this scrubber acting on the 3x3 area around it.

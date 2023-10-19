@@ -71,8 +71,8 @@
 /datum/tlv/dangerous
 	warning_min = TLV_VALUE_IGNORE
 	hazard_min = TLV_VALUE_IGNORE
-	warning_max = 0.2
-	hazard_max = 0.5
+	warning_max = 1 // BUBBER EDIT: OG 0.2
+	hazard_max = 3 // BUBBER EDIT: OG 0.5
 
 /datum/tlv/oxygen
 	warning_min = 19
