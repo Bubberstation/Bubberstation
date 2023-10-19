@@ -104,6 +104,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
+	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
+	if(!(copytext_char(message, -1) in ENDING_PUNCT))
+		message += "."
+	//BUBBER EDIT END: AUTOPUNCTUATION
 
 	var/list/message_mods = list()
 	var/original_message = message
