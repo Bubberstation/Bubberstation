@@ -1,5 +1,7 @@
 /obj/item/organ/apply_organ_damage(damage_amount, maximum = maxHealth, required_organ_flag = NONE) // Miasma on damage.
 	. = ..()
+	if(organ_flags & (ORGAN_VIRGIN | ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES | ORGAN_FROZEN))
+		return
 	if(damage >= maxHealth / 2) // Severely damaged organs emit miasma.
 		rot()
 
