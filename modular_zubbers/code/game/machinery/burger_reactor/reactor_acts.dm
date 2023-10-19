@@ -14,7 +14,7 @@
 	if(jammed)
 		force_unjam(attack_item,user,25)
 		return TRUE
-	if(!active && default_deconstruction_crowbar(attack_item))
+	if(!active && !meltdown && default_deconstruction_crowbar(attack_item))
 		if(user)
 			var/turf/T = get_turf(user)
 			message_admins("[src] was deconstructed by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
@@ -33,12 +33,6 @@
 	if(jammed)
 		balloon_alert(user, "refuses to budge!")
 		return TRUE
-
-	if(stored_rod)
-		var/datum/gas_mixture/rod_mix = stored_rod.air_contents
-		if(!active && safety && rod_mix && (rod_mix.return_pressure() > TANK_LEAK_PRESSURE*0.8 || rod_mix.temperature > TANK_MELT_TEMPERATURE*0.8))
-			balloon_alert(user, "refuses to budge!")
-			return TRUE
 
 	if(toggle_active(user))
 		return TRUE

@@ -11,6 +11,10 @@
 	slot_flags = null //they have no straps!
 	force = 8
 	armor_type = /datum/armor/reactor_rod
+	volume = 50
+
+	var/pressure_limit = 8000
+	var/temperature_limit = T0C + 3000
 
 /datum/armor/reactor_rod
 	melee = 25
@@ -23,9 +27,9 @@
 
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
-	air_contents.assert_gas(/datum/gas/water_vapor)
+	air_contents.assert_gas(/datum/gas/nitrogen)
 	air_contents.gases[/datum/gas/tritium][MOLES] = 60
-	air_contents.gases[/datum/gas/water_vapor][MOLES] = 10
+	air_contents.gases[/datum/gas/nitrogen][MOLES] = 10
 
 /obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)
 
@@ -37,9 +41,15 @@
 	M.active = FALSE
 	M.jammed = FALSE
 	src.forceMove(get_turf(M))
-	radiation_pulse(M,min(M.last_tritium_consumption*100,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE),threshold = RAD_FULL_INSULATION)
-	var/explosion_strength = min(M.last_tritium_consumption*5,10)
-	explosion(M, devastation_range = 0, heavy_impact_range = 1 + explosion_strength*0.2, light_impact_range = 3 + explosion_strength*0.5, flash_range = 4 + explosion_strength)
 	. = ..()
-	if(!QDELETED(M))
-		qdel(M) //Don't know why it'd live after this, but just in case.
+
+
+//Special override proc that removes the tank exploding, reacting, or leaking gas.
+
+/obj/item/tank/rbmk2_rod/process(seconds_per_tick)
+	STOP_PROCESSING(SSobj, src)
+	return
+
+/obj/item/tank/rbmk2_rod/examine(user)
+	. = ..()
+	. += span_notice("A sticker on its side says <b>MAX SAFE PRESSURE: [siunit_pressure(pressure_limit, 0)]; MAX SAFE TEMPERATURE: [siunit(temperature_limit, "K", 0)]</b>.")

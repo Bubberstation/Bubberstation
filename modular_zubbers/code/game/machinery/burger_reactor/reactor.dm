@@ -1,9 +1,7 @@
 /obj/machinery/power/rbmk2
 	name = "\improper RB-MK2 reactor"
 	desc = "Radioscopical Bluespace Mark 2 reactor, or RB MK2 for short, is a new state-of-the-art power generation technology that uses bluespace magic \
-	to directly convert tritium particles into energy with minimal heat generation. \
-	Improper cooling management of internal as well external gasses may lead to EXPLOSIONS.\n\
-	To start up a reactor, <b>partially</b> fill a RB-MK2 rod up with a moderator gas and tritium, and insert it into the reactor. The tritium will slowly get consumed into energy, based on internal temperatue."
+	to directly convert tritium particles into energy with minimal heat generation."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "platform"
 	base_icon_state = "platform"
@@ -24,30 +22,34 @@
 	var/active = FALSE //Is this machine active?
 	var/power = TRUE //Is this machine giving power?
 	var/overclocked = FALSE //Is this machine overclocked, consuming more tritium?
-	var/venting = TRUE //Is this machine venting the gasses?
+	var/venting = TRUE //Is this machine venting the gases?
 	var/vent_reverse_direction = FALSE //Is this machine venting in the reverse direction (sucking)?
 	var/safety = TRUE //Is the safety active?
-	var/cooling_limiter = 0 //Current cooling limiter amount.
+	var/cooling_limiter = 50 //Current cooling limiter amount.
 	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
 	var/jammed = FALSE //Is the reactor ejection system jammed?
+	var/meltdown = FALSE //Is the reactor currently suffering from a meltdown?
 
 	var/obj/item/tank/rbmk2_rod/stored_rod //Currently stored rbmk2 rod.
-	var/datum/gas_mixture/buffer_gasses //Gas that has yet to be leaked out due to not venting fast enough.
+	var/datum/gas_mixture/buffer_gases //Gas that has yet to be leaked out due to not venting fast enough.
 	var/mutable_appearance/heat_overlay //Vent heat overlay.
 	var/mutable_appearance/meter_overlay //Inactive tritium meter display.
 
 	var/last_power_generation = 0 //Display purposes. Do not edit.
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit.
+	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
-	var/gas_consumption_base = 0.001 //How much gas gets consumed, in moles, per cycle.
-	var/gas_consumption_heat = 0.02 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
+	var/gas_consumption_base = 0.00001 //How much gas gets consumed, in moles, per cycle.
+	var/gas_consumption_heat = 0.004 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
 	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
+
+	var/safeties_max_power_generation = 120000
 
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/vent_volume = 300 //How large is the buffer vent, in liters. Improved via matter bins.
+	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins.
 
 	armor_type = /datum/armor/rbmk2
 
@@ -63,7 +65,7 @@
 /obj/machinery/power/rbmk2/Initialize(mapload)
 	. = ..()
 	set_wires(new /datum/wires/rbmk2(src))
-	buffer_gasses = new(vent_volume)
+	buffer_gases = new(100)
 	heat_overlay = mutable_appearance(icon, "platform_heat", alpha=255)
 	heat_overlay.appearance_flags |= RESET_COLOR
 	meter_overlay = mutable_appearance(icon, "platform_rod_glow_5", alpha=255)
@@ -74,7 +76,7 @@
 /obj/machinery/power/rbmk2/return_analyzable_air()
 	. = list()
 	if(stored_rod) . += stored_rod.air_contents
-	. += buffer_gasses
+	. += buffer_gases
 
 /obj/machinery/power/rbmk2/Destroy()
 
@@ -151,6 +153,9 @@
 		return FALSE
 	var/turf/T = get_turf(src)
 	if(!T)
+		return FALSE
+	if(meltdown && !jammed) //JAM IT.
+		jam(user,TRUE)
 		return FALSE
 	if(do_throw)
 		if(jammed)
@@ -306,11 +311,10 @@
 	power_efficiency = initial(power_efficiency) * power_efficiency_mul
 
 	//Requires x2 matter bins
-	var/vent_volume_mul = 0
+	var/max_power_generation_mul = 0
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
-		vent_volume_mul += new_matter_bin.tier * 0.5
-	vent_volume = initial(vent_volume) * vent_volume_mul
-	if(buffer_gasses) buffer_gasses.volume = vent_volume
+		max_power_generation_mul += new_matter_bin.tier * 0.5
+	max_power_generation = initial(max_power_generation) * max_power_generation_mul
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0
@@ -327,46 +331,33 @@
 	if(!power || !powernet)
 		. += span_warning("It is not connected to a power cable.")
 
-	if(!stored_rod)
-		. += span_warning("It it is missing a RB-MK2 reactor rod.")
-
 	if(!venting)
 		. += span_warning("The vents are closed.")
-
-	if(jammed)
-		. += span_danger("It's jammed!")
 
 	if(active)
 		. += "It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)]."
 
+	. += "A warning label side notes that safeties trigger at <b>[display_power(safeties_max_power_generation)]</b>, and that warranty is void if safeties are disabled."
+
+	if(!stored_rod)
+		. += span_warning("It it is missing a RB-MK2 reactor rod.")
+	else
+		if(jammed)
+			. += span_danger("The reactor rod is jammed!")
+		else if(meltdown)
+			. += span_danger("The reactor rod is leaping erractically!")
+
+
+
+
+
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
 	. += "It is running at <b>[power_efficiency*100]%</b> power efficiency."
-	. += "It an internal gas buffer volume of <b>[vent_volume]L</b>."
 	. += "It can output in environments up to <b>[vent_pressure]kPa</b>."
+	. += "It can handle an estimated power load of <b>[display_power(max_power_generation)]</b> before going critical."
 
-/obj/machinery/power/rbmk2/update_icon_state()
-
-	if(stored_rod)
-		if(active)
-			if(jammed)
-				icon_state = "[base_icon_state]_jammed"
-			else
-				icon_state = "[base_icon_state]_closed"
-		else
-			icon_state = "[base_icon_state]_open"
-	else
-		icon_state = base_icon_state
-
-	return ..()
-
-/obj/machinery/power/rbmk2/update_overlays()
-	. = ..()
-	if(panel_open) . += "platform_panel"
-	. += heat_overlay
-	. += meter_overlay
-
-/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE)
+/obj/machinery/power/rbmk2/proc/transfer_rod_temperature(datum/gas_mixture/gas_source,allow_cooling_limiter=TRUE,multiplier=1)
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 
@@ -387,7 +378,7 @@
 
 	var/energy_transfer = delta_temperature*rod_mix_heat_capacity*gas_source_heat_capacity/(rod_mix_heat_capacity+gas_source_heat_capacity)
 
-	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)
+	var/temperature_change = (energy_transfer/rod_mix_heat_capacity)*multiplier
 	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
 		temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
 
