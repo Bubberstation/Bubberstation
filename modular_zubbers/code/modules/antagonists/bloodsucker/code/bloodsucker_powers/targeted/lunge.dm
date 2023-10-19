@@ -18,6 +18,8 @@
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
 
+	var/wound_type = /datum/wound/slash/flesh/moderate
+
 /datum/action/cooldown/bloodsucker/targeted/lunge/upgrade_power()
 	. = ..()
 	//range is lowered when you get stronger.
@@ -146,7 +148,7 @@
 	owner.balloon_alert(owner, "you lunge at [target]!")
 	if(target.stat == DEAD)
 		var/obj/item/bodypart/chest = target.get_bodypart(BODY_ZONE_CHEST)
-		var/datum/wound/slash/moderate/crit_wound = new
+		var/datum/wound/slash/crit_wound = new wound_type()
 		crit_wound.apply_wound(chest)
 		owner.visible_message(
 			span_warning("[owner] tears into [target]'s chest!"),
