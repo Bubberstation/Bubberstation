@@ -53,3 +53,4 @@
 
 /datum/id_trim/job/nanotrasen_consultant
 	minimal_wildcard_access = list()
+	template_access = list(ACCESS_CAPTAIN) //NTRep can no longer change to any other ID trim
