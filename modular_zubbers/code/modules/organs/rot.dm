@@ -17,3 +17,6 @@
 	T.air_update_turf(FALSE, FALSE)
 
 #undef ROT_MOLES
+
+/datum/gas/miasma
+	moles_visible = MOLES_GAS_VISIBLE / 2
