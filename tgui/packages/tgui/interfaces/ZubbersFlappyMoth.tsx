@@ -47,7 +47,7 @@ class FlapMinigame extends Component<FlapMovementState, FlapProps> {
 
     this.state = {
       player: {
-        position: this.gameheight / 2,
+        position: this.gameheight / 2 - this.playerhitbox,
         velocity: 0,
         hitbox: this.playerhitbox,
       },
@@ -82,6 +82,7 @@ class FlapMinigame extends Component<FlapMovementState, FlapProps> {
     globalEvents.off('byond/ctrldown', this.handle_ctrldown);
   }
 
+  // All the movements lord save me
   moveMoth(state: FlapState, delta: number): FlapState {
     // Delta time when we lag
     const seconds = delta / 1000;
@@ -116,6 +117,10 @@ class FlapMinigame extends Component<FlapMovementState, FlapProps> {
     return newState;
   }
 
+  /*
+    Mouse clicks and the ctrl key flap the moth
+
+  */
   handle_mousedown(event: MouseEvent) {
     if (this.movementstate === FlapMovementState.Idle) {
       this.movementstate = FlapMovementState.Flap;
@@ -133,13 +138,45 @@ class FlapMinigame extends Component<FlapMovementState, FlapProps> {
       this.movementstate = FlapMovementState.Flap;
     }
   }
+
+  // Animation. I scream
+  updateAnimation(timestamp: DOMHighResTimeStamp) {
+    const last = this.last_frame === undefined ? timestamp : this.last_frame;
+    const delta = timestamp - last;
+    let newState: FlapState = { ...this.state };
+    // Update movement
+    newState = this.moveMoth(newState, delta);
+    this.setState(newState);
+
+    //Wait for next frame
+    this.last_frame = timestamp;
+    this.animation_id = window.requestAnimationFrame(this.updateAnimation);
+  }
+
+  // Rendering. Currently very basic
+  render() {
+    const { player } = this.state;
+    const posToStyle = (value: number) => (value / this.gameheight) * 100;
+    return (
+      <div class="flapping">
+        <div class="main">
+          <div
+            class="moth"
+            style={{
+              height: `${posToStyle(player.hitbox)}`,
+              top: `${posToStyle(player.position)}`,
+            }}></div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export const ZubbersFlappyMoth = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <NtosWindow width={600} height={572}>
-      <NtosWindow.Content>
+      <NtosWindow.Content fitted>
         <FlapMinigame />
       </NtosWindow.Content>
     </NtosWindow>
