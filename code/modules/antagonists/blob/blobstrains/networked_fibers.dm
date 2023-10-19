@@ -24,7 +24,7 @@
 			possible_expander.forceMove(chosen_turf)
 			possible_expander.setDir(get_dir(new_blob, possible_expander))
 			return
-	overmind.add_points(4)
+	overmind.add_points(3)
 	qdel(new_blob)
 
 //does massive brute and burn damage, but can only expand manually
