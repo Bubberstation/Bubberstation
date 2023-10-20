@@ -64,7 +64,7 @@
 		REMOVE_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER, SPECIES_TRAIT)
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/dna_vault_speedup)
 	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
-	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
+	owner.add_client_colour(/datum/client_colour/manual_heart_blood)
 	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(user.handcuffed || user.legcuffed)
@@ -82,7 +82,7 @@
 		was_tooluser = FALSE
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/dna_vault_speedup)
 	bloodsuckerdatum.frenzygrab.remove(user)
-	owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)
+	owner.remove_client_colour(/datum/client_colour/manual_heart_blood)
 
 	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_EXITS_FRENZY)
 	bloodsuckerdatum.frenzied = FALSE
