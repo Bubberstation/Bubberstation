@@ -74,7 +74,7 @@
 	//user.eye_color = random_eye_color()
 	if(prev_disfigured)
 		REMOVE_TRAIT(user, TRAIT_DISFIGURED, null)
-	user.dna.features = user.dna.generate_unique_features()
+	user.dna.unique_features = user.dna.generate_unique_features()
 
 	// Apply Appearance
 	user.update_body() // Outfit and underware, also body.
