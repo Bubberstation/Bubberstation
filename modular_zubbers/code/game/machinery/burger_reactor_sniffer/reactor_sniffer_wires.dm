@@ -11,7 +11,8 @@
 		WIRE_SIGNAL,
 		WIRE_PROCEED,
 		WIRE_LINK,
-		WIRE_UNLINK
+		WIRE_UNLINK,
+		WIRE_TEST
 	)
 	. = ..()
 
