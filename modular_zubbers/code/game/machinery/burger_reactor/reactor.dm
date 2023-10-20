@@ -30,7 +30,6 @@
 	var/cooling_limiter = 50 //Current cooling limiter amount.
 	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
 	var/jammed = FALSE //Is the reactor ejection system jammed?
-	var/use_radio = TRUE //Should the radio for this be used?
 	var/tampered = FALSE //Was the anti-tamper light activated?
 
 	var/meltdown = FALSE //Is the reactor currently suffering from a meltdown?
@@ -58,14 +57,6 @@
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
 	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins.
 
-	//Radio stuff.
-	var/obj/item/radio/stored_radio //Internal radio.
-	var/radio_key = /obj/item/encryptionkey/headset_eng //The key our internal radio uses
-	var/emergency_channel = RADIO_CHANNEL_COMMON
-	var/warning_channel = RADIO_CHANNEL_ENGINEERING
-
-	COOLDOWN_DECLARE(radio_cooldown)
-
 /datum/armor/rbmk2
 	melee = 50
 	bullet = 20
@@ -80,11 +71,6 @@
 
 	set_wires(new /datum/wires/rbmk2(src))
 	buffer_gases = new(100)
-
-	stored_radio = new(src)
-	stored_radio.keyslot = new radio_key
-	stored_radio.set_listening(FALSE)
-	stored_radio.recalculateChannels()
 
 	heat_overlay = mutable_appearance(icon, "platform_heat", alpha=255)
 	heat_overlay.appearance_flags |= RESET_COLOR
@@ -109,7 +95,6 @@
 		log_game("[src] deleted at [AREACOORD(T)]")
 		investigate_log("deleted at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
-	QDEL_NULL(stored_radio)
 	QDEL_NULL(stored_rod)
 
 	qdel(wires)
@@ -437,18 +422,4 @@
 	if(!electrocute_mob(victim, powernet, src, shock_multiplier, TRUE))
 		return FALSE
 	do_sparks(5, TRUE, src)
-	return TRUE
-
-/obj/machinery/power/rbmk2/proc/alert_radio(alert_text,bypass_cooldown=FALSE)
-
-	if(!use_radio || !alert_text)
-		return FALSE
-
-	if(!bypass_cooldown && !COOLDOWN_FINISHED(src, radio_cooldown))
-		return FALSE
-
-	stored_radio.talk_into(src, alert_text, criticality >= 80 ? emergency_channel : warning_channel)
-
-	COOLDOWN_START(src, radio_cooldown, 5 SECONDS)
-
 	return TRUE

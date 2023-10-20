@@ -1,6 +1,5 @@
 #define WIRE_VENT_DIRECTION "Vent Direction"
 #define WIRE_VENT_POWER "Vent Power"
-#define WIRE_RADIO "Radio"
 #define WIRE_TAMPER "Tamper"
 
 /datum/wires/rbmk2
@@ -17,7 +16,6 @@
 		WIRE_SAFETY,
 		WIRE_LIMIT,
 		WIRE_POWER,
-		WIRE_RADIO,
 		WIRE_TAMPER
 	)
 	. = ..()
@@ -43,7 +41,6 @@
 	else
 		. += "The vent light is [M.venting ? "green" : "flashing red"]."
 	. += "The overclock light is [M.overclocked ? "blinking blue" : "off"]."
-	. += "The radio broadcasting light is [M.use_radio ? "red" : "off"]."
 	. += "The cooling limiter display reads [M.cooling_limiter]%"
 	. += "The anti-tamper light is [M.tampered ? "flashing red" : "green"]."
 
@@ -69,8 +66,6 @@
 		if(WIRE_POWER)
 			if(isliving(usr))
 				M.shock(usr,0.5)
-		if(WIRE_RADIO)
-			M.use_radio = !M.use_radio
 		if(WIRE_TAMPER)
 			M.tampered = TRUE
 
@@ -120,8 +115,6 @@
 					M.investigate_log("had the power wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			if(isliving(usr))
 				M.shock(usr)
-		if(WIRE_RADIO)
-			M.use_radio = mend
 		if(WIRE_TAMPER)
 			M.tampered = TRUE
 
@@ -133,5 +126,4 @@
 
 #undef WIRE_VENT_DIRECTION
 #undef WIRE_VENT_POWER
-#undef WIRE_RADIO
 #undef WIRE_TAMPER

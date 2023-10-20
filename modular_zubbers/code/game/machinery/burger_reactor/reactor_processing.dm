@@ -63,7 +63,7 @@
 		last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation * (overclocked ? 0.9 : 1) //Overclocked consumes more, but generates less.
 		//This is where the fun begins.
 		// https://www.desmos.com/calculator/ffcsaaftzz
-		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)*(use_radio ? 1 : 1.05)
+		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
 		if(meltdown)
 			last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*2)
 			radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
@@ -107,13 +107,12 @@
 			log_game("[src] triggered a meltdown at [AREACOORD(T)]")
 			investigate_log("triggered a meltdown at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			meltdown = TRUE
-			alert_radio("Warning! Excess ionization detected! Reduce power output!")
 		var/chosen_sound = pick('modular_zubbers/sound/machines/rbmk2/failure01.ogg','modular_zubbers/sound/machines/rbmk2/failure02.ogg','modular_zubbers/sound/machines/rbmk2/failure03.ogg','modular_zubbers/sound/machines/rbmk2/failure04.ogg')
 		playsound(src, chosen_sound, 50, TRUE, extrarange = -3)
 		take_damage(2,armour_penetration=100) //Lasts 5 minutes. Probably less due to other factors.
 	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.5) //Hard to get out of a meltdown.
 		meltdown = FALSE
-		alert_radio("Reactor ionization returning to safe levels.")
+
 
 	update_appearance()
 
@@ -138,52 +137,41 @@
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
 		//take_damage(0.5,armour_penetration=100,sound_effect=FALSE)
-		var/ionize_air_amount = min(0.5 + rod_mix.temperature/2000,4)*meltdown_multiplier //For every 3000 kelvin. Capped at 4 tiles.
+		var/ionize_air_amount = min(0.5 + rod_mix.temperature/2000,8)*meltdown_multiplier //For every 2000 kelvin. Capped at 4 tiles.
 		var/ionize_air_range = CEILING(ionize_air_amount,1)
 		var/total_ion_amount = 0
 		for(var/turf/ion_turf as anything in RANGE_TURFS(ionize_air_range,T))
 			if(!prob(80)) //Atmos optimization.
 				continue
-			var/datum/gas_mixture/ion_turf_gases = ion_turf.return_air()
-			if(!ion_turf_gases)
+			var/datum/gas_mixture/ion_turf_mix = ion_turf.return_air()
+			if(!ion_turf_mix || !ion_turf_mix.gases || !ion_turf_mix.gases[/datum/gas/oxygen] || !ion_turf_mix.gases[/datum/gas/oxygen][MOLES])
 				continue
-			ion_turf_gases.assert_gas(/datum/gas/oxygen)
-			var/datum/gas_mixture/oxygen_removed = ion_turf_gases.remove_specific(/datum/gas/oxygen, ionize_air_amount)
-			if(oxygen_removed && oxygen_removed.gases[/datum/gas/oxygen] && oxygen_removed.gases[/datum/gas/oxygen][MOLES] > 0)
-				var/ion_amount = oxygen_removed.gases[/datum/gas/oxygen][MOLES] * 0.25
-				ion_turf_gases.assert_gas(/datum/gas/tritium)
-				ion_turf_gases.gases[/datum/gas/tritium][MOLES] += ion_amount
+			var/gas_to_convert = max(0,min(ionize_air_amount,ion_turf_mix.gases[/datum/gas/oxygen][MOLES] - rand(20,30)))
+			if(gas_to_convert <= 0)
+				continue
+			ion_turf_mix.assert_gas(/datum/gas/oxygen)
+			var/datum/gas_mixture/oxygen_removed_mix = ion_turf_mix.remove_specific(/datum/gas/oxygen, ionize_air_amount)
+			if(oxygen_removed_mix && oxygen_removed_mix.gases[/datum/gas/oxygen] && oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] > 0)
+				var/ion_amount = oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] * 0.25
+				ion_turf_mix.assert_gas(/datum/gas/tritium)
+				ion_turf_mix.gases[/datum/gas/tritium][MOLES] += ion_amount
 				total_ion_amount += ion_amount
-		var/safe_ionization_amount = ionize_air_amount*ionize_air_range*0.5
 
-		var/criticality_to_add = min(rand(5,8)*(1 - total_ion_amount/safe_ionization_amount),10)
+		var/ionization_amount_ratio = total_ion_amount/ionize_air_amount
+		var/criticality_to_add = 1 + ionization_amount_ratio*rand()
 		criticality_to_add = FLOOR(criticality_to_add,1)
 		if(criticality >= 100) //It keeps going.
 			if(prob(1 + criticality/100)) //The chance to explode. Yes, it's supposed to be this low.
 				deconstruct(FALSE)
 			else
-				criticality += rand(10,60)
-				alert_radio("DANGER. DANGER. DANGER. MELTDOWN IN PROGRESS! CRITICALITY: [criticality]%!",bypass_cooldown=TRUE)
+				criticality += rand(criticality_to_add,criticality_to_add*10)
 
-		else if(criticality_to_add > 0)
+		else
 			criticality += criticality_to_add
-			if(criticality > 10)
-				if(!was_warned)
-					alert_radio("Warning! Reactor entering criticality! Reduce power output!")
-					was_warned = TRUE
-				else
-					if(criticality >= 80)
-						alert_radio("DANGER! Reactor criticality at [criticality]%!")
-					else
-						alert_radio("Warning! Reactor criticality at [criticality]%!")
+
 		playsound(src, 'modular_zubbers/sound/machines/rbmk2/ionization.ogg', 50, TRUE, extrarange = ionize_air_range)
 	else
 		criticality = max(0,criticality-1)
-		if(criticality > 5)
-			alert_radio("Warning! Reactor criticality at [criticality]%!")
-		else if(was_warned)
-			alert_radio("Reactor criticality reduced to safe levels.")
-			was_warned = FALSE
 
 	if(venting)
 		if(vent_reverse_direction)
