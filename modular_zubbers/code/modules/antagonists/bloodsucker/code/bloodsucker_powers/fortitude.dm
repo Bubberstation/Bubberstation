@@ -31,7 +31,7 @@
 		bloodsucker_user.physiology.brute_mod *= fortitude_resist
 		bloodsucker_user.physiology.stamina_mod *= fortitude_resist
 
-	was_running = (owner.m_intent == MOVE_INTENT_RUN)
+	was_running = (bloodsucker_user.move_intent == MOVE_INTENT_RUN)
 	if(was_running)
 		bloodsucker_user.toggle_move_intent()
 
@@ -44,7 +44,7 @@
 		return
 	var/mob/living/carbon/user = owner
 	/// Prevents running while on Fortitude
-	if(user.m_intent != MOVE_INTENT_WALK)
+	if(user.move_intent != MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 		user.balloon_alert(user, "you attempt to run, crushing yourself.")
 		user.adjustBruteLoss(rand(5,15))
@@ -63,7 +63,7 @@
 	// Remove Traits & Effects
 	owner.remove_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE), BLOODSUCKER_TRAIT)
 
-	if(was_running && bloodsucker_user.m_intent == MOVE_INTENT_WALK)
+	if(was_running && bloodsucker_user.move_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.toggle_move_intent()
 	owner.balloon_alert(owner, "fortitude turned off.")
 	return ..()
