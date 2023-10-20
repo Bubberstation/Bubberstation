@@ -57,6 +57,8 @@
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
 	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins.
 
+	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
+
 /datum/armor/rbmk2
 	melee = 50
 	bullet = 20
@@ -101,6 +103,9 @@
 	set_wires(null)
 
 	SSair.stop_processing_machine(src)
+
+	for(var/obj/machinery/rbmk2_sniffer/sniffer as anything in linked_sniffers)
+		sniffer.unlink_reactor(src)
 
 	. = ..()
 
@@ -353,7 +358,10 @@
 
 
 /obj/machinery/power/rbmk2/examine(mob/user)
+
 	. = ..()
+
+	. += "It is linked to [length(linked_sniffers)] sniffer(s)."
 
 	. += "It is[!active?"n't":""] running."
 
@@ -375,10 +383,6 @@
 			. += span_danger("The reactor rod is jammed!")
 		else if(meltdown)
 			. += span_danger("The reactor rod is leaping erractically!")
-
-
-
-
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()

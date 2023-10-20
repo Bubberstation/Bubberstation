@@ -56,6 +56,12 @@
 	//Remove gas from the rod to be processed.
 	var/datum/gas_mixture/consumed_mix = rod_mix.remove(amount_to_consume)
 
+
+	if(!consumed_mix)
+		toggle_active(null,FALSE)
+		update_appearance()
+		return
+
 	//Do power generation here.
 	consumed_mix.assert_gas(/datum/gas/tritium)
 	if(consumed_mix.gases && consumed_mix.gases[/datum/gas/tritium])
@@ -137,7 +143,7 @@
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
 		//take_damage(0.5,armour_penetration=100,sound_effect=FALSE)
-		var/ionize_air_amount = min(0.5 + rod_mix.temperature/2000,8)*meltdown_multiplier //For every 2000 kelvin. Capped at 4 tiles.
+		var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 10) //For every 2000 kelvin. Capped at 4 tiles.
 		var/ionize_air_range = CEILING(ionize_air_amount,1)
 		var/total_ion_amount = 0
 		for(var/turf/ion_turf as anything in RANGE_TURFS(ionize_air_range,T))
@@ -161,10 +167,10 @@
 		var/criticality_to_add = 1 + ionization_amount_ratio*rand()
 		criticality_to_add = FLOOR(criticality_to_add,1)
 		if(criticality >= 100) //It keeps going.
-			if(prob(1 + criticality/100)) //The chance to explode. Yes, it's supposed to be this low.
+			if(prob(criticality/1000)) //The chance to explode. Yes, it's supposed to be this low.
 				deconstruct(FALSE)
 			else
-				criticality += rand(criticality_to_add,criticality_to_add*10)
+				criticality += rand(criticality_to_add*4,criticality_to_add*10)
 
 		else
 			criticality += criticality_to_add
@@ -179,7 +185,7 @@
 		else
 			if(active)
 				buffer_gases.pump_gas_to(turf_air,vent_pressure) //Pump buffer gases to turf. Reduced rate because active.
-				transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE,multiplier=0.5)
+				if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=TRUE,multiplier=0.5)
 			else
 				buffer_gases.pump_gas_to(turf_air,vent_pressure*2) //Pump buffer gases to turf. Increases rate because inactive.
-				transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
+				if(stored_rod) transfer_rod_temperature(turf_air,allow_cooling_limiter=FALSE)
