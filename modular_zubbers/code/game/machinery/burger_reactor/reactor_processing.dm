@@ -83,9 +83,11 @@
 		if(our_heat_capacity > 0)
 			var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
 			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod
+			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 		if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
-			rod_mix.temperature += ((rod_mix_pressure/stored_rod.pressure_limit) - 1) * (3/rod_mix_heat_capacity)
+			rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity)
+			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
 
 	else
 		toggle_active(null,FALSE)
@@ -142,8 +144,9 @@
 		radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
+			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
 		//take_damage(0.5,armour_penetration=100,sound_effect=FALSE)
-		var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 10) //For every 2000 kelvin. Capped at 4 tiles.
+		var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 5) //For every 2000 kelvin. Capped at 5 tiles.
 		var/ionize_air_range = CEILING(ionize_air_amount,1)
 		var/total_ion_amount = 0
 		for(var/turf/ion_turf as anything in RANGE_TURFS(ionize_air_range,T))
