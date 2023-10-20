@@ -19,6 +19,8 @@
 
 	circuit = /obj/item/circuitboard/machine/rbmk2
 
+	armor_type = /datum/armor/rbmk2
+
 	var/active = FALSE //Is this machine active?
 	var/power = TRUE //Is this machine giving power?
 	var/overclocked = FALSE //Is this machine overclocked, consuming more tritium?
@@ -28,7 +30,12 @@
 	var/cooling_limiter = 50 //Current cooling limiter amount.
 	var/cooling_limiter_max = 90 //Maximum possible cooling limiter amount.
 	var/jammed = FALSE //Is the reactor ejection system jammed?
+	var/use_radio = TRUE //Should the radio for this be used?
+	var/tampered = FALSE //Was the anti-tamper light activated?
+
 	var/meltdown = FALSE //Is the reactor currently suffering from a meltdown?
+	var/criticality = 0 //Once this reaches 100, you're going to see some serious shit.
+	var/was_warned = FALSE
 
 	var/obj/item/tank/rbmk2_rod/stored_rod //Currently stored rbmk2 rod.
 	var/datum/gas_mixture/buffer_gases //Gas that has yet to be leaked out due to not venting fast enough.
@@ -39,8 +46,8 @@
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit.
 	var/last_radiation_pulse = 0 //Display purposes. Do not edit.
 
-	var/gas_consumption_base = 0.00001 //How much gas gets consumed, in moles, per cycle.
-	var/gas_consumption_heat = 0.004 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
+	var/gas_consumption_base = 0.000005 //How much gas gets consumed, in moles, per cycle.
+	var/gas_consumption_heat = 0.0018 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
 	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
 
@@ -51,7 +58,13 @@
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
 	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins.
 
-	armor_type = /datum/armor/rbmk2
+	//Radio stuff.
+	var/obj/item/radio/stored_radio //Internal radio.
+	var/radio_key = /obj/item/encryptionkey/headset_eng //The key our internal radio uses
+	var/emergency_channel = RADIO_CHANNEL_COMMON
+	var/warning_channel = RADIO_CHANNEL_ENGINEERING
+
+	COOLDOWN_DECLARE(radio_cooldown)
 
 /datum/armor/rbmk2
 	melee = 50
@@ -64,14 +77,24 @@
 
 /obj/machinery/power/rbmk2/Initialize(mapload)
 	. = ..()
+
 	set_wires(new /datum/wires/rbmk2(src))
 	buffer_gases = new(100)
+
+	stored_radio = new(src)
+	stored_radio.keyslot = new radio_key
+	stored_radio.set_listening(FALSE)
+	stored_radio.recalculateChannels()
+
 	heat_overlay = mutable_appearance(icon, "platform_heat", alpha=255)
 	heat_overlay.appearance_flags |= RESET_COLOR
 	meter_overlay = mutable_appearance(icon, "platform_rod_glow_5", alpha=255)
 	heat_overlay.appearance_flags |= RESET_COLOR
+
 	connect_to_network()
 	process() //Process once to update everything.
+
+	SSair.start_processing_machine(src)
 
 /obj/machinery/power/rbmk2/return_analyzable_air()
 	. = list()
@@ -86,10 +109,13 @@
 		log_game("[src] deleted at [AREACOORD(T)]")
 		investigate_log("deleted at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
-	remove_rod()
+	QDEL_NULL(stored_radio)
+	QDEL_NULL(stored_rod)
 
 	qdel(wires)
 	set_wires(null)
+
+	SSair.stop_processing_machine(src)
 
 	. = ..()
 
@@ -101,10 +127,24 @@
 	if(!disassembled && stored_rod)
 		//Uh oh.
 		var/turf/T = get_turf(src)
-		message_admins("[src] exploded due to damage at [ADMIN_VERBOSEJMP(T)]")
-		log_game("[src] exploded due to damage [AREACOORD(T)]")
-		investigate_log("exploded due to damage [AREACOORD(T)]", INVESTIGATE_ENGINE)
-		stored_rod.take_damage(1000,armour_penetration=100)
+		if(criticality > 0)
+			var/explosion_power = (criticality/100)*8
+			message_admins("[src] exploded due to criticality at [ADMIN_VERBOSEJMP(T)]")
+			log_game("[src] exploded due to criticality [AREACOORD(T)]")
+			investigate_log("exploded due to criticality [AREACOORD(T)]", INVESTIGATE_ENGINE)
+			stored_rod.take_damage(1000,armour_penetration=100)
+			if(stored_rod)
+				remove_rod()
+			explosion(src, devastation_range  = explosion_power*0.25, heavy_impact_range = explosion_power*0.5, light_impact_range = explosion_power, flash_range = explosion_power*2, adminlog = FALSE)
+			last_radiation_pulse = GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*4 //It just keeps getting worse and worse.
+			radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
+		else
+			message_admins("[src] exploded due to damage at [ADMIN_VERBOSEJMP(T)]")
+			log_game("[src] exploded due to damage [AREACOORD(T)]")
+			investigate_log("exploded due to damage [AREACOORD(T)]", INVESTIGATE_ENGINE)
+			stored_rod.take_damage(1000,armour_penetration=100)
+			if(stored_rod) //Just in case.
+				remove_rod()
 
 	. = ..()
 
@@ -154,8 +194,7 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return FALSE
-	if(meltdown && !jammed) //JAM IT.
-		jam(user,TRUE)
+	if(meltdown)
 		return FALSE
 	if(do_throw)
 		if(jammed)
@@ -236,7 +275,12 @@
 			return
 
 	if(jammed)
-		return
+		return FALSE
+
+	if(meltdown) //You thought.
+		if(!jammed) //JAM IT.
+			jam(user,TRUE)
+		return FALSE
 
 	active = desired_state
 
@@ -335,9 +379,9 @@
 		. += span_warning("The vents are closed.")
 
 	if(active)
-		. += "It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)]."
+		. += span_notice("It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)].")
 
-	. += "A warning label side notes that safeties trigger at <b>[display_power(safeties_max_power_generation)]</b>, and that warranty is void if safeties are disabled."
+	. += span_notice("A digital warning label on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
 
 	if(!stored_rod)
 		. += span_warning("It it is missing a RB-MK2 reactor rod.")
@@ -393,4 +437,18 @@
 	if(!electrocute_mob(victim, powernet, src, shock_multiplier, TRUE))
 		return FALSE
 	do_sparks(5, TRUE, src)
+	return TRUE
+
+/obj/machinery/power/rbmk2/proc/alert_radio(alert_text,bypass_cooldown=FALSE)
+
+	if(!use_radio || !alert_text)
+		return FALSE
+
+	if(!bypass_cooldown && !COOLDOWN_FINISHED(src, radio_cooldown))
+		return FALSE
+
+	stored_radio.talk_into(src, alert_text, criticality >= 80 ? emergency_channel : warning_channel)
+
+	COOLDOWN_START(src, radio_cooldown, 5 SECONDS)
+
 	return TRUE

@@ -14,7 +14,10 @@
 	if(jammed)
 		force_unjam(attack_item,user,25)
 		return TRUE
-	if(!active && !meltdown && default_deconstruction_crowbar(attack_item))
+	if(stored_rod)
+		balloon_alert(user, "remove the rod first!")
+		return TRUE
+	if(!meltdown && default_deconstruction_crowbar(attack_item))
 		if(user)
 			var/turf/T = get_turf(user)
 			message_admins("[src] was deconstructed by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
@@ -34,8 +37,10 @@
 		balloon_alert(user, "refuses to budge!")
 		return TRUE
 
-	if(toggle_active(user))
-		return TRUE
+	toggle_active(user)
+
+	return TRUE
+
 
 /obj/machinery/power/rbmk2/welder_act(mob/living/user, obj/item/attack_item)
 

@@ -13,8 +13,8 @@
 	armor_type = /datum/armor/reactor_rod
 	volume = 50
 
-	var/pressure_limit = 8000
-	var/temperature_limit = T0C + 3000
+	var/pressure_limit = 9000
+	var/temperature_limit = T0C + 1800
 
 /datum/armor/reactor_rod
 	melee = 25
@@ -28,7 +28,7 @@
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
 	air_contents.assert_gas(/datum/gas/nitrogen)
-	air_contents.gases[/datum/gas/tritium][MOLES] = 60
+	air_contents.gases[/datum/gas/tritium][MOLES] = 80
 	air_contents.gases[/datum/gas/nitrogen][MOLES] = 10
 
 /obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)

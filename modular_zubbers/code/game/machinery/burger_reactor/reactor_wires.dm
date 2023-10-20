@@ -1,5 +1,7 @@
 #define WIRE_VENT_DIRECTION "Vent Direction"
 #define WIRE_VENT_POWER "Vent Power"
+#define WIRE_RADIO "Radio"
+#define WIRE_TAMPER "Tamper"
 
 /datum/wires/rbmk2
 	holder_type = /obj/machinery/power/rbmk2
@@ -14,7 +16,9 @@
 		WIRE_VENT_DIRECTION,
 		WIRE_SAFETY,
 		WIRE_LIMIT,
-		WIRE_POWER
+		WIRE_POWER,
+		WIRE_RADIO,
+		WIRE_TAMPER
 	)
 	. = ..()
 
@@ -30,16 +34,18 @@
 /datum/wires/rbmk2/get_status()
 	var/obj/machinery/power/rbmk2/M = holder
 	. = list()
-	. += "The overclock light is [M.overclocked ? "blinking blue" : "off"]."
 	. += "The power light is [M.power && M.powernet ? "yellow" : "off"]."
-	. += "The processing light is [M.active ? "green" : "off"]."
 	. += "The occupancy light is [M.stored_rod ? "purple" : "off"]."
+	. += "The processing light is [M.active ? "green" : "off"]."
+	. += "The safety light is [M.safety ? "blue" : "flashing red"]."
 	if(M.vent_reverse_direction)
 		. += "The vent light is [M.venting ? "flashing orange and white" : "flashing red"]."
 	else
 		. += "The vent light is [M.venting ? "green" : "flashing red"]."
-	. += "The safety light is [M.safety ? "blue" : "flashing red"]."
+	. += "The overclock light is [M.overclocked ? "blinking blue" : "off"]."
+	. += "The radio broadcasting light is [M.use_radio ? "red" : "off"]."
 	. += "The cooling limiter display reads [M.cooling_limiter]%"
+	. += "The anti-tamper light is [M.tampered ? "flashing red" : "green"]."
 
 /datum/wires/rbmk2/on_pulse(wire)
 	var/obj/machinery/power/rbmk2/M = holder
@@ -59,10 +65,14 @@
 		if(WIRE_SAFETY)
 			M.toggle_active(usr,FALSE)
 		if(WIRE_LIMIT)
-			M.cooling_limiter = (M.cooling_limiter + 10) % M.cooling_limiter_max
+			M.cooling_limiter = (M.cooling_limiter + 10) % (M.cooling_limiter_max+10)
 		if(WIRE_POWER)
 			if(isliving(usr))
 				M.shock(usr,0.5)
+		if(WIRE_RADIO)
+			M.use_radio = !M.use_radio
+		if(WIRE_TAMPER)
+			M.tampered = TRUE
 
 /datum/wires/rbmk2/on_cut(wire, mend, source)
 	var/obj/machinery/power/rbmk2/M = holder
@@ -95,8 +105,7 @@
 					log_game("[src] had the safety wire cut at [AREACOORD(T)]")
 					M.investigate_log("had the safety wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 		if(WIRE_LIMIT)
-			if(mend)
-				M.cooling_limiter = 0
+			M.cooling_limiter = mend ? initial(M.cooling_limiter) : 0
 		if(WIRE_POWER)
 			M.power = mend
 			if(!mend)
@@ -111,6 +120,10 @@
 					M.investigate_log("had the power wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			if(isliving(usr))
 				M.shock(usr)
+		if(WIRE_RADIO)
+			M.use_radio = mend
+		if(WIRE_TAMPER)
+			M.tampered = TRUE
 
 /datum/wires/rbmk2/can_reveal_wires(mob/user)
 	if(HAS_TRAIT(user, TRAIT_KNOW_ENGI_WIRES))
@@ -120,3 +133,5 @@
 
 #undef WIRE_VENT_DIRECTION
 #undef WIRE_VENT_POWER
+#undef WIRE_RADIO
+#undef WIRE_TAMPER

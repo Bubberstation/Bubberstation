@@ -6597,9 +6597,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "cxb" = (
-/obj/machinery/atmospherics/components/binary/valve{
+/obj/machinery/atmospherics/components/binary/valve/on{
 	dir = 4;
-	name = "Secondary Cooling Bypass"
+	name = "Cooling Restrictor"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
@@ -7517,12 +7517,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/cmo)
-"cTu" = (
-/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
-	dir = 5
-	},
-/turf/open/floor/engine,
-/area/station/engineering/rbmk2)
 "cTv" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
@@ -10252,12 +10246,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
-"dOs" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/station/engineering/rbmk2)
 "dOF" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 8
@@ -19704,6 +19692,10 @@
 /obj/machinery/holopad/secure,
 /turf/open/floor/iron/dark,
 /area/station/command/secure_bunker)
+"gXQ" = (
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/glass/reinforced,
+/area/station/engineering/rbmk2)
 "gYa" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -22399,13 +22391,10 @@
 /turf/open/misc/beach/sand,
 /area/station/common/pool)
 "hUV" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Four";
-	space_dir = 4
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2)
 "hVg" = (
@@ -24505,13 +24494,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/bridge)
-"iKK" = (
-/obj/machinery/atmospherics/components/binary/pump/on/general/visible{
-	name = "Secondary Cooling In"
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/station/engineering/rbmk2)
 "iLf" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/structure/disposalpipe/segment{
@@ -26970,6 +26952,12 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /turf/open/floor/iron/white,
 /area/station/science/cytology)
+"jCX" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plating,
+/area/station/engineering/rbmk2/chamber)
 "jDc" = (
 /obj/structure/closet/secure_closet/security/engine,
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -27249,8 +27237,9 @@
 /turf/open/floor/iron/white,
 /area/station/science/circuits)
 "jHK" = (
-/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
-	dir = 4
+/obj/machinery/atmospherics/components/binary/pressure_valve/on{
+	dir = 8;
+	name = "Filters to Space"
 	},
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2)
@@ -27409,7 +27398,9 @@
 /area/station/hallway/secondary/exit)
 "jKO" = (
 /obj/machinery/light/no_nightlight/directional/east,
-/obj/effect/spawner/random/burgerstation/atmos,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2)
 "jKQ" = (
@@ -29873,6 +29864,7 @@
 	color = "#EFB341";
 	alpha = 150
 	},
+/obj/item/paper/crumpled/rbmk2,
 /turf/open/floor/engine/hull/reinforced{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
@@ -33648,6 +33640,16 @@
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/engine,
 /area/station/medical/morgue)
+"lRl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "lRp" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/structure/disposalpipe/segment{
@@ -34440,6 +34442,14 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"mfB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "mfG" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
@@ -37868,6 +37878,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"ntU" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/station/engineering/rbmk2/chamber)
 "nuc" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -40909,11 +40924,11 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "otm" = (
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/binary/pump/on/general/visible{
 	dir = 1;
-	name = "Secondary Cooling Out"
+	name = "Emergency Cooling Output"
 	},
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
 "otr" = (
@@ -46560,11 +46575,12 @@
 /turf/open/floor/engine,
 /area/station/medical/morgue)
 "qrI" = (
+/obj/effect/turf_decal/bot_red,
 /obj/machinery/atmospherics/components/trinary/filter/critical{
 	dir = 1;
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list(/datum/gas/nitrogen);
+	on = 1
 	},
-/obj/effect/turf_decal/bot_red,
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
 "qrW" = (
@@ -47999,9 +48015,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/binary/pressure_valve/on{
-	dir = 8;
-	name = "Filters to Space"
+/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/visible{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
@@ -49409,6 +49424,10 @@
 /obj/item/radio/intercom/command/directional/north,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/station/tcommsat/server)
+"rrn" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/glass/reinforced,
+/area/station/engineering/rbmk2)
 "rrv" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
@@ -54467,13 +54486,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"tjn" = (
-/obj/machinery/atmospherics/components/binary/valve{
-	dir = 4;
-	name = "Primary Cooling Bypass"
-	},
-/turf/open/floor/engine,
-/area/station/engineering/rbmk2)
 "tjo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -59269,10 +59281,12 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "uTV" = (
-/obj/machinery/atmospherics/components/binary/pump/on/general/visible{
-	name = "Primary Cooling In"
-	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/binary/temperature_gate{
+	name = "Emergency Cooling Input";
+	on = 1;
+	inverted = 1
+	},
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
 "uTY" = (
@@ -60681,6 +60695,14 @@
 /obj/effect/spawner/random/burgerstation/loot,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
+"vsH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/no_nightlight/directional/east,
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "vsJ" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -61884,9 +61906,7 @@
 /area/station/service/bar)
 "vPV" = (
 /obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/smart/manifold/green/visible{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2)
 "vPW" = (
@@ -63813,6 +63833,17 @@
 	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/fore)
+"wyC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/no_nightlight/directional/west,
+/obj/machinery/atmospherics/components/binary/valve{
+	name = "Emergency Release"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "wyF" = (
 /obj/structure/sign/warning/cold_temp/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -64442,12 +64473,9 @@
 	},
 /area/station/tcommsat/server)
 "wJK" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Four";
-	space_dir = 4
-	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2)
 "wJL" = (
@@ -66840,14 +66868,6 @@
 /obj/structure/sign/flag/nanotrasen/directional/north,
 /turf/open/floor/circuit/green,
 /area/station/command/secure_bunker)
-"xFj" = (
-/obj/machinery/atmospherics/components/binary/pump/on/general/visible{
-	dir = 1;
-	name = "Primary Cooling Out"
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/station/engineering/rbmk2)
 "xFl" = (
 /obj/machinery/vending/tool,
 /obj/item/radio/intercom/directional/west,
@@ -89760,12 +89780,12 @@ pgO
 fIC
 eoL
 qUh
-eoL
-eoL
-eoL
-eoL
-eoL
-eoL
+mfB
+mfB
+mfB
+mfB
+wyC
+lRl
 xxk
 dKM
 stM
@@ -90022,7 +90042,7 @@ qrI
 qrI
 qrI
 iLv
-cTu
+dns
 nPc
 dKM
 dKM
@@ -91564,14 +91584,14 @@ dig
 djP
 vec
 hKz
-dOs
-iKK
-ujG
-oqu
-uDK
-dBJ
-dBJ
-hHH
+qWo
+dMR
+gXQ
+wXS
+izm
+izm
+izm
+aDa
 cuV
 stM
 stM
@@ -91828,7 +91848,7 @@ dKM
 dKM
 hWj
 izm
-izm
+aDa
 cuV
 stM
 stM
@@ -92085,7 +92105,7 @@ aoj
 hUV
 mFY
 izm
-izm
+aDa
 cuV
 azA
 stM
@@ -92342,7 +92362,7 @@ dKM
 dKM
 hWj
 izm
-izm
+aDa
 cuV
 stM
 stM
@@ -92592,14 +92612,14 @@ oON
 hKc
 vec
 aNw
-dOs
-xFj
-ujG
-oqu
-uDK
-dBJ
-dBJ
-toK
+qWo
+dMR
+rrn
+wXS
+izm
+izm
+izm
+aDa
 cuV
 stM
 stM
@@ -92849,7 +92869,7 @@ sSl
 vec
 vec
 iiL
-tjn
+qWo
 dMR
 vPc
 wXS
@@ -93104,7 +93124,7 @@ vec
 njM
 vec
 vec
-tVF
+jCX
 qEx
 dns
 dMR
@@ -93618,7 +93638,7 @@ vec
 tqo
 vec
 vec
-tVF
+ntU
 wtd
 dns
 dMR
@@ -94390,7 +94410,7 @@ oOZ
 wIW
 wIW
 izC
-wIW
+vsH
 wIW
 vwg
 dKM

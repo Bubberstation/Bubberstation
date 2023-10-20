@@ -18,6 +18,8 @@
 
 /obj/machinery/power/rbmk2/update_overlays()
 	. = ..()
-	if(panel_open) . += "platform_panel"
+	if(panel_open)
+		. += "platform_panel"
+
 	. += heat_overlay
 	. += meter_overlay
