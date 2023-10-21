@@ -152,6 +152,15 @@
 			return add_rod(user,attacking_item)
 	. = ..()
 
+/obj/machinery/power/rbmk2/exchange_parts(mob/user, obj/item/storage/part_replacer/replacer_tool)
+
+	if(active)
+		balloon_alert(user, "turn off before upgrading!")
+		return FALSE
+
+	. = ..()
+
+
 /obj/machinery/power/rbmk2/on_set_panel_open(old_value)
 	. = ..()
 	update_appearance()
@@ -166,7 +175,8 @@
 		take_damage(damage_to_deal,armour_penetration=100)
 		src.Shake(duration=0.5 SECONDS)
 		balloon_alert(user, "unjammed!")
-	return TRUE
+		return TRUE
+	return FALSE
 
 //Remove the rod.
 /obj/machinery/power/rbmk2/AltClick(mob/living/user)
@@ -350,7 +360,8 @@
 	var/max_power_generation_mul = 0
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
 		max_power_generation_mul += new_matter_bin.tier * 0.5
-	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**1.5)
+	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
+	max_power_generation = FLOOR(max_power_generation,10000)
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0

@@ -1,13 +1,21 @@
 
 /obj/machinery/power/rbmk2/multitool_act(mob/living/user, obj/item/multitool/tool)
-	if(panel_open)
-		wires.interact(user)
+
+	if(!panel_open)
+		balloon_alert(user, "open the panel first!")
 		return TRUE
 
+	wires.interact(user)
+	return TRUE
+
 /obj/machinery/power/rbmk2/wirecutter_act(mob/living/user, obj/item/tool)
-	if(panel_open)
-		wires.interact(user)
+
+	if(!panel_open)
+		balloon_alert(user, "open the panel first!")
 		return TRUE
+
+	wires.interact(user)
+	return TRUE
 
 //Deconstruct.
 /obj/machinery/power/rbmk2/crowbar_act(mob/living/user, obj/item/attack_item)
@@ -23,7 +31,7 @@
 			message_admins("[src] was deconstructed by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(T)].")
 			user.log_message("deconstructed [src]", LOG_GAME)
 			investigate_log("was deconstructed by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
-		return TRUE
+	return TRUE
 
 //Open the panel.
 /obj/machinery/power/rbmk2/screwdriver_act(mob/living/user, obj/item/attack_item)
@@ -46,12 +54,12 @@
 
 	if(atom_integrity >= max_integrity)
 		balloon_alert(user, "already repaired!")
-		return
+		return TRUE
 	if (machine_stat & BROKEN)
 		balloon_alert(user, "too damaged to repair!")
-		return
+		return TRUE
 	if(!attack_item.tool_start_check(user, amount=1))
-		return
+		return TRUE
 
 	balloon_alert(user, "repairing...")
 	if(attack_item.use_tool(src, user, 4 SECONDS, volume = 50))

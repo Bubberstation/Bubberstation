@@ -71,11 +71,11 @@
 		// https://www.desmos.com/calculator/ffcsaaftzz
 		last_power_generation *= (1 + max(0,(rod_mix.temperature - T0C)/1500)**1.4)*(0.75 + (amount_to_consume/gas_consumption_base)*0.25)
 		if(meltdown)
-			last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*2)
-			radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
+			last_radiation_pulse = min( last_power_generation*0.002 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
+			radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
 		else
 			last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
-			radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
+			radiation_pulse(src,last_radiation_pulse,threshold = RAD_MEDIUM_INSULATION)
 		if(power && powernet && last_power_generation)
 			src.add_avail(min(last_power_generation,max_power_generation*10))
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
@@ -143,7 +143,7 @@
 		var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 		var/rod_mix_heat_capacity = rod_mix.heat_capacity()
 		last_radiation_pulse = min( last_power_generation*0.003*meltdown_multiplier ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE*3) //It just keeps getting worse.
-		radiation_pulse(src,last_radiation_pulse,threshold = RAD_FULL_INSULATION)
+		radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
 			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
@@ -168,16 +168,16 @@
 				total_ion_amount += ion_amount
 
 		var/ionization_amount_ratio = total_ion_amount/ionize_air_amount
-		var/criticality_to_add = 1 + ionization_amount_ratio*rand()
-		criticality_to_add = FLOOR(criticality_to_add,1)
-		if(criticality >= 100) //It keeps going.
-			if(prob(criticality/1000)) //The chance to explode. Yes, it's supposed to be this low.
-				deconstruct(FALSE)
+		var/criticality_to_add = min(ionization_amount_ratio,3) * rand()
+		if(criticality_to_add > 0)
+			criticality_to_add = FLOOR(criticality_to_add,0.01)
+			if(criticality >= 100) //It keeps going.
+				if(prob(criticality/1000)) //The chance to explode. Yes, it's supposed to be this low.
+					deconstruct(FALSE)
+				else
+					criticality += rand(criticality_to_add*4,criticality_to_add*10)
 			else
-				criticality += rand(criticality_to_add*4,criticality_to_add*10)
-
-		else
-			criticality += criticality_to_add
+				criticality += criticality_to_add
 
 		playsound(src, 'modular_zubbers/sound/machines/rbmk2/ionization.ogg', 50, TRUE, extrarange = ionize_air_range)
 	else

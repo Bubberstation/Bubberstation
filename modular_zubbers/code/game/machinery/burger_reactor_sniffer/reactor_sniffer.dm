@@ -45,7 +45,8 @@
 		setDir(ndir)
 
 	stored_radio = new(src)
-	stored_radio.keyslot = new radio_key
+	stored_radio.subspace_transmission = TRUE
+	stored_radio.canhear_range = 0
 	stored_radio.set_listening(FALSE)
 	stored_radio.recalculateChannels()
 

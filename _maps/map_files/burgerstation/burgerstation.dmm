@@ -2425,9 +2425,9 @@
 /turf/open/floor/engine,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "aTa" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2/chamber)
 "aTd" = (
@@ -4389,6 +4389,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"bFf" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	target_temperature = 73
+	},
+/turf/open/floor/plating,
+/area/station/engineering/rbmk2/chamber)
 "bFy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -21874,6 +21881,9 @@
 	id = "rbmk2_shutters_south";
 	name = "RB-MK2 Radiation Shutters Control"
 	},
+/obj/machinery/atmospherics/pipe/smart/simple/violet/visible{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
 "hKL" = (
@@ -28982,6 +28992,14 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/department/crew_quarters/dorms)
+"kor" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/violet/visible,
+/obj/item/wrench,
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "koz" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/curtain/bounty,
@@ -32089,6 +32107,18 @@
 /obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/starboard)
+"lnm" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light/no_nightlight/directional/north,
+/obj/structure/sign/warning/radiation/rad_area/directional/north,
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4;
+	name = "Emergency Shuttoff Valve"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "lns" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -34293,6 +34323,16 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/security/brig)
+"mcj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/simple/violet/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "mcO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -37881,6 +37921,7 @@
 "ntU" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/effect/turf_decal/bot,
+/obj/item/wrench,
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2/chamber)
 "nuc" = (
@@ -39839,6 +39880,7 @@
 	color = "#EFB341";
 	alpha = 150
 	},
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/engine/hull/reinforced{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
@@ -42123,6 +42165,15 @@
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/fore)
+"oSQ" = (
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "rbmk2_shutters_south";
+	name = "RB-MK2 Chamber Shutters"
+	},
+/obj/machinery/atmospherics/pipe/smart/simple/violet/visible,
+/turf/open/floor/plating,
+/area/station/engineering/rbmk2/chamber)
 "oSX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -48396,6 +48447,15 @@
 	},
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
+"rab" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/simple/violet/visible{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "rah" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 1
@@ -51630,6 +51690,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/fore)
+"shH" = (
+/obj/machinery/atmospherics/pipe/smart/manifold/green/visible{
+	dir = 8
+	},
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/station/engineering/rbmk2)
 "shJ" = (
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
@@ -64734,7 +64801,9 @@
 	alpha = 150;
 	dir = 1
 	},
-/obj/effect/landmark/atmospheric_sanity/ignore_area,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	name = "emergency air injector"
+	},
 /turf/open/floor/engine/hull/reinforced{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
@@ -65267,6 +65336,14 @@
 /obj/effect/spawner/random/burgerstation/blocking,
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
+"wZe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold/violet/visible,
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "wZm" = (
 /obj/structure/chair/stool/directional/south,
 /obj/machinery/light/small/directional/west,
@@ -66793,6 +66870,15 @@
 	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/aft)
+"xEe" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/simple/violet/visible{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "xEf" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
@@ -90556,8 +90642,8 @@ pkC
 vec
 vec
 aTa
-wtd
-dns
+rab
+cxb
 dMR
 vPc
 wXS
@@ -90813,8 +90899,8 @@ goL
 qqz
 vec
 aTa
-qEx
-dns
+wZe
+qWo
 dMR
 vPc
 wXS
@@ -91069,9 +91155,9 @@ vec
 wqA
 vec
 vec
-aTa
-qEx
-dns
+bFf
+kor
+qWo
 dMR
 vPc
 wXS
@@ -91327,8 +91413,8 @@ cAy
 uHs
 vec
 vec
-iiL
-cxb
+lnm
+qWo
 dMR
 vPc
 wXS
@@ -91841,7 +91927,7 @@ hbi
 hbi
 fDI
 mDD
-aNw
+mcj
 qWo
 cVf
 dKM
@@ -92097,8 +92183,8 @@ hbi
 hbi
 hbi
 wOx
-mDD
-aNw
+oSQ
+xEe
 nsx
 dMR
 wJK
@@ -94662,7 +94748,7 @@ cHz
 oVL
 oVL
 tsW
-rNP
+shH
 rNP
 vPV
 rNP
