@@ -67,15 +67,16 @@
 
 /datum/wires/rbmk2_sniffer/on_cut(wire, mend, source)
 	var/obj/machinery/rbmk2_sniffer/M = holder
-	if(WIRE_SIGNAL)
-		M.radio_enabled = mend
-	if(WIRE_LINK)
-		M.link_confirm = FALSE
-	if(WIRE_UNLINK)
-		M.unlink_confirm = FALSE
-	if(WIRE_PROCEED)
-		M.link_confirm = FALSE
-		M.unlink_confirm = FALSE
+	switch(wire)
+		if(WIRE_SIGNAL)
+			M.radio_enabled = mend
+		if(WIRE_LINK)
+			M.link_confirm = FALSE
+		if(WIRE_UNLINK)
+			M.unlink_confirm = FALSE
+		if(WIRE_PROCEED)
+			M.link_confirm = FALSE
+			M.unlink_confirm = FALSE
 
 /datum/wires/rbmk2_sniffer/can_reveal_wires(mob/user)
 	if(HAS_TRAIT(user, TRAIT_KNOW_ENGI_WIRES))
