@@ -55,7 +55,7 @@
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins.
+	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. The absolute max is 20 times this.
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 
@@ -164,6 +164,7 @@
 		return FALSE
 	if(attacking_item.use_tool(src, user, 4 SECONDS, volume = 50) && jam(user,FALSE))
 		take_damage(damage_to_deal,armour_penetration=100)
+		src.Shake(duration=0.5 SECONDS)
 		balloon_alert(user, "unjammed!")
 	return TRUE
 
@@ -191,6 +192,7 @@
 			if(prob(80))
 				take_damage(0.5,armour_penetration=100,sound_effect=FALSE)
 				stored_rod.take_damage(0.5,armour_penetration=100)
+				src.Shake(duration=0.5 SECONDS)
 				playsound(src, pick('sound/effects/structure_stress/pop1.ogg','sound/effects/structure_stress/pop2.ogg','sound/effects/structure_stress/pop3.ogg'), 50, TRUE, extrarange = -3)
 				return FALSE
 			else //Yes. Spamming the eject button can unjam it.
@@ -348,7 +350,7 @@
 	var/max_power_generation_mul = 0
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
 		max_power_generation_mul += new_matter_bin.tier * 0.5
-	max_power_generation = initial(max_power_generation) * max_power_generation_mul
+	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**1.5)
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0

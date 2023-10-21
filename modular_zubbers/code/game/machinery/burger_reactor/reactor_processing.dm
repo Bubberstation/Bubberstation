@@ -77,7 +77,7 @@
 			last_radiation_pulse = min( last_power_generation*0.001 ,GAS_REACTION_MAXIMUM_RADIATION_PULSE_RANGE)
 			radiation_pulse(src,last_radiation_pulse,threshold = RAD_HEAVY_INSULATION)
 		if(power && powernet && last_power_generation)
-			src.add_avail(last_power_generation)
+			src.add_avail(min(last_power_generation,max_power_generation*10))
 		consumed_mix.remove_specific(/datum/gas/tritium, last_tritium_consumption*0.50) //50% of used tritium gets deleted. The rest gets thrown into the air.
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
@@ -109,6 +109,7 @@
 		else
 			toggle_active(null,FALSE)
 			take_damage(3,armour_penetration=100)
+			src.Shake(duration=0.5 SECONDS)
 
 	if(rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
 		if(!meltdown)
@@ -118,6 +119,7 @@
 		var/chosen_sound = pick('modular_zubbers/sound/machines/rbmk2/failure01.ogg','modular_zubbers/sound/machines/rbmk2/failure02.ogg','modular_zubbers/sound/machines/rbmk2/failure03.ogg','modular_zubbers/sound/machines/rbmk2/failure04.ogg')
 		playsound(src, chosen_sound, 50, TRUE, extrarange = -3)
 		take_damage(2,armour_penetration=100) //Lasts 5 minutes. Probably less due to other factors.
+		src.Shake(duration=0.5 SECONDS)
 	else if(meltdown && rod_mix.temperature <= stored_rod.temperature_limit*0.75 && last_power_generation <= max_power_generation*0.5) //Hard to get out of a meltdown.
 		meltdown = FALSE
 
@@ -145,7 +147,6 @@
 		if(rod_mix_heat_capacity > 0)
 			rod_mix.temperature += (rod_mix.temperature*0.02*rand() + (8000/rod_mix_heat_capacity)*(overclocked ? 2 : 1))*meltdown_multiplier //It's... it's not shutting down!
 			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
-		//take_damage(0.5,armour_penetration=100,sound_effect=FALSE)
 		var/ionize_air_amount = min( (0.5 + rod_mix.temperature/2000) * meltdown_multiplier, 5) //For every 2000 kelvin. Capped at 5 tiles.
 		var/ionize_air_range = CEILING(ionize_air_amount,1)
 		var/total_ion_amount = 0
