@@ -76,6 +76,8 @@
 	stock_key = UPLINK_SHARED_STOCK_KITS
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
+/* BUBBERSTATION CHANGE: REMOVES SURPLUS CRATES
+
 /datum/uplink_item/bundles_tc/surplus
 	name = "Syndicate Surplus Crate"
 	desc = "A dusty crate from the back of the Syndicate warehouse delivered directly to you via Supply Pod. \
@@ -176,3 +178,5 @@
 	progression_minimum = 30 MINUTES
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 	stock_key = UPLINK_SHARED_STOCK_SURPLUS
+
+BUBBERSTATION CHANGE END, REMOVES SURPLUS CRATES."

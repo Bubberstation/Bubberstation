@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define MAROON_PROB 30
 
 /// How many telecrystals a normal traitor starts with
-#define TELECRYSTALS_DEFAULT 20
+#define TELECRYSTALS_DEFAULT 30 //BUBBERSTATION CHANGE: 20 TO 30.
 /// How many telecrystals mapper/admin only "precharged" uplink implant
 #define TELECRYSTALS_PRELOADED_IMPLANT 10
 /// The normal cost of an uplink implant; used for calcuating how many
