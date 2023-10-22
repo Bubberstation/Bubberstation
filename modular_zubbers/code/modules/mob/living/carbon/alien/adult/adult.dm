@@ -2,6 +2,6 @@
 	. = ..()
 	if(isliving(pour_soul))
 		var/mob/living/L = poor_soul
-		var/ventcrawler = HAS_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(src, TRAIT_VENTCRAWLER_NUDE)
+		var/ventcrawler = HAS_TRAIT(L, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(L, TRAIT_VENTCRAWLER_NUDE)
 		if(!ventcrawler)
 			return FALSE
