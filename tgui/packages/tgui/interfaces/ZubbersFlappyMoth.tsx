@@ -20,7 +20,10 @@ type FlapObstacle = {
 };
 
 // Any extra prop controlling - Might use later
-type FlapProps = {};
+type FlapProps = {
+  win: () => void;
+  lose: () => void;
+};
 
 type FlapState = {
   player: FlapMoth;
@@ -33,13 +36,12 @@ enum FlapMovementState {
 }
 
 // FLAPPY MOTH minigame class
-class FlapMinigame extends Component<FlapMovementState, FlapProps> {
+class FlapMinigame extends Component<FlapProps, FlapState> {
   animation_id: number;
   last_frame: number;
-  state: FlapState;
   movementstate: FlapMovementState;
   gameheight: number = 500;
-
+  state: FlapState;
   playerhitbox: number = 10;
 
   constructor(props: FlapProps) {
@@ -148,7 +150,7 @@ class FlapMinigame extends Component<FlapMovementState, FlapProps> {
     newState = this.moveMoth(newState, delta);
     this.setState(newState);
 
-    //Wait for next frame
+    // Wait for next frame
     this.last_frame = timestamp;
     this.animation_id = window.requestAnimationFrame(this.updateAnimation);
   }
@@ -165,7 +167,8 @@ class FlapMinigame extends Component<FlapMovementState, FlapProps> {
             style={{
               height: `${posToStyle(player.hitbox)}`,
               top: `${posToStyle(player.position)}`,
-            }}></div>
+            }}
+          />
         </div>
       </div>
     );
@@ -177,7 +180,7 @@ export const ZubbersFlappyMoth = (props, context) => {
   return (
     <NtosWindow width={600} height={572}>
       <NtosWindow.Content fitted>
-        <FlapMinigame />
+        <FlapMinigame win={() => act('win')} lose={() => act('lose')} />
       </NtosWindow.Content>
     </NtosWindow>
   );
