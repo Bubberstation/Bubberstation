@@ -1,3 +1,4 @@
+/* BUBBERSTATION CHANGE: REMOVES BUNDLES.
 /datum/uplink_item/bundles_tc/surplus
 	desc = "A dusty crate from the back of the Syndicate warehouse delivered directly to you via Supply Pod. \
 			Contents are sorted to always be worth 50 TC. The Syndicate will only provide one surplus item per agent."
@@ -8,3 +9,4 @@
 			It is recommended that you only attempt to open it by having another agent purchase a Surplus Crate Key. Unite and fight. \
 			Contents are sorted to always be worth 125 TC. The Syndicate will only provide one surplus item per agent."
 	crate_tc_value = 125
+BUBBERSTATION CHANGE END: REMOVES BUNDLES.*/
