@@ -37,7 +37,7 @@
 	passive_bleed_modifier = 0.86
 
 /datum/reagent/medicine/spaceacillin/super
-	name = "Plasma Vancomycinacillin"
+	name = "Plasmacillin"
 	description = "An experimental antibiotic that works like spaceacillin, but it can cure any virus, as long as the virus is in the early stages. Has significantly adverse effects on high resistance viruses or viruses in the later stages, depending on dosage."
 	color = "#c6a7cd"
 	metabolization_rate = 1
