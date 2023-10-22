@@ -34,3 +34,11 @@
 	purity_min = 0.3
 	reaction_flags = REACTION_PH_VOL_CONSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_OTHER
+
+/datum/chemical_reaction/medicine/super_spaceacillin
+	results = list(/datum/reagent/medicine/spaceacillin/super = 1)
+	required_reagents = list(/datum/reagent/medicine/spaceacillin/super=1,/datum/reagent/toxin/plasma/plasmavirusfood/weak=1,/datum/reagent/toxin/formaldehyde=1)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_HEALING | REACTION_TAG_OTHER
+	required_temp = 300
+	optimal_temp = 400
+	overheat_temp = 500
