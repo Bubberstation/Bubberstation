@@ -176,7 +176,7 @@ export type PreferencesMenuData = {
   preview_selection: string; // SKYRAT EDIT ADDITION
 
   is_veteran: BooleanLike; // SKYRAT EDIT - Veteran status
-
+  is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
     clothing: Record<string, string>;
     features: Record<string, string>;
