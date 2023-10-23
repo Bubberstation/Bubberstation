@@ -1,3 +1,5 @@
+/* BUBBERSTATION CHANGE: Disables blob for good.
+
 /datum/round_event_control/blob
 	name = "Blob"
 	typepath = /datum/round_event/ghost_role/blob
@@ -38,3 +40,5 @@
 	message_admins("[ADMIN_LOOKUPFLW(BC)] has been made into a blob overmind by an event.")
 	BC.log_message("was spawned as a blob overmind by an event.", LOG_GAME)
 	return SUCCESSFUL_SPAWN
+
+*/

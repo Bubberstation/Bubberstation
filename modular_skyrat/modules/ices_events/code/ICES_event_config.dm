@@ -119,10 +119,11 @@
  *
  * Disabled: Controlled by Dynamic
  */
+ /* BUBBERSTATION CHANGE: Disables blob for good.
 /datum/round_event_control/blob
 	max_occurrences = 0
 	intensity_restriction = TRUE
-
+BUBBERSTATION CHANGE END: Disables blob for good. */
 /**
  * Brain Trauma
  *
