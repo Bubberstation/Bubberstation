@@ -10,7 +10,7 @@
 	var/list/possible_medicine_reagents = subtypesof(/datum/reagent/medicine)
 	while(!chosen_goblin_reagent_medicine && length(possible_medicine_reagents))
 		var/datum/reagent/R = pick_n_take(possible_medicine_reagents)
-		if(!(R.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED))
+		if(!(initial(R.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
 			continue
 		chosen_goblin_reagent_medicine = R
 	if(!chosen_goblin_reagent_medicine)
@@ -19,7 +19,7 @@
 	var/list/possible_drug_reagents = subtypesof(/datum/reagent/drug)
 	while(!chosen_goblin_reagent_drug && length(possible_drug_reagents))
 		var/datum/reagent/R = pick_n_take(possible_drug_reagents)
-		if(!(R.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED))
+		if(!(initial(R.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
 			continue
 		chosen_goblin_reagent_drug = R
 	if(!chosen_goblin_reagent_drug)
@@ -29,7 +29,7 @@
 	var/list/possible_toxic_reagents = subtypesof(/datum/reagent/toxin)
 	while(!chosen_goblin_reagent_toxic && length(possible_toxic_reagents))
 		var/datum/reagent/R = pick_n_take(possible_toxic_reagents)
-		if(!(R.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED))
+		if(!(initial(R.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
 			continue
 		chosen_goblin_reagent_toxic = R
 	if(!chosen_goblin_reagent_toxic)
