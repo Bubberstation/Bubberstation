@@ -54,8 +54,8 @@
 	amount_to_consume *= (overclocked ? 1.25 : 1)*(0.75 + power_efficiency*0.25)*(obj_flags & EMAGGED ? 10 : 1)
 
 	//Remove gas from the rod to be processed.
-	var/datum/gas_mixture/consumed_mix = rod_mix.remove(amount_to_consume)
-
+	rod_mix.assert_gas(/datum/gas/tritium)
+	var/datum/gas_mixture/consumed_mix = rod_mix.remove_specific(/datum/gas/tritium,amount_to_consume)
 
 	if(!consumed_mix)
 		toggle_active(null,FALSE)
@@ -63,8 +63,8 @@
 		return
 
 	//Do power generation here.
-	consumed_mix.assert_gas(/datum/gas/tritium)
 	if(consumed_mix.gases && consumed_mix.gases[/datum/gas/tritium])
+		consumed_mix.assert_gas(/datum/gas/tritium)
 		last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
 		last_power_generation = last_tritium_consumption * power_efficiency * base_power_generation * (overclocked ? 0.9 : 1) //Overclocked consumes more, but generates less.
 		//This is where the fun begins.
@@ -88,6 +88,9 @@
 		if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
 			rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity)
 			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
+		if(last_tritium_consumption > 0)
+			rod_mix.assert_gas(/datum/gas/goblin)
+			rod_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*4
 
 	else
 		toggle_active(null,FALSE)
@@ -156,10 +159,10 @@
 			var/datum/gas_mixture/ion_turf_mix = ion_turf.return_air()
 			if(!ion_turf_mix || !ion_turf_mix.gases || !ion_turf_mix.gases[/datum/gas/oxygen] || !ion_turf_mix.gases[/datum/gas/oxygen][MOLES])
 				continue
+			ion_turf_mix.assert_gas(/datum/gas/oxygen)
 			var/gas_to_convert = max(0,min(ionize_air_amount,ion_turf_mix.gases[/datum/gas/oxygen][MOLES] - rand(20,30)))
 			if(gas_to_convert <= 0)
 				continue
-			ion_turf_mix.assert_gas(/datum/gas/oxygen)
 			var/datum/gas_mixture/oxygen_removed_mix = ion_turf_mix.remove_specific(/datum/gas/oxygen, ionize_air_amount)
 			if(oxygen_removed_mix && oxygen_removed_mix.gases[/datum/gas/oxygen] && oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] > 0)
 				var/ion_amount = oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] * 0.25
