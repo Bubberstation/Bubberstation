@@ -2,54 +2,28 @@
 
 	var/turf/T = loc
 	if(!isturf(T))
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return //wat
 
 	if(!stored_rod)
-		meter_overlay.alpha = 0
-		heat_overlay.alpha = 0
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return
 
 	var/datum/gas_mixture/rod_mix = stored_rod.air_contents
 	if(!rod_mix || !rod_mix.gases)
-		meter_overlay.alpha = 0
-		heat_overlay.alpha = 0
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return
 
 	var/rod_mix_pressure = rod_mix.return_pressure()
 	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
 
-	if(venting)
-		if(vent_reverse_direction)
-			heat_overlay.color = heat2colour(buffer_gases.temperature)
-			heat_overlay.alpha = min( (rod_mix.temperature - T0C) * (1/500) * 255,255)
-		else
-			heat_overlay.color = heat2colour(rod_mix.temperature)
-			heat_overlay.alpha = min( (rod_mix.temperature - T0C) * (1/500) * 255,255)
-	else
-		heat_overlay.alpha = 0
-
-	if(!active && !jammed && rod_mix.gases[/datum/gas/tritium])
-		var/meter_icon_num = CEILING( min(rod_mix.gases[/datum/gas/tritium][MOLES] / 100, 1) * 5, 1)
-		if(meter_icon_num > 0)
-			meter_overlay.alpha = 255
-			meter_overlay.icon_state = "platform_rod_glow_[meter_icon_num]"
-			var/return_pressure_mod = clamp( (rod_mix_pressure - stored_rod.pressure_limit*0.5) / stored_rod.pressure_limit*0.5,0,1)
-			meter_overlay.color = rgb(return_pressure_mod*255,255 - return_pressure_mod*255,0)
-		else
-			meter_overlay.alpha = 0
-	else
-		meter_overlay.alpha = 0
-
 	if(!active) //We're turned off.
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return
 
 	var/amount_to_consume = (gas_consumption_base + (rod_mix.temperature/1000)*gas_consumption_heat) * clamp(1 - (rod_mix_pressure - stored_rod.pressure_limit*0.5)/stored_rod.pressure_limit*0.5,0.25,1)
 	if(!amount_to_consume)
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return
 	amount_to_consume *= (overclocked ? 1.25 : 1)*(0.75 + power_efficiency*0.25)*(obj_flags & EMAGGED ? 10 : 1)
 
@@ -59,7 +33,7 @@
 
 	if(!consumed_mix)
 		toggle_active(null,FALSE)
-		update_appearance()
+		update_appearance(UPDATE_ICON)
 		return
 
 	//Do power generation here.
@@ -127,7 +101,7 @@
 		meltdown = FALSE
 
 
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 	return TRUE
 

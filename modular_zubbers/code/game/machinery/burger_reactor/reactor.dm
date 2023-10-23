@@ -38,8 +38,6 @@
 
 	var/obj/item/tank/rbmk2_rod/stored_rod //Currently stored rbmk2 rod.
 	var/datum/gas_mixture/buffer_gases //Gas that has yet to be leaked out due to not venting fast enough.
-	var/mutable_appearance/heat_overlay //Vent heat overlay.
-	var/mutable_appearance/meter_overlay //Inactive tritium meter display.
 
 	var/last_power_generation = 0 //Display purposes. Do not edit.
 	var/last_tritium_consumption = 0 //Display purposes. Do not edit.
@@ -73,11 +71,6 @@
 
 	set_wires(new /datum/wires/rbmk2(src))
 	buffer_gases = new(100)
-
-	heat_overlay = mutable_appearance(icon, "platform_heat", alpha=255)
-	heat_overlay.appearance_flags |= RESET_COLOR
-	meter_overlay = mutable_appearance(icon, "platform_rod_glow_5", alpha=255)
-	heat_overlay.appearance_flags |= RESET_COLOR
 
 	connect_to_network()
 	process() //Process once to update everything.
@@ -142,7 +135,7 @@
 	. = ..()
 	stored_rod = new /obj/item/tank/rbmk2_rod/preloaded(src)
 	START_PROCESSING(SSmachines, src)
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rbmk2/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(!user.combat_mode)
@@ -163,7 +156,7 @@
 
 /obj/machinery/power/rbmk2/on_set_panel_open(old_value)
 	. = ..()
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rbmk2/proc/force_unjam(obj/item/attacking_item,mob/living/user,damage_to_deal=50)
 	if(!jammed)
@@ -219,8 +212,7 @@
 		stored_rod.forceMove(T)
 		playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = -1, extrarange = -3)
 	stored_rod = null
-	meter_overlay.alpha = 0
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 	if(user)
 		user.log_message("removed a rod from [src]", LOG_GAME)
 		investigate_log("had a rod removed by [key_name(user)] at [AREACOORD(src)].", INVESTIGATE_ENGINE)
@@ -233,8 +225,7 @@
 		return FALSE
 	desired_rod.forceMove(src)
 	stored_rod = desired_rod
-	meter_overlay.alpha = 255
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 	START_PROCESSING(SSmachines, src)
 	playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE, frequency = 1, extrarange = -3)
 	if(user)
@@ -286,9 +277,6 @@
 
 	active = desired_state
 
-	if(!active)
-		meter_overlay.alpha = 0
-
 	if(active)
 		var/turf/T = get_turf(src)
 		if(user)
@@ -298,7 +286,7 @@
 			log_game("[src] was turned on at [AREACOORD(T)]")
 			investigate_log("was turned on at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 	playsound(src, 'sound/machines/eject.ogg', 50, TRUE, extrarange = -3)
 
@@ -320,7 +308,7 @@
 			log_game("[src] had vents turned off at [AREACOORD(T)]")
 			investigate_log("had vents turned off at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 	playsound(src, 'sound/machines/creak.ogg', 50, TRUE, extrarange = -3)
 
@@ -392,8 +380,6 @@
 		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
 	else if(meltdown)
 		. += span_danger("The reactor rod is leaping erractically!")
-	else
-		. += span_warning("It it is missing a RB-MK2 reactor rod.")
 	else
 		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Wrench</b> it down to activate, or remove it with ALT+CLICK.")
 

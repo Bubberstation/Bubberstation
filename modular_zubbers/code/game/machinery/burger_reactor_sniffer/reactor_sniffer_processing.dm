@@ -46,4 +46,4 @@
 			last_criticality = highest_criticality
 			alert_radio("Stray ionization detected! Criticality at [round(last_criticality,0.1)]%!",alert_emergency_channel=alert_emergency_channel)
 
-	update_appearance()
+	update_appearance(UPDATE_ICON)
