@@ -40,7 +40,7 @@
 	name = "Plasmacillin"
 	description = "An experimental antibiotic that works like spaceacillin, but it can cure any virus, as long as the virus is in the early stages. Has significantly adverse effects on high resistance viruses or viruses in the later stages, depending on dosage."
 	color = "#c6a7cd"
-	metabolization_rate = 1
+	metabolization_rate = 0.5 //REAGENTS_METABOLISM isn't used because this is a cycle based chemical.
 	ph = 10.1
 
 /datum/reagent/medicine/spaceacillin/super/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
