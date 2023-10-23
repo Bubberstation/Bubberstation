@@ -4,7 +4,6 @@
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	icon_state = "platform_rod"
 	inhand_icon_state = null
-	pixel_y = -16
 	worn_icon_state = null
 	tank_holder_icon_state = null
 	flags_1 = CONDUCT_1
