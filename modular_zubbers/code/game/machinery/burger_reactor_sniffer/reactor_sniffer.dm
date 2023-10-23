@@ -19,6 +19,7 @@
 
 	var/last_meltdown = FALSE
 	var/last_criticality = 0
+	var/last_integrity = 100
 	var/alerted_emergency_channel = FALSE
 
 	var/list/obj/machinery/power/rbmk2/linked_reactors = list()
@@ -34,7 +35,12 @@
 	var/radio_key = /obj/item/encryptionkey/headset_eng //The key our internal radio uses
 	var/emergency_channel = RADIO_CHANNEL_COMMON
 	var/warning_channel = RADIO_CHANNEL_ENGINEERING
-	COOLDOWN_DECLARE(radio_cooldown)
+
+
+	COOLDOWN_DECLARE(radio_cooldown_integrity)
+
+	COOLDOWN_DECLARE(radio_cooldown_criticality)
+
 
 /obj/machinery/rbmk2_sniffer/Initialize(mapload, ndir, nbuild)
 	. = ..()
@@ -101,17 +107,23 @@
 		. += span_notice("It is glowing a steady green.")
 
 
-/obj/machinery/rbmk2_sniffer/proc/alert_radio(alert_text,bypass_cooldown=FALSE,alert_emergency_channel=FALSE)
+/obj/machinery/rbmk2_sniffer/proc/alert_radio(alert_text,bypass_cooldown=FALSE,alert_emergency_channel=FALSE,criticality=TRUE)
 
 	if(!radio_enabled || !alert_text)
 		return FALSE
 
-	if(!bypass_cooldown && !COOLDOWN_FINISHED(src, radio_cooldown))
+	if(!bypass_cooldown)
+		if(criticality)
+			if(!COOLDOWN_FINISHED(src, radio_cooldown_criticality))
+				return FALSE
+			COOLDOWN_START(src, radio_cooldown_criticality, 5 SECONDS)
+		else
+			if(!COOLDOWN_FINISHED(src, radio_cooldown_integrity))
+				return FALSE
+			COOLDOWN_START(src, radio_cooldown_integrity, 5 SECONDS)
 		return FALSE
 
 	stored_radio.talk_into(src, alert_text, alert_emergency_channel ? emergency_channel : warning_channel)
-
-	COOLDOWN_START(src, radio_cooldown, 5 SECONDS)
 
 	return TRUE
 

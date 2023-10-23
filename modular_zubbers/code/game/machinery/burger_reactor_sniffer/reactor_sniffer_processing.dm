@@ -4,9 +4,17 @@
 		return FALSE
 
 	var/highest_criticality = 0
+	var/lowest_integrity_percent = 1
 	var/has_meltdown = FALSE
 
 	for(var/obj/machinery/power/rbmk2/reactor as anything in linked_reactors)
+		if(!reactor.active)
+			continue
+		var/integrity_percent = reactor.atom_integrity/reactor.max_integrity
+		if(integrity_percent <= lowest_integrity_percent)
+			lowest_integrity_percent = integrity_percent
+			if(lowest_integrity_percent <= 0.8)
+				has_meltdown = TRUE
 		if(!reactor.meltdown)
 			continue
 		has_meltdown = TRUE
@@ -14,10 +22,15 @@
 			continue
 		highest_criticality = reactor.criticality
 
-	var/alert_emergency_channel = highest_criticality >= 70
+	var/alert_emergency_channel = highest_criticality >= 70 || lowest_integrity_percent <= 0.2
 
 	if(alert_emergency_channel)
 		alerted_emergency_channel = TRUE
+
+	if(lowest_integrity_percent <= 0.8)
+		last_integrity = lowest_integrity_percent
+		if(abs(highest_criticality - last_criticality) >= 0.05 || lowest_integrity_percent <= 0.3)
+			alert_radio("[lowest_integrity_percent <= 0.3 ? "DANGER" : "Warning!"] integrity at [round(lowest_integrity_percent*100,0.1)]%! Perform repairs immediately!",alert_emergency_channel=alert_emergency_channel,criticality=FALSE)
 
 	if(last_meltdown != has_meltdown)
 		last_meltdown = has_meltdown

@@ -91,6 +91,9 @@
 
 /obj/machinery/power/rbmk2/Destroy()
 
+	for(var/obj/machinery/rbmk2_sniffer/sniffer as anything in linked_sniffers)
+		sniffer.unlink_reactor(src)
+
 	if(SSticker.IsRoundInProgress())
 		var/turf/T = get_turf(src)
 		message_admins("[src] deleted at [ADMIN_VERBOSEJMP(T)]")
@@ -103,9 +106,6 @@
 	set_wires(null)
 
 	SSair.stop_processing_machine(src)
-
-	for(var/obj/machinery/rbmk2_sniffer/sniffer as anything in linked_sniffers)
-		sniffer.unlink_reactor(src)
 
 	. = ..()
 
@@ -374,6 +374,8 @@
 
 	. = ..()
 
+	. += span_notice("A warning label on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
+
 	. += "It is linked to [length(linked_sniffers)] sniffer(s)."
 
 	. += "It is[!active?"n't":""] running."
@@ -384,18 +386,20 @@
 	if(!venting)
 		. += span_warning("The vents are closed.")
 
+	if(!stored_rod)
+		. += span_warning("It it is missing a RB-MK2 reactor rod.")
+	else if(jammed)
+		. += span_danger("The reactor rod is jammed! <b>Pry</b> the rod back in to unjam in!")
+	else if(meltdown)
+		. += span_danger("The reactor rod is leaping erractically!")
+	else
+		. += span_warning("It it is missing a RB-MK2 reactor rod.")
+	else
+		. += span_notice("There is an RB-MK2 reactor rod installed. <b>Wrench</b> it down to activate, or remove it with ALT+CLICK.")
+
 	if(active)
 		. += span_notice("It is currently consuming [last_tritium_consumption] moles of tritium per cycle, producing [display_power(last_power_generation)].")
 
-	. += span_notice("A digital warning label on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
-
-	if(!stored_rod)
-		. += span_warning("It it is missing a RB-MK2 reactor rod.")
-	else
-		if(jammed)
-			. += span_danger("The reactor rod is jammed!")
-		else if(meltdown)
-			. += span_danger("The reactor rod is leaping erractically!")
 
 /obj/machinery/power/rbmk2/examine_more(mob/user)
 	. = ..()
