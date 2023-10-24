@@ -12,13 +12,14 @@
 	if(!istype(T) || T.planetary_atmos || T.return_air().return_pressure() > (WARNING_HIGH_PRESSURE - 10))
 		return
 	var/datum/gas_mixture/stank = new
-	ADD_GAS(/datum/gas/miasma, stank.gases)
-	stank.gases[/datum/gas/miasma][MOLES] = ROT_MOLES
+	if(owner)
+		ADD_GAS(/datum/gas/scent/cadaverine, stank.gases)
+		stank.gases[/datum/gas/scent/cadaverine][MOLES] = ROT_MOLES
+	ADD_GAS(/datum/gas/scent/putrescine, stank.gases)
+	stank.gases[/datum/gas/scent/putrescine][MOLES] = ROT_MOLES
 	stank.temperature = owner?.bodytemperature | BODYTEMP_NORMAL
 	T.assume_air(stank)
 	T.air_update_turf(FALSE, FALSE)
 
 #undef ROT_MOLES
 
-/datum/gas/miasma
-	moles_visible = MOLES_GAS_VISIBLE / 2
