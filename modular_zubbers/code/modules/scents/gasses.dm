@@ -16,14 +16,14 @@
 #define GAS_PUTRESCINE "gas_putrescine"
 
 /datum/gas/scent/putrescine
-	id = GAS_ROT
+	id = GAS_PUTRESCINE
 	name = "Putrescine"
 	dangerous = TRUE
 	gas_overlay = "miasma_old"
 
-#define GAS_PUTRESCINE "gas_cadaverine"
+#define GAS_CADAVERINE "gas_cadaverine"
 /datum/gas/scent/cadaverine
-	id = GAS_ROT
+	id = GAS_CADAVERINE
 	name = "Cadaverine"
 	dangerous = TRUE
 	gas_overlay = "chem_gas_old"
