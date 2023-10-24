@@ -353,7 +353,7 @@
 		clear_mood_event("smell")
 	else
 		// Miasma sickness
-		if(prob(0.1 * miasma_pp)) // BUBBER EDIT: 10x less disease chance.
+		if(prob(1 * miasma_pp))
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(max_symptoms = 2, max_level = 3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, make_copy = TRUE, del_on_fail = TRUE)
