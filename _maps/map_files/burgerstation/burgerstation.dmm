@@ -904,7 +904,9 @@
 	},
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/effect/spawner/random/armory/e_gun,
+/obj/item/gun/energy/ionrifle,
+/obj/machinery/light/no_nightlight/directional/north,
+/obj/structure/sign/poster/official/random/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "arh" = (
@@ -1968,7 +1970,24 @@
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes/red/end,
-/obj/effect/spawner/random/armory/rubbershot,
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_y = -2
+	},
+/obj/item/flashlight/seclite{
+	pixel_y = -1
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = 4;
+	pixel_y = -5
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "aJl" = (
@@ -4128,6 +4147,7 @@
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "bAE" = (
@@ -6106,6 +6126,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "cki" = (
@@ -7627,12 +7650,14 @@
 /area/station/engineering/atmos/pumproom)
 "cVd" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/armory/riot_armor,
-/obj/effect/spawner/random/armory/riot_helmet,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/effect/spawner/random/armory/riot_armor,
+/obj/effect/spawner/random/armory/riot_helmet,
+/obj/effect/spawner/random/armory/riot_shield,
+/obj/machinery/light/no_nightlight/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "cVf" = (
@@ -13394,17 +13419,10 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "ePy" = (
-/obj/structure/closet/secure_closet{
-	name = "contraband locker";
-	req_access = list("armory")
-	},
-/obj/effect/spawner/random/contraband/armory,
-/obj/effect/spawner/random/contraband/narcotics,
-/obj/effect/spawner/random/contraband/permabrig_weapon,
-/obj/effect/spawner/random/contraband/cannabis,
 /obj/item/storage/secure/safe/directional/north{
 	name = "evidence safe"
 	},
+/obj/structure/closet/secure_closet/evidence,
 /turf/open/floor/iron/checker,
 /area/station/security/evidence)
 "ePA" = (
@@ -15131,15 +15149,14 @@
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "fsK" = (
-/obj/effect/spawner/armory_spawn/microfusion,
-/obj/structure/rack/gunrack,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/airalarm/directional/east,
+/obj/effect/spawner/random/armory/shotgun,
+/obj/structure/rack,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "fsO" = (
@@ -21717,6 +21734,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/trimline/red/filled/corner,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "hHH" = (
@@ -23034,9 +23054,12 @@
 /area/station/engineering/storage)
 "iji" = (
 /obj/structure/table,
-/obj/machinery/dish_drive/bullet,
+/obj/machinery/dish_drive/bullet{
+	pixel_y = 8
+	},
 /obj/effect/turf_decal/stripes/red/line,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/south,
+/obj/machinery/light/no_nightlight/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "iju" = (
@@ -25296,6 +25319,9 @@
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/structure/closet/secure_closet/contraband/armory,
+/obj/effect/spawner/random/contraband/armory,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "iYa" = (
@@ -28958,6 +28984,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "kok" = (
@@ -29064,6 +29093,8 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/item/kirbyplants/random,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "kpL" = (
@@ -29360,11 +29391,13 @@
 /area/station/commons/vacant_room/office)
 "kvc" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/armory/riot_shield,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/effect/spawner/random/armory/bulletproof_armor,
+/obj/effect/spawner/random/armory/bulletproof_helmet,
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "kvn" = (
@@ -31622,6 +31655,9 @@
 "lfr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "lfA" = (
@@ -35713,6 +35749,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "mBL" = (
@@ -41538,10 +41577,9 @@
 /area/station/engineering/atmos/storage/gas)
 "oFG" = (
 /obj/structure/rack,
-/obj/item/gun/grenadelauncher,
-/obj/item/storage/box/teargas,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes/red/end,
+/obj/effect/spawner/random/armory/disablers,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "oFI" = (
@@ -46265,7 +46303,6 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "qlK" = (
-/obj/machinery/light/no_nightlight/directional/north,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
@@ -47326,6 +47363,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/coffee,
+/obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "qGQ" = (
@@ -48906,6 +48944,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "rin" = (
@@ -50801,6 +50842,9 @@
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "rQY" = (
@@ -52447,6 +52491,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/sign/poster/official/random/directional/north,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "suS" = (
@@ -53655,6 +53701,18 @@
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/wood,
 /area/station/service/bar)
+"sRV" = (
+/obj/effect/turf_decal/stripes/red/line,
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/light/no_nightlight/directional/south,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/turf/open/floor/iron/dark,
+/area/station/ai_monitored/security/armory)
 "sSg" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -53985,6 +54043,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "sZb" = (
@@ -54066,7 +54127,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "tbU" = (
-/obj/structure/table,
 /obj/item/storage/box/trackimp{
 	pixel_x = -5;
 	pixel_y = 9
@@ -54078,6 +54138,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/red/line,
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "tca" = (
@@ -54225,6 +54287,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/motion/directional/east,
+/obj/effect/spawner/random/armory/e_gun,
 /obj/structure/rack,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
@@ -55247,6 +55310,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
@@ -57297,7 +57363,11 @@
 /obj/effect/turf_decal/stripes/red/end{
 	dir = 1
 	},
-/obj/item/gun/energy/ionrifle,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs{
+	pixel_x = -3;
+	pixel_y = -3
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "uhF" = (
@@ -57368,10 +57438,11 @@
 /area/station/maintenance/disposal/incinerator)
 "uik" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/armory/disablers,
 /obj/effect/turf_decal/stripes/red/end{
 	dir = 1
 	},
+/obj/item/gun/grenadelauncher,
+/obj/item/storage/box/teargas,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "uim" = (
@@ -58122,11 +58193,9 @@
 /turf/open/floor/iron,
 /area/station/cargo/blacksmith)
 "uwr" = (
-/obj/effect/turf_decal/stripes/red/line,
-/obj/effect/turf_decal/tile/red/half/contrasted{
-	dir = 1
-	},
 /obj/machinery/flasher/portable,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "uwv" = (
@@ -58188,15 +58257,14 @@
 /turf/closed/wall,
 /area/station/maintenance/abandon_surgery)
 "uxt" = (
-/obj/machinery/light/no_nightlight/directional/east,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
-/obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/shotguns,
+/obj/structure/closet/secure_closet/armory2,
+/obj/effect/spawner/random/armory/rubbershot,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "uxu" = (
@@ -61536,6 +61604,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "vFs" = (
@@ -62995,8 +63064,8 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/hooded/ablative,
 /obj/effect/turf_decal/tile/red/half/contrasted,
-/obj/item/radio/intercom/directional/north,
 /obj/item/gun/energy/temperature/security,
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "wgJ" = (
@@ -65347,16 +65416,14 @@
 /turf/closed/wall,
 /area/station/cargo/office)
 "wXX" = (
-/obj/effect/turf_decal/stripes/red/line,
-/obj/effect/turf_decal/tile/red/half/contrasted{
-	dir = 1
-	},
 /obj/machinery/flasher/portable,
 /obj/machinery/button/door/directional/south{
 	id = "armory";
 	name = "Armory Shutters";
 	req_access = list("armory")
 	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "wYe" = (
@@ -66086,8 +66153,6 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "xoa" = (
-/obj/structure/rack,
-/obj/machinery/light/no_nightlight/directional/east,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
@@ -66095,7 +66160,7 @@
 	dir = 8
 	},
 /obj/effect/spawner/random/armory/laser_gun,
-/obj/structure/sign/poster/official/random/directional/east,
+/obj/structure/rack,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "xor" = (
@@ -67587,6 +67652,9 @@
 "xPi" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
@@ -105278,7 +105346,7 @@ lfr
 uik
 oFG
 vFc
-uwr
+sRV
 ggp
 dqK
 eMq
