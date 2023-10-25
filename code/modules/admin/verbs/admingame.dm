@@ -43,7 +43,10 @@
 
 		if(SSplayer_ranks.is_veteran(M.client, admin_bypass = FALSE))
 			player_ranks += "Veteran"
-
+		//BUBBER ADDITION START
+		if(SSplayer_ranks.is_vetted(M.client, admin_bypass = FALSE))
+			player_ranks |= "Vetted"
+		// BUBBER ADDITION END
 		body += "<br><br><b>Player Ranks: </b>[length(player_ranks) ? player_ranks.Join(", ") : "None"]"
 		// SKYRAT EDIT END
 		body += "<br><br><b>CentCom Galactic Ban DB: </b> "
@@ -233,7 +236,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.real_name = record_found.name
 		new_character.gender = lowertext(record_found.gender)
 		new_character.age = record_found.age
-		var/datum/dna/found_dna = record_found.dna_ref
+		var/datum/dna/found_dna = record_found.locked_dna
 		new_character.hardset_dna(found_dna.unique_identity, found_dna.mutation_index, null, record_found.name, record_found.blood_type, new record_found.species_type, found_dna.features)
 	else
 		new_character.randomize_human_appearance()
