@@ -9,6 +9,7 @@
 
 /datum/reagent/putrescine/on_mob_life(mob/living/carbon/breather, seconds_per_tick, times_fired)
 	. = ..()
+	breather.adjust_disgust(4)
 	if(breather.disgust >= DISGUST_LEVEL_DISGUSTED)
 		to_chat(breather, span_userdanger("Your nose and gut are on fire!"))
 		breather.emote("cry")
