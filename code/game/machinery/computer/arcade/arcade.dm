@@ -110,8 +110,9 @@ BUBBERSTATION CHANGE END. */
 			prizeselect = pick_weight(prize_override)
 		else
 			//BUBBERSTATION CHANGE START: BETTER PRIZES.
+			prizeselect = pick_weight(GLOB.arcade_prize_pool)
 			do
-				prizeselect = pick_weight(GLOB.arcade_prize_pool)
+				prizeselect = pick_weight(prizeselect)
 			while(islist(prizeselect))
 			//BUBBERSTATION CHANGE END: BETTER PRIZES.
 		var/atom/movable/the_prize = new prizeselect(get_turf(src))
@@ -139,9 +140,9 @@ BUBBERSTATION CHANGE END. */
 			empprize = pick_weight(prize_override)
 		else
 			//BUBBERSTATION CHANGE START: BETTER PRIZES.
-			do
-				empprize = pick_weight(GLOB.arcade_prize_pool)
+			empprize = pick_weight(GLOB.arcade_prize_pool)
 			while(islist(empprize))
+				empprize = pick_weight(empprize)
 			//BUBBERSTATION CHANGE END: BETTER PRIZES.
 		new empprize(loc)
 	explosion(src, devastation_range = -1, light_impact_range = 1+num_of_prizes, flame_range = 1+num_of_prizes)
