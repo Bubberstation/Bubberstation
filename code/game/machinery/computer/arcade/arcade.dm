@@ -1,4 +1,4 @@
-/* BUBBERSTATION CHANGE START: REDOES THE ARCADE PRIZE POOL.
+/* BUBBERSTATION CHANGE START: REDOES THE ARCADE PRIZE POOL. SEE MODULAR arcade.dm FILE FOR THE DROPTABLE.
 GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/storage/box/snappops = 2,
 		/obj/item/toy/talking/ai = 2,
@@ -111,9 +111,8 @@ BUBBERSTATION CHANGE END. */
 		else
 			//BUBBERSTATION CHANGE START: BETTER PRIZES.
 			prizeselect = pick_weight(GLOB.arcade_prize_pool)
-			do
-				prizeselect = pick_weight(prizeselect)
 			while(islist(prizeselect))
+				prizeselect = pick_weight(prizeselect)
 			//BUBBERSTATION CHANGE END: BETTER PRIZES.
 		var/atom/movable/the_prize = new prizeselect(get_turf(src))
 		playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
