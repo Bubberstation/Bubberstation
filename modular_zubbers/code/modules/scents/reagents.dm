@@ -16,3 +16,6 @@
 	if(breather.disgust >= DISGUST_LEVEL_GROSS && SPT_PROB(12, seconds_per_tick))
 		to_chat(breather, span_userdanger("The awful smell is searing your senses!"))
 
+/datum/reagent/putrescine/on_mob_end_metabolize(mob/living/carbon/breather)
+	. = ..()
+	breather.adjust_disgust(-breather.disgust) // Clear it out when you clear out.
