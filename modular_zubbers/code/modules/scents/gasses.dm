@@ -8,7 +8,7 @@
 	specific_heat = 20
 	name = "strange scent"
 	gas_overlay = "water_vapor_old"
-	moles_visible = MOLES_GAS_VISIBLE / 4
+	moles_visible = MOLES_GAS_VISIBLE / 2
 	fusion_power = 0
 	dangerous = FALSE
 	rarity = 0
