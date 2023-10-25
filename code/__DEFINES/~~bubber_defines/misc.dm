@@ -1,2 +1,2 @@
-//Automatic punctuation
-#define ENDING_PUNCT list(".", "-","?", "!","~", "+", "|", "_")
+GLOBAL_DATUM_INIT(has_eol_punctuation, /regex, regex(@"^[^\*].[^.!?~\+\|\_]+$"))
+//Auto punctuation global datum

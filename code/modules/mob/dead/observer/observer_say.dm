@@ -25,7 +25,7 @@
 		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
 		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
 	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
-	if(!(copytext_char(message, -1) in ENDING_PUNCT))
+	if(findtext(message, GLOB.has_eol_punctuation))
 		message += "."
 	//BUBBER EDIT END: AUTOPUNCTUATION
 
