@@ -56,7 +56,7 @@
 #define BLOB_RESOURCE_GATHER_AMOUNT 1 // The amount of points added to the overmind
 
 #define BLOB_REGULAR_MAX_HP 25
-#define BLOB_REGULAR_HP_INIT 5 // The starting HP of a normal blob tile BUBBERSTATION CHANMGE: 24 TO 5.
+#define BLOB_REGULAR_HP_INIT 10 // The starting HP of a normal blob tile BUBBERSTATION CHANMGE: 24 TO 10.
 #define BLOB_REGULAR_HP_REGEN 1 // Health regenerated when pulsed by a node/core
 
 #define BLOB_STRONG_MAX_HP 150
@@ -84,7 +84,7 @@
 
 #define BLOB_POWER_RELOCATE_COST 100 // Resource cost to move your core to a different node BUBBERSTATION CHANGE: 80 TO 100.
 #define BLOB_POWER_REROLL_COST 50 // Strain reroll. BUBBERSTATION CHANGE: 40 TO 50.
-#define BLOB_POWER_REROLL_FREE_TIME (600 MINUTES) // Gain a free strain reroll every x minutes BUBBERSTATION CHANGE:4 TO 600 MINUTES (PRETTY MUCH DISABLED).
+#define BLOB_POWER_REROLL_FREE_TIME (6 MINUTES) // Gain a free strain reroll every x minutes
 #define BLOB_POWER_REROLL_CHOICES 6 // Possibilities to choose from; keep in mind increasing this might fuck with the radial menu
 
 
