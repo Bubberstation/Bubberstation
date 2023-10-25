@@ -10,9 +10,10 @@
 
 /obj/item/implant/explosive/anti_theft/timed_explosion()
 
-	imp_in.visible_message(span_warning("[imp_in] starts vibrating ominously!"))
-	imp_in.Shake(pixelshiftx = 0.5, pixelshifty = 0.5, delay)
-	imp_in.Paralyze(delay*4) //Just in case...
+	if(active)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(explode)), delay)
 
 	notify_ghosts(
 		"[imp_in] is about to detonate their explosive implant!",
@@ -25,9 +26,11 @@
 	)
 
 	var/turf/T = get_turf(imp_in)
-	playsound(T, 'modular_zubbers/sound/misc/bomb_implant_countdown.ogg', 50, FALSE, extra_range = 3 + explosion_light + explosion_heavy + explosion_devastate)
+	playsound(T, 'modular_zubbers/sound/misc/bomb_implant_countdown.ogg', 100, FALSE)
+	imp_in.visible_message(span_warning("[imp_in] starts vibrating ominously!"))
+	imp_in.Paralyze(delay*4) //Just in case...
+	imp_in.Shake(pixelshiftx = 0.5, pixelshifty = 0.5, duration = delay)
 
-	addtimer(CALLBACK(src, PROC_REF(explode)), delay)
 
 /obj/item/implant/explosive/anti_theft/explode()
 	explosion(src, devastation_range = explosion_devastate, heavy_impact_range = explosion_heavy, light_impact_range = explosion_light, flame_range = explosion_light, flash_range = explosion_light, explosion_cause = src)
@@ -39,15 +42,16 @@
 
 /obj/item/implant/explosive/anti_theft/removed(mob/living/source, silent = FALSE, special = FALSE)
 
-	. = ..()
-
-	if(source && !special)
+	if(source && !special && !QDELETED(src))
 		var/turf/boomturf = get_turf(source)
 		if(boomturf)
 			message_admins("[ADMIN_LOOKUPFLW(source)] automatically activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of attempted implant removal.")
+			active = TRUE
 			explode()
 			if(!QDELETED(source))
 				source.gib(TRUE, TRUE, TRUE)
+
+	. = ..()
 
 /obj/item/implanter/anti_theft
 	name = "implanter (explosive anti-theft)"
