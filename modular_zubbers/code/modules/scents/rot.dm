@@ -23,3 +23,6 @@
 
 #undef ROT_MOLES
 
+/turf/open/floor/engine/putrizine
+	name = "\improper Putriscine floor"
+	initial_gas_mix = GAS_PUTRESCINE + "=22;" + GAS_O2 + "=82;TEMP=293.15"

@@ -191,7 +191,7 @@
 		breath = empty_breath
 
 	// Ensure gas volumes are present.
-	breath.assert_gases(/datum/gas/bz, /datum/gas/carbon_dioxide, /datum/gas/freon, /datum/gas/plasma, /datum/gas/pluoxium, /datum/gas/miasma, /datum/gas/nitrous_oxide, /datum/gas/nitrium, /datum/gas/oxygen)
+	breath.assert_gases(/datum/gas/bz, /datum/gas/carbon_dioxide, /datum/gas/freon, /datum/gas/plasma, /datum/gas/pluoxium, /datum/gas/miasma, /datum/gas/nitrous_oxide, /datum/gas/nitrium, /datum/gas/oxygen, /datum/gas/scent/putrescine, /datum/gas/scent/cadaverine)
 
 	/// The list of gases in the breath.
 	var/list/breath_gases = breath.gases
@@ -237,7 +237,8 @@
 	var/n2o_pp = 0
 	var/nitrium_pp = 0
 	var/miasma_pp = 0
-
+	var/putrescine_pp = 0 // BUBBER EDIT
+	var/cadaverine_pp = 0 // BUBBER EDIT
 	// Check for moles of gas and handle partial pressures / special conditions.
 	if(has_moles)
 		// Breath has more than 0 moles of gas.
@@ -252,6 +253,8 @@
 		miasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/miasma][MOLES])
 		n2o_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/nitrous_oxide][MOLES])
 		nitrium_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/nitrium][MOLES])
+		putrescine_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/scent/putrescine][MOLES]) // BUBBER EDIT
+		cadaverine_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/scent/cadaverine][MOLES]) // BUBBER EDIT
 
 	// Breath has 0 moles of gas.
 	else if(can_breathe_vacuum)
@@ -416,7 +419,12 @@
 			need_mob_update += adjustToxLoss(nitrium_pp * 0.05, updating_health = FALSE)
 		if(need_mob_update)
 			updatehealth()
-
+	// BUBBER EDIT GASSES BEGIN //
+	if(putrescine_pp >= 0.8)
+	//	breath_gases[/datum/gas/scent/putrescine][MOLES] = 0.1
+	// Metabolize to reagent.
+		reagents.add_reagent(/datum/reagent/putrescine, 0.3)
+	// BUBBER EDIT GASSES END //
 	// Handle chemical euphoria mood event, caused by N2O.
 	if (n2o_euphoria == EUPHORIA_ACTIVE)
 		add_mood_event("chemical_euphoria", /datum/mood_event/chemical_euphoria)
