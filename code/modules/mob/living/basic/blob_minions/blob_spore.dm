@@ -65,7 +65,7 @@
 /// Variant of the blob spore which is actually spawned by blob factories
 /mob/living/basic/blob_minion/spore/minion
 	gold_core_spawnable = NO_SPAWN
-	zombie_type = /mob/living/basic/blob_minion/zombie/controlled
+	// zombie_type = /mob/living/basic/blob_minion/zombie/controlled BUBBERSTATION CHANGE: NO GHOST CONTROL.
 	/// We die if we leave the same turf as this z level
 	var/turf/z_turf
 
