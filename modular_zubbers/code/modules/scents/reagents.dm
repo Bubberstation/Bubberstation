@@ -12,7 +12,7 @@
 	if(prob(0.1))
 		to_chat(breather, "You smell something horrible!")
 		breather.emote("sniff")
-	breather.adjust_disgust(0.5)
+	breather.adjust_disgust(25)
 	if(breather.disgust >= DISGUST_LEVEL_GROSS && SPT_PROB(50, seconds_per_tick))
 		to_chat(breather, span_userdanger("The awful smell is searing your senses!"))
 
