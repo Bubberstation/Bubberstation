@@ -155,7 +155,7 @@
 		return ..()
 
 	var/mob/living/carbon/dropped_mob = dropped_atom
-	if(!dropped_mob.mobility_flags & MOBILITY_MOVE)
+	if(!(dropped_mob.mobility_flags & MOBILITY_MOVE))
 		return
 
 	user.visible_message(

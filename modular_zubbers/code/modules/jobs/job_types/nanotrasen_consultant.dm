@@ -8,7 +8,6 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
 		/obj/item/gun/energy/e_gun = 1,
-		)
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	req_access = list()
