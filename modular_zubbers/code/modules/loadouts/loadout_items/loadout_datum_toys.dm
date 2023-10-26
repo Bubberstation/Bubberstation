@@ -11,3 +11,8 @@
 /datum/loadout_item/toys/bigdeer_plush
 	name = "Big Deer Plushie"
 	item_path = /obj/item/toy/plush/bigdeer_plush	//Donor item for Gavla
+
+/datum/loadout_item/toys/nobl_plush
+	name = "Fluffy Skog plushie"
+	item_path = /obj/item/toy/plush/nobl
+	ckey_whitelist = list(nobledreameater)
