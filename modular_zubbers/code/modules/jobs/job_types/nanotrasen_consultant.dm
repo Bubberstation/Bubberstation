@@ -5,9 +5,9 @@
 //Making the NT consultant Command, not Central Command.
 /datum/outfit/job/nanotrasen_consultant
 	id = /obj/item/card/id/advanced/silver
+	suit_store = /obj/item/gun/energy/e_gun
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
-		/obj/item/gun/energy/e_gun = 1,
 		)
 //Makes it so the NTRep only has an e_gun forevermore
 
