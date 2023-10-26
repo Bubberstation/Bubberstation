@@ -123,7 +123,6 @@
 		/obj/structure/closet/preopen = 1000,
 		/obj/structure/rack = 1000,
 		/obj/structure/rack/shelf = 200,
-		/obj/structure/rack/shelf/wooden = 100,
 		/obj/structure/safe = 50,
 		/obj/structure/safe/floor = 10,
 

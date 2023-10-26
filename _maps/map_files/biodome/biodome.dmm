@@ -5391,7 +5391,7 @@
 "bRw" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/industrial_lift/public,
-/obj/effect/landmark/lift_id{
+/obj/effect/landmark/transport/transport_id{
 	specific_lift_id = "biodome_medbay_lift"
 	},
 /obj/effect/landmark/start/medical_doctor,
@@ -6997,7 +6997,7 @@
 /turf/open/floor/plating/rust,
 /area/station/cargo/miningdock)
 "cvh" = (
-/mob/living/simple_animal/hostile/asteroid/ice_demon,
+/mob/living/basic/mining/ice_demon,
 /turf/open/misc/ice/icemoon/no_planet_atmos,
 /area/station/asteroid)
 "cvk" = (
@@ -12906,7 +12906,7 @@
 "exQ" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/industrial_lift/public,
-/obj/effect/landmark/lift_id{
+/obj/effect/landmark/transport/transport_id{
 	specific_lift_id = "biodome_science_lift"
 	},
 /obj/structure/railing{
@@ -16777,7 +16777,7 @@
 /turf/open/space/basic,
 /area/space)
 "fNp" = (
-/mob/living/simple_animal/hostile/retaliate/goat{
+/mob/living/basic/goat{
 	atmos_requirements = list("min_oxy"=1,"max_oxy"=0,"min_plas"=0,"max_plas"=1,"min_co2"=0,"max_co2"=5,"min_n2"=0,"max_n2"=0);
 	desc = "Not known for their pleasant disposition. This one seems a bit more hardy to the cold.";
 	minbodytemp = 150;
@@ -18855,10 +18855,10 @@
 /obj/structure/industrial_lift/tram{
 	icon_state = "titanium"
 	},
-/obj/effect/landmark/tram/platform/boat/aft,
+/obj/effect/landmark/transport/nav_beacon/tram/platform/boat/aft,
 /obj/machinery/computer/tram_controls/boat,
 /obj/structure/table/wood/fancy/black,
-/obj/effect/landmark/tram/nav/boat/main,
+/obj/effect/landmark/transport/nav_beacon/tram/nav/boat/main,
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
 "gxh" = (
@@ -24322,7 +24322,7 @@
 /turf/open/floor/wood/large,
 /area/station/service/kitchen/diner)
 "izf" = (
-/obj/effect/landmark/tram/platform/boat/fore,
+/obj/effect/landmark/transport/nav_beacon/tram/platform/boat/fore,
 /turf/open/water/jungle/biodome,
 /area/station/biodome/fore)
 "izy" = (
@@ -25493,7 +25493,7 @@
 	},
 /area/station/command/heads_quarters/cmo)
 "iXz" = (
-/obj/effect/landmark/tram/platform/boat/middle,
+/obj/effect/landmark/transport/nav_beacon/tram/platform/boat/middle,
 /turf/open/water/jungle/biodome,
 /area/station/biodome)
 "iXJ" = (
@@ -29822,7 +29822,7 @@
 "kvo" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/industrial_lift/public,
-/obj/effect/landmark/lift_id{
+/obj/effect/landmark/transport/transport_id{
 	specific_lift_id = "biodome_engie_lift"
 	},
 /obj/machinery/elevator_control_panel/directional/north{
@@ -37749,7 +37749,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "nbb" = (
-/mob/living/simple_animal/sloth/paperwork,
+/mob/living/basic/sloth/paperwork,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "nbg" = (
@@ -53120,7 +53120,7 @@
 "son" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/industrial_lift/public,
-/obj/effect/landmark/lift_id{
+/obj/effect/landmark/transport/transport_id{
 	specific_lift_id = "biodome_brig_lift"
 	},
 /obj/machinery/elevator_control_panel/directional/north{
@@ -65513,7 +65513,7 @@
 	icon_state = "titanium"
 	},
 /obj/structure/chair/comfy/shuttle,
-/obj/effect/landmark/lift_id/boat,
+/obj/effect/landmark/transport/transport_id/boat,
 /turf/open/water/jungle/biodome,
 /area/station/biodome/aft)
 "wEe" = (

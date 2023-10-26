@@ -3,50 +3,50 @@
 #define TRAM_BOAT_CENTRAL "tram_boat_central"
 #define TRAM_BOAT_AFT "tram_boat_aft"
 
-/obj/effect/landmark/lift_id/boat
-	specific_lift_id = TRAM_BOAT
+/obj/effect/landmark/transport/transport_id/boat
+	specific_transport_id = TRAM_BOAT
 
 
-/obj/effect/landmark/tram/nav/boat/main
+/obj/effect/landmark/transport/nav_beacon/tram/nav/boat/main
 	name = TRAM_BOAT
-	specific_lift_id = TRAM_NAV_BEACONS
+	specific_transport_id = TRAM_NAV_BEACONS
 	dir = NORTH
 
 /obj/machinery/computer/tram_controls/boat
 	name = "Pleasure Boat Controls"
 	icon = 'modular_zubbers/icons/obj/computer.dmi'
 	icon_screen = "tram_Aft Boat Dock_idle"
-	specific_lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 
-/obj/effect/landmark/tram/platform/boat/fore
+/obj/effect/landmark/transport/nav_beacon/tram/platform/boat/fore
 	name = "Fore Boat Dock"
-	specific_lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 	platform_code = TRAM_BOAT_FORE
 	tgui_icons = list("Departures" = "plane-departure", "Science" = "flask")
 
-/obj/effect/landmark/tram/platform/boat/middle
+/obj/effect/landmark/transport/nav_beacon/tram/platform/boat/middle
 	name = "Central Boat Dock"
-	specific_lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 	platform_code = TRAM_BOAT_CENTRAL
 	tgui_icons = list("Cargo" = "box")
 
-/obj/effect/landmark/tram/platform/boat/aft
+/obj/effect/landmark/transport/nav_beacon/tram/platform/boat/aft
 	name = "Aft Boat Dock"
-	specific_lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 	platform_code = TRAM_BOAT_AFT
 	tgui_icons = list("Command" = "bullhorn")
 
-/obj/machinery/button/tram/boat/fore
+/obj/machinery/button/transport/tram/boat/fore
 	id = TRAM_BOAT_FORE
-	lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 
-/obj/machinery/button/tram/boat/middle
+/obj/machinery/button/transport/tram/boat/middle
 	id = TRAM_BOAT_CENTRAL
-	lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 
-/obj/machinery/button/tram/boat/aft
+/obj/machinery/button/transport/tram/boat/aft
 	id = TRAM_BOAT_AFT
-	lift_id = TRAM_BOAT
+	specific_transport_id = TRAM_BOAT
 
 #undef TRAM_BOAT
 #undef TRAM_BOAT_AFT
