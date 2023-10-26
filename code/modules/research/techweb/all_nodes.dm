@@ -2231,9 +2231,11 @@
 		"donksoft_refill",
 		"donksofttoyvendor",
 		"largecrossbow",
+		/* BUBBERSTATION CHANGE START: REMOVES AUTORIFLE DESIGNS.
 		"mag_autorifle",
 		"mag_autorifle_ap",
 		"mag_autorifle_ic",
+		BUBBERSTATION CHANGE END. */
 		"rapidsyringe",
 		"suppressor",
 		"super_pointy_tape",
