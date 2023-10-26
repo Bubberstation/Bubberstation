@@ -7,7 +7,7 @@
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	fire_delay = 3
-	//20 damage per 0.3 seconds = 66 DPS
+	//18 damage per 0.3 seconds = 60 DPS
 	//Reference: Laser Gun 22 damage per 0.4 seconds = 55DPS
 
 /obj/item/gun/ballistic/automatic/wt550/security/flathead //What you get in the armory.
@@ -20,7 +20,7 @@
 /obj/projectile/bullet/c46x30mm/flathead
 	name = "4.6x30mm flathead bullet"
 
-	damage = 20
+	damage = 18
 	stamina = 5 //Knocks the wind out of you.
 
 	wound_bonus = -100 //Cannot wound.
