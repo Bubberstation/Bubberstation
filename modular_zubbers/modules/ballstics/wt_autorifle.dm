@@ -23,9 +23,8 @@
 	damage = 18
 	stamina = 5 //Knocks the wind out of you.
 
-	wound_bonus = -100 //Cannot wound.
-	bare_wound_bonus = 0
-	embed_falloff_tile = -4
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = CANT_WOUND
 
 	weak_against_armour = TRUE
 	sharpness = NONE
@@ -37,9 +36,8 @@
 	damage = 5
 	stamina = 15
 
-	wound_bonus = -100 //Cannot wound.
-	bare_wound_bonus = 0
-	embed_falloff_tile = -4
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = CANT_WOUND
 
 	weak_against_armour = TRUE
 	sharpness = NONE
