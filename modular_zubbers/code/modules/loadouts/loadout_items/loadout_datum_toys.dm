@@ -15,4 +15,4 @@
 /datum/loadout_item/toys/nobl_plush
 	name = "Fluffy Skog plushie"
 	item_path = /obj/item/toy/plush/nobl
-	ckeywhitelist = list(nobledreameater)
+	ckeywhitelist = list("nobledreameater")
