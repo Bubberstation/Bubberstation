@@ -98,21 +98,45 @@ SUBSYSTEM_DEF(jukeboxes)
 			stack_trace("Nonexistant or invalid object associated with jukebox.")
 			continue
 		var/sound/song_played = sound(juketrack.song_path)
-		var/turf/currentturf = get_turf(jukebox)
+		// var/turf/currentturf = get_turf(jukebox) //BUBBERSTATION CHANGE, CUSTOM FALLOFF
 
-		song_played.falloff = jukeinfo[4]
+		song_played.falloff = 255 //BUBBERSTATION CHANGE, CUSTOM FALLOFF
 
 		for(var/mob/M in GLOB.player_list)
 			if(!HAS_JUKEBOX_PREF(M))
 				M.stop_sound_channel(jukeinfo[2])
 				continue
 
+			var/volume = jukebox.volume //BUBBERSTATION CHANGE, CUSTOM FALLOFF
+
 			if(jukebox.z == M.z)	//todo - expand this to work with mining planet z-levels when robust jukebox audio gets merged to master
 				song_played.status = SOUND_UPDATE
+				//BUBBERSTATION CHANGE START, CUSTOM FALLOFF
+				//https://www.desmos.com/calculator/ybto1dyqzk
+				if(jukeinfo[4]) //HAS FALLOFF
+					var/distance = get_dist(M,jukebox)
+					volume = min(
+						50,
+						volume,
+						volume * ((max(1,volume*0.1 + 20 - distance)/80)**0.2 - (distance/100))
+					)
+					volume = round(volume,1)
+					if(volume < jukebox.volume*0.5)
+						var/volume_mod = 1 - (volume / 50)
+						song_played.x = clamp(jukebox.x - M.x,-1,1) * volume_mod * 4
+						song_played.y = clamp(jukebox.y - M.y,-1,1) * volume_mod * 4
+						song_played.z = 1
+					else
+						song_played.x = 0
+						song_played.y = 0
+						song_played.z = 1
+
+				if(volume < 1)
+					song_played.status |= SOUND_MUTE
+				//BUBBERSTATION CHANGE END, CUSTOM FALLOFF
 			else
 				song_played.status = SOUND_MUTE | SOUND_UPDATE	//Setting volume = 0 doesn't let the sound properties update at all, which is lame.
-
-			M.playsound_local(currentturf, null, jukebox.volume, channel = jukeinfo[2], sound_to_use = song_played)
+			M.playsound_local(null, null, volume, channel = jukeinfo[2], sound_to_use = song_played) //BUBBERSTATION CHANGE, CUSTOM FALLOFF.
 			CHECK_TICK
 	return
 

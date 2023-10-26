@@ -274,10 +274,10 @@
 	icon_state = "fir36"
 	actions_types = list(/datum/action/item_action/adjust)
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS //same flags as actual sec hailer gas mask
-	flags_inv = HIDEFACE | HIDESNOUT
+	flags_inv = HIDESNOUT // | HIDEFACE // bubber edit, makes no sense to block the whole face if it's blocking only half of it, right?
 	flags_cover = NONE
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags_inv = HIDEFACE | HIDESNOUT
+	visor_flags_inv = HIDESNOUT // | HIDEFACE // bubber edit
 	w_class = WEIGHT_CLASS_SMALL
 	tint = 0
 
@@ -936,7 +936,8 @@
 
 /obj/item/clothing/glasses/welding/steampunk_goggles/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(!istype(attacking_item, /obj/item/clothing/glasses/welding))
-		..()
+		return ..()
+
 	if(welding_upgraded)
 		to_chat(user, span_warning("\The [src] was already upgraded to have welding protection!"))
 		return
@@ -1646,3 +1647,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 		)
 	)
 
+// Donation reward for grasshand
+/obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble
+	name = "noble gambeson"
+	desc = "These clothes make you feel a little closer to space."
+
+/obj/item/clothing/shoes/jackboots/noble
+	name = "noble boots"
+	desc = "These boots make you feel like you can walk on space."
+	icon_state = "archerboots"
+	inhand_icon_state = "archerboots"
