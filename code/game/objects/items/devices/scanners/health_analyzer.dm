@@ -195,8 +195,12 @@
 						trauma_desc += "deep-rooted "
 					if(TRAUMA_RESILIENCE_WOUND)
 						trauma_desc += "fracture-derived "
-					if(TRAUMA_RESILIENCE_MAGIC, TRAUMA_RESILIENCE_ABSOLUTE)
+					//BUBBERSTATION CHANGE START: MAGIC TRAUMAS NOW CURABLE.
+					if(TRAUMA_RESILIENCE_MAGIC)
+						trauma_desc += "immutable "
+					if(TRAUMA_RESILIENCE_ABSOLUTE)
 						trauma_desc += "permanent "
+					//BUBBERSTATION CHANGE END: MAGIC TRAUMAS NOW CURABLE.
 				trauma_desc += trauma.scan_desc
 				trauma_text += trauma_desc
 			render_list += "<span class='alert ml-1'>Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)].</span>\n"
@@ -513,7 +517,7 @@
 #define AID_EMOTION_SAD "sad"
 
 /// Displays wounds with extended information on their status vs medscanners
-/proc/woundscan(mob/user, mob/living/carbon/patient, obj/item/healthanalyzer/scanner)
+/proc/woundscan(mob/user, mob/living/carbon/patient, obj/item/healthanalyzer/scanner, simple_scan = FALSE)
 	if(!istype(patient) || user.incapacitated())
 		return
 
@@ -524,7 +528,7 @@
 		render_list += "<span class='alert ml-1'><b>Warning: Physical trauma[LAZYLEN(wounded_part.wounds) > 1? "s" : ""] detected in [wounded_part.name]</b>"
 		for(var/limb_wound in wounded_part.wounds)
 			var/datum/wound/current_wound = limb_wound
-			render_list += "<div class='ml-2'>[current_wound.get_scanner_description()]</div>\n"
+			render_list += "<div class='ml-2'>[simple_scan ? current_wound.get_simple_scanner_description() : current_wound.get_scanner_description()]</div>\n"
 			if (scanner.give_wound_treatment_bonus)
 				ADD_TRAIT(current_wound, TRAIT_WOUND_SCANNED, ANALYZER_TRAIT)
 				if(!advised)
@@ -532,11 +536,9 @@
 					advised = TRUE
 		render_list += "</span>"
 
-	var/obj/item/healthanalyzer/simple/simple_scanner
-	if(istype(scanner, /obj/item/healthanalyzer/simple))
-		simple_scanner = scanner
 	if(render_list == "")
-		if (simple_scanner)
+		if(simple_scan)
+			var/obj/item/healthanalyzer/simple/simple_scanner = scanner
 			// Only emit the cheerful scanner message if this scan came from a scanner
 			playsound(simple_scanner, 'sound/machines/ping.ogg', 50, FALSE)
 			to_chat(user, span_notice("\The [simple_scanner] makes a happy ping and briefly displays a smiley face with several exclamation points! It's really excited to report that [patient] has no wounds!"))
@@ -544,7 +546,8 @@
 		to_chat(user, "<span class='notice ml-1'>No wounds detected in subject.</span>")
 	else
 		to_chat(user, examine_block(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
-		if (simple_scanner)
+		if(simple_scan)
+			var/obj/item/healthanalyzer/simple/simple_scanner = scanner
 			simple_scanner.show_emotion(AID_EMOTION_WARN)
 			playsound(simple_scanner, 'sound/machines/twobeep.ogg', 50, FALSE)
 
@@ -604,7 +607,7 @@
 		show_emotion(AI_EMOTION_SAD)
 		return
 
-	woundscan(user, patient, src)
+	woundscan(user, patient, src, simple_scan = TRUE)
 	flick(icon_state + "_pinprick", src)
 
 /obj/item/healthanalyzer/simple/update_overlays()

@@ -19,6 +19,8 @@
 		// BUBBER EDIT ADDITION START
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\LimaStation\LimaStation.dmm"
+		#include "map_files\burgerstation\burgerstation.dmm"
+		#include "map_files\KiloStation\KiloStation.dmm"
 		// BUBBER EDIT ADDITION END
 
 		#ifdef CIBUILDING

@@ -66,7 +66,8 @@
 	cost = 1
 	surplus = 20
 
-/datum/uplink_item/device_tools/briefcase_launchpad
+/* // SKYRAT EDIT REMOVAL
+/datum/uplink_item/device_tools/briefcase_launchpad 
 	name = "Briefcase Launchpad"
 	desc = "A briefcase containing a launchpad, a device able to teleport items and people to and from targets up to eight tiles away from the briefcase. \
 			Also includes a remote control, disguised as an ordinary folder. Touch the briefcase with the remote to link it."
@@ -82,6 +83,7 @@
 			Comes with 4 charges, recharges randomly. Warranty null and void if exposed to an electromagnetic pulse."
 	item = /obj/item/storage/box/syndie_kit/syndicate_teleporter
 	cost = 8
+*/ //END SKYRAT EDIT
 
 /datum/uplink_item/device_tools/camera_app
 	name = "SyndEye Program"
@@ -263,3 +265,9 @@
 			bright lights. Effective, affordable, and nigh undetectable."
 	item = /obj/item/syndicate_contacts
 	cost = 3
+
+/datum/uplink_item/device_tools/syndicate_climbing_hook
+	name = "Syndicate Climbing Hook"
+	desc = "High-tech rope, a refined hook structure, the peak of climbing technology. Only useful for climbing up holes, provided the operation site has any."
+	item = /obj/item/climbing_hook/syndicate
+	cost = 1
