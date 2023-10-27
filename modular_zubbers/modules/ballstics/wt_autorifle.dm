@@ -112,39 +112,22 @@
 
 //RESEARCHING: TECHWEBS
 
-/datum/techweb_node/wt550_ammo
-	id = "wt550_ammo"
-	display_name = "Basic WT-550/WT-551 Ammunition"
-	description = "They won't know what hit em."
-	prereq_ids = list("weaponry")
-	design_ids = list(
-		"wt550_ammo_rubber",
-		"wt550_ammo_flathead"
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+/datum/techweb_node/weaponry/New()
+	design_ids += "wt550_ammo_rubber"
+	design_ids += "wt550_ammo_flathead"
+	. = ..()
 
-/datum/techweb_node/wt550_ammo_advanced
-	id = "wt550_ammo_advanced"
-	display_name = "Advanced WT-550/WT-551 Ammunition"
-	description = "They'll really won't know what hit em."
-	prereq_ids = list("adv_weaponry","wt550_ammo")
-	design_ids = list(
-		"wt550_ammo_normal",
-		"wt550_ammo_ap"
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+/datum/techweb_node/adv_weaponry/New()
+	design_ids += "wt550_ammo_normal"
+	. = ..()
 
+/datum/techweb_node/exotic_ammo/New()
+	design_ids += "wt550_ammo_ap"
+	. = ..()
 
-/datum/techweb_node/wt550_ammo_exotic
-	id = "wt550_ammo_exotic"
-	display_name = "Illegal WT-550/WT-551 Ammunition"
-	description = "They'll REALLY won't know what hit em. Or they will, because they'll be on fire and likely reporting that warcrime to the government in your sector."
-	prereq_ids = list("exotic_ammo","syndicate_basic","wt550_ammo_advanced")
-	design_ids = list(
-		"wt550_ammo_incendiary"
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
-
+/datum/techweb_node/syndicate_basic/New()
+	design_ids += "wt550_ammo_incendiary"
+	. = ..()
 
 //RESEARCHING: DESGINS
 
