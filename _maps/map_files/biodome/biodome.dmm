@@ -3040,6 +3040,12 @@
 	},
 /turf/open/floor/circuit/green,
 /area/station/ai_monitored/turret_protected/ai_upload)
+"baq" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome)
 "bau" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5392,7 +5398,6 @@
 "bRw" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/landmark/transport/transport_id{
-	specific_lift_id = "biodome_medbay_lift";
 	specific_transport_id = "biodome_medbay_lift"
 	},
 /obj/effect/landmark/start/medical_doctor,
@@ -11976,10 +11981,7 @@
 /turf/open/openspace,
 /area/station/biodome/aft)
 "eer" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/flare/candle/infinite{
-	pixel_y = 5
-	},
+/obj/structure/chair/comfy/black,
 /turf/open/floor/wood/large,
 /area/station/biodome)
 "eeu" = (
@@ -12913,7 +12915,6 @@
 "exQ" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/landmark/transport/transport_id{
-	specific_lift_id = "biodome_science_lift";
 	specific_transport_id = "biodome_science_lift"
 	},
 /obj/structure/railing{
@@ -13214,16 +13215,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/station/biodome/fore)
-"eDH" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/railing/wooden_fencing{
-	dir = 8
-	},
-/obj/structure/chair/comfy/black,
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "eDM" = (
 /obj/structure/chess/blackknight,
 /obj/effect/turf_decal/tile/blue/fourcorners,
@@ -18862,11 +18853,12 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/station/biodome)
 "gwS" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle/infinite{
+	pixel_y = 5
 	},
 /turf/open/floor/wood/large,
-/area/station/biodome/fore)
+/area/station/biodome)
 "gxh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -21744,6 +21736,9 @@
 	},
 /turf/open/floor/iron,
 /area/station/commons/fitness)
+"hDB" = (
+/turf/open/floor/wood/large,
+/area/station/biodome)
 "hDE" = (
 /obj/machinery/atmospherics/components/tank/oxygen,
 /obj/effect/turf_decal/stripes/line{
@@ -24335,18 +24330,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/kitchen/diner)
-"izf" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/railing/wooden_fencing{
-	dir = 8
-	},
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "izy" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 8
@@ -26898,10 +26881,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/stone,
 /area/station/hallway/primary/central/aft)
-"jxb" = (
-/obj/structure/chair/comfy/black,
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "jxg" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -29830,7 +29809,6 @@
 "kvo" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/landmark/transport/transport_id{
-	specific_lift_id = "biodome_engie_lift";
 	specific_transport_id = "biodome_engie_lift"
 	},
 /obj/machinery/elevator_control_panel/directional/north{
@@ -45074,6 +45052,19 @@
 "pAJ" = (
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
+"pAM" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle/infinite{
+	pixel_y = 5
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome)
 "pAP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -47428,9 +47419,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/black,
 /area/station/security/prison)
-"qsh" = (
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "qsv" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark,
@@ -53118,7 +53106,6 @@
 "son" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/landmark/transport/transport_id{
-	specific_lift_id = "biodome_brig_lift";
 	specific_transport_id = "biodome_brig_lift"
 	},
 /obj/machinery/elevator_control_panel/directional/north{
@@ -53794,9 +53781,13 @@
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central)
 "sBb" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/obj/structure/chair/comfy/black,
 /turf/open/floor/wood/large,
 /area/station/biodome)
 "sBf" = (
@@ -65501,6 +65492,12 @@
 	},
 /turf/open/floor/grass,
 /area/station/science/genetics)
+"wEd" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/fore)
 "wEe" = (
 /obj/structure/cable,
 /obj/machinery/power/port_gen/pacman,
@@ -65618,9 +65615,8 @@
 /obj/structure/railing/wooden_fencing{
 	dir = 8
 	},
-/obj/structure/table/wood,
-/obj/item/flashlight/flare/candle/infinite{
-	pixel_y = 5
+/obj/structure/chair/comfy/black{
+	dir = 1
 	},
 /turf/open/floor/wood/large,
 /area/station/biodome)
@@ -111332,7 +111328,7 @@ aLk
 aLk
 rXb
 gQD
-gwS
+wEd
 jqr
 jqr
 jqr
@@ -111348,9 +111344,9 @@ qvR
 qvR
 qvR
 qvR
-eDH
+sBb
+pAM
 wFQ
-izf
 qvR
 qvR
 mZn
@@ -111595,21 +111591,21 @@ gQD
 gQD
 vmG
 gQD
-qsh
-qsh
+hDB
+hDB
 qGM
-jxb
 eer
-sBb
+gwS
+baq
 qzf
-qsh
-qsh
-qsh
-qsh
-qsh
-qsh
-qsh
-qsh
+hDB
+hDB
+hDB
+hDB
+hDB
+hDB
+hDB
+hDB
 vZE
 fyH
 pzk
