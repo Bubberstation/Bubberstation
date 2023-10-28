@@ -40,6 +40,7 @@
 		overlay_x = 15, \
 		overlay_y = 10)
 
+/* BUBBERSTATION REMOVAL START - Hell to the fuck no
 /obj/item/gun/energy/disabler/smg
 	name = "disabler smg"
 	desc = "An automatic disabler variant, as opposed to the conventional model, boasts a higher ammunition capacity at the cost of slightly reduced beam effectiveness."
@@ -59,6 +60,7 @@
 		overlay_x = 15, \
 		overlay_y = 13, \
 	)
+BUBBERSTATION REMOVAL END*/
 
 /obj/item/gun/energy/disabler/cyborg
 	name = "cyborg disabler"

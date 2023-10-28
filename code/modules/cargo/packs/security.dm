@@ -233,6 +233,7 @@
 	crate_name = "laser carbine crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
+/* BUBBERSTATION REMOVAL START - Hell to the fuck no
 /datum/supply_pack/security/armory/disabler_smg
 	name = "Disabler SMG Crate"
 	desc = "Contains three disabler SMGs, capable of rapidly firing weak disabler beams."
@@ -240,6 +241,7 @@
 	contains = list(/obj/item/gun/energy/disabler/smg = 3)
 	crate_name = "disabler smg crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
+BUBBERSTATION REMOVAL END */
 
 /datum/supply_pack/security/armory/exileimp
 	name = "Exile Implants Crate"
