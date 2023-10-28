@@ -10729,9 +10729,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/biodome/fore)
-"dIH" = (
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "dIN" = (
 /turf/open/misc/asteroid,
 /area/station/maintenance/port/central)
@@ -11979,8 +11976,9 @@
 /turf/open/openspace,
 /area/station/biodome/aft)
 "eer" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle/infinite{
+	pixel_y = 5
 	},
 /turf/open/floor/wood/large,
 /area/station/biodome)
@@ -13223,9 +13221,7 @@
 /obj/structure/railing/wooden_fencing{
 	dir = 8
 	},
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
+/obj/structure/chair/comfy/black,
 /turf/open/floor/wood/large,
 /area/station/biodome)
 "eDM" = (
@@ -18866,15 +18862,11 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/station/biodome)
 "gwS" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
-/obj/structure/railing/wooden_fencing{
-	dir = 8
-	},
-/obj/structure/chair/comfy/black,
 /turf/open/floor/wood/large,
-/area/station/biodome)
+/area/station/biodome/fore)
 "gxh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -24343,6 +24335,18 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/kitchen/diner)
+"izf" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome)
 "izy" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 8
@@ -25510,12 +25514,6 @@
 	dir = 8
 	},
 /area/station/command/heads_quarters/cmo)
-"iXz" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood/large,
-/area/station/biodome/fore)
 "iXJ" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron,
@@ -26527,6 +26525,15 @@
 	},
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet)
+"jqr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/fore)
 "jqt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26891,6 +26898,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/stone,
 /area/station/hallway/primary/central/aft)
+"jxb" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/wood/large,
+/area/station/biodome)
 "jxg" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -29823,7 +29834,7 @@
 	specific_transport_id = "biodome_engie_lift"
 	},
 /obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = ss;
+	linked_elevator_id = "biodome_engie_lift";
 	name = "Engineering's Lifts Control Panel";
 	preset_destination_names = list("2"="EngineeringAccess","3"="StorageZone")
 	},
@@ -37663,6 +37674,15 @@
 /obj/machinery/duct,
 /turf/open/floor/plating,
 /area/station/commons/toilet)
+"mZn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing/wooden_fencing{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/station/biodome/aft)
 "mZo" = (
 /obj/machinery/requests_console/directional/east,
 /obj/effect/turf_decal/tile/neutral/full,
@@ -40222,19 +40242,6 @@
 	},
 /turf/open/floor/iron/smooth_half,
 /area/station/security/brig)
-"nQz" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/railing/wooden_fencing{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/flashlight/flare/candle/infinite{
-	pixel_y = 5
-	},
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "nQF" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
@@ -45067,10 +45074,6 @@
 "pAJ" = (
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
-"pAM" = (
-/obj/structure/chair/comfy/black,
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "pAP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -45610,10 +45613,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet,
 /area/station/commons/storage/emergency)
-"pLa" = (
-/obj/machinery/light/warm/directional/east,
-/turf/open/floor/wood/large,
-/area/station/biodome)
 "pLb" = (
 /obj/structure/chair/sofa/bamboo,
 /turf/open/floor/grass,
@@ -47429,6 +47428,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/black,
 /area/station/security/prison)
+"qsh" = (
+/turf/open/floor/wood/large,
+/area/station/biodome)
 "qsv" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark,
@@ -47763,8 +47765,9 @@
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
 "qzf" = (
+/obj/machinery/light/warm/directional/east,
 /turf/open/floor/wood/large,
-/area/station/biodome/aft)
+/area/station/biodome)
 "qzt" = (
 /obj/machinery/light/small/directional/east,
 /obj/structure/sink/directional/west,
@@ -53791,9 +53794,8 @@
 /turf/open/floor/wood/large,
 /area/station/hallway/primary/central)
 "sBb" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/flare/candle/infinite{
-	pixel_y = 5
+/obj/structure/chair/comfy/black{
+	dir = 1
 	},
 /turf/open/floor/wood/large,
 /area/station/biodome)
@@ -63460,12 +63462,6 @@
 /turf/open/openspace,
 /area/station/hallway/primary/starboard)
 "vZE" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/railing/wooden_fencing{
-	dir = 8
-	},
 /turf/open/floor/wood/large,
 /area/station/biodome/aft)
 "vZK" = (
@@ -65622,8 +65618,12 @@
 /obj/structure/railing/wooden_fencing{
 	dir = 8
 	},
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle/infinite{
+	pixel_y = 5
+	},
 /turf/open/floor/wood/large,
-/area/station/biodome/fore)
+/area/station/biodome)
 "wFV" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/iron/dark,
@@ -111074,7 +111074,7 @@ sBz
 aLk
 aLk
 hWZ
-wFQ
+jqr
 etB
 chE
 chE
@@ -111105,7 +111105,7 @@ pnf
 pnf
 pnf
 aZR
-vZE
+mZn
 qxr
 gzQ
 hOi
@@ -111332,37 +111332,37 @@ aLk
 aLk
 rXb
 gQD
-iXz
-wFQ
-wFQ
-wFQ
-wFQ
-wFQ
-qvR
-qvR
-qvR
-qvR
-qvR
-qvR
-qvR
-qvR
-qvR
-qvR
 gwS
-nQz
+jqr
+jqr
+jqr
+jqr
+jqr
+qvR
+qvR
+qvR
+qvR
+qvR
+qvR
+qvR
+qvR
+qvR
+qvR
 eDH
+wFQ
+izf
 qvR
 qvR
+mZn
+mZn
+mZn
+mZn
+mZn
+mZn
+mZn
+mZn
 vZE
 vZE
-vZE
-vZE
-vZE
-vZE
-vZE
-vZE
-qzf
-qzf
 ylP
 eXH
 loN
@@ -111595,30 +111595,30 @@ gQD
 gQD
 vmG
 gQD
-dIH
-dIH
+qsh
+qsh
 qGM
-pAM
-sBb
+jxb
 eer
-pLa
-dIH
-dIH
-dIH
-dIH
-dIH
-dIH
-dIH
-dIH
+sBb
 qzf
+qsh
+qsh
+qsh
+qsh
+qsh
+qsh
+qsh
+qsh
+vZE
 fyH
 pzk
-qzf
-qzf
-qzf
-qzf
-qzf
-qzf
+vZE
+vZE
+vZE
+vZE
+vZE
+vZE
 pzk
 ylP
 jKZ
