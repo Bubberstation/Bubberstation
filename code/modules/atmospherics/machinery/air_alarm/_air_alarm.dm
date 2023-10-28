@@ -287,8 +287,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 				"refID" = REF(vent),
 				"long_name" = sanitize(vent.name),
 				"power" = vent.on,
-				"overclock" = vent.fan_overclocked,
-				"integrity" = vent.get_integrity_percentage(),
 				"checks" = vent.pressure_checks,
 				"excheck" = vent.pressure_checks & ATMOS_EXTERNAL_BOUND,
 				"incheck" = vent.pressure_checks & ATMOS_INTERNAL_BOUND,
@@ -358,14 +356,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			powering.on = !!params["val"]
 			powering.atmos_conditions_changed()
 			powering.update_appearance(UPDATE_ICON)
-
-		if("overclock")
-			if(isnull(vent))
-				return TRUE
-			vent.toggle_overclock()
-			vent.update_appearance(UPDATE_ICON)
-			return TRUE
-
 		if ("direction")
 			if (isnull(vent))
 				return TRUE
