@@ -1,4 +1,6 @@
 //Cyborg
+
+/* //SKYRAT EDIT REMOVAL BEGIN - Costs lowered and time reduced -
 /datum/design/borg_suit
 	name = "Cyborg Endoskeleton"
 	id = "borg_suit"
@@ -75,6 +77,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS
 	)
+*///SKYRAT EDIT REMOVAL END
 
 //Ripley
 /datum/design/ripley_chassis
@@ -1183,7 +1186,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SERVICE
 	)
-	
+
 /datum/design/borg_upgrade_service_apparatus
 	name = "Service Apparatus"
 	id = "borg_upgrade_service_apparatus"
@@ -1211,7 +1214,7 @@
 	id = "borg_upgrade_expand"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/expand
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*100, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5) //bubberstation edit - 100 sheets of iron for one upgrade??
 	construction_time = 120
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ALL
@@ -1262,7 +1265,6 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
 	)
 
-/* //SKYRAT REMOVAL START
 /datum/design/borg_upgrade_pinpointer
 	name = "Crew Pinpointer"
 	id = "borg_upgrade_pinpointer"
@@ -1273,7 +1275,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL
 	)
-*/ //SKYRAT REMOVAL END
 
 /datum/design/borg_upgrade_broomer
 	name = "Experimental Push Broom"

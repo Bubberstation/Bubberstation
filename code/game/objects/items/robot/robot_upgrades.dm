@@ -117,9 +117,9 @@
 	if(.)
 		for(var/obj/item/pickaxe/drill/cyborg/D in R.model)
 			R.model.remove_module(D, TRUE)
-		for(var/obj/item/shovel/S in R.model)
+/*		for(var/obj/item/shovel/S in R.model)
 			R.model.remove_module(S, TRUE)
-
+*/
 		var/obj/item/pickaxe/drill/cyborg/diamond/DD = new /obj/item/pickaxe/drill/cyborg/diamond(R.model)
 		R.model.basic_modules += DD
 		R.model.add_module(DD, FALSE, TRUE)
@@ -504,15 +504,27 @@
 /obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/surgical_processor/SP = new(R.model)
+		var/obj/item/surgical_processor/SP = locate() in R.model.modules // BUBBER EDIT added duiplication prevention
+		if(SP)
+			to_chat(user, span_warning("This unit is already equipped with A Surgical Processor!!"))
+			return FALSE
+
+		SP = new(R.model)
 		R.model.basic_modules += SP
 		R.model.add_module(SP, FALSE, TRUE)
+
+		for(var/obj/item/surgical_drapes/SD in R.model)// BUBBER EDIT Removes Surgical Drapes when processor is installed
+			R.model.remove_module(SD, TRUE)
 
 /obj/item/borg/upgrade/processor/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		var/obj/item/surgical_processor/SP = locate() in R.model
 		R.model.remove_module(SP, TRUE)
+
+		var/obj/item/surgical_drapes/SD = new (R.model) // BUBBER EDIT  Adds Surgical Drapes when Surgical Processor removed
+		R.model.basic_modules += SD
+		R.model.add_module(SD, FALSE, TRUE)
 
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"
@@ -551,14 +563,16 @@
 	if(robot.hasExpanded)
 		to_chat(usr, span_warning("This unit already has an expand module installed!"))
 		return FALSE
-	// SKYRAT EDIT BEGIN
+/*	// SKYRAT EDIT BEGIN - BUBBER EDIT REMOVAL
 	if(robot.model.model_select_icon == "nomod")
 		to_chat(usr, span_warning("Default models cannot take expand or shrink upgrades."))
 		return FALSE
 	if((R_TRAIT_WIDE in robot.model.model_features) || (R_TRAIT_TALL in robot.model.model_features))
 		to_chat(usr, span_warning("This unit's chassis cannot be enlarged any further."))
 		return FALSE
-	// SKYRAT EDIT END
+*/
+	// SKYRAT EDIT END - BUBBER EDIT REMOVAL
+
 
 	ADD_TRAIT(robot, TRAIT_NO_TRANSFORM, REF(src))
 	var/prev_lockcharge = robot.lockcharge
@@ -599,7 +613,7 @@
 	. = ..()
 	if(.)
 
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R
+		var/obj/item/storage/part_replacer/bluespace/RPED = locate() in R.model.modules// BUBBER EDIT changed cyborg to the word bluespace and duplication protection
 		if(RPED)
 			to_chat(user, span_warning("This unit is already equipped with a RPED module!"))
 			return FALSE
@@ -611,7 +625,7 @@
 /obj/item/borg/upgrade/rped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.model
+		var/obj/item/storage/part_replacer/bluespace/RPED = locate() in R.model // BUBBER EDIT changed cyborg to the word bluespace
 		if (RPED)
 			R.model.remove_module(RPED, TRUE)
 
@@ -659,6 +673,7 @@
 
 /datum/action/item_action/crew_monitor
 	name = "Interface With Crew Monitor"
+	button_icon =  "scanner"
 
 /obj/item/borg/upgrade/transform
 	name = "borg model picker (Standard)"

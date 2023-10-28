@@ -87,6 +87,7 @@
 #define ROLE_SERVANT_GOLEM "Servant Golem"
 #define ROLE_SLAUGHTER_DEMON "Slaughter Demon"
 #define ROLE_WIZARD_APPRENTICE "apprentice"
+#define ROLE_SYNDICATE_MONKEY "Syndicate Monkey Agent"
 
 //Spawner roles
 #define ROLE_ANCIENT_CREW "Ancient Crew"
@@ -123,6 +124,7 @@
 #define ROLE_GHOST_CAFE "Ghost Cafe Visitor"
 #define ROLE_PORT_TARKON "Port Tarkon Survivor"
 //SKYRAT EDIT END
+#define ROLE_DAUNTLESS "Dauntless Syndicate" //BUBBERSTATION EDIT
 
 /// This defines the antagonists you can operate with in the settings.
 /// Keys are the antagonist, values are the number of days since the player's

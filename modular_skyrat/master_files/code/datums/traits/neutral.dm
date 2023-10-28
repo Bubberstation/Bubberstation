@@ -241,6 +241,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, drop_if_replaced = FALSE)
 
+/* BUBBER EDIT MOVE BRGIN - MOVED TO NEGATIVE.DM
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
 	desc = "Your face has always been sensitive, and it really hurts when someone pokes it!"
@@ -250,6 +251,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	value = 0
 	mob_trait = TRAIT_SENSITIVESNOUT
 	icon = FA_ICON_FINGERPRINT
+*/ // BUBBER EDIT MOVE END
 
 /datum/quirk/overweight
 	name = "Overweight"

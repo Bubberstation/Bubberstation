@@ -79,6 +79,18 @@
 		icon_harvest = "[species]-harvest"
 
 	if(!nogenes)
+		// START Bubber edit
+		genes += new /datum/plant_gene/core/lifespan(lifespan)
+		genes += new /datum/plant_gene/core/endurance(endurance)
+		genes += new /datum/plant_gene/core/weed_rate(weed_rate)
+		genes += new /datum/plant_gene/core/weed_chance(weed_chance)
+		if(yield != -1)
+			genes += new /datum/plant_gene/core/yield(yield)
+			genes += new /datum/plant_gene/core/production(production)
+		if(potency != -1)
+			genes += new /datum/plant_gene/core/potency(potency)
+			genes += new /datum/plant_gene/core/instability(instability)
+		// END Bubber edit
 		for(var/plant_gene in genes)
 			if(ispath(plant_gene))
 				genes -= plant_gene

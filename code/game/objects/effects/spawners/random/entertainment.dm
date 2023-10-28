@@ -7,9 +7,12 @@
 	desc = "Automagically transforms into a random arcade machine. If you see this while in a shift, please create a bug report."
 	icon_state = "arcade"
 	loot = list(
-		/obj/machinery/computer/arcade/orion_trail = 49,
-		/obj/machinery/computer/arcade/battle = 49,
+		//BUBBER EDIT START
+		/obj/machinery/computer/arcade/orion_trail = 33,
+		/obj/machinery/computer/arcade/battle = 33,
+		/obj/machinery/computer/arcade/minesweeper = 32,
 		/obj/machinery/computer/arcade/amputation = 2,
+		//BUBBER EDIT END
 	)
 
 /obj/effect/spawner/random/entertainment/musical_instrument

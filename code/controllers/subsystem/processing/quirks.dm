@@ -58,7 +58,12 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_points = list() //Assoc. list of quirk names and their "point cost"; positive numbers are good traits, and negative ones are bad
 	///An assoc list of quirks that can be obtained as a hardcore character, and their hardcore value.
 	var/list/hardcore_quirks = list()
-
+	//BUBBER EDIT ADDITION START - Species quirks
+	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
+	var/static/list/quirk_species_whitelist = list(
+		list("Hydrophilic", "[SPECIES_SLIMESTART]")
+	)
+	//BUBBER EDIT ADDITION END
 /datum/controller/subsystem/processing/quirks/Initialize()
 	get_quirks()
 	return SS_INIT_SUCCESS

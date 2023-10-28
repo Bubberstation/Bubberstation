@@ -522,7 +522,7 @@
 	else if(helper.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		nosound = TRUE
 		playsound(src, 'modular_skyrat/modules/emotes/sound/emotes/Nose_boop.ogg', 50, 0)
-		if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH))
+		if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT))
 			to_chat(src, span_warning("[helper] boops you on your sensitive nose, sending you to the ground!"))
 			src.Knockdown(20)
 			src.apply_damage(30, STAMINA)
@@ -926,7 +926,7 @@
 		body_parts -= part
 	GLOB.bioscrambler_valid_parts = body_parts
 
-	var/list/organs = subtypesof(/obj/item/organ/internal) + subtypesof(/obj/item/organ/external)
+	var/list/organs = subtypesof(/obj/item/organ/external) - typesof(/obj/item/organ/external/genital) //BUBBERSTATION CHANGE, REMOVES INTERANL ORGAN SWAPPING AND REMOVES GENITALS.
 	for(var/obj/item/organ/organ_type as anything in organs)
 		if(!is_type_in_typecache(organ_type, GLOB.bioscrambler_organs_blacklist) && !(initial(organ_type.organ_flags) & ORGAN_ROBOTIC))
 			continue

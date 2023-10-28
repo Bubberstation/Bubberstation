@@ -1,7 +1,7 @@
 /// How often the sensor data is updated
 #define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
 /// The job sorting ID associated with otherwise unknown jobs
-#define UNKNOWN_JOB_ID 81
+#define UNKNOWN_JOB_ID 802 //BUBBERSTATION CHANGE: NEW CREW MONITOR SORTING.
 
 /obj/machinery/computer/crew
 	name = "crew monitoring console"
@@ -45,6 +45,7 @@
 		"name",
 		"job",
 		"is_robot", //SKYRAT EDIT ADDITION - Displaying robotic species Icon
+		"is_dnr", //BUBBERSTATION EDIT ADDITION - Displays DNR status
 		"life_status",
 		"suffocation",
 		"toxin",
@@ -108,8 +109,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_SECURITY_OFFICER_SCIENCE = 15,
 		JOB_SECURITY_OFFICER_SUPPLY = 16,
 		*/
-		JOB_CORRECTIONS_OFFICER = 13, // SKYRAT EDIT ADDITION
-		JOB_DETECTIVE = 14,
+		JOB_SECURITY_MEDIC = 13, // BUBBER EDIT ADDITION
+		JOB_CORRECTIONS_OFFICER = 14, // SKYRAT EDIT ADDITION
+		JOB_DETECTIVE = 15,
 		// 20-29: Medbay
 		JOB_CHIEF_MEDICAL_OFFICER = 20,
 		JOB_CHEMIST = 21,
@@ -136,6 +138,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_CARGO_TECHNICIAN = 52,
 		JOB_BITRUNNER = 53,
 		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
+		JOB_BLACKSMITH = 54,	// Bubber Addition!
 		// 60+: Civilian/other
 		JOB_HEAD_OF_PERSONNEL = 60,
 		JOB_BARTENDER = 61,
@@ -261,6 +264,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
+
+		// BUBBERSTATION EDIT BEGIN: Add DNR status
+		// If sensors are above living tracking, set DNR state
+		if (sensor_mode >= SENSOR_LIVING)
+			entry["is_dnr"] = HAS_TRAIT(tracked_living_mob, TRAIT_DNR)
+		// BUBBERSTATION EDIT END
 
 		// Binary living/dead status
 		// Current status

@@ -170,6 +170,8 @@
 			This may be a false positive from changing from a humanized monkey into a character, so be careful.")
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 
+		SSquirks.AssignQuirks(patient, patient.client) // BUBBER EDIT ADDITON
+
 	open_machine()
 
 /obj/machinery/self_actualization_device/screwdriver_act(mob/living/user, obj/item/used_item)

@@ -274,10 +274,10 @@
 	icon_state = "fir36"
 	actions_types = list(/datum/action/item_action/adjust)
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS //same flags as actual sec hailer gas mask
-	flags_inv = HIDEFACE | HIDESNOUT
+	flags_inv = HIDESNOUT // | HIDEFACE // bubber edit, makes no sense to block the whole face if it's blocking only half of it, right?
 	flags_cover = NONE
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags_inv = HIDEFACE | HIDESNOUT
+	visor_flags_inv = HIDESNOUT // | HIDEFACE // bubber edit
 	w_class = WEIGHT_CLASS_SMALL
 	tint = 0
 

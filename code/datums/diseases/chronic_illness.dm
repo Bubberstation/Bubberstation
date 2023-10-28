@@ -5,7 +5,7 @@
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	disease_flags = CHRONIC
 	infectable_biotypes = MOB_ORGANIC | MOB_MINERAL | MOB_ROBOTIC
-	process_dead = TRUE
+	process_dead = FALSE//Bubber edit, give them some mercy. (Don't ash the dead.)
 	stage_prob = 0.25
 	cure_text = "Sansufentanyl"
 	cures = list(/datum/reagent/medicine/sansufentanyl)
@@ -13,6 +13,7 @@
 	agent = "Quantum Entanglement"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "A disease discovered in an Interdyne laboratory caused by subjection to timesteam correction technology."
+	bypasses_immunity = TRUE//Bubber addition
 	severity = DISEASE_SEVERITY_UNCURABLE
 
 /datum/disease/chronic_illness/stage_act(seconds_per_tick, times_fired)

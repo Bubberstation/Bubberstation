@@ -136,6 +136,7 @@
 /obj/effect/visible_heretic_influence/proc/show_presence()
 	animate(src, alpha = 255, time = 15 SECONDS)
 
+/* Bubberstation change: hugboxes heretic stuff
 /obj/effect/visible_heretic_influence/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
@@ -182,6 +183,7 @@
 	var/datum/effect_system/reagents_explosion/explosion = new()
 	explosion.set_up(1, get_turf(human_user), TRUE, 0)
 	explosion.start(src)
+*/
 
 /obj/effect/visible_heretic_influence/examine(mob/user)
 	. = ..()
@@ -191,7 +193,7 @@
 	var/mob/living/carbon/human/human_user = user
 	to_chat(human_user, span_userdanger("Your mind burns as you stare at the tear!"))
 	human_user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 190)
-	human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
+	// human_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus) Bubberstation change: Hugboxes heretics.
 
 /obj/effect/heretic_influence
 	name = "reality smash"

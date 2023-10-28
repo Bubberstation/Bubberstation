@@ -195,8 +195,12 @@
 						trauma_desc += "deep-rooted "
 					if(TRAUMA_RESILIENCE_WOUND)
 						trauma_desc += "fracture-derived "
-					if(TRAUMA_RESILIENCE_MAGIC, TRAUMA_RESILIENCE_ABSOLUTE)
+					//BUBBERSTATION CHANGE START: MAGIC TRAUMAS NOW CURABLE.
+					if(TRAUMA_RESILIENCE_MAGIC)
+						trauma_desc += "immutable "
+					if(TRAUMA_RESILIENCE_ABSOLUTE)
 						trauma_desc += "permanent "
+					//BUBBERSTATION CHANGE END: MAGIC TRAUMAS NOW CURABLE.
 				trauma_desc += trauma.scan_desc
 				trauma_text += trauma_desc
 			render_list += "<span class='alert ml-1'>Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)].</span>\n"
@@ -204,6 +208,13 @@
 			render_list += "<span class='info ml-1'>Subject Major Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE)].</span>\n"
 			if(advanced)
 				render_list += "<span class='info ml-1'>Subject Minor Disabilities: [carbontarget.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, TRUE)].</span>\n"
+				// Allergies - BUBBER EDIT BEGIN
+			for(var/datum/quirk/quirky as anything in target.quirks)
+				if(istype(quirky, /datum/quirk/item_quirk/allergic))
+					var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
+					var/allergies = allergies_quirk.allergy_string
+					render_list += "<span class='alert ml-1'><b>Subject is extremely allergic to the following chemicals:</b></span>\n"
+					render_list += "<span class='alert ml-2'><b>[allergies]</b></span>\n" // BUBBER EDIT END
 
 	if (HAS_TRAIT(target, TRAIT_IRRADIATED))
 		render_list += "<span class='alert ml-1'>Subject is irradiated. Supply toxin healing.</span>\n"

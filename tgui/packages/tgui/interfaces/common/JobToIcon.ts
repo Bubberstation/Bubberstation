@@ -10,6 +10,7 @@ const BASEICONS = {
   'Bartender': 'cocktail',
   'Bit Avatar': 'code',
   'Bitrunner': 'gamepad',
+  'Blacksmith': 'box',
   'Botanist': 'seedling',
   'Captain': 'crown',
   'Cargo Technician': 'box',

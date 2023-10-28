@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"map_name": "Lima Station",
+	"map_path": "map_files/LimaStation",
+	"map_file": "LimaStation.dmm",
+	"shuttles": {
+		"cargo": "cargo_lima",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_pubby",
+		"emergency": "emergency_lima"
+	},
+	"traits": [
+		{
+			"Up": true,
+			"Baseturf": "/turf/open/space/basic",
+			"Linkage": "Cross"
+		},
+		{
+			"Down": true,
+			"Baseturf": "/turf/open/openspace",
+			"Linkage": "Cross"
+		}
+	],
+	"job_changes": {
+		"cook": {
+			"additional_cqc_areas": ["/area/service/kitchen/diner", "/area/service/kitchen/coldroom"]
+		}
+	}
+}

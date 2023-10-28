@@ -148,6 +148,8 @@ export const QuirksPage = (props, context) => {
         const {
           max_positive_quirks: maxPositiveQuirks,
           quirk_blacklist: quirkBlacklist,
+          // BUBBER EDIT ADDITION - Species quirks
+          quirk_species_whitelist: quirkSpeciesWhitelist,
           quirk_info: quirkInfo,
         } = quirks_data.quirks; // SKYRAT EDIT - Quirks balance refactor
 
@@ -200,6 +202,29 @@ export const QuirksPage = (props, context) => {
               }
             }
           }
+
+          // BUBBER EDIT ADDITION START - Species quirks
+
+          // Iterate through all whitelists
+
+          for (const whitelist of quirkSpeciesWhitelist) {
+            const currentSpeciesName = data.character_preferences.misc.species;
+
+            // Format: Quirk ([0]), Species define ([1])
+            const whitelistSpeciesName = whitelist[1];
+            // Quirk is not in the whitelisted ones, continue to next list
+            if (whitelist.indexOf(quirk.name) === -1) {
+              continue;
+            }
+
+            // If the selected species is NOT in the list, do not give the quirk
+            // Otherwise, give the quirk
+            if (whitelist.indexOf(currentSpeciesName) === -1) {
+              return `This quirk can only be taken by ${whitelistSpeciesName}!`;
+            }
+          }
+
+          // BUBBER EDIT ADDITION END
 
           return undefined;
         };

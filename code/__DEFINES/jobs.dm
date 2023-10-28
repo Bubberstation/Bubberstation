@@ -61,6 +61,7 @@
 #define JOB_SECURITY_OFFICER_SCIENCE "Security Officer (Science)"
 #define JOB_SECURITY_OFFICER_SUPPLY "Security Officer (Cargo)"
 #define JOB_CORRECTIONS_OFFICER "Corrections Officer" // SKYRAT EDIT ADDITION
+#define JOB_SECURITY_MEDIC "Security Medic" //BUBBER EDIT ADDITION
 //Engineering
 #define JOB_STATION_ENGINEER "Station Engineer"
 #define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician"
@@ -96,6 +97,7 @@
 #define JOB_PSYCHOLOGIST "Psychologist"
 #define JOB_BARBER "Barber" // SKYRAT EDIT ADDITION
 #define JOB_BOUNCER "Service Guard" // SKYRAT EDIT ADDITION
+#define JOB_BLACKSMITH "Blacksmith" //Budder Edit.
 //ERTs
 #define JOB_ERT_DEATHSQUAD "Death Commando"
 #define JOB_ERT_COMMANDER "Emergency Response Team Commander"
@@ -189,6 +191,7 @@
 #define JOB_DISPLAY_ORDER_ENGINEER_GUARD 45 //SKYRAT EDIT ADDITION
 #define JOB_DISPLAY_ORDER_CUSTOMS_AGENT 46 //SKYRAT EDIT ADDITION
 #define JOB_DISPLAY_ORDER_EXP_CORPS 47 //SKYRAT EDIT ADDITON
+#define JOB_DISPLAY_ORDER_BLACKSMITH 48 //BUBBER Edit.
 
 #define DEPARTMENT_UNASSIGNED "No Department"
 

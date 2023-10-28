@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	. += ..()
 	if(summoner)
 		var/healthpercent = health_percentage(summoner)
-		. += "Summoner Health: [round(healthpercent, 0.5)]%"
+		. += "Summoner Health: [round(healthpercent, 0.5)]% ([summoner.health]/[summoner.maxHealth])"
 	if(!COOLDOWN_FINISHED(src, manifest_cooldown))
 		. += "Manifest/Recall Cooldown Remaining: [DisplayTimeText(COOLDOWN_TIMELEFT(src, manifest_cooldown))]"
 

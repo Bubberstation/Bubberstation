@@ -72,7 +72,7 @@
 
 /datum/armament_entry/company_import/nri_surplus/firearm
 	subcategory = "Firearms"
-
+/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/nri_surplus/firearm/shotgun_revolver
 	item_type = /obj/item/gun/ballistic/revolver/cin_shotgun_revolver
 	cost = PAYCHECK_COMMAND * 6
@@ -100,4 +100,4 @@
 
 /datum/armament_entry/company_import/nri_surplus/firearm_ammo/sakhno_stripper
 	item_type = /obj/item/ammo_box/strilka310
-
+*/
