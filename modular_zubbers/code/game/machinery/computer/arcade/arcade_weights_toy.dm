@@ -40,7 +40,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool_toy, list(
 		/obj/item/clothing/head/costume/santa = 1,
 		/obj/item/clothing/head/costume/snakeeater = 1,
 		/obj/item/clothing/head/costume/sombrero/green = 1,
-		/obj/item/clothing/head/costume/sombrero/shamebrero = 1,
 		/obj/item/clothing/head/helmet/toggleable/justice = 1,
 		/obj/item/clothing/head/helmet/toggleable/justice/escape = 1,
 		/obj/item/clothing/head/waldo = 1,
