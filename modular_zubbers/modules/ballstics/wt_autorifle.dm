@@ -49,7 +49,7 @@
 	ricochet_chance = 75
 	ricochet_decay_damage = 0.8
 
-.//AMMO CASING
+//AMMO CASING
 /obj/item/ammo_casing/c46x30mm/flathead
 	name = "4.6x30mm flathead bullet casing"
 	desc = "A 4.6x30mm bullet casing."
