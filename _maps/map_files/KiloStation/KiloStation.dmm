@@ -4275,8 +4275,8 @@
 	},
 /obj/effect/decal/cleanable/oil/streak,
 /obj/machinery/camera/directional/south,
-/obj/effect/landmark/bitrunning/station_reward_spawn,
 /obj/item/radio/intercom/directional/south,
+/obj/machinery/byteforge,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/bitrunning/den)
 "bys" = (
@@ -4821,7 +4821,6 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/south,
-/obj/effect/landmark/bitrunning/station_reward_spawn,
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 12
 	},
@@ -6863,7 +6862,7 @@
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
 "cox" = (
-/mob/living/simple_animal/sloth/citrus,
+/mob/living/basic/sloth/citrus,
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
 	},
@@ -13415,7 +13414,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/retaliate/goat{
+/mob/living/basic/goat/pete{
 	name = "Pete"
 	},
 /turf/open/floor/iron/freezer,
@@ -17154,7 +17153,7 @@
 "fJr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/event_spawn,
-/mob/living/basic/syndicate/russian{
+/mob/living/basic/trooper/russian{
 	environment_smash = 0;
 	loot = list(/obj/effect/mob_spawn/corpse/human/russian);
 	name = "Russian Mobster"
@@ -32026,10 +32025,6 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/jungle/mook{
-	environment_smash = 0;
-	name = "deformed creature"
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/fore)
@@ -35805,7 +35800,7 @@
 "lGa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/canister_frame/machine/unfinished_canister_frame,
+/obj/structure/fluff/broken_canister_frame,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
@@ -42038,10 +42033,6 @@
 /obj/effect/decal/remains/human,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/simple_animal/hostile/jungle/mook{
-	environment_smash = 0;
-	name = "deformed creature"
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/fore)
@@ -46039,7 +46030,7 @@
 /area/station/science/xenobiology)
 "pii" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_ordmix{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/landmark/blobstart,
 /turf/open/floor/engine,
@@ -64155,7 +64146,7 @@
 /area/station/science/ordnance)
 "uYp" = (
 /obj/structure/chair/stool/bar/directional/west,
-/mob/living/basic/syndicate/russian{
+/mob/living/basic/trooper/russian{
 	environment_smash = 0;
 	loot = list(/obj/effect/mob_spawn/corpse/human/russian);
 	name = "Russian Mobster"
@@ -71292,7 +71283,7 @@
 "xhe" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/mob/living/basic/syndicate/russian{
+/mob/living/basic/trooper/russian{
 	environment_smash = 0;
 	loot = list(/obj/effect/mob_spawn/corpse/human/russian);
 	name = "Russian Mobster"
@@ -73321,9 +73312,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
 "xOq" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-16"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
