@@ -1,4 +1,5 @@
 /datum/mood_event/food/add_effects(param)
+	. = ..()
 	if(quality >= FOOD_QUALITY_VERYGOOD)
 		var/effect_strength = quality - FOOD_QUALITY_VERYGOOD
 		var/mob/living/carbon/human/O = owner
