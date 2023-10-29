@@ -241,6 +241,26 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 	name = "Pink Tiger Pelt"
 	item_path = /obj/item/clothing/head/pelt/pink_tiger
 
+/datum/loadout_item/head/large_bow
+	name = "Colourable Large Bow"
+	item_path = /obj/item/clothing/head/large_bow
+
+/datum/loadout_item/head/back_bow
+	name = "Colourable Back Bow"
+	item_path = /obj/item/clothing/head/back_bow
+
+/datum/loadout_item/head/small_bow
+	name = "Colourable Small Bow"
+	item_path = /obj/item/clothing/head/small_bow
+
+/datum/loadout_item/head/sweet_bow
+	name = "Colourable Sweet bow"
+	item_path = /obj/item/clothing/head/sweet_bow
+
+/datum/loadout_item/head/maid_headband
+	name = "Colourable Maid Headband"
+	item_path = /obj/item/clothing/head/maid_headband
+
 /*
 *	CHRISTMAS
 */
@@ -496,16 +516,6 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 	item_path = /obj/item/clothing/head/beret/sec/navyofficer
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_SECURITY_MEDIC, JOB_HEAD_OF_SECURITY, JOB_WARDEN) //BUBBER EDIT
 
-/datum/loadout_item/head/solofficercap
-	name = "Security Officer's Sol Cap"
-	item_path = /obj/item/clothing/head/hats/sec/peacekeeper/sol
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_SECURITY_MEDIC, JOB_HEAD_OF_SECURITY, JOB_WARDEN) //BUBBER EDIT
-
-/datum/loadout_item/head/soltrafficoff
-	name = "Traffic Officer Cap"
-	item_path = /obj/item/clothing/head/hats/sec/peacekeeper/sol/traffic
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_SECURITY_MEDIC, JOB_HEAD_OF_SECURITY, JOB_WARDEN) //BUBBER EDIT
-
 /datum/loadout_item/head/navybluewardenberet
 	name = "Warden's Navy Blue beret"
 	item_path = /obj/item/clothing/head/beret/sec/navywarden
@@ -594,6 +604,11 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 	name = "Chemist Beret"
 	item_path = /obj/item/clothing/head/beret/medical/chemist
 	restricted_roles = list(JOB_CHEMIST, JOB_CHIEF_MEDICAL_OFFICER)
+
+/datum/loadout_item/head/beret_coroner		//Bubbers Addition
+	name = "Coroner Beret"
+	item_path = /obj/item/clothing/head/beret/medical/coroner
+	restricted_roles = list(JOB_CORONER, JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/head/beret_sci
 	name = "Scientist Beret"

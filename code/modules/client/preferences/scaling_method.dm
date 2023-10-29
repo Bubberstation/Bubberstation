@@ -5,7 +5,7 @@
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/scaling_method/create_default_value()
-	return SCALING_METHOD_DISTORT
+	return SCALING_METHOD_NORMAL // BUBBER EDIT - MAKE THE GAME LOOK GOOD BY DEFAULT
 
 /datum/preference/choiced/scaling_method/init_possible_values()
 	return list(SCALING_METHOD_DISTORT, SCALING_METHOD_BLUR, SCALING_METHOD_NORMAL)
