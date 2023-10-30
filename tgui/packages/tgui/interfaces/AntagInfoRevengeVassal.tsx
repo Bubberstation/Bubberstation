@@ -1,5 +1,5 @@
 import { resolveAsset } from '../assets';
-import { BooleanLike } from '../common/react';
+import { BooleanLike } from '../../common/react';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Divider, Dropdown, Section, Stack } from '../components';
 import { Window } from '../layouts';
