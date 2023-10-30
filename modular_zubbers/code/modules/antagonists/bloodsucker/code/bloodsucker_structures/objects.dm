@@ -24,7 +24,7 @@
 			span_notice("[victim] puts the [src] up to their mouth."),
 			span_notice("You take a sip from the [src]."),
 		)
-		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transfered_by = attacker, methods = INGEST)
+		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
 	return TRUE
 
