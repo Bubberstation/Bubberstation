@@ -11,7 +11,7 @@
 		JOB_SECURITY_OFFICER,
 	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
-	required_candidates = 1 //BUBBER EDIT: ONLY ONE CONTRACTOR AT A TIME
+	required_candidates = 2
 	weight = 6
 	cost = 10
 	minimum_players = 25
