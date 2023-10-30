@@ -11,7 +11,7 @@
 		JOB_SECURITY_OFFICER,
 	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
-	required_candidates = 2
+	required_candidates = 1 //BUBBER EDIT: ONLY ONE CONTRACTOR AT A TIME
 	weight = 6
 	cost = 10
 	minimum_players = 25
@@ -20,8 +20,10 @@
 	var/list/spawn_locs = list()
 
 /datum/dynamic_ruleset/midround/from_ghosts/contractor/ready(forced = FALSE)
-	if(prob(33))
-		required_candidates++
+	//BUBBER EDIT: LESS CONTRACTORS
+	//if(prob(33))
+	//	required_candidates++
+	//BUBBER EDIT: LESS CONTRACTORS
 	if (required_candidates > (length(dead_players) + length(list_observers)))
 		return FALSE
 	for(var/obj/effect/landmark/carpspawn/carp in GLOB.landmarks_list)
