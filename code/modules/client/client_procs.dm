@@ -688,7 +688,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - [address] - New account attempting to connect during panic bunker</span>")
 			//BUBBER EDIT ADDITION BEGIN - PANICBUNKER TEXT
-			to_chat_immediate(src, {"<span class='notice'>Hi! This server is whitelist-enabled. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #expectations channel under the \"Whitelist\" category in the Discord server linked here: <a href=' https://discord.gg/AvjrTqnqEx '>https://discord.gg/AvjrTqnqEx</a></span>"}) //Bubber edit
+			to_chat_immediate(src, {"<span class='notice'>Hi! This server is whitelist-enabled. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #expectations channel under the \"Whitelist\" category in the Discord server linked here: <a href=' https://discord.gg/x4CVEHy6u7 '>https://discord.gg/x4CVEHy6u7</a></span>"}) //Bubber edit
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])
