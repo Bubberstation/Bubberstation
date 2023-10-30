@@ -15,6 +15,7 @@
 		Irs = list(fax_name = "IRS", fax_id = "IRS", color = "orange", emag_needed = FALSE),
 		WizFed = list(fax_name = "Wizard Fed", fax_id = "WizFed", color = "blue", emag_needed = TRUE),
 		Union = list(fax_name = "Union", fax_id = "Union", color = "orange", emag_needed = TRUE),
+		Reverie = list(fax_name = "Reverie", fax_id = "Rev", color = "brown", emag_needed = FALSE),
 		//Syndicate companies
 		Cybersun = list(fax_name = "Cybersun", fax_id = "Cybersun", color = "red", emag_needed = TRUE),
 		Tiger = list(fax_name = "Tiger Coop", fax_id = "Tiger", color = "red", emag_needed = TRUE),
