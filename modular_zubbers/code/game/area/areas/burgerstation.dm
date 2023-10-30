@@ -9,3 +9,8 @@
 /area/station/engineering/asteroid_lobby
 	name = "\improper Asteroid Lobby"
 	icon_state = "engine_hallway"
+
+/area/station/engineering/supermatter/emitter
+	name = "\improper Supermatter Emitter Room"
+	icon_state = "engine_control"
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED

@@ -61,6 +61,7 @@
 		/obj/item/clothing/head/utility/surgerycap/green = 4,
 		/obj/item/clothing/head/beret/medical/paramedic = 4,
 		/obj/item/clothing/head/soft/paramedic = 4,
+		/obj/item/clothing/head/utility/head_mirror = 4,
 		/obj/item/clothing/mask/bandana/striped/medical = 4,
 		/obj/item/clothing/mask/surgical = 4,
 		/obj/item/clothing/under/rank/medical/doctor = 4,
@@ -315,6 +316,7 @@
 	products = list(
 		/obj/item/toy/crayon/white = 2,
 		/obj/item/clothing/head/utility/surgerycap/black = 1,
+		/obj/item/clothing/head/beret/medical/coroner = 1,	//Bubbers edit: Coroner beret
 		/obj/item/clothing/mask/surgical = 1,
 		/obj/item/clothing/under/rank/medical/scrubs/coroner = 1,
 		/obj/item/clothing/under/rank/medical/coroner = 1,
@@ -523,6 +525,8 @@
 		/obj/item/storage/backpack/cultpack = 1,
 		/obj/item/storage/fancy/candle_box = 2,
 		/obj/item/radio/headset/headset_srv = 2,
+		/obj/item/clothing/suit/chaplainsuit/habit = 1,
+		/obj/item/clothing/head/chaplain/habit_veil = 1,
 	)
 	contraband = list(
 		/obj/item/toy/plush/ratplush = 1,

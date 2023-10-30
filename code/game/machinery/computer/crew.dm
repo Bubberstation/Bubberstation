@@ -136,7 +136,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_QUARTERMASTER = 50,
 		JOB_SHAFT_MINER = 51,
 		JOB_CARGO_TECHNICIAN = 52,
-		JOB_CUSTOMS_AGENT = 53, // SKYRAT EDIT ADDITION
+		JOB_BITRUNNER = 53,
+		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
 		JOB_BLACKSMITH = 54,	// Bubber Addition!
 		// 60+: Civilian/other
 		JOB_HEAD_OF_PERSONNEL = 60,
@@ -271,8 +272,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// BUBBERSTATION EDIT END
 
 		// Binary living/dead status
+		// Current status
 		if (sensor_mode >= SENSOR_LIVING)
-			entry["life_status"] = (tracked_living_mob.stat != DEAD)
+			entry["life_status"] = tracked_living_mob.stat
 
 		// Damage
 		if (sensor_mode >= SENSOR_VITALS)

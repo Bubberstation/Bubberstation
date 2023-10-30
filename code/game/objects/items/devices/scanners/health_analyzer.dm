@@ -195,8 +195,12 @@
 						trauma_desc += "deep-rooted "
 					if(TRAUMA_RESILIENCE_WOUND)
 						trauma_desc += "fracture-derived "
-					if(TRAUMA_RESILIENCE_MAGIC, TRAUMA_RESILIENCE_ABSOLUTE)
+					//BUBBERSTATION CHANGE START: MAGIC TRAUMAS NOW CURABLE.
+					if(TRAUMA_RESILIENCE_MAGIC)
+						trauma_desc += "immutable "
+					if(TRAUMA_RESILIENCE_ABSOLUTE)
 						trauma_desc += "permanent "
+					//BUBBERSTATION CHANGE END: MAGIC TRAUMAS NOW CURABLE.
 				trauma_desc += trauma.scan_desc
 				trauma_text += trauma_desc
 			render_list += "<span class='alert ml-1'>Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)].</span>\n"

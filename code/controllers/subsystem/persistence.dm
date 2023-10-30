@@ -1,6 +1,6 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
 
-#define KEEP_ROUNDS_MAP 3
+#define KEEP_ROUNDS_MAP 4 //BUBBERSTATION CHANGE: 3 -> 4
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -19,6 +19,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/saved_modes = list(1,2,3)
 	var/list/saved_maps = list()
 	var/list/blocked_maps = list()
+	var/list/restricted_maps = list() //BUBBERSTATION CHANGE: ADDS RESTRICTED MAPS
 	var/list/saved_trophies = list()
 	var/list/picture_logging_information = list()
 	var/list/obj/structure/sign/picture_frame/photo_frames
@@ -55,7 +56,9 @@ SUBSYSTEM_DEF(persistence)
 	save_modular_persistence() // SKYRAT EDIT ADDITION - MODULAR_PERSISTENCE
 	save_custom_outfits()
 	save_delamination_counter()
-	if(SStramprocess.can_fire)
+	if(SStransport.can_fire)
+		for(var/datum/transport_controller/linear/tram/transport as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
+			save_tram_history(transport.specific_transport_id)
 		save_tram_counter()
 	save_panic_bunker() //SKYRAT EDIT ADDITION - PANICBUNKER
 
@@ -285,6 +288,10 @@ SUBSYSTEM_DEF(persistence)
 				run++
 		if(run >= 2) //If run twice in the last KEEP_ROUNDS_MAP + 1 (including current) rounds, disable map for voting and rotation.
 			blocked_maps += VM.map_name
+		//BUBBERSTATION CHANGE START: Adds restricted maps.
+		else if(run >= 1)
+			restricted_maps += VM.map_name
+		//BUBBERSTATION CHANGE END: Adds restricted maps.
 
 /// Puts trophies into trophy cases.
 /datum/controller/subsystem/persistence/proc/set_up_trophies()
@@ -569,8 +576,61 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/save_tram_counter()
 		rustg_file_write("[tram_hits_this_round]", TRAM_COUNT_FILEPATH)
 
+#define MAX_TRAM_SAVES 4
+
+// Loads historical tram data
+/datum/controller/subsystem/persistence/proc/load_tram_history(specific_transport_id)
+	var/list/raw_saved_trams = list()
+	var/json_file = file("data/tram_data/[specific_transport_id].json")
+	if(!fexists(json_file))
+		return
+	var/list/json = json_decode(file2text(json_file))
+	if(!json)
+		return
+	raw_saved_trams = json["data"]
+
+	var/list/previous_tram_data = list()
+	for(var/raw_json in raw_saved_trams)
+		var/datum/tram_mfg_info/parsed_tram_data = new
+		parsed_tram_data.load_from_json(raw_json)
+		previous_tram_data += parsed_tram_data
+	return previous_tram_data
+
+// Saves historical tram data
+/datum/controller/subsystem/persistence/proc/save_tram_history(specific_transport_id)
+	var/list/packaged_tram_data = list()
+	for(var/datum/transport_controller/linear/tram/transport as anything in SStransport.transports_by_type[TRANSPORT_TYPE_TRAM])
+		if(transport.specific_transport_id == specific_transport_id)
+			packaged_tram_data = package_tram_data(transport)
+			break
+
+	var/json_file = file("data/tram_data/[specific_transport_id].json")
+	var/list/file_data = list()
+	var/list/converted_data = list()
+
+	for(var/datum/tram_mfg_info/data in packaged_tram_data)
+		converted_data += list(data.export_to_json())
+
+	file_data["data"] = converted_data
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(file_data))
+
+/datum/controller/subsystem/persistence/proc/package_tram_data(datum/transport_controller/linear/tram/tram_controller)
+	var/list/packaged_data = list()
+	var/list/tram_list = tram_controller.tram_history
+	if(!isnull(tram_list))
+		while(tram_list.len > MAX_TRAM_SAVES)
+			tram_list.Cut(1,2)
+
+		for(var/datum/tram_mfg_info/data as anything in tram_list)
+			packaged_data += data
+
+	packaged_data += tram_controller.tram_registration
+	return packaged_data
+
 #undef DELAMINATION_COUNT_FILEPATH
 #undef DELAMINATION_HIGHSCORE_FILEPATH
 #undef TRAM_COUNT_FILEPATH
 #undef FILE_RECENT_MAPS
 #undef KEEP_ROUNDS_MAP
+#undef MAX_TRAM_SAVES
