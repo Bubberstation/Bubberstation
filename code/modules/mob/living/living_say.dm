@@ -104,6 +104,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
+	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
+	if(findtext(message, GLOB.has_eol_punctuation))
+		message += "."
+	//BUBBER EDIT END: AUTOPUNCTUATION
 
 	var/list/message_mods = list()
 	var/original_message = message
@@ -507,11 +511,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	return list("message" = message, "tts_message" = tts_message, "tts_filter" = tts_filter)
 
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
-	/* //BUBBER EDIT - TG BEHAVIOR //SKYRAT EDIT ADDITION BEGIN
+	//SKYRAT EDIT ADDITION BEGIN
 	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) &&  !ispAI(src)) // If can't use items, you can't press the button
 		to_chat(src, span_warning("You can't use the radio right now as you can't reach the button!"))
 		return ITALICS | REDUCE_RANGE
-	*/ //SKYRAT EDIT END //BUBBER EDIT END - TG BEHAVIOR
+	//SKYRAT EDIT END
 	var/obj/item/implant/radio/imp = locate() in src
 	if(imp?.radio.is_on())
 		if(message_mods[MODE_HEADSET])
