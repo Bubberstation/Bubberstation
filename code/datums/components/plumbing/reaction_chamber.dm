@@ -10,7 +10,7 @@
 /datum/component/plumbing/reaction_chamber/can_give(amount, reagent, datum/ductnet/net)
 	. = ..()
 	var/obj/machinery/plumbing/reaction_chamber/reaction_chamber = parent
-	if(!. || !reaction_chamber.emptying || reagents.is_reacting)
+	if(!. || !reaction_chamber.emptying || reagents.is_reacting == TRUE)
 		return FALSE
 
 /datum/component/plumbing/reaction_chamber/send_request(dir)
@@ -30,7 +30,11 @@
 
 		//compute how much more is needed and round it
 		diff = chamber.required_reagents[required_reagent] - present_amount
+<<<<<<< HEAD
 		if(diff >= 0.01)
+=======
+		if(diff > CHEMICAL_QUANTISATION_LEVEL)
+>>>>>>> parent of f57e279447b ([MIRROR] [NO GBP]Fixes plumbing for good(hopefully) & more reagent code [MDB IGNORE] (#24347))
 			process_request(min(diff, MACHINE_REAGENT_TRANSFER), required_reagent, dir)
 			return
 
