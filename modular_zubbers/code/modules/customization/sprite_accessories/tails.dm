@@ -17,8 +17,3 @@
 	name = "Shadekin Short"
 	icon_state = "shadekinshort"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/tails/mammal/wagging/kagnarooalt
-	name = "Kangaroo (Alt)"
-	icon_state = "kangarooalt"
-	icon = 'modular_zubbers/icons/customization/kangarooalt.dmi'
