@@ -109,8 +109,7 @@ GLOBAL_LIST_EMPTY(dynamic_forced_rulesets)
 	/// A number between -5 and +5.
 	/// A negative value will give a more peaceful round and
 	/// a positive value will give a round with higher threat.
-	//var/threat_curve_centre = 0	//Bubber Edit: Original
-	var/threat_curve_centre = -2	//Bubber Edit: Lowered threat curve
+	var/threat_curve_centre = 0
 
 	/// A number between 0.5 and 4.
 	/// Higher value will favour extreme rounds and
@@ -525,8 +524,8 @@ GLOBAL_LIST_EMPTY(dynamic_forced_rulesets)
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
 
 	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
-	else
-		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h))
+//	else // BUBBER EDIT REMOVAL
+//		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
 	//SKYRAT EDIT END
 
 	..()
