@@ -13,3 +13,31 @@
 	program_icon_state = "arcade"
 	program_icon = "gamepad"
 
+	var/obj/item/modular_computer/host
+
+/datum/computer_file/program/flappy_moth/ui_data(mob/user)
+	var/list/data = list()
+	data["difficulty"] = 1
+
+	return data
+
+/*
+/datum/computer_file/program/flappy_moth/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, tgui_id)
+*/
+
+/datum/computer_file/program/flappy_moth/ui_act(action, list/params, mob/user)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("win")
+			complete(win = TRUE)
+		if("lose")
+			complete(win = FALSE)
+
+/datum/computer_file/program/flappy_moth/proc/complete(win)
+	computer.say("Somehow you won at flappy moth")
