@@ -61,7 +61,7 @@ class FlapMinigame extends Component<FlapProps, FlapState> {
 
     // Controls handling!!
     this.handle_mousedown = this.handle_mousedown.bind(this);
-    this.handle_keydown = this.handle_keydown.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handle_ctrldown = this.handle_ctrldown.bind(this);
 
     // Updates the animation
