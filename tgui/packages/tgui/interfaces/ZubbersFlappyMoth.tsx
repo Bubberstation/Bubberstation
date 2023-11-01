@@ -3,6 +3,7 @@ import { NtosWindow } from '../layouts';
 import { Component } from 'inferno';
 import { globalEvents, KeyEvent } from '../events';
 import { KEY_CTRL } from '../../common/keycodes';
+import { KeyListener } from '../components';
 
 // The player character
 type FlapMoth = {
@@ -21,6 +22,7 @@ type FlapObstacle = {
 
 // Any extra prop controlling - Might use later
 type FlapProps = {
+  difficulty: number;
   win: () => void;
   lose: () => void;
 };
@@ -33,6 +35,7 @@ type FlapState = {
 enum FlapMovementState {
   Idle,
   Flap,
+  Fall,
 }
 
 // FLAPPY MOTH minigame class
@@ -84,8 +87,22 @@ class FlapMinigame extends Component<FlapProps, FlapState> {
     globalEvents.off('byond/ctrldown', this.handle_ctrldown);
   }
 
+  // Animation. I scream
+  updateAnimation(timestamp: DOMHighResTimeStamp) {
+    const last = this.last_frame === undefined ? timestamp : this.last_frame;
+    const delta = timestamp - last;
+    let newState: FlapState = { ...this.state };
+    // Update movement
+    newState = this.moveMoth(newState, delta);
+    this.setState(newState);
+
+    // Wait for next frame
+    this.last_frame = timestamp;
+    this.animation_id = window.requestAnimationFrame(this.updateAnimation);
+  }
+
   // All the movements lord save me
-  moveMoth(state: FlapState, delta: number): FlapState {
+  moveMoth(currentState: FlapState, delta: number): FlapState {
     // Delta time when we lag
     const seconds = delta / 1000;
     // The moth
@@ -112,8 +129,35 @@ class FlapMinigame extends Component<FlapProps, FlapState> {
       newVelocity = 0;
     }
 
+    let acceleration = 0;
+    switch (this.movementstate) {
+      case FlapMovementState.Flap:
+        acceleration = acceleration_up;
+        break;
+      case FlapMovementState.Fall:
+        acceleration = acceleration_down;
+        break;
+      case FlapMovementState.Idle:
+        acceleration = newVelocity > 0 ? -acceleration_down : acceleration_down;
+        break;
+    }
+
+    const velocity_change = acceleration * seconds;
+    /*
+    const brake_coeff = 2;
+    if (newVelocity > 0 && velocity_change < 0) {
+      newVelocity += Math.max(-newVelocity, velocity_change * brake_coeff);
+    } else if (newVelocity < 0 && velocity_change > 0) {
+      newVelocity += Math.min(-newVelocity, velocity_change * brake_coeff);
+    }*/
+    newVelocity += velocity_change;
+
+    if (Math.abs(newVelocity) < 0.01) {
+      newVelocity = 0;
+    }
+
     const newState: FlapState = {
-      ...state,
+      ...currentState,
       player: { ...player, position: newPosition, velocity: newVelocity },
     };
     return newState;
@@ -129,7 +173,7 @@ class FlapMinigame extends Component<FlapProps, FlapState> {
     }
   }
 
-  handle_keydown(keyEvent: KeyEvent) {
+  handleKeyDown(keyEvent: KeyEvent) {
     if (keyEvent.code === KEY_CTRL) {
       this.handle_ctrldown;
     }
@@ -141,26 +185,13 @@ class FlapMinigame extends Component<FlapProps, FlapState> {
     }
   }
 
-  // Animation. I scream
-  updateAnimation(timestamp: DOMHighResTimeStamp) {
-    const last = this.last_frame === undefined ? timestamp : this.last_frame;
-    const delta = timestamp - last;
-    let newState: FlapState = { ...this.state };
-    // Update movement
-    newState = this.moveMoth(newState, delta);
-    this.setState(newState);
-
-    // Wait for next frame
-    this.last_frame = timestamp;
-    this.animation_id = window.requestAnimationFrame(this.updateAnimation);
-  }
-
   // Rendering. Currently very basic
   render() {
     const { player } = this.state;
     const posToStyle = (value: number) => (value / this.gameheight) * 100;
     return (
       <div class="flapping">
+        <KeyListener onKeyDown={this.handleKeyDown} />
         <div class="main">
           <div
             class="moth"
@@ -175,12 +206,20 @@ class FlapMinigame extends Component<FlapProps, FlapState> {
   }
 }
 
+type GameData = {
+  difficulty: number;
+};
+
 export const ZubbersFlappyMoth = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<GameData>(context);
   return (
     <NtosWindow width={600} height={572}>
       <NtosWindow.Content fitted>
-        <FlapMinigame win={() => act('win')} lose={() => act('lose')} />
+        <FlapMinigame
+          difficulty={data.difficulty}
+          win={() => act('win')}
+          lose={() => act('lose')}
+        />
       </NtosWindow.Content>
     </NtosWindow>
   );
