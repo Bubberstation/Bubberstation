@@ -10,18 +10,18 @@ GLOBAL_LIST(end_titles)
 	for(var/client/C)
 		if(!C.credits)
 			C.RollCredits()
-	for(var/thing in GLOB.clients)
+/* 	for(var/thing in GLOB.clients)
 		var/client/C = thing
 		if (!C)
-			continue
+			continue */
 	. = ..()
 
-/datum/controller/subsystem/ticker/show_roundend_report(client/C, report_type = null)
+/* /datum/controller/subsystem/ticker/show_roundend_report(client/C, report_type = null)
 	. = ..()
 	for(var/iteration in GLOB.clients)
 		var/client/clients = iteration
 		if(!clients.credits)
-			clients.RollCredits()
+			clients.RollCredits() */
 /* /client
 	var/list/credits */
 
