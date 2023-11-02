@@ -25,7 +25,7 @@
 	. = ..()
 /mob/Login()
 	. = ..()
-	client?.new_mouseover_callback()
+	client?.delete_mouseover_images()
 
 /client/proc/refresh_mouseover_highlight_timer(atom/movable/current_atom, object)
 
@@ -41,11 +41,11 @@
 	)
 
 /client/proc/delete_mouseover_images()
-	QDEL_NULL(current_highlight_atom)
+//	QDEL_NULL(current_highlight_atom)
 	images -= current_highlight
 	qdel(current_highlight)
 	current_highlight = null
-//			current_highlight_atom = null
+	current_highlight_atom = null
 //	deltimer(mouseover_refresh_timer)
 //	mouseover_refresh_timer = null
 // Main body of work happens in this proc.
