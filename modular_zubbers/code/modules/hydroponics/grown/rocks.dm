@@ -26,6 +26,9 @@
 
 /obj/item/food/grown/rockfruit
 	seed = /obj/item/seeds/rockfruit
+
 	name = "Rockfruit"
-	desc = "A small piece of rock. The inside seems to be fruity, with the outside being a rocky shell, commonly enjoyed by golem folk"
+	desc = "A small piece of rockfruit, commonly enjoyed by golem folk. The inside seems to be fruity, with the outside being a rocky shell."
 	throwforce = 10
+
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
