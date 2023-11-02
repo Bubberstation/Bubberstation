@@ -2,10 +2,10 @@
 	. = ..()
 	if(!.)
 		return
-	// SKYRAT EDIT ADDITION START - No AIs in MODsuits //Bubber Edit: Uno Reverse Card
-	//if(!allow_ai)
-		//return
-	// SKYRAT EDIT END //Bubber Edit: Uno Reverse Card
+	// SKYRAT EDIT ADDITION START - No AIs in MODsuits
+	if(!allow_ai)
+		return
+	// SKYRAT EDIT END
 	if(!open) //mod must be open
 		balloon_alert(user, "suit must be open to transfer!")
 		return
