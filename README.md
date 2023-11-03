@@ -43,7 +43,7 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 - Modifications or adaptions must disclose the source, the author, and [any changes you've made](https://wiki.creativecommons.org/wiki/License_Versions#Modifications_and_adaptations_must_be_indicated). 
 - Goonstation code is incompatible with this codebase and will not be accepted.
 
-*Credit: [Goonstation contribution guidelines](.https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fcontribute#What-if-I-change-my-mind-about-my-contributions-being-published)*
+*Credit: [Goonstation contribution guidelines](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fcontribute#What-if-I-change-my-mind-about-my-contributions-being-published)*
 
 ## Important note - TEST YOUR PULL REQUESTS
 
