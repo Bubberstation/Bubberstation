@@ -7,10 +7,13 @@
 	icon_state = "seed-rockfruit"
 	species = "rock"
 	plantname = "Rockfruits"
-	product = /obj/item/food/grown/rockfruit
+	product = /obj/item/grown/rockfruit
 
 	lifespan = 20
-	maturation = 3
+	endurance = 45
+
+	potency = 15
+	maturation = 6
 	production = 2
 	yield = 2
 	instability = 0 // Rocks are very stable
@@ -24,11 +27,56 @@
 				/datum/plant_gene/trait/stable_stats, // It's a rock
 				/datum/plant_gene/trait/preserved)
 
-/obj/item/food/grown/rockfruit
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.01,
+						/datum/reagent/consumable/nutriment = 0.01,
+						/datum/reagent/water/salt = 0.05,
+						)
+
+
+/obj/item/grown/rockfruit
 	seed = /obj/item/seeds/rockfruit
 
 	name = "Rockfruit"
-	desc = "A small piece of rockfruit, commonly enjoyed by golem folk. The inside seems to be fruity, with the outside being a rocky shell."
-	throwforce = 10
+	desc = "Piece of rockfruit, commonly enjoyed by golem folk. The inside seems to be fruity, with the outside being a rocky shell."
+	force = 5 // Comparatively shit considering a nettle is 15
+	throwforce = 10 // Less shit but hey, it is a rock
 
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
+	icon_state = "rockfruit"
+
+	var/product = /obj/item/food/grown/rockfruit
+
+/obj/item/grown/rockfruit/attack_self(mob/user, modifiers)
+	user.show_message(span_notice("You begin peeling the rocky exterior"))
+	if(!(do_after(user, 5 SECONDS)))
+		return
+	user.show_message(span_notice("You peel off the rocky shell of the rockfruit, revealing the fruity goodness inside!"))
+	balloon_alert(user, "peeled")
+
+	var/obj/item/food/grown/peel_prod
+	peel_prod = new product(user.loc, new_seed = seed) // I stole this from seed code and am physically crying and shaking
+	new /obj/item/food/golem_food/rocks(user.loc)
+
+	qdel(src)
+	user.put_in_hands(peel_prod)
+
+/obj/item/food/grown/rockfruit
+	seed = /obj/item/seeds/rockfruit
+
+	name = "Rockfruit core"
+	desc = "The fruity insides of a rockfruit! Not too sugary, but still tasty. Golem folk use this to complement their rock foods. \
+	Curiously enough, they don't like to eat this on its own"
+
+	foodtypes = FRUIT
+
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
+	icon_state = "rockfruit-peeled"
+
+/obj/item/food/golem_food/rocks
+	name = "Peeled rockfruit shell"
+	desc = "The peeled shell of a rockfruit, or as you may call it, \"Literal pile of rocks\". A golem will try to prove you otherwise"
+
+	foodtypes = STONE
+	food_reagents = list(/datum/reagent/consumable/nutriment/mineral = 5)
+
+	tastes = list("granite" = 1, "rocks and stones" = 1)
