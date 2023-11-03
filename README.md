@@ -25,9 +25,11 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 
 **Do Not Be A Dick**
 - The Bubberstation main repository is run by and contributed by volunteers. You are not entitled to our time and energy. We reserve the right to permanently remove anyone who does not show both our contributor's and maintainer's common decency.
+
 **This repository will only accept feedback that has to do with the functionality of code, sound, and images**
 - To maintain a proper working space for our contributors and to keep the repository free of clutter. All feedback that does not have to do with the functionality, quality, and review of code will be marked off-topic.
 - If you feel like feedback on a controversial PR is required, you are free to open a [feature request](.https://github.com/Bubberstation/Bubberstation/issues/new/choose) under the repository issues page and reference the PR number.
+
 **The Lisencing is Non-negotiable**
 - You are free to take, redistribute, modify, and readapt any code or commit found on this repository. 
 - All code files are under **GNU AGPL V3** 
