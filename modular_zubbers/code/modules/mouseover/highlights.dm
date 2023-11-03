@@ -99,7 +99,7 @@
 		list(
 			type = "drop_shadow",
 			color = mouseover_rainbow ? rgb(rand(0,255),rand(0,255),rand(0,255)) : "#0082c6",
-			size = 4,
+			size = 1,
 			offset = 2, x = 0, y = 0
 		)
 	)
