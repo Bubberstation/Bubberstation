@@ -41,7 +41,7 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 - You are entitled to credit yourself with comments and you are entitled to waive the attribution requirement choosing not to be identified as the creator if you wish.
 - If you do not like how your assets were modified or used, it is required that the other person [remove the attribution information upon request](.https://wiki.creativecommons.org/wiki/License_Versions#Licensors_may_request_removal_of_attribution).
 - Modifications or adaptions must disclose the source, the author, and [any changes you've made](.https://wiki.creativecommons.org/wiki/License_Versions#Modifications_and_adaptations_must_be_indicated). 
-- The goon code is incompatible with this codebase and will not be accepted.
+- Goonstation code is incompatible with this codebase and will not be accepted.
 
 ## Important note - TEST YOUR PULL REQUESTS
 
