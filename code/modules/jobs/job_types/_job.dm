@@ -564,6 +564,10 @@
 			set_species(/datum/species/human)
 			dna.species.roundstart_changed = TRUE
 			apply_pref_name(/datum/preference/name/backup_human, player_client)
+		//BUBBER EDIT: ANTAG NAMES
+		if(is_antag)
+			apply_pref_name(/datum/preference/name/antag, player_client)
+		//BUBBER EDIT END: ANTAG NAMES
 		if(CONFIG_GET(flag/force_random_names))
 			var/species_type = player_client.prefs.read_preference(/datum/preference/choiced/species)
 			var/datum/species/species = new species_type

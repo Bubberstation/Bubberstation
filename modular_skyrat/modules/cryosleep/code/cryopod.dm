@@ -533,6 +533,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cryopod/prison, 18)
 	var/obj/machinery/computer/cryopod/control_computer = find_control_computer()
 
 	var/alt_name = get_spawner_outfit_name()
+	//BUBBER EDIT: ANTAG NAMES
+	spawned_mob.apply_pref_name(/datum/preference/name/antag, mob_possessor)
+	//BUBBER EDIT END: ANTAG NAMES
 	GLOB.ghost_records.Add(list(list("name" = spawned_mob.real_name, "rank" = alt_name ? alt_name : name)))
 	if(control_computer)
 		control_computer.announce("CRYO_JOIN", spawned_mob.real_name, name)
