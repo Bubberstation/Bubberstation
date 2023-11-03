@@ -105,28 +105,9 @@
 	)
 	animate(mouseover_highlight_dummy, pixel_y = 24, time = 0.5 SECONDS, easing = ELASTIC_EASING, alpha = 180, maptext_y = 24)
 
-
-	// Replanes the overlays to avoid explicit plane/layer setting (such as
-	// computer overlays) interfering with the ordering of the highlight.
-/* 	if(length(mouseover_highlight_dummy.overlays))
-		var/list/replaned_overlays
-		for(var/thing in mouseover_highlight_dummy.overlays)
-			var/mutable_appearance/MA = new(thing)
-			MA.plane = ABOVE_HUD_PLANE
-			MA.layer = ABOVE_ALL_MOB_LAYER
-			LAZYADD(replaned_overlays, MA)
-		mouseover_highlight_dummy.overlays = replaned_overlays
-	if(length(mouseover_highlight_dummy.underlays))
-		var/list/replaned_underlays
-		for(var/thing in mouseover_highlight_dummy.underlays)
-			var/mutable_appearance/MA = new(thing)
-			MA.plane = ABOVE_HUD_PLANE
-			MA.layer = ABOVE_ALL_MOB_LAYER
-			LAZYADD(replaned_underlays, MA)
-		mouseover_highlight_dummy.underlays = replaned_underlays */
 	mouseover_highlight_dummy.maptext_width = 128
 	mouseover_highlight_dummy.maptext_x = -48
-	mouseover_highlight_dummy.maptext = MAPTEXT_PIXELLARI(AM)
+	mouseover_highlight_dummy.maptext = MAPTEXT_SPESSFONT(AM)
 	// Finally update our highlight's vis contents and location .
 	clear_vis_contents(current_highlight)
 	add_vis_contents(current_highlight, mouseover_highlight_dummy)
@@ -148,7 +129,7 @@
 	var/initalpha = initial(mouseover_highlight_dummy.alpha)
 	var/atom/movable/current_atom = current_highlight_atom?.resolve()
 	if(current_atom != object && mouseover_highlight_dummy)
-		animate(mouseover_highlight_dummy, pixel_y = 0, time = 0.2 SECONDS, easing = BOUNCE_EASING, alpha = initalpha)
+		animate(mouseover_highlight_dummy, pixel_y = 0, time = 0.2 SECONDS, easing = ELASTIC_EASING, alpha = initalpha)
 		refresh_mouseover_highlight_timer(current_atom, object)
 
 	. = ..()
