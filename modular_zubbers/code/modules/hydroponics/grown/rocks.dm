@@ -13,8 +13,8 @@
 	endurance = 45
 
 	potency = 15
-	maturation = 6
-	production = 2
+	maturation = 8
+	production = 4
 	yield = 2
 	instability = 0 // Rocks are very stable
 
@@ -47,14 +47,17 @@
 	var/product = /obj/item/food/grown/rockfruit
 
 /obj/item/grown/rockfruit/attack_self(mob/user, modifiers)
-	user.show_message(span_notice("You begin peeling the rocky exterior"))
+	user.show_message(span_notice("You begin peeling the rocky exterior..."))
 	if(!(do_after(user, 5 SECONDS)))
 		return
 	user.show_message(span_notice("You peel off the rocky shell of the rockfruit, revealing the fruity goodness inside!"))
 	balloon_alert(user, "peeled")
 
+	// The fruit inside
 	var/obj/item/food/grown/peel_prod
 	peel_prod = new product(user.loc, new_seed = seed) // I stole this from seed code and am physically crying and shaking
+
+	// The rocky shell
 	new /obj/item/food/golem_food/rocks(user.loc)
 
 	qdel(src)
@@ -72,11 +75,17 @@
 	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "rockfruit-peeled"
 
+	tastes = list("mountains" = 1)
+
 /obj/item/food/golem_food/rocks
 	name = "Peeled rockfruit shell"
-	desc = "The peeled shell of a rockfruit, or as you may call it, \"Literal pile of rocks\". A golem will try to prove you otherwise"
+	desc = "The peeled shell of a rockfruit, or as you may call it, \"Literal pile of rocks\". \
+	Probably not edible, but a golem will try to prove you otherwise"
+
+	icon = 'modular_zubbers/code/modules/food_and_drinks/icons/rocks.dmi'
+	icon_state = "rocks"
 
 	foodtypes = STONE
 	food_reagents = list(/datum/reagent/consumable/nutriment/mineral = 5)
 
-	tastes = list("granite" = 1, "rocks and stones" = 1)
+	tastes = list("rocks and stones" = 1)
