@@ -152,3 +152,11 @@
 		refresh_mouseover_highlight_timer(current_atom, object)
 
 	. = ..()
+
+
+/datum/preference/toggle/item_outlines/apply_to_client(client/client, value)
+	. = ..()
+	if(value == FALSE)
+		client.mouseover = FALSE
+	else
+		client.mouseover = TRUE
