@@ -1,4 +1,4 @@
-/datum/body_marking_set/gloss
+/datum/body_marking_set/gloss //sprites made by dangerkitten (discord)
 	name = "Body Gloss"
 	body_marking_list = list("Body Gloss")
 
