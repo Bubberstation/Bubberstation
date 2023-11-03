@@ -47,7 +47,7 @@
 
 /obj/item/grown/rockfruit/attack_self(mob/user, modifiers)
 	user.show_message(span_notice("You begin peeling the rocky exterior..."))
-	if(!(do_after(user, 5 SECONDS)))
+	if(!(do_after(user, 2 SECONDS)))
 		return
 	user.show_message(span_notice("You peel off the rocky shell of the rockfruit, revealing the fruity goodness inside!"))
 	balloon_alert(user, "peeled")
