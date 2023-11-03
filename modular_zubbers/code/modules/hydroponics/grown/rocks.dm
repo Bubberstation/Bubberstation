@@ -29,7 +29,6 @@
 
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.01,
 						/datum/reagent/consumable/nutriment = 0.01,
-						/datum/reagent/water/salt = 0.05,
 						)
 
 
@@ -89,3 +88,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment/mineral = 5)
 
 	tastes = list("rocks and stones" = 1)
+
+/datum/reagent/consumable/nutriment/mineral
+	taste_description = "rocks and stones"
