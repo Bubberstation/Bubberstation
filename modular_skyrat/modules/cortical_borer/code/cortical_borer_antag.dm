@@ -95,7 +95,7 @@
 	name = "Cortical Borer Infestation"
 	typepath = /datum/round_event/ghost_role/cortical_borer
 	weight = 10
-	min_players = 999
+	min_players = 20 // BUBBER EDIT
 	max_occurrences = 1 //should only ever happen once
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
