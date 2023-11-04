@@ -57,6 +57,13 @@
 
 	return null
 
+/mob/living/carbon/is_ears_covered()
+	for(var/obj/item/worn_thing as anything in get_equipped_items())
+		if(worn_thing.flags_cover & EARS_COVERED)
+			return worn_thing
+
+	return null
+
 /mob/living/carbon/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	var/obj/item/bodypart/affecting = get_bodypart(def_zone)
 	if(affecting && !(affecting.bodypart_flags & BODYPART_UNREMOVABLE) && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
@@ -181,10 +188,10 @@
 	return TRUE
 
 
-/mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)
+/mob/living/carbon/attack_drone(mob/living/basic/drone/user)
 	return //so we don't call the carbon's attack_hand().
 
-/mob/living/carbon/attack_drone_secondary(mob/living/simple_animal/drone/user)
+/mob/living/carbon/attack_drone_secondary(mob/living/basic/drone/user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -472,8 +479,7 @@
 	var/immediately_stun = should_stun && !(flags & SHOCK_DELAY_STUN)
 	if (immediately_stun)
 		if (paralyze)
-			//Paralyze(40) - SKYRAT EDIT REMOVAL
-			StaminaKnockdown(10, TRUE) // SKYRAT EDIT ADDITION
+			StaminaKnockdown(stun_duration / 4) // SKYRAT EDIT CHANGE - ORIGINAL: Paralyze(40)
 		else
 			Knockdown(stun_duration)
 	//Jitter and other fluff.
@@ -487,8 +493,7 @@
 ///Called slightly after electrocute act to apply a secondary stun.
 /mob/living/carbon/proc/secondary_shock(paralyze, stun_duration)
 	if (paralyze)
-		//Paralyze(60) - SKYRAT EDIT REMOVAL
-		StaminaKnockdown(10, TRUE) //SKYRAT EDIT ADDITION
+		StaminaKnockdown(stun_duration / 6) // SKYRAT EDIT CHANGE - ORIGINAL: Paralyze(60)
 	else
 		Knockdown(stun_duration)
 
@@ -761,7 +766,7 @@
 		amount = min(amount, 0) //Prevents oxy damage but not healing
 
 	. = ..()
-	check_passout(.)
+	check_passout()
 
 /mob/living/carbon/proc/get_interaction_efficiency(zone)
 	var/obj/item/bodypart/limb = get_bodypart(zone)
@@ -770,18 +775,17 @@
 
 /mob/living/carbon/setOxyLoss(amount, updating_health = TRUE, forced, required_biotype, required_respiration_type)
 	. = ..()
-	check_passout(.)
+	check_passout()
 
 /**
-* Check to see if we should be passed out from oyxloss
+* Check to see if we should be passed out from oxyloss
 */
-/mob/living/carbon/proc/check_passout(oxyloss)
-	if(!isnum(oxyloss))
-		return
-	if(oxyloss <= 50)
-		if(getOxyLoss() > 50)
+/mob/living/carbon/proc/check_passout()
+	var/mob_oxyloss = getOxyLoss()
+	if(mob_oxyloss >= 50)
+		if(!HAS_TRAIT_FROM(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT))
 			ADD_TRAIT(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT)
-	else if(getOxyLoss() <= 50)
+	else if(mob_oxyloss < 50)
 		REMOVE_TRAIT(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT)
 
 /mob/living/carbon/get_organic_health()
@@ -922,7 +926,7 @@
 		body_parts -= part
 	GLOB.bioscrambler_valid_parts = body_parts
 
-	var/list/organs = subtypesof(/obj/item/organ/internal) + subtypesof(/obj/item/organ/external)
+	var/list/organs = subtypesof(/obj/item/organ/external) - typesof(/obj/item/organ/external/genital) //BUBBERSTATION CHANGE, REMOVES INTERANL ORGAN SWAPPING AND REMOVES GENITALS.
 	for(var/obj/item/organ/organ_type as anything in organs)
 		if(!is_type_in_typecache(organ_type, GLOB.bioscrambler_organs_blacklist) && !(initial(organ_type.organ_flags) & ORGAN_ROBOTIC))
 			continue

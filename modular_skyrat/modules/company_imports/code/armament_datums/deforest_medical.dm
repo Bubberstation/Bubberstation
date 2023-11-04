@@ -121,7 +121,7 @@
 	cost = PAYCHECK_COMMAND
 
 /datum/armament_entry/company_import/deforest/equipment/surgical_tools
-	item_type = /obj/item/storage/backpack/duffelbag/med/surgery
+	item_type = /obj/item/surgery_tray/full
 	cost = PAYCHECK_COMMAND
 
 /datum/armament_entry/company_import/deforest/equipment/advanced_health_analyer
@@ -151,6 +151,17 @@
 /datum/armament_entry/company_import/deforest/equipment/afad
 	item_type = /obj/item/gun/medbeam/afad
 	cost = PAYCHECK_COMMAND * 5
+
+//Bubber Changes
+/datum/armament_entry/company_import/deforest/equipment/hypospray_case
+	item_type = /obj/item/storage/hypospraykit
+	cost = PAYCHECK_LOWER * 2
+
+/datum/armament_entry/company_import/deforest/equipment/hypospray
+	item_type = /obj/item/hypospray/mkii
+	cost = PAYCHECK_LOWER * 2
+
+//End Bubber Changes
 
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
 
@@ -226,23 +237,3 @@
 /datum/armament_entry/company_import/deforest/cyber_organs/augments/breathing_tube
 	name = "breathing tube implant"
 	item_type = /obj/item/organ/internal/cyberimp/mouth/breathing_tube
-
-// Personal Defense Weapons (For when the pharmacist must become the harmacist)
-
-/* BUBBERSTATION EDIT REMOVAL
-/datum/armament_entry/company_import/deforest/defense
-	subcategory = "Personal Defense Equipment"
-	contraband = TRUE
-
-/datum/armament_entry/company_import/deforest/defense/firefly
-	item_type = /obj/item/gun/ballistic/automatic/pistol/firefly
-	cost = PAYCHECK_COMMAND * 4
-
-/datum/armament_entry/company_import/deforest/defense/firefly_mag
-	item_type = /obj/item/ammo_box/magazine/multi_sprite/firefly
-	cost = PAYCHECK_CREW
-
-/datum/armament_entry/company_import/deforest/defense/firefly_mag_rubber
-	item_type = /obj/item/ammo_box/magazine/multi_sprite/firefly/rubber
-	cost = PAYCHECK_CREW
-*/

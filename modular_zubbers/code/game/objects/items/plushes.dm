@@ -19,7 +19,7 @@
 	icon_state = "plushie_mal0"
 
 /obj/item/toy/plush/nobl
-	name = "Nobl plushie"
+	name = "Fluffy Skog plushie"
 	desc = "It seems to be a small canine, not necessarily latex like you would suspect for some reason, but extremely squishy."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "nobl_plush"

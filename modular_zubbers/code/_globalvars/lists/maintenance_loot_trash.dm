@@ -21,7 +21,6 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 	list(
 		/obj/item/book/bible = 100,
 		/obj/item/book/bible/booze = 50,
-		/obj/item/book/fish_catalog = 25,
 		/obj/item/infuser_book = 5
 	) = 25,
 	list(
@@ -211,5 +210,4 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 	) = 50,
 	/obj/item/weaponcrafting/receiver = 25,
 	/obj/item/weaponcrafting/stock = 25,
-	/obj/item/wirerod = 25
 ))

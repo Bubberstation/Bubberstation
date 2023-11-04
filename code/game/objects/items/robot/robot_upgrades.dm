@@ -104,32 +104,6 @@
 	if (.)
 		R.ionpulse = FALSE
 
-//BUBBER EDIT Re-added removed upgrade, Plasma cutter
-/obj/item/borg/upgrade/advcutter
-	name = "mining cyborg advanced plasma cutter"
-	desc = "An upgrade for the mining cyborgs plasma cutter, bringing it to advanced operation."
-	icon_state = "cyborg_upgrade3"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/miner)
-	model_flags = BORG_MODEL_MINER
-
-/obj/item/borg/upgrade/advcutter/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/gun/energy/plasmacutter/brg/AC = locate() in R.model.modules
-		if(AC)
-			to_chat(user, span_warning("This unit is already equipped with A plasma Cutter!"))
-			return FALSE
-		AC = new(R.model)
-		R.model.basic_modules += AC
-		R.model.add_module(AC, FALSE, TRUE)
-
-/obj/item/borg/upgrade/advcutter/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		for(var/obj/item/gun/energy/plasmacutter/brg/AC in R.model.modules)
-			R.model.remove_module(AC, TRUE)
-
 /obj/item/borg/upgrade/ddrill
 	name = "mining cyborg diamond drill"
 	desc = "A diamond drill replacement for the mining model's standard drill."
@@ -401,7 +375,7 @@
 			cyborg.cell.use(5)
 		next_repair = world.time + repair_cooldown * 10 // Multiply by 10 since world.time is in deciseconds
 
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BORG_SELF_REPAIR))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BORG_SELF_REPAIR))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BORG_SELF_REPAIR, 200 SECONDS)
 			var/msgmode = "standby"
 			if(cyborg.health < 0)
@@ -560,7 +534,7 @@
 /obj/item/borg/upgrade/ai/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		if(R.shell)
+		if(locate(/obj/item/borg/upgrade/ai) in R.upgrades)
 			to_chat(user, span_warning("This unit is already an AI shell!"))
 			return FALSE
 		if(R.key) //You cannot replace a player unless the key is completely removed.
@@ -744,41 +718,6 @@
 		var/obj/item/borg/apparatus/circuit/C = locate() in R.model.modules
 		if (C)
 			R.model.remove_module(C, TRUE)
-
-	//BUBBER EDIT Cyborg welding tool upgrade, electrical
-/obj/item/borg/upgrade/electric_welder
-	name = "Electrical Welding Tool"
-	desc = "An engineering cyborg upgrade no longer using fossil fuels, but rather power!."
-	icon_state = "cyborg_upgrade1"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
-	model_flags = BORG_MODEL_ENGINEERING
-
-/obj/item/borg/upgrade/electric_welder/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/weldingtool/electric/ET = locate() in R.model.modules
-		if(ET)
-			to_chat(user, span_warning("This unit is already equipped with a Electrical welder!"))
-			return FALSE
-
-		ET= new(R.model)
-		R.model.basic_modules += ET
-		R.model.add_module(ET, FALSE, TRUE)
-
-		for(var/obj/item/weldingtool/largetank/cyborg/OW in R.model)//  Removes orginal welding tool when installed
-			R.model.remove_module(OW, TRUE)
-
-/obj/item/borg/upgrade/electric_welder/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		var/obj/item/weldingtool/electric/ET = locate() in R.model.modules
-		if (ET)
-			R.model.remove_module(ET, TRUE)
-
-			var/obj/item/weldingtool/largetank/cyborg/OW = new (R.model) //  Adds Orginal welder when Upgrade removed
-			R.model.basic_modules += OW
-			R.model.add_module(OW, FALSE, TRUE)
 
 /obj/item/borg/upgrade/beaker_app
 	name = "beaker storage apparatus"

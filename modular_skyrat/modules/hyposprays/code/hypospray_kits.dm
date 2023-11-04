@@ -121,3 +121,4 @@
 /obj/item/storage/box/hypospray/PopulateContents()
 	for(var/i in 1 to 4)
 		new /obj/item/storage/hypospraykit/empty(src)
+

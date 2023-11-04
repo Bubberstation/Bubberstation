@@ -17,6 +17,8 @@ GLOBAL_LIST_EMPTY(dynamic_forced_roundstart_ruleset)
 GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 /// Modify the threat level for station traits before dynamic can be Initialized. List(instance = threat_reduction)
 GLOBAL_LIST_EMPTY(dynamic_station_traits)
+/// Rulesets which have been forcibly enabled or disabled
+GLOBAL_LIST_EMPTY(dynamic_forced_rulesets)
 
 /datum/game_mode/dynamic
 	// Threat logging vars
@@ -107,8 +109,7 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 	/// A number between -5 and +5.
 	/// A negative value will give a more peaceful round and
 	/// a positive value will give a round with higher threat.
-	//var/threat_curve_centre = 0	//Bubber Edit: Original
-	var/threat_curve_centre = -2	//Bubber Edit: Lowered threat curve
+	var/threat_curve_centre = 0
 
 	/// A number between 0.5 and 4.
 	/// Higher value will favour extreme rounds and
@@ -425,6 +426,26 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 	generate_budgets()
 	set_cooldowns()
 	log_dynamic("Dynamic Mode initialized with a Threat Level of... [threat_level]! ([round_start_budget] round start budget)")
+	SSblackbox.record_feedback(
+		"associative",
+		"dynamic_threat",
+		1,
+		list(
+			"server_name" = CONFIG_GET(string/serversqlname),
+			"forced_threat_level" = GLOB.dynamic_forced_threat_level,
+			"threat_level" = threat_level,
+			"max_threat" = (SSticker.totalPlayersReady < low_pop_player_threshold) ? LERP(low_pop_maximum_threat, max_threat_level, SSticker.totalPlayersReady / low_pop_player_threshold) : max_threat_level,
+			"player_count" = SSticker.totalPlayersReady,
+			"round_start_budget" = round_start_budget,
+			"parameters" = list(
+				"threat_curve_centre" = threat_curve_centre,
+				"threat_curve_width" = threat_curve_width,
+				"forced_extended" = GLOB.dynamic_forced_extended,
+				"no_stacking" = GLOB.dynamic_no_stacking,
+				"stacking_limit" = GLOB.dynamic_stacking_limit,
+			),
+		),
+	)
 	return TRUE
 
 /datum/game_mode/dynamic/proc/setup_shown_threat()
@@ -469,8 +490,8 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 				for(var/job in job_prefs)
 					var/priority = job_prefs[job]
 					job_data += "[job]: [SSjob.job_priority_level_to_string(priority)]"
-				to_chat(player, span_danger("You were unable to qualify for any roundstart antagonist role because you could not qualify for any of the roundstart jobs you were trying to qualify for, along with 'return to lobby if job is unavailable' enabled."))
-				log_admin("[player.ckey] failed to qualify for any job and has [player.client.prefs.be_special.len] antag preferences enabled. They will be unable to qualify for any roundstart antagonist role. These are their job preferences - [job_data.Join(" | ")]")
+				to_chat(player, span_danger("You were unable to qualify for any roundstart antagonist role this round because your job preferences presented a high chance of all of your selected jobs being unavailable, along with 'return to lobby if job is unavailable' enabled. Increase the number of roles set to medium or low priority to reduce the chances of this happening."))
+				log_admin("[player.ckey] failed to qualify for any roundstart antagonist role because their job preferences presented a high chance of all of their selected jobs being unavailable, along with 'return to lobby if job is unavailable' enabled and has [player.client.prefs.be_special.len] antag preferences enabled. They will be unable to qualify for any roundstart antagonist role. These are their job preferences - [job_data.Join(" | ")]")
 			else
 				roundstart_pop_ready++
 				candidates.Add(player)
@@ -505,8 +526,8 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
 
 	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
-	else
-		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h))
+//	else // BUBBER EDIT REMOVAL
+//		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
 	//SKYRAT EDIT END
 
 	..()
@@ -640,8 +661,10 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 		if(rule.persistent)
 			current_rules += rule
 		new_snapshot(rule)
+		rule.forget_startup()
 		return TRUE
 	rule.clean_up() // Refund threat, delete teams and so on.
+	rule.forget_startup()
 	executed_rules -= rule
 	stack_trace("The starting rule \"[rule.name]\" failed to execute.")
 	return FALSE
@@ -689,9 +712,11 @@ GLOBAL_LIST_EMPTY(dynamic_station_traits)
 				executed_rules += new_rule
 				if (new_rule.persistent)
 					current_rules += new_rule
+				new_rule.forget_startup()
 				return TRUE
 		else if (forced)
 			log_dynamic("The ruleset [new_rule.name] couldn't be executed due to lack of elligible players.")
+	new_rule.forget_startup()
 	return FALSE
 
 /datum/game_mode/dynamic/process()

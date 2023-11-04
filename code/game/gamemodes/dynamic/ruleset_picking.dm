@@ -1,4 +1,4 @@
-#define ADMIN_CANCEL_MIDROUND_TIME (180 SECONDS) //SKYRAT EDIT - ORIGINAL 10 SECONDS
+#define ADMIN_CANCEL_MIDROUND_TIME (120 SECONDS) // BUBBER EDIT
 
 ///
 ///
@@ -118,11 +118,12 @@
 			message_admins("[key_name(M)] joined the station, and was selected by the [rule.name] ruleset.")
 			log_dynamic("[key_name(M)] joined the station, and was selected by the [rule.name] ruleset.")
 		executed_rules += rule
-		rule.candidates.Cut()
 		if (rule.persistent)
 			current_rules += rule
 		new_snapshot(rule)
+		rule.forget_startup()
 		return TRUE
+	rule.forget_startup()
 	rule.clean_up()
 	stack_trace("The [rule.ruletype] rule \"[rule.name]\" failed to execute.")
 	return FALSE
