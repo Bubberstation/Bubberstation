@@ -164,7 +164,7 @@
 	density = FALSE
 	circuit = /obj/item/circuitboard/machine/restaurant_portal
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	///What venue is this portal for? Uses a typepath which is turned into an instance on Initialize
 	var/datum/venue/linked_venue = /datum/venue
 
