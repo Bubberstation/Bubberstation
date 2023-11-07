@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(scanned_fish_by_techweb)
 	name = "Fish Scanning Experiment 3"
 	description = "An experiment requiring even more fish species to be scanned to unlock the 'Ocean' setting for the fishing portal."
 	points_reward = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	required_atoms = list(/obj/item/fish = 9) //BUBBERSTATION CHANGE: 12 TO 9.
+	required_atoms = list(/obj/item/fish = 9) //BUBBERSTATION CHANGE: 14 TO 9.
 	next_experiments = list(/datum/experiment/scanning/fish/fourth, /datum/experiment/scanning/fish/holographic)
 	fish_source_reward = /datum/fish_source/portal/ocean
 
@@ -111,6 +111,6 @@ GLOBAL_LIST_EMPTY(scanned_fish_by_techweb)
 	name = "Fish Scanning Experiment 4"
 	description = "An experiment requiring lotsa fish species to unlock the 'Hyperspace' setting for the fishing portal."
 	points_reward = list(TECHWEB_POINT_TYPE_GENERIC = 3250)
-	required_atoms = list(/obj/item/fish = 12) //BUBBERSTATION CHANGE: 18 TO 12.
+	required_atoms = list(/obj/item/fish = 12) //BUBBERSTATION CHANGE: 21 TO 12.
 	next_experiments = null
 	fish_source_reward = /datum/fish_source/portal/hyperspace
