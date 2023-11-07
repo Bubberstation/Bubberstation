@@ -1,3 +1,4 @@
+/* BUBBERSTATION CHANGE START: REDOES THE ARCADE PRIZE POOL. SEE MODULAR arcade.dm FILE FOR THE DROPTABLE.
 GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/storage/box/snappops = 2,
 		/obj/item/toy/talking/ai = 2,
@@ -69,6 +70,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/clothing/glasses/trickblindfold = 2,
 		/obj/item/clothing/mask/party_horn = 2,
 		/obj/item/storage/box/party_poppers = 2))
+BUBBERSTATION CHANGE END. */
 
 /obj/machinery/computer/arcade
 	name = "random arcade"
@@ -107,7 +109,11 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		if(prize_override)
 			prizeselect = pick_weight(prize_override)
 		else
+			//BUBBERSTATION CHANGE START: BETTER PRIZES.
 			prizeselect = pick_weight(GLOB.arcade_prize_pool)
+			while(islist(prizeselect))
+				prizeselect = pick_weight(prizeselect)
+			//BUBBERSTATION CHANGE END: BETTER PRIZES.
 		var/atom/movable/the_prize = new prizeselect(get_turf(src))
 		playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 		visible_message(span_notice("[src] dispenses [the_prize]!"), span_notice("You hear a chime and a clunk."))
@@ -132,7 +138,11 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		if(override)
 			empprize = pick_weight(prize_override)
 		else
+			//BUBBERSTATION CHANGE START: BETTER PRIZES.
 			empprize = pick_weight(GLOB.arcade_prize_pool)
+			while(islist(empprize))
+				empprize = pick_weight(empprize)
+			//BUBBERSTATION CHANGE END: BETTER PRIZES.
 		new empprize(loc)
 	explosion(src, devastation_range = -1, light_impact_range = 1+num_of_prizes, flame_range = 1+num_of_prizes)
 
@@ -582,7 +592,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			var/mob/living/living_user = user
 			if (istype(living_user))
 				living_user.investigate_log("has been gibbed by an emagged Orion Trail game.", INVESTIGATE_DEATHS)
-				living_user.gib()
+				living_user.gib(DROP_ALL_REMAINS)
 		SSblackbox.record_feedback("nested tally", "arcade_results", 1, list("loss", "hp", (obj_flags & EMAGGED ? "emagged":"normal")))
 		user.lost_game()
 

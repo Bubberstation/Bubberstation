@@ -109,8 +109,7 @@ GLOBAL_LIST_EMPTY(dynamic_forced_rulesets)
 	/// A number between -5 and +5.
 	/// A negative value will give a more peaceful round and
 	/// a positive value will give a round with higher threat.
-	//var/threat_curve_centre = 0	//Bubber Edit: Original
-	var/threat_curve_centre = -2	//Bubber Edit: Lowered threat curve
+	var/threat_curve_centre = 0
 
 	/// A number between 0.5 and 4.
 	/// Higher value will favour extreme rounds and
@@ -427,6 +426,26 @@ GLOBAL_LIST_EMPTY(dynamic_forced_rulesets)
 	generate_budgets()
 	set_cooldowns()
 	log_dynamic("Dynamic Mode initialized with a Threat Level of... [threat_level]! ([round_start_budget] round start budget)")
+	SSblackbox.record_feedback(
+		"associative",
+		"dynamic_threat",
+		1,
+		list(
+			"server_name" = CONFIG_GET(string/serversqlname),
+			"forced_threat_level" = GLOB.dynamic_forced_threat_level,
+			"threat_level" = threat_level,
+			"max_threat" = (SSticker.totalPlayersReady < low_pop_player_threshold) ? LERP(low_pop_maximum_threat, max_threat_level, SSticker.totalPlayersReady / low_pop_player_threshold) : max_threat_level,
+			"player_count" = SSticker.totalPlayersReady,
+			"round_start_budget" = round_start_budget,
+			"parameters" = list(
+				"threat_curve_centre" = threat_curve_centre,
+				"threat_curve_width" = threat_curve_width,
+				"forced_extended" = GLOB.dynamic_forced_extended,
+				"no_stacking" = GLOB.dynamic_no_stacking,
+				"stacking_limit" = GLOB.dynamic_stacking_limit,
+			),
+		),
+	)
 	return TRUE
 
 /datum/game_mode/dynamic/proc/setup_shown_threat()
@@ -507,8 +526,8 @@ GLOBAL_LIST_EMPTY(dynamic_forced_rulesets)
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
 
 	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
-	else
-		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h))
+//	else // BUBBER EDIT REMOVAL
+//		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
 	//SKYRAT EDIT END
 
 	..()
