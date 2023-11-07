@@ -20,8 +20,10 @@
 	var/list/spawn_locs = list()
 
 /datum/dynamic_ruleset/midround/from_ghosts/contractor/ready(forced = FALSE)
-	if(prob(33))
-		required_candidates++
+	//BUBBER EDIT: LESS CONTRACTORS
+	//if(prob(33))
+	//	required_candidates++
+	//BUBBER EDIT: LESS CONTRACTORS
 	if (required_candidates > (length(dead_players) + length(list_observers)))
 		return FALSE
 	for(var/obj/effect/landmark/carpspawn/carp in GLOB.landmarks_list)
