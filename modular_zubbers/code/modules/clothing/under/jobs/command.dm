@@ -1,5 +1,5 @@
-/obj/item/clothing/under/rank/captain/stripper
-	desc = "It's a revealing blue stripper outfit with some gold markings denoting the rank of \"Captain\". Technically unsactioned by Nanotrasen."
+/obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
+	desc = "It's a revealing blue stripper outfit with some gold markings befitting either the Head of Personnel or Captain. Technically unsactioned by Nanotrasen."
 	name = "captain's stripper uniform"
 	icon_state = "stripper_cap"
 	inhand_icon_state = "stripper_cap"
@@ -7,10 +7,9 @@
 	random_sensor = FALSE
 	icon = 'modular_zubbers/icons/obj/clothing/under/captain.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
-	armor_type = /datum/armor/clothing_under/rank_captain
 
 /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
-	desc = "It's a green stripper outfit with some gold markings denoting the rank of \"Nanotrasen Consultant\". Technically unsactioned by Nanotrasen."
+	desc = "It's a green stripper outfit with some gold markings denoting the rank of \"Nanotrasen Consultant\". Technically unsactioned by Nanotrasen, but due to P.L.O.T. technology, it is as protective as the normal Consultant's jumpsuit."
 	name = "consultant's stripper uniform"
 	icon = 'modular_zubbers/icons/obj/clothing/under/captain.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
