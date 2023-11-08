@@ -65,7 +65,7 @@
 
 /obj/item/toy/plush/bellybird
 	name = "Bellybird plushie"
-	desc = "It has a tag on the back. 'You seen the opera, now get ready for the theatrical release with the new Farren plushie. House Feather's patented design allows this plushie to feel almost lifelike with its synthetic feathers and smoothed scales, glow in the dark eyes and a round tummy to rest your head on, not to mention it comes complete with Autumn the snake tail! Witness Autumn in action as this flexible tail is able to snap her jaws and hiss at any opponent with such realism. Order now for only two low payments of 19.95!'"
+	desc = "It has a tag on the back. 'You seen the opera, now get ready for the theatrical release with the new Bellybird plushie. House Feather's patented design allows this plushie to feel almost lifelike with its synthetic feathers and smoothed scales, glow in the dark eyes and a round tummy to rest your head on, not to mention it comes complete with Autumn the snake tail! Witness Autumn in action as this flexible tail is able to snap her jaws and hiss at any opponent with such realism. Order now for only two low payments of 19.95!'"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "bellybird"
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/hiss.ogg' = 1)
