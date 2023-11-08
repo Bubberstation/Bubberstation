@@ -1,8 +1,3 @@
-/datum/loadout_item/under/jumpsuit/syndicate/tactical/skirt
-	name = "tactical skirtleneck"
-	item_path = /obj/item/clothing/under/syndicate/skyrat/tactical/skirt
-	donator_only = TRUE
-
 /datum/loadout_item/under/jumpsuit/security/hecu
 	name = "Urban camouflage BDU"
 	item_path = /obj/item/clothing/under/rank/security/officer/hecu
@@ -18,11 +13,6 @@
 	name = "Consultant stripper uniform"
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
-
-/datum/loadout_item/under/jumpsuit/syndicate/tactical
-	name = "tactical turtleneck"
-	item_path = /obj/item/clothing/under/syndicate/skyrat/tactical
-	donator_only = TRUE
 
 /datum/loadout_item/under/formal/lace_dress
 	name = "Lilac Dress"
