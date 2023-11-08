@@ -10,9 +10,28 @@
 
 /datum/loadout_item/toys/bigdeer_plush
 	name = "Big Deer Plushie"
-	item_path = /obj/item/toy/plush/bigdeer_plush	//Donor item for Gavla
+	item_path = /obj/item/toy/plush/bigdeer_plush //Donor item for Gavla
 
 /datum/loadout_item/toys/nobl_plush
 	name = "Fluffy Skog plushie"
 	item_path = /obj/item/toy/plush/nobl
 	ckeywhitelist = list("nobledreameater")
+
+/datum/loadout_item/toys/bubbledragon
+	name = "Bubble Dragon plushie"
+	item_path = /obj/item/toy/plush/bubbledragon
+	donator_only = TRUE
+
+/datum/loadout_item/toys/headcrab
+	name = "Headcrab plushie"
+	item_path = /obj/item/toy/plush/headcrab
+	donator_only = TRUE
+
+/datum/loadout_item/toys/Bellybird
+	name = "Belly bird plushie"
+	item_path = /obj/item/toy/plush/bellybird
+	donator_only = TRUE
+
+/datum/loadout_item/toys/tiredtesh
+	name = "Tired Teshari plushie"
+	item_path = /obj/item/toy/plush/tiredtesh
