@@ -56,11 +56,11 @@
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
 			var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
-			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod
+			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.25
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
 		if(rod_mix_pressure >= stored_rod.pressure_limit*(1 + rand()*0.25)) //Pressure friction penalty.
-			rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity) * 0.25
+			rod_mix.temperature += (min(rod_mix_pressure/stored_rod.pressure_limit,4) - 1) * (3/rod_mix_heat_capacity)
 			rod_mix.temperature = clamp(rod_mix.temperature,5,0xFFFFFF)
 		if(last_tritium_consumption > 0)
 			consumed_mix.assert_gas(/datum/gas/goblin)
