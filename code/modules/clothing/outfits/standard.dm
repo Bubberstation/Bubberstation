@@ -229,7 +229,7 @@
 	id_trim = /datum/id_trim/centcom/commander
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/centcom_formal
-	suit_store = /obj/item/gun/ballistic/revolver/mateba
+	suit_store = /obj/item/gun/ballistic/revolver/mateba // Bubberstation edit
 	back = /obj/item/storage/backpack/satchel/leather
 	belt = /obj/item/storage/belt/sabre/centcom
 	ears = /obj/item/radio/headset/headset_cent/commander
