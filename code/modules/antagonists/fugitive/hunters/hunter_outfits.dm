@@ -1,9 +1,9 @@
 /datum/outfit/spacepol
 	name = "Spacepol Officer"
 	uniform = /obj/item/clothing/under/rank/security/officer/spacepol
-	suit = /obj/item/clothing/suit/armor/vest/police
-	belt = /obj/item/gun/ballistic/automatic/pistol/m1990
-	head = /obj/item/clothing/head/hats/police
+	suit = /obj/item/clothing/suit/armor/vest/police // Bubberstation Edit
+	belt = /obj/item/gun/ballistic/automatic/pistol/m1990 // Bubberstation Edit
+	head = /obj/item/clothing/head/hats/police // Bubberstation Edit
 	gloves = /obj/item/clothing/gloves/tackler/combat
 	shoes = /obj/item/clothing/shoes/jackboots
 	mask = /obj/item/clothing/mask/gas/sechailer/swat/spacepol
