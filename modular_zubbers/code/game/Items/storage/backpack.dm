@@ -4,6 +4,8 @@
 		"Korve" = list(
 		RESKIN_ICON = 'modular_zubbers/icons/obj/storage/backpack.dmi',
 		RESKIN_ICON_STATE = "duffel-med",
+		RESKIN_INHAND_L = 'modular_zubbers/icons/mob/inhands/equipment/backpack_lefthand.dmi',
+		RESKIN_INHAND_R = 'modular_zubbers/icons/mob/inhands/equipment/backpack_righthand.dmi',
 		RESKIN_INHAND_STATE = "duffel-med",
 		RESKIN_WORN_ICON = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi',
 		RESKIN_WORN_ICON_STATE = "duffel-med",

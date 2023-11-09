@@ -4,9 +4,9 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
-/datum/loadout_item/under/miscellaneous/captain/stripper //Sprites by SierraGenevese
+/datum/loadout_item/under/miscellaneous/command/stripper //Sprites by SierraGenevese
 	name = "Command stripper uniform"
-	item_path = /obj/item/clothing/under/rank/captain/stripper
+	item_path = /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
 	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL)
 
 /datum/loadout_item/under/miscellaneous/nanotrasen_consultant/stripper //Sprites by SierraGenevese
@@ -29,3 +29,6 @@
 	item_path = /obj/item/clothing/under/misc/maid/tactical
 	donator_only = TRUE
 
+/datum/loadout_item/under/miscellaneous/mech_suit
+	name = "Mech pilot's suit"
+	item_path = /obj/item/clothing/under/costume/mech_suit
