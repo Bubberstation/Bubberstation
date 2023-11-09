@@ -69,3 +69,12 @@
 		RESKIN_ICON_STATE = "drill",
 		),
 	)
+
+/obj/item/bonesetter
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Korve" = list(
+		RESKIN_ICON = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "bonesetter",
+		),
+	)
