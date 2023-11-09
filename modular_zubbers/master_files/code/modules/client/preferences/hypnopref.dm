@@ -1,7 +1,7 @@
 /datum/preference/choiced/erp_status_hypno
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "erp_status_pref_hypno"
+	savefile_key = "erp_status_pref_hypnosis"
 
 /datum/preference/choiced/erp_status_hypno/init_possible_values()
 	return list("Yes - Switch", "Yes - Dom", "Yes - Sub", "Check OOC", "Ask", "No", "Yes")
