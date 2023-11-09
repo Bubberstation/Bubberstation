@@ -34,3 +34,10 @@
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3E3E48#FFFFFF"
+
+/obj/item/clothing/head/hats/police
+	name = "police officer's hat"
+	desc = "A hat just for you to tell people that you know the law better than them."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "solpol_helm"

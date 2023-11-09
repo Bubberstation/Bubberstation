@@ -31,3 +31,12 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
+
+/obj/item/clothing/suit/armor/vest/police //Sprite done by Dutchy#4523
+	name = "police officer's vest"
+	desc = "A vest that looks like a Type III Bulletproof Armor, but it has some quality upgrades, such as the badge on the front, and ``POLICE`` written in bold on the back."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "solpol_vest"
+	inhand_icon_state = null
+	armor_type = /datum/armor/suit_armor
