@@ -56,6 +56,13 @@
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
 
+/obj/item/gun/ballistic/automatic/pistol/m1990
+	name = "\improper M1990"
+	desc = "A SolFed recreation of the classic M1911. Uses .45 rounds, and is displayed with a Sol Federation badge on the barrel."
+	icon_state = "m1990"
+	fire_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/fire/luger_fire.ogg'
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m45
+
 /**
  * Weak 1911 for syndicate chimps. It comes in a 4 TC kit.
  * 15 damage every.. second? 7 shots to kill. Not fast.
@@ -66,14 +73,6 @@
 	projectile_damage_multiplier = 0.5
 	projectile_wound_bonus = -12
 	pin = /obj/item/firing_pin/monkey
-
-/obj/item/gun/ballistic/automatic/pistol/m1990
-	name = "\improper M1990"
-	desc = "A SolFed recreation of the classic M1911. Uses .45 rounds, and is displayed with a Sol Federation badge on the grip."
-	icon_state = "m1990"
-	fire_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/fire/luger_fire.ogg'
-	accepted_magazine_type = /obj/item/ammo_box/magazine/m45
-
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/no_mag
 	spawnwithmagazine = FALSE

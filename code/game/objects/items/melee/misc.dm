@@ -61,7 +61,7 @@
 
 /obj/item/melee/sabre
 	name = "officer's sabre" //SKYRAT EDIT - Buffed in modular_skyrat/modules/modular_weapons/code/melee.dm
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease." 
+	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sabre"
 	inhand_icon_state = "sabre"
@@ -175,6 +175,16 @@
 		user.adjustBruteLoss(200)
 		user.death(FALSE)
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
+
+/obj/item/melee/sabre/centcom
+	name = "Commander's sabre"
+	desc = "An even more elegant weapon with a purer golden grip guard, with even rarer redwood wooden grip. The blade is made of plasteel infused gold, which makes it incredibly good at cutting."
+	icon = 'modular_zubbers/icons/obj/weapons/melee/swords.dmi'
+	icon_state = "cent_sabre"
+	inhand_icon_state = "cent_sabre"
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
+
 
 /obj/item/melee/beesword
 	name = "The Stinger"
