@@ -8,6 +8,7 @@
 
 /datum/preference/choiced/erp_status_hypno/create_default_value()
 	return "Ask"
+
 /datum/preference/choiced/erp_status_hypno/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
 		return FALSE
