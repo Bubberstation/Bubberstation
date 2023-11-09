@@ -176,16 +176,6 @@
 		user.death(FALSE)
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
-/obj/item/melee/sabre/centcom
-	name = "Commander's sabre"
-	desc = "An even more elegant weapon with a purer golden grip guard, with even rarer redwood wooden grip. The blade is made of plasteel infused gold, which makes it incredibly good at cutting."
-	icon = 'modular_zubbers/icons/obj/weapons/melee/swords.dmi'
-	icon_state = "cent_sabre"
-	inhand_icon_state = "cent_sabre"
-	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
-
-
 /obj/item/melee/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."

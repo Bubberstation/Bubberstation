@@ -812,35 +812,6 @@
 	inhand_icon_state = null
 	worn_icon_state = "cummerbund"
 
-/obj/item/storage/belt/plant
-	name = "botanical belt"
-	desc = "A sturdy leather belt used to hold most hydroponics supplies."
-	icon_state = "plantbelt"
-	inhand_icon_state = "utility"
-	worn_icon_state = "plantbelt"
-	content_overlays = TRUE
-
-/obj/item/storage/belt/plant/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 6
-	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
-	atom_storage.set_holdable(list(
-		/obj/item/cultivator,
-		/obj/item/geneshears,
-		/obj/item/graft,
-		/obj/item/gun/energy/floragun,
-		/obj/item/hatchet,
-		/obj/item/plant_analyzer,
-		/obj/item/reagent_containers/cup/beaker,
-		/obj/item/reagent_containers/cup/bottle,
-		/obj/item/reagent_containers/cup/tube,
-		/obj/item/reagent_containers/spray/pestspray,
-		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/secateurs,
-		/obj/item/seeds,
-		/obj/item/shovel/spade,
-	))
-
 /obj/item/storage/belt/sabre
 	name = "sabre sheath"
 	desc = "An ornate sheath designed to hold an officer's blade."
@@ -892,18 +863,31 @@
 	new /obj/item/melee/sabre(src)
 	update_appearance()
 
-/obj/item/storage/belt/sabre/centcom
-	name = "Commander's sabre sheath"
-	desc = "A expensive sheath made of pure gold, and exotic fabric to house an even more expensive sword, this one has CENTRAL COMMAND etched into the gold stripe, and a nice white stripe."
-	icon = 'modular_zubbers/icons/obj/clothing/belts.dmi'
-	icon_state = "cent_sheath"
-	inhand_icon_state = "cent_sheath"
-	worn_icon = 'modular_zubbers/icons/mob/clothing/belts.dmi'
-	worn_icon_state = "cent_sheath"
-	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/belt_lefthand.dmi'
-	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/belt_righthand.dmi'
+/obj/item/storage/belt/plant
+	name = "botanical belt"
+	desc = "A sturdy leather belt used to hold most hydroponics supplies."
+	icon_state = "plantbelt"
+	inhand_icon_state = "utility"
+	worn_icon_state = "plantbelt"
+	content_overlays = TRUE
 
-/obj/item/storage/belt/sabre/centcom/PopulateContents()
-	new /obj/item/melee/sabre/centcom(src)
-	update_appearance()
-
+/obj/item/storage/belt/plant/Initialize(mapload)
+	. = ..()
+	atom_storage.max_slots = 6
+	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
+	atom_storage.set_holdable(list(
+		/obj/item/cultivator,
+		/obj/item/geneshears,
+		/obj/item/graft,
+		/obj/item/gun/energy/floragun,
+		/obj/item/hatchet,
+		/obj/item/plant_analyzer,
+		/obj/item/reagent_containers/cup/beaker,
+		/obj/item/reagent_containers/cup/bottle,
+		/obj/item/reagent_containers/cup/tube,
+		/obj/item/reagent_containers/spray/pestspray,
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/secateurs,
+		/obj/item/seeds,
+		/obj/item/shovel/spade,
+	))
