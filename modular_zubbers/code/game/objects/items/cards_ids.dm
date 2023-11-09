@@ -14,6 +14,6 @@
 	desc = "An old, blank bank card with an inactive account, belonging to the Korve Central Bank."
 	icon = 'modular_zubbers/icons/obj/card.dmi'
 	icon_state = "korven_bank"
-	inhand_icon_state = "korven_bank"
+	inhand_icon_state = "korven"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/idcards_righthand.dmi'
