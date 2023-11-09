@@ -231,7 +231,7 @@
 	suit = /obj/item/clothing/suit/armor/centcom_formal
 	suit_store = /obj/item/gun/ballistic/revolver/mateba // Bubberstation edit
 	back = /obj/item/storage/backpack/satchel/leather
-	belt = /obj/item/storage/belt/sabre/centcom
+	belt = /obj/item/storage/belt/sabre/centcom // Bubberstation edit
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/sunglasses
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
