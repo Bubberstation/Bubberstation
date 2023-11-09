@@ -9,7 +9,7 @@
 	subdepartment_color = COLOR_SYNDIE_RED
 
 /datum/id_trim/syndicom/bubberstation/dauntless/prisoner
-	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_icon = 'modular_zubbers/icons/obj/card.dmi' //Bubberstation edit
 	assignment = "Dauntless Hostage"
 	trim_state = "trim_ds2prisoner"
 	subdepartment_color = COLOR_MAROON

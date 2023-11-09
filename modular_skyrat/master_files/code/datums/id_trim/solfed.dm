@@ -1,5 +1,5 @@
 /datum/id_trim/solfed
-	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_icon = 'modular_zubbers/icons/obj/card.dmi' //Bubberstation edit
 	assignment = "SolFed"
 	trim_state = "trim_solfed"
 	department_color = COLOR_SOLFED_GOLD
