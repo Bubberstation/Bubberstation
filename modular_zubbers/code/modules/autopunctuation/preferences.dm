@@ -3,6 +3,9 @@
 	savefile_key = "autopunctuation"
 	savefile_identifier = PREFERENCE_PLAYER
 
+/client/var/autopunctuation
+/datum/client_interface/var/autopunctuation
+
 /datum/preference/toggle/autopunctuation/apply_to_client(client/client, value)
 	.=..()
 	if(value)
