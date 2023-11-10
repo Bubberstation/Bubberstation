@@ -216,8 +216,8 @@
 /obj/item/clothing/under/rank/security/officer/spacepol
 	name = "police uniform"
 	desc = "Space not controlled by megacorporations, planets, or pirates is under the jurisdiction of Spacepol."
-	icon = 'icons/obj/clothing/under/security.dmi'
-	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	icon = 'icons/obj/clothing/under/security.dmi' // Bubberstation Edit
+	worn_icon = 'icons/mob/clothing/under/security.dmi' // Bubberstation edit
 	icon_state = "spacepol"
 	inhand_icon_state = null
 	can_adjust = FALSE
