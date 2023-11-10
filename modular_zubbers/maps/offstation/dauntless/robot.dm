@@ -10,7 +10,7 @@
 	. = ..()
 	// Turns out this is all you need for access to the doors. See code\game\machinery\_machinery.dm
 	R.faction += ROLE_SYNDICATE
-	to_chat(T, span_alert("Additional access detected!"))
+	to_chat(R, span_alert("Additional access detected!"))
 	to_chat(user, span_warning("The cyborg whirrs a bit as additional access levels are added."))
 
 
