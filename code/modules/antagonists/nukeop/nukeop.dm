@@ -39,6 +39,11 @@
 		return
 
 	var/mob/living/carbon/human/operative = owner.current
+	//Bubber Edit: Adds automatic antag names
+	if(iscarbon(operative))
+		operative.apply_pref_name(/datum/preference/name/syndicate, operative.client)
+		operative.dna.update_dna_identity()
+	//Bubber edit END: Adds automatic antag names
 	ADD_TRAIT(operative, TRAIT_NOFEAR_HOLDUPS, INNATE_TRAIT)
 
 	if(!nukeop_outfit) // this variable is null in instances where an antagonist datum is granted via enslaving the mind (/datum/mind/proc/enslave_mind_to_creator), like in golems.

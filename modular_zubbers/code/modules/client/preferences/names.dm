@@ -1,6 +1,6 @@
-/datum/preference/name/antag
-	explanation = "Antagonist name"
-	group = "antag"
+/datum/preference/name/syndicate
+	explanation = "Syndicate name"
+	group = "backup_human"
 	savefile_key = "antag_name"
 
 /datum/preference/name/antag/create_informed_default_value(datum/preferences/preferences)

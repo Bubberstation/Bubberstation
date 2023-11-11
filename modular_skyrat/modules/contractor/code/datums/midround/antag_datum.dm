@@ -23,6 +23,12 @@
 /datum/antagonist/contractor/on_gain()
 	forge_objectives()
 	. = ..()
+	//Bubber Edit: Adds automatic antag names
+	var/mob/living/carbon/human/person = owner.current
+	if(iscarbon(person))
+		person.apply_pref_name(/datum/preference/name/syndicate, person.client)
+		person.dna.update_dna_identity()
+	//Bubber edit END: Adds automatic antag names
 	equip_guy()
 
 /datum/antagonist/contractor/forge_objectives()
