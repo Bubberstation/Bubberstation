@@ -53,7 +53,6 @@
 	alt_titles += list(
 		"Chief Steward",
 		"Command Enforcer",
-		"Command Goon",
 		"Command Henchman",
 	)
 
