@@ -28,7 +28,7 @@
 		"Spacefarer",
 		"Stripper",
 	)
-//Finally, a name to represent the average Assistant.
+//Finally, names to represent the average Assistant.
 
 /datum/job/atmospheric_technician/New()
 	.=..()
