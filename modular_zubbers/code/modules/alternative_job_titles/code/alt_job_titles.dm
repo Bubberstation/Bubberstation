@@ -20,6 +20,7 @@
 		"Escort",
 		"Fiend",
 		"Fleshlight",
+		"Hobbyist",
 		"Hooker",
 		"Jackanape",
 		"Maintworker",
