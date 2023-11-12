@@ -68,6 +68,7 @@
 		"Apiculturist",
 		"Beekeeper",
 		"Beemaster",
+		"Farmer",
 		"Sodbuster",
 	)
 
