@@ -200,7 +200,7 @@
 		"Corporate Servant",
 		"Courtesan",
 		"Fax Monkey",
-		"Loyalty Officer"
+		"Loyalty Officer",
 		"Procedure Enforcement Officer",
 		"Regulatory Officer",
 		"Station Diplomat",
