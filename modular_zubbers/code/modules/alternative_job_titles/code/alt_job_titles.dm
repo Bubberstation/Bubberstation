@@ -13,8 +13,8 @@
 	.=..()
 	alt_titles += list(
 		"Bastard",
-		"Call Girl",
 		"Call Boy",
+		"Call Girl",
 		"Callperson",
 		"Crew Gremlin",
 		"Escort",
