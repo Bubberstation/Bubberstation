@@ -16,6 +16,7 @@
 		"Call Boy",
 		"Call Girl",
 		"Callperson",
+		"Collector",
 		"Crew Gremlin",
 		"Escort",
 		"Fiend",
@@ -40,6 +41,8 @@
 		"Pipe Cleaner",
 		"Pipe Inspector",
 		"Pipe Technician",
+		"HVAC Engineer",
+		"Firefighter",
 	)
 
 /datum/job/bitrunner/New()
@@ -83,6 +86,8 @@
 		"Premier",
 		"Staff Captain",
 		"Station Admiral",
+		"Facility Director",
+		"Overseer",
 	)
 
 /datum/job/cargo_technician/New()
@@ -91,12 +96,14 @@
 		"Cargo Technician",
 		"Deckhand",
 		"Deck Rating",
+		"Package Handler",
+		"Deliveryman",
 	)
 
 /datum/job/chaplain/New()
 	.=..()
 	alt_titles += list(
-		"Moffpriest",
+		"Monk",
 	)
 
 /datum/job/chemist/New()
@@ -108,6 +115,7 @@
 		"Plumbing Technician",
 		"Plumber",
 		"Pyrotechnics Specialist",
+		"Hazardous Materials Technician"
 	)
 
 /datum/job/cook/New()
@@ -127,6 +135,7 @@
 		"Gyndroid",
 		"Stationbound",
 		"Toaster",
+		"Prototype",
 	)
 
 /datum/job/doctor/New()
@@ -145,6 +154,7 @@
 		"Second Mate",
 		"Staff Manager",
 		"Staff Overseer",
+		"Service Manager",
 	)
 
 /datum/job/nanotrasen_consultant/New()
@@ -196,6 +206,8 @@
 		"Lifeline Technician",
 		"Medical Taxi Driver",
 		"Trauma Technician",
+		"Emergency Rescue Technician",
+		"Medical Response Unit",
 	)
 
 /datum/job/quartermaster/New()
