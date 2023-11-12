@@ -97,6 +97,7 @@
 	.=..()
 	alt_titles += list(
 		"Monk",
+		"Magos",
 	)
 
 /datum/job/chemist/New()
@@ -129,12 +130,6 @@
 		"Stationbound",
 		"Toaster",
 		"Prototype",
-	)
-
-/datum/job/doctor/New()
-	.=..()
-	alt_titles += list(
-		"Magos",
 	)
 
 /datum/job/head_of_personnel/New()
