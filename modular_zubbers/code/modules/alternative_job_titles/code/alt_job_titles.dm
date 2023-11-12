@@ -12,18 +12,14 @@
 /datum/job/assistant/New()
 	.=..()
 	alt_titles += list(
-		"Bastard",
 		"Call Boy",
 		"Call Girl",
 		"Callperson",
 		"Collector",
-		"Crew Gremlin",
 		"Escort",
 		"Fiend",
-		"Fleshlight",
 		"Hobbyist",
 		"Hooker",
-		"Jackanape",
 		"Maintworker",
 		"Ne'er-do-well",
 		"Prostitute",
@@ -31,7 +27,6 @@
 		"Sexworker",
 		"Spacefarer",
 		"Stripper",
-		"Troublemaker",
 	)
 //Finally, a name to represent the average Assistant.
 
