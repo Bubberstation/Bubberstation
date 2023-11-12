@@ -27,11 +27,9 @@
 		"Prostitute",
 		"Roustabout",
 		"Sexworker",
-		"Slut",
 		"Spacefarer",
 		"Stripper",
 		"Troublemaker",
-		"Whore",
 	)
 //Finally, a name to represent the average Assistant.
 
@@ -53,12 +51,10 @@
 /datum/job/blueshield/New()
 	.=..()
 	alt_titles += list(
-		"Blueshit",
 		"Chief Steward",
 		"Command Enforcer",
 		"Command Goon",
 		"Command Henchman",
-		"Steward",
 	)
 
 /datum/job/botanist/New()
@@ -107,19 +103,11 @@
 	.=..()
 	alt_titles += list(
 		"Alchemist",
-		"Explosives Specialist",
 		"Harmacist",
 		"Harmacologist",
 		"Plumbing Technician",
 		"Plumber",
 		"Pyrotechnics Specialist",
-		"Stimulant Manufacturing Technician",
-	)
-
-/datum/job/chief_medical_officer/New()
-	.=..()
-	alt_titles += list(
-		"Chief Boo-Boo Kisser",
 	)
 
 /datum/job/cook/New()
@@ -144,14 +132,12 @@
 /datum/job/doctor/New()
 	.=..()
 	alt_titles += list(
-		"Boo-Boo Repair Specialist",
 		"Magos",
 	)
 
 /datum/job/head_of_personnel/New()
 	.=..()
 	alt_titles += list(
-		"Captain't",
 		"Chief Navigational Officer",
 		"First Officer",
 		"First Mate",
@@ -170,7 +156,6 @@
 		"Bridge Diplomat",
 		"Bridge Inspector",
 		"Bridge Officer",
-		"Bridge Snitch",
 		"Central Advisor",
 		"Central Command Representative",
 		"Central Consultant",
@@ -188,18 +173,14 @@
 		"Conduct Officer",
 		"Corporate Assistant",
 		"Corporate Advisor",
-		"Corporate Butler",
-		"Corporate Glowie",
 		"Corporate Inspector",
 		"Corporate Lawyer",
 		"Corporate Liaison",
 		"Corporate Maid",
-		"Corporate Snitch",
 		"Corporate Officer",
 		"Corporate Representative",
 		"Corporate Servant",
 		"Courtesan",
-		"Fax Monkey",
 		"Loyalty Officer",
 		"Procedure Enforcement Officer",
 		"Regulatory Officer",
@@ -211,7 +192,6 @@
 /datum/job/paramedic/New()
 	.=..()
 	alt_titles += list(
-		"Boo-Boo Response Technician",
 		"Corpse Courier",
 		"Lifeline Technician",
 		"Medical Taxi Driver",
