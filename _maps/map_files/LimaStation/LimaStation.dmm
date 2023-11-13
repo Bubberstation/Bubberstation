@@ -1450,7 +1450,6 @@
 "aGU" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
-	on = 0;
 	pixel_x = -3;
 	pixel_y = 8
 	},
@@ -9163,6 +9162,13 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/cyan,
 /area/station/hallway/primary/starboard)
+"dKg" = (
+/obj/item/flashlight/lamp/green{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/turf/open/space/basic,
+/area/space)
 "dKo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14054,7 +14060,7 @@
 /area/station/science/robotics/mechbay)
 "fDP" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/west,
-/obj/effect/landmark/bitrunning/station_reward_spawn,
+/obj/machinery/byteforge,
 /turf/open/floor/iron/dark/textured,
 /area/station/bitrunning/den)
 "fEl" = (
@@ -18797,7 +18803,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/retaliate/goat{
+/mob/living/basic/goat/pete{
 	desc = "The chefs most 'trusted' pet Goat. Just don't stare at him too long.";
 	name = "Pete"
 	},
@@ -78800,7 +78806,7 @@ ymg
 ymg
 ymg
 ymg
-ymg
+dKg
 ymg
 ymg
 ymg
