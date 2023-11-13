@@ -52,7 +52,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 /area/awaymission/secret/powered/fullbright
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-
+//BUBBER EDIT BEGIN
 /area/awaymission/secret/powered/construct
 	name = "construct"
 	ambience_index = null
@@ -68,3 +68,4 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 
 /area/centcom/central_command_areas/briefing/construct
 	ambient_buzz = null
+// BUBBER EDIT END
