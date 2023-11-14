@@ -5,4 +5,6 @@
 	icon_state = "spacepol"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/masks.dmi'
 	inhand_icon_state = "spacepol_mask"
-	unique_death = 'modular_zubbers/sound/voice/cpdeath/die1.ogg'
+	flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
+	visor_flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
+	unique_death = 'sound/voice/police_death.ogg'
