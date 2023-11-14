@@ -1,6 +1,6 @@
 //Cosmetic ID cards that use cardboard to make them useless as actual IDs, while still looking vaguely like one.
 /obj/item/card/cardboard/unioncard
-	name = "Union Membership Card"
+	name = "union membership card"
 	desc = "Considered contraband on Nanotrasen-aligned stations, this card proclaims the wearer's membership to the Worker's Union."
 	icon = 'modular_zubbers/icons/obj/card.dmi'
 	icon_state = "union"
@@ -10,7 +10,7 @@
 
 
 /obj/item/card/cardboard/korvenbank
-	name = "Korven bank card"
+	name = "korven bank card"
 	desc = "An old, blank bank card with an inactive account, belonging to the Korve Central Bank."
 	icon = 'modular_zubbers/icons/obj/card.dmi'
 	icon_state = "korven_bank"

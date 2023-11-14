@@ -7,7 +7,7 @@
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
 
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
-	name = "Magnificent pinwheel hat"
+	name = "magnificent pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex")
 //11/08/23: Added as a reward to people who have recommended friends to Bubberstation. Add to this list as you please, you can offer this as a reward for basically anything.

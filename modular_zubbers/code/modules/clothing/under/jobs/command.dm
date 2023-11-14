@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
 	desc = "It's a revealing blue stripper outfit with some gold markings befitting either the Head of Personnel or Captain. Technically unsactioned by Nanotrasen."
-	name = "Command stripper uniform"
+	name = "command stripper uniform"
 	icon_state = "stripper_cap"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE

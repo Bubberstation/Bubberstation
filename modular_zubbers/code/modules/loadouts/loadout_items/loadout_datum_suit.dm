@@ -32,11 +32,11 @@
 	donator_only = TRUE //Dono item for offwrldr
 
 /datum/loadout_item/suit/highvisjacket //sprites by Keila
-	name = "High Visibility Trucker Jacket"
+	name = "high vis trucker jacket"
 	item_path = /obj/item/clothing/suit/jacket/trucker/highvis
 	donator_only = TRUE //Donator item for arandomhyena
 
 /datum/loadout_item/suit/roninjacket //sprites by Keila
-	name = "Ronin jacket"
+	name = "ronin jacket"
 	item_path = /obj/item/clothing/suit/jacket/trucker/ronin
 	donator_only = TRUE //Donator item for arandomhyena
