@@ -6,9 +6,9 @@
 	head = /obj/item/clothing/head/hats/police // Bubberstation Edit
 	gloves = /obj/item/clothing/gloves/tackler/combat
 	shoes = /obj/item/clothing/shoes/jackboots
-	mask = /obj/item/clothing/mask/gas/sechailer/swat/spacepol
+	mask = /obj/item/clothing/mask/gas/sechailer/swat/spacepolice // Bubberstation Edit
 	glasses = /obj/item/clothing/glasses/sunglasses
-	ears = /obj/item/radio/headset
+	ears = /obj/item/radio/headset/headset_faction //Bubberstation Edit
 	l_pocket = /obj/item/ammo_box/magazine/m45
 	r_pocket = /obj/item/restraints/handcuffs
 	id = /obj/item/card/id/advanced/bountyhunter
