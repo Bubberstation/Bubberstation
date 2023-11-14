@@ -7,8 +7,8 @@
 		/obj/item/circuitboard/computer/aiupload,
 		/obj/item/circuitboard/computer/borgupload,
 		/obj/item/circuitboard/computer/communications,
-		/datum/design/board/apc_control,
+		/obj/item/circuitboard/computer/apc_control,
 		/obj/item/circuitboard/computer/mecha_control,
-		/datum/design/board/robocontrol
+		/obj/item/circuitboard/computer/robotics
 	)
 
