@@ -1,5 +1,5 @@
 /obj/item/storage/belt/sabre/centcom
-	name = "Commander's sabre sheath"
+	name = "commander's sabre sheath"
 	desc = "A expensive sheath made of pure gold, and exotic fabric to house an even more expensive sword, this one has CENTRAL COMMAND etched into the gold stripe, and a nice white stripe."
 	icon = 'modular_zubbers/icons/obj/clothing/belts.dmi'
 	icon_state = "cent_sheath"
