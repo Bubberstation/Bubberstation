@@ -5,3 +5,4 @@
 	icon_state = "spacepol"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/masks.dmi'
 	inhand_icon_state = "spacepol_mask"
+	unique_death = 'modular_zubbers/sound/voice/cpdeath/die1.ogg'
