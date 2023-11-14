@@ -60,7 +60,7 @@
 			M.link_confirm = FALSE
 			M.unlink_confirm = FALSE
 		if(WIRE_TEST)
-			M.alert_radio("This is a test message.",alert_emergency_channel=M.test_wire_switch)
+			M.alert_radio("This is a test message. Do not panic.",alert_emergency_channel=M.test_wire_switch,bypass_cooldown=TRUE)
 			M.test_wire_switch = !M.test_wire_switch
 
 
