@@ -26,7 +26,7 @@
 "dJ" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{dir = 4},/obj/effect/turf_decal/tile/dark_red/anticorner{dir = 1},/turf/open/floor/iron/dark/smooth_corner,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dO" = (/obj/effect/turf_decal/siding/thinplating/dark{dir = 1},/turf/open/floor/mineral/plastitanium/red,/area/ruin/space/has_grav/powered/syndicate_forgotten_vault)
 "dV" = (/obj/machinery/light/directional/west,/obj/effect/turf_decal/tile/blue/diagonal_centre,/obj/machinery/iv_drip,/turf/open/floor/iron/white/small,/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"em" = (/obj/machinery/computer/security{desc = "Used to access interrogation room camera."; dir = 8; name = "Ship cameras console"; network = list("fsc"); screen_loc = ""},/turf/open/floor/wood/large,/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"em" = (/obj/machinery/computer/security{desc = "Used to access interrogation room camera."; dir = 8; name = "Ship cameras console"; network = list("fsc"); screen_loc = ""; icon_keyboard = "syndie_key"},/turf/open/floor/wood/large,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eo" = (/obj/structure/filingcabinet,/obj/structure/window/reinforced/survival_pod,/obj/machinery/door/window/survival_pod{dir = 8; req_access = list("syndicate"); name = "Documentation Hold"},/obj/item/folder/syndicate/blue,/turf/open/floor/wood/tile,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "es" = (/obj/machinery/porta_turret/syndicate/energy{dir = 4; name = "Syndicate Ship Turret"; on = 0; shot_delay = 10},/turf/closed/wall/r_wall/syndicate,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ev" = (/obj/structure/tank_dispenser/oxygen,/obj/effect/turf_decal/siding/dark/corner,/obj/machinery/light/directional/west,/turf/open/floor/mineral/plastitanium,/area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -165,7 +165,7 @@
 "yG" = (/obj/structure/lattice/catwalk,/obj/structure/cable,/turf/template_noop,/area/template_noop)
 "yH" = (/obj/effect/turf_decal/tile/dark_red/half,/obj/machinery/light/directional/south,/obj/structure/sign/departments/restroom/directional/south,/turf/open/floor/iron/dark/smooth_edge,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "yZ" = (/obj/machinery/light/directional/south,/turf/open/floor/wood/tile,/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"ze" = (/obj/machinery/computer{desc = "A console meant to communicate with Syndicate upper command. This one seems to be busy processing flight calculations since you last saw it..."; icon_keyboard = "tech_key"; icon_screen = "commsyndie"; name = "syndicate communications console"; dir = 8},/turf/open/floor/mineral/plastitanium,/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"ze" = (/obj/machinery/computer{desc = "A console meant to communicate with Syndicate upper command. This one seems to be busy processing flight calculations since you last saw it..."; icon_keyboard = "syndie_key"; icon_screen = "commsyndie"; name = "syndicate communications console"; dir = 8},/turf/open/floor/mineral/plastitanium,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "zg" = (/obj/effect/turf_decal/skyrat_decals/syndicate/middle/left,/obj/item/clothing/mask/muzzle,/obj/effect/decal/cleanable/blood/tracks{dir = 4},/turf/open/floor/mineral/plastitanium/red,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "zm" = (/obj/machinery/light/directional/north,/obj/structure/sign/flag/syndicate/directional/north,/turf/open/floor/mineral/plastitanium/red,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "zq" = (/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,/obj/structure/cable,/obj/machinery/door/airlock/external/ruin{name = "External Airlock"},/obj/effect/mapping_helpers/airlock/cutaiwire,/turf/open/floor/iron/smooth_half,/area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -228,12 +228,12 @@
 "HZ" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{dir = 4},/obj/structure/plaque/static_plaque/golden/captain{pixel_y = 32; name = "First Successful Captain Award"},/turf/open/floor/wood/tile,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Iw" = (/obj/machinery/light/small/directional/north,/obj/machinery/button/crematorium{id = "fscremate"; pixel_y = 32},/obj/effect/turf_decal/tile/dark/diagonal_centre,/obj/effect/decal/cleanable/blood/splatter,/obj/effect/decal/cleanable/ash,/turf/open/floor/iron/white/small,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Iz" = (/obj/structure/chair/comfy/black{dir = 8},/turf/open/floor/wood/large,/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"IA" = (/obj/machinery/computer/atmos_alert{dir = 4},/turf/open/floor/plating,/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"IA" = (/obj/machinery/computer/atmos_alert{dir = 4; icon_keyboard = "syndie_key"},/turf/open/floor/plating,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "IB" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/rust,/area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "IQ" = (/obj/machinery/door/airlock/grunge{name = "Operative Bunks"},/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,/obj/effect/mapping_helpers/airlock/cutaiwire,/obj/effect/turf_decal/siding/wood{dir = 8},/turf/open/floor/iron/smooth_half{dir = 8},/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "IZ" = (/obj/machinery/door/window/survival_pod{dir = 4; req_access = list("syndicate"); name = "Equipment Storage"},/obj/structure/closet/syndicate{anchored = 1; desc = "A basic closet for all your villainous needs."; locked = 1; name = "Closet"; req_access = list("syndicate"); secure = 1},/obj/item/clothing/suit/armor/vest/alt,/obj/item/clothing/suit/armor/vest/alt,/obj/item/clothing/suit/armor/vest/alt,/obj/item/clothing/suit/armor/vest/alt,/obj/item/clothing/head/helmet/swat,/obj/item/clothing/head/helmet/swat,/obj/item/clothing/head/helmet/swat,/obj/item/clothing/head/helmet/swat,/turf/open/floor/mineral/plastitanium/red,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Jq" = (/obj/structure/shipping_container/interdyne,/turf/open/misc/asteroid/airless,/area/ruin/space)
-"Jr" = (/obj/machinery/light/directional/south,/obj/machinery/computer/centcom_announcement{dir = 1; icon_screen = "commsyndie"; req_access = null; name = "syndicate captain's console"; report_sound = "announcer_nri_raiders"; command_name = "Syndicate Vessel Update"},/turf/open/floor/wood/large,/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"Jr" = (/obj/machinery/light/directional/south,/obj/machinery/computer/centcom_announcement{dir = 1; icon_screen = "commsyndie"; req_access = null; name = "syndicate captain's console"; report_sound = "announcer_nri_raiders"; command_name = "Cybersun SBC-44 Update"; icon_keyboard = "syndie_key"},/turf/open/floor/wood/large,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Js" = (/obj/structure/broken_flooring/singular,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "Jt" = (/obj/effect/turf_decal/siding/wood{dir = 1},/turf/open/floor/wood/large,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Jx" = (/obj/effect/turf_decal/siding/thinplating/dark/corner,/obj/structure/table/reinforced/plastitaniumglass,/turf/open/floor/mineral/plastitanium,/area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -314,7 +314,7 @@
 "WU" = (/obj/item/paper/fluff/ruins/forgottenship/missionobj{default_raw_text = "Salutations operatives. You are assigned to SBC-44 (Syndicate Battle Cruiser 44) to make your way towards a NanoTrasen cargo outpost with a high-ranking official. Whilst you are travelling with him, he is the Captain of this battlecruiser, <b>you must</b> obey his orders.<br><br>Remember, disobeying Headquarters, and the high-ranking official on-board is a valid reason for immediate termination."; name = "Mission Objectives"},/obj/structure/table/reinforced/plastitaniumglass,/turf/open/floor/mineral/plastitanium/red,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Xt" = (/obj/structure/closet/crate/secure/gear{req_access = list("syndicate")},/obj/item/stack/sheet/mineral/titanium{amount = 40},/obj/item/stack/sheet/mineral/uranium{amount = 15},/obj/structure/sign/flag/syndicate/directional/west,/turf/open/floor/pod/dark,/area/ruin/space/has_grav/powered/syndicate_forgotten_vault)
 "XB" = (/obj/effect/turf_decal/loading_area/white,/obj/effect/turf_decal/caution/white{pixel_y = -3},/obj/effect/decal/cleanable/dirt,/turf/open/floor/iron/dark/small,/area/ruin/space/has_grav/syndicate_forgotten_cargopod)
-"XG" = (/obj/effect/turf_decal/tile/dark_red/half,/obj/effect/mob_spawn/ghost_role/human/tarkon/engi,/turf/open/floor/iron/edge,/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"XG" = (/obj/effect/turf_decal/tile/dark_red/half,/turf/open/floor/iron/edge,/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "XP" = (/obj/structure/shipping_container/cybersun,/turf/open/misc/asteroid/airless,/area/ruin/space)
 "XX" = (/obj/effect/turf_decal/tile/dark_red/anticorner{dir = 8},/obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{dir = 1},/turf/open/floor/iron/dark/smooth_corner{dir = 4},/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Yb" = (/obj/item/clothing/accessory/armband/engine/syndicate,/turf/open/floor/plating,/area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -347,9 +347,9 @@ DNDNEIEIEIVJHfQwVVVJVJZlvABFrbbWJtdtVJwUUwUQVJVJVJVJAWVJVJVJVJVJeQVJVJiGVJVJVJes
 DNDNoKEIEIVJZmZmkZVJpprbHZPwrbfhIzGjVJdVUwTlVJjPxCnoswwkBXwkrqVJSVbczmbcVRMouxMiDNDNDNDNDNDN
 DNDNDNEIEIVJHgYRkZVJOJyZrbPwrbfJJrmQVJAYUwAoVJPpFkgCplgCTxwkbRVJrgbcbcbcbcnqobMiDNDNDNDNDNDN
 DNDNDNkiEIVJcdRpkZVJVJVJLUJVLUVJVJVJVJVJasVJVJUtrFRcWUOmrMBgvAVJvAqlFPgZBlbcpeMiDNDNDNDNDNDN
-DNDNEIEIEIVJPdRpkZVJKmyCNlGADaGYjJqRVJpSbpvKVJkIrFxPYBWyrMwkPjwkLXwkbbhigZnqHKMiDNDNDNDNDNDN
+DNDNEIEIEIVJPdRpkZVJKmyCNlGADaGYjJqRVJpSbpvKVJkIrFxPYBWyrMwkPjwkLXwkbbhigZnqLVMiDNDNDNDNDNDN
 DNDNEIEIEIVJjpsasaTokYpIjDjDououDHQJqCCCgbkELORwBpOcYfkDsFimtOEjOCimDwzeAqbcocMiDNDNDNDNDNDN
-DNDNoKEIEIVJgNkZkZVJeBbipcFRXGqwzDtJVJXXyHGlVJkIrfzgyBwKnGwkPjwkLXwkjMJxALnqLVMiDNDNDNDNDNDN
+DNDNoKEIEIVJgNkZkZVJeBbipcFRXGqwzDtJVJXXyHGlVJkIrfzgyBwKnGwkPjwkLXwkjMJxALnqHKMiDNDNDNDNDNDN
 DNDNDNEIEIVJQFkZkZVJVJVJVJSdnFVJVJVJVJVJVJiWVJHPugGyUVwxnGBgvAVJvAUsLpQsBlbcbgMiDNDNDNDNDNDN
 DNDNDNkiEIVJQdkZkZVJUFSXVJdJdxVJSXUFVJFWxFqSVJSvFitpGBnIcjwkBJVJIZbcbcbcbcnqfHMiDNDNDNDNDNDN
 DNDNEIEIEIVJPxYbkZVJRBrbIQwwxiEyrbYQVJqSaAqSVJHSkIlCkIwkwkwkOQVJzYbcqKbcbcDMuxMiDNDNDNDNDNDN
