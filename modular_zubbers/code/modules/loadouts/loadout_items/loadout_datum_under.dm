@@ -30,5 +30,5 @@
 	donator_only = TRUE
 
 /datum/loadout_item/under/miscellaneous/mech_suit
-	name = "Mech pilot's suit"
+	name = "mech pilot's suit"
 	item_path = /obj/item/clothing/under/costume/mech_suit
