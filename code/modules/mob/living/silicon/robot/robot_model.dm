@@ -829,7 +829,6 @@
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc, //edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/condiment, //bubber-edit
 		/obj/item/reagent_containers/dropper,
 		//obj/item/lighter, //bubber-edit
 		/obj/item/storage/bag/tray,

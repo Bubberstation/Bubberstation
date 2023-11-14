@@ -48,6 +48,7 @@
 		"experimentor",
 		"extinguisher",
 		"fax",
+		"fish_case",
 		"fishing_rod",
 		"fishing_portal_generator",
 		"flashlight",
@@ -127,6 +128,7 @@
 		"universal_scanner",
 		"voice_analyzer",
 		"watering_can",
+		"gbp_machine", // SKYRAT EDIT ADDITION
 	)
 	experiments_to_unlock = list(
 		/datum/experiment/autopsy/nonhuman,
