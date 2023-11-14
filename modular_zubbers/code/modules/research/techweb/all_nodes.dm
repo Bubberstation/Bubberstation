@@ -47,6 +47,29 @@
 		"minesweeper",
 	)
 
+// Secure Tech Removals - Moved to cargo
+
+/datum/techweb_node/ai_basic/New()
+	. = ..()
+	design_ids -= "aiupload"
+
+/datum/techweb_node/cyborg/New()
+	. = ..()
+	design_ids -= "borgupload"
+	design_ids -= "robocontrol"
+
+/datum/techweb_node/mech/New()
+	. = ..()
+	design_ids -= "mechacontrol"
+
+/datum/techweb_node/comptech/New()
+	. = ..()
+	design_ids -= "comconsole"
+
+/datum/techweb_node/engineering/New()
+	. = ..()
+	design_ids -= "apc_control"
+
 /datum/techweb_node/weaponry/New()
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "wt550_ammo_flathead"
