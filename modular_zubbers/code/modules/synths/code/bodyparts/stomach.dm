@@ -8,12 +8,10 @@
 
 /obj/item/organ/internal/stomach/synth/proc/add_synth_signals(mob/living/carbon/stomach_owner)
 	SIGNAL_HANDLER
-
 	RegisterSignal(stomach_owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(on_borg_charge))
 
 /obj/item/organ/internal/stomach/synth/proc/remove_synth_signals(mob/living/carbon/stomach_owner)
 	SIGNAL_HANDLER
-
 	UnregisterSignal(stomach_owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
 
 /obj/item/organ/internal/stomach/synth/proc/on_borg_charge(datum/source, amount)
