@@ -1,5 +1,5 @@
 /obj/item/melee/sabre/centcom
-	name = "Commander's sabre"
+	name = "commander's sabre"
 	desc = "An even more elegant weapon with a purer golden grip guard, with even rarer redwood wooden grip. The blade is made of plasteel infused gold, which makes it incredibly good at cutting."
 	icon = 'modular_zubbers/icons/obj/weapons/melee/swords.dmi'
 	icon_state = "cent_sabre"
