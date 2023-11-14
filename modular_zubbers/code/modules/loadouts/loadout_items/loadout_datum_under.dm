@@ -1,5 +1,5 @@
 /datum/loadout_item/under/jumpsuit/security/hecu
-	name = "Urban camouflage BDU"
+	name = "urban camouflage BDU"
 	item_path = /obj/item/clothing/under/rank/security/officer/hecu
 	donator_only = TRUE
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
