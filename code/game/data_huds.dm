@@ -182,18 +182,24 @@ Medical HUD! Basic mode needs suit sensors on.
 /mob/living/carbon/med_hud_set_health()
 // BUBBER EDIT BEGIN
 	. = ..()
+	var/image/medhud = hud_list?[HEALTH_HUD]
+
 	var/image/holder = .
 	var/string = ""
 	var/mob/living/carbon/human = src
 	var/brute = "<span style=color:red>[human.getBruteLoss()]</span>" // Limbs
-	var/burn = "<span style=color:orange>[human.getFireLoss()]</span>" // Limbs
+	var/burn = "<span style=color:yellow>[human.getFireLoss()]</span>" // Limbs
 	var/tox = "<span style=color:green>[human.toxloss]</span>"
 	var/oxy = "<span style=color:cyan>[human.oxyloss]</span>"
 	string += "<span class='center'>[brute]|[burn]|[tox]|[oxy]</span>"
-	holder.maptext = MAPTEXT_SPESSFONT("<span style='font-size: 6pt; line-height: 1.0'>[string]</span>\n")
-	holder.maptext_x = -48
-	holder.maptext_y = 30
-	holder.maptext_width = 128
+	if(medhud.icon_state == "hudhealth100")
+		holder.maptext = ""
+		return .
+	else
+		holder.maptext = MAPTEXT_SPESSFONT("<span style='font-size: 6pt; line-height: 1.0'>[string]</span>\n")
+		holder.maptext_x = -48
+		holder.maptext_y = 30
+		holder.maptext_width = 128
 // BUBBER EDIT END
 //called when a carbon changes stat, virus or XENO_HOST
 /mob/living/proc/med_hud_set_status()
