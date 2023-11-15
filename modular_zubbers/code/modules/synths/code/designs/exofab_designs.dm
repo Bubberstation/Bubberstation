@@ -1,3 +1,7 @@
+/datum/techweb_node/base/New()
+	. = ..()
+	design_ids += "blanksynth"
+
 /datum/design/synthclone
 	name = "Blank synthetic shell"
 	id = "blanksynth"
