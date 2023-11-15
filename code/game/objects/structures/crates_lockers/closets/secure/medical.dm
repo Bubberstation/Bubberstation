@@ -67,12 +67,8 @@
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/clothing/glasses/blindfold(src)
 	//BUBBER EDIT BEGIN: WEAR A CONDOM
-	new /obj/item/condom_pack(src)
-	new /obj/item/condom_pack(src)
-	new /obj/item/condom_pack(src)
-	new /obj/item/condom_pack(src)
-	new /obj/item/condom_pack(src)
-	new /obj/item/condom_pack(src)
+	for(var/i in 1 to 6)
+		new /obj/item/condom_pack(src)
 	//BUBBER EDIT BEGIN: WEAR A CONDOM
 
 /obj/structure/closet/secure_closet/chief_medical
