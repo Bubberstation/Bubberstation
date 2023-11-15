@@ -1,3 +1,5 @@
+/* BUBBERSTATION REMOVAL START - HANDLED IN modular_zubbers\code\modules\ICES\Bubber_Ices_config.dm
+
 #define VERY_HIGH_EVENT_FREQ 64
 #define HIGH_EVENT_FREQ 32
 #define MED_EVENT_FREQ 16
@@ -612,3 +614,5 @@
 #undef LOW_EVENT_FREQ
 #undef VERY_LOW_EVENT_FREQ
 #undef MIN_EVENT_FREQ
+
+BUBBERSTATION REMOVAL END*/
