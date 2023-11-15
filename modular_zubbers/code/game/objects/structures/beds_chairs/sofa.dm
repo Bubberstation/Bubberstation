@@ -7,7 +7,7 @@
 	if(do_after(user, 10 SECONDS, src))
 		if(prob(40))
 			balloon_alert(user, "Found something")
-			if(prob(100)) // 0.02 About 1 in 125000, astronomically low
+			if(prob(0.02)) // 0.02 About 1 in 125000, astronomically low
 				// Run through all nuclear disks and steal the first one
 				for(var/obj/item/disk/nuclear/N in SSpoints_of_interest.real_nuclear_disks)
 					do_teleport(N, src, channel = TELEPORT_CHANNEL_QUANTUM, forced = TRUE)
