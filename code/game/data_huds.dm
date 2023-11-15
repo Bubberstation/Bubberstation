@@ -18,7 +18,7 @@
 /datum/atom_hud/data
 
 /datum/atom_hud/data/human/medical
-	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD) // SKYRAT EDIT ADDITION - DNR_HUD
+	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD, HEALTH_HUD_NUMBERS) // SKYRAT EDIT ADDITION - DNR_HUD
 
 /datum/atom_hud/data/human/medical/basic
 
@@ -169,50 +169,15 @@ Medical HUD! Basic mode needs suit sensors on.
 //called when a living mob changes health
 /mob/living/proc/med_hud_set_health()
 	var/image/holder = hud_list?[HEALTH_HUD]
+	var/image/healthnumbers = hud_list?[HEALTH_HUD_NUMBERS]
 	if (isnull(holder))
 		return
-// BUBBER EDIT BEGIN
-//	holder.icon_state = "hud[RoundHealth(src)]"
-	holder.maptext_x = -48
-	holder.maptext_y = 30
-	holder.maptext_width = 128
-	var/critical = "<span style=color:red>"
-	if(src.health >= 0)
-		critical += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 10)))
-		critical += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 9)))
-		critical += "|"
-	critical += "</span>"
-	var/low = "<span style=color:brown>"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 8)))
-		low += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 7)))
-		low += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 6)))
-		low += "|"
-	low += "</span>"
-	var/medium = "<span style=color:green>"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 5)))
-		medium += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 4)))
-		medium += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 3)))
-		medium += "|"
-	medium += "</span>"
-	var/high = "<span style=color:cyan>"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 2)))
-		high += "|"
-	if(src.health >= (MAX_LIVING_HEALTH - MAX_LIVING_HEALTH + (MAX_LIVING_HEALTH / 1)))
-		high += "|"
-	if(src.health >= MAX_LIVING_HEALTH)
-		high += "|"
-	high += "</span>"
-	holder.maptext = MAPTEXT_SPESSFONT("<span class='center' style='font-size: 6pt'>[critical][low][medium][high]</span>\n")
+	holder.icon_state = "hud[RoundHealth(src)]"
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
-	. = holder
-// BUBBER EDIT END
+	healthnumbers.pixel_y = holder.pixel_y
+	. = healthnumbers // BUBBER EDIT ADDITION - CARRY OVER FOR SUPERCALLS
+
 //for carbon suit sensors
 /mob/living/carbon/med_hud_set_health()
 // BUBBER EDIT BEGIN
@@ -223,11 +188,9 @@ Medical HUD! Basic mode needs suit sensors on.
 	var/brute = "<span style=color:red>[human.getBruteLoss()]</span>" // Limbs
 	var/burn = "<span style=color:orange>[human.getFireLoss()]</span>" // Limbs
 	var/tox = "<span style=color:green>[human.toxloss]</span>"
-	var/oxy = "<span style=color:blue>[human.oxyloss]</span>"
-//	var/blood = "<span style=color:magenta>[human.blood_volume]</span>"
+	var/oxy = "<span style=color:cyan>[human.oxyloss]</span>"
 	string += "<span class='center'>[brute]|[burn]|[tox]|[oxy]</span>"
-	var/oldermaptext = holder.maptext
-	holder.maptext = MAPTEXT_SPESSFONT("<span style='font-size: 6pt; line-height: 1.0'>[string]</span>\n") + oldermaptext
+	holder.maptext = MAPTEXT_SPESSFONT("<span style='font-size: 6pt; line-height: 1.0'>[string]</span>\n")
 	holder.maptext_x = -48
 	holder.maptext_y = 30
 	holder.maptext_width = 128
