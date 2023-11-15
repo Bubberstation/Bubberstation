@@ -189,7 +189,7 @@ Medical HUD! Basic mode needs suit sensors on.
 	var/mob/living/carbon/human = src
 	var/brute = "<span style=color:red>[ROUND_UP(human.getBruteLoss())]</span>" // Limbs
 	var/burn = "<span style=color:yellow>[ROUND_UP(human.getFireLoss())]</span>" // Limbs
-	var/tox = "<span style=color:green[ROUND_UP(human.toxloss)]</span>"
+	var/tox = "<span style=color:green>[ROUND_UP(human.toxloss)]</span>"
 	var/oxy = "<span style=color:cyan>[ROUND_UP(human.oxyloss)]</span>"
 	string += "<span class='center'>[brute]|[burn]|[tox]|[oxy]</span>"
 	if(medhud.icon_state == "hudhealth100")
