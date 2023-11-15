@@ -1,4 +1,3 @@
-/* BUBBERSTATION REMOVAL START - HANDLED IN modular_zubbers\code\modules\ICES\_ICES_DEFINES
 /**
  * The events system now operates off of a defined preset of votable pools.
  * High, med, low
@@ -15,4 +14,3 @@
 
 /// Reason for delam suppression: admin command
 #define DIVINE_INTERVENTION 3
-BUBBERSTATION REMOVAL END */
