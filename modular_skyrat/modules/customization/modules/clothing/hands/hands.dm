@@ -31,7 +31,7 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 
-/obj/item/clothing/gloves/wraps  //BUBBER EDIT (removed "bracer" path before "wraps")
+/obj/item/clothing/gloves/bracer/wraps
 	name = "cloth arm wraps"
 	desc = "Cloth bracers, the colour all left up to the choice of the wearer."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'

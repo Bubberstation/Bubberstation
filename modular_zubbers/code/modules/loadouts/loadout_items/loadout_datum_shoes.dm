@@ -7,3 +7,5 @@
 	name = "glow shoes"
 	item_path = /obj/item/clothing/shoes/glow
 
+/datum/loadout_item/shoes/rax_armadyne_boots
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER) //Bubber edit to restrict roles
