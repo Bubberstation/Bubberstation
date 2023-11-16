@@ -1,4 +1,11 @@
-/obj/structure/closet/secure_closet/interdynefob/munitions_locker/PopulateContents()
+/obj/structure/closet/secure_closet/dauntless/munitions_locker
+	anchored = 1;
+	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
+	icon_door = "riot"
+	icon_state = "riot"
+	name = "armory munitions locker"
+
+/obj/structure/closet/secure_closet/dauntless/munitions_locker/PopulateContents()
 	..()
 
 	generate_items_inside(list(
