@@ -651,7 +651,8 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 /datum/loadout_item/under/miscellaneous/mech_suit
 	name = "Mech Suit"
 	item_path = /obj/item/clothing/under/costume/mech_suit
-	restricted_roles = list(JOB_ROBOTICIST)
+	//restricted_roles = list(JOB_ROBOTICIST)
+	//Bubber edit: This is a costume and has no strong need to be restricted.
 
 /*
 *	FORMAL UNDERSUITS

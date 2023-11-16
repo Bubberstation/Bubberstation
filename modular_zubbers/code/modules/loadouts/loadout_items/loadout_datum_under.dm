@@ -28,7 +28,3 @@
 	name = "Tactical Maid Costume"
 	item_path = /obj/item/clothing/under/misc/maid/tactical
 	donator_only = TRUE
-
-/datum/loadout_item/under/miscellaneous/mech_suit
-	name = "mech pilot's suit"
-	item_path = /obj/item/clothing/under/costume/mech_suit
