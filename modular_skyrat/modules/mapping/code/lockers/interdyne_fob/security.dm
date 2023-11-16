@@ -68,8 +68,7 @@
 	icon_state = "riot"
 	name = "armory munitions locker"
 
-// BUBBER EDIT BEGIN - REMOVES SKYRAT LOCKER CONTENTS (overriden by modular_zubbers\maps\offstation\dauntless\security.dm)
-/*/obj/structure/closet/secure_closet/interdynefob/munitions_locker/PopulateContents()
+/obj/structure/closet/secure_closet/interdynefob/munitions_locker/PopulateContents()
 	..()
 
 	generate_items_inside(list(
@@ -80,5 +79,4 @@
 		/obj/item/ammo_box/c40sol = 2,
 		/obj/item/ammo_box/advanced/s12gauge = 2,
 		/obj/item/ammo_box/advanced/s12gauge/rubber = 2,
-	),src)*/
-// BUBBER EDIT END
+	),src)
