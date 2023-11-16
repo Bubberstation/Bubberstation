@@ -44,7 +44,7 @@
 				/obj/item/clothing/glasses/thin = 5,
 				/obj/item/clothing/glasses/hud/ar/projector = 5,
 				/obj/item/clothing/neck/face_scarf = 5,
-				/obj/item/clothing/gloves/bracer/wraps,
+				/obj/item/clothing/gloves/wraps, //BUBBER EDIT (removed "bracer" path before "wraps")
 			),
 		),
 

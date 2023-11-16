@@ -58,6 +58,7 @@
 	name = "Tactical Boots"
 	item_path = /obj/item/clothing/shoes/combat/rax
 	//ckeywhitelist = list("raxraus")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER) //BUBBER EDIT
 
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"

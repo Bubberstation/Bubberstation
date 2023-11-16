@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(loadout_gloves, generate_loadout_items(/datum/loadout_item/glov
 
 /datum/loadout_item/gloves/armwraps
 	name = "Colourable Arm Wraps"
-	item_path = /obj/item/clothing/gloves/bracer/wraps
+	item_path = /obj/item/clothing/gloves/wraps //BUBBER EDIT (removed "bracer" path before "wraps")
 
 /*
 *	RINGS
