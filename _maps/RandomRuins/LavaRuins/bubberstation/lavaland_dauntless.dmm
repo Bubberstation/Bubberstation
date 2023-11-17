@@ -184,6 +184,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "bd" = (
 /obj/effect/turf_decal/tile/dark_green/half,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "be" = (
@@ -401,7 +404,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
 "ck" = (
 /obj/machinery/computer/atmos_control/nocontrol/incinerator{
-	atmos_chambers = list("syndiship_turbine"="Dauntless Turbine")
+	atmos_chambers = list("syndiship_turbine" = "Dauntless Turbine")
 	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -459,6 +462,9 @@
 /obj/machinery/computer/crew/syndie{
 	dir = 8
 	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "cD" = (
@@ -469,6 +475,9 @@
 	dir = 8
 	},
 /obj/structure/bed/dogbed,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("dauntless")
+	},
 /mob/living/basic/pet/fox{
 	name = "Rhials";
 	faction = list("neutral","Syndicate")
@@ -874,6 +883,12 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+"fi" = (
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "fj" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
@@ -1631,6 +1646,9 @@
 	pixel_x = -2;
 	pixel_y = 5
 	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "jG" = (
@@ -1960,6 +1978,9 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "lG" = (
@@ -2172,9 +2193,6 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "mW" = (
-/obj/machinery/computer/security{
-	dir = 8
-	},
 /obj/machinery/button/door/directional/south{
 	name = "Window Shutters";
 	id = "maa_w1";
@@ -2192,10 +2210,16 @@
 	default_raw_text = "<h1>DS2 Long-Term Brig Report</h1><p>The SSV Dauntless has successfully relocated itself near active Nanotrasen installations. Engine shutdown in progress...</p><p>The Syndicate has been capable of kidnapping a few key NT workers of various hierarchy levels. It is your task to interrogate, question and break their wills in order to find more intel on our enemy, Nanotrasen.</p><p>Stay winning.";
 	name = "paper- 'SSV Dauntless Long-Term Brig Report'"
 	},
+/obj/machinery/computer/security/dauntless{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "mZ" = (
 /obj/structure/extinguisher_cabinet/directional/west,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "na" = (
@@ -2317,6 +2341,9 @@
 	},
 /obj/item/crowbar/power/syndicate,
 /obj/structure/cable,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "nP" = (
@@ -2404,6 +2431,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "nZ" = (
 /obj/effect/turf_decal/trimline/dark_green/corner,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "oa" = (
@@ -2942,6 +2972,9 @@
 	pixel_y = 10;
 	pixel_x = 4
 	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "qE" = (
@@ -3135,11 +3168,11 @@
 "rA" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/effect/turf_decal/tile/dark_red/full,
 /mob/living/carbon/human/species/monkey{
 	ai_controller = null;
 	faction = list("neutral","Syndicate")
 	},
-/obj/effect/turf_decal/tile/dark_red/full,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "rC" = (
@@ -3624,6 +3657,9 @@
 /obj/machinery/microwave{
 	pixel_y = 8
 	},
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -3691,6 +3727,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding)
@@ -4255,6 +4294,9 @@
 	pixel_y = 5
 	},
 /obj/effect/turf_decal/bot_white,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "xf" = (
@@ -4326,6 +4368,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
 "xt" = (
 /obj/structure/cable,
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
 "xu" = (
@@ -4497,6 +4542,9 @@
 "yp" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/radio/headset/interdyne,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "yt" = (
@@ -5139,6 +5187,9 @@
 /obj/structure/cable,
 /obj/machinery/firealarm/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "Bk" = (
@@ -5546,6 +5597,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "De" = (
@@ -5700,12 +5754,12 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "DR" = (
 /obj/structure/bed/dogbed,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/light_switch/directional/north,
 /mob/living/simple_animal/pet/cat/kitten{
 	desc = "What appears to be a single-celled organism with a pronounced low-level intelligence.";
 	name = "Murder-Mittens"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/light_switch/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "DT" = (
@@ -5720,6 +5774,9 @@
 	},
 /obj/item/book/manual/wiki/chemistry{
 	pixel_x = -4
+	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
@@ -5942,12 +5999,12 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "EK" = (
-/obj/machinery/computer/security{
-	dir = 4
-	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
 	dir = 9
+	},
+/obj/machinery/computer/security/dauntless{
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
@@ -6125,6 +6182,9 @@
 	dir = 10
 	},
 /obj/structure/cable,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Fv" = (
@@ -6277,6 +6337,9 @@
 	},
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -6592,6 +6655,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
@@ -7154,10 +7220,10 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "Kp" = (
+/obj/structure/bed/dogbed,
 /mob/living/basic/lizard/tegu{
 	name = "Entertains-The-Hostages"
 	},
-/obj/structure/bed/dogbed,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Kq" = (
@@ -7380,6 +7446,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
@@ -7638,6 +7707,19 @@
 "MB" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
+"MF" = (
+/obj/effect/turf_decal/trimline/purple/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "MI" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/cable,
@@ -7677,6 +7759,9 @@
 /obj/structure/punching_bag,
 /obj/item/reagent_containers/cup/glass/waterbottle{
 	pixel_x = 11
+	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -7826,10 +7911,10 @@
 "NV" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/effect/turf_decal/tile/dark_red/full,
 /mob/living/carbon/human/species/lizard/ashwalker{
 	faction = list("neutral","Syndicate")
 	},
-/obj/effect/turf_decal/tile/dark_red/full,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "NY" = (
@@ -7904,6 +7989,9 @@
 "Ou" = (
 /obj/structure/chair/sofa/corp/corner,
 /obj/machinery/light_switch/directional/north,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "Ov" = (
@@ -7994,9 +8082,6 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
-	},
-/obj/machinery/camera/autoname/directional/west{
-	network = list("dauntless")
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
@@ -8111,6 +8196,21 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
+"PM" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/line,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "PN" = (
 /obj/effect/turf_decal/tile/dark_green/half{
 	dir = 1
@@ -8773,6 +8873,9 @@
 	name = "dat fukken disk"
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("dauntless")
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "SL" = (
@@ -9633,6 +9736,9 @@
 	name = "admiral's fountain pen";
 	pixel_y = 5
 	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "XL" = (
@@ -9648,8 +9754,20 @@
 	initialize_directions = 4;
 	dir = 4
 	},
+/obj/machinery/camera/autoname/directional/north{
+	network = list("dauntless")
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+"XP" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "XS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -9771,6 +9889,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 9
+	},
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless")
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
@@ -9975,6 +10096,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "ZR" = (
 /obj/machinery/seed_extractor,
+/obj/machinery/camera/autoname/directional/north{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "ZS" = (
@@ -9985,6 +10109,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "ZW" = (
@@ -10977,7 +11104,7 @@ tB
 tB
 tB
 tB
-xc
+PM
 JV
 JV
 JV
@@ -11464,7 +11591,7 @@ aP
 Lf
 mQ
 az
-kZ
+XP
 mQ
 LG
 mQ
@@ -12183,7 +12310,7 @@ EN
 EN
 EN
 EN
-EN
+MF
 jr
 EN
 lH
@@ -12408,7 +12535,7 @@ Zp
 ei
 Qg
 cT
-Qg
+fi
 Pi
 FN
 gi
