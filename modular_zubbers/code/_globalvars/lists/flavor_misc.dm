@@ -1,0 +1,1 @@
+GLOBAL_LIST_INIT(dril, world.file2list("strings/dril.txt"))
