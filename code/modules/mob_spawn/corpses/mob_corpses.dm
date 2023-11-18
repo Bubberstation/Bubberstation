@@ -354,3 +354,33 @@
 /obj/effect/mob_spawn/corpse/human/cyber_police
 	name = "Dead Cyber Police"
 	outfit = /datum/outfit/cyber_police
+
+/obj/effect/mob_spawn/corpse/human/interdyne_medical_director // Bubberstation edit
+	name = "Dead Interdyne Medical Director"
+	outfit = /datum/outfit/interdyne/medical_director
+	icon_state = "corpseroboticist"
+
+/obj/effect/mob_spawn/corpse/human/interdyne_doctor // Bubberstation edit
+	name = "Dead Interdyne Doctor"
+	outfit = /datum/outfit/interdyne/doctor
+	icon_state = "corpsedoctor"
+
+/obj/effect/mob_spawn/corpse/human/interdyne_cargo // Bubberstation edit
+	name = "Dead Interdyne Cargo Tech"
+	outfit = /datum/outfit/interdyne/cargo_staff
+	icon_state = "corpsecargotech"
+
+/obj/effect/mob_spawn/corpse/human/interdyne_chemist // Bubberstation edit
+	name = "Dead Interdyne Chemist"
+	outfit = /datum/outfit/interdyne/chemist
+	icon_state = "corpsedoctor"
+
+/obj/effect/mob_spawn/corpse/human/interdyne_genetics // Bubberstation edit
+	name = "Dead Interdyne Geneticist"
+	outfit = /datum/outfit/interdyne/geneticist
+	icon_state = "corpsescientist"
+
+/obj/effect/mob_spawn/corpse/human/interdyne_engineer // Bubberstation edit
+	name = "Dead Interdyne Engineer"
+	outfit = /datum/outfit/interdyne/engineer
+	icon_state = "corpseengineer"

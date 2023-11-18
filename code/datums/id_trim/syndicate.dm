@@ -19,6 +19,50 @@
 	sechud_icon_state = SECHUD_SYNDICATE_INTERDYNE
 	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SURGERY)
 
+/// Interdyne ruin medical Staff
+/datum/id_trim/syndicom/Interdyne/doctor
+	assignment = "Interdyne Medical Doctor"
+	trim_state = "trim_medicaldoctor"
+	sechud_icon_state = SECHUD_SYNDICATE
+	access = list(ACCESS_SYNDICATE, ACCESS_MEDICAL, ACCESS_SURGERY)
+
+/// Interdyne ruin cargo staff
+/datum/id_trim/syndicom/Interdyne/cargo // Bubberstation edit
+	assignment = "Interdyne Cargo Staff"
+	trim_state = "trim_cargotechnician"
+	sechud_icon_state = SECHUD_SYNDICATE
+	access = list(ACCESS_SYNDICATE, ACCESS_CARGO, ACCESS_SHIPPING)
+
+/// Interdyne ruin genetics staff
+/datum/id_trim/syndicom/Interdyne/geneticist // Bubberstation edit
+	assignment = "Interdyne Genetics Technician"
+	trim_state = "trim_geneticist"
+	sechud_icon_state = SECHUD_SYNDICATE
+	access = list(ACCESS_SYNDICATE, ACCESS_SCIENCE, ACCESS_GENETICS)
+
+/// Interdyne ruin chemistry staff
+/datum/id_trim/syndicom/Interdyne/chemist // Bubberstation edit
+	assignment = "Interdyne Chemical Specialist"
+	trim_state = "trim_chemist"
+	sechud_icon_state = SECHUD_SYNDICATE
+	access = list(ACCESS_SYNDICATE, ACCESS_MEDICAL, ACCESS_PHARMACY)
+
+/// Interdyne ruin engineering staff
+/datum/id_trim/syndicom/Interdyne/engineer // Bubberstation edit
+	assignment = "Interdyne Technician"
+	trim_state = "trim_stationengineer"
+	sechud_icon_state = SECHUD_SYNDICATE
+	access = list(ACCESS_SYNDICATE, ACCESS_ENGINEERING, ACCESS_ENGINE_EQUIP)
+
+/// Interdyne ruin head medical staff
+/datum/id_trim/syndicom/Interdyne/medical_director // Bubberstation edit
+	assignment = "Interdyne Medical Director"
+	trim_state = "trim_medicaldoctor"
+	department_color = COLOR_SYNDIE_RED_HEAD
+	subdepartment_color = COLOR_SYNDIE_RED_HEAD
+	sechud_icon_state = SECHUD_SYNDICATE
+	access = list(ACCESS_SYNDICATE, ACCESS_MEDICAL, ACCESS_SYNDICATE_LEADER)
+
 /// Interdyne head medical Staff
 /datum/id_trim/syndicom/Interdyne/pharmacist_director
 	assignment = "Interdyne Pharmacist Director"
