@@ -272,7 +272,7 @@
 /obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
 	SIGNAL_HANDLER
 	post_change_callbacks += CALLBACK(src, PROC_REF(CalculateAffectingAreas))
-	post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
+	// post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) // BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
 
 /* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)

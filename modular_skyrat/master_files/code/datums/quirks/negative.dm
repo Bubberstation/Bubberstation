@@ -88,13 +88,13 @@
 	return bd_synth.add_to_holder(new_holder, quirk_transfer)
 
 /datum/quirk/gifted
-	name = "Gifted"
-	desc = "You were born a bit lucky, intelligent, or something in between. You're able to do a little more."
+	name = "Experienced" // Bubberstation Edit
+	desc = "You have a wider, crushing experience working onboard the station." // Bubberstation Edit
 	icon = FA_ICON_DOVE
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_HIDE_FROM_SCAN
 	value = -6
 	mob_trait = TRAIT_GIFTED
-	gain_text = span_danger("You feel like you're just a little bit more flexible.")
-	lose_text = span_notice("You feel a little less flexible.")
-	medical_record_text = "Patient has a history of uncanny fortune."
+	gain_text = span_danger("Your skills feel like you're just a little bit more flexible.") // Bubberstation Edit
+	lose_text = span_notice("Your skills feel a little less flexible.") // Bubberstation Edit
+	medical_record_text = "Patient has a history of uncanny experience" // Bubberstation Edit
 	hardcore_value = 0
