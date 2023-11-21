@@ -1017,7 +1017,7 @@
 /area/station/command/heads_quarters/hop)
 "arf" = (
 /obj/structure/disposalpipe/segment,
-/obj/item/storage/secure/safe/directional/west,
+/obj/structure/secure_safe/directional/west,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -3490,12 +3490,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/morgue)
-"biW" = (
-/obj/effect/turf_decal/tile/dark_green/full,
-/obj/machinery/oven/range,
-/obj/machinery/oven/range,
-/turf/open/floor/iron/white/smooth_large,
-/area/station/service/kitchen)
 "bjh" = (
 /turf/open/misc/dirt/jungle/dark,
 /area/station/maintenance/central/greater)
@@ -5293,7 +5287,7 @@
 "bPQ" = (
 /obj/structure/table/wood,
 /obj/item/storage/lockbox/medal,
-/obj/item/storage/secure/briefcase{
+/obj/item/storage/briefcase/secure{
 	pixel_x = -2;
 	pixel_y = 4
 	},
@@ -7605,7 +7599,7 @@
 	c_tag = "Command - Captain's Office"
 	},
 /obj/structure/cable,
-/obj/item/storage/secure/safe/directional/east,
+/obj/structure/secure_safe/directional/east,
 /obj/machinery/duct,
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -9531,7 +9525,7 @@
 /area/station/cargo/sorting)
 "dnp" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/secure/briefcase,
+/obj/item/storage/briefcase/secure,
 /obj/item/storage/box/pdas{
 	pixel_x = 4;
 	pixel_y = 4
@@ -13116,10 +13110,6 @@
 	name = "Space Shutters"
 	},
 /obj/structure/cable,
-/obj/machinery/door/poddoor/preopen{
-	id = "hosspace";
-	name = "Space Shutters"
-	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hos)
 "eBy" = (
@@ -15918,18 +15908,6 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
-"fwE" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "rdoffice";
-	name = "Research Director's Shutters"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "rdoffice";
-	name = "Research Director's Shutters"
-	},
-/turf/open/floor/plating,
-/area/station/command/heads_quarters/rd)
 "fwG" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Chapel"
@@ -24333,9 +24311,6 @@
 "iyR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/siding/wood,
-/obj/machinery/door/window/left/directional/east{
-	req_one_access = list("service","maint_tunnels")
-	},
 /obj/machinery/door/window/left/directional/east{
 	req_one_access = list("service","maint_tunnels")
 	},
@@ -35084,7 +35059,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/secure/briefcase,
+/obj/item/storage/briefcase/secure,
 /turf/open/floor/grass,
 /area/station/security/courtroom)
 "meh" = (
@@ -36127,7 +36102,7 @@
 "mvU" = (
 /obj/structure/table/reinforced,
 /obj/item/aicard,
-/obj/item/storage/secure/safe/caps_spare/directional/west,
+/obj/structure/secure_safe/caps_spare/directional/west,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
@@ -49318,7 +49293,7 @@
 /obj/machinery/camera/motion/directional/east{
 	c_tag = "Security - Secure Armory"
 	},
-/obj/item/storage/secure/safe/directional/east,
+/obj/structure/secure_safe/directional/east,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
 	},
@@ -64656,7 +64631,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/item/storage/secure/safe/directional/east,
+/obj/structure/secure_safe/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/security/evidence)
@@ -103371,7 +103346,7 @@ vHU
 lpd
 ebK
 vrS
-biW
+eHD
 vrS
 xkU
 ldW
@@ -169897,7 +169872,7 @@ upO
 pPe
 tcQ
 dCg
-fwE
+uES
 glS
 tQF
 fAz
@@ -178749,7 +178724,7 @@ cMB
 qNT
 xsl
 asv
-eBh
+mAL
 rRv
 rRv
 hNy
@@ -180033,8 +180008,8 @@ vTi
 mAL
 eBh
 eBh
-eBh
-eBh
+mAL
+mAL
 rRv
 rRv
 hNy
