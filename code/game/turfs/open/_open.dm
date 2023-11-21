@@ -90,7 +90,7 @@
  */
 /turf/open/proc/replace_floor(turf/open/new_floor_path, flags)
 	if (!overfloor_placed && initial(new_floor_path.overfloor_placed))
-		PlaceOnTop(new_floor_path, flags = flags)
+		place_on_top(new_floor_path, flags = flags)
 		return
 	ChangeTurf(new_floor_path, flags = flags)
 
@@ -123,9 +123,6 @@
 
 /turf/open/indestructible/light
 	icon_state = "light_on-1"
-
-/turf/open/indestructible/plating
-	icon_state = "plating"
 
 /turf/open/indestructible/permalube
 	icon_state = "darkfull"
@@ -222,6 +219,29 @@
 	blocks_air = TRUE
 	init_air = FALSE
 	baseturfs = /turf/open/indestructible/airblock
+
+/turf/open/indestructible/meat
+	icon_state = "meat"
+	footstep = FOOTSTEP_MEAT
+	barefootstep = FOOTSTEP_MEAT
+	clawfootstep = FOOTSTEP_MEAT
+	heavyfootstep = FOOTSTEP_MEAT
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	baseturfs = /turf/open/indestructible/meat
+
+/turf/open/indestructible/meat/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/indestructible/plating
+	name = "plating"
+	icon_state = "plating"
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage."
+	overfloor_placed = FALSE
+	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
+	footstep = FOOTSTEP_PLATING
+
+/turf/open/indestructible/plating/airless
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/Initalize_Atmos(time)
 	excited = FALSE
@@ -388,7 +408,7 @@
 		return
 
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-	var/turf/open/floor/plating/new_plating = PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+	var/turf/open/floor/plating/new_plating = place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	if(lattice)
 		qdel(lattice)
 	else

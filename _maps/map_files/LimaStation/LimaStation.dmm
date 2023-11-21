@@ -1450,7 +1450,6 @@
 "aGU" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
-	on = 0;
 	pixel_x = -3;
 	pixel_y = 8
 	},
@@ -1964,7 +1963,7 @@
 /turf/open/openspace,
 /area/station/engineering/lobby)
 "aSA" = (
-/obj/item/storage/secure/safe{
+/obj/structure/secure_safe{
 	pixel_x = -23;
 	pixel_y = 32
 	},
@@ -2754,7 +2753,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/iv_drip,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "biB" = (
@@ -9163,6 +9161,13 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/cyan,
 /area/station/hallway/primary/starboard)
+"dKg" = (
+/obj/item/flashlight/lamp/green{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/turf/open/space/basic,
+/area/space)
 "dKo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19468,19 +19473,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
-"hEL" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "Secure Gate";
-	name = "Brig Shutters"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "Secure Gate";
-	name = "Brig Shutters"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/security/holding_cell)
 "hEV" = (
 /obj/structure/chair/comfy/brown{
 	dir = 1
@@ -20195,7 +20187,7 @@
 /area/station/maintenance/port/lower)
 "hTS" = (
 /obj/structure/table/glass,
-/obj/item/storage/secure/briefcase,
+/obj/item/storage/briefcase/secure,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/bridge)
 "hUg" = (
@@ -23575,7 +23567,7 @@
 /turf/open/floor/wood,
 /area/station/service/bar/lower)
 "jma" = (
-/obj/item/storage/secure/safe{
+/obj/structure/secure_safe{
 	pixel_x = -23
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -28988,7 +28980,7 @@
 /obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
 	pixel_x = -6
 	},
-/obj/item/storage/secure/safe/hos{
+/obj/structure/secure_safe/hos{
 	pixel_y = 28
 	},
 /turf/open/floor/carpet/red,
@@ -37615,7 +37607,7 @@
 "oqX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/secure_closet/personal,
-/obj/item/storage/secure/briefcase,
+/obj/item/storage/briefcase/secure,
 /obj/effect/turf_decal/tile/brown/opposingcorners{
 	dir = 1
 	},
@@ -47196,7 +47188,7 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station,
 /obj/item/clothing/gloves/combat/naval,
-/obj/item/storage/secure/briefcase/white,
+/obj/item/storage/briefcase/secure/white,
 /obj/item/clothing/accessory/medal/gold/ordom,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/nt_rep)
@@ -56796,7 +56788,7 @@
 /area/station/science/robotics/lab)
 "vvu" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/secure/briefcase,
+/obj/item/storage/briefcase/secure,
 /obj/item/crowbar,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -59802,7 +59794,7 @@
 /obj/machinery/computer/monitor{
 	dir = 4
 	},
-/obj/item/storage/secure/safe/caps_spare{
+/obj/structure/secure_safe/caps_spare{
 	pixel_x = -27
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -63182,7 +63174,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
 "xWQ" = (
-/obj/item/storage/secure/safe{
+/obj/structure/secure_safe{
 	pixel_x = -23
 	},
 /obj/machinery/photocopier,
@@ -78800,7 +78792,7 @@ ymg
 ymg
 ymg
 ymg
-ymg
+dKg
 ymg
 ymg
 ymg
@@ -152433,7 +152425,7 @@ nuB
 eqe
 ofZ
 mhf
-hEL
+rve
 jYK
 xeD
 dBw
@@ -152690,7 +152682,7 @@ bkT
 meV
 jjp
 uKL
-hEL
+rve
 uUj
 xeD
 dBw
@@ -153204,7 +153196,7 @@ nuB
 ibL
 ofZ
 mhf
-hEL
+rve
 lJL
 xeD
 rMB
@@ -153461,7 +153453,7 @@ pZx
 meV
 jjp
 fWR
-hEL
+rve
 uUj
 xeD
 wNN
@@ -153975,7 +153967,7 @@ nuB
 xrf
 ofZ
 mhf
-hEL
+rve
 lJL
 xeD
 sfC
@@ -154232,7 +154224,7 @@ oJs
 meV
 jjp
 alp
-hEL
+rve
 uUj
 xeD
 sfC

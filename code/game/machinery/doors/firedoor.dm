@@ -225,6 +225,7 @@
 	var/list/shared_problems = list() // We only want to do this once, this is a nice way of pulling that off
 	for(var/obj/machinery/door/firedoor/firelock as anything in temp_group.members)
 		firelock.issue_turfs = shared_problems
+		/* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 		for(var/dir in GLOB.cardinals)
 			var/turf/checked_turf = get_step(get_turf(firelock), dir)
 			if(!checked_turf)
@@ -232,13 +233,14 @@
 			if(isclosedturf(checked_turf))
 				continue
 			process_results(checked_turf)
+		BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 /obj/machinery/door/firedoor/proc/register_adjacent_turfs()
 	if(!loc)
 		return
 
 	var/turf/our_turf = get_turf(loc)
-	RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results))
+	//RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results)) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 	for(var/dir in GLOB.cardinals)
 		var/turf/checked_turf = get_step(our_turf, dir)
 
@@ -246,10 +248,10 @@
 			continue
 
 		RegisterSignal(checked_turf, COMSIG_TURF_CHANGE, PROC_REF(adjacent_change))
-		RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results))
+		//RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results)) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 		if(!isopenturf(checked_turf))
 			continue
-		process_results(checked_turf)
+		//process_results(checked_turf) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 
 /obj/machinery/door/firedoor/proc/unregister_adjacent_turfs(atom/old_loc)
 	if(!loc)
@@ -264,13 +266,15 @@
 			continue
 
 		UnregisterSignal(checked_turf, COMSIG_TURF_CHANGE)
-		UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE)
+		// UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 
 // If a turf adjacent to us changes, recalc our affecting areas when it's done yeah?
 /obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
 	SIGNAL_HANDLER
 	post_change_callbacks += CALLBACK(src, PROC_REF(CalculateAffectingAreas))
+	// post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) // BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
 
+/* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
 
@@ -306,7 +310,7 @@
 		alarm_type = null
 		if(!ignore_alarms)
 			start_deactivation_process()
-
+BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 /**
  * Begins activation process of us and our neighbors.
@@ -554,8 +558,10 @@
 
 	if(density)
 		open()
+		/* BUBBERSTATION CHANGE: Crowbar secondary actually permanently opens firelocks.
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
+		BUBBERSTATION CHANGE END. */
 	else
 		close()
 

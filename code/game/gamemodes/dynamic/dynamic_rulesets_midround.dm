@@ -61,9 +61,6 @@
 		if (isnull(creature.client)) // Are they connected?
 			trimmed_list.Remove(creature)
 			continue
-		if (isnull(creature.mind))
-			trimmed_list.Remove(creature)
-			continue
 		//SKYRAT EDIT ADDITION
 		if(is_banned_from(creature.client.ckey, BAN_ANTAGONIST))
 			trimmed_list.Remove(creature)
@@ -81,6 +78,10 @@
 		if (is_banned_from(creature.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
 			trimmed_list.Remove(creature)
 			continue
+
+		if (isnull(creature.mind))
+			continue
+
 		if (restrict_ghost_roles && (creature.mind.assigned_role.title in GLOB.exp_specialmap[EXP_TYPE_SPECIAL])) // Are they playing a ghost role?
 			trimmed_list.Remove(creature)
 			continue
@@ -137,8 +138,9 @@
 /datum/dynamic_ruleset/midround/from_ghosts/proc/send_applications(list/possible_volunteers = list())
 	if (possible_volunteers.len <= 0) // This shouldn't happen, as ready() should return FALSE if there is not a single valid candidate
 		message_admins("Possible volunteers was 0. This shouldn't appear, because of ready(), unless you forced it!")
-	mode.log_dynamic_and_announce("Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
+		return
 
+	mode.log_dynamic_and_announce("Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
 	candidates = poll_ghost_candidates("The mode is looking for volunteers to become [antag_flag] for [name]", antag_flag_override, antag_flag || antag_flag_override, poll_time = 300)
 
 	if(!candidates || candidates.len <= 0)
@@ -183,7 +185,10 @@
 		if(makeBody)
 			new_character = generate_ruleset_body(applicant)
 		finish_setup(new_character, i)
-		notify_ghosts("[applicant.name] has been picked for the ruleset [name]!", source = new_character, action = NOTIFY_ORBIT, header="Something Interesting!")
+		notify_ghosts(
+			"[applicant.name] has been picked for the ruleset [name]!",
+			source = new_character,
+		)
 
 /datum/dynamic_ruleset/midround/from_ghosts/proc/generate_ruleset_body(mob/applicant)
 	var/mob/living/carbon/human/new_character = make_body(applicant)
@@ -209,7 +214,6 @@
 		return
 
 	mode.picking_specific_rule(/datum/dynamic_ruleset/latejoin/infiltrator)
-	return
 
 ///subtype to handle checking players
 /datum/dynamic_ruleset/midround/from_living
@@ -243,15 +247,6 @@
 		JOB_CYBORG,
 		ROLE_POSITRONIC_BRAIN,
 	)
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 35
 	cost = 3
@@ -279,13 +274,7 @@
 	log_dynamic("[key_name(M)] was selected by the [name] ruleset and has been made into a midround traitor.")
 	return TRUE
 
-
-//////////////////////////////////////////////
-//                                          //
-//         Malfunctioning AI                //
-//                                          //
-//////////////////////////////////////////////
-
+/// Midround Malf AI Ruleset (From Living)
 /datum/dynamic_ruleset/midround/malf
 	name = "Malfunctioning AI"
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
@@ -378,6 +367,7 @@
 	antag_datum = /datum/antagonist/nukeop
 	enemy_roles = list(
 		JOB_AI,
+		JOB_CYBORG,
 		JOB_CAPTAIN,
 		JOB_DETECTIVE,
 		JOB_HEAD_OF_SECURITY,
@@ -543,14 +533,6 @@
 	antag_datum = /datum/antagonist/nightmare
 	antag_flag = ROLE_NIGHTMARE
 	antag_flag_override = ROLE_ALIEN
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
@@ -813,14 +795,6 @@
 	midround_ruleset_style = MIDROUND_RULESET_STYLE_HEAVY
 	antag_flag = "Space Pirates"
 	required_type = /mob/dead/observer
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 0
 	weight = 3
@@ -847,14 +821,6 @@
 		JOB_AI,
 		JOB_CYBORG,
 		ROLE_POSITRONIC_BRAIN,
-	)
-	enemy_roles = list(
-		JOB_AI,
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
 	)
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
