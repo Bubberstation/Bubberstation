@@ -153,6 +153,14 @@
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/merp.ogg'
 
+/datum/emote/living/mrrp //you play like a cat
+	key = "mrrp"
+	key_third_person = "mrrps"
+	message = "mrrps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/mrrp.ogg'
+
 /datum/emote/living/bark
 	key = "bark"
 	key_third_person = "barks"
@@ -496,6 +504,22 @@
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/feline_purr.ogg'
 
+/datum/emote/living/fpurr
+	key = "fpurr"
+	key_third_person = "purrs!"
+	message = "purrs!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/fox_purr.ogg'
+
+/datum/emote/living/pbrt //all tesh players will love me
+	key = "pbrt"
+	key_third_person = "prbts!"
+	message = "pbrts!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/prbt.ogg'
+
 /datum/emote/living/moo
 	key = "moo"
 	key_third_person = "moos!"
@@ -519,6 +543,14 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/weapons/bite.ogg'
+
+/datum/emote/living/gnash
+	key = "gecker"
+	key_third_person = "geckers"
+	message = "geckers."
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/foxgecker.ogg'
 
 /datum/emote/living/thump
 	key = "thump"
