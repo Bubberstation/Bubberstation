@@ -79,7 +79,7 @@ BUBBERSTATION CHANGE END. */
 	icon_keyboard = null
 	icon_screen = "invaders"
 	light_color = LIGHT_COLOR_GREEN
-	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_SET_MACHINE // we don't need to be literate to play video games fam
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON
 	var/list/prize_override
 
 /obj/machinery/computer/arcade/proc/Reset()
@@ -166,6 +166,8 @@ BUBBERSTATION CHANGE END. */
 	desc = "Does not support Pinball."
 	icon_state = "arcade"
 	circuit = /obj/item/circuitboard/computer/arcade/battle
+
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_SET_MACHINE // we don't need to be literate to play video games fam
 
 	var/enemy_name = "Space Villain"
 	///Enemy health/attack points
