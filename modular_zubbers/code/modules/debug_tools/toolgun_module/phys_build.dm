@@ -53,7 +53,7 @@
 		user.balloon_alert(user, "Blocked!")
 		return FALSE
 	if(!isturf(selected_atom))
-		T.PlaceOnTop(selected_atom)
+		T.place_on_top(selected_atom)
 		return TRUE
 	T.TerraformTurf(selected_atom, selected_atom, flags = CHANGETURF_INHERIT_AIR)
 	return TRUE
