@@ -41,7 +41,8 @@
 	var/mob/living/carbon/human/operative = owner.current
 	//Bubber Edit: Adds automatic antag names
 	if(iscarbon(operative))
-		operative.apply_pref_name(/datum/preference/name/syndicate, operative.client)
+		if(operative.client)
+			operative.apply_pref_name(/datum/preference/name/syndicate, operative.client)
 		operative.dna.update_dna_identity()
 	//Bubber edit END: Adds automatic antag names
 	ADD_TRAIT(operative, TRAIT_NOFEAR_HOLDUPS, INNATE_TRAIT)
