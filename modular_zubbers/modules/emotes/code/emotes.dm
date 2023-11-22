@@ -51,7 +51,7 @@
 /datum/emote/living/gecker
 	key = "gecker"
 	key_third_person = "geckers"
-	message = "geckers."
+	message = "geckers!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/modules/emotes/sound/voice/foxgecker.ogg'
