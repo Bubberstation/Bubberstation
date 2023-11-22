@@ -6,7 +6,7 @@
 
 /mob/living/carbon/human/species/synth/empty/Initialize(mapload)
 	. = ..()
-	var/old_death_sound
+	var/old_death_sound = death_sound // You can't do this with initial() as the death sound is set after by the species datum
 	death_sound = null // We don't need them screaming
 	death()
 
