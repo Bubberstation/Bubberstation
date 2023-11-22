@@ -10,7 +10,8 @@
 	death_sound = null // We don't need them screaming
 	death()
 
-	for(var/obj/item/organ/internal/brain/B in organs)
+	var/obj/item/organ/internal/brain/B = get_organ_slot(ORGAN_SLOT_BRAIN) 
+	if(B)
 		B.Remove(src)
 		QDEL_NULL(B)
 
