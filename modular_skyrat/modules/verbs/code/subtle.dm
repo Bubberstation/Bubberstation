@@ -141,12 +141,18 @@
 		var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 		if((get_dist(user.loc, target_mob.loc) <= subtler_range) || (hologram && get_dist(hologram.loc, target_mob.loc) <= subtler_range))
 			target_mob.show_message(subtler_message, alt_msg = subtler_message)
+			// BUBBER EDIT BEGIN - Subtler sounds
+			target_mob.playsound_local(get_turf(target_mob), 'modular_zubbers/sound/misc/subtler.ogg', 50)
+			// BUBBER EDIT END
 		else
 			to_chat(user, span_warning("Your emote was unable to be sent to your target: Too far away."))
 	else if(istype(target, /obj/effect/overlay/holo_pad_hologram))
 		var/obj/effect/overlay/holo_pad_hologram/hologram = target
 		if(hologram.Impersonation?.client)
 			hologram.Impersonation.show_message(subtler_message, alt_msg = subtler_message)
+			// BUBBER EDIT BEGIN - Subtler sounds
+			hologram.Impersonation.playsound_local(get_turf(hologram.Impersonation), 'modular_zubbers/sound/misc/subtler.ogg', 50)
+			// BUBBER EDIT END
 	else
 		var/ghostless = get_hearers_in_view(target, user) - GLOB.dead_mob_list
 
@@ -160,6 +166,9 @@
 
 		for(var/mob/reciever in ghostless)
 			reciever.show_message(subtler_message, alt_msg = subtler_message)
+			// BUBBER EDIT BEGIN - Subtler sounds
+			reciever.playsound_local(get_turf(reciever), 'modular_zubbers/sound/misc/subtler.ogg', 50)
+			// BUBBER EDIT END
 
 	return TRUE
 
