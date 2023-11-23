@@ -36,7 +36,7 @@
 	id = "limejuice"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
-	make_reagent = /datum/reagent/consumable/orangejuice
+	make_reagent = /datum/reagent/consumable/limejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/berryjuice
@@ -69,4 +69,12 @@
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/consumable/soysauce
+	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
+
+/datum/design/salt
+	name = "Salt"
+	id = "salt"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 0.2)
+	make_reagent = /datum/reagent/consumable/salt
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
