@@ -35,11 +35,11 @@
 	item_type = /obj/item/gun/ballistic/revolver/sol
 	cost = PAYCHECK_COMMAND * 4
 
-/* BUBBER EDIT REMOVAL
+
 /datum/armament_entry/company_import/sol_defense/sidearm/wespe
 	item_type = /obj/item/gun/ballistic/automatic/pistol/sol
 	cost = PAYCHECK_COMMAND * 4
-
+/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/sol_defense/sidearm/skild
 	item_type = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	cost = PAYCHECK_COMMAND * 6
@@ -48,7 +48,7 @@
 	item_type = /obj/item/gun/ballistic/revolver/takbok
 	cost = PAYCHECK_COMMAND * 6
 */
-
+// The Skild and Takbok use very strong ammunition, and likely should not be available to normal crew.
 // Lethal anything that's not a pistol, requires high company interest
 
 /datum/armament_entry/company_import/sol_defense/longarm
@@ -59,7 +59,6 @@
 	item_type = /obj/item/gun/ballistic/shotgun/riot/sol
 	cost = PAYCHECK_COMMAND * 6
 
-/* BUBBER EDIT REMOVAL
 /datum/armament_entry/company_import/sol_defense/longarm/sindano
 	item_type = /obj/item/gun/ballistic/automatic/sol_smg
 	cost = PAYCHECK_COMMAND * 6
@@ -73,10 +72,12 @@
 	cost = PAYCHECK_COMMAND * 14
 	contraband = TRUE
 
+/* Machinegun with extremely high fire-rate and high capacity. Definite no for the crew.
 /datum/armament_entry/company_import/sol_defense/longarm/outomaties
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
 	cost = PAYCHECK_COMMAND * 23
 	contraband = TRUE
+*/
 
 /datum/armament_entry/company_import/sol_defense/longarm/kiboko
 	item_type = /obj/item/gun/ballistic/automatic/sol_grenade_launcher
@@ -116,4 +117,4 @@
 	item_type = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
 	contraband = TRUE
-	*/
+
