@@ -12,6 +12,6 @@
 		)
 		var/where = head_rev.equip_in_one_of_slots(hcd, slots, indirect_action = TRUE)
 		if (!where)
-			to_chat(head_rev, "The Syndicate were unfortunately unable to get you a flash.")
+			to_chat(head_rev, "The Syndicate were unfortunately unable to get you [hcd].")
 		else
-			to_chat(head_rev, "The flash in your [where] will help you to persuade the crew to join your cause.")
+			to_chat(head_rev, "[hcd] in your [where] will help you to remove mindshields and force heads of staff to join your cause.")
