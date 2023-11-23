@@ -79,3 +79,13 @@
 	tesh.dna.mutant_bodyparts["tail"] = list(MUTANT_INDEX_NAME = "Teshari (Default)", MUTANT_INDEX_COLOR_LIST = list(base_color, base_color, ear_color))
 	regenerate_organs(tesh, src, visual_only = TRUE)
 	tesh.update_body(TRUE)
+
+//BUBBER EDIT ADDITION: TESHARI WADDLE
+/datum/species/teshari/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	ADD_WADDLE(C, WADDLE_SOURCE_TESHARI)
+
+/datum/species/teshari/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	REMOVE_WADDLE(C, WADDLE_SOURCE_TESHARI)
+//BUBBER EDIT END: TESHARI WADDLE
