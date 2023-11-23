@@ -12,7 +12,7 @@ This module adds an ability for headrevs to convert heads to progress the round 
 
 ### Modular Overrides:
 
-- `modular_zubbers/master_files/code/game/gamemodes/objective.dm`: `proc/check_completion`
+- N/A
 
 ### Defines:
 
