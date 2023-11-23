@@ -8,4 +8,4 @@
 	armour_penetration = 25
 
 /obj/projectile/bullet/c40sol/incendiary
-	damage = 20
+	damage = 18
