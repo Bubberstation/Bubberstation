@@ -3,6 +3,6 @@
 	item_path = /obj/item/reagent_containers/cup/glass/bottle/wine
 
 /datum/loadout_item/pocket_items/starwine //sprites by Keila
-	name = "swtarwire wine bottle"
+	name = "starwire wine bottle"
 	item_path = /obj/item/reagent_containers/cup/glass/bottle/beer/starwine
 	ckeywhitelist = list("catmanpop") //donator item for Catmanpop
