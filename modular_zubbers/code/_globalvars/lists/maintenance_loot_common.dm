@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/wirebrush = 25,
 		/obj/item/wirecutters = 50,
 		/obj/item/wrench = 50,
-		/obj/item/fish_analyzer = 10,
+		/obj/item/fish_analyzer = 10
 	) = 200,
 	list(
 		/obj/item/hatchet = 1,
@@ -1013,7 +1013,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/seeds/liberty = 10,
 		/obj/item/seeds/reishi = 5,
 		/obj/item/seeds/greenbean/jump = 1,
-		/obj/item/seeds/ambrosia = 1,
+		/obj/item/seeds/ambrosia = 1
 	) = 150,
 	list(
 		/obj/item/reagent_containers/cup/glass/bottle/absinthe = 25,
@@ -1086,5 +1086,5 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/soap/homemade = 100,
 		/obj/item/soap/nanotrasen = 25,
 		/obj/item/soap/syndie = 10
-	) = 50,
+	) = 50
 ))

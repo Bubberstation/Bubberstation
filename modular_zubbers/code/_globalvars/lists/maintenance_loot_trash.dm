@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/trash/vendor_trash/mothmallow = 5,
 		/obj/item/trash/vendor_trash/rice_crackers = 5,
 		/obj/item/trash/waffles = 5,
-		/obj/item/popsicle_stick = 20,
+		/obj/item/popsicle_stick = 20
 	) = 300,
 	/obj/item/broken_missile = 1,
 	/obj/item/c_tube = 100,
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/dice/d20 = 20,
 		/obj/item/dice/d6 = 5,
 		/obj/item/dice/d6/ebony = 1,
-		/obj/item/dice/d6/space = 1,
+		/obj/item/dice/d6/space = 1
 	) = 20,
 	/obj/item/ectoplasm = 1,
 	list(
@@ -208,25 +208,25 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/wrench/makeshift = 1,
 		/obj/item/wirecutters/makeshift = 1,
 		/obj/item/weldingtool/makeshift = 1,
-		/obj/item/crowbar/makeshift = 1,
+		/obj/item/crowbar/makeshift = 1
 	) = 75,
 	list(
 		/obj/item/weaponcrafting/receiver = 25,
-		/obj/item/weaponcrafting/stock = 25,
+		/obj/item/weaponcrafting/stock = 25
 	) = 50,
 	/obj/item/scooter_frame = 5,
 	/obj/item/swab = 20,
 	list(
 		/obj/item/light/tube = 5,
-		/obj/item/light/bulb = 5,
+		/obj/item/light/bulb = 5
 	) = 10,
 	list(
 		/obj/item/paperplane = 30,
-		/obj/item/paperplane/syndicate = 1,
+		/obj/item/paperplane/syndicate = 1
 	) = 10,
 	/obj/item/evidencebag = 40,
 	/obj/item/phone = 1,
 	/obj/item/mail/junkmail = 100,
 	/obj/item/stack/stone = 5,
-	/obj/item/card/cardboard = 10,
+	/obj/item/card/cardboard = 10
 ))

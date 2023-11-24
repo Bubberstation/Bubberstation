@@ -128,5 +128,5 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 		/obj/item/dice/d20/fate/one_use = 1
 	) = 10,
 	/obj/item/grenade/stingbang/mega = 1,
-	/obj/item/card/emag/one_shot = 1,
+	/obj/item/card/emag/one_shot = 1
 ))

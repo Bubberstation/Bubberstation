@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/dnainjector/spastic = 1,
 		/obj/item/dnainjector/paranoia = 1,
 		/obj/item/dnainjector/coughmut = 1,
-		/obj/item/dnainjector/antenna = 1,
+		/obj/item/dnainjector/antenna = 1
 	) = 25,
 	/obj/item/dog_bone = 5,
 	/obj/item/door_seal = 5,
@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/firing_pin/tag/blue = 5,
 		/obj/item/firing_pin/tag/red = 5,
 		/obj/item/firing_pin/test_range = 10,
-		/obj/item/firing_pin/monkey = 5,
+		/obj/item/firing_pin/monkey = 5
 	) = 10,
 	list(
 		/obj/item/implanter/mortis = 10,
@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 	/obj/item/crucifix = 5,
 	list(
 		/obj/item/hairbrush/switchblade = 5,
-		/obj/item/hairbrush/tactical = 1,
+		/obj/item/hairbrush/tactical = 1
 	) = 5,
 	/obj/item/geneshears = 10,
 	/obj/item/sign/flag/usa = 5,
@@ -206,6 +206,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/tank/internals/emergency_oxygen/engi/clown = 1,
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/n2o = 1,
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/bz = 1,
-		/obj/item/tank/internals/emergency_oxygen/engi/clown/helium = 1,
+		/obj/item/tank/internals/emergency_oxygen/engi/clown/helium = 1
 	) = 5
 ))
