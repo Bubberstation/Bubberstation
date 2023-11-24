@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 	/obj/item/ammo_box/foambox/riot = 50,
 	list(
 		/obj/item/survivalcapsule = 100,
-		/obj/item/survivalcapsule/luxury = 10
+		/obj/item/survivalcapsule/luxury = 10,
 		/obj/item/survivalcapsule/luxuryelite = 5,
 		/obj/item/survivalcapsule/bathroom = 1
 	) = 25,
