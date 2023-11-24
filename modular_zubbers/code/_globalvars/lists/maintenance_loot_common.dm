@@ -1014,9 +1014,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/seeds/reishi = 5,
 		/obj/item/seeds/greenbean/jump = 1,
 		/obj/item/seeds/ambrosia = 1,
-
-
-
 	) = 150,
 	list(
 		/obj/item/reagent_containers/cup/glass/bottle/absinthe = 25,

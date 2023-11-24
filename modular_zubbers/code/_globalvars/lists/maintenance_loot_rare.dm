@@ -47,25 +47,21 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/clothing/glasses/hud/ar/projector/meson = 100,
 		/obj/item/clothing/glasses/hud/ar/projector/science = 25,
 		/obj/item/clothing/glasses/hud/ar/projector/security = 10,
-
 		/obj/item/clothing/glasses/hud/eyepatch/diagnostic = 50,
 		/obj/item/clothing/glasses/hud/eyepatch/med = 25,
 		/obj/item/clothing/glasses/hud/eyepatch/meson = 100,
 		/obj/item/clothing/glasses/hud/eyepatch/sci = 25,
 		/obj/item/clothing/glasses/hud/eyepatch/sec = 10,
-
 		/obj/item/clothing/glasses/hud/diagnostic = 50,
 		/obj/item/clothing/glasses/hud/health = 25,
 		/obj/item/clothing/glasses/material/mining = 100,
 		/obj/item/clothing/glasses/meson = 100,
 		/obj/item/clothing/glasses/science = 25,
 		/obj/item/clothing/glasses/hud/security = 10,
-
 		/obj/item/clothing/glasses/hud/gun_permit = 25,
 		/obj/item/clothing/glasses/hud/security/redsec = 5,
 		/obj/item/clothing/glasses/meson/engine = 25,
 		/obj/item/clothing/glasses/meson/engine/tray = 25,
-
 		/obj/item/clothing/glasses/sunglasses/reagent = 1,
 		/obj/item/clothing/glasses/sunglasses/chemical = 1,
 		/obj/item/clothing/glasses/sunglasses/spy = 1
@@ -135,7 +131,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/dnainjector/paranoia = 1,
 		/obj/item/dnainjector/coughmut = 1,
 		/obj/item/dnainjector/antenna = 1,
-
 	) = 25,
 	/obj/item/dog_bone = 5,
 	/obj/item/door_seal = 5,
@@ -152,7 +147,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/firing_pin/tag/red = 5,
 		/obj/item/firing_pin/test_range = 10,
 		/obj/item/firing_pin/monkey = 5,
-
 	) = 10,
 	list(
 		/obj/item/implanter/mortis = 10,
@@ -214,5 +208,4 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/bz = 1,
 		/obj/item/tank/internals/emergency_oxygen/engi/clown/helium = 1,
 	) = 5
-
 ))

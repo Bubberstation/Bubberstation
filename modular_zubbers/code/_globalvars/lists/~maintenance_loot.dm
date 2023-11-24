@@ -7,7 +7,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	GLOB.oddity_loot = maint_oddity_weight
 ))
 
-
 GLOBAL_LIST_INIT(trash_pile_loot, list(
 	GLOB.uncommon_loot = maint_uncommon_weight,
 	GLOB.rarity_loot = maint_rarity_weight,

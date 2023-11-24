@@ -330,19 +330,16 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/mod/core/standard = 5,
 		/obj/item/mod/core/plasma = 10,
 		/obj/item/mod/construction/broken_core = 75,
-
 		/obj/item/mod/construction/boots = 30,
 		/obj/item/mod/construction/chestplate = 30,
 		/obj/item/mod/construction/gauntlets = 30,
 		/obj/item/mod/construction/helmet = 30,
 		/obj/item/mod/construction/shell = 30,
-
 		/obj/item/mod/construction/plating = 5,
 		/obj/item/mod/construction/plating/atmospheric = 3,
 		/obj/item/mod/construction/plating/engineering = 3,
 		/obj/item/mod/construction/plating/medical = 3,
 		/obj/item/mod/construction/plating/security = 1,
-
 		/obj/item/mod/module/ash_accretion = 5,
 		/obj/item/mod/module/atrocinator = 5,
 		/obj/item/mod/module/balloon = 100,

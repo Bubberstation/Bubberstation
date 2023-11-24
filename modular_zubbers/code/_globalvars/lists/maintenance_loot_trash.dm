@@ -209,7 +209,6 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/wirecutters/makeshift = 1,
 		/obj/item/weldingtool/makeshift = 1,
 		/obj/item/crowbar/makeshift = 1,
-
 	) = 75,
 	list(
 		/obj/item/weaponcrafting/receiver = 25,
@@ -230,5 +229,4 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 	/obj/item/mail/junkmail = 100,
 	/obj/item/stack/stone = 5,
 	/obj/item/card/cardboard = 10,
-
 ))
