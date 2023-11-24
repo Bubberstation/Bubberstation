@@ -2,7 +2,7 @@
 	name = "Waddle"
 	desc = "Your movements always had a bit more of a waddle to them."
 	value = 0
-	icon = FA_ICON_BOWL_FOOD
+	icon = FA_ICON_WIND
 	gain_text = span_notice("You feel like walking silly")
 	lose_text = span_notice("You no longer feel like walking silly")
 	quirk_flags = QUIRK_HUMAN_ONLY
