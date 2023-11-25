@@ -131,18 +131,18 @@ const RecipeListBox = (props: RecipeListProps) => {
 
   return (
     <>
-      {Object.keys(recipes).map((title, index) => {
+      {Object.keys(recipes).map((title) => {
         const recipe = recipes[title];
         if (isRecipeList(recipe)) {
           return (
-            <Collapsible key={title} ml={1} color="label" title={title}>
+            <Collapsible ml={1} color="label" title={title}>
               <Box ml={2}>
                 <RecipeListBox recipes={recipe} />
               </Box>
             </Collapsible>
           );
         } else {
-          return <RecipeBox key={title} title={title} recipe={recipe} />;
+          return <RecipeBox title={title} recipe={recipe} />;
         }
       })}
     </>

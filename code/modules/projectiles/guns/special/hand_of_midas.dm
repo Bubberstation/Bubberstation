@@ -46,7 +46,7 @@
 	if(!victim.reagents)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	var/gold_amount = victim.reagents.get_reagent_amount(/datum/reagent/gold, type_check = REAGENT_SUB_TYPE)
+	var/gold_amount = victim.reagents.get_reagent_amount(/datum/reagent/gold, include_subtypes = TRUE)
 	if(!gold_amount)
 		balloon_alert(user, "no gold in bloodstream")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

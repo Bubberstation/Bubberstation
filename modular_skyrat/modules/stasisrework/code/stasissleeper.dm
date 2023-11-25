@@ -75,7 +75,7 @@
 	visible_message(span_notice("[occupant] emerges from [src]!"),
 		span_notice("You climb out of [src]!"))
 	open_machine()
-	if(HAS_TRAIT(user, TRAIT_STASIS))
+	if(IS_IN_STASIS(user))
 		thaw_them(user)
 
 /obj/machinery/stasissleeper/proc/stasis_running()
@@ -112,9 +112,9 @@
 		return
 	var/mob/living/L_occupant = occupant
 	if(stasis_running())
-		if(!HAS_TRAIT(L_occupant, TRAIT_STASIS))
+		if(!IS_IN_STASIS(L_occupant))
 			chill_out(L_occupant)
-	else if(HAS_TRAIT(L_occupant, TRAIT_STASIS))
+	else if(IS_IN_STASIS(L_occupant))
 		thaw_them(L_occupant)
 
 /obj/machinery/stasissleeper/screwdriver_act(mob/living/user, obj/item/used_item)

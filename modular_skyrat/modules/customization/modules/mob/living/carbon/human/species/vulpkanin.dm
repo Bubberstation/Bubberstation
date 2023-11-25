@@ -10,6 +10,12 @@
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	mutant_bodyparts = list()
 	mutanttongue = /obj/item/organ/internal/tongue/vulpkanin
+	default_mutant_bodyparts = list(
+		"tail" = ACC_RANDOM,
+		"snout" = ACC_RANDOM,
+		"ears" = ACC_RANDOM,
+		"legs" = "Normal Legs"
+	)
 	species_language_holder = /datum/language_holder/vulpkanin
 	payday_modifier = 1.0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -23,13 +29,6 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant,
 	)
 
-/datum/species/vulpkanin/get_default_mutant_bodyparts()
-	return list(
-		"tail" = list("Fox", TRUE),
-		"snout" = list("Mammal, Long", TRUE),
-		"ears" = list("Fox", TRUE),
-		"legs" = list("Normal Legs", FALSE),
-	)
 
 /obj/item/organ/internal/tongue/vulpkanin
 	liked_foodtypes = RAW | MEAT
@@ -37,8 +36,7 @@
 	toxic_foodtypes = TOXIC
 
 
-/datum/species/vulpkanin/randomize_features()
-	var/list/features = ..()
+/datum/species/vulpkanin/randomize_features(mob/living/carbon/human/human_mob)
 	var/main_color
 	var/second_color
 	var/random = rand(1,5)
@@ -59,10 +57,9 @@
 		if(5)
 			main_color = "#999999"
 			second_color = "#EEEEEE"
-	features["mcolor"] = main_color
-	features["mcolor2"] = second_color
-	features["mcolor3"] = second_color
-	return features
+	human_mob.dna.features["mcolor"] = main_color
+	human_mob.dna.features["mcolor2"] = second_color
+	human_mob.dna.features["mcolor3"] = second_color
 
 /datum/species/vulpkanin/get_random_body_markings(list/passed_features)
 	var/name = pick("Fox", "Floof", "Floofer")

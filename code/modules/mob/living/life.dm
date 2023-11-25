@@ -40,7 +40,7 @@
 	if(isnull(loc) || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
-	if(!HAS_TRAIT(src, TRAIT_STASIS))
+	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD)
 			//Mutations and radiation

@@ -16,7 +16,6 @@ type RoleInfo = {
 
 type PlayerInfo = {
   name: string;
-  role_revealed: string;
   is_you: BooleanLike;
   ref: string;
   alive: string;
@@ -50,13 +49,11 @@ type MafiaData = {
   is_observer: boolean;
   all_roles: string[];
   admin_controls: boolean;
-  person_voted_up_ref: string;
-  player_voted_up: BooleanLike;
 };
 
 export const MafiaPanelData = (props, context) => {
   const { act, data } = useBackend<MafiaData>(context);
-  const { phase, roleinfo, admin_controls, messages, player_voted_up } = data;
+  const { phase, roleinfo, admin_controls, messages } = data;
   const [mafia_tab, setMafiaMode] = useLocalState(
     context,
     'mafia_tab',
@@ -93,7 +90,7 @@ export const MafiaPanelData = (props, context) => {
               <Stack.Item>
                 <MafiaRole />
               </Stack.Item>
-              {phase === 'Judgment' && !player_voted_up && (
+              {phase === 'Judgment' && (
                 <Stack.Item>
                   <MafiaJudgement />
                 </Stack.Item>
@@ -404,20 +401,17 @@ const MafiaJudgement = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Section title="Judgement">
-      <Flex>
+      <Flex justify="space-around">
         <Button
           icon="smile-beam"
-          content="Innocent"
+          content="INNOCENT!"
           color="good"
           onClick={() => act('vote_innocent')}
         />
         <Box>It is now time to vote, vote the accused innocent or guilty!</Box>
-        <Button
-          icon="angry"
-          content="Guilty"
-          color="bad"
-          onClick={() => act('vote_guilty')}
-        />
+        <Button icon="angry" color="bad" onClick={() => act('vote_guilty')}>
+          GUILTY!
+        </Button>
       </Flex>
       <Flex justify="center">
         <Button icon="meh" color="white" onClick={() => act('vote_abstain')}>
@@ -430,22 +424,16 @@ const MafiaJudgement = (props, context) => {
 
 const MafiaPlayers = (props, context) => {
   const { act, data } = useBackend<MafiaData>(context);
-  const { players = [], person_voted_up_ref } = data;
+  const { players } = data;
   return (
     <Section fill scrollable title="Players">
       <Flex direction="column" fill justify="space-around">
         {players?.map((player) => (
           <Flex.Item className="Section__title candystripe" key={player.ref}>
             <Stack align="center">
-              <Stack.Item
-                grow
-                color={!player.alive && 'red'}
-                backgroundColor={
-                  player.ref === person_voted_up_ref ? 'yellow' : null
-                }>
+              <Stack.Item grow color={!player.alive && 'red'}>
                 {player.name}
-                {(!!player.is_you && ' (YOU)') ||
-                  (!!player.role_revealed && ' - ' + player.role_revealed)}
+                {player.is_you && ' (YOU)'} {!player.alive && '(DEAD)'}
               </Stack.Item>
               <Stack.Item>
                 {player.votes !== undefined &&

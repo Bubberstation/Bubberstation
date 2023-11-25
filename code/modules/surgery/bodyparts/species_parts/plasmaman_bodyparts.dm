@@ -10,7 +10,6 @@
 	brute_modifier = 1.5 //Plasmemes are weak
 	burn_modifier = 1.5 //Plasmemes are weak
 	head_flags = HEAD_EYESPRITES
-	bodypart_flags = BODYPART_UNHUSKABLE
 
 /obj/item/bodypart/chest/plasmaman
 	icon = 'icons/mob/human/species/plasmaman/bodyparts.dmi'
@@ -23,7 +22,6 @@
 	dmg_overlay_type = null
 	brute_modifier = 1.5 //Plasmemes are weak
 	burn_modifier = 1.5 //Plasmemes are weak
-	bodypart_flags = BODYPART_UNHUSKABLE
 	wing_types = NONE
 
 /obj/item/bodypart/arm/left/plasmaman
@@ -36,7 +34,6 @@
 	dmg_overlay_type = null
 	brute_modifier = 1.5 //Plasmemes are weak
 	burn_modifier = 1.5 //Plasmemes are weak
-	bodypart_flags = BODYPART_UNHUSKABLE
 
 /obj/item/bodypart/arm/right/plasmaman
 	icon = 'icons/mob/human/species/plasmaman/bodyparts.dmi'
@@ -48,7 +45,6 @@
 	dmg_overlay_type = null
 	brute_modifier = 1.5 //Plasmemes are weak
 	burn_modifier = 1.5 //Plasmemes are weak
-	bodypart_flags = BODYPART_UNHUSKABLE
 
 /obj/item/bodypart/leg/left/plasmaman
 	icon = 'icons/mob/human/species/plasmaman/bodyparts.dmi'
@@ -60,7 +56,6 @@
 	dmg_overlay_type = null
 	brute_modifier = 1.5 //Plasmemes are weak
 	burn_modifier = 1.5 //Plasmemes are weak
-	bodypart_flags = BODYPART_UNHUSKABLE
 
 /obj/item/bodypart/leg/right/plasmaman
 	icon = 'icons/mob/human/species/plasmaman/bodyparts.dmi'
@@ -72,4 +67,3 @@
 	dmg_overlay_type = null
 	brute_modifier = 1.5 //Plasmemes are weak
 	burn_modifier = 1.5 //Plasmemes are weak
-	bodypart_flags = BODYPART_UNHUSKABLE

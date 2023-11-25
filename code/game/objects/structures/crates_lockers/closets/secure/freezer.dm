@@ -42,7 +42,7 @@
 	. = ..()
 
 /obj/structure/closet/secure_closet/freezer/empty
-	name = "freezer"
+	name = "empty freezer"
 
 /obj/structure/closet/secure_closet/freezer/empty/open
 	req_access = null

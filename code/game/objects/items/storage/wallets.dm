@@ -28,14 +28,10 @@
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/toy/crayon,
-		/obj/item/clothing/accessory/dogtag,
 		/obj/item/coin,
-		/obj/item/coupon,
+		/obj/item/food/chococoin,
 		/obj/item/dice,
 		/obj/item/disk,
-		/obj/item/flashlight/pen,
-		/obj/item/folder/biscuit,
-		/obj/item/food/chococoin,
 		/obj/item/implanter,
 		/obj/item/laser_pointer,
 		/obj/item/lighter,
@@ -48,11 +44,8 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/pill,
 		/obj/item/screwdriver,
-		/obj/item/seeds,
 		/obj/item/spess_knife,
-		/obj/item/stack/medical,
-		/obj/item/stamp,
-		/obj/item/toy/crayon),
+		/obj/item/stamp),
 		list(/obj/item/screwdriver/power))
 
 /obj/item/storage/wallet/Exited(atom/movable/gone, direction)

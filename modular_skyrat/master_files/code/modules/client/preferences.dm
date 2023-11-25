@@ -111,29 +111,28 @@
 	return language
 
 /datum/preferences/proc/validate_species_parts()
-	var/list/default_bodyparts = GLOB.default_mutant_bodyparts[pref_species.name]
-	var/list/target_bodyparts = default_bodyparts.Copy()
+	var/list/target_bodyparts = pref_species.default_mutant_bodyparts.Copy()
 
 	// Remove all "extra" accessories
 	for(var/key in mutant_bodyparts)
 		if(!GLOB.sprite_accessories[key]) // That accessory no longer exists, remove it
 			mutant_bodyparts -= key
 			continue
-		if(!GLOB.default_mutant_bodyparts[pref_species.name][key])
+		if(!pref_species.default_mutant_bodyparts[key])
 			mutant_bodyparts -= key
 			continue
 		if(!GLOB.sprite_accessories[key][mutant_bodyparts[key][MUTANT_INDEX_NAME]]) // The individual accessory no longer exists
-			mutant_bodyparts[key][MUTANT_INDEX_NAME] = GLOB.default_mutant_bodyparts[pref_species.name[key][MUTANTPART_NAME]]
+			mutant_bodyparts[key][MUTANT_INDEX_NAME] = pref_species.default_mutant_bodyparts[key]
 		validate_color_keys_for_part(key) // Validate the color count of each accessory that wasnt removed
 
 	// Add any missing accessories
 	for(var/key in target_bodyparts)
 		if(!mutant_bodyparts[key])
 			var/datum/sprite_accessory/SA
-			if(target_bodyparts[key][MUTANTPART_CAN_RANDOMIZE])
+			if(target_bodyparts[key] == ACC_RANDOM)
 				SA = random_accessory_of_key_for_species(key, pref_species)
 			else
-				SA = GLOB.sprite_accessories[key][target_bodyparts[key][MUTANTPART_NAME]]
+				SA = GLOB.sprite_accessories[key][target_bodyparts[key]]
 			var/final_list = list()
 			final_list[MUTANT_INDEX_NAME] = SA.name
 			final_list[MUTANT_INDEX_COLOR_LIST] = SA.get_default_color(features, pref_species)

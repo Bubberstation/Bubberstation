@@ -190,7 +190,7 @@ GLOBAL_VAR(restart_counter)
 	data["tick_usage"] = world.tick_usage
 	data["tick_lag"] = world.tick_lag
 	data["time"] = world.time
-	data["timestamp"] = rustg_unix_timestamp()
+	data["timestamp"] = logger.unix_timestamp_string()
 	return data
 
 /world/proc/SetupLogs()
@@ -326,7 +326,6 @@ GLOBAL_VAR(restart_counter)
 			shutdown_logging() // See comment below.
 			auxcleanup()
 			TgsEndProcess()
-			return ..()
 
 	log_world("World rebooted at [time_stamp()]")
 

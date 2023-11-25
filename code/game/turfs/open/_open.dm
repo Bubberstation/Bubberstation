@@ -285,7 +285,7 @@
 	return TRUE
 
 /turf/open/handle_slip(mob/living/carbon/slipper, knockdown_amount, obj/slippable, lube, paralyze_amount, force_drop)
-	if(slipper.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
+	if(slipper.movement_type & (FLYING | FLOATING))
 		return FALSE
 	if(!has_gravity(src))
 		return FALSE
@@ -446,3 +446,4 @@
 
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	new /obj/structure/girder/tram(src)
+

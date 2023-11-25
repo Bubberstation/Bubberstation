@@ -3,7 +3,7 @@
 /obj/structure/closet/gmcloset
 	name = "formal closet"
 	desc = "It's a storage unit for formal clothing."
-	icon_door = "bar_wardrobe"
+	icon_door = "black"
 
 /obj/structure/closet/gmcloset/PopulateContents()
 	..()
@@ -24,9 +24,9 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/chefcloset
-	name = "chef's closet"
+	name = "\proper chef's closet"
 	desc = "It's a storage unit for foodservice garments and mouse traps."
-	icon_door = "chef_wardrobe"
+	icon_door = "black"
 
 /obj/structure/closet/chefcloset/PopulateContents()
 	..()
@@ -47,7 +47,7 @@
 /obj/structure/closet/jcloset
 	name = "custodial closet"
 	desc = "It's a storage unit for janitorial clothes and gear."
-	icon_door = "jani_wardrobe"
+	icon_door = "mixed"
 
 /obj/structure/closet/jcloset/PopulateContents()
 	..()
@@ -75,7 +75,7 @@
 /obj/structure/closet/lawcloset
 	name = "legal closet"
 	desc = "It's a storage unit for courtroom apparel and items."
-	icon_door = "law_wardrobe"
+	icon_door = "blue"
 
 /obj/structure/closet/lawcloset/PopulateContents()
 	..()
@@ -102,7 +102,7 @@
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
 	desc = "It's a storage unit for Nanotrasen-approved religious attire."
-	icon_door = "chap_wardrobe"
+	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/PopulateContents()
 	new /obj/item/choice_beacon/holy(src)
@@ -120,7 +120,7 @@
 
 /obj/structure/closet/wardrobe/red
 	name = "security wardrobe"
-	icon_door = "sec_wardrobe"
+	icon_door = "red"
 
 /obj/structure/closet/wardrobe/red/PopulateContents()
 	var/static/items_inside = list(
@@ -140,7 +140,7 @@
 
 /obj/structure/closet/wardrobe/cargotech
 	name = "cargo wardrobe"
-	icon_door = "cargo_wardrobe"
+	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/cargotech/PopulateContents()
 	var/static/items_inside = list(
@@ -172,7 +172,7 @@
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
-	icon_door = "engi_wardrobe"
+	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/engineering_yellow/PopulateContents()
 	var/static/items_inside = list(
@@ -191,7 +191,6 @@
 
 /obj/structure/closet/wardrobe/white/medical
 	name = "medical doctor's wardrobe"
-	icon_door = "med_wardrobe"
 
 /obj/structure/closet/wardrobe/white/medical/PopulateContents()
 	var/static/items_inside = list(
@@ -214,7 +213,7 @@
 
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
-	icon_door = "robo_wardrobe"
+	icon_door = "black"
 
 /obj/structure/closet/wardrobe/robotics_black/PopulateContents()
 	var/static/items_inside = list(
@@ -234,7 +233,7 @@
 
 /obj/structure/closet/wardrobe/chemistry_white
 	name = "chemistry wardrobe"
-	icon_door = "chem_wardrobe"
+	icon_door = "white"
 
 /obj/structure/closet/wardrobe/chemistry_white/PopulateContents()
 	var/static/items_inside = list(
@@ -252,7 +251,7 @@
 
 /obj/structure/closet/wardrobe/genetics_white
 	name = "genetics wardrobe"
-	icon_door = "gen_wardrobe"
+	icon_door = "white"
 
 /obj/structure/closet/wardrobe/genetics_white/PopulateContents()
 	var/static/items_inside = list(
@@ -269,7 +268,7 @@
 
 /obj/structure/closet/wardrobe/virology_white
 	name = "virology wardrobe"
-	icon_door = "viro_wardrobe"
+	icon_door = "white"
 
 /obj/structure/closet/wardrobe/virology_white/PopulateContents()
 	var/static/items_inside = list(
@@ -286,7 +285,7 @@
 
 /obj/structure/closet/wardrobe/science_white
 	name = "science wardrobe"
-	icon_door = "sci_wardrobe"
+	icon_door = "white"
 
 /obj/structure/closet/wardrobe/science_white/PopulateContents()
 	var/static/items_inside = list(
@@ -305,7 +304,7 @@
 
 /obj/structure/closet/wardrobe/botanist
 	name = "botanist wardrobe"
-	icon_door = "botany_wardrobe"
+	icon_door = "green"
 
 /obj/structure/closet/wardrobe/botanist/PopulateContents()
 	var/static/items_inside = list(
@@ -322,7 +321,7 @@
 
 /obj/structure/closet/wardrobe/curator
 	name = "treasure hunting wardrobe"
-	icon_door = "curator_wardrobe"
+	icon_door = "black"
 
 /obj/structure/closet/wardrobe/curator/PopulateContents()
 	new /obj/item/clothing/head/fedora/curator(src)

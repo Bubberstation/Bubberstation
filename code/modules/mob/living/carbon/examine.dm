@@ -154,6 +154,8 @@
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
+//SKYRAT EDIT REMOVAL - MOVED - MEDICAL - carbon_examine.dm
+/*
 /mob/living/carbon/examine_more(mob/user)
 	. = ..()
 	. += span_notice("<i>You examine [src] closer, and note the following...</i>")
@@ -180,3 +182,4 @@
 			. += "[scar_text]"
 
 	return .
+*/

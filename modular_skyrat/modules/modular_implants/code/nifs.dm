@@ -185,7 +185,7 @@
 /obj/item/organ/internal/cyberimp/brain/nif/process(seconds_per_tick)
 	. = ..()
 
-	if(!linked_mob || broken || HAS_TRAIT(linked_mob, TRAIT_STASIS))
+	if(!linked_mob || broken || IS_IN_STASIS(linked_mob))
 		return FALSE
 
 	if(calibrating)

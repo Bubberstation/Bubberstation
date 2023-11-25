@@ -54,7 +54,9 @@
 	ADD_TRAIT(src, TRAIT_AGEUSIA, NO_TONGUE_TRAIT)
 
 /mob/living/carbon/human/proc/setup_human_dna()
-	randomize_human(src, randomize_mutations = TRUE)
+	//initialize dna. for spawned humans; overwritten by other code
+	randomize_human(src)
+	dna.initialize_dna()
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
@@ -999,6 +1001,7 @@
 
 /mob/living/carbon/human/updatehealth()
 	. = ..()
+	dna?.species.spec_updatehealth(src)
 	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)

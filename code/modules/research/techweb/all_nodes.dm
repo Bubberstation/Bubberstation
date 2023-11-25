@@ -320,7 +320,6 @@
 	design_ids = list(
 		"circuit_multitool",
 		"comp_access_checker",
-		"comp_arctan2",
 		"comp_arithmetic",
 		"comp_assoc_list_pick",
 		"comp_assoc_list_remove",
@@ -925,13 +924,9 @@
 /datum/techweb_node/adv_robotics
 	id = "adv_robotics"
 	display_name = "Advanced Robotics Research"
-	description = "Advanced synthetic neural networks and synaptic pathways allows for extraordinary leaps in cybernetic intelligence and interfacing."
+	description = "Machines using actual neural networks to simulate human lives."
 	prereq_ids = list("robotics")
 	design_ids = list(
-		"advanced_l_arm",
-		"advanced_r_arm",
-		"advanced_l_leg",
-		"advanced_r_leg",
 		"mmi_posi",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -1018,7 +1013,6 @@
 		"borg_upgrade_lavaproof",
 		"borg_upgrade_rped",
 		"borg_upgrade_hypermod",
-		"borg_upgrade_inducer",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 

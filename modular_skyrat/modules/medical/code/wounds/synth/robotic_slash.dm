@@ -194,7 +194,7 @@
 	var/base_mult = 1
 
 	if (victim)
-		if (HAS_TRAIT(victim, TRAIT_STASIS))
+		if (IS_IN_STASIS(victim))
 			base_mult *= ELECTRICAL_DAMAGE_ON_STASIS_MULT
 		if (victim.body_position == LYING_DOWN)
 			base_mult *= ELECTRICAL_DAMAGE_LYING_DOWN_MULT

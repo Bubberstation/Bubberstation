@@ -48,9 +48,8 @@
 	return ..()
 
 /datum/species/human/felinid/randomize_features(mob/living/carbon/human/human_mob)
-	var/list/features = ..()
-	features["ears"] = pick("None", "Cat")
-	return features
+	randomize_external_organs(human_mob)
+	return ..()
 
 /proc/mass_purrbation()
 	for(var/mob in GLOB.human_list)

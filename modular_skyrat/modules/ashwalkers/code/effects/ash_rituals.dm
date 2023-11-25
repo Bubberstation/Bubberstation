@@ -202,7 +202,7 @@
 		/mob/living/basic/mining/ice_whelp,
 		/mob/living/basic/mining/lobstrosity,
 		/mob/living/simple_animal/hostile/asteroid/polarbear,
-		/mob/living/basic/mining/wolf,
+		/mob/living/simple_animal/hostile/asteroid/wolf,
 	)
 	new mob_type(success_rune.loc)
 

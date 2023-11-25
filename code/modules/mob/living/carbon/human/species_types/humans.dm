@@ -13,6 +13,9 @@
 	human.set_haircolor("#bb9966", update = FALSE) // brown
 	human.set_hairstyle("Business Hair", update = TRUE)
 
+/datum/species/human/randomize_features(mob/living/carbon/human/human_mob)
+	human_mob.skin_tone = random_skin_tone()
+
 /datum/species/human/get_scream_sound(mob/living/carbon/human/human)
 	if(human.physique == MALE)
 		if(prob(1))
@@ -79,3 +82,4 @@
 		))
 
 	return to_add
+

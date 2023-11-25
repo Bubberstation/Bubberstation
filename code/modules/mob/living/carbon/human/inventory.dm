@@ -181,7 +181,7 @@
 			gloves = equipping
 			//SKYRAT EDIT ADDITION - ERP UPDATE
 			if(gloves.breakouttime)
-				ADD_TRAIT(src, TRAIT_RESTRAINED, TRAIT_GLOVES)
+				ADD_TRAIT(src, TRAIT_RESTRAINED, GLOVES_TRAIT)
 				stop_pulling()
 				update_mob_action_buttons()
 			//SKYRAT EDIT ADDITION END
@@ -284,7 +284,7 @@
 	else if(I == gloves)
 		//SKYRAT EDIT ADDITION - ERP UPDATE
 		if(gloves.breakouttime) //when unequipping a straightjacket
-			REMOVE_TRAIT(src, TRAIT_RESTRAINED, TRAIT_GLOVES)
+			REMOVE_TRAIT(src, TRAIT_RESTRAINED, GLOVES_TRAIT)
 			drop_all_held_items() //suit is restraining
 			update_mob_action_buttons() //certain action buttons may be usable again.
 		//SKYRAT EDIT ADDITION END

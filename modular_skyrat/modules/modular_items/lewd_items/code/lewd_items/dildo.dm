@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 
 /obj/item/clothing/sextoy/dildo/double_dildo_end/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_STRAPON)
+	ADD_TRAIT(src, TRAIT_NODROP, STRAPON_TRAIT)
 
 /obj/item/clothing/sextoy/dildo/double_dildo_end/update_icon_state()
 	. = ..()

@@ -48,7 +48,7 @@
 	if(!iscarbon(quirk_holder))
 		return
 
-	if(HAS_TRAIT(quirk_holder, TRAIT_STASIS))
+	if(IS_IN_STASIS(quirk_holder))
 		return
 
 	if(quirk_holder.stat == DEAD)

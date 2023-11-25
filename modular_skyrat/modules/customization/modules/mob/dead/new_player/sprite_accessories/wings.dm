@@ -313,7 +313,7 @@
 	icon_state = "brown"
 
 /datum/sprite_accessory/wings/moth/burnt
-	name = "Burnt Off"
+	name = "Moth (Burnt)"
 	icon_state = "burnt_off"
 	locked = TRUE
 
