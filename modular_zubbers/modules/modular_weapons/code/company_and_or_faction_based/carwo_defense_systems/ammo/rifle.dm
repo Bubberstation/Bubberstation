@@ -4,8 +4,8 @@
 	bare_wound_bonus = 0
 
 /obj/projectile/bullet/c40sol/pierce
-	damage = 20
-	armour_penetration = 25
+	damage = 25
+	armour_penetration = 20
 
 /obj/projectile/bullet/c40sol/incendiary
 	damage = 20
