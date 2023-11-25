@@ -1,6 +1,6 @@
 /obj/projectile/bullet/c40sol
 	damage = 28
-	wound_bonus = -10
+	wound_bonus = 0
 	bare_wound_bonus = 0
 
 /obj/projectile/bullet/c40sol/pierce
