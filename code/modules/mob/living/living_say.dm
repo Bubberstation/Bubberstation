@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(!message || message == "")
 		return
 	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
-	if(findtext(message, GLOB.has_eol_punctuation))
+	if(client?.autopunctuation && findtext(message, GLOB.has_eol_punctuation))
 		message += "."
 	//BUBBER EDIT END: AUTOPUNCTUATION
 
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			say_dead(original_message)
 			return
 
-	if(HAS_TRAIT(src, TRAIT_SOFTSPOKEN))
+	if(HAS_TRAIT(src, TRAIT_SOFTSPOKEN) && !HAS_TRAIT(src, TRAIT_SIGN_LANG)) // softspoken trait only applies to spoken languages
 		message_mods[WHISPER_MODE] = MODE_WHISPER
 
 	if(client && SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && !forced && src == usr)
@@ -194,11 +194,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	last_say_args_ref = REF(args)
 #endif
 
-	if(!HAS_TRAIT(src, TRAIT_SIGN_LANG)) // if using sign language skip sending the say signal
-		// Make sure the arglist is passed exactly - don't pass a copy of it. Say signal handlers will modify some of the parameters.
-		var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
-		if(sigreturn & COMPONENT_UPPERCASE_SPEECH)
-			message = uppertext(message)
+	// Make sure the arglist is passed exactly - don't pass a copy of it. Say signal handlers will modify some of the parameters.
+	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
+	if(sigreturn & COMPONENT_UPPERCASE_SPEECH)
+		message = uppertext(message)
 
 	var/list/message_data = treat_message(message) // unfortunately we still need this
 	message = message_data["message"]
