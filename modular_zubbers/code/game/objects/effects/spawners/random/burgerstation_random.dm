@@ -123,7 +123,6 @@
 		/obj/structure/closet/preopen = 1000,
 		/obj/structure/rack = 1000,
 		/obj/structure/rack/shelf = 200,
-		/obj/structure/rack/shelf/wooden = 100,
 		/obj/structure/safe = 50,
 		/obj/structure/safe/floor = 10,
 
@@ -214,7 +213,8 @@
 		/obj/machinery/vending/toyliberationstation = 1, //As a treat :^)
 		/obj/machinery/vending/vendcation = 50,
 		/obj/machinery/vending/wardrobe/syndie_wardrobe = 1, //As a treat :^)
-		/obj/machinery/vending/wardrobe/sec_wardrobe/red = 5
+		/obj/machinery/vending/wardrobe/sec_wardrobe/red = 5,
+		/obj/machinery/vending/halloween_chocolate = 100
 	)
 	additional_loot = list(
 		/obj/effect/mapping_helpers/broken_machine = 1

@@ -22,7 +22,7 @@
 
 /obj/structure/closet/secure_closet/blueshield/New()
 	..()
-	new /obj/item/storage/secure/briefcase(src)
+	new /obj/item/storage/briefcase/secure(src)
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
@@ -31,3 +31,4 @@
 	new /obj/item/storage/medkit/tactical/blueshield(src)
 	new /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/wt550(src) // Bubberstation Edit
 	new /obj/item/storage/bag/garment/blueshield(src)
+	// new /obj/item/mod/control/pre_equipped/blueshield(src) Bubberstation Removal

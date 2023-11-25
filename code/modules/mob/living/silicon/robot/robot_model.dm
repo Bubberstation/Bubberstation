@@ -808,11 +808,15 @@
 		/obj/item/borg/apparatus/beaker/service,
 		/obj/item/reagent_containers/cup/beaker/large, //I know a shaker is more appropiate but this is for ease of identification
 		//Skyrat Edit Start: Borg Buff
+		//obj/item/reagent_containers/condiment/enzyme, //edit - Borg shaker has it
+		/obj/item/borg/apparatus/beaker, // SKYRAT EDIT: allows the pickup of different beakers for easier drink mixing
+		/obj/item/reagent_containers/dropper,
 		//obj/item/reagent_containers/condiment/enzyme, //edit
 		//obj/item/reagent_containers/condiment/enzyme, //bubber-edit
 		//obj/item/reagent_containers/dropper, //bubber-edit
 		/obj/item/rsf,
 		/obj/item/storage/bag/tray,
+		/obj/item/storage/bag/tray, // SKYRAT EDIT: Moves the second tray up to be near the default one
 		/obj/item/pen,
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/extinguisher/mini,
@@ -825,7 +829,6 @@
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc, //edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/condiment, //bubber-edit
 		/obj/item/reagent_containers/dropper,
 		//obj/item/lighter, //bubber-edit
 		/obj/item/storage/bag/tray,

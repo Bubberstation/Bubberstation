@@ -41,15 +41,16 @@
 
 /obj/effect/spawner/random/armory/laser_gun
 	loot = list(
-		/obj/item/gun/microfusion/mcr01
+		/obj/item/gun/ballistic/automatic/wt550/security/flathead
 	)
-	spawn_loot_count = 3
+	spawn_loot_count = 2
 
 /obj/effect/spawner/random/armory/e_gun
 	loot = list(
+		/obj/item/gun/microfusion/mcr01,
+		/obj/item/gun/microfusion/mcr01,
 		/obj/item/gun/energy/e_gun,
 		/obj/item/gun/energy/e_gun,
-		/obj/item/gun/energy/laser,
 		/obj/item/gun/energy/laser,
 	)
 	spawn_all_loot = TRUE
