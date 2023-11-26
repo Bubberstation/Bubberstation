@@ -8,10 +8,10 @@
 		/obj/item/mod/module/storage, // Bubberstation Edit - Original: Extended storage
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
-		// /obj/item/mod/module/jetpack, // Bubberstation Removal
+		/obj/item/mod/module/jetpack,
 		// /obj/item/mod/module/projectile_dampener, Bubberstation Removal
 		/obj/item/mod/module/quick_carry,
 	)
-	/* default_pins = list( 			// Bubberstation Removal
+	default_pins = list(
 		/obj/item/mod/module/jetpack,
-	)*/
+	)
