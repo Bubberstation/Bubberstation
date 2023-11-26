@@ -18,7 +18,7 @@
 	armor_type = /datum/armor/mod_theme_blueshield
 
 /datum/armor/mod_theme_blueshield // Not really great for fighting.
-	melee = 30
+	melee = 40
 	bullet = 20
 	laser = 20
 	energy = 30
