@@ -14,7 +14,7 @@
 	//STUFF SOLD HERE//
 	products = list(//Sex toys
 					/obj/item/clothing/sextoy/eggvib/signalvib = 8,
-					/obj/item/assembly/signaler = 8,
+					// /obj/item/assembly/signaler = 8, Bubber edit: Get a signaller elsewhere
 					/obj/item/clothing/sextoy/eggvib = 8,
 					/obj/item/clothing/sextoy/buttplug = 6,
 					/obj/item/clothing/sextoy/nipple_clamps = 4,
