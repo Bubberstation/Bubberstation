@@ -56,7 +56,7 @@
 
 /obj/item/clothing/under/idma_fatigue/alt
 	name = "argnostan service fatigue"
-	desc = "An old desert uniform worn by the romulus expeditionary force up until march 21st 2181."
+	desc = "An old desert uniform worn by the romulus expeditionary force up until march 21st 2181. Attached to it is a silver medal"
 	icon_state = "argnostanuniform"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
