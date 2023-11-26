@@ -7,7 +7,7 @@
 
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
-	item_path = /obj/item/clothing/suit/hooded/wintercoat/idma_jacket
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
 	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
 	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 
