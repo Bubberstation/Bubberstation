@@ -1,11 +1,11 @@
 #define MINDSHIELD_STEP_1 "mindshield_step_1"
 #define MINDSHIELD_STEP_2 "mindshield_step_2"
-#define MINDSHIELD_STEP_TIME 3 SECONDS
+#define MINDSHIELD_STEP_TIME 15 SECONDS
 #define CONVERT_STEP_1 "convert_step_1"
 #define CONVERT_STEP_2 "convert_step_2"
 #define CONVERT_STEP_3 "convert_step_3"
 #define CONVERT_STEP_4 "convert_step_4"
-#define CONVERT_STEP_TIME 3 SECONDS
+#define CONVERT_STEP_TIME 15 SECONDS
 
 /obj/item/head_convert_device
 	name = "HCD"
