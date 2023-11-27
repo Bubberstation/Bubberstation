@@ -29,7 +29,7 @@
 	)
 	special_light_key = null
 	borg_skins = list(
-		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_WIDE))
+		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_WIDE))
 	)
 
 /obj/item/robot_model/centcom/rebuild_modules()
@@ -41,3 +41,20 @@
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
+
+
+/* BUBBER SPRITE ADDITIONS BELOW */
+
+
+/obj/item/robot_model/security/Initialize()
+	. = ..()
+	borg_skins |= list(
+		"Meka - Bluesec" = list(SKIN_ICON_STATE = "mekasecalt", SKIN_ICON = CYBORG_ICON_SEC_TALL_BUBBER, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_UNIQUETIP, R_TRAIT_TALL), SKIN_HAT_OFFSET = 15),
+	)
+
+/obj/item/robot_model/syndicatejack/Initialize()
+	. = ..()
+	borg_skins |= list(
+		"Vale" = list(SKIN_ICON_STATE = "vale", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_WIDE)),
+		"Pupdozer" = list(SKIN_ICON_STATE = "pupdozer", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(R_TRAIT_WIDE)),
+	)
