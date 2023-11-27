@@ -1,3 +1,5 @@
+https://github.com/Bubberstation/Bubberstation/pull/763
+
 ## \Head Convert Device for HeadRevs
 
 Module ID: HEADREV_CONVERT_HEAD
@@ -12,7 +14,7 @@ This module adds an ability for headrevs to convert heads to progress the round 
 
 ### Modular Overrides:
 
-- `modular_zubbers\master_files\code\modules\antagonists\revolution\revolution.dm`:
+- `modular_zubbers\master_files\code\modules\antagonists\revolution\revolution.dm`: `proc/equip_rev`
 - `modular_zubbers\master_files\code\game\gamemodes\objective.dm`: `proc/check_completion`
 
 ### Defines:
