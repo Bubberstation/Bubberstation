@@ -75,11 +75,11 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			species = "[H.dna.species.name ? user.client.prefs.read_preference(/datum/preference/text/custom_species) : H.dna.species]"
+			if(!user.client.prefs.read_preference(/datum/preference/text/custom_species))
+				species = "[H.dna.species.name]"
 		else if(isanimal(M))
 			var/mob/living/simple_animal/SA = M
 			species = initial(SA.name)
-		if(!user.client.prefs.read_preference(/datum/preference/text/custom_species))
-			species = "[H.dna.species.name]"
 		ooc_notes = C.prefs.features["ooc_notes"]
 		flavor_text = C.prefs.features["flavor_text"]
 
