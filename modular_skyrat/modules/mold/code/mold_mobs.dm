@@ -198,7 +198,7 @@
 	/// What the mob injects per bite
 	var/inject_reagent = /datum/reagent/teslium
 	/// How many units to inject per bite
-	var/inject_amount = 2
+	var/inject_amount = 0 // BUBBERSTATION CHANGE 2 -> 0
 
 /mob/living/basic/mold/electric_mosquito/Initialize(mapload)
 	. = ..()
