@@ -12,3 +12,6 @@
 
 /datum/preference/text/character_ad/create_default_value()
 	return ""
+
+/datum/preference/text/character_ad/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
