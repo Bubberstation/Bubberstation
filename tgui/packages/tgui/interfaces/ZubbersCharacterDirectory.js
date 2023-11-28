@@ -32,10 +32,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
       <Window.Content scrollable>
         {(overlay && <ViewCharacter />) || (
           <Fragment>
-            <Section
-              title="Controls"
-              buttons={
-              }>
+            <Section title="Controls">
               <LabeledList>
                 <LabeledList.Item label="Visibility">
                   <Button
