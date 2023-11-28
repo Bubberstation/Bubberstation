@@ -79,8 +79,8 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		else if(isanimal(M))
 			var/mob/living/simple_animal/SA = M
 			species = initial(SA.name)
-		ooc_notes = C.prefs.features["ooc_notes"]
-		flavor_text = C.prefs.features["flavor_text"]
+		ooc_notes = user.client.prefs.read_preference(/datum/preference/text/ooc_notes)
+		flavor_text = user.client.prefs.read_preference(/datum/preference/text/flavor_text)
 
 		// It's okay if we fail to find OOC notes and flavor text
 		// But if we can't find the name, they must be using a non-compatible mob type currently.
