@@ -47,9 +47,6 @@ SUBSYSTEM_DEF(ticker)
 	var/totalPlayersReady = 0
 	/// Num of ready admins, used for pregame stats on statpanel (only viewable by admins)
 	var/total_admins_ready = 0
-	//BUBBER EDIT ADDITION: Data for lobby player stat panels during the pre-game.
-	var/list/player_ready_data = list()
-	//BUBBER EDIT ADDITION END
 
 	var/queue_delay = 0
 	var/list/queued_players = list() //used for join queues when the server exceeds the hard population cap
@@ -186,41 +183,11 @@ SUBSYSTEM_DEF(ticker)
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
-			//BUBBER EDIT ADDITION: JOB ESTIMATION
-			player_ready_data.Cut()
-			var/list/players = list()
-			//BUBBER EDIT ADDITION END: JOB ESTIMATION
 			for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 				if(player.ready == PLAYER_READY_TO_PLAY)
 					++totalPlayersReady
 					if(player.client?.holder)
 						++total_admins_ready
-
-//BUBBER EDIT BEGIN: Readied job estimation
-			if(CONFIG_GET(flag/show_job_estimation))
-				for(var/ckey in players)
-					var/mob/dead/new_player/player = players[ckey]
-					var/datum/preferences/prefs = player.client?.prefs
-					if(!prefs)
-						continue
-					if(!prefs.read_preference(/datum/preference/toggle/ready_job))
-						continue
-
-					var/display = player.client?.holder?.fakekey || ckey
-
-					var/datum/job/J = prefs.get_highest_priority_job()
-					if(!J)
-						player_ready_data += "* [display] forgot to pick a job!"
-						continue
-					var/title = prefs.alt_job_titles?[J.title] || J.title
-					if(player.ready == PLAYER_READY_TO_PLAY)
-						player_ready_data += "* [display] as [title]"
-
-				if(length(player_ready_data))
-					player_ready_data.Insert(1, "------------------")
-					player_ready_data.Insert(1, "Job Estimation:")
-					player_ready_data.Insert(1, "")
-//BUBBER EDIT END: READIED JOB ESTIMATION
 
 			if(start_immediately)
 				timeLeft = 0
