@@ -11,6 +11,12 @@
 	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
 	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 
+/datum/loadout_item/suit/idmardjacket
+	name = "silicon administrator vest"
+	item_path = /obj/item/clothing/suit/jacket/vera_jacket
+	ckeywhitelist = list("especiallystrange") // Specific to me
+	restricted_roles = list(JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
+
 /datum/loadout_item/suit/idmasnowfatigue
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/idma_fatigue
@@ -60,6 +66,45 @@
 	icon_state = "argnostanuniform"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+
+/obj/item/clothing/suit/jacket/vera_jacket
+	name = "silicon administrator vest"
+	desc = "An old ."
+	icon_state = "verajacket"
+	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	allowed = list(
+		/obj/item/biopsy_tool,
+		/obj/item/dnainjector,
+		/obj/item/flashlight/pen,
+		/obj/item/healthanalyzer,
+		/obj/item/paper,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/cup/beaker,
+		/obj/item/reagent_containers/cup/bottle,
+		/obj/item/reagent_containers/cup/tube,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/gun/syringe,
+		/obj/item/sensor_device,
+		/obj/item/soap,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
+		/obj/item/assembly/flash/handheld,
+		/obj/item/clothing/mask/cigarette,
+		/obj/item/disk,
+		/obj/item/lighter,
+		/obj/item/melee,
+		/obj/item/reagent_containers/cup/glass/flask,
+		/obj/item/stamp,
+		/obj/item/storage/box/matches,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/lockbox/medal,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+	)
+armor_type = /datum/armor/skyrat_rd // It's a really advanced labcoat at the end of the day
 
 //This is meant to be a functional wintercoat
 /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
