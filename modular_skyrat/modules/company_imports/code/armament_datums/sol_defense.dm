@@ -70,6 +70,7 @@
 /datum/armament_entry/company_import/sol_defense/longarm/infanterie
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle
 	cost = PAYCHECK_COMMAND * 14
+	// contraband = TRUE - Bubberstation Edit
 
 /* Machinegun with extremely high fire-rate and high capacity. Definite no for the crew.
 /datum/armament_entry/company_import/sol_defense/longarm/outomaties
