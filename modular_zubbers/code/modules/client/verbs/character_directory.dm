@@ -20,7 +20,6 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		GLOB.character_directory = new
 	GLOB.character_directory.ui_interact(mob)
 
-
 // This is a global singleton. Keep in mind that all operations should occur on user, not src.
 /datum/character_directory
 
@@ -30,7 +29,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 /datum/character_directory/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CharacterDirectory", "Character Directory")
+		ui = new(user, src, "ZubbersCharacterDirectory", "Character Directory")
 		ui.open()
 
 /datum/character_directory/ui_data(mob/user)

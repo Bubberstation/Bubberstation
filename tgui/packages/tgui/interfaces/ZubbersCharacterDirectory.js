@@ -14,7 +14,7 @@ const erpTagColor = {
   'No': 'black',
 };
 
-export const CharacterDirectory = (props, context) => {
+export const ZubbersCharacterDirectory = (props, context) => {
   const { act, data } = useBackend(context);
 
   const { personalVisibility, personalTag, personalErpTag, prefsOnly } = data;
@@ -35,21 +35,6 @@ export const CharacterDirectory = (props, context) => {
             <Section
               title="Controls"
               buttons={
-                <Fragment>
-                  <Box color="label" inline>
-                    Save to current preferences slot:&nbsp;
-                  </Box>
-                  <Button
-                    icon={overwritePrefs ? 'toggle-on' : 'toggle-off'}
-                    selected={overwritePrefs}
-                    content={overwritePrefs ? 'On' : 'Off'}
-                    onClick={() =>
-                      prefsOnly
-                        ? act('noMind', { overwrite_prefs: overwritePrefs })
-                        : setOverwritePrefs(!overwritePrefs)
-                    }
-                  />
-                </Fragment>
               }>
               <LabeledList>
                 <LabeledList.Item label="Visibility">
@@ -76,15 +61,6 @@ export const CharacterDirectory = (props, context) => {
                     content={personalErpTag}
                     onClick={() =>
                       act('setErpTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Advertisement">
-                  <Button
-                    fluid
-                    content="Edit Ad"
-                    onClick={() =>
-                      act('editAd', { overwrite_prefs: overwritePrefs })
                     }
                   />
                 </LabeledList.Item>
