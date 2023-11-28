@@ -12,6 +12,11 @@
 		return
 	var/obj/structure/container = .
 	for(var/obj/item/gun/gun_actually in container.contents)
+<<<<<<< HEAD
+=======
+		if(gun_actually.company_flag & COMPANY_SCARBOROUGH) //illegal company doesn't care about pins
+			continue
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		QDEL_NULL(gun_actually.pin)
 		var/obj/item/firing_pin/permit_pin/new_pin = new(gun_actually)
 		gun_actually.pin = new_pin

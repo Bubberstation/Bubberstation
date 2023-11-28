@@ -1,6 +1,7 @@
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
+<<<<<<< HEAD
 	name = "Engineer Runner Jacket"
 	item_path = /obj/item/clothing/suit/jacket/runner/engi
 	donator_only = TRUE //Dono item for Kan3
@@ -40,3 +41,18 @@
 	name = "ronin jacket"
 	item_path = /obj/item/clothing/suit/jacket/trucker/ronin
 	donator_only = TRUE //Donator item for arandomhyena
+=======
+ name = "Engineer Runner Jacket"
+ item_path = /obj/item/clothing/suit/jacket/runner/engi
+ donator_only = TRUE //Dono item for Kan3
+
+/datum/loadout_item/suit/runner_syndi
+ name = "Syndicate Runner Jacket"
+ item_path = /obj/item/clothing/suit/jacket/runner/syndicate
+ donator_only = TRUE //Dono item for Kan3
+
+/datum/loadout_item/suit/runner_winter
+ name = "Winter Runner Jacket"
+ item_path = /obj/item/clothing/suit/jacket/runner/winter
+ ckeywhitelist = list("kan3")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

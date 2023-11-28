@@ -306,6 +306,17 @@ GLOBAL_LIST_INIT(prototype_language_holders, init_language_holder_prototypes())
 		/datum/language/draconic = list(LANGUAGE_ATOM),
 	)
 
+<<<<<<< HEAD
+=======
+/datum/language_holder/lizard/ash //SKYRAT EDIT BEGIN: Ashtongue for Ashwalkers
+	understood_languages = list(/datum/language/ashtongue = list(LANGUAGE_ATOM),/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/draconic = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/ashtongue = list(LANGUAGE_ATOM),/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/draconic = list(LANGUAGE_ATOM))
+	selected_language = /datum/language/ashtongue
+
+/* ORIGINAL
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /datum/language_holder/lizard/ash
 	selected_language = /datum/language/draconic
 

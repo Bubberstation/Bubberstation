@@ -273,6 +273,12 @@
 	initial_fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
 	alternative_fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 	can_modify_ammo = TRUE
+<<<<<<< HEAD
+=======
+	can_misfire = TRUE
+	misfire_probability = 0
+	misfire_percentage_increment = 5 //Slowly increases every shot
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	can_bayonet = TRUE
 	knife_y_offset = 11
 	can_be_sawn_off = FALSE
@@ -290,7 +296,15 @@
 	icon_state = "musket_prime"
 	inhand_icon_state = "musket_prime"
 	worn_icon_state = "musket_prime"
+<<<<<<< HEAD
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/pipegun/prime
+=======
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/pipegun/prime
+	can_misfire = FALSE
+	can_jam = FALSE
+	misfire_probability = 0
+	misfire_percentage_increment = 0
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	projectile_damage_multiplier = 1
 
 /// MAGICAL BOLT ACTIONS + ARCANE BARRAGE? ///

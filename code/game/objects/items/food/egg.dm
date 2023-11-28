@@ -13,9 +13,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
-/// Counter for number of chicks hatched by throwing eggs, minecraft style. Chicks will not emerge from thrown eggs if this value exceeds the MAX_CHICKENS define.
-GLOBAL_VAR_INIT(chicks_from_eggs, 0)
-
 /obj/item/food/egg
 	name = "egg"
 	desc = "An egg!"
@@ -28,8 +25,12 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	ant_attracting = FALSE
 	decomp_type = /obj/item/food/egg/rotten
 	decomp_req_handle = TRUE //so laid eggs can actually become chickens
+<<<<<<< HEAD
 	/// How likely is it that a chicken will come out of here if we throw it?
 	var/chick_throw_prob = 13
+=======
+	var/static/chick_count = 0 //I copied this from the chicken_count (note the "en" in there) variable from chicken code.
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/food/egg/make_bakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/food/boiledegg, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
@@ -69,8 +70,16 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 
 	var/turf/hit_turf = get_turf(hit_atom)
 	new /obj/effect/decal/cleanable/food/egg_smudge(hit_turf)
+<<<<<<< HEAD
 	if (prob(chick_throw_prob))
 		spawn_impact_chick(hit_turf)
+=======
+	//Chicken code uses this MAX_CHICKENS variable, so I figured that I'd use it again here. Even this check and the check in chicken code both use the MAX_CHICKENS variable, they use independent counter variables and thus are independent of each other.
+	if(prob(13) && chick_count < MAX_CHICKENS) //Roughly a 1/8 (12.5%) chance to make a chick, as in Minecraft. I decided not to include the chances for the creation of multiple chicks from the impact of one egg, since that'd probably require nested prob()s or something (and people might think that it was a bug, anyway).
+		new /mob/living/simple_animal/chick(hit_turf)
+		chick_count++
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	reagents.expose(hit_atom, TOUCH)
 	qdel(src)
 
@@ -170,6 +179,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 	icon_state = "egg-yellow"
 	inhand_icon_state = "egg-yellow"
 
+<<<<<<< HEAD
 /obj/item/food/egg/penguin_egg
 	icon = 'icons/mob/simple/penguins.dmi'
 	icon_state = "penguin_egg"
@@ -192,6 +202,8 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		spoilable = FALSE,\
 	)
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /obj/item/food/friedegg
 	name = "fried egg"
 	desc = "A fried egg. Would go well with a touch of salt and pepper."

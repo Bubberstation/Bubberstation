@@ -139,9 +139,20 @@ Lizard subspecies: ASHWALKERS
 	id = SPECIES_LIZARD_ASH
 	examine_limb_id = SPECIES_LIZARD
 	mutantlungs = /obj/item/organ/internal/lungs/lavaland
+<<<<<<< HEAD
 	mutantbrain = /obj/item/organ/internal/brain/primitive
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
+=======
+	mutantbrain = /obj/item/organ/internal/brain
+	species_traits = list(
+		MUTCOLORS,
+		EYECOLOR,
+		LIPS,
+	)
+	inherent_traits = list(
+		TRAIT_LITERATE,
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_FORBID_MINING_SHUTTLE_CONSOLE_OUTSIDE_STATION,
 	)

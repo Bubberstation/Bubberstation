@@ -131,8 +131,17 @@
 		to_chat(purrbated_human, span_boldnotice("You are no longer a cat."))
 
 /datum/species/human/felinid/prepare_human_for_preview(mob/living/carbon/human/human_for_preview)
+<<<<<<< HEAD
 	human_for_preview.set_haircolor("#ffcccc", update = FALSE) // pink
 	human_for_preview.set_hairstyle("Hime Cut", update = TRUE)
+
+=======
+	human_for_preview.hairstyle = "Hime Cut"
+	human_for_preview.hair_color = "#ffcccc" // pink
+	human_for_preview.dna.features["mcolor"] = "#ffdeb3" //Bubber Edit.
+	human_for_preview.update_mutant_bodyparts(TRUE)//Bubber Edit
+	human_for_preview.update_body_parts()
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 
 	/* SKYRAT EDIT - Making the species menu icons work better - ORIGINAL:

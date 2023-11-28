@@ -14,3 +14,7 @@
 	rack_sound =  'modular_skyrat/modules/gunsgalore/sound/guns/fire/luger_rack.ogg'
 	fire_sound_volume = 100
 	suppressor_x_offset = 14
+<<<<<<< HEAD
+=======
+	company_flag = COMPANY_OLDARMS
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

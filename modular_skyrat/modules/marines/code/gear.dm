@@ -18,6 +18,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m44a
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BELT
+<<<<<<< HEAD
 
 /obj/item/gun/ballistic/automatic/ar/modular/m44a/Initialize(mapload)
 	. = ..()
@@ -26,6 +27,9 @@
 
 /obj/item/gun/ballistic/automatic/ar/modular/m44a/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
+=======
+	company_flag = COMPANY_NANOTRASEN
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/ammo_box/magazine/m44a
 	name = "m44a magazine (.300 compressed)"
@@ -68,10 +72,12 @@
 	name = "\improper M2 auto-shotgun underbarrel"
 	desc = "This shouldn't be heeere!"
 	can_suppress = FALSE
+<<<<<<< HEAD
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/as2/ubsg
-
-/obj/item/gun/ballistic/shotgun/automatic/as2/ubsg/give_gun_safeties()
-	return
+=======
+	has_gun_safety = FALSE
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/as2/ubsg
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/ammo_box/magazine/internal/shot/as2/ubsg
 	max_ammo = 3

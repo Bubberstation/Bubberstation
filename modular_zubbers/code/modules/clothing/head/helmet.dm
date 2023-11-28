@@ -7,6 +7,7 @@
 	icon_state = "metrocopHelm"
 	inhand_icon_state = null
 	armor_type = /datum/armor/head_helmet
+<<<<<<< HEAD
 
 /obj/item/clothing/head/helmet/abductor/fake
 	name = "Kabrus Utility Helmet"
@@ -15,3 +16,5 @@
 	inhand_icon_state = null
 	armor_type = /datum/armor/none
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

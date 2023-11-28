@@ -379,6 +379,7 @@
 	inhand_icon_state = null
 	can_adjust = FALSE
 
+<<<<<<< HEAD
 /obj/item/clothing/under/costume/gi
 	name = "Martial Artist Gi"
 	desc = "Assistant, nukie, whatever. You can beat anyone; it's called hard work!"
@@ -415,3 +416,5 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEEARS|HIDEEYES|HIDEHAIR
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

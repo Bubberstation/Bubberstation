@@ -9,6 +9,7 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	accepted_magazine_type = /obj/item/ammo_box/magazine/pps
 	can_suppress = FALSE
+	burst_size = 3
 	fire_delay = 3
 	worn_icon = 'modular_skyrat/modules/gunsgalore/icons/guns/gunsgalore_back.dmi'
 	worn_icon_state = "pps"
@@ -19,11 +20,15 @@
 	load_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/smg_magin.ogg'
 	load_empty_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/smg_magin.ogg'
 	eject_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/smg_magout.ogg'
+<<<<<<< HEAD
 
 /obj/item/gun/ballistic/automatic/pps/Initialize(mapload)
 	. = ..()
 
 	AddComponent(/datum/component/automatic_fire, fire_delay)
+=======
+	company_flag = COMPANY_OLDARMS
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/ammo_box/magazine/pps
 	name = "pps magazine (7.62x25mm)"

@@ -54,9 +54,14 @@
 	medical_record_text = "Patient is unable to use firearms. Reasoning unknown."
 	value = -6
 	mob_trait = TRAIT_NOGUNS
+<<<<<<< HEAD
 	icon = FA_ICON_GUN
 
 //BUBBER EDIT MOVE BEGIN - NEGATIVE SENSITIVE SNOUT
+=======
+	icon = "none"
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
 	desc = "Your snout has always been sensitive, and it really hurts when someone pokes it!"
@@ -65,7 +70,11 @@
 	medical_record_text = "Patient's snout seems to have a cluster of nerves in the tip, would advise against direct contact."
 	value = -2
 	mob_trait = TRAIT_SENSITIVESNOUT
+<<<<<<< HEAD
 	icon = FA_ICON_FINGERPRINT
+=======
+	icon = "fingerprint"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/quirk/sensitivesnout/post_add()
 	quirk_holder.apply_status_effect(/datum/status_effect/sensitivesnout)
@@ -79,5 +88,9 @@
 	alert_type = null
 
 /datum/status_effect/sensitivesnout/get_examine_text()
+<<<<<<< HEAD
 	return span_warning("[owner.p_Their()] snout is rather bappable...")
 // BUBBER EDIT MOVE END
+=======
+	return span_warning("[owner.p_their(TRUE)] snout is rather bappable...")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

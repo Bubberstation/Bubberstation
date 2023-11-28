@@ -7,7 +7,11 @@
 	if(flags_1 & HOLOGRAM_1)
 		to_chat(user, "Your [used_item] goes right through \the [src]!")
 		return ..()
+<<<<<<< HEAD
 	if(can_uproot && used_item.tool_behaviour == TOOL_SHOVEL)
+=======
+	if(can_uproot && is_type_in_typecache(used_item, uprooting_tools))
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		if(uprooted)
 			if(locate(/obj/structure/flora) in (loc.contents - src))
 				to_chat(user, span_warning("There's already a plant here!"))

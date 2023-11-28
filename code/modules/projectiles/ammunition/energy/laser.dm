@@ -11,7 +11,11 @@
 
 /obj/item/ammo_casing/energy/lasergun
 	projectile_type = /obj/projectile/beam/laser
+<<<<<<< HEAD
 	e_cost = LASER_SHOTS(16, STANDARD_CELL_CHARGE)
+=======
+	e_cost = 50
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	select_name = "kill"
 
 /obj/item/ammo_casing/energy/lasergun/carbine
@@ -137,6 +141,7 @@
 /obj/item/ammo_casing/energy/nanite/cryo
 	projectile_type = /obj/projectile/energy/cryo
 	select_name = "cryo"
+<<<<<<< HEAD
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/blue
 
 ///not exactly an energy ammo casing, but it's used by the laser gatling.
@@ -160,4 +165,8 @@
 	icon_state = "[base_icon_state]"
 
 /obj/item/ammo_casing/energy/laser/blueshield // BUBBER ADDITION
+=======
+
+/obj/item/ammo_casing/energy/laser/blueshield
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	e_cost = 100

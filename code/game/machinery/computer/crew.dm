@@ -136,8 +136,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_QUARTERMASTER = 50,
 		JOB_SHAFT_MINER = 51,
 		JOB_CARGO_TECHNICIAN = 52,
+<<<<<<< HEAD
 		JOB_BITRUNNER = 53,
 		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
+=======
+		JOB_CUSTOMS_AGENT = 53, // SKYRAT EDIT ADDITION
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		JOB_BLACKSMITH = 54,	// Bubber Addition!
 		// 60+: Civilian/other
 		JOB_HEAD_OF_PERSONNEL = 60,
@@ -267,6 +271,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 		// BUBBERSTATION EDIT BEGIN: Add DNR status
 		// If sensors are above living tracking, set DNR state
+<<<<<<< HEAD
+=======
+		if (sensor_mode >= SENSOR_LIVING)
+			entry["is_dnr"] = HAS_TRAIT(tracked_living_mob, TRAIT_DNR)
+		// BUBBERSTATION EDIT END
+
+		// Binary living/dead status
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		if (sensor_mode >= SENSOR_LIVING)
 			entry["is_dnr"] = HAS_TRAIT(tracked_living_mob, TRAIT_DNR)
 		// BUBBERSTATION EDIT END

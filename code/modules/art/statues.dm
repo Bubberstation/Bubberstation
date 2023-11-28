@@ -303,7 +303,11 @@
 	AddElement(/datum/element/eyestab)
 	AddElement(/datum/element/wall_engraver)
 	//deals 200 damage to statues, meaning you can actually kill one in ~250 hits
+<<<<<<< HEAD
 	AddElement(/datum/element/bane, target_type = /mob/living/basic/statue, damage_multiplier = 40)
+=======
+	AddElement(/datum/element/bane, /mob/living/simple_animal/hostile/netherworld/statue, damage_multiplier = 40)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/chisel/Destroy()
 	prepared_block = null

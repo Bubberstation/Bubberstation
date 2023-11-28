@@ -11,9 +11,13 @@
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
 	fire_sound_volume = 50
+<<<<<<< HEAD:modular_skyrat/modules/modular_weapons/code/pepperball_gun.dm
 
 /obj/item/gun/ballistic/automatic/pistol/pepperball/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_BOLT)
+=======
+	company_flag = COMPANY_BOLT
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847:modular_skyrat/modules/sec_haul/code/guns/pepperball_gun.dm
 
 /obj/item/gun/ballistic/automatic/pistol/pepperball/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', light_overlay = "flight")

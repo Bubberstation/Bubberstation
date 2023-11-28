@@ -569,14 +569,26 @@
 /// Sets us to the passed job datum, then greets them to their new job.
 /// Use this one for when you're assigning this mind to a new job for the first time,
 /// or for when someone's recieving a job they'd really want to be greeted to.
+<<<<<<< HEAD
 /datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role, client/incoming_client, alt_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role, client/incoming_client)
+=======
+/datum/mind/proc/set_assigned_role_with_greeting(datum/job/new_role)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	. = set_assigned_role(new_role)
-	if(assigned_role != new_role)
+	if(!.)
 		return
 
+<<<<<<< HEAD
 	var/intro_message = new_role.get_spawn_message(alt_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: var/intro_message = new_role.get_spawn_message()
 	if(incoming_client && intro_message)
 		to_chat(incoming_client, intro_message)
+=======
+	to_chat(src, span_infoplain("<b>You are the [new_role.title].</b>"))
+
+	var/related_policy = get_policy(new_role.title)
+	if(related_policy)
+		to_chat(src, related_policy)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /mob/proc/sync_mind()
 	mind_initialize() //updates the mind (or creates and initializes one if one doesn't exist)

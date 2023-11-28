@@ -248,7 +248,34 @@
 	span_suicide("You try to impale yourself with [src], but it's TOO HOLY..."))
 	return SHAME
 
+<<<<<<< HEAD:code/modules/jobs/job_types/chaplain/chaplain_nullrod.dm
 /obj/item/nullrod/vibro
+=======
+/obj/item/nullrod/scythe
+	name = "reaper scythe"
+	desc = "Ask not for whom the bell tolls..."
+	icon_state = "scythe1"
+	inhand_icon_state = "scythe1"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	armour_penetration = 35
+	slot_flags = ITEM_SLOT_BACK
+	sharpness = SHARP_EDGED
+	attack_verb_continuous = list("chops", "slices", "cuts", "reaps")
+	attack_verb_simple = list("chop", "slice", "cut", "reap")
+	menu_description = "A sharp scythe which partially penetrates armor. Very effective at butchering bodies. Can be worn on the back."
+
+/obj/item/nullrod/scythe/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/butchering, \
+	speed = 7 SECONDS, \
+	effectiveness = 110, \
+	)
+	//the harvest gives a high bonus chance
+
+/obj/item/nullrod/scythe/vibro
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847:code/game/objects/items/holy_weapons.dm
 	name = "high frequency blade"
 	desc = "Bad references are the DNA of the soul."
 	icon = 'icons/obj/weapons/sword.dmi'

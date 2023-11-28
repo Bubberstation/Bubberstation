@@ -32,6 +32,7 @@
 
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
+<<<<<<< HEAD
 	AddComponent(/datum/component/butchering, \
 		speed = 6 SECONDS, \
 		effectiveness = 110, \
@@ -39,6 +40,10 @@
 	//technically it's huge and bulky, but this provides an incentive to use it
 	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
 	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
+=======
+	AddComponent(/datum/component/butchering, speed = 7 SECONDS, effectiveness = 40)
+	AddComponent(/datum/component/two_handed, force_unwielded = 0, force_wielded = 20)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)

@@ -55,7 +55,8 @@
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/helmet/sec = 3)
 	crate_name = "helmet crate"
-
+*/
+// SKYRAT EDIT REMOVAL END
 /datum/supply_pack/security/laser
 	name = "Lasers Crate"
 	desc = "Contains three lethal, high-energy laser guns."
@@ -215,7 +216,8 @@
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/gun/energy/e_gun/dragnet = 3)
 	crate_name = "\improper DRAGnet crate"
-
+*/
+// SKYRAT EDIT REMOVAL END
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
 	desc = "Contains two Energy Guns, capable of firing both nonlethal and lethal \
@@ -224,6 +226,7 @@
 	contains = list(/obj/item/gun/energy/e_gun = 2)
 	crate_name = "energy gun crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
+<<<<<<< HEAD
 
 /datum/supply_pack/security/armory/laser_carbine
 	name = "Laser Carbine Crate"
@@ -240,6 +243,8 @@
 	contains = list(/obj/item/gun/energy/disabler/smg = 3)
 	crate_name = "disabler smg crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/supply_pack/security/armory/exileimp
 	name = "Exile Implants Crate"

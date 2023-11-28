@@ -38,9 +38,6 @@
 	  */
 	var/can_transfer = FALSE
 
-	/// A lazy list of the sources for this component
-	var/list/sources
-
 /**
  * Create a new component.
  *
@@ -169,6 +166,7 @@
 	return
 
 /**
+<<<<<<< HEAD
  * Called when the component has a new source registered.
  * Return COMPONENT_INCOMPATIBLE to signal that the source is incompatible and should not be added
  */
@@ -189,6 +187,109 @@
 	LAZYREMOVE(sources, source)
 	if(!LAZYLEN(sources))
 		qdel(src)
+=======
+ * Register to listen for a signal from the passed in target
+ *
+ * This sets up a listening relationship such that when the target object emits a signal
+ * the source datum this proc is called upon, will receive a callback to the given proctype
+ * Use PROC_REF(procname), TYPE_PROC_REF(type,procname) or GLOBAL_PROC_REF(procname) macros to validate the passed in proc at compile time.
+ * PROC_REF for procs defined on current type or it's ancestors, TYPE_PROC_REF for procs defined on unrelated type and GLOBAL_PROC_REF for global procs.
+ * Return values from procs registered must be a bitfield
+ *
+ * Arguments:
+ * * datum/target The target to listen for signals from
+ * * signal_type A signal name
+ * * proctype The proc to call back when the signal is emitted
+ * * override If a previous registration exists you must explicitly set this
+ */
+/datum/proc/RegisterSignal(datum/target, signal_type, proctype, override = FALSE)
+	if(QDELETED(src) || QDELETED(target))
+		return
+
+	if (islist(signal_type))
+		var/static/list/known_failures = list()
+		var/list/signal_type_list = signal_type
+		var/message = "([target.type]) is registering [signal_type_list.Join(", ")] as a list, the older method. Change it to RegisterSignals."
+
+		if (!(message in known_failures))
+			known_failures[message] = TRUE
+			stack_trace("[target] [message]")
+
+		RegisterSignals(target, signal_type, proctype, override)
+		return
+
+	var/list/procs = (signal_procs ||= list())
+	var/list/target_procs = (procs[target] ||= list())
+	var/list/lookup = (target.comp_lookup ||= list())
+
+	if(!override && target_procs[signal_type])
+		var/override_message = "[signal_type] overridden. Use override = TRUE to suppress this warning.\nTarget: [target] ([target.type]) Proc: [proctype]"
+		log_signal(override_message)
+		stack_trace(override_message)
+
+	target_procs[signal_type] = proctype
+	var/list/looked_up = lookup[signal_type]
+
+	if(isnull(looked_up)) // Nothing has registered here yet
+		lookup[signal_type] = src
+	else if(looked_up == src) // We already registered here
+		return
+	else if(!length(looked_up)) // One other thing registered here
+		lookup[signal_type] = list((looked_up) = TRUE, (src) = TRUE)
+	else // Many other things have registered here
+		looked_up[src] = TRUE
+
+/// Registers multiple signals to the same proc.
+/datum/proc/RegisterSignals(datum/target, list/signal_types, proctype, override = FALSE)
+	for (var/signal_type in signal_types)
+		RegisterSignal(target, signal_type, proctype, override)
+
+/**
+ * Stop listening to a given signal from target
+ *
+ * Breaks the relationship between target and source datum, removing the callback when the signal fires
+ *
+ * Doesn't care if a registration exists or not
+ *
+ * Arguments:
+ * * datum/target Datum to stop listening to signals from
+ * * sig_typeor_types Signal string key or list of signal keys to stop listening to specifically
+ */
+/datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
+	var/list/lookup = target.comp_lookup
+	if(!signal_procs || !signal_procs[target] || !lookup)
+		return
+	if(!islist(sig_type_or_types))
+		sig_type_or_types = list(sig_type_or_types)
+	for(var/sig in sig_type_or_types)
+		if(!signal_procs[target][sig])
+			if(!istext(sig))
+				stack_trace("We're unregistering with something that isn't a valid signal \[[sig]\], you fucked up")
+			continue
+		switch(length(lookup[sig]))
+			if(2)
+				lookup[sig] = (lookup[sig]-src)[1]
+			if(1)
+				stack_trace("[target] ([target.type]) somehow has single length list inside comp_lookup")
+				if(src in lookup[sig])
+					lookup -= sig
+					if(!length(lookup))
+						target.comp_lookup = null
+						break
+			if(0)
+				if(lookup[sig] != src)
+					continue
+				lookup -= sig
+				if(!length(lookup))
+					target.comp_lookup = null
+					break
+			else
+				lookup[sig] -= src
+
+	signal_procs[target] -= sig_type_or_types
+	if(!signal_procs[target].len)
+		signal_procs -= target
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /**
  * Called on a component when a component of the same type was added to the same parent
@@ -311,13 +412,14 @@
  *
  * Properly handles duplicate situations based on the `dupe_mode` var
  */
-/datum/proc/_AddComponent(list/raw_args, source)
-	var/original_type = raw_args[1]
-	var/datum/component/component_type = original_type
+/datum/proc/_AddComponent(list/raw_args)
+	var/new_type = raw_args[1]
+	var/datum/component/nt = new_type
 
 	if(QDELING(src))
-		CRASH("Attempted to add a new component of type \[[component_type]\] to a qdeleting parent of type \[[type]\]!")
+		CRASH("Attempted to add a new component of type \[[nt]\] to a qdeleting parent of type \[[type]\]!")
 
+<<<<<<< HEAD
 	var/datum/component/new_component
 
 	if(!ispath(component_type, /datum/component))
@@ -343,31 +445,49 @@
 	if(dupe_mode != COMPONENT_DUPE_ALLOWED && dupe_mode != COMPONENT_DUPE_SELECTIVE && dupe_mode != COMPONENT_DUPE_SOURCES)
 		if(!dupe_type)
 			old_component = GetExactComponent(component_type)
+=======
+	var/dm = initial(nt.dupe_mode)
+	var/dt = initial(nt.dupe_type)
+
+	var/datum/component/old_comp
+	var/datum/component/new_comp
+
+	if(ispath(nt))
+		if(nt == /datum/component)
+			CRASH("[nt] attempted instantiation!")
+	else
+		new_comp = nt
+		nt = new_comp.type
+
+	raw_args[1] = src
+
+	if(dm != COMPONENT_DUPE_ALLOWED && dm != COMPONENT_DUPE_SELECTIVE)
+		if(!dt)
+			old_comp = GetExactComponent(nt)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		else
-			old_component = GetComponent(dupe_type)
-
-		if(old_component)
-			switch(dupe_mode)
+			old_comp = GetComponent(dt)
+		if(old_comp)
+			switch(dm)
 				if(COMPONENT_DUPE_UNIQUE)
-					if(!new_component)
-						new_component = new component_type(raw_args)
-					if(!QDELETED(new_component))
-						old_component.InheritComponent(new_component, TRUE)
-						QDEL_NULL(new_component)
-
+					if(!new_comp)
+						new_comp = new nt(raw_args)
+					if(!QDELETED(new_comp))
+						old_comp.InheritComponent(new_comp, TRUE)
+						QDEL_NULL(new_comp)
 				if(COMPONENT_DUPE_HIGHLANDER)
-					if(!new_component)
-						new_component = new component_type(raw_args)
-					if(!QDELETED(new_component))
-						new_component.InheritComponent(old_component, FALSE)
-						QDEL_NULL(old_component)
-
+					if(!new_comp)
+						new_comp = new nt(raw_args)
+					if(!QDELETED(new_comp))
+						new_comp.InheritComponent(old_comp, FALSE)
+						QDEL_NULL(old_comp)
 				if(COMPONENT_DUPE_UNIQUE_PASSARGS)
-					if(!new_component)
+					if(!new_comp)
 						var/list/arguments = raw_args.Copy(2)
 						arguments.Insert(1, null, TRUE)
-						old_component.InheritComponent(arglist(arguments))
+						old_comp.InheritComponent(arglist(arguments))
 					else
+<<<<<<< HEAD
 						old_component.InheritComponent(new_component, TRUE)
 
 				if(COMPONENT_DUPE_SOURCES)
@@ -382,14 +502,21 @@
 			new_component = new component_type(raw_args) // There's a valid dupe mode but there's no old component, act like normal
 
 	else if(dupe_mode == COMPONENT_DUPE_SELECTIVE)
+=======
+						old_comp.InheritComponent(new_comp, TRUE)
+		else if(!new_comp)
+			new_comp = new nt(raw_args) // There's a valid dupe mode but there's no old component, act like normal
+	else if(dm == COMPONENT_DUPE_SELECTIVE)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		var/list/arguments = raw_args.Copy()
-		arguments[1] = new_component
+		arguments[1] = new_comp
 		var/make_new_component = TRUE
-		for(var/datum/component/existing_component as anything in GetComponents(original_type))
+		for(var/datum/component/existing_component as anything in GetComponents(new_type))
 			if(existing_component.CheckDupeComponent(arglist(arguments)))
 				make_new_component = FALSE
-				QDEL_NULL(new_component)
+				QDEL_NULL(new_comp)
 				break
+<<<<<<< HEAD
 		if(!new_component && make_new_component)
 			new_component = new component_type(raw_args)
 
@@ -417,6 +544,17 @@
 	if(!component_type)
 		return
 	component_type.on_source_remove(source)
+=======
+		if(!new_comp && make_new_component)
+			new_comp = new nt(raw_args)
+	else if(!new_comp)
+		new_comp = new nt(raw_args) // Dupes are allowed, act like normal
+
+	if(!old_comp && !QDELETED(new_comp)) // Nothing related to duplicate components happened and the new component is healthy
+		SEND_SIGNAL(src, COMSIG_COMPONENT_ADDED, new_comp)
+		return new_comp
+	return old_comp
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /**
  * Get existing component of type, or create it and return a reference to it

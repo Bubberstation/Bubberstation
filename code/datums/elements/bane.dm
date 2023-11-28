@@ -1,7 +1,4 @@
-/// Deals extra damage to mobs of a certain type, species, or biotype.
-/// This doesn't directly modify the normal damage of the weapon, instead it applies it's own damage seperatedly ON TOP of normal damage
-/// ie. a sword that does 10 damage with a bane elment attacthed that has a 0.5 damage_multiplier will do:
-/// 10 damage from the swords normal attack + 5 damage (50%) from the bane element
+/// Deals extra damage to mobs of a certain type or species.
 /datum/element/bane
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
@@ -13,10 +10,8 @@
 	var/added_damage
 	/// If it requires combat mode on to deal the extra damage or not.
 	var/requires_combat_mode
-	/// if we want it to only affect a certain mob biotype
-	var/mob_biotypes
 
-/datum/element/bane/Attach(datum/target, target_type = /mob/living, mob_biotypes = NONE, damage_multiplier=1, added_damage = 0, requires_combat_mode = TRUE)
+/datum/element/bane/Attach(datum/target, target_type, damage_multiplier=1, added_damage = 0, requires_combat_mode = TRUE)
 	. = ..()
 
 	if(!ispath(target_type, /mob/living) && !ispath(target_type, /datum/species))
@@ -26,13 +21,17 @@
 	src.damage_multiplier = damage_multiplier
 	src.added_damage = added_damage
 	src.requires_combat_mode = requires_combat_mode
+<<<<<<< HEAD
 	src.mob_biotypes = mob_biotypes
 	target.AddComponent(/datum/component/on_hit_effect, CALLBACK(src, PROC_REF(do_bane)), CALLBACK(src, PROC_REF(check_bane)))
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/element/bane/Detach(datum/target)
 	qdel(target.GetComponent(/datum/component/on_hit_effect))
 	return ..()
 
+<<<<<<< HEAD
 /datum/element/bane/proc/check_bane(bane_applier, target, bane_weapon)
 	if(!check_biotype_path(bane_applier, target))
 		return
@@ -91,3 +90,26 @@
 	baned_target.apply_damage(extra_damage, applied_dam_type, hit_zone)
 	SEND_SIGNAL(baned_target, COMSIG_LIVING_BANED, bane_applier, baned_target) // for extra effects when baned.
 	SEND_SIGNAL(element_owner, COMSIG_OBJECT_ON_BANING, baned_target)
+=======
+/datum/element/bane/proc/species_check(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
+	SIGNAL_HANDLER
+
+	if(!proximity_flag || !is_species(target, target_type))
+		return
+	activate(source, target, user)
+
+/datum/element/bane/proc/mob_check(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
+	SIGNAL_HANDLER
+
+	if(!proximity_flag || !istype(target, target_type))
+		return
+	activate(source, target, user)
+
+/datum/element/bane/proc/activate(obj/item/source, mob/living/target, mob/living/attacker)
+	if(requires_combat_mode && !attacker.combat_mode)
+		return
+
+	var/extra_damage = max(0, (source.force * damage_multiplier) + added_damage)
+	target.apply_damage(extra_damage, source.damtype, attacker.zone_selected)
+	SEND_SIGNAL(target, COMSIG_LIVING_BANED, source, attacker) // for extra effects when baned.
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

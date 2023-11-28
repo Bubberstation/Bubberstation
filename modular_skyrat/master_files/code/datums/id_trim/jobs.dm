@@ -55,10 +55,17 @@
 	sechud_icon_state = SECHUD_BLUESHIELD
 	extra_access = list(ACCESS_BRIG, ACCESS_CARGO, ACCESS_COURT, ACCESS_GATEWAY, ACCESS_SECURITY)
 	minimal_access = list(
+<<<<<<< HEAD
 		ACCESS_BRIG_ENTRANCE, ACCESS_COMMAND, ACCESS_CONSTRUCTION, ACCESS_DETECTIVE, ACCESS_ENGINEERING,
 		ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_RC_ANNOUNCE, ACCESS_RESEARCH, ACCESS_WEAPONS,
 	)
 	minimal_wildcard_access = list(ACCESS_CAPTAIN)
+=======
+		ACCESS_DETECTIVE, ACCESS_BRIG_ENTRANCE, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_ENGINEERING, ACCESS_MAINT_TUNNELS, ACCESS_RESEARCH,
+		ACCESS_RC_ANNOUNCE, ACCESS_COMMAND, ACCESS_CAPTAIN, ACCESS_WEAPONS,
+		)
+	minimal_wildcard_access = list() //BUBBER EDIT: Original ACCESS_CAPTAIN
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	template_access = list(ACCESS_CAPTAIN, ACCESS_CHANGE_IDS)
 
 /datum/id_trim/job/nanotrasen_consultant
@@ -68,6 +75,7 @@
 	subdepartment_color = COLOR_GREEN
 	sechud_icon_state = SECHUD_NT_CONSULTANT
 	extra_access = list()
+<<<<<<< HEAD
 	minimal_access = list(
 				ACCESS_AI_UPLOAD, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_AUX_BASE, ACCESS_BAR, ACCESS_BRIG_ENTRANCE,
 				ACCESS_CENT_GENERAL, ACCESS_CHANGE_IDS, ACCESS_CHAPEL_OFFICE, ACCESS_COMMAND, ACCESS_CONSTRUCTION,
@@ -80,6 +88,37 @@
 	minimal_wildcard_access = list(ACCESS_CAPTAIN, ACCESS_CENT_GENERAL)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_CHANGE_IDS)
 
+=======
+	//BUBBER EDIT START
+	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE, ACCESS_BRIG, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_ENGINEERING, ACCESS_MAINT_TUNNELS, ACCESS_RESEARCH,
+		ACCESS_RC_ANNOUNCE, ACCESS_COMMAND, ACCESS_WEAPONS, ACCESS_NTREP
+		)
+	minimal_wildcard_access = list()
+	//BUBBER EDIT END
+	template_access = list(ACCESS_CAPTAIN, ACCESS_CHANGE_IDS)
+
+/datum/id_trim/job/security_medic
+	assignment = "Security Medic"
+	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_state = "trim_securitymedic"
+	department_color = COLOR_ASSEMBLY_BLACK
+	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	sechud_icon_state = SECHUD_SECURITY_MEDIC
+	extra_access = list(ACCESS_DETECTIVE)
+	//BUBBER EDIT START
+	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG_ENTRANCE, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_SURGERY)
+	//BUBBER EDIT END
+	template_access = list(ACCESS_CAPTAIN, ACCESS_HOS, ACCESS_CHANGE_IDS)
+
+/datum/id_trim/job/security_medic/New()
+	. = ..()
+
+	// Config check for if sec has maint access.
+	if(CONFIG_GET(flag/security_has_maint_access))
+		access |= list(ACCESS_MAINT_TUNNELS)
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /datum/id_trim/job/corrections_officer
 	assignment = "Corrections Officer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'

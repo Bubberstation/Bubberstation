@@ -39,11 +39,15 @@
 /obj/item/spear/Initialize(mapload)
 	. = ..()
 	force = force_unwielded
+<<<<<<< HEAD
 	//decent in a pinch, but pretty bad.
 	AddComponent(/datum/component/jousting, \
 		max_tile_charge = 9, \
 		min_tile_charge = 6, \
 		)
+=======
+	AddComponent(/datum/component/jousting)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 30)
 	AddComponent(/datum/component/two_handed, \

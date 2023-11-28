@@ -458,6 +458,7 @@
 #include "code\__DEFINES\~skyrat_defines\_globalvars\lists\mapping.dm"
 #include "code\__DEFINES\~skyrat_defines\_HELPERS\atmos_mapping_helpers.dm"
 #include "code\__DEFINES\~skyrat_defines\_HELPERS\lighting.dm"
+<<<<<<< HEAD
 #include "code\__DEFINES\~skyrat_defines\_HELPERS\offset_index.dm"
 #include "code\__DEFINES\~~bubber_defines\access.dm"
 #include "code\__DEFINES\~~bubber_defines\jobs.dm"
@@ -466,6 +467,10 @@
 #include "code\__DEFINES\~~bubber_defines\research_categories.dm"
 #include "code\__DEFINES\~~bubber_defines\robot_defines.dm"
 #include "code\__DEFINES\~~bubber_defines\signals.dm"
+=======
+#include "code\__DEFINES\~~bubber_defines\access.dm"
+#include "code\__DEFINES\~~bubber_defines\quirk_whitelist.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "code\__DEFINES\~~bubber_defines\species.dm"
 #include "code\__DEFINES\~~bubber_defines\status_indicator_defines.dm"
 #include "code\__DEFINES\~~bubber_defines\traits.dm"
@@ -1140,7 +1145,6 @@
 #include "code\datums\components\explodable.dm"
 #include "code\datums\components\explode_on_attack.dm"
 #include "code\datums\components\faction_granter.dm"
-#include "code\datums\components\fertile_egg.dm"
 #include "code\datums\components\fishing_spot.dm"
 #include "code\datums\components\focused_attacker.dm"
 #include "code\datums\components\food_storage.dm"
@@ -2836,7 +2840,6 @@
 #include "code\modules\admin\smites\fake_bwoink.dm"
 #include "code\modules\admin\smites\fat.dm"
 #include "code\modules\admin\smites\fireball.dm"
-#include "code\modules\admin\smites\ghost_control.dm"
 #include "code\modules\admin\smites\gib.dm"
 #include "code\modules\admin\smites\imaginary_friend_special.dm"
 #include "code\modules\admin\smites\immerse.dm"
@@ -3221,8 +3224,11 @@
 #include "code\modules\antagonists\traitor\objectives\abstract\target_player.dm"
 #include "code\modules\antagonists\traitor\objectives\final_objective\battlecruiser.dm"
 #include "code\modules\antagonists\traitor\objectives\final_objective\final_objective.dm"
+<<<<<<< HEAD
 #include "code\modules\antagonists\traitor\objectives\final_objective\infect_ai.dm"
 #include "code\modules\antagonists\traitor\objectives\final_objective\objective_dark_matteor.dm"
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "code\modules\antagonists\traitor\objectives\final_objective\romerol.dm"
 #include "code\modules\antagonists\traitor\objectives\final_objective\space_dragon.dm"
 #include "code\modules\antagonists\traitor\objectives\final_objective\supermatter_cascade.dm"
@@ -6088,10 +6094,14 @@
 #include "modular_skyrat\master_files\code\datums\bodypart_overlays\bodypart_overlay.dm"
 #include "modular_skyrat\master_files\code\datums\bodypart_overlays\mutant_bodypart_overlay.dm"
 #include "modular_skyrat\master_files\code\datums\components\crafting.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\master_files\code\datums\components\damage_tracker.dm"
 #include "modular_skyrat\master_files\code\datums\components\fullauto.dm"
 #include "modular_skyrat\master_files\code\datums\components\grillable.dm"
 #include "modular_skyrat\master_files\code\datums\components\leash.dm"
+=======
+#include "modular_skyrat\master_files\code\datums\components\fullauto.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\master_files\code\datums\components\shielded_suit.dm"
 #include "modular_skyrat\master_files\code\datums\components\tippable.dm"
 #include "modular_skyrat\master_files\code\datums\greyscale\config_types\greyscale_configs.dm"
@@ -6273,6 +6283,7 @@
 #include "modular_skyrat\master_files\code\modules\jobs\off_duty_check.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\departments\departments.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\_job.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\_job_attire.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\atmospheric_technician.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\blackmarket.dm"
@@ -6282,10 +6293,13 @@
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\chemist.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\chief_engineer.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\chief_medical_officer.dm"
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\clown.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\coroner.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\curator.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\cyborg.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\ds2.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\freighter_crew.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\geneticist.dm"
@@ -6306,6 +6320,9 @@
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\tarkon.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\virologist.dm"
 #include "modular_skyrat\master_files\code\modules\jobs\job_types\warden.dm"
+=======
+#include "modular_skyrat\master_files\code\modules\jobs\job_types\mime.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\master_files\code\modules\language\language.dm"
 #include "modular_skyrat\master_files\code\modules\language\language_holder.dm"
 #include "modular_skyrat\master_files\code\modules\logging\categories\log_category_debug.dm"
@@ -6359,12 +6376,18 @@
 #include "modular_skyrat\master_files\code\modules\projectiles\boxes_magazines\external\shotgun.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\boxes_magazines\external\smg.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\energy.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\revolver.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\suppressor.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\bows\_bow.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\bows\bow_quivers.dm"
 #include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\bows\bow_types.dm"
+=======
+#include "modular_skyrat\master_files\code\modules\projectiles\guns\gun.dm"
+#include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\automatic.dm"
+#include "modular_skyrat\master_files\code\modules\projectiles\guns\ballistic\revolver.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\master_files\code\modules\reagents\bottle.dm"
 #include "modular_skyrat\master_files\code\modules\reagents\reagent_containers.dm"
 #include "modular_skyrat\master_files\code\modules\reagents\chemistry\colors.dm"
@@ -6750,8 +6773,14 @@
 #include "modular_skyrat\modules\command_vendor\code\vending.dm"
 #include "modular_skyrat\modules\company_imports\code\armament_component.dm"
 #include "modular_skyrat\modules\company_imports\code\company_datums.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\modules\company_imports\code\armament_datums\_armament_basetype.dm"
 #include "modular_skyrat\modules\company_imports\code\armament_datums\akh_frontier.dm"
+=======
+#include "modular_skyrat\modules\company_imports\code\company_subsystem.dm"
+#include "modular_skyrat\modules\company_imports\code\gun_companies.dm"
+#include "modular_skyrat\modules\company_imports\code\armament_datums\bolt_nanotrasen_firearms.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\modules\company_imports\code\armament_datums\deforest_medical.dm"
 #include "modular_skyrat\modules\company_imports\code\armament_datums\jarnsmiour.dm"
 #include "modular_skyrat\modules\company_imports\code\armament_datums\kahraman_industries.dm"
@@ -7122,13 +7151,22 @@
 #include "modular_skyrat\modules\goofsec\code\hud.dm"
 #include "modular_skyrat\modules\goofsec\code\sec_clothing_overrides.dm"
 #include "modular_skyrat\modules\goofsec\code\sol_fed.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\modules\gun_safety\code\keybinding.dm"
 #include "modular_skyrat\modules\gun_safety\code\safety_additions.dm"
 #include "modular_skyrat\modules\gun_safety\code\safety_component.dm"
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\modules\gunhud\code\gun_hud.dm"
 #include "modular_skyrat\modules\gunhud\code\gun_hud_component.dm"
 #include "modular_skyrat\modules\gunpoint\code\gunpoint.dm"
 #include "modular_skyrat\modules\gunpoint\code\gunpoint_datum.dm"
+<<<<<<< HEAD
+=======
+#include "modular_skyrat\modules\gunpoint\code\gunpoint_radial.dm"
+#include "modular_skyrat\modules\gunsafety\code\gun_safety.dm"
+#include "modular_skyrat\modules\gunsgalore\code\projectile.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\modules\gunsgalore\code\ammo\ammo.dm"
 #include "modular_skyrat\modules\gunsgalore\code\guns\akm.dm"
 #include "modular_skyrat\modules\gunsgalore\code\guns\ballistic_master.dm"
@@ -7245,8 +7283,11 @@
 #include "modular_skyrat\modules\lorecaster\code\config.dm"
 #include "modular_skyrat\modules\lorecaster\code\story_manager.dm"
 #include "modular_skyrat\modules\lorecaster\code\subsystem.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\modules\manufacturer_examine\code\gun_company_additions.dm"
 #include "modular_skyrat\modules\manufacturer_examine\code\manufacturer_element.dm"
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\modules\mapping\code\airless.dm"
 #include "modular_skyrat\modules\mapping\code\automatic_respawner.dm"
 #include "modular_skyrat\modules\mapping\code\color.dm"
@@ -7605,7 +7646,11 @@
 #include "modular_skyrat\modules\moretraitoritems\code\fake_announcement.dm"
 #include "modular_skyrat\modules\moretraitoritems\code\glue.dm"
 #include "modular_skyrat\modules\moretraitoritems\code\headset.dm"
+<<<<<<< HEAD
 #include "modular_skyrat\modules\moretraitoritems\code\pirate.dm"
+=======
+#include "modular_skyrat\modules\moretraitoritems\code\mafioso.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 #include "modular_skyrat\modules\moretraitoritems\code\smuggling_gear.dm"
 #include "modular_skyrat\modules\moretraitoritems\code\spawnergrenade.dm"
 #include "modular_skyrat\modules\moretraitoritems\code\syndicate.dm"
@@ -7931,6 +7976,7 @@
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\sentinel.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\spitter.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\warrior.dm"
+<<<<<<< HEAD
 #include "modular_zubbers\code\__DEFINES\traits.dm"
 #include "modular_zubbers\code\_globalvars\lists\_maintenance_loot.dm"
 #include "modular_zubbers\code\_globalvars\lists\maintenance_loot_common.dm"
@@ -8200,4 +8246,46 @@
 #include "modular_zubbers\modules\modular_items\code\recipes_misc.dm"
 #include "modular_zubbers\modules\vetted\examine.dm"
 #include "modular_zubbers\modules\vetted\vetted.dm"
+=======
+#include "modular_zubbers\code\datums\ert.dm"
+#include "modular_zubbers\code\datums\ai_laws\laws_antagonistic.dm"
+#include "modular_zubbers\code\datums\bubber_quirks\hydrophilic.dm"
+#include "modular_zubbers\code\datums\id_trim\jobs.dm"
+#include "modular_zubbers\code\game\area\areas\station.dm"
+#include "modular_zubbers\code\game\objects\effects\decals.dm"
+#include "modular_zubbers\code\game\objects\effects\landmarks.dm"
+#include "modular_zubbers\code\game\objects\effects\items\plushes.dm"
+#include "modular_zubbers\code\game\objects\items\holy_weapons.dm"
+#include "modular_zubbers\code\game\objects\items\reshirevolver.dm"
+#include "modular_zubbers\code\game\objects\items\food\misc.dm"
+#include "modular_zubbers\code\modules\_defines.dm"
+#include "modular_zubbers\code\modules\clothing\head\helmet.dm"
+#include "modular_zubbers\code\modules\clothing\outfits\plasmaman.dm"
+#include "modular_zubbers\code\modules\clothing\suits\armor.dm"
+#include "modular_zubbers\code\modules\clothing\suits\jacket.dm"
+#include "modular_zubbers\code\modules\customization\sprite_accessories\ears.dm"
+#include "modular_zubbers\code\modules\customization\sprite_accessories\genitals.dm"
+#include "modular_zubbers\code\modules\customization\sprite_accessories\tails.dm"
+#include "modular_zubbers\code\modules\customization\sprite_accessories\taurs.dm"
+#include "modular_zubbers\code\modules\dynamic\midround_rulesets.dm"
+#include "modular_zubbers\code\modules\fluff\flora\ash_flora.dm"
+#include "modular_zubbers\code\modules\food_and_drinks\recipes\tablecraft\recipes_seafood.dm"
+#include "modular_zubbers\code\modules\jobs\job_types\blacksmith.dm"
+#include "modular_zubbers\code\modules\loadouts\loadout_items\loadout_datum_suit.dm"
+#include "modular_zubbers\code\modules\loadouts\loadout_items\loadout_datum_toys.dm"
+#include "modular_zubbers\code\modules\mapping\access_helpers.dm"
+#include "modular_zubbers\code\modules\mob\dead\new_player\sprite_accessories.dm"
+#include "modular_zubbers\code\modules\mob\living\living.dm"
+#include "modular_zubbers\code\modules\mob\living\carbon\human\human.dm"
+#include "modular_zubbers\code\modules\mob\living\carbon\human\species_types\felinid.dm"
+#include "modular_zubbers\code\modules\mob\living\carbon\human\species_types\shadekin.dm"
+#include "modular_zubbers\code\modules\mob\mining\goliath.dm"
+#include "modular_zubbers\code\modules\mod\mod_theme.dm"
+#include "modular_zubbers\code\modules\mod\mod_types.dm"
+#include "modular_zubbers\code\modules\projectiles\guns\energy\pulse.dm"
+#include "modular_zubbers\code\modules\status_indicators\status_indicator.dm"
+#include "modular_zubbers\code\modules\status_indicators\status_indicator_pref.dm"
+#include "modular_zubbers\code\modules\surgery\bodyparts\species_parts\misc_bodyparts.dm"
+#include "modular_zubbers\code\modules\vending\wardrobe.dm"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 // END_INCLUDE

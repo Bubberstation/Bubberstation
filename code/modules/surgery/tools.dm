@@ -613,6 +613,7 @@
 		if("add")
 			var/selected_reagent = tgui_input_list(usr, "Select reagent to filter", "Whitelist reagent", GLOB.name2reagent)
 			if(!selected_reagent)
+<<<<<<< HEAD
 				return FALSE
 
 			var/datum/reagent/chem_id = GLOB.name2reagent[selected_reagent]
@@ -621,6 +622,18 @@
 
 			if(!(chem_id in whitelist))
 				whitelist[chem_id] = selected_reagent
+=======
+				return TRUE
+			
+			var/chem_id = get_chem_id(selected_reagent)
+			if(!chem_id)
+				return TRUE
+				
+			if(!(chem_id in whitelist))
+				whitelist[chem_id] = selected_reagent
+				
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 		if("remove")
 			var/chem_name = params["reagent"]

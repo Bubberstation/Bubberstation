@@ -47,7 +47,7 @@
 	name = "Security Medic"
 	jobtype = /datum/job/security_medic
 
-	belt = /obj/item/modular_computer/pda/security
+	belt = /obj/item/storage/belt/security/full
 	ears = /obj/item/radio/headset/headset_medsec
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	gloves = /obj/item/clothing/gloves/latex/nitrile
@@ -56,9 +56,16 @@
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+<<<<<<< HEAD:modular_zubbers/code/modules/sec_haul/code/security_medic/security_medic.dm
 /* 	backpack_contents = list(
 		/obj/item/storage/box/gunset/firefly = 1, // FIX THIS LATER
 		) */
+=======
+	backpack_contents = list(
+		/obj/item/storage/box/gunset/firefly = 1,
+		/obj/item/modular_computer/pda/security = 1,
+		)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847:modular_skyrat/modules/sec_haul/code/security_medic/security_medic.dm
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec

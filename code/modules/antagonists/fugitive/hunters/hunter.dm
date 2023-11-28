@@ -29,6 +29,7 @@
 			to_chat(owner, span_boldannounce("Justice has arrived. I am a member of the Spacepol!"))
 			to_chat(owner, "<B>The criminals should be on the station, we have special huds implanted to recognize them.</B>")
 			to_chat(owner, "<B>As we have lost pretty much all power over these damned lawless megacorporations, it's a mystery if their security will cooperate with us.</B>")
+<<<<<<< HEAD:code/modules/antagonists/fugitive/hunters/hunter.dm
 		if(HUNTER_PACK_RUSSIAN)
 			to_chat(owner, span_danger("Ay blyat. I am a space-russian smuggler! We were mid-flight when our cargo was beamed off our ship!"))
 			to_chat(owner, span_danger("We were hailed by a man in a green uniform, promising the safe return of our goods in exchange for a favor:"))
@@ -42,6 +43,13 @@
 			to_chat(owner, span_danger("GOOD EVENING, WE ARE PSYKER HUNTE- NO, PSYKER SHIKARIS!"))
 			to_chat(owner, span_danger("A brainling hit us up on the holopad with an offer we could NOT pass up. We kidnap some fools for them, and in exchange we get a LIFETIME SUPPLY OF GORE."))
 			to_chat(owner, span_danger("Our gore supply has been running thin as of late -- How could we say no? The binge MUST go on!"))
+=======
+		if("russian")
+			to_chat(src, span_danger("Ay blyat. I am a space-russian smuggler! We were mid-flight when our cargo was beamed off our ship!"))
+			to_chat(src, span_danger("We were hailed by a man in a green uniform, promising the safe return of our goods in exchange for a favor:"))
+			to_chat(src, span_danger("There is a local station housing fugitives that the man is after, he wants them returned; dead or alive."))
+			to_chat(src, span_danger("We will not be able to make ends meet without our cargo, so we must do as he says and capture them."))
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847:code/modules/antagonists/fugitive/hunter.dm
 
 	to_chat(owner, span_boldannounce("You are not an antagonist in that you may kill whomever you please, but you can do anything to ensure the capture of the fugitives, even if that means going through the station."))
 	owner.announce_objectives()

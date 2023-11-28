@@ -21,12 +21,16 @@
 	load_empty_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/ltrifle_magin.ogg'
 	eject_sound = 'modular_skyrat/modules/gunsgalore/sound/guns/interact/ltrifle_magout.ogg'
 	alt_icons = TRUE
+	company_flag = COMPANY_IZHEVSK
 	spread = 29
 	recoil = 0.1
 
+<<<<<<< HEAD
 /obj/item/gun/ballistic/automatic/ak25/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /obj/item/ammo_box/magazine/ak25
 	name = "\improper AK-25 magazine"
 	desc = "A banana-shaped double-stack magazine able to hold 30 rounds of 7.32x29mm ammunition."

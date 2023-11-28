@@ -22,9 +22,13 @@
 	empty_indicator = TRUE
 	alt_icons = TRUE
 	fire_sound = 'sound/weapons/gun/smg/shot_alt.ogg'
+<<<<<<< HEAD
 
 /obj/item/gun/ballistic/automatic/nri_smg/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
+=======
+	company_flag = COMPANY_IZHEVSK
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/gun/ballistic/automatic/pistol/nri
 	name = "\improper Szabo-Ivanek service pistol"
@@ -36,6 +40,10 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm_aps
 	burst_size = 3
 	fire_delay = 3
+<<<<<<< HEAD
 
 /obj/item/gun/ballistic/automatic/pistol/nri/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_IZHEVSK)
+=======
+	company_flag = COMPANY_IZHEVSK
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

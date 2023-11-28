@@ -73,8 +73,12 @@
 		hitsound_on = active_hitsound, \
 		w_class_on = active_w_class, \
 		attack_verb_continuous_on = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts"), \
+<<<<<<< HEAD
 		attack_verb_simple_on = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut"), \
 	)
+=======
+		attack_verb_simple_on = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut"))
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/energy/suicide_act(mob/living/user)
@@ -122,6 +126,15 @@
 	SIGNAL_HANDLER
 
 	if(active)
+<<<<<<< HEAD
+=======
+		if(sword_color_icon)
+			icon_state = "[icon_state]_[sword_color_icon]"
+			inhand_icon_state = "[inhand_icon_state]_[sword_color_icon]"
+			if(ismob(loc))
+				var/mob/loc_mob = loc
+				loc_mob.update_held_items()
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		if(embedding)
 			updateEmbedding()
 		heat = active_heat

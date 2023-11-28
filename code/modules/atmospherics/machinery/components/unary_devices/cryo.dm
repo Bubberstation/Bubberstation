@@ -148,8 +148,13 @@
 	. = ..()
 	update_appearance()
 
+<<<<<<< HEAD
 /obj/machinery/cryo_cell/on_construction(mob/user)
 	..(user, dir, dir)
+=======
+/obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
+	..(dir, dir)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/machinery/cryo_cell/RefreshParts()
 	. = ..()

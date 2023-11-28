@@ -44,7 +44,7 @@
 	name = "Nanotrasen Consultant"
 	jobtype = /datum/job/nanotrasen_consultant
 
-	belt = /obj/item/modular_computer/pda/nanotrasen_consultant
+	belt = /obj/item/storage/belt/security/peacekeeper
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/nanotrasen_consultant
 	gloves = /obj/item/clothing/gloves/combat
@@ -54,7 +54,12 @@
 	head = /obj/item/clothing/head/nanotrasen_consultant
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
+<<<<<<< HEAD
 		/obj/item/choice_beacon/ntc = 1,
+=======
+		/obj/item/storage/box/gunset/nanotrasen_consultant = 1,
+		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		)
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)
@@ -69,7 +74,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/centcom)
 
-	id = /obj/item/card/id/advanced/centcom
+	id = /obj/item/card/id/advanced/silver //BUBBER EDIT original: obj/item/card/id/advanced/CENTCOM
 	id_trim = /datum/id_trim/job/nanotrasen_consultant
 
 /obj/item/radio/headset/heads/nanotrasen_consultant
@@ -111,6 +116,7 @@
 	inserted_item = /obj/item/pen/fountain/captain
 	greyscale_colors = "#017941#0060b8"
 
+<<<<<<< HEAD
 /obj/item/storage/bag/garment/nanotrasen_consultant
 	name = "Nanotrasen consultant's garment bag"
 	desc = "A bag for storing extra clothes and shoes. This one belongs to the Nanotrasen consultant."
@@ -132,10 +138,29 @@
 	new /obj/item/clothing/suit/armor/centcom_formal/nt_consultant(src)
 	new /obj/item/clothing/under/rank/centcom/intern(src)
 	new /obj/item/clothing/head/hats/intern(src)
+=======
+/obj/item/storage/box/gunset/nanotrasen_consultant
+	name = "M45A5 gunset"
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/gun/ballistic/automatic/pistol/m45a5/nomag
+	spawnwithmagazine = FALSE
+
+/obj/item/storage/box/gunset/nanotrasen_consultant/PopulateContents()
+	. = ..()
+	new /obj/item/gun/ballistic/automatic/pistol/m45a5/nomag(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+	new /obj/item/ammo_box/magazine/m45a5(src)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station
 	name = "\proper nanotrasen consultant's locker"
-	req_access = list(ACCESS_CAPTAIN, ACCESS_CENT_GENERAL)
+	req_access = list(ACCESS_NTREP) //BUBBER EDIT
 	icon_state = "cc"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	door_anim_time = 0 //CONVERT THESE DOORS YOU LAZY ASSHATS

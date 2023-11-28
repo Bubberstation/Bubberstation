@@ -1,7 +1,6 @@
 /datum/vote/map_vote
 	name = "Map"
 	message = "Vote for next round's map!"
-	count_method = VOTE_COUNT_METHOD_MULTI
 
 /datum/vote/map_vote/New()
 	. = ..()
@@ -75,6 +74,7 @@
 		for(var/key in default_choices)
 			choices[key] = 0
 
+<<<<<<< HEAD
 	var/filter_threshold = 0
 	if(SSticker.HasRoundStarted())
 		filter_threshold = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE)
@@ -87,6 +87,14 @@
 			choices -= map
 
 		else if(possible_config.config_max_users > 0 && filter_threshold > possible_config.config_max_users)
+=======
+	for(var/map in choices)
+		var/datum/map_config/possible_config = config.maplist[map]
+		if(possible_config.config_min_users > 0 && GLOB.clients.len < possible_config.config_min_users)
+			choices -= map
+
+		else if(possible_config.config_max_users > 0 && GLOB.clients.len > possible_config.config_max_users)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 			choices -= map
 
 	return choices

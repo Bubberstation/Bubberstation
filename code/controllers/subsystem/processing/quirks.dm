@@ -64,7 +64,18 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/static/list/quirk_species_whitelist = list(
 		list("Hydrophilic", "[SPECIES_SLIMESTART]")
 	)
+<<<<<<< HEAD
 	//BUBBER EDIT ADDITION END
+=======
+
+	//BUBBER EDIT ADDITION START - Species quirks
+	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
+	var/static/list/quirk_species_whitelist = list(
+		list("Hydrophilic", "[SPECIES_SLIMESTART]")
+	)
+	//BUBBER EDIT ADDITION END
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /datum/controller/subsystem/processing/quirks/Initialize()
 	get_quirks()
 	return SS_INIT_SUCCESS

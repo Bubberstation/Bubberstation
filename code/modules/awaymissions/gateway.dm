@@ -375,6 +375,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 /obj/machinery/computer/gateway_control
 	name = "Gateway Control"
 	desc = "Human friendly interface to the mysterious gate next to it."
+<<<<<<< HEAD
+=======
+	req_access = list(ACCESS_SECURITY) //BUBBER EDIT ADDITION
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	var/obj/machinery/gateway/G
 
 /obj/machinery/computer/gateway_control/Initialize(mapload, obj/item/circuitboard/C)

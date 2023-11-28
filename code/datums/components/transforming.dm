@@ -36,12 +36,16 @@
 	var/clumsy_check
 	/// If we get sharpened with a whetstone, save the bonus here for later use if we un/redeploy
 	var/sharpened_bonus = 0
+<<<<<<< HEAD
 	/// Dictate whether we change inhands or not
 	var/inhand_icon_change = TRUE
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	/// Cooldown in between transforms
 	COOLDOWN_DECLARE(transform_cooldown)
 
 /datum/component/transforming/Initialize(
+<<<<<<< HEAD
 	start_transformed = FALSE,
 	transform_cooldown_time = 0 SECONDS,
 	force_on = 0,
@@ -55,6 +59,20 @@
 	list/attack_verb_simple_on,
 	inhand_icon_change = TRUE,
 )
+=======
+		start_transformed = FALSE,
+		transform_cooldown_time = 0 SECONDS,
+		force_on = 0,
+		throwforce_on = 0,
+		throw_speed_on = 2,
+		sharpness_on = NONE,
+		hitsound_on = 'sound/weapons/blade1.ogg',
+		w_class_on = WEIGHT_CLASS_BULKY,
+		clumsy_check = TRUE,
+		list/attack_verb_continuous_on,
+		list/attack_verb_simple_on,
+		)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -69,7 +87,6 @@
 	src.hitsound_on = hitsound_on
 	src.w_class_on = w_class_on
 	src.clumsy_check = clumsy_check
-	src.inhand_icon_change = inhand_icon_change
 
 	if(attack_verb_continuous_on)
 		src.attack_verb_continuous_on = attack_verb_continuous_on
@@ -210,9 +227,16 @@
 	source.hitsound = hitsound_on
 	source.w_class = w_class_on
 	source.icon_state = "[source.icon_state]_on"
+<<<<<<< HEAD
 	if(inhand_icon_change && source.inhand_icon_state)
 		source.inhand_icon_state = "[source.inhand_icon_state]_on"
 	source.update_inhand_icon()
+=======
+	source.inhand_icon_state = "[source.inhand_icon_state]_on"
+	if(ismob(source.loc))
+		var/mob/loc_mob = source.loc
+		loc_mob.update_held_items()
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /*
  * Set our transformed item into its inactive state.

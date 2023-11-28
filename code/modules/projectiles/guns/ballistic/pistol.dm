@@ -8,7 +8,11 @@
 	can_suppress = TRUE
 	burst_size = 1
 	fire_delay = 0
+<<<<<<< HEAD
 	actions_types = list()
+=======
+	fire_select_modes = list(SELECT_SEMI_AUTOMATIC) //SKYRAT EDIT CHANGE
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	bolt_type = BOLT_TYPE_LOCKING
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	dry_fire_sound = 'sound/weapons/gun/pistol/dry_fire.ogg'

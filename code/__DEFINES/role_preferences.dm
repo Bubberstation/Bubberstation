@@ -42,9 +42,9 @@
 #define ROLE_SPIDER "Spider"
 #define ROLE_WIZARD_MIDROUND "Wizard (Midround)"
 //SKYRAT EDIT START
+#define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
 #define ROLE_BORER "Borer"
 #define ROLE_DRIFTING_CONTRACTOR "Drifting Contractor"
-#define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
 #define ROLE_MUTANT "Mutated Abomination"
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 // SKYRAT EDIT END
@@ -115,6 +115,7 @@
 #define ROLE_SYNDICATE_CYBERSUN_CAPTAIN "Cybersun Space Syndicate Captain" //Forgottenship captain syndie
 #define ROLE_SYNDICATE_DRONE "Syndicate Drone"
 #define ROLE_VENUSHUMANTRAP "Venus Human Trap"
+<<<<<<< HEAD
 #define ROLE_ZOMBIE "Zombie"
 
 // Virtual dom related
@@ -130,6 +131,9 @@
 #define ROLE_PORT_TARKON "Port Tarkon Survivor"
 //SKYRAT EDIT END
 #define ROLE_DAUNTLESS "Dauntless Syndicate" //BUBBERSTATION EDIT
+=======
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /// This defines the antagonists you can operate with in the settings.
 /// Keys are the antagonist, values are the number of days since the player's

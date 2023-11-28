@@ -5,8 +5,11 @@
 		/datum/traitor_objective/ultimate/battlecruiser = 1,
 		/datum/traitor_objective/ultimate/space_dragon = 1,
 		/datum/traitor_objective/ultimate/supermatter_cascade = 1,
+<<<<<<< HEAD
 		/datum/traitor_objective/ultimate/infect_ai = 1,
 		/datum/traitor_objective/ultimate/dark_matteor = 1,
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	)
 	weight = 100
 

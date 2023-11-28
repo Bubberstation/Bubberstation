@@ -21,8 +21,6 @@
 	var/list/target_jobs
 	/// the item we need to destroy
 	var/obj/item/target_item
-	/// the owner of the item we need to destroy
-	var/datum/mind/target_mind
 
 	// The code below is for limiting how often you can get this objective. You will get this objective at a maximum of maximum_objectives_in_period every objective_period
 	/// The objective period at which we consider if it is an 'objective'. Set to 0 to accept all objectives.
@@ -133,11 +131,16 @@
 			continue
 		possible_targets += possible_target
 	for(var/datum/traitor_objective/destroy_heirloom/objective as anything in possible_duplicates)
-		possible_targets -= objective.target_mind
+		possible_targets -= objective.target_item
 	if(!length(possible_targets))
 		return FALSE
+<<<<<<< HEAD
 	target_mind = pick(possible_targets)
 	AddComponent(/datum/component/traitor_objective_register, target_mind.current, fail_signals = list(COMSIG_QDELETING))
+=======
+	var/datum/mind/target_mind = pick(possible_targets)
+	AddComponent(/datum/component/traitor_objective_register, target_mind.current, fail_signals = list(COMSIG_PARENT_QDELETING))
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	var/datum/quirk/item_quirk/family_heirloom/quirk = locate() in target_mind.current.quirks
 	target_item = quirk.heirloom.resolve()
 	AddComponent(/datum/component/traitor_objective_register, target_item, succeed_signals = list(COMSIG_QDELETING))
@@ -148,4 +151,3 @@
 
 /datum/traitor_objective/destroy_heirloom/ungenerate_objective()
 	target_item = null
-	target_mind = null

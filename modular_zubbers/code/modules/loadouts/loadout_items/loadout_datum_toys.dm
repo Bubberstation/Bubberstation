@@ -2,6 +2,7 @@
 	name = "Lovers moth plushie"
 	item_path = /obj/item/toy/plush/moth/lovers
 	donator_only = TRUE //Donor item for Basicguy20
+<<<<<<< HEAD
 
 /datum/loadout_item/toys/chirp_plush
 	name = "chirpy synth plushie"
@@ -35,3 +36,5 @@
 /datum/loadout_item/toys/tiredtesh
 	name = "tired teshari plushie"
 	item_path = /obj/item/toy/plush/tiredtesh
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

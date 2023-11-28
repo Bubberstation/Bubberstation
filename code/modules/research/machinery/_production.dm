@@ -258,6 +258,7 @@
 	power = min(active_power_usage, power)
 	use_power(power)
 
+<<<<<<< HEAD
 	// Charge the lathe tax at least once per ten items.
 	// var/total_cost = LATHE_TAX * max(round(print_quantity / 10), 1) // BUBBED EDIT - LATHE TAX CONFIG
 	// if(!charges_tax)
@@ -268,6 +269,15 @@
 
 	// 	if(!card && istype(user.pulling, /obj/item/card/id))
 	// 		card = user.pulling
+=======
+	lathe_tax()
+
+	materials.mat_container.use_materials(efficient_mats, print_quantity)
+	materials.silo_log(src, "built", -print_quantity, "[design.name]", efficient_mats)
+
+	for(var/reagent in design.reagents_list)
+		reagents.remove_reagent(reagent, design.reagents_list[reagent] * print_quantity * coefficient)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 	// 	if(card && card.registered_account)
 	// 		var/datum/bank_account/our_acc = card.registered_account

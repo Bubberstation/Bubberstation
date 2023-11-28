@@ -22,6 +22,7 @@
 		ACCESS_QM,
 		)
 	job = /datum/job/blacksmith
+<<<<<<< HEAD
 
 /datum/id_trim/job/security_medic
 	assignment = "Security Medic"
@@ -54,3 +55,5 @@
 /datum/id_trim/job/nanotrasen_consultant
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN) //NTRep can no longer change to any other ID trim
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

@@ -53,6 +53,19 @@
 	name = "Hypnodemon's Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
 	//ckeywhitelist = list("bippys")
+<<<<<<< HEAD
+=======
+
+/datum/loadout_item/suit/kimjacket
+	name = "Aerostatic Bomber Jacket"
+	item_path = /obj/item/clothing/suit/kimjacket
+	//ckeywhitelist = list("raxraus")
+
+/datum/loadout_item/under/jumpsuit/rax_turtleneck
+	name = "Black Turtleneck"
+	item_path = /obj/item/clothing/under/rax_turtleneck
+	//ckeywhitelist = list("raxraus")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/shoes/rax_armadyne_boots
 	name = "Tactical Boots"
@@ -62,19 +75,48 @@
 /datum/loadout_item/suit/rax_peacekeeper_jacket
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
+<<<<<<< HEAD
 //	ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER) //BUBBER EDIT
+=======
+	//ckeywhitelist = list("raxraus")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/under/jumpsuit/rax_banded_uniform
 	name = "Banded Uniform"
 	item_path = /obj/item/clothing/under/rank/security/rax
+<<<<<<< HEAD
 //	ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER) //BUBBER EDIT
+=======
+	//ckeywhitelist = list("raxraus")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER)
+
+/datum/loadout_item/suit/rax_aerostatic_jacket
+	name = "Navy Aerostatic Jacket"
+	item_path = /obj/item/clothing/suit/jacket/rax
+	//ckeywhitelist = list("raxraus")
+
+/datum/loadout_item/under/jumpsuit/rax_gray_turtleneck
+	name = "Gray Turtleneck"
+	item_path = /obj/item/clothing/under/rax_turtleneck_gray
+	//ckeywhitelist = list("raxraus")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/head/goldengoggles
 	name = "Steampunk Goggles"
 	item_path = /obj/item/clothing/glasses/welding/steampunk_goggles
 	//ckeywhitelist = list("goldenalpharex")
+<<<<<<< HEAD
+=======
+
+/datum/loadout_item/head/bio_jax
+	name = "XuraCorp Biohazard Hood"
+	item_path = /obj/item/clothing/head/bio_hood/jax
+	//ckeywhitelist = list("candlejax")
+	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_SCIENCE_GUARD, JOB_VIROLOGIST, JOB_GENETICIST)
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/under/jumpsuit/plasmaman_jax
 	name = "XuraCorp Biohazard Underfitting"
@@ -86,21 +128,31 @@
 	name = "Emission's Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax
 	//ckeywhitelist = list("candlejax")
+<<<<<<< HEAD
 
 /datum/loadout_item/head/anahelm
 	name = "Azulean's Enviro-Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
 //	ckeywhitelist = list("candlejax")
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/under/jumpsuit/emissionsuit
 	name = "Emission's Suit"
 	item_path = /obj/item/clothing/under/plasmaman/candlejax
 	//ckeywhitelist = list("candlejax")
 
+<<<<<<< HEAD
 /datum/loadout_item/under/jumpsuit/anasuit
 	name = "Azulean's Enviro-Suit"
 	item_path = /obj/item/clothing/under/plasmaman/candlejax2
 //	ckeywhitelist = list("candlejax")
+=======
+/datum/loadout_item/suit/cjax
+	name = "XuraCorp Labcoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/rd/jax
+	//ckeywhitelist = list("candlejax")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/suit/jacket/cherno
 	name = "Blue-Silvered Coat"
@@ -135,6 +187,7 @@
 /datum/loadout_item/mask/nightlight_mask
 	name = "FIR-36 Rebreather"
 	item_path = /obj/item/clothing/mask/gas/nightlight
+<<<<<<< HEAD
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/mask/fir22
@@ -181,6 +234,13 @@
 /datum/loadout_item/mask/wolf_mask
 	name = "Wolf mask"
 	item_path = /obj/item/clothing/mask/animal/wolf
+=======
+	//ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371")
+
+/datum/loadout_item/mask/kindle_mask
+	name = "Kindle's mask"
+	item_path = /obj/item/clothing/mask/animal/kindle
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	//ckeywhitelist = list("theooz")
 
 /datum/loadout_item/head/drake_skull
@@ -577,11 +637,14 @@
 	name = "Science Shark Plushie"
 	item_path = /obj/item/toy/plush/skyrat/plushie_razurath
 	//ckeywhitelist = list("razurath")
+<<<<<<< HEAD
 
 /datum/loadout_item/toys/plushie_razurath/second
 	name = "Dwarf Shark Plushie"
 	item_path = /obj/item/toy/plush/skyrat/plushie_razurath/second
 //	ckeywhitelist = list("razurath")
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/toys/plushie_elofy
 	name = "Bumbling Wolfgirl Plushie"
@@ -672,7 +735,11 @@
 /datum/loadout_item/pocket_items/masvedishcigar
 	name = "Holocigar"
 	item_path = /obj/item/clothing/mask/holocigarette/masvedishcigar
+<<<<<<< HEAD
 	// Asked it to be public, and as such has no whitelist.
+=======
+	//ckeywhitelist = list("masvedish")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /datum/loadout_item/suit/lt3_armor
 	name = "Silver Jacket Mk II"
@@ -703,6 +770,7 @@
 /datum/loadout_item/suit/colorblockhoodie
 	name = "Color-Block Hoodie"
 	item_path = /obj/item/clothing/suit/hooded/colorblockhoodie
+<<<<<<< HEAD
 //	ckeywhitelist = list("lolpopomg101")
 
 /datum/loadout_item/inhand/officialcat
@@ -744,3 +812,6 @@
 	name = "Cat-Ear Headphones"
 	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
 	//ckeywhitelist = list("dtfe")
+=======
+	//ckeywhitelist = list("lolpopomg101")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

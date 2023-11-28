@@ -3,15 +3,26 @@
 	desc = "A staff used by traditional bishops and popes."
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "papal_staff"
+<<<<<<< HEAD
 	inhand_icon_state = "papal_staff"
 	belt_icon_state = "baguette"
 	worn_icon_state = "baguette"
+=======
+	worn_icon_state = "nullrod"
+	inhand_icon_state = "papal_staff"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb_continuous = list("smacks", "strucks", "cracks", "beats", "purifies")
 	attack_verb_simple = list("smack", "struck", "crack", "beat", "purify")
 
+<<<<<<< HEAD
+=======
+/obj/item/nullrod/papal_staff/get_belt_overlay()
+	return mutable_appearance('icons/blanks/32x32.dmi', "nothing")
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /obj/item/clothing/head/mitre
 	name = "papal mitre"
 	desc = "A traditional headdress, worn by bishops and popes in traditional Christianity"

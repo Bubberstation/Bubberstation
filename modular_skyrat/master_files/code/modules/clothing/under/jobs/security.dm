@@ -28,6 +28,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
+<<<<<<< HEAD
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate
 	armor_type = /datum/armor/clothing_under/redsec_syndicate
 	has_sensor = NO_SENSORS
@@ -42,6 +43,12 @@
 	can_adjust = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_NO_BREASTS
 
+=======
+/obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate //MOVE ALL /SYNDICATES TO THE SYNDICATE.DM WHEN THE .dmi IS MADE (soon, after centcom.dmi)
+	armor_type = /datum/armor/redsec_syndicate
+	has_sensor = NO_SENSORS
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /*
 *	HEAD OF SECURITY
 */

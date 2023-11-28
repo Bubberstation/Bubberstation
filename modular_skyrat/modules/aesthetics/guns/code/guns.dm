@@ -70,10 +70,46 @@
 	lefthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_righthand.dmi'
 
+<<<<<<< HEAD
 /obj/item/gun/energy/ionrifle/carbine
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+=======
+/obj/item/gun/energy/laser
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/energy.dmi'
+	lefthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_righthand.dmi'
+
+/obj/item/gun/energy/e_gun/stun
+	charge_sections = 5
+	ammo_x_offset = 2
+
+/obj/item/gun/ballistic/shotgun/riot
+	name = "\improper Peacekeeper shotgun"
+	desc = "A Nanotrasen-made riot control shotgun fitted with an extended tube and a fixed tactical stock."
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
+	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
+	lefthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/aesthetics/guns/icons/guns_righthand.dmi'
+	inhand_icon_state = "riot_shotgun"
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	can_suppress = TRUE
+	suppressed_sound = 'modular_skyrat/modules/aesthetics/guns/sound/suppressed_shotgun.ogg'
+	suppressed_volume = 100
+	vary_fire_sound = TRUE
+	fire_sound = 'modular_skyrat/modules/aesthetics/guns/sound/shotgun_light.ogg'
+
+/obj/item/gun/ballistic/shotgun/riot/syndicate
+	name = "\improper Peacebreaker shotgun"
+	desc = "A Scarborough riot control shotgun fitted with a crimson furnishing and a wooden tactical stock. You swear you've seen this model elsewhere before..."
+	icon_state = "riotshotgun_syndie"
+	inhand_icon_state = "riot_shotgun_syndie"
+	can_be_sawn_off = FALSE
+	can_suppress = FALSE
+	company_flag = COMPANY_SCARBOROUGH
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "\improper Peacekeeper combat shotgun"
@@ -262,9 +298,13 @@
 	can_suppress = TRUE
 	can_unsuppress = TRUE
 	weapon_weight = WEAPON_LIGHT
+<<<<<<< HEAD
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/modular/syndicate/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SCARBOROUGH)
+=======
+	company_flag = COMPANY_SCARBOROUGH
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/modular/blackmarket  //Normal sniper but epic
 	name = "SA-107 anti-materiel rifle"
@@ -285,6 +325,7 @@
 	fire_delay = 55 //Slightly smaller than standard sniper
 	burst_size = 1
 	slot_flags = ITEM_SLOT_BACK
+	fire_select_modes = list(SELECT_SEMI_AUTOMATIC) //SKYRAT EDIT CHANGE
 	mag_display = TRUE
 
 /obj/item/gun/ballistic/automatic/ar/modular
@@ -295,11 +336,76 @@
 	inhand_icon_state = "arg"
 	can_suppress = FALSE
 
+<<<<<<< HEAD
+=======
+//SOLFED PILOT RIFLE GONE, TO BE ADDED TO ERT FACTIONS FOLDER
+
+/obj/item/gun/energy/kinetic_accelerator
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/energy.dmi'
+
+/obj/item/gun/ballistic/rifle/boltaction
+	name = "\improper Sportiv precision rifle"
+	desc = "A rather antique sporting rifle dating back to the 2400s chambered for .244 Acia. 'НРИ - Оборонная Коллегия' is etched on the bolt."
+	sawn_desc = "An extremely sawn-off Sportiv rifle, popularly known as an \"obrez\". There was probably a reason it wasn't manufactured this short to begin with."
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
+
+/obj/item/gun/ballistic/rifle/boltaction/brand_new
+	name = "\improper NT Sportsman rifle"
+	desc = "A freshly-produced Sportiv precision rifle variant issued by Nanotrasen for their interns.\
+	<br><br>\
+	<i>BRAND NEW: Cannot be sawn off.</i>"
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
+	company_flag = COMPANY_NANOTRASEN
+
+/obj/item/gun/ballistic/rifle/boltaction/brand_new/quartermaster
+	name = "\improper FTU 'Archangel' precision rifle"
+	desc = "A very... Modernized Sportiv rifle, the frame even feels a little flimsy. This thing was probably built with a conversion kit from a shady NTnet site.\
+	<br><br>\
+	<i>BRAND NEW: Cannot be sawn off.</i>"
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
+	icon_state = "bubba"
+	worn_icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_back.dmi'
+	worn_icon_state = "bubba"
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/bubba
+	can_be_sawn_off = FALSE
+	company_flag = null //Cargonia's own
+
+/obj/item/ammo_box/magazine/internal/boltaction/bubba
+	name = "sportiv extended internal magazine"
+	desc = "How did you get it out?"
+	ammo_type = /obj/item/ammo_casing/a762
+	caliber = CALIBER_A762
+	max_ammo = 8
+	multiload = TRUE
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /obj/item/gun/ballistic/automatic/surplus
 	name = "\improper Type-69 surplus rifle"
 	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
 
+<<<<<<< HEAD
+=======
+/obj/item/gun/ballistic/automatic/ar/modular/model75
+	name = "\improper NT ARG-75"
+	desc = "A contemporary rifle manufactured by NT chambered for .244 Acia. It's equipped with a heavy duty integrally suppressed barrel, CQB scope and a topmounted laser sight."
+	icon_state = "arg75"
+	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns.dmi'
+	fire_sound = 'sound/weapons/gun/pistol/shot_suppressed.ogg'
+	fire_delay = 5
+	fire_sound_volume = 90
+	mag_type = /obj/item/ammo_box/magazine/multi_sprite/ostwind/arg75
+	company_flag = COMPANY_NANOTRASEN
+
+/obj/item/ammo_box/magazine/multi_sprite/ostwind/arg75
+	name = "\improper ARG-75 magazine"
+	icon = 'modular_skyrat/modules/sec_haul/icons/guns/mags.dmi'
+	icon_state = "pcr"
+	ammo_type = /obj/item/ammo_casing/a762
+	caliber = CALIBER_A762
+	max_ammo = 20
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 // GUBMAN3 - FULL BULLET RENAME
 // i loathe the above
 

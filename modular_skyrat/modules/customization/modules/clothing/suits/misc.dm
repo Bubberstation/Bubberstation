@@ -308,6 +308,7 @@
 	greyscale_config_worn_better_vox = /datum/greyscale_config/overalls/worn/better_vox
 	greyscale_config_worn_vox = /datum/greyscale_config/overalls/worn/vox
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/apron/overalls/Initialize(mapload)
 	. = ..()
 	allowed += list(
@@ -336,6 +337,10 @@
 	greyscale_config_worn = /datum/greyscale_config/warm_sweater/worn
 	greyscale_colors = "#867361"
 	flags_1 = IS_PLAYER_COLORABLE_1
+=======
+/obj/item/clothing/suit/apron/overalls/greyscale/examine(mob/user)
+	. = ..()
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /obj/item/clothing/suit/heart_sweater
 	name = "heart sweater"

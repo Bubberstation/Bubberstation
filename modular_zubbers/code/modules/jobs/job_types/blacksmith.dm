@@ -15,8 +15,11 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_CAR
 	display_order = JOB_DISPLAY_ORDER_BLACKSMITH
+<<<<<<< HEAD
 	bounty_types = CIV_JOB_SMITH
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	departments_list = list(
 		/datum/job_department/cargo,
 		)
@@ -31,8 +34,11 @@
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
+<<<<<<< HEAD
 	job_spawn_title = JOB_ASSISTANT
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	voice_of_god_silence_power = 3
 	rpg_title = "Ye olde Smithy"
 

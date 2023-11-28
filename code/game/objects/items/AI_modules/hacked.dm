@@ -34,6 +34,7 @@
 			law_datum.replace_random_law(laws[1], list(LAW_ION, LAW_HACKED, LAW_INHERENT, LAW_SUPPLIED), LAW_HACKED)
 	return laws[1]
 
+<<<<<<< HEAD
 /// Makes the AI Malf, as well as give it syndicate laws.
 /obj/item/ai_module/malf
 	name = "Infected AI Module"
@@ -78,3 +79,5 @@
 /obj/item/ai_module/malf/display_laws()
 	return
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

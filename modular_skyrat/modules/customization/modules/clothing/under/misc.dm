@@ -41,9 +41,29 @@
 	icon_state = "doug_dimmadome"
 	supports_variations_flags = NONE
 
+<<<<<<< HEAD
 /obj/item/clothing/under/pants/tactical
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	name = "tactical pants"
 	desc = "A pair of tactical pants, designed for military use."
 	icon_state = "tactical_pants"
+=======
+/obj/item/clothing/under/rank/security/peacekeeper/trousers
+	name = "peacekeeper's trousers"
+	desc = "Some light blue combat trousers, however you get protected by these, I have no idea."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon_state = "workpants_blue"
+	body_parts_covered = GROIN
+	can_adjust = FALSE
+	supports_variations_flags = NONE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/peacekeeper/trousers/red
+	name = "security officer's trousers"
+	desc = "Some red combat trousers, however you get protected by these, I have no idea."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon_state = "workpants_red"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

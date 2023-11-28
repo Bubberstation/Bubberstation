@@ -52,6 +52,30 @@
 	/// Flags for the flora to determine what kind of sound to play when it gets hit
 	var/flora_flags = NONE
 
+<<<<<<< HEAD
+=======
+/obj/structure/flora/Initialize(mapload)
+	. = ..()
+	if(!required_tools)
+		required_tools = list()
+		if(flora_flags & FLORA_WOODEN)
+			required_tools += FLORA_HARVEST_WOOD_TOOLS //This list does not include TOOL_SAW tools, they are handled seperately in can_harvest() for the purpose of on/off states
+		if(flora_flags & FLORA_STONE)
+			required_tools += FLORA_HARVEST_STONE_TOOLS
+
+	//ugly-looking performance optimization. what the glob bro
+	if(!GLOB.flora_required_tools_typepaths[type])
+		GLOB.flora_required_tools_typepaths[type] = typecacheof(required_tools)
+	if(!GLOB.flora_disallowed_tools_typepaths[type])
+		GLOB.flora_disallowed_tools_typepaths[type] = typecacheof(disallowed_tools)
+	if(!GLOB.flora_uprooting_tools_typepaths[type])
+		GLOB.flora_uprooting_tools_typepaths[type] = typecacheof(uprooting_tools)
+
+	required_tools = GLOB.flora_required_tools_typepaths[type]
+	disallowed_tools = GLOB.flora_disallowed_tools_typepaths[type]
+	uprooting_tools = GLOB.flora_uprooting_tools_typepaths[type]
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 //BUBBER EDIT START - MOVED TO MODULAR
 /*
 /obj/structure/flora/attackby(obj/item/used_item, mob/living/user, params)

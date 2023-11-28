@@ -26,7 +26,11 @@
 /datum/traitor_objective/target_player/kidnapping/New(datum/uplink_handler/handler)
 	. = ..()
 	AddComponent(/datum/component/traitor_objective_limit_per_time, \
+<<<<<<< HEAD
 		/datum/traitor_objective/target_player, \
+=======
+		/datum/traitor_objective/assassinate, \
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		time_period = objective_period, \
 		maximum_objectives = maximum_objectives_in_period \
 	)
@@ -37,15 +41,10 @@
 	progression_reward = list(2 MINUTES, 4 MINUTES)
 	telecrystal_reward = list(1, 2)
 	target_jobs = list(
-		// Cargo
-		/datum/job/cargo_technician,
-		// Engineering
-		/datum/job/atmospheric_technician,
-		/datum/job/station_engineer,
 		// Medical
-		/datum/job/chemist,
 		/datum/job/doctor,
 		/datum/job/psychologist,
+<<<<<<< HEAD
 		/datum/job/virologist,
 		// Science
 		/datum/job/geneticist,
@@ -60,6 +59,26 @@
 		/datum/job/janitor,
 		/datum/job/lawyer,
 		/datum/job/mime,
+=======
+		/datum/job/chemist,
+		// Service
+		/datum/job/clown,
+		/datum/job/botanist,
+		/datum/job/janitor,
+		/datum/job/mime,
+		/datum/job/lawyer,
+		/datum/job/chaplain,
+		/datum/job/bartender,
+		/datum/job/curator,
+		// Cargo
+		/datum/job/cargo_technician,
+		// Science
+		/datum/job/geneticist,
+		/datum/job/roboticist,
+		// Engineering
+		/datum/job/station_engineer,
+		/datum/job/atmospheric_technician,
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	)
 	alive_bonus = 2
 
@@ -77,12 +96,18 @@
 	telecrystal_reward = list(1, 2)
 
 	target_jobs = list(
+		// Medical
+<<<<<<< HEAD
+		/datum/job/paramedic,
+=======
+		/datum/job/virologist,
 		// Cargo
 		/datum/job/shaft_miner,
-		// Medical
-		/datum/job/paramedic,
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		// Service
 		/datum/job/cook,
+		// Science
+		/datum/job/scientist,
 	)
 	alive_bonus = 3
 
@@ -92,16 +117,15 @@
 	progression_reward = list(8 MINUTES, 12 MINUTES)
 	telecrystal_reward = list(2, 3)
 	target_jobs = list(
-		// Heads of staff
-		/datum/job/chief_engineer,
-		/datum/job/chief_medical_officer,
-		/datum/job/head_of_personnel,
-		/datum/job/research_director,
-		/datum/job/quartermaster,
 		// Security
-		/datum/job/detective,
 		/datum/job/security_officer,
 		/datum/job/warden,
+		/datum/job/detective,
+		// Heads of staff
+		/datum/job/head_of_personnel,
+		/datum/job/chief_medical_officer,
+		/datum/job/research_director,
+		/datum/job/quartermaster,
 	)
 	alive_bonus = 4
 
@@ -110,8 +134,8 @@
 	progression_reward = list(12 MINUTES, 16 MINUTES)
 	telecrystal_reward = list(2, 3)
 	target_jobs = list(
-		/datum/job/captain,
 		/datum/job/head_of_security,
+		/datum/job/captain
 	)
 	alive_bonus = 5
 

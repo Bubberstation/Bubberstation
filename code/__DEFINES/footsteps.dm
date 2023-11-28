@@ -19,6 +19,7 @@
 
 
 //footstep mob defines
+<<<<<<< HEAD
 #define FOOTSTEP_MOB_CLAW "footstep_claw"
 #define FOOTSTEP_MOB_BAREFOOT "footstep_barefoot"
 #define FOOTSTEP_MOB_HEAVY "footstep_heavy"
@@ -37,6 +38,17 @@
 
 ///the name of the index key for priority
 #define STEP_SOUND_PRIORITY "step_sound_priority"
+=======
+#define FOOTSTEP_MOB_CLAW 1
+#define FOOTSTEP_MOB_BAREFOOT 2
+#define FOOTSTEP_MOB_HEAVY 3
+#define FOOTSTEP_MOB_SHOE 4
+#define FOOTSTEP_MOB_HUMAN 5 //Warning: Only works on /mob/living/carbon/human
+#define FOOTSTEP_MOB_SLIME 6
+#define FOOTSTEP_OBJ_MACHINE 7
+#define FOOTSTEP_OBJ_ROBOT 8
+#define FOOTSTEP_MOB_SNAKE 9 // BOOB EDIT
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 /*
 

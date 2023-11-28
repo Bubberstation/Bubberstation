@@ -281,9 +281,7 @@
 		throwforce_on = 35, \
 		throw_speed_on = 4, \
 		sharpness_on = SHARP_EDGED, \
-		w_class_on = WEIGHT_CLASS_NORMAL, \
-		inhand_icon_change = FALSE, \
-	)
+		w_class_on = WEIGHT_CLASS_NORMAL)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 	RegisterSignal(src, COMSIG_DETECTIVE_SCANNED, PROC_REF(on_scan))
 
@@ -372,9 +370,7 @@
 		/datum/component/transforming, \
 		throwforce_on = 5, \
 		w_class_on = WEIGHT_CLASS_SMALL, \
-		sharpness_on = TRUE, \
-		inhand_icon_change = FALSE, \
-	)
+		sharpness_on = TRUE)
 
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(toggle_screwdriver))
 	AddElement(/datum/element/update_icon_updates_onmob)
@@ -383,8 +379,12 @@
 	SIGNAL_HANDLER
 
 	if(user)
+<<<<<<< HEAD
 		balloon_alert(user, active ? "extended" : "retracted")
 	playsound(src, 'sound/weapons/batonextend.ogg', 50, TRUE)
+=======
+		balloon_alert(user, "[extended ? "extended" : "retracted"]!")
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 
 	if(!active)
 		tool_behaviour = initial(tool_behaviour)

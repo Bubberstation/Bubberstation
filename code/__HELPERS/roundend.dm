@@ -200,6 +200,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 			var/greentexted = TRUE
 			for(var/datum/objective/objective_datum as anything in antag_datums.objectives)
 				if(!objective_datum.check_completion())
+<<<<<<< HEAD
 					greentexted = FALSE
 					break
 			if(greentexted)
@@ -209,6 +210,13 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 				return
 
 	if(considered_escaped(human_mob.mind))
+=======
+					didthegamerwin = FALSE
+		if(!didthegamerwin)
+			return FALSE
+		player_client.give_award(/datum/award/score/hardcore_random, human_mob, round(human_mob.hardcore_survival_score * 2))
+	else if(human_mob.onCentCom())
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		player_client.give_award(/datum/award/score/hardcore_random, human_mob, round(human_mob.hardcore_survival_score))
 		log_admin("[player_client] gained [round(human_mob.hardcore_survival_score)] hardcore random points.")
 

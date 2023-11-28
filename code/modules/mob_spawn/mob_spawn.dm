@@ -5,8 +5,6 @@
 	//So it shows up in the map editor
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "mobspawner"
-	/// Can this spawner be used up?
-	var/infinite_use = FALSE
 	///A forced name of the mob, though can be overridden if a special name is passed as an argument
 	var/mob_name
 	///the type of the mob, you best inherit this
@@ -197,7 +195,7 @@
 		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
 		LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 		return
-	if(uses <= 0 && !infinite_use) //just in case
+	if(uses <= 0) //just in case
 		to_chat(user, span_warning("This spawner is out of charges!"))
 		LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 		return
@@ -224,6 +222,7 @@
 		LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 		return
 
+<<<<<<< HEAD
 	create_from_ghost(user)
 
 /**
@@ -238,6 +237,8 @@
 	ASSERT(istype(user))
 	var/user_ckey = user.ckey // We need to do it before everything else, because after the create() the ckey will already have been transferred.
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	user.log_message("became a [prompt_name].", LOG_GAME)
 	uses -= 1 // Remove a use before trying to spawn to prevent strangeness like the spawner trying to spawn more mobs than it should be able to
 	user.mind = null // dissassociate mind, don't let it follow us to the next life

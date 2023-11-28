@@ -3,13 +3,22 @@
 	icon_state = "hair_hyenamane"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+<<<<<<< HEAD
 /datum/sprite_accessory/hair/tailhair
+=======
+/datum/sprite_accessory/hair/taggot_franny
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	name = "Tail Hair"
 	icon_state = "hair_tailhair"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+<<<<<<< HEAD
 /datum/sprite_accessory/hair/hairfre
 	name = "Hairfre"
+=======
+/datum/sprite_accessory/hair/whor_eee
+	name = "((((((Hairfre))))))"
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	icon_state = "hair_hairfre"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
@@ -33,11 +42,14 @@
 	icon_state = "hair_glamourh"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+<<<<<<< HEAD
 /datum/sprite_accessory/hair/royal_curls
 	name = "Royal Curls"
 	icon_state = "royal_curls"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 //Podpeople hair
 /datum/sprite_accessory/hair/podmale
 	name = "Pod Male"

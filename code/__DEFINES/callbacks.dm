@@ -1,6 +1,7 @@
 #define GLOBAL_PROC "some_magic_bullshit"
 /// A shorthand for the callback datum, [documented here](datum/callback.html)
 #define CALLBACK new /datum/callback
+<<<<<<< HEAD
 
 ///Per the DM reference, spawn(-1) will execute the spawned code immediately until a block is met.
 #define MAKE_SPAWN_ACT_LIKE_WAITFOR -1
@@ -20,5 +21,8 @@
 		}; \
 	}
 
+=======
+#define INVOKE_ASYNC world.ImmediateInvokeAsync
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 /// like CALLBACK but specifically for verb callbacks
 #define VERB_CALLBACK new /datum/callback/verb_callback

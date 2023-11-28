@@ -83,10 +83,20 @@
 		/obj/item/gun/energy/e_gun,
 	)
 
+<<<<<<< HEAD
 /obj/effect/spawner/armory_spawn/smg
 	vertical_guns = FALSE
 	guns = list(
 		/obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano,
 		/obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano,
 		/obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/sindano,
+=======
+/obj/effect/spawner/armory_spawn/cmg
+	icon_state = "random_rifle"
+	gun_count = 3
+	guns = list(
+		/obj/item/gun/ballistic/automatic/cmg,
+		/obj/item/gun/ballistic/automatic/cmg,
+		/obj/item/gun/ballistic/automatic/cmg,
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	)

@@ -11,7 +11,10 @@
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	atom_parent = parent
+<<<<<<< HEAD
 	//important to allow people to just straight up set allowing to plant
+=======
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	one_per_turf = set_turf_limit
 	pixel_shift = set_shift
 	//now lets register the signals
@@ -53,6 +56,11 @@
  * check_examine is meant to listen for the COMSIG_ATOM_EXAMINE signal, where it will put additional information in the examine
  */
 /datum/component/simple_farm/proc/check_examine(datum/source, mob/user, list/examine_list)
+<<<<<<< HEAD
+=======
+	SIGNAL_HANDLER
+
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	examine_list += span_notice("You are able to plant seeds here!")
 
 /obj/structure/simple_farm
@@ -267,6 +275,7 @@
 		if(!creating_obj)
 			creating_obj = planted_seed.type
 
+<<<<<<< HEAD
 		var/created_harvest = new creating_obj(get_turf(src))
 
 		plant_bag?.atom_storage?.attempt_insert(created_harvest, user, TRUE)
@@ -286,3 +295,6 @@
 /turf/open/misc/asteroid/snow/refill_dug()
 	. = ..()
 	qdel(GetComponent(/datum/component/simple_farm))
+=======
+		new creating_obj(get_turf(src))
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

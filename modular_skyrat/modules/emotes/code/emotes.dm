@@ -473,8 +473,8 @@
 	sound = 'modular_skyrat/modules/emotes/sound/voice/warbles.ogg'
 
 /datum/emote/living/trills
-	key = "trills"
-	key_third_person = "trills!"
+	key = "trill"
+	key_third_person = "trills"
 	message = "trills!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -498,7 +498,7 @@
 
 /datum/emote/living/moo
 	key = "moo"
-	key_third_person = "moos!"
+	key_third_person = "moos"
 	message = "moos!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
@@ -534,4 +534,8 @@
 	message = "meows loudly!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
+<<<<<<< HEAD
 	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'
+=======
+	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847

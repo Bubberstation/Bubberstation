@@ -4,8 +4,12 @@
 	desc = "A large pulsating plant..."
 	icon = 'icons/mob/spacevines.dmi'
 	icon_state = "bud0"
+<<<<<<< HEAD
 	mob_type = /mob/living/basic/venus_human_trap
 	density = FALSE
+=======
+	mob_type = /mob/living/simple_animal/hostile/venus_human_trap
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 	prompt_name = "venus human trap"
 	you_are_text = "You are a venus human trap."
 	flavour_text = "You are a venus human trap!  Protect the kudzu at all costs, and feast on those who oppose you!"

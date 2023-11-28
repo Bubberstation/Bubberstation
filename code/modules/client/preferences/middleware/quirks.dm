@@ -49,7 +49,11 @@
 	return list(
 		"max_positive_quirks" = MAX_QUIRKS,
 		"quirk_info" = quirk_info,
+<<<<<<< HEAD
 		"quirk_blacklist" = GLOB.quirk_string_blacklist,
+=======
+		"quirk_blacklist" = SSquirks.quirk_blacklist,
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 		"quirk_species_whitelist" = SSquirks.quirk_species_whitelist, //BUBBER EDIT - Species quirks
 	)
 

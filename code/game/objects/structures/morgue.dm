@@ -240,11 +240,17 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 		icon_state = "morgue3"
 		return ..()
 
+<<<<<<< HEAD
 	if(!(obj_flags & EMAGGED))
 		for(var/mob/living/occupant as anything in compiled)
 			var/mob/living/mob_occupant = get_mob_or_brainmob(occupant)
 			if(!mob_occupant.client || HAS_TRAIT(mob_occupant, TRAIT_SUICIDED) || HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
 				continue
+=======
+	for(var/mob/living/M in compiled)
+		var/mob/living/mob_occupant = get_mob_or_brainmob(M)
+		if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)) && !(HAS_TRAIT(mob_occupant, TRAIT_DNR)))
+>>>>>>> 6d93d20462a27f3351796f4b0ec8cafb715b2847
 			icon_state = "morgue4" // Revivable
 			if(mob_occupant.stat == DEAD && beeper && COOLDOWN_FINISHED(src, next_beep))
 				playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
