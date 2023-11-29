@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/knife/shiv = 1,
 		/obj/item/pickaxe/improvised = 1,
 		/obj/item/rcl/ghetto = 1,
-		/obj/item/screwdriver/makeshift = 1
+		/obj/item/screwdriver/makeshift = 1,
 		/obj/item/wrench/makeshift = 1,
 		/obj/item/wirecutters/makeshift = 1,
 		/obj/item/weldingtool/makeshift = 1,
