@@ -19,8 +19,19 @@
 		if(!prefs || !prefs.read_preference(/datum/preference/toggle/ready_job))
 			continue
 
-		var/display = prefs.read_preference(/datum/preference/name/real_name)
+		var/display = null
 		var/datum/job/J = prefs.get_highest_priority_job()
+		switch(J.title)
+			if(JOB_AI)
+				display = prefs.read_preference(/datum/preference/name/ai)
+			if(JOB_CLOWN)
+				display = prefs.read_preference(/datum/preference/name/clown)
+			if(JOB_CYBORG)
+				display = prefs.read_preference(/datum/preference/name/cyborg)
+			if(JOB_MIME)
+				display = prefs.read_preference(/datum/preference/name/mime)
+			else
+				display = prefs.read_preference(/datum/preference/name/real_name)
 
 		if(!J)
 			continue
