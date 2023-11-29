@@ -21,6 +21,10 @@
 
 		var/display = null
 		var/datum/job/J = prefs.get_highest_priority_job()
+
+		if(!J)
+			continue
+
 		switch(J.title)
 			if(JOB_AI)
 				display = prefs.read_preference(/datum/preference/name/ai)
@@ -33,12 +37,12 @@
 			else
 				display = prefs.read_preference(/datum/preference/name/real_name)
 
-		if(!J)
-			continue
-
 		var/title = J.title
-		if(player.ready == PLAYER_READY_TO_PLAY && J.title != JOB_ASSISTANT)
-			player_ready_data += "* [display] as [title]"
+		if(player.ready == PLAYER_READY_TO_PLAY && J.title != JOB_ASSISTANT||JOB_PRISONER)
+			if(J.departments_bitflags == DEPARTMENT_BITFLAG_COMMAND||DEPARTMENT_BITFLAG_SILICON)
+				player_ready_data.Insert(1, "[display] as [title]")
+			else
+				player_ready_data += "* [display] as [title]"
 
 	if(length(player_ready_data))
 		player_ready_data.Insert(1, "------------------")
