@@ -16,7 +16,7 @@
 	for(var/ckey in players)
 		var/mob/dead/new_player/player = players[ckey]
 		var/datum/preferences/prefs = player.client?.prefs
-		if(!prefs || !prefs.read_preference(/datum/preference/toggle/ready_job)
+		if(!prefs || !prefs.read_preference(/datum/preference/toggle/ready_job))
 			continue
 
 		var/display = prefs.read_preference(/datum/preference/name/real_name)
