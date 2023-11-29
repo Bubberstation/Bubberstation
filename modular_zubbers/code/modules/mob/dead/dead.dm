@@ -5,7 +5,6 @@
 
 /mob/dead/proc/get_job_estimation()
 	var/list/player_ready_data = list()
-	player_ready_data.Cut()
 	var/list/players = list()
 
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
