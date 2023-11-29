@@ -17,12 +17,12 @@
 	ckeywhitelist = list("especiallystrange") // Specific to me
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
 
-/datum/loadout_item/under/idmasnowfatigue
+/datum/loadout_item/under/miscellaneous/idmasnowfatigue
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/idma_fatigue
 	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
 
-/datum/loadout_item/under/idmafatigue
+/datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
 	item_path = /obj/item/clothing/under/idma_fatigue/alt
 	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
