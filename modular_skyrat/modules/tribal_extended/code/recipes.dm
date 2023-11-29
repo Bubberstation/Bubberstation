@@ -5,8 +5,8 @@
 	time = 5 SECONDS
 	category = CAT_MISC
 
-/datum/crafting_recipe/wood_bow
-	name = "Wooden Bow"
+/*/datum/crafting_recipe/wood_bow BUBBER EDIT: TG BUFFED THE ARROW UPSTREAM ON https://github.com/tgstation/tgstation/pull/74811 AND THIS IS A SKYRAT THING
+	name = "Wooden Bow" // THIS CAUSE WAY TOO MUCH DAMAGE AT THE MOMENT SO WE ARE NOT MAKING IT EASILY OBTAINABLE, HOWEVER, ALL OTHER ASHWALKER RECIPE INHERE WILL STILL BE AVAILABLE
 	result = /obj/item/gun/ballistic/bow/longbow
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 25,
@@ -15,7 +15,7 @@
 	time = 30 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/pipebow
+/datum/crafting_recipe/pipebow //REFER TO BLACKSMITHING FOR NOW
 	name = "Pipe Bow"
 	result = /obj/item/gun/ballistic/bow/tribalbow/pipe
 	reqs = list(
@@ -36,7 +36,7 @@
 	)
 	time = 1.5 SECONDS
 	category = CAT_WEAPON_AMMO
-
+*/
 /datum/crafting_recipe/bone_arrow
 	name = "Bone Arrow"
 	result = /obj/item/ammo_casing/arrow/bone
