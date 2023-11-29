@@ -10,10 +10,6 @@
 
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 		if(player.ready == PLAYER_READY_TO_PLAY)
-			++SSticker.totalPlayersReady
-			if(player.client?.holder)
-				++SSticker.total_admins_ready
-
 			players[player.key] = player
 
 		sortTim(players, GLOBAL_PROC_REF(cmp_text_asc))
@@ -31,10 +27,9 @@
 		var/datum/job/J = prefs.get_highest_priority_job()
 
 		if(!J)
-			player_ready_data += "* [display] forgot to pick a job!"
 			continue
 
-		var/title = prefs.alt_job_titles?[J.title] || J.title
+		var/title = J.title
 
 		if(player.ready == PLAYER_READY_TO_PLAY)
 			player_ready_data += "* [display] as [title]"
