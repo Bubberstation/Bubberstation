@@ -30,9 +30,12 @@
 			continue
 
 		var/title = J.title
-
-		if(player.ready == PLAYER_READY_TO_PLAY)
-			player_ready_data += "* [display] as [title]"
+		var/list/priority_departments = list(/datum/job_department/command, /datum/job_department/silicon)
+		if(player.ready == PLAYER_READY_TO_PLAY && J.title != JOB_ASSISTANT)
+			if(is_type_in_list(/datum/job_department, priority_departments))
+				player_ready_data += "* [display] as [title]"
+			else
+				player_ready_data += "* [display] as [title]"
 
 	if(length(player_ready_data))
 		player_ready_data.Insert(1, "------------------")
