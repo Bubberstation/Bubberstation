@@ -30,7 +30,6 @@
 			continue
 
 		var/title = J.title
-		var/list/priority_departments = list(/datum/job_department/command, /datum/job_department/silicon)
 		if(player.ready == PLAYER_READY_TO_PLAY && J.title != JOB_ASSISTANT)
 			player_ready_data += "* [display] as [title]"
 
