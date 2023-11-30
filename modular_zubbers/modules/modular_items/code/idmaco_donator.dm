@@ -1,4 +1,4 @@
-//@EspeciallyStrange & @Mishanook
+//@EspeciallyStrange
 // Sprites are donated from either project kepler or hand done by me for this occasion, They can be used for anything else
 //Will also be available for usage in Foundation 19
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
@@ -8,8 +8,8 @@
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
-	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+	ckeywhitelist = list("especiallystrange",  "snaffle15")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 
 /datum/loadout_item/suit/idmardjacket
 	name = "silicon administrator vest"
@@ -20,30 +20,30 @@
 /datum/loadout_item/under/miscellaneous/idmasnowfatigue
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/idma_fatigue
-	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
+	ckeywhitelist = list("especiallystrange", "snaffle15")
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
 	item_path = /obj/item/clothing/under/idma_fatigue/alt
-	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
+	ckeywhitelist = list("especiallystrange",  "snaffle15")
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA beret"
 	item_path = /obj/item/clothing/head/idma_beret
-	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
+	ckeywhitelist = list("especiallystrange",  "snaffle15")
 
 /datum/loadout_item/head/idmahelmet
 	name = "IDMA service helmet"
 	item_path = /obj/item/clothing/head/helmet/idma_helmet
-	ckeywhitelist = list("especiallystrange", "mishanok", "snaffle15")
-	restricted_roles = list(JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+	ckeywhitelist = list("especiallystrange",  "snaffle15")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 
 /obj/item/clothing/head/helmet/idma_helmet
 	name = "ironmoon service helmet."
 	desc = "A helmet worn by the romulus expeditionary force."
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-	icon_state = "romulusmarine"
+	icon_state = "romulushelmet"
 
 /obj/item/clothing/head/idma_beret
 	name = "ironmoon service beret."
@@ -73,6 +73,7 @@
 	icon_state = "verajacket"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	armor_type = /datum/armor/skyrat_rd // It's a really advanced labcoat at the end of the day
 	allowed = list(
 		/obj/item/biopsy_tool,
 		/obj/item/dnainjector,
@@ -104,7 +105,6 @@
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/tank/internals/plasmaman,
 	)
-armor_type = /datum/armor/skyrat_rd // It's a really advanced labcoat at the end of the day
 
 //This is meant to be a functional wintercoat
 /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
