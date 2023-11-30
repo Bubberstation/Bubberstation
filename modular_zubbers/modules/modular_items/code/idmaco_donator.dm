@@ -73,6 +73,7 @@
 	icon_state = "verajacket"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	armor_type = /datum/armor/skyrat_rd // It's a really advanced labcoat at the end of the day
 	allowed = list(
 		/obj/item/biopsy_tool,
 		/obj/item/dnainjector,
@@ -104,7 +105,6 @@
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/tank/internals/plasmaman,
 	)
-armor_type = /datum/armor/skyrat_rd // It's a really advanced labcoat at the end of the day
 
 //This is meant to be a functional wintercoat
 /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
