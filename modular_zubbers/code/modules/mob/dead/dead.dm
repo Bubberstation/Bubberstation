@@ -39,7 +39,7 @@
 
 		var/title = J.title
 		if(player.ready == PLAYER_READY_TO_PLAY && J.title != JOB_ASSISTANT||JOB_PRISONER)
-			if(J.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SILICON)
+			if(J.departments_bitflags & (DEPARTMENT_BITFLAG_COMMAND | DEPARTMENT_BITFLAG_SILICON))
 				player_ready_data.Insert(1, "[display] as [title]")
 			else
 				player_ready_data += "* [display] as [title]"
