@@ -43,7 +43,7 @@
 	desc = "A helmet worn by the romulus expeditionary force."
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-	icon_state = "romulusmarine"
+	icon_state = "romulushelmet"
 
 /obj/item/clothing/head/idma_beret
 	name = "ironmoon service beret."
