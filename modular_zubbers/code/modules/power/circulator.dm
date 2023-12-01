@@ -1,18 +1,5 @@
-/obj/machinery/atmospherics/components/binary/circulator/wrench_act_secondary(mob/living/user, obj/item/tool)
-	return default_change_direction_wrench(user, tool)
-
-/obj/machinery/atmospherics/components/binary/circulator/default_change_direction_wrench(mob/user, obj/item/I)
-	if(!..())
-		return FALSE
-	set_init_directions()
-	update_appearance()
-	return TRUE
-
-
 //node2, air2, network2 correspond to input
 //node1, air1, network1 correspond to output
-#define CIRCULATOR_HOT 0
-#define CIRCULATOR_COLD 1
 
 /obj/machinery/atmospherics/components/binary/circulator
 	name = "circulator"
@@ -239,6 +226,16 @@
 	I.play_tool_sound(src)
 	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
 	update_icon_nopipes()
+	return TRUE
+
+/obj/machinery/atmospherics/components/binary/circulator/wrench_act_secondary(mob/living/user, obj/item/tool)
+	return default_change_direction_wrench(user, tool)
+
+/obj/machinery/atmospherics/components/binary/circulator/default_change_direction_wrench(mob/user, obj/item/I)
+	if(!..())
+		return FALSE
+	set_init_directions()
+	update_appearance()
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
