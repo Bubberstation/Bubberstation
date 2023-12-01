@@ -42,7 +42,7 @@
 
 /datum/area_spawn/lustwish_prison
 	target_areas = list(/area/station/security/prison, /area/station/security/prison/shower)
-	desired_atom = /obj/machinery/vending/dorms
+	desired_atom = /obj/machinery/vending/dorms/prison //BUBBER EDIT: MAKES A PRISON LUSTWISH
 	mode = AREA_SPAWN_MODE_HUG_WALL
 
 /datum/area_spawn/gbp_machine

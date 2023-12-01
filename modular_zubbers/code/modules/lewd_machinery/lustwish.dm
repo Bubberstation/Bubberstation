@@ -1,20 +1,6 @@
-/obj/machinery/vending/dorms
-	name = "LustWish"
-	desc = "A vending machine with various toys. Not for the faint of heart."
-	icon_state = "lustwish"
-	base_icon_state = "lustwish"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/lustwish.dmi'
-	light_mask = "lustwish-light-mask"
-	age_restrictions = TRUE
-	///Has the discount card been used on the vending machine?
-	var/card_used = FALSE
-	product_ads = "Try me!;Kinky!;Lewd and fun!;Hey you, yeah you... wanna take a look at my collection?;Come on, take a look!;Remember, always adhere to Nanotrasen corporate policy!;Don't forget to use protection!"
-	vend_reply = "Enjoy!;We're glad to satisfy your desires!"
-
-	//STUFF SOLD HERE//
+/obj/machinery/vending/dorms/prison
 	products = list(//Sex toys
 					/obj/item/clothing/sextoy/eggvib/signalvib = 8,
-					/obj/item/assembly/signaler = 8,
 					/obj/item/clothing/sextoy/eggvib = 8,
 					/obj/item/clothing/sextoy/buttplug = 6,
 					/obj/item/clothing/sextoy/nipple_clamps = 4,
@@ -110,71 +96,3 @@
 					/obj/item/storage/box/xstand_kit = 4,
 					/obj/item/storage/box/milking_kit = 4,
 					/obj/item/storage/box/shibari_stand = 4)
-
-	premium = list(
-		/obj/item/clothing/neck/human_petcollar/locked/holo = 3)
-
-	contraband = list(
-					/obj/item/electropack/shockcollar = 4,
-					/obj/item/clothing/neck/kink_collar/locked = 4,
-					/obj/item/clothing/neck/mind_collar = 2,
-					/obj/item/clothing/under/costume/jabroni = 4,
-					/obj/item/clothing/neck/human_petcollar/locked = 4,
-					/obj/item/clothing/suit/straight_jacket/kinky_sleepbag = 2, //my favorite thing, spent 1 month on it. Don't remove please.
-					/obj/item/disk/nifsoft_uploader/dorms/contract = 5,
-					/obj/item/reagent_containers/pill/hexacrocin = 10,
-					/obj/item/reagent_containers/pill/pentacamphor = 5,
-					/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
-					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2)
-
-	refill_canister = /obj/item/vending_refill/lustwish
-	payment_department = ACCOUNT_SRV
-	default_price = 30
-	extra_price = 250
-
-//Changes the settings on the vendor, if the user uses the discount card.
-/obj/machinery/vending/dorms/attackby(obj/item/used_item, mob/living/user, params)
-	if(!istype(used_item, /obj/item/lustwish_discount))
-		return ..()
-
-	user.visible_message(span_boldnotice("Something changes in [src] with a loud clunk."))
-	card_used = !card_used
-
-	if(card_used)
-		default_price = 0
-		extra_price = 0
-
-		return
-
-	default_price = initial(default_price)
-	extra_price = initial(extra_price)
-
-///Performs checks to see if the user can change the color on the vending machine.
-/obj/machinery/vending/dorms/proc/check_menu(mob/living/user, obj/item/multitool)
-	if(!istype(user))
-		return FALSE
-	if(user.incapacitated())
-		return FALSE
-	if(!multitool || !user.is_holding(multitool))
-		return FALSE
-
-	return TRUE
-
-/obj/machinery/vending/dorms/Initialize(mapload)
-	. = ..()
-	update_icon_state()
-	update_icon()
-
-/obj/machinery/vending/dorms/update_icon_state()
-	..()
-	if(machine_stat & BROKEN)
-		icon_state = "[base_icon_state]-broken"
-		return
-
-	icon_state = "[base_icon_state][powered() ? null : "-off"]"
-
-//Refill item
-/obj/item/vending_refill/lustwish
-	machine_name = "LustWish"
-	icon_state = "lustwish_refill"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
