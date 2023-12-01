@@ -1,6 +1,5 @@
 #define FAILURE 0
 #define SUCCESS 1
-#define NO_FUEL 2
 #define ALREADY_LIT 3
 
 
@@ -10,7 +9,6 @@
 	light_range = 3
 	light_on = FALSE
 	var/can_be_extinguished = TRUE
-	var/fuel = 0
 
 /obj/item/food/cake/birthday/proc/update_brightness()
 	update_appearance(UPDATE_ICON)
@@ -38,8 +36,7 @@
 			balloon_alert(user, "already lit!")
 		return ALREADY_LIT
 
-	if(fuel != INFINITY)
-		START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSobj, src)
 	light_on = TRUE
 	update_brightness()
 	return SUCCESS
