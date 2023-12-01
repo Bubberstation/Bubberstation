@@ -6,4 +6,4 @@
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 
 	dimension_x = 45
-	dimension_y = 32
+	dimension_y = 34
