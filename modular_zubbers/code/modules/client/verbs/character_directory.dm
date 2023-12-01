@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		tag = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
 		erptag = user.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
 		character_ad = user.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
+		name = M.real_name ? M.name : M.real_name
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
