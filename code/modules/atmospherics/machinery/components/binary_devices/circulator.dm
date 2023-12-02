@@ -1,5 +1,3 @@
-#define CIRCULATOR_HOT 0
-#define CIRCULATOR_COLD 1
 //node2, air2, network2 correspond to input
 //node1, air1, network1 correspond to output
 
