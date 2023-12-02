@@ -61,11 +61,11 @@
 		return 'modular_skyrat/modules/emotes/sound/emotes/female/female_sneeze.ogg'
 	return
 
-/datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
+/*/datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
 	if(intentional && (!HAS_TRAIT(user, TRAIT_FREERUNNING) && !HAS_TRAIT(user, TRAIT_STYLISH)) && !isobserver(user))
 		user.balloon_alert(user, "not nimble enough!")
 		return FALSE
-	return ..()
+	return ..()*/ //BUBBER EDIT: VIVA LA FLIP EMOTE
 
 /datum/emote/living/peep
 	key = "peep"
