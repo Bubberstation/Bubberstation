@@ -1,5 +1,5 @@
 /mob/living/silicon/robot/model/centcom
-	icon = 'modular_zubbers/icons/mob/silicon/widerobot_cc.dmi'
+	icon = CYBORG_ICON_CENTCOM_WIDE_BUBBER
 	icon_state = "valecc"
 	faction = list(ROLE_DEATHSQUAD)
 	req_access = list(ACCESS_CENT_GENERAL)
