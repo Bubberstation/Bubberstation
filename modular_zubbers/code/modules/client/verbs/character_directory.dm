@@ -51,9 +51,9 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 	var/list/data = .
 
 	var/list/directory_mobs = list()
-	for(var/client/C in GLOB.clients)
+	for(var/client/player_client in GLOB.clients)
 		// Allow opt-out and filter players not in the game
-		// if(!C.prefs.show_in_directory)
+		// if(!player_client.prefs.show_in_directory)
 		// 	continue
 
 		// These are the three vars we're trying to find
@@ -65,25 +65,27 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/tag
 		var/erptag
 		var/character_ad
-		var/ref = REF(C?.mob)
-		var/mob/M = C?.mob
-		if(!M || M.name == "Unknown")
+		var/ref = REF(player_client?.mob)
+		var/mob/mob = player_client?.mob
+		if(!mob)
 			continue
-		tag = M.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
-		erptag = M.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
-		character_ad = M.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
-		name = M.real_name ? M.name : M.real_name
+		tag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
+		erptag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
+		character_ad = mob.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
+		name = mob.real_name ? mob.name : mob.real_name
 
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			species = "[H.dna.species.name ? M.client.prefs.read_preference(/datum/preference/text/custom_species) : H.dna.species]"
-			if(!M.client.prefs.read_preference(/datum/preference/text/custom_species))
-				species = "[H.dna.species.name]"
-		else if(isanimal(M))
-			var/mob/living/simple_animal/SA = M
-			species = initial(SA.name)
-		ooc_notes = M.client.prefs.read_preference(/datum/preference/text/ooc_notes)
-		flavor_text = M.client.prefs.read_preference(/datum/preference/text/flavor_text)
+		if(ishuman(mob))
+			var/mob/living/carbon/human/human = mob
+			if((human.wear_mask && (human.wear_mask.flags_inv & HIDEFACE)) || (human.head && (human.head.flags_inv & HIDEFACE)) || (HAS_TRAIT(human, TRAIT_UNKNOWN)))
+				continue
+			species = "[human.dna.species.name ? mob.client.prefs.read_preference(/datum/preference/text/custom_species) : human.dna.species]"
+			if(!human.client.prefs.read_preference(/datum/preference/text/custom_species))
+				species = "[human.dna.species.name]"
+		if(issilicon(mob))
+			var/mob/living/silicon/silicon = mob
+			species = silicon.client.prefs.read_preference(/datum/preference/choiced/brain_type)
+		ooc_notes = mob.client.prefs.read_preference(/datum/preference/text/ooc_notes)
+		flavor_text = mob.client.prefs.read_preference(/datum/preference/text/flavor_text)
 
 		directory_mobs.Add(list(list(
 			"name" = name,
