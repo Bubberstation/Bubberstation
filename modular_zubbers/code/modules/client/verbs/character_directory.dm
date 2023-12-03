@@ -67,26 +67,23 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/character_ad
 		var/ref = REF(C?.mob)
 		var/mob/M = C?.mob
-		tag = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
-		erptag = user.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
-		character_ad = user.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
+		if(!M || M.name == "Unknown")
+			continue
+		tag = M.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
+		erptag = M.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
+		character_ad = M.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
 		name = M.real_name ? M.name : M.real_name
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			species = "[H.dna.species.name ? user.client.prefs.read_preference(/datum/preference/text/custom_species) : H.dna.species]"
-			if(!user.client.prefs.read_preference(/datum/preference/text/custom_species))
+			species = "[H.dna.species.name ? M.client.prefs.read_preference(/datum/preference/text/custom_species) : H.dna.species]"
+			if(!M.client.prefs.read_preference(/datum/preference/text/custom_species))
 				species = "[H.dna.species.name]"
 		else if(isanimal(M))
 			var/mob/living/simple_animal/SA = M
 			species = initial(SA.name)
-		ooc_notes = user.client.prefs.read_preference(/datum/preference/text/ooc_notes)
-		flavor_text = user.client.prefs.read_preference(/datum/preference/text/flavor_text)
-
-		// It's okay if we fail to find OOC notes and flavor text
-		// But if we can't find the name, they must be using a non-compatible mob type currently.
-		if(!name)
-			continue
+		ooc_notes = M.client.prefs.read_preference(/datum/preference/text/ooc_notes)
+		flavor_text = M.client.prefs.read_preference(/datum/preference/text/flavor_text)
 
 		directory_mobs.Add(list(list(
 			"name" = name,
