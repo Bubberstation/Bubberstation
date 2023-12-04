@@ -330,19 +330,16 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/mod/core/standard = 5,
 		/obj/item/mod/core/plasma = 10,
 		/obj/item/mod/construction/broken_core = 75,
-
 		/obj/item/mod/construction/boots = 30,
 		/obj/item/mod/construction/chestplate = 30,
 		/obj/item/mod/construction/gauntlets = 30,
 		/obj/item/mod/construction/helmet = 30,
 		/obj/item/mod/construction/shell = 30,
-
 		/obj/item/mod/construction/plating = 5,
 		/obj/item/mod/construction/plating/atmospheric = 3,
 		/obj/item/mod/construction/plating/engineering = 3,
 		/obj/item/mod/construction/plating/medical = 3,
 		/obj/item/mod/construction/plating/security = 1,
-
 		/obj/item/mod/module/ash_accretion = 5,
 		/obj/item/mod/module/atrocinator = 5,
 		/obj/item/mod/module/balloon = 100,
@@ -453,7 +450,9 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/skillchip/sabrage = 100,
 		/obj/item/skillchip/useless_adapter = 200,
 		/obj/item/skillchip/wine_taster = 100,
-		/obj/item/skillchip/xenoarch_magnifier = 25
+		/obj/item/skillchip/xenoarch_magnifier = 25,
+		/obj/item/skillchip/master_angler = 25,
+		/obj/item/skillchip/brainwashing = 100 //Doesn't give brainwashing, it allows you to wash brains in washing machines
 	) = 50,
 	list(
 		/obj/item/folder/ancient_paperwork = 1,
@@ -472,5 +471,34 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/paper/pamphlet/ruin/spacehotel = 10,
 		/obj/item/paper/pamphlet/violent_video_games = 50,
 		/obj/item/paper/paperslip/fortune = 100
-	) = 100
+	) = 100,
+	list(
+		/obj/item/pen/screwdriver = 10,
+		/obj/item/pen/survival = 10,
+		/obj/item/pen/charcoal = 20,
+		/obj/item/pen/invisible = 5,
+		/obj/item/pen/red/security = 10,
+		/obj/item/pen/red = 20,
+		/obj/item/pen/blue = 20
+	) = 20,
+	/obj/item/petri_dish = 50,
+	/obj/item/gbp_punchcard/starting = 5,
+	list(
+		/obj/item/fishing_line/reinforced = 10,
+		/obj/item/fishing_line/cloaked = 10,
+		/obj/item/fishing_line/bouncy = 10,
+		/obj/item/fishing_line/sinew = 10,
+		/obj/item/fishing_hook/magnet = 10,
+		/obj/item/fishing_hook/shiny = 10,
+		/obj/item/fishing_hook/weighted = 10,
+		/obj/item/fishing_hook/rescue = 1,
+		/obj/item/fishing_hook/bone = 10,
+		/obj/item/fishing_hook/stabilized = 1,
+		/obj/item/fishing_hook/jaws = 1,
+		/obj/item/fishing_rod/bone = 10,
+		/obj/item/fishing_rod/telescopic = 1,
+		/obj/item/fishing_rod/telescopic/master = 1,
+		/obj/item/fishing_rod/tech = 1,
+		/obj/item/bait_can = 20
+	) = 10
 ))
