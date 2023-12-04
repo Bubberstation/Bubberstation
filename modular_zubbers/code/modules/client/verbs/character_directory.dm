@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 	var/list/data = .
 
 	var/list/directory_mobs = list()
-	for(var/client/player_client in GLOB.clients)
+	for(var/mob/mob in GLOB.alive_mob_list)
 		// Allow opt-out and filter players not in the game
 		// if(!player_client.prefs.show_in_directory)
 		// 	continue
@@ -65,8 +65,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/tag
 		var/erptag
 		var/character_ad
-		var/ref = REF(player_client?.mob)
-		var/mob/mob = player_client?.mob
+		var/ref = REF(mob)
 		if(!mob)
 			continue
 
