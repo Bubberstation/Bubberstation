@@ -11,7 +11,7 @@
 
 /obj/machinery/power/supermatter_crystal/proc/christmasify_attackby(datum/source, obj/item/item, mob/living/user)
 	SIGNAL_HANDLER
-	if(check_holidays(FESTIVE_SEASON) && istype(item, /obj/item/clothing/head/costume/skyrat/christmas))
+	if(istype(item, /obj/item/clothing/head/costume/skyrat/christmas))
 		balloon_alert(user, "Placed hat.")
 		QDEL_NULL(item)
 		add_overlay(image('modular_zubbers/modules/seasons/christmas/icons/supermatter.dmi', "sm-overlay-christmas-hat"))
