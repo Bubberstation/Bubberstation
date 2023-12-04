@@ -57,10 +57,10 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 
 	if (user?.client?.prefs)
 		data["personalVisibility"] = READ_PREFS(user, toggle/show_in_directory)
-		data["personalTag"] = READ_PREFS(user, choiced/erp_status_v)
 		data["personalErpTag"] = READ_PREFS(user, choiced/erp_status)
+		data["personalVoreTag"] = READ_PREFS(user, choiced/erp_status_v)
 		data["personalHypnoTag"] = READ_PREFS(user, choiced/erp_status_hypno)
-		data["personalNcTag"] = READ_PREFS(user, choiced/erp_status_nc)
+		data["personalNonconTag"] = READ_PREFS(user, choiced/erp_status_nc)
 		data["prefsOnly"] = TRUE
 
 	data["canOrbit"] = isobserver(user)

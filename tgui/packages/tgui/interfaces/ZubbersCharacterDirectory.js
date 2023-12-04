@@ -82,7 +82,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
                     fluid
                     content={personalNcTag}
                     onClick={() =>
-                      act('setNcTag', { overwrite_prefs: overwritePrefs })
+                      act('setNonconTag', { overwrite_prefs: overwritePrefs })
                     }
                   />
                 </LabeledList.Item>
@@ -121,14 +121,10 @@ const ViewCharacter = (props, context) => {
         </Section>
       </Section>
       <Section level={2} title="Hypno">
-        <Box p={1} backgroundColor={erpTagColor[overlay.hypno]}>
-          {overlay.hypnotag}
-        </Box>
+        <Box>{overlay.hypno}</Box>
       </Section>
       <Section level={2} title="Noncon">
-        <Box p={1} backgroundColor={erpTagColor[overlay.noncon]}>
-          {overlay.nctag}
-        </Box>
+        <Box>{overlay.noncon}</Box>
       </Section>
       <Section level={2} title="Character Ad">
         <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
