@@ -22,6 +22,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
     personalTag,
     personalErpTag,
     personalHypnoTag,
+    personalNcTag,
     prefsOnly,
   } = data;
 
@@ -49,7 +50,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
                     }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Vore Tag">
+                <LabeledList.Item label="Vore">
                   <Button
                     fluid
                     content={personalTag}
@@ -58,7 +59,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
                     }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="ERP Tag">
+                <LabeledList.Item label="ERP">
                   <Button
                     fluid
                     content={personalErpTag}
@@ -67,12 +68,21 @@ export const ZubbersCharacterDirectory = (props, context) => {
                     }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Hypno Tag">
+                <LabeledList.Item label="Hypno">
                   <Button
                     fluid
                     content={personalHypnoTag}
                     onClick={() =>
                       act('setHypnoTag', { overwrite_prefs: overwritePrefs })
+                    }
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Noncon">
+                  <Button
+                    fluid
+                    content={personalNcTag}
+                    onClick={() =>
+                      act('setNcTag', { overwrite_prefs: overwritePrefs })
                     }
                   />
                 </LabeledList.Item>
@@ -102,17 +112,22 @@ const ViewCharacter = (props, context) => {
       <Section level={2} title="Species">
         <Box>{overlay.species}</Box>
       </Section>
-      <Section level={2} title="Vore Tag">
+      <Section level={2} title="Vore">
         <Box>{overlay.tag}</Box>
       </Section>
-      <Section level={2} title="ERP Tag">
+      <Section level={2} title="ERP">
         <Box p={1} backgroundColor={erpTagColor[overlay.erptag]}>
           {overlay.erptag}
         </Box>
       </Section>
-      <Section level={2} title="Hypno Tag">
+      <Section level={2} title="Hypno">
         <Box p={1} backgroundColor={erpTagColor[overlay.hypnotag]}>
           {overlay.hypnotag}
+        </Box>
+      </Section>
+      <Section level={2} title="Noncon">
+        <Box p={1} backgroundColor={erpTagColor[overlay.nctag]}>
+          {overlay.nctag}
         </Box>
       </Section>
       <Section level={2} title="Character Ad">
@@ -157,9 +172,10 @@ const CharacterDirectoryList = (props, context) => {
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
           <SortButton id="species">Species</SortButton>
-          <SortButton id="tag">Vore Tag</SortButton>
-          <SortButton id="erptag">ERP Tag</SortButton>
-          <SortButton id="hypnotag">Hypno Tag</SortButton>
+          <SortButton id="tag">Vore</SortButton>
+          <SortButton id="erptag">ERP</SortButton>
+          <SortButton id="hypnotag">Hypno</SortButton>
+          <SortButton id="nctag">Noncon</SortButton>
           <Table.Cell collapsing textAlign="right">
             Advertisement
           </Table.Cell>
@@ -188,6 +204,7 @@ const CharacterDirectoryList = (props, context) => {
               <Table.Cell>{character.tag}</Table.Cell>
               <Table.Cell>{character.erptag}</Table.Cell>
               <Table.Cell>{character.hypnotag}</Table.Cell>
+              <Table.Cell>{character.nctag}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
                   onClick={() => setOverlay(character)}
