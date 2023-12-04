@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 	var/list/data = .
 
 	var/list/directory_mobs = list()
-	for(var/mob/mob in GLOB.alive_mob_list)
+	for(var/mob/mob in GLOB.alive_player_list)
 		// Allow opt-out and filter players not in the game
 		// if(!player_client.prefs.show_in_directory)
 		// 	continue
