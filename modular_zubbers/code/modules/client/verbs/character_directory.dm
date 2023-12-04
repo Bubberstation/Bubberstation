@@ -1,6 +1,7 @@
 GLOBAL_DATUM(character_directory, /datum/character_directory)
 GLOBAL_LIST_INIT(char_directory_tags, list("Pred", "Pred-Pref", "Prey", "Prey-Pref", "Switch", "Non-Vore", "Unset"))
 GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP", "Unset"))
+#define READ_PREFS(target, pref) (target.client.prefs.read_preference(/datum/preference/pref) || "Unset")
 
 /datum/preference/toggle/show_in_directory
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -55,11 +56,11 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 	var/list/data = .
 
 	if (user?.client?.prefs)
-		data["personalVisibility"] = user.client.prefs.read_preference(/datum/preference/toggle/show_in_directory)
-		data["personalTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
-		data["personalErpTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
-		data["personalHypnoTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_hypno) || "Unset"
-		data["personalNcTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_nc) || "Unset"
+		data["personalVisibility"] = READ_PREFS(user, toggle/show_in_directory)
+		data["personalTag"] = READ_PREFS(user, choiced/erp_status_v)
+		data["personalErpTag"] = READ_PREFS(user, choiced/erp_status)
+		data["personalHypnoTag"] = READ_PREFS(user, choiced/erp_status_hypno)
+		data["personalNcTag"] = READ_PREFS(user, choiced/erp_status_nc)
 		data["prefsOnly"] = TRUE
 
 	data["canOrbit"] = isobserver(user)
@@ -71,59 +72,68 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 	var/list/data = .
 
 	var/list/directory_mobs = list()
+	//We want the directory to show only alive players
 	for(var/mob/mob in GLOB.alive_player_list)
-		// Allow opt-out and filter players not in the game
-		// if(!player_client.prefs.show_in_directory)
-		// 	continue
-
-		// These are the three vars we're trying to find
-		// The approach differs based on the mob the client is controlling
+		// These are the variables we're trying to display in the directory
 		var/name = null
 		var/species = null
 		var/ooc_notes = null
 		var/flavor_text = null
-		var/tag
-		var/erptag
-		var/hypnotag
-		var/nctag
+		var/vore
+		var/erp
+		var/hypno
+		var/noncon
 		var/character_ad
 		var/exploitable
 		var/ref = REF(mob)
+		//Just in case something we get is not a mob
 		if(!mob)
 			continue
 
+		//Different approach for humans and silicons
 		if(ishuman(mob))
 			var/mob/living/carbon/human/human = mob
-			if((human.wear_mask && (human.wear_mask.flags_inv & HIDEFACE)) || (human.head && (human.head.flags_inv & HIDEFACE)) || (HAS_TRAIT(human, TRAIT_UNKNOWN)))
+			//If someone is obscured without flavor text visible, we don't want them on the Directory.
+			if((human.wear_mask && (human.wear_mask.flags_inv & HIDEFACE) && READ_PREFS(human, toggle/obscurity_examine)) || (human.head && (human.head.flags_inv & HIDEFACE) && READ_PREFS(human, toggle/obscurity_examine)) || (HAS_TRAIT(human, TRAIT_UNKNOWN)))
 				continue
-			species = "[human.dna.species.name ? mob.client.prefs.read_preference(/datum/preference/text/custom_species) : human.dna.species]"
-			if(!human.client.prefs.read_preference(/datum/preference/text/custom_species))
+			//Display custom species, otherwise show base species instead
+			species = (READ_PREFS(human, text/custom_species))
+			if(species == "Unset")
 				species = "[human.dna.species.name]"
+			//Load standard flavor text preference
+			flavor_text = READ_PREFS(human, text/flavor_text)
 		else if(issilicon(mob))
 			var/mob/living/silicon/silicon = mob
-			species = silicon.client.prefs.read_preference(/datum/preference/choiced/brain_type)
-		else
-			continue
-		tag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
-		erptag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
-		hypnotag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_hypno) || "Unset"
-		nctag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_nc) || "Unset"
-		character_ad = mob.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
-		ooc_notes = mob.client.prefs.read_preference(/datum/preference/text/ooc_notes) || "Unset"
-		flavor_text = mob.client.prefs.read_preference(/datum/preference/text/flavor_text) || "Unset"
-		exploitable = mob.client.prefs.read_preference(/datum/preference/text/exploitable)
-		if(exploitable == EXPLOITABLE_DEFAULT_TEXT)
-			exploitable = "Unset"
+			//If the target is a silicon, we want it to show its brain as its species
+			species = READ_PREFS(silicon, choiced/brain_type)
+			//Load silicon flavor text in place of normal flavor text
+			flavor_text = READ_PREFS(silicon, text/silicon_flavor_text)
+		//Don't show if they are not a human or a silicon
+		else continue
+		//List of all the shown ERP preferences in the Directory. If there is none, return "Unset"
+		erp = READ_PREFS(mob, choiced/erp_status)
+		vore = READ_PREFS(mob, choiced/erp_status_v)
+		hypno = READ_PREFS(mob, choiced/erp_status_hypno)
+		noncon = READ_PREFS(mob, choiced/erp_status_nc)
+		character_ad = READ_PREFS(mob, text/character_ad)
+		ooc_notes = READ_PREFS(mob, text/ooc_notes)
+		//If the user is an antagonist or Observer, we want them to be able to see exploitables in the Directory.
+		if(user.mind.has_antag_datum(/datum/antagonist) || isobserver(user))
+			if(exploitable == EXPLOITABLE_DEFAULT_TEXT)
+				exploitable = "Unset"
+			else exploitable = READ_PREFS(mob, text/exploitable)
+		else exploitable = "Obscured"
+		//And finally, we want to get the mob's name, taking into account disguised names.
 		name = mob.real_name ? mob.name : mob.real_name
 
 		directory_mobs.Add(list(list(
 			"name" = name,
 			"species" = species,
 			"ooc_notes" = ooc_notes,
-			"tag" = tag,
-			"erptag" = erptag,
-			"hypnotag" = hypnotag,
-			"nctag" = nctag,
+			"erp" = erp,
+			"vore" = vore,
+			"hypno" = hypno,
+			"noncon" = noncon,
 			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,

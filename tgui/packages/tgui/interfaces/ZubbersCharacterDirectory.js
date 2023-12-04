@@ -50,21 +50,21 @@ export const ZubbersCharacterDirectory = (props, context) => {
                     }
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Vore">
-                  <Button
-                    fluid
-                    content={personalTag}
-                    onClick={() =>
-                      act('setTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
                 <LabeledList.Item label="ERP">
                   <Button
                     fluid
                     content={personalErpTag}
                     onClick={() =>
                       act('setErpTag', { overwrite_prefs: overwritePrefs })
+                    }
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Vore">
+                  <Button
+                    fluid
+                    content={personalTag}
+                    onClick={() =>
+                      act('setTag', { overwrite_prefs: overwritePrefs })
                     }
                   />
                 </LabeledList.Item>
@@ -112,21 +112,21 @@ const ViewCharacter = (props, context) => {
       <Section level={2} title="Species">
         <Box>{overlay.species}</Box>
       </Section>
-      <Section level={2} title="Vore">
-        <Box>{overlay.tag}</Box>
-      </Section>
       <Section level={2} title="ERP">
-        <Box p={1} backgroundColor={erpTagColor[overlay.erptag]}>
-          {overlay.erptag}
+        <Box p={1} backgroundColor={erpTagColor[overlay.erp]}>
+          {overlay.erp}
         </Box>
+        <Section level={2} title="Vore">
+          <Box>{overlay.vore}</Box>
+        </Section>
       </Section>
       <Section level={2} title="Hypno">
-        <Box p={1} backgroundColor={erpTagColor[overlay.hypnotag]}>
+        <Box p={1} backgroundColor={erpTagColor[overlay.hypno]}>
           {overlay.hypnotag}
         </Box>
       </Section>
       <Section level={2} title="Noncon">
-        <Box p={1} backgroundColor={erpTagColor[overlay.nctag]}>
+        <Box p={1} backgroundColor={erpTagColor[overlay.noncon]}>
           {overlay.nctag}
         </Box>
       </Section>
@@ -177,10 +177,10 @@ const CharacterDirectoryList = (props, context) => {
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
           <SortButton id="species">Species</SortButton>
-          <SortButton id="tag">Vore</SortButton>
-          <SortButton id="erptag">ERP</SortButton>
-          <SortButton id="hypnotag">Hypno</SortButton>
-          <SortButton id="nctag">Noncon</SortButton>
+          <SortButton id="erp">ERP</SortButton>
+          <SortButton id="vore">Vore</SortButton>
+          <SortButton id="hypno">Hypno</SortButton>
+          <SortButton id="noncon">Noncon</SortButton>
           <Table.Cell collapsing textAlign="right">
             Advertisement
           </Table.Cell>
@@ -191,11 +191,11 @@ const CharacterDirectoryList = (props, context) => {
             return a[sortId].localeCompare(b[sortId]) * i;
           })
           .map((character, i) => (
-            <Table.Row key={i} backgroundColor={erpTagColor[character.erptag]}>
+            <Table.Row key={i} backgroundColor={erpTagColor[character.erp]}>
               <Table.Cell p={1}>
                 {canOrbit ? (
                   <Button
-                    color={erpTagColor[character.erptag]}
+                    color={erpTagColor[character.erp]}
                     icon="ghost"
                     tooltip="Orbit"
                     content={character.name}
@@ -206,10 +206,10 @@ const CharacterDirectoryList = (props, context) => {
                 )}
               </Table.Cell>
               <Table.Cell>{character.species}</Table.Cell>
-              <Table.Cell>{character.tag}</Table.Cell>
-              <Table.Cell>{character.erptag}</Table.Cell>
-              <Table.Cell>{character.hypnotag}</Table.Cell>
-              <Table.Cell>{character.nctag}</Table.Cell>
+              <Table.Cell>{character.erp}</Table.Cell>
+              <Table.Cell>{character.vore}</Table.Cell>
+              <Table.Cell>{character.hypno}</Table.Cell>
+              <Table.Cell>{character.noncon}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
                   onClick={() => setOverlay(character)}
