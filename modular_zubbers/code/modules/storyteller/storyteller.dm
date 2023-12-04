@@ -86,22 +86,26 @@
 		var/pop_required = mode.min_pop_thresholds[track]
 		if(mode.active_players < pop_required)
 			message_admins("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [mode.active_players])")
+			log_admin("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [mode.active_players])")
 			mode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		calculate_weights(track)
 		var/list/valid_events = list()
 		// Determine which events are valid to pick
+		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 		for(var/datum/round_event_control/event as anything in mode.event_pools[track])
-			if(event.can_spawn_event())
+			if(event.can_spawn_event(players_amt))
 				valid_events[event] = event.calculated_weight
 		///If we didn't get any events, remove the points inform admins and dont do anything
 		if(!length(valid_events))
 			message_admins("Storyteller failed to pick an event for track of [track].")
+			log_admin("Storyteller failed to pick an event for track of [track].")
 			mode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		picked_event = pick_weight(valid_events)
 		if(!picked_event)
 			message_admins("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
+			log_admin("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
 			stack_trace("WARNING: Storyteller picked a null from event pool.")
 			return
 	buy_event(picked_event, track)
@@ -116,6 +120,7 @@
 		total_cost *= (1 + (rand(-cost_variance, cost_variance)/100)) //Apply cost variance if not roundstart event
 	mode.event_track_points[track] -= total_cost
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
+	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
 		mode.TriggerEvent(bought_event)
 	else
