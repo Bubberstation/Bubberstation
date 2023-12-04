@@ -263,14 +263,6 @@
 /obj/machinery/power/generator/on_deconstruction()
 	kill_circs()
 
-/obj/machinery/power/generator/multitool_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(!anchored)
-		return
-	find_circs()
-	to_chat(user, span_notice("You update [src]'s circulator links."))
-	return TRUE
-
 /obj/machinery/power/generator/proc/kill_circs()
 	if(hot_circ)
 		hot_circ.generator = null
