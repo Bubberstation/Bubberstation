@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/character_ad
 		var/ref = REF(player_client?.mob)
 		var/mob/mob = player_client?.mob
-		if(!mob || !name)
+		if(!mob)
 			continue
 
 		if(ishuman(mob))
