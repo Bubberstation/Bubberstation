@@ -1,6 +1,6 @@
 #define QUIRK_HUNGRY_MOD 2
 
-/datum/quirk/item_quirk/hungry
+/datum/quirk/hungry
 	name = "Hungry"
 	desc = "For some reason, you get hungrier faster than others"
 	value = 0
@@ -11,12 +11,12 @@
 	quirk_flags = QUIRK_HUMAN_ONLY
 	mail_goodies = list(/obj/item/food/chips)
 
-/datum/quirk/item_quirk/hungry/add(client/client_source)
+/datum/quirk/hungry/add(client/client_source)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(istype(H))
 		H.physiology.hunger_mod *= QUIRK_HUNGRY_MOD
 
-/datum/quirk/item_quirk/hungry/remove()
+/datum/quirk/hungry/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(istype(H))
 		H.physiology.hunger_mod /= QUIRK_HUNGRY_MOD
