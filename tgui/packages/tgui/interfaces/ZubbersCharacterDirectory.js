@@ -135,6 +135,11 @@ const ViewCharacter = (props, context) => {
           {overlay.character_ad || 'Unset.'}
         </Box>
       </Section>
+      <Section level={2} title="Exploitable">
+        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
+          {overlay.exploitable || 'Unset.'}
+        </Box>
+      </Section>
       <Section level={2} title="OOC Notes">
         <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
           {overlay.ooc_notes || 'Unset.'}

@@ -87,6 +87,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/hypnotag
 		var/nctag
 		var/character_ad
+		var/exploitable
 		var/ref = REF(mob)
 		if(!mob)
 			continue
@@ -110,6 +111,9 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		character_ad = mob.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
 		ooc_notes = mob.client.prefs.read_preference(/datum/preference/text/ooc_notes) || "Unset"
 		flavor_text = mob.client.prefs.read_preference(/datum/preference/text/flavor_text) || "Unset"
+		exploitable = mob.client.prefs.read_preference(/datum/preference/text/exploitable)
+		if(exploitable == EXPLOITABLE_DEFAULT_TEXT)
+			exploitable = "Unset"
 		name = mob.real_name ? mob.name : mob.real_name
 
 		directory_mobs.Add(list(list(
@@ -120,6 +124,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 			"erptag" = erptag,
 			"hypnotag" = hypnotag,
 			"nctag" = nctag,
+			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 			"ref" = ref
