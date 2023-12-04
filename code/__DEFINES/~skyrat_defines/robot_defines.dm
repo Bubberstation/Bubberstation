@@ -34,7 +34,6 @@
 #define CYBORG_ICON_SEC 'modular_skyrat/modules/borgs/icons/robots_sec.dmi'
 #define CYBORG_ICON_SEC_WIDE 'modular_skyrat/modules/borgs/icons/widerobot_sec.dmi'
 #define CYBORG_ICON_SEC_TALL 'modular_skyrat/modules/borgs/icons/tallrobot_sec.dmi'
-#define CYBORG_ICON_SEC_TALL_ALT 'modular_zubbers/altborgs/tallborg/tallrobot_bluesec.dmi' // BUBBER EDIT ADDITION
 
 #define CYBORG_ICON_ENG 'modular_skyrat/modules/borgs/icons/robots_eng.dmi'
 #define CYBORG_ICON_ENG_WIDE 'modular_skyrat/modules/borgs/icons/widerobot_eng.dmi'
