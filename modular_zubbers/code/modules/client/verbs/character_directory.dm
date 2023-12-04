@@ -69,10 +69,6 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/mob/mob = player_client?.mob
 		if(!mob)
 			continue
-		tag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
-		erptag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
-		character_ad = mob.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
-		name = mob.real_name ? mob.name : mob.real_name
 
 		if(ishuman(mob))
 			var/mob/living/carbon/human/human = mob
@@ -81,9 +77,15 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 			species = "[human.dna.species.name ? mob.client.prefs.read_preference(/datum/preference/text/custom_species) : human.dna.species]"
 			if(!human.client.prefs.read_preference(/datum/preference/text/custom_species))
 				species = "[human.dna.species.name]"
-		if(issilicon(mob))
+		else if(issilicon(mob))
 			var/mob/living/silicon/silicon = mob
 			species = silicon.client.prefs.read_preference(/datum/preference/choiced/brain_type)
+		else
+			continue
+		tag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
+		erptag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
+		character_ad = mob.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
+		name = mob.real_name ? mob.name : mob.real_name
 		ooc_notes = mob.client.prefs.read_preference(/datum/preference/text/ooc_notes)
 		flavor_text = mob.client.prefs.read_preference(/datum/preference/text/flavor_text)
 
