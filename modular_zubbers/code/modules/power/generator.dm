@@ -48,8 +48,7 @@
 	else
 		var/L = min(round(lastgenlev/100000),11)
 		if(L != 0)
-			SSvis_overlays.add_vis_overlay(src, icon, "teg-op11", ABOVE_ALL_MOB_LAYER, ABOVE_LIGHTING_PLANE, dir)
-
+			add_overlay("teg-op[L]")
 	return ..()
 
 
