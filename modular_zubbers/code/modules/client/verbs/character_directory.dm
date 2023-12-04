@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		data["personalVisibility"] = user.client.prefs.read_preference(/datum/preference/toggle/show_in_directory)
 		data["personalTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
 		data["personalErpTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
+		data["personalHypnoTag"] = user.client.prefs.read_preference(/datum/preference/choiced/erp_status_hypno) || "Unset"
 		data["prefsOnly"] = TRUE
 
 	data["canOrbit"] = isobserver(user)
@@ -64,6 +65,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/flavor_text = null
 		var/tag
 		var/erptag
+		var/hypnotag
 		var/character_ad
 		var/ref = REF(mob)
 		if(!mob)
@@ -83,6 +85,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 			continue
 		tag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_v) || "Unset"
 		erptag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status) || "Unset"
+		hypnotag = mob.client.prefs.read_preference(/datum/preference/choiced/erp_status_hypno) || "Unset"
 		character_ad = mob.client.prefs.read_preference(/datum/preference/text/character_ad) || "Unset"
 		name = mob.real_name ? mob.name : mob.real_name
 		ooc_notes = mob.client.prefs.read_preference(/datum/preference/text/ooc_notes)
@@ -94,6 +97,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 			"ooc_notes" = ooc_notes,
 			"tag" = tag,
 			"erptag" = erptag,
+			"hypnotag" = hypnotag,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 			"ref" = ref

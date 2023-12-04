@@ -17,7 +17,13 @@ const erpTagColor = {
 export const ZubbersCharacterDirectory = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { personalVisibility, personalTag, personalErpTag, prefsOnly } = data;
+  const {
+    personalVisibility,
+    personalTag,
+    personalErpTag,
+    personalHypnoTag,
+    prefsOnly,
+  } = data;
 
   const [overlay, setOverlay] = useLocalState(context, 'overlay', null);
 
@@ -61,6 +67,15 @@ export const ZubbersCharacterDirectory = (props, context) => {
                     }
                   />
                 </LabeledList.Item>
+                <LabeledList.Item label="Hypno Tag">
+                  <Button
+                    fluid
+                    content={personalHypnoTag}
+                    onClick={() =>
+                      act('setHypnoTag', { overwrite_prefs: overwritePrefs })
+                    }
+                  />
+                </LabeledList.Item>
               </LabeledList>
             </Section>
             <CharacterDirectoryList />
@@ -93,6 +108,11 @@ const ViewCharacter = (props, context) => {
       <Section level={2} title="ERP Tag">
         <Box p={1} backgroundColor={erpTagColor[overlay.erptag]}>
           {overlay.erptag}
+        </Box>
+      </Section>
+      <Section level={2} title="Hypno Tag">
+        <Box p={1} backgroundColor={erpTagColor[overlay.hypnotag]}>
+          {overlay.hypnotag}
         </Box>
       </Section>
       <Section level={2} title="Character Ad">
@@ -139,6 +159,7 @@ const CharacterDirectoryList = (props, context) => {
           <SortButton id="species">Species</SortButton>
           <SortButton id="tag">Vore Tag</SortButton>
           <SortButton id="erptag">ERP Tag</SortButton>
+          <SortButton id="hypnotag">Hypno Tag</SortButton>
           <Table.Cell collapsing textAlign="right">
             Advertisement
           </Table.Cell>
@@ -166,6 +187,7 @@ const CharacterDirectoryList = (props, context) => {
               <Table.Cell>{character.species}</Table.Cell>
               <Table.Cell>{character.tag}</Table.Cell>
               <Table.Cell>{character.erptag}</Table.Cell>
+              <Table.Cell>{character.hypnotag}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
                   onClick={() => setOverlay(character)}
