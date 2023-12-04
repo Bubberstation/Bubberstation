@@ -20,7 +20,8 @@
 /datum/preference/toggle/master_erp_preferences/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
 		return FALSE
-
+	if(!SSplayer_ranks.is_vetted(preferences.parent, admin_bypass = FALSE)) // BUBBER EDIT
+		return FALSE // BUBBER EDIT
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		return FALSE
 
@@ -40,7 +41,8 @@
 /datum/preference/toggle/erp/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
 		return FALSE
-
+	if(!SSplayer_ranks.is_vetted(preferences.parent, admin_bypass = FALSE)) // BUBBER EDIT
+		return FALSE // BUBBER EDIT
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		return FALSE
 

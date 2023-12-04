@@ -8,7 +8,7 @@
 // Cargo
 
 /area/ruin/space/has_grav/bubbers/dauntless/cargo
-	name = "Dauntless Hangerbay"
+	name = "Dauntless Hangarbay"
 
 // Engineering
 

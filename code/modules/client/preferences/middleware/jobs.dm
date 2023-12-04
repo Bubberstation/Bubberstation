@@ -102,6 +102,10 @@
 	if(SSplayer_ranks.is_veteran(user.client))
 		data["is_veteran"] = TRUE
 	// SKYRAT EDIT END
+	// BUBBER EDIT BEGIN
+	if(SSplayer_ranks.is_vetted(user.client))
+		data["is_vetted"] = TRUE
+	// BUBBER EDIT END
 	var/list/required_job_playtime = get_required_job_playtime(user)
 	if (!isnull(required_job_playtime))
 		data += required_job_playtime
