@@ -953,7 +953,7 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in event_lookup)
 		if(event.roundstart != roundstart_event_view)
 			continue
-		if(event.can_spawn_event())
+		if(event.can_spawn_event(active_players))
 			total_weight += event.calculated_weight
 			assoc_spawn_weight[event] = event.calculated_weight
 		else
