@@ -19,10 +19,10 @@ export const ZubbersCharacterDirectory = (props, context) => {
 
   const {
     personalVisibility,
-    personalTag,
+    personalVoreTag,
     personalErpTag,
     personalHypnoTag,
-    personalNcTag,
+    personalNonconTag,
     prefsOnly,
   } = data;
 
@@ -62,7 +62,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
                 <LabeledList.Item label="Vore">
                   <Button
                     fluid
-                    content={personalTag}
+                    content={personalVoreTag}
                     onClick={() =>
                       act('setTag', { overwrite_prefs: overwritePrefs })
                     }
@@ -80,7 +80,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
                 <LabeledList.Item label="Noncon">
                   <Button
                     fluid
-                    content={personalNcTag}
+                    content={personalNonconTag}
                     onClick={() =>
                       act('setNonconTag', { overwrite_prefs: overwritePrefs })
                     }
