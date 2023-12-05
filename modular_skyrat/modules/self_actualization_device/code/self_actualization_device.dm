@@ -90,8 +90,8 @@
 		return FALSE
 	if(!reagents.has_reagent(/datum/reagent/medicine/c2/synthflesh, 300)) // BUBBER EDIT BEGIN
 		audible_message(span_notice("The [src] buzzes."))
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		break // BUBBER EDIT END
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)// BUBBER EDIT END
+		return FALSE
 
 	to_chat(user, "You power on [src].")
 	addtimer(CALLBACK(src, PROC_REF(eject_new_you)), processing_time, TIMER_OVERRIDE|TIMER_UNIQUE)
