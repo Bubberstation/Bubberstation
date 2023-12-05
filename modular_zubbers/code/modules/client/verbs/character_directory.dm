@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 
 	var/list/directory_mobs = list()
 	//We want the directory to show only alive players
-	for(var/mob/mob in GLOB.alive_player_list)
+	for(var/mob/mob in GLOB.player_list)
 		// These are the variables we're trying to display in the directory
 		var/name = null
 		var/species = null
