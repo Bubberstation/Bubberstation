@@ -5,10 +5,10 @@ import { Window } from '../layouts';
 
 const erpTagColor = {
   'Unset': 'label',
-  'Yes': 'yellow',
   'Yes - Dom': 'red',
   'Yes - Sub': 'blue',
   'Yes - Switch': 'yellow',
+  'Yes': 'yellow',
   'Check OOC': 'black',
   'Ask': 'black',
   'No': 'black',
