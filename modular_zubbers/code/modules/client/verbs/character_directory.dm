@@ -17,16 +17,19 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 	savefile_identifier = PREFERENCE_CHARACTER
 	maximum_value_length = MAX_FLAVOR_LEN
 
+//TGUI gets angry if you don't define a default on text preferences
 /datum/preference/text/character_ad/create_default_value()
 	return ""
 
+//Any text preference needs this for some reason
 /datum/preference/text/character_ad/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
+//Add a cooldown for the character directory to the client, primarily to stop server lag from refresh spam
 /client
 	COOLDOWN_DECLARE(char_directory_cooldown)
 
-//Open the character directory
+//Make a verb to open the character directory
 /client/verb/show_character_directory()
 	set name = "Character Directory"
 	set category = "OOC"
@@ -38,6 +41,7 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		return
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 
+//Check if there's not already a character directory open; open a new one if one is not present
 	if(!GLOB.character_directory)
 		GLOB.character_directory = new
 	GLOB.character_directory.ui_interact(mob)
@@ -54,10 +58,12 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		ui = new(user, src, "ZubbersCharacterDirectory", "Character Directory")
 		ui.open()
 
+//We want this information to update any time the player updates their preferences, not just when the panel is refreshed
 /datum/character_directory/ui_data(mob/user)
 	. = ..()
 	var/list/data = .
 
+//Collect the user's own preferences for the top of the UI
 	if (user?.client?.prefs)
 		data["personalVisibility"] = READ_PREFS(user, toggle/show_in_directory)
 		data["personalErpTag"] = READ_PREFS(user, choiced/erp_status)
