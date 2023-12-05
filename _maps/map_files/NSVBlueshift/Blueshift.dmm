@@ -16202,7 +16202,7 @@
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 8;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -43757,10 +43757,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology/control)
 "irJ" = (
-/obj/structure/sign/directions/evac{
-	dir = 1;
-	pixel_y = -10
-	},
 /obj/structure/sign/directions/supply{
 	dir = 4;
 	pixel_y = -4
@@ -43772,6 +43768,10 @@
 /obj/structure/sign/directions/security{
 	dir = 4;
 	pixel_y = 8
+	},
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = -10
 	},
 /turf/closed/wall,
 /area/station/maintenance/salon/lower)
@@ -47470,7 +47470,7 @@
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
+	dir = 8;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -69428,7 +69428,6 @@
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 1;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -71183,7 +71182,6 @@
 	pixel_y = -4
 	},
 /obj/structure/sign/directions/evac{
-	dir = 8;
 	pixel_y = -10
 	},
 /turf/closed/wall,
@@ -84525,8 +84523,8 @@
 /area/station/hallway/primary/starboard)
 "qgJ" = (
 /obj/machinery/button/door/directional/south{
-	name = "Security Mech Garage Door Controls";
 	id = "SecMech";
+	name = "Security Mech Garage Door Controls";
 	req_access = list("security")
 	},
 /obj/effect/turf_decal/stripes/blue/line{
@@ -109180,8 +109178,8 @@
 /area/station/security/interrogation)
 "uNl" = (
 /turf/open/floor/iron/stairs{
-	icon_state = "stairs_wood";
-	icon = 'icons/obj/stairs.dmi'
+	icon = 'icons/obj/stairs.dmi';
+	icon_state = "stairs_wood"
 	},
 /area/station/common/pool)
 "uNn" = (
@@ -111824,11 +111822,11 @@
 "vof" = (
 /obj/docking_port/stationary{
 	dir = 4;
+	dwidth = 43;
 	height = 19;
 	name = "Deprecated Port Dock";
 	shuttle_id = "whiteship_home";
-	width = 55;
-	dwidth = 43
+	width = 55
 	},
 /turf/open/space/basic,
 /area/space)
@@ -121214,8 +121212,8 @@
 	dir = 4
 	},
 /obj/machinery/button/door/directional/east{
-	name = "Security Mech Garage Door Controls";
 	id = "SecMech";
+	name = "Security Mech Garage Door Controls";
 	req_access = list("security")
 	},
 /obj/machinery/recharge_station,
