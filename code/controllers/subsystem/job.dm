@@ -922,14 +922,19 @@ SUBSYSTEM_DEF(job)
 		return JOB_UNAVAILABLE_SPECIES
 
 	if(CONFIG_GET(flag/min_flavor_text))
-		if(length_char(player.client.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+		//BUBBER EDIT ADDITION: SILICON FLAVOR TEXT CHECK
+		var/is_silicon = (possible_job.auto_deadmin_role_flags & DEADMIN_POSITION_SILICON)
+		if(is_silicon && length_char(player.client.prefs.read_preference(/datum/preference/text/silicon_flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+			return JOB_UNAVAILABLE_FLAVOUR
+		else if(length_char(player.client.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+		//BUBBER EDIT END: SILICON FLAVOR TEXT CHECK
 			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_FLAVOUR
 
 	if(possible_job.has_banned_augment(player.client.prefs))
 		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_AUGMENT)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_UNAVAILABLE_AUGMENT
-
 
 	//SKYRAT EDIT END
 
