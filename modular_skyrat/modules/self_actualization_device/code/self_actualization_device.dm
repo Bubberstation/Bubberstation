@@ -63,13 +63,17 @@
 /obj/machinery/self_actualization_device/Initialize(mapload)
 	. = ..()
 	update_appearance()
+	create_reagents(300, OPENCONTAINER) // BUBBER EDIT
+	AddComponent(/datum/component/plumbing/simple_demand) // BUBBER EDIT
 
 /obj/machinery/self_actualization_device/close_machine(atom/movable/target, density_to_set = TRUE)
 	..()
 	playsound(src, 'sound/machines/click.ogg', 50)
 	if(!occupant)
 		return FALSE
-	if(!ishuman(occupant))
+	if(!ishuman(occupant) || istype(occupant, /mob/living/carbon/human/species/monkey))// BUBBER EDIT BEGIN
+		say("Warning: Occupant lacks actualizing genes. Please insert synthflesh or select new user. ")
+		playsound(loc, 'sound/machines/chime.ogg', 30, FALSE) // BUBBER EDIT END
 		occupant.forceMove(drop_location())
 		set_occupant(null)
 		return FALSE
@@ -84,6 +88,10 @@
 	. = ..()
 	if(!powered() || !occupant || state_open)
 		return FALSE
+	if(!reagents.has_reagent(/datum/reagent/medicine/c2/synthflesh, 300)) // BUBBER EDIT BEGIN
+		audible_message(span_notice("The [src] buzzes."))
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+		break // BUBBER EDIT END
 
 	to_chat(user, "You power on [src].")
 	addtimer(CALLBACK(src, PROC_REF(eject_new_you)), processing_time, TIMER_OVERRIDE|TIMER_UNIQUE)
@@ -152,7 +160,9 @@
 	else if (tgui_alert(occupant, "The SAD you are within is about to rejuvenate you, resetting your body to its default state (in character preferences). Do you consent?", "Rejuvenate", list("Yes", "No"), timeout = 10 SECONDS) != "Yes")
 		failure = TRUE // defaults to rejecting it unless specified otherwise
 		failure_text = "ERROR: Occupant genes have willfully rejected the procedure. You may try again if you think this was an error."
-
+	if(!reagents.remove_reagent(/datum/reagent/medicine/c2/synthflesh, 300)) // BUBBER EDIT BEGIN
+		failure = TRUE
+		failure_text = "ERROR: Occupant has not received enough Synthflesh to complete the NEW YOU PROCEDURE." // BUBBER EDIT END
 	if (failure)
 		say(failure_text)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
