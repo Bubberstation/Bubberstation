@@ -8,11 +8,12 @@
 	var/pr_number = 40000 + (text2num(copytext("\ref[src]",2,-1),16) % 100000) //While scientific notation is funny, it wasn't precise enough
 	var/thing_to_remove = lowertext(pick_list_replacements(ION_FILE, "ionobjects")) || "Kebab" //2006 called, they want their meme back
 	var/obj/machinery/nuclearbomb/selfdestruct/self_destruct = locate() in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct) //Wait, why the fuck are we trying to get the nuke??? Coder backdoor???
-	if(self_destruct.r_code == NUKE_CODE_UNSET)
-		self_destruct.r_code = random_nukecode()
-		message_admins("Through salt PRs, the self-destruct code was set to \"[self_destruct.r_code]\".")
-	if(self_destruct.r_code == pr_number)
-		thing_to_remove = "the station's nuclear self-destruct device" //Just made every senior admin shit themselves with this line. 1 in 140,000 chance, by the way.
+	if(self_destruct)
+		if(self_destruct.r_code == NUKE_CODE_UNSET)
+			self_destruct.r_code = random_nukecode()
+			message_admins("Through salt PRs, the self-destruct code was set to \"[self_destruct.r_code]\".")
+		if(self_destruct.r_code == pr_number)
+			thing_to_remove = "the station's nuclear self-destruct device" //Just made every senior admin shit themselves with this line. 1 in 140,000 chance, by the way.
 
 	var/title = "Removes [capitalize(thing_to_remove)]"
 	var/author = "[pick(GLOB.first_names)] [pick(GLOB.last_names)]" || "Joe Momma"
