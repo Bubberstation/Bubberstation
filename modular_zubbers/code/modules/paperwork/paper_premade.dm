@@ -5,6 +5,7 @@
 
 
 	//I love madlibs.
+	//The fallbacks should never roll but you never know.
 	var/thing_to_remove = lowertext(pick_list_replacements(ION_FILE, "ionobjects")) || "Kebab" //2006 called, they want their meme back
 	var/title = "Removes [capitalize(thing_to_remove)]"
 	var/author = "[pick(GLOB.first_names)] [pick(GLOB.last_names)]" || "Joe Momma"
