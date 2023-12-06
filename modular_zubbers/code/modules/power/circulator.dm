@@ -12,7 +12,7 @@
 
 	var/active = FALSE
 
-	var/last_pressure_delta = 0
+	//var/last_pressure_delta = 0
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
 	var/flipped = 0
