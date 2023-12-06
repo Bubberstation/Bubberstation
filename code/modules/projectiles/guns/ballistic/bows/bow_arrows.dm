@@ -33,7 +33,7 @@
 	speed = 1
 	range = 25
 	embedding = list(
-		embed_chance = 50, //BUBBER EDIT ORIGINAL 90
+		embed_chance = 90
 		fall_chance = 2,
 		jostle_chance = 2,
 		ignore_throwspeed_threshold = TRUE,
