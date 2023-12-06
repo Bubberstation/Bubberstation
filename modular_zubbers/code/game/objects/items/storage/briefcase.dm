@@ -5,4 +5,3 @@
 	new /obj/item/folder/coderbus(src)
 	new /obj/item/stamp/coderbus/merged(src)
 	new /obj/item/stamp/coderbus/closed(src)
-
