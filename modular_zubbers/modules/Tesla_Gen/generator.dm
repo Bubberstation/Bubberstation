@@ -3,7 +3,7 @@
 	name = "Gravitational Singularity Generator"
 	desc = "An odd device which produces a Gravitational Singularity when set up."
 	icon = 'modular_zubbers/modules/Tesla_Gen/icon/particle_accelerator.dmi'
-	icon_state = "TheSingGen"
+	icon_state = "SinguloBall"
 	anchored = FALSE
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -42,5 +42,5 @@
 	name = "energy ball generator"
 	desc = "Makes the wardenclyffe look like a child's plaything when shot with a particle accelerator."
 	icon = 'modular_zubbers/modules/Tesla_Gen/icon/particle_accelerator.dmi'
-	icon_state = "TheSingGen"
+	icon_state = "TeslaRod"
 	creation_type = /obj/energy_ball
