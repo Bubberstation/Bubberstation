@@ -29,7 +29,7 @@
 	desc = "Ow! Get it out of me!"
 	icon = 'icons/obj/weapons/bows/arrows.dmi'
 	icon_state = "arrow_projectile"
-	damage = 30 //BUBBER EDIT ORIGINAL 50
+	damage = 50
 	speed = 1
 	range = 25
 	embedding = list(
