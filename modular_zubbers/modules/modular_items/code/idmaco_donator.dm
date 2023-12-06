@@ -5,7 +5,7 @@
 
 //These are also additionally handed out to snaffle as they were a major player in the NRI events <3
 
-#define IDMA_CKEY_WHITELIST list(["EspeciallyStrange", "Snaffle15", "Waterpig"])
+#define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Snaffle15", "Waterpig")
 
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
