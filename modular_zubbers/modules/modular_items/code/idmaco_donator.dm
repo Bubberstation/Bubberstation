@@ -8,7 +8,7 @@
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
-	ckeywhitelist = list("especiallystrange", "waterpig",  "snaffle15")
+	ckeywhitelist = list("especiallystrange", "snaffle15", "waterpig")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 
 /datum/loadout_item/suit/idmardjacket
@@ -20,25 +20,25 @@
 /datum/loadout_item/under/miscellaneous/idmasnowfatigue
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
-	ckeywhitelist = list("especiallystrange", "waterpig",  "snaffle15")
+	ckeywhitelist = IDMA_CKEY_WHITELIST
 	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 //acts like a security uniform now
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
-	ckeywhitelist = list("especiallystrange", "waterpig",  "snaffle15")
+	ckeywhitelist = list("especiallystrange", "snaffle15", "waterpig")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA beret"
 	item_path = /obj/item/clothing/head/idma_beret
-	ckeywhitelist = list("especiallystrange", "waterpig",  "snaffle15")
+	ckeywhitelist = list("especiallystrange", "snaffle15", "waterpig")
 
 /datum/loadout_item/head/idmahelmet
 	name = "IDMA service helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
-	ckeywhitelist = list("especiallystrange", "waterpig",  "snaffle15")
+	ckeywhitelist = list("especiallystrange", "snaffle15", "waterpig")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 //acts like a proper helmet now
 
@@ -71,7 +71,6 @@
 	name = "argnostan service fatigue"
 	desc = "An old desert uniform worn by the romulus expeditionary force up until march 21st 2181. Attached to it is a silver medal"
 	icon_state = "argnostanuniform"
-
 
 /obj/item/clothing/suit/jacket/vera_jacket
 	name = "silicon administrator vest"
@@ -121,11 +120,9 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/idma_hood
 
-
 /obj/item/clothing/head/hooded/winterhood/security/idma_hood
 	name = "ironmoon winterhood"
 	desc = "A white, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
 	icon_state = "romulushood"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-
