@@ -64,6 +64,7 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	name = "argnostan service fatigue"
@@ -72,6 +73,7 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE
 
 /obj/item/clothing/suit/jacket/vera_jacket
 	name = "silicon administrator vest"
