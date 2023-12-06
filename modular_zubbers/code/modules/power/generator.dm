@@ -41,14 +41,14 @@
 		icon_state = "teg-unassembled"
 		if(panel_open)
 			add_overlay("teg-panel")
-		return
+	return
 
 	if(machine_stat & (NOPOWER))
 		return
 	else
 		var/L = min(round(lastgenlev/100000),11)
-		if(L != 0)
-			add_overlay("teg-op[L]")
+			if(L != 0)
+				add_overlay("teg-op[L]")
 	return ..()
 
 
