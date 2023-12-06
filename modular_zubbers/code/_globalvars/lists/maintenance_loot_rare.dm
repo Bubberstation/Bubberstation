@@ -8,7 +8,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/survivalcapsule/bathroom = 1
 	) = 25,
 	/obj/item/table_clock = 50,
-	/obj/item/storage/briefcase/coderbus = 25,
 	list(
 		/obj/item/ammo_casing/shotgun/antitide = 1,
 		/obj/item/ammo_casing/shotgun/beanbag = 1,
