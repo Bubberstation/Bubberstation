@@ -64,7 +64,7 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-	can_adjust = FALSE
+	can_adjust = FALSE //Yes we have the sprite for them but they look ass so let's not use it
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	name = "argnostan service fatigue"
@@ -72,7 +72,6 @@
 	icon_state = "argnostanuniform"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-	can_adjust = FALSE
 
 /obj/item/clothing/suit/jacket/vera_jacket
 	name = "silicon administrator vest"
