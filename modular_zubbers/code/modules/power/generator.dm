@@ -10,8 +10,8 @@
 	var/obj/machinery/atmospherics/components/binary/circulator/cold_circ
 	var/obj/machinery/atmospherics/components/binary/circulator/hot_circ
 
-	//var/lastgen = 0
-	//var/lastgenlev = -1
+	var/lastgen = 0
+	var/lastgenlev = -1
 
 
 /obj/machinery/power/generator/Initialize(mapload)
