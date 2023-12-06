@@ -5,7 +5,7 @@
 
 	//I love madlibs.
 	//The fallbacks should never roll but you never know.
-	var/pr_number = 40000 + (text2num(copytext("\ref[src]",2,-1),16) % 100000) //While scientific notation is funny, it wasn't precise enough
+	var/pr_number = 40000 + (text2num(copytext("\ref[src]",2),16) % 100000) //While scientific notation is funny, it wasn't precise enough
 	var/thing_to_remove = lowertext(pick_list_replacements(ION_FILE, "ionobjects")) || "Kebab" //2006 called, they want their meme back
 	var/obj/machinery/nuclearbomb/selfdestruct/self_destruct = locate() in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct) //Wait, why the fuck are we trying to get the nuke??? Coder backdoor???
 	if(self_destruct)
@@ -43,12 +43,13 @@
 	<hr>
 	<p>[redpill]</p>
 	<p>
-	[pick("The Research Directior needs","Security needs","We need","Central Command needs","Nanotrasen needs")] to [pick("remove","delete")] [thing_to_remove] from
+	[pick("The Research Directior needs","Security needs","We need","Central Command needs","Nanotrasen needs")] to remove [thing_to_remove] from
 	[pick("the Station","the Crew",job,location)]. [pick("You might be thinking","You're probablly wondering","You might be saying","One might think","Some might say")]
-	"[conversation]", [pick("so let me explain","and you'd normally be right","but let me explain","so let me have a moment of your time","give me a second to explain")].<br>
-	[pick("One time","Previously","Last shift","A few moments ago")] that damn griefer george melons was [traitor] [pick("as","while they were")] [job] and "[pick("he","they")]
+	"[conversation]", [pick("so let me explain","and you'd normally be right","but let me explain","so let me have a moment of your time","give me a second to explain")].
+	<br><br>
+	[pick("One time","Previously","Last shift","A few moments ago")] that damn griefer george melons was [traitor] [pick("as","while they were")] [job] and [pick("he","they")]
 	[pick("killed","assaulted","ass slapped","smacked","bwoinked")] [pick("me","my person","my well being","my ass")] [pick("in","near","around")] [location]
-	[pick("with","using","while I didn't have")] [thing_to_remove]. This [pick("should not have happened","was fucking stupid","made me cry","wasted my time","annoyed me")] so I am
+	[pick("with","using","while I didn't have any")] [thing_to_remove]. This [pick("should not have happened","was fucking stupid","made me cry","wasted my time","annoyed me")] so I am
 	[pick("petitioning","begging","asking","demanding")] for it to be removed.
 	</p>
 	<br>
