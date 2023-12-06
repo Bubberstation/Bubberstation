@@ -26,7 +26,7 @@
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
-	item_path = /obj/item/clothing/under/idma_fatigue/alt
+	item_path = /obj/item/clothing/under/idma_fatigue
 	ckeywhitelist = list("especiallystrange", "waterpig",  "snaffle15")
 
 /datum/loadout_item/head/idmaberet
@@ -64,7 +64,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/idma_fatigue/alt
+/obj/item/clothing/under/idma_fatigue
 	name = "argnostan service fatigue"
 	desc = "An old desert uniform worn by the romulus expeditionary force up until march 21st 2181. Attached to it is a silver medal"
 	icon_state = "argnostanuniform"
