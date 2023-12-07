@@ -281,7 +281,7 @@
 		cut_overlay(fire_overlay)
 		return null
 	else if(on_fire && !isnull(last_icon_state))
-		return last_icon_state
+		return fire_overlay //BUBBERSTATION CHANGE: FIXES FIRE OVERLAYS. POSSIBLY.
 	return null
 
 /mob/living/basic/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, ignore_animation = TRUE)
