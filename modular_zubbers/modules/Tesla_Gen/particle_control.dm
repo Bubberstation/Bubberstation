@@ -1,7 +1,7 @@
 /obj/machinery/particle_accelerator/control_box
 	name = "Particle Accelerator Control Console"
 	desc = "This controls the density of the particles."
-	icon = 'modular_zubbers/modules/Tesla_Gen/icon/particle_accelerator.dmi'//Yogs PA Sprites
+	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_box"
 	anchored = FALSE
 	density = TRUE

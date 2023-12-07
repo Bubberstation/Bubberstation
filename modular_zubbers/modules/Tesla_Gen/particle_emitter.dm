@@ -1,7 +1,7 @@
 /obj/structure/particle_accelerator/particle_emitter
 	name = "EM Containment Grid"
 	desc = "This launches the Alpha particles, might not want to stand near this end."
-	icon = 'modular_zubbers/modules/Tesla_Gen/icon/particle_accelerator.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "none"
 	var/fire_delay = 50
 	var/last_shot = 0

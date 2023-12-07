@@ -1,7 +1,7 @@
 /obj/effect/accelerated_particle
 	name = "Accelerated Particles"
 	desc = "Small things moving very fast."
-	icon = 'modular_zubbers/modules/Tesla_Gen/icon/particle_accelerator.dmi'
+	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "particle"
 	anchored = TRUE
 	density = FALSE

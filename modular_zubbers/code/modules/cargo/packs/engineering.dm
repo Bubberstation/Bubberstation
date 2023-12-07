@@ -6,7 +6,10 @@
 	contains = list(/obj/machinery/particle_accelerator/control_box,
 					/obj/structure/particle_accelerator/end_cap,
 					/obj/structure/particle_accelerator/power_box,
-					/obj/structure/particle_accelerator/fuel_chamber
+					/obj/structure/particle_accelerator/fuel_chamber,
+					/obj/structure/particle_accelerator/particle_emitter/center,
+					/obj/structure/particle_accelerator/particle_emitter/left,
+					/obj/structure/particle_accelerator/particle_emitter/right
 					)
 	crate_name = "PA crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
