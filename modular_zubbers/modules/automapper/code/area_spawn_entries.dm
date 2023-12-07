@@ -3,3 +3,6 @@
 	desired_atom = /obj/machinery/vending/wardrobe/sec_wardrobe/red
 	mode = AREA_SPAWN_MODE_HUG_WALL
 	blacklisted_stations = list("Runtime Station", "MultiZ Debug", "Gateway Test") //so it spawns on void, burger, etc
+
+/datum/area_spawn/lustwish_prison
+	desired_atom = /obj/machinery/vending/dorms/prison //BUBBER EDIT: MAKES A PRISON LUSTWISH

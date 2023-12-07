@@ -1,6 +1,6 @@
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
-	if(check_holidays(FESTIVE_SEASON) && (type == /obj/machinery/power/supermatter_crystal || type == /obj/machinery/power/supermatter_crystal/engine))
+	if(check_holidays(FESTIVE_SEASON) && (type == /obj/machinery/power/supermatter_crystal))
 		christmasify()
 
 /obj/machinery/power/supermatter_crystal/proc/christmasify()
