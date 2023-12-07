@@ -19,8 +19,10 @@ export const ZubbersCharacterDirectory = (props, context) => {
 
   const {
     personalVisibility,
-    personalVoreTag,
+    personalAttraction,
+    personalGender,
     personalErpTag,
+    personalVoreTag,
     personalHypnoTag,
     personalNonconTag,
     prefsOnly,
@@ -49,6 +51,12 @@ export const ZubbersCharacterDirectory = (props, context) => {
                       act('setVisible', { overwrite_prefs: overwritePrefs })
                     }
                   />
+                </LabeledList.Item>
+                <LabeledList.Item label="Attraction">
+                  <Button fluid content={personalAttraction} />
+                </LabeledList.Item>
+                <LabeledList.Item label="Gender">
+                  <Button fluid content={personalGender} />
                 </LabeledList.Item>
                 <LabeledList.Item label="ERP">
                   <Button
@@ -112,6 +120,12 @@ const ViewCharacter = (props, context) => {
       <Section level={2} title="Species">
         <Box>{overlay.species}</Box>
       </Section>
+      <Section level={2} title="Attraction">
+        <Box>{overlay.attraction}</Box>
+      </Section>
+      <Section level={2} title="Gender">
+        <Box>{overlay.gender}</Box>
+      </Section>
       <Section level={2} title="ERP">
         <Box p={1} backgroundColor={erpTagColor[overlay.erp]}>
           {overlay.erp}
@@ -173,12 +187,14 @@ const CharacterDirectoryList = (props, context) => {
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
           <SortButton id="species">Species</SortButton>
+          <SortButton id="attraction">Attraction</SortButton>
+          <SortButton id="gender">Gender</SortButton>
           <SortButton id="erp">ERP</SortButton>
           <SortButton id="vore">Vore</SortButton>
           <SortButton id="hypno">Hypno</SortButton>
           <SortButton id="noncon">Noncon</SortButton>
           <Table.Cell collapsing textAlign="right">
-            Advertisement
+            Advert
           </Table.Cell>
         </Table.Row>
         {directory
@@ -202,6 +218,8 @@ const CharacterDirectoryList = (props, context) => {
                 )}
               </Table.Cell>
               <Table.Cell>{character.species}</Table.Cell>
+              <Table.Cell>{character.attraction}</Table.Cell>
+              <Table.Cell>{character.gender}</Table.Cell>
               <Table.Cell>{character.erp}</Table.Cell>
               <Table.Cell>{character.vore}</Table.Cell>
               <Table.Cell>{character.hypno}</Table.Cell>

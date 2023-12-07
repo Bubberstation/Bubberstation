@@ -21,6 +21,35 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 /datum/preference/text/character_ad/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
+/datum/preference/choiced/attraction
+	savefile_key = "attraction"
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+
+/datum/preference/choiced/attraction/init_possible_values()
+	return list("Gay", "Lesbian", "Straight", "Skolio", "Bi", "Pan", "Poly", "Omni", "Ace", "Unset", "Check OOC")
+
+/datum/preference/choiced/attraction/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/attraction/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/display_gender
+	savefile_key = "display_gender"
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+
+/datum/preference/choiced/display_gender/init_possible_values()
+	return list("Male", "Female", "Null", "Plural", "Nonbinary", "Omni", "Trans", "Andro", "Gyno", "Fluid", "Unset", "Check OOC")
+
+/datum/preference/choiced/display_gender/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/display_gender/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+//Can't believe Bubberstation invented attraction and gender in the year December 2023
+
 /client
 	COOLDOWN_DECLARE(char_directory_cooldown)
 
@@ -57,6 +86,8 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 
 	if (user?.client?.prefs)
 		data["personalVisibility"] = READ_PREFS(user, toggle/show_in_directory)
+		data["personalAttraction"] = READ_PREFS(user, choiced/attraction)
+		data["personalGender"] = READ_PREFS(user, choiced/display_gender)
 		data["personalErpTag"] = READ_PREFS(user, choiced/erp_status)
 		data["personalVoreTag"] = READ_PREFS(user, choiced/erp_status_v)
 		data["personalHypnoTag"] = READ_PREFS(user, choiced/erp_status_hypno)
@@ -79,8 +110,10 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		var/species = null
 		var/ooc_notes = null
 		var/flavor_text = null
-		var/vore
+		var/attraction
+		var/gender
 		var/erp
+		var/vore
 		var/hypno
 		var/noncon
 		var/character_ad
@@ -111,6 +144,8 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		//Don't show if they are not a human or a silicon
 		else continue
 		//List of all the shown ERP preferences in the Directory. If there is none, return "Unset"
+		attraction = READ_PREFS(mob, choiced/attraction)
+		gender = READ_PREFS(mob, choiced/display_gender)
 		erp = READ_PREFS(mob, choiced/erp_status)
 		vore = READ_PREFS(mob, choiced/erp_status_v)
 		hypno = READ_PREFS(mob, choiced/erp_status_hypno)
@@ -130,6 +165,8 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 			"name" = name,
 			"species" = species,
 			"ooc_notes" = ooc_notes,
+			"attraction" = attraction,
+			"gender" = gender,
 			"erp" = erp,
 			"vore" = vore,
 			"hypno" = hypno,
