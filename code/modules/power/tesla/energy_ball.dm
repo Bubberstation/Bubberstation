@@ -22,9 +22,7 @@
 	plane = MASSIVE_OBJ_PLANE
 	plane = ABOVE_LIGHTING_PLANE
 	light_range = 6
-	dissipate = 1 // Bubber Edit...Tesla can dispate overtime
-	dissipate_delay = 5
-	dissipate_strenght = 1
+	var/dissipate = 1 // Bubber Edit...Tesla can dispate overtime
 	move_resist = INFINITY
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 	pixel_x = -32
