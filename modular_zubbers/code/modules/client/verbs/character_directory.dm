@@ -25,6 +25,35 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 /datum/preference/text/character_ad/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
+/datum/preference/choiced/attraction
+	savefile_key = "attraction"
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+
+/datum/preference/choiced/attraction/init_possible_values()
+	return list("Gay", "Lesbian", "Straight", "Skolio", "Bi", "Pan", "Poly", "Omni", "Ace", "Unset", "Check OOC")
+
+/datum/preference/choiced/attraction/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/attraction/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/display_gender
+	savefile_key = "display_gender"
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+
+/datum/preference/choiced/display_gender/init_possible_values()
+	return list("Male", "Female", "Null", "Plural", "Nonbinary", "Omni", "Trans", "Andro", "Gyno", "Fluid", "Unset", "Check OOC")
+
+/datum/preference/choiced/display_gender/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/display_gender/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+//Can't believe Bubberstation invented attraction and gender in the year December 2023
+
 //Add a cooldown for the character directory to the client, primarily to stop server lag from refresh spam
 /client
 	COOLDOWN_DECLARE(char_directory_cooldown)
