@@ -1,5 +1,4 @@
 /obj/item/stamp/coderbus
-	icon = 'modular_zubbers/icons/obj/service/bureaucracy.dmi'
 	icon_state = null
 	desc = "A rubber stamp for stamping unimportant requests."
 
