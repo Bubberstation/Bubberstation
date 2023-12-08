@@ -123,7 +123,7 @@
 
 // Shotgun boxes
 
-/datum/armament_entry/company_import/vitezstvi/shot_shells
+/*/datum/armament_entry/company_import/vitezstvi/shot_shells
 	subcategory = "Shotgun Shells"
 	cost = PAYCHECK_COMMAND
 
@@ -150,6 +150,7 @@
 /datum/armament_entry/company_import/vitezstvi/shot_shells/express_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/express
 	description = "A box of 15 express buckshot shells, a tighter spread of smaller projectiles."
+*/ //BUBBER EDIT: SHOTSHELLS
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
 	item_type = /obj/item/ammo_box/advanced/s12gauge/honk

@@ -16,5 +16,5 @@
 /obj/projectile/bullet/c40sol/incendiary
 	damage = 18
 
-/obj/item/ammo_casing/c35sol/ripper
+/obj/projectile/bullet/c35sol/ripper
 	damage = 5

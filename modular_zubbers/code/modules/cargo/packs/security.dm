@@ -42,7 +42,14 @@
 
 /datum/supply_pack/security/armory/infanterie
 	name = "Carwo 'd'Infanteria' Rifle Crate"
-	desc = "Contains two Carwo 'd'Infanteria' Rifle. Additional ammo sold separately."
+	desc = "Contains two Carwo 'd'Infanteria' Rifles. Additional ammo sold separately."
 	cost = CARGO_CRATE_VALUE * 40
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2)
+	crate_name = "Carwo 'd'Infanteria' Rifle Crate"
+
+/datum/supply_pack/security/armory/elite
+	name = "Carwo 'd'Elite' Rifle Crate"
+	desc = "Contains one Carwo 'd'Elite' Rifle. Additional ammo sold separately."
+	cost = CARGO_CRATE_VALUE * 80
+	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 1)
 	crate_name = "Carwo 'd'Infanteria' Rifle Crate"
