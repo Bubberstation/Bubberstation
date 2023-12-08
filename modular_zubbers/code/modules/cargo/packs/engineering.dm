@@ -1,5 +1,5 @@
 /datum/supply_pack/engine/particle_accelerator
-	name = "PA Crate"
+	name = "Particle Accelerator Crate"
 	desc = "Crate containing parts required to build Particle Accelerator."
 	cost = CARGO_CRATE_VALUE * 80
 	access = ACCESS_CE
