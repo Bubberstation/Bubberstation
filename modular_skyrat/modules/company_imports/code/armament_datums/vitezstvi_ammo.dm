@@ -10,11 +10,11 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bench_itself
 	item_type = /obj/item/circuitboard/machine/ammo_workbench
 	cost = PAYCHECK_COMMAND * 5
-/*
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/ammo_disk
 	item_type = /obj/item/disk/ammo_workbench/advanced
 	cost = PAYCHECK_COMMAND * 5
-*/ //BUBBER EDIT REMOVAL
+*/ //BUBBER EDIT REMOVAL END
 
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bullet_drive
 	item_type = /obj/item/circuitboard/machine/dish_drive/bullet
@@ -43,7 +43,8 @@
 	subcategory = "Ammunition Boxes"
 	cost = PAYCHECK_CREW
 
-/*/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
+/* //BUBBER EDIT REMOVAL BEGIN
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
 	item_type = /obj/item/ammo_box/c9mm
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_hp
@@ -123,7 +124,8 @@
 
 // Shotgun boxes
 
-/*/datum/armament_entry/company_import/vitezstvi/shot_shells
+/* //BUBBER EDIT REMOVAL BEGIN
+/datum/armament_entry/company_import/vitezstvi/shot_shells
 	subcategory = "Shotgun Shells"
 	cost = PAYCHECK_COMMAND
 

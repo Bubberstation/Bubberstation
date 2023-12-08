@@ -17,7 +17,7 @@
 	item_type = /obj/item/clothing/suit/armor/vest/alt
 	cost = PAYCHECK_CREW * 3
 
-/*
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/sol_defense/case
 	subcategory = "Weapon Cases"
 
@@ -28,7 +28,7 @@
 /datum/armament_entry/company_import/sol_defense/case/carwo
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/empty
 	cost = PAYCHECK_COMMAND * 2
-*/ //BUBBER EDIT REMOVAL
+*/ //BUBBER EDIT REMOVAL END
 /datum/armament_entry/company_import/sol_defense/sidearm
 	subcategory = "Sidearms"
 /datum/armament_entry/company_import/sol_defense/sidearm/eland
@@ -38,7 +38,7 @@
 /datum/armament_entry/company_import/sol_defense/sidearm/wespe
 	item_type = /obj/item/gun/ballistic/automatic/pistol/sol
 	cost = PAYCHECK_COMMAND * 4
-/*
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/sol_defense/sidearm/skild
 	item_type = /obj/item/gun/ballistic/automatic/pistol/trappiste
 	cost = PAYCHECK_COMMAND * 6
@@ -91,10 +91,10 @@
 /datum/armament_entry/company_import/sol_defense/magazines
 	subcategory = "Magazines"
 	cost = PAYCHECK_CREW
-*/
+*/ //BUBBER EDIT REMOVAL END
 /datum/armament_entry/company_import/sol_defense/magazines/c35_mag
 	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
-/*
+/* //BUBBER EDIT REMOVAL START: TOO MUCH AMMO
 /datum/armament_entry/company_import/sol_defense/magazines/c35_extended
 	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
 
