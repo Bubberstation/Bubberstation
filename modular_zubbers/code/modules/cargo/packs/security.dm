@@ -29,7 +29,7 @@
 /datum/supply_pack/security/armory/renoster
 	name = "Carwo 'Renoster' Shotgun Crate"
 	desc = "Contains two Carwo 'Renoster' shotguns. Additional ammmo sold separately."
-	cost = CARGO_CRATE_VALUE * 40
+	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol = 2)
 	crate_name = "Carwo 'Renoster' Shotgun Crate"
 
