@@ -44,12 +44,28 @@
 	name = "Carwo 'd'Infanteria' Rifle Crate"
 	desc = "Contains two Carwo 'd'Infanteria' Rifles. Additional ammo sold separately."
 	cost = CARGO_CRATE_VALUE * 40
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2)
+	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
+	/obj/item/ammo_box/magazine/c40sol_rifle = 2,
+	)
 	crate_name = "Carwo 'd'Infanteria' Rifle Crate"
 
 /datum/supply_pack/security/armory/elite
-	name = "Carwo 'd'Elite' Rifle Crate"
+	name = "Carwo 'd'Elite' Sniper Rifle Crate"
 	desc = "Contains one Carwo 'd'Elite' Rifle. Additional ammo sold separately."
 	cost = CARGO_CRATE_VALUE * 80
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 1)
+	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1)
 	crate_name = "Carwo 'd'Infanteria' Rifle Crate"
+
+/datum/supply_pack/security/ammo
+	contains = list(/obj/item/ammo_box/advanced/s12gauge/bean = 3,
+					/obj/item/ammo_box/advanced/s12gauge/rubber = 3,
+					/obj/item/ammo_box/c38/trac,
+					/obj/item/ammo_box/c38/hotshot,
+					/obj/item/ammo_box/c38/iceblox,
+				)
+	special = FALSE
+//This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
+
+/datum/supply_pack/security/disabler
+	cost = CARGO_CRATE_VALUE * 3
+//Why were these made more expensive?

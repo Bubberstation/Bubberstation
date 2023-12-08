@@ -76,10 +76,10 @@
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_blank
 	item_type = /obj/item/ammo_box/c56mm/blank
-*/ /* //BUBBER EDIT: NONE OF OUR GUNS USE THIS AMMO
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35
 	item_type = /obj/item/ammo_box/c35sol
-
+/* //BUBBER EDIT: NONE OF OUR GUNS USE THIS AMMO
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_disabler
 	item_type = /obj/item/ammo_box/c35sol/incapacitator
 
@@ -152,7 +152,7 @@
 /datum/armament_entry/company_import/vitezstvi/shot_shells/express_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/express
 	description = "A box of 15 express buckshot shells, a tighter spread of smaller projectiles."
-*/ //BUBBER EDIT: SHOTSHELLS
+*/ //BUBBER EDIT END
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
 	item_type = /obj/item/ammo_box/advanced/s12gauge/honk
