@@ -10,10 +10,11 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bench_itself
 	item_type = /obj/item/circuitboard/machine/ammo_workbench
 	cost = PAYCHECK_COMMAND * 5
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/ammo_disk
 	item_type = /obj/item/disk/ammo_workbench/advanced
 	cost = PAYCHECK_COMMAND * 5
+*/ //BUBBER EDIT REMOVAL
 
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bullet_drive
 	item_type = /obj/item/circuitboard/machine/dish_drive/bullet
@@ -42,7 +43,7 @@
 	subcategory = "Ammunition Boxes"
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
+/*/datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
 	item_type = /obj/item/ammo_box/c9mm
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_hp
@@ -74,7 +75,7 @@
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_blank
 	item_type = /obj/item/ammo_box/c56mm/blank
-
+*/ /* //BUBBER EDIT: NONE OF OUR GUNS USE THIS AMMO
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35
 	item_type = /obj/item/ammo_box/c35sol
 
@@ -104,7 +105,7 @@
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_hollowpoint
 	item_type = /obj/item/ammo_box/c585trappiste/hollowpoint
-
+*/ //BUBBER EDIT REMOVAL: AMMO TYPES
 // Revolver speedloaders
 
 /datum/armament_entry/company_import/vitezstvi/speedloader
