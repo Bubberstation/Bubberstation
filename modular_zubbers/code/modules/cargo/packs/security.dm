@@ -54,7 +54,7 @@
 
 /datum/supply_pack/security/armory/elite
 	name = "Carwo 'd'Elite' Sniper Rifle Crate"
-	desc = "Contains one Carwo 'd'Elite' Rifle. Additional ammo sold separately."
+	desc = "Contains one Carwo 'd'Elite' Sniper Rifle, as well as a spare magazine for it."
 	cost = CARGO_CRATE_VALUE * 80
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 1,
