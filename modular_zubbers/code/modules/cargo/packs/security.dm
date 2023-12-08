@@ -36,13 +36,16 @@
 /datum/supply_pack/security/armory/sindano
 	name = "Carwo 'Sindano' Submachinegun Crate"
 	cost = CARGO_CRATE_VALUE * 40
-	desc = "Contains two Carwo 'Sindano' Submachinegun. Additional ammmo sold separately."
-	contains = list(/obj/item/gun/ballistic/automatic/sol_smg = 2)
+	desc = "Contains two Carwo 'Sindano' Submachineguns, and two spare magazines for them."
+	contains = list(/obj/item/gun/ballistic/automatic/sol_smg = 2,
+	/obj/item/ammo_box/magazine/c35sol_pistol = 2,
+	)
+
 	crate_name = "Carwo 'Sindano' Submachinegun Crate"
 
 /datum/supply_pack/security/armory/infanterie
 	name = "Carwo 'd'Infanteria' Rifle Crate"
-	desc = "Contains two Carwo 'd'Infanteria' Rifles. Additional ammo sold separately."
+	desc = "Contains two Carwo 'd'Infanteria' Rifles, and two spare magazines for them."
 	cost = CARGO_CRATE_VALUE * 40
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 2,
@@ -53,7 +56,9 @@
 	name = "Carwo 'd'Elite' Sniper Rifle Crate"
 	desc = "Contains one Carwo 'd'Elite' Rifle. Additional ammo sold separately."
 	cost = CARGO_CRATE_VALUE * 80
-	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1)
+	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
+	/obj/item/ammo_box/magazine/c40sol_rifle = 1,
+	)
 	crate_name = "Carwo 'd'Infanteria' Rifle Crate"
 
 /datum/supply_pack/security/ammo
