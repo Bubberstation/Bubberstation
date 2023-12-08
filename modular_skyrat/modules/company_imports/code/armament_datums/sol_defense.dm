@@ -87,11 +87,11 @@
 	item_type = /obj/item/gun/ballistic/automatic/sol_grenade_launcher
 	cost = PAYCHECK_COMMAND * 46
 	contraband = TRUE
-
+*/ //BUBBER EDIT REMOVAL END
 /datum/armament_entry/company_import/sol_defense/magazines
 	subcategory = "Magazines"
 	cost = PAYCHECK_CREW
-*/ //BUBBER EDIT REMOVAL END
+
 /datum/armament_entry/company_import/sol_defense/magazines/c35_mag
 	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
 /* //BUBBER EDIT REMOVAL START: TOO MUCH AMMO
