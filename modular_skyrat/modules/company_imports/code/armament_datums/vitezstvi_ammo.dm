@@ -124,11 +124,11 @@
 
 // Shotgun boxes
 
-/* //BUBBER EDIT REMOVAL BEGIN
+
 /datum/armament_entry/company_import/vitezstvi/shot_shells
 	subcategory = "Shotgun Shells"
 	cost = PAYCHECK_COMMAND
-
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/shot_shells/slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge
 	description = "A box of 15 slug shells, large singular shots that pack a punch."
