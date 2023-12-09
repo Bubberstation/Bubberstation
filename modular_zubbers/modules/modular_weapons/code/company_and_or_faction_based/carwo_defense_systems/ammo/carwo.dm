@@ -9,7 +9,7 @@
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/c40sol/pierce
-	damage = 35
+	damage = 25
 	bare_wound_bonus = -15
 	armour_penetration = 20
 
