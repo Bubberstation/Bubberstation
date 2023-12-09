@@ -43,6 +43,7 @@
 	/// Is our factory dead?
 	var/orphaned = FALSE
 
+/* BUBBER EDIT BEGIN - BALANCE, MOVED TO MODULAR
 /mob/living/basic/blob_minion/blobbernaut/minion/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if (!.)
@@ -78,6 +79,8 @@
 	harming.dir = dir
 	flick_overlay_view(harming, 0.8 SECONDS)
 	return TRUE
+
+BUBBER EDIT END*/
 
 /// Called by the blob creation power to give us a mind and a basic task orientation
 /mob/living/basic/blob_minion/blobbernaut/minion/proc/assign_key(ckey, datum/blobstrain/blobstrain)
