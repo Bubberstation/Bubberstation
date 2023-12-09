@@ -15,7 +15,6 @@
 		return
 	// Healing is handled by negative rampup to prevent too much copypaste code
 	if(damage_rampup < 0)
-		// These are made to substitute BLOBMOB_BLOBBERNAUT_HEALING_CORE and BLOBMOB_BLOBBERNAUT_HEALING_NODE
 		heal_overall_damage(maxHealth * abs(damage_rampup) * seconds_per_tick)
 		var/obj/effect/temp_visual/heal/heal_effect = new /obj/effect/temp_visual/heal(get_turf(src))
 		heal_effect.color = atom_colours[FIXED_COLOUR_PRIORITY] || COLOR_BLACK
