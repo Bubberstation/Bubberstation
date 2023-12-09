@@ -32,7 +32,7 @@
 // Calculates the rampup
 /mob/living/basic/blob_minion/blobbernaut/minion/proc/CalculateDamageRampup()
 	if(orphaned)
-		damage_rampup = BLOBMOB_BLOBBERNAUT_MAX_RAMPUP
+		damage_rampup = BLOBMOB_BLOBBERNAUT_MAX_RAMPUP/3
 		return
 	if(locate(/obj/structure/blob) in range(4, src))
 		var/list/blob_healing_area = range(2, src)
