@@ -149,7 +149,7 @@
 	user.say("[war_cry]", forced="spear warcry")
 	explosive.forceMove(user)
 	explosive.detonate()
-	user.gib()
+	user.gib(DROP_ALL_REMAINS)
 	qdel(src)
 	return BRUTELOSS
 

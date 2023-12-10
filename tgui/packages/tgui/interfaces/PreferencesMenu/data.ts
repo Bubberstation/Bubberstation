@@ -89,6 +89,8 @@ export type Quirk = {
   icon: string;
   name: string;
   value: number;
+  customizable: boolean;
+  customization_options?: string[];
   veteran_only: boolean; // SKYRAT EDIT - Veteran quirks
 };
 
@@ -176,7 +178,7 @@ export type PreferencesMenuData = {
   preview_selection: string; // SKYRAT EDIT ADDITION
 
   is_veteran: BooleanLike; // SKYRAT EDIT - Veteran status
-
+  is_vetted: BooleanLike; // BUBBER EDIT - Vetted Users
   character_preferences: {
     clothing: Record<string, string>;
     features: Record<string, string>;
@@ -187,6 +189,7 @@ export type PreferencesMenuData = {
     };
     secondary_features: Record<string, unknown>;
     supplemental_features: Record<string, unknown>;
+    manually_rendered_features: Record<string, string>;
 
     names: Record<string, string>;
 

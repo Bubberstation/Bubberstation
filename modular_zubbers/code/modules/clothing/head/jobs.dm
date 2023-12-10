@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "bluedrill"
-	armor_type = /datum/armor/beret_blueshield //same as the Blueshield's default beret.
+	armor_type = /datum/armor/suit_armor/blueshield //same as the Blueshield's default beret.
 
 /obj/item/clothing/head/hats/caphat/drill
 	name = "Captain's campaign hat"

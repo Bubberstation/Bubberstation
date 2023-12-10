@@ -1,6 +1,6 @@
 /datum/fish_source/ocean
 	fish_table = list(
-		FISHING_DUD = 15,
+		// FISHING_DUD = 15, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/coin/gold = 5,
 		/obj/item/fish/clownfish = 15,
 		/obj/item/fish/pufferfish = 15,
@@ -19,7 +19,7 @@
 
 /datum/fish_source/portal
 	fish_table = list(
-		FISHING_DUD = 7,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/goldfish = 10,
 		/obj/item/fish/guppy = 10,
 		/obj/item/fish/angelfish = 10,
@@ -34,7 +34,7 @@
 
 /datum/fish_source/portal/beach
 	fish_table = list(
-		FISHING_DUD = 10,
+		//FISHING_DUD = 10, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/clownfish = 10,
 		/obj/item/fish/pufferfish = 10,
 		/obj/item/fish/cardinal = 10,
@@ -47,7 +47,7 @@
 /datum/fish_source/portal/chasm
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/chasm_crab = 10,
 		/obj/item/fish/boned = 5,
 		/obj/item/stack/sheet/bone = 5,
@@ -60,7 +60,7 @@
 
 /datum/fish_source/portal/ocean
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/lanternfish = 5,
 		/obj/item/fish/firefish = 5,
 		/obj/item/fish/dwarf_moonfish = 5,
@@ -76,7 +76,7 @@
 
 /datum/fish_source/portal/hyperspace
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/starfish = 6,
 		/obj/item/stack/ore/bluespace_crystal = 2,
 		/mob/living/basic/carp = 2,
@@ -94,7 +94,7 @@
 /datum/fish_source/portal/syndicate
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/donkfish = 5,
 		/obj/item/fish/emulsijack = 5,
 	)
@@ -186,7 +186,7 @@
 	catalog_description = "Chasm depths"
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		//FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/chasm_crab = 15,
 		/datum/chasm_detritus = 30,
 	)
@@ -205,7 +205,7 @@
 	catalog_description = "Lava vents"
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/stack/ore/slag = 20,
 		/obj/structure/closet/crate/necropolis/tendril = 1,
 		/obj/effect/mob_spawn/corpse/human/charredskeleton = 1
@@ -216,7 +216,7 @@
 
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 10
 
-/datum/fish_source/lavaland/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman)
+/datum/fish_source/lavaland/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	var/turf/approx = get_turf(fisherman) //todo pass the parent
 	if(!SSmapping.level_trait(approx.z, ZTRAIT_MINING))
@@ -227,7 +227,7 @@
 /datum/fish_source/lavaland/icemoon
 	catalog_description = "Liquid plasma vents"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/chasm_crab/ice = 15,
 		/obj/item/coin/plasma = 3,
 		/obj/item/stack/ore/plasma = 3,
@@ -244,7 +244,7 @@
 /datum/fish_source/moisture_trap
 	catalog_description = "Moisture trap basins"
 	fish_table = list(
-		FISHING_DUD = 20,
+		// FISHING_DUD = 20, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/ratfish = 10,
 		/obj/item/fish/slimefish = 4
 	)
@@ -254,7 +254,7 @@
 	catalog_description = "Station toilets"
 	duds = list("ewww... nothing", "it was nothing", "it was toilet paper", "it was flushed away", "the hook is empty", "where's the damn money?!")
 	fish_table = list(
-		FISHING_DUD = 18,
+		// FISHING_DUD = 18, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/sludgefish = 18,
 		/obj/item/fish/slimefish = 4,
 		/obj/item/storage/wallet/money = 2,
@@ -277,7 +277,7 @@
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY - 5
 
-/datum/fish_source/holographic/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman)
+/datum/fish_source/holographic/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(!istype(get_area(fisherman), /area/station/holodeck))
 		return "You need to be inside the Holodeck to catch holographic fish."
@@ -297,7 +297,7 @@
 /datum/fish_source/oil_well
 	catalog_description = "Oil wells"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/boned = 10,
 		/obj/item/stack/sheet/bone = 2,
 		/obj/item/clothing/gloves/bracer = 2,
@@ -310,3 +310,63 @@
 		/obj/item/fish/mastodon = 1,
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 15
+
+#define RANDOM_SEED "Random seed"
+
+/datum/fish_source/hydro_tray
+	catalog_description = "Hydroponics trays"
+	fish_table = list(
+		FISHING_DUD = 25,
+		/obj/item/food/grown/grass = 25,
+		RANDOM_SEED = 16,
+		/obj/item/seeds/grass = 6,
+		/obj/item/seeds/random = 1,
+		/mob/living/basic/frog = 1,
+		/mob/living/basic/axolotl = 1,
+	)
+	fish_counts = list(
+		/obj/item/food/grown/grass = 10,
+		/obj/item/seeds/grass = 4,
+		RANDOM_SEED = 4,
+		/obj/item/seeds/random = 1,
+		/mob/living/basic/frog = 1,
+		/mob/living/basic/axolotl = 1,
+	)
+	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY - 10
+
+/datum/fish_source/hydro_tray/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
+	if(!istype(parent, /obj/machinery/hydroponics/constructable))
+		return ..()
+
+	var/obj/machinery/hydroponics/constructable/basin = parent
+	if(basin.waterlevel <= 0)
+		return "There's no water in [parent] to fish in."
+	if(basin.myseed)
+		return "There's a plant growing in [parent]."
+
+	return ..()
+
+/datum/fish_source/hydro_tray/spawn_reward(reward_path, mob/fisherman, turf/fishing_spot)
+	if(reward_path != RANDOM_SEED)
+		var/mob/living/created_reward = ..()
+		if(istype(created_reward))
+			created_reward.name = "small [created_reward.name]"
+			created_reward.update_transform(0.75)
+		return created_reward
+
+	var/static/list/seeds_to_draw_from
+	if(isnull(seeds_to_draw_from))
+		seeds_to_draw_from = subtypesof(/obj/item/seeds)
+		// These two are already covered innately
+		seeds_to_draw_from -= /obj/item/seeds/random
+		seeds_to_draw_from -= /obj/item/seeds/grass
+		// -1 yield are unharvestable plants so we don't care
+		// 20 rarirty is where most of the wacky plants are so let's ignore them
+		for(var/obj/item/seeds/seed_path as anything in seeds_to_draw_from)
+			if(initial(seed_path.yield) == -1 || initial(seed_path.rarity) >= PLANT_MODERATELY_RARE)
+				seeds_to_draw_from -= seed_path
+
+	var/picked_path = pick(seeds_to_draw_from)
+	return new picked_path(get_turf(fishing_spot))
+
+#undef RANDOM_SEED

@@ -75,6 +75,8 @@
 	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
 		update_icon()
 		return
+	else if(default_unfasten_wrench(user, I))
+		return
 	if(default_deconstruction_crowbar(I))
 		return
 	if(iscyborg(user))
@@ -313,9 +315,9 @@
 					repaint_seed()
 				if("extract")
 					if(disk && !disk.read_only)
-						disk.gene = G
+						seed.genes -= G
+						var/datum/plant_gene/core/gene = G
 						if(istype(G, /datum/plant_gene/core))
-							var/datum/plant_gene/core/gene = G
 							if(istype(G, /datum/plant_gene/core/potency))
 								gene.value = min(gene.value, max_potency)
 							else if(istype(G, /datum/plant_gene/core/lifespan))
@@ -330,7 +332,9 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
-						disk.update_name()
+						disk.gene = gene
+						to_chat(usr, "<span class='notice'>You add [gene] to the disk.</span>")
+						disk.update_disk_name()
 						qdel(seed)
 						seed = null
 						update_icon()
@@ -445,13 +449,11 @@
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/*
-/obj/item/disk/plantgene/proc/update_name()
+/obj/item/disk/plantgene/proc/update_disk_name()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else
 		name = "plant data disk"
-*/
 
 /obj/item/disk/plantgene/attack_self(mob/user)
 	read_only = !read_only

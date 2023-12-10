@@ -1,3 +1,5 @@
+/* BUBBERSTATION CHANGE START: MOVED BETTER CODE TO MODULAR
+
 /obj/structure/trash_pile
 	name = "trash pile"
 	desc = "A heap of garbage, but maybe there's something interesting inside?"
@@ -32,6 +34,7 @@
 		"trashbag",
 		"brokecomp",
 	)
+
 
 /obj/structure/trash_pile/proc/do_search(mob/user)
 	if(contents.len) // There's something hidden
@@ -138,3 +141,5 @@
 
 /obj/structure/trash_pile/relaymove(mob/user)
 	container_resist_act(user)
+
+BUBBERSTATION CHANGE END */

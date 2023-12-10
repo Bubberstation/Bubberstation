@@ -7,9 +7,9 @@
 /datum/preference/choiced/parallax/init_possible_values()
 	return list(
 		PARALLAX_INSANE,
-//		PARALLAX_HIGH, // BUBBER EDIT BEGIN - You have it or you don't. You always look good.
-//		PARALLAX_MED,
-//		PARALLAX_LOW, // BUBBER EDIT END
+		PARALLAX_HIGH,
+		PARALLAX_MED,
+		PARALLAX_LOW,
 		PARALLAX_DISABLE,
 	)
 

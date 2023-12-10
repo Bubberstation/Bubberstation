@@ -67,12 +67,12 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/belt/utility/xenoarch = 5,
 		/obj/item/storage/belt/wands = 1,
 		/obj/item/storage/briefcase = 100,
-		/obj/item/storage/secure/briefcase = 50,
+		/obj/item/storage/briefcase/secure = 50,
 		/obj/item/storage/briefcase/empty = 25,
 		/obj/item/storage/briefcase/lawyer = 25,
 		/obj/item/storage/briefcase/medical = 25,
 		/obj/item/storage/briefcase/virology = 25,
-		/obj/item/storage/secure/briefcase/syndie = 1
+		/obj/item/storage/briefcase/secure/syndie = 1
 	) = 100,
 	list(
 		/obj/item/stock_parts/capacitor = 100,

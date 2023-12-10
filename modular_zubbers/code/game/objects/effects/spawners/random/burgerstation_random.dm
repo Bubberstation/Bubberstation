@@ -48,6 +48,7 @@
 		/obj/effect/mine/stun = 1,
 		/obj/effect/mine/sound/bwoink = 1,
 		/obj/effect/mine/kickmine = 1,
+		/obj/structure/trash_pile = 100
 	)
 
 /obj/effect/spawner/random/burgerstation/loot
@@ -60,7 +61,7 @@
 		/obj/effect/spawner/random/burgerstation/atmos = 500,
 		/obj/effect/spawner/random/burgerstation/liquid = 300,
 		/obj/effect/spawner/random/burgerstation/power = 100,
-		/obj/structure/trash_pile = 1000,
+		/obj/structure/trash_pile = 1500,
 		/obj/structure/closet/crate/trashcart/filled = 400,
 		/obj/item/storage/bag/trash/filled = 100,
 		/obj/effect/decal/cleanable/garbage = 100,
@@ -122,7 +123,6 @@
 		/obj/structure/closet/preopen = 1000,
 		/obj/structure/rack = 1000,
 		/obj/structure/rack/shelf = 200,
-		/obj/structure/rack/shelf/wooden = 100,
 		/obj/structure/safe = 50,
 		/obj/structure/safe/floor = 10,
 
@@ -213,7 +213,8 @@
 		/obj/machinery/vending/toyliberationstation = 1, //As a treat :^)
 		/obj/machinery/vending/vendcation = 50,
 		/obj/machinery/vending/wardrobe/syndie_wardrobe = 1, //As a treat :^)
-		/obj/machinery/vending/wardrobe/sec_wardrobe/red = 5
+		/obj/machinery/vending/wardrobe/sec_wardrobe/red = 5,
+		/obj/machinery/vending/halloween_chocolate = 100
 	)
 	additional_loot = list(
 		/obj/effect/mapping_helpers/broken_machine = 1
