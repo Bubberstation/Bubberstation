@@ -49,7 +49,7 @@
 	belt = /obj/item/modular_computer/pda/heads/quartermaster
 	suit = /obj/item/clothing/suit/jacket/quartermaster
 	ears = /obj/item/radio/headset/heads/qm
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/gun_permit/sunglasses //BUBBER EDIT: QM starts with permit glasses
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/clipboard
 
