@@ -8,9 +8,13 @@
 	show_to_ghosts = TRUE
 	hijack_speed = 2 //If you can't take out the station, take the shuttle instead.
 	suicide_cry = "FOR THE SYNDICATE!!"
+	/// Which nukie team are we on?
 	var/datum/team/nuclear/nuke_team
-	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
-	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
+	/// If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
+	var/always_new_team = FALSE
+	/// Should the user be moved to default spawnpoint after being granted this datum.
+	var/send_to_spawnpoint = TRUE
+	/// The DEFAULT outfit we will give to players granted this datum
 	var/nukeop_outfit = /datum/outfit/syndicate
 
 	preview_outfit = /datum/outfit/nuclear_operative_elite
@@ -40,13 +44,12 @@
 	if(!nukeop_outfit) // this variable is null in instances where an antagonist datum is granted via enslaving the mind (/datum/mind/proc/enslave_mind_to_creator), like in golems.
 		return
 
-	// SKYRAT EDIT START
-	//operative.set_species(/datum/species/human) //Plasmamen burn up otherwise, and besides, all other species are vulnerable to asimov AIs. Let's standardize all operatives being human.
-	if(isplasmaman(operative))
-		operative.equipOutfit(/datum/outfit/plasmaman) // they lose the turtleneck but that's fine
-	// SKYRAT EDIT END
+	// If our nuke_ops_species pref is set to TRUE, (or we have no client) make us a human
+	if(isnull(operative.client) || operative.client.prefs.read_preference(/datum/preference/toggle/nuke_ops_species))
+		operative.set_species(/datum/species/human)
 
-	operative.equipOutfit(nukeop_outfit)
+	operative.equip_species_outfit(nukeop_outfit)
+
 	return TRUE
 
 /datum/antagonist/nukeop/greet()
@@ -106,10 +109,11 @@
 
 /datum/antagonist/nukeop/proc/give_alias()
 	if(nuke_team?.syndicate_name)
-		var/mob/living/carbon/human/H = owner.current
-		if(istype(H)) // Reinforcements get a real name
-			var/chosen_name = H.dna.species.random_name(H.gender,0,nuke_team.syndicate_name)
-			H.fully_replace_character_name(H.real_name,chosen_name)
+		var/mob/living/carbon/human/human_to_rename = owner.current
+		if(istype(human_to_rename)) // Reinforcements get a real name
+			var/first_name = owner.current.client?.prefs?.read_preference(/datum/preference/name/operative_alias) || pick(GLOB.operative_aliases)
+			var/chosen_name = "[first_name] [nuke_team.syndicate_name]"
+			human_to_rename.fully_replace_character_name(human_to_rename.real_name, chosen_name)
 		else
 			var/number = 1
 			number = nuke_team.members.Find(owner)
@@ -243,7 +247,9 @@
 	name = "Nuclear Operative Leader"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
+	/// Randomly chosen honorific, for distinction
 	var/title
+	/// The nuclear challenge remote we will spawn this player with.
 	var/challengeitem = /obj/item/nuclear_challenge
 
 /datum/antagonist/nukeop/leader/memorize_code()
@@ -258,13 +264,6 @@
 		else
 			H.put_in_hands(nuke_code_paper, TRUE)
 			H.update_icons()
-
-/datum/antagonist/nukeop/leader/give_alias()
-	title = pick("Czar", "Boss", "Commander", "Chief", "Kingpin", "Director", "Overlord")
-	if(nuke_team?.syndicate_name)
-		owner.current.real_name = "[nuke_team.syndicate_name] [title]"
-	else
-		owner.current.real_name = "Syndicate [title]"
 
 /datum/antagonist/nukeop/leader/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0, use_reverb = FALSE)
@@ -293,11 +292,12 @@
 	name = "[syndicate_name] Team"
 	for(var/I in members)
 		var/datum/mind/synd_mind = I
-		var/mob/living/carbon/human/H = synd_mind.current
-		if(!istype(H))
+		var/mob/living/carbon/human/human_to_rename = synd_mind.current
+		if(!istype(human_to_rename))
 			continue
-		var/chosen_name = H.dna.species.random_name(H.gender,0,syndicate_name)
-		H.fully_replace_character_name(H.real_name,chosen_name)
+		var/first_name = human_to_rename.client?.prefs?.read_preference(/datum/preference/name/operative_alias) || pick(GLOB.operative_aliases)
+		var/chosen_name = "[first_name] [syndicate_name]"
+		human_to_rename.fully_replace_character_name(human_to_rename.real_name, chosen_name)
 
 /datum/antagonist/nukeop/leader/proc/ask_name()
 	var/randomname = pick(GLOB.last_names)

@@ -17,15 +17,15 @@
 	new /obj/item/radio/headset/heads/captain/alt(src)
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/storage/belt/sabre(src)
-	new /obj/item/storage/box/gunset/pdh(src) // SKYRAT EDIT CHANGE - ORIGINAL: new /obj/item/gun/energy/e_gun(src)
+	new /obj/item/gun/energy/e_gun(src)
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/storage/photo_album/captain(src)
+	new /obj/item/card/id/departmental_budget(src) //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
 	icon_state = "hop"
 	req_access = list(ACCESS_HOP)
-	storage_capacity = 40 //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hop/PopulateContents()
 	..()
@@ -45,6 +45,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/hop(src)
 	new /obj/item/storage/lockbox/medal/hop(src)
+	new /obj/item/card/id/departmental_budget/srv(src) //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
@@ -66,6 +67,7 @@
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/hos(src)
+	new /obj/item/card/id/departmental_budget/sec(src) //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hos/populate_contents_immediate()
 	. = ..()
@@ -183,6 +185,7 @@
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/binoculars(src)
 	new /obj/item/storage/box/rxglasses/spyglasskit(src)
+	new /obj/item/clothing/head/fedora/inspector_hat(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"

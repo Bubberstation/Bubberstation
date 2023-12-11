@@ -60,7 +60,7 @@
 	icon = 'modular_skyrat/modules/mold/icons/blob_core.dmi'
 	icon_state = "blob_core"
 	layer = TABLE_LAYER
-	max_integrity = 1200
+	max_integrity = 600 //BUBBERSTATION CHANGE
 
 	/// The soundloop played by the core
 	var/datum/looping_sound/core_heartbeat/soundloop
@@ -132,8 +132,8 @@
 	icon_state = "blob_floor"
 	density = FALSE
 	plane = FLOOR_PLANE
-	layer = ABOVE_NORMAL_TURF_LAYER
-	max_integrity = 50
+	layer = LOW_SIGIL_LAYER
+	max_integrity = 25 //BUBBERSTATION CHANGE
 	var/blooming = FALSE
 	/// Are we a floor resin? If not then we're a wall resin
 	var/floor = TRUE
@@ -193,7 +193,7 @@
 					pixel_x = -32
 			icon_state = "blob_wall"
 			plane = GAME_PLANE
-			layer = ABOVE_NORMAL_TURF_LAYER
+			layer = LOW_SIGIL_LAYER
 
 	if(prob(7))
 		blooming = TRUE
@@ -224,7 +224,7 @@
 	light_color = LIGHT_COLOR_LAVA
 	var/is_full = FALSE
 	var/list/registered_turfs = list()
-	max_integrity = 100
+	max_integrity = 50 //BUBBERSTATION CHANGE
 
 /obj/structure/mold/structure/bulb/Initialize(mapload)
 	. = ..()
@@ -272,11 +272,11 @@
 	discharge()
 	. = ..()
 
-/obj/structure/mold/structure/bulb/bullet_act(obj/projectile/hit_projectile)
-	if(istype(hit_projectile, /obj/projectile/energy/nuclear_particle))
-		return ..()
-	discharge()
+/obj/structure/mold/structure/bulb/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	. = ..()
+	if(istype(hitting_projectile, /obj/projectile/energy/nuclear_particle) || . != BULLET_ACT_HIT)
+		return
+	discharge()
 
 /obj/structure/mold/structure/bulb/Destroy()
 	if(mold_controller)
@@ -311,7 +311,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_ALIEN_RESIN
 	canSmoothWith = SMOOTH_GROUP_ALIEN_RESIN
-	max_integrity = 200
+	max_integrity = 100 //BUBBERSTATION CHANGE
 	can_atmos_pass = ATMOS_PASS_DENSITY
 
 /obj/structure/mold/wall/Destroy()
@@ -331,12 +331,12 @@
 	icon = 'modular_skyrat/modules/mold/icons/blob_spawner.dmi'
 	icon_state = "blob_vent"
 	density = FALSE
-	layer = LOW_OBJ_LAYER
-	max_integrity = 150
+	layer = SIGIL_LAYER
+	max_integrity = 75 //BUBBERSTATION CHANGE
 	/// The mold atmosphere conditioner will spawn the mold's preferred atmosphere every so often.
 	var/happy_atmos = null
 	/// The time between injections of that mold type's preferred atmos
-	var/puff_cooldown = 15 SECONDS
+	var/puff_cooldown = 30 SECONDS //BUBBERSTATION CHANGE
 	/// Tracks the status of the cooldown
 	var/puff_delay = 0
 
@@ -370,8 +370,8 @@
 	icon = 'modular_skyrat/modules/mold/icons/blob_spawner.dmi'
 	icon_state = "blob_spawner"
 	density = FALSE
-	layer = LOW_OBJ_LAYER
-	max_integrity = 150
+	layer = SIGIL_LAYER
+	max_integrity = 75 //BUBBERSTATION CHANGE
 
 /obj/structure/mold/structure/spawner/Destroy()
 	if(mold_controller)

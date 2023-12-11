@@ -4,7 +4,10 @@ import { GenericUplink, Item } from './Uplink/GenericUplink';
 import { BlockQuote, Button, Section, Stack, Tabs } from '../components';
 import { BooleanLike } from 'common/react';
 import { Window } from '../layouts';
-import { ObjectivePrintout, Objective } from './common/Objectives';
+import { ObjectivePrintout, Objective, ReplaceObjectivesButton } from './common/Objectives';
+// SKYRAT EDIT BEGIN
+import { Rules } from './AntagInfoRules';
+// SKYRAT EDIT END
 
 const allystyle = {
   fontWeight: 'bold',
@@ -32,11 +35,12 @@ type Info = {
   processingTime: string;
   objectives: Objective[];
   categories: any[];
+  can_change_objective: BooleanLike;
 };
 
 const IntroductionSection = (props, context) => {
   const { act, data } = useBackend<Info>(context);
-  const { intro, objectives } = data;
+  const { intro, objectives, can_change_objective } = data;
   return (
     <Section fill title="Intro" scrollable>
       <Stack vertical fill>
@@ -46,7 +50,15 @@ const IntroductionSection = (props, context) => {
             objectives={objectives}
             titleMessage="Your prime objectives:"
             objectivePrefix="&#8805-"
+            objectiveFollowup={
+              <ReplaceObjectivesButton
+                can_change_objective={can_change_objective}
+                button_title={'Overwrite Objectives Data'}
+                button_colour={'green'}
+              />
+            }
           />
+          <Rules /* SKYRAT EDIT ADDITION */ />
         </Stack.Item>
       </Stack>
     </Section>

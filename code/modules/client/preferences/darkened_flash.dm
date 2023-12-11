@@ -4,3 +4,6 @@
 	default_value = FALSE
 	savefile_key = "darkened_flash"
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/darkened_flash/create_default_value()
+	return TRUE

@@ -13,7 +13,7 @@
 	return ..()
 
 /obj/effect/spawner/random/maintenance/proc/hide()
-	invisibility = INVISIBILITY_OBSERVER
+	SetInvisibility(INVISIBILITY_OBSERVER)
 	alpha = 100
 
 /obj/effect/spawner/random/maintenance/proc/get_effective_lootcount()
@@ -24,7 +24,7 @@
 	if(src.loc && isfloorturf(src.loc)) //Putting a check for src.loc here because unittests spawn things in nullspace xd
 		for(var/atom/movable/M as anything in src.loc.contents)
 			if(GLOB.typecache_elevated_structures[M.type]) //Are we an elevated structure?
-				effective_lootcount *= 5
+				effective_lootcount *= 3
 				break
 	//End of blubberstation change.
 

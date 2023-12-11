@@ -2,7 +2,6 @@
 	name = "\improper Human"
 	id = SPECIES_HUMAN
 	inherent_traits = list(
-		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_USES_SKINTONES,
 	)
 	mutant_bodyparts = list("wings" = "None")
@@ -18,7 +17,7 @@
 	human_mob.skin_tone = random_skin_tone()
 
 /datum/species/human/get_scream_sound(mob/living/carbon/human/human)
-	if(human.gender == MALE)
+	if(human.physique == MALE)
 		if(prob(1))
 			return 'sound/voice/human/wilhelm_scream.ogg'
 		return pick(

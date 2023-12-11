@@ -4,7 +4,7 @@
 			"name" = "Toys",
 			"icon" = "hat-wizard",
 			"products" = list(
-				/obj/item/storage/secure/briefcase/white/wargame_kit = 3,
+				/obj/item/storage/briefcase/secure/white/wargame_kit = 3,
 			),
 		),
 		list(
@@ -13,6 +13,7 @@
 			"products" = list(
 				/obj/item/hairbrush = 3,
 				/obj/item/clothing/mask/holocigarette = 5,
+				/obj/item/attachable_soulcatcher = 5,
 			),
 		)
 	)

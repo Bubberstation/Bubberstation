@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "bluedrill"
-	armor_type = /datum/armor/beret_blueshield //same as the Blueshield's default beret.
+	armor_type = /datum/armor/suit_armor/blueshield //same as the Blueshield's default beret.
 
 /obj/item/clothing/head/hats/caphat/drill
 	name = "Captain's campaign hat"
@@ -26,3 +26,11 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "repdrill"
+
+/obj/item/clothing/head/beret/medical/coroner				//Donator request by Gavla
+	name = "coroner beret"
+	desc = "For harvesting organs in style!"
+	icon_state = "beret_badge_med"
+	greyscale_config = /datum/greyscale_config/beret_badge
+	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_colors = "#3E3E48#FFFFFF"

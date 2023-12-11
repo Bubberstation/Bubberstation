@@ -26,10 +26,8 @@
 	///Are our wings open or closed?
 	var/wings_open = FALSE
 
-// SKYRAT EDIT START - No free fall softening for everyone
-/obj/item/organ/external/wings/functional/can_soften_fall()
-	return TRUE
-// SKYRAT EDIT END
+	// grind_results = list(/datum/reagent/flightpotion = 5)
+	food_reagents = list(/datum/reagent/flightpotion = 5)
 
 /obj/item/organ/external/wings/functional/Insert(mob/living/carbon/receiver, special, drop_if_replaced)
 	. = ..()
@@ -107,12 +105,12 @@
 	if(!HAS_TRAIT_FROM(human, TRAIT_MOVE_FLYING, SPECIES_FLIGHT_TRAIT))
 		human.physiology.stun_mod *= 2
 		human.add_traits(list(TRAIT_NO_FLOATING_ANIM, TRAIT_MOVE_FLYING), SPECIES_FLIGHT_TRAIT)
-		passtable_on(human, SPECIES_TRAIT)
+		passtable_on(human, SPECIES_FLIGHT_TRAIT)
 		open_wings()
 	else
 		human.physiology.stun_mod *= 0.5
 		human.remove_traits(list(TRAIT_NO_FLOATING_ANIM, TRAIT_MOVE_FLYING), SPECIES_FLIGHT_TRAIT)
-		passtable_off(human, SPECIES_TRAIT)
+		passtable_off(human, SPECIES_FLIGHT_TRAIT)
 		close_wings()
 	human.update_body_parts()
 

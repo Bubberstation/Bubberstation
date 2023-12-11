@@ -275,6 +275,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	prefs = GLOB.preferences_datums[ckey]
 	if(prefs)
 		prefs.parent = src
+		prefs.load_savefile() // just to make sure we have the latest data
 		prefs.apply_all_client_preferences()
 	else
 		prefs = new /datum/preferences(src)
@@ -473,6 +474,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
+			log_admin_private("New login: [key_name(key, FALSE, TRUE)] (IP: [address], ID: [computer_id]) logged onto the servers for the first time.")
 			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				var/new_player_alert_role = CONFIG_GET(string/new_player_alert_role_id)
@@ -598,7 +600,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			send2adminchat("Server", "[cheesy_message] (No admins online)")
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 
-	active_mousedown_item = null
 	SSambience.remove_ambience_client(src)
 	SSmouse_entered.hovers -= src
 	SSping.currentrun -= src
@@ -688,7 +689,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			log_access("Failed Login: [key] - [address] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - [address] - New account attempting to connect during panic bunker</span>")
 			//BUBBER EDIT ADDITION BEGIN - PANICBUNKER TEXT
-			to_chat_immediate(src, {"<span class='notice'>Hi! This server is whitelist-enabled. <br> <br> To join our community, check out our Discord! To gain full access to our Discord, read the rules and post a request in the #expectations channel under the \"Whitelist\" category in the Discord server linked here: <a href=' https://discord.gg/AvjrTqnqEx '>https://discord.gg/AvjrTqnqEx</a></span>"}) //Bubber edit
+			var/forumurl = CONFIG_GET(string/forumurl)
+			to_chat_immediate(src, {"<span class='notice'>Hi! This server is whitelist-enabled. <br> <br> To join our community, check out our Discord! To gain full access to the game server, read the rules and open a ticket in the #get-whitelisted channel under the \"Whitelist\" category in the Discord server linked here: <a href=' [forumurl] '>[forumurl]</a></span>"})
+			//BUBBER EDIT ADDITION END - PANICBUNKER TEXT
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])

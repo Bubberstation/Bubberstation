@@ -4,6 +4,9 @@
 /datum/plant_gene/reagent
 	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
 
+/datum/plant_gene/trait/backfire
+	mutability_flags = PLANT_GENE_GRAFTABLE //Making this mutatable causes bugs and linters to fail.
+
 /*
  * Returns the formatted name of the plant gene.
  *

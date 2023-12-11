@@ -4,6 +4,9 @@ import { Box, Button, Section, Table, Icon } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
+const STAT_LIVING = 0;
+const STAT_DEAD = 4;
+
 const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
   '#c4cf2d',
@@ -18,7 +21,7 @@ const HEALTH_ICON_BY_LEVEL = [
   'heart',
   'heart-circle-exclamation',
   'heartbeat',
-  'skull',
+  'heart-crack',
 ];
 const jobIsHead = (jobId) => jobId % 10 === 0;
 
@@ -141,13 +144,15 @@ const CrewTableEntry = (props, context) => {
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {is_robot ? (
-          <Icon name="steam" color="#EFEFEF" size={1} />
+          <Icon name="user-cog" color="#CCCCCC" size={1} />
         ) : (
           <Icon name="user" color="#EFEFEF" size={1} />
         )}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
-        {oxydam !== undefined && life_status ? (
+        {life_status === STAT_DEAD ? (
+          <Icon name="skull" color="#801308" size={1} />
+        ) : oxydam !== undefined ? (
           <Icon
             name={healthToAttribute(
               oxydam,
@@ -165,12 +170,10 @@ const CrewTableEntry = (props, context) => {
             )}
             size={1}
           />
-        ) : life_status ? (
-          <Icon name="heart" color="#17d568" size={1} />
         ) : (
-          <Icon name="skull" color="#801308" size={1} />
+          <Icon name="heart" color="#FFFFFF" size={1} />
         )}
-        {!life_status && is_dnr ? ' (DNR)' : ''}
+        {life_status === STAT_DEAD && is_dnr ? ' (DNR)' : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (
@@ -183,7 +186,7 @@ const CrewTableEntry = (props, context) => {
             {'/'}
             <HealthStat type="brute" value={brutedam} />
           </Box>
-        ) : life_status ? (
+        ) : life_status !== STAT_DEAD ? (
           'Alive'
         ) : (
           'DEAD'

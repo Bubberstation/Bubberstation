@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(player_ranks)
 	var/datum/player_rank_controller/mentor/mentor_controller
 	/// The veteran player rank controller.
 	var/datum/player_rank_controller/veteran/veteran_controller
-
+	var/datum/player_rank_controller/vetted/vetted_controller // BUBBER EDIT ADDITION
 
 /datum/controller/subsystem/player_ranks/Initialize()
 	if(IsAdminAdvancedProcCall())
@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(player_ranks)
 	load_donators()
 	load_mentors()
 	load_veterans()
-
+	load_vetted_ckeys() // BUBBER EDIT ADDITION
 	return SS_INIT_SUCCESS
 
 
@@ -39,22 +39,24 @@ SUBSYSTEM_DEF(player_ranks)
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(veteran_controller)
-
+	QDEL_NULL(vetted_controller) // BUBBER EDIT ADDITION
 
 /**
  * Returns whether or not the user is qualified as a donator.
  *
  * Arguments:
  * * user - The client to verify the donator status of.
+ * * admin_bypass - Whether or not admins can succeed this check, even if they
+ * do not actually possess the role. Defaults to `TRUE`.
  */
-/datum/controller/subsystem/player_ranks/proc/is_donator(client/user)
+/datum/controller/subsystem/player_ranks/proc/is_donator(client/user, admin_bypass = TRUE)
 	if(!istype(user))
 		CRASH("Invalid user type provided to is_donator(), expected 'client' and obtained '[user ? user.type : "null"]'.")
 
 	if(GLOB.donator_list[user.ckey])
 		return TRUE
 
-	if(is_admin(user))
+	if(admin_bypass && is_admin(user))
 		return TRUE
 
 	return FALSE
@@ -66,12 +68,14 @@ SUBSYSTEM_DEF(player_ranks)
  *
  * Arguments:
  * * user - The client to verify the mentor status of.
+ * * admin_bypass - Whether or not admins can succeed this check, even if they
+ * do not actually possess the role. Defaults to `TRUE`.
  */
-/datum/controller/subsystem/player_ranks/proc/is_mentor(client/user)
+/datum/controller/subsystem/player_ranks/proc/is_mentor(client/user, admin_bypass = TRUE)
 	if(!istype(user))
 		CRASH("Invalid user type provided to is_mentor(), expected 'client' and obtained '[user ? user.type : "null"]'.")
 
-	return user.is_mentor()
+	return user.is_mentor(admin_bypass)
 
 
 /**
@@ -79,8 +83,10 @@ SUBSYSTEM_DEF(player_ranks)
  *
  * Arguments:
  * * user - The client to verify the veteran status of.
+ * * admin_bypass - Whether or not admins can succeed this check, even if they
+ * do not actually possess the role. Defaults to `TRUE`.
  */
-/datum/controller/subsystem/player_ranks/proc/is_veteran(client/user)
+/datum/controller/subsystem/player_ranks/proc/is_veteran(client/user, admin_bypass = TRUE)
 
 // BUBBER EDIT REMOVAL - Down with sponsored metacliques and player elistism systems.
 	return TRUE
@@ -90,7 +96,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(GLOB.veteran_list[user.ckey])
 		return TRUE
 
-	if(is_admin(user))
+	if(admin_bypass && is_admin(user))
 		return TRUE
 
 	return FALSE */
@@ -251,20 +257,36 @@ SUBSYSTEM_DEF(player_ranks)
  * or in the legacy system.
  *
  * Arguments:
- * * admin - The admin making the rank change.
+ * * admin - The admin making the rank change. Can be a /client or a /datum/admins.
  * * ckey - The ckey of the player you want to now possess that player rank.
  * * rank_title - The title of the group you want to add the ckey to.
  */
-/datum/controller/subsystem/player_ranks/proc/add_player_to_group(client/admin, ckey, rank_title)
+/datum/controller/subsystem/player_ranks/proc/add_player_to_group(admin, ckey, rank_title)
 	if(IsAdminAdvancedProcCall())
 		return FALSE
 
 	if(!ckey || !admin || !rank_title)
+		stack_trace("Missing either ckey ([ckey || "*NULL*"]), admin ([admin || "*NULL*"]) or rank_title ([rank_title || "*NULL*"]) in add_player_to_group()! Fix this ASAP!")
 		return FALSE
 
-	if(!check_rights_for(admin, R_PERMISSIONS))
-		to_chat(admin, span_warning("You do not possess the permissions to do this."))
+	var/is_admin_client = istype(admin, /client)
+	var/client/admin_client = is_admin_client ? admin : null
+	// If it's not a client, then it should be an admins datum.
+	var/datum/admins/admin_holder = null
+	if(is_admin_client)
+		admin_holder = admin_client?.holder
+	else if(istype(admin, /datum/admins))
+		admin_holder = admin
+
+	if(!admin_holder)
 		return FALSE
+
+	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+		if(is_admin_client)
+			to_chat(admin, span_warning("You do not possess the permissions to do this."))
+
+		return FALSE
+
 
 	rank_title = lowertext(rank_title)
 
@@ -279,14 +301,16 @@ SUBSYSTEM_DEF(player_ranks)
 	var/already_in_config = controller.get_ckeys_for_legacy_save()
 
 	if(already_in_config[ckey])
-		to_chat(admin, span_warning("\"[ckey]\" is already a [rank_title]!"))
+		if(is_admin_client)
+			to_chat(admin, span_warning("\"[ckey]\" is already a [rank_title]!"))
+
 		return FALSE
 
 	if(controller.should_use_legacy_system())
 		controller.add_player_legacy(ckey)
 		return TRUE
 
-	return add_player_rank_sql(controller, ckey, admin.ckey)
+	return add_player_rank_sql(controller, ckey, admin_holder.target)
 
 
 /**
@@ -322,19 +346,34 @@ SUBSYSTEM_DEF(player_ranks)
  * or in the legacy system.
  *
  * Arguments:
- * * admin - The admin making the rank change.
+ * * admin - The admin making the rank change. Can be a /client or a /datum/admins.
  * * ckey - The ckey of the player you want to no longer possess that player rank.
  * * rank_title - The title of the group you want to remove the ckey from.
  */
-/datum/controller/subsystem/player_ranks/proc/remove_player_from_group(client/admin, ckey, rank_title)
+/datum/controller/subsystem/player_ranks/proc/remove_player_from_group(admin, ckey, rank_title)
 	if(IsAdminAdvancedProcCall())
 		return FALSE
 
 	if(!ckey || !admin || !rank_title)
+		stack_trace("Missing either ckey ([ckey || "*NULL*"]), admin ([admin || "*NULL*"]) or rank_title ([rank_title || "*NULL*"]) in remove_player_from_group()! Fix this ASAP!")
 		return FALSE
 
-	if(!check_rights_for(admin, R_PERMISSIONS))
-		to_chat(admin, span_warning("You do not possess the permissions to do this."))
+	var/is_admin_client = istype(admin, /client)
+	var/client/admin_client = is_admin_client ? admin : null
+	// If it's not a client, then it should be an admins datum.
+	var/datum/admins/admin_holder = null
+	if(is_admin_client)
+		admin_holder = admin_client?.holder
+	else if(istype(admin, /datum/admins))
+		admin_holder = admin
+
+	if(!admin_holder)
+		return FALSE
+
+	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+		if(is_admin_client)
+			to_chat(admin, span_warning("You do not possess the permissions to do this."))
+
 		return FALSE
 
 	rank_title = lowertext(rank_title)
@@ -342,22 +381,16 @@ SUBSYSTEM_DEF(player_ranks)
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)
 
 	if(!controller)
-		stack_trace("Invalid player rank \"[rank_title]\" supplied in add_player_to_group()!")
+		stack_trace("Invalid player rank \"[rank_title]\" supplied in remove_player_from_group()!")
 		return FALSE
 
 	ckey = ckey(ckey)
-
-	var/already_in_config = controller.get_ckeys_for_legacy_save()
-
-	if(!already_in_config[ckey])
-		to_chat(admin, span_warning("\"[ckey]\" is already not a [rank_title]!"))
-		return FALSE
 
 	if(controller.should_use_legacy_system())
 		controller.remove_player_legacy(ckey)
 		return TRUE
 
-	return remove_player_rank_sql(controller, ckey, admin.ckey)
+	return remove_player_rank_sql(controller, ckey, admin_holder.target)
 
 
 /**

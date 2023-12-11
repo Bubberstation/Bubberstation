@@ -10,6 +10,7 @@
 	silent = TRUE //not actually silent, because greet will be called by the trauma anyway.
 	suicide_cry = "FOR MY LOVE!!"
 	preview_outfit = /datum/outfit/obsessed
+	hardcore_random_bonus = TRUE
 	var/datum/brain_trauma/special/obsessed/trauma
 
 /datum/antagonist/obsessed/admin_add(datum/mind/new_owner,mob/admin)
@@ -61,6 +62,7 @@
 	mask = /obj/item/clothing/mask/surgical
 	neck = /obj/item/camera
 	suit = /obj/item/clothing/suit/apron
+	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/obsessed/post_equip(mob/living/carbon/human/H)
 	for(var/obj/item/carried_item in H.get_equipped_items(include_pockets = TRUE, include_accessories = TRUE))
@@ -69,7 +71,7 @@
 
 /datum/antagonist/obsessed/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
+	var/datum/objective/assassinate/kill = new // ZUBBER EDIT : Now with less round-removal! | org: var/datum/objective/assassinate/obsessed/kill = new
 	kill.owner = owner
 	kill.target = obsessionmind
 	var/obj/family_heirloom
@@ -175,7 +177,7 @@
 	..()
 	old = find_coworker(target)
 	if(target?.current && old)
-		explanation_text = "Murder [target.name], [old]'s coworker."
+		explanation_text = "Assassinate [target.name], [old]'s coworker, ONCE." // ZUBBER EDIT | org: explanation_text = "Murder [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
 	else
 		explanation_text = "Free Objective"
 
