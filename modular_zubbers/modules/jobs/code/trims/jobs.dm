@@ -1,3 +1,9 @@
+/datum/id_trim/job/medical_doctor/New()
+	. = ..()
+	extra_access += list(
+		ACCESS_MORGUE_SECURE,
+	)
+
 /datum/id_trim/job/blacksmith //Place Holder. You'll probably wanna come by and set these up correctly.
 	assignment = "Blacksmith"
 	trim_state = "trim_cargotechnician"
@@ -31,8 +37,23 @@
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
 	sechud_icon_state = SECHUD_SECURITY_MEDIC
 	extra_access = list(ACCESS_DETECTIVE)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG_ENTRANCE, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_MORGUE)
-	template_access = list(ACCESS_CAPTAIN, ACCESS_HOS, ACCESS_CHANGE_IDS)
+	minimal_access = list(
+		ACCESS_SECURITY,
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_BRIG,
+		ACCESS_COURT,
+		ACCESS_WEAPONS,
+		ACCESS_MECH_SECURITY,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_MEDICAL,
+		ACCESS_MORGUE,
+		)
+	template_access = list(
+		ACCESS_CAPTAIN,
+		ACCESS_HOS,
+		ACCESS_CHANGE_IDS,
+		)
 
 /datum/id_trim/job/security_medic/New()
 	. = ..()
