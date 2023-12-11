@@ -4,6 +4,13 @@
 		ACCESS_MORGUE_SECURE,
 	)
 
+/datum/id_trim/job/quartermaster/New()
+	. = ..()
+	minimal_access += list(
+		ACCESS_WEAPONS,
+		ACCESS_BLACKSMITH,
+	)
+
 /datum/id_trim/job/blacksmith //Place Holder. You'll probably wanna come by and set these up correctly.
 	assignment = "Blacksmith"
 	trim_state = "trim_cargotechnician"
