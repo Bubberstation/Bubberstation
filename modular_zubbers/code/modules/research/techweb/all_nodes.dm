@@ -10,6 +10,7 @@
 		"plantgene",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	required_experiments = list(/datum/experiment/scanning/random/plants/wild)
 
 // MEDICAL
 /datum/techweb_node/adv_biotech/New()
