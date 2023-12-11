@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(!message || message == "")
 		return
 	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
-	if(findtext(message, GLOB.has_eol_punctuation))
+	if(client?.autopunctuation && findtext(message, GLOB.has_eol_punctuation))
 		message += "."
 	//BUBBER EDIT END: AUTOPUNCTUATION
 
