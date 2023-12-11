@@ -15,3 +15,5 @@
 // Our exclusive jobs
 #define JOB_SECURITY_MEDIC "Security Medic"
 #define JOB_BLACKSMITH "Blacksmith"
+
+#define JOB_DISPLAY_ORDER_BLACKSMITH 48
