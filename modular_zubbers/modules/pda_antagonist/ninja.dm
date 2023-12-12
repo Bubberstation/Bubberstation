@@ -46,13 +46,15 @@
 			message_admins("[ADMIN_LOOKUPFLW(M)] was selected by the [name] ruleset and has been made into a midround ninja.")
 			log_dynamic("[key_name(M)] was selected by the [name] ruleset and has been made into a midround ninja.")
 			. = TRUE
-
+		else
+			refusers |= M
+			execute()
 /datum/antagonist/ninja/crew/
 
 /datum/antagonist/ninja/crew/equip_space_ninja(mob/living/carbon/human/ninja = owner.current)
 	var/obj/item/beacon = new /obj/item/summon_beacon/ninja
 	var/success = ninja.put_in_hands(beacon)
-	to_chat(ninja, span_notice("A summoning beacon appears [success ? "in you hands" : "on the floor before you!"]"))
+	to_chat(ninja, span_notice("A summoning beacon appears [success ? "in your hands" : "on the floor before you!"]"))
 	return TRUE
 
 /obj/item/storage/box/ninja/PopulateContents()
