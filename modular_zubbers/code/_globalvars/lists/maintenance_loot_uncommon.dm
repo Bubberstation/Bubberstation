@@ -270,10 +270,8 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/gloves/cut = 25
 	) = 100,
 	list(
-		/obj/item/clothing/suit/armor/bulletproof/old = 5,
-		/obj/item/clothing/head/helmet/old = 10,
-		/obj/item/clothing/head/helmet/toggleable/justice = 3,
-		/obj/item/clothing/head/helmet/toggleable/justice/escape = 3
+		/obj/item/clothing/head/helmet/toggleable/justice = 1,
+		/obj/item/clothing/head/helmet/toggleable/justice/escape = 1
 	) = 20,
 	list(
 		/obj/item/clothing/head/utility/welding = 10,
