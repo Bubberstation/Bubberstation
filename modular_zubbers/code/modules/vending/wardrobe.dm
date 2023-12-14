@@ -24,4 +24,5 @@
 		/obj/item/clothing/head/costume/cardborg/fnaf/foxy = 1,
 			),
 		),
+	)
 
