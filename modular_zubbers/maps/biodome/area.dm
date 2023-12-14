@@ -1,5 +1,5 @@
 /area/station/biodome
-	name = "\improper Station Biodome",
+	name = "\improper Station Biodome"
 	icon = 'modular_zubbers/maps/biodome/area.dmi'
 	icon_state = "biodome"
 
