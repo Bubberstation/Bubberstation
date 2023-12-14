@@ -1,11 +1,12 @@
-GLOBAL_LIST_EMPTY(voice_types)
+//this is the place where you add more voices. probably.
 
 /datum/voice_type
 	var/name
 	var/list/voice_chime
 
+
 /datum/voice_type/none //Mime's favorite
-	name = "No Voice"
+	name = "No sound"
 	voice_chime = null
 
 /datum/voice_type/voice_1
@@ -24,20 +25,22 @@ GLOBAL_LIST_EMPTY(voice_types)
 		'modular_zubbers/sound/voices/speak_2_exclaim.ogg',
 	)
 //I wish I knew what I am doing
-GLOBAL_REAL_VAR(list/voice_types) = list(
-	"none" = list(
-		"0","!","?" = sound('null')
+/datum/voice_types
+var/sound/voice_types
+GLOBAL_DATUM
+GLOBAL_LIST_INIT(voice_types, list(
+	"No sound = list(
+		"0","!","?" = sound(null)
 	),
-	"voice_1" = list(
+	"Voice 1" = list(
 		"1" = sound('modular_zubbers/sound/voices/speak_1.ogg'),
 		"!" = sound('modular_zubbers/sound/voices/speak_1_exclaim.ogg'),
-		"?" = sound('modular_zubbers/sound/voices/speak_1_question.ogg')
+		"?" = sound('modular_zubbers/sound/voices/speak_1_ask.ogg')
 	),
-	"voice_2" = list(
+	"Voice 2" = list(
 		"2" = sound('modular_zubbers/sound/voices/speak_2.ogg'),
 		"!" = sound('modular_zubbers/sound/voices/speak_2_exclaim.ogg'),
-		"?" = sound('modular_zubbers/sound/voices/speak_2_question.ogg')
-	),
-)
-//reference the real global? idk what that means
-GLOBAL_LIST_INIT(voice_types)
+		"?" = sound('modular_zubbers/sound/voices/speak_2_ask.ogg')
+	)
+	))
+
