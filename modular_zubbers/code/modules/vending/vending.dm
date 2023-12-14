@@ -79,4 +79,3 @@
 		return FALSE
 	return TRUE
 
-#undef MINIMUM_CLOTHING_STOCK
