@@ -1,4 +1,4 @@
-//Taken from Modular Vending in zubbers
+//Taken from Modular Vending in Skyrat
 
 /obj/machinery/vending
 	/// Additions to the `products` list  of the vending machine, modularly. Will become null after Initialize, to free up memory.
