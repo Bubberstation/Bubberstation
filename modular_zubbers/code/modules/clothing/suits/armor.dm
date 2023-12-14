@@ -32,7 +32,7 @@
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
 
-obj/item/clothing/suit/costume/cardborg/fnaf //Virgo Sprites
+obj/item/clothing/suit/costume/cardborg/fnaf //Virgo Sprites, https://github.com/VOREStation/VOREStation
 	name = "freddy fuckballs"
 	desc = "is that the freddy fazbear????"
 	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
