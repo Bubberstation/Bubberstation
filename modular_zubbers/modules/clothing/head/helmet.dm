@@ -27,6 +27,9 @@
 	name = "magnificent pinwheel hat"
 	desc = "The strongest possible pinwheel pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
 	icon_state = "pinwheel_gold"
+// FNAF MASKS BELOW
+// Credit:
+// Virgo Sprites, from: https://github.com/VOREStation/VOREStation
 
 /obj/item/clothing/head/costume/cardborg/fnaf
 	name = "freddy fuckballs"
