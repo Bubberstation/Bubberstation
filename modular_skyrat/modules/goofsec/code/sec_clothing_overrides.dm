@@ -668,6 +668,7 @@
 			RESKIN_ICON_STATE = "security_boots_fullwhite",
 			RESKIN_WORN_ICON_STATE = "security_boots_fullwhite"
 		),
+		//BUBBER EDIT ADDITION - RED SEC
 		"Black Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
 			RESKIN_ICON_STATE = "jackboots",
