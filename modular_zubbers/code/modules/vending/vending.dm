@@ -37,20 +37,6 @@
 		for(var/item_to_add in zubbers_contraband)
 			contraband[item_to_add] = zubbers_contraband[item_to_add]
 
-	// Time to make clothes amounts consistent!
-	for (var/obj/item/clothing/item in products)
-		if(products[item] < MINIMUM_CLOTHING_STOCK && allow_increase(item))
-			products[item] = MINIMUM_CLOTHING_STOCK
-
-	for (var/category in product_categories)
-		for(var/obj/item/clothing/item in category["products"])
-			if(category["products"][item] < MINIMUM_CLOTHING_STOCK && allow_increase(item))
-				category["products"][item] = MINIMUM_CLOTHING_STOCK
-
-	for (var/obj/item/clothing/item in premium)
-		if(premium[item] < MINIMUM_CLOTHING_STOCK && allow_increase(item))
-			premium[item] = MINIMUM_CLOTHING_STOCK
-
 	QDEL_NULL(zubbers_products)
 	QDEL_NULL(zubbers_product_categories)
 	QDEL_NULL(zubbers_premium)
