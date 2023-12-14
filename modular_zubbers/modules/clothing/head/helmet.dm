@@ -27,3 +27,37 @@
 	name = "magnificent pinwheel hat"
 	desc = "The strongest possible pinwheel pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
 	icon_state = "pinwheel_gold"
+
+/obj/item/clothing/head/costume/cardborg/fnaf
+	name = "freddy fuckballs"
+	desc = "is that the freddy fazbear????"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "freddyhead"
+	inhand_icon_state = null
+	lefthand_file = null
+	righthand_file = null
+	armor_type = /datum/armor/none
+	clothing_flags = SNUG_FIT
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+
+/obj/item/clothing/head/costume/cardborg/fnaf/bear
+	name = "animatronic bear helmet"
+	desc = "Har har. Very funny human, now, take off the costume."
+	icon_state = "freddyhead"
+
+/obj/item/clothing/head/costume/cardborg/fnaf/bird
+	name = "animatronic bird helmet"
+	desc = "This helmet kinda bad, though..."
+	icon_state = "chicahead"
+
+/obj/item/clothing/head/costume/cardborg/fnaf/bunny
+	name = "animatronic bunny helmet"
+	desc = "They do get a bit quirky at night."
+	icon_state = "bonniehead"
+
+/obj/item/clothing/head/costume/cardborg/fnaf/foxy
+	name = "animatronic fox helmet"
+	desc = "Just trying to help you, don't worry!"
+	icon_state = "foxyhead"
+

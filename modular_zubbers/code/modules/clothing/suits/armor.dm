@@ -31,3 +31,34 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
+
+obj/item/clothing/suit/costume/cardborg/fnaf //Virgo Sprites
+	name = "freddy fuckballs"
+	desc = "is that the freddy fazbear????"
+	icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "freddysuit"
+	inhand_icon_state = null
+	lefthand_file = null
+	righthand_file = null
+
+obj/item/clothing/suit/costume/cardborg/fnaf/bear
+	name = "animatronic bear suit"
+	desc = "O, cholera."
+	icon_state = "freddysuit"
+
+obj/item/clothing/suit/costume/cardborg/fnaf/bird
+	name = "animatronic bird suit"
+	desc = "Let's Eat!"
+	icon_state = "chicasuit"
+
+obj/item/clothing/suit/costume/cardborg/fnaf/bunny
+	name = "animatronic bunny suit"
+	desc = "Also comes in Yellow!"
+	icon_state = "bonniesuit"
+
+obj/item/clothing/suit/costume/cardborg/fnaf/foxy
+	name = "animatronic fox suit"
+	desc = "YARR!"
+	icon_state = "foxysuit"
+
