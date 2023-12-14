@@ -68,6 +68,9 @@
 			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
 			RESKIN_ICON_STATE = "backpack-security",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "securitypack"
 		),
 	)
 
@@ -95,6 +98,9 @@
 			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
 			RESKIN_ICON_STATE = "satchel-security",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "satchel-sec"
 		),
 	)
 
@@ -122,6 +128,9 @@
 			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
 			RESKIN_ICON_STATE = "duffel-security",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+			RESKIN_INHAND_L = 'icons/mob/inhands/equipment/backpack_lefthand.dmi',
+			RESKIN_INHAND_R = 'icons/mob/inhands/equipment/backpack_righthand.dmi',
+			RESKIN_INHAND_STATE = "duffel-sec"
 		),
 	)
 
@@ -323,7 +332,7 @@
 		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
 			RESKIN_ICON_STATE = "secsoft",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi'
 		),
 	)
 
@@ -454,7 +463,7 @@
 		"Red Variant" = list(
 			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
 			RESKIN_ICON_STATE = "black",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
+			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi'
 		),
 	)
 
@@ -593,10 +602,8 @@
 		),
 		//BUBBER EDIT ADDITION - RED SEC
 		"Red Variant" = list(
-			RESKIN_ICON = 'icons/mob/clothing/under/security.dmi',
 			RESKIN_ICON_STATE = "rsecurity",
-			// RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			// RESKIN_WORN_ICON_STATE = "rsecurity"
+			RESKIN_WORN_ICON_STATE = "rsecurity"
 		),
 	)
 
