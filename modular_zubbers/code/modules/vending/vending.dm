@@ -57,24 +57,3 @@
 	QDEL_NULL(zubbers_contraband)
 	return ..()
 
-/// This proc checks for forbidden traits cause it'd be pretty bad to have 5 insuls available to assistants roundstart at the vendor!
-/obj/machinery/vending/proc/allow_increase(obj/item/clothing/clothing_path)
-	var/obj/item/clothing/clothing = new clothing_path()
-
-	// Ignore earmuffs!
-	if(TRAIT_DEAF in clothing.clothing_traits)
-		return FALSE
-	// Don't touch sunglasses or welding helmets!
-	if(clothing.flash_protect == FLASH_PROTECTION_WELDER)
-		return FALSE
-	// Don't touch bodyarmour!
-	if(ispath(clothing, /obj/item/clothing/suit/armor))
-		return FALSE
-	// Don't touch protective helmets, like riot helmets!
-	if(ispath(clothing, /obj/item/clothing/head/helmet))
-		return FALSE
-	// Ignore all gloves, because it's almost impossible to check what they do...
-	if(ispath(clothing, /obj/item/clothing/gloves))
-		return FALSE
-	return TRUE
-
