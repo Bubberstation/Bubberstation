@@ -296,7 +296,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/medium
 	cost = 4
-	required_total_points =6//Bubber edit, orginally 8
+	required_total_points = 8
 	category = "Symptom"
 
 /datum/disease_ability/symptom/medium/heal
@@ -305,7 +305,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/symptom/powerful
 	cost = 4
-	required_total_points = 10//Bubber edit, orginally 16
+	required_total_points = 16
 	category = "Symptom (Strong)"
 
 /datum/disease_ability/symptom/powerful/heal
@@ -313,15 +313,6 @@ new /datum/disease_ability/symptom/powerful/youth
 	category = "Symptom (Strong+)"
 
 /******MILD******/
-
-/datum/disease_ability/symptom/mild/hidden//BUBBER CHANGE
-	name = "Adaption"//Symptom to increase Sentient Virus base Stealth+Resistance
-	symptoms = list(/datum/symptom/hidden)
-	cost = 0//Cost is 0 because the virus will already have this by default.
-	required_total_points = 0//Available at start if refunded.
-	start_with = TRUE//Starts the virus with the symptom. For balancing reasons.
-	short_desc = "Hightens your stealth and resistance."
-	long_desc = "An adaptation that allows for greater stealth and resistance."
 
 /datum/disease_ability/symptom/mild/cough
 	name = "Involuntary Coughing"
