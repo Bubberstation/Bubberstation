@@ -63,6 +63,12 @@
 			RESKIN_WORN_ICON_STATE = "backpack_security_white",
 			RESKIN_INHAND_STATE = "backpack_security_white"
 		),
+		//BUBBER EDIT ADDITION - RED SEC
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "backpack-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+		),
 	)
 
 /obj/item/storage/backpack/satchel/sec
@@ -84,6 +90,12 @@
 			RESKIN_WORN_ICON_STATE = "satchel_security_white",
 			RESKIN_INHAND_STATE = "satchel_security_white"
 		),
+		//BUBBER EDIT ADDITION - RED SEC
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "satchel-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
+		),
 	)
 
 /obj/item/storage/backpack/duffelbag/sec
@@ -104,6 +116,12 @@
 			RESKIN_ICON_STATE = "duffel_security_white",
 			RESKIN_WORN_ICON_STATE = "duffel_security_white",
 			RESKIN_INHAND_STATE = "duffel_security_white"
+		),
+		//BUBBER EDIT ADDITION - RED SEC
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
+			RESKIN_ICON_STATE = "duffel-security",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
 		),
 	)
 
@@ -301,6 +319,12 @@
 			RESKIN_ICON_STATE = "security_cap_white",
 			RESKIN_WORN_ICON_STATE = "security_cap_white"
 		),
+		//BUBBER EDIT ADDITION - RED SEC
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
+			RESKIN_ICON_STATE = "secsoft",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
+		),
 	)
 
 /obj/item/clothing/head/hats/hos/cap
@@ -425,6 +449,12 @@
 		"White Variant" = list(
 			RESKIN_ICON_STATE = "gloves_white",
 			RESKIN_WORN_ICON_STATE = "gloves_white"
+		),
+		//BUBBER EDIT ADDITION - RED SEC
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "black",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi',
 		),
 	)
 
@@ -561,6 +591,13 @@
 			RESKIN_ICON_STATE = "security_white",
 			RESKIN_WORN_ICON_STATE = "security_white"
 		),
+		//BUBBER EDIT ADDITION - RED SEC
+		"Red Variant" = list(
+			RESKIN_ICON = 'icons/mob/clothing/under/security.dmi',
+			RESKIN_ICON_STATE = "rsecurity",
+			// RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
+			// RESKIN_WORN_ICON_STATE = "rsecurity"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/officer/formal
@@ -623,6 +660,10 @@
 		"Full White Variant" = list(
 			RESKIN_ICON_STATE = "security_boots_fullwhite",
 			RESKIN_WORN_ICON_STATE = "security_boots_fullwhite"
+		),
+		"Black Variant" = list(
+			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
+			RESKIN_ICON_STATE = "jackboots",
 		),
 	)
 
