@@ -3,5 +3,5 @@
 		/obj/machinery/computer/arcade/minesweeper = 49,
 	)
 	loot[/obj/machinery/computer/arcade/amputation] += 1 // Increase this each time you add a new arcade machine
-	..()
+	. = ..()
 
