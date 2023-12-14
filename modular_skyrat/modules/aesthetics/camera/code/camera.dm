@@ -5,4 +5,4 @@
 	icon = 'modular_skyrat/modules/aesthetics/camera/icons/camera.dmi'
 
 /obj/structure/camera_assembly
-	icon = 'modular_skyrat/modules/aesthetics/camera/icons/camera.dmi' */ BUBBER REMOVAL END
+	icon = 'modular_skyrat/modules/aesthetics/camera/icons/camera.dmi' */ //BUBBER REMOVAL END
