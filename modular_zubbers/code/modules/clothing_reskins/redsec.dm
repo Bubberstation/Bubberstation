@@ -50,13 +50,6 @@
 		)
 	. = ..()
 
-/obj/item/clothing/under/rank/security/officer/Initialize(mapload)
-	unique_reskin["RedSec Variant"] = list(
-			RESKIN_ICON_STATE = "rsecurity",
-			RESKIN_WORN_ICON_STATE = "rsecurity"
-		)
-	. = ..()
-
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
 	unique_reskin["RedSec Variant"] = list(
 			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',

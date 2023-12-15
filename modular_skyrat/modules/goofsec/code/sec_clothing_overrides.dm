@@ -561,6 +561,11 @@
 			RESKIN_ICON_STATE = "security_white",
 			RESKIN_WORN_ICON_STATE = "security_white"
 		),
+	//BUBBER EDIT ADD - Red Sec Outfit
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "rsecurity",
+			RESKIN_WORN_ICON_STATE = "rsecurity"
+		),
 	)
 
 /obj/item/clothing/under/rank/security/officer/formal
