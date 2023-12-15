@@ -66,8 +66,8 @@
 	cost = 1
 	surplus = 20
 
-/* // SKYRAT EDIT REMOVAL
-/datum/uplink_item/device_tools/briefcase_launchpad 
+//Bubber Edit start This is normally removed on skyrat upstream
+/datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
 	desc = "A briefcase containing a launchpad, a device able to teleport items and people to and from targets up to eight tiles away from the briefcase. \
 			Also includes a remote control, disguised as an ordinary folder. Touch the briefcase with the remote to link it."
@@ -83,7 +83,7 @@
 			Comes with 4 charges, recharges randomly. Warranty null and void if exposed to an electromagnetic pulse."
 	item = /obj/item/storage/box/syndie_kit/syndicate_teleporter
 	cost = 8
-*/ //END SKYRAT EDIT
+//Bubber edit ends So we are adding it back!
 
 /datum/uplink_item/device_tools/camera_app
 	name = "SyndEye Program"
