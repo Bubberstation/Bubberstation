@@ -1,7 +1,7 @@
 
 GLOBAL_LIST_EMPTY(startup_messages)
 // FOR MOR INFO ON HTML CUSTOMISATION, SEE: https://github.com/Skyrat-SS13/Skyrat-tg/pull/4783
-/* BUBBER EDIT REMOVE - moved to modular_zubbers/modules/title_screen/code/title_screen_html.dm
+
 #define MAX_STARTUP_MESSAGES 27
 
 /mob/dead/new_player/proc/get_title_html()
@@ -160,4 +160,3 @@ GLOBAL_LIST_EMPTY(startup_messages)
 	dat += "</body></html>"
 
 	return dat
-*/// BUBBER EDIT REMOVE END
