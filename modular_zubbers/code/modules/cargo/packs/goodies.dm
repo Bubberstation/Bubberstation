@@ -4,8 +4,8 @@
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
 	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
 	)
-	cost = PAYCHECK_COMMAND * 20
-	access_view = ACCESS_WEAPONS //The cost of a Detective Revolver
+	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
+	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/sol_revolver_single
 	name = "Sol 'Eland' Revolver Single Pack"
@@ -13,9 +13,23 @@
 	contains = list(/obj/item/gun/ballistic/revolver/sol = 1,
 	/obj/item/ammo_box/c35sol = 1,
 	)
-	cost = PAYCHECK_COMMAND * 20 //The cost of a Detective Revolver
+	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
 	access_view = ACCESS_WEAPONS
 //Cargo techs when no permit
+
+/datum/supply_pack/goody/disablersmg_single
+	name = "Disabler SMG Single-Pack"
+	desc = "Contains one disabler SMG, an automatic variant of the original workhorse."
+	cost = PAYCHECK_COMMAND * 3
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/disabler/smg)
+
+/datum/supply_pack/goody/lasercarbine_single
+	name = "Energy Gun Single-Pack"
+	desc = "Contains one laser carbine, an automatic variant of the laser gun. For when you need a fast-firing lethal-only solution."
+	cost = PAYCHECK_COMMAND * 12
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/ammo_casing/energy/lasergun/carbine)
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE

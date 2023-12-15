@@ -17,4 +17,4 @@
 	damage = 18
 
 /obj/projectile/bullet/c35sol/ripper
-	damage = 5
+	damage = 10

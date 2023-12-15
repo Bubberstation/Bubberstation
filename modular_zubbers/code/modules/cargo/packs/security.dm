@@ -37,7 +37,7 @@
 
 /datum/supply_pack/security/armory/sindano
 	name = "Carwo 'Sindano' Submachinegun Crate"
-	cost = CARGO_CRATE_VALUE * 40
+	cost = CARGO_CRATE_VALUE * 20
 	desc = "Contains two Carwo 'Sindano' Submachineguns, and two spare magazines for them."
 	contains = list(/obj/item/gun/ballistic/automatic/sol_smg = 2,
 	/obj/item/ammo_box/magazine/c35sol_pistol = 2,
@@ -48,7 +48,7 @@
 /datum/supply_pack/security/armory/infanterie
 	name = "Carwo 'd'Infanteria' Rifle Crate"
 	desc = "Contains two Carwo 'd'Infanteria' Rifles, and two spare magazines for them."
-	cost = CARGO_CRATE_VALUE * 40
+	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle = 2,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 2,
 	)
@@ -57,7 +57,7 @@
 /datum/supply_pack/security/armory/elite
 	name = "Carwo 'd'Elite' Sniper Rifle Crate"
 	desc = "Contains one Carwo 'd'Elite' Sniper Rifle, as well as a spare magazine for it."
-	cost = CARGO_CRATE_VALUE * 80
+	cost = CARGO_CRATE_VALUE * 40
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 1,
 	)
