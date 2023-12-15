@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Stack, Section, Collapsible, ByondUi } from '../components';
+import { Stack, Section, Collapsible, ByondUi } from '../components'; // Bubber edit added Collapsible
 import { Window } from '../layouts';
 import { resolveAsset } from '../assets';
 
