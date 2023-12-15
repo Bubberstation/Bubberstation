@@ -1,6 +1,3 @@
-/datum/job/clown
-	vox_outfit = /datum/outfit/vox/clown
-	job_flags = STATION_JOB_FLAGS
-
-/datum/outfit/job/clown
-	messenger = /obj/item/storage/backpack/messenger/clown
+/datum/job/clown/New()
+	job_flags -= JOB_CANNOT_OPEN_SLOTS
+	return ..()
