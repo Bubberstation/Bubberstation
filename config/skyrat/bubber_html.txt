@@ -1,27 +1,22 @@
-#define DEFAULT_TITLE_MAP_LOADTIME (150 SECONDS)
-
-#define DEFAULT_TITLE_SCREEN_IMAGE 'modular_zubbers/modules/title_screen/icons/bubber_title_screen.png' // BUBBER EDIT - SPLASH SCREEN
-#define DEFAULT_TITLE_LOADING_SCREEN 'modular_zubbers/modules/title_screen/icons/bubber_title_screen.png' // BUBBER EDIT - SPLASH SCREEN
-
-#define TITLE_PROGRESS_CACHE_FILE "data/progress_cache.json"
-#define TITLE_PROGRESS_CACHE_VERSION "2"
-
-#define DEFAULT_TITLE_HTML {"
-	<html>
+<html>
 		<head>
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 			<style type='text/css'>
 				@font-face {
-					font-family: "Fixedsys";
-					src: url("FixedsysExcelsior3.01Regular.ttf");
-				}
+					font-family: "Ubuntu";
+					font-style: normal;
+					font-weight: 500;
+					font-display: block;
+					src: url("Ubuntu-Medium.ttf");
+					}
 				body,
 				html {
 					margin: 0;
 					overflow: hidden;
+					font-family: 'Ubuntu';
 					text-align: center;
-					background-color: black;
+					background-color: #000000;
 					padding-top: 5vmin;
 					-ms-user-select: none;
 					cursor: default;
@@ -45,48 +40,50 @@
 
 				.container_terminal {
 					position: absolute;
-					width: 100%;
-					height: calc(100% - 7vmin);
+					top: calc(90% - 3vmin);
+					left: calc(50% - 450px);
+					height: 3vmin;
+					width: 900px;
 					overflow: clip;
 					box-sizing: border-box;
-					padding: 3vmin 2vmin;
-					top: 0%;
-					left:0%;
 					z-index: 1;
 				}
 
 				.terminal_text {
+					font-family: "Ubuntu";
+					font-weight: 500;
+					src: url("Ubuntu-Medium.ttf");
 					display: inline-block;
-					font-weight: lighter;
 					text-decoration: none;
 					width: 100%;
-					text-align: right;
-					color:green;
-					text-shadow: 1px 1px black;
+					text-align: left;
+					color:#30824D;
 					margin-right: 0%;
 					margin-top: 0px;
 					font-size: 2vmin;
-					line-height: 1vmin;
-					letter-spacing: 1px;
 				}
 
 				.container_progress {
 					position: absolute;
 					box-sizing: border-box;
-					bottom: 3vmin;
-					left: 2vmin;
-					height: 4vmin;
-					width: calc(100% - 4vmin);
-					border-left: 2px solid green;
-					border-right: 2px solid green;
+					top: 90%;
+					left: calc(50% - 450px);
+					height: 72px;
+					width: 900px;
+					border-top: 4px solid #30824D;
+					border-bottom: 4px solid #30824D;
+					border-left: 4px solid #30824D;
+					border-right: 4px solid #30824D;
 					padding: 4px;
-					background-color: black;
+					background-color: #000000;
 				}
 
 				.progress_bar {
 					width: 0%;
 					height: 100%;
-					background-color: green;
+					background-image: url("https://cdn.effigy.se/bubber/bubbermoff_progress.gif");
+					background-position: center right;
+					background-color: #000000;
 				}
 
 				@keyframes fade_out {
@@ -102,23 +99,22 @@
 				.container_nav {
 					position: absolute;
 					box-sizing: border-box;
-					width: 90vmin;
+					width: 80%;
 					min-height: 10vmin;
-					top: calc(50% + 22.5vmin);
-					left:50%;
-					transform: translate(-50%, -50%);
+					top: calc(50% + 16vmin);
+					left: 10%;
+
 					z-index: 1;
-					border: 2px solid white;
-					border-radius: 4px;
+					border: 8px solid #fff;
 					box-shadow: 2px 2px #333, inset 1px 1px #333;
-					background: linear-gradient(to bottom, rgba(68, 68, 204, 0.9), rgba(0, 0, 102, 0.9));
+					background: linear-gradient(to bottom, rgba(59, 161, 95, 0.9), rgba(40, 110, 65, 0.9));
 					opacity: 75%;
 					padding: 1em;
 				}
 
 				.container_nav hr {
 					height: 2px;
-					background-color: #cde;
+					background-color: #fff;
 					border: none;
 					box-shadow: 2px 2px black;
 				}
@@ -126,74 +122,31 @@
 				.menu_button {
 					display: block;
 					box-sizing: border-box;
-					font-family: "Fixedsys";
-					font-weight: lighter;
+					font-family: "Ubuntu";
+					font-weight: medium;
 					text-decoration: none;
 					font-size: 4vmin;
 					text-shadow: 2px 2px black;
-					line-height: 4vmin;
+					line-height: 4.5vmin;
 					width: 100%;
 					text-align: left;
-					color: #cde;
+					padding-left: 2vmin;
+					color: #fff;
 					height: 4vmin;
-					padding-left: 5vmin;
-					letter-spacing: 1px;
 					cursor: pointer;
-					white-space: nowrap;
-					overflow: hidden;
 				}
 
 				.menu_button:hover {
-					padding-left: 0px;
-					color: yellow;
+					color: #FFFFBD;
 				}
 
 				.menu_button:active {
-					padding-left: 0px;
 					transform: translate(2px, 2px);
-				}
-
-				.menu_button:hover::before {
-					content: "☞";
-					text-align: center;
-					width: 5vmin;
-					display: inline-block;
-				}
-
-				@keyframes pulse_button {
-					0% {transform: translateX(0px);}
-					100% {transform: translateX(2px);}
-				}
-
-				.menu_button:active::before {
-					content: "☛";
-					text-align: center;
-					width: 5vmin;
-					animation: pulse_button 0.25s infinite alternate;
-				}
-
-				@keyframes pollsbox {
-					0% {color: #cde;}
-					50% {color: #f80;}
 				}
 
 				.menu_newpoll {
 					animation: pollsbox 2s step-start infinite;
 					padding-left: 0px;
-				}
-
-				.menu_newpoll::before {
-					content: "→";
-					text-align: center;
-					width: 5vmin;
-					display: inline-block;
-				}
-
-				.menu_newpoll::after {
-					content: "←";
-					text-align: center;
-					width: 5vmin;
-					display: inline-block;
 				}
 
 				.container_notice {
@@ -209,8 +162,7 @@
 
 				.menu_notice {
 					display: inline-block;
-					font-family: "Fixedsys";
-					font-weight: lighter;
+					font-family: "Ubuntu";
 					text-decoration: none;
 					width: 100%;
 					text-align: left;
@@ -232,4 +184,3 @@
 			</style>
 		</head>
 		<body>
-			"}

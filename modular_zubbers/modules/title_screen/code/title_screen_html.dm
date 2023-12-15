@@ -1,13 +1,9 @@
-
-GLOBAL_LIST_EMPTY(startup_messages)
-// FOR MOR INFO ON HTML CUSTOMISATION, SEE: https://github.com/Skyrat-SS13/Skyrat-tg/pull/4783
-/* BUBBER EDIT REMOVE - moved to modular_zubbers/modules/title_screen/code/title_screen_html.dm
-#define MAX_STARTUP_MESSAGES 27
+#define MAX_STARTUP_MESSAGES 1
 
 /mob/dead/new_player/proc/get_title_html()
 	var/dat = SStitle.title_html
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		dat += {"<img src="loading_screen.gif" class="bg" alt="">"}
+		dat += {"<img src="bubber_title_screen.png" class="bg" alt="">"}
 		dat += {"<div class="container_terminal" id="terminal"></div>"}
 		dat += {"<div class="container_progress" id="progress_container"><div class="progress_bar" id="progress"><div class="sub_progress_bar" id="sub_progress"></div></div></div>"}
 
@@ -88,7 +84,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		"}
 
 	else
-		dat += {"<img src="loading_screen.gif" class="bg" alt="">"}
+		dat += {"<img src="bubber_title_screen.png" class="bg" alt="">"}
 
 		if(SStitle.current_notice)
 			dat += {"
@@ -100,20 +96,20 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		dat += {"<div class="container_nav">"}
 
 		if(!SSticker || SSticker.current_state <= GAME_STATE_PREGAME)
-			dat += {"<a id="ready" class="menu_button" href='?src=[text_ref(src)];toggle_ready=1'>[ready == PLAYER_READY_TO_PLAY ? "<span class='checked'>☑</span> READY" : "<span class='unchecked'>☒</span> READY"]</a>"}
+			dat += {"<a id="ready" class="menu_button" href='?src=[text_ref(src)];toggle_ready=1'>[ready == PLAYER_READY_TO_PLAY ? "<span class='checked'>☑</span> Ready" : "<span class='unchecked'>☒</span> Ready"]</a>"}
 		else
 			dat += {"
-				<a class="menu_button" href='?src=[text_ref(src)];late_join=1'>JOIN GAME</a>
-				<a class="menu_button" href='?src=[text_ref(src)];view_manifest=1'>CREW MANIFEST</a>
+				<a class="menu_button" href='?src=[text_ref(src)];late_join=1'>Join Game</a>
+				<a class="menu_button" href='?src=[text_ref(src)];view_manifest=1'>Crew Manifest</a>
 			"}
 
-		dat += {"<a class="menu_button" href='?src=[text_ref(src)];observe=1'>OBSERVE</a>"}
+		dat += {"<a class="menu_button" href='?src=[text_ref(src)];observe=1'>Observe</a>"}
 
 		dat += {"
 			<hr>
-			<a class="menu_button" href='?src=[text_ref(src)];character_setup=1'>SETUP CHARACTER (<span id="character_slot">[uppertext(client.prefs.read_preference(/datum/preference/name/real_name))]</span>)</a>
-			<a class="menu_button" href='?src=[text_ref(src)];game_options=1'>GAME OPTIONS</a>
-			<a class="menu_button" href='?src=[text_ref(src)];server_swap=1'>SWAP SERVERS</a>
+			<a class="menu_button" href='?src=[text_ref(src)];character_setup=1'>Setup Character (<span id="character_slot">[client.prefs.read_preference(/datum/preference/name/real_name)]</span>)</a>
+			<a class="menu_button" href='?src=[text_ref(src)];game_options=1'>Game Options</a>
+			<a class="menu_button" href='?src=[text_ref(src)];server_swap=1'>Swap Servers</a>
 		"}
 
 		if(!is_guest_key(src.key))
@@ -124,7 +120,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		<script language="JavaScript">
 			var ready_int = 0;
 			var ready_mark = document.getElementById("ready");
-			var ready_marks = \[ "<span class='unchecked'>☒</span> READY", "<span class='checked'>☑</span> READY" \];
+			var ready_marks = \[ "<span class='unchecked'>☒</span> Ready", "<span class='checked'>☑</span> Ready" \];
 			function toggle_ready(setReady) {
 				if(setReady) {
 					ready_int = setReady;
@@ -140,7 +136,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 
 			var character_name_slot = document.getElementById("character_slot");
 			function update_current_character(name) {
-				character_name_slot.textContent = name.toUpperCase();
+				character_name_slot.textContent = name;
 			}
 
 			function append_terminal_text() {}
@@ -160,4 +156,3 @@ GLOBAL_LIST_EMPTY(startup_messages)
 	dat += "</body></html>"
 
 	return dat
-*/// BUBBER EDIT REMOVE END
