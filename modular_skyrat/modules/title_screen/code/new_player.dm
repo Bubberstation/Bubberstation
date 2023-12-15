@@ -95,7 +95,7 @@
 /mob/dead/new_player/proc/update_title_screen()
 	var/dat = get_title_html()
 
-	src << browse(SStitle.current_title_screen, "file=bubber_title_screen.png;display=0") // BUBBER EDIT - SPLASH SCREEN
+	src << browse(SStitle.current_title_screen, "file=loading_screen.gif;display=0")
 	src << browse(dat, "window=title_browser")
 
 /datum/asset/simple/lobby

@@ -10,11 +10,15 @@
 					font-display: block;
 					src: url("Ubuntu-Medium.ttf");
 					}
+				@font-face {
+					font-family: "Fixedsys";
+					src: url("FixedsysExcelsior3.01Regular.ttf");
+				}
 				body,
 				html {
 					margin: 0;
 					overflow: hidden;
-					font-family: 'Ubuntu';
+					font-family: "Fixedsys";
 					text-align: center;
 					background-color: #000000;
 					padding-top: 5vmin;
@@ -57,7 +61,7 @@
 					text-decoration: none;
 					width: 100%;
 					text-align: left;
-					color:#30824D;
+					color:#00FF99;
 					margin-right: 0%;
 					margin-top: 0px;
 					font-size: 2vmin;
@@ -70,10 +74,10 @@
 					left: calc(50% - 450px);
 					height: 72px;
 					width: 900px;
-					border-top: 4px solid #30824D;
-					border-bottom: 4px solid #30824D;
-					border-left: 4px solid #30824D;
-					border-right: 4px solid #30824D;
+					border-top: 4px solid #00FF99;
+					border-bottom: 4px solid #00FF99;
+					border-left: 4px solid #00FF99;
+					border-right: 4px solid #00FF99;
 					padding: 4px;
 					background-color: #000000;
 				}
@@ -81,7 +85,7 @@
 				.progress_bar {
 					width: 0%;
 					height: 100%;
-					background-image: url("https://cdn.effigy.se/bubber/bubbermoff_progress.gif");
+					background-image: url("https://cdn.effigy.se/bubber/bubbermoff_prog_900px.gif");
 					background-position: center right;
 					background-color: #000000;
 				}
@@ -99,22 +103,23 @@
 				.container_nav {
 					position: absolute;
 					box-sizing: border-box;
-					width: 80%;
+					width: 90vmin;
 					min-height: 10vmin;
-					top: calc(50% + 16vmin);
-					left: 10%;
-
+					top: calc(50% + 22.5vmin);
+					left:50%;
+					transform: translate(-50%, -50%);
 					z-index: 1;
-					border: 8px solid #fff;
+					border: 2px solid white;
+					border-radius: 4px;
 					box-shadow: 2px 2px #333, inset 1px 1px #333;
-					background: linear-gradient(to bottom, rgba(59, 161, 95, 0.9), rgba(40, 110, 65, 0.9));
+					background: linear-gradient(to bottom, rgba(0, 179, 107, 0.9), rgba(0, 56, 34, 0.9));
 					opacity: 75%;
 					padding: 1em;
 				}
 
 				.container_nav hr {
 					height: 2px;
-					background-color: #fff;
+					background-color: #CDEEE1;
 					border: none;
 					box-shadow: 2px 2px black;
 				}
@@ -122,31 +127,74 @@
 				.menu_button {
 					display: block;
 					box-sizing: border-box;
-					font-family: "Ubuntu";
-					font-weight: medium;
+					font-family: "Fixedsys";
+					font-weight: lighter;
 					text-decoration: none;
 					font-size: 4vmin;
 					text-shadow: 2px 2px black;
-					line-height: 4.5vmin;
+					line-height: 4vmin;
 					width: 100%;
 					text-align: left;
-					padding-left: 2vmin;
-					color: #fff;
+					color: #CDEEE1;
 					height: 4vmin;
+					padding-left: 5vmin;
+					letter-spacing: 1px;
 					cursor: pointer;
+					white-space: nowrap;
+					overflow: hidden;
 				}
 
 				.menu_button:hover {
-					color: #FFFFBD;
+					padding-left: 0px;
+					color: yellow;
 				}
 
 				.menu_button:active {
+					padding-left: 0px;
 					transform: translate(2px, 2px);
+				}
+
+				.menu_button:hover::before {
+					content: "☞";
+					text-align: center;
+					width: 5vmin;
+					display: inline-block;
+				}
+
+				@keyframes pulse_button {
+					0% {transform: translateX(0px);}
+					100% {transform: translateX(2px);}
+				}
+
+				.menu_button:active::before {
+					content: "☛";
+					text-align: center;
+					width: 5vmin;
+					animation: pulse_button 0.25s infinite alternate;
+				}
+
+				@keyframes pollsbox {
+					0% {color: #CDEEE1;}
+					50% {color: #f80;}
 				}
 
 				.menu_newpoll {
 					animation: pollsbox 2s step-start infinite;
 					padding-left: 0px;
+				}
+
+				.menu_newpoll::before {
+					content: "→";
+					text-align: center;
+					width: 5vmin;
+					display: inline-block;
+				}
+
+				.menu_newpoll::after {
+					content: "←";
+					text-align: center;
+					width: 5vmin;
+					display: inline-block;
 				}
 
 				.container_notice {
@@ -162,7 +210,8 @@
 
 				.menu_notice {
 					display: inline-block;
-					font-family: "Ubuntu";
+					font-family: "Fixedsys";
+					font-weight: lighter;
 					text-decoration: none;
 					width: 100%;
 					text-align: left;
