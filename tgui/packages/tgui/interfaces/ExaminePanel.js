@@ -85,7 +85,7 @@ export const ExaminePanel = (props, context) => {
           </Stack.Item>
           <Stack.Item grow>
             <Stack fill vertical>
-              // BUBBER EDIT START
+              {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
               <Section
                 minHeight={17.5}
                 scrollable
@@ -104,7 +104,7 @@ export const ExaminePanel = (props, context) => {
                     : 'Not currently visible.'}
                 </Collapsible>
               </Section>
-              // BUBBER EDIT END
+              {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
               <Stack.Item grow>
                 <Stack fill>
                   <Stack.Item grow basis={0}>
