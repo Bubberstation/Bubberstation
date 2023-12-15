@@ -2,7 +2,7 @@
 
 
 /obj/item/storage/backpack/security/Initialize(mapload)
-	unique_reskin["Red Variant"] = list(
+	unique_reskin["RedSec Variant"] = list(
 			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
 			RESKIN_ICON_STATE = "backpack-security",
 			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
