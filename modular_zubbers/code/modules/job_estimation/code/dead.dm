@@ -1,7 +1,10 @@
+// Job estimation code, this appears on the statpanel before roundstart
+// Credit: https://github.com/DaedalusDock/daedalusdock
+
 /datum/config_entry/flag/show_job_estimation
 	default = TRUE
 
-/datum/preference/toggle/ready_job // Credit: https://github.com/DaedalusDock/daedalusdock
+/datum/preference/toggle/ready_job 
 	savefile_key = "ready_job"
 	savefile_identifier = PREFERENCE_PLAYER
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
