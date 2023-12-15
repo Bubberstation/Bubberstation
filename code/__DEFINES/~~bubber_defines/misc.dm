@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(has_eol_punctuation, /regex, regex(@"(.*[^.!?~+|_\-*])$"))
+GLOBAL_DATUM_INIT(has_eol_punctuation, /regex, regex(@"[^.!?~\-]*[.!?~\-][|+_*]*$"))
 //Auto punctuation global datum
 
 // The alpha channel gained upon ghosting
