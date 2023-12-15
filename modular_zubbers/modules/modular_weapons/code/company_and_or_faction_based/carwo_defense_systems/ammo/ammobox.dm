@@ -21,5 +21,4 @@
 
 /obj/item/ammo_box/advanced/s12gauge/honk
 	max_ammo = 7
-//You may be wondering why I have to manually override every subtype. This is because every subtype has the same max ammo variable defined, buut Skyrat defined the master type to have 15 ammo. Why?
-//You tell me.
+//Every individual subtype is defined like this, which is why I have to override all of them.

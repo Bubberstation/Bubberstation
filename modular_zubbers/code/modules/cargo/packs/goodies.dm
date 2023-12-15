@@ -15,7 +15,6 @@
 	)
 	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
 	access_view = ACCESS_WEAPONS
-//Cargo techs when no permit
 
 /datum/supply_pack/goody/disablersmg_single
 	name = "Disabler SMG Single-Pack"
@@ -25,7 +24,7 @@
 	contains = list(/obj/item/gun/energy/disabler/smg)
 
 /datum/supply_pack/goody/lasercarbine_single
-	name = "Energy Gun Single-Pack"
+	name = "Laser Carbine Single-Pack"
 	desc = "Contains one laser carbine, an automatic variant of the laser gun. For when you need a fast-firing lethal-only solution."
 	cost = PAYCHECK_COMMAND * 12
 	access_view = ACCESS_WEAPONS
