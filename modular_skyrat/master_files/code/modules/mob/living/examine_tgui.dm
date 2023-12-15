@@ -53,7 +53,11 @@
 	var/custom_species
 	var/custom_species_lore
 	var/obscured
-	var/obscurity_examine_pref = preferences.read_preference(/datum/preference/toggle/obscurity_examine) //bubberstation edit
+	//Bubber edit addition begin
+	var/flavor_text_nsfw
+	var/obscurity_examine_pref = preferences.read_preference(/datum/preference/toggle/obscurity_examine)
+	var/show_nsfw_flavor_text = preferences.read_preference(/datum/preference/choiced/show_nsfw_flavor_text)
+	//bubberstation edit addition end
 	var/ooc_notes = ""
 	var/headshot = ""
 
@@ -75,6 +79,8 @@
 	// If other variants of mob/living need to be handled at some point, put them here
 	if(issilicon(holder))
 		flavor_text = preferences.read_preference(/datum/preference/text/silicon_flavor_text)
+		if(!(show_nsfw_flavor_text == "Never"))
+			flavor_text_nsfw = preferences.read_preference(/datum/preference/text/flavor_text_nsfw/silicon) //Bubberstation edit addition: NSFW flavor text
 		custom_species = "Silicon"
 		custom_species_lore = "A cyborg unit."
 		ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes)
@@ -89,6 +95,10 @@
 		ooc_notes += holder_human.dna.features["ooc_notes"]
 		if(!obscured)
 			headshot += holder_human.dna.features["headshot"]
+		//Bubberstation edit addition: NSFW flavor text
+		if((show_nsfw_flavor_text == "Always On") || (show_nsfw_flavor_text == "Nude Only" && !(holder_human.w_uniform)))
+			flavor_text_nsfw = preferences.read_preference(/datum/preference/text/flavor_text_nsfw)
+		//Bubberstation edit addition END: NSFW flavor text
 
 	var/name = obscured ? "Unknown" : holder.name
 
@@ -96,6 +106,7 @@
 	data["character_name"] = name
 	data["assigned_map"] = examine_panel_screen.assigned_map
 	data["flavor_text"] = flavor_text
+	data["flavor_text_nsfw"] = flavor_text_nsfw //Bubber edit addition
 	data["ooc_notes"] = ooc_notes
 	data["custom_species"] = custom_species
 	data["custom_species_lore"] = custom_species_lore

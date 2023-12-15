@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Stack, Section, ByondUi } from '../components';
+import { Stack, Section, Collapsible, ByondUi } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from '../assets';
 
@@ -37,6 +37,7 @@ export const ExaminePanel = (props, context) => {
     obscured,
     assigned_map,
     flavor_text,
+    flavor_text_nsfw, // Bubber edit addition
     ooc_notes,
     custom_species,
     custom_species_lore,
@@ -84,15 +85,24 @@ export const ExaminePanel = (props, context) => {
           </Stack.Item>
           <Stack.Item grow>
             <Stack fill vertical>
-              <Stack.Item grow>
-                <Section
-                  scrollable
-                  fill
-                  title={character_name + "'s Flavor Text:"}
-                  preserveWhitespace>
-                  {formatURLs(flavor_text)}
-                </Section>
-              </Stack.Item>
+              <Section
+                minHeight={17.5}
+                scrollable
+                title={character_name + "'s Flavor Text:"}
+                preserveWhitespace>
+                {formatURLs(flavor_text)}
+              </Section>
+              <Section
+                preserveWhitespace
+                scrollable
+                minHeight={15}
+                title={character_name + "'s NSFW Flavor Text"}>
+                <Collapsible title={'Reveal (WARNING)'}>
+                  {flavor_text_nsfw
+                    ? formatURLs(flavor_text_nsfw)
+                    : 'Not currently visible.'}
+                </Collapsible>
+              </Section>
               <Stack.Item grow>
                 <Stack fill>
                   <Stack.Item grow basis={0}>
