@@ -19,6 +19,7 @@ export const display_gender: FeatureChoiced = {
   description:
     'What classifies as the gender for your character. This is displayed in the Directory.',
   component: FeatureDropdownInput,
+};
 
 export const flavor_text_nsfw: Feature<string> = {
   name: 'Flavor Text (NSFW)',
