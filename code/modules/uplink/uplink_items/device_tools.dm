@@ -74,6 +74,7 @@
 	surplus = 0
 	item = /obj/item/storage/briefcase/launchpad
 	cost = 6
+	progression_minimum = 50 MINUTES //Normally this is not there but it exist to delay you just buying it and getting into everywhere before sec is prepared
 
 /datum/uplink_item/device_tools/syndicate_teleporter
 	name = "Experimental Syndicate Teleporter"
@@ -82,6 +83,7 @@
 			however if that fails, you may need to be stitched back together. \
 			Comes with 4 charges, recharges randomly. Warranty null and void if exposed to an electromagnetic pulse."
 	item = /obj/item/storage/box/syndie_kit/syndicate_teleporter
+	progression_minimum = 60 MINUTES //Normally this is not here but it exist to delay you from jusy buying it as soon as the round start
 	cost = 8
 //Bubber edit ends So we are adding it back!
 
