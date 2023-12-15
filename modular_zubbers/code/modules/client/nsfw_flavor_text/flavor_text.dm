@@ -14,9 +14,12 @@
 	savefile_key = "silicon_flavor_text_nsfw"
 
 /datum/preference/choiced/show_nsfw_flavor_text
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "show_flavor_text_nsfw"
-	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/show_nsfw_flavor_text/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
 
 /datum/preference/choiced/show_nsfw_flavor_text/init_possible_values()
 	return list("Always On", "Nude Only", "Never")
