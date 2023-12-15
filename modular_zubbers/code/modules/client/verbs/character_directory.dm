@@ -1,6 +1,4 @@
 GLOBAL_DATUM(character_directory, /datum/character_directory)
-GLOBAL_LIST_INIT(char_directory_tags, list("Pred", "Pred-Pref", "Prey", "Prey-Pref", "Switch", "Non-Vore", "Unset"))
-GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP", "Unset"))
 #define READ_PREFS(target, pref) (target.client.prefs.read_preference(/datum/preference/pref) || "Unset")
 
 //We want players to be able to decide whether they show up in the directory or not
@@ -117,16 +115,16 @@ GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP
 		// These are the variables we're trying to display in the directory
 		var/name = null
 		var/species = null
-		var/ooc_notes = null
-		var/flavor_text = null
-		var/attraction
-		var/gender
-		var/erp
-		var/vore
-		var/hypno
-		var/noncon
-		var/character_ad
-		var/exploitable
+		var/ooc_notes = ""
+		var/flavor_text = ""
+		var/attraction = null
+		var/gender = null
+		var/erp = null
+		var/vore = null
+		var/hypno = null
+		var/noncon = null
+		var/character_ad = ""
+		var/exploitable = ""
 		var/ref = REF(mob)
 		//Just in case something we get is not a mob
 		if(!mob)
