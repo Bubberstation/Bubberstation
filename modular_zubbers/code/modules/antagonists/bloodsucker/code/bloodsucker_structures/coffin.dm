@@ -218,7 +218,7 @@
 		LockMe(user)
 		//Level up if possible.
 		if(!bloodsuckerdatum.my_clan)
-			to_chat(user, span_notice("You must enter a Clan to rank up."))
+			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag action button UI in the top left."))
 		else
 			bloodsuckerdatum.SpendRank()
 		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.

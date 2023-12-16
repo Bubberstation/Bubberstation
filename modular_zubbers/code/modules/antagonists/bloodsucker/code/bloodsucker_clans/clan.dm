@@ -233,7 +233,8 @@
 	var/list/options = list()
 	var/list/radial_display = list()
 	for(var/datum/antagonist/vassal/vassaldatums as anything in subtypesof(/datum/antagonist/vassal))
-		if(bloodsuckerdatum.special_vassals[initial(vassaldatums.special_type)])
+		var/vassal_type = initial(vassaldatums.special_type)
+		if(vassal_type && bloodsuckerdatum.special_vassals[vassal_type])
 			continue
 		options[initial(vassaldatums.name)] = vassaldatums
 
