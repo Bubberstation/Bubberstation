@@ -103,16 +103,20 @@
 	if(.)
 		return
 
+	// BUBBER EDIT BEGIN: NO MORE SIPHONING
 	switch(action)
 		if("siphon")
-			say("Siphon of station credits has begun!")
-			start_siphon(ui.user)
+			if(is_centcom_level(src.z) || is_station_level(src.z))
+				say("Siphon of station credits has begun!")
+				start_siphon(ui.user)
+			else
+				say("Error: Console not in reach of station, withdrawal cannot begin.")
 			. = TRUE
+	// BUBBER EDIT END
 		if("halt")
 			say("Station credit withdrawal halted.")
 			end_siphon()
 			. = TRUE
-
 /obj/machinery/computer/bank_machine/proc/end_siphon()
 	siphoning = FALSE
 	unauthorized = FALSE
