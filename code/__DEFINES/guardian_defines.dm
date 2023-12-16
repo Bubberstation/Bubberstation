@@ -17,6 +17,7 @@
 #define GUARDIAN_RANGED "ranged"
 #define GUARDIAN_STANDARD "standard"
 #define GUARDIAN_SUPPORT "support"
+#define GUARDIAN_TIMESTOP "timestop"
 
 /// List of all guardians currently extant
 GLOBAL_LIST_EMPTY(parasites)
