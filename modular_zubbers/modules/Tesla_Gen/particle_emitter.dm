@@ -2,7 +2,7 @@
 	name = "EM Containment Grid"
 	desc = "This launches the Alpha particles, might not want to stand near this end."
 	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
-	icon_state = "none"
+	icon_state = "emitter_center"
 	var/fire_delay = 50
 	var/last_shot = 0
 
@@ -38,7 +38,6 @@
 				P = new/obj/effect/accelerated_particle/strong(T)
 			if(3)
 				P = new/obj/effect/accelerated_particle/powerful(T)
-
 		P.setDir(dir)
 		return 1
 	return 0

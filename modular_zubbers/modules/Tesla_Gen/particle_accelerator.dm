@@ -1,18 +1,14 @@
 /*Composed of 7 parts :
-
  3 Particle Emitters
  1 Power Box
  1 Fuel Chamber
  1 End Cap
  1 Control computer
-
  Setup map
-
    |EC|
  CC|FC|
    |PB|
  PE|PE|PE
-
 */
 #define PA_CONSTRUCTION_UNSECURED  0
 #define PA_CONSTRUCTION_UNWIRED    1
@@ -23,11 +19,10 @@
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
 	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
-	icon_state = "none"
+	icon_state = null
 	anchored = FALSE
 	density = TRUE
 	max_integrity = 500
-
 
 	var/obj/machinery/particle_accelerator/control_box/master = null
 	var/construction_state = PA_CONSTRUCTION_UNSECURED
@@ -46,7 +41,6 @@
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			. += "The panel is open."
 
-
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = PA_CONSTRUCTION_UNSECURED
 	if(master)
@@ -55,60 +49,83 @@
 		master = null
 	return ..()
 
+/obj/structure/particle_accelerator/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/simple_rotation, ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE)
+
+
+/obj/structure/particle_accelerator/set_anchored(anchorvalue)
+	. = ..()
+	if(isnull(.))
+		return
+	construction_state = anchorvalue ? PA_CONSTRUCTION_UNWIRED : PA_CONSTRUCTION_UNSECURED
+	update_state()
+	update_icon()
+
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
+	var/did_something = FALSE
+
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED)
 			if(W.tool_behaviour == TOOL_WRENCH && !isinspace())
-				if(W.use_tool(src, user, 0.8 SECONDS, volume = 75))
-					anchored = TRUE
-					user.visible_message("[user.name] secures the [name] to the floor.", \
-						"You secure the external bolts.")
-					construction_state = PA_CONSTRUCTION_UNWIRED
-
+				W.play_tool_sound(src, 75)
+				set_anchored(TRUE)
+				user.visible_message("<span class='notice'>[user.name] secures the [name] to the floor.</span>", \
+					"<span class='notice'>You secure the external bolts.</span>")
+				user.changeNext_move(CLICK_CD_MELEE)
+				return //set_anchored handles the rest of the stuff we need to do.
 		if(PA_CONSTRUCTION_UNWIRED)
 			if(W.tool_behaviour == TOOL_WRENCH)
-				if(W.use_tool(src, user, 0.8 SECONDS, volume = 75))
-					anchored = FALSE
-					user.visible_message("[user.name] detaches the [name] from the floor.", \
-						"You remove the external bolts.")
-					construction_state = PA_CONSTRUCTION_UNSECURED
-
+				W.play_tool_sound(src, 75)
+				set_anchored(FALSE)
+				user.visible_message("<span class='notice'>[user.name] detaches the [name] from the floor.</span>", \
+					"<span class='notice'>You remove the external bolts.</span>")
+				user.changeNext_move(CLICK_CD_MELEE)
+				return //set_anchored handles the rest of the stuff we need to do.
 			else if(istype(W, /obj/item/stack/cable_coil))
-				if(!W.tool_start_check(user, amount = 1))
-					return
-				to_chat(user, span_notice("You start to add cables to the frame..."))
-				if(W.use_tool(src, user, 0.8 SECONDS, volume = 50, amount = 1))
-					user.visible_message("[user.name] adds wires to the [name].", \
-						"You add some wires.")
+				var/obj/item/stack/cable_coil/CC = W
+				if(CC.use(1))
+					user.visible_message("<span class='notice'>[user.name] adds wires to the [name].</span>", \
+						"<span class='notice'>You add some wires.</span>")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
-
+					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
-			if(W.tool_behaviour == TOOL_WIRECUTTER)
-				if(W.use_tool(src, user, 0.4 SECONDS, volume = 75))
-					user.visible_message("[user.name] removes some wires from the [name].", \
-						"You remove some wires.")
-					construction_state = PA_CONSTRUCTION_UNWIRED
-
+			if(W.tool_behaviour == TOOL_WIRECUTTER)//TODO:Shock user if its on?
+				user.visible_message("<span class='notice'>[user.name] removes some wires from the [name].</span>", \
+					"<span class='notice'>You remove some wires.</span>")
+				construction_state = PA_CONSTRUCTION_UNWIRED
+				did_something = TRUE
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("[user.name] closes the [name]'s access panel.", \
-					"You close the access panel.")
+				user.visible_message("<span class='notice'>[user.name] closes the [name]'s access panel.</span>", \
+					"<span class='notice'>You close the access panel.</span>")
 				construction_state = PA_CONSTRUCTION_COMPLETE
-
+				did_something = TRUE
 		if(PA_CONSTRUCTION_COMPLETE)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("[user.name] opens the [name]'s access panel.", \
-					"You open the access panel.")
+				user.visible_message("<span class='notice'>[user.name] opens the [name]'s access panel.</span>", \
+					"<span class='notice'>You open the access panel.</span>")
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
+				did_something = TRUE
 
-	update_state()
-	update_appearance(UPDATE_ICON)
+	if(did_something)
+		user.changeNext_move(CLICK_CD_MELEE)
+		update_state()
+		update_icon()
+		return
 
+	return ..()
+
+
+/obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
+	if(!(flags_1 & NODECONSTRUCT_1))
+		new /obj/item/stack/sheet/iron (loc, 5)
+	qdel(src)
 
 /obj/structure/particle_accelerator/Move()
 	. = ..()
 	if(master && master.active)
 		master.toggle_power()
-		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.")
+		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_ENGINE)
 
 
 /obj/structure/particle_accelerator/update_icon_state()

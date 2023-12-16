@@ -20,7 +20,7 @@
 	desc = "May god help us."
 	cost = CARGO_CRATE_VALUE * 80
 	access = ACCESS_CE
-	contains = list(/obj/machinery/singularitygen/tesla
+	contains = list(/obj/machinery/the_singularitygen/tesla
 	)
 	crate_name = "Tesla Rod Crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering

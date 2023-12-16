@@ -28,35 +28,48 @@
 	addtimer(CALLBACK(src, PROC_REF(move)), 1)
 
 
+/obj/effect/accelerated_particle/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
+
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if(A)
 		if(isliving(A))
-		else if(istype(A, /obj/machinery/singularitygen))
-			var/obj/machinery/singularitygen/S = A
+			toxmob(A)
+		else if(istype(A, /obj/machinery/the_singularitygen))
+			var/obj/machinery/the_singularitygen/S = A
 			S.energy += energy
 		else if(istype(A, /obj/singularity))
 			var/obj/singularity/S = A
+			S.energy += energy
+		else if(istype(A, /obj/energy_ball))
+			var/obj/energy_ball/S = A
 			S.energy += energy
 		else if(istype(A, /obj/structure/blob))
 			var/obj/structure/blob/B = A
 			B.take_damage(energy*0.6)
 			movement_range = 0
 
+/obj/effect/accelerated_particle/proc/on_entered(datum/source, atom/movable/A, atom/old_loc, list/atom/old_locs)
+	if(isliving(A))
+		toxmob(A)
+
+
+/obj/effect/accelerated_particle/ex_act(severity, target)
+	qdel(src)
 
 /obj/effect/accelerated_particle/singularity_pull()
 	return
 
-/obj/effect/accelerated_particle/singularity_act()
-	return
-
+/obj/effect/accelerated_particle/proc/toxmob(mob/living/M)
+	radiation_pulse(M, 1, 3, 0.5)
 
 /obj/effect/accelerated_particle/proc/move()
-	if(QDELETED(src))
-		return
 	if(!step(src,dir))
 		forceMove(get_step(src,dir))
+	movement_range--
 	if(movement_range == 0)
 		qdel(src)
-		return
-	movement_range--
-	addtimer(CALLBACK(src, PROC_REF(move)), speed)
+	else
+		sleep(speed)
+		move()

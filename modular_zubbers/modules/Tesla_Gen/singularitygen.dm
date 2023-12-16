@@ -1,9 +1,8 @@
-/////SINGULARITY SPAWNER
-/obj/machinery/singularitygen
+/obj/machinery/the_singularitygen
 	name = "Gravitational Singularity Generator"
 	desc = "An odd device which produces a Gravitational Singularity when set up."
 	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
-	icon_state = "SinguloBall"
+	icon_state = "TheSingGen"
 	anchored = FALSE
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -17,13 +16,13 @@
 	var/energy = 0
 	var/creation_type = /obj/singularity
 
-/obj/machinery/singularitygen/attackby(obj/item/W, mob/user, params)
+/obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH)
 		default_unfasten_wrench(user, W, 0)
 	else
 		return ..()
 
-/obj/machinery/singularitygen/process()
+/obj/machinery/the_singularitygen/process()
 	if(energy > 0)
 		if(energy >= 200)
 			var/turf/T = get_turf(src)
@@ -35,12 +34,8 @@
 			energy -= 1
 
 
-
-// tesla gen
-
-/obj/machinery/singularitygen/tesla
-	name = "energy ball generator"
-	desc = "Makes the wardenclyffe look like a child's plaything when shot with a particle accelerator."
+/obj/machinery/the_singularitygen/tesla
+	name = "Tesla Singularity Generator"
 	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
-	icon_state = "TeslaRod"
+	icon_state = "TheSingGen"
 	creation_type = /obj/energy_ball

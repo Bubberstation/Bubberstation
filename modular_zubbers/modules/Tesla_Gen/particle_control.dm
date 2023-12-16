@@ -7,7 +7,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 500
-	active_power_usage = 5000 // The power usage when at lvl 0
+	active_power_usage = 10000
 	dir = NORTH
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	var/strength_upper_limit = 2
@@ -18,13 +18,8 @@
 	var/active = FALSE
 	var/strength = 0
 	var/powered = FALSE
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	var/area_restricted = TRUE //is this PA locked to area/engine or not?
-	var/locked = TRUE //can are_restricted be toggled?
-	req_access = list(ACCESS_CE)
-	var/mob/living/operator
 
-/obj/machinery/particle_accelerator/control_box/Initialize(mapload)
+/obj/machinery/particle_accelerator/control_box/Initialize()
 	. = ..()
 	wires = new /datum/wires/particle_accelerator/control_box(src)
 	connected_parts = list()
@@ -32,14 +27,15 @@
 /obj/machinery/particle_accelerator/control_box/Destroy()
 	if(active)
 		toggle_power()
-	for(var/obj/structure/particle_accelerator/part as anything in connected_parts)
+	for(var/CP in connected_parts)
+		var/obj/structure/particle_accelerator/part = CP
 		part.master = null
 	connected_parts.Cut()
 	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/particle_accelerator/control_box/multitool_act(mob/living/user, obj/item/I)
-	..()
+	. = ..()
 	if(construction_state == PA_CONSTRUCTION_PANEL_OPEN)
 		wires.interact(user)
 		return TRUE
@@ -49,10 +45,11 @@
 		use_power = NO_POWER_USE
 		assembled = FALSE
 		active = FALSE
-		for(var/obj/structure/particle_accelerator/part as anything in connected_parts)
+		for(var/CP in connected_parts)
+			var/obj/structure/particle_accelerator/part = CP
 			part.strength = null
 			part.powered = FALSE
-			part.update_appearance(UPDATE_ICON)
+			part.update_icon()
 		connected_parts.Cut()
 		return
 	if(!part_scan())
@@ -63,21 +60,21 @@
 /obj/machinery/particle_accelerator/control_box/update_icon_state()
 	. = ..()
 	if(active)
-		icon_state = "control_boxp[strength]" //yogs- fix sprite not updating
-		return
-	if(use_power)
-		if(assembled)
-			icon_state = "control_boxp"
+		icon_state = "control_boxp1"
+	else
+		if(use_power)
+			if(assembled)
+				icon_state = "control_boxp"
+			else
+				icon_state = "ucontrol_boxp"
 		else
-			icon_state = "ucontrol_boxp"
-		return
-	switch(construction_state)
-		if(PA_CONSTRUCTION_UNSECURED, PA_CONSTRUCTION_UNWIRED)
-			icon_state = "control_box"
-		if(PA_CONSTRUCTION_PANEL_OPEN)
-			icon_state = "control_boxw"
-		else
-			icon_state = "control_boxc"
+			switch(construction_state)
+				if(PA_CONSTRUCTION_UNSECURED, PA_CONSTRUCTION_UNWIRED)
+					icon_state = "control_box"
+				if(PA_CONSTRUCTION_PANEL_OPEN)
+					icon_state = "control_boxw"
+				else
+					icon_state = "control_boxc"
 
 /obj/machinery/particle_accelerator/control_box/proc/strength_change()
 	for(var/CP in connected_parts)
@@ -92,7 +89,7 @@
 
 		message_admins("PA Control Computer increased to [strength] by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
 		log_game("PA Control Computer increased to [strength] by [key_name(usr)] in [AREACOORD(src)]")
-		investigate_log("increased to <font color='red'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]")
+		investigate_log("increased to <font color='red'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
 
 /obj/machinery/particle_accelerator/control_box/proc/remove_strength(s)
 	if(assembled && (strength > 0))
@@ -101,7 +98,7 @@
 
 		message_admins("PA Control Computer decreased to [strength] by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
 		log_game("PA Control Computer decreased to [strength] by [key_name(usr)] in [AREACOORD(src)]")
-		investigate_log("decreased to <font color='green'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]")
+		investigate_log("decreased to <font color='green'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
 
 /obj/machinery/particle_accelerator/control_box/power_change()
 	. = ..()
@@ -115,7 +112,7 @@
 	if(active)
 		//a part is missing!
 		if(connected_parts.len < 6)
-			investigate_log("lost a connected part; It <font color='red'>powered down</font>.")
+			investigate_log("lost a connected part; It <font color='red'>powered down</font>.", INVESTIGATE_ENGINE)
 			toggle_power()
 			update_icon()
 			return
@@ -172,10 +169,9 @@
 			return TRUE
 	return FALSE
 
-
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
 	active = !active
-	investigate_log("turned [active?"<font color='green'>ON</font>":"<font color='red'>OFF</font>"] by [usr ? key_name(usr) : "outside forces"] at [AREACOORD(src)]")
+	investigate_log("turned [active?"<font color='green'>ON</font>":"<font color='red'>OFF</font>"] by [usr ? key_name(usr) : "outside forces"] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
 	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? ADMIN_LOOKUPFLW(usr) : "outside forces"] in [ADMIN_VERBOSEJMP(src)]")
 	log_game("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? "[key_name(usr)]" : "outside forces"] at [AREACOORD(src)]")
 	if(active)
@@ -193,7 +189,6 @@
 			part.powered = FALSE
 			part.update_icon()
 	return TRUE
-
 
 /obj/machinery/particle_accelerator/control_box/examine(mob/user)
 	. = ..()
@@ -213,7 +208,6 @@
 	update_state()
 	update_icon()
 
-
 /obj/machinery/particle_accelerator/control_box/attackby(obj/item/W, mob/user, params)
 	var/did_something = FALSE
 
@@ -221,51 +215,51 @@
 		if(PA_CONSTRUCTION_UNSECURED)
 			if(W.tool_behaviour == TOOL_WRENCH && !isinspace())
 				W.play_tool_sound(src, 75)
-				anchored = TRUE
-				user.visible_message("[user.name] secures the [name] to the floor.", \
-					"You secure the external bolts.")
-				construction_state = PA_CONSTRUCTION_UNWIRED
-				did_something = TRUE
+				set_anchored(TRUE)
+				user.visible_message("<span class='notice'>[user.name] secures the [name] to the floor.</span>", \
+					"<span class='notice'>You secure the external bolts.</span>")
+				user.changeNext_move(CLICK_CD_MELEE)
+				return //set_anchored handles the rest of the stuff we need to do.
 		if(PA_CONSTRUCTION_UNWIRED)
 			if(W.tool_behaviour == TOOL_WRENCH)
 				W.play_tool_sound(src, 75)
-				anchored = FALSE
-				user.visible_message("[user.name] detaches the [name] from the floor.", \
-					"You remove the external bolts.")
-				construction_state = PA_CONSTRUCTION_UNSECURED
-				did_something = TRUE
+				set_anchored(FALSE)
+				user.visible_message("<span class='notice'>[user.name] detaches the [name] from the floor.</span>", \
+					"<span class='notice'>You remove the external bolts.</span>")
+				user.changeNext_move(CLICK_CD_MELEE)
+				return //set_anchored handles the rest of the stuff we need to do.
 			else if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/CC = W
 				if(CC.use(1))
-					user.visible_message("[user.name] adds wires to the [name].", \
-						"You add some wires.")
+					user.visible_message("<span class='notice'>[user.name] adds wires to the [name].</span>", \
+						"<span class='notice'>You add some wires.</span>")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
 					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			if(W.tool_behaviour == TOOL_WIRECUTTER)//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [name].", \
-					"You remove some wires.")
+				user.visible_message("<span class='notice'>[user.name] removes some wires from the [name].</span>", \
+					"<span class='notice'>You remove some wires.</span>")
 				construction_state = PA_CONSTRUCTION_UNWIRED
 				did_something = TRUE
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("[user.name] closes the [name]'s access panel.", \
-					"You close the access panel.")
+				user.visible_message("<span class='notice'>[user.name] closes the [name]'s access panel.</span>", \
+					"<span class='notice'>You close the access panel.</span>")
 				construction_state = PA_CONSTRUCTION_COMPLETE
 				did_something = TRUE
 		if(PA_CONSTRUCTION_COMPLETE)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("[user.name] opens the [name]'s access panel.", \
-					"You open the access panel.")
+				user.visible_message("<span class='notice'>[user.name] opens the [name]'s access panel.</span>", \
+					"<span class='notice'>You open the access panel.</span>")
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
 				did_something = TRUE
 
 	if(did_something)
 		user.changeNext_move(CLICK_CD_MELEE)
 		update_state()
-		update_appearance(UPDATE_ICON)
+		update_icon()
 		return
 
-	..()
+	return ..()
 
 /obj/machinery/particle_accelerator/control_box/blob_act(obj/structure/blob/B)
 	if(prob(50))
@@ -279,7 +273,7 @@
 
 /obj/machinery/particle_accelerator/control_box/proc/is_interactive(mob/user)
 	if(!interface_control)
-		to_chat(user, span_alert("ERROR: Request timed out. Check wire contacts."))
+		to_chat(user, "<span class='alert'>ERROR: Request timed out. Check wire contacts.</span>")
 		return FALSE
 	if(construction_state != PA_CONSTRUCTION_COMPLETE)
 		return FALSE
@@ -288,12 +282,9 @@
 /obj/machinery/particle_accelerator/control_box/ui_status(mob/user)
 	if(is_interactive(user))
 		return ..()
-	if(operator == user)
-		operator = null
 	return UI_CLOSE
 
 /obj/machinery/particle_accelerator/control_box/ui_interact(mob/user, datum/tgui/ui)
-	operator = user
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ParticleAccelerator", name)
@@ -304,8 +295,6 @@
 	data["assembled"] = assembled
 	data["power"] = active
 	data["strength"] = strength
-	data["locked"] = locked
-	data["area_restricted"] = area_restricted
 	return data
 
 /obj/machinery/particle_accelerator/control_box/ui_act(action, params)
@@ -331,38 +320,8 @@
 				return
 			remove_strength()
 			. = TRUE
-		if("toggle_lock")
-			if(!operator)
-				return
-			if(!allowed(operator))
-				to_chat(operator, span_danger("Access denied."))
-				return
-			if(obj_flags & EMAGGED)
-				to_chat(operator,"The locking mechanism glitches out.")
-				locked = FALSE //sanity check
-				return
-			locked = !locked
-			to_chat(operator, "You [locked ? "enable" : "disable"] the toggle lock.")
-			. = TRUE
-		if("toggle_arearestriction")
-			if(!operator)
-				return
-			if(obj_flags & EMAGGED)
-				to_chat(operator,"The area restriction mechanism glitches out.")
-				area_restricted = FALSE //sanity check
-				return
-			if(locked)
-				to_chat(operator, "The toggle is locked!")
-				return
-			area_restricted = !area_restricted
-			to_chat(operator, "You [locked ? "enable" : "disable"] the area restriction.");
-			. = TRUE
 
-	update_appearance(UPDATE_ICON)
-
-/obj/machinery/particle_accelerator/control_box/charlie //for charlie station
-	locked = FALSE
-	area_restricted = FALSE
+	update_icon()
 
 #undef PA_CONSTRUCTION_UNSECURED
 #undef PA_CONSTRUCTION_UNWIRED
