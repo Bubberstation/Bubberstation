@@ -1,5 +1,5 @@
-#define TESLA_DEFAULT_POWER 86913
-#define TESLA_MINI_POWER 43456
+#define TESLA_DEFAULT_POWER 86913 // Bubber edit
+#define TESLA_MINI_POWER 43456 // Bubber edit
 //Zap constants, speeds up targeting
 #define BIKE (COIL + 1)
 #define COIL (ROD + 1)
@@ -14,14 +14,15 @@
 /obj/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
-	icon = 'icons/obj/engine/energy_ball.dmi'
+	icon = 'icons/obj/machines/engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	anchored = TRUE
 	appearance_flags = LONG_GLIDE
 	density = TRUE
 	plane = MASSIVE_OBJ_PLANE
 	plane = ABOVE_LIGHTING_PLANE
-	light_outer_range = 6
+	light_range = 6
+	var/dissipate = 1 // Bubber Edit...Tesla can dispate overtime
 	move_resist = INFINITY
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 	pixel_x = -32
@@ -46,11 +47,11 @@
 	START_PROCESSING(SSobj, src)
 
 	if (!is_miniball)
-		set_light(l_outer_range = 10, l_power = 7, l_color= "#5e5edd")
+		set_light(10, 7, "#5e5edd")
 
 		var/turf/spawned_turf = get_turf(src)
 		message_admins("A tesla has been created at [ADMIN_VERBOSEJMP(spawned_turf)].")
-		investigate_log("was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
+		investigate_log("(tesla) was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
 
 /obj/energy_ball/Destroy()
 	if(orbiting && istype(orbiting.parent, /obj/energy_ball))
@@ -76,7 +77,7 @@
 		pixel_y = 0
 		shocked_things.Cut(1, shocked_things.len / 1.3)
 		var/list/shocking_info = list()
-		tesla_zap(src, 3, TESLA_DEFAULT_POWER, shocked_targets = shocking_info)
+		tesla_zap(source = src, zap_range = 3, power = TESLA_DEFAULT_POWER, shocked_targets = shocking_info)
 
 		pixel_x = -32
 		pixel_y = -32
@@ -84,7 +85,7 @@
 			var/range = rand(1, clamp(orbiting_balls.len, 2, 3))
 			var/list/temp_shock = list()
 			//We zap off the main ball instead of ourselves to make things looks proper
-			tesla_zap(src, range, TESLA_MINI_POWER/7*range, shocked_targets = temp_shock)
+			tesla_zap(source = src, zap_range = range, power = TESLA_MINI_POWER / 7 * range, shocked_targets = temp_shock)
 			shocking_info += temp_shock
 		shocked_things += shocking_info
 
@@ -146,11 +147,10 @@
 	)
 
 	miniball.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
-	var/icon/I = icon(icon, icon_state,dir)
+	var/list/icon_dimensions = get_icon_dimensions(icon)
 
-	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
+	var/orbitsize = (icon_dimensions["width"] + icon_dimensions["height"]) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
-
 	miniball.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
 /obj/energy_ball/Bump(atom/A)
@@ -200,13 +200,13 @@
 	C.investigate_log("has been dusted by an energy ball.", INVESTIGATE_DEATHS)
 	C.dust()
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
+/proc/tesla_zap(atom/source, zap_range = 3, power, cutoff = 4e5, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
 	if(QDELETED(source))
 		return
 	if(!(zap_flags & ZAP_ALLOW_DUPLICATES))
 		LAZYSET(shocked_targets, source, TRUE) //I don't want no null refs in my list yeah?
 	. = source.dir
-	if(power < 1000)
+	if(power < cutoff)
 		return
 
 	/*
@@ -335,7 +335,7 @@
 		var/mob/living/closest_mob = closest_atom
 		ADD_TRAIT(closest_mob, TRAIT_BEING_SHOCKED, WAS_SHOCKED)
 		addtimer(TRAIT_CALLBACK_REMOVE(closest_mob, TRAIT_BEING_SHOCKED, WAS_SHOCKED), 1 SECONDS)
-		var/shock_damage = (zap_flags & ZAP_MOB_DAMAGE) ? (min(round(power/600), 90) + rand(-5, 5)) : 0
+		var/shock_damage = (zap_flags & ZAP_MOB_DAMAGE) ? (min(round(power / 600), 90) + rand(-5, 5)) : 0
 		closest_mob.electrocute_act(shock_damage, source, 1, SHOCK_TESLA | ((zap_flags & ZAP_MOB_STUN) ? NONE : SHOCK_NOSTUN))
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
@@ -351,11 +351,11 @@
 
 	if(prob(20))//I know I know
 		var/list/shocked_copy = shocked_targets.Copy()
-		tesla_zap(closest_atom, next_range, power * 0.5, zap_flags, shocked_copy)//Normally I'd copy here so grounding rods work properly, but it fucks with movement
-		tesla_zap(closest_atom, next_range, power * 0.5, zap_flags, shocked_targets)
+		tesla_zap(source = closest_atom, zap_range = next_range, power = power * 0.5, cutoff = cutoff, zap_flags = zap_flags, shocked_targets = shocked_copy)
+		tesla_zap(source = closest_atom, zap_range = next_range, power = power * 0.5, cutoff = cutoff, zap_flags = zap_flags, shocked_targets = shocked_targets)
 		shocked_targets += shocked_copy
 	else
-		tesla_zap(closest_atom, next_range, power, zap_flags, shocked_targets)
+		tesla_zap(source = closest_atom, zap_range = next_range, power = power, cutoff = cutoff, zap_flags = zap_flags, shocked_targets = shocked_targets)
 
 #undef BIKE
 #undef COIL
