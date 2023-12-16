@@ -106,7 +106,7 @@
 	// BUBBER EDIT BEGIN: NO MORE SIPHONING
 	switch(action)
 		if("siphon")
-			if(is_centcom_level(src.z) || is_station_level(src.z))
+			if(is_station_level(src.z) || is_centcom_level(src.z))
 				say("Siphon of station credits has begun!")
 				start_siphon(ui.user)
 			else
