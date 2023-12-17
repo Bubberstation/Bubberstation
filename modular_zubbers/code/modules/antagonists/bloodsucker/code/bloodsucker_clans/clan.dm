@@ -205,8 +205,11 @@
 		bloodsuckerdatum.AddBloodVolume(-blood_cost)
 
 	// Ranked up enough to get your true Reputation?
-	if(bloodsuckerdatum.bloodsucker_level == 4)
+	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
+		if(bloodsuckerdatum.blood_drink_type == BLOODSUCKER_DRINK_NORMAL)
+			bloodsuckerdatum.blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
+
 
 	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.bloodsucker_level] Bloodsucker. \
 		Your strength, health, feed rate, regen rate, and maximum blood capacity have all increased! \n\

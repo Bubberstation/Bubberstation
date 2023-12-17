@@ -199,7 +199,6 @@
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.4
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	. = ..()

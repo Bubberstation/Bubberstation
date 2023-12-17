@@ -55,7 +55,7 @@
 /datum/antagonist/bloodsucker/proc/RankUp(force = FALSE)
 	if(!owner || !owner.current || IS_FAVORITE_VASSAL(owner.current))
 		return
-	if(!force && bloodsucker_level_unspent > 0)
+	if(!force && bloodsucker_level_unspent > BLOODSUCKER_MAX_LEVELUPS)
 		to_chat(owner.current, span_warning("You cannot gain a rank until you spend your current one. Your blood remains thin."))
 		return
 	bloodsucker_level_unspent++

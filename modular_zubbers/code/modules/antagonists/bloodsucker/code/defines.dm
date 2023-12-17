@@ -18,6 +18,15 @@
 /// Once blood is this high, will exit Frenzy
 #define FRENZY_THRESHOLD_EXIT 250
 
+/// Level up blood cost define, max_blood * this = blood cost
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.4
+
+/// Maximum stored level ups
+#define BLOODSUCKER_MAX_LEVELUPS 2
+
+///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation
+#define BLOODSUCKER_HIGH_LEVEL 4
+
 /**
  * Vassal defines
  */
@@ -144,11 +153,6 @@
 #define BLOODSUCKER_DRINK_INHUMANELY "bloodsucker_drink_imhumanely"
 
 /**
- * Role defines
- */
-#define ROLE_INFILTRATOR "Infiltrator"
-
-/**
  * Traits
  */
 /// Falsifies Health analyzer blood levels
@@ -167,3 +171,17 @@
 #define FEED_TRAIT "feed_trait"
 /// Source trait during a Frenzy
 #define FRENZY_TRAIT "frenzy_trait"
+
+///Whether a mob is a Bloodsucker
+#define IS_BLOODSUCKER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker))
+///Whether a mob is a Vassal
+#define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
+///Whether a mob is a Favorite Vassal
+#define IS_FAVORITE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/favorite))
+///Whether a mob is a Revenge Vassal
+#define IS_REVENGE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/revenge))
+
+///Whether a mob is a Monster Hunter-NOT NEEDED RIGHT NOW
+// #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
+///For future use
+#define IS_MONSTERHUNTER(mob) (FALSE)
