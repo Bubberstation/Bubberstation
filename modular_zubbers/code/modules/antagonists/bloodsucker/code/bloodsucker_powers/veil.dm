@@ -26,6 +26,7 @@
 	var/prev_socks
 	var/prev_disfigured
 	var/list/prev_features // For lizards and such
+	var/disguise_name
 
 /datum/action/cooldown/bloodsucker/veil/ActivatePower(trigger_flags)
 	. = ..()
@@ -44,10 +45,10 @@
 /datum/action/cooldown/bloodsucker/veil/proc/veil_user()
 	// Change Name/Voice
 	var/mob/living/carbon/human/user = owner
-	RegisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME, PROC_REF(return_veil_disguise))
 	to_chat(owner, span_warning("You mystify the air around your person. Your identity is now altered."))
 
 	// Store Prev Appearance
+	disguise_name = user.dna.species.random_name(user.gender)
 	prev_gender = user.gender
 	prev_skin_tone = user.skin_tone
 	prev_hair_style = user.hairstyle
@@ -62,11 +63,11 @@
 	prev_features = user.dna.features
 
 	// Change Appearance
-	user.gender = pick(MALE, FEMALE, PLURAL)
+	user.gender = pick(MALE, FEMALE, PLURAL, NEUTER)
 	user.skin_tone = random_skin_tone()
-	user.hairstyle = random_hairstyle()
+	user.hairstyle = random_hairstyle(user.gender)
 	user.facial_hairstyle = pick(random_facial_hairstyle(user.gender), "Shaved")
-	user.hair_color = random_short_color()
+	user.hair_color = "#[random_short_color()]"
 	user.facial_hair_color = user.hair_color
 	user.underwear = random_underwear(user.gender)
 	user.undershirt = random_undershirt(user.gender)
@@ -74,23 +75,28 @@
 	//user.eye_color = random_eye_color()
 	if(prev_disfigured)
 		REMOVE_TRAIT(user, TRAIT_DISFIGURED, null)
-	//user.dna.features = random_features()
+	user.dna.features = user.dna.species.randomize_features()
 
 	// Apply Appearance
-	user.update_body() // Outfit and underware, also body.
+	user.update_body(is_creating = TRUE) // Outfit and underware, also body.
 	user.update_mutant_bodyparts() // Lizard tails etc
-	user.update_hair()
-	user.update_body_parts()
+	user.update_body_parts(update_limb_data = TRUE)
+
+	RegisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME, PROC_REF(return_disguise_name))
+
+/datum/action/cooldown/bloodsucker/veil/proc/return_disguise_name(mob/living/carbon/human/user, list/identity)
+	SIGNAL_HANDLER
+
+	identity[VISIBLE_NAME_FACE] = disguise_name
+	user.SetSpecialVoice(disguise_name)
 
 /datum/action/cooldown/bloodsucker/veil/DeactivatePower()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/user = owner
-
 	// Revert Identity
-	UnregisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME)
-	//user.name = user.real_name
+	user.UnsetSpecialVoice()
 
 	// Revert Appearance
 	user.gender = prev_gender
@@ -110,12 +116,13 @@
 	user.dna.features = prev_features
 
 	// Apply Appearance
-	user.update_body() // Outfit and underware, also body.
-	user.update_hair()
-	user.update_body_parts() // Body itself, maybe skin color?
+	user.update_body(is_creating = TRUE) // Outfit and underware, also body.
+	user.update_body_parts(update_limb_data = TRUE) // Body itself, maybe skin color?
 
 	cast_effect() // POOF
 	owner.balloon_alert(owner, "veil turned off.")
+
+	UnregisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME)
 
 
 // CAST EFFECT // General effect (poof, splat, etc) when you cast. Doesn't happen automatically!
@@ -134,11 +141,3 @@
 
 /obj/effect/particle_effect/fluid/smoke/vampsmoke/fade_out(frames = 0.8 SECONDS)
 	..(frames)
-
-
-/datum/action/cooldown/bloodsucker/veil/proc/return_veil_disguise(mob/living/carbon/human/source, list/identity)
-	SIGNAL_HANDLER
-	identity[VISIBLE_NAME_FACE] = source.dna.species.random_name(source.gender)
-	identity[VISIBLE_NAME_ID] = ""
-
-	source.SetSpecialVoice(identity[VISIBLE_NAME_FACE])

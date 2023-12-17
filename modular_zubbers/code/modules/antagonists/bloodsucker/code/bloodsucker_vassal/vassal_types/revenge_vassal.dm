@@ -15,7 +15,7 @@
 		They additionally maintain your Vassals after your departure, rather than become aimless."
 
 	///all ex-vassals brought back into the fold.
-	var/list/datum/antagonist/vassal/ex_vassal/ex_vassals = list()
+	var/list/datum/antagonist/ex_vassal/ex_vassals = list()
 
 /datum/antagonist/vassal/revenge/roundend_report()
 	var/list/report = list()
@@ -26,7 +26,7 @@
 	// Now list their vassals
 	if(ex_vassals.len)
 		report += "<span class='header'>The Vassals brought back into the fold were...</span>"
-		for(var/datum/antagonist/vassal/ex_vassal/all_vassals as anything in ex_vassals)
+		for(var/datum/antagonist/ex_vassal/all_vassals as anything in ex_vassals)
 			if(!all_vassals.owner)
 				continue
 			report += "<b>[all_vassals.owner.name]</b> the [all_vassals.owner.assigned_role.title]"

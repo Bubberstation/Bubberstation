@@ -22,7 +22,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/vassal/ex_vassal)
+	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/ex_vassal)
 	if(revenge_vassal)
 		return FALSE
 
@@ -34,7 +34,7 @@
 
 	if(owner.pulling && isliving(owner.pulling))
 		var/mob/living/pulled_target = owner.pulling
-		var/datum/antagonist/vassal/ex_vassal/former_vassal = pulled_target.mind.has_antag_datum(/datum/antagonist/vassal/ex_vassal)
+		var/datum/antagonist/ex_vassal/former_vassal = pulled_target.mind.has_antag_datum(/datum/antagonist/ex_vassal)
 		if(!former_vassal)
 			owner.balloon_alert(owner, "not a former vassal!")
 			return FALSE
@@ -55,7 +55,7 @@
 	. = ..()
 	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/vassal/revenge)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
-		for(var/datum/antagonist/vassal/ex_vassal/former_vassals as anything in revenge_vassal.ex_vassals)
+		for(var/datum/antagonist/ex_vassal/former_vassals as anything in revenge_vassal.ex_vassals)
 			var/information = "[former_vassals.owner.current]"
 			information += " - has [round(COOLDOWN_TIMELEFT(former_vassals, blood_timer) / 600)] minutes left of Blood"
 			var/turf/open/floor/target_area = get_area(owner)
@@ -71,7 +71,7 @@
 
 	if(target_ref)
 		var/mob/living/target = target_ref.resolve()
-		var/datum/antagonist/vassal/ex_vassal/former_vassal = target.mind.has_antag_datum(/datum/antagonist/vassal/ex_vassal)
+		var/datum/antagonist/ex_vassal/former_vassal = target.mind.has_antag_datum(/datum/antagonist/ex_vassal)
 		if(!former_vassal || former_vassal.revenge_vassal)
 			target_ref = null
 			return
