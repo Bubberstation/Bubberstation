@@ -206,8 +206,8 @@
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
-		if(bloodsuckerdatum.blood_drink_type == BLOODSUCKER_DRINK_NORMAL)
-			bloodsuckerdatum.blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
+		if(blood_drink_type == BLOODSUCKER_DRINK_NORMAL)
+			blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 

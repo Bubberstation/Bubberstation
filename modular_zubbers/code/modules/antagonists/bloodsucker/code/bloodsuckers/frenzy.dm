@@ -44,7 +44,7 @@
 	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY)
 
 	// Give the other Frenzy effects
-	owner.add_traits(trait_list), FRENZY_TRAIT)
+	owner.add_traits(trait_list, FRENZY_TRAIT)
 	if(HAS_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER))
 		was_tooluser = TRUE
 		REMOVE_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER, SPECIES_TRAIT)
@@ -59,7 +59,6 @@
 	return ..()
 
 /datum/status_effect/frenzy/on_remove()
-	var/mob/living/carbon/human/user = owner
 	owner.balloon_alert(owner, "you come back to your senses.")
 	owner.remove_traits(trait_list, FRENZY_TRAIT)
 	if(was_tooluser)
