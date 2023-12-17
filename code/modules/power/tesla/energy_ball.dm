@@ -1,5 +1,5 @@
-#define TESLA_DEFAULT_POWER 86913 // Bubber edit
-#define TESLA_MINI_POWER 43456 // Bubber edit
+#define TESLA_DEFAULT_POWER 86913 // Bubber edit, this value changes how much tesla is making
+#define TESLA_MINI_POWER 43456 // Bubber edit, this value changes how much tesla is making
 //Zap constants, speeds up targeting
 #define BIKE (COIL + 1)
 #define COIL (ROD + 1)
@@ -22,7 +22,6 @@
 	plane = MASSIVE_OBJ_PLANE
 	plane = ABOVE_LIGHTING_PLANE
 	light_range = 6
-	var/dissipate = 1 // Bubber Edit...Tesla can dispate overtime
 	move_resist = INFINITY
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 	pixel_x = -32
@@ -51,7 +50,7 @@
 
 		var/turf/spawned_turf = get_turf(src)
 		message_admins("A tesla has been created at [ADMIN_VERBOSEJMP(spawned_turf)].")
-		investigate_log("(tesla) was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
+		investigate_log("was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
 
 /obj/energy_ball/Destroy()
 	if(orbiting && istype(orbiting.parent, /obj/energy_ball))
@@ -147,10 +146,11 @@
 	)
 
 	miniball.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
-	var/list/icon_dimensions = get_icon_dimensions(icon)
+	var/icon/I = icon(icon, icon_state,dir)
 
-	var/orbitsize = (icon_dimensions["width"] + icon_dimensions["height"]) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
+	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
+
 	miniball.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
 /obj/energy_ball/Bump(atom/A)
@@ -200,7 +200,7 @@
 	C.investigate_log("has been dusted by an energy ball.", INVESTIGATE_DEATHS)
 	C.dust()
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, cutoff = 4e5, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
+/proc/tesla_zap(atom/source, zap_range = 3, power, cutoff = 1e3, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
 	if(QDELETED(source))
 		return
 	if(!(zap_flags & ZAP_ALLOW_DUPLICATES))

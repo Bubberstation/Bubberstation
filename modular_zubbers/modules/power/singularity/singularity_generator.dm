@@ -1,7 +1,8 @@
+/////SINGULARITY SPAWNER
 /obj/machinery/the_singularitygen
 	name = "Gravitational Singularity Generator"
 	desc = "An odd device which produces a Gravitational Singularity when set up."
-	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
+	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "TheSingGen"
 	anchored = FALSE
 	density = TRUE
@@ -36,6 +37,6 @@
 
 /obj/machinery/the_singularitygen/tesla
 	name = "Tesla Singularity Generator"
-	icon = 'modular_zubbers/icons/obj/machines/particle_accelerator.dmi'
+	icon = 'icons/obj/machines/engine/tesla_generator.dmi'
 	icon_state = "TheSingGen"
 	creation_type = /obj/energy_ball
