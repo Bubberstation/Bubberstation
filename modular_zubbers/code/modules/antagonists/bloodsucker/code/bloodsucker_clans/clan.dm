@@ -158,6 +158,9 @@
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
 			return
+		if(blood_cost && bloodsuckerdatum.bloodsucker_blood_volume < blood_cost)
+			to_chat(bloodsuckerdatum.owner.current, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
+			return
 		// Did you choose a power?
 		if(!choice || !options[choice])
 			to_chat(bloodsuckerdatum.owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
