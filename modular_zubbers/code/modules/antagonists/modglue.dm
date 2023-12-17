@@ -1,4 +1,4 @@
-/obj/item/mod/module/dna_lock
+/obj/item/mod/module/dna_lock/reinforced
 	var/obj/item/implant/explosive/macro/macro
 
 /obj/item/implant/explosive/proc/modsuit_explosion()
@@ -26,7 +26,7 @@
 			delay -= delay * 0.2
 			beep_volume += 5
 
-/obj/item/mod/module/dna_lock/proc/explode(mob/user, mob/owner)
+/obj/item/mod/module/dna_lock/reinforced/proc/explode(mob/user, mob/owner)
 	if(!dna_check(user))
 		macro = new/obj/item/implant/explosive/macro(src)
 		macro.modsuit_explosion()
@@ -37,11 +37,13 @@
 /obj/item/mod/control/pre_equipped/contractor/doStrip(mob/living/carbon/stripper, mob/owner)
 	if(!istype(stripper, /mob/living/carbon))
 		return
-	var/obj/item/mod/module/dna_lock/dna_lock = locate(/obj/item/mod/module/dna_lock) in modules
-	var/alert = tgui_alert(stripper,
-		"As you go to pull the modsuit off of [owner], you spot a what appears to be a failsafe. \n If you pull any further, it looks like a fuse for a bomb will be pulled. Continue???",
-		"Are you REALLY SURE?",
-		list("Yes","No"), 10 SECONDS, TRUE)
+	var/obj/item/mod/module/dna_lock/reinforced/dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in modules
+	var/alert
+	if(dna_lock)
+		alert = tgui_alert(stripper,
+			"As you go to pull the modsuit off of [owner], you spot a what appears to be a failsafe. \n If you pull any further, it looks like a fuse for a bomb will be pulled. Continue???",
+			"Are you REALLY SURE?",
+			list("Yes","No"), 10 SECONDS, TRUE)
 
 
 	if(alert == "Yes")
@@ -54,10 +56,12 @@
 	if(!istype(stripper, /mob/living/carbon))
 		return
 	var/obj/item/mod/module/dna_lock/reinforced/dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in modules
-	var/alert = tgui_alert(stripper,
-		"As you go to pull the modsuit off of [owner], you spot a what appears to be a failsafe. \n If you pull any further, it looks like a fuse for a bomb will be pulled. Continue???",
-		"Are you REALLY SURE?",
-		list("Yes","No"), 10 SECONDS, TRUE)
+	var/alert
+	if(dna_lock)
+		alert = tgui_alert(stripper,
+			"As you go to pull the modsuit off of [owner], you spot a what appears to be a failsafe. \n If you pull any further, it looks like a fuse for a bomb will be pulled. Continue???",
+			"Are you REALLY SURE?",
+			list("Yes","No"), 10 SECONDS, TRUE)
 
 
 	if(alert == "Yes")
