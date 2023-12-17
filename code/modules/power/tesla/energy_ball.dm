@@ -1,5 +1,5 @@
-#define TESLA_DEFAULT_POWER 86913 // Bubber edit, this value changes how much tesla is making
-#define TESLA_MINI_POWER 43456 // Bubber edit, this value changes how much tesla is making
+#define TESLA_DEFAULT_POWER 5214780 // Bubber edit you can edit this values to buff or nerf tesla power generation, this is main tesla power
+#define TESLA_MINI_POWER 1738260 //  Bubber edit you can edit this values to buff or nerf tesla power generation, this is extra power per ball which is not that big boost in power
 //Zap constants, speeds up targeting
 #define BIKE (COIL + 1)
 #define COIL (ROD + 1)
@@ -146,11 +146,10 @@
 	)
 
 	miniball.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
-	var/icon/I = icon(icon, icon_state,dir)
+	var/list/icon_dimensions = get_icon_dimensions(icon)
 
-	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
+	var/orbitsize = (icon_dimensions["width"] + icon_dimensions["height"]) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
-
 	miniball.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
 /obj/energy_ball/Bump(atom/A)
@@ -200,7 +199,7 @@
 	C.investigate_log("has been dusted by an energy ball.", INVESTIGATE_DEATHS)
 	C.dust()
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, cutoff = 1e3, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
+/proc/tesla_zap(atom/source, zap_range = 3, power, cutoff = 4e5, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
 	if(QDELETED(source))
 		return
 	if(!(zap_flags & ZAP_ALLOW_DUPLICATES))

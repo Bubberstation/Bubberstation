@@ -10,6 +10,11 @@
 	add_duds(2)
 	..()
 
+/datum/wires/particle_accelerator/control_box/interactable(mob/user)
+	. = ..()
+	var/obj/machinery/particle_accelerator/control_box/C = holder
+	if(C.construction_state == 2)
+		return TRUE
 
 /datum/wires/particle_accelerator/control_box/on_pulse(wire)
 	var/obj/machinery/particle_accelerator/control_box/C = holder
@@ -21,9 +26,9 @@
 		if(WIRE_INTERFACE)
 			C.interface_control = !C.interface_control
 		if(WIRE_LIMIT)
-			C.visible_message("[icon2html(C, viewers(holder))]<b>[C]</b> makes a large whirring noise.")
+			C.visible_message("<span class='notice'>[icon2html(C, viewers(holder))]<b>[C]</b> makes a large whirring noise.</span>")
 
-/datum/wires/particle_accelerator/control_box/on_cut(wire, mend, source)
+/datum/wires/particle_accelerator/control_box/on_cut(wire, mend)
 	var/obj/machinery/particle_accelerator/control_box/C = holder
 	switch(wire)
 		if(WIRE_POWER)
