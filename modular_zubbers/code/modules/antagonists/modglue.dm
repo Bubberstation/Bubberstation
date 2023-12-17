@@ -30,7 +30,7 @@
 #define DUMP_CONTENTS "Dump the storage box"
 /obj/item/mod/module/dna_lock/reinforced/proc/explode(mob/user, mob/owner)
 	if(!dna_check(user))
-		macro = new/obj/item/implant/explosive/macro(src)
+		macro = new/obj/item/implant/explosive(src)
 		macro.modsuit_explosion()
 		owner.spasm_animation(600)
 	else
@@ -51,7 +51,9 @@
 	if(alert == PULL_SUIT)
 		ASYNC
 			if(dna_lock.dna)
+				dump_modsuit_toss_contents()
 				dna_lock.explode(user = stripper, owner = owner)
+				qdel(src)
 		. = ..()
 	if(alert == DUMP_CONTENTS)
 		dump_modsuit_toss_contents()
@@ -71,7 +73,9 @@
 	if(alert == PULL_SUIT)
 		ASYNC
 			if(dna_lock.dna)
+				dump_modsuit_toss_contents()
 				dna_lock.explode(user = stripper, owner = owner)
+				qdel(src)
 		. = ..()
 	if(alert == DUMP_CONTENTS)
 		dump_modsuit_toss_contents()
@@ -81,28 +85,26 @@
 	COOLDOWN_DECLARE(funny_sound_cooldown)
 
 /obj/item/mod/control/proc/dump_modsuit_toss_contents()
-	if(QDELETED(src)) //Check if valid.
+	if(QDELETED(src))
 		return FALSE
-	var/turf/T
 	var/obj/item/mod/module/storage/storage = locate() in contents
 	if(!storage)
 		playsound(src, 'sound/effects/quack.ogg')
 		return FALSE
-	// Code Thanks to BurgerBB
-	if(COOLDOWN_FINISHED(src, trash_cooldown))
-		COOLDOWN_START(src, trash_cooldown, 0.2 SECONDS*0.5 + rand()*0.2 SECONDS) // x0.5 to x1.5
-		if(!T)
-			T = get_turf(src)
-		var/atom/movable/item = pick(storage.contents)
-		if(item)
-			var/turf/throw_at = get_ranged_target_turf_direct(src, usr, 7, rand(-60,60))
-			if(item.safe_throw_at(throw_at, rand(2,4), rand(1,3), usr, spin = TRUE))
-				playsound(T, 'sound/weapons/punchmiss.ogg', 10)
-
-	if(COOLDOWN_FINISHED(src,funny_sound_cooldown))
-		COOLDOWN_START(src, funny_sound_cooldown, 0.1 SECONDS*0.5 + rand()*0.1 SECONDS) // x0.5 to x1.5
-		if(!T)
-			T = get_turf(src)
-		playsound(T,'sound/effects/jingle.ogg' , 25)
+	for(var/atom/movable/i in storage.contents)
+		sleep(0.2 SECONDS)
+		reset_thing(i)
+		i.loc = get_turf(src)
+		var/turf/throw_at = get_ranged_target_turf_direct(src, usr, 7, rand(-60,60))
+		if(i.safe_throw_at(throw_at, rand(2,4), rand(1,3), usr, spin = TRUE))
+			playsound(i, 'sound/weapons/punchmiss.ogg', 10)
 
 	return TRUE
+
+/proc/reset_thing(atom/movable/thing)
+	thing.layer = initial(thing.layer)
+	SET_PLANE_IMPLICIT(thing, initial(thing.plane))
+	thing.mouse_opacity = initial(thing.mouse_opacity)
+	thing.screen_loc = null
+	if(thing.maptext)
+		thing.maptext = ""
