@@ -138,7 +138,7 @@
  * cost_rank - TRUE/FALSE on whether this will cost us a rank when we go through with it.
  * blood_cost - A number saying how much it costs to rank up.
  */
-/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
+/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost, force)
 	SIGNAL_HANDLER
 
 	INVOKE_ASYNC(src, PROC_REF(spend_rank), bloodsuckerdatum, target, cost_rank, blood_cost)

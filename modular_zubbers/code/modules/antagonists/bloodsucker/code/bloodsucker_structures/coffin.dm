@@ -199,6 +199,8 @@
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.4
+
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	. = ..()
 	if(!.)
@@ -225,6 +227,8 @@
 		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
 		bloodsuckerdatum.check_begin_torpor()
 	return TRUE
+
+#undef BLOODSUCKER_LEVELUP_PERCENTAGE
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
 /obj/structure/closet/crate/coffin/attackby(obj/item/item, mob/user, params)

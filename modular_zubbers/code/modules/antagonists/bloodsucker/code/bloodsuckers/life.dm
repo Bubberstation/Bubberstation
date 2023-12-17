@@ -1,5 +1,3 @@
-//Handles healing and blood drain!
-
 ///How much Blood it costs to live.
 #define BLOODSUCKER_PASSIVE_BLOOD_DRAIN 0.1
 
@@ -12,7 +10,7 @@
 	if(!owner)
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
-	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
+	if(HAS_TRAIT(owner.current, TRAIT_NODEATH) || bloodsucker_blood_volume == 0)
 		check_end_torpor()
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
@@ -208,7 +206,6 @@
 	// Temporary Death? Convert to Torpor.
 	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		return
-	to_chat(owner.current, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
 	check_begin_torpor(TRUE)
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!

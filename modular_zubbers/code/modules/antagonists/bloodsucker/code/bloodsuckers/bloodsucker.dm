@@ -15,7 +15,7 @@
 	/// How much blood we have, starting off at default blood levels.
 	var/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
 	/// How much blood we can have at once, increases per level.
-	var/max_blood_volume = 600//Test raising/lowering this! Hemophages have 1000 base blood!
+	var/max_blood_volume = 600
 
 	var/datum/bloodsucker_clan/my_clan
 
@@ -75,10 +75,10 @@
 	/// Antagonists that cannot be Vassalized no matter what
 	var/static/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
-		/*/datum/antagonist/monsterhunter,*/
+		// /datum/antagonist/monsterhunter,
 		/datum/antagonist/changeling,
 		/datum/antagonist/cult,
-		/*/datum/antagonist/ert/safety_moth,*/
+		// /datum/antagonist/ert/safety_moth,
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
@@ -146,16 +146,13 @@
 	SIGNAL_HANDLER
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter()
-	blood_display.hud = bloodsucker_hud
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += blood_display
 
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter()
-	vamprank_display.hud = bloodsucker_hud
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += vamprank_display
 
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter()
-	sunlight_display.hud = bloodsucker_hud
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += sunlight_display
 
 	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
@@ -163,7 +160,7 @@
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
-	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
+	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp), TRUE)
 	if(bloodsucker_level_unspent >= 1)
 		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
@@ -435,9 +432,8 @@
 	// Heart & Eyes
 	var/mob/living/carbon/user = owner.current
 	var/obj/item/organ/internal/heart/newheart = owner.current.get_organ_slot(ORGAN_SLOT_HEART)
-	if(user.stat != DEAD  && !newheart?.is_beating())
+	if(newheart)
 		newheart.Restart()
-
 	var/obj/item/organ/internal/eyes/user_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(user_eyes)
 		user_eyes.flash_protect = initial(user_eyes.flash_protect)
