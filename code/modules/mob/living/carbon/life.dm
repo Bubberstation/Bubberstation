@@ -504,7 +504,7 @@
 			if(isopenturf(T) && !isspaceturf(T)) //Only spawn miasma on floor turfs and not in space turfs.
 				var/turf/open/OT = T
 				if(!OT.planetary_atmos) //Don't spawn miasma when there is open air to the sky.
-					var/miasma_to_spawn = (rot_count/(9*100))*30 //There are about 9 in each mob, all with 100 health. If a person is 100% rotted, they should spawn 30 moles of miasma. (A 1x1 tile has 104 moles of oxygen+nitrogen).
+					var/miasma_to_spawn = (rot_count/(6*100))*30 //There are about 6 rottable organs in each mob, all with 100 health. If a person is 100% rotted, they should spawn 30 moles of miasma. (A 1x1 tile has 104 moles of oxygen+nitrogen).
 					OT.atmos_spawn_air("[GAS_MIASMA]=[miasma_to_spawn];[TURF_TEMPERATURE(src.bodytemperature)]")
 		//BUBBERSTATION CHANGE END: MIASMA
 		return
