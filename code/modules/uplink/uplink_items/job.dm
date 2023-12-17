@@ -285,7 +285,7 @@
 	restricted_roles = list(JOB_CLOWN)
 	surplus = 10
 
-/datum/uplink_item/role_restricted/his_grace
+/* Bubber Edit Removal, This break vore preferences /datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"
 	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
 	His Grace grants gradual regeneration and complete stun immunity to His wielder, but be wary: if He gets too hungry, He will become impossible to drop and eventually kill you if not fed. \
@@ -296,7 +296,7 @@
 	item = /obj/item/his_grace
 	cost = 20
 	surplus = 0
-	restricted_roles = list(JOB_CHAPLAIN)
+	restricted_roles = list(JOB_CHAPLAIN) */
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
