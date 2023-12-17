@@ -19,10 +19,7 @@
 #define FRENZY_THRESHOLD_EXIT 250
 
 /// Level up blood cost define, max_blood * this = blood cost
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.4
-
-/// Maximum stored level ups
-#define BLOODSUCKER_MAX_LEVELUPS 2
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.2
 
 ///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation
 #define BLOODSUCKER_HIGH_LEVEL 4
