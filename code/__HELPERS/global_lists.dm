@@ -54,6 +54,14 @@
 	sort_list(GLOB.laugh_types, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	//SKYRAT EDIT END
 
+	//BUBBER EDIT ADDITION BEGIN
+	//Voice types
+	for(var/spath in subtypesof(/datum/voice_type))
+		var/datum/voice_type/V = new spath()
+		GLOB.voice_types[V.name] = spath
+	sort_list(GLOB.voice_types, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	//BUBBER EDIT END
+
 /// Inits GLOB.species_list. Not using GLOBAL_LIST_INIT b/c it depends on GLOB.string_lists
 /proc/init_species_list()
 	for(var/species_path in subtypesof(/datum/species))

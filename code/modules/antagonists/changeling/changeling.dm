@@ -565,6 +565,7 @@
 	new_profile.physique = target.physique
 	new_profile.scream_type = target.selected_scream?.type || /datum/scream_type/none
 	new_profile.laugh_type = target.selected_laugh?.type || /datum/laugh_type/none
+//	new_profile.voice_type = target.selected_voice?.type || /datum/voice_type/none //BUBBER ADDITION
 	new_profile.age = target.age
 	for(var/datum/quirk/target_quirk in target.quirks)
 		LAZYADD(new_profile.quirks, new target_quirk.type)
@@ -811,8 +812,10 @@
 	user.physique = chosen_profile.physique
 	qdel(user.selected_scream)
 	qdel(user.selected_laugh)
+	qdel(user.selected_voice) //BUBBER ADDITION
 	user.selected_scream = new chosen_profile.scream_type
 	user.selected_laugh = new chosen_profile.laugh_type
+//	user.selected_voice = new chosen_profile.voice_type //BUBBER ADDITION
 	user.age = chosen_profile.age
 
 	// Only certain quirks will be copied, to avoid making the changeling blind or wheelchair-bound when they can simply pretend to have these quirks.
@@ -1041,6 +1044,7 @@
 	new_profile.supports_variations_flags_list = supports_variations_flags_list.Copy()
 	new_profile.scream_type = scream_type
 	new_profile.laugh_type = laugh_type
+//	new_profile.voice_type = voice_type //BUBBER ADDITION
 	new_profile.age = age
 	new_profile.quirks = quirks.Copy()
 	// SKYRAT EDIT END
