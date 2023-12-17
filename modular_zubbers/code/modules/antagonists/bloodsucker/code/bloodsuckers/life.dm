@@ -214,9 +214,9 @@
 
 	// BLOOD_VOLUME_GOOD: [336] - Pale
 //	handled in bloodsucker_integration.dm
-
+	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)
 	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(bloodsucker_blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied)
+	if(bloodsucker_blood_volume >= frenzy_threshold * 1.1 && frenzied)
 		owner.current.remove_status_effect(/datum/status_effect/frenzy)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
@@ -226,7 +226,7 @@
 		owner.current.set_eye_blur_if_lower((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD))*2 SECONDS)
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
-	if(bloodsucker_blood_volume < (FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)) && !frenzied)
+	if(bloodsucker_blood_volume < frenzy_threshold && !frenzied)
 		owner.current.apply_status_effect(/datum/status_effect/frenzy)
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD)
 		additional_regen = 0.1
