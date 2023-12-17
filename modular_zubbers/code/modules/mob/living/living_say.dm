@@ -21,7 +21,6 @@ mob/say(M, message, bubble_type, voice_id, list/spans, sanitize, datum/language/
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(isnull(H.selected_voice)) //For mobs that don't have a selected voice
-//		(message, GLOB.has_eol_punctuation)
 			if(message +- "?")
 				return pick(H.selected_voice.ask)
 			else if (message +- "!")

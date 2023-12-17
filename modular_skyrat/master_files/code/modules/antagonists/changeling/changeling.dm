@@ -40,6 +40,8 @@
 	var/scream_type
 	/// The profile source laugh type - Skyrats addition
 	var/laugh_type
+	/// The profile source voice type - Bubber addition
+	var/voice_type
 	/// The profile source's age - Skyrats addition
 	var/age
 	/// The quirks used by the profile source - Skyrats addition

@@ -32,6 +32,6 @@ GLOBAL_DATUM(voice_chime, /datum/voice_chime)
 /datum/preference/toggle/voice_chime/apply_to_client(client/client, value)
 	.=..()
 	if(value)
-		client.voice = TRUE
+		client.voice_chime = TRUE
 	else
-		client.voice = FALSE
+		client.voice_chime = FALSE
