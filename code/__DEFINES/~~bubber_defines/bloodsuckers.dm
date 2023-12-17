@@ -6,6 +6,9 @@
 #define IS_FAVORITE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/favorite))
 ///Whether a mob is a Revenge Vassal
 #define IS_REVENGE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/revenge))
+///For future use
+#define IS_MONSTERHUNTER(mob) (FALSE)
+
 ///Whether a mob is a Monster Hunter-NOT NEEDED RIGHT NOW
 //#define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
 //Used in bloodsucker_life.dm

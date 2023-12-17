@@ -67,6 +67,8 @@
 		blood_taken /= 3
 	if(!ishuman(target)) // Penalty for Non-Human Blood
 		blood_taken /= 2
+	else if(!target?.mind) // Penalty for Mindless Blood
+		blood_taken /= 2
 	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume
 	AddBloodVolume(blood_taken)

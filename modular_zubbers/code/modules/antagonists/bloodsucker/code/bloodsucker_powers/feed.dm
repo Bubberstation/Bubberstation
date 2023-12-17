@@ -50,8 +50,10 @@
 
 /datum/action/cooldown/bloodsucker/feed/DeactivatePower()
 	var/mob/living/user = owner
-	if(target_ref)
-		var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref.resolve()
+	if(isnull(feed_target))
+		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
+	else
 		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
 		to_chat(user, span_notice("You slowly release [feed_target]."))
 		if(feed_target.stat == DEAD)
@@ -87,7 +89,7 @@
 		DeactivatePower()
 		return
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
-		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target))
+		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))
 			feed_target.Unconscious((5 + level_current) SECONDS)
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
