@@ -66,7 +66,7 @@
 	cost = 1
 	surplus = 20
 
-//Bubber Edit start This is normally removed on skyrat upstream
+//Bubber Edit start - This is normally removed on skyrat upstream
 /datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
 	desc = "A briefcase containing a launchpad, a device able to teleport items and people to and from targets up to eight tiles away from the briefcase. \
@@ -75,7 +75,7 @@
 	item = /obj/item/storage/briefcase/launchpad
 	cost = 6
 	progression_minimum = 50 MINUTES //Normally this is not there but it exist to delay you just buying it and getting into everywhere before sec is prepared
-
+/* //Bubber edit - Moves the comment to keep the syndicate teleport commented out. Skyrat commented this out.
 /datum/uplink_item/device_tools/syndicate_teleporter
 	name = "Experimental Syndicate Teleporter"
 	desc = "A handheld device that teleports the user 4-8 meters forward. \
@@ -85,7 +85,7 @@
 	item = /obj/item/storage/box/syndie_kit/syndicate_teleporter
 	progression_minimum = 60 MINUTES //Normally this is not here but it exist to delay you from jusy buying it as soon as the round start
 	cost = 8
-//Bubber edit ends So we are adding it back!
+*/ //END SKYRAT EDIT
 
 /datum/uplink_item/device_tools/camera_app
 	name = "SyndEye Program"
