@@ -40,7 +40,7 @@
 	bloodsuckerdatum.DisableAllPowers(forced = TRUE)
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! You will DIE if you do not get BLOOD."))
 	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you quickly accrue burn damage, instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
-	owner.balloon_alert(owner, "you enter a frenzy!")
+	owner.balloon_alert(owner, "you enter a frenzy! Drink blood, or you will die!")
 	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY)
 
 	// Give the other Frenzy effects
