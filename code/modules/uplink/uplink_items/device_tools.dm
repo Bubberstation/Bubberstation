@@ -83,7 +83,6 @@
 			however if that fails, you may need to be stitched back together. \
 			Comes with 4 charges, recharges randomly. Warranty null and void if exposed to an electromagnetic pulse."
 	item = /obj/item/storage/box/syndie_kit/syndicate_teleporter
-	progression_minimum = 60 MINUTES //Normally this is not here but it exist to delay you from jusy buying it as soon as the round start
 	cost = 8
 */ //END SKYRAT EDIT
 
