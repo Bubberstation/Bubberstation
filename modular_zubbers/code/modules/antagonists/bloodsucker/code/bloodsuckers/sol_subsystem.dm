@@ -1,7 +1,7 @@
 ///How long Sol will last until it's night again.
-#define TIME_BLOODSUCKER_DAY 1 MINUTE
+#define TIME_BLOODSUCKER_DAY 60
 ///Base time nighttime should be in for, until Sol rises.
-#define TIME_BLOODSUCKER_NIGHT 20 MINUTES
+#define TIME_BLOODSUCKER_NIGHT 1200 // 20 minutes
 ///Time left to send an alert to Bloodsuckers about an incoming Sol.
 #define TIME_BLOODSUCKER_DAY_WARN 90
 ///Time left to send an urgent alert to Bloodsuckers about an incoming Sol.
