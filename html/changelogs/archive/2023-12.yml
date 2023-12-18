@@ -52,3 +52,50 @@
   - balance: Silver ID's no longer have infinite access. There are 5 access wildcards
       for basic IDs and 10 for silver IDs
   - balance: Agent ID cards have AA
+2023-12-07:
+  BurgerBB:
+  - bugfix: Fixes fire overlays. Possibly. Hopefully. Probably not.
+  IgiariValkyr:
+  - rscadd: Sol Defense has reclaimed selling rights in cargo!
+  - balance: Sol Defense bullets cause wounds far less now.
+  - balance: Sol Defense bullets now seem to have less powder in the casings and cause
+      less damage.
+  ReturnToZender:
+  - rscadd: Reverie to fax machine list
+  The Sharkening:
+  - rscadd: Readds the ability to buy metal and glass
+  - rscdel: Removes the GMM from cargo due to infinite money.
+2023-12-14:
+  BurgerBB:
+  - balance: Bulletproof armor and helmets can no longer be found in maintenance.
+      Exceptions apply to the justice/siren helmet.
+  - balance: Removes the 100% reflect energy chance from Marked One armor and the
+      25% block chance from the Marked One sword.
+  Majkl-J:
+  - rscadd: Sylveon bodyparts
+  - image: Sylveon bodypart sprites. Credit to Splurtstation
+  - bugfix: The roundstart SM now also gets smissmass lights
+  theselfish:
+  - rscadd: Neko is now the default language of Felinids again.
+  - rscadd: Pirate has been restored to be Piratespeak.
+2023-12-16:
+  Arturlang:
+  - code_imp: /obj/machinery/rbmk2_sniffer/process() no longer checks private variable
+      atom_jntegrity, instead it uses the function get_integrity. No functional changes
+      except removing the error this caused.
+  Deek-Za:
+  - qol: Red sec options added to existing reskinnable security equipment.
+  LT3:
+  - code_imp: Loading and title splash are now modularized
+  Majkl-J:
+  - qol: 'Kilo: Layer adaptors in atmos'
+  - balance: Disallows siphoning credits outside of station
+  ReturnToZender, LT3, Waterpig, Nevimer:
+  - rscadd: Character directory from SPLURT, originally, I think?
+  ReturnToZender, Shadow_Quill:
+  - rscadd: Adjusted statpanel with game time, active and observing players
+  projectkepler-ru:
+  - balance: Removes His Grace from the uplink
+  theselfish:
+  - rscadd: Clown slots are re-openable by royal decree. The incident between Nanotrasen
+      and King Honkington has been resolved.
