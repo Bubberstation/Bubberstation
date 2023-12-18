@@ -923,10 +923,12 @@ SUBSYSTEM_DEF(job)
 
 	if(CONFIG_GET(flag/min_flavor_text))
 		//BUBBER EDIT ADDITION: SILICON FLAVOR TEXT CHECK
-		if(is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+		var/uses_silicon_flavortext = (is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text)) <= CONFIG_GET(number/silicon_flavor_text_character_requirement))
+		var/uses_normal_flavortext = (!is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+		if(uses_silicon_flavortext)
 			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-			return JOB_UNAVAILABLE_FLAVOUR
-		else if(length_char(player.client?.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+			return JOB_UNAVAILABLE_FLAVOUR_SILICON
+		if(uses_normal_flavortext)
 		//BUBBER EDIT END: SILICON FLAVOR TEXT CHECK
 			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_FLAVOUR
