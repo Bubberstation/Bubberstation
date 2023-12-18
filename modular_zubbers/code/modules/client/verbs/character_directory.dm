@@ -117,6 +117,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/species = null
 		var/ooc_notes = ""
 		var/flavor_text = ""
+		var/nsfw_flavor_text = ""
 		var/attraction = null
 		var/gender = null
 		var/erp = null
@@ -142,12 +143,19 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 				species = "[human.dna.species.name]"
 			//Load standard flavor text preference
 			flavor_text = READ_PREFS(human, text/flavor_text)
+			if((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Always On") || ((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Nude Only") && !(human.w_uniform)))
+				nsfw_flavor_text = READ_PREFS(human, text/flavor_text_nsfw)
+			else nsfw_flavor_text = "Unavailable"
+
 		else if(issilicon(mob))
 			var/mob/living/silicon/silicon = mob
 			//If the target is a silicon, we want it to show its brain as its species
 			species = READ_PREFS(silicon, choiced/brain_type)
 			//Load silicon flavor text in place of normal flavor text
 			flavor_text = READ_PREFS(silicon, text/silicon_flavor_text)
+			if(READ_PREFS(silicon, choiced/show_nsfw_flavor_text) != "Never")
+				nsfw_flavor_text = READ_PREFS(silicon, text/flavor_text_nsfw/silicon)
+			else nsfw_flavor_text = "Unavailable"
 		//Don't show if they are not a human or a silicon
 		else continue
 		//List of all the shown ERP preferences in the Directory. If there is none, return "Unset"
@@ -181,6 +189,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
+			"nsfw_flavor_text" = nsfw_flavor_text,
 			"ref" = ref
 		)))
 

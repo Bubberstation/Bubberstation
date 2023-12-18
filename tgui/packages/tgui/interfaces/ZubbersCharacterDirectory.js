@@ -160,6 +160,11 @@ const ViewCharacter = (props, context) => {
           {overlay.flavor_text || 'Unset.'}
         </Box>
       </Section>
+      <Section level={2} title="NSFW Flavor Text">
+        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
+          {overlay.nsfw_flavor_text || 'Unset'}
+        </Box>
+      </Section>
     </Section>
   );
 };
