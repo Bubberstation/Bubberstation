@@ -86,24 +86,28 @@ export const ExaminePanel = (props, context) => {
           <Stack.Item grow>
             <Stack fill vertical>
               {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
-              <Section
-                height={17.5}
-                scrollable
-                title={character_name + "'s Flavor Text:"}
-                preserveWhitespace>
-                {formatURLs(flavor_text)}
-              </Section>
-              <Section
-                preserveWhitespace
-                scrollable
-                height={15}
-                title={character_name + "'s NSFW Flavor Text"}>
-                <Collapsible title={'Reveal (WARNING)'}>
-                  {flavor_text_nsfw
-                    ? formatURLs(flavor_text_nsfw)
-                    : 'Not currently visible.'}
-                </Collapsible>
-              </Section>
+              <Stack.Item grow>
+                <Section
+                  scrollable
+                  fill
+                  title={character_name + "'s Flavor Text:"}
+                  preserveWhitespace>
+                  {formatURLs(flavor_text)}
+                </Section>
+              </Stack.Item>
+              <Stack.Item grow>
+                <Section
+                  scrollable
+                  fill
+                  title={character_name + "'s NSFW Flavor Text:"}
+                  preserveWhitespace>
+                  <Collapsible title={'Reveal (WARNING)'}>
+                    {flavor_text_nsfw
+                      ? formatURLs(flavor_text_nsfw)
+                      : 'Not currently visible.'}
+                  </Collapsible>
+                </Section>
+              </Stack.Item>
               {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
               <Stack.Item grow>
                 <Stack fill>
