@@ -1,4 +1,4 @@
-import { Feature, FeatureChoiced, FeatureDropdownInput, FeatureTextInput } from '../../base';
+import { Feature, FeatureChoiced, FeatureDropdownInput, FeatureTextInput, FeatureShortTextInput } from '../../base';
 
 export const character_ad: Feature<string> = {
   name: 'Character Advert',
@@ -19,4 +19,13 @@ export const display_gender: FeatureChoiced = {
   description:
     'What classifies as the gender for your character. This is displayed in the Directory.',
   component: FeatureDropdownInput,
+};
+
+export const headshot_silicon: Feature<string> = {
+  name: 'Headshot (Silicon)',
+  description:
+    'Requires a link ending with .png, .jpeg, or .jpg, starting with \
+    https://, and hosted on Gyazo or Discord. Renders the image underneath \
+    your character preview in the examine more window.',
+  component: FeatureShortTextInput,
 };
