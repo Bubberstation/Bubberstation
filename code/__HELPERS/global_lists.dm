@@ -54,7 +54,7 @@
 	sort_list(GLOB.laugh_types, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	//SKYRAT EDIT END
 
-	//BUBBER EDIT ADDITION BEGIN
+//BUBBER EDIT ADDITION BEGIN
 	//Voice types
 	for(var/spath in subtypesof(/datum/voice_type))
 		var/datum/voice_type/V = new spath()
