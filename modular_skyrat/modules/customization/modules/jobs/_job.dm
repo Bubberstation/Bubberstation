@@ -143,6 +143,14 @@
 /datum/job/prisoner
 	required_languages = null
 
+/datum/job/orderly
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+/datum/job/science_guard
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+/datum/job/customs_agent
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 // START OF BUBBERSTATION ADDITION
 
 /datum/job/mime
