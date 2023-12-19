@@ -87,7 +87,7 @@ export const ExaminePanel = (props, context) => {
             <Stack fill vertical>
               {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
               <Section
-                minHeight={17.5}
+                Height={17.5}
                 scrollable
                 title={character_name + "'s Flavor Text:"}
                 preserveWhitespace>
@@ -96,7 +96,7 @@ export const ExaminePanel = (props, context) => {
               <Section
                 preserveWhitespace
                 scrollable
-                minHeight={15}
+                Height={15}
                 title={character_name + "'s NSFW Flavor Text"}>
                 <Collapsible title={'Reveal (WARNING)'}>
                   {flavor_text_nsfw
