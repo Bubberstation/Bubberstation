@@ -5,13 +5,13 @@ import { Window } from '../layouts';
 
 const erpTagColor = {
   'Unset': 'label',
-  'Yes - Dom': 'red',
-  'Yes - Sub': 'blue',
-  'Yes - Switch': 'yellow',
-  'Yes': 'yellow',
-  'Check OOC': 'black',
-  'Ask': 'black',
-  'No': 'black',
+  'Yes - Dom': '#570000',
+  'Yes - Sub': '#002B57',
+  'Yes - Switch': '#022E00',
+  'Yes': '#022E00',
+  'Check OOC': '#222222',
+  'Ask': '#222222',
+  'No': '#000000',
 };
 
 export const ZubbersCharacterDirectory = (props, context) => {
