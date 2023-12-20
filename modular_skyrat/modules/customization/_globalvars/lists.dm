@@ -77,12 +77,6 @@ GLOBAL_LIST_INIT(preference_balls_sizes, list(
 	"Enormous",
 	))
 
-/*
-BUBBERSTATION EDIT - aKhroma. Added a comma to the last entries of
-robotic_styles_list and color_list_ghoul. Why wasn't there one?
-Shame on you.
-*/
-
 GLOBAL_LIST_INIT(robotic_styles_list, list(
 	"None" = "None",
 	"Surplus" = 'icons/mob/augmentation/surplus_augments.dmi',
