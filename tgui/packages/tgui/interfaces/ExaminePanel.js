@@ -1,5 +1,5 @@
-import { useBackend } from '../backend';
-import { Stack, Section, Collapsible, ByondUi } from '../components'; // Bubber edit added Collapsible
+import { useBackend, useLocalState } from '../backend';
+import { Stack, Section, ByondUi, Tabs, Box } from '../components'; // Bubber edit added Collapsible
 import { Window } from '../layouts';
 import { resolveAsset } from '../assets';
 
@@ -31,6 +31,7 @@ const formatURLs = (text) => {
 };
 
 export const ExaminePanel = (props, context) => {
+  const [tabIndex, setTabIndex] = useLocalState(context, 'tab-index', 1);
   const { act, data } = useBackend(context);
   const {
     character_name,
@@ -85,57 +86,62 @@ export const ExaminePanel = (props, context) => {
           </Stack.Item>
           <Stack.Item grow>
             <Stack fill vertical>
-              {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
-              <Stack.Item grow>
-                <Section
-                  scrollable
-                  fill
-                  title={character_name + "'s Flavor Text:"}
-                  preserveWhitespace>
-                  {formatURLs(flavor_text)}
-                </Section>
-              </Stack.Item>
-              <Stack.Item grow>
-                <Section
-                  scrollable
-                  fill
-                  title={character_name + "'s NSFW Flavor Text:"}
-                  preserveWhitespace>
-                  <Collapsible title={'Reveal (WARNING)'}>
-                    {flavor_text_nsfw
-                      ? formatURLs(flavor_text_nsfw)
-                      : 'Not currently visible.'}
-                  </Collapsible>
-                </Section>
-              </Stack.Item>
-              {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
-              <Stack.Item grow>
-                <Stack fill>
-                  <Stack.Item grow basis={0}>
+              <Tabs fluid>
+                {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
+                <Stack.Item grow>
+                  <Box>
+                    Tab {tabIndex}: {title}
+                  </Box>
+                  <Tabs.Tab
+                    selected={tabIndex === 1}
+                    onClick={() => setTabIndex(1)}>
                     <Section
                       scrollable
                       fill
-                      title="OOC Notes"
+                      title={character_name + "'s Flavor Text"}
                       preserveWhitespace>
-                      {formatURLs(ooc_notes)}
+                      {formatURLs(flavor_text)}
                     </Section>
-                  </Stack.Item>
-                  <Stack.Item grow basis={0}>
+                  </Tabs.Tab>
+                  <Tabs.Tab
+                    selected={tabIndex === 2}
+                    onClick={() => setTabIndex(2)}>
                     <Section
                       scrollable
                       fill
-                      title={
-                        custom_species
-                          ? 'Species: ' + custom_species
-                          : 'No Custom Species!'
-                      }
+                      title={'NSFW (Warning)'}
                       preserveWhitespace>
-                      {custom_species
-                        ? formatURLs(custom_species_lore)
-                        : 'Just a normal space dweller.'}
+                      {flavor_text_nsfw
+                        ? formatURLs(flavor_text_nsfw)
+                        : 'Not currently visible.'}
                     </Section>
-                  </Stack.Item>
-                </Stack>
+                  </Tabs.Tab>
+                </Stack.Item>
+              </Tabs>
+            </Stack>
+          </Stack.Item>
+          {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
+          <Stack.Item grow>
+            <Stack>
+              <Stack.Item grow basis={0}>
+                <Section scrollable fill title="OOC Notes" preserveWhitespace>
+                  {formatURLs(ooc_notes)}
+                </Section>
+              </Stack.Item>
+              <Stack.Item grow basis={0}>
+                <Section
+                  scrollable
+                  fill
+                  title={
+                    custom_species
+                      ? 'Species: ' + custom_species
+                      : 'No Custom Species!'
+                  }
+                  preserveWhitespace>
+                  {custom_species
+                    ? formatURLs(custom_species_lore)
+                    : 'Just a normal space dweller.'}
+                </Section>
               </Stack.Item>
             </Stack>
           </Stack.Item>
