@@ -1,7 +1,8 @@
 /*
 Additional entries into the robotic style prefs.
 it's for until I figure out how to either make teshari spawn with special stat-corrected limbs
-replaces the list of same name in "modular_skyrat\modules\customization\_globalvars\lists.dm" and paste this in.
+adds to the list of same name in "modular_skyrat\modules\customization\_globalvars\lists.dm" and paste the Ceremi stuff in.
+strangely, doing it from here breaks
 
 
 GLOBAL_LIST_INIT(robotic_styles_list += list(
