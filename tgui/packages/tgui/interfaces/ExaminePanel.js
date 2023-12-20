@@ -109,9 +109,7 @@ export const ExaminePanel = (props, context) => {
                       scrollable
                       fill
                       title={
-                        custom_species
-                          ? 'Species: ' + custom_species
-                          : 'No Custom Species!'
+                        custom_species ? custom_species : 'No Custom Species!'
                       }
                       preserveWhitespace>
                       {custom_species
