@@ -38,7 +38,6 @@
 		GUARDIAN_RANGED = "...And draw the Watcher, impaling its prey from afar.",
 		GUARDIAN_STANDARD = "...And draw the Assistant, faceless but never to be underestimated.",
 		GUARDIAN_SUPPORT = "...And draw the Paramedic, arbiter of life and death.",
-		GUARDIAN_TIMESTOP = "...And draw the Wizard, master of time and space."
 	)
 
 /// Applies relevant visual properties to our guardian
