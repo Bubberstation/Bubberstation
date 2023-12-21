@@ -1,45 +1,26 @@
-//This will not happen without admins doing a fuck.
-
+#define BLOODSUCKER_GUARDIAN_PATH /mob/living/basic/guardian/standard/timestop
 ///Bloodsuckers spawning a Guardian will get the Bloodsucker one instead.
 /obj/item/guardian_creator/spawn_guardian(mob/living/user, mob/dead/candidate, guardian_path)
-	// if(QDELETED(user) || user.stat == DEAD)
-	// 	return
-	// var/list/guardians = user.get_all_linked_holoparasites()
-	// if(length(guardians) && !allow_multiple)
-	// 	balloon_alert(user, "already got one!")
-	// 	used = FALSE
-	// 	return
-	var/mob/living/basic/guardian/standard/timestop/bloodsucker_guardian
-	if(IS_BLOODSUCKER(user) && guardian_path != bloodsucker_guardian)
-		spawn_guardian(user, candidate, bloodsucker_guardian)
+	if(IS_BLOODSUCKER(user) && guardian_path != BLOODSUCKER_GUARDIAN_PATH)
+		spawn_guardian(user, candidate, BLOODSUCKER_GUARDIAN_PATH)
 		return
-		// var/mob/living/basic/guardian/standard/timestop/bloodsucker_guardian = new(user, GUARDIAN_THEME_MAGIC)
-		// bloodsucker_guardian.set_summoner(user, different_person = TRUE)
-		// bloodsucker_guardian.key = candidate.key
-		// user.log_message("has summoned [key_name(bloodsucker_guardian)], a [bloodsucker_guardian.creator_name] holoparasite.", LOG_GAME)
-		// bloodsucker_guardian.log_message("was summoned as a [bloodsucker_guardian.creator_name] holoparasite.", LOG_GAME)
-		// to_chat(user, guardian_theme.get_fluff_string(bloodsucker_guardian.guardian_type))
-		// to_chat(user, replacetext(success_message, "%GUARDIAN", mob_name))
-		// bloodsucker_guardian.client?.init_verbs()
-		// return bloodsucker_guardian
-
 	// Call parent to deal with everyone else
 	return ..()
-
+#undef BLOODSUCKER_GUARDIAN_PATH
 /**
  * The Guardian itself
  */
 /mob/living/basic/guardian/standard/timestop
 	// Like Bloodsuckers do, you will take more damage to Burn and less to Brute
 	damage_coeff = list(BRUTE = 0.5, BURN = 2.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
-
+	playstyle_string = span_holoparasite("As a <b>timestop</b> type you have the ability to stop time, allowing you to move freely while your enemies and even projectiles are frozen. You are also resistant to brute damage, but weak to burn damage.")
 	creator_name = "Timestop"
-	creator_desc = "Devastating close combat attacks and high damage resistance. Can smash through weak walls and stop time."
+	creator_desc = "Devastating close combat attacks and high physical damage resistance, but weak to burns. Can smash through weak walls and stop time."
 	creator_icon = "standard"
 
 /mob/living/basic/guardian/standard/timestop/Initialize(mapload, theme)
-	//Wizard Holoparasite theme, just to be more visibly stronger than regular ones
-	// theme = GUARDIAN_THEME_MAGIC
+	// Wizard Holoparasite theme, just to be more visibly stronger than regular ones
+	theme = GUARDIAN_THEME_MAGIC
 	return ..()
 
 /mob/living/basic/guardian/standard/timestop/set_summoner(mob/living/to_who, different_person = FALSE)
@@ -58,11 +39,6 @@
 	invocation_type = INVOCATION_NONE
 
 /datum/guardian_fluff/tech
-	name = "Holoparasite"
-	fluff_type = GUARDIAN_TECH
-	bubble_icon = "holo"
-	icon_state = "techbase"
-	overlay_state = "tech"
 	guardian_fluff = list(
 		GUARDIAN_ASSASSIN = "Boot sequence complete. Stealth modules loaded. Holoparasite swarm online.",
 		GUARDIAN_CHARGER = "Boot sequence complete. Overclocking motive engines. Holoparasite swarm online.",
@@ -79,9 +55,6 @@
 	)
 
 /datum/guardian_fluff/miner
-	name = "Power Miner"
-	icon_state = "minerbase"
-	overlay_state = "miner"
 	guardian_fluff = list(
 		GUARDIAN_ASSASSIN = "The shard reveals... Glass, a sharp but fragile ambusher.",
 		GUARDIAN_CHARGER = "The shard reveals... Titanium, a lightweight, agile fighter.",
@@ -98,13 +71,6 @@
 	)
 
 /datum/guardian_fluff/carp
-	name = "Holocarp"
-	fluff_type = GUARDIAN_TECH
-	desc = "A mysterious fish that swims by its charge, ever fingilant."
-	icon_state = null // Handled entirely by the overlay
-	bubble_icon = "holo"
-	overlay_state = "carp"
-	speak_emote = list("gnashes")
 	guardian_fluff = list(
 		GUARDIAN_ASSASSIN = "CARP CARP CARP! Caught one! It's an assassin carp! Just when you thought it was safe to go back to the water... which is unhelpful, because we're in space.",
 		GUARDIAN_CHARGER = "CARP CARP CARP! Caught one! It's a charger carp which likes running at people. But it doesn't have any legs...",
