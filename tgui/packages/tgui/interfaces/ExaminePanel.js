@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Stack, Section, ByondUi, Tabs, Box } from '../components'; // Bubber edit added Collapsible
+import { Stack, Section, ByondUi, Tabs } from '../components'; // Bubber edit added Collapsible
 import { Window } from '../layouts';
 import { resolveAsset } from '../assets';
 
@@ -31,7 +31,8 @@ const formatURLs = (text) => {
 };
 
 export const ExaminePanel = (props, context) => {
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tab-index', 1);
+  const [tabIndex, setTabIndex] = useLocalState(context, 'tab-index', 0);
+  const TAB_RANGE = ['Flavor Text', 'NSFW (Warning'];
   const { act, data } = useBackend(context);
   const {
     character_name,
@@ -45,7 +46,11 @@ export const ExaminePanel = (props, context) => {
     headshot,
   } = data;
   return (
-    <Window title="Examine Panel" width={900} height={670} theme="admin">
+    <Window
+      title={character_name + "'s Examine Panel"}
+      width={900}
+      height={670}
+      theme="admin">
       <Window.Content>
         <Stack fill>
           <Stack.Item width="30%">
@@ -85,65 +90,49 @@ export const ExaminePanel = (props, context) => {
             )}
           </Stack.Item>
           <Stack.Item grow>
-            <Stack fill vertical>
-              <Tabs fluid>
-                {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
-                <Stack.Item grow>
-                  <Box>
-                    Tab {tabIndex}: {title}
-                  </Box>
-                  <Tabs.Tab
-                    selected={tabIndex === 1}
-                    onClick={() => setTabIndex(1)}>
-                    <Section
-                      scrollable
-                      fill
-                      title={character_name + "'s Flavor Text"}
-                      preserveWhitespace>
-                      {formatURLs(flavor_text)}
-                    </Section>
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={tabIndex === 2}
-                    onClick={() => setTabIndex(2)}>
-                    <Section
-                      scrollable
-                      fill
-                      title={'NSFW (Warning)'}
-                      preserveWhitespace>
-                      {flavor_text_nsfw
-                        ? formatURLs(flavor_text_nsfw)
-                        : 'Not currently visible.'}
-                    </Section>
-                  </Tabs.Tab>
-                </Stack.Item>
-              </Tabs>
-            </Stack>
-          </Stack.Item>
-          {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
-          <Stack.Item grow>
-            <Stack>
-              <Stack.Item grow basis={0}>
-                <Section scrollable fill title="OOC Notes" preserveWhitespace>
-                  {formatURLs(ooc_notes)}
-                </Section>
-              </Stack.Item>
-              <Stack.Item grow basis={0}>
+            {/* BUBBER EDIT BEGIN, NSFW FLAVOR TEXT */}
+            <Tabs fluid>
+              <Tabs.Tab
+                selected={tabIndex === 1}
+                onClick={() => setTabIndex(1)}>
+                <Section title={'Flavor Text'} />
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={tabIndex === 2}
+                onClick={() => setTabIndex(2)}>
+                <Section title={'NSFW (Warning)'} />
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={tabIndex === 3}
+                onClick={() => setTabIndex(3)}>
                 <Section
-                  scrollable
-                  fill
-                  title={
-                    custom_species
-                      ? 'Species: ' + custom_species
-                      : 'No Custom Species!'
-                  }
-                  preserveWhitespace>
-                  {custom_species
-                    ? formatURLs(custom_species_lore)
-                    : 'Just a normal space dweller.'}
-                </Section>
+                  title={custom_species ? custom_species : 'Unnamed Species'}
+                />
+              </Tabs.Tab>
+            </Tabs>
+            {tabIndex === 1 && (
+              <Section scrollable minHeight="50%">
+                {formatURLs(flavor_text)}
+              </Section>
+            )}
+            {tabIndex === 2 && (
+              <Section scrollable minHeight="50%">
+                {formatURLs(flavor_text_nsfw)}
+              </Section>
+            )}
+            {tabIndex === 3 && (
+              <Section scrollable minHeight="50%">
+                {custom_species
+                  ? formatURLs(custom_species_lore)
+                  : 'Just a normal space dweller.'}
+              </Section>
+            )}
+            <Section scrollable title="OOC Notes">
+              <Stack.Item grow={1} basis={0}>
+                {formatURLs(ooc_notes)}
               </Stack.Item>
-            </Stack>
+            </Section>
+            {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
           </Stack.Item>
         </Stack>
       </Window.Content>
