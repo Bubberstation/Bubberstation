@@ -80,7 +80,6 @@
 		GUARDIAN_RANGED = "Boot sequence complete. Flechette launchers operational. Holoparasite swarm online.",
 		GUARDIAN_STANDARD = "Boot sequence complete. CQC suite engaged. Holoparasite swarm online.",
 		GUARDIAN_SUPPORT = "Boot sequence complete. Medical suite active. Holoparasite swarm online.",
-		GUARDIAN_TIMESTOP = "ERROR... T$M3 M4N!PULA%I0N modules loaded. Holoparasite swarm online.",
 	)
 
 /// Used by powerminers found in necropolis chests
@@ -100,7 +99,6 @@
 		GUARDIAN_RANGED = "The shard reveals... Diamond, projecting a million sharp edges.",
 		GUARDIAN_STANDARD = "The shard reveals... Plastitanium, a powerful fighter.",
 		GUARDIAN_SUPPORT = "The shard reveals... Bluespace, master of relocation.",
-		GUARDIAN_TIMESTOP = "You encounter... The World, the controller of time and space."
 	)
 
 /// Used by holocarp spawned by admins
@@ -124,5 +122,4 @@
 		GUARDIAN_RANGED = "CARP CARP CARP! You caught one! It's a ranged carp! It has been collecting glass shards in preparation for this moment.",
 		GUARDIAN_STANDARD = "CARP CARP CARP! You caught one! This one is a little generic and disappointing... Better punch through some walls to ease the tension.",
 		GUARDIAN_SUPPORT = "CARP CARP CARP! You caught a support carp! Now it's here, now you're over there!",
-		GUARDIAN_TIMESTOP = "CARP CARP CARP! You caught one! It's imbued with the power of Carp'Sie herself. Time to rule THE WORLD!."
 	)
