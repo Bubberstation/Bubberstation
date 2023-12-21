@@ -1,7 +1,7 @@
 /datum/species/abductor
 	name = "Abductor"
 	id = SPECIES_ABDUCTOR
-	sexes = TRUE // Bubber edit
+	sexes = FALSE
 	inherent_traits = list(
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NOBREATH,
