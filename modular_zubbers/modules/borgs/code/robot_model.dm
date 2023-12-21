@@ -29,7 +29,8 @@
 	)
 	special_light_key = null
 	borg_skins = list(
-		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_WIDE))
+		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_WIDE)),
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(R_TRAIT_UNIQUEWRECK, R_TRAIT_WIDE)), //aKhroma :)
 	)
 
 /obj/item/robot_model/centcom/rebuild_modules()
