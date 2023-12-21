@@ -12,12 +12,15 @@
 		While feeding, you can't speak, as your mouth is covered.\n\
 		Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction\n\
 		If you get too many Masquerade Infractions, you will break the Masquerade.\n\
-		If you are in desperate need of blood, mice can be fed off of, at a cost."
+		If you are in desperate need of blood, mice can be fed off of, at a cost.\n\
+		You must use the ability again to stop sucking blood."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS
+
+	COOLDOWN_DECLARE(feed_movement_notify_cooldown)
 	///Amount of blood taken, reset after each Feed. Used for logging.
 	var/blood_taken = 0
 	///The amount of Blood a target has since our last feed, this loops and lets us not spam alerts of low blood.
@@ -41,25 +44,27 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target)
+/datum/action/cooldown/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target, check_grab, check_aggresive_grab)
 	if(!target)
 		return FALSE
 	if(!user.Adjacent(target))
 		return FALSE
+	if(check_grab && user.pulling != target)
+		return FALSE
+	if(check_aggresive_grab && user.grab_state < GRAB_AGGRESSIVE)
+		return FALSE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/DeactivatePower()
-	if(!target_ref)
-		stack_trace("DeactivatePower called without target_ref")
-		return ..()
 	var/mob/living/user = owner
-	var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref?.resolve()
+	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
 	if(isnull(feed_target))
 		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
 	else
 		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
 		to_chat(user, span_notice("You slowly release [feed_target]."))
-		if(feed_target.stat == DEAD)
+		if(feed_target.client && feed_target.stat == DEAD)
 			user.add_mood_event("drankkilled", /datum/mood_event/drankkilled)
 			bloodsuckerdatum_power.AddHumanityLost(10)
 
@@ -87,6 +92,7 @@
 		feed_timer = 2 SECONDS
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
+	owner.face_atom(feed_target)
 	if(!do_after(owner, feed_timer, feed_target, NONE, TRUE))
 		owner.balloon_alert(owner, "feed stopped")
 		DeactivatePower()
@@ -126,6 +132,7 @@
 
 	ADD_TRAIT(owner, TRAIT_MUTE, FEED_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
+	RegisterSignal(owner, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE, PROC_REF(notify_move_block))
 	return ..()
 
 /datum/action/cooldown/bloodsucker/feed/process(seconds_per_tick)
@@ -133,7 +140,7 @@
 		return ..() //Manage our cooldown timers
 	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref.resolve()
-	if(!ContinueActive(user, feed_target))
+	if(!ContinueActive(user, feed_target, !silent_feed, !silent_feed))
 		if(!silent_feed)
 			user.visible_message(
 				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"),
@@ -249,6 +256,13 @@
 			owner.balloon_alert(owner, "cant drink from mindless!")
 		return FALSE
 	return TRUE
+
+/datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
+	SIGNAL_HANDLER
+	if (!COOLDOWN_FINISHED(src, feed_movement_notify_cooldown))
+		return
+	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
+	owner.balloon_alert(owner, "you cannot move while feeding! Click the power to stop.")
 
 #undef FEED_NOTICE_RANGE
 #undef FEED_DEFAULT_TIMER
