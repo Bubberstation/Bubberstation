@@ -276,7 +276,10 @@
 
 	var/disloyalty_requires = RequireDisloyalty(user, target)
 	if(disloyalty_requires == VASSALIZATION_BANNED)
-		balloon_alert(user, "can't be vassalized!")
+		if(target.ckey)
+			balloon_alert(user, "can't be vassalized!")
+		else
+			balloon_alert(user, "target has no mind!")
 		return FALSE
 
 	// Conversion Process
@@ -389,11 +392,10 @@
 
 /obj/structure/bloodsucker/vassalrack/proc/RequireDisloyalty(mob/living/user, mob/living/target)
 #ifdef BLOODSUCKER_TESTING
-	if(!target || !target.mind)
+	if(!target)
 #else
 	if(!target || !target.client)
 #endif
-		balloon_alert(user, "target has no mind!")
 		return VASSALIZATION_BANNED
 
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))

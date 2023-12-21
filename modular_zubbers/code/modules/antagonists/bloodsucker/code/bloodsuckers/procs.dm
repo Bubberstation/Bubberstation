@@ -53,7 +53,10 @@
 		to_chat(owner.current, span_cultbold("You violated the Masquerade! Break the Masquerade [3 - masquerade_infractions] more times and you will become a criminal to the Bloodsucker's Cause!"))
 
 /datum/antagonist/bloodsucker/proc/RankUp(force = FALSE)
-	if(!owner || !owner.current || IS_FAVORITE_VASSAL(owner.current))
+	if(!owner || !owner.current)
+		return
+	if(IS_FAVORITE_VASSAL(owner.current))
+		to_chat(owner.current, span_notice("You are yet too young to gain a rank. Ask your master for new abilities."))
 		return
 	bloodsucker_level_unspent++
 	if(!my_clan)
