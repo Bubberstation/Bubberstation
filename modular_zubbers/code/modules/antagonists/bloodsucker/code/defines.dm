@@ -147,7 +147,7 @@
 ///Drinks blood but is snobby, refusing to drink from mindless
 #define BLOODSUCKER_DRINK_SNOBBY "bloodsucker_drink_snobby"
 ///Drinks blood from disgusting creatures without Humanity consequences.
-#define BLOODSUCKER_DRINK_INHUMANELY "bloodsucker_drink_imhumanely"
+#define BLOODSUCKER_DRINK_INHUMANELY "bloodsucker_drink_inhumanely"
 
 /**
  * Traits

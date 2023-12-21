@@ -206,8 +206,7 @@
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
-		if(blood_drink_type == BLOODSUCKER_DRINK_NORMAL)
-			blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
+		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
@@ -245,7 +244,7 @@
 		options[initial(vassaldatums.name)] = vassaldatums
 
 		var/datum/radial_menu_choice/option = new
-		option.image = image(icon = initial(vassaldatums.hud_icon), icon_state = initial(vassaldatums.antag_hud_name))
+		option.image = image(icon = initial(vassaldatums.hud_icon), icon_state = initial(vassaldatums.antag_hud_name), pixel_y = -20, pixel_x = -20)
 		option.info = "[initial(vassaldatums.name)] - [span_boldnotice(initial(vassaldatums.vassal_description))]"
 		radial_display[initial(vassaldatums.name)] = option
 

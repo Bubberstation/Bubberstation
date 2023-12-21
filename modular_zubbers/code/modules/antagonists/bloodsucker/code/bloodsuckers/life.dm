@@ -65,6 +65,9 @@
 		blood_taken /= 3
 	if(!ishuman(target)) // Penalty for Non-Human Blood
 		blood_taken /= 2
+	// High level vampires get much less blood from mindless targets
+	else if(bloodsucker_level > BLOODSUCKER_HIGH_LEVEL && !target?.mind)
+		blood_taken /= 4
 	else if(!target?.mind) // Penalty for Mindless Blood
 		blood_taken /= 2
 	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
