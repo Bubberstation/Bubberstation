@@ -182,3 +182,5 @@
 // #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
 ///For future use
 #define IS_MONSTERHUNTER(mob) (FALSE)
+
+#define GUARDIAN_TIMESTOP "timestop"
