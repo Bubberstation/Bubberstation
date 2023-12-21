@@ -19,9 +19,9 @@
 	description = replacetext(description, "%MAX_LEVEL%", VENTRUE_MAX_LEVEL)
 
 /datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
-	if(!target)
-		if(bloodsuckerdatum.bloodsucker_level < VENTRUE_MAX_LEVEL)
-			return ..()
+	if(bloodsuckerdatum.bloodsucker_level < VENTRUE_MAX_LEVEL)
+		return ..()
+	else if(!target)
 		return FALSE
 	var/datum/antagonist/vassal/favorite/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal/favorite)
 	if(!vassaldatum)
@@ -90,6 +90,9 @@
 		return TRUE
 	if(!istype(vassaldatum))
 		return FALSE
+	if(bloodsuckerdatum.bloodsucker_level < VENTRUE_MAX_LEVEL)
+		to_chat(bloodsuckerdatum.owner.current, span_danger("You are too low level to Rank up [vassaldatum.owner.current] You must at least be level [VENTRUE_MAX_LEVEL]."))
+		return FALSE
 	if(!bloodsuckerdatum.bloodsucker_level_unspent <= 0)
 		bloodsuckerdatum.SpendRank(vassaldatum.owner.current)
 		return TRUE
@@ -108,7 +111,7 @@
 	return TRUE
 
 /datum/bloodsucker_clan/ventrue/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
-	to_chat(bloodsucker, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a Candelabrum!"))
+	to_chat(bloodsucker, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a persuasion rack!"))
 	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/distress)
 
 #undef BLOODSUCKER_BLOOD_RANKUP_COST
