@@ -12,6 +12,7 @@
 #define CYBORG_ICON_ENG_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_eng.dmi'
 
 #define CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_pk.dmi'
+#define CYBORG_ICON_PEACEKEEPER_TALL_BUBBER 'modular_zubbers/modules/borg/sprites/tallrobot_pk.dmi'
 
 #define CYBORG_ICON_SERVICE_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_serv.dmi'
 
