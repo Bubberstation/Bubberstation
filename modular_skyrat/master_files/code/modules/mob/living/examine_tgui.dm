@@ -53,7 +53,7 @@
 	var/custom_species
 	var/custom_species_lore
 	var/obscured
-	var/obscurity_examine_pref = preferences.read_preference(/datum/preference/toggle/obscurity_examine) //bubberstation edit
+	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine) //bubberstation edit
 	var/ooc_notes = ""
 	var/headshot = ""
 
