@@ -111,23 +111,23 @@ export const ExaminePanel = (props, context) => {
               </Tabs.Tab>
             </Tabs>
             {tabIndex === 1 && (
-              <Section scrollable minHeight="50%">
+              <Section scrollable preserveWhitespace minHeight="50%">
                 {formatURLs(flavor_text)}
               </Section>
             )}
             {tabIndex === 2 && (
-              <Section scrollable minHeight="50%">
+              <Section scrollable preserveWhitespace minHeight="50%">
                 {formatURLs(flavor_text_nsfw)}
               </Section>
             )}
             {tabIndex === 3 && (
-              <Section scrollable minHeight="50%">
+              <Section scrollable preserveWhitespace minHeight="50%">
                 {custom_species
                   ? formatURLs(custom_species_lore)
                   : 'Just a normal space dweller.'}
               </Section>
             )}
-            <Section scrollable title="OOC Notes">
+            <Section scrollable preserveWhitespace title="OOC Notes">
               <Stack.Item grow={1} basis={0}>
                 {formatURLs(ooc_notes)}
               </Stack.Item>
