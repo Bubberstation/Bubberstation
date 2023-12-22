@@ -5,4 +5,4 @@
 	blacklisted_stations = list("Runtime Station", "MultiZ Debug", "Gateway Test") //so it spawns on void, burger, etc
 
 /datum/area_spawn/lustwish_prison
-	desired_atom = /obj/machinery/vending/dorms/prison //BUBBER EDIT: MAKES A PRISON LUSTWISH
+	desired_atom = /obj/machinery/vending/dorms/prison // PRISON LUSTWISH
