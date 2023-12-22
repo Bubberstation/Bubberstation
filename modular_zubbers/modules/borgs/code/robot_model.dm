@@ -92,7 +92,7 @@
 		),
 	)
 
-/obj/item/robot_model/security/Initialize()
+/obj/item/robot_model/security/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		//32x64 sprites below (Tall)
