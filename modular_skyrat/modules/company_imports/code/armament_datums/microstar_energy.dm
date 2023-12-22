@@ -4,7 +4,7 @@
 
 // Basic lethal/disabler beam weapons, includes the base mcr
 
-/datum/armament_entry/company_import/microstar/basic_energy_weapons
+/*/datum/armament_entry/company_import/microstar/basic_energy_weapons
 	subcategory = "Basic Energy Smallarms"
 
 /datum/armament_entry/company_import/microstar/basic_energy_weapons/disabler
@@ -59,7 +59,7 @@
 
 /datum/armament_entry/company_import/microstar/experimental_energy/tesla_cannon
 	item_type = /obj/item/gun/energy/tesla_cannon
-
+*/ //BUBBER EDIT: MOVED TO GOODIES TAB
 // Preset 'loadout' kits built around a barrel attachment
 
 /datum/armament_entry/company_import/microstar/mcr_attachments
