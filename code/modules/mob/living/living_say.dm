@@ -218,7 +218,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		return
 
 	//BUBBER EDIT: AUTOPUNCTUATION
-	message = autopunct_bare(message)
+	if(client?.autopunctuation)
+		message = autopunct_bare(message)
 	//BUBBER EDIT END: AUTOPUNCTUATION
 
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
