@@ -183,4 +183,18 @@
 ///For future use
 #define IS_MONSTERHUNTER(mob) (FALSE)
 
-#define GUARDIAN_TIMESTOP "timestop"
+// Why waste memory on a dynamic global list if we can just bake it in on compile time?
+#define BLOODSUCKER_PROTECTED_ROLES list( \
+	JOB_CAPTAIN, \
+	JOB_HEAD_OF_PERSONNEL, \
+	JOB_HEAD_OF_SECURITY, \
+	JOB_WARDEN, \
+	JOB_SECURITY_OFFICER, \
+	JOB_DETECTIVE, \
+	JOB_CURATOR, \
+) \
+
+#define BLOODSUCKER_RESTRICTED_ROLES list( \
+	JOB_AI, \
+	JOB_CYBORG, \
+) \
