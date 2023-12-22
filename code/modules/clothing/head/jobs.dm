@@ -574,7 +574,7 @@
 	name = "blue surgery cap"
 	icon_state = "surgicalcap"
 	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
-	//flags_inv = HIDEHAIR (Bubber Edit: Disabled for preview QOL)
+	//flags_inv = HIDEHAIR (Bubber Edit: Disabled for preview QOL) //BUBBER TODO: Modularise
 
 /obj/item/clothing/head/utility/surgerycap/attack_self(mob/user)
 	. = ..()
