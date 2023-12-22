@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Stack, Section, ByondUi, Tabs } from '../components'; // Bubber edit added Collapsible
+import { Stack, Section, ByondUi, Tabs } from '../components'; // Bubber edit added Tabs
 import { Window } from '../layouts';
 import { resolveAsset } from '../assets';
 
@@ -49,8 +49,8 @@ export const ExaminePanel = (props, context) => {
     <Window
       title={character_name + "'s Examine Panel"}
       width={900}
-      height={670}
-      theme="admin">
+      height={670}>
+      {/* BUBBER EDIT: DON'T USE ADMIN THEME*/}
       <Window.Content>
         <Stack fill>
           <Stack.Item width="30%">
