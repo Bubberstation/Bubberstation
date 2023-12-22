@@ -1,4 +1,4 @@
-/obj/item/robot_model/centcom //Sprites by QuartzAdachi
+/obj/item/robot_model/centcom
 	name = "Central Command"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
@@ -30,6 +30,7 @@
 	special_light_key = null
 	borg_skins = list(
 		//32x64 sprites below (Wide)
+		//Vale CC Sprites by QuartzAdachi
 		"Vale" = list(
 			SKIN_ICON_STATE = "valecc",
 			SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER,
@@ -45,7 +46,6 @@
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
-
 
 /* BUBBER SPRITE ADDITIONS BELOW */
 /obj/item/robot_model/medical/Initialize(mapload)
