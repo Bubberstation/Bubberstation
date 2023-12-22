@@ -2,7 +2,7 @@
 	var/list/data = ..()
 	var/datum/preferences/preferences = holder.client?.prefs
 	var/flavor_text_nsfw
-	var/show_nsfw_flavor_text = preferences.read_preference(/datum/preference/choiced/show_nsfw_flavor_text)
+	var/show_nsfw_flavor_text = preferences?.read_preference(/datum/preference/choiced/show_nsfw_flavor_text)
 	if(issilicon(holder) && !(show_nsfw_flavor_text == "Never"))
 		flavor_text_nsfw = preferences.read_preference(/datum/preference/text/flavor_text_nsfw/silicon)
 	if(ishuman(holder))
