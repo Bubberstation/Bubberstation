@@ -31,7 +31,7 @@ const formatURLs = (text) => {
 };
 
 export const ExaminePanel = (props, context) => {
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tab-index', 0);
+  const [tabIndex, setTabIndex] = useLocalState(context, 'tab-index', 1);
   const TAB_RANGE = ['Flavor Text', 'NSFW (Warning'];
   const { act, data } = useBackend(context);
   const {
@@ -95,39 +95,45 @@ export const ExaminePanel = (props, context) => {
               <Tabs.Tab
                 selected={tabIndex === 1}
                 onClick={() => setTabIndex(1)}>
-                <Section title={'Flavor Text'} />
+                <Section fitted title={'Flavor Text'} />
               </Tabs.Tab>
               <Tabs.Tab
                 selected={tabIndex === 2}
                 onClick={() => setTabIndex(2)}>
-                <Section title={'NSFW (Warning)'} />
+                <Section fitted title={'NSFW (Warning)'} />
               </Tabs.Tab>
               <Tabs.Tab
                 selected={tabIndex === 3}
                 onClick={() => setTabIndex(3)}>
                 <Section
+                  fitted
                   title={custom_species ? custom_species : 'Unnamed Species'}
                 />
               </Tabs.Tab>
             </Tabs>
             {tabIndex === 1 && (
-              <Section scrollable preserveWhitespace minHeight="50%">
+              <Section scrollable fitted preserveWhitespace minHeight="50%">
                 {formatURLs(flavor_text)}
               </Section>
             )}
             {tabIndex === 2 && (
-              <Section scrollable preserveWhitespace minHeight="50%">
+              <Section scrollable fitted preserveWhitespace minHeight="50%">
                 {formatURLs(flavor_text_nsfw)}
               </Section>
             )}
             {tabIndex === 3 && (
-              <Section scrollable preserveWhitespace minHeight="50%">
+              <Section scrollable fitted preserveWhitespace minHeight="50%">
                 {custom_species
                   ? formatURLs(custom_species_lore)
                   : 'Just a normal space dweller.'}
               </Section>
             )}
-            <Section scrollable preserveWhitespace title="OOC Notes">
+            <Section
+              scrollable
+              fitted
+              preserveWhitespace
+              minHeight="45%"
+              title="OOC Notes">
               <Stack.Item grow={1} basis={0}>
                 {formatURLs(ooc_notes)}
               </Stack.Item>
