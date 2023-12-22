@@ -4,7 +4,7 @@
 
 	breathe_gas_volume(breath, /datum/gas/miasma)
 
-	if(miasma_pp >= 0.1)
+	if(miasma_pp >= 1)
 		breather.adjust_disgust( 0.5 + max(miasma_pp*1.5 - old_miasma_pp,0) * 0.5, max = DISGUST_LEVEL_DISGUSTED)
 		if(old_miasma_pp <= miasma_pp*0.5 || prob(2 + min(miasma_pp*4,15)))
 			breather.emote("cough")
