@@ -2,6 +2,7 @@
 ///Bloodsuckers spawning a Guardian will get the Bloodsucker one instead.
 /obj/item/guardian_creator/spawn_guardian(mob/living/user, mob/dead/candidate, guardian_path)
 	if(IS_BLOODSUCKER(user) && guardian_path != BLOODSUCKER_GUARDIAN_PATH)
+		theme = GLOB.guardian_themes[GUARDIAN_THEME_MAGIC]
 		spawn_guardian(user, candidate, BLOODSUCKER_GUARDIAN_PATH)
 		return
 	// Call parent to deal with everyone else
@@ -17,11 +18,6 @@
 	creator_name = "Timestop"
 	creator_desc = "Devastating close combat attacks and high physical damage resistance, but weak to burns. Can smash through weak walls and stop time."
 	creator_icon = "standard"
-
-/mob/living/basic/guardian/standard/timestop/Initialize(mapload, theme)
-	// Wizard Holoparasite theme, just to be more visibly stronger than regular ones
-	theme = GUARDIAN_THEME_MAGIC
-	return ..()
 
 /mob/living/basic/guardian/standard/timestop/set_summoner(mob/living/to_who, different_person = FALSE)
 	. = ..()
