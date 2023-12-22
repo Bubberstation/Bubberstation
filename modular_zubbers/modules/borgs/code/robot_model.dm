@@ -41,7 +41,7 @@
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.faction |= ROLE_DEATHSQUAD //You're part of CENTCOM now
 
-/obj/item/robot_model/syndicate/remove_module(obj/item/removed_module, delete_after)
+/obj/item/robot_model/centcom/remove_module(obj/item/removed_module, delete_after)
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
