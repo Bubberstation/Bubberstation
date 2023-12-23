@@ -176,11 +176,9 @@
 // ENGINEERING (BUBBERSTATION ADDITION)
 
 /datum/job/station_engineer
-	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
 	required_languages = null // BUBBERSTATION ADDITION
 
 /datum/job/atmospheric_technician
-	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
 	required_languages = null // BUBBERSTATION ADDITION
 
 /datum/job/engineering_guard

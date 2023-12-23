@@ -34,7 +34,8 @@ export const MinesweeperContent = (props, context) => {
     <Section
       title={'Minesweeper' + (emagged ? ' EXTREME EDITION' : '')}
       color={emagged ? 'bad' : 'primary'}
-      textAlign="center">
+      textAlign="center"
+    >
       <b>DIFFICULTY: </b>
       {current_difficulty}
       <br />
@@ -71,7 +72,8 @@ export const MinesweeperContent = (props, context) => {
                           y: yind + 1,
                           flag: true,
                         });
-                      }}>
+                      }}
+                    >
                       <img src={resolveAsset(imagec)} />
                     </Box>
                   ) : (

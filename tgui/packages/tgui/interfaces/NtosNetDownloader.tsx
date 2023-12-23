@@ -142,7 +142,7 @@ export const NtosNetDownloader = (props) => {
             placeholder="Search program name..."
             fluid
             value={searchItem}
-            onChange={(e, value) => {
+            onInput={(e, value) => {
               setSearchItem(value);
             }}
           />

@@ -131,7 +131,7 @@ export const OreRedemptionMachine = (props) => {
               width="150px"
               placeholder="Search Material..."
               value={searchItem}
-              onChange={(e, value) => {
+              onInput={(e, value) => {
                 setSearchItem(value);
 
                 if (value.length > 0) {

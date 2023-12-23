@@ -92,7 +92,7 @@ const CrewTable = (props, context) => {
   const sensors = sortBy((s) =>
     s.brutedam + s.burndam + s.toxdam + s.oxydam > 50
       ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam)
-      : s.ijob
+      : s.ijob,
   )(data.sensors ?? []);
   return (
     <Table cellpadding="3">
@@ -159,14 +159,14 @@ const CrewTableEntry = (props, context) => {
               toxdam,
               burndam,
               brutedam,
-              HEALTH_ICON_BY_LEVEL
+              HEALTH_ICON_BY_LEVEL,
             )}
             color={healthToAttribute(
               oxydam,
               toxdam,
               burndam,
               brutedam,
-              HEALTH_COLOR_BY_LEVEL
+              HEALTH_COLOR_BY_LEVEL,
             )}
             size={1}
           />

@@ -1,4 +1,4 @@
-import { MinesweeperContent } from './Minesweeper.js';
+import { MinesweeperContent } from './Minesweeper';
 import { NtosWindow } from '../layouts';
 
 export const NtosMinesweeper = (props, context) => {

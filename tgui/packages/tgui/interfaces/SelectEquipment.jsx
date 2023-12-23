@@ -6,11 +6,11 @@ import {
   Box,
   Button,
   Icon,
+  Image,
   Input,
   Section,
   Stack,
   Tabs,
-  Image,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -74,7 +74,7 @@ export const SelectEquipment = (props) => {
                   autoFocus
                   placeholder="Search"
                   value={searchText}
-                  onChange={(e, value) => setSearchText(value)}
+                  onInput={(e, value) => setSearchText(value)}
                 />
               </Stack.Item>
               <Stack.Item>

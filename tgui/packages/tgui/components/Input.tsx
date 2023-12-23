@@ -16,12 +16,14 @@ type Props = Partial<{
   fluid: boolean;
   maxLength: number;
   monospace: boolean;
-  // Fires when: Value changes
+  /** Fires when user is 'done typing': Clicked out, blur, enter key */
   onChange: (event: SyntheticEvent<HTMLInputElement>, value: string) => void;
-  // Fires when: Pressed enter without shift
+  /** Fires once the enter key is pressed */
   onEnter: (event: SyntheticEvent<HTMLInputElement>, value: string) => void;
-  // Fires when: Pressed escape
+  /** Fires once the escape key is pressed */
   onEscape: (event: SyntheticEvent<HTMLInputElement>) => void;
+  /** Fires on each key press / value change. Used for searching */
+  onInput: (event: SyntheticEvent<HTMLInputElement>, value: string) => void;
   placeholder: string;
   selfClear: boolean;
   value: string | number;
@@ -56,6 +58,7 @@ export const Input = (props: Props) => {
         event.currentTarget.value = '';
       } else {
         event.currentTarget.blur();
+        onChange?.(event, event.currentTarget.value);
       }
 
       return;
@@ -101,7 +104,8 @@ export const Input = (props: Props) => {
       <input
         className="Input__input"
         maxLength={maxLength}
-        onChange={(event) => onChange?.(event, event.target.value)}
+        onBlur={(event) => onChange?.(event, event.target.value)}
+        onChange={(event) => onInput?.(event, event.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
         ref={inputRef}

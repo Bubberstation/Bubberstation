@@ -125,7 +125,6 @@
 #define SECHUD_STATION_ENGINEER "hudstationengineer"
 #define SECHUD_VIROLOGIST "hudvirologist"
 #define SECHUD_WARDEN "hudwarden"
-
 #define SECHUD_CHEF "hudchef"
 
 #define SECHUD_DEATH_COMMANDO "huddeathcommando"
