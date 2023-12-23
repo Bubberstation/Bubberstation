@@ -31,9 +31,9 @@
 	icon_dead = "oil_shambler"
 	speak_emote = list("crackles")
 
-	maxHealth = 25 //BUBBERSTATION CHANGE
-	health = 25 //BUBBERSTATION CHANGE
-	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 0) //BUBBERSTATION CHANGE
+	maxHealth = 25 // BUBBERSTATION CHANGE
+	health = 25 // BUBBERSTATION CHANGE
+	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 1, STAMINA = 0, OXY = 0) // BUBBERSTATION CHANGE
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = INFINITY
@@ -198,7 +198,7 @@
 	/// What the mob injects per bite
 	var/inject_reagent = /datum/reagent/teslium
 	/// How many units to inject per bite
-	var/inject_amount = 2
+	var/inject_amount = 0 // BUBBERSTATION CHANGE 2 -> 0
 
 /mob/living/basic/mold/electric_mosquito/Initialize(mapload)
 	. = ..()

@@ -1,3 +1,4 @@
+// THIS IS A SKYRAT UI FILE
 import { useBackend } from '../backend';
 import { Stack } from '../components';
 import { Objective } from './common/Objectives';
@@ -7,17 +8,18 @@ type Info = {
   objectives: Objective[];
 };
 
-export const Rules = (props, context) => {
-  const { data } = useBackend<Info>(context);
+export const Rules = (props) => {
+  const { data } = useBackend<Info>();
   const { antag_name } = data;
   switch (antag_name) {
     case 'Abductor Agent' || 'Abductor Scientist' || 'Abductor Solo':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Abductors!_Station_Threat">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -27,11 +29,12 @@ export const Rules = (props, context) => {
       break;
     case 'Drifting Contractor':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Contractor!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -41,11 +44,12 @@ export const Rules = (props, context) => {
       break;
     case 'Cortical Borer':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Cortical_Borer!_PERMANENT_MECHANICAL_STATE">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -55,11 +59,12 @@ export const Rules = (props, context) => {
       break;
     case 'Venus Human Trap':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Man_Eaters!_PERMANENT_MECHANICAL_STATE">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -69,11 +74,12 @@ export const Rules = (props, context) => {
       break;
     case 'Obsessed':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Obsessed!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -83,11 +89,12 @@ export const Rules = (props, context) => {
       break;
     case 'Revenant':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Revenant!_PERMANENT_MECHANICAL_STATE">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -97,11 +104,12 @@ export const Rules = (props, context) => {
       break;
     case 'Space Dragon':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Space_Dragon!_PERMANENT_MECHANICAL_STATE">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -111,11 +119,12 @@ export const Rules = (props, context) => {
       break;
     case 'Space Pirate':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Space_Pirates!_Station_Threat">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -125,11 +134,12 @@ export const Rules = (props, context) => {
       break;
     case 'Blob':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Blob!_PERMANENT_MECHANICAL_STATE">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -139,11 +149,12 @@ export const Rules = (props, context) => {
       break;
     case 'Changeling':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Changeling!_Station_Threat">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -152,11 +163,12 @@ export const Rules = (props, context) => {
       );
     case 'ClockCult':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Clockcult_(OPFOR)">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -165,11 +177,12 @@ export const Rules = (props, context) => {
       );
     case 'AssaultOps':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Assault_Ops!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -178,11 +191,12 @@ export const Rules = (props, context) => {
       );
     case 'Heretic':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Heretic!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -191,11 +205,12 @@ export const Rules = (props, context) => {
       );
     case 'Malf AI':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Malf_AI!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -204,11 +219,12 @@ export const Rules = (props, context) => {
       );
     case 'Morph':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Morphling!_Station_Threat">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -217,11 +233,12 @@ export const Rules = (props, context) => {
       );
     case 'Nightmare':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Nightmare!_Station_Threat">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -230,11 +247,12 @@ export const Rules = (props, context) => {
       );
     case 'Ninja':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Space_Ninja">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -243,11 +261,12 @@ export const Rules = (props, context) => {
       );
     case 'Wizard':
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Wizard!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }
@@ -256,11 +275,12 @@ export const Rules = (props, context) => {
       );
     default:
       return (
+        // Bubberstation Edit
         <Stack vertical>
           <Stack.Item bold>Special Rules:</Stack.Item>
           <Stack.Item>
             {
-              <a href="https://wiki.skyrat13.space/index.php/Antagonist_Policy#Traitor!">
+              <a href="https://wiki.bubberstation.org/index.php?title=Rules">
                 Special Rules and Metaprotections!
               </a>
             }

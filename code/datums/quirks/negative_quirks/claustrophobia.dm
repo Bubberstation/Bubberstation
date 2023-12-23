@@ -15,15 +15,19 @@
 	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
 		return
 
-	if(HAS_TRAIT(quirk_holder, TRAIT_FEARLESS))
+	if(HAS_TRAIT(quirk_holder, TRAIT_MIND_TEMPORARILY_GONE) || HAS_TRAIT(quirk_holder, TRAIT_FEARLESS))
 		return
 
 	var/nick_spotted = FALSE
+
+	/* BUBBERSTATION EDIT BEGIN - REMOVAL OF SANTA CLAUS FEAR
+	(Genuinely what the fuck this code is so fucking terrible)
 
 	for(var/mob/living/carbon/human/possible_claus in view(5, quirk_holder))
 		if(evaluate_jolly_levels(possible_claus))
 			nick_spotted = TRUE
 			break
+	BUBBERSTATION EDIT END - REMOVAL OF SANTA CLAUS FEAR */
 
 	if(!nick_spotted && isturf(quirk_holder.loc))
 		quirk_holder.clear_mood_event("claustrophobia")

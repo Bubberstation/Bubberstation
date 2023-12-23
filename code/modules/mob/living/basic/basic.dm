@@ -42,7 +42,7 @@
 	var/environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 
 	/// 1 for full damage, 0 for none, -1 for 1:1 heal from that source.
-	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 
 	///Verbs used for speaking e.g. "Says" or "Chitters". This can be elementized
 	var/list/speak_emote = list()
@@ -281,7 +281,7 @@
 		cut_overlay(fire_overlay)
 		return null
 	else if(on_fire && !isnull(last_icon_state))
-		return last_icon_state
+		return fire_overlay //BUBBERSTATION CHANGE: FIXES FIRE OVERLAYS. POSSIBLY.
 	return null
 
 /mob/living/basic/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, ignore_animation = TRUE)
