@@ -49,7 +49,6 @@
 	subcategory = "Sacrifical Armor"
 	cost = PAYCHECK_CREW * 3
 
-/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/sol_defense/armor_sacrifice/sacrificial_helmet
 	item_type = /obj/item/clothing/head/helmet/sf_sacrificial
 
@@ -70,8 +69,10 @@
 /datum/armament_entry/company_import/sol_defense/case/carwo
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/carwo_large_case/empty
 	cost = PAYCHECK_COMMAND * 2
+
 /datum/armament_entry/company_import/sol_defense/sidearm
 	subcategory = "Sidearms"
+
 /datum/armament_entry/company_import/sol_defense/sidearm/eland
 	item_type = /obj/item/gun/ballistic/revolver/sol
 	cost = PAYCHECK_COMMAND * 4
