@@ -83,9 +83,9 @@
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && obscurity_examine_pref || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT - EXAMINE PREFS
-		custom_species = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.name : holder_human.dna.features["custom_species"]
-		flavor_text = obscured ? "Obscured" :  holder_human.dna.features["flavor_text"]
-		custom_species_lore = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.get_species_lore().Join("\n") : holder_human.dna.features["custom_species_lore"]
+		custom_species = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.name : holder_human.dna.features["custom_species"] || "No custom species."
+		flavor_text = obscured ? "Obscured" :  holder_human.dna.features["flavor_text"] || "No flavor text."
+		custom_species_lore = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.get_species_lore().Join("\n") : holder_human.dna.features["custom_species_lore"] || "Just a normal space dweller."
 		ooc_notes += holder_human.dna.features["ooc_notes"]
 		if(preferences.read_preference(/datum/preference/text/headshot/silicon) && !(obscured))
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
