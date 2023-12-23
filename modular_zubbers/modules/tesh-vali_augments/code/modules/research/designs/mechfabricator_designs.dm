@@ -8,7 +8,7 @@
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 6)
 	construction_time = 12 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG
+		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
 /datum/design/teshvalicyber_head
@@ -19,7 +19,7 @@
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.75)
 	construction_time = 4 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG
+		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
 /datum/design/teshvalicyber_l_arm
@@ -30,7 +30,7 @@
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG
+		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
 /datum/design/teshvalicyber_r_arm
@@ -41,7 +41,7 @@
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG
+		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
 /datum/design/teshvalicyber_l_leg
@@ -52,7 +52,7 @@
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG
+		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
 /datum/design/teshvalicyber_r_leg
@@ -63,6 +63,6 @@
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG
+		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
