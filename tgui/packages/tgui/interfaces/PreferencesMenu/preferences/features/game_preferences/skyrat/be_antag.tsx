@@ -1,4 +1,5 @@
-/* import { CheckboxInput, FeatureToggle } from '../../base';
+/* // THIS IS A SKYRAT UI FILE - BUBBERSTATION REMOVAL
+import { CheckboxInput, FeatureToggle } from '../../base';
 
 export const be_antag_pref: FeatureToggle = {
   name: 'Be antagonist',
