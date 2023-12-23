@@ -320,6 +320,7 @@
 	design_ids = list(
 		"circuit_multitool",
 		"comp_access_checker",
+		"comp_arctan2",
 		"comp_arithmetic",
 		"comp_assoc_list_pick",
 		"comp_assoc_list_remove",
@@ -924,9 +925,13 @@
 /datum/techweb_node/adv_robotics
 	id = "adv_robotics"
 	display_name = "Advanced Robotics Research"
-	description = "Machines using actual neural networks to simulate human lives."
+	description = "Advanced synthetic neural networks and synaptic pathways allows for extraordinary leaps in cybernetic intelligence and interfacing."
 	prereq_ids = list("robotics")
 	design_ids = list(
+		"advanced_l_arm",
+		"advanced_r_arm",
+		"advanced_l_leg",
+		"advanced_r_leg",
 		"mmi_posi",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -1013,6 +1018,7 @@
 		"borg_upgrade_lavaproof",
 		"borg_upgrade_rped",
 		"borg_upgrade_hypermod",
+		"borg_upgrade_inducer",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
@@ -2006,7 +2012,7 @@
 		"mech_proj_armor",
 	)
 	required_experiments = list(/datum/experiment/scanning/random/mecha_damage_scan)
-	discount_experiments = list(/datum/experiment/scanning/random/mecha_destroyed_scan = 5000)
+	discount_experiments = list(/datum/experiment/scanning/random/mecha_equipped_scan = 5000)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/mech_scattershot
@@ -2268,7 +2274,6 @@
 		"advanced_camera",
 		"ai_cam_upgrade",
 		"borg_syndicate_module",
-		"decloner",
 		"donksoft_refill",
 		"donksofttoyvendor",
 		"largecrossbow",
@@ -2405,18 +2410,6 @@
 		"mod_joint_torsion",
 		"mod_recycler",
 		"mod_shooting",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	hidden = TRUE
-	experimental = TRUE
-
-/datum/techweb_node/advanced_plastic_surgery
-	id = "plastic_surgery"
-	display_name = "Advanced Plastic Surgery"
-	description = "A Procedure long lost due to licensing problems now once again available."
-	prereq_ids = list("base")
-	design_ids = list(
-		"surgery_advanced_plastic_surgery"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	hidden = TRUE
