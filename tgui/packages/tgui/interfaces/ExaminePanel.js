@@ -33,6 +33,7 @@ const formatURLs = (text) => {
 export const ExaminePanel = (props, context) => {
   const [tabIndex, setTabIndex] = useLocalState(context, 'tab-index', 1);
   const TAB_RANGE = ['Flavor Text', 'NSFW (Warning'];
+  const resolvedAsset = resolveAsset(tabIndex === 2 ? headshot_nsfw : headshot);
   const { act, data } = useBackend(context);
   const {
     character_name,
@@ -44,6 +45,7 @@ export const ExaminePanel = (props, context) => {
     custom_species,
     custom_species_lore,
     headshot,
+    headshot_nsfw,
   } = data;
   return (
     <Window
@@ -81,7 +83,12 @@ export const ExaminePanel = (props, context) => {
                 </Section>
                 <Section height="310px" title="Headshot">
                   <img
-                    src={resolveAsset(headshot)}
+                    src={
+                      tabIndex === 2
+                        ? headshot_nsfw
+                        : headshot ||
+                        'https://media.discordapp.net/attachments/1085055268787863552/1187932919843532900/buh71iiztv7c1.webp'
+                    }
                     height="250px"
                     width="250px"
                   />
@@ -134,9 +141,7 @@ export const ExaminePanel = (props, context) => {
               preserveWhitespace
               minHeight="45%"
               title="OOC Notes">
-              <Stack.Item grow={1} basis={0}>
-                {formatURLs(ooc_notes)}
-              </Stack.Item>
+              <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
             </Section>
             {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
           </Stack.Item>

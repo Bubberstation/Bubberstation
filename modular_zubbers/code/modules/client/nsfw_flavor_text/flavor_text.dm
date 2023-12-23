@@ -26,3 +26,9 @@
 
 /datum/preference/choiced/show_nsfw_flavor_text/create_default_value()
 	return "Nude Only"
+
+/datum/preference/text/headshot/nsfw
+	savefile_key = "headshot_nsfw"
+
+/datum/preference/text/headshot/silicon/nsfw
+	savefile_key = "headshot_silicon_nsfw"

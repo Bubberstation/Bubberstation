@@ -1,4 +1,4 @@
-import { Feature, FeatureChoiced, FeatureDropdownInput, FeatureTextInput } from '../../base';
+import { Feature, FeatureChoiced, FeatureDropdownInput, FeatureTextInput, FeatureShortTextInput } from '../../base';
 
 export const character_ad: Feature<string> = {
   name: 'Character Advert',
@@ -33,4 +33,24 @@ export const silicon_flavor_text_nsfw: Feature<string> = {
   description:
     'A portion of your flavor text that is stored in examine, used for Silicons. Used to store visual sexual details.',
   component: FeatureTextInput,
+};
+
+export const headshot_nsfw: Feature<string> = {
+  name: 'Headshot (NSFW)',
+  description:
+    'Headshot, but for NSFW references. \
+    Requires a link ending with .png, .jpeg, or .jpg, starting with \
+    https://, and hosted on Gyazo or Discord. Renders the image underneath \
+    your character preview in the examine more window.',
+  component: FeatureShortTextInput,
+};
+
+export const headshot_silicon_nsfw: Feature<string> = {
+  name: 'Headshot (Silicon) (NSFW)',
+  description:
+    'Headshot, but for NSFW references on Silicons. \
+    Requires a link ending with .png, .jpeg, or .jpg, starting with \
+    https://, and hosted on Gyazo or Discord. Renders the image underneath \
+    your character preview in the examine more window.',
+  component: FeatureShortTextInput,
 };
