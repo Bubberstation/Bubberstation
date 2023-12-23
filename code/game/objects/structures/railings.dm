@@ -100,7 +100,7 @@
 	return TRUE
 
 /obj/structure/railing/deconstruct(disassembled)
-	if((flags_1 & NODECONSTRUCT_1))
+	if((obj_flags & NO_DECONSTRUCTION))
 		return ..()
 	var/rods_to_make = istype(src,/obj/structure/railing/corner) ? 1 : 2
 	var/obj/rod = new item_deconstruct(drop_location(), rods_to_make)
@@ -110,7 +110,7 @@
 ///Implements behaviour that makes it possible to unanchor the railing.
 /obj/structure/railing/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(flags_1&NODECONSTRUCT_1)
+	if(obj_flags & NO_DECONSTRUCTION)
 		return
 	to_chat(user, span_notice("You begin to [anchored ? "unfasten the railing from":"fasten the railing to"] the floor..."))
 	if(I.use_tool(src, user, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
@@ -121,7 +121,7 @@
 /obj/structure/railing/CanPass(atom/movable/mover, border_dir)
 	. = ..()
 	if(border_dir & dir)
-		return . || mover.throwing || mover.movement_type & (FLYING | FLOATING)
+		return . || mover.throwing || (mover.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
 	return TRUE
 
 /obj/structure/railing/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
@@ -144,7 +144,7 @@
 	if (leaving.throwing)
 		return
 
-	if (leaving.movement_type & (PHASING | FLYING | FLOATING))
+	if (leaving.movement_type & (PHASING|MOVETYPES_NOT_TOUCHING_GROUND))
 		return
 
 	if (leaving.move_force >= MOVE_FORCE_EXTREMELY_STRONG)
