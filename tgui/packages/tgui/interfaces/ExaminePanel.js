@@ -119,27 +119,43 @@ export const ExaminePanel = (props, context) => {
               </Tabs.Tab>
             </Tabs>
             {tabIndex === 1 && (
-              <Section scrollable fitted preserveWhitespace minHeight="50%">
+              <Section
+                style={{ 'overflow-y': 'scroll' }}
+                fitted
+                preserveWhitespace
+                minHeight="50%"
+                maxHeight="50%">
                 {formatURLs(flavor_text)}
               </Section>
             )}
             {tabIndex === 2 && (
-              <Section scrollable fitted preserveWhitespace minHeight="50%">
+              <Section
+                style={{ 'overflow-y': 'scroll' }}
+                fitted
+                preserveWhitespace
+                minHeight="50%"
+                maxHeight="50%">
                 {formatURLs(flavor_text_nsfw)}
               </Section>
             )}
             {tabIndex === 3 && (
-              <Section scrollable fitted preserveWhitespace minHeight="50%">
+              <Section
+                style={{ 'overflow-y': 'scroll' }}
+                fitted
+                preserveWhitespace
+                minHeight="50%"
+                maxHeight="50%">
                 {custom_species
                   ? formatURLs(custom_species_lore)
                   : 'Just a normal space dweller.'}
               </Section>
             )}
             <Section
-              scrollable
+              style={{ 'overflow-y': 'scroll' }}
               fitted
               preserveWhitespace
-              minHeight="45%"
+              minHeight="40%"
+              maxHeight="40%"
               title="OOC Notes">
               <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
             </Section>
