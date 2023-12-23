@@ -8,7 +8,7 @@
 	show_name_in_check_antagonists = TRUE
 	can_coexist_with_others = FALSE
 	hijack_speed = 0.5
-	hud_icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bloodsucker_icons.dmi'
+	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoBloodsucker"
 	preview_outfit = /datum/outfit/bloodsucker_outfit
 

@@ -169,10 +169,10 @@
 	name = "blood shield"
 	desc = "A shield made out of blood, requiring blood to sustain hits."
 	item_flags = ABSTRACT | DROPDEL
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vamp_obj.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	icon_state = "blood_shield"
-	lefthand_file = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bs_leftinhand.dmi'
-	righthand_file = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bs_rightinhand.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	block_chance = 75
 
 /obj/item/shield/bloodsucker/Initialize()

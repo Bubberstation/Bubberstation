@@ -10,7 +10,7 @@
 	job_rank = ROLE_BLOODSUCKER
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
-	hud_icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bloodsucker_icons.dmi'
+	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	/* refactor this into tgui antag info
 	tip_theme = "spookyconsole"
 	antag_tips = list(

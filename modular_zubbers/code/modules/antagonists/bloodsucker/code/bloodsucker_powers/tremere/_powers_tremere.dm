@@ -12,8 +12,8 @@
 	background_icon_state = "tremere_power_off"
 	active_background_icon_state = "tremere_power_on"
 	base_background_icon_state = "tremere_power_off"
-	button_icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/actions_tremere_bloodsucker.dmi'
-	background_icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/actions_tremere_bloodsucker.dmi'
+	button_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
+	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
 
 	// Tremere powers don't level up, we have them hardcoded.
 	level_current = 0

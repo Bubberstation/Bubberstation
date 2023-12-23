@@ -100,11 +100,11 @@
 /obj/item/stake
 	name = "wooden stake"
 	desc = "A simple wooden stake carved to a sharp point."
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/stakes.dmi'
+	icon = 'modular_zubbers/icons/obj/equipment/stakes.dmi'
 	icon_state = "wood"
 	inhand_icon_state = "wood"
-	lefthand_file = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bs_leftinhand.dmi'
-	righthand_file = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bs_rightinhand.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -215,9 +215,9 @@
 	name = "\improper Archive of the Kindred"
 	starting_title = "the Archive of the Kindred"
 	desc = "Cryptic documents explaining hidden truths behind Undead beings. It is said only Curators can decipher what they really mean."
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vamp_obj.dmi'
-	lefthand_file = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bs_leftinhand.dmi'
-	righthand_file = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/bs_rightinhand.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi'
 	icon_state = "kindred_book"
 	starting_author = "dozens of generations of Curators"
 	unique = TRUE

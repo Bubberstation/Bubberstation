@@ -18,5 +18,5 @@
 		)
 
 	icon_state = "bloodsucker"
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vampiric.dmi'
+	icon = 'modular_zubbers/icons/misc/language.dmi'
 	secret = TRUE

@@ -42,7 +42,7 @@
 	name = "black coffin"
 	desc = "For those departed who are not so dear."
 	icon_state = "coffin"
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vamp_obj.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	open_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_open.ogg'
 	close_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_close.ogg'
 	breakout_time = 30 SECONDS
@@ -64,7 +64,7 @@
 	name = "secure coffin"
 	desc = "For those too scared of having their place of rest disturbed."
 	icon_state = "securecoffin"
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vamp_obj.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	open_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_open.ogg'
 	close_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_close.ogg'
 	breakout_time = 35 SECONDS
@@ -86,7 +86,7 @@
 	name = "meat coffin"
 	desc = "When you're ready to meat your maker, the steaks can never be too high."
 	icon_state = "meatcoffin"
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vamp_obj.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	resistance_flags = FIRE_PROOF
 	open_sound = 'sound/effects/footstep/slime1.ogg'
 	close_sound = 'sound/effects/footstep/slime1.ogg'
@@ -108,7 +108,7 @@
 	name = "metal coffin"
 	desc = "A big metal sardine can inside of another big metal sardine can, in space."
 	icon_state = "metalcoffin"
-	icon = 'modular_zubbers/code/modules/antagonists/bloodsucker/icons/vamp_obj.dmi'
+	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	open_sound = 'sound/effects/pressureplate.ogg'
 	close_sound = 'sound/effects/pressureplate.ogg'
