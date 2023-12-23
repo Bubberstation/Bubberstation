@@ -110,7 +110,7 @@
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
-	max_damage = PROSTHESIS_MAX_HP
+	max_damage = LIMB_MAX_HP_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
@@ -127,7 +127,7 @@
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
-	max_damage = PROSTHESIS_MAX_HP
+	max_damage = LIMB_MAX_HP_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
@@ -144,7 +144,7 @@
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
-	max_damage = PROSTHESIS_MAX_HP
+	max_damage = LIMB_MAX_HP_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
@@ -161,7 +161,7 @@
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
-	max_damage = PROSTHESIS_MAX_HP
+	max_damage = LIMB_MAX_HP_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
