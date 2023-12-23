@@ -274,10 +274,10 @@
 	icon_state = "fir36"
 	actions_types = list(/datum/action/item_action/adjust)
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS //same flags as actual sec hailer gas mask
-	flags_inv = HIDESNOUT // | HIDEFACE // bubber edit, makes no sense to block the whole face if it's blocking only half of it, right?
+	flags_inv = HIDESNOUT // | HIDEFACE // bubber edit, makes no sense to block the whole face if it's blocking only half of it, right? // BUBBER TODO: Modularity
 	flags_cover = NONE
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags_inv = HIDESNOUT // | HIDEFACE // bubber edit
+	visor_flags_inv = HIDESNOUT // | HIDEFACE // bubber edit // BUBBER TODO: Modularity
 	w_class = WEIGHT_CLASS_SMALL
 	tint = 0
 
@@ -1552,7 +1552,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/suit/toggle/digicoat
-	toggle_noun = "holo-dislpay"
+	toggle_noun = "holo-display"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -1739,3 +1739,27 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	icon_state = "anubite_headpiece"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_y_offset = 4
+
+//  Donator reward Smol42
+
+/obj/item/clothing/neck/trenchcoat
+	name = "Graceful Trenchcoat"
+	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/cloaks.dmi'
+	icon_state = "trenchcoat"
+	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/neck.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"White" = list(
+			RESKIN_ICON_STATE = "trenchcoat_white",
+			RESKIN_WORN_ICON_STATE = "trenchcoat_white"
+		),
+		"Tin variant" = list(
+			RESKIN_ICON_STATE = "trenchcoat_tin",
+			RESKIN_WORN_ICON_STATE = "trenchcoat_tin"
+		),
+		"Blue variant" = list(
+			RESKIN_ICON_STATE = "trenchcoat_blue",
+			RESKIN_WORN_ICON_STATE = "trenchcoat_blue"
+		)
+	)
