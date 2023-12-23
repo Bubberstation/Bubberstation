@@ -42,7 +42,7 @@
 	trim_state = "trim_securitymedic"
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
-	sechud_icon_state = SECHUD_SECURITY_MEDIC
+	sechud_icon_state = SECHUD_SYNDICATE_INTERDYNE
 	extra_access = list(ACCESS_DETECTIVE)
 	minimal_access = list(
 		ACCESS_SECURITY,
