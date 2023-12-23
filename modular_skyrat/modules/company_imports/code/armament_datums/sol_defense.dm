@@ -48,7 +48,7 @@
 /datum/armament_entry/company_import/sol_defense/armor_sacrifice
 	subcategory = "Sacrifical Armor"
 	cost = PAYCHECK_CREW * 3
-
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/sol_defense/armor_sacrifice/sacrificial_helmet
 	item_type = /obj/item/clothing/head/helmet/sf_sacrificial
 
