@@ -37,7 +37,7 @@
 		var/datum/job/J = prefs?.get_highest_priority_job()
 		var/title = J?.title
 		//If a player does not have preferences (for some reason) or they don't want to be shown on the panel, continue
-		if(!J || (prefs.read_preference(/datum/preference/toggle/ready_job)))
+		if(!J || !(prefs.read_preference(/datum/preference/toggle/ready_job)))
 			continue
 		//If the readied player has selected a miscellaneous job (Assistant, or Prisoner), they shouldn't be displayed
 		if(title == JOB_ASSISTANT || title == JOB_PRISONER)
