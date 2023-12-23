@@ -124,7 +124,6 @@ export const Button = (props: Props) => {
         // Refocus layout on pressing escape.
         if (event.key === KEY.Escape) {
           event.preventDefault();
-          return;
         }
       }}
       {...computeBoxProps(rest)}
