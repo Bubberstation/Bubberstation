@@ -733,7 +733,7 @@
 /datum/loadout_item/suit/anubite_headpiece
 	name = "Anubite Headpiece"
 	item_path = /obj/item/clothing/head/anubite
-	ckeywhitelist = list("vexcint")
+	//ckeywhitelist = list("vexcint")
 
 /datum/loadout_item/under/formal/dragon_maid
 	name = "Dragon Maid Uniform"
@@ -744,3 +744,8 @@
 	name = "Cat-Ear Headphones"
 	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
 	//ckeywhitelist = list("dtfe")
+
+/datum/loadout_item/neck/trenchcoat
+	name = "Graceful Trenchcoat"
+	item_path = /obj/item/clothing/neck/trenchcoat
+	//ckeywhitelist = list("Smol42", "Awers855")
