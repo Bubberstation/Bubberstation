@@ -35,6 +35,15 @@ export const silicon_flavor_text_nsfw: Feature<string> = {
   component: FeatureTextInput,
 };
 
+export const headshot_silicon: Feature<string> = {
+  name: 'Headshot (Silicon)',
+  description:
+    'Requires a link ending with .png, .jpeg, or .jpg, starting with \
+    https://, and hosted on Gyazo or Discord. Renders the image underneath \
+    your character preview in the examine more window.',
+  component: FeatureShortTextInput,
+};
+
 export const headshot_nsfw: Feature<string> = {
   name: 'Headshot (NSFW)',
   description:
