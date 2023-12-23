@@ -15,3 +15,11 @@
 /datum/loadout_item/inhand/flag_tiziria //sprites by Crumpaloo
 	name = "Folded Tizirian Empire Flag"
 	item_path = /obj/item/sign/flag/tizira
+
+/* /datum/loadout_item/inhand/flag_solfed
+	name = "Folded Sol Federation Flag"
+	item_path = /obj/item/sign/flag/terragov */
+
+/* /datum/loadout_item/inhand/flag_moghes
+	name = "Folded Republic Of Northern Moghes Flag"
+	item_path = /obj/item/sign/flag/tizira */
