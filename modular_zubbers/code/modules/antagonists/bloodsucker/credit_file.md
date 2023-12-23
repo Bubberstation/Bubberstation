@@ -16,3 +16,5 @@ modular_zubbers/icons/effects/radials/clan_icons.dmi
 modular_zubbers/icons/misc/language.dmi
 modular_zubbers/icons/huds/bloodsucker.dmi
 modular_zubbers/icons/effects/phobetor_tear.dmi
+
+Sound paths:
