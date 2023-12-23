@@ -8,11 +8,10 @@
 	item_path = /obj/item/card/cardboard/korvenbank
 	ckeywhitelist = list("catmanpop") //donator item for catmanpop
 
-
-/datum/loadout_item/inhand/flag_galfed
+/datum/loadout_item/inhand/flag_galfed //sprites by Crumpaloo
 	name = "Folded Galactic Federation Flag"
 	item_path = /obj/item/sign/flag/galfed
 
-/datum/loadout_item/inhand/flag_tiziria
+/datum/loadout_item/inhand/flag_tiziria //sprites by Crumpaloo
 	name = "Folded Tizirian Empire Flag"
 	item_path = /obj/item/sign/flag/tizira
