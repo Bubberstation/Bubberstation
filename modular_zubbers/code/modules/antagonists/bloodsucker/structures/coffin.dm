@@ -43,8 +43,8 @@
 	desc = "For those departed who are not so dear."
 	icon_state = "coffin"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
-	open_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_open.ogg'
-	close_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_close.ogg'
+	open_sound = 'modular_zubbers/sound/machines/coffin_open.ogg'
+	close_sound = 'modular_zubbers/sound/machines/coffin_close.ogg'
 	breakout_time = 30 SECONDS
 	pry_lid_timer = 20 SECONDS
 	resistance_flags = NONE
@@ -65,8 +65,8 @@
 	desc = "For those too scared of having their place of rest disturbed."
 	icon_state = "securecoffin"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
-	open_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_open.ogg'
-	close_sound = 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/coffin_close.ogg'
+	open_sound = 'modular_zubbers/sound/machines/coffin_open.ogg'
+	close_sound = 'modular_zubbers/sound/machines/coffin_close.ogg'
 	breakout_time = 35 SECONDS
 	pry_lid_timer = 35 SECONDS
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF

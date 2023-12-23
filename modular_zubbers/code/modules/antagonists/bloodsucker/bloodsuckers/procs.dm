@@ -28,7 +28,7 @@
 /datum/antagonist/bloodsucker/proc/break_masquerade(mob/admin)
 	if(broke_masquerade)
 		return
-	owner.current.playsound_local(null, 'modular_zubbers/code/modules/antagonists/bloodsucker/sounds/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
 	to_chat(owner.current, span_cultboldtalic("You have broken the Masquerade!"))
 	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Vassals are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
 	broke_masquerade = TRUE
