@@ -1,4 +1,10 @@
-import { Feature, FeatureChoiced, FeatureDropdownInput, FeatureTextInput, FeatureShortTextInput } from '../../base';
+import {
+  Feature,
+  FeatureChoiced,
+  FeatureDropdownInput,
+  FeatureTextInput,
+  FeatureShortTextInput,
+} from '../../base';
 
 export const character_ad: Feature<string> = {
   name: 'Character Advert',

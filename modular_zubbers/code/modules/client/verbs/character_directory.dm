@@ -113,17 +113,17 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	//We want the directory to display only alive players, not observers or people in the lobby
 	for(var/mob/mob in GLOB.alive_player_list)
 		// These are the variables we're trying to display in the directory
-		var/name = null
-		var/species = null
+		var/name = ""
+		var/species = "Ask"
 		var/ooc_notes = ""
 		var/flavor_text = ""
 		var/nsfw_flavor_text = ""
-		var/attraction = null
-		var/gender = null
-		var/erp = null
-		var/vore = null
-		var/hypno = null
-		var/noncon = null
+		var/attraction = "Unset"
+		var/gender = "Nonbinary"
+		var/erp = "Ask"
+		var/vore = "Ask"
+		var/hypno = "Ask"
+		var/noncon = "Ask"
 		var/character_ad = ""
 		var/exploitable = ""
 		var/ref = REF(mob)

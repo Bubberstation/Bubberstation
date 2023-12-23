@@ -1,5 +1,4 @@
 GLOBAL_LIST_INIT(arcade_prize_pool_special, list(
-	/obj/item/a_gift/anything = 25,
 	list(
 		/obj/item/aicard/aispook = 1,
 		/obj/item/aicard/aitater = 1
