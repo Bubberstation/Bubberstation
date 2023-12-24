@@ -1,6 +1,7 @@
 // THIS IS A SKYRAT UI FILE
 import { useBackend } from '../backend';
 import { Stack, Section, ByondUi, Tabs } from '../components'; // Bubber edit: add Tabs
+import { useState } from 'react';
 import { Window } from '../layouts';
 
 const formatURLs = (text) => {
@@ -20,7 +21,7 @@ const formatURLs = (text) => {
         href={url}
       >
         {url}
-      </a>
+      </a>,
     );
     lastIndex = index + url.length;
     return url;
