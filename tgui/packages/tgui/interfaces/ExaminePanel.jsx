@@ -33,7 +33,7 @@ const formatURLs = (text) => {
 };
 
 export const ExaminePanel = (props) => {
-  const [tabIndex, setTabIndex] = useState(context, 'tab-index', 1);
+  const [tabIndex, setTabIndex] = useState(1);
   const { act, data } = useBackend();
   const {
     character_name,
