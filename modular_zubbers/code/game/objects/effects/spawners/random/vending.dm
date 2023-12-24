@@ -1,10 +1,12 @@
 /obj/effect/spawner/random/vending/snackvend
 	loot_type_path = null
 	loot = list(
+		/obj/machinery/vending/imported = 2,
 		/obj/machinery/vending/imported/yangyu = 2,
 		/obj/machinery/vending/imported/mothic = 2,
 		/obj/machinery/vending/imported/tiziran = 2,
-		/obj/machinery/vending/halloween_chocolate = 1,
+		/obj/machinery/vending/halloween_chocolate = 2,
+		/obj/machinery/vending/snack = 1,
 		/obj/machinery/vending/snack/blue = 1,
 		/obj/machinery/vending/snack/green = 1,
 		/obj/machinery/vending/snack/orange = 1,
