@@ -1,12 +1,12 @@
 /obj/item/modular_computer/pda/synth
-	max_capacity = 64 // Skyrat override. Original: 32
+	max_capacity = 64 // Overrides skyrat. Original: 32 //This is why I dislike Skyrat: Random balance change because ???
 
 /obj/item/modular_computer/pda/synth/get_header_data()
 	var/list/data = ..()
 	var/obj/item/organ/internal/brain/synth/brain_loc = loc
 	// Battery level is now according to the synth charge
-	var/charge_level = brain_loc.owner.nutrition / NUTRITION_LEVEL_ALMOST_FULL
 	if(istype(brain_loc))
+		var/charge_level = (brain_loc.owner.nutrition / NUTRITION_LEVEL_ALMOST_FULL) * 100
 		switch(charge_level)
 			if(80 to 110)
 				data["PC_batteryicon"] = "batt_100.gif"
