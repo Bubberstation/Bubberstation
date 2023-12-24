@@ -87,8 +87,7 @@ export const ExaminePanel = (props) => {
                     src={
                       tabIndex === 2
                         ? headshot_nsfw
-                        : headshot ||
-                          'https://media.discordapp.net/attachments/1085055268787863552/1187932919843532900/buh71iiztv7c1.webp'
+                        : headshot
                     }
                     height="250px"
                     width="250px"
