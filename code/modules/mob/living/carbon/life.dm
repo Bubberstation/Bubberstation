@@ -500,12 +500,12 @@
 				break
 		//BUBBERSTATION CHANGE START: MIASMA ORGAN ROT
 		if(rot_count > 0) //This is going to be weird if there are mechanics that cause an organ to heal if you're dead, but at least this saves performance.
-			var/turf/T = get_turf(src) //We don't check the loc because of lockers. Stasis bodybags would prevent this from running anyways.
-			if(isopenturf(T) && !isspaceturf(T)) //Only spawn miasma on floor turfs and not in space turfs.
-				var/turf/open/OT = T
-				if(!OT.planetary_atmos) //Don't spawn miasma when there is open air to the sky.
+			var/turf/organ_turf = get_turf(src) //We don't check the loc because of lockers. Stasis bodybags would prevent this from running anyways.
+			if(isopenturf(organ_turf) && !isspaceturf(organ_turf)) //Only spawn miasma on floor turfs and not in space turfs.
+				var/turf/open/open_turf = organ_turf
+				if(!open_turf.planetary_atmos) //Don't spawn miasma when there is open air to the sky.
 					var/miasma_to_spawn = (rot_count/(6*100))*30 //There are about 6 rottable organs in each mob, all with 100 health. If a person is 100% rotted, they should spawn 30 moles of miasma. (A 1x1 tile has 104 moles of oxygen+nitrogen).
-					OT.atmos_spawn_air("[GAS_MIASMA]=[miasma_to_spawn];[TURF_TEMPERATURE(src.bodytemperature)]")
+					open_turf.atmos_spawn_air("[GAS_MIASMA]=[miasma_to_spawn];[TURF_TEMPERATURE(src.bodytemperature)]")
 		//BUBBERSTATION CHANGE END: MIASMA
 		return
 
