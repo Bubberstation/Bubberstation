@@ -33,7 +33,7 @@
 
 	var/obj/item/radio/stored_radio //Internal radio.
 	var/radio_key = /obj/item/encryptionkey/headset_eng //The key our internal radio uses
-	var/emergency_channel = RADIO_CHANNEL_COMMON
+	var/emergency_channel = null // Need null to actually broadcast to common. Stolen from supermatter code so they know about this. lol. lmao.
 	var/warning_channel = RADIO_CHANNEL_ENGINEERING
 
 
@@ -51,8 +51,7 @@
 		setDir(ndir)
 
 	stored_radio = new(src)
-	stored_radio.subspace_transmission = TRUE
-	stored_radio.canhear_range = 0
+	stored_radio.keyslot = new radio_key
 	stored_radio.set_listening(FALSE)
 	stored_radio.recalculateChannels()
 
@@ -112,7 +111,7 @@
 	if(!radio_enabled || !alert_text)
 		return FALSE
 
-	if(!bypass_cooldown)
+	if(!bypass_cooldown) //This section of code handles cooldowns.
 		if(criticality)
 			if(!COOLDOWN_FINISHED(src, radio_cooldown_criticality))
 				return FALSE
@@ -121,9 +120,10 @@
 			if(!COOLDOWN_FINISHED(src, radio_cooldown_integrity))
 				return FALSE
 			COOLDOWN_START(src, radio_cooldown_integrity, 5 SECONDS)
-		return FALSE
 
 	stored_radio.talk_into(src, alert_text, alert_emergency_channel ? emergency_channel : warning_channel)
+
+	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 	return TRUE
 

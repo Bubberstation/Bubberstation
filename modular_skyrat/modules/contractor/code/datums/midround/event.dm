@@ -1,4 +1,4 @@
-/datum/round_event_control/contractor
+/*/datum/round_event_control/contractor
 	name = "Drifting Contractor"
 	typepath = /datum/round_event/ghost_role/contractor
 	weight = 8
@@ -37,4 +37,4 @@
 	message_admins("[ADMIN_LOOKUPFLW(operative)] has been made into [src] by an event.")
 	log_game("[key_name(operative)] was spawned as a [src] by an event.")
 	spawned_mobs += operative
-	return SUCCESSFUL_SPAWN
+	return SUCCESSFUL_SPAWN*/ //BUBBER EDIT: REMOVES THE EXTRA CONTRACTOR EVENT
