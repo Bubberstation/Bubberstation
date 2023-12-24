@@ -69,6 +69,7 @@
 		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade = 1,
 		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade/female = 1,
 		/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/imperial = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/hop = 1, // BUBBER edit
 		/obj/item/clothing/suit/armor/vest/hop/hop_formal = 1,
 		/obj/item/clothing/neck/cloak/hop = 1,
 		/obj/item/clothing/neck/mantle/hopmantle = 1,
@@ -86,6 +87,7 @@
 		/obj/item/clothing/under/rank/medical/chief_medical_officer/skirt = 1,
 		/obj/item/clothing/under/rank/medical/chief_medical_officer/turtleneck = 1,
 		/obj/item/clothing/under/rank/medical/chief_medical_officer/skyrat/imperial = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/medical/cmo = 1, // BUBBER edit
 		/obj/item/clothing/neck/cloak/cmo = 1,
 		/obj/item/clothing/neck/mantle/cmomantle = 1,
 		/obj/item/clothing/shoes/sneakers/brown = 1,
@@ -101,6 +103,7 @@
 		/obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit = 1,
 		/obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit/skirt = 1,
 		/obj/item/clothing/under/rank/rnd/research_director/skyrat/imperial = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/science/rd = 1, // BUBBER edit
 		/obj/item/clothing/neck/cloak/rd = 1,
 		/obj/item/clothing/neck/mantle/rdmantle = 1,
 		/obj/item/clothing/suit/toggle/labcoat = 1,
@@ -112,6 +115,7 @@
 		/obj/item/clothing/under/rank/engineering/chief_engineer = 1,
 		/obj/item/clothing/under/rank/engineering/chief_engineer/skirt = 1,
 		/obj/item/clothing/under/rank/engineering/chief_engineer/skyrat/imperial = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/engineering/ce = 1, // BUBBER edit
 		/obj/item/clothing/neck/cloak/ce = 1,
 		/obj/item/clothing/neck/mantle/cemantle = 1,
 		/obj/item/clothing/shoes/sneakers/brown = 1,
@@ -142,6 +146,7 @@
 		/obj/item/clothing/under/rank/cargo/qm/skyrat/gorka = 1,
 		/obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck = 1,
 		/obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck/skirt = 1,
+		/obj/item/clothing/suit/hooded/wintercoat/cargo/qm = 1, // BUBBER edit
 		/obj/item/clothing/suit/brownfurrich = 1,
 		/obj/item/clothing/under/rank/cargo/qm/skyrat/casual = 1,
 		/obj/item/clothing/suit/toggle/jacket/supply/head = 1,
