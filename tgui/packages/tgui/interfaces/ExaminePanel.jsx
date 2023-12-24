@@ -34,7 +34,6 @@ const formatURLs = (text) => {
 
 export const ExaminePanel = (props) => {
   const [tabIndex, setTabIndex] = useState(context, 'tab-index', 1);
-  const TAB_RANGE = ['Flavor Text', 'NSFW (Warning'];
   const { act, data } = useBackend();
   const {
     character_name,
