@@ -10,18 +10,6 @@
 	icon_state = "flag_tizira"
 	item_flag = /obj/item/sign/flag/tizira
 
-/* /obj/structure/sign/flag/terragov
-	name = "flag of Sol Federation"
-	desc = "The flag of Sol Federation. It's a symbol of humanity no matter where they go, or how much they wish it wasn't."
-	icon_state = "flag_solfed"
-	item_flag = /obj/item/sign/flag/terragov */
-
-/* /obj/structure/sign/flag/tizira
-	name = "flag of the Republic of Northern Moghes"
-	desc = "The flag of the Great Republic of Northern Moghes. Depending on who you ask, it represents strength or being an ant in the hive."
-	icon_state = "flag_tizira"
-	item_flag = /obj/item/sign/flag/tizira */
-
 /obj/item/sign/flag/galfed
 	name = "folded flag of the Galactic Federation"
 	desc = "The folded flag of the Galactic Federation."
@@ -33,6 +21,18 @@
 	desc = "The folded flag of the Tizirian Empire."
 	icon_state = "folded_tizira"
 	sign_path = /obj/structure/sign/flag/tizira
+
+/* /obj/structure/sign/flag/terragov
+	name = "flag of Sol Federation"
+	desc = "The flag of Sol Federation. It's a symbol of humanity no matter where they go, or how much they wish it wasn't."
+	icon_state = "flag_solfed"
+	item_flag = /obj/item/sign/flag/terragov */
+
+/* /obj/structure/sign/flag/tizira
+	name = "flag of the Republic of Northern Moghes"
+	desc = "The flag of the Great Republic of Northern Moghes. Depending on who you ask, it represents strength or being an ant in the hive."
+	icon_state = "flag_tizira"
+	item_flag = /obj/item/sign/flag/tizira */
 
 /* /obj/item/sign/flag/terragov
 	name = "folded flag of the Sol Federation"
