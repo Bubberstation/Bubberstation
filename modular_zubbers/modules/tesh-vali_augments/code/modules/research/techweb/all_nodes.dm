@@ -20,7 +20,7 @@
 	id = "adv_teshvalicyber"
 	display_name = "Advanced Raptoral Cybernetics"
 	description = "Some technologies from avali archaeological research efforts have been reverse-engineered."
-	prereq_ids = list("adv_robotics")
+	prereq_ids = list("adv_robotics", "teshvalicyber")
 	design_ids = list(
 		"teshvaliadvanced_l_arm",
 		"teshvaliadvanced_r_arm",
