@@ -7,9 +7,6 @@
 		CHOICE_TRANSFER,
 		CHOICE_CONTINUE,
 	)
-	// ZUBBERS EDIT ORIGINAL: none
-	winner_method = VOTE_WINNER_METHOD_SIMPLE
-	// EDIT END
 
 /datum/vote/transfer_vote/toggle_votable(mob/toggler)
 	if(!toggler)
