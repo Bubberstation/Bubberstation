@@ -377,7 +377,7 @@
 				if(!myseed.get_gene(/datum/plant_gene/trait/carnivory))
 					if(myseed.potency >= 30)
 						myseed.adjust_potency(-rand(2,6)) //Pests eat leaves and nibble on fruit, lowering potency.
-						myseed.set_potency(min((myseed.potency), CARNIVORY_POTENCY_MIN, MAX_PLANT_POTENCY))
+						myseed.set_potency(min((myseed.potency), CARNIVORY_POTENCY_MIN)) //BUBBERSTATION CHANGE, REMOVES MAX_PLANT_POTENCY
 				else
 					adjust_plant_health(2 / rating)
 					adjust_pestlevel(-1 / rating)
@@ -386,7 +386,7 @@
 				if(!myseed.get_gene(/datum/plant_gene/trait/carnivory))
 					if(myseed.potency >= 30)
 						myseed.adjust_potency(-rand(1,4))
-						myseed.set_potency(min((myseed.potency), CARNIVORY_POTENCY_MIN, MAX_PLANT_POTENCY))
+						myseed.set_potency(min((myseed.potency), CARNIVORY_POTENCY_MIN)) //BUBBERSTATION CHANGE, REMOVES MAX_PLANT_POTENCY
 
 				else
 					adjust_plant_health(1 / rating)
@@ -410,11 +410,11 @@
 			if(myseed.instability >= 80)
 				var/mutation_chance = myseed.instability - 75
 				mutate(0, 0, 0, 0, 0, 0, 0, mutation_chance, 0) //Scaling odds of a random trait or chemical
-			if(myseed.instability >= 60)
-				if(prob((myseed.instability)/2) && !self_sustaining && LAZYLEN(myseed.mutatelist) && !myseed.get_gene(/datum/plant_gene/trait/never_mutate)) //Minimum 30%, Maximum 50% chance of mutating every age tick when not on autogrow or having Prosophobic Inclination trait.
+			if(myseed.instability >= 30) //BUBBERSTATION CHANGE: 60 TO 30
+				if(prob((myseed.instability)/1.3) && !self_sustaining && LAZYLEN(myseed.mutatelist) && !myseed.get_gene(/datum/plant_gene/trait/never_mutate)) //Minimum 30%, Maximum 50% chance of mutating every age tick when not on autogrow or having Prosophobic Inclination trait. //BUBBERSTATION CHANGE: DIVISOR 2 TO 1.3
 					mutatespecie()
 					myseed.set_instability(myseed.instability/2)
-			if(myseed.instability >= 40)
+			if(myseed.instability >= 30) //BUBBERSTATION CHANGE: 40 TO 30.
 				if(prob(myseed.instability) && !myseed.get_gene(/datum/plant_gene/trait/stable_stats)) //No hardmutation if Symbiotic Resilience trait is present.
 					hardmutate()
 			if(myseed.instability >= 20 )
@@ -1135,6 +1135,12 @@
 		if(self_sustaining) //No reason to pay for an empty tray.
 			set_self_sustaining(FALSE)
 	else
+		//BUBBERSTATION ADD: LESSER REPEATED HARVEST
+		if(myseed.get_gene(/datum/plant_gene/trait/repeated_harvest/lesser))
+			myseed.adjust_yield(-FLOOR(myseed.yeld*0.75,1)) //25% penalty
+			myseed.adjust_potency(-FLOOR(myseed.adjust_potency*0.75,1)) //25% penalty
+			adjust_plant_health(-15) //Same effect as shearing a gene off a plant.
+		//BUBBERSTATION ADD END.
 		set_plant_status(HYDROTRAY_PLANT_GROWING)
 	update_appearance()
 	SEND_SIGNAL(src, COMSIG_HYDROTRAY_ON_HARVEST, user, product_count)

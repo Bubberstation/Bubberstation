@@ -107,3 +107,13 @@
 
 /datum/plant_gene/core/weed_chance/apply_stat(obj/item/seeds/S)
 	S.weed_chance = value
+
+/datum/plant_gene/trait/repeated_harvest
+	name = "True Perennial Growth"
+	description = "It may be harvested multiple times from the same plants naturally."
+	mutability_flags = null
+
+/datum/plant_gene/trait/repeated_harvest/lesser
+	name = "Artificial Perennial Growth"
+	description = "It may be harvested multiple times from the same plant at the cost of sacrificing potency and yield per harvest."
+	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE

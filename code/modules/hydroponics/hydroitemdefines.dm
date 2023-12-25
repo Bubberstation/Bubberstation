@@ -309,7 +309,7 @@
 
 	text += "\nPlant Traits: [span_notice("[all_removable_traits? all_removable_traits : "None."]")]"
 	text += "\nCore Plant Traits: [span_notice("[all_immutable_traits? all_immutable_traits : "None."]")]"
-	var/datum/plant_gene/scanned_graft_result = scanned.graft_gene? new scanned.graft_gene : new /datum/plant_gene/trait/repeated_harvest
+	var/datum/plant_gene/scanned_graft_result = scanned.graft_gene? new scanned.graft_gene : new /datum/plant_gene/trait/repeated_harvest/lesser //BUBBERSTATION CHANGE: LESSER REPEATED HARVEST
 	text += "\nGrafting this plant would give: [span_notice("[scanned_graft_result.get_name()]")]"
 	QDEL_NULL(scanned_graft_result) //graft genes are stored as typepaths so if we want to get their formatted name we need a datum ref - musn't forget to clean up afterwards
 	var/unique_text = scanned.get_unique_analyzer_text()
