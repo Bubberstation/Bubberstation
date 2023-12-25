@@ -267,7 +267,7 @@
 	name = "advanced left raptorial forelimb"
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = list(TESHARI_PUNCH_LOW * 2)
@@ -285,7 +285,7 @@
 	name = "advanced right raptorial forelimb"
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = list(TESHARI_PUNCH_LOW * 2)
