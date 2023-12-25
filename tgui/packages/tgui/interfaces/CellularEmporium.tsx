@@ -1,15 +1,16 @@
 import { useState } from 'react';
+
 import { BooleanLike } from '../../common/react';
 import { useBackend } from '../backend';
 import {
+  Box,
   Button,
-  Section,
   Icon,
   Input,
-  Stack,
   LabeledList,
-  Box,
   NoticeBox,
+  Section,
+  Stack,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -49,8 +50,7 @@ export const CellularEmporium = (props) => {
           buttons={
             <Stack>
               <Stack.Item fontSize="16px">
-                {genetic_points_count && genetic_points_count}{' '}
-                <Icon name="dna" color="#DD66DD" />
+                {genetic_points_count} <Icon name="dna" color="#DD66DD" />
               </Stack.Item>
               <Stack.Item>
                 <Button

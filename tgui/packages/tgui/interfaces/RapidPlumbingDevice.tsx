@@ -1,11 +1,12 @@
-import { useBackend } from '../backend';
-import { capitalizeAll } from 'common/string';
 import { BooleanLike, classes } from 'common/react';
-import { Window } from '../layouts';
-import { Section, Tabs, Button, Stack, Box } from '../components';
-import { ColorItem, LayerSelect } from './RapidPipeDispenser';
-import { SiloItem, MatterItem } from './RapidConstructionDevice';
+import { capitalizeAll } from 'common/string';
 import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { Box, Button, Section, Stack, Tabs } from '../components';
+import { Window } from '../layouts';
+import { MatterItem, SiloItem } from './RapidConstructionDevice';
+import { ColorItem, LayerSelect } from './RapidPipeDispenser';
 
 type Data = {
   silo_upgraded: BooleanLike;
@@ -40,7 +41,6 @@ const PlumbingTypeSection = (props) => {
       <Tabs>
         {categories.map((category) => (
           <Tabs.Tab
-            fluid
             key={category.cat_name}
             selected={category.cat_name === shownCategory.cat_name}
             onClick={() => setCategoryName(category.cat_name)}

@@ -1,3 +1,8 @@
+import { capitalize } from 'common/string';
+import { Fragment } from 'react';
+
+import { resolveAsset } from '../assets';
+import nt_logo from '../assets/bg-nanotrasen.svg';
 import { useBackend, useLocalState } from '../backend';
 import {
   BlockQuote,
@@ -12,12 +17,8 @@ import {
   Section,
   Stack,
 } from '../components';
-import { Window } from '../layouts';
-import { resolveAsset } from '../assets';
 import { formatTime } from '../format';
-import { capitalize } from 'common/string';
-import nt_logo from '../assets/bg-nanotrasen.svg';
-import { Fragment } from 'react';
+import { Window } from '../layouts';
 
 type ExplorationEventData = {
   name: string;
@@ -871,16 +872,12 @@ const ExodroneConsoleContent = (props) => {
   return (
     <Stack fill vertical>
       <Stack.Item grow>
-        <Stack vertical fill grow={2}>
-          <Stack.Item grow>
-            <Stack fill>
-              <Stack.Item>
-                <EquipmentGrid drone={data} />
-              </Stack.Item>
-              <Stack.Item grow basis={0}>
-                <DroneScreen drone={data} />
-              </Stack.Item>
-            </Stack>
+        <Stack vertical fill>
+          <Stack.Item>
+            <EquipmentGrid drone={data} />
+          </Stack.Item>
+          <Stack.Item grow basis={0}>
+            <DroneScreen drone={data} />
           </Stack.Item>
         </Stack>
       </Stack.Item>
