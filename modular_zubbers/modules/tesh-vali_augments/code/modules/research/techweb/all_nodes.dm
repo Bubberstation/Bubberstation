@@ -15,6 +15,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
+
 /datum/techweb_node/adv_teshvalicyber
 	id = "adv_teshvalicyber"
 	display_name = "Advanced Raptoral Cybernetics"

@@ -66,7 +66,6 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-
 //advanced augmentations since those were added in the recent upstream
 
 /datum/design/teshvaliadvanced_l_arm
