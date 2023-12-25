@@ -1,8 +1,9 @@
 import { resolveAsset } from '../assets';
 import { BooleanLike } from '../../common/react';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Box, Button, Divider, Dropdown, Section, Stack } from '../components';
 import { Window } from '../layouts';
+import { useState } from 'react';
 
 type Objective = {
   count: number;
@@ -27,8 +28,8 @@ type Info = {
   objectives: Objective[];
 };
 
-const ObjectivePrintout = (props: any, context: any) => {
-  const { data } = useBackend<Info>(context);
+const ObjectivePrintout = (props: any) => {
+  const { data } = useBackend<Info>();
   const { objectives } = data;
   return (
     <Stack vertical>
@@ -92,18 +93,14 @@ const VassalInfo = () => {
   );
 };
 
-const PowerSection = (props: any, context: any) => {
-  const { act, data } = useBackend<BloodsuckerInformation>(context);
+const PowerSection = (props: any) => {
+  const { act, data } = useBackend<BloodsuckerInformation>();
   const { power } = data;
   if (!power) {
     return <Section minHeight="220px" />;
   }
 
-  const [selectedPower, setSelectedPower] = useLocalState(
-    context,
-    'power',
-    power[0]
-  );
+  const [selectedPower, setSelectedPower] = useState(power[0]);
 
   return (
     <Section

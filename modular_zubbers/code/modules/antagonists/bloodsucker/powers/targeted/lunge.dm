@@ -133,7 +133,6 @@
 
 	// Did I slip or get knocked unconscious?
 	if(user.body_position != STANDING_UP || user.incapacitated())
-		var/send_dir = get_dir(user, target_turf)
 		user.throw_at(target_turf, 12, 0.8)
 		user.spin(10)
 		return
