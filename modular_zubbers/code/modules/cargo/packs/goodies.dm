@@ -28,7 +28,7 @@
 	desc = "Contains one laser carbine, an automatic variant of the laser gun. For when you need a fast-firing lethal-only solution."
 	cost = PAYCHECK_COMMAND * 12
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/ammo_casing/energy/lasergun/carbine)
+	contains = list(/obj/item/gun/energy/laser/carbine)
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
