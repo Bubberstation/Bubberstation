@@ -134,7 +134,7 @@
 	// Did I slip or get knocked unconscious?
 	if(user.body_position != STANDING_UP || user.incapacitated())
 		var/send_dir = get_dir(user, target_turf)
-		new /datum/forced_movement(user, get_ranged_target_turf(user, send_dir, 1), 1, FALSE)
+		user.throw_at(target_turf, 12, 0.8)
 		user.spin(10)
 		return
 	// Is my target a Monster hunter?
