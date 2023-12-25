@@ -69,7 +69,7 @@
 
 //advanced augmentations since those were added in the recent upstream
 
-/datum/design/teshvalicyber_l_arm
+/datum/design/teshvaliadvanced_l_arm
 	name = "Advanced Raptoral Cybernetic Left Forelimb"
 	id = "teshvaliadvanced_l_arm"
 	build_type = MECHFAB
@@ -84,7 +84,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_r_arm
+/datum/design/teshvaliadvanced_r_arm
 	name = "Advanced Raptoral Cybernetic Right Forelimb"
 	id = "teshvaliadvanced_r_arm"
 	build_type = MECHFAB
@@ -99,7 +99,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_l_leg
+/datum/design/teshvaliadvanced_l_leg
 	name = "Advanced Raptoral Cybernetic Left Hindlimb"
 	id = "teshvaliadvanced_l_leg"
 	build_type = MECHFAB
@@ -114,7 +114,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_r_leg
+/datum/design/teshvaliadvanced_r_leg
 	name = "Advanced Raptoral Cybernetic Right Hindlimb"
 	id = "teshvaliadvanced_r_leg"
 	build_type = MECHFAB
