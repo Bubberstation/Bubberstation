@@ -180,9 +180,6 @@
 	unarmed_damage_low = list(TESHARI_PUNCH_LOW * 0.3)
 	unarmed_damage_high = list(TESHARI_PUNCH_HIGH * 0.5)
 
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
-
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
@@ -200,9 +197,6 @@
   
 	unarmed_damage_low = list(TESHARI_PUNCH_LOW * 0.3)
 	unarmed_damage_high = list(TESHARI_PUNCH_HIGH * 0.5)
-  
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
@@ -224,9 +218,6 @@
 	unarmed_damage_low = list(TESHARI_PUNCH_LOW * 0.3)
 	unarmed_damage_high = list(TESHARI_PUNCH_HIGH * 0.5)
 
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
-
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
@@ -245,9 +236,6 @@
 
 	unarmed_damage_low = list(TESHARI_PUNCH_LOW * 0.3)
 	unarmed_damage_high = list(TESHARI_PUNCH_HIGH * 0.5)
-  
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
