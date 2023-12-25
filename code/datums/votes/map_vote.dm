@@ -2,9 +2,7 @@
 	name = "Map"
 	message = "Vote for next round's map!"
 	count_method = VOTE_COUNT_METHOD_MULTI
-	// ZUBBERS EDIT ORIGINAL: VOTE_WINNER_METHOD_WEIGHTED_RANDOM
-	winner_method = VOTE_WINNER_METHOD_SIMPLE
-	// EDIT END
+	winner_method = VOTE_WINNER_METHOD_WEIGHTED_RANDOM
 
 /datum/vote/map_vote/New()
 	. = ..()
