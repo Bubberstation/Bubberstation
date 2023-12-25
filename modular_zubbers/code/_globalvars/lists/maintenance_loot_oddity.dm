@@ -1,5 +1,4 @@
 GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
-	/obj/item/a_gift/anything = 100,
 	/obj/item/ai_module/toy_ai = 100,
 	/obj/item/anomaly_releaser = 25,
 	/obj/item/bombcore/training = 10,

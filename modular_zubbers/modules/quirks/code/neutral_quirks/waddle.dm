@@ -1,6 +1,7 @@
 /datum/quirk/waddle
 	name = "Waddle"
 	desc = "Your movements always had a bit more of a waddle to them."
+	medical_record_text = "Subject appears to be terrible at dancing."
 	value = 0
 	icon = FA_ICON_WIND
 	gain_text = span_notice("You feel like walking silly")
