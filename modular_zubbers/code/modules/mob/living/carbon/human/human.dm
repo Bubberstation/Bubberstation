@@ -1,2 +1,2 @@
-/mob/living/carbon/human/species/mammal/shadekin
-	race = /datum/species/mammal/shadekin
+/mob/living/carbon/human/species/shadekin
+	race = /datum/species/shadekin
