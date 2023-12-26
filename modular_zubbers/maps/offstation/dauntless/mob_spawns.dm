@@ -12,11 +12,12 @@
 	icon_state = "sleeper_s"
 	prompt_name = "Dauntless Personnel"
 	you_are_text = "You are a syndicate Operative, employed on a top secret spy vessel hidden on lavaland"
-	flavour_text = "Unfortinately, your hated enemy, NanoTrasen, has started mining in this sector. Continue working the best you can, and keep a low profile"
+	flavour_text = "Unfortunately, your hated enemy, NanoTrasen, has started mining in this sector. Continue working the best you can, and keep a low profile" //fixed typo
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service/dorms
+	restricted_species = !list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker) //added species restriction for icecat and ashliz
 	spawner_job_path = /datum/job/dauntless
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
