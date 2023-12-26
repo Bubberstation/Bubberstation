@@ -151,6 +151,9 @@
 	/// Are we limited to a certain species type? LISTED TYPE
 	var/restricted_species
 	// SKYRAT EDIT END
+	//BUBBER EDIT
+	var/banned_species
+	//BUBBER EDIT END
 
 /obj/effect/mob_spawn/ghost_role/Initialize(mapload)
 	. = ..()
@@ -175,7 +178,7 @@
 
 	var/user_ckey = user.ckey // Just in case shenanigans happen, we always want to remove it from the list.
 	LAZYADD(ckeys_trying_to_spawn, user_ckey)
-
+	
 	// SKYRAT EDIT ADDITION
 	if(restricted_species && !(user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species))
 		var/incorrect_species = tgui_alert(user, "Current species preference incompatible, proceed with random appearance?", "Incompatible Species", list("Yes", "No"))
@@ -183,6 +186,13 @@
 			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 			return
 	// SKYRAT EDIT END
+	//BUBBER EDIT - made a new bit of code which does the inverse of restricted species.
+	if(banned_species && (user.client?.prefs?.read_preference(/datum/preference/choiced/species) in banned_species))
+		var/incorrect_species = tgui_alert(user, "Current species preference incompatible, proceed with random appearance?", "Incompatible Species", list("Yes", "No"))
+		if(incorrect_species != "Yes")
+			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
+			return
+	//BUBBER EDIT END
 
 	if(prompt_ghost)
 		var/prompt = "Become [prompt_name]?"
