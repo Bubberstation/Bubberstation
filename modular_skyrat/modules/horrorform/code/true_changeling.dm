@@ -15,19 +15,19 @@
 	icon_living = "horror"
 	icon_dead = "horror_dead"
 	mob_biotypes = MOB_ORGANIC
-	speed = 0.5
+	speed = 1 // Bubberstation Edit
 	stop_automated_movement = FALSE
 	status_flags = CANPUSH
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
-	maxHealth = 750 //Very durable
-	health = 500
+	maxHealth = 500 //Very durable - BUBBERSTATION EDIT
+	health = 500 //BUBBERSTATION EDIT
 	lighting_cutoff_red = 0
 	lighting_cutoff_green = 35
 	lighting_cutoff_blue = 20
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
-	melee_damage_lower = 40
-	melee_damage_upper = 40
+	melee_damage_lower = 25
+	melee_damage_upper = 25
 	wander = FALSE
 	attack_verb_continuous = "rips into"
 	attack_verb_simple = "rip into"
