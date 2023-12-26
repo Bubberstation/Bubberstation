@@ -104,7 +104,7 @@
 
 /obj/machinery/power/rbmk2/deconstruct(disassembled = TRUE)
 
-	if(flags_1 & NODECONSTRUCT_1)
+	if(flags_1 & NO_DECONSTRUCTION)
 		return
 
 	if(!disassembled && stored_rod)
