@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(startup_messages)
 // FOR MOR INFO ON HTML CUSTOMISATION, SEE: https://github.com/Skyrat-SS13/Skyrat-tg/pull/4783
 
-#define MAX_STARTUP_MESSAGES 27
+#define MAX_STARTUP_MESSAGES 1 // BUBBER EDIT - SPLASH SCREEN
 
 /mob/dead/new_player/proc/get_title_html()
 	var/dat = SStitle.title_html

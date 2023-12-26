@@ -200,8 +200,8 @@
 		JOB_HEAD_OF_SECURITY,
 		JOB_PRISONER,
 		JOB_SECURITY_OFFICER,
-		JOB_CHAPLAIN, // BUBBER EDIT ADDITION
 		JOB_WARDEN,
+		JOB_CHAPLAIN, // BUBBER EDIT - Chaplains can't heretic
 	)
 	restricted_roles = list(
 		JOB_AI,

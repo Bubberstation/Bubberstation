@@ -63,13 +63,13 @@
 	name = "Peacekeeper jacket"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
 //	ckeywhitelist = list("raxraus")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER) //BUBBER EDIT
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/under/jumpsuit/rax_banded_uniform
 	name = "Banded Uniform"
 	item_path = /obj/item/clothing/under/rank/security/rax
 //	ckeywhitelist = list("raxraus")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_MEDIC, JOB_CORRECTIONS_OFFICER) //BUBBER EDIT
+	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/head/goldengoggles
 	name = "Steampunk Goggles"
@@ -733,7 +733,7 @@
 /datum/loadout_item/suit/anubite_headpiece
 	name = "Anubite Headpiece"
 	item_path = /obj/item/clothing/head/anubite
-	ckeywhitelist = list("vexcint")
+	//ckeywhitelist = list("vexcint")
 
 /datum/loadout_item/under/formal/dragon_maid
 	name = "Dragon Maid Uniform"
@@ -744,3 +744,8 @@
 	name = "Cat-Ear Headphones"
 	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
 	//ckeywhitelist = list("dtfe")
+
+/datum/loadout_item/neck/trenchcoat
+	name = "Graceful Trenchcoat"
+	item_path = /obj/item/clothing/neck/trenchcoat
+	//ckeywhitelist = list("Smol42", "Awers855")
