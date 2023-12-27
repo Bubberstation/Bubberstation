@@ -736,6 +736,12 @@
 	eye_icon_state = "jelleyes"
 	icon_state = "eyeballs-jelly"
 
+/obj/item/organ/internal/eyes/shadekin
+	name = "shadekin eyes"
+	desc = "These eyes are massive, and feel warm to the touch. The shadekin that's missing these is probably feeling very queasy."
+	eye_icon_state = "shadekin_eyes"
+	icon_state = "eyeballs-moth"	//i'm too lazy to give them their own sprite
+
 /obj/item/organ/internal/eyes/night_vision/maintenance_adapted
 	name = "adapted eyes"
 	desc = "These red eyes look like two foggy marbles. They give off a particularly worrying glow in the dark."
