@@ -15,7 +15,6 @@
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate
 	name = "Interdyne Bioweapon Scientist"
 	you_are_text = "You are an Interdyne science technician, employed in a top secret research facility developing biological weapons."
-	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker) //BUBBER EDIT added species restriction for icecat and ashliz
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/ice
 	outfit = /datum/outfit/lavaland_syndicate/ice
