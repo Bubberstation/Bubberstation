@@ -77,8 +77,24 @@
 	wound = 15
 
 /obj/item/mod/control/pre_equipped/responsory
+		applied_modules = list( //removing the welder module because the booster is on it
+		/obj/item/mod/module/storage/large_capacity,
+		/obj/item/mod/module/emp_shield,
+		/obj/item/mod/module/magnetic_harness,
+		/obj/item/mod/module/flashlight,
+	)
 	default_pins = list(
 		/obj/item/mod/module/armor_booster/nanotrasen/security,
+	)
+
+/obj/item/mod/control/pre_equipped/responsory/inquisitory
+	applied_skin = "inquisitory"
+	applied_modules = list( //removing the welder module because the booster is on it
+		/obj/item/mod/module/anti_magic,
+		/obj/item/mod/module/storage/large_capacity,
+		/obj/item/mod/module/emp_shield,
+		/obj/item/mod/module/magnetic_harness,
+		/obj/item/mod/module/flashlight,
 	)
 
 /datum/mod_theme/corporate // Centcom Commander
