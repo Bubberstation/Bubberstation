@@ -2,7 +2,7 @@
 	var/banned_species //functions similarly to restricted_species, but is instead a list of what NOT to allow.
 	
 /obj/effect/mob_spawn/ghost_role/attack_ghost(mob/dead/observer/user)
-	if(banned_species && (user.client?.prefs?.read_preference(/datum/preference/choiced/species) in banned_species))
+	if(!restricted_species && banned_species && (user.client?.prefs?.read_preference(/datum/preference/choiced/species) in banned_species))
 		tgui_alert(user, "Current species preference incompatible, did you have the wrong character selected?", "Incompatible Species")
 		LAZYREMOVE(ckeys_trying_to_spawn, user.ckey)
 		return
