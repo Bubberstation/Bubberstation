@@ -26,7 +26,6 @@
 	important_text = "You are not an antagonist."
 	outfit = /datum/outfit/black_market
 	spawner_job_path = /datum/job/blackmarket
-	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker) //BUBBER EDIT added species restriction for icecat and ashliz
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
@@ -50,7 +49,6 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/service/dorms
-	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker) //BUBBER EDIT added species restriction for icecat and ashliz
 	spawner_job_path = /datum/job/ds2
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/prisoner
@@ -471,7 +469,6 @@
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
-	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker) //BUBBER EDIT added species restriction for icecat and ashliz
 	computer_area = /area/ruin/space/has_grav/port_tarkon/centerhall
 
 /datum/outfit/tarkon
