@@ -6,7 +6,7 @@
 		tgui_alert(user, "Current species preference incompatible, did you have the wrong character selected?", "Incompatible Species")
 		LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 		return
-	. - ..()
+	. = ..()
 
 //various skyrat roles
 /obj/effect/mob_spawn/ghost_role/human/tarkon
