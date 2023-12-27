@@ -42,53 +42,48 @@ export const ZubbersCharacterDirectory = (props, context) => {
                 <LabeledList.Item label="Visibility">
                   <Button
                     fluid
-                    content={personalVisibility ? 'Shown' : 'Not Shown'}
                     onClick={() =>
-                      act('setVisible', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
+                      act('setVisible', { overwrite_prefs: overwritePrefs })}>
+                    {personalVisibility ? 'Shown' : 'Not Shown'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Attraction">
-                  <Button fluid content={personalAttraction} />
+                  <Button fluid>{personalAttraction}</Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Gender">
-                  <Button fluid content={personalGender} />
+                  <Button fluid>{personalGender}</Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="ERP">
                   <Button
                     fluid
-                    content={personalErpTag}
                     onClick={() =>
-                      act('setErpTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
+                      act('setErpTag', { overwrite_prefs: overwritePrefs })}>
+                    {personalErpTag}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Vore">
                   <Button
                     fluid
-                    content={personalVoreTag}
                     onClick={() =>
-                      act('setTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
+                      act('setTag', { overwrite_prefs: overwritePrefs })}>
+                    {personalVoreTag}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Hypno">
                   <Button
                     fluid
-                    content={personalHypnoTag}
                     onClick={() =>
-                      act('setHypnoTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
+                      act('setHypnoTag', { overwrite_prefs: overwritePrefs })}>
+                    {personalHypnoTag}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Noncon">
                   <Button
                     fluid
-                    content={personalNonconTag}
                     onClick={() =>
-                      act('setNonconTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
+                      act('setNonconTag', { overwrite_prefs: overwritePrefs })}>
+                    {personalNonconTag}
+                  </Button>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
@@ -109,9 +104,9 @@ const ViewCharacter = (props, context) => {
       buttons={
         <Button
           icon="arrow-left"
-          content="Back"
-          onClick={() => setOverlay(null)}
-        />
+          onClick={() => setOverlay(null)}>
+          {"Back"}
+        </Button>
       }
     >
       <Section level={2} title="Species">
@@ -179,7 +174,11 @@ const CharacterDirectoryList = (props, context) => {
     <Section
       title="Directory"
       buttons={
-        <Button icon="sync" content="Refresh" onClick={() => act('refresh')} />
+        <Button
+          icon="sync"
+          onClick={() => act('refresh')}>
+        {"Refresh"}
+        </Button>
       }
     >
       <Table>
@@ -209,9 +208,9 @@ const CharacterDirectoryList = (props, context) => {
                     color={erpTagColor[character.erp]}
                     icon="ghost"
                     tooltip="Orbit"
-                    content={character.name}
-                    onClick={() => act('orbit', { ref: character.ref })}
-                  />
+                    onClick={() => act('orbit', { ref: character.ref })}>
+                    {character.name}
+                  </Button>
                 ) : (
                   character.name
                 )}
@@ -228,9 +227,9 @@ const CharacterDirectoryList = (props, context) => {
                   onClick={() => setOverlay(character)}
                   color="transparent"
                   icon="sticky-note"
-                  mr={1}
-                  content="View"
-                />
+                  mr={1}>
+                  {"View"}
+                </Button>
               </Table.Cell>
             </Table.Row>
           ))}
@@ -240,8 +239,6 @@ const CharacterDirectoryList = (props, context) => {
 };
 
 const SortButton = (props, context) => {
-  const { act, data } = useBackend(context);
-
   const { id, children } = props;
 
   // Hey, same keys mean same data~
