@@ -31,3 +31,7 @@
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
 /obj/effect/mob_spawn/ghost_role/human/oldsec
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
+
+//various bubber roles
+/obj/effect/mob_spawn/ghost_role/human/dauntless
+	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
