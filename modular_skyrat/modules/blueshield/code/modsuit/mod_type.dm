@@ -14,4 +14,5 @@
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
+		/obj/item/mod/module/armor_booster/nanotrasen/blueshield, //Bubberstation Addition - NT MOD Armour Boosters
 	)
