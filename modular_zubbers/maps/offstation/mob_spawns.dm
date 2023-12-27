@@ -11,19 +11,19 @@
 //various skyrat roles
 /obj/effect/mob_spawn/ghost_role/human/tarkon
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
-	
+
 /obj/effect/mob_spawn/ghost_role/human/ds2
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
 
 /obj/effect/mob_spawn/ghost_role/human/blackmarket
-	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker) //BUBBER EDIT added species restriction for icecat and ashliz
+	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
 
 /obj/effect/mob_spawn/ghost_role/human/hotel_staff
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
-	
+
 //Charlie station
 /obj/effect/mob_spawn/ghost_role/human/oldeng
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
