@@ -63,7 +63,6 @@
 
 /datum/mod_theme/responsory // ERT
 	armor_type = /datum/armor/mod_theme_responsory
-	inbuilt_modules = list(/obj/item/mod/module/armor_booster/nanotrasen/security)
 
 /datum/armor/mod_theme_responsory
 	melee = 20
@@ -77,23 +76,25 @@
 	wound = 15
 
 /obj/item/mod/control/pre_equipped/responsory
-	applied_modules = list( //removing the welder module because the booster is on it
+	applied_modules = list(
 		/obj/item/mod/module/storage/large_capacity,
 		/obj/item/mod/module/emp_shield,
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/armor_booster/nanotrasen/security, //replaced the welding mask with a booster
 	)
 	default_pins = list(
 		/obj/item/mod/module/armor_booster/nanotrasen/security,
 	)
 
 /obj/item/mod/control/pre_equipped/responsory/inquisitory
-	applied_modules = list( //removing the welder module because the booster is on it
+	applied_modules = list(
 		/obj/item/mod/module/anti_magic,
 		/obj/item/mod/module/storage/large_capacity,
 		/obj/item/mod/module/emp_shield,
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/armor_booster/nanotrasen/security, //same as above
 	)
 
 /datum/mod_theme/corporate // Centcom Commander
