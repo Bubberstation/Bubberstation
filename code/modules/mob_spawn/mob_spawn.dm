@@ -151,9 +151,6 @@
 	/// Are we limited to a certain species type? LISTED TYPE
 	var/restricted_species
 	// SKYRAT EDIT END
-	//BUBBER EDIT
-	var/banned_species
-	//BUBBER EDIT END
 
 /obj/effect/mob_spawn/ghost_role/Initialize(mapload)
 	. = ..()
