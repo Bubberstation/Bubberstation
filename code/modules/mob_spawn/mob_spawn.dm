@@ -183,12 +183,6 @@
 			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
 			return
 	// SKYRAT EDIT END
-	//BUBBER EDIT - made a new bit of code which does the inverse of restricted species.
-	if(banned_species && (user.client?.prefs?.read_preference(/datum/preference/choiced/species) in banned_species))
-		tgui_alert(user, "Current species preference incompatible, did you have the wrong character selected?", "Incompatible Species")
-		LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
-		return
-	//BUBBER EDIT END
 
 	if(prompt_ghost)
 		var/prompt = "Become [prompt_name]?"
