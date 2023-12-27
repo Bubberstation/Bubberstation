@@ -1,6 +1,7 @@
 /datum/species/shadekin
 	name = "Shadekin"
 	id = SPECIES_SHADEKIN
+	eyes_icon = 'modular_zubbers/icons/mob/human/human_face.dmi'
 	say_mod = "mars"
 	mutant_bodyparts = list()
 	mutanteyes = /obj/item/organ/internal/eyes/shadekin
