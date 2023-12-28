@@ -51,6 +51,10 @@ SUBSYSTEM_DEF(mapping)
 	/// True when in the process of adding a new Z-level, global locking
 	var/adding_new_zlevel = FALSE
 
+///  TEMPORARY ERROR fix for overmap-pr
+
+	var/list/multiz_levels = list()
+
 
 	var/list/areas_in_z = list()
 	/// List of z level (as number) -> plane offset of that z level
@@ -77,6 +81,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/critical_planes
 	/// The largest plane offset we've generated so far
 	var/max_plane_offset = 0
+
+///  TEMPORARY ERROR fix for overmap-pr
 
 	/// The overmap object of the main loaded station, for easy access
 	var/datum/overmap_object/station_overmap_object
@@ -214,6 +220,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	next_map_config = SSmapping.next_map_config
 
 	clearing_reserved_turfs = SSmapping.clearing_reserved_turfs
+	multiz_levels = SSmapping.multiz_levels // TEMPORARY ERROR fix for overmap-pr
 
 	z_list = SSmapping.z_list
 
@@ -669,6 +676,9 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	level.AssertWeatherController()
 	return level.weather_controller
 
+
+///  TEMPORARY ERROR fix for overmap-pr
+
 //Repopulates sortedAreas list
 /proc/repopulate_sorted_areas()
 	GLOB.sortedAreas = list()
@@ -677,3 +687,33 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		GLOB.sortedAreas.Add(A)
 
 	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+
+
+
+/// Returns true if the map we're playing on is on a planet
+/datum/controller/subsystem/mapping/proc/is_planetary()
+	return config.planetary
+
+
+
+/datum/controller/subsystem/mapping/proc/generate_linkages_for_z_level(z_level)
+	if(!isnum(z_level) || z_level <= 0)
+		return FALSE
+
+	if(multiz_levels.len < z_level)
+		multiz_levels.len = z_level
+
+	var/z_above = level_trait(z_level, ZTRAIT_UP)
+	var/z_below = level_trait(z_level, ZTRAIT_DOWN)
+	if(!(z_above == TRUE || z_above == FALSE || z_above == null) || !(z_below == TRUE || z_below == FALSE || z_below == null))
+		stack_trace("Warning, numeric mapping offsets are deprecated. Instead, mark z level connections by setting UP/DOWN to true if the connection is allowed")
+	multiz_levels[z_level] = new /list(LARGEST_Z_LEVEL_INDEX)
+	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
+	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
+
+
+/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
+	RETURN_TYPE(/datum/turf_reservation)
+	return used_turfs[T]
+
+///  TEMPORARY ERROR fix for overmap-pr
