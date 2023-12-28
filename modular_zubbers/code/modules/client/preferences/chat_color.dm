@@ -33,7 +33,7 @@
  * Arguments:
  * * color - The color to process
  */
-/proc/process_chat_color(color)
+/datum/preference/color/chat_color/proc/process_chat_color(color)
 	if(isnull(color))
 		return
 
