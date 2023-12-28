@@ -3,7 +3,7 @@
 	desc = "A surprisingly compact leather case for a set of excavation picks."
 	icon_state = "wallet"
 
-/obj/item/storage/excavation_pick_set/ComponentInitialize()
+/obj/item/storage/excavation_pick_set/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6

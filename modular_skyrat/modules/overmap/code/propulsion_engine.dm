@@ -84,9 +84,9 @@
 			nullify_pipenet(parents[1])
 			nodes[1] = null
 
-/obj/machinery/atmospherics/components/unary/engine/ComponentInitialize()
+/obj/machinery/atmospherics/components/unary/engine/Initialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
+	AddComponent(/datum/component/simple_rotation, | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | null, CALLBACK(src, .proc/can_be_rotated))
 
 /obj/machinery/atmospherics/components/unary/engine/proc/can_be_rotated(mob/user, rotation_type)
 	if(is_welded)
