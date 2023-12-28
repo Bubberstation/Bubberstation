@@ -1,5 +1,5 @@
 /obj/effect/mob_spawn/ghost_role
-	/// List of species which cannot be chosen to spawn with.
+	/// List of species which cannot be chosen to spawn with. Mutually exclusive with restricted species.
 	var/banned_species
 /obj/effect/mob_spawn/ghost_role/human
 	banned_species = list(/datum/species/human/felinid/primitive, /datum/species/lizard/ashwalker)
