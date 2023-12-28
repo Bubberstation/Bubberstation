@@ -5,9 +5,8 @@
 	savefile_key = "ic_chat_color"
 
 /datum/preference/color/chat_color/apply_to_human(mob/living/carbon/human/target, value)
-	var/target_color = process_chat_color(value)
-	target.chat_color = target_color
-	target.chat_color_darkened = target_color
+	target.chat_color = process_chat_color(value, sat_shift = 1, lum_shift = 1)
+	target.chat_color_darkened = process_chat_color(value, sat_shift = 0.85, lum_shift = 0.85)
 	target.chat_color_name = target.name
 	return
 
@@ -32,8 +31,10 @@
  *
  * Arguments:
  * * color - The color to process
+ * * sat_shift - A value between 0 and 1 that will be multiplied against the saturation
+ * * lum_shift - A value between 0 and 1 that will be multiplied against the luminescence
  */
-/datum/preference/color/chat_color/proc/process_chat_color(color)
+/datum/preference/color/chat_color/proc/process_chat_color(color, sat_shift = 1, lum_shift = 1)
 	if(isnull(color))
 		return
 
@@ -44,6 +45,9 @@
 	var/split_v = split_hsv[3]
 	var/processed_s = clamp(split_s, CM_COLOR_SAT_MIN * 255, CM_COLOR_SAT_MAX * 255)
 	var/processed_v = clamp(split_v, CM_COLOR_LUM_MIN * 255, CM_COLOR_LUM_MAX * 255)
+	// adjust for shifts
+	processed_s *= clamp(sat_shift, 0, 1)
+	processed_v *= clamp(lum_shift, 0, 1)
 	var/processed_hsv = hsv(split_h, processed_s, processed_v)
 	var/processed_rgb = HSVtoRGB(processed_hsv)
 
