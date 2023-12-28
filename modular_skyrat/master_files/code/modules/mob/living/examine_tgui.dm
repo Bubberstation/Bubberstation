@@ -80,8 +80,8 @@
 		ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes)
 		//BUBBER EDIT BEGIN: SILICON HEADSHOT
 		if(preferences.read_preference(/datum/preference/text/headshot/silicon))
-			headshot = preferences.read_preference(/datum/preference/text/headshot/silicon)
-		else headshot = preferences.read_preference(/datum/preference/text/headshot)
+			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
+		else headshot += preferences.read_preference(/datum/preference/text/headshot)
 		//BUBBER EDIT END: SILICON HEADSHOT
 
 	if(ishuman(holder))
@@ -92,7 +92,7 @@
 		custom_species_lore = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.get_species_lore().Join("\n") : holder_human.dna.features["custom_species_lore"]
 		ooc_notes += holder_human.dna.features["ooc_notes"]
 		if(!obscured)
-			headshot = preferences.read_preference(/datum/preference/text/headshot)
+			headshot += preferences.read_preference(/datum/preference/text/headshot) //BUBBER EDIT
 
 	var/name = obscured ? "Unknown" : holder.name
 

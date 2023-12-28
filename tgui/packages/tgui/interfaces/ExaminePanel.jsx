@@ -33,7 +33,7 @@ const formatURLs = (text) => {
 };
 
 export const ExaminePanel = (props) => {
-  const [tabIndex, setTabIndex] = useState(1);
+  const [tabIndex, setTabIndex] = useState(1); // Bubber edit addition
   const { act, data } = useBackend();
   const {
     character_name,
@@ -45,7 +45,7 @@ export const ExaminePanel = (props) => {
     custom_species,
     custom_species_lore,
     headshot,
-    headshot_nsfw,
+    headshot_nsfw, // Bubber edit addition
   } = data;
   return (
     <Window
@@ -84,11 +84,7 @@ export const ExaminePanel = (props) => {
                 </Section>
                 <Section height="310px" title="Headshot">
                   <img
-                    src={
-                      tabIndex === 2
-                        ? headshot_nsfw
-                        : headshot
-                    }
+                    src={tabIndex === 2 ? headshot_nsfw : headshot}
                     height="250px"
                     width="250px"
                   />
