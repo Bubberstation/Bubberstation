@@ -18,4 +18,3 @@
 
 /datum/loadout_item/inhand/flag_solfed
 	name = "Folded Solarian State Flag"
-	item_path = /obj/item/sign/flag/terragov
