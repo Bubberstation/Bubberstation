@@ -6,7 +6,7 @@
 	materials = list(/datum/material/glass = 1000)
 	build_path = /obj/item/circuitboard/machine/mining_drill
 	category = list("Mining Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/mining_brace
 	name = "Machine Design (Mining Brace)"
@@ -16,7 +16,7 @@
 	materials = list(/datum/material/glass = 1000)
 	build_path = /obj/item/circuitboard/machine/mining_brace
 	category = list("Mining Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/metal_density_scanner
 	name = "Metal Density Scanner"
@@ -26,7 +26,7 @@
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000)
 	build_path = /obj/item/metal_density_scanner
 	category = list("Mining Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/adv_metal_density_scanner
 	name = "Advanced Metal Density Scanner"
@@ -36,4 +36,4 @@
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000, /datum/material/gold = 500)
 	build_path = /obj/item/metal_density_scanner/adv
 	category = list("Mining Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO
