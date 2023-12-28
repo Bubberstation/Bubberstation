@@ -644,6 +644,14 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
+"amd" = (
+/obj/effect/turf_decal/tile/brown/fourcorners,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/public/glass{
+	name = "Cargo Lobby"
+	},
+/turf/open/floor/iron,
+/area/station/cargo/lobby)
 "amt" = (
 /turf/open/floor/fakeice/slippery,
 /area/station/maintenance/xenobio_disposals)
@@ -49849,6 +49857,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
+"rhT" = (
+/obj/effect/turf_decal/tile/brown/anticorner/contrasted,
+/turf/open/floor/iron,
+/area/station/cargo/lobby)
 "rhZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/showroomfloor,
@@ -62858,14 +62870,6 @@
 /obj/structure/chair/stool/bamboo,
 /turf/open/floor/bamboo,
 /area/station/maintenance/abandon_wrestle)
-"vMB" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Cargo Lobby"
-	},
-/obj/effect/turf_decal/tile/brown/fourcorners,
-/obj/machinery/door/firedoor,
-/turf/open/floor/iron,
-/area/station/cargo/lobby)
 "vME" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 4
@@ -65591,7 +65595,6 @@
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
 "wLp" = (
@@ -90051,7 +90054,7 @@ xaK
 xaK
 mJL
 daJ
-xVP
+amd
 tLz
 oea
 daJ
@@ -90308,7 +90311,7 @@ oea
 dTs
 vSi
 daJ
-vMB
+xVP
 tLz
 fej
 daJ
@@ -90564,8 +90567,8 @@ byd
 oea
 dTs
 dxH
-nSw
-xVP
+rhT
+amd
 wLh
 pTU
 nSw
