@@ -72,7 +72,10 @@
 	wound = 15
 
 /obj/item/mod/control/pre_equipped/responsory/Initialize()
-	applied_modules -= /obj/item/mod/module/welding
+	applied_modules -= list(
+		/obj/item/mod/module/welding,
+		/obj/item/mod/module/armor_booster/retractplates,
+		)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security
 	. = ..()
 
