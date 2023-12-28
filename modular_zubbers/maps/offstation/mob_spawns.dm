@@ -11,7 +11,8 @@
 	. = ..()
 
 //why are the demihumans called "catgirl" anyways? what about catboys?
+//null just in case blanking doesnt work
 /obj/effect/mob_spawn/ghost_role/human/ash_walker
-	banned_species = ""
+	banned_species = "null"
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl
-	banned_species = ""
+	banned_species = "null"
