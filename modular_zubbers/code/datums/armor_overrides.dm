@@ -75,6 +75,7 @@
 	applied_modules -= list(
 		/obj/item/mod/module/welding,
 		/obj/item/mod/module/armor_booster/retractplates,
+		/obj/item/mod/module/armor_booster, //none of them use these and im not sure if its redundant, better to be safe than not.
 		)
 	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/security
 	. = ..()
