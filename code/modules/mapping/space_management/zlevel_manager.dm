@@ -21,7 +21,7 @@
 
 /// Generates a real, honest to god new z level. Will create the actual space, and also generate a datum that holds info about the new plot of land
 /// Accepts the name, traits list, datum type, and if we should manage the turfs we create
-/datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level, contain_turfs = TRUE)
+/datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level, contain_turfs = TRUE, datum/overmap_object/overmap_obj = null) //SKYRAT EDIT CHANGE
 	UNTIL(!adding_new_zlevel)
 	adding_new_zlevel = TRUE
 	var/new_z = z_list.len + 1
@@ -33,6 +33,13 @@
 	manage_z_level(S, filled_with_space = TRUE, contain_turfs = contain_turfs)
 	generate_linkages_for_z_level(new_z)
 	calculate_z_level_gravity(new_z)
+	//SKYRAT EDIT ADDITION
+	if(overmap_obj)
+		overmap_obj.related_levels += S
+		S.related_overmap_object = overmap_obj
+		if(istype(overmap_obj, /datum/overmap_object/shuttle)) //TODO: better method
+			S.is_overmap_controllable = TRUE
+	//SKYRAT EDIT END
 	adding_new_zlevel = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_Z, S)
 	return S

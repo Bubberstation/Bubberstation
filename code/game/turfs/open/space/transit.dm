@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR
 /turf/open/space/transit
 	name = "\proper hyperspace"
 	desc = "What is this, light-speed? We need to go to plaid speed!"  // spaceballs was a great movie
@@ -124,3 +125,4 @@
 			. = 90
 		if(WEST)
 			. = -90
+*/

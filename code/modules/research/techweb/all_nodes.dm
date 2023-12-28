@@ -744,11 +744,10 @@
 		"bluespace_pod",
 		"launchpad",
 		"launchpad_console",
-		"quantumpad",
 		"tele_hub",
 		"tele_station",
 		"teleconsole",
-	)
+	) //SKYRAT EDIT REMOVAL - REMOVED "quantumpad"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier3_bluespacemachines = 4000)
 
@@ -766,7 +765,7 @@
 		"swapper",
 		"triphasic_scanning",
 		"wormholeprojector",
-	)
+	)//SKYRAT EDIT REMOVAL - REMOVED "quantum_keycard" & "swapper"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier3_variety = 5000)
 		/* /datum/experiment/exploration_scan/random/condition) this should have a point cost but im not even sure the experiment works properly lmao*/

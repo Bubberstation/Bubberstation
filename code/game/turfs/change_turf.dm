@@ -80,6 +80,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
 	if(lgroup)
 		lgroup.remove_from_group(src)
+	var/old_underlying_area = underlying_area
 	//SKYRAT EDIT END
 	var/old_rcd_memory = rcd_memory
 	var/old_explosion_throw_details = explosion_throw_details
@@ -119,6 +120,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	for(var/datum/callback/callback as anything in post_change_callbacks)
 		callback.InvokeAsync(new_turf)
+
+	W.underlying_area = old_underlying_area //SKYRAT EDIT ADDITION
 
 	if(new_baseturfs)
 		new_turf.baseturfs = baseturfs_string_list(new_baseturfs, new_turf)

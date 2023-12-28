@@ -7,6 +7,17 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 /datum/unit_test/create_and_destroy/Run()
 	//We'll spawn everything here
 	var/turf/spawn_at = run_loc_floor_bottom_left
+	//SKYRAT EDIT ADDITION - OUR IGNORES DOWN HERE
+	var/list/ignore = list()
+	//Not designed to be spawned without a turf.
+	ignore += typesof(/obj/effect/abstract/liquid_turf)
+	//Not designed to be spawned individually.
+	ignore += typesof(/obj/structure/biohazard_blob)
+	//Unused - not supposed to be spawned without SSliquids
+	ignore += typesof(/turf/open/openspace/ocean)
+	//Fireplumes delete themselves, not supposed to be deleted. Causes runtimes.
+	ignore += typesof(/obj/effect/abstract/fireplume)
+	//SKYRAT EDIT END
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type

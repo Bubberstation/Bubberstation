@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR MAPPING.DM IN MASTER FILES.
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
 	init_order = INIT_ORDER_MAPPING
@@ -22,6 +23,10 @@ SUBSYSTEM_DEF(mapping)
 
 	///List of ruins, separated by their theme
 	var/list/themed_ruins = list()
+	var/list/space_ruins_templates = list()
+	var/list/lava_ruins_templates = list()
+	var/list/ice_ruins_templates = list()
+	var/list/ice_ruins_underground_templates = list()
 
 	var/datum/space_level/isolated_ruins_z //Created on demand during ruin loading.
 
@@ -246,6 +251,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	if (lava_ruins.len)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), list(/area/lavaland/surface/outdoors/unexplored), themed_ruins[ZTRAIT_LAVA_RUINS], clear_below = TRUE)
+		for (var/lava_z in lava_ruins)
+			spawn_rivers(lava_z)
 
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len)
@@ -350,6 +357,10 @@ Used by the AI doomsday and the self-destruct nuke.
 	for (var/theme in SSmapping.themed_ruins)
 		themed_ruins[theme] = SSmapping.themed_ruins[theme]
 
+	space_ruins_templates = SSmapping.space_ruins_templates
+	lava_ruins_templates = SSmapping.lava_ruins_templates
+	ice_ruins_templates = SSmapping.ice_ruins_templates
+	ice_ruins_underground_templates = SSmapping.ice_ruins_underground_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
@@ -445,6 +456,10 @@ Used by the AI doomsday and the self-destruct nuke.
 		qdel(query_round_map_name)
 
 #ifndef LOWMEMORYMODE
+	// TODO: remove this when the DB is prepared for the z-levels getting reordered
+	while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
+		++space_levels_so_far
+		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
@@ -614,6 +629,14 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		if (!(R.ruin_type in themed_ruins))
 			themed_ruins[R.ruin_type] = list()
 		themed_ruins[R.ruin_type][R.name] = R
+		if(istype(R, /datum/map_template/ruin/lavaland))
+			lava_ruins_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
+			ice_ruins_underground_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/icemoon))
+			ice_ruins_templates[R.name] = R
+		else if(istype(R, /datum/map_template/ruin/space))
+			space_ruins_templates[R.name] = R
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("unbuyableshuttles.txt")
@@ -1034,3 +1057,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/number_of_remaining_levels = length(checkable_levels)
 	if(number_of_remaining_levels > 0)
 		CRASH("The following [number_of_remaining_levels] away mission(s) were not loaded: [checkable_levels.Join("\n")]")
+		spawner.spawn_loot()
+		spawner.hide()
+		qdel(spawner)
+*/
