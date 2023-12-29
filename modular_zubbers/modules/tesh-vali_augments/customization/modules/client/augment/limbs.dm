@@ -1,10 +1,5 @@
 /*
-additional augment options for "modular_skyrat/modules/customization/modules/client/augment/limbs.dm"
-to account for teshari limbs. this is a temporary measure for testing purposes
-
-For some reason, these won't show up in the roundstart options when when slotted into
-"modular_skyrat\modules\customization\modules\client\augment\limbs.dm".
-so... idfk
+this goes into the augment preferences section. They do not use the appearance dropdown for obvious reason.
 */
 
 /datum/augment_item/limb/head/teshvali_cyborg
