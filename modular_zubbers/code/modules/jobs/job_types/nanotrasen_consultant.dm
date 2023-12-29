@@ -15,3 +15,7 @@
 	req_access = list()
 	req_one_access = list(ACCESS_CENT_GENERAL) //Make it so the Consultant can access their own locker with these changes
 //Making the Nanotrasen Consultant have a silver ID, so they cannot have all access by default.
+
+/obj/structure/closet/secure_closet/nanotrasen_consultant // Ditto of the previous for skyrat automapper placed lockers.
+	req_access = list()
+	req_one_access = list(ACCESS_CENT_GENERAL)
