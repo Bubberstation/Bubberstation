@@ -126,10 +126,27 @@
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
 	// Calculate target color if not already present
+	/* BUBBER EDIT CHANGE START - Chat color preference - Original:
 	if (!target.chat_color || target.chat_color_name != target.name)
 		target.chat_color = colorize_string(target.name)
 		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
 		target.chat_color_name = target.name
+	*/
+	if (!target.chat_color || target.chat_color_name != target.name)
+		if(!istype(target, /mob/living/carbon/human))
+			target.chat_color = colorize_string(target.name)
+			target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
+			target.chat_color_name = target.name
+		else
+			var/mob/living/carbon/human/player = target
+			var/player_color = player.client?.prefs.read_preference(/datum/preference/color/chat_color)
+			if(!isnull(player_color))
+				player.apply_preference_chat_color(player_color)
+			else
+				target.chat_color = colorize_string(target.name)
+				target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
+				target.chat_color_name = target.name
+	// BUBBER EDIT CHANGE END - Chat color preference
 
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")

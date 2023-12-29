@@ -5,9 +5,7 @@
 	savefile_key = "ic_chat_color"
 
 /datum/preference/color/chat_color/apply_to_human(mob/living/carbon/human/target, value)
-	target.chat_color = process_chat_color(value, sat_shift = 1, lum_shift = 1)
-	target.chat_color_darkened = process_chat_color(value, sat_shift = 0.85, lum_shift = 0.85)
-	target.chat_color_name = target.name
+	target.apply_preference_chat_color(value)
 	return
 
 /datum/preference/color/chat_color/deserialize(input, datum/preferences/preferences)
@@ -18,6 +16,15 @@
 
 /datum/preference/color/chat_color/serialize(input)
 	return process_chat_color(input)
+
+/mob/living/carbon/human/proc/apply_preference_chat_color(value)
+	if(isnull(value))
+		return FALSE
+
+	chat_color = process_chat_color(value, sat_shift = 1, lum_shift = 1)
+	chat_color_darkened = process_chat_color(value, sat_shift = 0.85, lum_shift = 0.85)
+	chat_color_name = name
+	return TRUE
 
 #define CM_COLOR_SAT_MIN 0.2
 #define CM_COLOR_SAT_MAX 0.9
@@ -34,7 +41,7 @@
  * * sat_shift - A value between 0 and 1 that will be multiplied against the saturation
  * * lum_shift - A value between 0 and 1 that will be multiplied against the luminescence
  */
-/datum/preference/color/chat_color/proc/process_chat_color(color, sat_shift = 1, lum_shift = 1)
+/proc/process_chat_color(color, sat_shift = 1, lum_shift = 1)
 	if(isnull(color))
 		return
 
