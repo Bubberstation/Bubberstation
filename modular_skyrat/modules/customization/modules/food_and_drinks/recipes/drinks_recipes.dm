@@ -111,7 +111,7 @@
 
 /datum/chemical_reaction/drink/blizzard_brew
 	results = list(/datum/reagent/consumable/ethanol/blizzard_brew = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/iced_beer = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/cryostylane = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/iced_beer = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/cryostylane = 1) //BUBBER EDIT
 	mix_message = "You hear crackling ice as it mixes."
 	mix_sound = 'sound/effects/ice_shovel.ogg'
 
@@ -129,7 +129,7 @@
 
 /datum/chemical_reaction/drink/research_rum
 	results = list(/datum/reagent/consumable/ethanol/research_rum = 4)
-	required_reagents = list(/datum/reagent/consumable/ethanol/bananahonk = 2, /datum/reagent/medicine/neurine = 1, /datum/reagent/consumable/ethanol/grog = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/bananahonk = 2, /datum/reagent/medicine/neurine = 1, /datum/reagent/consumable/ethanol/grog = 1) //BUBBER EDIT
 	mix_message = "You hear gurgling and dinging as it mixes."
 	mix_sound = 'sound/machines/microwave/microwave-end.ogg'
 
