@@ -12,6 +12,7 @@
 	antag_flag_override = ROLE_BLOODSUCKER
 	protected_roles = BLOODSUCKER_PROTECTED_ROLES
 	restricted_roles = BLOODSUCKER_RESTRICTED_ROLES
+	restricted_species = BLOODSUCKER_RESTRICTED_SPECIES
 	required_candidates = 1
 	weight = 5
 	cost = 10
