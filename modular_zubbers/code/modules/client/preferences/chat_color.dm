@@ -19,10 +19,10 @@
 /datum/preference/color/chat_color/serialize(input)
 	return process_chat_color(input)
 
-#define CM_COLOR_SAT_MIN 0.6
-#define CM_COLOR_SAT_MAX 0.7
-#define CM_COLOR_LUM_MIN 0.65
-#define CM_COLOR_LUM_MAX 0.75
+#define CM_COLOR_SAT_MIN 0.2
+#define CM_COLOR_SAT_MAX 0.9
+#define CM_COLOR_LUM_MIN 0.7
+#define CM_COLOR_LUM_MAX 1
 
 /**
  * Converts a given color to comply within a smaller subset of colors to be used in runechat.
