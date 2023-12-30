@@ -67,7 +67,7 @@
 	. = ..()
 
 /datum/mod_theme/contractor
-inbuilt_modules = list(/obj/item/mod/module/chameleon/contractor)
+	inbuilt_modules = list(/obj/item/mod/module/chameleon/contractor)
 
 /datum/armor/mod_theme_contractor
 	melee = 30
