@@ -132,11 +132,14 @@
 		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
 		target.chat_color_name = target.name
 	*/
+	var/obscured = FALSE
 	if (!target.chat_color || target.chat_color_name != target.name)
 		if(!istype(target, /mob/living/carbon/human))
 			target.chat_color = colorize_string(target.name)
 			target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
 			target.chat_color_name = target.name
+		else if(target.name == "Unknown")
+			obscured = TRUE
 		else
 			var/mob/living/carbon/human/player = target
 			var/player_color = player.client?.prefs.read_preference(/datum/preference/color/chat_color)
@@ -189,7 +192,13 @@
 	text = "[prefixes?.Join("&nbsp;")][text]"
 
 	// We dim italicized text to make it more distinguishable from regular text
-	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
+	// BUBBER EDIT CHANGE START - Chat color preference - Original: var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
+	var/tgt_color
+	if(obscured)
+		tgt_color = target.chat_color_darkened ? "#d8d8d8" : "#ffffff"
+	else
+		tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
+	// BUBBER EDIT CHANGE END - Chat color preference
 
 	// Approximate text height
 	var/complete_text = "<span style='color: [tgt_color]'><span class='center [extra_classes.Join(" ")]'>[owner.say_emphasis(text)]</span></span>"
