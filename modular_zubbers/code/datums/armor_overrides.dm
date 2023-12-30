@@ -45,6 +45,7 @@
 
 /obj/item/mod/control/pre_equipped/syndicate/Initialize()
 	default_pins -= /obj/item/mod/module/armor_booster
+	. = ..()
 
 /datum/mod_theme/elite // Elite Syndiate
 	inbuilt_modules = null //ditto
@@ -63,6 +64,7 @@
 
 /obj/item/mod/control/pre_equipped/elite/Initialize()
 	default_pins -= /obj/item/mod/module/armor_booster
+	. = ..()
 
 /datum/mod_theme/contractor
 inbuilt_modules = list(/obj/item/mod/module/chameleon/contractor)
@@ -80,3 +82,4 @@ inbuilt_modules = list(/obj/item/mod/module/chameleon/contractor)
 
 /obj/item/mod/control/pre_equipped/contractor/Initialize()
 	default_pins -= /obj/item/mod/module/armor_booster
+	. = ..()
