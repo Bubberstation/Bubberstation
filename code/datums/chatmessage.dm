@@ -126,30 +126,10 @@
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
 	// Calculate target color if not already present
-	/* BUBBER EDIT CHANGE START - Chat color preference - Original:
 	if (!target.chat_color || target.chat_color_name != target.name)
-		target.chat_color = colorize_string(target.name)
-		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
+		target.chat_color = get_chat_color_string(target.name) // BUBBER EDIT CHANGE - ORIGINAL: target.chat_color = colorize_string(target.name)
+		target.chat_color_darkened = get_chat_color_string(target.name, darkened = TRUE) // BUBBER EDIT CHANGE - ORIGINAL: target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
 		target.chat_color_name = target.name
-	*/
-	var/obscured = FALSE
-	if (!target.chat_color || target.chat_color_name != target.name)
-		if(!istype(target, /mob/living/carbon/human))
-			target.chat_color = colorize_string(target.name)
-			target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
-			target.chat_color_name = target.name
-		else if(target.name == "Unknown")
-			obscured = TRUE
-		else
-			var/mob/living/carbon/human/player = target
-			var/player_color = player.client?.prefs.read_preference(/datum/preference/color/chat_color)
-			if(!isnull(player_color))
-				player.apply_preference_chat_color(player_color)
-			else
-				target.chat_color = colorize_string(target.name)
-				target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
-				target.chat_color_name = target.name
-	// BUBBER EDIT CHANGE END - Chat color preference
 
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
@@ -192,13 +172,7 @@
 	text = "[prefixes?.Join("&nbsp;")][text]"
 
 	// We dim italicized text to make it more distinguishable from regular text
-	// BUBBER EDIT CHANGE START - Chat color preference - Original: var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
-	var/tgt_color
-	if(obscured)
-		tgt_color = target.chat_color_darkened ? "#d8d8d8" : "#ffffff"
-	else
-		tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
-	// BUBBER EDIT CHANGE END - Chat color preference
+	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
 
 	// Approximate text height
 	var/complete_text = "<span style='color: [tgt_color]'><span class='center [extra_classes.Join(" ")]'>[owner.say_emphasis(text)]</span></span>"

@@ -26,6 +26,22 @@
 	chat_color_name = name
 	return TRUE
 
+#define CHAT_COLOR_NORMAL 1
+#define CHAT_COLOR_DARKENED 2
+
+/// Get the mob's chat color by looking up their name in the cached list, if no match is found default to colorize_string().
+/datum/chatmessage/proc/get_chat_color_string(name, darkened)
+	var/chat_color_strings = GLOB.chat_colors_by_mob_name[name]
+	if(chat_color_strings)
+		return darkened ? chat_color_strings[CHAT_COLOR_DARKENED] : chat_color_strings[CHAT_COLOR_NORMAL]
+	if(darkened)
+		return colorize_string(name, 0.85, 0.85)
+
+	return colorize_string(name)
+
+#undef CHAT_COLOR_NORMAL
+#undef CHAT_COLOR_DARKENED
+
 #define CM_COLOR_SAT_MIN 0.2
 #define CM_COLOR_SAT_MAX 0.9
 #define CM_COLOR_LUM_MIN 0.7
