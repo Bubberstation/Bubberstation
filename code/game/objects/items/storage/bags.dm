@@ -239,6 +239,10 @@
 		/obj/item/food/honeycomb,
 		/obj/item/seeds,
 		))
+
+/obj/item/storage/bag/plants/cyborg
+	name = "cyborg plant bag"
+
 ////////
 
 /obj/item/storage/bag/plants/portaseeder
