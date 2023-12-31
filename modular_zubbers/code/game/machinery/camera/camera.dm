@@ -28,6 +28,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/toxins, 0)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/bombsite, 0)
 
+/obj/machinery/camera/autoname/xenobiology
+	network = list("ss13","xeno","rd")
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/xenobiology, 0)
+
 // Security Cameras
 /obj/machinery/camera/autoname/security
 	network = list("ss13","security")
