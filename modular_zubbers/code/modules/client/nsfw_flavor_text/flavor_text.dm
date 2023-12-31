@@ -30,9 +30,18 @@
 /datum/preference/text/headshot/nsfw
 	savefile_key = "headshot_nsfw"
 
+/datum/preference/text/headshot/nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/text/headshot/silicon
 	savefile_key = "headshot_silicon"
 //This is literally just the same as the original headshot pref but for silicons :)
 
+/datum/preference/text/headshot/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/text/headshot/silicon/nsfw
 	savefile_key = "headshot_silicon_nsfw"
+
+/datum/preference/text/headshot/silicon/nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
