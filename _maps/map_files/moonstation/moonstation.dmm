@@ -216,7 +216,7 @@
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/item/relic,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "aeB" = (
 /obj/machinery/button/door/directional/north{
@@ -1754,8 +1754,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/mail_sorting/science/xenobiology,
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 8
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
@@ -6008,7 +6008,7 @@
 	desc = "A door for use in emergencies only. Only the highest ranking member of the station can open this door. Do not open under any other circumstances."
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/common/night_club)
 "cci" = (
 /obj/effect/mapping_helpers/mail_sorting/security/detectives_office,
@@ -6142,7 +6142,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/food/tomato_smudge,
-/turf/open/floor/plating,
+/turf/open/floor/iron,
 /area/station/maintenance/abandon_cafeteria)
 "ceq" = (
 /obj/structure/table,
@@ -10896,7 +10896,7 @@
 "dKa" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/item/radio/intercom/directional/east,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/common/night_club)
 "dKc" = (
 /obj/machinery/airalarm/directional/south,
@@ -11336,7 +11336,7 @@
 /area/station/command/bridge)
 "dST" = (
 /obj/effect/spawner/random/burgerstation/loot,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "dTi" = (
 /obj/structure/cable,
@@ -11397,7 +11397,7 @@
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
-	name = "Brig Emergency Lockdown Control";
+	name = "Brig Cells Emergency Lockdown Control";
 	pixel_x = -6;
 	pixel_y = 2;
 	id = "brigwindows";
@@ -13097,7 +13097,7 @@
 	dir = 4;
 	dwidth = 7;
 	height = 11;
-	name = "Burgerstation Construction Area Dock";
+	name = "Moon Station Construction Area Dock";
 	width = 11
 	},
 /turf/open/space/basic,
@@ -13328,7 +13328,7 @@
 /area/space/nearstation)
 "eyJ" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "eyK" = (
 /obj/structure/bed/double{
@@ -14712,7 +14712,7 @@
 	dir = 8;
 	dwidth = 9;
 	height = 16;
-	name = "Moonstation Cargo Bay";
+	name = "Moon Station Cargo Bay";
 	shuttle_id = "cargo_home";
 	width = 12
 	},
@@ -14781,7 +14781,7 @@
 /area/station/security/execution/education)
 "eZf" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/common/night_club)
 "eZq" = (
 /obj/structure/table/wood,
@@ -15798,6 +15798,14 @@
 	luminosity = 2
 	},
 /area/station/ai_monitored/command/nuke_storage)
+"fqB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "fqD" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/effect/turf_decal/box/blue,
@@ -16364,7 +16372,7 @@
 "fyq" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/decal/cleanable/greenglow/filled,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "fyF" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -20140,7 +20148,7 @@
 /area/space/nearstation)
 "gPs" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/science/xenobiology)
 "gPt" = (
 /obj/machinery/atmospherics/components/trinary/mixer/flipped{
@@ -20821,7 +20829,7 @@
 /area/station/engineering/atmos/asteroid)
 "gZS" = (
 /obj/structure/girder,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "hai" = (
 /obj/effect/turf_decal/stripes/line{
@@ -20861,7 +20869,7 @@
 /area/station/security/brig)
 "haC" = (
 /obj/structure/falsewall,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/clown_chamber)
 "haO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -21400,7 +21408,7 @@
 	dheight = 4;
 	dwidth = 4;
 	height = 9;
-	name = "Aux Base Zone";
+	name = "Moon Station Aux Base Zone";
 	roundstart_template = /datum/map_template/shuttle/aux_base/default;
 	shuttle_id = "aux_base_zone";
 	width = 9;
@@ -21427,7 +21435,8 @@
 /area/station/cargo/blacksmith)
 "hlA" = (
 /obj/docking_port/stationary/public_mining_dock{
-	dir = 4
+	dir = 4;
+	name = "Moon Station Aux Construction Zone Dock"
 	},
 /turf/open/floor/plating,
 /area/station/construction/mining/aux_base)
@@ -22077,7 +22086,7 @@
 /area/station/security/corrections_officer)
 "hwe" = (
 /obj/effect/spawner/random/trash/bacteria,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "hwi" = (
 /obj/effect/turf_decal/stripes/corner,
@@ -24402,7 +24411,7 @@
 "ioO" = (
 /obj/docking_port/stationary/laborcamp_home{
 	dir = 8;
-	name = "Moonstation Labor Shuttle Dock"
+	name = "Moon Station Labor Shuttle Dock"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -24915,7 +24924,7 @@
 	dir = 8;
 	dwidth = 11;
 	height = 40;
-	name = "Moonstation Auxiliary Dock";
+	name = "Moon Station Auxiliary Dock";
 	shuttle_id = "whiteship_home";
 	width = 40
 	},
@@ -25825,7 +25834,7 @@
 	dir = 1
 	},
 /obj/effect/spawner/random/trash/moisture_trap,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "iPW" = (
 /obj/structure/flora/ocean/glowweed,
@@ -25957,7 +25966,7 @@
 "iRD" = (
 /obj/effect/spawner/random/trash/graffiti,
 /obj/effect/spawner/random/trash/hobo_squat,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "iRE" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -27524,7 +27533,7 @@
 "jnN" = (
 /obj/docking_port/stationary/mining_home/common{
 	dir = 8;
-	name = "Moonstation Public Mining Dock"
+	name = "Moon Station Public Mining Dock"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -27759,8 +27768,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "jqA" = (
@@ -28172,7 +28181,7 @@
 "jyl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/food/egg_smudge,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/abandon_cafeteria)
 "jyJ" = (
 /obj/structure/chair/stool/directional/west,
@@ -28993,6 +29002,18 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/white/small,
 /area/station/commons/fitness/locker_room)
+"jNA" = (
+/obj/docking_port/stationary{
+	dheight = 3;
+	dir = 2;
+	dwidth = 8;
+	height = 11;
+	shuttle_id = "ferry_home";
+	name = "Moon Station Command Dock";
+	width = 20
+	},
+/turf/open/space/basic,
+/area/space)
 "jNN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/orange/visible{
 	dir = 4
@@ -31407,7 +31428,8 @@
 /area/station/security/checkpoint/arrivals)
 "kDJ" = (
 /obj/docking_port/stationary/syndicate/northwest{
-	dir = 4
+	dir = 4;
+	name = "North West of Moon Station"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -33424,6 +33446,9 @@
 	},
 /turf/open/floor/iron/large,
 /area/station/hallway/secondary/command)
+"llY" = (
+/turf/open/floor/plating,
+/area/station/maintenance/abandon_cafeteria)
 "lmb" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
@@ -33724,6 +33749,13 @@
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
+"lqr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "lqs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -36306,7 +36338,7 @@
 	reagent_id = /datum/reagent/lube;
 	icon_state = "water_fools"
 	},
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/common/night_club)
 "miX" = (
 /obj/effect/spawner/structure/window,
@@ -38964,7 +38996,7 @@
 "ndd" = (
 /obj/docking_port/stationary/mining_home/large{
 	dir = 8;
-	name = "Moonstation: Mining Dock"
+	name = "Moon Station Mining Dock"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -41434,7 +41466,7 @@
 /area/station/maintenance/port)
 "nWC" = (
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "nWR" = (
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,
@@ -41975,7 +42007,7 @@
 "oec" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/trash/grille_or_waste,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "oed" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -43100,7 +43132,6 @@
 "owO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "owP" = (
@@ -43288,7 +43319,7 @@
 /area/station/medical/office)
 "oAm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/abandon_cafeteria)
 "oAR" = (
 /turf/open/floor/iron,
@@ -43307,10 +43338,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/prison/visit)
-"oBy" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
-/area/station/commons/dorms)
 "oBL" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/holopad,
@@ -45570,10 +45597,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/qm)
-"prd" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
-/area/station/hallway/secondary/spacebridge)
 "prg" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 8
@@ -46176,7 +46199,7 @@
 "pAP" = (
 /obj/effect/spawner/random/trash/bacteria,
 /obj/machinery/barsign/all_access/directional/south,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "pBa" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -48956,15 +48979,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
-"qwf" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable,
-/obj/machinery/door/poddoor/preopen{
-	id = "brigwindows";
-	name = "Brig Lockdown Blast Door"
-	},
-/turf/open/floor/plating,
-/area/station/security/brig/entrance)
 "qwl" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -51500,6 +51514,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "rmH" = (
@@ -58323,7 +58338,7 @@
 	dir = 4;
 	dwidth = 11;
 	height = 25;
-	name = "Moonstation Evacuation Dock";
+	name = "Moon Station Evacuation Dock";
 	shuttle_id = "emergency_home";
 	width = 29
 	},
@@ -58510,18 +58525,6 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"tHc" = (
-/obj/docking_port/stationary{
-	dheight = 3;
-	dir = 2;
-	dwidth = 8;
-	height = 11;
-	shuttle_id = "ferry_home";
-	name = "Moonstation Command Dock";
-	width = 20
-	},
-/turf/open/space/basic,
-/area/space)
 "tHe" = (
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
@@ -59404,7 +59407,7 @@
 	dir = 9
 	},
 /obj/effect/spawner/random/burgerstation/loot,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "tXI" = (
 /obj/structure/cable,
@@ -60003,7 +60006,7 @@
 "uhM" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/trash/bacteria,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "uie" = (
 /obj/structure/curtain/bounty,
@@ -60529,7 +60532,7 @@
 /area/station/engineering/supermatter)
 "uqS" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/common/night_club/back_stage)
 "uqW" = (
 /obj/machinery/light/directional/west,
@@ -61994,6 +61997,7 @@
 "uRy" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/floor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "uSe" = (
@@ -64389,10 +64393,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/vaporwave,
 /area/station/service/salon)
-"vGO" = (
-/obj/effect/spawner/random/trash/grille_or_waste,
-/turf/open/floor/plating/airless,
-/area/station/maintenance/starboard/aft)
 "vGT" = (
 /obj/effect/spawner/random/burgerstation/atmos,
 /turf/open/floor/plating,
@@ -64583,7 +64583,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/clown_chamber)
 "vMr" = (
 /obj/structure/chair/stool/bamboo,
@@ -66052,7 +66052,8 @@
 /area/station/cargo/sorting)
 "wkQ" = (
 /obj/docking_port/stationary/syndicate/northeast{
-	dir = 8
+	dir = 8;
+	name = "North East of Moon Station"
 	},
 /turf/open/space/basic,
 /area/space)
@@ -68190,7 +68191,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "wZV" = (
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "xae" = (
 /obj/effect/decal/cleanable/dirt,
@@ -82771,9 +82772,9 @@ iIw
 iIw
 iIw
 iIw
-prd
+dNR
 jjs
-prd
+dNR
 iIw
 iIw
 iIw
@@ -83028,9 +83029,9 @@ vbd
 stM
 stM
 stM
-prd
+dNR
 kKc
-prd
+dNR
 stM
 stM
 stM
@@ -85598,9 +85599,9 @@ uuM
 wxh
 uuM
 sfh
-oBy
+sfh
 mYy
-oBy
+sfh
 sfh
 hdW
 dNR
@@ -89935,7 +89936,7 @@ stM
 stM
 stM
 stM
-tHc
+stM
 stM
 stM
 stM
@@ -90192,7 +90193,7 @@ stM
 stM
 stM
 stM
-stM
+jNA
 stM
 stM
 stM
@@ -101261,7 +101262,7 @@ iFE
 qHP
 sFH
 dYw
-iKE
+lqr
 toY
 tcl
 hzr
@@ -103071,7 +103072,7 @@ kiB
 dUr
 phA
 bPD
-qwf
+mYr
 rsT
 aBN
 aBN
@@ -104095,7 +104096,7 @@ nsg
 sgb
 hOS
 cSJ
-vIt
+fqB
 iWP
 nYo
 ffx
@@ -112671,7 +112672,7 @@ pIG
 uIN
 sCj
 gZS
-vGO
+owD
 rmC
 pOb
 sWA
@@ -112679,7 +112680,7 @@ cme
 rFL
 fSl
 aEP
-fSl
+llY
 xvu
 uOa
 ntD
@@ -113442,7 +113443,7 @@ qch
 lEC
 lui
 gZS
-vGO
+owD
 oTC
 eyJ
 eyJ
@@ -113957,7 +113958,7 @@ gPs
 lui
 dCc
 uhM
-vGO
+owD
 fyq
 pAP
 cme
@@ -118823,7 +118824,7 @@ wkv
 qsl
 vRP
 esl
-pPr
+cBB
 tJU
 rIS
 xKq
@@ -119080,7 +119081,7 @@ xQm
 xQm
 iCr
 cUq
-pPr
+cBB
 iDF
 dCQ
 iDF
@@ -119337,7 +119338,7 @@ uaX
 jME
 aZz
 duQ
-pPr
+cBB
 iDF
 xKq
 uJk
@@ -119594,7 +119595,7 @@ cBB
 cBB
 cBB
 cBB
-pPr
+cBB
 iDF
 jEN
 uJk
