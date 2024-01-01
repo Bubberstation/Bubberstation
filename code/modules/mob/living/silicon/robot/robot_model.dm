@@ -811,17 +811,23 @@
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		//obj/item/reagent_containers/borghypo/borgshaker, //bubber-edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol, //bubber-edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda, //bubber-edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/juice, //bubber-edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc, //bubber-edit
+		//NOVA EDIT START
+		// /obj/item/reagent_containers/borghypo/borgshaker,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/juice,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc,
 		/obj/item/borg/apparatus/beaker/service,
-		/obj/item/borg/apparatus/beaker, // SKYRAT EDIT: allows the pickup of different beakers for easier drink mixing
-		// /obj/item/reagent_containers/condiment/enzyme, //bubber-edit - Borg shaker has it
+		/obj/item/borg/apparatus/beaker, // Allows the pickup of different beakers for easier drink mixing
+		//NOVA EDIT END
+		/obj/item/reagent_containers/cup/beaker/large, //I know a shaker is more appropiate but this is for ease of identification
+		//obj/item/reagent_containers/condiment/enzyme, // NOVA EDIT - Borg shaker has it
 		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/syringe, //bubber-edit
-		/obj/item/cooking/cyborg/power, //bubber-edit
+		/obj/item/reagent_containers/syringe, //NOVA EDIT
+		/obj/item/rsf,
+		/obj/item/storage/bag/tray,
+		/obj/item/storage/bag/tray, // NOVA EDIT: Moves the second tray up to be near the default one
+		/obj/item/cooking/cyborg/power, //NOVA EDIT
 		/obj/item/rsf,
 		/obj/item/storage/bag/tray,
 		/obj/item/storage/bag/plants/cyborg, //bubber-edit
