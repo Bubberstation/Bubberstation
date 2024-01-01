@@ -6954,7 +6954,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/chapel)
 "coX" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
+/obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
 	dir = 8
 	},
 /turf/open/floor/catwalk_floor,
@@ -13002,6 +13002,12 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
+"eqR" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/machinery/meter,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "eqY" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/landmark/start/cargo_technician,
@@ -14765,6 +14771,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "eVm" = (
@@ -14865,7 +14872,7 @@
 	height = 16;
 	name = "Moon Station Cargo Bay";
 	shuttle_id = "cargo_home";
-	width = 12
+	width = 16
 	},
 /turf/open/space/basic,
 /area/space)
@@ -16482,7 +16489,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
-/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "fye" = (
@@ -34441,7 +34447,7 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/common/cryopods)
 "lvC" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
+/obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
 	dir = 1
 	},
 /turf/open/floor/catwalk_floor,
@@ -40606,7 +40612,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "nyb" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/general/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible,
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter/room)
 "nyc" = (
@@ -42565,6 +42571,7 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/watertank,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "ofC" = (
@@ -44823,9 +44830,6 @@
 /obj/machinery/light/small/directional/south,
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/stripes/end,
-/obj/machinery/power/apc/auto_name/directional/south,
-/obj/effect/mapping_helpers/apc/full_charge,
-/obj/structure/cable,
 /obj/machinery/camera/autoname/engineering/directional/south,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
@@ -45735,12 +45739,11 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/power_station)
 "pkC" = (
-/obj/structure/extinguisher_cabinet/directional/east,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/station/engineering/supermatter/room)
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/full_charge,
+/turf/open/floor/catwalk_floor,
+/area/station/engineering/supermatter)
 "pkE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
 /obj/machinery/door/airlock/external,
@@ -52725,7 +52728,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /obj/machinery/meter,
-/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "rxl" = (
@@ -58235,13 +58237,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
-"tqo" = (
-/obj/structure/extinguisher_cabinet/directional/west,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/station/engineering/supermatter/room)
 "tqH" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
@@ -58314,11 +58309,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
-"tst" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
-/obj/structure/cable,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter/room)
 "tsw" = (
 /obj/machinery/vending/assist,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -63960,6 +63950,7 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/watertank,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "vnc" = (
@@ -65490,10 +65481,10 @@
 /turf/open/floor/wood,
 /area/station/service/bar)
 "vPV" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
 	dir = 8
 	},
-/obj/machinery/meter,
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter/room)
 "vPW" = (
@@ -67018,7 +67009,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
-/obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "wpv" = (
@@ -94247,9 +94237,9 @@ wtd
 wtd
 wtd
 wtd
-tst
 gWw
-fev
+gWw
+eqR
 gWw
 mkS
 fev
@@ -97590,7 +97580,7 @@ fmU
 cnE
 bCF
 gOn
-tqo
+qUh
 wtd
 sei
 gWw
