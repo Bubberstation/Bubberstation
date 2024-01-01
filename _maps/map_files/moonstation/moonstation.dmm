@@ -16581,6 +16581,10 @@
 /obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
+"fyH" = (
+/obj/effect/spawner/random/trash/grille_or_waste,
+/turf/open/floor/plating,
+/area/station/medical/office)
 "fyJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -35743,6 +35747,10 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/commons/vacant_room/commissary)
+"lQs" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/station/medical/office)
 "lQt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -38630,14 +38638,6 @@
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
-"mPF" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/station/medical/office)
 "mPG" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/trash/hobo_squat,
@@ -48027,6 +48027,7 @@
 /obj/machinery/light/no_nightlight/directional/south,
 /obj/structure/tank_holder/anesthetic,
 /obj/item/radio/intercom/directional/south,
+/obj/item/clothing/mask/breath/anesthetic,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "pUe" = (
@@ -69751,6 +69752,16 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/storage)
+"xnp" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/station/medical/chemistry)
 "xnO" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
@@ -109969,7 +109980,7 @@ hPq
 gLf
 hPq
 hPq
-nnt
+xnp
 mvB
 mvB
 mvB
@@ -110731,9 +110742,9 @@ xOk
 llG
 ltT
 ogo
-ogo
-mPF
-ogo
+lQs
+kPD
+fyH
 ogo
 ogo
 xMJ
@@ -110976,7 +110987,7 @@ igx
 maQ
 bSs
 vfG
-yix
+jkc
 yix
 yix
 alP
@@ -110988,7 +110999,7 @@ fvA
 itH
 ogo
 ogo
-oVS
+aOh
 kPD
 aOh
 ogo
