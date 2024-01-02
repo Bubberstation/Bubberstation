@@ -2405,6 +2405,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/maintenance,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/port/fore)
 "aMj" = (
@@ -13008,6 +13009,10 @@
 /area/station/security/brig)
 "eoU" = (
 /obj/structure/sign/warning/vacuum/external/directional/west,
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 8
+	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/white,
 /area/station/security/processing)
 "eoW" = (
@@ -20830,6 +20835,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/spawner/random/burgerstation/atmos,
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "gTE" = (
@@ -37180,6 +37186,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
 /turf/open/floor/iron/dark,
 /area/station/command/secure_bunker)
 "mjM" = (
@@ -46257,6 +46264,12 @@
 "pjC" = (
 /obj/machinery/vending/cigarette,
 /obj/item/radio/intercom/directional/east,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/security/processing)
 "pjJ" = (
@@ -47232,7 +47245,7 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "pzI" = (
-/obj/structure/grille,
+/obj/effect/spawner/random/burgerstation/odd,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "pzQ" = (
@@ -106976,7 +106989,7 @@ fJl
 cKG
 iGh
 qFK
-iGh
+noW
 pzI
 cKG
 sUD
