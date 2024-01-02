@@ -8948,9 +8948,6 @@
 /turf/closed/wall,
 /area/station/maintenance/cult_chapel)
 "dac" = (
-/obj/structure/chair{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
@@ -39647,6 +39644,22 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/circuit/green,
 /area/station/ai_monitored/turret_protected/ai_upload)
+"ncs" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Medbay"
+	},
+/obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 4
+	},
+/turf/open/floor/iron/white/side{
+	dir = 4
+	},
+/area/station/medical/medbay/lobby)
 "ncv" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
@@ -44708,6 +44721,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "oKI" = (
@@ -44805,7 +44819,6 @@
 /obj/effect/spawner/random/medical/minor_healing,
 /obj/structure/window/spawner/directional/north,
 /obj/effect/turf_decal/tile/blue/fourcorners,
-/obj/machinery/newscaster/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "oNe" = (
@@ -51827,7 +51840,8 @@
 	id = "medbay_access";
 	name = "Medbay Access Door Control";
 	normaldoorcontrol = 1;
-	pixel_y = -8
+	pixel_y = -8;
+	req_access = list("medical")
 	},
 /obj/effect/spawner/random/medical/injector,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
@@ -60352,11 +60366,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/station/maintenance/abandon_cafeteria)
-"tWS" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/structure/sign/departments/med_alt/directional/south,
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/starboard)
 "tWT" = (
 /obj/machinery/telecomms/server/presets/medical,
 /obj/effect/turf_decal/siding/dark{
@@ -60938,14 +60947,9 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
 	},
-/obj/machinery/button/door/directional/west{
-	id = "medbay_access";
-	name = "Medbay Access Door Control";
-	normaldoorcontrol = 1;
-	pixel_y = 8
-	},
 /obj/effect/spawner/random/medical/patient_stretcher,
 /obj/machinery/camera/autoname/directional/west,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "uha" = (
@@ -68254,6 +68258,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
+/obj/structure/sign/departments/med_alt/directional/east,
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/aft)
 "wHc" = (
@@ -101955,9 +101960,9 @@ mfS
 mfS
 hFt
 hfe
-frd
-frd
-frd
+ncs
+ncs
+ncs
 hfe
 frd
 frd
@@ -103751,7 +103756,7 @@ ejO
 rpt
 fet
 gzH
-tWS
+xUZ
 hfe
 oKG
 fvn
