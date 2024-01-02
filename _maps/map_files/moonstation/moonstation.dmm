@@ -7748,6 +7748,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/coldroom)
 "cEY" = (
@@ -8551,7 +8552,6 @@
 /obj/machinery/door/airlock/freezer{
 	name = "Medical Coldroom"
 	},
-/obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/medical/surgery,
 /obj/structure/fans/tiny,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
@@ -12387,13 +12387,6 @@
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
 /area/station/ai_monitored/turret_protected/ai)
-"ehl" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/station/medical/medbay/central)
 "eht" = (
 /obj/structure/table/wood,
 /obj/item/radio{
@@ -22343,6 +22336,7 @@
 /obj/machinery/portable_atmospherics/canister/anesthetic_mix,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/coldroom)
 "huK" = (
@@ -24757,16 +24751,6 @@
 "imB" = (
 /turf/closed/wall,
 /area/station/security/prison/visit)
-"ink" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/white/arrow_ccw{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "inx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -38120,6 +38104,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "mCh" = (
@@ -44479,7 +44464,6 @@
 /area/station/engineering/atmos)
 "oGN" = (
 /obj/effect/turf_decal/weather/snow/corner,
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "oGQ" = (
@@ -47621,7 +47605,6 @@
 /area/station/medical/storage)
 "pKj" = (
 /obj/effect/landmark/start/psychologist,
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/central)
 "pKn" = (
@@ -53142,6 +53125,13 @@
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
+"rxP" = (
+/obj/structure/sign/warning/cold_temp/directional/east,
+/obj/structure/rack,
+/obj/item/clothing/suit/costume/snowman,
+/obj/item/clothing/head/costume/snowman,
+/turf/open/floor/plating,
+/area/station/maintenance/central)
 "rxT" = (
 /obj/structure/mineral_door/paperframe,
 /obj/structure/cable,
@@ -55161,7 +55151,6 @@
 /area/space/nearstation)
 "sip" = (
 /obj/effect/turf_decal/weather/snow,
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -102760,11 +102749,11 @@ vbG
 oNX
 nRA
 mBW
+rxP
+jTr
+jTr
+jTr
 xJs
-jTr
-jTr
-jTr
-jVx
 sSh
 jTr
 uUa
@@ -103783,7 +103772,7 @@ mmQ
 mmQ
 vuJ
 vuJ
-ehl
+vuJ
 xyD
 eTw
 tSp
@@ -104040,7 +104029,7 @@ ewI
 eiw
 jtD
 jtD
-ink
+jtD
 bAF
 eTw
 eTw
