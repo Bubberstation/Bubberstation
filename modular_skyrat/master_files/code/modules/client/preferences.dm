@@ -174,3 +174,4 @@
 
 	safe_transfer_prefs_to(character, icon_updates, is_antag)
 	qdel(added_tracker)
+
