@@ -91,6 +91,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"acc" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 1;
+	name = "Cold Loop to Gas"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "acj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -8867,6 +8875,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science/research)
+"cXX" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "cYo" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -13139,6 +13152,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/solars/port)
 "erw" = (
@@ -19828,6 +19842,15 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/drone_bay)
+"gCp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	name = "Gas to Cold Loop"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "gCt" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
@@ -20190,15 +20213,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/maintenance/pool_maintenance)
-"gJn" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "Gas to Cold Loop"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter/room)
 "gJD" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
@@ -20358,7 +20372,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
 "gMj" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -23081,6 +23098,11 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"hGa" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "hGr" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -24389,8 +24411,6 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/hfr_room)
 "igN" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
-/obj/machinery/meter,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
 "igY" = (
@@ -39851,6 +39871,14 @@
 "nfc" = (
 /turf/closed/wall/r_wall,
 /area/station/solars/aisat)
+"nfh" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/lattice,
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "nfk" = (
 /turf/open/floor/iron/stairs/old,
 /area/station/command/gateway)
@@ -41082,8 +41110,7 @@
 /area/station/construction/mining/aux_base)
 "nBg" = (
 /obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
-/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /turf/open/space/basic,
 /area/space/nearstation)
 "nBm" = (
@@ -43746,7 +43773,6 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/cult_chapel)
 "otm" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
@@ -46146,7 +46172,6 @@
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter)
 "pkE" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -67372,6 +67397,11 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"wpE" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/general/visible,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/engineering/supermatter/room)
 "wpI" = (
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
@@ -67777,14 +67807,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port)
-"wyc" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 1;
-	name = "Cold Loop to Gas"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter/room)
 "wyd" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -94640,7 +94662,7 @@ eqR
 gWw
 mkS
 fev
-gJn
+bQG
 otm
 igN
 pkE
@@ -94901,8 +94923,8 @@ nlQ
 nPc
 ujG
 ujG
-pXD
-fJl
+sDY
+eyu
 xzZ
 sfP
 stM
@@ -95154,12 +95176,12 @@ uHs
 qqz
 ykI
 gWw
-bQG
-wtd
-vPc
-fJl
-fJl
-fJl
+gCp
+cXX
+wpE
+nBg
+wis
+sfP
 wok
 qqq
 qqq
@@ -97724,12 +97746,12 @@ uHs
 ofy
 sei
 gWw
-rWE
-wtd
-vPc
-fJl
-fJl
-fJl
+acc
+hGa
+wpE
+nBg
+szD
+bMR
 xzZ
 ehQ
 qqq
@@ -97985,8 +98007,8 @@ nXj
 ujG
 ujG
 ujG
-pXD
-fJl
+ilO
+sfP
 wok
 eyu
 stM
@@ -98238,11 +98260,11 @@ orc
 orc
 wpB
 fev
-wyc
+rWE
 otm
 igN
 pkE
-gMj
+nfh
 eyu
 xzZ
 sfP
