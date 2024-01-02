@@ -7425,16 +7425,13 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/lobby)
 "cyW" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Medbay Secure Storage"
-	},
-/obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white/side{
-	dir = 4
+/obj/machinery/door/window/right/directional/east{
+	name = "Medical Lockers";
+	req_access = list("medical")
 	},
+/turf/open/floor/iron/white,
 /area/station/medical/storage)
 "czh" = (
 /obj/structure/table/wood,
@@ -9176,14 +9173,7 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
-/obj/structure/closet/crate/medical,
-/obj/effect/spawner/random/medical/medkit_rare,
-/obj/effect/spawner/random/medical/supplies,
-/obj/effect/spawner/random/medical/surgery_tool,
-/obj/effect/spawner/random/medical/surgery_tool,
-/obj/effect/spawner/random/medical/surgery_tool,
-/obj/effect/spawner/random/medical/medkit,
-/obj/effect/spawner/random/medical/injector,
+/obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery)
 "deg" = (
@@ -15525,7 +15515,8 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
+/obj/effect/landmark/start/medical_doctor,
+/turf/open/floor/iron/white,
 /area/station/medical/storage)
 "fhd" = (
 /obj/structure/table/wood,
@@ -22977,6 +22968,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "hET" = (
@@ -23695,9 +23687,9 @@
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "hSD" = (
-/obj/structure/tank_dispenser/oxygen,
 /obj/machinery/light/warm/directional/west,
 /obj/machinery/camera/autoname/directional/west,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "hSG" = (
@@ -23941,6 +23933,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/firealarm/directional/north,
+/obj/vehicle/sealed/mecha/ripley/cargo,
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
 "hXS" = (
@@ -24700,13 +24693,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/waste)
-"ilQ" = (
-/obj/effect/turf_decal/tile/brown/half/contrasted{
-	dir = 4
-	},
-/obj/machinery/vending/wardrobe/cargo_wardrobe,
-/turf/open/floor/iron,
-/area/station/cargo/storage)
 "ilU" = (
 /obj/structure/chair{
 	dir = 1
@@ -27872,7 +27858,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron,
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/belt/medical,
+/turf/open/floor/iron/white,
 /area/station/medical/storage)
 "jmo" = (
 /obj/structure/sign/warning/radiation/directional/south,
@@ -30692,9 +30681,6 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/modular_computer/preset/cargochat/cargo{
-	dir = 8
-	},
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
@@ -31282,7 +31268,7 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/gag_room)
 "ktE" = (
-/obj/machinery/rnd/production/techfab/department/cargo,
+/obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "ktG" = (
@@ -36747,6 +36733,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/machinery/autolathe,
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "meB" = (
@@ -40478,6 +40465,9 @@
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/camera/autoname/directional/south{
 	dir = 5
+	},
+/obj/machinery/modular_computer/preset/cargochat/cargo{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/station/cargo/office)
@@ -54473,6 +54463,13 @@
 "rWo" = (
 /turf/closed/wall,
 /area/station/commons/toilet/auxiliary)
+"rWp" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/belt/medical,
+/turf/open/floor/iron/white,
+/area/station/medical/storage)
 "rWs" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/dark,
@@ -56367,7 +56364,10 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/directional/south,
-/turf/open/floor/iron,
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/belt/medical,
+/turf/open/floor/iron/white,
 /area/station/medical/storage)
 "sCj" = (
 /turf/closed/wall/r_wall,
@@ -56807,15 +56807,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
-"sJG" = (
-/obj/effect/turf_decal/tile/brown/half/contrasted{
-	dir = 4
-	},
-/obj/vehicle/sealed/mecha/ripley/cargo,
-/obj/machinery/firealarm/directional/east,
-/obj/machinery/camera/autoname/directional/east,
-/turf/open/floor/iron,
-/area/station/cargo/storage)
 "sJO" = (
 /obj/machinery/vending/boozeomat/all_access,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -60807,6 +60798,7 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/rnd/production/techfab/department/cargo,
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "ueA" = (
@@ -64657,8 +64649,12 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "vsW" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/closet/secure_closet/medical3,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/belt/medical,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/iron/white,
 /area/station/medical/storage)
 "vsX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -90666,10 +90662,10 @@ xBa
 raZ
 mXD
 xJp
-sJG
+xIG
 ktE
 kiY
-ilQ
+lqe
 ane
 rLs
 mSH
@@ -103772,7 +103768,7 @@ eTw
 tSp
 gyE
 eTw
-vsW
+rWp
 cyW
 vsW
 fxM
