@@ -3318,10 +3318,6 @@
 	dir = 1
 	},
 /obj/machinery/camera/autoname/aicore/directional/north,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 105.325
-	},
 /turf/open/floor/circuit/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
 "baL" = (
@@ -21614,9 +21610,8 @@
 /turf/open/floor/catwalk_floor,
 /area/station/solars/asteroid)
 "heW" = (
-/obj/item/phone,
-/obj/structure/table/wood,
 /obj/item/radio/intercom/directional/east,
+/obj/machinery/suit_storage_unit/captain,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/captain/private)
 "hfe" = (
@@ -38023,9 +38018,9 @@
 	pixel_y = 9
 	},
 /obj/item/toy/figure/captain,
-/obj/item/pinpointer/nuke,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
+/obj/item/pinpointer/nuke,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/captain/private)
 "msZ" = (
@@ -71904,11 +71899,6 @@
 /obj/effect/turf_decal/siding/blue,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	external_pressure_bound = 101.325;
-	pressure_checks = 1
 	},
 /turf/open/floor/circuit/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
