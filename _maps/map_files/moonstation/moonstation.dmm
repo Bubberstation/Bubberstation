@@ -1537,19 +1537,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
-"aBf" = (
-/obj/structure/railing/corner/end/flip{
-	dir = 8
-	},
-/obj/structure/railing/corner/end{
-	dir = 4
-	},
-/obj/machinery/conveyor{
-	dir = 2;
-	id = "garbage"
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/disposal)
 "aBp" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
@@ -5936,6 +5923,16 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/asteroid)
+"bYk" = (
+/obj/structure/railing/corner/end,
+/obj/structure/railing/corner/end/flip{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "bYs" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
@@ -20832,6 +20829,14 @@
 /obj/effect/spawner/random/bureaucracy/folder,
 /turf/open/floor/wood,
 /area/station/medical/break_room)
+"gQW" = (
+/obj/effect/spawner/random/maintenance,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/disposal)
 "gQZ" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/stripes/line{
@@ -24168,7 +24173,6 @@
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 4
 	},
-/obj/structure/sign/poster/official/random/directional/east,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -25096,7 +25100,6 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "ipk" = (
@@ -41244,6 +41247,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/structure/railing{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "nvl" = (
@@ -43225,6 +43231,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "odd" = (
@@ -43232,9 +43241,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "ode" = (
-/obj/structure/railing,
 /obj/effect/spawner/random/trash/mopbucket,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "odl" = (
@@ -50733,8 +50744,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
 "qzu" = (
-/obj/structure/railing,
 /obj/effect/spawner/random/trash/janitor_supplies,
+/obj/structure/railing{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "qzA" = (
@@ -52078,6 +52091,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/access/any/supply/shipping,
+/obj/effect/mapping_helpers/airlock/access/any/service/janitor,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "qYd" = (
@@ -58493,6 +58509,13 @@
 "tdi" = (
 /obj/effect/spawner/random/maintenance,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing/corner/end{
+	dir = 1
+	},
+/obj/structure/railing/corner/end/flip,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "tdk" = (
@@ -99024,7 +99047,7 @@ kmD
 crh
 crh
 lXI
-tdi
+gQW
 odb
 tdi
 ode
@@ -99284,7 +99307,7 @@ soi
 fSG
 bUJ
 fSG
-aBf
+fSG
 bHq
 vTo
 igY
@@ -99540,7 +99563,7 @@ oWF
 lPi
 oEh
 nvf
-bDm
+bYk
 qzu
 ssQ
 ujc
