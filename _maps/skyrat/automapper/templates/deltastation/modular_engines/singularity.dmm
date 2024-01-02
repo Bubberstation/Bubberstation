@@ -205,11 +205,6 @@
 /obj/structure/sign/warning/secure_area,
 /turf/closed/wall/r_wall,
 /area/station/engineering/main)
-"fo" = (
-/obj/structure/grille,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/engineering)
 "fz" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -848,7 +843,6 @@
 /area/station/engineering/main)
 "zm" = (
 /obj/structure/cable,
-/obj/structure/grille,
 /turf/open/floor/plating,
 /area/station/engineering)
 "zo" = (
@@ -1378,16 +1372,6 @@
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/plating,
 /area/space)
-"MX" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
-/turf/open/floor/iron,
-/area/station/engineering/main)
 "MY" = (
 /obj/machinery/duct,
 /obj/effect/decal/cleanable/dirt,
@@ -1444,14 +1428,6 @@
 	dir = 1
 	},
 /obj/machinery/incident_display/delam/directional/north,
-/turf/open/floor/iron,
-/area/station/engineering/main)
-"Of" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "Pl" = (
@@ -2353,7 +2329,7 @@ Gn
 "}
 (20,1,1) = {"
 Ij
-fo
+zm
 MW
 FD
 gX
@@ -2378,7 +2354,7 @@ kO
 "}
 (21,1,1) = {"
 Ij
-fo
+zm
 pQ
 Bw
 fz
@@ -2403,8 +2379,8 @@ Fd
 "}
 (22,1,1) = {"
 Ij
-fo
-fo
+zm
+zm
 pQ
 gX
 Jj
@@ -2429,7 +2405,7 @@ kO
 (23,1,1) = {"
 Ij
 lV
-fo
+zm
 cL
 dm
 Jj
@@ -2454,7 +2430,7 @@ kO
 (24,1,1) = {"
 yT
 lV
-fo
+zm
 mE
 fz
 Jj
@@ -2479,7 +2455,7 @@ kO
 (25,1,1) = {"
 JG
 lV
-fo
+zm
 cL
 dm
 Jj
@@ -2503,8 +2479,8 @@ kO
 "}
 (26,1,1) = {"
 JG
-fo
-fo
+zm
+zm
 pQ
 gX
 Jj
@@ -2528,7 +2504,7 @@ TZ
 "}
 (27,1,1) = {"
 JG
-fo
+zm
 zJ
 Bw
 fz
@@ -2553,7 +2529,7 @@ TZ
 "}
 (28,1,1) = {"
 JG
-fo
+zm
 MW
 FD
 gX
@@ -2578,7 +2554,7 @@ TZ
 "}
 (29,1,1) = {"
 JG
-fo
+zm
 pQ
 Bw
 fz
@@ -2603,7 +2579,7 @@ TZ
 "}
 (30,1,1) = {"
 JG
-fo
+zm
 ZW
 pQ
 gX
@@ -2647,7 +2623,7 @@ nV
 nV
 nV
 Se
-MX
+lS
 Se
 mB
 "}
@@ -2708,7 +2684,7 @@ MD
 Se
 Dm
 Nw
-Of
+MD
 NJ
 Se
 yr
