@@ -46,7 +46,7 @@
 /obj/structure/lattice,
 /obj/effect/spawner/random/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -66,7 +66,7 @@
 /obj/structure/grille,
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "ct" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -207,7 +207,7 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "gK" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -311,7 +311,7 @@
 "km" = (
 /obj/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "ko" = (
 /obj/item/wrench,
 /obj/effect/turf_decal/bot_red,
@@ -402,6 +402,11 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"mI" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space,
+/area/space/nearstation)
 "mU" = (
 /obj/machinery/light/small/blacklight/directional/north,
 /obj/structure/closet/emcloset,
@@ -543,6 +548,10 @@
 "pQ" = (
 /turf/open/floor/plating,
 /area/space)
+"qa" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "qv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -806,6 +815,9 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"yo" = (
+/turf/open/space/basic,
+/area/space/nearstation)
 "yr" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1269,7 +1281,7 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "Le" = (
 /obj/item/storage/medkit/fire,
 /obj/effect/turf_decal/bot,
@@ -1288,6 +1300,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"LE" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "LG" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Supermatter Engine Room"
@@ -1723,6 +1739,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
+"We" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/space/nearstation)
 "WA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1736,7 +1756,7 @@
 "WJ" = (
 /obj/structure/lattice,
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "WS" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -1778,7 +1798,7 @@
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "Yg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -1849,7 +1869,7 @@ gX
 gX
 gX
 cm
-fz
+LE
 cm
 gX
 gX
@@ -1873,21 +1893,21 @@ WJ
 gX
 gX
 gX
-fz
+LE
 gX
 cm
 gX
 gX
 gX
-fz
+LE
+yo
+gX
+gX
+LE
 gX
 gX
 gX
-fz
-gX
-gX
-gX
-fz
+LE
 gX
 gX
 "}
@@ -1896,22 +1916,22 @@ WJ
 WJ
 WJ
 WJ
-fz
-fz
+LE
+LE
 cm
-fz
+LE
 cm
 aS
 XH
 XH
 XH
 XH
-fz
+LE
 XH
 XH
 XH
-fz
-fz
+LE
+LE
 XH
 XH
 XH
@@ -1921,24 +1941,24 @@ WJ
 gX
 gX
 gX
-fz
-fz
+LE
+LE
 gX
 gX
-fz
-gX
-gX
-gX
-gX
-gX
-fz
+LE
 gX
 gX
 gX
-fz
 gX
 gX
-fz
+LE
+gX
+gX
+gX
+LE
+gX
+gX
+LE
 gX
 "}
 (5,1,1) = {"
@@ -1946,46 +1966,46 @@ WJ
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 gX
-fz
+LE
 gX
 gX
-fz
+LE
 gX
 "}
 (6,1,1) = {"
+mI
 mv
-mv
-fz
-fz
-fz
-fz
-fz
+LE
+LE
+LE
+LE
+LE
 gX
-fz
-gX
+LE
 gX
 gX
 gX
 gX
-fz
+gX
+LE
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 cm
@@ -1996,17 +2016,17 @@ WJ
 gX
 gX
 gX
-fz
+LE
 gX
-fz
-fz
-fz
-gX
-gX
+LE
+LE
+LE
 gX
 gX
 gX
-fz
+gX
+gX
+LE
 gX
 gX
 gX
@@ -2014,107 +2034,107 @@ fz
 gX
 gX
 aS
-dm
+qa
 "}
 (8,1,1) = {"
 WJ
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-dm
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+LE
+qa
 "}
 (9,1,1) = {"
 XH
-fz
+LE
 gX
 gX
-fz
-gX
-gX
-gX
-fz
+LE
 gX
 gX
 gX
-fz
-fz
-fz
+LE
 gX
 gX
 gX
-fz
+LE
+LE
+LE
+gX
+gX
+gX
+LE
 gX
 gX
 XH
-dm
+qa
 "}
 (10,1,1) = {"
-fz
+LE
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 gX
-fz
+LE
 gX
-fz
-fz
-fz
+LE
+LE
+LE
 gX
-fz
+LE
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 XH
-dm
+qa
 "}
 (11,1,1) = {"
 gl
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 gX
-fz
-fz
-fz
+LE
+LE
+LE
 gX
 gX
 gX
-fz
+LE
 gX
 gX
 gX
-fz
+LE
 gX
-fz
-fz
-dm
+LE
+LE
+qa
 "}
 (12,1,1) = {"
 gX
@@ -2138,55 +2158,55 @@ km
 km
 gX
 KQ
-dm
-dm
+qa
+qa
 "}
 (13,1,1) = {"
 Uy
-fz
-fz
+LE
+LE
 gX
+yo
+LE
+LE
+yo
+LE
 gX
-fz
-fz
+LE
+LE
+LE
+LE
+LE
+LE
+LE
 gX
-fz
-gX
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-gX
-fz
-fz
+LE
+LE
 TZ
 TZ
 Gq
 "}
 (14,1,1) = {"
 Rx
-Ct
-Ct
-Ct
+We
+We
+We
 lV
-Ct
-Ct
-Ct
+We
+We
+We
 lV
-Ct
-Ct
-Ct
+We
+We
+We
 lV
-Ct
-Ct
-Ct
+We
+We
+We
 lV
-Ct
-Ct
-Ct
+We
+We
+We
 TZ
 Pl
 dI
@@ -2318,7 +2338,7 @@ Gn
 "}
 (20,1,1) = {"
 Ij
-zm
+ZW
 MW
 FD
 gX
@@ -2343,7 +2363,7 @@ kO
 "}
 (21,1,1) = {"
 Ij
-zm
+ZW
 pQ
 Bw
 fz
@@ -2368,8 +2388,8 @@ Fd
 "}
 (22,1,1) = {"
 Ij
-zm
-zm
+ZW
+ZW
 pQ
 gX
 Jj
@@ -2394,7 +2414,7 @@ kO
 (23,1,1) = {"
 Ij
 lV
-zm
+ZW
 cL
 dm
 Jj
@@ -2419,7 +2439,7 @@ kO
 (24,1,1) = {"
 yT
 lV
-zm
+ZW
 mE
 fz
 Jj
@@ -2444,7 +2464,7 @@ kO
 (25,1,1) = {"
 JG
 lV
-zm
+ZW
 cL
 dm
 Jj
@@ -2468,8 +2488,8 @@ kO
 "}
 (26,1,1) = {"
 JG
-zm
-zm
+ZW
+ZW
 pQ
 gX
 Jj
@@ -2493,7 +2513,7 @@ TZ
 "}
 (27,1,1) = {"
 JG
-zm
+ZW
 zJ
 Bw
 fz
@@ -2518,7 +2538,7 @@ TZ
 "}
 (28,1,1) = {"
 JG
-zm
+ZW
 MW
 FD
 gX
@@ -2543,7 +2563,7 @@ TZ
 "}
 (29,1,1) = {"
 JG
-zm
+ZW
 pQ
 Bw
 fz
@@ -2568,7 +2588,7 @@ TZ
 "}
 (30,1,1) = {"
 JG
-zm
+ZW
 ZW
 pQ
 gX

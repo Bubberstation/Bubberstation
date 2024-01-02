@@ -46,7 +46,7 @@
 /obj/structure/lattice,
 /obj/effect/spawner/random/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -66,7 +66,7 @@
 /obj/structure/grille,
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "ct" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -207,7 +207,7 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "gK" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -224,6 +224,11 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"hq" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space,
+/area/space/nearstation)
 "hG" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable,
@@ -311,7 +316,7 @@
 "km" = (
 /obj/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "ko" = (
 /obj/item/wrench,
 /obj/effect/turf_decal/bot_red,
@@ -802,6 +807,9 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"yh" = (
+/turf/open/space/basic,
+/area/space/nearstation)
 "yl" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
@@ -1126,6 +1134,10 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating,
 /area/station/engineering/main)
+"GS" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "GT" = (
 /obj/effect/landmark/start/station_engineer,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -1269,7 +1281,7 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "Le" = (
 /obj/item/storage/medkit/fire,
 /obj/effect/turf_decal/bot,
@@ -1686,12 +1698,20 @@
 "Uy" = (
 /turf/closed/wall/r_wall,
 /area/station/engineering/transit_tube)
+"UA" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "UI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"Vi" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/space/nearstation)
 "Vn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/external{
@@ -1736,7 +1756,7 @@
 "WJ" = (
 /obj/structure/lattice,
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "WS" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -1778,7 +1798,7 @@
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "Yg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -1849,7 +1869,7 @@ gX
 gX
 gX
 cm
-fz
+UA
 cm
 gX
 gX
@@ -1873,21 +1893,21 @@ WJ
 gX
 gX
 gX
-fz
+UA
 gX
 cm
 gX
 gX
 gX
-fz
+UA
+yh
+gX
+gX
+UA
 gX
 gX
 gX
-fz
-gX
-gX
-gX
-fz
+UA
 gX
 gX
 "}
@@ -1896,22 +1916,22 @@ WJ
 WJ
 WJ
 WJ
-fz
-fz
+UA
+UA
 cm
-fz
+UA
 cm
 aS
 XH
 XH
 XH
 XH
-fz
+UA
 XH
 XH
 XH
-fz
-fz
+UA
+UA
 XH
 XH
 XH
@@ -1921,24 +1941,24 @@ WJ
 gX
 gX
 gX
-fz
-fz
+UA
+UA
 gX
 gX
-fz
-gX
-gX
-gX
-gX
-gX
-fz
+UA
 gX
 gX
 gX
-fz
 gX
 gX
-fz
+UA
+gX
+gX
+gX
+UA
+gX
+gX
+UA
 gX
 "}
 (5,1,1) = {"
@@ -1946,46 +1966,46 @@ WJ
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 gX
-fz
+UA
 gX
 gX
-fz
+UA
 gX
 "}
 (6,1,1) = {"
+hq
 mv
-mv
-fz
-fz
-fz
-fz
-fz
+UA
+UA
+UA
+UA
+UA
 gX
-fz
-gX
+UA
 gX
 gX
 gX
 gX
-fz
+gX
+UA
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 cm
@@ -1996,17 +2016,17 @@ WJ
 gX
 gX
 gX
-fz
+UA
 gX
-fz
-fz
-fz
-gX
-gX
+UA
+UA
+UA
 gX
 gX
 gX
-fz
+gX
+gX
+UA
 gX
 gX
 gX
@@ -2014,107 +2034,107 @@ fz
 gX
 gX
 aS
-dm
+GS
 "}
 (8,1,1) = {"
 WJ
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-dm
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+UA
+GS
 "}
 (9,1,1) = {"
 XH
-fz
+UA
 gX
 gX
-fz
-gX
-gX
-gX
-fz
+UA
 gX
 gX
 gX
-fz
-fz
-fz
+UA
 gX
 gX
 gX
-fz
+UA
+UA
+UA
+gX
+gX
+gX
+UA
 gX
 gX
 XH
-dm
+GS
 "}
 (10,1,1) = {"
-fz
+UA
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 gX
-fz
+UA
 gX
-fz
-fz
-fz
+UA
+UA
+UA
 gX
-fz
+UA
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 XH
-dm
+GS
 "}
 (11,1,1) = {"
 gl
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 gX
-fz
-fz
-fz
+UA
+UA
+UA
 gX
 gX
 gX
-fz
+UA
 gX
 gX
 gX
-fz
+UA
 gX
-fz
-fz
-dm
+UA
+UA
+GS
 "}
 (12,1,1) = {"
 gX
@@ -2138,55 +2158,55 @@ km
 km
 gX
 KQ
-dm
-dm
+GS
+GS
 "}
 (13,1,1) = {"
 Uy
-fz
-fz
+UA
+UA
 gX
+yh
+UA
+UA
+yh
+UA
 gX
-fz
-fz
+UA
+UA
+UA
+UA
+UA
+UA
+UA
 gX
-fz
-gX
-fz
-fz
-fz
-fz
-fz
-fz
-fz
-gX
-fz
-fz
+UA
+UA
 TZ
 TZ
 Gq
 "}
 (14,1,1) = {"
 Rx
-Ct
-Ct
-Ct
+Vi
+Vi
+Vi
 lV
-Ct
-Ct
-Ct
+Vi
+Vi
+Vi
 lV
-Ct
-Ct
-Ct
+Vi
+Vi
+Vi
 lV
-Ct
-Ct
-Ct
+Vi
+Vi
+Vi
 lV
-Ct
-Ct
-Ct
+Vi
+Vi
+Vi
 TZ
 Pl
 dI
@@ -2318,7 +2338,7 @@ Gn
 "}
 (20,1,1) = {"
 Ij
-zm
+ZW
 MW
 FD
 gX
@@ -2343,7 +2363,7 @@ kO
 "}
 (21,1,1) = {"
 Ij
-zm
+ZW
 pQ
 Bw
 fz
@@ -2368,8 +2388,8 @@ Fd
 "}
 (22,1,1) = {"
 Ij
-zm
-zm
+ZW
+ZW
 pQ
 gX
 Jj
@@ -2394,7 +2414,7 @@ kO
 (23,1,1) = {"
 Ij
 lV
-zm
+ZW
 cL
 dm
 Jj
@@ -2419,7 +2439,7 @@ kO
 (24,1,1) = {"
 yT
 lV
-zm
+ZW
 mE
 fz
 Jj
@@ -2444,7 +2464,7 @@ kO
 (25,1,1) = {"
 JG
 lV
-zm
+ZW
 cL
 dm
 Jj
@@ -2468,8 +2488,8 @@ kO
 "}
 (26,1,1) = {"
 JG
-zm
-zm
+ZW
+ZW
 pQ
 gX
 Jj
@@ -2493,7 +2513,7 @@ TZ
 "}
 (27,1,1) = {"
 JG
-zm
+ZW
 zJ
 Bw
 fz
@@ -2518,7 +2538,7 @@ TZ
 "}
 (28,1,1) = {"
 JG
-zm
+ZW
 MW
 FD
 gX
@@ -2543,7 +2563,7 @@ TZ
 "}
 (29,1,1) = {"
 JG
-zm
+ZW
 pQ
 Bw
 fz
@@ -2568,7 +2588,7 @@ TZ
 "}
 (30,1,1) = {"
 JG
-zm
+ZW
 ZW
 pQ
 gX
