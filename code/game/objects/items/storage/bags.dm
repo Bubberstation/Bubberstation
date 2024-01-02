@@ -240,7 +240,7 @@
 		/obj/item/seeds,
 		))
 
-/obj/item/storage/bag/plants/cyborg
+/obj/item/storage/bag/plants/cyborg //bubber-edit - Adds cyborg plantbag
 	name = "cyborg plant bag"
 
 ////////
