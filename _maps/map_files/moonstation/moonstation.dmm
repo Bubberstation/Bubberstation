@@ -8661,9 +8661,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "cVq" = (
@@ -9139,7 +9136,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment,
 /obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
@@ -14452,7 +14448,6 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/aft)
 "eOc" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east{
 	arc_shielded = 1
@@ -17364,7 +17359,6 @@
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/rd)
 "fKd" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/bed/medical/emergency,
@@ -22054,10 +22048,10 @@
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
 "hqi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /obj/machinery/light/small/directional/east,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "hqr" = (
@@ -25950,6 +25944,15 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"iKW" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/iron/checker,
+/area/station/hallway/primary/central/aft)
 "iLk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -26443,10 +26446,10 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/recreation)
 "iSM" = (
-/obj/structure/disposalpipe/segment{
+/obj/effect/turf_decal/delivery,
+/obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "iSV" = (
@@ -31696,6 +31699,9 @@
 	location = "hall11";
 	name = "Pathing Navigation Beacon"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "kBl" = (
@@ -35854,9 +35860,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/east,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "lQw" = (
@@ -37779,7 +37783,6 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/machinery/door/airlock/maintenance,
@@ -46703,7 +46706,9 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/station/tcommsat/server)
 "pvw" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
 /turf/open/floor/iron/large,
 /area/station/hallway/primary/central/aft)
 "pvy" = (
@@ -52809,10 +52814,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 1
-	},
 /obj/effect/mapping_helpers/mail_sorting/service/janitor_closet,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "rtL" = (
@@ -66382,7 +66387,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
@@ -68278,8 +68282,8 @@
 /area/station/command/bridge)
 "wIE" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
-/obj/structure/disposalpipe/junction{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/aft)
@@ -101128,7 +101132,7 @@ aqj
 vfv
 wHc
 rJw
-wVn
+ldH
 cVl
 aUc
 xAV
@@ -101386,7 +101390,7 @@ tsP
 lEn
 wVn
 kBe
-ldH
+wVn
 vKy
 cLi
 eQC
@@ -101642,7 +101646,7 @@ dND
 fXn
 dND
 sEg
-sEg
+iKW
 lQu
 oqg
 xAV
