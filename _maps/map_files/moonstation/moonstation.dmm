@@ -14431,7 +14431,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -29082,10 +29081,6 @@
 /obj/machinery/camera/autoname/xenobiology/directional/north,
 /turf/open/floor/iron/freezer,
 /area/station/maintenance/xenobio_disposals)
-"jDs" = (
-/obj/machinery/computer/department_orders/service,
-/turf/open/floor/glass/reinforced,
-/area/station/service/hydroponics)
 "jDu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/sign/logo{
@@ -30025,7 +30020,6 @@
 "jSv" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/effect/mapping_helpers/burnt_floor,
-/obj/structure/window/reinforced/plasma/spawner/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "jSC" = (
@@ -33366,6 +33360,7 @@
 /obj/structure/sign/warning/radiation/directional/south,
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "kXz" = (
@@ -34940,6 +34935,7 @@
 "lvr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "lvs" = (
@@ -37618,7 +37614,6 @@
 /turf/closed/wall/mineral/wood,
 /area/station/service/theater)
 "mnx" = (
-/obj/effect/spawner/random/vending/colavend,
 /obj/machinery/airalarm/directional/east,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
@@ -40794,6 +40789,7 @@
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "nqp" = (
@@ -42756,7 +42752,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "nYT" = (
@@ -46518,6 +46513,7 @@
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter)
 "pkE" = (
@@ -47785,9 +47781,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/machinery/computer/department_orders/science{
-	department_delivery_areas = list(/area/station/science/robotics/lab)
-	},
+/obj/machinery/modular_computer/preset/civilian,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "pFT" = (
@@ -48169,8 +48163,8 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/gravity_generator)
 "pMp" = (
-/obj/effect/spawner/random/vending/snackvend,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
 "pMu" = (
@@ -59425,6 +59419,7 @@
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/structure/cable,
 /obj/machinery/camera/autoname/engineering/directional/west,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter/room)
 "txm" = (
@@ -64712,7 +64707,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "vlh" = (
@@ -66617,6 +66611,7 @@
 /area/station/command/bridge)
 "vSO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "vST" = (
@@ -89486,7 +89481,7 @@ stM
 stM
 stM
 stM
-stM
+vbd
 fJl
 tUX
 tUX
@@ -100309,7 +100304,7 @@ kqk
 ltA
 gHQ
 cNO
-jDs
+ltA
 jbw
 ltA
 ltA
