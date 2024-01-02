@@ -828,8 +828,6 @@
 		/obj/item/storage/bag/tray,
 		/obj/item/storage/bag/tray, // NOVA EDIT: Moves the second tray up to be near the default one
 		/obj/item/cooking/cyborg/power, //NOVA EDIT
-		/obj/item/rsf,
-		/obj/item/storage/bag/tray,
 		/obj/item/storage/bag/plants/cyborg, //bubber-edit
 		/obj/item/pen,
 		/obj/item/toy/crayon/spraycan/borg,
