@@ -13,7 +13,6 @@
 	reqs = list(/obj/item/stack/rods = 1)
 	time = 6 SECONDS
 	category = CAT_WEAPON_MELEE
-	always_available = FALSE
 
 /datum/crafting_recipe/silver_stake
 	name = "Silver Stake"
@@ -25,4 +24,3 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-	always_available = FALSE

@@ -178,7 +178,7 @@
 	throwforce = 12
 	armour_penetration = 10
 	embedding = list("embed_chance" = 35)
-	staketime = 80
+	staketime = 10 SECONDS
 
 /obj/item/stake/hardened/silver
 	name = "silver stake"
@@ -189,7 +189,7 @@
 	force = 9
 	armour_penetration = 25
 	embedding = list("embed_chance" = 65)
-	staketime = 60
+	staketime = 8 SECONDS
 
 //////////////////////
 //     ARCHIVES     //
