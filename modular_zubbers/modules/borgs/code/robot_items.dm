@@ -100,3 +100,6 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/cyborg
 	max_mod_capacity = 100
+
+/obj/item/storage/bag/plants/cyborg
+	name = "cyborg plant bag"

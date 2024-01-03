@@ -239,10 +239,6 @@
 		/obj/item/food/honeycomb,
 		/obj/item/seeds,
 		))
-
-/obj/item/storage/bag/plants/cyborg //bubber-edit - Adds cyborg plantbag
-	name = "cyborg plant bag"
-
 ////////
 
 /obj/item/storage/bag/plants/portaseeder
