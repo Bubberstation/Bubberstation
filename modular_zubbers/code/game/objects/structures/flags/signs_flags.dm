@@ -1,3 +1,5 @@
+//all sprites by Crumpaloo
+
 /obj/structure/sign/flag/galfed
 	name = "flag of the Galactic Federation"
 	desc = "The flag of the Galactic Federation. Despite being but a sliver of the full galaxy, this flag stands for freedom and equality for all no matter their species, religion, or culture."
@@ -33,3 +35,17 @@
 /obj/item/sign/flag/terragov
 	name = "folded flag of the Solarian State"
 	desc = "The folded flag of the Solarian State."
+
+/obj/structure/sign/flag/nri
+	name = "flag of the Novaya Rossiyskaya Imperiya"
+	desc = "The flag of the NRI, the white symbolizes nobility, the blue faithfulness, and the red symbolizes courage. In the middle is the emblem of the Russians, symbolizing their new home among the stars."
+	icon = 'modular_zubbers/icons/obj/flags.dmi'
+	icon_state = "flag_nri"
+	item_flag = /obj/item/sign/flag/nri
+
+/obj/item/sign/flag/nri
+	name = "folded flag of the Novaya Rossiyskaya Imperiya"
+	desc = "The folded flag of the Novaya Rossiyskaya Imperiya."
+	icon = 'modular_zubbers/icons/obj/flags.dmi'
+	icon_state = "folded_nri"
+	sign_path = /obj/structure/sign/flag/nri
