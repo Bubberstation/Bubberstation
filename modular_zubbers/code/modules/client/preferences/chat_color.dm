@@ -9,13 +9,13 @@
 	return
 
 /datum/preference/color/chat_color/deserialize(input, datum/preferences/preferences)
-	return process_chat_color(input)
+	return process_chat_color(sanitize_hexcolor(input))
 
 /datum/preference/color/chat_color/create_default_value()
 	return process_chat_color(random_color())
 
 /datum/preference/color/chat_color/serialize(input)
-	return process_chat_color(input)
+	return process_chat_color(sanitize_hexcolor(input))
 
 /mob/living/carbon/human/proc/apply_preference_chat_color(value)
 	if(isnull(value))
