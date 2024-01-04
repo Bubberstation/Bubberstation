@@ -135,7 +135,7 @@
 	var/total_brute = user.getBruteLoss_nonProsthetic()
 	var/total_burn = user.getFireLoss_nonProsthetic()
 	var/total_damage = total_brute + total_burn
-	if(total_burn >= 199)
+	if(total_burn >= user.maxHealth * 2)
 		return FALSE
 	if(SSsunlight.sunlight_active)
 		return FALSE
