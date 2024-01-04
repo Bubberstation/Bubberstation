@@ -216,3 +216,9 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			ghost.ManualFollow(poi)
 			ghost.reset_perspective(null)
 			return TRUE
+		if("view")
+			var/ref = params["ref"]
+			var/mob/living/carbon/human/target = (locate(ref) in GLOB.mob_list)
+			var/datum/examine_panel/panel = target.tgui
+			panel.holder = target
+			panel.ui_interact(user)
