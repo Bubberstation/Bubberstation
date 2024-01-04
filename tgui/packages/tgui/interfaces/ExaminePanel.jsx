@@ -34,6 +34,7 @@ const formatURLs = (text) => {
 
 export const ExaminePanel = (props) => {
   const [tabIndex, setTabIndex] = useState(1); // Bubber edit addition
+  const [lowerTabIndex, setLowerTabIndex] = useState(1); // Bubber edit addition
   const { act, data } = useBackend();
   const {
     character_name,
@@ -44,6 +45,7 @@ export const ExaminePanel = (props) => {
     ooc_notes,
     custom_species,
     custom_species_lore,
+    character_ad,
     headshot,
     headshot_nsfw, // Bubber edit addition
   } = data;
@@ -124,6 +126,9 @@ export const ExaminePanel = (props) => {
                 preserveWhitespace
                 minHeight="50%"
                 maxHeight="50%"
+                fontSize="14px"
+                lineHeight="1.7"
+                textIndent="3em"
               >
                 {formatURLs(flavor_text)}
               </Section>
@@ -135,6 +140,9 @@ export const ExaminePanel = (props) => {
                 preserveWhitespace
                 minHeight="50%"
                 maxHeight="50%"
+                fontSize="14px"
+                lineHeight="1.7"
+                textIndent="3em"
               >
                 {formatURLs(flavor_text_nsfw)}
               </Section>
@@ -146,22 +154,55 @@ export const ExaminePanel = (props) => {
                 preserveWhitespace
                 minHeight="50%"
                 maxHeight="50%"
+                fontSize="14px"
+                lineHeight="1.7"
+                textIndent="3em"
               >
                 {custom_species
                   ? formatURLs(custom_species_lore)
                   : 'Just a normal space dweller.'}
               </Section>
             )}
-            <Section
-              style={{ 'overflow-y': 'scroll' }}
-              fitted
-              preserveWhitespace
-              minHeight="40%"
-              maxHeight="40%"
-              title="OOC Notes"
-            >
-              <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
-            </Section>
+            <Tabs fluid>
+              <Tabs.Tab
+                selected={lowerTabIndex === 1}
+                onClick={() => setLowerTabIndex(1)}
+              >
+                <Section fitted title={'OOC Notes'} />
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={lowerTabIndex === 2}
+                onClick={() => setLowerTabIndex(2)}
+              >
+                <Section fitted title={'Character Advert'} />
+              </Tabs.Tab>
+            </Tabs>
+            {lowerTabIndex === 1 && (
+              <Section
+                style={{ 'overflow-y': 'scroll' }}
+                preserveWhitespace
+                fitted
+                minHeight="40%"
+                maxHeight="40%"
+                fontSize="14px"
+                lineHeight="1.7"
+              >
+                <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
+              </Section>
+            )}
+            {lowerTabIndex === 2 && (
+              <Section
+                style={{ 'overflow-y': 'scroll' }}
+                preserveWhitespace
+                fitted
+                minHeight="40%"
+                maxHeight="40%"
+                fontSize="14px"
+                lineHeight="1.7"
+              >
+                <Stack.Item>{formatURLs(character_ad)}</Stack.Item>
+              </Section>
+            )}
             {/* BUBBER EDIT END, NSFW FLAVOR TEXT */}
           </Stack.Item>
         </Stack>
