@@ -89,16 +89,16 @@
 		return FALSE
 	return TRUE
 
-
-/datum/mind/proc/is_valid_bloodsucker(datum/mind/creator)
-	if(!creator)
+/// Check if this is a valid person to actually be a bloodsucker
+/datum/mind/proc/is_valid_bloodsucker()
+	if(has_antag_datum(/datum/antagonist/bloodsucker))
 		return FALSE
-	if(!creator.has_antag_datum(/datum/antagonist/bloodsucker))
-		return FALSE
-	if(creator.current.mob_biotypes & MOB_ROBOTIC)
+	if(current.mob_biotypes & MOB_ROBOTIC)
+		stack_trace("Somehow tried to give [current] a bloodsucker datum, when they had MOB_ROBOTIC biotype. ")
 		return FALSE
 	// While the antag can function without the mob itself having no blood, it doesn't make sense.
-	if(HAS_TRAIT(creator, TRAIT_NOBLOOD))
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		stack_trace("Somehow tried to give [current] a bloodsucker datum, when they had TRAIT_NOBLOOD. ")
 		return FALSE
 	return TRUE
 
@@ -110,7 +110,7 @@
  * creator - Person attempting to convert them.
  */
 /datum/mind/proc/make_bloodsucker(datum/mind/creator)
-	if(!is_valid_bloodsucker(creator))
+	if(!is_valid_bloodsucker())
 		return FALSE
 	var/datum/antagonist/bloodsuckerdatum = add_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum && creator)

@@ -21,13 +21,13 @@
 	repeatable = FALSE
 
 /datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
+	..()
 	candidates = living_players
 	for(var/mob/living/player in candidates)
 		if(!is_station_level(player.z))
 			candidates.Remove(player)
 		else if(player.mind && (player.mind.special_role || length(player.mind.antag_datums) > 0))
 			candidates.Remove(player)
-	..()
 
 /datum/dynamic_ruleset/midround/bloodsucker/execute()
 	if(!length(candidates))
