@@ -19,7 +19,8 @@
 		At level 2, your target will additionally be muted.\n\
 		At level 3, you will be able to use the power through items covering your face.\n\
 		At level 5, you will be able to mesmerize regardless of your target's direction.\n\
-		Higher levels will increase the time of the mesmerize's freeze."
+		Higher levels will increase the time of the mesmerize's freeze.\n\
+		Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
@@ -121,7 +122,6 @@
 			ADD_TRAIT(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		mesmerized_target.Immobilize(power_time)
 		mesmerized_target.adjust_silence(power_time)
-		//mesmerized_target.silent += power_time / 10 // Silent isn't based on ticks.
 		mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
 		ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, BLOODSUCKER_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
 		addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
