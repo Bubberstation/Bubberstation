@@ -74,7 +74,7 @@
 			break
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)
-	user.adjustStaminaLoss(-owner.stamina_loss)
+	user.adjustStaminaLoss(-user.staminaloss)
 
 /datum/action/cooldown/bloodsucker/targeted/haste/power_activated_sucessfully()
 	. = ..()
