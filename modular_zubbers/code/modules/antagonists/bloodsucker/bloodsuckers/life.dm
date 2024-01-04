@@ -32,6 +32,7 @@
 	RegisterSignal(src, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(HandleDeath))
 
 /datum/antagonist/bloodsucker/proc/on_revive(mob/living/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(owner.current, COMSIG_LIVING_REVIVE)
 	UnregisterSignal(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
 
@@ -66,7 +67,7 @@
 	if(!ishuman(target)) // Penalty for Non-Human Blood
 		blood_taken /= 2
 	// High level vampires get much less blood from mindless targets
-	else if(bloodsucker_level > BLOODSUCKER_HIGH_LEVEL && !target?.mind)
+	else if(bloodsucker_level >= BLOODSUCKER_HIGH_LEVEL && !target.mind)
 		blood_taken /= 4
 	else if(!target?.mind) // Penalty for Mindless Blood
 		blood_taken /= 2
@@ -169,7 +170,9 @@
 		current_eyes.color_cutoffs = list(25, 8, 5)
 		current_eyes.sight_flags = SEE_MOBS
 	bloodsuckeruser.update_sight()
-
+	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
+	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
+		on_revive()
 	if(bloodsuckeruser.stat == DEAD)
 		bloodsuckeruser.revive()
 	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
@@ -182,6 +185,7 @@
 		var/obj/item/organ/yucky_organs = tumors
 		if(!istype(yucky_organs))
 			continue
+		to_chat(bloodsuckeruser, span_warning("You feel a little ill for a moment, but it passes. Did you just cough up a tumor?"))
 		yucky_organs.Remove(bloodsuckeruser)
 		yucky_organs.forceMove(get_turf(bloodsuckeruser))
 
@@ -279,7 +283,7 @@
 	free_all_vassals()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
-		owner.current.gib(TRUE, FALSE, FALSE)
+		owner.current.gib(DROP_ITEMS)
 		return
 	// Drop anything in us and play a tune
 	var/mob/living/carbon/user = owner.current
@@ -304,6 +308,6 @@
 		span_warning("[user]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
 		span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 		span_hear("<span class='italics'>You hear a wet, bursting sound."))
-	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib), TRUE, FALSE, FALSE), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib), DROP_ITEMS), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 #undef BLOODSUCKER_PASSIVE_BLOOD_DRAIN
