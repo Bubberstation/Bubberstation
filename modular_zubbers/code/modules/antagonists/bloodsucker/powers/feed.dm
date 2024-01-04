@@ -76,6 +76,7 @@
 	return ..()
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(trigger_flags)
+	silent_feed = TRUE
 	var/mob/living/feed_target = target_ref.resolve()
 	if(istype(feed_target, /mob/living/basic/mouse))
 		to_chat(owner, span_notice("You recoil at the taste of a lesser lifeform."))
