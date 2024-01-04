@@ -7,7 +7,7 @@
 		When lunging at someone, you will grab them, immediately starting off at aggressive.\n\
 		Riot gear and Monster Hunters are protected and will only be passively grabbed.\n\
 		You cannot use the Power if you are already grabbing someone, or are being grabbed.\n\
-		If you grab from behind, or from darkness (Cloak of Darkness works), you will knock the target down.\n\
+		If you grab from behind, or while using cloak of darkness, you will knock the target down.\n\
 		If used on a dead body, will tear their heart out.\n\
 		Higher levels increase the knockdown dealt to enemies.\n\
 		At level 4, you will no longer spin, but you will be limited to tackling from only 6 tiles away."
@@ -85,7 +85,7 @@
 		var/y_offset = base_y + rand(-3, 3)
 		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
 
-	if(!do_after(owner, 4 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_SLOWDOWNS), extra_checks = CALLBACK(src, PROC_REF(CheckCanTarget), target_atom)))
+	if(!do_after(owner, 2 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_SLOWDOWNS), extra_checks = CALLBACK(src, PROC_REF(CheckCanTarget), target_atom)))
 		end_target_lunge(base_x, base_y)
 
 		return FALSE
