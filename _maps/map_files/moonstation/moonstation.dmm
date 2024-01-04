@@ -3387,10 +3387,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "bbw" = (
-/obj/structure/transit_tube/station/dispenser/reverse{
+/obj/item/radio/intercom/directional/west,
+/obj/structure/transit_tube/station/reverse/flipped{
 	dir = 1
 	},
-/obj/item/radio/intercom/directional/west,
+/obj/structure/transit_tube_pod{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/asteroid_lobby)
 "bbx" = (
@@ -4121,9 +4124,6 @@
 	},
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/maintenance/abandon_cafeteria)
-"bpc" = (
-/turf/open/floor/plating/airless,
-/area/station/science/ordnance/testlab)
 "bpz" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners{
@@ -5042,11 +5042,11 @@
 /turf/open/floor/wood,
 /area/station/service/bar)
 "bHQ" = (
-/obj/structure/transit_tube/station/dispenser/reverse/flipped{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/structure/transit_tube/station/reverse{
+	dir = 8
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
@@ -7710,6 +7710,7 @@
 /area/station/command/cc_dock)
 "cBe" = (
 /obj/effect/spawner/structure/window,
+/obj/structure/curtain/bounty/start_closed,
 /turf/open/floor/plating,
 /area/station/commons/vacant_room/office)
 "cBn" = (
@@ -7853,9 +7854,10 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/fore)
 "cDO" = (
-/obj/structure/transit_tube/station/dispenser/reverse/flipped{
+/obj/structure/transit_tube/station/reverse{
 	dir = 4
 	},
+/obj/structure/transit_tube_pod,
 /turf/open/floor/iron/dark/small,
 /area/station/ai_monitored/turret_protected/aisat/teleporter)
 "cDR" = (
@@ -27884,12 +27886,13 @@
 /turf/open/floor/stone,
 /area/station/common/pool)
 "jib" = (
-/obj/structure/transit_tube/station/dispenser/reverse{
-	dir = 8
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/structure/transit_tube/station/reverse/flipped{
+	dir = 8
+	},
+/obj/structure/transit_tube_pod,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "jic" = (
@@ -35261,15 +35264,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/library)
-"lxT" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Morgue"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
-/obj/machinery/door/firedoor,
-/obj/effect/landmark/navigate_destination/autoname,
-/turf/open/floor/iron/dark,
-/area/station/medical/morgue)
 "lxU" = (
 /obj/effect/spawner/random/burgerstation/loot,
 /turf/open/floor/plating,
@@ -43123,6 +43117,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/south,
+/obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "oaq" = (
@@ -43825,6 +43820,7 @@
 	name = "Morgue"
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "olV" = (
@@ -46373,8 +46369,8 @@
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "pcK" = (
-/obj/structure/transit_tube/station/dispenser/reverse/flipped,
 /obj/item/radio/intercom/directional/east,
+/obj/structure/transit_tube/station/reverse,
 /turf/open/floor/iron/dark,
 /area/station/engineering/asteroid_lobby)
 "pcN" = (
@@ -47828,6 +47824,9 @@
 "pCv" = (
 /obj/effect/spawner/random/clothing/costume,
 /obj/structure/rack,
+/obj/structure/railing{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "pCA" = (
@@ -55185,10 +55184,10 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/rbmk2)
 "rVu" = (
-/obj/structure/sign/departments/morgue/directional/west,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
+/obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "rVR" = (
@@ -58877,7 +58876,7 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison/safe)
 "the" = (
-/obj/structure/transit_tube/station/dispenser/reverse{
+/obj/structure/transit_tube/station/reverse/flipped{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/small,
@@ -63643,6 +63642,9 @@
 /obj/structure/cable,
 /obj/structure/transit_tube/station/reverse/flipped{
 	dir = 1
+	},
+/obj/structure/transit_tube_pod{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/prison)
@@ -114109,7 +114111,7 @@ qNH
 qNH
 qNH
 qNH
-lxT
+qNH
 qNH
 qNH
 uQd
@@ -124670,7 +124672,7 @@ stM
 stM
 stM
 fJl
-bpc
+xqV
 xqV
 vTn
 xqV
