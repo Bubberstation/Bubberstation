@@ -104,7 +104,7 @@
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	RegisterSignal(current_mob,COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
@@ -221,12 +221,14 @@
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
+	if(!old_body || !new_body)
+		CRASH("Bloodsucker on_body_transfer called with null bodies!")
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		if(old_body)
 			all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
-	var/obj/item/bodypart/old_left_arm = old_body.get_bodypart(BODY_ZONE_L_ARM)
-	var/obj/item/bodypart/old_right_arm = old_body.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/item/bodypart/old_left_arm = old_body?.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/old_right_arm = old_body?.get_bodypart(BODY_ZONE_R_ARM)
 	var/old_left_arm_unarmed_damage_low
 	var/old_left_arm_unarmed_damage_high
 	var/old_right_arm_unarmed_damage_low
@@ -235,27 +237,31 @@
 		var/mob/living/carbon/human/old_user = old_body
 		REMOVE_TRAIT(old_user, TRAIT_DRINKS_BLOOD, BLOODSUCKER_TRAIT)
 		//Keep track of what they were
-		old_left_arm_unarmed_damage_low = old_left_arm.unarmed_damage_low
-		old_left_arm_unarmed_damage_high = old_left_arm.unarmed_damage_high
-		old_right_arm_unarmed_damage_low = old_right_arm.unarmed_damage_low
-		old_right_arm_unarmed_damage_high = old_right_arm.unarmed_damage_high
+		old_left_arm_unarmed_damage_low = old_left_arm?.unarmed_damage_low
+		old_left_arm_unarmed_damage_high = old_left_arm?.unarmed_damage_high
+		old_right_arm_unarmed_damage_low = old_right_arm?.unarmed_damage_low
+		old_right_arm_unarmed_damage_high = old_right_arm?.unarmed_damage_high
 		//Then reset them
-		old_left_arm.unarmed_damage_low = initial(old_left_arm.unarmed_damage_low)
-		old_left_arm.unarmed_damage_high = initial(old_left_arm.unarmed_damage_high)
-		old_right_arm.unarmed_damage_low = initial(old_right_arm.unarmed_damage_low)
-		old_right_arm.unarmed_damage_high = initial(old_right_arm.unarmed_damage_high)
+		if(old_left_arm)
+			old_left_arm.unarmed_damage_low = initial(old_left_arm.unarmed_damage_low)
+			old_left_arm.unarmed_damage_high = initial(old_left_arm.unarmed_damage_high)
+		if(old_right_arm)
+			old_right_arm.unarmed_damage_low = initial(old_right_arm.unarmed_damage_low)
+			old_right_arm.unarmed_damage_high = initial(old_right_arm.unarmed_damage_high)
 	if(ishuman(new_body))
 		var/mob/living/carbon/human/new_user = new_body
 		REMOVE_TRAIT(new_user, TRAIT_DRINKS_BLOOD, BLOODSUCKER_TRAIT)
 		var/obj/item/bodypart/new_left_arm
 		var/obj/item/bodypart/new_right_arm
 		//Give old punch damage values
-		new_left_arm = new_body.get_bodypart(BODY_ZONE_L_ARM)
-		new_right_arm = new_body.get_bodypart(BODY_ZONE_R_ARM)
-		new_left_arm.unarmed_damage_low = old_left_arm_unarmed_damage_low
-		new_left_arm.unarmed_damage_high = old_left_arm_unarmed_damage_high
-		new_right_arm.unarmed_damage_low = old_right_arm_unarmed_damage_low
-		new_right_arm.unarmed_damage_high = old_right_arm_unarmed_damage_high
+		new_left_arm = new_body?.get_bodypart(BODY_ZONE_L_ARM)
+		new_right_arm = new_body?.get_bodypart(BODY_ZONE_R_ARM)
+		if(old_left_arm)
+			new_left_arm.unarmed_damage_low = old_left_arm_unarmed_damage_low
+			new_left_arm.unarmed_damage_high = old_left_arm_unarmed_damage_high
+		if(old_right_arm)
+			new_right_arm.unarmed_damage_low = old_right_arm_unarmed_damage_low
+			new_right_arm.unarmed_damage_high = old_right_arm_unarmed_damage_high
 
 	//Give Bloodsucker Traits
 	if(old_body)
