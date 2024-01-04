@@ -143,8 +143,8 @@
 	if(!ContinueActive(user, feed_target, !silent_feed, !silent_feed))
 		if(!silent_feed)
 			user.visible_message(
-				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"),
-				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"))
+				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!"),
+				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!"))
 			// Deal Damage to Target (should have been more careful!)
 			if(iscarbon(feed_target))
 				var/mob/living/carbon/carbon_target = feed_target
