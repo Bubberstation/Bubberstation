@@ -15,7 +15,7 @@ const erpTagColor = {
 };
 
 export const ZubbersCharacterDirectory = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend();
 
   const {
     personalVisibility,
@@ -25,10 +25,7 @@ export const ZubbersCharacterDirectory = (props) => {
     personalVoreTag,
     personalHypnoTag,
     personalNonconTag,
-    prefsOnly,
   } = data;
-
-  const [overwritePrefs, setOverwritePrefs] = useState(prefsOnly);
 
   return (
     <Window width={640} height={480} resizeable>
@@ -36,12 +33,7 @@ export const ZubbersCharacterDirectory = (props) => {
         <Section title="Controls">
           <LabeledList>
             <LabeledList.Item label="Visibility">
-              <Button
-                fluid
-                onClick={() =>
-                  act('setVisible', { overwrite_prefs: overwritePrefs })
-                }
-              >
+              <Button fluid>
                 {personalVisibility ? 'Shown' : 'Not Shown'}
               </Button>
             </LabeledList.Item>
@@ -52,44 +44,16 @@ export const ZubbersCharacterDirectory = (props) => {
               <Button fluid>{personalGender}</Button>
             </LabeledList.Item>
             <LabeledList.Item label="ERP">
-              <Button
-                fluid
-                onClick={() =>
-                  act('setErpTag', { overwrite_prefs: overwritePrefs })
-                }
-              >
-                {personalErpTag}
-              </Button>
+              <Button fluid>{personalErpTag}</Button>
             </LabeledList.Item>
             <LabeledList.Item label="Vore">
-              <Button
-                fluid
-                onClick={() =>
-                  act('setTag', { overwrite_prefs: overwritePrefs })
-                }
-              >
-                {personalVoreTag}
-              </Button>
+              <Button fluid>{personalVoreTag}</Button>
             </LabeledList.Item>
             <LabeledList.Item label="Hypno">
-              <Button
-                fluid
-                onClick={() =>
-                  act('setHypnoTag', { overwrite_prefs: overwritePrefs })
-                }
-              >
-                {personalHypnoTag}
-              </Button>
+              <Button fluid>{personalHypnoTag}</Button>
             </LabeledList.Item>
             <LabeledList.Item label="Noncon">
-              <Button
-                fluid
-                onClick={() =>
-                  act('setNonconTag', { overwrite_prefs: overwritePrefs })
-                }
-              >
-                {personalNonconTag}
-              </Button>
+              <Button fluid>{personalNonconTag}</Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>

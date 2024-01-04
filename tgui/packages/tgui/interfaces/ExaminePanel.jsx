@@ -182,8 +182,8 @@ export const ExaminePanel = (props) => {
                 style={{ 'overflow-y': 'scroll' }}
                 preserveWhitespace
                 fitted
-                minHeight="40%"
-                maxHeight="40%"
+                minHeight="35%"
+                maxHeight="35%"
                 fontSize="14px"
                 lineHeight="1.7"
               >
@@ -195,8 +195,8 @@ export const ExaminePanel = (props) => {
                 style={{ 'overflow-y': 'scroll' }}
                 preserveWhitespace
                 fitted
-                minHeight="40%"
-                maxHeight="40%"
+                minHeight="35%"
+                maxHeight="35%"
                 fontSize="14px"
                 lineHeight="1.7"
               >
