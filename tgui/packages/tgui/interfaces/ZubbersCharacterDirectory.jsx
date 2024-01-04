@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
+import { Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 const erpTagColor = {
@@ -14,8 +14,8 @@ const erpTagColor = {
   No: '#000000',
 };
 
-export const ZubbersCharacterDirectory = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ZubbersCharacterDirectory = (props) => {
+  const { act, data } = useBackend();
 
   const {
     personalVisibility,
@@ -28,156 +28,91 @@ export const ZubbersCharacterDirectory = (props, context) => {
     prefsOnly,
   } = data;
 
-  const [overlay, setOverlay] = useState(null);
-
   const [overwritePrefs, setOverwritePrefs] = useState(prefsOnly);
 
   return (
     <Window width={640} height={480} resizeable>
       <Window.Content scrollable>
-        {(overlay && <ViewCharacter />) || (
-          <>
-            <Section title="Controls">
-              <LabeledList>
-                <LabeledList.Item label="Visibility">
-                  <Button
-                    fluid
-                    onClick={() =>
-                      act('setVisible', { overwrite_prefs: overwritePrefs })}>
-                    {personalVisibility ? 'Shown' : 'Not Shown'}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Attraction">
-                  <Button fluid>{personalAttraction}</Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Gender">
-                  <Button fluid>{personalGender}</Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="ERP">
-                  <Button
-                    fluid
-                    onClick={() =>
-                      act('setErpTag', { overwrite_prefs: overwritePrefs })}>
-                    {personalErpTag}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Vore">
-                  <Button
-                    fluid
-                    onClick={() =>
-                      act('setTag', { overwrite_prefs: overwritePrefs })}>
-                    {personalVoreTag}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Hypno">
-                  <Button
-                    fluid
-                    onClick={() =>
-                      act('setHypnoTag', { overwrite_prefs: overwritePrefs })}>
-                    {personalHypnoTag}
-                  </Button>
-                </LabeledList.Item>
-                <LabeledList.Item label="Noncon">
-                  <Button
-                    fluid
-                    onClick={() =>
-                      act('setNonconTag', { overwrite_prefs: overwritePrefs })}>
-                    {personalNonconTag}
-                  </Button>
-                </LabeledList.Item>
-              </LabeledList>
-            </Section>
-            <CharacterDirectoryList />
-          </>
-        )}
+        <Section title="Controls">
+          <LabeledList>
+            <LabeledList.Item label="Visibility">
+              <Button
+                fluid
+                onClick={() =>
+                  act('setVisible', { overwrite_prefs: overwritePrefs })
+                }
+              >
+                {personalVisibility ? 'Shown' : 'Not Shown'}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Attraction">
+              <Button fluid>{personalAttraction}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Gender">
+              <Button fluid>{personalGender}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="ERP">
+              <Button
+                fluid
+                onClick={() =>
+                  act('setErpTag', { overwrite_prefs: overwritePrefs })
+                }
+              >
+                {personalErpTag}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Vore">
+              <Button
+                fluid
+                onClick={() =>
+                  act('setTag', { overwrite_prefs: overwritePrefs })
+                }
+              >
+                {personalVoreTag}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Hypno">
+              <Button
+                fluid
+                onClick={() =>
+                  act('setHypnoTag', { overwrite_prefs: overwritePrefs })
+                }
+              >
+                {personalHypnoTag}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Noncon">
+              <Button
+                fluid
+                onClick={() =>
+                  act('setNonconTag', { overwrite_prefs: overwritePrefs })
+                }
+              >
+                {personalNonconTag}
+              </Button>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+        <CharacterDirectoryList />
       </Window.Content>
     </Window>
   );
 };
 
-const ViewCharacter = (props, context) => {
-  const [overlay, setOverlay] = useState(null);
-
-  return (
-    <Section
-      title={overlay.name}
-      buttons={
-        <Button
-          icon="arrow-left"
-          onClick={() => setOverlay(null)}>
-          {"Back"}
-        </Button>
-      }
-    >
-      <Section level={2} title="Species">
-        <Box>{overlay.species}</Box>
-      </Section>
-      <Section level={2} title="Attraction">
-        <Box>{overlay.attraction}</Box>
-      </Section>
-      <Section level={2} title="Gender">
-        <Box>{overlay.gender}</Box>
-      </Section>
-      <Section level={2} title="ERP">
-        <Box p={1} backgroundColor={erpTagColor[overlay.erp]}>
-          {overlay.erp}
-        </Box>
-        <Section level={2} title="Vore">
-          <Box>{overlay.vore}</Box>
-        </Section>
-      </Section>
-      <Section level={2} title="Hypno">
-        <Box>{overlay.hypno}</Box>
-      </Section>
-      <Section level={2} title="Noncon">
-        <Box>{overlay.noncon}</Box>
-      </Section>
-      <Section level={2} title="Character Ad">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.character_ad || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="Exploitable">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.exploitable || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="OOC Notes">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.ooc_notes || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="Flavor Text">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.flavor_text || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="NSFW Flavor Text">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.nsfw_flavor_text || 'Unset'}
-        </Box>
-      </Section>
-    </Section>
-  );
-};
-
-const CharacterDirectoryList = (props, context) => {
-  const { act, data } = useBackend(context);
+const CharacterDirectoryList = (props) => {
+  const { act, data } = useBackend();
 
   const { directory, canOrbit } = data;
 
   const [sortId, _setSortId] = useState('name');
   const [sortOrder, _setSortOrder] = useState('name');
-  const [overlay, setOverlay] = useState(null);
 
   return (
     <Section
       title="Directory"
       buttons={
-        <Button
-          icon="sync"
-          onClick={() => act('refresh')}>
-        {"Refresh"}
+        <Button icon="sync" onClick={() => act('refresh')}>
+          {'Refresh'}
         </Button>
       }
     >
@@ -208,7 +143,8 @@ const CharacterDirectoryList = (props, context) => {
                     color={erpTagColor[character.erp]}
                     icon="ghost"
                     tooltip="Orbit"
-                    onClick={() => act('orbit', { ref: character.ref })}>
+                    onClick={() => act('orbit', { ref: character.ref })}
+                  >
                     {character.name}
                   </Button>
                 ) : (
@@ -224,12 +160,12 @@ const CharacterDirectoryList = (props, context) => {
               <Table.Cell>{character.noncon}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
-                  onClick={() => setOverlay(character)}
+                  onClick={() => act('view', { ref: character.ref })}
                   color="transparent"
                   icon="sticky-note"
-                  mr={1}>
-                  {"View"}
-                </Button>
+                  mr={1}
+                  content="View"
+                />
               </Table.Cell>
             </Table.Row>
           ))}
@@ -238,7 +174,7 @@ const CharacterDirectoryList = (props, context) => {
   );
 };
 
-const SortButton = (props, context) => {
+const SortButton = (props) => {
   const { id, children } = props;
 
   // Hey, same keys mean same data~
