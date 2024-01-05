@@ -44,6 +44,12 @@
 
 
 /* BUBBER SPRITE ADDITIONS BELOW */
+/obj/item/robot_model/standard/Initialize(mapload)
+	. = ..()
+	borg_skins |= list(
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Standard", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL))
+	)
+
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
