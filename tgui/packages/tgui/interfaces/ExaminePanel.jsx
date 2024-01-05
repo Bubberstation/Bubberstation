@@ -185,7 +185,7 @@ export const ExaminePanel = (props) => {
                 minHeight="35%"
                 maxHeight="35%"
                 fontSize="14px"
-                lineHeight="1.7"
+                lineHeight="1.5"
               >
                 <Stack.Item>{formatURLs(ooc_notes)}</Stack.Item>
               </Section>
@@ -198,7 +198,7 @@ export const ExaminePanel = (props) => {
                 minHeight="35%"
                 maxHeight="35%"
                 fontSize="14px"
-                lineHeight="1.7"
+                lineHeight="1.5"
               >
                 <Stack.Item>{formatURLs(character_ad)}</Stack.Item>
               </Section>
