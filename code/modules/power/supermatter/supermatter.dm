@@ -250,8 +250,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
 	. = ..()
 	var/immune = HAS_MIND_TRAIT(user, TRAIT_MADNESS_IMMUNE)
-	if(isliving(user) && !immune && (get_dist(user, src) < SM_HALLUCINATION_RANGE(internal_energy)))
-		. += span_danger("You get headaches just from looking at it.")
+	if(isliving(user))
+		if (!immune && (get_dist(user, src) < SM_HALLUCINATION_RANGE(internal_energy)))
+			. += span_danger("You get headaches just from looking at it.")
+		var/mob/living/living_user = user
+		if (HAS_TRAIT(user, TRAIT_REMOTE_TASTING))
+			to_chat(user, span_warning("The taste is overwhelming and indescribable!"))
+			living_user.electrocute_act(shock_damage = 15, source = src, flags = SHOCK_KNOCKDOWN | SHOCK_NOGLOVES)
+			. += span_notice("It could use a little more Sodium Chloride...")
 
 	if(holiday_lights)
 		. += span_notice("Radiating both festive cheer and actual radiation, it has a dazzling spectacle lights wrapped lovingly around the base transforming it from a potential doomsday device into a cosmic yuletide centerpiece.")
@@ -312,7 +318,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	damage_factors = calculate_damage()
 	if(damage == 0) // Clear any in game forced delams if on full health.
 		set_delam(SM_DELAM_PRIO_IN_GAME, SM_DELAM_STRATEGY_PURGE)
-	else
+	else if(damage <= explosion_point)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
 	if(damage > explosion_point && !final_countdown)
@@ -1039,11 +1045,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/holiday_lights()
 	holiday_lights = TRUE
-	RegisterSignal(src, COMSIG_ATOM_ATTACKBY, PROC_REF(holiday_item_interaction))
+	RegisterSignal(src, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(holiday_item_interaction))
 	update_appearance()
 
 /// Consume the santa hat and add it as an overlay
-/obj/machinery/power/supermatter_crystal/proc/holiday_item_interaction(datum/source, obj/item/item, mob/living/user)
+/obj/machinery/power/supermatter_crystal/proc/holiday_item_interaction(source, mob/living/user, obj/item/item, list/modifiers)
 	SIGNAL_HANDLER
 	if(istype(item, /obj/item/clothing/head/costume/santa) || istype(item, /obj/item/clothing/head/costume/skyrat/christmas)) // SKYRAT EDIT CHANGE - Loadouts
 		QDEL_NULL(item)
