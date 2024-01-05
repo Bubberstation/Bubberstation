@@ -128,8 +128,9 @@ const CharacterDirectoryList = (props) => {
                   color="transparent"
                   icon="sticky-note"
                   mr={1}
-                  content="View"
-                />
+                >
+                  {'View'}
+                </Button>
               </Table.Cell>
             </Table.Row>
           ))}
