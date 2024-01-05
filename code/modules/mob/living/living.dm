@@ -15,6 +15,9 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
 	gravity_setup()
+	if(!voice_type)
+		voice_type = pick(voice_type2sound)
+	else voice_type = client?.preferences?.read_preference(/datum/preference/choiced/voice_type) // BUBBER EDIT ADDITION: GOON VOCAL BARKS
 	ADD_TRAIT(src, TRAIT_UNIQUE_IMMERSE, INNATE_TRAIT)
 
 /mob/living/prepare_huds()
@@ -747,6 +750,7 @@
 		setDir(pick(NORTH, SOUTH)) // We are and look helpless.
 	if(rotate_on_lying)
 		body_position_pixel_y_offset = PIXEL_Y_OFFSET_LYING
+		playsound(loc, 'goon/sounds/body_thud.ogg', ishuman(src) ? 40 : 15, 1, 0.3) //BUBBER EDIT ADDITION: GOON VOCAL BARKS
 
 
 /// Proc to append behavior related to lying down.

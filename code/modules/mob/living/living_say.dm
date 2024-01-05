@@ -257,10 +257,31 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	return TRUE
 
+//Bubberstation edit begin: GOON VOCAL BARKS
+	///Play a sound to indicate we just spoke
+	if(client && !HAS_TRAIT(src, TRAIT_SIGN_LANG))
+		var/ending = copytext_char(message, -1)
+		var/sound/speak_sound
+		if(ending == "?")
+			speak_sound = voice_type2sound[voice_type]["?"]
+		else if(ending == "!")
+			speak_sound = voice_type2sound[voice_type]["!"]
+		else
+			speak_sound = voice_type2sound[voice_type][voice_type]
+		playsound(src, speak_sound, 300, 1, SHORT_RANGE_SOUND_EXTRARANGE-2, falloff_exponent = 0, pressure_affected = FALSE, ignore_walls = FALSE, use_reverb = FALSE)
+	//Bubberstation edit end: GOON VOCAL BARKS
+
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range=0)
 	if((SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_HEAR, args) & COMSIG_MOVABLE_CANCEL_HEARING) || !GET_CLIENT(src))
 		return FALSE
+
+//BUBBER EDIT: GOON VOCAL BARKS
+	if(radio_freq && can_hear())
+		var/atom/movable/virtualspeaker/V = speaker
+		if(isAI(V.source))
+			playsound_local(get_turf(src), 'goon/sounds/radio_ai.ogg', 170, 1, 0, 0, pressure_affected = FALSE, use_reverb = FALSE)
+	//BUBBER EDIT END: GOON VOCAL BARKS
 
 	var/deaf_message
 	var/deaf_type

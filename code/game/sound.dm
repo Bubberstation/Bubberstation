@@ -105,7 +105,7 @@
 		//sound volume falloff with distance
 		var/distance = get_dist(turf_loc, turf_source) * distance_multiplier
 
-		if(max_distance) //If theres no max_distance we're not a 3D sound, so no falloff.
+		if(max_distance && falloff_exponent) //If theres no max_distance we're not a 3D sound, so no falloff.
 			sound_to_use.volume -= (max(distance - falloff_distance, 0) ** (1 / falloff_exponent)) / ((max(max_distance, distance) - falloff_distance) ** (1 / falloff_exponent)) * sound_to_use.volume
 			//https://www.desmos.com/calculator/sqdfl8ipgf
 
