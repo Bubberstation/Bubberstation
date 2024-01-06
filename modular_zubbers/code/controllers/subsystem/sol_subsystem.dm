@@ -1,7 +1,10 @@
 ///How long Sol will last until it's night again.
 #define TIME_BLOODSUCKER_DAY 60
 ///Base time nighttime should be in for, until Sol rises.
-#define TIME_BLOODSUCKER_NIGHT 1200 // 20 minutes
+// Can't put defines in defines, so we have to use deciseconds.
+#define TIME_BLOODSUCKER_NIGHT_MAX 1320 // 22 minutes
+#define TIME_BLOODSUCKER_NIGHT_MIN 1020 // 17 minutes
+
 ///Time left to send an alert to Bloodsuckers about an incoming Sol.
 #define TIME_BLOODSUCKER_DAY_WARN 90
 ///Time left to send an urgent alert to Bloodsuckers about an incoming Sol.
@@ -21,7 +24,7 @@ SUBSYSTEM_DEF(sunlight)
 	///If the Sun is currently out our not.
 	var/sunlight_active = FALSE
 	///The time between the next cycle, randomized every night.
-	var/time_til_cycle = TIME_BLOODSUCKER_NIGHT
+	var/time_til_cycle = TIME_BLOODSUCKER_NIGHT_MAX
 	///If Bloodsucker levels for the night has been given out yet.
 	var/issued_XP = FALSE
 
@@ -37,7 +40,7 @@ SUBSYSTEM_DEF(sunlight)
 			sunlight_active = FALSE
 			issued_XP = FALSE
 			//randomize the next sol timer
-			time_til_cycle = round(rand((TIME_BLOODSUCKER_NIGHT-TIME_BLOODSUCKER_SOL_DELAY), (TIME_BLOODSUCKER_NIGHT+TIME_BLOODSUCKER_SOL_DELAY)), 1)
+			time_til_cycle = rand(TIME_BLOODSUCKER_NIGHT_MIN, TIME_BLOODSUCKER_NIGHT_MAX)
 			message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [time_til_cycle / 60] minutes.")
 			SEND_SIGNAL(src, COMSIG_SOL_END)
 			warn_daylight(
@@ -83,7 +86,8 @@ SUBSYSTEM_DEF(sunlight)
 #undef TIME_BLOODSUCKER_SOL_DELAY
 
 #undef TIME_BLOODSUCKER_DAY
-#undef TIME_BLOODSUCKER_NIGHT
+#undef TIME_BLOODSUCKER_NIGHT_MAX
+#undef TIME_BLOODSUCKER_NIGHT_MIN
 #undef TIME_BLOODSUCKER_DAY_WARN
 #undef TIME_BLOODSUCKER_DAY_FINAL_WARN
 #undef TIME_BLOODSUCKER_BURN_INTERVAL
