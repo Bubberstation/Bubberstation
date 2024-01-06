@@ -414,8 +414,7 @@
 	if(HAS_TRAIT(owner.current, TRAIT_SKITTISH))
 		REMOVE_TRAIT(owner.current, TRAIT_SKITTISH, ROUNDSTART_TRAIT)
 	// Tongue & Language
-	owner.current.grant_all_languages(FALSE, FALSE, TRUE)
-	owner.current.grant_language(/datum/language/vampiric)
+	owner.current.grant_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
 	/// Clear Disabilities & Organs
 	heal_vampire_organs()
 
@@ -446,7 +445,7 @@
 	// Update Health
 	owner.current.setMaxHealth(initial(owner.current.maxHealth))
 	// Language
-	owner.current.remove_language(/datum/language/vampiric)
+	owner.current.remove_language(/datum/language/vampiric, ALL, LANGUAGE_MIND)
 	// Heart & Eyes
 	var/mob/living/carbon/user = owner.current
 	var/obj/item/organ/internal/heart/newheart = owner.current.get_organ_slot(ORGAN_SLOT_HEART)
