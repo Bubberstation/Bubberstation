@@ -78,9 +78,8 @@
 		//BUBBER EDIT BEGIN: SILICON PREFS
 		custom_species = preferences.read_preference(/datum/preference/text/custom_species/silicon)
 		custom_species_lore = preferences.read_preference(/datum/preference/text/custom_species_lore/silicon)
-		if(preferences.read_preference(/datum/preference/text/ooc_notes/silicon) != "")
+		if(preferences.read_preference(/datum/preference/text/ooc_notes/silicon))
 			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
-		else ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes)
 		if(preferences.read_preference(/datum/preference/text/headshot/silicon))
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
 		//BUBBER EDIT END: SILICON HEADSHOT
