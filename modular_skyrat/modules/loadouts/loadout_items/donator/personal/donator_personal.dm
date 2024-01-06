@@ -13,11 +13,11 @@
 	item_path = /obj/item/canvas/drawingtablet
 	//ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/shoes/heeled_jackboots
+/* /datum/loadout_item/shoes/heeled_jackboots - BUBBERSTATION
 	name = "High-heel Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/heel
 	//ckeywhitelist = list("thedragmeme")
-//As they requested, it's properly public now.
+*/ //As they requested, it's properly public now. - BUBBERSTATION
 
 /datum/loadout_item/suit/furcoat
 	name = "Leather coat with fur"
