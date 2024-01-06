@@ -36,9 +36,9 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		return FALSE
 	// SKYRAT EDIT ADDITION START
 /*	if(job.veteran_only)
-		return FALSE */ //BUBBER Edit Removal, let clown slots be opened.
+		return FALSE  //BUBBER Edit Removal, let clown slots be opened.
 	// SKYRAT EDIT ADDITION END
-	return TRUE
+	return TRUE */
 
 
 /datum/computer_file/program/job_management/proc/can_open_job(datum/job/job)
