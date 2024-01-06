@@ -69,3 +69,23 @@ export const headshot_silicon_nsfw: Feature<string> = {
     your character preview in the examine more window.',
   component: FeatureShortTextInput,
 };
+
+export const ooc_notes_silicon: Feature<string> = {
+  name: 'OOC Notes (Silicon)',
+  description: 'Same as OOC notes, but for your silicon character!',
+  component: FeatureTextInput,
+};
+
+export const custom_species_silicon: Feature<string> = {
+  name: 'Custom Model Name',
+  description:
+    'The name of the module for your Silicon company, such as "Armadyne Pleasure Model."',
+  component: FeatureShortTextInput,
+};
+
+export const custom_species_lore_silicon: Feature<string> = {
+  name: 'Custom Model Lore',
+  description:
+    'Lore for your silicon, typically its company, make, model, and details regarding its creation.',
+  component: FeatureTextInput,
+};

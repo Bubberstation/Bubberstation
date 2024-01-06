@@ -75,13 +75,14 @@
 	// If other variants of mob/living need to be handled at some point, put them here
 	if(issilicon(holder))
 		flavor_text = preferences.read_preference(/datum/preference/text/silicon_flavor_text)
-		custom_species = "Silicon"
-		custom_species_lore = "A cyborg unit."
-		ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes)
-		//BUBBER EDIT BEGIN: SILICON HEADSHOT
+		//BUBBER EDIT BEGIN: SILICON PREFS
+		custom_species = preferences.read_preference(/datum/preference/text/custom_species/silicon)
+		custom_species_lore = preferences.read_preference(/datum/preference/text/custom_species_lore/silicon)
+		if(preferences.read_preference(/datum/preference/text/ooc_notes/silicon) != "")
+			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
+		else ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes)
 		if(preferences.read_preference(/datum/preference/text/headshot/silicon))
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
-		else headshot += preferences.read_preference(/datum/preference/text/headshot)
 		//BUBBER EDIT END: SILICON HEADSHOT
 
 	if(ishuman(holder))
