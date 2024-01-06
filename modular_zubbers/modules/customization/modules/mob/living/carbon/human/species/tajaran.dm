@@ -10,7 +10,6 @@
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + -20)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + -20)
 
-
 /obj/item/organ/internal/tongue/cat/tajaran
 	name = "tajaran tongue"
 
@@ -20,5 +19,3 @@
 	desc = "they seem very cat like."
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE + -2 //Four flashes
 	color_cutoffs = list(12, 7, 7)
-
-
