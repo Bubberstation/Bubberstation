@@ -45,7 +45,7 @@
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
-		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] Blood maintain active.</i>"
+		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
 
@@ -186,19 +186,20 @@
 /datum/action/cooldown/bloodsucker/process(seconds_per_tick)
 	SHOULD_CALL_PARENT(TRUE) //Need this to call parent so the cooldown system works
 	. = ..()
-	if(!(power_flags & BP_AM_TOGGLE))
+	if(!active || !(power_flags & BP_AM_TOGGLE))
 		return FALSE
 	if(!ContinueActive(owner)) // We can't afford the Power? Deactivate it.
 		DeactivatePower()
 		return FALSE
 	// We can keep this up (For now), so Pay Cost!
-	if(!(power_flags & BP_AM_COSTLESS_UNCONSCIOUS) && owner.stat != CONSCIOUS)
-		if(bloodsuckerdatum_power)
-			bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost)
-		else
-			var/mob/living/living_owner = owner
-			if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
-				living_owner.blood_volume -= constant_bloodcost
+	if(power_flags & BP_AM_COSTLESS_UNCONSCIOUS && owner.stat != CONSCIOUS)
+		return TRUE
+	if(bloodsuckerdatum_power)
+		bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost * seconds_per_tick)
+	else
+		var/mob/living/living_owner = owner
+		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
+			living_owner.blood_volume -= constant_bloodcost * seconds_per_tick
 	return TRUE
 
 /// Checks to make sure this power can stay active
