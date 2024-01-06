@@ -93,8 +93,8 @@
 /datum/mind/proc/is_valid_bloodsucker()
 	if(has_antag_datum(/datum/antagonist/bloodsucker))
 		return FALSE
-	if(current.mob_biotypes & MOB_ROBOTIC)
-		stack_trace("Somehow tried to give [current] a bloodsucker datum, when they had MOB_ROBOTIC biotype. ")
+	if(!(current.mob_biotypes & MOB_ORGANIC))
+		stack_trace("Somehow tried to give [current] a bloodsucker datum, when they did not have the MOB_ORGANIC biotype. ")
 		return FALSE
 	// While the antag can function without the mob itself having no blood, it doesn't make sense.
 	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
