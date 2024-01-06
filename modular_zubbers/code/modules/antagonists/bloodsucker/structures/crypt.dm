@@ -572,13 +572,16 @@
 	target.pixel_y -= 2
 
 // The speech itself
-/obj/structure/bloodsucker/bloodthrone/proc/handle_speech(datum/source, mob/speech_args)
+/obj/structure/bloodsucker/bloodthrone/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
 
+	var/forced_type = speech_args[SPEECH_FORCED]
+	if(forced_type == CLAN_MALKAVIAN)
+		return
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	var/rendered = span_cultlarge("<b>[user.real_name]:</b> [message]")
-	user.log_talk(message, LOG_SAY, tag=ROLE_BLOODSUCKER)
+	var/rendered = span_cultlarge("<b>[user.real_name]:</b> [capitalize(message)]")
+	user.log_talk(message, LOG_SAY, tag = ROLE_BLOODSUCKER)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	for(var/datum/antagonist/vassal/receiver as anything in bloodsuckerdatum.vassals)
 		if(!receiver.owner.current)
