@@ -19,6 +19,6 @@
 	name = "tajaran eyes"
 	desc = "they seem very cat like."
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE + -2 //Four flashes
-	color_cutoffs = list(12, 7, 7) //Abuse this and i will make it as bad as night vision quirk
+	color_cutoffs = list(12, 7, 7)
 
 
