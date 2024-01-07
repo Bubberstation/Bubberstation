@@ -1,8 +1,8 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../backend';
-import { Box, Button, Section, Stack, Divider, Flex } from '../components';
-import { Window } from '../layouts';
 import { BooleanLike, classes } from '../../common/react';
+import { useBackend } from '../backend';
+import { Box, Button, Divider, Flex, Section, Stack } from '../components';
+import { Window } from '../layouts';
 
 type Data = {
   research_tiers: Array<Array<Research>>;
@@ -101,7 +101,7 @@ const ResearchSection = (props) => {
   const { act, data } = useBackend<Data>();
   return (
     <Stack vertical>
-      <Stack.Item fill>
+      <Stack.Item>
         <Section fill title="Basic Research">
           <div style={{ textAlign: 'center' }}>
             {ResearchNode(data.starting_research, act)}
