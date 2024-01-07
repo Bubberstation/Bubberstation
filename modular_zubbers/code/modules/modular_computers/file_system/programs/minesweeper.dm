@@ -1,9 +1,9 @@
 /datum/computer_file/program/minesweeper
 	filename = "minesweeper"
 	filedesc = "Nanotrasen Micro Arcade: Minesweeper"
-	program_icon_state = "arcade"
+//	program_icon_state = "arcade"
 	extended_desc = "A port of the classic game 'Minesweeper', redesigned to run on tablets."
-	requires_ntnet = FALSE
+//	requires_ntnet = FALSE
 	size = 6
 	tgui_id = "NtosMinesweeper"
 	program_icon = "gamepad"
