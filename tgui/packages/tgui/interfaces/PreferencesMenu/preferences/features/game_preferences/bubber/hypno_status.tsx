@@ -1,4 +1,4 @@
-import { FeatureDropdownInput, FeatureChoiced } from '../../base';
+import { FeatureChoiced, FeatureDropdownInput } from '../../base';
 
 export const erp_status_pref_hypnosis: FeatureChoiced = {
   name: 'ERP Hypnosis Status',
