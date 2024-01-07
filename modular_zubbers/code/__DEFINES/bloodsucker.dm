@@ -68,14 +68,16 @@
  */
 /// This Power can't be used in Torpor
 #define BP_CANT_USE_IN_TORPOR (1<<0)
+/// This Power can't be used while transformed, for example by the shapeshift spell
+#define BP_CAN_USE_TRANSFORMED (1<<1)
 /// This Power can't be used in Frenzy.
-#define BP_CANT_USE_IN_FRENZY (1<<1)
+#define BP_CANT_USE_IN_FRENZY (1<<2)
 /// This Power can't be used with a stake in you
-#define BP_CANT_USE_WHILE_STAKED (1<<2)
+#define BP_CANT_USE_WHILE_STAKED (1<<3)
 /// This Power can't be used while incapacitated
-#define BP_CANT_USE_WHILE_INCAPACITATED (1<<3)
+#define BP_CANT_USE_WHILE_INCAPACITATED (1<<4)
 /// This Power can't be used while unconscious
-#define BP_CANT_USE_WHILE_UNCONSCIOUS (1<<4)
+#define BP_CANT_USE_WHILE_UNCONSCIOUS (1<<5)
 
 /// This Power can be purchased by Bloodsuckers
 #define BLOODSUCKER_CAN_BUY (1<<0)
@@ -182,6 +184,8 @@
 // #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
 ///For future use
 #define IS_MONSTERHUNTER(mob) (FALSE)
+
+#define BLOODSUCKER_SIGHT_COLOR_CUTOFF list(25, 8, 5)
 
 // Why waste memory on a dynamic global list if we can just bake it in on compile time?
 #define BLOODSUCKER_PROTECTED_ROLES list( \
