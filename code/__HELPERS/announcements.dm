@@ -44,9 +44,10 @@
 			if(!length(text))
 				return
 
-	announcement_strings += span_announcement_header(generate_unique_announcement_header(title, sender_override))
-	announcement_strings += span_major_announcement_text(text)
-	var/finalized_announcement = create_announcement_div(jointext(announcement_strings, ""), color_override)
+	announcement_strings += span_major_announcement_title(sender_override)
+	announcement_strings += span_subheader_announcement_text(title)
+	announcement_strings += span_ooc_announcement_text(text)
+	var/finalized_announcement = create_ooc_announcement_div(jointext(announcement_strings, ""))
 
 	if(islist(players))
 		for(var/mob/target in players)
