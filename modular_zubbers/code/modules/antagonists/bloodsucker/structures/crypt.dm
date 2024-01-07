@@ -131,6 +131,13 @@
 	/// Prevents popup spam.
 	var/disloyalty_offered = FALSE
 
+/obj/structure/bloodsucker/vassalrack/examine(mob/user)
+	. = ..()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum)
+		. += span_cult("You can support a total of [convert_integer_to_words(bloodsuckerdatum.max_vassals())] [bloodsuckerdatum.max_vassals() == 1 ? "vassal" : "vassals"], \
+		with [convert_integer_to_words(bloodsuckerdatum.free_vassal_slots())] [bloodsuckerdatum.free_vassal_slots() == 1 ? "slot" : "slots"] remaining.")
+
 /obj/structure/bloodsucker/vassalrack/deconstruct(disassembled = TRUE)
 	. = ..()
 	new /obj/item/stack/sheet/iron(src.loc, 4)
@@ -249,12 +256,16 @@
 		to_chat(user, span_warning("You can't vassalize people until you enter a Clan (Through your Antagonist UI button)"))
 		user.balloon_alert(user, "join a clan first!")
 		return
-
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(buckled_carbons)
 	// Are they our Vassal?
 	if(vassaldatum && (vassaldatum in bloodsuckerdatum.vassals))
 		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, vassaldatum)
 		return
+	if(bloodsuckerdatum.free_vassal_slots() < 1)
+		to_chat(user, span_warning("You can't vassalize more people until you level up more! You are currently at [bloodsuckerdatum.free_vassal_slots()] active / [bloodsuckerdatum.max_vassals()] max vassals."))
+		user.balloon_alert(user, "not enough vassal slots!")
+		return
+
 
 	// Not our Vassal, but Alive & We're a Bloodsucker, good to torture!
 	torture_victim(user, buckled_carbons)
@@ -392,9 +403,9 @@
 
 /obj/structure/bloodsucker/vassalrack/proc/RequireDisloyalty(mob/living/user, mob/living/target)
 #ifdef BLOODSUCKER_TESTING
-	if(!target)
+	if(!target || !target.mind)
 #else
-	if(!target || !target.client)
+	if(!target?.mind || !target?.client)
 #endif
 		return VASSALIZATION_BANNED
 
