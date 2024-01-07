@@ -17,7 +17,6 @@
 	id = "Frenzy"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
-	tick_interval = 10
 	alert_type = /atom/movable/screen/alert/status_effect/frenzy
 	///Boolean on whether they were an AdvancedToolUser, to give the trait back upon exiting.
 	var/was_tooluser = FALSE
@@ -48,7 +47,7 @@
 	if(HAS_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER))
 		was_tooluser = TRUE
 		REMOVE_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER, SPECIES_TRAIT)
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/dna_vault_speedup)
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/frenzy_speedup)
 	owner.add_client_colour(/datum/client_colour/manual_heart_blood)
 	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
@@ -64,7 +63,7 @@
 	if(was_tooluser)
 		ADD_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER, SPECIES_TRAIT)
 		was_tooluser = FALSE
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/dna_vault_speedup)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/frenzy_speedup)
 	owner.remove_client_colour(/datum/client_colour/manual_heart_blood)
 
 	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_EXITS_FRENZY)
@@ -73,6 +72,7 @@
 
 /datum/status_effect/frenzy/tick()
 	var/mob/living/carbon/human/user = owner
-	if(!bloodsuckerdatum.frenzied)
+	// If duration is not -1, that means we're about to loose frenzy, let's give them some safe time.
+	if(!bloodsuckerdatum.frenzied || duration > 0)
 		return
 	user.adjustFireLoss(1 + (bloodsuckerdatum.humanity_lost / 10))

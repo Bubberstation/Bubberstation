@@ -10,7 +10,7 @@
 	if(!owner)
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
-	if(HAS_TRAIT(owner.current, TRAIT_NODEATH) || bloodsucker_blood_volume == 0)
+	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		check_end_torpor()
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
@@ -167,7 +167,7 @@
 	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
-		current_eyes.color_cutoffs = list(25, 8, 5)
+		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 		current_eyes.sight_flags = SEE_MOBS
 	bloodsuckeruser.update_sight()
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
@@ -222,8 +222,10 @@
 //	handled in bloodsucker_integration.dm
 	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)
 	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(bloodsucker_blood_volume >= frenzy_threshold * 1.1 && frenzied)
-		owner.current.remove_status_effect(/datum/status_effect/frenzy)
+	var/datum/status_effect/frenzy/status_effect = owner.current.has_status_effect(/datum/status_effect/frenzy)
+	if(bloodsucker_blood_volume >= frenzy_threshold * 1.1 && frenzied && status_effect.duration == -1)
+		status_effect.duration = world.time + 10 SECONDS
+		owner.current.balloon_alert(owner.current, "Frenzy ends in 10 seconds!")
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		owner.current.set_timed_status_effect(3 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
