@@ -90,7 +90,7 @@
 		custom_species_lore = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.get_species_lore().Join("\n") : holder_human.dna.features["custom_species_lore"]
 		ooc_notes += holder_human.dna.features["ooc_notes"]
 		if(!obscured)
-			headshot += holder_human.dna.features["headshot"] //BUBBER EDIT
+			headshot += preferences?.read_preference(/datum/preference/text/headshot) //BUBBER EDIT
 
 	var/name = obscured ? "Unknown" : holder.name
 
