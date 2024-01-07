@@ -25,6 +25,8 @@
 	var/prev_undershirt
 	var/prev_socks
 	var/prev_disfigured
+	var/prev_mutant_bodyparts
+	var/prev_markings
 	var/list/prev_features // For lizards and such
 	var/disguise_name
 
@@ -61,6 +63,8 @@
 //	prev_eye_color
 	prev_disfigured = HAS_TRAIT(user, TRAIT_DISFIGURED) // I was disfigured! //prev_disabilities = user.disabilities
 	prev_features = user.dna.features
+	prev_mutant_bodyparts = user.dna.mutant_bodyparts
+	prev_markings = user.dna.body_markings
 
 	// Change Appearance
 	user.gender = pick(MALE, FEMALE, PLURAL, NEUTER)
@@ -72,15 +76,22 @@
 	user.underwear = random_underwear(user.gender)
 	user.undershirt = random_undershirt(user.gender)
 	user.socks = random_socks(user.gender)
+	
 	//user.eye_color = random_eye_color()
 	if(prev_disfigured)
 		REMOVE_TRAIT(user, TRAIT_DISFIGURED, null)
-	user.dna.features = user.dna.species.randomize_features()
+	var/datum/dna/dna = user.dna
+	// 
+	// dna.features = dna.species.randomize_features()
+	dna.features = dna.species.randomize_features(user)
+	// dna.body_markings = dna.species.get_random_body_markings(dna.features)
+	dna.body_markings = list()
+	dna.mutant_bodyparts = dna.species.get_mutant_bodyparts(dna.features)
 
 	// Apply Appearance
-	user.update_body(is_creating = TRUE) // Outfit and underware, also body.
-	user.update_mutant_bodyparts() // Lizard tails etc
-	user.update_body_parts(update_limb_data = TRUE)
+	user.regenerate_organs() // Actually regenerates the mutant_bodyparts.
+	user.update_body(TRUE) // Outfit and underware, also body.
+	user.update_mutant_bodyparts(TRUE) // Lizard tails etc
 
 	RegisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME, PROC_REF(return_disguise_name))
 
@@ -108,6 +119,8 @@
 	user.underwear = prev_underwear
 	user.undershirt = prev_undershirt
 	user.socks = prev_socks
+	user.dna.mutant_bodyparts = prev_mutant_bodyparts
+	user.dna.body_markings = prev_markings
 
 	//user.disabilities = prev_disabilities // Restore HUSK, CLUMSY, etc.
 	if(prev_disfigured)
@@ -116,6 +129,7 @@
 	user.dna.features = prev_features
 
 	// Apply Appearance
+	user.regenerate_organs()
 	user.update_body(is_creating = TRUE) // Outfit and underware, also body.
 	user.update_body_parts(update_limb_data = TRUE) // Body itself, maybe skin color?
 
