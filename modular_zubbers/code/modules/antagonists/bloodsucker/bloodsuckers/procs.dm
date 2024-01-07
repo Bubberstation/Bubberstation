@@ -149,14 +149,10 @@
 	//returnString += "\n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
 	return returnIcon + returnString
 
-#define PERCENTAGE_LEVEL_TO_VASSAL 0.5
-#define FREEBIE_VASSAL_SLOTS 1
 
 /datum/antagonist/bloodsucker/proc/max_vassals()
-	return floor(bloodsucker_level * PERCENTAGE_LEVEL_TO_VASSAL) + FREEBIE_VASSAL_SLOTS
+	return bloodsucker_level
 
 /datum/antagonist/bloodsucker/proc/free_vassal_slots()
 	return max(max_vassals() - length(vassals), 0)
 
-#undef PERCENTAGE_LEVEL_TO_VASSAL
-#undef FREEBIE_VASSAL_SLOTS
