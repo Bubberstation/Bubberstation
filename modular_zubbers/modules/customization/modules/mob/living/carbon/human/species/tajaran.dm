@@ -11,8 +11,22 @@
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + -20)
 	ass_image = 'icons/ass/asstajara.png'
 
+//Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran
 	name = "tajaran tongue"
+	modifies_speech = TRUE
+	languages_native = list(/datum/language/siiktajr)
+
+/obj/item/organ/internal/tongue/cat/tajaran/modify_speech(datum/source, list/speech_args)
+	var/static/regex/tajara_roll = new("r+", "g")
+	var/static/regex/tajara_roLL = new("R+", "g")
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = tajara_roll.Replace(message, "rrr")
+		message = tajara_roLL.Replace(message, "RRR")
+		message = replacetext(message, "r", "r")
+//Insert russion translations here (sorry russions)
+	speech_args[SPEECH_MESSAGE] = message
 
 //Tajara have the innate ability to see in the dark better than most
 /obj/item/organ/internal/eyes/tajaran
