@@ -1,8 +1,9 @@
 // THIS IS A SKYRAT UI FILE
+import { useState } from 'react';
+
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { ByondUi, Section, Stack, Tabs } from '../components'; // Bubber edit: add Tabs
-import { useState } from 'react';
 import { Window } from '../layouts';
 
 const formatURLs = (text) => {
@@ -87,7 +88,11 @@ export const ExaminePanel = (props) => {
                 </Section>
                 <Section height="310px" title="Headshot">
                   <img
-                    src={tabIndex === 2 ? headshot_nsfw : headshot}
+                    src={
+                      tabIndex === 2
+                        ? resolveAsset(headshot_nsfw)
+                        : resolveAsset(headshot)
+                    }
                     height="250px"
                     width="250px"
                   />
