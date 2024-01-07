@@ -9,7 +9,7 @@
 	bodytemp_normal = BODYTEMP_NORMAL + 5 //Even more cold resistant, even more flammable
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + -20)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + -20)
-	ass_image = 'icons/ass/asstajara.png'
+	ass_image = 'modular_zubbers/icons/ass/asstajara.png'
 
 //Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran
