@@ -104,7 +104,7 @@
 	objectives += vassal_objective
 	/// Give Vampire Language & Hud
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)
-	owner.current.grant_language(/datum/language/vampiric)
+	owner.current.grant_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
 	return ..()
 
 /datum/antagonist/vassal/on_removal()
@@ -125,7 +125,7 @@
 		powers -= power
 		power.Remove(owner.current)
 	//Remove Language & Hud
-	owner.current.remove_language(/datum/language/vampiric)
+	owner.current.remove_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
 	return ..()
 
 /datum/antagonist/vassal/on_body_transfer(mob/living/old_body, mob/living/new_body)
