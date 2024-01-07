@@ -7,12 +7,14 @@
 import { KEY } from 'common/keys';
 import { classes } from 'common/react';
 import { KeyboardEvent, SyntheticEvent, useEffect, useRef } from 'react';
+
 import { Box, BoxProps } from './Box';
 
 type Props = Partial<{
   autoFocus: boolean;
   autoSelect: boolean;
   className: string;
+  disabled: boolean;
   fluid: boolean;
   maxLength: number;
   monospace: boolean;
@@ -37,7 +39,11 @@ export const Input = (props: Props) => {
   const {
     autoFocus,
     autoSelect,
+    className,
+    disabled,
+    fluid,
     maxLength,
+    monospace,
     onChange,
     onEnter,
     onEscape,
@@ -45,9 +51,8 @@ export const Input = (props: Props) => {
     placeholder,
     selfClear,
     value,
-    ...boxProps
+    ...rest
   } = props;
-  const { className, fluid, monospace, ...rest } = boxProps;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -69,26 +74,35 @@ export const Input = (props: Props) => {
 
       event.currentTarget.value = toInputValue(value);
       event.currentTarget.blur();
-
-      return;
     }
   };
 
+  /** Focuses the input on mount */
+  useEffect(() => {
+    if (!autoFocus && !autoSelect) return;
+
+    const input = inputRef.current;
+    if (!input) return;
+
+    setTimeout(() => {
+      input.focus();
+
+      if (autoSelect) {
+        input.select();
+      }
+    }, 1);
+  }, []);
+
+  /** Updates the initial value on props change */
   useEffect(() => {
     const input = inputRef.current;
     if (!input) return;
 
-    input.value = toInputValue(value);
-    if (autoFocus || autoSelect) {
-      setTimeout(() => {
-        input.focus();
+    const newValue = toInputValue(value);
+    if (input.value === newValue) return;
 
-        if (autoSelect) {
-          input.select();
-        }
-      }, 1);
-    }
-  }, []);
+    input.value = newValue;
+  }, [value]);
 
   return (
     <Box
@@ -103,6 +117,7 @@ export const Input = (props: Props) => {
       <div className="Input__baseline">.</div>
       <input
         className="Input__input"
+        disabled={disabled}
         maxLength={maxLength}
         onBlur={(event) => onChange?.(event, event.target.value)}
         onChange={(event) => onInput?.(event, event.target.value)}
