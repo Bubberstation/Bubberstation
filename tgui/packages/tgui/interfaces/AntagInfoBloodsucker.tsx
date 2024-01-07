@@ -143,6 +143,11 @@ const BloodsuckerIntro = () => {
               Medical and Genetic Analyzers can sell you out, your Masquerade
               ability will hide your identity to prevent this.
               <br />
+              You will learn how to make persuasion racks once you have enough
+              levels to support a vassal, which you will learn during torpor
+              during daytime. Examine the vassal rack to see how many vassals
+              you can have!
+              <br />
             </Stack.Item>
             <Stack.Item>
               <Section textAlign="center" textColor="red" fontSize="20px">
