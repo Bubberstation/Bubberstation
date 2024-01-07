@@ -38,6 +38,7 @@
 	return "Nude Only"
 
 //NSFW headshot, so we can see those they/them nuts in the NSFW section of the character creator.
+//TODO: Move the headshot proc over here so they stop overwriting each other by being a subtype.
 /datum/preference/text/headshot/nsfw
 	savefile_key = "headshot_nsfw"
 
