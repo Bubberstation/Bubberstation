@@ -149,36 +149,37 @@
 	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
 		if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY && !(locate(power) in bloodsuckerdatum.powers))
 			options[initial(power.name)] = power
-
+	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(options.len < 1)
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(bloodsuckerdatum.owner.current, "You have the opportunity to grow more ancient. Select a power to advance your Rank.", "Your Blood Thickens...", options)
+		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient. Select a power to advance your Rank.", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
 			return
 		if(blood_cost && bloodsuckerdatum.bloodsucker_blood_volume < blood_cost)
-			to_chat(bloodsuckerdatum.owner.current, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
+			human_user.balloon_alert(human_user, "not enough blood!")
+			to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
 			return
 		// Did you choose a power?
 		if(!choice || !options[choice])
-			to_chat(bloodsuckerdatum.owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(locate(options[choice]) in bloodsuckerdatum.powers)
-			to_chat(bloodsuckerdatum.owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
 		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
-		if(!istype(bloodsuckerdatum.owner.current.loc, /obj/structure/closet/crate/coffin))
-			to_chat(bloodsuckerdatum.owner.current, span_warning("You must be in your Coffin to purchase Powers."))
+		if(!istype(human_user.loc, /obj/structure/closet/crate/coffin))
+			to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
 			return
 
 		// Good to go - Buy Power!
 		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
 		bloodsuckerdatum.BuyPower(new purchased_power)
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "learned [choice]!")
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You have learned how to use [choice]!"))
+		human_user.balloon_alert(human_user, "learned [choice]!")
+		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
 
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
@@ -228,7 +229,7 @@
 	INVOKE_ASYNC(src, PROC_REF(interact_with_vassal), bloodsuckerdatum, vassaldatum)
 
 /datum/bloodsucker_clan/proc/interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	if(vassaldatum.special_type)
+	if(vassaldatum.special_type || IS_BLOODSUCKER(vassaldatum.owner.current))
 		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal was already assigned a special position."))
 		return FALSE
 	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))

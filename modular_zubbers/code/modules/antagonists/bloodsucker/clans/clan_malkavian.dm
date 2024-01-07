@@ -6,6 +6,9 @@
 	join_description = "Completely insane. You gain constant hallucinations, become a prophet with unintelligable rambling, \
 		and become the enforcer of the Masquerade code."
 	blood_drink_type = BLOODSUCKER_DRINK_INHUMANELY
+	/// The prob chance of a malkavian spouting a revelation.
+	var/max_madness_chance = 90
+	var/min_madness_chance = 85
 
 /datum/bloodsucker_clan/malkavian/on_enter_frenzy(datum/antagonist/bloodsucker/source)
 	ADD_TRAIT(bloodsuckerdatum.owner.current, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
@@ -38,7 +41,12 @@
 
 /datum/bloodsucker_clan/malkavian/handle_clan_life(datum/antagonist/bloodsucker/source)
 	. = ..()
-	if(prob(90) || bloodsuckerdatum.owner.current.stat != CONSCIOUS || HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_MASQUERADE))
+	// Using linear interpolation to calculate the chance of a revelation. The more humanity lost, the higher the chance.
+	// Equation: interpolated value = start + normalized factor * (end - start)
+	// normalized factor(between 0 and 1, in decimals)
+	var/interpolated_chance = min_madness_chance + (source.humanity_lost / 100) * (max_madness_chance - min_madness_chance)
+	var/madness_chance = clamp(interpolated_chance, min_madness_chance, max_madness_chance)
+	if(prob(madness_chance) || bloodsuckerdatum.owner.current.stat != CONSCIOUS || HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_MASQUERADE))
 		return
 	var/message = pick(strings("malkavian_revelations.json", "revelations", "modular_zubbers/strings/bloodsuckers"))
 	INVOKE_ASYNC(bloodsuckerdatum.owner.current, TYPE_PROC_REF(/atom/movable, say), message, forced = CLAN_MALKAVIAN)
@@ -48,7 +56,9 @@
 	if(istype(carbonowner))
 		carbonowner.gain_trauma(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
 		carbonowner.gain_trauma(/datum/brain_trauma/special/bluespace_prophet/phobetor, TRAUMA_RESILIENCE_ABSOLUTE)
-	to_chat(vassaldatum.owner.current, span_notice("Additionally, you now suffer the same fate as your Master."))
+	var/datum/martial_art/psychotic_brawling/psychotic_brawling = new(null)
+	psychotic_brawling.teach(vassaldatum.owner.current, TRUE)
+	to_chat(vassaldatum.owner.current, span_notice("Additionally, you now suffer the same fate as your Master, while also gaining the ability to tap into the madness when fighting."))
 
 /datum/bloodsucker_clan/malkavian/on_exit_torpor(datum/antagonist/bloodsucker/source)
 	var/mob/living/carbon/carbonowner = bloodsuckerdatum.owner.current
