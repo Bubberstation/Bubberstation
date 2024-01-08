@@ -79,22 +79,28 @@
 
 /// Do I have a stake in my heart?
 /mob/living/proc/am_staked()
+	var/list/stakes = get_stakes()
+	if(!length(stakes))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/get_stakes()
 	var/obj/item/bodypart/chosen_bodypart = get_bodypart(BODY_ZONE_CHEST)
 	if(!chosen_bodypart)
 		return FALSE
+	var/list/stakes = list()
 	for(var/obj/item/embedded_stake in chosen_bodypart.embedded_objects)
 		if(istype(embedded_stake, /obj/item/stake))
-			return TRUE
-	return FALSE
+			stakes += list(embedded_stake)
+	return stakes
 
 /// You can't go to sleep in a coffin with a stake in you.
 /mob/living/proc/StakeCanKillMe()
-	if(IsSleeping())
-		return TRUE
-	if(stat >= UNCONSCIOUS)
-		return TRUE
-	if(HAS_TRAIT(src, TRAIT_NODEATH))
-		return TRUE
+	if(IsSleeping() || stat >= UNCONSCIOUS || HAS_TRAIT(src, TRAIT_NODEATH))
+		for(var/stake in get_stakes())
+			var/obj/item/stake/killin_stake = stake
+			if(killin_stake?.kills_blodsuckers)
+				return TRUE
 	return FALSE
 
 /obj/item/stake
@@ -115,9 +121,11 @@
 	force = 6
 	throwforce = 10
 	max_integrity = 30
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
 
 	///Time it takes to embed the stake into someone's chest.
 	var/staketime = 12 SECONDS
+	var/kills_blodsuckers = FALSE
 
 /obj/item/stake/attack(mob/living/target, mob/living/user, params)
 	. = ..()
@@ -185,11 +193,13 @@
 	desc = "Polished and sharp at the end. For when some mofo is always trying to iceskate uphill."
 	icon_state = "silver"
 	inhand_icon_state = "silver"
-	siemens_coefficient = 1 //flags = CONDUCT // var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
+	siemens_coefficient = 1
 	force = 9
 	armour_penetration = 25
+	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
 	embedding = list("embed_chance" = 65)
 	staketime = 8 SECONDS
+	kills_blodsuckers = TRUE
 
 //////////////////////
 //     ARCHIVES     //
