@@ -3,6 +3,11 @@
 
 /datum/species/tajaran
 	inherent_traits = list(
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_CAN_STRIP,
+		TRAIT_LITERATE,
+		TRAIT_HATED_BY_DOGS,
+		TRAIT_MUTANT_COLORS,
 		TRAIT_CATLIKE_GRACE,
 	)
 	mutanteyes = /obj/item/organ/internal/eyes/tajaran
