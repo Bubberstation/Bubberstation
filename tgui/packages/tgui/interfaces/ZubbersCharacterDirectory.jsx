@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -33,7 +34,7 @@ export const ZubbersCharacterDirectory = (props, context) => {
   const [overwritePrefs, setOverwritePrefs] = useState(prefsOnly);
 
   return (
-    <Window width={640} height={480} resizeable>
+    <Window width={900} height={640} resizeable>
       <Window.Content scrollable>
         {(overlay && <ViewCharacter />) || (
           <>
