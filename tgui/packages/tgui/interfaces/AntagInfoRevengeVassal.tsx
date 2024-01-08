@@ -1,8 +1,9 @@
-import { resolveAsset } from '../assets';
+import { useState } from 'react';
+
 import { BooleanLike } from '../../common/react';
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
-  Box,
   Button,
   Divider,
   Dropdown,
@@ -11,7 +12,6 @@ import {
   Stack,
 } from '../components';
 import { Window } from '../layouts';
-import { useState } from 'react';
 
 type Objective = {
   count: number;

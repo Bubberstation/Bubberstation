@@ -1,5 +1,7 @@
-import { resolveAsset } from '../assets';
 import { BooleanLike } from 'common/react';
+import { useState } from 'react';
+
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
   Box,
@@ -12,7 +14,6 @@ import {
   Tabs,
 } from '../components';
 import { Window } from '../layouts';
-import { useState } from 'react';
 
 type Objective = {
   count: number;
@@ -181,12 +182,13 @@ const BloodsuckerClan = (props: any) => {
           <Button
             fluid
             icon="users"
-            content="Join Clan"
             textAlign="center"
             fontSize="30px"
             lineHeight={2}
             onClick={() => act('join_clan')}
-          />
+          >
+            Join Clan
+          </Button>
         </Box>
       </Section>
     );
