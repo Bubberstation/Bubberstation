@@ -43,7 +43,8 @@
 	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume)
 
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
-	if(humanity_lost >= 500)
+	// 100 humanity lost already causes you to frenzy at 25 + 100 * 10 = 1025 blood and deal 1 + 100 / 10 = 11 burn per second due to frenzy
+	if(humanity_lost >= 100)
 		to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanty, you are far from Human."))
 		return
 	humanity_lost += value
@@ -91,9 +92,12 @@
 	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
 	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT(owner.current, TRAIT_NODEATH)))
 		return FALSE
+	// Garlic in you? No healing for you!
+	if(HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
+		return FALSE
 	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
 	if(!iscarbon(owner.current)) // Damage Heal: Do I have damage to ANY bodypart?
-		return
+		return FALSE
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
 	var/bruteheal = min(user.getBruteLoss_nonProsthetic(), actual_regen) // BRUTE: Always Heal
@@ -104,7 +108,7 @@
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
-			return
+			return FALSE
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
 		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
@@ -205,8 +209,8 @@
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
 		FinalDeath()
 		return
-	// Staked while "Temp Death" or Asleep
-	if(owner.current.StakeCanKillMe() && owner.current.am_staked())
+	// Staked with a silver stake while "Temp Death" or Asleep
+	if(owner.current.StakeCanKillMe())
 		FinalDeath()
 		return
 	// Temporary Death? Convert to Torpor.
@@ -311,5 +315,6 @@
 		span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 		span_hear("<span class='italics'>You hear a wet, bursting sound."))
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib), DROP_ITEMS), 2 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+	user.investigate_log("Died as a bloodsucker from Final Death.", INVESTIGATE_DEATHS)
 
 #undef BLOODSUCKER_PASSIVE_BLOOD_DRAIN

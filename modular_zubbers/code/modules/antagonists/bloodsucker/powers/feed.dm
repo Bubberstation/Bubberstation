@@ -66,7 +66,7 @@
 		to_chat(user, span_notice("You slowly release [feed_target]."))
 		if(feed_target.client && feed_target.stat == DEAD)
 			user.add_mood_event("drankkilled", /datum/mood_event/drankkilled)
-			bloodsuckerdatum_power.AddHumanityLost(10)
+			bloodsuckerdatum_power.AddHumanityLost(5)
 
 	target_ref = null
 	warning_target_bloodvol = BLOOD_VOLUME_MAX_LETHAL
@@ -255,6 +255,10 @@
 	if((bloodsuckerdatum_power.my_clan && bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY) && !target_user.mind && !bloodsuckerdatum_power.frenzied)
 		if(give_warnings)
 			owner.balloon_alert(owner, "cant drink from mindless!")
+		return FALSE
+	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 20))
+		if(give_warnings)
+			owner.balloon_alert(owner, "too much garlic!")
 		return FALSE
 	return TRUE
 
