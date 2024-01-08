@@ -2,6 +2,9 @@
 //makes them more like Citrp's tajara aka snow cats
 
 /datum/species/tajaran
+	inherent_traits = list(
+		TRAIT_CATLIKE_GRACE,
+	)
 	mutanteyes = /obj/item/organ/internal/eyes/tajaran
 	mutantears = /obj/item/organ/internal/ears/cat/tajaran
 	//Cold resistance
