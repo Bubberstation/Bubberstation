@@ -79,6 +79,20 @@
 			SPECIES_PERK_NAME = "Sensitive Hearing",
 			SPECIES_PERK_DESC = "Tajara are more sensitive to loud sounds, such as flashbangs.",
 		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "paw",
+			SPECIES_PERK_NAME = "Soft Landing",
+			SPECIES_PERK_DESC = "Tajara are unhurt by high falls, and land on their feet.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = FA_ICON_PERSON_FALLING,
+			SPECIES_PERK_NAME = "Cat Grace",
+			SPECIES_PERK_DESC = "Tajara are catlike and have catlike instincts allowing them to land upright on their feet.  \
+				Instead of being knocked down from falling, you only recieve a short slowdown. \
+				However, the fall will deal additional damage since they are not the size and weight of a cat.",
+		),
 	)
 
 	return to_add
