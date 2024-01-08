@@ -42,9 +42,10 @@
 /datum/bloodsucker_clan/malkavian/handle_clan_life(datum/antagonist/bloodsucker/source)
 	. = ..()
 	// Using linear interpolation to calculate the chance of a revelation. The more humanity lost, the higher the chance.
-	// Equation: interpolated value = start + normalized factor * (end - start)
+	// This is the reversed version since we want to increase the prob as the number decreases.
+	// Equation: interpolated value = end + normalized factor * (start - end)
 	// normalized factor(between 0 and 1, in decimals)
-	var/interpolated_chance = min_madness_chance + (source.humanity_lost / 100) * (max_madness_chance - min_madness_chance)
+	var/interpolated_chance = max_madness_chance + (source.humanity_lost / 50) * (min_madness_chance - max_madness_chance)
 	var/madness_chance = clamp(interpolated_chance, min_madness_chance, max_madness_chance)
 	if(prob(madness_chance) || bloodsuckerdatum.owner.current.stat != CONSCIOUS || HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_MASQUERADE))
 		return
