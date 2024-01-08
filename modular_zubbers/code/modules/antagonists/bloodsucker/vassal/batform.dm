@@ -18,7 +18,7 @@
 /datum/action/cooldown/spell/shapeshift/bat/cast(mob/living/cast_on)
 	. = ..()
 	// spawn bats around
-	if(!is_turf(cast_on.loc))
+	if(!get_turf(cast_on))
 		return
 	for(var/i in 1 to bats_to_spawn)
 		var/mob/living/basic/bat/bat = new(get_turf(cast_on))
