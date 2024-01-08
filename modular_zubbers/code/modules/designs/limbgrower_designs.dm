@@ -57,6 +57,14 @@
 	build_path = /obj/item/organ/internal/tongue/cat/tajaran
 	category = list(SPECIES_TAJARAN)
 
+/datum/design/tajaran_ears
+	name = "Tajaran ears"
+	id = "tajaranears"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/internal/ears/cat/tajaran
+	category = list(SPECIES_TAJARAN)
+
 /datum/design/limb_disk/tajaran
 	name = "Tajaran Organ Design Disk"
 	desc = "Contains designs for tajaran organs for the limbgrower - Tounges and eyes."
@@ -65,4 +73,4 @@
 
 /obj/item/disk/design_disk/limbs/tajaran
 	name = "Tajaran Organ Design Disk"
-	limb_designs = list(/obj/item/organ/internal/tongue/cat/tajaran, /obj/item/organ/internal/eyes/tajaran)
+	limb_designs = list(/obj/item/organ/internal/tongue/cat/tajaran, /obj/item/organ/internal/eyes/tajaran, /obj/item/organ/internal/ears/cat/tajaran)

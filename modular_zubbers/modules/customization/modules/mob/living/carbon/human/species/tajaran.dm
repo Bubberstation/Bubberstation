@@ -3,12 +3,15 @@
 
 /datum/species/tajaran
 	mutanteyes = /obj/item/organ/internal/eyes/tajaran
+	mutantears = /obj/item/organ/internal/ears/cat/tajaran
 	//Cold resistance
 	coldmod = 0.77
 	heatmod = 1.15
 	bodytemp_normal = BODYTEMP_NORMAL + 5 //Even more cold resistant, even more flammable
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + -20)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + -20)
+	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
+	skinned_type = /obj/item/stack/sheet/animalhide/cat
 	ass_image = 'modular_zubbers/icons/ass/asstajara.png'
 
 //Tajaran tongue
@@ -35,6 +38,10 @@
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE //sorry cat gamers it's over
 	color_cutoffs = list(12, 7, 7)
 
+/obj/item/organ/internal/ears/cat/tajaran
+	name = "Tajaran ears"
+	desc = "These ears to seem to be from a feline of some type"
+
 /datum/species/tajaran/create_pref_unique_perks()
 	var/list/to_add = list()
 
@@ -57,6 +64,12 @@
 			SPECIES_PERK_ICON = "eye",
 			SPECIES_PERK_NAME = "Nightvision",
 			SPECIES_PERK_DESC = "Their eyes are adapted to low light, and can see in the dark better than others.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "assistive-listening-systems",
+			SPECIES_PERK_NAME = "Sensitive Hearing",
+			SPECIES_PERK_DESC = "Tajara are more sensitive to loud sounds, such as flashbangs.",
 		),
 	)
 
