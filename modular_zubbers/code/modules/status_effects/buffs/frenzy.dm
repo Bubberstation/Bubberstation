@@ -8,7 +8,7 @@
 
 /atom/movable/screen/alert/status_effect/frenzy
 	name = "Frenzy"
-	desc = "You are in a Frenzy! You are entirely Feral and, depending on your Clan, fighting for your life!"
+	desc = "You are in a Frenzy! You are entirely Feral and, depending on your Clan, fighting for your life! Find and drink blood, or you will suffer a Final Death!"
 	icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
 	icon_state = "power_recover"
 	alerttooltipstyle = "cult"

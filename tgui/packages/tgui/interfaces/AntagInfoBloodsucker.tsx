@@ -148,6 +148,9 @@ const BloodsuckerIntro = () => {
               during daytime. Examine the vassal rack to see how many vassals
               you can have!
               <br />
+              You cannot level up until you select a clan. To select a clan,
+              click the clan tab on the top right of this window.
+              <br />
             </Stack.Item>
             <Stack.Item>
               <Section textAlign="center" textColor="red" fontSize="20px">
