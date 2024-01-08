@@ -246,10 +246,10 @@
 		"borg_upgrade_surgicaltools",
 	)
 
-	design_ids -= list(
+/*	design_ids -= list(
 		"borg_upgrade_pinpointer",
 	)
-	return ..()
+	return ..()*/ //BUBBERSTATION REMOVAL
 
 /datum/techweb_node/basic_mining/New()
 	design_ids += list(
