@@ -94,7 +94,10 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
+		TRAIT_NO_MIRROR_REFLECTION,
+		TRAIT_DRINKS_BLOOD
 	)
+	var/biotype = MOB_VAMPIRIC
 
 /**
  * Apply innate effects is everything given to the mob
@@ -235,7 +238,7 @@
 	var/old_right_arm_unarmed_damage_high
 	if(old_body && ishuman(old_body))
 		var/mob/living/carbon/human/old_user = old_body
-		REMOVE_TRAIT(old_user, TRAIT_DRINKS_BLOOD, BLOODSUCKER_TRAIT)
+		old_user.dna.species.mob_biotypes &= biotype
 		//Keep track of what they were
 		old_left_arm_unarmed_damage_low = old_left_arm?.unarmed_damage_low
 		old_left_arm_unarmed_damage_high = old_left_arm?.unarmed_damage_high
@@ -250,7 +253,7 @@
 			old_right_arm.unarmed_damage_high = initial(old_right_arm.unarmed_damage_high)
 	if(ishuman(new_body))
 		var/mob/living/carbon/human/new_user = new_body
-		REMOVE_TRAIT(new_user, TRAIT_DRINKS_BLOOD, BLOODSUCKER_TRAIT)
+		new_user.dna.species.mob_biotypes |= biotype
 		var/obj/item/bodypart/new_left_arm
 		var/obj/item/bodypart/new_right_arm
 		//Give old punch damage values
@@ -399,12 +402,12 @@
 		var/mob/living/carbon/human/user = owner.current
 		var/obj/item/bodypart/user_left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/user_right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
-		ADD_TRAIT(user, TRAIT_DRINKS_BLOOD, BLOODSUCKER_TRAIT)
 		user.dna?.remove_all_mutations()
 		user_left_arm.unarmed_damage_low += 1 //lowest possible punch damage - 0
 		user_left_arm.unarmed_damage_high += 1 //highest possible punch damage - 9
 		user_right_arm.unarmed_damage_low += 1 //lowest possible punch damage - 0
 		user_right_arm.unarmed_damage_high += 1 //highest possible punch damage - 9
+		user.mob_biotypes |= biotype
 	//Give Bloodsucker Traits
 	owner.current.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	//Clear Addictions
@@ -439,7 +442,15 @@
 	/// Stats
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
-		REMOVE_TRAIT(user, TRAIT_DRINKS_BLOOD, BLOODSUCKER_TRAIT)
+		user.dna.species.mob_biotypes &= biotype
+		var/obj/item/bodypart/left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
+		var/obj/item/bodypart/right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
+		if(left_arm)
+			left_arm.unarmed_damage_low = initial(old_left_arm.unarmed_damage_low)
+			left_arm.unarmed_damage_high = initial(old_left_arm.unarmed_damage_high)
+		if(right_arm)
+			right_arm.unarmed_damage_low = initial(old_right_arm.unarmed_damage_low)
+			right_arm.unarmed_damage_high = initial(old_right_arm.unarmed_damage_high)
 	// Remove all bloodsucker traits
 	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	// Update Health
