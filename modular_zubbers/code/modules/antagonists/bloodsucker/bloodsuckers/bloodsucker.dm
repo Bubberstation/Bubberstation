@@ -238,7 +238,7 @@
 	var/old_right_arm_unarmed_damage_high
 	if(old_body && ishuman(old_body))
 		var/mob/living/carbon/human/old_user = old_body
-		old_user.dna.species.mob_biotypes &= biotype
+		old_user.mob_biotypes &= biotype
 		//Keep track of what they were
 		old_left_arm_unarmed_damage_low = old_left_arm?.unarmed_damage_low
 		old_left_arm_unarmed_damage_high = old_left_arm?.unarmed_damage_high
@@ -253,7 +253,7 @@
 			old_right_arm.unarmed_damage_high = initial(old_right_arm.unarmed_damage_high)
 	if(ishuman(new_body))
 		var/mob/living/carbon/human/new_user = new_body
-		new_user.dna.species.mob_biotypes |= biotype
+		new_user.mob_biotypes |= biotype
 		var/obj/item/bodypart/new_left_arm
 		var/obj/item/bodypart/new_right_arm
 		//Give old punch damage values
@@ -442,15 +442,15 @@
 	/// Stats
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
-		user.dna.species.mob_biotypes &= biotype
+		user.mob_biotypes &= biotype
 		var/obj/item/bodypart/left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
 		if(left_arm)
-			left_arm.unarmed_damage_low = initial(old_left_arm.unarmed_damage_low)
-			left_arm.unarmed_damage_high = initial(old_left_arm.unarmed_damage_high)
+			left_arm.unarmed_damage_low = initial(left_arm.unarmed_damage_low)
+			left_arm.unarmed_damage_high = initial(left_arm.unarmed_damage_high)
 		if(right_arm)
-			right_arm.unarmed_damage_low = initial(old_right_arm.unarmed_damage_low)
-			right_arm.unarmed_damage_high = initial(old_right_arm.unarmed_damage_high)
+			right_arm.unarmed_damage_low = initial(right_arm.unarmed_damage_low)
+			right_arm.unarmed_damage_high = initial(right_arm.unarmed_damage_high)
 	// Remove all bloodsucker traits
 	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	// Update Health

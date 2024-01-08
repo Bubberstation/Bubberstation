@@ -21,6 +21,8 @@
 	reqs = list(
 		/obj/item/stack/sheet/mineral/silver = 1,
 		/obj/item/stake/hardened = 1,
+		// It's slathered in garlic, smelly.
+		/obj/item/food/grown/garlic = 2,
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
