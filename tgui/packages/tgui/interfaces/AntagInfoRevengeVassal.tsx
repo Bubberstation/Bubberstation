@@ -1,7 +1,15 @@
 import { resolveAsset } from '../assets';
 import { BooleanLike } from '../../common/react';
 import { useBackend } from '../backend';
-import { Box, Button, Divider, Dropdown, Section, Stack } from '../components';
+import {
+  Box,
+  Button,
+  Divider,
+  Dropdown,
+  Image,
+  Section,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 import { useState } from 'react';
 
@@ -129,17 +137,16 @@ const PowerSection = (props: any) => {
             }
           />
           {selectedPower && (
-            <Box
+            <Image
               position="absolute"
               height="12rem"
-              as="img"
               src={resolveAsset(`bloodsucker.${selectedPower.power_icon}.png`)}
             />
           )}
           <Divider Vertical />
         </Stack.Item>
         <Stack.Divider />
-        <Stack.Item scrollable grow={1} fontSize="16px">
+        <Stack.Item grow={1} fontSize="16px">
           {selectedPower && selectedPower.power_explanation}
         </Stack.Item>
       </Stack>

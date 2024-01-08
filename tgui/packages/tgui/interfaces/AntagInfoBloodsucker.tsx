@@ -6,6 +6,7 @@ import {
   Button,
   Divider,
   Dropdown,
+  Image,
   Section,
   Stack,
   Tabs,
@@ -199,15 +200,12 @@ const BloodsuckerClan = (props: any) => {
             <Stack.Item>
               {clan.map((ClanInfo) => (
                 <>
-                  <Box
-                    as="img"
+                  <Image
                     height="20rem"
                     opacity={0.25}
                     src={resolveAsset(`bloodsucker.${ClanInfo.clan_icon}.png`)}
-                    style={{
-                      '-ms-interpolation-mode': 'nearest-neighbor',
-                      position: 'absolute',
-                    }}
+                    className="img absolute"
+                    style={{ position: 'absolute' }}
                   />
                   <Stack.Item fontSize="20px" textAlign="center">
                     You are part of the {ClanInfo.clan_name}
@@ -264,17 +262,16 @@ const PowerSection = (props: any) => {
             }
           />
           {selectedPower && (
-            <Box
+            <Image
               position="absolute"
               height="12rem"
-              as="img"
               src={resolveAsset(`bloodsucker.${selectedPower.power_icon}.png`)}
             />
           )}
           <Divider Vertical />
         </Stack.Item>
         <Stack.Divider />
-        <Stack.Item scrollable grow={1} fontSize="16px">
+        <Stack.Item grow={1} fontSize="16px">
           {selectedPower && selectedPower.power_explanation}
         </Stack.Item>
       </Stack>
