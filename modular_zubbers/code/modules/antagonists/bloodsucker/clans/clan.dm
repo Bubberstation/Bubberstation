@@ -27,6 +27,8 @@
 
 	///How we will drink blood using Feed.
 	var/blood_drink_type = BLOODSUCKER_DRINK_NORMAL
+	/// How much stamina armor we get in frenzy
+	var/frenzy_stamina_mod = 0.4
 
 /datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
@@ -68,7 +70,7 @@
 	var/mob/living/carbon/human/human_bloodsucker = bloodsuckerdatum.owner.current
 	if(!istype(human_bloodsucker))
 		return
-	human_bloodsucker.physiology.stamina_mod *= 0.4
+	human_bloodsucker.physiology.stamina_mod *= frenzy_stamina_mod
 
 /datum/bloodsucker_clan/proc/on_exit_frenzy(datum/antagonist/bloodsucker/source)
 	SIGNAL_HANDLER
@@ -77,7 +79,7 @@
 		return
 	human_bloodsucker.set_timed_status_effect(3 SECONDS, /datum/status_effect/dizziness, only_if_higher = TRUE)
 	human_bloodsucker.Paralyze(2 SECONDS)
-	human_bloodsucker.physiology.stamina_mod /= 0.4
+	human_bloodsucker.physiology.stamina_mod /= frenzy_stamina_mod
 
 /datum/bloodsucker_clan/proc/give_clan_objective()
 	if(isnull(clan_objective))

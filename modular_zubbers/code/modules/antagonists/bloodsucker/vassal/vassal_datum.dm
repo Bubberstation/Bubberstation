@@ -11,16 +11,7 @@
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
-	/* refactor this into tgui antag info
-	tip_theme = "spookyconsole"
-	antag_tips = list(
-		"You are a Vassal, enslaved to your Vampiric Master, you obey their instructions above all else.",
-		"You have the ability tp Recuperate, allowing you to heal at the exchange of your own Blood.",
-		"Fear Mindshields! You will get deconverted if you get mindshielded, resist them at all costs!",
-		"Help ensure your Master is safe from Daylight! Solar flares will bombard the station periodically, and if your Master is exposed, they will burn alive.",
-		"Your Master can optionally upgrade you into the Favorite Vassal. Depending on their Clan, you will get different benefits.",
-	)
-*/
+	ui_name = "VassalAntagInfo"
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
@@ -28,11 +19,30 @@
 	var/list/datum/action/powers = list()
 	///Whether this vassal is already a special type of Vassal.
 	var/special_type = FALSE
+	/// The first textblock text in the antag panel.
+	var/antag_panel_title
+	var/antag_panel_description
 	///Description of what this Vassal does.
+	///  It's shown to the bloodsucker in the radial for setting vassal type
 	var/vassal_description
 
 /datum/antagonist/vassal/antag_panel_data()
 	return "Master : [master.owner.name]"
+
+/datum/antagonist/vassal/ui_static_data(mob/user)
+	var/list/data = list()
+	data["title"] = "[antag_panel_title]\n[antag_panel_data()]"
+	data["description"] = antag_panel_description
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		var/list/power_data = list()
+
+		power_data["power_name"] = power.name
+		power_data["power_explanation"] = power.power_explanation
+		power_data["power_icon"] = power.button_icon_state
+
+		data["powers"] += list(power_data)
+
+	return data + ..()
 
 /datum/antagonist/vassal/apply_innate_effects(mob/living/mob_override)
 	. = ..()

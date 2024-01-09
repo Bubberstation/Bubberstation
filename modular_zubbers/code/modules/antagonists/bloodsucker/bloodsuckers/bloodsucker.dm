@@ -324,7 +324,7 @@
 		power_data["power_explanation"] = power.power_explanation
 		power_data["power_icon"] = power.button_icon_state
 
-		data["power"] += list(power_data)
+		data["powers"] += list(power_data)
 
 	return data + ..()
 

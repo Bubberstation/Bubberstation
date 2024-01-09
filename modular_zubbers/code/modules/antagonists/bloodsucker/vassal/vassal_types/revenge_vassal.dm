@@ -41,19 +41,6 @@
 	UnregisterSignal(master, BLOODSUCKER_FINAL_DEATH)
 	return ..()
 
-/datum/antagonist/vassal/revenge/ui_static_data(mob/user)
-	var/list/data = list()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		var/list/power_data = list()
-
-		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
-		power_data["power_icon"] = power.button_icon_state
-
-		data["power"] += list(power_data)
-
-	return data + ..()
-
 /datum/antagonist/vassal/revenge/proc/on_master_death(datum/antagonist/bloodsucker/bloodsuckerdatum, mob/living/carbon/master)
 	SIGNAL_HANDLER
 
@@ -69,14 +56,13 @@
 
 	var/datum/objective/survive/new_objective = new
 	new_objective.name = "Avenge Bloodsucker"
-	new_objective.explanation_text = "Avenge your Bloodsucker's death by recruiting their ex-vassals and continuing their operations."
+	new_objective.explanation_text = "Avenge your Bloodsucker's death by felling the ones that killed them, and by recruiting their ex-vassals and continuing their operations."
 	new_objective.owner = owner
 	objectives += new_objective
-
-	if(info_button_ref)
-		QDEL_NULL(info_button_ref)
-
-	ui_name = "AntagInfoRevengeVassal" //give their new ui
-	var/datum/action/antag_info/info_button = new(src)
-	info_button.Grant(owner.current)
-	info_button_ref = WEAKREF(info_button)
+	
+	antag_panel_title = "You are a Vassal tasked with taking revenge for the death of your Master!"
+	antag_panel_description = "You have gained your Master&#39;s old Powers, and a brand new \
+		power. You will have to survive and maintain your old \
+		Master&#39;s integrity. Bring their old Vassals back into the \
+		fold using your new Ability."
+	update_static_data_for_all_viewers()

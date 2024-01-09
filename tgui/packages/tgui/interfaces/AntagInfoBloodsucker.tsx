@@ -3,51 +3,39 @@ import { useState } from 'react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import {
-  Box,
-  Button,
-  Divider,
-  Dropdown,
-  Image,
-  Section,
-  Stack,
-  Tabs,
-} from '../components';
+import { Box, Button, Image, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
+import { Objective } from './common/Objectives';
+import { PowerDetails } from './PowerInfo';
 
-type Objective = {
-  count: number;
-  name: string;
-  explanation: string;
-  complete: BooleanLike;
-  was_uncompleted: BooleanLike;
-  reward: number;
-};
-
-type BloodsuckerInformation = {
+export type ClanProps = {
   clan: ClanInfo[];
   in_clan: BooleanLike;
-  power: PowerInfo[];
 };
 
-type ClanInfo = {
+export type ClanInfo = {
   clan_name: string;
   clan_description: string;
   clan_icon: string;
 };
 
-type PowerInfo = {
+export type PowerInfo = {
   power_name: string;
   power_explanation: string;
   power_icon: string;
 };
 
-type Info = {
+export type BloodsuckerProps = {
+  powers: PowerInfo[];
   objectives: Objective[];
+};
+export type VassalProps = BloodsuckerProps & {
+  title: string;
+  description: string;
 };
 
 const ObjectivePrintout = (props: any) => {
-  const { data } = useBackend<Info>();
+  const { data } = useBackend<BloodsuckerProps>();
   const { objectives } = data;
   return (
     <Stack vertical>
@@ -169,8 +157,8 @@ const BloodsuckerIntro = () => {
 };
 
 const BloodsuckerClan = (props: any) => {
-  const { act, data } = useBackend<BloodsuckerInformation>();
-  const { clan, in_clan } = data;
+  const { act, data } = useBackend<BloodsuckerProps & ClanProps>();
+  const { clan, in_clan, powers } = data;
 
   if (!in_clan) {
     return (
@@ -220,63 +208,8 @@ const BloodsuckerClan = (props: any) => {
             </Stack.Item>
           </Stack>
         </Section>
-        <PowerSection />
+        <PowerDetails powers={powers} />
       </Stack.Item>
     </Stack>
-  );
-};
-
-const PowerSection = (props: any) => {
-  const { act, data } = useBackend<BloodsuckerInformation>();
-  const { power } = data;
-  if (!power) {
-    return <Section minHeight="220px" />;
-  }
-
-  const [selectedPower, setSelectedPower] = useState(power[0]);
-
-  return (
-    <Section
-      fill
-      scrollable={!!power}
-      title="Powers"
-      buttons={
-        <Button
-          icon="info"
-          tooltipPosition="left"
-          tooltip={
-            'Select a Power using the dropdown menu for an in-depth explanation.'
-          }
-        />
-      }
-    >
-      <Stack>
-        <Stack.Item grow>
-          <Dropdown
-            displayText={selectedPower.power_name}
-            selected={selectedPower.power_name}
-            width="100%"
-            options={power.map((powers) => powers.power_name)}
-            onSelected={(powerName: string) =>
-              setSelectedPower(
-                power.find((p) => p.power_name === powerName) || power[0],
-              )
-            }
-          />
-          {selectedPower && (
-            <Image
-              position="absolute"
-              height="12rem"
-              src={resolveAsset(`bloodsucker.${selectedPower.power_icon}.png`)}
-            />
-          )}
-          <Divider Vertical />
-        </Stack.Item>
-        <Stack.Divider />
-        <Stack.Item grow={1} fontSize="16px">
-          {selectedPower && selectedPower.power_explanation}
-        </Stack.Item>
-      </Stack>
-    </Section>
   );
 };
