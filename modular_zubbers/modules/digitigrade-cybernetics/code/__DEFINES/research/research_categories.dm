@@ -1,0 +1,1 @@
+#define RND_SUBCATEGORY_MECHFAB_CYBORG_DIGI "/Digitigrade"
