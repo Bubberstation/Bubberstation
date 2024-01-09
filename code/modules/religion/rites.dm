@@ -77,6 +77,8 @@
 	invoke_msg = "... Arise, our champion! Become that which your soul craves, live in the world as your true form!!"
 	favor_cost = 1000
 
+/* Bubberstation edit - digi-androlegs
+
 /datum/religion_rites/synthconversion/perform_rite(mob/living/user, atom/religious_tool)
 	if(!ismovable(religious_tool))
 		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
@@ -95,6 +97,8 @@
 			return FALSE
 		to_chat(user, span_warning("You're going to convert yourself with this ritual."))
 	return ..()
+	
+*/
 
 /datum/religion_rites/synthconversion/invoke_effect(mob/living/user, atom/religious_tool)
 	..()
