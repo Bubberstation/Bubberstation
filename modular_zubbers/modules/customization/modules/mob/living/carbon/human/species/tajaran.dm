@@ -16,8 +16,8 @@
 	coldmod = 0.77
 	heatmod = 1.15
 	bodytemp_normal = BODYTEMP_NORMAL + 5 //Even more cold resistant, even more flammable
-	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + -20)
-	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT + -20)
+	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 20)
+	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 20)
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
 	ass_image = 'modular_zubbers/icons/ass/asstajara.png'
