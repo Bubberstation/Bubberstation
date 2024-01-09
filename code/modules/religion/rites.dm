@@ -78,26 +78,26 @@
 	favor_cost = 1000
 
 /* Bubberstation edit - digi-androlegs
-
-/datum/religion_rites/synthconversion/perform_rite(mob/living/user, atom/religious_tool)
-	if(!ismovable(religious_tool))
-		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
-		return FALSE
-	var/atom/movable/movable_reltool = religious_tool
-	if(!movable_reltool)
-		return FALSE
-	if(LAZYLEN(movable_reltool.buckled_mobs))
-		to_chat(user, span_warning("You're going to convert the one buckled on [movable_reltool]."))
-	else
-		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
-			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
-			return FALSE
-		if(isandroid(user))
-			to_chat(user, span_warning("You've already converted yourself. To convert others, they must be buckled to [movable_reltool]."))
-			return FALSE
-		to_chat(user, span_warning("You're going to convert yourself with this ritual."))
-	return ..()
-	
+*
+* /datum/religion_rites/synthconversion/perform_rite(mob/living/user, atom/religious_tool)
+*	if(!ismovable(religious_tool))
+*		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+*		return FALSE
+*	var/atom/movable/movable_reltool = religious_tool
+*	if(!movable_reltool)
+*		return FALSE
+*	if(LAZYLEN(movable_reltool.buckled_mobs))
+*		to_chat(user, span_warning("You're going to convert the one buckled on [movable_reltool]."))
+*	else
+*		if(!movable_reltool.can_buckle) //yes, if you have somehow managed to have someone buckled to something that now cannot buckle, we will still let you perform the rite!
+*			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+*			return FALSE
+*		if(isandroid(user))
+*			to_chat(user, span_warning("You've already converted yourself. To convert others, they must be buckled to [movable_reltool]."))
+*			return FALSE
+*		to_chat(user, span_warning("You're going to convert yourself with this ritual."))
+*	return ..()
+*	
 */
 
 /datum/religion_rites/synthconversion/invoke_effect(mob/living/user, atom/religious_tool)
