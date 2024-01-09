@@ -5,9 +5,9 @@
  * The random define is for events such as anomalies so they are still run during higher level events.
  */
 
-#define EVENT_LOWPOP_THRESHOLD 35
-#define EVENT_MIDPOP_THRESHOLD 60
-#define EVENT_HIGHPOP_THRESHOLD 80
+#define EVENT_LOWPOP_THRESHOLD 35 // BUBBER EDIT
+#define EVENT_MIDPOP_THRESHOLD 60 // BUBBER EDIT
+#define EVENT_HIGHPOP_THRESHOLD 80 // BUBBER EDIT
 #define EVENT_LOWPOP_TIMER_MULTIPLIER 2
 #define EVENT_MIDPOP_TIMER_MULTIPLIER 1.5
 #define EVENT_HIGHPOP_TIMER_MULTIPLIER 1
