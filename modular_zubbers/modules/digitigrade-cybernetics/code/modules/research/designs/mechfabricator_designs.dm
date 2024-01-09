@@ -11,7 +11,7 @@
 
 /datum/design/digitigrade_cyber_l_leg
 	name = "Digitigrade Cybernetic Left Leg"
-	id = "digitigradecyber_r_leg"
+	id = "digitigradecyber_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/digi
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 2)
@@ -37,7 +37,7 @@
 
 /datum/design/digitigrade_adv_l_leg
 	name = "Digitigrade Advanced Left Leg"
-	id = "digitigradeadvanced_r_leg"
+	id = "digitigradeadvanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/advanced/digi
 	materials = list(
