@@ -17,8 +17,8 @@ type PowerDetailsProps = {
 
 export const PowerDetails = (props: PowerDetailsProps) => {
   const { powers } = props;
-  if (!powers?.length) {
-    return <Section minHeight="220px" />;
+  if (!powers.length) {
+    return null;
   }
 
   const [selectedPower, setSelectedPower] = useState(powers[0]);
@@ -44,7 +44,7 @@ export const PowerDetails = (props: PowerDetailsProps) => {
             displayText={selectedPower.power_name}
             selected={selectedPower.power_name}
             width="100%"
-            options={powers.map((powers) => powers.power_name)}
+            options={powers.map((power) => power.power_name)}
             onSelected={(powerName: string) =>
               setSelectedPower(
                 powers.find((p) => p.power_name === powerName) || powers[0],
@@ -61,7 +61,7 @@ export const PowerDetails = (props: PowerDetailsProps) => {
           <Divider Vertical />
         </Stack.Item>
         <Stack.Divider />
-        <Stack.Item grow={1} fontSize="16px">
+        <Stack.Item grow fontSize="16px">
           {selectedPower && selectedPower.power_explanation}
         </Stack.Item>
       </Stack>
