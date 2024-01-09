@@ -248,8 +248,8 @@
 
 /*	design_ids -= list(
 		"borg_upgrade_pinpointer",
-	)
-	return ..()*/ //BUBBERSTATION REMOVAL
+	)*/ //BUBBERSTATION REMOVAL
+	return ..()
 
 /datum/techweb_node/basic_mining/New()
 	design_ids += list(
