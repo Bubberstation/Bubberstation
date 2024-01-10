@@ -3,7 +3,8 @@
 	description = "The Nosferatu Clan is unable to blend in with the crew, with no abilities such as Masquerade and Veil. \n\
 		Additionally, has a permanent bad back and looks like a Bloodsucker upon a simple examine, and is entirely unidentifiable, \n\
 		they can fit in the vents regardless of their form and equipment. \n\
-		The Favorite Vassal is permanetly disfigured, and can also ventcrawl, but only while entirely nude."
+		The Favorite Vassal is also permanently disfigured, and can also ventcrawl, but only while entirely nude. \n\
+		They also have night vision, know what each wire does, and have silent footsteps."
 	clan_objective = /datum/objective/bloodsucker/kindred
 	join_icon_state = "nosferatu"
 	join_description = "You are permanetly disfigured, look like a Bloodsucker to all who examine you, \

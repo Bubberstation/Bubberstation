@@ -130,8 +130,8 @@ const BloodsuckerIntro = () => {
               <br />
               Examine your new structures to see how they function!
               <br />
-              Medical and Genetic Analyzers can sell you out, your Masquerade
-              ability will hide your identity to prevent this.
+              Medical analyzers and the book of kindred can sell you out, your
+              Masquerade ability will hide your identity to prevent this.
               <br />
               You will learn how to make persuasion racks once you have enough
               levels to support a vassal, which you will learn during torpor
@@ -141,6 +141,8 @@ const BloodsuckerIntro = () => {
               You cannot level up until you select a clan. To select a clan,
               click the clan tab on the top right of this window.
               <br />
+              Ensure to read the descriptions of each ability in the Clan &
+              Powers tab, you may learn something new!
             </Stack.Item>
             <Stack.Item>
               <Section textAlign="center" textColor="red" fontSize="20px">

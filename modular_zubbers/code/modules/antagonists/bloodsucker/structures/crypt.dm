@@ -157,6 +157,7 @@
 /obj/structure/bloodsucker/vassalrack/MouseDrop_T(atom/movable/movable_atom, mob/user)
 	var/mob/living/living_target = movable_atom
 	if(!anchored && IS_BLOODSUCKER(user))
+		user.balloon_alert(user, "not secured!")
 		to_chat(user, span_danger("Until this rack is secured in place, it cannot serve its purpose."))
 		to_chat(user, span_announce("* Bloodsucker Tip: Examine the Persuasion Rack to understand how it functions!"))
 		return
@@ -231,12 +232,11 @@
 /obj/structure/bloodsucker/vassalrack/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
 	density = FALSE
 	buckled_mob.Paralyze(2 SECONDS)
 	update_appearance(UPDATE_ICON)
-	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
 	. = ..()

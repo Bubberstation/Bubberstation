@@ -47,7 +47,7 @@
 	show_in_roundend = TRUE
 	for(var/datum/objective/all_objectives as anything in objectives)
 		objectives -= all_objectives
-	BuyPower(new /datum/action/cooldown/bloodsucker/vassal_blood)
+	BuyPower(/datum/action/cooldown/bloodsucker/vassal_blood)
 	for(var/datum/action/cooldown/bloodsucker/master_powers as anything in bloodsuckerdatum.powers)
 		if(master_powers.purchase_flags & BLOODSUCKER_DEFAULT_POWER)
 			continue

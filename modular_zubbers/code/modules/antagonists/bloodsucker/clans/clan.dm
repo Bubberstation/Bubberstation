@@ -156,7 +156,7 @@
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient. Spend [round(bloodsuckerdatum.bloodsucker_blood_volume, 1)] blood to advance your rank", "Your Blood Thickens...", options)
+		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to advance your rank", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
 			return
@@ -179,7 +179,7 @@
 
 		// Good to go - Buy Power!
 		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
-		bloodsuckerdatum.BuyPower(new purchased_power)
+		bloodsuckerdatum.BuyPower(purchased_power)
 		human_user.balloon_alert(human_user, "learned [choice]!")
 		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
 
@@ -237,21 +237,25 @@
 	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
 		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
 		return FALSE
-
+	if(bloodsuckerdatum.bloodsucker_blood_volume < 150)
+		to_chat(bloodsuckerdatum.owner.current, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
+		return FALSE
 	var/list/options = list()
 	var/list/radial_display = list()
 	for(var/datum/antagonist/vassal/vassaldatums as anything in subtypesof(/datum/antagonist/vassal))
 		var/vassal_type = initial(vassaldatums.special_type)
-		if(vassal_type && bloodsuckerdatum.special_vassals[vassal_type])
+		var/slot = bloodsuckerdatum.special_vassals[vassal_type]
+		if(vassal_type && slot)
 			continue
 		options[initial(vassaldatums.name)] = vassaldatums
 
 		var/datum/radial_menu_choice/option = new
-		option.image = image(icon = initial(vassaldatums.hud_icon), icon_state = initial(vassaldatums.antag_hud_name), pixel_y = -20, pixel_x = -20)
+		option.image = image(icon = initial(vassaldatums.hud_icon), icon_state = initial(vassaldatums.antag_hud_name), pixel_y = -12, pixel_x = -12)
 		option.info = "[initial(vassaldatums.name)] - [span_boldnotice(initial(vassaldatums.vassal_description))]"
 		radial_display[initial(vassaldatums.name)] = option
 
 	if(!options.len)
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "Out of Special Vassal slots!")
 		return
 
 	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you?"))
@@ -273,4 +277,4 @@
  */
 /datum/bloodsucker_clan/proc/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	SIGNAL_HANDLER
-	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/brawn)
+	vassaldatum.BuyPower(/datum/action/cooldown/bloodsucker/targeted/brawn)

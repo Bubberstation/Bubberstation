@@ -85,7 +85,6 @@
 		TRAIT_NOCRITDAMAGE,
 		TRAIT_RESISTCOLD,
 		TRAIT_RADIMMUNE,
-		TRAIT_GENELESS,
 		TRAIT_STABLEHEART,
 		TRAIT_NOSOFTCRIT,
 		TRAIT_NOHARDCRIT,
@@ -194,7 +193,7 @@
 	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
 
-	if(IS_FAVORITE_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
+	if(IS_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
 		bloodsucker_level_unspent = 0
 		show_in_roundend = FALSE
 	else
@@ -220,6 +219,7 @@
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 	clear_powers_and_stats()
 	check_cancel_sunlight() //check if sunlight should end
+	free_all_vassals()
 	return ..()
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
@@ -238,7 +238,7 @@
 	var/old_right_arm_unarmed_damage_high
 	if(old_body && ishuman(old_body))
 		var/mob/living/carbon/human/old_user = old_body
-		old_user.mob_biotypes &= biotype
+		old_user.mob_biotypes &= ~biotype
 		//Keep track of what they were
 		old_left_arm_unarmed_damage_low = old_left_arm?.unarmed_damage_low
 		old_left_arm_unarmed_damage_high = old_left_arm?.unarmed_damage_high
@@ -394,7 +394,7 @@
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in all_bloodsucker_powers)
 		if(!(initial(all_powers.purchase_flags) & BLOODSUCKER_DEFAULT_POWER))
 			continue
-		BuyPower(new all_powers)
+		BuyPower(all_powers)
 
 /datum/antagonist/bloodsucker/proc/assign_starting_stats()
 	//Traits: Species
@@ -428,7 +428,7 @@
  * Order of steps and reason why:
  * Remove clan - Clans like Nosferatu give Powers on removal, we have to make sure this is given before removing Powers.
  * Powers - Remove all Powers, so things like Masquerade are off.
- * Species traits, Traits, MaxHealth, Language - Misc stuff, has no priority.
+ * Species traits, Traits, Language - Misc stuff, has no priority.
  * Organs - At the bottom to ensure everything that changes them has reverted themselves already.
  * Update Sight - Done after Eyes are regenerated.
  */
@@ -442,7 +442,7 @@
 	/// Stats
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
-		user.mob_biotypes &= biotype
+		user.mob_biotypes &= ~biotype
 		var/obj/item/bodypart/left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
 		if(left_arm)
@@ -453,8 +453,6 @@
 			right_arm.unarmed_damage_high = initial(right_arm.unarmed_damage_high)
 	// Remove all bloodsucker traits
 	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
-	// Update Health
-	owner.current.setMaxHealth(initial(owner.current.maxHealth))
 	// Language
 	owner.current.remove_language(/datum/language/vampiric, ALL, LANGUAGE_MIND)
 	// Heart & Eyes

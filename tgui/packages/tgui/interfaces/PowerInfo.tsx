@@ -17,7 +17,7 @@ type PowerDetailsProps = {
 
 export const PowerDetails = (props: PowerDetailsProps) => {
   const { powers } = props;
-  if (!powers.length) {
+  if (!powers?.length) {
     return null;
   }
 

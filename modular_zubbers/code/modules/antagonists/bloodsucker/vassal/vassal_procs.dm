@@ -40,10 +40,15 @@
 	return returnIcon + returnString
 
 /// Used when your Master teaches you a new Power.
-/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
-	powers += power
+/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power, list_to_add_to = powers)
+	for(var/datum/action/current_powers as anything in list_to_add_to)
+		if(current_powers.type == power.type)
+			return FALSE
+	power = new power()
+	list_to_add_to += power
 	power.Grant(owner.current)
 	log_uplink("[key_name(owner.current)] purchased [power].")
+	return TRUE
 
 /datum/antagonist/vassal/proc/LevelUpPowers()
 	for(var/datum/action/cooldown/bloodsucker/power in powers)

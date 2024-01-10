@@ -5,7 +5,7 @@
  */
 /datum/action/cooldown/spell/shapeshift/bat
 	name = "Bat Form"
-	desc = "Take on the shape of a space bat."
+	desc = "Take on the shape of a space bat. You can fly and see in the dark, and you heal from doing melee attacks."
 	invocation = "Master, grant me your might, BAT FORM!!"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE

@@ -28,7 +28,7 @@
 /datum/antagonist/bloodsucker/proc/sol_near_start(atom/source)
 	SIGNAL_HANDLER
 	if(bloodsucker_lair_area && !(locate(/datum/action/cooldown/bloodsucker/gohome) in powers))
-		BuyPower(new /datum/action/cooldown/bloodsucker/gohome)
+		BuyPower(/datum/action/cooldown/bloodsucker/gohome)
 
 ///Called when Sol first ends.
 /datum/antagonist/bloodsucker/proc/on_sol_end(atom/source)

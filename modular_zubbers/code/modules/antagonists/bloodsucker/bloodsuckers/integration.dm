@@ -52,6 +52,7 @@
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
+		. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
 
 /datum/outfit/bloodsucker_outfit
 	name = "Bloodsucker outfit (Preview only)"

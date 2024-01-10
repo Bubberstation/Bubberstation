@@ -14,7 +14,7 @@
 	bloodsuckerdatum.remove_nondefault_powers(return_levels = TRUE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
 		if((initial(power.purchase_flags) & TREMERE_CAN_BUY) && initial(power.level_current) == 1)
-			bloodsuckerdatum.BuyPower(new power)
+			bloodsuckerdatum.BuyPower(power)
 
 /datum/bloodsucker_clan/tremere/Destroy(force)
 	for(var/datum/action/cooldown/bloodsucker/power in bloodsuckerdatum.powers)
@@ -65,7 +65,7 @@
 			bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "cannot upgrade [choice]!")
 			to_chat(bloodsuckerdatum.owner.current, span_notice("[choice] is already at max level!"))
 			return
-		bloodsuckerdatum.BuyPower(new tremere_power.upgraded_power)
+		bloodsuckerdatum.BuyPower(tremere_power.upgraded_power)
 		bloodsuckerdatum.RemovePower(tremere_power)
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "upgraded [choice]!")
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You have upgraded [choice]!"))

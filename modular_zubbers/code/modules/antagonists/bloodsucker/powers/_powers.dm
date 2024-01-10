@@ -50,6 +50,8 @@
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
 
 /datum/action/cooldown/bloodsucker/Destroy()
+	if(active)
+		DeactivatePower()
 	bloodsuckerdatum_power = null
 	return ..()
 

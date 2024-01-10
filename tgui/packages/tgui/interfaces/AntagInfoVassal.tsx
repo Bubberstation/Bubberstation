@@ -9,7 +9,11 @@ export const AntagInfoVassal = (props: any, context: any) => {
   const { data } = useBackend<VassalProps>();
   const { powers } = data;
   return (
-    <Window width={620} height={powers.length ? 600 : 300}>
+    <Window
+      width={620}
+      height={powers?.length ? 600 : 300}
+      theme="spookyconsole"
+    >
       <Window.Content>
         <VassalInfo />
       </Window.Content>

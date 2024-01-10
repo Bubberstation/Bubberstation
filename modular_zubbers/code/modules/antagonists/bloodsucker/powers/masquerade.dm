@@ -32,7 +32,7 @@
 	. = ..()
 	var/mob/living/carbon/user = owner
 	owner.balloon_alert(owner, "masquerade turned on.")
-	to_chat(user, span_notice("Your heart beats falsely within your lifeless chest. You may yet pass for a mortal."))
+	to_chat(user, span_notice("Your heart beats falsely within your lifeless chest, and your eyes are no longer sensitive to the light. You may yet pass for a mortal."))
 	to_chat(user, span_warning("Your vampiric healing is halted while imitating life."))
 
 	// Give status effect
@@ -48,6 +48,9 @@
 	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = initial(eyes.flash_protect)
+		eyes.color_cutoffs = initial(eyes.color_cutoffs)
+		eyes.sight_flags = initial(eyes.sight_flags)
+		user.update_sight()
 
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
@@ -71,6 +74,9 @@
 	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
+		eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
+		eyes.sight_flags = SEE_MOBS
+		user.update_sight()
 	to_chat(user, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
 
 /**

@@ -13,10 +13,16 @@
 
 	///Bloodsucker levels, but for Vassals, used by Ventrue.
 	var/vassal_level
+	/// Power's we're going to inherit once we turn into a Bloodsucker
+	var/list/bloodsucker_powers = list()
 
 /datum/antagonist/vassal/favorite/on_gain()
 	. = ..()
 	SEND_SIGNAL(master, BLOODSUCKER_MAKE_FAVORITE, src)
+
+/datum/antagonist/vassal/favorite/on_removal()
+	remove_powers(bloodsucker_powers)
+	. = ..()
 
 /datum/antagonist/vassal/favorite/pre_mindshield(mob/implanter, mob/living/mob_override)
 	return COMPONENT_MINDSHIELD_RESISTED

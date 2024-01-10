@@ -12,6 +12,7 @@
 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
 		if(current_powers.type == power.type)
 			return FALSE
+	power = new power()
 	powers += power
 	power.Grant(owner.current)
 	log_uplink("[key_name(owner.current)] purchased [power].")
@@ -54,9 +55,6 @@
 
 /datum/antagonist/bloodsucker/proc/RankUp(force = FALSE)
 	if(!owner || !owner.current)
-		return
-	if(IS_FAVORITE_VASSAL(owner.current))
-		to_chat(owner.current, span_notice("You are yet too young to gain a rank. Ask your master for new abilities."))
 		return
 	bloodsucker_level_unspent++
 	if(!my_clan)
@@ -156,3 +154,8 @@
 /datum/antagonist/bloodsucker/proc/free_vassal_slots()
 	return max(max_vassals() - length(vassals), 0)
 
+/datum/antagonist/bloodsucker/proc/frenzy_enter_threshold()
+	return FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)
+
+/datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
+	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)

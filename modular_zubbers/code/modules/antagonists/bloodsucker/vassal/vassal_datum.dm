@@ -11,7 +11,7 @@
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
-	ui_name = "VassalAntagInfo"
+	ui_name = "AntagInfoVassal"
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
@@ -103,11 +103,11 @@
 		if(!master.special_vassals[special_type])
 			master.special_vassals[special_type] = list()
 		master.special_vassals[special_type] |= src
-	master.vassals |= src
+	master.vassals += src
 	owner.enslave_mind_to_creator(master.owner.current)
 	owner.current.log_message("has been vassalized by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
-	BuyPower(new /datum/action/cooldown/bloodsucker/recuperate)
+	BuyPower(/datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
 	var/datum/objective/bloodsucker/vassal/vassal_objective = new
 	vassal_objective.owner = owner
@@ -123,20 +123,24 @@
 	//Free them from their Master
 	if(master && master.owner)
 		if(special_type && master.special_vassals[special_type])
-			master.special_vassals[special_type] -= src
+			master.special_vassals.Remove(special_type)
 		master.vassals -= src
 		owner.enslaved_to = null
 	//Remove ALL Traits, as long as its from BLOODSUCKER_TRAIT's source.
 	for(var/all_status_traits in owner.current._status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	//Remove Recuperate Power
-	while(powers.len)
-		var/datum/action/cooldown/bloodsucker/power = pick(powers)
-		powers -= power
-		power.Remove(owner.current)
+	remove_powers(powers)
 	//Remove Language & Hud
 	owner.current.remove_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
 	return ..()
+
+/datum/antagonist/vassal/proc/remove_powers(var/list/removing_powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in removing_powers)
+		removing_powers -= power
+		if(!(power in owner.current.actions))
+			continue
+		power.Remove(owner.current)
 
 /datum/antagonist/vassal/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
