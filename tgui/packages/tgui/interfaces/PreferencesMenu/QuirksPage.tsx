@@ -1,9 +1,10 @@
+import { filterMap } from 'common/collections';
+
+import { useBackend, useLocalState } from '../../backend';
 import { Box, Button, Icon, Popper, Stack, Tooltip } from '../../components';
 import { PreferencesMenuData, Quirk, RandomSetting, ServerData } from './data';
-import { useBackend, useLocalState } from '../../backend';
-import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
-import { filterMap } from 'common/collections';
 import { getRandomization, PreferenceList } from './MainPage';
+import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
 import { useRandomToggleState } from './useRandomToggleState';
 
 const getValueClass = (value: number): string => {
@@ -65,8 +66,6 @@ const QuirkList = (props: {
           <Box
             className={className}
             key={quirkKey}
-            role="button"
-            tabIndex="1"
             onClick={() => {
               if (props.selected) {
                 setCustomizationExpanded(false);
@@ -137,8 +136,10 @@ const QuirkList = (props: {
                     {quirk.description}
                     {!!quirk.customizable && (
                       <Popper
-                        options={{
-                          placement: 'bottom-end',
+                        placement="bottom-end"
+                        isOpen={customizationExpanded}
+                        onClickOutside={() => {
+                          setCustomizationExpanded(false);
                         }}
                         popperContent={
                           <Box>
