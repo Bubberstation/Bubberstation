@@ -31,7 +31,7 @@
 		return .
 	var/mob/living/living_target = cast_on //We check if the target is living above.
 	if(living_target.key)
-		to_chat(owner, span_warning("[living_target.p_They()] [living_target.p_do()]n't appear to have a vacant mind to swap into!")
+		to_chat(owner, span_warning("[living_target.p_They()] [living_target.p_do()]n't appear to have a vacant mind to swap into!"))
 		return FALSE
 
 	return TRUE
