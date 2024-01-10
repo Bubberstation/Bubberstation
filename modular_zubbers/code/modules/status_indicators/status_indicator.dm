@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(apply_pref_on_login))
 
 /datum/component/status_indicator/proc/apply_pref_on_login()
-	var/atom/movable/screen/plane_master/game_world_upper_fov_hidden/local_status = locate() in attached_mob.client.screen
+	var/atom/movable/screen/plane_master/rendering_plate/game_plate/local_status = locate() in attached_mob.client.screen
 	if(local_status)
 		. = attached_mob.client.prefs.read_preference(/datum/preference/toggle/enable_status_indicators)
 		local_status.alpha = (.) ? 255 : 0
@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 
 		// This is a semi-HUD element, in a similar manner as medHUDs, in that they're 'above' everything else in the world,
 		// but don't pierce obfuscation layers such as blindness or darkness, unlike actual HUD elements like inventory slots.
-		indicator.plane = GAME_PLANE_UPPER_FOV_HIDDEN
+		indicator.plane = RENDER_PLANE_GAME
 		indicator.layer = STATUS_LAYER
 		indicator.appearance_flags = PIXEL_SCALE|TILE_BOUND|NO_CLIENT_COLOR|RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM|KEEP_APART
 		indicator.pixel_y = y_offset
