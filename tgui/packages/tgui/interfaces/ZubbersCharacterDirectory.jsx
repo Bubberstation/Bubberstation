@@ -29,7 +29,7 @@ export const ZubbersCharacterDirectory = (props) => {
   } = data;
 
   return (
-    <Window width={640} height={480} resizeable>
+    <Window width={900} height={640} resizeable>
       <Window.Content scrollable>
         <Section title="Controls">
           <LabeledList>
