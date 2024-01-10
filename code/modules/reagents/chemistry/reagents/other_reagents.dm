@@ -3102,3 +3102,4 @@
 /datum/reagent/gold/cursed
 	name = "Cursed Gold"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+
