@@ -29,11 +29,11 @@
 				unlucky_victim = "[possible_fatty]" //We don't use .name here because we want "The" to be affixed to it if needed.
 				unlucky_victim_fatty_score = possible_fatty_score
 
-		addtimer(CALLBACK(src,PROC_REF(lose_some_weight_fatty),unlucky_victim),rand(20 SECONDS,40 SECONDS))
+		addtimer(CALLBACK(src,PROC_REF(lose_some_weight_fatty),unlucky_victim),rand(60 SECONDS,180 SECONDS))
 
 /datum/round_event/ghost_role/blob/proc/lose_some_weight_fatty(victim)
 	priority_announce(
-		"It appears that the level 5 biohazard aboard [station_name()] was a false alarm, as our sensors appeared to have mistakenly labeled [victim] as a level 5 biohazard. All crewmembers are reminded to practice healthy eating habbits as part of Nanotrasen's Safe and Healthy Eating program.",
-		"Biohazard Alert",
-		ANNOUNCER_OUTBREAK5
+		"It appears that the level 5 biohazard aboard [station_name()] was a false alarm, as our sensors appeared to have mistakenly labeled [victim] as a level 5 biohazard. \
+		All crewmembers are reminded to practice healthy eating habbits as part of Nanotrasen's Safe and Healthy Eating program.",
+		"Biohazard Alert"
 	)
