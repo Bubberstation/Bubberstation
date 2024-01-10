@@ -205,11 +205,6 @@
 //     ARCHIVES     //
 //////////////////////
 
-/obj/item/book/codex_gigas/Initialize(mapload)
-	. = ..()
-	var/turf/current_turf = get_turf(src)
-	new /obj/item/book/kindred(current_turf)
-
 /**
  *	# Archives of the Kindred:
  *
@@ -235,9 +230,13 @@
 	throw_range = 10
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	///Boolean on whether the book is currently being used, so you can only use it on one person at a time.
+	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
+	var/cooldown_time = 1 MINUTES
 	var/in_use = FALSE
 
-/obj/item/book/kindred/Initialize()
+/obj/item/book/kindred/station_loving
+
+/obj/item/book/kindred/station_loving/Initialize()
 	. = ..()
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
@@ -258,13 +257,16 @@
 		user.apply_damage(3, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		return
 
-	in_use = TRUE
-	user.balloon_alert_to_viewers(user, "reading book...", "looks at [target] and [src]")
+	if(!COOLDOWN_FINISHED(src, bloodsucker_check_cooldown))
+		user.balloon_alert(user, "your head hurts, wait a minute ")
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, balloon_alert), user, "You feel your head clear up."), cooldown_time)
+		return
+	user.balloon_alert_to_viewers(user, "reading book...")
+	user.balloon_alert(target, "looks at you and checks their [src]...")
 	if(!do_after(user, 3 SECONDS, target, timed_action_flags = NONE, progress = TRUE))
 		to_chat(user, span_notice("You quickly close [src]."))
-		in_use = FALSE
 		return
-	in_use = FALSE
+	COOLDOWN_START(src, bloodsucker_check_cooldown, cooldown_time)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
 	// Are we a Bloodsucker | Are we on Masquerade. If one is true, they will fail.
 	if(IS_BLOODSUCKER(target) && !HAS_TRAIT(target, TRAIT_MASQUERADE))
@@ -277,12 +279,9 @@
 		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
 
 /obj/item/book/kindred/attack_self(mob/living/user)
-	if(user.mind && !HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
-		if(IS_BLOODSUCKER(user))
-			to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
-		else
-			to_chat(user, span_warning("You feel your eyes unable to read the boring texts..."))
-			user.set_eye_blur_if_lower(10 SECONDS)
+	if(user.mind && !(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER) || IS_BLOODSUCKER(user)))
+		to_chat(user, span_warning("You feel your eyes unable to read the boring texts..."))
+		user.set_eye_blur_if_lower(10 SECONDS)
 		return
 	ui_interact(user)
 
@@ -302,3 +301,8 @@
 		data["clans"] += list(clan_data)
 
 	return data
+
+/obj/structure/displaycase/curator
+	desc = "This book was found inside a coffin of a long dead Curator. It is said to be able to reveal the true nature of those who feed upon mankind."
+	start_showpiece_type = /obj/item/book/kindred/station_loving
+	req_access = list(ACCESS_LIBRARY)
