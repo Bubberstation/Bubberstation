@@ -18,7 +18,7 @@
 			"Seek out any non-security vigilantes on the station and prevent them from hunting others.",
 			"Try to become a supervillain by using costumes, treachery, and a lot of bluster and bravado.",
 			"Kidnap a pet or a crewmember and hold them for ransom.",
-			"Convert a secure area, such as the bridge, into something more "fun" for the crew.",
+			"Convert a secure area, such as the bridge, into something more \"fun\" for the crew.",
 			"Make as much of the station as possible accessible to the general public.",
 			"Start a worker's union and encourage your fellow workers to stop working and go on strike.",
 			"Steal things from crew members and attempt to auction them off for profit.",
