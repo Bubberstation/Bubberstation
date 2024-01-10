@@ -259,7 +259,7 @@
 
 	if(!COOLDOWN_FINISHED(src, bloodsucker_check_cooldown))
 		user.balloon_alert(user, "your head hurts, wait a minute ")
-		addtimer(CALLBACK(user, PROC_REF(balloon_alert), user, "You feel your head clear up."), cooldown_time)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, balloon_alert), user, "You feel your head clear up."), cooldown_time)
 		return
 	user.balloon_alert_to_viewers(user, "reading book...")
 	user.balloon_alert(target, "looks at you and checks their [src]...")
@@ -279,12 +279,9 @@
 		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
 
 /obj/item/book/kindred/attack_self(mob/living/user)
-	if(user.mind && !HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
-		if(IS_BLOODSUCKER(user))
-			to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
-		else
-			to_chat(user, span_warning("You feel your eyes unable to read the boring texts..."))
-			user.set_eye_blur_if_lower(10 SECONDS)
+	if(user.mind && !(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER) || IS_BLOODSUCKER(user)))
+		to_chat(user, span_warning("You feel your eyes unable to read the boring texts..."))
+		user.set_eye_blur_if_lower(10 SECONDS)
 		return
 	ui_interact(user)
 
