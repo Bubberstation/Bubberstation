@@ -29,6 +29,10 @@
 		qdel(src)
 		return
 	add_effects(arglist(params))
+	//BUBBERSTATION CHANGE: FIXES MOODS NOT CLEARING
+	if(!category && timeout)
+		category = "[src.type]"
+	//BUBBERSTATION CHANGE END.
 
 /datum/mood_event/Destroy()
 	remove_effects()
