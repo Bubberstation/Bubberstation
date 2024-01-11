@@ -79,7 +79,6 @@
 					/obj/item/clothing/suit/armor/metrocopriot = 6,
 	)
 	payment_department = ACCOUNT_SEC
-	light_color = COLOR_MODERATE_BLUE
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "MultiSec Outfitting Station"
