@@ -33,6 +33,7 @@
 /obj/item/vending_refill/security
 	machine_name = "Armadyne Peacekeeper Equipment Vendor"
 
+/* BUBBERSTATION EDIT - Vendor overriden to be replaced by multisec vendor - modular_zubbers\code\game\machinery\vending\multisec.dm
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper Peacekeeper Outfitting Station"
 	desc = "A vending machine stocked with Lopland's \"Peacekeeper\" security package, including standardized uniforms and general equipment."
@@ -71,7 +72,7 @@
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
 	machine_name = "Peacekeeper Outfitting Station"
-
+*/
 //List for the old one, for when its mapped in; curates it nicely, adds /redsec to the items, and also prevents some conflicts with the above vendor
 /obj/machinery/vending/wardrobe/sec_wardrobe/red
 	name = "\improper SecDrobe"
