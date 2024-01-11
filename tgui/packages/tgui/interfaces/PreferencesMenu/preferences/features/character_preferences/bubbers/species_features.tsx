@@ -2,8 +2,8 @@ import {
   Feature,
   FeatureChoiced,
   FeatureDropdownInput,
-  FeatureTextInput,
   FeatureShortTextInput,
+  FeatureTextInput,
 } from '../../base';
 
 export const character_ad: Feature<string> = {

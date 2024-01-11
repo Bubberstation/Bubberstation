@@ -38,6 +38,7 @@
 	return "Nude Only"
 
 //NSFW headshot, so we can see those they/them nuts in the NSFW section of the character creator.
+//TODO: Move the headshot proc over here so they stop overwriting each other by being a subtype.
 /datum/preference/text/headshot/nsfw
 	savefile_key = "headshot_nsfw"
 
@@ -63,12 +64,21 @@
 /datum/preference/text/ooc_notes/silicon
 	savefile_key = "ooc_notes_silicon"
 
+/datum/preference/text/ooc_notes/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 //Custom species and lore for silicons, also known as "Custom Model." This allows silicons to define a custom species rather than receiving, by default "A cyborg unit." BORING.
 /datum/preference/text/custom_species/silicon
 	savefile_key = "custom_species_silicon"
 
+/datum/preference/text/custom_species/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/text/custom_species_lore/silicon
 	savefile_key = "custom_species_lore_silicon"
+
+/datum/preference/text/custom_species_lore/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
 
 //Config entry for the Silicon flavor text requirement
 /datum/config_entry/number/silicon_flavor_text_character_requirement

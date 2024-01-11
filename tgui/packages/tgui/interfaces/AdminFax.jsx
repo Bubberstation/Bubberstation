@@ -1,15 +1,15 @@
 import { useBackend, useLocalState } from '../backend';
 import {
-  Section,
   Box,
-  Dropdown,
   Button,
-  Input,
-  TextArea,
   Divider,
-  NumberInput,
-  Tooltip,
+  Dropdown,
+  Input,
   Knob,
+  NumberInput,
+  Section,
+  TextArea,
+  Tooltip,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -63,7 +63,7 @@ export const FaxMainPanel = (props) => {
             textAlign="center"
             selected="Choose fax machine..."
             width="100%"
-            nochevron
+            noChevron
             nowrap
             options={data.faxes}
             onSelected={(value) => setFax(value)}
