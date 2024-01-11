@@ -119,7 +119,7 @@
 	extra_hud.hide_from(user)
 
 /obj/item/clothing/glasses/hud/secmed/sunglasses
-	name = "security-medical hud sunglasses"
+	name = "security-medical HUD sunglasses"
 	icon_state = "hud_protected"
 	worn_icon_state = "sunhudsec"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
