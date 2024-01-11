@@ -52,7 +52,7 @@
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	gloves = /obj/item/clothing/gloves/latex/nitrile
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/secmed
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
 	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
@@ -99,26 +99,31 @@
 	desc = "The choice for security medics all across the sector, provides advanced medical and simplified security readings."
 	icon = 'modular_zubbers/modules/security/secmed/icons/secmed_equipment.dmi'
 	icon_state = "hud"
+	worn_icon_state = "healthhud"
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
 
 /obj/item/clothing/glasses/hud/secmed/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
+	if(!(slot & ITEM_SLOT_EYES))
+		return
 	// Extra hud because the bloody code doesn't support multihuds yet. I'll probably add multihud support soon enough. If you see this I didn't. ~Waterpig
 	var/datum/atom_hud/extra_hud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
 	extra_hud.show_to(user)
 
 /obj/item/clothing/glasses/hud/secmed/dropped(mob/living/carbon/human/user)
 	. = ..()
+	if(!istype(user) || user.glasses != src)
+		return
 	var/datum/atom_hud/extra_hud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
 	extra_hud.hide_from(user)
 
 /obj/item/clothing/glasses/hud/secmed/sunglasses
 	name = "security-medical hud sunglasses"
-	icon_state = "hud_sun"
+	icon_state = "hud_protected"
+	worn_icon_state = "sunhudsec"
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	flags_cover = GLASSESCOVERSEYES
-
 
 /obj/item/storage/bag/garment/secmed
 	name = "Security medic's garment bag"
@@ -145,6 +150,7 @@
 /obj/structure/closet/secure_closet/security_medic/PopulateContents()
 	..()
 	new /obj/item/radio/headset/headset_medsec(src)
+	new /obj/item/clothing/glasses/hud/secmed/sunglasses(src)
 	new /obj/item/storage/medkit/emergency(src)
 	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/storage/belt/medical(src)
