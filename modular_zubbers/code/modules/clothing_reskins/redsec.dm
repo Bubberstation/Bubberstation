@@ -86,3 +86,14 @@
 				RESKIN_WORN_ICON_STATE = "security",
 			)
 		. = ..()
+
+/obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
+	if (!unique_reskin)
+		. = ..()
+	else
+		unique_reskin["RedSec Variant"] = list(
+				RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+				RESKIN_ICON_STATE = "sunhudsec",
+				RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+			)
+		. = ..()
