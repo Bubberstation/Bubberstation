@@ -221,99 +221,99 @@
 /datum/blooper/blub
 	name = "Blub"
 	id = "blub"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/blub.ogg'
+	soundpath = 'goon/sounds/blub.ogg'
 
 /datum/blooper/bottalk
 	name = "Bottalk 1"
 	id = "bottalk1"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/bottalk_1.ogg'
+	soundpath = 'goon/sounds/bottalk_1.ogg'
 	minspeed = 3
 	maxspeed = 9
 
 /datum/blooper/bottalk/alt1
 	name = "Bottalk 2"
 	id = "bottalk2"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/bottalk_2.ogg'
+	soundpath = 'goon/sounds/bottalk_2.ogg'
 
 /datum/blooper/bottalk/alt2
 	name = "Bottalk 3"
 	id = "bottalk3"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/bottalk_3.ogg'
+	soundpath = 'goon/sounds/bottalk_3.ogg'
 
 /datum/blooper/bottalk/alt3
 	name = "Bottalk 4"
 	id = "bottalk4"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/bottalk_4.ogg'
+	soundpath = 'goon/sounds/bottalk_4.ogg'
 
 /datum/blooper/buwoo
 	name = "Buwoo"
 	id = "buwoo"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/buwoo.ogg'
+	soundpath = 'goon/sounds/buwoo.ogg'
 
 /datum/blooper/cow
 	name = "Cow"
 	id = "cow"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/cow.ogg'
+	soundpath = 'goon/sounds/cow.ogg'
 
 /datum/blooper/lizard
 	name = "Lizard"
 	id = "lizard"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/lizard.ogg'
+	soundpath = 'goon/sounds/lizard.ogg'
 
 /datum/blooper/pug
 	name = "Pug"
 	id = "pug"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/pug.ogg'
+	soundpath = 'goon/sounds/pug.ogg'
 
 /datum/blooper/pugg
 	name = "Pugg"
 	id = "pugg"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/pugg.ogg'
+	soundpath = 'goon/sounds/pugg.ogg'
 
 /datum/blooper/radio
 	name = "Radio 1"
 	id = "radio1"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/radio.ogg'
+	soundpath = 'goon/sounds/radio.ogg'
 
 /datum/blooper/radio/short
 	name = "Radio 2"
 	id = "radio2"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/radio2.ogg'
+	soundpath = 'goon/sounds/radio2.ogg'
 
 /datum/blooper/radio/ai
 	name = "Radio (AI)"
 	id = "radio_ai"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/radio_ai.ogg'
+	soundpath = 'goon/sounds/radio_ai.ogg'
 
 /datum/blooper/roach //Turkish characters be like
 	name = "Roach"
 	id = "roach"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/roach.ogg'
+	soundpath = 'goon/sounds/roach.ogg'
 
 /datum/blooper/skelly
 	name = "Skelly"
 	id = "skelly"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/skelly.ogg'
+	soundpath = 'goon/sounds/skelly.ogg'
 
 /datum/blooper/speak
 	name = "Speak 1"
 	id = "speak1"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/speak_1.ogg'
+	soundpath = 'goon/sounds/speak_1.ogg'
 
 /datum/blooper/speak/alt1
 	name = "Speak 2"
 	id = "speak2"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/speak_2.ogg'
+	soundpath = 'goon/sounds/speak_2.ogg'
 
 /datum/blooper/speak/alt2
 	name = "Speak 3"
 	id = "speak3"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/speak_3.ogg'
+	soundpath = 'goon/sounds/speak_3.ogg'
 
 /datum/blooper/speak/alt3
 	name = "Speak 4"
 	id = "speak4"
-	soundpath = 'modular_zubbers/modules/blooper/voice/bloopers/goon/speak_4.ogg'
+	soundpath = 'goon/sounds/speak_4.ogg'
 
 /datum/blooper/chitter/alt
 	name = "Chittery Alt"
