@@ -118,14 +118,14 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "send_sound_blooper"
 	savefile_identifier = PREFERENCE_PLAYER
-	default_value = FALSE
+	default_value = TRUE
 
 /// Can I hear everyone else's bloops?
 /datum/preference/toggle/hear_sound_blooper
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "hear_sound_blooper"
 	savefile_identifier = PREFERENCE_PLAYER
-	default_value = FALSE
+	default_value = TRUE
 
 /// It's was stoolen from Splurt build >:3 and from fluffySTG!! nyeehehehheee!~
 /datum/blooper
