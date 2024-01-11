@@ -95,7 +95,7 @@
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/clothing/glasses/hud/secmed
-	name = "security-medical hud"
+	name = "security-medical HUD"
 	desc = "The choice for security medics all across the sector, provides advanced medical and simplified security readings."
 	icon = 'modular_zubbers/modules/security/secmed/icons/secmed_equipment.dmi'
 	icon_state = "hud"
