@@ -84,7 +84,7 @@
 	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1)
 
 /obj/item/radio/headset/headset_medsec
-	name = "security medic bowman's headset"
+	name = "security medic's bowman headset"
 	desc = "Used to hear how many security officers need to be stitched back together."
 	icon = 'modular_zubbers/modules/security/secmed/icons/secmed_equipment.dmi'
 	icon_state = "headset"
