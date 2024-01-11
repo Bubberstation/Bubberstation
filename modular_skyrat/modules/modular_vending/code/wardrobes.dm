@@ -201,12 +201,12 @@
 
 /obj/machinery/vending/wardrobe/medi_wardrobe/ghost_cafe
 	excluded_products = list(
-		/obj/item/radio/headset/headset_med,
+		/obj/item/radio/headset,
 	)
 
 /obj/machinery/vending/wardrobe/engi_wardrobe/ghost_cafe
 	excluded_products = list(
-		/obj/item/radio/headset/headset_eng,
+		/obj/item/radio/headset,
 	)
 
 /obj/machinery/vending/wardrobe/law_wardrobe/ghost_cafe
