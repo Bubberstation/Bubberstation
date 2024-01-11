@@ -2,10 +2,9 @@
 	name = "\improper MultiSec Outfitting Station"
 	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms in multiple colors and general equipment. Now with more Multi!"
 	icon = 'modular_zubbers/code/game/machinery/vending/multisec.dmi'
-	light_mask = "sec-light-mask"
+	light_mask = "multisec-light-mask"
 	icon_state = "multisec"
-	product_ads = "Beat perps in style!;The stains wash right out!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
-	vend_reply = "Good luck, Peacekeeper!"
+	products = list() // Overriding this to the default to prevent any issues when building the product menu
 	product_categories = list(
 		list(
 			"name" = "Blue",
