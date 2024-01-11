@@ -84,18 +84,20 @@
 	channels = list(RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SECURITY = 1)
 
 /obj/item/radio/headset/headset_medsec
-	name = "medical-security radio headset"
-	desc = "Used to hear how many security officers need to be stiched back together."
+	name = "Medsec bowman's headset"
+	desc = "Used to hear how many security officers need to be stitched back together."
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
+
+/obj/item/radio/headset/headset_medsec/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/structure/closet/secure_closet/security_medic
 	name = "security medic's locker"
 	req_access = list(ACCESS_BRIG)
 	icon = 'modular_zubbers/icons/obj/closets/secmed_closet.dmi'
 	icon_state = "secmed"
-
-
 
 /obj/structure/closet/secure_closet/security_medic/PopulateContents()
 	..()
