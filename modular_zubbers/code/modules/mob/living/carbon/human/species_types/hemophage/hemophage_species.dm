@@ -1,3 +1,5 @@
+/datum/species/hemophage
+	inherent_biotypes = MOB_HUMANOID | MOB_ORGANIC | MOB_VAMPIRIC
 
 /datum/species/hemophage/on_bloodsucker_gain(mob/living/carbon/human/target)
 	to_chat(target, span_warning("Your hemophage features have been removed, your nature as a bloodsucker abates the hemophage virus."))
