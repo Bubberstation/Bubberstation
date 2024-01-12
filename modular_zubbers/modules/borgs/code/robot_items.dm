@@ -103,3 +103,6 @@
 
 /obj/item/storage/bag/plants/cyborg
 	name = "cyborg plant bag"
+
+/obj/item/storage/bag/chemistry/cyborg
+	name = "cyborg chemistry bag"

@@ -696,6 +696,7 @@
 		/obj/item/stack/medical/gauze,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/borg/apparatus/organ_storage,
+		/obj/item/storage/bag/chemistry/cyborg, //bubber-edit
 		/obj/item/borg/lollipop,
 	)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
