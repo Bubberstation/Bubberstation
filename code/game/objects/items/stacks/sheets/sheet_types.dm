@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new/datum/stack_recipe("Shelf parts", /obj/item/rack_parts/shelf, category = CAT_FURNITURE), \
 	)),
 	null, \
-	//BUBBER EDIT BEGIN: ADDS CRAFTABLE SHELVES
+	//BUBBER EDIT END: ADDS CRAFTABLE SHELVES
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	null, \
 	new/datum/stack_recipe("atmos canister", /obj/machinery/portable_atmospherics/canister, 10, time = 3 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ATMOSPHERIC), \
