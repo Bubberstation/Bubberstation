@@ -5,7 +5,7 @@
 	var/blooper_id
 	var/blooper_pitch = 1
 	var/blooper_pitch_range = 0.2 //Actual pitch is (pitch - (blooper_pitch_range*0.5)) to (pitch + (blooper_pitch_range*0.5))
-	var/blooper_volume = 70
+	var/blooper_volume = 50
 	var/blooper_speed = 4 //Lower values are faster, higher values are slower
 	var/blooper_current_blooper //When bloopers are queued, this gets passed to the blooper proc. If blooper_current_blooper doesn't match the args passed to the blooper proc (if passed at all), then the blooper simply doesn't play. Basic curtailing of spam~
 
@@ -61,9 +61,9 @@
 	if(client)
 		if(!(client?.prefs.read_preference(/datum/preference/toggle/send_sound_blooper)))
 			return
-	blooper_volume = 55
+	blooper_volume = client?.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume) //volume scales with your volume slider in game preferences.
 	if(message_mods[WHISPER_MODE])
-		blooper_volume = 25
+		blooper_volume = (client?.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume)*0.5) //whispers are half as loud.
 		message_range++
 	var/list/listening = get_hearers_in_view(message_range, source)
 	var/is_yell = (say_test(message_raw) == "2")

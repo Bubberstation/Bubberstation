@@ -14,12 +14,12 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 
 /datum/admins/proc/toggleblooper()
 	set category = "Server"
-	set desc = "Toggle ANNOYING NOIZES"
-	set name = "Toggle Blooper"
+	set desc = "Toggle the annoying voices."
+	set name = "Toggle Vocal Barks"
 	toggle_blooper()
-	log_admin("[key_name(usr)] toggled Blooper.")
-	message_admins("[key_name_admin(usr)] toggled Blooper.")
-	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Blooper", "[GLOB.blooper_allowed ? "Enabled" : "Disabled"]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
+	log_admin("[key_name(usr)] toggled Voice Barks.")
+	message_admins("[key_name_admin(usr)] toggled Voice Barks.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Voice Bark", "[GLOB.blooper_allowed ? "Enabled" : "Disabled"]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 /world/AVerbsAdmin()
 	. = ..()
@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 			return
 	else
 		GLOB.blooper_allowed = !GLOB.blooper_allowed
-	to_chat(world, "<span class='oocplain'><B>The Blooper has been globally [GLOB.blooper_allowed ? "enabled" : "disabled"].</B></span>")
+	to_chat(world, "<span class='oocplain'><B>Vocal barks have been globally [GLOB.blooper_allowed ? "enabled" : "disabled"].</B></span>")
 
 /datum/preference/choiced/blooper
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -127,10 +127,19 @@ GLOBAL_VAR_INIT(blooper_allowed, TRUE) // For administrators
 	savefile_identifier = PREFERENCE_PLAYER
 	default_value = TRUE
 
+/// Can I have a slider to adjust the volume of the barks?
+/datum/preference/numeric/sound_blooper_volume
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "sound_blooper_volume"
+	savefile_identifier = PREFERENCE_PLAYER
+	minimum = 0
+	maximum = 100
+	step = 5
+
 /// It's was stoolen from Splurt build >:3 and from fluffySTG!! nyeehehehheee!~
 /datum/blooper
 	var/name = "None"
-	var/id = "Default"
+	var/id = "No Voice"
 	var/soundpath
 
 	var/minpitch = BLOOPER_DEFAULT_MINPITCH
