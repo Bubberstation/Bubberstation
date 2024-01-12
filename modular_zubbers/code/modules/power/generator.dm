@@ -12,7 +12,7 @@
 
 	var/lastgen = 0
 	var/lastgenlev = -1
-
+	var/powermodifier = 0.5 // This is a direct value which will lower the power output
 
 /obj/machinery/power/generator/Initialize(mapload)
 	. = ..()
@@ -78,7 +78,8 @@
 
 				//produce energy section
 				var/heat = energy_transfer*(1-efficiency)
-				lastgen += energy_transfer*efficiency
+				lastgen += energy_transfer*efficiency * powermodifier
+
 
 				hot_air.temperature = hot_air.temperature - energy_transfer/hot_air_heat_capacity
 				cold_air.temperature = cold_air.temperature + heat/cold_air_heat_capacity
