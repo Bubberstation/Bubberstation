@@ -12,6 +12,8 @@
 	new /obj/item/clothing/suit/toggle/labcoat/interdyne(src)
 	new /obj/item/clothing/glasses/hud/ar/aviator/health(src)
 	new /obj/item/clothing/glasses/hud/ar/aviator/health(src)
+	new /obj/item/clothing/under/syndicate/scrubs (src)
+	new /obj/item/clothing/under/syndicate/scrubs (src)
 
 /obj/structure/closet/secure_closet/interdynefob/medical/PopulateContents()
 	..()
