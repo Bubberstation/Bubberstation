@@ -16,6 +16,7 @@
 	mutantbrain = /obj/item/organ/internal/brain/vox
 	breathid = "n2"
 	mutant_bodyparts = list()
+	meat = /obj/item/food/meat/slab/chicken
 	payday_modifier = 1.0
 	outfit_important_for_life = /datum/outfit/vox
 	species_language_holder = /datum/language_holder/vox
