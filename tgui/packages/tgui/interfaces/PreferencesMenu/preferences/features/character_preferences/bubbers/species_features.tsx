@@ -65,7 +65,7 @@ export const human_pref: FeatureChoiced = {
 export const character_ad: Feature<string> = {
   name: 'Character Advert',
   description:
-    'An advertisement for your character. Give information on how to approach for those interested, for either regular and erotic roleplay.',
+    'A built-in advertisement for your character. Talk about what you are looking for in terms of roleplay, and how to approach your character. Try to do more than just write that you are free to talk anytime.',
   component: FeatureTextInput,
 };
 
