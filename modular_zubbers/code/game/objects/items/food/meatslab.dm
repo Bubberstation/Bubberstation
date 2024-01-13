@@ -39,6 +39,10 @@
 	tastes = list("tender meat" = 1)
 	foodtypes = MEAT | GORE
 
+/obj/item/food/meat/rawcutlet/chicken/human
+	tastes = list("tender meat" = 1)
+	foodtypes = MEAT | GORE
+
 /obj/item/food/meat/cutlet/chicken/human
 	tastes = list("tender meat" = 1)
 	foodtypes = MEAT | GORE
