@@ -52,6 +52,105 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	return FALSE
 //Can't believe Bubberstation invented attraction and gender in the year December 2023
 
+/datum/preference/choiced/emote_length
+	savefile_key = "emote_length"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/emote_length/init_possible_values()
+	return list("A few sentences", "1-2 Paragraphs", "Multi-Paragraph", "I'll Match You", "No Preference", "Check OOC")
+
+/datum/preference/choiced/emote_length/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/emote_length/create_default_value()
+	return "No Preference"
+
+/datum/preference/choiced/approach_pref
+	savefile_key = "approach_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/approach_pref/init_possible_values()
+	return list("Approach IC", "Approach OOC", "Any", "Both", "Check OOC", "See Below", "Unset")
+
+/datum/preference/choiced/approach_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/approach_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/furry_pref
+	savefile_key = "furry_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/furry_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
+
+/datum/preference/choiced/furry_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/furry_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/scalie_pref
+	savefile_key = "scalie_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/scalie_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Maybe", "Unset")
+
+/datum/preference/choiced/scalie_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/scalie_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/other_pref
+	savefile_key = "other_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/other_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Maybe", "Unset")
+
+/datum/preference/choiced/other_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/scalie_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/demihuman_pref
+	savefile_key = "demihuman_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/demihuman_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
+
+/datum/preference/choiced/demihuman_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/demihuman_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/human_pref
+	savefile_key = "human_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/human_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
+
+/datum/preference/choiced/human_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/human_pref/create_default_value()
+	return "Unset"
+
+//CHARACTER DIRECTORY CODE START
 //Add a cooldown for the character directory to the client, primarily to stop server lag from refresh spam
 /client
 	COOLDOWN_DECLARE(char_directory_cooldown)
