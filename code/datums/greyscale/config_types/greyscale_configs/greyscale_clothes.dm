@@ -363,16 +363,6 @@ SKYRAT EDIT END */
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_skirt_worn.json'
 
-/datum/greyscale_config/cso //Bubber EDIT - Command stripper outfits.
-	name = "command stripper outfit"
-	icon_file = 'modular_zubbers/icons/obj/clothing/under/captain.dmi'
-	json_config = 'code/datums/greyscale/json_configs/cso.json'
-
-/datum/greyscale_config/cso/worn
-	name = "command stripper outfit (worn)"
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
-	json_config = 'code/datums/greyscale/json_configs/cso.json'
-
 //
 // LABCOATS
 //
