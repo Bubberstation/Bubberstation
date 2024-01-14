@@ -50,19 +50,33 @@
 			addtimer(CALLBACK(src, PROC_REF(blooper), listeners, range, blooper_volume, BLOOPER_DO_VARY(blooper_pitch, blooper_pitch_range), blooper_current_blooper), total_delay)
 			total_delay += rand(DS2TICKS(blooper_speed / BLOOPER_SPEED_BASELINE), DS2TICKS(blooper_speed / BLOOPER_SPEED_BASELINE) + DS2TICKS(blooper_speed / BLOOPER_SPEED_BASELINE)) TICKS
 
+/mob/living/carbon/human/Initialize(mapload)
+	. = ..()
+	// This gives a random vocal bark to a random created person
+	if(!client)
+		set_blooper(pick(GLOB.blooper_list))
+		blooper_pitch = BLOOPER_PITCH_RAND(gender)
+		blooper_pitch_range = BLOOPER_VARIANCE_RAND
+		blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
+
+/randomize_human(mob/living/carbon/human/human)
+	. = ..()
+	human.set_blooper(pick(GLOB.blooper_list))
+	human.blooper_pitch = BLOOPER_PITCH_RAND(human.gender)
+	human.blooper_pitch_range = BLOOPER_VARIANCE_RAND
+	human.blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
+
 /mob/living/send_speech(message_raw, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language = null, list/message_mods = list(), forced = null, tts_message, list/tts_filter)
 	. = ..()
 	if(client)
 		if(!(client.prefs.read_preference(/datum/preference/toggle/send_sound_blooper)))
 			return
-	blooper_volume = client.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume) //volume scales with your volume slider in game preferences.
+	blooper_volume = client?.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume) //volume scales with your volume slider in game preferences.
+	if(HAS_TRAIT(src, TRAIT_SIGN_LANG) && !HAS_TRAIT(src, TRAIT_MUTE)) //if you can speak and you sign, your hands don't make a bark. Unless you are completely mute, you can have some hand bark.
+		return
 	if(message_mods[WHISPER_MODE])
-		blooper_volume = (client.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume)*0.5) //whispers are half as loud, depending on your set volume.
+		blooper_volume = (client?.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume)*0.5) //Whispered barked are half as loud.
 		message_range++
-	if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
-		blooper_volume = 0
-	if(HAS_TRAIT(src, TRAIT_MUTE)) //if you can speak and you sign, your hands don't make a bark. Unless you are completely mute, you can have some hand bark.
-		blooper_volume = client.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume) // I keep reusing "client.prefs.read_preference(/datum/preference/numeric/sound_blooper_volume)" I should make this a define?
 	var/list/listening = get_hearers_in_view(message_range, source)
 	var/is_yell = (say_test(message_raw) == "2")
 	//Listening gets trimmed here if a blooper blooper's present. If anyone ever makes this proc return listening, make sure to instead initialize a copy of listening in here to avoid wonkiness
@@ -81,4 +95,4 @@
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, blooper), listening, message_range + 1, (blooper_volume * (is_yell ? 2 : 1)), BLOOPER_DO_VARY(blooper_pitch, blooper_pitch_range), blooper_current_blooper), total_delay) //The function is zero on the seventh tile. This makes it a maximum of 1 more.
 			total_delay += rand(DS2TICKS(blooper_speed / BLOOPER_SPEED_BASELINE), DS2TICKS(blooper_speed / BLOOPER_SPEED_BASELINE) + DS2TICKS((blooper_speed / BLOOPER_SPEED_BASELINE) * (is_yell ? 0.5 : 1))) TICKS
 
-// if (HAS_TRAIT(src, TRAIT_SIGN_LANG))
+
