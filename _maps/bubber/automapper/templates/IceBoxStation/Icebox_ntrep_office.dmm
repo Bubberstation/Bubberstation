@@ -6,6 +6,7 @@
 /obj/machinery/door/airlock/corporate{
 	name = "NT Consultant's Office"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "d" = (
@@ -15,6 +16,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "e" = (
@@ -41,8 +43,8 @@
 "h" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
-	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine"
+	fax_name = NanotrasenConsultant'sOffice;
+	name = NanotrasenConsultant'sFaxMachine
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
@@ -51,7 +53,7 @@
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	icon_state = "rightsecure";
-	name = "Nanotrasen Consultant's Desk";
+	name = "Head of Personnel's Desk";
 	dir = 4;
 	req_access = list("cent_general")
 	},
@@ -64,15 +66,16 @@
 	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
-"m" = (
-/turf/template_noop,
-/area/template_noop)
+"k" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "o" = (
 /obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "p" = (
-/obj/structure/sign/flag/nanotrasen/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central)
 "r" = (
@@ -81,6 +84,10 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
+"s" = (
+/obj/structure/sign/flag/nanotrasen/directional/west,
+/turf/template_noop,
+/area/template_noop)
 "t" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/cigarette,
@@ -96,6 +103,7 @@
 /obj/machinery/door/airlock/corporate{
 	name = "NT Consultant's Office"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
@@ -111,6 +119,13 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
+"z" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/time_clock/directional/west,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
 "A" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/firealarm/directional/south,
@@ -199,6 +214,9 @@
 "T" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/primary/central)
+"U" = (
+/turf/template_noop,
+/area/template_noop)
 "V" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/nanotrasen_consultant,
@@ -283,7 +301,7 @@ Z
 X
 o
 Q
-L
+k
 g
 a
 "}
@@ -314,16 +332,16 @@ E
 e
 p
 N
-N
+z
 T
 "}
 (9,1,1) = {"
-m
-m
-m
-m
-m
-m
-m
-m
+U
+U
+U
+U
+U
+U
+U
+s
 "}
