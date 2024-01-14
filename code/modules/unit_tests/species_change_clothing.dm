@@ -17,7 +17,7 @@
 
 	// TEST_ASSERT_NOTEQUAL(human_shoes, lizard_shoes, "Lizard still has shoes after changing species.")
 	*/ // SKYRAT EDIT REMOVAL END
-
+/*
 	// Testing whether item-species restrictions properly blocks changing into a blacklisted species.
 	morphing_human.set_species(/datum/species/monkey)
 
@@ -29,7 +29,7 @@
 	var/obj/item/human_collar = morphing_human.get_item_by_slot(ITEM_SLOT_NECK)
 
 	TEST_ASSERT_NOTEQUAL(equipped_collar, human_collar, "Human still has a Monkey collar after changing species.")
-
+*/ //BUBBER EDIT REMOVAL: WE CAN WEAR PET COLLARS NOW
 ///Gives a Human items in both hands, then swaps them to be another species. Held items should remain.
 /datum/unit_test/species_change_held_items
 
