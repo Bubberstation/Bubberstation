@@ -29,10 +29,6 @@
 	},
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
-"c" = (
-/obj/machinery/time_clock/directional/south,
-/turf/open/floor/iron,
-/area/station/hallway/primary/port)
 "d" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/port)
@@ -82,6 +78,13 @@
 "l" = (
 /obj/structure/cable,
 /obj/structure/chair/comfy/beige,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
+"m" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "p" = (
@@ -174,12 +177,9 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "G" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/obj/machinery/time_clock/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "I" = (
 /obj/machinery/modular_computer/preset/command{
 	dir = 4
@@ -244,7 +244,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/door/airlock/maintenance,
-/turf/open/space/basic,
+/obj/machinery/door/firedoor,
+/turf/open/floor/wood,
 /area/station/maintenance/port)
 "Y" = (
 /turf/closed/wall/r_wall,
@@ -303,7 +304,7 @@ O
 d
 "}
 (5,1,1) = {"
-c
+G
 Y
 Y
 Y
@@ -331,7 +332,7 @@ Y
 A
 y
 Y
-G
+m
 i
 d
 "}
