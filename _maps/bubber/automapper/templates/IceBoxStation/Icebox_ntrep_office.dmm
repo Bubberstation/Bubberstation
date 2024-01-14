@@ -52,8 +52,8 @@
 	base_state = "rightsecure";
 	icon_state = "rightsecure";
 	name = "Head of Personnel's Desk";
-	req_access = list("hop");
-	dir = 4
+	dir = 4;
+	req_access = list("cent_general")
 	},
 /obj/item/table_clock{
 	pixel_y = 16
@@ -101,6 +101,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
 "y" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/comfy/beige{
@@ -114,9 +117,6 @@
 /obj/machinery/light/warm/dim/directional/west,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
-"B" = (
-/turf/template_noop,
-/area/template_noop)
 "C" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -318,12 +318,12 @@ N
 T
 "}
 (9,1,1) = {"
-B
-B
-B
-B
-B
-B
-B
-B
+x
+x
+x
+x
+x
+x
+x
+x
 "}
