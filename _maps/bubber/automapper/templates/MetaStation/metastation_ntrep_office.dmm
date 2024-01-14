@@ -58,14 +58,12 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
-/obj/item/banner{
-	inspiration_available = 0
-	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/port)
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "i" = (
 /obj/structure/bed/dogbed,
 /mob/living/basic/mothroach{
@@ -120,12 +118,14 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
-/obj/structure/fireplace,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/obj/item/banner{
+	inspiration_available = 0
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "x" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/photocopier,
@@ -178,10 +178,15 @@
 /obj/machinery/status_display/ai/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
+"H" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/closed/wall/r_wall,
+/area/station/command/heads_quarters/nt_rep)
 "I" = (
 /obj/machinery/modular_computer/preset/command{
 	dir = 4
 	},
+/obj/structure/sign/calendar/directional/west,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
@@ -241,13 +246,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/station/maintenance/port)
-"X" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
 "Y" = (
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
@@ -272,7 +270,7 @@ d
 d
 "}
 (2,1,1) = {"
-h
+w
 a
 f
 s
@@ -310,8 +308,8 @@ Y
 Y
 Y
 Y
-Y
-w
+H
+T
 u
 V
 "}
@@ -333,7 +331,7 @@ Y
 A
 y
 Y
-X
+h
 i
 d
 "}

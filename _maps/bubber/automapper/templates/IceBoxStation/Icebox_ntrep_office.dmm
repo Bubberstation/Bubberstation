@@ -7,7 +7,7 @@
 	name = "NT Consultant's Office"
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "d" = (
 /obj/machinery/door/airlock/corporate{
@@ -17,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "e" = (
 /obj/effect/turf_decal/bot,
@@ -34,19 +34,19 @@
 	},
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "g" = (
 /obj/machinery/light/warm/dim/directional/south,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
-	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine"
+	fax_name = NanotrasenConsultant'sOffice;
+	name = NanotrasenConsultant'sFaxMachine
 	},
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "i" = (
 /obj/structure/table/reinforced,
@@ -69,7 +69,7 @@
 "k" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/holopad,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "o" = (
 /obj/machinery/vending/boozeomat/all_access,
@@ -78,16 +78,19 @@
 "p" = (
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central)
+"q" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/time_clock/directional/west,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
 "r" = (
 /obj/structure/chair/comfy/beige{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
-"s" = (
-/obj/structure/sign/flag/nanotrasen/directional/west,
-/turf/template_noop,
-/area/template_noop)
 "t" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/cigarette,
@@ -97,7 +100,7 @@
 /obj/machinery/light_switch/directional/east,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "v" = (
 /obj/machinery/door/airlock/corporate{
@@ -110,33 +113,23 @@
 /obj/effect/spawner/random/bureaucracy/paper,
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "y" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/chair/comfy/beige{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
-"z" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/time_clock/directional/west,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/central)
+/obj/structure/sign/flag/nanotrasen/directional/west,
+/turf/template_noop,
+/area/template_noop)
 "A" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/light/warm/dim/directional/west,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "C" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "D" = (
 /obj/structure/bed/double,
@@ -178,7 +171,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "M" = (
 /obj/structure/chair/office/tactical{
@@ -197,7 +190,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "P" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station,
@@ -205,7 +198,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "Q" = (
 /obj/structure/cable,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "R" = (
 /obj/structure/sign/chalkboard_menu,
@@ -220,7 +213,7 @@
 "V" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/nanotrasen_consultant,
-/turf/open/floor/wood,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "X" = (
 /obj/structure/table/reinforced,
@@ -252,6 +245,7 @@
 "Z" = (
 /obj/machinery/photocopier,
 /obj/structure/table/reinforced,
+/obj/structure/sign/calendar/directional/west,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 
@@ -282,7 +276,7 @@ D
 R
 V
 w
-y
+r
 a
 "}
 (4,1,1) = {"
@@ -332,7 +326,7 @@ E
 e
 p
 N
-z
+q
 T
 "}
 (9,1,1) = {"
@@ -343,5 +337,5 @@ U
 U
 U
 U
-s
+y
 "}
