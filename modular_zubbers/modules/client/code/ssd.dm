@@ -27,7 +27,7 @@
 	var/mob/dead/observer/ghost = .
 	if(!istype(ghost))
 		return
-	if(is_banned_from(ckey, BAN_RESPAWN))
+	if(is_banned_from(ghost.ckey, BAN_RESPAWN))
 		return
 	// Send them there directly
 	ghost.send_to_lobby()
