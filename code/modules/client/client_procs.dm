@@ -4,6 +4,7 @@
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1622" = "Bug breaking rendering can lead to wallhacks.",
+	"1626" = "Crashing on Icebox and other Weather events.", // BUBBER EDIT
 	))
 
 #define LIMITER_SIZE 5
