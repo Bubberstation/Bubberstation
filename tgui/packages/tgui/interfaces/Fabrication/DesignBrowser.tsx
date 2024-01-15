@@ -1,10 +1,11 @@
 import { sortBy } from 'common/collections';
 import { classes } from 'common/react';
 import { ReactNode } from 'react';
-import { Stack, Section, Icon, Dimmer } from '../../components';
-import { Design, MaterialMap } from './Types';
-import { SearchBar } from './SearchBar';
+
 import { useSharedState } from '../../backend';
+import { Dimmer, Icon, Section, Stack } from '../../components';
+import { SearchBar } from '../common/SearchBar';
+import { Design, MaterialMap } from './Types';
 
 /**
  * A function that does nothing.
@@ -261,9 +262,9 @@ export const DesignBrowser = <T extends Design = Design>(
             <Stack.Item>
               <Section>
                 <SearchBar
-                  searchText={searchText}
-                  onSearchTextChanged={setSearchText}
-                  hint={'Search all designs...'}
+                  query={searchText}
+                  onSearch={setSearchText}
+                  placeholder={'Search all designs...'}
                 />
               </Section>
             </Stack.Item>
@@ -488,7 +489,7 @@ const CategoryView = <T extends Design = Design>(
   return (
     <Section
       title={category.title}
-      id={category.anchorKey}
+      key={category.anchorKey}
       buttons={categoryButtons && categoryButtons(category)}
     >
       {body}
