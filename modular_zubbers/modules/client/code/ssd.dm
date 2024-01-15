@@ -29,7 +29,7 @@
 		return
 	if(is_banned_from(ghost.ckey, BAN_RESPAWN))
 		return
-	// Send them there directly
+	// Send them there directly.
 	ghost.send_to_lobby()
 
 /mob/dead/observer/Logout()
@@ -44,6 +44,7 @@
 	if(logout_timer)
 		deltimer(logout_timer)
 
+// Don't respawn people with a connected body or client
 /mob/dead/observer/proc/can_send_to_lobby()
 	return ((!mind || QDELETED(mind.current)) && !client)
 
