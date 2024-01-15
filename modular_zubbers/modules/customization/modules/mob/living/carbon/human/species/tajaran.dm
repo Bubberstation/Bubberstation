@@ -46,6 +46,13 @@
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE //sorry cat gamers it's over
 	color_cutoffs = list(12, 7, 7)
 
+/obj/item/organ/internal/eyes/tajaran/on_mob_insert(mob/living/carbon/human/eyes_owner)
+	. = ..()
+	if(istype(eyes_owner))
+		if(HAS_TRAIT(eyes_owner, TRAIT_NIGHT_VISION)) //prevents double stacking of tajara night vision and the night vision quirk.
+			to_chat(eyes_owner, span_danger("You feel as the shadows are gone but suddenly they return!"))
+			REMOVE_TRAIT(eyes_owner, TRAIT_NIGHT_VISION, QUIRK_TRAIT)
+
 /obj/item/organ/internal/ears/cat/tajaran
 	name = "Tajaran ears"
 	desc = "These ears to seem to be from a feline of some type"
