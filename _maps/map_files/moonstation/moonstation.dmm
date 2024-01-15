@@ -5549,6 +5549,18 @@
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"bQJ" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/time_clock/directional/north,
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/commons/dorms)
 "bQL" = (
 /obj/machinery/chem_master,
 /obj/item/radio/intercom/directional/east,
@@ -26886,6 +26898,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/button/door/directional/south{
+	id = "dorms2";
+	name = "Dorms Bolt Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/carpet/purple,
 /area/station/commons/dorms/room2)
 "iSG" = (
@@ -27243,12 +27261,14 @@
 /turf/open/floor/wood,
 /area/station/service/salon)
 "iXk" = (
-/obj/machinery/door/airlock/wood,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/wood{
+	id_tag = "dorms3";
+	name = "Dorms 3"
+	},
 /turf/open/floor/wood,
 /area/station/commons/dorms/room3)
 "iXp" = (
@@ -45255,12 +45275,14 @@
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
 "oIj" = (
-/obj/machinery/door/airlock/wood,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/airlock/wood{
+	id_tag = "dorms1";
+	name = "Dorms 1"
+	},
 /turf/open/floor/wood,
 /area/station/commons/dorms/room1)
 "oIk" = (
@@ -46745,6 +46767,11 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light/directional/north,
+/obj/machinery/button/door/directional/north{
+	id = "rbmk2_shutters_south";
+	name = "Radiation Shutters Control";
+	req_access = list("engineering")
+	},
 /turf/open/floor/engine,
 /area/station/engineering/rbmk2)
 "pjm" = (
@@ -47871,18 +47898,6 @@
 /obj/machinery/barsign/all_access/directional/south,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
-"pBa" = (
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 1
-	},
-/obj/machinery/time_clock/directional/north,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/corner{
-	dir = 1
-	},
-/area/station/commons/dorms)
 "pBg" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/hidden,
 /obj/structure/disposalpipe/segment{
@@ -49859,6 +49874,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/wrench/medical,
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
 "qgJ" = (
@@ -53122,6 +53138,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/button/door/directional/south{
+	id = "dorms1";
+	name = "Dorms Bolt Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/carpet/red,
 /area/station/commons/dorms/room1)
 "rjc" = (
@@ -56040,12 +56062,14 @@
 /turf/open/floor/carpet/orange,
 /area/station/engineering/lobby)
 "shx" = (
-/obj/machinery/door/airlock/wood,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/wood{
+	id_tag = "dorms4";
+	name = "Dorms 4"
+	},
 /turf/open/floor/wood,
 /area/station/commons/dorms/room4)
 "shG" = (
@@ -62833,6 +62857,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/button/door/directional/south{
+	id = "dorms4";
+	name = "Dorms Bolt Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/carpet/royalblack,
 /area/station/commons/dorms/room4)
 "uuR" = (
@@ -64657,6 +64687,19 @@
 /obj/structure/marker_beacon/burgundy,
 /turf/open/space,
 /area/space/nearstation)
+"vbi" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light/directional/south,
+/obj/machinery/button/door/directional/south{
+	id = "rbmk2_shutters_north";
+	name = "Radiation Shutters Control";
+	req_access = list("engineering")
+	},
+/turf/open/floor/engine,
+/area/station/engineering/rbmk2)
 "vbs" = (
 /turf/closed/wall,
 /area/station/engineering/atmos/project)
@@ -71228,12 +71271,14 @@
 /turf/open/floor/plating,
 /area/station/construction)
 "xoj" = (
-/obj/machinery/door/airlock/wood,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/wood{
+	id_tag = "dorms2";
+	name = "Dorms 2"
+	},
 /turf/open/floor/wood,
 /area/station/commons/dorms/room2)
 "xor" = (
@@ -71359,6 +71404,12 @@
 /obj/effect/landmark/start/hangover,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/machinery/button/door/directional/south{
+	id = "dorms3";
+	name = "Dorms Bolt Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
 	},
 /turf/open/floor/carpet/blue,
 /area/station/commons/dorms/room3)
@@ -89070,7 +89121,7 @@ raW
 sTm
 riW
 raW
-bKj
+qTx
 rko
 qaH
 xqY
@@ -89841,7 +89892,7 @@ jfE
 jfE
 jfE
 jfE
-pBa
+bKj
 vZR
 xdW
 skT
@@ -91897,7 +91948,7 @@ pbU
 sfz
 sfz
 sfz
-qTx
+bQJ
 pNH
 rkM
 nCJ
@@ -124262,7 +124313,7 @@ xWx
 xWx
 meR
 qVL
-moZ
+vbi
 nVB
 qZe
 gji
