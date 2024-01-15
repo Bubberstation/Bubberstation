@@ -12,12 +12,29 @@
 	. = ..()
 	alpha = 255
 
+
+/*
+	Code for sending ghosts into the lobby.
+	Handles ghostize() and observer Logout()
+
+*/
 /mob/dead/observer
 	var/datum/timedevent/logout_timer
 
+// Handles fresh ghosts. This includes cryo chambers
+/mob/living/ghostize(can_reenter_corpse)
+	. = ..()
+	var/mob/dead/observer/ghost = .
+	if(!istype(ghost))
+		return
+	if(is_banned_from(ckey, BAN_RESPAWN))
+		return
+	// Send them there directly
+	ghost.send_to_lobby()
+
 /mob/dead/observer/Logout()
 	. = ..()
-	if(CONFIG_GET(flag/allow_respawn) && ckey)
+	if(CONFIG_GET(flag/allow_respawn))
 		if(is_banned_from(ckey, BAN_RESPAWN))
 			return
 		logout_timer = addtimer(CALLBACK(src, .proc/send_to_lobby), 5 MINUTES, flags = TIMER_STOPPABLE)
