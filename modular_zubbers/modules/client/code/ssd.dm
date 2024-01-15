@@ -37,7 +37,7 @@
 	if(CONFIG_GET(flag/allow_respawn))
 		if(is_banned_from(ckey, BAN_RESPAWN))
 			return
-		logout_timer = addtimer(CALLBACK(src, send_to_lobby), 5 MINUTES, flags = TIMER_STOPPABLE)
+		logout_timer = addtimer(CALLBACK(src, PROC_REF(send_to_lobby)), 5 MINUTES, TIMER_STOPPABLE)
 
 /mob/dead/observer/Login()
 	. = ..()
