@@ -14,7 +14,7 @@
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_DIGITIGRADE
 
 /obj/item/bodypart/leg/right/robot/surplus/digi
-	name = "prostjhetic digitigrade right leg"
+	name = "prosthetic digitigrade right leg"
 	icon_static = 'modular_zubbers/modules/digitigrade-cybernetics/icons/bodyparts/digitigrade_parts.dmi'
 	icon = 'modular_zubbers/modules/digitigrade-cybernetics/icons/bodyparts/digitigrade_parts.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_DIGITIGRADE
