@@ -1,65 +1,65 @@
-//adding teshvali silicon stuff to the mechfabricator
+//adding raptoral silicon stuff to the mechfabricator
 
-/datum/design/teshvalicyber_chest
+/datum/design/raptoral_cyber_chest
 	name = "Raptoral Cybernetic Torso"
-	id = "teshvalicyber_chest"
+	id = "raptoral_cyber_chest"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/chest/robot/teshvali
+	build_path = /obj/item/bodypart/chest/robot/raptoral
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 6)
 	construction_time = 12 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_head
+/datum/design/raptoral_cyber_head
 	name = "Raptoral Cybernetic Head"
-	id = "teshvalicyber_head"
+	id = "raptoral_cyber_head"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/head/robot/teshvali
+	build_path = /obj/item/bodypart/head/robot/raptoral
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.75)
 	construction_time = 4 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_l_arm
+/datum/design/raptoral_cyber_l_arm
 	name = "Raptoral Cybernetic Left Forelimb"
-	id = "teshvalicyber_l_arm"
+	id = "raptoral_cyber_l_arm"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/arm/left/robot/teshvali
+	build_path = /obj/item/bodypart/arm/left/robot/raptoral
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_r_arm
+/datum/design/raptoral_cyber_r_arm
 	name = "Raptoral Cybernetic Right Forelimb"
-	id = "teshvalicyber_r_arm"
+	id = "raptoral_cyber_r_arm"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/arm/right/robot/teshvali
+	build_path = /obj/item/bodypart/arm/right/robot/raptoral
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_l_leg
+/datum/design/raptoral_cyber_l_leg
 	name = "Raptoral Cybernetic Left Hindlimb"
-	id = "teshvalicyber_l_leg"
+	id = "raptoral_cyber_l_leg"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/leg/left/robot/teshvali
+	build_path = /obj/item/bodypart/leg/left/robot/raptoral
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvalicyber_r_leg
+/datum/design/raptoral_cyber_r_leg
 	name = "Raptoral Cybernetic Right Hindlimb"
-	id = "teshvalicyber_r_leg"
+	id = "raptoral_cyber_r_leg"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/leg/right/robot/teshvali
+	build_path = /obj/item/bodypart/leg/right/robot/raptoral
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 	construction_time = 8 SECONDS
 	category = list(
@@ -68,11 +68,11 @@
 
 //advanced augmentations since those were added in the recent upstream
 
-/datum/design/teshvaliadvanced_l_arm
+/datum/design/raptoral_advanced_l_arm
 	name = "Advanced Raptoral Cybernetic Left Forelimb"
-	id = "teshvaliadvanced_l_arm"
+	id = "raptoral_advanced_l_arm"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/arm/left/robot/advanced/teshvali
+	build_path = /obj/item/bodypart/arm/left/robot/advanced/raptoral
 	materials = list(
 		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
 		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*3,
@@ -83,11 +83,11 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvaliadvanced_r_arm
+/datum/design/raptoral_advanced_r_arm
 	name = "Advanced Raptoral Cybernetic Right Forelimb"
-	id = "teshvaliadvanced_r_arm"
+	id = "raptoral_advanced_r_arm"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/arm/right/robot/advanced/teshvali
+	build_path = /obj/item/bodypart/arm/right/robot/advanced/raptoral
 	materials = list(
 		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
 		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*3,
@@ -98,11 +98,11 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvaliadvanced_l_leg
+/datum/design/raptoral_advanced_l_leg
 	name = "Advanced Raptoral Cybernetic Left Hindlimb"
-	id = "teshvaliadvanced_l_leg"
+	id = "raptoral_advanced_l_leg"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/leg/left/robot/advanced/teshvali
+	build_path = /obj/item/bodypart/leg/left/robot/advanced/raptoral
 	materials = list(
 		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
 		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*3,
@@ -113,11 +113,11 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_RAPTORAL
 	)
 
-/datum/design/teshvaliadvanced_r_leg
+/datum/design/raptoral_advanced_r_leg
 	name = "Advanced Raptoral Cybernetic Right Hindlimb"
-	id = "teshvaliadvanced_r_leg"
+	id = "raptoral_advanced_r_leg"
 	build_type = MECHFAB
-	build_path = /obj/item/bodypart/leg/right/robot/advanced/teshvali
+	build_path = /obj/item/bodypart/leg/right/robot/advanced/raptoral
 	materials = list(
 		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
 		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*3,
