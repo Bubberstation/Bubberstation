@@ -41,3 +41,40 @@
 	icon_state = "flag_trans"
 	sign_change_name = "Pride Flag - Transgender"
 
+/obj/structure/sign/flag/pride/vertical
+	name = "flag of Gay Pride"
+	desc = "The flag of Gay Pride. Hang that rainbow up with pride!"
+	icon = 'modular_zubbers/maps/biodome/pride_flags.dmi'
+	icon_state = "flag_pride_vertical"
+	is_editable = TRUE
+	sign_change_name = "Pride Flag - Rainbow"
+
+/obj/structure/sign/flag/pride/ace/vertical
+	name = "flag of Asexual Pride"
+	desc = "The flag of Asexual Pride."
+	icon_state = "flag_ace_vertical"
+	sign_change_name = "Pride Flag - Asexual"
+
+/obj/structure/sign/flag/pride/bi/vertical
+	name = "flag of Bisexual Pride"
+	desc = "The flag of Bisexual Pride."
+	icon_state = "flag_bi_vertical"
+	sign_change_name = "Pride Flag - Bisexual"
+
+/obj/structure/sign/flag/pride/lesbian/vertical
+	name = "flag of Lesbian Pride"
+	desc = "The flag of Lesbian Pride."
+	icon_state = "flag_lesbian_vertical"
+	sign_change_name = "Pride Flag - Lesbian"
+
+/obj/structure/sign/flag/pride/pan/vertical
+	name = "flag of Pansexual Pride"
+	desc = "The flag of Pansexual Pride."
+	icon_state = "flag_pan_vertical"
+	sign_change_name = "Pride Flag - Pansexual"
+
+/obj/structure/sign/flag/pride/trans/vertical
+	name = "flag of Transgender Pride"
+	desc = "The flag of Transgender Pride."
+	icon_state = "flag_trans_vertical"
+	sign_change_name = "Pride Flag - Transgender"
