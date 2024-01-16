@@ -50,6 +50,38 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 			wallet.forceMove(equipper.drop_location())
 
 /*
+*	LUNCHBOX
+*/
+
+/datum/loadout_item/pocket_items/lunchbox_nanotrasen
+	name = "Nanotrasen Lunchbox"
+	item_path = /obj/item/storage/lunchbox/nanotrasen
+
+/datum/loadout_item/pocket_items/lunchbox_medical
+	name = "Medical Lunchbox"
+	item_path = /obj/item/storage/lunchbox/medical
+
+/datum/loadout_item/pocket_items/lunchbox_bunny
+	name = "Bunny Lunchbox"
+	item_path = /obj/item/storage/lunchbox/bunny
+
+/datum/loadout_item/pocket_items/lunchbox_corgi
+	name = "Corgi Lunchbox"
+	item_path = /obj/item/storage/lunchbox/corgi
+
+/datum/loadout_item/pocket_items/lunchbox_heart
+	name = "Heart Lunchbox"
+	item_path = /obj/item/storage/lunchbox/heart
+
+/datum/loadout_item/pocket_items/lunchbox_safetymoth
+	name = "Safety Moth Lunchbox"
+	item_path = /obj/item/storage/lunchbox/safetymoth
+
+/datum/loadout_item/pocket_items/lunchbox_amongus
+	name = "Suspicious Red Lunchbox"
+	item_path = /obj/item/storage/lunchbox/amongus
+
+/*
 *	GUM
 */
 
