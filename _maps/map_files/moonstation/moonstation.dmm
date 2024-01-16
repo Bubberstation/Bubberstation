@@ -3408,11 +3408,11 @@
 /area/station/maintenance/port/aft)
 "bbw" = (
 /obj/item/radio/intercom/directional/west,
-/obj/structure/transit_tube/station/reverse/flipped{
-	dir = 1
-	},
 /obj/structure/transit_tube_pod{
 	dir = 4
+	},
+/obj/structure/transit_tube/station/reverse{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/asteroid_lobby)
@@ -5068,9 +5068,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/transit_tube/station/reverse{
-	dir = 8
-	},
+/obj/structure/transit_tube,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "bHS" = (
@@ -7890,10 +7888,12 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/fore)
 "cDO" = (
-/obj/structure/transit_tube/station/reverse{
+/obj/structure/transit_tube_pod{
+	dir = 1
+	},
+/obj/structure/transit_tube/station/reverse/flipped{
 	dir = 4
 	},
-/obj/structure/transit_tube_pod,
 /turf/open/floor/iron/dark/small,
 /area/station/ai_monitored/turret_protected/aisat/teleporter)
 "cDR" = (
@@ -27941,16 +27941,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/stone,
 /area/station/common/pool)
-"jib" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/transit_tube/station/reverse/flipped{
-	dir = 8
-	},
-/obj/structure/transit_tube_pod,
-/turf/open/floor/iron/dark,
-/area/station/hallway/secondary/entry)
 "jic" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -41919,6 +41909,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
+"nEB" = (
+/obj/structure/transit_tube/station/reverse{
+	dir = 8
+	},
+/obj/structure/transit_tube_pod{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
 "nEJ" = (
 /obj/structure/cable,
 /obj/machinery/light/small/red/directional/south,
@@ -46489,7 +46488,7 @@
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "pcK" = (
 /obj/item/radio/intercom/directional/east,
-/obj/structure/transit_tube/station/reverse,
+/obj/structure/transit_tube/station/reverse/flipped,
 /turf/open/floor/iron/dark,
 /area/station/engineering/asteroid_lobby)
 "pcN" = (
@@ -59044,7 +59043,7 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison/safe)
 "the" = (
-/obj/structure/transit_tube/station/reverse/flipped{
+/obj/structure/transit_tube/station/reverse{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/small,
@@ -63934,6 +63933,9 @@
 /area/station/hallway/secondary/command)
 "uNh" = (
 /obj/machinery/airalarm/directional/west,
+/obj/structure/transit_tube/station/reverse/flipped{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "uNu" = (
@@ -119723,8 +119725,8 @@ xor
 euU
 dqf
 xor
-jib
-uRr
+bHQ
+nEB
 hFu
 exS
 fCc
