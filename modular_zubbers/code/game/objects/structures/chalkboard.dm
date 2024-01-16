@@ -38,7 +38,7 @@
 	. = ..()
 	to_chat(user, span_warning("You pick up the eraser and begin to clear the board."))
 	if(do_after(user, 5 SECONDS, target = src))
-		if(written_text = "")
+		if(!written_text)
 			to_chat(user, span_warning("You pick up the eraser and give the board a few pap-paps, but it has nothing on it to erase."))
 			if(ishuman(user))
 				var/mob/living/carbon/human/papper = user
