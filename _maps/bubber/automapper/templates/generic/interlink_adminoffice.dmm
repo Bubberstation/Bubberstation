@@ -82,6 +82,14 @@
 "t" = (
 /turf/template_noop,
 /area/template_noop)
+"u" = (
+/obj/structure/window/reinforced/fulltile/indestructible,
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "admin_shutters";
+	name = "administrative shutters"
+	},
+/turf/closed/indestructible/grille,
+/area/centcom/central_command_areas/admin/interlink)
 "x" = (
 /obj/structure/filingcabinet/medical,
 /obj/machinery/light/directional/east,
@@ -102,6 +110,11 @@
 /area/centcom/central_command_areas/admin/interlink)
 "D" = (
 /obj/machinery/computer/camera_advanced,
+/obj/machinery/button/door/directional/north{
+	name = "Admin Shutter Control";
+	id = "admin_shutters";
+	pixel_x = -7
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "F" = (
@@ -203,9 +216,9 @@
 (1,1,1) = {"
 n
 n
-n
+u
 F
-n
+u
 n
 n
 t
@@ -221,7 +234,7 @@ W
 W
 M
 z
-n
+u
 t
 t
 t
@@ -235,7 +248,7 @@ T
 T
 T
 X
-n
+u
 t
 t
 t
