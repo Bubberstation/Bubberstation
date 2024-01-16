@@ -34,13 +34,13 @@
 /obj/item/storage/lunchbox/bunny
 	name = "rabbit lunchbox"
 	icon_state = "lunchbox_bunny"
-	inhand_icon_state = "lunchbox_bunny"
+	inhand_icon_state = "lunchbox"
 	desc = "An adorable lunchbox with a rabbit printed on it."
 
 /obj/item/storage/lunchbox/corgi
 	name = "corgi lunchbox"
 	icon_state = "lunchbox_corgi"
-	inhand_icon_state = "lunchbox_corgi"
+	inhand_icon_state = "lunchbox"
 	desc = "An adorable lunchbox with a corgi printed on it."
 
 /obj/item/storage/lunchbox/heart
