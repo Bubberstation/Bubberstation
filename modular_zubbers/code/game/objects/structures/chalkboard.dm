@@ -2,6 +2,7 @@
 	name = "Chalkboard"
 	icon = 'modular_zubbers/icons/obj/structure/chalkboard.dmi'
 	icon_state = "chalkboard"
+	maptext_width = 64
 	//The text that is written on the chalkboard. Cleared when erased.
 	var/written_text = ""
 //This is a Chalkboard.
@@ -10,16 +11,18 @@
 	. = ..()
 	. += "A board used by professors and old folk to lecture."
 	if(written_text)
-		. += "It reads: [written_text]\n"
+		. += "It reads:\n"
+		. += "[written_text]\n"
 		. += "Right-click with an open hand to erase."
 
 //We want people to be able to write on it, so a left click interaction.
 /obj/structure/chalkboard/attackby(obj/item/attacking_item, mob/user)
 	. = ..()
+	var/input_message = tgui_input_text(user, "What would you like to write on the chalkboard?", "Lecture time!", max_length = CHAT_MESSAGE_MAX_LENGTH, multiline = TRUE)
 	//We begin by allowing our player to write on the chalkboard using the white crayon.
 	if(istype(attacking_item, /obj/item/toy/crayon/white))
 		if(length_char(written_text) < MAX_MESSAGE_LEN) //Check to see if the written text is too long before continuing
-			written_text += tgui_input_text(user, "What would you like to write on the chalkboard?", "Lecture time!", max_length = CHAT_MESSAGE_MAX_LENGTH, multiline = TRUE)
+			written_text += "[input_message]\n"
 			if(do_after(user, 5 SECONDS, target = src))
 				say(written_text, sanitize = FALSE)
 				icon_state = "chalkboard_filled"
@@ -48,6 +51,20 @@
 			icon_state = "chalkboard"
 			update_appearance()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/structure/chalkboard/wrench_act_secondary(mob/living/user, obj/item/tool)
+	if(obj_flags & NO_DECONSTRUCTION)
+		return FALSE
+	to_chat(user, span_notice("You start deconstructing [src]..."))
+	if(tool.use_tool(src, user, 4 SECONDS, volume=50))
+		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
+		deconstruct()
+	return ITEM_INTERACT_SUCCESS
+
+/obj/structure/chalkboard/deconstruct(disassembled = TRUE)
+	if(!(obj_flags & NO_DECONSTRUCTION))
+		new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
+	qdel(src)
 
 /datum/mood_event/cathartic_eraser
 	description = "Gave the chalkboard a few paps with the eraser. It makes you feel a little better."
