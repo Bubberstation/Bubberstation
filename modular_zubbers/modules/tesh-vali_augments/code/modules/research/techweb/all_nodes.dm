@@ -25,6 +25,6 @@
 		"raptoral_advanced_l_arm",
 		"raptoral_advanced_r_arm",
 		"raptoral_advanced_l_leg",
-		"raptorala_dvanced_r_leg",
+		"raptoral_advanced_r_leg",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
