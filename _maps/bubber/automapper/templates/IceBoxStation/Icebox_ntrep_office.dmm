@@ -3,10 +3,9 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "c" = (
-/obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "d" = (
@@ -17,6 +16,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "e" = (
@@ -44,7 +44,7 @@
 /obj/structure/table/wood,
 /obj/machinery/fax{
 	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine";
+	name = "Nanotrasen Consultant's Fax Machine"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
@@ -53,7 +53,7 @@
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
+	name = "Consultant's Desk";
 	dir = 4;
 	req_access = list("cent_general")
 	},
@@ -107,6 +107,7 @@
 	name = "NT Consultant's Office"
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
@@ -201,7 +202,7 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "R" = (
-/obj/structure/sign/chalkboard_menu,
+/obj/structure/chalkboard,
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "T" = (
