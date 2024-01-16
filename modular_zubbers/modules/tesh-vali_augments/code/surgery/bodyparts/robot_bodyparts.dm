@@ -137,8 +137,8 @@
 /obj/item/bodypart/leg/left/robot/surplus/raptoral
 	name = "prosthetic left raptorial hindlimb"
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
-	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -155,8 +155,8 @@
 /obj/item/bodypart/leg/right/robot/surplus/raptoral
 	name = "prosthetic right raptorial hindlimb"
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
-	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -174,7 +174,7 @@
 	name = "prosthetic left raptorial forelimb"
 	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -192,7 +192,7 @@
 	name = "prosthetic right raptorial forelimb"
 	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -212,7 +212,7 @@
 	name = "prosthetic left raptorial hindlimb"
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -231,7 +231,7 @@
 	name = "prosthetic right raptorial hindlimb"
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_surplus_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -251,7 +251,7 @@
 	name = "advanced left raptorial forelimb"
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_advanced_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_advanced_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -266,7 +266,7 @@
 	name = "advanced right raptorial forelimb"
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_advanced_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_advanced_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -281,7 +281,7 @@
 	name = "advanced left raptorial hindlimb"
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_advanced_augments.dmi'
-	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_raptoral.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/raptoral_advanced_augments.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
