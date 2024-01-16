@@ -20,7 +20,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/science, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/toxins, 0)
 
 /obj/machinery/camera/autoname/bombsite
-	network = list("ss13","toxins","ordnance","rd")
+	network = list("toxins","ordnance","rd")
 	use_power = NO_POWER_USE //Test site is an unpowered area
 	invuln = TRUE
 	light_range = 10
@@ -62,7 +62,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/prison, 0)
 
 /obj/machinery/camera/autoname/vault
 	name = "motion-sensitive security camera"
-	network = list("ss13","vault")
+	network = list("vault")
 	start_active = TRUE
 
 /obj/machinery/camera/autoname/vault/Initialize(mapload)
@@ -78,13 +78,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/interrogation, 0)
 
 //AI Cameras
 /obj/machinery/camera/autoname/minisat
-	network = list("ss13","minisat")
+	network = list("minisat")
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/minisat, 0)
 
 /obj/machinery/camera/autoname/aicore
 	name = "motion-sensitive security camera"
-	network = list("ss13","aicore")
+	network = list("aicore")
 	start_active = TRUE
 
 /obj/machinery/camera/autoname/aicore/Initialize(mapload)
@@ -95,7 +95,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/aicore, 0)
 
 /obj/machinery/camera/autoname/aiupload
 	name = "motion-sensitive security camera"
-	network = list("ss13","aiupload")
+	network = list("aiupload")
 	start_active = TRUE
 
 /obj/machinery/camera/autoname/aiupload/Initialize(mapload)
