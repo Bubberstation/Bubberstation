@@ -72,6 +72,6 @@
 	timeout = 1 MINUTES
 
 /datum/mood_event/green_idiot
-	description = "I tried to write on the chalkboard, which is green, with a green crayon. I can feel everyone staring at me now. Judging me."
+	description = "I tried to write on the chalkboard, which is green, with a green crayon. I feel dumb."
 	mood_change = -1
 	timeout = 1 MINUTES
