@@ -28,6 +28,7 @@
 	if(canalarm)
 		playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
 		set_light((initial(light_range) + 3), 3, CIRCUIT_COLOR_SECURITY, TRUE)
+		spasm_animation(10)
 	else
 		set_light((initial(light_range)), initial(light_power), initial(light_color), TRUE)
 	addtimer(CALLBACK(src, .proc/alarm), SENSORS_UPDATE_PERIOD) // Fix this for 515
