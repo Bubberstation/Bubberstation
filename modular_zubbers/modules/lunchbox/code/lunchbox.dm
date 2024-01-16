@@ -4,8 +4,8 @@
 	icon_state = "lunchbox"
 	desc = "It's fucked, yell at coders."
 	inhand_icon_state = "lunchbox"
-	lefthand_file = 'modular_zubbers/modules/lunchbox/icons/items_lefthand.dmi'
-	righthand_file = 'modular_zubbers/modules/lunchbox/icons/items_righthand.dmi'
+	lefthand_file = 'modular_zubbers/modules/lunchbox/icons/lunchbox_lefthand.dmi'
+	righthand_file = 'modular_zubbers/modules/lunchbox/icons/lunchbox_righthand.dmi'
 	drop_sound = 'sound/items/handling/cardboardbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/cardboardbox_pickup.ogg'
 	throw_speed = 3
