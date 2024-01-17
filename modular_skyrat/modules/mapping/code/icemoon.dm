@@ -2,7 +2,7 @@
 /datum/map_template/ruin/icemoon/underground/skyrat/
 	prefix = "_maps/RandomRuins/IceRuins/skyrat/"
 /*------*/
-/* //BUBBER REMOVAL START - removes moon interdyne
+
 /datum/map_template/ruin/icemoon/underground/skyrat/syndicate_base
 	name = "Syndicate Ice Base"
 	id = "ice-base"
@@ -11,7 +11,7 @@
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/skyrat/syndicate_base)
 	always_place = TRUE
-*/ //BUBBER REMOVAL END
+
 /datum/map_template/ruin/icemoon/underground/skyrat/mining_site_below
 	name = "Mining Site Underground"
 	id = "miningsite-underground"
