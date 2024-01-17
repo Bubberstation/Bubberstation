@@ -21,17 +21,11 @@
 		if(mob.z != src.z  && !HAS_TRAIT(mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
 		var/obj/item/clothing/under/uniform = mob.w_uniform
-		if(uniform.sensor_mode >= SENSOR_VITALS && HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD && mob.mind)
+		if(uniform.sensor_mode >= SENSOR_VITALS && (HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD))
 			if(mob.get_dnr()) // DNR won't beep anymore
 				continue
 			canalarm = TRUE
 			break // Why wasn't this here?
-
-		/* 	Low sensors don't deserve our attention. The constant beeping of John Gray dying in their hidden maints base no paramed can find irritates everyone
-			Keep those sensors up if you wanna get revived in a timely manner
-		else if(uniform.sensor_mode == SENSOR_LIVING && mob.stat == DEAD)
-			canalarm = TRUE
-		*/
 
 	if(canalarm)
 		playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
