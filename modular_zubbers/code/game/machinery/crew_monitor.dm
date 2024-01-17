@@ -16,13 +16,20 @@
 
 	for(var/tracked_mob in GLOB.suit_sensors_list)
 		var/mob/living/carbon/human/mob = tracked_mob
+		if(tracked_mob["is_dnr"]) // No more beeps on DNRs
+			continue
 		if(mob.z != src.z  && !HAS_TRAIT(mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
 		var/obj/item/clothing/under/uniform = mob.w_uniform
 		if(uniform.sensor_mode >= SENSOR_VITALS && HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD && mob.mind)
 			canalarm = TRUE
+			break // Why wasn't this here?
+
+		/* 	Low sensors don't deserve our attention. Half the time these are in pisshole nowhere.
+			Keep those sensors up if you wanna get revived in a timely manner
 		else if(uniform.sensor_mode == SENSOR_LIVING && mob.stat == DEAD)
 			canalarm = TRUE
+		*/
 
 
 	if(canalarm)
