@@ -29,12 +29,6 @@
 	)
 	special_light_key = null
 	borg_skins = list(
-		//32x64 sprites below (Wide)
-		//Vale CC Sprites by QuartzAdachi
-		"Vale" = list(
-			SKIN_ICON_STATE = "valecc",
-			SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE))
 		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)), //aKhroma :)
 	)
@@ -53,23 +47,13 @@
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		//64x48 sprites below (Raptor)
-		"Raptor" = list(
-			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
-			SKIN_ICON = CYBORG_ICON_MED_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_MED_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 	)
 
 /obj/item/robot_model/engineering/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		//64x48 sprites below (Raptor)
-		"Raptor" = list(
-			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
-			SKIN_ICON = CYBORG_ICON_ENG_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_ENG_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 	)
 
 /obj/item/robot_model/janitor/Initialize(mapload)
@@ -133,36 +117,30 @@
 /obj/item/robot_model/service/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		//64x48 sprites below (Raptor)
-		"Raptor" = list(
-			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
-			SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Fancy Raptor" = list(SKIN_ICON_STATE = "fancyraptor", SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 	)
 
 /obj/item/robot_model/syndicatejack/Initialize()
 	. = ..()
 	borg_skins |= list(
-		//32x64 Sprites below (Wide)
-		"Vale" = list(
-			SKIN_ICON_STATE = "vale",
-			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
-		"Pupdozer" = list(
-			SKIN_ICON_STATE = "pupdozer",
-			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_WIDE)
-		),
-		"Vale Alt" = list(
-			SKIN_ICON_STATE = "vale",
-			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
-		"Pupdozer" = list(
-			SKIN_ICON_STATE = "pupdozer",
-			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_WIDE)
-    ),
+		"Vale" = list(SKIN_ICON_STATE = "vale", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Pupdozer" = list(SKIN_ICON_STATE = "pupdozer", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_WIDE)),
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 	)
+
+/obj/item/robot_model/peacekeeper/Initialize()
+	. = ..()
+	borg_skins |= list(
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+	)
+
+/*
+
+/obj/item/robot_model/ninja/Initialize()
+	. = ..()
+	borg_skins |= list(
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_NINJA_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Vale" = list(SKIN_ICON_STATE = "valeninja", SKIN_ICON = CYBORG_ICON_NINJA_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+	)
+*/
