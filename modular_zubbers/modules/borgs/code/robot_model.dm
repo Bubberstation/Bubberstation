@@ -48,31 +48,35 @@
 /obj/item/robot_model/standard/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Standard", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL))
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Standard", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL)),
 	)
 
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_MED_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Medical", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/engineering/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_ENG_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Engineer", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/janitor/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_JANI_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Janitor", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/miner/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_MINING_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Mining", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/security/Initialize()
@@ -80,6 +84,7 @@
 	borg_skins |= list(
 		"Meka - Bluesec" = list(SKIN_ICON_STATE = "mekasecalt", SKIN_ICON = CYBORG_ICON_SEC_TALL_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), SKIN_HAT_OFFSET = 15),
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SEC_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Security", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/service/Initialize(mapload)
@@ -87,6 +92,7 @@
 	borg_skins |= list(
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 		"Fancy Raptor" = list(SKIN_ICON_STATE = "fancyraptor", SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Service", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/syndicatejack/Initialize()
@@ -95,6 +101,7 @@
 		"Vale" = list(SKIN_ICON_STATE = "vale", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 		"Pupdozer" = list(SKIN_ICON_STATE = "pupdozer", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_WIDE)),
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Syndicat", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL))
 	)
 
 /obj/item/robot_model/peacekeeper/Initialize()
