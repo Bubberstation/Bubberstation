@@ -29,8 +29,16 @@
 	)
 	special_light_key = null
 	borg_skins = list(
-		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)), //aKhroma :)
+		"Vale" = list(
+			SKIN_ICON_STATE = "valecc",
+			SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		), //aKhroma :)
 	)
 
 /obj/item/robot_model/centcom/rebuild_modules()
@@ -47,13 +55,21 @@
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_MED_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_MED_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
 	)
 
 /obj/item/robot_model/engineering/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_ENG_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_ENG_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
 	)
 
 /obj/item/robot_model/janitor/Initialize(mapload)
@@ -70,6 +86,17 @@
 /obj/item/robot_model/miner/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
+		//64x32 Sprites below (Wide)
+		"Corrupt" = list(
+			SKIN_ICON_STATE = "corrupt",
+			SKIN_ICON = CYBORG_ICON_MINING_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
+		"Corrupt Alt" = list(
+			SKIN_ICON_STATE = "corruptalt",
+			SKIN_ICON = CYBORG_ICON_MINING_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
 		//64x48 sprites below (Raptor)
 		"Raptor" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
@@ -117,30 +144,59 @@
 /obj/item/robot_model/service/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
-		"Fancy Raptor" = list(SKIN_ICON_STATE = "fancyraptor", SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
+		"Fancy Raptor" = list(
+			SKIN_ICON_STATE = "fancyraptor",
+			SKIN_ICON = CYBORG_ICON_SERVICE_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
 	)
 
 /obj/item/robot_model/syndicatejack/Initialize()
 	. = ..()
 	borg_skins |= list(
-		"Vale" = list(SKIN_ICON_STATE = "vale", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
-		"Pupdozer" = list(SKIN_ICON_STATE = "pupdozer", SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_WIDE)),
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Vale" = list(
+			SKIN_ICON_STATE = "vale",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+			),
+		"Pupdozer" = list(
+			SKIN_ICON_STATE = "pupdozer",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_WIDE)
+			),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+			),
 	)
 
 /obj/item/robot_model/peacekeeper/Initialize()
 	. = ..()
 	borg_skins |= list(
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
 	)
-
-/*
 
 /obj/item/robot_model/ninja/Initialize()
 	. = ..()
 	borg_skins |= list(
-		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_NINJA_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
-		"Vale" = list(SKIN_ICON_STATE = "valeninja", SKIN_ICON = CYBORG_ICON_NINJA_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_NINJA_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
+		"Vale" = list(
+			SKIN_ICON_STATE = "valeninja",
+			SKIN_ICON = CYBORG_ICON_NINJA_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
+		),
 	)
-*/
