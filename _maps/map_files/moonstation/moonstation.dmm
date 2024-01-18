@@ -6986,12 +6986,13 @@
 /turf/closed/wall,
 /area/station/maintenance/abandon_cafeteria)
 "cmh" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/stripes/white/line,
+/obj/effect/turf_decal/trimline/yellow/filled/warning,
 /turf/open/floor/iron/white,
 /area/station/science/cytology)
 "cmw" = (
@@ -8017,13 +8018,13 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "cGL" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "cHm" = (
@@ -17005,6 +17006,7 @@
 	dir = 8
 	},
 /obj/machinery/newscaster/directional/west,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "fzk" = (
@@ -20561,11 +20563,9 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/port/aft)
 "gIs" = (
-/obj/machinery/airalarm/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airalarm/tlv_cold_room,
 /turf/open/floor/fake_snow/safe{
 	initial_gas_mix = "o2=26;n2=97;TEMP=259.15"
 	},
@@ -40836,10 +40836,6 @@
 /obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/engineering/rbmk2)
-"nko" = (
-/obj/effect/turf_decal/tile/purple,
-/turf/open/floor/iron/white,
-/area/station/science/research)
 "nkH" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
@@ -57406,6 +57402,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "sBN" = (
@@ -63520,16 +63519,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
-	},
 /obj/machinery/duct,
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 8
+	},
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "uDA" = (
@@ -117309,7 +117305,7 @@ oau
 ntb
 cGL
 sBx
-nko
+fXD
 fXD
 fXD
 fXD
