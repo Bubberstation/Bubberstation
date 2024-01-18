@@ -4005,10 +4005,6 @@
 /obj/machinery/newscaster/directional/east,
 /obj/effect/turf_decal/bot_white,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
-/obj/item/book/kindred/station_loving{
-	pixel_y = -1;
-	pixel_x = -6
-	},
 /turf/open/floor/iron/dark,
 /area/station/service/library)
 "bsR" = (
@@ -13417,9 +13413,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/basic/goat/pete{
-	name = "Pete"
-	},
+/mob/living/basic/goat/pete,
 /turf/open/floor/iron/freezer,
 /area/station/service/kitchen/coldroom)
 "eBx" = (
@@ -17158,8 +17152,7 @@
 /obj/effect/landmark/event_spawn,
 /mob/living/basic/trooper/russian{
 	environment_smash = 0;
-	loot = list(/obj/effect/mob_spawn/corpse/human/russian);
-	name = "Russian Mobster"
+	loot = list(/obj/effect/mob_spawn/corpse/human/russian)
 	},
 /turf/open/floor/carpet/green,
 /area/station/maintenance/port/greater)
@@ -21407,7 +21400,6 @@
 /obj/structure/kitchenspike,
 /obj/effect/turf_decal/bot/left,
 /obj/machinery/airalarm/directional/north{
-	dir = 1;
 	pixel_y = 24
 	},
 /obj/effect/mapping_helpers/airalarm/tlv_cold_room,
@@ -57893,9 +57885,7 @@
 /obj/item/mod/core/standard{
 	pixel_x = 4
 	},
-/obj/item/mod/core/standard{
-	pixel_x = 0
-	},
+/obj/item/mod/core/standard,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
@@ -64150,8 +64140,7 @@
 /obj/structure/chair/stool/bar/directional/west,
 /mob/living/basic/trooper/russian{
 	environment_smash = 0;
-	loot = list(/obj/effect/mob_spawn/corpse/human/russian);
-	name = "Russian Mobster"
+	loot = list(/obj/effect/mob_spawn/corpse/human/russian)
 	},
 /turf/open/floor/wood,
 /area/station/maintenance/port/greater)
@@ -64300,7 +64289,6 @@
 	network = list("ss13","rd")
 	},
 /obj/machinery/airalarm/directional/west{
-	dir = 8;
 	pixel_x = -28
 	},
 /obj/effect/mapping_helpers/airalarm/mixingchamber_access,
@@ -71286,8 +71274,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /mob/living/basic/trooper/russian{
 	environment_smash = 0;
-	loot = list(/obj/effect/mob_spawn/corpse/human/russian);
-	name = "Russian Mobster"
+	loot = list(/obj/effect/mob_spawn/corpse/human/russian)
 	},
 /turf/open/floor/carpet/green,
 /area/station/maintenance/port/greater)
