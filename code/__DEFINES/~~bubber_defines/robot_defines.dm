@@ -1,7 +1,5 @@
 // Bubberstation custom borg sprites, add new defines in line with code\__DEFINES\~skyrat_defines\robot_defines.dm format
 // To add new sprites, see modular_zubbers\modules\borgs and the respective dmi
-//64x64 Borg skins
-#define TRAIT_R_LARGE "large_borg"
 
 #define CYBORG_ICON_CENTCOM_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_cc.dmi'
