@@ -45,6 +45,8 @@
 
 
 /* BUBBER SPRITE ADDITIONS BELOW */
+//With regards to SKIN_PIXEL_X on Raptorborgs, for some reason it recognizes positive 16 as negative 16. I don't know why. But just know that this makes them fit perfectly into
+//The tile they need to be on.
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
