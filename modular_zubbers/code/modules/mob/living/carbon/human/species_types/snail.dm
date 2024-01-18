@@ -1,2 +1,2 @@
 /datum/species/snail
-  sexes = TRUE
+	sexes = TRUE
