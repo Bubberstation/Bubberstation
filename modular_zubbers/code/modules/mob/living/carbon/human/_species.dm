@@ -17,13 +17,7 @@
 	mutantliver = organs_to_handle[ORGAN_SLOT_LIVER]
 	mutantstomach = organs_to_handle[ORGAN_SLOT_STOMACH]
 	mutanttongue = organs_to_handle[ORGAN_SLOT_TONGUE]
-	for(var/organ_slot in organs_to_handle)
-		var/obj/item/organ/old_organ = target.get_organ_slot(organ_slot)
-		var/organ_path = organs_to_handle[organ_slot]
-		if(old_organ?.type == organ_path)
-			continue
-		var/obj/item/organ/new_organ = SSwardrobe.provide_type(organ_path)
-		new_organ.Insert(target, FALSE, FALSE)
+	regenerate_organs(target, null, TRUE)
 
 /datum/species/proc/normalize_organs(mob/living/carbon/human/target)
 	mutantheart = initial(mutantheart)

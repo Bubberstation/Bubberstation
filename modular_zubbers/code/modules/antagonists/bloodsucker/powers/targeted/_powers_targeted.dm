@@ -1,13 +1,12 @@
 // NOTE: All Targeted spells are Toggles! We just don't bother checking here.
 /datum/action/cooldown/bloodsucker/targeted
 	power_flags = BP_AM_TOGGLE
-
+	click_to_activate = TRUE
+	power_activates_immediately = TRUE
 	///If set, how far the target has to be for the power to work.
 	var/target_range
 	///Message sent to chat when clicking on the power, before you use it.
 	var/prefire_message
-	///Most powers happen the moment you click. Some, like Mesmerize, require time and shouldn't cost you if they fail.
-	var/power_activates_immediately = TRUE
 	///Is this power LOCKED due to being used?
 	var/power_in_use = FALSE
 
@@ -16,38 +15,47 @@
 	desc += "<br>\[<i>Targeted Power</i>\]"
 	return ..()
 
-/datum/action/cooldown/bloodsucker/targeted/Remove(mob/living/remove_from)
-	. = ..()
-	if(remove_from.click_intercept == src)
-		unset_click_ability(remove_from)
+// *Don't read this if you don't care about how actions work.*
+// Actions are a wee complicated, but for anyone else who's going to take a look at this, let me explain.
+// Actions satart at Trigger, which is called by the client clicking the action button,
+// if it's a targeted power, like this one here, it will call set_click_ability,
+// which will set up the click interception. Thus clicking will call Trigger again, but with a target this time.
+// Otherwise, if click_to_activate is false, it will simply always call Trigger without a target,
+// and call PreActivate, which then calls Activate.
+// For this ability, we call InterceptClickOn to trigger the ability with a target, as we want
+// to be able to use trigger_flags, which mere Activate doesn't have.
 
 /datum/action/cooldown/bloodsucker/targeted/Trigger(trigger_flags, atom/target)
-	if((active) && can_deactivate())
-		DeactivatePower()
+	. = ..()
+	if(!.)
 		return FALSE
-	if(!can_pay_cost(owner) || !can_use(owner, trigger_flags))
-		return FALSE
+	if(target)
+		. = FireTargetedPower(target, trigger_flags)
 
+// If click_to_activate is true, only these two procs are called when the ability is clicked on
+/datum/action/cooldown/bloodsucker/targeted/set_click_ability(mob/on_who)
+	. = ..()
+	Activate()
 	if(prefire_message)
 		to_chat(owner, span_announce("[prefire_message]"))
 
-	ActivatePower(trigger_flags)
-	if(target)
-		return InterceptClickOn(owner, null, target)
-
-	return set_click_ability(owner)
+/datum/action/cooldown/bloodsucker/targeted/unset_click_ability(mob/on_who, refund_cooldown)
+	. = ..()
+	if(power_activates_immediately)
+		DeactivatePower()
 
 /datum/action/cooldown/bloodsucker/targeted/DeactivatePower()
 	if(power_flags & BP_AM_TOGGLE)
 		STOP_PROCESSING(SSprocessing, src)
 	active = FALSE
-	build_all_button_icons()
-	unset_click_ability(owner)
-//	..() // we don't want to pay cost here
+	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /// Check if target is VALID (wall, turf, or character?)
 /datum/action/cooldown/bloodsucker/targeted/proc/CheckValidTarget(atom/target_atom)
 	if(target_atom == owner)
+		return FALSE
+	if(!target_atom)
+		stack_trace("Targeted power [name] has no target! This should never happen.")
 		return FALSE
 	return TRUE
 
@@ -62,31 +70,40 @@
 	return istype(target_atom)
 
 /// Click Target
-/datum/action/cooldown/bloodsucker/targeted/proc/click_with_power(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/PreActivate(atom/target)
+	. = ..()
 	// CANCEL RANGED TARGET check
-	if(power_in_use || !CheckValidTarget(target_atom))
+	if(power_in_use || !CheckValidTarget(target))
 		return FALSE
 	// Valid? (return true means DON'T cancel power!)
-	if(!can_pay_cost() || !can_use(owner) || !CheckCanTarget(target_atom))
+	if(!can_pay_cost() || !can_use(owner) || !CheckCanTarget(target))
 		return TRUE
 	power_in_use = TRUE // Lock us into this ability until it successfully fires off. Otherwise, we pay the blood even if we fail.
-	FireTargetedPower(target_atom) // We use this instead of ActivatePower(trigger_flags), which has no input
-	// Skip this part so we can return TRUE right away.
 	if(power_activates_immediately)
-		power_activated_sucessfully() // Mesmerize pays only after success.
+		PowerActivatedSuccesfully() // Mesmerize pays only after success.
 	power_in_use = FALSE
 	return TRUE
 
-/// Like ActivatePower, but specific to Targeted (and takes an atom input). We don't use ActivatePower for targeted.
-/datum/action/cooldown/bloodsucker/targeted/proc/FireTargetedPower(atom/target_atom)
-	log_combat(owner, target_atom, "used [name] on")
+/datum/action/cooldown/bloodsucker/targeted/proc/FireTargetedPower(atom/target, params)
+	return FALSE
+
+/// Mostly unused for trigger powers, if you're coding a new bloodsucker ability, use TargetedActivate instead.
+/datum/action/cooldown/bloodsucker/targeted/Activate(atom/target)
+	. = ..()
+	if(!target)
+		return .
+	log_combat(owner, target, "used [name] on")
 
 /// The power went off! We now pay the cost of the power.
-/datum/action/cooldown/bloodsucker/targeted/proc/power_activated_sucessfully()
-	unset_click_ability(owner)
-	pay_cost()
-	StartCooldown()
+/datum/action/cooldown/bloodsucker/targeted/proc/PowerActivatedSuccesfully(cooldown_override)
+	StartCooldown(cooldown_override)
 	DeactivatePower()
 
 /datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/caller, params, atom/target)
-	click_with_power(target)
+	. = ..()
+	if(!.)
+		return FALSE
+	// InterceptClickOn already runs PreActivate, so only check if the return value is FALSE.
+	// I would use Activate if it actually had click params, but I want to be able to
+	// check for right clicks.
+	FireTargetedPower(target, params)

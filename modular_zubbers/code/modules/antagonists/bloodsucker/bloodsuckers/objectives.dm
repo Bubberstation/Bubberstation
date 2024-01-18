@@ -264,8 +264,8 @@
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	for(var/datum/action/cooldown/bloodsucker/targeted/tremere/tremere_powers in bloodsuckerdatum.powers)
-		if(tremere_powers.level_current >= 5)
+	for(var/datum/action/cooldown/bloodsucker/tremere_powers in bloodsuckerdatum.powers)
+		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= 5)
 			return TRUE
 	return FALSE
 

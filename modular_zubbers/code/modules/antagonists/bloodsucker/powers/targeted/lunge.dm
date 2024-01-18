@@ -62,14 +62,14 @@
 /datum/action/cooldown/bloodsucker/targeted/lunge/can_deactivate()
 	return !(datum_flags & DF_ISPROCESSING) //only if you aren't lunging
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/lunge/FireTargetedPower(atom/target, params)
 	. = ..()
-	owner.face_atom(target_atom)
+	owner.face_atom(target)
 	if(level_current > 3)
-		do_lunge(target_atom)
+		do_lunge(target)
 		return
 
-	prepare_target_lunge(target_atom)
+	prepare_target_lunge(target)
 	return TRUE
 
 ///Starts processing the power and prepares the lunge by spinning, calls lunge at the end of it.
@@ -123,7 +123,7 @@
 	lunge_end(hit_atom, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/proc/lunge_end(atom/hit_atom, turf/target_turf)
-	power_activated_sucessfully()
+	PowerActivatedSuccesfully()
 	// Am I next to my target to start giving the effects?
 	if(!owner.Adjacent(hit_atom))
 		return

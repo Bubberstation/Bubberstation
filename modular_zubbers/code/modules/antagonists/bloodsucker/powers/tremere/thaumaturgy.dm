@@ -83,7 +83,7 @@
 	bloodcost = 80
 	cooldown_time = 8 SECONDS
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/Activate(trigger_flags)
 	. = ..()
 	owner.balloon_alert(owner, "you start thaumaturgy")
 	if(level_current >= 2) // Only if we're at least level 2.
@@ -104,22 +104,22 @@
 		QDEL_NULL(blood_shield)
 	return ..()
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/FireTargetedPower(atom/target, params)
 	. = ..()
 
 	var/mob/living/user = owner
 	owner.balloon_alert(owner, "you fire a blood bolt!")
 	to_chat(user, span_warning("You fire a blood bolt!"))
 	user.changeNext_move(CLICK_CD_RANGE)
-	user.newtonian_move(get_dir(target_atom, user))
+	user.newtonian_move(get_dir(target, user))
 	var/obj/projectile/magic/arcane_barrage/bloodsucker/magic_9ball = new(user.loc)
 	magic_9ball.bloodsucker_power = src
 	magic_9ball.firer = user
 	magic_9ball.def_zone = ran_zone(user.zone_selected)
-	magic_9ball.preparePixelProjectile(target_atom, user)
+	magic_9ball.preparePixelProjectile(target, user)
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
-	power_activated_sucessfully()
+	PowerActivatedSuccesfully()
 
 /**
  * 	# Blood Bolt

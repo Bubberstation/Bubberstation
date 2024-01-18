@@ -8,8 +8,6 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere
 	name = "Tremere Gift"
 	desc = "A Tremere exclusive gift."
-	button_icon_state = "power_auspex"
-	background_icon_state = "tremere_power_off"
 	active_background_icon_state = "tremere_power_on"
 	base_background_icon_state = "tremere_power_off"
 	button_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
@@ -23,5 +21,3 @@
 	// Targeted stuff
 	power_activates_immediately = FALSE
 
-	///The upgraded version of this Power. 'null' means it's the max level.
-	var/upgraded_power = null

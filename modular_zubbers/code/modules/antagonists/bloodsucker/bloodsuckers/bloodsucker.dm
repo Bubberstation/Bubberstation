@@ -343,7 +343,8 @@
 			if(my_clan)
 				return
 			assign_clan_and_bane()
-			ui.send_full_update(force = TRUE)
+			if(!ui.closing)
+				ui.send_full_update(force = TRUE)
 			return
 
 /datum/antagonist/bloodsucker/roundend_report()

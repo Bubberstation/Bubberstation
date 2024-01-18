@@ -58,7 +58,7 @@
 
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/trespass/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/trespass/FireTargetedPower(atom/target, params)
 	. = ..()
 
 	// Find target turf, at or below Atom

@@ -13,13 +13,13 @@
 		Anyone in your way during your Haste will be knocked down.\n\
 		Higher levels will increase the knockdown dealt to enemies.\n\
 		It will also refill your stamina so you can keep moving."
+	prefire_message = "You prepare to dash!"
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
 	target_range = 15
-	power_activates_immediately = TRUE
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
 
@@ -39,7 +39,7 @@
 		return FALSE
 	return TRUE
 
-/// Anything will do, if it's not me or my square
+/// Anything will do, if it's not mea or my square
 /datum/action/cooldown/bloodsucker/targeted/haste/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
@@ -47,11 +47,11 @@
 	return target_atom.loc != owner.loc
 
 /// This is a non-async proc to make sure the power is "locked" until this finishes.
-/datum/action/cooldown/bloodsucker/targeted/haste/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/haste/FireTargetedPower(atom/target, params)
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/mob/living/user = owner
-	var/turf/targeted_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
+	var/turf/targeted_turf = isturf(target) ? target : get_turf(target)
 	// Pulled? Not anymore.
 	user.pulledby?.stop_pulling()
 	// Go to target turf
@@ -76,7 +76,7 @@
 			sleep(world.tick_lag)
 	user.adjustStaminaLoss(-user.staminaloss)
 
-/datum/action/cooldown/bloodsucker/targeted/haste/power_activated_sucessfully()
+/datum/action/cooldown/bloodsucker/targeted/haste/PowerActivatedSuccesfully()
 	. = ..()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	hit.Cut()

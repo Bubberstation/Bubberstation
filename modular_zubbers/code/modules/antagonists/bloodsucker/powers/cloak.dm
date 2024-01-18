@@ -25,7 +25,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/cloak/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/cloak/Activate(atom/target)
 	. = ..()
 	var/mob/living/user = owner
 	was_running = (user.move_intent == MOVE_INTENT_RUN)

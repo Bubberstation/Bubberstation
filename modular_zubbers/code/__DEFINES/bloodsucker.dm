@@ -132,6 +132,9 @@
 #define COMSIG_SOL_WARNING_GIVEN "comsig_sol_warning_given"
 ///Called on a Bloodsucker's Lifetick.
 #define COMSIG_BLOODSUCKER_ON_LIFETICK "comsig_bloodsucker_on_lifetick"
+/// Called when a Bloodsucker's blood is updated
+#define BLOODSUCKER_UPDATE_BLOOD "bloodsucker_update_blood"
+	#define BLOODSUCKER_UPDATE_BLOOD_DISABLED (1<<0)
 
 #define DANGER_LEVEL_FIRST_WARNING 1
 #define DANGER_LEVEL_SECOND_WARNING 2

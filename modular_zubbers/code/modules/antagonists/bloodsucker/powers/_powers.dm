@@ -38,6 +38,10 @@
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
+	///The upgraded version of this Power. 'null' means it's the max level.
+	var/upgraded_power = null
+	///Most powers happen the moment you click. Some, like Mesmerize, require time and shouldn't cost you if they fail.
+	var/power_activates_immediately = FALSE
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
@@ -66,16 +70,17 @@
 
 //This is when we CLICK on the ability Icon, not USING.
 /datum/action/cooldown/bloodsucker/Trigger(trigger_flags, atom/target)
-	if(active && can_deactivate()) // Active? DEACTIVATE AND END!
-		DeactivatePower()
+	if(!owner)
 		return FALSE
+	if(!power_activates_immediately && active && can_deactivate()) // Active? DEACTIVATE AND END!
+		DeactivatePower()
+		return ..()
 	if(!can_pay_cost() || !can_use(owner, trigger_flags))
 		return FALSE
-	pay_cost()
-	ActivatePower(trigger_flags)
-	if(!(power_flags & BP_AM_TOGGLE) || !active)
-		StartCooldown()
-	return TRUE
+	. = ..()
+	// base type returns true? Pay costs
+	if(. && !click_to_activate)
+		pay_cost()
 
 /datum/action/cooldown/bloodsucker/proc/can_pay_cost()
 	if(!owner || !owner.mind)
@@ -86,7 +91,7 @@
 		return FALSE
 	if(!bloodsuckerdatum_power)
 		var/mob/living/living_owner = owner
-		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD) && living_owner.blood_volume < bloodcost)
+		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD) && living_owner.blood_volume <= bloodcost)
 			to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
 			return FALSE
 		return TRUE
@@ -94,7 +99,7 @@
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
 	if(bloodsuckerdatum_power.frenzied)
 		return TRUE
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume < bloodcost)
+	if(bloodsuckerdatum_power.bloodsucker_blood_volume <= bloodcost)
 		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
 		return FALSE
 	return TRUE
@@ -139,13 +144,14 @@
 	return TRUE
 
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.
-/datum/action/cooldown/bloodsucker/StartCooldown()
+/datum/action/cooldown/bloodsucker/StartCooldown(cooldown_override)
 	// Calculate Cooldown (by power's level)
-	if(power_flags & BP_AM_STATIC_COOLDOWN)
+	if(cooldown_override)
+		cooldown_time = cooldown_override
+	else if(power_flags & BP_AM_STATIC_COOLDOWN)
 		cooldown_time = initial(cooldown_time)
 	else
 		cooldown_time = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
-
 	return ..()
 
 /datum/action/cooldown/bloodsucker/proc/can_deactivate()
@@ -167,13 +173,13 @@
 	bloodsuckerdatum_power.bloodsucker_blood_volume -= bloodcost
 	bloodsuckerdatum_power.update_hud()
 
-/datum/action/cooldown/bloodsucker/proc/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/Activate(atom/target)
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
 		START_PROCESSING(SSprocessing, src)
 
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
-	build_all_button_icons()
+	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/cooldown/bloodsucker/proc/DeactivatePower()
 	if(!active) //Already inactive? Return
@@ -185,7 +191,7 @@
 		return
 	active = FALSE
 	StartCooldown()
-	build_all_button_icons()
+	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 ///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
 /datum/action/cooldown/bloodsucker/process(seconds_per_tick)

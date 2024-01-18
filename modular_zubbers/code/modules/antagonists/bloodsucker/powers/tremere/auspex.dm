@@ -87,7 +87,7 @@
 		return FALSE
 	return isturf(target_atom)
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/Activate(trigger_flags)
 	. = ..()
 	owner.AddElement(/datum/element/digitalcamo)
 	animate(owner, alpha = 15, time = 1 SECONDS)
@@ -97,10 +97,10 @@
 	owner.RemoveElement(/datum/element/digitalcamo)
 	return ..()
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/FireTargetedPower(atom/target, params)
 	. = ..()
 	var/mob/living/user = owner
-	var/turf/targeted_turf = get_turf(target_atom)
+	var/turf/targeted_turf = get_turf(target)
 	auspex_blink(user, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/proc/auspex_blink(mob/living/user, turf/targeted_turf)
@@ -122,4 +122,4 @@
 	
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.adjustStaminaLoss(-user.staminaloss)
-	power_activated_sucessfully()
+	PowerActivatedSuccesfully()

@@ -34,7 +34,7 @@
 /datum/bloodsucker_clan/tremere/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
 	// Purchase Power Prompt
 	var/list/options = list()
-	for(var/datum/action/cooldown/bloodsucker/targeted/tremere/power as anything in bloodsuckerdatum.powers)
+	for(var/datum/action/cooldown/bloodsucker/targeted/power as anything in bloodsuckerdatum.powers)
 		if(!(power.purchase_flags & TREMERE_CAN_BUY))
 			continue
 		if(isnull(power.upgraded_power))
@@ -60,13 +60,10 @@
 
 		// Good to go - Buy Power!
 		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
-		var/datum/action/cooldown/bloodsucker/targeted/tremere/tremere_power = purchased_power
-		if(isnull(tremere_power.upgraded_power))
-			bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "cannot upgrade [choice]!")
-			to_chat(bloodsuckerdatum.owner.current, span_notice("[choice] is already at max level!"))
-			return
+		var/datum/action/cooldown/bloodsucker/targeted/tremere_power = purchased_power
 		bloodsuckerdatum.BuyPower(tremere_power.upgraded_power)
 		bloodsuckerdatum.RemovePower(tremere_power)
+		
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "upgraded [choice]!")
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You have upgraded [choice]!"))
 

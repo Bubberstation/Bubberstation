@@ -14,6 +14,7 @@
 	power_explanation = "Mesmerize:\n\
 		Click any player to attempt to mesmerize them.\n\
 		You cannot wear anything covering your face, and both parties must be facing eachother. Obviously, both parties need to not be blind. \n\
+		Right clicking with the ability will apply a knockdown, but will also confuse your victim.\n\
 		If your target is already mesmerized or a Monster Hunter, the Power will fail.\n\
 		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\
 		At level 2, your target will additionally be muted.\n\
@@ -31,6 +32,11 @@
 	prefire_message = "Whom will you subvert to your will?"
 	///Our mesmerized target - Prevents several mesmerizes.
 	var/datum/weakref/target_ref
+	/// How long it takes us to mesmerize our target.
+	var/mesmerize_delay = 4 SECONDS
+	/// At what level this ability will blind the target at. Level 0 = never.
+	var/blind_at_level = 0
+	var/requires_facing_target = TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -78,11 +84,11 @@
 		owner.balloon_alert(owner, "[current_target] is blind.")
 		return FALSE
 	// Facing target?
-	if(!is_source_facing_target(owner, current_target)) // in unsorted.dm
+	if(requires_facing_target && !is_source_facing_target(owner, current_target)) // in unsorted.dm
 		owner.balloon_alert(owner, "you must be facing [current_target].")
 		return FALSE
 	// Target facing me? (On the floor, they're facing everyone)
-	if(((current_target.mobility_flags & MOBILITY_STAND) && !is_source_facing_target(current_target, owner) && level_current <= 4))
+	if(((current_target.mobility_flags & MOBILITY_STAND) && requires_facing_target && !is_source_facing_target(current_target, owner) && level_current <= 4))
 		owner.balloon_alert(owner, "[current_target] must be facing you.")
 		return FALSE
 
@@ -90,7 +96,7 @@
 	target_ref = WEAKREF(current_target)
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target, params)
 	. = ..()
 
 	var/mob/living/user = owner
@@ -100,40 +106,65 @@
 		var/mob/living/silicon/mesmerized = mesmerized_target
 		mesmerized.emp_act(EMP_HEAVY)
 		owner.balloon_alert(owner, "temporarily shut [mesmerized] down.")
-		power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
+		PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 		return
-
+	var/power_time = 9 SECONDS + level_current * 1.5 SECONDS
 	if(istype(mesmerized_target))
 		owner.balloon_alert(owner, "attempting to hypnotically gaze [mesmerized_target]...")
-
-	if(!do_after(user, 4 SECONDS, mesmerized_target, NONE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
+		if(LAZYACCESS(params, RIGHT_CLICK))
+			to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you forget what you're doing for a moment")]...")
+			combat_mesmerize(mesmerized_target, power_time)
+			PowerActivatedSuccesfully()
+			return
+	if(!do_after(user, mesmerize_delay, mesmerized_target, NONE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		return
-
-	var/power_time = 9 SECONDS + level_current * 1.5 SECONDS
+	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
 	/*if(IS_MONSTERHUNTER(mesmerized_target))
 		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
 		return*/
-	if(HAS_TRAIT_FROM(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
+	if(HAS_TRAIT_FROM(mesmerized_target, TRAIT_NO_TRANSFORM, BLOODSUCKER_TRAIT))
 		owner.balloon_alert(owner, "[mesmerized_target] is already in a hypnotic gaze.")
 		return
 	if(iscarbon(mesmerized_target))
 		owner.balloon_alert(owner, "successfully mesmerized [mesmerized_target].")
-		if(level_current >= 2)
-			ADD_TRAIT(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
-		mesmerized_target.Immobilize(power_time)
-		mesmerized_target.adjust_silence(power_time)
-		mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
-		ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, BLOODSUCKER_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
-		addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
-	power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
+		mesmerize_effects(user, mesmerized_target, power_time)
+	PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target, power_time)
+	mute_target(mesmerized_target, power_time)
+	mesmerized_target.Immobilize(power_time)
+	mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
+	ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, BLOODSUCKER_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
+	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize(mob/living/mesmerized_target, power_time)
+	power_time *= 0.3
+	mesmerized_target.adjust_confusion(power_time * 1.5)
+	mute_target(mesmerized_target, power_time)
+	mesmerized_target.Knockdown(power_time)
+	mesmerized_target.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown, TRUE, level_current * 0.5)
+	addtimer(CALLBACK(src, PROC_REF(remove_slowdown), mesmerized_target), power_time * 1.5)
+	PowerActivatedSuccesfully()
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/blind_target(mob/living/mesmerized_target)
+	if(!blind_at_level && level_current < blind_at_level)
+		return
+	mesmerized_target.become_blind(BLOODSUCKER_TRAIT)
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target, power_time)
+	if(level_current >= 2)
+		mesmerized_target.adjust_silence(power_time * 2)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower()
 	target_ref = null
 	. = ..()
 
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/remove_slowdown(mob/living/target)
+	target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
+
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
+	target.cure_blind(BLOODSUCKER_TRAIT)
 	// They Woke Up! (Notice if within view)
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
 		owner.balloon_alert(owner, "[target] snapped out of their trance.")

@@ -37,7 +37,7 @@
 		var/list/power_data = list()
 
 		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
+		power_data["power_explanation"] = power?.power_explanation
 		power_data["power_icon"] = power.button_icon_state
 
 		data["powers"] += list(power_data)
