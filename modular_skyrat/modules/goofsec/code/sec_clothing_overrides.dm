@@ -569,10 +569,17 @@
 /obj/item/clothing/under/rank/security/officer/skirt
 	name = "security battle dress"
 	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt."
-	worn_icon_state = "security_skirt"
-	icon_state = "security_skirt"
-	uses_advanced_reskins = FALSE
-	unique_reskin = null
+	worn_icon_state = "security_skirt_blue"
+	icon_state = "security_skirt_blue"
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "security_skirt_red",
+			RESKIN_WORN_ICON_STATE = "security_skirt_red"),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "security_skirt_blue",
+			RESKIN_WORN_ICON_STATE = "security_skirt_blue"),
+	)
 	alt_covers_chest = FALSE
 
 //Warden
