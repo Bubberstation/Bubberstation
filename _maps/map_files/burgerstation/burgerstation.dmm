@@ -2513,6 +2513,7 @@
 	name = "Library Desk";
 	req_access = list("library")
 	},
+/obj/structure/displaycase/curator,
 /turf/open/floor/carpet,
 /area/station/service/library)
 "aUf" = (
@@ -14571,6 +14572,16 @@
 "fgG" = (
 /turf/closed/wall,
 /area/station/security/checkpoint/science/research)
+"fgR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/displaycase/curator,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/fore)
 "fhd" = (
 /obj/structure/table/wood,
 /obj/machinery/newscaster/directional/west,
@@ -21524,6 +21535,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/mail_sorting/engineering/ce_office,
 /obj/structure/disposalpipe/sorting/mail/flip,
+/obj/structure/displaycase/curator,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/aft)
 "hvp" = (
@@ -26065,6 +26077,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/displaycase/curator,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/aft)
 "jez" = (
@@ -26511,6 +26524,15 @@
 /obj/machinery/portable_atmospherics/scrubber/huge/movable/cargo,
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
+"jlm" = (
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 1
+	},
+/obj/structure/displaycase/curator,
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/hallway/primary/aft)
 "jlB" = (
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 8
@@ -28494,6 +28516,7 @@
 	dir = 4
 	},
 /obj/item/radio/intercom/directional/west,
+/obj/structure/displaycase/curator,
 /turf/open/floor/iron/dark,
 /area/station/service/library/private)
 "jUY" = (
@@ -29901,6 +29924,16 @@
 /obj/structure/sign/poster/random/directional/west,
 /turf/open/floor/plating,
 /area/station/maintenance/department/bridge)
+"kuE" = (
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/status_display/evac/directional/north,
+/obj/structure/displaycase/curator,
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/hallway/primary/aft)
 "kuN" = (
 /obj/machinery/rnd/destructive_analyzer,
 /obj/effect/turf_decal/stripes/line{
@@ -30333,6 +30366,16 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/bar/backroom)
+"kBA" = (
+/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 1
+	},
+/obj/structure/displaycase/curator,
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/hallway/primary/aft)
 "kBG" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/requests_console/auto_name/directional/north,
@@ -30795,6 +30838,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/cc_dock)
+"kJb" = (
+/obj/structure/bookcase/random/adult,
+/obj/structure/displaycase/curator,
+/turf/open/floor/iron/grimy,
+/area/station/service/library)
 "kJg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -32599,6 +32647,7 @@
 "llv" = (
 /obj/structure/chair/office,
 /obj/effect/landmark/start/librarian,
+/obj/structure/displaycase/curator,
 /turf/open/floor/carpet,
 /area/station/service/library)
 "llG" = (
@@ -32724,6 +32773,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
+"lnv" = (
+/obj/structure/displaycase/curator,
+/turf/closed/wall/r_wall,
+/area/station/security/lockers)
 "lnC" = (
 /obj/structure/table,
 /obj/item/paper{
@@ -35611,6 +35664,7 @@
 	req_access = list("library");
 	name = "Librarian's Desk"
 	},
+/obj/structure/displaycase/curator,
 /turf/open/floor/carpet,
 /area/station/service/library)
 "mlV" = (
@@ -44180,6 +44234,10 @@
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"pmI" = (
+/obj/structure/displaycase/curator,
+/turf/closed/wall,
+/area/station/security/courtroom)
 "pmR" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/techstorage/medical_all,
@@ -50362,6 +50420,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/structure/displaycase/curator,
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/aft)
 "rnJ" = (
@@ -90892,7 +90951,7 @@ oyW
 xEs
 oyW
 pKq
-rGV
+kJb
 oyW
 aKj
 qbN
@@ -95027,7 +95086,7 @@ mhK
 mhK
 izm
 msN
-lAm
+jlm
 tiw
 hvq
 xGw
@@ -95284,7 +95343,7 @@ hjU
 hjU
 izm
 pMY
-vwF
+kuE
 muI
 gpA
 eba
@@ -95541,7 +95600,7 @@ pMY
 msN
 msN
 pMY
-dEM
+kBA
 hnH
 vev
 izP
@@ -105766,8 +105825,8 @@ mWv
 uVK
 aMX
 ayW
-iYh
-nJo
+lnv
+fgR
 idj
 xgm
 guv
@@ -106024,7 +106083,7 @@ uWg
 uWg
 jSE
 wPD
-nJo
+fgR
 idj
 gVA
 hpb
@@ -106281,8 +106340,8 @@ tvv
 jRK
 wuN
 iYh
-nJo
-idj
+fgR
+pmI
 idj
 idj
 idj
