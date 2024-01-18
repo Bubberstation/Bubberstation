@@ -14,8 +14,8 @@
 /obj/machinery/computer/crew/proc/alarm()
 	canalarm = FALSE
 
-	for(var/tracked_mob in GLOB.suit_sensors_list)
-		var/mob/living/carbon/human/mob = tracked_mob
+	for(var/mob/living/carbon/human/mob in GLOB.suit_sensors_list)
+
 		if(!istype(mob))
 			continue
 		if(mob.z != src.z  && !HAS_TRAIT(mob, TRAIT_MULTIZ_SUIT_SENSORS))
