@@ -293,6 +293,7 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 	name = "Amber Perfume"
 	item_path = /obj/item/perfume/amber
 
+
 /*
 *	DONATOR
 */
