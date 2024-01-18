@@ -22,5 +22,7 @@
 
 #define CYBORG_ICON_SYNDIE_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_syndie.dmi'
 
+#define CYBORG_ICON_NINJA_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_ninja.dmi'
+
 
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"

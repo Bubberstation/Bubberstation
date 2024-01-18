@@ -35,6 +35,8 @@
 			SKIN_ICON_STATE = "valecc",
 			SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE))
+		"Vale" = list(SKIN_ICON_STATE = "valecc", SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
+		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_CENTCOM_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)), //aKhroma :)
 	)
 
 /obj/item/robot_model/centcom/rebuild_modules()
@@ -84,17 +86,6 @@
 /obj/item/robot_model/miner/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		//64x32 Sprites below (Wide)
-		"Corrupt" = list(
-			SKIN_ICON_STATE = "corrupt",
-			SKIN_ICON = CYBORG_ICON_MINING_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
-		"Corrupt Alt" = list(
-			SKIN_ICON_STATE = "corruptalt",
-			SKIN_ICON = CYBORG_ICON_MINING_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)
-		),
 		//64x48 sprites below (Raptor)
 		"Raptor" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
