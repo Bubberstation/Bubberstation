@@ -108,10 +108,10 @@
 /obj/item/robot_model/security/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
-		//32x64 sprites below (Tall)
+		//32x64 Sprites below (Tall)
 		"Meka - Bluesec" = list(
 			SKIN_ICON_STATE = "mekasecalt",
-			SKIN_ICON = CYBORG_ICON_SEC_TALL_BUBBER,
+			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
 			SKIN_HAT_OFFSET = 15
 		),
