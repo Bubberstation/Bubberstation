@@ -4235,6 +4235,11 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"brq" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/item/radio/intercom/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
 "brw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/carpet/blue,
@@ -7880,9 +7885,6 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/fore)
 "cDO" = (
-/obj/structure/transit_tube_pod{
-	dir = 1
-	},
 /obj/structure/transit_tube/station/reverse/flipped{
 	dir = 4
 	},
@@ -9927,7 +9929,7 @@
 /area/station/security/brig)
 "dkW" = (
 /obj/effect/turf_decal/siding/dark,
-/obj/item/radio/intercom/directional/west,
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "dlh" = (
@@ -14815,13 +14817,14 @@
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "ePM" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/secondary/entry)
 "ePO" = (
@@ -59177,6 +59180,9 @@
 /obj/structure/transit_tube/station/reverse{
 	dir = 8
 	},
+/obj/structure/transit_tube_pod{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/small,
 /area/station/command/bridge)
 "thF" = (
@@ -74439,7 +74445,7 @@
 "ykN" = (
 /obj/effect/mapping_helpers/airlock/access/all/medical/surgery,
 /obj/machinery/door/airlock/medical{
-	name = "Surgery North"
+	name = "Operating Room"
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
@@ -119841,7 +119847,7 @@ dqf
 xor
 bHQ
 nEB
-hFu
+brq
 exS
 fCc
 qgc
