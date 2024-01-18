@@ -7,12 +7,12 @@
 #define CYBORG_ICON_CARGO_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_cargo.dmi'
 
 #define CYBORG_ICON_SEC_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_sec.dmi'
-#define CYBORG_ICON_SEC_TALL_BUBBER 'modular_zubbers/modules/borgs/sprites/tallrobot_bluesec.dmi'
+#define CYBORG_ICON_SEC_TALL_BUBBER 'modular_zubbers/modules/borgs/sprites/tallrobot_sec.dmi'
 
 #define CYBORG_ICON_ENG_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_eng.dmi'
 
 #define CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_pk.dmi'
-#define CYBORG_ICON_PEACEKEEPER_TALL_BUBBER 'modular_zubbers/modules/borg/sprites/tallrobot_pk.dmi'
+#define CYBORG_ICON_PEACEKEEPER_TALL_BUBBER 'modular_zubbers/modules/borgs/sprites/tallrobot_pk.dmi'
 
 #define CYBORG_ICON_SERVICE_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_serv.dmi'
 
