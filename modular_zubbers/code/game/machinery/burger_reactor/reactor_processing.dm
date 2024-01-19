@@ -18,6 +18,7 @@
 	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
 
 	if(!active) //We're turned off.
+		meltdown = FALSE //Sometimes, this thing can be set to inactive due to running out of gas and other memes, thus this is fine to exist and is totally not a bandaid solution to potential future fuckery.
 		update_appearance(UPDATE_ICON)
 		return
 
@@ -87,7 +88,7 @@
 			take_damage(3,armour_penetration=100)
 			src.Shake(duration=0.5 SECONDS)
 
-	if(rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
+	if(active && rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
 		if(!meltdown)
 			log_game("[src] triggered a meltdown at [AREACOORD(T)]")
 			investigate_log("triggered a meltdown at [AREACOORD(T)]", INVESTIGATE_ENGINE)
