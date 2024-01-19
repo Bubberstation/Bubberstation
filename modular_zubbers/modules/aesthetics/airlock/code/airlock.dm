@@ -21,6 +21,10 @@
 	doorOpen = 'modular_zubbers/sound/machines/door/med1o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/med1c.ogg'
 
+/obj/machinery/door/airlock/virology
+	doorOpen = 'modular_zubbers/sound/machines/door/med1o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/med1c.ogg'
+
 /obj/machinery/door/airlock/psych
 	doorOpen = 'modular_zubbers/sound/machines/door/med1o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/med1c.ogg'
@@ -114,5 +118,9 @@
 	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/qm
+	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
+	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
+
+/obj/machinery/door/airlock/cmo
 	doorOpen = 'modular_zubbers/sound/machines/door/cmd3o.ogg'
 	doorClose = 'modular_zubbers/sound/machines/door/cmd3c.ogg'
