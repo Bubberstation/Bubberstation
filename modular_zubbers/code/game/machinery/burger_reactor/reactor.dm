@@ -339,9 +339,9 @@
 	. = ..()
 
 	//Requires x4 capacitors
-	var/power_efficiency_mul = 0
+	var/power_efficiency_mul = 0.5
 	for(var/datum/stock_part/capacitor/new_capacitor in component_parts)
-		power_efficiency_mul += (new_capacitor.tier * 0.25) - max(0,new_capacitor.tier-1)*0.1 //Diminishing returns.
+		power_efficiency_mul += (new_capacitor.tier * 0.125)
 	power_efficiency = initial(power_efficiency) * power_efficiency_mul
 
 	//Requires x2 matter bins
