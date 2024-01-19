@@ -23,6 +23,7 @@
 		#include "map_files\burgerstation\burgerstation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		#include "map_files\ss13construct\ss13_construct.dmm"
+		#include "map_files\TileStation\TileStation.dmm"
 		// BUBBER EDIT ADDITION END
 
 		#ifdef CIBUILDING
