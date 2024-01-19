@@ -42,7 +42,6 @@ GLOBAL_LIST_INIT(summoned_guns, list(
 	/obj/item/gun/energy/e_gun/dragnet,
 	/obj/item/gun/energy/e_gun/turret,
 	/obj/item/gun/energy/pulse/carbine,
-	/obj/item/gun/energy/decloner,
 	/obj/item/gun/energy/mindflayer,
 	/obj/item/gun/energy/recharge/kinetic_accelerator,
 	/obj/item/gun/energy/plasmacutter/adv,
@@ -88,7 +87,7 @@ GLOBAL_LIST_INIT(summoned_magic, list(
 	/obj/item/melee/ghost_sword))
 
 GLOBAL_LIST_INIT(summoned_special_magic, list(
-	/obj/item/gun/magic/staff/change,
+	// /obj/item/gun/magic/staff/change, //BUBBERSTATION CHANGE: REMOVES STAFF OF CHANGE.
 	/obj/item/gun/magic/staff/animate,
 	/obj/item/storage/belt/wands/full,
 	/obj/item/antag_spawner/contract,
@@ -266,7 +265,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 /datum/summon_things_controller/New()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(on_latejoin))
 
-/datum/summon_things_controller/Destroy(force, ...)
+/datum/summon_things_controller/Destroy(force)
 	. = ..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 

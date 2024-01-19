@@ -48,7 +48,7 @@
 
 	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
 
-	var/safeties_max_power_generation = 120000
+	var/safeties_max_power_generation = 125000
 
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
@@ -104,7 +104,7 @@
 
 /obj/machinery/power/rbmk2/deconstruct(disassembled = TRUE)
 
-	if(flags_1 & NODECONSTRUCT_1)
+	if(flags_1 & NO_DECONSTRUCTION)
 		return
 
 	if(!disassembled && stored_rod)
@@ -350,6 +350,7 @@
 		max_power_generation_mul += new_matter_bin.tier * 0.5
 	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
 	max_power_generation = FLOOR(max_power_generation,10000)
+	safeties_max_power_generation = max(125000,FLOOR(max_power_generation*0.75,125000))
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0
@@ -362,7 +363,7 @@
 
 	. = ..()
 
-	. += span_notice("A warning label on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
+	. += span_notice("A digital display on the side side says <b>MAX SAFE POWER: [display_power(safeties_max_power_generation)], WARRANTY VOID IF EXCEEDED</b>.")
 
 	. += "It is linked to [length(linked_sniffers)] sniffer(s)."
 

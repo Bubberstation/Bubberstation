@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(startup_messages)
 // FOR MOR INFO ON HTML CUSTOMISATION, SEE: https://github.com/Skyrat-SS13/Skyrat-tg/pull/4783
 
-#define MAX_STARTUP_MESSAGES 27
+#define MAX_STARTUP_MESSAGES 1 // BUBBER EDIT - SPLASH SCREEN
 
 /mob/dead/new_player/proc/get_title_html()
 	var/dat = SStitle.title_html
@@ -115,6 +115,9 @@ GLOBAL_LIST_EMPTY(startup_messages)
 			<a class="menu_button" href='?src=[text_ref(src)];game_options=1'>GAME OPTIONS</a>
 			<a class="menu_button" href='?src=[text_ref(src)];server_swap=1'>SWAP SERVERS</a>
 		"}
+
+		if(length(GLOB.lobby_station_traits) && !SSticker.HasRoundStarted())
+			dat += {"<a class="menu_button" href='?src=[text_ref(src)];job_traits=1'>JOB TRAITS</a>"}
 
 		if(!is_guest_key(src.key))
 			dat += playerpolls()

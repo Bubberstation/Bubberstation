@@ -23,14 +23,16 @@ SUBSYSTEM_DEF(title)
 	var/list/progress_json = list()
 	/// The reference realtime that we're treating as 0 for this run
 	var/progress_reference_time = 0
+	/// A list of station traits that have lobby buttons
+	var/list/available_lobby_station_traits = list()
 
 /datum/controller/subsystem/title/Initialize()
 	var/dat
-	if(!fexists("[global.config.directory]/skyrat/title_html.txt"))
-		to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read title_html.txt, reverting to backup title html, please check your server config and ensure this file exists."))
+	if(!fexists("[global.config.directory]/bubbers/bubbers_title.txt")) // BUBBER EDIT - original title_html.txt
+		to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read bubbers_title.txt, reverting to backup title html, please check your server config and ensure this file exists.")) // BUBBER EDIT - original title_html.txt
 		dat = DEFAULT_TITLE_HTML
 	else
-		dat = file2text("[global.config.directory]/skyrat/title_html.txt")
+		dat = file2text("[global.config.directory]/bubbers/bubbers_title.txt") // BUBBER EDIT - original title_html.txt
 
 	title_html = dat
 
