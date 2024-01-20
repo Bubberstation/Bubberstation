@@ -201,13 +201,24 @@
 	staketime = 8 SECONDS
 	kills_blodsuckers = TRUE
 
+
+// Just in case the map doesn't have a curator display case
+// It's not dependant on mapload so you can technically get it from a cargo crate
+/obj/item/book/codex_gigas/Initialize(mapload)
+	. = ..()
+	var/list/points_of_interest = SSpoints_of_interest.get_other_pois()
+	var/obj/item/book/kindred/book_to_spawn
+	if(initial(book_to_spawn.type) in points_of_interest)
+		return
+	book_to_spawn = new(src.loc)
+
 //////////////////////
 //     ARCHIVES     //
 //////////////////////
 
 /**
  *	# Archives of the Kindred:
- *
+ *+
  *	A book that can only be used by Curators.
  *	When used on a player, after a short timer, will reveal if the player is a Bloodsucker, including their real name and Clan.
  *	This book should not work on Bloodsuckers using the Masquerade ability.
@@ -237,6 +248,7 @@
 
 /obj/item/book/kindred/station_loving/Initialize()
 	. = ..()
+	SSpoints_of_interest.make_point_of_interest(src)
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
 /obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
