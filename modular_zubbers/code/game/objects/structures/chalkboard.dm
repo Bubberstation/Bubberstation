@@ -18,16 +18,18 @@
 //We want people to be able to write on it, so a left click interaction.
 /obj/structure/chalkboard/attackby(obj/item/attacking_item, mob/user)
 	. = ..()
-	var/input_message = tgui_input_text(user, "What would you like to write on the chalkboard?", "Lecture time!", max_length = CHAT_MESSAGE_MAX_LENGTH, multiline = TRUE)
 	//We begin by allowing our player to write on the chalkboard using the white crayon.
 	if(istype(attacking_item, /obj/item/toy/crayon/white))
 		if(length_char(written_text) < MAX_MESSAGE_LEN) //Check to see if the written text is too long before continuing
-			written_text += "[input_message]\n"
+			var/input_message = tgui_input_text(user, "What would you like to write on the chalkboard?", "Lecture time!", max_length = CHAT_MESSAGE_MAX_LENGTH, multiline = TRUE)
 			if(do_after(user, 5 SECONDS, target = src))
-				say(written_text, sanitize = FALSE)
-				icon_state = "chalkboard_filled"
-				update_appearance()
-		else to_chat(user, span_warning("It appears there's no more space on the chalkboard..."))
+				written_text += "[input_message]\n"
+				say(input_message, sanitize = FALSE)
+				if(length_char(written_text))
+					icon_state = "chalkboard_filled"
+					update_appearance()
+		else
+			to_chat(user, span_warning("It appears there's no more space on the chalkboard..."))
 	else if(istype(attacking_item, /obj/item/toy/crayon/green)) //What are you, stupid?
 		tgui_input_text(user, "What would you like to write on the chalkboard?", "Lecture time!", max_length = CHAT_MESSAGE_MAX_LENGTH, multiline = TRUE) //Fake them out.
 		if(do_after(user, 5 SECONDS, target = src))
