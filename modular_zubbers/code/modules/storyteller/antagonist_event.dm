@@ -1,4 +1,4 @@
-/* /datum/round_event_control/antagonist
+/datum/round_event_control/antagonist
 	reoccurence_penalty_multiplier = 0
 	track = EVENT_TRACK_ROLESET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
@@ -97,7 +97,7 @@
 
 /datum/round_event/antagonist/solo/proc/add_datum_to_mind(datum/mind/antag_mind)
 	antag_mind.add_antag_datum(antag_datum)
-/*
+
 /datum/round_event_control/antagonist/solo/traitor
 	antag_flag = ROLE_TRAITOR
 	antag_datum = /datum/antagonist/traitor
@@ -115,7 +115,7 @@
 
 /datum/round_event_control/antagonist/solo/traitor/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
-	return FALSE
+
 /datum/round_event_control/antagonist/solo/traitor/roundstart
 	name = "Traitors"
 	roundstart = TRUE
@@ -150,7 +150,7 @@
 	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI", "Cyborg")
 	weight = 4
-	min_players = 20
+	min_players = 40
 
 /datum/round_event_control/antagonist/solo/heretic/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
@@ -164,7 +164,7 @@
 	name = "Midround Heretics"
 	prompted_picking = TRUE
 
-/datum/round_event_control/antagonist/solo/wizard
+/* /datum/round_event_control/antagonist/solo/wizard
 	name = "Wizard"
 	typepath = /datum/round_event/antagonist/solo/wizard
 	antag_flag = ROLE_WIZARD
@@ -188,4 +188,4 @@
 /datum/round_event/antagonist/solo/wizard/add_datum_to_mind(datum/mind/antag_mind)
 	. = ..()
 	antag_mind.current.forceMove(pick(GLOB.wizardstart)) */
- */
+
