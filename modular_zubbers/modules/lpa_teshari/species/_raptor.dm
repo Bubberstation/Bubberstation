@@ -1,5 +1,5 @@
 /**
- * First - let's override original teshari
+ * Overriding original teshari
  */
 /datum/species/teshari
 	name = "Raptor"
@@ -31,6 +31,8 @@
 
 /datum/species/teshari/randomize_features(mob/living/carbon/human/human_mob)
 	. = ..()
+	if(!human_mob)
+		return
 	var/main_color = pick(COLOR_GRAY, COLOR_DARK_BROWN, COLOR_ALMOST_BLACK, COLOR_DARK_RED, COLOR_DARK_CYAN)
 	var/second_color = pick(COLOR_WHITE, COLOR_BLACK, COLOR_BLUE, COLOR_VIOLET)
 	human_mob.dna.features["mcolor"] = main_color
