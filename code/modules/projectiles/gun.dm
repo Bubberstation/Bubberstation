@@ -319,6 +319,18 @@
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
+	// BUBBUER STATION EDIT - WEAK BODY
+	if(HAS_TRAIT(user, TRAIT_WEAK_BODY))
+		if(weapon_weight >= WEAPON_LIGHT)
+			bonus_spread += 50
+		if(weapon_weight >= WEAPON_HEAVY)
+			bonus_spread += 20
+			if(prob(50))
+				var/obj/item/bodypart/arm/user_arm = user.get_active_hand()
+				to_chat(user, span_danger("The shockwave from the shot from [name], hits your [user_arm.name], knocking you down!"))
+				user_arm.receive_damage(brute = 15, sharpness = 0, damage_source = src)
+				addtimer(CALLBACK(user,	TYPE_PROC_REF(/mob/living, Knockdown), 3 SECONDS, FALSE), 5)
+	// BUBBER STATION EDIT END
 	if(user.combat_mode && !HAS_TRAIT(user, TRAIT_NO_GUN_AKIMBO))
 		for(var/obj/item/gun/gun in user.held_items)
 			if(gun == src || gun.weapon_weight >= WEAPON_MEDIUM)

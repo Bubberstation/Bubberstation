@@ -93,3 +93,9 @@
 		SPECIES_PERK_DESC = "Raptro - have clear hearing, allowing them to hear creatures around them, pinpointing locations."
 	))
 	return perk_descriptions
+
+/datum/species/human/get_species_description()
+	return "A race of feathered, upright space raptors that have incredibly good. \
+		hearing and have good thermal insulation, giving them good \
+		defense against low temperatures. But because of their biology, \
+		they have extremely fragile bodies that are vulnerable to high temperatures and fire."
