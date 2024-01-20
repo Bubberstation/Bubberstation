@@ -5,7 +5,7 @@
 	maptext_width = 64
 	//The text that is written on the chalkboard. Cleared when erased.
 	var/written_text = ""
-//This is a Chalkboard.
+	//This is a Chalkboard.
 
 /obj/structure/chalkboard/examine(mob/user)
 	. = ..()
