@@ -19,8 +19,9 @@
 		// SKYRAT ADDITION: END - Other stamp icons
 
 		//BUBBERSTATION ADDITION: START - Bubberstation Stamp Icons
-		"stamp-merged" = 'icons/stamp_icons/large_stamp-merged.png',
-		"stamp-closed" = 'icons/stamp_icons/large_stamp-closed.png',
+		"stamp-merged" = 'modular_zubbers/icons/stamp_icons/large_stamp-merged.png',
+		"stamp-closed" = 'modular_zubbers/icons/stamp_icons/large_stamp-closed.png',
+		"stamp-crow" = 'modular_zubbers/icons/stamp_icons/crow-stamp.png',
 		//BUBBERSTATION ADDITION: END - Bubberstation Stamp Icons
 
 		"stamp-clown" = 'icons/stamp_icons/large_stamp-clown.png',
