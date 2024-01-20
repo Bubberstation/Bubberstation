@@ -13,7 +13,6 @@
 	cooldown_time = 2 MINUTES
 	possible_shapes = list(/mob/living/basic/bat/bloodsucker)
 	var/bats_to_spawn = 3
-	var/powers_stored
 
 /datum/action/cooldown/spell/shapeshift/bat/cast(mob/living/cast_on)
 	. = ..()
