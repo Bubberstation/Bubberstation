@@ -655,44 +655,42 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 /*
 *	FLOWERS
 */
-// MODULAR BUBBER EDIT START - WE CAN GET WEED AND MORE IN THE LOADOUT, FLOWERS ARE HARDLY GAMERMODE
-/datum/loadout_item/head/poppy
+/datum/loadout_item/head/donator/poppy
 	name = "Poppy Flower"
 	item_path = /obj/item/food/grown/poppy
 
-/datum/loadout_item/head/lily
+/datum/loadout_item/head/donator/lily
 	name = "Lily Flower"
 	item_path = /obj/item/food/grown/poppy/lily
 
-/datum/loadout_item/head/geranium
+/datum/loadout_item/head/donator/geranium
 	name = "Geranium Flower"
 	item_path = /obj/item/food/grown/poppy/geranium
 
-/datum/loadout_item/head/fraxinella
+/datum/loadout_item/head/donator/fraxinella
 	name = "Fraxinella Flower"
 	item_path = /obj/item/food/grown/poppy/geranium/fraxinella
 
-/datum/loadout_item/head/harebell
+/datum/loadout_item/head/donator/harebell
 	name = "Harebell Flower"
 	item_path = /obj/item/food/grown/harebell
 
-/datum/loadout_item/head/rose
+/datum/loadout_item/head/donator/rose
 	name = "Rose Flower"
 	item_path = /obj/item/food/grown/rose
 
-/datum/loadout_item/head/carbon_rose
+/datum/loadout_item/head/donator/carbon_rose
 	name = "Carbon Rose Flower"
 	item_path = /obj/item/grown/carbon_rose
 
-/datum/loadout_item/head/sunflower
+/datum/loadout_item/head/donator/sunflower
 	name = "Sunflower"
 	item_path = /obj/item/food/grown/sunflower
 
-/datum/loadout_item/head/rainbow_bunch
+/datum/loadout_item/head/donator/rainbow_bunch
 	name = "Rainbow Bunch"
 	item_path = /obj/item/food/grown/rainbow_flower
 	additional_tooltip_contents = list(TOOLTIP_RANDOM_COLOR)
-//MODULAR BUBBER EDIT END
 
 // Legacy unpaintable cowboy hat because it fits a character better
 /datum/loadout_item/head/cowboyhat_legacy
