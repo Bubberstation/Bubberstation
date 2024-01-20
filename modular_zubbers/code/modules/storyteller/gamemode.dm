@@ -140,6 +140,8 @@ SUBSYSTEM_DEF(gamemode)
 
 	var/wizardmode = FALSE
 
+	var/storyteller_voted = FALSE
+
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
 	// Populate event pools
 	for(var/track in event_tracks)
@@ -199,6 +201,13 @@ SUBSYSTEM_DEF(gamemode)
 			running.Remove(thing)
 		if (MC_TICK_CHECK)
 			return
+
+/datum/controller/subsystem/gamemode/proc/storyteller_desc(storyteller_name)
+	for(var/storyteller_type in storytellers)
+		var/datum/storyteller/storyboy = storytellers[storyteller_type]
+		if(storyboy.name != storyteller_name)
+			continue
+		return storyboy.desc
 
 /// Gets the number of antagonists the antagonist injection events will stop rolling after.
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
@@ -608,11 +617,12 @@ SUBSYSTEM_DEF(gamemode)
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-/* /proc/display_roundstart_logout_report()
-	var/list/msg = list("[SPAN_BOLDNOTICE("Roundstart logout report")]\n\n")
+/proc/display_roundstart_logout_report()
+	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		var/mob/living/carbon/C = L
+		var/mob/living/carbon/human/H = C
 		if (istype(C) && !C.last_mind)
 			continue  // never had a client
 
@@ -626,8 +636,8 @@ SUBSYSTEM_DEF(gamemode)
 				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
-				if(L.suiciding) //Suicider
-					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([SPAN_BOLDANNOUNCE("Suicide")])\n"
+				if(H.get_dnr()) //Suicider
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([span_boldannounce("Suicide")])\n"
 					failed = TRUE //Disconnected client
 				if(!failed && (L.stat == UNCONSCIOUS || L.stat == HARD_CRIT))
 					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
@@ -640,8 +650,8 @@ SUBSYSTEM_DEF(gamemode)
 		for(var/mob/dead/observer/D in GLOB.dead_mob_list)
 			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
-					if(L.suiciding) //Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([SPAN_BOLDANNOUNCE("Suicide")])\n"
+					if(H.get_dnr()) //Suicider
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Suicide")])\n"
 						continue //Disconnected client
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
@@ -650,12 +660,12 @@ SUBSYSTEM_DEF(gamemode)
 					if(D.can_reenter_corpse)
 						continue //Adminghost, or cult/wizard ghost
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([SPAN_BOLDANNOUNCE("Ghosted")])\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Ghosted")])\n"
 						continue //Ghosted while alive
 
 
 	for (var/C in GLOB.admins)
-		to_chat(C, msg.Join()) */
+		to_chat(C, msg.Join())
 
 /datum/controller/subsystem/gamemode/proc/generate_station_goals()
 	var/list/possible = subtypesof(/datum/station_goal)
@@ -758,9 +768,9 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)
 	/// Find the winner
 	/// Hijacking the proc because we don't have a vote right now..
-	var/datum/storyteller/storyteller = pick(storytellers)
-	message_admins("We picked [storyteller]")
-	voted_storyteller = storyteller
+/* 	var/datum/storyteller/storyteller = pick(storytellers)
+	message_admins("We picked [storyteller]") */
+	voted_storyteller = winner_name
 	if(storyteller)
 		return
 	for(var/storyteller_type in storytellers)
@@ -770,10 +780,11 @@ SUBSYSTEM_DEF(gamemode)
 			break
 
 /datum/controller/subsystem/gamemode/proc/init_storyteller()
-		/// Hijacking the proc because we don't have a vote right now..
-	var/datum/storyteller/storyteller_pick = pick(storytellers)
-	message_admins("We picked [storyteller_pick] for this rounds storyteller, randomly.")
-	voted_storyteller = storyteller_pick
+	var/datum/storyteller/storyteller_pick
+	if(!voted_storyteller)
+		storyteller_pick = pick(storytellers)
+		message_admins("We picked [storyteller_pick] for this rounds storyteller, randomly.")
+		voted_storyteller = storyteller_pick
 	if(storyteller) // If this is true, then an admin bussed one, don't overwrite it
 		return
 	set_storyteller(voted_storyteller)
