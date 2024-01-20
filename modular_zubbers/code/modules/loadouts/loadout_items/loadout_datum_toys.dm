@@ -35,3 +35,8 @@
 /datum/loadout_item/toys/tiredtesh
 	name = "tired teshari plushie"
 	item_path = /obj/item/toy/plush/tiredtesh
+
+/datum/loadout_item/toys/carrotbag
+	name = "Carrot Bag"
+	item_path = /obj/item/sbeacondrop/carrot
+	ckeywhitelist = list("slippyjoe")
