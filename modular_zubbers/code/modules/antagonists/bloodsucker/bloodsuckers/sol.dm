@@ -135,12 +135,12 @@
 	var/total_brute = user.getBruteLoss_nonProsthetic()
 	var/total_burn = user.getFireLoss_nonProsthetic()
 	var/total_damage = total_brute + total_burn
-	if(bloodsucker_blood_volume == 0 || owner.current.am_staked() || HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
-		torpor_end()
 	if(total_burn >= user.maxHealth * 2)
 		return FALSE
 	if(SSsunlight.sunlight_active)
 		return FALSE
+	if(bloodsucker_blood_volume == 0 || owner.current.am_staked() || HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
+		torpor_end()
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
 	if(istype(user.loc, /obj/structure/closet/crate/coffin))
 		if(total_damage <= 10)
