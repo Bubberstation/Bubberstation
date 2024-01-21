@@ -8,8 +8,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
-
+	bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_NORMAL)
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
 	. = ..()
@@ -52,7 +51,10 @@
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-		. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
+		if(bloodsuckerdatum.frenzied)
+			. += "Frenzy exit blood threshold: [bloodsuckerdatum.frenzy_exit_threshold()]"
+		else
+			. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
 
 /datum/outfit/bloodsucker_outfit
 	name = "Bloodsucker outfit (Preview only)"
