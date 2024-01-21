@@ -48,6 +48,8 @@
 		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+	if(level_current > 0)
+		desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 /datum/action/cooldown/bloodsucker/Destroy()
 	if(active)
