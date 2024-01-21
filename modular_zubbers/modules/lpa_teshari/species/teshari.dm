@@ -94,7 +94,7 @@
 	))
 	return perk_descriptions
 
-/datum/species/human/get_species_description()
+/datum/species/teshari/alt/get_species_description()
 	return "A race of feathered, upright space raptors that have incredibly good. \
 		hearing and have good thermal insulation, giving them good \
 		defense against low temperatures. But because of their biology, \
