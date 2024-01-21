@@ -159,3 +159,28 @@
 
 /datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
+
+/datum/antagonist/bloodsucker/proc/add_signals_to_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
+	for(var/organ_slot in organ_slots)
+		var/organ = current_mob.get_organ_slot(organ_slot)
+		vital_organs[organ_slot] = WEAKREF(organ)
+		RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(FinalDeath))
+		RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
+
+/datum/antagonist/bloodsucker/proc/remove_signals_from_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
+	for(var/organ_slot in organ_slots)
+		// We're fetching the organ from the datum so that specifically only the organs that
+		// we added to get the signal removed from, just in case of funky stuff.
+		var/organ = WEAKREF(vital_organs[organ_slot])
+		if(!organ)
+			stack_trace("Tried to remove signals from an organ that doesn't exist!")
+			continue
+		UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
+		UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
+
+/datum/antagonist/bloodsucker/proc/before_organ_replace(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
+	SIGNAL_HANDLER
+	if(!(replacement.slot in vital_organs))
+		return
+	remove_signals_from_organs(current_mob, list(replacement.slot))
+	add_signals_to_organs(current_mob, list(replacement.slot))
