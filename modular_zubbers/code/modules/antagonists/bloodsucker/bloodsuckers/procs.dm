@@ -164,7 +164,7 @@
 	for(var/organ_slot in organ_slots)
 		var/organ = current_mob.get_organ_slot(organ_slot)
 		vital_organs[organ_slot] = WEAKREF(organ)
-		RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(FinalDeath))
+		RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
 		RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
 
 /datum/antagonist/bloodsucker/proc/remove_signals_from_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
@@ -173,10 +173,14 @@
 		// we added to get the signal removed from, just in case of funky stuff.
 		var/organ = WEAKREF(vital_organs[organ_slot])
 		if(!organ)
-			stack_trace("Tried to remove signals from an organ that doesn't exist!")
 			continue
 		UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
 		UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
+
+/datum/antagonist/bloodsucker/proc/on_organ_removal()
+	SIGNAL_HANDLER
+	remove_signals_from_organs()
+	FinalDeath()
 
 /datum/antagonist/bloodsucker/proc/before_organ_replace(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
 	SIGNAL_HANDLER
