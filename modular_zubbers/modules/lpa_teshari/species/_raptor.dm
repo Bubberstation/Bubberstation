@@ -51,5 +51,5 @@
 
 	return perk_descriptions
 
-/datum/species/human/get_species_description()
+/datum/species/teshari/get_species_description()
 	return "A generic raptor-like species for your own begining."
