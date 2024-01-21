@@ -21,9 +21,9 @@
 /datum/round_event_control/antagonist/solo
 	typepath = /datum/round_event/antagonist/solo
 	/// How many baseline antags do we spawn
-	var/base_antags = 1
+	var/base_antags = 2
 	/// How many maximum antags can we spawn
-	var/maximum_antags = 3
+	var/maximum_antags = 6
 	/// For this many players we'll add 1 up to the maximum antag amount
 	var/denominator = 20
 	/// The antag flag to be used
@@ -31,7 +31,7 @@
 	/// The antag datum to be applied
 	var/antag_datum
 	/// Prompt players for consent to turn them into antags before doing so. Dont allow this for roundstart.
-	var/prompted_picking = FALSE
+	var/prompted_picking = TRUE
 
 /datum/round_event_control/antagonist/solo/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
