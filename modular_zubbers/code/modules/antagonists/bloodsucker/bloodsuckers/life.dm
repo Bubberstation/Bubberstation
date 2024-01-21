@@ -269,6 +269,7 @@
 
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath()
+	SIGNAL_HANDLER
 	// If we have no body, end here.
 	if(!owner.current)
 		return
