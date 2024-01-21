@@ -235,6 +235,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/firealarm/directional/north,
 /obj/structure/cable,
+/obj/structure/railing/corner/end/flip,
 /turf/open/floor/iron,
 /area/mine/production)
 "afp" = (
@@ -13539,10 +13540,6 @@
 /turf/open/floor/carpet/red,
 /area/station/security/prison/work)
 "ear" = (
-/obj/machinery/mineral/processing_unit{
-	dir = 1
-	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -13550,6 +13547,10 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/east,
+/obj/machinery/conveyor{
+	id = "mining_internal"
+	},
+/obj/machinery/bouldertech/refinery,
 /turf/open/floor/iron,
 /area/mine/production)
 "eaw" = (
@@ -18509,6 +18510,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/structure/railing,
 /turf/open/floor/iron,
 /area/mine/production)
 "fFJ" = (
@@ -19865,7 +19867,6 @@
 /obj/machinery/conveyor{
 	id = "mining_internal"
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -21273,6 +21274,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/virology)
 "gzv" = (
+/obj/structure/chair/stool/directional/south,
 /turf/open/floor/iron,
 /area/mine/production)
 "gzw" = (
@@ -23280,6 +23282,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
+"hfb" = (
+/obj/structure/railing,
+/turf/open/floor/iron,
+/area/mine/production)
 "hfc" = (
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
@@ -27644,11 +27650,11 @@
 	dir = 8;
 	id = "mining_internal"
 	},
-/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/bouldertech/refinery/smelter,
 /turf/open/floor/iron,
 /area/mine/production)
 "izw" = (
@@ -28970,6 +28976,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
+/obj/machinery/bouldertech/brm,
 /turf/open/floor/iron,
 /area/mine/production)
 "iUm" = (
@@ -31531,6 +31538,9 @@
 /area/station/commons/storage/mining)
 "jLb" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner/end{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/mine/production)
 "jLf" = (
@@ -34026,6 +34036,17 @@
 	dir = 1
 	},
 /area/station/hallway/primary/starboard)
+"kuY" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining_internal"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/iron,
+/area/mine/production)
 "kva" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/cup/beaker/large{
@@ -38655,6 +38676,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
+"lOG" = (
+/obj/item/pickaxe{
+	pixel_x = 12;
+	desc = "Someone left their pickaxe out here, must not have known about the boulder processing machines inside."
+	},
+/turf/open/misc/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "lOI" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible/layer1{
 	dir = 5
@@ -39662,7 +39690,6 @@
 	dir = 8;
 	id = "mining_internal"
 	},
-/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -46982,6 +47009,7 @@
 "oqy" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/rubble,
 /turf/open/floor/iron,
 /area/mine/production)
 "oqz" = (
@@ -49353,14 +49381,15 @@
 /turf/closed/wall,
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "pbv" = (
-/obj/structure/window/reinforced/spawner/directional/north,
 /obj/machinery/conveyor_switch/oneway{
 	id = "mining_internal";
 	name = "mining conveyor";
-	pixel_x = 12;
-	pixel_y = -6
+	pixel_x = 1;
+	pixel_y = 8
 	},
-/obj/structure/chair/stool/directional/south,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/mine/production)
 "pby" = (
@@ -71017,7 +71046,6 @@
 /area/icemoon/underground/explored)
 "vNT" = (
 /obj/effect/turf_decal/bot,
-/obj/structure/closet/crate/preopen,
 /obj/machinery/light/small/directional/north,
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
@@ -73466,6 +73494,13 @@
 	},
 /turf/open/floor/iron,
 /area/mine/laborcamp)
+"wzV" = (
+/obj/structure/ore_vent/starter_resources{
+	icon_state = "ore_vent_ice_active";
+	icon_state_tapped = "ore_vent_ice_active"
+	},
+/turf/open/misc/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "wAf" = (
 /obj/machinery/requests_console/directional/north{
 	department = "Cargo Bay";
@@ -77782,8 +77817,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "xOM" = (
-/obj/structure/table,
-/obj/machinery/mineral/processing_unit_console,
+/obj/structure/railing{
+	dir = 6
+	},
 /turf/open/floor/iron,
 /area/mine/production)
 "xPu" = (
@@ -164132,7 +164168,7 @@ tDa
 sWB
 tDa
 pql
-gzv
+hfb
 izq
 uvM
 gjq
@@ -164390,7 +164426,7 @@ kZu
 afl
 pbv
 xOM
-izq
+kuY
 nWH
 hFL
 hFL
@@ -168488,7 +168524,7 @@ iDt
 rcY
 scw
 iDt
-iDt
+lOG
 scw
 scw
 scw
@@ -168745,7 +168781,7 @@ iDt
 rcY
 iDt
 scw
-iDt
+wzV
 iDt
 scw
 uWE
