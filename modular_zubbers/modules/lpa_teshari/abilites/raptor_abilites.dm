@@ -8,7 +8,7 @@
 		return FALSE
 
 	var/mob/living/carbon/human/tesh = owner
-	if(isdead(tesh))
+	if(tesh.stat & DEAD)
 		return FALSE
 
 /datum/action/cooldown/raptor/proc/update_button_state(new_state)

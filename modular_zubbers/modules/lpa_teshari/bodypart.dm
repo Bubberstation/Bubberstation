@@ -1,7 +1,7 @@
 #define RAPTOR_PUNCH_LOW 3
 #define RAPTOR_PUNCH_HIGH 5
-#define RAPTOR_BURN_MODIFIER 1.4
-#define RAPTOR_BRUTE_MODIFIER 1.4
+#define RAPTOR_BURN_MODIFIER 1.3
+#define RAPTOR_BRUTE_MODIFIER 1.3
 #define RAPTOR_SPEED_MODIFIER -0.3
 #define RAPTOR_HUSK_ICON 'modular_zubbers/icons/mob/bodyparts/husk_bodyparts.dmi'
 

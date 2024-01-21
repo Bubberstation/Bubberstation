@@ -1,7 +1,7 @@
 #define ECHOLOCATION_MAX_CREATURE 5
 #define ECHOLOCATION_BASE_COOLDWN_TIME 10 SECONDS
-#define ECHOLOCATION_PING_COOLDOWN 3 SECONDS
-#define ECHOLOCATION_RANGE 9
+#define ECHOLOCATION_PING_COOLDOWN 5 SECONDS
+#define ECHOLOCATION_RANGE 7
 
 /datum/action/cooldown/raptor/echolocation
 	name = "Toggle echolocation"
@@ -83,6 +83,8 @@
 	var/founding_creature = 0
 	for(var/mob/living/creature in range(ECHOLOCATION_RANGE, owner))
 		if(creature == owner || creature.stat == DEAD)
+			continue
+		if(HAS_TRAIT(creature, TRAIT_LIGHT_STEP))
 			continue
 		if(founding_creature >= ECHOLOCATION_MAX_CREATURE)
 			break
