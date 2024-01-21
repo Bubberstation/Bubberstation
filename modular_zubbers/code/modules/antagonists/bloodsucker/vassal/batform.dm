@@ -32,7 +32,6 @@
 	melee_damage_upper = 15
 	wound_bonus = 10
 	obj_damage = 10
-	speed = -0.1
 	melee_attack_cooldown = CLICK_CD_MELEE
 	basic_mob_flags = FLAMMABLE_MOB
 	lighting_color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
@@ -42,6 +41,8 @@
 
 /mob/living/basic/bat/bloodsucker/Initialize(mapload)
 	. = ..()
+	// Go as fast as people can run
+	speed = CONFIG_GET(number/movedelay/run_delay)
 	AddElement(/datum/element/lifesteal, melee_damage_lower)
 	// Too fat to fit through vents
 	REMOVE_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
