@@ -268,10 +268,19 @@
 	owner.current.blood_volume = bloodsucker_blood_volume
 
 /// Gibs the Bloodsucker, roundremoving them.
-/datum/antagonist/bloodsucker/proc/FinalDeath()
+/datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
 	SIGNAL_HANDLER
 	// If we have no body, end here.
 	if(!owner.current)
+		return
+	// If we are not missing an organ with check_organs, end here.
+	var/missing_vital_organ = FALSE
+	if(check_organs)
+		for(var/organ in vital_organs)
+			if(owner.current.get_organ_slot(organ))
+				continue
+			missing_vital_organ = TRUE
+	if(missing_vital_organ)
 		return
 	UnregisterSignal(src, list(
 		COMSIG_BLOODSUCKER_ON_LIFETICK,
