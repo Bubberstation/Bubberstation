@@ -10,9 +10,9 @@
 /// Determines Bloodsucker regeneration rate
 #define BS_BLOOD_VOLUME_MAX_REGEN 700
 /// Cost to torture someone halfway, in blood. Called twice for full cost
-#define TORTURE_BLOOD_HALF_COST 8
+#define TORTURE_BLOOD_HALF_COST 4
 /// Cost to convert someone after successful torture, in blood
-#define TORTURE_CONVERSION_COST 50
+#define TORTURE_CONVERSION_COST 10
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 25
 /// Once blood is this high, will exit Frenzy
