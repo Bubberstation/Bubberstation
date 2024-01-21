@@ -214,4 +214,5 @@
 	/datum/species/skeleton, \
 	/datum/species/zombie, \
 	/datum/species/mutant, \
+	/datum/species/dullahan \
 ) \
