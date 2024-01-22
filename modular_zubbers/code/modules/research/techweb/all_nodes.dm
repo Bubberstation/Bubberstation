@@ -1,5 +1,7 @@
 // RESEARCH NODES
 
+
+// SERVICE
 /datum/techweb_node/botanygene
 	id = "botanygenes"
 	display_name = "Experimental Botanical Engineering"
@@ -11,6 +13,12 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	required_experiments = list(/datum/experiment/scanning/random/plants/wild)
+
+/datum/techweb_node/botany/New()	//Plant Bag of Holding
+	design_ids += list(
+		"adv_plant_bag",
+	)
+	return ..()
 
 // MEDICAL
 /datum/techweb_node/adv_biotech/New()
