@@ -10,6 +10,7 @@
 		/obj/item/reagent_containers/hypospray/medipen/deforest/synephrine = /datum/reagent/medicine/epinephrine,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/calopine = /datum/reagent/medicine/atropine,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/coagulants = /datum/reagent/medicine/salglu_solution,
+		/obj/item/reagent_containers/hypospray/medipen/deforest/halobinin = /datum/reagent/medicine/antihol,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/lepoturi = /datum/reagent/medicine/c2/lenturi,
 	)
 
