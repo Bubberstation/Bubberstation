@@ -13,11 +13,11 @@
 	mutanteyes = /obj/item/organ/internal/eyes/tajaran
 	mutantears = /obj/item/organ/internal/ears/cat/tajaran
 	//Cold resistance
-	coldmod = 0.77
-	heatmod = 1.15
+	coldmod = 0.45
+	heatmod = 1.25
 	bodytemp_normal = BODYTEMP_NORMAL + 5 //Even more cold resistant, even more flammable
-	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 20)
-	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 20)
+	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 27)
+	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 35)
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
 	ass_image = 'modular_zubbers/icons/ass/asstajara.png'
@@ -103,3 +103,8 @@
 	)
 
 	return to_add
+
+/datum/species/tajaran/get_species_description() //Something basic until I make lore later
+	return "The Tajara are a race of humanoids that possess markedly felinoid traits that include \
+	 a semi-prehensile tail, a body covered in fur of varying shades, and padded, digitigrade feet. \
+ 	 Being that they are from a harsh and icy cold planet, Tajara are vulnerable to high temperatures and fire."
