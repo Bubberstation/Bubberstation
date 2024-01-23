@@ -157,6 +157,8 @@
 
 /obj/item/rack_parts/cargo_shelf
 	name = "Cargo shelf parts"
+	icon = 'modular_zubbers/icons/obj/structures.dmi'
+	icon_state = "rack_parts"
 	desc = "Parts of a cargo shelf, for storing crates."
 
 /obj/item/rack_parts/cargo_shelf/attack_self(mob/user)
