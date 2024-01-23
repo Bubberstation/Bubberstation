@@ -10,6 +10,13 @@
 	. = ..()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_roles |= protected_roles
+	restricted_roles |= SSstation.antag_restricted_roles
+	restricted_roles |= SSstation.antag_protected_roles
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+		restricted_roles |= JOB_ASSISTANT
+	for(var/datum/job/iterating_job as anything in subtypesof(/datum/job))
+		if(initial(iterating_job.restricted_antagonists))
+			restricted_roles |= initial(iterating_job.title)
 
 /datum/round_event_control/antagonist/can_spawn_event(popchecks = TRUE, allow_magic)
 	. = ..()
