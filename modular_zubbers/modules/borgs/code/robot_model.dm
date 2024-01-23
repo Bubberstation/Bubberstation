@@ -110,6 +110,15 @@
 		"Raptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR, SKIN_ICON = CYBORG_ICON_PEACEKEEPER_WIDE_BUBBER, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE)),
 	)
 
+
+/*
+/obj/item/robot_model/research/Initialize(mapload)
+	. = ..()
+	borg_skins |= list(
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL)),
+	)
+*/
+
 /*
 
 /obj/item/robot_model/ninja/Initialize()
