@@ -438,3 +438,7 @@
 /datum/sprite_accessory/tails/mammal/wagging/australian_shepherd
 	name = "Australian Shepherd"
 	icon_state = "australianshepherd"
+
+/datum/sprite_accessory/tails/mammal/wagging/peacock
+	name = "Peacock"
+	icon_state = "peacock"
