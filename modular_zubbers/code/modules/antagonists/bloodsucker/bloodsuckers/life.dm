@@ -95,7 +95,7 @@
 	// Garlic in you? No healing for you!
 	if(HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
 		return FALSE
-	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
+	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * actual_regen * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
 	if(!iscarbon(owner.current)) // Damage Heal: Do I have damage to ANY bodypart?
 		return FALSE
 	var/mob/living/carbon/user = owner.current
@@ -162,7 +162,9 @@
 
 	bloodsuckeruser.cure_husk(BURN)
 	bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
-
+	// just in case some fuckery happens, going in a coffin will fix you up
+	add_signals_to_organs(bloodsuckeruser)
+	remove_signals_from_organs(bloodsuckeruser)
 	for(var/obj/item/organ/organ as anything in bloodsuckeruser.organs)
 		organ.set_organ_damage(0)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
@@ -226,7 +228,7 @@
 //	handled in bloodsucker_integration.dm
 	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
 	var/datum/status_effect/frenzy/status_effect = owner.current.has_status_effect(/datum/status_effect/frenzy)
-	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && frenzied && status_effect.duration == -1)
+	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && frenzied && status_effect?.duration == -1)
 		status_effect.duration = world.time + 10 SECONDS
 		owner.current.balloon_alert(owner.current, "Frenzy ends in 10 seconds!")
 	// BLOOD_VOLUME_BAD: [224] - Jitter

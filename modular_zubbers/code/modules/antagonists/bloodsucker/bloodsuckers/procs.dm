@@ -179,9 +179,18 @@
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal()
 	SIGNAL_HANDLER
-	remove_signals_from_organs()
-	FinalDeath()
+	// You don't run bloodsucker life without organs
+	UnregisterSignal(owner.current, COMSIG_LIVING_LIFE)
 
+/datum/antagonist/bloodsucker/proc/on_organ_insert(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
+	SIGNAL_HANDLER
+	// check that we have all vital organs
+	for(var/organ_slot in vital_organs)
+		if(!current_mob.get_organ_slot(organ_slot))
+			return
+	RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(life_tick))
+
+/// This handles regen_organs replacing organs
 /datum/antagonist/bloodsucker/proc/before_organ_replace(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
 	SIGNAL_HANDLER
 	if(!(replacement.slot in vital_organs))
