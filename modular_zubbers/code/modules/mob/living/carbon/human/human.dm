@@ -23,6 +23,6 @@
 	if(nauseating)
 		vomit(VOMIT_CATEGORY_DEFAULT)
 
-	visible_message(span_danger("[attacker] punches [src] right in the nuts[nauseating ? ", causing them to throw up in pain" : ""]! Fuck!"))
+	visible_message(span_danger("[attacker] punches [src] right in the nuts, causing them to [nauseating ? "throw up" : "double over"] in pain! Fuck!"))
 
 #undef NUTSHOT_VOMIT_CHANCE
