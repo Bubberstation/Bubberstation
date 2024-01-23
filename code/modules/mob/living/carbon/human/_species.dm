@@ -1249,6 +1249,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			target.StaminaKnockdown(20) //SKYRAT EDIT ADDITION
 			log_combat(user, target, "got a stun punch with their previous punch")
 
+		target.nut_shot(user) // BUBBERSTATION EDIT ADD
+
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(attacker_style?.disarm_act(user,target) == MARTIAL_ATTACK_SUCCESS)
 		return TRUE
