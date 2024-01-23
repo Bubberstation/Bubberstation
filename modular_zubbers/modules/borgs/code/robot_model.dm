@@ -174,6 +174,11 @@
 			SKIN_ICON = CYBORG_ICON_SYNDIE_WIDE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_WIDE)
 		),
+		"Saboraptor" = list(
+			SKIN_ICON_STATE = "saboraptor",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
 		"Mediraptor" = list(
 			SKIN_ICON_STATE = "mediraptor",
 			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
@@ -181,11 +186,6 @@
 		),
 		"Mechraptor" = list(
 			SKIN_ICON_STATE = "mechraptor",
-			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
-		),
-		"Saboraptor" = list(
-			SKIN_ICON_STATE = "saboraptor",
 			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
@@ -198,8 +198,8 @@
 			SKIN_ICON_STATE = "synd_sec",
 			SKIN_ICON = 'icons/mob/silicon/robots.dmi'
 		),
-		"Mechraptor" = list(
-			SKIN_ICON_STATE = "mechraptor",
+		"Saboraptor" = list(
+			SKIN_ICON_STATE = "saboraptor",
 			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
@@ -218,7 +218,7 @@
 			SKIN_ICON = 'icons/mob/silicon/robots.dmi'
 		),
 		//64x64 (Largerobot) Sprites Below
-		"MediRaptor" = list(
+		"Mediraptor" = list(
 			SKIN_ICON_STATE = "mediraptor",
 			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
@@ -239,8 +239,8 @@
 			SKIN_ICON = 'icons/mob/silicon/robots.dmi',
 		),
 		//64x64 (Largerobot) Sprites Below
-		"SaboRaptor" = list(
-			SKIN_ICON_STATE = "saboraptor",
+		"Mechraptor" = list(
+			SKIN_ICON_STATE = "mechraptor",
 			SKIN_ICON = CYBORG_ICON_SYNDIE_LARGE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
