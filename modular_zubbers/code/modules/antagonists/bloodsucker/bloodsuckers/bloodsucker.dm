@@ -109,7 +109,6 @@
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
-	// This adds the final death signal to vital organs
 	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
