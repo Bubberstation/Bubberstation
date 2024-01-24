@@ -4,11 +4,12 @@
 /// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
-
-	if(isbrain(owner.current))
-		return
 	if(!owner)
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
+		return
+	if(isbrain(owner.current))
+		talking_head()
+		INVOKE_ASYNC(src, PROC_REF(update_hud))
 		return
 	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		check_end_torpor()
@@ -216,7 +217,7 @@
 		FinalDeath()
 		return
 	// Temporary Death? Convert to Torpor.
-	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
+	if(HAS_TRAIT(owner.current, TRAIT_NODEATH) && isbrain(owner.current))
 		return
 	check_begin_torpor(TRUE)
 
@@ -269,20 +270,24 @@
 
 	owner.current.blood_volume = bloodsucker_blood_volume
 
+/// Turns the bloodsucker into a wacky talking head.
+/datum/antagonist/bloodsucker/proc/talking_head()
+	var/mob/living/poor_fucker = owner.current
+	// Don't do anything if we're not actually inside a brain and a head
+	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
+		return
+	poor_fucker.revive()
+	poor_fucker.stat = CONSCIOUS
+	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))
+	// No lungs to speak, let's make it spooky
+	poor_fucker.speech_span = SPAN_PAPYRUS
+
+
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
 	SIGNAL_HANDLER
 	// If we have no body, end here.
-	if(!owner.current)
-		return
-	// If we are not missing an organ with check_organs, end here.
-	var/missing_vital_organ = FALSE
-	if(check_organs)
-		for(var/organ in vital_organs)
-			if(owner.current.get_organ_slot(organ))
-				continue
-			missing_vital_organ = TRUE
-	if(missing_vital_organ)
+	if(!owner.current || isbrain(owner.current))
 		return
 	UnregisterSignal(src, list(
 		COMSIG_BLOODSUCKER_ON_LIFETICK,

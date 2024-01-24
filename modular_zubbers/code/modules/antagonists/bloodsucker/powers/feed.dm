@@ -19,6 +19,7 @@
 	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS
+	shows_level = FALSE
 
 	COOLDOWN_DECLARE(feed_movement_notify_cooldown)
 	///Amount of blood taken, reset after each Feed. Used for logging.

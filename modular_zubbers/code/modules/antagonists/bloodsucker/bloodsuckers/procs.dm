@@ -161,6 +161,8 @@
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
 
 /datum/antagonist/bloodsucker/proc/add_signals_to_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
+	if(!islist(organ_slots))
+		organ_slots = list(organ_slots)
 	for(var/organ_slot in organ_slots)
 		var/organ = current_mob.get_organ_slot(organ_slot)
 		vital_organs[organ_slot] = WEAKREF(organ)
@@ -168,6 +170,8 @@
 		RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
 
 /datum/antagonist/bloodsucker/proc/remove_signals_from_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
+	if(!islist(organ_slots))
+		organ_slots = list(organ_slots)
 	for(var/organ_slot in organ_slots)
 		// We're fetching the organ from the datum so that specifically only the organs that
 		// we added to get the signal removed from, just in case of funky stuff.
@@ -177,23 +181,36 @@
 		UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
 		UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
 
-/datum/antagonist/bloodsucker/proc/on_organ_removal()
+/datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
-	// You don't run bloodsucker life without organs
-	UnregisterSignal(owner.current, COMSIG_LIVING_LIFE)
+	if(old_owner.get_organ_slot(organ.slot))
+		return
+	if(!(organ.slot in vital_organs))
+		return
+	remove_signals_from_organs(old_owner, list(organ.slot))
+	// You don't run bloodsucker life without a heart or brain
+	if(old_owner.stat != DEAD)
+		to_chat(old_owner, span_userdanger("You have lost your [organ.slot]! You will not revive until you regain it!"))
+		old_owner.death()
 
-/datum/antagonist/bloodsucker/proc/on_organ_insert(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
-	SIGNAL_HANDLER
-	// check that we have all vital organs
-	for(var/organ_slot in vital_organs)
-		if(!current_mob.get_organ_slot(organ_slot))
-			return
-	RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(life_tick))
-
-/// This handles regen_organs replacing organs
-/datum/antagonist/bloodsucker/proc/before_organ_replace(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
+/datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
 	SIGNAL_HANDLER
 	if(!(replacement.slot in vital_organs))
 		return
-	remove_signals_from_organs(current_mob, list(replacement.slot))
-	add_signals_to_organs(current_mob, list(replacement.slot))
+	add_signals_to_organs(current_mob, replacement.slot)
+
+/// This handles regen_organs replacing organs
+/datum/antagonist/bloodsucker/proc/before_organ_replace(obj/item/organ/old_organ, obj/item/organ/new_organ)
+	SIGNAL_HANDLER
+	if(!(new_organ.slot in vital_organs))
+		return
+	remove_signals_from_organs(owner.current, list(old_organ.slot))
+
+/// checks if we're a brainmob inside a brain & the brain is inside a head
+/datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
+	if(!istype(poor_fucker.loc, /obj/item/organ/internal/brain))
+		return
+	var/obj/brain = poor_fucker.loc
+	if(!istype(brain.loc, /obj/item/bodypart/head))
+		return
+	return brain.loc

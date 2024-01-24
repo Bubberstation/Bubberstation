@@ -32,24 +32,26 @@
 	// VARS //
 	/// If the Power is currently active, differs from action cooldown because of how powers are handled.
 	var/active = FALSE
-	///Can increase to yield new abilities - Each Power ranks up each Rank
+	///Can increase to yield new  - Each Power ranks up each Rank
 	var/level_current = 0
 	///The cost to ACTIVATE this Power
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
+	/// If this shows level on the description when you hover over the Power
+	var/shows_level = TRUE
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
 	. = ..()
+	if(shows_level)
+		desc += "<br><br><b>LEVEL:</b> [level_current]"
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
 		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
-	if(level_current > 0)
-		desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 /datum/action/cooldown/bloodsucker/Destroy()
 	if(active)
@@ -104,12 +106,21 @@
 ///Called when the Power is upgraded.
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	level_current++
+	if(!shows_level)
+		return
+	// Very funky way to update the level
+	var/regex/regex = regex(@"<br><br><b>LEVEL:<\/b> \d*")
+	desc = replacetextEx(desc, regex, "<br><br><b>LEVEL:</b> [level_current]")
+	build_all_button_icons(UPDATE_BUTTON_NAME)
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user, trigger_flags)
 	if(!owner)
 		return FALSE
 	if(!isliving(user))
+		return FALSE
+	if(isbrain(user))
+		to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
 		return FALSE
 	// Torpor?
 	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))

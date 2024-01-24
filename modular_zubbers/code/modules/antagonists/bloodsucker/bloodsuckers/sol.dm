@@ -140,6 +140,9 @@
 	if(SSsunlight.sunlight_active)
 		return FALSE
 	if(bloodsucker_blood_volume == 0 || owner.current.am_staked() || HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
+		// If you're frenzying, you need a bit more health to actually have a chance to do something
+		if(frenzied && total_damage >= user.maxHealth)
+			return FALSE
 		torpor_end()
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
 	if(istype(user.loc, /obj/structure/closet/crate/coffin))
@@ -148,6 +151,7 @@
 	else
 		if(total_brute <= 10)
 			torpor_end()
+	return TRUE
 
 /datum/antagonist/bloodsucker/proc/torpor_begin()
 	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))

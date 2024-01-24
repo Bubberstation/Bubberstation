@@ -27,6 +27,7 @@
 	bloodcost = 10
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
+	shows_level = FALSE
 
 /datum/action/cooldown/bloodsucker/masquerade/ActivatePower(trigger_flags)
 	. = ..()

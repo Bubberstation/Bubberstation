@@ -36,7 +36,7 @@
 		)
 
 ///Returns a Title for the Bloodsucker.
-/datum/antagonist/bloodsucker/proc/SelectTitle(am_fledgling = 0, forced = FALSE)
+/datum/antagonist/bloodsucker/proc/SelectTitle(am_fledgling = FALSE, forced = FALSE)
 	// Already have Title
 	if(!forced && bloodsucker_title != null)
 		return
