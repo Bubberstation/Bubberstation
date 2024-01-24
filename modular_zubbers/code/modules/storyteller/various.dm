@@ -26,7 +26,7 @@
 		EVENT_TRACK_ROLESET = 1,
 		EVENT_TRACK_OBJECTIVES = 1
 		)
-	population_min = 10
+	population_min = 35
 
 /datum/storyteller/warrior
 	name = "The Warrior"
