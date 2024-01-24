@@ -2,9 +2,9 @@
 	reoccurence_penalty_multiplier = 0
 	track = EVENT_TRACK_ROLESET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
-	var/list/protected_roles
+	var/protected_roles = list()
 	/// Restricted roles from the antag roll
-	var/list/restricted_roles
+	var/restricted_roles = list()
 
 /datum/round_event_control/antagonist/New()
 	. = ..()
