@@ -118,6 +118,7 @@
 /obj/item/robot_model/security/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Security", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL)),
 		//32x64 Sprites below (Tall)
 		"Meka - Bluesec" = list(
 			SKIN_ICON_STATE = "mekasecalt",
@@ -136,7 +137,6 @@
 /obj/item/robot_model/peacekeeper/Initialize()
 	. = ..()
 	borg_skins |= list(
-		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Security", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL, TRAIT_R_UNIQUEPANEL)),
 		"Raptor" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
 			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_LARGE_BUBBER,
