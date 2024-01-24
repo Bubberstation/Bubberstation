@@ -17,7 +17,7 @@
 
 /datum/storyteller/jester
 	name = "The Jester"
-	desc = "The Jester will create much more events, with higher possibilities of them repeating."
+	desc = "The Jester will create the most events overall, with higher chances of repeating. Best for the most hectic rounds."
 	event_repetition_multiplier = 0.8
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1.2,
