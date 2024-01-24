@@ -1,6 +1,6 @@
 /datum/storyteller/guide
 	name = "The Guide"
-	desc = "The Guide will provide a balanced and varied experience. Consider this the default experience."
+	desc = "The Guide is the default Storyteller, and the comparison point for every other Storyteller. Best for an average, varied experience."
 
 /datum/storyteller/sleeper
 	name = "The Sleeper"
