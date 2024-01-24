@@ -75,32 +75,30 @@
 /// Find and buy a valid event from a track.
 /datum/storyteller/proc/find_and_buy_event_from_track(track)
 	. = FALSE
-	var/datum/controller/subsystem/gamemode/mode = SSgamemode
 	var/datum/round_event_control/picked_event
-	if(mode.forced_next_events[track]) //Forced event by admin
+	if(SSgamemode.forced_next_events[track]) //Forced event by admin
 		/// Dont check any prerequisites, it has been forced by an admin
-		picked_event = mode.forced_next_events[track]
-		mode.forced_next_events -= track
+		picked_event = SSgamemode.forced_next_events[track]
+		SSgamemode.forced_next_events -= track
 	else
-		mode.update_crew_infos()
-		var/pop_required = mode.min_pop_thresholds[track]
-		if(mode.active_players < pop_required)
-			message_admins("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [mode.active_players])")
-			log_admin("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [mode.active_players])")
-			mode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
+		var/player_pop = SSgamemode.get_correct_popcount()
+		var/pop_required = SSgamemode.min_pop_thresholds[track]
+		if(player_pop < pop_required)
+			message_admins("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [SSgamemode.active_players])")
+			log_admin("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [SSgamemode.active_players])")
+			SSgamemode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		calculate_weights(track)
 		var/list/valid_events = list()
 		// Determine which events are valid to pick
-		var/players_amt = SSgamemode.get_correct_popcount()
-		for(var/datum/round_event_control/event as anything in mode.event_pools[track])
-			if(event.can_spawn_event(players_amt))
+		for(var/datum/round_event_control/event as anything in SSgamemode.event_pools[track])
+			if(event.can_spawn_event(player_pop))
 				valid_events[event] = event.calculated_weight
 		///If we didn't get any events, remove the points inform admins and dont do anything
 		if(!length(valid_events))
 			message_admins("Storyteller failed to pick an event for track of [track].")
 			log_admin("Storyteller failed to pick an event for track of [track].")
-			mode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
+			SSgamemode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		picked_event = pick_weight(valid_events)
 		if(!picked_event)
