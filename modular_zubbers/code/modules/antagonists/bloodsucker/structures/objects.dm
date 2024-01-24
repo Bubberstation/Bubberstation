@@ -232,6 +232,7 @@
 	///Boolean on whether the book is currently being used, so you can only use it on one person at a time.
 	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
 	var/cooldown_time = 1 MINUTES
+	var/in_use = FALSE
 
 /obj/item/book/kindred/station_loving
 
@@ -246,7 +247,7 @@
 ///Attacking someone with the book.
 /obj/item/book/kindred/afterattack(mob/living/target, mob/living/user, flag, params)
 	. = ..()
-	if(!user.can_read(src) || (target == user) || !ismob(target))
+	if(!user.can_read(src) || in_use || (target == user) || !ismob(target))
 		return
 	if(!HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
 		if(IS_BLOODSUCKER(user))
