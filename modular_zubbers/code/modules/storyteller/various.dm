@@ -30,7 +30,7 @@
 
 /datum/storyteller/warrior
 	name = "The Warrior"
-	desc = "The Warrior will create more impactful events, often focused on combat."
+	desc = "The Warrior will create more antag-focused events than the Guide, but will spawn less events overall than the Jester. Best for more hectic rounds with a dash of combat."
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 1.3,
