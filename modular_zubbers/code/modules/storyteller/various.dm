@@ -4,7 +4,7 @@
 
 /datum/storyteller/sleeper
 	name = "The Sleeper"
-	desc = "The Sleeper will create less impactful events, especially ones involving combat or destruction. The chill experience."
+	desc = "The Sleeper will be light on events compared to the Guide, especially so on ones involving combat or destruction. Best for more chill rounds."
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 0.7,
