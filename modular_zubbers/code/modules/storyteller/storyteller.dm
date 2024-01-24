@@ -92,7 +92,7 @@
 		calculate_weights(track)
 		var/list/valid_events = list()
 		// Determine which events are valid to pick
-		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = FALSE)
+		var/players_amt = SSgamemode.get_correct_popcount()
 		for(var/datum/round_event_control/event as anything in mode.event_pools[track])
 			if(event.can_spawn_event(players_amt))
 				valid_events[event] = event.calculated_weight
