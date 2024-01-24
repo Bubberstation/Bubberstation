@@ -99,19 +99,6 @@
 		amount += chosen_bodypart.burn_dam
 	return amount
 
-/mob/living/brain/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced, filterpoof, message_range, datum/saymode/saymode)
-	var/datum/antagonist/bloodsucker/spooky_vampire_head = IS_BLOODSUCKER(src)
-	if(spooky_vampire_head)
-		var/obj/head = spooky_vampire_head.is_head(src)
-		if(!head)
-			return FALSE
-		var/animation_time = max(2, length_char(message))
-		head.Shake(duration = animation_time)
-		// not using PROC_REF to prevent calling mob/living/brain/say again, and it's either this or breaking modularity
-		call(src, /mob/living/say)(arglist(args))
-		return TRUE
-	. = ..()
-
 /mob/living/brain/can_be_revived()
 	if(health <= HEALTH_THRESHOLD_DEAD)
 		return FALSE

@@ -1,4 +1,14 @@
 /mob/living/brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterpoof = null, message_range = 7, datum/saymode/saymode = null)
+	// BUBBER CHANGE: funny talking head
+	var/datum/antagonist/bloodsucker/spooky_vampire_head = IS_BLOODSUCKER(src)
+	if(!container && spooky_vampire_head)
+		var/obj/head = spooky_vampire_head.is_head(src)
+		if(!head)
+			return FALSE
+		var/animation_time = max(2, length_char(message))
+		head.Shake(duration = animation_time)
+		..()
+	// BUBBER CHANGE END
 	if(!(container && istype(container, /obj/item/mmi)))
 		return //No MMI, can't speak, bucko./N
 	else
