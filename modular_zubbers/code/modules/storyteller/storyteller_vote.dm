@@ -23,7 +23,8 @@
 	name = "Storyteller"
 	message = "Vote for the storyteller!"
 	has_desc = TRUE
-
+	count_method = VOTE_COUNT_METHOD_MULTI
+	winner_method = VOTE_WINNER_METHOD_WEIGHTED_RANDOM
 
 /datum/vote/storyteller/New()
 	. = ..()
