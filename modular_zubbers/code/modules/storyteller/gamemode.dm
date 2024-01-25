@@ -755,6 +755,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/choices = list()
 	for(var/storyteller_type in storytellers)
 		var/datum/storyteller/storyboy = storytellers[storyteller_type]
+		/// Prevent repeating storytellers
+		if(storyboy.name == SSpersistence.last_storyteller)
+			continue
 		if(!storyboy.votable)
 			continue
 		if((storyboy.population_min && storyboy.population_min > client_amount) || (storyboy.population_max && storyboy.population_max < client_amount))

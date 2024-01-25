@@ -1,19 +1,3 @@
-/* /datum/vote/storyteller
-	default_choices = list(
-		/datum/storyteller/ghost,
-		/datum/storyteller/guide,
-		/datum/storyteller/jester,
-		/datum/storyteller/sleeper,
-		/datum/storyteller/warrior,
-	)
-/datum/vote/storyteller/can_be_initiated(forced)
-	. = ..()
-	choices = SSgamemode.storyteller_vote_choices()
-
-/datum/vote/storyteller/finalize_vote(winning_option)
-	SSgamemode.storyteller_vote_result(winning_option)
- */
-
 /datum/vote/var/has_desc = FALSE
 
 /datum/vote/proc/return_desc(vote_name)
@@ -55,3 +39,30 @@
 /datum/vote/storyteller/finalize_vote(winning_option)
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
+
+/*
+### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
+Basically, this keeps track of what we voted last time to prevent it being voted on again.
+For this, we use the SSpersistence.last_storyteller variable
+
+We then just check what the last one is in SSgamemode.storyteller_vote_choices()
+*/
+
+#define STORYTELLER_LAST_FILEPATH "data/storyteller_last_round.txt"
+
+/// Extends collect_data
+/datum/controller/subsystem/persistence/collect_data()
+	. = ..()
+	collect_storyteller()
+
+/// Loads last storyteller into last_storyteller
+/datum/controller/subsystem/persistence/proc/load_storyteller()
+	if(!fexists(STORYTELLER_LAST_FILEPATH))
+		return
+	last_storyteller = file2text(STORYTELLER_LAST_FILEPATH)
+
+/// Collects current storyteller and stores it
+/datum/controller/subsystem/persistence/proc/collect_storyteller()
+	rustg_file_write("[SSgamemode.storyteller.name]", STORYTELLER_LAST_FILEPATH)
+
+#undef STORYTELLER_LAST_FILEPATH
