@@ -437,7 +437,25 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
-
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_black",
+			RESKIN_WORN_ICON_STATE = "fightgloves_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_blue",
+			RESKIN_WORN_ICON_STATE = "fightgloves_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves",
+			RESKIN_WORN_ICON_STATE = "fightgloves"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_white",
+			RESKIN_WORN_ICON_STATE = "fightgloves_white"
+		),
+	)
 /*
 * SUITS
 */
