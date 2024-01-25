@@ -5,7 +5,7 @@
 		var/obj/head = spooky_vampire_head.is_head(src)
 		if(!head)
 			return FALSE
-		var/animation_time = max(2, length_char(message))
+		var/animation_time = max(2, length_char(message) * 0.5)
 		head.Shake(duration = animation_time)
 		..()
 	// BUBBER CHANGE END

@@ -114,6 +114,7 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
 	RegisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
+	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_removal))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
 
@@ -219,7 +220,7 @@
 
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
-	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
+	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN, COMSIG_QDELETING))
 	free_all_vassals()
 	check_cancel_sunlight() //check if sunlight should end
 	if(!owner?.current)
@@ -229,12 +230,6 @@
 		user?.dna?.species.regenerate_organs(user, null, TRUE)
 	clear_powers_and_stats()
 	return ..()
-
-/datum/antagonist/bloodsucker/Destroy()
-	// Destroy doesn't actually call on_removal
-	if(bloodsucker_name && (src in owner?.antag_datums))
-		on_removal()
-	. = ..()
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()

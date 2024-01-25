@@ -105,4 +105,3 @@
 	if(IS_BLOODSUCKER(src))
 		return TRUE
 	. =..()
-
