@@ -7,10 +7,6 @@
 	Any children types of the skateboard are included in this, such as Wheely-Heels.
 */
 
-//Variable used when calculating stamina damage for skateboards, motorized wheelchairs, etc.
-#define QUIRK_BROSKATER_MULTIPLIER 0.3
-#define QUIRK_BROSKATER_WHEELCHAIR_MULTIPLIER 0.7
-
 /datum/quirk/item_quirk/bro_skater
 	name = "Bro Skater"
 	desc = "You're a little too into old-earth skater culture! You're much more used to riding and \

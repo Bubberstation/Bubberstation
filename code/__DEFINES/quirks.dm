@@ -14,3 +14,9 @@
 #define QUIRK_MOODLET_BASED (1<<3)
 /// This quirk shouldn't be shown by health analyzers and hud, perhaps as considering it medical condition is a far stretch.
 #define QUIRK_HIDE_FROM_SCAN (1<<4)
+
+/* Multipliers in use by BRO_SKATER trait. Used in place of standard multiplier of 1 when
+*  calculating stamina damage and stun time for skateboards, wheely-heels, and motorized wheelchairs.
+*/
+#define QUIRK_BROSKATER_MULTIPLIER 0.3
+#define QUIRK_BROSKATER_WHEELCHAIR_MULTIPLIER 0.7
