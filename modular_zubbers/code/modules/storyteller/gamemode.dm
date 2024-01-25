@@ -399,7 +399,7 @@ SUBSYSTEM_DEF(gamemode)
 		var/high_pop_bound = pop_scale_thresholds[track]
 		var/scale_penalty = pop_scale_penalties[track]
 
-		var/perceived_pop = min(max(low_pop_bound, active_players), high_pop_bound)
+		var/perceived_pop = min(max(low_pop_bound, get_correct_popcount()), high_pop_bound)
 
 		var/divisor = high_pop_bound - low_pop_bound
 		/// If the bounds are equal, we'd be dividing by zero or worse, if upper is smaller than lower, we'd be increasing the factor, just make it 1 and continue.
@@ -802,10 +802,11 @@ SUBSYSTEM_DEF(gamemode)
 	update_crew_infos()
 	var/round_started = SSticker.HasRoundStarted()
 	var/list/dat = list()
+	var/active_pop = get_correct_popcount()
 	dat += "Storyteller: [storyteller ? "[storyteller.name]" : "None"] "
 	dat += " <a href='?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
-	dat += "<BR>Active Players: [active_players]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew])"
+	dat += "<BR>Active Players: [active_pop]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew])"
 	dat += "<HR>"
 	dat += "<a href='?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_MAIN]' [panel_page == GAMEMODE_PANEL_MAIN ? "class='linkOn'" : ""]>Main</a>"
 	dat += " <a href='?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_VARIABLES]' [panel_page == GAMEMODE_PANEL_VARIABLES ? "class='linkOn'" : ""]>Variables</a>"
@@ -961,10 +962,11 @@ SUBSYSTEM_DEF(gamemode)
 		else
 			event_lookup = event_pools[statistics_track_page]
 	var/list/assoc_spawn_weight = list()
+	var/active_pop = get_correct_popcount()
 	for(var/datum/round_event_control/event as anything in event_lookup)
 		if(event.roundstart != roundstart_event_view)
 			continue
-		if(event.can_spawn_event(active_players))
+		if(event.can_spawn_event(active_pop))
 			total_weight += event.calculated_weight
 			assoc_spawn_weight[event] = event.calculated_weight
 		else
