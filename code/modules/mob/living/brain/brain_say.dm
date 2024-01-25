@@ -1,6 +1,6 @@
 /mob/living/brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterpoof = null, message_range = 7, datum/saymode/saymode = null)
 	// BUBBER CHANGE: funny talking head
-	var/datum/antagonist/bloodsucker/spooky_vampire_head = mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/spooky_vampire_head = mind?.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!container && spooky_vampire_head)
 		var/obj/head = spooky_vampire_head.is_head(src)
 		if(!head)
