@@ -193,17 +193,20 @@
 	// If the speed is higher than delay_multiplier throw the person on the wheelchair away
 	if(bumped_atom.density && speed > delay_multiplier && has_buckled_mobs())
 		var/mob/living/disabled = buckled_mobs[1]
+		var/multiplier = 1
+		if(HAS_TRAIT(disabled, TRAIT_BROSKATER))
+			multiplier = QUIRK_BROSKATER_WHEELCHAIR_MULTIPLIER //Reduces penalties by 30% rather than 70%
 		var/atom/throw_target = get_edge_target_turf(disabled, pick(GLOB.cardinals))
 		unbuckle_mob(disabled)
 		disabled.throw_at(throw_target, 2, 3)
-		disabled.Knockdown(10 SECONDS)
-		disabled.adjustStaminaLoss(40)
+		disabled.Knockdown(multiplier * 10 SECONDS)
+		disabled.adjustStaminaLoss(multiplier * 40)
 		if(isliving(bumped_atom))
 			var/mob/living/ramtarget = bumped_atom
 			throw_target = get_edge_target_turf(ramtarget, pick(GLOB.cardinals))
 			ramtarget.throw_at(throw_target, 2, 3)
-			ramtarget.Knockdown(8 SECONDS)
-			ramtarget.adjustStaminaLoss(35)
+			ramtarget.Knockdown(multiplier * 8 SECONDS)
+			ramtarget.adjustStaminaLoss(multiplier * 35)
 			visible_message(span_danger("[src] crashes into [ramtarget], sending [disabled] and [ramtarget] flying!"))
 		else
 			visible_message(span_danger("[src] crashes into [bumped_atom], sending [disabled] flying!"))

@@ -90,13 +90,16 @@
 
 	next_crash = world.time + 10
 	var/mob/living/rider = buckled_mobs[1]
-	rider.adjustStaminaLoss(instability*6)
+	var/multiplier = 1
+	if(HAS_TRAIT(rider, TRAIT_BROSKATER))
+		multiplier = QUIRK_BROSKATER_MULTIPLIER //Reduces penalties by 70%
+	rider.adjustStaminaLoss(multiplier * instability * 6)
 	playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
 	if(!iscarbon(rider) || rider.getStaminaLoss() >= 100 || grinding || iscarbon(bumped_thing))
 		var/atom/throw_target = get_edge_target_turf(rider, pick(GLOB.cardinals))
 		unbuckle_mob(rider)
 		if((istype(bumped_thing, /obj/machinery/disposal/bin)))
-			rider.Paralyze(8 SECONDS)
+			rider.Paralyze(multiplier * 8 SECONDS)
 			rider.forceMove(bumped_thing)
 			forceMove(bumped_thing)
 			visible_message(span_danger("[src] crashes into [bumped_thing], and gets dumped straight into it!"))
@@ -104,16 +107,17 @@
 		rider.throw_at(throw_target, 3, 2)
 		var/head_slot = rider.get_item_by_slot(ITEM_SLOT_HEAD)
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/utility/hardhat)))
-			rider.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
-			rider.updatehealth()
+			if(prob((100 * multiplier))) // Pro Skaters get a 70% chance to avoid brain damage
+				rider.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+				rider.updatehealth()
 		visible_message(span_danger("[src] crashes into [bumped_thing], sending [rider] flying!"))
-		rider.Paralyze(8 SECONDS)
+		rider.Paralyze(multiplier * 8 SECONDS)
 		if(iscarbon(bumped_thing))
 			var/mob/living/carbon/victim = bumped_thing
 			var/grinding_mulitipler = 1
 			if(grinding)
 				grinding_mulitipler = 2
-			victim.Knockdown(4 * grinding_mulitipler SECONDS)
+			victim.Knockdown(multiplier * 4 * grinding_mulitipler SECONDS)
 	else
 		var/backdir = REVERSE_DIR(dir)
 		step(src, backdir)
@@ -129,7 +133,10 @@
 		return
 
 	var/mob/living/skater = buckled_mobs[1]
-	skater.adjustStaminaLoss(instability*0.3)
+	var/multiplier = 1
+	if(HAS_TRAIT(skater, TRAIT_BROSKATER))
+		multiplier = QUIRK_BROSKATER_MULTIPLIER //Reduces penalties by 70%
+	skater.adjustStaminaLoss(multiplier * instability * 0.3)
 	if(skater.getStaminaLoss() >= 100)
 		obj_flags = CAN_BE_HIT
 		playsound(src, 'sound/effects/bang.ogg', 20, TRUE)
@@ -137,7 +144,7 @@
 		var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
 		skater.throw_at(throw_target, 2, 2)
 		visible_message(span_danger("[skater] loses [skater.p_their()] footing and slams on the ground!"))
-		skater.Paralyze(4 SECONDS)
+		skater.Paralyze(multiplier * 4 SECONDS)
 		grinding = FALSE
 		icon_state = "[initial(icon_state)]"
 		return
@@ -153,7 +160,7 @@
 			playsound(location, 'sound/items/trayhit2.ogg', 40)
 			victim.apply_damage(damage = 25, damagetype = BRUTE, def_zone = victim.get_random_valid_zone(even_weights = TRUE), wound_bonus = 20)
 			victim.Paralyze(1.5 SECONDS)
-			skater.adjustStaminaLoss(instability)
+			skater.adjustStaminaLoss(multiplier * instability)
 			victim.visible_message(span_danger("[victim] straight up gets grinded into the ground by [skater]'s [src]! Radical!"))
 	addtimer(CALLBACK(src, PROC_REF(grind)), 1)
 
@@ -181,7 +188,7 @@
 	board_item_type = /obj/item/melee/skateboard/pro
 	instability = 6
 
-/obj/vehicle/ridden/scooter/skateboard/hoverboard/
+/obj/vehicle/ridden/scooter/skateboard/hoverboard
 	name = "hoverboard"
 	desc = "A blast from the past, so retro!"
 	board_item_type = /obj/item/melee/skateboard/hoverboard

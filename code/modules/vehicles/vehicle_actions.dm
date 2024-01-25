@@ -339,13 +339,16 @@
 		return
 	var/mob/living/rider = owner
 	var/turf/landing_turf = get_step(vehicle.loc, vehicle.dir)
-	rider.adjustStaminaLoss(vehicle.instability* 0.75)
+	var/multiplier = 1
+	if(HAS_TRAIT(rider, TRAIT_BROSKATER))
+		multiplier = QUIRK_BROSKATER_MULTIPLIER //Reduces penalties by 70%
+	rider.adjustStaminaLoss(multiplier * vehicle.instability * 0.75)
 	if (rider.getStaminaLoss() >= 100)
 		vehicle.obj_flags &= ~CAN_BE_HIT
 		playsound(src, 'sound/effects/bang.ogg', 20, TRUE)
 		vehicle.unbuckle_mob(rider)
 		rider.throw_at(landing_turf, 2, 2)
-		rider.Paralyze(40)
+		rider.Paralyze(multiplier * 40)
 		vehicle.visible_message(span_danger("[rider] misses the landing and falls on [rider.p_their()] face!"))
 		return
 	if((locate(/obj/structure/table) in landing_turf) || (locate(/obj/structure/fluff/tram_rail) in landing_turf))
@@ -376,11 +379,15 @@
 	var/obj/vehicle/ridden/scooter/skateboard/board = vehicle_target
 	var/mob/living/rider = owner
 
-	rider.adjustStaminaLoss(board.instability)
+	var/multiplier = 1
+	if(HAS_TRAIT(rider, TRAIT_BROSKATER))
+		multiplier = QUIRK_BROSKATER_MULTIPLIER //Reduces penalties by 70%
+
+	rider.adjustStaminaLoss(multiplier * board.instability)
 	if (rider.getStaminaLoss() >= 100)
 		playsound(src, 'sound/effects/bang.ogg', 20, vary = TRUE)
 		board.unbuckle_mob(rider)
-		rider.Paralyze(50)
+		rider.Paralyze(multiplier * 50)
 		if(prob(15))
 			rider.visible_message(
 				span_danger("[rider] misses the landing and falls on [rider.p_their()] face!)"),

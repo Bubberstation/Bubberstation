@@ -12,6 +12,14 @@
 
 	var/flipped = FALSE
 
+/obj/item/clothing/head/soft/equipped(mob/user, slot)
+	. = ..()
+
+	if(slot == ITEM_SLOT_HEAD)
+		if(HAS_TRAIT(user, TRAIT_BROSKATER)) //Pro Skaters always wear their hats backwards, trust me.
+			if(!flipped)
+				flip(user)
+
 /obj/item/clothing/head/soft/dropped()
 	icon_state = "[soft_type][soft_suffix]"
 	flipped = FALSE
