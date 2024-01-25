@@ -10,3 +10,4 @@
 	name = "Sleeper Agents (Traitors)"
 	prompted_picking = TRUE
 	roundstart = FALSE
+	weight = 14

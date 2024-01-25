@@ -11,3 +11,4 @@
 	name = "Vampiric Accident"
 	prompted_picking = TRUE
 	roundstart = FALSE
+	weight = 6 // Outweight the other ghost roles slightly
