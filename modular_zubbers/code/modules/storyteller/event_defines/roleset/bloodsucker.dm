@@ -7,6 +7,8 @@
 	weight = 4
 	min_players = 20
 
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
+
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
 	name = "Vampiric Accident"
 	prompted_picking = TRUE

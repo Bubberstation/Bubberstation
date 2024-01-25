@@ -7,6 +7,8 @@
 	weight = 4
 	min_players = 40
 
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
+
 /datum/round_event_control/antagonist/solo/heretic/New()
 	protected_roles |= JOB_CHAPLAIN // Would be silly to get chaplain heretics
 	. = ..()
