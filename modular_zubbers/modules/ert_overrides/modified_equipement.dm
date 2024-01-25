@@ -2,7 +2,7 @@
 	l_hand = /obj/item/gun/energy/modular_laser_rifle/carbine
 
 /datum/outfit/centcom/ert/medic
-	l_hand = /obj/item/gun/energy/modular_laser_rifle/carbine
+	r_hand = /obj/item/gun/energy/modular_laser_rifle/carbine
 
 /datum/outfit/centcom/ert/engineer
 	l_hand = /obj/item/gun/energy/modular_laser_rifle/carbine
