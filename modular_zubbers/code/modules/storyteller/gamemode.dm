@@ -219,7 +219,7 @@ SUBSYSTEM_DEF(gamemode)
 	return (get_antag_cap() > GLOB.antagonists.len)
 
 /// Gets candidates for antagonist roles.
-/datum/controller/subsystem/gamemode/proc/get_candidates(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time = TRUE, midround_antag_pref, no_antags = TRUE, list/restricted_roles)
+/datum/controller/subsystem/gamemode/proc/get_candidates(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time = TRUE, no_antags = TRUE, list/restricted_roles)
 	var/list/candidates = list()
 	var/list/candidate_candidates = list() //lol
 
@@ -252,9 +252,6 @@ SUBSYSTEM_DEF(gamemode)
 
 			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
 				continue
-
-		if(midround_antag_pref)
-			continue
 
 		if(job_ban && is_banned_from(candidate.ckey, list(job_ban, ROLE_SYNDICATE)))
 			continue
