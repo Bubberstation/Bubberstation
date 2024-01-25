@@ -2,9 +2,27 @@
 	reoccurence_penalty_multiplier = 0
 	track = EVENT_TRACK_ROLESET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
-	var/protected_roles = list()
+	var/protected_roles = list(
+		JOB_CAPTAIN,
+		JOB_BLUESHIELD,
+
+		// Heads of staff
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_HEAD_OF_SECURITY,
+		JOB_CHIEF_ENGINEER,
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_RESEARCH_DIRECTOR,
+		JOB_QUARTERMASTER,
+
+		// Seccies
+		JOB_DETECTIVE,
+		JOB_SECURITY_OFFICER,
+		JOB_WARDEN,
+		JOB_CORRECTIONS_OFFICER,
+		JOB_PRISONER,
+		)
 	/// Restricted roles from the antag roll
-	var/restricted_roles = list()
+	var/restricted_roles = list(JOB_AI, JOB_CYBORG)
 
 /datum/round_event_control/antagonist/New()
 	. = ..()
@@ -104,72 +122,6 @@
 
 /datum/round_event/antagonist/solo/proc/add_datum_to_mind(datum/mind/antag_mind)
 	antag_mind.add_antag_datum(antag_datum)
-
-/datum/round_event_control/antagonist/solo/traitor
-	antag_flag = ROLE_TRAITOR
-	antag_datum = /datum/antagonist/traitor
-	protected_roles = list(
-		"Prisoner",
-		"Security Officer",
-		"Warden",
-		"Detective",
-		"Head of Security",
-		"Captain",
-		"Blueshield",
-		"Nanotrasen Consultant",
-	)
-	restricted_roles = list("AI", "Cyborg")
-
-/datum/round_event_control/antagonist/solo/traitor/can_spawn_event(popchecks = TRUE, allow_magic)
-	. = ..()
-
-/datum/round_event_control/antagonist/solo/traitor/roundstart
-	name = "Traitors"
-	roundstart = TRUE
-
-/datum/round_event_control/antagonist/solo/traitor/midround
-	name = "Sleeper Agents (Traitors)"
-	prompted_picking = TRUE
-
-/datum/round_event_control/antagonist/solo/changeling
-	antag_flag = ROLE_CHANGELING
-	antag_datum = /datum/antagonist/changeling
-	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	restricted_roles = list("AI", "Cyborg")
-	weight = 4
-	min_players = 20
-
-/datum/round_event_control/antagonist/solo/changeling/can_spawn_event(popchecks = TRUE, allow_magic)
-	. = ..()
-	return FALSE
-
-/datum/round_event_control/antagonist/solo/changeling/roundstart
-	name = "Changelings"
-	roundstart = TRUE
-
-/datum/round_event_control/antagonist/solo/changeling/midround
-	name = "Genome Awakening (Changelings)"
-	prompted_picking = TRUE
-
-/datum/round_event_control/antagonist/solo/heretic
-	antag_flag = ROLE_HERETIC
-	antag_datum = /datum/antagonist/heretic
-	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	restricted_roles = list("AI", "Cyborg")
-	weight = 4
-	min_players = 40
-
-/datum/round_event_control/antagonist/solo/heretic/can_spawn_event(popchecks = TRUE, allow_magic)
-	. = ..()
-	return FALSE
-
-/datum/round_event_control/antagonist/solo/heretic/roundstart
-	name = "Heretics"
-	roundstart = TRUE
-
-/datum/round_event_control/antagonist/solo/heretic/midround
-	name = "Midround Heretics"
-	prompted_picking = TRUE
 
 /* /datum/round_event_control/antagonist/solo/wizard
 	name = "Wizard"
