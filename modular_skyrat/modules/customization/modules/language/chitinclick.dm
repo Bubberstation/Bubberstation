@@ -18,4 +18,4 @@
 		"zz", "buzz", "ZZ",
 	)
 	icon_state = "chitinclick"
-	icon = 'modular_nova/master_files/icons/misc/language.dmi'
+	icon = 'modular_skyrat/master_files/icons/misc/language.dmi'
