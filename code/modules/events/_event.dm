@@ -86,7 +86,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(occurrences >= max_occurrences)
 		return FALSE
-	if(earliest_start >= world.time-SSticker.round_start_time)
+	if(!roundstart && earliest_start >= world.time-SSticker.round_start_time ) // BUBBER EDIT: Roundstart checks added
 		return FALSE
 	if(!allow_magic && wizardevent != SSevents.wizardmode)
 		return FALSE
