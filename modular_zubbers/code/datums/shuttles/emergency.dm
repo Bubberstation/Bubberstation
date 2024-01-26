@@ -15,5 +15,5 @@
 	admin_notes = "Cramped, made out of wood, and very susceptible to breaches given the single wooden airlock. What could possibly go wrong?"
 	occupancy_limit = "5"
 	emag_only = TRUE
-	credit_cost = EMAG_LOCKED_SHUTTLE_COST
+	credit_cost = 4988
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
