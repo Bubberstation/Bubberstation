@@ -79,7 +79,7 @@
 
 /obj/item/toy/plush/xenoplush
 	name = "xenomorph plushie"
-	desc = "A cuter rendition of the notorious xenomorph. It's stuffing is an acidic green colour."
+	desc = "A cute rendition of the notorious xenomorph. Its stuffing is an acidic green colour."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "xenoplush"
 	squeak_override = list('sound/voice/hiss6.ogg' = 1)
