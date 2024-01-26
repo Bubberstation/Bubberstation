@@ -321,6 +321,11 @@
 		human_target.w_uniform?.add_fingerprint(src)
 
 	SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, src, zone_selected)
+	//BUBBER STATION ADDICTION BEGIB - WEAK BODY
+	if(HAS_TRAIT(src, TRAIT_WEAK_BODY) && !HAS_TRAIT(target, TRAIT_WEAK_BODY))
+		src.visible_message(span_danger("[name] try to shove [target.name] but [target.p_they()] to heavy for [src.p_They()]."), span_danger("You try to shove [target.name] but [target.p_they()] to heavy for you!"))
+		return
+	//BBUBER STATION EDIT END
 	var/shove_dir = get_dir(loc, target.loc)
 	var/turf/target_shove_turf = get_step(target.loc, shove_dir)
 	var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
