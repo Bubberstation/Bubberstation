@@ -76,3 +76,10 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "tiredtesh"
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/Nose_boop.ogg' = 1)
+
+/obj/item/toy/plush/xenoplush
+	name = "xenomorph plushie"
+	desc = "A cuter rendition of the notorious xenomorph. It's stuffing is an acidic green colour."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "xenoplush"
+	squeak_override = list('sound/voice/hiss6.ogg' = 1)

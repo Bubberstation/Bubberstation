@@ -35,3 +35,7 @@
 /datum/loadout_item/toys/tiredtesh
 	name = "tired teshari plushie"
 	item_path = /obj/item/toy/plush/tiredtesh
+
+/datum/loadout_item/toys/xenoplush
+	name = "Xenomorph Plushie"
+	item_path = /obj/item/toy/plush/xenoplush
