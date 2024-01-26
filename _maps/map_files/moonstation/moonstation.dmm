@@ -2380,6 +2380,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/crate/coffin,
 /obj/machinery/airalarm/directional/east,
+/obj/item/clothing/under/misc/burial,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/storage)
 "aLn" = (
@@ -3255,6 +3256,10 @@
 /area/station/command/heads_quarters/hop)
 "aYw" = (
 /obj/structure/closet/crate/coffin,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/item/clothing/under/misc/burial,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/storage)
 "aYx" = (
@@ -19318,6 +19323,9 @@
 	id = "crematoriumChapel";
 	pixel_x = -26
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/storage)
 "glr" = (
@@ -31486,9 +31494,6 @@
 /turf/open/floor/iron,
 /area/station/common/pool)
 "klz" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/firealarm/directional/north,
 /obj/effect/decal/cleanable/cobweb,
@@ -70597,11 +70602,13 @@
 /area/station/science/xenobiology)
 "wYv" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
 /obj/structure/extinguisher_cabinet/directional/south,
 /obj/item/radio/intercom/directional/east,
+/obj/structure/table,
+/obj/item/storage/box/bodybags,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/storage)
 "wYw" = (
