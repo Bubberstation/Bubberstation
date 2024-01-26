@@ -519,6 +519,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "aiK" = (
@@ -1879,6 +1880,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "aEP" = (
@@ -3761,6 +3763,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/office)
+"bip" = (
+/obj/machinery/light/floor,
+/turf/open/floor/iron/grimy,
+/area/station/service/bar)
 "biq" = (
 /obj/machinery/door/airlock/mining/glass{
 	id_tag = "innercargo";
@@ -10946,6 +10952,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "dDO" = (
@@ -31010,11 +31017,12 @@
 	name = "Bar-Kitchen Counter Shutters"
 	},
 /obj/structure/table,
-/obj/item/clothing/head/utility/hardhat/cakehat,
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
+/obj/item/clothing/head/utility/hardhat/cakehat,
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
 "kdX" = (
@@ -38339,15 +38347,10 @@
 /turf/open/floor/noslip,
 /area/station/engineering/main)
 "mtC" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "bar_kitchen_counter";
-	name = "Bar-Kitchen Counter Shutters"
-	},
-/obj/structure/table,
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
 	dir = 8
 	},
+/obj/machinery/vending/boozeomat,
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
@@ -43450,7 +43453,6 @@
 /obj/item/toy/figure/clown,
 /obj/item/toy/figure/mime,
 /obj/item/inspector/clown/bananium,
-/mob/living/simple_animal/bot/secbot/honkbot,
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/carpet,
 /area/station/service/theater)
@@ -44285,11 +44287,10 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/radshelter)
 "opr" = (
-/obj/machinery/vending/boozeomat,
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
 	dir = 8
 	},
-/turf/open/floor/iron/kitchen,
+/turf/closed/wall/mineral/wood,
 /area/station/service/kitchen)
 "opv" = (
 /obj/structure/disposalpipe/trunk,
@@ -50287,6 +50288,13 @@
 /obj/effect/mapping_helpers/airlock/access/any/service/library,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
+"qlh" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/cargo/miningdock)
 "qlm" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
@@ -58252,7 +58260,6 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/drone_bay)
 "sRM" = (
-/obj/machinery/light/directional/north,
 /obj/machinery/newscaster/directional/north,
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks{
@@ -58535,6 +58542,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/supply/mining,
 /obj/effect/turf_decal/tile/brown/fourcorners,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "sWR" = (
@@ -65601,6 +65609,7 @@
 "vnU" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "vnV" = (
@@ -65676,6 +65685,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "voT" = (
@@ -65925,6 +65935,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "vss" = (
@@ -66152,6 +66163,7 @@
 "vxW" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "vyk" = (
@@ -89026,7 +89038,7 @@ xql
 koz
 aiQ
 aEy
-dWl
+qlh
 dWl
 jHQ
 sNi
@@ -96707,7 +96719,7 @@ jmk
 opr
 pjJ
 kwr
-jwQ
+bip
 mPH
 kNz
 ksN
@@ -98249,7 +98261,7 @@ wvc
 rLP
 sRM
 kwr
-jwQ
+bip
 bWb
 kNz
 xbH
