@@ -64,6 +64,7 @@
 			SKIN_ICON = CYBORG_ICON_CLOWN_WIDE_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
+	)
 
 /obj/item/robot_model/standard/Initialize(mapload)
 	. = ..()
