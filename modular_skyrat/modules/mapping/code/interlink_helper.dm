@@ -4,7 +4,7 @@
 /datum/controller/subsystem/mapping/loadWorld()
 	. = ..()
 	var/list/FailedZsRat = list()
-	LoadGroup(FailedZsRat, "The Interlink", "map_files/generic", "CentCom_skyrat_z2.dmm", default_traits = ZTRAITS_CENTCOM)
+	LoadGroup(FailedZsRat, "The Interlink", "bubber/map_files/centcom", "CentCom_bubber_z2.dmm", default_traits = ZTRAITS_CENTCOM) //Bubber edit: New Interlink map
 	if(LAZYLEN(FailedZsRat)) //but seriously, unless the server's filesystem is messed up this will never happen
 		var/msg = "RED ALERT! The following map files failed to load: [FailedZsRat[1]]"
 		if(FailedZsRat.len > 1)
