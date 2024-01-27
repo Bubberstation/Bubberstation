@@ -44,6 +44,16 @@
 		to_chat(cast_on, span_warning("[marked_item] is not suitable for emplacement of your fragile soul."))
 		return
 
+	//BUBBERSTATION CHANGE START: NERFS LICHDOM
+	if(marked_item.w_class < WEIGHT_CLASS_BULKY) //Can't cast on small items.
+		to_chat(cast_on, span_warning("[marked_item] is too small to contain your huge <s>ego</s> soul."))
+		return
+
+	if(marked_item.resistance_flags & (INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF)) //Can't cast on items that are indestructable and/or fire proof.
+		to_chat(cast_on, span_warning("[marked_item] is too resistant to your magic. Perhaps try on something that isn't fireproof?"))
+		return
+	//BUBBERSTATION CHANGE END: NERFS LICHDOM
+
 	. = ..()
 	playsound(cast_on, 'sound/effects/pope_entry.ogg', 100)
 
