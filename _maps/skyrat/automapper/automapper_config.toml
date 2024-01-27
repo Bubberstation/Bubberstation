@@ -22,8 +22,8 @@ trait_name = "CentCom"
 [templates.centcom_shuttle_dock]
 map_files = ["centcom_shuttle_dock.dmm"]
 directory = "_maps/skyrat/automapper/templates/centcom/"
-required_map = "builtin"
-coordinates = [206, 85, 1]
+required_map = "CentCom_skyrat_z2.dmm" ## BUBBERSTATION EDIT - MOVES THE SHUTTLE TO THE CENTCOM DOCK
+coordinates = [51, 167, 2]			   ## BUBBERSTATION EDIT
 trait_name = "CentCom"
 
 # METASTATION MAP TEMPLATES
@@ -371,14 +371,6 @@ required_map = "DeltaStation2.dmm"
 coordinates = [207, 127, 1]
 trait_name = "Station"
 
-# Burgerstation Armory
-[templates.burgerstation_armory]
-map_files = ["burgerstation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/burgerstation/"
-required_map = "burgerstation.dmm"
-coordinates = [136, 161, 1]
-trait_name = "Station"
-
 # IceBoxStation Armory
 [templates.iceboxstation_armory]
 map_files = ["iceboxstation_armory.dmm"]
@@ -452,3 +444,10 @@ required_map = "KiloStation.dmm"
 coordinates = [140, 72, 1]
 trait_name = "Station"
 
+# Interlink Admin Office
+[templates.interlink_adminoffice]
+map_files = ["interlink_adminoffice.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "CentCom_skyrat_z2.dmm"
+coordinates = [72, 183, 2]
+trait_name = "CentCom"
