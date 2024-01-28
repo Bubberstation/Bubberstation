@@ -91,6 +91,8 @@
 
 /obj/item/toy/plush/xenoplush/xenomaidplush
 	name = "xenomorph maid plushie"
-	desc = "A cute rendition of the notorious xenomorph. Its eager to help you clean the station."
+	desc = "A cute rendition of the notorious xenomorph, but in a maid costume. It's eager to help you clean the station."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "xenomaidplush"
+	attack_verb_continuous = list("polishes", "cleans", "tidies", "washes")
+	attack_verb_simple = list("polish", "clean", "tidy", "wash")
