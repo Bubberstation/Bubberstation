@@ -83,3 +83,14 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "xenoplush"
 	squeak_override = list('sound/voice/hiss6.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "xenoplush"
+	attack_verb_continuous = list("hisses at", "bites", "chews", "chomps", "tail stabs")
+	attack_verb_simple = list("hiss at", "bite", "chew", "chomp", "tail stab")
+
+/obj/item/toy/plush/xenoplush/xenomaidplush
+	name = "xenomorph maid plushie"
+	desc = "A cute rendition of the notorious xenomorph. Its eager to help you clean the station."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "xenomaidplush"
