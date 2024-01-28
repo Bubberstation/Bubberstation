@@ -3411,6 +3411,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port)
+"bbs" = (
+/obj/machinery/rnd/server/master,
+/turf/closed/wall/r_wall,
+/area/station/science/server)
 "bbu" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/conveyor{
@@ -22557,10 +22561,10 @@
 /turf/open/floor/carpet/purple,
 /area/station/security/courtroom)
 "hqD" = (
-/obj/machinery/rnd/server/master,
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
 	},
+/obj/machinery/rnd/server,
 /turf/open/floor/circuit/telecomms/server,
 /area/station/science/server)
 "hqI" = (
@@ -29150,6 +29154,17 @@
 /obj/structure/railing/corner/end/flip,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
+"jxo" = (
+/obj/effect/turf_decal/tile/green/half/contrasted{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/hallway/primary/aft)
 "jxp" = (
 /obj/structure/fluff/beach_umbrella/science{
 	pixel_x = -5;
@@ -57199,6 +57214,7 @@
 	name = "Server Access"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/science/rd,
+/obj/machinery/rnd/server/master,
 /turf/open/floor/catwalk_floor,
 /area/station/science/server)
 "swQ" = (
@@ -61107,9 +61123,6 @@
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
 	},
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark/corner{
@@ -98640,7 +98653,7 @@ nWc
 nWc
 nWc
 nWc
-nWc
+jxo
 tNM
 ofn
 uzr
@@ -116389,7 +116402,7 @@ xfl
 tRH
 hqD
 eog
-tRH
+bbs
 gSX
 suS
 tRH
