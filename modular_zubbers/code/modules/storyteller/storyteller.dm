@@ -5,7 +5,7 @@
 	/// Description of our storyteller.
 	var/desc = "Report this to the coders."
 	/// Text that the players will be greeted with when this storyteller is chosen.
-	var/welcome_text = "Set your eyes on the horizon."
+	var/welcome_text = "The storyteller has been selected. Get ready!"
 	/// This is the multiplier for repetition penalty in event weight. The lower the harsher it is
 	var/event_repetition_multiplier = 0.6
 	/// Multipliers for starting points.
