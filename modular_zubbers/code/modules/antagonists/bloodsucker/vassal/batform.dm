@@ -36,8 +36,8 @@
 	basic_mob_flags = FLAMMABLE_MOB
 	lighting_color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 	damage_coeff = list(BRUTE = 0.9, BURN = 1.25, TOX = 1, STAMINA = 1, OXY = 1)
-	attack_verb_simple = "drain blood"
-	attack_verb_continuous = "drains blood"
+	attack_verb_simple = "drain blood from"
+	attack_verb_continuous = "drains blood from"
 
 /mob/living/basic/bat/bloodsucker/Initialize(mapload)
 	. = ..()
