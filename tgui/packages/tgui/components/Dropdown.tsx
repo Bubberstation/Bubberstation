@@ -1,5 +1,5 @@
 import { classes } from 'common/react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Box, BoxProps } from './Box';
 import { Button } from './Button';
@@ -68,41 +68,29 @@ export function Dropdown(props: Props) {
     });
   }
 
-  /** Update the selected value when clicking the left/right buttons */
-  function updateSelected(direction: 'previous' | 'next') {
-    if (options.length < 1 || disabled) {
-      return;
-    }
+      onSelected?.(getOptionValue(options[newIndex]));
+    },
+    [disabled, onSelected, options, selected],
+  );
 
-    let selectedIndex = getSelectedIndex();
-    const startIndex = 0;
-    const endIndex = options.length - 1;
+  /** Allows the menu to be scrollable on open */
+  useEffect(() => {
+    if (!open) return;
 
-    const hasSelected = selectedIndex >= 0;
-    if (!hasSelected) {
-      selectedIndex = direction === 'next' ? endIndex : startIndex;
-    }
-
-    const newIndex =
-      direction === 'next'
-        ? selectedIndex === endIndex
-          ? startIndex
-          : selectedIndex + 1
-        : selectedIndex === startIndex
-          ? endIndex
-          : selectedIndex - 1;
-
-    onSelected?.(getOptionValue(options[newIndex]));
-  }
+    innerRef.current?.focus();
+  }, [open]);
 
   return (
     <Popper
-      autoFocus
       isOpen={open}
       onClickOutside={() => setOpen(false)}
       placement={over ? 'top-start' : 'bottom-start'}
-      popperContent={
-        <div className="Layout Dropdown__menu" style={{ minWidth: menuWidth }}>
+      content={
+        <div
+          className="Layout Dropdown__menu"
+          style={{ minWidth: menuWidth }}
+          ref={innerRef}
+        >
           {options.length === 0 && (
             <div className="Dropdown__menuentry">No options</div>
           )}
@@ -165,29 +153,7 @@ export function Dropdown(props: Props) {
             </span>
           )}
         </div>
-
-        {buttons && (
-          <>
-            <Button
-              disabled={disabled}
-              height={1.8}
-              icon="chevron-left"
-              onClick={() => {
-                updateSelected('previous');
-              }}
-            />
-
-            <Button
-              disabled={disabled}
-              height={1.8}
-              icon="chevron-right"
-              onClick={() => {
-                updateSelected('next');
-              }}
-            />
-          </>
-        )}
-      </Box>
+      </div>
     </Popper>
   );
 }
