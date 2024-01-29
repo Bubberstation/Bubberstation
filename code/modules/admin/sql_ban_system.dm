@@ -434,6 +434,7 @@
 				ROLE_BORER, //SKYRAT EDIT
 				ROLE_ASSAULT_OPERATIVE, //SKYRAT EDIT
 				ROLE_BLOODSUCKER,// BUBBER EDIT,
+				ROLE_VASSAL, // BUBBER EDIT
 			),
 			"Skyrat Ban Options" = list(
 				BAN_PACIFICATION,
@@ -675,7 +676,7 @@
 			"ip" = player_ip || null,
 			"computerid" = player_cid || null,
 			"a_ckey" = admin_ckey,
-			"a_ip" = admin_ip || null,
+			"a_ip" = admin_ip || "127.0.0.1",
 			"a_computerid" = admin_cid,
 			"who" = who,
 			"adminwho" = adminwho
