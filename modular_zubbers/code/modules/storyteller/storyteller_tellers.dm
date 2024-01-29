@@ -42,18 +42,18 @@
 	population_min = 35
 
 /datum/storyteller/demoman
-    name = "The DemoMan"
-    desc = "The Demoman will focus on impactful environmental events, best for hectic shifts with relatively normal antagonists."
-    welcome_text = "What makes me a good demoman?"
-    point_gains_multipliers = list(
-        EVENT_TRACK_MUNDANE = 1,
-        EVENT_TRACK_MODERATE = 1.1,
-        EVENT_TRACK_MAJOR = 1.5,
-        EVENT_TRACK_ROLESET = 1,
-        EVENT_TRACK_OBJECTIVES = 0.8
-        )
-    tag_multipliers = list(TAG_DESTRUCTIVE = 1.5)
-    population_min = 25
+	name = "The DemoMan"
+	desc = "The Demoman will focus on impactful environmental events, best for hectic shifts with relatively normal antagonists."
+	welcome_text = "What makes me a good demoman?"
+	point_gains_multipliers = list(
+		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_MODERATE = 1.1,
+		EVENT_TRACK_MAJOR = 1.5,
+		EVENT_TRACK_ROLESET = 1,
+		EVENT_TRACK_OBJECTIVES = 0.8
+	)
+	tag_multipliers = list(TAG_DESTRUCTIVE = 1.5)
+	population_min = 25
 
 /datum/storyteller/ghost
 	name = "The Ghost"
