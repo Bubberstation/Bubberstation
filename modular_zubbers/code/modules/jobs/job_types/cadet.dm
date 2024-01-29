@@ -7,7 +7,7 @@
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Warden, then the head of Security."
+	supervisors = "the Head of Security, and the head of Personnel."
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_required_type = EXP_TYPE_CREW
