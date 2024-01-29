@@ -43,7 +43,7 @@
 
 /datum/storyteller/demoman
     name = "The DemoMan"
-    desc = "The DemoMan will focus on more impactful events, usually coming from the environment."
+    desc = "The Demoman will focus on impactful environmental events, best for hectic shifts with relatively normal antagonists."
     welcome_text = "What makes me a good demoman?"
     point_gains_multipliers = list(
         EVENT_TRACK_MUNDANE = 1,
