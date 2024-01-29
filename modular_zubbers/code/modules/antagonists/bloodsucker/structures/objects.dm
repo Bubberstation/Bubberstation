@@ -201,17 +201,6 @@
 	staketime = 8 SECONDS
 	kills_blodsuckers = TRUE
 
-
-// Just in case the map doesn't have a curator display case
-// It's not dependant on mapload so you can technically get it from a cargo crate
-/obj/item/book/codex_gigas/Initialize(mapload)
-	. = ..()
-	var/list/points_of_interest = SSpoints_of_interest.get_other_pois()
-	var/obj/item/book/kindred/book_to_spawn
-	if(initial(book_to_spawn.type) in points_of_interest)
-		return
-	book_to_spawn = new(src.loc)
-
 //////////////////////
 //     ARCHIVES     //
 //////////////////////

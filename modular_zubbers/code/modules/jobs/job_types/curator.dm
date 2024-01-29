@@ -5,8 +5,10 @@
 	. = ..()
 	var/list/points_of_interest = SSpoints_of_interest.get_other_pois()
 	var/obj/item/book/kindred/book_to_spawn
-	if(initial(book_to_spawn.type) in points_of_interest)
-		return
+	for(var/poi in points_of_interest)
+		var/thing = points_of_interest[poi]
+		if(istype(thing, /obj/item/book/kindred))
+			return
 	book_to_spawn = new(get_turf(spawned))
 	if(iscarbon(spawned))
 		var/mob/living/carbon/carbon_spawned = spawned
