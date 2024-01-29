@@ -13,6 +13,9 @@
 		NO_RELAY = "No Relay",
 	)
 	var/choice = tgui_input_list(usr, "Which relay do you wish to use?", "Relay choice", relays)
-	usr << link(choice)
-	sleep(1 SECONDS)
-	winset(usr, null, "command=.quit")
+	if(choice)
+		usr << link(choice)
+		sleep(1 SECONDS)
+		winset(usr, null, "command=.quit")
+	else
+		usr << "You didn't select a relay."
