@@ -208,9 +208,9 @@
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
 /datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
-	if(!istype(poor_fucker.loc, /obj/item/organ/internal/brain))
+	if(!istype(poor_fucker?.loc, /obj/item/organ/internal/brain))
 		return
 	var/obj/brain = poor_fucker.loc
-	if(!istype(brain.loc, /obj/item/bodypart/head))
+	if(!istype(brain?.loc, /obj/item/bodypart/head))
 		return
 	return brain.loc
