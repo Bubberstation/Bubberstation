@@ -53,7 +53,6 @@
 /datum/antagonist/bloodsucker/proc/make_vassal(mob/living/conversion_target)
 	if(!can_make_vassal(conversion_target))
 		return FALSE
-
 	//Check if they used to be a Vassal and was stolen.
 	var/datum/antagonist/vassal/old_vassal = conversion_target.mind.has_antag_datum(/datum/antagonist/vassal)
 	if(old_vassal)

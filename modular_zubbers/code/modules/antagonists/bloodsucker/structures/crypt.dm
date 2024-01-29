@@ -381,7 +381,9 @@
 /obj/structure/bloodsucker/vassalrack/proc/do_disloyalty(mob/living/user, mob/living/target)
 	if(disloyalty_offered)
 		return FALSE
-
+	// Can't willingly join if you're banned from it. It'll just ghost you anyways.
+	if(is_banned_from(target.ckey, ROLE_BLOODSUCKER))
+		return TRUE
 	disloyalty_offered = TRUE
 	to_chat(user, span_notice("[target] has been given the opportunity for servitude. You await their decision..."))
 	var/alert_response = tgui_alert(

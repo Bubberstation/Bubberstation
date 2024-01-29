@@ -186,6 +186,7 @@
 #define IS_MONSTERHUNTER(mob) (FALSE)
 
 #define BLOODSUCKER_SIGHT_COLOR_CUTOFF list(25, 8, 5)
+#define POLL_IGNORE_VASSAL "vassal"
 
 // Why waste memory on a dynamic global list if we can just bake it in on compile time?
 #define BLOODSUCKER_PROTECTED_ROLES list( \

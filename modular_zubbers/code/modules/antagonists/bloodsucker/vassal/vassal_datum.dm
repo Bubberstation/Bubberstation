@@ -7,7 +7,7 @@
 	name = "\improper Vassal"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
+	job_rank = ROLE_VASSAL
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
