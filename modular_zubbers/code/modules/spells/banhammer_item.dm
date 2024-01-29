@@ -1,11 +1,11 @@
 /obj/item/banhammer/real
 	name = "\improper REAL banhammer"
 	desc = "A hammer that has been banned in several sectors. Careful when using this."
-	desc_control = "Click to temporarily send someone to the void. Click with combat mode on to permabrig someone. Click in hand to set ban reason."
+	desc_controls = "Click to temporarily send someone to the void. Click with combat mode on to permabrig someone. Click in hand to set ban reason."
 	var/static/list/area/areas_to_teleport_to = list( //A list of areas to teleport to. Sorted by priority (first one is set first, if the area exists).
 		/area/station/security/prison/safe,
 		/area/station/security/prison/work,
-		/area/station/security/prison/rec
+		/area/station/security/prison/rec,
 		/area/station/security/prison/upper,
 		/area/station/security/prison,
 	)
@@ -20,7 +20,7 @@
 	else
 		ban_reason = initial(ban_reason)
 
-	to_chat(user, span_notice(["Ban reason set to: \"[ban_reason]\""))
+	to_chat(user, span_notice("Ban reason set to: \"[ban_reason]\""))
 
 
 /obj/item/banhammer/real/attack(mob/M, mob/living/user)
@@ -35,22 +35,18 @@
 		return
 
 	if(user.combat_mode) //Perma
-
 		var/area/current_area = get_area(M)
-		if(!current_area || istype(current_area,/area/station/security/prison) //Already perma'd.
-			M.visible_message(span_danger("[M] resists the effects of the banhammer! They're already in permabrig!"))
+		if(!current_area || istype(current_area,/area/station/security/prison)) //Already perma'd.
+			M.visible_message(span_danger("[M] resists the effects of the banhammer! They're already in the permabrig!"))
 			return
 
-		var/list/possible_turfs
-		for(var/area/area_path in areas_to_teleport_to as anything)
-			possible_turfs = get_safe_random_station_turf(area_path)
-			if(length(possible_turfs))
-				break //Found good turfs.
-
-		if(length(possible_turfs)) //We have valid prison turfs.
-			var/turf/turf_to_teleport_to = pick(possible_turfs)
+		var/turf/turf_to_teleport_to
+		for(var/area/area_path as anything in areas_to_teleport_to)
+			turf_to_teleport_to = get_safe_random_station_turf(area_path)
+			if(!turf_to_teleport_to)
+				continue
 			if(do_teleport(M,turf_to_teleport_to,forced = TRUE,channel = TELEPORT_CHANNEL_MAGIC)) //Rare chance of this actually failing for some reason.
-				dispatch_announcement_to_players(span_noticealien("[M] has been sent to permabrig by [user]: Reason: [ban_reason]",sound_override = 'sound/effects/adminhelp.ogg')
+				dispatch_announcement_to_players(span_noticealien("[M] has been sent to permabrig by [user]: Reason: [ban_reason]"),sound_override = 'sound/effects/adminhelp.ogg')
 				return
 
 	var/turf/T = get_turf(M)
