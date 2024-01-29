@@ -28,6 +28,7 @@
 	desc = "A bat with a thirst for blood."
 	maxHealth = 100
 	health = 100
+	speed = 0
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	wound_bonus = 10
@@ -42,7 +43,6 @@
 /mob/living/basic/bat/bloodsucker/Initialize(mapload)
 	. = ..()
 	// Go as fast as people can run
-	speed = CONFIG_GET(number/movedelay/run_delay)
 	AddElement(/datum/element/lifesteal, melee_damage_lower)
 	// Too fat to fit through vents
 	REMOVE_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
