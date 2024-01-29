@@ -32,7 +32,7 @@
 	// VARS //
 	/// If the Power is currently active, differs from action cooldown because of how powers are handled.
 	var/active = FALSE
-	///Can increase to yield new  - Each Power ranks up each Rank
+	///Can increase to yield new capabilities - Each Power ranks up each Rank, with the oldest power being the highest rank.
 	var/level_current = 0
 	///The cost to ACTIVATE this Power
 	var/bloodcost = 0
