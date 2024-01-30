@@ -21,7 +21,7 @@
 	/// Our internal techweb for limbgrower designs.
 	var/datum/techweb/autounlocking/stored_research
 	/// All the categories of organs we can print.
-	var/list/categories = list(SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL, RND_CATEGORY_LIMBS_OTHER, RND_CATEGORY_LIMBS_DIGITIGRADE, SPECIES_HEMOPHAGE)//BUBBER EDIT-Adds Hemophage to the list.
+	var/list/categories = list(SPECIES_HUMAN, SPECIES_LIZARD, SPECIES_MOTH, SPECIES_PLASMAMAN, SPECIES_ETHEREAL, RND_CATEGORY_LIMBS_OTHER, RND_CATEGORY_LIMBS_DIGITIGRADE)
 	///Designs imported from technology disks that we can print.
 	var/list/imported_designs = list()
 
@@ -283,7 +283,7 @@
 
 /obj/machinery/limbgrower/fullupgrade //Inherently cheaper organ production. This is to NEVER be inherently emagged, no valids.
 	desc = "It grows new limbs using Synthflesh. This alien model seems more efficient."
-	flags_1 = NODECONSTRUCT_1
+	obj_flags = /obj::obj_flags | NO_DECONSTRUCTION
 	circuit = /obj/item/circuitboard/machine/limbgrower/fullupgrade
 
 /obj/machinery/limbgrower/fullupgrade/Initialize(mapload)

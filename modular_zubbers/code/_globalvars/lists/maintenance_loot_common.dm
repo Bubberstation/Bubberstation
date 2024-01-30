@@ -467,7 +467,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	) = 10,
 	list(
 		/obj/item/ammo_box/foambox = 5,
-		/obj/item/a_gift = 100,
 		/obj/item/bikehorn = 50,
 		/obj/item/bikehorn/airhorn = 25,
 		/obj/item/bikehorn/rubberducky = 50,

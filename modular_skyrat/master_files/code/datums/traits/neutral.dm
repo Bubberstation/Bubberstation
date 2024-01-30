@@ -1,5 +1,3 @@
-#define TRAIT_HYDRA_HEADS "hydrahead" // We still dont have a centralised trait file
-
 GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /// Instantiates GLOB.DNR_trait_overlay by creating a new mutable_appearance instance of the overlay.
@@ -21,6 +19,16 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	value = 0
 	mob_trait = TRAIT_EXCITABLE
 	icon = FA_ICON_LAUGH_BEAM
+
+/datum/quirk/affectionaversion
+	name = "Affection Aversion"
+	desc = "You refuse to be licked or nosed by quadruped cyborgs."
+	gain_text = span_notice("You've been added to the Do Not Lick and No Nosing registries.")
+	lose_text = span_notice("You've been removed from the Do Not Lick and No Nosing registries.")
+	medical_record_text = "Patient is in the Do Not Lick and No Nosing registries."
+	value = 0
+	mob_trait = TRAIT_AFFECTION_AVERSION
+	icon = FA_ICON_CIRCLE_EXCLAMATION
 
 /datum/quirk/personalspace
 	name = "Personal Space"
@@ -61,7 +69,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /// Adds the DNR HUD element if src has TRAIT_DNR. Removes it otherwise.
 /mob/living/proc/update_dnr_hud()
-	var/image/dnr_holder = hud_list?[DNR_HUD]
+/* 	var/image/dnr_holder = hud_list?[DNR_HUD] // BUBBER EDIT - more DNR fixing
 	if(isnull(dnr_holder))
 		return
 
@@ -72,7 +80,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 		set_hud_image_active(DNR_HUD)
 		dnr_holder.icon_state = "hud_dnr"
 	else
-		set_hud_image_inactive(DNR_HUD)
+		set_hud_image_inactive(DNR_HUD) */
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
@@ -240,7 +248,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/obj/item/organ/internal/tongue/dog/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
-	new_tongue.Insert(human_holder, special = TRUE, drop_if_replaced = FALSE)
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/item_quirk/avian
 	name = "Avian Traits"
@@ -255,9 +263,8 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/obj/item/organ/internal/tongue/avian/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
-	new_tongue.Insert(human_holder, special = TRUE, drop_if_replaced = FALSE)
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
-/* BUBBER EDIT MOVE BRGIN - MOVED TO NEGATIVE.DM
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
 	desc = "Your face has always been sensitive, and it really hurts when someone pokes it!"
@@ -267,7 +274,6 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	value = 0
 	mob_trait = TRAIT_SENSITIVESNOUT
 	icon = FA_ICON_FINGERPRINT
-*/ // BUBBER EDIT MOVE END
 
 /datum/quirk/overweight
 	name = "Overweight"

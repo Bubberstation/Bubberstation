@@ -957,7 +957,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/light/cold/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/junction/flip{
@@ -1269,6 +1268,17 @@
 	dir = 1
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+"hD" = (
+/obj/effect/turf_decal/trimline/purple/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/cold/directional/east,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "hE" = (
 /obj/structure/sign/painting/library{
 	pixel_y = 30
@@ -1898,9 +1908,6 @@
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 8
 	},
-/obj/machinery/door/airlock/science{
-	name = "Robotics"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/structure/cable,
@@ -1908,6 +1915,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/science/glass,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "lk" = (
@@ -1960,7 +1968,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "lw" = (
-/obj/machinery/vending/dorms{
+/obj/machinery/vending/dorms/prison{
 	onstation = 0
 	},
 /turf/open/floor/wood/tile,
@@ -3861,6 +3869,10 @@
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+"uG" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "uI" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input,
 /turf/open/floor/engine,
@@ -4721,13 +4733,6 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "zc" = (
-/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown{
-	pixel_x = -7
-	},
 /obj/structure/table/glass,
 /obj/item/reagent_containers/cup/glass/waterbottle{
 	pixel_x = 8;
@@ -5755,7 +5760,7 @@
 /obj/structure/bed/dogbed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/light_switch/directional/north,
-/mob/living/simple_animal/pet/cat/kitten{
+/mob/living/basic/pet/cat/kitten{
 	desc = "What appears to be a single-celled organism with a pronounced low-level intelligence.";
 	name = "Murder-Mittens"
 	},
@@ -5839,10 +5844,10 @@
 "Eh" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/dark_red/fourcorners,
+/obj/item/borg/upgrade/syndicate_access/dauntless,
+/obj/item/borg/upgrade/syndicate_access/dauntless,
+/obj/item/borg/upgrade/syndicate_access/dauntless,
 /obj/item/mmi/posibrain,
-/obj/item/borg/upgrade/dauntless,
-/obj/item/borg/upgrade/dauntless,
-/obj/item/borg/upgrade/dauntless,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "Ej" = (
@@ -5883,6 +5888,7 @@
 /obj/item/mod/module/defibrillator,
 /obj/item/storage/belt/medical/paramedic,
 /obj/item/autopsy_scanner,
+/obj/item/clothing/suit/toggle/labcoat/hospitalgown,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "Es" = (
@@ -12303,7 +12309,7 @@ EN
 kr
 EN
 bG
-EN
+hD
 fH
 EN
 EN
@@ -12367,8 +12373,8 @@ So
 Tp
 Qn
 Qn
-Qn
-Qn
+uG
+uG
 Qn
 PX
 PX

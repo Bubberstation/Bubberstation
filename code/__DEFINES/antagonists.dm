@@ -10,6 +10,9 @@
 #define NUKE_RESULT_HIJACK_DISK 9
 #define NUKE_RESULT_HIJACK_NO_DISK 10
 
+/// Min players requireed for nukes to declare war
+#define CHALLENGE_MIN_PLAYERS 50
+
 //fugitive end results
 #define FUGITIVE_RESULT_BADASS_HUNTER 0
 #define FUGITIVE_RESULT_POSTMORTEM_HUNTER 1
@@ -330,6 +333,7 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define ANTAG_GROUP_FUGITIVES "Escaped Fugitives"
 #define ANTAG_GROUP_HUNTERS "Bounty Hunters"
 #define ANTAG_GROUP_PARADOX "Spacetime Aberrations"
+#define ANTAG_GROUP_CREW "Deviant Crew"
 
 
 // This flag disables certain checks that presume antagonist datums mean 'baddie'.

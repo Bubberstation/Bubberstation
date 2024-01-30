@@ -41,7 +41,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/vending_refill/modularpc = 1,
 		/obj/item/vending_refill/robotics = 1,
 		/obj/item/vending_refill/security = 1,
-		/obj/item/vending_refill/security_peacekeeper = 1,
 		/obj/item/vending_refill/snack = 1,
 		/obj/item/vending_refill/snack/imported = 1,
 		/obj/item/vending_refill/snack/imported/mothic = 1,
@@ -67,7 +66,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/vending_refill/wardrobe/jani_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/law_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/medi_wardrobe = 1,
-		/obj/item/vending_refill/wardrobe/peacekeeper_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/robo_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/science_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/sec_wardrobe = 1,
@@ -270,10 +268,8 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/gloves/cut = 25
 	) = 100,
 	list(
-		/obj/item/clothing/suit/armor/bulletproof/old = 5,
-		/obj/item/clothing/head/helmet/old = 10,
-		/obj/item/clothing/head/helmet/toggleable/justice = 3,
-		/obj/item/clothing/head/helmet/toggleable/justice/escape = 3
+		/obj/item/clothing/head/helmet/toggleable/justice = 1,
+		/obj/item/clothing/head/helmet/toggleable/justice/escape = 1
 	) = 20,
 	list(
 		/obj/item/clothing/head/utility/welding = 10,

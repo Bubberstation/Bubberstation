@@ -1,4 +1,3 @@
-#define PUNCH_STAMINA_MULTIPLIER 1.5 //BUBBER EDIT - original 2.6
 
 //Stamina threshold from which resisting a grab becomes hard
 #define STAMINA_THRESHOLD_HARD_RESIST 80
