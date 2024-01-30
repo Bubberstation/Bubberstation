@@ -4,10 +4,26 @@
 	"map_path": "map_files/moonstation",
 	"map_file": "moonstation.dmm",
 	"emergency_override": 1,
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
 	"shuttles": {
 		"emergency": "emergency_moonstation",
 		"ferry": "ferry_skyrat",
 		"cargo": "cargo_skyrat",
 		"whiteship": "whiteship_delta"
+	},
+	"traits": [
+		{
+			"Linkage": "Self",
+			"Gravity": true,
+			"Baseturf": "/turf/open/misc/moonstation_sand",
+			"No Parallax": true
+		}
+	],
+	"job_changes": {
+		"Captain": {
+			"special_charter": "moon"
+		}
 	}
 }
