@@ -1,6 +1,7 @@
 #define US_EAST_RELAY "byond://useast.bubberstation.org:3000"
 #define US_WEST_RELAY "byond://uswest.bubberstation.org:3000"
 #define SYDNEY_RELAY "byond://sydney.bubberstation.org:3000"
+#define SINGAPORE_RELAY "byond://singapore.bubberstation.org:3000"
 #define EU_RELAY "byond://germany.bubberstation.org:3000"
 #define NO_RELAY "byond://game.bubberstation.org:3000"
 
@@ -9,6 +10,7 @@
 		US_EAST_RELAY = "Connect to US-East (Virginia)",
 		US_WEST_RELAY = "Connect to US-West (Oregon)",
 		SYDNEY_RELAY = "Connect to Sydney, Australia",
+		SINGAPORE_RELAY = "Connect to Singapore, Singapore",
 		EU_RELAY = "Connect to Europe (Germany, Alternative)",
 		NO_RELAY = "No Relay",
 	)
