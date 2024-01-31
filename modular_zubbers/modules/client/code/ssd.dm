@@ -18,6 +18,8 @@
 	Handles ghostize() and observer Logout()
 
 */
+
+#define GHOST_AFK_RESPAWN_TIME 15 MINUTES
 /mob/dead/observer
 	var/datum/timedevent/logout_timer
 
@@ -27,19 +29,13 @@
 	var/mob/dead/observer/ghost = .
 	if(!istype(ghost))
 		return
-	if(is_banned_from(ghost.ckey, BAN_RESPAWN))
-		return
-	// Send them there directly.
-	ghost.send_to_lobby()
+	if(CONFIG_GET(flag/allow_respawn))
+		ghost.logout_timer = addtimer(CALLBACK(ghost, TYPE_PROC_REF(/mob/dead/observer, can_send_to_lobby)), GHOST_AFK_RESPAWN_TIME/3, TIMER_STOPPABLE)
 
 /mob/dead/observer/Logout()
 	. = ..()
 	if(CONFIG_GET(flag/allow_respawn))
-		if(!ckey) // Turns out sometime ghosts exist without ckeys? A curious thing that shouldn't happen
-			return
-		if(is_banned_from(ckey, BAN_RESPAWN))
-			return
-		logout_timer = addtimer(CALLBACK(src, PROC_REF(send_to_lobby)), 15 MINUTES, TIMER_STOPPABLE)
+		logout_timer = addtimer(CALLBACK(src, PROC_REF(send_to_lobby)), GHOST_AFK_RESPAWN_TIME, TIMER_STOPPABLE)
 
 /mob/dead/observer/Login()
 	. = ..()
@@ -48,6 +44,11 @@
 
 // Don't respawn people with a connected body or client
 /mob/dead/observer/proc/can_send_to_lobby()
+	if(!ckey) // Turns out sometime ghosts exist without ckeys? A curious thing that shouldn't happen
+		return
+	if(is_banned_from(ckey, BAN_RESPAWN))
+		return
+
 	return ((!mind || QDELETED(mind.current)) && !client)
 
 /mob/dead/observer/proc/send_to_lobby()
@@ -57,3 +58,5 @@
 
 	log_access("Ghost sent to lobby due to disconnect: [key]")
 	M.key = key
+
+#undef GHOST_AFK_RESPAWN_TIME
