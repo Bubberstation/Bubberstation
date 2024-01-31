@@ -32,7 +32,7 @@
 	// Send them there directly.
 	ghost.send_to_lobby()
 
-/mob/dead/observer/Logoimage.pngut()
+/mob/dead/observer/Logout()
 	. = ..()
 	if(CONFIG_GET(flag/allow_respawn))
 		if(!ckey) // Turns out sometime ghosts exist without ckeys? A curious thing that shouldn't happen
