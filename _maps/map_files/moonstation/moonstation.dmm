@@ -14514,6 +14514,16 @@
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/engineering)
+"eIR" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/closet/crate,
+/obj/item/hand_item/circlegame{
+	name = "made you look";
+	desc = "gottem"
+	},
+/turf/open/floor/engine,
+/area/station/engineering/gravity_generator)
 "eIX" = (
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/effect/turf_decal/loading_area,
@@ -23065,7 +23075,7 @@
 /area/station/service/kitchen)
 "hzx" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Gravity Generator Room"
+	name = "Gravity Generator Room (DEFUNCT)"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
 /obj/structure/cable,
@@ -23073,6 +23083,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/structure/barricade/wooden/crude,
+/obj/effect/mapping_helpers/airlock/welded,
 /turf/open/floor/iron/dark,
 /area/station/engineering/gravity_generator)
 "hzH" = (
@@ -41979,7 +41991,7 @@
 	pixel_y = -14
 	},
 /turf/open/floor/stone{
-	initial_gas_mix = "o2=16;n2=74;water_vapor=4;TEMP=333.15";
+	initial_gas_mix = "o2=20.2;n2=78.5;co2=4.6;water_vapor=1.1;TEMP=347.65";
 	color = "#FFCCAA"
 	},
 /area/moonstation/surface)
@@ -47720,7 +47732,7 @@
 /area/station/engineering/rbmk2)
 "puO" = (
 /turf/open/floor/stone{
-	initial_gas_mix = "o2=16;n2=74;water_vapor=4;TEMP=333.15";
+	initial_gas_mix = "o2=20.2;n2=78.5;co2=4.6;water_vapor=1.1;TEMP=347.65";
 	color = "#FFCCAA"
 	},
 /area/moonstation/surface)
@@ -54762,11 +54774,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/space_hut)
 "rFE" = (
-/obj/effect/spawner/random/structure/chair_maintenance{
+/obj/structure/chair/wood/wings{
 	dir = 8
 	},
+/obj/item/shovel,
 /turf/open/floor/stone{
-	initial_gas_mix = "o2=16;n2=74;water_vapor=4;TEMP=333.15";
+	initial_gas_mix = "o2=20.2;n2=78.5;co2=4.6;water_vapor=1.1;TEMP=347.65";
 	color = "#FFCCAA"
 	},
 /area/moonstation/surface)
@@ -58660,12 +58673,6 @@
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science/research)
-"sWt" = (
-/obj/machinery/gravity_generator/main,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/engine,
-/area/station/engineering/gravity_generator)
 "sWu" = (
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter/room)
@@ -68588,11 +68595,6 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/station/commons/lounge)
-"wkB" = (
-/turf/open/misc/grass/planet{
-	initial_gas_mix = "o2=16;n2=74;water_vapor=4;TEMP=333.15"
-	},
-/area/moonstation/surface)
 "wkO" = (
 /obj/machinery/disposal/delivery_chute,
 /obj/machinery/light/small/red/directional/north,
@@ -71378,6 +71380,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"xjI" = (
+/turf/open/misc/moonstation_sand{
+	initial_gas_mix = s
+	},
+/area/moonstation/surface)
 "xjJ" = (
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
@@ -101358,8 +101365,8 @@ xwf
 hzx
 tLe
 trx
+eIR
 trx
-sWt
 pTi
 vih
 rKh
@@ -114641,7 +114648,7 @@ stM
 stM
 stM
 puO
-wkB
+stM
 fQf
 qQA
 tMt
@@ -114898,7 +114905,7 @@ stM
 stM
 stM
 puO
-wkB
+stM
 fRC
 pCA
 pbr
@@ -115155,7 +115162,7 @@ stM
 stM
 stM
 puO
-wkB
+stM
 fQf
 txD
 eQu
@@ -115412,7 +115419,7 @@ puO
 puO
 puO
 puO
-wkB
+stM
 fQf
 soE
 qyM
@@ -115659,7 +115666,7 @@ puO
 puO
 puO
 stM
-stM
+xjI
 stM
 stM
 stM
@@ -115669,7 +115676,7 @@ stM
 stM
 stM
 puO
-wkB
+stM
 fQf
 txD
 eQu
@@ -115913,7 +115920,7 @@ stM
 stM
 stM
 stM
-stM
+xjI
 stM
 fNw
 stM
@@ -115926,7 +115933,7 @@ stM
 stM
 stM
 puO
-wkB
+stM
 fRC
 pCA
 bsX
@@ -116183,7 +116190,7 @@ stM
 stM
 stM
 rFE
-wkB
+stM
 fQf
 qQA
 tMt
@@ -117462,7 +117469,7 @@ stM
 gKF
 stM
 stM
-stM
+puO
 stM
 kYE
 stM
@@ -125755,7 +125762,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -126012,7 +126019,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -126269,7 +126276,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -126526,7 +126533,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
@@ -126783,7 +126790,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -127040,7 +127047,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -127297,7 +127304,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -127554,7 +127561,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
@@ -127811,7 +127818,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -128068,7 +128075,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -128325,7 +128332,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -128582,7 +128589,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
@@ -128839,7 +128846,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -129096,7 +129103,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -129353,7 +129360,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -129610,7 +129617,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
@@ -129867,7 +129874,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -130124,7 +130131,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -130381,7 +130388,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -130638,7 +130645,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
@@ -130895,7 +130902,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -131152,7 +131159,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -131409,7 +131416,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -131666,7 +131673,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
@@ -131923,7 +131930,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -132180,7 +132187,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -132437,7 +132444,7 @@ stM
 stM
 uKl
 stM
-stM
+iEh
 stM
 beW
 stM
@@ -132694,7 +132701,7 @@ stM
 stM
 sin
 stM
-stM
+iEh
 stM
 sin
 stM
