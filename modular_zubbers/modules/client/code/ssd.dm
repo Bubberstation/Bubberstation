@@ -32,9 +32,11 @@
 	// Send them there directly.
 	ghost.send_to_lobby()
 
-/mob/dead/observer/Logout()
+/mob/dead/observer/Logoimage.pngut()
 	. = ..()
 	if(CONFIG_GET(flag/allow_respawn))
+		if(!ckey) // Turns out sometime ghosts exist without ckeys? A curious thing that shouldn't happen
+			return
 		if(is_banned_from(ckey, BAN_RESPAWN))
 			return
 		logout_timer = addtimer(CALLBACK(src, PROC_REF(send_to_lobby)), 15 MINUTES, TIMER_STOPPABLE)
