@@ -45,9 +45,9 @@
 // Don't respawn people with a connected body or client
 /mob/dead/observer/proc/can_send_to_lobby()
 	if(!ckey) // Turns out sometime ghosts exist without ckeys? A curious thing that shouldn't happen
-		return
+		return FALSE
 	if(is_banned_from(ckey, BAN_RESPAWN))
-		return
+		return FALSE
 
 	return ((!mind || QDELETED(mind.current)) && !client)
 
