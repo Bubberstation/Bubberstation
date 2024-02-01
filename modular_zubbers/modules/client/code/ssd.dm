@@ -49,7 +49,8 @@
 	if(is_banned_from(ckey, BAN_RESPAWN))
 		return FALSE
 
-	return ((!mind || QDELETED(mind.current)) && !client)
+	//return ((!mind || QDELETED(mind.current)) && !client)
+	return (!client) // Did you know that people that disconnected before ghostize() was called keep their mind?
 
 /mob/dead/observer/proc/send_to_lobby()
 	if(!can_send_to_lobby())
