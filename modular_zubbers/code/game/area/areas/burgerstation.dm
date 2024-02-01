@@ -69,6 +69,11 @@
 			"#724C2B"
 		)
 
+/area/moonstation/surface/unexplored //monsters and ruins spawn here
+	icon_state = "unexplored"
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/lunar_sand/surface
+
 /area/moonstation/underground
 	name = "Lunar Caves"
 	outdoors = TRUE
@@ -80,3 +85,8 @@
 	area_flags = UNIQUE_AREA | FLORA_ALLOWED
 	min_ambience_cooldown = 70 SECONDS
 	max_ambience_cooldown = 220 SECONDS
+
+/area/moonstation/underground/unexplored
+	icon_state = "unexplored"
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/lunar_sand

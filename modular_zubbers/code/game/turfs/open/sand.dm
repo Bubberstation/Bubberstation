@@ -1,5 +1,3 @@
-#define MOONSTATION_ATMOS GAS_O2 + "=20.2;" + GAS_N2 + "=78.5;" + GAS_CO2 + "=4.6;" + GAS_WATER_VAPOR + "=1.1;TEMP=347.65"
-
 //Sand
 /turf/open/misc/moonstation_sand
 	name = "lunar sand"
@@ -23,13 +21,6 @@
 
 /turf/open/misc/moonstation_sand/broken_states()
 	return list("damaged")
-
-/turf/open/misc/moonstation_sand/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/diggable, /obj/item/stack/ore/glass, 2, worm_chance = 10)
-	icon_state = "[x % 10],[y % 10]"
-	if(mapload && prob(0.5))
-		new /obj/structure/flora/scrap(src)
 
 //Rock
 /turf/open/misc/moonstation_rock
