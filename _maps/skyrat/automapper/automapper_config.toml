@@ -22,8 +22,8 @@ trait_name = "CentCom"
 [templates.centcom_shuttle_dock]
 map_files = ["centcom_shuttle_dock.dmm"]
 directory = "_maps/skyrat/automapper/templates/centcom/"
-required_map = "builtin"
-coordinates = [206, 85, 1]
+required_map = "CentCom_skyrat_z2.dmm" ## BUBBERSTATION EDIT - MOVES THE SHUTTLE TO THE CENTCOM DOCK
+coordinates = [51, 167, 2]			   ## BUBBERSTATION EDIT
 trait_name = "CentCom"
 
 # METASTATION MAP TEMPLATES
@@ -172,44 +172,6 @@ directory = "_maps/RandomRuins/IceRuins/skyrat/"
 required_map = "IceBoxStation.dmm"
 coordinates = [202, 16, 2]
 trait_name = "Station"
-
-# KILOSTATION MAP EDITS
-# Kilostation Arrivals
-[templates.kilostation_arrivals]
-map_files = ["kilostation_arrivals.dmm"]
-# BUBBER EDIT START
-#directory = "_maps/skyrat/automapper/templates/kilostation/"
-directory = "_maps/bubber/automapper/templates/kilostation/"
-# BUBBER EDIT END
-required_map = "KiloStation.dmm"
-coordinates = [151, 80, 1]
-trait_name = "Station"
-
-# Kilostation ERT Bay and Barber
-[templates.kilostation_ert_bay]
-map_files = ["kilostation_ert_bay.dmm"]
-directory = "_maps/skyrat/automapper/templates/kilostation/"
-required_map = "KiloStation.dmm"
-coordinates = [77, 151, 1]
-trait_name = "Station"
-
-# Kilostation Cryo
-[templates.kilostation_cryo]
-map_files = ["kilostation_cryo.dmm"]
-directory = "_maps/skyrat/automapper/templates/kilostation/"
-required_map = "KiloStation.dmm"
-coordinates = [59, 118, 1]
-trait_name = "Station"
-
-# BUBBER ADDITION START
-# Kilostation Supermatter Chamber
-[templates.kilostation_supermatter]
-map_files = ["kilostation_supermatter.dmm"]
-directory = "_maps/bubber/automapper/templates/kilostation/"
-required_map = "KiloStation.dmm"
-coordinates = [140, 72, 1]
-trait_name = "Station"
-# BUBBER ADDITION END
 
 # TRAMSTATION MAP EDITS
 # Tramstation Arrivals
@@ -374,7 +336,9 @@ required_map = "Lavaland.dmm"
 coordinates = [223, 224, 1]
 trait_name = "Mining"
 
-#BUBBER ARMORY EDITS
+#BUBBER EDITS -------------------------------
+# ADD ALL BUBBER EDITS BENEATH THIS!
+
 # Metastation Armory
 [templates.metastation_armory]
 map_files = ["metastation_armory.dmm"]
@@ -405,14 +369,6 @@ map_files = ["deltastation_armory.dmm"]
 directory = "_maps/bubber/automapper/templates/Deltastation/"
 required_map = "DeltaStation2.dmm"
 coordinates = [207, 127, 1]
-trait_name = "Station"
-
-# Burgerstation Armory
-[templates.burgerstation_armory]
-map_files = ["burgerstation_armory.dmm"]
-directory = "_maps/bubber/automapper/templates/burgerstation/"
-required_map = "burgerstation.dmm"
-coordinates = [136, 161, 1]
 trait_name = "Station"
 
 # IceBoxStation Armory
@@ -447,6 +403,7 @@ required_map = "tramstation.dmm"
 coordinates = [69, 162, 2]
 trait_name = "Station"
 
+# ----- KILO DOES NOT NEED THIS SINCE UPSTREAM REMOVED IT, BUT I DON'T FEEL LIKE MAPPING IT. THIS IS A COOL REFACTOR PROJECT FOR BORED CODERS
 # Kilostation Armory
 [templates.kilostation_armory]
 map_files = ["kilostation_armory.dmm"]
@@ -454,3 +411,43 @@ directory = "_maps/bubber/automapper/templates/kilostation/"
 required_map = "kilostation.dmm"
 coordinates = [81, 78, 1]
 trait_name = "Station"
+
+# Kilostation Arrivals
+[templates.kilostation_arrivals]
+map_files = ["kilostation_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/kilostation/"
+required_map = "KiloStation.dmm"
+coordinates = [151, 80, 1]
+trait_name = "Station"
+
+# Kilostation ERT Bay and Barber
+[templates.kilostation_ert_bay]
+map_files = ["kilostation_ert_bay.dmm"]
+directory = "_maps/bubber/automapper/templates/kilostation/"
+required_map = "KiloStation.dmm"
+coordinates = [77, 151, 1]
+trait_name = "Station"
+
+# Kilostation Cryo
+[templates.kilostation_cryo]
+map_files = ["kilostation_cryo.dmm"]
+directory = "_maps/bubber/automapper/templates/kilostation/"
+required_map = "KiloStation.dmm"
+coordinates = [59, 118, 1]
+trait_name = "Station"
+
+# Kilostation Supermatter Chamber
+[templates.kilostation_supermatter]
+map_files = ["kilostation_supermatter.dmm"]
+directory = "_maps/bubber/automapper/templates/kilostation/"
+required_map = "KiloStation.dmm"
+coordinates = [140, 72, 1]
+trait_name = "Station"
+
+# Interlink Admin Office
+[templates.interlink_adminoffice]
+map_files = ["interlink_adminoffice.dmm"]
+directory = "_maps/bubber/automapper/templates/generic/"
+required_map = "CentCom_skyrat_z2.dmm"
+coordinates = [72, 183, 2]
+trait_name = "CentCom"

@@ -53,7 +53,7 @@
 	/// Christmas tree, no presents included.
 	var/festive_tree = /obj/structure/flora/tree/pine/xmas
 	/// Christmas tree, presents included.
-	var/christmas_tree = /obj/structure/flora/tree/pine/xmas/presents
+	var/christmas_tree = /obj/structure/flora/tree/pine/xmas/presents/safe //Bubberstation Edition
 
 /obj/effect/spawner/xmastree/Initialize(mapload)
 	. = ..()
@@ -84,7 +84,7 @@
 	priority_announce("Santa is coming to town!", "Unknown Transmission")
 
 /datum/round_event/santa/start()
-	var/list/candidates = poll_ghost_candidates("Santa is coming to town! Do you want to be Santa?", poll_time=150)
+	var/list/candidates = SSpolling.poll_ghost_candidates("Santa is coming to town! Do you want to be Santa?", poll_time = 15 SECONDS, pic_source = /obj/item/clothing/head/costume/santa, role_name_text = "santa")
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		santa = new /mob/living/carbon/human(pick(GLOB.blobstart))

@@ -14,7 +14,7 @@
 	)
 
 /datum/preference/choiced/parallax/create_default_value()
-	return PARALLAX_DISABLE // BUBBER EDIT - Aesthetic
+	return PARALLAX_HIGH
 
 /datum/preference/choiced/parallax/apply_to_client(client/client, value)
 	client.mob?.hud_used?.update_parallax_pref(client?.mob)

@@ -7,12 +7,9 @@
 	desc = "Automagically transforms into a random arcade machine. If you see this while in a shift, please create a bug report."
 	icon_state = "arcade"
 	loot = list(
-		//BUBBER EDIT START
-		/obj/machinery/computer/arcade/orion_trail = 33,
-		/obj/machinery/computer/arcade/battle = 33,
-		/obj/machinery/computer/arcade/minesweeper = 32,
+		/obj/machinery/computer/arcade/orion_trail = 49,
+		/obj/machinery/computer/arcade/battle = 49,
 		/obj/machinery/computer/arcade/amputation = 2,
-		//BUBBER EDIT END
 	)
 
 /obj/effect/spawner/random/entertainment/musical_instrument
@@ -283,4 +280,13 @@
 		/obj/item/toy/plush/bubbleplush = 2,
 		/obj/item/toy/plush/ratplush = 2,
 		/obj/item/toy/plush/narplush = 2,
+	)
+
+/obj/effect/spawner/random/entertainment/colorful_grenades
+	name = "colorful/glitter grenades spawner"
+	loot = list(
+		/obj/item/grenade/chem_grenade/glitter/pink,
+		/obj/item/grenade/chem_grenade/glitter/blue,
+		/obj/item/grenade/chem_grenade/glitter/white,
+		/obj/item/grenade/chem_grenade/colorful
 	)

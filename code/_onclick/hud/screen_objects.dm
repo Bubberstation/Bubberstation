@@ -18,7 +18,7 @@
 	/// A reference to the object in the slot. Grabs or items, generally, but any datum will do.
 	var/datum/weakref/master_ref = null
 	/// A reference to the owner HUD, if any.
-	var/datum/hud/hud = null // BUBBER EDIT - Unprivate this for hot editing.
+	var/datum/hud/hud = null // BUBBER EDIT - Originally private, adjusted for hot editing.
 	/**
 	 * Map name assigned to this object.
 	 * Automatically set by /client/proc/add_obj_to_map.
@@ -54,6 +54,10 @@
 
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
+
+/// Returns the mob this is being displayed to, if any
+/atom/movable/screen/proc/get_mob()
+	return hud?.mymob
 
 /atom/movable/screen/text
 	icon = null
