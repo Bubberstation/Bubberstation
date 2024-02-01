@@ -15,6 +15,11 @@
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/misc/moonstation_rock
 
+/turf/open/misc/moonstation_sand/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/diggable, /obj/item/stack/ore/glass, 2, worm_chance = 3)
+	icon_state = "[x % 10],[y % 10]"
+
 /turf/open/misc/moonstation_sand/break_tile()
 	. = ..()
 	icon_state = "damaged"
