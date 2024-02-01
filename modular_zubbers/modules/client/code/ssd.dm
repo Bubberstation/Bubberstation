@@ -59,4 +59,6 @@
 	log_access("Ghost sent to lobby due to disconnect: [key]")
 	M.key = key
 
+	qdel(src)
+
 #undef GHOST_AFK_RESPAWN_TIME
