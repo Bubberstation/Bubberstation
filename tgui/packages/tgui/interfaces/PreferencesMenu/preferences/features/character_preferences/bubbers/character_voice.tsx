@@ -1,6 +1,7 @@
 import { Button, Stack } from '../../../../../../components';
 import {
   CheckboxInput,
+  Feature,
   FeatureChoiced,
   FeatureChoicedServerData,
   FeatureDropdownInput,
