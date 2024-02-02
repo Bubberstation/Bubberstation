@@ -10,7 +10,6 @@ import {
   FeatureToggle,
   FeatureValueProps,
   FeatureSliderInput,
-  Feature,
 } from '../../base';
 
 const FeatureBlooperDropdownInput = (
