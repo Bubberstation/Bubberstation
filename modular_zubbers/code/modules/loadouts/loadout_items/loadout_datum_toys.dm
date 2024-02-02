@@ -36,6 +36,14 @@
 	name = "tired teshari plushie"
 	item_path = /obj/item/toy/plush/tiredtesh
 
+/datum/loadout_item/toys/xenoplush
+	name = "Xenomorph Plushie"
+	item_path = /obj/item/toy/plush/xenoplush
+
+/datum/loadout_item/toys/xenomaidplush
+	name = "Xenomorph Maid Plushie"
+	item_path = /obj/item/toy/plush/xenoplush/xenomaidplush
+
 /datum/loadout_item/toys/carrotbag
 	name = "Carrot Bag"
 	item_path = /obj/item/sbeacondrop/carrot
