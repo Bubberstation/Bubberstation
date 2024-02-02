@@ -102,7 +102,7 @@
 	if(stat == DEAD)
 		return FALSE
 
-	if(!gibbed && (death_sound || death_message))
+	if(!gibbed) // Bubber FIX: deathgasps
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "deathgasp")
 
 	set_stat(DEAD)
