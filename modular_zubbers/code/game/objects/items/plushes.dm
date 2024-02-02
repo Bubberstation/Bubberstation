@@ -96,3 +96,7 @@
 	icon_state = "xenomaidplush"
 	attack_verb_continuous = list("polishes", "cleans", "tidies", "washes")
 	attack_verb_simple = list("polish", "clean", "tidy", "wash")
+
+/obj/item/toy/plush/skyrat/jecca
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
