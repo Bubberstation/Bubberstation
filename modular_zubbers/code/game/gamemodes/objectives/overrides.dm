@@ -14,7 +14,9 @@
 /datum/traitor_objective/New(datum/uplink_handler/handler)
 	. = ..()
 	telecrystal_reward = 0
+	progression_reward = 0
 
 /datum/traitor_objective/succeed_objective()
 	. = ..()
 	telecrystal_reward = 0
+	progression_reward = 0
