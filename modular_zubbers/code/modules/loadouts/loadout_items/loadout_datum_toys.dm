@@ -43,3 +43,8 @@
 /datum/loadout_item/toys/xenomaidplush
 	name = "Xenomorph Maid Plushie"
 	item_path = /obj/item/toy/plush/xenoplush/xenomaidplush
+
+/datum/loadout_item/toys/carrotbag
+	name = "Carrot Bag"
+	item_path = /obj/item/sbeacondrop/carrot
+	ckeywhitelist = list("slippyjoe")
