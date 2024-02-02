@@ -95,19 +95,19 @@
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
+//BUBBERSTATION EDIT BEGIN - Removes spectral blade from ash drake chest
 	var/loot = rand(1,3)
 	switch(loot)
-//BUBBERSTATION EDIT BEGIN - Removes spectral blade from ash drake chest
 		/*if(1)
 			new /obj/item/melee/ghost_sword(src)*/
-//BUBBERSTATION EDIT END
+
 		if(1)
 			new /obj/item/lava_staff(src)
 		if(2)
 			new /obj/item/book/granter/action/spell/sacredflame(src)
 		if(3)
 			new /obj/item/dragons_blood(src)
-
+//BUBBERSTATION EDIT END
 /obj/structure/closet/crate/necropolis/dragon/crusher
 	name = "firey dragon chest"
 
