@@ -1,4 +1,4 @@
-## Bubberstation (A Skyrat Downstream)
+## Bubberstation (A Skyrat Downstream) - Wee
 
 [![CI Suite](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml/badge.svg)](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml)
 
