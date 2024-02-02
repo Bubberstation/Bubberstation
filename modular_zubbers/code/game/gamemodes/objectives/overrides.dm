@@ -10,6 +10,11 @@
 	steal_objective.find_target()
 	return steal_objective
 
-/datum/uplink_handler/generate_objectives()
-	on_update()
-	return FALSE
+//Removes telecrystal rewards from progtot secondary objectives
+/datum/traitor_objective/New(datum/uplink_handler/handler)
+	. = ..()
+	telecrystal_reward = 0
+
+/datum/traitor_objective/succeed_objective()
+	. = ..()
+	telecrystal_reward = 0
