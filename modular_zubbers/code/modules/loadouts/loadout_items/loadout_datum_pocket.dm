@@ -10,3 +10,8 @@
 /datum/loadout_item/pocket_items/quantum_lipstick
 	name = "quantum lipstick"
 	item_path = /obj/item/lipstick/quantum
+
+/datum/loadout_item/pocket_items/stamp/donator/crow
+	name = "Mitchell Inc. Stamp"
+	item_path = /obj/item/stamp/donator/crow
+	ckeywhitelist = list("slippyjoe") //donator item for SlippyJoe, who woulda guessed.
