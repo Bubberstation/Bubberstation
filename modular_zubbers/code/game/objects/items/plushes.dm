@@ -76,3 +76,27 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "tiredtesh"
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/Nose_boop.ogg' = 1)
+
+/obj/item/toy/plush/xenoplush
+	name = "xenomorph plushie"
+	desc = "A cute rendition of the notorious xenomorph. Its stuffing is an acidic green colour."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "xenoplush"
+	squeak_override = list('sound/voice/hiss6.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "xenoplush"
+	attack_verb_continuous = list("hisses at", "bites", "chews", "chomps", "tail stabs")
+	attack_verb_simple = list("hiss at", "bite", "chew", "chomp", "tail stab")
+
+/obj/item/toy/plush/xenoplush/xenomaidplush
+	name = "xenomorph maid plushie"
+	desc = "A cute rendition of the notorious xenomorph, but in a maid costume. It's eager to help you clean the station."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "xenomaidplush"
+	attack_verb_continuous = list("polishes", "cleans", "tidies", "washes")
+	attack_verb_simple = list("polish", "clean", "tidy", "wash")
+
+/obj/item/toy/plush/skyrat/jecca
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
