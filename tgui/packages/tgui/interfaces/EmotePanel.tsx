@@ -1,9 +1,9 @@
-import { useBackend, useLocalState } from '../backend';
-import { Window } from '../layouts';
-import { Button, Section, Flex, Icon, Box } from '../components';
 import { BooleanLike } from '../../common/react';
-import { SearchBar } from './Fabrication/SearchBar';
 import { capitalizeFirst } from '../../common/string';
+import { useBackend, useLocalState } from '../backend';
+import { Box, Button, Flex, Icon, Section } from '../components';
+import { Window } from '../layouts';
+import { SearchBar } from './common/SearchBar';
 
 type Emote = {
   key: string;
@@ -120,9 +120,9 @@ export const EmotePanelContent = (props) => {
         }
       >
         <SearchBar
-          searchText={searchText}
-          onSearchTextChanged={setSearchText}
-          hint={'Search all emotes...'}
+          query={searchText}
+          onSearch={setSearchText}
+          placeholder="Search all emotes..."
         />
       </Section>
       <Section

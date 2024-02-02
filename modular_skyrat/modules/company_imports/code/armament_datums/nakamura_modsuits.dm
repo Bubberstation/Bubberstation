@@ -78,13 +78,13 @@
 /datum/armament_entry/company_import/nakamura_modsuits/protection_modules/emp_shield
 	item_type = /obj/item/mod/module/emp_shield
 	cost = PAYCHECK_CREW
-
+/* //BUBBER EDIT REMOVAL BEGIN: REMOVES OP MODULES FROM COMPANY IMPORTS
 /datum/armament_entry/company_import/nakamura_modsuits/protection_modules/armor_plates
 	item_type = /obj/item/mod/module/armor_booster/retractplates
 	cost = PAYCHECK_COMMAND * 3
 	restricted = TRUE
 	contraband = TRUE
-
+*/ //BUBBER EDIT REMOVAL END: REMOVES OP MODULES FROM COMPANY IMPORTS
 /datum/armament_entry/company_import/nakamura_modsuits/protection_modules/accretion
 	item_type = /obj/item/mod/module/ash_accretion
 	cost = PAYCHECK_COMMAND * 3

@@ -104,10 +104,6 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
-	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
-	if(client?.autopunctuation && findtext(message, GLOB.has_eol_punctuation))
-		message += "."
-	//BUBBER EDIT END: AUTOPUNCTUATION
 
 	var/list/message_mods = list()
 	var/original_message = message
@@ -220,6 +216,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(succumbed)
 			succumb()
 		return
+
+	//BUBBER EDIT: AUTOPUNCTUATION
+	if(client?.autopunctuation)
+		message = autopunct_bare(message)
+	//BUBBER EDIT END: AUTOPUNCTUATION
 
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
 	if(saymode && !saymode.handle_message(src, message, language))
