@@ -99,8 +99,8 @@
 	var/loot = rand(1,3)
 	switch(loot)
 		/*if(1)
-			new /obj/item/melee/ghost_sword(src)*/
-
+			new /obj/item/melee/ghost_sword(src)
+		*/
 		if(1)
 			new /obj/item/lava_staff(src)
 		if(2)
