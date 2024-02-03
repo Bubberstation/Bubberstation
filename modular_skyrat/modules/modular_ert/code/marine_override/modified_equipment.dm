@@ -1,3 +1,4 @@
+/* BUBBER REMOVAL: Removes Skyrat Balanced:tm: ERT marines
 /datum/outfit/centcom/ert/marine //commander
 	suit_store = /obj/item/gun/ballistic/automatic/ar/modular/m44a/grenadelauncher
 	belt = /obj/item/storage/belt/military/assault/full/m44a
@@ -51,3 +52,4 @@
 	)
 	l_hand = null
 	r_hand = null
+*/ BUBBER REMOVAL END
