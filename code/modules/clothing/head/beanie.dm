@@ -56,6 +56,14 @@
 	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
 	icon_state = "beanierasta"
 
+/obj/item/clothing/head/beaniesec
+	name = "security beanie"
+	desc = "A robust beanie with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	icon = 'icons/obj/clothing/head/beanie.dmi'
+	worn_icon = 'icons/mob/clothing/head/beanie.dmi'
+	icon_state = "beanie_sec"
+	armor_type = /datum/armor/beanie_sec
+
 /obj/item/clothing/head/waldo
 	name = "red striped bobble hat"
 	desc = "If you're going on a worldwide hike, you'll need some cold protection."
@@ -79,6 +87,16 @@
 	bomb = 10
 	fire = 30
 	acid = 5
+
+/datum/armor/beanie_sec
+	melee = 30
+	bullet = 25
+	laser = 25
+	energy = 35
+	bomb = 25
+	fire = 20
+	acid = 50
+	wound = 4
 
 /obj/item/clothing/head/beanie/black/dboy/equipped(mob/user, slot)
 	. = ..()
