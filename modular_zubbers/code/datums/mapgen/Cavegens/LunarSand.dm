@@ -15,8 +15,8 @@
 		/mob/living/basic/mining/watcher = 30,
 		/mob/living/basic/mining/goldgrub = 10,
 		/mob/living/basic/mining/brimdemon = 10,
-		/obj/structure/spawner/mining/goldgrub = 1,
 		/obj/structure/spawner/mining/goliath = 5,
+		/mob/living/basic/spider/giant/tangle/mining = 5
 	)
 
 	weighted_flora_spawn_list = list(
@@ -60,10 +60,8 @@
 
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/cazador/mining = 10,
-		/mob/living/simple_animal/hostile/scorpion/mining = 10,
-		/mob/living/basic/ant/mining = 40,
-		/mob/living/basic/snake/mining = 20,
-		/mob/living/basic/spider/giant/tangle/mining = 10,
+		/mob/living/simple_animal/hostile/scorpion/mining = 40,
+		/mob/living/basic/ant/mining = 20
 	)
 
 	mob_spawn_chance = 0.5
