@@ -120,7 +120,7 @@
 	if(quiet_enviromnent)
 		modded_time *= SURGERY_SPEEDUP_AREA
 		to_chat(user, span_notice("You are able to work faster due to the quiet environment!"))
-	*/ BUBBERSTATION CHANGE END.
+	BUBBERSTATION CHANGE END. */
 	modded_time *= SURGERY_SPEEDUP_AREA //BUBBERSTATION CHANGE: QUIET ENVIRONMENT MOD
 	// Skyrat Edit End
 	// Skyrat Edit: Cyborgs are no longer immune to surgery speedups.
