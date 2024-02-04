@@ -66,12 +66,6 @@
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
 		return
-	if(max_vassals() >= 1 && !(/datum/crafting_recipe/vassalrack in owner?.learned_recipes))
-		owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
-		owner.current.balloon_alert(owner.current, "new recipes learned! Vassalization unlocked!")
 	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()

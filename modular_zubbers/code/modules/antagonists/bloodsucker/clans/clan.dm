@@ -218,6 +218,13 @@
 		* Your existing powers have all ranked up as well!"))
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
 	bloodsuckerdatum.update_hud()
+	// unlock vassalizing if we have a vassal slot
+	if(bloodsuckerdatum.max_vassals() >= 1 && !(/datum/crafting_recipe/vassalrack in bloodsuckerdatum.owner?.learned_recipes))
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
 
 /**
  * Called when we are trying to turn someone into a Favorite Vassal
