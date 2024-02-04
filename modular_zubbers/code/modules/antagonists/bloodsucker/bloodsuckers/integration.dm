@@ -51,6 +51,7 @@
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
+		. += "Maximum blood: [bloodsuckerdatum.max_blood_volume]"
 		if(bloodsuckerdatum.frenzied)
 			. += "Frenzy exit blood threshold: [bloodsuckerdatum.frenzy_exit_threshold()]"
 		else
