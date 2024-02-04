@@ -45,6 +45,7 @@
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/head/beret/sec = 6,
 					/obj/item/clothing/head/soft/sec = 6,
+					/obj/item/clothing/head/beaniesec = 6,
 					/obj/item/clothing/mask/bandana/red = 6,
 					/obj/item/clothing/gloves/color/black = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
