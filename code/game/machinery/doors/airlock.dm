@@ -1283,8 +1283,8 @@
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS) // No power usage, special sound, get it open.
-			playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)// - ORIGINAL - BUBBER REVERT
-			//playsound(src, forcedOpen, 30, TRUE) //SKYRAT EDIT CHANGE - AESTHETICS
+			//playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE) - ORIGINAL
+			playsound(src, forcedOpen, 30, TRUE) //SKYRAT EDIT CHANGE - AESTHETICS
 			return TRUE
 
 		else
