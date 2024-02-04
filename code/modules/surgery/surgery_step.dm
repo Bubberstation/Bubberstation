@@ -111,6 +111,7 @@
 	if(was_sleeping || HAS_TRAIT(target, TRAIT_NUMBED) || target.stat == DEAD)
 		modded_time *= SURGERY_SPEEDUP_AREA
 		to_chat(user, span_notice("You are able to work faster due to the patient's calm attitude!"))
+	/* BUBBERSTATION CHANGE: NO QUIET ENVIRONMENT MOD
 	var/quiet_enviromnent = TRUE
 	for(var/mob/living/carbon/human/loud_people in view(3, target))
 		if(loud_people != user && loud_people != target)
@@ -119,6 +120,8 @@
 	if(quiet_enviromnent)
 		modded_time *= SURGERY_SPEEDUP_AREA
 		to_chat(user, span_notice("You are able to work faster due to the quiet environment!"))
+	*/ BUBBERSTATION CHANGE END.
+	modded_time *= SURGERY_SPEEDUP_AREA //BUBBERSTATION CHANGE: QUIET ENVIRONMENT MOD
 	// Skyrat Edit End
 	// Skyrat Edit: Cyborgs are no longer immune to surgery speedups.
 	//if(iscyborg(user))//any immunities to surgery slowdown should go in this check.
