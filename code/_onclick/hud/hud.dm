@@ -719,7 +719,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/visual_column = number % column_max
 	var/coord_col = "+[visual_column]"
 	var/coord_col_offset = 4 + 2 * (visual_column + 1)
-	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:-[pixel_north_offset]"
+	return "LEFT[coord_col]:[coord_col_offset],TOP[coord_row]:-[pixel_north_offset]" // The actual differing part.
 
 /datum/action_group/proc/check_against_view()
 	var/owner_view = owner?.mymob?.canon_client?.view
@@ -799,7 +799,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/palette_scroll/scroll_down = owner.palette_down
 	var/atom/movable/screen/palette_scroll/scroll_up = owner.palette_up
 
-	var/actions_above = round((owner.listed_actions.size() - 1) / owner.listed_actions.column_max)
+	var/actions_above = round((owner.listed_actions.size() - 1) / owner.listed_actions.column_max) + 1
 	north_offset = initial(north_offset) + actions_above
 
 	palette.screen_loc = ui_action_palette_offset(actions_above)
