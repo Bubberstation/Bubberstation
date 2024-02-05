@@ -3,7 +3,7 @@
 	description = "Act as a Negotiator, deliver coffee to the Brig, \
 		pretend you're more important than you are, until you move up."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_HEAD_OF_SECURITY)
+	department_head = list(JOB_HEAD_OF_SECURITY, JOB_HEAD_OF_PERSONNEL)
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
@@ -43,9 +43,9 @@
 /datum/outfit/job/security_cadet
 	name = "Security Cadet"
 	jobtype = /datum/job/security_cadet
-
+	id_trim = /datum/id_trim/job/security_cadet
+	belt = /obj/item/modular_computer/pda/security
 	accessory = /obj/item/clothing/accessory/armband/deputy
-	belt = /obj/item/melee/baton
 	ears = /obj/item/radio/headset/headset_sec/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	uniform = /obj/item/clothing/under/sol_peacekeeper
@@ -54,11 +54,11 @@
 	neck = /obj/item/clothing/neck/bowtie
 	suit = /obj/item/clothing/suit/armor/sf_peacekeeper
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	l_pocket = /obj/item/modular_computer/pda/security
-	r_pocket = /obj/item/reagent_containers/spray/pepper
+	l_pocket = /obj/item/taperecorder
+	r_pocket = /obj/item/storage/pouch/medical/firstaid/loaded
 	backpack_contents = list(
 		/obj/item/holosign_creator/security,
-		/obj/item/storage/medkit/civil_defense/stocked,
+		/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball,
 	)
 
 	backpack = /obj/item/storage/backpack/security
@@ -71,19 +71,44 @@
 	name = "Cadet Plasmaman"
 
 	accessory = /obj/item/clothing/accessory/armband/deputy
-	belt = /obj/item/melee/baton
+	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
 	neck = /obj/item/clothing/neck/bowtie
 	uniform = /obj/item/clothing/under/plasmaman/security
-	r_pocket = /obj/item/modular_computer/pda/security
-	r_pocket = /obj/item/reagent_containers/spray/pepper
+	l_pocket = /obj/item/taperecorder
+	r_pocket = /obj/item/storage/pouch/medical/firstaid/loaded
 	backpack_contents = list(
 		/obj/item/holosign_creator/security,
-		/obj/item/storage/medkit/civil_defense/stocked,
+		/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball,
 	)
+
 
 	box = /obj/item/storage/box/survival/security
 
 	implants = list(/obj/item/implant/mindshield)
+
+/datum/id_trim/job/security_cadet
+	assignment = "Security Cadet"
+	trim_state = "trim_securityofficer"
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SERVICE_LIME
+	sechud_icon_state = SECHUD_SECURITY_OFFICER
+	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_COURT,
+		ACCESS_MECH_SECURITY,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_SECURITY,
+		ACCESS_WEAPONS,
+		)
+	extra_access = list(
+		ACCESS_MAINT_TUNNELS,
+	)
+	template_access = list(
+		ACCESS_CAPTAIN,
+		ACCESS_CHANGE_IDS,
+		ACCESS_HOS,
+	)
+	job = /datum/job/security_cadet
