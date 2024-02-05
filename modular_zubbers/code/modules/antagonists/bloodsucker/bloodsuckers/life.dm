@@ -43,12 +43,20 @@
 /datum/antagonist/bloodsucker/proc/AddBloodVolume(value)
 	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume)
 
+/datum/antagonist/bloodsucker/proc/SetBloodVolume(value)
+	bloodsucker_blood_volume = clamp(value, 0, max_blood_volume)
+
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
-	// 100 humanity lost already causes you to frenzy at 25 + 100 * 10 = 1025 blood and deal 1 + 100 / 10 = 11 burn per second due to frenzy
-	if(humanity_lost >= 100)
-		to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanty, you are far from Human."))
+	if(humanity_lost >= HUMANITY_LOST_MAXIMUM)
+		var/datum/action/cooldown/bloodsucker/masq = is_type_in_list(/datum/action/cooldown/bloodsucker/masquerade, powers)
+		if(masq)
+			to_chat(owner.current)
+			RemovePower(masq)
+			to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanty, you are far from Human. You've forgotten how to pretend to be like your prey..."))
+			return
+		to_chat(owner.current, span_hypnophrase("The Beast, it yearns for Blood..."))
 		return
-	humanity_lost += value
+	humanity_lost = clamp(value, 0, HUMANITY_LOST_MAXIMUM)
 	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)] Blood."))
 
 /// mult: SILENT feed is 1/3 the amount
@@ -160,14 +168,14 @@
 
 	if(!bloodsuckeruser)
 		return
-
+	// revive() fails if the target is husked. For now we're just reviving
+	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN))
+		to_chat(bloodsuckeruser, span_danger("Your immortal blood has healed your body from near-irrecoverable damage, but has used nearly all of your blood in doing so!"))
+		AddHumanityLost(2)
+		SetBloodVolume(frenzy_enter_threshold() * 2)
+		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 	bloodsuckeruser.cure_husk(BURN)
 	bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
-	// just in case some fuckery happens, going in a coffin will fix you up
-	add_signals_to_organs(bloodsuckeruser)
-	remove_signals_from_organs(bloodsuckeruser)
-	for(var/obj/item/organ/organ as anything in bloodsuckeruser.organs)
-		organ.set_organ_damage(0)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
 		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
 		current_heart.Stop()
@@ -187,7 +195,8 @@
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
 		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/body_egg),
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/zombie_infection))
+		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/zombie_infection)
+	)
 	for(var/tumors in bad_organs)
 		var/obj/item/organ/yucky_organs = tumors
 		if(!istype(yucky_organs))
@@ -217,7 +226,10 @@
 		FinalDeath()
 		return
 	// Temporary Death? Convert to Torpor.
-	if(HAS_TRAIT(owner.current, TRAIT_NODEATH) && isbrain(owner.current))
+	if(HAS_TRAIT(owner.current, TRAIT_NODEATH) || isbrain(owner.current))
+		return
+	// Won't torpor without vital organs, as this means they'd revive without a heart
+	if(!owner.current.get_organ_slot(ORGAN_SLOT_HEART))
 		return
 	check_begin_torpor(TRUE)
 
