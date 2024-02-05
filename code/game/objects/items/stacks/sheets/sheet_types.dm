@@ -72,9 +72,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	//BUBBER EDIT BEGIN: ADDS CRAFTABLE SHELVES
 	new /datum/stack_recipe_list("Racks and Shelves", list( \
 		new/datum/stack_recipe("rack parts", /obj/item/rack_parts, category = CAT_FURNITURE), \
-		new/datum/stack_recipe("Cargo shelf parts", /obj/item/rack_parts/cargo_shelf, category = CAT_FURNITURE), \
-		new/datum/stack_recipe("Gun shelf parts", /obj/item/rack_parts/gun, category = CAT_FURNITURE), \
-		new/datum/stack_recipe("Shelf parts", /obj/item/rack_parts/shelf, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Cargo shelf parts", /obj/item/rack_parts/cargo_shelf, 4, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Gun shelf parts", /obj/item/rack_parts/gun, 2, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Shelf parts", /obj/item/rack_parts/shelf, 2, category = CAT_FURNITURE), \
 	)),
 	null, \
 	//BUBBER EDIT END: ADDS CRAFTABLE SHELVES
