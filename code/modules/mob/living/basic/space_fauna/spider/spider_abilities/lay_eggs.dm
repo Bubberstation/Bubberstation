@@ -5,7 +5,7 @@
 	button_icon_state = "lay_eggs"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
-	cooldown_time = 20 SECONDS
+	cooldown_time = 60 SECONDS //BUBBER EDIT: Original: 20 seconds
 	melee_cooldown_time = 5 SECONDS
 	shared_cooldown = NONE
 	click_to_activate = FALSE
@@ -64,7 +64,7 @@
 	name = "Lay Abnormal Eggs"
 	desc = "Lay a cluster of eggs, which will soon grow into a uncommon spider."
 	button_icon_state = "lay_abnormal_eggs"
-	cooldown_time = 180 SECONDS
+	cooldown_time = 360 SECONDS //BUBBER EDIT - Original: 180 seconds
 	egg_type = /obj/effect/mob_spawn/ghost_role/spider/abnormal
 
 /datum/action/cooldown/mob_cooldown/lay_eggs/enriched
