@@ -46,18 +46,25 @@
 /datum/antagonist/bloodsucker/proc/SetBloodVolume(value)
 	bloodsucker_blood_volume = clamp(value, 0, max_blood_volume)
 
+#define MASQUERADE /datum/action/cooldown/bloodsucker/masquerade
+
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
-	if(humanity_lost >= HUMANITY_LOST_MAXIMUM)
-		var/datum/action/cooldown/bloodsucker/masq = is_type_in_list(/datum/action/cooldown/bloodsucker/masquerade, powers)
-		if(masq)
-			to_chat(owner.current)
-			RemovePower(masq)
-			to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanty, you are far from Human. You've forgotten how to pretend to be like your prey..."))
-			return
-		to_chat(owner.current, span_hypnophrase("The Beast, it yearns for Blood..."))
+	if(value == 0)
 		return
+	var/has_masq = is_path_in_list(MASQUERADE, powers)
+	if(value + humanity_lost >= HUMANITY_LOST_MAXIMUM)
+		if(has_masq)
+			RemovePowerByPath(MASQUERADE)
+			to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanty, you are far from Human. You've forgotten how to pretend to be like your prey..."))
+		else
+			to_chat(owner.current, span_hypnophrase("The Beast, it yearns for Blood..."))
+	else if(!has_masq)
+		BuyPower(MASQUERADE)
+		to_chat(owner.current, span_hypnophrase("You've remembered, yet again, how it feels to live again."))
 	humanity_lost = clamp(value, 0, HUMANITY_LOST_MAXIMUM)
-	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)] Blood."))
+	to_chat(owner.current, span_warning("You feel as if you [value < 0 ? "gained" : "lost" ] some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)] Blood."))
+
+#undef MASQUERADE
 
 /// mult: SILENT feed is 1/3 the amount
 /datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level)

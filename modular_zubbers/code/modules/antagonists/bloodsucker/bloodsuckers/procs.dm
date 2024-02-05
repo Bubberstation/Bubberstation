@@ -25,6 +25,11 @@
 	powers -= power
 	power.Remove(owner.current)
 
+/datum/antagonist/bloodsucker/proc/RemovePowerByPath(datum/action/cooldown/bloodsucker/power_to_remove)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		if(power?.type == power_to_remove)
+			RemovePower(power)
+
 ///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed, and Malkavian Bloodsuckers get alerted.
 /datum/antagonist/bloodsucker/proc/break_masquerade(mob/admin)
 	if(broke_masquerade)
