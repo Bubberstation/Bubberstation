@@ -117,7 +117,7 @@
 	/// Are we entering Torpor via Sol/Death? Then entering it isnt optional!
 	if(SkipChecks)
 		to_chat(user, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
-		torpor_begin()
+		torpor_begin(TRUE)
 		return
 	/// Prevent Torpor whilst frenzied.
 	if(frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0))
@@ -153,8 +153,9 @@
 			torpor_end()
 	return TRUE
 
-/datum/antagonist/bloodsucker/proc/torpor_begin()
-	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
+/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)
+	if(!silent)
+		to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	// Without this, you'll just keep dying while you recover.

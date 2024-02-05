@@ -154,51 +154,52 @@
 /datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
 
-/datum/antagonist/bloodsucker/proc/add_signals_to_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
-	if(!islist(organ_slots))
-		organ_slots = list(organ_slots)
-	for(var/organ_slot in organ_slots)
-		var/organ = current_mob.get_organ_slot(organ_slot)
-		vital_organs[organ_slot] = WEAKREF(organ)
-		RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
-		RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
+/datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
+	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
+	heart = WEAKREF(organ)
+	RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
+	RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
 
-/datum/antagonist/bloodsucker/proc/remove_signals_from_organs(mob/living/carbon/human/current_mob, organ_slots = vital_organs)
-	if(!islist(organ_slots))
-		organ_slots = list(organ_slots)
-	for(var/organ_slot in organ_slots)
-		// We're fetching the organ from the datum so that specifically only the organs that
-		// we added to get the signal removed from, just in case of funky stuff.
-		var/organ = WEAKREF(vital_organs[organ_slot])
-		if(!organ)
-			continue
-		UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
-		UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
+/datum/antagonist/bloodsucker/proc/remove_signals_from_heart(mob/living/carbon/human/current_mob)
+	var/organ = heart.resolve()
+	if(!organ)
+		return
+	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
+	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
+	organ = null
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
-	if(old_owner.get_organ_slot(organ.slot))
+	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ.slot != ORGAN_SLOT_HEART)
 		return
-	if(!(organ.slot in vital_organs))
-		return
-	remove_signals_from_organs(old_owner, list(organ.slot))
+	remove_signals_from_heart(old_owner)
 	// You don't run bloodsucker life without a heart or brain
 	if(old_owner.stat != DEAD)
 		to_chat(old_owner, span_userdanger("You have lost your [organ.slot]! You will not revive until you regain it!"))
 		old_owner.death()
+		UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
 
 /datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
 	SIGNAL_HANDLER
-	if(!(replacement.slot in vital_organs))
+	if(replacement.slot != ORGAN_SLOT_HEART)
 		return
-	add_signals_to_organs(current_mob, replacement.slot)
+	// Shit might get really fucked up. Let's try to fix things if it does
+	if(current_mob != owner.current)
+		UnregisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN)
+		RegisterSignal(owner.current, COMSIG_CARBON_GAIN_ORGAN)
+		add_signals_to_heart(owner.current)
+		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
+		CRASH("What the fuck, somehow called on_organ_gain signal on [src] without current_mob being the antag datum's owner?")
+	
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
+	add_signals_to_heart(current_mob)
 
-/// This handles regen_organs replacing organs
+/// This handles regen_organs replacing organs, without this the bloodsucker would die for a moment due to their heart being removed for a moment
 /datum/antagonist/bloodsucker/proc/before_organ_replace(obj/item/organ/old_organ, obj/item/organ/new_organ)
 	SIGNAL_HANDLER
-	if(!(new_organ.slot in vital_organs))
+	if(new_organ.slot != ORGAN_SLOT_HEART)
 		return
-	remove_signals_from_organs(owner.current, list(old_organ.slot))
+	remove_signals_from_heart(owner.current)
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
 /datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)

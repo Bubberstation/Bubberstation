@@ -97,9 +97,10 @@
 		TRAIT_DRINKS_BLOOD
 	)
 	var/biotype = MOB_VAMPIRIC
-	// Considering to move all the static variables to GLOB, but not certain yet.
-	/// If these organs get removed, the bloodsucker experiences a Final Death.
-	var/static/list/vital_organs = list(ORGAN_SLOT_HEART = null, ORGAN_SLOT_BRAIN = null)
+	/// Weakref to the owner mob's heart, without bloodsucker_life stops and they die. Handled via signals due to the fact that
+	/// Bloodsuckers don't take damage from lacking a heart due to TRAIT_NOBREATH
+	/// Saved here so we can keep a track of it and remove signals properly
+	var/datum/weakref/heart
 
 /**
  * Apply innate effects is everything given to the mob
@@ -109,6 +110,7 @@
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
+	add_signals_to_heart(current_mob)
 	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
@@ -138,6 +140,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
+	remove_signals_from_heart(current_mob)
 	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING))
 	handle_clown_mutation(current_mob, removing = FALSE)
 
