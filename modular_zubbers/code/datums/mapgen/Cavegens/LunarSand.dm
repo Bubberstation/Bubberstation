@@ -61,10 +61,10 @@
 	weighted_mob_spawn_list = list(
 		/mob/living/simple_animal/hostile/cazador = 10,
 		/mob/living/simple_animal/hostile/scorpion = 40,
-		/mob/living/basic/ant = 20
+		/obj/effect/decal/cleanable/ants/fire = 50
 	)
 
-	mob_spawn_chance = 0.5
+	mob_spawn_chance = 1
 	initial_closed_chance = 30
 	smoothing_iterations = 50
 	birth_limit = 4
