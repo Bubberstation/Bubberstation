@@ -108,10 +108,11 @@
 	level_current++
 	if(!shows_level)
 		return
-	// Very funky way to update the level
-	var/regex/regex = regex(@"<br><br><b>LEVEL:<\/b> \d*")
-	desc = replacetextEx(desc, regex, "<br><br><b>LEVEL:</b> [level_current]")
 	build_all_button_icons(UPDATE_BUTTON_NAME)
+
+/datum/action/cooldown/bloodsucker/update_button_name(atom/movable/screen/movable/action_button/button, force)
+	. = ..()
+	button.desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user, trigger_flags)

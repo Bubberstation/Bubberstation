@@ -175,7 +175,7 @@
 	SIGNAL_HANDLER
 	if(!ishuman(owner.current))
 		return
-	add_signals_to_heart(current_mob)
+	add_signals_to_heart(target)
 	var/mob/living/carbon/human/user = owner.current
 	user?.dna?.species.on_bloodsucker_gain(target)
 
