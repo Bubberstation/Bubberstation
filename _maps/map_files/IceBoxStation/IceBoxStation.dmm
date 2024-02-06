@@ -4264,6 +4264,7 @@
 /area/station/maintenance/port/greater)
 "bpL" = (
 /obj/structure/noticeboard/directional/west,
+/obj/structure/displaycase/curator,
 /turf/open/floor/engine/cult,
 /area/station/service/library)
 "bpQ" = (
@@ -25847,6 +25848,13 @@
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
 /area/station/ai_monitored/turret_protected/aisat_interior)
+"hWI" = (
+/obj/effect/turf_decal/box,
+/obj/effect/spawner/random/structure/closet_empty/crate/with_loot,
+/obj/effect/spawner/random/maintenance/six,
+/obj/structure/sign/poster/official/wtf_is_co2/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/maintenance/starboard/aft)
 "hWP" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -39577,6 +39585,13 @@
 /obj/structure/sign/warning/electric_shock/directional/west,
 /turf/open/misc/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
+"mdX" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/fore)
 "mdZ" = (
 /turf/closed/wall,
 /area/station/hallway/secondary/service)
@@ -56459,6 +56474,14 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
+"rid" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/aft)
 "rig" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/maintenance,
@@ -60383,13 +60406,6 @@
 /obj/structure/sign/warning/secure_area,
 /turf/closed/wall/r_wall,
 /area/station/engineering/storage/tech)
-"sst" = (
-/obj/effect/turf_decal/box,
-/obj/effect/spawner/random/structure/closet_empty/crate/with_loot,
-/obj/effect/spawner/random/maintenance/six,
-/obj/structure/sign/poster/official/wtf_is_co2/directional/north,
-/turf/open/floor/iron/dark,
-/area/station/maintenance/starboard/aft)
 "ssv" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/siding/thinplating_new/corner,
@@ -61758,6 +61774,7 @@
 	pixel_y = 6
 	},
 /obj/machinery/light/directional/east,
+/obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron/kitchen/diagonal,
 /area/station/service/kitchen)
 "sMg" = (
@@ -65190,6 +65207,14 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/science/ordnance)
+"tUv" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/aft)
 "tUx" = (
 /obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/floor/plating,
@@ -238581,7 +238606,7 @@ jQU
 psN
 pfe
 aeQ
-gYp
+mdX
 pfe
 duq
 pyW
@@ -250196,9 +250221,9 @@ klc
 sHd
 jih
 rkM
-eHU
 iYs
-eHU
+rid
+tUv
 rkM
 eHU
 pko
@@ -256895,7 +256920,7 @@ fOl
 cyL
 jAI
 bgx
-sst
+hWI
 xxv
 dOK
 vzD
