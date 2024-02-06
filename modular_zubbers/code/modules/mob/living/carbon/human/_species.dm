@@ -23,7 +23,7 @@
 		if(old_organ?.type == organ_path)
 			continue
 		var/obj/item/organ/new_organ = SSwardrobe.provide_type(organ_path)
-		new_organ.Insert(target, FALSE, FALSE)
+		new_organ.Insert(target, FALSE, DELETE_IF_REPLACED)
 
 /datum/species/proc/normalize_organs(mob/living/carbon/human/target)
 	mutantheart = initial(mutantheart)
