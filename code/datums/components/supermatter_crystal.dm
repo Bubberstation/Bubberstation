@@ -314,6 +314,11 @@
 		consume_returns(matter_increase, damage_increase)
 	else if(consumed_object.flags_1 & SUPERMATTER_IGNORES_1)
 		return
+	//BUBBER edit start | Addition to ignore items engineers like to feed the SM :3
+	else if(consumed_object.flags_1 & SUPERMATTER_NOLOGS_1)
+		qdel(consumed_object)
+		return
+	//BUBBER edit end
 	else if(isobj(consumed_object))
 		if(!iseffect(consumed_object))
 			var/suspicion = ""
