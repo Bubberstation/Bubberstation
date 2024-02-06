@@ -160,6 +160,8 @@
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
 
 /datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
+	if(heart)
+		remove_signals_from_heart(current_mob)
 	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
 	heart = WEAKREF(organ)
 	RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
@@ -180,8 +182,8 @@
 	remove_signals_from_heart(old_owner)
 	// You don't run bloodsucker life without a heart or brain
 	if(old_owner.stat != DEAD)
-		to_chat(old_owner, span_userdanger("You have lost your [organ.slot]! You will not revive until you regain it!"))
-		old_owner.death()
+		to_chat(old_owner, span_userdanger("You have lost your [organ.slot]!"))
+		to_chat(old_owner, warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
 		UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
 
 /datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
@@ -195,7 +197,7 @@
 		add_signals_to_heart(owner.current)
 		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
 		CRASH("What the fuck, somehow called on_organ_gain signal on [src] without current_mob being the antag datum's owner?")
-	
+
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	add_signals_to_heart(current_mob)
 
