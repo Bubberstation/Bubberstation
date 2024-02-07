@@ -370,7 +370,7 @@
 	data["rod"] = stored_rod
 	data["last_power_output"] = display_power(last_power_generation)
 	data["efficiency"] = power_efficiency*100
-	data["consuming"] = last_tritium_consumption*1000
+	data["consuming"] = round(last_tritium_consumption*1000, 2)
 	return data
 
 /obj/machinery/power/rbmk2/ui_act(action, params)
@@ -388,11 +388,19 @@
 		if("venttoggle")
 			toggle_vents(usr)
 			. = TRUE
-		if("changeventdirection")
+		if("ventdirection")
 			toggle_reverse_vents(usr)
+			balloon_alert(usr, "After a second you feel like the vents direction changed.")
 			. = TRUE
 		if("safetytoggle")
-			balloon_alert(usr, "TM")
+			if(safety == TRUE)
+				balloon_alert(usr, "Safety lights are off!")
+				safety = FALSE
+				return
+			if(safety == FALSE)
+				balloon_alert(usr, "Safety lights are on!")
+				safety = TRUE
+				return
 			. = TRUE
 
 

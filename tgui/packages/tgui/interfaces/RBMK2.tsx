@@ -78,15 +78,16 @@ export const RBMK2 = (props) => {
               icon="fa-fan"
               color="green"
               onClick={() => act('venttoggle')}
-            />{' '}
-            Toggle Vents
+            >
+              Toggle Vents
+            </Button.Confirm>
             <Button.Confirm
               tooltip="Reactor Activation/Deactivation Button"
               textAlign="center"
               width="100%"
               icon="fa-clock-rotate-left"
               color="blue"
-              onClick={() => act('changeventdirection')}
+              onClick={() => act('ventdirection')}
             >
               Change Vents Direction
             </Button.Confirm>
