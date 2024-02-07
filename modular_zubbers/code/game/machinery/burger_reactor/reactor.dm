@@ -370,7 +370,7 @@
 	data["rod"] = stored_rod
 	data["last_power_output"] = display_power(last_power_generation)
 	data["efficiency"] = power_efficiency*100
-	data["consuming"] = round(last_tritium_consumption*1000, 2)
+	data["consuming"] = last_tritium_consumption*1000
 	return data
 
 /obj/machinery/power/rbmk2/ui_act(action, params)
