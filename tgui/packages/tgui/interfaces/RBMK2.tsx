@@ -1,13 +1,14 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Button,
   LabeledList,
+  NoticeBox,
   ProgressBar,
   Section,
-  NoticeBox,
 } from '../components';
 import { Window } from '../layouts';
-import { BooleanLike } from 'common/react';
 
 type ReactorInfo = {
   active: BooleanLike;
@@ -26,7 +27,7 @@ export const RBMK2 = (props) => {
           <LabeledList>
             <LabeledList.Item label="Power Generation">
               <ProgressBar
-                value={parseInt(data.last_power_output)}
+                value={parseInt(data.last_power_output, 10)}
                 ranges={{
                   good: [100, Infinity],
                   average: [30, 60],
@@ -49,10 +50,11 @@ export const RBMK2 = (props) => {
               width="100%"
               icon="fa-power-off"
               confirmContent="Are you sure?"
-              children={data.active ? 'Deactivate' : 'Activate'}
               selected={data.active}
               onClick={() => act('activate')}
-            />
+            >
+              {data.active ? 'Deactivate' : 'Activate'}
+            </Button.Confirm>
             {data.rod ? (
               <Button.Confirm
                 tooltip="Reactor Activation/Deactivation Button"
@@ -60,9 +62,10 @@ export const RBMK2 = (props) => {
                 width="100%"
                 icon="fa-eject"
                 color="purple"
-                children={'Eject Fuel Rod'}
                 onClick={() => act('eject')}
-              />
+              >
+                Eject Fuel Rod
+              </Button.Confirm>
             ) : (
               <NoticeBox danger margin="0" textAlign="center">
                 No control rod to eject
@@ -74,27 +77,29 @@ export const RBMK2 = (props) => {
               width="100%"
               icon="fa-fan"
               color="green"
-              children={'Toggle Vents'}
               onClick={() => act('venttoggle')}
-            />
+            />{' '}
+            Toggle Vents
             <Button.Confirm
               tooltip="Reactor Activation/Deactivation Button"
               textAlign="center"
               width="100%"
               icon="fa-clock-rotate-left"
               color="blue"
-              children={'Change Vents Direction'}
               onClick={() => act('changeventdirection')}
-            />
+            >
+              Change Vents Direction
+            </Button.Confirm>
             <Button.Confirm
               tooltip="Reactor Activation/Deactivation Button"
               textAlign="center"
               width="100%"
               icon="fa-helmet-safety"
               color="red"
-              children={'Turn Off Safeties'}
               onClick={() => act('safetytoggle')}
-            />
+            >
+              Turn Off Safeties
+            </Button.Confirm>
           </LabeledList>
         </Section>
       </Window.Content>
