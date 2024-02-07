@@ -2,15 +2,7 @@ import { filterMap } from 'common/collections';
 import { useState } from 'react';
 
 import { useBackend } from '../../backend';
-import {
-  Box,
-  Button,
-  Icon,
-  Popper,
-  Stack,
-  Tooltip,
-  TrackOutsideClicks,
-} from '../../components';
+import { Box, Button, Icon, Popper, Stack, Tooltip } from '../../components';
 import { PreferencesMenuData, Quirk, RandomSetting, ServerData } from './data';
 import { getRandomization, PreferenceList } from './MainPage';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
@@ -221,6 +213,7 @@ function QuirkPopper(props: QuirkPopperProps) {
   return (
     <Popper
       placement="bottom-end"
+      onClickOutside={() => setCustomizationExpanded(false)}
       isOpen={customizationExpanded}
       popperContent={
         <TrackOutsideClicks
@@ -268,20 +261,22 @@ function QuirkPopper(props: QuirkPopperProps) {
         </TrackOutsideClicks>
       }
     >
-      {selected && (
-        <Button
-          selected={customizationExpanded}
-          icon="cog"
-          tooltip="Customize"
-          onClick={(e) => {
-            e.stopPropagation();
-            setCustomizationExpanded(!customizationExpanded);
-          }}
-          style={{
-            float: 'right',
-          }}
-        />
-      )}
+      <div>
+        {selected && (
+          <Button
+            selected={customizationExpanded}
+            icon="cog"
+            tooltip="Customize"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCustomizationExpanded(!customizationExpanded);
+            }}
+            style={{
+              float: 'right',
+            }}
+          />
+        )}
+      </div>
     </Popper>
   );
 }

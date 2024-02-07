@@ -5,10 +5,10 @@
  */
 
 import { decodeHtmlEntities } from 'common/string';
+import { useState } from 'react';
 
 import { useBackend, useLocalState } from '../backend';
-import { Button, Input, Section, Table } from '../components';
-import { Popper } from '../components/Popper';
+import { Button, Input, Popper, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const RequestManager = (props) => {
@@ -144,8 +144,8 @@ const FilterPanel = (props) => {
 
   return (
     <Popper
-      placement="bottom-start"
-      popperContent={
+      placement="bottom-end"
+      content={
         <div
           className="RequestManager__filterPanel"
           style={{
@@ -176,9 +176,11 @@ const FilterPanel = (props) => {
         </div>
       }
     >
-      <Button icon="cog" onClick={() => setFilterVisible(!filterVisible)}>
-        Type Filter
-      </Button>
+      <div>
+        <Button icon="cog" onClick={() => setFilterVisible(!filterVisible)}>
+          Type Filter
+        </Button>
+      </div>
     </Popper>
   );
 };
