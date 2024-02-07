@@ -110,7 +110,8 @@
 			var/reagent = GLOB.name2reagent[reagent_name]
 			if(!(reagent in cortical_owner.known_chemicals))
 				return
-
+			if(isnull(cortical_owner.reagent_holder)) // BUBBER EDIT FIX
+				cortical_owner.reagent_holder = new /obj/item/reagent_containers/borer(src) // BUBBER EDIT FIX
 			cortical_owner.reagent_holder.reagents.add_reagent(reagent, cortical_owner.injection_rate_current, added_purity = 1)
 			cortical_owner.reagent_holder.reagents.trans_to(cortical_owner.human_host, cortical_owner.injection_rate_current, methods = INGEST)
 
