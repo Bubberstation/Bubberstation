@@ -18,9 +18,6 @@ Buildable meters
 	icon_state = "simple"
 	icon_state_preview = "manifold4w"
 	inhand_icon_state = "buildpipe"
-	//BUBBER ADDITION START
-	flags_1 = SUPERMATTER_NOLOGS_1
-	//BUBBER ADDITION END
 	w_class = WEIGHT_CLASS_NORMAL
 	///Piping layer that we are going to be on
 	var/piping_layer = PIPING_LAYER_DEFAULT
