@@ -41,7 +41,7 @@
 /// Cycle through all vamp antags and check if they're inside a closet.
 /datum/antagonist/bloodsucker/proc/handle_sol()
 	SIGNAL_HANDLER
-	if(!owner || !owner.current)
+	if(!owner || !owner.current || isbrain(owner.current))
 		return
 
 	if(!istype(owner.current.loc, /obj/structure))
