@@ -120,7 +120,7 @@
 		return FALSE
 	if(!isliving(user))
 		return FALSE
-	if(!bloodsuckerdatum_power.heart)
+	if(bloodsuckerdatum_power && !bloodsuckerdatum_power.heart)
 		to_chat(user, span_warning("To channel your powers you need a heart!"))
 		return FALSE
 	if(isbrain(user))
