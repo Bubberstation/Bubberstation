@@ -38,7 +38,7 @@ export const RBMK2 = (props) => {
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item label="Tritium Usage">
-              {data.consuming}
+              {data.consuming} μmol/s
             </LabeledList.Item>
           </LabeledList>
         </Section>
