@@ -3,7 +3,8 @@
 
 #define CYBORG_ICON_CENTCOM_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_cc.dmi'
-#define CYBORG_ICON_CENTCOM_LARGE_REAL_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_cc_real.dmi'
+
+#define CYBORG_ICON_CLOWN_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_clown.dmi'
 
 #define CYBORG_ICON_MED_WIDE_BUBBER 'modular_zubbers/modules/borgs/sprites/widerobot_med.dmi'
 #define CYBORG_ICON_MED_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_med.dmi'
