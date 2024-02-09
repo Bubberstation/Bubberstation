@@ -40,7 +40,7 @@
 	alert_type = null
 
 /datum/status_effect/branded/get_examine_text()
-	return span_warning("[owner.p_They()] bears branding marks denoting "[id]\"!")
+	return span_warning("[owner.p_They()] bears branding marks denoting \"[id]\"!")
 
 /datum/status_effect/branded/murder
 	id = "Murder"
