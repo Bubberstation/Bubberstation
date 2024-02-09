@@ -1,12 +1,12 @@
 ///The maximum level a Ventrue Bloodsucker can be, before they have to level up their vassal instead.
-#define VENTRUE_MAX_LEVEL 3
+#define VENTRUE_MAX_POWERS 3
 ///How much it costs for a Ventrue to rank up without a spare rank to spend.
 #define BLOODSUCKER_BLOOD_RANKUP_COST (550)
 
 /datum/bloodsucker_clan/ventrue
 	name = CLAN_VENTRUE
 	description = "The Ventrue Clan is extremely snobby with their meals, and refuse to drink blood from people without a mind. \n\
-		You may only level yourself up to Level %MAX_LEVEL%, anything further will be ranks to spend on their Favorite Vassal through a Persuasion Rack. \n\
+		You may have up to %MAX_POWERS% powers, anything further will be ranks to spend on their Favorite Vassal through a Persuasion Rack. \n\
 		The Favorite Vassal will slowly turn more Vampiric this way, until they finally lose their last bits of Humanity. \n\
 		Once you finish your embracing, the newly sired vampire will become just a vassal, and you'll be able to sire another bloodsucker."
 	clan_objective = /datum/objective/bloodsucker/embrace
@@ -17,13 +17,22 @@
 
 /datum/bloodsucker_clan/ventrue/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	description = replacetext(description, "%MAX_LEVEL%", VENTRUE_MAX_LEVEL)
+	description = replacetext(description, "%MAX_POWERS%", VENTRUE_MAX_POWERS)
+
+/datum/bloodsucker_clan/ventrue/proc/has_enough_abilities()
+	var/power_count = 0
+	for(var/datum/action/cooldown/bloodsucker/power in bloodsuckerdatum.powers)
+		if(!(power.purchase_flags & BLOODSUCKER_DEFAULT_POWER))
+			power_count++
+	if(power_count >= VENTRUE_MAX_POWERS)
+		return TRUE
+	return FALSE
 
 /datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
-	if(bloodsuckerdatum.bloodsucker_level < VENTRUE_MAX_LEVEL)
+	if(!has_enough_abilities())
 		return ..()
 	else if(!target)
-		to_chat(bloodsuckerdatum.owner.current, span_danger("You can only level up to Level [VENTRUE_MAX_LEVEL], anything further will be ranks to spend on your Favorite Vassal through a Persuasion Rack."))
+		to_chat(bloodsuckerdatum.owner.current, span_danger("You can only have up to [VENTRUE_MAX_POWERS] powers, anything further will be ranks to spend on your Favorite Vassal through a Persuasion Rack."))
 		return FALSE
 	var/datum/antagonist/vassal/favorite/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal/favorite)
 	var/datum/antagonist/vassal/non_favorite = target.mind.has_antag_datum(/datum/antagonist/vassal)
@@ -112,9 +121,6 @@
 		return TRUE
 	if(!istype(vassaldatum))
 		return FALSE
-	if(bloodsuckerdatum.bloodsucker_level < VENTRUE_MAX_LEVEL)
-		to_chat(bloodsuckerdatum.owner.current, span_danger("You are too low level to Rank up [vassaldatum.owner.current] You must at least be level [VENTRUE_MAX_LEVEL]."))
-		return FALSE
 	if(!bloodsuckerdatum.bloodsucker_level_unspent <= 0)
 		bloodsuckerdatum.SpendRank(vassaldatum.owner.current)
 		return TRUE
@@ -137,4 +143,4 @@
 	vassaldatum.BuyPower(/datum/action/cooldown/bloodsucker/distress)
 
 #undef BLOODSUCKER_BLOOD_RANKUP_COST
-#undef VENTRUE_MAX_LEVEL
+#undef VENTRUE_MAX_POWERS

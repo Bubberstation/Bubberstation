@@ -135,7 +135,7 @@
 	owner.current.remove_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
 	return ..()
 
-/datum/antagonist/vassal/proc/remove_powers(var/list/removing_powers)
+/datum/antagonist/vassal/proc/remove_powers(list/removing_powers)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in removing_powers)
 		removing_powers -= power
 		if(!(power in owner.current.actions))

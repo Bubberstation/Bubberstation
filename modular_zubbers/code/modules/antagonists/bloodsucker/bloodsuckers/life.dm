@@ -7,8 +7,8 @@
 	if(!owner)
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
+	// todo move this somewhere that it happens on decap
 	if(isbrain(owner.current))
-		talking_head()
 		INVOKE_ASYNC(src, PROC_REF(update_hud))
 		return
 	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
@@ -169,17 +169,16 @@
  *
  *	This is called on Bloodsucker's Assign, and when they end Torpor.
  */
-
+/// TODO: Separate this into smaller functions
 /datum/antagonist/bloodsucker/proc/heal_vampire_organs()
 	var/mob/living/carbon/bloodsuckeruser = owner.current
 
 	if(!bloodsuckeruser)
 		return
-	// revive() fails if the target is husked. For now we're just reviving
-	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN))
+	if(HAS_TRAIT_FROM_ONLY(bloodsuckeruser, TRAIT_HUSK, CHANGELING_DRAIN) || bloodsuckeruser.has_status_effect(/datum/status_effect/gutted))
 		to_chat(bloodsuckeruser, span_danger("Your immortal blood has healed your body from near-irrecoverable damage, but has used nearly all of your blood in doing so!"))
 		AddHumanityLost(2)
-		SetBloodVolume(frenzy_enter_threshold() * 2)
+		SetBloodVolume(min(bloodsucker_blood_volume, frenzy_enter_threshold() * 2))
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 	bloodsuckeruser.cure_husk(BURN)
 	bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
@@ -192,6 +191,9 @@
 		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 		current_eyes.sight_flags = SEE_MOBS
 	bloodsuckeruser.update_sight()
+	/// Disable gutting for the chest
+	var/obj/item/bodypart/chest/target_chest = bloodsuckeruser.get_bodypart(BODY_ZONE_CHEST)
+	target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
 	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
 		on_revive()
@@ -290,11 +292,15 @@
 	owner.current.blood_volume = bloodsucker_blood_volume
 
 /// Turns the bloodsucker into a wacky talking head.
-/datum/antagonist/bloodsucker/proc/talking_head()
+/datum/antagonist/bloodsucker/proc/talking_head(mob/living/carbon/human/headless_corpse, obj/item/bodypart/head)
 	var/mob/living/poor_fucker = owner.current
+	if(!istype(head, /obj/item/bodypart/head))
+		return
 	// Don't do anything if we're not actually inside a brain and a head
 	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
+	// Ensure that the HUD updates (We might have lost the heart at some point)
+	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))

@@ -30,4 +30,4 @@
 	mutantliver = initial(mutantliver)
 	mutantstomach = initial(mutantstomach)
 	mutanttongue = initial(mutanttongue)
-	regenerate_organs(target)
+	regenerate_organs(target, replace_current = TRUE)
