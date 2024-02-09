@@ -219,23 +219,33 @@ SUBSYSTEM_DEF(gamemode)
 	return (get_antag_cap() > GLOB.antagonists.len)
 
 /// Gets candidates for antagonist roles.
-/datum/controller/subsystem/gamemode/proc/get_candidates(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time = TRUE, no_antags = TRUE, list/restricted_roles, allow_offstation = FALSE)
+/datum/controller/subsystem/gamemode/proc/get_candidates(
+	special_role_flag,
+	pick_observers,
+	pick_roundstart_players,
+	required_time,
+	inherit_required_time = TRUE,
+	no_antags = TRUE,
+	list/restricted_roles,
+	)
+
+
 	var/list/candidates = list()
 	var/list/candidate_candidates = list() //lol
-
-	for(var/mob/player as anything in GLOB.player_list)
-		if(ready_newplayers && isnewplayer(player))
-			var/mob/dead/new_player/new_player = player
-			if(new_player.ready == PLAYER_READY_TO_PLAY && new_player.mind && new_player.check_preferences())
+	if(pick_roundstart_players)
+		for(var/mob/dead/new_player/player in GLOB.new_player_list)
+			if(player.ready == PLAYER_READY_TO_PLAY && player.mind && player.check_preferences())
 				candidate_candidates += player
-		else if (observers && isobserver(player))
+	else if(pick_observers)
+		for(var/mob/player as anything in GLOB.dead_mob_list)
 			candidate_candidates += player
-		else if (living_players && isliving(player))
-			if(!allow_offstation)
-				if(!is_station_level(player.z)) // Should stop all the silly incorrect rolls. Also stops someone in piss nowhere space from rolling (Wasted roll if you ask me)
-					candidate_candidates += player
-			else
-				candidate_candidates += player
+	else
+		for(var/datum/record/locked/manifest_log as anything in GLOB.manifest.locked)
+			var/datum/mind/player_mind = manifest_log.mind_ref.resolve()
+			var/mob/living/player = player_mind.current
+			if(isnull(player))
+				continue
+			candidate_candidates += player
 
 
 	for(var/mob/candidate as anything in candidate_candidates)
@@ -245,20 +255,20 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		if(restricted_roles && (candidate.mind.assigned_role.title in restricted_roles))
 			continue
-		if(be_special)
-			if(!(candidate.client.prefs) || !(be_special in candidate.client.prefs.be_special))
+		if(special_role_flag)
+			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
 				continue
 
 			var/time_to_check
 			if(required_time)
 				time_to_check = required_time
 			else if (inherit_required_time)
-				time_to_check = GLOB.special_roles[be_special]
+				time_to_check = GLOB.special_roles[special_role_flag]
 
 			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
 				continue
 
-		if(job_ban && is_banned_from(candidate.ckey, list(job_ban, ROLE_SYNDICATE)))
+		if(special_role_flag && is_banned_from(candidate.ckey, list(special_role_flag, ROLE_SYNDICATE)))
 			continue
 		candidates += candidate
 	return candidates
