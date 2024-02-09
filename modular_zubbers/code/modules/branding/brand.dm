@@ -25,7 +25,7 @@
 		to_chat(attacker, span_userdanger("You brand [victim] with the mark of [initial(current_branding.id)]"))
 
 		var/obj/item/bodypart/branded_limb = victim.get_bodypart(deprecise_zone(BODY_ZONE_CHEST))
-		branded_limb.force_wound_upwards(/datum/wound/burn/flesh/severe, wound_source = "Branding")
+		branded_limb.force_wound_upwards(/datum/wound/burn/flesh/critical, wound_source = "Branding")
 		var/particles/smoke/steam/particles = new /particles/smoke/steam/mild(victim)
 		particles.position = list(-6, 0, 0)
 		QDEL_IN(particles, 10 SECONDS)
