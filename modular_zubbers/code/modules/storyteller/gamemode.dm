@@ -232,7 +232,7 @@ SUBSYSTEM_DEF(gamemode)
 			candidate_candidates += player
 		else if (living_players && isliving(player))
 			if(!allow_offstation)
-				if(!is_station_level(player.z)) // Should stop all the silly incorrect rolls. Also stops someone in piss nowhere space from rolling (Wasted roll if you ask me)
+				if(is_station_level(player.z)) // Should stop all the silly incorrect rolls. Also stops someone in piss nowhere space from rolling (Wasted roll if you ask me)
 					candidate_candidates += player
 			else
 				candidate_candidates += player
