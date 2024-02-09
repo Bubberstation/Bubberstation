@@ -110,7 +110,7 @@
 				custom_species_lore += LAZYACCESS(holder_human.dna.species.get_species_lore(), 1)
 			else
 				custom_species_lore = holder_human.dna.features["custom_species_lore"]
-		//BUBBER EDIT END: PANEL NOW CHECKS FOR OBSCURED
+		//BUBBER EDIT END: Panel refactor
 
 	data["obscured"] = obscured ? TRUE : FALSE
 	data["character_name"] = name
