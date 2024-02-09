@@ -29,7 +29,7 @@
 		var/particles/smoke/steam/particles = new /particles/smoke/steam/mild(victim)
 		particles.position = list(-6, 0, 0)
 		QDEL_IN(particles, 10 SECONDS)
-		victim.adjustFireLoss(60)
+		victim.adjustFireLoss(25)
 		victim.emote("scream")
 	return ..()
 
