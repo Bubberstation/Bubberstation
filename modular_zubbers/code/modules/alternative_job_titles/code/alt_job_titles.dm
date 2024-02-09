@@ -6,20 +6,3 @@
 		"Brig Physician",
 		"Combat Medic",
 	)
-
-/datum/job/assistant
-	alt_titles = list(
-		"Assistant",
-		"Artist",
-		"Barber",
-		"Businessman",
-		"Businesswoman",
-		"Civilian",
-		"Entertainer",
-		"Freelancer",
-		"Tourist",
-		"Trader",
-		"Off-Duty Crew",
-		"Off-Duty Staff",
-		"Musician",
-	)
