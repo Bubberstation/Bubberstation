@@ -195,7 +195,7 @@ Medical HUD! Basic mode needs suit sensors on.
 		holder.icon_state = "huddead"
 	else
 		holder.icon_state = "hudhealthy"
-
+/* Moved to zubbers
 /mob/living/carbon/med_hud_set_status()
 	var/image/holder = hud_list?[STATUS_HUD]
 	if (isnull(holder))
@@ -230,7 +230,7 @@ Medical HUD! Basic mode needs suit sensors on.
 			if(DISEASE_SEVERITY_POSITIVE)
 				holder.icon_state = "hudbuff"
 			if(null)
-				holder.icon_state = "hudhealthy"
+				holder.icon_state = "hudhealthy" */
 
 
 /***********************************************
