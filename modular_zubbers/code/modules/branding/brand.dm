@@ -11,18 +11,22 @@
 	var/list/static/possible_crimes = list()
 
 /obj/item/knife/brand/attack(mob/living/victim, mob/living/attacker, params)
+	. = ..()
 	var/list/branding_with = typesof(/datum/status_effect/branded)
 	branding_with -= /datum/status_effect/branded
 /* 	var/list/preset_brandable_crimes = list()
 	for(var/i in branding_with)
 		preset_brandable_crimes |= i.initial(id) */
-
-
-	var/current_branding = tgui_input_list(attacker, "What crime are you branding them with?", "Branding", branding_with) // todo, make names show
+	if(!istype(victim, /mob/living/carbon))
+		return
+	var/datum/status_effect/branded/current_branding = tgui_input_list(attacker, "What crime are you branding them with?", "Branding", branding_with) // todo, make names show
 
 	if(!attacker.combat_mode && do_after(attacker, 6 SECONDS, victim))
-		victim.apply_status_effect(text2path("[branding_with]"))
+		victim.apply_status_effect(current_branding)
+		to_chat(attacker, span_userdanger("You brand [victim] as a [initial(current_branding.id)]"))
+		to_chat(victim, span_userdanger("You are branded as a [initial(current_branding.id)]!"))
 		victim.adjustFireLoss(60)
+		victim.emote("scream")
 	return ..()
 
 
@@ -35,7 +39,7 @@
 	return span_warning("[owner.p_They()] bear branding makes for the crime of [id]!")
 
 /datum/status_effect/branded/murder
-	id = "Murder"
+	id = "Murderer"
 
 /datum/status_effect/branded/thief
 	id = "Thief"
