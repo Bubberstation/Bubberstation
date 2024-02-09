@@ -2,7 +2,7 @@
 //Underground
 /datum/map_generator/cave_generator/lunar_sand
 
-	weighted_open_turf_types = list(/turf/open/misc/moonstation_rock = 1)
+	weighted_open_turf_types = list(/turf/open/misc/moonstation_rock/cave = 1)
 	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar = 1)
 
 
