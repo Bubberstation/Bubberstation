@@ -219,7 +219,7 @@ SUBSYSTEM_DEF(gamemode)
 	return (get_antag_cap() > GLOB.antagonists.len)
 
 /// Gets candidates for antagonist roles.
-/datum/controller/subsystem/gamemode/proc/get_candidates(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time = TRUE, no_antags = TRUE, list/restricted_roles)
+/datum/controller/subsystem/gamemode/proc/get_candidates(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time = TRUE, no_antags = TRUE, list/restricted_roles, allow_offstation = FALSE)
 	var/list/candidates = list()
 	var/list/candidate_candidates = list() //lol
 
@@ -231,7 +231,12 @@ SUBSYSTEM_DEF(gamemode)
 		else if (observers && isobserver(player))
 			candidate_candidates += player
 		else if (living_players && isliving(player))
-			candidate_candidates += player
+			if(!allow_offstation)
+				if(!is_station_level(player.z)) // Should stop all the silly incorrect rolls. Also stops someone in piss nowhere space from rolling (Wasted roll if you ask me)
+					candidate_candidates += player
+			else
+				candidate_candidates += player
+
 
 	for(var/mob/candidate as anything in candidate_candidates)
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
