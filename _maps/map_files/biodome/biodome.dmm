@@ -6186,11 +6186,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"cgL" = (
-/obj/structure/closet/secure_closet/nanotrasen_consultant/station,
-/obj/item/assembly/flash/handheld,
-/turf/open/floor/carpet/royalblack,
-/area/station/command/heads_quarters/nt_rep)
 "cgO" = (
 /obj/effect/spawner/random/trash/graffiti,
 /turf/open/floor/plating,
@@ -13573,11 +13568,12 @@
 /turf/open/floor/wood/large,
 /area/station/cargo/miningdock)
 "eIP" = (
-/obj/item/bedsheet/centcom/double,
-/obj/structure/bed/double,
-/obj/machinery/light/small/blacklight/directional/east,
-/turf/open/floor/carpet/royalblack,
-/area/station/command/heads_quarters/nt_rep)
+/obj/effect/spawner/structure/window,
+/obj/structure/holosign/barrier/atmos/leaf{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/cargo/blacksmith)
 "eIQ" = (
 /obj/machinery/camera/directional/west{
 	c_tag = "Hallway - Port Aft Stairs"
@@ -14311,6 +14307,16 @@
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
+"eTN" = (
+/obj/machinery/status_display/ai/directional/east,
+/obj/structure/table/wood,
+/obj/machinery/fax{
+	fax_name = "Nanotrasen Consultant's Office";
+	name = "Nanotrasen Consultant's Fax Machine"
+	},
+/obj/machinery/light/directional/east,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "eTO" = (
 /obj/machinery/smartfridge,
 /obj/machinery/door/firedoor,
@@ -14698,6 +14704,7 @@
 /obj/effect/turf_decal/siding/wood/end{
 	dir = 1
 	},
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "faL" = (
@@ -16151,6 +16158,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/nt_rep)
 "fAY" = (
@@ -28235,6 +28243,12 @@
 /obj/effect/spawner/random/trash/grille_or_waste,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
+"jWf" = (
+/obj/item/bedsheet/centcom/double,
+/obj/structure/bed/double,
+/obj/machinery/light/small/blacklight/directional/east,
+/turf/open/floor/carpet/royalblack,
+/area/station/command/heads_quarters/nt_rep)
 "jWh" = (
 /turf/closed/wall/r_wall,
 /area/station/security/checkpoint/science)
@@ -28365,6 +28379,11 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/library)
+"jYv" = (
+/obj/structure/closet/secure_closet/nanotrasen_consultant/station,
+/obj/item/assembly/flash/handheld,
+/turf/open/floor/carpet/royalblack,
+/area/station/command/heads_quarters/nt_rep)
 "jYF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -31352,15 +31371,18 @@
 /turf/open/misc/asteroid,
 /area/station/cargo/miningdock)
 "kUh" = (
-/obj/machinery/status_display/ai/directional/east,
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine"
+/obj/machinery/modular_computer/preset/id{
+	dir = 4
 	},
-/obj/machinery/light/directional/east,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/obj/effect/mapping_helpers/requests_console/announcement,
+/obj/effect/mapping_helpers/requests_console/supplies,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/requests_console/directional/west{
+	department = "Quartermaster's Desk";
+	name = "Quartermaster's Desk Requests Console"
+	},
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/qm)
 "kUt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -41078,9 +41100,9 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "ofl" = (
-/obj/structure/sign/flag/nanotrasen,
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/closed/wall,
-/area/station/command/heads_quarters/nt_rep)
+/area/station/cargo/blacksmith)
 "ofo" = (
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
@@ -42636,6 +42658,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
+"oHI" = (
+/obj/structure/sign/flag/nanotrasen,
+/turf/closed/wall,
+/area/station/command/heads_quarters/nt_rep)
 "oHW" = (
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/iron/herringbone,
@@ -44671,14 +44697,9 @@
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "pui" = (
-/obj/machinery/computer/cargo{
-	dir = 4
-	},
-/obj/machinery/status_display/supply{
-	pixel_x = -32
-	},
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/qm)
+/obj/structure/sign/flag/nanotrasen,
+/turf/open/openspace,
+/area/station/biodome)
 "puk" = (
 /obj/machinery/camera/motion/directional/east{
 	c_tag = "AI Minisat - External Port";
@@ -45451,19 +45472,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/construction/engineering)
-"pJb" = (
-/obj/machinery/modular_computer/preset/id{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/requests_console/announcement,
-/obj/effect/mapping_helpers/requests_console/supplies,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/machinery/requests_console/directional/west{
-	department = "Quartermaster's Desk";
-	name = "Quartermaster's Desk Requests Console"
-	},
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/qm)
 "pJc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -60900,6 +60908,15 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/checkpoint/medical)
+"vfv" = (
+/obj/machinery/computer/cargo{
+	dir = 4
+	},
+/obj/machinery/status_display/supply{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/qm)
 "vfw" = (
 /obj/machinery/firealarm/directional/north,
 /obj/machinery/camera/directional/north{
@@ -66911,6 +66928,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/plating,
 /area/station/cargo/blacksmith)
 "xdw" = (
@@ -68954,6 +68972,10 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/meeting_room)
+"xNq" = (
+/obj/effect/landmark/navigate_destination/autoname,
+/turf/open/openspace,
+/area/station/biodome/fore)
 "xNs" = (
 /turf/open/floor/iron/chapel{
 	dir = 10
@@ -70260,10 +70282,6 @@
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /turf/open/floor/iron/dark/textured,
 /area/station/engineering/atmos/mix)
-"ykr" = (
-/obj/structure/sign/flag/nanotrasen,
-/turf/open/openspace,
-/area/station/biodome)
 "ykP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -176578,7 +176596,7 @@ pqA
 jzd
 nfE
 sZD
-sZD
+xNq
 sZD
 sZD
 sZD
@@ -177115,7 +177133,7 @@ ofe
 rAq
 rAq
 rAq
-ykr
+pui
 uaa
 fQs
 fQs
@@ -177352,7 +177370,7 @@ jXk
 uUx
 pGm
 pGm
-cDb
+eIP
 cDb
 cDb
 cDb
@@ -178381,7 +178399,7 @@ wfX
 wfX
 lWG
 wfX
-uyB
+ofl
 jcp
 jcp
 jcp
@@ -178402,7 +178420,7 @@ jzd
 tiN
 pmH
 pGm
-ofl
+oHI
 ybl
 fAQ
 fIX
@@ -178895,7 +178913,7 @@ apW
 aBm
 vCl
 wfX
-uyB
+ofl
 bpD
 uRr
 tfd
@@ -179945,10 +179963,10 @@ dRX
 kfx
 kvE
 ybl
-cgL
-eIP
+jYv
+jWf
 ybl
-kUh
+eTN
 ybl
 ogc
 qzY
@@ -180460,8 +180478,8 @@ lqK
 sQn
 lqK
 cyC
-pui
-pJb
+vfv
+kUh
 ulB
 eZB
 eQc
