@@ -43,10 +43,10 @@
 	return span_warning("[owner.p_They()] bears branding marks denoting "[id]"!")
 
 /datum/status_effect/branded/murder
-	id = "Murderer"
+	id = "Murder"
 
 /datum/status_effect/branded/thief
-	id = "Thief"
+	id = "Thievery"
 
 /datum/status_effect/branded/mutiny
 	id = "Mutiny"
@@ -55,7 +55,7 @@
 	id = "Enemy of Corporation"
 
 /datum/status_effect/branded/terror
-	id = "Terrorist"
+	id = "Terrorism"
 
 /datum/status_effect/branded/heresy
 	id = "Heresy"
