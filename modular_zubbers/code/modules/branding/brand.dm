@@ -8,10 +8,9 @@
 	desc = "Once known as Lightbringer, this sword has been demoted to a simple pizza cutting knife... It may still have its fire attack powers."
 	righthand_file = 'modular_skyrat/modules/modular_ert/icons/pizza/righthand.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_ert/icons/pizza/lefthand.dmi'
-	var/list/static/possible_crimes = list()
+//	var/list/static/possible_crimes = list()
 
 /obj/item/knife/brand/attack(mob/living/victim, mob/living/attacker, params)
-	. = ..()
 	var/list/branding_with = typesof(/datum/status_effect/branded)
 	branding_with -= /datum/status_effect/branded
 /* 	var/list/preset_brandable_crimes = list()
@@ -23,8 +22,13 @@
 
 	if(!attacker.combat_mode && do_after(attacker, 6 SECONDS, victim))
 		victim.apply_status_effect(current_branding)
-		to_chat(attacker, span_userdanger("You brand [victim] as a [initial(current_branding.id)]"))
-		to_chat(victim, span_userdanger("You are branded as a [initial(current_branding.id)]!"))
+		to_chat(attacker, span_userdanger("You brand [victim] with the mark of [initial(current_branding.id)]"))
+
+		var/obj/item/bodypart/branded_limb = victim.get_bodypart(deprecise_zone(BODY_ZONE_CHEST))
+		branded_limb.force_wound_upwards(/datum/wound/burn/flesh/severe, wound_source = "Branding")
+		var/particles/smoke/steam/particles = new /particles/smoke/steam/mild(victim)
+		particles.position = list(-6, 0, 0)
+		QDEL_IN(particles, 10 SECONDS)
 		victim.adjustFireLoss(60)
 		victim.emote("scream")
 	return ..()
