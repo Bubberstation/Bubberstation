@@ -9,10 +9,9 @@
 	righthand_file = 'modular_skyrat/modules/modular_ert/icons/pizza/righthand.dmi'
 	lefthand_file = 'modular_skyrat/modules/modular_ert/icons/pizza/lefthand.dmi'
 	var/list/static/possible_crimes = list()
-	var/current_branding = ""
 
 /obj/item/knife/brand/attack(mob/living/victim, mob/living/attacker, params)
-	var/list/branding_with = list(typesof(/datum/status_effect/branded))
+	var/list/branding_with = typesof(/datum/status_effect/branded)
 	branding_with -= /datum/status_effect/branded
 /* 	var/list/preset_brandable_crimes = list()
 	for(var/i in branding_with)
@@ -28,7 +27,7 @@
 
 
 /datum/status_effect/branded
-	id = "generic_branding"
+	id = "nothing"
 	duration = -1
 	alert_type = null
 
