@@ -20,7 +20,7 @@
 		// BUBBER EDIT ADDITION START
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\LimaStation\LimaStation.dmm"
-		#include "map_files\burgerstation\burgerstation.dmm"
+		#include "map_files\moonstation\moonstation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\ss13construct\ss13_construct.dmm"
