@@ -38,8 +38,6 @@
 	var/broke_masquerade = FALSE
 	///How many Masquerade Infractions do we have?
 	var/masquerade_infractions = 0
-	///Blood required to enter Frenzy
-	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 
@@ -91,12 +89,11 @@
 		TRAIT_AGEUSIA,
 		TRAIT_COLDBLOODED,
 		TRAIT_VIRUSIMMUNE,
-		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
 		TRAIT_NO_MIRROR_REFLECTION,
 		TRAIT_DRINKS_BLOOD
 	)
-	var/biotype = MOB_VAMPIRIC
+	var/static/biotype = MOB_VAMPIRIC
 	/// Weakref to the owner mob's heart, without bloodsucker_life stops and they die. Handled via signals due to the fact that
 	/// Bloodsuckers don't take damage from lacking a heart due to TRAIT_NOBREATH
 	/// Saved here so we can keep a track of it and remove signals properly
