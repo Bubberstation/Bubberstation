@@ -116,8 +116,11 @@
 		return FALSE
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
-	var/bruteheal = min(user.getBruteLoss_nonProsthetic(), actual_regen) // BRUTE: Always Heal
+	// If you're a synth, you heal prosthetic damage.
+	var/bruteLoss = issynthetic(user) ? user.getBruteLoss() : user.getBruteLoss_nonProsthetic()
+	var/bruteheal = min(bruteLoss, actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
+	var/toxinheal = min(user.getToxLoss(), actual_regen)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
@@ -137,10 +140,11 @@
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen) / 1.2 // 20% slower than being in a coffin
 		mult *= 3
 	// Heal if Damaged
-	if((bruteheal + fireheal > 0) && mult != 0) // Just a check? Don't heal/spend, and return.
+	if((bruteheal + fireheal + toxinheal > 0) && mult != 0) // Just a check? Don't heal/spend, and return.
 		// We have damage. Let's heal (one time)
-		user.adjustBruteLoss(-bruteheal * mult, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body.
-		user.adjustFireLoss(-fireheal * mult, forced=TRUE)
+		user.adjustBruteLoss(-bruteheal * mult, forced = TRUE) // Heal BRUTE / BURN in random portions throughout the body.
+		user.adjustFireLoss(-fireheal * mult, forced = TRUE)
+		user.adjustToxLoss(-toxinheal * mult, forced = TRUE)
 		AddBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
 

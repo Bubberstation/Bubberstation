@@ -123,18 +123,16 @@
 	if(frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0))
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
 		return
-	var/total_brute = user.getBruteLoss_nonProsthetic()
-	var/total_burn = user.getFireLoss_nonProsthetic()
-	var/total_damage = total_brute + total_burn
+
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
-	if(!SSsunlight.sunlight_active && total_damage >= 10 && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
+	if(!SSsunlight.sunlight_active && user.get_total_damage() >= 10 && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		torpor_begin()
 
 /datum/antagonist/bloodsucker/proc/check_end_torpor()
 	var/mob/living/carbon/user = owner.current
-	var/total_brute = user.getBruteLoss_nonProsthetic()
 	var/total_burn = user.getFireLoss_nonProsthetic()
-	var/total_damage = total_brute + total_burn
+	// Bloodsuckers shouldn't be able to receive oxygen damage but we exclude it from the check anyway
+	var/total_damage = user.get_total_damage() - user.getOxyLoss()
 	if(total_burn >= user.maxHealth * 2)
 		return FALSE
 	if(SSsunlight.sunlight_active)
@@ -149,7 +147,7 @@
 		if(total_damage <= 10)
 			torpor_end()
 	else
-		if(total_brute <= 10)
+		if(total_damage <= 10)
 			torpor_end()
 	return TRUE
 
