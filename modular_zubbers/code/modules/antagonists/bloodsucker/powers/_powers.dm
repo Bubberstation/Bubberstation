@@ -38,14 +38,10 @@
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
-	/// If this shows level on the description when you hover over the Power
-	var/shows_level = TRUE
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
 	. = ..()
-	if(shows_level)
-		desc += "<br><br><b>LEVEL:</b> [level_current]"
 	if(bloodcost > 0)
 		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
@@ -106,13 +102,13 @@
 ///Called when the Power is upgraded.
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	level_current++
-	if(!shows_level)
-		return
 	build_all_button_icons(UPDATE_BUTTON_NAME)
 
+// Put desc that you want to update every time build_all_button_icons is called here
 /datum/action/cooldown/bloodsucker/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	. = ..()
-	button.desc += "<br><br><b>LEVEL:</b> [level_current]"
+	if((purchase_flags & BLOODSUCKER_CAN_BUY) || (purchase_flags & TREMERE_CAN_BUY))
+		button.desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user, trigger_flags)
@@ -120,7 +116,7 @@
 		return FALSE
 	if(!isliving(user))
 		return FALSE
-	if(bloodsuckerdatum_power && !bloodsuckerdatum_power.heart)
+	if(bloodsuckerdatum_power && !bloodsuckerdatum_power.heart?.resolve())
 		to_chat(user, span_warning("To channel your powers you need a heart!"))
 		return FALSE
 	if(isbrain(user))

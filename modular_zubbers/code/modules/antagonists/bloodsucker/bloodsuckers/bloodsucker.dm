@@ -135,7 +135,7 @@
 
 /**
  * Remove innate effects is everything given to the mob
- * When a body is tranferred, this is called on the old mob.
+ * When a body is transferred, this is called on the old mob.
  * while on_removal is called ONCE per ANTAG, this is called ONCE per BODY.
  */
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)

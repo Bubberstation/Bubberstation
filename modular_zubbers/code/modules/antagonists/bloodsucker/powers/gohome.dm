@@ -25,7 +25,6 @@
 	bloodcost = 100
 	constant_bloodcost = 2
 	cooldown_time = 100 SECONDS
-	shows_level = FALSE
 
 	///What stage of the teleportation are we in
 	var/teleporting_stage = GOHOME_START

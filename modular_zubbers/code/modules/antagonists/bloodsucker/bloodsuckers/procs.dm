@@ -160,7 +160,7 @@
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
 
 /datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
-	if(heart.resolve())
+	if(heart?.resolve())
 		remove_signals_from_heart(current_mob)
 	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
 	heart = WEAKREF(organ)

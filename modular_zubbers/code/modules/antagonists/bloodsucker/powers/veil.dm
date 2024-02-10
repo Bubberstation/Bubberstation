@@ -12,7 +12,6 @@
 	bloodcost = 15
 	constant_bloodcost = 0.1
 	cooldown_time = 10 SECONDS
-	shows_level = FALSE
 	// Outfit Vars
 //	var/list/original_items = list()
 	// Identity Vars
