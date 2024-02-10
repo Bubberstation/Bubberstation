@@ -123,16 +123,16 @@
  * viewer - The person examining.
  */
 /datum/antagonist/bloodsucker/proc/return_vamp_examine(mob/living/viewer)
-	if(!viewer.mind)
+	if(!viewer.mind && !isobserver(viewer))
 		return FALSE
 	// Viewer is Target's Vassal?
-	if(viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassals)
+	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassals))
 		var/returnString = "\[<span class='warning'><EM>This is your Master!</EM></span>\]"
 		var/returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "bloodsucker")]"
 		returnString += "\n"
 		return returnIcon + returnString
 	// Viewer not a Vamp AND not the target's vassal?
-	if(!viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in vassals))
+	if(!isobserver(viewer) && !viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in vassals))
 		if(!(HAS_TRAIT(viewer.mind, TRAIT_BLOODSUCKER_HUNTER) && broke_masquerade))
 			return FALSE
 	// Default String
