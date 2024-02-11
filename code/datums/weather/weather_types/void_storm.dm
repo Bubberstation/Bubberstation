@@ -17,7 +17,7 @@
 
 	area_type = /area
 	protect_indoors = FALSE
-	target_trait = ZTRAIT_VOIDSTORM
+	//target_trait = ZTRAIT_VOIDSTORM SKYRAT EDIT REMOVAL
 
 	immunity_type = TRAIT_VOIDSTORM_IMMUNE
 
@@ -26,6 +26,8 @@
 
 	/// List of areas that were once impacted areas but are not anymore. Used for updating the weather overlay based whether the ascended heretic is in the area.
 	var/list/former_impacted_areas = list()
+	multiply_blend_on_main_stage = TRUE//SKYRAT EDIT CHANGE
+
 
 /datum/weather/void_storm/can_weather_act(mob/living/mob_to_check)
 	. = ..()

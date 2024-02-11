@@ -103,6 +103,8 @@
 	///[world.time] when console last announced canceling shuttle's return
 	var/last_cancel_announce
 
+	uses_overmap = FALSE
+
 /obj/machinery/computer/shuttle/arrivals/recall
 	name = "arrivals shuttle recall terminal"
 	desc = "Use this if your friends left you behind."

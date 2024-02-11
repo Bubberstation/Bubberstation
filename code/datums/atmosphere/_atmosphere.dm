@@ -1,11 +1,13 @@
 /datum/atmosphere
 	var/gas_string
-	var/id
+	//var/id SKYRAT EDIT REMOVAL
 
-	var/list/base_gases // A list of gases to always have
-	var/list/normal_gases // A list of allowed gases:base_amount
-	var/list/restricted_gases // A list of allowed gases like normal_gases but each can only be selected a maximum of one time
-	var/restricted_chance = 10 // Chance per iteration to take from restricted gases
+	//SKYRAT EDIT CHANGE
+	var/list/base_gases = list()// A list of gases to always have
+	var/list/normal_gases = list() // A list of allowed gases:base_amount
+	var/list/restricted_gases = list() // A list of allowed gases like normal_gases but each can only be selected a maximum of one time
+	var/restricted_chance = 0 // Chance per iteration to take from restricted gases
+	//SKYRAT EDIT END
 
 	var/minimum_pressure
 	var/maximum_pressure
@@ -57,8 +59,10 @@
 
 	// That last one put us over the limit, remove some of it
 	while(gasmix.return_pressure() > target_pressure)
-		gaslist[gastype][MOLES] -= gaslist[gastype][MOLES] * 0.1
+		gaslist[gastype][MOLES] -= 1
 	gaslist[gastype][MOLES] = FLOOR(gaslist[gastype][MOLES], 0.1)
+	*/
+
 	gasmix.garbage_collect()
 
 	// Now finally lets make that string

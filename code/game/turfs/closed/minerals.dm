@@ -40,6 +40,9 @@
 	var/hand_mine_speed = 15 SECONDS
 
 
+	/// Whether the rock will turn to the rock_color of its level //SKYRAT EDIT ADDITION
+	var/turn_to_level_color = TRUE //SKYRAT EDIT ADDITION
+
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
 	// Mineral turfs are big, so they need to be on the game plane at a high layer
@@ -362,6 +365,8 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	weak_turf = TRUE
 
+	turn_to_level_color = FALSE //SKYRAT EDIT ADDITION
+
 /turf/closed/mineral/random/snow/Change_Ore(ore_type, random = 0)
 	. = ..()
 	if(mineralType)
@@ -649,10 +654,13 @@
 	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "red_wall"
 
+	turn_to_level_color = FALSE //SKYRAT EDIT ADDITION
+
 /turf/closed/mineral/random/stationside/asteroid
 	name = "iron rock"
 	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "red_wall"
+	turn_to_level_color = FALSE //SKYRAT EDIT ADDITION
 
 /turf/closed/mineral/random/stationside/asteroid/porus
 	name = "porous iron rock"

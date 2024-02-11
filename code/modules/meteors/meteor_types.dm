@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR
 #define DEFAULT_METEOR_LIFETIME 1800
 
 /obj/effect/meteor
@@ -470,3 +471,4 @@
 	meteorsound = pick('sound/hallucinations/im_here1.ogg','sound/hallucinations/im_here2.ogg')
 
 #undef DEFAULT_METEOR_LIFETIME
+*/

@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR
 /datum/space_level
 	var/name = "NAME MISSING"
 	var/list/neigbours = list()
@@ -20,3 +21,4 @@
 
 
 	set_linkage(new_traits[ZTRAIT_LINKAGE])
+*/

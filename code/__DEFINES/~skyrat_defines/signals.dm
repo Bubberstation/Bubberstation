@@ -51,6 +51,14 @@
 /// listens to wet_stacks, if wetting a mob above 10 stacks it will signal the akula race trait to apply its buffs and nerfs
 #define COMSIG_MOB_TRIGGER_WET_SKIN "mob_trigger_wet_skin"
 
+
+///from base of mob/clickon(): (atom/A, params)
+#define COMSIG_CLICKON "any_clickon"
+	#define COMSIG_CANCEL_CLICKON 1
+
+/// Called in /obj/machinery/atmospherics/components/unary/engine/DrawThrust(), and in /obj/structure/shuttle/engine/proc/DrawThrust()
+#define COMSIG_ENGINE_DRAWN_POWER "engine_drawn_power"
+
 //when someone casts their fishing rod
 #define COMSIG_START_FISHING "start_fishing"
 //when someone pulls back their fishing rod

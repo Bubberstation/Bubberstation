@@ -7,10 +7,10 @@
 	telegraph_message = "<span class='danger'>The air begins to grow warm.</span>"
 
 	weather_message = "<span class='userdanger'><i>You feel waves of heat wash over you! Find shelter!</i></span>"
-	weather_overlay = "ash_storm"
+	weather_overlay = "rad_storm" //SKYRAT EDIT CHANGE
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
-	weather_color = "green"
+	//weather_color = "green" SKYRAT EDIT REMOVAL
 	weather_sound = 'sound/misc/bloblarm.ogg'
 
 	end_duration = 100
@@ -28,6 +28,8 @@
 	var/negative_mutation_chance = 90
 	/// Chance we mutate
 	var/mutate_chance = 40
+
+	multiply_blend_on_main_stage = TRUE //SKYRAT EDIT ADDITION
 
 /datum/weather/rad_storm/telegraph()
 	..()

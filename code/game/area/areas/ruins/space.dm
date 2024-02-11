@@ -2,7 +2,7 @@
 
 /area/ruin/space
 	has_gravity = FALSE
-	area_flags = UNIQUE_AREA
+	area_flags = NONE //SKYRAT EDIT CHANGE
 
 /area/ruin/space/unpowered
 	always_unpowered = TRUE

@@ -177,6 +177,11 @@
 		SSmapping.unused_turfs["[T.z]"] -= T
 		SSmapping.used_turfs[T] = src
 		T.turf_flags = (T.turf_flags | RESERVATION_TURF) & ~UNUSED_RESERVATION_TURF
+		//SKYRAT EDIT ADDITION
+		if(edge_type && IsAtEdge(T))
+			T.ChangeTurf(edge_type, edge_type)
+			continue
+		//SKYRAT EDIT END
 		T.ChangeTurf(turf_type, turf_type)
 
 	bottom_left_turfs += BL

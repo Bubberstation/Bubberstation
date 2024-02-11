@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR
 #define ENGINE_UNWRENCHED 0
 #define ENGINE_WRENCHED 1
 #define ENGINE_WELDED 2
@@ -50,6 +51,11 @@
 /obj/machinery/power/shuttle_engine/Destroy()
 	if(engine_state == ENGINE_WELDED)
 		alter_engine_power(-engine_power)
+	//SKYRAT EDIT ADDITION
+		RemoveExtension()
+	if(extension)
+		qdel(extension)
+	//SKYRAT EDIT END
 	unsync_ship()
 	return ..()
 
@@ -124,6 +130,7 @@
 				engine_state = ENGINE_WELDED
 				to_chat(user, span_notice("You weld \the [src] to the floor."))
 				alter_engine_power(engine_power)
+				ApplyExtension() //SKYRAT EDIT ADDITION
 
 		if(ENGINE_WELDED)
 			if(!tool.tool_start_check(user, amount=round(ENGINE_WELDTIME / 5)))
@@ -137,6 +144,7 @@
 				engine_state = ENGINE_WRENCHED
 				to_chat(user, span_notice("You cut \the [src] free from the floor."))
 				alter_engine_power(-engine_power)
+				RemoveExtension() //SKYRAT EDIT ADDITION
 	return TRUE
 
 //Propagates the change to the shuttle.
@@ -153,6 +161,14 @@
 	icon_state = "heater"
 	circuit = /obj/item/circuitboard/machine/engine/heater
 	engine_power = 0 // todo make these into 2x1 parts
+	extension_type = null //SKYRAT EDIT ADDITION
+
+/obj/machinery/power/shuttle_engine/platform
+	name = "engine platform"
+	icon_state = "platform"
+	desc = "A platform for engine components."
+	engine_power = 0
+	extension_type = null //SKYRAT EDIT ADDITION
 
 /obj/machinery/power/shuttle_engine/propulsion
 	name = "propulsion engine"
@@ -185,6 +201,12 @@
 	name = "right burst engine"
 	icon_state = "burst_r"
 
+/obj/machinery/power/shuttle_engine/router
+	name = "engine router"
+	icon_state = "router"
+	desc = "Redirects around energized particles in engine structures."
+	extension_type = null //SKYRAT EDIT ADDITION
+
 /obj/machinery/power/shuttle_engine/large
 	name = "engine"
 	icon = 'icons/obj/fluff/2x2.dmi'
@@ -211,3 +233,4 @@
 #undef ENGINE_WRENCHED
 #undef ENGINE_WELDED
 #undef ENGINE_WELDTIME
+*/
