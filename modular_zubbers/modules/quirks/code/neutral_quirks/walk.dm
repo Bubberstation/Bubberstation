@@ -22,7 +22,7 @@
 	desc = "You bounce up and down while walking, with light hops to your step."
 	medical_record_text = "Subject exhibits bunny-like behavior."
 	value = 0
-	icon = FA_ICON_WIND
+	icon = FA_ICON_WALKING
 	gain_text = span_notice("You feel a skip in your step.")
 	lose_text = span_notice("Your steps feel normal again.")
 	quirk_flags = QUIRK_HUMAN_ONLY
