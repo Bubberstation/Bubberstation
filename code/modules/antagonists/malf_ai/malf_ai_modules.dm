@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		/obj/machinery/portable_atmospherics/canister,
 	)))
 
-GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module) - /datum/ai_module/destructive/nuke_station) //BUBBERSTATION CHANGE: REMOVES NUKE STATION ROUNDSTART MODULE
+GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 
 /// The malf AI action subtype. All malf actions are subtypes of this.
 /datum/action/innate/ai
