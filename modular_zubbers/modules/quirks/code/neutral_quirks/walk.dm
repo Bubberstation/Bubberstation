@@ -20,7 +20,7 @@
 /datum/quirk/bhop
 	name = "Bunny Hop"
 	desc = "You bounce up and down while walking, with light hops to your step."
-	medical_record_text = "Subject exhibits bunny-like behavior."
+	medical_record_text = "Subject exhibits bunny-like walking behavior."
 	value = 0
 	icon = FA_ICON_WALKING
 	gain_text = span_notice("You feel a hop in your step.")
