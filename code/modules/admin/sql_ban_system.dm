@@ -676,7 +676,7 @@
 			"ip" = player_ip || null,
 			"computerid" = player_cid || null,
 			"a_ckey" = admin_ckey,
-			"a_ip" = admin_ip || "127.0.0.1",
+			"a_ip" = admin_ip || null,
 			"a_computerid" = admin_cid,
 			"who" = who,
 			"adminwho" = adminwho
