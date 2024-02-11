@@ -44,6 +44,7 @@
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/pet_bonus, "hops around happily!")
 	AddElement(/datum/element/animal_variety, icon_prefix, pick("brown", "black", "white"), TRUE)
+	AddElement(/datum/element/waddling/bhop) //BUBBER EDIT: Makes it so that rabbits do the bunny hop
 	if(prob(20)) // bunny
 		name = "bunny"
 
