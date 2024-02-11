@@ -33,6 +33,9 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/feline_aspect, /datum/quirk/item_quirk/canine, /datum/quirk/item_quirk/avian),
 	list(/datum/quirk/all_nighter, /datum/quirk/heavy_sleeper),
 	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION BEGIN
+	list(/datum/quirk/featherweight, /datum/quirk/oversized),
+	//BUBBER EDIT ADDITION END
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
