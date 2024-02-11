@@ -259,7 +259,7 @@
 		),
 	)
 
-
+//Science borg pwease *gives kitty eyes*
 /*
 /obj/item/robot_model/research/Initialize(mapload)
 	. = ..()
@@ -284,3 +284,15 @@
 		),
 	)
 */
+
+//Small borg chassie pick up - don't abuse this
+/obj/item/robot_model/proc/update_smallborg()
+	var/mob/living/silicon/robot/cyborg = robot || loc
+	if (!istype(robot))
+		return
+	if (model_features && (TRAIT_R_SMALL in model_features))
+		cyborg.can_be_held = TRUE
+		cyborg.held_w_class = WEIGHT_CLASS_HUGE
+	else
+		cyborg.can_be_held = FALSE
+		cyborg.held_w_class = WEIGHT_CLASS_NORMAL
