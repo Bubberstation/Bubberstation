@@ -43,7 +43,7 @@
 	. = ..()
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(Waddle))
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(Waddle), override = TRUE)
 
 /datum/element/waddling/bhop/Detach(datum/source)
 	. = ..()
