@@ -137,7 +137,8 @@
 			return TRUE
 	// In Torpor, but not in a Coffin? Heal faster anyways.
 	else if(HAS_TRAIT(user, TRAIT_NODEATH))
-		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen) / 1.2 // 20% slower than being in a coffin
+		var/fireloss = issynthetic(user) ? user.getFireLoss() : user.getFireLoss_nonProsthetic()
+		fireheal = min(fireloss, actual_regen) / 1.2 // 20% slower than being in a coffin
 		mult *= 3
 	// Heal if Damaged
 	if((bruteheal + fireheal + toxinheal > 0) && mult != 0) // Just a check? Don't heal/spend, and return.
