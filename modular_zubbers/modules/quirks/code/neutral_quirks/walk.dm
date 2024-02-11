@@ -23,8 +23,8 @@
 	medical_record_text = "Subject exhibits bunny-like behavior."
 	value = 0
 	icon = FA_ICON_WALKING
-	gain_text = span_notice("You feel a skip in your step.")
-	lose_text = span_notice("Your steps feel normal again.")
+	gain_text = span_notice("You feel a hop in your step.")
+	lose_text = span_notice("Your steps find purchase on the ground again.")
 	quirk_flags = QUIRK_HUMAN_ONLY
 	mail_goodies = list(/obj/item/food/grown/carrot)
 
