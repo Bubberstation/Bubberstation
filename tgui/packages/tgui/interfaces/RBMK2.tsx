@@ -57,7 +57,7 @@ export const RBMK2 = (props) => {
             </Button.Confirm>
             {data.rod ? (
               <Button.Confirm
-                tooltip="Reactor Activation/Deactivation Button"
+                tooltip="Fuel Rod Ejection Button"
                 textAlign="center"
                 width="100%"
                 icon="fa-eject"
@@ -72,7 +72,7 @@ export const RBMK2 = (props) => {
               </NoticeBox>
             )}
             <Button.Confirm
-              tooltip="Reactor Activation/Deactivation Button"
+              tooltip="Vent Control Button"
               textAlign="center"
               width="100%"
               icon="fa-fan"
@@ -82,7 +82,7 @@ export const RBMK2 = (props) => {
               Toggle Vents
             </Button.Confirm>
             <Button.Confirm
-              tooltip="Reactor Activation/Deactivation Button"
+              tooltip="Vent Direction Change Button"
               textAlign="center"
               width="100%"
               icon="fa-clock-rotate-left"
@@ -92,7 +92,7 @@ export const RBMK2 = (props) => {
               Change Vents Direction
             </Button.Confirm>
             <Button.Confirm
-              tooltip="Reactor Activation/Deactivation Button"
+              tooltip="Safety Toggle Button"
               textAlign="center"
               width="100%"
               icon="fa-helmet-safety"
