@@ -12,7 +12,7 @@
 	exp_requirements = 300
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_CREW
-	config_tag = "SECURITY_CADET"
+	config_tag = "SECURITY_PEACEKEEPER"
 
 	outfit = /datum/outfit/job/security_peacekeeper
 	plasmaman_outfit = /datum/outfit/plasmaman/security_peacekeeper
