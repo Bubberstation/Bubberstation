@@ -7,8 +7,8 @@
 	if(!owner)
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
-	// todo move this somewhere that it happens on decap
 	if(isbrain(owner.current))
+		talking_head()
 		INVOKE_ASYNC(src, PROC_REF(update_hud))
 		return
 	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
