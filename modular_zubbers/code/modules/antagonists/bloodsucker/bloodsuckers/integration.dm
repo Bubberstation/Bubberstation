@@ -53,6 +53,7 @@
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
 		. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
+		. += "Blood Thickening: [bloodsuckerdatum.blood_level_gain] / [bloodsuckerdatum.get_level_cost()]"
 
 /datum/outfit/bloodsucker_outfit
 	name = "Bloodsucker outfit (Preview only)"
