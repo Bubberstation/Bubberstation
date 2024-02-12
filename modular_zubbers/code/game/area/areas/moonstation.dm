@@ -23,6 +23,46 @@
 	icon_state = "hall_service"
 
 
+
+/area/station/terminal
+	name = "\improper Arrivals Terminal"
+	icon_state = "station"
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+/area/station/terminal/cryo
+	name = "\improper Arrivals Terminal Cryo"
+	icon_state = "cryo"
+
+/area/station/terminal/interlink
+	name = "\improper Arrivals Terminal Interlink Dock"
+	icon_state = "entry"
+
+/area/station/terminal/lobby
+	name = "\improper Arrivals Terminal Lobby"
+	icon_state = "lounge"
+
+/area/station/terminal/maintenance
+	name = "\improper Arrivals Terminal Central Maintenance"
+	icon_state = "maintcentral"
+
+/area/station/terminal/maintenance/fore
+	name = "\improper Arrivals Terminal Fore Maintenance"
+	icon_state = "maintfore"
+
+/area/station/terminal/maintenance/aft
+	name = "\improper Arrivals Terminal Aft Maintenance"
+	icon_state = "maintaft"
+
+/area/station/terminal/tramline
+	name = "Tramline"
+	icon_state = "shuttle"
+	requires_power = FALSE //Imagine if your funny gimmick had no power and people had to walk lmao
+
+
+
+
+
+
 /area/station/engineering/storage/eva
 	name = "\improper Engineering EVA Storage"
 	icon_state = "eva"
