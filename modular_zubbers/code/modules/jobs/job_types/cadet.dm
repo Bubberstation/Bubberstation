@@ -1,5 +1,5 @@
-/datum/job/security_cadet
-	title = JOB_SECURITY_CADET
+/datum/job/security_peacekeeper
+	title = JOB_SECURITY_PEACEKEEPER
 	description = "Act as a Negotiator, deliver coffee to the Brig, \
 		pretend you're more important than you are, until you move up."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
@@ -14,8 +14,8 @@
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "SECURITY_CADET"
 
-	outfit = /datum/outfit/job/security_cadet
-	plasmaman_outfit = /datum/outfit/plasmaman/security_cadet
+	outfit = /datum/outfit/job/security_peacekeeper
+	plasmaman_outfit = /datum/outfit/plasmaman/security_peacekeeper
 
 	paycheck = PAYCHECK_LOWER
 	paycheck_department = ACCOUNT_SEC
@@ -40,10 +40,10 @@
 	rpg_title = "Squire"
 	job_flags = STATION_JOB_FLAGS
 
-/datum/outfit/job/security_cadet
-	name = "Security Cadet"
-	jobtype = /datum/job/security_cadet
-	id_trim = /datum/id_trim/job/security_cadet
+/datum/outfit/job/security_peacekeeper
+	name = "Security Peacekeeper"
+	jobtype = /datum/job/security_peacekeeper
+	id_trim = /datum/id_trim/job/security_peacekeeper
 	belt = /obj/item/modular_computer/pda/security
 	accessory = /obj/item/clothing/accessory/armband/deputy
 	ears = /obj/item/radio/headset/headset_sec/alt
@@ -67,8 +67,8 @@
 	box = /obj/item/storage/box/survival/security
 	implants = list(/obj/item/implant/mindshield)
 
-/datum/outfit/plasmaman/security_cadet
-	name = "Cadet Plasmaman"
+/datum/outfit/plasmaman/security_peacekeeper
+	name = "Peacekeeper Plasmaman"
 
 	accessory = /obj/item/clothing/accessory/armband/deputy
 	belt = /obj/item/modular_computer/pda/security
@@ -89,8 +89,8 @@
 
 	implants = list(/obj/item/implant/mindshield)
 
-/datum/id_trim/job/security_cadet
-	assignment = "Security Cadet"
+/datum/id_trim/job/security_peacekeeper
+	assignment = "Security Peacekeeper"
 	trim_state = "trim_securityofficer"
 	department_color = COLOR_SECURITY_RED
 	subdepartment_color = COLOR_SERVICE_LIME
@@ -111,4 +111,11 @@
 		ACCESS_CHANGE_IDS,
 		ACCESS_HOS,
 	)
-	job = /datum/job/security_cadet
+	job = /datum/job/security_peacekeeper
+
+/datum/job/security_peacekeeper
+	alt_titles = list(
+		"Peace Officer",
+		"Security Cadet",
+		"Community Corrections Officer",
+	)
