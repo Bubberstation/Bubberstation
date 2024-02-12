@@ -69,23 +69,8 @@
 
 /datum/outfit/plasmaman/security_peacekeeper
 	name = "Peacekeeper Plasmaman"
-
-	accessory = /obj/item/clothing/accessory/armband/deputy
-	belt = /obj/item/modular_computer/pda/security
-	ears = /obj/item/radio/headset/headset_sec/alt
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
-	neck = /obj/item/clothing/neck/bowtie
 	uniform = /obj/item/clothing/under/plasmaman/security
-	l_pocket = /obj/item/taperecorder
-	r_pocket = /obj/item/storage/pouch/medical/firstaid/loaded
-	backpack_contents = list(
-		/obj/item/holosign_creator/security,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol/pepperball,
-	)
-
-
-	box = /obj/item/storage/box/survival/security
 
 	implants = list(/obj/item/implant/mindshield)
 
