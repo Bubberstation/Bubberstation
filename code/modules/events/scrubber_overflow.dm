@@ -23,7 +23,7 @@
 	var/list/scrubbers = list()
 	/// The list of chems that scrubbers can produce
 
-	// BUBBERSTATION EDIT - DISABLES MESSY REAGENTS
+	// BUBBER EDIT START - DISABLES MESSY REAGENTS
 
 	var/list/safer_chems = list(/datum/reagent/water,
 		/datum/reagent/carbon,
@@ -62,7 +62,7 @@
 		/datum/reagent/yuck,
 	)
 
-	// END BUBBERSTATION EDIT
+	// BUBBER EDIT END
 
 	//needs to be chemid unit checked at some point
 
