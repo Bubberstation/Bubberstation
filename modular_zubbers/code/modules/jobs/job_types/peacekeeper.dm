@@ -22,7 +22,7 @@
 
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
-	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	display_order = JOB_DISPLAY_ORDER_SECURITY_PEACEKEEPER
 	bounty_types = CIV_JOB_SEC
 	departments_list = list(
 		/datum/job_department/security,
