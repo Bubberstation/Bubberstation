@@ -39,6 +39,9 @@
 	if(!vassaldatum && vassaldatum.master != bloodsuckerdatum.owner.current || !IS_BLOODSUCKER(target) && !non_favorite && vassaldatum.master != bloodsuckerdatum.owner.current)
 		target.balloon_alert(target, "is not a sired bloodsucker nor your favorite vassal!")
 		return FALSE
+	if(!vassaldatum.owner.current.mind)
+		target.balloon_alert(target, "vassal must be awake!")
+		return FALSE
 	// Purchase Power Prompt
 	var/list/options = list()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
@@ -98,14 +101,8 @@
 				var/powers_to_transfer = list()
 				// Get rid of the favorite datum and replace with a normal vassal datum
 				if(target.mind.has_antag_datum(/datum/antagonist/vassal/favorite))
-					var/datum/antagonist/vassal/new_antag_datum = new(target.mind)
 					powers_to_transfer = vassaldatum.bloodsucker_powers.Copy()
-					vassaldatum.bloodsucker_powers.Cut(powers_to_transfer)
 					target.mind.remove_antag_datum(/datum/antagonist/vassal/favorite)
-					new_antag_datum.master = vassaldatum.master
-					new_antag_datum.silent = TRUE
-					target.mind.add_antag_datum(new_antag_datum)
-					new_antag_datum.remove_powers(new_antag_datum.powers)
 				bloodsucker_target = target.mind.add_antag_datum(/datum/antagonist/bloodsucker)
 				bloodsucker_target?.powers += powers_to_transfer
 				// Check for the recuperate power and remove it if they have it
