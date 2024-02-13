@@ -59,8 +59,8 @@
 	)
 
 	weighted_mob_spawn_list = list(
-		/mob/living/simple_animal/hostile/cazador = 10,
-		/mob/living/simple_animal/hostile/scorpion = 40,
+		/mob/living/basic/mining/cazador = 10,
+		/mob/living/basic/mining/scorpion = 40,
 		/obj/effect/decal/cleanable/ants/fire = 50
 	)
 
