@@ -23,10 +23,10 @@
 	)
 
 /datum/loadout_item/glasses/prescription_aviator_health/New()
+	. = ..()
 	restricted_roles |= list(
 		JOB_SECURITY_MEDIC,
 	)
-	. = ..()
 
 /datum/loadout_item/glasses/retinal_projector_health/New()
 	. = ..()
@@ -41,10 +41,10 @@
 	)
 
 /datum/loadout_item/head/cowboyhat_sec/New()
+	. = ..()
 	restricted_roles |= list(
 		JOB_SECURITY_MEDIC,
 	)
-	. = ..()
 
 /datum/loadout_item/head/cowboyhat_secwide/New()
 	. = ..()
