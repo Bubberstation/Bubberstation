@@ -7,9 +7,9 @@ import {
   FeatureDropdownInput,
   FeatureNumberInput,
   FeatureNumeric,
+  FeatureSliderInput,
   FeatureToggle,
   FeatureValueProps,
-  FeatureSliderInput,
 } from '../../base';
 
 const FeatureBlooperDropdownInput = (
@@ -34,6 +34,13 @@ const FeatureBlooperDropdownInput = (
   );
 };
 
+export const blooper_pitch_range: FeatureNumeric = {
+  name: 'Character Voice Range',
+  description:
+    '[0.1 - 0.8] Lower number, less range. Higher number, more range.',
+  component: FeatureNumberInput,
+};
+
 export const blooper_speech: FeatureChoiced = {
   name: 'Character Voice',
   component: FeatureBlooperDropdownInput,
@@ -53,21 +60,8 @@ export const blooper_speech_pitch: FeatureNumeric = {
   component: FeatureNumberInput,
 };
 
-export const blooper_pitch_range: FeatureNumeric = {
-  name: 'Character Voice Range',
-  description:
-    '[0.1 - 0.8] Lower number, less range. Higher number, more range.',
-  component: FeatureNumberInput,
-};
-
 export const hear_sound_blooper: FeatureToggle = {
   name: 'Enable Vocal Bark hearing',
-  category: 'SOUND',
-  component: CheckboxInput,
-};
-
-export const send_sound_blooper: FeatureToggle = {
-  name: 'Enable Vocal Bark sending',
   category: 'SOUND',
   component: CheckboxInput,
 };
@@ -77,4 +71,10 @@ export const sound_blooper_volume: Feature<number> = {
   category: 'SOUND',
   description: 'The volume that the Vocal Barks sounds will play at.',
   component: FeatureSliderInput,
+};
+
+export const send_sound_blooper: FeatureToggle = {
+  name: 'Enable Vocal Bark sending',
+  category: 'SOUND',
+  component: CheckboxInput,
 };
