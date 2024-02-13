@@ -1,11 +1,11 @@
-/*
+
 /datum/round_event_control/antagonist/solo/malf
 	name = "Malfunctioning AI"
 	roundstart = TRUE
 
 	antag_flag = ROLE_MALF
 	antag_datum = /datum/antagonist/malf_ai
-	weight = 4
+	weight = 0
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_DESTRUCTIVE)
 	restricted_roles = list()
 
@@ -13,7 +13,7 @@
 	name = "Malfunctioning AI Midround"
 	prompted_picking = TRUE
 	roundstart = FALSE
-	weight = 4
+	weight = 0
 
 
 /* /datum/round_event_control/antagonist/solo/malf/get_candidates()
