@@ -52,7 +52,7 @@
 /datum/loadout_item/gloves/hypnoring_bippy
 	name = "Hypnodemon's Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
-	//ckeywhitelist = list("bippys")
+	ckeywhitelist = list("bippys")
 
 /datum/loadout_item/shoes/rax_armadyne_boots
 	name = "Tactical Boots"
