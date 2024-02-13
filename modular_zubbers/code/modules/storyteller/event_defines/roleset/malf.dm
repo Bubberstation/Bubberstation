@@ -1,3 +1,4 @@
+/*
 /datum/round_event_control/antagonist/solo/malf
 	name = "Malfunctioning AI"
 	roundstart = TRUE
