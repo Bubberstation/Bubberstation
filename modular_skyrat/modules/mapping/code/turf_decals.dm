@@ -6,7 +6,7 @@
 	density = FALSE
 
 //MODULAR BUBBERSTATION CHANGE START
-/obj/effect/decal/fakelattice
+/obj/effect/decal/fakelattice/NeverShouldHaveComeHere(turf/here_turf)
 	return !islava(here_turf) && ..()
 //MODULAR BUBBERSTATION CHANGE END
 
