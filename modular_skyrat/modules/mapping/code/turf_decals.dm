@@ -5,6 +5,11 @@
 /obj/effect/decal/fakelattice/passthru	//Why the hell did TG make it dense anyways
 	density = FALSE
 
+//MODULAR BUBBERSTATION CHANGE START
+/obj/effect/decal/fakelattice
+	return !islava(here_turf) && ..()
+//MODULAR BUBBERSTATION CHANGE END
+
 /obj/effect/decal/fakelattice/passthru/NeverShouldHaveComeHere(turf/here_turf)
 	return !isclosedturf(here_turf) && ..()
 
