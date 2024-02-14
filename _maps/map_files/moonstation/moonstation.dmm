@@ -445,9 +445,7 @@
 	id = "cargodisposals";
 	dir = 1
 	},
-/obj/structure/drain/big{
-	dir = 4
-	},
+/obj/machinery/plumbing/floor_pump/input/on/directional/east,
 /turf/open/floor/plating,
 /area/station/cargo/sorting)
 "ahL" = (
@@ -4297,9 +4295,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/structure/drain/big{
-	dir = 4
-	},
+/obj/machinery/plumbing/floor_pump/input/on/directional/east,
 /turf/open/floor/plating,
 /area/station/cargo/sorting)
 "bnz" = (
@@ -5474,6 +5470,15 @@
 	dir = 1
 	},
 /area/station/commons/dorms)
+"bKr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/station/maintenance/night_club)
 "bKy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -37570,9 +37575,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/drain/big{
-	dir = 4
-	},
+/obj/machinery/plumbing/floor_pump/input/on/directional/east,
 /turf/open/floor/plating,
 /area/station/cargo/sorting)
 "lzw" = (
@@ -59699,7 +59702,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/power/apc/auto_name/directional/east,
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/night_club)
 "slR" = (
@@ -75747,6 +75752,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "xuq" = (
@@ -231895,7 +231901,7 @@ wvI
 ofD
 cQI
 vgK
-umj
+bKr
 dER
 fal
 vmK
