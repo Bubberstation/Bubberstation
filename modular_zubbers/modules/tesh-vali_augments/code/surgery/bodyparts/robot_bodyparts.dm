@@ -104,13 +104,15 @@
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
@@ -121,13 +123,14 @@
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
@@ -138,13 +141,14 @@
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 
@@ -155,13 +159,235 @@
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
 
-	unarmed_damage_low = TESHARI_PUNCH_LOW
-	unarmed_damage_high = TESHARI_PUNCH_HIGH
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/arm/left/robot/teshvali_surplus
+	name = "prosthetic left raptorial forelimb"
+	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
+
+	brute_modifier = 1.25
+	burn_modifier = 1.2
+
+	max_damage = LIMB_MAX_HP_PROSTHESIS
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/arm/right/robot/teshvali_surplus
+	name = "prosthetic right raptorial forelimb"
+	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+  
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
+
+	brute_modifier = 1.25
+	burn_modifier = 1.2
+
+	max_damage = LIMB_MAX_HP_PROSTHESIS
+
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
+
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/leg/left/robot/teshvali_surplus
+	name = "prosthetic left raptorial hindlimb"
+	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
+
+	brute_modifier = 1.25
+	burn_modifier = 1.2
+
+	max_damage = LIMB_MAX_HP_PROSTHESIS
+
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/leg/right/robot/teshvali_surplus
+	name = "prosthetic right raptorial hindlimb"
+	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
+
+	brute_modifier = 1.25
+	burn_modifier = 1.2
+
+	max_damage = LIMB_MAX_HP_PROSTHESIS
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+// Teshvali advanced
+
+/obj/item/bodypart/arm/left/robot/teshvali_advanced
+	name = "advanced left raptorial forelimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 0.8
+	burn_modifier = 1
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/arm/right/robot/teshvali_advanced
+	name = "advanced right raptorial forelimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 0.8
+	burn_modifier = 1
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/leg/left/robot/teshvali_advanced
+	name = "advanced left raptorial hindlimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 0.8
+	burn_modifier = 1
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/leg/right/robot/teshvali_advanced
+	name = "advanced right raptorial hindlimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 0.8
+	burn_modifier = 1
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/arm/left/robot/teshvali_advanced
+	name = "advanced left raptorial forelimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/arm/right/robot/teshvali_advanced
+	name = "advanced right raptorial forelimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/leg/left/robot/teshvali_advanced
+	name = "advanced left raptorial hindlimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+
+	biological_state = (BIO_METAL|BIO_JOINTED)
+
+/obj/item/bodypart/leg/right/robot/teshvali_advanced
+	name = "advanced right raptorial hindlimb"
+	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
+	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
+	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_CUSTOM
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
+	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+	max_damage = LIMB_MAX_HP_ADVANCED
+	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
 
 	biological_state = (BIO_METAL|BIO_JOINTED)
 

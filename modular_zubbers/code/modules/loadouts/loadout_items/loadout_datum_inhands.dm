@@ -15,3 +15,6 @@
 /datum/loadout_item/inhand/flag_moghes //sprites by Crumpaloo
 	name = "Folded Tizirian Empire Flag"
 	item_path = /obj/item/sign/flag/tizira
+
+/datum/loadout_item/inhand/flag_solfed
+	name = "Folded Solarian State Flag"

@@ -103,7 +103,6 @@
 	if(.)
 		return
 
-	// BUBBER EDIT BEGIN: NO MORE SIPHONING
 	switch(action)
 		if("siphon")
 			if(is_station_level(src.z) || is_centcom_level(src.z))
@@ -112,11 +111,17 @@
 			else
 				say("Error: Console not in reach of station, withdrawal cannot begin.")
 			. = TRUE
-	// BUBBER EDIT END
 		if("halt")
 			say("Station credit withdrawal halted.")
 			end_siphon()
 			. = TRUE
+
+/obj/machinery/computer/bank_machine/on_changed_z_level()
+	. = ..()
+	if(siphoning && !(is_station_level(src.z) || is_centcom_level(src.z)))
+		say("Error: Console not in reach of station. Siphon halted.")
+		end_siphon()
+
 /obj/machinery/computer/bank_machine/proc/end_siphon()
 	siphoning = FALSE
 	unauthorized = FALSE
