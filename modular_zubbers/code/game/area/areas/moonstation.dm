@@ -112,7 +112,7 @@
 /area/moonstation/surface/unexplored //monsters and ruins spawn here
 	icon_state = "unexplored"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
-	map_generator = /datum/map_generator/cave_generator/lunar_sand/surface
+	map_generator = /datum/map_generator/cave_generator/moonstation
 
 /area/moonstation/underground
 	name = "Lunar Caves"
@@ -129,4 +129,12 @@
 /area/moonstation/underground/unexplored
 	icon_state = "unexplored"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
-	map_generator = /datum/map_generator/cave_generator/lunar_sand
+	map_generator = /datum/map_generator/cave_generator/moonstation/cave
+
+/area/station/cargo/miningelevators
+	name = "\improper Mining Elevators"
+	icon_state = "unknown"
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+/area/station/cargo/miningfoundry/event_protected
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED

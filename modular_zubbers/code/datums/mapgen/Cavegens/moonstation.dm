@@ -1,9 +1,41 @@
+//Surface
+/datum/map_generator/cave_generator/moonstation
+
+	weighted_open_turf_types = list(/turf/open/misc/moonstation_sand = 1)
+	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar = 1)
+
+	weighted_flora_spawn_list = list(
+		/obj/structure/flora/scrap = 10,
+		/obj/structure/flora/ash/cacti = 20,
+		/obj/structure/flora/bush/ferny = 5,
+		/obj/structure/flora/bush/grassy/style_random = 1,
+		/obj/structure/flora/bush/leavy/style_random = 1,
+		/obj/structure/flora/bush/sparsegrass/style_random = 3,
+		/obj/structure/flora/bush/stalky/style_random = 5,
+	)
+
+	weighted_mob_spawn_list = list(
+		/mob/living/basic/mining/cazador = 10,
+		/mob/living/basic/mining/scorpion = 40,
+		/obj/effect/decal/cleanable/ants/fire = 50
+	)
+
+	weighted_feature_spawn_list = list(
+		/obj/structure/geyser/random = 1
+	)
+
+	mob_spawn_chance = 1
+	initial_closed_chance = 30
+	smoothing_iterations = 50
+	birth_limit = 4
+	death_limit = 3
+
 
 //Underground
-/datum/map_generator/cave_generator/lunar_sand
+/datum/map_generator/cave_generator/moonstation/cave
 
 	weighted_open_turf_types = list(/turf/open/misc/moonstation_rock/cave = 1)
-	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar = 1)
+	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar_cave = 1)
 
 
 	weighted_mob_spawn_list = list(
@@ -34,38 +66,14 @@
 		/obj/structure/geyser/protozine = 10,
 		/obj/structure/geyser/random = 2,
 		/obj/structure/geyser/wittel = 10,
+		/obj/structure/ore_vent/random = 5
 	)
 
+	mob_spawn_chance = 4
 	initial_closed_chance = 45
 	smoothing_iterations = 50
 	birth_limit = 4
 	death_limit = 3
 
 
-//Surface
-/datum/map_generator/cave_generator/lunar_sand/surface
 
-	weighted_open_turf_types = list(/turf/open/misc/moonstation_sand = 1)
-	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar/surface = 1)
-
-	weighted_flora_spawn_list = list(
-		/obj/structure/flora/scrap = 10,
-		/obj/structure/flora/ash/cacti = 20,
-		/obj/structure/flora/bush/ferny = 5,
-		/obj/structure/flora/bush/grassy/style_random = 1,
-		/obj/structure/flora/bush/leavy/style_random = 1,
-		/obj/structure/flora/bush/sparsegrass/style_random = 3,
-		/obj/structure/flora/bush/stalky/style_random = 5,
-	)
-
-	weighted_mob_spawn_list = list(
-		/mob/living/basic/mining/cazador = 10,
-		/mob/living/basic/mining/scorpion = 40,
-		/obj/effect/decal/cleanable/ants/fire = 50
-	)
-
-	mob_spawn_chance = 1
-	initial_closed_chance = 30
-	smoothing_iterations = 50
-	birth_limit = 4
-	death_limit = 3
