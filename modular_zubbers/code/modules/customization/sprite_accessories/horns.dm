@@ -1,4 +1,4 @@
-/datum/sprite_accessory/horns/bubber //sprites by Scuhf_#6640
+/datum/sprite_accessory/horns/bubber
 	icon = 'modular_zubbers/icons/customization/horns.dmi'
 
 /datum/sprite_accessory/horns/bubber/crippledbull
