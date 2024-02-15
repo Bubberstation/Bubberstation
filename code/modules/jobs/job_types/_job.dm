@@ -508,6 +508,10 @@
 	if(length(GLOB.jobspawn_overrides[job_spawn_title])) //We're doing something special today.
 		return pick(GLOB.jobspawn_overrides[job_spawn_title])
 	// SKYRAT EDIT END
+	//BUBBERSTATION CHANGE START: MOONSTATION CRYO SPAWNS.
+	if(length(SSjob.latejoin_override_trackers))
+		return pick(SSjob.latejoin_override_trackers)
+	//BUBBERSTATION CHANGE END
 	if(length(SSjob.latejoin_trackers))
 		return pick(SSjob.latejoin_trackers)
 	return SSjob.get_last_resort_spawn_points()
