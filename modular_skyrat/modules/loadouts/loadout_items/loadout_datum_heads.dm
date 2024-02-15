@@ -655,6 +655,7 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 /*
 *	FLOWERS
 */
+
 /datum/loadout_item/head/donator/poppy
 	name = "Poppy Flower"
 	item_path = /obj/item/food/grown/poppy
