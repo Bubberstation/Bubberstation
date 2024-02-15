@@ -23,3 +23,35 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/modules/emotes/sound/voice/caw2.ogg'
+
+/datum/emote/living/mrrp //you play like a cat
+	key = "mrrp"
+	key_third_person = "mrrps"
+	message = "mrrps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/mrrp.ogg'
+
+/datum/emote/living/fpurr
+	key = "fpurr"
+	key_third_person = "purrs!"
+	message = "purrs!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/fox_purr.ogg'
+
+/datum/emote/living/prbt //all tesh players will love me
+	key = "prbt"
+	key_third_person = "prbts!"
+	message = "prbts!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/prbt.ogg'
+
+/datum/emote/living/gecker
+	key = "gecker"
+	key_third_person = "geckers"
+	message = "geckers!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/modules/emotes/sound/voice/foxgecker.ogg'

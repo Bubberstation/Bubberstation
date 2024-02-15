@@ -17,6 +17,7 @@
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/gun/ballistic/shotgun/toy = 8)
 	crate_name = "foam force crate"
+	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/imports/foamforce/bonus
 	name = "Foam Force Pistols Crate"
@@ -37,6 +38,7 @@
 	contains = list(/obj/item/storage/backpack/meat)
 	crate_name = "MEAT MEAT MEAT MEAT MEAT"
 	crate_type = /obj/structure/closet/crate/necropolis
+	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/duct_spider
 	name = "Duct Spider Crate"
@@ -45,6 +47,7 @@
 	contains = list(/mob/living/basic/spider/maintenance)
 	crate_name = "duct spider crate"
 	crate_type = /obj/structure/closet/crate/critter
+	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/imports/duct_spider/dangerous
 	name = "Duct Spider Crate?"
@@ -66,6 +69,7 @@
 	cost = CARGO_CRATE_VALUE * 100
 	contains = list(/obj/item/stack/sheet/mineral/bananium)
 	crate_name = "bananium sheet crate"
+	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/naturalbait
 	name = "Freshness Jars full of Natural Bait"
@@ -228,6 +232,7 @@
 		/obj/item/clothing/suit/armor/vest/russian_coat,
 		/obj/item/storage/toolbox/guncase/soviet = 2,
 	)
+	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/russian/fill(obj/structure/closet/crate/our_crate)
 	for(var/items in 1 to 10)
@@ -272,6 +277,7 @@
 	crate_name = "abandoned crate"
 	contraband = TRUE
 	dangerous = TRUE //these are literally bombs so....
+	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/shambler_evil
 	name = "Shamber's Juice Eldritch Energy! Crate"
@@ -296,7 +302,7 @@
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog = 3)
 	crate_name = "dreadnog crate"
 
-/* BUBBER EDIT - No craftable slappy
+/* BUBBER EDIT - Removal Start
 /datum/supply_pack/imports/giant_wrench_parts
 	name = "Big Slappy parts"
 	desc = "Illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
@@ -304,8 +310,8 @@
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
-*/
-/datum/supply_pack/imports/materials_market
+
+/datum/supply_pack/imports/materials_market - RENABLE IF FIXED UPSTREAM
 	name = "Galactic Materials Market Crate"
 	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
 	cost = CARGO_CRATE_VALUE * 3
@@ -317,4 +323,5 @@
 		/obj/item/stock_parts/card_reader = 1
 	)
 	crate_name = "materials market crate"
-	crate_type = /obj/structure/closet/crate
+	crate_type = /obj/structure/closet/crate/cargo
+Removal End */

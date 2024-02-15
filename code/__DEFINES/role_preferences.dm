@@ -27,7 +27,6 @@
 #define ROLE_BLOB "Blob"
 #define ROLE_BLOB_INFECTION "Blob Infection"
 #define ROLE_CHANGELING_MIDROUND "Changeling (Midround)"
-#define ROLE_CYBER_POLICE "Cyber Police"
 #define ROLE_FUGITIVE "Fugitive"
 #define ROLE_LONE_OPERATIVE "Lone Operative"
 #define ROLE_MALF_MIDROUND "Malf AI (Midround)"
@@ -44,7 +43,6 @@
 #define ROLE_WIZARD_MIDROUND "Wizard (Midround)"
 //SKYRAT EDIT START
 #define ROLE_BORER "Borer"
-#define ROLE_DRIFTING_CONTRACTOR "Drifting Contractor"
 #define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
 #define ROLE_MUTANT "Mutated Abomination"
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
@@ -88,6 +86,7 @@
 #define ROLE_SLAUGHTER_DEMON "Slaughter Demon"
 #define ROLE_WIZARD_APPRENTICE "apprentice"
 #define ROLE_SYNDICATE_MONKEY "Syndicate Monkey Agent"
+#define ROLE_CONTRACTOR_SUPPORT "Contractor Support Unit"
 
 //Spawner roles
 #define ROLE_ANCIENT_CREW "Ancient Crew"
@@ -117,14 +116,28 @@
 #define ROLE_SYNDICATE_DRONE "Syndicate Drone"
 #define ROLE_VENUSHUMANTRAP "Venus Human Trap"
 #define ROLE_ZOMBIE "Zombie"
-//SKYRAT EDIT START
+
+// Virtual dom related
+#define ROLE_GLITCH "Glitch" // the parent type of all vdom roles
+#define ROLE_CYBER_POLICE "Cyber Police"
+#define ROLE_CYBER_TAC "Cyber Tac"
+#define ROLE_NETGUARDIAN "NetGuardian Prime"
+//SKYRAT EDIT START - Skyrat roles
 #define ROLE_BLACK_MARKET_DEALER "Black Market Dealer"
 #define ROLE_DS2 "DS2 Syndicate"
 #define ROLE_FREIGHTER_CREW "Freighter Crew"
 #define ROLE_GHOST_CAFE "Ghost Cafe Visitor"
 #define ROLE_PORT_TARKON "Port Tarkon Survivor"
 //SKYRAT EDIT END
-#define ROLE_DAUNTLESS "Dauntless Syndicate" //BUBBERSTATION EDIT
+
+//BUBBER EDIT START
+#define ROLE_DAUNTLESS "Dauntless Syndicate"
+
+#define ROLE_BLOODSUCKER "Bloodsucker"
+#define ROLE_VAMPIRICACCIDENT "Bloodsucker (Midround)"
+#define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker (Latejoin)"
+#define ROLE_MONSTERHUNTER "Monster Hunter"
+//BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.
 /// Keys are the antagonist, values are the number of days since the player's
@@ -151,7 +164,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BLOB = 0,
 	ROLE_BLOB_INFECTION = 0,
 	ROLE_CHANGELING_MIDROUND = 0,
-	ROLE_CYBER_POLICE = 0,
 	ROLE_FUGITIVE = 0,
 	ROLE_LONE_OPERATIVE = 14,
 	ROLE_MALF_MIDROUND = 0,
@@ -169,7 +181,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	//SKYRAT EDIT START
 	ROLE_LONE_INFILTRATOR = 0,
 	ROLE_BORER = 0,
-	ROLE_DRIFTING_CONTRACTOR = 14,
 	ROLE_MUTANT = 0,
 	//SKYRAT EDIT END
 
@@ -180,8 +191,16 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_STOWAWAY_CHANGELING = 0,
 
 	// I'm not too sure why these are here, but they're not moving.
+	ROLE_GLITCH = 0,
 	ROLE_PAI = 0,
 	ROLE_SENTIENCE = 0,
+
+	//BUBBER EDIT START
+	ROLE_BLOODSUCKER = 14,
+	ROLE_VAMPIRICACCIDENT = 14,
+	ROLE_BLOODSUCKERBREAKOUT = 14,
+	ROLE_MONSTERHUNTER = 14,
+	//BUBBER EDIT END
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

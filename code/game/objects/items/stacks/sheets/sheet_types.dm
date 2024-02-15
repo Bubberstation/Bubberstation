@@ -68,9 +68,16 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new /datum/stack_recipe("White Checker King", /obj/structure/chess/checker/whiteking, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ENTERTAINMENT), \
 		new /datum/stack_recipe("Black Checker Man", /obj/structure/chess/checker/blackman, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ENTERTAINMENT), \
 		new /datum/stack_recipe("Black Checker King", /obj/structure/chess/checker/blackking, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ENTERTAINMENT), \
+	)), \
+	//BUBBER EDIT BEGIN: ADDS CRAFTABLE SHELVES
+	new /datum/stack_recipe_list("Racks and Shelves", list( \
+		new/datum/stack_recipe("rack parts", /obj/item/rack_parts, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Cargo shelf parts", /obj/item/rack_parts/cargo_shelf, 4, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Gun shelf parts", /obj/item/rack_parts/gun, 2, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Shelf parts", /obj/item/rack_parts/shelf, 2, category = CAT_FURNITURE), \
 	)),
 	null, \
-	new/datum/stack_recipe("rack parts", /obj/item/rack_parts, category = CAT_FURNITURE), \
+	//BUBBER EDIT END: ADDS CRAFTABLE SHELVES
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	null, \
 	new/datum/stack_recipe("atmos canister", /obj/machinery/portable_atmospherics/canister, 10, time = 3 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ATMOSPHERIC), \
@@ -140,7 +147,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	inhand_icon_state = "sheet-metal"
 	mats_per_unit = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT)
 	throwforce = 10
-	flags_1 = CONDUCT_1
+	obj_flags = CONDUCTS_ELECTRICITY
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/iron
 	grind_results = list(/datum/reagent/iron = 20)
@@ -202,7 +209,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		)
 		use(1)
 		user.put_in_inactive_hand(new_item)
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/sheet/iron/welder_act_secondary(mob/living/user, obj/item/tool)
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
@@ -215,7 +222,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		)
 		use(1)
 		user.put_in_inactive_hand(new_item)
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/sheet/iron/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
 	if(isopenturf(target))
@@ -266,7 +273,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	mats_per_unit = list(/datum/material/alloy/plasteel=SHEET_MATERIAL_AMOUNT)
 	material_type = /datum/material/alloy/plasteel
 	throwforce = 10
-	flags_1 = CONDUCT_1
+	obj_flags = CONDUCTS_ELECTRICITY
 	armor_type = /datum/armor/sheet_plasteel
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/plasteel
@@ -303,6 +310,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 2 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_DOORS), \
 	new/datum/stack_recipe("wooden stairs frame", /obj/structure/stairs_frame/wood, 10, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("wooden fence", /obj/structure/railing/wooden_fence, 2, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("cat house", /obj/structure/cat_house, 5, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/crate/coffin, 5, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("book case", /obj/structure/bookcase, 4, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("drying rack", /obj/machinery/smartfridge/drying_rack, 10, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_TOOLS), \
@@ -767,7 +776,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	// Sinew slapcrafting will mostly-sinew recipes, and bones will have mostly-bones recipes.
 	var/static/list/slapcraft_recipe_list = list(\
 		/datum/crafting_recipe/bonedagger, /datum/crafting_recipe/bonespear, /datum/crafting_recipe/boneaxe,\
-		/datum/crafting_recipe/bonearmor, /datum/crafting_recipe/skullhelm, /datum/crafting_recipe/bracers
+		/datum/crafting_recipe/bonearmor, /datum/crafting_recipe/skullhelm, /datum/crafting_recipe/bracers,
+		/datum/crafting_recipe/ash_recipe/bone_greaves,
 		)
 
 	AddComponent(

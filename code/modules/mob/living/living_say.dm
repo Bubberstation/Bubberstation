@@ -104,10 +104,6 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
-	//BUBBER EDIT ADDITION: AUTOPUNCTUATION
-	if(findtext(message, GLOB.has_eol_punctuation))
-		message += "."
-	//BUBBER EDIT END: AUTOPUNCTUATION
 
 	var/list/message_mods = list()
 	var/original_message = message
@@ -151,7 +147,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			say_dead(original_message)
 			return
 
-	if(HAS_TRAIT(src, TRAIT_SOFTSPOKEN))
+	if(HAS_TRAIT(src, TRAIT_SOFTSPOKEN) && !HAS_TRAIT(src, TRAIT_SIGN_LANG)) // softspoken trait only applies to spoken languages
 		message_mods[WHISPER_MODE] = MODE_WHISPER
 
 	if(client && SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && !forced && src == usr)
@@ -194,11 +190,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	last_say_args_ref = REF(args)
 #endif
 
-	if(!HAS_TRAIT(src, TRAIT_SIGN_LANG)) // if using sign language skip sending the say signal
-		// Make sure the arglist is passed exactly - don't pass a copy of it. Say signal handlers will modify some of the parameters.
-		var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
-		if(sigreturn & COMPONENT_UPPERCASE_SPEECH)
-			message = uppertext(message)
+	// Make sure the arglist is passed exactly - don't pass a copy of it. Say signal handlers will modify some of the parameters.
+	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
+	if(sigreturn & COMPONENT_UPPERCASE_SPEECH)
+		message = uppertext(message)
 
 	var/list/message_data = treat_message(message) // unfortunately we still need this
 	message = message_data["message"]
@@ -216,28 +211,33 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = "[randomnote] [message] [randomnote]"
 		spans |= SPAN_SINGING
 
+	if(LAZYACCESS(message_mods,WHISPER_MODE)) // whisper away
+		spans |= SPAN_ITALICS
 
 	if(!message)
 		if(succumbed)
 			succumb()
 		return
 
+	//Get which verb is prefixed to the message before radio but after most modifications
+	message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
+
+	// SKYRAT EDIT ADDITION START: autopunctuation
+	//ensure EOL punctuation exists and that word-bounded 'i' are capitalized before we do anything else
+	message = autopunct_bare(message)
+	// SKYRAT EDIT ADDITION END
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
 	if(saymode && !saymode.handle_message(src, message, language))
 		return
-	var/radio_message = message
-	if(message_mods[WHISPER_MODE])
-		// radios don't pick up whispers very well
-		radio_message = stars(radio_message)
-		spans |= SPAN_ITALICS
 
-	var/radio_return = radio(radio_message, message_mods, spans, language)//roughly 27% of living/say()'s total cost
+	var/radio_return = radio(message, message_mods, spans, language)//roughly 27% of living/say()'s total cost
 	if(radio_return & ITALICS)
 		spans |= SPAN_ITALICS
 	if(radio_return & REDUCE_RANGE)
 		message_range = 1
 		if(!message_mods[WHISPER_MODE])
 			message_mods[WHISPER_MODE] = MODE_WHISPER
+			message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
 	if(radio_return & NOPASS)
 		return TRUE
 
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range=0)
-	if(!GET_CLIENT(src))
+	if((SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_HEAR, args) & COMSIG_MOVABLE_CANCEL_HEARING) || !GET_CLIENT(src))
 		return FALSE
 
 	var/deaf_message
@@ -278,7 +278,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	var/understood = TRUE
 	if(!is_custom_emote) // we do not translate emotes
 		var/untranslated_raw_message = raw_message
-		raw_message = translate_language(src, message_language, raw_message) // translate
+		raw_message = translate_language(speaker, message_language, raw_message, spans, message_mods) // translate
 		if(raw_message != untranslated_raw_message)
 			understood = FALSE
 
@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	var/dist = get_dist(speaker, src) - message_range
 	if(dist > 0 && dist <= EAVESDROP_EXTRA_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING) && !isobserver(src)) // ghosts can hear all messages clearly
 		raw_message = stars(raw_message)
-	if (dist > EAVESDROP_EXTRA_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING) && !isobserver(src))
+	if (message_range != INFINITY && dist > EAVESDROP_EXTRA_RANGE && !HAS_TRAIT(src, TRAIT_GOOD_HEARING) && !isobserver(src))
 		return FALSE // Too far away and don't have good hearing, you can't hear anything
 
 	// we need to send this signal before compose_message() is used since other signals need to modify
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be separate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
-			deaf_message = "[span_name("[speaker]")] [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
+			deaf_message = "[span_name("[speaker]")] [speaker.get_default_say_verb()] something but you cannot hear [speaker.p_them()]."
 			deaf_type = MSG_VISUAL
 	else
 		deaf_message = span_notice("You can't hear yourself!")
@@ -512,7 +512,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	//SKYRAT EDIT ADDITION BEGIN
-	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) &&  !ispAI(src)) // If can't use items, you can't press the button
+	if((message_mods[MODE_HEADSET] || message_mods[RADIO_EXTENSION]) && !(mobility_flags & MOBILITY_USE) && !isAI(src) && !ispAI(src) && !ismecha(loc)) // If can't use items, you can't press the button
 		to_chat(src, span_warning("You can't use the radio right now as you can't reach the button!"))
 		return ITALICS | REDUCE_RANGE
 	//SKYRAT EDIT END
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 				I.talk_into(src, message, , spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
-	return 0
+	return NONE
 
 /mob/living/say_mod(input, list/message_mods = list())
 	if(message_mods[WHISPER_MODE] == MODE_WHISPER)
