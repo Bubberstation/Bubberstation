@@ -66,6 +66,7 @@
 	stripe.color = stripe_color
 	. += stripe
 
+
 /obj/machinery/rnd/production/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !isobserver(user))
