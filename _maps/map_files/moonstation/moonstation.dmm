@@ -524,6 +524,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "aiK" = (
@@ -1582,10 +1583,10 @@
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "axQ" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/chapel)
 "axW" = (
@@ -5484,6 +5485,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "bKF" = (
@@ -8894,10 +8896,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/cult_chapel)
 "cNZ" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/command/cc_dock)
 "cOe" = (
@@ -9024,13 +9026,13 @@
 /turf/open/floor/iron,
 /area/station/security/prison/workout)
 "cQN" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/engineering/asteroid_lobby)
 "cQS" = (
@@ -11593,11 +11595,11 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/tools)
 "dDs" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
@@ -14001,8 +14003,8 @@
 /area/station/service/library)
 "epf" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/construction)
@@ -16188,18 +16190,6 @@
 "eWR" = (
 /turf/open/indestructible/tram/plate,
 /area/station/hallway/primary/tram/left)
-"eWV" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/door/airlock/external{
-	name = "Escape Airlock"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/station/hallway/secondary/exit/departure_lounge)
 "eXq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -18236,6 +18226,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "fBB" = (
@@ -20261,7 +20252,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/glass{
 	name = "Escape Airlock"
 	},
 /turf/open/floor/plating,
@@ -20329,11 +20320,11 @@
 /turf/open/floor/wood/parquet,
 /area/station/security/brig/entrance)
 "gkh" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/service/chapel)
@@ -21583,12 +21574,11 @@
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "gEm" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port";
-	space_dir = 1
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "command_dock_airlocks"
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Docking Port"
 	},
 /turf/open/floor/iron,
 /area/station/command/cc_dock)
@@ -23636,6 +23626,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "hmp" = (
@@ -24092,15 +24083,6 @@
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/catwalk_floor,
 /area/station/science/research/abandoned)
-"htF" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three";
-	space_dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/engineering/asteroid_lobby)
 "htI" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -24486,11 +24468,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "hzK" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/command/cc_dock)
@@ -24550,12 +24532,12 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/machinery/door/airlock/external{
-	name = "Security Escape Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "Escape Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/customs)
@@ -26381,13 +26363,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "ifq" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/engineering/asteroid_lobby)
 "ifT" = (
@@ -33512,7 +33494,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Four";
 	space_dir = 4
@@ -33528,11 +33509,11 @@
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
 "kqU" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
@@ -35559,13 +35540,13 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "kWU" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "command_dock_airlocks"
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Docking Port"
+	},
 /turf/open/floor/iron,
 /area/station/command/cc_dock)
 "kXo" = (
@@ -36336,6 +36317,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/any/command/minisat,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat/teleporter)
 "lik" = (
@@ -36465,13 +36447,13 @@
 /turf/open/floor/iron,
 /area/station/maintenance/abandon_cafeteria)
 "lkq" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/prison)
 "lkv" = (
@@ -36779,6 +36761,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/any/command/minisat,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat/service)
 "lpj" = (
@@ -37113,9 +37096,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/asteroid)
 "lts" = (
-/obj/machinery/door/airlock/maintenance/external/glass{
-	name = "Spacebridge Two"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -38731,11 +38711,11 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/central/aft)
 "lQw" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/chapel)
@@ -39560,13 +39540,12 @@
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "mdM" = (
-/obj/machinery/door/airlock/external{
-	name = "Escape Pod Three";
-	space_dir = 1
-	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/engineering/asteroid_lobby)
@@ -43671,11 +43650,11 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "nso" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/engineering/asteroid_lobby)
 "nsv" = (
@@ -44347,13 +44326,13 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "nDk" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/prison)
 "nDy" = (
@@ -44448,6 +44427,7 @@
 	name = "External Airlock"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
 "nFB" = (
@@ -44801,13 +44781,13 @@
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/rd)
 "nMF" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/engineering/asteroid_lobby)
 "nMH" = (
@@ -45170,15 +45150,15 @@
 /turf/open/floor/catwalk_floor,
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "nRY" = (
-/obj/machinery/door/airlock/external{
-	name = "External Docking Port"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "command_dock_airlocks"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Docking Port"
+	},
 /turf/open/floor/iron,
 /area/station/command/cc_dock)
 "nSc" = (
@@ -45262,9 +45242,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/external{
-	name = "Security Escape Airlock";
-	space_dir = 4
+/obj/machinery/door/airlock/external/glass{
+	name = "Escape Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/customs)
@@ -49606,6 +49585,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
 "pkM" = (
@@ -52970,6 +52950,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/plating,
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "qjB" = (
@@ -54795,6 +54776,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "qPj" = (
@@ -65063,10 +65045,10 @@
 /turf/open/floor/iron/checker,
 /area/station/hallway/secondary/exit/departure_lounge)
 "tXU" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "tXV" = (
@@ -67416,6 +67398,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "uIJ" = (
@@ -68705,8 +68688,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/construction)
@@ -72940,11 +72923,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
 "wxh" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
@@ -74030,6 +74013,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/station/engineering/rbmk2)
 "wQc" = (
@@ -74470,10 +74454,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "wXU" = (
-/obj/machinery/door/airlock/external{
-	name = "External Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external/glass{
+	name = "External Public Airlock"
+	},
 /turf/open/floor/plating,
 /area/station/service/chapel)
 "wXW" = (
@@ -75947,9 +75931,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/external{
-	name = "Escape Airlock";
-	space_dir = 4
+/obj/machinery/door/airlock/external/glass{
+	name = "Escape Airlock"
 	},
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -261424,7 +261407,7 @@ jTL
 jTL
 shd
 dlP
-htF
+nso
 tAl
 mdM
 uFC
@@ -266877,13 +266860,13 @@ icS
 tMx
 hAR
 tMx
-eWV
+gjk
 dWi
 yjq
 xxx
 yjq
 dWi
-eWV
+gjk
 dWi
 gjk
 ygb
