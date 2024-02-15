@@ -8,8 +8,8 @@ GLOBAL_LIST(end_titles)
 #define JOINTEXT(X) jointext(X, null)
 /datum/controller/subsystem/ticker/declare_completion()
 	for(var/client/C)
-		if(!C.credits)
-			C.RollCredits()
+		if(!C?.credits)
+			C?.RollCredits()
 /* 	for(var/thing in GLOB.clients)
 		var/client/C = thing
 		if (!C)
@@ -88,7 +88,7 @@ GLOBAL_LIST(end_titles)
 			animate(src, alpha = 0, transform = target, time = CREDIT_EASE_DURATION)
 			sleep(CREDIT_EASE_DURATION)
 			qdel(src)
-	parent.screen += src
+	parent?.screen += src
 
 /atom/movable/screen/credit/Destroy()
 	var/client/P = parent
@@ -121,17 +121,20 @@ GLOBAL_LIST(end_titles)
 		titles += "<center><h1>EPISODE [rand(1,1000)]<br>[GLOB.end_credits_title]<h1></h1></h1></center>"
 
 	for(var/datum/mind/mind in get_crewmember_minds())
+		if(!mind)
+			continue
 		if(!cast.len && !chunksize)
 			chunk += "CAST:"
 		var/datum/job/job = mind?.assigned_role
-		var/used_name = mind?.current.name
+		var/jobtitle = job?.title || "No title"
+		var/used_name = mind?.current?.name
 		var/antag_string
 		for(var/datum/antagonist/antagonist as anything in mind?.antag_datums)
 			antag_string ? (antag_string += ", ") : (antag_string += "...")
-			antag_string += "[antagonist.name]"
+			antag_string += "[antagonist?.name]"
 /* 			for(var/datum/objective/objective as anything in mind.get_all_objectives())
 				chunk += "<B>[objective.objective_name] </B>: [objective.explanation_text]" */
-		chunk += "[used_name]\t \t THE \t \t[mind?.antag_datums ? "[antag_string] AND [job.title]" : job.title]"
+		chunk += "[used_name]\t \t THE \t \t[mind?.antag_datums ? "[antag_string] AND [jobtitle]" : jobtitle]"
 
 
 
@@ -152,9 +155,9 @@ GLOBAL_LIST(end_titles)
 		if(H.timeofdeath < 5 MINUTES) //no prespawned corpses
 			continue
 		if(ismonkey(H))
-			monkies[H.name] += 1
-		else if(H.real_name)
-			corpses += H.real_name
+			monkies[H?.name] += 1
+		else if(H?.real_name)
+			corpses += H?.real_name
 	if(corpses.len)
 		titles += "<center>BASED ON REAL EVENTS<br>In memory of [english_list(corpses)].</center>"
 
@@ -162,10 +165,10 @@ GLOBAL_LIST(end_titles)
 	var/list/static/staffjobs = list("Coffe Fetcher", "Cameraman", "Angry Yeller", "Chair Operator", "Choreographer", "Historical Consultant", "Costume Designer", "Chief Editor", "Executive Assistant")
 	var/list/goodboys = list()
 	for(var/client/C)
-		if(!C.holder)
+		if(!C?.holder)
 			continue
-		if(C.holder)
-			staff += "[uppertext(pick(staffjobs))] a.k.a. '[C.key]'"
+		if(C?.holder)
+			staff += "[uppertext(pick(staffjobs))] a.k.a. '[C?.key]'"
 
 	titles += "<center>[jointext(staff,"<br>")]</center>"
 	if(goodboys.len)
