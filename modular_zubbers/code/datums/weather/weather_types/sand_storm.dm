@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(sand_storm_sounds)
 	if(HAS_MIND_TRAIT(player, TRAIT_DETECT_STORM))
 		return TRUE
 
-	if(istype(get_area(player), /area/mine))
+	if(istype(get_area(player), /area/moonstation/surface))
 		return TRUE
 
 	return FALSE
