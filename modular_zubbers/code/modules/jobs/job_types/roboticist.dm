@@ -1,7 +1,8 @@
 /datum/outfit/job/roboticist/New()
 	. = ..()
 
-	backpack_contents += /obj/item/paper/pamphlet/roboticist_reminder
+	LAZYINITLIST(backpack_contents)
+	backpack_contents[/obj/item/paper/pamphlet/roboticist_reminder] = 1
 
 /obj/item/paper/pamphlet/roboticist_reminder
 	name = "pamphlet - 'Reminder of roboticist duties'"
