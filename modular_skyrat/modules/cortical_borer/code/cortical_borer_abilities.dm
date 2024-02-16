@@ -573,7 +573,7 @@
 	var/logging_text = "[key_name(cortical_owner)] went into [key_name(cortical_owner.human_host)] at [loc_name(human_turftwo)]"
 	cortical_owner.log_message(logging_text, LOG_GAME)
 	cortical_owner.human_host.log_message(logging_text, LOG_GAME)
-	ADD_TRAIT(cortical_owner, TRAIT_WEATHER_IMMUNE, "borer_in_host")
+	ADD_TRAIT(cortical_owner, TRAIT_WEATHER_IMMUNE, "borer_in_host") // BUBBER EDIT - WEATHER IMMUNE
 	StartCooldown()
 
 /// Checks if the target's head is bio protected, returns true if this is the case
