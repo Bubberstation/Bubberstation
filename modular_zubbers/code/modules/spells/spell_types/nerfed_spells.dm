@@ -63,3 +63,9 @@
 	victim.death(FALSE)
 
 	return TRUE
+
+// Laughter Demon. They're basically hugboxed slaughter demons (hence the name), but are still really powerful.
+// While you're basically put in gay baby jail until it's killed, it's not TOO bad, but it should still be limited to 1.
+/datum/spellbook_entry/item/hugbottle
+	cost = 2
+	limit = 1

@@ -264,23 +264,19 @@
 
 			update_worn_oversuit()
 	else if(I == w_uniform)
-		// BUBBER EDIT START - PREVENTS DROPPING FROM SYNTHS
-		// Since this always runs on carbons we dont need to check if the loc is one
-		var/mob/living/carbon/human/H = src
-		if(invdrop && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (IS_ORGANIC_LIMB(H.get_bodypart(BODY_ZONE_CHEST))))
-		// BUBBER EDIT END
-			if(r_store)
-				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
-			if(l_store)
-				dropItemToGround(l_store, TRUE)
-			if(wear_id)
-				dropItemToGround(wear_id)
-			if(belt)
-				dropItemToGround(belt)
 		w_uniform = null
 		update_suit_sensors()
 		if(!QDELETED(src))
 			update_worn_undersuit()
+		if(invdrop)
+			if(r_store && !can_equip(r_store, ITEM_SLOT_RPOCKET, TRUE, ignore_equipped = TRUE))
+				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
+			if(l_store && !can_equip(l_store, ITEM_SLOT_LPOCKET, TRUE, ignore_equipped = TRUE))
+				dropItemToGround(l_store, TRUE)
+			if(wear_id && !can_equip(wear_id, ITEM_SLOT_ID, TRUE, ignore_equipped = TRUE))
+				dropItemToGround(wear_id)
+			if(belt && !can_equip(belt, ITEM_SLOT_BELT, TRUE, ignore_equipped = TRUE))
+				dropItemToGround(belt)
 	else if(I == gloves)
 		//SKYRAT EDIT ADDITION - ERP UPDATE
 		if(gloves.breakouttime) //when unequipping a straightjacket
