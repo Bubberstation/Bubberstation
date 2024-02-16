@@ -785,10 +785,6 @@
 "agj" = (
 /turf/closed/wall,
 /area/station/security/brig)
-"agl" = (
-/obj/structure/window/plasma/spawner/directional/north,
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/rd)
 "agm" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -4778,23 +4774,17 @@
 /obj/machinery/firealarm/directional/north,
 /obj/machinery/light/directional/north,
 /obj/item/construction/rcd,
+/obj/item/construction/rcd{
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/door/window/left/directional/north{
 	dir = 2;
 	name = "Jetpack Storage";
 	pixel_x = -1;
 	req_access = list("eva")
 	},
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "RCD Storage";
-	pixel_x = -1;
-	req_access = list("eva")
-	},
-/obj/item/construction/rcd{
-	pixel_y = 4;
-	pixel_x = 2
-	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "ayU" = (
@@ -5044,18 +5034,18 @@
 /area/station/service/hydroponics)
 "azW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Inducer Storage";
-	pixel_x = -1;
-	req_access = list("eva")
-	},
 /obj/item/inducer,
 /obj/item/inducer,
 /obj/item/inducer,
 /obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high,
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/door/window/left/directional/north{
+	dir = 2;
+	name = "Inducer Storage";
+	pixel_x = -1;
+	req_access = list("eva")
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "azX" = (
@@ -7764,6 +7754,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/navigate_destination,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "aKn" = (
@@ -14685,15 +14676,12 @@
 /area/station/science/robotics/lab)
 "biR" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor/iron/white,
-/area/station/science/research)
-"biS" = (
 /obj/machinery/camera/directional/north{
 	c_tag = "Research Division Access"
 	},
-/obj/structure/window/reinforced/spawner/directional/north{
-	dir = 2
-	},
+/turf/open/floor/iron/white,
+/area/station/science/research)
+"biS" = (
 /obj/machinery/door/window/right/directional/east{
 	base_state = "left";
 	dir = 8;
@@ -15064,6 +15052,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "bkt" = (
@@ -18627,15 +18616,12 @@
 	pixel_x = -20;
 	pixel_y = -5
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_x = -31;
-	pixel_y = 3
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
 /obj/item/folder/red,
 /obj/item/pen,
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "bvk" = (
@@ -21097,9 +21083,6 @@
 /area/station/maintenance/disposal/incinerator)
 "bEI" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 9
 	},
@@ -21928,22 +21911,19 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/window/reinforced/spawner/directional/east{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bHz" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining"
-	},
 /obj/machinery/bouldertech/brm,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
@@ -33731,11 +33711,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "dlg" = (
+/obj/structure/plasticflaps/opaque,
 /obj/machinery/conveyor{
 	dir = 1;
-	id = "mining"
+	id = "boulderbelt"
 	},
-/obj/structure/plasticflaps/opaque,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
 "dlp" = (
@@ -34947,7 +34927,6 @@
 "efO" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/carpet/purple,
@@ -35732,6 +35711,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
 "ePs" = (
@@ -36313,10 +36293,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
-"fjw" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/disposal/incinerator)
 "fjY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -40063,7 +40039,6 @@
 "iaM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/start/research_director,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/rd)
@@ -48911,10 +48886,8 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/starboard/aft)
 "oIi" = (
-/obj/structure/window/spawner/directional/west{
-	dir = 4
-	},
 /obj/structure/reagent_dispensers/watertank,
+/obj/structure/window/spawner/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "oIm" = (
@@ -51396,6 +51369,7 @@
 /obj/machinery/door/airlock{
 	name = "Law Office"
 	},
+/obj/effect/landmark/navigate_destination,
 /turf/open/floor/iron/dark,
 /area/station/service/lawoffice)
 "qzU" = (
@@ -53056,9 +53030,9 @@
 /area/station/command/gateway)
 "rKp" = (
 /obj/machinery/bouldertech/refinery/smelter,
-/obj/machinery/conveyor/inverted{
-	dir = 8;
-	id = "mining"
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
@@ -54082,7 +54056,6 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "szn" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/textured,
@@ -55342,9 +55315,9 @@
 /area/station/maintenance/starboard/fore)
 "tAe" = (
 /obj/machinery/bouldertech/refinery,
-/obj/machinery/conveyor/inverted{
-	dir = 8;
-	id = "mining"
+/obj/machinery/conveyor{
+	dir = 5;
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
@@ -56384,9 +56357,9 @@
 /turf/open/floor/iron/white,
 /area/station/science/explab)
 "usA" = (
-/obj/machinery/conveyor/inverted{
-	dir = 8;
-	id = "mining"
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
@@ -57427,24 +57400,18 @@
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
 "viw" = (
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Jetpack Storage";
-	pixel_x = -1;
-	req_access = list("eva")
-	},
 /obj/item/tank/jetpack/carbondioxide,
 /obj/item/tank/jetpack/carbondioxide,
 /obj/item/tank/jetpack/carbondioxide,
 /obj/item/tank/jetpack/carbondioxide,
 /obj/structure/rack,
+/obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/door/window/left/directional/north{
 	dir = 2;
 	name = "Jetpack Storage";
 	pixel_x = -1;
 	req_access = list("eva")
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "vix" = (
@@ -57623,6 +57590,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance/burnchamber)
+"vnk" = (
+/obj/structure/window/plasma/spawner/directional/north,
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/rd)
 "vob" = (
 /obj/machinery/door/window/left/directional/south{
 	name = "Engineering Delivery";
@@ -58937,6 +58908,7 @@
 	dir = 9
 	},
 /obj/machinery/door/airlock,
+/obj/effect/landmark/navigate_destination,
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
 "wlP" = (
@@ -60614,7 +60586,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/conveyor{
 	dir = 1;
-	id = "mining"
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
@@ -61097,19 +61069,13 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
+/obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/door/window/left/directional/north{
 	dir = 2;
 	name = "Magboot Storage";
 	pixel_x = -1;
 	req_access = list("eva")
 	},
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Jetpack Storage";
-	pixel_x = -1;
-	req_access = list("eva")
-	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
 "xOA" = (
@@ -100867,7 +100833,7 @@ cmd
 cmd
 cmd
 cmd
-fjw
+cmd
 sUX
 sUX
 csD
@@ -109047,7 +109013,7 @@ rRT
 hEj
 iTn
 rSS
-agl
+vnk
 kVL
 bEC
 bCk
@@ -109304,7 +109270,7 @@ rRT
 xYH
 iTn
 rQi
-agl
+vnk
 nvJ
 bEC
 bxi
