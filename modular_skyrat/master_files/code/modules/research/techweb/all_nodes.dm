@@ -230,6 +230,8 @@
 /datum/techweb_node/cyborg_upg_util/New()
 	design_ids += list(
 		"borg_upgrade_clamp",
+		"borg_upgrade_cargo_tele",
+		"borg_upgrade_forging",
 		"borg_upgrade_brush",
 	)
 	return ..()
@@ -245,11 +247,11 @@
 	design_ids += list(
 		"borg_upgrade_surgicaltools",
 	)
-
-	design_ids -= list(
+	return ..() // Bubber Edit - Moves this up because it doesn't compile otherwise
+/*	design_ids -= list(
 		"borg_upgrade_pinpointer",
 	)
-	return ..()
+	return ..() */ //BUBBERSTATION REMOVAL
 
 /datum/techweb_node/basic_mining/New()
 	design_ids += list(
