@@ -120,15 +120,14 @@
 /turf/closed/wall,
 /area/station/security/office)
 "abr" = (
-/obj/machinery/door/airlock/command{
-	name = "Head of Security's Office";
-	req_access_txt = "58"
-	},
 /obj/effect/mapping_helpers/airlock/access/any/security/hos,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 4
+	},
+/obj/machinery/door/airlock/command{
+	name = "Head of Security's Quarters"
 	},
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
