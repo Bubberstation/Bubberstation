@@ -64,7 +64,7 @@ export const Jukebox = (props) => {
                   value={volume}
                   unit="%"
                   minValue={0}
-                  maxValue={100} // Bubberstation change: 100 is the max (but not really!!!!).
+                  maxValue={100}
                   step={1}
                   stepPixelSize={1}
                   disabled={active}
