@@ -31280,6 +31280,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/courtroom)
+"jGl" = (
+/obj/effect/spawner/random/trash/food_packaging,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "jGp" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/sign/departments/holy_alt{
@@ -31333,6 +31337,10 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/starboard)
+"jGZ" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "jHc" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio3";
@@ -37562,6 +37570,11 @@
 	},
 /turf/open/floor/iron/solarpanel/moonstation,
 /area/moonstation/surface)
+"lzP" = (
+/obj/effect/spawner/random/trash/graffiti,
+/obj/effect/spawner/random/trash/caution_sign,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "lzX" = (
 /obj/effect/spawner/random/structure/grille,
 /obj/structure/cable,
@@ -59380,6 +59393,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
+"siV" = (
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "siX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/spawner/structure/window/survival_pod,
@@ -59580,6 +59597,10 @@
 "skT" = (
 /turf/closed/wall,
 /area/station/commons/dorms/laundry)
+"sla" = (
+/obj/effect/spawner/random/trash/crushed_can,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "slh" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -60547,11 +60568,14 @@
 /area/station/medical/break_room)
 "sBi" = (
 /obj/machinery/atmospherics/pipe/bridge_pipe/yellow/visible,
-/obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 8;
 	name = "Air to Distro"
+	},
+/obj/machinery/door/window/left/directional/south{
+	name = "Atmospherics Control Room";
+	req_access = list("atmospherics")
 	},
 /turf/open/floor/iron/checker,
 /area/station/engineering/atmos/control_center)
@@ -66247,6 +66271,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
+"urd" = (
+/obj/effect/spawner/random/trash/moisture,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "uri" = (
 /obj/effect/turf_decal/trimline/dark/filled/warning,
 /obj/effect/turf_decal/vg_decals/numbers/four{
@@ -69283,6 +69311,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
+"voa" = (
+/obj/effect/spawner/random/trash/botanical_waste,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "voh" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
 /turf/open/floor/plating,
@@ -71125,7 +71157,7 @@
 /area/station/science/ordnance/testlab)
 "vTo" = (
 /turf/open/lava/smooth/weak{
-	name = "an actual pit of lava"
+	name = "\proper an actual pit of lava"
 	},
 /area/station/maintenance/disposal)
 "vTw" = (
@@ -228048,8 +228080,8 @@ eWR
 xpQ
 iVz
 jnj
-rWl
-rWl
+lzP
+jGl
 bNS
 gRv
 stM
@@ -228287,7 +228319,7 @@ uGQ
 dKL
 glI
 vka
-stM
+qQf
 stM
 stM
 gKF
@@ -228306,7 +228338,7 @@ pbw
 fzs
 ckk
 tCA
-rWl
+sla
 uwV
 gRv
 stM
@@ -228544,7 +228576,7 @@ fWn
 kcL
 lqS
 vka
-stM
+wYP
 stM
 stM
 stM
@@ -228564,7 +228596,7 @@ fzs
 ckk
 tCA
 rWl
-rWl
+jGZ
 gRv
 stM
 stM
@@ -228801,7 +228833,7 @@ ufZ
 ufZ
 tnQ
 vka
-stM
+wYP
 stM
 stM
 stM
@@ -228820,7 +228852,7 @@ csc
 fzs
 ckk
 hVa
-rWl
+voa
 pST
 gRv
 eYR
@@ -229847,8 +229879,8 @@ eWR
 csc
 fzs
 ckk
-tCA
-rWl
+jTt
+jGZ
 skI
 tCA
 otZ
@@ -231132,8 +231164,8 @@ mNe
 mNe
 mNe
 kJw
-rWl
-rWl
+kPE
+siV
 lay
 ckk
 mmX
@@ -232161,7 +232193,7 @@ ndQ
 rhV
 ckk
 tCA
-rWl
+urd
 hCu
 toB
 iXA
