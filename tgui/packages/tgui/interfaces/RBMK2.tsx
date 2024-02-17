@@ -67,7 +67,7 @@ export const RBMK2 = (props) => {
                 Eject Fuel Rod
               </Button.Confirm>
             ) : (
-              <NoticeBox danger margin="0" textAlign="center">
+              <NoticeBox danger textAlign="center">
                 No control rod to eject
               </NoticeBox>
             )}
