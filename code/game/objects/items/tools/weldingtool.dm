@@ -155,6 +155,11 @@
 	if(!use_tool(attacked_humanoid, user, use_delay, volume=50, amount=1))
 		return ITEM_INTERACT_BLOCKING
 
+	// SKYRAT EDIT ADDITION START
+	if(!do_after(user, other_delay, attacked_humanoid))
+		return ITEM_INTERACT_BLOCKING
+
+	// SKYRAT EDIT ADDITION END
 	item_heal_robotic(attacked_humanoid, user, 15, 0)
 	return ITEM_INTERACT_SUCCESS
 

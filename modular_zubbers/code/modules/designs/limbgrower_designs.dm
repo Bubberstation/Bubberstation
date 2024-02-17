@@ -39,3 +39,38 @@
 	desc = "Contains designs for hemophage organs for the limbgrower - Tounges, livers, tumors, and stomachs."
 	id = "limbdesign_hemophage"
 	build_path = /obj/item/disk/design_disk/limbs/hemophage
+
+//Tajaran organs
+/datum/design/tajaran_eyes
+	name = "Tajaran eyes"
+	id = "tajaraneyes"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/internal/eyes/tajaran
+	category = list(SPECIES_TAJARAN)
+
+/datum/design/tajaran_tongue
+	name = "Tajaran tounge"
+	id = "tajarantounge"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/internal/tongue/cat/tajaran
+	category = list(SPECIES_TAJARAN)
+
+/datum/design/tajaran_ears
+	name = "Tajaran ears"
+	id = "tajaranears"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/internal/ears/cat/tajaran
+	category = list(SPECIES_TAJARAN)
+
+/datum/design/limb_disk/tajaran
+	name = "Tajaran Organ Design Disk"
+	desc = "Contains designs for tajaran organs for the limbgrower - Tounges and eyes."
+	id = "limbdesign_tajaran"
+	build_path = /obj/item/disk/design_disk/limbs/tajaran
+
+/obj/item/disk/design_disk/limbs/tajaran
+	name = "Tajaran Organ Design Disk"
+	limb_designs = list(/obj/item/organ/internal/tongue/cat/tajaran, /obj/item/organ/internal/eyes/tajaran, /obj/item/organ/internal/ears/cat/tajaran)
