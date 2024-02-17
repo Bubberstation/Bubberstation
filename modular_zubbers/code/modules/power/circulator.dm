@@ -17,7 +17,7 @@
 
 	var/flipped = 0
 	var/mode = CIRCULATOR_HOT
-	var/obj/machinery/power/generator/generator
+	var/obj/machinery/power/thermoelectric_generator/generator
 
 //for mappers
 /obj/machinery/atmospherics/components/binary/circulator/cold
@@ -58,22 +58,16 @@
 		return null
 
 	//Calculate necessary moles to transfer using PV = nRT
-	if(air2.return_temperature()>0)
-		var/pressure_delta = (input_starting_pressure - output_starting_pressure)/2
-
-		var/transfer_moles = pressure_delta*air1.return_volume()/(air2.return_temperature() * R_IDEAL_GAS_EQUATION)
-
-		last_pressure_delta = pressure_delta
-
-		//Actually transfer the gas
-		var/datum/gas_mixture/removed = air2.remove(transfer_moles)
-
-		update_parents()
-
-		return removed
-
-	else
+	if(air2.temperature <= 0)
 		last_pressure_delta = 0
+		return
+	var/pressure_delta = (input_starting_pressure - output_starting_pressure)/2
+	var/transfer_moles = (pressure_delta*air1.volume)/(air2.temperature * R_IDEAL_GAS_EQUATION)
+	last_pressure_delta = pressure_delta
+	//Actually transfer the gas
+	var/datum/gas_mixture/removed = air2.remove(transfer_moles)
+	update_parents()
+	return removed
 
 /obj/machinery/atmospherics/components/binary/circulator/process_atmos()
 	..()
@@ -147,16 +141,16 @@
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 
 	if(!panel_open)
-		to_chat(user, "<span class='warning'>Open the panel first!</span>")
+		balloon_alert(user, "<span class='warning'>Open the panel first!</span>")
 		return TRUE
 
 	if(generator)
-		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
+		balloon_alert(user, "<span class='warning'>Disconnect [generator] first!</span>")
 		return TRUE
 
 	set_anchored(!anchored)
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	balloon_alert(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]
 	var/obj/machinery/atmospherics/node2 = nodes[2]
@@ -209,22 +203,22 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	if(generator)
-		to_chat(user, "<span class='warning'>Disconnect [generator] first!</span>")
+		balloon_alert(user, "<span class='warning'>Disconnect [generator] first!</span>")
 		return TRUE
 
 	mode = !mode
-	to_chat(user, "<span class='notice'>You set [src] to [mode?"cold":"hot"] mode.</span>")
+	balloon_alert(user, "<span class='notice'>You set [src] to [mode?"cold":"hot"] mode.</span>")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(generator)
-		to_chat(user, "<span class='warning'>Disconnect the generator first!</span>")
+		balloon_alert(user, "<span class='warning'>Disconnect the generator first!</span>")
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	balloon_alert(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
 	update_icon_nopipes()
 	return TRUE
 
@@ -240,7 +234,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
 	if(anchored)
-		to_chat(user, "<span class='warning'>[src] is anchored!</span>")
+		balloon_alert(user, "<span class='warning'>[src] is anchored!</span>")
 		return TRUE
 	if(!panel_open)
 		circulator_flip()
@@ -273,16 +267,13 @@
 
 	if(!ishuman(usr))
 		return
-
-
 	flipped = !flipped
-	to_chat(usr, "<span class='notice'>You flip [src].</span>")
+	balloon_alert(usr, "<span class='notice'>You flip [src].</span>")
 	playsound(src, 'sound/items/change_drill.ogg', 50)
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/circulator/atom_break(damage_flag)
 	if(generator)
-		generator.kill_circs()
+		generator.null_circulators()
 		generator.update_appearance()
 	..()
-
