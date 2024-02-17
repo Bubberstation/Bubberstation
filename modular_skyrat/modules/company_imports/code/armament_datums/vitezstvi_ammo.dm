@@ -163,7 +163,7 @@
 	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide
 */ //BUBBER EDIT END
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
-	item_type = /obj/item/ammo_box/advanced/s12gauge/honk
+	item_type = /obj/item/ammo_box/advanced/s12gauge/honkshot
 
 // Boxes of kiboko launcher ammo
 
