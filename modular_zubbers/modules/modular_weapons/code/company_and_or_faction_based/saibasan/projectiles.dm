@@ -62,6 +62,7 @@
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
+	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
 	/// What type of casing should we put inside the bullet to act as shrapnel later
 	var/casing_to_spawn = /obj/item/grenade/c980payload/plasma_grenade
 
@@ -175,6 +176,7 @@
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
+	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
 	/// How many firestacks the bullet should impart upon a target when impacting
 	var/firestacks_to_give = 2
 	/// What we spawn when we range out
@@ -202,12 +204,12 @@
 	icon_state = "flare_burn"
 	light_color = COLOR_PALE_GREEN
 	light_power = 2
-	light_on = TRUE
 
 /obj/item/flashlight/flare/plasma_projectile/Initialize(mapload)
 	. = ..()
 	if(randomize_fuel)
 		fuel = rand(3 MINUTES, 5 MINUTES)
+	ignition()
 
 /obj/item/flashlight/flare/plasma_projectile/turn_off()
 	. = ..()

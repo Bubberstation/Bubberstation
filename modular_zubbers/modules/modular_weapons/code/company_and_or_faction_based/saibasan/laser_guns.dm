@@ -87,6 +87,7 @@
 	last_charge = cell.charge
 	tracked_soulcatcher = AddComponent(/datum/component/soulcatcher/modular_laser)
 	create_weapon_mode_stuff()
+	voice = null
 
 /obj/item/gun/energy/modular_laser_rifle/examine(mob/user)
 	. = ..()
@@ -231,7 +232,7 @@
 
 /obj/item/gun/energy/modular_laser_rifle/ui_action_click(mob/user, actiontype)
 	if(!istype(actiontype, /datum/action/item_action/toggle_personality))
-		return
+		return ..()
 	playsound(src, 'sound/machines/beep.ogg', 30, TRUE)
 	personality_mode = !personality_mode
 	speak_up("[personality_mode ? "pickup" : "putdown"]", ignores_personality_toggle = TRUE)
