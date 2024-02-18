@@ -24,7 +24,6 @@
 
 /datum/job/research_director
 	required_character_age = 21
-//Will get back to this one later
 
 /datum/job/quartermaster
 	required_character_age = 25
