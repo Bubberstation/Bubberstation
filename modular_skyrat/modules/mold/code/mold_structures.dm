@@ -380,7 +380,8 @@
 
 /obj/structure/mold/structure/spawner/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/spawner, \ // BUBBER EDIT - MOLD FIX
+	// BUBBER EDIT - MOLD FIX
+	AddComponent(/datum/component/spawner, \
 		spawn_types = mold_type.mob_types, \
 		spawn_time = mold_type.spawn_cooldown, \
 		max_spawned = mold_type.max_spawns, \
