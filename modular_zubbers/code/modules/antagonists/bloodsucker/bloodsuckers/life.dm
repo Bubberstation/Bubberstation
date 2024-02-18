@@ -299,8 +299,8 @@
 /// Turns the bloodsucker into a wacky talking head.
 /datum/antagonist/bloodsucker/proc/talking_head(mob/living/carbon/human/headless_corpse, obj/item/bodypart/head)
 	var/mob/living/poor_fucker = owner.current
-	if(!istype(head, /obj/item/bodypart/head))
-		return
+	// if(!istype(head, /obj/item/bodypart/head))
+	// 	return
 	// Don't do anything if we're not actually inside a brain and a head
 	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
