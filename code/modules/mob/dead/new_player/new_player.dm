@@ -142,7 +142,7 @@
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_AGE)
-			return "Your character is not old enough for [jobtitle]. Go to the character setup and adjust your character's age." //BUBBER EDIT: Clarification on JOB_UNAVAILABLE_AGE
+			return "Characters of this age are not eligible for the position of [jobtitle]. Go to the character setup and adjust your character's age." //BUBBER EDIT: Clarification on JOB_UNAVAILABLE_AGE
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 
