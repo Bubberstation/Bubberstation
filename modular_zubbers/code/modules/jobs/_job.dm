@@ -8,22 +8,22 @@
 	required_character_age = 25
 
 /datum/job/captain
-	required_character_age = 28
+	required_character_age = 25
 
 /datum/job/chief_engineer
-	required_character_age = 28
+	required_character_age = 21
 
 /datum/job/chief_medical_officer
-	required_character_age = 28
+	required_character_age = 21
 
 /datum/job/head_of_personnel
-	required_character_age = 25
+	required_character_age = 21
 
 /datum/job/head_of_security
-	required_character_age = 28
+	required_character_age = 25
 
 /datum/job/research_director
-	required_character_age = 28
+	required_character_age = 21
 
 /datum/job/quartermaster
-	required_character_age = 25
+	required_character_age = 21
