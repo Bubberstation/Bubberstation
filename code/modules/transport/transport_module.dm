@@ -937,7 +937,3 @@
 			passenger.AddElement(/datum/element/window_smashing, duration = 1.5 SECONDS)
 		var/throw_target = get_edge_target_turf(src, throw_direction)
 		passenger.throw_at(throw_target, 30, 7, force = MOVE_FORCE_OVERPOWERING)
-
-/obj/structure/transport/linear/tram/slow
-	transport_controller_type = /datum/transport_controller/linear/tram/slow
-	speed_limiter = /datum/transport_controller/linear/tram/slow::speed_limiter
