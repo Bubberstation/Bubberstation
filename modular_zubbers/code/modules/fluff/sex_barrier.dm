@@ -1,7 +1,7 @@
 /obj/item/holosign_creator/sex
 	name = "holographic sex projector"
 	desc = "Despite the name, it does not project sex, however it does create a non-blocking barrier that informs those who wish to enter that there is sex inside."
-	max_signs = 2 //1 less than 2 so you don't claim entire hallways for your orgy, on god.
+	max_signs = 4
 	creation_time = 10
 	holosign_type = /obj/structure/holosign/sexsign
 	//The janitor sign is also purple so no need to make custom sprites here.
