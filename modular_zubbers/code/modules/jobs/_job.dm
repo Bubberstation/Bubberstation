@@ -5,7 +5,7 @@
 	required_character_age = 28
 
 /datum/job/blueshield
-	required_character_age = 28
+	required_character_age = 25
 
 /datum/job/captain
 	required_character_age = 28
