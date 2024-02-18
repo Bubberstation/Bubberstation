@@ -7,6 +7,7 @@
 	credit_cost = CARGO_CRATE_VALUE * 30
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	occupancy_limit = "4^3"
+	emag_only = TRUE
 
 /datum/map_template/shuttle/emergency/burgerstation
 	prefix = "_maps/shuttles/zubbers/"
