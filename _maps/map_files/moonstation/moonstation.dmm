@@ -9646,12 +9646,12 @@
 	name = "Firing Range"
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/iron/dark,
 /area/station/security/range)
 "cZf" = (
@@ -11541,13 +11541,13 @@
 /area/station/security/brig/entrance)
 "dCM" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/station/security/office)
 "dCQ" = (
@@ -26441,7 +26441,7 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/structure/table,
-/obj/machinery/syndicatebomb/training,
+/obj/item/hourglass,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "igt" = (
@@ -42228,8 +42228,8 @@
 	name = "Security Office"
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "mVR" = (
@@ -52206,11 +52206,11 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/station/security/range)
 "qaW" = (
@@ -72948,6 +72948,7 @@
 	pixel_x = 1;
 	pixel_y = -3
 	},
+/obj/machinery/syndicatebomb/training,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "wwT" = (
