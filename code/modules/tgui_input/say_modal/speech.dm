@@ -74,7 +74,7 @@
 	client.tgui_say.force_say()
 	if(client.typing_indicators)
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators enabled.")
-		message_admins("[key_name(client)] FORCED to stop typing, indicators enabled.") //BUBBER EDIT: MESSAGES ADMINS WHEN SOMEONE'S FORCED TO STOP TYPING.
+		message_admins("[key_name(client)] FORCED to stop typing.") //BUBBER EDIT: MESSAGES ADMINS WHEN SOMEONE'S FORCED TO STOP TYPING.
 	else
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators DISABLED.")
 	SEND_SIGNAL(src, COMSIG_HUMAN_FORCESAY)
