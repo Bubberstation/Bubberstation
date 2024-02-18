@@ -203,8 +203,11 @@
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user?.mind?.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum && user.mob_size > max_mob_size)
-		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin") && prompt_coffin_claim(bloodsuckerdatum))
-			enlarge(user)
+		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
+			if(prompt_coffin_claim(bloodsuckerdatum))
+				enlarge(user)
+			else
+				user.balloon_alert(user, "already claimed by another!")
 	. = ..()
 	if(!.)
 		return FALSE
