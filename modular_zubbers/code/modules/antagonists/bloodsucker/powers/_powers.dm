@@ -146,7 +146,7 @@
 		to_chat(user, span_warning("Not while you're incapacitated!"))
 		return FALSE
 	// Constant Cost (out of blood)
-	if(constant_bloodcost > 0 && bloodsuckerdatum_power?.bloodsucker_blood_volume <= 0)
+	if(constant_bloodcost > 0 && !can_pay_blood(user))
 		to_chat(user, span_warning("You don't have the blood to upkeep [src]."))
 		return FALSE
 	return TRUE
@@ -160,6 +160,9 @@
 		cooldown_time = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
 
 	return ..()
+
+/datum/action/cooldown/bloodsucker/proc/can_pay_blood(mob/living/carbon/user)
+	return bloodsuckerdatum_power ? bloodsuckerdatum_power?.bloodsucker_blood_volume >= 0 : user.blood_volume >= 0
 
 /datum/action/cooldown/bloodsucker/proc/can_deactivate()
 	return TRUE
@@ -224,7 +227,7 @@
 /datum/action/cooldown/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
 	if(!user)
 		return FALSE
-	if(!constant_bloodcost > 0 || bloodsuckerdatum_power.bloodsucker_blood_volume > 0)
+	if(!constant_bloodcost > 0 || can_pay_blood(user))
 		return TRUE
 
 /// Used to unlearn Single-Use Powers
