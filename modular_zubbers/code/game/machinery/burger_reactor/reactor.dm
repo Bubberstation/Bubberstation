@@ -48,6 +48,8 @@
 
 	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
 
+	var/goblin_multiplier = 8 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
+
 	var/safeties_max_power_generation = 125000
 
 	//Upgradable stats.
@@ -346,8 +348,10 @@
 
 	//Requires x2 matter bins
 	var/max_power_generation_mul = 0
+	goblin_multiplier = initial(goblin_multiplier)
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
-		max_power_generation_mul += (new_matter_bin.tier * 0.5) + max(0,new_matter_bin.tier-1)*0.25
+		max_power_generation_mul += (new_matter_bin.tier * 0.5) + max(0,new_matter_bin.tier-1)*0.1
+		goblin_multiplier += (new_matter_bin.tier-1)*0.5
 	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
 	max_power_generation = FLOOR(max_power_generation,10000)
 	safeties_max_power_generation = max(125000,FLOOR(max_power_generation*0.75,125000))
