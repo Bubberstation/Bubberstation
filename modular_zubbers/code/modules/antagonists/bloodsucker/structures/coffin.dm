@@ -213,7 +213,7 @@
 		return FALSE
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
 	if(user in src)
-		if(!prompt_coffin_claim(bloodsuckerdatum))
+		if(!resident && !prompt_coffin_claim(bloodsuckerdatum))
 			return FALSE
 		LockMe(user)
 		//Level up if possible.

@@ -5,7 +5,7 @@
 #define TRAIT_BLOODSUCKER_HUNTER "bloodsucker_hunter"
 
 // how much to multiply the coffin size by mob_size
-#define COFFIN_ENLARGE_MULT 0.7
+#define COFFIN_ENLARGE_MULT 0.5
 /**
  * Blood-level defines
  */
