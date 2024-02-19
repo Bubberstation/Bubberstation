@@ -54,6 +54,13 @@
 		GLOB.laugh_types[L.name] = spath
 	sort_list(GLOB.laugh_types, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	//SKYRAT EDIT END
+		//THE BUBBER EDIT ADDITION BEGIN - Blooper
+	for(var/sound_blooper_path in subtypesof(/datum/blooper))
+		var/datum/blooper/B = new sound_blooper_path()
+		GLOB.blooper_list[B.id] = sound_blooper_path
+		if(B.allow_random)
+			GLOB.blooper_random_list[B.id] = sound_blooper_path
+	//THE BUBBER EDIT END
 
 /// Inits GLOB.species_list. Not using GLOBAL_LIST_INIT b/c it depends on GLOB.string_lists
 /proc/init_species_list()
