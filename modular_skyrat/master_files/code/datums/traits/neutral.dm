@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /// Adds the DNR HUD element if src has TRAIT_DNR. Removes it otherwise.
 /mob/living/proc/update_dnr_hud()
-	var/image/dnr_holder = hud_list?[DNR_HUD]
+/* 	var/image/dnr_holder = hud_list?[DNR_HUD] // BUBBER EDIT - more DNR fixing
 	if(isnull(dnr_holder))
 		return
 
@@ -80,7 +80,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 		set_hud_image_active(DNR_HUD)
 		dnr_holder.icon_state = "hud_dnr"
 	else
-		set_hud_image_inactive(DNR_HUD)
+		set_hud_image_inactive(DNR_HUD) */
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
@@ -248,7 +248,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/obj/item/organ/internal/tongue/dog/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
-	new_tongue.Insert(human_holder, special = TRUE, drop_if_replaced = FALSE)
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/item_quirk/avian
 	name = "Avian Traits"
@@ -263,7 +263,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/obj/item/organ/internal/tongue/avian/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
-	new_tongue.Insert(human_holder, special = TRUE, drop_if_replaced = FALSE)
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"

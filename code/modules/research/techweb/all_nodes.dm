@@ -854,7 +854,7 @@
 	design_ids = list(
 		"assembly_shell",
 		"bot_shell",
-		"comp_mod_action",
+		"comp_equip_action",
 		"controller_shell",
 		"dispenser_shell",
 		"door_shell",
@@ -876,7 +876,6 @@
 		"bci_implanter",
 		"bci_shell",
 		"comp_bar_overlay",
-		"comp_bci_action",
 		"comp_counter_overlay",
 		"comp_install_detector",
 		"comp_object_overlay",
@@ -1115,6 +1114,7 @@
 		"holosignrestaurant",
 		"holosignbar",
 		"inducer",
+		"inducerengi",
 		"tray_goggles",
 		"holopad",
 		"vendatray",
@@ -1472,6 +1472,9 @@
 		"superresonator",
 		"triggermod",
 		"mining_scanner",
+		"brm",
+		"b_smelter",
+		"b_refinery",
 	)//e a r l y    g a  m e)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 

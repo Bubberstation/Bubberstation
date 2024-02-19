@@ -283,7 +283,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// BUBBERSTATION EDIT BEGIN: Add DNR status
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
-			entry["is_dnr"] = HAS_TRAIT(tracked_living_mob, TRAIT_DNR)
+			entry["is_dnr"] = tracked_human.get_dnr()
 		// BUBBERSTATION EDIT END
 
 		// Binary living/dead status

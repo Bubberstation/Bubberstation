@@ -123,6 +123,13 @@
 		update_appearance()
 		return
 
+	//BUBBERSTATION CHANGE START: FIXES 2-DESTINATION TRAMS
+	if(travel_direction == NONE)
+		sign_face = null
+		update_appearance()
+		return
+	//BUBBERSTATION CHANGE END: FIXES 2-DESTINATION TRAMS
+
 	sign_face = ""
 	sign_face += "[base_icon_state]_"
 	if(!LAZYFIND(available_faces, controller.specific_transport_id))

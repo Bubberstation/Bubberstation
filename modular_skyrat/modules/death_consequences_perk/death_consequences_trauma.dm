@@ -365,7 +365,7 @@
 /// The proc we call when we permanently kill our victim due to being at maximum degradation. DNRs them, ghosts/kills them, and prints a series of highly dramatic messages,
 /// befitting for a death such as this.
 /datum/brain_trauma/severe/death_consequences/proc/and_so_your_story_ends()
-	ADD_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT) // you're gone bro
+	owner.ckey = null//	ADD_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT) // you're gone bro - BUBBER EDIT - More DNR FA_ICON_XING
 	final_death_delivered = TRUE
 
 	// this is a sufficiently dramatic event for some dramatic to_chats
