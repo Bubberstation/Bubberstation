@@ -29,7 +29,7 @@
 	return FALSE
 
 /datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
-	if(!has_enough_abilities())
+	if(!target && !has_enough_abilities())
 		return ..()
 	else if(!target)
 		to_chat(bloodsuckerdatum.owner.current, span_danger("You can only have up to [VENTRUE_MAX_POWERS] powers, anything further will be ranks to spend on your Favorite Vassal through a Persuasion Rack."))
