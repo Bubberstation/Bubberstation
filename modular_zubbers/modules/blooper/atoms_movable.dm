@@ -39,7 +39,7 @@
 		for(var/mob/M in listeners)
 			if(!M.client)
 				continue
-			if(!(M.client.prefs.read_preference(/datum/preference/toggle/hear_sound_blooper)))
+			if(!(M.client.prefs?.read_preference(/datum/preference/toggle/hear_sound_blooper)))
 				listeners -= M
 		var/bloopers = min(round((LAZYLEN(message) / blooper_speed)) + 1, BLOOPER_MAX_BLOOPERS)
 		var/total_delay
@@ -84,7 +84,7 @@
 		for(var/mob/M in listening)
 			if(!M.client)
 				continue
-			if(!(M.client.prefs.read_preference(/datum/preference/toggle/hear_sound_blooper)))
+			if(!(M.client.prefs?.read_preference(/datum/preference/toggle/hear_sound_blooper)))
 				listening -= M
 		var/bloopers = min(round((LAZYLEN(message_raw) / blooper_speed)) + 1, BLOOPER_MAX_BLOOPERS)
 		var/total_delay
