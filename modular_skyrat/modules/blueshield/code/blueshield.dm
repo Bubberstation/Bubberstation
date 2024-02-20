@@ -53,6 +53,11 @@
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	implants = list(/obj/item/implant/mindshield)
+	//BUBBER ADDITION START
+	backpack_contents = list(
+		/obj/item/choice_beacon/blueshield = 1,
+	)
+	//BUBBER ADDITION END
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
 	duffelbag = /obj/item/storage/backpack/duffelbag/blueshield
