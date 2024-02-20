@@ -4,8 +4,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0 //BUBBER EDIT. Original = 1
+	spawn_positions = 0 //BUBBER EDIT. Original = 1
 	supervisors = "Central Command and the Nanotrasen Consultant"
 	minimal_player_age = 7
 	exp_requirements = 2400
