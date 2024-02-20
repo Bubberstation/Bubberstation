@@ -13,6 +13,7 @@
 		JOB_CHIEF_MEDICAL_OFFICER,
 		JOB_RESEARCH_DIRECTOR,
 		JOB_QUARTERMASTER,
+		JOB_NT_REP,
 
 		// Seccies
 		JOB_DETECTIVE,
@@ -20,6 +21,7 @@
 		JOB_WARDEN,
 		JOB_CORRECTIONS_OFFICER,
 		JOB_PRISONER,
+		JOB_SECURITY_MEDIC,
 		)
 	/// Restricted roles from the antag roll
 	var/restricted_roles = list(JOB_AI, JOB_CYBORG)

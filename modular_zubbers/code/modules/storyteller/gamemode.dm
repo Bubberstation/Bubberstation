@@ -153,7 +153,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	for(var/type in typesof(/datum/round_event_control))
 		var/datum/round_event_control/event = new type()
-		if(!event.typepath || !event.name)
+		if(!event.typepath || !event.name || !event.valid_for_map())
 			continue //don't want this one! leave it for the garbage collector
 		control += event //add it to the list of all events (controls)
 	getHoliday()
@@ -219,6 +219,8 @@ SUBSYSTEM_DEF(gamemode)
 	return (get_antag_cap() > GLOB.antagonists.len)
 
 /// Gets candidates for antagonist roles.
+
+/// Todo: Split into get_candidates and post_get_candidates
 /datum/controller/subsystem/gamemode/proc/get_candidates(
 	special_role_flag,
 	pick_observers,
