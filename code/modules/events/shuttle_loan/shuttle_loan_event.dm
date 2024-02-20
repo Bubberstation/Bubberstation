@@ -10,11 +10,7 @@
 	admin_setup = list(/datum/event_admin_setup/listed_options/shuttle_loan)
 	///A list of normally unavailable (or already run) situations datums
 	var/list/unavailable_situations = list(/datum/shuttle_loan_situation/mail_strike)
-	//BUBBER EDIT - STORYTELLER
-	var/list/run_situations = list()
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL)
-	// BUBBER EDIT END - STORYTELLER
+
 /datum/round_event_control/shuttle_loan/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
 	for(var/datum/round_event/running_event in SSevents.running)
