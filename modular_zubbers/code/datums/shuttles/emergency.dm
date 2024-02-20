@@ -17,3 +17,8 @@
 	emag_only = TRUE
 	credit_cost = 4988
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+
+/datum/map_template/shuttle/emergency/lance/New()
+	. = ..()
+	if(SSmapping.config.map_name == "Moon Station")
+		who_can_purchase = null
