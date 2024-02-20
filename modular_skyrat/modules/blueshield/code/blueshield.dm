@@ -4,8 +4,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
-	total_positions = 0 //BUBBER EDIT Original = 1
-	spawn_positions = 0 //BUBBER EDIT Original = 1
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "Central Command and the Nanotrasen Consultant"
 	minimal_player_age = 7
 	exp_requirements = 2400
@@ -53,11 +53,6 @@
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	implants = list(/obj/item/implant/mindshield)
-	//BUBBER ADDITION START
-	backpack_contents = list(
-		/obj/item/choice_beacon/blueshield = 1,
-	)
-	//BUBBER ADDITION END
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
 	duffelbag = /obj/item/storage/backpack/duffelbag/blueshield
