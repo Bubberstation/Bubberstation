@@ -403,8 +403,6 @@ LINEN BINS
 // BUBBER TODO: REMOVE THESE
 
 #define BEDSHEET_ABSTRACT "abstract"
-#define BEDSHEET_SINGLE "single"
-#define BEDSHEET_DOUBLE "double"
 /obj/item/bedsheet/random
 	icon_state = "random_bedsheet"
 	name = "random bedsheet"
@@ -499,8 +497,6 @@ LINEN BINS
 	return INITIALIZE_HINT_QDEL
 
 #undef BEDSHEET_ABSTRACT
-#undef BEDSHEET_SINGLE
-#undef BEDSHEET_DOUBLE
 //BUBBER EDIT END
 
 /obj/item/bedsheet/double
