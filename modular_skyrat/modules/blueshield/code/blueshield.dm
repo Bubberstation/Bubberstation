@@ -4,8 +4,8 @@
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
-	total_positions = 0 //BUBBER EDIT. Original = 1
-	spawn_positions = 0 //BUBBER EDIT. Original = 1
+	total_positions = 0 //BUBBER EDIT Original = 1
+	spawn_positions = 0 //BUBBER EDIT Original = 1
 	supervisors = "Central Command and the Nanotrasen Consultant"
 	minimal_player_age = 7
 	exp_requirements = 2400
@@ -40,7 +40,7 @@
 	)
 
 	veteran_only = TRUE
-	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS
+	job_flags = STATION_JOB_FLAGS | JOB_CANNOT_OPEN_SLOTS | STATION_TRAIT_JOB_FLAGS //BUBBER EDIT: Added "| STATION_TRAIT_JOB_FLAGS"
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
