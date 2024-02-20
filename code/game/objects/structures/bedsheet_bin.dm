@@ -401,6 +401,10 @@ LINEN BINS
 
 // BUBBER EDIT START: KEEPS OLD BEDSHEET SPAWNERS
 // BUBBER TODO: REMOVE THESE
+
+#define BEDSHEET_ABSTRACT "abstract"
+#define BEDSHEET_SINGLE "single"
+#define BEDSHEET_DOUBLE "double"
 /obj/item/bedsheet/random
 	icon_state = "random_bedsheet"
 	name = "random bedsheet"
@@ -459,6 +463,44 @@ LINEN BINS
 	var/obj/item/bedsheet = new type(loc)
 	bedsheet.dir = dir
 	return INITIALIZE_HINT_QDEL
+
+/obj/item/bedsheet/dorms_double
+	icon_state = "random_bedsheet"
+	item_flags = ABSTRACT
+	bedsheet_type = BEDSHEET_ABSTRACT
+
+/obj/item/bedsheet/dorms_double/Initialize(mapload)
+	..()
+	var/type = pick_weight(list("Colors" = 80, "Special" = 20))
+	switch(type)
+		if("Colors")
+			type = pick(list(
+				/obj/item/bedsheet/double,
+				/obj/item/bedsheet/blue/double,
+				/obj/item/bedsheet/green/double,
+				/obj/item/bedsheet/grey/double,
+				/obj/item/bedsheet/orange/double,
+				/obj/item/bedsheet/purple/double,
+				/obj/item/bedsheet/red/double,
+				/obj/item/bedsheet/yellow/double,
+				/obj/item/bedsheet/brown/double,
+				/obj/item/bedsheet/black/double,
+				))
+		if("Special")
+			type = pick(list(
+				/obj/item/bedsheet/patriot/double,
+				/obj/item/bedsheet/rainbow/double,
+				/obj/item/bedsheet/ian/double,
+				/obj/item/bedsheet/cosmos/double,
+				/obj/item/bedsheet/nanotrasen/double,
+				))
+	var/obj/item/bedsheet = new type(loc)
+	bedsheet.dir = dir
+	return INITIALIZE_HINT_QDEL
+
+#undef BEDSHEET_ABSTRACT
+#undef BEDSHEET_SINGLE
+#undef BEDSHEET_DOUBLE
 //BUBBER EDIT END
 
 /obj/item/bedsheet/double
