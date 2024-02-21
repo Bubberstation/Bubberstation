@@ -66,8 +66,8 @@
 		if(owner.current.am_staked() && COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
 			to_chat(owner.current, span_userdanger("You are staked! Remove the offending weapon from your heart before sleeping."))
 			COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
-		if(!HAS_TRAIT(owner.current, TRAIT_NODEATH))
-			check_begin_torpor(TRUE)
+		if(!HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+			check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
 			owner.current.add_mood_event("vampsleep", /datum/mood_event/coffinsleep)
 		return
 
@@ -112,20 +112,22 @@
  * - Having less than 10 Brute & Burn Combined while INSIDE of your Coffin while it isnt Sol.
  * - Sol being over, dealt with by /sunlight/process() [bloodsucker_daylight.dm]
 */
-/datum/antagonist/bloodsucker/proc/check_begin_torpor(SkipChecks = FALSE)
+/datum/antagonist/bloodsucker/proc/check_begin_torpor(SkipChecks = NONE)
 	var/mob/living/carbon/user = owner.current
 	/// Are we entering Torpor via Sol/Death? Then entering it isnt optional!
-	if(SkipChecks)
-		to_chat(user, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
+	if(SkipChecks & TORPOR_SKIP_CHECK_ALL)
+		if(COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
+			to_chat(user, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
 		torpor_begin(TRUE)
 		return
 	/// Prevent Torpor whilst frenzied.
-	if(frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0))
+	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0)))
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
 		return
-
+	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal itlater
+	var/total_damage = user.getBruteLoss_nonProsthetic() + user.getFireLoss_nonProsthetic() + user.getToxLoss() + user.getOxyLoss()
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
-	if(!SSsunlight.sunlight_active && user.get_total_damage() >= 10 && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
+	if(SkipChecks & TORPOR_SKIP_CHECK_DAMAGE || !SSsunlight.sunlight_active && total_damage >= 10 && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_begin()
 
 /datum/antagonist/bloodsucker/proc/check_end_torpor()
@@ -151,20 +153,24 @@
 			torpor_end()
 	return TRUE
 
-/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)
+/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)		
+	// slow down bucko
+	if(!COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
+		return
 	if(!silent)
 		to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	// Without this, you'll just keep dying while you recover.
 	owner.current.add_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
-	owner.current.set_timed_status_effect(0 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
+	owner.current.do_jitter_animation(2)
 	// Disable ALL Powers
 	DisableAllPowers()
 
-/datum/antagonist/bloodsucker/proc/torpor_end()
-	owner.current.grab_ghost()
-	to_chat(owner.current, span_warning("You have recovered from Torpor."))
+/datum/antagonist/bloodsucker/proc/torpor_end(quiet)
+	if(quiet)
+		owner.current.grab_ghost()
+		to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
 	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)

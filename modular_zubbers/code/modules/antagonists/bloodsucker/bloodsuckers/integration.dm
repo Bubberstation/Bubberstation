@@ -20,7 +20,7 @@
 		return
 	bloodsuckerdatum.bloodsucker_blood_volume -= amount
 
-/// Prevents using a Memento Mori
+// Prevents using a Memento Mori
 /obj/item/clothing/neck/necklace/memento_mori/memento(mob/living/carbon/human/user)
 	if(IS_BLOODSUCKER(user))
 		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))

@@ -103,6 +103,13 @@
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
 
 /**
+ * Torpor check bitflags
+ */
+#define TORPOR_SKIP_CHECK_ALL (1<<0)
+#define TORPOR_SKIP_CHECK_FRENZY (1<<1)
+#define TORPOR_SKIP_CHECK_DAMAGE (1<<2)
+
+/**
  * Bloodsucker Signals
  */
 ///Called when a Bloodsucker ranks up: (datum/bloodsucker_datum, mob/owner, mob/target)
@@ -169,6 +176,10 @@
  */
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+
+/// Source trait for dominate related traits
+#define DOMINATE_TRAIT "dominate_trait"
+
 /// Source trait for Monster Hunter-related traits
 #define HUNTER_TRAIT "monsterhunter_trait"
 /// Source trait while Feeding

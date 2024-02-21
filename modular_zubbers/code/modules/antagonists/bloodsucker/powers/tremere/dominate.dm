@@ -131,6 +131,7 @@
 	/*if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_notice("You feel you something crawling under your skin, but it passes."))
 		return*/
+	// todo replace with status effect so we don't only check chainstunning above lvl 2
 	if(HAS_TRAIT_FROM_ONLY(target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
 		owner.balloon_alert(owner, "[target] is already in some form of hypnotic gaze.")
 		return
@@ -159,26 +160,26 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/proc/attempt_vassalize(mob/living/target, mob/living/user)
 	var/datum/antagonist/vassal/is_vassal = IS_VASSAL(target)
-	if(!bloodsuckerdatum_power.can_make_vassal(target, TRUE))
+	if(!bloodsuckerdatum_power.can_make_vassal(target))
 		owner.balloon_alert(owner, "not a valid target for vassalization!.")
-		return
+		return FALSE
 
 	owner.balloon_alert(owner, "attempting to vassalize.")
 	if(!do_after(user, 6 SECONDS, target, NONE, TRUE))
-		return
+		return FALSE
 
-	if(is_vassal.master == bloodsuckerdatum_power)
+	if(is_vassal?.master == bloodsuckerdatum_power)
 		if(target.stat != DEAD)
 			owner.balloon_alert(owner, "not dead!")
-			return
+			return FALSE
 		power_activated_sucessfully()
 		to_chat(user, span_warning("We revive [target]!"))
 		owner.balloon_alert(owner, "successfully revived!")
 		target.mind.grab_ghost()
 		target.revive(ADMIN_HEAL_ALL)
-		return
+		return FALSE
 
-	if(!bloodsuckerdatum_power.make_vassal(target, TRUE))
+	if(!bloodsuckerdatum_power.make_vassal(target))
 		owner.balloon_alert(owner, "not a valid target for vassalization!.")
 		return
 
@@ -191,14 +192,17 @@
 	target.revive(ADMIN_HEAL_ALL)
 	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 	vassaldatum.special_type = TREMERE_VASSAL //don't turn them into a favorite please
-	var/living_time
+	var/living_time = (1 MINUTES) * level_current
 	if(level_current <= 4)
-		living_time = (1 MINUTES) * level_current
-		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), BLOODSUCKER_TRAIT)
+		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_possession), target), living_time)
+	RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(end_possession))
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/proc/end_possession(mob/living/user)
-	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), BLOODSUCKER_TRAIT)
+	if(!IS_VASSAL(user) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT))
+		return
+	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	user.mind.remove_antag_datum(/datum/antagonist/vassal)
 	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
 	user.death()

@@ -221,9 +221,10 @@
 			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
 		else
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
-			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
-		bloodsuckerdatum.check_begin_torpor(TRUE)
+			if(!bloodsuckerdatum.frenzied)
+				bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the opportunity to do so.
+		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
 	return TRUE
 
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)

@@ -69,8 +69,8 @@
 			bloodsuckerdatum_power.AddHumanityLost(5)
 
 	target_ref = null
-	warning_target_bloodvol = BLOOD_VOLUME_MAX_LETHAL
-	blood_taken = 0
+	warning_target_bloodvol = initial(warning_target_bloodvol)
+	blood_taken = initial(blood_taken)
 	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
 	return ..()

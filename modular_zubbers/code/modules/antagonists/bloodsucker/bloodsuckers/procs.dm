@@ -48,6 +48,8 @@
 		return
 	to_chat(owner.current, span_cultboldtalic("You have re-entered the Masquerade."))
 	broke_masquerade = FALSE
+	antag_hud_name = "bloodsucker"
+	add_team_hud(owner.current)
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()
 	if(broke_masquerade)
@@ -93,7 +95,7 @@
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers(forced = FALSE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(owner.current, TRAIT_NODEATH)))
+		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)))
 			if(power.active)
 				power.DeactivatePower()
 
@@ -177,14 +179,15 @@
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
-	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ.slot != ORGAN_SLOT_HEART)
+	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ.slot != ORGAN_SLOT_HEART || !old_owner.dna.species.mutantheart)
 		return
 	remove_signals_from_heart(old_owner)
 	// You don't run bloodsucker life without a heart or brain
-	if(old_owner.stat != DEAD)
-		to_chat(old_owner, span_userdanger("You have lost your [organ.slot]!"))
-		to_chat(old_owner, warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
-		UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
+	UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
+	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+		torpor_end(TRUE)
+	to_chat(old_owner, span_userdanger("You have lost your [organ.slot]!"))
+	to_chat(old_owner, span_warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
 
 /datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
 	SIGNAL_HANDLER

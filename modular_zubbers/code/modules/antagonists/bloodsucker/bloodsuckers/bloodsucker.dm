@@ -24,6 +24,8 @@
 	COOLDOWN_DECLARE(bloodsucker_spam_sol_burn)
 	///Timer between alerts for Healing messages
 	COOLDOWN_DECLARE(bloodsucker_spam_healing)
+	/// Timer between exiting torpor
+	COOLDOWN_DECLARE(bloodsucker_spam_torpor)
 
 	///Used for assigning your name
 	var/bloodsucker_name
@@ -91,7 +93,10 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
 		TRAIT_NO_MIRROR_REFLECTION,
-		TRAIT_DRINKS_BLOOD
+		TRAIT_DRINKS_BLOOD,
+		TRAIT_TOXIMMUNE,
+		// Fun fact, toxins can still be applied to you if you loose your liver even with TOXIMMUNE
+		TRAIT_STABLELIVER
 	)
 	var/static/biotype = MOB_VAMPIRIC
 	/// Weakref to the owner mob's heart, without bloodsucker_life stops and they die. Handled via signals due to the fact that
@@ -112,7 +117,7 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
 	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_removal))
-	RegisterSignal(current_mob, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(talking_head))
+	RegisterSignal(current_mob, COMSIG_CARBON_POST_REMOVE_LIMB, PROC_REF(talking_head))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
 
@@ -139,7 +144,7 @@
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
 	remove_signals_from_heart(current_mob)
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING, COMSIG_CARBON_REMOVE_LIMB))
+	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING, COMSIG_CARBON_POST_REMOVE_LIMB))
 	handle_clown_mutation(current_mob, removing = FALSE)
 
 	if(current_mob.hud_used)
@@ -354,8 +359,9 @@
 			if(my_clan)
 				return
 			assign_clan_and_bane()
+			if(ui.closing)
+				return
 			ui.send_full_update(force = TRUE)
-			return
 
 /datum/antagonist/bloodsucker/roundend_report()
 	var/list/report = list()
