@@ -107,7 +107,7 @@
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if (blood_over_cap > 0)
-		mult = 1 + round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
+		costMult += round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
