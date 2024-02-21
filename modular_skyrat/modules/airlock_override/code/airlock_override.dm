@@ -170,6 +170,15 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 	normalspeed = FALSE
 	update_appearance()
 
+/**
+ * Change the airlock's fire_active status, triggered by COMSIG_AREA_FIRE_CHANGED
+ * Activates fire status overlay and increases door speed.
+ *
+ * Arguments:
+ * * source - The /area with changed fire status
+ * * fire - the new fire status (TRUE/FALSE)
+ *
+*/
 /obj/machinery/door/airlock/proc/update_fire_status(datum/source, fire)
 	SIGNAL_HANDLER
 
