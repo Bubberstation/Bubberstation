@@ -29,6 +29,8 @@
 	var/datum/weakref/target_ref
 	///Are we feeding with passive grab or not?
 	var/silent_feed = TRUE
+	///Have we notified you already that you are at maximum blood?
+	var/notified_overfeeding = FALSE
 
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -191,7 +193,7 @@
 			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
 		warning_target_bloodvol = feed_target.blood_volume
 
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume >= bloodsuckerdatum_power.max_blood_volume && notified_overfeeding != TRUE)
+	if(bloodsuckerdatum_power.bloodsucker_blood_volume >= bloodsuckerdatum_power.max_blood_volume && !notified_overfeeding)
 		user.balloon_alert(owner, "full on blood! Anything more we drink now will be burnt on quicker healing")
 		notified_overfeeding = TRUE
 	if(feed_target.blood_volume <= 0)
