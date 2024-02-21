@@ -138,6 +138,7 @@ export type QuirkInfo = {
   quirk_info: Record<string, Quirk>;
   quirk_blacklist: string[][];
   quirk_species_whitelist: string[][]; // BUBBER EDIT ADDITION - Species quirks
+  points_enabled: boolean;
 };
 
 export enum RandomSetting {
