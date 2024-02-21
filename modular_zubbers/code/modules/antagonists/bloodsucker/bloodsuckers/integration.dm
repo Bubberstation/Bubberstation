@@ -9,7 +9,7 @@
     if(!bloodsuckerdatum)
         return ..()
     var/blood_to_add = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_NORMAL)
-    if(blood_to_add > 0)
+    if((blood_to_add - bloodsuckerdatum.bloodsucker_blood_volume) > 0)
         bloodsuckerdatum.AddBloodVolume(blood_to_add - bloodsuckerdatum.bloodsucker_blood_volume)
 
 

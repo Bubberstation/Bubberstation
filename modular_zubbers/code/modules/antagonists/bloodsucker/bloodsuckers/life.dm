@@ -138,11 +138,14 @@
 		var/overbruteheal = user.getBruteLoss_nonProsthetic()
 		var/overfireheal = user.getFireLoss_nonProsthetic()
 		var/heal_amount = drunk / 3
-		if(overbruteheal + overfireheal > 0)
+		if(overbruteheal > 0 && heal_amount > 0)
 			user.adjustBruteLoss(-heal_amount, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
-			heal_amount = (heal_amount - overbruteheal) / 1.5 // Removes the amount of BRUTE we've already healed from the heal amount and then reduces it further (BURN should be harder to heal)
-			if(heal_amount > 0)
-				user.adjustFireLoss(-heal_amount, forced=TRUE)
+			heal_amount = (heal_amount - overbruteheal) // Removes the amount of BRUTE we've healed from the heal amount
+		else if(overfireheal > 0 && heal_amount > 0)
+			heal_amount /= 1.5 // Burn should be more difficult to heal
+			user.adjustFireLoss(-heal_amount, forced=TRUE)
+		else
+			return
 
 /datum/antagonist/bloodsucker/proc/check_limbs(costMult = 1)
 	var/limb_regen_cost = 50 * -costMult
