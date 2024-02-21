@@ -266,7 +266,7 @@
 	if(QDELETED(src) || QDELETED(bloodsuckerdatum.owner.current) || QDELETED(vassaldatum.owner.current))
 		return FALSE
 	vassaldatum.make_special(vassal_response)
-	bloodsuckerdatum.bloodsucker_blood_volume -= 150
+	bloodsuckerdatum.AddBloodVolume(-150)
 	return TRUE
 
 /**

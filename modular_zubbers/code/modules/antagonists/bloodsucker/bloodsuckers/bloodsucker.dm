@@ -54,6 +54,8 @@
 	var/bloodsucker_level = 0
 	var/bloodsucker_level_unspent = 1
 	var/additional_regen
+	var/blood_over_cap
+	var/full_feed = FALSE
 	var/bloodsucker_regen_rate = 0.3
 
 	// Used for Bloodsucker Objectives

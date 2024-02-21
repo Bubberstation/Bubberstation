@@ -40,7 +40,8 @@
  * ## BLOOD STUFF
  */
 /datum/antagonist/bloodsucker/proc/AddBloodVolume(value)
-	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume)
+	bloodsucker_blood_volume = bloodsucker_blood_volume + value
+	blood_over_cap = bloodsucker_blood_volume - max_blood_volume // Gets how much blood we have over the cap.
 
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
 	// 100 humanity lost already causes you to frenzy at 25 + 100 * 10 = 1025 blood and deal 1 + 100 / 10 = 11 burn per second due to frenzy
@@ -75,6 +76,7 @@
 	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
 	// Apply to Volume
 	AddBloodVolume(blood_taken)
+	OverfeedHealing(blood_taken)
 	// Reagents (NOT Blood!)
 	if(target.reagents && target.reagents.total_volume)
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
@@ -88,8 +90,8 @@
 
 /// Constantly runs on Bloodsucker's LifeTick, and is increased by being in Torpor/Coffins
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
-	var/actual_regen = bloodsucker_regen_rate + additional_regen
 	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
+	var/actual_regen = bloodsucker_regen_rate + additional_regen
 	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT(owner.current, TRAIT_NODEATH)))
 		return FALSE
 	// Garlic in you? No healing for you!
@@ -104,6 +106,8 @@
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
+	if (blood_over_cap > 0)
+		mult = 2
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
@@ -127,6 +131,18 @@
 		user.adjustFireLoss(-fireheal * mult, forced=TRUE)
 		AddBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
+
+/datum/antagonist/bloodsucker/proc/OverfeedHealing(drunk)
+	var/mob/living/carbon/user = owner.current
+	if(bloodsucker_blood_volume > max_blood_volume) //Checks if you are over your blood cap
+		var/overbruteheal = user.getBruteLoss_nonProsthetic()
+		var/overfireheal = user.getFireLoss_nonProsthetic()
+		var/heal_amount = drunk / 3
+		if(overbruteheal + overfireheal > 0)
+			user.adjustBruteLoss(-heal_amount, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
+			heal_amount = (heal_amount - overbruteheal) / 1.5 // Removes the amount of BRUTE we've already healed from the heal amount and then reduces it further (BURN should be harder to heal)
+			if(heal_amount > 0)
+				user.adjustFireLoss(-heal_amount, forced=TRUE)
 
 /datum/antagonist/bloodsucker/proc/check_limbs(costMult = 1)
 	var/limb_regen_cost = 50 * -costMult
@@ -247,8 +263,11 @@
 		additional_regen = 0.3
 	else if(bloodsucker_blood_volume < BS_BLOOD_VOLUME_MAX_REGEN)
 		additional_regen = 0.4
-	else
+	else if(bloodsucker_blood_volume < max_blood_volume)
 		additional_regen = 0.5
+	else if(bloodsucker_blood_volume > max_blood_volume)
+		additional_regen = 1 + round((blood_over_cap / 1000) * 2, 0.1)
+		AddBloodVolume(-4)
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()

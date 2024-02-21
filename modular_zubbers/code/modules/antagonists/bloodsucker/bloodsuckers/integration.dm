@@ -5,10 +5,12 @@
 	return ..()
 
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
-	if(!bloodsuckerdatum)
-		return ..()
-	bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+    var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
+    if(!bloodsuckerdatum)
+        return ..()
+    var/blood_to_add = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_NORMAL)
+    if(blood_to_add > 0)
+        bloodsuckerdatum.AddBloodVolume(blood_to_add - bloodsuckerdatum.bloodsucker_blood_volume)
 
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
@@ -53,6 +55,7 @@
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
 		. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
+		. += "Normal Blood Cap: [bloodsuckerdatum.max_blood_volume]"
 
 /datum/outfit/bloodsucker_outfit
 	name = "Bloodsucker outfit (Preview only)"
