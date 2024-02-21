@@ -75,7 +75,7 @@
 	blood_taken = 0
 	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
-	initial(notified_overfeeding)
+	notified_overfeeding = initial(notified_overfeeding)
 	return ..()
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(trigger_flags)

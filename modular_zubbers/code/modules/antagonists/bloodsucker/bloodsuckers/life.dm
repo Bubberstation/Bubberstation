@@ -107,7 +107,7 @@
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if (blood_over_cap > 0)
-		mult = 2
+		mult = 1 + round(blood_over_cap / 1000, 0.1) // effectively 1 (normal) + 0.1 for every 100 blood you are over cap
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
@@ -134,7 +134,7 @@
 
 /datum/antagonist/bloodsucker/proc/OverfeedHealing(drunk)
 	var/mob/living/carbon/user = owner.current
-	if(bloodsucker_blood_volume > max_blood_volume) //Checks if you are over your blood cap
+	if(blood_over_cap > 0) //Checks if you are over your blood cap
 		var/overbruteheal = user.getBruteLoss_nonProsthetic()
 		var/overfireheal = user.getFireLoss_nonProsthetic()
 		var/heal_amount = drunk / 3
