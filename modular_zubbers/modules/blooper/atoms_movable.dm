@@ -1,3 +1,6 @@
+/* Originally written by Bhijn & Myr on Citadel, with various other contributions since- see the Splurt & Citadel github for a full list of contributors.
+It has also been further modified by Rashcat & other Fluffyfrontier contributors on Fluffy Frontier!
+*/
 /atom/movable
 	// Text-to-blooper sounds
 	// yes. all atoms can have a say.
