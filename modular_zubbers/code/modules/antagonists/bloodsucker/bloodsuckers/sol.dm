@@ -64,7 +64,7 @@
 
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin)) // Coffins offer the BEST protection
 		if(owner.current.am_staked() && COOLDOWN_FINISHED(src, bloodsucker_spam_sol_burn))
-			to_chat(owner.current, span_userdanger("You are staked! Remove the offending weapon from your heart before sleeping."))
+			to_chat(owner.current, span_userdanger("You are staked you will keep burning until it is removed! Remove the offending weapon from your heart before sleeping."))
 			COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
 		if(!HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 			check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
@@ -124,17 +124,18 @@
 	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0)))
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
 		return
-	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal itlater
-	var/total_damage = user.getBruteLoss_nonProsthetic() + user.getFireLoss_nonProsthetic() + user.getToxLoss() + user.getOxyLoss()
+	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later
+	var/total_damage = getBruteLoss() + getFireLoss() + user.getToxLoss() + user.getOxyLoss()
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
 	if(SkipChecks & TORPOR_SKIP_CHECK_DAMAGE || !SSsunlight.sunlight_active && total_damage >= 10 && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_begin()
 
 /datum/antagonist/bloodsucker/proc/check_end_torpor()
 	var/mob/living/carbon/user = owner.current
-	var/total_burn = user.getFireLoss_nonProsthetic()
-	// Bloodsuckers shouldn't be able to receive oxygen damage but we exclude it from the check anyway
-	var/total_damage = user.get_total_damage() - user.getOxyLoss()
+	var/total_brute = getBruteLoss()
+	var/total_burn = getFireLoss()
+	// for waking up we ignore all other damage types so we don't get stuck
+	var/total_damage = total_brute + total_burn
 	if(total_burn >= user.maxHealth * 2)
 		return FALSE
 	if(SSsunlight.sunlight_active)
@@ -167,12 +168,12 @@
 	// Disable ALL Powers
 	DisableAllPowers()
 
-/datum/antagonist/bloodsucker/proc/torpor_end(quiet)
+/datum/antagonist/bloodsucker/proc/torpor_end(quiet = FALSE)
 	if(quiet)
 		owner.current.grab_ghost()
 		to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
-	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
+	if(!HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT))
 		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	heal_vampire_organs()
 	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)

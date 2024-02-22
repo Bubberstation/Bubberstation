@@ -116,26 +116,29 @@
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
 	// If you're a synth, you heal prosthetic damage.
-	var/bruteLoss = issynthetic(user) ? user.getBruteLoss() : user.getBruteLoss_nonProsthetic()
+	var/bruteLoss = getBruteLoss()
 	var/bruteheal = min(bruteLoss, actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
-	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
+	if(amInCoffin && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return FALSE
-		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
+		fireheal = min(getFireLoss(), actual_regen)
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
 		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
 		user.extinguish_mob()
+		if(ishuman(user))
+			var/mob/living/carbon/human/humie = user
+			humie.set_coretemperature(humie.get_body_temp_normal(apply_change = FALSE))
 		user.remove_all_embedded_objects() // Remove Embedded!
 		if(check_limbs(costMult))
 			return TRUE
 	// In Torpor, but not in a Coffin? Heal faster anyways.
-	else if(HAS_TRAIT(user, TRAIT_NODEATH))
-		var/fireloss = issynthetic(user) ? user.getFireLoss() : user.getFireLoss_nonProsthetic()
+	else if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+		var/fireloss = getFireLoss()
 		fireheal = min(fireloss, actual_regen) / 1.2 // 20% slower than being in a coffin
 		mult *= 3
 	// Heal if Damaged
@@ -298,21 +301,18 @@
 	owner.current.blood_volume = bloodsucker_blood_volume
 
 /// Turns the bloodsucker into a wacky talking head.
-/datum/antagonist/bloodsucker/proc/talking_head(mob/living/carbon/human/headless_corpse, obj/item/bodypart/head)
+/datum/antagonist/bloodsucker/proc/talking_head()
 	var/mob/living/poor_fucker = owner.current
-	if(!istype(head, /obj/item/bodypart/head))
-		return
 	// Don't do anything if we're not actually inside a brain and a head
 	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
 	// Ensure that the HUD updates (We might have lost the heart at some point)
-	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
+	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))
 	// No lungs to speak, let's make it spooky
 	poor_fucker.speech_span = SPAN_PAPYRUS
-
 
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath(check_organs = FALSE)
