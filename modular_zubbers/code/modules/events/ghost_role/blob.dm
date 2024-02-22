@@ -3,7 +3,8 @@
 		"Delta Station",
 		"MetaStation", //Not a typo. How it appears in map config.
 		"Moon Station",
-		"Kilo Station"
+		"Kilo Station",
+		"Birdshot Station"
 	)
 
 /datum/round_event_control/blob/can_spawn_event(players, allow_magic = FALSE)
