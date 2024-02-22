@@ -218,6 +218,7 @@
 		LockMe(user)
 		//Level up if possible.
 		if(!bloodsuckerdatum.my_clan)
+			user.balloon_alert("enter a clan!")
 			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
 		else
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
