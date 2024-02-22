@@ -588,9 +588,12 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new /datum/stack_recipe("nugget box", /obj/item/storage/fancy/nugget_box, check_density = FALSE, category = CAT_CONTAINERS), \
 		null, \
 
-		new /datum/stack_recipe("lethal ammo box", /obj/item/storage/box/lethalshot, check_density = FALSE, category = CAT_CONTAINERS), \
-		new /datum/stack_recipe("rubber shot ammo box", /obj/item/storage/box/rubbershot, check_density = FALSE, category = CAT_CONTAINERS), \
-		new /datum/stack_recipe("bean bag ammo box", /obj/item/storage/box/beanbag, check_density = FALSE, category = CAT_CONTAINERS), \
+		//BUBBER EDIT: Replaces the craftable ammo boxes with advanced ones (/obj/item/storage/box/lethalshot to /obj/item/ammo_box/advanced/s12gauge/buckshot)
+		//Also, replaces "lethal ammo" with "Buckshot ammo" for clarity.
+		new /datum/stack_recipe("Buckshot ammo box",  /obj/item/ammo_box/advanced/s12gauge/buckshot, check_density = FALSE, category = CAT_CONTAINERS), \
+		new /datum/stack_recipe("Rubbershot ammo box", /obj/item/ammo_box/advanced/s12gauge/rubber, check_density = FALSE, category = CAT_CONTAINERS), \
+		new /datum/stack_recipe("Beanbag ammo box", /obj/item/ammo_box/advanced/s12gauge/bean, check_density = FALSE, category = CAT_CONTAINERS), \
+		//BUBBER EDIT END: Replaces craftable shotgun ammo boxes with advanced ones
 		new /datum/stack_recipe("flashbang box", /obj/item/storage/box/flashbangs, check_density = FALSE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("flashes box", /obj/item/storage/box/flashes, check_density = FALSE, category = CAT_CONTAINERS), \
 		new /datum/stack_recipe("handcuffs box", /obj/item/storage/box/handcuffs, check_density = FALSE, category = CAT_CONTAINERS), \
