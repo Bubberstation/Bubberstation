@@ -40,8 +40,8 @@
  * ## BLOOD STUFF
  */
 /datum/antagonist/bloodsucker/proc/AddBloodVolume(value)
-	bloodsucker_blood_volume = bloodsucker_blood_volume + value
-	blood_over_cap = bloodsucker_blood_volume - max_blood_volume // Gets how much blood we have over the cap.
+	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume * 2), 1
+	blood_over_cap = max(bloodsucker_blood_volume - max_blood_volume, 0) // Gets how much blood we have over the cap.
 
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
 	// 100 humanity lost already causes you to frenzy at 25 + 100 * 10 = 1025 blood and deal 1 + 100 / 10 = 11 burn per second due to frenzy
@@ -270,7 +270,7 @@
 		additional_regen = 0.5
 	else if(bloodsucker_blood_volume > max_blood_volume)
 		additional_regen = 1 + round((blood_over_cap / 1000) * 2, 0.1)
-		AddBloodVolume(-4)
+		AddBloodVolume(-1 - blood_over_cap / 100)
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()
