@@ -61,7 +61,7 @@
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 1,
 	)
-	crate_name = "Carwo 'd'Infanteria' Sniper Rifle Crate"
+	crate_name = "Carwo 'd'Infanteria' Marksman Rifle Crate"
 
 /datum/supply_pack/security/ammo
 	contains = list(/obj/item/ammo_box/advanced/s12gauge/bean = 3,
