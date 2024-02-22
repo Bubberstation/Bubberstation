@@ -38116,7 +38116,7 @@
 	id = "reps";
 	name = "Privacy Shutters Control";
 	pixel_x = 27;
-	req_access = list("hop");
+	req_access = list("cent_general");
 	pixel_y = 6
 	},
 /obj/machinery/light_switch/directional/east{
@@ -46595,6 +46595,7 @@
 	pixel_y = 6
 	},
 /obj/item/clothing/suit/armor/riot,
+/obj/item/ammo_box/magazine/wt550m9/flathead,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "mXn" = (
@@ -47421,6 +47422,26 @@
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron,
 /area/station/science/ordnance/storage)
+"nFa" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/toy/figure/captain{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/trophy{
+	desc = "You did good in the worst way possible.";
+	name = "Redshield 1st prize";
+	pixel_y = 9;
+	pixel_x = -2
+	},
+/obj/item/toy/balloon/arrest{
+	pixel_x = -9
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/blueshield)
 "nFn" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -53970,7 +53991,7 @@
 /obj/machinery/door/window/right/directional/south{
 	dir = 4;
 	name = "Representative's Desk";
-	req_access = list("captain")
+	req_access = list("cent_general")
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -57464,26 +57485,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_cafeteria)
-"vkD" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy/cyan,
-/obj/item/toy/figure/captain{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/cup/glass/trophy{
-	desc = "You did good in the worst way possible.";
-	name = "Redshield 1st prize";
-	pixel_y = 9;
-	pixel_x = -2
-	},
-/obj/item/toy/balloon/arrest{
-	pixel_x = -9
-	},
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/blueshield)
 "vkQ" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -84302,7 +84303,7 @@ arP
 bli
 fKI
 aph
-vkD
+nFa
 vuL
 iNM
 aDx
