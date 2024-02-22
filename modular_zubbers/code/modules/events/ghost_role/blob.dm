@@ -1,3 +1,17 @@
+/datum/round_event_control/blob
+	var/static/list/map_whitelist = list(
+		"Delta Station",
+		"MetaStation", //Not a typo. How it appears in map config.
+		"Moon Station",
+		"Kilo Station"
+	)
+
+/datum/round_event_control/blob/can_spawn_event(players, allow_magic = FALSE)
+
+	if(SSmapping.config && SSmapping.config.map_name && !(SSmapping.config.map_name in map_whitelist))
+		return FALSE
+
+	. = ..()
 
 /datum/round_event/ghost_role/blob/announce(fake)
 	. = ..()
