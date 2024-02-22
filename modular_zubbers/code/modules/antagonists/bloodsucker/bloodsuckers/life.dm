@@ -40,7 +40,7 @@
  * ## BLOOD STUFF
  */
 /datum/antagonist/bloodsucker/proc/AddBloodVolume(value)
-	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume * 2), 1
+	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume * 2, 1)
 	blood_over_cap = max(bloodsucker_blood_volume - max_blood_volume, 0) // Gets how much blood we have over the cap.
 
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
