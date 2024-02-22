@@ -145,7 +145,7 @@
 	if(isnull(affecting) || !IS_ROBOTIC_LIMB(affecting))
 		return NONE
 
-	var/use_delay = 0
+	var/use_delay = 1 SECONDS // SKYRAT EDIT: ORIGINAL 0
 
 	if(user == attacked_humanoid)
 		user.visible_message(span_notice("[user] starts to fix some of the dents on [attacked_humanoid]'s [affecting.name]."),
