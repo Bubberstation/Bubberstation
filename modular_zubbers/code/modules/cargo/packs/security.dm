@@ -28,7 +28,7 @@
 
 /datum/supply_pack/security/armory/renoster
 	name = "Carwo 'Renoster' Shotgun Crate"
-	desc = "Contains two Carwo 'Renoster' shotguns. Additional ammmo sold separately."
+	desc = "Contains two Carwo 'Renoster' shotguns. Comes with two boxes of buckshot for rapid reloads."
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol = 2,
 	/obj/item/ammo_box/advanced/s12gauge/buckshot = 2,
@@ -55,8 +55,8 @@
 	crate_name = "Carwo 'd'Infanteria' Rifle Crate"
 
 /datum/supply_pack/security/armory/elite
-	name = "Carwo 'd'Elite' Sniper Rifle Crate"
-	desc = "Contains one Carwo 'd'Elite' Sniper Rifle, as well as a spare magazine for it."
+	name = "Carwo 'd'Elite' Marksman Rifle Crate"
+	desc = "Contains one Carwo 'd'Elite' Marksman Rifle, as well as a spare magazine for it."
 	cost = CARGO_CRATE_VALUE * 40
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 1,
