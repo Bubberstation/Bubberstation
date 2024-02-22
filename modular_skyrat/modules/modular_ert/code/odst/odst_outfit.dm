@@ -11,7 +11,7 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival/security,
 		/obj/item/melee/baton/security/loaded ,
-		/obj/item/ammo_box/magazine/c40sol_rifle/drum = 3,
+		/obj/item/ammo_box/magazine/c40sol_rifle/standard = 3,
 	)
 	l_pocket = /obj/item/gun/energy/e_gun/mini
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
