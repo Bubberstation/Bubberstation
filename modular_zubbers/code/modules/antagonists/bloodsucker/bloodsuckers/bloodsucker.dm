@@ -117,7 +117,8 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(current_mob, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
 	RegisterSignal(current_mob, COMSIG_QDELETING, PROC_REF(on_removal))
-	RegisterSignal(current_mob, COMSIG_CARBON_POST_REMOVE_LIMB, PROC_REF(talking_head))
+	RegisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
+	talking_head()
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
 
@@ -128,7 +129,6 @@
 	if(ishuman(current_mob))
 		current_mob?.dna?.species.on_bloodsucker_gain(current_mob)
 		add_signals_to_heart(current_mob)
-	RegisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(on_organ_gain))
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
@@ -144,7 +144,7 @@
 	. = ..()
 	var/mob/living/carbon/current_mob = mob_override || owner.current
 	remove_signals_from_heart(current_mob)
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING, COMSIG_CARBON_POST_REMOVE_LIMB))
+	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING))
 	handle_clown_mutation(current_mob, removing = FALSE)
 
 	if(current_mob.hud_used)
