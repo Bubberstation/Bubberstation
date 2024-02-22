@@ -1,15 +1,17 @@
 /area/station/solars/asteroid
-	name = "\improper Asteroid Solar Array"
+	name = "\improper Ministation Solar Array"
 	icon_state = "panelsAF"
 
 /area/station/engineering/atmos/asteroid
-	name = "\improper Asteroid Atmospherics Room"
+	name = "\improper Ministation Atmospherics Room"
 	icon_state = "atmos"
 
 /area/station/engineering/asteroid_lobby
-	name = "\improper Asteroid Lobby"
+	name = "\improper Ministation Lobby"
 	icon_state = "engine_hallway"
 
+
+//Additiional Station Areas
 /area/station/engineering/supermatter/emitter
 	name = "\improper Supermatter Emitter Room"
 	icon_state = "engine_control"
