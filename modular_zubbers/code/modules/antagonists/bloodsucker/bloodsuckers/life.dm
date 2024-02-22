@@ -130,6 +130,7 @@
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
 		costMult /= 2 // Decrease cost if we're sleeping in a coffin.
 		user.extinguish_mob()
+		user.bodytemperature = user.get_body_temp_normal()
 		if(ishuman(user))
 			var/mob/living/carbon/human/humie = user
 			humie.set_coretemperature(humie.get_body_temp_normal(apply_change = FALSE))
