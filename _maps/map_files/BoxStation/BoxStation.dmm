@@ -7428,7 +7428,11 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
 "aJa" = (
-/turf/open/floor/wood,
+/obj/machinery/door/window/brigdoor/right/directional/east{
+	name = "Blueshield Armoury";
+	req_access = list("captain")
+	},
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "aJb" = (
 /obj/effect/turf_decal/delivery,
@@ -14786,6 +14790,7 @@
 /obj/machinery/modular_computer/preset/command{
 	dir = 4
 	},
+/obj/machinery/newscaster/directional/west,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "bjl" = (
@@ -36608,7 +36613,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/command/captain,
-/turf/open/floor/iron/dark/textured,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "fwA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -46582,21 +46587,15 @@
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "mXg" = (
-/obj/structure/table/wood/fancy/cyan,
-/obj/item/toy/figure/captain{
-	pixel_x = 5;
-	pixel_y = 3
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/closet/secure_closet/tac{
+	req_access = list("captain")
 	},
-/obj/item/reagent_containers/cup/glass/trophy{
-	desc = "You did good in the worst way possible.";
-	name = "Redshield 1st prize";
-	pixel_y = 9;
-	pixel_x = -2
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_y = 6
 	},
-/obj/item/toy/balloon/arrest{
-	pixel_x = -9
-	},
-/turf/open/floor/wood,
+/obj/item/clothing/suit/armor/riot,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "mXn" = (
 /obj/structure/table,
@@ -47422,14 +47421,6 @@
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron,
 /area/station/science/ordnance/storage)
-"nFa" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/medkit/tactical/blueshield,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/textured,
-/area/station/command/heads_quarters/blueshield)
 "nFn" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -52150,17 +52141,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "rbV" = (
-/obj/item/bedsheet/nanotrasen/double{
-	dir = 4
-	},
-/obj/structure/bed/double{
-	dir = 4
-	},
-/obj/item/toy/plush/nukeplushie{
-	pixel_y = 3;
-	pixel_x = -7
-	},
-/turf/open/floor/wood,
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "rcd" = (
 /obj/structure/rack,
@@ -54043,14 +54026,11 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/service/hydroponics)
 "syN" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/textured,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "szn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -55779,9 +55759,9 @@
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hos)
 "tRC" = (
-/obj/structure/dresser,
 /obj/machinery/light/directional/north,
-/turf/open/floor/wood,
+/obj/machinery/suit_storage_unit/security,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "tRW" = (
 /obj/structure/chair/stool/directional/west,
@@ -56584,17 +56564,12 @@
 /turf/open/floor/iron/dark,
 /area/station/service/barber)
 "uCC" = (
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 6
-	},
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/iron/dark/textured,
+/obj/structure/bed/double,
+/obj/item/bedsheet/nanotrasen/double,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "uDl" = (
 /obj/effect/turf_decal/siding/purple{
@@ -57489,6 +57464,26 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_cafeteria)
+"vkD" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/toy/figure/captain{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/trophy{
+	desc = "You did good in the worst way possible.";
+	name = "Redshield 1st prize";
+	pixel_y = 9;
+	pixel_x = -2
+	},
+/obj/item/toy/balloon/arrest{
+	pixel_x = -9
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/blueshield)
 "vkQ" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -57704,6 +57699,9 @@
 "vuL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
@@ -60349,9 +60347,13 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/hallway/primary/central)
 "xkT" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/machinery/light/directional/north,
-/turf/open/floor/iron/dark/textured,
+/obj/structure/dresser,
+/obj/item/toy/plush/nukeplushie{
+	pixel_y = 3;
+	pixel_x = -7
+	},
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "xlh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -84300,7 +84302,7 @@ arP
 bli
 fKI
 aph
-sXW
+vkD
 vuL
 iNM
 aDx
@@ -84557,7 +84559,7 @@ arP
 awf
 aqR
 aph
-nFa
+sXW
 syN
 fwj
 jnf
@@ -84834,7 +84836,7 @@ avD
 ouv
 aAB
 avD
-mpy
+dRO
 bcG
 jwX
 avD
@@ -85091,7 +85093,7 @@ avD
 avD
 cSX
 avD
-dRO
+mpy
 bcH
 jwX
 avD
