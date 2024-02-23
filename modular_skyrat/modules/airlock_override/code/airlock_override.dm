@@ -107,6 +107,9 @@
 	if(!source_area.engineering_override_eligible)
 		return
 
+	if(isnull(req_access) && isnull(req_one_access)) // no restrictions, no problem
+		return
+
 	if(level != SEC_LEVEL_ORANGE && GLOB.force_eng_override)
 		return
 
@@ -158,6 +161,9 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 /obj/machinery/door/airlock/proc/force_eng_override(datum/source, status)
 	SIGNAL_HANDLER
 
+	if(isnull(req_access) && isnull(req_one_access)) // no restrictions, no problem
+		return
+
 	engineering_override = status
 	if(!engineering_override && !fire_active)
 		normalspeed = TRUE
@@ -181,6 +187,9 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 */
 /obj/machinery/door/airlock/proc/update_fire_status(datum/source, fire)
 	SIGNAL_HANDLER
+
+	if(isnull(req_access) && isnull(req_one_access)) // no restrictions, no problem
+		return
 
 	fire_active = fire
 	if(!fire_active && !engineering_override)
