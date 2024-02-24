@@ -390,6 +390,12 @@
 /obj/structure/sign/poster/official/random/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
+"hx" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "hS" = (
 /obj/structure/transit_tube/diagonal/crossing/topleft,
 /turf/open/misc/asteroid/airless,
@@ -507,6 +513,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "kE" = (
@@ -647,6 +654,8 @@
 /obj/machinery/camera/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/fore)
 "nW" = (
@@ -733,6 +742,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/chair/sofa/bench,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/fore)
 "rk" = (
@@ -796,6 +806,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
+/area/station/hallway/primary/fore)
+"sB" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark/corner{
+	dir = 8
+	},
 /area/station/hallway/primary/fore)
 "tg" = (
 /turf/closed/wall/rust,
@@ -1245,16 +1264,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/fore/lesser)
 "FM" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
 /obj/structure/cable,
-/turf/open/floor/iron/dark/corner{
-	dir = 4
-	},
+/turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "FQ" = (
 /obj/effect/turf_decal/stripes/line,
@@ -1422,6 +1436,7 @@
 "KA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "KE" = (
@@ -1492,7 +1507,6 @@
 /turf/closed/wall/rust,
 /area/space/nearstation)
 "Ng" = (
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -2634,8 +2648,8 @@ gv
 GX
 GX
 Pd
-GX
-GX
+sB
+sB
 Fg
 nF
 nF
@@ -2678,11 +2692,11 @@ UZ
 fb
 Bx
 Zv
-Zv
+FM
 Xo
 su
 su
-FM
+su
 su
 dY
 bj
@@ -2899,7 +2913,7 @@ XL
 ne
 oR
 KA
-YD
+hx
 ZN
 gX
 Zb
