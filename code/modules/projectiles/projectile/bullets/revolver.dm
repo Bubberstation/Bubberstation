@@ -2,13 +2,13 @@
 
 /obj/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
-	damage = 60
+	damage = 75
 
 // .50AE (Desert Eagle)
 
 /obj/projectile/bullet/a50ae
 	name = ".50AE bullet"
-	damage = 60
+	damage = 75
 
 // .38 (Detective's Gun)
 
@@ -106,20 +106,20 @@
 
 /obj/projectile/bullet/a357
 	name = ".357 bullet"
-	damage = 60
+	damage = 75
 	wound_bonus = -30
 
 /obj/projectile/bullet/a357/phasic
 	name = ".357 phasic bullet"
 	icon_state = "gaussphase"
-	damage = 35
+	damage = 45
 	armour_penetration = 100
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 /obj/projectile/bullet/a357/heartseeker
 	name = ".357 heartseeker bullet"
 	icon_state = "gauss"
-	damage = 50
+	damage = 68
 	homing = TRUE
 	homing_turn_speed = 120
 
