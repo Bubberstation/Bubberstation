@@ -50,3 +50,4 @@
 		log_game("[usr] has set their Headshot image to '[value]'.")
 	stored_link[usr?.ckey] = value
 	usr?.client?.prefs.headshot = value
+	return TRUE
