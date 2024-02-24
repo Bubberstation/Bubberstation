@@ -4,7 +4,7 @@
 	name =".50 BMG bullet"
 	speed = 0.4
 	range = 400 // Enough to travel from one corner of the Z to the opposite corner and then some.
-	damage = 80
+	damage = 90
 	paralyze = 100
 	dismemberment = 50
 	catastropic_dismemberment = TRUE
@@ -72,7 +72,7 @@
 /obj/projectile/bullet/p50/penetrator
 	name = ".50 BMG penetrator round"
 	icon_state = "gauss"
-	damage = 70
+	damage = 80
 	range = 50
 	projectile_piercing = PASSMOB|PASSVEHICLE
 	projectile_phasing = ~(PASSMOB|PASSVEHICLE)
@@ -91,7 +91,7 @@
 
 /obj/projectile/bullet/p50/marksman
 	name = ".50 BMG marksman round"
-	damage = 50
+	damage = 68
 	range = 50
 	paralyze = 0
 	tracer_type = /obj/effect/projectile/tracer/sniper

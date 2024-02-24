@@ -77,7 +77,7 @@
 	base_icon_state = "9mmaps"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
-	max_ammo = 18
+	max_ammo = 21
 
 /obj/item/ammo_box/magazine/m9mm_aps/update_icon_state()
 	. = ..()
@@ -86,17 +86,17 @@
 /obj/item/ammo_box/magazine/m9mm_aps/fire
 	name = "stechkin pistol magazine (9mm incendiary)"
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
-	max_ammo = 18
+	max_ammo = 21
 
 /obj/item/ammo_box/magazine/m9mm_aps/hp
 	name = "stechkin pistol magazine (9mm HP)"
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
-	max_ammo = 18
+	max_ammo = 21
 
 /obj/item/ammo_box/magazine/m9mm_aps/ap
 	name = "stechkin pistol magazine (9mm AP)"
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
-	max_ammo = 18
+	max_ammo = 21
 
 /obj/item/ammo_box/magazine/m50
 	name = "handgun magazine (.50ae)"

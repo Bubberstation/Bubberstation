@@ -2,13 +2,13 @@
 
 /obj/projectile/bullet/n762
 	name = "7.62x38mmR bullet"
-	damage = 75
+	damage = 80
 
 // .50AE (Desert Eagle)
 
 /obj/projectile/bullet/a50ae
 	name = ".50AE bullet"
-	damage = 75
+	damage = 80
 
 // .38 (Detective's Gun)
 
@@ -106,7 +106,7 @@
 
 /obj/projectile/bullet/a357
 	name = ".357 bullet"
-	damage = 75
+	damage = 80
 	wound_bonus = -30
 
 /obj/projectile/bullet/a357/phasic

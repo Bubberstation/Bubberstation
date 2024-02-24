@@ -80,7 +80,7 @@
 	base_icon_state = "c20r45"
 	ammo_type = /obj/item/ammo_casing/c45
 	caliber = CALIBER_45
-	max_ammo = 24
+	max_ammo = 30
 
 /obj/item/ammo_box/magazine/smgm45/update_icon_state()
 	. = ..()

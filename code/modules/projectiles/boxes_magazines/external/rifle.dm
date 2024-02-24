@@ -15,7 +15,7 @@
 	icon_state = ".223"
 	ammo_type = /obj/item/ammo_casing/a223
 	caliber = CALIBER_A223
-	max_ammo = 30
+	max_ammo = 40
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
 /obj/item/ammo_box/magazine/m223/phasic

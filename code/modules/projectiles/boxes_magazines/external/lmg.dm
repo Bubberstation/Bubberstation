@@ -3,7 +3,7 @@
 	icon_state = "a7mm-50"
 	ammo_type = /obj/item/ammo_casing/m7mm
 	caliber = CALIBER_A7MM
-	max_ammo = 50
+	max_ammo = 65
 
 /obj/item/ammo_box/magazine/m7mm/hollow
 	name = "box magazine (Hollow-Point 7mm)"
