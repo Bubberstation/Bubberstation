@@ -4,4 +4,3 @@
 	item = /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot
 	cost = 4
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
-
