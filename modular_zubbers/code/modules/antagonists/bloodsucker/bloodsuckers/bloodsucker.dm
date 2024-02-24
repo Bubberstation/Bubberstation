@@ -184,6 +184,7 @@
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
+	.["Set blood level"] = CALLBACK(src, PROC_REF(admin_set_blood))
 	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp), TRUE)
 	if(bloodsucker_level_unspent >= 1)
 		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
