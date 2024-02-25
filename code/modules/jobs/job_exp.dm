@@ -17,6 +17,10 @@ GLOBAL_PROTECT(exp_to_update)
 	var/isexempt = C.prefs.db_flags & DB_FLAG_EXEMPT
 	if(isexempt)
 		return 0
+	// BUBBER EDIT START - Job exemption
+	if(is_job_exempt_from(C.ckey, title))
+		return 0
+	// BUBBER EDIT END
 	var/my_exp = C.calc_exp_type(get_exp_req_type())
 	var/job_requirement = get_exp_req_amount()
 	if(my_exp >= job_requirement)
