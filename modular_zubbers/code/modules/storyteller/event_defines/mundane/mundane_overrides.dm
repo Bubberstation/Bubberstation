@@ -46,3 +46,27 @@
 	var/list/run_situations = list()
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/mass_hallucination
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/stray_cargo
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/grey_tide
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
+
+/datum/round_event_control/gravity_generator_blackout
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL, TAG_SPACE)
+
+/datum/round_event_control/shuttle_insurance
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/tram_malfunction
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_DESTRUCTIVE)
