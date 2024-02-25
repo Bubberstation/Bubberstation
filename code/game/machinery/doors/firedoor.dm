@@ -275,7 +275,7 @@
 /obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
 	SIGNAL_HANDLER
 	post_change_callbacks += CALLBACK(src, PROC_REF(CalculateAffectingAreas))
-	post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed)
+	post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
 
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
@@ -283,10 +283,10 @@
 		stack_trace("We tried to check a gas_mixture that doesn't exist for its firetype, what are you DOING")
 		return
 
-	var/pressure = environment?.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
-	if(environment?.temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST || pressure > HAZARD_HIGH_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
+	var/pressure = environment.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
+	if(environment.temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST || pressure > HAZARD_HIGH_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_HOT
-	if(environment?.temperature <= BODYTEMP_COLD_DAMAGE_LIMIT || pressure < HAZARD_LOW_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
+	if(environment.temperature <= BODYTEMP_COLD_DAMAGE_LIMIT || pressure < HAZARD_LOW_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_COLD
 	return
 
@@ -315,6 +315,7 @@
 		alarm_type = null
 		if(!ignore_alarms)
 			start_deactivation_process()
+
 
 /**
  * Begins activation process of us and our neighbors.
