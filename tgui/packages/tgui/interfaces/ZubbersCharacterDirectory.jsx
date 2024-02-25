@@ -1,7 +1,15 @@
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
-import { Button, Icon, LabeledList, Section, Table } from '../components';
+import {
+  Button,
+  Icon,
+  Input,
+  LabeledList,
+  Section,
+  Table,
+  Tooltip,
+} from '../components';
 import { Window } from '../layouts';
 
 const erpTagColor = {
@@ -68,6 +76,7 @@ const CharacterDirectoryList = (props) => {
   const { act, data } = useBackend();
 
   const { directory, canOrbit } = data;
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [sortId, setSortId] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
@@ -81,7 +90,23 @@ const CharacterDirectoryList = (props) => {
     }
   };
 
-  const sortedDirectory = directory.slice().sort((a, b) => {
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleRandomView = () => {
+    if (directory.length > 0) {
+      const randomIndex = Math.floor(Math.random() * directory.length);
+      const randomCharacter = directory[randomIndex];
+      act('view', { ref: randomCharacter.ref });
+    }
+  };
+
+  const filteredDirectory = directory.filter((character) =>
+    character.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  const sortedDirectory = filteredDirectory.slice().sort((a, b) => {
     const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
     return sortOrderValue * a[sortId].localeCompare(b[sortId]);
   });
@@ -90,11 +115,24 @@ const CharacterDirectoryList = (props) => {
     <Section
       title="Directory"
       buttons={
-        <Button icon="sync" onClick={() => act('refresh')}>
-          {'Refresh'}
-        </Button>
+        <>
+          <Button icon="sync" onClick={() => act('refresh')}>
+            {'Refresh'}
+          </Button>
+          <Tooltip content="Display a random player's advert. Click if you dare.">
+            <Button icon="random" onClick={handleRandomView}>
+              {'I Feel Lucky'}
+            </Button>
+          </Tooltip>
+        </>
       }
     >
+      <Input
+        placeholder="Search name..."
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+        mb={2}
+      />
       <Table>
         <Table.Row bold>
           <SortButton
