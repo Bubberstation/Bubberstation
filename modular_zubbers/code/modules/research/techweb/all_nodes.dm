@@ -66,3 +66,13 @@
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
 	. = ..()
+
+/datum/techweb_node/imp_wt_surgery
+	design_ids = list(
+		"surgery_heal2_toxin_upgrade",
+	)
+
+/datum/techweb_node/adv_surgery
+	design_ids = list(
+		"surgery_heal2_toxin_upgrade_femto",
+	)
