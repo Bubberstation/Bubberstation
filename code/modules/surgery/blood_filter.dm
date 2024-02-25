@@ -67,6 +67,7 @@
 		for(var/datum/reagent/chem as anything in target.reagents.reagent_list)
 			if(!length(bloodfilter.whitelist) || (chem.type in bloodfilter.whitelist))
 				target.reagents.remove_reagent(chem.type, min(chem.volume * 0.22, 10))
+	target.adjustToxLoss(-5, forced = TRUE) //BUBBER EDIT - It doesn't work in a modular file, it breaks the filtering/sound
 	display_results(
 		user,
 		target,
