@@ -9,7 +9,7 @@
 		/datum/surgery_step/retract_skin,
 		/datum/surgery_step/incise,
 		/datum/surgery_step/clamp_bleeders,
-		/datum/surgery_step/heal,
+		/datum/surgery_step/heal2,
 		/datum/surgery_step/close,
 	)
 
@@ -30,7 +30,7 @@
 			/datum/surgery_step/close)
 
 /datum/surgery_step/heal2
-	name = "repair body (bloodfilter)"
+	name = "filter blood (bloodfilter)"
 	implements = list(
 		TOOL_BLOODFILTER = 100,
 		/obj/item/plunger = 25)
