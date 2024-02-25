@@ -10,7 +10,7 @@ export const emote_length: FeatureChoiced = {
   name: 'Preferred Emote Length',
   category: 'ADVERT',
   description:
-    'What length of emote your prefer during an RP scene, if you have one. Shows on your Character ADVERT.',
+    'What length of emote your prefer during an RP scene, if you have one. Shows on your Character Advert.',
   component: FeatureDropdownInput,
 };
 
@@ -18,7 +18,7 @@ export const approach_pref: FeatureChoiced = {
   name: 'Preferred Approach Method',
   category: 'ADVERT',
   description:
-    'How you would like to be approached for RP scenes, if at all. Shows on your Character ADVERT.',
+    'How you would like to be approached for RP scenes, if at all. Shows on your Character Advert.',
   component: FeatureDropdownInput,
 };
 
@@ -63,7 +63,7 @@ export const human_pref: FeatureChoiced = {
 };
 
 export const character_ad: Feature<string> = {
-  name: 'Character ADVERT',
+  name: 'Character Advert',
   description:
     'A built-in advertisement for your character. Talk about what you are looking for in terms of roleplay, and how to approach your character. Try to do more than just write that you are free to talk anytime.',
   component: FeatureTextInput,
