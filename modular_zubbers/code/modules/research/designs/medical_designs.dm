@@ -10,7 +10,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-******************************************************* TOXIN AND OXYGEN SURGERIES ******************************************************************
+//******************************************************* TOXIN AND OXYGEN SURGERIES ******************************************************************
 /datum/design/surgery/healing2 //PLEASE ACCOUNT FOR UNIQUE HEALING BRANCHES IN THE hptech HREF (currently 2 for Toxin/Oxygen; Combo is bonus)
 	name = "Tend Blood"
 	desc = "An upgraded version of the original surgery."
