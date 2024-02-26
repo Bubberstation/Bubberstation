@@ -177,7 +177,7 @@ CREATE TABLE `death` (
   `fireloss` smallint(5) unsigned NOT NULL,
   `oxyloss` smallint(5) unsigned NOT NULL,
   `toxloss` smallint(5) unsigned NOT NULL,
-  `cloneloss` smallint(5) unsigned NOT NULL,
+  `cloneloss` smallint(5) unsigned DEFAULT '0',
   `staminaloss` smallint(5) unsigned NOT NULL,
   `last_words` varchar(255) DEFAULT NULL,
   `suicide` tinyint(1) NOT NULL DEFAULT '0',
@@ -659,19 +659,6 @@ CREATE TABLE `game_log` (
   `message` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Table structure for table `text_adventures`
---
-DROP TABLE IF EXISTS `text_adventures`;
-CREATE TABLE `text_adventures` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`adventure_data` LONGTEXT NOT NULL,
-	`uploader` VARCHAR(32) NOT NULL,
-	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`approved` TINYINT(1) NOT NULL DEFAULT FALSE,
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
 
 --
 -- Table structure for table `admin_connections`

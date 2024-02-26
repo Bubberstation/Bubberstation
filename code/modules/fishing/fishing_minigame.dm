@@ -156,8 +156,12 @@
 			trait.minigame_mod(rod, user, src)
 	/// Enable special parameters
 	if(rod.line)
+		completion_gain += 1 // Any fishing line will provide a small boost by default
 		if(rod.line.fishing_line_traits & FISHING_LINE_BOUNCY)
 			completion_loss -= 2
+		if(rod.line.fishing_line_traits & FISHING_LINE_STIFF)
+			completion_loss += 1
+			completion_gain -= 1
 	if(rod.hook)
 		if(rod.hook.fishing_hook_traits & FISHING_HOOK_WEIGHTED)
 			bait_bounce_mult = 0.1
@@ -176,7 +180,7 @@
 	difficulty += comp.fish_source.calculate_difficulty(reward_path, rod, user, src)
 	difficulty = clamp(round(difficulty), 1, 100)
 
-	if(HAS_TRAIT(user, TRAIT_REVEAL_FISH))
+	if(HAS_TRAIT(user, TRAIT_REVEAL_FISH) || (user.mind && HAS_TRAIT(user.mind, TRAIT_REVEAL_FISH)))
 		fish_icon = GLOB.specific_fish_icons[reward_path] || "fish"
 
 	/**
@@ -199,10 +203,12 @@
 	bait_height -= difficulty
 	bait_pixel_height = round(MINIGAME_BAIT_HEIGHT * (bait_height/initial(bait_height)), 1)
 
-/datum/fishing_challenge/Destroy(force, ...)
+/datum/fishing_challenge/Destroy(force)
 	if(!completed)
 		complete(win = FALSE)
 	if(fishing_line)
+		//Stops the line snapped message from appearing everytime the minigame is over.
+		UnregisterSignal(fishing_line, COMSIG_QDELETING)
 		QDEL_NULL(fishing_line)
 	if(lure)
 		QDEL_NULL(lure)
@@ -242,7 +248,8 @@
 /datum/fishing_challenge/proc/on_line_deleted(datum/source)
 	SIGNAL_HANDLER
 	fishing_line = null
-	send_alert(user.is_holding(used_rod) ? "line snapped" : "rod dropped")
+	///The lure may be out of sight if the user has moed around a corner, so the message should be displayed over him instead.
+	user.balloon_alert(user, user.is_holding(used_rod) ? "line snapped" : "rod dropped")
 	interrupt()
 
 /datum/fishing_challenge/proc/handle_click(mob/source, atom/target, modifiers)
@@ -309,7 +316,7 @@
 	phase = BITING_PHASE
 	// Trashing animation
 	playsound(lure, 'sound/effects/fish_splash.ogg', 100)
-	if(HAS_TRAIT(user, TRAIT_REVEAL_FISH))
+	if(HAS_TRAIT(user, TRAIT_REVEAL_FISH) || (user.mind && HAS_TRAIT(user.mind, TRAIT_REVEAL_FISH)))
 		switch(fish_icon)
 			if(FISH_ICON_DEF)
 				send_alert("fish!!!")

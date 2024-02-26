@@ -343,8 +343,20 @@
 
 /obj/item/clothing/head/hats/hos/cap
 	name = "head of security cap"
-	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
+	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge. Looks a bit stout."
 	icon_state = "hoscap"
+
+/obj/item/clothing/head/hats/hos/cap/Initialize(mapload)
+	. = ..()
+	// Give it a little publicity
+	var/static/list/slapcraft_recipe_list = list(\
+		/datum/crafting_recipe/sturdy_shako,\
+		)
+
+	AddComponent(
+		/datum/component/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+	)
 
 /datum/armor/hats_hos
 	melee = 40
@@ -412,19 +424,7 @@
 	name = "warden's hat"
 	desc = "A warden's red hat. Looking at it gives you the feeling of wanting to keep people in cells for as long as possible."
 	icon_state = "wardenhat"
-	armor_type = /datum/armor/warden_red
-	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/warden_red
-
-/datum/armor/warden_red
-	melee = 40
-	bullet = 30
-	laser = 30
-	energy = 40
-	bomb = 25
-	fire = 30
-	acid = 60
-	wound = 6
 
 /obj/item/clothing/head/hats/warden/drill
 	name = "warden's campaign hat"
@@ -562,7 +562,7 @@
 	name = "blue surgery cap"
 	icon_state = "surgicalcap"
 	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
-	//flags_inv = HIDEHAIR (Bubber Edit: Disabled for preview QOL)
+	//flags_inv = HIDEHAIR (Bubber Edit: Disabled for preview QOL) //BUBBER TODO: Modularise
 
 /obj/item/clothing/head/utility/surgerycap/attack_self(mob/user)
 	. = ..()

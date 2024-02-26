@@ -1177,6 +1177,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
+/obj/machinery/recharger,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/skyrat/interdynefob/engineering)
 "eU" = (
@@ -1252,7 +1253,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/skyrat/interdynefob/cargo/hangar)
 "fd" = (
-/mob/living/simple_animal/bot/medbot/stationary{
+/mob/living/basic/bot/medbot/stationary{
 	faction = list("Syndicate");
 	maints_access_required = list("syndicate");
 	name = "Insurgent Care";
@@ -1891,6 +1892,8 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/extinguisher_cabinet/directional/west,
+/obj/structure/table/glass,
+/obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/advanced/unzipped,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/skyrat/interdynefob/medbay)
 "hZ" = (
@@ -2282,7 +2285,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge)
 "jD" = (
-/obj/item/storage/secure/briefcase/white{
+/obj/item/storage/briefcase/secure/white{
 	pixel_y = 13
 	},
 /turf/open/floor/wood/large,
@@ -5281,7 +5284,7 @@
 /area/ruin/space/has_grav/skyrat/interdynefob/medbay)
 "yb" = (
 /obj/effect/turf_decal/stripes/red/corner,
-/mob/living/simple_animal/pet/cat/kitten{
+/mob/living/basic/pet/cat/kitten{
 	desc = "What appears to be a single-celled organism with a pronounced low-level intelligence.";
 	name = "Murder-Mittens"
 	},
@@ -8111,6 +8114,7 @@
 	pixel_x = 2;
 	pixel_y = 5
 	},
+/obj/machinery/recharger,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/skyrat/interdynefob/bridge/cl)
 "LT" = (
@@ -8193,11 +8197,11 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/skyrat/interdynefob/service/diner)
 "MB" = (
-/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown{
+/obj/item/clothing/suit/toggle/labcoat/hospitalgown{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown{
+/obj/item/clothing/suit/toggle/labcoat/hospitalgown{
 	pixel_x = -7
 	},
 /obj/structure/table/glass,
@@ -10352,7 +10356,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/violet/hidden{
 	dir = 9
 	},
-/obj/structure/canister_frame/machine/unfinished_canister_frame,
+/obj/structure/fluff/broken_canister_frame,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/skyrat/interdynefob/engineering)
 "Vw" = (
@@ -11171,6 +11175,7 @@
 	c_tag = "DS-2 Research";
 	network = list("ds2")
 	},
+/obj/machinery/recharger,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/skyrat/interdynefob/research)
 "YU" = (

@@ -36,17 +36,22 @@ SUBSYSTEM_DEF(statpanels)
 		*/
 		var/round_time = world.time - SSticker.round_start_time
 		var/real_round_time = world.timeofday - SSticker.real_round_start_time
+		//BUBBER EDIT ADDITION: ACTIVE AND OBSERVING PLAYERS
+		var/active_players = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE) //This is a list of all active players, including players who are dead
+		var/observing_players = length(GLOB.current_observers_list) //This is a list of all players that started as an observer-- dead and lobby players are not included.
+		//BUBBER EDIT ADDITION: Time in the world (as in, in-game date)
+		var/timeinworld = "[time2text(world.realtime, "DD of Month,")] [CURRENT_STATION_YEAR]"
 		global_data = list(
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 			"Map: [SSmapping.config?.map_name || "Loading..."]",
 			cached ? "Next Map: [cached.map_name]" : null,
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
-			"Connected Players: [GLOB.clients.len]",
+			"Connected: [GLOB.clients.len] | Active: [active_players]/[CONFIG_GET(number/hard_popcap)] | Observing: [observing_players]", //BUBBER EDIT: ACTIVE AND OBSERVING PLAYERS
 			" ",
 			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]",
 			" ",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
-			"Station Time: [station_time_timestamp()]",
+			"Station Time: [time_to_twelve_hour(station_time(), format = "hh:mm")], [timeinworld]", //BUBBER EDIT: READABLE STATION TIME
 			"Round Timer: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[worldtime2text()]" : worldtime2text()]",
 			"Actual Round Timer: [time2text(real_round_time, "hh:mm:ss", 0)]"
 		)
@@ -341,7 +346,7 @@ SUBSYSTEM_DEF(statpanels)
 	. = ..()
 	src.parent = parent
 
-/datum/object_window_info/Destroy(force, ...)
+/datum/object_window_info/Destroy(force)
 	atoms_to_show = null
 	atoms_to_images = null
 	atoms_to_imagify = null

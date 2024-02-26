@@ -28,8 +28,9 @@
 	if(client)
 		stack_trace("Mob with client has been deleted.")
 	else if(ckey)
-		stack_trace("Mob without client but with associated ckey has been deleted.")
+		stack_trace("Mob without client but with associated ckey, [ckey], has been deleted.")
 
+	unset_machine()
 	remove_from_mob_list()
 	remove_from_dead_mob_list()
 	remove_from_alive_mob_list()
@@ -46,7 +47,7 @@
 
 	qdel(hud_used)
 	QDEL_LIST(client_colours)
-	ghostize() //False, since we're deleting it currently
+	ghostize(can_reenter_corpse = FALSE) //False, since we're deleting it currently
 	if(mind?.current == src) //Let's just be safe yeah? This will occasionally be cleared, but not always. Can't do it with ghostize without changing behavior
 		mind.set_current(null)
 
@@ -266,7 +267,7 @@
  * * vision_distance (optional) define how many tiles away the message can be seen.
  * * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
  */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ") // SKYRAT EDIT ADDITION - SEPERATION
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - separation, pref checks
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -297,6 +298,10 @@
 	for(var/mob/M in hearers)
 		if(!M.client)
 			continue
+		// SKYRAT EDIT ADDITION - Emote pref checks
+		if(pref_to_check && !M.client?.prefs.read_preference(pref_to_check))
+			continue
+		// SKYRAT EDIT END
 
 		//This entire if/else chain could be in two lines but isn't for readibilties sake.
 		var/msg = message
@@ -322,7 +327,7 @@
 
 
 ///Adds the functionality to self_message.
-/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ")  // SKYRAT EDIT ADDITION - Better emotes
+/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, separation = " ", pref_to_check)  // SKYRAT EDIT ADDITION - Better emotes, pref checks
 	. = ..()
 	if(self_message)
 		show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE)
@@ -337,7 +342,7 @@
  * * deaf_message (optional) is what deaf people will see.
  * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ") // SKYRAT EDIT ADDITION - Better emotes
+/atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - Better emotes, pref checks
 	var/list/hearers = get_hearers_in_view(hearing_distance, src)
 
 	//SKYRAT EDIT ADDITION BEGIN - AI QoL
@@ -357,6 +362,10 @@
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = "<span class='emote'><b>[src]</b>[separation][message]</span>" //SKYRAT EDIT CHANGE
 	for(var/mob/M in hearers)
+	// SKYRAT EDIT ADDITION - Emote pref checks
+		if(pref_to_check && !M.client?.prefs.read_preference(pref_to_check))
+			continue
+	// SKYRAT EDIT END
 		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags) && M.can_hear())
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
@@ -372,7 +381,7 @@
  * * deaf_message (optional) is what deaf people will see.
  * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ") // SKYRAT EDIT ADDITION - Better emotes
+/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE, separation = " ", pref_to_check) // SKYRAT EDIT ADDITION - Better emotes, pref checks
 	. = ..()
 	if(self_message)
 		show_message(self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL)
@@ -609,6 +618,7 @@
 				result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
 		else
 			result = examinify.examine(src)
+			SEND_SIGNAL(src, COMSIG_MOB_EXAMINING, examinify, result)
 			client.recent_examines[ref_to_atom] = world.time // set to when we last normal examine'd them
 			addtimer(CALLBACK(src, PROC_REF(clear_from_recent_examines), ref_to_atom), RECENT_EXAMINE_MAX_WINDOW)
 			handle_eye_contact(examinify)
@@ -629,7 +639,6 @@
 
 	to_chat(src, examine_block("<span class='infoplain'>[result.Join()]</span>"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
-
 
 /mob/proc/blind_examine_check(atom/examined_thing)
 	return TRUE //The non-living will always succeed at this check.
@@ -744,6 +753,8 @@
 /mob/proc/can_resist()
 	return FALSE //overridden in living.dm
 
+#define SPIN_PROC_TRAIT "trait_from_spin()"
+
 ///Spin this mob around it's central axis
 /mob/proc/spin(spintime, speed)
 	set waitfor = 0
@@ -751,7 +762,7 @@
 	if((spintime < 1) || (speed < 1) || !spintime || !speed)
 		return
 
-	flags_1 |= IS_SPINNING_1
+	ADD_TRAIT(src, TRAIT_SPINNING, SPIN_PROC_TRAIT)
 	while(spintime >= speed)
 		sleep(speed)
 		switch(D)
@@ -765,7 +776,9 @@
 				D = NORTH
 		setDir(D)
 		spintime -= speed
-	flags_1 &= ~IS_SPINNING_1
+	REMOVE_TRAIT(src, TRAIT_SPINNING, SPIN_PROC_TRAIT)
+
+#undef SPIN_PROC_TRAIT
 
 ///Update the pulling hud icon
 /mob/proc/update_pull_hud_icon()
@@ -808,18 +821,26 @@
  *
  * This sends you back to the lobby creating a new dead mob
  *
- * Only works if flag/norespawn is allowed in config
+ * Only works if flag/allow_respawn is allowed in config
  */
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (CONFIG_GET(flag/norespawn))
-		if (!check_rights_for(usr.client, R_ADMIN))
-			to_chat(usr, span_boldnotice("Respawning is not enabled!"))
-			return
-		else if (tgui_alert(usr, "Respawning is currently disabled, do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes")
-			return
+	switch(CONFIG_GET(flag/allow_respawn))
+		if(RESPAWN_FLAG_NEW_CHARACTER)
+			if(tgui_alert(usr, "Note, respawning is only allowed as another character. If you don't have another free slot you may not be able to respawn.", "Respawn", list("Ok", "Nevermind")) != "Ok")
+				return
+
+		if(RESPAWN_FLAG_FREE)
+			pass() // Normal respawn
+
+		if(RESPAWN_FLAG_DISABLED)
+			if (!check_rights_for(usr.client, R_ADMIN))
+				to_chat(usr, span_boldnotice("Respawning is not enabled!"))
+				return
+			if (tgui_alert(usr, "Respawning is currently disabled, do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes")
+				return
 
 	if (stat != DEAD)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
@@ -856,15 +877,14 @@
 
 	M.key = key
 
+/// Checks if the mob can respawn yet according to the respawn delay
 /mob/proc/check_respawn_delay(override_delay = 0)
 	if(!override_delay && !CONFIG_GET(number/respawn_delay))
 		return TRUE
 
 	var/death_time = world.time - client.player_details.time_of_death
 
-	var/required_delay = override_delay
-	if(!required_delay)
-		required_delay = CONFIG_GET(number/respawn_delay)
+	var/required_delay = override_delay || CONFIG_GET(number/respawn_delay)
 
 	if(death_time < required_delay)
 		if(!check_rights_for(usr.client, R_ADMIN))
@@ -896,18 +916,6 @@
 	set hidden = TRUE
 	set category = null
 	return
-/**
- * Topic call back for any mob
- *
- * * Unset machines if "mach_close" sent
- * * refresh the inventory of machines in range if "refresh" sent
- * * handles the strip panel equip and unequip as well if "item" sent
- */
-/mob/Topic(href, href_list)
-	if(href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
-		unset_machine()
-		src << browse(null, t1)
 
 /**
  * Controls if a mouse drop succeeds (return null if it doesnt)
@@ -977,10 +985,45 @@
 /// Performs the actual ritual of swapping hands, such as setting the held index variables
 /mob/proc/perform_hand_swap(held_index)
 	PROTECTED_PROC(TRUE)
+	if (!HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS))
+		return FALSE
+
+	if(!held_index)
+		held_index = (active_hand_index % held_items.len) + 1
+
+	if(!isnum(held_index))
+		CRASH("You passed [held_index] into swap_hand instead of a number. WTF man")
+
+	var/previous_index = active_hand_index
+	active_hand_index = held_index
+	if(hud_used)
+		var/atom/movable/screen/inventory/hand/held_location
+		held_location = hud_used.hand_slots["[previous_index]"]
+		if(!isnull(held_location))
+			held_location.update_appearance()
+		held_location = hud_used.hand_slots["[held_index]"]
+		if(!isnull(held_location))
+			held_location.update_appearance()
 	return TRUE
 
-/mob/proc/activate_hand(selhand)
-	return
+/mob/proc/activate_hand(selected_hand)
+	if (!HAS_TRAIT(src, TRAIT_CAN_HOLD_ITEMS))
+		return
+
+	if(!selected_hand)
+		selected_hand = (active_hand_index % held_items.len)+1
+
+	if(istext(selected_hand))
+		selected_hand = lowertext(selected_hand)
+		if(selected_hand == "right" || selected_hand == "r")
+			selected_hand = 2
+		if(selected_hand == "left" || selected_hand == "l")
+			selected_hand = 1
+
+	if(selected_hand != active_hand_index)
+		swap_hand(selected_hand)
+	else
+		mode()
 
 /mob/proc/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //For sec bot threat assessment
 	return 0
@@ -995,11 +1038,11 @@
 	if(mind)
 		return mind.grab_ghost(force = force)
 
-///Notify a ghost that it's body is being cloned
-/mob/proc/notify_ghost_cloning(message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", sound = 'sound/effects/genetics.ogg', atom/source = null, flashwindow)
+///Notify a ghost that its body is being revived
+/mob/proc/notify_revival(message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", sound = 'sound/effects/genetics.ogg', atom/source = null, flashwindow = TRUE)
 	var/mob/dead/observer/ghost = get_ghost()
 	if(ghost)
-		ghost.notify_cloning(message, sound, source, flashwindow)
+		ghost.send_revival_notification(message, sound, source, flashwindow)
 		return ghost
 
 /**
@@ -1160,21 +1203,7 @@
 ///Can this mob use storage
 /mob/proc/canUseStorage()
 	return FALSE
-/**
- * Check if the other mob has any factions the same as us
- *
- * If exact match is set, then all our factions must match exactly
- */
-/mob/proc/faction_check_mob(mob/target, exact_match)
-	if(exact_match) //if we need an exact match, we need to do some bullfuckery.
-		var/list/faction_src = faction.Copy()
-		var/list/faction_target = target.faction.Copy()
-		if(!("[REF(src)]" in faction_target)) //if they don't have our ref faction, remove it from our factions list.
-			faction_src -= "[REF(src)]" //if we don't do this, we'll never have an exact match.
-		if(!("[REF(target)]" in faction_src))
-			faction_target -= "[REF(target)]" //same thing here.
-		return faction_check(faction_src, faction_target, TRUE)
-	return faction_check(faction, target.faction, FALSE)
+
 /*
  * Compare two lists of factions, returning true if any match
  *
@@ -1213,14 +1242,24 @@
 
 	log_message("[src] name changed from [oldname] to [newname]", LOG_OWNERSHIP)
 
-	log_played_names(ckey, newname)
+	log_played_names(
+		ckey,
+		list(
+			"[newname]" = tag,
+		),
+	)
 
 	real_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname
 		if(mind.key)
-			log_played_names(mind.key,newname) //Just in case the mind is unsynced at the moment.
+			log_played_names(
+				ckey(mind.key),
+				list(
+					"[newname]" = tag,
+				),
+			) //Just in case the mind is unsynced at the moment.
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
@@ -1235,6 +1274,11 @@
 				if(obj.target && obj.target.current && obj.target.current.real_name == name)
 					obj.update_explanation_text()
 
+		if(client) // BUBBER EDIT ADDITION - Update the mob chat color list, removing the old name
+			GLOB.chat_colors_by_mob_name -= oldname // BUBBER EDIT ADDITION
+
+	if(client) // BUBBER EDIT ADDITION - Update the mob chat color list, adding the new name
+		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened) // BUBBER EDIT ADDITION
 	log_mob_tag("TAG: [tag] RENAMED: [key_name(src)]")
 
 	return TRUE
@@ -1342,10 +1386,6 @@
 			to_chat(src, span_warning("You can't write with the [writing_instrument]!"))
 		return FALSE
 
-	if(HAS_MIND_TRAIT(src, TRAIT_MIMING) && !istype(writing_instrument, /obj/item/toy/crayon/mime))
-		to_chat(src, span_warning("Your vow of silence is preventing you from talking with text."))
-		return FALSE
-
 	if(!is_literate())
 		to_chat(src, span_warning("You try to write, but don't know how to spell anything!"))
 		return FALSE
@@ -1424,62 +1464,80 @@
 
 /mob/vv_do_topic(list/href_list)
 	. = ..()
+
+	if(!.)
+		return
+
 	if(href_list[VV_HK_REGEN_ICONS])
 		if(!check_rights(NONE))
 			return
 		regenerate_icons()
+
 	if(href_list[VV_HK_PLAYER_PANEL])
 		if(!check_rights(NONE))
 			return
 		usr.client.holder.show_player_panel(src)
+
 	if(href_list[VV_HK_GODMODE])
 		if(!check_rights(R_ADMIN))
 			return
 		usr.client.cmd_admin_godmode(src)
+
 	if(href_list[VV_HK_GIVE_MOB_ACTION])
 		if(!check_rights(NONE))
 			return
 		usr.client.give_mob_action(src)
+
 	if(href_list[VV_HK_REMOVE_MOB_ACTION])
 		if(!check_rights(NONE))
 			return
 		usr.client.remove_mob_action(src)
+
 	if(href_list[VV_HK_GIVE_SPELL])
 		if(!check_rights(NONE))
 			return
 		usr.client.give_spell(src)
+
 	if(href_list[VV_HK_REMOVE_SPELL])
 		if(!check_rights(NONE))
 			return
 		usr.client.remove_spell(src)
+
 	if(href_list[VV_HK_GIVE_DISEASE])
 		if(!check_rights(NONE))
 			return
 		usr.client.give_disease(src)
+
 	if(href_list[VV_HK_GIB])
 		if(!check_rights(R_FUN))
 			return
 		usr.client.cmd_admin_gib(src)
+
 	if(href_list[VV_HK_BUILDMODE])
 		if(!check_rights(R_BUILD))
 			return
 		togglebuildmode(src)
+
 	if(href_list[VV_HK_DROP_ALL])
 		if(!check_rights(NONE))
 			return
 		usr.client.cmd_admin_drop_everything(src)
+
 	if(href_list[VV_HK_DIRECT_CONTROL])
 		if(!check_rights(NONE))
 			return
 		usr.client.cmd_assume_direct_control(src)
+
 	if(href_list[VV_HK_GIVE_DIRECT_CONTROL])
 		if(!check_rights(NONE))
 			return
 		usr.client.cmd_give_direct_control(src)
+
 	if(href_list[VV_HK_OFFER_GHOSTS])
 		if(!check_rights(NONE))
 			return
 		offer_control(src)
+
 	if(href_list[VV_HK_VIEW_PLANES])
 		if(!check_rights(R_DEBUG))
 			return
@@ -1543,10 +1601,6 @@
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
-		if(NAMEOF(src, control_object))
-			var/obj/O = var_value
-			if(!istype(O) || (O.obj_flags & DANGEROUS_POSSESSION))
-				return FALSE
 		if(NAMEOF(src, machine))
 			set_machine(var_value)
 			. = TRUE

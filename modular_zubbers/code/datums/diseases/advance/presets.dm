@@ -55,8 +55,28 @@
 			name = "[name]ia"
 		name = capitalize(lowertext(trim(name)))
 
+	var/existed = SSdisease.archive_diseases[src.GetDiseaseID()]
+
 	Refresh()
+	if(!existed)
+		AssignName(name)
 
 
-
-
+/datum/disease/advance/floorfood/miasma
+	possible_symptoms = list(
+		/datum/symptom/choking,
+		/datum/symptom/asphyxiation,
+		/datum/symptom/confusion,
+		/datum/symptom/cough,
+		/datum/symptom/disfiguration,
+		/datum/symptom/dizzy,
+		/datum/symptom/fever,
+		/datum/symptom/flesh_eating,
+		/datum/symptom/hallucigen,
+		/datum/symptom/headache,
+		/datum/symptom/itching,
+		/datum/symptom/undead_adaptation,
+		/datum/symptom/viraladaptation,
+		/datum/symptom/viralevolution,
+		/datum/symptom/vomit
+	)

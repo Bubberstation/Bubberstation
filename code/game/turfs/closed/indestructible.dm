@@ -40,7 +40,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_PAPERFRAME
 	canSmoothWith = SMOOTH_GROUP_PAPERFRAME
-	var/static/mutable_appearance/indestructible_paper = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "paper", layer = CLOSED_TURF_LAYER - 0.1)
+	var/static/mutable_appearance/indestructible_paper = mutable_appearance('icons/obj/smooth_structures/structure_variations.dmi',icon_state = "paper-whole", layer = CLOSED_TURF_LAYER - 0.1)
 
 /turf/closed/indestructible/weeb/Initialize(mapload)
 	. = ..()
@@ -198,8 +198,8 @@ SKYRAT EDIT REMOVAL END */
 
 /turf/closed/indestructible/fakeglass
 	name = "window"
-	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
-	icon_state = "fake_window"
+	icon = MAP_SWITCH('icons/obj/smooth_structures/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
+	icon_state = MAP_SWITCH("reinforced_window-0", "fake_window")
 	base_icon_state = "reinforced_window"
 	opacity = FALSE
 	smoothing_flags = SMOOTH_BITMASK
@@ -313,6 +313,9 @@ SKYRAT EDIT REMOVAL END */
 	explosive_resistance = 50
 	baseturfs = /turf/closed/indestructible/riveted/boss
 
+/turf/closed/indestructible/riveted/boss/wasteland
+	baseturfs = /turf/open/misc/asteroid/basalt/wasteland
+
 /turf/closed/indestructible/riveted/boss/see_through
 	opacity = FALSE
 
@@ -361,3 +364,13 @@ SKYRAT EDIT REMOVAL END */
 /turf/closed/indestructible/grille/Initialize(mapload)
 	. = ..()
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
+
+/turf/closed/indestructible/meat
+	name = "dense meat wall"
+	desc = "A huge chunk of dense, packed meat. Effectively impervious to conventional methods of destruction."
+	icon = 'icons/turf/walls/meat_wall.dmi'
+	icon_state = "meat_wall-0"
+	base_icon_state = "meat_wall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_WALLS

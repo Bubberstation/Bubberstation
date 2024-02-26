@@ -10,15 +10,16 @@
 		var/obj/item/bodypart/new_limb = path
 		var/body_zone = initial(new_limb.body_zone)
 		var/obj/item/bodypart/old_limb = augmented.get_bodypart(body_zone)
+
+		old_limb.limb_id = initial(new_limb.limb_id)
+		old_limb.base_limb_id = initial(new_limb.limb_id)
+		old_limb.is_dimorphic = initial(new_limb.is_dimorphic)
+
 		if(uses_robotic_styles && prefs.augment_limb_styles[slot])
 			var/chosen_style = GLOB.robotic_styles_list[prefs.augment_limb_styles[slot]]
-			old_limb.limb_id = initial(new_limb.limb_id)
-			old_limb.base_limb_id = initial(new_limb.limb_id)
 			old_limb.set_icon_static(chosen_style)
 			old_limb.current_style = prefs.augment_limb_styles[slot]
 		else
-			old_limb.limb_id = initial(new_limb.limb_id)
-			old_limb.base_limb_id = initial(new_limb.limb_id)
 			old_limb.set_icon_static(initial(new_limb.icon))
 		old_limb.should_draw_greyscale = FALSE
 
@@ -30,7 +31,7 @@
 			var/chosen_style = GLOB.robotic_styles_list[prefs.augment_limb_styles[slot]]
 			new_limb.set_icon_static(chosen_style)
 			new_limb.current_style = prefs.augment_limb_styles[slot]
-		new_limb.replace_limb(augmented)
+		new_limb.replace_limb(augmented, special = TRUE)
 		qdel(old_limb)
 
 //HEADS

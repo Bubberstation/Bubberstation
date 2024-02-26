@@ -198,11 +198,11 @@
 /datum/ash_ritual/summon_icemoon_creature/ritual_success(obj/effect/ash_rune/success_rune)
 	. = ..()
 	var/mob_type = pick(
-		/mob/living/simple_animal/hostile/asteroid/ice_demon,
+		/mob/living/basic/mining/ice_demon,
 		/mob/living/basic/mining/ice_whelp,
 		/mob/living/basic/mining/lobstrosity,
 		/mob/living/simple_animal/hostile/asteroid/polarbear,
-		/mob/living/simple_animal/hostile/asteroid/wolf,
+		/mob/living/basic/mining/wolf,
 	)
 	new mob_type(success_rune.loc)
 
@@ -298,7 +298,7 @@
 
 		asked_voters += poll_human
 
-	var/list/yes_voters = poll_candidates("Do you wish to banish [find_banished]?", poll_time = 10 SECONDS, group = asked_voters)
+	var/list/yes_voters = SSpolling.poll_candidates("Do you wish to banish [find_banished]?", poll_time = 10 SECONDS, group = asked_voters)
 
 	if(length(yes_voters) < length(asked_voters))
 		find_banished.balloon_alert_to_viewers("banishment failed!")

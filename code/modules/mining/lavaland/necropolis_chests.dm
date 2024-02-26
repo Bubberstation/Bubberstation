@@ -55,7 +55,7 @@
 		if(12)
 			new /obj/item/jacobs_ladder(src)
 		if(13)
-			new /obj/item/guardiancreator/miner(src)
+			new /obj/item/guardian_creator/miner(src)
 		if(14)
 			new /obj/item/warp_cube/red(src)
 		if(15)
@@ -124,12 +124,14 @@
 
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/hooded/hostile_environment(src)
+	/*Bubberstation edit begin (removes bloodcrawl from lootpool)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/bloodcrawl_bottle(src) //SKYRAT EDIT ORIGINAL : new /obj/item/mayhem(src)
 		if(2)
-			new /obj/item/soulscythe(src)
+	Bubberstation edit end*/
+	new /obj/item/soulscythe(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"

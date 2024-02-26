@@ -24,8 +24,6 @@
 
 	COOLDOWN_DECLARE(activation_cooldown)
 
-	///Trick to get the glowing overlay visible from a distance
-	luminosity = 1
 	///X offset for the overlay lights, so that they line up with the thin border firelocks
 	var/light_xoffset = 0
 	///Y offset for the overlay lights, so that they line up with the thin border firelocks
@@ -225,6 +223,7 @@
 	var/list/shared_problems = list() // We only want to do this once, this is a nice way of pulling that off
 	for(var/obj/machinery/door/firedoor/firelock as anything in temp_group.members)
 		firelock.issue_turfs = shared_problems
+		/* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 		for(var/dir in GLOB.cardinals)
 			var/turf/checked_turf = get_step(get_turf(firelock), dir)
 			if(!checked_turf)
@@ -232,13 +231,14 @@
 			if(isclosedturf(checked_turf))
 				continue
 			process_results(checked_turf)
+		BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 /obj/machinery/door/firedoor/proc/register_adjacent_turfs()
 	if(!loc)
 		return
 
 	var/turf/our_turf = get_turf(loc)
-	RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results))
+	//RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results)) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 	for(var/dir in GLOB.cardinals)
 		var/turf/checked_turf = get_step(our_turf, dir)
 
@@ -246,10 +246,10 @@
 			continue
 
 		RegisterSignal(checked_turf, COMSIG_TURF_CHANGE, PROC_REF(adjacent_change))
-		RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results))
+		//RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results)) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 		if(!isopenturf(checked_turf))
 			continue
-		process_results(checked_turf)
+		//process_results(checked_turf) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 
 /obj/machinery/door/firedoor/proc/unregister_adjacent_turfs(atom/old_loc)
 	if(!loc)
@@ -264,13 +264,15 @@
 			continue
 
 		UnregisterSignal(checked_turf, COMSIG_TURF_CHANGE)
-		UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE)
+		// UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 
 // If a turf adjacent to us changes, recalc our affecting areas when it's done yeah?
 /obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
 	SIGNAL_HANDLER
 	post_change_callbacks += CALLBACK(src, PROC_REF(CalculateAffectingAreas))
+	// post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) // BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
 
+/* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
 
@@ -306,7 +308,7 @@
 		alarm_type = null
 		if(!ignore_alarms)
 			start_deactivation_process()
-
+BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 /**
  * Begins activation process of us and our neighbors.
@@ -492,17 +494,17 @@
 
 	if(boltslocked)
 		to_chat(user, span_notice("There are screws locking the bolts in place!"))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 	tool.play_tool_sound(src)
 	user.visible_message(span_notice("[user] starts undoing [src]'s bolts..."), \
 		span_notice("You start unfastening [src]'s floor bolts..."))
 	if(!tool.use_tool(src, user, DEFAULT_STEP_TIME))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 	user.visible_message(span_notice("[user] unfastens [src]'s bolts."), \
 		span_notice("You undo [src]'s floor bolts."))
 	deconstruct(TRUE)
-	return TOOL_ACT_TOOLTYPE_SUCCESS
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/door/firedoor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(operating || !welded)
@@ -511,7 +513,7 @@
 				span_notice("You [boltslocked ? "unlock" : "lock"] [src]'s floor bolts."))
 	tool.play_tool_sound(src)
 	boltslocked = !boltslocked
-	return TOOL_ACT_TOOLTYPE_SUCCESS
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user, access_bypass = FALSE)
 	return
@@ -554,8 +556,10 @@
 
 	if(density)
 		open()
+		/* BUBBERSTATION CHANGE: Crowbar secondary actually permanently opens firelocks.
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
+		BUBBERSTATION CHANGE END. */
 	else
 		close()
 
@@ -658,7 +662,7 @@
 		correct_state() //So we should re-evaluate our state
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	if(!(obj_flags & NO_DECONSTRUCTION))
 		var/turf/targetloc = get_turf(src)
 		if(disassembled || prob(40))
 			var/obj/structure/firelock_frame/unbuilt_lock = new assemblytype(targetloc)
@@ -725,7 +729,7 @@
 	if(!(border_dir == dir)) //Make sure looking at appropriate border
 		return TRUE
 
-/obj/machinery/door/firedoor/border_only/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
+/obj/machinery/door/firedoor/border_only/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
 	return !density || (dir != to_dir)
 
 /obj/machinery/door/firedoor/border_only/proc/on_exit(datum/source, atom/movable/leaving, direction)
@@ -887,21 +891,19 @@
 
 /obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_DECONSTRUCT)
-		return list("mode" = RCD_DECONSTRUCT, "delay" = 5 SECONDS, "cost" = 16)
+		return list("delay" = 5 SECONDS, "cost" = 16)
 	else if((constructionStep == CONSTRUCTION_NO_CIRCUIT) && (the_rcd.upgrade & RCD_UPGRADE_SIMPLE_CIRCUITS))
-		return list("mode" = RCD_UPGRADE_SIMPLE_CIRCUITS, "delay" = 2 SECONDS, "cost" = 1)
+		return list("delay" = 2 SECONDS, "cost" = 1)
 	return FALSE
 
-/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
-	switch(passed_mode)
+/obj/structure/firelock_frame/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
+	switch(rcd_data["[RCD_DESIGN_MODE]"])
 		if(RCD_UPGRADE_SIMPLE_CIRCUITS)
-			user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
-			span_notice("You adapt a firelock circuit and slot it into the assembly."))
+			user.balloon_alert(user, "circuit installed")
 			constructionStep = CONSTRUCTION_PANEL_OPEN
 			update_appearance()
 			return TRUE
 		if(RCD_DECONSTRUCT)
-			to_chat(user, span_notice("You deconstruct [src]."))
 			qdel(src)
 			return TRUE
 	return FALSE

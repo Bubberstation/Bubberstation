@@ -6,7 +6,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	stop_automated_movement = TRUE
 	wander = FALSE
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BOT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_PATH_HUD = HUD_LIST_LIST)
 	maxbodytemp = INFINITY
@@ -453,12 +453,12 @@
 /mob/living/simple_animal/bot/screwdriver_act(mob/living/user, obj/item/tool)
 	if(bot_cover_flags & BOT_COVER_LOCKED)
 		to_chat(user, span_warning("The maintenance panel is locked!"))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 
 	tool.play_tool_sound(src)
 	bot_cover_flags ^= BOT_COVER_OPEN
 	to_chat(user, span_notice("The maintenance panel is now [bot_cover_flags & BOT_COVER_OPEN ? "opened" : "closed"]."))
-	return TOOL_ACT_TOOLTYPE_SUCCESS
+	return ITEM_INTERACT_SUCCESS
 
 /mob/living/simple_animal/bot/welder_act(mob/living/user, obj/item/tool)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -467,15 +467,15 @@
 
 	if(health >= maxHealth)
 		to_chat(user, span_warning("[src] does not need a repair!"))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 	if(!(bot_cover_flags & BOT_COVER_OPEN))
 		to_chat(user, span_warning("Unable to repair with the maintenance panel closed!"))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 
 	if(tool.use_tool(src, user, 0 SECONDS, volume=40))
 		adjustHealth(-10)
 		user.visible_message(span_notice("[user] repairs [src]!"),span_notice("You repair [src]."))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 
 /mob/living/simple_animal/bot/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(attacking_item.GetID())
@@ -496,17 +496,21 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/bot/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/bot/attack_effects(damage_done, hit_zone, armor_block, obj/item/attacking_item, mob/living/attacker)
+	if(damage_done > 0 && attacking_item.damtype != STAMINA && stat != DEAD)
+		do_sparks(5, TRUE, src)
+		. = TRUE
+	return ..() || .
+
+/mob/living/simple_animal/bot/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	. = ..()
-	if (!.)
+	if(prob(25) || . != BULLET_ACT_HIT)
+		return
+	if(hitting_projectile.damage_type != BRUTE && hitting_projectile.damage_type != BURN)
+		return
+	if(!hitting_projectile.is_hostile_projectile() || hitting_projectile.damage <= 0)
 		return
 	do_sparks(5, TRUE, src)
-
-/mob/living/simple_animal/bot/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	if(Proj && (Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		if(prob(75) && Proj.damage > 0)
-			do_sparks(5, TRUE, src)
-	return ..()
 
 /mob/living/simple_animal/bot/emp_act(severity)
 	. = ..()
@@ -705,12 +709,15 @@ Pass a positive integer as an argument to override a bot's default speed.
 		access_card.set_access(prev_access)
 
 /mob/living/simple_animal/bot/proc/call_bot(caller, turf/waypoint, message = TRUE)
+	if(isAI(caller) && calling_ai && calling_ai != src) //Prevents an override if another AI is controlling this bot.
+		return FALSE
+
 	bot_reset() //Reset a bot before setting it to call mode.
 
 	//For giving the bot temporary all-access. This method is bad and makes me feel bad. Refactoring access to a component is for another PR.
-	var/obj/item/card/id/all_access = new /obj/item/card/id/advanced/gold/captains_spare()
-	set_path(get_path_to(src, waypoint, max_distance=200, id = all_access))
-	qdel(all_access)
+	//Easier then building the list ourselves. I'm sorry.
+	var/static/obj/item/card/id/all_access = new /obj/item/card/id/advanced/gold/captains_spare()
+	set_path(get_path_to(src, waypoint, max_distance=200, access = all_access.GetAccess()))
 	calling_ai = caller //Link the AI to the bot!
 	ai_waypoint = waypoint
 
@@ -732,6 +739,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 			to_chat(calling_ai, span_danger("Failed to calculate a valid route. Ensure destination is clear of obstructions and within range."))
 		calling_ai = null
 		set_path(null)
+
+	return TRUE
 
 /mob/living/simple_animal/bot/proc/call_mode() //Handles preparing a bot for a call, as well as calling the move proc.
 //Handles the bot's movement during a call.
@@ -924,12 +933,12 @@ Pass a positive integer as an argument to override a bot's default speed.
 // given an optional turf to avoid
 /mob/living/simple_animal/bot/proc/calc_path(turf/avoid)
 	check_bot_access()
-	set_path(get_path_to(src, patrol_target, max_distance=120, id=access_card, exclude=avoid))
+	set_path(get_path_to(src, patrol_target, max_distance=120, access=access_card.GetAccess(), exclude=avoid, diagonal_handling=DIAGONAL_REMOVE_ALL))
 
 /mob/living/simple_animal/bot/proc/calc_summon_path(turf/avoid)
 	check_bot_access()
 	var/datum/callback/path_complete = CALLBACK(src, PROC_REF(on_summon_path_finish))
-	SSpathfinder.pathfind(src, summon_target, max_distance=150, id=access_card, exclude=avoid, on_finish = path_complete)
+	SSpathfinder.pathfind(src, summon_target, max_distance=150, access=access_card.GetAccess(), exclude=avoid, diagonal_handling=DIAGONAL_REMOVE_ALL, on_finish=list(path_complete))
 
 /mob/living/simple_animal/bot/proc/on_summon_path_finish(list/path)
 	set_path(path)
@@ -1166,7 +1175,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		hud.remove_atom_from_hud(src)
 
 	var/list/path_images = active_hud_list[DIAG_PATH_HUD]
-	QDEL_LIST(path_images)
+	LAZYCLEARLIST(path_images)
 	if(length(newpath))
 		var/mutable_appearance/path_image = new /mutable_appearance()
 		path_image.icon = path_image_icon
@@ -1221,3 +1230,6 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/rust_heretic_act()
 	adjustBruteLoss(400)
+
+/mob/living/simple_animal/bot/spawn_gibs(drop_bitflags = NONE)
+	new /obj/effect/gibspawner/robot(drop_location(), src)

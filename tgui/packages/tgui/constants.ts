@@ -50,25 +50,28 @@ export const COLORS = {
 
 // Colors defined in CSS
 export const CSS_COLORS = [
-  'black',
-  'white',
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'teal',
-  'blue',
-  'violet',
-  'purple',
-  'pink',
-  'brown',
-  'grey',
-  'good',
   'average',
   'bad',
+  'black',
+  'blue',
+  'brown',
+  'good',
+  'green',
+  'grey',
   'label',
-];
+  'olive',
+  'orange',
+  'pink',
+  'purple',
+  'red',
+  'teal',
+  'transparent',
+  'violet',
+  'white',
+  'yellow',
+] as const;
+
+export type CssColor = (typeof CSS_COLORS)[number];
 
 /* IF YOU CHANGE THIS KEEP IT IN SYNC WITH CHAT CSS */
 export const RADIO_CHANNELS = [
@@ -162,7 +165,7 @@ const GASES = [
     path: '/datum/gas/nitrogen',
     name: 'Nitrogen',
     label: 'N₂',
-    color: 'red',
+    color: 'yellow',
   },
   {
     id: 'co2',
@@ -297,6 +300,15 @@ const GASES = [
     label: 'Nitrium',
     color: 'brown',
   },
+  // BUBBERSTATION CHANGE: ADDS GOBLIN GAS
+  {
+    id: 'goblin',
+    path: '/datum/gas/goblin',
+    name: 'G081N',
+    label: 'G-081-N',
+    color: 'green',
+  },
+  // BUBBERSTATION CHANGE END: ADDS GOBLIN GAS
 ] as const;
 
 // Returns gas label based on gasId

@@ -143,6 +143,14 @@
 /datum/job/prisoner
 	required_languages = null
 
+/datum/job/orderly
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+/datum/job/science_guard
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+
+/datum/job/customs_agent
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 // START OF BUBBERSTATION ADDITION
 
 /datum/job/mime
@@ -168,11 +176,9 @@
 // ENGINEERING (BUBBERSTATION ADDITION)
 
 /datum/job/station_engineer
-	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
 	required_languages = null // BUBBERSTATION ADDITION
 
 /datum/job/atmospheric_technician
-	banned_quirks = list(TECH_RESTRICTED_QUIRKS)
 	required_languages = null // BUBBERSTATION ADDITION
 
 /datum/job/engineering_guard
@@ -225,9 +231,14 @@
 /datum/job/proc/has_required_languages(datum/preferences/pref)
 	if(!required_languages)
 		return TRUE
-	for(var/lang in required_languages)
+	// if we have a bilingual quirk, check that as well
+	var/bilingual_pref
+	if(/datum/quirk/bilingual::name in pref.all_quirks)
+		bilingual_pref = pref.read_preference(/datum/preference/choiced/language)
+
+	for(var/datum/language/lang as anything in required_languages)
 		//Doesnt have language, or the required "level" is too low (understood, while needing spoken)
-		if(!pref.languages[lang] || pref.languages[lang] < required_languages[lang])
+		if((!pref.languages[lang] || pref.languages[lang] < required_languages[lang]) && bilingual_pref != lang.name) // SKYRAT EDIT - check the bilingual quirk
 			return FALSE
 	return TRUE
 

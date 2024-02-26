@@ -6,7 +6,7 @@
 	projectile_type = /obj/projectile/energy/medical/oxygen
 	select_name = "oxygen"
 	fire_sound = 'sound/effects/stealthoff.ogg'
-	e_cost = 120
+	e_cost = LASER_SHOTS(8, STANDARD_CELL_CHARGE)
 	delay = 8
 	harmful = FALSE
 	select_color = "#00d9ffff"
@@ -20,7 +20,7 @@
 	name = "oxygen heal shot"
 	var/amount_healed = 10
 
-/obj/projectile/energy/medical/oxygen/on_hit(mob/living/target)
+/obj/projectile/energy/medical/oxygen/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	if(!IsLivingHuman(target))
 		return FALSE
@@ -38,14 +38,6 @@
 
 	if(type_damage >=  50 && type_damage < 100)
 		target.adjust_disgust(1.5)
-
-/// Applies clone damage by thresholds
-/obj/projectile/energy/medical/proc/DamageClone(mob/living/target, type_damage, amount_healed, max_clone)
-	if(type_damage >= 50 && type_damage < 100 )
-		target.adjustCloneLoss((amount_healed * (max_clone * 0.5)))
-
-	if(type_damage >= 100)
-		target.adjustCloneLoss((amount_healed * max_clone))
 
 /// Checks to see if the patient is living.
 /obj/projectile/energy/medical/proc/IsLivingHuman(mob/living/target)
@@ -75,7 +67,6 @@
 
 	DamageDisgust(target, target.getBruteLoss())
 	target.adjust_disgust(base_disgust)
-	DamageClone(target, target.getBruteLoss(), amount_healed, max_clone)
 	target.adjustBruteLoss(-amount_healed)
 
 /// Heals Burn swithout safety
@@ -85,7 +76,6 @@
 
 	DamageDisgust(target, target.getFireLoss())
 	target.adjust_disgust(base_disgust)
-	DamageClone(target, target.getFireLoss(), amount_healed, max_clone)
 	target.adjustFireLoss(-amount_healed)
 
 /// Heals Brute with safety
@@ -145,7 +135,7 @@
 	var/max_clone = 2/3
 	var/base_disgust = 3
 
-/obj/projectile/energy/medical/brute/on_hit(mob/living/target)
+/obj/projectile/energy/medical/brute/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	healBrute(target, amount_healed, max_clone, base_disgust)
 
@@ -162,7 +152,7 @@
 	var/max_clone = 2/3
 	var/base_disgust = 3
 
-/obj/projectile/energy/medical/burn/on_hit(mob/living/target)
+/obj/projectile/energy/medical/burn/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	healBurn(target, amount_healed, max_clone, base_disgust)
 
@@ -177,7 +167,7 @@
 	icon_state = "green_laser"
 	var/amount_healed = 5
 
-/obj/projectile/energy/medical/toxin/on_hit(mob/living/target)
+/obj/projectile/energy/medical/toxin/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	healTox(target, amount_healed)
 
@@ -191,7 +181,7 @@
 	var/amount_healed = 7.5
 	var/base_disgust = 3
 
-/obj/projectile/energy/medical/safe/brute/on_hit(mob/living/target)
+/obj/projectile/energy/medical/safe/brute/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	safeBrute(target, amount_healed, base_disgust)
 
@@ -204,7 +194,7 @@
 	var/amount_healed = 7.5
 	var/base_disgust = 3
 
-/obj/projectile/energy/medical/safe/burn/on_hit(mob/living/target)
+/obj/projectile/energy/medical/safe/burn/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	safeBurn(target, amount_healed, base_disgust)
 
@@ -328,7 +318,7 @@
 	name = "powerful toxin heal shot"
 	amount_healed = 10
 
-/obj/projectile/energy/medical/upgraded/toxin3/on_hit(mob/living/target)
+/obj/projectile/energy/medical/upgraded/toxin3/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 	healTox(target, 10)
 
@@ -367,7 +357,8 @@
 /obj/projectile/energy/medical/utility/clotting
 	name = "clotting agent shot"
 
-/obj/projectile/energy/medical/utility/clotting/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/clotting/on_hit(mob/living/target, blocked = 0, pierce_hit)
+	. = ..()
 	if(!IsLivingHuman(target))
 		return FALSE
 
@@ -386,7 +377,8 @@
 /obj/projectile/energy/medical/utility/temperature
 	name = "temperature adjustment shot"
 
-/obj/projectile/energy/medical/utility/temperature/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/temperature/on_hit(mob/living/target, blocked = 0, pierce_hit)
+	. = ..()
 	if(!IsLivingHuman(target))
 		return FALSE
 
@@ -408,12 +400,13 @@
 /obj/projectile/energy/medical/utility/gown
 	name = "hardlight surgical gown field"
 
-/obj/projectile/energy/medical/utility/gown/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/gown/on_hit(mob/living/target, blocked = 0, pierce_hit)
+	. = ..()
 	if(!istype(target, /mob/living/carbon/human)) //Dead check isn't fully needed, since it'd be reasonable for this to work on corpses.
 		return
 
 	var/mob/living/carbon/wearer = target
-	var/obj/item/clothing/gown = new /obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown/hardlight
+	var/obj/item/clothing/gown = new /obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight
 
 	if(wearer.equip_to_slot_if_possible(gown, ITEM_SLOT_OCLOTHING, 1, 1, 1))
 		wearer.visible_message(span_notice("The [gown] covers [wearer] body"), span_notice("The [gown] wraps around your body, covering you"))
@@ -435,10 +428,10 @@
 	embedding = list("embed_chance" = 100, ignore_throwspeed_threshold = TRUE, "pain_mult" = 0, "jostle_pain_mult" = 0, "fall_chance" = 0)
 	damage = 0
 
-/obj/projectile/energy/medical/utility/salve/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/salve/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	if(!IsLivingHuman(target)) //No using this on the dead or synths.
 		return FALSE
-	. = ..()
+	return ..()
 
 //Hardlight Rollerbed Medicell
 /obj/item/ammo_casing/energy/medical/utility/bed
@@ -449,7 +442,7 @@
 /obj/projectile/energy/medical/utility/bed
 	name = "hardlight bed field"
 
-/obj/projectile/energy/medical/utility/bed/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/bed/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 
 	if(!istype(target, /mob/living/carbon/human)) //Only checks if they are human, it would make sense for this to work on the dead.
@@ -476,7 +469,7 @@
 /obj/projectile/energy/medical/utility/body_teleporter
 	name = "bluespace transportation field"
 
-/obj/projectile/energy/medical/utility/body_teleporter/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/body_teleporter/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 
 	if(!ishuman(target) || (target.stat != DEAD && !HAS_TRAIT(target, TRAIT_DEATHCOMA)))
@@ -496,12 +489,12 @@
 	sparks.start()
 
 //Objects Used by medicells.
-/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown/hardlight
+/obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight
 	name = "hardlight hospital gown"
 	desc = "A hospital gown made out of hardlight - you can barely feel it on your body, especially with all the anesthetics."
-	icon_state = "lgown"
+	greyscale_colors = "#B2D3CA#B2D3CA#B2D3CA#B2D3CA"
 
-/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown/hardlight/dropped(mob/user)
+/obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight/dropped(mob/user)
 	. = ..()
 	var/mob/living/carbon/wearer = user
 
@@ -545,7 +538,7 @@
 	icon_state = "hardlight_down"
 	base_icon_state = "hardlight"
 	max_integrity = 1
-	flags_1 = NODECONSTRUCT_1 //Made from nothing, can't deconstruct
+	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION //Made from nothing, can't deconstruct
 	build_stack_type = null //It would not be good if people could use this to farm materials.
 	var/deploy_time = 20 SECONDS //How long the roller beds lasts for without someone buckled to it.
 
@@ -611,7 +604,7 @@
 	grace_period = TRUE
 	access_teleporting = TRUE
 
-/obj/projectile/energy/medical/utility/relocation/on_hit(mob/living/target)
+/obj/projectile/energy/medical/utility/relocation/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
 
 	if(!ishuman(target))

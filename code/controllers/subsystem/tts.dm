@@ -89,9 +89,6 @@ SUBSYSTEM_DEF(tts)
 	rustg_file_write(json_encode(available_speakers), "data/cached_tts_voices.json")
 	rustg_file_write("rustg HTTP requests can't write to folders that don't exist, so we need to make it exist.", "tmp/tts/init.txt")
 	return TRUE
-/datum/controller/subsystem/tts/establish_connection_to_tts() // BUBBER EDIT BEGIN - CRASH BANDAID
-	message_admins("a naughty admin was prevented from hanging the server sending an external query.")
-	return // BUBBER EDIT END
 /datum/controller/subsystem/tts/Initialize()
 	if(!CONFIG_GET(string/tts_http_url))
 		return SS_INIT_NO_NEED

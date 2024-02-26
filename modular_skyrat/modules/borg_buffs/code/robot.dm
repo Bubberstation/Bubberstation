@@ -5,18 +5,19 @@
 		/datum/reagent/consumable/berryjuice,\
 		/datum/reagent/consumable/blumpkinjuice,\
 		/datum/reagent/consumable/carrotjuice,\
+		/datum/reagent/consumable/cherryjelly,\
 		/datum/reagent/consumable/grapejuice,\
-		/datum/reagent/consumable/lemon_lime,\
 		/datum/reagent/consumable/lemonjuice,\
+		/datum/reagent/consumable/lemon_lime,\
 		/datum/reagent/consumable/limejuice,\
-		/datum/reagent/consumable/orangejuice,\
 		/datum/reagent/consumable/parsnipjuice,\
 		/datum/reagent/consumable/peachjuice,\
 		/datum/reagent/consumable/pineapplejuice,\
 		/datum/reagent/consumable/potato_juice,\
 		/datum/reagent/consumable/pumpkinjuice,\
+		/datum/reagent/consumable/orangejuice,\
 		/datum/reagent/consumable/tomatojuice,\
-		/datum/reagent/consumable/watermelonjuice,\
+		/datum/reagent/consumable/watermelonjuice\
 	)
 
 #define BASE_SHAKER_ALCOHOL_REAGENTS list(\
@@ -25,8 +26,8 @@
 		/datum/reagent/consumable/ethanol/amaretto,\
 		/datum/reagent/consumable/ethanol/applejack,\
 		/datum/reagent/consumable/ethanol/beer,\
-		/datum/reagent/consumable/ethanol/champagne,\
 		/datum/reagent/consumable/ethanol/cognac,\
+		/datum/reagent/consumable/ethanol/champagne,\
 		/datum/reagent/consumable/ethanol/creme_de_cacao,\
 		/datum/reagent/consumable/ethanol/creme_de_coconut,\
 		/datum/reagent/consumable/ethanol/creme_de_menthe,\
@@ -34,9 +35,10 @@
 		/datum/reagent/consumable/ethanol/gin,\
 		/datum/reagent/consumable/ethanol/hooch,\
 		/datum/reagent/consumable/ethanol/kahlua,\
-		/datum/reagent/consumable/ethanol/kortara,\
+		/datum/reagent/consumable/laughter,\
 		/datum/reagent/consumable/ethanol/lizardwine,\
 		/datum/reagent/consumable/ethanol/beer/maltliquor,\
+		/datum/reagent/consumable/nothing,\
 		/datum/reagent/consumable/ethanol/rum,\
 		/datum/reagent/consumable/ethanol/sake,\
 		/datum/reagent/consumable/ethanol/synthanol,\
@@ -45,30 +47,32 @@
 		/datum/reagent/consumable/ethanol/vermouth,\
 		/datum/reagent/consumable/ethanol/vodka,\
 		/datum/reagent/consumable/ethanol/whiskey,\
-		/datum/reagent/consumable/ethanol/wine,\
-		/datum/reagent/consumable/laughter,\
-		/datum/reagent/consumable/nothing,\
+		/datum/reagent/consumable/ethanol/wine\
 	)
 
 #define BASE_SHAKER_SODA_REAGENTS list(\
-		/datum/reagent/consumable/space_cola,\
 		/datum/reagent/consumable/dr_gibb,\
 		/datum/reagent/consumable/grape_soda,\
 		/datum/reagent/consumable/pwr_game,\
 		/datum/reagent/consumable/shamblers,\
 		/datum/reagent/consumable/sodawater,\
 		/datum/reagent/consumable/sol_dry,\
-		/datum/reagent/consumable/spacemountainwind,\
 		/datum/reagent/consumable/space_up,\
+		/datum/reagent/consumable/space_cola,\
+		/datum/reagent/consumable/spacemountainwind\
 	)
 
 #define BASE_SHAKER_MISC_REAGENTS list(\
+		/datum/reagent/consumable/blackpepper,\
 		/datum/reagent/blood,\
 		/datum/reagent/pax/catnip,\
+		/datum/reagent/consumable/coco,\
 		/datum/reagent/toxin/coffeepowder,\
 		/datum/reagent/consumable/cream,\
+		/datum/reagent/consumable/enzyme,\
+		/datum/reagent/consumable/eggyolk,\
+		/datum/reagent/consumable/honey,\
 		/datum/reagent/consumable/grenadine,\
-		/datum/reagent/toxin/teapowder,\
 		/datum/reagent/consumable/ice,\
 		/datum/reagent/iron,\
 		/datum/reagent/consumable/menthol,\
@@ -76,29 +80,12 @@
 		/datum/reagent/toxin/mushroom_powder,\
 		/datum/reagent/consumable/nutriment,\
 		/datum/reagent/consumable/soymilk,\
-		/datum/reagent/consumable/tonic,\
-		/datum/reagent/consumable/enzyme,\
-		/datum/reagent/water,\
-	)
-
-#define BASE_SHAKER_CONDIMENT_REAGENTS list(\
-		/datum/reagent/consumable/astrotame, \
-		/datum/reagent/consumable/bbqsauce, \
-		/datum/reagent/consumable/blackpepper,\
-		/datum/reagent/consumable/capsaicin,\
-		/datum/reagent/consumable/coco,\
-		/datum/reagent/consumable/cornmeal,\
-		/datum/reagent/consumable/corn_starch,\
-		/datum/reagent/consumable/eggwhite,\
-		/datum/reagent/consumable/eggyolk,\
-		/datum/reagent/consumable/flour,\
-		/datum/reagent/consumable/frostoil,\
-		/datum/reagent/consumable/honey, \
-		/datum/reagent/consumable/ketchup, \
-		/datum/reagent/consumable/mayonnaise, \
-		/datum/reagent/consumable/salt,\
 		/datum/reagent/consumable/sugar,\
+		/datum/reagent/toxin/teapowder,\
+		/datum/reagent/consumable/tonic,\
 		/datum/reagent/consumable/vanilla,\
+		/datum/reagent/consumable/vinegar,\
+		/datum/reagent/water\
 	)
 
 
@@ -125,11 +112,6 @@
 	name = "cyborg misc shaker"
 	icon_state = "misc"
 	default_reagent_types = BASE_SHAKER_MISC_REAGENTS
-
-/obj/item/reagent_containers/borghypo/borgshaker/specific/condiment
-	name = "cyborg condiment shaker"
-	icon_state = "condiment"
-	default_reagent_types = BASE_SHAKER_CONDIMENT_REAGENTS
 
 /obj/item/cooking/cyborg/power
 	name =	"automated cooking tool"
@@ -235,9 +217,13 @@
 	id = "borg_upgrade_brush"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/wirebrush
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2
+	)
 	construction_time = 40
-	category = list(RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR)
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_JANITOR,
+	)
 
 /obj/item/borg/upgrade/wirebrush
 	name = "janitor cyborg wire-brush"

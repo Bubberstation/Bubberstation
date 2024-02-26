@@ -15,10 +15,7 @@
 ///Paygrade for Heads of Staff.
 #define PAYCHECK_COMMAND 100
 
-//How many credits a player is charged if they print something from a departmental lathe they shouldn't have access to.
-#define LATHE_TAX 10
-//How much POWER a borg's cell is taxed if they print something from a departmental lathe.
-#define SILICON_LATHE_TAX 2000
+
 
 #define STATION_TARGET_BUFFER 25
 
@@ -65,9 +62,6 @@
 #define CIV_JOB_GROW 12
 #define CIV_JOB_ATMOS 13
 #define CIV_JOB_RANDOM 14
-//BUBBER EDIT START
-#define CIV_JOB_SMITH 21 //By making this higher we avoid having to maintain this value if more bounties are added upstream
-//BUBBER EDIT END
 
 //By how much should the station's inflation value be multiplied by when dividing the civilian bounty's reward?
 #define BOUNTY_MULTIPLIER 10
