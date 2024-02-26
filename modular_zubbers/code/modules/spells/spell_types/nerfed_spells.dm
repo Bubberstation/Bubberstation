@@ -72,7 +72,7 @@
 
 // Lichdom. Imbue an object and that object is basically your mobile respawn point.
 // Funny mechanic, but it was INSANELY generous on what you could imbue, causing near immortality. Mechanical changes are in the non-modular file of lichdom.dm
-datum/spellbook_entry/lichdom
+/datum/spellbook_entry/lichdom
 	name = "Bind Fiery Soul"
 	desc = "An infernal necromantic pact that can forever bind your soul to a bulky item of your choosing, \
 		turning you into an immortal Lich. So long as the item remains intact, you will revive from death, \
