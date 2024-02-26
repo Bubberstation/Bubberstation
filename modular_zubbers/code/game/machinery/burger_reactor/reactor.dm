@@ -13,7 +13,7 @@
 
 	uses_integrity = TRUE
 
-	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED
+	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED | INTERACT_ATOM_UI_INTERACT
 
 	resistance_flags = FIRE_PROOF
 
@@ -361,6 +361,51 @@
 	for(var/datum/stock_part/servo/new_servo in component_parts)
 		vent_pressure_multiplier += new_servo.tier * 0.25
 	vent_pressure = initial(vent_pressure) * vent_pressure_multiplier
+
+/obj/machinery/power/rbmk2/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RBMK2", name)
+		ui.open()
+
+/obj/machinery/power/rbmk2/ui_data(mob/user)
+	var/list/data = list()
+	data["active"] = active
+	data["rod"] = stored_rod
+	data["last_power_output"] = display_power(last_power_generation)
+	data["efficiency"] = power_efficiency*100
+	data["consuming"] = last_tritium_consumption*10000
+	return data
+
+/obj/machinery/power/rbmk2/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("activate")
+			toggle_active(usr)
+			. = TRUE
+		if("eject")
+			remove_rod(usr,do_throw=TRUE)
+			. = TRUE
+		if("venttoggle")
+			toggle_vents(usr)
+			. = TRUE
+		if("ventdirection")
+			toggle_reverse_vents(usr)
+			balloon_alert(usr, "After a second you feel like the vents direction changed.")
+			. = TRUE
+		if("safetytoggle")
+			if(safety == TRUE)
+				balloon_alert(usr, "Safety lights are off!")
+				safety = FALSE
+				return
+			if(safety == FALSE)
+				balloon_alert(usr, "Safety lights are on!")
+				safety = TRUE
+				return
+			. = TRUE
 
 
 /obj/machinery/power/rbmk2/examine(mob/user)
