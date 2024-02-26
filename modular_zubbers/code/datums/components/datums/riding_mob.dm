@@ -32,17 +32,17 @@
 		var/offset_hand = used_hand.body_zone
 
 		if(dir == NORTH && offset_hand == BODY_ZONE_L_ARM)
-			target_pixel_x += -6
+			target_pixel_x -= 6
 		else if(dir == NORTH && offset_hand == BODY_ZONE_R_ARM)
 			target_pixel_x += 6
 		else if(dir == SOUTH && offset_hand == BODY_ZONE_L_ARM)
 			target_pixel_x += 6
 		else if(dir == SOUTH && offset_hand == BODY_ZONE_R_ARM)
-			target_pixel_x += -6
+			target_pixel_x -= 6
 		else if(dir == EAST)
 			target_pixel_x += 3
 		else
-			target_pixel_x += -3
+			target_pixel_x -= 3
 
 		rider.pixel_y = target_pixel_y
 		rider.pixel_x = target_pixel_x
