@@ -70,7 +70,6 @@
 	cost = 2
 	limit = 1
 
-
 // Lichdom. Imbue an object and that object is basically your mobile respawn point.
 // Funny mechanic, but it was INSANELY generous on what you could imbue, causing near immortality. Mechanical changes are in the non-modular file of lichdom.dm
 datum/spellbook_entry/lichdom
@@ -87,3 +86,13 @@ datum/spellbook_entry/lichdom
 		So long as the item remains intact, you will revive from death, \
 		no matter the circumstances. \
 		Cannot be used on objects smaller than bulky or fireproof objects."
+
+
+// High Frequency Spellblade. Holy fuck just looking at the code is nonsense holy fuck. Can slash through walls, and also gib people who are dead. Absolutely silly.
+// Replaces it with a banhammer that can send you to the perma brig because that's funnier.
+/datum/spellbook_entry/item/highfrequencyblade
+	name = "REAL Banhammer"
+	desc = "A completely REAL Banhammer that sends anyone it hits to the void for a short period of time. Stonger hits send people to the station's permabrig, if one exists."
+	item_path = /obj/item/banhammer/real
+	category = "Offensive"
+	cost = 2
