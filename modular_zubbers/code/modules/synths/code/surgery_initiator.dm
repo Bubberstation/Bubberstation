@@ -1,6 +1,6 @@
 // Override of tg code
 
-/datum/component/surgery_initiator/proc/get_available_surgeries(mob/user, mob/living/target)
+/datum/component/surgery_initiator/get_available_surgeries(mob/user, mob/living/target)
 	var/list/available_surgeries = list()
 
 	var/mob/living/carbon/carbon_target
@@ -25,12 +25,10 @@
 			continue
 		if(!surgery.can_start(user, target))
 			continue
-		// BUBBER EDIT START
 		if(istype(surgery, /datum/surgery/robot))
 			var/datum/surgery/robot/robot_surgery = surgery
 			if(robot_surgery.is_closer)
 				continue
-		// BUBBER EDIT END
 		for(var/path in surgery.target_mobtypes)
 			if(istype(target, path))
 				available_surgeries += surgery
@@ -39,10 +37,15 @@
 	return available_surgeries
 
 /// Does the surgery de-initiation.
-/datum/component/surgery_initiator/proc/attempt_cancel_surgery(datum/surgery/the_surgery, mob/living/patient, mob/user)
+/datum/component/surgery_initiator/attempt_cancel_surgery(datum/surgery/the_surgery, mob/living/patient, mob/user)
 	var/selected_zone = user.zone_selected
 
 	if(the_surgery.status == 1)
+		if(istype(the_surgery, /datum/surgery/robot))
+			var/datum/surgery/robot/robot_surgery = the_surgery
+			if(robot_surgery.is_closer)
+				user.balloon_alert("already closing the surgery!")
+				return
 		patient.surgeries -= the_surgery
 		REMOVE_TRAIT(patient, TRAIT_ALLOWED_HONORBOUND_ATTACK, type)
 		user.visible_message(
