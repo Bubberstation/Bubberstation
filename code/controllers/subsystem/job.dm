@@ -504,12 +504,17 @@ SUBSYSTEM_DEF(job)
 	JobDebug("DO, Handle unrejectable unassigned")
 	//Mop up people who can't leave.
 	for(var/mob/dead/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
-		if(!GiveRandomJob(player))
-			if(!AssignRole(player, GetJobType(overflow_role))) //If everything is already filled, make them an assistant
-				JobDebug("DO, Forced antagonist could not be assigned any random job or the overflow role. DivideOccupations failed.")
-				JobDebug("---------------------------------------------------")
-				run_divide_occupation_pure = FALSE
-				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
+		if(player.client.prefs.read_preference(/datum/preference/choiced/jobless_role) == BERANDOMJOB) //Gives the player a random role if their preferences are set to it
+			if(!GiveRandomJob(player))
+				if(!AssignRole(player, GetJobType(overflow_role))) //If everything is already filled, make them an assistant
+					JobDebug("DO, Forced antagonist could not be assigned any random job or the overflow role. DivideOccupations failed.")
+					JobDebug("---------------------------------------------------")
+					run_divide_occupation_pure = FALSE
+					return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
+			else //If the player prefers to return to lobby or be an assistant, give them assistant
+				if(!AssignRole(player, GetJobType(overflow_role)))
+					if(!GiveRandomJob(player)) //The forced antagonist couldn't be assigned to overflow role (bans, client age) - give a random role
+						return FALSE //Somehow the forced antagonist couldn't be assigned to the overflow role or the a random role 
 	JobDebug("DO, Ending handle unrejectable unassigned")
 
 	JobDebug("All divide occupations tasks completed.")
