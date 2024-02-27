@@ -44,7 +44,7 @@
 		if(istype(the_surgery, /datum/surgery/robot))
 			var/datum/surgery/robot/robot_surgery = the_surgery
 			if(robot_surgery.is_closer)
-				user.balloon_alert("already closing the surgery!")
+				patient.balloon_alert(user, "already closing the surgery!")
 				return
 		patient.surgeries -= the_surgery
 		REMOVE_TRAIT(patient, TRAIT_ALLOWED_HONORBOUND_ATTACK, type)
@@ -91,7 +91,7 @@
 	else
 		var/datum/surgery/robot/robot_surgery = the_surgery
 		if(robot_surgery.status >= robot_surgery.num_steps_until_closing || robot_surgery.is_closer)
-			user.balloon_alert("already closing the surgery!")
+			patient.balloon_alert(user, "already closing the surgery!")
 		else
 			patient.surgeries -= the_surgery
 
