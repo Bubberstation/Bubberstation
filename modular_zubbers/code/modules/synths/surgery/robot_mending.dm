@@ -115,7 +115,7 @@
 		/obj/item/stack/sticky_tape/surgical = 30,
 		/obj/item/stack/sticky_tape/super = 20,
 		/obj/item/stack/sticky_tape = 10)
-	time = 20
+	time = 20 // TODO add unit
 
 /datum/surgery_step/reset_detached_fastenings/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
@@ -164,7 +164,7 @@
 		/obj/item/stack/sticky_tape/surgical = 50,
 		/obj/item/stack/sticky_tape/super = 25,
 		/obj/item/stack/sticky_tape = 15,)
-	time = 20
+	time = 20 // TODO add unit
 
 /datum/surgery_step/repair_detached_fastenings/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
@@ -212,7 +212,7 @@
 		/obj/item/stack/sticky_tape/surgical = 30,
 		/obj/item/stack/sticky_tape/super = 20,
 		/obj/item/stack/sticky_tape = 10)
-	time = 40
+	time = 40 // TODO add unit
 
 /datum/surgery_step/reset_collapsed_superstructure/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
@@ -260,7 +260,7 @@
 		/obj/item/stack/sticky_tape/surgical = 50,
 		/obj/item/stack/sticky_tape/super = 25,
 		/obj/item/stack/sticky_tape = 15,)
-	time = 40
+	time = 40 // TODO add unit
 
 /datum/surgery_step/repair_collapsed_superstructure/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
