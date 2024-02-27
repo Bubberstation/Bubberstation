@@ -1,7 +1,7 @@
 /datum/surgery/prosthetic_replacement
 	name = "Prosthetic replacement"
 	surgery_flags = NONE
-	requires_bodypart_type = NONE
+	//requires_bodypart_type = NONE // BUBBER EDIT
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
 		BODY_ZONE_L_ARM,
@@ -20,6 +20,8 @@
 	if(!iscarbon(target))
 		return FALSE
 	var/mob/living/carbon/carbon_target = target
+	if(carbon_target.get_bodypart(BODY_ZONE_CHEST).bodytype & BODYTYPE_ROBOTIC) // BUBBER EDIT
+		return FALSE // BUBBER EDIT
 	if(!carbon_target.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return TRUE
 	return FALSE

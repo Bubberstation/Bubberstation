@@ -103,6 +103,12 @@
 			continue
 		if(!surgery.can_start(user, target))
 			continue
+		// BUBBER EDIT START
+		if(istype(surgery, /datum/surgery/robot))
+			var/datum/surgery/robot/robot_surgery = surgery
+			if(robot_surgery.is_closer)
+				continue
+		// BUBBER EDIT END
 		for(var/path in surgery.target_mobtypes)
 			if(istype(target, path))
 				available_surgeries += surgery
@@ -130,32 +136,56 @@
 	var/required_tool_type = TOOL_CAUTERY
 	var/obj/item/close_tool = user.get_inactive_held_item()
 	var/is_robotic = the_surgery.requires_bodypart_type == BODYTYPE_ROBOTIC
-	if(is_robotic)
-		required_tool_type = TOOL_SCREWDRIVER
+	// BUBBER EDIT
+	/*if(is_robotic)
+		required_tool_type = TOOL_SCREWDRIVER*/
 
-	if(iscyborg(user))
-		close_tool = locate(/obj/item/cautery) in user.held_items
-		if(!close_tool)
-			patient.balloon_alert(user, "need a cautery in an inactive slot to stop the surgery!")
+	// BUBBER EDIT START
+	if(!is_robotic)
+		if(iscyborg(user))
+			close_tool = locate(/obj/item/cautery) in user.held_items
+			if(!close_tool)
+				patient.balloon_alert(user, "need a cautery in an inactive slot to stop the surgery!")
+				return
+		else if(!close_tool || close_tool.tool_behaviour != required_tool_type)
+			patient.balloon_alert(user, "need a cautery in your inactive hand to stop the surgery!") // BUBBER EDIT
 			return
-	else if(!close_tool || close_tool.tool_behaviour != required_tool_type)
-		patient.balloon_alert(user, "need a [is_robotic ? "screwdriver": "cautery"] in your inactive hand to stop the surgery!")
-		return
 
-	if(the_surgery.operated_bodypart)
-		the_surgery.operated_bodypart.adjustBleedStacks(-5)
+	if(!istype(the_surgery, /datum/surgery/robot))
+		patient.surgeries -= the_surgery
 
-	patient.surgeries -= the_surgery
-	REMOVE_TRAIT(patient, TRAIT_ALLOWED_HONORBOUND_ATTACK, ELEMENT_TRAIT(type))
+		if(the_surgery.operated_bodypart)
+			the_surgery.operated_bodypart.adjustBleedStacks(-5)
 
-	user.visible_message(
-		span_notice("[user] closes [patient]'s [parse_zone(selected_zone)] with [close_tool] and removes [parent]."),
-		span_notice("You close [patient]'s [parse_zone(selected_zone)] with [close_tool] and remove [parent]."),
-	)
+		REMOVE_TRAIT(patient, TRAIT_ALLOWED_HONORBOUND_ATTACK, ELEMENT_TRAIT(type))
 
-	patient.balloon_alert(user, "closed up [parse_zone(selected_zone)]")
+		user.visible_message(
+			span_notice("[user] closes [patient]'s [parse_zone(selected_zone)] with [close_tool] and removes [parent]."),
+			span_notice("You close [patient]'s [parse_zone(selected_zone)] with [close_tool] and remove [parent]."),
+		)
 
-	qdel(the_surgery)
+		patient.balloon_alert(user, "closed up [parse_zone(selected_zone)]")
+
+		qdel(the_surgery)
+	else
+		var/datum/surgery/robot/robot_surgery = the_surgery
+		if(robot_surgery.status >= robot_surgery.num_steps_until_closing || robot_surgery.is_closer)
+			user.balloon_alert("already closing the surgery!")
+		else
+			patient.surgeries -= the_surgery
+
+			var/datum/surgery/robot/close_surgery = new robot_surgery.close_surgery(patient, selected_zone, the_surgery.operated_bodypart)
+			close_surgery.status += max(robot_surgery.num_opening_steps - robot_surgery.status + 1, 0)
+
+			user.visible_message(
+				span_notice("[user] begins to close [patient]'s [parse_zone(selected_zone)]."),
+				span_notice("You begin to close [patient]'s [parse_zone(selected_zone)]."),
+			)
+
+			patient.balloon_alert(user, "began to close up [parse_zone(selected_zone)]")
+
+			qdel(the_surgery)
+	// BUBBER EDIT END
 
 /datum/component/surgery_initiator/proc/on_mob_surgery_started(mob/source, datum/surgery/surgery, surgery_location)
 	SIGNAL_HANDLER

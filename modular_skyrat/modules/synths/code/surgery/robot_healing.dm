@@ -1,3 +1,5 @@
+// Overriden by robot_healing.dm in modular_zubbers
+
 #define DAMAGE_ROUNDING 0.1
 #define FAIL_DAMAGE_MULTIPLIER 0.8
 #define FINAL_STEP_HEAL_MULTIPLIER 0.55

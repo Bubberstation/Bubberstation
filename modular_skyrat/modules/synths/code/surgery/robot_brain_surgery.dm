@@ -1,3 +1,5 @@
+// BUBBER EDIT
+/*
 /datum/surgery/robot_brain_surgery
 	name = "Reset Posibrain Logic (Brain Surgery)"
 	steps = list(
@@ -20,6 +22,7 @@
 		return FALSE
 	else
 		return TRUE
+*/
 
 /datum/surgery_step/fix_robot_brain
 	name = "fix posibrain"

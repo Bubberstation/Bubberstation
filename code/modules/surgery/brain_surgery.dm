@@ -27,6 +27,8 @@
 	var/obj/item/organ/internal/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!target_brain)
 		return FALSE
+	if(istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/internal/brain/synth)) // BUBBER EDIT
+		return FALSE // BUBBER EDIT
 	return TRUE
 
 /datum/surgery_step/fix_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

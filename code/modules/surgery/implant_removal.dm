@@ -79,6 +79,8 @@
 		to_chat(user, span_warning("You can't find anything in [target]'s [target_zone]!"))
 	return ..()
 
+// BUBBER EDIT
+/*
 /datum/surgery/implant_removal/mechanic
 	name = "Implant Removal"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -90,3 +92,4 @@
 		/datum/surgery_step/extract_implant,
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close)
+*/

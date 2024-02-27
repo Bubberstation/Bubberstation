@@ -1,6 +1,6 @@
 /datum/surgery/amputation
 	name = "Amputation"
-	requires_bodypart_type = NONE
+	//requires_bodypart_type = NONE // BUBBER EDIT
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
