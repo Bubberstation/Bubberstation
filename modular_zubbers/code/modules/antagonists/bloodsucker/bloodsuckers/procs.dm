@@ -231,6 +231,7 @@
 
 /datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
 	var/blood = tgui_input_number(admin, "What blood level to set [src.owner.current]'s to?")
-	if(!blood)
+	// 0 input is falsey
+	if(blood == null)
 		return
 	SetBloodVolume(blood)
