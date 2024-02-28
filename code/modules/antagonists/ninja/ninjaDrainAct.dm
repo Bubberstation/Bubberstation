@@ -296,18 +296,22 @@
 	modelselected["Medical"] = "/obj/item/robot_model/ninja/ninja_medical"
 	modelselected["Saboteur"] = "/obj/item/robot_model/ninja_saboteur"
 	//SKYRAT EDIT: ADDITION END
+	if(!do_after(ninja, 6 SECONDS, target = src))
+		return
 	//ZUBBER EDIT: START - Makes ninjas unable to hack cyborgs if they've already completed the objective for doing so, or don't have the objective.
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
+		to_chat(ninja, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
 		return
 	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
 	if(!objective || objective.completed == TRUE)
 		to_chat(src, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
 		to_chat(ninja, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
 		return
+	else if(objective)
+		objective.completed = TRUE
 	//ZUBBER EDIT: END - I think this works?
-	if(!do_after(ninja, 6 SECONDS, target = src))
-		return
+	
 	spark_system.start()
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(src, span_danger("UPLOAD COMPLETE. NEW CYBORG MODEL DETECTED.  INSTALLING..."))
@@ -329,10 +333,9 @@
 	*		return
 	* var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
 	* ZUBBER EDIT: END
-	*/ 
+	*/
 
-	if(objective)
-		objective.completed = TRUE
+	return
 
 //CARBON MOBS//
 /mob/living/carbon/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
