@@ -1,6 +1,6 @@
 #define CREDIT_ROLL_SPEED 100
 #define CREDIT_SPAWN_SPEED 20
-#define CREDIT_ANIMATE_HEIGHT (14 * world.icon_size)
+#define CREDIT_ANIMATE_HEIGHT (16 * world.icon_size)
 #define CREDIT_EASE_DURATION 22
 GLOBAL_VAR_INIT(end_credits_song, null)
 GLOBAL_VAR_INIT(end_credits_title, null)
@@ -81,11 +81,10 @@ GLOBAL_LIST(end_titles)
 	var/matrix/M = matrix(transform)
 	M.Translate(0, CREDIT_ANIMATE_HEIGHT)
 	animate(src, transform = M, time = CREDIT_ROLL_SPEED)
-	target = M
 	animate(src, alpha = 255, time = CREDIT_EASE_DURATION, flags = ANIMATION_PARALLEL)
-	spawn(CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
+	spawn(CREDIT_ROLL_SPEED)
 		if(!QDELETED(src))
-			animate(src, alpha = 0, transform = target, time = CREDIT_EASE_DURATION)
+			animate(src, alpha = 0, transform = M, time = CREDIT_EASE_DURATION)
 			sleep(CREDIT_EASE_DURATION)
 			qdel(src)
 	parent?.screen += src
