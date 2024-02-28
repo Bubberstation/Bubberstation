@@ -6,11 +6,12 @@
 /datum/action/cooldown/spell/shapeshift/bat
 	name = "Bat Form"
 	desc = "Take on the shape of a space bat. You can fly and see in the dark, and you heal from doing melee attacks."
+	power_explanation = "You can fly and see in the dark, and you heal from doing melee attacks."
 	invocation = "Master, grant me your might, BAT FORM!!"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 	convert_damage = TRUE
-	cooldown_time = 2 MINUTES
+	cooldown_time = 1 MINUTES
 	possible_shapes = list(/mob/living/basic/bat/bloodsucker)
 	var/bats_to_spawn = 3
 
@@ -33,6 +34,9 @@
 	melee_damage_upper = 15
 	wound_bonus = 10
 	obj_damage = 10
+	lighting_cutoff_red = 25
+	lighting_cutoff_green = 8
+	lighting_cutoff_blue = 5
 	melee_attack_cooldown = CLICK_CD_MELEE
 	basic_mob_flags = FLAMMABLE_MOB
 	lighting_color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
