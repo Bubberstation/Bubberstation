@@ -323,6 +323,13 @@
 	if(!ninja_antag)
 		return
 	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
+	/* ZUBBER EDIT: Tranplanted to higher in the proc.
+	* var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
+	*	if(!ninja_antag)
+	*		return
+	* var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
+	*/ ZUBBER EDIT: END
+>>>>>>> Stashed changes
 	if(objective)
 		objective.completed = TRUE
 
