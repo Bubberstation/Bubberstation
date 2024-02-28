@@ -7,7 +7,7 @@
 		Activating this Power will begin to heal your wounds.\n\
 		You will heal Brute and Toxin damage, at the cost of Stamina damage, and blood from both you and your Master.\n\
 		If you aren't a bloodless race, you will additionally heal Burn damage.\n\
-		The power will cancel out if you are incapacitated or dead."
+		The power will cancel out if you are dead or unconcious."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = NONE
@@ -55,7 +55,7 @@
 /datum/action/cooldown/bloodsucker/recuperate/ContinueActive(mob/living/user, mob/living/target)
 	if(user.stat >= DEAD)
 		return FALSE
-	if(user.incapacitated())
+	if(user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
 		owner.balloon_alert(owner, "too exhausted...")
 		return FALSE
 	return TRUE
