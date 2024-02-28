@@ -15,6 +15,8 @@
 #define TORTURE_BLOOD_HALF_COST 4
 /// Cost to convert someone after successful torture, in blood
 #define TORTURE_CONVERSION_COST 10
+/// How much blood it costs you to make a vassal into a special vassal
+#define SPECIAL_VASSAL_COST 150
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 25
 /// Once blood is this high, will exit Frenzy
@@ -132,6 +134,8 @@
 #define BLOODSUCKER_ENTERS_FRENZY "bloodsucker_enters_frenzy"
 ///Called when a Bloodsucker exits Frenzy
 #define BLOODSUCKER_EXITS_FRENZY "bloodsucker_exits_frenzy"
+// Called when anyone enters the coffin
+#define COMSIG_ENTER_COFFIN "comsig_enter_coffin"
 
 /**
  * Sol signals & Defines
@@ -176,6 +180,8 @@
  */
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+
+#define VASSAL_TRAIT "vassal_trait"
 
 /// Source trait for dominate related traits
 #define DOMINATE_TRAIT "dominate_trait"

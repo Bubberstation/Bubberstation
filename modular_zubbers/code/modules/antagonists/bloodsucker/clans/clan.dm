@@ -267,7 +267,7 @@
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "Out of Special Vassal slots!")
 		return
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you?"))
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
 	var/vassal_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, radial_display)
 	if(!vassal_response)
 		return
@@ -275,7 +275,7 @@
 	if(QDELETED(src) || QDELETED(bloodsuckerdatum.owner.current) || QDELETED(vassaldatum.owner.current))
 		return FALSE
 	vassaldatum.make_special(vassal_response)
-	bloodsuckerdatum.bloodsucker_blood_volume -= 150
+	bloodsuckerdatum.bloodsucker_blood_volume -= SPECIAL_VASSAL_COST
 	return TRUE
 
 /**
