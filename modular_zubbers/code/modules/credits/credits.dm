@@ -133,7 +133,7 @@ GLOBAL_LIST(end_titles)
 			antag_string += "[antagonist?.name]"
 /* 			for(var/datum/objective/objective as anything in mind.get_all_objectives())
 				chunk += "<B>[objective.objective_name] </B>: [objective.explanation_text]" */
-		chunk += "[used_name]\t \t THE \t \t[mind?.antag_datums ? "[antag_string] AND [jobtitle]" : jobtitle]"
+		chunk += "[used_name]\t \t as the \t \t[mind?.antag_datums ? "[antag_string] and [jobtitle]" : jobtitle]"
 
 
 
