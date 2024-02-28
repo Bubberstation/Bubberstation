@@ -471,6 +471,9 @@
 		if(right_arm)
 			right_arm.unarmed_damage_low = initial(right_arm.unarmed_damage_low)
 			right_arm.unarmed_damage_high = initial(right_arm.unarmed_damage_high)
+	var/obj/item/bodypart/chest/target_chest = owner.current.get_bodypart(BODY_ZONE_CHEST)
+	if(target_chest && target_chest.bodypart_flags & BODYPART_UNREMOVABLE)
+		target_chest.bodypart_flags &= ~BODYPART_UNREMOVABLE
 	// Remove all bloodsucker traits
 	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	// Language
