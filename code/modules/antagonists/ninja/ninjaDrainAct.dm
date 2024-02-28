@@ -296,6 +296,12 @@
 	modelselected["Medical"] = "/obj/item/robot_model/ninja/ninja_medical"
 	modelselected["Saboteur"] = "/obj/item/robot_model/ninja_saboteur"
 	//SKYRAT EDIT: ADDITION END
+	//ZUBBER EDIT: START - Makes ninjas unable to hack cyborgs if they've already completed the objective for doing so, or don't have the objective.
+	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
+	if(!objective || objective.completed == TRUE)
+		to_chat(src, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
+		return
+	//ZUBBER EDIT: END - I think this works?
 	if(!do_after(ninja, 6 SECONDS, target = src))
 		return
 	spark_system.start()
