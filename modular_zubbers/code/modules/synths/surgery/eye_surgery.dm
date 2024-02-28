@@ -26,7 +26,7 @@
 	name = "fix eyes (multitool)"
 	implements = list(
 		TOOL_MULTITOOL = 100,)
-	time = 64
+	time = 6.4 SECONDS
 
 /datum/surgery/robot/eye_surgery/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/eyes/target_eyes = target.get_organ_slot(ORGAN_SLOT_EYES)

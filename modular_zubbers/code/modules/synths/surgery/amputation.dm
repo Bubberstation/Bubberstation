@@ -50,7 +50,7 @@
 	implements = list(
 		/obj/item/shears = 300,
 		TOOL_WIRECUTTER = 100,)
-	time = 64
+	time = 6.4 SECONDS
 	//preop_sound = 'sound/surgery/scalpel1.ogg'
 	//success_sound = 'sound/surgery/organ2.ogg'
 

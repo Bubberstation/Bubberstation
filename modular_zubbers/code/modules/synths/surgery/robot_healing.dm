@@ -36,7 +36,7 @@
 	name = "repair body (crowbar/wirecutters)"
 	implements = list(TOOL_CROWBAR = 100, TOOL_WIRECUTTER = 100)
 	repeatable = TRUE
-	time = 25
+	time = 2.5 SECONDS
 
 	/// If this surgery is healing brute damage. Set during operation steps.
 	heals_brute = FALSE
