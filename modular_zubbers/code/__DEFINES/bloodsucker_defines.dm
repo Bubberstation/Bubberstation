@@ -120,6 +120,8 @@
 #define BLOODSUCKER_INTERACT_WITH_VASSAL "bloodsucker_interact_with_vassal"
 ///Called when a Bloodsucker makes a Vassal into their Favorite Vassal: (datum/vassal_datum, mob/master)
 #define BLOODSUCKER_MAKE_FAVORITE "bloodsucker_make_favorite"
+// called when a bloodsucker looses their favorite vassal, cleaning up whatever they gained
+#define BLOODSUCKER_LOOSE_FAVORITE "bloodsucker_loose_favorite"
 ///Called when a new Vassal is successfully made: (datum/bloodsucker_datum)
 #define BLOODSUCKER_MADE_VASSAL "bloodsucker_made_vassal"
 ///Called when a Bloodsucker exits Torpor.
