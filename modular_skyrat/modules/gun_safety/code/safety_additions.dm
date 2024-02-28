@@ -3,7 +3,7 @@
 	return
 
 // Ballistic Weapons
-
+/*//BUBBER EDIT REMOVAL START
 /obj/item/gun/ballistic/give_gun_safeties()
 	AddComponent(/datum/component/gun_safety)
 
@@ -43,3 +43,4 @@
 
 /obj/item/gun/syringe/blowgun/give_gun_safeties()
 	return
+*///BUBBER EDIT REMOVAL END
