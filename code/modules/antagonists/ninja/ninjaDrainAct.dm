@@ -321,9 +321,6 @@
 	model.transform_to(modelselected[choice])
 	//SKYRAT EDIT CHANGE END
 
-
-	
-
 	/* ZUBBER EDIT: Tranplanted to higher in the proc.
 	* var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	*	if(!ninja_antag)
