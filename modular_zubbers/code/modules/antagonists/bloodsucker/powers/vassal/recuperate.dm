@@ -9,7 +9,7 @@
 		If you aren't a bloodless race, you will additionally heal Burn damage.\n\
 		The power will cancel out if you are incapacitated or dead."
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = NONE
 	bloodcost = 1.5
 	cooldown_time = 10 SECONDS
@@ -38,7 +38,7 @@
 		return
 	var/mob/living/carbon/user = owner
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(user)
-	vassaldatum.master.AddBloodVolume(-1)
+	vassaldatum.master.AdjustBloodVolume(-1)
 	user.set_timed_status_effect(5 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	user.adjustStaminaLoss(bloodcost * 1.1)
 	user.adjustBruteLoss(-2.5)
