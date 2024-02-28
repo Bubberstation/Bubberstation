@@ -7,6 +7,10 @@
 	if(vamp_examine)
 		examine_text += vamp_examine
 
+/datum/antagonist/bloodsucker/proc/BuyPowers(powers = list())
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		BuyPower(power)
+
 ///Called when a Bloodsucker buys a power: (power)
 /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
@@ -183,7 +187,9 @@
 		return
 	remove_signals_from_heart(old_owner)
 	// You don't run bloodsucker life without a heart or brain
+	RegisterSignal(old_owner, COMSIG_ENTER_COFFIN, PROC_REF(regain_heart))
 	UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
+	DisableAllPowers(TRUE)
 	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_end(TRUE)
 	to_chat(old_owner, span_userdanger("You have lost your [organ.slot]!"))
@@ -200,7 +206,7 @@
 		add_signals_to_heart(owner.current)
 		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
 		CRASH("What the fuck, somehow called on_organ_gain signal on [src] without current_mob being the antag datum's owner?")
-
+	UnregisterSignal(current_mob, COMSIG_ENTER_COFFIN)
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	add_signals_to_heart(current_mob)
 
@@ -230,8 +236,15 @@
 	return issynthetic(humie) ? humie.getFireLoss() : humie.getFireLoss_nonProsthetic()
 
 /datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
-	var/blood = tgui_input_number(admin, "What blood level to set [src.owner.current]'s to?")
+	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Give or take, take your pick.", max_blood_volume, bloodsucker_blood_volume)
 	// 0 input is falsey
 	if(blood == null)
 		return
 	SetBloodVolume(blood)
+	update_hud()
+
+/datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
+	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
+	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART))
+		to_chat(span_warning("You have regained your heart!"))
+		heart.Insert(coffin_dweller)

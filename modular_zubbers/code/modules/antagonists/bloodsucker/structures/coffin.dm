@@ -29,6 +29,7 @@
 	if(user == resident)
 		. += span_cult("This is your Claimed Coffin.")
 		. += span_cult("Rest in it while injured to enter Torpor. Entering it with unspent Ranks will allow you to spend one.")
+		. += span_cult("Going inside while it contains a heart will put it in your chest, letting you regain your might.")
 		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock.")
 		. += span_cult("Alt-Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
 
@@ -211,6 +212,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	for(var/atom/thing as anything in contents)
+		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
 	if(user in src)
 		if(!resident && !prompt_coffin_claim(bloodsuckerdatum))

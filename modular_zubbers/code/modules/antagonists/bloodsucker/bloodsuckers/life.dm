@@ -176,7 +176,7 @@
  *	This is called on Bloodsucker's Assign, and when they end Torpor.
  */
 /// TODO: Separate this into smaller functions
-/datum/antagonist/bloodsucker/proc/heal_vampire_organs()
+/datum/antagonist/bloodsucker/proc/heal_vampire_organs(regenerate_heart = FALSE)
 	var/mob/living/carbon/bloodsuckeruser = owner.current
 	// please don't poison or asphyxiate the immune
 	bloodsuckeruser.setToxLoss(0, forced = TRUE)
@@ -189,7 +189,8 @@
 		SetBloodVolume(min(bloodsucker_blood_volume, frenzy_enter_threshold() * 2))
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 	bloodsuckeruser.cure_husk(BURN)
-	bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
+	if(regenerate_heart || bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
+		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
 		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
 		current_heart.Stop()
@@ -201,7 +202,8 @@
 	bloodsuckeruser.update_sight()
 	/// Disable gutting for the chest
 	var/obj/item/bodypart/chest/target_chest = bloodsuckeruser.get_bodypart(BODY_ZONE_CHEST)
-	target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
+	if(target_chest && !(target_chest.bodypart_flags & BODYPART_UNREMOVABLE))
+		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
 	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
 		on_revive()
@@ -260,7 +262,7 @@
 //	handled in bloodsucker_integration.dm
 	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
 	var/datum/status_effect/frenzy/status_effect = owner.current.has_status_effect(/datum/status_effect/frenzy)
-	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && frenzied && status_effect?.duration == -1)
+	if(owner.current.stat != CONSCIOUS && bloodsucker_blood_volume >= frenzy_exit_threshold() && frenzied && status_effect?.duration == -1)
 		status_effect.duration = world.time + 10 SECONDS
 		owner.current.balloon_alert(owner.current, "Frenzy ends in 10 seconds!")
 	// BLOOD_VOLUME_BAD: [224] - Jitter
