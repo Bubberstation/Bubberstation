@@ -297,6 +297,9 @@
 	modelselected["Saboteur"] = "/obj/item/robot_model/ninja_saboteur"
 	//SKYRAT EDIT: ADDITION END
 	//ZUBBER EDIT: START - Makes ninjas unable to hack cyborgs if they've already completed the objective for doing so, or don't have the objective.
+	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
+	if(!ninja_antag)
+		return
 	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
 	if(!objective || objective.completed == TRUE)
 		to_chat(src, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
@@ -319,17 +322,15 @@
 	//SKYRAT EDIT CHANGE END
 
 
-	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
-	if(!ninja_antag)
-		return
-	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
+	
+
 	/* ZUBBER EDIT: Tranplanted to higher in the proc.
 	* var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	*	if(!ninja_antag)
 	*		return
 	* var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
 	*/ ZUBBER EDIT: END
->>>>>>> Stashed changes
+
 	if(objective)
 		objective.completed = TRUE
 
