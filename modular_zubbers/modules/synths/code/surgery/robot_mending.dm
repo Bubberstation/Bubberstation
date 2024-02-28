@@ -1,4 +1,5 @@
-
+// Redundant when compared to the current nonsurgical robot T2 blunt treatment but saving the code in case
+/*
 /////ROBOT BLUNT WOUND FIXING SURGERIES//////
 
 ///// Repair Detached Fastenings (Severe)
@@ -202,6 +203,7 @@
 	if(isstack(tool))
 		var/obj/item/stack/used_stack = tool
 		used_stack.use(1)
+*/
 
 ///// Reset Collapsed Superstructure (Crticial)
 /datum/surgery_step/reset_collapsed_superstructure
