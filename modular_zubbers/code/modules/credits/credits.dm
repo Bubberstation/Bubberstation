@@ -1,15 +1,23 @@
 #define CREDIT_ROLL_SPEED 100
 #define CREDIT_SPAWN_SPEED 20
-#define CREDIT_ANIMATE_HEIGHT (16 * world.icon_size)
+#define CREDIT_ANIMATE_HEIGHT (14 * world.icon_size)
 #define CREDIT_EASE_DURATION 22
+
+#define JOINTEXT(X) jointext(X, null) // Why is this needed? Why is this here? Oh well
+
 GLOBAL_VAR_INIT(end_credits_song, null)
 GLOBAL_VAR_INIT(end_credits_title, null)
 GLOBAL_LIST(end_titles)
-#define JOINTEXT(X) jointext(X, null)
-/datum/controller/subsystem/ticker/declare_completion()
+
+/datum/controller/subsystem/ticker/declare_completion(force_ending)
+
+	if(!GLOB.end_titles)
+		GLOB.end_titles = generate_titles()
+
 	for(var/client/C)
 		if(!C?.credits)
 			C?.RollCredits()
+
 /* 	for(var/thing in GLOB.clients)
 		var/client/C = thing
 		if (!C)
@@ -28,10 +36,6 @@ GLOBAL_LIST(end_titles)
 
 /client/proc/RollCredits()
 	set waitfor = FALSE
-
-
-	if(!GLOB.end_titles)
-		GLOB.end_titles = generate_titles()
 
 	LAZYINITLIST(credits)
 
@@ -58,7 +62,6 @@ GLOBAL_LIST(end_titles)
 	set category = "OOC"
 	verbs -= /client/proc/ClearCredits
 	QDEL_NULL(credits)
-//	mob.clear_fullscreen("meeting")
 
 /atom/movable/screen/credit
 	icon_state = "blank"
@@ -78,16 +81,24 @@ GLOBAL_LIST(end_titles)
 	maptext_width = world.icon_size * 14
 
 /atom/movable/screen/credit/proc/rollem()
-	var/matrix/M = matrix(transform)
-	M.Translate(0, CREDIT_ANIMATE_HEIGHT)
-	animate(src, transform = M, time = CREDIT_ROLL_SPEED)
+	var/matrix/direction = matrix(transform)
+	direction.Translate(0, CREDIT_ANIMATE_HEIGHT)
+	animate(src, transform = direction, time = CREDIT_ROLL_SPEED)
 	animate(src, alpha = 255, time = CREDIT_EASE_DURATION, flags = ANIMATION_PARALLEL)
-	spawn(CREDIT_ROLL_SPEED)
+	//addtimer(CALLBACK(src, PROC_REF(fadeout), direction), CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
+	animate(src, alpha = 0, flags = ANIMATION_PARALLEL, time = CREDIT_EASE_DURATION, delay = CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
+/*	spawn(CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
 		if(!QDELETED(src))
-			animate(src, alpha = 0, transform = M, time = CREDIT_EASE_DURATION)
+
+		else
 			sleep(CREDIT_EASE_DURATION)
-			qdel(src)
+			qdel(src)*/
 	parent?.screen += src
+
+/atom/movable/screen/credit/proc/fadeout(var/matrix/direction)
+
+	sleep(CREDIT_EASE_DURATION)
+	qdel(src)
 
 /atom/movable/screen/credit/Destroy()
 	var/client/P = parent
@@ -193,3 +204,9 @@ GLOBAL_LIST(end_titles)
 	titles += "<center><span style='font-size:6pt;'>[JOINTEXT(disclaimer)]</span></center>"
 
 	return titles
+
+#undef CREDIT_ROLL_SPEED
+#undef CREDIT_SPAWN_SPEED
+#undef CREDIT_ANIMATE_HEIGHT
+#undef CREDIT_EASE_DURATION
+#undef JOINTEXT
