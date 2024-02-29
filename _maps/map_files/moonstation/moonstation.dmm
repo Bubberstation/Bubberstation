@@ -245,7 +245,8 @@
 "aeB" = (
 /obj/machinery/button/door/directional/north{
 	id = "cafe_counter";
-	name = "Kitchen Counter Shutters"
+	name = "Kitchen Counter Shutters";
+	req_access = list("kitchen")
 	},
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
 	dir = 8
@@ -2501,7 +2502,8 @@
 "aLe" = (
 /obj/machinery/button/door/directional/west{
 	id = "rbmk2_shutters_east";
-	name = "RB-MK2 Radiation Shutters Control"
+	name = "RB-MK2 Radiation Shutters Control";
+	req_access = list("engineering")
 	},
 /obj/item/radio/intercom/directional/south,
 /obj/machinery/space_heater{
@@ -3327,7 +3329,8 @@
 /obj/machinery/button/door/directional/west{
 	id = "sec_check_shutters";
 	name = "Security Checkpoint Shutters";
-	pixel_y = -10
+	pixel_y = -10;
+	req_access = list("brig_entrance")
 	},
 /obj/machinery/light_switch/directional/west,
 /turf/open/floor/iron/dark,
@@ -6086,7 +6089,8 @@
 	},
 /obj/machinery/button/door/directional/east{
 	id = "engineering_desk_shutters";
-	name = "Engineering Desk Shutters Control"
+	name = "Engineering Desk Shutters Control";
+	req_access = list("engineering")
 	},
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
@@ -6158,7 +6162,8 @@
 /obj/machinery/button/door/directional/west{
 	id = "captain_privacy";
 	name = "Captain's Privacy Shutters";
-	pixel_y = 9
+	pixel_y = 9;
+	req_access = list("captain")
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -6821,7 +6826,8 @@
 /obj/machinery/modular_computer/preset/cargochat/science,
 /obj/machinery/button/door/directional/north{
 	id = "research_shutters";
-	name = "Desk Shutters Control"
+	name = "Desk Shutters Control";
+	req_access = list("research")
 	},
 /turf/open/floor/iron/white,
 /area/station/science/lab)
@@ -7427,7 +7433,8 @@
 /obj/structure/table/wood,
 /obj/machinery/button/door/directional/west{
 	id = "lawyer_shutters_a";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	req_access = list("lawyer")
 	},
 /obj/item/radio/intercom/directional/north,
 /turf/open/floor/wood,
@@ -8740,7 +8747,8 @@
 "cMT" = (
 /obj/machinery/button/door/directional/east{
 	id = "rbmk2_shutters_west";
-	name = "RB-MK2 Radiation Shutters Control"
+	name = "RB-MK2 Radiation Shutters Control";
+	req_access = list("engineering")
 	},
 /obj/item/radio/intercom/directional/south,
 /obj/machinery/space_heater{
@@ -17530,7 +17538,8 @@
 /obj/machinery/button/door{
 	id = "rdoffice";
 	name = "privacy shutters";
-	pixel_y = 5
+	pixel_y = 5;
+	req_access = list("rd")
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/neutral/opposingcorners{
@@ -18467,7 +18476,8 @@
 	},
 /obj/machinery/button/door/directional/north{
 	id = "pharm_desk_shutters";
-	name = "Desk Shutters Control"
+	name = "Desk Shutters Control";
+	req_access = list("pharmacy")
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -18626,7 +18636,8 @@
 	},
 /obj/machinery/button/door/directional/north{
 	id = "robotics_shutters";
-	name = "Desk Shutters Control"
+	name = "Desk Shutters Control";
+	req_access = list("robotics")
 	},
 /obj/machinery/modular_computer/preset/civilian{
 	dir = 8
@@ -21525,7 +21536,8 @@
 	},
 /obj/machinery/button/door/directional/north{
 	id = "chem_shutters";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	req_access = list("plumbing")
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/chemistry)
@@ -22128,7 +22140,8 @@
 /obj/machinery/light/warm/directional/south,
 /obj/machinery/button/door/directional/south{
 	id = "bar_kitchen_counter";
-	name = "Bar-Kitchen Counter Shutters"
+	name = "Bar-Kitchen Counter Shutters";
+	req_access = list("kitchen")
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
@@ -25171,12 +25184,14 @@
 /obj/machinery/button/door/directional/north{
 	id = "teleportershutters";
 	name = "Teleporter Shutters Control";
-	pixel_x = 8
+	pixel_x = 8;
+	req_access = list("command")
 	},
 /obj/machinery/button/door/directional/north{
 	id = "gateshutter";
 	name = "Gateway Shutters Control";
-	pixel_x = -8
+	pixel_x = -8;
+	req_access = list("command")
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/fore)
@@ -30254,7 +30269,7 @@
 	id = "xenobio3";
 	layer = 3.3;
 	name = "Xenobio Pen 3 Blast Doors";
-	pixel_y = 4;
+	pixel_y = 1;
 	req_access = list("xenobiology")
 	},
 /obj/effect/turf_decal/siding/dark,
@@ -30712,7 +30727,8 @@
 /obj/machinery/button/door/directional/north{
 	id = "cmo_officer_shutters";
 	name = "Privacy Shutters Control";
-	pixel_y = 34
+	pixel_y = 34;
+	req_access = list("cmo")
 	},
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
@@ -32489,7 +32505,8 @@
 	},
 /obj/machinery/button/door/directional/east{
 	id = "lawyer_shutters_b";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	req_access = list("lawyer")
 	},
 /turf/open/floor/carpet/blue,
 /area/station/service/lawoffice)
@@ -34489,14 +34506,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos/hfr_room)
-"kGG" = (
-/obj/structure/sign/departments/custodian/directional/south,
-/obj/effect/turf_decal/tile/green/half/contrasted,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/central/aft)
 "kGJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -34744,7 +34753,8 @@
 	id = "cargo_shutters";
 	name = "Cargo Shutters Control";
 	pixel_y = 2;
-	pixel_x = 8
+	pixel_x = 8;
+	req_access = list("cargo")
 	},
 /obj/item/paper_bin{
 	pixel_x = -5;
@@ -34991,7 +35001,8 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/button/door/directional/west{
 	id = "ce_officer_shutters";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	req_access = list("ce")
 	},
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron,
@@ -37190,7 +37201,8 @@
 /obj/machinery/button/door/directional/east{
 	id = "robotics_science_privacy";
 	name = "Privacy Shutters Control";
-	pixel_y = -8
+	pixel_y = -8;
+	req_access = list("robotics")
 	},
 /obj/machinery/vending/wardrobe/robo_wardrobe,
 /obj/machinery/light/warm/directional/east,
@@ -39920,7 +39932,8 @@
 /obj/machinery/button/flasher{
 	id = "visitation_flash";
 	pixel_y = 38;
-	name = "Visitation Flasher"
+	name = "Visitation Flasher";
+	req_access = list("security")
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/prison/visit)
@@ -41786,7 +41799,9 @@
 /obj/machinery/button/flasher{
 	id = "isolation_flasher";
 	pixel_y = 23;
-	pixel_x = 5
+	pixel_x = 5;
+	req_access = list("security");
+	name = "Isolation Flasher"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -46517,7 +46532,8 @@
 /obj/machinery/button/door{
 	id = "meetingblast";
 	name = "Meeting Room Lockdown Control";
-	pixel_y = -3
+	pixel_y = -3;
+	req_access = list("command")
 	},
 /turf/open/floor/carpet/executive,
 /area/station/command/meeting_room)
@@ -46545,7 +46561,8 @@
 	id = "ai_sat_maint_right";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
-	name = "Door Bolt Control"
+	name = "Door Bolt Control";
+	req_access = list("minisat")
 	},
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/catwalk_floor,
@@ -46715,7 +46732,8 @@
 	id = "ai_sat_maint_left";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
-	name = "Door Bolt Control"
+	name = "Door Bolt Control";
+	req_access = list("minisat")
 	},
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/catwalk_floor,
@@ -52036,7 +52054,8 @@
 /obj/machinery/button/door/directional/north{
 	id = "qm_warehouse";
 	name = "Warehouse Shutters Control";
-	pixel_x = 8
+	pixel_x = 8;
+	req_access = list("shipping")
 	},
 /obj/item/kirbyplants/random,
 /turf/open/floor/engine,
@@ -54815,7 +54834,8 @@
 /obj/machinery/button/door/directional/south{
 	id = "qm_warehouse";
 	name = "Warehouse Shutters Control";
-	pixel_x = 8
+	pixel_x = 8;
+	req_access = list("shipping")
 	},
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
@@ -56200,6 +56220,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
+"rkn" = (
+/obj/effect/turf_decal/tile/green/half/contrasted,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/sign/departments/custodian/directional/south,
+/turf/open/floor/iron/dark/corner,
+/area/station/hallway/primary/central/aft)
 "rko" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -56359,7 +56387,8 @@
 /obj/item/camera,
 /obj/machinery/button/door/directional/east{
 	id = "hos_office_external_shutters";
-	name = "External Privacy Shutters Control"
+	name = "External Privacy Shutters Control";
+	req_access = list("hos")
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -56635,7 +56664,8 @@
 /obj/machinery/light/warm/directional/west,
 /obj/machinery/button/door/directional/west{
 	id = "hos_office_shutters";
-	name = "Internal Privacy Shutters Control"
+	name = "Internal Privacy Shutters Control";
+	req_access = list("hos")
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
@@ -57990,11 +58020,6 @@
 /turf/closed/wall/r_wall/rust,
 /area/station/maintenance/fore)
 "rLc" = (
-/obj/machinery/button/door/directional/north{
-	id = "custodialshutters";
-	name = "shutters control";
-	pixel_x = -8
-	},
 /obj/structure/railing{
 	dir = 8
 	},
@@ -58002,6 +58027,12 @@
 	dir = 1
 	},
 /obj/machinery/vending/wardrobe/jani_wardrobe,
+/obj/machinery/button/door/directional/north{
+	id = "custodialshutters";
+	name = "Parking Garage Shutters Control";
+	pixel_x = -8;
+	req_access = list("janitor")
+	},
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "rLg" = (
@@ -58888,7 +58919,8 @@
 	id = "ai_sat_maint_left";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
-	name = "Door Bolt Control"
+	name = "Door Bolt Control";
+	req_access = list("minisat")
 	},
 /obj/machinery/camera/autoname/minisat/directional/west,
 /turf/open/floor/catwalk_floor,
@@ -61096,7 +61128,8 @@
 	id = "ai_sat_maint_right";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
-	name = "Door Bolt Control"
+	name = "Door Bolt Control";
+	req_access = list("minisat")
 	},
 /obj/machinery/camera/autoname/minisat/directional/east,
 /turf/open/floor/catwalk_floor,
@@ -68154,7 +68187,8 @@
 	},
 /obj/machinery/button/door/directional/north{
 	id = "qm_privacy_shutters";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	req_access = list("qm")
 	},
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
@@ -68388,18 +68422,6 @@
 "uZb" = (
 /turf/open/floor/glass/reinforced,
 /area/station/security/courtroom)
-"uZe" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/caution/stand_clear{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple/half/contrasted,
-/turf/open/floor/iron/checker,
-/area/station/hallway/secondary/exit)
 "uZh" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /obj/machinery/firealarm/directional/south,
@@ -77250,17 +77272,21 @@
 "xPo" = (
 /obj/machinery/button/door/directional/west{
 	id = "hop";
-	name = "Privacy Shutters Control"
+	name = "Privacy Shutters Control";
+	req_access = list("hop")
 	},
 /obj/machinery/button/door/directional/west{
 	id = "hopqueue";
 	name = "Line Shutters Control";
-	pixel_y = -9
+	pixel_y = -9;
+	req_access = list("hop")
 	},
 /obj/machinery/button/flasher{
 	id = "hopflash";
 	pixel_x = -32;
-	pixel_y = 8
+	pixel_y = 8;
+	req_access = list("hop");
+	name = "Line Flasher"
 	},
 /obj/structure/chair/office{
 	dir = 4
@@ -77268,7 +77294,8 @@
 /obj/effect/landmark/start/head_of_personnel,
 /obj/machinery/button/ticket_machine{
 	pixel_x = -35;
-	pixel_y = -4
+	pixel_y = -4;
+	req_access = list("hop")
 	},
 /turf/open/floor/carpet/purple,
 /area/station/command/heads_quarters/hop)
@@ -244359,7 +244386,7 @@ hpH
 qzk
 kgI
 rkT
-wPD
+rkn
 crh
 crh
 crh
@@ -245130,7 +245157,7 @@ xHg
 lIM
 kAg
 rkT
-kGG
+wPD
 naw
 rLc
 jmm
@@ -258503,7 +258530,7 @@ uAk
 vPK
 dRA
 arL
-uZe
+kGm
 kNJ
 ncb
 cqg
@@ -259017,7 +259044,7 @@ rXb
 ylN
 mZR
 pGl
-uZe
+kGm
 bdk
 weH
 bvW
