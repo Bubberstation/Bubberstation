@@ -40,7 +40,7 @@
 	return returnIcon + returnString
 
 /// Used when your Master teaches you a new Power.
-/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power, list_to_add_to = powers)
+/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/power, list_to_add_to = powers)
 	for(var/datum/action/current_powers as anything in list_to_add_to)
 		if(current_powers.type == power.type)
 			return FALSE

@@ -42,6 +42,8 @@
 	var/masquerade_infractions = 0
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
+	/// sired by a tremere
+	var/ventrue_sired = FALSE
 
 	///ALL Powers currently owned
 	var/list/datum/action/cooldown/bloodsucker/powers = list()
@@ -208,7 +210,7 @@
 	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
 	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
-	if(IS_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
+	if(ventrue_sired) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
 		bloodsucker_level_unspent = 0
 		show_in_roundend = FALSE
 	else
@@ -323,7 +325,7 @@
 	return finish_preview_icon(final_icon)
 
 /datum/antagonist/bloodsucker/ui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = ability_ui_data(powers)
 	//we don't need to update this that much.
 	data["in_clan"] = !!my_clan
 	var/list/clan_data = list()
@@ -333,15 +335,6 @@
 		clan_data["clan_icon"] = my_clan.join_icon_state
 
 	data["clan"] += list(clan_data)
-
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		var/list/power_data = list()
-
-		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
-		power_data["power_icon"] = power.button_icon_state
-
-		data["powers"] += list(power_data)
 
 	return data + ..()
 
@@ -421,10 +414,10 @@
 		var/obj/item/bodypart/user_left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/user_right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
 		user.dna?.remove_all_mutations()
-		user_left_arm.unarmed_damage_low += 1 //lowest possible punch damage - 0
-		user_left_arm.unarmed_damage_high += 1 //highest possible punch damage - 9
-		user_right_arm.unarmed_damage_low += 1 //lowest possible punch damage - 0
-		user_right_arm.unarmed_damage_high += 1 //highest possible punch damage - 9
+		user_left_arm.unarmed_damage_low += 1 //lowest possible punch damage - 6 now
+		user_left_arm.unarmed_damage_high += 1 //highest possible punch damage - 11
+		user_right_arm.unarmed_damage_low += 1 //lowest possible punch damage - 6
+		user_right_arm.unarmed_damage_high += 1 //highest possible punch damage - 11
 		user.mob_biotypes |= biotype
 	//Give Bloodsucker Traits
 	owner.current.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)

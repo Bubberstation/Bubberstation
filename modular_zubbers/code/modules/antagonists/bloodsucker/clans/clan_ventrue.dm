@@ -79,18 +79,19 @@
 		return
 	vassaldatum.vassal_level++
 	finish_spend_rank(vassaldatum, cost_rank, blood_cost)
+	var/traits_to_add = list()
 	switch(vassaldatum.vassal_level)
 		if(1)
-			target.add_traits(list(TRAIT_COLDBLOODED, TRAIT_NOBREATH, TRAIT_AGEUSIA), BLOODSUCKER_TRAIT)
+			traits_to_add = list(TRAIT_COLDBLOODED, TRAIT_NOBREATH, TRAIT_AGEUSIA)
 			to_chat(target, span_notice("Your blood begins to feel cold, and as a mote of ash lands upon your tongue, you stop breathing..."))
 		if(2)
-			target.add_traits(list(TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT, TRAIT_SLEEPIMMUNE, TRAIT_VIRUSIMMUNE), BLOODSUCKER_TRAIT)
+			traits_to_add = list(TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT, TRAIT_SLEEPIMMUNE, TRAIT_VIRUSIMMUNE)
 			to_chat(target, span_notice("You feel your Master's blood reinforce you, strengthening you up."))
 			if(ishuman(target))
 				var/mob/living/carbon/human/human_target = target
 				human_target.skin_tone = "albino"
 		if(3)
-			target.add_traits(list(TRAIT_NOHARDCRIT, TRAIT_HARDLY_WOUNDED), BLOODSUCKER_TRAIT)
+			traits_to_add = list(TRAIT_NOHARDCRIT, TRAIT_HARDLY_WOUNDED)
 			to_chat(target, span_notice("You feel yourself able to take cuts and stabbings like it's nothing."))
 		if(4 to INFINITY)
 			var/datum/antagonist/bloodsucker/bloodsucker_target = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -101,12 +102,18 @@
 				var/powers_to_transfer = list()
 				// Get rid of the favorite datum and replace with a normal vassal datum
 				if(target.mind.has_antag_datum(/datum/antagonist/vassal/favorite))
-					powers_to_transfer = vassaldatum.bloodsucker_powers.Copy()
+					for(var/datum/power as anything in vassaldatum.bloodsucker_powers)
+						powers_to_transfer += power.type
 					target.mind.remove_antag_datum(/datum/antagonist/vassal/favorite)
-				bloodsucker_target = target.mind.add_antag_datum(/datum/antagonist/bloodsucker)
-				bloodsucker_target?.powers += powers_to_transfer
+				var/datum/antagonist/bloodsucker/vamp = new()
+				vamp.ventrue_sired = TRUE
+				bloodsucker_target = target.mind.add_antag_datum(vamp)
+				bloodsucker_target.BuyPowers(powers_to_transfer)
 				// Check for the recuperate power and remove it if they have it
 				bloodsuckerdatum.owner.current.add_mood_event("madevamp", /datum/mood_event/madevamp)
+	if(vassaldatum && QDELETED(vassaldatum) && length(traits_to_add))
+		target.add_traits(traits_to_add, VASSAL_TRAIT)
+		vassaldatum.traits += traits_to_add
 
 /datum/bloodsucker_clan/ventrue/proc/finish_spend_rank(datum/antagonist/vassal/vassaldatum, cost_rank, blood_cost)
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
@@ -135,8 +142,8 @@
 	to_chat(bloodsuckerdatum.owner.current, span_danger("You don't have any levels or enough Blood to Rank [vassaldatum.owner.current] up with."))
 	return TRUE
 
-/datum/bloodsucker_clan/ventrue/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
-	to_chat(bloodsucker, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a persuasion rack!"))
+/datum/bloodsucker_clan/ventrue/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	to_chat(source.owner.current, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a persuasion rack!"))
 	vassaldatum.BuyPower(/datum/action/cooldown/bloodsucker/distress)
 
 #undef BLOODSUCKER_BLOOD_RANKUP_COST
