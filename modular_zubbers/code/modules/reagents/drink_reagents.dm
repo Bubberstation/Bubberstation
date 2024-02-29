@@ -7,7 +7,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/moth_milk/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+	. = ..()
 	if(!ismoth(M))
 		M.adjust_disgust(10 * REM * delta_time,DISGUST_LEVEL_DISGUSTED)
-		return TRUE
-	. = ..()
+		return UPDATE_MOB_HEALTH

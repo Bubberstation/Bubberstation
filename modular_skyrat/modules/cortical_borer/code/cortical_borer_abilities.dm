@@ -1,7 +1,7 @@
 #define CHEMICALS_PER_UNIT 2
 #define CHEMICAL_SECOND_DIVISOR (5 SECONDS)
 #define OUT_OF_HOST_EGG_COST 50
-#define BLOOD_CHEM_OBJECTIVE 5
+#define BLOOD_CHEM_OBJECTIVE 3
 
 // Parent of all borer actions
 /datum/action/cooldown/borer
@@ -509,6 +509,7 @@
 			borer_organ.Remove(cortical_owner.human_host)
 		cortical_owner.forceMove(human_turfone)
 		cortical_owner.human_host = null
+		REMOVE_TRAIT(cortical_owner, TRAIT_WEATHER_IMMUNE, "borer_in_host") // BUBBER EDIT - WEATHER IMMUNE
 		StartCooldown()
 		return
 
@@ -572,6 +573,7 @@
 	var/logging_text = "[key_name(cortical_owner)] went into [key_name(cortical_owner.human_host)] at [loc_name(human_turftwo)]"
 	cortical_owner.log_message(logging_text, LOG_GAME)
 	cortical_owner.human_host.log_message(logging_text, LOG_GAME)
+	ADD_TRAIT(cortical_owner, TRAIT_WEATHER_IMMUNE, "borer_in_host") // BUBBER EDIT - WEATHER IMMUNE
 	StartCooldown()
 
 /// Checks if the target's head is bio protected, returns true if this is the case

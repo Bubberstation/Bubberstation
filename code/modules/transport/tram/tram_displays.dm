@@ -82,7 +82,7 @@
 		. += span_notice("It is secured to the tram wall with [EXAMINE_HINT("bolts.")]")
 
 /obj/machinery/transport/destination_sign/deconstruct(disassembled = TRUE)
-	if(flags_1 & NODECONSTRUCT_1)
+	if(obj_flags & NO_DECONSTRUCTION)
 		return
 	if(disassembled)
 		new /obj/item/wallframe/indicator_display(drop_location())
@@ -122,6 +122,13 @@
 		sign_color = COLOR_DISPLAY_RED
 		update_appearance()
 		return
+
+	//BUBBERSTATION CHANGE START: FIXES 2-DESTINATION TRAMS
+	if(travel_direction == NONE)
+		sign_face = null
+		update_appearance()
+		return
+	//BUBBERSTATION CHANGE END: FIXES 2-DESTINATION TRAMS
 
 	sign_face = ""
 	sign_face += "[base_icon_state]_"

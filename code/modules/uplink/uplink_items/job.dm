@@ -146,6 +146,13 @@
 	cost = 11
 	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
 
+/datum/uplink_item/role_restricted/rebarxbowsyndie
+	name = "Syndicate Rebar Crossbow"
+	desc = "A much more proffessional version of the engineer's bootleg rebar crossbow. 3 shot mag, quicker loading, and better ammo. Owners manual included."
+	item = /obj/item/storage/box/syndie_kit/rebarxbowsyndie
+	cost = 10
+	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
+
 /datum/uplink_item/role_restricted/magillitis_serum
 	name = "Magillitis Serum Autoinjector"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
@@ -278,7 +285,7 @@
 	restricted_roles = list(JOB_CLOWN)
 	surplus = 10
 
-/datum/uplink_item/role_restricted/his_grace
+/* Bubber Edit Removal, This break vore preferences /datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"
 	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
 	His Grace grants gradual regeneration and complete stun immunity to His wielder, but be wary: if He gets too hungry, He will become impossible to drop and eventually kill you if not fed. \
@@ -289,7 +296,7 @@
 	item = /obj/item/his_grace
 	cost = 20
 	surplus = 0
-	restricted_roles = list(JOB_CHAPLAIN)
+	restricted_roles = list(JOB_CHAPLAIN) */
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
@@ -318,7 +325,7 @@
 
 */
 // SKYRAT EDIT END
-/datum/uplink_item/role_restricted/blastcannon
+/* /datum/uplink_item/role_restricted/blastcannon - BUBBER REMOVE START
 	name = "Blast Cannon"
 	desc = "A highly specialized weapon, the Blast Cannon is actually relatively simple. It contains an attachment for a tank transfer valve mounted to an angled pipe specially constructed \
 			withstand extreme pressure and temperatures, and has a mechanical trigger for triggering the transfer valve. Essentially, it turns the explosive force of a bomb into a narrow-angle \
@@ -329,7 +336,7 @@
 	cost = 14 //High cost because of the potential for extreme damage in the hands of a skilled scientist.
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST)
 	surplus = 5
-
+BUBBER REMOVE END*/
 /datum/uplink_item/role_restricted/evil_seedling
 	name = "Evil Seedling"
 	desc = "A rare seed we have recovered that grows into a dangerous species that will aid you with your tasks!"
@@ -358,7 +365,7 @@
 /datum/uplink_item/role_restricted/monkey_supplies
 	name = "Simian Agent Supplies"
 	desc = "Sometimes you need a bit more firepower than a rabid monkey. Such as a rabid, armed monkey! \
-		Monkeys can unpack this kit to recieve a bag with a bargain-bin gun, ammunition, and some miscellaneous supplies."
+		Monkeys can unpack this kit to receive a bag with a bargain-bin gun, ammunition, and some miscellaneous supplies."
 	item = /obj/item/storage/toolbox/guncase/monkeycase
 	cost = 4
 	limited_stock = 3

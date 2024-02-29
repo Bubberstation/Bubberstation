@@ -1,5 +1,5 @@
 /datum/preference/choiced/language
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "language"
 	savefile_identifier = PREFERENCE_CHARACTER
 
@@ -20,6 +20,7 @@
 	//we add uncommon as it's foreigner-only.
 	var/datum/language/uncommon/uncommon_language = /datum/language/uncommon
 	values += initial(uncommon_language.name)
+	values += /datum/language/common::name // SKYRAT EDIT ADDITION START - Let's you select common
 
 	for(var/datum/language/language_type as anything in GLOB.uncommon_roundstart_languages)
 		if(initial(language_type.name) in values)

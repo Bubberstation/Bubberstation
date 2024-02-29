@@ -22,20 +22,23 @@
 	/// A list of scrubbers that will have reagents ejected from them
 	var/list/scrubbers = list()
 	/// The list of chems that scrubbers can produce
+
+	// BUBBER EDIT START - DISABLES MESSY REAGENTS
+
 	var/list/safer_chems = list(/datum/reagent/water,
 		/datum/reagent/carbon,
-		/datum/reagent/consumable/flour,
+	//	/datum/reagent/consumable/flour,
 		/datum/reagent/space_cleaner,
-		/datum/reagent/carpet/royal/blue,
-		/datum/reagent/carpet/orange,
+	//	/datum/reagent/carpet/royal/blue,
+	//	/datum/reagent/carpet/orange,
 		/datum/reagent/consumable/nutriment,
 		/datum/reagent/consumable/condensedcapsaicin,
 		/datum/reagent/drug/mushroomhallucinogen,
 		/datum/reagent/lube,
-		/datum/reagent/glitter/blue,
-		/datum/reagent/glitter/pink,
+	//	/datum/reagent/glitter/blue,
+	//	/datum/reagent/glitter/pink,
 		/datum/reagent/cryptobiolin,
-		/datum/reagent/blood,
+	//	/datum/reagent/blood,
 		/datum/reagent/medicine/c2/multiver,
 		/datum/reagent/water/holywater,
 		/datum/reagent/consumable/ethanol,
@@ -48,16 +51,19 @@
 		/datum/reagent/consumable/laughter,
 		/datum/reagent/concentrated_barbers_aid,
 		/datum/reagent/baldium,
-		/datum/reagent/colorful_reagent,
-		/datum/reagent/consumable/salt,
+	//	/datum/reagent/colorful_reagent,
+	//	/datum/reagent/consumable/salt,
 		/datum/reagent/consumable/ethanol/beer,
 		/datum/reagent/hair_dye,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/glitter/white,
+	//	/datum/reagent/glitter/white,
 		/datum/reagent/gravitum,
 		/datum/reagent/growthserum,
 		/datum/reagent/yuck,
 	)
+
+	// BUBBER EDIT END
+
 	//needs to be chemid unit checked at some point
 
 /datum/round_event/scrubber_overflow/announce_deadchat(random, cause)
@@ -67,7 +73,7 @@
 	deadchat_broadcast(" has just been[random ? " randomly" : ""] triggered[cause ? " by [cause]" : ""]!", "<b>Scrubber Overflow: [initial(forced_reagent_type.name)]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/round_event/scrubber_overflow/announce(fake)
-	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "Atmospherics alert")
+	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "[command_name()] Engineering Division")
 
 /datum/round_event/scrubber_overflow/setup()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/temp_vent as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components/unary/vent_scrubber))
