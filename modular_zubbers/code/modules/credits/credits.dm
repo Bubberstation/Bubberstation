@@ -85,14 +85,7 @@ GLOBAL_LIST(end_titles)
 	direction.Translate(0, CREDIT_ANIMATE_HEIGHT)
 	animate(src, transform = direction, time = CREDIT_ROLL_SPEED)
 	animate(src, alpha = 255, time = CREDIT_EASE_DURATION, flags = ANIMATION_PARALLEL)
-	//addtimer(CALLBACK(src, PROC_REF(fadeout), direction), CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
 	animate(src, alpha = 0, flags = ANIMATION_PARALLEL, time = CREDIT_EASE_DURATION, delay = CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
-/*	spawn(CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
-		if(!QDELETED(src))
-
-		else
-			sleep(CREDIT_EASE_DURATION)
-			qdel(src)*/
 	parent?.screen += src
 
 /atom/movable/screen/credit/proc/fadeout(var/matrix/direction)
@@ -142,14 +135,9 @@ GLOBAL_LIST(end_titles)
 		for(var/datum/antagonist/antagonist as anything in mind?.antag_datums)
 			antag_string ? (antag_string += ", ") : (antag_string += "...")
 			antag_string += "[antagonist?.name]"
-/* 			for(var/datum/objective/objective as anything in mind.get_all_objectives())
-				chunk += "<B>[objective.objective_name] </B>: [objective.explanation_text]" */
-		chunk += "[used_name]\t \t as the \t \t[mind?.antag_datums ? "[antag_string] and [jobtitle]" : jobtitle]"
-
-
-
-
+		chunk += "[used_name] as the [mind?.antag_datums ? "[antag_string] and [jobtitle]" : jobtitle]"
 		chunksize++
+
 		if(chunksize > 2)
 			cast += "<center>[jointext(chunk,"<br>")]</center>"
 			chunk.Cut()
