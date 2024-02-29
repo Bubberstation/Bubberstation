@@ -8,19 +8,21 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_NORMAL)
+	if(bloodsuckerdatum.bloodsucker_blood_volume > BLOOD_VOLUME_NORMAL)
+		return
+	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
 	. = ..()
-
 	if(!mind)
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum)
 		return
-	bloodsuckerdatum.bloodsucker_blood_volume -= amount
+	bloodsuckerdatum.AdjustBloodVolume(-amount)
 
 // Prevents using a Memento Mori
+// todo move this to it's own trait
 /obj/item/clothing/neck/necklace/memento_mori/memento(mob/living/carbon/human/user)
 	if(IS_BLOODSUCKER(user))
 		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
@@ -34,6 +36,7 @@
 	return ..()
 
 // Used when analyzing a Bloodsucker, Masquerade will hide brain traumas (Unless you're a Beefman)
+/// todo move this to it's own trait or something
 /mob/living/carbon/get_traumas()
 	if(!mind)
 		return ..()
