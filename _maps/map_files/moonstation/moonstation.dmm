@@ -9493,8 +9493,8 @@
 /obj/structure/sign/painting/library_private{
 	pixel_y = -32
 	},
-/obj/structure/displaycase/curator,
-/turf/open/floor/iron/dark,
+/obj/machinery/vending/wardrobe/curator_wardrobe,
+/turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "cXH" = (
 /obj/effect/mapping_helpers/burnt_floor,
@@ -26779,7 +26779,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "imm" = (
 /obj/structure/table/wood,
@@ -32148,7 +32148,7 @@
 "jUP" = (
 /obj/machinery/light/small/directional/west,
 /obj/item/radio/intercom/directional/west,
-/turf/open/floor/iron/dark,
+/turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "jUW" = (
 /obj/structure/cable,
@@ -49212,7 +49212,7 @@
 	name = "Forbidden Knowledge"
 	},
 /obj/machinery/light_switch/directional/south,
-/turf/open/floor/iron/dark,
+/turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "pdE" = (
 /obj/machinery/porta_turret/ai,
@@ -69200,6 +69200,9 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/service/library/private)
 "vmW" = (
@@ -70442,9 +70445,16 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/storage/gas)
 "vGq" = (
-/obj/machinery/vending/wardrobe/curator_wardrobe,
 /obj/structure/sign/poster/contraband/got_wood/directional/north,
-/turf/open/floor/iron/dark,
+/obj/structure/rack{
+	icon = 'icons/obj/fluff/general.dmi';
+	icon_state = "minibar";
+	name = "skeletal minibar"
+	},
+/obj/item/storage/fancy/candle_box,
+/obj/item/camera,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "vGz" = (
 /obj/machinery/computer/crew{
@@ -76116,7 +76126,7 @@
 /obj/machinery/airalarm/directional/north,
 /obj/item/storage/photo_album/library,
 /obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/iron/dark,
+/turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "xyJ" = (
 /obj/item/skub{
@@ -78944,6 +78954,9 @@
 /area/station/maintenance/port/fore)
 "ylC" = (
 /obj/structure/displaycase/curator,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/service/library/private)
 "ylN" = (
