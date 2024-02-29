@@ -72,9 +72,13 @@
 
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
-/datum/bloodsucker_clan/tremere/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/tremere/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/datum/action/cooldown/spell/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)
 	batform.Grant(vassaldatum.owner.current)
+
+/datum/bloodsucker_clan/tremere/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	var/datum/action/cooldown/spell/shapeshift/bat/batform = locate(/datum/action/cooldown/spell/shapeshift/bat) in vassaldatum.owner.current.actions
+	batform.Remove(vassaldatum.owner.current)
 
 /datum/bloodsucker_clan/tremere/on_vassal_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
 	. = ..()

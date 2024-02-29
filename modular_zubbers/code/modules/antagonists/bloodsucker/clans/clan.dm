@@ -38,7 +38,8 @@
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(on_favorite_vassal))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
 
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
@@ -205,7 +206,7 @@
 	if(cost_rank)
 		bloodsuckerdatum.bloodsucker_level_unspent--
 	if(blood_cost)
-		bloodsuckerdatum.AddBloodVolume(-blood_cost)
+		bloodsuckerdatum.AdjustBloodVolume(-blood_cost)
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
@@ -275,7 +276,7 @@
 	if(QDELETED(src) || QDELETED(bloodsuckerdatum.owner.current) || QDELETED(vassaldatum.owner.current))
 		return FALSE
 	vassaldatum.make_special(vassal_response)
-	bloodsuckerdatum.bloodsucker_blood_volume -= SPECIAL_VASSAL_COST
+	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_VASSAL_COST)
 	return TRUE
 
 /**
@@ -284,6 +285,9 @@
  * bloodsuckerdatum - antagonist datum of the Bloodsucker who turned them into a Vassal.
  * vassaldatum - the antagonist datum of the Vassal being offered up.
  */
-/datum/bloodsucker_clan/proc/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	SIGNAL_HANDLER
 	vassaldatum.BuyPower(/datum/action/cooldown/bloodsucker/targeted/brawn)
+
+/datum/bloodsucker_clan/proc/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	SIGNAL_HANDLER

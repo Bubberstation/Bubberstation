@@ -5,7 +5,6 @@
  */
 /datum/antagonist/vassal/favorite
 	name = "\improper Favorite Vassal"
-	show_in_antagpanel = FALSE
 	antag_hud_name = "vassal6"
 	special_type = FAVORITE_VASSAL
 	vassal_description = "The Favorite Vassal gets unique abilities over other Vassals depending on your Clan \
@@ -21,8 +20,8 @@
 	SEND_SIGNAL(master, BLOODSUCKER_MAKE_FAVORITE, src)
 
 /datum/antagonist/vassal/favorite/on_removal()
-	. = ..()
 	SEND_SIGNAL(master, BLOODSUCKER_LOOSE_FAVORITE, src)
+	. = ..()
 
 /datum/antagonist/vassal/favorite/pre_mindshield(mob/implanter, mob/living/mob_override)
 	return COMPONENT_MINDSHIELD_RESISTED
