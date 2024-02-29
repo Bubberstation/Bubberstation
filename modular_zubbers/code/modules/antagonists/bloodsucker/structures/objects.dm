@@ -124,7 +124,7 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
 
 	///Time it takes to embed the stake into someone's chest.
-	var/staketime = 12 SECONDS
+	var/staketime = 5 SECONDS
 	var/kills_blodsuckers = FALSE
 
 /obj/item/stake/examine_more(mob/user)
@@ -192,7 +192,7 @@
 	throwforce = 12
 	armour_penetration = 10
 	embedding = list("embed_chance" = 35, "fall_chance" = 0)
-	staketime = 10 SECONDS
+	staketime = 12 SECONDS
 
 /obj/item/stake/hardened/examine_more(mob/user)
 	. = ..()
@@ -208,7 +208,7 @@
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
 	embedding = list("embed_chance" = 65, "fall_chance" = 0)
-	staketime = 8 SECONDS
+	staketime = 15 SECONDS
 	kills_blodsuckers = TRUE
 
 /obj/item/stake/hardened/silver/examine_more(mob/user)
