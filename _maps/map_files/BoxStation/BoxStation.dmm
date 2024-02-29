@@ -36936,14 +36936,17 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/light_switch/directional/west{
+	pixel_y = -7
+	},
 /obj/machinery/button/door{
 	id = "repdo";
 	name = "Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_y = -28;
-	specialfunctions = 4
+	specialfunctions = 4;
+	pixel_x = -26;
+	pixel_y = 6
 	},
-/obj/machinery/light_switch/directional/west,
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "fJv" = (
@@ -57165,6 +57168,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
+"uVf" = (
+/obj/machinery/vending/boozeomat,
+/turf/closed/wall/r_wall,
+/area/station/command/heads_quarters/nt_rep)
 "uVy" = (
 /turf/open/floor/plating/airless,
 /area/station/security/office)
@@ -59035,7 +59042,7 @@
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "wmp" = (
-/obj/machinery/vending/dorms,
+/obj/machinery/vending/dorms/prison,
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
 "wmF" = (
@@ -84444,7 +84451,7 @@ aTK
 avD
 xPm
 fJu
-avD
+uVf
 hMP
 oXE
 pIc
