@@ -14,13 +14,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
-"aW" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "nt_rep_priv"
-	},
-/turf/open/floor/plating,
-/area/station/command/heads_quarters/nt_rep)
 "bb" = (
 /obj/machinery/door/airlock/maintenance/external{
 	name = "Transit Intersection"
@@ -108,6 +101,17 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
+/obj/item/stamp/centcom{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/stamp/denied{
+	pixel_x = 8
+	},
+/obj/item/stamp{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "df" = (
@@ -348,12 +352,22 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "gX" = (
-/obj/effect/turf_decal/tile/green,
-/obj/structure/chair/sofa/bench/left{
-	dir = 1
+/obj/machinery/button/door/directional/north{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control"
 	},
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/fore)
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/filingcabinet/medical{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
 "ha" = (
 /obj/structure/sign/departments/holy{
 	pixel_y = 30
@@ -581,12 +595,13 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "mZ" = (
-/obj/structure/grandfatherclock{
-	pixel_y = 24
+/obj/effect/turf_decal/tile/green,
+/obj/effect/landmark/start/assistant,
+/obj/structure/chair/sofa/bench/right{
+	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/turf/open/floor/iron/dark/corner,
+/area/station/hallway/primary/fore)
 "nc" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/disposalpipe/segment,
@@ -594,21 +609,11 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "ne" = (
-/obj/machinery/button/door/directional/north{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control"
+/obj/structure/grandfatherclock{
+	pixel_y = 24
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/filingcabinet/medical{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet/security{
-	pixel_x = 10
-	},
-/turf/open/floor/carpet/green,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "nv" = (
 /obj/machinery/airalarm/directional/east,
@@ -739,8 +744,7 @@
 /area/station/hallway/primary/fore)
 "qU" = (
 /obj/effect/turf_decal/tile/green,
-/obj/effect/landmark/start/assistant,
-/obj/structure/chair/sofa/bench/right{
+/obj/structure/chair/sofa/bench/left{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/corner,
@@ -1028,7 +1032,8 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "zF" = (
-/obj/machinery/airalarm/directional/north,
+/obj/structure/table/wood,
+/obj/effect/spawner/random/bureaucracy/paper,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "zR" = (
@@ -1113,8 +1118,8 @@
 /turf/open/misc/asteroid/airless,
 /area/space/nearstation)
 "CX" = (
-/obj/structure/sign/flag/galfed,
-/turf/closed/wall/r_wall,
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Da" = (
 /obj/structure/chair/sofa/bench/left{
@@ -1161,17 +1166,6 @@
 	pixel_x = -4
 	},
 /obj/structure/table/wood,
-/obj/item/stamp{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/stamp/denied{
-	pixel_x = 8
-	},
-/obj/item/stamp/centcom{
-	pixel_x = 8;
-	pixel_y = -4
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
@@ -1262,6 +1256,8 @@
 /area/station/hallway/primary/fore)
 "EX" = (
 /obj/structure/table/wood,
+/obj/effect/spawner/random/bureaucracy/paper,
+/obj/effect/spawner/random/bureaucracy/paper,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Fg" = (
@@ -1395,6 +1391,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
+"HZ" = (
+/obj/structure/sign/flag/galfed,
+/turf/closed/wall/r_wall,
+/area/station/command/heads_quarters/nt_rep)
 "Ia" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -1453,13 +1453,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
-"JB" = (
-/obj/machinery/holopad,
-/obj/structure/chair/comfy/beige{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
 "JP" = (
 /obj/machinery/camera/directional/south,
 /obj/effect/decal/cleanable/dirt,
@@ -1671,6 +1664,13 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"PQ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
+/turf/open/floor/plating,
+/area/station/command/heads_quarters/nt_rep)
 "Qy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1812,6 +1812,13 @@
 	dir = 4
 	},
 /area/station/hallway/primary/fore)
+"Vc" = (
+/obj/machinery/holopad,
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "Vp" = (
 /obj/structure/chair/comfy/barber_chair,
 /obj/effect/turf_decal/siding/white{
@@ -2770,7 +2777,7 @@ Eg
 Eg
 OO
 fx
-gX
+qU
 zb
 xV
 xV
@@ -2814,7 +2821,7 @@ Dl
 Mt
 gk
 fx
-qU
+mZ
 Ev
 qM
 vS
@@ -2900,7 +2907,7 @@ Dl
 Dl
 Dl
 zb
-aW
+PQ
 EG
 kz
 xV
@@ -2944,7 +2951,7 @@ Dl
 Gh
 XL
 zb
-mZ
+ne
 oR
 KA
 hx
@@ -2988,9 +2995,9 @@ Gh
 Gh
 XL
 zb
-zF
+CX
 ca
-JB
+Vc
 YD
 EX
 SH
@@ -3032,11 +3039,11 @@ Gh
 jY
 Gh
 zb
-ne
+gX
 DJ
 cX
 YD
-EX
+zF
 SH
 ZN
 zb
@@ -3075,7 +3082,7 @@ Gh
 Gh
 Gh
 Gh
-CX
+HZ
 yd
 OR
 cm
