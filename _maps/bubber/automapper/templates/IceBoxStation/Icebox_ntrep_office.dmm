@@ -47,14 +47,37 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/central)
+/obj/machinery/door/airlock/corporate{
+	name = "NT Consultant's Office"
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
 "i" = (
 /obj/structure/chair/office/tactical{
 	dir = 4
 	},
 /turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
+"j" = (
+/obj/machinery/door/airlock/corporate{
+	name = "NT Consultant's Office"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/obj/effect/landmark/navigate_destination/autoname,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "k" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -65,17 +88,12 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "m" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/time_clock/directional/west,
-/obj/structure/disposalpipe/trunk{
+/obj/machinery/airalarm/directional/south,
+/obj/structure/chair/comfy/beige{
 	dir = 1
 	},
-/obj/machinery/disposal/bin,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/central)
+/turf/open/floor/iron/dark/textured_large,
+/area/station/command/heads_quarters/nt_rep)
 "n" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/nanotrasen_consultant,
@@ -92,54 +110,55 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central)
 "q" = (
-/obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/time_clock/directional/west,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
-/obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/carpet/green,
-/area/station/command/heads_quarters/nt_rep)
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
 "r" = (
 /obj/structure/chair/comfy/beige{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
+"s" = (
+/obj/structure/dresser,
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
 "t" = (
-/obj/machinery/firealarm/directional/south,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
+/obj/structure/bed/double,
+/obj/item/bedsheet/centcom/double,
+/obj/machinery/light/small/blacklight/directional/east{
+	desc = "A small lighting fixture. Why is this here?"
 	},
-/turf/open/floor/iron/dark/textured_large,
+/obj/effect/decal/cleanable/cum,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "u" = (
-/obj/machinery/modular_computer/preset/command,
-/obj/machinery/light_switch/directional/east,
-/obj/machinery/button/door/directional/east{
-	pixel_y = 10;
-	id = "nt_rep_priv"
-	},
-/turf/open/floor/carpet/green,
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "v" = (
 /obj/machinery/vending/boozeomat/all_access,
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
-/obj/structure/dresser,
-/turf/open/floor/carpet/green,
-/area/station/command/heads_quarters/nt_rep)
-"x" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/dark/textured_large,
-/area/station/command/heads_quarters/nt_rep)
-"y" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/chair/greyscale{
+	dir = 8
 	},
-/turf/open/floor/iron/dark/smooth_large,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"y" = (
+/obj/machinery/photocopier,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "A" = (
 /obj/machinery/light/warm/dim/directional/west,
@@ -165,8 +184,8 @@
 	base_state = "rightsecure";
 	icon_state = "rightsecure";
 	name = "Consultant's Desk";
-	dir = 4;
-	req_access = list("cent_general")
+	req_access = list("cent_general");
+	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
@@ -177,13 +196,6 @@
 /obj/structure/sign/flag/galfed,
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
-"G" = (
-/obj/structure/chair/greyscale{
-	dir = 8
-	},
-/obj/effect/turf_decal/delivery/white,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/central)
 "H" = (
 /obj/structure/table/reinforced,
 /obj/structure/sign/calendar/directional/west,
@@ -209,10 +221,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/green,
-/area/station/command/heads_quarters/nt_rep)
-"K" = (
-/obj/machinery/photocopier,
-/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -284,43 +292,35 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central)
+"V" = (
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
 "W" = (
-/obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 8
-	},
-/obj/effect/landmark/navigate_destination/autoname,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "nt_rep_priv"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "X" = (
-/obj/machinery/airalarm/directional/south,
-/obj/structure/chair/comfy/beige{
-	dir = 1
+/obj/machinery/modular_computer/preset/command,
+/obj/machinery/light_switch/directional/east,
+/obj/machinery/button/door/directional/east{
+	pixel_y = 10;
+	id = "nt_rep_priv"
 	},
-/turf/open/floor/iron/dark/textured_large,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Y" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
-/obj/structure/bed/double,
-/obj/item/bedsheet/centcom/double,
-/obj/machinery/light/small/blacklight/directional/east{
-	desc = "A small lighting fixture. Why is this here?"
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
 	},
-/obj/effect/decal/cleanable/cum,
-/turf/open/floor/carpet/green,
+/turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 
 (1,1,1) = {"
@@ -339,7 +339,7 @@ Y
 J
 v
 C
-y
+W
 A
 a
 "}
@@ -347,16 +347,16 @@ a
 a
 P
 D
-q
+h
 Q
 L
-t
+Z
 a
 "}
 (4,1,1) = {"
 a
-w
-Z
+s
+t
 B
 n
 f
@@ -370,7 +370,7 @@ F
 o
 n
 d
-X
+m
 a
 "}
 (6,1,1) = {"
@@ -385,12 +385,12 @@ a
 "}
 (7,1,1) = {"
 a
-u
+X
 i
 T
-x
+u
 O
-K
+y
 a
 "}
 (8,1,1) = {"
@@ -399,17 +399,17 @@ a
 E
 e
 e
-W
+j
 S
 S
 "}
 (9,1,1) = {"
 a
 U
-G
-h
+w
+V
 p
 N
-m
+q
 a
 "}
