@@ -137,7 +137,7 @@
 		to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
 		return FALSE
 	// Conscious? -- We use our own (AB_CHECK_CONSCIOUS) here so we can control it more, like the error message.
-	if((check_flags & BP_CANT_USE_WHILE_UNCONSCIOUS) && user.stat <= UNCONSCIOUS)
+	if((check_flags & BP_CANT_USE_WHILE_UNCONSCIOUS) && user.stat >= UNCONSCIOUS)
 		to_chat(user, span_warning("You can't do this while you are unconcious!"))
 		return FALSE
 	// Incapacitated?
