@@ -239,8 +239,21 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "fx" = (
-/obj/machinery/airalarm/directional/north,
-/turf/open/floor/wood,
+/obj/machinery/button/door/directional/north{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/filingcabinet/medical{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "fA" = (
 /obj/structure/disposalpipe/segment,
@@ -339,11 +352,11 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "gX" = (
-/obj/machinery/holopad,
-/obj/structure/chair/comfy/beige{
-	dir = 4
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "ha" = (
 /obj/structure/sign/departments/holy{
@@ -572,11 +585,9 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "mZ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/hallway/primary/fore)
+/obj/structure/sign/flag/galfed,
+/turf/closed/wall/r_wall,
+/area/station/command/heads_quarters/nt_rep)
 "nc" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/disposalpipe/segment,
@@ -584,21 +595,15 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "ne" = (
-/obj/machinery/button/door/directional/north{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control"
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
+"nn" = (
+/obj/structure/grandfatherclock{
+	pixel_y = 24
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/filingcabinet/medical{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet/security{
-	pixel_x = 10
-	},
-/turf/open/floor/carpet/green,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "nv" = (
 /obj/machinery/airalarm/directional/east,
@@ -1008,18 +1013,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "zf" = (
-/obj/structure/lattice,
 /obj/structure/sign/warning/secure_area/directional/south,
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
-"zo" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/landmark/start/assistant,
-/obj/structure/chair/sofa/bench/right{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/fore)
 "zu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -1030,12 +1026,11 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "zF" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "nt_rep_priv"
-	},
-/turf/open/floor/plating,
-/area/station/command/heads_quarters/nt_rep)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron,
+/area/station/hallway/primary/fore)
 "zR" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/curtain/cloth/fancy/mechanical{
@@ -1118,8 +1113,11 @@
 /turf/open/misc/asteroid/airless,
 /area/space/nearstation)
 "CX" = (
-/obj/structure/sign/flag/galfed,
-/turf/closed/wall/r_wall,
+/obj/machinery/holopad,
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Da" = (
 /obj/structure/chair/sofa/bench/left{
@@ -1464,6 +1462,14 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
+"JZ" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/landmark/start/assistant,
+/obj/structure/chair/sofa/bench/right{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/corner,
+/area/station/hallway/primary/fore)
 "KA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1563,13 +1569,6 @@
 	dir = 4
 	},
 /area/station/hallway/primary/fore)
-"NV" = (
-/obj/structure/grandfatherclock{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
 "Op" = (
 /obj/machinery/light/directional/east,
 /obj/effect/decal/cleanable/dirt,
@@ -2773,7 +2772,7 @@ Eg
 Eg
 Eg
 OO
-mZ
+zF
 qU
 zb
 xV
@@ -2817,8 +2816,8 @@ Dl
 Dl
 Mt
 gk
-mZ
-zo
+zF
+JZ
 Ev
 qM
 vS
@@ -2904,7 +2903,7 @@ Dl
 Dl
 Dl
 zb
-zF
+gX
 EG
 kz
 xV
@@ -2948,7 +2947,7 @@ Dl
 Gh
 XL
 zb
-NV
+nn
 oR
 KA
 hx
@@ -2992,9 +2991,9 @@ Gh
 Gh
 XL
 zb
-fx
+ne
 ca
-gX
+CX
 YD
 EX
 SH
@@ -3036,7 +3035,7 @@ Gh
 jY
 Gh
 zb
-ne
+fx
 DJ
 cX
 YD
@@ -3079,7 +3078,7 @@ Gh
 Gh
 Gh
 Gh
-CX
+mZ
 yd
 OR
 cm
