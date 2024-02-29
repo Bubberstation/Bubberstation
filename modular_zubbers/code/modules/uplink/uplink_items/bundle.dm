@@ -5,4 +5,4 @@
 			and spies alike. Includes cameras, records, PDA server access, and a fax machine. \
 			Basic knowledge of communication systems not included. Requires power in area deployed."
 	item = /obj/item/survivalcapsule/plap
-	cost = 20
+	cost = 10
