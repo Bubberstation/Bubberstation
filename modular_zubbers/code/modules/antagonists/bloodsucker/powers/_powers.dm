@@ -17,7 +17,6 @@
 	base_background_icon_state = "vamp_power_off"
 
 	/// The text that appears when using the help verb, meant to explain how the Power changes when ranking up.
-	var/power_explanation = ""
 	///The owner's stored Bloodsucker datum
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum_power
 
@@ -183,8 +182,7 @@
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
 	if(bloodsuckerdatum_power.frenzied)
 		return
-	bloodsuckerdatum_power.bloodsucker_blood_volume -= bloodcost
-	bloodsuckerdatum_power.update_hud()
+	bloodsuckerdatum_power.AdjustBloodVolume(-bloodcost)
 
 /datum/action/cooldown/bloodsucker/proc/ActivatePower(trigger_flags)
 	active = TRUE
@@ -219,7 +217,7 @@
 	if(power_flags & BP_AM_COSTLESS_UNCONSCIOUS && owner.stat != CONSCIOUS)
 		return TRUE
 	if(bloodsuckerdatum_power)
-		bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost * seconds_per_tick)
+		bloodsuckerdatum_power.AdjustBloodVolume(-constant_bloodcost * seconds_per_tick)
 	else
 		var/mob/living/living_owner = owner
 		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
