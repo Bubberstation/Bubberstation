@@ -461,6 +461,14 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/engineering/atmos/mix)
+"ahX" = (
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control";
+	pixel_y = 8
+	},
+/turf/closed/wall,
+/area/station/command/heads_quarters/nt_rep)
 "ahZ" = (
 /turf/closed/mineral/random/stationside/asteroid/porus,
 /area/space)
@@ -4690,7 +4698,6 @@
 /obj/effect/turf_decal/trimline/red/real_red/line{
 	dir = 4
 	},
-/obj/machinery/light/directional/east,
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 8
 	},
@@ -15764,6 +15771,7 @@
 	dir = 8
 	},
 /obj/machinery/time_clock/directional/east,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "fuj" = (
@@ -32222,14 +32230,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
-"lkm" = (
-/obj/machinery/button/door/directional/west{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control";
-	pixel_y = 8
-	},
-/turf/closed/wall,
-/area/station/command/heads_quarters/nt_rep)
 "lky" = (
 /obj/machinery/holopad,
 /obj/effect/landmark/event_spawn,
@@ -54532,10 +54532,6 @@
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
-"sPu" = (
-/obj/machinery/time_clock/directional/east,
-/turf/closed/wall,
-/area/station/command/heads_quarters/qm)
 "sPy" = (
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -57541,6 +57537,10 @@
 	},
 /obj/effect/turf_decal/trimline/purple/line{
 	dir = 8
+	},
+/obj/machinery/button/door/directional/west{
+	name = "Observation Shutters";
+	id = "nt_rep_priv_2"
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
@@ -178956,7 +178956,7 @@ xZE
 rZT
 qgW
 tUb
-lkm
+ahX
 nqU
 eZB
 mvF
@@ -180238,7 +180238,7 @@ mKn
 fTd
 lqK
 vJH
-sPu
+vJH
 bEG
 vJH
 eZB
