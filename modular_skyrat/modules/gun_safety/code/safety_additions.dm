@@ -3,6 +3,7 @@
 	return
 
 // Ballistic Weapons
+
 /obj/item/gun/ballistic/give_gun_safeties()
 	AddComponent(/datum/component/gun_safety)
 
