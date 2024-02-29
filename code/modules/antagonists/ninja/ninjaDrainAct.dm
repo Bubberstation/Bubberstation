@@ -307,6 +307,7 @@
 		return
 	else if(borg_hacks_left > 0 && !borg_hacks_left == 'inf')
 		to_chat(ninja, span_danger("UPLOAD COMPLETE. [ninja.borg_hacks_left] AVAILABLE TOKENS REMAINING."))
+		borg_hacks_left -= 1
 	//ZUBBER EDIT: END - I think this works?
 	
 	spark_system.start()
