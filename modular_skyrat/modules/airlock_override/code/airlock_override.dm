@@ -103,8 +103,7 @@
 ///When the signal is received of a changed security level, check if it's orange.
 /obj/machinery/door/airlock/check_security_level(datum/source, level)
 	. = ..()
-	var/area/source_area = get_area(src)
-	if(!source_area.engineering_override_eligible)
+	if(!door_area.engineering_override_eligible)
 		return
 
 	if(isnull(req_access) && isnull(req_one_access)) // no restrictions, no problem
@@ -161,6 +160,9 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 /obj/machinery/door/airlock/proc/force_eng_override(datum/source, status)
 	SIGNAL_HANDLER
 
+	if(!door_area.engineering_override_eligible)
+		return
+
 	if(isnull(req_access) && isnull(req_one_access)) // no restrictions, no problem
 		return
 
@@ -168,9 +170,6 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 	if(!engineering_override && !fire_active)
 		normalspeed = TRUE
 		update_appearance()
-		return
-
-	if(!door_area.engineering_override_eligible)
 		return
 
 	normalspeed = FALSE
@@ -188,6 +187,9 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 /obj/machinery/door/airlock/proc/update_fire_status(datum/source, fire)
 	SIGNAL_HANDLER
 
+	if(!door_area.engineering_override_eligible)
+		return
+
 	if(isnull(req_access) && isnull(req_one_access)) // no restrictions, no problem
 		return
 
@@ -195,9 +197,6 @@ GLOBAL_VAR_INIT(force_eng_override, FALSE)
 	if(!fire_active && !engineering_override)
 		normalspeed = TRUE
 		update_appearance()
-		return
-
-	if(!door_area.engineering_override_eligible)
 		return
 
 	normalspeed = FALSE
