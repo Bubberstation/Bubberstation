@@ -3217,9 +3217,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "bdk" = (
-/obj/machinery/time_clock/directional/east,
-/turf/closed/wall,
-/area/station/command/heads_quarters/qm)
+/obj/item/kirbyplants/random,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/fore)
 "bdu" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -15756,13 +15757,15 @@
 /turf/open/floor/iron/herringbone,
 /area/station/commons/vacant_room/commissary)
 "fuh" = (
-/obj/machinery/button/door/directional/west{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control";
-	pixel_y = 8
+/obj/effect/turf_decal/trimline/red/real_red/line{
+	dir = 4
 	},
-/turf/closed/wall,
-/area/station/command/heads_quarters/nt_rep)
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 8
+	},
+/obj/machinery/time_clock/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/aft)
 "fuj" = (
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -18749,11 +18752,6 @@
 /obj/item/stock_parts/cell/high,
 /turf/open/floor/plating,
 /area/station/engineering/storage/tech)
-"guW" = (
-/obj/item/kirbyplants/random,
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/fore)
 "gvg" = (
 /obj/item/banner/engineering/mundane,
 /obj/effect/turf_decal/tile/yellow,
@@ -19157,16 +19155,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/theater)
-"gCJ" = (
-/obj/effect/turf_decal/trimline/red/real_red/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/line{
-	dir = 8
-	},
-/obj/machinery/time_clock/directional/east,
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/aft)
 "gCO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -32234,6 +32222,14 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
+"lkm" = (
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control";
+	pixel_y = 8
+	},
+/turf/closed/wall,
+/area/station/command/heads_quarters/nt_rep)
 "lky" = (
 /obj/machinery/holopad,
 /obj/effect/landmark/event_spawn,
@@ -38212,9 +38208,15 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
 "nhh" = (
-/obj/machinery/airalarm/directional/north,
-/obj/structure/filingcabinet/employment,
-/turf/open/floor/wood,
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/medical{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "nhj" = (
 /obj/structure/chair/stool/directional/north,
@@ -54530,6 +54532,10 @@
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/wood/large,
 /area/station/commons/storage/primary)
+"sPu" = (
+/obj/machinery/time_clock/directional/east,
+/turf/closed/wall,
+/area/station/command/heads_quarters/qm)
 "sPy" = (
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -178179,7 +178185,7 @@ msd
 tZb
 msd
 bFh
-gCJ
+fuh
 grI
 dPW
 pYD
@@ -178686,7 +178692,7 @@ cjF
 pGm
 bGv
 iAV
-guW
+bdk
 pGm
 ybl
 uyW
@@ -178950,7 +178956,7 @@ xZE
 rZT
 qgW
 tUb
-fuh
+lkm
 nqU
 eZB
 mvF
@@ -180232,7 +180238,7 @@ mKn
 fTd
 lqK
 vJH
-bdk
+sPu
 bEG
 vJH
 eZB

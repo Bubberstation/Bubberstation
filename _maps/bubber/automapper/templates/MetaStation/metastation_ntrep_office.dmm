@@ -7,6 +7,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
+"b" = (
+/obj/structure/chair/comfy/beige,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "d" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/port)
@@ -39,11 +43,15 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/medical{
+	pixel_x = -10
 	},
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/wood,
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "i" = (
 /obj/structure/bed/dogbed,
@@ -268,7 +276,10 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
-/obj/structure/chair/comfy/beige,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 
@@ -289,7 +300,7 @@ a
 f
 s
 v
-Z
+b
 I
 x
 d
@@ -300,7 +311,7 @@ a
 g
 k
 l
-Z
+b
 B
 j
 d
@@ -323,7 +334,7 @@ Y
 Y
 Y
 H
-T
+Z
 u
 V
 "}
