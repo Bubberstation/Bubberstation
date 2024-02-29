@@ -1512,9 +1512,9 @@
 /turf/closed/wall,
 /area/station/maintenance/port/fore)
 "alV" = (
-/obj/effect/spawner/random/trash/mess,
+/obj/effect/spawner/random/burgerstation/table,
 /turf/open/floor/plating,
-/area/station/maintenance/port/fore)
+/area/station/maintenance/aft)
 "alW" = (
 /obj/item/cigbutt/cigarbutt,
 /obj/effect/decal/cleanable/blood/old,
@@ -1626,14 +1626,7 @@
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
 "amF" = (
-/obj/machinery/computer/slot_machine{
-	balance = 15;
-	money = 500
-	},
-/obj/item/coin/iron,
-/obj/item/coin/diamond,
-/obj/item/coin/diamond,
-/obj/item/coin/diamond,
+/obj/effect/spawner/random/burgerstation/odd,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "amG" = (
@@ -1882,8 +1875,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "anL" = (
-/obj/structure/table,
-/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/burgerstation/liquid,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "anN" = (
@@ -2223,8 +2215,8 @@
 /area/station/maintenance/solars/starboard/fore)
 "apC" = (
 /obj/structure/bed/pod,
-/obj/item/bedsheet/random,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
 "apD" = (
@@ -2637,10 +2629,9 @@
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/fore)
 "arA" = (
-/obj/structure/closet,
-/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
-/area/station/maintenance/starboard/fore)
+/area/station/maintenance/starboard/aft)
 "arB" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/secondary/entry)
@@ -2955,8 +2946,7 @@
 /turf/open/floor/iron,
 /area/station/maintenance/port/fore)
 "asP" = (
-/obj/structure/chair/stool,
-/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "asQ" = (
@@ -5484,12 +5474,12 @@
 /obj/structure/table/wood,
 /obj/item/pai_card,
 /obj/item/storage/crayons,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/item/clothing/mask/balaclava{
 	pixel_x = -8;
 	pixel_y = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
 	},
 /turf/open/floor/iron/dark/side,
 /area/station/commons/dorms)
@@ -14887,6 +14877,9 @@
 /area/station/maintenance/central)
 "bjC" = (
 /obj/structure/closet/wardrobe/black,
+/obj/effect/spawner/random/maintenance,
+/obj/item/clothing/head/fedora,
+/obj/item/clothing/mask/gas/sechailer/syndicate,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "bjD" = (
@@ -17840,10 +17833,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "btq" = (
-/obj/structure/closet,
-/obj/effect/spawner/random/maintenance/two,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/directional/east,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/iron,
 /area/station/maintenance/starboard)
 "btr" = (
@@ -21512,10 +21504,9 @@
 /turf/open/floor/iron,
 /area/station/science/ordnance)
 "bFZ" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron,
-/area/station/maintenance/disposal/incinerator)
+/obj/effect/spawner/random/burgerstation/liquid,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/aft)
 "bGc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -25535,7 +25526,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "bWL" = (
-/obj/item/clothing/shoes/jackboots,
+/obj/effect/spawner/random/burgerstation/liquid,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "bWM" = (
@@ -27016,7 +27007,7 @@
 /area/station/maintenance/aft)
 "ccG" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/closet/emcloset,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "ccI" = (
@@ -27072,7 +27063,8 @@
 /area/station/maintenance/port/aft)
 "cda" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/structure/crate,
+/obj/effect/spawner/random/burgerstation/table,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "cdb" = (
@@ -27148,7 +27140,6 @@
 /obj/machinery/camera/directional/south{
 	c_tag = "Aft Starboard Solar Access"
 	},
-/obj/effect/spawner/random/structure/closet_maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "cdu" = (
@@ -27724,7 +27715,6 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/main)
 "cgy" = (
-/obj/structure/chair/stool,
 /obj/machinery/light/small/directional/north,
 /obj/structure/closet/cardboard,
 /turf/open/floor/plating,
@@ -27913,17 +27903,17 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "chz" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/random/burgerstation/blocking,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "chA" = (
-/obj/structure/reagent_dispensers/watertank,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/random/burgerstation/liquid,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "chB" = (
@@ -27936,11 +27926,10 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "chC" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/maintenance,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "chD" = (
@@ -28333,9 +28322,8 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/solars/starboard/aft)
 "cjE" = (
-/obj/structure/rack,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/burgerstation/liquid,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "cjF" = (
@@ -30934,7 +30922,7 @@
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "czh" = (
-/obj/machinery/space_heater,
+/obj/effect/spawner/random/structure/closet_maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "czk" = (
@@ -32479,8 +32467,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "cHC" = (
-/obj/structure/closet,
-/obj/effect/spawner/random/maintenance,
 /turf/open/floor/iron,
 /area/station/maintenance/starboard)
 "cHD" = (
@@ -34021,6 +34007,7 @@
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical/old/clean,
 /obj/item/toy/figure/assistant,
+/obj/item/clothing/mask/gas,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "dvz" = (
@@ -34246,6 +34233,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/commons/storage/tools)
+"dFS" = (
+/obj/effect/spawner/random/burgerstation/liquid,
+/turf/open/floor/plating,
+/area/station/maintenance/aft)
 "dGF" = (
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance/burnchamber)
@@ -34324,7 +34315,7 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "dJG" = (
-/obj/effect/spawner/random/structure/girder,
+/obj/effect/spawner/random/burgerstation/blocking,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "dJI" = (
@@ -40987,6 +40978,7 @@
 /area/station/science/lab)
 "iLJ" = (
 /obj/machinery/light/directional/east,
+/obj/structure/votebox,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/hallway/primary/central)
 "iLK" = (
@@ -41500,7 +41492,7 @@
 /area/station/security/execution/transfer)
 "jdH" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/maintenance/four,
+/obj/effect/spawner/random/burgerstation/odd,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "jei" = (
@@ -41514,8 +41506,8 @@
 /turf/open/floor/eighties,
 /area/station/maintenance/abandon_arcade)
 "jeI" = (
-/obj/structure/closet,
 /obj/effect/spawner/random/entertainment/drugs,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "jeQ" = (
@@ -43377,11 +43369,11 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/command/gateway)
 "ktt" = (
+/obj/effect/spawner/random/burgerstation/table,
 /obj/item/reagent_containers/cup/bottle/nutrient/empty{
 	pixel_x = 10;
 	pixel_y = 7
 	},
-/obj/structure/table/wood,
 /obj/item/trash/raisins,
 /turf/open/floor/iron,
 /area/station/science/ordnance)
@@ -43809,6 +43801,10 @@
 /obj/machinery/chem_mass_spec,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
+"kGD" = (
+/obj/effect/spawner/random/burgerstation/odd,
+/turf/open/floor/plating,
+/area/station/maintenance/port/aft)
 "kGI" = (
 /obj/structure/table,
 /obj/item/storage/crayons,
@@ -44326,8 +44322,7 @@
 	},
 /area/station/commons/dorms)
 "ldN" = (
-/obj/effect/mapping_helpers/burnt_floor,
-/obj/effect/spawner/random/structure/grille,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "ldO" = (
@@ -46486,6 +46481,7 @@
 /area/station/command/heads_quarters/rd)
 "mPv" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/iron,
 /area/station/maintenance/starboard)
 "mQo" = (
@@ -48909,6 +48905,11 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"oGX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/burgerstation/odd,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/fore)
 "oHk" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -49791,6 +49792,7 @@
 "ppZ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/station/maintenance/solars/starboard/aft)
 "pqf" = (
@@ -58514,6 +58516,7 @@
 /area/station/command/heads_quarters/ce)
 "vRc" = (
 /obj/structure/cable,
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "vRG" = (
@@ -60178,8 +60181,7 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "xdx" = (
-/obj/structure/closet,
-/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/burgerstation/atmos,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "xdE" = (
@@ -61480,9 +61482,8 @@
 /area/station/maintenance/fore/lesser)
 "xWD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table_frame,
 /obj/item/melee/baton/security/cattleprod,
-/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "xWL" = (
@@ -82168,7 +82169,7 @@ xzh
 xzh
 xzh
 bCq
-rFJ
+bHE
 vLX
 vLX
 cpv
@@ -82425,7 +82426,7 @@ xzh
 xzh
 xzh
 bCq
-bLu
+kGD
 vLX
 bHE
 bCq
@@ -82610,7 +82611,7 @@ xzh
 xzh
 xzh
 ali
-alV
+amC
 amG
 ano
 amC
@@ -99395,7 +99396,7 @@ sUi
 bAw
 bXZ
 bzs
-bBR
+dFS
 caK
 bRa
 bxs
@@ -99660,7 +99661,7 @@ byw
 bGJ
 bAQ
 bDX
-cjr
+bGJ
 bGJ
 wHz
 bEH
@@ -100175,7 +100176,7 @@ bzQ
 bfI
 bfI
 bfI
-bFZ
+bfI
 cmd
 bGr
 cmd
@@ -100680,7 +100681,7 @@ bZO
 hxs
 bzs
 ccG
-ciF
+alV
 bAw
 bRa
 cga
@@ -104210,7 +104211,7 @@ alP
 atx
 anf
 alP
-auD
+bWL
 anf
 alP
 aAs
@@ -104718,7 +104719,7 @@ xzh
 xzh
 xzh
 alP
-arA
+ldN
 cmr
 alP
 anf
@@ -106516,8 +106517,8 @@ xzh
 xzh
 xzh
 alO
-awF
-bWL
+ldN
+anf
 arw
 uGz
 anf
@@ -107381,7 +107382,7 @@ xzh
 xzh
 mtK
 xWD
-fEM
+cmn
 cmn
 cOT
 xzh
@@ -107637,7 +107638,7 @@ mtK
 mtK
 mtK
 mtK
-cmn
+fEM
 cmn
 cda
 cOT
@@ -109164,7 +109165,7 @@ cdR
 nLD
 dwb
 cNW
-cOe
+arA
 bhG
 cNW
 cNW
@@ -109872,7 +109873,7 @@ alP
 avF
 ilg
 auG
-fzr
+oGX
 alP
 gIC
 hSf
@@ -111224,7 +111225,7 @@ mtK
 jVl
 ciL
 cjE
-bMB
+bFZ
 clw
 cNW
 xzh
@@ -112250,7 +112251,7 @@ nXU
 bSm
 nXU
 cct
-cdu
+arA
 oHF
 cku
 clz
@@ -112763,7 +112764,7 @@ cdV
 cOe
 cNW
 cgy
-ccV
+cdV
 cNW
 xzh
 xzh
