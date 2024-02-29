@@ -3217,15 +3217,13 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "bdk" = (
-/obj/machinery/firealarm/directional/east,
-/obj/effect/turf_decal/trimline/red/real_red/line{
-	dir = 4
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control";
+	pixel_y = 8
 	},
-/obj/effect/turf_decal/trimline/brown/line{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/aft)
+/turf/closed/wall,
+/area/station/command/heads_quarters/nt_rep)
 "bdu" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -4199,7 +4197,7 @@
 "bwC" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/nanotrasen_consultant,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "bwK" = (
 /obj/structure/closet/secure_closet/medical3,
@@ -15762,10 +15760,15 @@
 /turf/open/floor/iron/herringbone,
 /area/station/commons/vacant_room/commissary)
 "fuh" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/obj/effect/turf_decal/trimline/red/real_red/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/aft)
 "fuj" = (
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -16159,6 +16162,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/machinery/door/poddoor/shutters/preopen,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/nt_rep)
 "fAY" = (
@@ -16510,9 +16514,8 @@
 /area/station/maintenance/port/central)
 "fIX" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "nt_rep_priv";
-	name = "Privacy Shutter"
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
 	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
@@ -17671,7 +17674,7 @@
 /obj/machinery/modular_computer/preset/command{
 	dir = 4
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "gan" = (
 /obj/machinery/door/airlock/public/glass{
@@ -28247,7 +28250,7 @@
 /obj/item/bedsheet/centcom/double,
 /obj/structure/bed/double,
 /obj/machinery/light/small/blacklight/directional/east,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "jWh" = (
 /turf/closed/wall/r_wall,
@@ -28382,7 +28385,7 @@
 "jYv" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station,
 /obj/item/assembly/flash/handheld,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "jYF" = (
 /obj/structure/cable,
@@ -29341,7 +29344,7 @@
 /area/station/commons/lounge)
 "knH" = (
 /obj/structure/chair/plastic,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "knN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
@@ -43833,7 +43836,8 @@
 	name = "NT Consultant's Office"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
-/turf/open/floor/carpet/royalblack,
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "pdW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -46707,7 +46711,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "qgY" = (
 /obj/machinery/airalarm/directional/south,
@@ -57714,7 +57718,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "tUf" = (
 /obj/structure/railing{
@@ -59180,13 +59184,11 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "uyW" = (
-/obj/machinery/light/directional/west,
-/obj/machinery/button/door/directional/west{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control";
-	pixel_y = 8
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "uyX" = (
@@ -66287,7 +66289,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "wSx" = (
 /obj/structure/chair/sofa/corp/right{
@@ -178164,11 +178166,11 @@ nQZ
 dGl
 rTY
 biu
-bdk
+msd
 tZb
 msd
 bFh
-msd
+fuh
 grI
 dPW
 pYD
@@ -178421,7 +178423,7 @@ tiN
 pmH
 pGm
 oHI
-ybl
+fIX
 fAQ
 fIX
 fIX
@@ -178677,7 +178679,7 @@ bGv
 iAV
 bGv
 pGm
-fuh
+ybl
 uyW
 rwR
 wSw
@@ -178939,7 +178941,7 @@ xZE
 rZT
 qgW
 tUb
-ybl
+bdk
 nqU
 eZB
 mvF
