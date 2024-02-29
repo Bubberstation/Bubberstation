@@ -12,6 +12,7 @@
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoVassal"
+	antag_panel_description = "You are a Vassal, a mortal servant of a Bloodsucker."
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
