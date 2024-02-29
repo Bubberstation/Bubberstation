@@ -236,7 +236,7 @@
 	return issynthetic(humie) ? humie.getFireLoss() : humie.getFireLoss_nonProsthetic()
 
 /datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
-	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Give or take, take your pick.", max_blood_volume, bloodsucker_blood_volume)
+	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Blood is life.", floor(bloodsucker_blood_volume), max_blood_volume, 0)
 	// 0 input is falsey
 	if(blood == null)
 		return
@@ -244,6 +244,7 @@
 	update_hud()
 
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
+	SIGNAL_HANDLER
 	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
 	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(span_warning("You have regained your heart!"))
