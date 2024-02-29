@@ -281,6 +281,12 @@
 	hacking_module.charge_message(src, drain_total)
 
 //BORG//
+//ZUBBER EDIT START
+//Set define to -1 for infinite uses
+#define max_ninja_borgs -1
+var/datum/antagonist/ninja/borg_hacks_left = max_ninja_borgs
+//ZUBBER EDIT END
+
 /mob/living/silicon/robot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!ninja || !hacking_module || (ROLE_NINJA in faction))
 		return NONE
@@ -298,17 +304,17 @@
 	//SKYRAT EDIT: ADDITION END
 	if(!do_after(ninja, 6 SECONDS, target = src))
 		return
-	//ZUBBER EDIT: START - Puts a cap on ninja's borg hacking
-	if(!borg_hacks_left)
-		var/datum/antagonist/ninja/borg_hacks_left = 'inf'
+	//ZUBBER EDIT START - Puts a cap on ninja's borg hacking
 	if(borg_hacks_left == 0)
 		to_chat(src, span_danger("UPLOAD ABORTED. SUSPICIOUS ACTIVITY DETECTED."))
 		to_chat(ninja, span_danger("UPLOAD FAILURE. TOKEN DENIED."))
 		return
-	else if(borg_hacks_left > 0 && !borg_hacks_left == 'inf')
-		to_chat(ninja, span_danger("UPLOAD COMPLETE. [ninja.borg_hacks_left] AVAILABLE TOKENS REMAINING."))
+	else if(borg_hacks_left > 0)
 		borg_hacks_left -= 1
-	//ZUBBER EDIT: END - I think this works?
+		to_chat(ninja, span_danger("UPLOAD COMPLETE. AVAILABLE TOKENS REMAINING: [borg_hacks_left]"))
+	else if(borg_hacks_left < 0)
+		to_chat(ninja, span_danger("UPLOAD COMPLETE."))
+	//ZUBBER EDIT END - It works
 	
 	spark_system.start()
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -326,7 +332,7 @@
 
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	if(!ninja_antag)
-			return
+		return
 	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
 	if(objective)
 		objective.completed = TRUE
