@@ -282,15 +282,13 @@
 
 //BORG//
 //ZUBBER EDIT START
-//Set define to -1 for infinite uses
-#define max_ninja_borgs -1
-var/datum/antagonist/ninja/borg_hacks_left = max_ninja_borgs
+//Set to negative numbers for infinite uses
+var/datum/antagonist/ninja/borg_hacks_left = -1
 //ZUBBER EDIT END
 
 /mob/living/silicon/robot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!ninja || !hacking_module || (ROLE_NINJA in faction))
 		return NONE
-
 	to_chat(src, span_danger("Warni-***BZZZZZZZZZRT*** UPLOADING SPYDERPATCHER VERSION 9.5.2..."))
 	INVOKE_ASYNC(src, PROC_REF(ninjadrain_charge), ninja, hacking_module)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -302,6 +300,7 @@ var/datum/antagonist/ninja/borg_hacks_left = max_ninja_borgs
 	modelselected["Medical"] = "/obj/item/robot_model/ninja/ninja_medical"
 	modelselected["Saboteur"] = "/obj/item/robot_model/ninja_saboteur"
 	//SKYRAT EDIT: ADDITION END
+
 	if(!do_after(ninja, 6 SECONDS, target = src))
 		return
 	//ZUBBER EDIT START - Puts a cap on ninja's borg hacking
@@ -315,7 +314,7 @@ var/datum/antagonist/ninja/borg_hacks_left = max_ninja_borgs
 	else if(borg_hacks_left < 0)
 		to_chat(ninja, span_danger("UPLOAD COMPLETE."))
 	//ZUBBER EDIT END - It works
-	
+
 	spark_system.start()
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	to_chat(src, span_danger("UPLOAD COMPLETE. NEW CYBORG MODEL DETECTED.  INSTALLING..."))
