@@ -22,6 +22,7 @@
 		return
 	for(var/i in 1 to bats_to_spawn)
 		var/mob/living/basic/bat/bat = new(get_turf(cast_on))
+		QDEL_IN(bat, cooldown_time)
 		random_step(bat, 2, 50)
 
 /mob/living/basic/bat/bloodsucker
