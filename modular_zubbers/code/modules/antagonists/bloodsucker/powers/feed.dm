@@ -84,7 +84,7 @@
 			var/mob/living/user = owner
 			user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
 			bloodsuckerdatum_power.AddHumanityLost(1)
-		bloodsuckerdatum_power.AddBloodVolume(25)
+		bloodsuckerdatum_power.AdjustBloodVolume(25)
 		DeactivatePower()
 		feed_target.death()
 		return

@@ -296,10 +296,10 @@
 	// Conversion Process
 	if(convert_progress)
 		balloon_alert(user, "spilling blood...")
-		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
+		bloodsuckerdatum.AdjustBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		if(!do_torture(user, target))
 			return FALSE
-		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
+		bloodsuckerdatum.AdjustBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		// Prevent them from unbuckling themselves as long as we're torturing.
 		target.Paralyze(1 SECONDS)
 		convert_progress--
@@ -329,7 +329,7 @@
 		balloon_alert(user, "interrupted!")
 		return
 	// Convert to Vassal!
-	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
+	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
 		remove_loyalties(target)
 		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, user, target)
