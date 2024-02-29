@@ -80,7 +80,7 @@
 /// This Power can't be used in Frenzy.
 #define BP_CANT_USE_IN_FRENZY (1<<2)
 /// This Power can't be used with a stake in you
-#define BP_CANT_USE_WHILE_STAKED (1<<3)
+#define BP_CAN_USE_WHILE_STAKED (1<<3)
 /// This Power can't be used while incapacitated
 #define BP_CANT_USE_WHILE_INCAPACITATED (1<<4)
 /// This Power can't be used while unconscious
