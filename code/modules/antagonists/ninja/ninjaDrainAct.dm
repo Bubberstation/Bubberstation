@@ -281,11 +281,6 @@
 	hacking_module.charge_message(src, drain_total)
 
 //BORG//
-//ZUBBER EDIT START
-//Set to negative numbers for infinite uses
-var/datum/antagonist/ninja/borg_hacks_left = -1
-//ZUBBER EDIT END
-
 /mob/living/silicon/robot/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
 	if(!ninja || !hacking_module || (ROLE_NINJA in faction))
 		return NONE
@@ -304,6 +299,8 @@ var/datum/antagonist/ninja/borg_hacks_left = -1
 	if(!do_after(ninja, 6 SECONDS, target = src))
 		return
 	//ZUBBER EDIT START - Puts a cap on ninja's borg hacking
+	//Set to negative numbers for infinite uses
+	var/datum/antagonist/ninja/borg_hacks_left = -1
 	if(borg_hacks_left == 0)
 		to_chat(src, span_danger("UPLOAD ABORTED. SUSPICIOUS ACTIVITY DETECTED."))
 		to_chat(ninja, span_danger("UPLOAD FAILURE. TOKEN DENIED."))
