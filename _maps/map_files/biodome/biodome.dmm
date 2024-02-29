@@ -3217,13 +3217,9 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "bdk" = (
-/obj/machinery/button/door/directional/west{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control";
-	pixel_y = 8
-	},
+/obj/machinery/time_clock/directional/east,
 /turf/closed/wall,
-/area/station/command/heads_quarters/nt_rep)
+/area/station/command/heads_quarters/qm)
 "bdu" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -15760,15 +15756,13 @@
 /turf/open/floor/iron/herringbone,
 /area/station/commons/vacant_room/commissary)
 "fuh" = (
-/obj/effect/turf_decal/trimline/red/real_red/line{
-	dir = 4
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control";
+	pixel_y = 8
 	},
-/obj/effect/turf_decal/trimline/brown/line{
-	dir = 8
-	},
-/obj/machinery/firealarm/directional/east,
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/aft)
+/turf/closed/wall,
+/area/station/command/heads_quarters/nt_rep)
 "fuj" = (
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -18755,6 +18749,11 @@
 /obj/item/stock_parts/cell/high,
 /turf/open/floor/plating,
 /area/station/engineering/storage/tech)
+"guW" = (
+/obj/item/kirbyplants/random,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/fore)
 "gvg" = (
 /obj/item/banner/engineering/mundane,
 /obj/effect/turf_decal/tile/yellow,
@@ -19158,6 +19157,16 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/theater)
+"gCJ" = (
+/obj/effect/turf_decal/trimline/red/real_red/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 8
+	},
+/obj/machinery/time_clock/directional/east,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/aft)
 "gCO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -178170,7 +178179,7 @@ msd
 tZb
 msd
 bFh
-fuh
+gCJ
 grI
 dPW
 pYD
@@ -178677,7 +178686,7 @@ cjF
 pGm
 bGv
 iAV
-bGv
+guW
 pGm
 ybl
 uyW
@@ -178941,7 +178950,7 @@ xZE
 rZT
 qgW
 tUb
-bdk
+fuh
 nqU
 eZB
 mvF
@@ -180223,7 +180232,7 @@ mKn
 fTd
 lqK
 vJH
-vJH
+bdk
 bEG
 vJH
 eZB
