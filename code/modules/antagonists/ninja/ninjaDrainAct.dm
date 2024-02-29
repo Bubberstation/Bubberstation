@@ -298,18 +298,15 @@
 	//SKYRAT EDIT: ADDITION END
 	if(!do_after(ninja, 6 SECONDS, target = src))
 		return
-	//ZUBBER EDIT: START - Makes ninjas unable to hack cyborgs if they've already completed the objective for doing so, or don't have the objective.
-	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
-	if(!ninja_antag)
-		to_chat(ninja, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
+	//ZUBBER EDIT: START - Puts a cap on ninja's borg hacking
+	if(!borg_hacks_left)
+		var/datum/antagonist/ninja/borg_hacks_left = 'inf'
+	if(borg_hacks_left == 0)
+		to_chat(src, span_danger("UPLOAD ABORTED. SUSPICIOUS ACTIVITY DETECTED."))
+		to_chat(ninja, span_danger("UPLOAD FAILURE. TOKEN DENIED."))
 		return
-	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
-	if(!objective || objective.completed == TRUE)
-		to_chat(src, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
-		to_chat(ninja, span_danger("UPLOAD FAILURE. SPYDERPATCHER TOKEN INVALID."))
-		return
-	else if(objective)
-		objective.completed = TRUE
+	else if(borg_hacks_left > 0 && !borg_hacks_left == 'inf')
+		to_chat(ninja, span_danger("UPLOAD COMPLETE. [ninja.borg_hacks_left] AVAILABLE TOKENS REMAINING."))
 	//ZUBBER EDIT: END - I think this works?
 	
 	spark_system.start()
@@ -326,16 +323,12 @@
 	model.transform_to(modelselected[choice])
 	//SKYRAT EDIT CHANGE END
 
-	/*
-	* ZUBBER EDIT: Tranplanted to higher in the proc.
-	* var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
-	*	if(!ninja_antag)
-	*		return
-	* var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
-	* ZUBBER EDIT: END
-	*/
-
-	return
+	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
+	if(!ninja_antag)
+			return
+	var/datum/objective/cyborg_hijack/objective = locate() in ninja_antag.objectives
+	if(objective)
+		objective.completed = TRUE
 
 //CARBON MOBS//
 /mob/living/carbon/ninjadrain_act(mob/living/carbon/human/ninja, obj/item/mod/module/hacker/hacking_module)
