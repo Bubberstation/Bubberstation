@@ -127,6 +127,12 @@
 	var/staketime = 12 SECONDS
 	var/kills_blodsuckers = FALSE
 
+/obj/item/stake/examine_more(mob/user)
+	. = ..()
+	. += span_notice("You can use [src] to stake someone in the chest, if they are laying down or grabbed by the neck.")
+	if(IS_BLOODSUCKER(user))
+		. += span_warning("You feel a sense of dread as you look at the [src]...")
+
 /obj/item/stake/attack(mob/living/target, mob/living/user, params)
 	. = ..()
 	if(.)
@@ -161,7 +167,7 @@
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum)
-		// If DEAD or TORPID... Kill Bloodsucker!
+		// If silver stake and DEAD or TORPOR... Kill the Bloodsucker!
 		if(target.StakeCanKillMe())
 			bloodsuckerdatum.FinalDeath()
 		else
@@ -173,7 +179,7 @@
 	return FALSE
 
 /mob/living/carbon/can_be_staked()
-	if(!(mobility_flags & MOBILITY_MOVE))
+	if(body_position == LYING_DOWN)
 		return TRUE
 	return FALSE
 
@@ -185,8 +191,12 @@
 	force = 8
 	throwforce = 12
 	armour_penetration = 10
-	embedding = list("embed_chance" = 35)
+	embedding = list("embed_chance" = 35, "fall_chance" = 0)
 	staketime = 10 SECONDS
+
+/obj/item/stake/hardened/examine_more(mob/user)
+	. = ..()
+	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
 
 /obj/item/stake/hardened/silver
 	name = "silver stake"
@@ -197,9 +207,14 @@
 	force = 9
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
-	embedding = list("embed_chance" = 65)
+	embedding = list("embed_chance" = 65, "fall_chance" = 0)
 	staketime = 8 SECONDS
 	kills_blodsuckers = TRUE
+
+/obj/item/stake/hardened/silver/examine_more(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
+		. += span_notice("You know that the [src] can cause a Final Death to a vile Bloodsucker if they are asleep or dead.")
 
 //////////////////////
 //     ARCHIVES     //
