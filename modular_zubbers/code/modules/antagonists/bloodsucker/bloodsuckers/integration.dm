@@ -8,9 +8,7 @@
     var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
     if(!bloodsuckerdatum)
         return ..()
-    var/blood_to_add = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_NORMAL)
-    if((blood_to_add - bloodsuckerdatum.bloodsucker_blood_volume) > 0)
-        bloodsuckerdatum.AddBloodVolume(blood_to_add - bloodsuckerdatum.bloodsucker_blood_volume)
+    bloodsuckerdatum.AddBloodVolume(round(reac_volume, 0.1))
 
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
