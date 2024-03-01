@@ -241,6 +241,7 @@
 		var/mob/living/carbon/human/user = owner.current
 		user?.dna?.species.regenerate_organs(user, null, TRUE)
 	clear_powers_and_stats()
+	ventrue_sired = null
 	return ..()
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
