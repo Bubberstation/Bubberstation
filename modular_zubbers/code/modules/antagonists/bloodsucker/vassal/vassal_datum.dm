@@ -180,12 +180,12 @@
 			continue
 		possible_vampires += vamp
 	if(!length(possible_vampires))
-		message_admins("[key_name_admin(usr)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
+		message_admins("[key_name_admin(admin)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
 		return
-	var/datum/mind/choice = input("Which bloodsucker should this vassal belong to?", "Bloodsucker") in possible_vampires
+	var/datum/mind/choice = tgui_input_list(admin, "Which bloodsucker should this vassal belong to?", "Bloodsucker", possible_vampires)
 	if(!choice)
 		return
-	log_admin("[key_name_admin(usr)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
+	log_admin("[key_name_admin(admin)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
 	var/datum/antagonist/bloodsucker/vampire = choice.has_antag_datum(/datum/antagonist/bloodsucker)
 	master = vampire
 	new_owner.add_antag_datum(src)
