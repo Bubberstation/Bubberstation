@@ -131,6 +131,9 @@
 
 /datum/storyteller/predictable/handle_tracks()
 
+	if(!COOLDOWN_FINISHED(src,antag_event_cooldown)) //Don't want to run an antag event then suddenly have meteors.
+		return FALSE
+
 	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
 		if(storyteller_get_antag_to_crew_ratio() < (1/crew_per_antag) && find_and_buy_event_from_track(EVENT_TRACK_ROLESET))
 			COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
