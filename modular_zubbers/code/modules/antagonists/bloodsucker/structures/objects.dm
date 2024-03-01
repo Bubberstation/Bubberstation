@@ -248,13 +248,6 @@
 	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
 	var/cooldown_time = 1 MINUTES
 
-/obj/item/book/kindred/station_loving
-
-/obj/item/book/kindred/station_loving/Initialize()
-	. = ..()
-	SSpoints_of_interest.make_point_of_interest(src)
-	AddComponent(/datum/component/stationloving, FALSE, TRUE)
-
 /obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
 	to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [starting_title]."))
 	return FALSE
@@ -319,5 +312,22 @@
 
 /obj/structure/displaycase/curator
 	desc = "This book was found inside a coffin of a long dead Curator. It is said to be able to reveal the true nature of those who feed upon mankind."
-	start_showpiece_type = /obj/item/book/kindred/station_loving
+	start_showpiece_type = /obj/item/book/kindred
 	req_access = list(ACCESS_LIBRARY)
+
+
+/// just a typepath to specify that it's monkey-owned, used for the heart thief objective
+/obj/item/organ/internal/heart/monkey
+
+/obj/item/organ/internal/heart/examine_more(mob/user)
+	. = ..()
+	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(user)
+	if(!vampire)
+		return
+	var/datum/objective/steal_n_of_type/heart_thief = locate() in vampire?.objectives
+	if(!heart_thief)
+		return
+	if(heart_thief.check_if_valid_item(src))
+		. += span_notice("This [src.name] will do for your purposes...")
+	else
+		. += span_notice("This [src.name] is of lesser quality, it won't do...")
