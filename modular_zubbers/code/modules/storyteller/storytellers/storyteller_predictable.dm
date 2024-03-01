@@ -1,10 +1,10 @@
 /datum/storyteller/predictable
 	name = "The Predictable Chaos"
 	desc = "The Predictable Chaos will attempt to spawn a lot of antagonists relative to the crew population, while also ensuring events roll every set amount of time. Expect minor events every 10 minutes, moderate events every 30 minutes, and major events every hour and a half."
-	welcome_text = "A predictable failure, Dr. Freeman."
+	welcome_text = "Waiter, more chaos! That's enough. Thank you, waiter."
 	population_min = 35
 
-	var/crew_per_antag = 10 //Basically this means for every 10 crew, spawn 1 antag. REMEMBER: This is CREW pop, NOT server pop
+	var/crew_per_antag = 20 //Basically this means for every 10 crew, spawn 1 antag. REMEMBER: This is CREW pop, NOT server pop
 
 	tag_multipliers = list(
 
@@ -91,9 +91,9 @@
 			if(current_job.faction == FACTION_STATION) //This means you're actually crew.
 				var/crew_score = 1 //You count as 1.
 				if(current_job.auto_deadmin_role_flags & DEADMIN_POSITION_SECURITY)
-					crew_score *= 1.5
+					crew_score *= 2
 				if(current_job.auto_deadmin_role_flags & DEADMIN_POSITION_HEAD)
-					crew_score *= 1.5
+					crew_score *= 1.25
 				if(antagonist_score > 0)
 					if(crew_score > 1)
 						antagonist_score *= crew_score //If you're an antagonist as an important role, then you're going to cause some chaos.
