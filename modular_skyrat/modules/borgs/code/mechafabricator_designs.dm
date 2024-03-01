@@ -61,7 +61,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING,
 	)
 
-/datum/design/inducer_upgrade
+/*/datum/design/inducer_upgrade /// BUBBERSTATION REMOVAL: Redundant code that causes bugs.
 	name = "Inducer Module"
 	id = "inducer_module"
 	construction_time = 60
@@ -74,7 +74,7 @@
 	)
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ENGINEERING,
-	)
+	)*/
 
 /datum/design/borg_shapeshifter_module
 	name = "Shapeshifting Module"
