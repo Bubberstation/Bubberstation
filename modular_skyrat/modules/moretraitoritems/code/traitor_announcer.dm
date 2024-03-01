@@ -21,7 +21,7 @@
 		balloon_alert(user, "no uses left!")
 		return
 	//build our announcement
-	var/origin = reject_bad_text(tgui_input_text(user, "Who is announcing, or where is the announcement coming from?", "Announcement Origin", get_area_name(user), max_length = 28))
+	var/origin = reject_bad_text(tgui_input_text(user, "Who is announcing, or where is the announcement coming from?", "Announcement Origin", get_area_name(user), max_length = 28)) //BUBBERSTATION CHANGE
 	if(!origin)
 		balloon_alert(user, "bad origin!")
 		return
