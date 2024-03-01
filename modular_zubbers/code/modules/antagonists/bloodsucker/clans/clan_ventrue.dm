@@ -106,7 +106,7 @@
 						powers_to_transfer += power.type
 					target.mind.remove_antag_datum(/datum/antagonist/vassal/favorite)
 				var/datum/antagonist/bloodsucker/vamp = new()
-				vamp.ventrue_sired = TRUE
+				vamp.ventrue_sired = bloodsuckerdatum
 				bloodsucker_target = target.mind.add_antag_datum(vamp)
 				bloodsucker_target.BuyPowers(powers_to_transfer)
 				// Check for the recuperate power and remove it if they have it

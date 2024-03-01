@@ -42,8 +42,8 @@
 	var/masquerade_infractions = 0
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
-	/// sired by a tremere
-	var/ventrue_sired = FALSE
+	/// sired by a ventrue
+	var/ventrue_sired
 
 	///ALL Powers currently owned
 	var/list/datum/action/cooldown/bloodsucker/powers = list()
@@ -174,6 +174,8 @@
 
 	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
 	UnregisterSignal(owner.current, COMSIG_MOB_HUD_CREATED)
+	update_hud()
+	update_blood_hud()
 
 /// Override some properties of incompatible species
 /datum/antagonist/bloodsucker/proc/on_species_gain(mob/living/carbon/human/target, datum/species/current_species, datum/species/old_species)
@@ -210,7 +212,7 @@
 	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
 	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
-	if(ventrue_sired) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
+	if(ventrue_sired) // sired bloodsuckers shouldnt be getting the same benefits as Bloodsuckers.
 		bloodsucker_level_unspent = 0
 		show_in_roundend = FALSE
 	else
@@ -513,7 +515,7 @@
 			conversion_objective.objective_name = "Optional Objective"
 			objectives += conversion_objective
 		if(2) // Heart Thief Objective
-			var/datum/objective/bloodsucker/heartthief/heartthief_objective = new
+			var/datum/objective/steal_n_of_type/hearts/heartthief_objective = new
 			heartthief_objective.owner = owner
 			heartthief_objective.objective_name = "Optional Objective"
 			objectives += heartthief_objective
