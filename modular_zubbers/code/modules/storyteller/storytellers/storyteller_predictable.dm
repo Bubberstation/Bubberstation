@@ -38,10 +38,12 @@
 	var/last_crew_score = 0
 	var/last_antag_score = 0
 
+	var/antag_event_delay = 5 MINUTES
 	var/mundane_event_delay = 10 MINUTES
 	var/moderate_event_delay = 30 MINUTES
 	var/major_event_delay = 90 MINUTES
 
+	COOLDOWN_DECLARE(antag_event_cooldown)
 	COOLDOWN_DECLARE(mundane_event_cooldown)
 	COOLDOWN_DECLARE(moderate_event_cooldown)
 	COOLDOWN_DECLARE(major_event_cooldown)
@@ -129,13 +131,10 @@
 
 /datum/storyteller/predictable/handle_tracks()
 
-	. = FALSE
-
 	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
-
 		if(storyteller_get_antag_to_crew_ratio() < (1/crew_per_antag) && find_and_buy_event_from_track(EVENT_TRACK_ROLESET))
-			. = TRUE
-
+			COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
+			return TRUE
 		if(COOLDOWN_FINISHED(src,major_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MAJOR))
 			COOLDOWN_START(src, major_event_cooldown, major_event_delay)
 			COOLDOWN_START(src, moderate_event_cooldown, moderate_event_delay)
@@ -150,3 +149,5 @@
 	if(COOLDOWN_FINISHED(src,mundane_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MUNDANE))
 		COOLDOWN_START(src, mundane_event_cooldown, mundane_event_delay)
 		return TRUE
+
+	return FALSE
