@@ -222,7 +222,7 @@
 
 /**
  *	# Archives of the Kindred:
- *
+ *+
  *	A book that can only be used by Curators.
  *	When used on a player, after a short timer, will reveal if the player is a Bloodsucker, including their real name and Clan.
  *	This book should not work on Bloodsuckers using the Masquerade ability.
@@ -247,12 +247,12 @@
 	///Boolean on whether the book is currently being used, so you can only use it on one person at a time.
 	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
 	var/cooldown_time = 1 MINUTES
-	var/in_use = FALSE
 
 /obj/item/book/kindred/station_loving
 
 /obj/item/book/kindred/station_loving/Initialize()
 	. = ..()
+	SSpoints_of_interest.make_point_of_interest(src)
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
 /obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
@@ -262,7 +262,7 @@
 ///Attacking someone with the book.
 /obj/item/book/kindred/afterattack(mob/living/target, mob/living/user, flag, params)
 	. = ..()
-	if(!user.can_read(src) || in_use || (target == user) || !ismob(target))
+	if(!user.can_read(src) || (target == user) || !ismob(target))
 		return
 	if(!HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
 		if(IS_BLOODSUCKER(user))
