@@ -77,7 +77,7 @@
 	batform.Grant(vassaldatum.owner.current)
 
 /datum/bloodsucker_clan/tremere/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	var/datum/action/cooldown/spell/shapeshift/bat/batform = locate(/datum/action/cooldown/spell/shapeshift/bat) in vassaldatum.owner.current.actions
+	var/datum/action/cooldown/spell/shapeshift/bat/batform = locate() in vassaldatum.owner.current.actions
 	batform.Remove(vassaldatum.owner.current)
 
 /datum/bloodsucker_clan/tremere/on_vassal_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
