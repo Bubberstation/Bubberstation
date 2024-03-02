@@ -63,3 +63,18 @@
 	victim.death(FALSE)
 
 	return TRUE
+
+// Laughter Demon. They're basically hugboxed slaughter demons (hence the name), but are still really powerful.
+// While you're basically put in gay baby jail until it's killed, it's not TOO bad, but it should still be limited to 1.
+/datum/spellbook_entry/item/hugbottle
+	cost = 2
+	limit = 1
+
+// High Frequency Spellblade. Holy fuck just looking at the code is nonsense holy fuck. Can slash through walls, and also gib people who are dead. Absolutely silly.
+// Replaces it with a banhammer that can send you to the perma brig because that's funnier.
+/datum/spellbook_entry/item/highfrequencyblade
+	name = "REAL Banhammer"
+	desc = "A completely REAL Banhammer that sends anyone it hits to the void for a short period of time. Stonger hits send people to the station's permabrig, if one exists."
+	item_path = /obj/item/banhammer/real
+	category = "Offensive"
+	cost = 2
