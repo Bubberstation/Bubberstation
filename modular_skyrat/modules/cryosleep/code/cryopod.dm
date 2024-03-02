@@ -279,11 +279,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 				if(!(affected_contract.contract == objective))
 					continue
 				var/contract_id = affected_contract.id
-				affected_contractor_hub.create_single_contract(objective.owner, affected_contract.payout_type)
 				affected_contractor_hub.assigned_contracts[contract_id].status = CONTRACT_STATUS_ABORTED
 				if (affected_contractor_hub.current_contract == objective)
 					affected_contractor_hub.current_contract = null
-				to_chat(objective.owner.current, "<BR>[span_userdanger("Contract target out of reach. Contract rerolled.")]")
+				to_chat(objective.owner.current, "<BR>[span_userdanger("Contract target out of reach. Contract aborted.")]")
 				break
 		else if(istype(objective.target) && objective.target == mob_occupant.mind)
 			var/old_target = objective.target
@@ -388,7 +387,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	GLOB.joined_player_list -= stored_ckey
 
 	handle_objectives()
-	mob_occupant.ghostize()
+	mob_occupant.ghostize(FALSE) // BUBBER EDIT FIX - Added FALSE.You are going to get qdelled. You should not keep your mind linked. Cmon skyrat you could do better
 	QDEL_NULL(occupant)
 	open_machine()
 	name = initial(name)
@@ -497,7 +496,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 			return
 		to_chat(user, span_notice("You tuck [occupant.name] into their pod!"))
 		qdel(weapon)
-		user.add_mood_event("tucked", /datum/mood_event/tucked_in, occupant)
+		user.add_mood_event("tucked", /datum/mood_event/tucked_in, 1, occupant)
 		tucked = TRUE
 
 /obj/machinery/cryopod/update_icon_state()

@@ -9,12 +9,13 @@ import {
   Stack,
   Table,
 } from 'tgui/components';
+
 import { CharacterPreview } from '../common/CharacterPreview';
 import { EditableText } from '../common/EditableText';
-import { CrimeWatcher } from './CrimeWatcher';
-import { RecordPrint } from './RecordPrint';
 import { CRIMESTATUS2COLOR, CRIMESTATUS2DESC } from './constants';
+import { CrimeWatcher } from './CrimeWatcher';
 import { getSecurityRecord } from './helpers';
+import { RecordPrint } from './RecordPrint';
 import { SecurityRecordsData } from './types';
 
 /** Views a selected record. */
@@ -106,7 +107,6 @@ const RecordInfo = (props) => {
               {name}
             </Table.Cell>
           }
-          wrap
         >
           <LabeledList>
             <LabeledList.Item
@@ -198,12 +198,12 @@ const RecordInfo = (props) => {
             </LabeledList.Item>
             {/* SKYRAT EDIT START - RP Records (Not pretty but it's there) */}
             <LabeledList.Item label="General Records">
-              <Box wrap maxWidth="100%" preserveWhitespace>
+              <Box maxWidth="100%" preserveWhitespace>
                 {past_general_records || 'N/A'}
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Past Security Records">
-              <Box wrap maxWidth="100%" preserveWhitespace>
+              <Box maxWidth="100%" preserveWhitespace>
                 {past_security_records || 'N/A'}
               </Box>
             </LabeledList.Item>
