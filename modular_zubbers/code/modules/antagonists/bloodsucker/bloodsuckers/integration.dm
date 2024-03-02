@@ -6,9 +6,11 @@
 
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
-	if(!bloodsuckerdatum)
+	if(!bloodsuckerdatum || !bloodsuckerdatum.my_clan)
 		return ..()
-	bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+	if(bloodsuckerdatum.my_clan == CLAN_VENTRUE && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_NORMAL)
+		return ..()
+	bloodsuckerdatum.AddBloodVolume(round(reac_volume, 0.1))
 
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
