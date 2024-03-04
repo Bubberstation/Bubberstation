@@ -1,3 +1,3 @@
 /datum/species/xeno
 	mutant_organs = list()
-	heatmod = 0
+	heatmod = 1
