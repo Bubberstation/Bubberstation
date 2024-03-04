@@ -9,7 +9,7 @@
 	speed = 0
 	maxHealth = 100
 	light_on = FALSE
-	light_system = OVERLAY_LIGHT
+	light_system = MOVABLE_LIGHT // BUBBER EDIT - Virtual Pets - Original: OVERLAY_LIGHT
 	light_range = 6
 	light_color = "#64bee1"
 	health = 100
