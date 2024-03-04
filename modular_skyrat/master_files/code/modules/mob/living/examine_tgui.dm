@@ -89,7 +89,7 @@
 		ooc_notes += holder_human.dna.features["ooc_notes"]
 		//BUBBER EDIT BEGIN: Updates custom species and custom species lore
 		//Check if the mob is obscured, then continue to headshot and species lore
-		if(obscured)
+		if(obscured || !human_holder.dna)
 			custom_species = "Obscured"
 			custom_species_lore = "Obscured"
 			flavor_text = "Obscured"
