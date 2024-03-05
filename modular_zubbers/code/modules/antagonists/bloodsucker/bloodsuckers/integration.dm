@@ -8,10 +8,9 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum || !/datum/bloodsucker_clan)
 		return ..()
-	if(/datum/bloodsucker_clan != "Venture Clan" && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_NORMAL && reac_volume >= 0)
+	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_NORMAL && reac_volume >= 0)
 		return ..()
 	bloodsuckerdatum.AddBloodVolume(round(reac_volume, 0.1))
-
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
 	. = ..()
