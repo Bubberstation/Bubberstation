@@ -18,4 +18,4 @@
 	name = "Station"
 	specific_transport_id = MOONSTATION_LINE_1
 	platform_code = MOONSTATION_MAIN_STATION
-	tgui_icons = list("Station" = "plane-departure")
+	tgui_icons = list("Station" = "arrow-right-to-city")
