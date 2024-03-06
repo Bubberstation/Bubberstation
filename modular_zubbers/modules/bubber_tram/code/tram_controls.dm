@@ -1,9 +1,7 @@
 /obj/machinery/computer/tram_controls/moonstation
-	name = "tram controls"
-	desc = "An interface for the tram that lets you tell the tram where to go and hopefully it makes it there. I'm here to describe the controls to you, not to inspire confidence."
+	name = "moon rover controls"
+	desc = "Unlike the iconic moon rover of yesteryears, our tram is here to remind you that even in space, mediocrity finds a way."
 	icon = 'modular_zubbers/modules/bubber_tram/icons/tram_controls.dmi'
-	icon_state = "tram_controls"
-	base_icon_state = "tram"
 	icon_screen = MOONSTATION_LINE_1
 	specific_transport_id = MOONSTATION_LINE_1
 
