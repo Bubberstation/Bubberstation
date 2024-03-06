@@ -1,7 +1,7 @@
 //This is for Moonstation.
 
 /datum/controller/subsystem/mapping/setup_rivers()
-	. = ,.()
+	. = ..()
 	// Generate mining ruins
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	for (var/lava_z in lava_ruins)
