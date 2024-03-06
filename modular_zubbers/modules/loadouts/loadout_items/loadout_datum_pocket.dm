@@ -26,3 +26,7 @@
 /datum/loadout_item/pocket_items/transpride
 	name = "Trans Flag"
 	item_path = /obj/item/sign/flag/pride/trans
+
+/datum/loadout_item/pocket_items/nif_hud_adapter
+	name = "Scrying Lens Adapter"
+	item_path = /obj/item/nif_hud_adapter
