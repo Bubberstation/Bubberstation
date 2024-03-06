@@ -42721,10 +42721,7 @@
 "mWO" = (
 /obj/structure/tram,
 /obj/structure/transport/linear/tram,
-/obj/machinery/transport/tram_controller{
-	configured_transport_id = "moon_1";
-	name = "moon rover controller"
-	},
+/obj/machinery/transport/tram_controller/moonstation,
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "mWT" = (
@@ -79242,7 +79239,8 @@
 /area/station/engineering/atmos/project)
 "ybe" = (
 /obj/machinery/door/airlock/tram{
-	transport_linked_id = "moon_1"
+	transport_linked_id = "moon_1";
+	name = "Moon Rover"
 	},
 /obj/structure/transport/linear/tram,
 /obj/structure/thermoplastic/light,
