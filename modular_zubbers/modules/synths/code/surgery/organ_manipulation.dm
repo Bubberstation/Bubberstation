@@ -86,3 +86,11 @@
 		/datum/surgery_step/mechanic_close,
 	)
 	is_closer = TRUE
+
+/datum/surgery_step/manipulate_organs/internal/mechanic
+	implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 100, /obj/item/kitchen/fork = 35)
+	name = "manipulate prosthetic organs (hemostat or wirecutter/organ)"
+
+/datum/surgery_step/manipulate_organs/external/mechanic
+	implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_WIRECUTTER = 100, /obj/item/kitchen/fork = 35)
+	name = "manipulate prosthetic features (hemostat or wirecutter/feature)"

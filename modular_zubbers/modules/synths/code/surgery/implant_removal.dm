@@ -1,7 +1,7 @@
 /datum/surgery_step/extract_implant/robot
-	name = "extract implant (crowbar)"
+	name = "extract implant (wirecutters)"
 	implements = list(
-		TOOL_CROWBAR = 100,
+		TOOL_WIRECUTTER = 100,
 		TOOL_HEMOSTAT = 65,
 		/obj/item/kitchen/fork = 35)
 
