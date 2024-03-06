@@ -12,10 +12,10 @@
 	name = "Arrivals Terminal"
 	specific_transport_id = MOONSTATION_LINE_1
 	platform_code = MOONSTATION_TERMINAL
-	tgui_icons = list("Arrivals Terminal" = "plane-arrival", "Cryogenic Sleeprs" = "bed-pulse")
+	tgui_icons = list("Arrivals Terminal" = "plane-arrival", "Cryogenic Sleepers" = "bed-pulse")
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/moonstation/station
 	name = "Main Station"
 	specific_transport_id = MOONSTATION_LINE_1
 	platform_code = MOONSTATION_MAIN_STATION
-	tgui_icons = list("Main Station" = "arrow-right-to-city", "Departures" = "plane-departure")
+	tgui_icons = list("Main Station" = "arrow-right-to-city", "Departures/Evac" = "plane-departure")
