@@ -6,7 +6,7 @@
 
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
-	if(!bloodsuckerdatum || !/datum/bloodsucker_clan)
+	if(!bloodsuckerdatum)
 		return ..()
 	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_NORMAL && reac_volume >= 0)
 		return ..()
