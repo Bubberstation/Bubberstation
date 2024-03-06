@@ -100,12 +100,7 @@
 	pixel_x = 24;
 	pixel_y = 10
 	},
-/obj/structure/table/wood,
-/obj/item/radio/off,
-/obj/item/taperecorder,
-/obj/item/reagent_containers/cup/glass/bottle/vodka/badminka,
-/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass,
-/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass,
+/obj/machinery/pdapainter/security,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "abn" = (
@@ -212,12 +207,6 @@
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/mapping_helpers/requests_console/assistance,
-/obj/structure/table/wood,
-/obj/item/storage/box/seccarts{
-	pixel_x = 3;
-	pixel_y = 2
-	},
-/obj/item/storage/box/deputy,
 /obj/machinery/button/door{
 	id = "hosspace";
 	name = "Space Shutters Control";
@@ -225,18 +214,17 @@
 	pixel_y = 34
 	},
 /obj/item/radio/intercom/directional/west,
-/obj/item/storage/box/holobadge/hos,
+/obj/structure/table/wood,
+/obj/machinery/fax{
+	fax_name = "Head of Security's Office";
+	name = "Head of Security's Fax Machine"
+	},
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "abU" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/computer/security/hos,
-/turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/hos)
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/security/prison)
 "abV" = (
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
@@ -244,11 +232,9 @@
 /obj/structure/reagent_dispensers/wall/peppertank{
 	pixel_x = 30
 	},
-/obj/structure/table/wood,
 /obj/machinery/airalarm/directional/north,
-/obj/machinery/fax{
-	fax_name = "Head of Security's Office";
-	name = "Head of Security's Fax Machine"
+/obj/machinery/computer/security/hos{
+	dir = 8
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
@@ -292,11 +278,18 @@
 /obj/machinery/camera/directional/west{
 	c_tag = "Head of Security's Office"
 	},
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
 /obj/structure/table/wood,
 /obj/machinery/newscaster/directional/west,
+/obj/item/storage/box/deputy{
+	pixel_x = -5
+	},
+/obj/item/storage/box/holobadge/hos{
+	pixel_x = 5
+	},
+/obj/item/storage/box/seccarts{
+	pixel_x = 1;
+	pixel_y = 2
+	},
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "act" = (
@@ -361,31 +354,32 @@
 /area/station/service/bar)
 "acQ" = (
 /obj/structure/table/wood,
-/obj/item/folder/red,
-/obj/item/stamp/head/hos,
-/obj/item/clothing/accessory/badge/holo/hos,
-/turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/hos)
-"acR" = (
-/obj/structure/table/wood,
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = -4;
-	pixel_y = 10;
-	start_on = 0
-	},
+/obj/item/pen,
+/obj/item/folder/red,
+/obj/item/stamp/head/hos,
+/turf/open/floor/carpet/red,
+/area/station/command/heads_quarters/hos)
+"acR" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "acS" = (
-/obj/item/book/manual/wiki/security_space_law,
 /obj/structure/table/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 4
+	},
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/item/clothing/accessory/badge/holo/hos{
+	pixel_x = -6
 	},
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
@@ -52184,11 +52178,9 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "qYD" = (
-/obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron/dark/side{
-	dir = 4
-	},
-/area/station/security/prison)
+/obj/item/taperecorder,
+/turf/open/floor/carpet/red,
+/area/station/command/heads_quarters/hos)
 "qYR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/east,
@@ -57808,6 +57800,7 @@
 	dir = 9
 	},
 /obj/machinery/light/directional/west,
+/obj/machinery/photocopier,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "vmm" = (
@@ -87122,7 +87115,7 @@ acd
 pVi
 aGS
 kev
-qYD
+uWe
 awO
 uWe
 xGI
@@ -87379,7 +87372,7 @@ acd
 gRm
 aGS
 kev
-sCd
+abU
 eLs
 sCd
 skT
@@ -94835,7 +94828,7 @@ kTl
 tqp
 abr
 qqw
-abV
+qYD
 acS
 cVN
 mVh
@@ -95091,7 +95084,7 @@ oyM
 abV
 qIc
 vjN
-abU
+qqw
 act
 qqw
 acu
