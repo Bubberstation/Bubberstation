@@ -22,6 +22,7 @@
 		"Artist",
 		"Businessman",
 		"Businesswoman",
+		"Butler",
 		"Civilian",
 		"Entertainer",
 		"Freelancer",
