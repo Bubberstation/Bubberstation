@@ -34003,8 +34003,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/storage/toolbox/mechanical/old/clean,
 /obj/item/toy/figure/assistant,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
@@ -55548,8 +55551,9 @@
 /area/station/hallway/secondary/exit)
 "tzz" = (
 /obj/effect/spawner/random/burgerstation/blocking,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/door/poddoor{
+	id = "maint3"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "tzD" = (
@@ -59132,10 +59136,6 @@
 /area/station/security/prison)
 "wkD" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
 /obj/item/storage/toolbox/electrical{
 	pixel_x = -2;
 	pixel_y = 6
