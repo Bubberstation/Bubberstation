@@ -44,6 +44,11 @@
 	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
 //acts like a proper helmet now
 
+/datum/loadout_item/head/idmahelmet
+	name = "IDMA armbands"
+	item_path = /obj/item/clothing/accessory/armband/idmaarmband
+	ckeywhitelist = IDMA_CKEY_WHITELIST
+
 /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	name = "ironmoon service helmet."
 	desc = "A helmet worn by the romulus expeditionary force."
@@ -128,3 +133,20 @@
 	icon_state = "romulushood"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+
+/obj/item/clothing/accessory/armband/idmaarmband
+	name = "ironmoon police armband"
+	desc = "A fancy red armband normally worn by the romulus federation police"
+	icon_state = "romuluspolice"
+	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+
+
+/obj/item/toy/plush/especiallystrange
+	name = "ironmoon tajaran plushie"
+	desc = "A small plushie based on the thousand tajaran volunteer, this one in particular seems to be a gun maintainer."
+	icon_state = "travian"
+	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
+	attack_verb_continuous = list("cuddles", "meows", "hisses")
+	attack_verb_simple = list("cuddle", "meow", "hiss")
+	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
