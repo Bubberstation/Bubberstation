@@ -222,9 +222,11 @@
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "abU" = (
-/obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron/dark,
-/area/station/security/prison)
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/arcadeticket,
+/obj/item/stack/arcadeticket,
+/turf/open/floor/eighties,
+/area/station/maintenance/abandon_arcade)
 "abV" = (
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
@@ -21975,6 +21977,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/collectable/kitty,
 /obj/machinery/light/small/directional/north,
+/obj/structure/sign/poster/contraband/pwr_game/directional/north,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_arcade)
 "bHD" = (
@@ -26018,6 +26021,14 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/cup/soda_cans/pwr_game{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/soda_cans/pwr_game{
+	pixel_x = 8;
+	pixel_y = 1
+	},
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_arcade)
 "bYz" = (
@@ -34002,13 +34013,13 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/toy/figure/assistant,
+/obj/effect/spawner/random/burgerstation/table,
 /obj/item/storage/toolbox/mechanical{
 	pixel_x = -2;
 	pixel_y = -1
 	},
 /obj/item/clothing/mask/gas,
+/obj/item/toy/figure/assistant,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "dvz" = (
@@ -39545,6 +39556,7 @@
 /obj/structure/table/wood,
 /obj/item/coin/antagtoken,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/arcadeticket/thirty,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_arcade)
 "hGN" = (
@@ -40248,9 +40260,9 @@
 /turf/open/floor/iron,
 /area/station/maintenance/port/aft)
 "igm" = (
-/obj/effect/spawner/random/structure/closet_empty/crate/with_loot,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/aft)
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/security/prison)
 "igy" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
 /turf/open/floor/grass,
@@ -41551,6 +41563,7 @@
 "jeB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/stack/arcadeticket,
 /turf/open/floor/eighties,
 /area/station/maintenance/abandon_arcade)
 "jeI" = (
@@ -42182,8 +42195,7 @@
 /area/station/maintenance/port/aft)
 "jyo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/head/collectable/beret,
-/obj/structure/table/wood,
+/obj/machinery/vending/cola/pwr_game,
 /turf/open/floor/eighties,
 /area/station/maintenance/abandon_arcade)
 "jzb" = (
@@ -43350,7 +43362,6 @@
 "kqs" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/security/prison)
@@ -59429,6 +59440,11 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/service/library)
+"wvH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/arcadeticket,
+/turf/open/floor/eighties,
+/area/station/maintenance/abandon_arcade)
 "wvS" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 10
@@ -85399,7 +85415,7 @@ bxy
 bxy
 bxy
 bxy
-fQR
+wvH
 fQR
 cBw
 fQR
@@ -85659,7 +85675,7 @@ bOK
 gZj
 gZj
 isC
-fQR
+abU
 bCq
 hjX
 xap
@@ -87372,7 +87388,7 @@ acd
 gRm
 aGS
 kev
-abU
+igm
 eLs
 sCd
 skT
@@ -113423,7 +113439,7 @@ xzh
 xzh
 xzh
 cNW
-igm
+arA
 cOe
 cae
 cOe
