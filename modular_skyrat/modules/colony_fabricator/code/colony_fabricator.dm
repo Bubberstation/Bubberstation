@@ -12,7 +12,6 @@
 	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	light_power = 5
-	charges_tax = FALSE
 	allowed_buildtypes = COLONY_FABRICATOR
 	/// The item we turn into when repacked
 	var/repacked_type = /obj/item/flatpacked_machine
@@ -33,27 +32,21 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
-/obj/machinery/rnd/production/colony_lathe/user_try_print_id(design_id, print_quantity)
+/obj/machinery/rnd/production/colony_lathe/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
+	if (. && action == "build")
+		soundloop.start()
+		set_light(l_range = 1.5)
+		icon_state = "colony_lathe_working"
+		update_appearance()
 
-	if(!.)
-		return
-
-	soundloop.start()
-	set_light(l_range = 1.5)
-	icon_state = "colony_lathe_working"
-	update_appearance()
-
-/obj/machinery/rnd/production/colony_lathe/do_print(path, amount)
+/obj/machinery/rnd/production/colony_lathe/finalize_build()
 	. = ..()
 	soundloop.stop()
 	set_light(l_range = 0)
 	icon_state = base_icon_state
 	update_appearance()
 	flick("colony_lathe_finish_print", src)
-
-/obj/machinery/rnd/production/colony_lathe/calculate_efficiency()
-	efficiency_coeff = 1
 
 // We take from all nodes even unresearched ones
 /obj/machinery/rnd/production/colony_lathe/update_designs()
@@ -93,13 +86,13 @@
 	give_deployable_component()
 	give_manufacturer_examine()
 
+/// Adds the deployable component, so that it can be overridden in case that's wanted
+/obj/item/flatpacked_machine/proc/give_deployable_component()
+	AddComponent(/datum/component/deployable, deploy_time, type_to_deploy)
+
 /// Adds the manufacturer examine element to the flatpack machine, but can be overridden in the future
 /obj/item/flatpacked_machine/proc/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
-
-/// Adds the deployable component, in case we want to change this stuff later
-/obj/item/flatpacked_machine/proc/give_deployable_component()
-	AddComponent(/datum/component/deployable, deploy_time, type_to_deploy)
 
 /obj/item/borg/apparatus/sheet_manipulator/Initialize(mapload)
 	. = ..()

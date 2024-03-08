@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
+GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NEW PATHS FROM THE COMMENTED PARTS
 	/obj/item/aicard/aitater = 10,
 	/obj/item/ammo_box/foambox/riot = 50,
 	list(
@@ -19,19 +19,19 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/ammo_casing/shotgun/express = 1,
 		/obj/item/ammo_casing/shotgun/flechette = 1,
 		/obj/item/ammo_casing/shotgun/frag12 = 1,
-		/obj/item/ammo_casing/shotgun/honk = 25,
-		/obj/item/ammo_casing/shotgun/hp = 1,
+//		/obj/item/ammo_casing/shotgun/honk = 25,
+//		/obj/item/ammo_casing/shotgun/hp = 1,
 		/obj/item/ammo_casing/shotgun/hunter = 1,
-		/obj/item/ammo_casing/shotgun/iceblox = 1,
+//		/obj/item/ammo_casing/shotgun/iceblox = 1,
 		/obj/item/ammo_casing/shotgun/improvised = 200,
 		/obj/item/ammo_casing/shotgun/incapacitate = 1,
 		/obj/item/ammo_casing/shotgun/incendiary = 1,
 		/obj/item/ammo_casing/shotgun/ion = 1,
 		/obj/item/ammo_casing/shotgun/laserslug = 1,
 		/obj/item/ammo_casing/shotgun/magnum = 1,
-		/obj/item/ammo_casing/shotgun/pt20 = 1,
+//		/obj/item/ammo_casing/shotgun/pt20 = 1,
 		/obj/item/ammo_casing/shotgun/pulverizer = 1,
-		/obj/item/ammo_casing/shotgun/rip = 1,
+//		/obj/item/ammo_casing/shotgun/rip = 1,
 		/obj/item/ammo_casing/shotgun/rubbershot = 100,
 		/obj/item/ammo_casing/shotgun/stunslug = 25,
 		/obj/item/ammo_casing/shotgun/techshell = 75

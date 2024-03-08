@@ -12,7 +12,7 @@
 	icon_state = "sleeper_s"
 	prompt_name = "Dauntless Personnel"
 	you_are_text = "You are a syndicate Operative, employed on a top secret spy vessel hidden on lavaland"
-	flavour_text = "Unfortinately, your hated enemy, NanoTrasen, has started mining in this sector. Continue working the best you can, and keep a low profile"
+	flavour_text = "Unfortunately, your hated enemy, NanoTrasen, has started mining in this sector. Continue working the best you can, and keep a low profile"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE

@@ -4,20 +4,22 @@
  * @license MIT
  */
 
-import DOMPurify from 'dompurify';
 import { storage } from 'common/storage';
+import DOMPurify from 'dompurify';
+
 import {
-  loadSettings,
-  updateSettings,
   addHighlightSetting,
+  loadSettings,
   removeHighlightSetting,
   updateHighlightSetting,
+  updateSettings,
 } from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
 import {
   addChatPage,
   changeChatPage,
   changeScrollTracking,
+  clearChat,
   loadChat,
   rebuildChat,
   removeChatPage,
@@ -187,6 +189,10 @@ export const chatMiddleware = (store) => {
     }
     if (type === saveChatToDisk.type) {
       chatRenderer.saveToDisk();
+      return;
+    }
+    if (type === clearChat.type) {
+      chatRenderer.clearChat();
       return;
     }
     return next(action);
