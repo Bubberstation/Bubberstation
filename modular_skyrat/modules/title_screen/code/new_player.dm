@@ -12,6 +12,9 @@
 	if(client.interviewee)
 		return FALSE
 
+	if(!client.maturity_prompt_whitelist && !SSmaturity_guard.age_check(src))
+		return
+
 	if(href_list["observe"])
 		play_lobby_button_sound()
 		make_me_an_observer()
@@ -31,6 +34,13 @@
 		play_lobby_button_sound()
 		ViewManifest()
 		return
+
+	//BUBBER EDIT ADDITION BEGIN: ADDS CHARACTER DIRECTORY TO LOBBY
+	if(href_list["character_directory"])
+		play_lobby_button_sound()
+		client.show_character_directory()
+		return
+	//BUBBER EDIT ADDITION END
 
 /* 	if(href_list["toggle_antag"]) // BUBBER EDIT
 		play_lobby_button_sound()
