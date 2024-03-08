@@ -44,9 +44,9 @@
 
 /obj/item/clothing/gloves/color/black/security/Initialize(mapload)
 	unique_reskin["RedSec Variant"] = list(
-			RESKIN_ICON = 'icons/obj/clothing/gloves.dmi',
-			RESKIN_ICON_STATE = "black",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/hands.dmi'
+			RESKIN_ICON = 'modular_zubbers/icons/obj/clothing/gloves.dmi',
+			RESKIN_ICON_STATE = "redsec",
+			RESKIN_WORN_ICON_STATE = "maagloves",
 		)
 	. = ..()
 
@@ -63,6 +63,37 @@
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
 	unique_reskin["RedSec Variant"] = list(
 			RESKIN_ICON = 'icons/obj/clothing/shoes.dmi',
-			RESKIN_ICON_STATE = "jackboots",
+			RESKIN_ICON_STATE = "jackboots_sec",
 		)
 	. = ..()
+
+/obj/item/clothing/suit/armor/vest/alt/sec/Initialize(mapload)
+	unique_reskin["RedSec Variant"] = list(
+			RESKIN_ICON = 'icons/obj/clothing/suits/armor.dmi',
+			RESKIN_ICON_STATE = "armor_sec",
+			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/armor.dmi',
+		)
+	. = ..()
+
+/obj/item/storage/belt/security/Initialize(mapload)
+	if (!unique_reskin)
+		. = ..()
+	else
+		unique_reskin["RedSec Variant"] = list(
+				RESKIN_ICON = 'icons/obj/clothing/belts.dmi',
+				RESKIN_ICON_STATE = "security",
+				RESKIN_WORN_ICON = 'icons/mob/clothing/belt.dmi',
+				RESKIN_WORN_ICON_STATE = "security",
+			)
+		. = ..()
+
+/obj/item/clothing/glasses/hud/security/sunglasses/Initialize(mapload)
+	if (!unique_reskin)
+		. = ..()
+	else
+		unique_reskin["RedSec Variant"] = list(
+				RESKIN_ICON = 'icons/obj/clothing/glasses.dmi',
+				RESKIN_ICON_STATE = "sunhudsec",
+				RESKIN_WORN_ICON = 'icons/mob/clothing/eyes.dmi',
+			)
+		. = ..()

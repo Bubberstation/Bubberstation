@@ -1,6 +1,15 @@
 import { useState } from 'react';
+
 import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
+import {
+  Button,
+  Icon,
+  Input,
+  LabeledList,
+  Section,
+  Table,
+  Tooltip,
+} from '../components';
 import { Window } from '../layouts';
 
 const erpTagColor = {
@@ -14,8 +23,8 @@ const erpTagColor = {
   No: '#000000',
 };
 
-export const ZubbersCharacterDirectory = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ZubbersCharacterDirectory = (props) => {
+  const { data } = useBackend();
 
   const {
     personalVisibility,
@@ -25,243 +34,229 @@ export const ZubbersCharacterDirectory = (props, context) => {
     personalVoreTag,
     personalHypnoTag,
     personalNonconTag,
-    prefsOnly,
   } = data;
 
-  const [overlay, setOverlay] = useState(null);
-
-  const [overwritePrefs, setOverwritePrefs] = useState(prefsOnly);
-
   return (
-    <Window width={640} height={480} resizeable>
+    <Window width={900} height={640} resizeable>
       <Window.Content scrollable>
-        {(overlay && <ViewCharacter />) || (
-          <>
-            <Section title="Controls">
-              <LabeledList>
-                <LabeledList.Item label="Visibility">
-                  <Button
-                    fluid
-                    content={personalVisibility ? 'Shown' : 'Not Shown'}
-                    onClick={() =>
-                      act('setVisible', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Attraction">
-                  <Button fluid content={personalAttraction} />
-                </LabeledList.Item>
-                <LabeledList.Item label="Gender">
-                  <Button fluid content={personalGender} />
-                </LabeledList.Item>
-                <LabeledList.Item label="ERP">
-                  <Button
-                    fluid
-                    content={personalErpTag}
-                    onClick={() =>
-                      act('setErpTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Vore">
-                  <Button
-                    fluid
-                    content={personalVoreTag}
-                    onClick={() =>
-                      act('setTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Hypno">
-                  <Button
-                    fluid
-                    content={personalHypnoTag}
-                    onClick={() =>
-                      act('setHypnoTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
-                <LabeledList.Item label="Noncon">
-                  <Button
-                    fluid
-                    content={personalNonconTag}
-                    onClick={() =>
-                      act('setNonconTag', { overwrite_prefs: overwritePrefs })
-                    }
-                  />
-                </LabeledList.Item>
-              </LabeledList>
-            </Section>
-            <CharacterDirectoryList />
-          </>
-        )}
+        <Section title="Controls">
+          <LabeledList>
+            <LabeledList.Item label="Visibility">
+              <Button fluid>
+                {personalVisibility ? 'Shown' : 'Not Shown'}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Attraction">
+              <Button fluid>{personalAttraction}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Gender">
+              <Button fluid>{personalGender}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="ERP">
+              <Button fluid>{personalErpTag}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Vore">
+              <Button fluid>{personalVoreTag}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Hypno">
+              <Button fluid>{personalHypnoTag}</Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Noncon">
+              <Button fluid>{personalNonconTag}</Button>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+        <CharacterDirectoryList />
       </Window.Content>
     </Window>
   );
 };
 
-const ViewCharacter = (props, context) => {
-  const [overlay, setOverlay] = useState(null);
-
-  return (
-    <Section
-      title={overlay.name}
-      buttons={
-        <Button
-          icon="arrow-left"
-          content="Back"
-          onClick={() => setOverlay(null)}
-        />
-      }
-    >
-      <Section level={2} title="Species">
-        <Box>{overlay.species}</Box>
-      </Section>
-      <Section level={2} title="Attraction">
-        <Box>{overlay.attraction}</Box>
-      </Section>
-      <Section level={2} title="Gender">
-        <Box>{overlay.gender}</Box>
-      </Section>
-      <Section level={2} title="ERP">
-        <Box p={1} backgroundColor={erpTagColor[overlay.erp]}>
-          {overlay.erp}
-        </Box>
-        <Section level={2} title="Vore">
-          <Box>{overlay.vore}</Box>
-        </Section>
-      </Section>
-      <Section level={2} title="Hypno">
-        <Box>{overlay.hypno}</Box>
-      </Section>
-      <Section level={2} title="Noncon">
-        <Box>{overlay.noncon}</Box>
-      </Section>
-      <Section level={2} title="Character Ad">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.character_ad || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="Exploitable">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.exploitable || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="OOC Notes">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.ooc_notes || 'Unset.'}
-        </Box>
-      </Section>
-      <Section level={2} title="Flavor Text">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
-          {overlay.flavor_text || 'Unset.'}
-        </Box>
-      </Section>
-    </Section>
-  );
-};
-
-const CharacterDirectoryList = (props, context) => {
-  const { act, data } = useBackend(context);
+const CharacterDirectoryList = (props) => {
+  const { act, data } = useBackend();
 
   const { directory, canOrbit } = data;
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const [sortId, _setSortId] = useState('name');
-  const [sortOrder, _setSortOrder] = useState('name');
-  const [overlay, setOverlay] = useState(null);
+  const [sortId, setSortId] = useState('name');
+  const [sortOrder, setSortOrder] = useState('asc');
+
+  const handleSort = (id) => {
+    if (sortId === id) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortId(id);
+      setSortOrder('asc');
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleRandomView = () => {
+    if (directory.length > 0) {
+      const randomIndex = Math.floor(Math.random() * directory.length);
+      const randomCharacter = directory[randomIndex];
+      act('view', { ref: randomCharacter.ref });
+    }
+  };
+
+  const filteredDirectory = directory.filter((character) =>
+    character.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  const sortedDirectory = filteredDirectory.slice().sort((a, b) => {
+    const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
+    return sortOrderValue * a[sortId].localeCompare(b[sortId]);
+  });
 
   return (
     <Section
       title="Directory"
       buttons={
-        <Button icon="sync" content="Refresh" onClick={() => act('refresh')} />
+        <>
+          <Button icon="sync" onClick={() => act('refresh')}>
+            {'Refresh'}
+          </Button>
+          <Tooltip content="Display a random player's advert. Click if you dare.">
+            <Button icon="random" onClick={handleRandomView}>
+              {'I Feel Lucky'}
+            </Button>
+          </Tooltip>
+        </>
       }
     >
+      <Input
+        placeholder="Search name..."
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+        mb={2}
+      />
       <Table>
         <Table.Row bold>
-          <SortButton id="name">Name</SortButton>
-          <SortButton id="species">Species</SortButton>
-          <SortButton id="attraction">Attraction</SortButton>
-          <SortButton id="gender">Gender</SortButton>
-          <SortButton id="erp">ERP</SortButton>
-          <SortButton id="vore">Vore</SortButton>
-          <SortButton id="hypno">Hypno</SortButton>
-          <SortButton id="noncon">Noncon</SortButton>
+          <SortButton
+            id="name"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Name
+          </SortButton>
+          <SortButton
+            id="species"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Species
+          </SortButton>
+          <SortButton
+            id="attraction"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Attraction
+          </SortButton>
+          <SortButton
+            id="gender"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Gender
+          </SortButton>
+          <SortButton
+            id="erp"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            ERP
+          </SortButton>
+          <SortButton
+            id="vore"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Vore
+          </SortButton>
+          <SortButton
+            id="hypno"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Hypno
+          </SortButton>
+          <SortButton
+            id="noncon"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onClick={handleSort}
+          >
+            Noncon
+          </SortButton>
           <Table.Cell collapsing textAlign="right">
             Advert
           </Table.Cell>
         </Table.Row>
-        {directory
-          .sort((a, b) => {
-            const i = sortOrder ? 1 : -1;
-            return a[sortId].localeCompare(b[sortId]) * i;
-          })
-          .map((character, i) => (
-            <Table.Row key={i} backgroundColor={erpTagColor[character.erp]}>
-              <Table.Cell p={1}>
-                {canOrbit ? (
-                  <Button
-                    color={erpTagColor[character.erp]}
-                    icon="ghost"
-                    tooltip="Orbit"
-                    content={character.name}
-                    onClick={() => act('orbit', { ref: character.ref })}
-                  />
-                ) : (
-                  character.name
-                )}
-              </Table.Cell>
-              <Table.Cell>{character.species}</Table.Cell>
-              <Table.Cell>{character.attraction}</Table.Cell>
-              <Table.Cell>{character.gender}</Table.Cell>
-              <Table.Cell>{character.erp}</Table.Cell>
-              <Table.Cell>{character.vore}</Table.Cell>
-              <Table.Cell>{character.hypno}</Table.Cell>
-              <Table.Cell>{character.noncon}</Table.Cell>
-              <Table.Cell collapsing textAlign="right">
+        {sortedDirectory.map((character, i) => (
+          <Table.Row key={i} backgroundColor={erpTagColor[character.erp]}>
+            <Table.Cell p={1}>
+              {canOrbit ? (
                 <Button
-                  onClick={() => setOverlay(character)}
-                  color="transparent"
-                  icon="sticky-note"
-                  mr={1}
-                  content="View"
-                />
-              </Table.Cell>
-            </Table.Row>
-          ))}
+                  color={erpTagColor[character.erp]}
+                  icon="ghost"
+                  tooltip="Orbit"
+                  onClick={() => act('orbit', { ref: character.ref })}
+                >
+                  {character.name}
+                </Button>
+              ) : (
+                character.name
+              )}
+            </Table.Cell>
+            <Table.Cell>{character.species}</Table.Cell>
+            <Table.Cell>{character.attraction}</Table.Cell>
+            <Table.Cell>{character.gender}</Table.Cell>
+            <Table.Cell>{character.erp}</Table.Cell>
+            <Table.Cell>{character.vore}</Table.Cell>
+            <Table.Cell>{character.hypno}</Table.Cell>
+            <Table.Cell>{character.noncon}</Table.Cell>
+            <Table.Cell collapsing textAlign="right">
+              <Button
+                onClick={() => act('view', { ref: character.ref })}
+                color="transparent"
+                icon="sticky-note"
+                mr={1}
+              >
+                {'View'}
+              </Button>
+            </Table.Cell>
+          </Table.Row>
+        ))}
       </Table>
     </Section>
   );
 };
 
-const SortButton = (props, context) => {
-  const { act, data } = useBackend(context);
-
-  const { id, children } = props;
-
-  // Hey, same keys mean same data~
-  const [sortId, setSortId] = useState('name');
-  const [sortOrder, setSortOrder] = useState('name');
-
-  return (
-    <Table.Cell collapsing>
-      <Button
-        width="100%"
-        color={sortId !== id && 'transparent'}
-        onClick={() => {
-          if (sortId === id) {
-            setSortOrder(!sortOrder);
-          } else {
-            setSortId(id);
-            setSortOrder(true);
-          }
-        }}
-      >
-        {children}
-        {sortId === id && (
-          <Icon name={sortOrder ? 'sort-up' : 'sort-down'} ml="0.25rem;" />
-        )}
-      </Button>
-    </Table.Cell>
-  );
-};
+const SortButton = ({ id, sortId, sortOrder, onClick, children }) => (
+  <Table.Cell collapsing>
+    <Button
+      width="100%"
+      color={sortId !== id ? 'transparent' : undefined}
+      onClick={() => onClick(id)}
+    >
+      {children}
+      {sortId === id && (
+        <Icon
+          name={sortOrder === 'asc' ? 'sort-up' : 'sort-down'}
+          ml="0.25rem;"
+        />
+      )}
+    </Button>
+  </Table.Cell>
+);

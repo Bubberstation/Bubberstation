@@ -1,8 +1,9 @@
+import { BooleanLike } from 'common/react';
+import { useState } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Dimmer, Icon, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { useState } from 'react';
-import { BooleanLike } from 'common/react';
 
 type Data = {
   broken: BooleanLike;
@@ -37,6 +38,11 @@ const DEPARTMENT2COLOR = {
   Ordnance: 'yellow',
   Office: 'red',
   Dormitories: 'black',
+  // BUBBER EDIT ADD - Moonstation
+  'Arrivals Terminal': 'yellow',
+  'Cryogenic Sleepers': 'purple',
+  'Main Station': 'blue',
+  'Departures/Evac': 'green',
 } as const;
 
 const COLOR2BLURB = {

@@ -38,8 +38,8 @@
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/organ/internal/stomach/synth
 	category = list(
@@ -47,7 +47,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
-/obj/item/organ/internal/stomach/synth/Insert(mob/living/carbon/receiver, special, drop_if_replaced)
+/obj/item/organ/internal/stomach/synth/Insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
 	RegisterSignal(receiver, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(on_borg_charge))
 

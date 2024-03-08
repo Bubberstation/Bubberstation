@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { sendAct } from '../../backend';
 import { Gender } from './preferences/gender';
 
@@ -137,6 +138,7 @@ export type QuirkInfo = {
   quirk_info: Record<string, Quirk>;
   quirk_blacklist: string[][];
   quirk_species_whitelist: string[][]; // BUBBER EDIT ADDITION - Species quirks
+  points_enabled: boolean;
 };
 
 export enum RandomSetting {
