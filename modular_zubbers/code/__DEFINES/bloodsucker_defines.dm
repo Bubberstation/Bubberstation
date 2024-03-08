@@ -4,22 +4,29 @@
 /// You have special interactions with Bloodsuckers
 #define TRAIT_BLOODSUCKER_HUNTER "bloodsucker_hunter"
 
+// how much to multiply the coffin size by mob_size
+#define COFFIN_ENLARGE_MULT 0.5
 /**
  * Blood-level defines
  */
 /// Determines Bloodsucker regeneration rate
 #define BS_BLOOD_VOLUME_MAX_REGEN 700
 /// Cost to torture someone halfway, in blood. Called twice for full cost
-#define TORTURE_BLOOD_HALF_COST 8
+#define TORTURE_BLOOD_HALF_COST 4
 /// Cost to convert someone after successful torture, in blood
-#define TORTURE_CONVERSION_COST 50
+#define TORTURE_CONVERSION_COST 10
+/// How much blood it costs you to make a vassal into a special vassal
+#define SPECIAL_VASSAL_COST 150
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 25
 /// Once blood is this high, will exit Frenzy
 #define FRENZY_THRESHOLD_EXIT 250
 
+/// a bloodsucker can't loose more humanity than this, and looses the masquerade ability when reaching it
+#define HUMANITY_LOST_MAXIMUM 50
+
 /// Level up blood cost define, max_blood * this = blood cost
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.2
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.15
 
 ///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation
 #define BLOODSUCKER_HIGH_LEVEL 4
@@ -73,7 +80,7 @@
 /// This Power can't be used in Frenzy.
 #define BP_CANT_USE_IN_FRENZY (1<<2)
 /// This Power can't be used with a stake in you
-#define BP_CANT_USE_WHILE_STAKED (1<<3)
+#define BP_CAN_USE_WHILE_STAKED (1<<3)
 /// This Power can't be used while incapacitated
 #define BP_CANT_USE_WHILE_INCAPACITATED (1<<4)
 /// This Power can't be used while unconscious
@@ -98,6 +105,13 @@
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
 
 /**
+ * Torpor check bitflags
+ */
+#define TORPOR_SKIP_CHECK_ALL (1<<0)
+#define TORPOR_SKIP_CHECK_FRENZY (1<<1)
+#define TORPOR_SKIP_CHECK_DAMAGE (1<<2)
+
+/**
  * Bloodsucker Signals
  */
 ///Called when a Bloodsucker ranks up: (datum/bloodsucker_datum, mob/owner, mob/target)
@@ -106,6 +120,8 @@
 #define BLOODSUCKER_INTERACT_WITH_VASSAL "bloodsucker_interact_with_vassal"
 ///Called when a Bloodsucker makes a Vassal into their Favorite Vassal: (datum/vassal_datum, mob/master)
 #define BLOODSUCKER_MAKE_FAVORITE "bloodsucker_make_favorite"
+// called when a bloodsucker looses their favorite vassal, cleaning up whatever they gained
+#define BLOODSUCKER_LOOSE_FAVORITE "bloodsucker_loose_favorite"
 ///Called when a new Vassal is successfully made: (datum/bloodsucker_datum)
 #define BLOODSUCKER_MADE_VASSAL "bloodsucker_made_vassal"
 ///Called when a Bloodsucker exits Torpor.
@@ -120,6 +136,8 @@
 #define BLOODSUCKER_ENTERS_FRENZY "bloodsucker_enters_frenzy"
 ///Called when a Bloodsucker exits Frenzy
 #define BLOODSUCKER_EXITS_FRENZY "bloodsucker_exits_frenzy"
+// Called when anyone enters the coffin
+#define COMSIG_ENTER_COFFIN "comsig_enter_coffin"
 
 /**
  * Sol signals & Defines
@@ -164,6 +182,12 @@
  */
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+
+#define VASSAL_TRAIT "vassal_trait"
+
+/// Source trait for dominate related traits
+#define DOMINATE_TRAIT "dominate_trait"
+
 /// Source trait for Monster Hunter-related traits
 #define HUNTER_TRAIT "monsterhunter_trait"
 /// Source trait while Feeding
@@ -186,6 +210,7 @@
 #define IS_MONSTERHUNTER(mob) (FALSE)
 
 #define BLOODSUCKER_SIGHT_COLOR_CUTOFF list(25, 8, 5)
+#define POLL_IGNORE_VASSAL "vassal"
 
 // Why waste memory on a dynamic global list if we can just bake it in on compile time?
 #define BLOODSUCKER_PROTECTED_ROLES list( \
@@ -214,4 +239,5 @@
 	/datum/species/skeleton, \
 	/datum/species/zombie, \
 	/datum/species/mutant, \
+	/datum/species/dullahan \
 ) \
