@@ -29,6 +29,7 @@
 	if(user == resident)
 		. += span_cult("This is your Claimed Coffin.")
 		. += span_cult("Rest in it while injured to enter Torpor. Entering it with unspent Ranks will allow you to spend one.")
+		. += span_cult("Going inside while it contains a heart will put it in your chest, letting you regain your might.")
 		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock.")
 		. += span_cult("Alt-Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
 
@@ -133,6 +134,8 @@
 		resident = claimant
 		anchored = TRUE
 		START_PROCESSING(SSprocessing, src)
+		return TRUE
+	return FALSE
 
 /obj/structure/closet/crate/coffin/Destroy()
 	unclaim_coffin()
@@ -168,6 +171,7 @@
 	anchored = FALSE
 	if(!resident || !resident.mind)
 		return
+	un_enlarge(resident)
 	// Unclaiming
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = resident.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
@@ -198,33 +202,61 @@
 
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user?.mind?.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum && user.mob_size > max_mob_size)
+		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
+			if(prompt_coffin_claim(bloodsuckerdatum))
+				enlarge(user)
+			else
+				user.balloon_alert(user, "already claimed by another!")
 	. = ..()
 	if(!.)
 		return FALSE
+	for(var/atom/thing as anything in contents)
+		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
 	if(user in src)
-		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-		if(!bloodsuckerdatum)
+		if(!resident && !prompt_coffin_claim(bloodsuckerdatum))
 			return FALSE
-		var/area/current_area = get_area(src)
-		if(!bloodsuckerdatum.coffin && !resident)
-			switch(tgui_alert(user, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
-				if("Yes")
-					claim_coffin(user, current_area)
-				if("No")
-					return
 		LockMe(user)
 		//Level up if possible.
 		if(!bloodsuckerdatum.my_clan)
+			user.balloon_alert("enter a clan!")
 			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
 		else
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
-			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
-		bloodsuckerdatum.check_begin_torpor()
+			if(!bloodsuckerdatum.frenzied)
+				bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the opportunity to do so.
+		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
 	return TRUE
 
-#undef BLOODSUCKER_LEVELUP_PERCENTAGE
+/obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)
+	if(!dracula)
+		return FALSE
+	var/area/current_area = get_area(src)
+	if(!dracula.coffin && !resident)
+		switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
+			if("Yes")
+				return claim_coffin(dracula.owner.current, current_area)
+	return FALSE
+
+// some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
+/obj/structure/closet/crate/proc/enlarge(mob/living/user)
+	ADD_TRAIT(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin")
+	max_mob_size = user.mob_size
+	to_chat(user, span_warning("The coffin creaks and squeaks as you try to squeeze into it. It's a tight fit but you manage it make it fit you."))
+	playsound(src, 'modular_skyrat/modules/aesthetics/airlock/sound/creaking.ogg')
+	animate(src, 1 SECONDS, FALSE, BOUNCE_EASING, transform = transform.Scale(user.mob_size * COFFIN_ENLARGE_MULT))
+
+/obj/structure/closet/crate/proc/un_enlarge(mob/living/user)
+	if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
+		return
+	REMOVE_TRAIT(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin")
+	max_mob_size = initial(max_mob_size)
+	var/matrix/normal
+	// transform.Scale(user.mob_size * (COFFIN_ENLARGE_MULT + 1)
+	animate(src, 1 SECONDS, FALSE, transform = normal)
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
 /obj/structure/closet/crate/coffin/attackby(obj/item/item, mob/user, params)
