@@ -68,12 +68,12 @@
 	name = "Level 4: Possession"
 	upgraded_power = /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/advanced/two
 	level_current = 4
-	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged to temporary Vassals."
+	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged or dead to temporary Vassals."
 	power_explanation = "Level 4: Possession:\n\
 		Click any person to, after a 4 second timer, Mesmerize them.\n\
 		This will completely immobilize, mute, and blind them for the next 13.5 seconds.\n\
 		However, while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Vassal.\n\
-		If you use this on a currently dead normal Vassal, you will instead revive them normally.\n\
+		If you use this on a currently dead normal Vassal, they will will not suddenly cease to live as if a temporary Vassal.\n\
 		Despite being Mute and Deaf, they will still have complete loyalty to you, until their death in 5 minutes upon use."
 	background_icon_state = "tremere_power_gold_off"
 	active_background_icon_state = "tremere_power_gold_on"
@@ -83,14 +83,14 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/advanced/two
 	name = "Level 5: Possession"
-	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged to temporary Vassals."
+	desc = "Mesmerize, mute and blind any foe who stands still long enough, or convert the damaged or dead to temporary Vassals."
 	level_current = 5
 	upgraded_power = null
 	power_explanation = "Level 5: Possession:\n\
 		Click any person to, after a 4 second timer, Mesmerize them.\n\
 		This will completely immobilize, mute, and blind them for the next 13.5 seconds.\n\
 		However, while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Vassal.\n\
-		If you use this on a currently dead normal Vassal, you will instead revive them normally.\n\
+		If you use this on a currently dead normal Vassal, they will will not suddenly cease to live as if a temporary Vassal.\n\
 		They will have complete loyalty to you, until their death in 8 minutes upon use."
 	bloodcost = 100
 	cooldown_time = 2 MINUTES
@@ -110,8 +110,11 @@
 	. = ..()
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
-	if(target.stat >= SOFT_CRIT && user.Adjacent(target) && level_current >= 4)
-		attempt_vassalize(target, user)
+	if(target.stat != CONSCIOUS && level_current >= 4)
+		if(user.Adjacent(target))
+			attempt_vassalize(target, user)
+		else 
+			owner.balloon_alert(owner, "too far to vassalize!")
 		return
 	else if(IS_VASSAL(target))
 		owner.balloon_alert(owner, "vassal cant be revived")
@@ -128,7 +131,8 @@
 	/*if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_notice("You feel you something crawling under your skin, but it passes."))
 		return*/
-	if(HAS_TRAIT_FROM(target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
+	// todo replace with status effect so we don't only check chainstunning above lvl 2
+	if(HAS_TRAIT_FROM_ONLY(target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
 		owner.balloon_alert(owner, "[target] is already in some form of hypnotic gaze.")
 		return
 	if(iscarbon(target))
@@ -155,37 +159,50 @@
 		owner.balloon_alert(owner, "[target] snapped out of their trance.")
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/proc/attempt_vassalize(mob/living/target, mob/living/user)
+	var/datum/antagonist/vassal/is_vassal = IS_VASSAL(target)
+	if(!bloodsuckerdatum_power.can_make_vassal(target))
+		owner.balloon_alert(owner, "not a valid target for vassalization!.")
+		return FALSE
+
 	owner.balloon_alert(owner, "attempting to vassalize.")
 	if(!do_after(user, 6 SECONDS, target, NONE, TRUE))
-		return
+		return FALSE
 
-	if(IS_VASSAL(target))
+	if(is_vassal?.master == bloodsuckerdatum_power)
+		if(target.stat != DEAD)
+			owner.balloon_alert(owner, "not dead!")
+			return FALSE
 		power_activated_sucessfully()
 		to_chat(user, span_warning("We revive [target]!"))
+		owner.balloon_alert(owner, "successfully revived!")
 		target.mind.grab_ghost()
 		target.revive(ADMIN_HEAL_ALL)
+		return FALSE
+
+	if(!bloodsuckerdatum_power.make_vassal(target))
+		owner.balloon_alert(owner, "not a valid target for vassalization!.")
 		return
+
 	/*if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_notice("Their body refuses to react..."))
 		return*/
-	if(!bloodsuckerdatum_power.make_vassal(target))
-		return
 	power_activated_sucessfully()
 	to_chat(user, span_warning("We revive [target]!"))
 	target.mind.grab_ghost()
 	target.revive(ADMIN_HEAL_ALL)
 	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 	vassaldatum.special_type = TREMERE_VASSAL //don't turn them into a favorite please
-	var/living_time
-	if(level_current == 4)
-		living_time = 5 MINUTES
-		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), BLOODSUCKER_TRAIT)
-	else if(level_current == 5)
-		living_time = 8 MINUTES
+	var/living_time = (1 MINUTES) * level_current
+	if(level_current <= 4)
+		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_possession), target), living_time)
+	RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(end_possession))
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/proc/end_possession(mob/living/user)
-	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), BLOODSUCKER_TRAIT)
+	if(!IS_VASSAL(user) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT) && !HAS_TRAIT_FROM_ONLY(user, TRAIT_MUTE, DOMINATE_TRAIT))
+		return
+	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	user.mind.remove_antag_datum(/datum/antagonist/vassal)
 	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
 	user.death()

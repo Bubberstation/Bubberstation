@@ -5,10 +5,11 @@
 
 /datum/action/cooldown/bloodsucker/targeted/haste
 	name = "Immortal Haste"
-	desc = "Dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
+	desc = "Force yourself to stand up if you're down and dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
 	button_icon_state = "power_speed"
 	power_explanation = "Immortal Haste:\n\
 		Click anywhere to immediately dash towards that location.\n\
+		At level 3, if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby.\n\
 		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
 		Anyone in your way during your Haste will be knocked down.\n\
 		Higher levels will increase the knockdown dealt to enemies.\n\
@@ -34,8 +35,8 @@
 	if(!user.has_gravity(user.loc)) //We dont want people to be able to use this to fly around in space
 		user.balloon_alert(user, "you cannot dash while floating!")
 		return FALSE
-	if(user.body_position == LYING_DOWN)
-		user.balloon_alert(user, "you must be standing to tackle!")
+	if(level_current < 3 && user.body_position == LYING_DOWN)
+		user.balloon_alert(user, "you must be standing to dash!")
 		return FALSE
 	return TRUE
 
@@ -49,8 +50,17 @@
 /// This is a non-async proc to make sure the power is "locked" until this finishes.
 /datum/action/cooldown/bloodsucker/targeted/haste/FireTargetedPower(atom/target_atom)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/mob/living/user = owner
+	var/stuns_mobs = TRUE
+	if(level_current >= 3 && user.body_position == LYING_DOWN)
+		to_chat(user, span_danger("Your heart takes a beat, and you force yourself to stand up!"))
+		user.SetKnockdown(0)
+		user.setStaminaLoss(0)
+		user.set_resting(FALSE, FALSE, TRUE)
+		stuns_mobs = FALSE
+		StartCooldown(cooldown_time * 3)
+	if(stuns_mobs)
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/turf/targeted_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
 	// Pulled? Not anymore.
 	user.pulledby?.stop_pulling()
