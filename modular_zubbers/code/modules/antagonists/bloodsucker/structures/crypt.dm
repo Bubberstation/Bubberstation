@@ -296,10 +296,10 @@
 	// Conversion Process
 	if(convert_progress)
 		balloon_alert(user, "spilling blood...")
-		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
+		bloodsuckerdatum.AdjustBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		if(!do_torture(user, target))
 			return FALSE
-		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
+		bloodsuckerdatum.AdjustBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		// Prevent them from unbuckling themselves as long as we're torturing.
 		target.Paralyze(1 SECONDS)
 		convert_progress--
@@ -329,7 +329,7 @@
 		balloon_alert(user, "interrupted!")
 		return
 	// Convert to Vassal!
-	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
+	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
 		remove_loyalties(target)
 		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, user, target)
@@ -381,7 +381,9 @@
 /obj/structure/bloodsucker/vassalrack/proc/do_disloyalty(mob/living/user, mob/living/target)
 	if(disloyalty_offered)
 		return FALSE
-
+	// Can't willingly join if you're banned from it. It'll just ghost you anyways.
+	if(is_banned_from(target.ckey, ROLE_BLOODSUCKER))
+		return TRUE
 	disloyalty_offered = TRUE
 	to_chat(user, span_notice("[target] has been given the opportunity for servitude. You await their decision..."))
 	var/alert_response = tgui_alert(
