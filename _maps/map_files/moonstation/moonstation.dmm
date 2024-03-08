@@ -2029,9 +2029,9 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "aEz" = (
-/obj/machinery/transport/destination_sign/indicator/directional/south,
 /obj/machinery/button/transport/tram/directional/south{
-	id = 1
+	id = 1;
+	specific_transport_id = "moon_1"
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/machinery/camera/autoname/directional/south{
@@ -3865,11 +3865,10 @@
 /area/station/engineering/atmos)
 "beV" = (
 /obj/structure/transport/linear/tram,
-/obj/structure/fluff/tram_rail/electric{
-	dir = 1
+/obj/structure/tram,
+/obj/machinery/transport/destination_sign/moonstation{
+	pixel_x = 16
 	},
-/obj/machinery/computer/tram_controls/directional/south,
-/obj/structure/thermoplastic,
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "beY" = (
@@ -7882,6 +7881,16 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/toilet/auxiliary)
+"cvG" = (
+/obj/structure/chair/sofa/bench/tram/right{
+	dir = 8
+	},
+/obj/structure/transport/linear/tram,
+/obj/structure/fluff/tram_rail/electric,
+/obj/structure/thermoplastic/light,
+/obj/machinery/computer/tram_controls/moonstation/directional/north,
+/turf/open/floor/plating,
+/area/station/terminal/lobby)
 "cvT" = (
 /obj/item/radio/intercom/directional/south,
 /obj/structure/disposalpipe/trunk{
@@ -9706,6 +9715,15 @@
 	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/starboard)
+"cZy" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/transport/power_rectifier,
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/hallway/primary/tram/left)
 "cZH" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -10523,6 +10541,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
+"dlk" = (
+/obj/machinery/transport/destination_sign/indicator/moonstation,
+/turf/closed/wall,
+/area/station/hallway/primary/tram/left)
 "dll" = (
 /turf/open/floor/carpet/red,
 /area/station/service/library/artgallery)
@@ -12252,6 +12274,7 @@
 "dNg" = (
 /obj/machinery/light/warm/directional/west,
 /obj/machinery/power/smes/engineering,
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/tcommsat/computer)
 "dNh" = (
@@ -15767,6 +15790,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/corner,
 /area/station/common/pool)
+"ePz" = (
+/obj/structure/transport/linear/tram,
+/obj/structure/fluff/tram_rail/electric{
+	dir = 1
+	},
+/obj/structure/thermoplastic,
+/obj/machinery/computer/tram_controls/moonstation/directional/south,
+/turf/open/floor/plating,
+/area/station/terminal/lobby)
 "ePE" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
@@ -31456,7 +31488,6 @@
 "jFl" = (
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted,
 /obj/structure/closet/emcloset,
-/obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron,
 /area/station/terminal/lobby)
 "jFn" = (
@@ -31777,7 +31808,6 @@
 /area/station/security/detectives_office)
 "jKF" = (
 /obj/structure/transport/linear/tram,
-/obj/machinery/transport/tram_controller,
 /obj/structure/tram/alt/titanium,
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
@@ -35025,6 +35055,9 @@
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"kKt" = (
+/turf/closed/wall/r_wall,
+/area/station/hallway/primary/tram/left)
 "kKy" = (
 /turf/closed/wall,
 /area/station/commons/dorms/room3)
@@ -36182,14 +36215,8 @@
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
 "lby" = (
-/obj/structure/chair/sofa/bench/tram/right{
-	dir = 8
-	},
-/obj/structure/transport/linear/tram,
-/obj/structure/fluff/tram_rail/electric,
-/obj/machinery/computer/tram_controls/directional/north,
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
+/obj/machinery/transport/destination_sign/indicator/moonstation,
+/turf/closed/wall,
 /area/station/terminal/lobby)
 "lbH" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -40334,9 +40361,9 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "mlr" = (
-/obj/machinery/transport/destination_sign/indicator/directional/south,
 /obj/machinery/button/transport/tram/directional/south{
-	id = 3
+	id = 2;
+	specific_transport_id = "moon_1"
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -42693,9 +42720,9 @@
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "mWO" = (
+/obj/structure/tram,
 /obj/structure/transport/linear/tram,
-/obj/structure/tram/alt/titanium,
-/obj/machinery/transport/destination_sign/split/south,
+/obj/machinery/transport/tram_controller/moonstation,
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "mWT" = (
@@ -43166,9 +43193,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "ndO" = (
-/obj/structure/transport/linear/tram,
 /obj/structure/tram/alt/titanium,
-/obj/structure/plaque/static_plaque/tram,
+/obj/structure/transport/linear/tram,
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "ndQ" = (
@@ -51672,9 +51698,11 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "pJF" = (
+/obj/structure/tram,
 /obj/structure/transport/linear/tram,
-/obj/structure/tram/alt/titanium,
-/obj/machinery/transport/destination_sign/split/north,
+/obj/structure/plaque/static_plaque/tram{
+	specific_transport_id = "moon_1"
+	},
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "pJW" = (
@@ -62153,10 +62181,6 @@
 /obj/structure/fluff/tram_rail/electric,
 /turf/open/floor/plating/rust/moonstation,
 /area/station/terminal/tramline)
-"sQi" = (
-/obj/structure/stone_tile/slab,
-/turf/open/indestructible/boss,
-/area/ruin/unpowered/ash_walkers)
 "sQw" = (
 /obj/structure/railing{
 	dir = 10
@@ -72659,6 +72683,12 @@
 /obj/structure/table,
 /turf/open/floor/wood,
 /area/station/engineering/lobby)
+"wcA" = (
+/obj/machinery/transport/power_rectifier{
+	pixel_y = 0
+	},
+/turf/closed/wall/r_wall,
+/area/station/terminal/lobby)
 "wcG" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/cake_ingredients,
@@ -79205,7 +79235,10 @@
 /turf/open/floor/engine,
 /area/station/engineering/atmos/project)
 "ybe" = (
-/obj/machinery/door/airlock/tram,
+/obj/machinery/door/airlock/tram{
+	transport_linked_id = "moon_1";
+	name = "Moon Rover"
+	},
 /obj/structure/transport/linear/tram,
 /obj/structure/thermoplastic/light,
 /turf/open/floor/plating,
@@ -213171,7 +213204,7 @@ sDL
 tjZ
 eUc
 geh
-sDL
+mWO
 tHD
 bGx
 kxs
@@ -213428,7 +213461,7 @@ jKF
 fil
 uiv
 geh
-ndO
+jKF
 tHD
 pQX
 fux
@@ -213681,11 +213714,11 @@ fhy
 iNo
 iNo
 yhM
-pJF
-lby
-syH
 beV
-mWO
+gZD
+syH
+ePz
+beV
 tHD
 eii
 fux
@@ -213939,7 +213972,7 @@ crT
 iNo
 yhM
 mdG
-gZD
+cvG
 fwM
 geh
 mdG
@@ -214199,7 +214232,7 @@ ybe
 iWG
 kBx
 iMX
-sDL
+ndO
 tHD
 asy
 sfL
@@ -214456,7 +214489,7 @@ sqG
 iWG
 eNL
 iMX
-sDL
+pJF
 tHD
 asy
 wpy
@@ -214965,7 +214998,7 @@ idX
 lLr
 cOG
 aEz
-idX
+lby
 ocT
 dmG
 vzC
@@ -215479,7 +215512,7 @@ ahL
 ahL
 ahL
 jFl
-idX
+wcA
 scN
 gEj
 cHz
@@ -230124,8 +230157,8 @@ stM
 jWC
 eYR
 mAX
-vQx
-jhQ
+kKt
+cZy
 eEv
 avW
 aWa
@@ -230382,7 +230415,7 @@ iJZ
 wxh
 iJZ
 iJZ
-hdn
+jhQ
 eEv
 avW
 aWa
@@ -231670,7 +231703,7 @@ qup
 hdn
 eEv
 mlr
-hZv
+dlk
 fzs
 wuM
 eWR
@@ -237147,7 +237180,7 @@ itb
 pQk
 mnR
 mZQ
-hEm
+hPo
 aGH
 hPo
 mza
@@ -272675,7 +272708,7 @@ hsI
 dic
 dic
 dic
-nJi
+dic
 mfi
 mfi
 fMg
@@ -272932,7 +272965,7 @@ hsI
 dic
 dic
 dic
-nJi
+dic
 mfi
 mfi
 eqQ
@@ -272945,7 +272978,7 @@ gzb
 qDn
 mKM
 tYz
-sQi
+ayT
 vxY
 vxY
 vxY
@@ -273189,7 +273222,7 @@ hsI
 dic
 dic
 dic
-nJi
+dic
 mfi
 mfi
 ajZ
