@@ -8,7 +8,9 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_NORMAL && reac_volume >= 0)
+	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_NORMAL)
+		return ..()
+	if(bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_MAXIMUM)
 		return ..()
 	bloodsuckerdatum.AddBloodVolume(round(reac_volume, 0.1))
 
