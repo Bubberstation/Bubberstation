@@ -7,6 +7,8 @@
 	icon_state = "flag_galfed"
 	item_flag = /obj/item/sign/flag/galfed
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/galfed, 32)
+
 /obj/structure/sign/flag/tizira
 	name = "flag of the Tizirian Empire"
 	desc = "The flag of the Tizirian Empire. The large red sun in the middle is a traditional Tizirian symbol representing their main deity, Aola."
