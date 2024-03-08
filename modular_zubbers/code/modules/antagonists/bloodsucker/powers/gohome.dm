@@ -20,11 +20,12 @@
 		Immediately after activating, lights around the user will begin to flicker. \n\
 		Once the user teleports to their coffin, in their place will be a Rat or Bat."
 	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED
+	check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = NONE
 	bloodcost = 100
 	constant_bloodcost = 2
 	cooldown_time = 100 SECONDS
+
 	///What stage of the teleportation are we in
 	var/teleporting_stage = GOHOME_START
 	///The types of mobs that will drop post-teleportation.
