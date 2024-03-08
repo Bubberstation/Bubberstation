@@ -314,6 +314,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		webhook_sent = WEBHOOK_URGENT
 	//send it to TGS if nobody is on and tell us how many were on
 	var/admin_number_present = send2tgs_adminless_only(initiator_ckey, "Ticket #[id]: [message_to_send]")
+	// BUBBER EDIT BEGIN
+	var/list/adm = get_admin_counts(R_BAN)
+	var/list/afkmins = adm["afk"]
+	var/list/stealthmins = adm["stealth"]
+	var/list/powerlessmins = adm["noflags"]
+	var/list/allmins = adm["total"]
+	send2adminchat("Ticket #[id]","[message_to_send] || Online Admins : \[[english_list(allmins)]\] : All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]!") // BUBBER EDIT ADDITION
+	// BUBBER EDIT END
 	log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 	if(admin_number_present <= 0)
 		to_chat(initiator, span_notice("No active admins are online, your adminhelp was sent to admins who are available through IRC or Discord."), confidential = TRUE)
@@ -469,7 +477,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	closed_at = null
 	if(initiator)
 		initiator.current_ticket = src
-
+	send2adminchat("Ticket #[id]:", "Reopened!") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>", player_message = "Ticket reopened!")
 	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].")
 	message_admins(msg)
@@ -504,6 +512,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
 	AddInteraction("<font color='red'>Closed by [key_name].</font>", player_message = "<font color='red'>Ticket closed!</font>")
+	send2adminchat("Ticket #[id]:", "Marked as closed by [key_name]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 	if(!silent)
 		SSblackbox.record_feedback("tally", "ahelp_stats", 1, "closed")
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
@@ -526,7 +535,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ListInsert(src)
 
 	addtimer(CALLBACK(initiator, TYPE_PROC_REF(/client, giveadminhelpverb)), 50)
-
+	send2adminchat("Ticket #[id]:", "Marked as resolved by [key_name]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 	AddInteraction("<font color='green'>Resolved by [key_name].</font>", player_message = "<font color='green'>Ticket resolved!</font>")
 	to_chat(initiator, span_adminhelp("Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly."), confidential = TRUE)
 	if(!silent)
@@ -548,7 +557,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//SKYRAT EDIT ADDITION END
 	if(initiator)
 		initiator.giveadminhelpverb()
-
+		send2adminchat("[key_name]", "Rejected Adminhelp: [id]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
 
 		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>", confidential = TRUE)
@@ -578,7 +587,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(initiator)
 		to_chat(initiator, msg, confidential = TRUE)
-
+	send2adminchat("Ticket #[id]:", "Marked as IC issue by [key_name]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "IC")
 	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name]"
 	message_admins(msg)
@@ -906,6 +915,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 			SSblackbox.LogAhelp(mob_client.current_ticket.id, "Interaction", message, mob_client.ckey, usr.ckey)
 		return mob_client.current_ticket
 	if(istext(what)) //ckey
+		send2adminchat("[what]", message) // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 		var/datum/admin_help/active_admin_help = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
 		if(active_admin_help)
 			if (isnull(player_message))
