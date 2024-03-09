@@ -22,7 +22,6 @@
 		"Artist",
 		"Businessman",
 		"Businesswoman",
-		"Butler", //Bubber Addition
 		"Civilian",
 		"Entertainer",
 		"Freelancer",
