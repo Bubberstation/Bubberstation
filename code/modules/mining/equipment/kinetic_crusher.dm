@@ -187,6 +187,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 //destablizing force
+//BUBBER EDIT START - OVERRIDEN IN MODULAR
+/*
 /obj/projectile/destabilizer
 	name = "destabilizing force"
 	icon_state = "pulse1"
@@ -216,6 +218,8 @@
 		new /obj/effect/temp_visual/kinetic_blast(M)
 		M.gets_drilled(firer)
 	..()
+*/
+//BUBBER EDIT END
 
 //trophies
 /obj/item/crusher_trophy
@@ -239,6 +243,8 @@
 	else
 		..()
 
+//BUBBER EDIT START - OVERRIDEN IN MODULAR
+/*
 /obj/item/crusher_trophy/proc/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	for(var/obj/item/crusher_trophy/trophy as anything in crusher.trophies)
 		if(istype(trophy, denied_type) || istype(src, trophy.denied_type))
@@ -249,6 +255,8 @@
 	crusher.trophies += src
 	to_chat(user, span_notice("You attach [src] to [crusher]."))
 	return TRUE
+*/
+//BUBBER EDIT END
 
 /obj/item/crusher_trophy/proc/remove_from(obj/item/kinetic_crusher/crusher, mob/living/user)
 	forceMove(get_turf(crusher))
