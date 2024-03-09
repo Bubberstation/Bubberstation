@@ -35704,6 +35704,7 @@
 /area/station/common/cryopods)
 "eNC" = (
 /obj/effect/turf_decal/stripes/corner,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "eNI" = (
@@ -41010,6 +41011,8 @@
 	name = "Atmospherics Blast Door"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/item/wrench,
+/obj/item/crowbar,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "iKj" = (
@@ -50802,10 +50805,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
-"pZP" = (
-/obj/machinery/airalarm/directional/north,
-/turf/open/floor/iron,
-/area/station/engineering/atmos)
 "qap" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/nitrogen_output{
 	dir = 1
@@ -50899,17 +50898,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/commons/dorms)
-"qde" = (
-/obj/item/crowbar,
-/obj/item/wrench,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/corner,
-/area/station/hallway/primary/aft)
 "qds" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -91589,7 +91577,7 @@ bNO
 bOQ
 bQf
 bRq
-qde
+bNO
 bTK
 bUE
 bWM
@@ -92357,7 +92345,7 @@ bRa
 bLM
 bLM
 bOd
-pZP
+bOd
 bOd
 bOd
 bSD
