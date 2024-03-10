@@ -67,7 +67,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
 	var/static/list/quirk_species_whitelist = list(
 		list("Hydrophilic", "[SPECIES_SLIMESTART]")
-		list("Sol Weakness", "[SPECIES_HEMOPHAGE])
+		list("Sol Weakness", "[SPECIES_HEMOPHAGE]")
 	)
 	//BUBBER EDIT ADDITION END
 /datum/controller/subsystem/processing/quirks/Initialize()
