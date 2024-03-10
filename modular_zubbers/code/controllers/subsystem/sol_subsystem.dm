@@ -27,6 +27,8 @@ SUBSYSTEM_DEF(sunlight)
 	var/time_til_cycle = TIME_BLOODSUCKER_NIGHT_MAX
 	///If Bloodsucker levels for the night has been given out yet.
 	var/issued_XP = FALSE
+	/// Mobs that make use of the sunlight system.
+	var/list/sun_sufferers = list()
 
 /datum/controller/subsystem/sunlight/fire(resumed = FALSE)
 	time_til_cycle--
@@ -82,6 +84,54 @@ SUBSYSTEM_DEF(sunlight)
 
 /datum/controller/subsystem/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
 	SEND_SIGNAL(src, COMSIG_SOL_WARNING_GIVEN, danger_level, vampire_warning_message, vassal_warning_message)
+
+
+/datum/controller/subsystem/sunlight/proc/add_sun_sufferer(mob/victim)
+	var/victim_ref = is_sufferer(victim)
+	if(victim_ref)
+		return FALSE
+	sun_sufferers += WEAKREF(victim)
+	if(length(sun_sufferers))
+		can_fire = TRUE
+
+	return TRUE
+
+/datum/controller/subsystem/sunlight/proc/remove_sun_sufferer(mob/victim)
+	var/victim_ref = is_sufferer(victim)
+	if(!victim_ref)
+		return FALSE
+	sun_sufferers -= victim_ref
+	if(!length(sun_sufferers))
+		can_fire = FALSE
+		sunlight_active = initial(sunlight_active)
+		time_til_cycle = initial(time_til_cycle)
+		issued_XP = initial(issued_XP)
+	return TRUE
+
+/datum/controller/subsystem/sunlight/proc/warn_notify(mob/target, danger_level, message)
+	if(!target)
+		return
+	to_chat(target, message)
+
+	switch(danger_level)
+		if(DANGER_LEVEL_FIRST_WARNING)
+			target.playsound_local(null, 'modular_zubbers/sound/bloodsucker/griffin_3.ogg', 50, TRUE)
+		if(DANGER_LEVEL_SECOND_WARNING)
+			target.playsound_local(null, 'modular_zubbers/sound/bloodsucker/griffin_5.ogg', 50, TRUE)
+		if(DANGER_LEVEL_THIRD_WARNING)
+			target.playsound_local(null, 'sound/effects/alert.ogg', 75, TRUE)
+		if(DANGER_LEVEL_SOL_ROSE)
+			target.playsound_local(null, 'sound/ambience/ambimystery.ogg', 75, TRUE)
+		if(DANGER_LEVEL_SOL_ENDED)
+			target.playsound_local(null, 'sound/misc/ghosty_wind.ogg', 90, TRUE)
+
+
+/datum/controller/subsystem/sunlight/proc/is_sufferer(mob/victim)
+	for(var/datum/weakref/sufferer_ref in sun_sufferers)
+		var/sufferer = sufferer_ref.resolve()
+		if(sufferer == victim)
+			return sufferer
+	return null
 
 #undef TIME_BLOODSUCKER_SOL_DELAY
 
