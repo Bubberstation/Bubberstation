@@ -1,3 +1,5 @@
+
+//Outpost on the planet
 /area/station/solars/asteroid
 	name = "\improper Ministation Solar Array"
 	icon_state = "panelsAF"
@@ -21,8 +23,19 @@
 	name = "\improper Service Lathe"
 	icon_state = "hall_service"
 
+/area/station/engineering/storage/eva
+	name = "\improper Engineering EVA Storage"
+	icon_state = "eva"
 
+/area/station/cargo/miningelevators
+	name = "\improper Mining Elevators"
+	icon_state = "unknown"
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
+/area/station/cargo/miningfoundry/event_protected
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+//Arrivals Area
 /area/station/terminal
 	name = "\improper Arrivals Terminal"
 	icon_state = "station"
@@ -57,15 +70,7 @@
 	icon_state = "shuttle"
 	requires_power = FALSE //Imagine if your funny gimmick had no power and people had to walk lmao
 
-
-
-
-
-
-/area/station/engineering/storage/eva
-	name = "\improper Engineering EVA Storage"
-	icon_state = "eva"
-
+//Outside Nonsense
 /area/moonstation
 	name = "DO NOT USE"
 	icon = 'icons/area/areas_station.dmi'
@@ -130,13 +135,7 @@
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	map_generator = /datum/map_generator/cave_generator/moonstation/cave
 
-/area/station/cargo/miningelevators
-	name = "\improper Mining Elevators"
-	icon_state = "unknown"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
-/area/station/cargo/miningfoundry/event_protected
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
 //Missing Lavaland Generators
 /area/lavaland/underground/unexplored
@@ -147,3 +146,104 @@
 /area/lavaland/underground/unexplored/danger
 	icon_state = "danger"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+
+//Space Outpost
+/area/burgerstation
+	name = "Burgerstation Areas"
+	icon = 'icons/area/areas_station.dmi'
+	icon_state = "station"
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+	has_gravity = STANDARD_GRAVITY //Gravity Generator won't work because there are space ruins that spawn.
+
+/area/burgerstation/hallway
+	name = "Burgerstation Central Hallway"
+	icon_state = "centralhall"
+	sound_environment = SOUND_AREA_STANDARD_STATION
+
+/area/burgerstation/engineering
+	name = "Burgerstation Engineering"
+	icon_state = "engi_lobby"
+	ambience_index = AMBIENCE_ENGI
+	airlock_wires = /datum/wires/airlock/engineering
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED
+
+/area/burgerstation/engineering/atmospherics
+	name = "Burgerstation Atmospherics"
+	icon_state = "atmos"
+
+/area/burgerstation/engineering/gravity_generator
+	name = "Burgerstation Gravity Generator"
+	icon_state = "grav_gen"
+
+/area/burgerstation/engineering/telecomms
+	name = "Burgerstation Telecommunications"
+	icon_state = "server"
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED
+
+/area/burgerstation/engineering/tool_storage
+	name = "Burgerstation Tool Storage"
+	icon_state = "tool_storage"
+
+/area/burgerstation/kitchen
+	name = "Burgerstation Kitchen"
+	icon_state = "kitchen"
+
+/area/burgerstation/kitchen/cafeteria
+	name = "Burgerstation Cafeteria"
+	icon_state = "cafeteria"
+
+/area/burgerstation/restrooms
+	name = "Burgerstation Restrooms"
+	icon_state = "restrooms"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+
+/area/burgerstation/dorms
+	name = "Burgerstation Dorms"
+	icon_state = "dorms"
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
+/area/burgerstation/dorms/room1
+	name = "Burgerstation Dorm 1"
+	icon_state = "room1"
+
+/area/burgerstation/dorms/room2
+	name = "Burgerstation Dorm 2"
+	icon_state = "room2"
+
+/area/burgerstation/dorms/room3
+	name = "Burgerstation Dorm 3"
+	icon_state = "room3"
+
+/area/burgerstation/dorms/room4
+	name = "Burgerstation Dorm 4"
+	icon_state = "room4"
+
+/area/burgerstation/cryo
+	name = "Burgerstation Cryo"
+	icon_state = "cryo"
+
+/area/burgerstation/gateway
+	name = "Burgerstation Gateway"
+	icon_state = "gateway"
+
+/area/burgerstation/maintenance
+	name = "Burgerstation Maintenance"
+	icon_state = "centralmaint"
+	ambience_index = AMBIENCE_MAINT
+	area_flags = UNIQUE_AREA | EVENT_PROTECTED | PERSISTENT_ENGRAVINGS
+	airlock_wires = /datum/wires/airlock/maint
+	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
+	forced_ambience = TRUE
+	ambient_buzz = 'sound/ambience/source_corridor2.ogg'
+	ambient_buzz_vol = 20
+
+/area/burgerstation/maintenance/solars
+	name = "Burgerstation Solars Maintenance"
+	icon_state = "panelsF"
+
+/area/burgerstation/maintenance/engineering
+	name = "Burgerstation Engineering Maintenance"
+	icon_state = "maint_engi"
+
+//No Ruins
+/area/space/no_ruins
