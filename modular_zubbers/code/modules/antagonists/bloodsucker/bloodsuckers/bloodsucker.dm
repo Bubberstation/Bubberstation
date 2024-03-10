@@ -12,8 +12,8 @@
 	ui_name = "AntagInfoBloodsucker"
 	preview_outfit = /datum/outfit/bloodsucker_outfit
 
-	/// How much blood we have, starting off at default blood levels.
-	var/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
+	/// How much blood we have, starting off at default blood levels. Do not adjust this directly, use adjustBloodVolume(), and use getBloodVolume() to get the current value.
+	VAR_PRIVATE/bloodsucker_blood_volume = BLOOD_VOLUME_NORMAL
 	/// How much blood we can have at once, increases per level.
 	var/max_blood_volume = 600
 
@@ -34,8 +34,8 @@
 	///Used for assigning your reputation
 	var/bloodsucker_reputation
 
-	///Amount of Humanity lost
-	var/humanity_lost = 0
+	///Amount of Humanity lost, don't modify this directly, use AddHumanityLost(), and use GetHumanityLost() to get the current value.
+	VAR_PRIVATE/humanity_lost = 0
 	///Have we been broken the Masquerade?
 	var/broke_masquerade = FALSE
 	///How many Masquerade Infractions do we have?
@@ -54,7 +54,8 @@
 	var/list/datum/antagonist/vassal/special_vassals = list()
 
 	var/bloodsucker_level = 0
-	var/bloodsucker_level_unspent = 1
+	/// Unspent ranks, don't modify this directly, use AdjustUnspentRanks()
+	VAR_PRIVATE/bloodsucker_level_unspent = 1
 	var/additional_regen
 	var/bloodsucker_regen_rate = 0.3
 
@@ -123,6 +124,7 @@
 	talking_head()
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
+	remove_invalid_quirks()
 
 	if(current_mob.hud_used)
 		on_hud_created()
@@ -148,6 +150,8 @@
 	remove_signals_from_heart(current_mob)
 	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING))
 	handle_clown_mutation(current_mob, removing = FALSE)
+	if(current_mob.client)
+		SSquirks.AssignQuirks(current_mob, current_mob.client)
 
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -163,19 +167,20 @@
 	SIGNAL_HANDLER
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(null, bloodsucker_hud)
+	blood_display = new(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += blood_display
 
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(null, bloodsucker_hud)
+	vamprank_display = new(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += vamprank_display
 
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(null, bloodsucker_hud)
+	sunlight_display = new(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += sunlight_display
 
 	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
 	UnregisterSignal(owner.current, COMSIG_MOB_HUD_CREATED)
-	update_hud()
+	update_sunlight_hud()
 	update_blood_hud()
+	update_rank_hud()
 
 /// Override some properties of incompatible species
 /datum/antagonist/bloodsucker/proc/on_species_gain(mob/living/carbon/human/target, datum/species/current_species, datum/species/old_species)
@@ -217,7 +222,7 @@
 		show_in_roundend = FALSE
 	else
 		// Start Sunlight if first Bloodsucker
-		check_start_sunlight()
+		SSsunlight.add_sun_sufferer(src)
 		// Name and Titles
 		SelectFirstName()
 		SelectTitle(am_fledgling = TRUE)
@@ -232,9 +237,8 @@
 
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
-	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN, COMSIG_QDELETING))
 	free_all_vassals()
-	check_cancel_sunlight() //check if sunlight should end
+	SSsunlight.remove_sun_sufferer(src) //check if sunlight should end
 	if(!owner?.current)
 		return
 	if(ishuman(owner.current))
@@ -485,6 +489,11 @@
 		user_eyes.color_cutoffs = initial(user_eyes.color_cutoffs)
 		user_eyes.sight_flags = initial(user_eyes.sight_flags)
 	user.update_sight()
+
+/datum/antagonist/bloodsucker/proc/remove_invalid_quirks()
+	for(var/datum/quirk/quirk in owner.current.quirks)
+		if(istype(quirk, /datum/quirk/sol_weakness))
+			quirk.remove_from_current_holder()
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

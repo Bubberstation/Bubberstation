@@ -67,7 +67,7 @@
 /datum/antagonist/bloodsucker/proc/RankUp(force = FALSE)
 	if(!owner || !owner.current)
 		return
-	bloodsucker_level_unspent++
+	AdjustUnspentRank(1)
 	if(!my_clan)
 		to_chat(owner.current, span_notice("You have gained a rank. Join a Clan to spend it."))
 		return
@@ -80,7 +80,7 @@
 	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()
-	bloodsucker_level_unspent--
+	AdjustUnspentRank(-1)
 
 /datum/antagonist/bloodsucker/proc/remove_nondefault_powers(return_levels = FALSE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
@@ -88,7 +88,7 @@
 			continue
 		RemovePower(power)
 		if(return_levels)
-			bloodsucker_level_unspent++
+			AdjustUnspentRank(1)
 
 /datum/antagonist/bloodsucker/proc/LevelUpPowers()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
@@ -108,6 +108,12 @@
 		return
 	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
 
+/datum/antagonist/bloodsucker/proc/GetUnspentRank()
+	return bloodsucker_level_unspent
+
+/datum/antagonist/bloodsucker/proc/AdjustUnspentRank(amount)
+	bloodsucker_level_unspent = max(bloodsucker_level_unspent + amount, 0)
+	update_rank_hud()
 /**
  * Called when a Bloodsucker reaches Final Death
  * Releases all Vassals and gives them the ex_vassal datum.
@@ -241,7 +247,6 @@
 	if(blood == null)
 		return
 	SetBloodVolume(blood)
-	update_hud()
 
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
 	SIGNAL_HANDLER
