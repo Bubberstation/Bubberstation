@@ -202,7 +202,7 @@
 		user_right_hand.unarmed_damage_high += 0.5
 
 	// We're almost done - Spend your Rank now.
-	bloodsuckerdatum.bloodsucker_level++
+	bloodsuckerdatum.AdjustRank(1)
 	if(cost_rank)
 		bloodsuckerdatum.AdjustUnspentRank(-1)
 
@@ -210,12 +210,12 @@
 		bloodsuckerdatum.AdjustBloodVolume(-blood_cost)
 
 	// Ranked up enough to get your true Reputation?
-	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
+	if(bloodsuckerdatum.GetRank() == BLOODSUCKER_HIGH_LEVEL)
 		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.bloodsucker_level] Bloodsucker. \
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.GetRank()] Bloodsucker. \
 		Your strength, feed rate, regen rate, and maximum blood capacity have all increased! \n\
 		* Your existing powers have all ranked up as well!"))
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)

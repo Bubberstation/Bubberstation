@@ -108,6 +108,13 @@
 		return
 	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
 
+/datum/antagonist/bloodsucker/proc/GetRank()
+	return bloodsucker_level
+
+/datum/antagonist/bloodsucker/proc/AdjustRank(amount)
+	bloodsucker_level = max(bloodsucker_level + amount, 0)
+	update_rank_hud()
+
 /datum/antagonist/bloodsucker/proc/GetUnspentRank()
 	return bloodsucker_level_unspent
 

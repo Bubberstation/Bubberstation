@@ -53,7 +53,7 @@
 	///Special vassals I own, to not have double of the same type.
 	var/list/datum/antagonist/vassal/special_vassals = list()
 
-	var/bloodsucker_level = 0
+	VAR_PRIVATE/bloodsucker_level = 0
 	/// Unspent ranks, don't modify this directly, use AdjustUnspentRanks()
 	VAR_PRIVATE/bloodsucker_level_unspent = 1
 	var/additional_regen
