@@ -2339,7 +2339,6 @@
 /area/station/security/execution/education)
 "aqn" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/effect/landmark/start/hangover,
 /obj/machinery/button/door{
 	id = "Dorm3";
@@ -2349,6 +2348,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/airalarm/directional/north,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "aqo" = (
@@ -2845,8 +2845,8 @@
 	},
 /area/station/commons/fitness)
 "ast" = (
-/obj/item/bedsheet/random/double,
 /obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/any/double,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "asu" = (
@@ -3373,7 +3373,6 @@
 /area/station/security/checkpoint/customs)
 "auw" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/machinery/button/door{
 	id = "Dorm2";
 	name = "Dorm Bolt Control";
@@ -3382,6 +3381,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/airalarm/directional/north,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
 "aux" = (
@@ -4805,7 +4805,6 @@
 /area/station/ai_monitored/command/storage/eva)
 "ayV" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/machinery/button/door{
 	id = "Dorm1";
 	name = "Dorm Bolt Control";
@@ -4814,6 +4813,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/airalarm/directional/north,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "ayW" = (
@@ -7007,7 +7007,6 @@
 /area/station/commons/dorms)
 "aHG" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/effect/landmark/start/hangover,
 /obj/machinery/button/door{
 	id = "Dorm4";
@@ -7016,6 +7015,7 @@
 	pixel_x = 25;
 	specialfunctions = 4
 	},
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
 "aHH" = (
@@ -7117,7 +7117,6 @@
 /area/station/commons/dorms)
 "aHU" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/machinery/button/door{
 	id = "Dorm5";
 	name = "Cabin Bolt Control";
@@ -7125,6 +7124,7 @@
 	pixel_y = -25;
 	specialfunctions = 4
 	},
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "aHV" = (
@@ -9382,21 +9382,30 @@
 /obj/item/stack/pipe_cleaner_coil/random,
 /obj/item/stack/pipe_cleaner_coil/random,
 /obj/item/stack/pipe_cleaner_coil/random,
-/turf/open/floor/iron,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "aQZ" = (
-/obj/machinery/light_switch{
-	pixel_x = 27
-	},
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/iron,
+/obj/structure/easel,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas,
+/obj/item/paint_palette,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "aRa" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron,
+/obj/machinery/light/small/directional/east,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "aRb" = (
 /obj/structure/cable,
@@ -9781,19 +9790,19 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "aSl" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
-/obj/item/storage/box/lights/mixed,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/commons/storage/emergency/port)
 "aSm" = (
+/obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
 /area/station/commons/storage/emergency/port)
 "aSo" = (
@@ -10133,7 +10142,7 @@
 /obj/structure/table,
 /obj/item/camera_film,
 /obj/item/camera,
-/turf/open/floor/iron,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "aTH" = (
 /obj/machinery/portable_atmospherics/canister/air,
@@ -15642,7 +15651,7 @@
 /obj/structure/table,
 /obj/item/hand_labeler,
 /obj/item/storage/box/shipping,
-/turf/open/floor/iron,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "bmm" = (
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -43065,7 +43074,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 9
 	},
-/turf/open/floor/iron,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "kev" = (
 /turf/open/floor/iron/dark/side,
@@ -47971,7 +47980,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/wood,
 /area/station/commons/storage/art)
 "nTh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -49629,9 +49638,6 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "phz" = (
-/obj/machinery/camera/directional/south{
-	c_tag = "Law Office"
-	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
@@ -52442,18 +52448,9 @@
 /turf/open/floor/iron/white,
 /area/station/medical/break_room)
 "rhw" = (
-/obj/item/canvas,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentyfour_twentyfour,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_nineteen,
-/obj/item/canvas/twentythree_twentythree,
-/obj/item/canvas/twentythree_twentythree,
-/obj/item/canvas,
-/turf/open/floor/wood,
-/area/station/security/prison)
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/station/commons/vacant_room/office)
 "rhx" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -52829,6 +52826,16 @@
 "rwv" = (
 /obj/structure/easel,
 /obj/machinery/light/directional/north,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas,
 /turf/open/floor/wood,
 /area/station/security/prison)
 "rxv" = (
@@ -55539,6 +55546,9 @@
 	pixel_x = -20
 	},
 /obj/item/pen/blue,
+/obj/machinery/camera/directional/south{
+	c_tag = "Law Office"
+	},
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
 "tzu" = (
@@ -82279,7 +82289,7 @@ vKD
 vKD
 mRE
 phz
-czK
+rhw
 aLL
 bDe
 aOl
@@ -82793,7 +82803,7 @@ eRH
 kqE
 srx
 srx
-czK
+rhw
 aLE
 aMQ
 aOl
@@ -84028,7 +84038,7 @@ dJo
 azJ
 acd
 rwv
-rhw
+ulw
 oBO
 hZy
 hvP
