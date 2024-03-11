@@ -224,7 +224,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	// SKYRAT EDIT ADDITION START: autopunctuation
 	//ensure EOL punctuation exists and that word-bounded 'i' are capitalized before we do anything else
-	message = autopunct_bare(message)
+	if(client?.autopunctuation) //BUBBER EDIT ADDITION: AUTOPUNCTUATION PREFERENCE CHECK
+		message = autopunct_bare(message)
 	// SKYRAT EDIT ADDITION END
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
 	if(saymode && !saymode.handle_message(src, message, language))
@@ -409,11 +410,12 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			var/mob/living/carbon/human/human_speaker = src
 			if(istype(human_speaker.wear_mask, /obj/item/clothing/mask))
 				var/obj/item/clothing/mask/worn_mask = human_speaker.wear_mask
-				if(worn_mask.voice_override)
-					voice_to_use = worn_mask.voice_override
-				if(worn_mask.voice_filter)
-					filter += worn_mask.voice_filter
-				use_radio = worn_mask.use_radio_beeps_tts
+				if(!worn_mask.mask_adjusted)
+					if(worn_mask.voice_override)
+						voice_to_use = worn_mask.voice_override
+					if(worn_mask.voice_filter)
+						filter += worn_mask.voice_filter
+					use_radio = worn_mask.use_radio_beeps_tts
 		if(use_radio)
 			special_filter += TTS_FILTER_RADIO
 		if(issilicon(src))
