@@ -81,9 +81,7 @@
 	if(panel_open)
 		. += span_notice("It is secured to the tram wall with [EXAMINE_HINT("bolts.")]")
 
-/obj/machinery/transport/destination_sign/deconstruct(disassembled = TRUE)
-	if(obj_flags & NO_DECONSTRUCTION)
-		return
+/obj/machinery/transport/destination_sign/on_deconstruction(disassembled)
 	if(disassembled)
 		new /obj/item/wallframe/indicator_display(drop_location())
 	else
@@ -91,7 +89,6 @@
 		new /obj/item/stack/sheet/iron(drop_location(), 1)
 		new /obj/item/shard(drop_location())
 		new /obj/item/shard(drop_location())
-	qdel(src)
 
 /obj/machinery/transport/destination_sign/indicator/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
@@ -122,13 +119,6 @@
 		sign_color = COLOR_DISPLAY_RED
 		update_appearance()
 		return
-
-	//BUBBERSTATION CHANGE START: FIXES 2-DESTINATION TRAMS
-	if(travel_direction == NONE)
-		sign_face = null
-		update_appearance()
-		return
-	//BUBBERSTATION CHANGE END: FIXES 2-DESTINATION TRAMS
 
 	sign_face = ""
 	sign_face += "[base_icon_state]_"
