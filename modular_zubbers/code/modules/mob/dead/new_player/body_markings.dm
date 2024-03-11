@@ -1,9 +1,6 @@
 /*
 	Bubberstation body markings
 	Body marking code is in modular_skyrat/[...]/new_player/body_markings.dm
-	Template below
-
-
 */
 
 /datum/body_marking/bubber
