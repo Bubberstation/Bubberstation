@@ -25,7 +25,3 @@
 
 /datum/antagonist/vassal/favorite/pre_mindshield(mob/implanter, mob/living/mob_override)
 	return COMPONENT_MINDSHIELD_RESISTED
-
-///Set the Vassal's rank to their Bloodsucker level
-/datum/antagonist/vassal/favorite/proc/set_vassal_level(mob/living/carbon/human/target)
-	master.bloodsucker_level = vassal_level
