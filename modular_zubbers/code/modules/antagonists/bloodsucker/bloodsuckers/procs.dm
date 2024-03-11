@@ -192,7 +192,6 @@
 		return
 	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
 	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
-	organ = null
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
