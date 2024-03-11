@@ -3,10 +3,6 @@
 	Body marking code is in modular_skyrat/[...]/new_player/body_markings.dm
 	Template below
 
-/datum/body_marking/bubber/111 //TEST ME
-	name = "111"
-	icon_state = "111"
-	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT
 
 */
 
