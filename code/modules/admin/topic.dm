@@ -48,6 +48,15 @@
 			return
 		cmd_show_exp_panel(M.client)
 
+	// BUBBER EDIT START - Job exemption
+	else if (href_list["getjobexemptwindow"])
+		var/target_ckey = href_list["getjobexemptwindow"]
+		show_job_exempt_menu(usr, target_ckey)
+	else if (href_list["getjobexempttask"])
+		var/target_ckey = href_list["getjobexempttask"]
+		handle_job_exempt_menu_topic(usr, href, href_list, target_ckey)
+	// BUBBER EDIT END
+
 // SKYRAT EDIT BEGIN -- ONE CLICK ANTAG
 	else if(href_list["makeAntag"])
 
@@ -1392,7 +1401,6 @@
 				return
 			G.report_message = description
 		message_admins("[key_name(usr)] created \"[G.name]\" station goal.")
-		GLOB.station_goals += G
 		modify_goals()
 
 	else if(href_list["change_lag_switch"])
