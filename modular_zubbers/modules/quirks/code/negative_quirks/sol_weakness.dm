@@ -3,7 +3,7 @@
 
 /datum/quirk/sol_weakness
 	name = "Sol Weakness"
-	icon = "sun"
+	icon = FA_ICON_SUN
 	desc = "Your sub-species of the Hemophage virus renders you weak to Solar radiation, \
 		you will have to hide in a coffin or a closet during the day, or risk burning to a crisp. \
 		Thankfully, you will also heal your wounds at no cost in the coffin."
