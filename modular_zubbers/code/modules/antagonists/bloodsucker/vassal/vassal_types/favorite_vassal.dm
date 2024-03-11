@@ -21,6 +21,7 @@
 
 /datum/antagonist/vassal/favorite/on_removal()
 	SEND_SIGNAL(master, BLOODSUCKER_LOOSE_FAVORITE, src)
+	remove_powers(bloodsucker_powers)
 	. = ..()
 
 /datum/antagonist/vassal/favorite/pre_mindshield(mob/implanter, mob/living/mob_override)
