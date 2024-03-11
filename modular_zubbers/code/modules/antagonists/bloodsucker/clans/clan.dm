@@ -38,7 +38,8 @@
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_INTERACT_WITH_VASSAL, PROC_REF(on_interact_with_vassal))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(on_favorite_vassal))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(favorite_vassal_gain))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_LOOSE_FAVORITE, PROC_REF(favorite_vassal_loss))
 
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
@@ -205,7 +206,7 @@
 	if(cost_rank)
 		bloodsuckerdatum.bloodsucker_level_unspent--
 	if(blood_cost)
-		bloodsuckerdatum.AddBloodVolume(-blood_cost)
+		bloodsuckerdatum.AdjustBloodVolume(-blood_cost)
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
@@ -214,10 +215,19 @@
 
 
 	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.bloodsucker_level] Bloodsucker. \
-		Your strength, health, feed rate, regen rate, and maximum blood capacity have all increased! \n\
+		Your strength, feed rate, regen rate, and maximum blood capacity have all increased! \n\
 		* Your existing powers have all ranked up as well!"))
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
 	bloodsuckerdatum.update_hud()
+	bloodsuckerdatum.update_static_data_for_all_viewers()
+
+	// unlock vassalizing if we have a vassal slot
+	if(bloodsuckerdatum.max_vassals() >= 1 && !(/datum/crafting_recipe/vassalrack in bloodsuckerdatum.owner?.learned_recipes))
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
 
 /**
  * Called when we are trying to turn someone into a Favorite Vassal
@@ -258,7 +268,7 @@
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "Out of Special Vassal slots!")
 		return
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you?"))
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
 	var/vassal_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, radial_display)
 	if(!vassal_response)
 		return
@@ -266,7 +276,7 @@
 	if(QDELETED(src) || QDELETED(bloodsuckerdatum.owner.current) || QDELETED(vassaldatum.owner.current))
 		return FALSE
 	vassaldatum.make_special(vassal_response)
-	bloodsuckerdatum.bloodsucker_blood_volume -= 150
+	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_VASSAL_COST)
 	return TRUE
 
 /**
@@ -275,6 +285,9 @@
  * bloodsuckerdatum - antagonist datum of the Bloodsucker who turned them into a Vassal.
  * vassaldatum - the antagonist datum of the Vassal being offered up.
  */
-/datum/bloodsucker_clan/proc/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	SIGNAL_HANDLER
 	vassaldatum.BuyPower(/datum/action/cooldown/bloodsucker/targeted/brawn)
+
+/datum/bloodsucker_clan/proc/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	SIGNAL_HANDLER

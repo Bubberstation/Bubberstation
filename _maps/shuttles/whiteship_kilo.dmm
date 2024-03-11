@@ -1105,6 +1105,24 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/cargo)
+"Wz" = (
+/obj/machinery/door/window/survival_pod/left/directional/east,
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/structure/bed/pod{
+	dir = 1
+	},
+/obj/effect/spawner/random/bedsheet{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/wood/tile,
+/area/shuttle/abandoned/crew)
 "Xe" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/decal/cleanable/dirt,
@@ -1125,20 +1143,8 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/abandoned/engine)
-"XP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/power/port_gen/pacman,
-/turf/open/floor/plating,
-/area/shuttle/abandoned/engine)
-"Yh" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
+"XO" = (
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
@@ -1154,6 +1160,16 @@
 	},
 /turf/open/floor/wood/tile,
 /area/shuttle/abandoned/crew)
+"XP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/plating,
+/area/shuttle/abandoned/engine)
 "YM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
@@ -1170,26 +1186,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
-"YU" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/obj/structure/bed/pod{
-	dir = 1
-	},
-/obj/effect/spawner/random/bedsheet{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/open/floor/wood/tile,
-/area/shuttle/abandoned/crew)
 "YV" = (
 /obj/effect/turf_decal/stripes,
 /obj/effect/decal/cleanable/dirt,
@@ -1393,9 +1389,9 @@ xh
 tz
 sB
 id
-YU
+Wz
 id
-Yh
+XO
 id
 jM
 QR
