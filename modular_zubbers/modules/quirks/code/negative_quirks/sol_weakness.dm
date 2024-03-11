@@ -6,13 +6,15 @@
 	icon = FA_ICON_SUN
 	desc = "Your sub-species of the Hemophage virus renders you weak to Solar radiation, \
 		you will have to hide in a coffin or a closet during the day, or risk burning to a crisp. \
-		Thankfully, you will also heal your wounds at no cost in the coffin."
+		Thankfully, you will also heal your wounds at half cost in a coffin."
 	gain_text = span_notice("You feel a sudden weakness in your body, and a burning sensation on your skin. \
 		You should find a coffin to hide in during the day.")
 	lose_text = span_notice("You feel safe in Sol's embrace once more.")
+	medical_record_text = "Patient's strain of the hemophage virus is weak to sunlight. \
+		They will have to hide in a coffin or a closet during the day, or risk burning to a crisp."
 	value = -6
 	hardcore_value = 12
-	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES // Time to see how many hemophages are going to get staked
+	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES | QUIRK_HUMAN_ONLY // Time to see how many hemophages are going to get staked
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud
 	COOLDOWN_DECLARE(sun_burn)
 
