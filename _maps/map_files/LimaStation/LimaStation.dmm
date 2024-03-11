@@ -3777,7 +3777,7 @@
 	specialfunctions = 4
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
@@ -4890,7 +4890,7 @@
 /area/station/hallway/primary/starboard)
 "caG" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/prisoner,
 /obj/structure/sign/poster/contraband/random/directional/north,
 /obj/effect/spawner/random/contraband/prison,
@@ -5215,7 +5215,7 @@
 /area/station/security/prison/safe)
 "chK" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
@@ -7584,10 +7584,7 @@
 /obj/machinery/computer/upload/ai,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/door/window/left/directional/west{
-	base_state = "right";
-	dir = 2;
-	icon_state = "right";
+/obj/machinery/door/window/left/directional/south{
 	layer = 3.1;
 	name = "Upload Console Window";
 	req_access = list("ai_upload")
@@ -8120,7 +8117,7 @@
 /area/station/engineering/atmos/upper)
 "dpc" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/spawner/random/contraband/prison,
 /turf/open/floor/iron/grimy,
 /area/station/security/prison/safe)
@@ -9551,7 +9548,7 @@
 /area/station/command/bridge)
 "dSX" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/carpet/black,
 /area/station/maintenance/starboard/aft)
 "dTa" = (
@@ -20266,10 +20263,7 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/upper)
 "hVY" = (
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #1";
-	suffix = "#1"
-	},
+/mob/living/simple_animal/bot/mulebot,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/directional/south,
 /obj/machinery/navbeacon{
@@ -29490,8 +29484,7 @@
 /obj/machinery/computer/upload/borg,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/door/window/left/directional/west{
-	dir = 2;
+/obj/machinery/door/window/left/directional/south{
 	layer = 3.1;
 	name = "Cyborg Upload Console Window";
 	req_access = list("ai_upload")
@@ -30167,7 +30160,7 @@
 /area/station/command/corporate_showroom)
 "lGt" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/prisoner,
 /obj/effect/spawner/random/contraband/prison,
 /turf/open/floor/iron/grimy,
@@ -36091,7 +36084,7 @@
 	specialfunctions = 4
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
@@ -36666,7 +36659,7 @@
 /area/station/engineering/main)
 "nZO" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/structure/sign/poster/contraband/random/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -39931,7 +39924,7 @@
 /area/station/service/hydroponics)
 "piM" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "piN" = (
@@ -40933,10 +40926,7 @@
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "pDY" = (
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #2";
-	suffix = "#2"
-	},
+/mob/living/simple_animal/bot/mulebot,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
@@ -49977,7 +49967,7 @@
 /area/station/commons/dorms)
 "sPq" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/prisoner,
 /obj/machinery/newscaster/directional/south,
 /obj/effect/spawner/random/contraband/prison,
@@ -52956,7 +52946,7 @@
 /area/station/service/library)
 "tWJ" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/virologist,
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/showroomfloor,
