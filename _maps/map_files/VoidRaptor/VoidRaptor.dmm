@@ -2021,6 +2021,12 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/port/aft)
 "aDQ" = (
+/obj/structure/rack{
+	icon = 'icons/obj/fluff/general.dmi';
+	icon_state = "minibar";
+	name = "skeletal minibar"
+	},
+/obj/item/storage/fancy/candle_box,
 /obj/machinery/firealarm/directional/east,
 /obj/effect/turf_decal/bot_white,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -6351,6 +6357,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
+	dir = 4;
 	location = "Medbay"
 	},
 /obj/effect/turf_decal/delivery/blue,
@@ -13688,6 +13695,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
+	dir = 4;
 	location = "Engineering"
 	},
 /turf/open/floor/iron/smooth_large,
@@ -15095,6 +15103,7 @@
 /obj/effect/turf_decal/box,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
+	dir = 4;
 	location = "QM #2"
 	},
 /turf/open/floor/iron/smooth_edge,
@@ -19188,6 +19197,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
+	dir = 4;
 	location = "QM #1"
 	},
 /obj/effect/turf_decal/box,
@@ -20454,7 +20464,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
 	},
-/obj/item/storage/fancy/candle_box,
 /turf/open/floor/cult,
 /area/station/service/library)
 "fXl" = (
@@ -24447,6 +24456,7 @@
 /obj/machinery/firealarm/directional/north,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
+	dir = 4;
 	location = "QM #4"
 	},
 /obj/effect/turf_decal/box,
@@ -37402,6 +37412,7 @@
 /obj/effect/turf_decal/box,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
+	dir = 4;
 	location = "QM #3"
 	},
 /turf/open/floor/iron/smooth_edge,
@@ -38547,6 +38558,7 @@
 "kTz" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
+	dir = 1;
 	location = "Janitor"
 	},
 /obj/structure/plasticflaps/opaque{
@@ -38934,6 +38946,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
+	dir = 4;
 	location = "Robotics"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -65410,6 +65423,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
+	dir = 4;
 	location = "Medbay"
 	},
 /obj/effect/turf_decal/delivery,
@@ -84344,18 +84358,6 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/power_room)
 "xrS" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/mob/living/basic/goat/pete,
-/obj/effect/turf_decal/weather/snow,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/weather/snow,
 /mob/living/basic/goat/pete,
@@ -87009,6 +87011,7 @@
 "yha" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
+	dir = 4;
 	location = "Atmospherics"
 	},
 /obj/effect/turf_decal/delivery,

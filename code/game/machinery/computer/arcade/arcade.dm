@@ -155,9 +155,11 @@ BUBBERSTATION CHANGE END. */
 		return .
 
 	var/obj/item/stack/arcadeticket/tickets = tool
-	if(!tickets.use(2))
-		balloon_alert(user, "need 2 tickets!")
+	// BUBBER EDIT START - MAKES MACHINES USE 1 TICKET
+	if(!tickets.use(1))
+		balloon_alert(user, "need 1 tickets!")
 		return ITEM_INTERACT_BLOCKING
+	//BUBBER EDIT END
 
 	prizevend(user)
 	balloon_alert(user, "prize claimed")
