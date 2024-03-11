@@ -1146,10 +1146,9 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "hc" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	name = "Bar";
-	req_access = list("syndicate");
-	dir = 1
+	req_access = list("syndicate")
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1169,12 +1168,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "hf" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/door/window/survival_pod{
-	dir = 2;
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate")
 	},
-/obj/machinery/door/window/survival_pod{
-	dir = 1;
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	req_access = list("syndicate_leader")
 	},
 /obj/machinery/door/poddoor/shutters{
@@ -1215,9 +1212,7 @@
 "hn" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "ho" = (
@@ -1925,8 +1920,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "ln" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/machinery/door/window/survival_pod{
-	dir = 4;
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Subject B";
 	req_access = list("syndicate")
 	},
@@ -2192,8 +2186,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "mU" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/obj/machinery/door/window/survival_pod{
-	dir = 4;
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Subject A"
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
@@ -2549,8 +2542,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "oH" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/machinery/door/window/survival_pod{
-	dir = 2;
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	name = "Virology Airlock";
 	req_access = list("syndicate")
 	},
@@ -3186,13 +3178,11 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "rD" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
+/obj/machinery/door/window/survival_pod/left/directional/west{
 	req_access = list("syndicate_leader");
 	name = "Isolation"
 	},
-/obj/machinery/door/window/survival_pod{
-	dir = 4;
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	req_access = list("syndicate_leader");
 	name = "Isolation"
 	},
@@ -4321,9 +4311,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "xj" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
+/obj/machinery/door/window/survival_pod/left/directional/north,
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
@@ -4357,8 +4345,7 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/shower)
 "xo" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 4;
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	req_access = list("syndicate")
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -4515,9 +4502,7 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east{
 	pixel_x = 4
 	},
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
+/obj/machinery/door/window/survival_pod/left/directional/north,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
@@ -5981,7 +5966,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "EF" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	name = "Slime Pacification Chamber";
 	req_access = list("syndicate")
 	},
@@ -7662,8 +7647,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Mh" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 1;
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	req_access = list("syndicate");
 	name = "Holding Cell"
 	},
@@ -8333,12 +8317,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Qv" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/survival_pod{
-	dir = 4;
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	req_access = list("syndicate_leader")
 	},
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
+/obj/machinery/door/window/survival_pod/left/directional/west{
 	heat_proof = 1;
 	req_access = list("syndicate")
 	},
@@ -8566,7 +8548,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Rk" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate");
 	name = "Turbine Access"
 	},
@@ -9020,8 +9002,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "Tp" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
+/obj/machinery/door/window/survival_pod/left/directional/west{
 	heat_proof = 1;
 	req_access = list("Syndicate")
 	},
@@ -9077,12 +9058,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "TC" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/door/window/survival_pod{
-	dir = 2;
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	req_access = list("syndicate")
 	},
-/obj/machinery/door/window/survival_pod{
-	dir = 1;
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	req_access = list("syndicate_leader")
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -9463,7 +9442,7 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "VK" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	name = "Slime Euthanization Chamber";
 	req_access = list("syndicate")
 	},
@@ -9562,8 +9541,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "WC" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/machinery/door/window/survival_pod{
-	dir = 1;
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	name = "Virology Airlock";
 	req_access = list("syndicate")
 	},
