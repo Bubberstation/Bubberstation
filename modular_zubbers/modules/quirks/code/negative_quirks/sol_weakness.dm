@@ -13,7 +13,7 @@
 	medical_record_text = "Patient's strain of the hemophage virus is weak to sunlight. \
 		They will have to hide in a coffin or a closet during the day, or risk burning to a crisp."
 	value = -4
-	hardcore_value = 12
+	hardcore_value = 6
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES | QUIRK_HUMAN_ONLY // Time to see how many hemophages are going to get staked
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud
 	COOLDOWN_DECLARE(sun_burn)
@@ -76,6 +76,7 @@
 		return
 	sun_burn_message(span_userdanger("THE SUN, IT BURNS!"))
 	quirk_holder.adjustFireLoss(2)
+	quirk_holder.adjust_fire_stacks(1)
 	quirk_holder.ignite_mob()
 
 /datum/quirk/sol_weakness/proc/sun_burn_message(text)
