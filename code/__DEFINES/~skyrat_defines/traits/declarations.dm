@@ -33,9 +33,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Trait to spawn with a pet in a pet carrier (veteran only)
 #define TRAIT_PET_OWNER "pet_owner"
 
-/// adds -6 quirk to negative quirks for free points.
-#define TRAIT_GIFTED "gifted"
-
 //AdditionalEmotes *turf traits
 #define TRAIT_WATER_ASPECT "water_aspect"
 #define TRAIT_WEBBING_ASPECT "webbing_aspect"
