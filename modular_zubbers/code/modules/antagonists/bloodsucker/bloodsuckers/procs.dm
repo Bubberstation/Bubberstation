@@ -196,7 +196,7 @@
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
-	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ.slot != ORGAN_SLOT_HEART || !old_owner.dna.species.mutantheart)
+	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ?.slot != ORGAN_SLOT_HEART || !old_owner.dna.species.mutantheart)
 		return
 	remove_signals_from_heart(old_owner)
 	// You don't run bloodsucker life without a heart or brain
@@ -205,7 +205,7 @@
 	DisableAllPowers(TRUE)
 	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_end(TRUE)
-	to_chat(old_owner, span_userdanger("You have lost your [organ.slot]!"))
+	to_chat(old_owner, span_userdanger("You have lost your [organ?.slot ? organ.slot : "heart"]!"))
 	to_chat(old_owner, span_warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
 
 /datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
