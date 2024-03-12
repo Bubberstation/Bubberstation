@@ -69,7 +69,7 @@
 
 /datum/quirk/sol_weakness/proc/sun_burn()
 	quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_sun_scorched)
-	if(quirk_holder.blood_volume > BLOOD_VOLUME_MAXIMUM * 0.5)
+	if(quirk_holder.blood_volume > BLOOD_VOLUME_MAXIMUM * 0.4)
 		quirk_holder.blood_volume -= 5
 		sun_burn_message(span_warning("The sun burns your skin, but your blood protects you from the worst of it..."))
 		quirk_holder.adjustFireLoss(1)
