@@ -60,7 +60,8 @@
 		sun_burn()
 	else
 		if(in_coffin())
-			sun_burn_message(span_warning("The sun is up, but you are safe in your coffin."))
+			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/coffinsleep/quirk)
+			sun_burn_message(span_warning("The sun is up, but you sleep soundly in your [quirk_holder.loc]."))
 		else
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 			quirk_holder.adjustFireLoss(1)
@@ -86,6 +87,8 @@
 
 /datum/quirk/sol_weakness/proc/sun_warning(atom/source, danger_level, vampire_warning_message, vassal_warning_message)
 	SIGNAL_HANDLER
+	if(danger_level == DANGER_LEVEL_SOL_ROSE)
+		vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk death!")
 	SSsunlight.warn_notify(quirk_holder, danger_level, vampire_warning_message)
 
 /datum/quirk/sol_weakness/proc/in_coffin()

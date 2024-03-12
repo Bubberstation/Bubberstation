@@ -33,6 +33,9 @@
 	mood_change = 10
 	timeout = 6 MINUTES
 
+/datum/mood_event/coffinsleep/quirk
+	mood_change = 4
+
 /datum/mood_event/daylight_bad_sleep
 	description = "<span class='boldwarning'>I slept poorly in a makeshift coffin during the day.</span>\n"
 	mood_change = -3
