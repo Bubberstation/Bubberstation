@@ -171,8 +171,6 @@
 		SSquirks.AssignQuirks(patient, patient.client)
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 
-		SSquirks.AssignQuirks(patient, patient.client) // BUBBER EDIT ADDITON
-
 	open_machine()
 
 /obj/machinery/self_actualization_device/screwdriver_act(mob/living/user, obj/item/used_item)
