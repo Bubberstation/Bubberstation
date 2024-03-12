@@ -944,15 +944,15 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "ahM" = (
-/obj/machinery/door/window/left/directional/east{
-	name = "Armoury Desk"
-	},
+/obj/structure/table/reinforced,
+/obj/structure/cable,
 /obj/machinery/door/window/left/directional/west{
 	name = "Armoury Desk";
 	req_access = list("armory")
 	},
-/obj/structure/table/reinforced,
-/obj/structure/cable,
+/obj/machinery/door/window/left/directional/east{
+	name = "Armoury Desk"
+	},
 /turf/open/floor/iron,
 /area/station/ai_monitored/security/armory)
 "ahP" = (
@@ -4789,11 +4789,9 @@
 	pixel_x = 2
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Jetpack Storage";
-	pixel_x = -1;
-	req_access = list("eva")
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("eva");
+	name = "RCD Storage"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
@@ -5020,11 +5018,9 @@
 /obj/machinery/camera/motion/directional/west{
 	c_tag = "EVA Motion Sensor"
 	},
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "RPD Storage";
-	pixel_x = -1;
-	req_access = list("eva")
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("eva");
+	name = "RPD Storage"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
@@ -5049,11 +5045,9 @@
 /obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Inducer Storage";
-	pixel_x = -1;
-	req_access = list("eva")
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("eva");
+	name = "Inducer Storage"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
@@ -6870,12 +6864,10 @@
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
 /obj/item/paper,
-/obj/machinery/door/window/right/directional/west{
-	dir = 1;
-	name = "Security Checkpoint";
-	req_access = list("brig")
-	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/window/right/directional/north{
+	name = "Security Checkpoint"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "aHd" = (
@@ -10954,14 +10946,13 @@
 /turf/open/floor/plating,
 /area/station/security/execution/education)
 "aWC" = (
-/obj/machinery/door/window{
-	dir = 1;
-	name = "Containment Cell";
-	req_access = list("xenobiology")
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobiomain";
 	name = "Containment Blast Door"
+	},
+/obj/machinery/door/window/brigdoor/left/directional/north{
+	name = "Containment Cell";
+	req_access = list("xenobiology")
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -13223,9 +13214,9 @@
 /area/station/hallway/secondary/exit)
 "bdB" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/window{
-	name = "Containment Cell";
-	req_access = list("xenobiology")
+/obj/machinery/door/window/brigdoor/left/directional/south{
+	req_access = list("xenobiology");
+	name = "Containment Cell"
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -21956,7 +21947,6 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bHz" = (
-/obj/machinery/bouldertech/brm,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
@@ -21964,6 +21954,7 @@
 	dir = 1;
 	id = "boulderbelt"
 	},
+/obj/machinery/brm,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bHA" = (
@@ -28877,14 +28868,14 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "coh" = (
-/obj/machinery/door/window/brigdoor/security/cell{
-	id = "Cell 3";
-	name = "Cell 3"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/bot_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/south{
+	id = "Cell 3";
+	name = "Cell 3"
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "cop" = (
@@ -35628,8 +35619,7 @@
 /area/station/security/prison/visit)
 "eJI" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/door/window{
-	dir = 8;
+/obj/machinery/door/window/left/directional/west{
 	name = "Containment Cell";
 	req_access = list("xenobiology")
 	},
@@ -37000,8 +36990,7 @@
 	id = "xenobiomain";
 	name = "Containment Blast Door"
 	},
-/obj/machinery/door/window{
-	dir = 8;
+/obj/machinery/door/window/left/directional/west{
 	name = "Containment Cell";
 	req_access = list("xenobiology")
 	},
@@ -37021,12 +37010,6 @@
 /area/station/maintenance/department/electrical)
 "fMj" = (
 /obj/structure/table/glass,
-/obj/machinery/door/window/left/directional/north{
-	dir = 4;
-	name = "First-Aid Supplies";
-	red_alert_access = 1;
-	req_access = list("medical")
-	},
 /obj/item/storage/medkit/o2{
 	pixel_x = 3;
 	pixel_y = 3
@@ -37048,6 +37031,11 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/north{
 	pixel_y = 2
+	},
+/obj/machinery/door/window/left/directional/east{
+	name = "First-Aid Supplies";
+	req_access = list("medical");
+	red_alert_access = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
@@ -37475,10 +37463,9 @@
 /area/station/maintenance/abandon_cafeteria)
 "gbS" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/door/window{
-	dir = 4;
-	name = "Containment Cell";
-	req_access = list("xenobiology")
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("xenobiology");
+	name = "Containment Cell"
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -37799,23 +37786,19 @@
 /area/station/service/hydroponics)
 "gpz" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/left/directional/north{
-	dir = 8;
-	name = "Reception Window"
-	},
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 4;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
-	req_access = list("hop")
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/flasher{
 	id = "hopflash";
 	pixel_y = 28
+	},
+/obj/machinery/door/window/left/directional/west{
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor/left/directional/east{
+	name = "Head of Personnel's Desk";
+	req_access = list("hop")
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hop";
@@ -38039,14 +38022,10 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "gzK" = (
-/obj/machinery/door/window{
-	dir = 4;
-	name = "Containment Cell";
-	req_access = list("xenobiology")
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/iron,
-/area/station/science/xenobiology)
+/obj/effect/turf_decal/bot_blue,
+/obj/machinery/dish_drive/bullet,
+/turf/open/floor/iron/dark,
+/area/station/security/office)
 "gzL" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -40477,7 +40456,19 @@
 /area/station/science/explab)
 "imo" = (
 /obj/effect/turf_decal/delivery/blue,
-/obj/machinery/dish_drive/bullet,
+/obj/item/target/syndicate,
+/obj/item/target/syndicate,
+/obj/item/target/clown,
+/obj/item/target/clown,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target,
+/obj/item/target,
+/obj/structure/closet/crate/secure{
+	desc = "A secure crate containing various materials for building a customised test-site.";
+	name = "Firing Range Gear Crate";
+	req_access = list("brig")
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "imH" = (
@@ -41546,7 +41537,8 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/ai_monitored/command/nuke_storage)
 "jdy" = (
-/obj/effect/turf_decal/bot,
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks,
 /turf/open/floor/iron/kitchen,
 /area/station/security/prison)
 "jdF" = (
@@ -41959,11 +41951,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/left/directional/south{
-	base_state = "right";
-	icon_state = "right";
-	name = "Armory";
-	req_access = list("armory")
+/obj/machinery/door/window/right/directional/south{
+	req_access = list("armory");
+	name = "Armory"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
@@ -42141,15 +42131,14 @@
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "jvM" = (
-/obj/machinery/door/window/left/directional/west{
-	dir = 4;
-	name = "Brig Infirmary"
-	},
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/window/left/directional/east{
+	name = "Brig Infirmary"
+	},
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "jvR" = (
@@ -44565,10 +44554,9 @@
 	id = "xenobiomain";
 	name = "Containment Blast Door"
 	},
-/obj/machinery/door/window{
-	dir = 4;
-	name = "Containment Cell";
-	req_access = list("xenobiology")
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("xenobiology");
+	name = "Containment Cell"
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -45546,9 +45534,9 @@
 /turf/open/floor/iron,
 /area/station/science/lab)
 "lXs" = (
-/obj/machinery/chem_dispenser/drinks,
-/turf/closed/wall/r_wall,
-/area/station/security/prison)
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/station/commons/vacant_room/office)
 "lXI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -45878,13 +45866,12 @@
 /turf/open/floor/vault/rock,
 /area/station/security/prison)
 "moA" = (
-/obj/machinery/door/window/right/directional/east{
-	dir = 1;
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/window/right/directional/north{
 	name = "Bridge Delivery";
 	req_access = list("command")
 	},
-/obj/effect/turf_decal/delivery,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/command/meeting_room)
 "moU" = (
@@ -46472,22 +46459,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
-"mNa" = (
-/obj/item/target,
-/obj/item/target,
-/obj/item/target/alien,
-/obj/item/target/alien,
-/obj/item/target/clown,
-/obj/item/target/clown,
-/obj/item/target/syndicate,
-/obj/item/target/syndicate,
-/obj/structure/closet/crate/secure{
-	desc = "A secure crate containing various materials for building a customised test-site.";
-	name = "Firing Range Gear Crate";
-	req_access = list("brig")
-	},
-/turf/open/floor/iron/dark,
-/area/station/security/office)
 "mNe" = (
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/carpet/blue,
@@ -46519,17 +46490,13 @@
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/rd)
 "mOX" = (
-/obj/machinery/door/window{
-	dir = 8;
-	name = "Containment Cell";
-	req_access = list("xenobiology")
+/obj/structure/railing{
+	dir = 8
 	},
-/obj/machinery/door/poddoor/preopen{
-	id = "xenobiomain";
-	name = "Containment Blast Door"
-	},
-/turf/open/floor/engine,
-/area/station/science/xenobiology)
+/obj/effect/turf_decal/delivery/blue,
+/obj/machinery/ammo_workbench,
+/turf/open/floor/iron/smooth,
+/area/station/ai_monitored/security/armory)
 "mPh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
@@ -47597,7 +47564,6 @@
 /area/station/hallway/primary/fore)
 "nGh" = (
 /obj/machinery/light/directional/east,
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
@@ -48463,14 +48429,14 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/science/genetics)
 "ooJ" = (
-/obj/machinery/door/window/brigdoor/security/holding{
-	id = "Holding Cell";
-	name = "Holding Cell"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/bot_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/window/brigdoor/security/holding/left/directional/south{
+	name = "Holding Cell";
+	id = "Holding Cell"
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "ooQ" = (
@@ -48964,6 +48930,8 @@
 /obj/structure/railing{
 	dir = 10
 	},
+/obj/effect/turf_decal/delivery/blue,
+/obj/machinery/dish_drive/bullet,
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "oFd" = (
@@ -50834,13 +50802,6 @@
 /area/station/hallway/primary/central)
 "qaV" = (
 /obj/structure/table/glass,
-/obj/machinery/door/window/left/directional/north{
-	dir = 8;
-	icon_state = "right";
-	name = "First-Aid Supplies";
-	red_alert_access = 1;
-	req_access = list("medical")
-	},
 /obj/item/storage/medkit/brute{
 	pixel_x = 3;
 	pixel_y = 3
@@ -50862,6 +50823,11 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/north{
 	pixel_y = 2
+	},
+/obj/machinery/door/window/left/directional/west{
+	red_alert_access = 1;
+	req_access = list("medical");
+	name = "First-Aid Supplies"
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
@@ -51300,13 +51266,12 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/right/directional/east{
-	dir = 8;
-	name = "Pharmacy Desk";
-	req_access = list("pharmacy")
-	},
 /obj/item/folder/white,
 /obj/item/pen,
+/obj/machinery/door/window/right/directional/west{
+	req_access = list("pharmacy");
+	name = "Pharmacy Desk"
+	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "pharmacy_shutters";
 	name = "Pharmacy Shutters";
@@ -52447,10 +52412,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/medical/break_room)
-"rhw" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/station/commons/vacant_room/office)
 "rhx" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -52728,15 +52689,12 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/right/directional/east{
-	base_state = "left";
-	dir = 1;
-	icon_state = "left";
+/obj/item/folder/white,
+/obj/item/pen,
+/obj/machinery/door/window/right/directional/north{
 	name = "Pharmacy Desk";
 	req_access = list("pharmacy")
 	},
-/obj/item/folder/white,
-/obj/item/pen,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "pharmacy_shutters2";
 	name = "Pharmacy Shutters"
@@ -53482,7 +53440,7 @@
 /area/station/ai_monitored/command/nuke_storage)
 "rUx" = (
 /obj/machinery/jukebox{
-	req_access = list("bar", "brig")
+	req_access = list("bar", "security")
 	},
 /turf/open/floor/wood,
 /area/station/security/prison)
@@ -53625,12 +53583,6 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/hfr_room)
 "sas" = (
-/obj/machinery/door/window/left/directional/west{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Brig Infirmary"
-	},
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 4
 	},
@@ -53638,6 +53590,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
+	},
+/obj/machinery/door/window/right/directional/east{
+	name = "Brig Infirmary"
 	},
 /turf/open/floor/iron/white,
 /area/station/security/medical)
@@ -53815,9 +53770,9 @@
 /turf/open/floor/plating,
 /area/station/construction/mining/aux_base)
 "shM" = (
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/sign/poster/random/directional/east,
 /turf/open/floor/iron,
 /area/station/security/prison/safe)
 "siK" = (
@@ -53959,13 +53914,11 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
+/obj/effect/turf_decal/bot,
 /obj/machinery/door/window/left/directional/south{
-	base_state = "right";
-	icon_state = "right";
-	name = "Armory";
+	name = "Secure Armory";
 	req_access = list("armory")
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "sni" = (
@@ -55225,14 +55178,14 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/customs)
 "tkk" = (
-/obj/machinery/door/window/brigdoor/security/cell{
-	id = "Cell 2";
-	name = "Cell 2"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/bot_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/south{
+	id = "Cell 2";
+	name = "Cell 2"
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "tkC" = (
@@ -56663,14 +56616,14 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/gravity_generator)
 "uvZ" = (
-/obj/machinery/door/window/brigdoor/security/cell{
-	id = "Cell 1";
-	name = "Cell 1"
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/bot_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/south{
+	id = "Cell 1";
+	name = "Cell 1"
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "uwy" = (
@@ -57694,11 +57647,9 @@
 /obj/item/tank/jetpack/carbondioxide,
 /obj/structure/rack,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Jetpack Storage";
-	pixel_x = -1;
-	req_access = list("eva")
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("eva");
+	name = "Jetpack Storage"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
@@ -60081,11 +60032,11 @@
 	dir = 8
 	},
 /obj/structure/railing/corner,
+/obj/effect/turf_decal/bot,
 /obj/machinery/door/window/left/directional/south{
-	name = "Ballistics";
+	name = "Secure Armory";
 	req_access = list("armory")
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "wTp" = (
@@ -61365,11 +61316,9 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/door/window/left/directional/north{
-	dir = 2;
-	name = "Magboot Storage";
-	pixel_x = -1;
-	req_access = list("eva")
+/obj/machinery/door/window/left/directional/south{
+	req_access = list("eva");
+	name = "Magboots Storage"
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
@@ -82289,7 +82238,7 @@ vKD
 vKD
 mRE
 phz
-rhw
+lXs
 aLL
 bDe
 aOl
@@ -82803,7 +82752,7 @@ eRH
 kqE
 srx
 srx
-rhw
+lXs
 aLE
 aMQ
 aOl
@@ -85308,7 +85257,7 @@ xzh
 bJc
 xzh
 xzh
-lXs
+aai
 jdy
 tTU
 vlv
@@ -90986,7 +90935,7 @@ xzh
 xzh
 bJc
 aaZ
-abn
+mOX
 abn
 abn
 oEV
@@ -93297,7 +93246,7 @@ ycT
 wbO
 cDa
 jaY
-mNa
+iVu
 aUl
 iVu
 nYr
@@ -94067,7 +94016,7 @@ xzh
 xzh
 qti
 sni
-sni
+gzK
 imo
 adR
 bpJ
@@ -105211,7 +105160,7 @@ yck
 dnc
 bJN
 dqk
-mOX
+fKY
 ylY
 bJN
 dqk
@@ -105468,7 +105417,7 @@ mdh
 rjh
 bJN
 wBO
-gzK
+gbS
 nOl
 bJN
 wBO
