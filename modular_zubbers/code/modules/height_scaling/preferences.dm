@@ -19,8 +19,6 @@
 	return HUMAN_HEIGHT_MEDIUM
 
 /datum/preference/choiced/height_scaling/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	. = ..()
-
 	if (isdwarf(target)) // nuh uh. your height is set mf
 		return FALSE
 
