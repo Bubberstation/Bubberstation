@@ -60,7 +60,6 @@
 		sun_burn()
 	else
 		if(in_coffin())
-			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/coffinsleep)
 			sun_burn_message(span_warning("The sun is up, but you are safe in your coffin."))
 		else
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
