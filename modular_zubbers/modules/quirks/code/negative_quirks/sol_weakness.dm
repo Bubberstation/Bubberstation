@@ -12,7 +12,7 @@
 	lose_text = span_notice("You feel safe in Sol's embrace once more.")
 	medical_record_text = "Patient's strain of the hemophage virus is weak to sunlight. \
 		They will have to hide in a coffin or a closet during the day, or risk burning to a crisp."
-	value = -2
+	value = -4
 	hardcore_value = 12
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES | QUIRK_HUMAN_ONLY // Time to see how many hemophages are going to get staked
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud
