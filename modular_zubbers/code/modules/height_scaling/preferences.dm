@@ -12,11 +12,6 @@
 		"[HUMAN_HEIGHT_TALLEST]" = "Tallest"
 	)
 
-/datum/preference/choiced/height_scaling/is_accessible(datum/preferences/preferences)
-	. = ..()
-
-	if (preferences.)
-
 /datum/preference/choiced/height_scaling/init_possible_values()
 	return list(HUMAN_HEIGHT_SHORTEST, HUMAN_HEIGHT_SHORT, HUMAN_HEIGHT_MEDIUM, HUMAN_HEIGHT_TALL, HUMAN_HEIGHT_TALLER, HUMAN_HEIGHT_TALLEST)
 
