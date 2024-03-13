@@ -180,6 +180,27 @@
 	item_type = /obj/item/hypospray/mkii
 	cost = PAYCHECK_LOWER * 2
 
+// Cybernetics and other things that go inside you
+
+/datum/armament_entry/company_import/deforest/implant
+	subcategory = "Cybernetics"
+
+/datum/armament_entry/company_import/deforest/implant/surgery
+	item_type = /obj/item/organ/internal/cyberimp/arm/surgery
+	cost = PAYCHECK_COMMAND * 10
+
+/datum/armament_entry/company_import/deforest/implant/toolset
+	item_type = /obj/item/organ/internal/cyberimp/arm/toolset
+	cost = PAYCHECK_COMMAND * 10
+
+/datum/armament_entry/company_import/deforest/implant/botany
+	item_type = /obj/item/organ/internal/cyberimp/arm/botany
+	cost = PAYCHECK_COMMAND * 10
+
+/datum/armament_entry/company_import/deforest/implant/janitor
+	item_type = /obj/item/organ/internal/cyberimp/arm/janitor
+	cost = PAYCHECK_COMMAND * 10
+
 //End Bubber Changes
 
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
