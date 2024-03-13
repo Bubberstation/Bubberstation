@@ -82,8 +82,8 @@
 	if(!I)
 		return
 	//BUBBER EDIT START
-	if(istype(I, /obj/item/kinetic_greave))
-		var/obj/item/kinetic_greave/greave = I
-		greave.next_attack = 0 //i hate this but i also don't know how else to implement this
+	if(istype(I, /obj/item/kinetic_gauntlet))
+		var/obj/item/kinetic_gauntlet/gauntlet = I
+		gauntlet.next_attack = 0 //i hate this but i also don't know how else to implement this
 	//BUBBER EDIT END
 	I.melee_attack_chain(user, target, null)

@@ -216,7 +216,7 @@
 		if(crusher_kill && istype(L.get_active_held_item(), /obj/item/kinetic_crusher))
 		*/
 		var/obj/item/held_item = L.get_active_held_item()
-		if(crusher_kill && (held_item.GetComponent(/datum/component/kinetic_crusher) || istype(held_item, /obj/item/kinetic_greave))) //trust me, i hate this just as much as you
+		if(crusher_kill && (held_item.GetComponent(/datum/component/kinetic_crusher) || istype(held_item, /obj/item/kinetic_gauntlet))) //trust me, i hate this just as much as you
 		//BUBBER EDIT END
 			L.client.give_award(crusher_achievement_type, L)
 		L.client.give_award(/datum/award/score/boss_score, L) //Score progression for bosses killed in general
