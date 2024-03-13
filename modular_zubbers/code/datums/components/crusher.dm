@@ -1,5 +1,3 @@
-#define NO_DEBUG_GUH(var) message_admins("[var] [__FILE__]-[__LINE__]")
-#warn REMOVE BITCHASS
 /datum/component/kinetic_crusher
 	/// The attached trophies.
 	var/list/stored_trophies = list()
@@ -33,7 +31,7 @@
 	src.detonate_check = detonate_check
 	src.after_detonate = after_detonate
 
-/datum/component/kinetic_crusher/RegisterWithParent(datum/parent = parent)
+/datum/component/kinetic_crusher/RegisterWithParent(datum/parent = src.parent)
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_attackby))
@@ -44,17 +42,19 @@
 
 /datum/component/kinetic_crusher/Destroy(force)
 	QDEL_LIST(stored_trophies) //dont be a dummy
-	QDEL_NULL(attack_check)
-	QDEL_NULL(detonate_check)
-	QDEL_NULL(after_detonate)
+	attack_check = null
+	detonate_check = null
+	after_detonate = null
 	return ..()
 
-/datum/component/kinetic_crusher/proc/on_examine(atom/source, mob/user, list/examine_list)
+/datum/component/kinetic_crusher/proc/on_examine(obj/item/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	var/obj/item/owner = parent
-	examine_list += span_notice("Mark a large creature with a destabilizing force with right-click, then hit them in melee to do <b>[owner.force + detonation_damage]</b> damage.")
-	examine_list += span_notice("Does <b>[owner.force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[owner.force + detonation_damage]</b>.")
+	var/datum/component/two_handed/comp = source.GetComponent(/datum/component/two_handed)
+	var/force = comp ? comp.force_wielded : source.force
+
+	examine_list += span_notice("Mark a large creature with a destabilizing force with right-click, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
+	examine_list += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
 	for(var/obj/item/crusher_trophy/trophy as anything in stored_trophies)
 		examine_list += span_notice("It has \a [trophy] attached, which causes [trophy.effect_desc()].")
 
@@ -69,15 +69,16 @@
 
 	if(attacking_item.tool_behaviour == TOOL_CROWBAR)
 		if(!LAZYLEN(stored_trophies))
-			to_chat(user, span_warning("There are no trophies on [src]."))
+			to_chat(user, span_warning("There are no trophies on [source]."))
 			return COMPONENT_NO_AFTERATTACK
 
-		to_chat(user, span_notice("You remove [src]'s trophies."))
+		to_chat(user, span_notice("You remove [source]'s trophies."))
 		attacking_item.play_tool_sound(src)
 		for(var/obj/item/crusher_trophy/trophy as anything in stored_trophies)
 			trophy.remove_from(parent, user)
 			UnregisterSignal(trophy, COMSIG_MOVABLE_MOVED)
 
+		stored_trophies.Cut()
 		return COMPONENT_NO_AFTERATTACK
 
 	if(istype(attacking_item, /obj/item/crusher_trophy))
@@ -95,8 +96,10 @@
 	SIGNAL_HANDLER
 
 	cached_health = target.health
-	if(attack_check && !attack_check.Invoke(user))
-		return
+
+	var/cancel_attack = NONE
+	if(attack_check && !attack_check.Invoke(user, &cancel_attack))
+		return cancel_attack
 
 	if(!target.has_status_effect(/datum/status_effect/crusher_damage))
 		target.apply_status_effect(/datum/status_effect/crusher_damage)
@@ -107,8 +110,15 @@
 /datum/component/kinetic_crusher/proc/on_afterattack(obj/item/source, mob/living/target, mob/living/user, proximity_flag, click_parameters)
 	SIGNAL_HANDLER
 
-	if(!proximity_flag || !istype(target))
-		NO_DEBUG_GUH("NO PROXIMITY FLAG OR ISTYPE OR SOME SHIT. PROX:[proximity_flag], TYPE:[istype(target)].")
+	if(!proximity_flag)
+		return
+
+	if(istype(target, /obj/item/crusher_trophy))
+		var/obj/item/crusher_trophy/trophy = target
+		trophy.add_to(parent, user, src)
+		return
+
+	if(!isliving(target))
 		return
 
 	var/datum/status_effect/crusher_damage/damage_effect = target.has_status_effect(/datum/status_effect/crusher_damage) || target.apply_status_effect(/datum/status_effect/crusher_damage)
@@ -117,12 +127,10 @@
 		cached_health = null
 
 	if(detonate_check && !detonate_check.Invoke(user))
-		NO_DEBUG_GUH("DETONATE CHECK FAILED SOMEHOW.")
 		return
 
 	var/datum/status_effect/crusher_mark/mark_effect = target.has_status_effect(/datum/status_effect/crusher_mark)
 	if(mark_effect?.hammer_synced != src)
-		NO_DEBUG_GUH("HAMMER SYNCED FAILED SOMEHOW. HAMMER:[isnull(mark_effect) ? "FUCKING GONE" : mark_effect.hammer_synced], PARENT:[parent]")
 		return
 
 	target.remove_status_effect(/datum/status_effect/crusher_mark)
@@ -144,20 +152,22 @@
 	damage_effect.total_damage += dealt_damage + target.get_total_damage() - past_damage //we did some damage, but let's not assume how much we did
 
 	after_detonate?.InvokeAsync(user, target)
-	SEND_SIGNAL(user, COMSIG_LIVING_CRUSHER_DETONATE, target, src, backstabbed)
+	SEND_SIGNAL(user, COMSIG_LIVING_CRUSHER_DETONATE, target, parent, backstabbed)
 	target.apply_damage(dealt_damage, BRUTE, blocked = target.getarmor(type = BOMB))
 
 /datum/component/kinetic_crusher/proc/on_attack_secondary(obj/item/source, mob/living/victim, mob/living/user, params)
 	SIGNAL_HANDLER
 
-	if(attack_check?.Invoke(user))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
+	var/cancel_attack = NONE
+	if(attack_check && !attack_check.Invoke(user, &cancel_attack))
+		return cancel_attack
+	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /datum/component/kinetic_crusher/proc/on_afterattack_secondary(obj/item/source, atom/target, mob/living/user, proximity_flag, click_parameters)
 	SIGNAL_HANDLER
 
-	if(attack_check && !attack_check.Invoke(user))
-		NO_DEBUG_GUH("ATTACK CHECK FAILED SOMEHOW.")
+	var/_ = TRUE
+	if(attack_check && _ /*unused var error*/&& !attack_check.Invoke(user, &_))
 		return
 
 	if(!charged)
@@ -165,7 +175,6 @@
 
 	var/turf/proj_turf = user.loc
 	if(!isturf(proj_turf))
-		NO_DEBUG_GUH("PROJ TURF ISNT LOC. GUH.")
 		return
 
 	var/obj/projectile/destabilizer/destabilizer = new(proj_turf)

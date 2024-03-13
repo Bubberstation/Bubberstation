@@ -1,4 +1,6 @@
 /*********************Mining Hammer****************/
+//BUBBER EDIT START - OVERRIDEN IN MODULAR
+/*
 /obj/item/kinetic_crusher
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crusher"
@@ -187,8 +189,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 //destablizing force
-//BUBBER EDIT START - OVERRIDEN IN MODULAR
-/*
 /obj/projectile/destabilizer
 	name = "destabilizing force"
 	icon_state = "pulse1"
@@ -237,14 +237,14 @@
 /obj/item/crusher_trophy/proc/effect_desc()
 	return "errors"
 
+//BUBBER EDIT START - OVERRIDEN IN MODULAR
+/*
 /obj/item/crusher_trophy/attackby(obj/item/A, mob/living/user)
 	if(istype(A, /obj/item/kinetic_crusher))
 		add_to(A, user)
 	else
 		..()
 
-//BUBBER EDIT START - OVERRIDEN IN MODULAR
-/*
 /obj/item/crusher_trophy/proc/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	for(var/obj/item/crusher_trophy/trophy as anything in crusher.trophies)
 		if(istype(trophy, denied_type) || istype(src, trophy.denied_type))
@@ -323,6 +323,8 @@
 /obj/item/crusher_trophy/legion_skull/effect_desc()
 	return "a kinetic crusher to recharge <b>[bonus_value*0.1]</b> second\s faster"
 
+//BUBBER EDIT START - MOVED TO MODULAR
+/*
 /obj/item/crusher_trophy/legion_skull/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
@@ -332,6 +334,8 @@
 	. = ..()
 	if(.)
 		H.charge_time += bonus_value
+*/
+//BUBBER EDIT END
 
 //blood-drunk hunter
 /obj/item/crusher_trophy/miner_eye
@@ -362,7 +366,12 @@
 		playsound(L, 'sound/magic/fireball.ogg', 20, TRUE)
 		new /obj/effect/temp_visual/fire(L.loc)
 		addtimer(CALLBACK(src, PROC_REF(pushback), L, user), 1) //no free backstabs, we push AFTER module stuff is done
+		//BUBBER EDIT START
+		/*
 		L.adjustFireLoss(bonus_value, forced = TRUE)
+		*/
+		L.adjustFireLoss(bonus_value, FALSE, forced = TRUE)
+		//BUBBER EDIT END
 
 /obj/item/crusher_trophy/tail_spike/proc/pushback(mob/living/target, mob/living/user)
 	if(!QDELETED(target) && !QDELETED(user) && (!target.anchored || ismegafauna(target))) //megafauna will always be pushed
@@ -381,6 +390,8 @@
 /obj/item/crusher_trophy/demon_claws/effect_desc()
 	return "melee hits to do <b>[bonus_value * 0.2]</b> more damage and heal you for <b>[bonus_value * 0.1]</b>, with <b>5X</b> effect on mark detonation"
 
+//BUBBER EDIT START - MOVED TO MODULAR
+/*
 /obj/item/crusher_trophy/demon_claws/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	if(.)
@@ -394,6 +405,8 @@
 		H.force -= bonus_value * 0.2
 		H.detonation_damage -= bonus_value * 0.8
 		AddComponent(/datum/component/two_handed, force_wielded=20)
+*/
+//BUBBER EDIT END
 
 /obj/item/crusher_trophy/demon_claws/on_melee_hit(mob/living/target, mob/living/user)
 	user.heal_ordered_damage(bonus_value * 0.1, damage_heal_order)
