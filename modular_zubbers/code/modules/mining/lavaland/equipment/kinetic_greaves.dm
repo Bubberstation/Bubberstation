@@ -205,7 +205,7 @@
 	light_on = FALSE
 	light_power = 5
 	light_range = 4
-	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 
 	actions_types = list(/datum/action/item_action/toggle_light)
 
