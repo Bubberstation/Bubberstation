@@ -303,8 +303,8 @@
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
-
-/datum/supply_pack/imports/materials_market - RENABLE IF FIXED UPSTREAM
+Removal End */
+/datum/supply_pack/imports/materials_market
 	name = "Galactic Materials Market Crate"
 	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
 	cost = CARGO_CRATE_VALUE * 3
@@ -317,7 +317,7 @@
 	)
 	crate_name = "materials market crate"
 	crate_type = /obj/structure/closet/crate/cargo
-Removal End */
+
 
 /datum/supply_pack/imports/floortilecamo
 	name = "Floor-tile Camouflage Uniform"
