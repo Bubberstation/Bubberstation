@@ -310,12 +310,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "ahk" = (
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "ahs" = (
 /obj/structure/flora/bush/leavy/style_2,
@@ -363,7 +358,7 @@
 /obj/machinery/door/airlock{
 	id_tag = "CCD2"
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "ahQ" = (
 /obj/structure/flora/bush/sparsegrass,
@@ -475,12 +470,7 @@
 	color = "#B22222";
 	name = "Curtain"
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "ajK" = (
 /obj/structure/flora/rock/pile{
@@ -590,14 +580,9 @@
 /turf/open/misc/grass/planet,
 /area/centcom/holding/cafepark)
 "alk" = (
-/obj/item/bedsheet/dorms_double,
+/obj/effect/spawner/random/bedsheet/double,
 /obj/structure/bed/double,
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "alm" = (
 /obj/effect/turf_decal/tile/blue{
@@ -774,9 +759,6 @@
 	pixel_x = -25
 	},
 /turf/open/floor/iron/freezer,
-/area/centcom/holding/cafe)
-"amF" = (
-/turf/open/floor/carpet/royalblack,
 /area/centcom/holding/cafe)
 "amG" = (
 /obj/structure/chair/sofa/corp/left,
@@ -1114,8 +1096,8 @@
 	specialfunctions = 4
 	},
 /obj/structure/bed/double/pod,
-/obj/item/bedsheet/dorms_double,
-/turf/open/floor/carpet/royalblack,
+/obj/effect/spawner/random/bedsheet/double,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aqy" = (
 /obj/machinery/vending/wardrobe/cargo_wardrobe/ghost_cafe,
@@ -1221,12 +1203,7 @@
 "asz" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/machinery/light/directional/north,
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "asC" = (
 /obj/effect/turf_decal/tile/blue{
@@ -1647,11 +1624,7 @@
 	light_range = 10;
 	nightshift_light_power = 10
 	},
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "axF" = (
 /obj/structure/bed/dogbed,
@@ -2066,12 +2039,7 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aAY" = (
 /obj/effect/turf_decal/tile/blue{
@@ -2152,7 +2120,7 @@
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aBH" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -2175,7 +2143,7 @@
 /area/centcom/holding/cafe)
 "aBT" = (
 /obj/structure/table/wood,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aBW" = (
 /obj/machinery/hydroponics/constructable,
@@ -2326,12 +2294,8 @@
 /turf/closed/indestructible/opshuttle,
 /area/centcom/holding/cafe)
 "aDQ" = (
-/obj/machinery/door/window/left/directional/west{
-	base_state = "right";
-	dir = 1;
-	icon_state = "right";
+/obj/machinery/door/window/right/directional/north{
 	name = "Monkey Pen";
-	pixel_y = 2;
 	req_access = list("genetics")
 	},
 /turf/open/indestructible/hoteltile{
@@ -2553,13 +2517,13 @@
 /area/centcom/holding/cafe)
 "aGY" = (
 /obj/structure/rack,
-/obj/item/bedsheet/dorms_double,
-/obj/item/bedsheet/dorms_double,
-/obj/item/bedsheet/dorms_double,
-/obj/item/bedsheet/dorms_double,
-/obj/item/bedsheet/dorms_double,
-/obj/item/bedsheet/dorms_double,
-/obj/item/bedsheet/dorms_double,
+/obj/effect/spawner/random/bedsheet/double,
+/obj/effect/spawner/random/bedsheet/double,
+/obj/effect/spawner/random/bedsheet/double,
+/obj/effect/spawner/random/bedsheet/double,
+/obj/effect/spawner/random/bedsheet/double,
+/obj/effect/spawner/random/bedsheet/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "aHb" = (
@@ -3262,11 +3226,7 @@
 	light_range = 10;
 	nightshift_light_power = 10
 	},
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafedorms)
 "aOZ" = (
 /obj/machinery/light/directional/north,
@@ -3288,12 +3248,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "aPx" = (
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aPC" = (
 /obj/structure/railing{
@@ -3436,12 +3391,7 @@
 /obj/structure/fireplace{
 	dir = 4
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aQR" = (
 /obj/effect/turf_decal/stripes/line{
@@ -3542,11 +3492,7 @@
 /obj/structure/toilet{
 	pixel_y = 14
 	},
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "aRC" = (
 /obj/machinery/light/directional/north,
@@ -3624,7 +3570,7 @@
 "aSn" = (
 /obj/structure/table,
 /obj/machinery/light/directional/west{
-	bulb_colour = "#e8eaff "
+	bulb_colour = "#e8eaff"
 	},
 /obj/item/soap,
 /obj/item/soap,
@@ -3826,7 +3772,7 @@
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "aUw" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -3839,8 +3785,7 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe)
 "aUA" = (
-/obj/machinery/door/window/left/directional/west{
-	dir = 1;
+/obj/machinery/door/window/left/directional/north{
 	name = "Monkey Pen";
 	pixel_y = 2;
 	req_access = list("genetics")
@@ -3928,11 +3873,7 @@
 /area/centcom/holding/cafepark)
 "aVC" = (
 /obj/machinery/shower/directional/west,
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafedorms)
 "aVI" = (
 /obj/structure/fake_stairs/directional/east,
@@ -4822,7 +4763,7 @@
 /obj/structure/chair/sofa/corp{
 	dir = 4
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "bQZ" = (
 /obj/structure/reagent_dispensers/plumbed,
@@ -4860,12 +4801,7 @@
 /obj/structure/fireplace{
 	dir = 8
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "bTR" = (
 /obj/structure/table/reinforced,
@@ -4889,7 +4825,7 @@
 /area/centcom/interlink)
 "bUO" = (
 /obj/structure/bed/double,
-/obj/item/bedsheet/random/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "bUS" = (
@@ -4981,7 +4917,7 @@
 /area/centcom/interlink)
 "bZt" = (
 /obj/structure/chair/sofa/corp/corner,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "cal" = (
 /obj/structure/railing{
@@ -5096,7 +5032,7 @@
 /obj/structure/chair/sofa/corp/left{
 	dir = 8
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "cmh" = (
 /obj/effect/turf_decal/siding{
@@ -5349,11 +5285,11 @@
 /area/centcom/interlink)
 "cGX" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/structure/sign/painting/library_secure{
 	pixel_x = 32
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "cHY" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -5586,11 +5522,7 @@
 /obj/structure/toilet{
 	pixel_y = 14
 	},
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "dbZ" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -5784,7 +5716,7 @@
 /obj/structure/chair/sofa/corp/corner{
 	dir = 4
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "dzn" = (
 /obj/structure/fence{
@@ -5829,7 +5761,7 @@
 /area/centcom/interlink)
 "dDF" = (
 /obj/structure/chair/sofa/corp,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "dFj" = (
 /obj/machinery/door/airlock/medical/glass{
@@ -6069,7 +6001,7 @@
 	id_tag = "CCD1"
 	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "dXe" = (
 /obj/structure/flora/grass/jungle/b/style_2,
@@ -7011,7 +6943,7 @@
 /area/centcom/interlink)
 "fPs" = (
 /obj/item/kirbyplants/random,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "fQt" = (
 /mob/living/basic/crab{
@@ -7651,12 +7583,7 @@
 /obj/structure/dresser{
 	pixel_y = 7
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "hbE" = (
 /obj/structure/fence/interlink{
@@ -8460,7 +8387,7 @@
 /area/centcom/interlink)
 "ioZ" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "ipc" = (
 /obj/structure/sign/poster/random/directional/east,
@@ -8602,11 +8529,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating_new/end,
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "iCz" = (
 /obj/structure/fans/tiny/invisible,
@@ -8699,9 +8622,7 @@
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "iNW" = (
-/obj/machinery/door/window/left/directional/west{
-	dir = 4
-	},
+/obj/machinery/door/window/left/directional/east,
 /obj/structure/sink/directional/east,
 /turf/open/floor/plating/abductor2,
 /area/centcom/holding/cafepark)
@@ -9350,7 +9271,7 @@
 "jYf" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "jYy" = (
 /obj/effect/turf_decal/sand,
@@ -10447,7 +10368,7 @@
 /obj/structure/bed/double{
 	dir = 8
 	},
-/obj/item/bedsheet/dorms_double{
+/obj/effect/spawner/random/bedsheet/double{
 	dir = 8
 	},
 /turf/open/floor/carpet/red,
@@ -11271,12 +11192,7 @@
 /obj/structure/chair/sofa/corp/left{
 	dir = 8
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "nii" = (
 /obj/structure/fireplace,
@@ -11433,12 +11349,7 @@
 /obj/structure/chair/sofa/corp/right{
 	dir = 8
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "npe" = (
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
@@ -11535,7 +11446,7 @@
 /area/centcom/interlink)
 "nCY" = (
 /obj/structure/bed/double,
-/obj/item/bedsheet/random/double,
+/obj/effect/spawner/random/bedsheet/double,
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
@@ -12395,7 +12306,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "pao" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -12416,7 +12327,7 @@
 	specialfunctions = 4
 	},
 /obj/item/kirbyplants/random,
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "pbz" = (
 /obj/effect/turf_decal/tile/blue{
@@ -12620,12 +12531,7 @@
 /turf/open/floor/wood,
 /area/centcom/interlink/dorm_rooms)
 "prH" = (
-/obj/machinery/door/window/right/directional/east{
-	base_state = "left";
-	dir = 8;
-	icon_state = "left";
-	name = "Fitness Ring"
-	},
+/obj/machinery/door/window/right/directional/west,
 /turf/open/floor/iron/dark/corner,
 /area/centcom/holding/cafe)
 "prT" = (
@@ -13021,12 +12927,7 @@
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "pTO" = (
 /obj/structure/table/reinforced,
@@ -13196,12 +13097,7 @@
 /area/centcom/interlink)
 "qfy" = (
 /obj/structure/table/wood/fancy/blue,
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "qgh" = (
 /obj/structure/stone_tile/surrounding,
@@ -13513,8 +13409,8 @@
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "qGA" = (
-/obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/iron/dark,
 /area/centcom/holding/cafe)
 "qGW" = (
@@ -13526,12 +13422,7 @@
 /obj/item/stack/sheet/mineral/wood/fifty,
 /obj/item/stack/sheet/mineral/wood/fifty,
 /obj/item/lighter,
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "qHJ" = (
 /obj/structure/extinguisher_cabinet/directional/north,
@@ -13633,7 +13524,7 @@
 /obj/structure/chair/sofa/corp{
 	dir = 8
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "qQl" = (
 /obj/machinery/light/directional/south,
@@ -13715,11 +13606,7 @@
 /area/centcom/holding/cafepark)
 "qWc" = (
 /obj/machinery/shower/directional/west,
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "qWv" = (
 /obj/effect/turf_decal/tile/blue{
@@ -13820,7 +13707,7 @@
 /obj/structure/bed/double{
 	pixel_y = -9
 	},
-/obj/item/bedsheet/dorms_double{
+/obj/effect/spawner/random/bedsheet/double{
 	pixel_y = -9
 	},
 /turf/open/floor/bamboo,
@@ -14592,13 +14479,8 @@
 	specialfunctions = 4
 	},
 /obj/structure/bed/double,
-/obj/item/bedsheet/dorms_double,
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/obj/effect/spawner/random/bedsheet/double,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "ssn" = (
 /obj/machinery/status_display/shuttle{
@@ -14669,11 +14551,7 @@
 "sys" = (
 /obj/machinery/shower/directional/west,
 /obj/structure/sink/directional/south,
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "sAC" = (
 /obj/effect/turf_decal/box,
@@ -14871,7 +14749,7 @@
 /area/centcom/holding/cafe)
 "sNs" = (
 /obj/structure/bed/double/pod,
-/obj/item/bedsheet/random/double{
+/obj/effect/spawner/random/bedsheet/double{
 	dir = 2
 	},
 /turf/open/indestructible/hotelwood,
@@ -15168,11 +15046,7 @@
 /turf/open/floor/fakebasalt,
 /area/centcom/holding/cafepark)
 "tky" = (
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafe)
 "tlu" = (
 /obj/effect/turf_decal/siding/wood{
@@ -15973,7 +15847,7 @@
 /obj/structure/bed/double{
 	dir = 8
 	},
-/obj/item/bedsheet/dorms_double{
+/obj/effect/spawner/random/bedsheet/double{
 	dir = 8
 	},
 /turf/open/floor/carpet/blue,
@@ -16266,11 +16140,7 @@
 /obj/structure/mirror{
 	pixel_y = 32
 	},
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafedorms)
 "vui" = (
 /obj/effect/turf_decal/siding/wood{
@@ -16593,12 +16463,7 @@
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafepark)
 "vZv" = (
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -16900,11 +16765,7 @@
 /area/centcom/holding/cafepark)
 "wBX" = (
 /obj/structure/sink/directional/south,
-/turf/open/indestructible/hoteltile{
-	icon = 'modular_skyrat/modules/ghostcafe/icons/floors.dmi';
-	icon_state = "titanium_blue_old";
-	name = "bathroom floor"
-	},
+/turf/open/indestructible/bathroom,
 /area/centcom/holding/cafedorms)
 "wCl" = (
 /obj/item/kirbyplants/random,
@@ -17245,7 +17106,7 @@
 	light_power = 10;
 	name = "Super Light"
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "xgz" = (
 /obj/effect/turf_decal/siding/wood{
@@ -17634,16 +17495,11 @@
 /area/centcom/interlink)
 "xQK" = (
 /obj/structure/bed/double,
-/obj/item/bedsheet/dorms_double,
+/obj/effect/spawner/random/bedsheet/double,
 /obj/structure/sign/painting/library_secure{
 	pixel_y = -32
 	},
-/turf/open/indestructible/hotelwood{
-	desc = "It's really cozy! Great for soft paws!";
-	icon = 'modular_skyrat/modules/ghostcafe/icons/carpet_royalblack.dmi';
-	icon_state = "carpet";
-	name = "soft carpet"
-	},
+/turf/open/indestructible/carpet,
 /area/centcom/holding/cafe)
 "xRx" = (
 /obj/item/stack/sheet/mineral/wood/fifty,
@@ -17813,7 +17669,7 @@
 	dir = 4
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/iron,
 /area/centcom/holding/cafe)
 "ycD" = (
@@ -56587,9 +56443,9 @@ aFP
 ayI
 ayI
 dWE
-amF
-amF
-amF
+aPx
+aPx
+aPx
 axD
 tky
 aqf
@@ -56845,7 +56701,7 @@ ayI
 ayI
 aqf
 paJ
-amF
+aPx
 cGX
 aqf
 qWc
@@ -63526,7 +63382,7 @@ dyU
 bQR
 paj
 fPs
-amF
+aPx
 aqf
 aFP
 ayI
@@ -63782,8 +63638,8 @@ aPZ
 dDF
 jYf
 xga
-amF
-amF
+aPx
+aPx
 aqf
 aFP
 ayI
@@ -64039,8 +63895,8 @@ aqf
 bZt
 qPy
 clF
-amF
-amF
+aPx
+aPx
 ahP
 aFP
 ayI
@@ -64295,9 +64151,9 @@ jeI
 aqf
 aqf
 aqf
-amF
-amF
-amF
+aPx
+aPx
+aPx
 aqf
 kWr
 ayI
@@ -64552,9 +64408,9 @@ jeI
 aqf
 dbn
 axD
-amF
-amF
-amF
+aPx
+aPx
+aPx
 aqf
 lwv
 lwv
@@ -64809,7 +64665,7 @@ jeI
 aqf
 sys
 aqf
-amF
+aPx
 ioZ
 aqw
 aqf
