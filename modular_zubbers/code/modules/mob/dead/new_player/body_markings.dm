@@ -73,3 +73,21 @@
 	icon_state = "chestplate"
 	affected_bodyparts = CHEST
 	gendered = FALSE
+
+/datum/body_marking/bubber/monster2_mouth
+	name = "Monster Mouth (White)"
+	icon_state = "monster2"
+	default_color = "#CCCCCC"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/monster3_mouth
+	name = "Monster Mouth (White, eyes-compatible)"
+	icon_state = "monster3"
+	default_color = "#CCCCCC"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/weight2
+	name = "Body Weight (Greyscale)"
+	icon_state = "weight2"
+	default_color = DEFAULT_PRIMARY
+	affected_bodyparts = CHEST
