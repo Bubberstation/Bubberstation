@@ -134,7 +134,7 @@
 
 /obj/item/clothing/gloves/kinetic_greaves/proc/retract_greaves()
 	var/mob/living/carbon/human/wearer = loc
-	if(!istype(wearer))
+	if(!istype(wearer) || DOING_INTERACTION(wearer, type))
 		return
 
 	if(wearer.gloves != src)
