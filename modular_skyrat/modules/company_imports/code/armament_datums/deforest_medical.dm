@@ -187,19 +187,19 @@
 
 /datum/armament_entry/company_import/deforest/implant/surgery
 	item_type = /obj/item/organ/internal/cyberimp/arm/surgery
-	cost = PAYCHECK_COMMAND * 10
+	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/toolset
 	item_type = /obj/item/organ/internal/cyberimp/arm/toolset
-	cost = PAYCHECK_COMMAND * 10
+	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/botany
 	item_type = /obj/item/organ/internal/cyberimp/arm/botany
-	cost = PAYCHECK_COMMAND * 10
+	cost = PAYCHECK_COMMAND * 5
 
 /datum/armament_entry/company_import/deforest/implant/janitor
 	item_type = /obj/item/organ/internal/cyberimp/arm/janitor
-	cost = PAYCHECK_COMMAND * 10
+	cost = PAYCHECK_COMMAND * 5
 
 //End Bubber Changes
 
