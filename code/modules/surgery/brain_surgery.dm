@@ -29,7 +29,7 @@
 		return FALSE
 	if(istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/internal/brain/synth)) // BUBBER EDIT
 		return FALSE // BUBBER EDIT
-	return TRUE
+	return ..() // BUBBER EDIT
 
 /datum/surgery_step/fix_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
