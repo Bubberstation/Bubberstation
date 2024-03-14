@@ -37,45 +37,49 @@
 
 /// Update Blood Counter + Rank Counter
 /datum/antagonist/bloodsucker/proc/update_hud()
-	var/valuecolor
-	if(bloodsucker_blood_volume > BLOOD_VOLUME_SAFE)
-		valuecolor = "#FFDDDD"
-	else if(bloodsucker_blood_volume > BLOOD_VOLUME_BAD)
-		valuecolor = "#FFAAAA"
-
-	if(blood_display)
-		blood_display.maptext = FORMAT_BLOODSUCKER_HUD_TEXT(valuecolor, bloodsucker_blood_volume)
-
 	if(vamprank_display)
 		if(bloodsucker_level_unspent > 0)
 			vamprank_display.icon_state = "[initial(vamprank_display.icon_state)]_up"
 		else
 			vamprank_display.icon_state = initial(vamprank_display.icon_state)
-		vamprank_display.maptext = FORMAT_BLOODSUCKER_HUD_TEXT(valuecolor, bloodsucker_level)
+		vamprank_display.maptext = FORMAT_BLOODSUCKER_HUD_TEXT(hud_text_color(), bloodsucker_level)
 
-	if(sunlight_display)
-		if(SSsunlight.sunlight_active)
-			valuecolor = "#FF5555"
-			sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_day"
-		else
-			switch(round(SSsunlight.time_til_cycle, 1))
-				if(0 to 30)
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_30"
-					valuecolor = "#FFCCCC"
-				if(31 to 60)
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_60"
-					valuecolor = "#FFE6CC"
-				if(61 to 90)
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_90"
-					valuecolor = "#FFFFCC"
-				else
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_night"
-					valuecolor = "#FFFFFF"
-		sunlight_display.maptext = FORMAT_BLOODSUCKER_SUNLIGHT_TEXT( \
-			valuecolor, \
-			(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)] m" : "[round(SSsunlight.time_til_cycle, 1)] s" \
-		)
+	update_sol_hud()
 
+/datum/antagonist/bloodsucker/proc/hud_text_color()
+	return bloodsucker_blood_volume > BLOOD_VOLUME_SAFE ? "#FFDDDD" : "#FFAAAA"
+
+/// Updated every time blood is changed by either
+/datum/antagonist/bloodsucker/proc/update_blood_hud()
+	if(!blood_display)
+		return
+	blood_display.maptext = FORMAT_BLOODSUCKER_HUD_TEXT(hud_text_color(), bloodsucker_blood_volume)
+
+/datum/antagonist/bloodsucker/proc/update_sol_hud()
+	var/valuecolor = hud_text_color()
+	if(!sunlight_display)
+		return
+	if(SSsunlight.sunlight_active)
+		valuecolor = "#FF5555"
+		sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_day"
+	else
+		switch(round(SSsunlight.time_til_cycle, 1))
+			if(0 to 30)
+				sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_30"
+				valuecolor = "#FFCCCC"
+			if(31 to 60)
+				sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_60"
+				valuecolor = "#FFE6CC"
+			if(61 to 90)
+				sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_90"
+				valuecolor = "#FFFFCC"
+			else
+				sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_night"
+				valuecolor = "#FFFFFF"
+	sunlight_display.maptext = FORMAT_BLOODSUCKER_SUNLIGHT_TEXT( \
+		valuecolor, \
+		(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)] m" : "[round(SSsunlight.time_til_cycle, 1)] s" \
+	)
 /// 1 tile down
 #undef UI_BLOOD_DISPLAY
 /// 2 tiles down

@@ -7,6 +7,10 @@
 	if(vamp_examine)
 		examine_text += vamp_examine
 
+/datum/antagonist/bloodsucker/proc/BuyPowers(powers = list())
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		BuyPower(power)
+
 ///Called when a Bloodsucker buys a power: (power)
 /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
@@ -24,6 +28,11 @@
 		power.DeactivatePower()
 	powers -= power
 	power.Remove(owner.current)
+
+/datum/antagonist/bloodsucker/proc/RemovePowerByPath(datum/action/cooldown/bloodsucker/power_to_remove)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		if(power?.type == power_to_remove)
+			RemovePower(power)
 
 ///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed, and Malkavian Bloodsuckers get alerted.
 /datum/antagonist/bloodsucker/proc/break_masquerade(mob/admin)
@@ -43,6 +52,8 @@
 		return
 	to_chat(owner.current, span_cultboldtalic("You have re-entered the Masquerade."))
 	broke_masquerade = FALSE
+	antag_hud_name = "bloodsucker"
+	add_team_hud(owner.current)
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()
 	if(broke_masquerade)
@@ -66,12 +77,6 @@
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
 		return
-	if(max_vassals() >= 1 && !(/datum/crafting_recipe/vassalrack in owner?.learned_recipes))
-		owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
-		owner.current.balloon_alert(owner.current, "new recipes learned! Vassalization unlocked!")
 	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()
@@ -94,7 +99,7 @@
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers(forced = FALSE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(owner.current, TRAIT_NODEATH)))
+		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)))
 			if(power.active)
 				power.DeactivatePower()
 
@@ -124,16 +129,16 @@
  * viewer - The person examining.
  */
 /datum/antagonist/bloodsucker/proc/return_vamp_examine(mob/living/viewer)
-	if(!viewer.mind)
+	if(!viewer.mind && !isobserver(viewer))
 		return FALSE
 	// Viewer is Target's Vassal?
-	if(viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassals)
+	if(!isobserver(viewer) && (viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassals))
 		var/returnString = "\[<span class='warning'><EM>This is your Master!</EM></span>\]"
 		var/returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "bloodsucker")]"
 		returnString += "\n"
 		return returnIcon + returnString
 	// Viewer not a Vamp AND not the target's vassal?
-	if(!viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in vassals))
+	if(!isobserver(viewer) && !viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in vassals))
 		if(!(HAS_TRAIT(viewer.mind, TRAIT_BLOODSUCKER_HUNTER) && broke_masquerade))
 			return FALSE
 	// Default String
@@ -159,3 +164,88 @@
 
 /datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
+
+/datum/antagonist/bloodsucker/proc/add_signals_to_heart(mob/living/carbon/human/current_mob)
+	if(heart?.resolve())
+		remove_signals_from_heart(current_mob)
+	var/organ = current_mob.get_organ_slot(ORGAN_SLOT_HEART)
+	heart = WEAKREF(organ)
+	RegisterSignal(organ, COMSIG_ORGAN_REMOVED, PROC_REF(on_organ_removal))
+	RegisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED, PROC_REF(before_organ_replace))
+
+/datum/antagonist/bloodsucker/proc/remove_signals_from_heart(mob/living/carbon/human/current_mob)
+	var/organ = heart.resolve()
+	if(!organ)
+		return
+	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
+	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
+	organ = null
+
+/datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
+	SIGNAL_HANDLER
+	if(old_owner.get_organ_slot(ORGAN_SLOT_HEART) || organ?.slot != ORGAN_SLOT_HEART || !old_owner.dna.species.mutantheart)
+		return
+	remove_signals_from_heart(old_owner)
+	// You don't run bloodsucker life without a heart or brain
+	RegisterSignal(old_owner, COMSIG_ENTER_COFFIN, PROC_REF(regain_heart))
+	UnregisterSignal(old_owner, COMSIG_LIVING_LIFE)
+	DisableAllPowers(TRUE)
+	if(HAS_TRAIT_FROM_ONLY(old_owner, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
+		torpor_end(TRUE)
+	to_chat(old_owner, span_userdanger("You have lost your [organ?.slot ? organ.slot : "heart"]!"))
+	to_chat(old_owner, span_warning("This means you will no longer enter torpor nor revive from death, and you will no longer heal any damage, nor can you use your abilities."))
+
+/datum/antagonist/bloodsucker/proc/on_organ_gain(mob/living/carbon/human/current_mob, obj/item/organ/replacement)
+	SIGNAL_HANDLER
+	if(replacement.slot != ORGAN_SLOT_HEART)
+		return
+	// Shit might get really fucked up. Let's try to fix things if it does
+	if(current_mob != owner.current)
+		UnregisterSignal(current_mob, COMSIG_CARBON_GAIN_ORGAN)
+		RegisterSignal(owner.current, COMSIG_CARBON_GAIN_ORGAN)
+		add_signals_to_heart(owner.current)
+		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
+		CRASH("What the fuck, somehow called on_organ_gain signal on [src] without current_mob being the antag datum's owner?")
+	UnregisterSignal(current_mob, COMSIG_ENTER_COFFIN)
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
+	add_signals_to_heart(current_mob)
+
+/// This handles regen_organs replacing organs, without this the bloodsucker would die for a moment due to their heart being removed for a moment
+/datum/antagonist/bloodsucker/proc/before_organ_replace(obj/item/organ/old_organ, obj/item/organ/new_organ)
+	SIGNAL_HANDLER
+	if(new_organ.slot != ORGAN_SLOT_HEART)
+		return
+	remove_signals_from_heart(owner.current)
+
+/// checks if we're a brainmob inside a brain & the brain is inside a head
+/datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
+	if(!istype(poor_fucker?.loc, /obj/item/organ/internal/brain))
+		return
+	var/obj/brain = poor_fucker.loc
+	if(!istype(brain?.loc, /obj/item/bodypart/head))
+		return
+	return brain.loc
+
+// helper procs for damage checking, just in case a synth becomes one, let's them heal thesmelves
+/datum/antagonist/bloodsucker/proc/getBruteLoss()
+	var/mob/living/carbon/human/humie = owner.current
+	return issynthetic(humie) ? humie.getBruteLoss() : humie.getBruteLoss_nonProsthetic()
+
+/datum/antagonist/bloodsucker/proc/getFireLoss()
+	var/mob/living/carbon/human/humie = owner.current
+	return issynthetic(humie) ? humie.getFireLoss() : humie.getFireLoss_nonProsthetic()
+
+/datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
+	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Blood is life.", floor(bloodsucker_blood_volume), max_blood_volume, 0)
+	// 0 input is falsey
+	if(blood == null)
+		return
+	SetBloodVolume(blood)
+	update_hud()
+
+/datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
+	SIGNAL_HANDLER
+	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
+	if(heart && !coffin_dweller.get_organ_slot(ORGAN_SLOT_HEART))
+		to_chat(span_warning("You have regained your heart!"))
+		heart.Insert(coffin_dweller)

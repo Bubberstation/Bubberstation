@@ -1,7 +1,8 @@
 import { filterMap, sortBy } from 'common/collections';
 import { classes } from 'common/react';
+import { useState } from 'react';
 
-import { sendAct, useBackend, useLocalState } from '../../backend';
+import { sendAct, useBackend } from '../../backend';
 import {
   Autofocus,
   Box,
@@ -110,8 +111,8 @@ const ChoicedSelection = (props: {
 
   return (
     <Box
+      className="ChoicedSelection"
       style={{
-        background: 'white',
         padding: '5px',
 
         height: `${
@@ -203,16 +204,14 @@ const GenderButton = (props: {
   handleSetGender: (gender: Gender) => void;
   gender: Gender;
 }) => {
-  const [genderMenuOpen, setGenderMenuOpen] = useLocalState(
-    'genderMenuOpen',
-    false,
-  );
+  const [genderMenuOpen, setGenderMenuOpen] = useState(false);
 
   return (
     <Popper
       isOpen={genderMenuOpen}
+      onClickOutside={() => setGenderMenuOpen(false)}
       placement="right-end"
-      popperContent={
+      content={
         <Stack backgroundColor="white" ml={0.5} p={0.3}>
           {[Gender.Male, Gender.Female, Gender.Other, Gender.Other2].map(
             (gender) => {
@@ -280,9 +279,10 @@ const MainFeature = (props: {
   return (
     <Popper
       placement="bottom-start"
-      onClickOutside={() => handleClose()}
       isOpen={isOpen}
-      popperContent={
+      onClickOutside={handleClose}
+      baseZIndex={1} // Below the default popper at z 2
+      content={
         <ChoicedSelection
           name={catalog.name}
           catalog={catalog}
@@ -466,13 +466,10 @@ export const getRandomization = (
 
 export const MainPage = (props: { openSpecies: () => void }) => {
   const { act, data } = useBackend<PreferencesMenuData>();
-  const [currentClothingMenu, setCurrentClothingMenu] = useLocalState<
-    string | null
-  >('currentClothingMenu', null);
-  const [multiNameInputOpen, setMultiNameInputOpen] = useLocalState(
-    'multiNameInputOpen',
-    false,
+  const [currentClothingMenu, setCurrentClothingMenu] = useState<string | null>(
+    null,
   );
+  const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
   const [randomToggleEnabled] = useRandomToggleState();
 
   return (
