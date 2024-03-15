@@ -203,6 +203,7 @@
 
 	if(obj_flags & EMAGGED)
 		owner.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
+		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
 		add_queue('modular_zubbers/sound/voice/nerdsuit/stimulants.ogg',2 SECONDS)
 	else
