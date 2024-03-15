@@ -13,7 +13,7 @@
 /obj/item/storage/dice/Initialize(mapload)
 	. = ..()
 	atom_storage.allow_quick_gather = TRUE
-	atom_storage.set_holdable(list(/obj/item/dice))
+	atom_storage.set_holdable(/obj/item/dice)
 
 /obj/item/storage/dice/PopulateContents()
 	new /obj/item/dice/d4(src)
@@ -106,6 +106,12 @@
 	desc = "A die with six sides made of dense black wood. It feels cold and heavy in your hand."
 	icon_state = "de6"
 	microwave_riggable = FALSE // You can't melt wood in the microwave
+
+/obj/item/dice/d6/bone
+	name = "bone die"
+	desc = "A die carved from a creature's bone. Dried blood marks the indented pits."
+	icon_state = "db6"
+	microwave_riggable = FALSE // You can't melt bone in the microwave
 
 /obj/item/dice/d6/space
 	name = "space cube"

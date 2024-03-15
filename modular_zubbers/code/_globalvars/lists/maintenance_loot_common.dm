@@ -462,8 +462,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/fishing_rod = 5
 	) = 25,
 	list(
-		/obj/item/bedsheet/dorms = 10,
-		/obj/item/bedsheet/dorms_double = 1
+		/obj/effect/spawner/random/bedsheet = 10,
+		/obj/effect/spawner/random/bedsheet/double = 1
 	) = 10,
 	list(
 		/obj/item/ammo_box/foambox = 5,
