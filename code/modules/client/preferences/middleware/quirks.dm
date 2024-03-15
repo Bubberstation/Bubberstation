@@ -49,6 +49,7 @@
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
 			"veteran_only" = initial(quirk.veteran_only), // SKYRAT EDIT - Veteran quirks
+			"species_whitelist" = initial(quirk.species_whitelist), //BUBBER EDIT - Species quirks
 		)
 
 	return list(
@@ -56,7 +57,6 @@
 		"quirk_info" = quirk_info,
 		"quirk_blacklist" = GLOB.quirk_string_blacklist,
 		"points_enabled" = !CONFIG_GET(flag/disable_quirk_points),
-		"quirk_species_whitelist" = SSquirks.quirk_species_whitelist, //BUBBER EDIT - Species quirks
 	)
 
 /datum/preference_middleware/quirks/on_new_character(mob/user)
