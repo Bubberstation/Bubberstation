@@ -78,3 +78,30 @@
 		RESKIN_ICON_STATE = "bonesetter",
 		),
 	)
+
+/obj/item/retractor/advanced
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"korve" = list(
+		RESKIN_ICON = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "adv_retractor",
+		),
+	)
+
+/obj/item/scalpel/advanced
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"korve" = list(
+		RESKIN_ICON = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "e_scalpel",
+		),
+	)
+
+/obj/item/cautery
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"korve" = list(
+		RESKIN_ICON = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi',
+		RESKIN_ICON_STATE = "e_cautery",
+		),
+	)
