@@ -170,6 +170,8 @@
 	inhand_icon_state = "kgauntlet"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
+	attack_verb_continuous = list("rams", "fists", "pulverizes", "power-punches")
+	attack_verb_simple = list("ram", "fist", "pulverize", "power-punch")
 
 	armor_type = /datum/armor/melee_energy
 	force = 15 // double hit -> 10 more dmg than crusher
