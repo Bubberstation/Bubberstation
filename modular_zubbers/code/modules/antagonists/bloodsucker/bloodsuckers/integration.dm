@@ -13,7 +13,7 @@
 		return ..()
 	if(bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_MAXIMUM)
 		return ..()
-	bloodsuckerdatum.AddBloodVolume(round(reac_volume, 0.1))
+	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
 	. = ..()
