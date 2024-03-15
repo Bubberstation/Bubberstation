@@ -66,3 +66,37 @@
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
 	. = ..()
+
+/datum/techweb_node/nerd
+	id = "nerd"
+	display_name = "Theoretical Physics"
+	description = "They asked me how well I understood theoretical physics. I said I had a theoretical degree in physics."
+	prereq_ids = list(
+		"mod_engineering",
+		"gravity_gun",
+		"exp_tools"
+	)
+	design_ids = list(
+		"nerd_suit",
+		"nerd_glases"
+	)
+	research_costs = list(
+		TECHWEB_POINT_TYPE_GENERIC = 8000
+	)
+
+/datum/techweb_node/advanced_nerd
+	id = "advanced_nerd"
+	display_name = "Advanced Theoretical Physics"
+	description = "Scientists aren't supposed to have guns."
+	prereq_ids = list(
+		"alientech",
+		"nerd"
+	)
+	design_ids = list(
+		"physgun",
+		"fast_crowbar"
+	)
+	research_costs = list(
+		TECHWEB_POINT_TYPE_GENERIC = 15000
+	)
+
