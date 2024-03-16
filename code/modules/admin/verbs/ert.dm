@@ -255,7 +255,8 @@
 			message_admins("[ertemplate.polldesc] has spawned with the mission: [ertemplate.mission]")
 			//SKYRAT EDIT ADDITION BEGIN
 			if(ertemplate.notify_players)
-				priority_announce("Central command has responded to your request for a CODE [uppertext(ertemplate.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
+				var/ert_name = ertemplate.code ? uppertext(ertemplate.code) : "GREEN" //BUBBERSTATION CHANGE. FIXES MISSING TEXT
+				priority_announce("Central command has responded to your request for a CODE [ert_name] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES) //BUBBERSTATION NAME: FIXES MISSING TEXT
 				// shitcode begin!
 				if(istype(ertemplate, /datum/ert/deathsquad))
 					SSsecurity_level.set_level(SEC_LEVEL_EPSILON)
