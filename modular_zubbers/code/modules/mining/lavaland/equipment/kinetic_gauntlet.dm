@@ -9,6 +9,7 @@
 
 	armor_type = /datum/armor/melee_energy
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 1.15, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 2.075) //copied from kc, idk
+	resistance_flags = FIRE_PROOF
 
 	force = 3 //i guess?
 	obj_flags = UNIQUE_RENAME
@@ -176,6 +177,7 @@
 	armor_type = /datum/armor/melee_energy
 	force = 15 // double hit -> 10 more dmg than crusher
 	obj_flags = DROPDEL
+	resistance_flags = FIRE_PROOF
 
 	var/obj/item/clothing/gloves/kinetic_gauntlets/linked_gauntlets = null
 	var/next_attack = 0
