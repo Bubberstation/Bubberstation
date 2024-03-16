@@ -1,7 +1,33 @@
 /*
 *	BUBBER MODULAR OUTFITS FILE
 *	PUT ANY NEW ERT OUTFITS HERE
+*	OR CHANGES TO ERT HERE
 */
+
+
+/datum/ert
+	code = "Green"
+
+/datum/ert/marine
+	code = "Military Green"
+
+/datum/ert/centcom_official
+	code = "Gold"
+
+/datum/ert/inquisition
+	code = "Spanish Red"
+
+/datum/ert/janitor
+	code = "Purple"
+
+/datum/ert/intern
+	code = "Uhhhhhh"
+
+/datum/ert/bounty_hunters
+	code = "Bounty Orange"
+
+/datum/ert/militia
+	code = "Brown" //For cargo. Idk
 
 /datum/outfit/centcom/asset_protection
 	name = "Asset Protection"
@@ -43,3 +69,4 @@
 /datum/outfit/centcom/asset_protection/leader
 	name = "Asset Protection Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
+
