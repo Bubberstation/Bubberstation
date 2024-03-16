@@ -163,7 +163,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
-		to_chat(src, span_alert("Hold your horses! Its still refreshing!"))
+		to_chat(src, span_alert("Hold your horses! It's still refreshing!"))
 		return
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 

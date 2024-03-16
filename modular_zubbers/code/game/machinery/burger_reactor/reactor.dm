@@ -13,7 +13,7 @@
 
 	uses_integrity = TRUE
 
-	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED
+	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_ANCHORED | INTERACT_ATOM_UI_INTERACT
 
 	resistance_flags = FIRE_PROOF
 
@@ -47,6 +47,8 @@
 	var/gas_consumption_heat = 0.0018 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
 	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
+
+	var/goblin_multiplier = 8 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
 
 	var/safeties_max_power_generation = 125000
 
@@ -102,11 +104,7 @@
 
 	. = ..()
 
-/obj/machinery/power/rbmk2/deconstruct(disassembled = TRUE)
-
-	if(flags_1 & NO_DECONSTRUCTION)
-		return
-
+/obj/machinery/power/rbmk2/on_deconstruction(disassembled = TRUE)
 	if(!disassembled && stored_rod)
 		//Uh oh.
 		var/turf/T = get_turf(src)
@@ -128,7 +126,6 @@
 			stored_rod.take_damage(1000,armour_penetration=100)
 			if(stored_rod) //Just in case.
 				remove_rod()
-
 	. = ..()
 
 /obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
@@ -339,15 +336,17 @@
 	. = ..()
 
 	//Requires x4 capacitors
-	var/power_efficiency_mul = 0
+	var/power_efficiency_mul = 0.5
 	for(var/datum/stock_part/capacitor/new_capacitor in component_parts)
-		power_efficiency_mul += new_capacitor.tier * 0.25
+		power_efficiency_mul += (new_capacitor.tier * 0.125)
 	power_efficiency = initial(power_efficiency) * power_efficiency_mul
 
 	//Requires x2 matter bins
 	var/max_power_generation_mul = 0
+	goblin_multiplier = initial(goblin_multiplier)
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
-		max_power_generation_mul += new_matter_bin.tier * 0.5
+		max_power_generation_mul += (new_matter_bin.tier * 0.5) + max(0,new_matter_bin.tier-1)*0.1
+		goblin_multiplier += (new_matter_bin.tier-1)*0.5
 	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
 	max_power_generation = FLOOR(max_power_generation,10000)
 	safeties_max_power_generation = max(125000,FLOOR(max_power_generation*0.75,125000))
@@ -357,6 +356,51 @@
 	for(var/datum/stock_part/servo/new_servo in component_parts)
 		vent_pressure_multiplier += new_servo.tier * 0.25
 	vent_pressure = initial(vent_pressure) * vent_pressure_multiplier
+
+/obj/machinery/power/rbmk2/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RBMK2", name)
+		ui.open()
+
+/obj/machinery/power/rbmk2/ui_data(mob/user)
+	var/list/data = list()
+	data["active"] = active
+	data["rod"] = stored_rod
+	data["last_power_output"] = display_power(last_power_generation)
+	data["efficiency"] = power_efficiency*100
+	data["consuming"] = last_tritium_consumption*10000
+	return data
+
+/obj/machinery/power/rbmk2/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("activate")
+			toggle_active(usr)
+			. = TRUE
+		if("eject")
+			remove_rod(usr,do_throw=TRUE)
+			. = TRUE
+		if("venttoggle")
+			toggle_vents(usr)
+			. = TRUE
+		if("ventdirection")
+			toggle_reverse_vents(usr)
+			balloon_alert(usr, "After a second you feel like the vents direction changed.")
+			. = TRUE
+		if("safetytoggle")
+			if(safety == TRUE)
+				balloon_alert(usr, "Safety lights are off!")
+				safety = FALSE
+				return
+			if(safety == FALSE)
+				balloon_alert(usr, "Safety lights are on!")
+				safety = TRUE
+				return
+			. = TRUE
 
 
 /obj/machinery/power/rbmk2/examine(mob/user)
