@@ -75,10 +75,8 @@
 		to_chat(user, span_notice("You remove [source]'s trophies."))
 		attacking_item.play_tool_sound(src)
 		for(var/obj/item/crusher_trophy/trophy as anything in stored_trophies)
-			trophy.remove_from(parent, user)
-			UnregisterSignal(trophy, COMSIG_MOVABLE_MOVED)
+			trophy.remove_from(parent, user, src)
 
-		stored_trophies.Cut()
 		return COMPONENT_NO_AFTERATTACK
 
 	if(istype(attacking_item, /obj/item/crusher_trophy))
@@ -90,7 +88,7 @@
 /datum/component/kinetic_crusher/proc/on_trophy_moved(obj/item/crusher_trophy/source, atom/oldloc, direction)
 	SIGNAL_HANDLER
 
-	source.remove_from(parent)
+	source.remove_from(parent, null, src)
 
 /datum/component/kinetic_crusher/proc/on_attack(obj/item/source, mob/living/target, mob/living/carbon/user)
 	SIGNAL_HANDLER

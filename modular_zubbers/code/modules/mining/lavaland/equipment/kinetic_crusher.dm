@@ -87,6 +87,11 @@
 	to_chat(user, span_notice("You attach [src] to [crusher]."))
 	return TRUE
 
+/obj/item/crusher_trophy/remove_from(obj/item/kinetic_crusher/crusher, mob/living/user, datum/component/kinetic_crusher/crusher_comp)
+	. = ..()
+	crusher_comp.UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	crusher_comp.stored_trophies -= src
+
 /obj/projectile/destabilizer
 	name = "destabilizing force"
 	icon_state = "pulse1"
