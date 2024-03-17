@@ -82,7 +82,6 @@
 	if(istype(attacking_item, /obj/item/crusher_trophy))
 		var/obj/item/crusher_trophy/trophy = attacking_item
 		trophy.add_to(parent, user, src)
-		RegisterSignal(trophy, COMSIG_MOVABLE_MOVED, PROC_REF(on_trophy_moved))
 		return COMPONENT_NO_AFTERATTACK
 
 /datum/component/kinetic_crusher/proc/on_trophy_moved(obj/item/crusher_trophy/source, atom/oldloc, direction)

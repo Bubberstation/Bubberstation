@@ -255,12 +255,12 @@
 	crusher.trophies += src
 	to_chat(user, span_notice("You attach [src] to [crusher]."))
 	return TRUE
-*/
-//BUBBER EDIT END
 
 /obj/item/crusher_trophy/proc/remove_from(obj/item/kinetic_crusher/crusher, mob/living/user)
 	forceMove(get_turf(crusher))
 	return TRUE
+*/
+//BUBBER EDIT END
 
 /obj/item/crusher_trophy/proc/on_melee_hit(mob/living/target, mob/living/user) //the target and the user
 /obj/item/crusher_trophy/proc/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user) //the projectile fired and the user
