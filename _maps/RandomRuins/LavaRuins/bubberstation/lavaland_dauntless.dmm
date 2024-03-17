@@ -458,9 +458,6 @@
 /obj/machinery/computer/crew/syndie{
 	dir = 8
 	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "cD" = (
@@ -1643,9 +1640,6 @@
 	pixel_x = -2;
 	pixel_y = 5
 	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "jG" = (
@@ -1970,9 +1964,6 @@
 /obj/machinery/computer/monitor,
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
@@ -2333,9 +2324,6 @@
 	},
 /obj/item/crowbar/power/syndicate,
 /obj/structure/cable,
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "nP" = (
@@ -3712,9 +3700,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding)
@@ -6304,9 +6289,6 @@
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "FT" = (
@@ -6535,9 +6517,8 @@
 /obj/effect/turf_decal/box/white/corners{
 	dir = 1
 	},
-/obj/effect/spawner/random/trash/janitor_supplies,
-/obj/effect/spawner/random/maintenance/five,
-/obj/structure/closet/crate/trashcart/laundry,
+/obj/machinery/fishing_portal_generator,
+/obj/item/storage/toolbox/fishing,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "GY" = (
@@ -7664,19 +7645,6 @@
 "MB" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
-"MF" = (
-/obj/effect/turf_decal/trimline/purple/line{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/service)
 "MI" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/cable,
@@ -7946,9 +7914,6 @@
 "Ou" = (
 /obj/structure/chair/sofa/corp/corner,
 /obj/machinery/light_switch/directional/north,
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "Ov" = (
@@ -8773,11 +8738,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
-"Sv" = (
-/obj/machinery/fishing_portal_generator,
-/obj/item/storage/toolbox/fishing,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Sx" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
@@ -10052,9 +10012,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "ZW" = (
@@ -10850,7 +10807,7 @@ UQ
 aR
 BO
 BV
-Sv
+tB
 cy
 tB
 oU
@@ -12253,7 +12210,7 @@ EN
 EN
 EN
 EN
-MF
+EN
 jr
 EN
 lH
