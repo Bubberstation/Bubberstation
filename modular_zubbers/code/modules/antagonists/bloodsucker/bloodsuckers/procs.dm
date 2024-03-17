@@ -220,7 +220,7 @@
 		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
 		CRASH("What the fuck, somehow called on_organ_gain signal on [src] without current_mob being the antag datum's owner?")
 	UnregisterSignal(current_mob, COMSIG_ENTER_COFFIN)
-	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE) // overriding here due to the fact this can without removing the signal due to before_organ_replace()
 	add_signals_to_heart(current_mob)
 
 /// This handles regen_organs replacing organs, without this the bloodsucker would die for a moment due to their heart being removed for a moment
