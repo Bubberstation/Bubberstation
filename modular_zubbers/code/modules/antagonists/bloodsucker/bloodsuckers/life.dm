@@ -8,7 +8,6 @@
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
 	if(isbrain(owner.current))
-		INVOKE_ASYNC(src, PROC_REF(update_sunlight_hud))
 		return
 	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		check_end_torpor()
@@ -23,7 +22,6 @@
 	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
 	INVOKE_ASYNC(src, PROC_REF(update_blood))
 
-	INVOKE_ASYNC(src, PROC_REF(update_sunlight_hud))
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
 
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
