@@ -69,8 +69,6 @@
 	var/atom/movable/screen/bloodsucker/blood_counter/blood_display
 	///Vampire level display HUD
 	var/atom/movable/screen/bloodsucker/rank_counter/vamprank_display
-	///Sunlight timer HUD
-	var/atom/movable/screen/bloodsucker/sunlight_counter/sunlight_display
 
 	/// Static typecache of all bloodsucker powers.
 	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/cooldown/bloodsucker, ignore_root_path = TRUE)
@@ -153,18 +151,19 @@
 	remove_signals_from_heart(current_mob)
 	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH, COMSIG_SPECIES_GAIN, COMSIG_QDELETING))
 	handle_clown_mutation(current_mob, removing = FALSE)
-	if(current_mob.client)
-		SSquirks.AssignQuirks(current_mob, current_mob.client)
-
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
 		hud_used.infodisplay -= blood_display
 		hud_used.infodisplay -= vamprank_display
-		hud_used.infodisplay -= sunlight_display
 		QDEL_NULL(blood_display)
 		QDEL_NULL(vamprank_display)
-		QDEL_NULL(sunlight_display)
+
+	SSsunlight.remove_sun_sufferer(owner.current) //check if sunlight should end
 	current_mob.dna?.species?.on_bloodsucker_loss(current_mob)
+	if(current_mob.client)
+		// We need to let the bloodsucker antag datum get removed before we can re-add quirks
+		addtimer(CALLBACK(SSquirks, TYPE_PROC_REF(/datum/controller/subsystem/processing/quirks, AssignQuirks), current_mob, current_mob.client), 1 SECONDS)
+
 
 /datum/antagonist/bloodsucker/proc/on_hud_created(datum/source)
 	SIGNAL_HANDLER
@@ -176,12 +175,9 @@
 	vamprank_display = new(null, bloodsucker_hud)
 	bloodsucker_hud.infodisplay += vamprank_display
 
-	sunlight_display = new(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += sunlight_display
-
 	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
+	SSsunlight.add_sun_sufferer(owner.current)
 	UnregisterSignal(owner.current, COMSIG_MOB_HUD_CREATED)
-	update_sunlight_hud()
 	update_blood_hud()
 	update_rank_hud()
 
@@ -225,7 +221,6 @@
 		show_in_roundend = FALSE
 	else
 		// Start Sunlight if first Bloodsucker
-		SSsunlight.add_sun_sufferer(src)
 		// Name and Titles
 		SelectFirstName()
 		SelectTitle(am_fledgling = TRUE)
@@ -241,7 +236,6 @@
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
 	free_all_vassals()
-	SSsunlight.remove_sun_sufferer(src) //check if sunlight should end
 	if(!owner?.current)
 		return
 	if(ishuman(owner.current))
@@ -494,9 +488,7 @@
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/remove_invalid_quirks()
-	for(var/datum/quirk/quirk in owner.current.quirks)
-		if(istype(quirk, /datum/quirk/sol_weakness))
-			quirk.remove_from_current_holder()
+	owner.current.remove_quirk(/datum/quirk/sol_weakness)
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

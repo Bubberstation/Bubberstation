@@ -7,52 +7,50 @@
 	desc = "Your sub-species of the Hemophage virus renders you weak to Solar radiation, \
 		you will have to hide in a coffin or a closet during the day, or risk burning to a crisp. \
 		Thankfully, you will also heal your wounds at half cost in a coffin."
-	gain_text = span_notice("You feel a sudden weakness in your body, and a burning sensation on your skin. \
+	gain_text = span_warning("You feel a sudden weakness in your body, and a burning sensation on your skin. \
 		You should find a coffin to hide in during the day.")
 	lose_text = span_notice("You feel safe in Sol's embrace once more.")
 	medical_record_text = "Patient's strain of the hemophage virus is weak to sunlight. \
 		They will have to hide in a coffin or a closet during the day, or risk burning to a crisp."
 	value = -4
 	hardcore_value = 6
-	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES | QUIRK_HUMAN_ONLY // Time to see how many hemophages are going to get staked
-	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud
+	species_whitelist = list(SPECIES_HEMOPHAGE)
+	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_HUMAN_ONLY
 	COOLDOWN_DECLARE(sun_burn)
 
 /datum/quirk/sol_weakness/add()
 	if(!quirk_holder.hud_used)
+		RegisterSignal(quirk_holder, COMSIG_MOB_HUD_CREATED, PROC_REF(add_sun_timer_hud))
 		return
-	sun_hud = new(null, quirk_holder.hud_used)
-	quirk_holder.hud_used.infodisplay += sun_hud
-	quirk_holder.hud_used.show_hud(quirk_holder.hud_used.hud_version)
-	SSsunlight.add_sun_sufferer(src)
-	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(sun_risen))
-	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(sun_warning))
-	update_hud()
+	add_sun_timer_hud()
 
 /datum/quirk/sol_weakness/remove()
-	if(sun_hud)
-		quirk_holder.hud_used.infodisplay -= sun_hud
-		QDEL_NULL(sun_hud)
-	SSsunlight.remove_sun_sufferer(src)
+	SSsunlight.remove_sun_sufferer(quirk_holder)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 
 /datum/quirk/sol_weakness/can_add(mob/target)
-	return ishemophage(target) && !IS_BLOODSUCKER(target)
+	. = ..()
+	if(!.)
+		return
+	return !IS_BLOODSUCKER(target)
 
 /datum/quirk/sol_weakness/process(seconds_per_tick)
 	var/datum/status_effect/blood_regen_active/regen = quirk_holder?.has_status_effect(/datum/status_effect/blood_regen_active)
 	if(in_coffin() && ishemophage(quirk_holder))
 		if(!regen)
 			return
-		// free healing as long as you're in a coffin
+		// cheaper healing as long as you're in a coffin
 		regen.cost_blood = COFFIN_HEALING_COST
 	else if(regen?.blood_to_health_multiplier == COFFIN_HEALING_COST)
 		regen.cost_blood = initial(regen.blood_to_health_multiplier)
-	update_hud()
 
-/datum/quirk/sol_weakness/proc/update_hud()
-	SIGNAL_HANDLER
-	sun_hud?.update_sol_hud()
+/datum/quirk/sol_weakness/proc/add_sun_timer_hud()
+	if(!quirk_holder.hud_used)
+		CRASH("Sol Weakness quirk holder has no HUD")
+	SSsunlight.add_sun_sufferer(quirk_holder)
+	UnregisterSignal(quirk_holder, COMSIG_MOB_HUD_CREATED)
+	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(sun_risen))
+	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(sun_warning))
 
 /datum/quirk/sol_weakness/proc/sun_risen()
 	SIGNAL_HANDLER
@@ -61,7 +59,7 @@
 	else
 		if(in_coffin())
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/coffinsleep/quirk)
-			sun_burn_message(span_warning("The sun is up, but you sleep soundly in your [quirk_holder.loc]."))
+			sun_burn_message(span_warning("The sun is up, but you safely rest in your [quirk_holder.loc]."))
 		else
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 			quirk_holder.adjustFireLoss(1)

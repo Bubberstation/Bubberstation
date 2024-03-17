@@ -38,10 +38,19 @@
 	icon_state = "sunlight"
 	screen_loc = UI_SUNLIGHT_DISPLAY
 
+/atom/movable/screen/bloodsucker/sunlight_counter/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	update_sol_hud()
+	START_PROCESSING(SSsunlight, src)
+
+/atom/movable/screen/bloodsucker/sunlight_counter/Destroy()
+	STOP_PROCESSING(SSsunlight, src)
+	. = ..()
+
 /atom/movable/screen/bloodsucker/sunlight_counter/proc/update_sol_hud()
 	var/valuecolor = hud_text_color()
 	if(!SSsunlight)
-		qdel(src)
+		return
 	if(SSsunlight.sunlight_active)
 		valuecolor = "#FF5555"
 		icon_state = "[initial(icon_state)]_day"
@@ -64,12 +73,11 @@
 		(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)] m" : "[round(SSsunlight.time_til_cycle, 1)] s" \
 	)
 
+/atom/movable/screen/bloodsucker/sunlight_counter/process(seconds_per_tick)
+	update_sol_hud()
+
 /atom/movable/screen/bloodsucker/proc/hud_text_color(blood_volume)
 	return blood_volume > BLOOD_VOLUME_SAFE ? "#FFDDDD" : "#FFAAAA"
-
-/// Update Blood Counter + Rank Counter
-/datum/antagonist/bloodsucker/proc/update_sunlight_hud()
-	sunlight_display?.update_sol_hud(bloodsucker_blood_volume)
 
 /// Updated every time blood is changed by either
 /datum/antagonist/bloodsucker/proc/update_blood_hud()

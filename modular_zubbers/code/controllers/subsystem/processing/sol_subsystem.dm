@@ -1,10 +1,11 @@
 
 
-SUBSYSTEM_DEF(sunlight)
+PROCESSING_SUBSYSTEM_DEF(sunlight)
 	name = "Sol"
 	can_fire = FALSE
+	runlevels = RUNLEVEL_GAME
 	wait = 2 SECONDS
-	flags = SS_NO_INIT | SS_BACKGROUND | SS_TICKER
+	flags = SS_NO_INIT | SS_KEEP_TIMING | SS_TICKER
 
 	///If the Sun is currently out our not.
 	var/sunlight_active = FALSE
@@ -15,7 +16,7 @@ SUBSYSTEM_DEF(sunlight)
 	/// Mobs that make use of the sunlight system.
 	var/list/sun_sufferers = list()
 
-/datum/controller/subsystem/sunlight/fire(resumed = FALSE)
+/datum/controller/subsystem/processing/sunlight/fire(resumed = FALSE)
 	time_til_cycle--
 	if(sunlight_active)
 		if(time_til_cycle > 0)
@@ -35,7 +36,7 @@ SUBSYSTEM_DEF(sunlight)
 				vampire_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
 				vassal_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
 			)
-		return
+		return ..()
 
 	switch(time_til_cycle)
 		if(TIME_BLOODSUCKER_DAY_WARN)
@@ -66,26 +67,36 @@ SUBSYSTEM_DEF(sunlight)
 				vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"),
 				vassal_warning_message = span_userdanger("Solar flares bombard the station with UV light!"),
 			)
+	..()
 
-/datum/controller/subsystem/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
+/datum/controller/subsystem/processing/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
 	SEND_SIGNAL(src, COMSIG_SOL_WARNING_GIVEN, danger_level, vampire_warning_message, vassal_warning_message)
 
 
-/datum/controller/subsystem/sunlight/proc/add_sun_sufferer(mob/victim)
-	var/victim_ref = is_sufferer(victim)
-	if(victim_ref)
+/datum/controller/subsystem/processing/sunlight/proc/add_sun_sufferer(mob/victim)
+	var/sufferer_list = is_sufferer(victim)
+	if(sufferer_list)
 		return FALSE
-	sun_sufferers += WEAKREF(victim)
+	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = new(null, victim.hud_used)
+	victim.hud_used.infodisplay += sun_hud
+	victim.hud_used.show_hud(victim.hud_used.hud_version)
+	sun_hud.update_sol_hud()
+	sun_sufferers += list(list("victim" = WEAKREF(victim), "sun_hud" = sun_hud))
 	if(length(sun_sufferers))
 		can_fire = TRUE
 
 	return TRUE
 
-/datum/controller/subsystem/sunlight/proc/remove_sun_sufferer(mob/victim)
-	var/victim_ref = is_sufferer(victim)
-	if(!victim_ref)
+/datum/controller/subsystem/processing/sunlight/proc/remove_sun_sufferer(mob/victim)
+	var/sufferer_list = is_sufferer(victim)
+	if(!sufferer_list)
 		return FALSE
-	sun_sufferers -= victim_ref
+	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = sufferer_list["sun_hud"]
+	if(sun_hud)
+		victim?.hud_used.infodisplay -= sun_hud
+		qdel(sun_hud)
+	// We have to use the index here as -= won't work with two lists
+	sun_sufferers.Cut(sufferer_list["index"])
 	if(!length(sun_sufferers))
 		can_fire = FALSE
 		sunlight_active = initial(sunlight_active)
@@ -93,7 +104,7 @@ SUBSYSTEM_DEF(sunlight)
 		issued_XP = initial(issued_XP)
 	return TRUE
 
-/datum/controller/subsystem/sunlight/proc/warn_notify(mob/target, danger_level, message)
+/datum/controller/subsystem/processing/sunlight/proc/warn_notify(mob/target, danger_level, message)
 	if(!target)
 		return
 	to_chat(target, message)
@@ -111,9 +122,17 @@ SUBSYSTEM_DEF(sunlight)
 			target.playsound_local(null, 'sound/misc/ghosty_wind.ogg', 90, TRUE)
 
 
-/datum/controller/subsystem/sunlight/proc/is_sufferer(mob/victim)
-	for(var/datum/weakref/sufferer_ref in sun_sufferers)
+/datum/controller/subsystem/processing/sunlight/proc/is_sufferer(mob/victim)
+	for(var/i in 1 to length(sun_sufferers))
+		var/list/sufferers_original = sun_sufferers[i]
+		var/list/sufferer_list = sufferers_original?.Copy()
+		if(!sufferer_list)
+			continue
+		sufferer_list["index"] = i
+		var/datum/weakref/sufferer_ref = sufferer_list["victim"]
+		if(!sufferer_ref)
+			continue
 		var/sufferer = sufferer_ref.resolve()
 		if(sufferer == victim)
-			return sufferer
+			return sufferer_list
 	return null
