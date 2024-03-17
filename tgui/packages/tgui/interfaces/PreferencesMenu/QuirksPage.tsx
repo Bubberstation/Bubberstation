@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { useBackend } from '../../backend';
 import { Box, Button, Icon, Popper, Stack, Tooltip } from '../../components';
-import { logger } from '../../logging';
 import { PreferencesMenuData, Quirk, RandomSetting, ServerData } from './data';
 import { getRandomization, PreferenceList } from './MainPage';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
@@ -378,14 +377,6 @@ export function QuirksPage(props) {
           const currentSpeciesID = data.character_preferences.misc.species;
           // keys are the species_ids, values are the species names
           const speciesWhitelistKeys = Object.keys(quirk.species_whitelist);
-          if (quirk.name === 'Sol Weakness') {
-            logger.log(quirk);
-            logger.log(speciesWhitelistKeys, currentSpeciesID);
-            logger.log(
-              quirk.species_whitelist?.length,
-              !speciesWhitelistKeys.includes(currentSpeciesID),
-            );
-          }
           if (
             speciesWhitelistKeys?.length &&
             !speciesWhitelistKeys.includes(currentSpeciesID)
