@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { useBackend } from '../../backend';
 import { Box, Button, Icon, Popper, Stack, Tooltip } from '../../components';
+import { logger } from '../../logging';
 import { PreferencesMenuData, Quirk, RandomSetting, ServerData } from './data';
 import { getRandomization, PreferenceList } from './MainPage';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
@@ -317,8 +318,6 @@ export function QuirksPage(props) {
         const {
           max_positive_quirks: maxPositiveQuirks,
           quirk_blacklist: quirkBlacklist,
-          // BUBBER EDIT ADDITION - Species quirks
-          quirk_species_whitelist: quirkSpeciesWhitelist,
           quirk_info: quirkInfo,
           points_enabled: pointsEnabled,
         } = server_data.quirks; // SKYRAT EDIT - Quirks balance refactor
@@ -356,7 +355,6 @@ export function QuirksPage(props) {
             return 'You need to be a veteran to select this quirk, apply today!';
           }
           // SKYRAT EDIT END
-
           const selectedQuirkNames = selectedQuirks.map((quirkKey) => {
             return quirkInfo[quirkKey].name;
           });
@@ -377,26 +375,30 @@ export function QuirksPage(props) {
           }
 
           // BUBBER EDIT ADDITION START - Species quirks
-
-          // Iterate through all whitelists
-
-          for (const whitelist of quirkSpeciesWhitelist) {
-            const currentSpeciesName = data.character_preferences.misc.species;
-
-            // Format: Quirk ([0]), Species define ([1])
-            const whitelistSpeciesName = whitelist[1];
-            // Quirk is not in the whitelisted ones, continue to next list
-            if (whitelist.indexOf(quirk.name) === -1) {
-              continue;
-            }
-
-            // If the selected species is NOT in the list, do not give the quirk
-            // Otherwise, give the quirk
-            if (whitelist.indexOf(currentSpeciesName) === -1) {
-              return `This quirk can only be taken by ${whitelistSpeciesName}!`;
-            }
+          const currentSpeciesID = data.character_preferences.misc.species;
+          // keys are the species_ids, values are the species names
+          const speciesWhitelistKeys = Object.keys(quirk.species_whitelist);
+          if (quirk.name === 'Sol Weakness') {
+            logger.log(quirk);
+            logger.log(speciesWhitelistKeys, currentSpeciesID);
+            logger.log(
+              quirk.species_whitelist?.length,
+              !speciesWhitelistKeys.includes(currentSpeciesID),
+            );
           }
-
+          if (
+            speciesWhitelistKeys?.length &&
+            !speciesWhitelistKeys.includes(currentSpeciesID)
+          ) {
+            const speciesWhitelistNames = Object.values(
+              quirk.species_whitelist,
+            );
+            if (speciesWhitelistNames.length === 1) {
+              return `This quirk can only be taken by the ${speciesWhitelistNames[0]} species.`;
+            }
+            const speciesList = speciesWhitelistNames.join(', ');
+            return `This quirk can only be taken by the following species: ${speciesList}.`;
+          }
           // BUBBER EDIT ADDITION END
 
           return undefined;
