@@ -124,8 +124,14 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
 
 	///Time it takes to embed the stake into someone's chest.
-	var/staketime = 12 SECONDS
+	var/staketime = 5 SECONDS
 	var/kills_blodsuckers = FALSE
+
+/obj/item/stake/examine_more(mob/user)
+	. = ..()
+	. += span_notice("You can use [src] to stake someone in the chest, if they are laying down or grabbed by the neck.")
+	if(IS_BLOODSUCKER(user))
+		. += span_warning("You feel a sense of dread as you look at the [src]...")
 
 /obj/item/stake/attack(mob/living/target, mob/living/user, params)
 	. = ..()
@@ -161,7 +167,7 @@
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum)
-		// If DEAD or TORPID... Kill Bloodsucker!
+		// If silver stake and DEAD or TORPOR... Kill the Bloodsucker!
 		if(target.StakeCanKillMe())
 			bloodsuckerdatum.FinalDeath()
 		else
@@ -173,7 +179,7 @@
 	return FALSE
 
 /mob/living/carbon/can_be_staked()
-	if(!(mobility_flags & MOBILITY_MOVE))
+	if(body_position == LYING_DOWN)
 		return TRUE
 	return FALSE
 
@@ -185,8 +191,12 @@
 	force = 8
 	throwforce = 12
 	armour_penetration = 10
-	embedding = list("embed_chance" = 35)
-	staketime = 10 SECONDS
+	embedding = list("embed_chance" = 35, "fall_chance" = 0)
+	staketime = 12 SECONDS
+
+/obj/item/stake/hardened/examine_more(mob/user)
+	. = ..()
+	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
 
 /obj/item/stake/hardened/silver
 	name = "silver stake"
@@ -197,9 +207,14 @@
 	force = 9
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
-	embedding = list("embed_chance" = 65)
-	staketime = 8 SECONDS
+	embedding = list("embed_chance" = 65, "fall_chance" = 0)
+	staketime = 15 SECONDS
 	kills_blodsuckers = TRUE
+
+/obj/item/stake/hardened/silver/examine_more(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
+		. += span_notice("You know that the [src] can cause a Final Death to a vile Bloodsucker if they are asleep or dead.")
 
 //////////////////////
 //     ARCHIVES     //
@@ -232,13 +247,6 @@
 	///Boolean on whether the book is currently being used, so you can only use it on one person at a time.
 	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
 	var/cooldown_time = 1 MINUTES
-
-/obj/item/book/kindred/station_loving
-
-/obj/item/book/kindred/station_loving/Initialize()
-	. = ..()
-	SSpoints_of_interest.make_point_of_interest(src)
-	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
 /obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
 	to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [starting_title]."))
@@ -304,5 +312,22 @@
 
 /obj/structure/displaycase/curator
 	desc = "This book was found inside a coffin of a long dead Curator. It is said to be able to reveal the true nature of those who feed upon mankind."
-	start_showpiece_type = /obj/item/book/kindred/station_loving
+	start_showpiece_type = /obj/item/book/kindred
 	req_access = list(ACCESS_LIBRARY)
+
+
+/// just a typepath to specify that it's monkey-owned, used for the heart thief objective
+/obj/item/organ/internal/heart/monkey
+
+/obj/item/organ/internal/heart/examine_more(mob/user)
+	. = ..()
+	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(user)
+	if(!vampire)
+		return
+	var/datum/objective/steal_n_of_type/heart_thief = locate() in vampire?.objectives
+	if(!heart_thief)
+		return
+	if(heart_thief.check_if_valid_item(src))
+		. += span_notice("This [src.name] will do for your purposes...")
+	else
+		. += span_notice("This [src.name] is of lesser quality, it won't do...")
