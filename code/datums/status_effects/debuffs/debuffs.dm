@@ -353,15 +353,27 @@
 
 
 /datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/kinetic_crusher/new_hammer_synced)
+//BUBBER EDIT START
+/*
 	. = ..()
 	if(.)
 		hammer_synced = new_hammer_synced
+*/
+	hammer_synced = new_hammer_synced
+	return ..()
+//BUBBER EDIT END
 
 /datum/status_effect/crusher_mark/on_apply()
 	if(owner.mob_size >= MOB_SIZE_LARGE)
 		marked_underlay = mutable_appearance('icons/effects/effects.dmi', "shield2")
 		marked_underlay.pixel_x = -owner.pixel_x
 		marked_underlay.pixel_y = -owner.pixel_y
+		//BUBBER EDIT START
+		var/obj/item/crusher_trophy/watcher_eye/eye = locate() in hammer_synced.trophies
+		if(eye) //we must do this here as adding (and deleting!) to atom.underlays works by value, not reference
+			marked_underlay.icon_state = "shield-grey"
+			marked_underlay.color = eye.used_color
+		//BUBBER EDIT END
 		owner.underlays += marked_underlay
 		return TRUE
 	return FALSE
