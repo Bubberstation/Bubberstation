@@ -73,7 +73,7 @@
 
 /obj/item/ammo_box/magazine/m9mm_aps
 	name = "stechkin pistol magazine (9mm)"
-	icon_state = "9mmaps-15"
+	icon_state = "9mmaps-21"
 	base_icon_state = "9mmaps"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = CALIBER_9MM
@@ -81,7 +81,7 @@
 
 /obj/item/ammo_box/magazine/m9mm_aps/update_icon_state()
 	. = ..()
-	icon_state = "[base_icon_state]-[round(ammo_count(), 5)]"
+	icon_state = "[base_icon_state]-[round(ammo_count(), 7)]"
 
 /obj/item/ammo_box/magazine/m9mm_aps/fire
 	name = "stechkin pistol magazine (9mm incendiary)"

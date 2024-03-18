@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/m7mm
 	name = "box magazine (7mm)"
-	icon_state = "a7mm-50"
+	icon_state = "a7mm-65"
 	ammo_type = /obj/item/ammo_casing/m7mm
 	caliber = CALIBER_A7MM
 	max_ammo = 65
@@ -31,4 +31,4 @@
 
 /obj/item/ammo_box/magazine/m7mm/update_icon_state()
 	. = ..()
-	icon_state = "a7mm-[min(round(ammo_count(), 10), 50)]" //Min is used to prevent high capacity magazines from attempting to get sprites with larger capacities
+	icon_state = "a7mm-[min(round(ammo_count(), 12), 65)]" //Min is used to prevent high capacity magazines from attempting to get sprites with larger capacities
