@@ -161,7 +161,7 @@
 			if("Yes")
 				bloodsucker_level_unspent++ // gives level
 				blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
-				AddBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
+				AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
 				blood_level_gain_amount += 1 // Increments the variable that makes future levels more expensive
 			if("No")
 				return
