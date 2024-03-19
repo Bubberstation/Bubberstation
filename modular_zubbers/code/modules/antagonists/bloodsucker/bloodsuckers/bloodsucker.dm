@@ -131,6 +131,8 @@
 	if(ishuman(current_mob))
 		current_mob?.dna?.species.on_bloodsucker_gain(current_mob)
 		add_signals_to_heart(current_mob)
+		// check if we already somehow don't have a heart, if this is possible, something is fucked up.
+		on_organ_removal(null, current_mob)
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
