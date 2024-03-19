@@ -21,5 +21,3 @@
 
 /datum/vote/transfer_vote
 	allow_ghosts = FALSE
-
-/obj/effect/mob_spawn/ghost_role
