@@ -9,11 +9,9 @@
 /datum/vote/proc/can_mob_vote(mob/voter)
 	if(SSticker.HasRoundStarted() && !allow_ghosts)
 		// Handle the pesky ghosts and lobby people first
-		if(istype(voter, /mob/dead))
-			if(!voter.mind || QDELETED(voter.mind.current))
-				return FALSE
-		// Here we know the player is ingame
-		if(voter.mind?.is_offstation_ghost || is_centcom_level(voter.z))
+		if(!voter.mind || QDELETED(voter.mind.current) || voter.mind.is_offstation_ghost)
+			return FALSE
+		else if(!istype(voter, /mob/dead)) && is_centcom_level(voter.z)
 			return FALSE
 
 	return TRUE
