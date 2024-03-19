@@ -1,7 +1,7 @@
 
 /datum/vote
 	// Specifies if ghosts without linked bodies or ghostroles are allowed to vote
-	var/allow_ghosts = FALSE // If this is still false I forgot to toggle it after testing
+	var/allow_ghosts = TRUE
 
 
 // Checks if a mob can partake in voting. Feel free to add overrides when adding your own votes!
