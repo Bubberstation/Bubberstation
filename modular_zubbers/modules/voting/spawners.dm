@@ -5,6 +5,10 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_GHOSTROLE_SPAWNED, PROC_REF(on_mob_created))
 
+/obj/effect/mob_spawn/ghost_role/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_GHOSTROLE_SPAWNED)
+
 /obj/effect/mob_spawn/ghost_role/proc/on_mob_created(datum/source, mob/living/ghostspawn)
 	var/mob_on_station = is_station_level(ghostspawn.z)
 	if(!mob_on_station && istype(ghostspawn))
