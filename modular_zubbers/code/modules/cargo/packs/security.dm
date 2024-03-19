@@ -57,7 +57,7 @@
 /datum/supply_pack/security/armory/elite
 	name = "Carwo 'd'Elite' Sniper Rifle Crate"
 	desc = "Contains one Carwo 'd'Elite' Sniper Rifle, as well as a spare magazine for it."
-	cost = CARGO_CRATE_VALUE * 40
+	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/gun/ballistic/automatic/sol_rifle/marksman = 1,
 	/obj/item/ammo_box/magazine/c40sol_rifle = 1,
 	)
@@ -83,3 +83,10 @@
 	desc = "Contains two Ion Carbines, for when you need to deal with speedy space tiders, mechs, or upstart silicons."
 	contains = list(/obj/item/gun/energy/ionrifle/carbine = 2)
 	crate_name = "Ion Carbine Crate"
+
+/datum/supply_pack/security/miniegun
+	name = "Mini E-Gun Bulk Crate"
+	cost = CARGO_CRATE_VALUE * 4
+	desc = "Contains three mini e-guns, cheap and semi-effective, for when you need to arm up on a budget."
+	contains = list(/obj/item/gun/energy/e_gun/mini = 3)
+	crate_name = "Mini E-Gun Bulk Crate"
