@@ -90,3 +90,13 @@
 	desc = "Contains three mini e-guns, cheap and semi-effective, for when you need to arm up on a budget."
 	contains = list(/obj/item/gun/energy/e_gun/mini = 3)
 	crate_name = "Mini E-Gun Bulk Crate"
+
+/datum/supply_pack/security/armory/kiboko
+	name = "Kiboko Grenade Launcher Crate"
+	cost = CARGO_CRATE_VALUE * 25
+	desc = "Contains two Kiboko 25mm grenade launchers. A small dial on the sight allows you to set the length of the grenade fuse."
+	contains = list(
+		/obj/item/gun/ballistic/automatic/sol_grenade_launcher = 2,
+		/obj/item/ammo_box/c980grenade/smoke = 2,
+	)
+	crate_name = "Kiboko Grenade Launcher Crate"
