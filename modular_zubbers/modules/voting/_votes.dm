@@ -13,9 +13,8 @@
 			if(!voter.mind || QDELETED(voter.mind.current))
 				return FALSE
 		// Here we know the player is ingame
-		else
-			if(voter.mind?.is_offstation_ghost || is_centcom_level(voter.z))
-				return FALSE
+		if(voter.mind?.is_offstation_ghost || is_centcom_level(voter.z))
+			return FALSE
 
 	return TRUE
 
