@@ -38,6 +38,8 @@
 /datum/dynamic_ruleset/roundstart/bloodsucker/execute()
 	for(var/datum/mind/candidate_minds as anything in assigned)
 		if(!candidate_minds.make_bloodsucker())
+			candidate_minds.special_role = null
+			candidate_minds.restricted_roles = null
 			message_admins("[ADMIN_LOOKUPFLW(candidate_minds)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
 			assigned -= candidate_minds
 			continue
