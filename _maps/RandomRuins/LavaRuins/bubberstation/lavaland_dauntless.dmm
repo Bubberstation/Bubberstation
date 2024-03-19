@@ -395,9 +395,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
-"ci" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
 "ck" = (
 /obj/machinery/computer/atmos_control/nocontrol/incinerator{
 	atmos_chambers = list("syndiship_turbine" = "Dauntless Turbine")
@@ -433,9 +430,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
-"cx" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "cy" = (
 /obj/effect/turf_decal/stripes/red/full,
 /obj/effect/turf_decal/box/white,
@@ -594,7 +588,8 @@
 "dF" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 1;
-	pixel_y = -20
+	pixel_y = -20;
+	faction = list("Syndicate","neutral")
 	},
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
@@ -799,9 +794,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
-"eK" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "eL" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing/corner,
@@ -863,9 +855,6 @@
 /obj/structure/sign/flag/syndicate/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
-"fd" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "fe" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
@@ -1295,7 +1284,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "hK" = (
 /obj/machinery/porta_turret/syndicate{
-	dir = 6
+	dir = 6;
+	faction = list("Syndicate","neutral")
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -1597,7 +1587,8 @@
 "jw" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 5;
-	pixel_y = -20
+	pixel_y = -20;
+	faction = list("Syndicate","neutral")
 	},
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
@@ -2379,9 +2370,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
-"nV" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "nW" = (
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 1
@@ -2590,9 +2578,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "oW" = (
-/obj/machinery/syndicatebomb/self_destruct{
-	anchored = 1
-	},
 /obj/machinery/turretid{
 	ailock = 1;
 	control_area = "/area/ruin/space/has_grav/bubbers/dauntless/command/vault";
@@ -2604,7 +2589,16 @@
 	req_access = list("syndicate_leader");
 	shoot_cyborgs = 1
 	},
-/turf/open/floor/circuit/red,
+/obj/structure/safe,
+/obj/item/reagent_containers/heroinbrick{
+	desc = "A brick of stimulants meant for use by Tiger Cooperative agents. It seems this one's just a brittle block of heroin.";
+	name = "Tiger Coop stimulant brick"
+	},
+/obj/item/storage/box/syndie_kit/chameleon/ghostcafe{
+	desc = "A sleek, sturdy box.";
+	name = "Chameleon Kit"
+	},
+/turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "oX" = (
 /obj/machinery/duct,
@@ -2686,9 +2680,6 @@
 /obj/structure/closet/secure_closet/dauntless/munitions_locker,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
-"pq" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "pr" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -2881,9 +2872,6 @@
 "qk" = (
 /obj/item/circuitboard/machine/ore_silo,
 /obj/structure/frame/machine/secured,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
@@ -3548,7 +3536,8 @@
 "tq" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 5;
-	pixel_x = -20
+	pixel_x = -20;
+	faction = list("Syndicate","neutral")
 	},
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
@@ -3690,9 +3679,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
-"tY" = (
-/turf/closed/indestructible/rock,
-/area/lavaland/surface/outdoors)
 "ua" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -3703,9 +3689,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding)
-"uc" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "ud" = (
 /obj/structure/shipping_container/donk_co{
 	desc = "A standard-measure shipping container for bulk transport of goods. This one is from Donk Co. and so could be carrying just about anything- although it seems this one is overflowing with little Syndicate Figurines, known for being sold at a Loss.";
@@ -4008,9 +3991,6 @@
 /obj/effect/turf_decal/vg_decals/numbers/six,
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
-"vW" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "vX" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
@@ -4336,9 +4316,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
-"xu" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "xw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8
@@ -4874,12 +4851,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "zZ" = (
-/obj/machinery/porta_turret/syndicate,
+/obj/machinery/porta_turret/syndicate{
+	faction = list("Syndicate","neutral")
+	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
-"Ae" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/med/cold)
 "Af" = (
 /obj/structure/chair/sofa/bench,
 /obj/effect/turf_decal/siding/wood{
@@ -5015,9 +4991,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/supply/visible,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
-"AP" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "AQ" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/top/right,
 /turf/open/floor/mineral/plastitanium/red,
@@ -6278,9 +6251,6 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "FS" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
 /obj/structure/filingcabinet,
 /obj/item/folder/syndicate/red,
 /obj/effect/turf_decal/tile/dark_blue{
@@ -6614,9 +6584,6 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
-"HA" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "HD" = (
 /obj/structure/table/glass,
 /obj/machinery/reagentgrinder,
@@ -6683,9 +6650,6 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "Ig" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -7533,9 +7497,6 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
-"Ma" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "Mb" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
@@ -7666,9 +7627,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
-"ML" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "MP" = (
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
@@ -7739,9 +7697,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Ni" = (
-/obj/effect/turf_decal/siding/dark/corner{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 8
 	},
@@ -7778,9 +7733,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
-"Nu" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Nw" = (
 /obj/effect/turf_decal/box/red/corners{
 	dir = 1
@@ -8029,15 +7981,6 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Po" = (
-/obj/structure/safe,
-/obj/item/storage/box/syndie_kit/chameleon/ghostcafe{
-	desc = "A sleek, sturdy box.";
-	name = "Chameleon Kit"
-	},
-/obj/item/reagent_containers/heroinbrick{
-	desc = "A brick of stimulants meant for use by Tiger Cooperative agents. It seems this one's just a brittle block of heroin.";
-	name = "Tiger Coop stimulant brick"
-	},
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 4
 	},
@@ -8886,9 +8829,6 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
-"Tf" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Tm" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/bot_white,
@@ -8986,9 +8926,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
-"TF" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "TI" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal,
@@ -9047,9 +8984,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
-"Ua" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "Ub" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark{
 	dir = 5
@@ -9427,9 +9361,6 @@
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
-"Wn" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Wo" = (
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/plating,
@@ -9884,7 +9815,8 @@
 "Zj" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 9;
-	pixel_x = 20
+	pixel_x = 20;
+	faction = list("Syndicate","neutral")
 	},
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
@@ -9973,9 +9905,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
-"ZM" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "ZN" = (
 /obj/machinery/power/rtg/advanced,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
@@ -10020,9 +9949,6 @@
 	dir = 4
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
-"ZZ" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 
 (1,1,1) = {"
 yl
@@ -10101,15 +10027,6 @@ BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
 BR
 BR
 BR
@@ -10120,27 +10037,36 @@ BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-tY
 BR
 BR
 BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
 BR
 BR
 BR
@@ -10160,42 +10086,42 @@ BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-fT
-fT
-fT
-fT
-fT
-tY
-tY
-tY
-tY
-tY
-tY
 BR
 BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
+fT
+fT
+fT
+fT
+fT
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
 fT
 fT
 fT
@@ -10208,8 +10134,8 @@ fT
 fT
 fT
 fT
-tY
-tY
+BR
+BR
 BR
 yl
 "}
@@ -10238,16 +10164,16 @@ fT
 fT
 fT
 fT
-tY
-tY
-tY
 BR
 BR
 BR
 BR
-tY
-tY
-tY
+BR
+BR
+BR
+BR
+BR
+BR
 fT
 fT
 fT
@@ -10272,16 +10198,16 @@ fT
 Zj
 fT
 fT
-tY
+BR
 BR
 BR
 "}
 (5,1,1) = {"
 yl
 BR
-tY
-tY
-tY
+BR
+BR
+BR
 fT
 fT
 fT
@@ -10335,14 +10261,14 @@ tA
 My
 fT
 fT
-tY
+BR
 BR
 BR
 "}
 (6,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 fT
@@ -10398,14 +10324,14 @@ fa
 tA
 fT
 fT
-tY
-tY
+BR
+BR
 BR
 "}
 (7,1,1) = {"
 BR
-tY
-tY
+BR
+BR
 fT
 fT
 fT
@@ -10462,12 +10388,12 @@ tA
 fT
 fT
 fT
-tY
+BR
 BR
 "}
 (8,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 fT
@@ -10525,12 +10451,12 @@ tA
 fT
 fT
 fT
-tY
+BR
 BR
 "}
 (9,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 Xz
@@ -10588,12 +10514,12 @@ tA
 tA
 fT
 fT
-tY
+BR
 BR
 "}
 (10,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 kC
@@ -10651,12 +10577,12 @@ wK
 UB
 Ay
 fT
-tY
+BR
 BR
 "}
 (11,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 En
@@ -10698,13 +10624,13 @@ Dm
 cD
 cD
 vd
-HA
+ho
 rI
 ry
 ho
 yI
 yI
-HA
+ho
 Sf
 xb
 XU
@@ -10714,12 +10640,12 @@ wK
 UB
 IN
 fT
-tY
+BR
 BR
 "}
 (12,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 En
@@ -10777,12 +10703,12 @@ wK
 UB
 IN
 fT
-tY
+BR
 BR
 "}
 (13,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 En
@@ -10840,12 +10766,12 @@ wK
 UB
 Ay
 fT
-tY
+BR
 BR
 "}
 (14,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 En
@@ -10903,12 +10829,12 @@ wK
 UB
 IN
 fT
-tY
+BR
 BR
 "}
 (15,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 kC
@@ -10953,7 +10879,7 @@ yV
 ho
 na
 Ew
-HA
+ho
 na
 Ew
 ho
@@ -10966,12 +10892,12 @@ wK
 UB
 IN
 fT
-tY
+BR
 BR
 "}
 (16,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 Xz
@@ -10979,7 +10905,7 @@ kC
 kC
 TM
 TM
-AP
+TM
 TM
 TM
 LG
@@ -11008,7 +10934,7 @@ PM
 JV
 JV
 JV
-uc
+JV
 JV
 Hz
 oe
@@ -11034,7 +10960,7 @@ BR
 "}
 (17,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11056,7 +10982,7 @@ Uz
 Sc
 Pf
 UQ
-Tf
+aR
 nU
 tB
 tx
@@ -11097,8 +11023,8 @@ BR
 "}
 (18,1,1) = {"
 BR
-tY
-tY
+BR
+BR
 fT
 fT
 dF
@@ -11131,7 +11057,7 @@ tB
 tB
 pO
 xc
-uc
+JV
 cO
 mK
 sI
@@ -11143,7 +11069,7 @@ Fe
 Fe
 Fe
 Fe
-ci
+Fe
 Fe
 mG
 mG
@@ -11161,7 +11087,7 @@ BR
 (19,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11218,13 +11144,13 @@ fT
 fT
 fT
 fT
-tY
+BR
 BR
 "}
 (20,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11263,7 +11189,7 @@ JV
 JV
 JV
 fq
-nV
+fq
 fq
 Fe
 MW
@@ -11281,13 +11207,13 @@ fT
 fT
 fT
 fT
-tY
+BR
 BR
 "}
 (21,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11344,13 +11270,13 @@ Dn
 Dn
 Dn
 fT
-tY
+BR
 BR
 "}
 (22,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11359,7 +11285,7 @@ iw
 Fn
 Fn
 ey
-AP
+TM
 mQ
 Uo
 oI
@@ -11396,7 +11322,7 @@ wY
 xt
 Au
 Au
-ZM
+Au
 Au
 js
 sL
@@ -11407,13 +11333,13 @@ xV
 Kf
 gO
 fT
-tY
+BR
 BR
 "}
 (23,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11427,7 +11353,7 @@ vX
 Fv
 bE
 bE
-eK
+bE
 bE
 bE
 bE
@@ -11443,7 +11369,7 @@ SU
 aR
 aR
 aR
-Tf
+aR
 aR
 aR
 aR
@@ -11470,13 +11396,13 @@ xV
 Kf
 xs
 fT
-tY
+BR
 BR
 "}
 (24,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11533,13 +11459,13 @@ xV
 Dv
 fT
 fT
-tY
+BR
 BR
 "}
 (25,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11596,13 +11522,13 @@ Dn
 zZ
 fT
 fT
-tY
+BR
 BR
 "}
 (26,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11625,7 +11551,7 @@ Qv
 GV
 GA
 kU
-Nu
+kU
 kU
 kU
 Tw
@@ -11643,7 +11569,7 @@ NF
 lx
 Wj
 wd
-Ae
+au
 ma
 oX
 Hf
@@ -11659,13 +11585,13 @@ xV
 LT
 fT
 fT
-tY
+BR
 BR
 "}
 (27,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11722,7 +11648,7 @@ Sn
 EB
 ne
 fT
-tY
+BR
 BR
 "}
 (28,1,1) = {"
@@ -11749,7 +11675,7 @@ Ho
 LW
 sX
 Fo
-ZZ
+GA
 oW
 Ig
 JP
@@ -11785,7 +11711,7 @@ Sn
 EB
 At
 fT
-tY
+BR
 BR
 "}
 (29,1,1) = {"
@@ -11806,7 +11732,7 @@ Pu
 gq
 wg
 XB
-cx
+oD
 cJ
 OG
 yf
@@ -11848,13 +11774,13 @@ Au
 Au
 zZ
 fT
-tY
+BR
 BR
 "}
 (30,1,1) = {"
 yl
 BR
-tY
+BR
 fT
 fT
 dF
@@ -11863,7 +11789,7 @@ TM
 PC
 Fn
 rQ
-cx
+oD
 IY
 dC
 gq
@@ -11877,7 +11803,7 @@ pR
 cA
 GA
 kU
-Nu
+kU
 kU
 kU
 UU
@@ -11897,27 +11823,27 @@ BP
 bk
 eu
 og
-ML
+NF
 yk
 Wz
 rh
 Ex
 GP
 BH
-vW
+BH
 BH
 BH
 BH
 BH
 fT
 fT
-tY
+BR
 BR
 "}
 (31,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 fT
@@ -11974,13 +11900,13 @@ NV
 BH
 fT
 fT
-tY
+BR
 BR
 "}
 (32,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 yO
@@ -11997,7 +11923,7 @@ Ba
 XY
 oD
 GA
-ZZ
+GA
 GA
 GA
 GA
@@ -12011,7 +11937,7 @@ iq
 Oj
 KF
 WT
-Wn
+dN
 jg
 gk
 dN
@@ -12043,7 +11969,7 @@ BR
 (33,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 Pi
@@ -12089,7 +12015,7 @@ NF
 NF
 tp
 Au
-ZM
+Au
 Au
 Au
 BH
@@ -12106,7 +12032,7 @@ BR
 (34,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 Pi
@@ -12169,7 +12095,7 @@ BR
 (35,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 Pi
@@ -12232,7 +12158,7 @@ BR
 (36,1,1) = {"
 BR
 BR
-tY
+BR
 fT
 fT
 Pi
@@ -12250,7 +12176,7 @@ yJ
 hu
 cB
 mW
-TF
+MB
 bT
 gx
 mo
@@ -12260,7 +12186,7 @@ Rz
 DM
 kE
 kE
-fd
+kE
 zw
 zw
 QK
@@ -12275,7 +12201,7 @@ PX
 PX
 PX
 PX
-pq
+PX
 PX
 PX
 PX
@@ -12352,7 +12278,7 @@ QL
 BH
 fT
 fT
-tY
+BR
 BR
 "}
 (38,1,1) = {"
@@ -12382,7 +12308,7 @@ gx
 kE
 uv
 kE
-fd
+kE
 Nc
 nY
 up
@@ -12415,7 +12341,7 @@ gW
 If
 MZ
 fT
-tY
+BR
 BR
 "}
 (39,1,1) = {"
@@ -12450,7 +12376,7 @@ AW
 da
 up
 QY
-Ma
+zw
 Dh
 Zv
 pD
@@ -12478,12 +12404,12 @@ fT
 fT
 fT
 fT
-tY
+BR
 BR
 "}
 (40,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 tJ
@@ -12540,13 +12466,13 @@ fT
 fT
 fT
 fT
-tY
-tY
+BR
+BR
 BR
 "}
 (41,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 dg
@@ -12581,7 +12507,7 @@ gn
 rt
 WV
 Ql
-Ua
+Qn
 UW
 Gz
 Kk
@@ -12603,13 +12529,13 @@ fT
 fT
 fT
 fT
-tY
+BR
 BR
 BR
 "}
 (42,1,1) = {"
 BR
-tY
+BR
 fT
 Zj
 dg
@@ -12627,7 +12553,7 @@ Pi
 tk
 Pi
 Pi
-xu
+Pi
 Si
 Si
 rL
@@ -12666,13 +12592,13 @@ fT
 fT
 fT
 fT
-tY
+BR
 BR
 BR
 "}
 (43,1,1) = {"
 BR
-tY
+BR
 fT
 tJ
 dg
@@ -12728,14 +12654,14 @@ FV
 fT
 fT
 fT
-tY
-tY
+BR
+BR
 BR
 BR
 "}
 (44,1,1) = {"
 BR
-tY
+BR
 fT
 xm
 FD
@@ -12791,14 +12717,14 @@ FV
 fT
 fT
 fT
-tY
+BR
 BR
 BR
 BR
 "}
 (45,1,1) = {"
 BR
-tY
+BR
 fT
 xm
 Li
@@ -12854,14 +12780,14 @@ fT
 fT
 fT
 fT
-tY
+BR
 BR
 BR
 BR
 "}
 (46,1,1) = {"
 BR
-tY
+BR
 fT
 xm
 jX
@@ -12916,15 +12842,15 @@ fT
 fT
 fT
 fT
-tY
-tY
+BR
+BR
 BR
 BR
 yl
 "}
 (47,1,1) = {"
 BR
-tY
+BR
 fT
 bi
 xm
@@ -12978,8 +12904,8 @@ fT
 fT
 fT
 fT
-tY
-tY
+BR
+BR
 BR
 BR
 BR
@@ -12987,7 +12913,7 @@ yl
 "}
 (48,1,1) = {"
 BR
-tY
+BR
 fT
 fT
 fT
@@ -13038,10 +12964,10 @@ fT
 fT
 fT
 fT
-tY
-tY
-tY
-tY
+BR
+BR
+BR
+BR
 BR
 BR
 BR
@@ -13050,8 +12976,8 @@ yl
 "}
 (49,1,1) = {"
 BR
-tY
-tY
+BR
+BR
 fT
 fT
 fT
@@ -13097,11 +13023,11 @@ fT
 fT
 fT
 fT
-tY
-tY
-tY
-tY
-tY
+BR
+BR
+BR
+BR
+BR
 BR
 BR
 BR
@@ -13114,9 +13040,9 @@ yl
 (50,1,1) = {"
 BR
 BR
-tY
-tY
-tY
+BR
+BR
+BR
 fT
 jw
 MJ
@@ -13146,21 +13072,21 @@ BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-tY
-fT
-fT
-fT
-fT
-tY
-tY
 BR
 BR
-tY
+BR
+BR
+BR
+BR
+fT
+fT
+fT
+fT
+BR
+BR
+BR
+BR
+BR
 BR
 BR
 BR
@@ -13179,7 +13105,7 @@ yl
 BR
 BR
 BR
-tY
+BR
 fT
 fT
 fT
@@ -13202,10 +13128,6 @@ fT
 fT
 fT
 fT
-tY
-tY
-tY
-tY
 BR
 BR
 BR
@@ -13214,12 +13136,16 @@ BR
 BR
 BR
 BR
-tY
-tY
-tY
-tY
-tY
-tY
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
 BR
 BR
 BR
@@ -13242,31 +13168,31 @@ yl
 yl
 yl
 BR
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
-tY
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
+BR
 BR
 BR
 BR
