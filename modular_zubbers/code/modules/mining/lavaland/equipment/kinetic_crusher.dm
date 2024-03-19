@@ -164,6 +164,10 @@
 		return
 
 	crusher.force *= 2
+	if(istype(crusher, /obj/item/clothing/gloves/kinetic_gauntlets))
+		var/obj/item/clothing/gloves/kinetic_gauntlets/gauntlets = crusher //CODE DEBT CODE DEBT WOOOOO
+		gauntlets.left_gauntlet?.force *= 2
+		gauntlets.right_gauntlet?.force *= 2
 
 	var/datum/component/two_handed/two_handed = crusher.GetComponent(/datum/component/two_handed)
 	two_handed?.force_wielded *= 2
@@ -174,6 +178,10 @@
 		return
 
 	crusher.force *= 0.5
+	if(istype(crusher, /obj/item/clothing/gloves/kinetic_gauntlets))
+		var/obj/item/clothing/gloves/kinetic_gauntlets/gauntlets = crusher //seriously tho, this is the least bad approach i can think of.
+		gauntlets.left_gauntlet?.force *= 0.5
+		gauntlets.right_gauntlet?.force *= 0.5
 
 	var/datum/component/two_handed/two_handed = crusher.GetComponent(/datum/component/two_handed)
 	two_handed?.force_wielded *= 0.5

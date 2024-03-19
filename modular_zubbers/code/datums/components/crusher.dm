@@ -158,7 +158,8 @@
 	var/cancel_attack = NONE
 	if(attack_check && !attack_check.Invoke(user, &cancel_attack))
 		return cancel_attack
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
+
+	return COMPONENT_SECONDARY_CONTINUE_ATTACK_CHAIN
 
 /datum/component/kinetic_crusher/proc/on_afterattack_secondary(obj/item/source, atom/target, mob/living/user, proximity_flag, click_parameters)
 	SIGNAL_HANDLER
@@ -190,6 +191,7 @@
 	charged = FALSE
 	crusher.update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(recharge_shot)), recharge_speed)
+	return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
 
 /datum/component/kinetic_crusher/proc/recharge_shot()
 	var/obj/item/crusher = parent

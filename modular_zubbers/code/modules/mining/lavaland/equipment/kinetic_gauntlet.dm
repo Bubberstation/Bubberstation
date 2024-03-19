@@ -35,7 +35,7 @@
 	var/datum/component/crusher_comp = AddComponent(/datum/component/kinetic_crusher, 50, 30, 1.5 SECONDS, CALLBACK(src, PROC_REF(attack_check)), CALLBACK(src, PROC_REF(detonate_check)), CALLBACK(src, PROC_REF(after_detonate)))
 	crusher_comp.RegisterWithParent(left_gauntlet)
 	crusher_comp.RegisterWithParent(right_gauntlet)
-
+	crusher_comp.UnregisterSignal(src, COMSIG_ATOM_EXAMINE) //its just easier like this man
 
 /obj/item/clothing/gloves/kinetic_gauntlets/Destroy()
 	QDEL_NULL(left_gauntlet)
@@ -202,6 +202,11 @@
 	user.changeNext_move(CLICK_CD_HYPER_RAPID) //forgive me
 	if(istype(user.get_inactive_held_item(), /obj/item/kinetic_gauntlet))
 		user.swap_hand()
+
+/obj/item/kinetic_gauntlet/attack_self(mob/user, modifiers)
+	if(linked_gauntlets.left_gauntlet)
+		return linked_gauntlets.left_gauntlet.attack_self(user, modifiers)
+	return ..()
 
 /obj/item/kinetic_gauntlet/left
 	icon_state = "kgauntlet_l"
