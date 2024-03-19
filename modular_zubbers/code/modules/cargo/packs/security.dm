@@ -93,10 +93,20 @@
 
 /datum/supply_pack/security/armory/kiboko
 	name = "Kiboko Grenade Launcher Crate"
-	cost = CARGO_CRATE_VALUE * 25
+	cost = CARGO_CRATE_VALUE * 20
 	desc = "Contains two Kiboko 25mm grenade launchers. A small dial on the sight allows you to set the length of the grenade fuse."
 	contains = list(
-		/obj/item/gun/ballistic/automatic/sol_grenade_launcher = 2,
-		/obj/item/ammo_box/c980grenade/smoke = 2,
+		/obj/item/gun/ballistic/automatic/sol_grenade_launcher/no_mag = 2,
+		/obj/item/ammo_box/magazine/c980_grenade/starts_empty = 2
 	)
 	crate_name = "Kiboko Grenade Launcher Crate"
+
+/datum/supply_pack/security/armory/kiboko_variety
+	name = "Kiboko 25mm Variety Pack"
+	cost = CARGO_CRATE_VALUE * 8
+	desc = "Contains a variety of ammo types for the Kiboko 25mm Grenade Launcher. One practice box, one smoke box, and one riot box."
+	contains = list(
+		/obj/item/ammo_box/c980grenade = 1,
+		/obj/item/ammo_box/c980grenade/smoke = 1,
+		/obj/item/ammo_box/c980grenade/riot = 1,
+	)
