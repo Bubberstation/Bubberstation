@@ -9,7 +9,10 @@
 	display_name = "Reagent Injector"
 	desc = "A component that can inject reagents from a BCI's reagent storage."
 	category = "BCI"
-	circuit_flags = CIRCUIT_NO_DUPLICATES
+	//BUBBERSTATION EDIT CHANGE BEGIN - Add container type flag - This is required since we have two reagent components, and the BCI only allows one active
+	//circuit_flags = CIRCUIT_NO_DUPLICATES - BUBBERSTATION EDIT - ORIGINAL
+	circuit_flags = CIRCUIT_NO_DUPLICATES|CIRCUIT_REAGENT_CONTAINER_TYPE
+	//BUBBERSTATION EDIT CHANGE END
 
 	required_shells = list(/obj/item/organ/internal/cyberimp/bci)
 

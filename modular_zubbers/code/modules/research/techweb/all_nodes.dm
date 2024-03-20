@@ -65,4 +65,5 @@
 	design_ids -= "mag_autorifle_ap"
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
+	design_ids += "comp_reagent_injector_bluespace"
 	. = ..()
