@@ -107,6 +107,8 @@
 	var/mob/living_target = target
 	for(var/create_reagent in imbued_reagent)
 		living_target.reagents.add_reagent(create_reagent, REAGENT_WEAPON_INJECT_AMOUNT)
+		parent_weapon.take_damage(length(imbued_reagent) * REAGENT_WEAPON_DAMAGE_MULTIPLIER) //BUBBER EDIT ADD - REAGENT WEAPONS BREAK AGAIN
+
 
 #undef MAX_IMBUE_STORAGE
 #undef REAGENT_CLOTHING_INJECT_AMOUNT

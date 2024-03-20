@@ -102,7 +102,15 @@
 
 /obj/item/forging/reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
-	user.changeNext_move(CLICK_CD_RANGE)
+	// BUBBER EDIT ADD - The staff now deals organ damage
+	var/datum/component/reagent_weapon/reagent_component = src.GetComponent(/datum/component/reagent_weapon)
+	if(!length(reagent_component.imbued_reagent))
+		if(iscarbon(M))
+			var/mob/living/carbon/carbon_target = M
+			carbon_target.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5, 100)
+			carbon_target.adjustOrganLoss(ORGAN_SLOT_LIVER, 5, 100)
+	// BUBBER EDIT END
+	user.changeNext_move(CLICK_CD_SLOW) // BUBBER EDIT - Changed to CD_SLOW from CD_RANGE
 
 /obj/item/forging/reagent_weapon/spear
 	name = "reagent spear"
