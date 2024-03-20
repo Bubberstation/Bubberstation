@@ -104,7 +104,7 @@
 	. = ..()
 	// BUBBER EDIT ADD - The staff now deals organ damage
 	var/datum/component/reagent_weapon/reagent_component = src.GetComponent(/datum/component/reagent_weapon)
-	if(!length(reagent_component.imbued_reagent))
+	if(length(reagent_component.imbued_reagent))
 		if(iscarbon(M))
 			var/mob/living/carbon/carbon_target = M
 			carbon_target.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5, 100)
