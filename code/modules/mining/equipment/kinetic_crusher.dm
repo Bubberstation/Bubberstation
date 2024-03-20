@@ -366,12 +366,7 @@
 		playsound(L, 'sound/magic/fireball.ogg', 20, TRUE)
 		new /obj/effect/temp_visual/fire(L.loc)
 		addtimer(CALLBACK(src, PROC_REF(pushback), L, user), 1) //no free backstabs, we push AFTER module stuff is done
-		//BUBBER EDIT START
-		/*
 		L.adjustFireLoss(bonus_value, forced = TRUE)
-		*/
-		L.adjustFireLoss(bonus_value, FALSE, forced = TRUE)
-		//BUBBER EDIT END
 
 /obj/item/crusher_trophy/tail_spike/proc/pushback(mob/living/target, mob/living/user)
 	if(!QDELETED(target) && !QDELETED(user) && (!target.anchored || ismegafauna(target))) //megafauna will always be pushed

@@ -9,12 +9,17 @@
 
 	armor_type = /datum/armor/melee_energy
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 1.15, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 2.075) //copied from kc, idk
+	light_on = FALSE
+	light_power = 5
+	light_range = 4
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	resistance_flags = FIRE_PROOF
 
 	force = 3 //i guess?
 	obj_flags = UNIQUE_RENAME
 	throwforce = 3 //why doesnt this have an underscore i hate this
 	throw_speed = 2
+
 
 	actions_types = list(/datum/action/item_action/extend_gauntlets)
 	attack_verb_continuous = list("slaps", "challenges")
@@ -41,9 +46,6 @@
 	QDEL_NULL(left_gauntlet)
 	QDEL_NULL(right_gauntlet)
 	return ..()
-
-/obj/item/clothing/gloves/kinetic_gauntlets/ui_action_click(mob/user, datum/action/actiontype)
-	toggle_gauntlets()
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/attack_check(mob/living/user, cancel_attack)
 	return left_gauntlet?.loc == user || right_gauntlet?.loc == user
@@ -221,18 +223,22 @@
 	. = ..()
 	RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
+/obj/item/kinetic_gauntlet/left/Destroy(force)
+	linked_gauntlets.set_light_on(FALSE)
+	return ..()
+
 /obj/item/kinetic_gauntlet/left/update_overlays()
 	. = ..()
 	if(light_on)
 		. += "[icon_state]_lit"
 
 /obj/item/kinetic_gauntlet/left/attack_self(mob/user, modifiers)
-	set_light_on(!light_on)
+	linked_gauntlets.set_light_on(!light_on)
 	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
 /obj/item/kinetic_gauntlet/left/proc/on_saboteur(datum/source, disrupt_duration)
-	set_light_on(FALSE)
+	linked_gauntlets.set_light_on(FALSE)
 	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 	return COMSIG_SABOTEUR_SUCCESS
