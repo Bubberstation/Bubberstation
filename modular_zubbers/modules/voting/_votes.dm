@@ -8,10 +8,15 @@
 // This is called directly from /datum/controller/subsystem/vote so some nullchecks are excluded as they are included before this is called
 /datum/vote/proc/can_mob_vote(mob/voter)
 	if(SSticker.HasRoundStarted() && !allow_ghosts)
-		// Handle the pesky ghosts and lobby people first
-		if(!voter.mind || QDELETED(voter.mind.current) || voter.mind.is_offstation_ghost)
+		// Handle the lobby people first
+		if(istype(voter, /mob/dead/new_player))
 			return FALSE
-		else if(!istype(voter, /mob/dead) && is_centcom_level(voter.z))
+		// Check if there is a mind. This should only be a case on ghosts, but also doubles down as a nullcheck for the next check
+		// We also check the is_offstation_ghost because it stays with your mind even after dying. No cheating this!
+		else if(!voter.mind || QDELETED(voter.mind.current) || voter.mind.is_offstation_ghost)
+			return FALSE
+		// Check if the person is living. If they are, check if they're on the centcom level
+		else if(istype(voter, /mob/living) && (is_centcom_level(voter.z)))
 			return FALSE
 
 	return TRUE
