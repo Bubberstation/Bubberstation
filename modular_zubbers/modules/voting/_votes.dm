@@ -11,7 +11,7 @@
 		// Handle the pesky ghosts and lobby people first
 		if(!voter.mind || QDELETED(voter.mind.current) || voter.mind.is_offstation_ghost)
 			return FALSE
-		else if(!istype(voter, /mob/dead)) && is_centcom_level(voter.z))
+		else if(!istype(voter, /mob/dead) && is_centcom_level(voter.z))
 			return FALSE
 
 	return TRUE
