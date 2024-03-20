@@ -168,6 +168,9 @@
 	if(attack_check && _ /*unused var error*/&& !attack_check.Invoke(user, &_))
 		return
 
+	if(!ismob(target) && proximity_flag)
+		return
+
 	if(!charged)
 		return
 
