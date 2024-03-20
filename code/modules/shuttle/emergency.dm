@@ -379,6 +379,8 @@
 		color_override = "orange",
 		)
 
+	SSmapping.mapvote() //BUBBERSTATION CHANGE: MAP VOTE STARTS WHEN THE SHUTTLE IS CALLED.
+
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
 		return
@@ -553,7 +555,7 @@
 					color_override = "orange",
 				)
 				INVOKE_ASYNC(SSticker, TYPE_PROC_REF(/datum/controller/subsystem/ticker, poll_hearts))
-				SSmapping.mapvote() //If no map vote has been run yet, start one.
+				// SSmapping.mapvote() //If no map vote has been run yet, start one. BUBBERSTATION CHANGE: MOVES MAP VOTE TO WHEN SHUTTLE IS CALLED.
 
 				if(!is_reserved_level(z))
 					CRASH("Emergency shuttle did not move to transit z-level!")
