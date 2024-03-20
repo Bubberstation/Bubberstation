@@ -215,6 +215,7 @@
 
 /obj/item/kinetic_gauntlet/left
 	icon_state = "kgauntlet_l"
+	actions_types = list(/datum/action/item_action/toggle_light)
 
 /obj/item/kinetic_gauntlet/left/Initialize(mapload)
 	. = ..()
@@ -230,7 +231,7 @@
 		. += "[icon_state]_lit"
 
 /obj/item/kinetic_gauntlet/left/attack_self(mob/user, modifiers)
-	linked_gauntlets.set_light_on(!light_on)
+	linked_gauntlets.set_light_on(!linked_gauntlets.light_on)
 	playsound(src, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
 
