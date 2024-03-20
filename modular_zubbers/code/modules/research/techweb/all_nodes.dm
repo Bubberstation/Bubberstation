@@ -29,6 +29,7 @@
 	. = ..()
 	design_ids += list(
 		"limbdesign_hemophage",
+		"limbdesign_tajaran",
 	)
 
 // TOOLS

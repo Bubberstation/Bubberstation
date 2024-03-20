@@ -48,6 +48,15 @@
 			return
 		cmd_show_exp_panel(M.client)
 
+	// BUBBER EDIT START - Job exemption
+	else if (href_list["getjobexemptwindow"])
+		var/target_ckey = href_list["getjobexemptwindow"]
+		show_job_exempt_menu(usr, target_ckey)
+	else if (href_list["getjobexempttask"])
+		var/target_ckey = href_list["getjobexempttask"]
+		handle_job_exempt_menu_topic(usr, href, href_list, target_ckey)
+	// BUBBER EDIT END
+
 // SKYRAT EDIT BEGIN -- ONE CLICK ANTAG
 	else if(href_list["makeAntag"])
 
@@ -395,19 +404,6 @@
 	else if(href_list["showmessageckeylinkless"])
 		var/target = href_list["showmessageckeylinkless"]
 		browse_messages(target_ckey = target, linkless = 1)
-
-	else if(href_list["messageread"])
-		if(!isnum(href_list["message_id"]))
-			return
-		var/rounded_message_id = round(href_list["message_id"], 1)
-		var/datum/db_query/query_message_read = SSdbcore.NewQuery(
-			"UPDATE [format_table_name("messages")] SET type = 'message sent' WHERE targetckey = :player_key AND id = :id",
-			list("id" = rounded_message_id, "player_key" = usr.ckey)
-		)
-		if(!query_message_read.warn_execute())
-			qdel(query_message_read)
-			return
-		qdel(query_message_read)
 
 	else if(href_list["messageedits"])
 		if(!check_rights(R_ADMIN))
@@ -1405,7 +1401,6 @@
 				return
 			G.report_message = description
 		message_admins("[key_name(usr)] created \"[G.name]\" station goal.")
-		GLOB.station_goals += G
 		modify_goals()
 
 	else if(href_list["change_lag_switch"])
