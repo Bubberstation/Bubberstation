@@ -1,2 +1,2 @@
 /datum/movespeed_modifier/equipping_gauntlets
-	multiplicative_slowdown = 2
+	multiplicative_slowdown = 1.5

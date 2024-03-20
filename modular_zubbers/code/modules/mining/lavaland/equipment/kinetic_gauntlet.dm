@@ -47,6 +47,9 @@
 	QDEL_NULL(right_gauntlet)
 	return ..()
 
+/obj/item/clothing/gloves/kinetic_gauntlets/ui_action_click(mob/user, datum/action/actiontype)
+	toggle_gauntlets()
+
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/attack_check(mob/living/user, cancel_attack)
 	return left_gauntlet?.loc == user || right_gauntlet?.loc == user
 
@@ -212,12 +215,6 @@
 
 /obj/item/kinetic_gauntlet/left
 	icon_state = "kgauntlet_l"
-	light_on = FALSE
-	light_power = 5
-	light_range = 4
-	light_system = OVERLAY_LIGHT_DIRECTIONAL
-
-	actions_types = list(/datum/action/item_action/toggle_light)
 
 /obj/item/kinetic_gauntlet/left/Initialize(mapload)
 	. = ..()
