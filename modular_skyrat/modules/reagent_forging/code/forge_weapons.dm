@@ -107,8 +107,8 @@
 	if(length(reagent_component.imbued_reagent))
 		if(iscarbon(M))
 			var/mob/living/carbon/carbon_target = M
-			carbon_target.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5, 100)
-			carbon_target.adjustOrganLoss(ORGAN_SLOT_LIVER, 5, 100)
+			carbon_target.adjustOrganLoss(ORGAN_SLOT_STOMACH, 2.5, 50)
+			carbon_target.adjustOrganLoss(ORGAN_SLOT_LIVER, 2.5, 50)
 	// BUBBER EDIT END
 	user.changeNext_move(CLICK_CD_SLOW) // BUBBER EDIT - Changed to CD_SLOW from CD_RANGE
 
