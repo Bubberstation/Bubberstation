@@ -7,3 +7,8 @@
 	name = "Eye Camera"
 	id = "comp_eye_camera"
 	build_path = /obj/item/circuit_component/eye_camera
+
+/datum/design/component/web_camera
+	name = "Web Camera"
+	id = "comp_web_camera"
+	build_path = /obj/item/circuit_component/web_camera

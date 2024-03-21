@@ -47,6 +47,10 @@
 	design_ids += "comp_eye_camera"
 	. = ..()
 
+/datum/techweb_node/movable_shells_tech/New()
+	design_ids += "comp_web_camera"
+	. = ..()
+
 // Computer Tech
 /datum/techweb_node/computer_board_gaming/New()
 	. = ..()
