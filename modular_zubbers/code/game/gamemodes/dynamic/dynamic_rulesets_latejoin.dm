@@ -31,7 +31,7 @@
 			assigned -= candidate_mind
 			message_admins("[ADMIN_LOOKUPFLW(candidate_mind)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
 			continue
-		bloodsuckerdatum.bloodsucker_level_unspent = rand(2,3)
+		bloodsuckerdatum.AdjustUnspentRank(rand(2, 3))
 		message_admins("[ADMIN_LOOKUPFLW(candidate_mind)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 		log_game("DYNAMIC: [key_name(candidate_mind)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 	return TRUE
