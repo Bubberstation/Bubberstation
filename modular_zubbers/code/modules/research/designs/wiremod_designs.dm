@@ -2,3 +2,8 @@
 	name = "Reagent Injector Component (Bluespace)"
 	id = "comp_reagent_injector_bluespace"
 	build_path = /obj/item/circuit_component/reagent_injector_bluespace
+
+/datum/design/component/bci/eye_camera
+	name = "Eye Camera"
+	id = "comp_eye_camera"
+	build_path = /obj/item/circuit_component/eye_camera

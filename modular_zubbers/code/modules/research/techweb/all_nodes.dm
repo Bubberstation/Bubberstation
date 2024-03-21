@@ -40,6 +40,13 @@
 	design_ids += list(
 		"borg_upgrade_advcutter",
 	)
+
+// Integrated circuits tech
+
+/datum/techweb_node/bci_shells/New()
+	design_ids += "comp_eye_camera"
+	. = ..()
+
 // Computer Tech
 /datum/techweb_node/computer_board_gaming/New()
 	. = ..()
