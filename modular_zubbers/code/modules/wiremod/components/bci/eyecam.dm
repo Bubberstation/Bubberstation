@@ -83,7 +83,7 @@
 				bci.shell_camera.toggle_cam(null, 0)
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
-		if(!cell || !cell?.use(full_range.value > 0 ? power_usage_per_input_full_range : power_usage_per_input)) //If cell doesn't exist, or we ran out of power
+		if(!cell || !cell?.use(full_range_current > 0 ? power_usage_per_input_full_range : power_usage_per_input)) //If cell doesn't exist, or we ran out of power
 			if(bci.shell_camera.status) //Turn off camera
 				bci.shell_camera.toggle_cam(null, 0)
 			return
