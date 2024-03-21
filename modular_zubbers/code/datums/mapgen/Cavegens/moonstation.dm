@@ -66,7 +66,13 @@
 		/obj/structure/geyser/protozine = 10,
 		/obj/structure/geyser/random = 2,
 		/obj/structure/geyser/wittel = 10,
-		/obj/structure/ore_vent/random = 5
+		/obj/structure/ore_vent/random = 5,
+		/obj/structure/ore_vein/diamond = 10,
+		/obj/structure/ore_vein/gold = 20,
+		/obj/structure/ore_vein/iron = 30,
+		/obj/structure/ore_vein/plasma = 15,
+		/obj/structure/ore_vein/silver = 20,
+		/obj/structure/ore_vein/stone = 30
 	)
 
 	mob_spawn_chance = 4
