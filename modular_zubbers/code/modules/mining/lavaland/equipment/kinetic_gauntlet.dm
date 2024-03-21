@@ -47,6 +47,11 @@
 	QDEL_NULL(right_gauntlet)
 	return ..()
 
+/obj/item/clothing/gloves/kinetic_gauntlets/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	left_gauntlet?.forceMove(src)
+	right_gauntlet?.forceMove(src)
+
 /obj/item/clothing/gloves/kinetic_gauntlets/ui_action_click(mob/user, datum/action/actiontype)
 	toggle_gauntlets()
 
