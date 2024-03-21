@@ -68,3 +68,12 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
+
+/obj/effect/spawner/blueshield_weaponry
+	items = list(
+		/obj/item/clothing/shoes/sandal,
+		/obj/item/clothing/suit/wizrobe/fake,
+		/obj/item/clothing/head/wizard/fake,
+		/obj/item/staff,
+	)
+
