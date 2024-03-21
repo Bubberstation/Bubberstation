@@ -1,8 +1,8 @@
 /datum/sprite_accessory/skrell_hair
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/skrell_hair.dmi'
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/skrell_hair.dmi' // BUBBERS EDIT - icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/skrell_hair.dmi' - ORIGINAL
 	generic = "Skrell Headtails"
 	key = "skrell_hair"
-	color_src = USE_ONE_COLOR
+	color_src = USE_MATRIXED_COLORS // BUBBERS EDIT - color_src = USE_ONE_COLOR - ORIGINAL
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
 	organ_type = /obj/item/organ/external/skrell_hair
@@ -18,9 +18,9 @@
 	icon_state = "none"
 
 /datum/sprite_accessory/skrell_hair/long
-	name = "Female"
+	name = "Female (Long)" // BUBBERS EDIT
 	icon_state = "long"
 
 /datum/sprite_accessory/skrell_hair/short
-	name = "Male"
+	name = "Male (Short)" // BUBBERS EDIT
 	icon_state = "short"

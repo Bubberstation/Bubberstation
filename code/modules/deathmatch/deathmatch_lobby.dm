@@ -195,7 +195,6 @@
 			if(player_info["mob"] && player_info["mob"] == player)
 				ckey = potential_ckey
 				break
-
 	if(!islist(players[ckey])) // if we STILL didnt find a good ckey
 		return
 
@@ -204,7 +203,6 @@
 	var/mob/dead/observer/ghost = !player.client ? player.get_ghost() : player.ghostize() //this doesnt work on those who used the ghost verb
 	if(!isnull(ghost))
 		add_observer(ghost, (host == ckey))
-
 	announce(span_reallybig("[player.real_name] HAS DIED.<br>[players.len] REMAIN."))
 
 	if(!gibbed && !QDELING(player)) // for some reason dusting or deleting in chasm storage messes up tgui bad
@@ -261,7 +259,6 @@
 					players[key]["host"] = TRUE
 					break
 			GLOB.deathmatch_game.passoff_lobby(ckey, host)
-
 	remove_ckey_from_play(ckey)
 
 /datum/deathmatch_lobby/proc/join(mob/player)

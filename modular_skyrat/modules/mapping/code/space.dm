@@ -10,12 +10,14 @@
 	suffix = "forgottenship_skyrat.dmm"
 	always_place = TRUE
 */
+/*
 /datum/map_template/ruin/space/skyrat/interdynefob
 	name = "DS-2"
 	id = "interdynefob"
 	description = "If DS-1 was so good..."
 	suffix = "interdynefob.dmm"
-	always_place = TRUE
+	always_place = FALSE
+*/ //BUBBER EDIT: DS-2 OFF BUBBER
 
 /datum/map_template/ruin/space/skyrat/derelictferry
 	id = "derelictferry"
@@ -125,12 +127,15 @@
 	name = "Medieval 1"
 	description = "A forgotten peice of history left overrun with a reminder of what brought its destruction"
 
+/* Bubberstation Removal Start
+
 /datum/map_template/ruin/space/skyrat/cargodiselost
 	id = "CargodiseLost"
 	suffix = "cargodiselost.dmm"
 	name = "Cargodise Lost"
 	description = "A small crew of freight-haulers are marooned in space after pirates knock out their engines. They must survive off of the cargo on board their ship and fend off the pirate boarders on their ship."
 
+Bubberstation Removal End*/
 /datum/map_template/ruin/space/skyrat/infestedntship
 	suffix = "scrapheap.dmm"
 	name = "NT Research Vessel"

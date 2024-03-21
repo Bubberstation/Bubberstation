@@ -53,7 +53,7 @@
 	turn_to_human = new(src)
 	turn_to_human.Grant(src)
 	GRANT_ACTION(/datum/action/innate/devour)
-	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
+	// ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT) Bubbber change
 
 /mob/living/simple_animal/hostile/true_changeling/Life()
 	. = ..()

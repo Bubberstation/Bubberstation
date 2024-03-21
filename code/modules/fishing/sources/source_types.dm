@@ -1,6 +1,6 @@
 /datum/fish_source/ocean
 	fish_table = list(
-		FISHING_DUD = 15,
+		// FISHING_DUD = 15, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/coin/gold = 5,
 		/obj/item/fish/clownfish = 15,
 		/obj/item/fish/pufferfish = 15,
@@ -19,7 +19,7 @@
 
 /datum/fish_source/portal
 	fish_table = list(
-		FISHING_DUD = 7,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/goldfish = 10,
 		/obj/item/fish/guppy = 10,
 		/obj/item/fish/angelfish = 10,
@@ -34,7 +34,7 @@
 
 /datum/fish_source/portal/beach
 	fish_table = list(
-		FISHING_DUD = 10,
+		//FISHING_DUD = 10, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/clownfish = 10,
 		/obj/item/fish/pufferfish = 10,
 		/obj/item/fish/cardinal = 10,
@@ -47,7 +47,7 @@
 /datum/fish_source/portal/chasm
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/chasm_crab = 10,
 		/obj/item/fish/boned = 5,
 		/obj/item/stack/sheet/bone = 5,
@@ -60,7 +60,7 @@
 
 /datum/fish_source/portal/ocean
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/lanternfish = 5,
 		/obj/item/fish/firefish = 5,
 		/obj/item/fish/dwarf_moonfish = 5,
@@ -76,7 +76,7 @@
 
 /datum/fish_source/portal/hyperspace
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/starfish = 6,
 		/obj/item/stack/ore/bluespace_crystal = 2,
 		/mob/living/basic/carp = 2,
@@ -94,7 +94,7 @@
 /datum/fish_source/portal/syndicate
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/donkfish = 5,
 		/obj/item/fish/emulsijack = 5,
 	)
@@ -186,7 +186,7 @@
 	catalog_description = "Chasm depths"
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		//FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/chasm_crab = 15,
 		/datum/chasm_detritus = 30,
 	)
@@ -205,7 +205,7 @@
 	catalog_description = "Lava vents"
 	background = "background_lavaland"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/stack/ore/slag = 20,
 		/obj/structure/closet/crate/necropolis/tendril = 1,
 		/obj/effect/mob_spawn/corpse/human/charredskeleton = 1
@@ -227,7 +227,7 @@
 /datum/fish_source/lavaland/icemoon
 	catalog_description = "Liquid plasma vents"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/chasm_crab/ice = 15,
 		/obj/item/coin/plasma = 3,
 		/obj/item/stack/ore/plasma = 3,
@@ -244,7 +244,7 @@
 /datum/fish_source/moisture_trap
 	catalog_description = "Moisture trap basins"
 	fish_table = list(
-		FISHING_DUD = 20,
+		// FISHING_DUD = 20, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/ratfish = 10,
 		/obj/item/fish/slimefish = 4
 	)
@@ -254,7 +254,7 @@
 	catalog_description = "Station toilets"
 	duds = list("ewww... nothing", "it was nothing", "it was toilet paper", "it was flushed away", "the hook is empty", "where's the damn money?!")
 	fish_table = list(
-		FISHING_DUD = 18,
+		// FISHING_DUD = 18, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/sludgefish = 18,
 		/obj/item/fish/slimefish = 4,
 		/obj/item/storage/wallet/money = 2,
@@ -297,7 +297,7 @@
 /datum/fish_source/oil_well
 	catalog_description = "Oil wells"
 	fish_table = list(
-		FISHING_DUD = 5,
+		// FISHING_DUD = 5, BUBBERSTATION CHANGE: NO DUDS. HOLY SHIT.
 		/obj/item/fish/boned = 10,
 		/obj/item/stack/sheet/bone = 2,
 		/obj/item/clothing/gloves/bracer = 2,

@@ -29,7 +29,7 @@
 	/// The original profile of this changeling.
 	var/datum/changeling_profile/first_profile = null
 	/// How many DNA strands the changeling can store for transformation.
-	var/dna_max = 8 // SKYRAT EDIT - ORIGINAL: 6
+	var/dna_max = 6
 	/// The amount of DNA gained. Includes DNA sting.
 	var/absorbed_count = 0
 	/// The amount of DMA gained using absorb, not DNA sting. Start with one (your original DNA)
@@ -47,9 +47,9 @@
 	/// Changeling name, what other lings see over the hivemind when talking.
 	var/changelingID = "Changeling"
 	/// The number of genetics points (to buy powers) this ling currently has.
-	var/genetic_points = 15 // SKYRAT EDIT - ORIGINAL: 10
+	var/genetic_points = 10
 	/// The max number of genetics points (to buy powers) this ling can have..
-	var/total_genetic_points = 15 // SKYRAT EDIT - ORIGINAL: 10
+	var/total_genetic_points = 10
 	/// List of all powers we start with.
 	var/list/innate_powers = list()
 	/// Associated list of all powers we have evolved / bought from the emporium. [path] = [instance of path]
@@ -570,7 +570,12 @@
 	for(var/datum/quirk/target_quirk in target.quirks)
 		LAZYADD(new_profile.quirks, new target_quirk.type)
 	//SKYRAT EDIT END
-
+//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
+	new_profile.blooper_id = target.blooper_id
+	new_profile.blooper_pitch = target.blooper_pitch
+	new_profile.blooper_speed = target.blooper_speed
+	new_profile.blooper_pitch_range = target.blooper_pitch_range
+	//THE BUBBER EDIT END
 	// Grab skillchips they have
 	new_profile.skillchips = target.clone_skillchip_list(TRUE)
 
@@ -949,7 +954,13 @@
 	user.name = user.get_visible_name()
 	current_profile = chosen_profile
 	// SKYRAT EDIT END
-
+//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
+	user.blooper = null
+	user.blooper_id = chosen_profile.blooper_id
+	user.blooper_pitch = chosen_profile.blooper_pitch
+	user.blooper_speed = chosen_profile.blooper_speed
+	user.blooper_pitch_range = chosen_profile.blooper_pitch_range
+	//THE BUBBER EDIT END
 // Changeling profile themselves. Store a data to store what every DNA instance looked like.
 /datum/changeling_profile
 	/// The name of the profile / the name of whoever this profile source.

@@ -130,6 +130,7 @@
 	stock_max = 8
 	availability_prob = 90
 
+/* BUBBER EDIT - No more craftable slappy.
 /datum/market_item/misc/giant_wrench_parts
 	name = "Big Slappy parts"
 	desc = "Cheap illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
@@ -138,3 +139,4 @@
 	price_max = CARGO_CRATE_VALUE * 5
 	stock_max = 1
 	availability_prob = 25
+*/

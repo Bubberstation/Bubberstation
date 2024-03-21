@@ -19,6 +19,12 @@
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/iron/airless,
 /area/ruin/unpowered)
+"cw" = (
+/obj/machinery/door/airlock/research/glass,
+/obj/effect/mapping_helpers/airlock/welded,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark/airless,
+/area/ruin/unpowered)
 "dL" = (
 /obj/structure/table/optable,
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
@@ -64,6 +70,12 @@
 "kP" = (
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
+/area/ruin/unpowered)
+"lN" = (
+/obj/machinery/door/window/brigdoor/left/directional/west,
+/obj/machinery/light/directional/east,
+/obj/effect/mob_spawn/corpse/human/skeleton,
+/turf/open/floor/iron/dark/airless,
 /area/ruin/unpowered)
 "ma" = (
 /obj/structure/frame/computer,
@@ -183,12 +195,6 @@
 "Di" = (
 /turf/open/floor/engine/airless,
 /area/ruin/unpowered)
-"DU" = (
-/obj/machinery/door/window/brigdoor/left/directional/west,
-/obj/machinery/light/directional/east,
-/obj/effect/mob_spawn/corpse/human/skeleton,
-/turf/open/floor/iron/dark/airless,
-/area/ruin/unpowered)
 "Fc" = (
 /obj/machinery/light/directional/south,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -250,13 +256,6 @@
 	},
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating/airless,
-/area/ruin/unpowered)
-"RO" = (
-/obj/machinery/door/airlock/research/glass{
-	welded = 1
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/iron/dark/airless,
 /area/ruin/unpowered)
 "Sl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold{
@@ -1141,7 +1140,7 @@ wY
 Bf
 Bf
 Bf
-RO
+cw
 Bf
 Bf
 sx
@@ -1949,7 +1948,7 @@ wY
 Bf
 Wp
 on
-DU
+lN
 Wp
 sx
 sr

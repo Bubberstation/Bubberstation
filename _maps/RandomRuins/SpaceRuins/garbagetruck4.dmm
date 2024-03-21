@@ -4,6 +4,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/garbagetruck/toystore)
+"bc" = (
+/obj/structure/spider/stickyweb/sealed/tough,
+/obj/structure/spider/stickyweb,
+/obj/structure/closet/crate/trashcart/filled,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/toystore)
 "bL" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/bag/trash{
@@ -65,8 +71,44 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
+"dA" = (
+/obj/structure/spider/stickyweb/very_sticky,
+/obj/item/food/badrecipe/moldy,
+/obj/structure/spider/stickyweb,
+/obj/item/food/spidereggs{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/structure/closet/crate/trashcart,
+/obj/item/food/spidereggs{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/item/food/spidereggs,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/toystore)
 "eL" = (
 /turf/open/floor/catwalk_floor/iron,
+/area/ruin/space/has_grav/garbagetruck/toystore)
+"gB" = (
+/obj/item/clothing/head/cone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/machinery/light/warm,
+/obj/machinery/power/apc/auto_name/directional/south{
+	cell_type = /obj/item/stock_parts/cell/lead
+	},
+/obj/effect/mapping_helpers/apc/no_charge,
+/obj/effect/mapping_helpers/apc/unlocked,
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron,
+/area/ruin/space/has_grav/garbagetruck/toystore)
+"hq" = (
+/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb/very_sticky,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "hD" = (
 /obj/structure/mannequin/wood{
@@ -75,12 +117,6 @@
 /obj/item/clothing/shoes/kindle_kicks{
 	pixel_y = -10
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/toystore)
-"hH" = (
-/obj/structure/spider/stickyweb/sealed/tough,
-/obj/item/book/manual/wiki/cytology,
-/obj/effect/decal/cleanable/plastic,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "hS" = (
@@ -119,11 +155,6 @@
 "lg" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
-/area/ruin/space/has_grav/garbagetruck/toystore)
-"lm" = (
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb/very_sticky,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "mf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -181,23 +212,6 @@
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
-"qX" = (
-/obj/structure/spider/stickyweb/very_sticky,
-/obj/item/food/badrecipe/moldy,
-/obj/structure/spider/stickyweb,
-/obj/item/food/spidereggs{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/structure/closet/crate/trashcart,
-/obj/item/food/spidereggs{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/item/food/spidereggs,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/toystore)
 "rb" = (
 /obj/structure/sign/warning,
 /turf/closed/wall/r_wall,
@@ -252,12 +266,6 @@
 	pixel_y = 2
 	},
 /obj/effect/decal/cleanable/fuel_pool,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/toystore)
-"ts" = (
-/obj/structure/spider/stickyweb/sealed/tough,
-/obj/structure/spider/stickyweb,
-/obj/structure/closet/crate/trashcart/filled,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "tQ" = (
@@ -646,21 +654,6 @@
 /obj/item/computer_disk/maintenance/modsuit_control,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
-"KR" = (
-/obj/item/clothing/head/cone{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/machinery/light/warm,
-/obj/machinery/power/apc{
-	cell_type = /obj/item/stock_parts/cell/lead;
-	locked = 0;
-	pixel_y = -25;
-	start_charge = 0
-	},
-/obj/structure/cable,
-/turf/open/floor/catwalk_floor/iron,
-/area/ruin/space/has_grav/garbagetruck/toystore)
 "Lm" = (
 /obj/effect/decal/cleanable/garbage,
 /turf/open/floor/plating,
@@ -811,12 +804,23 @@
 /obj/item/instrument/banjo,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
+"UT" = (
+/obj/structure/spider/stickyweb/sealed/tough,
+/obj/item/food/badrecipe/moldy/bacteria,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/toystore)
 "VL" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/space/basic,
 /area/space)
 "Wl" = (
 /obj/structure/plasticflaps/opaque,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/garbagetruck/toystore)
+"WW" = (
+/obj/structure/spider/stickyweb/sealed/tough,
+/obj/item/book/manual/wiki/cytology,
+/obj/effect/decal/cleanable/plastic,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "WZ" = (
@@ -838,11 +842,6 @@
 "Xs" = (
 /obj/structure/spider/passage,
 /mob/living/basic/spider/giant/hunter/scrawny,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/garbagetruck/toystore)
-"XI" = (
-/obj/structure/spider/stickyweb/sealed/tough,
-/obj/item/food/badrecipe/moldy/bacteria,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/garbagetruck/toystore)
 "XL" = (
@@ -974,7 +973,7 @@ IS
 xf
 ub
 AG
-lm
+hq
 cg
 sO
 Dm
@@ -994,7 +993,7 @@ rc
 Hv
 ps
 HK
-ts
+bc
 Pv
 cT
 xd
@@ -1063,9 +1062,9 @@ Ja
 hS
 Lm
 BO
-XI
-hH
-qX
+UT
+WW
+dA
 Yr
 "}
 (9,1,1) = {"
@@ -1073,7 +1072,7 @@ Hj
 jD
 eL
 bU
-KR
+gB
 nM
 Gt
 UD

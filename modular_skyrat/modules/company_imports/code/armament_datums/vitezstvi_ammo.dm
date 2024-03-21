@@ -10,10 +10,11 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bench_itself
 	item_type = /obj/item/circuitboard/machine/ammo_workbench
 	cost = PAYCHECK_COMMAND * 5
-
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/ammo_disk
 	item_type = /obj/item/disk/ammo_workbench/advanced
 	cost = PAYCHECK_COMMAND * 5
+*/ //BUBBER EDIT REMOVAL END
 
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bullet_drive
 	item_type = /obj/item/circuitboard/machine/dish_drive/bullet
@@ -42,6 +43,7 @@
 	subcategory = "Ammunition Boxes"
 	cost = PAYCHECK_CREW
 
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
 	item_type = /obj/item/ammo_box/c9mm
 
@@ -75,9 +77,12 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/cesarzowa_rubber
 	item_type = /obj/item/ammo_box/c27_54cesarzowa/rubber
 
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_blank
+	item_type = /obj/item/ammo_box/c56mm/blank
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35
 	item_type = /obj/item/ammo_box/c35sol
-
+/* //BUBBER EDIT: NONE OF OUR GUNS USE THIS AMMO
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_disabler
 	item_type = /obj/item/ammo_box/c35sol/incapacitator
 
@@ -104,7 +109,7 @@
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_hollowpoint
 	item_type = /obj/item/ammo_box/c585trappiste/hollowpoint
-
+*/ //BUBBER EDIT REMOVAL: AMMO TYPES
 // Revolver speedloaders
 
 /datum/armament_entry/company_import/vitezstvi/speedloader
@@ -122,10 +127,11 @@
 
 // Shotgun boxes
 
+
 /datum/armament_entry/company_import/vitezstvi/shot_shells
 	subcategory = "Shotgun Shells"
 	cost = PAYCHECK_COMMAND
-
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/shot_shells/slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge
 
@@ -155,7 +161,7 @@
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/stardust
 	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide
-
+*/ //BUBBER EDIT END
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
 	item_type = /obj/item/ammo_box/advanced/s12gauge/honkshot
 

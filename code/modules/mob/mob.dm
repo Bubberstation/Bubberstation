@@ -181,7 +181,7 @@
 			hud_list[hud] = list()
 
 		else
-			var/image/I = image('modular_skyrat/master_files/icons/mob/huds/hud.dmi', src, "")	//SKYRAT EDIT: original filepath 'icons/mob/huds/hud.dmi'
+			var/image/I = image('modular_zubbers/icons/mob/huds/hud.dmi', src, "")	//ZUBBERS EDIT: original filepath 'icons/mob/huds/hud.dmi'
 			I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 			hud_list[hud] = I
 		set_hud_image_active(hud, update_huds = FALSE) //by default everything is active. but dont add it to huds to keep control.
@@ -1274,6 +1274,11 @@
 				if(obj.target && obj.target.current && obj.target.current.real_name == name)
 					obj.update_explanation_text()
 
+		if(client) // BUBBER EDIT ADDITION - Update the mob chat color list, removing the old name
+			GLOB.chat_colors_by_mob_name -= oldname // BUBBER EDIT ADDITION
+
+	if(client) // BUBBER EDIT ADDITION - Update the mob chat color list, adding the new name
+		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened) // BUBBER EDIT ADDITION
 	log_mob_tag("TAG: [tag] RENAMED: [key_name(src)]")
 
 	return TRUE

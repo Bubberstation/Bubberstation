@@ -43,6 +43,7 @@
 	subcategory = "Hardened Armor"
 	cost = PAYCHECK_CREW * 3
 
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/sol_defense/armor_hardened/enclosed_helmet
 	item_type = /obj/item/clothing/head/helmet/toggleable/sf_hardened
 
@@ -99,6 +100,7 @@
 	item_type = /obj/item/gun/ballistic/revolver/takbok
 	cost = PAYCHECK_COMMAND * 6
 
+// The Skild and Takbok use very strong ammunition, and likely should not be available to normal crew.
 // Lethal anything that's not a pistol, requires high company interest
 
 /datum/armament_entry/company_import/sol_defense/longarm
@@ -125,7 +127,7 @@
 /datum/armament_entry/company_import/sol_defense/longarm/infanterie
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle
 	cost = PAYCHECK_COMMAND * 14
-	contraband = TRUE
+	// contraband = TRUE - Bubberstation Edit
 
 /datum/armament_entry/company_import/sol_defense/longarm/outomaties
 	item_type = /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
@@ -170,3 +172,5 @@
 	item_type = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
 	contraband = TRUE
+
+*/ //BUBBER EDIT REMOVAL

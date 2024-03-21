@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 
 /obj/item/clothing/mask/gas/Initialize(mapload)
 	. = ..()
-	init_fov()
+	//init_fov() Bubber edit - NO
 	if(!max_filters || !starting_filter_type)
 		return
 

@@ -568,8 +568,8 @@ SUBSYSTEM_DEF(dynamic)
 	if (!CONFIG_GET(flag/no_intercept_report))
 		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(waittime_l, waittime_h))
 	//SKYRAT EDIT START - DIVERGENCY/GOALS REPORT
-	else
-		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h))
+//	else // BUBBER EDIT REMOVAL
+//		addtimer(CALLBACK(src, PROC_REF(send_trait_report)), rand(waittime_l, waittime_h)) // BUBBER EDIT REMOVAL
 	//SKYRAT EDIT END
 		addtimer(CALLBACK(src, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 

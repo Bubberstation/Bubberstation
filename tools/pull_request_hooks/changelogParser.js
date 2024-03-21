@@ -41,6 +41,7 @@ function parseChangelogBody(lines, openTag) {
 			const [_, type, description] = match;
 
 			const entry = CHANGELOG_KEYS_TO_ENTRY[type];
+			if(!entry) { console.log(type); }
 
 			if (entry.placeholders.includes(description)) {
 				continue;

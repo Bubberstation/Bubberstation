@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 new /datum/disease_ability/action/cough,
 new /datum/disease_ability/action/sneeze,
 new /datum/disease_ability/action/infect,
+new /datum/disease_ability/symptom/mild/hidden,//BUBBER EDIT-New SYMPTOM
 new /datum/disease_ability/symptom/mild/cough,
 new /datum/disease_ability/symptom/mild/sneeze,
 new /datum/disease_ability/symptom/medium/shedding,
@@ -244,6 +245,7 @@ new /datum/disease_ability/symptom/powerful/youth
 	actions = list(/datum/action/cooldown/disease_infect)
 	cost = 2
 	required_total_points = 3
+	start_with = FALSE
 	short_desc = "Cause all objects your host is touching to become infectious for a limited time, spreading your infection to anyone who touches them."
 	long_desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds. This includes the floor, if they are not wearing shoes, and any items they are holding, if they are not wearing gloves.<br>Cooldown: 40 seconds"
 

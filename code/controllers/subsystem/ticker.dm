@@ -339,6 +339,7 @@ SUBSYSTEM_DEF(ticker)
 		iter_human.increment_scar_slot()
 		iter_human.load_persistent_scars()
 		SSpersistence.load_modular_persistence(iter_human.get_organ_slot(ORGAN_SLOT_BRAIN)) // SKYRAT EDIT ADDITION - MODULAR_PERSISTENCE
+		iter_human.add_to_player_list() // BUBBER EDIT ADDITION - CHARACTER DIRECTORY
 
 		if(!iter_human.hardcore_survival_score)
 			continue
