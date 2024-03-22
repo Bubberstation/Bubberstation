@@ -31,8 +31,8 @@
 	)
 
 // Crowbar that is completely normal except it can force doors
-
-/*/datum/design/colony_door_crowbar
+/*
+/datum/design/colony_door_crowbar
 	name = "Prybar"
 	id = "colony_prybar"
 	build_type = COLONY_FABRICATOR
