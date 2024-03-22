@@ -18,63 +18,73 @@
 	icon_state = "blood_display"
 	screen_loc = UI_BLOOD_DISPLAY
 
+/atom/movable/screen/bloodsucker/blood_counter/proc/update_blood_hud(blood_volume)
+	maptext = FORMAT_BLOODSUCKER_HUD_TEXT(hud_text_color(), blood_volume)
+
 /atom/movable/screen/bloodsucker/rank_counter
 	name = "Bloodsucker Rank"
 	icon_state = "rank"
 	screen_loc = UI_VAMPRANK_DISPLAY
 
+/atom/movable/screen/bloodsucker/rank_counter/proc/update_rank_hud(level = 0, unspent_level = 0, blood_volume = 0)
+	if(unspent_level > 0)
+		icon_state = "[initial(icon_state)]_up"
+	else
+		icon_state = initial(icon_state)
+	maptext = FORMAT_BLOODSUCKER_HUD_TEXT(hud_text_color(), level)
+
 /atom/movable/screen/bloodsucker/sunlight_counter
 	name = "Solar Flare Timer"
 	icon_state = "sunlight"
 	screen_loc = UI_SUNLIGHT_DISPLAY
-#ifdef BLOODSUCKER_TESTING
-	var/datum/controller/subsystem/sunlight/sunlight_subsystem
 
-/atom/movable/screen/bloodsucker/sunlight_counter/New(loc, ...)
+/atom/movable/screen/bloodsucker/sunlight_counter/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	sunlight_subsystem = SSsunlight
-#endif
+	update_sol_hud()
+	START_PROCESSING(SSsunlight, src)
 
-/// Update Blood Counter + Rank Counter
-/datum/antagonist/bloodsucker/proc/update_hud()
-	var/valuecolor
-	if(bloodsucker_blood_volume > BLOOD_VOLUME_SAFE)
-		valuecolor = "#FFDDDD"
-	else if(bloodsucker_blood_volume > BLOOD_VOLUME_BAD)
-		valuecolor = "#FFAAAA"
+/atom/movable/screen/bloodsucker/sunlight_counter/Destroy()
+	STOP_PROCESSING(SSsunlight, src)
+	. = ..()
 
-	if(blood_display)
-		blood_display.maptext = FORMAT_BLOODSUCKER_HUD_TEXT(valuecolor, bloodsucker_blood_volume)
+/atom/movable/screen/bloodsucker/sunlight_counter/proc/update_sol_hud()
+	var/valuecolor = hud_text_color()
+	if(!SSsunlight)
+		return
+	if(SSsunlight.sunlight_active)
+		valuecolor = "#FF5555"
+		icon_state = "[initial(icon_state)]_day"
+	else
+		switch(round(SSsunlight.time_til_cycle, 1))
+			if(0 to 30)
+				icon_state = "[initial(icon_state)]_30"
+				valuecolor = "#FFCCCC"
+			if(31 to 60)
+				icon_state = "[initial(icon_state)]_60"
+				valuecolor = "#FFE6CC"
+			if(61 to 90)
+				icon_state = "[initial(icon_state)]_90"
+				valuecolor = "#FFFFCC"
+			else
+				icon_state = "[initial(icon_state)]_night"
+				valuecolor = "#FFFFFF"
+	maptext = FORMAT_BLOODSUCKER_SUNLIGHT_TEXT( \
+		valuecolor, \
+		(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)] m" : "[round(SSsunlight.time_til_cycle, 1)] s" \
+	)
 
-	if(vamprank_display)
-		if(bloodsucker_level_unspent > 0)
-			vamprank_display.icon_state = "[initial(vamprank_display.icon_state)]_up"
-		else
-			vamprank_display.icon_state = initial(vamprank_display.icon_state)
-		vamprank_display.maptext = FORMAT_BLOODSUCKER_HUD_TEXT(valuecolor, bloodsucker_level)
+/atom/movable/screen/bloodsucker/sunlight_counter/process(seconds_per_tick)
+	update_sol_hud()
 
-	if(sunlight_display)
-		if(SSsunlight.sunlight_active)
-			valuecolor = "#FF5555"
-			sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_day"
-		else
-			switch(round(SSsunlight.time_til_cycle, 1))
-				if(0 to 30)
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_30"
-					valuecolor = "#FFCCCC"
-				if(31 to 60)
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_60"
-					valuecolor = "#FFE6CC"
-				if(61 to 90)
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_90"
-					valuecolor = "#FFFFCC"
-				else
-					sunlight_display.icon_state = "[initial(sunlight_display.icon_state)]_night"
-					valuecolor = "#FFFFFF"
-		sunlight_display.maptext = FORMAT_BLOODSUCKER_SUNLIGHT_TEXT( \
-			valuecolor, \
-			(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)] m" : "[round(SSsunlight.time_til_cycle, 1)] s" \
-		)
+/atom/movable/screen/bloodsucker/proc/hud_text_color(blood_volume)
+	return blood_volume > BLOOD_VOLUME_SAFE ? "#FFDDDD" : "#FFAAAA"
+
+/// Updated every time blood is changed by either
+/datum/antagonist/bloodsucker/proc/update_blood_hud()
+	blood_display?.update_blood_hud(bloodsucker_blood_volume)
+
+/datum/antagonist/bloodsucker/proc/update_rank_hud()
+	vamprank_display?.update_rank_hud(bloodsucker_level, bloodsucker_level_unspent, bloodsucker_blood_volume)
 
 /// 1 tile down
 #undef UI_BLOOD_DISPLAY

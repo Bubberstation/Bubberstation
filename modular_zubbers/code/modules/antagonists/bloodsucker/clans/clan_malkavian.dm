@@ -45,14 +45,14 @@
 	// This is the reversed version since we want to increase the prob as the number decreases.
 	// Equation: interpolated value = end + normalized factor * (start - end)
 	// normalized factor(between 0 and 1, in decimals)
-	var/interpolated_chance = max_madness_chance + (source.humanity_lost / 50) * (min_madness_chance - max_madness_chance)
+	var/interpolated_chance = max_madness_chance + (source.GetHumanityLost() / 50) * (min_madness_chance - max_madness_chance)
 	var/madness_chance = clamp(interpolated_chance, min_madness_chance, max_madness_chance)
 	if(prob(madness_chance) || bloodsuckerdatum.owner.current.stat != CONSCIOUS || HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_MASQUERADE))
 		return
 	var/message = pick(strings("malkavian_revelations.json", "revelations", "modular_zubbers/strings/bloodsuckers"))
 	INVOKE_ASYNC(bloodsuckerdatum.owner.current, TYPE_PROC_REF(/atom/movable, say), message, forced = CLAN_MALKAVIAN)
 
-/datum/bloodsucker_clan/malkavian/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/malkavian/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/mob/living/carbon/carbonowner = vassaldatum.owner.current
 	if(istype(carbonowner))
 		carbonowner.gain_trauma(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
@@ -61,8 +61,18 @@
 	psychotic_brawling.teach(vassaldatum.owner.current, TRUE)
 	to_chat(vassaldatum.owner.current, span_notice("Additionally, you now suffer the same fate as your Master, while also gaining the ability to tap into the madness when fighting."))
 
+/datum/bloodsucker_clan/malkavian/favorite_vassal_loss(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	var/mob/living/carbon/carbonowner = vassaldatum.owner.current
+	if(istype(carbonowner))
+		carbonowner.cure_trauma_type(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
+		carbonowner.cure_trauma_type(/datum/brain_trauma/special/bluespace_prophet/phobetor, TRAUMA_RESILIENCE_ABSOLUTE)
+	if(!istype(/datum/martial_art/psychotic_brawling, vassaldatum.owner.martial_art))
+		return
+	var/datum/martial_art/psychotic_brawling/psychotic_brawling = vassaldatum.owner.martial_art
+	psychotic_brawling.remove(vassaldatum.owner.current)
+
 /datum/bloodsucker_clan/malkavian/on_exit_torpor(datum/antagonist/bloodsucker/source)
-	var/mob/living/carbon/carbonowner = bloodsuckerdatum.owner.current
+	var/mob/living/carbon/carbonowner = bloodsuckerdatum.owner.martial_art
 	if(istype(carbonowner))
 		carbonowner.gain_trauma(/datum/brain_trauma/mild/hallucinations, TRAUMA_RESILIENCE_ABSOLUTE)
 		carbonowner.gain_trauma(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
