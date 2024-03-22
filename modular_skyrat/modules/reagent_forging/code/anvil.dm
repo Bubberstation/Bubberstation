@@ -125,10 +125,12 @@
 			var/datum/component/reagent_clothing/reagent_component = locate_obj.GetComponent(/datum/component/reagent_clothing)
 			if(length(reagent_component.imbued_reagent) && user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
 				to_chat(user, span_danger("You need more experience to repair imbued weapons!"))
+				return ITEM_INTERACT_SUCCESS
 		else if(locate_obj.GetComponent(/datum/component/reagent_weapon))
 			var/datum/component/reagent_weapon/reagent_component = locate_obj.GetComponent(/datum/component/reagent_weapon)
 			if(length(reagent_component.imbued_reagent) && user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
 				to_chat(user, span_danger("You need more experience to repair imbued weapons!"))
+				return ITEM_INTERACT_SUCCESS
 		//BUBBER EDIT END
 		if(locate_obj.get_integrity() >= locate_obj.max_integrity)
 			balloon_alert(user, "already repaired")
