@@ -3,6 +3,9 @@
  *
  * Injects reagents into the user.
  * Requires a BCI shell.
+ *
+ * This file is based off of reagent_injector.dm
+ * Any changes made to that file should be copied over with discretion
  */
 
 /obj/item/circuit_component/reagent_injector_bluespace
