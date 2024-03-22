@@ -8,7 +8,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	if(bloodsuckerdatum.bloodsucker_blood_volume > BLOOD_VOLUME_NORMAL)
+	if(bloodsuckerdatum.GetBloodVolume() > BLOOD_VOLUME_NORMAL)
 		return
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
