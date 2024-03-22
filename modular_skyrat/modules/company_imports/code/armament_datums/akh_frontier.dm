@@ -29,6 +29,7 @@ BUBBER REMOVAL END*/
 /datum/armament_entry/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator
 	item_type = /obj/item/flatpacked_machine
 	cost = CARGO_CRATE_VALUE * 6
+	//restricted = TRUE //BUBBER REMOVAL
 
 /datum/armament_entry/company_import/akh_frontier/deployables_fab/foodricator
 	item_type = /obj/item/flatpacked_machine/organics_ration_printer
