@@ -14,7 +14,7 @@
 /datum/armament_entry/company_import/akh_frontier/basic/prybar
 	item_type = /obj/item/crowbar/large/doorforcer
 	restricted = TRUE
-*/
+BUBBER REMOVAL END*/
 /datum/armament_entry/company_import/akh_frontier/basic/arc_welder
 	item_type = /obj/item/weldingtool/electric/arc_welder
 
