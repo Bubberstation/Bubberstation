@@ -172,7 +172,7 @@
 		Bring 3 corpses with more than 50 brain damage to a transmutation rune to complete the ritual. \
 		When completed, you become a harbinger of madness gaining and aura of passive sanity decrease \
 		, confusion increase and if their sanity is low enough brain damage and blindness. \
-		1/5th of the crew will turn into acolytes and follow your command, they will all recieve moonlight amulettes."
+		Anyone witnessing the ritual will turn into acolytes and follow your command, and they will all recieve moonlight amulettes." //BUBBERSTATION CHANGE: 1/5TH OF EVERYONE TO VIEWERS.
 	gain_text = "We dived down towards the crowd, his soul splitting off in search of greater venture \
 		for where the Ringleader had started the parade, I shall continue it unto the suns demise \
 		WITNESS MY ASCENSION, THE MOON SMILES ONCE MORE AND FOREVER MORE IT SHALL!"
@@ -200,7 +200,7 @@
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
 	// Roughly 1/5th of the station will rise up as lunatics to the heretic
-	for (var/mob/living/carbon/human/crewmate as anything in GLOB.human_list)
+	for (var/mob/living/carbon/human/crewmate in viewers(world.view,user)) //BUBBERSTATION CHANGE, VIEWERS ONLY.
 		// How many lunatics we have
 		var/amount_of_lunatics = 0
 		// Where the crewmate is, used to check their z-level
@@ -220,9 +220,11 @@
 		if(HAS_TRAIT(crewmate, TRAIT_MINDSHIELD) || crewmate.can_block_magic(MAGIC_RESISTANCE))
 			to_chat(crewmate, span_boldwarning("You feel shielded from something." ))
 			continue
+		/* BUBBERSTATION CHANGE START, UNLIMITED BECAUSE IT USES VIEWERS
 		if(amount_of_lunatics > length(GLOB.human_list) * 0.2)
 			to_chat(crewmate, span_boldwarning("You feel uneasy, as if for a brief moment something was gazing at you." ))
 			continue
+		BUBBERSTATION CHANGE END */
 		var/datum/antagonist/lunatic/lunatic = crewmate.mind.add_antag_datum(/datum/antagonist/lunatic)
 		lunatic.set_master(user.mind, user)
 		var/obj/item/clothing/neck/heretic_focus/moon_amulette/amulet = new(crewmate_turf)
