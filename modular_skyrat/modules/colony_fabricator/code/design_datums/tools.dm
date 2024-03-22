@@ -59,7 +59,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
-*/
+BUBBER REMOVAL END*/
 // Welder that takes no fuel or power to run but is quite slow, at least it sounds cool as hell
 
 /datum/design/colony_arc_welder
