@@ -32,7 +32,7 @@
 	if (ispath(preferences?.pref_species, /datum/species/dwarf)) // all 3 of these manually set your height
 		return FALSE
 
-	for (var/quirk_id as anything in preferences>.all_quirks)
+	for (var/quirk_id as anything in preferences?.all_quirks)
 		if (quirk_id in incompatable_quirk_ids)
 			return FALSE
 
