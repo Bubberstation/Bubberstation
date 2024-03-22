@@ -31,6 +31,18 @@
 	)
 
 // Crowbar that is completely normal except it can force doors
+/datum/design/colony_door_crowbar_replacement
+	name = "Crowbar"
+	id = "colony_crowbar"
+	build_type = COLONY_FABRICATOR
+	build_path = /obj/item/crowbar/red
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
+	)
+	category = list(
+		RND_CATEGORY_INITIAL,
+	)
+
 /*
 /datum/design/colony_door_crowbar
 	name = "Prybar"
