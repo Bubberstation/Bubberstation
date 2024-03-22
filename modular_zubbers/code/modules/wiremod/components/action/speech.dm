@@ -1,3 +1,11 @@
+/**
+ * # Speech Component
+ *
+ * Sends a message. Requires a shell.
+ *
+ * This file is based off of speech.dm
+ * Any changes made to that file should be copied over with discretion
+ */
 /obj/item/circuit_component/speech
 	/// Whether the quiet mode flag is on or not
 	var/datum/port/input/quietmode
