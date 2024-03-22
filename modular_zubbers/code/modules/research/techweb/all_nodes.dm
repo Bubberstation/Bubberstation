@@ -49,6 +49,7 @@
 
 /datum/techweb_node/bci_shells/New()
 	design_ids += "comp_eye_camera"
+	design_ids += "comp_user_status"
 	. = ..()
 
 /datum/techweb_node/movable_shells_tech/New()

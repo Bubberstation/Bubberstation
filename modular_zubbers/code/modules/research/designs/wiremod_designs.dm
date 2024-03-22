@@ -8,6 +8,11 @@
 	id = "comp_reagent_injector_bluespace"
 	build_path = /obj/item/circuit_component/reagent_injector_bluespace
 
+/datum/design/component/bci/user_status
+	name = "User Status"
+	id = "comp_user_status"
+	build_path = /obj/item/circuit_component/compare/user_status
+
 /datum/design/component/bci/eye_camera
 	name = "Eye Camera"
 	id = "comp_eye_camera"
