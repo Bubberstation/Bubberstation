@@ -74,15 +74,17 @@
 
 /obj/item/circuit_component/eye_camera/unregister_shell(atom/movable/shell)
 	stop_process()
-	. = ..()
 	if(bci?.shell_camera)
+		if(bci.shell_camera.status)
+			bci.shell_camera.toggle_cam(null, 0)
 		QDEL_NULL(bci.shell_camera)
 	bci = null
+	. = ..()
 
 /obj/item/circuit_component/eye_camera/process(seconds_per_tick)
 	if(bci?.shell_camera)
 		if(!bci.owner || bci.owner.is_blind() || !bci.owner.mind || !considered_alive(bci.owner.mind)) //If shell is not currently inside a head, or user is currently blind, or user is dead
-			if(bci.shell_camera.status) //Turn off the feed
+			if(bci.shell_camera.status) //Turn off camera
 				bci.shell_camera.toggle_cam(null, 0)
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()

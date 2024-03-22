@@ -74,15 +74,17 @@
 
 /obj/item/circuit_component/web_camera/unregister_shell(atom/movable/shell)
 	stop_process()
-	. = ..()
 	if(drone?.shell_camera)
+		if(drone.shell_camera.status)
+			drone.shell_camera.toggle_cam(null, 0)
 		QDEL_NULL(drone.shell_camera)
 	drone = null
+	. = ..()
 
 /obj/item/circuit_component/web_camera/process(seconds_per_tick)
 	if(drone?.shell_camera)
 		if(drone.health < 0) //If shell is destroyed
-			if(drone.shell_camera.status) //Turn off the feed
+			if(drone.shell_camera.status) //Turn off camera
 				drone.shell_camera.toggle_cam(null, 0)
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
