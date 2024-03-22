@@ -94,7 +94,7 @@
 	return TRUE
 
 // Just a completely normal crowbar except its normal sized and can force doors like jaws of life can
-/*
+
 /obj/item/crowbar/large/doorforcer
 	name = "prybar"
 	desc = "A large, sturdy crowbar, painted orange. This one just happens to be tough enough to \
@@ -111,7 +111,7 @@
 /obj/item/crowbar/large/doorforcer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
-*/
+
 // Backpackable mining drill
 
 /obj/item/pickaxe/drill/compact
