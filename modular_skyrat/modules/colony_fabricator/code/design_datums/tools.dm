@@ -4,7 +4,8 @@
 	description = "Contains all of the colony fabricator's tool designs."
 	design_ids = list(
 		"colony_power_drive",
-		"colony_prybar",
+//		"colony_prybar",
+		"colony_crowbar",
 		"colony_arc_welder",
 		"colony_compact_drill",
 	)
