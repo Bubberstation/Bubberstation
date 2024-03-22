@@ -3,6 +3,9 @@
  *
  * Attaches a cheap camera for surveillance-on-the-go.
  * Only works on movable shells.
+ *
+ * This file is based off of eyecam.dm
+ * Any changes made to that file should be copied over with discretion
  */
 /obj/item/circuit_component/web_camera
 	display_name = "Web Camera"

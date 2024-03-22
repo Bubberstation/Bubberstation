@@ -3,6 +3,9 @@
  *
  * Digitizes user's sight for surveillance-on-the-go.
  * Requires a BCI shell.
+ *
+ * This file is based off of webcam.dm
+ * Any changes made to that file should be copied over with discretion
  */
 /obj/item/circuit_component/eye_camera
 	display_name = "Eye Camera"
