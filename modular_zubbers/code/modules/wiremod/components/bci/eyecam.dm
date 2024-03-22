@@ -83,34 +83,41 @@
 
 /obj/item/circuit_component/eye_camera/process(seconds_per_tick)
 	if(bci?.shell_camera)
-		if(!bci.owner || bci.owner.is_blind() || !bci.owner.mind || !considered_alive(bci.owner.mind)) //If shell is not currently inside a head, or user is currently blind, or user is dead
+		//If shell is not currently inside a head, or user is currently blind, or user is dead
+		if(!bci.owner || bci.owner.is_blind() || bci.owner.IsUnconscious() || bci.owner.stat == DEAD)
 			if(bci.shell_camera.status) //Turn off camera
 				bci.shell_camera.toggle_cam(null, 0)
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
-		if(!cell || !cell?.use(full_range_current > 0 ? power_usage_per_input_full_range : power_usage_per_input)) //If cell doesn't exist, or we ran out of power
+		//If cell doesn't exist, or we ran out of power
+		if(!cell || !cell?.use(full_range_current > 0 ? power_usage_per_input_full_range : power_usage_per_input))
 			if(bci.shell_camera.status) //Turn off camera
 				bci.shell_camera.toggle_cam(null, 0)
 			return
-		if(bci.owner.is_nearsighted_currently()) //If owner is nearsighted, set camera range to short (if it wasn't already)
+		//If owner is nearsighted, set camera range to short (if it wasn't already)
+		if(bci.owner.is_nearsighted_currently())
 			if(full_range_current)
 				bci.shell_camera.setViewRange(2)
 				full_range_current = 0
-		else if(!full_range.value != !full_range_current) //If the camera range has changed, update camera range
+		//Else if the camera range has changed, update camera range
+		else if(!full_range.value != !full_range_current)
 			bci.shell_camera.setViewRange(full_range.value > 0 ? 7 : 2)
 			full_range_current = full_range.value
-		if(on.value && !bci.shell_camera.status || !on.value && bci.shell_camera.status) //Set the camera state (if needed)
+		//Set the camera state (if needed)
+		if(on.value && !bci.shell_camera.status || !on.value && bci.shell_camera.status)
 			bci.shell_camera.toggle_cam(null, 0)
 
 /**
  * Updates the camera name and network
  */
 /obj/item/circuit_component/eye_camera/proc/update_name_network(atom/movable/shell)
-	if(parent.display_name != "") //Set camera name using parent circuit name
+	//Set camera name using parent circuit name
+	if(parent.display_name != "")
 		bci.shell_camera.c_tag = "BCI: [format_text(parent.display_name)]"
 	else
 		bci.shell_camera.c_tag = "BCI: [format_text(parent.name)] ([c_tag_random])"
-	if(network.value != "") //Set camera network string
+	//Set camera network string
+	if(network.value != "")
 		bci.shell_camera.network = list("[format_text(network.value)]")
 	else
 		bci.shell_camera.network = list("ss13", "rd")
