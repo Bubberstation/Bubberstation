@@ -26,8 +26,7 @@
 	strip_delay = 70
 	equip_delay_other = 70
 
-	var/static/list/funny_signals = list(
-		COMSIG_MOB_SAY = PROC_REF(handle_speech),
+	var/static/list/suit_signals = list(
 		COMSIG_LIVING_DEATH = PROC_REF(handle_death),
 		COMSIG_LIVING_IGNITED = PROC_REF(handle_ignite),
 		COMSIG_LIVING_ELECTROCUTE_ACT = PROC_REF(handle_shock),
@@ -48,7 +47,7 @@
 
 	var/mob/living/carbon/owner
 
-	var/obj/item/geiger_counter/GC
+	var/obj/item/geiger_counter/stored_geiger_counter
 
 	COOLDOWN_DECLARE(next_damage_notify)
 	COOLDOWN_DECLARE(next_morphine)
@@ -67,12 +66,12 @@
 
 /obj/item/clothing/suit/armor/nerd/Initialize(mapload)
 	. = ..()
-	GC = new(src)
-	GC.scanning = TRUE
+	stored_geiger_counter = new(src)
+	stored_geiger_counter.scanning = TRUE
 	update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/suit/armor/nerd/Destroy()
-	QDEL_NULL(GC)
+	QDEL_NULL(stored_geiger_counter)
 	owner = null
 	return ..()
 
@@ -117,25 +116,25 @@
 	return TRUE
 
 //Signal handling.
-/obj/item/clothing/suit/armor/nerd/equipped(mob/M, slot)
+/obj/item/clothing/suit/armor/nerd/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M))
-		for(var/k in funny_signals)
-			RegisterSignal(M, k, funny_signals[k])
-		add_queue('modular_zubbers/sound/voice/nerdsuit/bell.ogg',2 SECONDS,purge_queue=TRUE)
-		owner = M
+	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(user))
+		for(var/signal_type in suit_signals)
+			RegisterSignal(user, signal_type, suit_signals[signal_type])
+		add_queue('modular_zubbers/sound/voice/nerdsuit/bell.ogg', 2 SECONDS, purge_queue=TRUE)
+		owner = user
 		if(prob(1))
-			add_queue('modular_zubbers/sound/voice/nerdsuit/emag.ogg',27 SECONDS)
+			add_queue('modular_zubbers/sound/voice/nerdsuit/emag.ogg', 27 SECONDS)
 		else
-			add_queue('modular_zubbers/sound/voice/nerdsuit/welcome.ogg',8 SECONDS)
+			add_queue('modular_zubbers/sound/voice/nerdsuit/welcome.ogg', 8 SECONDS)
 	else
-		for(var/k in funny_signals)
-			UnregisterSignal(M, k)
+		for(var/signal_type in suit_signals)
+			UnregisterSignal(user, signal_type) //Just in case.
 
-/obj/item/clothing/suit/armor/nerd/dropped(mob/M)
+/obj/item/clothing/suit/armor/nerd/dropped(mob/user, silent)
 	. = ..()
-	for(var/k in funny_signals)
-		UnregisterSignal(M, k)
+	for(var/signal_type in suit_signals)
+		UnregisterSignal(user, signal_type)
 
 //Death
 /obj/item/clothing/suit/armor/nerd/proc/handle_death(gibbed)
@@ -166,7 +165,7 @@
 	SIGNAL_HANDLER
 
 	SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-	add_queue('modular_zubbers/sound/voice/nerdsuit/heat.ogg',3 SECONDS)
+	add_queue('modular_zubbers/sound/voice/nerdsuit/heat.ogg', 3 SECONDS)
 
 //Shock
 /obj/item/clothing/suit/armor/nerd/proc/handle_shock(mob/living)
@@ -174,21 +173,21 @@
 	SIGNAL_HANDLER
 
 	SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-	add_queue('modular_zubbers/sound/voice/nerdsuit/shock.ogg',3 SECONDS)
+	add_queue('modular_zubbers/sound/voice/nerdsuit/shock.ogg', 3 SECONDS)
 
 //Wounds
-/obj/item/clothing/suit/armor/nerd/proc/handle_wound_add(mob/living/carbon/C, datum/wound/W, obj/item/bodypart/L)
+/obj/item/clothing/suit/armor/nerd/proc/handle_wound_add(mob/living/carbon/victim, datum/wound/wound, obj/item/bodypart/limb)
 
 	SIGNAL_HANDLER
 
-	var/found_sound = wound_to_sound[W.type]
+	var/found_sound = wound_to_sound[wound.type]
 	if(found_sound)
 		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-		add_queue(found_sound,4 SECONDS)
+		add_queue(found_sound, 4 SECONDS)
 
-	if(W.severity >= WOUND_SEVERITY_MODERATE)
+	if(wound.severity >= WOUND_SEVERITY_MODERATE)
 		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-		add_queue('modular_zubbers/sound/voice/nerdsuit/seek_medical.ogg',2 SECONDS)
+		add_queue('modular_zubbers/sound/voice/nerdsuit/seek_medical.ogg', 2 SECONDS)
 		administer_morphine()
 
 /obj/item/clothing/suit/armor/nerd/proc/administer_morphine()
@@ -205,18 +204,19 @@
 		owner.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
 		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-		add_queue('modular_zubbers/sound/voice/nerdsuit/stimulants.ogg',2 SECONDS)
+		add_queue('modular_zubbers/sound/voice/nerdsuit/stimulants.ogg', 2 SECONDS)
 	else
 		owner.reagents.add_reagent(/datum/reagent/medicine/morphine, 3)
 		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-		add_queue('modular_zubbers/sound/voice/nerdsuit/morphine.ogg',2 SECONDS)
+		add_queue('modular_zubbers/sound/voice/nerdsuit/morphine.ogg', 2 SECONDS)
 
 	COOLDOWN_START(src, next_morphine, MORPHINE_INJECTION_DELAY)
 
 	return TRUE
 
 //General Damage
-/obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/C, damage, damagetype, def_zone)
+/obj/item/clothing/suit/armor/nerd/proc/handle_damage(mob/living/carbon/victim, damage, damagetype, def_zone)
+
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, next_damage_notify))
@@ -226,25 +226,21 @@
 		return
 
 	var/health_percent = owner.health / owner.maxHealth
-	if(health_percent > 0.50 && !prob(damage * 4))
+	if(health_percent > 0.6 || !prob(damage * 4))
 		return
 
-	switch(health_percent)
-		if(0.76 to INFINITY)
-			return
-		if(0.51 to 0.75)
-			SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_2.ogg')
-			add_queue('modular_zubbers/sound/voice/nerdsuit/vital_signs_dropping.ogg',2 SECONDS)
-			COOLDOWN_START(src, next_damage_notify, 5 SECONDS)
-		if(0.26 to 0.50)
-			SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-			add_queue('modular_zubbers/sound/voice/nerdsuit/vital_signs_critical.ogg',3 SECONDS)
-			COOLDOWN_START(src, next_damage_notify, 5 SECONDS)
-		else
-			SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
-			add_queue('modular_zubbers/sound/voice/nerdsuit/vital_signs_death.ogg',3 SECONDS)
-			COOLDOWN_START(src, next_damage_notify, 5 SECONDS)
-			administer_morphine()
+	if(health_percent <= 0.2)
+		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
+		add_queue('modular_zubbers/sound/voice/nerdsuit/vital_signs_death.ogg', 3 SECONDS)
+		administer_morphine()
+	else if(health_percent <= 0.4)
+		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_3.ogg')
+		add_queue('modular_zubbers/sound/voice/nerdsuit/vital_signs_critical.ogg', 3 SECONDS)
+	else if(health_percent <= 0.6)
+		SOUND_BEEP('modular_zubbers/sound/voice/nerdsuit/beep_2.ogg')
+		add_queue('modular_zubbers/sound/voice/nerdsuit/vital_signs_dropping.ogg', 2 SECONDS)
+
+	COOLDOWN_START(src, next_damage_notify, 5 SECONDS)
 
 #undef MORPHINE_INJECTION_DELAY
 #undef SOUND_BEEP

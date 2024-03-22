@@ -72,16 +72,16 @@
 	display_name = "Theoretical Physics"
 	description = "They asked me how well I understood theoretical physics. I said I had a theoretical degree in physics."
 	prereq_ids = list(
-		"mod_engineering",
-		"gravity_gun",
-		"exp_tools"
+		"robotics", //Suit AI
+		"biotech", //Wound analyzer (and morphine production).
+		"mod_engineering" //Suit protection.
 	)
 	design_ids = list(
 		"nerd_suit",
 		"nerd_glases"
 	)
 	research_costs = list(
-		TECHWEB_POINT_TYPE_GENERIC = 8000
+		TECHWEB_POINT_TYPE_GENERIC = 4000
 	)
 
 /datum/techweb_node/advanced_nerd
@@ -89,14 +89,16 @@
 	display_name = "Advanced Theoretical Physics"
 	description = "Scientists aren't supposed to have guns."
 	prereq_ids = list(
-		"alientech",
-		"nerd"
+		"alientech", //Memes.
+		"gravity_gun", //Physgun
+		"nerd", //Previous tier
+		"exp_tools" //Crowbar
 	)
 	design_ids = list(
 		"physgun",
 		"fast_crowbar"
 	)
 	research_costs = list(
-		TECHWEB_POINT_TYPE_GENERIC = 15000
+		TECHWEB_POINT_TYPE_GENERIC = 10000
 	)
 
