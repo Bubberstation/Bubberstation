@@ -31,21 +31,22 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
-// Crowbar that is completely normal except it can force doors
 /datum/design/colony_door_crowbar_replacement
 	name = "Crowbar"
 	id = "colony_crowbar"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/crowbar/red
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT *0.5,
 	)
 	category = list(
 		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
-/*
-/datum/design/colony_door_crowbar
+// Crowbar that is completely normal except it can force doors
+
+/*/datum/design/colony_door_crowbar
 	name = "Prybar"
 	id = "colony_prybar"
 	build_type = COLONY_FABRICATOR
