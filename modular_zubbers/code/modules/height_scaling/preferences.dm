@@ -29,10 +29,10 @@
 	if(!.)
 		return
 
-	if (ispath(preferences.pref_species, /datum/species/dwarf)) // all 3 of these manually set your height
+	if (ispath(preferences?.pref_species, /datum/species/dwarf)) // all 3 of these manually set your height
 		return FALSE
 
-	for (var/quirk_id as anything in preferences.all_quirks)
+	for (var/quirk_id as anything in preferences>.all_quirks)
 		if (quirk_id in incompatable_quirk_ids)
 			return FALSE
 
@@ -42,7 +42,7 @@
 	if (HAS_TRAIT(target, TRAIT_DWARF)) // nuh uh. your height is set mf
 		return FALSE
 
-	for (var/quirk_id as anything in preferences.all_quirks)
+	for (var/quirk_id as anything in preferences?.all_quirks)
 		if (quirk_id in incompatable_quirk_ids)
 			return FALSE
 
