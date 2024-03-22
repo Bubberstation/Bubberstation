@@ -10,7 +10,7 @@
 
 /datum/armament_entry/company_import/akh_frontier/basic/omni_drill
 	item_type = /obj/item/screwdriver/omni_drill
-/*
+/* BUBBER REMOVAL START
 /datum/armament_entry/company_import/akh_frontier/basic/prybar
 	item_type = /obj/item/crowbar/large/doorforcer
 	restricted = TRUE
