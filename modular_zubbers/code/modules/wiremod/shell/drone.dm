@@ -1,5 +1,5 @@
 /mob/living/circuit_drone
-	///Camera installed into the BCI
+	///Camera installed into the drone
 	var/obj/machinery/camera/drone/shell_camera
 
 /mob/living/circuit_drone/Destroy()
