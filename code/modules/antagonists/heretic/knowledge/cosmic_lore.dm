@@ -226,7 +226,7 @@
 		Nearby beings will also receive a star mark."
 	gain_text = "The ground now shook beneath me. The Beast inhabited me, and their voice was intoxicating."
 	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/cosmic_final,
+		// /datum/heretic_knowledge/ultimate/cosmic_final, BUBBERSTATION CHANGE: NO MORE ASCENSIONS.
 		/datum/heretic_knowledge/eldritch_coin,
 		/datum/heretic_knowledge/summon/rusty,
 	)

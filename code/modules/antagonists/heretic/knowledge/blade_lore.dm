@@ -374,7 +374,7 @@
 		The Torn Champion smiled at their first taste of agony, and with a nod, their blades became my own."
 	next_knowledge = list(
 		/datum/heretic_knowledge/summon/maid_in_mirror,
-		/datum/heretic_knowledge/ultimate/blade_final,
+		// /datum/heretic_knowledge/ultimate/blade_final, BUBBERSTATION CHANGE: NO MORE ASCENSIONS.
 		/datum/heretic_knowledge/spell/rust_charge,
 	)
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/furious_steel

@@ -202,7 +202,7 @@
 	gain_text = "The corrosion was unstoppable. The rust was unpleasable. \
 		The Blacksmith was gone, and you hold their blade. Champions of hope, the Rustbringer is nigh!"
 	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/rust_final,
+		// /datum/heretic_knowledge/ultimate/rust_final, BUBBERSTATION CHANGE: NO MORE ASCENSIONS.
 		/datum/heretic_knowledge/summon/rusty,
 		/datum/heretic_knowledge/spell/rust_charge,
 	)
