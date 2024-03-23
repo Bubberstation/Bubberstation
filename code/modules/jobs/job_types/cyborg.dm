@@ -44,7 +44,7 @@
 		selected_ai = pick(regular_ais)
 	if(selected_ai)
 		robot_spawn.set_connected_ai(selected_ai)
-		log_combat(selected_ai, robot_spawn, "synced cyborg [ADMIN_LOOKUP(robot_spawn)] to [ADMIN_LOOKUP(selected_ai)] (Cyborg spawn syncage)")
+		log_combat(selected_ai, robot_spawn, "synced cyborg [robot_spawn] to [selected_ai] (Cyborg spawn syncage)") // BUBBER EDIT - PUBLIC LOGS AND CLEANUP
 		if(robot_spawn.shell) //somehow?
 			robot_spawn.undeploy()
 			robot_spawn.notify_ai(AI_NOTIFICATION_AI_SHELL)
