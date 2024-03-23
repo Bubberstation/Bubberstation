@@ -4,8 +4,7 @@
 	description = "Contains all of the colony fabricator's tool designs."
 	design_ids = list(
 		"colony_power_drive",
-		//"colony_prybar", BUBBER REMOVAL
-		"colony_crowbar",
+		"colony_prybar",
 		"colony_arc_welder",
 		"colony_compact_drill",
 	)
@@ -31,22 +30,9 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
-/datum/design/colony_door_crowbar_replacement
-	name = "Crowbar"
-	id = "colony_crowbar"
-	build_type = COLONY_FABRICATOR
-	build_path = /obj/item/crowbar/red
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT *0.5,
-	)
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
-	)
-
 // Crowbar that is completely normal except it can force doors
 
-/*/datum/design/colony_door_crowbar - BUBBER REMOVAL START
+/datum/design/colony_door_crowbar - BUBBER REMOVAL START
 	name = "Prybar"
 	id = "colony_prybar"
 	build_type = COLONY_FABRICATOR
@@ -59,7 +45,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
-BUBBER REMOVAL END*/
+
 // Welder that takes no fuel or power to run but is quite slow, at least it sounds cool as hell
 
 /datum/design/colony_arc_welder
