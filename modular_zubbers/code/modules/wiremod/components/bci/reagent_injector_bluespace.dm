@@ -38,9 +38,9 @@
 	CIRCUIT_TRIGGER
 	if(!bci.owner)
 		return
-	if(bci.owner.reagents.total_volume + bci.reagents.total_volume > bci.owner.reagents.maximum_volume)
+	var/amount = clamp(inject_amount.value, 0, bci.reagents.total_volume)
+	if(bci.owner.reagents.total_volume + amount > bci.owner.reagents.maximum_volume)
 		return
-	var/amount = inject_amount.value || 0
 	var/contained = bci.reagents.get_reagent_log_string()
 	var/units = bci.reagents.trans_to(bci.owner.reagents, amount, methods = INJECT)
 	if(units)
