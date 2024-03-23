@@ -77,3 +77,10 @@
 		/obj/item/staff,
 	)
 
+/obj/effect/spawner/pipe_gun_spawnshield
+	items = list(
+		/obj/item/clothing/shoes/sandal,
+		/obj/item/clothing/suit/wizrobe/fake,
+		/obj/item/clothing/head/wizard/fake,
+		/obj/item/staff,
+	)
