@@ -318,7 +318,6 @@ Removal End */
 	crate_name = "materials market crate"
 	crate_type = /obj/structure/closet/crate/cargo
 
-
 /datum/supply_pack/imports/floortilecamo
 	name = "Floor-tile Camouflage Uniform"
 	desc = "Hey there, looking to surprise somebody? Spy? Steal? Then you're lucky, meet our newest \
