@@ -202,7 +202,7 @@
 
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user?.mind?.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	if(bloodsuckerdatum && user.mob_size > max_mob_size)
 		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
 			if(prompt_coffin_claim(bloodsuckerdatum))
@@ -215,10 +215,9 @@
 	for(var/atom/thing as anything in contents)
 		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
-	if(user in src)
-		if(!resident && !prompt_coffin_claim(bloodsuckerdatum))
-			return FALSE
-		LockMe(user)
+	if(bloodsuckerdatum && (user in src))
+		if(prompt_coffin_claim(bloodsuckerdatum))
+			LockMe(user)
 		//Level up if possible.
 		if(!bloodsuckerdatum.my_clan)
 			user.balloon_alert("enter a clan!")
@@ -227,7 +226,6 @@
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
 			if(!bloodsuckerdatum.frenzied)
 				bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the opportunity to do so.
 		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
 	return TRUE
 
