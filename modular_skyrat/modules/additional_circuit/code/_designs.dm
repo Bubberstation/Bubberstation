@@ -33,6 +33,8 @@
 	id = "comp_ccharge"
 	build_path = /obj/item/circuit_component/cell_charge
 
+//BUBBER EDIT REMOVAL BEGIN - Moved advance sensor components to advance shells tech node instead
+/*
 /datum/techweb_node/comp_advanced_sensors
 	id = "comp_advanced_sensors"
 	display_name = "Advanced Sensor Components"
@@ -43,3 +45,11 @@
 		"comp_ccharge",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+*/
+//BUBBER EDIT REMOVAL END
+//BUBBER ADDITION BEGIN - Add advance sensor components to advance shells tech node
+/datum/techweb_node/adv_shells/New()
+	. = ..()
+	design_ids += "comp_tscanner"
+	design_ids += "comp_ccharge"
+//BUBBER ADDITION REMOVAL END
