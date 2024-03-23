@@ -70,6 +70,7 @@
 		drone.shell_camera = new /obj/machinery/camera/drone (drone)
 		drone.shell_camera.toggle_cam(null, 0)
 		drone.shell_camera.setViewRange(full_range.value > 0 ? 7 : 2)
+		full_range_current = full_range.value
 		update_name_network(drone)
 
 /obj/item/circuit_component/web_camera/unregister_shell(atom/movable/shell)

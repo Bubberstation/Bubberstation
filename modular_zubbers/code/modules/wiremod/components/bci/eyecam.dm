@@ -70,6 +70,7 @@
 		bci.shell_camera = new /obj/machinery/camera/bci (bci)
 		bci.shell_camera.toggle_cam(null, 0)
 		bci.shell_camera.setViewRange(full_range.value > 0 ? 7 : 2)
+		full_range_current = full_range.value
 		update_name_network(bci)
 
 /obj/item/circuit_component/eye_camera/unregister_shell(atom/movable/shell)
