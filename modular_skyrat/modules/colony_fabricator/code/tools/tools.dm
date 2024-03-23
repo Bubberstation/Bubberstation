@@ -98,7 +98,7 @@
 /obj/item/crowbar/large/doorforcer
 	name = "prybar"
 	desc = "A large, sturdy crowbar, painted orange. This one just happens to be tough enough to \
-		survive <b>forcing doors open</b>."
+		<b>force a door open</b>." //Bubber EDIT
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "prybar"
 	toolspeed = 1.3
