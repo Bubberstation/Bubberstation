@@ -278,9 +278,19 @@
 		bust_open()
 		user.visible_message(
 			span_notice("[user] snaps the door of [src] wide open."),
-			span_notice("The door of [src] snaps open."))
-		return
-	return ..()
+/// Forces the coffin to get contents
+/obj/structure/closet/proc/force_enter(mob/living/user)
+	SEND_SIGNAL(src, COMSIG_CLOSET_PRE_CLOSE, user)
+	take_contents()
+	var/inserted = insert(user)
+	playsound(loc, close_sound, close_sound_volume, TRUE, -3)
+	opened = FALSE
+	set_density(TRUE)
+	animate_door(TRUE)
+	update_appearance()
+	after_close(user)
+	SEND_SIGNAL(src, COMSIG_CLOSET_POST_CLOSE, user)
+	return inserted
 
 /// Distance Check (Inside Of)
 /obj/structure/closet/crate/coffin/AltClick(mob/user)
