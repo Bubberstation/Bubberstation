@@ -8,7 +8,7 @@
 /datum/species/akula
 	name = "Akula"
 	id = SPECIES_AKULA
-	lore_protected = TRUE
+	//lore_protected = TRUE - BUBBER EDIT REMOVAL
 	offset_features = list(
 		OFFSET_GLASSES = list(0, 1),
 		OFFSET_EARS = list(0, 2),
