@@ -18,7 +18,7 @@
 	id = "comp_eye_camera"
 	build_path = /obj/item/circuit_component/eye_camera
 
-/datum/design/component/web_camera
-	name = "Web Camera"
-	id = "comp_web_camera"
-	build_path = /obj/item/circuit_component/web_camera
+/datum/design/component/drone_camera
+	name = "Drone Camera"
+	id = "comp_drone_camera"
+	build_path = /obj/item/circuit_component/drone_camera

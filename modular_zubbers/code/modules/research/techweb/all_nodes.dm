@@ -53,7 +53,7 @@
 	. = ..()
 
 /datum/techweb_node/movable_shells_tech/New()
-	design_ids += "comp_web_camera"
+	design_ids += "comp_drone_camera"
 	. = ..()
 
 // Computer Tech

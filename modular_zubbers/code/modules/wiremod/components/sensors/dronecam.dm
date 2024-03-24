@@ -1,5 +1,5 @@
 /**
- * # Web Camera Component
+ * # Drone Camera Component
  *
  * Attaches a cheap camera for surveillance-on-the-go.
  * Only works on movable shells.
@@ -7,8 +7,8 @@
  * This file is based off of eyecam.dm
  * Any changes made to that file should be copied over with discretion
  */
-/obj/item/circuit_component/web_camera
-	display_name = "Web Camera"
+/obj/item/circuit_component/drone_camera
+	display_name = "Drone Camera"
 	desc = "Capture's surrounding sight for surveillance-on-the-go. Full range input is either 0 (off) or 1 (on). Network field is used for camera network."
 	category = "Sensor"
 	circuit_flags = CIRCUIT_NO_DUPLICATES
@@ -32,12 +32,12 @@
 
 	var/mob/living/circuit_drone/drone
 
-/obj/item/circuit_component/web_camera/get_ui_notices()
+/obj/item/circuit_component/drone_camera/get_ui_notices()
 	. = ..()
 	. += create_ui_notice("Power Usage For Short Range: [power_usage_per_input] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 	. += create_ui_notice("Power Usage For Full Range: [power_usage_per_input_full_range] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
-/obj/item/circuit_component/web_camera/populate_ports()
+/obj/item/circuit_component/drone_camera/populate_ports()
 	on = add_input_port("On", PORT_TYPE_NUMBER, default = 0)
 	full_range = add_input_port("Full Range", PORT_TYPE_NUMBER, default = 0)
 	network = add_input_port("Network", PORT_TYPE_STRING, default = "ss13")
@@ -45,7 +45,7 @@
 	full_range_current = full_range.value
 	c_tag_random = rand(1, 999)
 
-/obj/item/circuit_component/web_camera/pre_input_received(datum/port/input/port)
+/obj/item/circuit_component/drone_camera/pre_input_received(datum/port/input/port)
 	if(drone?.shell_camera)
 		if(!on.value)
 			stop_process()
@@ -55,14 +55,14 @@
 			update_name_network(drone)
 			start_process()
 
-/obj/item/circuit_component/web_camera/Destroy()
+/obj/item/circuit_component/drone_camera/Destroy()
 	stop_process()
 	if(drone?.shell_camera)
 		if(drone.shell_camera.status)
 			drone.shell_camera.toggle_cam(null, 0)
 	return ..()
 
-/obj/item/circuit_component/web_camera/register_shell(atom/movable/shell)
+/obj/item/circuit_component/drone_camera/register_shell(atom/movable/shell)
 	stop_process()
 	. = ..()
 	if(istype(shell, /mob/living/circuit_drone))
@@ -73,7 +73,7 @@
 		full_range_current = full_range.value
 		update_name_network(drone)
 
-/obj/item/circuit_component/web_camera/unregister_shell(atom/movable/shell)
+/obj/item/circuit_component/drone_camera/unregister_shell(atom/movable/shell)
 	stop_process()
 	if(drone?.shell_camera)
 		if(drone.shell_camera.status)
@@ -82,7 +82,7 @@
 	drone = null
 	. = ..()
 
-/obj/item/circuit_component/web_camera/process(seconds_per_tick)
+/obj/item/circuit_component/drone_camera/process(seconds_per_tick)
 	if(drone?.shell_camera)
 		if(drone.health < 0) //If shell is destroyed
 			if(drone.shell_camera.status) //Turn off camera
@@ -102,7 +102,7 @@
 /**
  * Updates the camera name and network
  */
-/obj/item/circuit_component/web_camera/proc/update_name_network(atom/movable/shell)
+/obj/item/circuit_component/drone_camera/proc/update_name_network(atom/movable/shell)
 	if(parent.display_name != "") //Set camera name using parent circuit name
 		drone.shell_camera.c_tag = "Drone: [format_text(parent.display_name)]"
 	else
@@ -117,7 +117,7 @@
  *
  * Starts draining cell per second while camera is active
  */
-/obj/item/circuit_component/web_camera/proc/start_process()
+/obj/item/circuit_component/drone_camera/proc/start_process()
 	START_PROCESSING(SSclock_component, src)
 
 /**
@@ -125,5 +125,5 @@
  *
  * Stops draining cell per second
  */
-/obj/item/circuit_component/web_camera/proc/stop_process()
+/obj/item/circuit_component/drone_camera/proc/stop_process()
 	STOP_PROCESSING(SSclock_component, src)
