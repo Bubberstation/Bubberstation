@@ -1279,7 +1279,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "hp" = (
 /obj/effect/turf_decal/trimline/yellow/line,
-/obj/machinery/light/cold/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -1752,7 +1751,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "jM" = (
 /obj/effect/turf_decal/trimline/yellow/line,
-/obj/machinery/light/cold/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -1761,6 +1759,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
+/obj/machinery/light/cold/directional/south,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "jO" = (
@@ -2651,6 +2650,14 @@
 "oy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/table,
+/obj/item/reagent_containers/condiment/peppermill{
+	pixel_y = 15;
+	pixel_x = 11
+	},
+/obj/item/reagent_containers/condiment/saltshaker{
+	pixel_y = 9;
+	pixel_x = 11
+	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -7888,14 +7895,6 @@
 /obj/item/knife{
 	pixel_y = 3;
 	pixel_x = 6
-	},
-/obj/item/reagent_containers/condiment/peppermill{
-	pixel_y = 15;
-	pixel_x = 11
-	},
-/obj/item/reagent_containers/condiment/saltshaker{
-	pixel_y = 9;
-	pixel_x = 11
 	},
 /obj/item/reagent_containers/condiment/enzyme{
 	pixel_x = 12
