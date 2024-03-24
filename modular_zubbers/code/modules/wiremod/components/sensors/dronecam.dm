@@ -103,11 +103,11 @@
  * Updates the camera name and network
  */
 /obj/item/circuit_component/drone_camera/proc/update_name_network(atom/movable/shell)
-	if(parent.display_name != "") //Set camera name using parent circuit name
+	if(parent.display_name && parent.display_name != "") //Set camera name using parent circuit name
 		drone.shell_camera.c_tag = "Drone: [format_text(parent.display_name)]"
 	else
 		drone.shell_camera.c_tag = "Drone: [format_text(parent.name)] ([c_tag_random])"
-	if(network.value != "") //Set camera network string
+	if(network.value && network.value != "") //Set camera network string
 		drone.shell_camera.network = list("[format_text(network.value)]")
 	else
 		drone.shell_camera.network = list("ss13", "rd")

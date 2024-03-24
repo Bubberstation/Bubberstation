@@ -4,7 +4,7 @@
  * Digitizes user's sight for surveillance-on-the-go.
  * Requires a BCI shell.
  *
- * This file is based off of webcam.dm
+ * This file is based off of dronecam.dm
  * Any changes made to that file should be copied over with discretion
  */
 /obj/item/circuit_component/eye_camera
@@ -113,12 +113,12 @@
  */
 /obj/item/circuit_component/eye_camera/proc/update_name_network(atom/movable/shell)
 	//Set camera name using parent circuit name
-	if(parent.display_name != "")
+	if(parent.display_name && parent.display_name != "")
 		bci.shell_camera.c_tag = "BCI: [format_text(parent.display_name)]"
 	else
 		bci.shell_camera.c_tag = "BCI: [format_text(parent.name)] ([c_tag_random])"
 	//Set camera network string
-	if(network.value != "")
+	if(network.value && network.value != "")
 		bci.shell_camera.network = list("[format_text(network.value)]")
 	else
 		bci.shell_camera.network = list("ss13", "rd")
