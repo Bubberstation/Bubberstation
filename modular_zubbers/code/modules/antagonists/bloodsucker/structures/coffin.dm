@@ -30,7 +30,7 @@
 		. += span_cult("This is your Claimed Coffin.")
 		. += span_cult("Rest in it while injured to enter Torpor. Entering it with unspent Ranks will allow you to spend one.")
 		. += span_cult("Going inside while it contains a heart will put it in your chest, letting you regain your might.")
-		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock.")
+		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock. This also fixes the lock if it's broken.")
 		. += span_cult("Alt-Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
 
 /obj/structure/closet/crate/coffin/blackcoffin
