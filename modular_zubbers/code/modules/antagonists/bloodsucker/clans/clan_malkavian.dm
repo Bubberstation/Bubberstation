@@ -39,7 +39,7 @@
 	bloodsuckerdatum.owner.current.update_sight()
 	return ..()
 
-/datum/bloodsucker_clan/malkavian/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/malkavian/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	. = ..()
 	// Using linear interpolation to calculate the chance of a revelation. The more humanity lost, the higher the chance.
 	// This is the reversed version since we want to increase the prob as the number decreases.
