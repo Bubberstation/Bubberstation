@@ -40,7 +40,6 @@
 	var/datum/component/crusher_comp = AddComponent(/datum/component/kinetic_crusher, 50, 30, 1.5 SECONDS, CALLBACK(src, PROC_REF(attack_check)), CALLBACK(src, PROC_REF(detonate_check)), CALLBACK(src, PROC_REF(after_detonate)))
 	crusher_comp.RegisterWithParent(left_gauntlet)
 	crusher_comp.RegisterWithParent(right_gauntlet)
-	crusher_comp.UnregisterSignal(src, COMSIG_ATOM_EXAMINE) //its just easier like this man
 
 /obj/item/clothing/gloves/kinetic_gauntlets/Destroy()
 	QDEL_NULL(left_gauntlet)
@@ -54,6 +53,15 @@
 
 /obj/item/clothing/gloves/kinetic_gauntlets/ui_action_click(mob/user, datum/action/actiontype)
 	toggle_gauntlets()
+
+/obj/item/clothing/gloves/kinetic_gauntlets/proc/on_gauntlet_qdel()
+	if(QDELETED(left_gauntlet))
+		left_gauntlet = null
+	if(QDELETED(right_gauntlet))
+		right_gauntlet = null
+
+	if(isnull(left_gauntlet) && isnull(right_gauntlet))
+		qdel(src)
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/attack_check(mob/living/user, cancel_attack)
 	return left_gauntlet?.loc == user || right_gauntlet?.loc == user
@@ -197,6 +205,7 @@
 	linked_gauntlets = loc
 
 /obj/item/kinetic_gauntlet/Destroy(force)
+	linked_gauntlets.on_gauntlet_qdel()
 	linked_gauntlets = null
 	return ..()
 
@@ -232,7 +241,7 @@
 
 /obj/item/kinetic_gauntlet/left/update_overlays()
 	. = ..()
-	if(light_on)
+	if(linked_gauntlets.light_on)
 		. += "[icon_state]_lit"
 
 /obj/item/kinetic_gauntlet/left/attack_self(mob/user, modifiers)

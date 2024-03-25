@@ -50,8 +50,15 @@
 /datum/component/kinetic_crusher/proc/on_examine(obj/item/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
+	var/force
 	var/datum/component/two_handed/comp = source.GetComponent(/datum/component/two_handed)
-	var/force = comp ? comp.force_wielded : source.force
+	if(istype(source, /obj/item/clothing/gloves/kinetic_gauntlets)) //ughhhhh
+		var/obj/item/clothing/gloves/kinetic_gauntlets/gauntlets = parent
+		force = gauntlets.right_gauntlet?.force || gauntlets.left_gauntlet.force
+	else if(comp)
+		force = comp.force_wielded
+	else
+		force = source.force
 
 	examine_list += span_notice("Mark a large creature with a destabilizing force with right-click, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
 	examine_list += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
