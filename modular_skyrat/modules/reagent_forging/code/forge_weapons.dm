@@ -102,7 +102,7 @@
 
 /obj/item/forging/reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
-	user.changeNext_move(CLICK_CD_SLOW) // BUBBER EDIT - Changed to CD_SLOW from CD_RANGE
+	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/forging/reagent_weapon/spear
 	name = "reagent spear"
