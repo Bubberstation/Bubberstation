@@ -262,8 +262,8 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			return FALSE
 
 	//BUBBER ADDITION BEGIN - This is required since we have two reagent components, and the BCI only allows one active
-	if(shell && shell.reagents)
-		if(to_add.circuit_flags & CIRCUIT_REAGENT_CONTAINER_TYPE)
+	if(to_add.circuit_flags & CIRCUIT_REAGENT_CONTAINER_TYPE)
+		if(shell && shell.reagents)
 			to_chat(user, span_danger("You can't insert multiple reagent containers into the same circuit!"))
 			return FALSE
 	//BUBBER ADDITION END

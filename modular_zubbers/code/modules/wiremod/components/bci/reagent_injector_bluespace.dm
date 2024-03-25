@@ -41,11 +41,9 @@
 	var/amount = clamp(inject_amount.value, 0, bci.reagents.total_volume)
 	if(bci.owner.reagents.total_volume + amount > bci.owner.reagents.maximum_volume)
 		return
-	var/contained = bci.reagents.get_reagent_log_string()
 	var/units = bci.reagents.trans_to(bci.owner.reagents, amount, methods = INJECT)
 	if(units)
 		injected.set_output(COMPONENT_SIGNAL)
-		log_combat(bci.owner, bci.owner, "injected", bci, "[units]u which had [contained]")
 
 /obj/item/circuit_component/reagent_injector_bluespace/register_shell(atom/movable/shell)
 	. = ..()
