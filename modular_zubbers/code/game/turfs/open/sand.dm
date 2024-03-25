@@ -36,7 +36,7 @@
 	icon = 'modular_zubbers/icons/turf/lunar_rock.dmi'
 	icon_state = "0,0"
 	planetary_atmos = TRUE
-	baseturfs = /turf/open/misc/moonstation_rock //You have hit rock bottom.
+	baseturfs = /turf/baseturf_bottom //You have hit rock bottom.
 
 /turf/open/misc/moonstation_rock/break_tile()
 	. = ..()
@@ -68,7 +68,7 @@
 	planetary_atmos = TRUE
 
 /turf/open/floor/catwalk_floor/rust/moonstation/cave
-	initial_gas_mix = MOONSTATION_ATMOS
+	initial_gas_mix = MOONSTATION_ATMOS_CAVE
 
 /turf/open/floor/iron/solarpanel/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS
