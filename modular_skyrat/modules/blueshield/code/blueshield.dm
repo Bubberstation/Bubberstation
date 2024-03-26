@@ -46,9 +46,9 @@
 	name = "Blueshield"
 	jobtype = /datum/job/blueshield
 	uniform = /obj/item/clothing/under/rank/blueshield
-	suit = /obj/item/clothing/suit/armor/vest/blueshield/jacket
+	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/brit
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
-	id = /obj/item/card/id/advanced/centcom
+	id = /obj/item/card/id
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
@@ -57,9 +57,11 @@
 	satchel = /obj/item/storage/backpack/satchel/blueshield
 	duffelbag = /obj/item/storage/backpack/duffelbag/blueshield
 	messenger = /obj/item/storage/backpack/messenger/blueshield
-	head = /obj/item/clothing/head/beret/blueshield
+	head = /obj/item/clothing/head/utility/welding
 	box = /obj/item/storage/box/survival/security
-	belt = /obj/item/modular_computer/pda/security
+	belt = /obj/item/storage/belt/utility/full/inducer
+	r_pocket = /obj/item/modular_computer/pda/security
+	r_hand = /obj/effect/spawner/random/blueshield_random
 
 	id_trim = /datum/id_trim/job/blueshield
 
@@ -69,18 +71,37 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
 
-/obj/effect/spawner/blueshield_weaponry
-	items = list(
-		/obj/item/clothing/shoes/sandal,
-		/obj/item/clothing/suit/wizrobe/fake,
-		/obj/item/clothing/head/wizard/fake,
-		/obj/item/staff,
+/obj/effect/spawner/random/blueshield_random
+	name = "blueshield item spawner"
+	loot = list(
+		/obj/item/melee/baton/security/boomerang/loaded = 25,
+		/obj/item/gun/energy/pulse/pistol = 1, //The Lucky one
+		/obj/item/melee/baton/security/cattleprod = 25,
+		/obj/item/claymore/weak = 20,
+		/obj/item/storage/box/pipe_gun = 25,
+		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 10,
+		/obj/item/gun/energy/laser/musket = 25,
+		/obj/item/weaponcrafting/gunkit/nuclear = 20,
+		/obj/item/stack/spacecash/c10000 = 15, //Figure that out yourself
+		/obj/item/dnainjector/hulkmut = 10,
+		/obj/item/storage/box/highwayman = 15, //Figure it out how to get more ammo
 	)
 
-/obj/effect/spawner/pipe_gun_spawnshield
-	items = list(
-		/obj/item/clothing/shoes/sandal,
-		/obj/item/clothing/suit/wizrobe/fake,
-		/obj/item/clothing/head/wizard/fake,
-		/obj/item/staff,
-	)
+/obj/item/storage/box/pipe_gun
+	name = "pipe gun set"
+
+/obj/item/storage/box/pipe_gun/PopulateContents()
+	new /obj/item/gun/ballistic/rifle/boltaction/pipegun(src)
+	new /obj/item/ammo_box/advanced/s12gauge/rubber(src)
+	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
+
+/obj/item/storage/box/highwayman
+	name = "Highwayman Gunset"
+
+/obj/item/storage/box/highwayman/PopulateContents()
+	new /obj/item/gun/magic/midas_hand(src)
+	new /obj/item/coin/gold(src)
+	new /obj/item/coin/gold(src)
+	new /obj/item/coin/gold(src)
+	new /obj/item/coin/gold(src)
+	new /obj/item/storage/belt/bowie_sheath(src)
