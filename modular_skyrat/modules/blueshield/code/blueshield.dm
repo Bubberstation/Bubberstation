@@ -76,7 +76,7 @@
 	loot = list(
 		/obj/item/melee/baton/security/boomerang/loaded = 25,
 		/obj/item/gun/energy/pulse/pistol = 1, //The Lucky one
-		/obj/item/melee/baton/security/cattleprod = 25,
+		/obj/item/melee/baton/security = 25,
 		/obj/item/claymore/weak = 20,
 		/obj/item/storage/box/pipe_gun = 25,
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 10,
