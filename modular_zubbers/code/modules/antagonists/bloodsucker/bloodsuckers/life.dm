@@ -8,7 +8,6 @@
 		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
 	if(isbrain(owner.current))
-		INVOKE_ASYNC(src, PROC_REF(update_hud))
 		return
 	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		check_end_torpor()
@@ -23,8 +22,7 @@
 	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
 	INVOKE_ASYNC(src, PROC_REF(update_blood))
 
-	INVOKE_ASYNC(src, PROC_REF(update_hud))
-	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
 
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
 	SIGNAL_HANDLER
@@ -39,6 +37,10 @@
 /**
  * ## BLOOD STUFF
  */
+
+/datum/antagonist/bloodsucker/proc/GetBloodVolume()
+	return bloodsucker_blood_volume
+
 /datum/antagonist/bloodsucker/proc/AdjustBloodVolume(value)
 	bloodsucker_blood_volume = clamp(bloodsucker_blood_volume + value, 0, max_blood_volume * 2)
 	blood_over_cap = max(bloodsucker_blood_volume - max_blood_volume, 0) // Gets how much blood we have over the cap.
@@ -49,6 +51,9 @@
 	update_blood_hud()
 
 #define MASQUERADE /datum/action/cooldown/bloodsucker/masquerade
+
+/datum/antagonist/bloodsucker/proc/GetHumanityLost()
+	return humanity_lost
 
 /datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
 	if(value == 0)
