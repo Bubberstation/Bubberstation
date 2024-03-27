@@ -26,7 +26,9 @@
 #define HUMANITY_LOST_MAXIMUM 50
 
 /// Level up blood cost define, max_blood * this = blood cost
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.15
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0
+/// Upper bound for Blood cost increase; used for blood thickening
+#define BLOOD_LEVEL_GAIN_MAX 0.9
 
 ///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation
 #define BLOODSUCKER_HIGH_LEVEL 4
