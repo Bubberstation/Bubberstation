@@ -1,25 +1,11 @@
-///How long Sol will last until it's night again.
-#define TIME_BLOODSUCKER_DAY 60
-///Base time nighttime should be in for, until Sol rises.
-// Can't put defines in defines, so we have to use deciseconds.
-#define TIME_BLOODSUCKER_NIGHT_MAX 1320 // 22 minutes
-#define TIME_BLOODSUCKER_NIGHT_MIN 1020 // 17 minutes
 
-///Time left to send an alert to Bloodsuckers about an incoming Sol.
-#define TIME_BLOODSUCKER_DAY_WARN 90
-///Time left to send an urgent alert to Bloodsuckers about an incoming Sol.
-#define TIME_BLOODSUCKER_DAY_FINAL_WARN 30
-///Time left to alert that Sol is rising.
-#define TIME_BLOODSUCKER_BURN_INTERVAL 5
 
-///How much time Sol can be 'off' by, keeping the time inconsistent.
-#define TIME_BLOODSUCKER_SOL_DELAY 90
-
-SUBSYSTEM_DEF(sunlight)
+PROCESSING_SUBSYSTEM_DEF(sunlight)
 	name = "Sol"
 	can_fire = FALSE
+	runlevels = RUNLEVEL_GAME
 	wait = 2 SECONDS
-	flags = SS_NO_INIT | SS_BACKGROUND | SS_TICKER
+	flags = SS_NO_INIT | SS_KEEP_TIMING | SS_TICKER
 
 	///If the Sun is currently out our not.
 	var/sunlight_active = FALSE
@@ -27,8 +13,10 @@ SUBSYSTEM_DEF(sunlight)
 	var/time_til_cycle = TIME_BLOODSUCKER_NIGHT_MAX
 	///If Bloodsucker levels for the night has been given out yet.
 	var/issued_XP = FALSE
+	/// Mobs that make use of the sunlight system.
+	var/list/sun_sufferers = list()
 
-/datum/controller/subsystem/sunlight/fire(resumed = FALSE)
+/datum/controller/subsystem/processing/sunlight/fire(resumed = FALSE)
 	time_til_cycle--
 	if(sunlight_active)
 		if(time_til_cycle > 0)
@@ -48,7 +36,7 @@ SUBSYSTEM_DEF(sunlight)
 				vampire_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
 				vassal_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
 			)
-		return
+		return ..()
 
 	switch(time_til_cycle)
 		if(TIME_BLOODSUCKER_DAY_WARN)
@@ -79,15 +67,72 @@ SUBSYSTEM_DEF(sunlight)
 				vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"),
 				vassal_warning_message = span_userdanger("Solar flares bombard the station with UV light!"),
 			)
+	..()
 
-/datum/controller/subsystem/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
+/datum/controller/subsystem/processing/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
 	SEND_SIGNAL(src, COMSIG_SOL_WARNING_GIVEN, danger_level, vampire_warning_message, vassal_warning_message)
 
-#undef TIME_BLOODSUCKER_SOL_DELAY
 
-#undef TIME_BLOODSUCKER_DAY
-#undef TIME_BLOODSUCKER_NIGHT_MAX
-#undef TIME_BLOODSUCKER_NIGHT_MIN
-#undef TIME_BLOODSUCKER_DAY_WARN
-#undef TIME_BLOODSUCKER_DAY_FINAL_WARN
-#undef TIME_BLOODSUCKER_BURN_INTERVAL
+/datum/controller/subsystem/processing/sunlight/proc/add_sun_sufferer(mob/victim)
+	var/sufferer_list = is_sufferer(victim)
+	if(sufferer_list)
+		return FALSE
+	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = new(null, victim.hud_used)
+	victim.hud_used.infodisplay += sun_hud
+	victim.hud_used.show_hud(victim.hud_used.hud_version)
+	sun_hud.update_sol_hud()
+	sun_sufferers += list(list("victim" = WEAKREF(victim), "sun_hud" = sun_hud))
+	if(length(sun_sufferers))
+		can_fire = TRUE
+
+	return TRUE
+
+/datum/controller/subsystem/processing/sunlight/proc/remove_sun_sufferer(mob/victim)
+	var/sufferer_list = is_sufferer(victim)
+	if(!sufferer_list)
+		return FALSE
+	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = sufferer_list["sun_hud"]
+	if(sun_hud)
+		victim?.hud_used.infodisplay -= sun_hud
+		qdel(sun_hud)
+	// We have to use the index here as -= won't work with two lists
+	sun_sufferers.Cut(sufferer_list["index"])
+	if(!length(sun_sufferers))
+		can_fire = FALSE
+		sunlight_active = initial(sunlight_active)
+		time_til_cycle = initial(time_til_cycle)
+		issued_XP = initial(issued_XP)
+	return TRUE
+
+/datum/controller/subsystem/processing/sunlight/proc/warn_notify(mob/target, danger_level, message)
+	if(!target)
+		return
+	to_chat(target, message)
+
+	switch(danger_level)
+		if(DANGER_LEVEL_FIRST_WARNING)
+			target.playsound_local(null, 'modular_zubbers/sound/bloodsucker/griffin_3.ogg', 50, TRUE)
+		if(DANGER_LEVEL_SECOND_WARNING)
+			target.playsound_local(null, 'modular_zubbers/sound/bloodsucker/griffin_5.ogg', 50, TRUE)
+		if(DANGER_LEVEL_THIRD_WARNING)
+			target.playsound_local(null, 'sound/effects/alert.ogg', 75, TRUE)
+		if(DANGER_LEVEL_SOL_ROSE)
+			target.playsound_local(null, 'sound/ambience/ambimystery.ogg', 75, TRUE)
+		if(DANGER_LEVEL_SOL_ENDED)
+			target.playsound_local(null, 'sound/misc/ghosty_wind.ogg', 90, TRUE)
+
+
+/datum/controller/subsystem/processing/sunlight/proc/is_sufferer(mob/victim)
+	for(var/i in 1 to length(sun_sufferers))
+		var/list/sufferers_original = sun_sufferers[i]
+		var/list/sufferer_list = sufferers_original?.Copy()
+		if(!sufferer_list)
+			continue
+		sufferer_list["index"] = i
+		var/datum/weakref/sufferer_ref = sufferer_list["victim"]
+		if(!sufferer_ref)
+			continue
+		var/sufferer = sufferer_ref.resolve()
+		if(sufferer == victim)
+			return sufferer_list
+	return null
