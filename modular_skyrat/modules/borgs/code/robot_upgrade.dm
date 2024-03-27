@@ -142,8 +142,8 @@
 	for(var/datum/robot_energy_storage/titanium/titanium_energy in borgo.model.storages)
 		qdel(titanium_energy)
 
-/// funny borg inducer upgrade
-/obj/item/borg/upgrade/inducer
+/// funny borg inducer upgrade /// BUBBERSTATION EDIT: This entire section of code is redundant and causes bugs.
+/*/obj/item/borg/upgrade/inducer
 	name = "engineering cyborg inducer upgrade"
 	desc = "An inducer device for the engineering cyborg."
 	icon_state = "cyborg_upgrade3"
@@ -169,7 +169,7 @@
 	if (.)
 		var/obj/item/inducer/cyborg/inducer = locate() in target_robot.model
 		if (inducer)
-			target_robot.model.remove_module(inducer, TRUE)
+			target_robot.model.remove_module(inducer, TRUE)*/
 
 /*
 *	ADVANCED MINING CYBORG UPGRADES
