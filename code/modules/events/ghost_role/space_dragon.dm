@@ -10,6 +10,8 @@
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT)
 /datum/round_event/ghost_role/space_dragon
 	minimum_required = 1
 	role_name = "Space Dragon"
