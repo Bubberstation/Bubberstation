@@ -1,29 +1,38 @@
-/datum/surgery/eye_surgery
+/datum/surgery/robot/eye_surgery
 	name = "Eye surgery"
-	//requires_bodypart_type = NONE // BUBBER EDIT
+	requires_bodypart_type = BODYTYPE_ROBOTIC
 	organ_to_manipulate = ORGAN_SLOT_EYES
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
 	steps = list(
-		/datum/surgery_step/incise,
-		/datum/surgery_step/retract_skin,
-		/datum/surgery_step/clamp_bleeders,
-		/datum/surgery_step/fix_eyes,
-		/datum/surgery_step/close,
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/robot_fix_eyes,
+		/datum/surgery_step/mechanic_close,
 	)
+	num_opening_steps = 1
+	num_steps_until_closing = 3
+	close_surgery = /datum/surgery/robot/close_eye_surgery
 
-//fix eyes
-/datum/surgery_step/fix_eyes
-	name = "fix eyes (hemostat)"
+/datum/surgery/robot/close_eye_surgery
+	name = "Close Surgery (Eye surgery)"
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	organ_to_manipulate = ORGAN_SLOT_EYES
+	possible_locs = list(BODY_ZONE_PRECISE_EYES)
+	steps = list(
+		/datum/surgery_step/mechanic_close,
+	)
+	is_closer = TRUE
+
+/datum/surgery_step/robot_fix_eyes
+	name = "fix eyes (multitool)"
 	implements = list(
-		TOOL_HEMOSTAT = 100,
-		TOOL_SCREWDRIVER = 45,
-		/obj/item/pen = 25)
-	time = 64
+		TOOL_MULTITOOL = 100,)
+	time = 6.4 SECONDS
 
-/datum/surgery/eye_surgery/can_start(mob/user, mob/living/carbon/target)
-	return target.get_organ_slot(ORGAN_SLOT_EYES) && ..()
+/datum/surgery/robot/eye_surgery/can_start(mob/user, mob/living/carbon/target)
+	var/obj/item/organ/internal/eyes/target_eyes = target.get_organ_slot(ORGAN_SLOT_EYES)
+	return !isnull(target_eyes)
 
-/datum/surgery_step/fix_eyes/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/robot_fix_eyes/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
 		target,
@@ -31,9 +40,9 @@
 		span_notice("[user] begins to fix [target]'s eyes."),
 		span_notice("[user] begins to perform surgery on [target]'s eyes."),
 	)
-	display_pain(target, "You feel a stabbing pain in your eyes!")
+	//display_pain(target, "You feel a stabbing pain in your eyes!")
 
-/datum/surgery_step/fix_eyes/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+/datum/surgery_step/robot_fix_eyes/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/obj/item/organ/internal/eyes/target_eyes = target.get_organ_slot(ORGAN_SLOT_EYES)
 	user.visible_message(span_notice("[user] successfully fixes [target]'s eyes!"), span_notice("You succeed in fixing [target]'s eyes."))
 	display_results(
@@ -49,7 +58,7 @@
 	target_eyes.set_organ_damage(0) // heals nearsightedness and blindness from eye damage
 	return ..()
 
-/datum/surgery_step/fix_eyes/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/robot_fix_eyes/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.get_organ_by_type(/obj/item/organ/internal/brain))
 		display_results(
 			user,

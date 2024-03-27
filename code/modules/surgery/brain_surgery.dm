@@ -24,7 +24,12 @@
 	failure_sound = 'sound/surgery/organ2.ogg'
 
 /datum/surgery/brain_surgery/can_start(mob/user, mob/living/carbon/target)
-	return target.get_organ_slot(ORGAN_SLOT_BRAIN) && ..()
+	var/obj/item/organ/internal/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!target_brain)
+		return FALSE
+	if(istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/internal/brain/synth)) // BUBBER EDIT
+		return FALSE // BUBBER EDIT
+	return ..() // BUBBER EDIT
 
 /datum/surgery_step/fix_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
