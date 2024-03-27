@@ -11,7 +11,7 @@
 
 	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_SAFE)
 		return ..()
-	if(bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_MAXIMUM)
+	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_MAXIMUM)
 		return ..()
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
