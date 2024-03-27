@@ -9,7 +9,7 @@
 	if(!bloodsuckerdatum)
 		return ..()
 
-	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.bloodsucker_blood_volume >= BLOOD_VOLUME_SAFE)
+	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
 		return ..()
 	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_MAXIMUM)
 		return ..()
