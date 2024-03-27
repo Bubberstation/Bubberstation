@@ -171,7 +171,7 @@
 	item_type = /obj/item/gun/medbeam/afad
 	cost = PAYCHECK_COMMAND * 5
 
-//Bubber Changes
+//BUBBER EDIT ADD START
 /datum/armament_entry/company_import/deforest/equipment/hypospray_case
 	item_type = /obj/item/storage/hypospraykit
 	cost = PAYCHECK_LOWER * 2
@@ -201,7 +201,7 @@
 	item_type = /obj/item/organ/internal/cyberimp/arm/janitor
 	cost = PAYCHECK_COMMAND * 5
 
-//End Bubber Changes
+//BUBBER EDIT END
 
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
 
