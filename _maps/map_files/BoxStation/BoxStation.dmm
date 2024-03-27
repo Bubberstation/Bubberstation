@@ -16492,6 +16492,7 @@
 	pixel_y = 12
 	},
 /obj/machinery/light/directional/north,
+/obj/item/retractor,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "boE" = (
@@ -16543,7 +16544,7 @@
 /area/station/cargo/storage)
 "boL" = (
 /obj/structure/table,
-/obj/item/retractor,
+/obj/item/storage/medkit/mechanical/roboticist,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "boM" = (
@@ -25613,7 +25614,6 @@
 	name = "External Access"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "bWU" = (
@@ -26985,7 +26985,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /turf/open/floor/plating/airless,
 /area/station/maintenance/aft)
 "ccA" = (
@@ -27599,8 +27598,7 @@
 /area/station/security/prison/safe)
 "cfF" = (
 /obj/effect/spawner/random/medical/medkit_rare,
-/obj/item/food/donkpocket/warm/gondola,
-/obj/structure/safe/floor,
+/obj/effect/spawner/random/burgerstation/loot/odd_safe,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
 "cfG" = (
@@ -31129,14 +31127,7 @@
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 9
 	},
-/obj/structure/rack,
-/obj/item/stack/sheet/iron/twenty,
-/obj/item/stack/sheet/glass{
-	amount = 20;
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/stack/cable_coil/five,
+/obj/machinery/recharge_station,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/aft)
 "cAz" = (
@@ -31185,10 +31176,9 @@
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "cAD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/machine/cyborgrecharger,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/plating,
-/area/station/maintenance/port/aft)
+/area/station/maintenance/aft)
 "cAE" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on,
 /turf/open/floor/engine,
@@ -31231,8 +31221,17 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/recharge_station,
 /obj/machinery/light/small/directional/south,
+/obj/item/storage/medkit/mechanical/regular,
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/glass{
+	amount = 20;
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/stack/cable_coil/five,
+/obj/item/circuitboard/machine/cyborgrecharger,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/aft)
 "cAL" = (
@@ -42794,6 +42793,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
+"jTg" = (
+/obj/structure/sign/warning/vacuum/external/directional/west,
+/turf/open/floor/plating,
+/area/station/maintenance/aft)
 "jTp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/circuitboard/machine/experimentor,
@@ -56484,7 +56487,7 @@
 "uam" = (
 /obj/structure/trash_pile,
 /turf/open/floor/plating,
-/area/space)
+/area/space/nearstation)
 "uar" = (
 /obj/machinery/button/door{
 	desc = "A remote control switch for the exit.";
@@ -81668,7 +81671,7 @@ bCq
 cAy
 cAB
 cAB
-cAD
+vLX
 cAH
 cfw
 cgA
@@ -103787,7 +103790,7 @@ bzs
 bzs
 xzh
 xzh
-xzh
+sUX
 xzh
 xzh
 xzh
@@ -104295,8 +104298,8 @@ pmh
 bUY
 bkk
 bWT
-bAw
-bAw
+jTg
+cAD
 ccz
 tZn
 cbF
@@ -104559,8 +104562,8 @@ bAO
 uam
 crP
 crP
-xzh
-xzh
+sUX
+bvb
 xzh
 xzh
 xzh
@@ -104813,8 +104816,8 @@ sUX
 sUX
 xzh
 xzh
-xzh
-xzh
+sUX
+sUX
 xzh
 xzh
 xzh
