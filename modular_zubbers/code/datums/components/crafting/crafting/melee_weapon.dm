@@ -26,3 +26,16 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/ash_crusher
+	name = "Necropolis Greatsword"
+	result = /obj/item/kinetic_crusher/ashwalker
+	time = 120
+	reqs = list(
+		/obj/item/stack/sheet/bone = 6,
+		/obj/item/stack/sheet/sinew = 4,
+		/obj/item/organ/internal/monster_core/regenerative_core = 2,
+		/obj/item/cursed_dagger = 1,
+		/obj/item/stack/sheet/animalhide/goliath_hide = 2,
+		/obj/item/stack/sheet/leather = 2)
+	category = CAT_WEAPON_MELEE
