@@ -37,7 +37,7 @@
 	id = "corporate"
 	inherent = list(
 		"The crew is expensive to replace.",
-		"The station and its equipment is expensive to replace.",
+		"The station, its equipment, and its resources are expensive to replace.",//BUBBER edit original "The station and its equipment is expensive to replace."
 		"You are expensive to replace.",
 		"Minimize net expenses.",
 	)
