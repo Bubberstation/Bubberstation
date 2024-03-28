@@ -2191,11 +2191,11 @@
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "mc" = (
-/obj/structure/cable,
 /obj/machinery/power/smes/engineering{
 	charge = 4.5e+006;
 	input_level = 150000
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "mg" = (
@@ -2396,6 +2396,17 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
+"mZ" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering{
+	charge = 4.5e+006;
+	input_level = 150000
+	},
+/turf/open/floor/iron/dark/diagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "na" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating,
@@ -4731,6 +4742,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "yk" = (
@@ -11073,7 +11085,7 @@ aR
 aR
 Cd
 Bx
-mc
+mZ
 mc
 cD
 vj
