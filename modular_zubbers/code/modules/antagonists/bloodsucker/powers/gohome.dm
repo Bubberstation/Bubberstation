@@ -83,10 +83,10 @@
 
 /datum/action/cooldown/bloodsucker/gohome/proc/teleport_to_coffin(mob/living/carbon/user)
 	var/drop_item = FALSE
-	var/turf/current_turf = get_turf(owner)
+	var/turf/current_turf = get_turf(user)
 	// If we aren't in the dark, anyone watching us will cause us to drop out stuff
 	if(current_turf && current_turf.lighting_object && current_turf.get_lumcount() >= 0.2)
-		for(var/mob/living/watchers in viewers(world.view, get_turf(owner)) - owner)
+		for(var/mob/living/watchers in viewers(world.view, get_turf(user)) - user)
 			if(!watchers.client)
 				continue
 			if(watchers.has_unlimited_silicon_privilege)
@@ -118,10 +118,8 @@
 	new new_mob(current_turf)
 	/// TELEPORT: Move to Coffin & Close it!
 	user.set_resting(TRUE, TRUE, FALSE)
-	do_teleport(owner, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
-	bloodsuckerdatum_power.coffin.close(owner)
-	bloodsuckerdatum_power.coffin.take_contents()
-	playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, 15, 1, -3)
+	do_teleport(user, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
+	bloodsuckerdatum_power.coffin.force_enter(user)
 
 	DeactivatePower()
 
