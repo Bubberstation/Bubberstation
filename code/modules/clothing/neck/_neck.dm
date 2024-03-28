@@ -424,10 +424,12 @@
 	fire = 50
 	acid = 40
 
+/*
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	if(!ismonkey(M))
 		return FALSE
 	return ..()
+*/ //BUBBER EDIT END: LET ME WEAR MY PET COLLARS
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = sanitize_name(tgui_input_text(user, "Would you like to change the name on the tag?", "Pet Naming", "Spot", MAX_NAME_LEN))
@@ -469,10 +471,10 @@
 		var/true_price = round(price*profit_scaling)
 		to_chat(user, span_notice("[selling ? "Sold" : "Getting the price of"] [I], value: <b>[true_price]</b> credits[I.contents.len ? " (exportable contents included)" : ""].[profit_scaling < 1 && selling ? "<b>[round(price-true_price)]</b> credit\s taken as processing fee\s." : ""]"))
 		if(selling)
-			new /obj/item/holochip(get_turf(user),true_price)
+			new /obj/item/holochip(get_turf(user), true_price)
 	else
 		to_chat(user, span_warning("There is no export value for [I] or any items within it."))
-		
+
 	return .
 
 /obj/item/clothing/neck/beads

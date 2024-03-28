@@ -181,11 +181,11 @@
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	switch(light_system)
-		if(MOVABLE_LIGHT)
+		if(OVERLAY_LIGHT)
 			AddComponent(/datum/component/overlay_lighting)
-		if(MOVABLE_LIGHT_DIRECTIONAL)
+		if(OVERLAY_LIGHT_DIRECTIONAL)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE)
-		if(MOVABLE_LIGHT_BEAM)
+		if(OVERLAY_LIGHT_BEAM)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, is_beam = TRUE)
 
 /atom/movable/Destroy(force)
@@ -479,7 +479,12 @@
 		if(NAMEOF(src, glide_size))
 			set_glide_size(var_value)
 			. = TRUE
-
+		// THE BUBBER EDIT ADDITION BEGIN - BLOOPER
+		if(NAMEOF(src, blooper)) // Sorry, Vishenka.
+			if(isfile(var_value))
+				blooper = sound(var_value) //bark() expects vocal_bark to already be a sound datum, for performance reasons. adminbus QoL!
+			. = TRUE
+		// THE BUBBER EDIT ADDITION END
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
 		return

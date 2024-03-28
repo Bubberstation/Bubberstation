@@ -1,18 +1,17 @@
 /area/station/solars/asteroid
-	name = "\improper Asteroid Solar Array"
+	name = "\improper Ministation Solar Array"
 	icon_state = "panelsAF"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
 /area/station/engineering/atmos/asteroid
-	name = "\improper Asteroid Atmospherics Room"
+	name = "\improper Ministation Atmospherics Room"
 	icon_state = "atmos"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
 /area/station/engineering/asteroid_lobby
-	name = "\improper Asteroid Lobby"
+	name = "\improper Ministation Lobby"
 	icon_state = "engine_hallway"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
 
+
+//Additiional Station Areas
 /area/station/engineering/supermatter/emitter
 	name = "\improper Supermatter Emitter Room"
 	icon_state = "engine_control"
@@ -138,3 +137,13 @@
 
 /area/station/cargo/miningfoundry/event_protected
 	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+//Missing Lavaland Generators
+/area/lavaland/underground/unexplored
+	icon_state = "unexplored"
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/lavaland
+
+/area/lavaland/underground/unexplored/danger
+	icon_state = "danger"
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
