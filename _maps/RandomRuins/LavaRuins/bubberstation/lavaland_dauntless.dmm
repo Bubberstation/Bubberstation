@@ -226,13 +226,18 @@
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "bg" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/siding/dark,
-/obj/structure/sign/warning/radiation/directional/south,
-/turf/open/floor/iron/dark/diagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering)
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/hedge,
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 1
+	},
+/obj/structure/sign/painting/library{
+	pixel_y = 30
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "bh" = (
 /obj/effect/turf_decal/trimline/dark_green/corner{
 	dir = 8
@@ -2196,6 +2201,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/structure/cable,
 /obj/machinery/light/cold/directional/north,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "mh" = (
@@ -4063,7 +4069,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
-/obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
@@ -4895,18 +4900,16 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "yV" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/effect/turf_decal/trimline/purple/line{
+	dir = 4
 	},
-/obj/structure/hedge,
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 1
-	},
-/obj/structure/sign/painting/library{
-	pixel_y = 30
-	},
-/turf/open/floor/carpet/royalblack,
-/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/structure/extinguisher_cabinet/directional/east,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "yZ" = (
 /obj/effect/turf_decal/tile/dark_green/full,
 /turf/open/floor/iron/dark,
@@ -8975,6 +8978,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"RL" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/sign/warning/radiation/directional/south,
+/turf/open/floor/iron/dark/diagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "RM" = (
 /obj/effect/turf_decal/trimline/dark_green/corner{
 	dir = 1
@@ -11292,7 +11303,7 @@ Vs
 PB
 um
 LA
-yV
+bg
 ST
 do
 nx
@@ -11380,7 +11391,7 @@ GU
 ZN
 lC
 Bk
-bg
+RL
 ho
 ho
 na
@@ -12573,7 +12584,7 @@ sT
 ps
 qZ
 nX
-sT
+qZ
 FI
 Fr
 Mg
@@ -12640,7 +12651,7 @@ hD
 fH
 EN
 EN
-EN
+yV
 EN
 EN
 jr
