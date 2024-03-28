@@ -81,6 +81,10 @@
 //organ slots
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
 #define ORGAN_SLOT_APPENDIX "appendix"
+#define ORGAN_SLOT_BELLY "belly"
+#define ORGAN_CHEST_GENITALS ORGAN_SLOT_BREASTS //Temporary as I bring the code into here
+#define ORGAN_GROIN_GENITALS ORGAN_SLOT_PENIS, ORGAN_SLOT_WOMB, ORGAN_SLOT_VAGINA, ORGAN_SLOT_TESTICLES, ORGAN_SLOT_BUTT
+#define ORGAN_BELLY_GENITALS ORGAN_SLOT_BUTT
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
 #define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"

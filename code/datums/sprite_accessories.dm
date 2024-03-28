@@ -1732,6 +1732,10 @@
 // MutantParts Definitions //
 /////////////////////////////
 
+/datum/sprite_accessory/belly
+
+
+
 /datum/sprite_accessory/body_markings
 	icon = 'icons/mob/human/species/lizard/lizard_misc.dmi'
 
