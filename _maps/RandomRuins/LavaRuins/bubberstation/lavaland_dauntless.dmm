@@ -788,6 +788,10 @@
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/table,
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/machinery/reagentgrinder{
+	pixel_y = 11;
+	pixel_x = -1
+	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "en" = (
@@ -2691,7 +2695,6 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "oy" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/table,
 /obj/item/reagent_containers/condiment/peppermill{
 	pixel_y = 15;
@@ -2701,9 +2704,7 @@
 	pixel_y = 9;
 	pixel_x = 11
 	},
-/turf/open/floor/iron/kitchen{
-	dir = 4
-	},
+/turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "oD" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -3836,10 +3837,6 @@
 /obj/machinery/camera/autoname/directional/west{
 	network = list("dauntless")
 	},
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 8
-	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -4571,7 +4568,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/machinery/reagentgrinder,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "xq" = (
@@ -5408,7 +5404,8 @@
 	},
 /obj/structure/table,
 /obj/machinery/processor{
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 10
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
@@ -6744,7 +6741,14 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/machinery/griddle,
+/obj/structure/table,
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/item/storage/belt/military/snack,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "GT" = (
@@ -7986,21 +7990,8 @@
 "ML" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/table,
-/obj/item/clothing/accessory/armband/hydro{
-	name = "Service Armband";
-	pixel_y = 1;
-	pixel_x = -3
-	},
-/obj/item/kitchen/rollingpin{
-	pixel_x = -9;
-	pixel_y = 4
-	},
-/obj/item/knife{
-	pixel_y = 3;
-	pixel_x = 6
-	},
-/obj/item/reagent_containers/condiment/enzyme{
-	pixel_x = 12
+/obj/machinery/microwave{
+	pixel_y = 8
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
@@ -8309,8 +8300,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/machinery/oven/range,
 /obj/machinery/light/cold/directional/west,
+/obj/machinery/griddle,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Oy" = (
@@ -8473,6 +8464,26 @@
 /obj/structure/sign/flag/syndicate/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+"PE" = (
+/obj/structure/table,
+/obj/item/clothing/accessory/armband/hydro{
+	name = "Service Armband";
+	pixel_y = 1;
+	pixel_x = -3
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/knife{
+	pixel_y = 3;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/condiment/enzyme{
+	pixel_x = 12
+	},
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "PF" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/hidden/layer2{
 	dir = 5
@@ -8923,14 +8934,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/structure/table,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/storage/belt/military/snack,
-/obj/effect/spawner/random/food_or_drink/donkpockets{
-	pixel_x = -8;
-	pixel_y = 21
-	},
+/obj/machinery/oven/range,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Rz" = (
@@ -11842,7 +11846,7 @@ aR
 hV
 XS
 ke
-oy
+ke
 WU
 MA
 th
@@ -11907,8 +11911,8 @@ Cq
 Fy
 Fy
 oE
-th
-th
+oy
+PE
 th
 ML
 Fe
