@@ -120,6 +120,7 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
+/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "aG" = (
@@ -436,7 +437,6 @@
 	},
 /area/ruin/syndicate_ice_base/main)
 "cS" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -750,10 +750,10 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "eL" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/turf_decal/tile/dark_blue/half{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/large,
 /area/ruin/syndicate_ice_base/telecomms)
 "eN" = (
@@ -2412,11 +2412,8 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "sP" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/holofloor/stairs/left{
 	dir = 8
@@ -2449,7 +2446,7 @@
 "sZ" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_ice_base/main)
+/area/icemoon/underground/explored)
 "ta" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/iron/dark/smooth_large,
@@ -3756,13 +3753,13 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
 "Eq" = (
-/obj/effect/turf_decal/tile/dark_blue/half{
-	dir = 4
+/obj/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/flora/bush/flowers_yw,
+/obj/machinery/door/poddoor{
+	id = "interdynesaunacargo"
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/large,
-/area/ruin/syndicate_ice_base/telecomms)
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/gym)
 "Er" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -4589,6 +4586,7 @@
 /obj/item/pen{
 	pixel_y = 4
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/large,
 /area/ruin/syndicate_ice_base/telecomms)
 "KN" = (
@@ -5145,7 +5143,9 @@
 	pixel_x = 1;
 	pixel_y = -1
 	},
-/obj/structure/extinguisher_cabinet/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "OV" = (
@@ -5906,7 +5906,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/airalarm/directional/south{
 	req_access = list("syndicate")
 	},
@@ -6200,11 +6199,11 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "XL" = (
-/obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/dark_blue/half{
 	dir = 8
 	},
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light_switch/directional/west,
 /turf/open/floor/iron/large,
 /area/ruin/syndicate_ice_base/telecomms)
@@ -6341,7 +6340,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/bar)
 "YA" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6351,6 +6349,10 @@
 	dir = 1
 	},
 /obj/machinery/firealarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/large,
 /area/ruin/syndicate_ice_base/telecomms)
 "YB" = (
@@ -8358,7 +8360,7 @@ Ou
 NJ
 IP
 bd
-sZ
+ZU
 WM
 ab
 ab
@@ -8381,7 +8383,7 @@ BE
 BE
 se
 WF
-CP
+Eq
 CP
 DG
 iN
@@ -8536,7 +8538,7 @@ pe
 td
 td
 ap
-ab
+sZ
 ab
 ab
 ac
@@ -8614,7 +8616,7 @@ ab
 BE
 Pv
 Vl
-Eq
+Vl
 Vs
 wr
 cx
