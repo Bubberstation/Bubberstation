@@ -2784,17 +2784,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "oW" = (
-/obj/machinery/turretid{
-	ailock = 1;
-	control_area = "/area/ruin/space/has_grav/bubbers/dauntless/command/vault";
-	dir = 1;
-	icon_state = "control_kill";
-	lethal = 1;
-	name = "Base turret controls";
-	pixel_y = 30;
-	req_access = list("syndicate_leader");
-	shoot_cyborgs = 1
-	},
 /obj/structure/safe,
 /obj/item/reagent_containers/heroinbrick{
 	desc = "A brick of stimulants meant for use by Tiger Cooperative agents. It seems this one's just a brittle block of heroin.";
@@ -3092,6 +3081,17 @@
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
+	},
+/obj/machinery/turretid{
+	ailock = 1;
+	control_area = "/area/ruin/space/has_grav/bubbers/dauntless/command/vault";
+	dir = 1;
+	icon_state = "control_kill";
+	lethal = 1;
+	name = "Base turret controls";
+	pixel_y = 30;
+	req_access = list("syndicate_leader");
+	shoot_cyborgs = 1
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
