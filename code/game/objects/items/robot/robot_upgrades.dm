@@ -52,7 +52,7 @@
 		R.updatename()
 		if(oldname == R.real_name)
 			R.notify_ai(AI_NOTIFICATION_CYBORG_RENAMED, oldname, R.real_name)
-		usr.log_message("used a cyborg reclassification board to rename [oldkeyname] to [key_name(R)]", LOG_GAME)
+		usr.log_message("used a cyborg reclassification board to rename [oldkeyname] to [key_name(R)]", LOG_GAME, redacted_copy = "used a cyborg reclassification board to rename [oldkeyname] to [R]") // BUBBER EDIT - PUBLIC LOGS
 
 /obj/item/borg/upgrade/disablercooler
 	name = "cyborg rapid disabler cooling module"
