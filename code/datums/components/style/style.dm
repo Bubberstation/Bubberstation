@@ -424,13 +424,23 @@
 
 	add_action(ACTION_GIBTONITE_DEFUSED, min(40, 20 * (10 - det_time))) // 40 to 180 points depending on speed
 
+//BUBBER EDIT START
+/*
 /datum/component/style/proc/on_crusher_detonate(datum/source, mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
+*/
+/datum/component/style/proc/on_crusher_detonate(datum/component/kinetic_crusher/source, mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
+//BUBBER EDIT END
 	SIGNAL_HANDLER
 
 	if(target.stat == DEAD)
 		return
 
+	//BUBBER EDIT START
+	/*
 	var/has_brimdemon_trophy = locate(/obj/item/crusher_trophy/brimdemon_fang) in crusher.trophies
+	*/
+	var/has_brimdemon_trophy = locate(/obj/item/crusher_trophy/brimdemon_fang) in source.stored_trophies
+	//BUBBER EDIT END
 
 	add_action(ACTION_MARK_DETONATED, round((backstabbed ? 60 : 30) * (ismegafauna(target) ? 1.5 : 1) * (has_brimdemon_trophy ? 1.25 : 1)))
 
