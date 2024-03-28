@@ -111,7 +111,7 @@
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "ay" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
@@ -226,18 +226,13 @@
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "bg" = (
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/line,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
-/obj/structure/extinguisher_cabinet/directional/south,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/cargo)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/sign/warning/radiation/directional/south,
+/turf/open/floor/iron/dark/diagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "bh" = (
 /obj/effect/turf_decal/trimline/dark_green/corner{
 	dir = 8
@@ -532,7 +527,6 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
-/obj/machinery/light/small/red/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
@@ -2149,7 +2143,9 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "lG" = (
-/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
@@ -2643,6 +2639,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "og" = (
@@ -3562,6 +3561,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "sI" = (
 /obj/machinery/icecream_vat,
+/obj/machinery/light/small/red/directional/south,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "sJ" = (
@@ -4797,6 +4797,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/enginetech,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "yF" = (
@@ -4893,20 +4894,6 @@
 /obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
-"yV" = (
-/obj/item/stack/sheet/plastitaniumglass/fifty{
-	pixel_y = 3;
-	pixel_x = 3
-	},
-/obj/item/stack/sheet/mineral/plastitanium{
-	amount = 50;
-	pixel_y = 7
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/dark,
-/obj/structure/extinguisher_cabinet/directional/south,
-/turf/open/floor/iron/dark/diagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "yZ" = (
 /obj/effect/turf_decal/tile/dark_green/full,
 /turf/open/floor/iron/dark,
@@ -7671,7 +7658,6 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/shower)
 "Lk" = (
-/obj/structure/sign/warning/radiation/directional/south,
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -8243,6 +8229,14 @@
 	pixel_y = 11;
 	pixel_x = -11
 	},
+/obj/item/stack/sheet/mineral/plastitanium{
+	amount = 50;
+	pixel_y = 7
+	},
+/obj/item/stack/sheet/plastitaniumglass/fifty{
+	pixel_y = 3;
+	pixel_x = 3
+	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "Oj" = (
@@ -8508,6 +8502,7 @@
 /obj/machinery/camera/autoname/directional/south{
 	network = list("dauntless")
 	},
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "PN" = (
@@ -11311,7 +11306,7 @@ tB
 tB
 tB
 tB
-bg
+xc
 aR
 qv
 vA
@@ -11381,8 +11376,8 @@ GU
 ZN
 lC
 Bk
-Sf
-yV
+bg
+ho
 ho
 na
 Ew
