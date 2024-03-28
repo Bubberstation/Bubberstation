@@ -40,6 +40,22 @@
 	design_ids += list(
 		"borg_upgrade_advcutter",
 	)
+
+// Integrated circuits tech
+
+/datum/techweb_node/basic_circuitry/New()
+	design_ids += "comp_ntnet_send_literal"
+	. = ..()
+
+/datum/techweb_node/bci_shells/New()
+	design_ids += "comp_eye_camera"
+	design_ids += "comp_user_status"
+	. = ..()
+
+/datum/techweb_node/movable_shells_tech/New()
+	design_ids += "comp_drone_camera"
+	. = ..()
+
 // Computer Tech
 /datum/techweb_node/computer_board_gaming/New()
 	. = ..()
@@ -65,4 +81,5 @@
 	design_ids -= "mag_autorifle_ap"
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
+	design_ids += "comp_reagent_injector_bluespace"
 	. = ..()
