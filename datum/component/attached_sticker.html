@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;attached_sticker - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/attached_sticker.html#var">Var Details</a> - <a href="datum/component/attached_sticker.html#proc">Proc Details</a></header>
+<main>
+<h1>attached_sticker <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/attached_sticker.html">attached_sticker</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/attached_sticker.html#var/signal_turf">signal_turf</a></th><td>The turf our COMSIG_TURF_EXPOSE is registered to, so we can unregister it later.</td></tr>
+            <tr><th><a href="datum/component/attached_sticker.html#var/sticker">sticker</a></th><td>Our physical sticker to drop</td></tr>
+            <tr><th><a href="datum/component/attached_sticker.html#var/sticker_overlay">sticker_overlay</a></th><td>The overlay we apply to things we stick to</td></tr>
+            <tr><th><a href="datum/component/attached_sticker.html#var/washable">washable</a></th><td>Can we be washed off?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/attached_sticker.html#proc/on_turf_expose">on_turf_expose</a></th><td>Signal handler for COMSIG_TURF_EXPOSE, deletes this sticker if the temperature is above 100C and it is flammable</td></tr>
+            <tr><th><a href="datum/component/attached_sticker.html#proc/peel">peel</a></th><td>Move sticker item from nullspace, delete this component, cut overlay</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/signal_turf"><aside class="declaration">var </aside>signal_turf
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 8"/></a></h3>
+        <p>The turf our COMSIG_TURF_EXPOSE is registered to, so we can unregister it later.</p><h3 id="var/sticker"><aside class="declaration">var </aside>sticker
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 10"/></a></h3>
+        <p>Our physical sticker to drop</p><h3 id="var/sticker_overlay"><aside class="declaration">var </aside>sticker_overlay
+            <aside>&ndash; /mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 6"/></a></h3>
+        <p>The overlay we apply to things we stick to</p><h3 id="var/washable"><aside class="declaration">var </aside>washable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 12"/></a></h3>
+        <p>Can we be washed off?</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_turf_expose"><aside class="declaration">proc </aside>on_turf_expose<aside>(/<a href="datum.html">datum</a>/source, /<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/air, exposed_temperature) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 74"/></a></aside>
+        </h3>
+        <p>Signal handler for COMSIG_TURF_EXPOSE, deletes this sticker if the temperature is above 100C and it is flammable</p><h3 id="proc/peel"><aside class="declaration">proc </aside>peel<aside>(/<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/attached_sticker.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attached_sticker.dm 45"/></a></aside>
+        </h3>
+        <p>Move sticker item from nullspace, delete this component, cut overlay</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/4301c18b3eb66036768bcc685d8e95bd879c3f27">4301c18</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;orbit_poll - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/orbit_poll.html#var">Var Details</a> - <a href="datum/component/orbit_poll.html#proc">Proc Details</a></header>
+<main>
+<h1>orbit_poll <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/orbit_poll.html">orbit_poll</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 21"/></a></h1>
+
+<p>A replacement for the standard poll_ghost_candidate.
+Use this to subtly ask players to join - it picks from orbiters.
+Please use named arguments for this.</p>
+<p>@params ignore_key - Required so it doesn't spam
+@params job_bans - You can insert a list or single items here.
+@params cb - Invokes this proc and appends the poll winner as the last argument, mob/dead/observer/ghost
+@params title - Optional. Useful if the role name does not match the parent.</p>
+<p>@usage</p>
+<pre><code>var/datum/callback/cb = CALLBACK(src, PROC_REF(do_stuff), arg1, arg2)
+AddComponent(/datum/component/orbit_poll, \
+  ignore_key = POLL_IGNORE_EXAMPLE, \
+  job_bans = ROLE_EXAMPLE or list(ROLE_EXAMPLE, ROLE_EXAMPLE2), \
+  title = &quot;Use this if you want something other than the parent name&quot;, \
+  to_call = cb, \
+)
+</code></pre><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/orbit_poll.html#var/job_bans">job_bans</a></th><td>Prevent players with this ban from being selected</td></tr>
+            <tr><th><a href="datum/component/orbit_poll.html#var/title">title</a></th><td>Title of the role to announce after it's done</td></tr>
+            <tr><th><a href="datum/component/orbit_poll.html#var/to_call">to_call</a></th><td>Proc to invoke whenever the poll is complete</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/orbit_poll.html#proc/end_poll">end_poll</a></th><td>Concludes the poll, picking one of the orbiters</td></tr>
+            <tr><th><a href="datum/component/orbit_poll.html#proc/phone_home">phone_home</a></th><td>Make sure to call your parents my dude</td></tr>
+            <tr><th><a href="datum/component/orbit_poll.html#proc/pick_and_offer">pick_and_offer</a></th><td>Takes a list, picks a candidate, and offers the role to them.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/job_bans"><aside class="declaration">var </aside>job_bans
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 23"/></a></h3>
+        <p>Prevent players with this ban from being selected</p><h3 id="var/title"><aside class="declaration">var </aside>title
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 25"/></a></h3>
+        <p>Title of the role to announce after it's done</p><h3 id="var/to_call"><aside class="declaration">var </aside>to_call
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 29"/></a></h3>
+        <p>Proc to invoke whenever the poll is complete</p><h2 id="proc">Proc Details</h2><h3 id="proc/end_poll"><aside class="declaration">proc </aside>end_poll<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 74"/></a></aside>
+        </h3>
+        <p>Concludes the poll, picking one of the orbiters</p><h3 id="proc/phone_home"><aside class="declaration">proc </aside>phone_home<aside>(/<a href="mob.html">mob</a>/<a href="mob/dead/observer.html">dead/observer</a>/chosen) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 131"/></a></aside>
+        </h3>
+        <p>Make sure to call your parents my dude</p><h3 id="proc/pick_and_offer"><aside class="declaration">proc </aside>pick_and_offer<aside>(/list/volunteers) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/4301c18b3eb66036768bcc685d8e95bd879c3f27/code/datums/components/orbit_poll.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;orbit_poll.dm 110"/></a></aside>
+        </h3>
+        <p>Takes a list, picks a candidate, and offers the role to them.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/4301c18b3eb66036768bcc685d8e95bd879c3f27">4301c18</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
