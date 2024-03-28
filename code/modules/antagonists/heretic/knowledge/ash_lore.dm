@@ -166,7 +166,7 @@
 	gain_text = "The fire was inescapable, and yet, life remained in his charred body. \
 		The Nightwatcher was a particular man, always watching."
 	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/ash_final,
+		// /datum/heretic_knowledge/ultimate/ash_final, BUBBERSTATION CHANGE: NO MORE ASCENSIONS.
 		/datum/heretic_knowledge/summon/ashy,
 		/datum/heretic_knowledge/eldritch_coin,
 	)

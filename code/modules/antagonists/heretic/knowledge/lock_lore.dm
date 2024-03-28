@@ -174,7 +174,7 @@
 		You are invincible but unable to harm anything. Cancelled by being hit with an anti-magic item."
 	gain_text = "Jealously, the Guard and the Hound hunted me. But I unlocked my form, and was but a haze, untouchable."
 	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/lock_final,
+		// /datum/heretic_knowledge/ultimate/lock_final, BUBBERSTATION CHANGE: NO MORE ASCENSIONS.
 		/datum/heretic_knowledge/spell/apetra_vulnera,
 	)
 	route = PATH_LOCK

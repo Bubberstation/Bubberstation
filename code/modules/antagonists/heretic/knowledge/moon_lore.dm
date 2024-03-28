@@ -159,7 +159,7 @@
 	gain_text = "I grabbed his hand and we rose, those who saw the truth rose with us. \
 		The ringleader pointed up and the dim light of truth illuminated us further."
 	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/moon_final,
+		// /datum/heretic_knowledge/ultimate/moon_final, BUBBERSTATION CHANGE: NO MORE ASCENSIONS.
 		/datum/heretic_knowledge/summon/ashy,
 	)
 	spell_to_add = /datum/action/cooldown/spell/aoe/moon_ringleader
