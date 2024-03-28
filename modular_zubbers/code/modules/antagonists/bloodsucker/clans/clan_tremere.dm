@@ -22,7 +22,7 @@
 			bloodsuckerdatum.RemovePower(power)
 	return ..()
 
-/datum/bloodsucker_clan/tremere/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/tremere/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	. = ..()
 	var/area/current_area = get_area(bloodsuckerdatum.owner.current)
 	if(istype(current_area, /area/station/service/chapel))
