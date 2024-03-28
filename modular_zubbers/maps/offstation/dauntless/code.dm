@@ -9,5 +9,5 @@
 	description = "Highly secretive syndicate spy vessel hidden behind rolling storms of ash. It's assigned to observe NanoTrasen activities after the destruction of DS-2"
 	suffix = "lavaland_dauntless.dmm"
 	allow_duplicates = FALSE
-	never_spawn_with = list(/datum/map_template/ruin/icemoon/underground/skyrat/syndicate_base)
+	never_spawn_with = list(/datum/map_template/ruin/icemoon/bubberstation/syndicate_base)
 	always_place = TRUE
