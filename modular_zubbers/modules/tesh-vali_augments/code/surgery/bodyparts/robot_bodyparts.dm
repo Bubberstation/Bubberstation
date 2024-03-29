@@ -22,7 +22,7 @@
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -36,7 +36,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -50,7 +50,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -64,7 +64,7 @@
 	icon_static =  'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -78,7 +78,7 @@
 	icon_static =  'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	brute_modifier = 1
 	burn_modifier = 0.9
@@ -91,7 +91,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -109,7 +109,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -129,7 +129,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -148,7 +148,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -167,7 +167,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -186,7 +186,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -205,7 +205,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -226,7 +226,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -246,7 +246,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 0.5
@@ -267,7 +267,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -286,7 +286,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -305,7 +305,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -324,7 +324,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -343,7 +343,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -362,7 +362,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -381,7 +381,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -400,7 +400,7 @@
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-	limb_id = SPECIES_TESHARI
+
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
