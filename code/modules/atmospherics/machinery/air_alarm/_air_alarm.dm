@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		if(AIR_ALARM_BUILD_COMPLETE)
 			. += span_notice("Right-click to [locked ? "unlock" : "lock"] the interface.")
 
-/obj/machinery/airalarm/ui_status(mob/user)
+/obj/machinery/airalarm/ui_status(mob/user, datum/ui_state/state)
 	if(user.has_unlimited_silicon_privilege && aidisabled)
 		to_chat(user, "AI control has been disabled.")
 	else if(!shorted)
@@ -232,6 +232,8 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	data["dangerLevel"] = danger_level
 	data["atmosAlarm"] = !!my_area.active_alarms[ALARM_ATMOS]
 	data["fireAlarm"] = my_area.fire
+	data["faultStatus"] = my_area.fault_status
+	data["faultLocation"] = my_area.fault_location
 	data["sensor"] = !!connected_sensor
 	data["allowLinkChange"] = allow_link_change
 
@@ -565,38 +567,30 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		alarm_manager.send_alarm(ALARM_ATMOS)
 		if(pressure <= WARNING_LOW_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low pressure and temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! Low pressure and high temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High pressure and temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! High pressure and low temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE)
 			warning_message = "Danger! Low pressure detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE)
 			warning_message = "Danger! High pressure detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		else
 			warning_message = null

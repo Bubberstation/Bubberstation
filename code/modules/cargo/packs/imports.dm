@@ -71,13 +71,6 @@
 	crate_name = "bananium sheet crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
-/datum/supply_pack/imports/naturalbait
-	name = "Freshness Jars full of Natural Bait"
-	desc = "Homemade in the Spinward Sector."
-	cost = 2000 //rock on
-	contains = list(/obj/item/storage/pill_bottle/naturalbait)
-	crate_name = "fishing bait crate"
-
 /datum/supply_pack/imports/dumpstercorpse
 	name = "A....Dumpster?"
 	desc = "Why does it smell so bad...."
@@ -310,8 +303,8 @@
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
-
-/datum/supply_pack/imports/materials_market - RENABLE IF FIXED UPSTREAM
+Removal End */
+/datum/supply_pack/imports/materials_market
 	name = "Galactic Materials Market Crate"
 	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
 	cost = CARGO_CRATE_VALUE * 3
@@ -324,4 +317,22 @@
 	)
 	crate_name = "materials market crate"
 	crate_type = /obj/structure/closet/crate/cargo
-Removal End */
+
+/datum/supply_pack/imports/floortilecamo
+	name = "Floor-tile Camouflage Uniform"
+	desc = "Hey there, looking to surprise somebody? Spy? Steal? Then you're lucky, meet our newest \
+		floor-tile 'NT SCUM' styled camouflage fatigues. This is the ultimate \
+		espionage uniform used by the very best. Providing the best \
+		flexibility, with our latest Camo-tech threads. Perfect for \
+		risky espionage hallway operations. Enjoy our product!"
+	contraband = TRUE
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(/obj/item/clothing/under/syndicate/floortilecamo = 3,
+			/obj/item/clothing/mask/floortilebalaclava = 3,
+			/obj/item/clothing/gloves/combat/floortile = 3,
+			/obj/item/clothing/shoes/jackboots/floortile = 3,
+			/obj/item/storage/backpack/floortile = 3
+	)
+	crate_name = "floortile camouflauge crate"
+	crate_type = /obj/structure/closet/crate/secure/weapon
+
