@@ -193,12 +193,14 @@
 
 /obj/projectile/colossus/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
+/** Bubber edit: No more dusting
 	if(isliving(target))
 		var/mob/living/dust_mob = target
 		if(dust_mob.stat == DEAD)
 			dust_mob.investigate_log("has been dusted by a death bolt (colossus).", INVESTIGATE_DEATHS)
 			dust_mob.dust()
 		return
+*/
 	if(!explode_hit_objects || istype(target, /obj/vehicle/sealed))
 		return
 	if(isturf(target) || isobj(target))
