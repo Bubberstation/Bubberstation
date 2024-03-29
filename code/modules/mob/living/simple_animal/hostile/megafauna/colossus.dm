@@ -193,7 +193,7 @@
 
 /obj/projectile/colossus/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-/**
+/** Bubber edit: No more dusting
 	if(isliving(target))
 		var/mob/living/dust_mob = target
 		if(dust_mob.stat == DEAD)
