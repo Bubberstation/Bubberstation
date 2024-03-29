@@ -14,7 +14,7 @@
 	<b>Epipens</b> are an effective treatment method for synthetic slash/pierce wounds!<br>\n\
 	<b>Nanite Slurry</b> is used to heal minor synthetic <b>brute</b> and <b>burn</b> damage. \
 	overdose is at <b>10u</b>. Overdose heals synthetic organ damage in exchange of overheating and brute damage.<br>\n\
-	<b>Critical system repair pills</b> inside your medkit are used to <b>purposely inflict an overdose</b> of nanite slurry to heal ~ 240 organ damage per pill. (You need to manage their brute and burn!)<br>\n\
+	<b>Critical system repair pills</b> inside your medkit are used to purposely inflict an overdose of nanite slurry to heal ~ <b>240 organ damage</b> per pill. (You need to manage their brute and burn!)<br>\n\
 	<b>Liquid Solder</b> is used to heal <b>positronic damage</b><br>\n\
 	<b>System Cleaner</b> is used to heal synthetic <b>toxin damage</b><br>\n\
 	<b>Dinitrogen Plasmide</b> is used to treat synthetic overheating wounds safely."
