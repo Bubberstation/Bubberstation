@@ -60,7 +60,7 @@
 	if(QDELETED(right_gauntlet))
 		right_gauntlet = null
 
-	if(isnull(left_gauntlet) && isnull(right_gauntlet))
+	if(isnull(left_gauntlet) && isnull(right_gauntlet) && !QDELING(src))
 		qdel(src)
 
 /obj/item/clothing/gloves/kinetic_gauntlets/proc/attack_check(mob/living/user, cancel_attack)
