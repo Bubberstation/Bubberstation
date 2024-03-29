@@ -165,7 +165,7 @@
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 2
 	duration = 8
 	var/target
@@ -193,12 +193,14 @@
 
 /obj/projectile/colossus/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
+/** Bubber edit: No more dusting
 	if(isliving(target))
 		var/mob/living/dust_mob = target
 		if(dust_mob.stat == DEAD)
 			dust_mob.investigate_log("has been dusted by a death bolt (colossus).", INVESTIGATE_DEATHS)
 			dust_mob.dust()
 		return
+*/
 	if(!explode_hit_objects || istype(target, /obj/vehicle/sealed))
 		return
 	if(isturf(target) || isobj(target))
@@ -356,8 +358,7 @@
 
 /obj/machinery/anomalous_crystal/theme_warp/Initialize(mapload)
 	. = ..()
-	var/terrain_type = pick(subtypesof(/datum/dimension_theme))
-	terrain_theme = new terrain_type()
+	terrain_theme = SSmaterials.dimensional_themes[pick(subtypesof(/datum/dimension_theme))]
 	observer_desc = "This crystal changes the area around it to match the theme of \"[terrain_theme.name]\"."
 
 /obj/machinery/anomalous_crystal/theme_warp/ActivationReaction(mob/user, method)
@@ -372,7 +373,7 @@
 	return TRUE
 
 /obj/machinery/anomalous_crystal/theme_warp/Destroy()
-	QDEL_NULL(terrain_theme)
+	terrain_theme = null
 	converted_areas.Cut()
 	return ..()
 

@@ -8,7 +8,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	if(bloodsuckerdatum.bloodsucker_blood_volume > BLOOD_VOLUME_NORMAL)
+	if(bloodsuckerdatum.GetBloodVolume() > BLOOD_VOLUME_NORMAL)
 		return
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
@@ -113,5 +113,5 @@
 // prevents players being trapped in their brain, alive, yet limbless and voiceless
 /obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
-	brain.brainmob.death()
+	brain?.brainmob.death()
 	. = ..()
