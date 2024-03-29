@@ -21,7 +21,7 @@
 	desc = "Contains nanite slurry pills used for <b>critical system repair</b> to induce an overdose in a synthetic to repair organs."
 
 /obj/item/storage/pill_bottle/nanite_slurry/PopulateContents()
-	for(var/i in 1 to 4)
+	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/nanite_slurry(src)
 
 /obj/item/storage/pill_bottle/system_cleaner
