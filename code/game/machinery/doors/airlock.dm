@@ -1192,7 +1192,12 @@
 					if(check_electrified && shock(user,100))
 						prying_so_hard = FALSE
 						return
+					if(istype(I, /obj/item/crowbar/large/doorforcer)) //BUBBER EDIT
+						balloon_alert(user, "The metal of the prybar whines as it reaches failure point, splintering to peices...")//BUBBER EDIT
 					open(BYPASS_DOOR_CHECKS)
+					if(istype(I, /obj/item/crowbar/large/doorforcer))//BUBBER EDIT
+						to_chat (user, span_warning("Forcing the door open with the prybar has caused the tool to break!"))//BUBBER EDIT
+						qdel(I)//BUBBER EDIT
 					take_damage(25, BRUTE, 0, 0) // Enough to sometimes spark
 					if(density && !open(BYPASS_DOOR_CHECKS))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
