@@ -464,7 +464,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/mob/living/living_owner = owner
 	var/last_whisper
 	if(!HAS_TRAIT(living_owner, TRAIT_SUCCUMB_OVERRIDE))
-		last_whisper = tgui_input_text(usr, "Do you have any last words?", "Goodnight, Sweet Prince")
+		last_whisper = tgui_input_text(usr, "Do you have any last words?", "Goodnight, Sweet Prince", encode = FALSE) // saycode already handles sanitization
 	if(isnull(last_whisper))
 		if(!HAS_TRAIT(living_owner, TRAIT_SUCCUMB_OVERRIDE))
 			return
@@ -877,9 +877,6 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		time_left_overlay.maptext = MAPTEXT("<span style='color: [(timeleft <= 10 SECONDS) ? "red" : "white"]'><b>[CEILING(timeleft / (1 SECONDS), 1)]</b></span>")
 		time_left_overlay.transform = time_left_overlay.transform.Translate(4, 19)
 		add_overlay(time_left_overlay)
-	if(isnull(poll))
-		return
-	..()
 
 /atom/movable/screen/alert/poll_alert/Click(location, control, params)
 	. = ..()

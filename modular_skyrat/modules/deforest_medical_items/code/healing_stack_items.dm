@@ -30,7 +30,7 @@
 	var/treatment_sound = 'sound/items/duct_tape_rip.ogg'
 
 // This is only relevant for the types of wounds defined, we can't work if there are none
-/obj/item/stack/medical/wound_recovery/try_heal(mob/living/patient, mob/user, silent)
+/obj/item/stack/medical/wound_recovery/try_heal(mob/living/patient, mob/user, silent = FALSE, looping = FALSE)
 
 	if(patient.has_status_effect(/datum/status_effect/vulnerable_to_damage))
 		patient.balloon_alert(user, "still recovering from last use!")
@@ -72,7 +72,7 @@
 	user.visible_message(span_green("[user] applies [src] to [patient]'s [limb.plaintext_zone]."), span_green("You bandage the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone]."))
 	playsound(patient, treatment_sound, 50, TRUE)
 	woundies.remove_wound()
-	if(!HAS_TRAIT(patient, TRAIT_NUMBED))
+	if(!HAS_TRAIT(patient, TRAIT_ANALGESIA))
 		patient.emote("scream")
 		to_chat(patient, span_userdanger("Your [limb.plaintext_zone] burns like hell as the wounds on it are rapidly healed, fuck!"))
 		patient.add_mood_event("severe_surgery", /datum/mood_event/rapid_wound_healing)
