@@ -570,14 +570,16 @@ SUBSYSTEM_DEF(gamemode)
  * Returns a formatted string all station goals that are available to the station.
  */
 /datum/controller/subsystem/gamemode/proc/generate_station_goal_report()
-	if(!GLOB.station_goals.len)
+	if(!length(SSstation.get_station_goals()))
 		return
 	. = "<hr><b>Special Orders for [station_name()]:</b><BR>"
-	for(var/datum/station_goal/station_goal as anything in GLOB.station_goals)
+	var/list/goal_reports = list()
+	for(var/datum/station_goal/station_goal as anything in SSstation.get_station_goals())
 		station_goal.on_report()
-		. += station_goal.get_report()
-	return
+		goal_reports += station_goal.get_report()
 
+	. += goal_reports.Join("<hr>")
+	return
 /*
  * Generate a list of active station traits to report to the crew.
  *
@@ -687,7 +689,7 @@ SUBSYSTEM_DEF(gamemode)
 	while(possible.len && goal_weights < 1) // station goal budget is 1
 		var/datum/station_goal/picked = pick_n_take(possible)
 		goal_weights += initial(picked.weight)
-		GLOB.station_goals += new picked
+		SSstation.goals_by_type += new picked // does this still work?
 
 //Set result and news report here
 /datum/controller/subsystem/gamemode/proc/set_round_result()
