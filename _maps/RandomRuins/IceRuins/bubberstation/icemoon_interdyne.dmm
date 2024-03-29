@@ -868,14 +868,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "fE" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark_red/half{
-	dir = 1
-	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "fF" = (
@@ -951,11 +945,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/medbay)
 "gq" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
+/obj/structure/sauna_oven,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
@@ -1224,11 +1216,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
-"iK" = (
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood/large,
-/area/ruin/syndicate_ice_base/gym)
 "iL" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 8
@@ -1237,21 +1224,36 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "iN" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
+/obj/structure/closet/crate,
+/obj/item/flashlight{
+	pixel_x = -5;
+	pixel_y = 5
 	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/item/stack/sheet/mineral/wood/fifty{
-	pixel_x = 2;
-	pixel_y = 3
+/obj/item/flashlight{
+	pixel_x = -2;
+	pixel_y = 2
 	},
-/obj/item/reagent_containers/cup/bucket/wooden{
-	pixel_y = 44;
-	pixel_x = 18
+/obj/item/flashlight{
+	pixel_x = 1;
+	pixel_y = -1
 	},
-/turf/open/floor/wood/large,
-/area/ruin/syndicate_ice_base/gym)
+/obj/item/extinguisher{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/extinguisher{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/extinguisher{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/cargo)
 "iQ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -3659,13 +3661,11 @@
 /turf/open/floor/iron/smooth_large,
 /area/ruin/syndicate_ice_base/cargo)
 "DG" = (
-/obj/structure/sauna_oven,
-/obj/structure/sink/directional/south,
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
+/obj/machinery/porta_turret/syndicate{
+	dir = 8
 	},
-/turf/open/floor/wood/large,
-/area/ruin/syndicate_ice_base/gym)
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_ice_base/cargo)
 "DH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5118,36 +5118,22 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/testlab)
 "OS" = (
-/obj/structure/closet/crate,
-/obj/item/flashlight{
-	pixel_x = -5;
-	pixel_y = 5
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/item/reagent_containers/cup/bucket/wooden{
+	pixel_y = 22;
+	pixel_x = 18
 	},
-/obj/item/flashlight{
-	pixel_x = -2;
-	pixel_y = 2
+/obj/structure/table/wood,
+/obj/item/stack/sheet/mineral/wood/fifty{
+	pixel_x = 2;
+	pixel_y = 3
 	},
-/obj/item/flashlight{
-	pixel_x = 1;
-	pixel_y = -1
+/obj/structure/sink/directional/east,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
-/obj/item/extinguisher{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/extinguisher{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/extinguisher{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
+/turf/open/floor/wood/large,
+/area/ruin/syndicate_ice_base/gym)
 "OV" = (
 /obj/structure/chair{
 	dir = 8
@@ -6552,7 +6538,7 @@ aa
 aa
 aa
 aa
-aa
+ac
 aa
 ac
 ac
@@ -6605,13 +6591,13 @@ aa
 aa
 aa
 aa
+ac
+ac
+ac
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ac
+ac
 ac
 ac
 ac
@@ -6661,15 +6647,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 ac
 ac
 ab
@@ -6718,18 +6704,18 @@ aa
 (4,1,1) = {"
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
 ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
 ab
 ab
 ab
@@ -6777,18 +6763,18 @@ aa
 (5,1,1) = {"
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
 ac
 ac
 ac
+ac
+ac
+ac
+ac
+ab
+ac
+ab
+ab
 ab
 ab
 ab
@@ -6835,18 +6821,18 @@ aa
 "}
 (6,1,1) = {"
 aa
-aa
-aa
-aa
-ac
-aa
-aa
-aa
 ac
 ac
 ac
+ab
+ab
+ab
 ac
-ac
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -6893,18 +6879,18 @@ aa
 aa
 "}
 (7,1,1) = {"
-aa
-aa
-aa
-ac
-ac
-ac
 ac
 ac
 ac
 ac
 ab
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -6952,14 +6938,14 @@ ac
 aa
 "}
 (8,1,1) = {"
-aa
-aa
+ac
 ac
 ac
 ab
-ac
-ac
-ac
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -7011,7 +6997,7 @@ aa
 aa
 "}
 (9,1,1) = {"
-aa
+ac
 ac
 ac
 ab
@@ -7070,9 +7056,9 @@ ac
 aa
 "}
 (10,1,1) = {"
-aa
 ac
 ac
+ab
 ab
 ab
 Gr
@@ -7083,7 +7069,7 @@ ab
 ab
 ab
 ab
-ab
+DG
 ab
 ab
 ab
@@ -7129,9 +7115,9 @@ ac
 aa
 "}
 (11,1,1) = {"
-aa
 ac
 ac
+ab
 ab
 zE
 Tv
@@ -7188,9 +7174,9 @@ ac
 ac
 "}
 (12,1,1) = {"
-aa
 ac
 ac
+ab
 ab
 ab
 RV
@@ -7247,9 +7233,9 @@ ac
 ac
 "}
 (13,1,1) = {"
-aa
 ac
 ac
+ab
 ab
 ab
 RV
@@ -7306,9 +7292,9 @@ ac
 ac
 "}
 (14,1,1) = {"
-aa
 ac
 ac
+ab
 ab
 ab
 RV
@@ -8014,7 +8000,7 @@ ac
 ac
 "}
 (26,1,1) = {"
-ac
+aa
 ac
 ac
 ac
@@ -8073,7 +8059,7 @@ ac
 ac
 "}
 (27,1,1) = {"
-ac
+aa
 ac
 ac
 ac
@@ -8132,7 +8118,7 @@ ac
 ac
 "}
 (28,1,1) = {"
-ac
+aa
 ac
 ac
 ac
@@ -8321,12 +8307,12 @@ ab
 RV
 RG
 aE
-OS
+ol
 sP
 ol
 ol
-CP
-CP
+ol
+iN
 WF
 Nm
 oo
@@ -8385,11 +8371,11 @@ se
 WF
 Eq
 CP
-DG
-iN
-Do
-oD
-Vy
+CP
+WF
+Nm
+oo
+fE
 oo
 UK
 Ga
@@ -8445,10 +8431,10 @@ wr
 JB
 eG
 gq
-CL
-co
-RZ
-EO
+OS
+Do
+oD
+Vy
 oo
 Qu
 bN
@@ -8504,10 +8490,10 @@ wr
 cx
 pD
 mH
-pD
-iK
+CL
+co
 RZ
-fE
+EO
 xA
 Qu
 lW
@@ -9249,8 +9235,8 @@ ab
 ab
 ac
 ac
-aa
-aa
+ac
+ac
 "}
 (47,1,1) = {"
 aa
@@ -9365,9 +9351,9 @@ ab
 ab
 ab
 ab
+ab
 ac
 ac
-aa
 aa
 "}
 (49,1,1) = {"
@@ -9426,7 +9412,7 @@ ab
 ab
 ac
 ac
-aa
+ac
 aa
 "}
 (50,1,1) = {"
@@ -9481,12 +9467,12 @@ ab
 ab
 ab
 ab
+ab
 ac
 ac
 ac
 aa
-aa
-aa
+ac
 "}
 (51,1,1) = {"
 aa
@@ -9542,9 +9528,9 @@ ac
 ac
 ac
 ac
-aa
-aa
-aa
+ac
+ac
+ac
 aa
 "}
 (52,1,1) = {"
@@ -9599,10 +9585,10 @@ ac
 ac
 ac
 ac
-aa
-aa
-aa
-aa
+ac
+ac
+ac
+ac
 aa
 aa
 "}
