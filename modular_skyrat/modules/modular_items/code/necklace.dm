@@ -12,7 +12,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "ashnecklace"
 	w_class = WEIGHT_CLASS_SMALL //allows this to fit inside of pockets.
-	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/necklace/ashwalker/cursed
 	name = "cursed ashen necklace"
