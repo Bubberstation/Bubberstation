@@ -21,7 +21,7 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -35,7 +35,7 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -49,7 +49,7 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -63,7 +63,7 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon_static =  'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -77,7 +77,7 @@
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
 	icon_static =  'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	brute_modifier = 1
@@ -90,7 +90,7 @@
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -108,7 +108,7 @@
 	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 
@@ -128,7 +128,7 @@
 	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -147,7 +147,7 @@
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -166,7 +166,7 @@
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -185,7 +185,7 @@
 	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -204,7 +204,7 @@
 	desc = "A skeletal, robotic wing. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -225,7 +225,7 @@
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -245,7 +245,7 @@
 	desc = "A skeletal, robotic hindlimb. Outdated and fragile, but it's still better than nothing. A layer of membranous feathers hides the cheap assembly."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/surplus_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 0.3
@@ -266,7 +266,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -285,7 +285,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -304,7 +304,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -323,7 +323,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -342,7 +342,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -361,7 +361,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -380,7 +380,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
@@ -399,7 +399,7 @@
 	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
 	icon_static = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
 	icon = 'modular_zubbers/modules/tesh-vali_augments/icons/advanced_augments_teshvali.dmi'
-	bodytype = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
