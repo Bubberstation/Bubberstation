@@ -17,7 +17,7 @@
 	throwforce = 5
 	throw_speed = 4
 	armour_penetration = 10
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
+	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*1.15, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*2.075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("slashes", "cuts", "cleaves", "chops", "swipes")
 	attack_verb_simple = list("cleave", "chop", "cut", "swipe", "slash")
@@ -60,7 +60,7 @@
 	throwforce = 5
 	throw_speed = 4
 	armour_penetration = 15
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
+	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*1.15, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*2.075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("pierces", "stabs", "impales", "pokes", "jabs")
 	attack_verb_simple = list("imaple", "stab", "pierce", "jab", "poke")
@@ -109,7 +109,7 @@
 	throwforce = 5
 	throw_speed = 4
 	armour_penetration = 0
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
+	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*1.15, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*2.075)
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	attack_verb_continuous = list("slams", "crushes", "smashes", "flattens", "pounds")
 	attack_verb_simple = list("slam", "crush", "smash", "flatten", "pound")
@@ -162,7 +162,7 @@
 	throwforce = 5
 	throw_speed = 4
 	armour_penetration = 0
-	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
+	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*1.15, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*2.075)
 	hitsound = 'sound/weapons/pierce.ogg'
 	attack_verb_continuous = list("swipes", "slashes", "cuts", "slaps")
 	attack_verb_simple = list("swipe", "slash", "cut", "slap")
