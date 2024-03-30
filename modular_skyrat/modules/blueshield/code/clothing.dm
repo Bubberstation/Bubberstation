@@ -22,7 +22,6 @@
 	icon_state = "bshield_headset"
 	worn_icon_state = "bshield_headset"
 	keyslot = /obj/item/encryptionkey/heads/blueshield
-	keyslot2 = /obj/item/encryptionkey/headset_cent
 
 /obj/item/radio/headset/headset_bs/alt
 	icon_state = "bshield_headset_alt"

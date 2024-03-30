@@ -83,7 +83,7 @@
 	desired_atom = /obj/effect/landmark/start/barber
 
 /datum/area_spawn/blueshield_landmark
-	target_areas = list(/area/station/command/heads_quarters/captain, /area/station/command/bridge)
+	target_areas = list(/area/station/security/prison)
 	desired_atom = /obj/effect/landmark/start/blueshield
 
 /datum/area_spawn/bouncer_landmark
