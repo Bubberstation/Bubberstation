@@ -201,8 +201,11 @@
 
 /obj/item/kinetic_gauntlet/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, type)
+	if(!istype(loc, /obj/item/clothing/gloves/kinetic_gauntlets))
+		return INITIALIZE_HINT_QDEL //le sigh
+
 	linked_gauntlets = loc
+	ADD_TRAIT(src, TRAIT_NODROP, type)
 
 /obj/item/kinetic_gauntlet/Destroy(force)
 	linked_gauntlets.on_gauntlet_qdel()
@@ -236,6 +239,7 @@
 	RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
 /obj/item/kinetic_gauntlet/left/Destroy(force)
+	UnregisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR)
 	linked_gauntlets.set_light_on(FALSE)
 	return ..()
 
