@@ -4,7 +4,7 @@
 	inhand_icon_state = "PKMachete0"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/belt/belt.dmi'
 	worn_icon_state = "PKMachete0"
 	name = "proto-kinetic machete"
 	desc = "Recent breakthroughs with proto-kinetic technology have led to improved designs for the early proto-kinetic crusher, namely the ability to pack all \
@@ -25,7 +25,7 @@
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = NONE
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	light_outer_range = 5
+	light_range = 5
 	light_on = FALSE
 	charged = TRUE
 	charge_time = 10
@@ -48,7 +48,7 @@
 	inhand_icon_state = "PKSpear0"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/back.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/back.dmi'
 	worn_icon_state = "PKSpear0"
 	name = "proto-kinetic spear"
 	desc = "Having finally invested in better Proto-kinetic tech, research and development was able to cobble together this new proto-kinetic weapon. By compacting all the tecnology \
@@ -68,7 +68,7 @@
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	light_outer_range = 8
+	light_range = 8
 	light_on = FALSE
 	charged = TRUE
 	charge_time = 15
@@ -97,7 +97,7 @@
 	inhand_icon_state = "PKHammer0"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/back.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/back.dmi'
 	worn_icon_state = "PKHammer0"
 	name = "proto-kinetic hammer"
 	desc = "Somehow research and development managed to make the proto-kinetic crusher even bigger, allowing more parts to be fit inside and increase the power output. \
@@ -117,7 +117,7 @@
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	light_outer_range = 5
+	light_range = 5
 	light_on = FALSE
 	charged = TRUE
 	charge_time = 25
@@ -170,7 +170,7 @@
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	light_outer_range = 4
+	light_range = 4
 	light_on = FALSE
 	charged = TRUE
 	charge_time = 2
