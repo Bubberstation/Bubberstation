@@ -46,7 +46,7 @@
 	name = "Blueshield"
 	jobtype = /datum/job/blueshield
 	uniform = /obj/item/clothing/under/rank/blueshield
-	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/brit
+	suit = /obj/item/clothing/suit/armor/bulletproof/old
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	id = /obj/item/card/id
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -75,15 +75,13 @@
 	name = "blueshield item spawner"
 	loot = list(
 		/obj/item/melee/baton/security/boomerang/loaded = 25,
-		/obj/item/gun/energy/pulse/pistol = 1, //The Lucky one
 		/obj/item/melee/baton/security = 25,
-		/obj/item/claymore/weak = 20,
+		/obj/item/storage/box/dismas = 20,
 		/obj/item/storage/box/pipe_gun = 25,
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 10,
 		/obj/item/gun/energy/laser/musket = 25,
 		/obj/item/weaponcrafting/gunkit/nuclear = 20,
 		/obj/item/stack/spacecash/c10000 = 15, //Figure that out yourself
-		/obj/item/dnainjector/hulkmut = 10,
 		/obj/item/storage/box/highwayman = 15, //Figure it out how to get more ammo
 	)
 
@@ -104,4 +102,20 @@
 	new /obj/item/coin/gold(src)
 	new /obj/item/coin/gold(src)
 	new /obj/item/coin/gold(src)
+	new /obj/item/coin/gold(src)
+	new /obj/item/coin/gold(src)
+	new /obj/item/coin/gold(src)
 	new /obj/item/storage/belt/bowie_sheath(src)
+	new /obj/item/clothing/suit/armor/hos/trenchcoat/winter(src)
+
+/obj/item/storage/box/dismas
+	name = "Holy Knight Set"
+
+/obj/item/storage/box/dismas/PopulateContents()
+	new /obj/item/storage/box/holy/knight(src)
+	new /obj/item/claymore/weak(src)
+	new /obj/item/shield/buckler/reagent_weapon(src)
+	new /obj/item/storage/belt/crusader(src)
+	new /obj/item/storage/backpack/satchel/crusader(src)
+	new /obj/item/restraints/legcuffs/bola(src)
+	new /obj/item/restraints/legcuffs/bola(src)
