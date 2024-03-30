@@ -3,16 +3,8 @@
 	desc = "A bag for storing extra clothes and shoes. This one belongs to the blueshield."
 
 /obj/item/storage/bag/garment/blueshield/PopulateContents()
-	new /obj/item/clothing/suit/hooded/wintercoat/skyrat/blueshield(src)
-	new /obj/item/clothing/head/beret/blueshield(src)
-	new /obj/item/clothing/head/beret/blueshield/navy(src)
-	new /obj/item/clothing/under/rank/blueshield(src)
-	new /obj/item/clothing/under/rank/blueshield/skirt(src)
-	new /obj/item/clothing/under/rank/blueshield/turtleneck(src)
-	new /obj/item/clothing/under/rank/blueshield/turtleneck/skirt(src)
-	new /obj/item/clothing/suit/armor/vest/blueshield(src)
-	new /obj/item/clothing/suit/armor/vest/blueshield/jacket(src)
 	new /obj/item/clothing/neck/mantle/bsmantle(src)
+	new /obj/effect/spawner/random/blueshield_random(src)
 
 /obj/structure/closet/secure_closet/blueshield
 	name = "blueshield's locker"
