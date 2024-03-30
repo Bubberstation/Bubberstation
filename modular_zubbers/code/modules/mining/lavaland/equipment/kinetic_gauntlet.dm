@@ -239,7 +239,8 @@
 
 /obj/item/kinetic_gauntlet/left/Initialize(mapload)
 	. = ..()
-	RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
+	if(linked_gauntlets)
+		RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
 /obj/item/kinetic_gauntlet/left/Destroy(force)
 	if(linked_gauntlets)
