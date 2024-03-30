@@ -1233,6 +1233,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/airalarm/directional/west,
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/station/maintenance/department/prison)
 "asU" = (
@@ -9194,7 +9195,7 @@
 /turf/open/floor/noslip,
 /area/station/engineering/main)
 "cSC" = (
-/obj/machinery/gateway,
+/obj/machinery/gateway/centerstation,
 /turf/open/floor/mineral/titanium,
 /area/station/command/gateway)
 "cSG" = (
@@ -10457,13 +10458,13 @@
 /obj/effect/spawner/random/entertainment/money_large,
 /obj/effect/spawner/random/contraband/armory,
 /obj/effect/spawner/random/contraband/plus,
-/obj/structure/safe,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 8
 	},
+/obj/structure/safe,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
 "dkG" = (
@@ -24187,10 +24188,13 @@
 "hpM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "garbage"
 	},
-/obj/machinery/door/window/right/directional/west,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/window/right/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "hpR" = (
@@ -26599,13 +26603,17 @@
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "ict" = (
-/obj/machinery/mineral/stacking_machine{
-	input_dir = 1
-	},
 /obj/machinery/mineral/stacking_unit_console{
 	pixel_x = 30
 	},
-/obj/machinery/light/small/directional/east,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/delivery_chute{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "icx" = (
@@ -36802,6 +36810,9 @@
 	id = "garbage"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/recycler{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "lhL" = (
@@ -44471,11 +44482,11 @@
 	id = "garbage";
 	name = "disposal conveyor"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /obj/structure/railing{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
@@ -48239,13 +48250,12 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "oEh" = (
-/obj/machinery/disposal/delivery_chute{
-	dir = 4
+/obj/machinery/mineral/stacking_machine{
+	input_dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "oEO" = (
@@ -49461,7 +49471,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light/small/red/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "oWI" = (
@@ -54111,7 +54120,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
@@ -56217,6 +56225,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "qWH" = (
@@ -63352,7 +63361,6 @@
 	dir = 1
 	},
 /obj/structure/sign/warning/electric_shock/directional/north,
-/obj/structure/safe,
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "tdD" = (
@@ -63936,9 +63944,6 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/aft)
 "tnu" = (
-/obj/machinery/recycler{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
@@ -63946,6 +63951,7 @@
 	dir = 4;
 	id = "garbage"
 	},
+/obj/machinery/light/small/red/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "tnv" = (
@@ -75191,11 +75197,11 @@
 /obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted{
 	dir = 1
 	},
-/obj/structure/safe,
 /obj/effect/spawner/random/entertainment/money_large,
 /obj/effect/spawner/random/contraband/armory,
 /obj/effect/spawner/random/entertainment/money_large,
 /obj/effect/spawner/random/entertainment/money_large,
+/obj/structure/safe,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
 "wMn" = (
@@ -255398,7 +255404,7 @@ sAU
 bit
 lsg
 bit
-jkw
+lEA
 jkw
 jPc
 tHM
