@@ -34,21 +34,36 @@
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 6 SECONDS, effectiveness = 110)
-	AddComponent(/datum/component/kinetic_crusher, detonation_damage, backstab_bonus, charge_time)
-	AddComponent(/datum/component/two_handed, force_wielded = 20)
+	AddComponent(/datum/component/kinetic_crusher, detonation_damage, backstab_bonus, charge_time, CALLBACK(src, PROC_REF(attack_check)), CALLBACK(src, PROC_REF(attack_check)))
+	AddComponent(/datum/component/two_handed, force_wielded = 20, force_unwielded = 0, unwield_callback = CALLBACK(src, PROC_REF(on_unwield)))
 	RegisterSignal(src, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
-/obj/item/kinetic_crusher/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/kinetic_crusher/proc/attack_check(mob/user, cancel_attack)
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
-		return ..()
+		return TRUE
 
 	to_chat(user, span_warning("[src] is too heavy to use with one hand! You fumble and drop everything."))
 	user.drop_all_held_items()
+	if(cancel_attack)
+		*cancel_attack = COMPONENT_CANCEL_ATTACK_CHAIN
+	return FALSE
 
 /obj/item/kinetic_crusher/ui_action_click(mob/user, actiontype)
 	set_light_on(!light_on)
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	update_appearance()
+
+//////////////////////////////////////////////////////////////////////////////////
+/////// HACK TO WORK AROUND TWOHANDED NOT RESPECTING FORCE_UNWIELDED=0 ///////////
+//////////////////////////////////////////////////////////////////////////////////
+/obj/item/kinetic_crusher/proc/on_unwield()
+	SIGNAL_HANDLER
+
+	force = 0 //the abrasive comments is so you notice. seriously, this is BAD.
+
+//////////////////////////////////////////////////////////////////////////////////
+/////// HACK TO WORK AROUND TWOHANDED NOT RESPECTING FORCE_UNWIELDED=0 ///////////
+//////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/kinetic_crusher/proc/on_saboteur(datum/source, disrupt_duration)
 	set_light_on(FALSE)

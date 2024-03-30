@@ -196,6 +196,8 @@
 	obj_flags = DROPDEL
 	resistance_flags = FIRE_PROOF
 
+	secondary_attack_speed = 0.1 SECONDS
+
 	var/obj/item/clothing/gloves/kinetic_gauntlets/linked_gauntlets = null
 	var/next_attack = 0
 
@@ -208,8 +210,9 @@
 	ADD_TRAIT(src, TRAIT_NODROP, type)
 
 /obj/item/kinetic_gauntlet/Destroy(force)
-	linked_gauntlets.on_gauntlet_qdel()
-	linked_gauntlets = null
+	if(linked_gauntlets) //fuck c&d
+		linked_gauntlets.on_gauntlet_qdel()
+		linked_gauntlets = null
 	return ..()
 
 /obj/item/kinetic_gauntlet/melee_attack_chain(mob/user, atom/target, params)
@@ -239,8 +242,9 @@
 	RegisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR, PROC_REF(on_saboteur))
 
 /obj/item/kinetic_gauntlet/left/Destroy(force)
-	UnregisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR)
-	linked_gauntlets.set_light_on(FALSE)
+	if(linked_gauntlets)
+		UnregisterSignal(linked_gauntlets, COMSIG_HIT_BY_SABOTEUR)
+		linked_gauntlets.set_light_on(FALSE)
 	return ..()
 
 /obj/item/kinetic_gauntlet/left/update_overlays()
