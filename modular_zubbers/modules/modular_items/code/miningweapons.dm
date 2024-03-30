@@ -1,10 +1,10 @@
 /obj/item/kinetic_crusher/machete
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
+	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "PKMachete"
 	inhand_icon_state = "PKMachete0"
-	lefthand_file = 'monkestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'monkestation/icons/mob/inhands/weapons/melee_righthand.dmi'
-	worn_icon = 'monkestation/icons/mob/clothing/belt.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	worn_icon_state = "PKMachete0"
 	name = "proto-kinetic machete"
 	desc = "Recent breakthroughs with proto-kinetic technology have led to improved designs for the early proto-kinetic crusher, namely the ability to pack all \
@@ -24,7 +24,7 @@
 	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = NONE
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_outer_range = 5
 	light_on = FALSE
 	charged = TRUE
@@ -43,12 +43,12 @@
 	)
 
 /obj/item/kinetic_crusher/spear
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
+	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "PKSpear"
 	inhand_icon_state = "PKSpear0"
-	lefthand_file = 'monkestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'monkestation/icons/mob/inhands/weapons/melee_righthand.dmi'
-	worn_icon = 'monkestation/icons/mob/clothing/back.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back.dmi'
 	worn_icon_state = "PKSpear0"
 	name = "proto-kinetic spear"
 	desc = "Having finally invested in better Proto-kinetic tech, research and development was able to cobble together this new proto-kinetic weapon. By compacting all the tecnology \
@@ -67,7 +67,7 @@
 	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_outer_range = 8
 	light_on = FALSE
 	charged = TRUE
@@ -92,12 +92,12 @@
 	return ..()
 
 /obj/item/kinetic_crusher/hammer
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
+	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "PKHammer"
 	inhand_icon_state = "PKHammer0"
-	lefthand_file = 'monkestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'monkestation/icons/mob/inhands/weapons/melee_righthand.dmi'
-	worn_icon = 'monkestation/icons/mob/clothing/back.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back.dmi'
 	worn_icon_state = "PKHammer0"
 	name = "proto-kinetic hammer"
 	desc = "Somehow research and development managed to make the proto-kinetic crusher even bigger, allowing more parts to be fit inside and increase the power output. \
@@ -116,7 +116,7 @@
 	sharpness = NONE
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_outer_range = 5
 	light_on = FALSE
 	charged = TRUE
@@ -146,11 +146,11 @@
 	return ..()
 
 /obj/item/kinetic_crusher/claw
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
+	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "PKClaw"
 	inhand_icon_state = "PKClaw0"
-	lefthand_file = 'monkestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'monkestation/icons/mob/inhands/weapons/melee_righthand.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
 	worn_icon_state = "PKHammer0"
 	slot_flags = NONE
 	name = "proto-kinetic claws"
@@ -169,7 +169,7 @@
 	sharpness = SHARP_POINTY
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_outer_range = 4
 	light_on = FALSE
 	charged = TRUE
