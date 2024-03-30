@@ -97,7 +97,7 @@
 
 /obj/item/crowbar/large/doorforcer
 	name = "prybar"
-	desc = "A large, levering crowbar, painted orange. This one can force a single door open before breaking. //Bubber EDIT
+	desc = "A large, levering crowbar, painted orange. This one can force a single door open before breaking." //Bubber EDIT
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "prybar"
 	toolspeed = 1.3
