@@ -76,13 +76,13 @@
 	loot = list(
 		/obj/item/melee/baton/security/boomerang/loaded = 25,
 		/obj/item/melee/baton/security = 25,
-		/obj/item/storage/box/dismas = 20,
+		/obj/item/storage/box/reynauld = 20, // and his friend,  dismas
 		/obj/item/storage/box/pipe_gun = 25,
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 10,
 		/obj/item/gun/energy/laser/musket = 25,
 		/obj/item/weaponcrafting/gunkit/nuclear = 20,
 		/obj/item/stack/spacecash/c10000 = 15, //Figure that out yourself
-		/obj/item/storage/box/highwayman = 15, //Figure it out how to get more ammo
+		/obj/item/storage/box/highwayman = 15, //and hisfriend, Reynauld
 	)
 
 /obj/item/storage/box/pipe_gun
@@ -108,10 +108,10 @@
 	new /obj/item/storage/belt/bowie_sheath(src)
 	new /obj/item/clothing/suit/armor/hos/trenchcoat/winter(src)
 
-/obj/item/storage/box/dismas
+/obj/item/storage/box/reynauld
 	name = "Holy Knight Set"
 
-/obj/item/storage/box/dismas/PopulateContents()
+/obj/item/storage/box/reynauld/PopulateContents()
 	new /obj/item/storage/box/holy/knight(src)
 	new /obj/item/claymore/weak(src)
 	new /obj/item/shield/buckler/reagent_weapon(src)
