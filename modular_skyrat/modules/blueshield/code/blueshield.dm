@@ -123,7 +123,7 @@
 	projectile_type = /obj/projectile/beam/pulse/bad
 
 /obj/projectile/beam/pulse/bad
-	damage = 20
+	damage = 0
 
 /obj/projectile/beam/pulse/bad/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
