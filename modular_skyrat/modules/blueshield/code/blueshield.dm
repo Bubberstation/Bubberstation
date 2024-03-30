@@ -74,15 +74,15 @@
 /obj/effect/spawner/random/blueshield_random
 	name = "blueshield item spawner"
 	loot = list(
-		/obj/item/melee/baton/security/boomerang/loaded = 25,
-		/obj/item/melee/baton/security = 25,
-		/obj/item/storage/box/reynauld = 20, // and his friend,  dismas
+		/obj/item/melee/baton/security/boomerang/loaded = 20,
+		/obj/item/melee/baton/security = 20,
+		/obj/item/storage/box/reynauld = 25, // and his friend,  dismas
 		/obj/item/storage/box/pipe_gun = 25,
-		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 10,
-		/obj/item/gun/energy/laser/musket = 25,
+		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 15,
+		/obj/item/gun/energy/laser/musket = 20,
 		/obj/item/weaponcrafting/gunkit/nuclear = 20,
 		/obj/item/stack/spacecash/c10000 = 15, //Figure that out yourself
-		/obj/item/storage/box/highwayman = 15, //and hisfriend, Reynauld
+		/obj/item/storage/box/highwayman = 25, //and hisfriend, Reynauld
 	)
 
 /obj/item/storage/box/pipe_gun
