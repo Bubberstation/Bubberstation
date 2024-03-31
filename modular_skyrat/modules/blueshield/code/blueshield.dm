@@ -55,15 +55,17 @@
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/mod/control/pre_equipped/blueshield
 	backpack_contents = list(/obj/item/stock_parts/cell/bluespace)
-	satchel = /obj/item/mod/control/pre_equipped/blueshield
-	duffelbag = /obj/item/mod/control/pre_equipped/blueshield
-	messenger = /obj/item/mod/control/pre_equipped/blueshield
 	head = /obj/item/clothing/head/utility/welding
 	box = /obj/item/storage/box/survival/security
 	belt = /obj/item/storage/belt/utility/full/inducer
 	l_pocket = /obj/item/choice_beacon/blueshield
 	r_pocket = /obj/item/modular_computer/pda/security
 	id_trim = /datum/id_trim/job/blueshield
+
+/datum/outfit/job/blueshield/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	back = /obj/item/mod/control/pre_equipped/blueshield
+
 
 /obj/item/mod/control/pre_equipped/blueshield/Initialize(mapload)
 	. = ..()
