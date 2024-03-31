@@ -93,7 +93,7 @@
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
 	if(bloodsuckerdatum_power.frenzied)
 		return TRUE
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume < bloodcost)
+	if(bloodsuckerdatum_power.GetBloodVolume() < bloodcost)
 		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
 		return FALSE
 	return TRUE
@@ -164,7 +164,7 @@
 	return ..()
 
 /datum/action/cooldown/bloodsucker/proc/can_pay_blood(mob/living/carbon/user)
-	return bloodsuckerdatum_power ? bloodsuckerdatum_power?.bloodsucker_blood_volume >= 0 : user.blood_volume >= 0
+	return bloodsuckerdatum_power ? bloodsuckerdatum_power?.GetBloodVolume() >= 0 : user.blood_volume >= 0
 
 /datum/action/cooldown/bloodsucker/proc/can_deactivate()
 	return TRUE
