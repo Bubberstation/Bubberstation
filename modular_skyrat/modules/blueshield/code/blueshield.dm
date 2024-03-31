@@ -53,7 +53,7 @@
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security // No sunglasses. Use the helmet provided
 	implants = list(/obj/item/implant/mindshield)
-	backpack = /obj/item/storage/backpack/blueshield
+	backpack = /obj/item/mod/control/pre_equipped/blueshield
 	backpack_contents = list(/obj/item/stock_parts/cell/bluespace)
 	satchel = /obj/item/storage/backpack/satchel/blueshield
 	duffelbag = /obj/item/storage/backpack/duffelbag/blueshield
@@ -65,13 +65,9 @@
 	r_pocket = /obj/item/modular_computer/pda/security
 	id_trim = /datum/id_trim/job/blueshield
 
-/obj/item/clothing/suit/armor/vest/old/bs/Initialize(mapload)
+/obj/item/mod/control/pre_equipped/blueshield/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(src.type))
-
-
-/obj/item/clothing/suit/armor/vest/old/bs/doStrip(mob/stripper, mob/owner)
-	return FALSE
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"

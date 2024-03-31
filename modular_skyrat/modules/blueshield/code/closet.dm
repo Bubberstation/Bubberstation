@@ -4,7 +4,7 @@
 
 /obj/item/storage/bag/garment/blueshield/PopulateContents()
 	new /obj/item/clothing/neck/mantle/bsmantle(src)
-	new /obj/effect/spawner/random/blueshield_random(src)
+
 
 /obj/structure/closet/secure_closet/blueshield
 	name = "blueshield's locker"
@@ -23,4 +23,4 @@
 //	new /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo(src) happy BUBBERSTATION APRIL DAY
 //	new /obj/item/storage/bag/garment/blueshield(src)
 	for(var/i = 0, i<7, i++)
-		new /obj/item/mod/control/pre_equipped/blueshield(src)
+		new /obj/effect/spawner/random/blueshield_random(src)
