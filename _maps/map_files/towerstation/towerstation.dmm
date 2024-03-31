@@ -965,9 +965,12 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
 "aNV" = (
-/obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/machinery/light/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "aOc" = (
@@ -1131,7 +1134,6 @@
 /area/station/cargo/storage)
 "aUV" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /turf/open/floor/wood,
 /area/icemoon/surface/outdoors)
 "aVl" = (
@@ -1926,6 +1928,8 @@
 	id_tag = "Dorm5";
 	name = "Cabin 1"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "bLg" = (
@@ -2097,6 +2101,12 @@
 /obj/structure/cable,
 /turf/open/floor/glass/reinforced/icemoon,
 /area/station/hallway/primary/starboard)
+"bRB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/station/commons/dorms)
 "bRG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -2414,6 +2424,12 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/carpet/black,
 /area/station/service/chapel)
+"ceT" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet/cyan,
+/area/station/commons/dorms)
 "cgc" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -2455,6 +2471,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/stairs/medium,
+/area/station/commons/dorms)
+"chP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
 /area/station/commons/dorms)
 "chR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -3124,6 +3146,8 @@
 /turf/open/floor/engine,
 /area/station/engineering/main)
 "cLB" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/cyan,
 /area/station/commons/dorms)
 "cLD" = (
@@ -3218,6 +3242,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/command)
+"cPT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/station/commons/dorms)
 "cQn" = (
 /obj/machinery/vending/clothing,
 /turf/open/floor/iron/dark,
@@ -3484,8 +3514,8 @@
 /turf/open/floor/engine,
 /area/station/engineering/main)
 "dbt" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hop,
+/obj/structure/bed/double,
+/obj/item/bedsheet/nanotrasen/double,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/hop)
 "dbx" = (
@@ -10587,6 +10617,9 @@
 /obj/item/clothing/head/costume/rabbitears,
 /obj/item/clothing/under/dress/redeveninggown,
 /obj/machinery/light/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/carpet/cyan,
 /area/station/commons/dorms)
 "jtN" = (
@@ -10768,6 +10801,8 @@
 	id_tag = "Dorm2";
 	name = "Cabin 2"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/blue,
 /area/station/commons/dorms)
 "jCj" = (
@@ -10980,11 +11015,8 @@
 	network = list("aicore");
 	dir = 10
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_y = -3;
-	pixel_x = 27
-	},
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "jMj" = (
@@ -11000,6 +11032,8 @@
 /turf/open/floor/plating,
 /area/station/medical/medbay/central)
 "jMJ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/black,
 /area/station/commons/dorms)
 "jMV" = (
@@ -11209,6 +11243,8 @@
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/mechbay)
 "jZn" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/purple,
 /area/station/commons/dorms)
 "jZu" = (
@@ -11553,6 +11589,9 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "ktE" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/carpet/green,
 /area/station/commons/dorms)
 "kuj" = (
@@ -11574,6 +11613,8 @@
 	id_tag = "Dorm4";
 	name = "Cabin 4"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/green,
 /area/station/commons/dorms)
 "kvY" = (
@@ -12658,9 +12699,10 @@
 /turf/open/floor/iron,
 /area/station/security/brig)
 "lty" = (
-/obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/carpet/green,
 /area/station/commons/dorms)
 "ltJ" = (
@@ -12839,6 +12881,12 @@
 /obj/structure/table,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/command)
+"lzk" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/station/commons/dorms)
 "lzY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -13063,6 +13111,8 @@
 	id_tag = "Dorm3";
 	name = "Cabin 3"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/cyan,
 /area/station/commons/dorms)
 "lHz" = (
@@ -13751,8 +13801,8 @@
 /turf/open/floor/iron,
 /area/station/security/prison)
 "mou" = (
-/obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/carpet/blue,
 /area/station/commons/dorms)
 "mpf" = (
@@ -14188,6 +14238,8 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "mLk" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/blue,
 /area/station/commons/dorms)
 "mLB" = (
@@ -14654,6 +14706,10 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/north{
+	pixel_y = -3;
+	pixel_x = 27
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai)
 "niJ" = (
@@ -15283,6 +15339,12 @@
 /turf/open/floor/carpet/black,
 /area/station/service/bar/backroom)
 "nJD" = (
+/obj/structure/bed/double{
+	dir = 1
+	},
+/obj/item/bedsheet/captain/double{
+	dir = 1
+	},
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/captain/private)
 "nKk" = (
@@ -17812,6 +17874,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
+"qaD" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/station/commons/dorms)
 "qcr" = (
 /obj/structure/closet/crate/trashcart,
 /obj/effect/spawner/random/contraband/prison,
@@ -18163,8 +18231,8 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
 "qtn" = (
-/obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/carpet/black,
 /area/station/commons/dorms)
 "qtI" = (
@@ -18599,8 +18667,6 @@
 /turf/open/floor/carpet/red,
 /area/station/command/bridge)
 "qMG" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
 /obj/effect/landmark/start/captain,
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/captain/private)
@@ -20077,6 +20143,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
+"saf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/carpet/green,
+/area/station/commons/dorms)
 "saG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -20186,6 +20257,8 @@
 	id_tag = "Dorm5";
 	name = "Cabin 5"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/purple,
 /area/station/commons/dorms)
 "shh" = (
@@ -20725,6 +20798,7 @@
 "sJd" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/carpet/black,
 /area/station/commons/dorms)
 "sJl" = (
@@ -22482,6 +22556,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/station/service/chapel)
+"ulb" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/station/commons/dorms)
 "ulr" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/effect/turf_decal/delivery/red,
@@ -23476,8 +23556,8 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
 "vdc" = (
-/obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/carpet/purple,
 /area/station/commons/dorms)
 "vdP" = (
@@ -23853,8 +23933,8 @@
 /turf/open/floor/engine/hull/reinforced,
 /area/icemoon/surface/outdoors)
 "vvy" = (
-/obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
 /turf/open/floor/carpet/cyan,
 /area/station/commons/dorms)
 "vvF" = (
@@ -25988,6 +26068,8 @@
 	id_tag = "Dorm6";
 	name = "Cabin 6"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/black,
 /area/station/commons/dorms)
 "xeU" = (
@@ -27232,6 +27314,8 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "ykK" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet,
 /area/station/commons/dorms)
 "ylb" = (
@@ -249698,7 +249782,7 @@ eek
 qEp
 bEj
 eek
-ykK
+qaD
 fLk
 wqg
 idr
@@ -249965,7 +250049,7 @@ uIJ
 kiM
 wqg
 lty
-ktE
+saf
 kvM
 bEj
 qJw
@@ -250469,7 +250553,7 @@ jFa
 oSy
 bEj
 eek
-mLk
+cPT
 oXo
 wqg
 idr
@@ -250479,7 +250563,7 @@ idr
 aQP
 wqg
 fgn
-jZn
+lzk
 eek
 bEj
 chR
@@ -250983,7 +251067,7 @@ jFa
 qYY
 bEj
 eek
-mLk
+ulb
 mou
 wqg
 sJG
@@ -250993,7 +251077,7 @@ sJG
 xYU
 wqg
 vdc
-jZn
+chP
 eek
 bEj
 gzH
@@ -251754,7 +251838,7 @@ eek
 jXT
 bEj
 eek
-cLB
+ceT
 vvy
 wqg
 nln
@@ -251764,7 +251848,7 @@ cXf
 aES
 wqg
 qtn
-jMJ
+bRB
 eek
 bEj
 jJe
