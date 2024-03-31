@@ -6,7 +6,9 @@
 		if(initial(potential_lawboard.law_id) != initial(default_laws.id))
 			continue
 		potential_lawboard = new potential_lawboard(loc)
+		new /obj/item/circuitboard/computer/aiupload(loc)
 		return
 	//spawn the fallback instead
 	new /obj/item/ai_module/core/round_default_fallback(loc)
+	//spawn spare AI upload
 	new /obj/item/circuitboard/computer/aiupload(loc)
