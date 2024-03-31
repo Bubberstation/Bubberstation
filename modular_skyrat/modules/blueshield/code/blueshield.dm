@@ -46,7 +46,7 @@
 	name = "Blueshield"
 	jobtype = /datum/job/blueshield
 	uniform = /obj/item/clothing/under/rank/blueshield
-	suit = /obj/item/clothing/suit/armor/vest/old
+	suit = /obj/item/clothing/suit/armor/vest/old/bs
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	id = /obj/item/card/id
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -64,6 +64,14 @@
 	l_pocket = /obj/item/choice_beacon/blueshield
 	r_pocket = /obj/item/modular_computer/pda/security
 	id_trim = /datum/id_trim/job/blueshield
+
+/obj/item/clothing/suit/armor/vest/old/bs/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(src.type))
+
+
+/obj/item/clothing/suit/armor/vest/old/bs/doStrip(mob/stripper, mob/owner)
+	return FALSE
 
 /datum/outfit/plasmaman/blueshield
 	name = "Blueshield Plasmaman"
