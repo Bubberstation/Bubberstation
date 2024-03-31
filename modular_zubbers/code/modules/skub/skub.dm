@@ -1,7 +1,7 @@
 /datum/holiday/april_fools/celebrate()
 	. = ..()
 	GLOB.maintenance_loot = list(
-		/obj/item/skub = 1
+		/obj/item/skub = maint_holiday_weight
 	)
 
 /obj/item/skub/Initialize(mapload)
