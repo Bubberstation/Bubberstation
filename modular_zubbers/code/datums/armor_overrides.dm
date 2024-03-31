@@ -127,7 +127,3 @@
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/quick_carry,
 	)
-
-/obj/item/mod/control/pre_equipped/blueshield/Initialize()
-	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/blueshield
-	. = ..()

@@ -1,16 +1,12 @@
 /datum/mod_theme/blueshield
 	name = "praetorian"
-	desc = "A prototype of the Magnate-class suit issued to station Blueshields, still boasting exceptional protection worthy of an honor guard."
+	desc = "A prototype of the Magnate-class suit issued to station Blueshields, due to recent budget cuts no longer boasting exceptional protection worthy of an honor guard."
 	extended_desc = "A prototype of the Magnate-class suit issued for use with the station Blueshields, \
-		it boasts the exceptional protection of it's successor, while sacrificing some of the module capacity.\
-		All of the protection of the Magnate, with none of the comfort! The visor uses blue-light to obscure \
-		the face of it's wearer, adding to it's imposing figure. Compared to the sleek and luxurious design \
-		that came after it, this suit does nothing to hide it's purpose, the reinforced plating layered \
-		over the insulated inner armor granting it protection against corrosive liquids, explosive blasts, \
-		fires, electrical shocks, and contempt from the rest of the crew."
+		it seems to have most of its armor stripped for scrap, whilst also sacrificing some of the module capacity.\
+		Gone is the time of the protection of the Magnate. You still get none of the comfort though"
 
 	default_skin = "praetorian"
-	armor_type = /datum/armor/mod_theme_blueshield
+	armor_type = /datum/armor/mod_theme_advanced
 	resistance_flags = FIRE_PROOF|ACID_PROOF
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
