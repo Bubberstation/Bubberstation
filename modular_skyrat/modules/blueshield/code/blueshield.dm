@@ -140,17 +140,21 @@
 /obj/effect/spawner/random/blueshield_random/bad
 	name = "Less exclusive weapons"
 	loot = list(
-		/obj/item/storage/toolbox = 30,
-		/obj/item/spear = 30,
+		/obj/item/storage/toolbox/robust/plus = 20,
+		/obj/item/storage/box/explosive_spear = 15,
 		/obj/item/storage/toolbox/haunted = 5,
-		/obj/item/fish/clownfish/lube/robust = 30,
+		/obj/item/fish/clownfish/lube/robust = 20,
 		/obj/item/melee/baton/security/cattleprod = 20,
 		/obj/item/melee/baton/security/cattleprod/teleprod = 15,
 		/obj/item/reagent_containers/spray/cyborg_lube = 15,
 		/obj/item/storage/box/ied_kit = 15,
-		/obj/item/storage/box/flamethrower_kit = 5, // This is not a normal flamethrower. Comes with very dangerous tanks
+		/obj/item/storage/box/flamethrower_kit = 10, // This is not a normal flamethrower. Comes with very dangerous tanks
 		/obj/item/melee/energy/sword/bananium = 1, // Because you are a clown if you pick this
 	)
+
+/obj/item/storage/toolbox/robust/plus
+	force = 15
+	wound_bonus = 20
 
 /obj/item/tank/internals/plasma/superheat/Initialize(mapload)
 	. = ..()
@@ -162,8 +166,15 @@
 	air_contents.gases[/datum/gas/tritium][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	air_contents.temperature = 1000
 
+/obj/item/storage/box/explosive_spear/PopulateContents()
+	. = ..()
+	for(var/i = 0, i<7, i++)
+		new /obj/item/spear/explosive(src)
+
+
 /obj/item/fish/clownfish/lube/robust
 	force = 15
+	armour_penetration = 50
 
 /obj/item/storage/box/flamethrower_kit
 	name = "Terrible idea kit"
