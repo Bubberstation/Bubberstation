@@ -1348,6 +1348,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "gD" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "gF" = (
@@ -1682,6 +1685,7 @@
 /obj/machinery/camera/autoname/directional/north{
 	network = list("dauntless")
 	},
+/obj/item/binoculars,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "ih" = (
@@ -7474,11 +7478,20 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "Lc" = (
 /obj/effect/turf_decal/stripes/red/line,
-/obj/effect/spawner/random/maintenance/three,
-/obj/structure/closet/crate/cardboard,
-/obj/effect/spawner/random/decoration/carpet,
 /obj/effect/turf_decal/bot,
-/obj/item/binoculars,
+/obj/structure/closet/crate/secure/engineering{
+	name = "emergency engineering crate"
+	},
+/obj/item/flatpacked_machine,
+/obj/item/flatpacked_machine/fuel_generator,
+/obj/item/flatpacked_machine/hydro_synth,
+/obj/item/flatpacked_machine/organics_ration_printer,
+/obj/item/flatpacked_machine/sustenance_machine,
+/obj/item/flatpacked_machine/water_synth,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 10
+	},
+/obj/item/construction/plumbing/engineering,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Le" = (
@@ -7766,6 +7779,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
+"Mz" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "MA" = (
 /obj/machinery/conveyor{
 	id = "syndidisp";
@@ -11231,7 +11250,7 @@ FZ
 TJ
 zK
 BP
-BP
+Mz
 gD
 of
 Nx
