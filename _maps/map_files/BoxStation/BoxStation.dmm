@@ -5157,19 +5157,11 @@
 /turf/open/floor/plating,
 /area/station/service/barber)
 "aAk" = (
-/obj/item/gun/ballistic/revolver/hos_revolver{
-	name = "HoS' Sidearm'";
-	force = 1;
-	move_force = 1;
-	pull_force = 1;
-	spawnwithmagazine = 0;
-	throwforce = 1;
-	desc = "A non-fuctional, decommissioned revolver held onto by hopeful Head of Security staff. If the HoS trusted a gun maintainer, they'd have this in a better, working condition."
-	},
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
 /obj/structure/rack/gunrack,
+/obj/item/melee/baton/security/boomerang/loaded,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "aAl" = (
@@ -5410,6 +5402,8 @@
 	c_tag = "Hydroponics Storage"
 	},
 /obj/machinery/airalarm/directional/north,
+/obj/structure/table/glass,
+/obj/item/watertank,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aBf" = (
@@ -5724,10 +5718,9 @@
 /turf/closed/wall,
 /area/station/service/theater)
 "aCt" = (
-/obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
-/obj/item/paper/guides/jobs/hydroponics,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
 /area/station/service/hydroponics)
 "aCu" = (
 /obj/machinery/vending/games,
@@ -7646,11 +7639,11 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
 "aJN" = (
-/obj/structure/closet/secure_closet/hydroponics,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/corner,
 /area/station/service/hydroponics)
 "aJO" = (
 /obj/machinery/light/directional/north,
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aJQ" = (
@@ -8345,6 +8338,7 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/firealarm/directional/south,
+/obj/item/construction/plumbing/service,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMB" = (
@@ -8369,11 +8363,12 @@
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen)
 "aMG" = (
-/obj/structure/closet/crate/hydroponics,
 /obj/item/shovel/spade,
 /obj/item/wrench,
 /obj/item/reagent_containers/cup/bucket,
 /obj/item/wirecutters,
+/obj/machinery/iv_drip,
+/obj/structure/closet/crate/hydroponics,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMI" = (
@@ -8964,7 +8959,6 @@
 /obj/machinery/holopad{
 	name = "botany requests holopad"
 	},
-/obj/item/paper/guides/jobs/holopad_hydro,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "aOY" = (
@@ -9649,10 +9643,6 @@
 /obj/machinery/food_cart,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
-"aRH" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/kitchen)
 "aRI" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -9964,13 +9954,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/bar)
-"aSH" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/light/directional/north,
-/turf/open/floor/wood,
-/area/station/service/bar)
 "aSI" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Kitchen"
@@ -10004,13 +9987,20 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "aSP" = (
-/obj/machinery/smartfridge,
-/turf/open/floor/iron/dark/textured_large,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenhydro";
+	name = "Service Shutter"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/right/directional/east{
+	req_access = list("hydroponics")
+	},
+/obj/machinery/door/window/left/directional/west{
+	req_access = list("kitchen")
+	},
+/obj/item/paper/guides/jobs/holopad_hydro,
+/turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
-"aSR" = (
-/obj/structure/sink/directional/east,
-/turf/open/floor/iron/dark/textured_large,
-/area/station/service/hydroponics)
 "aSV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -10203,7 +10193,7 @@
 /area/station/commons/storage/tools)
 "aTM" = (
 /obj/structure/table,
-/obj/item/food/mint,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "aTN" = (
@@ -10713,6 +10703,9 @@
 /obj/item/reagent_containers/condiment/peppermill{
 	pixel_x = 3
 	},
+/obj/item/food/mint{
+	pixel_y = 10
+	},
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "aVF" = (
@@ -10723,15 +10716,6 @@
 "aVI" = (
 /obj/effect/landmark/start/botanist,
 /turf/open/floor/iron/dark,
-/area/station/service/hydroponics)
-"aVJ" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/light/directional/west,
-/obj/structure/window/spawner/directional/south,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 6
-	},
-/turf/open/floor/iron/smooth_large,
 /area/station/service/hydroponics)
 "aVL" = (
 /obj/structure/disposalpipe/segment{
@@ -11368,13 +11352,12 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "aXn" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
 /obj/machinery/requests_console{
 	department = "Kitchen";
 	pixel_x = 30
 	},
 /obj/effect/mapping_helpers/requests_console/supplies,
+/obj/machinery/processor,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "aXo" = (
@@ -15673,11 +15656,7 @@
 	id = "kitchenhydro";
 	name = "Service Shutter"
 	},
-/obj/machinery/door/airlock/medical/glass{
-	name = "Service Door"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
-/obj/effect/mapping_helpers/airlock/access/all/service/hydroponics,
+/obj/machinery/smartfridge,
 /turf/open/floor/iron/cafeteria{
 	dir = 5
 	},
@@ -15931,7 +15910,6 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
 "bmX" = (
-/obj/machinery/processor,
 /obj/machinery/button/door{
 	id = "kitchenhydro";
 	name = "Service Shutter Control";
@@ -15939,6 +15917,7 @@
 	pixel_y = 7;
 	req_access = list("kitchen")
 	},
+/obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "bmY" = (
@@ -17516,8 +17495,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "bsq" = (
-/obj/machinery/vending/wardrobe/hydro_wardrobe,
-/turf/open/floor/iron,
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "bsr" = (
 /obj/structure/disposalpipe/sorting/wrap{
@@ -37807,9 +37786,13 @@
 /turf/open/floor/wood,
 /area/station/hallway/secondary/service)
 "goZ" = (
-/obj/structure/table,
-/obj/item/watertank,
-/turf/open/floor/iron,
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/light/directional/west,
+/obj/structure/window/spawner/directional/south,
+/turf/open/floor/iron/smooth_large,
 /area/station/service/hydroponics)
 "gpz" = (
 /obj/structure/table/reinforced,
@@ -40636,7 +40619,9 @@
 /area/station/science/cytology)
 "iry" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/biogenerator,
+/obj/item/book/manual/hydroponics_pod_people,
+/obj/item/paper/guides/jobs/hydroponics,
+/obj/structure/table/glass,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/hydroponics)
 "irX" = (
@@ -40902,9 +40887,10 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/rd)
 "iBY" = (
-/obj/structure/plant_tank,
-/turf/open/floor/iron,
-/area/station/service/hydroponics/garden)
+/turf/open/floor/iron/dark/corner{
+	dir = 4
+	},
+/area/station/service/hydroponics)
 "iBZ" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
@@ -41035,10 +41021,8 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/break_room)
 "iHH" = (
-/obj/structure/window/fulltile,
-/obj/structure/flora/bush/flowers_pp/style_random,
-/obj/structure/flora/bush/flowers_br/style_random,
-/turf/open/floor/grass,
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
 /area/station/service/bar)
 "iHT" = (
 /obj/machinery/biogenerator,
@@ -45681,9 +45665,17 @@
 /turf/open/floor/iron/grimy,
 /area/station/command/heads_quarters/captain)
 "lXT" = (
-/obj/machinery/light/directional/west,
-/turf/open/floor/wood,
-/area/station/service/bar)
+/obj/machinery/door/airlock/medical/glass{
+	name = "Service Door"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenhydro";
+	name = "Service Shutter"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/service/hydroponics,
+/obj/effect/mapping_helpers/airlock/access/any/service/kitchen,
+/turf/open/floor/iron/cafeteria,
+/area/station/service/kitchen)
 "lYP" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -45701,9 +45693,10 @@
 	},
 /area/station/hallway/primary/starboard)
 "lZz" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/wood,
-/area/station/service/bar)
+/obj/machinery/biogenerator,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark,
+/area/station/service/hydroponics)
 "lZG" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -52254,6 +52247,10 @@
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
+/obj/item/clothing/head/hats/hos/drill{
+	pixel_x = 1;
+	pixel_y = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "qVn" = (
@@ -52821,6 +52818,7 @@
 /obj/machinery/light/directional/east,
 /obj/structure/flora/bush/flowers_br/style_random,
 /obj/structure/window/spawner/directional/south,
+/obj/structure/plant_tank,
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
 "rqi" = (
@@ -61881,11 +61879,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port)
-"xSX" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/light/directional/south,
-/turf/open/floor/wood,
-/area/station/service/bar)
 "xTy" = (
 /obj/machinery/light/directional/north,
 /obj/structure/dresser,
@@ -79038,7 +79031,7 @@ alU
 alU
 aAP
 iHT
-iBY
+aAQ
 aAQ
 aFO
 aHA
@@ -97295,7 +97288,7 @@ aKR
 bHF
 dfp
 xAH
-lZz
+aKR
 aSo
 clX
 aVx
@@ -97551,9 +97544,9 @@ aKq
 aSo
 aNF
 nah
-xSX
+aKN
 iHH
-aSH
+aSG
 aKR
 aUg
 cTP
@@ -97809,7 +97802,7 @@ aSG
 aNH
 aOJ
 aSq
-lXT
+aKR
 aSG
 aKR
 aUg
@@ -101921,7 +101914,7 @@ aJI
 aJI
 aJI
 aJI
-aRH
+aVz
 aOW
 aVz
 bmX
@@ -102178,7 +102171,7 @@ aMG
 aIp
 aIp
 aJI
-aJI
+lXT
 aSP
 bmm
 aJI
@@ -102434,9 +102427,9 @@ aKH
 aMI
 aIp
 dnK
-dnK
-aVJ
-aSR
+goZ
+nlg
+nlg
 nlg
 eeN
 dnK
@@ -103469,7 +103462,7 @@ azg
 xJe
 kBB
 aXo
-bam
+lZz
 aYV
 aYV
 dCL
@@ -104228,7 +104221,7 @@ awG
 anf
 bKK
 alP
-aJN
+aRJ
 aRJ
 aRJ
 aNQ
@@ -104486,8 +104479,8 @@ anf
 aGF
 alP
 aJN
-aRJ
-aRJ
+aCt
+iBY
 aIp
 vLI
 eSa
@@ -104742,8 +104735,8 @@ jaH
 aFs
 aGE
 alP
-aCt
-goZ
+bsq
+bsq
 bsq
 aFu
 aFu
