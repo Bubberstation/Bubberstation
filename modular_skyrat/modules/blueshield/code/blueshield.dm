@@ -79,6 +79,22 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
 
+/datum/supply_pack/goody/blueshield_beacon
+	name = "Blueshield armaments beacon single-pack"
+	desc = "Contains a single blueshield supply beacon."
+	cost = PAYCHECK_COMMAND * 5
+
+	access = ACCESS_COMMAND
+	contains = list(/obj/item/choice_beacon/blueshield)
+
+/datum/supply_pack/security/blueshield_weapons
+	name = "Blueshield combined armaments"
+	desc = "Contains 5 select pieces of blueshield equipment."
+
+	access = ACCESS_COMMAND
+	cost = PAYCHECK_COMMAND * 15
+	contains = list(/obj/effect/spawner/random/blueshield_random = 1, /obj/effect/spawner/random/blueshield_random/bad = 4)
+
 /obj/item/choice_beacon/blueshield
 	name = "Blueshield armaments beacon"
 	desc = "This has to be a joke, right?"
