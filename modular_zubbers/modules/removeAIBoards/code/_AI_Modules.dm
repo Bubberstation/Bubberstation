@@ -9,5 +9,5 @@
 		return
 	//spawn the fallback instead
 	new /obj/item/ai_module/core/round_default_fallback(loc)
-  //spawn spare AI upload
-  new /obj/item/circuitboard/computer/aiupload(loc)
+  	//spawn spare AI upload
+  	new /obj/item/circuitboard/computer/aiupload(loc)
