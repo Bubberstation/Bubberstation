@@ -18,7 +18,7 @@
 /datum/atom_hud/data
 
 /datum/atom_hud/data/human/medical
-	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD) // SKYRAT EDIT ADDITION - DNR_HUD
+	hud_icons = list(STATUS_HUD, HEALTH_HUD, DNR_HUD, HEALTH_HUD_NUMBERS) // SKYRAT EDIT ADDITION - DNR_HUD
 
 /datum/atom_hud/data/human/medical/basic
 
@@ -172,17 +172,38 @@ Medical HUD! Basic mode needs suit sensors on.
 //called when a living mob changes health
 /mob/living/proc/med_hud_set_health()
 	var/image/holder = hud_list?[HEALTH_HUD]
+	var/image/healthnumbers = hud_list?[HEALTH_HUD_NUMBERS]
 	if (isnull(holder))
 		return
-
 	holder.icon_state = "hud[RoundHealth(src)]"
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
+	healthnumbers.pixel_y = holder.pixel_y
+	. = healthnumbers // BUBBER EDIT ADDITION - CARRY OVER FOR SUPERCALLS
 
 //for carbon suit sensors
 /mob/living/carbon/med_hud_set_health()
-	..()
+// BUBBER EDIT BEGIN
+	. = ..()
+	var/image/medhud = hud_list?[HEALTH_HUD]
 
+	var/image/holder = .
+	var/string = ""
+	var/mob/living/carbon/human = src
+	var/brute = "<span style=color:red>[ROUND_UP(human.getBruteLoss())]</span>" // Limbs
+	var/burn = "<span style=color:yellow>[ROUND_UP(human.getFireLoss())]</span>" // Limbs
+	var/tox = "<span style=color:green>[ROUND_UP(human.toxloss)]</span>"
+	var/oxy = "<span style=color:cyan>[ROUND_UP(human.oxyloss)]</span>"
+	string += "<span class='center'>[brute]|[burn]|[tox]|[oxy]</span>"
+	if(medhud.icon_state == "hudhealth100")
+		holder.maptext = ""
+		return .
+	else
+		holder.maptext = MAPTEXT_SPESSFONT("<span style='font-size: 6pt; line-height: 1.0'>[string]</span>\n")
+		holder.maptext_x = -48
+		holder.maptext_y = 30
+		holder.maptext_width = 128
+// BUBBER EDIT END
 //called when a carbon changes stat, virus or XENO_HOST
 /mob/living/proc/med_hud_set_status()
 	var/image/holder = hud_list?[STATUS_HUD]
