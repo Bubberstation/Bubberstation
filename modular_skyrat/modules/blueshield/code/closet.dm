@@ -19,7 +19,6 @@
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/restraints/handcuffs(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/storage/medkit/tactical/blueshield(src)
 //	new /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo(src) happy BUBBERSTATION APRIL DAY
 //	new /obj/item/storage/bag/garment/blueshield(src)
