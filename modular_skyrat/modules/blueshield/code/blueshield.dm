@@ -46,7 +46,7 @@
 	name = "Blueshield"
 	jobtype = /datum/job/blueshield
 	uniform = /obj/item/clothing/under/rank/blueshield
-	suit = /obj/item/clothing/suit/armor/vest/old/bs
+	suit = /obj/item/clothing/suit/armor/vest/old
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	id = /obj/item/card/id
 	shoes = /obj/item/clothing/shoes/jackboots
