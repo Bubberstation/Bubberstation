@@ -1429,6 +1429,40 @@ digi
 	name = "Teshari Hardsuit"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/hardsuit.json'
 
+/**
+ * Nabber fallbacks.
+ * In case what we have another species with specials Json config file. We use this for our case.
+ * Check teshari fasllbacks .json config files for more datails.
+ */
+
+/datum/greyscale_config/nabber
+	name = "Nabber clothing"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/nabber_fallbacks.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/uniform.json'
+
+/datum/greyscale_config/nabber/cloak
+	name = "Nabber Poncho"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/neck.json'
+
+/datum/greyscale_config/nabber/tie
+	name = "Nabber Tie"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/neck.json'
+
+/datum/greyscale_config/nabber/scarf
+	name = "Nabber Scarf"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/neck.json'
+
+/datum/greyscale_config/nabber/gloves
+	name = "Nabber Gloves"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/gloves.json'
+
+/datum/greyscale_config/nabber/eyes
+	name = "Nabber Eyes"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/eyes.json'
+
+/datum/greyscale_config/nabber/belt
+	name = "Nabber Belt"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/nabber_fallbacks/belt.json'
 /*
 *	CIN SURPLUS ARMOR
 */
