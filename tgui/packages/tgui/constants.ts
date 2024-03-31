@@ -22,14 +22,16 @@ export const UI_CLOSE = -1;
 export const COLORS = {
   // Department colors
   department: {
-    captain: '#c06616',
+    captain: '#1373c1', // BUBBERS EDIT - Crew Monitor Updates
     security: '#e74c3c',
     medbay: '#3498db',
     science: '#9b59b6',
     engineering: '#f1c40f',
     cargo: '#f39c12',
-    service: '#6ca729', // SKYRAT EDIT - Crew Monitor Updates
+    service: '#7cc46a',
     centcom: '#00c100',
+    assistant: '#c1c1c1', // BUBBERS EDIT - Crew Monitor Updates
+    prisoner: '#e2a200', // BUBBERS EDIT - Crew Monitor Updates
     other: '#c38312',
   },
   // Damage type colors
@@ -48,25 +50,28 @@ export const COLORS = {
 
 // Colors defined in CSS
 export const CSS_COLORS = [
-  'black',
-  'white',
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'teal',
-  'blue',
-  'violet',
-  'purple',
-  'pink',
-  'brown',
-  'grey',
-  'good',
   'average',
   'bad',
+  'black',
+  'blue',
+  'brown',
+  'good',
+  'green',
+  'grey',
   'label',
-];
+  'olive',
+  'orange',
+  'pink',
+  'purple',
+  'red',
+  'teal',
+  'transparent',
+  'violet',
+  'white',
+  'yellow',
+] as const;
+
+export type CssColor = (typeof CSS_COLORS)[number];
 
 /* IF YOU CHANGE THIS KEEP IT IN SYNC WITH CHAT CSS */
 export const RADIO_CHANNELS = [
@@ -160,7 +165,7 @@ const GASES = [
     path: '/datum/gas/nitrogen',
     name: 'Nitrogen',
     label: 'N₂',
-    color: 'red',
+    color: 'yellow',
   },
   {
     id: 'co2',
@@ -295,6 +300,15 @@ const GASES = [
     label: 'Nitrium',
     color: 'brown',
   },
+  // BUBBERSTATION CHANGE: ADDS GOBLIN GAS
+  {
+    id: 'goblin',
+    path: '/datum/gas/goblin',
+    name: 'G081N',
+    label: 'G-081-N',
+    color: 'green',
+  },
+  // BUBBERSTATION CHANGE END: ADDS GOBLIN GAS
 ] as const;
 
 // Returns gas label based on gasId

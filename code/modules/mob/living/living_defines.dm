@@ -1,6 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
-	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD, DNR_HUD) // SKYRAT EDIT ADDITION - DNR_HUD
 	pressure_resistance = 10
 
 	hud_type = /datum/hud/living
@@ -30,8 +30,6 @@
 	var/toxloss = 0
 	///Burn damage caused by being way too hot, too cold or burnt.
 	var/fireloss = 0
-	///Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
-	var/cloneloss = 0
 
 	/// The movement intent of the mob (run/wal)
 	var/move_intent = MOVE_INTENT_RUN

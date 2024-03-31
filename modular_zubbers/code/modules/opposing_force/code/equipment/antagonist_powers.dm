@@ -1,9 +1,9 @@
 /datum/opposing_force_equipment/antagonist_powers
-	category = OPFOR_EQUIPMENT_CATEGORY_ANTAGONIST_POWERS
+	category = OPFOR_EQUIPMENT_CATEGORY_OTHER
 
 // Traitor
 /datum/opposing_force_equipment/antagonist_powers/uplink
-	item_type = /obj/item/uplink/opfor
+	item_type = /obj/item/uplink
 	name = "Syndicate Uplink"
 	description = "An old-school Syndicate uplink without a password and an empty TC account. Perfect for the aspiring operatives."
 	admin_note = "Traitor uplink without telecrystals."

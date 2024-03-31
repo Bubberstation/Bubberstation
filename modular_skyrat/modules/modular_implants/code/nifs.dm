@@ -92,6 +92,8 @@
 	var/list/loaded_nifsofts = list()
 	///What programs come already installed on the NIF?
 	var/list/preinstalled_nifsofts = list(/datum/nifsoft/soul_poem)
+	///What programs do we want to carry between rounds?
+	var/list/persistent_nifsofts = list()
 	///This shows up in the NIF settings screen as a way to ICly display lore.
 	var/manufacturer_notes = "There is no data currently avalible for this product."
 
@@ -124,7 +126,7 @@
 	QDEL_LIST(loaded_nifsofts)
 	return ..()
 
-/obj/item/organ/internal/cyberimp/brain/nif/Insert(mob/living/carbon/human/insertee, special = FALSE, drop_if_replaced = TRUE)
+/obj/item/organ/internal/cyberimp/brain/nif/Insert(mob/living/carbon/human/insertee, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
 
 	if(linked_mob && stored_ckey != insertee.ckey && theft_protection)
@@ -147,8 +149,8 @@
 	linked_mob.AddComponent(/datum/component/nif_examine)
 	RegisterSignal(linked_mob, COMSIG_LIVING_DEATH, PROC_REF(damage_on_death))
 
-	if(preinstalled_nifsofts)
-		send_message("Loading preinstalled NIFSofts, please wait...")
+	if(preinstalled_nifsofts || persistent_nifsofts)
+		send_message("Loading preinstalled and stored NIFSofts, please wait...")
 		addtimer(CALLBACK(src, PROC_REF(install_preinstalled_nifsofts)), 3 SECONDS)
 
 /obj/item/organ/internal/cyberimp/brain/nif/Remove(mob/living/carbon/organ_owner, special = FALSE)
@@ -174,12 +176,16 @@
 	for(var/datum/nifsoft/preinstalled_nifsoft as anything in preinstalled_nifsofts)
 		new preinstalled_nifsoft(src)
 
+	for(var/stored_nifsoft in persistent_nifsofts)
+		var/datum/nifsoft/new_stored_nifsoft = new stored_nifsoft(src)
+		new_stored_nifsoft.keep_installed = TRUE
+
 	return TRUE
 
 /obj/item/organ/internal/cyberimp/brain/nif/process(seconds_per_tick)
 	. = ..()
 
-	if(!linked_mob || broken || IS_IN_STASIS(linked_mob))
+	if(!linked_mob || broken || HAS_TRAIT(linked_mob, TRAIT_STASIS))
 		return FALSE
 
 	if(calibrating)
@@ -497,12 +503,16 @@
 
 /obj/item/storage/box/nif_ghost_box/PopulateContents()
 	new /obj/item/autosurgeon/organ/nif/ghost_role(src)
-	new /obj/item/disk/nifsoft_uploader/hivemind(src)
 	new /obj/item/disk/nifsoft_uploader/shapeshifter(src)
 	new /obj/item/disk/nifsoft_uploader/summoner(src)
-	new /obj/item/disk/nifsoft_uploader/money_sense(src)
 	new /obj/item/disk/nifsoft_uploader/dorms(src)
+	new /obj/item/disk/nifsoft_uploader/dorms/hypnosis(src)
 	new /obj/item/disk/nifsoft_uploader/soulcatcher(src)
+	new /obj/item/disk/nifsoft_uploader/money_sense(src)
+
+/obj/item/storage/box/nif_ghost_box/ghost_role/PopulateContents()
+	. = ..()
+	new /obj/item/disk/nifsoft_uploader/hivemind(src)
 
 #undef NIF_CALIBRATION_STAGE_1
 #undef NIF_CALIBRATION_STAGE_1_END

@@ -48,6 +48,15 @@
 			return
 		cmd_show_exp_panel(M.client)
 
+	// BUBBER EDIT START - Job exemption
+	else if (href_list["getjobexemptwindow"])
+		var/target_ckey = href_list["getjobexemptwindow"]
+		show_job_exempt_menu(usr, target_ckey)
+	else if (href_list["getjobexempttask"])
+		var/target_ckey = href_list["getjobexempttask"]
+		handle_job_exempt_menu_topic(usr, href, href_list, target_ckey)
+	// BUBBER EDIT END
+
 // SKYRAT EDIT BEGIN -- ONE CLICK ANTAG
 	else if(href_list["makeAntag"])
 
@@ -56,8 +65,8 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if (!SSticker.mode)
-			to_chat(usr, "<span class='danger'>Not until the round starts!</span>", confidential = TRUE)
+		if (!SSticker.HasRoundStarted())
+			to_chat(usr, span_danger("Not until the round starts!"), confidential = TRUE)
 			return
 
 		var/opt = null
@@ -104,7 +113,7 @@
 	else if(href_list["gamemode_panel"])
 		if(!check_rights(R_ADMIN))
 			return
-		SSticker.mode.admin_panel()
+		SSdynamic.admin_panel()
 
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
@@ -396,19 +405,6 @@
 		var/target = href_list["showmessageckeylinkless"]
 		browse_messages(target_ckey = target, linkless = 1)
 
-	else if(href_list["messageread"])
-		if(!isnum(href_list["message_id"]))
-			return
-		var/rounded_message_id = round(href_list["message_id"], 1)
-		var/datum/db_query/query_message_read = SSdbcore.NewQuery(
-			"UPDATE [format_table_name("messages")] SET type = 'message sent' WHERE targetckey = :player_key AND id = :id",
-			list("id" = rounded_message_id, "player_key" = usr.ckey)
-		)
-		if(!query_message_read.warn_execute())
-			qdel(query_message_read)
-			return
-		qdel(query_message_read)
-
 	else if(href_list["messageedits"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -435,7 +431,7 @@
 	else if(href_list["f_dynamic_roundstart"])
 		if(!check_rights(R_ADMIN))
 			return
-		if(SSticker?.mode)
+		if(SSticker.HasRoundStarted())
 			return tgui_alert(usr, "The game has already started.")
 		var/roundstart_rules = list()
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/roundstart))
@@ -465,11 +461,44 @@
 		log_admin("[key_name(usr)] removed [rule] from the forced roundstart rulesets.")
 		message_admins("[key_name(usr)] removed [rule] from the forced roundstart rulesets.", 1)
 
+	else if (href_list["f_dynamic_ruleset_manage"])
+		if(!check_rights(R_ADMIN))
+			return
+		dynamic_ruleset_manager(usr)
+	else if (href_list["f_dynamic_ruleset_force_all_on"])
+		if(!check_rights(R_ADMIN))
+			return
+		force_all_rulesets(usr, RULESET_FORCE_ENABLED)
+	else if (href_list["f_dynamic_ruleset_force_all_off"])
+		if(!check_rights(R_ADMIN))
+			return
+		force_all_rulesets(usr, RULESET_FORCE_DISABLED)
+	else if (href_list["f_dynamic_ruleset_force_all_reset"])
+		if(!check_rights(R_ADMIN))
+			return
+		force_all_rulesets(usr, RULESET_NOT_FORCED)
+	else if (href_list["f_dynamic_ruleset_force_on"])
+		if(!check_rights(R_ADMIN))
+			return
+		set_dynamic_ruleset_forced(usr, locate(href_list["f_dynamic_ruleset_force_on"]), RULESET_FORCE_ENABLED)
+	else if (href_list["f_dynamic_ruleset_force_off"])
+		if(!check_rights(R_ADMIN))
+			return
+		set_dynamic_ruleset_forced(usr, locate(href_list["f_dynamic_ruleset_force_off"]), RULESET_FORCE_DISABLED)
+	else if (href_list["f_dynamic_ruleset_force_reset"])
+		if(!check_rights(R_ADMIN))
+			return
+		set_dynamic_ruleset_forced(usr, locate(href_list["f_dynamic_ruleset_force_reset"]), RULESET_NOT_FORCED)
+	else if (href_list["f_inspect_ruleset"])
+		if(!check_rights(R_ADMIN))
+			return
+		usr.client.debug_variables(locate(href_list["f_inspect_ruleset"]))
+
 	else if (href_list["f_dynamic_options"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(SSticker?.mode)
+		if(SSticker.HasRoundStarted())
 			return tgui_alert(usr, "The game has already started.")
 
 		dynamic_mode_options(usr)
@@ -503,7 +532,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(SSticker?.mode)
+		if(SSticker.HasRoundStarted())
 			return tgui_alert(usr, "The game has already started.")
 
 		var/new_value = input(usr, "Enter the forced threat level for dynamic mode.", "Forced threat level") as num
@@ -861,7 +890,7 @@
 					status = "<font color='red'><b>Dead</b></font>"
 			health_description = "Status: [status]"
 			health_description += "<br>Brute: [lifer.getBruteLoss()] - Burn: [lifer.getFireLoss()] - Toxin: [lifer.getToxLoss()] - Suffocation: [lifer.getOxyLoss()]"
-			health_description += "<br>Clone: [lifer.getCloneLoss()] - Brain: [lifer.get_organ_loss(ORGAN_SLOT_BRAIN)] - Stamina: [lifer.getStaminaLoss()]"
+			health_description += "<br>Brain: [lifer.get_organ_loss(ORGAN_SLOT_BRAIN)] - Stamina: [lifer.getStaminaLoss()]"
 		else
 			health_description = "This mob type has no health to speak of."
 
@@ -1309,16 +1338,16 @@
 			new /obj/effect/pod_landingzone(target, pod)
 
 		if (number == 1)
-			log_admin("[key_name(usr)] created a [english_list(paths)]")
+			log_admin("[key_name(usr)] created an instance of [english_list(paths)]")
 			for(var/path in paths)
 				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created a [english_list(paths)]")
+					message_admins("[key_name_admin(usr)] created an instance of [english_list(paths)]")
 					break
 		else
-			log_admin("[key_name(usr)] created [number]ea [english_list(paths)]")
+			log_admin("[key_name(usr)] created [number] instances of [english_list(paths)]")
 			for(var/path in paths)
 				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created [number]ea [english_list(paths)]")
+					message_admins("[key_name_admin(usr)] created [number] instances of [english_list(paths)]")
 					break
 		return
 
@@ -1372,7 +1401,6 @@
 				return
 			G.report_message = description
 		message_admins("[key_name(usr)] created \"[G.name]\" station goal.")
-		GLOB.station_goals += G
 		modify_goals()
 
 	else if(href_list["change_lag_switch"])
@@ -1736,6 +1764,10 @@
 		var/obj/item/nuclear_challenge/button = locate(href_list["force_war"])
 		button.force_war()
 
+	else if(href_list["give_reinforcement"])
+		var/datum/team/nuclear/nuketeam = locate(href_list["give_reinforcement"]) in GLOB.antagonist_teams
+		nuketeam.admin_spawn_reinforcement(usr)
+
 	else if (href_list["interview"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1807,8 +1839,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/datum/game_mode/dynamic/dynamic = SSticker.mode
-		if(!dynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
+		if(!SSdynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
 			message_admins("An OPFOR candidate could not be selected.")
 
 	// SKYRAT ADDITION END

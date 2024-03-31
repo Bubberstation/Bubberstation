@@ -13,10 +13,12 @@
 	. = ..()
 	RegisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK, PROC_REF(mob_attack))
 	carbon_target.AddComponent(/datum/component/ash_age)
+	carbon_target.faction |= FACTION_ASHWALKER
 
 /datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/carbon_target)
 	. = ..()
 	UnregisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK)
+	carbon_target.faction &= FACTION_ASHWALKER
 
 /datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user)
 	SIGNAL_HANDLER
@@ -93,7 +95,7 @@
 			to_chat(human_target, span_notice("Your body feels hotter..."))
 		if(5)
 			var/datum/action/cooldown/mob_cooldown/fire_breath/granted_action
-			granted_action = new()
+			granted_action = new(human_target)
 			granted_action.Grant(human_target)
 			to_chat(human_target, span_notice("Your throat feels larger..."))
 		if(6 to INFINITY)

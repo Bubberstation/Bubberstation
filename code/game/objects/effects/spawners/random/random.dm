@@ -57,6 +57,9 @@
 		var/pixel_divider = FLOOR(16 / spawn_loot_split_pixel_offsets, 1) // 16 pixels offsets is max that should be allowed in any direction
 		while((spawn_loot_count-loot_spawned) && loot.len)
 			var/lootspawn = pick_weight_recursive(loot)
+			if(!can_spawn(lootspawn))
+				loot.Remove(lootspawn)
+				continue
 			if(!spawn_loot_double)
 				loot.Remove(lootspawn)
 			if(lootspawn && (spawn_scatter_radius == 0 || spawn_locations.len))
@@ -97,7 +100,8 @@
 
 	if(radius >= 0)
 		for(var/turf/turf_in_view in view(radius, get_turf(src)))
-			if(isclosedturf(turf_in_view) || (isgroundlessturf(turf_in_view) && !GET_TURF_BELOW(turf_in_view)))
+			//if(isclosedturf(turf_in_view) || (isgroundlessturf(turf_in_view) && !GET_TURF_BELOW(turf_in_view))) BUBBERSTATION CHANGE: REMOVES BAD CODE THAT SPAWNED THINGS IN OPENTURFS.
+			if(isclosedturf(turf_in_view) || isgroundlessturf(turf_in_view)) //BUBBERSTATION CHANGE: ADDS GOOD CODE.
 				continue
 			scatter_locations += turf_in_view
 

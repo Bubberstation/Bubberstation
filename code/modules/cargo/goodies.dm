@@ -3,7 +3,14 @@
 	access = NONE
 	group = "Goodies"
 	goody = TRUE
-/* // SKYRAT EDIT START - CARGO GUN
+	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
+
+/datum/supply_pack/goody/clear_pda
+	name = "Mint Condition Nanotrasen Clear PDA"
+	desc = "Mint condition, freshly repackaged! A valuable collector's item normally valued at over 2.5 million credits, now available for a steal!"
+	cost = 100000
+	contains = list(/obj/item/modular_computer/pda/clear)
+
 /datum/supply_pack/goody/dumdum38
 	name = ".38 DumDum Speedloader"
 	desc = "Contains one speedloader of .38 DumDum ammunition, good for embedding in soft targets."
@@ -31,7 +38,6 @@
 	cost = PAYCHECK_CREW * 40 //they really mean a premium here
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/revolver/c38/detective)
-*/ //SKYRAT EDIT END
 
 /datum/supply_pack/goody/stingbang
 	name = "Stingbang Single-Pack"
@@ -40,7 +46,6 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/grenade/stingbang)
 
-/* //SKYRAT EDIT START - GUN CARGO
 /datum/supply_pack/goody/Survivalknives_single
 	name = "Survival Knife Single-Pack"
 	desc = "Contains one sharpened survival knive. Guaranteed to fit snugly inside any Nanotrasen-standard boot."
@@ -88,7 +93,6 @@
 	cost = PAYCHECK_COMMAND * 15
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/storage/belt/holster/energy/thermal)
-*/ //SKYRAT EDIT END
 
 /datum/supply_pack/goody/sologamermitts
 	name = "Insulated Gloves Single-Pack"
@@ -132,6 +136,12 @@
 	cost = PAYCHECK_CREW * 4
 	contains = list(/obj/item/storage/medkit/toxin)
 
+/datum/supply_pack/goody/bandagebox_singlepack
+	name = "Box of Bandages Single-Pack"
+	desc = "A single box of DeForest brand bandages. For when you don't want to see your doctor."
+	cost = PAYCHECK_CREW * 3
+	contains = list(/obj/item/storage/box/bandages)
+
 /datum/supply_pack/goody/toolbox // mostly just to water down coupon probability
 	name = "Mechanical Toolbox"
 	desc = "A fully stocked mechanical toolbox, for when you're too lazy to just print them out."
@@ -142,7 +152,7 @@
 	name = "Valentine Card"
 	desc = "Make an impression on that special someone! Comes with one valentine card and a free candy heart!"
 	cost = PAYCHECK_CREW * 2
-	contains = list(/obj/item/valentine, /obj/item/food/candyheart)
+	contains = list(/obj/item/paper/valentine, /obj/item/food/candyheart)
 
 /datum/supply_pack/goody/beeplush
 	name = "Bee Plushie"
@@ -162,15 +172,11 @@
 	cost = PAYCHECK_COMMAND * 4
 	contains = list(/obj/item/dog_bone)
 
-// SKYRAT EDIT REMOVAL BEGIN
-/*
 /datum/supply_pack/goody/dyespray
 	name = "Hair Dye Spray"
 	desc = "A cool spray to dye your hair with awesome colors!"
 	cost = PAYCHECK_CREW * 2
 	contains = list(/obj/item/dyespray)
-*/
-// SKYRAT EDIT REMOVAL END
 
 /datum/supply_pack/goody/beach_ball
 	name = "Beach Ball"
@@ -243,11 +249,29 @@
 	cost = PAYCHECK_CREW
 	contains = list(/obj/item/bait_can/worm/premium)
 
+/datum/supply_pack/goody/naturalbait
+	name = "Freshness Jars full of Natural Bait"
+	desc = "Homemade in the Spinward Sector."
+	cost = PAYCHECK_CREW * 4 //rock on
+	contains = list(/obj/item/storage/pill_bottle/naturalbait)
+
 /datum/supply_pack/goody/telescopic_fishing_rod
 	name = "Telescopic Fishing Rod"
 	desc = "A collapsible fishing rod that can fit within a backpack."
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/fishing_rod/telescopic)
+
+/datum/supply_pack/goody/fish_analyzer
+	name = "Fish Analyzer"
+	desc = "A single analyzer to monitor fish's status and traits with, in case you don't have the technology to print one."
+	cost = PAYCHECK_CREW * 2.5
+	contains = list(/obj/item/fish_analyzer)
+
+/datum/supply_pack/goody/fish_catalog
+	name = "Fishing Catalog"
+	desc = "A catalog containing all the fishy info you'll ever need."
+	cost = PAYCHECK_LOWER
+	contains = list(/obj/item/book/manual/fish_catalog)
 
 /datum/supply_pack/goody/coffee_mug
 	name = "Coffee Mug"
@@ -278,3 +302,9 @@
 	desc = "A standard-sized coffeepot, for use with a coffeemaker."
 	cost = PAYCHECK_CREW
 	contains = list(/obj/item/reagent_containers/cup/coffeepot)
+
+/datum/supply_pack/goody/climbing_hook
+	name = "Climbing hook"
+	desc = "A less cheap imported climbing hook. Absolutely no use outside of planetary stations."
+	cost = PAYCHECK_CREW * 5
+	contains = list(/obj/item/climbing_hook)

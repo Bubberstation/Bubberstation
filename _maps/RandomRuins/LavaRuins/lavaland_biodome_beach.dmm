@@ -6,10 +6,6 @@
 /obj/machinery/oven/range,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
-"ae" = (
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_booze,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "aj" = (
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/powered/beach)
@@ -285,18 +281,6 @@
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
-/area/ruin/powered/beach)
-"hq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/item/bedsheet/dorms{
-	dir = 4
-	},
-/obj/structure/bed{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "hy" = (
 /obj/machinery/chem_master/condimaster{
@@ -879,6 +863,11 @@
 	},
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/powered/beach)
+"Ft" = (
+/obj/machinery/light/small/directional/east,
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "FC" = (
 /obj/structure/sink/kitchen/directional/west{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -946,6 +935,10 @@
 "Hy" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/stairs/left,
+/area/ruin/powered/beach)
+"HW" = (
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_booze,
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "Il" = (
 /obj/structure/table/wood,
@@ -1178,11 +1171,6 @@
 "RE" = (
 /turf/closed/wall/mineral/wood/nonmetal,
 /area/ruin/powered/beach)
-"RZ" = (
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "Sn" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Supply Room"
@@ -1276,6 +1264,16 @@
 "Up" = (
 /obj/structure/noticeboard/staff,
 /turf/closed/wall/mineral/wood/nonmetal,
+/area/ruin/powered/beach)
+"UI" = (
+/obj/structure/closet/cabinet,
+/obj/item/storage/backpack/duffelbag,
+/obj/item/clothing/under/shorts/blue,
+/obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian,
+/obj/item/clothing/shoes/sandal/beach,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/clothing/neck/beads,
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "UT" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
@@ -1373,19 +1371,21 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
+"XL" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/spawner/random/bedsheet{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "XM" = (
 /obj/structure/fluff/beach_umbrella/science,
 /turf/open/misc/beach/sand,
-/area/ruin/powered/beach)
-"XR" = (
-/obj/structure/closet/cabinet,
-/obj/item/storage/backpack/duffelbag,
-/obj/item/clothing/under/shorts/blue,
-/obj/item/clothing/suit/costume/ianshirt,
-/obj/item/clothing/shoes/sandal/beach,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/neck/beads,
-/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "XW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
@@ -1514,7 +1514,7 @@ VI
 UT
 SY
 aj
-ae
+HW
 aC
 aC
 Eq
@@ -1546,7 +1546,7 @@ VI
 VI
 FH
 aj
-RZ
+Ft
 aC
 aC
 CK
@@ -2142,7 +2142,7 @@ BE
 Mf
 de
 TC
-hq
+XL
 Fr
 qF
 ZA
@@ -2178,7 +2178,7 @@ kh
 aj
 de
 TC
-hq
+XL
 MZ
 hj
 mw
@@ -2206,7 +2206,7 @@ aC
 aj
 EE
 Rk
-XR
+UI
 aj
 tB
 aC

@@ -32,11 +32,9 @@
 	attack_verb_continuous = "rips into"
 	attack_verb_simple = "rip into"
 	attack_sound = 'sound/effects/blobattack.ogg'
-	next_move_modifier = 0.5 //Faster attacks
 	butcher_results = list(/obj/item/food/meat/slab/human = 15) //It's a pretty big dude. Actually killing one is a feat.
 	gold_core_spawnable = FALSE //Should stay exclusive to changelings tbh, otherwise makes it much less significant to sight one
 	var/datum/action/innate/turn_to_human
-	var/datum/action/innate/devour
 	var/transformed_time = 0
 	var/playstyle_string = span_infoplain("<b><font size=3 color='red'>We have entered our true form!</font> We are unbelievably powerful, and regenerate life at a steady rate. However, most of \
 	our abilities are useless in this form, and we must utilise the abilities that we have gained as a result of our transformation. Currently, we are incapable of returning to a human. \
@@ -52,11 +50,10 @@
 /mob/living/simple_animal/hostile/true_changeling/Initialize(mapload)
 	. = ..()
 	to_chat(src, playstyle_string)
-	turn_to_human = new /datum/action/innate/turn_to_human
-	devour = new /datum/action/innate/devour
+	turn_to_human = new(src)
 	turn_to_human.Grant(src)
-	devour.Grant(src)
-	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
+	GRANT_ACTION(/datum/action/innate/devour)
+	// ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT) Bubbber change
 
 /mob/living/simple_animal/hostile/true_changeling/Life()
 	. = ..()

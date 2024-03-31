@@ -8,13 +8,13 @@
  **/
 /obj/item/robot_model
 	name = "Default"
-	icon = 'icons/obj/assemblies/module.dmi'
+	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "std_mod"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	flags_1 = CONDUCT_1
+	obj_flags = CONDUCTS_ELECTRICITY
 	///Host of this model
 	var/mob/living/silicon/robot/robot
 	///Icon of the module selection screen
@@ -225,6 +225,10 @@
 	new_model.rebuild_modules()
 	cyborg.radio.recalculateChannels()
 	cyborg.set_modularInterface_theme()
+	cyborg.diag_hud_set_health()
+	cyborg.diag_hud_set_status()
+	cyborg.diag_hud_set_borgcell()
+	cyborg.diag_hud_set_aishell()
 	log_silicon("CYBORG: [key_name(cyborg)] has transformed into the [new_model] model.")
 
 	//SKYRAT EDIT ADDITION BEGIN - ALTBORGS - Old check for 'dogborg' var no longer necessary, refactored into model_features instead.
@@ -237,6 +241,9 @@
 	return new_model
 
 /obj/item/robot_model/proc/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
+	if(HAS_TRAIT(robot, TRAIT_NO_TRANSFORM))
+		robot.balloon_alert(robot, "can't transform right now!")
+		return FALSE
 	if(islist(borg_skins) && !forced)
 		var/mob/living/silicon/robot/cyborg = loc
 		var/list/reskin_icons = list()
@@ -245,7 +252,7 @@
 			reskin_icons[skin] = image(icon = details[SKIN_ICON] || 'icons/mob/silicon/robots.dmi', icon_state = details[SKIN_ICON_STATE])
 			//SKYRAT EDIT ADDITION BEGIN - ALTBORGS
 			if (!isnull(details[SKIN_FEATURES]))
-				if (R_TRAIT_WIDE in details[SKIN_FEATURES])
+				if (TRAIT_R_WIDE in details[SKIN_FEATURES])
 					var/image/reskin = reskin_icons[skin]
 					reskin.pixel_x -= 16
 			//SKYRAT EDIT END
@@ -254,7 +261,7 @@
 			return FALSE
 		var/list/details = borg_skins[borg_skin]
 		//SKYRAT EDIT START
-		if(cyborg.hasExpanded && (((R_TRAIT_WIDE in details[SKIN_FEATURES]) && (R_TRAIT_WIDE in model_features)) || ((R_TRAIT_TALL in details[SKIN_FEATURES]) && (R_TRAIT_TALL in model_features))))
+		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features))))
 			to_chat(cyborg, span_warning("You can't make yourself into a larger frame when you've already used an expander!"))
 			return FALSE
 		//SKYRAT EDIT END
@@ -263,6 +270,7 @@
 		if(!isnull(details[SKIN_ICON]))
 			cyborg.icon = details[SKIN_ICON]
 			cyborg_icon_override = details[SKIN_ICON] // SKYRAT EDIT ADDITION
+		if(!isnull(details[SKIN_PIXEL_X]))
 			cyborg.base_pixel_x = details[SKIN_PIXEL_X]
 		if(!isnull(details[SKIN_PIXEL_Y]))
 			cyborg.base_pixel_y = details[SKIN_PIXEL_Y]
@@ -294,7 +302,7 @@
 	var/mob/living/silicon/robot/cyborg = loc
 	sleep(0.1 SECONDS)
 	flick("[cyborg_base_icon]_transform", cyborg)
-	cyborg.notransform = TRUE
+	ADD_TRAIT(cyborg, TRAIT_NO_TRANSFORM, REF(src))
 	if(locked_transform)
 		cyborg.ai_lockdown = TRUE
 		cyborg.SetLockdown(TRUE)
@@ -308,7 +316,7 @@
 	cyborg.ai_lockdown = FALSE
 	cyborg.setDir(SOUTH)
 	cyborg.set_anchored(FALSE)
-	cyborg.notransform = FALSE
+	REMOVE_TRAIT(cyborg, TRAIT_NO_TRANSFORM, REF(src))
 	cyborg.updatehealth()
 	cyborg.update_icons()
 	cyborg.notify_ai(AI_NOTIFICATION_NEW_MODEL)
@@ -613,7 +621,7 @@
 
 	var/turf/our_turf = get_turf(robot_owner)
 
-	if(reagents.has_chemical_flag(REAGENT_CLEANS, 1))
+	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		our_turf.wash(CLEAN_SCRUB)
 
 	reagents.expose(our_turf, TOUCH, min(1, 10 / reagents.total_volume))
@@ -681,8 +689,9 @@
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
+		/obj/item/blood_filter,
 		/obj/item/extinguisher/mini,
-		/obj/item/roller/robo,
+		/obj/item/emergency_bed/silicon,
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/stack/medical/gauze,
 		/obj/item/stack/medical/bone_gel,
@@ -705,7 +714,8 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/kinetic_crusher,
+		/obj/item/shovel,
+		/obj/item/kinetic_crusher, //SKYRAT EDIT
 		/obj/item/crowbar/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,
@@ -713,6 +723,7 @@
 		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg,
 		/obj/item/gps/cyborg,
 		/obj/item/stack/marker_beacon,
+		/obj/item/t_scanner/adv_mining_scanner/cyborg,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 	emag_modules = list(
@@ -726,23 +737,13 @@
 		"Spider Miner" = list(SKIN_ICON_STATE = "spidermin"),
 		"Lavaland Miner" = list(SKIN_ICON_STATE = "miner"),
 	)
-	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes. //fuck you
-
-/obj/item/robot_model/miner/rebuild_modules()
-	. = ..()
-	if(!mining_scanner)
-		mining_scanner = new(src)
-
-/obj/item/robot_model/miner/Destroy()
-	QDEL_NULL(mining_scanner)
-	return ..()
 
 /obj/item/robot_model/peacekeeper
 	name = "Peacekeeper"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/rsf/cookiesynth,
-		/obj/item/harmalarm,
+		/obj/item/harmalarm/bubbers, //BUBBERTATION CHANGE
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
 		/obj/item/borg/cyborghug/peacekeeper,
@@ -801,15 +802,23 @@
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/reagent_containers/borghypo/borgshaker,
+		// SKYRAT EDIT START
+		// /obj/item/reagent_containers/borghypo/borgshaker,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/juice,
+		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc,
 		/obj/item/borg/apparatus/beaker/service,
+		/obj/item/borg/apparatus/beaker, // Allows the pickup of different beakers for easier drink mixing
+		// SKYRAT EDIT END
 		/obj/item/reagent_containers/cup/beaker/large, //I know a shaker is more appropiate but this is for ease of identification
-		//Skyrat Edit Start: Borg Buff
-		//obj/item/reagent_containers/condiment/enzyme, //edit
-		/obj/item/reagent_containers/condiment/enzyme,
+		//obj/item/reagent_containers/condiment/enzyme, // SKYRAT EDIT - Borg shaker has it
 		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/syringe, // SKYRAT EDIT
 		/obj/item/rsf,
 		/obj/item/storage/bag/tray,
+		/obj/item/storage/bag/tray, // SKYRAT EDIT: Moves the second tray up to be near the default one
+		/obj/item/cooking/cyborg/power, // SKYRAT EDIT
 		/obj/item/pen,
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/extinguisher/mini,
@@ -817,17 +826,6 @@
 		/obj/item/razor,
 		/obj/item/instrument/guitar,
 		/obj/item/instrument/piano_synth,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/juice, //edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda, //edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol, //edit
-		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc, //edit
-		/obj/item/reagent_containers/dropper,
-		/obj/item/lighter,
-		/obj/item/storage/bag/tray,
-		//obj/item/reagent_containers/borghypo/borgshaker, //edit
-		/obj/item/reagent_containers/syringe, //edit
-		/obj/item/cooking/cyborg/power, //edit
 		/obj/item/lighter,
 		/obj/item/borg/lollipop,
 		/obj/item/stack/pipe_cleaner_coil/cyborg,
@@ -900,7 +898,7 @@
 		/obj/item/melee/energy/sword/cyborg/saw,
 		/obj/item/bonesetter,
 		/obj/item/blood_filter,
-		/obj/item/roller/robo,
+		/obj/item/emergency_bed/silicon,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,

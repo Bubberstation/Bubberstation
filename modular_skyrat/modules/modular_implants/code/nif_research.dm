@@ -4,8 +4,14 @@
 	id = "nifsoft_remover"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/nifsoft_remover
-	materials = list(/datum/material/iron = 200, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 5)
-	category = list(RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY)
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY,
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/nifsoft_money_sense
@@ -14,8 +20,14 @@
 	id = "nifsoft_money_sense"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/money_sense
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
-	category = list(RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO,
+	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/soulcatcher_device
@@ -24,14 +36,41 @@
 	id = "soulcatcher_device"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/handheld_soulcatcher
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)
-	category = list(RND_CATEGORY_TOOLS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL) // look, the anesthetic machine's there too
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design/mini_soulcatcher
+	name = "Poltergeist-Type RSD"
+	desc = "A miniature version of a Soulcatcher that can be attached to various objects."
+	id = "mini_soulcatcher"
+	build_type = PROTOLATHE | AWAY_LATHE
+	build_path = /obj/item/attachable_soulcatcher
+	materials = list(
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_AI + RND_SUBCATEGORY_AI_MISC,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nifsoft_hud
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
-	category = list(RND_CATEGORY_EQUIPMENT)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_EQUIPMENT,
+	)
 
 /datum/design/nifsoft_hud/medical
 	name = "Medical HUD NIFSoft"
@@ -68,17 +107,26 @@
 	build_path = /obj/item/disk/nifsoft_uploader/sci_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_MEDICAL
 
+/datum/design/nifsoft_hud/meson
+	name = "Meson HUD NIFSoft"
+	desc = "A NIFSoft datadisk containing the Meson HUD NIFsoft."
+	id = "nifsoft_hud_meson"
+	build_path = /obj/item/disk/nifsoft_uploader/meson_hud
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design/nif_hud_kit
 	name = "NIF HUD Retrofitter"
 	desc = "A kit that modifies select glasses to display HUDs for NIFs."
 	id = "nifsoft_hud_kit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY
-	category = list(RND_CATEGORY_EQUIPMENT)
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_EQUIPMENT,
 	)
 	build_path = /obj/item/nif_hud_adapter
 

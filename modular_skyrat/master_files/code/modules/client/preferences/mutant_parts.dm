@@ -164,11 +164,15 @@
 	. = ..()
 
 	var/obj/item/bodypart/head/our_head = target.get_bodypart(BODY_ZONE_HEAD)
+	if(isnull(our_head)) // dullahans.
+		return
+
 	if(.)
-		our_head.bodytype |= BODYTYPE_SNOUTED
+		our_head.bodyshape |= BODYSHAPE_SNOUTED
 	else
-		our_head.bodytype &= ~BODYTYPE_SNOUTED
+		our_head.bodyshape &= ~BODYSHAPE_SNOUTED
 	target.synchronize_bodytypes()
+	target.synchronize_bodyshapes()
 
 /datum/preference/tri_color/snout
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES

@@ -5,9 +5,9 @@
 
 	var/asked = 0
 	for(var/mob/living/carbon/human/human in GLOB.alive_player_list)
-		if(human.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
-			to_chat(human, examine_block(span_greentext("The admins are looking for OPFOR players, if you're interested, sign up in the OOC tab!")))
-			asked++
+	//	if(human.client?.prefs?.read_preference(/datum/preference/toggle/be_antag)) //BUBBER EDIT BEGIN
+		to_chat(human, examine_block(span_greentext("The admins are looking for OPFOR players, if you're interested, sign up in the OOC tab!")))
+		asked++ // BUBBER EDIT END
 	message_admins("[ADMIN_LOOKUP(usr)] has requested more OPFOR players! (Asked: [asked] players)")
 
 

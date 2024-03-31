@@ -143,7 +143,7 @@
 	message = "squeaks!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'sound/effects/mousesqueek.ogg'
+	sound = 'sound/creatures/mousesqueek.ogg'
 
 /datum/emote/living/merp
 	key = "merp"
@@ -193,7 +193,12 @@
 	emote_type = EMOTE_AUDIBLE
 	mob_type_allowed_typecache = list(/mob/living/carbon, /mob/living/silicon/pai)
 	vary = TRUE
-	sound = 'modular_skyrat/modules/emotes/sound/emotes/mothchitter.ogg'
+
+/datum/emote/living/chitter/get_sound(mob/living/user)
+	if(ismoth(user))
+		return 'modular_skyrat/modules/emotes/sound/emotes/mothchitter.ogg'
+	else
+		return'sound/creatures/chitter.ogg'
 
 /datum/emote/living/sigh/get_sound(mob/living/user)
 	if(iscarbon(user))

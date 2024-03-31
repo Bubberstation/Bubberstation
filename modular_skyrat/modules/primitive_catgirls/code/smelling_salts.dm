@@ -25,7 +25,7 @@
 
 /// If the right conditions are present (basically could this person be defibrilated), revives the target
 /obj/item/smelling_salts/proc/try_revive(mob/living/carbon/carbon_target, mob/user)
-	carbon_target.notify_ghost_cloning("You are being brought back to life!")
+	carbon_target.notify_revival("You are being brought back to life!")
 	carbon_target.grab_ghost()
 
 	user.balloon_alert_to_viewers("trying to revive [carbon_target]")
@@ -42,7 +42,7 @@
 	var/fail_reason
 
 	switch (defib_result)
-		if (DEFIB_FAIL_SUICIDE, DEFIB_FAIL_DNR, DEFIB_FAIL_BLACKLISTED, DEFIB_FAIL_NO_INTELLIGENCE)
+		if (DEFIB_FAIL_SUICIDE, DEFIB_FAIL_BLACKLISTED, DEFIB_FAIL_NO_INTELLIGENCE) // BUBBER EDIT - DNR REWORK
 			fail_reason = "[carbon_target] doesn't respond at all... You don't think they're coming back."
 		if (DEFIB_FAIL_NO_HEART, DEFIB_FAIL_FAILING_HEART, DEFIB_FAIL_FAILING_BRAIN)
 			fail_reason = "[carbon_target] seems to respond just a little, but something you can't see must be wrong about them..."

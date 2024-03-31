@@ -21,7 +21,7 @@
 	var/designation = ""
 	var/radiomod = "" //Radio character used before state laws/arrivals announce to allow department transmissions, default, or none at all.
 	var/obj/item/camera/siliconcam/aicamera = null //photography
-	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
+	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD, DNR_HUD) // SKYRAT EDIT ADDITION - DNR HUD
 
 	var/obj/item/radio/borg/radio = null  ///If this is a path, this gets created as an object in Initialize.
 
@@ -75,6 +75,7 @@
 		TRAIT_MADNESS_IMMUNE,
 		TRAIT_MARTIAL_ARTS_IMMUNE,
 		TRAIT_NOFIRE_SPREAD,
+		TRAIT_BRAWLING_KNOCKDOWN_BLOCKED,
 	)
 
 	add_traits(traits_to_apply, ROUNDSTART_TRAIT)
@@ -349,10 +350,7 @@
 		return
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 
-	if(!GLOB.crew_manifest_tgui)
-		GLOB.crew_manifest_tgui = new /datum/crew_manifest(src)
-
-	GLOB.crew_manifest_tgui.ui_interact(src)
+	GLOB.manifest.ui_interact(src)
 
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
 	if(!radio)

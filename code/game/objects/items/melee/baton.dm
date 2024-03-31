@@ -26,7 +26,7 @@
 	/// The length of the knockdown applied to the user on clumsy_check()
 	var/clumsy_knockdown_time = 18 SECONDS
 	/// How much stamina damage we deal on a successful hit against a living, non-cyborg mob.
-	var/stamina_damage = 35 // SKYRAT EDIT - Less Stamina Damage (Original: 55)
+	var/stamina_damage = 55
 	/// Chance of causing force_say() when stunning a human mob
 	var/force_say_chance = 33
 	/// Can we stun cyborgs?
@@ -42,22 +42,22 @@
 	/// Boolean on whether people with chunky fingers can use this baton.
 	var/chunky_finger_usable = FALSE
 
-	/// The context to show when the baton is active and targetting a living thing
+	/// The context to show when the baton is active and targeting a living thing
 	var/context_living_target_active = "Stun"
 
-	/// The context to show when the baton is active and targetting a living thing in combat mode
+	/// The context to show when the baton is active and targeting a living thing in combat mode
 	var/context_living_target_active_combat_mode = "Stun"
 
-	/// The context to show when the baton is inactive and targetting a living thing
+	/// The context to show when the baton is inactive and targeting a living thing
 	var/context_living_target_inactive = "Prod"
 
-	/// The context to show when the baton is inactive and targetting a living thing in combat mode
+	/// The context to show when the baton is inactive and targeting a living thing in combat mode
 	var/context_living_target_inactive_combat_mode = "Attack"
 
-	/// The RMB context to show when the baton is active and targetting a living thing
+	/// The RMB context to show when the baton is active and targeting a living thing
 	var/context_living_rmb_active = "Attack"
 
-	/// The RMB context to show when the baton is inactive and targetting a living thing
+	/// The RMB context to show when the baton is inactive and targeting a living thing
 	var/context_living_rmb_inactive = "Attack"
 
 /obj/item/melee/baton/Initialize(mapload)
@@ -175,13 +175,10 @@
 		target.visible_message(desc["visible"], desc["local"])
 
 /obj/item/melee/baton/proc/check_parried(mob/living/carbon/human/human_target, mob/living/user)
-	if(!ishuman(human_target))
-		return
-	if (human_target.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+	if (human_target.check_block(src, 0, "[user]'s [name]", MELEE_ATTACK))
 		playsound(human_target, 'sound/weapons/genhit.ogg', 50, TRUE)
 		return TRUE
-	if(check_martial_counter(human_target, user))
-		return TRUE
+	return FALSE
 
 /obj/item/melee/baton/proc/finalize_baton_attack(mob/living/target, mob/living/user, modifiers, in_attack_chain = TRUE)
 	if(!in_attack_chain && HAS_TRAIT_FROM(target, TRAIT_IWASBATONED, REF(user)))
@@ -391,7 +388,7 @@
 	force = 5
 	cooldown = 2.5 SECONDS
 	force_say_chance = 80 //very high force say chance because it's funny
-	stamina_damage = 115 // SKYRAT EDIT: Original 85
+	stamina_damage = 85
 	clumsy_knockdown_time = 24 SECONDS
 	affect_cyborg = TRUE
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
@@ -422,7 +419,7 @@
 	armor_type = /datum/armor/baton_security
 	throwforce = 7
 	force_say_chance = 50
-	stamina_damage = 35 // SKYRAT EDIT - 4 baton crit now (Original: 60)
+	stamina_damage = 60
 	knockdown_time = 5 SECONDS
 	clumsy_knockdown_time = 15 SECONDS
 	cooldown = 2.5 SECONDS
@@ -430,6 +427,12 @@
 	on_stun_volume = 50
 	active = FALSE
 	context_living_rmb_active = "Harmful Stun"
+	light_range = 1.5
+	light_system = OVERLAY_LIGHT
+	light_on = FALSE
+	light_color = LIGHT_COLOR_ORANGE
+	light_power = 0.5
+
 
 	var/throw_stun_chance = 35
 	var/obj/item/stock_parts/cell/cell
@@ -544,6 +547,8 @@
 		active = !active
 		balloon_alert(user, "turned [active ? "on" : "off"]")
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
+		toggle_light(user)
+		do_sparks(1, TRUE, src)
 	else
 		active = FALSE
 		if(!cell)
@@ -552,6 +557,11 @@
 			balloon_alert(user, "out of charge!")
 	update_appearance()
 	add_fingerprint(user)
+
+/// Toggles the stun baton's light
+/obj/item/melee/baton/security/proc/toggle_light(mob/user)
+	set_light_on(!light_on)
+	return
 
 /obj/item/melee/baton/security/proc/deductcharge(deducted_charge)
 	if(!cell)
@@ -562,6 +572,7 @@
 	if(active && cell.charge < cell_hit_cost)
 		//we're below minimum, turn off
 		active = FALSE
+		set_light_on(FALSE)
 		update_appearance()
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
 
@@ -600,7 +611,7 @@
  */
 /obj/item/melee/baton/security/additional_effects_non_cyborg(mob/living/target, mob/living/user)
 	target.set_jitter_if_lower(40 SECONDS)
-	// target.set_confusion_if_lower(10 SECONDS) // SKYRAT EDIT REMOVAL
+	target.set_confusion_if_lower(10 SECONDS)
 	target.set_stutter_if_lower(16 SECONDS)
 
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
@@ -628,11 +639,11 @@
 	. = list()
 
 	.["visible"] = span_danger("[user] tries to stun [target] with [src], and predictably fails!")
-	.["local"] = span_userdanger("[target] tries to... stun you with [src]?")
+	.["local"] = span_userdanger("[user] tries to... stun you with [src]?")
 
 /obj/item/melee/baton/security/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(active && prob(throw_stun_chance) && isliving(hit_atom))
+	if(!. && active && prob(throw_stun_chance) && isliving(hit_atom))
 		finalize_baton_attack(hit_atom, thrownby?.resolve(), in_attack_chain = FALSE)
 
 /obj/item/melee/baton/security/emp_act(severity)
@@ -652,6 +663,8 @@
 	if (!cell || cell.charge < cell_hit_cost)
 		return
 	active = !active
+	toggle_light()
+	do_sparks(1, TRUE, src)
 	playsound(src, SFX_SPARKS, 75, TRUE, -1)
 	update_appearance()
 

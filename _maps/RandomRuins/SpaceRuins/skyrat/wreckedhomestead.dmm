@@ -19,6 +19,12 @@
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/iron/airless,
 /area/ruin/unpowered)
+"cw" = (
+/obj/machinery/door/airlock/research/glass,
+/obj/effect/mapping_helpers/airlock/welded,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark/airless,
+/area/ruin/unpowered)
 "dL" = (
 /obj/structure/table/optable,
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
@@ -65,6 +71,12 @@
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
+"lN" = (
+/obj/machinery/door/window/brigdoor/left/directional/west,
+/obj/machinery/light/directional/east,
+/obj/effect/mob_spawn/corpse/human/skeleton,
+/turf/open/floor/iron/dark/airless,
+/area/ruin/unpowered)
 "ma" = (
 /obj/structure/frame/computer,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -76,16 +88,11 @@
 /area/ruin/unpowered)
 "mP" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/surgery_tray/full,
 /obj/item/reagent_containers/cup/beaker/cryoxadone,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/iron/airless,
-/area/ruin/unpowered)
-"oa" = (
-/obj/machinery/rnd/bepis,
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/iron/airless,
 /area/ruin/unpowered)
@@ -133,6 +140,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/unpowered)
+"tP" = (
+/obj/machinery/cryo_cell,
+/obj/effect/mapping_helpers/burnt_floor,
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
 "ve" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 1
@@ -160,11 +172,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
-"Az" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered)
 "Bf" = (
 /turf/closed/wall/mineral/titanium,
 /area/ruin/unpowered)
@@ -187,14 +194,6 @@
 /area/ruin/unpowered)
 "Di" = (
 /turf/open/floor/engine/airless,
-/area/ruin/unpowered)
-"DU" = (
-/obj/machinery/door/window/brigdoor{
-	dir = 8
-	},
-/obj/machinery/light/directional/east,
-/obj/effect/mob_spawn/corpse/human/skeleton,
-/turf/open/floor/iron/dark/airless,
 /area/ruin/unpowered)
 "Fc" = (
 /obj/machinery/light/directional/south,
@@ -257,13 +256,6 @@
 	},
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating/airless,
-/area/ruin/unpowered)
-"RO" = (
-/obj/machinery/door/airlock/research/glass{
-	welded = 1
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/iron/dark/airless,
 /area/ruin/unpowered)
 "Sl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold{
@@ -1148,7 +1140,7 @@ wY
 Bf
 Bf
 Bf
-RO
+cw
 Bf
 Bf
 sx
@@ -1209,7 +1201,7 @@ wY
 Bf
 Wp
 Bf
-Az
+tP
 Dh
 ve
 mP
@@ -1276,7 +1268,7 @@ Wv
 kN
 dL
 Bf
-oa
+kN
 Bf
 Bf
 Bf
@@ -1956,7 +1948,7 @@ wY
 Bf
 Wp
 on
-DU
+lN
 Wp
 sx
 sr

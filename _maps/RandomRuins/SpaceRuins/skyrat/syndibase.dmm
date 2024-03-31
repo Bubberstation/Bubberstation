@@ -43,7 +43,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "dc" = (
-/mob/living/basic/syndicate/ranged/anthro,
+/mob/living/basic/trooper/syndicate/ranged/anthro,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "dq" = (
@@ -87,15 +87,15 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "hB" = (
-/mob/living/basic/syndicate/melee/sword/anthro,
+/mob/living/basic/trooper/syndicate/melee/sword/anthro,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "hE" = (
-/mob/living/basic/syndicate/ranged/space/anthro/cat,
+/mob/living/basic/trooper/syndicate/ranged/space/anthro/cat,
 /turf/open/misc/asteroid/lowpressure,
 /area/ruin/space/has_grav/powered)
 "if" = (
-/mob/living/basic/syndicate/ranged,
+/mob/living/basic/trooper/syndicate/ranged,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "il" = (
@@ -105,14 +105,12 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "jV" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 8
-	},
+/obj/machinery/door/window/survival_pod/left/directional/west,
 /obj/structure/bed,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "ka" = (
-/mob/living/basic/syndicate/melee/anthro,
+/mob/living/basic/trooper/syndicate/melee/anthro,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "kc" = (
@@ -164,7 +162,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "pF" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/cryo_cell,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "pL" = (
@@ -180,7 +178,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "rM" = (
-/mob/living/basic/syndicate/ranged/smg,
+/mob/living/basic/trooper/syndicate/ranged/smg,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "sN" = (
@@ -199,7 +197,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "uf" = (
-/mob/living/simple_animal/hostile/nanotrasen/elite,
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "vf" = (
@@ -211,8 +209,7 @@
 /area/ruin/space/has_grav/powered)
 "vS" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/machinery/door/window/survival_pod{
-	dir = 8;
+/obj/machinery/door/window/survival_pod/left/directional/west{
 	req_access = list("syndicate")
 	},
 /obj/structure/bed,
@@ -230,9 +227,7 @@
 /area/ruin/space/has_grav/powered)
 "wU" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /obj/structure/toilet{
 	dir = 4
 	},
@@ -275,7 +270,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "DI" = (
-/mob/living/basic/syndicate/melee/space/stormtrooper,
+/mob/living/basic/trooper/syndicate/melee/space/stormtrooper,
 /turf/open/misc/asteroid/lowpressure,
 /area/ruin/space/has_grav/powered)
 "DM" = (
@@ -304,7 +299,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "EL" = (
-/mob/living/basic/syndicate/melee/sword/space,
+/mob/living/basic/trooper/syndicate/melee/sword/space,
 /turf/open/misc/asteroid/lowpressure,
 /area/ruin/space/has_grav/powered)
 "FA" = (
@@ -319,7 +314,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "Gp" = (
-/mob/living/basic/syndicate/melee/sword/space,
+/mob/living/basic/trooper/syndicate/melee/sword/space,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "GG" = (
@@ -336,7 +331,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "HA" = (
-/mob/living/basic/syndicate/melee,
+/mob/living/basic/trooper/syndicate/melee,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "Iw" = (
@@ -402,8 +397,7 @@
 /area/ruin/space/has_grav/powered)
 "Pl" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/machinery/door/window/survival_pod{
-	dir = 4;
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	req_access = list("syndicate")
 	},
 /obj/structure/toilet{
@@ -449,9 +443,7 @@
 /area/ruin/space/has_grav/powered)
 "Uh" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/west,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
+/obj/machinery/door/window/survival_pod/left/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered)
 "UY" = (
@@ -461,9 +453,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "Vo" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 4
-	},
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /obj/structure/toilet{
 	dir = 4
 	},
@@ -474,7 +464,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "Ws" = (
-/mob/living/basic/syndicate/melee,
+/mob/living/basic/trooper/syndicate/melee,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/powered)
 "WT" = (

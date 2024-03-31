@@ -120,6 +120,8 @@
 		has_sensor = HAS_SENSORS
 	update_appearance()
 
+/* BUBBERSTATION CHANGE: REWORKS SENSOR EMP
+
 /obj/item/clothing/under/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -144,6 +146,8 @@
 		if(ooman.w_uniform == src)
 			ooman.update_suit_sensors()
 
+BUBBERSTATION CHANGE END */
+
 /obj/item/clothing/under/visual_equipped(mob/user, slot)
 	. = ..()
 	if(adjusted == ALT_STYLE)
@@ -152,7 +156,7 @@
 	/* SKYRAT EDIT REMOVAL - This breaks jumpsuit adjustment. Plus, we don't support it.
 	if((supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION) && ishuman(user))
 		var/mob/living/carbon/human/wearer = user
-		if(wearer.bodytype & BODYTYPE_DIGITIGRADE)
+		if(wearer.bodyshape & BODYSHAPE_DIGITIGRADE)
 			adjusted = DIGITIGRADE_STYLE
 			update_appearance()
 		*/ // SKYRAT EDIT END

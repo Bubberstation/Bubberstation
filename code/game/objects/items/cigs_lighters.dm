@@ -219,16 +219,26 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!lighting_text)
 		return ..()
 
-	if(!reagents.has_reagent(/datum/reagent/oxygen)) //cigarettes need oxygen
-		var/datum/gas_mixture/air = return_air()
-		if(!air || !air.has_gas(/datum/gas/oxygen, 1)) //or oxygen on a tile to burn
-			to_chat(user, span_notice("Your [name] needs a source of oxygen to burn."))
-			return ..()
+	if(!check_oxygen(user)) //cigarettes need oxygen
+		balloon_alert(user, "no air!")
+		return ..()
 
 	if(smoketime > 0)
 		light(lighting_text)
 	else
 		to_chat(user, span_warning("There is nothing to smoke!"))
+
+/// Checks that we have enough air to smoke
+/obj/item/clothing/mask/cigarette/proc/check_oxygen(mob/user)
+	if (reagents.has_reagent(/datum/reagent/oxygen))
+		return TRUE
+	var/datum/gas_mixture/air = return_air()
+	if (!isnull(air) && air.has_gas(/datum/gas/oxygen, 1))
+		return TRUE
+	if (!iscarbon(user))
+		return FALSE
+	var/mob/living/carbon/the_smoker = user
+	return the_smoker.can_breathe_helmet()
 
 /obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/cup/glass, mob/user, proximity)
 	. = ..()
@@ -237,7 +247,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!istype(glass)) //you can dip cigarettes into beakers
 		return
 
-	if(glass.reagents.trans_to(src, chem_volume, transfered_by = user)) //if reagents were transfered, show the message
+	if(glass.reagents.trans_to(src, chem_volume, transferred_by = user)) //if reagents were transferred, show the message
 		to_chat(user, span_notice("You dip \the [src] into \the [glass]."))
 	//if not, either the beaker was empty, or the cigarette was full
 	else if(!glass.reagents.total_volume)
@@ -348,6 +358,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!istype(smoker) || smoker.get_item_by_slot(ITEM_SLOT_MASK) != loc)
 			reagents.remove_any(to_smoke)
 			return
+	else
+		if(src != smoker.wear_mask)
+			reagents.remove_any(to_smoke)
+			return
 
 	reagents.expose(smoker, INGEST, min(to_smoke / reagents.total_volume, 1))
 	var/obj/item/organ/internal/lungs/lungs = smoker.get_organ_slot(ORGAN_SLOT_LUNGS)
@@ -360,11 +374,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/process(seconds_per_tick)
 	var/mob/living/user = isliving(loc) ? loc : null
 	user?.ignite_mob()
-	if(!reagents.has_reagent(/datum/reagent/oxygen)) //cigarettes need oxygen
-		var/datum/gas_mixture/air = return_air()
-		if(!air || !air.has_gas(/datum/gas/oxygen, 1)) //or oxygen on a tile to burn
-			extinguish()
-			return
+
+	if(!check_oxygen(user))
+		extinguish()
+		return
 
 	// SKYRAT EDIT ADDITION START - Pollution
 	var/turf/location = get_turf(src)
@@ -687,7 +700,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	packeditem = to_smoke.name
 	update_name()
 	if(to_smoke.reagents)
-		to_smoke.reagents.trans_to(src, to_smoke.reagents.total_volume, transfered_by = user)
+		to_smoke.reagents.trans_to(src, to_smoke.reagents.total_volume, transferred_by = user)
 	qdel(to_smoke)
 
 
@@ -723,13 +736,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	inhand_icon_state = "zippo"
 	worn_icon_state = "lighter"
 	w_class = WEIGHT_CLASS_TINY
-	flags_1 = CONDUCT_1
+	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT
 	heat = 1500
 	resistance_flags = FIRE_PROOF
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/fuel/oil = 5)
 	custom_price = PAYCHECK_CREW * 1.1
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 2
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
@@ -834,6 +847,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				span_notice("You hear a quiet click, as [user] shuts off [src] without even looking at what [user.p_theyre()] doing. Wow."),
 				span_notice("You quietly shut off [src] without even looking at what you're doing. Wow.")
 			)
+			playsound(src, 'modular_skyrat/master_files/sound/items/zippo_close.ogg', 50, TRUE) // SKYRAT EDIT ADDITION
 		else
 			user.visible_message(
 				span_notice("[user] quietly shuts off [src]."),
@@ -847,6 +861,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			span_notice("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."),
 			span_notice("Without even breaking stride, you flip open and light [src] in one smooth movement.")
 		)
+		playsound(src, 'modular_skyrat/master_files/sound/items/zippo_open.ogg', 50, TRUE) // SKYRAT EDIT ADDITION
 		return
 
 	var/hand_protected = FALSE
@@ -1043,7 +1058,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	worn_icon_state = "vape_worn"
 	greyscale_config = /datum/greyscale_config/vape
 	greyscale_config_worn = /datum/greyscale_config/vape/worn
-	greyscale_config_worn_digi = /datum/greyscale_config/vape/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale (Digi? On a vape? What? How did we do this)
+	greyscale_config_worn_muzzled = /datum/greyscale_config/vape/worn/muzzled //SKYRAT EDIT ADDITION
 	greyscale_colors = "#2e2e2e"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_TINY

@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	var/has_fov = TRUE
 	///Cigarette in the mask
 	var/obj/item/clothing/mask/cigarette/cig
+	voice_filter = "lowpass=f=750,volume=2"
 
 /datum/armor/mask_gas
 	bio = 100
@@ -39,7 +40,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 
 /obj/item/clothing/mask/gas/Initialize(mapload)
 	. = ..()
-	init_fov()
+	//init_fov() Bubber edit - NO
 	if(!max_filters || !starting_filter_type)
 		return
 
@@ -274,6 +275,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	dog_fashion = /datum/dog_fashion/head/clown
 	has_fov = FALSE
 	var/list/clownmask_designs = list()
+	voice_filter = null // performer masks expect to be talked through
 
 /obj/item/clothing/mask/gas/clown_hat/plasmaman
 	starting_filter_type = /obj/item/gas_filter/plasmaman

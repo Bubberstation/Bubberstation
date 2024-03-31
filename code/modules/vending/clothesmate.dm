@@ -18,6 +18,7 @@
 				/obj/item/clothing/mask/bandana = 3,
 				/obj/item/clothing/mask/bandana/striped = 3,
 				/obj/item/clothing/mask/bandana/skull = 3,
+				/obj/item/clothing/mask/facescarf = 3,
 				/obj/item/clothing/neck/scarf = 6,
 				/obj/item/clothing/neck/large_scarf = 6,
 				/obj/item/clothing/neck/large_scarf/red = 6,
@@ -118,6 +119,15 @@
 				/obj/item/clothing/under/rank/civilian/purple_bartender = 2,
 				/obj/item/clothing/suit/jacket/miljacket = 1,
 				/obj/item/clothing/suit/apron/overalls = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/graphic = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/wornout = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic/ian = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/messy = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic = 2,
+				/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/ian = 2,
 			),
 		),
 
@@ -152,7 +162,9 @@
 				/obj/item/clothing/suit/hooded/ethereal_raincoat = 3,
 				/obj/item/clothing/under/ethereal_tunic = 3,
 
-				/obj/item/clothing/suit/costume/ianshirt = 1,
+				/obj/item/clothing/mask/kitsune = 3,
+				/obj/item/clothing/mask/rebellion = 6,
+				/obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian = 1,
 				/obj/item/clothing/suit/costume/irs = 20,
 				/obj/item/clothing/head/costume/irs = 20,
 				/obj/item/clothing/head/costume/tmc = 20,
@@ -200,6 +212,7 @@
 		/obj/item/clothing/under/costume/swagoutfit = 1,
 		/obj/item/clothing/shoes/swagshoes = 1,
 		/obj/item/instrument/piano_synth/headphones/spacepods = 1,
+		/obj/item/clothing/head/helmet/toggleable/pinwheel = 1, //BUBBER EDIT: Pinwheel hat // BUBBER TODO: Modularize
 	)
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = PAYCHECK_CREW * 0.7 //Default of

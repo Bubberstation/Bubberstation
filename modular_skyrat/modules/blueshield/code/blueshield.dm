@@ -1,12 +1,12 @@
 /datum/job/blueshield
 	title = JOB_BLUESHIELD
-	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean." // BUBBER EDIT
+	description = "Protect heads of staff, get your fancy gun stolen, cry as the captain touches the supermatter."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "All Command Staff and Central Command when applicable" // BUBBER EDIT
+	supervisors = "Central Command and the Nanotrasen Consultant"
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
@@ -37,7 +37,6 @@
 		/obj/item/stack/spacecash/c500 = 3,
 		/obj/item/disk/nuclear/fake/obvious = 2,
 		/obj/item/clothing/head/collectable/captain = 4,
-		/obj/projectile/bullet/b460 = 1
 	)
 
 	veteran_only = TRUE
@@ -53,9 +52,6 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/headset_bs/alt
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
-	backpack_contents = list(
-		/obj/item/storage/box/gunset/blueshield = 1,
-	)
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield

@@ -45,9 +45,7 @@
 	atom_storage.max_total_storage = 200
 	atom_storage.max_slots = 15
 	atom_storage.insert_preposition = "in"
-	atom_storage.set_holdable(list(
-		/obj/item/clothing,
-	))
+	atom_storage.set_holdable(/obj/item/clothing)
 
 /obj/item/storage/bag/garment/captain/PopulateContents()
 	new /obj/item/clothing/under/rank/captain(src)
@@ -76,31 +74,39 @@
 	new /obj/item/clothing/shoes/laceup(src)
 
 /obj/item/storage/bag/garment/hos/PopulateContents()
-	//new /obj/item/clothing/under/rank/security/head_of_security/skirt(src) SKYRAT EDIT REMOVAL - Blue Sec
+	new /obj/item/clothing/under/rank/security/head_of_security/skirt(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/alt(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/alt/skirt(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/grey(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/parade(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/parade/female(src)
+	new /obj/item/clothing/gloves/tackler/combat(src)
 	new /obj/item/clothing/suit/armor/hos(src)
 	new /obj/item/clothing/suit/armor/hos/hos_formal(src)
 	new /obj/item/clothing/suit/armor/hos/trenchcoat/winter(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga(src)
+	new /obj/item/clothing/head/hats/hos/beret(src)
 	new /obj/item/clothing/head/hats/hos/cap(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/clothing/neck/cloak/hos(src)
+//BUBBER ADDITION BEGIN
+	new /obj/item/clothing/neck/cloak/hos/redsec(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
+	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
+//BUBBER ADDITION END
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
 	new /obj/item/clothing/suit/armor/vest/warden(src)
-	//new /obj/item/clothing/head/hats/warden(src) SKYRAT EDIT REMOVAL
-	//new /obj/item/clothing/head/hats/warden/drill(src) SKYRAT EDIT REMOVAL
+	new /obj/item/clothing/head/hats/warden(src)
+	new /obj/item/clothing/head/hats/warden/drill(src)
 	new /obj/item/clothing/head/beret/sec/navywarden(src)
-	//new /obj/item/clothing/suit/armor/vest/warden/alt(src) SKYRAT EDIT REMOVAL
+	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
 	new /obj/item/clothing/under/rank/security/warden/formal(src)
 	new /obj/item/clothing/suit/jacket/warden/blue(src) //SKYRAT ADDITION - FORMAL COAT
-	//new /obj/item/clothing/under/rank/security/warden/skirt(src) SKYRAT EDIT REMOVAL
+	new /obj/item/clothing/under/rank/security/warden/skirt(src)
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)

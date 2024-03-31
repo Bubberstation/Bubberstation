@@ -48,11 +48,6 @@
 
 	face_atom(A) // change direction to face what you clicked on
 
-	if(aicamera.in_camera_mode) //Cyborg picture taking
-		aicamera.toggle_camera_mode(sound = FALSE)
-		aicamera.captureimage(A, usr)
-		return
-
 	var/obj/item/W = get_active_held_item()
 
 	if(!W && get_dist(src,A) <= interaction_range)
@@ -84,12 +79,18 @@
 		if(!isturf(loc))
 			return
 
-		// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc && isturf(A.loc.loc))
+		// cyborg rightclick code, allowing borgos to use weapons at range
 		if(CanReach(A,W))
 			W.melee_attack_chain(src, A, params)
 			return
-		if(isturf(A) || isturf(A.loc))
-			W.afterattack(A, src, 0, params)
+		else if(isturf(A) || isturf(A.loc))
+			if(LAZYACCESS(modifiers, RIGHT_CLICK))
+				var/after_attack_secondary_result = W.afterattack_secondary(A, src, FALSE, params)
+
+				if(after_attack_secondary_result == SECONDARY_ATTACK_CALL_NORMAL)
+					W.afterattack(A, src, FALSE, params)
+			else 
+				W.afterattack(A, src, FALSE, params)
 
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
@@ -195,7 +196,7 @@
 	change attack_robot() above to the proper function
 */
 /mob/living/silicon/robot/UnarmedAttack(atom/A, proximity_flag, list/modifiers)
-	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+	if(!can_unarmed_attack())
 		return
 	A.attack_robot(src)
 

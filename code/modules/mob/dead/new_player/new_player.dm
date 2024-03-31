@@ -125,13 +125,19 @@
 		if(JOB_NOT_VETERAN)
 			return "You need to be veteran to join as [jobtitle]."
 		if(JOB_UNAVAILABLE_QUIRK)
-			return "[jobtitle] is restricted from your quirks."
+			return "[jobtitle] is restricted due to your selected quirks."
 		if(JOB_UNAVAILABLE_LANGUAGE)
-			return "[jobtitle] is restricted from your languages."
+			return "[jobtitle] is restricted due to your selected languages."
 		if(JOB_UNAVAILABLE_SPECIES)
-			return "[jobtitle] is restricted from your species."
+			return "[jobtitle] is restricted due to your selected species."
+		//BUBBER EDIT BEGIN: Silicon flavor text
 		if(JOB_UNAVAILABLE_FLAVOUR)
-			return "[jobtitle] requires you to have flavour text for your character."
+			return "[jobtitle] requires you to have [CONFIG_GET(number/flavor_text_character_requirement)] characters of Flavor Text. Go to the character setup and write more."
+		if(JOB_UNAVAILABLE_FLAVOUR_SILICON)
+			return "[jobtitle] requires you to have [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters of Silicon Flavor Text. Go to the character setup and write more."
+		//BUBBER EDIT END: Silicon flavor text
+		if(JOB_UNAVAILABLE_AUGMENT)
+			return "[jobtitle] is restricted due to your selected body augments."
 		//SKYRAT EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
@@ -165,7 +171,7 @@
 		return JOB_UNAVAILABLE_LANGUAGE
 	if(job.has_banned_quirk(client.prefs))
 		return JOB_UNAVAILABLE_QUIRK
-	if(job.veteran_only && !SSplayer_ranks.is_veteran(client))
+	if(!CONFIG_GET(flag/bypass_veteran_system) && job.veteran_only && !SSplayer_ranks.is_veteran(client))
 		return JOB_NOT_VETERAN
 	if(job.has_banned_species(client.prefs))
 		return JOB_UNAVAILABLE_SPECIES
@@ -174,6 +180,12 @@
 
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
+	// Check that they're picking someone new for new character respawning
+	if(CONFIG_GET(flag/allow_respawn) == RESPAWN_FLAG_NEW_CHARACTER)
+		if("[client.prefs.default_slot]" in client.player_details.joined_as_slots)
+			tgui_alert(usr, "You already have played this character in this round!")
+			return FALSE
+
 	var/error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
 		tgui_alert(usr, get_job_unavailable_error_message(error, rank))
@@ -214,14 +226,16 @@
 	#define IS_ACTING_CAPTAIN 1
 	#define IS_FULL_CAPTAIN 2
 	var/is_captain = IS_NOT_CAPTAIN
+	var/captain_sound = 'sound/misc/notice2.ogg'
 	// If we already have a captain, are they a "Captain" rank and are we allowing multiple of them to be assigned?
 	if(is_captain_job(job))
 		is_captain = IS_FULL_CAPTAIN
+		captain_sound = ANNOUNCER_DEPARTMENTAL // SKYRAT EDIT CHANGE - Announcer Sounds
 	// If we don't have an assigned cap yet, check if this person qualifies for some from of captaincy.
 	else if(!SSjob.assigned_captain && ishuman(character) && SSjob.chain_of_command[rank] && !is_banned_from(ckey, list(JOB_CAPTAIN)))
 		is_captain = IS_ACTING_CAPTAIN
 	if(is_captain != IS_NOT_CAPTAIN)
-		minor_announce(job.get_captaincy_announcement(character))
+		minor_announce(job.get_captaincy_announcement(character), sound_override = captain_sound)
 		SSjob.promote_to_captain(character, is_captain == IS_ACTING_CAPTAIN)
 	#undef IS_NOT_CAPTAIN
 	#undef IS_ACTING_CAPTAIN
@@ -257,10 +271,10 @@
 		if(SSshuttle.emergency)
 			switch(SSshuttle.emergency.mode)
 				if(SHUTTLE_RECALL, SHUTTLE_IDLE)
-					SSticker.mode.make_antag_chance(humanc)
+					SSdynamic.make_antag_chance(humanc)
 				if(SHUTTLE_CALL)
 					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergency_call_time)*0.5)
-						SSticker.mode.make_antag_chance(humanc)
+						SSdynamic.make_antag_chance(humanc)
 
 	if((job.job_flags & JOB_ASSIGN_QUIRKS) && humanc && CONFIG_GET(flag/roundstart_traits))
 		SSquirks.AssignQuirks(humanc, humanc.client)
@@ -301,6 +315,8 @@
 		preserved_mind.original_character_slot_index = client.prefs.default_slot
 		preserved_mind.transfer_to(spawning_mob) //won't transfer key since the mind is not active
 		preserved_mind.set_original_character(spawning_mob)
+
+	LAZYADD(client.player_details.joined_as_slots, "[client.prefs.default_slot]")
 	client.init_verbs()
 	. = spawning_mob
 	new_character = .
@@ -326,11 +342,7 @@
 		return
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 
-	if(!GLOB.crew_manifest_tgui)
-		GLOB.crew_manifest_tgui = new /datum/crew_manifest(src)
-
-
-	GLOB.crew_manifest_tgui.ui_interact(src)
+	GLOB.manifest.ui_interact(src)
 
 /mob/dead/new_player/Move()
 	return 0

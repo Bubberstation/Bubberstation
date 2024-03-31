@@ -43,20 +43,6 @@
 // Health signals
 /// /mob/living/proc/updatehealth()
 #define COMSIG_MOB_RUN_ARMOR "mob_run_armor"
-/// /mob/living/proc/adjustBruteLoss (amount)
-#define COMSIG_MOB_LOSS_BRUTE "mob_loss_brute"
-/// /mob/living/proc/adjustBurnLoss (amount)
-#define COMSIG_MOB_LOSS_FIRE "mob_loss_fire"
-/// /mob/living/proc/adjustCloneLoss (amount)
-#define COMSIG_MOB_LOSS_CLONE "mob_loss_clone"
-/// /mob/living/proc/adjustToxLoss (amount)
-#define COMSIG_MOB_LOSS_TOX "mob_loss_tox"
-////mob/living/proc/adjustOyxLoss (amount)
-#define COMSIG_MOB_LOSS_OXY "mob_loss_oxy"
-////mob/living/proc/adjustStaminaLoss (amount)
-#define COMSIG_MOB_LOSS_STAMINA "mob_loss_stamina"
-/// /mob/living/proc/adjustOrganLoss (slot, amount)
-#define COMSIG_MOB_LOSS_ORGAN "mob_loss_organ"
 ///from base of /turf/handle_fall(): (mob/faller)
 #define COMSIG_TURF_MOB_FALL "turf_mob_fall"
 ///from base of /obj/effect/abstract/liquid_turf/Initialize() (/obj/effect/abstract/liquid_turf/liquids)
@@ -101,3 +87,24 @@
 
 /// Whenever we need to get the soul of the mob inside of the soulcatcher.
 #define COMSIG_SOULCATCHER_SCAN_BODY "soulcatcher_scan_body"
+
+/// Whenever we need to change the current room of a soulcatcher soul.
+#define COMSIG_CARRIER_MOB_CHANGE_ROOM "carrier_mob_change_room"
+
+/// Whenever we need to toggle the senses of a soulcatcher soul.
+#define COMSIG_CARRIER_MOB_TOGGLE_SENSE "carrier_mob_toggle_sense"
+
+/// Whenever we need to rename a soulcatcher soul.
+#define COMSIG_CARRIER_MOB_RENAME "carrier_mob_rename"
+
+/// Whenever we need to reset the name of a soulcatcher soul.
+#define COMSIG_CARRIER_MOB_RESET_NAME "carrier_mob_reset_name"
+
+/// Whenever we need to check if our soulcatcher soul is able to internally hear/see?
+#define COMSIG_CARRIER_MOB_CHECK_INTERNAL_SENSES "carrier_mob_internal_senses"
+
+/// Whenever we need to refresh the internal appearance of a soulcatcher soul.area
+#define COMSIG_CARRIER_MOB_REFRESH_APPEARANCE "carrier_mob_refresh_appearance"
+
+/// Whenever we need the soulcatcher soul to communicate something.
+#define COMSIG_CARRIER_MOB_SAY "carrier_mob_communicate"

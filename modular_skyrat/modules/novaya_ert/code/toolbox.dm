@@ -25,50 +25,18 @@
 /obj/item/storage/toolbox/ammobox/full/krinkov
 	name = "ammo box (Krinkov)"
 	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/akm
+	ammo_type = /obj/item/ammo_box/magazine/lanca
 	amount = 7
-
-/obj/item/storage/toolbox/ammobox/full/krinkov/emp
-	name = "ammo box (Krinkov, EMP)"
-	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/akm/emp
-
-/obj/item/storage/toolbox/ammobox/full/krinkov/fire
-	name = "ammo box (Krinkov, incendiary)"
-	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/akm/fire
-
-/obj/item/storage/toolbox/ammobox/full/krinkov/ricochet
-	name = "ammo box (Krinkov, match)"
-	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/akm/ricochet
-
-/obj/item/storage/toolbox/ammobox/full/krinkov/ap
-	name = "ammo box (Krinkov, armor piercing)"
-	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/akm/ap
-
-/obj/item/storage/toolbox/ammobox/full/bison
-	name = "ammo box (PP-95)"
-	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/multi_sprite/cfa_lynx
-	amount = 4
 
 /obj/item/storage/toolbox/ammobox/full/nri_smg
 	name = "ammo box (QLP/04)"
-	ammo_type = /obj/item/ammo_box/magazine/multi_sprite/cfa_lynx
+	ammo_type = /obj/item/ammo_box/magazine/miecz
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/l6_saw
 	name = "ammo box (L6 SAW)"
 	desc = "It contains a few magazines."
 	ammo_type = /obj/item/ammo_box/magazine/m7mm
-	amount = 7
-
-/obj/item/storage/toolbox/ammobox/full/makarov
-	name = "ammo box (R-C Makarov)"
-	desc = "It contains a few magazines."
-	ammo_type = /obj/item/ammo_box/magazine/multi_sprite/makarov
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/aps

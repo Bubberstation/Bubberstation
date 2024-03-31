@@ -1,5 +1,5 @@
 /mob/living/carbon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
-	if(notransform)
+	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
 
 	//SKYRAT EDIT ADDITION
@@ -13,9 +13,9 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(IS_IN_STASIS(src))
+	if(HAS_TRAIT(src, TRAIT_STASIS))
 		. = ..()
-		reagents.handle_stasis_chems(src, seconds_per_tick, times_fired)
+		reagents?.handle_stasis_chems(src, seconds_per_tick, times_fired)
 	else
 		//Reagent processing needs to come before breathing, to prevent edge cases.
 		handle_dead_metabolization(seconds_per_tick, times_fired) //Dead metabolization first since it can modify life metabolization.
@@ -34,12 +34,9 @@
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 	else
-
 		if(getStaminaLoss() > 0 && stam_regen_start_time <= world.time)
 			adjustStaminaLoss(-INFINITY)
-		var/bprv = handle_bodyparts(seconds_per_tick, times_fired)
-		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
-			updatehealth()
+		handle_bodyparts(seconds_per_tick, times_fired)
 
 	if(. && mind) //. == not dead
 		for(var/key in mind.addiction_points)
@@ -124,8 +121,8 @@
 						failed_last_breath = FALSE
 						clear_alert("not_enough_oxy")
 						return FALSE
-					adjustOxyLoss(3)
-					failed_last_breath = TRUE
+					breath = null // uh oh where'd the air go
+					check_breath(breath)
 					if(oxyloss <= OXYGEN_DAMAGE_CHOKING_THRESHOLD && stat == CONSCIOUS)
 						to_chat(src, "<span class='userdanger'>You hold in your breath!</span>")
 					else
@@ -375,13 +372,13 @@
 				if(prob(5))
 					to_chat(src, span_warning("The stench of rotting carcasses is unbearable!"))
 					add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
-					vomit()
+					vomit(VOMIT_CATEGORY_DEFAULT)
 			if(30 to INFINITY)
 				//Higher chance to vomit. Let the horror start
 				if(prob(25))
 					to_chat(src, span_warning("The stench of rotting carcasses is unbearable!"))
 					add_mood_event("smell", /datum/mood_event/disgust/nauseating_stench)
-					vomit()
+					vomit(VOMIT_CATEGORY_DEFAULT)
 			else
 				clear_mood_event("smell")
 
@@ -410,10 +407,13 @@
 
 	//-- NITRIUM --//
 	if(nitrium_pp)
+		var/need_mob_update = FALSE
 		if(nitrium_pp > 0.5)
-			adjustFireLoss(nitrium_pp * 0.15)
+			need_mob_update += adjustFireLoss(nitrium_pp * 0.15, updating_health = FALSE)
 		if(nitrium_pp > 5)
-			adjustToxLoss(nitrium_pp * 0.05)
+			need_mob_update += adjustToxLoss(nitrium_pp * 0.05, updating_health = FALSE)
+		if(need_mob_update)
+			updatehealth()
 
 	// Handle chemical euphoria mood event, caused by N2O.
 	if (n2o_euphoria == EUPHORIA_ACTIVE)
@@ -488,14 +488,25 @@
 
 /mob/living/carbon/proc/handle_organs(seconds_per_tick, times_fired)
 	if(stat == DEAD)
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/cryostylane)) // No organ decay if the body contains formaldehyde.
+		if(reagents && (reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/cryostylane))) // No organ decay if the body contains formaldehyde.
 			return
+		var/rot_count = 0 //BUBBERSTATION CHANGE: MIASMA ORGAN ROT
 		for(var/obj/item/organ/internal/organ in organs)
 			// On-death is where organ decay is handled
-			organ?.on_death(seconds_per_tick, times_fired) // organ can be null due to reagent metabolization causing organ shuffling
+			if(organ?.owner) // organ + owner can be null due to reagent metabolization causing organ shuffling
+				rot_count += organ.on_death(seconds_per_tick, times_fired) //BUBBERSTATION ADDITION: MIASMA_COUNT. NOTE THIS ISN'T CALLED ON ROBOTIC ORGANS.
 			// We need to re-check the stat every organ, as one of our others may have revived us
 			if(stat != DEAD)
 				break
+		//BUBBERSTATION CHANGE START: MIASMA ORGAN ROT
+		if(rot_count > 0) //This is going to be weird if there are mechanics that cause an organ to heal if you're dead, but at least this saves performance.
+			var/turf/organ_turf = get_turf(src) //We don't check the loc because of lockers. Stasis bodybags would prevent this from running anyways.
+			if(isopenturf(organ_turf) && !isspaceturf(organ_turf)) //Only spawn miasma on floor turfs and not in space turfs.
+				var/turf/open/open_turf = organ_turf
+				if(!open_turf.planetary_atmos) //Don't spawn miasma when there is open air to the sky.
+					var/miasma_to_spawn = (rot_count/(6*100))*30 //There are about 6 rottable organs in each mob, all with 100 health. If a person is 100% rotted, they should spawn 30 moles of miasma. (A 1x1 tile has 104 moles of oxygen+nitrogen).
+					open_turf.atmos_spawn_air("[GAS_MIASMA]=[miasma_to_spawn];[TURF_TEMPERATURE(src.bodytemperature)]")
+		//BUBBERSTATION CHANGE END: MIASMA
 		return
 
 	// NOTE: organs_slot is sorted by GLOB.organ_process_order on insertion
@@ -508,13 +519,13 @@
 
 
 /mob/living/carbon/handle_diseases(seconds_per_tick, times_fired)
-	for(var/thing in diseases)
-		var/datum/disease/D = thing
-		if(SPT_PROB(D.infectivity, seconds_per_tick))
-			D.spread()
-
-		if(stat != DEAD || D.process_dead)
-			D.stage_act(seconds_per_tick, times_fired)
+	for(var/datum/disease/disease as anything in diseases)
+		if(QDELETED(disease)) //Got cured/deleted while the loop was still going.
+			continue
+		if(SPT_PROB(disease.infectivity, seconds_per_tick))
+			disease.spread()
+		if(stat != DEAD || disease.process_dead)
+			disease.stage_act(seconds_per_tick, times_fired)
 
 /mob/living/carbon/handle_wounds(seconds_per_tick, times_fired)
 	for(var/datum/wound/wound as anything in all_wounds)
@@ -568,9 +579,9 @@
  * - times_fired: The number of times SSmobs has ticked.
  */
 /mob/living/carbon/proc/handle_dead_metabolization(seconds_per_tick, times_fired)
-	if (stat != DEAD)
+	if(stat != DEAD)
 		return
-	reagents.metabolize(src, seconds_per_tick, times_fired, can_overdose = TRUE, liverless = TRUE, dead = TRUE) // Your liver doesn't work while you're dead.
+	reagents?.metabolize(src, seconds_per_tick, times_fired, can_overdose = TRUE, liverless = TRUE, dead = TRUE) // Your liver doesn't work while you're dead.
 
 /// Base carbon environment handler, adds natural stabilization
 /mob/living/carbon/handle_environment(datum/gas_mixture/environment, seconds_per_tick, times_fired)
@@ -578,6 +589,9 @@
 
 	if(stat != DEAD) // If you are dead your body does not stabilize naturally
 		natural_bodytemperature_stabilization(environment, seconds_per_tick, times_fired)
+
+	else if(!on_fire && areatemp < bodytemperature) // lowers your dead body temperature to room temperature over time
+		adjust_bodytemperature((areatemp - bodytemperature), use_insulation=FALSE, use_steps=TRUE)
 
 	if(!on_fire || areatemp > bodytemperature) // If we are not on fire or the area is hotter
 		adjust_bodytemperature((areatemp - bodytemperature), use_insulation=TRUE, use_steps=TRUE)
@@ -719,7 +733,7 @@
 		var/datum/reagent/bits = bile
 		if(istype(bits, /datum/reagent/consumable))
 			var/datum/reagent/consumable/goodbit = bile
-			fullness += goodbit.nutriment_factor * goodbit.volume / goodbit.metabolization_rate
+			fullness += goodbit.get_nutriment_factor(src) * goodbit.volume / goodbit.metabolization_rate
 			continue
 		fullness += 0.6 * bits.volume / bits.metabolization_rate //not food takes up space
 
@@ -741,7 +755,7 @@
 ///Check to see if we have the liver, if not automatically gives you last-stage effects of lacking a liver.
 
 /mob/living/carbon/proc/handle_liver(seconds_per_tick, times_fired)
-	if(!dna)
+	if(isnull(has_dna()))
 		return
 
 	var/obj/item/organ/internal/liver/liver = get_organ_slot(ORGAN_SLOT_LIVER)
@@ -754,7 +768,7 @@
 	if(HAS_TRAIT(src, TRAIT_STABLELIVER) || HAS_TRAIT(src, TRAIT_LIVERLESS_METABOLISM))
 		return
 
-	adjustToxLoss(0.6 * seconds_per_tick, TRUE,  TRUE)
+	adjustToxLoss(0.6 * seconds_per_tick, forced = TRUE)
 	adjustOrganLoss(pick(ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES, ORGAN_SLOT_EARS), 0.5* seconds_per_tick)
 
 /mob/living/carbon/proc/undergoing_liver_failure()
@@ -799,18 +813,28 @@
  */
 /mob/living/carbon/proc/undergoing_cardiac_arrest()
 	var/obj/item/organ/internal/heart/heart = get_organ_slot(ORGAN_SLOT_HEART)
-	if(istype(heart) && heart.beating)
+	if(istype(heart) && heart.is_beating())
 		return FALSE
 	else if(!needs_heart())
 		return FALSE
 	return TRUE
 
+/**
+ * Causes the mob to either start or stop having a heart attack.
+ *
+ * status - Pass TRUE to start a heart attack, or FALSE to stop one.
+ *
+ * Returns TRUE if heart status was changed (heart attack -> no heart attack, or visa versa)
+ */
 /mob/living/carbon/proc/set_heartattack(status)
 	if(!can_heartattack())
 		return FALSE
 
 	var/obj/item/organ/internal/heart/heart = get_organ_slot(ORGAN_SLOT_HEART)
 	if(!istype(heart))
-		return
+		return FALSE
 
-	heart.beating = !status
+	if(status)
+		return heart.Stop()
+
+	return heart.Restart()

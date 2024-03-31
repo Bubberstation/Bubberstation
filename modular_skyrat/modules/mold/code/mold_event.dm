@@ -7,7 +7,6 @@
 	name = "Moldies"
 	description = "A mold outbreak on the station. The mold will spread across the station if not contained."
 	typepath = /datum/round_event/mold
-	weight = 5
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
 	min_players = EVENT_LOWPOP_THRESHOLD
@@ -49,14 +48,18 @@
 		if(!is_type_in_typecache(checked_area, possible_spawn_areas))
 			continue
 
-		for(var/turf/open/floor in checked_area.get_contained_turfs())
-			if(!floor.Enter(test_resin))
-				continue
+		for (var/list/zlevel_turfs as anything in checked_area.get_zlevel_turf_lists())
+			for(var/turf/area_turf as anything in zlevel_turfs)
+				if(isopenspaceturf(area_turf))
+					continue
 
-			if(locate(/turf/closed) in range(2, floor))
-				continue
+				if(!area_turf.Enter(test_resin))
+					continue
 
-			turfs += floor
+				if(locate(/turf/closed) in range(2, area_turf))
+					continue
+
+				turfs += area_turf
 
 	qdel(test_resin)
 

@@ -97,7 +97,7 @@
 		return FALSE
 	if(!is_station_level(z))
 		return FALSE
-	if(human_occupant.stat == DEAD && !HAS_TRAIT(human_occupant, TRAIT_DNR))
+	if(human_occupant.stat == DEAD) // BUBBER EDIT - DNR TRAIT REWORK
 		return FALSE
 	return TRUE
 
@@ -115,7 +115,7 @@
 		balloon_alert_to_viewers("invalid target DNA!")
 		return
 	human_occupant = occupant
-	if(human_occupant.stat == DEAD && !HAS_TRAIT(human_occupant, TRAIT_DNR))
+	if(human_occupant.stat == DEAD)
 		balloon_alert_to_viewers("occupant is dead!")
 		return
 	if(!SSgoldeneye.check_goldeneye_target(human_occupant.mind)) // Preventing abuse by method of duplication.
@@ -196,7 +196,10 @@
 	for(var/datum/status_effect/goldeneye_pinpointer/iterating_pinpointer in GLOB.goldeneye_pinpointers)
 		iterating_pinpointer.set_target(new_key)
 
-	notify_ghosts("GoldenEye key launched!", source = new_key, action = NOTIFY_ORBIT, header = "Something's Interesting!")
+	notify_ghosts("GoldenEye key launched!",
+		source = new_key,
+		header = "Something's Interesting!",
+	)
 
 /obj/machinery/interrogator/proc/find_drop_turf()
 	var/list/possible_turfs = list()
@@ -204,11 +207,12 @@
 	var/obj/structure/test_structure = new() // This is apparently the most intuative way to check if a turf is able to support entering.
 
 	for(var/area/station/maintenance/maint_area in GLOB.areas)
-		for(var/turf/floor as anything in maint_area.get_contained_turfs())
-			if(!is_station_level(floor.z))
-				continue
-			if(floor.Enter(test_structure))
-				possible_turfs += floor
+		for(var/list/zlevel_turfs as anything in maint_area.get_zlevel_turf_lists())
+			for(var/turf/area_turf as anything in zlevel_turfs)
+				if(!is_station_level(area_turf.z))
+					continue
+				if(area_turf.Enter(test_structure))
+					possible_turfs += area_turf
 	qdel(test_structure)
 
 	//Pick a turf to spawn at if we can

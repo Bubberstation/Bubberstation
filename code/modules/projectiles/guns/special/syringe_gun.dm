@@ -48,11 +48,10 @@
 		return
 	//SKYRAT EDIT SMARTDARTS
 	if(istype(syringes[length(syringes)], /obj/item/reagent_containers/syringe/smartdart))
-		chambered = new /obj/item/ammo_casing/syringegun/dart(src)
+		chambered.newshot(/obj/projectile/bullet/dart/syringe/dart)
 	else
-		chambered = new /obj/item/ammo_casing/syringegun(src)
+		chambered.newshot()
 	//SKYRAT EDIT SMARTDARTS END
-	chambered.newshot()
 
 /obj/item/gun/syringe/can_shoot()
 	return syringes.len
@@ -206,6 +205,6 @@
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	visible_message(span_danger("[user] shoots the blowgun!"))
 
-	user.adjustStaminaLoss(20)
+	user.adjustStaminaLoss(20, updating_stamina = FALSE)
 	user.adjustOxyLoss(20)
 	return ..()

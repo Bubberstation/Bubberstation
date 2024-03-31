@@ -1,4 +1,10 @@
-import { CheckboxInput, FeatureDropdownInput, FeatureChoiced, FeatureToggle } from '../../base';
+// THIS IS A SKYRAT UI FILE
+import {
+  CheckboxInput,
+  FeatureChoiced,
+  FeatureDropdownInput,
+  FeatureToggle,
+} from '../../base';
 
 export const master_erp_pref: FeatureToggle = {
   name: 'Show/Hide Erotic Roleplay Preferences',
@@ -48,6 +54,20 @@ export const sextoy_sounds_pref: FeatureToggle = {
   name: 'Sex toy sounds',
   category: 'ERP',
   description: 'Toggles if you will hear sounds from sex toys.',
+  component: CheckboxInput,
+};
+
+export const vore_pred_pref: FeatureToggle = {
+  name: 'Vore - Pred',
+  category: 'ERP',
+  description: 'Toggles if you are able to use vore mechanics on others.',
+  component: CheckboxInput,
+};
+
+export const vore_prey_pref: FeatureToggle = {
+  name: 'Vore - Prey',
+  category: 'ERP',
+  description: 'Toggles if others are able to use vore mechanics on you',
   component: CheckboxInput,
 };
 

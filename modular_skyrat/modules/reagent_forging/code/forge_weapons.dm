@@ -4,6 +4,7 @@
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_worn.dmi'
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_COLOR
+	obj_flags = UNIQUE_RENAME
 	skyrat_obj_flags = ANVIL_REPAIR
 
 /obj/item/forging/reagent_weapon/Initialize(mapload)
@@ -34,6 +35,10 @@
 	sharpness = SHARP_EDGED
 	max_integrity = 150
 
+/obj/item/forging/reagent_weapon/sword/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded = 15, force_wielded = 20)
+
 /obj/item/forging/reagent_weapon/katana
 	name = "reagent katana"
 	desc = "A katana sharp enough to penetrate body armor, but not quite million-times-folded sharp."
@@ -52,6 +57,10 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
 
+/obj/item/forging/reagent_weapon/katana/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded = 15, force_wielded = 20)
+
 /obj/item/forging/reagent_weapon/dagger
 	name = "reagent dagger"
 	desc = "A lightweight dagger with an extremely quick swing!"
@@ -68,6 +77,10 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
+
+/obj/item/forging/reagent_weapon/dagger/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 
 /obj/item/forging/reagent_weapon/dagger/attack(mob/living/M, mob/living/user, params)
 	. = ..()
@@ -108,12 +121,14 @@
 	attack_verb_simple = list("attack", "poke", "jab", "tear", "lacerate", "gore")
 	wound_bonus = -15
 	bare_wound_bonus = 15
-	reach = 2
 	sharpness = SHARP_POINTY
 
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded = 10, force_wielded = 17) //better than the bone spear
+	AddComponent(/datum/component/jousting, max_tile_charge = 9, min_tile_charge = 6)
+	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
+	AddComponent(/datum/component/two_handed, force_unwielded = 10, force_wielded = 15)
+	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 
 /obj/item/forging/reagent_weapon/axe
 	name = "reagent axe"
@@ -132,6 +147,11 @@
 	attack_verb_continuous = list("slashes", "bashes")
 	attack_verb_simple = list("slash", "bash")
 	sharpness = SHARP_EDGED
+
+/obj/item/forging/reagent_weapon/axe/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
+	AddComponent(/datum/component/two_handed, force_unwielded = 15, force_wielded = 20)
 
 /obj/item/forging/reagent_weapon/hammer
 	name = "reagent hammer"
@@ -157,6 +177,7 @@
 /obj/item/forging/reagent_weapon/hammer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/kneejerk)
+	AddComponent(/datum/component/two_handed, force_unwielded = 19, force_wielded = 24)
 
 /obj/item/forging/reagent_weapon/hammer/attack_atom(atom/attacked_atom, mob/living/user, params)
 	. = ..()
@@ -239,22 +260,29 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_weapon)
 
-/obj/item/ammo_casing/arrow/forged
-	desc = "An arrow made of wood, typically fired from a bow. It can be reinforced with sinew."
-	projectile_type = /obj/projectile/bullet/arrow/forged
-
-/obj/item/ammo_casing/arrow/forged/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/ammo_casing/arrow/attackby(obj/item/attacking_item, mob/user, params)
+	var/spawned_item
 	if(istype(attacking_item, /obj/item/stack/sheet/sinew))
-		var/obj/item/stack/stack_item = attacking_item
-		if(!stack_item.use(1))
-			return
-		new /obj/item/ammo_casing/arrow/ash(get_turf(src))
-		qdel(src)
-		return
-	return ..()
+		spawned_item = /obj/item/ammo_casing/arrow/ash
 
-/obj/projectile/bullet/arrow/forged
-	projectile_type = /obj/item/ammo_casing/arrow/forged
+	if(istype(attacking_item, /obj/item/stack/sheet/bone))
+		spawned_item = /obj/item/ammo_casing/arrow/bone
+
+	if(istype(attacking_item, /obj/item/stack/tile/bronze))
+		spawned_item = /obj/item/ammo_casing/arrow/bronze
+
+	if(!spawned_item)
+		return ..()
+
+	var/obj/item/stack/stack_item = attacking_item
+	if(!stack_item.use(1))
+		return
+
+	var/obj/item/ammo_casing/arrow/converted_arrow = new spawned_item(get_turf(src))
+	transfer_fingerprints_to(converted_arrow)
+	remove_item_from_storage(user)
+	user.put_in_hands(converted_arrow)
+	qdel(src)
 
 #define INCREASE_BLOCK_CHANGE 2
 
@@ -285,6 +313,8 @@
 		else
 			playsound(src, 'sound/weapons/parry.ogg', 75, TRUE)
 			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+		var/owner_turf = get_turf(owner)
+		new block_effect(owner_turf, COLOR_YELLOW)
 		return TRUE
 	return FALSE
 
@@ -303,3 +333,7 @@
 /obj/item/forging/reagent_weapon/bokken/proc/on_unwield()
 	SIGNAL_HANDLER
 	wielded = FALSE
+
+/obj/item/spear/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)

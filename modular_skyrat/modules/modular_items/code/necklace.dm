@@ -1,3 +1,7 @@
+//DEFAULT NECK ITEMS OVERRIDE//
+/obj/item/clothing/neck
+	w_class = WEIGHT_CLASS_SMALL
+
 //ASHWALKER TRANSLATOR NECKLACE//
 #define LANGUAGE_TRANSLATOR "translator"
 /obj/item/clothing/neck/necklace/ashwalker
@@ -8,6 +12,14 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "ashnecklace"
 	w_class = WEIGHT_CLASS_SMALL //allows this to fit inside of pockets.
+
+/obj/item/clothing/neck/necklace/ashwalker/cursed
+	name = "cursed ashen necklace"
+	desc = "A necklace crafted from ash, connected to the Necropolis through the core of a Legion. This imbues overdwellers with an unnatural understanding of Ashtongue, the native language of Lavaland, while worn. Cannot be removed!"
+
+/obj/item/clothing/neck/necklace/ashwalker/cursed/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 //uses code from the pirate hat.
 /obj/item/clothing/neck/necklace/ashwalker/equipped(mob/user, slot)

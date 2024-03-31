@@ -23,8 +23,8 @@
 /area/station/ai_monitored/security/armory)
 "g" = (
 /obj/effect/turf_decal/bot_blue,
-/obj/structure/closet/secure_closet/smartgun,
 /obj/machinery/firealarm/directional/east,
+/obj/structure/closet/secure_closet/armory_kiboko,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "h" = (
@@ -37,7 +37,7 @@
 /area/station/security/lockers)
 "j" = (
 /obj/machinery/dish_drive/bullet{
-	succrange = 2
+	suck_distance = 0
 	},
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron/dark,
@@ -128,7 +128,7 @@
 "C" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/structure/rack/gunrack,
-/obj/effect/spawner/armory_spawn/cmg,
+/obj/effect/spawner/armory_spawn/smg,
 /turf/open/floor/iron/smooth,
 /area/station/ai_monitored/security/armory)
 "D" = (
@@ -248,8 +248,7 @@
 /area/station/ai_monitored/security/armory)
 "R" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	dir = 1;
+/obj/machinery/door/window/brigdoor/left/directional/north{
 	name = "Weapon Distribution";
 	req_access = list("armory")
 	},

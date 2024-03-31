@@ -1,22 +1,50 @@
 /*
 *	BUBBER MODULAR OUTFITS FILE
 *	PUT ANY NEW ERT OUTFITS HERE
+*	OR CHANGES TO ERT HERE
 */
+
+
+/datum/ert
+	code = "Green"
+
+/datum/ert/marine
+	code = "Military Green"
+
+/datum/ert/centcom_official
+	code = "Gold"
+
+/datum/ert/inquisition
+	code = "Spanish Red"
+
+/datum/ert/janitor
+	code = "Purple"
+
+/datum/ert/intern
+	code = "Unpaid"
+
+/datum/ert/bounty_hunters
+	code = "Bounty Orange"
+
+/datum/ert/militia
+	code = "Brown" //For cargo. Idk
+
+/datum/ert/asset_protection
+	code = "Goldstar"
 
 /datum/outfit/centcom/asset_protection
 	name = "Asset Protection"
 
-	uniform = /obj/item/clothing/under/syndicate/sniper //BUBBER EDIT: Original: /obj/item/clothing/under/rank/centcom/commander
-	back = /obj/item/mod/control/pre_equipped/asset_protection //BUBBER EDIT Original: /obj/item/mod/control/pre_equipped/apocryphal
+	uniform = /obj/item/clothing/under/syndicate/sniper
+	back = /obj/item/mod/control/pre_equipped/asset_protection
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	glasses = /obj/item/clothing/glasses/hud/toggle/thermal
-	l_pocket = /obj/item/flashlight/seclite //BUBBER EDIT Original: /obj/item/flashlight/
+	l_pocket = /obj/item/flashlight/seclite
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	belt = /obj/item/storage/belt/security/full
 	l_hand = /obj/item/gun/energy/pulse/pistol/m1911/loyalpin // if this is still bulky make it not bulky and storable on belt/back/bag/exosuit
-	//BUBBER EDIT: Original /obj/item/gun/energy/pulse/carbine/loyalpin
 	id = /obj/item/card/id/advanced/centcom/ert
 	ears = /obj/item/radio/headset/headset_cent/alt
 
@@ -44,3 +72,4 @@
 /datum/outfit/centcom/asset_protection/leader
 	name = "Asset Protection Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
+

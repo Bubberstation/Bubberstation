@@ -47,23 +47,19 @@
 	if(newdir & NORTH)
 		other_visual.pixel_y = 13
 		other_visual.layer = BELOW_MOB_LAYER
-		SET_PLANE_IMPLICIT(other_visual, GAME_PLANE_FOV_HIDDEN)
 	if(newdir & SOUTH)
 		other_visual.pixel_y = -24
 		other_visual.layer = ABOVE_ALL_MOB_LAYER
-		SET_PLANE_IMPLICIT(other_visual, GAME_PLANE_UPPER_FOV_HIDDEN)
 		new_transform.Scale(-1, 1)
 		new_transform.Translate(-1, 0)
 	if(newdir & EAST)
 		other_visual.pixel_x = 14
 		other_visual.layer = BELOW_MOB_LAYER
-		SET_PLANE_IMPLICIT(other_visual, GAME_PLANE_FOV_HIDDEN)
 		new_transform.Shear(0.5, 0)
 		new_transform.Scale(0.65, 1)
 	if(newdir & WEST)
 		other_visual.pixel_x = -14
 		other_visual.layer = BELOW_MOB_LAYER
-		SET_PLANE_IMPLICIT(other_visual, GAME_PLANE_FOV_HIDDEN)
 		new_transform.Shear(-0.5, 0)
 		new_transform.Scale(0.65, 1)
 	other_visual.transform = new_transform
@@ -173,6 +169,10 @@
 
 /obj/item/clothing/neck/link_scryer/examine(mob/user)
 	. = ..()
+	// SKYRAT EDIT NIFSOFT SCRYERS - START
+	if(custom_examine_controls)
+		return
+	// SKYRAT EDIT NIFSOFT SCRYERS - END
 	if(cell)
 		. += span_notice("The battery charge reads [cell.percent()]%. <b>Right-click</b> with an empty hand to remove it.")
 	else

@@ -8,11 +8,13 @@
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
 	is_dimorphic = TRUE
+	wing_types = list(/obj/item/organ/external/wings/functional/dragon)
 
 /obj/item/bodypart/arm/left/lizard
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
 	unarmed_attack_verb = "slash"
+	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -21,6 +23,7 @@
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
 	unarmed_attack_verb = "slash"
+	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -43,7 +46,7 @@
 /obj/item/bodypart/leg/left/digitigrade
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = BODYPART_ID_DIGITIGRADE
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_DIGITIGRADE
+	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
 
 /obj/item/bodypart/leg/left/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	. = ..()
@@ -69,7 +72,7 @@
 /obj/item/bodypart/leg/right/digitigrade
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = BODYPART_ID_DIGITIGRADE
-	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_DIGITIGRADE
+	bodyshape = BODYSHAPE_HUMANOID | BODYSHAPE_DIGITIGRADE
 
 /obj/item/bodypart/leg/right/digitigrade/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	. = ..()
