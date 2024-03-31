@@ -85,11 +85,11 @@
 
 /datum/supply_pack/security/blueshield_weapons
 	name = "Blueshield combined armaments"
-	desc = "Contains 5 select pieces of blueshield equipment."
+	desc = "Contains 4 select pieces of blueshield equipment."
 
 	access = ACCESS_COMMAND
-	cost = PAYCHECK_COMMAND * 15
-	contains = list(/obj/effect/spawner/random/blueshield_random = 1, /obj/effect/spawner/random/blueshield_random/bad = 4)
+	cost = PAYCHECK_COMMAND * 10
+	contains = list(/obj/effect/spawner/random/blueshield_random = 2, /obj/effect/spawner/random/blueshield_random/bad = 2)
 
 /obj/item/choice_beacon/blueshield
 	name = "Blueshield armaments beacon"
