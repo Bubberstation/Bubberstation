@@ -1,4 +1,5 @@
 #define AMMO_GIVEN_ON_START 24
+//Now improved
 
 /obj/item/gun/ballistic/revolver/hos_revolver
 	name = "\improper HR-460MS 'Tracker'"
@@ -7,8 +8,8 @@
 	icon = 'modular_zubbers/icons/obj/reshirevolver.dmi'
 	icon_state = "tracker"
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/hpistol_fire.ogg'
-	projectile_damage_multiplier = 1.6 //48 Damages, still a lot but not too much
-//With the damage multipler, it would crit in 4, kill in 6. Does not take into account armours.
+
+
 
 /obj/item/ammo_box/magazine/internal/cylinder/rowland
 	name = "\improper rowland revolver cylinder"
