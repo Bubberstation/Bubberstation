@@ -115,7 +115,7 @@
 		/obj/item/storage/box/reynauld = 25, // and his friend,  dismas
 		/obj/item/storage/box/pipe_gun = 25,
 		/obj/item/storage/box/pipe_gun/plus = 10,
-		/obj/item/storage/box/rebar = 20
+		/obj/item/storage/box/rebar = 20,
 		/obj/item/gun/energy/laser/musket = 20,
 		/obj/item/gun/energy/pulse/shitty = 5,
 		/obj/item/storage/box/highwayman = 25, //and his friend, Reynauld
