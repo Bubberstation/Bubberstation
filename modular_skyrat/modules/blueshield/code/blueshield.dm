@@ -264,7 +264,7 @@
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "smoothbore"
 	inhand_icon_state = "gun"
-	worn_icon_state = NULL
+	worn_icon_state = null
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	inhand_x_dimension = 32
@@ -272,7 +272,7 @@
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
 	initial_caliber = CALIBER_SHOTGUN
-	alternative_caliber = NULL
+	alternative_caliber = null
 	can_modify_ammo = TRUE
 	can_bayonet = FALSE
 	projectile_damage_multiplier = 1
