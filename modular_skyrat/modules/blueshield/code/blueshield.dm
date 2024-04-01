@@ -115,18 +115,25 @@
 		/obj/item/storage/box/reynauld = 25, // and his friend,  dismas
 		/obj/item/storage/box/pipe_gun = 25,
 		/obj/item/storage/box/pipe_gun/plus = 10,
+		/obj/item/storage/box/rebar = 20
 		/obj/item/gun/energy/laser/musket = 20,
-		/obj/item/gun/energy/pulse/shitty = 10,
-		/obj/item/gun/energy/pulse/shitty/taser = 5,
+		/obj/item/gun/energy/pulse/shitty = 5,
 		/obj/item/storage/box/highwayman = 25, //and his friend, Reynauld
 	)
 
+/obj/item/storage/box/rebar
+	name = "Rebar crossbow kit"
+
+/obj/item/storage/box/rebar/PopulateContents()
+	. = ..()
+	new /obj/item/gun/ballistic/rifle/rebarxbow(src)
+	for(i = , i < 7, i++)
+		new /obj/item/ammo_casing/rebar(src)
+
 /obj/item/gun/energy/pulse/shitty
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler/bad, /obj/item/ammo_casing/energy/laser/pulse/bad) // Lies and deception
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/bad, /obj/item/ammo_casing/energy/laser/pulse/bad, /obj/item/ammo_casing/energy/electrode/bad) // Lies and deception
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/energy/pulse/shitty/taser
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler/bad, /obj/item/ammo_casing/energy/laser/pulse/bad, /obj/item/ammo_casing/energy/electrode/bad)
 /obj/item/ammo_casing/energy/disabler/bad
 	projectile_type = /obj/projectile/beam/disabler/bad
 
@@ -149,22 +156,37 @@
 
 /obj/projectile/beam/pulse/bad/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
-	playsound(src, 'sound/effects/reee.ogg', 40, TRUE)
+	playsound(src, 'sound/effects/reee.ogg', 20, TRUE)
 
 /obj/effect/spawner/random/blueshield_random/bad
 	name = "Less exclusive weapons"
 	loot = list(
 		/obj/item/storage/toolbox/robust/plus = 20,
-		/obj/item/storage/box/explosive_spear = 15,
+		/obj/item/storage/box/explosive_spear = 10,
 		/obj/item/storage/toolbox/haunted = 5,
 		/obj/item/fish/clownfish/lube/robust = 20,
 		/obj/item/melee/baton/security/cattleprod = 20,
 		/obj/item/melee/baton/security/cattleprod/teleprod = 15,
-		/obj/item/reagent_containers/spray/cyborg_lube = 15,
+		/obj/item/book/granter/action/spell/clowning = 15,
+		/obj/item/storage/box/clown/lubeplus = 15,
 		/obj/item/storage/box/ied_kit = 15,
 		/obj/item/storage/box/flamethrower_kit = 10, // This is not a normal flamethrower. Comes with very dangerous tanks
 		/obj/item/melee/energy/sword/bananium = 1, // Because you are a clown if you pick this
 	)
+
+
+/obj/item/storage/box/clown/lubeplus/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/spray/cyborg_lube(src)
+	new /obj/item/reagent_containers/spray/cyborg_lube(src)
+	new /obj/item/grown/bananapeel(src)
+	new /obj/item/grown/bananapeel(src)
+	new /obj/item/food/pie/cream(src)
+	new /obj/item/book/granter/action/spell/summon_cheese(src)
+
+/obj/item/book/granter/action/spell/clowning
+	granted_action = /datum/action/cooldown/spell/conjure_item/clown_pockets
+	action_name = "clown"
 
 /obj/item/storage/toolbox/robust/plus
 	force = 15
@@ -242,7 +264,7 @@
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "smoothbore"
 	inhand_icon_state = "gun"
-	worn_icon_state = NULL
+	worn_icon_state = null
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	inhand_x_dimension = 32
@@ -250,7 +272,7 @@
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
 	initial_caliber = CALIBER_SHOTGUN
-	alternative_caliber = NULL
+	alternative_caliber = null
 	can_modify_ammo = TRUE
 	can_bayonet = FALSE
 	projectile_damage_multiplier = 1
