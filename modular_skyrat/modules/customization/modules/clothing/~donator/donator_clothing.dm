@@ -1128,8 +1128,8 @@
 		"snuggle",
 		"cuddle",
 		"kiss",
-		"feed Dan Kelly",
-		"hoard Shinzo Shore",
+		//"feed Dan Kelly", /bubber edit on request/
+		//"hoard Shinzo Shore", /bubber edit on request/
 		"spoil friends",
 		"hold hands",
 		"have this license",
