@@ -104,8 +104,8 @@
 
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	return list(
-		"Advanced weaponry" = /obj/effect/spawner/random/blueshield_random,
-		"Specialized weaponry" = /obj/effect/spawner/random/blueshield_random/bad
+		"Exclusive weapons from NT's finest warehouse" = /obj/effect/spawner/random/blueshield_random,
+		"Less exclusive weapons from NT's finest trashbin" = /obj/effect/spawner/random/blueshield_random/bad
 		)
 
 /obj/effect/spawner/random/blueshield_random
@@ -115,7 +115,7 @@
 		/obj/item/storage/box/reynauld = 25, // and his friend,  dismas
 		/obj/item/storage/box/pipe_gun = 25,
 		/obj/item/storage/box/pipe_gun/plus = 10,
-		/obj/item/storage/box/rebar = 20,
+		/obj/item/storage/box/rebar = 25,
 		/obj/item/gun/energy/laser/musket = 20,
 		/obj/item/gun/energy/pulse/shitty = 5,
 		/obj/item/storage/box/highwayman = 25, //and his friend, Reynauld
