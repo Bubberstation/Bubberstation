@@ -168,7 +168,7 @@
 
 /obj/item/storage/toolbox/robust/plus
 	force = 15
-	wound_bonus = 20
+	wound_bonus = 25
 
 /obj/item/tank/internals/plasma/superheat/Initialize(mapload)
 	. = ..()
@@ -185,9 +185,8 @@
 	for(var/i = 0, i<7, i++)
 		new /obj/item/spear/explosive(src)
 
-
 /obj/item/fish/clownfish/lube/robust
-	force = 15
+	force = 18
 	armour_penetration = 50
 
 /obj/item/storage/box/flamethrower_kit
@@ -227,16 +226,34 @@
 	name = "Highwayman Gunset"
 
 /obj/item/storage/box/highwayman/PopulateContents()
-	new /obj/item/gun/magic/midas_hand(src)
-	new /obj/item/coin/gold(src)
-	new /obj/item/coin/gold(src)
-	new /obj/item/coin/gold(src)
-	new /obj/item/coin/gold(src)
-	new /obj/item/coin/gold(src)
-	new /obj/item/coin/gold(src)
-	new /obj/item/coin/gold(src)
+	new /obj/item/gun/ballistic/rifle/boltaction/pipegun/dismas(src)
+	new /obj/item/ammo_casing/rebar(src)
+	new /obj/item/ammo_casing/rebar(src)
+	new /obj/item/ammo_casing/rebar(src)
+	new /obj/item/ammo_casing/rebar(src)
+	new /obj/item/ammo_casing/rebar(src)
+	new /obj/item/ammo_casing/rebar(src)
 	new /obj/item/storage/belt/bowie_sheath(src)
 	new /obj/item/clothing/suit/armor/hos/trenchcoat/winter(src)
+
+/obj/item/gun/ballistic/rifle/boltaction/pipegun/dismas
+	name = "flintlock pistol"
+	desc = "An excellent weapon for flushing out tunnel rats and enemy assistants, but its rifling leaves much to be desired."
+	icon = 'icons/obj/weapons/guns/energy.dmi'
+	icon_state = "smoothbore"
+	inhand_icon_state = "gun"
+	worn_icon_state = NULL
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
+	initial_caliber = CALIBER_SHOTGUN
+	alternative_caliber = NULL
+	can_modify_ammo = TRUE
+	can_bayonet = FALSE
+	projectile_damage_multiplier = 1
 
 /obj/item/storage/box/reynauld
 	name = "Holy Knight Set"
@@ -249,3 +266,4 @@
 	new /obj/item/storage/backpack/satchel/crusader(src)
 	new /obj/item/restraints/legcuffs/bola(src)
 	new /obj/item/restraints/legcuffs/bola(src)
+	new /obj/item/nullrod/rosary(src)
