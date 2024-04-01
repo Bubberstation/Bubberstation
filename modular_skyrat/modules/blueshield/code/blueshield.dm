@@ -127,7 +127,7 @@
 /obj/item/storage/box/rebar/PopulateContents()
 	. = ..()
 	new /obj/item/gun/ballistic/rifle/rebarxbow(src)
-	for(i = 0, i < 7, i++)
+	for(var/i = 0, i < 7, i++)
 		new /obj/item/ammo_casing/rebar(src)
 
 /obj/item/gun/energy/pulse/shitty
