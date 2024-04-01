@@ -118,8 +118,7 @@
 	acid = 100
 	wound = 20
 
-/obj/item/mod/control/pre_equipped/blueshield/
-	applied_cell = /obj/item/stock_parts/cell/high
+/obj/item/mod/control/pre_equipped/blueshield
 	applied_modules = list(
 		/obj/item/mod/module/storage,
 		/obj/item/mod/module/magnetic_harness,
@@ -127,7 +126,3 @@
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/quick_carry,
 	)
-
-/obj/item/mod/control/pre_equipped/blueshield/Initialize()
-	default_pins += /obj/item/mod/module/armor_booster/nanotrasen/blueshield
-	. = ..()

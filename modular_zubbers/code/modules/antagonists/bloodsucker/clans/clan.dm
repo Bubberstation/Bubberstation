@@ -118,7 +118,7 @@
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 
 /**
