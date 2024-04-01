@@ -71,23 +71,7 @@
 /turf/open/floor/plating,
 /area/station/command/bridge)
 "aP" = (
-/obj/structure/transport/linear/public,
-/obj/effect/landmark/transport/transport_id{
-	specific_transport_id = "primary"
-	},
-/obj/machinery/door/window/elevator/right{
-	elevator_mode = 1;
-	transport_linked_id = "primary"
-	},
-/obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = "primary";
-	preset_destination_names = list("2" = "SM Engine", "3" = "Atmospherics", "4" = "Engi/Tech St.", "5" = "Arrivals", "6" = "Departures", "7" = "EVA/Gravity", "8" = "Cargo", "9" = "Bit/Shaft Mining", "10" = "Medical", "11" = "Science", "12" = "Cmd. Access");
-	max_integrity = 25555500
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/effect/abstract/elevator_music_zone{
-	linked_elevator_id = "primary"
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/elevatorshaft,
 /area/station/engineering/supermatter)
 "aQ" = (
@@ -157,10 +141,6 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningoffice)
 "bz" = (
-/obj/machinery/door/window/elevator/right/directional/north{
-	elevator_mode = 1;
-	transport_linked_id = "primary"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -205,9 +185,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/science/robotics/lab)
-"cb" = (
-/turf/open/openspace,
-/area/station/ai_monitored/turret_protected/aisat/hallway)
 "cf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/yellow,
@@ -338,7 +315,8 @@
 /area/station/science/robotics/lab)
 "dm" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/cargo/storage)
 "dx" = (
 /obj/structure/cable,
@@ -392,13 +370,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
-"dN" = (
-/obj/machinery/elevator_control_panel/directional/west{
-	linked_elevator_id = "sat";
-	preset_destination_names = list("12" = "Cmd. Access", "14" = "Secure Network")
-	},
-/turf/open/floor/plating/elevatorshaft,
-/area/station/ai_monitored/turret_protected/aisat/hallway)
 "dO" = (
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron,
@@ -466,21 +437,12 @@
 /turf/open/floor/iron,
 /area/station/cargo/bitrunning/den)
 "ev" = (
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/effect/landmark/transport/transport_id{
-	specific_transport_id = "sat"
-	},
+/obj/structure/ladder,
 /turf/open/floor/plating/elevatorshaft,
 /area/station/ai_monitored/turret_protected/aisat/hallway)
 "ey" = (
 /obj/structure/railing/corner{
 	dir = 1
-	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -503,7 +465,8 @@
 /area/station/cargo/storage)
 "eO" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/cargo/office)
 "eP" = (
 /turf/closed/wall,
@@ -1125,12 +1088,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Supermatter Engine Room"
@@ -1429,12 +1386,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -1516,12 +1467,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "qT" = (
-/obj/machinery/button/elevator/directional/west{
-	id = "Sat"
-	},
-/obj/machinery/lift_indicator/directional/west{
-	linked_elevator_id = "sat"
-	},
 /obj/item/radio/intercom/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -1755,7 +1700,8 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "sQ" = (
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/engineering/atmos)
 "sR" = (
 /obj/effect/turf_decal/tile/blue,
@@ -1835,12 +1781,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -1865,12 +1805,6 @@
 "tK" = (
 /obj/structure/railing/corner{
 	dir = 1
-	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -2348,9 +2282,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/structure/ladder{
-	icon_state = "ladder10"
-	},
 /obj/machinery/firealarm/directional/west,
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/iron,
@@ -2487,12 +2418,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/cargo_technician,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -2590,7 +2515,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/structure/ladder,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -2801,12 +2725,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -2839,12 +2757,6 @@
 "Ey" = (
 /obj/structure/railing/corner{
 	dir = 1
-	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -3228,7 +3140,8 @@
 /area/station/engineering/atmos)
 "HG" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/science/lobby)
 "HL" = (
 /obj/structure/closet/emcloset,
@@ -3439,7 +3352,8 @@
 /area/station/science/lobby)
 "KT" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/hallway/secondary/exit/departure_lounge)
 "KY" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -3460,12 +3374,6 @@
 "Lj" = (
 /obj/structure/railing/corner{
 	dir = 1
-	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -3783,17 +3691,18 @@
 /area/station/engineering/supermatter)
 "Pf" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/hallway/secondary/construction)
 "Pj" = (
 /obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 3;
-	height = 15;
+	dir = 4;
+	dwidth = 1;
+	height = 13;
+	shuttle_id = "arrivals_stationary";
 	name = "arrivals";
-	roundstart_template = /datum/map_template/shuttle/arrival/ten;
-	shuttle_id = "arrival_stationary";
-	width = 7
+	roundstart_template = null;
+	width = 5
 	},
 /turf/open/floor/engine/hull/reinforced,
 /area/space)
@@ -3855,7 +3764,8 @@
 /area/station/cargo/office)
 "PT" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/hallway/secondary/command)
 "PU" = (
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
@@ -3986,12 +3896,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4004,7 +3908,8 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/command)
 "Rf" = (
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/hallway/secondary/entry)
 "Rh" = (
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
@@ -4528,12 +4433,6 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/obj/machinery/button/elevator/directional/north{
-	id = "primary"
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "primary"
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -4667,7 +4566,8 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "YB" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/engineering/lobby)
 "YL" = (
 /obj/effect/spawner/random/engineering/tracking_beacon,
@@ -4767,7 +4667,8 @@
 /area/station/tcommsat/server)
 "Zx" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/openspace,
+/obj/structure/ladder,
+/turf/open/floor/plating/elevatorshaft,
 /area/station/medical/medbay)
 "ZG" = (
 /turf/open/floor/engine/hull/reinforced,
@@ -5178,7 +5079,7 @@ TU
 TU
 TU
 ZG
-ZG
+Pj
 ZG
 ZG
 "}
@@ -5286,7 +5187,7 @@ TU
 TU
 TU
 ZG
-Pj
+ZG
 ZG
 ZG
 "}
@@ -6037,7 +5938,7 @@ Nn
 sb
 Jw
 vs
-dN
+AT
 AT
 Jw
 "}
@@ -6157,9 +6058,9 @@ pR
 Bo
 rQ
 lo
-cb
-cb
-cb
+AT
+AT
+AT
 Jw
 "}
 (3,1,12) = {"
@@ -6169,9 +6070,9 @@ Mn
 nI
 FM
 lo
-cb
-cb
-cb
+AT
+ev
+AT
 Jw
 "}
 (4,1,12) = {"
@@ -6181,9 +6082,9 @@ zc
 rU
 mS
 lo
-cb
-cb
-cb
+AT
+AT
+AT
 Jw
 "}
 (5,1,12) = {"
@@ -6278,9 +6179,9 @@ XI
 ZH
 AC
 Jw
-cb
-cb
-cb
+AT
+AT
+AT
 Jw
 "}
 (3,1,13) = {"
@@ -6290,9 +6191,9 @@ Jr
 Bd
 jx
 Jw
-cb
-cb
-cb
+AT
+ev
+AT
 Jw
 "}
 (4,1,13) = {"
@@ -6302,9 +6203,9 @@ mq
 YX
 AC
 Jw
-cb
-cb
-cb
+AT
+AT
+AT
 Jw
 "}
 (5,1,13) = {"
