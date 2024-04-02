@@ -232,6 +232,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/button/polarizer{
+	id = "dauntbar_w";
+	name = "Bar Windows";
+	pixel_x = -24
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "bn" = (
@@ -443,6 +448,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
+/obj/machinery/light/small/red/directional/west,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "ct" = (
@@ -1770,21 +1776,19 @@
 "iu" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/bot,
-/obj/structure/closet/crate/secure{
-	desc = "A secure crate containing various materials for building a customised test-site.";
-	name = "Test Site Materials Crate"
+/obj/structure/mop_bucket/janitorialcart{
+	dir = 4
 	},
-/obj/item/target,
-/obj/item/target/clown,
-/obj/item/target/alien,
-/obj/item/target/syndicate,
-/obj/structure/training_machine,
+/obj/item/mop,
+/obj/item/holosign_creator/janibarrier{
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 6;
+	pixel_y = -6
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
-"iw" = (
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "ix" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/radio/headset/interdyne,
@@ -1914,6 +1918,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/cold/directional/east,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "jk" = (
@@ -2118,7 +2125,7 @@
 /obj/structure/closet/secure_closet/interdynefob/robotics,
 /obj/machinery/button/door/directional/east{
 	id = "scirob_w";
-	name = "Science Windows"
+	name = "Robotics Shutters"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
@@ -2599,9 +2606,7 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "mL" = (
-/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -3068,6 +3073,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/structure/closet/crate/secure{
+	desc = "A secure crate containing various materials for building a customised test-site.";
+	name = "Test Site Materials Crate"
+	},
+/obj/item/target/syndicate,
+/obj/item/target/alien,
+/obj/item/target/clown,
+/obj/item/target,
+/obj/structure/training_machine,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "pl" = (
@@ -3198,7 +3212,7 @@
 /obj/item/circuitboard/machine/destructive_analyzer,
 /obj/machinery/button/door/directional/east{
 	id = "sci_w";
-	name = "Science Windows"
+	name = "Science Shutters"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
@@ -3338,6 +3352,9 @@
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"qj" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "qk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -3538,6 +3555,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "rc" = (
@@ -3767,7 +3785,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "sc" = (
@@ -4690,20 +4707,6 @@
 /obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
-"xa" = (
-/obj/structure/mop_bucket/janitorialcart{
-	dir = 4
-	},
-/obj/item/holosign_creator/janibarrier{
-	pixel_y = -9
-	},
-/obj/item/mop,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "xe" = (
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/mineral/plastitanium/red,
@@ -5030,6 +5033,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"yC" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "scixen_wp"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "yE" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -5716,6 +5725,9 @@
 	dir = 8
 	},
 /obj/structure/weightmachine/weightlifter,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "By" = (
@@ -5826,6 +5838,12 @@
 /obj/item/toy/basketball,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
+"BM" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "dauntbar_w"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "BP" = (
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
@@ -5960,7 +5978,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/structure/bodycontainer/morgue,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "CD" = (
@@ -6166,9 +6183,8 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "DA" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "scixen_w"
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "scixen_w"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
@@ -6344,6 +6360,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "Ey" = (
@@ -6432,9 +6449,9 @@
 	dir = 2
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "Ff" = (
@@ -6826,7 +6843,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/stationmed,
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "Hx" = (
@@ -7548,9 +7567,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "Lo" = (
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/structure/cable,
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "Lq" = (
@@ -7603,6 +7622,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "Lz" = (
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "LA" = (
@@ -7727,6 +7747,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
 	},
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Mn" = (
@@ -7931,7 +7952,10 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/south,
-/obj/structure/bodycontainer/morgue,
+/obj/machinery/jukebox{
+	req_access = list("syndicate");
+	anchored = 0
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "Nj" = (
@@ -8363,9 +8387,10 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/directional/west,
-/obj/machinery/button/door/directional/north{
-	name = "Xenobiology Shutters";
-	id = "scixen_w"
+/obj/machinery/button/polarizer{
+	pixel_y = 24;
+	id = "scixen_w";
+	name = "Xenobiology Windows"
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
@@ -8374,6 +8399,11 @@
 /obj/item/circuitboard/machine/cyborgrecharger,
 /obj/effect/turf_decal/trimline/dark_red/end{
 	dir = 1
+	},
+/obj/machinery/button/polarizer{
+	id = "scixen_wp";
+	name = "Robotics Windows";
+	pixel_x = -24
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
@@ -9438,7 +9468,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "UD" = (
 /obj/structure/cable,
-/obj/machinery/light/cold/directional/east,
 /turf/open/floor/wood/stairs,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "UH" = (
@@ -9727,10 +9756,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
-"Wp" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "Wq" = (
 /obj/structure/table/wood,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
@@ -10384,6 +10409,7 @@
 "ZC" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/stationmed,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "ZD" = (
@@ -11628,7 +11654,7 @@ kU
 tK
 gN
 mL
-JM
+qj
 JM
 wE
 Sx
@@ -11707,7 +11733,7 @@ Ip
 fq
 Lc
 mn
-xa
+mn
 mn
 mn
 mn
@@ -11938,7 +11964,7 @@ rh
 dy
 Ju
 Lo
-iw
+ER
 ER
 ER
 rc
@@ -12324,7 +12350,7 @@ uU
 SQ
 JL
 mU
-Eg
+BM
 Oj
 vF
 jz
@@ -12392,7 +12418,7 @@ VY
 VY
 vm
 mU
-Eg
+BM
 Da
 vF
 jh
@@ -12460,7 +12486,7 @@ kl
 VY
 Dt
 mU
-Eg
+BM
 UY
 yp
 Di
@@ -12528,7 +12554,7 @@ Fm
 Dg
 SJ
 mU
-Eg
+BM
 UY
 Vo
 LO
@@ -12665,7 +12691,7 @@ VY
 Rx
 xA
 vn
-Eg
+BM
 Yu
 vn
 KT
@@ -12872,8 +12898,8 @@ Fc
 Rd
 WG
 vn
-Eg
-Eg
+BM
+BM
 vn
 yW
 Jw
@@ -13080,8 +13106,8 @@ ws
 Ub
 rV
 rV
-Wp
-Wp
+yC
+yC
 rV
 bP
 bP
