@@ -47,6 +47,14 @@
 		"minesweeper",
 	)
 
+/datum/techweb_node/ai_basic/New()
+	. = ..()
+	design_ids -= "aiupload"
+
+/datum/techweb_node/cyborg/New()
+	. = ..()
+	design_ids -= "borgupload"
+
 /datum/techweb_node/weaponry/New()
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "wt550_ammo_flathead"
