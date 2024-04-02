@@ -18,8 +18,6 @@
 		ACCESS_COMMAND, ACCESS_CONSTRUCTION, ACCESS_ENGINEERING, ACCESS_CARGO,
 		ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_RESEARCH, ACCESS_WEAPONS,
 	)
-	minimal_wildcard_access = list(ACCESS_CAPTAIN)
-	template_access = null
 
 /obj/item/encryptionkey/heads/blueshield // Removes security channel because you don't need it
 	channels = list(RADIO_CHANNEL_COMMAND = 1)
