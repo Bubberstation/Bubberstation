@@ -3906,6 +3906,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "sT" = (
@@ -4886,6 +4887,10 @@
 	dir = 1
 	},
 /obj/effect/spawner/random/maintenance/three,
+/obj/machinery/mineral/stacking_unit_console{
+	id_tag = "dauntless";
+	pixel_x = -32
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "yd" = (
@@ -8838,10 +8843,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "RK" = (
-/obj/machinery/mineral/stacking_unit_console{
-	id_tag = "dauntless";
-	pixel_x = -32
-	},
 /obj/machinery/conveyor{
 	id = "syndidisp";
 	dir = 1
