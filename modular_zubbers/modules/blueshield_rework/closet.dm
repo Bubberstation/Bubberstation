@@ -1,19 +1,12 @@
 /obj/item/storage/bag/garment/blueshield/PopulateContents()
-
-	new /obj/item/clothing/head/beret/blueshield(src)
-	new /obj/item/clothing/head/beret/blueshield/navy(src)
-
-	new /obj/item/clothing/under/rank/blueshield(src)
-	new /obj/item/clothing/under/rank/blueshield/skirt(src)
-
+	. = ..()
 	new /obj/item/clothing/suit/jacket/det_suit/noir/blueshield(src)
-
 	new /obj/item/clothing/shoes/laceup/blueshield(src)
-
 	new /obj/item/clothing/glasses/sunglasses(src)
 
 /obj/structure/closet/secure_closet/blueshield/New()
 	. = ..()
+	new /obj/item/radio/headset/headset_bs(src)
 	new /obj/item/storage/bag/garment/blueshield(src)
 	new /obj/item/storage/briefcase/secure(src)
 	new /obj/item/storage/box/flashbangs(src)

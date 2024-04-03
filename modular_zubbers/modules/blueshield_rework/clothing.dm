@@ -5,7 +5,7 @@
 /obj/item/clothing/suit/jacket/det_suit/noir/blueshield
 	name = "bulletproof suit jacket"
 	desc = "One of Nanotrasen's finest developments in defensive fashion; a truely bulletproof suit jacket. Designed to stop incoming bullets meant for more important people."
-	armor_type = /datum/armor/armor_bulletproof
+	armor_type = /datum/armor/suit_armor/blueshield
 
 // -------------------------
 // ---------- TIE ----------
