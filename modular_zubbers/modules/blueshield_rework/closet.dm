@@ -7,6 +7,7 @@
 /obj/structure/closet/secure_closet/blueshield/New()
 	. = ..()
 	new /obj/item/radio/headset/headset_bs(src)
+	new /obj/item/radio/headset/headset_bs/alt(src)
 	new /obj/item/storage/bag/garment/blueshield(src)
 	new /obj/item/storage/briefcase/secure(src)
 	new /obj/item/storage/box/flashbangs(src)
