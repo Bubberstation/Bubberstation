@@ -48,6 +48,7 @@
 	name = "gold trimmed m1911"
 	desc = "A classic .45 handgun with a small magazine capacity. Now trimmed in gold"
 	icon = 'modular_zubbers/icons/obj/reshipistol.dmi'
+	icon_state = "m1911"
 
 /datum/supply_pack/goody/m1911
 	name = "Authentic SR Sector M1911"
