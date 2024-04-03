@@ -93,7 +93,7 @@
 // ------- BRIEFCASE -------
 // -------------------------
 
-/obj/item/storage/briefcase/blueshield
+/obj/item/storage/briefcase/secure/blueshield
 	name = "robust briefcase"
 	desc = "It's made of AUTHENTIC assistant-leather and has a price-tag still attached. Its owner must be a real professional. Seems unusually heavy."
 	force = 13

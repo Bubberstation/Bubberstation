@@ -28,4 +28,4 @@
 
 	id_trim = /datum/id_trim/job/blueshield
 
-	r_hand = /obj/item/storage/briefcase/blueshield
+	r_hand = /obj/item/storage/briefcase/secure/blueshield
