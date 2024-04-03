@@ -43,7 +43,7 @@
 	can_bayonet = TRUE
 	knife_x_offset = 20
 	knife_y_offset = 12
-	max_mod_capacity = 60
+	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun
 	name = "proto-kinetic shotgun"
@@ -63,7 +63,7 @@
 	can_bayonet = TRUE
 	knife_x_offset = 20
 	knife_y_offset = 12
-	max_mod_capacity = 60
+	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
 	name = "proto-kinetic pistol"
@@ -98,7 +98,7 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
 	can_bayonet = FALSE
-	max_mod_capacity = 60
+	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79
 	name = "proto-kinetic grenade launcher"
