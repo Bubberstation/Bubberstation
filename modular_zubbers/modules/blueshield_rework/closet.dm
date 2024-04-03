@@ -18,3 +18,11 @@
 	new /obj/item/storage/box/pinpointer_pairs(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 	new /obj/item/ammo_box/magazine/m45(src)
+
+/obj/machinery/vending/access/command/build_access_list(list/access_lists)
+	. = ..()
+	access_lists["[ACCESS_CAPTAIN]"] += list(
+		/obj/item/clothing/suit/jacket/det_suit/noir/blueshield = 1
+		/obj/item/clothing/shoes/laceup/blueshield = 1
+		/obj/item/clothing/glasses/sunglasses = 1
+	)
