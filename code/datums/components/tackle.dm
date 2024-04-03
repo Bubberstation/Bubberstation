@@ -30,8 +30,10 @@
 	var/min_distance
 	///A wearkef to the throwdatum we're currently dealing with, if we need it
 	var/datum/weakref/tackle_ref
+	// The base oopsie valie will always be this instead of RNG if set greater than 0.
+	var/oopsie_override = 0 //BUBBERSTATION CHANGE: OOPSIE OVERRIDE
 
-/datum/component/tackler/Initialize(stamina_cost = 25, base_knockdown = 1 SECONDS, range = 4, speed = 1, skill_mod = 0, min_distance = min_distance)
+/datum/component/tackler/Initialize(stamina_cost = 25, base_knockdown = 1 SECONDS, range = 4, speed = 1, skill_mod = 0, min_distance = min_distance, oopsie_override = 0) //BUBBERSTATION CHANGE: oopsie_override
 	if(!iscarbon(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -41,6 +43,7 @@
 	src.speed = speed
 	src.skill_mod = skill_mod
 	src.min_distance = min_distance
+	src.oopsie_override = src //BUBBERSTATION CHANGE: oopsie_override
 
 	var/mob/P = parent
 	to_chat(P, span_notice("You are now able to launch tackles! You can do so by activating throw mode, and clicking on your target with an empty hand."))
@@ -152,7 +155,7 @@
 		return
 
 	var/mob/living/carbon/target = hit
-	var/tackle_word = isfeline(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle". // SKYRAT EDIT - FELINE TRAITS - ORIGINAL : var/tackle_word = isfelinid(user) ? "pounce" : "tackle" 
+	var/tackle_word = isfeline(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle". // SKYRAT EDIT - FELINE TRAITS - ORIGINAL : var/tackle_word = isfelinid(user) ? "pounce" : "tackle"
 
 	var/roll = rollTackle(target)
 	tackling = FALSE
@@ -506,7 +509,7 @@
 	if(HAS_TRAIT(user, TRAIT_TACKLING_FRAIL_ATTACKER))
 		oopsie_mod += 6 // flies don't take smacking into a window/wall easily
 
-	var/oopsie = rand(danger_zone, 100)
+	var/oopsie = oopsie_override ? oopsie_override : rand(danger_zone, 100) //BUBBERSTATION: COOPSIE OVERRIDE
 	if(oopsie >= 94 && oopsie_mod < 0) // good job avoiding getting paralyzed! gold star!
 		to_chat(user, span_notice("You're really glad you're wearing protection!"))
 	oopsie += oopsie_mod

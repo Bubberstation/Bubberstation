@@ -20,6 +20,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	req_access = list(ACCESS_CAPTAIN)
 
+/* BUBBERSTATION CHANGE: LOCKER OVERRIDE
 /obj/structure/closet/secure_closet/blueshield/New()
 	..()
 	new /obj/item/storage/briefcase/secure(src)
@@ -32,3 +33,4 @@
 	new /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo(src)
 	new /obj/item/storage/bag/garment/blueshield(src)
 	new /obj/item/mod/control/pre_equipped/blueshield(src)
+BUBBERSTATION CHANGE: LOCKER OVERRIDE */

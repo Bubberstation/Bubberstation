@@ -22,6 +22,8 @@
 	var/tackle_speed = 1
 	/// See: [/datum/component/tackler/var/skill_mod]
 	var/skill_mod = 1
+	// See: [/datum/component/tackler/var/oopsie_override]
+	var/oopsie_override = 0 //BUBBERSTATION CHANGE: oopsie_override
 
 /obj/item/clothing/gloves/tackler/Destroy()
 	tackler = null
@@ -33,7 +35,7 @@
 		return
 	if(slot & ITEM_SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
-		tackler = H.AddComponent(/datum/component/tackler, stamina_cost=tackle_stam_cost, base_knockdown = base_knockdown, range = tackle_range, speed = tackle_speed, skill_mod = skill_mod, min_distance = min_distance)
+		tackler = H.AddComponent(/datum/component/tackler, stamina_cost=tackle_stam_cost, base_knockdown = base_knockdown, range = tackle_range, speed = tackle_speed, skill_mod = skill_mod, min_distance = min_distance, oopsie_override = oopsie_override) //BUBBERSTATION CHANGE: oopsie_override
 
 /obj/item/clothing/gloves/tackler/dropped(mob/user)
 	. = ..()
