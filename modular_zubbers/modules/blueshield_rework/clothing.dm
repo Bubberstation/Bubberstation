@@ -33,7 +33,7 @@
 
 /obj/item/clothing/neck/tie/blue/blueshield/dropped(mob/user)
 	. = ..()
-	style.fully_remove(user)
+	if(!isnull(style)) style.fully_remove(user) //I love race conditions!
 
 /obj/item/clothing/neck/tie/blue/blueshield/tied
 	is_tied = TRUE
