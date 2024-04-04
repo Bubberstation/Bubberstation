@@ -7,6 +7,6 @@
 	circuit = /obj/item/circuitboard/computer/cargo/express/interdyne
 	req_access = list(ACCESS_SYNDICATE)
 
-	podType = /obj/structure/closet/supplypod/extractionpod/
+	podType = /obj/structure/closet/supplypod/extractionpod
 
 	cargo_account = ACCOUNT_INT
