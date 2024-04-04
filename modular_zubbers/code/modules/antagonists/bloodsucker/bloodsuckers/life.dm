@@ -22,7 +22,7 @@
 	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
 	INVOKE_ASYNC(src, PROC_REF(update_blood))
 
-	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
 
 /datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
 	SIGNAL_HANDLER

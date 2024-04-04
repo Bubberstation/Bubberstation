@@ -4,19 +4,27 @@
 
 #define BLOODBAG_GULP_SIZE 5
 
+/obj/item/reagent_containers/blood
+	var/being_drunk = FALSE
+
 /// Taken from drinks.dm
 /obj/item/reagent_containers/blood/attack(mob/living/victim, mob/living/attacker, params)
-	if(!can_drink(victim, attacker))
+	if(!can_drink(victim, attacker) || being_drunk)
 		return
-
+	being_drunk = TRUE
 	if(victim != attacker)
-		if(!do_after(victim, 5 SECONDS, attacker))
+		// show to both victim and attacker
+		INVOKE_ASYNC(src, GLOBAL_PROC_REF(do_after), victim, 5 SECONDS, attacker)
+		do_after(victim, 5 SECONDS, attacker)
+		if(!do_after(attacker, 5 SECONDS, victim))
+			being_drunk = FALSE
 			return
 		attacker.visible_message(
 			span_notice("[attacker] forces [victim] to drink from the [src]."),
 			span_notice("You put the [src] up to [victim]'s mouth."))
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
+		being_drunk = FALSE
 		return TRUE
 
 	while(do_after(victim, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(can_drink), attacker, victim)))
@@ -26,6 +34,7 @@
 		)
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
+	being_drunk = FALSE
 	return TRUE
 
 #undef BLOODBAG_GULP_SIZE
