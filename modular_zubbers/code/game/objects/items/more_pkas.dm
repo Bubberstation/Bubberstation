@@ -167,8 +167,7 @@
 	damage = 100
 	damage_type = BRUTE
 	armor_flag = BOMB
-	range = 7
-	log_override = TRUE
+	range = 6
 	pressure_decrease = 0.10 //Pressured enviorments are a no go for the railgun
 	speed = 0.1 //NYOOM
 	projectile_piercing = PASSMOB
