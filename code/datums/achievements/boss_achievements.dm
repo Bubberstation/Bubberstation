@@ -27,7 +27,7 @@
 
 /datum/award/achievement/boss/bubblegum_kill
 	name = "Bubblegum Killer"
-	desc = "I guess he wasn't made of candy after all"
+	desc = "I guess she wasn't made of candy after all"
 	database_id = BOSS_MEDAL_BUBBLEGUM
 	icon_state = "bbgum"
 
@@ -75,7 +75,7 @@
 
 /datum/award/achievement/boss/bubblegum_crusher
 	name = "Bubblegum Crusher"
-	desc = "I guess he wasn't made of candy after all"
+	desc = "I guess she wasn't made of candy after all"
 	database_id = BOSS_MEDAL_BUBBLEGUM_CRUSHER
 	icon_state = "bbgum"
 
