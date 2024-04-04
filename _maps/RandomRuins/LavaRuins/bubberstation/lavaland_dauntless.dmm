@@ -1698,6 +1698,7 @@
 	skyrat_products = list(/obj/item/clothing/glasses/meson/engine = 5, /obj/item/construction/rcd/loaded = 0, /obj/item/storage/pouch/material = 2, /obj/item/storage/bag/construction = 2)
 	},
 /obj/structure/cable,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "ic" = (
@@ -2189,6 +2190,9 @@
 "kF" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/cold/directional/south,
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "kI" = (
@@ -3038,7 +3042,6 @@
 "oJ" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/firealarm/directional/south,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -3251,7 +3254,7 @@
 	specialfunctions = 4;
 	normaldoorcontrol = 1;
 	name = "Vault Bolt Control";
-	req_access = list("syndicate_leader")
+	req_access = list("syndicate")
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -3289,7 +3292,7 @@
 	id = "syndiship_vault";
 	normaldoorcontrol = 1;
 	name = "Vault Bolt Control";
-	req_access = list("syndicate_leader")
+	req_access = list("syndicate")
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -3997,7 +4000,7 @@
 	lethal = 1;
 	name = "Base turret controls";
 	pixel_y = 30;
-	req_access = list("syndicate_leader");
+	req_access = list("syndicate");
 	shoot_cyborgs = 1
 	},
 /turf/open/floor/iron/dark,
@@ -5730,9 +5733,6 @@
 	dir = 8
 	},
 /obj/structure/weightmachine/weightlifter,
-/obj/machinery/power/apc/auto_name/directional/west,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "By" = (
@@ -6532,8 +6532,10 @@
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Fu" = (
-/obj/structure/table,
-/obj/structure/towel_bin,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "Fx" = (
@@ -7479,6 +7481,7 @@
 /obj/item/mod/module/defibrillator,
 /obj/item/storage/belt/medical/paramedic,
 /obj/item/autopsy_scanner,
+/obj/item/defibrillator/loaded,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "KQ" = (
@@ -8017,12 +8020,6 @@
 /obj/machinery/light/cold/directional/south,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
-"Nx" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "Ny" = (
 /obj/machinery/door/airlock/wood{
 	name = "Dorm 3";
@@ -8070,10 +8067,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
+/obj/structure/towel_bin,
+/obj/structure/table,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "NN" = (
@@ -11328,7 +11323,7 @@ BP
 Mz
 Aj
 of
-Nx
+NT
 Fu
 JM
 JM
@@ -11396,7 +11391,7 @@ BP
 Fd
 Aj
 WY
-NT
+Ok
 NM
 Bw
 wc
