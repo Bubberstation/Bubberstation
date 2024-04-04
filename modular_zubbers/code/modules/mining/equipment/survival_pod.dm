@@ -12,3 +12,7 @@
 	name = "sauna and hottub shelter"
 	desc = "A bluespace capsule that deploys a luxurous sauna and hottub"
 	template = "shelter_s"
+
+/datum/orderable_item/mining/capsule_sauna
+	item_path = /obj/item/survivalcapsule/sauna
+	cost_per_order = 7000
