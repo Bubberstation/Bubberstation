@@ -16,8 +16,6 @@
 
 /obj/machinery/computer/cargo/express/interdyne/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(user)
-		if (emag_card)
-			user.visible_message(span_warning("[user] fails to swipe [emag_card] through [src]!"))
 		to_chat(user, span_notice("You try to change the routing protocols, however the machine displays a runtime error and reboots."))
 	return FALSE//never let this console be emagged
 
