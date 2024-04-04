@@ -60,3 +60,6 @@
 	item_path = /obj/item/stamp/donator/crow
 	ckeywhitelist = list("slippyjoe") //donator item for SlippyJoe, who woulda guessed.
 
+/datum/loadout_item/pocket_items/royalzippo //donator item for UltimariFox, available for all
+	name = "Royal Zippo"
+	item_path = /obj/item/lighter/royal
