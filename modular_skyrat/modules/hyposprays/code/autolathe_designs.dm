@@ -1,4 +1,4 @@
-/datum/design/hypoviallarge
+/* /datum/design/hypoviallarge // BUBBER EDIT //
 	name = "Large Hypovial"
 	id = "large_hypovial"
 	build_type = AUTOLATHE | PROTOLATHE
@@ -11,7 +11,7 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
-
+*/
 /datum/design/pen
 	name = "Pen"
 	id = "pen"

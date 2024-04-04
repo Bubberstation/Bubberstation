@@ -312,15 +312,15 @@
 
 /datum/objective_item/steal/hypo
 	//name = "the hypospray" // ORIGINAL
-	name = "the Chief Medical Officer's hypospray" // SKYRAT EDIT CHANGE
+	name = "the Chief Medical Officer's hypospray" // BUBBER EDIT CHANGE
 	//targetitem = /obj/item/reagent_containers/hypospray/cmo // ORIGINAL
-	targetitem = /obj/item/hypospray/mkii/cmo // SKYRAT EDIT CHANGE
+	targetitem = /obj/item/hypospray/mkii/deluxe/cmo // BUBBER EDIT CHANGE
 	excludefromjob = list(JOB_CHIEF_MEDICAL_OFFICER)
 	item_owner = list(JOB_CHIEF_MEDICAL_OFFICER)
 	exists_on_map = TRUE
 
-/obj/item/hypospray/mkii/cmo/add_stealing_item_objective() // SKYRAT EDIT CHANGE
-	return add_item_to_steal(src, /obj/item/hypospray/mkii/cmo) // SKYRAT EDIT CHANGE
+/obj/item/hypospray/mkii/deluxe/cmo/add_stealing_item_objective() // BUBBER EDIT CHANGE
+	return add_item_to_steal(src, /obj/item/hypospray/mkii/deluxe/cmo) // BUBBER EDIT CHANGE
 
 /datum/objective_item/steal/nukedisc
 	name = "the nuclear authentication disk"
