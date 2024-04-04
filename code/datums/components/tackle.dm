@@ -43,7 +43,7 @@
 	src.speed = speed
 	src.skill_mod = skill_mod
 	src.min_distance = min_distance
-	src.oopsie_override = src //BUBBERSTATION CHANGE: oopsie_override
+	src.oopsie_override = oopsie_override //BUBBERSTATION CHANGE: oopsie_override
 
 	var/mob/P = parent
 	to_chat(P, span_notice("You are now able to launch tackles! You can do so by activating throw mode, and clicking on your target with an empty hand."))
