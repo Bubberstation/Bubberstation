@@ -11,7 +11,7 @@
 /obj/item/survivalcapsule/sauna
 	name = "sauna and hottub shelter"
 	desc = "A bluespace capsule that deploys a luxurous sauna and hot tub"
-	template = "shelter_s"
+	template_id = "shelter_s"
 
 /datum/orderable_item/mining/capsule_sauna
 	item_path = /obj/item/survivalcapsule/sauna
