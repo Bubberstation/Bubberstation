@@ -16,7 +16,7 @@
 /obj/item/gun/ballistic/revolver/hos_revolver/long
 	name = "\improper HR-460LR"
 	desc = "A long unwiedly revolver from Romulus Technology. chambered in the rare .460 Rowland. You might be able to kill someone by whacking it over the head"
-	icon_state = "trackertracker"
+	icon_state = "tracker"
 	force = 15
 
 /obj/item/storage/bag/b460reloadpouch
