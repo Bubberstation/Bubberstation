@@ -22,9 +22,8 @@
 	return FALSE//never let this console be emagged
 
 /obj/machinery/computer/cargo/express/interdyne/ui_act(action, params, datum/tgui/ui)
-	switch(action)
-		if("add")//if we're generating a supply order
-			if (!istype(beacon) || !usingBeacon)//if not using beacon
-				say("Error! Destination is not whitelisted, aborting.")
-				return
+	if(action == "add")//if we're generating a supply order
+		if (!beacon || !usingBeacon)//if not using beacon
+			say("Error! Destination is not whitelisted, aborting.")
+			return
 	. = ..()
