@@ -161,6 +161,7 @@
 			SKIN_HAT_OFFSET = 15,
 		),
 		"Foxtrot - Peacekeeper" = list(
+			//Sprites by Crumpaloo!
 			SKIN_ICON_STATE = "ftpeace",
 			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
