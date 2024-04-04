@@ -123,7 +123,12 @@
 			shotgun_blast.Trigger(target = target)
 		else
 			dir_shots.Trigger(target = target)
-
+// BUBBER EDIT START - ACTUALLY LOOSE THE TARGET
+	var/mob/living/living_target = target
+	if(!istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
+		LoseTarget()
+		return
+// BUBBER EDIT END
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/telegraph()
 	for(var/mob/viewer as anything in viewers(10, src))
 		if(viewer.client)
@@ -193,14 +198,18 @@
 
 /obj/projectile/colossus/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-/** Bubber edit: No more dusting
 	if(isliving(target))
 		var/mob/living/dust_mob = target
-		if(dust_mob.stat == DEAD)
-			dust_mob.investigate_log("has been dusted by a death bolt (colossus).", INVESTIGATE_DEATHS)
-			dust_mob.dust()
+// BUBBER EDIT START - Guts the fucker instead of dusting them
+		if(dust_mob.stat == DEAD && !dust_mob.has_status_effect(/datum/status_effect/gutted))
+			if(iscarbon(dust_mob))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LUNGS))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_HEART))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LIVER))
+			dust_mob.adjustBruteLoss(500)
+			dust_mob.apply_status_effect(/datum/status_effect/gutted)
 		return
-*/
+// BUBBER EDIT END
 	if(!explode_hit_objects || istype(target, /obj/vehicle/sealed))
 		return
 	if(isturf(target) || isobj(target))
