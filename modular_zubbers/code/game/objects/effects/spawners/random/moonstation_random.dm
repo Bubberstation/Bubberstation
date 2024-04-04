@@ -343,5 +343,18 @@
 		/obj/structure/sauna_oven = 25,
 		/obj/structure/spirit_board = 50,
 		/obj/structure/toiletbong = 100,
-		/obj/structure/training_machine = 10
+		/obj/structure/training_machine = 10,
+		/obj/effect/spawner/random/burgerstation/loot/odd_safe = 400
 	)
+
+/obj/effect/spawner/random/burgerstation/loot/odd_safe
+	loot = null
+	additional_loot = list(
+		/obj/structure/safe = 1,
+		/obj/structure/safe/floor = 1
+	)
+
+/obj/effect/spawner/random/burgerstation/loot/odd_safe/Initialize(mapload)
+	loot = GLOB.oddity_loot
+	. = ..()
+

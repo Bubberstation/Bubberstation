@@ -4,20 +4,6 @@
  *	Sol is the sunlight, during this period, all Bloodsuckers must be in their coffin, else they burn.
  */
 
-/// Start Sol, called when someone is assigned Bloodsucker
-/datum/antagonist/bloodsucker/proc/check_start_sunlight()
-	var/list/existing_suckers = get_antag_minds(/datum/antagonist/bloodsucker) - owner
-	if(!length(existing_suckers))
-		message_admins("New Sol has been created due to Bloodsucker assignment.")
-		SSsunlight.can_fire = TRUE
-
-/// End Sol, if you're the last Bloodsucker
-/datum/antagonist/bloodsucker/proc/check_cancel_sunlight()
-	var/list/existing_suckers = get_antag_minds(/datum/antagonist/bloodsucker) - owner
-	if(!length(existing_suckers))
-		message_admins("Sol has been deleted due to the lack of Bloodsuckers")
-		SSsunlight.can_fire = FALSE
-
 ///Ranks the Bloodsucker up, called by Sol.
 /datum/antagonist/bloodsucker/proc/sol_rank_up(atom/source)
 	SIGNAL_HANDLER
@@ -38,7 +24,6 @@
 		if(istype(power, /datum/action/cooldown/bloodsucker/gohome))
 			RemovePower(power)
 
-/// Cycle through all vamp antags and check if they're inside a closet.
 /datum/antagonist/bloodsucker/proc/handle_sol()
 	SIGNAL_HANDLER
 	if(!owner || !owner.current || isbrain(owner.current))
@@ -59,7 +44,7 @@
 			owner.current.ignite_mob()
 		owner.current.adjustFireLoss(2 + (bloodsucker_level / 2))
 		owner.current.updatehealth()
-		owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_2)
+		owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_sun_scorched)
 		return
 
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin)) // Coffins offer the BEST protection
@@ -76,25 +61,11 @@
 		COOLDOWN_START(src, bloodsucker_spam_sol_burn, BLOODSUCKER_SPAM_SOL) //This should happen twice per Sol
 	owner.current.adjustFireLoss(0.5 + (bloodsucker_level / 4))
 	owner.current.updatehealth()
-	owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_1)
+	owner.current.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
 
 /datum/antagonist/bloodsucker/proc/give_warning(atom/source, danger_level, vampire_warning_message, vassal_warning_message)
 	SIGNAL_HANDLER
-	if(!owner)
-		return
-	to_chat(owner, vampire_warning_message)
-
-	switch(danger_level)
-		if(DANGER_LEVEL_FIRST_WARNING)
-			owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/griffin_3.ogg', 50, 1)
-		if(DANGER_LEVEL_SECOND_WARNING)
-			owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/griffin_5.ogg', 50, 1)
-		if(DANGER_LEVEL_THIRD_WARNING)
-			owner.current.playsound_local(null, 'sound/effects/alert.ogg', 75, 1)
-		if(DANGER_LEVEL_SOL_ROSE)
-			owner.current.playsound_local(null, 'sound/ambience/ambimystery.ogg', 75, 1)
-		if(DANGER_LEVEL_SOL_ENDED)
-			owner.current.playsound_local(null, 'sound/misc/ghosty_wind.ogg', 90, 1)
+	SSsunlight.warn_notify(owner.current, danger_level, vampire_warning_message)
 
 /**
  * # Torpor

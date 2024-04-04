@@ -53,6 +53,7 @@
 	var/custom_species
 	var/custom_species_lore
 	var/obscured
+	var/name = "" //BUBBER EDIT
 	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine) // BUBBER EDIT
 	var/ooc_notes = ""
 	var/headshot = ""
@@ -85,14 +86,31 @@
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && obscurity_examine_pref || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT - EXAMINE PREFS
-		custom_species = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.name : holder_human.dna.features["custom_species"]
-		flavor_text = obscured ? "Obscured" :  holder_human.dna.features["flavor_text"]
-		custom_species_lore = obscured ? "Obscured" : holder_human.dna.species.lore_protected ? holder_human.dna.species.get_species_lore().Join("\n") : holder_human.dna.features["custom_species_lore"]
 		ooc_notes += holder_human.dna.features["ooc_notes"]
-		if(!obscured)
-			headshot += preferences?.read_preference(/datum/preference/text/headshot) //BUBBER EDIT
-
-	var/name = obscured ? "Unknown" : holder.name
+		//BUBBER EDIT BEGIN: Updates custom species and custom species lore
+		//Check if the mob is obscured, then continue to headshot and species lore
+		if(obscured || !holder_human.dna)
+			custom_species = "Obscured"
+			custom_species_lore = "Obscured"
+			flavor_text = "Obscured"
+			name = "Unknown"
+		else
+			headshot += preferences.read_preference(/datum/preference/text/headshot)
+			flavor_text = holder_human.dna.features["flavor_text"]
+			name = holder.name
+		//Custom species handling. Reports the normal custom species if there is not one set.
+			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
+				custom_species = holder_human.dna.species.name
+			else
+				custom_species = holder_human.dna.features["custom_species"]
+		//Custom species lore handling. Reports the species lore with summary if there is not one set. Does this separately so you can name your subrace without the lore changing.
+			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species_lore"] == "")
+				custom_species_lore += "[holder_human.dna.species.get_species_description()]\n"
+				custom_species_lore += "\n"
+				custom_species_lore += LAZYACCESS(holder_human.dna.species.get_species_lore(), 1)
+			else
+				custom_species_lore = holder_human.dna.features["custom_species_lore"]
+		//BUBBER EDIT END: Panel refactor
 
 	data["obscured"] = obscured ? TRUE : FALSE
 	data["character_name"] = name

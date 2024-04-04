@@ -22,7 +22,7 @@
 			bloodsuckerdatum.RemovePower(power)
 	return ..()
 
-/datum/bloodsucker_clan/tremere/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/tremere/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	. = ..()
 	var/area/current_area = get_area(bloodsuckerdatum.owner.current)
 	if(istype(current_area, /area/station/service/chapel))
@@ -47,7 +47,7 @@
 		// Give them the UI to purchase a power.
 		var/choice = tgui_input_list(bloodsuckerdatum.owner.current, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to upgrade a power.", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
+		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
 			return
 		// Did you choose a power?
 		if(!choice || !options[choice])
@@ -83,4 +83,4 @@
 /datum/bloodsucker_clan/tremere/on_vassal_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
 	. = ..()
 	to_chat(bloodsuckerdatum.owner.current, span_danger("You have now gained an additional Rank to spend!"))
-	bloodsuckerdatum.bloodsucker_level_unspent++
+	bloodsuckerdatum.AdjustUnspentRank(1)
