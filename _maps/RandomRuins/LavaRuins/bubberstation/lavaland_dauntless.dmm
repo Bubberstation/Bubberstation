@@ -2059,10 +2059,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light/warm/directional/east,
-/obj/machinery/camera/xray/directional/east{
-	c_tag = "DS-2 Botany";
-	network = list("ds2")
-	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "jU" = (
@@ -6226,6 +6222,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
+	},
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
