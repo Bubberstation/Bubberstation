@@ -20,10 +20,9 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
 	can_bayonet = FALSE
-	max_mod_capacity = 0 //fuck off
+	max_mod_capacity = 15 // A crumb of mod capacity as a treat
 	recoil = 3 //railgun go brrrrr
 	gun_flags = NOT_A_REAL_GUN
-	disablemodification = TRUE
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/repeater
 	name = "proto-kinetic repeater"
