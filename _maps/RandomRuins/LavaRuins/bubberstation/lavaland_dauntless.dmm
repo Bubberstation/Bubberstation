@@ -1536,6 +1536,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "hc" = (
 /obj/machinery/light/cold/directional/east,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/brigoff,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "hd" = (
@@ -1808,6 +1809,15 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
+"iv" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "ix" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/radio/headset/interdyne,
@@ -2759,17 +2769,6 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/trash/can{
-	pixel_x = -9
-	},
-/obj/item/pen{
-	pixel_x = -2;
-	pixel_y = 5
-	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "nx" = (
@@ -3007,7 +3006,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "oB" = (
 /obj/machinery/light/cold/directional/west,
-/obj/machinery/washing_machine,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "oD" = (
@@ -3060,14 +3061,7 @@
 /turf/open/floor/engine/o2,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "oU" = (
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/obj/machinery/computer/cryopod/interdyne/directional/west,
-/obj/effect/turf_decal/delivery/white{
-	color = "#00ff00";
-	name = "green"
-	},
+/obj/machinery/washing_machine,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "oZ" = (
@@ -3145,6 +3139,12 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
+"px" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "py" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -3777,8 +3777,8 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
 "rY" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Cell 1"
+/obj/machinery/door/airlock/mining{
+	name = "Bitrunning Den"
 	},
 /obj/effect/turf_decal/stripes/red/full,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -3798,6 +3798,12 @@
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"sb" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "sc" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -4275,7 +4281,7 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "uL" = (
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/brigoff,
+/obj/machinery/byteforge,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "uN" = (
@@ -4383,6 +4389,16 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
+"vh" = (
+/obj/machinery/light/small/red/directional/east,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "vk" = (
 /obj/item/toy/figure/syndie{
 	pixel_x = -5
@@ -4655,6 +4671,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
+"wH" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "wK" = (
 /obj/effect/turf_decal/tile/dark_green/half,
 /obj/machinery/camera/autoname/directional/west{
@@ -5053,6 +5075,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"yB" = (
+/obj/item/radio/intercom/directional/east{
+	freqlock = 1;
+	frequency = 1467;
+	name = "prisoner intercom";
+	broadcasting = 1
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "yC" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
 	polarizer_id = "scixen_wp"
@@ -5133,9 +5164,11 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "yY" = (
-/obj/machinery/vending/sustenance{
-	onstation = 0
+/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner{
+	dir = 4
 	},
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "yZ" = (
@@ -5863,8 +5896,8 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "BQ" = (
-/obj/machinery/airalarm/directional/south,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/effect/turf_decal/siding/dark,
+/obj/machinery/netpod,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "BS" = (
@@ -6045,12 +6078,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
-/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner,
-/obj/machinery/airalarm/directional/south,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/machinery/quantum_server,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "CQ" = (
@@ -6188,9 +6219,7 @@
 	dir = 1
 	},
 /obj/machinery/firealarm/directional/north,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Dz" = (
@@ -6329,6 +6358,12 @@
 /obj/effect/turf_decal/trimline/yellow/line,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
+"Ef" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "dauntbar_w"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "Eg" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating,
@@ -6449,7 +6484,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "EX" = (
 /obj/effect/turf_decal/siding/dark,
-/obj/machinery/light/small/directional/south,
+/obj/machinery/computer/quantum_console{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Fc" = (
@@ -6902,7 +6939,9 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "HH" = (
-/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner,
+/obj/structure/closet/crate/trashcart/laundry,
+/obj/effect/spawner/random/trash/janitor_supplies,
+/obj/item/mop,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "HI" = (
@@ -6973,10 +7012,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "HZ" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 6
+/obj/effect/turf_decal/siding/dark,
+/obj/machinery/netpod,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
 	},
-/obj/structure/dresser,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Ic" = (
@@ -7397,6 +7437,7 @@
 	dir = 1
 	},
 /obj/machinery/firealarm/directional/north,
+/obj/structure/dresser,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Kh" = (
@@ -8310,15 +8351,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
-"Pb" = (
-/obj/item/radio/intercom/directional/east{
-	freqlock = 1;
-	frequency = 1467;
-	name = "prisoner intercom";
-	broadcasting = 1
-	},
-/turf/open/floor/iron/dark/small,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Pc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
@@ -8793,6 +8825,13 @@
 /obj/structure/railing/corner,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
+"Ru" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/machinery/netpod,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Rv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -8884,9 +8923,14 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "RQ" = (
-/obj/structure/closet/crate/trashcart/laundry,
-/obj/effect/spawner/random/trash/janitor_supplies,
-/obj/item/mop,
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery/white{
+	color = "#00ff00";
+	name = "green"
+	},
+/obj/machinery/computer/cryopod/interdyne/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "RS" = (
@@ -8921,6 +8965,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+"RW" = (
+/obj/effect/turf_decal/siding/dark/end{
+	dir = 1
+	},
+/obj/machinery/computer/order_console/bitrunning,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "RZ" = (
 /obj/effect/turf_decal/trimline/dark_green/corner{
 	dir = 8
@@ -9301,12 +9352,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/obj/item/newspaper{
-	pixel_x = 5;
-	pixel_y = -1
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 5
 	},
-/obj/item/trash/empty_food_tray{
-	pixel_y = 7
+/obj/item/pen{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/trash/can{
+	pixel_x = -9
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -9545,6 +9600,9 @@
 "UV" = (
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner{
+	dir = 4
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "UY" = (
@@ -9663,7 +9721,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "VF" = (
 /obj/structure/closet/secure_closet/interdynefob/brig_officer_locker,
-/obj/structure/sign/flag/syndicate/directional/north,
+/obj/structure/sign/flag/syndicate/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "VG" = (
@@ -13181,8 +13239,8 @@ pH
 UH
 cN
 Wf
-BQ
-yR
+pH
+od
 yR
 yR
 VT
@@ -13313,7 +13371,7 @@ fI
 WZ
 Yx
 WZ
-WZ
+wH
 UH
 Tz
 Wf
@@ -13454,7 +13512,7 @@ pH
 CE
 pH
 ff
-Pb
+yB
 ff
 yR
 wL
@@ -13593,7 +13651,7 @@ vY
 yR
 Tg
 CN
-Ut
+Ef
 uL
 Ke
 jM
@@ -13651,7 +13709,7 @@ AX
 qX
 an
 qm
-qm
+yR
 FX
 WZ
 qZ
@@ -13725,9 +13783,9 @@ im
 Mf
 yR
 ZJ
-HZ
+px
 yR
-ZJ
+iv
 HZ
 Ut
 Ut
@@ -13795,8 +13853,8 @@ yR
 yR
 yR
 yR
-yR
-yR
+sb
+BQ
 HB
 tw
 zb
@@ -13862,10 +13920,10 @@ SR
 oo
 Dp
 qm
-FZ
-FZ
-FZ
-xv
+RW
+vh
+Ru
+HB
 JB
 JB
 FT
@@ -13930,10 +13988,10 @@ Sr
 Sr
 Dz
 qm
-FZ
-FZ
-FZ
-xv
+yR
+yR
+yR
+HB
 WS
 ry
 Yn
