@@ -8,8 +8,6 @@
 	greyscale_config = /datum/greyscale_config/hypokit
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	// Small hypokits can be pocketed, but don't have much storage.
-	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	throw_speed = 3
 	throw_range = 7
@@ -35,7 +33,7 @@
 	. = ..()
 	if(!length(case_designs))
 		populate_case_designs()
-	atom_storage.max_slots = 7
+	atom_storage.max_slots = 12
 	atom_storage.can_hold = typecacheof(list(
 		/obj/item/hypospray/mkii,
 		/obj/item/reagent_containers/cup/vial
