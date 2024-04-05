@@ -1,6 +1,7 @@
 /obj/item/circuitboard/computer/cargo/express/interdyne
 	name = "Interdyne Express Supply Console"
 	build_path = /obj/machinery/computer/cargo/express/interdyne
+	contraband = TRUE
 
 /obj/machinery/computer/cargo/express/interdyne
 	name = "interdyne express supply console"
