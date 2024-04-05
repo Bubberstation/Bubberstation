@@ -19,6 +19,7 @@
 	new /obj/item/storage/box/pinpointer_pairs(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 	new /obj/item/ammo_box/magazine/m45(src)
+	new /obj/item/clothing/neck/tie/blue/blueshield(src)
 
 /obj/machinery/vending/access/command/build_access_list(list/access_lists)
 	. = ..()

@@ -5,7 +5,6 @@
 	uniform = /obj/item/clothing/under/rank/blueshield
 	suit = /obj/item/clothing/suit/jacket/det_suit/noir/blueshield
 	shoes = /obj/item/clothing/shoes/laceup/blueshield
-	neck = /obj/item/clothing/neck/tie/blue/blueshield/tied
 
 	ears = /obj/item/radio/headset/headset_bs
 	glasses = /obj/item/clothing/glasses/sunglasses
