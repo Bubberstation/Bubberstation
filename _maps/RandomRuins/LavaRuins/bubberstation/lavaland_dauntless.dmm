@@ -1082,6 +1082,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/item/radio/intercom/directional/east{
+	frequency = 1467;
+	freqlock = 1;
+	name = "prisoner intercom"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "fp" = (
@@ -4393,6 +4398,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/item/radio/intercom/directional/north{
+	frequency = 1467;
+	freqlock = 1;
+	name = "prisoner intercom"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
@@ -8300,6 +8310,15 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
+"Pb" = (
+/obj/item/radio/intercom/directional/east{
+	freqlock = 1;
+	frequency = 1467;
+	name = "prisoner intercom";
+	broadcasting = 1
+	},
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Pc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
@@ -13435,7 +13454,7 @@ pH
 CE
 pH
 ff
-pH
+Pb
 ff
 yR
 wL
