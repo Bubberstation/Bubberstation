@@ -256,7 +256,6 @@
 		/obj/item/hemostat,
 		/obj/item/holosign_creator/medical,
 		/obj/item/hypospray/mkii, //SKYRAT EDIT ADDITION - HYPOSPRAYS
-		/obj/item/storage/hypospraykit, // BUBBER EDIT ADDITION - HYPOSPRAYS
 		/obj/item/implant,
 		/obj/item/implantcase,
 		/obj/item/implanter,
