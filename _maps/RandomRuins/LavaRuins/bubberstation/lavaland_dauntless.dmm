@@ -2172,8 +2172,8 @@
 /obj/item/circuitboard/machine/powerator/interdyne,
 /obj/item/circuitboard/computer/cargo/express/interdyne,
 /obj/item/paper{
-	default_raw_text = "<h1>SSV Dauntless Cargo Quick Start Guide</h1><p>The SSV Dauntless has made a corporate deal with Gorlex Industries to test out their new 1100mm rail cannon reverse engineered off the 1500mm delivery system that Nanotrasen utilizes.</p><p>Please note, if at all the base has fallen into the wrong hands, it is required that these boards are to be destroyed as it contains our cryptography private seeds.</p><p>All cargo goods are logged and maintained, any misuse of funds will be traced back to agent, and will be reprimanded.</p><p><ul><li>Ancient Powerator</li>This is used to generate credits for orders. Ideally used to sap the excess power given off by an upgraded turbine.<li>Express Supply Console Computer</li>Our best work so far, install into a computer chassis and print a beacon. Wrench this down in an clear area (ideally away from explosive goods).</ul>";
-	name = "paper- 'SSV Dauntless Cargo Quick Start Guide'"
+	default_raw_text = "<h1>SSV Dauntless Cargo Guide</h1><p>The SSV Dauntless has made a corporate deal with Gorlex Industries to test out their new 1100mm rail cannon reverse engineered off the 1500mm delivery system that Nanotrasen utilizes.</p><p>Please note, if at all the base has fallen into the wrong hands, it is required that these boards are to be destroyed as it contains our cryptography private seeds.</p><p>All cargo goods are logged and maintained, any misuse of funds will be traced back to agent, and will be reprimanded.</p><p></p><ul><li>Ancient Powerator</li>This is used to generate credits for orders. Ideally used to consume excess power from an upgraded turbine.<li>Express Supply Console Computer</li>Install into a computer frame and print a beacon. Wrench the beacon down in a clear area (and ideally away from explosive goods).</ul><p>Please note: Physical money can be inserted into the cargo express console to deposit into the cargo account.</p>";
+	name = "paper- 'SSV Dauntless Cargo Guide'"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -2328,6 +2328,9 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
+"lk" = (
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "ln" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
@@ -3358,6 +3361,9 @@
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
+"qf" = (
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "qi" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 4
@@ -4277,6 +4283,7 @@
 "uL" = (
 /obj/machinery/byteforge,
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "uN" = (
@@ -4553,6 +4560,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
+"wb" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "wc" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -5345,6 +5357,12 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
+"zI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "zJ" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -7433,8 +7451,8 @@
 "Ke" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "Kf" = (
@@ -9429,7 +9447,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/filingcabinet,
+/obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "TT" = (
@@ -10369,6 +10387,7 @@
 	id = "interrogation_w";
 	name = "Window Shutters"
 	},
+/obj/structure/filingcabinet,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "YY" = (
@@ -13862,7 +13881,7 @@ Ut
 Ly
 Ut
 Ut
-KU
+FZ
 FZ
 FZ
 FZ
@@ -13929,10 +13948,10 @@ JB
 zb
 wG
 YW
-JD
-Rt
-zt
-ZS
+xv
+KU
+FZ
+FZ
 FZ
 FZ
 FZ
@@ -13993,14 +14012,14 @@ yR
 yR
 yR
 HB
-WS
-ry
-Yn
-kL
-xv
-Ma
-FZ
-FZ
+qf
+lk
+wb
+zI
+JD
+Rt
+zt
+ZS
 FZ
 FZ
 FZ
@@ -14060,13 +14079,13 @@ jk
 FZ
 FZ
 FZ
-xv
+HB
 WS
-Pg
+ry
 Yn
-TR
+kL
 xv
-FZ
+Ma
 FZ
 FZ
 FZ
@@ -14128,12 +14147,12 @@ FZ
 FZ
 FZ
 FZ
-gT
 xv
+WS
+Pg
+Yn
+TR
 xv
-xv
-xv
-gT
 FZ
 FZ
 FZ
@@ -14196,12 +14215,12 @@ FZ
 FZ
 FZ
 FZ
-FZ
-FZ
-FZ
-FZ
-FZ
-FZ
+gT
+xv
+xv
+xv
+xv
+gT
 FZ
 FZ
 FZ
@@ -14470,9 +14489,9 @@ FZ
 FZ
 FZ
 FZ
-PW
-PW
-PW
+FZ
+FZ
+FZ
 FZ
 FZ
 FZ
