@@ -567,38 +567,30 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		alarm_manager.send_alarm(ALARM_ATMOS)
 		if(pressure <= WARNING_LOW_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low pressure and temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! Low pressure and high temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High pressure and temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! High pressure and low temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE)
 			warning_message = "Danger! Low pressure detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE)
 			warning_message = "Danger! High pressure detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		if(temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_COLD) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High temperature detected."
-			activate_firedoors(FIRELOCK_ALARM_TYPE_HOT) //BUBBERSTATION CHANGE: ADDS FIREDOOR ACTIVATION
 			return
 		else
 			warning_message = null

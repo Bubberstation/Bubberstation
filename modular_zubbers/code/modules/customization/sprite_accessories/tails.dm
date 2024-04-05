@@ -15,3 +15,8 @@
 	name = "Kangaroo (Alt)"
 	icon_state = "kangarooalt"
 	icon = 'modular_zubbers/icons/customization/kangarooalt.dmi'
+
+/datum/sprite_accessory/tails/mammal/wagging/rattlesnake
+	name = "Rattlesnake"
+	icon_state = "rattlesnake"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
