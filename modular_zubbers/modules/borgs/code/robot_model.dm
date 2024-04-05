@@ -1,3 +1,4 @@
+// The actual code to work these in
 /obj/item/robot_model/centcom
 	name = "Central Command"
 	basic_modules = list(
@@ -149,7 +150,7 @@
 	)
 
 /obj/item/robot_model/peacekeeper/Initialize(mapload)
-	.=..()
+	. = ..()
 	borg_skins |= list(
 		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Pk", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 		//32x64 Sprites below (Tall)
@@ -157,7 +158,14 @@
 			SKIN_ICON_STATE = "mekasecalt",
 			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL_BUBBER,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
-			SKIN_HAT_OFFSET = 15
+			SKIN_HAT_OFFSET = 15,
+		),
+		"Foxtrot - Peacekeeper" = list(
+			//Sprites by Crumpaloo!
+			SKIN_ICON_STATE = "ftpeace",
+			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 15,
 		),
 		//64x32 Sprites below (Wide)
 		"Raptor" = list(
