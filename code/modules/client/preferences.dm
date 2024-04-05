@@ -522,7 +522,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return TRUE
 
 /datum/preferences/proc/GetQuirkBalance()
-	var/bal = 0
+	var/bal = 4 //BUBBERSTATION CHANGE: 4 FREE QUIRK POINTS.
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
