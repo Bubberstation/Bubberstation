@@ -19,7 +19,7 @@
 /obj/item/hypospray/mkii // Bubber Edit
 	name = "hypospray mk.II"
 	icon_state = "hypo2"
-	icon = 'modular_skyrat/modules/hyposprays/icons/hyposprays.dmi'
+	icon = 'modular_zubbers/modules/hyposprays/icons/hyposprays.dmi'
 	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A new development from DeForest Medical, this hypospray takes 50-unit vials as the drug supply for easy swapping."
 	w_class = WEIGHT_CLASS_TINY

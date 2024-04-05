@@ -1,7 +1,7 @@
 /obj/item/storage/hypospraykit // Bubber Edit
 	name = "hypospray kit"
 	desc = "A hypospray kit with foam insets for hypovials and a mounting point on the bottom."
-	icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
+	icon = 'modular_zubbers/modules/hyposprays/icons/hypokits.dmi'
 	icon_state = "firstaid-mini"
 	worn_icon_state = "healthanalyzer" // Get a better sprite later
 	inhand_icon_state = "medkit"

@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/cup/vial // Bubber Edit
 	name = "broken hypovial"
 	desc = "You probably shouldn't be seeing this. Shout at a coder."
-	icon = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
+	icon = 'modular_zubbers/modules/hyposprays/icons/vials.dmi'
 	icon_state = "hypovial"
 	greyscale_config = /datum/greyscale_config/hypovial
 	fill_icon_state = "hypovial_fill"
@@ -11,7 +11,7 @@
 	fill_icon_thresholds = list(10, 25, 50, 75, 100)
 	var/chem_color = "#FFFFFF" //Used for hypospray overlay
 	var/type_suffix = "-s"
-	fill_icon = 'modular_skyrat/modules/hyposprays/icons/hypospray_fillings.dmi'
+	fill_icon = 'modular_zubbers/modules/hyposprays/icons/hypospray_fillings.dmi'
 	current_skin = "hypovial"
 
 	unique_reskin = list(
