@@ -1,6 +1,7 @@
 import { sortBy } from 'common/collections';
+
 import { useBackend } from '../backend';
-import { Box, Button, Section, Table, Icon } from '../components';
+import { Box, Button, Icon, Section, Table } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
@@ -36,6 +37,9 @@ const jobToColor = (jobId) => {
   }
   if (jobId >= 50 && jobId < 60) {
     return COLORS.department.cargo;
+  }
+  if (jobId >= 60 && jobId < 200) {
+    return COLORS.department.service;
   }
   if (jobId >= 200 && jobId < 230) {
     return COLORS.department.centcom;

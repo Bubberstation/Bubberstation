@@ -29,7 +29,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/attraction/init_possible_values()
-	return list("Gay", "Lesbian", "Straight", "Skolio", "Bi", "Pan", "Poly", "Omni", "Ace", "Unset", "Check OOC")
+	return list("Gay", "Lesbian", "Straight", "Skolio", "Bi", "Pan", "Poly", "Omni", "Ace", "Aro", "Aro/Ace", "Unset", "Check OOC")
 
 /datum/preference/choiced/attraction/create_default_value()
 	return "Unset"
@@ -52,6 +52,105 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	return FALSE
 //Can't believe Bubberstation invented attraction and gender in the year December 2023
 
+/datum/preference/choiced/emote_length
+	savefile_key = "emote_length"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/emote_length/init_possible_values()
+	return list("A few sentences", "1-2 Paragraphs", "Multi-Paragraph", "I'll Match You", "No Preference", "Check OOC")
+
+/datum/preference/choiced/emote_length/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/emote_length/create_default_value()
+	return "No Preference"
+
+/datum/preference/choiced/approach_pref
+	savefile_key = "approach_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/approach_pref/init_possible_values()
+	return list("Approach IC", "Approach OOC", "Any", "Both", "Check OOC", "See Below", "Unset")
+
+/datum/preference/choiced/approach_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/approach_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/furry_pref
+	savefile_key = "furry_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/furry_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
+
+/datum/preference/choiced/furry_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/furry_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/scalie_pref
+	savefile_key = "scalie_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/scalie_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Maybe", "Unset")
+
+/datum/preference/choiced/scalie_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/scalie_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/other_pref
+	savefile_key = "other_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/other_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Maybe", "Unset")
+
+/datum/preference/choiced/other_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/scalie_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/demihuman_pref
+	savefile_key = "demihuman_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/demihuman_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
+
+/datum/preference/choiced/demihuman_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/demihuman_pref/create_default_value()
+	return "Unset"
+
+/datum/preference/choiced/human_pref
+	savefile_key = "human_pref"
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/human_pref/init_possible_values()
+	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
+
+/datum/preference/choiced/human_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/choiced/human_pref/create_default_value()
+	return "Unset"
+
+//CHARACTER DIRECTORY CODE START
 //Add a cooldown for the character directory to the client, primarily to stop server lag from refresh spam
 /client
 	COOLDOWN_DECLARE(char_directory_cooldown)
@@ -64,7 +163,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
-		to_chat(src, span_alert("Hold your horses! Its still refreshing!"))
+		to_chat(src, span_alert("Hold your horses! It's still refreshing!"))
 		return
 	COOLDOWN_START(src, char_directory_cooldown, 10)
 
@@ -117,6 +216,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/species = "Ask"
 		var/ooc_notes = ""
 		var/flavor_text = ""
+		var/nsfw_flavor_text = ""
 		var/attraction = "Unset"
 		var/gender = "Nonbinary"
 		var/erp = "Ask"
@@ -142,12 +242,19 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 				species = "[human.dna.species.name]"
 			//Load standard flavor text preference
 			flavor_text = READ_PREFS(human, text/flavor_text)
+			if((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Always On") || ((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Nude Only") && !(human.w_uniform)))
+				nsfw_flavor_text = READ_PREFS(human, text/flavor_text_nsfw)
+			else nsfw_flavor_text = "Unavailable"
+
 		else if(issilicon(mob))
 			var/mob/living/silicon/silicon = mob
 			//If the target is a silicon, we want it to show its brain as its species
 			species = READ_PREFS(silicon, choiced/brain_type)
 			//Load silicon flavor text in place of normal flavor text
 			flavor_text = READ_PREFS(silicon, text/silicon_flavor_text)
+			if(READ_PREFS(silicon, choiced/show_nsfw_flavor_text) != "Never")
+				nsfw_flavor_text = READ_PREFS(silicon, text/flavor_text_nsfw/silicon)
+			else nsfw_flavor_text = "Unavailable"
 		//Don't show if they are not a human or a silicon
 		else continue
 		//List of all the shown ERP preferences in the Directory. If there is none, return "Unset"
@@ -181,6 +288,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
+			"nsfw_flavor_text" = nsfw_flavor_text,
 			"ref" = ref
 		)))
 
@@ -216,3 +324,16 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			ghost.ManualFollow(poi)
 			ghost.reset_perspective(null)
 			return TRUE
+		if("view")
+			var/ref = params["ref"]
+			var/datum/examine_panel/panel
+			var/mob/living/carbon/target = (locate(ref) in GLOB.mob_list)
+			if(issilicon(target))
+				var/mob/living/silicon/robot/typed_target = target
+				panel = typed_target.examine_panel
+				panel.holder = typed_target
+			else
+				var/mob/living/carbon/human/typed_target = target
+				panel = typed_target.tgui
+				panel.holder = typed_target
+			panel.ui_interact(user)

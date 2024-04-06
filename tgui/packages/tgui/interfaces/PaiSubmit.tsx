@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
@@ -85,7 +86,7 @@ const InputDisplay = (props) => {
           </Box>
           <Input
             fluid
-            maxLength={100}
+            maxLength={500} /* SKYRAT EDIT: ORIGINAL 100 */
             value={description}
             onChange={(e, value) => setInput({ ...input, description: value })}
           />
@@ -96,7 +97,7 @@ const InputDisplay = (props) => {
           </Box>
           <Input
             fluid
-            maxLength={100}
+            maxLength={500} /* SKYRAT EDIT: ORIGINAL 100 */
             value={comments}
             onChange={(e, value) => setInput({ ...input, comments: value })}
           />

@@ -17,3 +17,6 @@
 	banned_species = null
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl
 	banned_species = null
+//For the record, I knew making it default to denying would lead to this oversight. Fiksed. Icecats and ashliz can spawn on cafe now.
+/obj/effect/mob_spawn/ghost_role/human/ghostcafe
+	banned_species = null

@@ -1,8 +1,8 @@
+import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Table, Tooltip } from 'tgui/components';
 import { getGasColor, getGasLabel } from 'tgui/constants';
 
 import { HypertorusData } from '.';
-import { useBackend } from 'tgui/backend';
 
 type Recipe = {
   param: string;
@@ -88,7 +88,7 @@ const recipe_effect_structure: Recipe[] = [
     override_base: 0.85,
     scale: 1.15,
     tooltip: (v, d) =>
-      'Maximum: ' + (d.baseMaximumTemperature * v).toExponential() + ' K',
+      'Maximum: ' + (d.baseMaxTemperature * v).toExponential() + ' K',
   },
 ];
 

@@ -90,6 +90,7 @@ SUBSYSTEM_DEF(vote)
 	var/list/vote_choice_data = list()
 	for(var/choice in current_vote.choices)
 		var/choice_votes = current_vote.choices[choice]
+		total_votes += choice_votes
 		vote_choice_data["[choice]"] = choice_votes
 
 	// stringify the winners to prevent potential unimplemented serialization errors.
@@ -123,6 +124,10 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
+	// BUBBER EDIT START: Modular vote conditions!
+	if(!current_vote.can_mob_vote(voter))
+		return
+	// BUBBER EDIT END
 
 	// If user has already voted, remove their specific vote
 	if(voter.ckey in current_vote.choices_by_ckey)
@@ -147,7 +152,10 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
-
+	// BUBBER EDIT START: Modular vote conditions!
+	if(!current_vote.can_mob_vote(voter))
+		return
+	// BUBBER EDIT END
 	else
 		voted += voter.ckey
 
@@ -301,6 +309,7 @@ SUBSYSTEM_DEF(vote)
 				"question" = current_vote.override_question,
 				"timeRemaining" = current_vote.time_remaining,
 				"countMethod" = current_vote.count_method,
+				"displayStatistics" = current_vote.display_statistics,
 				"choices" = choices,
 				"vote" = vote_data,
 			)

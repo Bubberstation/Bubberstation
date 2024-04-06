@@ -283,6 +283,9 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 
 /// Will invoke `do_copy_loop` asynchronously. Passes the supplied arguments on to it.
 /obj/machinery/photocopier/proc/do_copies(datum/callback/copy_cb, mob/user, paper_use, toner_use, copies_amount)
+	if(machine_stat & (BROKEN|NOPOWER))
+		return
+
 	busy = TRUE
 	update_use_power(ACTIVE_POWER_USE)
 	// fucking god proc
@@ -595,8 +598,7 @@ GLOBAL_LIST_INIT(paper_blanks, init_paper_blanks())
 		toner_cartridge.charges = 0
 
 /obj/machinery/photocopier/MouseDrop_T(mob/target, mob/user)
-	check_ass() //Just to make sure that you can re-drag somebody onto it after they moved off.
-	if(!istype(target) || target.anchored || target.buckled || !Adjacent(target) || !user.can_perform_action(src) || target == ass || copier_blocked())
+	if(!istype(target) || target.anchored || target.buckled || !Adjacent(target) || !user.can_perform_action(src, action_bitflags = ALLOW_RESTING) || target == ass || copier_blocked())
 		return
 	add_fingerprint(user)
 	if(target == user)

@@ -1,16 +1,16 @@
-import { useBackend } from '../backend';
-import { Section, Stack, Box, Tabs, Button, BlockQuote } from '../components';
-import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import { BlockQuote, Box, Button, Section, Stack, Tabs } from '../components';
+import { CssColor } from '../constants';
+import { Window } from '../layouts';
+import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
 import {
-  ObjectivePrintout,
   Objective,
+  ObjectivePrintout,
   ReplaceObjectivesButton,
 } from './common/Objectives';
-import { useState } from 'react';
-// SKYRAT EDIT BEGIN
-import { Rules } from './AntagInfoRules';
-// SKYRAT EDIT END
 
 const hereticRed = {
   color: '#e03c3c',
@@ -44,7 +44,7 @@ type Knowledge = {
   cost: number;
   disabled: boolean;
   hereticPath: string;
-  color: string;
+  color: CssColor;
 };
 
 type KnowledgeInfo = {

@@ -437,7 +437,8 @@
 
 	purchased_powers[power_path] = new_action
 	new_action.on_purchase(owner.current) // Grant() is ran in this proc, see changeling_powers.dm.
-	log_changeling_power("[key_name(owner)] adapted the [new_action] power")
+	log_changeling_power("[key_name(owner)] adapted the [new_action.name] power")
+	SSblackbox.record_feedback("tally", "changeling_power_purchase", 1, new_action.name)
 
 	return TRUE
 
@@ -569,7 +570,12 @@
 	for(var/datum/quirk/target_quirk in target.quirks)
 		LAZYADD(new_profile.quirks, new target_quirk.type)
 	//SKYRAT EDIT END
-
+//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
+	new_profile.blooper_id = target.blooper_id
+	new_profile.blooper_pitch = target.blooper_pitch
+	new_profile.blooper_speed = target.blooper_speed
+	new_profile.blooper_pitch_range = target.blooper_pitch_range
+	//THE BUBBER EDIT END
 	// Grab skillchips they have
 	new_profile.skillchips = target.clone_skillchip_list(TRUE)
 
@@ -948,7 +954,13 @@
 	user.name = user.get_visible_name()
 	current_profile = chosen_profile
 	// SKYRAT EDIT END
-
+//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
+	user.blooper = null
+	user.blooper_id = chosen_profile.blooper_id
+	user.blooper_pitch = chosen_profile.blooper_pitch
+	user.blooper_speed = chosen_profile.blooper_speed
+	user.blooper_pitch_range = chosen_profile.blooper_pitch_range
+	//THE BUBBER EDIT END
 // Changeling profile themselves. Store a data to store what every DNA instance looked like.
 /datum/changeling_profile
 	/// The name of the profile / the name of whoever this profile source.

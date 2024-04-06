@@ -1,18 +1,18 @@
 // THIS IS A SKYRAT UI FILE
 import {
-  FeatureChoiced,
-  FeatureDropdownInput,
-  Feature,
-  FeatureColorInput,
-  FeatureTextInput,
-  FeatureShortTextInput,
   CheckboxInput,
-  FeatureTriColorInput,
-  FeatureTriBoolInput,
-  FeatureToggle,
-  FeatureNumberInput,
-  FeatureValueProps,
+  Feature,
+  FeatureChoiced,
   FeatureChoicedServerData,
+  FeatureColorInput,
+  FeatureDropdownInput,
+  FeatureNumberInput,
+  FeatureShortTextInput,
+  FeatureTextInput,
+  FeatureToggle,
+  FeatureTriBoolInput,
+  FeatureTriColorInput,
+  FeatureValueProps,
 } from '../../base';
 
 export const feature_leg_type: FeatureChoiced = {
@@ -63,6 +63,19 @@ export const custom_species_lore: Feature<string> = {
   description: "Won't show up if there's no custom species.",
   component: FeatureTextInput,
 };
+
+export const custom_taste: Feature<string> = {
+  name: 'Character Taste',
+  description: 'How does your character taste if someone licks them.',
+  component: FeatureShortTextInput,
+};
+
+export const custom_smell: Feature<string> = {
+  name: 'Character Smell',
+  description: 'How does your character smell if someone sniffs them.',
+  component: FeatureShortTextInput,
+};
+
 export const general_record: Feature<string> = {
   name: 'Records - General',
   description:

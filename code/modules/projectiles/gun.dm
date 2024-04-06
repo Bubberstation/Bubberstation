@@ -82,7 +82,7 @@
 		pin = new pin(src)
 
 	add_seclight_point()
-	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES
+//	give_gun_safeties() // SKYRAT EDIT ADDITION - GUN SAFETIES //BUBBER EDIT REMOVAL
 	give_manufacturer_examine() // SKYRAT EDIT ADDITON - MANUFACTURER EXAMINE
 
 /obj/item/gun/Destroy()
@@ -573,6 +573,9 @@
 		knife_overlay.pixel_x = knife_x_offset
 		knife_overlay.pixel_y = knife_y_offset
 		. += knife_overlay
+
+/obj/item/gun/animate_atom_living(mob/living/owner)
+	new /mob/living/simple_animal/hostile/mimic/copy/ranged(drop_location(), src, owner)
 
 /obj/item/gun/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))

@@ -1,13 +1,14 @@
-import { clamp } from 'common/math';
 import { KEY_CTRL } from 'common/keycodes';
+import { clamp } from 'common/math';
 import {
   randomInteger,
   randomNumber,
   randomPick,
   randomProb,
 } from 'common/random';
-import { useDispatch } from 'tgui/backend';
 import { Component } from 'react';
+import { useDispatch } from 'tgui/backend';
+
 import { resolveAsset } from '../assets';
 import { backendSuspendStart, useBackend } from '../backend';
 import { Icon, KeyListener } from '../components';

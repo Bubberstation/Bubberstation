@@ -10,6 +10,7 @@
 	worn_icon_state = "radio"
 	desc = "A basic handheld radio that communicates with local telecommunication networks."
 	dog_fashion = /datum/dog_fashion/back
+	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_ALLOW_USER_LOCATION | INTERACT_ATOM_IGNORE_MOBILITY
 
 	obj_flags = CONDUCTS_ELECTRICITY
 	slot_flags = ITEM_SLOT_BELT
@@ -285,6 +286,12 @@
 	if(use_command)
 		spans |= SPAN_COMMAND
 
+	var/radio_message = message
+	if(LAZYACCESS(message_mods, WHISPER_MODE))
+		// Radios don't pick up whispers very well
+		radio_message = stars(radio_message)
+		spans |= SPAN_ITALICS
+
 	flick_overlay_view(overlay_mic_active, 5 SECONDS)
 
 	/*
@@ -317,7 +324,7 @@
 	var/atom/movable/virtualspeaker/speaker = new(null, talking_movable, src)
 
 	// Construct the signal
-	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans, message_mods)
+	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, radio_message, spans, message_mods)
 
 	// Independent radios, on the CentCom frequency, reach all independent radios
 	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE || freq == FREQ_CTF_GREEN || freq == FREQ_CTF_YELLOW || freq == FREQ_FACTION || freq == FREQ_CYBERSUN || freq == FREQ_INTERDYNE || freq == FREQ_GUILD || freq == FREQ_TARKON || freq == FREQ_SOLFED)) //SKYRAT EDIT CHANGE - FACTION, MAPPING, SOLFED
@@ -354,6 +361,13 @@
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
 	var/filtered_mods = list()
+
+	if (message_mods[MODE_SING])
+		filtered_mods[MODE_SING] = message_mods[MODE_SING]
+	if (message_mods[WHISPER_MODE])
+		filtered_mods[WHISPER_MODE] = message_mods[WHISPER_MODE]
+	if (message_mods[SAY_MOD_VERB])
+		filtered_mods[SAY_MOD_VERB] = message_mods[SAY_MOD_VERB]
 	if (message_mods[MODE_CUSTOM_SAY_EMOTE])
 		filtered_mods[MODE_CUSTOM_SAY_EMOTE] = message_mods[MODE_CUSTOM_SAY_EMOTE]
 		filtered_mods[MODE_CUSTOM_SAY_ERASE_INPUT] = message_mods[MODE_CUSTOM_SAY_ERASE_INPUT]

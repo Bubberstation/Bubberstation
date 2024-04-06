@@ -94,6 +94,18 @@ SUBSYSTEM_DEF(job)
 	set_overflow_role(CONFIG_GET(string/overflow_job)) // this must always go after load_jobs_from_config() due to how the legacy systems operate, this always takes precedent.
 	return SS_INIT_SUCCESS
 
+/// Returns a list of jobs that we are allowed to fuck with during random events
+/datum/controller/subsystem/job/proc/get_valid_overflow_jobs()
+	var/static/list/overflow_jobs
+	if (!isnull(overflow_jobs))
+		return overflow_jobs
+
+	overflow_jobs = list()
+	for (var/datum/job/check_job in joinable_occupations)
+		if (!check_job.allow_bureaucratic_error)
+			continue
+		overflow_jobs += check_job
+	return overflow_jobs
 
 /datum/controller/subsystem/job/proc/set_overflow_role(new_overflow_role)
 	var/datum/job/new_overflow = ispath(new_overflow_role) ? GetJobType(new_overflow_role) : GetJob(new_overflow_role)
@@ -592,8 +604,8 @@ SUBSYSTEM_DEF(job)
 	var/ssc = CONFIG_GET(number/security_scaling_coeff)
 	if(ssc > 0)
 		if(J.spawn_positions > 0)
-			// SKYRAT EDIT - Reduced from 12 max sec to 7 max sec due to departmental security being deactivated and replaced.
-			var/officer_positions = min(7, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 12 officers
+			// SKYRAT EDIT - Reduced from 12 max sec to 7 max sec due to departmental security being deactivated and replaced. //BUBBER EDIT REMOVAL: Raised to 10 max sec.
+			var/officer_positions = min(10, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 12 officers
 			JobDebug("Setting open security officer positions to [officer_positions]")
 			J.total_positions = officer_positions
 			J.spawn_positions = officer_positions
@@ -711,34 +723,23 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/get_last_resort_spawn_points()
-	//bad mojo
 	var/area/shuttle/arrival/arrivals_area = GLOB.areas_by_type[/area/shuttle/arrival]
-	if(arrivals_area)
-		//first check if we can find a chair
-		var/obj/structure/chair/shuttle_chair = locate() in arrivals_area
-		if(shuttle_chair)
-			return shuttle_chair
-
-		//last hurrah
+	if(!isnull(arrivals_area))
 		var/list/turf/available_turfs = list()
-		for(var/turf/arrivals_turf in arrivals_area)
-			if(!arrivals_turf.is_blocked_turf(TRUE))
+		for (var/list/zlevel_turfs as anything in arrivals_area.get_zlevel_turf_lists())
+			for (var/turf/arrivals_turf as anything in zlevel_turfs)
+				var/obj/structure/chair/shuttle_chair = locate() in arrivals_turf
+				if(!isnull(shuttle_chair))
+					return shuttle_chair
+				if(arrivals_turf.is_blocked_turf(TRUE))
+					continue
 				available_turfs += arrivals_turf
+
 		if(length(available_turfs))
 			return pick(available_turfs)
 
-	//pick an open spot on arrivals and dump em
-	var/list/arrivals_turfs = shuffle(get_area_turfs(/area/shuttle/arrival))
-	if(length(arrivals_turfs))
-		for(var/turf/arrivals_turf in arrivals_turfs)
-			if(!arrivals_turf.is_blocked_turf(TRUE))
-				return arrivals_turf
-		//last chance, pick ANY spot on arrivals and dump em
-		return pick(arrivals_turfs)
-
 	stack_trace("Unable to find last resort spawn point.")
 	return GET_ERROR_ROOM
-
 
 ///Lands specified mob at a random spot in the hallways
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
@@ -755,7 +756,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/get_living_heads()
 	. = list()
 	for(var/datum/mind/head as anything in get_crewmember_minds())
-		if(!(head.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND))
+		if(!(head.assigned_role.job_flags & JOB_HEAD_OF_STAFF))
 			continue
 		if(isnull(head.current) || head.current.stat == DEAD)
 			continue
@@ -765,7 +766,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/get_all_heads()
 	. = list()
 	for(var/datum/mind/head as anything in get_crewmember_minds())
-		if(head.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+		if(head.assigned_role.job_flags & JOB_HEAD_OF_STAFF)
 			. += head
 
 /// Returns a list of minds of all security members who are alive
@@ -905,7 +906,7 @@ SUBSYSTEM_DEF(job)
 		return JOB_UNAVAILABLE_AGE
 
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
-	if(possible_job.veteran_only && !SSplayer_ranks.is_veteran(player.client))
+	if(!CONFIG_GET(flag/bypass_veteran_system) && possible_job.veteran_only && !SSplayer_ranks.is_veteran(player.client))
 		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_NOT_VETERAN)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_NOT_VETERAN
 
@@ -922,7 +923,14 @@ SUBSYSTEM_DEF(job)
 		return JOB_UNAVAILABLE_SPECIES
 
 	if(CONFIG_GET(flag/min_flavor_text))
-		if(length_char(player.client.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+		//BUBBER EDIT ADDITION: SILICON FLAVOR TEXT CHECK
+		var/uses_silicon_flavortext = (is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text)) <= CONFIG_GET(number/silicon_flavor_text_character_requirement))
+		var/uses_normal_flavortext = (!is_silicon_job(possible_job) && length_char(player.client?.prefs.read_preference(/datum/preference/text/flavor_text)) <= CONFIG_GET(number/flavor_text_character_requirement))
+		if(uses_silicon_flavortext)
+			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+			return JOB_UNAVAILABLE_FLAVOUR_SILICON
+		if(uses_normal_flavortext)
+		//BUBBER EDIT END: SILICON FLAVOR TEXT CHECK
 			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_FLAVOUR
 

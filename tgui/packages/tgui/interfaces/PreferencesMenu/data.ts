@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { sendAct } from '../../backend';
 import { Gender } from './preferences/gender';
 
@@ -92,6 +93,7 @@ export type Quirk = {
   customizable: boolean;
   customization_options?: string[];
   veteran_only: boolean; // SKYRAT EDIT - Veteran quirks
+  species_whitelist: Record<string, string>[]; // BUBBER EDIT ADDITION - Species quirks
 };
 
 // SKYRAT EDIT START
@@ -136,7 +138,7 @@ export type QuirkInfo = {
   max_positive_quirks: number;
   quirk_info: Record<string, Quirk>;
   quirk_blacklist: string[][];
-  quirk_species_whitelist: string[][]; // BUBBER EDIT ADDITION - Species quirks
+  points_enabled: boolean;
 };
 
 export enum RandomSetting {

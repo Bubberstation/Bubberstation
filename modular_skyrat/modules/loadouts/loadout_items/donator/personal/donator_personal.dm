@@ -1,5 +1,5 @@
 /datum/loadout_item/toys/miafoxplush
-	name = "Mia’s fox plushie"
+	name = "silver fox plushie" //bubber edit on request
 	item_path = /obj/item/toy/plush/skyrat/fox/mia
 //ckeywhitelist = list("fuzlet")
 
@@ -13,11 +13,11 @@
 	item_path = /obj/item/canvas/drawingtablet
 	//ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/shoes/heeled_jackboots
+/* /datum/loadout_item/shoes/heeled_jackboots - BUBBERSTATION
 	name = "High-heel Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/heel
 	//ckeywhitelist = list("thedragmeme")
-//As they requested, it's properly public now.
+*/ //As they requested, it's properly public now. - BUBBERSTATION
 
 /datum/loadout_item/suit/furcoat
 	name = "Leather coat with fur"
@@ -52,7 +52,7 @@
 /datum/loadout_item/gloves/hypnoring_bippy
 	name = "Hypnodemon's Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
-	//ckeywhitelist = list("bippys")
+	ckeywhitelist = list("bippys")
 
 /datum/loadout_item/shoes/rax_armadyne_boots
 	name = "Tactical Boots"
@@ -594,6 +594,12 @@
 //	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
+/datum/loadout_item/head/elofy
+	name = "Solar Admiral Hat"
+	item_path = /obj/item/clothing/head/hats/hos/elofy
+	ckeywhitelist = list("october23")
+	restricted_roles = list(JOB_HEAD_OF_SECURITY)
+
 /datum/loadout_item/gloves/elofy
 	name = "Solar Admiral Gloves"
 	item_path = /obj/item/clothing/gloves/elofy
@@ -647,7 +653,12 @@
 /datum/loadout_item/gloves/hypnoring_nuke
 	name = "Suspiciously Glossy Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/nuke
-	//ckeywhitelist = list("sonicgotnuked")
+	ckeywhitelist = list("sonicgotnuked")
+
+/datum/loadout_item/ears/kinkphone_nuke
+	name = "Suspiciously Glossy Headphones"
+	item_path = /obj/item/clothing/ears/kinky_headphones/nuke
+	ckeywhitelist = list("sonicgotnuked")
 
 /datum/loadout_item/head/somerandomowl
 	name = "Starry Witch Hat"
@@ -727,8 +738,8 @@
 
 /datum/loadout_item/suit/nobility_dresscoat
 	name = "Nobility Dresscoat"
-	item_path = /obj/item/clothing/suit/toggle/labcoat/medical/vic_dresscoat_donator
-	//ckeywhitelist = list("nikotheguydude")
+	item_path = /obj/item/clothing/suit/toggle/labcoat/vic_dresscoat_donator
+//	ckeywhitelist = list("nikotheguydude")
 
 /datum/loadout_item/suit/anubite_headpiece
 	name = "Anubite Headpiece"
@@ -748,4 +759,14 @@
 /datum/loadout_item/neck/trenchcoat
 	name = "Graceful Trenchcoat"
 	item_path = /obj/item/clothing/neck/trenchcoat
-	//ckeywhitelist = list("Smol42", "Awers855")
+	ckeywhitelist = list("Smol42", "Awers855")
+
+/datum/loadout_item/under/jumpsuit/old_qm_jumpskirt
+	name = "Old Quartermaster's Jumpskirt"
+	item_path = /obj/item/clothing/under/rank/cargo/qm/skirt/old
+//	ckeywhitelist = list("jasohavents")
+
+/datum/loadout_item/pocket_items/toaster_implant
+	name = "Toaster Implant"
+	item_path = /obj/item/implanter/toaster
+//	ckeywhitelist = list("jasohavents")

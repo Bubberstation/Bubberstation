@@ -57,7 +57,7 @@
 	return if_no_id
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a separate proc as it'll be useful elsewhere
-/mob/living/carbon/human/get_visible_name()
+/mob/living/carbon/human/get_visible_name(add_id_name = TRUE)
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN))
 		return "Unknown"
 	var/list/identity = list(null, null)
@@ -67,7 +67,7 @@
 	var/face_name = !isnull(signal_face) ? signal_face : get_face_name("")
 	var/id_name = !isnull(signal_id) ? signal_id : get_id_name("")
 	if(face_name)
-		if(id_name && (id_name != face_name))
+		if(add_id_name && id_name && (id_name != face_name))
 			return "[face_name] (as [id_name])"
 		return face_name
 	if(id_name)
@@ -91,7 +91,7 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	var/obj/item/storage/wallet/wallet = wear_id
-	var/obj/item/modular_computer/pda/pda = wear_id
+	var/obj/item/modular_computer/pda = wear_id
 	var/obj/item/card/id/id = wear_id
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN))
 		. = if_no_id //You get NOTHING, no id name, good day sir

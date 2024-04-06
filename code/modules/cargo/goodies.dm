@@ -3,6 +3,13 @@
 	access = NONE
 	group = "Goodies"
 	goody = TRUE
+	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
+
+/datum/supply_pack/goody/clear_pda
+	name = "Mint Condition Nanotrasen Clear PDA"
+	desc = "Mint condition, freshly repackaged! A valuable collector's item normally valued at over 2.5 million credits, now available for a steal!"
+	cost = 100000
+	contains = list(/obj/item/modular_computer/pda/clear)
 
 /datum/supply_pack/goody/dumdum38
 	name = ".38 DumDum Speedloader"
@@ -145,7 +152,7 @@
 	name = "Valentine Card"
 	desc = "Make an impression on that special someone! Comes with one valentine card and a free candy heart!"
 	cost = PAYCHECK_CREW * 2
-	contains = list(/obj/item/valentine, /obj/item/food/candyheart)
+	contains = list(/obj/item/paper/valentine, /obj/item/food/candyheart)
 
 /datum/supply_pack/goody/beeplush
 	name = "Bee Plushie"
@@ -241,6 +248,12 @@
 	desc = "When the standard variety is not good enough for you."
 	cost = PAYCHECK_CREW
 	contains = list(/obj/item/bait_can/worm/premium)
+
+/datum/supply_pack/goody/naturalbait
+	name = "Freshness Jars full of Natural Bait"
+	desc = "Homemade in the Spinward Sector."
+	cost = PAYCHECK_CREW * 4 //rock on
+	contains = list(/obj/item/storage/pill_bottle/naturalbait)
 
 /datum/supply_pack/goody/telescopic_fishing_rod
 	name = "Telescopic Fishing Rod"

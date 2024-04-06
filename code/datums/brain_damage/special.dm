@@ -100,7 +100,6 @@
 	image_icon = 'icons/effects/effects.dmi'
 	image_state = "bluestream"
 	image_layer = ABOVE_MOB_LAYER
-	image_plane = GAME_PLANE_UPPER
 	var/obj/effect/client_image_holder/bluespace_stream/linked_to
 
 /obj/effect/client_image_holder/bluespace_stream/Initialize(mapload, list/mobs_which_see_us)
@@ -246,14 +245,15 @@
 
 /datum/brain_trauma/special/psychotic_brawling/on_gain()
 	..()
-	psychotic_brawling = new(null)
+	psychotic_brawling = new()
+	psychotic_brawling.allow_temp_override = FALSE
 	if(!psychotic_brawling.teach(owner, TRUE))
 		to_chat(owner, span_notice("But your martial knowledge keeps you grounded."))
 		qdel(src)
 
 /datum/brain_trauma/special/psychotic_brawling/on_lose()
 	..()
-	psychotic_brawling.remove(owner)
+	psychotic_brawling.fully_remove(owner)
 	QDEL_NULL(psychotic_brawling)
 
 /datum/brain_trauma/special/psychotic_brawling/bath_salts
@@ -267,11 +267,11 @@
 	lose_text = span_warning("You realize you can feel pain again.")
 
 /datum/brain_trauma/special/tenacity/on_gain()
-	owner.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT), TRAUMA_TRAIT)
+	owner.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/special/tenacity/on_lose()
-	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT), TRAUMA_TRAIT)
+	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/special/death_whispers

@@ -28,9 +28,9 @@
 	add_memory_in_range(src, 7, /datum/memory/witness_gib, protagonist = src)
 	if(drop_bitflags & DROP_ITEMS)
 		for(var/obj/item/W in src)
-			dropItemToGround(W)
-			if(prob(50))
-				step(W, pick(GLOB.alldirs))
+			if(dropItemToGround(W))
+				if(prob(50))
+					step(W, pick(GLOB.alldirs))
 	var/atom/Tsec = drop_location()
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
@@ -42,7 +42,7 @@
 
 	for(var/obj/item/organ/organ as anything in organs)
 		if((drop_bitflags & DROP_BRAIN) && istype(organ, /obj/item/organ/internal/brain))
-			if(drop_bitflags & DROP_BODYPARTS)
+			if((drop_bitflags & DROP_BODYPARTS) && (check_zone(organ.zone) != BODY_ZONE_CHEST)) // chests can't drop
 				continue // the head will drop, so the brain should stay inside
 
 			organ.Remove(src)

@@ -323,7 +323,7 @@
 	squeak_override = list('sound/effects/crunchybushwhack1.ogg' = 1)
 
 /obj/item/toy/plush/skyrat/fox/mia
-	name = "Mia’s fox plushie"
+	name = "silver fox plushie" //bubber edit on request
 	desc = "A small stuffed silver fox with a collar tag that says “Eavy” and a tiny bell in its fluffy tail."
 	icon_state = "miafox"
 
@@ -426,7 +426,7 @@
 	user.changeNext_move(CLICK_CD_MELEE) // To avoid spam, in some cases (sadly not all of them)
 	var/mob/living/living_user = user
 	if(istype(living_user))
-		living_user.add_mood_event("hug", /datum/mood_event/warmhug/rubi, src)
+		living_user.add_mood_event("hug", /datum/mood_event/warmhug/rubi, 1, src)
 	user.visible_message(span_notice("[user] hugs \the [src]."), span_notice("You hug \the [src]."))
 
 /datum/mood_event/warmhug/rubi

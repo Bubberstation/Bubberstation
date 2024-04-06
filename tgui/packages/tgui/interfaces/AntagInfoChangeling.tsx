@@ -1,24 +1,23 @@
 import { BooleanLike } from 'common/react';
 import { multiline } from 'common/string';
 import { useState } from 'react';
+
 import { useBackend } from '../backend';
 import {
   Button,
   Dimmer,
   Dropdown,
+  NoticeBox,
   Section,
   Stack,
-  NoticeBox,
 } from '../components';
 import { Window } from '../layouts';
+import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
 import {
-  ObjectivePrintout,
   Objective,
+  ObjectivePrintout,
   ReplaceObjectivesButton,
 } from './common/Objectives';
-// SKYRAT EDIT BEGIN
-import { Rules } from './AntagInfoRules';
-// SKYRAT EDIT END
 
 const hivestyle = {
   fontWeight: 'bold',
@@ -141,11 +140,7 @@ const IntroductionSection = (props) => {
   const { act, data } = useBackend<Info>();
   const { true_name, hive_name, objectives, can_change_objective } = data;
   return (
-    <Section
-      fill
-      title="Intro"
-      scrollable={!!objectives && objectives.length > 4}
-    >
+    <Section fill title="Intro" style={{ overflowY: 'auto' }}>
       <Stack vertical fill>
         <Stack.Item fontSize="25px">
           You are {true_name} from the

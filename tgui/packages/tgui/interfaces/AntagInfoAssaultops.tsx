@@ -1,19 +1,20 @@
 // THIS IS A SKYRAT UI FILE
+import { BooleanLike } from 'common/react';
+import { useState } from 'react';
+
 import { useBackend } from '../backend';
 import {
-  LabeledList,
-  Stack,
-  Button,
-  Section,
-  ProgressBar,
   Box,
-  Tabs,
+  Button,
   Divider,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Stack,
+  Tabs,
 } from '../components';
-import { BooleanLike } from 'common/react';
 import { Window } from '../layouts';
 import { Rules } from './AntagInfoRules';
-import { useState } from 'react';
 
 type Objectives = {
   count: number;
@@ -109,7 +110,7 @@ export const AntagInfoAssaultops = (props) => {
             </Section>
           </Stack.Item>
           <Stack.Item>
-            <Stack vertical grow mb={1}>
+            <Stack vertical mb={1}>
               <Stack.Item>
                 <Tabs fill>
                   <Tabs.Tab
@@ -145,7 +146,7 @@ const TargetPrintout = (props) => {
   const { act, data } = useBackend<Info>();
   const { available_targets, extracted_targets } = data;
   return (
-    <Section grow>
+    <Section>
       <Box textColor="red" fontSize="20px" mb={1}>
         Target List
       </Box>
@@ -200,7 +201,7 @@ const KeyPrintout = (props) => {
   const { act, data } = useBackend<Info>();
   const { goldeneye_keys } = data;
   return (
-    <Section grow>
+    <Section>
       <Box textColor="red" fontSize="20px">
         GoldenEye Keycards
       </Box>

@@ -1,21 +1,23 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend, useLocalState } from '../backend';
-import { Window } from '../layouts';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import {
+  BlockQuote,
   Box,
+  Button,
+  Collapsible,
   Dropdown,
+  Flex,
+  Icon,
+  Input,
   LabeledList,
   ProgressBar,
   Section,
-  Button,
-  Input,
-  BlockQuote,
-  Flex,
-  Collapsible,
   Table,
-  Icon,
 } from '../components';
 import { TableCell, TableRow } from '../components/Table';
+import { Window } from '../layouts';
 
 export const NifPanel = (props) => {
   const { act, data } = useBackend();
@@ -26,7 +28,7 @@ export const NifPanel = (props) => {
     max_power,
     current_theme,
   } = data;
-  const [settingsOpen, setSettingsOpen] = useLocalState('settingsOpen', false);
+  const [settingsOpen, setSettingsOpen] = useState(0);
 
   return (
     <Window
@@ -258,7 +260,7 @@ const NifSettings = (props) => {
 };
 
 const NifProductNotes = (props) => {
-  const { act, data } = useBackend(t);
+  const { act, data } = useBackend();
   const { product_notes } = data;
   return <BlockQuote>{product_notes}</BlockQuote>;
 };

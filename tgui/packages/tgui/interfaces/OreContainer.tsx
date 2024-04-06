@@ -1,7 +1,8 @@
 import { createSearch, toTitleCase } from 'common/string';
 import { useState } from 'react';
+
 import { useBackend } from '../backend';
-import { Image, Button, Input, Stack, Flex, Section } from '../components';
+import { Button, Flex, Image, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Ores = {
@@ -35,7 +36,7 @@ export const OreContainer = (props) => {
           <Stack.Item>
             <Section>
               <Input
-                autofocus
+                autoFocus
                 position="relative"
                 mt={0.5}
                 bottom="5%"

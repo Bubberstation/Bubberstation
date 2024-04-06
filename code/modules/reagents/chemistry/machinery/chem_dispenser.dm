@@ -303,11 +303,11 @@
 		beaker_data["maxVolume"] = beaker.volume
 		beaker_data["transferAmounts"] = beaker.possible_transfer_amounts
 		beaker_data["pH"] = round(beaker.reagents.ph, 0.01)
-		beaker_data["currentVolume"] = round(beaker.reagents.total_volume, 0.01)
+		beaker_data["currentVolume"] = round(beaker.reagents.total_volume, CHEMICAL_VOLUME_ROUNDING)
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent in beaker.reagents.reagent_list)
-				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, 0.01))) // list in a list because Byond merges the first list...
+				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list...
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
 
@@ -448,40 +448,36 @@
 	return null
 
 /obj/machinery/chem_dispenser/wrench_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
 		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(default_deconstruction_crowbar(tool))
 		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
-/obj/machinery/chem_dispenser/attackby(obj/item/I, mob/living/user, params)
-	if(is_reagent_container(I) && !(I.item_flags & ABSTRACT) && I.is_open_container())
-		var/obj/item/reagent_containers/B = I
-		//SKYRAT EDIT BEGIN - CHEMISTRY QOL
+/obj/machinery/chem_dispenser/item_interaction(mob/living/user, obj/item/tool, list/modifiers, is_right_clicking)
+	if(is_reagent_container(tool) && !(tool.item_flags & ABSTRACT) && tool.is_open_container())
+		//SKYRAT EDIT ADDITION START - CHEMISTRY QOL
+		var/obj/item/reagent_containers/container = tool
 		if(customTransferAmount)
 			transferAmounts -= customTransferAmount
-		transferAmounts = B.possible_transfer_amounts
-		//SKYRAT EDIT END
-		. = TRUE //no afterattack
-		if(!user.transferItemToLoc(B, src))
-			return
-		replace_beaker(user, B)
-		to_chat(user, span_notice("You add [B] to [src]."))
+		transferAmounts = container.possible_transfer_amounts
+		//SKYRAT EDIT ADDITION END
+		if(!user.transferItemToLoc(tool, src))
+			return ..()
+		replace_beaker(user, tool)
 		ui_interact(user)
-	else if(!user.combat_mode && !istype(I, /obj/item/card/emag))
-		to_chat(user, span_warning("You can't load [I] into [src]!"))
-		return ..()
-	else
-		return ..()
+		return ITEM_INTERACT_SUCCESS
+
+	return ..()
 
 /obj/machinery/chem_dispenser/get_cell()
 	return cell
@@ -556,7 +552,7 @@
 	update_appearance()
 	return TRUE
 
-/obj/machinery/chem_dispenser/on_deconstruction()
+/obj/machinery/chem_dispenser/on_deconstruction(disassembled)
 	cell = null
 	if(beaker)
 		beaker.forceMove(drop_location())
@@ -785,7 +781,7 @@
 /obj/machinery/chem_dispenser/mutagensaltpeter
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
-	obj_flags = NO_DECONSTRUCTION
+	obj_flags = parent_type::obj_flags | NO_DECONSTRUCTION
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
 
 	/// The default list of dispensable reagents available in the mutagensaltpeter chem dispenser
