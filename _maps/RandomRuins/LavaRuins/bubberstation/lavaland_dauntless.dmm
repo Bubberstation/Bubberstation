@@ -881,7 +881,9 @@
 	},
 /obj/machinery/light/cold/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/researcher,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/researcher{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "eD" = (
@@ -1079,19 +1081,6 @@
 /obj/effect/spawner/random/maintenance/five,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
-"fl" = (
-/obj/effect/turf_decal/trimline/dark_blue/filled/line{
-	dir = 4
-	},
-/obj/item/radio/intercom/prison/directional/east{
-	frequency = 1255;
-	freqlock = 1;
-	name = "receive-only prisoner intercom";
-	canhear_range = 7;
-	freerange = 1
-	},
-/turf/open/floor/iron/white/diagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "fm" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
@@ -1163,7 +1152,9 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/firealarm/directional/east,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service{
+	dir = 1
+	},
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "fx" = (
@@ -4094,7 +4085,9 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "tw" = (
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/brigoff,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/brigoff{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "tx" = (
@@ -5959,7 +5952,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "BQ" = (
 /obj/effect/turf_decal/siding/dark,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "BS" = (
@@ -10115,6 +10110,19 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro)
+"Xc" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	dir = 4
+	},
+/obj/item/radio/intercom/prison/directional/east{
+	frequency = 1255;
+	freqlock = 1;
+	name = "receive-only prisoner intercom";
+	canhear_range = 7;
+	freerange = 1
+	},
+/turf/open/floor/iron/white/diagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Xf" = (
 /obj/structure/chair/sofa/bench/left,
 /obj/effect/turf_decal/siding/wood{
@@ -10611,7 +10619,9 @@
 "ZC" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/stationmed,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/stationmed{
+	dir = 8
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "ZD" = (
@@ -12851,7 +12861,7 @@ gS
 PG
 qi
 qi
-fl
+Xc
 fm
 zm
 ui
