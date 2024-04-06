@@ -184,7 +184,7 @@
 
 /mob/living/simple_animal/hostile/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
 
-	explosion(src, 0, 0, 1, 0, 0, FALSE, silent = TRUE)
+	explosion(src, 0, 1, 2, 2, 0, FALSE, silent = TRUE)
 	gib()
 
 /mob/living/simple_animal/hostile/fleshmind/proc/say_passive_speech()
