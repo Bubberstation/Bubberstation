@@ -235,7 +235,16 @@
 /obj/machinery/button/polarizer{
 	id = "dauntbar_w";
 	name = "Bar Windows";
-	pixel_x = -24
+	pixel_x = -24;
+	pixel_y = -8
+	},
+/obj/item/radio/intercom/prison/directional/west{
+	name = "receive-only prisoner intercom";
+	frequency = 1255;
+	freqlock = 1;
+	pixel_y = 1;
+	canhear_range = 4;
+	freerange = 1
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -1070,6 +1079,19 @@
 /obj/effect/spawner/random/maintenance/five,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
+"fl" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	dir = 4
+	},
+/obj/item/radio/intercom/prison/directional/east{
+	frequency = 1255;
+	freqlock = 1;
+	name = "receive-only prisoner intercom";
+	canhear_range = 7;
+	freerange = 1
+	},
+/turf/open/floor/iron/white/diagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "fm" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
@@ -1088,9 +1110,10 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/prison/directional/east{
-	frequency = 1467;
+	frequency = 1255;
 	freqlock = 1;
-	name = "receive-only prisoner intercom"
+	name = "receive-only prisoner intercom";
+	freerange = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
@@ -4447,11 +4470,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/radio/intercom/prison/directional/north{
-	frequency = 1467;
-	freqlock = 1;
-	name = "receive-only prisoner intercom"
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "vn" = (
@@ -5116,12 +5134,12 @@
 "yB" = (
 /obj/item/radio/intercom/directional/east{
 	name = "prisoner intercom";
-	freqlock = 1;
-	frequency = 1467;
-	on = 0;
 	broadcasting = 1;
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1255;
 	listening = 0;
-	should_be_listening = 0
+	canhear_range = 1
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -5205,15 +5223,15 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "yY" = (
-/obj/machinery/computer/cryopod/interdyne/directional/west,
 /obj/machinery/cryopod{
 	dir = 4
 	},
+/obj/machinery/computer/cryopod/interdyne/directional/west,
 /obj/effect/turf_decal/delivery/white{
 	color = "#00ff00";
 	name = "green"
 	},
-/turf/open/floor/iron/dark/small,
+/turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "yZ" = (
 /obj/structure/sign/warning/no_smoking/directional/east,
@@ -5747,11 +5765,11 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "Bm" = (
-/obj/machinery/cryopod,
 /obj/effect/turf_decal/delivery/white{
 	color = "#00ff00";
 	name = "green"
 	},
+/obj/machinery/cryopod,
 /obj/machinery/computer/cryopod/interdyne/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
@@ -7408,6 +7426,13 @@
 "JO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
+	},
+/obj/item/radio/intercom/prison/directional/east{
+	frequency = 1255;
+	freqlock = 1;
+	name = "receive-only prisoner intercom";
+	canhear_range = 7;
+	freerange = 1
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
@@ -9256,6 +9281,12 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/item/radio/intercom/prison/directional/east{
+	frequency = 1255;
+	freqlock = 1;
+	name = "receive-only prisoner intercom";
+	freerange = 1
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "SR" = (
@@ -12820,7 +12851,7 @@ gS
 PG
 qi
 qi
-qi
+fl
 fm
 zm
 ui
