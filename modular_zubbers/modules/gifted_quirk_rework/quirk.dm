@@ -9,3 +9,6 @@
 	lose_text = span_notice("You feel a little less smarter.")
 	medical_record_text = "Patient knows how many assistants it takes to change a lightbulb."
 	hardcore_value = 0
+
+/datum/quirk/nyctophobia
+	icon = FA_ICON_FACE_SAD_CRY
