@@ -51,6 +51,9 @@
 	var/special_ability_cooldown_time = 30 SECONDS
 	/// Are we suffering from a malfunction?
 	var/suffering_malfunction = FALSE
+	/// Are we free from the core?
+	var/endless_malfunction = FALSE
+
 	COOLDOWN_DECLARE(special_ability_cooldown)
 	/// Default actions to give the mob
 	var/static/list/default_actions = list(
@@ -175,6 +178,14 @@
 	SIGNAL_HANDLER
 
 	our_controller = null
+	endless_malfunction = TRUE
+	balloon_alert_to_viewers("Its systems are overloading!")
+	addtimer(src, CALLBACK(PROC_REF(kill_mob)), pick(rand(3 SECONDS,10 SECONDS)))
+
+/mob/living/simple_animal/hostile/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
+
+	explosion(src, 0, 0, 1, 0, 0, FALSE, silent = TRUE)
+	gib()
 
 /mob/living/simple_animal/hostile/fleshmind/proc/say_passive_speech()
 	say(pick(passive_speak_lines))
@@ -230,7 +241,8 @@
 	say(pick("Running diagnostics. Please stand by.", "Organ damaged. Synthesizing replacement.", "Seek new organic components. I-it hurts.", "New muscles needed. I-I'm so glad my body still works.", "O-Oh God, are they using ion weapons on us..?", "Limbs unresponsive. H-hey! Fix it! System initializing.", "Bad t-time, bad time, they're trying to kill us here!",))
 	toggle_ai(AI_OFF)
 	suffering_malfunction = TRUE
-	addtimer(CALLBACK(src, PROC_REF(malfunction_reset)), reset_time)
+	if(!endless_malfunction)
+		addtimer(CALLBACK(src, PROC_REF(malfunction_reset)), reset_time)
 
 /**
  * Malfunction Reset

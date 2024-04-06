@@ -304,7 +304,7 @@
 		iterating_core.end_game = TRUE
 		iterating_core.update_appearance()
 	// Here we summon an ERT to defend the shuttle.
-	make_ert(/datum/ert/asset_protection, 5, "HEAD TO AND BOARD THE EMERGENCY SHUTTLE, DO NOT USE THE FERRY, STOP THE CORRUPTION AT **ALL** COSTS!!!", "the last defense of centcom", "GAMMA", FALSE, TRUE, TRUE, FALSE, TRUE)
+	make_ert(/datum/ert/deathsquad, 5, "HEAD TO AND BOARD THE EMERGENCY SHUTTLE, DO NOT USE THE FERRY, STOP THE CORRUPTION AT **ALL** COSTS!!!", "the last defense of centcom!", "GAMMA", FALSE, TRUE, TRUE, FALSE, TRUE)
 
 /datum/fleshmind_controller/proc/fleshmind_end_second_check()
 	priority_announce("ERROR, SHUTTLE QUARANTINE LOCK FAILURE. All p£$r$%%££$e*$l JOIN US, THE MANY.", "Emergency Shuttle Control", 'sound/misc/airraid.ogg')

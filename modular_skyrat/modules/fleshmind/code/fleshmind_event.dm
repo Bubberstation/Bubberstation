@@ -1,12 +1,12 @@
 /datum/round_event_control/fleshmind
 	name = "Fleshmind"
 	typepath = /datum/round_event/fleshmind
-	max_occurrences = 0
-	min_players = 100
+	max_occurrences = 1
+	min_players = 50
 	earliest_start = 1 HOURS
 
 /datum/round_event/fleshmind
-	fakeable = TRUE
+	fakeable = FALSE
 	announce_when = 200
 	end_when = 201
 

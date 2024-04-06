@@ -33,7 +33,7 @@
 	if(!LAZYLEN(spawnpoints))
 		CRASH("make_ert had no ERT spawnpoints to choose from!")
 
-	var/list/mob/dead/observer/candidates = poll_ghost_candidates("Do you wish to be considered for [created_ert_datum.polldesc]?", ROLE_DEATHSQUAD)
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates("Do you wish to be considered for [created_ert_datum.polldesc]?", ROLE_DEATHSQUAD)
 
 	if(!LAZYLEN(candidates))
 		return FALSE
