@@ -180,7 +180,7 @@
 	our_controller = null
 	endless_malfunction = TRUE
 	balloon_alert_to_viewers("Its systems are overloading!")
-	addtimer(src, CALLBACK(PROC_REF(kill_mob)), pick(rand(3 SECONDS,10 SECONDS)))
+	addtimer(CALLBACK(src, PROC_REF(kill_mob)), pick(rand(3 SECONDS,10 SECONDS)))
 
 /mob/living/simple_animal/hostile/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
 
