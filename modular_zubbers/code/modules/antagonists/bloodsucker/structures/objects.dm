@@ -257,6 +257,10 @@
 	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
 	var/cooldown_time = 1 MINUTES
 
+/obj/item/book/kindred/Initialize(mapload)
+	. = ..()
+	SSpoints_of_interest.make_point_of_interest(src)
+
 /obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
 	to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [starting_title]."))
 	return FALSE
