@@ -31,11 +31,22 @@
 
 	var/list/quirks = SSquirks.get_quirks()
 
+	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
+	var/positive_quirks_disabled = max_positive_quirks == 0
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = quirks[quirk_name]
+		if(positive_quirks_disabled && initial(quirk.value) > 0)
+			continue
+
 		var/datum/quirk_constant_data/constant_data = GLOB.all_quirk_constant_data[quirk]
 		var/list/datum/preference/customization_options = constant_data?.get_customization_data()
 
+		// BUBBER EDIT START - Species only quirks
+		var/list/species_whitelist = list()
+		for(var/species_id in GLOB.quirk_species_whitelist[quirk])
+			var/datum/species/species_type = GLOB.species_list[species_id]
+			var/species_name = initial(species_type.name)
+			species_whitelist[species_id] += species_name // BUBBER EDIT END - Species only quirks
 		quirk_info[sanitize_css_class_name(quirk_name)] = list(
 			"description" = initial(quirk.desc),
 			"icon" = initial(quirk.icon),
@@ -44,13 +55,14 @@
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,
 			"veteran_only" = initial(quirk.veteran_only), // SKYRAT EDIT - Veteran quirks
+			"species_whitelist" = species_whitelist, //BUBBER EDIT - Species quirks
 		)
 
 	return list(
-		"max_positive_quirks" = MAX_QUIRKS,
+		"max_positive_quirks" = max_positive_quirks,
 		"quirk_info" = quirk_info,
 		"quirk_blacklist" = GLOB.quirk_string_blacklist,
-		"quirk_species_whitelist" = SSquirks.quirk_species_whitelist, //BUBBER EDIT - Species quirks
+		"points_enabled" = !CONFIG_GET(flag/disable_quirk_points),
 	)
 
 /datum/preference_middleware/quirks/on_new_character(mob/user)

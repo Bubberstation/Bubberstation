@@ -387,7 +387,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	GLOB.joined_player_list -= stored_ckey
 
 	handle_objectives()
-	mob_occupant.ghostize()
+	mob_occupant.ghostize(FALSE) // BUBBER EDIT FIX - Added FALSE.You are going to get qdelled. You should not keep your mind linked. Cmon skyrat you could do better
 	QDEL_NULL(occupant)
 	open_machine()
 	name = initial(name)
@@ -496,7 +496,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 			return
 		to_chat(user, span_notice("You tuck [occupant.name] into their pod!"))
 		qdel(weapon)
-		user.add_mood_event("tucked", /datum/mood_event/tucked_in, occupant)
+		user.add_mood_event("tucked", /datum/mood_event/tucked_in, 1, occupant)
 		tucked = TRUE
 
 /obj/machinery/cryopod/update_icon_state()

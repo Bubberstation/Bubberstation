@@ -4,7 +4,7 @@
 	button_icon_state = "power_fortitude"
 	power_explanation = "Fortitude:\n\
 		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
-		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
+		You will additionally gain resistance to both physical and stamina damage, scaling with level.\n\
 		While using Fortitude, attempting to run will crush you.\n\
 		At level 4, you gain complete stun immunity.\n\
 		Higher levels will increase Brute and Stamina resistance."
@@ -29,6 +29,7 @@
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
 		fortitude_resist = max(0.3, 0.7 - level_current * 0.1)
 		bloodsucker_user.physiology.brute_mod *= fortitude_resist
+		bloodsucker_user.physiology.burn_mod *= fortitude_resist + 0.2
 		bloodsucker_user.physiology.stamina_mod *= fortitude_resist
 
 	was_running = (bloodsucker_user.move_intent == MOVE_INTENT_RUN)
@@ -58,8 +59,8 @@
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
 		bloodsucker_user.physiology.brute_mod /= fortitude_resist
-		if(!HAS_TRAIT_FROM(bloodsucker_user, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT))
-			bloodsucker_user.physiology.stamina_mod /= fortitude_resist
+		bloodsucker_user.physiology.burn_mod /= fortitude_resist + 0.2
+		bloodsucker_user.physiology.stamina_mod /= fortitude_resist
 	// Remove Traits & Effects
 	owner.remove_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE), BLOODSUCKER_TRAIT)
 

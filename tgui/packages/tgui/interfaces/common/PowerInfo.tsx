@@ -58,7 +58,7 @@ export const PowerDetails = (props: PowerDetailsProps) => {
               src={resolveAsset(`bloodsucker.${selectedPower.power_icon}.png`)}
             />
           )}
-          <Divider Vertical />
+          <Divider vertical />
         </Stack.Item>
         <Stack.Divider />
         <Stack.Item grow={1} fontSize="16px">

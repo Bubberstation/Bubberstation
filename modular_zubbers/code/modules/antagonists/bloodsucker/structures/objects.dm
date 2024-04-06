@@ -4,19 +4,27 @@
 
 #define BLOODBAG_GULP_SIZE 5
 
+/obj/item/reagent_containers/blood
+	var/being_drunk = FALSE
+
 /// Taken from drinks.dm
 /obj/item/reagent_containers/blood/attack(mob/living/victim, mob/living/attacker, params)
-	if(!can_drink(victim, attacker))
+	if(!can_drink(victim, attacker) || being_drunk)
 		return
-
+	being_drunk = TRUE
 	if(victim != attacker)
-		if(!do_after(victim, 5 SECONDS, attacker))
+		// show to both victim and attacker
+		INVOKE_ASYNC(src, GLOBAL_PROC_REF(do_after), victim, 5 SECONDS, attacker)
+		do_after(victim, 5 SECONDS, attacker)
+		if(!do_after(attacker, 5 SECONDS, victim))
+			being_drunk = FALSE
 			return
 		attacker.visible_message(
 			span_notice("[attacker] forces [victim] to drink from the [src]."),
 			span_notice("You put the [src] up to [victim]'s mouth."))
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
+		being_drunk = FALSE
 		return TRUE
 
 	while(do_after(victim, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(can_drink), attacker, victim)))
@@ -26,6 +34,7 @@
 		)
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
+	being_drunk = FALSE
 	return TRUE
 
 #undef BLOODBAG_GULP_SIZE
@@ -124,8 +133,14 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3)
 
 	///Time it takes to embed the stake into someone's chest.
-	var/staketime = 12 SECONDS
+	var/staketime = 5 SECONDS
 	var/kills_blodsuckers = FALSE
+
+/obj/item/stake/examine_more(mob/user)
+	. = ..()
+	. += span_notice("You can use [src] to stake someone in the chest, if they are laying down or grabbed by the neck.")
+	if(IS_BLOODSUCKER(user))
+		. += span_warning("You feel a sense of dread as you look at the [src]...")
 
 /obj/item/stake/attack(mob/living/target, mob/living/user, params)
 	. = ..()
@@ -161,7 +176,7 @@
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum)
-		// If DEAD or TORPID... Kill Bloodsucker!
+		// If silver stake and DEAD or TORPOR... Kill the Bloodsucker!
 		if(target.StakeCanKillMe())
 			bloodsuckerdatum.FinalDeath()
 		else
@@ -173,7 +188,7 @@
 	return FALSE
 
 /mob/living/carbon/can_be_staked()
-	if(!(mobility_flags & MOBILITY_MOVE))
+	if(body_position == LYING_DOWN)
 		return TRUE
 	return FALSE
 
@@ -185,8 +200,12 @@
 	force = 8
 	throwforce = 12
 	armour_penetration = 10
-	embedding = list("embed_chance" = 35)
-	staketime = 10 SECONDS
+	embedding = list("embed_chance" = 35, "fall_chance" = 0)
+	staketime = 12 SECONDS
+
+/obj/item/stake/hardened/examine_more(mob/user)
+	. = ..()
+	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
 
 /obj/item/stake/hardened/silver
 	name = "silver stake"
@@ -197,9 +216,14 @@
 	force = 9
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
-	embedding = list("embed_chance" = 65)
-	staketime = 8 SECONDS
+	embedding = list("embed_chance" = 65, "fall_chance" = 0)
+	staketime = 15 SECONDS
 	kills_blodsuckers = TRUE
+
+/obj/item/stake/hardened/silver/examine_more(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user.mind, TRAIT_BLOODSUCKER_HUNTER))
+		. += span_notice("You know that the [src] can cause a Final Death to a vile Bloodsucker if they are asleep or dead.")
 
 //////////////////////
 //     ARCHIVES     //
@@ -207,7 +231,7 @@
 
 /**
  *	# Archives of the Kindred:
- *
+ *+
  *	A book that can only be used by Curators.
  *	When used on a player, after a short timer, will reveal if the player is a Bloodsucker, including their real name and Clan.
  *	This book should not work on Bloodsuckers using the Masquerade ability.
@@ -303,5 +327,22 @@
 
 /obj/structure/displaycase/curator
 	desc = "This book was found inside a coffin of a long dead Curator. It is said to be able to reveal the true nature of those who feed upon mankind."
-	start_showpiece_type = /obj/item/book/kindred/station_loving
+	start_showpiece_type = /obj/item/book/kindred
 	req_access = list(ACCESS_LIBRARY)
+
+
+/// just a typepath to specify that it's monkey-owned, used for the heart thief objective
+/obj/item/organ/internal/heart/monkey
+
+/obj/item/organ/internal/heart/examine_more(mob/user)
+	. = ..()
+	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(user)
+	if(!vampire)
+		return
+	var/datum/objective/steal_n_of_type/heart_thief = locate() in vampire?.objectives
+	if(!heart_thief)
+		return
+	if(heart_thief.check_if_valid_item(src))
+		. += span_notice("This [src.name] will do for your purposes...")
+	else
+		. += span_notice("This [src.name] is of lesser quality, it won't do...")

@@ -68,12 +68,20 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new /datum/stack_recipe("White Checker King", /obj/structure/chess/checker/whiteking, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ENTERTAINMENT), \
 		new /datum/stack_recipe("Black Checker Man", /obj/structure/chess/checker/blackman, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ENTERTAINMENT), \
 		new /datum/stack_recipe("Black Checker King", /obj/structure/chess/checker/blackking, 2, time = 1 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ENTERTAINMENT), \
+	)), \
+	//BUBBER EDIT BEGIN: ADDS CRAFTABLE SHELVES
+	new /datum/stack_recipe_list("Racks and Shelves", list( \
+		new/datum/stack_recipe("rack parts", /obj/item/rack_parts, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Cargo shelf parts", /obj/item/rack_parts/cargo_shelf, 4, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Gun shelf parts", /obj/item/rack_parts/gun, 2, category = CAT_FURNITURE), \
+		new/datum/stack_recipe("Shelf parts", /obj/item/rack_parts/shelf, 2, category = CAT_FURNITURE), \
 	)),
 	null, \
-	new/datum/stack_recipe("rack parts", /obj/item/rack_parts, category = CAT_FURNITURE), \
+	//BUBBER EDIT END: ADDS CRAFTABLE SHELVES
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	null, \
 	new/datum/stack_recipe("atmos canister", /obj/machinery/portable_atmospherics/canister, 10, time = 3 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_ATMOSPHERIC), \
+	new/datum/stack_recipe("pipe", /obj/item/pipe/quaternary/pipe/crafted, 1, time = 4 SECONDS, check_density = FALSE, category = CAT_ATMOSPHERIC), \
 	null, \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/iron/base, 1, 4, 20, category = CAT_TILES), \
 	new/datum/stack_recipe("iron rod", /obj/item/stack/rods, 1, 2, 60, category = CAT_MISC), \
@@ -305,6 +313,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden stairs frame", /obj/structure/stairs_frame/wood, 10, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("wooden fence", /obj/structure/railing/wooden_fence, 2, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("cat house", /obj/structure/cat_house, 5, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("chalkboard", /obj/structure/chalkboard, 20, time = 5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_STRUCTURE), /* BUBBER EDIT: ADDS CHALKBOARD CRAFT */ \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/crate/coffin, 5, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("book case", /obj/structure/bookcase, 4, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_FURNITURE), \
 	new/datum/stack_recipe("drying rack", /obj/machinery/smartfridge/drying_rack, 10, time = 1.5 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, category = CAT_TOOLS), \
@@ -769,7 +778,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	// Sinew slapcrafting will mostly-sinew recipes, and bones will have mostly-bones recipes.
 	var/static/list/slapcraft_recipe_list = list(\
 		/datum/crafting_recipe/bonedagger, /datum/crafting_recipe/bonespear, /datum/crafting_recipe/boneaxe,\
-		/datum/crafting_recipe/bonearmor, /datum/crafting_recipe/skullhelm, /datum/crafting_recipe/bracers
+		/datum/crafting_recipe/bonearmor, /datum/crafting_recipe/skullhelm, /datum/crafting_recipe/bracers,
+		/datum/crafting_recipe/ash_recipe/bone_greaves,
 		)
 
 	AddComponent(
@@ -787,7 +797,8 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("mannequin", /obj/structure/mannequin/plastic, 25, time = 5 SECONDS, one_per_turf = TRUE, check_density = FALSE, category = CAT_ENTERTAINMENT), \
 	new /datum/stack_recipe("wet floor sign", /obj/item/clothing/suit/caution, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
 	new /datum/stack_recipe("warning cone", /obj/item/clothing/head/cone, 2, check_density = FALSE, category = CAT_EQUIPMENT), \
-	new /datum/stack_recipe("blank wall sign", /obj/item/sign, 1, check_density = FALSE, category = CAT_FURNITURE)))
+	new /datum/stack_recipe("blank wall sign", /obj/item/sign, 1, check_density = FALSE, category = CAT_FURNITURE), \
+	new /datum/stack_recipe("rebellion mask", /obj/item/clothing/mask/rebellion, 1, check_density = FALSE, category = CAT_CLOTHING)))
 
 /obj/item/stack/sheet/plastic
 	name = "plastic"

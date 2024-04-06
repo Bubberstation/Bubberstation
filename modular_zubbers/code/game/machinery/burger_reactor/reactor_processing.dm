@@ -18,6 +18,7 @@
 	var/rod_mix_heat_capacity = rod_mix.heat_capacity()
 
 	if(!active) //We're turned off.
+		meltdown = FALSE //Sometimes, this thing can be set to inactive due to running out of gas and other memes, thus this is fine to exist and is totally not a bandaid solution to potential future fuckery.
 		update_appearance(UPDATE_ICON)
 		return
 
@@ -57,7 +58,7 @@
 		if(our_heat_capacity > 0)
 			var/temperature_mod = last_power_generation >= max_power_generation ? 4 : 1
 			consumed_mix.assert_gas(/datum/gas/goblin)
-			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*4
+			consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption*goblin_multiplier
 			consumed_mix.temperature += (temperature_mod-rand())*8 + (16000/our_heat_capacity)*(overclocked ? 2 : 1)*power_efficiency*temperature_mod*0.5
 			consumed_mix.temperature = clamp(consumed_mix.temperature,5,0xFFFFFF)
 
@@ -87,7 +88,7 @@
 			take_damage(3,armour_penetration=100)
 			src.Shake(duration=0.5 SECONDS)
 
-	if(rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
+	if(active && rod_mix.temperature > stored_rod.temperature_limit || last_power_generation > max_power_generation*(1.1 + rand()) )
 		if(!meltdown)
 			log_game("[src] triggered a meltdown at [AREACOORD(T)]")
 			investigate_log("triggered a meltdown at [AREACOORD(T)]", INVESTIGATE_ENGINE)
@@ -148,7 +149,7 @@
 		if(criticality_to_add > 0)
 			criticality_to_add = FLOOR(criticality_to_add,0.01)
 			if(criticality >= 100) //It keeps going.
-				if(prob(criticality/1000)) //The chance to explode. Yes, it's supposed to be this low.
+				if(prob(criticality/500)) //The chance to explode. Yes, it's supposed to be this low.
 					deconstruct(FALSE)
 				else
 					criticality += rand(criticality_to_add*4,criticality_to_add*10)

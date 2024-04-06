@@ -1,5 +1,5 @@
 /datum/loadout_item/toys/miafoxplush
-	name = "Mia’s fox plushie"
+	name = "silver fox plushie" //bubber edit on request
 	item_path = /obj/item/toy/plush/skyrat/fox/mia
 //ckeywhitelist = list("fuzlet")
 
@@ -52,7 +52,7 @@
 /datum/loadout_item/gloves/hypnoring_bippy
 	name = "Hypnodemon's Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
-	//ckeywhitelist = list("bippys")
+	ckeywhitelist = list("bippys")
 
 /datum/loadout_item/shoes/rax_armadyne_boots
 	name = "Tactical Boots"
@@ -653,7 +653,12 @@
 /datum/loadout_item/gloves/hypnoring_nuke
 	name = "Suspiciously Glossy Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/nuke
-	//ckeywhitelist = list("sonicgotnuked")
+	ckeywhitelist = list("sonicgotnuked")
+
+/datum/loadout_item/ears/kinkphone_nuke
+	name = "Suspiciously Glossy Headphones"
+	item_path = /obj/item/clothing/ears/kinky_headphones/nuke
+	ckeywhitelist = list("sonicgotnuked")
 
 /datum/loadout_item/head/somerandomowl
 	name = "Starry Witch Hat"
@@ -754,7 +759,7 @@
 /datum/loadout_item/neck/trenchcoat
 	name = "Graceful Trenchcoat"
 	item_path = /obj/item/clothing/neck/trenchcoat
-	//ckeywhitelist = list("Smol42", "Awers855")
+	ckeywhitelist = list("Smol42", "Awers855")
 
 /datum/loadout_item/under/jumpsuit/old_qm_jumpskirt
 	name = "Old Quartermaster's Jumpskirt"

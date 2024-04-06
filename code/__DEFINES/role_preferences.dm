@@ -86,6 +86,7 @@
 #define ROLE_SLAUGHTER_DEMON "Slaughter Demon"
 #define ROLE_WIZARD_APPRENTICE "apprentice"
 #define ROLE_SYNDICATE_MONKEY "Syndicate Monkey Agent"
+#define ROLE_CONTRACTOR_SUPPORT "Contractor Support Unit"
 
 //Spawner roles
 #define ROLE_ANCIENT_CREW "Ancient Crew"
@@ -136,6 +137,7 @@
 #define ROLE_VAMPIRICACCIDENT "Bloodsucker (Midround)"
 #define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker (Latejoin)"
 #define ROLE_MONSTERHUNTER "Monster Hunter"
+#define ROLE_VASSAL "Vassal"
 //BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.

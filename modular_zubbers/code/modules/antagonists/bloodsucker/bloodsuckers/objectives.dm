@@ -165,34 +165,22 @@
 
 // NOTE: Look up /steal in objective.dm for inspiration.
 /// Steal hearts. You just really wanna have some hearts.
-/datum/objective/bloodsucker/heartthief
+/datum/objective/steal_n_of_type/hearts
+	martyr_compatible = TRUE
 	name = "heartthief"
+	wanted_items = (/obj/item/organ/internal/heart)
 
 // GENERATE!
-/datum/objective/bloodsucker/heartthief/New()
-	target_amount = rand(2,3)
+/datum/objective/steal_n_of_type/hearts/New()
+	amount = rand(2, 3)
+	explanation_text = "Steal and keep [amount] organic hearts. Must be obtained from non-monkeys. Examine hearts thoroughly to see if they are valid."
+	update_explanation_text()
 	..()
 
-// EXPLANATION
-/datum/objective/bloodsucker/heartthief/update_explanation_text()
+/datum/objective/steal_n_of_type/hearts/check_if_valid_item(obj/item/organ/internal/heart/current_item)
 	. = ..()
-	explanation_text = "Steal and keep [target_amount] organic heart\s."
-
-// WIN CONDITIONS?
-/datum/objective/bloodsucker/heartthief/check_completion()
-	if(!owner.current)
+	if(current_item.type == /obj/item/organ/internal/heart/monkey || IS_ROBOTIC_ORGAN(current_item))
 		return FALSE
-
-	var/list/all_items = owner.current.get_all_contents()
-	var/heart_count = 0
-	for(var/obj/item/organ/internal/heart/current_hearts in all_items)
-		if(IS_ROBOTIC_ORGAN(current_hearts)) // No robo-hearts allowed
-			continue
-		heart_count++
-
-	if(heart_count >= target_amount)
-		return TRUE
-	return FALSE
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -202,7 +190,7 @@
 
 // GENERATE!
 /datum/objective/bloodsucker/gourmand/New()
-	target_amount = rand(450,650)
+	target_amount = rand(800, 3 * BLOOD_VOLUME_NORMAL)
 	..()
 
 // EXPLANATION
@@ -285,10 +273,9 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum)
 		return FALSE
-	for(var/datum/antagonist/vassal/vassaldatum in bloodsuckerdatum.vassals)
-		if(IS_FAVORITE_VASSAL(vassaldatum.owner.current))
-			if(vassaldatum.owner.has_antag_datum(/datum/antagonist/bloodsucker))
-				return TRUE
+	for(var/datum/antagonist/bloodsucker/sired_vamp in GLOB.antagonists)
+		if(sired_vamp.ventrue_sired == bloodsuckerdatum)
+			return TRUE
 	return FALSE
 
 

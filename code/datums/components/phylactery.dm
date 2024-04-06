@@ -213,6 +213,10 @@
 		if(wheres_wizdo)
 			corpse.visible_message(span_warning("Suddenly, [corpse.name]'s corpse falls to pieces! You see a strange energy rise from the remains, and speed off towards the [wheres_wizdo]!"))
 			body_turf.Beam(parent_turf, icon_state = "lichbeam", time = 1 SECONDS * (num_resurrections + 1))
+		//BUBBERSTATION CHANGE START: MORE PRECISE LOCATION AFTER 3 REVIVES.
+		if(body_turf && num_resurrections >= 3)
+			priority_announce("Unusual anomalous energy fluctuations detected in: [body_turf.loc].", "Anomaly Alert")
+		//BUBBERSTATION CHANGE END: MORE PRECISE LOCATION AFTER 3 REVIVES.
 
 		corpse.dust(drop_items = TRUE)
 
