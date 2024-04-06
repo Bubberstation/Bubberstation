@@ -5,6 +5,12 @@
 /obj/machinery/quantum_server/proc/cool_off()
 	is_ready = TRUE
 	update_appearance()
+	//BUBBER ADDITION BEGIN - This is a HORRIBLE HACK to stop the radio from blurting out on cargo channel for dauntless prisoners
+	var/turf/curr = get_turf(radio)
+	var/area/dauntless_prison = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
+	if(get_area_name(curr, TRUE) == dauntless_prison.name)
+		return
+	//BUBBER ADDITION END
 	radio.talk_into(src, "Thermal systems within operational parameters. Proceeding to domain configuration.", RADIO_CHANNEL_SUPPLY)
 
 /// Compiles a list of available domains.
