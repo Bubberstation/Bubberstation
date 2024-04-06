@@ -702,6 +702,11 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "dE" = (
 /obj/structure/closet/secure_closet/interdynefob/maa_locker,
+/obj/machinery/button/door/directional/north{
+	id = "maa_w2";
+	name = "Window Shutters";
+	req_access = list("syndicate_leader")
+	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "dF" = (
@@ -6148,6 +6153,15 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
+"CF" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	name = "Observation Shutters";
+	id = "maa_w2"
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "CI" = (
 /turf/open/floor/iron/kitchen{
@@ -13423,7 +13437,7 @@ nY
 Rj
 cD
 od
-yR
+CF
 yR
 VT
 VT
