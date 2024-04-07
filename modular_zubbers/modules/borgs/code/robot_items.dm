@@ -100,3 +100,11 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/cyborg
 	max_mod_capacity = 100
+
+//Research borg stuff
+/obj/item/inducer/cyborg/sci
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "inducer-sci"
+
+
+

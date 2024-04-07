@@ -492,14 +492,14 @@
 		defib_instance?.forceMove(R.drop_location()) // [on_defib_instance_qdel_or_moved()] handles the rest.
 
 /obj/item/borg/upgrade/processor
-	name = "medical cyborg surgical processor"
-	desc = "An upgrade to the Medical model, installing a processor \
+	name = "medical and research cyborg surgical processor" // BUBBER EDIT Research borgs
+	desc = "An upgrade to the Medical and Research model, installing a processor \
 		capable of scanning surgery disks and carrying \
 		out procedures"
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical)
-	model_flags = BORG_MODEL_MEDICAL
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical, /obj/item/robot_model/sci) // BUBBER EDIT Made compatible with Research borgs too
+	model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_RESEARCH)
 
 /obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()

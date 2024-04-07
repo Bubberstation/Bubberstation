@@ -56,6 +56,41 @@
 	cyborg.req_access = list(ACCESS_ROBOTICS)
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
 
+
+//Research cyborgs
+//TODO: Add more things like a sheild or something these borgs are supposed to be the pinical of prototype.
+/obj/item/robot_model/sci
+	name = "Research"
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/extinguisher/mini,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/screwdriver/cyborg/power,
+		/obj/item/crowbar/cyborg/power,
+		/obj/item/multitool/cyborg,
+		/obj/item/analyzer,
+		/obj/item/assembly/signaler/cyborg,
+		/obj/item/borg/apparatus/sheet_manipulator,
+		/obj/item/stack/cable_coil,
+		/obj/item/borg/apparatus/beaker,
+		/obj/item/borg/apparatus/organ_storage,
+		/obj/item/storage/part_replacer/cyborg,
+		/obj/item/surgical_drapes,
+		/obj/item/healthanalyzer,
+	)
+	radio_channels = list(RADIO_CHANNEL_SCIENCE)
+	emag_modules = list(
+		/obj/item/borg/stun,
+		/obj/item/card/emag,//funny
+	)
+	cyborg_base_icon = "research"
+	model_select_icon = "FELI-Research"
+	hat_offset = 0
+	borg_skins = list(
+		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
+	)
+
+
 /* BUBBER SPRITE ADDITIONS BELOW */
 /obj/item/robot_model/clown/Initialize(mapload)
 	. = ..()
@@ -272,15 +307,6 @@
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 	)
-
-
-/*
-/obj/item/robot_model/research/Initialize(mapload)
-	. = ..()
-	borg_skins |= list(
-		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
-	)
-*/
 
 
 /obj/item/robot_model/ninja/Initialize(mapload)

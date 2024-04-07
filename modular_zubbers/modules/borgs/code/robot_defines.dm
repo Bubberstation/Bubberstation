@@ -37,6 +37,8 @@
 #define CYBORG_ICON_NINJA_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_ninja.dmi'
 
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
+
+#define CYBORG_ICON_TYPE_RESEARCH
 /mob/living/silicon/robot/model/centcom
 	icon = CYBORG_ICON_CENTCOM_WIDE_BUBBER
 	icon_state = "valecc"
@@ -61,3 +63,7 @@
 
 /mob/living/silicon/robot/model/centcom/ResetModel()
 	return
+
+//Research cyborgs
+/mob/living/silicon/robot/model/sci
+	icon_state = "research"
