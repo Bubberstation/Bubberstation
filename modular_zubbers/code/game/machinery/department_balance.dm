@@ -17,9 +17,31 @@
 
 /obj/machinery/status_display/department_balance/update_overlays(updates)
 	current_mode = SD_MESSAGE
+	switch(SSticker.current_state)
+		if(GAME_STATE_STARTUP, GAME_STATE_PREGAME, GAME_STATE_SETTING_UP)
+			set_messages("CASH", "", "")
+			. = ..()
+			return
 	if(isnull(synced_bank_account))
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
-	set_messages("TOTAL", "[!synced_bank_account ? 0 : synced_bank_account.account_balance]", "")
+	var/balance = !synced_bank_account ? 0 : synced_bank_account.account_balance;
+	var/balance_remainer = round((balance % 1000) / 100)
+	if(balance > 99999)
+		text_color = COLOR_DISPLAY_GREEN
+	else if(balance > 74999)
+		text_color = COLOR_SLIME_GOLD
+	else if(balance > 49999)
+		text_color = COLOR_DISPLAY_YELLOW
+	else if(balance > 14999)
+		text_color = COLOR_DISPLAY_ORANGE
+	else
+		text_color = COLOR_DISPLAY_RED
+	if(balance > 99999 || balance > 1000 && balance_remainer == 0)
+		set_messages("CASH", "[round(balance / 1000)]K", "")
+	else if(balance > 1000)
+		set_messages("CASH", "[round(balance / 1000)].[balance_remainer]K", "")
+	else
+		set_messages("CASH", "[balance]", "")
 	. = ..()
 
 /obj/machinery/status_display/department_balance/process(seconds_per_tick)
@@ -36,13 +58,13 @@
 	. = ..()
 
 /**
- * Adds the display to the SSclock_component process list
+ * Adds the display to the SSdigital_clock process list
  */
 /obj/machinery/status_display/department_balance/proc/start_process()
-	START_PROCESSING(SSclock_component, src)
+	START_PROCESSING(SSdigital_clock, src)
 
 /**
- * Removes the display to the SSclock_component process list
+ * Removes the display to the SSdigital_clock process list
  */
 /obj/machinery/status_display/department_balance/proc/stop_process()
-	STOP_PROCESSING(SSclock_component, src)
+	STOP_PROCESSING(SSdigital_clock, src)
