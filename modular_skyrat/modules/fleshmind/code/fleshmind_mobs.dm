@@ -1449,6 +1449,8 @@
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 
 /mob/living/simple_animal/hostile/fleshmind/mechiver/proc/convert_mob(mob/living/mob_to_convert)
+	if(!our_controller) // Can't convert without a controller
+		return
 	if(faction_check(faction, mob_to_convert.faction)) // If we are already assimilated, just heal us.
 		mob_to_convert.fully_heal(TRUE)
 		mob_to_convert.heal_and_revive(0)
