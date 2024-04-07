@@ -1111,11 +1111,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/item/radio/intercom/prison/directional/east{
-	frequency = 1255;
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	freerange = 1;
 	freqlock = 1;
-	name = "receive-only prisoner intercom";
-	freerange = 1
+	frequency = 1255
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
@@ -5172,14 +5172,13 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "yB" = (
 /obj/item/radio/intercom/directional/east{
-	name = "transmit-only prisoner intercom";
+	name = "two-way prisoner intercom";
 	broadcasting = 1;
 	freerange = 1;
 	freqlock = 1;
 	frequency = 1255;
-	listening = 0;
 	canhear_range = 1;
-	desc = "A rusty intercom. It looks like the speaker has been ripped out."
+	desc = "A rusty, decrepit intercom. The speaker is incredibly quiet."
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
