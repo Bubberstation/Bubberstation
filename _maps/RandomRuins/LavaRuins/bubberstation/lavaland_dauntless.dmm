@@ -675,6 +675,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/status_display/department_balance{
+	credits_account = "INT";
+	name = "dauntless budget display";
+	pixel_x = 32
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "du" = (
@@ -3668,7 +3673,6 @@
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
 	},
-/obj/machinery/firealarm/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
@@ -6778,6 +6782,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+"FW" = (
+/obj/effect/turf_decal/trimline/dark_blue/line{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "FX" = (
 /obj/machinery/seed_extractor,
 /obj/effect/turf_decal/bot_white,
@@ -7263,6 +7274,14 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+"IK" = (
+/obj/machinery/status_display/department_balance{
+	credits_account = "INT";
+	name = "dauntless budget display";
+	pixel_x = -32
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service)
 "IN" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -7746,6 +7765,11 @@
 	amount = 10
 	},
 /obj/item/construction/plumbing/engineering,
+/obj/machinery/status_display/department_balance{
+	credits_account = "INT";
+	name = "dauntless budget display";
+	pixel_y = 30
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Le" = (
@@ -12555,14 +12579,14 @@ QI
 ea
 FK
 YU
-ea
+IK
 FY
 ea
 vv
 PL
 FK
-ea
 VX
+ea
 QI
 ea
 EP
@@ -13262,7 +13286,7 @@ xD
 Lx
 Lx
 ri
-Lx
+FW
 Qh
 Qt
 ov
