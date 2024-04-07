@@ -19,7 +19,7 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
-	can_bayonet = FALSE
+	can_bayonet = TRUE
 	max_mod_capacity = 15 // A crumb of mod capacity as a treat
 	recoil = 3 //railgun go brrrrr
 	gun_flags = NOT_A_REAL_GUN
@@ -79,7 +79,7 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = FALSE
+	can_bayonet = TRUE
 	max_mod_capacity = 200
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave
@@ -96,7 +96,7 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = FALSE
+	can_bayonet = TRUE
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79
