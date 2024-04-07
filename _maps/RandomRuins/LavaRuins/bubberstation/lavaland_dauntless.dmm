@@ -675,11 +675,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/status_display/department_balance{
-	credits_account = "INT";
-	name = "dauntless budget display";
-	pixel_x = 32
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "du" = (
@@ -5889,6 +5884,11 @@
 	},
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 4
+	},
+/obj/machinery/status_display/department_balance{
+	credits_account = "INT";
+	name = "dauntless budget display";
+	pixel_x = -32
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
