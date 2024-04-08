@@ -78,6 +78,8 @@
 		/obj/item/surgical_drapes,
 		/obj/item/healthanalyzer,
 		/obj/item/experi_scanner,
+		/obj/item/bonesetter,
+		/obj/item/stack/medical/gauze,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
 
@@ -90,6 +92,7 @@
 	cyborg_base_icon = "research"
 	model_select_icon = "research"
 	model_select_alternate_icon = 'modular_zubbers/modules/borgs/sprites/screen_robot.dmi'
+	model_traits = list(TRAIT_KNOW_ROBO_WIRES) //super fucked but you tell me to make a whole ass VISION PLANE just for that
 	hat_offset = 0
 	borg_skins = list(
 		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
