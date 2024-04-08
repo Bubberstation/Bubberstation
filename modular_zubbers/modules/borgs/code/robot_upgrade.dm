@@ -15,7 +15,7 @@
 
 //Research borg upgrades
 /obj/item/borg/upgrade/inducer/sci
-	name = "engineering integrated power inducer"
+	name = "Research integrated power inducer"
 	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)

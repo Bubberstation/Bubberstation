@@ -38,7 +38,9 @@
 
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
 
-#define CYBORG_ICON_TYPE_RESEARCH
+#define CYBORG_ICON_SCI_WIDE 'modular_zubbers/modules/borgs/sprites/widerobot_sci.dmi'
+#define CYBORG_ICON_SCI 'modular_zubbers/modules/borgs/sprites/robot_sci.dmi'
+
 /mob/living/silicon/robot/model/centcom
 	icon = CYBORG_ICON_CENTCOM_WIDE_BUBBER
 	icon_state = "valecc"

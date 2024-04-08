@@ -77,17 +77,52 @@
 		/obj/item/storage/part_replacer/cyborg,
 		/obj/item/surgical_drapes,
 		/obj/item/healthanalyzer,
+		/obj/item/experi_scanner,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
+
+//TODO: Sheild
 	emag_modules = list(
 		/obj/item/borg/stun,
 		/obj/item/card/emag,//funny
 	)
 	cyborg_base_icon = "research"
-	model_select_icon = "FELI-Research"
+	model_select_icon = "research"
+	model_select_alternate_icon = 'modular_zubbers/modules/borgs/sprites/screen_robot.dmi'
 	hat_offset = 0
 	borg_skins = list(
 		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
+		"Vale" = list(
+			SKIN_ICON_STATE = "vale",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Borgi" = list(
+			SKIN_ICON_STATE = "borgi",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Hound" = list(
+			SKIN_ICON_STATE = "hound",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"DarkHound" = list(
+			SKIN_ICON_STATE = "hounddark",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Zoomba" = list(
+			SKIN_ICON_STATE = "zoomba",
+			SKIN_ICON = CYBORG_ICON_SCI,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL),
+			SKIN_HAT_OFFSET = -13,
+		),
+		"Eyebot" = list(
+			SKIN_ICON_STATE = "eyebot",
+			SKIN_ICON = CYBORG_ICON_SCI,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL),
+		),
 	)
 
 
