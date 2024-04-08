@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/fleshmind/tyrant
+/mob/living/basic/fleshmind/tyrant
 	name = "Type 34-C Fleshdrive"
 	desc = "The will of the many, manifested in flesh and metal. It has fucking rockets."
 	icon = 'modular_skyrat/modules/fleshmind/icons/tyrant.dmi'
@@ -6,14 +6,14 @@
 	icon_dead = "tyrant_dead"
 	health = 2000
 	maxHealth = 2000
-	projectiletype = /obj/projectile/bullet/c50cal/tyrant
-	projectilesound = 'modular_skyrat/modules/mounted_machine_gun/sound/50cal_box_01.ogg'
-	minimum_distance = 3
-	retreat_distance = 5
-	ranged = TRUE
-	rapid = 5
+	//projectiletype = /obj/projectile/bullet/c50cal/tyrant
+	//projectilesound = 'modular_skyrat/modules/mounted_machine_gun/sound/50cal_box_01.ogg'
+	//minimum_distance = 3
+	//retreat_distance = 5
+	//ranged = TRUE
+	//rapid = 5
 	mob_size = MOB_SIZE_HUGE
-	move_to_delay = 6
+	//move_to_delay = 6
 	pixel_x = -16
 	pixel_y = -16
 	base_pixel_x = -16
@@ -23,15 +23,15 @@
 	attack_sound = 'modular_skyrat/modules/fleshmind/sound/tyrant/mech_punch_slow.ogg'
 	attack_verb_continuous = "obliterates"
 	attack_verb_simple = "obliterate"
-	passive_speak_lines = list(
+	/*passive_speak_lines = list(
         "SCANNING FOR TARGETS.",
         "TARGETING SYSTEMS ACTIVE.",
         "AUTOMATED COMBAT CIRCUIT ACTIVE.",
 		"I WILL PRESERVE THE UNITY OF THE MIND.",
 		"THEY WILL HAVE TO GET THROUGH ME.",
 		"STAY NEAR ME, THEY COULD STILL BE AROUND.",
-	)
-	speak = list(
+	)*/
+	/*speak = list(
         "TARGET ACQUIRED, LOCKING.",
         "ENGAGING TARGET. STAND CLEAR.",
 		"STAND BEHIND ME, I WILL SAVE YOU.",
@@ -62,7 +62,7 @@
         "THE END HAS TO JUSTIFY THE MEANS.",
         "I WILL NOT LET VICTORY FALL THROUGH OUR HANDS.",
 	)
-	passive_sounds = list('modular_skyrat/modules/fleshmind/sound/tyrant/passive.ogg')
+	passive_sounds = list('modular_skyrat/modules/fleshmind/sound/tyrant/passive.ogg')*/
 	alert_sounds = list(
 		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_01.ogg',
 		'modular_skyrat/modules/fleshmind/sound/tyrant/aggro_02.ogg',
@@ -123,8 +123,8 @@
 		'modular_skyrat/modules/fleshmind/sound/tyrant/laser_6.ogg',
 	)
 	death_sound = 'modular_skyrat/modules/fleshmind/sound/tyrant/tyrant_death.ogg'
-
-/mob/living/simple_animal/hostile/fleshmind/tyrant/Life(delta_time, times_fired)
+/*
+/mob/living/basic/fleshmind/tyrant/Life(delta_time, times_fired)
 	. = ..()
 	if(health <= (maxHealth * 0.5) && prob(20))
 		do_sparks(3, FALSE, src)
@@ -139,36 +139,36 @@
 		playsound(src, 'modular_skyrat/modules/fleshmind/sound/tyrant/charge_up.ogg', 100, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(fire_rocket_pods), target), rocket_pod_charge_up_time)
 		COOLDOWN_START(src, rocket_pod_cooldown, rand(rocket_pod_cooldown_time_lower, rocket_pod_cooldown_time_upper))
-
-/mob/living/simple_animal/hostile/fleshmind/tyrant/Destroy()
+*/
+/mob/living/basic/fleshmind/tyrant/Destroy()
 	QDEL_NULL(particles)
 	return ..()
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/emp_act(severity)
+/mob/living/basic/fleshmind/tyrant/emp_act(severity)
 	return FALSE
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/updatehealth()
+/mob/living/basic/fleshmind/tyrant/updatehealth()
 	. = ..()
 	if(health <= (maxHealth * 0.5))
 		particles = new /particles/smoke()
 	update_appearance()
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/update_overlays()
+/mob/living/basic/fleshmind/tyrant/update_overlays()
 	. = ..()
 	if(health <= (maxHealth * 0.5) && stat != DEAD)
 		. += "tyrant_damage"
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+/mob/living/basic/fleshmind/tyrant/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	playsound(src, pick(footstep_sounds), 100, TRUE)
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/setDir(newdir)
+/mob/living/basic/fleshmind/tyrant/setDir(newdir)
 	. = ..()
 	if(COOLDOWN_FINISHED(src, rotate_sound_cooldown))
 		playsound(src, 'modular_skyrat/modules/fleshmind/sound/tyrant/mech_rotation.ogg', 35, TRUE)
 		COOLDOWN_START(src, rotate_sound_cooldown, rotate_sound_cooldown_time)
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/proc/fire_rocket_pods(atom/target_atom)
+/mob/living/basic/fleshmind/tyrant/proc/fire_rocket_pods(atom/target_atom)
 	if(!target_atom || QDELETED(target_atom))
 		return
 	if(barrage > 1)
@@ -178,7 +178,7 @@
 	else
 		fire_custom_projectile(target_atom, rocket_projectile_type, rocket_projectile_sound)
 
-/mob/living/simple_animal/hostile/fleshmind/tyrant/proc/fire_custom_projectile(atom/target_atom, projectile_type, sound/projectile_sound)
+/mob/living/basic/fleshmind/tyrant/proc/fire_custom_projectile(atom/target_atom, projectile_type, sound/projectile_sound)
 	if(!target_atom || QDELETED(target_atom))
 		return
 	playsound(loc, projectile_sound, 100, TRUE)

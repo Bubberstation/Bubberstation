@@ -371,7 +371,7 @@
 	whip_those_fuckers()
 	rally_troops()
 	build_a_wall()
-	our_controller?.spawn_mob(get_turf(src), /mob/living/simple_animal/hostile/fleshmind/mechiver)
+	our_controller?.spawn_mob(get_turf(src), /mob/living/basic/fleshmind/mechiver)
 
 /obj/structure/fleshmind/structure/core/proc/whip_those_fuckers()
 	for(var/mob/living/iterating_mob in view(whip_range, src))
@@ -394,9 +394,9 @@
 /obj/structure/fleshmind/structure/core/proc/rally_troops()
 	balloon_alert_to_viewers("lets out an earbleeding shriek!")
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
-	for(var/mob/living/simple_animal/hostile/fleshmind/mob_in_range in range(rally_range, src))
+	for(var/mob/living/basic/fleshmind/mob_in_range in range(rally_range, src))
 		if(faction_check(faction_types, mob_in_range.faction))
-			mob_in_range.Goto(src, MOB_RALLY_SPEED)
+			//mob_in_range.Goto(src, MOB_RALLY_SPEED)
 			mob_in_range.emote("scream")
 			mob_in_range.alert_sound()
 	SEND_GLOBAL_SIGNAL(COMSIG_FLESHMIND_CORE_RALLY, src)
@@ -617,15 +617,15 @@
 	var/spawned_mobs = 0
 	/// The allowed monster types
 	var/static/list/monster_types = list(
-		/mob/living/simple_animal/hostile/fleshmind/floater = 2,
-		/mob/living/simple_animal/hostile/fleshmind/globber = 4,
-		/mob/living/simple_animal/hostile/fleshmind/hiborg = 2,
-		/mob/living/simple_animal/hostile/fleshmind/slicer = 4,
-		/mob/living/simple_animal/hostile/fleshmind/stunner = 4,
-		/mob/living/simple_animal/hostile/fleshmind/treader = 3,
-		/mob/living/simple_animal/hostile/fleshmind/himan = 3,
-		/mob/living/simple_animal/hostile/fleshmind/phaser = 2,
-		/mob/living/simple_animal/hostile/fleshmind/mechiver = 4,
+		/mob/living/basic/fleshmind/floater = 2,
+		/mob/living/basic/fleshmind/globber = 4,
+		/mob/living/basic/fleshmind/hiborg = 2,
+		/mob/living/basic/fleshmind/slicer = 4,
+		/mob/living/basic/fleshmind/stunner = 4,
+		/mob/living/basic/fleshmind/treader = 3,
+		/mob/living/basic/fleshmind/himan = 3,
+		/mob/living/basic/fleshmind/phaser = 2,
+		/mob/living/basic/fleshmind/mechiver = 4,
 	)
 	/// Our override type, if manually set.
 	var/override_monser_type
@@ -666,7 +666,7 @@
 
 	var/chosen_mob_type = override_monser_type ? override_monser_type : pick_weight(monster_types)
 
-	var/mob/living/simple_animal/hostile/fleshmind/spawned_mob = our_controller.spawn_mob(get_turf(src), chosen_mob_type)
+	var/mob/living/basic/fleshmind/spawned_mob = our_controller.spawn_mob(get_turf(src), chosen_mob_type)
 
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(mob_death))
 

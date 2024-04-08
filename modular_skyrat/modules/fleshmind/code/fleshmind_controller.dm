@@ -321,7 +321,7 @@
 
 /datum/fleshmind_controller/proc/spawn_tyrant_on_a_core()
 	var/obj/picked_core = pick(cores)
-	var/mob/living/simple_animal/hostile/fleshmind/tyrant/new_tyrant = spawn_mob(get_turf(picked_core), /mob/living/simple_animal/hostile/fleshmind/tyrant)
+	var/mob/living/basic/fleshmind/tyrant/new_tyrant = spawn_mob(get_turf(picked_core), /mob/living/basic/fleshmind/tyrant)
 	notify_ghosts("A new [new_tyrant.name] has been created by [controller_fullname]!", source = new_tyrant)
 
 /datum/fleshmind_controller/proc/spawn_new_core()
@@ -405,16 +405,16 @@
 
 /// Spawns and registers a mob at location
 /datum/fleshmind_controller/proc/spawn_mob(turf/location, mob_type)
-	var/mob/living/simple_animal/hostile/fleshmind/new_mob = new mob_type(location, src)
+	var/mob/living/basic/fleshmind/new_mob = new mob_type(location, src)
 	new_mob.our_controller = src
 	controlled_mobs += new_mob
 
 	for(var/obj/structure/fleshmind/structure/core/iterating_core as anything in cores)
-		new_mob.RegisterSignal(iterating_core, COMSIG_QDELETING, TYPE_PROC_REF(/mob/living/simple_animal/hostile/fleshmind, core_death))
+		new_mob.RegisterSignal(iterating_core, COMSIG_QDELETING, TYPE_PROC_REF(/mob/living/basic/fleshmind, core_death))
 
 	RegisterSignal(new_mob, COMSIG_QDELETING, PROC_REF(mob_death))
 
-	new_mob.RegisterSignal(src, COMSIG_QDELETING, TYPE_PROC_REF(/mob/living/simple_animal/hostile/fleshmind, controller_destroyed))
+	new_mob.RegisterSignal(src, COMSIG_QDELETING, TYPE_PROC_REF(/mob/living/basic/fleshmind, controller_destroyed))
 
 	return new_mob
 
@@ -529,7 +529,7 @@
 	controlled_machine_components -= deleting_component
 
 /// When a mob dies, called by mob
-/datum/fleshmind_controller/proc/mob_death(mob/living/simple_animal/hostile/fleshmind/dying_mob, force)
+/datum/fleshmind_controller/proc/mob_death(mob/living/basic/fleshmind/dying_mob, force)
 	SIGNAL_HANDLER
 
 	controlled_mobs -= dying_mob

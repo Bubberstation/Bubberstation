@@ -100,7 +100,7 @@
 	var/obj/machinery/parent_machinery = parent
 
 	if(incoming_controller && parent_machinery.circuit && prob(CHANCE_TO_CREATE_MECHIVER))
-		var/mob/living/simple_animal/hostile/fleshmind/mechiver/new_mechiver = incoming_controller.spawn_mob(get_turf(parent_machinery), /mob/living/simple_animal/hostile/fleshmind/mechiver)
+		var/mob/living/basic/fleshmind/mechiver/new_mechiver = incoming_controller.spawn_mob(get_turf(parent_machinery), /mob/living/basic/fleshmind/mechiver)
 		parent_machinery.circuit.forceMove(get_turf(parent_machinery))
 		parent_machinery.circuit = null
 		notify_ghosts("A new corrupt Mechiver has been created by [incoming_controller.controller_fullname]!", source = new_mechiver)
