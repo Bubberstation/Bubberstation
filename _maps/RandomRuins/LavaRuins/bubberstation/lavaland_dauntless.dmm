@@ -702,11 +702,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "dE" = (
 /obj/structure/closet/secure_closet/interdynefob/maa_locker,
-/obj/machinery/button/door/directional/north{
-	id = "maa_w2";
-	name = "Window Shutters";
-	req_access = list("syndicate_leader")
-	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "dF" = (
@@ -810,6 +805,13 @@
 	pixel_x = 12
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/button/door/directional/east{
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	id = "syndibathroom";
+	name = "Bolt Control";
+	pixel_x = 32
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "ee" = (
@@ -3203,6 +3205,9 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
+/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "py" = (
@@ -3380,7 +3385,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -6157,15 +6161,6 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
-"CF" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/structure/cable,
-/obj/machinery/door/poddoor{
-	name = "Observation Shutters";
-	id = "maa_w2"
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "CI" = (
 /turf/open/floor/iron/kitchen{
 	dir = 4
@@ -7273,14 +7268,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
-"IK" = (
-/obj/machinery/status_display/department_balance{
-	credits_account = "INT";
-	name = "dauntless budget display";
-	pixel_x = -32
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/service)
 "IN" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -8819,7 +8806,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "QE" = (
 /obj/machinery/door/airlock/bathroom{
-	name = "Public Bathroom"
+	name = "Public Bathroom";
+	id_tag = "syndibathroom"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/firedoor,
@@ -12578,7 +12566,7 @@ QI
 ea
 FK
 YU
-IK
+ea
 FY
 ea
 vv
@@ -13460,7 +13448,7 @@ nY
 Rj
 cD
 od
-CF
+yR
 yR
 VT
 VT
