@@ -85,6 +85,7 @@
 	emag_modules = list(
 		/obj/item/borg/stun,
 		/obj/item/card/emag,//funny
+		///obj/item/borg/combat/shield, - Does not work currently
 	)
 	cyborg_base_icon = "research"
 	model_select_icon = "research"
