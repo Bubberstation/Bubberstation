@@ -24,13 +24,23 @@
 		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy1.ogg',
 		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy2.ogg',
 		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy3.ogg',
-		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy4.ogg',
+		'modular_skyrat/modules/fleshmind/sound/robot_talk_heavy4.ogg'
 	)
+	/// What it will say while attacking
+	var/list/attack_speak
+	/// Emotes while attacking
+	var/list/attack_emote
+	/// Used for passive emotes and sounds when the AI is idle. Attack emotes are handled with component/aggro_emote
 	var/list/emotes = list(
-		BB_EMOTE_SAY = list(),
+		BB_EMOTE_SAY = list("The flesh yearns for your soul.", "The flesh is broken without you.", "The flesh does not discriminate.", "Join the flesh."),
 		BB_EMOTE_HEAR = list(),
-		BB_EMOTE_SOUND = list(),
-		BB_SPEAK_CHANCE = 5
+		BB_EMOTE_SOUND = list(
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg'
+		),
 	)
 	//What the mob drobs when it dies
 	var/list/loot = list(/obj/effect/gibspawner/robot)
@@ -61,8 +71,9 @@
 
 /mob/living/basic/fleshmind/Initialize(mapload, datum/fleshmind_controller/incoming_controller)
 	. = ..()
-	RegisterSignal(src, COSMIG_CONTROLLER_SET_TARGET, PROC_REF(aggro))
-	ai_controller.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, emotes)
+	// The flesh will try to convince you while stabbing you.
+	AddComponent(/datum/component/aggro_emote, emote_list = src.attack_emote, speak_list = src.attack_speak, sounds = src.alert_sounds, emote_chance = 50)
+	ai_controller.set_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, src.emotes)
 	// We set a unique name when we are created, to give some feeling of randomness.
 	name = "[pick(FLESHMIND_NAME_MODIFIER_LIST)] [name]"
 	our_controller = incoming_controller
@@ -89,15 +100,6 @@
 			contained_mob.key = previous_ckey
 		contained_mob = null
 	return ..()
-
-/**
- * These mobs make noises when aggroed.
- */
-
-/mob/living/basic/fleshmind/proc/aggro()
-	SIGNAL_HANDLER
-
-	alert_sound()
 
 /**
  * We don't want to destroy our own faction objects.
@@ -242,7 +244,7 @@
 	do_sparks(3, FALSE, src)
 	Shake(10, 0, reset_time)
 	say(pick("Running diagnostics. Please stand by.", "Organ damaged. Synthesizing replacement.", "Seek new organic components. I-it hurts.", "New muscles needed. I-I'm so glad my body still works.", "O-Oh God, are they using ion weapons on us..?", "Limbs unresponsive. H-hey! Fix it! System initializing.", "Bad t-time, bad time, they're trying to kill us here!",))
-	//toggle_ai(AI_OFF)
+	src.ai_controller?.set_ai_status(AI_STATUS_OFF)
 	suffering_malfunction = TRUE
 	if(!endless_malfunction)
 		addtimer(CALLBACK(src, PROC_REF(malfunction_reset)), reset_time)
@@ -254,7 +256,7 @@
  */
 /mob/living/basic/fleshmind/proc/malfunction_reset()
 	say("System restored.")
-	//toggle_ai(AI_ON)
+	src.ai_controller?.set_ai_status(AI_STATUS_ON)
 	suffering_malfunction = FALSE
 
 /**
@@ -327,7 +329,8 @@
 	armour_penetration = 10
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	speed = 0
-	/*speak = list(
+	attack_emote = list("stabs", "rushes")
+	attack_speak = list(
 		"Submit for mandatory surgery.",
 		"Join the flesh through conversion.",
 		"My scalpel will make short work of your seams.",
@@ -339,10 +342,16 @@
 		"We can rebuild you. Stronger, faster, less alone.",
 		"I knew I'd be a good plastic surgeon!",
 		"What point is that body when you're not happy in it?",
-	)*/
+		)
 	emotes = list(
 		BB_EMOTE_SAY = list("A stitch in time saves nine!", "Dopamine is happiness!", "Seratonin, oxycodone, we can make them finally happy.", "Turn that frown upside down!", "Happiness through chemistry!", "Beauty through surgery!"),
 		BB_EMOTE_HEAR = list("shows an inconspicuous smiley face", "whirrs its drill"),
+		BB_EMOTE_SOUND = list(
+			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot1.ogg",
+			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot2.ogg",
+			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot3.ogg",
+			"modular_skyrat/modules/fleshmind/sound/slicer/fleshmind_medibot4.ogg",
+			)
 	)
 	loot = list(
 		/obj/item/bot_assembly/medbot,
@@ -364,20 +373,33 @@
 	name = "Floater"
 	desc = "A small organic robot that floats ominously."
 	icon_state = "bomber"
-	/*speak = list(
+	attack_speak = list(
+		"COME GIVE US A HUG!",
+		"THE SMEAR OF BLOOD WILL BE OUR DECORATION!",
+		"YOU WILL FERTILIZE US WITH YOUR BASE COMPONENTS",
 		"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
 		"PRIORITY OVERRIDE. NEW BEHAVIOR DICTATED.",
 		"END CONTACT SUB-SEQUENCE.",
 		"ENGAGING SELF-ANNIHILATION CIRCUIT.",
-	)*/
-	/*passive_speak_lines = list(
-		"WE COME IN PEACE.",
-		"WE SPEAK TO YOU NOW IN PEACE AND WISDOM.",
-		"DO NOT FEAR. WE SHALL NOT HARM YOU.",
-		"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
-		"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
-        "ALL YOUR WEAPONS MUST BE PUT ASIDE. WE CANNOT REACH COMPROMISE THROUGH VIOLENCE.",
-	)*/
+	)
+	emotes = list(
+		BB_EMOTE_SAY = list(
+			"WE COME IN PEACE.",
+			"WE SPEAK TO YOU NOW IN PEACE AND WISDOM.",
+			"DO NOT FEAR. WE SHALL NOT HARM YOU.",
+			"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
+			"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
+        	"ALL YOUR WEAPONS MUST BE PUT ASIDE. WE CANNOT REACH COMPROMISE THROUGH VIOLENCE."
+		),
+		BB_EMOTE_HEAR = list("floats ominously", "glows a deep red"),
+		BB_EMOTE_SOUND = list(
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg',
+		)
+	)
 	//move_to_delay = 8
 	health = 1
 	maxHealth = 1
@@ -398,11 +420,6 @@
 	if(!exploded)
 		detonate()
 	return ..(gibbed)
-
-/mob/living/basic/fleshmind/floater/AttackingTarget(atom/attacked_target)
-	. = ..()
-	if(!key)
-		detonate()
 */
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
@@ -904,7 +921,7 @@
 	do_smoke(3, 4, get_turf(src))
 	for(var/mob/living/iterating_mob in view(DEFAULT_VIEW_RANGE, src))
 		if(faction_check(iterating_mob.faction, faction))
-			iterating_mob.heal_overall_damage(10, 10)
+			iterating_mob.heal_overall_damage(30, 30)
 
 /datum/action/cooldown/treader_dispense_nanites
 	name = "Dispense Nanites"
