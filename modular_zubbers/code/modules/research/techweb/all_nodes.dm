@@ -50,10 +50,16 @@
 /datum/techweb_node/weaponry/New()
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "wt550_ammo_flathead"
+	design_ids += "sol35_shortmag"
+	design_ids += "sol40_riflemag"
+	design_ids += "solgrenade_mag"
 	. = ..()
 
 /datum/techweb_node/adv_weaponry/New()
 	design_ids += "wt550_ammo_normal"
+	design_ids += "sol35_shortextmag"
+	design_ids += "sol40_riflstandardemag"
+	design_ids += "solgrenade_extmag"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
@@ -65,4 +71,5 @@
 	design_ids -= "mag_autorifle_ap"
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
+	design_ids += "sol40_rifldrummag"
 	. = ..()
