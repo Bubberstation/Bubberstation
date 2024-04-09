@@ -22,15 +22,14 @@
 	)
 
 /datum/armor/mod_entombed
-	melee = ARMOR_LEVEL_TINY
-	bullet = ARMOR_LEVEL_TINY
-	laser = ARMOR_LEVEL_TINY
-	energy = ARMOR_LEVEL_TINY
-	bomb = ARMOR_LEVEL_TINY
-	bio = ARMOR_LEVEL_TINY
-	fire = ARMOR_LEVEL_TINY
-	acid = ARMOR_LEVEL_TINY
-	wound = WOUND_ARMOR_TINY
+	melee = 10
+	bullet = 5
+	laser = 5
+	energy = 5
+	bio = 100
+	fire = 25
+	acid = 25
+	wound = 5
 
 /obj/item/mod/module/joint_torsion/entombed
 	name = "internal joint torsion adaptation"
