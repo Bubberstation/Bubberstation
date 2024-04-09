@@ -148,3 +148,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+// Misc Gun Stuff
+
+/datum/design/m45_mag
+	name = ".460 Ceres Pistol Magazine"
+	desc = "An extended capacity box magazine for compatible grenade launcher."
+	id = "m45_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
+	build_path = /obj/item/ammo_box/magazine/m45
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY

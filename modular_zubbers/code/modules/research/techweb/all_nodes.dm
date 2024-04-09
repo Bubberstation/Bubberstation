@@ -53,6 +53,7 @@
 	design_ids += "sol35_shortmag"
 	design_ids += "sol40_riflemag"
 	design_ids += "solgrenade_mag"
+	design_ids += "m45_mag"
 	. = ..()
 
 /datum/techweb_node/adv_weaponry/New()
