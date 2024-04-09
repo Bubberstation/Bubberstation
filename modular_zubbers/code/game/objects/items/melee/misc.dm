@@ -7,3 +7,5 @@
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 12
+	block_chance = 25
+	armour_penetration = 35
