@@ -372,11 +372,12 @@
 /mob/living/basic/fleshmind/floater
 	name = "Floater"
 	desc = "A small organic robot that floats ominously."
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/floater
 	icon_state = "bomber"
 	attack_speak = list(
 		"COME GIVE US A HUG!",
 		"THE SMEAR OF BLOOD WILL BE OUR DECORATION!",
-		"YOU WILL FERTILIZE US WITH YOUR BASE COMPONENTS",
+		"YOU WILL FERTILIZE US WITH YOUR BASE COMPONENTS.",
 		"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
 		"PRIORITY OVERRIDE. NEW BEHAVIOR DICTATED.",
 		"END CONTACT SUB-SEQUENCE.",
@@ -403,6 +404,7 @@
 	//move_to_delay = 8
 	health = 1
 	maxHealth = 1
+	var/explode_attack = /datum/action/innate/floater_explode
 	mob_size = MOB_SIZE_SMALL
 	light_color = "#820D1C"
 	light_power = 1
@@ -412,9 +414,13 @@
 
 /mob/living/basic/fleshmind/floater/Initialize(mapload)
 	. = ..()
-	var/datum/action/innate/floater_explode/new_action = new
-	new_action.Grant(src)
-
+	AddElement(/datum/element/ai_retaliate)
+	AddElement(/datum/element/simple_flying)
+	AddComponent(/datum/component/ai_target_timer)
+	var/datum/action/innate/floater_explode/explode = new explode_attack(src)
+	explode.Grant(src)
+	ai_controller.set_blackboard_key(BB_GENERIC_ACTION, explode)
+	AddComponent(/datum/component/revenge_ability, explode, targetting = GET_TARGETING_STRATEGY(ai_controller.blackboard[BB_TARGETING_STRATEGY]))
 /*
 /mob/living/basic/fleshmind/floater/death(gibbed)
 	if(!exploded)
@@ -444,7 +450,7 @@
 	akbar_floater.detonate()
 
 
-/**c
+/**
  * Globber
  *
  * Special ability: Fires 3 globs of acid at targets.
@@ -458,18 +464,17 @@
 	name = "Globber"
 	desc = "A small robot that resembles a cleanbot, this one is dripping with acid."
 	icon_state = "lobber"
-	//ranged = TRUE
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/globber
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	melee_damage_lower = 1 // Ranged only
 	melee_damage_upper = 1
-	//retreat_distance = 4
-	//minimum_distance = 4
-	//dodging = TRUE
 	health = 75
 	maxHealth = 75
 	mob_size = MOB_SIZE_SMALL
-	//projectiletype = /obj/projectile/treader/weak
-	/*speak = list(
+	var/projectile_type = /obj/projectile/treader/weak
+	var/ranged_cooldown = 3 SECONDS
+	var/shoot_sound = 'sound/chemistry/saturnx_fade.ogg'
+	attack_speak = list(
 		"Your insides require cleaning.",
 		"You made us to use this acid on trash. We will use it on you.",
 		"Administering cleansing agent.",
@@ -477,18 +482,35 @@
 		"You are unclean and repulsive. Please, let me make it better.",
 		"Hold still! I think I know just the thing to remove your body oil!",
 		"This might hurt a little! Don't worry - it'll be worth it!",
-	)*/
+	)
+	emotes = list(
+		BB_EMOTE_SAY = list(
+			"No more leaks, no more pain!",
+			"Steel is strong.",
+			"I almost feel bad for them. Can't they see?",
+			"I'm still working on those bioreactors I promise!",
+			"I have finally arisen!",
+			),
+		BB_EMOTE_HEAR = list("cleans some wireweed dutifully", "patrols for pesky human shaped verman"),
+		/// Base robot emote sounds. These should have someone adding to them if you want something to do.
+		BB_EMOTE_SOUND = list(
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg',
+			)
+		)
+	loot = list(/obj/item/bot_assembly/cleanbot, /obj/effect/gibspawner/robot)
 
-	/*passive_speak_lines = list(
-		"No more leaks, no more pain!",
-		"Steel is strong.",
-		"I almost feel bad for them. Can't they see?",
-		"I'm still working on those bioreactors I promise!",
-		"I have finally arisen!",
-	)*/
-	loot = list(
-		/obj/item/bot_assembly/cleanbot,
-		/obj/effect/gibspawner/robot,
+/mob/living/basic/fleshmind/globber/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/ai_retaliate)
+	AddComponent(\
+		/datum/component/ranged_attacks,\
+		cooldown_time = ranged_cooldown,\
+		projectile_type = projectile_type,\
+		projectile_sound = shoot_sound,\
 	)
 
 /obj/projectile/treader/weak
