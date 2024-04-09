@@ -189,7 +189,7 @@
 
 /mob/living/basic/fleshmind/proc/kill_mob() // Used to make all fleshmind mobs lightly explode
 
-	explosion(src, 0, 1, 2, 2, 0, FALSE, silent = TRUE)
+	explosion(src, 0, 1, 2, 2, 0, FALSE)
 	gib()
 /*
 /mob/living/basic/fleshmind/proc/say_passive_speech()
@@ -402,8 +402,8 @@
 		)
 	)
 	//move_to_delay = 8
-	health = 1
-	maxHealth = 1
+	health = 10
+	maxHealth = 10
 	var/explode_attack = /datum/action/innate/floater_explode
 	mob_size = MOB_SIZE_SMALL
 	light_color = "#820D1C"
@@ -416,17 +416,16 @@
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/simple_flying)
-	AddComponent(/datum/component/ai_target_timer)
 	var/datum/action/innate/floater_explode/explode = new explode_attack(src)
 	explode.Grant(src)
-	ai_controller.set_blackboard_key(BB_GENERIC_ACTION, explode)
+	ai_controller.set_blackboard_key(BB_FLOATER_EXPLODE, explode)
 	AddComponent(/datum/component/revenge_ability, explode, targetting = GET_TARGETING_STRATEGY(ai_controller.blackboard[BB_TARGETING_STRATEGY]))
-/*
+
 /mob/living/basic/fleshmind/floater/death(gibbed)
 	if(!exploded)
 		detonate()
 	return ..(gibbed)
-*/
+
 /mob/living/basic/fleshmind/floater/proc/detonate()
 	if(exploded)
 		return

@@ -32,19 +32,21 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/target_retaliate/check_faction,
 		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree/floater,
 		/datum/ai_planning_subtree/use_mob_ability/explode,
 		/datum/ai_planning_subtree/random_speech/blackboard/fleshmind
 	)
+/datum/ai_planning_subtree/basic_melee_attack_subtree/floater
+	end_planning = FALSE
 
 /datum/ai_planning_subtree/use_mob_ability/explode
+	ability_key = BB_FLOATER_EXPLODE
+	finish_planning = TRUE
 
 /datum/ai_planning_subtree/use_mob_ability/explode/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	var/mob/living/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	if (!isliving(target))
-		return // Don't explode
-	var/time_on_target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] || 0
-	if (time_on_target < 5 SECONDS) // Five seconds
+	if(!isliving(target))
+		return
+	if(get_dist(target.loc, controller.pawn) >= 2)
 		return
 	return ..()
-
