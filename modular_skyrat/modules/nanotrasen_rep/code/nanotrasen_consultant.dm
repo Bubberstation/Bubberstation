@@ -132,6 +132,8 @@
 	new /obj/item/clothing/suit/armor/centcom_formal/nt_consultant(src)
 	new /obj/item/clothing/under/rank/centcom/intern(src)
 	new /obj/item/clothing/head/hats/intern(src)
+	new /obj/item/clothing/under/rank/centcom/official(src) // Bubberstation Edit. Drip.
+	new /obj/item/clothing/mask/gas/atmos/centcom(src) // Bubberstation Edit. Why not?
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant
 	name = "nanotrasen consultant's locker"
@@ -151,6 +153,7 @@
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
 	new /obj/item/storage/bag/garment/nanotrasen_consultant(src)
+	new /obj/item/storage/belt/sabre/centcom(src) // Bubberstation Edit. Because swords are luxury.
 
 //Choice Beacon, I hope in the future they're going to be given proper unique gun but this will do.
 
