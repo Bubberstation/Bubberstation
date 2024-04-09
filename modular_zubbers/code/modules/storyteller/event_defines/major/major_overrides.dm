@@ -17,6 +17,9 @@
 	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_DESTRUCTIVE)
 	weight = 10
 
+/datum/round_event_control/meteor_wave/meaty
+	weight = 15
+
 /datum/round_event_control/radiation_storm
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMMUNAL)

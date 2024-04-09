@@ -40,11 +40,13 @@
 	var/list/datum/event_admin_setup/admin_setup = list()
 	/// Flags dictating whether this event should be run on certain kinds of map
 	var/map_flags = NONE
-	var/roundstart = FALSE // BUBBER EDIT
-	var/cost = 1 // BUBBER EDIT
+	// Bubber edit begin: Storyteller
+	var/roundstart = FALSE
+	var/cost = 1
 	var/reoccurence_penalty_multiplier = 0.75
 	var/shared_occurence_type
 	var/track = EVENT_TRACK_MODERATE
+	// Bubber edit end
 	/// Last calculated weight that the storyteller assigned this event
 	var/calculated_weight = 0
 	var/tags = list() 	/// Tags of the event
