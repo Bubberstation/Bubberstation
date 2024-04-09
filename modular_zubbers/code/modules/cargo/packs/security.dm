@@ -27,23 +27,23 @@
 	crate_name = "wt-550 magazine crate (regular)"
 
 /datum/supply_pack/security/armory/renoster
-	name = "Carwo 'Renoster' Shotgun Crate"
-	desc = "Contains two Carwo 'Renoster' shotguns. Additional ammmo sold separately."
+	name = "Renoster Shotgun Crate"
+	desc = "Contains two Carwo Renoster shotguns. Additional ammmo sold separately."
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol = 2,
 	/obj/item/ammo_box/advanced/s12gauge/buckshot = 2,
 	)
-	crate_name = "Carwo 'Renoster' Shotgun Crate"
+	crate_name = "Renoster Shotgun Crate"
 
 /datum/supply_pack/security/armory/sindano
-	name = "Carwo 'Sindano' Submachinegun Crate"
+	name = "Sindano Submachinegun Crate"
 	cost = CARGO_CRATE_VALUE * 20
-	desc = "Contains two Carwo 'Sindano' Submachineguns, and four spare magazines for them."
+	desc = "Contains two Sindano Submachineguns, and four spare magazines for them."
 	contains = list(/obj/item/gun/ballistic/automatic/sol_smg = 2,
 	/obj/item/ammo_box/magazine/c35sol_pistol = 4,
 	)
 
-	crate_name = "Carwo 'Sindano' Submachinegun Crate"
+	crate_name = "Sindano Submachinegun Crate"
 
 /datum/supply_pack/security/armory/infanterie
 	name = "Carwil Battle Rifle Crate"
