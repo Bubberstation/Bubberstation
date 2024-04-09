@@ -1,3 +1,4 @@
+/* Bubberstation edit moved to modular
 #define TEG_EFFICIENCY 0.65
 
 /obj/machinery/power/thermoelectric_generator
@@ -220,3 +221,6 @@
 		cold_circ = null
 
 #undef TEG_EFFICIENCY
+
+Bubberstation edit Moved to modular
+*/
