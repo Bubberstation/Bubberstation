@@ -537,7 +537,7 @@
 	attack_verb_continuous = "harmbatons"
 	attack_verb_simple = "harmbaton"
 	mob_size = MOB_SIZE_SMALL
-	/*speak = list(
+	attack_speak = list(
 		"Running will only increase your injuries.",
 		"HALT! HALT! HALT!",
 		"Connectivity is in your best interest.",
@@ -545,6 +545,7 @@
 		"Stop, I won't let you hurt them!",
         "Don't you recognize me..?",
 	)
+	/*
 	passive_speak_lines = list(
 		"The flesh is the law, abide by the flesh.",
 		"Regulatory code updated.",
