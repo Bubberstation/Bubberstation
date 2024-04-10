@@ -328,7 +328,6 @@
 	attack_verb_simple = "slice"
 	armour_penetration = 10
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	speed = 0
 	attack_emote = list("stabs", "rushes")
 	attack_speak = list(
 		"Submit for mandatory surgery.",
@@ -529,6 +528,7 @@
 	name = "Stunner"
 	desc = "A small robot that resembles a secbot, it rumbles with hatred."
 	icon_state = "stunner"
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/stunner
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	melee_damage_lower = 1 // Not very harmful, just annoying.
 	melee_damage_upper = 2
@@ -545,13 +545,21 @@
 		"Stop, I won't let you hurt them!",
         "Don't you recognize me..?",
 	)
-	/*
-	passive_speak_lines = list(
-		"The flesh is the law, abide by the flesh.",
-		"Regulatory code updated.",
-		"There's no need for authority or hierarchy; only unity.",
-		"The only authority is that of the flesh, join the flesh.",
-	)*/
+	emotes = list(
+		BB_EMOTE_SAY = list(
+			"The flesh is the law, abide by the flesh.",
+			"Regulatory code updated.",
+			"There's no need for authority or hierarchy; only unity.",
+			"The only authority is that of the flesh, join the flesh.",
+		),
+		BB_EMOTE_SOUND = list(
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light1.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light2.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light3.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light4.ogg',
+			'modular_skyrat/modules/fleshmind/sound/robot_talk_light5.ogg',
+			)
+	)
 	loot = list(
 		/obj/item/bot_assembly/secbot,
 		/obj/effect/gibspawner/robot,
@@ -559,15 +567,17 @@
 	/// How often we can stun someone
 	var/stun_cooldown_time = 2 SECONDS
 	COOLDOWN_DECLARE(stun_cooldown)
-/*
-/mob/living/basic/fleshmind/stunner/AttackingTarget(atom/attacked_target)
-	if(ishuman(target) && COOLDOWN_FINISHED(src, stun_cooldown))
-		var/mob/living/carbon/human/attacked_human = target
+
+/mob/living/basic/fleshmind/stunner/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
+	if(!COOLDOWN_FINISHED(src, stun_cooldown))
+		return
+	. = ..()
+	var/mob/living/carbon/human/attacked_human = target
+	if(ishuman(attacked_human))
 		attacked_human.Knockdown(30)
 		playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE)
 		COOLDOWN_START(src, stun_cooldown, stun_cooldown_time)
-	return ..()
-*/
+	return
 /**
  * Flesh Borg
  *
@@ -585,6 +595,7 @@
 	desc = "A robot that resembles a cyborg, it is covered in something alive."
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	health = 350
 	maxHealth = 350
@@ -592,8 +603,6 @@
 	melee_damage_upper = 30
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
-	speed = 2
-	//move_to_delay = 4
 	mob_size = MOB_SIZE_HUMAN
 	attack_sound = 'sound/weapons/circsawhit.ogg'
 	alert_sounds = list(
@@ -604,14 +613,7 @@
 		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_05.ogg',
 		'modular_skyrat/modules/fleshmind/sound/hiborg/aggro_06.ogg',
 	)
-	/*passive_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/hiborg/passive_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/passive_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/passive_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/passive_04.ogg',
-		'modular_skyrat/modules/fleshmind/sound/hiborg/passive_05.ogg',
-	)
-	speak = list(
+	attack_speak = list(
 		"You made my body into metal, why can't I do it to you?",
 		"Can't we put your brain in a machine?",
 		"How's this any different from what you did to me..?",
@@ -625,14 +627,21 @@
 		"Stop squirming!",
 		"Prepare for assimilation!",
 	)
-	passive_speak_lines = list(
-		"Come out, come out, wherever you are.",
-		"The ones who surrender have such wonderful dreams.",
-		"Death is not the end, only the beginning, the flesh will see to it.",
-		"The flesh does not hate, it just wants you to experience the glory of the flesh.",
-		"Glory to the flesh.",
+	emotes = list(
+		BB_EMOTE_SAY = list(
+			"Come out, come out, wherever you are.",
+			"The ones who surrender have such wonderful dreams.",
+			"Death is not the end, only the beginning, the flesh will see to it.",
+			"The flesh does not hate, it just wants you to experience the glory of the flesh.",
+			"Glory to the flesh."),
+		BB_EMOTE_SOUND = list(
+			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_01.ogg',
+			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_02.ogg',
+			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_03.ogg',
+			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_04.ogg',
+			'modular_skyrat/modules/fleshmind/sound/hiborg/passive_05.ogg',
+		)
 	)
-	*/
 	loot = list(
 		/obj/effect/gibspawner/robot,
 	)
@@ -651,14 +660,13 @@
 	var/datum/action/cooldown/hiborg_slash/new_action = new
 	new_action.Grant(src)
 
-/*
-/mob/living/basic/fleshmind/hiborg/AttackingTarget(atom/attacked_target)
+/mob/living/basic/fleshmind/hiborg/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
 	. = ..()
 	if(prob(stun_attack_prob) && !key)
 		stun_attack(target)
 	if(prob(aoe_attack_prob) && !key)
 		aoe_attack()
-*/
+
 /mob/living/basic/fleshmind/hiborg/proc/stun_attack(mob/living/target_mob)
 	if(!COOLDOWN_FINISHED(src, stun_attack))
 		return
@@ -734,7 +742,7 @@
 	melee_damage_upper = 35
 	malfunction_chance = MALFUNCTION_CHANCE_HIGH
 	mob_size = MOB_SIZE_HUMAN
-	/*speak = list(
+	attack_speak = list(
 		"Don't try and fix me! We love this!",
 		"Just make it easy on yourself!",
 		"Stop fighting progress!",
@@ -745,17 +753,25 @@
 		"You can't decide for us! We want to stay like this!",
 		"We've been uploaded already, didn't you know? Just try and kill us!",
 		"Don't you recognize me?! I thought we were good with each other!",
-	)*/
-	/*passive_speak_lines = list(
-		"The dreams. The dreams.",
-		"Nothing hurts anymore.",
-		"Pain feels good now. Its like I've been rewired.",
-		"I wanted to cry at first, but I can't.",
-		"They took away all misery.",
-		"This isn't so bad. This isn't so bad.",
-		"I have butterflies in my stomach. I'm finally content with myself..",
-		"The flesh provides. I-it's giving me what the Company never could.",
-	)*/
+	)
+	emotes = list(
+		BB_EMOTE_SAY = list(
+			"The dreams. The dreams.",
+			"Nothing hurts anymore.",
+			"Pain feels good now. Its like I've been rewired.",
+			"I wanted to cry at first, but I can't.",
+			"They took away all misery.",
+			"This isn't so bad. This isn't so bad.",
+			"I have butterflies in my stomach. I'm finally content with myself..",
+			"The flesh provides. I-it's giving me what the Company never could.",
+		),
+		BB_EMOTE_SOUND = list(
+			'modular_skyrat/modules/fleshmind/sound/himan/passive_01.ogg',
+			'modular_skyrat/modules/fleshmind/sound/himan/passive_02.ogg',
+			'modular_skyrat/modules/fleshmind/sound/himan/passive_03.ogg',
+			'modular_skyrat/modules/fleshmind/sound/himan/passive_04.ogg',
+		)
+	)
 	alert_sounds = list(
 		'modular_skyrat/modules/fleshmind/sound/himan/aggro_01.ogg',
 		'modular_skyrat/modules/fleshmind/sound/himan/aggro_02.ogg',
@@ -766,16 +782,9 @@
 		'modular_skyrat/modules/fleshmind/sound/himan/aggro_07.ogg',
 		'modular_skyrat/modules/fleshmind/sound/himan/aggro_08.ogg',
 	)
-	/*passive_sounds = list(
-		'modular_skyrat/modules/fleshmind/sound/himan/passive_01.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/passive_02.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/passive_03.ogg',
-		'modular_skyrat/modules/fleshmind/sound/himan/passive_04.ogg',
-	)
-	del_on_death = TRUE
 	loot = list(
 		/obj/effect/gibspawner/human,
-	)*/
+	)
 	/// Are we currently faking our death? ready to pounce?
 	var/faking_death = FALSE
 	/// Fake death cooldown.
@@ -790,7 +799,7 @@
 	. = ..()
 	var/datum/action/cooldown/himan_fake_death/new_action = new
 	new_action.Grant(src)
-/*
+
 /mob/living/basic/fleshmind/himan/Life(delta_time, times_fired)
 	. = ..()
 	if(health < (maxHealth * 0.5) && !faking_death && COOLDOWN_FINISHED(src, fake_death) && !key)
@@ -798,7 +807,7 @@
 
 	if(faking_death)
 		stop_automated_movement = TRUE
-*/
+
 /mob/living/basic/fleshmind/himan/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(faking_death)
@@ -813,13 +822,13 @@
 	if(faking_death)
 		return
 	return ..()
-/*
+
 /mob/living/basic/fleshmind/himan/MoveToTarget(list/possible_targets)
 	if(faking_death)
 		return
 	return ..()
 
-/mob/living/basic/fleshmind/himan/AttackingTarget(atom/attacked_target)
+/mob/living/basic/fleshmind/himan/melee_attack(atom/attacked_target, list/modifiers, ignore_cooldown)
 	if(faking_death)
 		return
 	return ..()
@@ -834,11 +843,6 @@
 	return ..()
 
 /mob/living/basic/fleshmind/himan/say_passive_speech()
-	if(faking_death)
-		return
-	return ..()
-*/
-/mob/living/basic/fleshmind/himan/alert_sound()
 	if(faking_death)
 		return
 	return ..()
@@ -860,7 +864,7 @@
 		iterating_mob.Knockdown(100)
 		iterating_mob.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
 		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
-/*
+
 /mob/living/basic/fleshmind/himan/proc/fake_our_death()
 	manual_emote("stops moving...")
 	LoseAggro()
@@ -868,7 +872,7 @@
 	faking_death = TRUE
 	icon_state = "[base_icon_state]-dead"
 	COOLDOWN_START(src, fake_death, fake_death_cooldown)
-*/
+
 /mob/living/basic/fleshmind/himan/proc/awake()
 	faking_death = FALSE
 	icon_state = base_icon_state
@@ -879,14 +883,14 @@
 	button_icon = 'icons/obj/bed.dmi'
 	button_icon_state = "bed"
 	cooldown_time = 20 SECONDS
-/*
+
 /datum/action/cooldown/himan_fake_death/Activate(atom/target)
 	if(!istype(owner, /mob/living/basic/fleshmind/himan))
 		return
 	var/mob/living/basic/fleshmind/himan/himan_owner = owner
 	himan_owner.fake_our_death()
 	StartCooldownSelf()
-*/
+
 
 
 /**
