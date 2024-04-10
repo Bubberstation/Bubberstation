@@ -180,6 +180,10 @@
 	item_type = /obj/item/hypospray/mkii
 	cost = PAYCHECK_LOWER * 2
 
+/datum/armament_entry/company_import/deforest/equipment/processor
+	item_type = /obj/item/surgical_processor
+	cost = PAYCHECK_COMMAND * 6
+
 // Cybernetics and other things that go inside you
 
 /datum/armament_entry/company_import/deforest/implant
