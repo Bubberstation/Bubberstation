@@ -158,6 +158,9 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "aX" = (
@@ -783,6 +786,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/structure/dresser,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "ea" = (
@@ -857,7 +861,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "eq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/dresser,
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "es" = (
@@ -936,10 +942,10 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "eI" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
+/obj/structure/chair/sofa/corp/left{
+	color = "#9D8AC9"
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "eJ" = (
 /obj/machinery/porta_turret/syndicate{
@@ -3459,10 +3465,10 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "qr" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "qs" = (
@@ -4341,7 +4347,11 @@
 "ux" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/wood/large,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/dresser,
+/turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "uz" = (
 /obj/structure/disposalpipe/segment,
@@ -4661,17 +4671,16 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "wf" = (
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/obj/machinery/button/door/directional/west{
-	name = "Dorm 3";
-	id = "syndidorm_3";
-	specialfunctions = 4;
-	normaldoorcontrol = 1
-	},
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
+	},
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/storage/wallet/random,
+/obj/item/choice_beacon/music,
+/obj/item/clothing/under/misc/syndicate_souvenir{
+	has_sensor = 0;
+	pixel_x = 4;
+	pixel_y = -7
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -5315,17 +5324,18 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "ze" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/storage/wallet/random,
-/obj/item/clothing/under/misc/syndicate_souvenir{
-	has_sensor = 0;
-	pixel_x = 4;
-	pixel_y = -7
-	},
-/obj/item/choice_beacon/music,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
+	},
+/obj/structure/chair/sofa/corp/right{
+	color = "#9D8AC9"
+	},
+/obj/machinery/button/door/directional/west{
+	name = "Dorm 3";
+	id = "syndidorm_3";
+	specialfunctions = 4;
+	normaldoorcontrol = 1
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -6216,14 +6226,11 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "CX" = (
-/obj/structure/table/wood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_y = 10;
-	pixel_x = 13
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -6232,8 +6239,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "CZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/structure/bed/double,
-/obj/item/bedsheet/brown/double,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -6702,11 +6707,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "Fx" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 5;
-	pixel_y = 15
-	},
+/obj/structure/bed/double,
+/obj/item/bedsheet/brown/double,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "FA" = (
@@ -7057,6 +7059,11 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "HC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 14;
+	pixel_x = -4
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "HD" = (
@@ -9453,7 +9460,11 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "To" = (
-/obj/structure/dresser,
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 16;
+	pixel_x = 5
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Tp" = (
@@ -12427,9 +12438,9 @@ Fx
 CZ
 eq
 RP
-qu
-CX
 To
+CX
+qu
 fq
 mg
 Wv
