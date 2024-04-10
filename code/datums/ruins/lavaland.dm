@@ -8,7 +8,7 @@
 /datum/map_template/ruin/lavaland/biodome
 	cost = 5
 	allow_duplicates = FALSE
-
+	
 /datum/map_template/ruin/lavaland/biodome/beach
 	name = "Biodome Beach"
 	id = "biodome-beach"
@@ -43,8 +43,8 @@
 	description = "The creators of these vaults were a highly advanced and benevolent race, and launched many into the stars, hoping to aid fledgling civilizations. \
 	However, all the inhabitants seem to do is grow drugs and guns."
 	suffix = "lavaland_surface_seed_vault.dmm"
-	cost = 0
 	allow_duplicates = FALSE
+	always_place = TRUE
 
 /datum/map_template/ruin/lavaland/ash_walker
 	name = "Ash Walker Nest"
@@ -71,7 +71,7 @@
 	id = "golem-ship"
 	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
 	Seem very intent on research and individual liberty, and also geology-based naming?"
-	cost = 10
+	cost = 20
 	prefix = "_maps/RandomRuins/AnywhereRuins/"
 	suffix = "golem_ship.dmm"
 	allow_duplicates = FALSE
