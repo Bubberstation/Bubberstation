@@ -2,7 +2,7 @@
 	name = "Sol 'Wespe' Pistol Single Pack"
 	desc = "The standard issue service pistol of the Solar Federation's various military branches. Comes with an attached light and a spare magazine."
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/sol = 1,
-	/obj/item/ammo_box/magazine/c35sol_pistol/starts_empty = 1,
+	/obj/item/ammo_box/magazine/c35sol_pistol = 1,
 	)
 	cost = PAYCHECK_COMMAND * 10 //Half the cost of a Detective Revolver
 	access_view = ACCESS_WEAPONS

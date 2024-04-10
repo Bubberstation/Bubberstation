@@ -144,16 +144,16 @@
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/sol_defense/magazines/c35_mag
-	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35sol_pistol
 
 /datum/armament_entry/company_import/sol_defense/magazines/c35_extended
-	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c35sol_pistol/stendo
 
 /datum/armament_entry/company_import/sol_defense/magazines/c585_mag
-	item_type = /obj/item/ammo_box/magazine/c585trappiste_pistol/spawns_empty
+	item_type = /obj/item/ammo_box/magazine/c585trappiste_pistol
 
 /datum/armament_entry/company_import/sol_defense/magazines/sol_rifle_short
-	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/starts_empty
+	item_type = /obj/item/ammo_box/magazine/c40sol_rifle
 /*
 /datum/armament_entry/company_import/sol_defense/magazines/sol_rifle_standard
 	item_type = /obj/item/ammo_box/magazine/c40sol_rifle/standard/starts_empty
