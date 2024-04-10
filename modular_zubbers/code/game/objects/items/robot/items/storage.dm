@@ -48,6 +48,7 @@
 		. += "The apparatus currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
 
+//Illegal gripper to allow cyborgs when hacked to do further robotics work
 /obj/item/borg/apparatus/illegal
 	name = "research manipulation apparatus"
 	desc = "A simple grasping tool suited to assist in a wide array of research applications."
@@ -62,7 +63,7 @@
 					/obj/item/bodypart/chest/robot,
 					/obj/item/bodypart/head/robot,
 					)
-/obj/item/borg/apparatus/research/examine()
+/obj/item/borg/apparatus/illegal/examine()
 	. = ..()
 	if(stored)
 		. += "The apparatus currently has [stored] secured."
