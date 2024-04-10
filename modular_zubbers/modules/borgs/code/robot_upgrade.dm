@@ -14,31 +14,6 @@
 	new_model = /obj/item/robot_model/security
 
 //Research borg upgrades
-/obj/item/borg/upgrade/inducer/sci
-	name = "Research integrated power inducer"
-	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/sci)
-	model_flags = BORG_MODEL_RESEARCH
-
-/obj/item/borg/upgrade/inducer/sci/action(mob/living/silicon/robot/silicon_friend, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/inducer/cyborg/sci/inter_inducer = locate() in silicon_friend
-		if(inter_inducer)
-			silicon_friend.balloon_alert(user, "already has one!")
-			return FALSE
-
-		inter_inducer = new(silicon_friend.model)
-		silicon_friend.model.basic_modules += inter_inducer
-		silicon_friend.model.add_module(inter_inducer, FALSE, TRUE)
-
-/obj/item/borg/upgrade/inducer/sci/deactivate(mob/living/silicon/robot/silicon_friend, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/inducer/cyborg/sci/inter_inducer = locate() in silicon_friend.model
-		if(inter_inducer)
-			silicon_friend.model.remove_module(inter_inducer, TRUE)
 
 //ADVANCED ROBOTICS REPAIR
 /obj/item/borg/upgrade/healthanalyzer
@@ -68,3 +43,28 @@
 		var/obj/item/healthanalyzer/HA = new (borg.model)
 		borg.model.basic_modules += HA
 		borg.model.add_module(HA, FALSE, TRUE)
+
+
+/obj/item/borg/upgrade/inducer/sci
+	name = "Research integrated power inducer"
+	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/sci)
+	model_flags = BORG_MODEL_RESEARCH
+
+/obj/item/borg/upgrade/inducer/sci/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/inducer/cyborg/sci/AC = locate() in R.model.modules
+		if(AC)
+			to_chat(user, span_warning("This unit is already equipped with an inducer!"))
+			return FALSE
+		AC = new(R.model)
+		R.model.basic_modules += AC
+		R.model.add_module(AC, FALSE, TRUE)
+
+/obj/item/borg/upgrade/inducer/sci/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		for(var/obj/item/inducer/cyborg/sci/AC in R.model.modules)
+			R.model.remove_module(AC, TRUE)

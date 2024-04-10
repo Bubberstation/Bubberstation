@@ -74,6 +74,8 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/borg/apparatus/organ_storage,
+		/obj/item/borg/apparatus/research,
+		/obj/item/borg/apparatus/mech,
 		/obj/item/storage/part_replacer/cyborg,
 		/obj/item/surgical_drapes,
 		/obj/item/healthanalyzer,
@@ -88,11 +90,12 @@
 		/obj/item/borg/stun,
 		/obj/item/card/emag,//funny
 		///obj/item/borg/combat/shield, - Does not work currently
+		/obj/item/borg/apparatus/illegal
 	)
 	cyborg_base_icon = "research"
 	model_select_icon = "research"
 	model_select_alternate_icon = 'modular_zubbers/modules/borgs/sprites/screen_robot.dmi'
-	model_traits = list(TRAIT_KNOW_ROBO_WIRES) //super fucked but you tell me to make a whole ass VISION PLANE just for that
+	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
 	hat_offset = 0
 	borg_skins = list(
 		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
