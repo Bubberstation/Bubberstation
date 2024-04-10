@@ -37,8 +37,6 @@
 	cost = 10
 	allow_duplicates = FALSE
 
-/* BUBBERSTATION REMOVAL ADD
-
 /datum/map_template/ruin/lavaland/seed_vault
 	name = "Seed Vault"
 	id = "seed-vault"
@@ -47,8 +45,6 @@
 	suffix = "lavaland_surface_seed_vault.dmm"
 	cost = 10
 	allow_duplicates = FALSE
-
-BUBBERSTATION REMOVAL END */
 
 /datum/map_template/ruin/lavaland/ash_walker
 	name = "Ash Walker Nest"
