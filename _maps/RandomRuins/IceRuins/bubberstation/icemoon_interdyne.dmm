@@ -2998,8 +2998,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "xS" = (
-/obj/structure/frame/machine/secured,
-/obj/item/circuitboard/machine/stacking_machine,
+/obj/machinery/mineral/stacking_machine{
+	id_tag = "interdyne_stacker"
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
 "xY" = (
@@ -3307,7 +3308,9 @@
 /area/ruin/syndicate_ice_base/cargo)
 "AC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/chair/sofa/right/maroon,
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "AF" = (
@@ -3353,9 +3356,13 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "Bt" = (
-/obj/structure/chair/sofa/left/maroon,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 15;
+	pixel_x = 5
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
@@ -4631,11 +4638,12 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
 "Lc" = (
-/obj/structure/frame/machine/secured,
-/obj/item/circuitboard/machine/recycler,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "interdynedisp"
+	},
+/obj/machinery/recycler{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
@@ -6254,6 +6262,10 @@
 "Ya" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/red/directional/east,
+/obj/machinery/mineral/stacking_unit_console{
+	id_tag = "interdyne_stacker";
+	pixel_x = 32
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
 "Yb" = (
@@ -7727,7 +7739,7 @@ lH
 RV
 AC
 Zi
-DE
+qH
 RV
 DX
 kL
