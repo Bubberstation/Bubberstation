@@ -2706,18 +2706,29 @@
 /turf/open/floor/iron/checker,
 /area/ruin/syndicate_ice_base/bar)
 "vB" = (
-/obj/structure/closet/crate/internals{
+/obj/structure/closet/crate/secure/gear{
+	req_access = list("syndicate");
 	anchored = 1
 	},
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/storage/belt/military,
+/obj/item/storage/belt/military,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/radio/headset/interdyne,
+/obj/item/radio/headset/interdyne,
+/obj/item/radio/headset/interdyne,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "vD" = (
@@ -3740,6 +3751,9 @@
 /obj/effect/turf_decal/box/white,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/airalarm/directional/south{
+	req_access = list("syndicate")
+	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "Eh" = (
@@ -4025,29 +4039,18 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "FQ" = (
-/obj/structure/closet/crate/secure/gear{
-	req_access = list("syndicate");
+/obj/structure/closet/crate/internals{
 	anchored = 1
 	},
-/obj/item/clothing/glasses/night,
-/obj/item/clothing/glasses/night,
-/obj/item/clothing/glasses/night,
-/obj/item/storage/belt/military,
-/obj/item/storage/belt/military,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/shoes/combat,
-/obj/item/clothing/shoes/combat,
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/gloves/combat,
-/obj/item/clothing/gloves/combat,
-/obj/item/card/id/advanced/chameleon,
-/obj/item/card/id/advanced/chameleon,
-/obj/item/card/id/advanced/chameleon,
-/obj/item/radio/headset/interdyne,
-/obj/item/radio/headset/interdyne,
-/obj/item/radio/headset/interdyne,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
 /obj/structure/railing,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
@@ -6026,19 +6029,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/testlab)
-"VW" = (
-/obj/machinery/suit_storage_unit/mining,
-/obj/machinery/airalarm/directional/north{
-	req_access = list("syndicate")
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 2
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_ice_base/cargo)
 "Wa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7758,7 +7748,7 @@ qA
 Bf
 Qi
 RV
-VW
+iy
 Gx
 ol
 ol
