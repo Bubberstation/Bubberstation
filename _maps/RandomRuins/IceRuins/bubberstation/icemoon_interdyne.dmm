@@ -53,12 +53,13 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "ao" = (
-/obj/machinery/button/door/directional/south{
-	id = "interdynedorms";
-	req_access = list("syndicate")
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynesaunacargo";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
 	},
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/dormitories)
+/obj/structure/flora/bush/flowers_br/style_random,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/gym)
 "ap" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/engineering)
@@ -262,7 +263,9 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "bG" = (
-/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
@@ -1074,7 +1077,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/vending/autodrobe{
+/obj/machinery/vending/wardrobe/sec_wardrobe/red{
 	onstation = 0;
 	onstation_override = 1
 	},
@@ -1562,12 +1565,13 @@
 /turf/open/lava/plasma/ice_moon,
 /area/icemoon/underground/explored)
 "lu" = (
-/obj/structure/railing{
-	dir = 6
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/turf_decal/box/white,
-/obj/structure/cargo_shelf,
-/turf/open/floor/iron,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "lD" = (
 /obj/machinery/smartfridge/food,
@@ -1612,19 +1616,12 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "ma" = (
-/obj/structure/closet/crate/internals{
-	anchored = 1
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/effect/turf_decal/box/white,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "mg" = (
@@ -1732,12 +1729,9 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "no" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/tile/brown,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "nq" = (
@@ -1797,9 +1791,11 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "nJ" = (
-/obj/structure/rack/shelf,
+/obj/structure/railing{
+	dir = 6
+	},
 /obj/effect/turf_decal/box/white,
-/obj/item/construction/rcd/loaded,
+/obj/structure/cargo_shelf,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "nP" = (
@@ -1897,10 +1893,8 @@
 /turf/open/floor/iron/smooth_edge,
 /area/ruin/syndicate_ice_base/medbay)
 "oA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/iron,
+/obj/structure/sign/warning/gas_mask/directional/north,
+/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "oB" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -2027,18 +2021,21 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "pp" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/cargo)
+"pr" = (
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/effect/turf_decal/box/white,
 /obj/structure/cargo_shelf,
 /turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
-"pr" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "pD" = (
 /turf/open/floor/wood/large,
@@ -2181,35 +2178,28 @@
 /area/ruin/syndicate_ice_base/dormitories)
 "qU" = (
 /obj/machinery/light/directional/north,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "qV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/vending/imported/tiziran{
+	onstation = 0;
+	onstation_override = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
 /turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
+/area/ruin/syndicate_ice_base/dormitories)
 "qY" = (
 /obj/machinery/light/directional/north,
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "rf" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/machinery/button/door/directional/south{
+	id = "interdynedorms";
+	req_access = list("syndicate")
 	},
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 4
-	},
-/obj/machinery/light/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_ice_base/cargo)
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/dormitories)
 "rg" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -2365,6 +2355,19 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
+"sB" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/obj/machinery/light/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/cargo)
 "sE" = (
 /obj/machinery/porta_turret/syndicate{
 	dir = 5;
@@ -2484,10 +2487,11 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/armory)
 "tx" = (
-/obj/machinery/cryopod{
-	dir = 1
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
+/obj/machinery/vending/cigarette/syndicate{
+	onstation = 0;
+	onstation_override = 1
 	},
-/obj/machinery/computer/cryopod/interdyne/directional/south,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
 "ty" = (
@@ -2668,10 +2672,10 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "vo" = (
-/obj/machinery/vending/imported/tiziran{
-	onstation = 0;
-	onstation_override = 1
+/obj/machinery/cryopod{
+	dir = 1
 	},
+/obj/machinery/computer/cryopod/interdyne/directional/south,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
 "vq" = (
@@ -2707,6 +2711,15 @@
 /obj/structure/rack,
 /obj/item/pickaxe,
 /turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/cargo)
+"vD" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "vH" = (
 /obj/structure/tank_holder/anesthetic,
@@ -3014,13 +3027,10 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/armory)
 "yn" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "yq" = (
 /obj/machinery/bookbinder,
@@ -3316,6 +3326,8 @@
 /obj/machinery/camera/autoname/directional/south{
 	network = list("intd13")
 	},
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/syndicate_ice_base/cargo)
 "AT" = (
@@ -3626,10 +3638,13 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "DA" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
-/obj/machinery/washing_machine,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/dormitories)
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynesaunacargo";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_br,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/gym)
 "DC" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -4197,13 +4212,10 @@
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Hy" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "HF" = (
 /obj/structure/chair/office,
@@ -5002,7 +5014,7 @@
 /obj/machinery/airalarm/directional/north{
 	req_access = list("syndicate")
 	},
-/obj/machinery/vending/wardrobe/sec_wardrobe/red{
+/obj/machinery/vending/wardrobe/syndie_wardrobe{
 	onstation = 0;
 	onstation_override = 1
 	},
@@ -5076,7 +5088,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "OH" = (
-/obj/machinery/vending/cigarette/syndicate{
+/obj/machinery/vending/autodrobe{
 	onstation = 0;
 	onstation_override = 1
 	},
@@ -5277,7 +5289,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -5467,7 +5479,6 @@
 /obj/item/radio/headset/interdyne,
 /obj/item/radio/headset/interdyne,
 /obj/item/radio/headset/interdyne,
-/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "RH" = (
@@ -6023,21 +6034,19 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "Wa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "Wp" = (
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
+/obj/structure/rack/shelf,
+/obj/effect/turf_decal/box/white,
+/obj/item/construction/rcd/loaded,
+/turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "Wt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -6166,6 +6175,22 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
+"Xs" = (
+/obj/structure/closet/crate/internals{
+	anchored = 1
+	},
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/cargo)
 "Xw" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/firealarm/directional/west,
@@ -6202,10 +6227,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/machinery/vending/wardrobe/syndie_wardrobe{
-	onstation = 0;
-	onstation_override = 1
-	},
+/obj/machinery/washing_machine,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/syndicate_ice_base/dormitories)
 "XH" = (
@@ -7367,7 +7389,7 @@ zF
 zF
 zF
 Gb
-ao
+rf
 zF
 zF
 zF
@@ -7452,13 +7474,13 @@ BF
 RV
 Uq
 dM
-rf
+PB
 bh
 Ac
 dM
 Ac
 DR
-PB
+sB
 vZ
 KS
 RV
@@ -7545,7 +7567,7 @@ zF
 hu
 xm
 Jd
-DA
+qV
 zF
 Uf
 op
@@ -7575,7 +7597,7 @@ ol
 ol
 NV
 oB
-Wp
+bG
 fB
 Ym
 uw
@@ -7634,7 +7656,7 @@ vB
 FQ
 Ci
 OD
-bG
+no
 RV
 Zw
 RV
@@ -7806,8 +7828,8 @@ RV
 RV
 wl
 Gx
-ma
-nJ
+Xs
+Wp
 ht
 Ci
 Am
@@ -7870,7 +7892,7 @@ ol
 ol
 Ci
 OD
-yn
+vD
 RV
 RV
 RV
@@ -7915,7 +7937,7 @@ ac
 ac
 ac
 ac
-ac
+ab
 ab
 ab
 ab
@@ -7924,12 +7946,12 @@ Iy
 RV
 al
 ol
-pp
-pp
-lu
+pr
+pr
+nJ
 Ci
 OD
-pr
+Hy
 DL
 OD
 Sp
@@ -8034,13 +8056,13 @@ aa
 ac
 ac
 ac
-ac
 ab
 ab
+Kj
 jn
 RV
 RV
-OD
+oA
 OD
 OD
 OD
@@ -8093,9 +8115,9 @@ aa
 ac
 ac
 ac
-ac
 ab
 ab
+YR
 ad
 ag
 ai
@@ -8105,7 +8127,7 @@ OD
 OD
 OD
 OD
-no
+Wa
 bV
 RV
 RV
@@ -8152,7 +8174,7 @@ aa
 ac
 ac
 ac
-ac
+ab
 ab
 AR
 jn
@@ -8164,7 +8186,7 @@ OD
 OD
 OD
 OD
-Wa
+lu
 Fk
 WF
 Nm
@@ -8281,8 +8303,8 @@ sL
 ol
 ol
 ol
-oA
-qV
+yn
+pp
 id
 WF
 Nm
@@ -8328,7 +8350,7 @@ aa
 ac
 ac
 ac
-ac
+ab
 ab
 ab
 ab
@@ -8341,7 +8363,7 @@ Dr
 sP
 jw
 jw
-Hy
+ma
 iN
 WF
 Nm
@@ -8395,13 +8417,13 @@ ab
 ab
 BE
 BE
-BE
+pJ
 pJ
 se
 WF
+DA
 CP
-CP
-CP
+ao
 WF
 Nm
 oo
