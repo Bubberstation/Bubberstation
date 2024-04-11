@@ -1615,6 +1615,15 @@
 "lW" = (
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
+"lZ" = (
+/obj/structure/chair/sofa/bench/left{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/ruin/syndicate_ice_base/gym)
 "ma" = (
 /obj/structure/railing{
 	dir = 8
@@ -3539,15 +3548,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
-"CP" = (
-/obj/structure/chair/sofa/bench/left{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood/large,
-/area/ruin/syndicate_ice_base/gym)
 "CQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/smooth_edge,
@@ -3742,7 +3742,8 @@
 /area/ruin/syndicate_ice_base/bar)
 "Eq" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "interdynesaunacargo"
+	polarizer_id = "interdynesaunacargo";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
 	},
 /obj/structure/flora/bush/flowers_yw,
 /turf/open/floor/grass,
@@ -8654,7 +8655,7 @@ Sd
 WF
 fr
 gf
-CP
+lZ
 rm
 Mt
 CK
