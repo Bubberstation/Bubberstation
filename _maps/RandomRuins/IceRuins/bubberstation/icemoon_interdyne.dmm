@@ -723,9 +723,9 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "eA" = (
-/obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/smooth_edge,
+/obj/structure/chair/sofa/right/maroon,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "eC" = (
 /obj/structure/cable,
@@ -929,13 +929,10 @@
 /turf/open/floor/wood/tile,
 /area/ruin/syndicate_ice_base/dormitories)
 "gn" = (
-/obj/machinery/light/directional/west,
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer/ice{
 	dir = 4
 	},
-/turf/open/floor/iron/smooth_edge{
-	dir = 4
-	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "gp" = (
 /obj/machinery/light/floor,
@@ -1398,8 +1395,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/structure/table,
-/turf/open/floor/iron/smooth_large,
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "jJ" = (
 /obj/machinery/door/airlock/grunge{
@@ -2073,7 +2070,8 @@
 /area/ruin/syndicate_ice_base/medbay)
 "pI" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/smooth_edge,
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer/ice,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "pJ" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2368,7 +2366,10 @@
 "sv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/smooth_large,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "sA" = (
 /obj/machinery/door/airlock{
@@ -2859,9 +2860,15 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/engineering)
 "wG" = (
-/obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/structure/window/reinforced/tinted/spawner/directional/north,
-/turf/open/misc/asteroid/snow/icemoon,
+/obj/machinery/button/door/directional/east{
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	name = "Dorm Bolt Control";
+	id = "IDyneBeta"
+	},
+/obj/structure/chair/sofa/left/maroon,
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "wN" = (
 /obj/effect/turf_decal/tile/dark_blue/half{
@@ -2895,13 +2902,15 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "wX" = (
-/obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/iron/smooth_edge{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 15;
+	pixel_x = 2
 	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "xc" = (
 /turf/open/floor/iron,
@@ -2942,15 +2951,11 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
 "xo" = (
-/obj/item/bedsheet/syndie/double,
-/obj/structure/bed/double,
-/obj/machinery/button/door/directional/east{
-	specialfunctions = 4;
-	normaldoorcontrol = 1;
-	name = "Dorm Bolt Control";
-	id = "IDyneBeta"
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
 	},
-/turf/open/floor/iron/smooth_large,
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "xq" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -3038,9 +3043,10 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/dormitories)
 "ys" = (
-/turf/open/floor/iron/smooth_edge{
-	dir = 1
+/obj/structure/chair/comfy/black{
+	dir = 4
 	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "yu" = (
 /obj/machinery/door/airlock/mining{
@@ -3300,10 +3306,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "AC" = (
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer/ice,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron/smooth_edge,
+/obj/structure/chair/sofa/right/maroon,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "AF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -3325,11 +3330,9 @@
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/syndicate_ice_base/cargo)
 "AT" = (
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer/ice{
-	dir = 4
-	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/iron/smooth_large,
+/obj/structure/dresser,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Bf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -3350,10 +3353,11 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "Bt" = (
-/obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/structure/window/reinforced/tinted/spawner/directional/north,
-/obj/structure/flora/rock,
-/turf/open/misc/asteroid/snow/icemoon,
+/obj/structure/chair/sofa/left/maroon,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "BA" = (
 /turf/open/floor/engine,
@@ -3557,7 +3561,8 @@
 /area/ruin/syndicate_ice_base/gym)
 "CQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/smooth_edge,
+/obj/structure/dresser,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "CR" = (
 /obj/machinery/door/poddoor{
@@ -3652,8 +3657,12 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "DE" = (
-/obj/structure/table,
-/turf/open/floor/iron/smooth_large,
+/obj/structure/dresser,
+/obj/item/flashlight/lamp/green{
+	pixel_y = 15;
+	pixel_x = 5
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "DG" = (
 /obj/machinery/porta_turret/syndicate{
@@ -4070,11 +4079,6 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
-"Gm" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/smooth_large,
-/area/ruin/syndicate_ice_base/cargo)
 "Gp" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -4300,9 +4304,10 @@
 "Io" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/smooth_edge{
-	dir = 8
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Ip" = (
 /obj/machinery/button/door/directional/west{
@@ -4455,8 +4460,13 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "JQ" = (
-/obj/structure/dresser,
-/turf/open/floor/iron/smooth_large,
+/obj/structure/bed/double{
+	dir = 1
+	},
+/obj/item/bedsheet/syndie/double{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "JZ" = (
 /obj/structure/lattice/catwalk,
@@ -4585,9 +4595,10 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
 "KP" = (
-/turf/open/floor/iron/smooth_edge{
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer/ice{
 	dir = 8
 	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "KS" = (
 /obj/effect/turf_decal/tile/brown{
@@ -4883,10 +4894,12 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/testlab)
 "MR" = (
-/obj/structure/window/reinforced/tinted/spawner/directional/south,
-/obj/structure/window/reinforced/tinted/spawner/directional/north,
-/obj/structure/flora/rock/pile,
-/turf/open/misc/asteroid/snow/icemoon,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "MT" = (
 /obj/machinery/light_switch/directional/north,
@@ -4936,9 +4949,10 @@
 	name = "Dorm Bolt Control";
 	normaldoorcontrol = 1
 	},
-/turf/open/floor/iron/smooth_edge{
-	dir = 4
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
 	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Ny" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5580,10 +5594,19 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/engineering)
 "SZ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
+/obj/structure/chair/comfy/black{
+	dir = 8
 	},
-/turf/open/floor/iron/smooth_large,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/machinery/button/door/directional/east{
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	name = "Dorm Bolt Control";
+	id = "IDyneAlpha"
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Tc" = (
 /obj/machinery/firealarm/directional/east,
@@ -5820,9 +5843,7 @@
 "UT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/smooth_edge{
-	dir = 1
-	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "UV" = (
 /obj/item/circuitboard/machine/ore_silo,
@@ -5888,7 +5909,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/double,
 /obj/item/bedsheet/syndie/double,
-/turf/open/floor/iron/smooth_large,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Vu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5953,9 +5974,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/iron/smooth_edge{
-	dir = 1
-	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "VO" = (
 /obj/structure/disposalpipe/segment{
@@ -6214,8 +6234,6 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "XW" = (
-/obj/structure/bed/double,
-/obj/item/bedsheet/syndie/double,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/machinery/button/door/directional/east{
 	specialfunctions = 4;
@@ -6223,7 +6241,9 @@
 	name = "Dorm Bolt Control";
 	id = "IDyneCharlie"
 	},
-/turf/open/floor/iron/smooth_large,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "XY" = (
 /obj/machinery/airalarm/directional/south{
@@ -6263,15 +6283,9 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "Yk" = (
-/obj/item/bedsheet/syndie/double,
-/obj/structure/bed/double,
-/obj/machinery/button/door/directional/east{
-	specialfunctions = 4;
-	normaldoorcontrol = 1;
-	name = "Dorm Bolt Control";
-	id = "IDyneAlpha"
-	},
-/turf/open/floor/iron/smooth_large,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Yl" = (
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate,
@@ -7173,8 +7187,8 @@ qH
 RV
 JQ
 gn
-DE
-MR
+ys
+RV
 DE
 gn
 JQ
@@ -7231,11 +7245,11 @@ zD
 rg
 RV
 CQ
-Gm
+uQ
 wX
-wG
+RV
 eA
-Gm
+uQ
 VM
 RV
 pI
@@ -7291,9 +7305,9 @@ UI
 RV
 Yk
 Io
-DE
-Bt
-DE
+SZ
+RV
+wG
 Io
 xo
 RV
@@ -7652,7 +7666,7 @@ Ci
 bD
 DZ
 RV
-sv
+MR
 Nv
 jI
 RV
@@ -7712,8 +7726,8 @@ OD
 lH
 RV
 AC
-SZ
-ys
+Zi
+DE
 RV
 DX
 kL
@@ -7770,7 +7784,7 @@ Ci
 Am
 Tt
 RV
-JQ
+Bt
 KP
 Vt
 RV
