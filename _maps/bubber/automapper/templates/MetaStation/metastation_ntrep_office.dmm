@@ -8,35 +8,20 @@
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "b" = (
-/obj/structure/table/wood,
-/obj/item/stamp/centcom{
-	pixel_x = 8
-	},
-/obj/item/stamp/denied{
-	pixel_x = 8;
-	pixel_y = 6
-	},
-/obj/item/stamp{
-	pixel_y = 12;
-	pixel_x = 8
-	},
-/obj/item/paper_bin{
-	pixel_y = 4;
-	pixel_x = -5
-	},
-/obj/item/pen/fountain{
-	pixel_x = -5
-	},
-/turf/open/floor/carpet/executive,
+/obj/structure/chair/comfy/beige,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "d" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/port)
 "e" = (
-/obj/effect/turf_decal/siding/wood/corner{
+/obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "f" = (
 /obj/machinery/button/door/directional/west{
@@ -58,11 +43,15 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/medical{
+	pixel_x = -10
 	},
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/wood,
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "i" = (
 /obj/structure/bed/dogbed,
@@ -76,16 +65,17 @@
 "j" = (
 /obj/structure/sign/poster/official/random/directional/south,
 /obj/effect/landmark/start/nanotrasen_consultant,
-/turf/open/floor/carpet/executive,
+/obj/structure/chair/office/tactical{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "k" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "l" = (
 /obj/structure/cable,
-/obj/structure/chair/comfy/beige,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "p" = (
@@ -115,7 +105,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
-/obj/structure/chair/comfy/beige,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
@@ -129,8 +118,11 @@
 /area/station/hallway/primary/port)
 "x" = (
 /obj/machinery/light/directional/west,
-/obj/machinery/photocopier,
-/turf/open/floor/carpet/executive,
+/obj/machinery/modular_computer/preset/command{
+	dir = 4
+	},
+/obj/structure/sign/calendar/directional/west,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "y" = (
 /obj/machinery/firealarm/directional/east,
@@ -139,7 +131,7 @@
 /obj/machinery/light/small/blacklight/directional/east{
 	desc = "A small lighting fixture. Why is this here?"
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "z" = (
 /obj/machinery/holopad,
@@ -147,14 +139,32 @@
 /area/station/command/heads_quarters/nt_rep)
 "A" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "B" = (
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/structure/chair/office/tactical{
+/obj/structure/table/wood,
+/obj/item/pen/fountain{
+	pixel_x = -5
+	},
+/obj/item/paper_bin{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/stamp/centcom{
+	pixel_x = 8
+	},
+/obj/item/stamp/denied{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/stamp{
+	pixel_y = 12;
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "C" = (
 /obj/structure/cable,
@@ -170,6 +180,9 @@
 /area/template_noop)
 "E" = (
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "F" = (
@@ -184,14 +197,18 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "I" = (
-/obj/machinery/modular_computer/preset/command{
-	dir = 4
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
-/obj/structure/sign/calendar/directional/west,
-/turf/open/floor/carpet/executive,
+/obj/machinery/fax{
+	fax_name = "Nanotrasen Consultant's Office";
+	name = "Nanotrasen Consultant's Fax Machine"
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "M" = (
 /obj/machinery/time_clock/directional/south,
@@ -207,10 +224,10 @@
 /area/station/command/heads_quarters/nt_rep)
 "O" = (
 /obj/item/radio/intercom/directional/south,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "P" = (
 /obj/machinery/door/airlock/corporate{
@@ -218,7 +235,8 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/door/firedoor,
-/turf/open/floor/carpet/executive,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Q" = (
 /obj/machinery/door/airlock/corporate{
@@ -229,11 +247,14 @@
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "S" = (
 /obj/structure/chair/plastic,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "T" = (
 /obj/effect/turf_decal/siding/wood{
@@ -246,18 +267,20 @@
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor,
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
 /turf/open/floor/wood,
 /area/station/maintenance/port)
 "Y" = (
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine"
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
-/turf/open/floor/carpet/executive,
+/obj/machinery/photocopier,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 
 (1,1,1) = {"
@@ -277,7 +300,7 @@ a
 f
 s
 v
-Z
+b
 I
 x
 d
@@ -311,7 +334,7 @@ Y
 Y
 Y
 H
-T
+Z
 u
 V
 "}

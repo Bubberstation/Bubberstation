@@ -123,7 +123,12 @@
 			shotgun_blast.Trigger(target = target)
 		else
 			dir_shots.Trigger(target = target)
-
+// BUBBER EDIT START - ACTUALLY LOOSE THE TARGET
+	var/mob/living/living_target = target
+	if(!istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
+		LoseTarget()
+		return
+// BUBBER EDIT END
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/telegraph()
 	for(var/mob/viewer as anything in viewers(10, src))
 		if(viewer.client)
@@ -165,7 +170,7 @@
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 2
 	duration = 8
 	var/target
@@ -195,10 +200,16 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/dust_mob = target
-		if(dust_mob.stat == DEAD)
-			dust_mob.investigate_log("has been dusted by a death bolt (colossus).", INVESTIGATE_DEATHS)
-			dust_mob.dust()
+// BUBBER EDIT START - Guts the fucker instead of dusting them
+		if(dust_mob.stat == DEAD && !dust_mob.has_status_effect(/datum/status_effect/gutted))
+			if(iscarbon(dust_mob))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LUNGS))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_HEART))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LIVER))
+			dust_mob.adjustBruteLoss(500)
+			dust_mob.apply_status_effect(/datum/status_effect/gutted)
 		return
+// BUBBER EDIT END
 	if(!explode_hit_objects || istype(target, /obj/vehicle/sealed))
 		return
 	if(isturf(target) || isobj(target))
@@ -356,8 +367,7 @@
 
 /obj/machinery/anomalous_crystal/theme_warp/Initialize(mapload)
 	. = ..()
-	var/terrain_type = pick(subtypesof(/datum/dimension_theme))
-	terrain_theme = new terrain_type()
+	terrain_theme = SSmaterials.dimensional_themes[pick(subtypesof(/datum/dimension_theme))]
 	observer_desc = "This crystal changes the area around it to match the theme of \"[terrain_theme.name]\"."
 
 /obj/machinery/anomalous_crystal/theme_warp/ActivationReaction(mob/user, method)
@@ -372,7 +382,7 @@
 	return TRUE
 
 /obj/machinery/anomalous_crystal/theme_warp/Destroy()
-	QDEL_NULL(terrain_theme)
+	terrain_theme = null
 	converted_areas.Cut()
 	return ..()
 

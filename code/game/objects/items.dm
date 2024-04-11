@@ -545,20 +545,20 @@
 		return
 	return attempt_pickup(user)
 
-/obj/item/proc/attempt_pickup(mob/user)
+/obj/item/proc/attempt_pickup(mob/user, skip_grav = FALSE)
 	. = TRUE
 
 	if(!(interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP)) //See if we're supposed to auto pickup.
 		return
 
-	//Heavy gravity makes picking up things very slow.
-	var/grav = user.has_gravity()
-	if(grav > STANDARD_GRAVITY)
-		var/grav_power = min(3,grav - STANDARD_GRAVITY)
-		to_chat(user,span_notice("You start picking up [src]..."))
-		if(!do_after(user, 30 * grav_power, src))
-			return
-
+	if(!skip_grav)
+		//Heavy gravity makes picking up things very slow.
+		var/grav = user.has_gravity()
+		if(grav > STANDARD_GRAVITY)
+			var/grav_power = min(3,grav - STANDARD_GRAVITY)
+			to_chat(user,span_notice("You start picking up [src]..."))
+			if(!do_after(user, 30 * grav_power, src))
+				return
 
 	//If the item is in a storage item, take it out
 	var/outside_storage = !loc.atom_storage
@@ -790,8 +790,7 @@
 
 /obj/item/on_exit_storage(datum/storage/master_storage)
 	. = ..()
-	var/atom/location = master_storage.real_location?.resolve()
-	do_drop_animation(location)
+	do_drop_animation(master_storage.parent)
 
 /obj/item/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(QDELETED(hit_atom))
@@ -1674,7 +1673,7 @@
 
 	to_chat(user, span_notice("You try to put [equipping] on [target]..."))
 
-	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red")
+	user.log_message("is putting [equipping] on [key_name(target)]", LOG_ATTACK, color="red", redacted_copy = "is putting [equipping] on [target]") // BUBBER EDIT - PUBLIC LOGS
 	target.log_message("is having [equipping] put on them by [key_name(user)]", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /obj/item/update_atom_colour()

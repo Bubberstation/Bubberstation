@@ -5,7 +5,7 @@
 	name = "\improper Ex-Vassal"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
+	job_rank = ROLE_VASSAL
 	antag_hud_name = "vassal_grey"
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE

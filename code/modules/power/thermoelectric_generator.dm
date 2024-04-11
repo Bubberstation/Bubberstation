@@ -1,3 +1,4 @@
+/* Bubberstation edit moved to modular
 #define TEG_EFFICIENCY 0.65
 
 /obj/machinery/power/thermoelectric_generator
@@ -42,7 +43,7 @@
 	SSair.stop_processing_machine(src)
 	return ..()
 
-/obj/machinery/power/thermoelectric_generator/on_deconstruction()
+/obj/machinery/power/thermoelectric_generator/on_deconstruction(disassembled)
 	null_circulators()
 
 /obj/machinery/power/thermoelectric_generator/update_overlays()
@@ -220,3 +221,6 @@
 		cold_circ = null
 
 #undef TEG_EFFICIENCY
+
+Bubberstation edit Moved to modular
+*/

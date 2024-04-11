@@ -25,7 +25,7 @@
  * conversion_target - Person being vassalized
  */
 /datum/antagonist/bloodsucker/proc/can_make_vassal(mob/living/conversion_target)
-	if(!iscarbon(conversion_target) || conversion_target.stat > UNCONSCIOUS)
+	if(!iscarbon(conversion_target) || (conversion_target.stat < CONSCIOUS))
 		return FALSE
 	// No Mind!
 	if(!conversion_target.mind)
@@ -53,7 +53,6 @@
 /datum/antagonist/bloodsucker/proc/make_vassal(mob/living/conversion_target)
 	if(!can_make_vassal(conversion_target))
 		return FALSE
-
 	//Check if they used to be a Vassal and was stolen.
 	var/datum/antagonist/vassal/old_vassal = conversion_target.mind.has_antag_datum(/datum/antagonist/vassal)
 	if(old_vassal)

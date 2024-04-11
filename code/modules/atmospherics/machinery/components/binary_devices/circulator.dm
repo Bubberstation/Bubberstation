@@ -1,3 +1,5 @@
+/* Bubberstation edit moved to modular
+
 //node2, air2, network2 correspond to input
 //node1, air1, network1 correspond to output
 
@@ -157,7 +159,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/atmospherics/components/binary/circulator/on_deconstruction()
+/obj/machinery/atmospherics/components/binary/circulator/on_deconstruction(disassembled)
 	if(generator)
 		disconnectFromGenerator()
 
@@ -173,3 +175,6 @@
 	..()
 	pixel_x = 0
 	pixel_y = 0
+
+Bubberstation edit, moved to modular
+*/

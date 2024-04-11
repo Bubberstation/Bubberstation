@@ -7,7 +7,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "c" = (
 /obj/structure/table/wood,
@@ -31,7 +31,10 @@
 	id = "nt_rep_priv"
 	},
 /obj/item/radio/intercom/command/directional/south,
-/turf/open/floor/carpet/executive,
+/obj/item/stamp/centcom{
+	pixel_y = 10
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "d" = (
 /obj/machinery/door/airlock/corporate{
@@ -39,10 +42,14 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "e" = (
-/obj/structure/grandfatherclock,
+/obj/machinery/fax{
+	fax_name = "Nanotrasen Consultant's Office";
+	name = "Nanotrasen Consultant's Fax Machine"
+	},
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "f" = (
@@ -52,6 +59,9 @@
 	name = "Privacy Shutter"
 	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "g" = (
@@ -60,7 +70,6 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
-/obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
@@ -77,9 +86,6 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "k" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/chair/comfy/beige{
 	dir = 8
@@ -116,7 +122,17 @@
 /area/station/command/heads_quarters/nt_rep)
 "p" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/structure/extinguisher_cabinet/directional/west,
+/obj/structure/filingcabinet/security{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/medical{
+	pixel_x = -10
+	},
+/obj/machinery/button/door/directional/west{
+	name = "Observation Shutters";
+	id = "nt_rep_priv_2"
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "q" = (
@@ -135,17 +151,26 @@
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "s" = (
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "t" = (
 /obj/structure/table/wood,
-/obj/item/stamp/centcom{
-	pixel_y = 10
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
-/turf/open/floor/carpet/executive,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/table_clock{
+	pixel_y = 16
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "u" = (
 /obj/machinery/time_clock,
@@ -159,29 +184,19 @@
 "w" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
-/obj/machinery/door/poddoor/preopen{
-	id = "nt_rep_priv";
-	name = "Privacy Shutter"
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv_2"
 	},
-/turf/open/floor/iron,
+/turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "x" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/chair/comfy/beige{
 	dir = 8
 	},
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
-"y" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "A" = (
@@ -198,27 +213,16 @@
 /area/station/command/heads_quarters/nt_rep)
 "C" = (
 /obj/structure/table/wood,
-/obj/item/camera{
-	pixel_x = 6;
-	pixel_y = 3
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
-/obj/item/camera_film{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/camera_film{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "E" = (
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine"
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "F" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -227,17 +231,19 @@
 "G" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "H" = (
 /obj/effect/landmark/start/nanotrasen_consultant,
 /obj/structure/cable,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "I" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/executive,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "J" = (
 /obj/machinery/status_display/evac/directional/north,
@@ -246,6 +252,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "K" = (
 /obj/machinery/photocopier,
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "M" = (
@@ -264,7 +271,10 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/executive,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Q" = (
 /obj/structure/cable,
@@ -276,12 +286,16 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "R" = (
-/obj/structure/sign/flag/nanotrasen,
-/turf/closed/wall,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
+/turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
 "T" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant/station,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "U" = (
 /obj/machinery/status_display/ai/directional/east,
@@ -291,10 +305,9 @@
 	desc = "A small lighting fixture. Why is this here?"
 	},
 /obj/structure/sign/calendar/directional/south,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "V" = (
-/obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -304,7 +317,7 @@
 "W" = (
 /obj/machinery/newscaster/directional/north,
 /obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/carpet/executive,
+/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
 /obj/structure/chair/comfy/black{
@@ -321,7 +334,7 @@ a
 a
 w
 w
-a
+w
 a
 "}
 (2,1,1) = {"
@@ -340,12 +353,12 @@ h
 I
 O
 b
-f
+R
 "}
 (4,1,1) = {"
 a
 v
-y
+N
 q
 t
 C
@@ -358,7 +371,7 @@ N
 G
 x
 k
-a
+R
 "}
 (6,1,1) = {"
 a

@@ -17,7 +17,6 @@
 	base_background_icon_state = "vamp_power_off"
 
 	/// The text that appears when using the help verb, meant to explain how the Power changes when ranking up.
-	var/power_explanation = ""
 	///The owner's stored Bloodsucker datum
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum_power
 
@@ -25,14 +24,14 @@
 	/// The effects on this Power (Toggled/Single Use/Static Cooldown)
 	var/power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	/// Requirement flags for checks
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	/// Who can purchase the Power
 	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER|TREMERE_CAN_BUY|VASSAL_CAN_BUY
 
 	// VARS //
 	/// If the Power is currently active, differs from action cooldown because of how powers are handled.
 	var/active = FALSE
-	///Can increase to yield new abilities - Each Power ranks up each Rank
+	///Can increase to yield new capabilities - Each Power ranks up each Rank, with the oldest power being the highest rank.
 	var/level_current = 0
 	///The cost to ACTIVATE this Power
 	var/bloodcost = 0
@@ -94,7 +93,7 @@
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
 	if(bloodsuckerdatum_power.frenzied)
 		return TRUE
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume < bloodcost)
+	if(bloodsuckerdatum_power.GetBloodVolume() < bloodcost)
 		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
 		return FALSE
 	return TRUE
@@ -102,12 +101,25 @@
 ///Called when the Power is upgraded.
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	level_current++
+	build_all_button_icons(UPDATE_BUTTON_NAME)
+
+// Put desc that you want to update every time build_all_button_icons is called here
+/datum/action/cooldown/bloodsucker/update_button_name(atom/movable/screen/movable/action_button/button, force)
+	. = ..()
+	if((purchase_flags & BLOODSUCKER_CAN_BUY) || (purchase_flags & TREMERE_CAN_BUY))
+		button.desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user, trigger_flags)
 	if(!owner)
 		return FALSE
 	if(!isliving(user))
+		return FALSE
+	if(bloodsuckerdatum_power && !bloodsuckerdatum_power.heart?.resolve())
+		to_chat(user, span_warning("To channel your powers you need a heart!"))
+		return FALSE
+	if(isbrain(user))
+		to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
 		return FALSE
 	// Torpor?
 	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))
@@ -121,11 +133,11 @@
 		to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
 		return FALSE
 	// Stake?
-	if((check_flags & BP_CANT_USE_WHILE_STAKED) && user.am_staked())
+	if(!(check_flags & BP_CAN_USE_WHILE_STAKED) && user.am_staked())
 		to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
 		return FALSE
 	// Conscious? -- We use our own (AB_CHECK_CONSCIOUS) here so we can control it more, like the error message.
-	if((check_flags & BP_CANT_USE_WHILE_UNCONSCIOUS) && user.stat != CONSCIOUS)
+	if((check_flags & BP_CANT_USE_WHILE_UNCONSCIOUS) && user.stat >= UNCONSCIOUS)
 		to_chat(user, span_warning("You can't do this while you are unconcious!"))
 		return FALSE
 	// Incapacitated?
@@ -133,13 +145,16 @@
 		to_chat(user, span_warning("Not while you're incapacitated!"))
 		return FALSE
 	// Constant Cost (out of blood)
-	if(constant_bloodcost > 0 && bloodsuckerdatum_power?.bloodsucker_blood_volume <= 0)
+	if(constant_bloodcost > 0 && !can_pay_blood(user))
 		to_chat(user, span_warning("You don't have the blood to upkeep [src]."))
 		return FALSE
 	return TRUE
 
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.
-/datum/action/cooldown/bloodsucker/StartCooldown()
+/datum/action/cooldown/bloodsucker/StartCooldown(override_cooldown_time, override_melee_cooldown_time)
+	// don't re-set the cooldown if we don't have a override time and there's already a cooldown ongoing
+	if(!override_cooldown_time && next_use_time > world.time)
+		return
 	// Calculate Cooldown (by power's level)
 	if(power_flags & BP_AM_STATIC_COOLDOWN)
 		cooldown_time = initial(cooldown_time)
@@ -147,6 +162,9 @@
 		cooldown_time = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
 
 	return ..()
+
+/datum/action/cooldown/bloodsucker/proc/can_pay_blood(mob/living/carbon/user)
+	return bloodsuckerdatum_power ? bloodsuckerdatum_power?.GetBloodVolume() >= 0 : user.blood_volume >= 0
 
 /datum/action/cooldown/bloodsucker/proc/can_deactivate()
 	return TRUE
@@ -164,8 +182,7 @@
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
 	if(bloodsuckerdatum_power.frenzied)
 		return
-	bloodsuckerdatum_power.bloodsucker_blood_volume -= bloodcost
-	bloodsuckerdatum_power.update_hud()
+	bloodsuckerdatum_power.AdjustBloodVolume(-bloodcost)
 
 /datum/action/cooldown/bloodsucker/proc/ActivatePower(trigger_flags)
 	active = TRUE
@@ -200,7 +217,7 @@
 	if(power_flags & BP_AM_COSTLESS_UNCONSCIOUS && owner.stat != CONSCIOUS)
 		return TRUE
 	if(bloodsuckerdatum_power)
-		bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost * seconds_per_tick)
+		bloodsuckerdatum_power.AdjustBloodVolume(-constant_bloodcost * seconds_per_tick)
 	else
 		var/mob/living/living_owner = owner
 		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
@@ -211,7 +228,7 @@
 /datum/action/cooldown/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
 	if(!user)
 		return FALSE
-	if(!constant_bloodcost > 0 || bloodsuckerdatum_power.bloodsucker_blood_volume > 0)
+	if(!constant_bloodcost > 0 || can_pay_blood(user))
 		return TRUE
 
 /// Used to unlearn Single-Use Powers
