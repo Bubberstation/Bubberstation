@@ -2994,9 +2994,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "xS" = (
-/obj/machinery/mineral/stacking_machine{
-	id_tag = "interdyne_stacker"
-	},
+/obj/structure/frame/machine/secured,
+/obj/item/circuitboard/machine/stacking_machine,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
 "xY" = (
@@ -4637,12 +4636,11 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
 "Lc" = (
+/obj/structure/frame/machine/secured,
+/obj/item/circuitboard/machine/recycler,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "interdynedisp"
-	},
-/obj/machinery/recycler{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
