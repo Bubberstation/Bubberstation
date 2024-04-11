@@ -692,7 +692,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "eo" = (
@@ -3548,6 +3547,14 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
+"CP" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynesaunacargo";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/gym)
 "CQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/smooth_edge,
@@ -3740,14 +3747,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
-"Eq" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "interdynesaunacargo";
-	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
-	},
-/obj/structure/flora/bush/flowers_yw,
-/turf/open/floor/grass,
-/area/ruin/syndicate_ice_base/gym)
 "Er" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -4666,7 +4665,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "Li" = (
@@ -8358,9 +8356,9 @@ BE
 BE
 se
 WF
-Eq
-Eq
-Eq
+CP
+CP
+CP
 WF
 Nm
 oo
