@@ -45,6 +45,7 @@
 		borg.model.add_module(HA, FALSE, TRUE)
 
 
+//Science inducer
 /obj/item/borg/upgrade/inducer/sci
 	name = "Research integrated power inducer"
 	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
@@ -68,3 +69,33 @@
 	if (.)
 		for(var/obj/item/inducer/cyborg/sci/AC in R.model.modules)
 			R.model.remove_module(AC, TRUE)
+
+//Bluespace RPED
+
+/obj/item/borg/upgrade/brped
+	name = "Research cyborg Rapid Part Exchange Device Upgrade"
+	desc = "An upgrade to the Research model cyborg's standard RPED."
+	icon_state = "cyborg_upgrade3"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/sci)
+	model_flags = BORG_MODEL_RESEARCH
+
+/obj/item/borg/upgrade/brped/action(mob/living/silicon/robot/borg)
+	. = ..()
+	if(.)
+		for(var/obj/item/storage/part_replacer/cyborg/RPED in borg.model.modules)
+			borg.model.remove_module(HA, TRUE)
+
+		var/obj/item/storage/part_replacer/bluespace/BRPED = new /obj/item/healthanalyzer/advanced(borg.model)
+		borg.model.basic_modules += BRPED
+		borg.model.add_module(BRPED, FALSE, TRUE)
+
+/obj/item/borg/upgrade/brped/deactivate(mob/living/silicon/robot/borg, user = usr)
+	. = ..()
+	if(.)
+		for(var/obj/item/storage/part_replacer/bluespace/BRPED in borg.model.modules)
+			borg.model.remove_module(BRPED, TRUE)
+
+		var/obj/item/storage/part_replacer/cyborg/RPED = new (borg.model)
+		borg.model.basic_modules += RPED
+		borg.model.add_module(RPED, FALSE, TRUE)

@@ -90,7 +90,7 @@
 		/obj/item/borg/stun,
 		/obj/item/card/emag,//funny
 		///obj/item/borg/combat/shield, - Does not work currently
-		/obj/item/borg/apparatus/illegal
+		/obj/item/borg/apparatus/illegal //To replace malf printers
 	)
 	cyborg_base_icon = "research"
 	model_select_icon = "research"

@@ -6,7 +6,7 @@
 
 //Research cyborg apparatus
 /obj/item/borg/apparatus/research
-	name = "research manipulation apparatus"
+	name = "Research manipulation gripper"
 	desc = "A simple grasping tool suited to assist in a wide array of research applications."
 	icon = 'modular_zubbers/modules/borgs/sprites/robot_items.dmi'
 	icon_state = "gripper_sci"
@@ -24,7 +24,7 @@
 /obj/item/borg/apparatus/research/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
+		. += "The gripper currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
 
 /obj/item/borg/apparatus/research/pre_attack(atom/atom, mob/living/user, params) // copy and paste
@@ -33,25 +33,26 @@
 	return ..()
 
 /obj/item/borg/apparatus/mech
-	name = "Exosuit manipulation apparatus"
-	desc = "A large, heavy-duty grasping tool used in construction of mechs."
+	name = "Exosuit manipulation gripper"
+	desc = "A large, heavy-duty grasping tool used in construction of exosuits and mod suits."
 	icon = 'modular_zubbers/modules/borgs/sprites/robot_items.dmi'
 	icon_state = "gripper_mech"
 	storable = list(
 					/obj/item/mecha_parts/part,
 					/obj/item/mecha_parts/mecha_equipment,
-					/obj/item/mecha_parts/mecha_tracking
+					/obj/item/mecha_parts/mecha_tracking,
+					/obj/item/mod,
 				)
 /obj/item/borg/apparatus/mech/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
+		. += "The gripper currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
 
-//Illegal gripper to allow cyborgs when hacked to do further robotics work
+//Illegal gripper to allow research cyborgs when hacked to do further robotics work
 /obj/item/borg/apparatus/illegal
-	name = "research manipulation apparatus"
-	desc = "A simple grasping tool suited to assist in a wide array of research applications."
+	name = "Sketchy looking gripper"
+	desc = "A tool used to expanded robotics work"
 	icon_state = "connector"
 	storable = list(
 					/obj/item/mmi,
@@ -62,6 +63,7 @@
 					/obj/item/bodypart/leg/right/robot,
 					/obj/item/bodypart/chest/robot,
 					/obj/item/bodypart/head/robot,
+					/obj/item/borg/upgrade/ai, //Shell makeing
 					)
 /obj/item/borg/apparatus/illegal/examine()
 	. = ..()
