@@ -1735,6 +1735,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
+"nk" = (
+/obj/structure/cargo_shelf,
+/obj/effect/turf_decal/box/white,
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/cargo)
 "nn" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -1958,11 +1963,6 @@
 	},
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_ice_base/bar)
-"oL" = (
-/obj/structure/cargo_shelf,
-/obj/effect/turf_decal/box/white,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
 "oN" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -2475,7 +2475,7 @@
 "sZ" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/icemoon/underground/explored)
+/area/ruin/syndicate_ice_base/main)
 "ta" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/iron/dark/smooth_large,
@@ -3750,7 +3750,7 @@
 	dir = 8
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_ice_base/cargo)
+/area/ruin/syndicate_ice_base/main)
 "DH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4475,8 +4475,8 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
 "Jj" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
@@ -5529,8 +5529,11 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "Re" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 1
+	},
 /turf/closed/wall/r_wall/syndicate,
-/area/ruin/syndicate_ice_base/cargo)
+/area/ruin/syndicate_ice_base/main)
 "Rl" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/loading_area,
@@ -5585,12 +5588,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/dormitories)
-"RT" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_ice_base/cargo)
 "RV" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/cargo)
@@ -6200,6 +6197,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
+"WY" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/cargo)
 "Xa" = (
 /obj/effect/turf_decal/trimline/dark_red/corner{
 	dir = 1
@@ -8110,7 +8113,7 @@ ac
 ab
 ab
 Kj
-jn
+RV
 RV
 RV
 oA
@@ -8228,11 +8231,11 @@ ac
 ab
 ab
 AR
-jn
+RV
 RV
 RV
 qU
-Jj
+WY
 OD
 OD
 OD
@@ -8291,7 +8294,7 @@ ab
 ab
 RV
 eQ
-RT
+Jj
 mp
 mp
 mp
@@ -8408,7 +8411,7 @@ ab
 ab
 ab
 RV
-oL
+nk
 Dr
 Dr
 sP
@@ -8449,7 +8452,7 @@ Ou
 NJ
 IP
 bd
-ZU
+td
 WM
 ab
 ab
@@ -8465,7 +8468,7 @@ ab
 ab
 ab
 ab
-ab
+jn
 BE
 BE
 pJ
@@ -8626,7 +8629,7 @@ Xh
 pe
 td
 td
-ap
+td
 sZ
 ab
 ab
@@ -8685,7 +8688,7 @@ zT
 mg
 Vz
 Vz
-ap
+td
 ab
 ab
 ab
@@ -8744,7 +8747,7 @@ kl
 Ld
 CA
 VC
-ap
+td
 ab
 ab
 ac
@@ -8803,7 +8806,7 @@ nP
 Vz
 hr
 cl
-ap
+td
 ab
 ab
 ab
@@ -8862,7 +8865,7 @@ nP
 Vz
 hr
 hr
-ap
+td
 ab
 ab
 ac
@@ -8921,7 +8924,7 @@ dS
 sm
 CA
 CA
-ap
+td
 ab
 ab
 ab
@@ -8980,7 +8983,7 @@ zq
 Vz
 Lg
 Vz
-ap
+td
 ab
 ab
 ab
@@ -9038,8 +9041,8 @@ ap
 ap
 ap
 ap
-ap
-SS
+td
+lb
 ab
 ab
 ab
