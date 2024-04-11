@@ -726,7 +726,6 @@
 "eA" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/item/key/atv,
 /turf/open/floor/iron/smooth_edge,
 /area/ruin/syndicate_ice_base/cargo)
 "eC" = (
@@ -1401,7 +1400,6 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/key/atv,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/syndicate_ice_base/cargo)
 "jJ" = (
@@ -1583,10 +1581,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/vehicle/ridden/atv/snowmobile/syndicate{
-	dir = 4
-	},
-/obj/effect/turf_decal/box/red,
+/obj/effect/turf_decal/box/white,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "lD" = (
@@ -1620,10 +1615,6 @@
 "lW" = (
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
-"lZ" = (
-/obj/structure/railing,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
 "ma" = (
 /obj/structure/railing{
 	dir = 8
@@ -1911,10 +1902,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/vehicle/ridden/atv/snowmobile/syndicate{
-	dir = 4
-	},
-/obj/effect/turf_decal/box/red,
+/obj/effect/turf_decal/box/white,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "oB" = (
@@ -2126,6 +2114,9 @@
 /obj/structure/bed{
 	dir = 4
 	},
+/obj/item/reagent_containers/cup/glass/waterbottle{
+	pixel_x = 11
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/armory)
 "qe" = (
@@ -2237,13 +2228,10 @@
 /turf/open/floor/carpet/orange,
 /area/ruin/syndicate_ice_base/cargo)
 "rm" = (
-/obj/structure/chair/sofa/bench/left{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/turf/open/floor/wood/large,
+/turf/closed/wall/r_wall/syndicate,
 /area/ruin/syndicate_ice_base/gym)
 "rv" = (
 /obj/effect/turf_decal/tile/dark_red{
@@ -2903,7 +2891,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/item/key/atv,
 /turf/open/floor/iron/smooth_edge{
 	dir = 1
 	},
@@ -3553,11 +3540,13 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "CP" = (
-/obj/structure/flora/bush/flowers_yw,
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "interdynesaunacargo"
+/obj/structure/chair/sofa/bench/left{
+	dir = 8
 	},
-/turf/open/floor/grass,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "CQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -7895,7 +7884,7 @@ al
 qV
 ol
 Dr
-lZ
+ol
 Ci
 OD
 OD
@@ -8369,8 +8358,8 @@ BE
 se
 WF
 Eq
-CP
-CP
+Eq
+Eq
 WF
 Nm
 oo
@@ -8665,7 +8654,7 @@ Sd
 WF
 fr
 gf
-gf
+CP
 rm
 Mt
 CK
@@ -8725,7 +8714,7 @@ bv
 EB
 EB
 EB
-EB
+WF
 Mt
 PQ
 gB
