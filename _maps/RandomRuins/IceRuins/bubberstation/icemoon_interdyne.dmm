@@ -2605,11 +2605,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/camera/xray{
-	c_tag = "Xenobio East";
-	dir = 4;
-	network = list("fsci")
-	},
 /obj/effect/turf_decal/tile/dark_red{
 	dir = 8
 	},
@@ -5204,11 +5199,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/camera/xray{
-	c_tag = "Xenobio West";
-	dir = 8;
-	network = list("fsci")
-	},
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
 "OQ" = (
@@ -6094,6 +6084,9 @@
 "VQ" = (
 /obj/structure/fans/tiny,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("intd13")
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/testlab)
 "Wa" = (
