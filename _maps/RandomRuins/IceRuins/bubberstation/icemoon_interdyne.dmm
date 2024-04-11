@@ -104,20 +104,6 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
-"aE" = (
-/obj/structure/closet/crate/medical,
-/obj/item/storage/medkit/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/medkit/brute,
-/obj/item/storage/medkit/regular{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
 "aG" = (
 /obj/structure/table/glass,
 /obj/item/clothing/glasses/science,
@@ -318,11 +304,16 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "cf" = (
-/obj/structure/closet/crate,
-/obj/item/storage/toolbox/electrical{
-	pixel_y = 4
+/obj/structure/closet/crate/medical,
+/obj/item/storage/medkit/fire{
+	pixel_x = 3;
+	pixel_y = 3
 	},
-/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/medkit/brute,
+/obj/item/storage/medkit/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
@@ -1143,6 +1134,10 @@
 /obj/item/stack/sheet/plasteel/fifty,
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
+	},
+/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 4
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
@@ -2708,8 +2703,18 @@
 /turf/open/floor/iron/checker,
 /area/ruin/syndicate_ice_base/bar)
 "vB" = (
-/obj/structure/rack,
-/obj/item/pickaxe,
+/obj/structure/closet/crate/internals{
+	anchored = 1
+	},
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/oxygen/yellow,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "vD" = (
@@ -4016,7 +4021,29 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "FQ" = (
-/obj/structure/rack,
+/obj/structure/closet/crate/secure/gear{
+	req_access = list("syndicate");
+	anchored = 1
+	},
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/storage/belt/military,
+/obj/item/storage/belt/military,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/radio/headset/interdyne,
+/obj/item/radio/headset/interdyne,
+/obj/item/radio/headset/interdyne,
 /obj/structure/railing,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
@@ -5454,31 +5481,6 @@
 	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
-"RG" = (
-/obj/structure/closet/crate/secure/gear{
-	req_access = list("syndicate")
-	},
-/obj/item/clothing/glasses/night,
-/obj/item/clothing/glasses/night,
-/obj/item/clothing/glasses/night,
-/obj/item/storage/belt/military,
-/obj/item/storage/belt/military,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/shoes/combat,
-/obj/item/clothing/shoes/combat,
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/gloves/combat,
-/obj/item/clothing/gloves/combat,
-/obj/item/card/id/advanced/chameleon,
-/obj/item/card/id/advanced/chameleon,
-/obj/item/card/id/advanced/chameleon,
-/obj/item/radio/headset/interdyne,
-/obj/item/radio/headset/interdyne,
-/obj/item/radio/headset/interdyne,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
 "RH" = (
 /obj/machinery/portable_atmospherics/canister/bz,
 /obj/machinery/atmospherics/components/unary/portables_connector,
@@ -6044,6 +6046,7 @@
 /obj/structure/rack/shelf,
 /obj/effect/turf_decal/box/white,
 /obj/item/construction/rcd/loaded,
+/obj/item/pickaxe,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/cargo)
 "Wt" = (
@@ -6173,22 +6176,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
-"Xs" = (
-/obj/structure/closet/crate/internals{
-	anchored = 1
-	},
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/oxygen/yellow,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/effect/turf_decal/box/white,
-/turf/open/floor/iron,
-/area/ruin/syndicate_ice_base/cargo)
 "Xw" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/firealarm/directional/west,
@@ -7826,7 +7813,7 @@ RV
 RV
 wl
 Gx
-Xs
+ol
 Wp
 ht
 Ci
@@ -8355,8 +8342,8 @@ ab
 ab
 ab
 RV
-RG
-aE
+ol
+Dr
 Dr
 sP
 jw
