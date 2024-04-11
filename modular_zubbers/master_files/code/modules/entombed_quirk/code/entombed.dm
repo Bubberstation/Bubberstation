@@ -157,6 +157,7 @@
 		"Advanced",
 		"Atmospheric",
 		"Corpsman",
+		"Cosmohonk",
 		"Engineering",
 		"Loader",
 		"Interdyne",
