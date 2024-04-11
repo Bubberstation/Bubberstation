@@ -1904,6 +1904,19 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/table/wood,
+/obj/item/toy/crayon/spraycan{
+	pixel_y = 17;
+	pixel_x = 10
+	},
+/obj/item/toy/crayon/spraycan{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/obj/item/storage/dice{
+	pixel_x = -4;
+	pixel_y = 6
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "oz" = (
@@ -1932,6 +1945,7 @@
 /area/ruin/syndicate_ice_base/gym)
 "oE" = (
 /obj/machinery/skill_station,
+/obj/machinery/light/warm/directional/south,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "oG" = (
@@ -2692,24 +2706,14 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "uV" = (
-/obj/structure/table/wood,
-/obj/item/toy/crayon/spraycan{
-	pixel_y = 17;
-	pixel_x = 10
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/jukebox{
+	req_access = list("syndicate");
+	anchored = 0
 	},
-/obj/item/storage/dice{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/item/toy/crayon/spraycan{
-	pixel_y = 9;
-	pixel_x = 9
-	},
-/obj/structure/sign/painting/library{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/ruin/syndicate_ice_base/dormitories)
+/turf/open/floor/plating,
+/area/ruin/syndicate_ice_base/medbay)
 "uX" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -3353,7 +3357,7 @@
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "zX" = (
-/obj/structure/bookcase/random/religion,
+/obj/machinery/light/warm/directional/north,
 /turf/open/floor/wood/tile,
 /area/ruin/syndicate_ice_base/dormitories)
 "Ac" = (
@@ -5421,7 +5425,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "PG" = (
-/obj/machinery/light/warm/directional/west,
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
@@ -5429,6 +5432,10 @@
 /obj/structure/sign/painting/large/library{
 	dir = 8;
 	pixel_x = -32
+	},
+/obj/structure/sign/painting/large/library{
+	dir = 4;
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
@@ -6397,7 +6404,8 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "XY" = (
-/obj/machinery/light/warm/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/bookcase/random/religion,
 /turf/open/floor/wood/tile,
 /area/ruin/syndicate_ice_base/dormitories)
 "Ya" = (
@@ -7655,8 +7663,8 @@ IB
 jH
 hT
 zF
-uV
-Vu
+zF
+zF
 Le
 zF
 zF
@@ -7714,10 +7722,10 @@ YC
 HF
 RQ
 zF
-zF
-zF
-Ad
+qp
 XY
+Ad
+Vu
 zF
 zF
 SK
@@ -7774,7 +7782,7 @@ ZU
 ZU
 zF
 zX
-qp
+eZ
 gm
 Ad
 eg
@@ -8956,7 +8964,7 @@ jT
 yQ
 rT
 Ut
-oS
+uV
 td
 sF
 SJ
