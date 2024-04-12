@@ -84,7 +84,7 @@
 	. = ..()
 	if(.)
 		for(var/obj/item/storage/part_replacer/cyborg/RPED in borg.model.modules)
-			borg.model.remove_module(HA, TRUE)
+			borg.model.remove_module(RPED, TRUE)
 
 		var/obj/item/storage/part_replacer/bluespace/BRPED = new /obj/item/healthanalyzer/advanced(borg.model)
 		borg.model.basic_modules += BRPED
