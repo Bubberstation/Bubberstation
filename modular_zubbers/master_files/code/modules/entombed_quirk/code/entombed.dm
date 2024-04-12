@@ -161,7 +161,6 @@
 		"Engineering",
 		"Loader",
 		"Interdyne",
-		"Infiltrator",
 		"Medical",
 		"Mining",
 		"Prototype",
