@@ -711,7 +711,6 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "et" = (
-/obj/effect/decal/cleanable/blood/old,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/disposal/bin,
@@ -836,12 +835,8 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "ft" = (
-/obj/machinery/light/small/red/directional/north,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/machinery/jukebox{
-	req_access = list("syndicate");
-	anchored = 0
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "fx" = (
@@ -1113,10 +1108,10 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "hA" = (
-/obj/item/paper/guides/jobs/medical/morgue,
-/obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/syndie/surgery,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/layer_manifold/supply/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/medbay)
 "hI" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
@@ -1198,8 +1193,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/dark{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "iw" = (
@@ -2022,9 +2015,7 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "oS" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/portable_atmospherics/pump,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible/layer4{
 	dir = 4
@@ -2391,7 +2382,12 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "rT" = (
-/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/small/red/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "rX" = (
@@ -2413,7 +2409,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/medbay)
 "sa" = (
-/obj/structure/bodycontainer/morgue,
+/obj/structure/bodycontainer/crematorium{
+	id = "interdynecremator"
+	},
+/obj/machinery/button/crematorium{
+	pixel_y = 23;
+	id = "interdynecremator"
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "sc" = (
@@ -2442,12 +2444,10 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "sh" = (
-/obj/structure/cable,
-/obj/machinery/computer/atmos_control/nocontrol/incinerator{
-	atmos_chambers = list("interdyne_turbine_chamber" = "Interdyne Turbine")
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/engineering)
+/area/ruin/syndicate_ice_base/medbay)
 "sm" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end,
 /turf/open/floor/stone,
@@ -2590,9 +2590,9 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/bar)
 "tl" = (
-/obj/machinery/atmospherics/components/binary/pump/on/layer2{
-	dir = 4;
-	target_pressure = 4500
+/obj/machinery/light/small/red/directional/east,
+/obj/machinery/computer/atmos_control/nocontrol/incinerator{
+	atmos_chambers = list("interdyne_turbine_chamber" = "Interdyne Turbine")
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
@@ -2804,10 +2804,8 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "uV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/structure/reagent_dispensers/fueltank/large,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/space_heater,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/bar)
 "uX" = (
@@ -3183,6 +3181,11 @@
 /obj/item/circuitboard/machine/stacking_machine,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
+"xW" = (
+/obj/machinery/light/small/red/directional/west,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating,
+/area/ruin/syndicate_ice_base/medbay)
 "xX" = (
 /obj/machinery/atmospherics/miner/plasma,
 /turf/open/floor/engine/plasma,
@@ -4090,6 +4093,11 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/testlab)
 "EU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/jukebox{
+	req_access = list("syndicate");
+	anchored = 0
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "EV" = (
@@ -4466,8 +4474,9 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "Ho" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/syndie/surgery,
+/obj/item/paper/guides/jobs/medical/morgue,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "Hs" = (
@@ -4533,12 +4542,8 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "Ie" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/power/smes/engineering{
-	charge = 4.5e+006;
-	input_level = 150000;
-	output_level = 40000
-	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "If" = (
@@ -4994,13 +4999,11 @@
 	},
 /area/ruin/syndicate_ice_base/bar)
 "Lw" = (
-/obj/machinery/power/terminal{
+/obj/structure/bodycontainer/morgue{
 	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/engineering)
+/area/ruin/syndicate_ice_base/medbay)
 "LA" = (
 /obj/machinery/conveyor{
 	dir = 5;
@@ -6204,9 +6207,21 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "Ut" = (
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door/directional/north{
+	id = "rad_shutters_interdyne";
+	name = "Radiation Shutters"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/power/smes/engineering{
+	charge = 4.5e+006;
+	input_level = 150000;
+	output_level = 40000
+	},
+/obj/structure/cable,
 /turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/medbay)
+/area/ruin/syndicate_ice_base/engineering)
 "UE" = (
 /obj/structure/flora/bush/flowers_br,
 /obj/structure/window/reinforced/plasma/plastitanium,
@@ -6257,10 +6272,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/testlab)
 "Ve" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/supply/visible{
-	dir = 4
+/obj/machinery/power/smes/engineering{
+	charge = 4.5e+006;
+	input_level = 150000;
+	output_level = 40000
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "Vk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -6408,15 +6426,14 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/testlab)
 "Wu" = (
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	dir = 4;
+	target_pressure = 4500
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /obj/structure/cable,
-/obj/machinery/computer/monitor,
-/obj/machinery/button/door/directional/north{
-	id = "rad_shutters_interdyne";
-	name = "Radiation Shutters"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "Wx" = (
@@ -6437,13 +6454,7 @@
 /turf/open/floor/iron/kitchen,
 /area/ruin/syndicate_ice_base/bar)
 "WC" = (
-/obj/machinery/light/small/red/directional/east,
-/obj/machinery/power/smes/engineering{
-	charge = 4.5e+006;
-	input_level = 150000;
-	output_level = 40000
-	},
-/obj/structure/cable,
+/obj/machinery/computer/monitor,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "WD" = (
@@ -6568,11 +6579,8 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/syndicate_ice_base/dormitories)
 "XC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "XD" = (
@@ -6602,10 +6610,10 @@
 	dir = 1
 	},
 /obj/machinery/light_switch/directional/west,
-/obj/machinery/space_heater,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "XL" = (
@@ -8988,8 +8996,8 @@ yQ
 yQ
 yQ
 sa
-sa
-sa
+xW
+Lw
 yQ
 uV
 rP
@@ -9047,8 +9055,8 @@ GQ
 Ca
 yQ
 EU
-Ut
 TI
+Lw
 yQ
 SL
 rF
@@ -9224,8 +9232,8 @@ oe
 vW
 kV
 yQ
-hA
 pH
+sh
 et
 ZA
 oP
@@ -9283,10 +9291,10 @@ yQ
 wv
 yQ
 yQ
-yQ
 bY
 yQ
-Ve
+hA
+ap
 rc
 Mx
 uk
@@ -9298,7 +9306,7 @@ td
 td
 td
 td
-td
+lb
 ab
 ab
 ab
@@ -9343,7 +9351,6 @@ Hn
 yQ
 YB
 YB
-YB
 ap
 rr
 uk
@@ -9358,6 +9365,7 @@ tv
 Oy
 ij
 ap
+ab
 ab
 ab
 ab
@@ -9402,7 +9410,6 @@ hb
 Lh
 TH
 TH
-TH
 el
 DT
 Vp
@@ -9410,13 +9417,14 @@ Hb
 My
 wF
 ap
+Ut
 Wu
-tl
 dk
 YO
 YQ
 Da
 ap
+ab
 ab
 ab
 ab
@@ -9461,7 +9469,6 @@ pN
 yQ
 mA
 mA
-mA
 ap
 ya
 ap
@@ -9469,14 +9476,15 @@ SY
 ap
 Gh
 ap
-sh
-BZ
+Ve
+XU
 qG
 ap
 Ih
 ap
 kN
 EK
+ab
 ab
 ab
 ac
@@ -9520,7 +9528,6 @@ RN
 yQ
 ab
 ab
-ab
 ap
 OL
 WD
@@ -9528,12 +9535,13 @@ VK
 WD
 BR
 ap
+WC
 Ie
-Lw
 Po
 Na
 qY
 ap
+ab
 ab
 ab
 ab
@@ -9579,7 +9587,6 @@ Vr
 yQ
 ab
 ab
-ab
 ap
 Mh
 WD
@@ -9587,12 +9594,13 @@ CM
 WD
 xX
 ap
-WC
-XU
+tl
+BZ
 Ov
 ap
 Ch
 ap
+ab
 ab
 ab
 ab
@@ -9638,7 +9646,6 @@ yQ
 Sb
 ab
 ab
-ab
 sE
 ap
 ap
@@ -9652,6 +9659,7 @@ ap
 ap
 bw
 ap
+ab
 ab
 ab
 ab
@@ -9697,7 +9705,6 @@ ab
 Sg
 ab
 ab
-ab
 pU
 ab
 ab
@@ -9714,6 +9721,7 @@ ab
 ab
 ab
 ab
+qz
 ab
 ab
 ac
