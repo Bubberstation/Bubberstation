@@ -8,8 +8,11 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	if(bloodsuckerdatum.GetBloodVolume() > BLOOD_VOLUME_NORMAL)
-		return
+
+	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
+		return ..()
+	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_MAXIMUM)
+		return ..()
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
