@@ -5,7 +5,7 @@
 
 /obj/machinery/computer/cargo/express/interdyne
 	name = "interdyne express supply console"
-	desc = "A standard NT express console, hacked by Gorlex industries to use \
+	desc = "A standard NT express console, hacked by Gorlex Industries to use \
 	their own experimental \"1100mm Rail Cannon\", made to be extra robust to prevent \
 	being emagged by the Syndicate cadets of the SSV Dauntless."
 	circuit = /obj/item/circuitboard/computer/cargo/express/interdyne
