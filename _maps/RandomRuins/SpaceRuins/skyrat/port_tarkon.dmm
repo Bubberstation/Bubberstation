@@ -351,6 +351,10 @@
 /area/ruin/space/has_grav/port_tarkon/mining)
 "cv" = (
 /obj/item/stack/tile/carpet/neon/simple/teal/nodots/sixty,
+/obj/item/toy/plush/xenoplush{
+	name = "emergency emotional support xenoplush";
+	desc = "Probably not your first choice, but you'll take anything at this point"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/port_tarkon/cargo)
 "cy" = (
@@ -839,6 +843,7 @@
 "gd" = (
 /obj/structure/table/reinforced,
 /obj/item/kitchen/rollingpin,
+/obj/machinery/light/small/directional/south,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/port_tarkon/kitchen)
 "gm" = (
@@ -2319,11 +2324,10 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/port_tarkon)
 "pP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/port_tarkon/forehall)
+/obj/structure/closet/secure_closet/freezer/meat/open,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/freezer,
+/area/ruin/space/has_grav/port_tarkon/kitchen)
 "pR" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
@@ -11115,7 +11119,7 @@ iG
 hG
 VZ
 VZ
-Ut
+pP
 hG
 yc
 qv
@@ -11158,7 +11162,7 @@ bt
 eT
 YZ
 Hg
-pP
+YZ
 eT
 bt
 bt
