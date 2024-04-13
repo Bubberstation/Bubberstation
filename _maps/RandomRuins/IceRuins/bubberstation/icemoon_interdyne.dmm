@@ -498,7 +498,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "df" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -507,6 +506,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "dj" = (
@@ -838,6 +838,10 @@
 "ft" = (
 /obj/machinery/light/small/red/directional/north,
 /obj/effect/decal/cleanable/blood/gibs/old,
+/obj/machinery/jukebox{
+	req_access = list("syndicate");
+	anchored = 0
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "fx" = (
@@ -1434,23 +1438,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/medbay)
 "jV" = (
-/obj/structure/rack,
-/obj/item/clothing/shoes/magboots/syndie{
-	pixel_y = 8
+/obj/machinery/atmospherics/components/binary/pump/on/supply/visible/layer4{
+	dir = 8
 	},
-/obj/item/clothing/shoes/magboots/syndie,
-/obj/item/pipe_dispenser,
-/obj/item/construction/rcd,
-/obj/item/stack/sheet/plasteel{
-	pixel_x = 7;
-	pixel_y = 7;
-	amount = 20
-	},
-/obj/item/stack/sheet/mineral/titanium{
-	amount = 35
-	},
-/obj/structure/extinguisher_cabinet/directional/south,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/engineering)
 "jZ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -2007,20 +1998,39 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/testlab)
 "oP" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/rack,
+/obj/item/clothing/shoes/magboots/syndie{
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/magboots/syndie,
+/obj/item/pipe_dispenser,
+/obj/item/construction/rcd,
+/obj/item/stack/sheet/plasteel{
+	pixel_x = 7;
+	pixel_y = 7;
+	amount = 20
+	},
+/obj/item/stack/sheet/mineral/titanium{
+	amount = 35
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "oS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/medbay)
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/portable_atmospherics/pump,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/bar)
 "oV" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/deepfryer,
@@ -2122,7 +2132,8 @@
 /area/ruin/syndicate_ice_base/cargo)
 "pH" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "pI" = (
@@ -2288,12 +2299,13 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/engineering)
 "rc" = (
-/obj/machinery/portable_atmospherics/scrubber,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
-	dir = 8
+/obj/structure/closet/secure_closet/ds2atmos{
+	anchorable = 0;
+	anchored = 1
 	},
-/obj/machinery/atmospherics/components/binary/pump/on/supply/visible/layer4{
-	dir = 4
+/obj/item/inducer/syndicate,
+/obj/item/inducer/syndicate{
+	pixel_y = -4
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
@@ -2320,11 +2332,11 @@
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 8
 	},
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate,
 /obj/machinery/light/cold/directional/north,
 /obj/machinery/airalarm/directional/north{
 	req_access = list("syndicate")
 	},
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "rv" = (
@@ -2353,7 +2365,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/virology)
 "rF" = (
-/obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "rG" = (
@@ -2718,10 +2730,6 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
 "uk" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/layer4{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "um" = (
@@ -2796,14 +2804,12 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "uV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/jukebox{
-	req_access = list("syndicate");
-	anchored = 0
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
 	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/medbay)
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/bar)
 "uX" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4461,6 +4467,7 @@
 /area/ruin/syndicate_ice_base/medbay)
 "Ho" = (
 /obj/effect/decal/cleanable/blood/old,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "Hs" = (
@@ -5119,11 +5126,8 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
 "Mx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "My" = (
@@ -5938,6 +5942,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
+"SL" = (
+/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/bar)
 "SM" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5946,12 +5957,8 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "SO" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
 /obj/structure/sign/departments/engineering/directional/east,
-/obj/structure/reagent_dispensers/fueltank/large,
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "SS" = (
 /obj/effect/turf_decal/stripes/end{
@@ -6108,7 +6115,9 @@
 /turf/open/floor/plating/icemoon,
 /area/ruin/syndicate_ice_base/engineering)
 "TI" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "TO" = (
@@ -6274,6 +6283,7 @@
 /area/ruin/syndicate_ice_base/main)
 "Vp" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/cyan/visible,
+/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "Vr" = (
@@ -6558,6 +6568,10 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/syndicate_ice_base/dormitories)
 "XC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
@@ -6584,18 +6598,14 @@
 /area/ruin/syndicate_ice_base/main)
 "XJ" = (
 /obj/machinery/firealarm/directional/south,
-/obj/structure/closet/secure_closet/ds2atmos{
-	anchorable = 0;
-	anchored = 1
-	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/item/inducer/syndicate{
-	pixel_y = -4
-	},
-/obj/item/inducer/syndicate,
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/space_heater,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "XL" = (
@@ -6871,8 +6881,8 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
 "ZA" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible/layer4,
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/engineering)
@@ -8980,8 +8990,8 @@ yQ
 sa
 sa
 sa
-sa
-td
+yQ
+uV
 rP
 oG
 sF
@@ -9039,8 +9049,8 @@ yQ
 EU
 Ut
 TI
-oS
-td
+yQ
+SL
 rF
 SJ
 zI
@@ -9098,8 +9108,8 @@ yQ
 yQ
 ft
 Ho
-XC
-td
+yQ
+oS
 SO
 oG
 sF
@@ -9156,9 +9166,9 @@ GJ
 jT
 yQ
 rT
-Ut
-uV
-ap
+XC
+yQ
+jV
 ap
 TT
 ap
@@ -9279,7 +9289,7 @@ yQ
 Ve
 rc
 Mx
-jV
+uk
 td
 td
 td
