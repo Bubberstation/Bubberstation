@@ -83,14 +83,17 @@
 	. = ..()
 
 /obj/machinery/computer/piratepad_control/syndiepad/send()
+	var/obj/machinery/piratepad/syndiepad/pad = pad_ref?.resolve()
 	if(!safe_to_sell())
 		sending = FALSE
+		pad.icon_state = pad.idle_state
 		return
 	if(!synced_bank_account) /// Resolve the account
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 		if(!synced_bank_account)
 			status_report = "Error: No department account found. Please report to Gorlex Industries."
 			sending = FALSE
+			pad.icon_state = pad.idle_state
 			return
 	points = 0
 	. = ..()
