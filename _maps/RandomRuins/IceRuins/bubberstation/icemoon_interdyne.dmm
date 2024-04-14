@@ -383,6 +383,7 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "cu" = (
+/obj/structure/chair/stool/bar,
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 4
 	},
@@ -404,6 +405,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
+"cI" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynebarbers";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_br/style_random,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/main)
 "cN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/effect/turf_decal/stripes/blue{
@@ -471,6 +480,7 @@
 /area/ruin/syndicate_ice_base/main)
 "cZ" = (
 /obj/machinery/smartfridge/drinks,
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "db" = (
@@ -728,6 +738,14 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
+"ez" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynelibrary";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_br,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/testlab)
 "eA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/chair/sofa/right/maroon,
@@ -792,11 +810,12 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "fe" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "interdynebarbers"
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynebarbers";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
 	},
-/turf/open/floor/plating,
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/main)
 "fg" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -946,7 +965,7 @@
 /obj/item/storage/box/drinkingglasses{
 	pixel_y = 10
 	},
-/obj/machinery/light/directional/south,
+/obj/machinery/light/warm/directional/south,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "gy" = (
@@ -1588,6 +1607,7 @@
 /area/ruin/syndicate_ice_base/cargo)
 "lD" = (
 /obj/machinery/smartfridge/food,
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "lH" = (
@@ -2191,15 +2211,17 @@
 /area/ruin/syndicate_ice_base/dormitories)
 "qr" = (
 /obj/machinery/light/cold/directional/south,
-/obj/machinery/button/door/directional/south{
-	id = "interdynegym"
-	},
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
+	},
+/obj/machinery/button/polarizer{
+	pixel_y = -24;
+	name = "Gym Windows";
+	id = "interdynegym"
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
@@ -2781,12 +2803,18 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/textured_half,
 /area/ruin/syndicate_ice_base/main)
+"uK" = (
+/obj/structure/flora/bush/flowers_br,
+/obj/structure/window/reinforced/plasma/plastitanium,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/bar)
 "uM" = (
-/obj/machinery/door/poddoor{
-	id = "interdynegym"
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynegym";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
 	},
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/turf/open/floor/plating,
+/obj/structure/flora/bush/flowers_br/style_random,
+/turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/gym)
 "uQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -2795,7 +2823,7 @@
 /area/ruin/syndicate_ice_base/cargo)
 "uV" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/space_heater,
+/obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/bar)
 "uX" = (
@@ -3097,6 +3125,7 @@
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/light/warm/directional/east,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "xk" = (
@@ -3152,6 +3181,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
+"xG" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/bar)
 "xJ" = (
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/effect/turf_decal/tile/blue{
@@ -3247,8 +3280,10 @@
 /obj/machinery/vending/barbervend{
 	onstation = 0
 	},
-/obj/machinery/button/door/directional/east{
-	id = "interdynebarbers"
+/obj/machinery/button/polarizer{
+	name = "Barber Windows";
+	id = "interdynebarbers";
+	pixel_x = 24
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
@@ -3371,6 +3406,7 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "zl" = (
+/obj/structure/chair/stool/bar,
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 1
 	},
@@ -3489,9 +3525,10 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "AF" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
+/obj/structure/chair{
+	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/bar)
 "AN" = (
@@ -3699,7 +3736,10 @@
 /turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/bar)
 "CC" = (
-/obj/structure/table,
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/bar)
 "CE" = (
@@ -4227,11 +4267,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "FF" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_ice_base/bar)
+/obj/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/flora/bush/flowers_br,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/dormitories)
 "FH" = (
 /obj/machinery/atmospherics/components/binary/volume_pump/on/layer2{
 	dir = 4
@@ -4459,6 +4498,11 @@
 /obj/item/reagent_containers/condiment/saltshaker,
 /turf/open/floor/iron/kitchen,
 /area/ruin/syndicate_ice_base/bar)
+"Hg" = (
+/obj/structure/flora/bush/flowers_br/style_random,
+/obj/structure/window/reinforced/plasma/plastitanium,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/dormitories)
 "Hn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4495,8 +4539,10 @@
 /obj/structure/chair/office,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/button/door/directional/east{
-	id = "interdynelibrary"
+/obj/machinery/button/polarizer{
+	name = "Library Windows";
+	id = "interdynelibrary";
+	pixel_x = 24
 	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/dormitories)
@@ -5269,8 +5315,10 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Ny" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/table,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/iron/dark/textured_corner{
 	dir = 8
 	},
@@ -5294,6 +5342,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
+"NR" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynebarbers";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_br,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/main)
 "NS" = (
 /obj/structure/closet/secure_closet/freezer/meat{
 	req_access = list("syndicate")
@@ -5480,11 +5536,11 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "OV" = (
+/obj/machinery/computer/security/telescreen/entertainment/directional/east,
+/obj/machinery/light/warm/directional/east,
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/computer/security/telescreen/entertainment/directional/east,
-/obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/bar)
 "OZ" = (
@@ -5511,8 +5567,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "Pm" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/turf/open/floor/plating,
+/obj/structure/flora/bush/flowers_yw,
+/obj/structure/window/reinforced/plasma/plastitanium,
+/turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/bar)
 "Pn" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
@@ -5524,11 +5581,12 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "Pq" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "interdynelibrary"
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynelibrary";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
 	},
-/turf/open/floor/plating,
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/testlab)
 "Pr" = (
 /obj/structure/filingcabinet,
@@ -5743,7 +5801,7 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/testlab)
 "QK" = (
-/obj/machinery/door/airlock/public/glass{
+/obj/machinery/door/airlock/public{
 	name = "Gym"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
@@ -5760,9 +5818,18 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/medbay)
 "QU" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/turf/open/floor/plating,
+/obj/structure/flora/bush/flowers_yw,
+/obj/structure/window/reinforced/plasma/plastitanium,
+/turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/dormitories)
+"Ra" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynelibrary";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_br/style_random,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/testlab)
 "Rd" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
@@ -6598,7 +6665,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank/large,
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "XL" = (
@@ -6675,11 +6742,13 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "Yc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynegym";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
 	},
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_ice_base/bar)
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/gym)
 "Yf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -6805,6 +6874,14 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/testlab)
+"YV" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
+	polarizer_id = "interdynegym";
+	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
+	},
+/obj/structure/flora/bush/flowers_br,
+/turf/open/floor/grass,
+/area/ruin/syndicate_ice_base/gym)
 "Zg" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /turf/open/floor/engine,
@@ -7752,7 +7829,7 @@ kf
 jo
 ej
 jo
-Pq
+Ra
 Uj
 Uo
 yq
@@ -7811,7 +7888,7 @@ kf
 jo
 FT
 jo
-Pq
+Ra
 qS
 jH
 YC
@@ -7929,7 +8006,7 @@ kf
 jo
 Yo
 jo
-Pq
+ez
 YC
 HF
 RQ
@@ -8178,9 +8255,9 @@ zF
 WS
 ZQ
 yY
+FF
 QU
-QU
-QU
+Hg
 zF
 Cd
 Zx
@@ -8239,7 +8316,7 @@ dR
 NY
 Yv
 CC
-FF
+XT
 lD
 Xq
 LK
@@ -8357,7 +8434,7 @@ wo
 NY
 yP
 HI
-XT
+xG
 Lp
 sF
 ks
@@ -8415,7 +8492,7 @@ sF
 oG
 GB
 Ny
-Yc
+XT
 zl
 ih
 sF
@@ -8755,7 +8832,7 @@ uM
 xc
 Fu
 xc
-fe
+cI
 Zo
 wx
 eo
@@ -8814,7 +8891,7 @@ uM
 xc
 Yf
 xc
-fe
+cI
 Zo
 Zo
 WK
@@ -8869,7 +8946,7 @@ xA
 Qu
 lW
 KY
-uM
+Yc
 xc
 Yf
 xc
@@ -8928,11 +9005,11 @@ WX
 UF
 KT
 Er
-uM
+YV
 xc
 pk
 xc
-fe
+NR
 yB
 gh
 Gd
@@ -9122,7 +9199,7 @@ oS
 SO
 oG
 sF
-Pm
+uK
 hd
 Jq
 bf
