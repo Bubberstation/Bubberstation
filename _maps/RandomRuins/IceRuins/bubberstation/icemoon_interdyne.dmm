@@ -380,6 +380,11 @@
 	dir = 10
 	},
 /obj/structure/fans/tiny,
+/obj/machinery/door/airlock/wood{
+	doorClose = 'sound/effects/doorcreaky.ogg';
+	doorOpen = 'sound/effects/doorcreaky.ogg';
+	name = "Sauna"
+	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "cu" = (
@@ -1670,10 +1675,9 @@
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "mu" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 10
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
@@ -1967,11 +1971,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "oD" = (
-/obj/effect/turf_decal/tile/dark_red/half{
+/obj/effect/turf_decal/tile/dark_red/anticorner{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/dark{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
@@ -2220,10 +2224,6 @@
 /area/ruin/syndicate_ice_base/dormitories)
 "qr" = (
 /obj/machinery/light/cold/directional/south,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
@@ -2232,6 +2232,8 @@
 	name = "Gym Windows";
 	id = "interdynegym"
 	},
+/obj/structure/table,
+/obj/structure/towel_bin,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/gym)
 "qz" = (
@@ -3711,6 +3713,11 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
+/obj/machinery/door/airlock/wood{
+	doorClose = 'sound/effects/doorcreaky.ogg';
+	doorOpen = 'sound/effects/doorcreaky.ogg';
+	name = "Sauna"
+	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "Ch" = (
@@ -3807,10 +3814,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/virology)
 "CL" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/turf/open/floor/wood/large,
+/obj/effect/turf_decal/tile/dark_red/half{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "CM" = (
 /obj/machinery/atmospherics/miner/oxygen,
@@ -3891,18 +3901,12 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "Do" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east{
-	dir = 6
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/dark_red/anticorner{
+/obj/effect/turf_decal/tile/dark_red{
 	dir = 4
 	},
-/obj/structure/table,
-/obj/structure/towel_bin,
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "Dr" = (
@@ -4466,15 +4470,15 @@
 /area/ruin/syndicate_ice_base/medbay)
 "GM" = (
 /obj/effect/turf_decal/siding/dark{
-	dir = 1
+	dir = 5
 	},
-/obj/effect/turf_decal/tile/dark_red/half{
-	dir = 1
+/obj/effect/turf_decal/tile/dark_red/anticorner{
+	dir = 4
 	},
-/obj/item/towel,
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
 	},
+/obj/item/towel,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "GQ" = (
@@ -4489,7 +4493,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
-	dir = 6
+	dir = 10
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
@@ -5286,7 +5290,7 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "Nd" = (
-/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "Nm" = (
@@ -5526,7 +5530,6 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/testlab)
 "OS" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/item/reagent_containers/cup/bucket/wooden{
 	pixel_y = 22;
 	pixel_x = 18
@@ -5807,7 +5810,7 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/testlab)
 "QK" = (
-/obj/machinery/door/airlock/public{
+/obj/machinery/door/airlock/public/glass{
 	name = "Gym"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
@@ -6171,9 +6174,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/firealarm/directional/south,
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
@@ -8590,7 +8590,7 @@ Fk
 WF
 Fi
 Pf
-bv
+mu
 WF
 Zo
 PP
@@ -8766,8 +8766,8 @@ ma
 iN
 WF
 GM
-oo
-mu
+Do
+fE
 qr
 WF
 WF
@@ -8824,8 +8824,8 @@ DA
 CP
 ao
 WF
-Nm
-oo
+WF
+CL
 fE
 oo
 UK
@@ -8883,7 +8883,7 @@ JB
 eG
 gq
 OS
-Do
+WF
 oD
 Vy
 oo
@@ -8941,7 +8941,7 @@ wr
 cx
 pD
 mH
-CL
+Nd
 co
 RZ
 EO
