@@ -1,4 +1,4 @@
-/ Twitch, because having sandevistans be implants is for losers, just inject it!
+// Twitch, because having sandevistans be implants is for losers, just inject it!
 /obj/item/reagent_containers/hypospray/medipen/deforest/twitch
 	name = "TWitch sensory stimulant injector"
 	desc = "A Deforest branded autoinjector, loaded with 'TWitch' among other reagents. This drug is known to make \
