@@ -114,7 +114,7 @@
 			continue
 		for(var/atom/exporting_atom in AM.get_all_contents()) /// Reuse the cargo blacklist logic here to ensure we're not deleting something important forever
 			if((is_type_in_typecache(exporting_atom, GLOB.blacklisted_cargo_types) || HAS_TRAIT(exporting_atom, TRAIT_BANNED_FROM_CARGO_SHUTTLE)) && !istype(exporting_atom, /obj/docking_port))
-				status_report = "Error: Black listed item ([exporting_atom.name]) detected on pad. Please remove from pad and rescan."
+				status_report = "Error: Black listed item ([format_text(exporting_atom.name)]) detected on pad. Please remove from pad and rescan."
 				return FALSE
 	return TRUE
 
