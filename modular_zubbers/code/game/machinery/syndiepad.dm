@@ -97,6 +97,7 @@
 	if(points)
 		playsound(loc, 'modular_zubbers/sound/machines/syndiepad.ogg', 70, FALSE)
 		synced_bank_account.adjust_money(points)
+	points = synced_bank_account.account_balance
 
 /obj/machinery/computer/piratepad_control/syndiepad/start_sending()
 	var/obj/machinery/piratepad/syndiepad/pad = pad_ref?.resolve()
