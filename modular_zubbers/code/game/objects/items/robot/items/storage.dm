@@ -15,11 +15,11 @@
 					/obj/item/slime_extract,
 					/obj/item/slimepotion,
 					/obj/item/disk,
-					/obj/item/mmi,
 					/obj/item/stock_parts,
 					/obj/item/reagent_containers/cup/beaker,
 					/obj/item/assembly/prox_sensor,
-					/obj/item/healthanalyzer, //to build medibots
+					/obj/item/healthanalyzer, //To build medibots
+					/obj/item/borg_restart_board, //To allow repairs
 					)
 /obj/item/borg/apparatus/research/examine()
 	. = ..()
