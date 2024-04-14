@@ -22,7 +22,7 @@
 
 /obj/machinery/piratepad/syndiepad
 	name = "interdyne bounty pad"
-	desc = "A standard NT citizen boundy pad, hacked by Gorlex Industries to \
+	desc = "A standard NT citizen bounty pad, hacked by Gorlex Industries to \
 	sell any (non-living) object to an distant off-sector black market \
 	for processing. No returns!"
 	circuit = /obj/item/circuitboard/machine/syndiepad
@@ -56,8 +56,8 @@
 
 /obj/machinery/computer/piratepad_control/syndiepad
 	name = "Interdyne Bounty Control Terminal"
-	desc = "A hacked console for the modified citizen boundy pad. \
-	Proudly brought to you by Gorlex industries."
+	desc = "A hacked console for the modified citizen bounty pad. \
+	Proudly brought to you by Gorlex Industries."
 	status_report = "Ready for delivery."
 	icon_screen = "civ_bounty"
 	icon_keyboard = "syndie_key"
@@ -89,7 +89,7 @@
 	if(!synced_bank_account) /// Resolve the account
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 		if(!synced_bank_account)
-			status_report = "Error: No department account found. Please report to Gorlex industries."
+			status_report = "Error: No department account found. Please report to Gorlex Industries."
 			sending = FALSE
 			return
 	points = 0
