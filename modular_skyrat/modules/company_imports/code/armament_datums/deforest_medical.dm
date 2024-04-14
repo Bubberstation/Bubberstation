@@ -276,3 +276,4 @@
 /datum/armament_entry/company_import/deforest/medical_modules/defibrillator
 	name = "MOD defibrillator module"
 	item_type = /obj/item/mod/module/defibrillator
+
