@@ -148,6 +148,130 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+//12 Gauge Ammunition Boxes
+//This shit is a mistake but we embraced it instead of removing it, They all will require plastic to make alongside the iron cost
+//I hate it
+
+/datum/design/advancedgaugeboxes
+	name = "12 Gauge Advanced Buckshot Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_buckshot"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/buckshot
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_slug
+	name = "12 Gauge Advanced Slug Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_slug"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_flech
+	name = "12 Gauge Advanced Flechette Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_flechette"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 6, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/flechette
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_antitide
+	name = "12 Gauge Advanced Anti Riot Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_antitide"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/antitide
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_slug
+	name = "12 Gauge Advanced Incendiary Slug Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_incinslug"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/incendiary
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_hornet
+	name = "12 Gauge Advanced Hornest Anti Riot Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_hornet"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/beehive
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_magnum
+	name = "12 Gauge Advanced Magnum Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_magnum"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 35 /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/magnum
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_express
+	name = "12 Gauge Advanced Express Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_express"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25 /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/express
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_beanbagslug
+	name = "12 Gauge Advanced Bean Bag Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_bslug"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10 /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/bean
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+	/datum/design/advancedgaugeboxes_rubbershot
+	name = "12 Gauge Advanced Rubber Shot Ammunition Box"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_rubber"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10 /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/rubber
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 // Misc Gun Stuff
 
 /datum/design/m45_mag
