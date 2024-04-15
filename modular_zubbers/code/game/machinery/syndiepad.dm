@@ -55,7 +55,7 @@
 	build_path = /obj/machinery/computer/piratepad_control/syndiepad
 
 /obj/machinery/computer/piratepad_control/syndiepad
-	name = "Interdyne Bounty Control Terminal"
+	name = "interdyne bounty control terminal"
 	desc = "A hacked console for the modified citizen bounty pad. \
 	Proudly brought to you by Gorlex Industries."
 	status_report = "Ready for delivery."
