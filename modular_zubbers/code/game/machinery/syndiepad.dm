@@ -86,19 +86,23 @@
 	var/obj/machinery/piratepad/syndiepad/pad = pad_ref?.resolve()
 	if(!safe_to_sell())
 		sending = FALSE
-		pad.icon_state = pad.idle_state
+		reset_icon(pad)
 		return
 	if(!synced_bank_account) /// Resolve the account
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 		if(!synced_bank_account)
 			status_report = "Error: No department account found. Please report to Gorlex Industries."
 			sending = FALSE
-			pad.icon_state = pad.idle_state
+			reset_icon(pad)
 			return
 	points = 0
 	. = ..()
 	if(points)
-		playsound(loc, 'modular_zubbers/sound/machines/syndiepad.ogg', 70, FALSE)
+		/// Waiter! Waiter! More boomer-shooter sound effect references please!!
+		if(prob(1))
+			playsound(pad, 'modular_zubbers/sound/machines/syndiepad_alt.ogg', 70, FALSE) /// Half-life
+		else
+			playsound(pad, 'modular_zubbers/sound/machines/syndiepad.ogg', 70, FALSE) /// Quake
 		synced_bank_account.adjust_money(points)
 	points = synced_bank_account.account_balance
 
@@ -121,5 +125,11 @@
 				status_report = "Error: Black listed item ([format_text(exporting_atom.name)]) detected on pad. Please remove from pad and rescan."
 				return FALSE
 	return TRUE
+
+/obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(var/obj/machinery/piratepad/syndiepad/pad)
+	if(!pad)
+		return
+	flick(pad.sending_state,pad)
+	pad.icon_state = pad.idle_state
 
 #undef SYN_BOUNTY_PAD_WARM_TIME
