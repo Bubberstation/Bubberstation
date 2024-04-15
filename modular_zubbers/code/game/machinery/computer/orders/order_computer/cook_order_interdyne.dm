@@ -51,7 +51,7 @@
 		return
 	if(!synced_bank_account)
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
-	if(!purchase_items())
+	if(!purchase_items(null, express = TRUE))
 		return
 	var/say_message = "Thank you for your purchase!"
 	if(express_cost_multiplier > 1)
@@ -74,11 +74,11 @@
 	grocery_list.Cut()
 	return TRUE
 
-/obj/machinery/computer/order_console/cook/interdyne/purchase_items()
+/obj/machinery/computer/order_console/cook/interdyne/purchase_items(obj/item/card/id/card, express = FALSE)
 	if(!synced_bank_account)
 		say("Error, no department account found. Please report to Gorlex Industries.")
 		return FALSE
-	var/final_cost = round(get_total_cost() * express_cost_multiplier)
+	var/final_cost = round(get_total_cost() * (express ? express_cost_multiplier : cargo_cost_multiplier))
 	if(synced_bank_account.adjust_money(-final_cost, "[name]: Purchase"))
 		return TRUE
 	say("Sorry, but you do not have enough [credit_type].")
