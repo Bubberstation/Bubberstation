@@ -100,7 +100,9 @@
 	if(points)
 		/// Waiter! Waiter! More boomer-shooter sound effect references please!!
 		if(prob(1))
-			playsound(pad, 'modular_zubbers/sound/machines/syndiepad_alt.ogg', 70, FALSE) /// Half-life
+			playsound(pad, 'modular_zubbers/sound/machines/syndiepad_alt1.ogg', 70, FALSE) /// HL1
+		else if(prob(1))
+			playsound(pad, 'modular_zubbers/sound/machines/syndiepad_alt2.ogg', 70, FALSE) /// TF2
 		else
 			playsound(pad, 'modular_zubbers/sound/machines/syndiepad.ogg', 70, FALSE) /// Quake
 		synced_bank_account.adjust_money(points)
