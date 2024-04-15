@@ -1165,9 +1165,7 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/firealarm/directional/east,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service{
-	dir = 1
-	},
+/obj/machinery/chem_master/condimaster,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "fx" = (
@@ -4524,7 +4522,7 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "vq" = (
-/obj/machinery/chem_master/condimaster,
+/obj/machinery/computer/order_console/cook/interdyne,
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -6555,8 +6553,8 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "EF" = (
-/obj/machinery/icecream_vat,
 /obj/machinery/light/small/red/directional/south,
+/obj/machinery/gibber,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "EM" = (
@@ -8713,6 +8711,10 @@
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
+"Qd" = (
+/obj/machinery/computer/order_console/cook/interdyne,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "Qf" = (
 /obj/machinery/door/airlock/security/old{
 	name = "Master At Arms";
@@ -8761,7 +8763,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/machinery/gibber,
+/obj/machinery/icecream_vat,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "Qn" = (
@@ -10766,6 +10768,9 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service{
+	dir = 4
+	},
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "ZL" = (
@@ -12049,7 +12054,7 @@ mn
 BD
 wP
 wP
-wP
+Qd
 wP
 wP
 TT
