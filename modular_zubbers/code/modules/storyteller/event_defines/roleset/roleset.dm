@@ -12,4 +12,4 @@
 
 /datum/round_event_control/abductor
 	track = EVENT_TRACK_ROLESET
-	tags = list(TAG_TARGETED, TAG_SPOOKY)
+	tags = list(TAG_COMBAT, TAG_SPOOKY)
