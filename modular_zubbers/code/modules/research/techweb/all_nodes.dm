@@ -47,6 +47,8 @@
 		"minesweeper",
 	)
 
+//Weaponry Research
+
 /datum/techweb_node/sec_basic/New()
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
