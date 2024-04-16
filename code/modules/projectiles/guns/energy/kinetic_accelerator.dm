@@ -75,7 +75,7 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
-	if(modkits.len && !disablemodification) // BUBBER EDIT
+	if(!disablemodification && modkits.len) // BUBBER EDIT
 		to_chat(user, span_notice("You pry all the modifications out."))
 		I.play_tool_sound(src, 100)
 		for(var/a in modkits)
