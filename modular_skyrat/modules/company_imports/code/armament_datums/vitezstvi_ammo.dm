@@ -137,13 +137,13 @@
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/buckshot
-
+*/
 /datum/armament_entry/company_import/vitezstvi/shot_shells/beanbag_slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge/bean
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/rubbershot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/rubber
-
+/*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/magnum_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/magnum
 
