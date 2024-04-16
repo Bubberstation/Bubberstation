@@ -197,8 +197,8 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "bC" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/vacent_room)
 "bD" = (
@@ -1081,12 +1081,8 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
 "iP" = (
-/obj/machinery/flasher/directional/west{
-	id = "IDyneBrigFlash"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
 "iQ" = (
@@ -1802,8 +1798,10 @@
 /turf/open/floor/iron/checker,
 /area/ruin/syndicate_ice_base/bar)
 "or" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/flasher/directional/west{
+	id = "IDyneBrigFlash"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
 "ot" = (
@@ -2328,9 +2326,8 @@
 	},
 /area/ruin/syndicate_ice_base/medbay)
 "sn" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/vacent_room)
 "su" = (
@@ -2350,6 +2347,8 @@
 /area/ruin/syndicate_ice_base/testlab)
 "sD" = (
 /obj/item/storage/toolbox/mechanical,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/vacent_room)
 "sF" = (
@@ -2446,22 +2445,8 @@
 /turf/open/lava/plasma/ice_moon,
 /area/ruin/syndicate_ice_base/medbay)
 "td" = (
-/obj/machinery/button/door/directional/east{
-	req_access = list("syndicate");
-	specialfunctions = 4;
-	name = "Brig Bolt Control";
-	normaldoorcontrol = 1;
-	id = "IDyneBrig";
-	pixel_y = -7
-	},
-/obj/machinery/button/flasher{
-	id = "IDyneBrigFlash";
-	pixel_x = 24;
-	pixel_y = 6
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "tf" = (
@@ -2819,8 +2804,9 @@
 /area/ruin/syndicate_ice_base/cargo)
 "vi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/vacent_room)
 "vl" = (
@@ -5170,11 +5156,24 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "Ns" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/vacent_room)
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/machinery/button/flasher{
+	id = "IDyneBrigFlash";
+	pixel_x = 24;
+	pixel_y = 6
+	},
+/obj/machinery/button/door/directional/east{
+	req_access = list("syndicate");
+	specialfunctions = 4;
+	name = "Brig Bolt Control";
+	normaldoorcontrol = 1;
+	id = "IDyneBrig";
+	pixel_y = -7
+	},
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/main)
 "Nx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -5820,7 +5819,8 @@
 	pixel_y = 16
 	},
 /obj/structure/cable,
-/obj/machinery/firealarm/directional/east,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/effect/mapping_helpers/apc/syndicate_access,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/vacent_room)
 "RX" = (
@@ -5980,11 +5980,11 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/dormitories)
 "SR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/main)
+/area/ruin/syndicate_ice_base/vacent_room)
 "ST" = (
 /obj/machinery/syndicatebomb/self_destruct{
 	anchored = 1
@@ -6308,6 +6308,9 @@
 /obj/item/reagent_containers/cup/bucket{
 	pixel_x = 5;
 	pixel_y = 3
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
@@ -6709,6 +6712,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
+"Zg" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/main)
 "Zi" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/machinery/vending/boozeomat/syndicate_access{
@@ -7773,8 +7782,8 @@ qC
 qC
 yy
 YZ
-fq
-bC
+YZ
+YZ
 vi
 kE
 HX
@@ -7833,7 +7842,7 @@ qC
 YZ
 YZ
 YZ
-bC
+fq
 sD
 kE
 HX
@@ -7892,8 +7901,8 @@ qC
 YZ
 YZ
 YZ
-bC
 YZ
+bC
 kE
 HX
 Ig
@@ -7949,10 +7958,10 @@ ck
 UE
 qC
 OD
-Ns
+YZ
 RV
 sn
-YZ
+SR
 kE
 HX
 Lq
@@ -8010,8 +8019,8 @@ qC
 qC
 Ic
 Ic
-Az
 Ic
+Az
 kE
 qN
 lK
@@ -8069,8 +8078,8 @@ Lj
 sH
 qC
 KC
-TL
 Ll
+Zg
 Ll
 Ll
 us
@@ -8659,7 +8668,7 @@ xa
 Fo
 fb
 dS
-jz
+Ns
 td
 WT
 Ll
@@ -8718,8 +8727,8 @@ kv
 Mc
 fb
 fb
-Uv
 Xo
+Uv
 Xo
 Di
 bv
@@ -8836,7 +8845,7 @@ Zm
 Mc
 sP
 fb
-SR
+Xu
 UH
 Xo
 KM
