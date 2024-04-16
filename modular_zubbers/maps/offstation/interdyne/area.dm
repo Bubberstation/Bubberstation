@@ -38,5 +38,5 @@
 /area/ruin/syndicate_ice_base/gym
 	name = "Interdyne Gym"
 
-/area/ruin/syndicate_ice_base/vacent_room
-	name = "Interdyne Vacant Room"
+/area/ruin/syndicate_ice_base/armory
+	name = "Interdyne Armory"
