@@ -49,11 +49,6 @@
 
 //Weaponry Research
 
-/datum/techweb_node/sec_basic/New()
-	design_ids += "s12g_rubber"
-	design_ids += "s12g_bslug"
-	. = ..()
-
 /datum/techweb_node/weaponry/New()
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "wt550_ammo_flathead"
@@ -64,6 +59,9 @@
 	design_ids += "s12g_slug"
 	design_ids += "s12g_hornet"
 	design_ids += "s12g_antitide"
+	design_ids += "s12g_rubber"
+	design_ids += "s12g_bslug"
+	design_ids += "s12g_incinslug"
 	. = ..()
 
 /datum/techweb_node/adv_weaponry/New()
@@ -77,7 +75,6 @@
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
 	design_ids += "solgrenade_extmag"
-	design_ids += "s12g_incinslug"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
