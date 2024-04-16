@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	for(var/mob/living/watchers in view(9, owner) - owner)
+	for(var/mob/living/watchers in oviewers(9, owner))
 		owner.balloon_alert(owner, "you can only vanish unseen.")
 		return FALSE
 	return TRUE
