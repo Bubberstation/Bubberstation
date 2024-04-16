@@ -52,7 +52,6 @@
 	design_ids += "wt550_ammo_flathead"
 	design_ids += "sol35_shortmag"
 	design_ids += "sol40_riflemag"
-	design_ids += "solgrenade_mag"
 	design_ids += "m45_mag"
 	. = ..()
 
@@ -60,11 +59,12 @@
 	design_ids += "wt550_ammo_normal"
 	design_ids += "sol35_shortextmag"
 	design_ids += "sol40_riflstandardemag"
-	design_ids += "solgrenade_extmag"
+	design_ids += "solgrenade_mag"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
+	design_ids += "solgrenade_extmag"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
