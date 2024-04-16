@@ -56,7 +56,7 @@
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/m1911/gold = 1,
 	/obj/item/ammo_box/magazine/m45 = 3,
 	)
-	cost = PAYCHECK_COMMAND * 32 //You can do it!
+	cost = PAYCHECK_COMMAND * 26
 	access_view = ACCESS_WEAPONS
 
 #undef AMMO_GIVEN_ON_START
