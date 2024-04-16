@@ -260,7 +260,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-	/datum/design/advancedgaugeboxes_rubbershot
+/datum/design/advancedgaugeboxes_rubbershot
 	name = "12 Gauge Advanced Rubber Shot Ammunition Box"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_rubber"

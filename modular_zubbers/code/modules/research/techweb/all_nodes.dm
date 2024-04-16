@@ -47,12 +47,21 @@
 		"minesweeper",
 	)
 
+/datum/techweb_node/sec_basic/New()
+	design_ids += "s12g_rubber"
+	design_ids += "s12g_bslug"
+	. = ..()
+
 /datum/techweb_node/weaponry/New()
 	design_ids += "wt550_ammo_rubber"
 	design_ids += "wt550_ammo_flathead"
 	design_ids += "sol35_shortmag"
 	design_ids += "sol40_riflemag"
 	design_ids += "m45_mag"
+	design_ids += "s12g_buckshot"
+	design_ids += "s12g_slug"
+	design_ids += "s12g_hornet"
+	design_ids += "s12g_antitide"
 	. = ..()
 
 /datum/techweb_node/adv_weaponry/New()
@@ -60,11 +69,13 @@
 	design_ids += "sol35_shortextmag"
 	design_ids += "sol40_riflstandardemag"
 	design_ids += "solgrenade_mag"
+	design_ids += "s12g_flechette"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
 	design_ids += "solgrenade_extmag"
+	design_ids += "s12g_incinslug"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
@@ -73,4 +84,6 @@
 	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
 	design_ids += "sol40_rifldrummag"
+	design_ids += "s12g_magnum"
+	design_ids += "s12g_express"
 	. = ..()
