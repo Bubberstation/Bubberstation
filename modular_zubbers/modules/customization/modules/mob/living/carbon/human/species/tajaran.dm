@@ -43,7 +43,7 @@
 /obj/item/organ/internal/eyes/tajaran
 	name = "tajaran eyes"
 	desc = "they seem very cat like."
-	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE //sorry cat gamers it's over
+	flash_protect = FLASH_PROTECTION_SENSITIVE //One layer protection
 	color_cutoffs = list(12, 7, 7)
 
 /obj/item/organ/internal/eyes/tajaran/on_mob_insert(mob/living/carbon/human/eyes_owner)
