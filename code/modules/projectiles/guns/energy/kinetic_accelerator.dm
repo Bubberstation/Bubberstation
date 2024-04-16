@@ -75,7 +75,7 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
-	if(modkits.len && !disablemodification) // Zubber edit
+	if(modkits.len && !disablemodification) // BUBBER EDIT
 		to_chat(user, span_notice("You pry all the modifications out."))
 		I.play_tool_sound(src, 100)
 		for(var/a in modkits)
@@ -131,7 +131,7 @@
 	return ..()
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/borg/upgrade/modkit) && !disablemodification) // Zubber Edit
+	if(istype(I, /obj/item/borg/upgrade/modkit) && !disablemodification) // BUBBER EDIT
 		var/obj/item/borg/upgrade/modkit/MK = I
 		MK.install(src, user)
 	else
