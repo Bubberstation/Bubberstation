@@ -198,12 +198,12 @@
 /area/ruin/syndicate_ice_base/medbay)
 "bC" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/small/red/directional/south{
 	pixel_x = -16
 	},
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "bD" = (
@@ -345,10 +345,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
-"cy" = (
-/obj/effect/turf_decal/skyrat_decals/syndicate/bottom/middle,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/syndicate_ice_base/armory)
 "cz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -488,10 +484,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
-"dv" = (
-/obj/effect/turf_decal/skyrat_decals/syndicate/top/middle,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/syndicate_ice_base/armory)
 "dD" = (
 /obj/effect/decal/cleanable/oil,
 /obj/structure/disposaloutlet{
@@ -679,9 +671,9 @@
 	},
 /area/ruin/syndicate_ice_base/medbay)
 "fq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/effect/turf_decal/skyrat_decals/syndicate/bottom/right,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "fr" = (
@@ -1324,6 +1316,9 @@
 /obj/item/grenade/barrier{
 	pixel_x = 5;
 	pixel_y = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
@@ -2445,10 +2440,7 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "sL" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/effect/turf_decal/skyrat_decals/syndicate/bottom/right,
+/obj/effect/turf_decal/skyrat_decals/syndicate/top/middle,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "sM" = (
@@ -2859,9 +2851,18 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "vf" = (
-/obj/effect/turf_decal/skyrat_decals/syndicate/top/left,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/syndicate_ice_base/armory)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating,
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/cargo)
 "vi" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/pinpointer_pairs{
@@ -3611,9 +3612,7 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "Bm" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/right,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
@@ -4311,7 +4310,7 @@
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Gp" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/skyrat_decals/syndicate/middle/left,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "Gq" = (
@@ -4779,11 +4778,6 @@
 /obj/structure/railing/corner,
 /turf/open/floor/plating/reinforced,
 /area/icemoon/underground/explored)
-"Jx" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/skyrat_decals/syndicate/middle/left,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/syndicate_ice_base/armory)
 "Jz" = (
 /obj/structure/frame/machine/secured,
 /obj/item/circuitboard/machine/stacking_machine,
@@ -5171,6 +5165,18 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
+"Mq" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/firingpins/syndicate,
+/obj/item/storage/box/firingpins/syndicate{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/syndicate_ice_base/armory)
 "Mu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8
@@ -5236,6 +5242,7 @@
 /area/ruin/syndicate_ice_base/testlab)
 "MQ" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/left,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "MR" = (
@@ -5395,10 +5402,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "Ow" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/middle,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
@@ -6308,19 +6311,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
-"TU" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating,
-/turf/open/floor/iron/dark,
-/area/ruin/syndicate_ice_base/cargo)
 "TV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -6455,12 +6445,7 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "UE" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/firingpins/syndicate,
-/obj/item/storage/box/firingpins/syndicate{
-	pixel_x = -2;
-	pixel_y = 6
-	},
+/obj/effect/turf_decal/skyrat_decals/syndicate/top/left,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "UH" = (
@@ -6714,6 +6699,11 @@
 	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
+"Xb" = (
+/obj/effect/turf_decal/skyrat_decals/syndicate/bottom/middle,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/syndicate_ice_base/armory)
 "Xj" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7785,7 +7775,7 @@ RL
 qC
 Ov
 sD
-fq
+sD
 oB
 kE
 UI
@@ -7844,7 +7834,7 @@ qz
 qC
 UV
 sD
-Gp
+sD
 YZ
 kE
 iJ
@@ -7903,7 +7893,7 @@ DG
 qC
 Bi
 sD
-Gp
+sD
 kx
 Hg
 kE
@@ -7961,8 +7951,8 @@ tM
 qC
 qC
 yy
-vf
-Jx
+UE
+Gp
 MQ
 vi
 kE
@@ -8020,10 +8010,10 @@ MN
 RK
 qC
 io
-dv
+sL
 Ow
-cy
-UE
+Xb
+Mq
 kE
 HX
 Ig
@@ -8075,13 +8065,13 @@ Qe
 Em
 Em
 Em
-TU
+vf
 ZN
 qC
 JN
 Qm
 Bm
-sL
+fq
 bC
 kE
 HX
