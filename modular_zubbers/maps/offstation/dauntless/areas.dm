@@ -10,17 +10,14 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/cargo
 	name = "Dauntless Hangarbay"
-	ignore_weather_sfx = FALSE
 
 // Engineering
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering
 	name = "Dauntless Engineering Bay"
-	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine
 	name = "Dauntless Turbine Room"
-	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining
 	name = "Dauntless Bluespace Mining"
