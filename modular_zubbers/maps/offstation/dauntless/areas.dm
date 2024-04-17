@@ -4,25 +4,30 @@
 	name = "SSV Dauntless"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-ship"
+	ignore_weather_sfx = TRUE
 
 // Cargo
 
 /area/ruin/space/has_grav/bubbers/dauntless/cargo
 	name = "Dauntless Hangarbay"
+	ignore_weather_sfx = FALSE
 
 // Engineering
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering
 	name = "Dauntless Engineering Bay"
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine
 	name = "Dauntless Turbine Room"
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining
 	name = "Dauntless Bluespace Mining"
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals
 	name = "Dauntless Dispolsals System"
+	ignore_weather_sfx = FALSE
 
 // Service - Recreation
 
