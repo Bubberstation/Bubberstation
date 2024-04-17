@@ -571,7 +571,7 @@
 /// Handles weapon reagent imbuing
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
 	//BUBBER EDIT START - Makes imbuing need skill again
-	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
+	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
 		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
 		return
 	//BUBBER EDIT END
@@ -616,7 +616,7 @@
 /// Handles clothing imbuing, extremely similar to weapon imbuing but not in the same proc because of how uhh... goofy the way this has to be done is
 /obj/structure/reagent_forge/proc/handle_clothing_imbue(obj/attacking_item, mob/living/user)
 	//BUBBER EDIT START - Makes imbuing need skill again
-	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
+	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
 		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
 		return
 	//BUBBER EDIT END
