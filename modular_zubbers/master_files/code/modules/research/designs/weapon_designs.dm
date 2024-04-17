@@ -85,13 +85,14 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 // Sol 40 Rifle
+//These use plastic so they are still material costly, but should be not as bad
 
 /datum/design/sol40_mag_rifle
 	name = "Sol .40 Rifle Magazine"
 	desc = "A short Sol .40 Rifle magazine for compatible Weaponry."
 	id = "sol40_riflemag"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
 	build_path = /obj/item/ammo_box/magazine/c40sol_rifle/starts_empty
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -103,7 +104,7 @@
 	desc = "A regular sized Sol .40 Rifle magazine for compatible Weaponry."
 	id = "sol40_riflstandardemag"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 10)
 	build_path = /obj/item/ammo_box/magazine/c40sol_rifle/standard/starts_empty
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -115,7 +116,7 @@
 	desc = "A large drum Sol .40 Rifle magazine for compatible Weaponry."
 	id = "sol40_rifldrummag"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40)
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 40)
 	build_path = /obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
