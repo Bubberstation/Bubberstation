@@ -16,11 +16,6 @@
 	name = "interdyne produce orders console"
 	desc = "An interface for ordering fresh produce and other. The cornerstone of any nutritious meal for the Syndicate crew."
 	circuit = /obj/item/circuitboard/computer/order_console/interdyne
-	order_categories = list(
-		CATEGORY_FRUITS_VEGGIES,
-		CATEGORY_MILK_EGGS,
-		CATEGORY_SAUCES_REAGENTS,
-	)
 	blackbox_key = null
 	forced_express = TRUE
 
