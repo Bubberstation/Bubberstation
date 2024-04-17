@@ -45,6 +45,7 @@
 
 /datum/techweb_node/basic_circuitry/New()
 	design_ids += "comp_list_literal_ntnet_send"
+	design_ids += "comp_toggle"
 	. = ..()
 
 /datum/techweb_node/bci_shells/New()

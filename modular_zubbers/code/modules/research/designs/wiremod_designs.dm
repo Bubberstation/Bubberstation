@@ -22,3 +22,8 @@
 	name = "Drone Camera"
 	id = "comp_drone_camera"
 	build_path = /obj/item/circuit_component/drone_camera
+
+/datum/design/component/toggle
+	name = "Toggle Component"
+	id = "comp_toggle"
+	build_path = /obj/item/circuit_component/compare/toggle
