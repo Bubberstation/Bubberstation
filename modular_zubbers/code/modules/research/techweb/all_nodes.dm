@@ -51,7 +51,7 @@
 
 /datum/techweb_node/magazineresearch
 	id = "storedmunition_tech"
-	display_name = "Munition Research"
+	display_name = "Military Grade Munition Research"
 	description = "In the wake of the NRI Border Conflict, there was a drive to advances our armament, learn how sol does it."
 	prereq_ids = list("adv_weaponry")
 	design_ids = list(
