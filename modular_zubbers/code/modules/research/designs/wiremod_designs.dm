@@ -1,7 +1,7 @@
-/datum/design/component/ntnet_send_literal
+/datum/design/component/list_literal/ntnet_send
 	name = "NTNet Transmitter List Literal"
-	id = "comp_ntnet_send_literal"
-	build_path = /obj/item/circuit_component/ntnet_send_literal
+	id = "comp_list_literal_ntnet_send"
+	build_path = /obj/item/circuit_component/list_literal/ntnet_send
 
 /datum/design/component/bci/reagent_injector_bluespace
 	name = "Reagent Injector Component (Bluespace)"

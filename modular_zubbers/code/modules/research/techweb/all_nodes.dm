@@ -44,7 +44,7 @@
 // Integrated circuits tech
 
 /datum/techweb_node/basic_circuitry/New()
-	design_ids += "comp_ntnet_send_literal"
+	design_ids += "comp_list_literal_ntnet_send"
 	. = ..()
 
 /datum/techweb_node/bci_shells/New()
