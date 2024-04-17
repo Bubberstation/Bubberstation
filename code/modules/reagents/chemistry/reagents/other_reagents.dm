@@ -1796,9 +1796,10 @@
 /datum/reagent/plantnutriment/endurogrow/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
 	var/obj/item/seeds/myseed = mytray.myseed
 	if(!isnull(myseed))
-		myseed.adjust_potency(-round(volume * 0.1))
-		myseed.adjust_yield(-round(volume * 0.075))
+		myseed.adjust_potency(-round(volume * 0.3)) //BUBBER EDIT
+		myseed.adjust_yield(-round(volume * 0.225)) //BUBBER EDIT
 		myseed.adjust_endurance(round(volume * 0.35))
+		myseed.adjust_lifespan(round(volume * 0.35)) //BUBBER EDIT
 
 /datum/reagent/plantnutriment/liquidearthquake
 	name = "Liquid Earthquake"
