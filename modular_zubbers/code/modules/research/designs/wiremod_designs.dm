@@ -16,12 +16,12 @@
 /datum/design/component/bci/eye_camera
 	name = "Eye Camera"
 	id = "comp_eye_camera"
-	build_path = /obj/item/circuit_component/eye_camera
+	build_path = /obj/item/circuit_component/remotecam/bci
 
 /datum/design/component/drone_camera
 	name = "Drone Camera"
 	id = "comp_drone_camera"
-	build_path = /obj/item/circuit_component/drone_camera
+	build_path = /obj/item/circuit_component/remotecam/drone
 
 /datum/design/component/toggle
 	name = "Toggle Component"
