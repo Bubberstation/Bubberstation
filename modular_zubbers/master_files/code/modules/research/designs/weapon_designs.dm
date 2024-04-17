@@ -200,7 +200,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/advancedgaugeboxes_slug
+/datum/design/advancedgaugeboxes_incinslug
 	name = "12 Gauge Advanced Incendiary Slug Ammunition Box"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_incinslug"
