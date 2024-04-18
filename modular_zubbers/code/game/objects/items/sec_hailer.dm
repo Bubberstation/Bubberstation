@@ -6,8 +6,11 @@
 	COOLDOWN_DECLARE(backup_cooldown)
 	actions_types = list(/datum/action/item_action/backup, /datum/action/item_action/halt, /datum/action/item_action/adjust)
 
+// Swat Mask too
+/obj/item/clothing/mask/gas/sechailer/swat
+	actions_types = list(/datum/action/item_action/backup, /datum/action/item_action/halt)
 /datum/action/item_action/backup
-	name = "BACKUP"
+	name = "BACKUP!"
 
 /// Add the Radio
 /obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
@@ -20,11 +23,12 @@
 /obj/item/clothing/mask/gas/sechailer/Destroy()
 	QDEL_NULL(radio)
 	. = ..()
+
 /// If EMP'd, become EMP'd
 /obj/item/clothing/mask/gas/sechailer/emp_act(severity)
 	. = ..()
 	if(!emped)
-		balloon_alert(src, "Backup Hailer Malfunctioning!")
+		balloon_alert_to_viewers("Backup Hailer Malfunctioning!", vision_distance = 1)
 		emped = TRUE
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/mask/gas/sechailer, emp_reset)), 2 MINUTES)
 
@@ -36,9 +40,9 @@
 	emped = FALSE
 
 /obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, action)
-	if(istype(action, /datum/action/item_action/backup))
+	if (istype(action, /datum/action/item_action/backup))
 		backup()
-	if(istype(action, /datum/action/item_action/halt))
+	else if (istype(action, /datum/action/item_action/halt))
 		halt()
 	else
 		adjustmask(user)
@@ -46,7 +50,7 @@
 /// Main backup UI button
 /obj/item/clothing/mask/gas/sechailer/verb/backup()
 	set category = "Object"
-	set category = "BACKUP"
+	set category = "BACKUP!"
 	set src in usr
 	var/location = get_area_name(get_turf(src))
 
