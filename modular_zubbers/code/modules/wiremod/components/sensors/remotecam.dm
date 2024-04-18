@@ -69,9 +69,9 @@
 /obj/item/circuit_component/remotecam/proc/init_camera(shell_name)
 	shell_camera.desc = "This camera belongs in a circuit. If you see this, tell a coder!"
 	current_camera_name = ""
+	current_camera_range = camera_range.value
 	current_camera_network = ""
 	close_camera()
-	current_camera_range = camera_range.value
 	set_camera_range(current_camera_range)
 	update_camera_name_network(shell_name)
 
@@ -156,12 +156,16 @@
 	desc = "Capture's surrounding sight for surveillance-on-the-go. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
 	category = "Sensor"
 
+	required_shells = list(/mob/living/circuit_drone)
+
 	var/mob/living/circuit_drone/drone = null
 
 /obj/item/circuit_component/remotecam/bci
 	display_name = "Eye Camera"
 	desc = "Digitizes user's sight for surveillance-on-the-go. User must have fully functional eyes for digitizer to work. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
 	category = "BCI"
+
+	required_shells = list(/obj/item/organ/internal/cyberimp/bci)
 
 	var/obj/item/organ/internal/cyberimp/bci/bci = null
 
