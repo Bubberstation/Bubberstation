@@ -11,14 +11,8 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "ah" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/stone,
+/obj/structure/table,
+/turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "al" = (
 /obj/structure/sign/departments/science/directional/west,
@@ -656,6 +650,16 @@
 /obj/structure/dresser,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
+"fk" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/floor/stone,
+/area/ruin/syndicate_ice_base/bar)
 "fm" = (
 /obj/machinery/stasis{
 	dir = 8
@@ -893,6 +897,9 @@
 /obj/machinery/vending/hydroseeds{
 	onstation = 0;
 	onstation_override = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
 	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
@@ -1356,6 +1363,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
+"kP" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/syndicate_ice_base/bar)
 "kR" = (
 /obj/machinery/door/airlock/medical{
 	name = "Medical Desk"
@@ -3350,9 +3362,6 @@
 /area/ruin/syndicate_ice_base/main)
 "yn" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/cyan/visible,
-/obj/machinery/airalarm/directional/east{
-	req_access = list("syndicate")
-	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "yo" = (
@@ -3404,16 +3413,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "yM" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/thinplating/dark/corner,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "yO" = (
@@ -3722,7 +3725,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "Cn" = (
@@ -3859,7 +3862,9 @@
 /area/ruin/syndicate_ice_base/medbay)
 "Dl" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Dn" = (
@@ -4303,8 +4308,8 @@
 /turf/open/floor/iron/large,
 /area/ruin/syndicate_ice_base/telecomms)
 "Gj" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
 /turf/open/floor/stone,
@@ -5109,12 +5114,8 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "Mb" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /obj/machinery/light/directional/east,
-/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/plantgenes,
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Mc" = (
@@ -5762,9 +5763,8 @@
 /area/ruin/syndicate_ice_base/virology)
 "QH" = (
 /obj/machinery/seed_extractor,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "QM" = (
@@ -6669,9 +6669,11 @@
 /turf/open/floor/carpet/orange,
 /area/ruin/syndicate_ice_base/cargo)
 "WO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
@@ -6690,13 +6692,8 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
 "WZ" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
+/obj/machinery/light/directional/east,
 /obj/effect/turf_decal/siding/thinplating/dark,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Xb" = (
@@ -6840,7 +6837,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "YT" = (
@@ -6900,6 +6899,13 @@
 	onstation_override = 1
 	},
 /turf/open/floor/iron,
+/area/ruin/syndicate_ice_base/bar)
+"Zk" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Zm" = (
 /obj/effect/turf_decal/siding/dark{
@@ -9106,7 +9112,7 @@ Vx
 eG
 eG
 eG
-DW
+eG
 DW
 "}
 (36,1,1) = {"
@@ -9157,6 +9163,7 @@ oZ
 qY
 qt
 qt
+qt
 nj
 wy
 wy
@@ -9165,7 +9172,6 @@ eG
 eG
 eG
 eG
-DW
 DW
 "}
 (37,1,1) = {"
@@ -9215,6 +9221,7 @@ Jk
 kr
 mj
 NK
+NK
 Fi
 tH
 Kj
@@ -9224,7 +9231,6 @@ eG
 eG
 eG
 eG
-DW
 DW
 "}
 (38,1,1) = {"
@@ -9275,6 +9281,7 @@ YJ
 QH
 Cj
 ah
+yM
 wy
 wq
 PP
@@ -9283,7 +9290,6 @@ eG
 eG
 eG
 eG
-DW
 DW
 "}
 (39,1,1) = {"
@@ -9332,13 +9338,13 @@ cn
 Tl
 Dl
 rT
+kP
 ZJ
-WZ
+yM
 wy
 wq
 wq
 nL
-eG
 eG
 eG
 eG
@@ -9391,13 +9397,13 @@ eg
 nL
 WO
 nO
+Zk
 nO
-yM
+fk
 Eq
 Kj
 Kj
 nL
-eG
 eG
 eG
 eG
@@ -9452,6 +9458,7 @@ Gj
 If
 gX
 Mb
+WZ
 wy
 RQ
 wy
@@ -9460,7 +9467,6 @@ eG
 eG
 eG
 eG
-DW
 DW
 "}
 (42,1,1) = {"
@@ -9514,12 +9520,12 @@ nL
 nL
 nL
 nL
+nL
 UW
 eG
 eG
 eG
 eG
-DW
 DW
 "}
 (43,1,1) = {"
