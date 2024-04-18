@@ -12,6 +12,10 @@
 /area/ruin/syndicate_ice_base/engineering)
 "ah" = (
 /obj/structure/table,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "al" = (
@@ -658,6 +662,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "fm" = (
@@ -894,14 +901,14 @@
 /turf/open/floor/circuit/telecomms,
 /area/ruin/syndicate_ice_base/testlab)
 "gX" = (
-/obj/machinery/vending/hydroseeds{
-	onstation = 0;
-	onstation_override = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/stone,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/plantgenes,
+/turf/open/floor/plastic,
 /area/ruin/syndicate_ice_base/bar)
 "gY" = (
 /obj/structure/extinguisher_cabinet/directional/north,
@@ -1364,7 +1371,6 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "kP" = (
-/obj/structure/reagent_dispensers/watertank/high,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
@@ -2365,7 +2371,10 @@
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
 "rT" = (
-/obj/machinery/chem_dispenser/mutagensaltpeter,
+/obj/machinery/vending/hydroseeds{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "sa" = (
@@ -3417,6 +3426,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "yO" = (
@@ -3721,11 +3733,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/medbay)
 "Cj" = (
-/obj/structure/table,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "Cn" = (
@@ -3861,9 +3871,12 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "Dl" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
@@ -4308,11 +4321,11 @@
 /turf/open/floor/iron/large,
 /area/ruin/syndicate_ice_base/telecomms)
 "Gj" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
+/obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/turf/open/floor/stone,
+/obj/machinery/seed_extractor,
+/turf/open/floor/plastic,
 /area/ruin/syndicate_ice_base/bar)
 "Gp" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/left,
@@ -4581,11 +4594,11 @@
 /area/ruin/syndicate_ice_base/cargo)
 "If" = (
 /obj/machinery/firealarm/directional/east,
-/obj/machinery/vending/hydronutrients{
-	onstation = 0;
-	onstation_override = 1
+/obj/effect/turf_decal/siding/white{
+	dir = 8
 	},
-/turf/open/floor/stone,
+/obj/machinery/chem_dispenser/mutagensaltpeter,
+/turf/open/floor/plastic,
 /area/ruin/syndicate_ice_base/bar)
 "Ig" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5115,8 +5128,11 @@
 /area/ruin/syndicate_ice_base/medbay)
 "Mb" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/plantgenes,
-/turf/open/floor/stone,
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/turf/open/floor/plastic,
 /area/ruin/syndicate_ice_base/bar)
 "Mc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5758,9 +5774,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/virology)
 "QH" = (
-/obj/machinery/seed_extractor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/vending/hydronutrients{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "QM" = (
@@ -6668,9 +6688,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "WT" = (
@@ -6690,6 +6707,10 @@
 "WZ" = (
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/siding/thinplating/dark,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "Xb" = (
@@ -6833,9 +6854,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
 "YT" = (
@@ -9278,7 +9297,7 @@ YJ
 QH
 Cj
 ah
-yM
+Dl
 wy
 wq
 PP
@@ -9333,7 +9352,7 @@ ew
 ap
 cn
 Tl
-Dl
+nj
 rT
 kP
 ZJ
