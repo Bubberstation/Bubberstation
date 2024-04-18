@@ -24,6 +24,9 @@
 	/// The network to use
 	var/datum/port/input/network
 
+	/// Allow camera range to be set or not
+	var/camera_range_settable = 1
+
 	/// Camera object
 	var/obj/machinery/camera/shell_camera = null
 	/// Camera random ID
@@ -38,15 +41,22 @@
 
 /obj/item/circuit_component/remotecam/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Power Usage For Near (0) Range: [power_usage_per_input] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
-	. += create_ui_notice("Power Usage For Far (1) Range: [power_usage_per_input_far_range] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+	if(camera_range_settable)
+		. += create_ui_notice("Power Usage For Near (0) Range: [power_usage_per_input] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+		. += create_ui_notice("Power Usage For Far (1) Range: [power_usage_per_input_far_range] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+	else
+		. += create_ui_notice("Power Usage While Active: [power_usage_per_input] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
 /obj/item/circuit_component/remotecam/populate_ports()
 	on = add_input_port("On", PORT_TYPE_NUMBER, default = 0)
-	camera_range = add_input_port("Camera Range", PORT_TYPE_NUMBER, default = 0)
+	if(camera_range_settable)
+		camera_range = add_input_port("Camera Range", PORT_TYPE_NUMBER, default = 0)
 	network = add_input_port("Network", PORT_TYPE_STRING, default = "ss13")
 
-	current_camera_range = camera_range.value
+	if(camera_range_settable)
+		current_camera_range = camera_range.value
+	else
+		current_camera_range = 0
 	c_tag_random = rand(1, 999)
 
 /obj/item/circuit_component/remotecam/register_shell(atom/movable/shell)
@@ -69,10 +79,13 @@
 /obj/item/circuit_component/remotecam/proc/init_camera(shell_name)
 	shell_camera.desc = "This camera belongs in a circuit. If you see this, tell a coder!"
 	current_camera_name = ""
-	current_camera_range = camera_range.value
+	if(camera_range_settable)
+		current_camera_range = camera_range.value
+	else
+		current_camera_range = 0
 	current_camera_network = ""
 	close_camera()
-	set_camera_range(current_camera_range)
+	update_camera_range()
 	update_camera_name_network(shell_name)
 
 /**
@@ -104,8 +117,8 @@
 /**
  * Set the camera range
  */
-/obj/item/circuit_component/remotecam/proc/set_camera_range(camera_range)
-	shell_camera.setViewRange(camera_range > 0 ? REMOTECAM_RANGE_FAR : REMOTECAM_RANGE_NEAR)
+/obj/item/circuit_component/remotecam/proc/update_camera_range()
+	shell_camera.setViewRange(current_camera_range > 0 ? REMOTECAM_RANGE_FAR : REMOTECAM_RANGE_NEAR)
 
 /**
  * Updates the camera name and network
@@ -219,13 +232,13 @@
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
 		//If cell doesn't exist, or we ran out of power
-		if(!cell?.use(camera_range.value > 0 ? power_usage_per_input_far_range : power_usage_per_input))
+		if(!cell?.use(current_camera_range > 0 ? power_usage_per_input_far_range : power_usage_per_input))
 			close_camera()
 			return
 		//If the camera range has changed, update camera range
 		if(!camera_range.value != !current_camera_range)
 			current_camera_range = camera_range.value
-			set_camera_range(current_camera_range)
+			update_camera_range()
 		//Set the camera state (if state has been changed)
 		if((!!on.value) ^ shell_camera.status)
 			shell_camera.toggle_cam(null, 0)
@@ -245,11 +258,11 @@
 		if(bci.owner.is_nearsighted_currently())
 			if(current_camera_range)
 				current_camera_range = 0
-				set_camera_range(0)
+				update_camera_range()
 		//Else if the camera range has changed, update camera range
 		else if(!camera_range.value != !current_camera_range)
 			current_camera_range = camera_range.value
-			set_camera_range(current_camera_range)
+			update_camera_range()
 		//Set the camera state (if state has been changed)
 		if((!!on.value) ^ shell_camera.status)
 			shell_camera.toggle_cam(null, 0)
