@@ -11,6 +11,7 @@
 /obj/item/clothing/mask/gas/sechailer/New()
 	. = ..()
 	actions_types += list(/datum/action/item_action/backup)
+
 /// Add the Radio
 /obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
 	. = ..()
@@ -38,9 +39,9 @@
 	emped = FALSE
 
 /obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, action)
-	. = ..()
 	if(istype(action, /datum/action/item_action/backup))
 		backup()
+	return ..()
 
 /// Main backup UI button
 /obj/item/clothing/mask/gas/sechailer/verb/backup(mob/living/owner)
@@ -53,9 +54,11 @@
 		return
 	if (!COOLDOWN_FINISHED(src, backup_cooldown))
 		balloon_alert(owner, "On Cooldown!")
+		return
 	if (emped)
 		balloon_alert(owner, "Backup Malfunctioning!")
 	else
+		COOLDOWN_START(src, backup_cooldown, 1 MINUTES)
 		radio.talk_into(owner, "Backup Requested in [location]!", RADIO_CHANNEL_SECURITY)
 		owner.audible_message("<font color='red' size='5'><b>BACKUP REQUESTED!</b></font>")
 		balloon_alert_to_viewers("Backup Requested!", "Backup Requested!", 7)
