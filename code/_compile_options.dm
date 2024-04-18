@@ -1,4 +1,4 @@
-//#define TESTING //By using the testing("message") proc you can create debug-feedback for people with this
+#define TESTING //By using the testing("message") proc you can create debug-feedback for people with this
 								//uncommented, but not visible in the release version)
 
 //#define DATUMVAR_DEBUGGING_MODE //Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
@@ -63,7 +63,7 @@
 #endif // REFERENCE_DOING_IT_LIVE
 
 // If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between
-// #define UNIT_TESTS
+#define UNIT_TESTS
 
 // If this is uncommented, will attempt to load and initialize prof.dll/libprof.so.
 // We do not ship byond-tracy. Build it yourself here: https://github.com/mafemergency/byond-tracy/
