@@ -2,13 +2,10 @@
 #define REMOTECAM_RANGE_NEAR 2
 
 /**
- * # BCI/Drone Camera Component
+ * # Remote Camera Component
  *
  * Attaches a camera for surveillance-on-the-go.
- * Only works on movable shells/BCI shell.
- *
  */
-
 /obj/item/circuit_component/remotecam
 	display_name = "Camera Abstract Type"
 	desc = "This is the abstract parent type - do not use this directly!"
@@ -173,6 +170,17 @@
 
 	var/mob/living/circuit_drone/drone = null
 
+/obj/item/circuit_component/remotecam/polaroid
+	display_name = "Polaroid Camera Add-On"
+	desc = "Relays a polaroid camera's feed as a digital stream for surveillance-on-the-go. Network field is used for camera network."
+	category = "Sensor"
+
+	required_shells = list(/obj/item/circuit_component/camera)
+
+	var/obj/item/circuit_component/camera/polaroid = null
+
+	camera_range_settable = 0
+
 /obj/item/circuit_component/remotecam/bci
 	display_name = "Eye Camera"
 	desc = "Digitizes user's sight for surveillance-on-the-go. User must have fully functional eyes for digitizer to work. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
@@ -186,12 +194,20 @@
 	if(drone && shell_camera)
 		update_camera("Drone")
 
+/obj/item/circuit_component/remotecam/polaroid/pre_input_received(datum/port/input/port)
+	if(polaroid && shell_camera)
+		update_camera("Polaroid")
+
 /obj/item/circuit_component/remotecam/bci/pre_input_received(datum/port/input/port)
 	if(bci && shell_camera)
 		update_camera("BCI")
 
 /obj/item/circuit_component/remotecam/drone/Destroy()
 	drone = null
+	return ..()
+
+/obj/item/circuit_component/remotecam/polaroid/Destroy()
+	polaroid = null
 	return ..()
 
 /obj/item/circuit_component/remotecam/bci/Destroy()
@@ -207,6 +223,15 @@
 		shell_camera = new /obj/machinery/camera (drone)
 		init_camera("Drone")
 
+/obj/item/circuit_component/remotecam/polaroid/register_shell(atom/movable/shell)
+	. = ..()
+	polaroid = null
+	shell_camera = null
+	if(istype(shell, /obj/item/camera))
+		polaroid = shell
+		shell_camera = new /obj/machinery/camera (polaroid)
+		init_camera("Polaroid")
+
 /obj/item/circuit_component/remotecam/bci/register_shell(atom/movable/shell)
 	. = ..()
 	bci = null
@@ -218,6 +243,10 @@
 
 /obj/item/circuit_component/remotecam/drone/unregister_shell(atom/movable/shell)
 	drone = null
+	. = ..()
+
+/obj/item/circuit_component/remotecam/polaroid/unregister_shell(atom/movable/shell)
+	polaroid = null
 	. = ..()
 
 /obj/item/circuit_component/remotecam/bci/unregister_shell(atom/movable/shell)
@@ -239,6 +268,17 @@
 		if(!camera_range.value != !current_camera_range)
 			current_camera_range = camera_range.value
 			update_camera_range()
+		//Set the camera state (if state has been changed)
+		if((!!on.value) ^ shell_camera.status)
+			shell_camera.toggle_cam(null, 0)
+
+/obj/item/circuit_component/remotecam/polaroid/process(seconds_per_tick)
+	if(polaroid && shell_camera)
+		var/obj/item/stock_parts/cell/cell = parent.get_cell()
+		//If cell doesn't exist, or we ran out of power
+		if(!cell?.use(power_usage_per_input))
+			close_camera()
+			return
 		//Set the camera state (if state has been changed)
 		if((!!on.value) ^ shell_camera.status)
 			shell_camera.toggle_cam(null, 0)
