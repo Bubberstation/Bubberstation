@@ -44,7 +44,7 @@
 		adjustmask(user)
 
 /// Main backup UI button
-/obj/item/clothing/mask/gas/sechailer/verb/backup(mob/living/usr)
+/obj/item/clothing/mask/gas/sechailer/verb/backup()
 	set category = "Object"
 	set category = "BACKUP"
 	set src in usr
