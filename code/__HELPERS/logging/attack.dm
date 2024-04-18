@@ -1,6 +1,7 @@
 /// Generic attack logging
-/proc/log_attack(text, list/data)
+/proc/log_attack(text, list/data, redacted_log_text) // BUBBER EDIT
 	logger.Log(LOG_CATEGORY_ATTACK, text, data)
+	log_public_file(redacted_log_text) // BUBBER EDIT
 
 /**
  * Log a combat message in the attack log
@@ -27,9 +28,9 @@
 		saddition = " [addition]"
 
 	var/postfix = "[sobject][saddition][hp]"
-
+	var/redacted_copy = "[what_done] [target][postfix]"
 	var/message = "[what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
+	user.log_message(message, LOG_ATTACK, color="red", redacted_copy = redacted_copy) // BUBBER EDIT
 
 	if(user != target)
 		var/reverse_message = "was [what_done] by [ssource][postfix]"
