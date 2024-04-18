@@ -58,7 +58,6 @@
 
 
 //Research cyborgs
-//TODO: Add more things like a sheild or something these borgs are supposed to be the pinical of prototype.
 /obj/item/robot_model/sci
 	name = "Research"
 	basic_modules = list(
@@ -76,6 +75,7 @@
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/borg/apparatus/research,
 		/obj/item/borg/apparatus/mech,
+		/obj/item/borg/apparatus/circuit_sci,
 		/obj/item/storage/part_replacer/cyborg,
 		/obj/item/surgical_drapes,
 		/obj/item/healthanalyzer,
@@ -87,14 +87,14 @@
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
 
-//TODO: Sheild
+//TODO: Illegal science stuff
 	emag_modules = list(
 		/obj/item/borg/stun,
-		/obj/item/card/emag,//funny
-		///obj/item/borg/combat/shield, - Does not work currently
+		/obj/item/card/emag/limited,//funny
 		/obj/item/borg/apparatus/illegal //To replace malf printers
 	)
 	cyborg_base_icon = "research"
+	cyborg_icon_override = CYBORG_ICON_SCI
 	model_select_icon = "research"
 	model_select_alternate_icon = 'modular_zubbers/modules/borgs/sprites/screen_robot.dmi'
 	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
@@ -131,6 +131,11 @@
 			SKIN_ICON_STATE = "eyebot",
 			SKIN_ICON = CYBORG_ICON_SCI,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL),
+		),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_SCI_LARGE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
 		),
 	)
 

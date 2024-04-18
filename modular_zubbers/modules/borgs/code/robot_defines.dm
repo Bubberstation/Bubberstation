@@ -39,6 +39,7 @@
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
 
 #define CYBORG_ICON_SCI_WIDE 'modular_zubbers/modules/borgs/sprites/widerobot_sci.dmi'
+#define CYBORG_ICON_SCI_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_sci.dmi'
 #define CYBORG_ICON_SCI 'modular_zubbers/modules/borgs/sprites/robot_sci.dmi'
 
 /mob/living/silicon/robot/model/centcom

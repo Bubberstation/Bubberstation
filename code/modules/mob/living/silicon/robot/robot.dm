@@ -169,7 +169,7 @@
 			"Miner" = /obj/item/robot_model/miner,
 			"Janitor" = /obj/item/robot_model/janitor,
 			"Service" = /obj/item/robot_model/service,
-			"Research" = /obj/item/robot_model/sci,
+			"Research" = /obj/item/robot_model/sci,//BUBBEREDIT - Addition of Research borgs
 		)
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper

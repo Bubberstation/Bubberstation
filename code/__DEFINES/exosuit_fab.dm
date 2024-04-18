@@ -11,7 +11,7 @@
 /// Module is compatible with Service Cyborg model
 #define BORG_MODEL_SERVICE (1<<5)
 //Bubber addition start
-/// Module is compatible with Engineering Cyborg model
+/// Module is compatible with Research Cyborg model
 #define BORG_MODEL_RESEARCH (1<<6)
 //Bubber addition end
 

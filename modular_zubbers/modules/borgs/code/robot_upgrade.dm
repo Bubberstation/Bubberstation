@@ -71,7 +71,6 @@
 			R.model.remove_module(AC, TRUE)
 
 //Bluespace RPED
-
 /obj/item/borg/upgrade/brped
 	name = "Research cyborg Rapid Part Exchange Device Upgrade"
 	desc = "An upgrade to the Research model cyborg's standard RPED."
@@ -83,10 +82,10 @@
 /obj/item/borg/upgrade/brped/action(mob/living/silicon/robot/borg)
 	. = ..()
 	if(.)
-		for(var/obj/item/storage/part_replacer/cyborg/RPED in borg.model.modules)
+		for(var/obj/item/storage/part_replacer/RPED in borg.model.modules)
 			borg.model.remove_module(RPED, TRUE)
 
-		var/obj/item/storage/part_replacer/bluespace/BRPED = new /obj/item/healthanalyzer/advanced(borg.model)
+		var/obj/item/storage/part_replacer/bluespace/BRPED = new /obj/item/storage/part_replacer/bluespace(borg.model)
 		borg.model.basic_modules += BRPED
 		borg.model.add_module(BRPED, FALSE, TRUE)
 
@@ -96,6 +95,6 @@
 		for(var/obj/item/storage/part_replacer/bluespace/BRPED in borg.model.modules)
 			borg.model.remove_module(BRPED, TRUE)
 
-		var/obj/item/storage/part_replacer/cyborg/RPED = new (borg.model)
+		var/obj/item/storage/part_replacer/RPED = new (borg.model)
 		borg.model.basic_modules += RPED
 		borg.model.add_module(RPED, FALSE, TRUE)
