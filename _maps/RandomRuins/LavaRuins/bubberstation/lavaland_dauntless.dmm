@@ -283,15 +283,9 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "bt" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
-/obj/machinery/power/apc/auto_name/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/dark,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "bu" = (
@@ -1738,11 +1732,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "hY" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/structure/chair/sofa/corp/left{
+/obj/structure/chair/sofa/corp/right{
 	color = "#9D8AC9"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "hZ" = (
@@ -1912,6 +1905,14 @@
 "iE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/button/door/directional/north{
+	name = "Dorm 1";
+	id = "syndidorm_1";
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	dir = 2;
+	pixel_y = -24
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "iL" = (
@@ -2276,9 +2277,7 @@
 "kF" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/cold/directional/south,
-/obj/machinery/power/apc/auto_name/directional/south,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/structure/cable,
+/obj/structure/weightmachine/weightlifter,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "kI" = (
@@ -3568,10 +3567,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "qO" = (
-/obj/machinery/button/door/directional/south{
-	id = "syndiwindows_1";
-	name = "Window Privacy"
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -3913,16 +3908,18 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "sk" = (
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 5;
-	pixel_y = 15
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
 	},
-/obj/structure/table/wood,
-/turf/open/floor/wood/large,
-/area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/white/small,
+/area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "sn" = (
 /obj/structure/rack/gunrack,
 /obj/item/gun/ballistic/automatic/pistol,
@@ -4388,6 +4385,28 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
+"uM" = (
+/obj/structure/sink/directional/north,
+/obj/structure/mirror/directional/south,
+/obj/machinery/dryer{
+	dir = 4;
+	pixel_x = -12
+	},
+/obj/machinery/button/door/directional/west{
+	name = "Bolt Control";
+	id = "syndishowerbathroom";
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/siding/dark/end{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/white/small,
+/area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "uN" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
@@ -4458,14 +4477,16 @@
 	},
 /area/lavaland/surface/outdoors)
 "vc" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "vd" = (
@@ -4674,6 +4695,9 @@
 	dir = 10
 	},
 /obj/structure/weightmachine,
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "wf" = (
@@ -4882,12 +4906,10 @@
 "xm" = (
 /obj/machinery/shower/directional/south,
 /obj/structure/drain,
-/obj/effect/turf_decal/siding/dark{
-	dir = 9
-	},
 /obj/structure/curtain,
-/obj/machinery/light/small/directional/west,
-/obj/item/soap/syndie,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "xt" = (
@@ -5436,17 +5458,11 @@
 "zx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/button/door/directional/north{
-	name = "Dorm 1";
-	id = "syndidorm_1";
-	specialfunctions = 4;
-	normaldoorcontrol = 1;
-	dir = 2;
-	pixel_y = -24
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "zy" = (
@@ -5586,6 +5602,7 @@
 /obj/machinery/shower/directional/south,
 /obj/structure/drain,
 /obj/structure/curtain,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "Aa" = (
@@ -5720,6 +5737,14 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "AH" = (
+/obj/structure/table/wood,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = 5;
+	pixel_y = 15
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "AJ" = (
@@ -5803,11 +5828,16 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Be" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/airalarm/directional/north,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/structure/chair/sofa/corp/right{
+/obj/structure/chair/sofa/corp/left{
 	color = "#9D8AC9"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/button/door/directional/south{
+	id = "syndiwindows_1";
+	name = "Window Privacy";
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
@@ -5884,6 +5914,15 @@
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
+"Bs" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "Bt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5906,7 +5945,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/structure/weightmachine/weightlifter,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "By" = (
@@ -6705,10 +6744,13 @@
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Fu" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 2
 	},
+/obj/structure/table,
+/obj/structure/towel_bin,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "Fx" = (
@@ -8051,16 +8093,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "Mw" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 6
-	},
+/obj/machinery/shower/directional/south,
 /obj/structure/drain,
-/obj/structure/curtain,
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/shower/directional/south{
-	dir = 1
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
 	},
+/obj/structure/curtain,
+/obj/item/soap/syndie,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "My" = (
@@ -8071,7 +8110,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "Mz" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/machinery/light/warm/directional/south,
+/obj/machinery/light/warm/directional/south{
+	pixel_x = -16
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "MA" = (
@@ -8295,8 +8336,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/structure/towel_bin,
-/obj/structure/table,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "NN" = (
@@ -8448,6 +8487,21 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
+"Oz" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = 9
+	},
+/obj/machinery/light/small/directional/north,
+/obj/effect/turf_decal/siding/dark/end{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/white/small,
+/area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "OA" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/firealarm/directional/south,
@@ -10221,6 +10275,11 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
+"Xh" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "Xn" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
@@ -10235,16 +10294,11 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "Xp" = (
-/obj/structure/drain,
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
+/obj/machinery/door/airlock/bathroom{
+	name = "Bathroom";
+	id_tag = "syndishowerbathroom"
 	},
-/obj/structure/curtain,
-/obj/machinery/firealarm/directional/west,
-/obj/machinery/shower/directional/south{
-	dir = 1
-	},
-/turf/open/floor/iron/white/small,
+/turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower)
 "Xr" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/hidden/layer2{
@@ -10936,8 +10990,8 @@ PW
 PW
 PW
 FZ
-PW
-PW
+FZ
+FZ
 PW
 PW
 FZ
@@ -11006,7 +11060,7 @@ FZ
 FZ
 FZ
 FZ
-PW
+FZ
 FZ
 FZ
 FZ
@@ -11208,7 +11262,7 @@ FZ
 FZ
 FZ
 FZ
-FZ
+Vz
 FZ
 FZ
 FZ
@@ -11275,10 +11329,10 @@ FZ
 FZ
 FZ
 FZ
-FZ
-Vz
-FZ
-FZ
+SX
+Vl
+Vl
+SX
 FZ
 FZ
 FZ
@@ -11339,13 +11393,13 @@ FZ
 FZ
 FZ
 FZ
-FZ
-FZ
-FZ
-FZ
-SX
+Jj
+Aj
+TJ
+TJ
 Vl
-Vl
+Mw
+sk
 Vl
 Vl
 RP
@@ -11407,16 +11461,16 @@ FZ
 FZ
 FZ
 FZ
-Jj
 Aj
-TJ
-TJ
+Zc
+nF
+St
 Vl
 xm
 bt
 Xp
-Vl
-sk
+uM
+RP
 AH
 gt
 RH
@@ -11475,17 +11529,17 @@ FZ
 FZ
 FZ
 FZ
-Aj
-Zc
-nF
-St
+TJ
+zK
+BP
+sC
 Vl
 zZ
 vc
-Mw
 Vl
-Be
-AH
+Oz
+RP
+hY
 SM
 qO
 RP
@@ -11551,9 +11605,9 @@ Vl
 Vl
 Ck
 Vl
-Vl
-hY
-JE
+Xh
+RP
+Be
 JE
 iE
 RP
@@ -11619,7 +11673,7 @@ Aj
 of
 NT
 Fu
-JM
+Bs
 JM
 JM
 jB
@@ -11754,7 +11808,7 @@ fx
 Aj
 HX
 Ok
-bI
+Bj
 Lz
 kF
 JM
@@ -11822,7 +11876,7 @@ Aj
 Aj
 mI
 Ok
-Bj
+bI
 Lz
 OA
 JM
@@ -12247,7 +12301,7 @@ jK
 mn
 mn
 mn
-mn
+AB
 mn
 mn
 lV
@@ -12315,7 +12369,7 @@ AZ
 hI
 mn
 TF
-AB
+mn
 mn
 hI
 cP
