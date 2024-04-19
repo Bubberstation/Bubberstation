@@ -19,4 +19,4 @@
 	if(delta_temperature > 0)
 		environment.temperature += delta_temperature
 		air_update_turf(FALSE, FALSE)
-		use_power(required_energy / efficiency)
+		use_power = BASE_MACHINE_ACTIVE_CONSUMPTION

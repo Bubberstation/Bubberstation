@@ -22,7 +22,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/toxins, 0)
 /obj/machinery/camera/autoname/bombsite
 	network = list("toxins","ordnance","rd")
 	use_power = NO_POWER_USE //Test site is an unpowered area
-	invuln = TRUE
 	light_range = 10
 	start_active = TRUE
 

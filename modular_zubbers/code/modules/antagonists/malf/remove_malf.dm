@@ -12,7 +12,7 @@
 			. = TRUE
 
 /obj/machinery/computer/aifixer/proc/run_antivirus()
-	use_power(1000)
+	use_power = BASE_MACHINE_ACTIVE_CONSUMPTION
 	while(occupier && restoring)
 		sleep(2 SECONDS)
 		if(prob(25))

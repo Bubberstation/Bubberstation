@@ -373,7 +373,7 @@
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if(Adjacent(usr) && !HAS_SILICON_ACCESS(usr))
 			if (!usr.put_in_hands(disk))
 				disk.forceMove(drop_location())
 		else
@@ -383,7 +383,7 @@
 
 /obj/machinery/plantgenes/proc/eject_seed()
 	if (seed && !operation)
-		if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if(Adjacent(usr) && !HAS_SILICON_ACCESS(usr))
 			if (!usr.put_in_hands(seed))
 				seed.forceMove(drop_location())
 		else

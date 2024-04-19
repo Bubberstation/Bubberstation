@@ -20,7 +20,6 @@
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 35)
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
-	ass_image = 'modular_zubbers/icons/ass/asstajara.png'
 
 //Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran

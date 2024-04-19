@@ -18,7 +18,6 @@
 	var/list/obj/item/borg/upgrade/modkit/modkits = list()
 	///The max capacity of modkits the PKA can have installed at once.
 	var/max_mod_capacity = 100
-	var/list/modkits = list()
 	var/disablemodification = FALSE // Bubber edit, stops removal and addition of mods.
 
 
