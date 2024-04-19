@@ -37,6 +37,10 @@ export class ObjectComponent extends Component {
     const { dragPos } = this.state;
     const { index, act = () => _ } = this.props;
     if (dragPos) {
+      // BUBBER ADDITION BEGIN - Always use grid stepping motion
+      dragPos.x = Math.round(dragPos.x / 20) * 20;
+      dragPos.y = Math.round(dragPos.y / 20) * 20;
+      // BUBBER ADDITION END
       act('set_component_coordinates', {
         component_id: index,
         rel_x: dragPos.x,
@@ -107,6 +111,10 @@ export class ObjectComponent extends Component {
     if (dragPos && startPos && startPos.x === x_pos && startPos.y === y_pos) {
       x_pos = dragPos.x;
       y_pos = dragPos.y;
+      // BUBBER ADDITION BEGIN - Always use grid stepping motion
+      x_pos = Math.round(x_pos / 20) * 20;
+      y_pos = Math.round(y_pos / 20) * 20;
+      // BUBBER ADDITION END
     }
 
     // Assigned onto the ports
