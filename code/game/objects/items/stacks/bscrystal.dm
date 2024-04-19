@@ -31,10 +31,32 @@
 	return 1
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
+	user.visible_message(span_warning("[user] beings to crush [src]!"), span_danger("You begin to crush [src]!")) //BUBBERSTATION ADDITION
+	if(!do_after(user, delay = 3 SECONDS)) //BUBBERSTATION ADDITION
+		return //BUBBERSTATION ADDITION
 	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	blink_mob(user)
+//BUBBERSTATION addition begin | Here's the risk for using crystals. Might lose a limb or two.
+	if(prob(20) && ishuman(user))
+		var/mob/living/carbon/human = user
+		to_chat(human, span_danger("Your limbs lose molecular cohesion as you teleport!"))
+		var/list/bodyparts_dismember = list()
+		var/rad_mod = 0
+		for(var/obj/item/bodypart/BP in human.bodyparts)
+			if(BP.body_zone == BODY_ZONE_CHEST || BP.body_zone== BODY_ZONE_HEAD)
+				continue
+			bodyparts_dismember.Add(BP)
+		for(var/i in 1 to 2) //Removing two bodyparts.
+			var/obj/item/bodypart/BP = pick(bodyparts_dismember)
+			if(!istype(BP))
+				rad_mod += 300 //Bad snowflake, take more rads!
+				break
+			bodyparts_dismember.Remove(BP) //GC optimisation
+			BP.dismember()
+			qdel(BP)
+//BUBBERSTATION addition end
 	use(1)
 
 /obj/item/stack/ore/bluespace_crystal/proc/blink_mob(mob/living/L)
