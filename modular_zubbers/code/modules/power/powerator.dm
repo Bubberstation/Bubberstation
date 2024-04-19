@@ -12,3 +12,7 @@
 	divide_ratio = 0.00001
 	/// the account credits will be sent towards
 	credits_account = ACCOUNT_INT
+
+/obj/machinery/powerator/interdyne/RefreshParts()
+	. = ..()
+	max_power = clamp(max_power, 0, 1000000) //limit to 1MW so ghost roles cannot start a war with station using OP gear
