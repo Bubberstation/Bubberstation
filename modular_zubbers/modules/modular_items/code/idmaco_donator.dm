@@ -50,8 +50,8 @@
 	ckeywhitelist = IDMA_CKEY_WHITELIST
 
 /datum/loadout_item/toys/especiallystrange
+	name = "Ironmoon Tajaran Plushie"
 	item_path = /obj/item/toy/plush/especiallystrange
-	ckeywhitelist = IDMA_CKEY_WHITELIST
 
 /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	name = "ironmoon service helmet."

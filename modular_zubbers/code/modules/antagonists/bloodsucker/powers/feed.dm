@@ -190,7 +190,7 @@
 			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
 		warning_target_bloodvol = feed_target.blood_volume
 
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume >= bloodsuckerdatum_power.max_blood_volume)
+	if(bloodsuckerdatum_power.GetBloodVolume() >= bloodsuckerdatum_power.max_blood_volume)
 		user.balloon_alert(owner, "full on blood!")
 		DeactivatePower()
 		return

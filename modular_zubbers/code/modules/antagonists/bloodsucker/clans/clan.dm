@@ -118,7 +118,7 @@
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 
 /**
@@ -159,9 +159,9 @@
 		// Give them the UI to purchase a power.
 		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to advance your rank", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
+		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
 			return
-		if(blood_cost && bloodsuckerdatum.bloodsucker_blood_volume < blood_cost)
+		if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
 			human_user.balloon_alert(human_user, "not enough blood!")
 			to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
 			return
@@ -202,23 +202,23 @@
 		user_right_hand.unarmed_damage_high += 0.5
 
 	// We're almost done - Spend your Rank now.
-	bloodsuckerdatum.bloodsucker_level++
+	bloodsuckerdatum.AdjustRank(1)
 	if(cost_rank)
-		bloodsuckerdatum.bloodsucker_level_unspent--
+		bloodsuckerdatum.AdjustUnspentRank(-1)
+
 	if(blood_cost)
 		bloodsuckerdatum.AdjustBloodVolume(-blood_cost)
 
 	// Ranked up enough to get your true Reputation?
-	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
+	if(bloodsuckerdatum.GetRank() == BLOODSUCKER_HIGH_LEVEL)
 		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.bloodsucker_level] Bloodsucker. \
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.GetRank()] Bloodsucker. \
 		Your strength, feed rate, regen rate, and maximum blood capacity have all increased! \n\
 		* Your existing powers have all ranked up as well!"))
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
-	bloodsuckerdatum.update_hud()
 	bloodsuckerdatum.update_static_data_for_all_viewers()
 
 	// unlock vassalizing if we have a vassal slot
@@ -247,7 +247,7 @@
 	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
 		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
 		return FALSE
-	if(bloodsuckerdatum.bloodsucker_blood_volume < 150)
+	if(bloodsuckerdatum.GetBloodVolume() < 150)
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
 		return FALSE
 	var/list/options = list()
