@@ -175,7 +175,7 @@
 	desc = "Relays a polaroid camera's feed as a digital stream for surveillance-on-the-go. Network field is used for camera network."
 	category = "Sensor"
 
-	required_shells = list(/obj/item/circuit_component/camera)
+	required_shells = list(/obj/item/camera)
 
 	var/obj/item/circuit_component/camera/polaroid = null
 
