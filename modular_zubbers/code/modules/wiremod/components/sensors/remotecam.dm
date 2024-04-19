@@ -79,7 +79,7 @@
 	return ..()
 
 /obj/item/circuit_component/compare/remotecam/do_comparisons()
-	return current_camera_state
+	return shell_camera ? current_camera_state : FALSE
 
 /**
  * Initializes the camera
