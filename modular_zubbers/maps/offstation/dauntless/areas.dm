@@ -4,6 +4,7 @@
 	name = "SSV Dauntless"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-ship"
+	outdoors = FALSE
 	ignore_weather_sfx = TRUE
 
 // Cargo
@@ -11,23 +12,26 @@
 /area/ruin/space/has_grav/bubbers/dauntless/cargo
 	name = "Dauntless Hangarbay"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
+	ignore_weather_sfx = FALSE
 
 // Engineering
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering
 	name = "Dauntless Engineering Bay"
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine
 	name = "Dauntless Turbine Room"
+	ignore_weather_sfx = TRUE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining
 	name = "Dauntless Bluespace Mining"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	ignore_weather_sfx = TRUE
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals
 	name = "Dauntless Dispolsals System"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-	ignore_weather_sfx = FALSE
 
 // Service - Recreation
 
@@ -92,12 +96,14 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage
 	name = "Dauntless Medical Storage"
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem
 	name = "Dauntless Chemistry Lab"
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/viro
 	name = "Dauntless Virology Lab"
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/command
 	name = "Dauntless Command"
@@ -136,6 +142,7 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation
 	name = "Interrogation and Solutions"
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison // Prison
 	name = "Dauntless General Population"
@@ -144,14 +151,14 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding
 	name = "Isolation Cell"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec
 	name = "Prisoner Privlages Room"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/shower
 	name = "Prison Showers"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-
-
-
+	ignore_weather_sfx = FALSE
