@@ -1,4 +1,16 @@
-/mob/living/brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterpoof = null, message_range = 7, datum/saymode/saymode = null)
+/mob/living/brain/say(
+	message,
+	bubble_type,
+	list/spans = list(),
+	sanitize = TRUE,
+	datum/language/language,
+	ignore_spam = FALSE,
+	forced,
+	filterproof = FALSE,
+	message_range = 7,
+	datum/saymode/saymode,
+	list/message_mods = list(),
+)
 	// BUBBER CHANGE: funny talking head
 	if(stat == DEAD) // lets you talk in deadchat
 		return ..()
@@ -20,7 +32,10 @@
 			else
 				message = Gibberish(message, emp_damage >= 12)//scrambles the message, gets worse when emp_damage is higher
 
-		..()
+	return ..()
+
+/mob/living/brain/can_speak(allow_mimes)
+	return istype(container, /obj/item/mmi) && ..()
 
 /mob/living/brain/radio(message, list/message_mods = list(), list/spans, language)
 	if(message_mods[MODE_HEADSET] && istype(container, /obj/item/mmi))
