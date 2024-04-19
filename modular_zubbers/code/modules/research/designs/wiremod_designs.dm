@@ -16,17 +16,17 @@
 /datum/design/component/drone_camera
 	name = "Drone Camera"
 	id = "comp_drone_camera"
-	build_path = /obj/item/circuit_component/remotecam/drone
+	build_path = /obj/item/circuit_component/compare/remotecam/drone
 
 /datum/design/component/polaroid_camera
 	name = "Polaroid Camera Add-On"
 	id = "comp_polaroid_camera"
-	build_path = /obj/item/circuit_component/remotecam/polaroid
+	build_path = /obj/item/circuit_component/compare/remotecam/polaroid
 
 /datum/design/component/bci/eye_camera
 	name = "Eye Camera"
 	id = "comp_eye_camera"
-	build_path = /obj/item/circuit_component/remotecam/bci
+	build_path = /obj/item/circuit_component/compare/remotecam/bci
 
 /datum/design/component/toggle
 	name = "Toggle Component"
