@@ -1862,7 +1862,6 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_ice_base/dormitories)
 "oo" = (
-/obj/machinery/light/directional/south,
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list("syndicate")
 	},
@@ -3096,6 +3095,9 @@
 	onstation = 0;
 	onstation_override = 1
 	},
+/obj/machinery/light/directional/south{
+	pixel_x = -17
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_ice_base/bar)
 "wV" = (
@@ -3926,6 +3928,7 @@
 	name = "BrewMaster 3000"
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/dark/small,
 /area/ruin/syndicate_ice_base/bar)
 "DG" = (
@@ -4773,7 +4776,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
-/obj/structure/extinguisher_cabinet/directional/south,
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/kitchen,
 /area/ruin/syndicate_ice_base/bar)
