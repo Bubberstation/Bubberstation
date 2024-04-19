@@ -19,6 +19,7 @@
 					/obj/item/assembly/prox_sensor,
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/borg_restart_board, //To allow repairs
+					/obj/item/relic,
 					)
 /obj/item/borg/apparatus/research/examine()
 	. = ..()

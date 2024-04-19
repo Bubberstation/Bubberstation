@@ -90,7 +90,7 @@
 //TODO: Illegal science stuff
 	emag_modules = list(
 		/obj/item/borg/stun,
-		/obj/item/card/emag/limited,//funny
+		/obj/item/experimental_dash,
 		/obj/item/borg/apparatus/illegal //To replace malf printers
 	)
 	cyborg_base_icon = "research"
