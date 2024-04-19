@@ -2168,13 +2168,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
-"jW" = (
-/obj/effect/turf_decal/trimline/dark_green/line{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet/directional/west,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/service)
 "jZ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -2685,6 +2678,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/machinery/light/warm/dim/directional/west,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "mE" = (
@@ -3281,6 +3275,9 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/curtain/cloth{
+	color = "#333333"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "pG" = (
@@ -3905,6 +3902,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
+/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "sk" = (
@@ -4676,6 +4674,9 @@
 	onstation_override = 1
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/curtain/cloth{
+	color = "#333333"
+	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -6534,10 +6535,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
-"Eg" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Eh" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
@@ -7282,7 +7279,6 @@
 /obj/effect/turf_decal/siding{
 	dir = 10
 	},
-/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Ix" = (
@@ -9116,7 +9112,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding,
-/obj/machinery/light/warm/dim/directional/south,
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "RB" = (
@@ -10487,7 +10483,7 @@
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "Yu" = (
-/obj/machinery/door/airlock/service{
+/obj/machinery/door/airlock/service/glass{
 	name = "Diner"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -10497,6 +10493,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/curtain/cloth{
+	color = "#333333"
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -12791,7 +12790,7 @@ vF
 jh
 uP
 VZ
-Eg
+BM
 pw
 ua
 yW
@@ -13332,7 +13331,7 @@ Fr
 qD
 qD
 ny
-jW
+qD
 xX
 qD
 NY
