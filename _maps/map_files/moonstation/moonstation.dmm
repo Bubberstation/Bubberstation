@@ -6079,7 +6079,6 @@
 	},
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/caution/white,
-/obj/structure/fans/tiny,
 /turf/open/floor/iron/dark,
 /area/station/commons/storage/mining)
 "bSb" = (
@@ -14051,13 +14050,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/hallway)
-"ems" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/starboard)
 "emt" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
@@ -25627,7 +25619,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/item/kirbyplants/random,
+/obj/structure/rack,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
 "hHD" = (
@@ -32578,11 +32570,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/station/maintenance/disposal/incinerator)
-"jOH" = (
-/obj/effect/turf_decal/stripes/asteroid/line,
-/obj/effect/turf_decal/caution/stand_clear/white,
-/turf/open/floor/plating/rust/moonstation/cave,
-/area/moonstation/underground)
 "jOM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -35393,6 +35380,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "public_mining_airlocks"
+	},
 /turf/open/floor/iron/dark,
 /area/station/commons/storage/mining)
 "kHH" = (
@@ -36745,7 +36735,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/caution/white,
-/obj/structure/fans/tiny,
 /turf/open/floor/iron/dark,
 /area/station/commons/storage/mining)
 "laZ" = (
@@ -42036,6 +42025,16 @@
 /obj/machinery/light/warm/directional/south,
 /turf/open/floor/wood/tile,
 /area/station/common/pool/sauna)
+"mDx" = (
+/obj/machinery/door/airlock/maintenance/external{
+	name = "Public Mining Maintenance"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating/rust/moonstation,
+/area/station/commons/storage/mining)
 "mDA" = (
 /obj/effect/spawner/random/burgerstation/loot,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -42163,11 +42162,13 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "mGs" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
+/obj/machinery/door/airlock/maintenance/external{
+	name = "Public Mining Maintenance"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/iron/dark,
-/area/station/hallway/primary/starboard)
+/area/station/commons/storage/mining)
 "mGD" = (
 /obj/effect/turf_decal/tile/dark_green/anticorner/contrasted{
 	dir = 8
@@ -44652,6 +44653,11 @@
 /obj/effect/spawner/random/trash/grille_or_waste,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
+"nrN" = (
+/obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/iron/dark/corner,
+/area/station/hallway/primary/starboard)
 "nrO" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
@@ -51194,14 +51200,10 @@
 /area/station/hallway/primary/aft)
 "pqg" = (
 /obj/structure/sign/poster/contraband/got_wood/directional/north,
-/obj/structure/rack{
-	icon = 'icons/obj/fluff/general.dmi';
-	icon_state = "minibar";
-	name = "skeletal minibar"
-	},
 /obj/item/storage/fancy/candle_box,
 /obj/item/camera,
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/rack/skeletal,
 /turf/open/floor/engine/cult,
 /area/station/service/library/private)
 "pqi" = (
@@ -54623,6 +54625,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "public_mining_airlocks"
+	},
 /turf/open/floor/iron/dark,
 /area/station/commons/storage/mining)
 "qpa" = (
@@ -60021,6 +60026,11 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
+"rUE" = (
+/obj/effect/turf_decal/tile/holiday/rainbow/half/contrasted,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/iron/dark/corner,
+/area/station/hallway/primary/starboard)
 "rUJ" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/disposaloutlet{
@@ -60132,11 +60142,6 @@
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
 "rWC" = (
-/obj/machinery/door/airlock/maintenance/external{
-	name = "Public Mining Maintenance"
-	},
-/obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /turf/open/floor/plating/rust/moonstation,
 /area/station/commons/storage/mining)
 "rWE" = (
@@ -65685,13 +65690,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/service/chapel/storage)
-"tGC" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/starboard)
 "tGL" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
 /obj/machinery/door/firedoor,
@@ -69407,7 +69405,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/caution/white,
-/obj/structure/fans/tiny,
 /turf/open/floor/iron/dark,
 /area/station/commons/storage/mining)
 "uMT" = (
@@ -70901,8 +70898,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/structure/closet/emcloset,
 /obj/machinery/light/warm/directional/west,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
 "vmO" = (
@@ -80453,8 +80450,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/structure/closet/emcloset,
 /obj/machinery/light/warm/directional/east,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
 "yed" = (
@@ -198023,7 +198020,7 @@ hWa
 xfP
 xfP
 mHl
-jOH
+hnw
 sSg
 sSg
 sSg
@@ -262517,7 +262514,7 @@ iPQ
 hvG
 gzH
 sjU
-mGs
+hHA
 hWa
 hvR
 hvR
@@ -262773,10 +262770,10 @@ cag
 rWo
 jnC
 gzH
-sjU
-ems
+rUE
 xfP
-rBb
+xfP
+xfP
 rBb
 rBb
 rBb
@@ -263033,7 +263030,7 @@ gzH
 sjU
 mGs
 rWC
-pit
+mDx
 pit
 pit
 pit
@@ -263287,10 +263284,10 @@ cvT
 rWo
 lhj
 gzH
-sjU
-tGC
+nrN
 xfP
-rBb
+xfP
+xfP
 rBb
 rBb
 rBb
@@ -263545,7 +263542,7 @@ rWo
 lhj
 gzH
 sjU
-mGs
+hHA
 hWa
 hvR
 hvR
