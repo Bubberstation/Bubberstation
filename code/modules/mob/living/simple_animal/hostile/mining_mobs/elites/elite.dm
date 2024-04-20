@@ -197,7 +197,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 					While the opponent might have an upper hand with  powerful mining equipment and tools, you have great power normally limited by AI mobs.\n\
 					If you want to win, you'll have to use your powers in creative ways to ensure the kill. It's suggested you try using them all as soon as possible.\n\
 					Should you win, you'll receive extra information regarding what to do after. Good luck!</b>")
-				to_chat(elitemind, "<span class='doyourfuckingjob'>You are not an antag, by no means you are allowed to board the station without clear admin approval. Boarding the station and killing people can be severly punished! You've been warned.</span>") // BUBBER ADDON, WARNING TEXT
+				to_chat(elitemind, "<span class='doyourjobidiot'>You are not an antag, by no means you are allowed to board the station without clear admin approval. Boarding the station and killing people can be severly punished! You've been warned.</span>") // BUBBER ADDON, WARNING TEXT
 				addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 100)
 			else
 				visible_message(span_boldwarning("The stirring stops, and nothing emerges.  Perhaps try again later."))
@@ -358,6 +358,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 			Bear in mind, if anyone interacts with your tumor, you'll be resummoned here to carry out another fight. In such a case, you will regain your full max health.\n\
 			Also, be weary of your fellow inhabitants, they likely won't be happy to see you!</b>")
 		to_chat(mychild, "<span class='big bold'>Note that you are a lavaland monster, and thus not allied to the station. You should not cooperate or act friendly with any station crew unless under extreme circumstances!</span>")
+		to_chat(mychild, "<span class='doyourjobidiot'>You are not an antag, by no means you are allowed to board the station without clear admin approval. Boarding the station and killing people can be severly punished! You've been warned.</span>") // BUBBER ADDON, WARNING TEXT
 
 /obj/item/tumor_shard
 	name = "tumor shard"
