@@ -138,7 +138,7 @@
 		. += span_cult("You can support a total of [convert_integer_to_words(bloodsuckerdatum.max_vassals())] [bloodsuckerdatum.max_vassals() == 1 ? "vassal" : "vassals"], \
 		with [convert_integer_to_words(bloodsuckerdatum.free_vassal_slots())] [bloodsuckerdatum.free_vassal_slots() == 1 ? "slot" : "slots"] remaining.")
 
-/obj/structure/bloodsucker/vassalrack/deconstruct(disassembled = TRUE)
+/obj/structure/bloodsucker/vassalrack/atom_deconstruct(disassembled = TRUE)
 	. = ..()
 	new /obj/item/stack/sheet/iron(src.loc, 4)
 	new /obj/item/stack/rods(loc, 4)

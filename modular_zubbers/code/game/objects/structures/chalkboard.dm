@@ -62,9 +62,8 @@
 		deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/chalkboard/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
+/obj/structure/chalkboard/atom_deconstruct(disassembled = TRUE)
+	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 	qdel(src)
 
 /datum/mood_event/cathartic_eraser
