@@ -12,6 +12,8 @@
 
 /area/ruin/syndicate_ice_base/bar
 	name = "Interdyne Bar"
+	mood_bonus = 5
+	mood_message = "I love being in the bar!"
 
 /area/ruin/syndicate_ice_base/main
 	name = "Interdyne Primary Hallway"
@@ -31,12 +33,17 @@
 
 /area/ruin/syndicate_ice_base/dormitories
 	name = "Interdyne Dormitories"
+	mood_bonus = 3
+	mood_message = "I feel at ease here."
 
 /area/ruin/syndicate_ice_base/telecomms
 	name = "Interdyne Telecommunications"
 
 /area/ruin/syndicate_ice_base/gym
 	name = "Interdyne Gym"
+	mood_bonus = 5
+	mood_message = "This place is quite relaxing."
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/syndicate_ice_base/armory
 	name = "Interdyne Armory"
