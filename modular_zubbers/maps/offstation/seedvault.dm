@@ -1,6 +1,5 @@
 /datum/map_template/ruin/lavaland/seed_vault
     suffix = "lavaland_surface_seed_vault_bubber.dmm"
     prefix = "_maps/RandomRuins/LavaRuins/bubberstation/"
-    cost = 0
-    always_place = TRUE
-
+    cost = 3
+	allow_duplicates = FALSE
