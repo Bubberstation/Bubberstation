@@ -113,7 +113,7 @@
 		return TRUE
 	return FALSE  // If the do_after() is interrupted, return FALSE!
 
-/obj/structure/cargo_shelf/deconstruct(disassembled = TRUE)
+/obj/structure/cargo_shelf/handle_deconstruct(disassembled = TRUE)
 	var/turf/dump_turf = drop_location()
 	for(var/obj/structure/closet/crate/crate in shelf_contents)
 		crate.layer = initial(crate.layer) // Reset the crates back to default visual state
@@ -176,7 +176,8 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/cargo_shelf/deconstruct(disassembled = TRUE)
+/obj/structure/cargo_shelf/handle_deconstruct(disassembled = TRUE)
+	. = ..()
 	if(!(obj_flags & NO_DECONSTRUCTION))
 		set_density(FALSE)
 		var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
@@ -202,7 +203,8 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/rack/gunrack/deconstruct(disassembled = TRUE)
+/obj/structure/rack/gunrack/handle_deconstruct(disassembled = TRUE)
+	. = ..()
 	if(!(obj_flags & NO_DECONSTRUCTION))
 		set_density(FALSE)
 		var/obj/item/rack_parts/gun/newparts = new(loc)
@@ -228,7 +230,8 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/rack/shelf/deconstruct(disassembled = TRUE)
+/obj/structure/rack/shelf/handle_deconstruct(disassembled = TRUE)
+	. = ..()
 	if(!(obj_flags & NO_DECONSTRUCTION))
 		set_density(FALSE)
 		var/obj/item/rack_parts/shelf/newparts = new(loc)
