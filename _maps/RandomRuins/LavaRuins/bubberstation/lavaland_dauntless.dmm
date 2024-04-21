@@ -954,7 +954,8 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
 /obj/machinery/camera/autoname/directional/south{
-	network = list("dauntless")
+	network = list("dauntless");
+	pixel_x = -8
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -2062,6 +2063,20 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+"jy" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 1;
+	pixel_y = -20;
+	faction = list("Syndicate","neutral")
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
+/obj/machinery/camera/autoname/directional/south{
+	network = list("dauntless");
+	pixel_x = -8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "jz" = (
 /obj/machinery/door/window/survival_pod/left/directional/north{
 	name = "Bar";
@@ -2400,7 +2415,8 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/burgundy,
 /obj/machinery/camera/autoname/directional/south{
-	network = list("dauntless")
+	network = list("dauntless");
+	pixel_x = 31
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
@@ -8941,6 +8957,20 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+"Rp" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9;
+	pixel_x = 20;
+	faction = list("Syndicate","neutral")
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("dauntless");
+	pixel_y = 8
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Rs" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -11093,7 +11123,7 @@ qd
 FZ
 FZ
 FZ
-Vz
+Rp
 FZ
 FZ
 FZ
@@ -12811,7 +12841,7 @@ FZ
 FZ
 FZ
 FZ
-lp
+jy
 ZF
 ln
 nI
