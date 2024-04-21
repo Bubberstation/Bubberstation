@@ -4,11 +4,13 @@
 	name = "SSV Dauntless"
 	icon = 'icons/area/areas_centcom.dmi'
 	icon_state = "syndie-ship"
+	ignore_weather_sfx = TRUE
 
 // Cargo
 
 /area/ruin/space/has_grav/bubbers/dauntless/cargo
 	name = "Dauntless Hangarbay"
+	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 // Engineering
 
@@ -20,9 +22,12 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining
 	name = "Dauntless Bluespace Mining"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals
 	name = "Dauntless Dispolsals System"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	ignore_weather_sfx = FALSE
 
 // Service - Recreation
 
@@ -31,6 +36,8 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner
 	name = "Dauntless Diner"
+	mood_bonus = 5
+	mood_message = "I love being in the diner!"
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen
 	name = "Dauntless Kitchen"
@@ -43,15 +50,23 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/shower
 	name = "Public Showers"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms
 	name = "Dauntless Dormitories"
+	mood_bonus = 3
+	mood_message = "I feel at ease here."
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym
 	name = "Dauntless Gym"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna
 	name = "Dauntless Sauna"
+	mood_bonus = 5
+	mood_message = "This place is quite relaxing."
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 // Science
 
@@ -124,15 +139,19 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison // Prison
 	name = "Dauntless General Population"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/holding
 	name = "Isolation Cell"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec
 	name = "Prisoner Privlages Room"
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/shower
 	name = "Prison Showers"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 
 

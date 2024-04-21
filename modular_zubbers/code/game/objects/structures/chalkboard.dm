@@ -62,7 +62,8 @@
 		deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/chalkboard/deconstruct(disassembled = TRUE)
+/obj/structure/chalkboard/handle_deconstruct(disassembled = TRUE)
+	. = ..()
 	if(!(obj_flags & NO_DECONSTRUCTION))
 		new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 	qdel(src)
