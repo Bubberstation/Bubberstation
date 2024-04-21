@@ -27,11 +27,6 @@
 		. += "The gripper currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
 
-/obj/item/borg/apparatus/research/pre_attack(atom/atom, mob/living/user, params) // copy and paste
-	if(istype(atom, /obj/item/ai_module) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
-		to_chat(user, span_warning("This circuit board doesn't seem to have standard robot apparatus pin holes. You're unable to pick it up."))
-	return ..()
-
 /obj/item/borg/apparatus/circuit_sci
 	name = "Research circuit assembly gripper"
 	desc = "A complex grasping tool used for working with circuitry."
