@@ -36,7 +36,7 @@
 
 /obj/item/circuit_component/reagent_injector_bluespace/proc/trigger_inject()
 	CIRCUIT_TRIGGER
-	if(!bci.owner)
+	if(!bci.owner || inject_amount.value <= 0)
 		return
 	var/amount = clamp(inject_amount.value, 0, bci.reagents.total_volume)
 	if(bci.owner.reagents.total_volume + amount > bci.owner.reagents.maximum_volume)
