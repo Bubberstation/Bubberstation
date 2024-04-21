@@ -62,8 +62,6 @@
 		deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/chalkboard/atom_deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 /obj/structure/chalkboard/handle_deconstruct(disassembled = TRUE)
 	. = ..()
 	if(!(obj_flags & NO_DECONSTRUCTION))
