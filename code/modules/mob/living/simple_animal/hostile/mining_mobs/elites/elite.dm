@@ -198,7 +198,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 					If you want to win, you'll have to use your powers in creative ways to ensure the kill. It's suggested you try using them all as soon as possible.\n\
 					Should you win, you'll receive extra information regarding what to do after. Good luck!</b>")
 				to_chat(elitemind, "<span class='doyourjobidiot'>You are not an antag, by no means you are allowed to board the station without clear admin approval. Boarding the station and killing people can be severly punished! You've been warned.</span>") // BUBBER ADDON, WARNING TEXT
-				addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 100)
+				addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 10 SECONDS)
 			else
 				visible_message(span_boldwarning("The stirring stops, and nothing emerges.  Perhaps try again later."))
 				activity = TUMOR_INACTIVE
