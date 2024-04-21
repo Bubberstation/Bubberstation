@@ -32,6 +32,26 @@
 #define BLOODSUCKER_HIGH_LEVEL 4
 
 /**
+ * Sol defines
+ */
+///How long Sol will last until it's night again.
+#define TIME_BLOODSUCKER_DAY 60
+///Base time nighttime should be in for, until Sol rises.
+// Can't put defines in defines, so we have to use deciseconds.
+#define TIME_BLOODSUCKER_NIGHT_MAX 1320 // 22 minutes
+#define TIME_BLOODSUCKER_NIGHT_MIN 1020 // 17 minutes
+
+///Time left to send an alert to Bloodsuckers about an incoming Sol.
+#define TIME_BLOODSUCKER_DAY_WARN 90
+///Time left to send an urgent alert to Bloodsuckers about an incoming Sol.
+#define TIME_BLOODSUCKER_DAY_FINAL_WARN 30
+///Time left to alert that Sol is rising.
+#define TIME_BLOODSUCKER_BURN_INTERVAL 5
+
+///How much time Sol can be 'off' by, keeping the time inconsistent.
+#define TIME_BLOODSUCKER_SOL_DELAY 90
+
+/**
  * Vassal defines
  */
 ///If someone passes all checks and can be vassalized

@@ -29,10 +29,10 @@
 	/// The icon to show in the preferences menu.
 	/// This references a tgui icon, so it can be FontAwesome or a tgfont (with a tg- prefix).
 	var/icon = "bug" //SKYRAT EDIT CHANGE
-	/// A list of items people can receive from mail who have this quirk enabled
+	/// A lazylist of items people can receive from mail who have this quirk enabled
 	/// The base weight for the each quirk's mail goodies list to be selected is 5
 	/// then the item selected is determined by pick(selected_quirk.mail_goodies)
-	var/mail_goodies = list()
+	var/list/mail_goodies
 
 /datum/quirk/Destroy()
 	if(quirk_holder)
@@ -66,12 +66,6 @@
 
 	if(quirk_holder)
 		CRASH("Attempted to add quirk to a holder when it already has a holder.")
-
-	//BUBBER EDIT ADDITION START - Species quirks
-	//We silently fail if a whitelisted quirk *somehow* got into someone's preferences.
-	if(quirk_whitelist_flags & QUIRK_SLIMEPERSON_ONLY && !isroundstartslime(new_holder))
-		CRASH("Attempted to add quirk [name] to [quirk_holder], but the species is ineligible for it!")
-	//BUBBER EDIT ADDITION END
 
 	quirk_holder = new_holder
 	quirk_holder.quirks += src
