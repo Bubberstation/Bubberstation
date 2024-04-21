@@ -1180,8 +1180,8 @@
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
@@ -2850,7 +2850,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
@@ -3879,9 +3879,7 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "sC" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "sG" = (
@@ -4310,11 +4308,8 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "uF" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
@@ -5459,7 +5454,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "zK" = (
 /obj/structure/chair/sofa/bench,
-/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "zO" = (
@@ -6003,7 +6000,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "BP" = (
-/turf/open/floor/wood,
+/turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "BQ" = (
 /obj/effect/turf_decal/siding/dark,
@@ -6590,9 +6587,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Fd" = (
 /obj/structure/sauna_oven,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "Fe" = (
@@ -7463,9 +7458,6 @@
 	freerange = 1
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
 /turf/open/floor/wood/large,
@@ -8021,9 +8013,7 @@
 /obj/machinery/light/warm/directional/south{
 	pixel_x = -16
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "MA" = (
@@ -9188,19 +9178,12 @@
 /obj/structure/hedge,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
-"Ss" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 6;
-	faction = list("Syndicate","neutral")
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "St" = (
 /obj/structure/chair/sofa/bench/right{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
@@ -10115,7 +10098,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Xf" = (
 /obj/structure/chair/sofa/bench/left,
-/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "Xh" = (
@@ -10485,7 +10470,9 @@
 	id = "saunawindow";
 	name = "Sauna Window Shutters"
 	},
-/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "Ze" = (
@@ -14027,7 +14014,7 @@ FZ
 bP
 bP
 bP
-Ss
+bP
 FZ
 FZ
 FZ
@@ -14094,7 +14081,7 @@ FZ
 FZ
 FZ
 FZ
-FZ
+tS
 FZ
 FZ
 FZ
@@ -14363,9 +14350,9 @@ FZ
 FZ
 FZ
 FZ
+PW
+PW
 FZ
-PW
-PW
 FZ
 FZ
 FZ
