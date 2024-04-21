@@ -11,8 +11,8 @@
 	desc = "This is the abstract parent type - do not use this directly!"
 	circuit_flags = CIRCUIT_NO_DUPLICATES
 
-	power_usage_per_input = 3 //Normal components have 1, this is expensive to livestream footage
-	var/power_usage_per_input_far_range = 8 //Far range vision should be expensive, crank this up to 8
+	energy_usage_per_input = 0.003 * STANDARD_CELL_CHARGE //Normal components have 0.001 * STANDARD_CELL_CHARGE, this is expensive to livestream footage
+	var/energy_usage_per_input_far_range = 0.008 * STANDARD_CELL_CHARGE //Far range vision should be expensive, crank this up 8 times
 
 	/// Starts the cameraa
 	var/datum/port/input/start
@@ -43,10 +43,10 @@
 /obj/item/circuit_component/compare/remotecam/get_ui_notices()
 	. = ..()
 	if(camera_range_settable)
-		. += create_ui_notice("Power Usage For Near (0) Range: [power_usage_per_input] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
-		. += create_ui_notice("Power Usage For Far (1) Range: [power_usage_per_input_far_range] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+		. += create_ui_notice("Energy Usage For Near (0) Range: [display_energy(energy_usage_per_input)] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+		. += create_ui_notice("Energy Usage For Far (1) Range: [display_energy(energy_usage_per_input_far_range)] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 	else
-		. += create_ui_notice("Power Usage While Active: [current_camera_range > 0 ? power_usage_per_input_far_range : power_usage_per_input] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+		. += create_ui_notice("Energy Usage While Active: [display_energy(current_camera_range > 0 ? energy_usage_per_input_far_range : energy_usage_per_input)] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
 /obj/item/circuit_component/compare/remotecam/populate_ports()
 	. = ..()
@@ -285,7 +285,7 @@
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
 		//If cell doesn't exist, or we ran out of power
-		if(!cell?.use(current_camera_range > 0 ? power_usage_per_input_far_range : power_usage_per_input))
+		if(!cell?.use(current_camera_range > 0 ? energy_usage_per_input_far_range : energy_usage_per_input))
 			close_camera()
 			return
 		//If the camera range has changed, update camera range
@@ -300,7 +300,7 @@
 	if(polaroid && shell_camera)
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
 		//If cell doesn't exist, or we ran out of power
-		if(!cell?.use(power_usage_per_input))
+		if(!cell?.use(energy_usage_per_input))
 			close_camera()
 			return
 		//Set the camera state (if state has been changed)
@@ -315,7 +315,7 @@
 			return
 		var/obj/item/stock_parts/cell/cell = parent.get_cell()
 		//If cell doesn't exist, or we ran out of power
-		if(!cell?.use(current_camera_range > 0 ? power_usage_per_input_far_range : power_usage_per_input))
+		if(!cell?.use(current_camera_range > 0 ? energy_usage_per_input_far_range : energy_usage_per_input))
 			close_camera()
 			return
 		//If owner is nearsighted, set camera range to short (if it wasn't already)
