@@ -72,8 +72,8 @@
 	mood_message = "This place is quite relaxing."
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
-/area/ruin/space/has_grav/bubbers/dauntless/service/vacant
-	name = "Vacant Room"
+/area/ruin/space/has_grav/bubbers/dauntless/service/spare
+	name = "Spare Room"
 	ignore_weather_sfx = FALSE
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
