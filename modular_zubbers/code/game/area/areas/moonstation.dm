@@ -21,7 +21,9 @@
 	name = "\improper Service Lathe"
 	icon_state = "hall_service"
 
-
+/area/station/medical/morgue/office
+	name = "\improper Coroner's Office"
+	icon_state = "ass_line" //You try finding a matching area icon, fucko.
 
 /area/station/terminal
 	name = "\improper Arrivals Terminal"
