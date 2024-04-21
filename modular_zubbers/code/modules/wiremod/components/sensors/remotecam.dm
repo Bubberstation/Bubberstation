@@ -41,9 +41,9 @@
 	var/current_camera_network = ""
 
 	/// Used to store location, in order to force camera sector update
+	var/updating_camera_loc = FALSE
 	var/current_camera_loc
 	var/old_camera_loc
-	var/updating_camera_loc = FALSE
 
 /obj/item/circuit_component/compare/remotecam/get_ui_notices()
 	. = ..()
@@ -100,11 +100,11 @@
 	update_camera_range()
 	update_camera_name_network(shell_name)
 	updating_camera_loc = FALSE
+	current_camera_loc = get_turf(src)
+	old_camera_loc = current_camera_loc
 	if(current_camera_state)
 		start_process()
 		update_camera_location()
-	current_camera_loc = get_turf(src)
-	old_camera_loc = current_camera_loc
 
 /**
  * Remove the camera
