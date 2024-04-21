@@ -335,6 +335,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				tgui.ui_interact(usr)
 			return TRUE
 
+		if ("open_food")
+			GLOB.food_prefs_menu.ui_interact(usr)
+			return TRUE
+
 		if ("set_tricolor_preference")
 			var/requested_preference_key = params["preference"]
 			var/index_key = params["value"]
@@ -522,7 +526,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return TRUE
 
 /datum/preferences/proc/GetQuirkBalance()
-	var/bal = 6 //BUBBERSTATION CHANGE: 6 FREE QUIRK POINTS.
+	var/bal = 0
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)

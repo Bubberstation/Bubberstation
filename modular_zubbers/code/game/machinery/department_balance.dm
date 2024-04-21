@@ -24,7 +24,7 @@
 			return
 	if(isnull(synced_bank_account))
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
-	var/balance = !synced_bank_account ? 0 : synced_bank_account.account_balance;
+	var/balance = !synced_bank_account ? 0 : synced_bank_account.account_balance
 	var/balance_remainer = round((balance % 1000) / 100)
 	if(balance > 99999)
 		text_color = COLOR_DISPLAY_GREEN
