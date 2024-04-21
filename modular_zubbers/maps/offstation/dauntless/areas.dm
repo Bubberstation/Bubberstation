@@ -72,6 +72,11 @@
 	mood_message = "This place is quite relaxing."
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
+/area/ruin/space/has_grav/bubbers/dauntless/service/vacant
+	name = "Vacant Room"
+	ignore_weather_sfx = FALSE
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
 // Science
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci
@@ -100,10 +105,6 @@
 
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem
 	name = "Dauntless Chemistry Lab"
-
-/area/ruin/space/has_grav/bubbers/dauntless/med/viro
-	name = "Dauntless Virology Lab"
-	ignore_weather_sfx = FALSE
 
 /area/ruin/space/has_grav/bubbers/dauntless/command
 	name = "Dauntless Command"
