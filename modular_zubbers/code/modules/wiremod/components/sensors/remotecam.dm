@@ -32,13 +32,18 @@
 	var/c_tag_random = 0
 
 	/// Used to store the current process state
-	var/current_camera_state = 0
+	var/current_camera_state = FALSE
 	/// Used to store the last string used for the camera name
 	var/current_camera_name = ""
 	/// Used to store the current camera range setting (near/far)
 	var/current_camera_range = 0
 	/// Used to store the last string used for the camera network
 	var/current_camera_network = ""
+
+	/// Used to store location, in order to force camera sector update
+	var/current_camera_loc
+	var/old_camera_loc
+	var/updating_camera_loc = FALSE
 
 /obj/item/circuit_component/compare/remotecam/get_ui_notices()
 	. = ..()
@@ -75,7 +80,7 @@
 /obj/item/circuit_component/compare/remotecam/Destroy()
 	stop_process()
 	remove_camera()
-	current_camera_state = 0
+	current_camera_state = FALSE
 	return ..()
 
 /obj/item/circuit_component/compare/remotecam/do_comparisons()
@@ -86,6 +91,7 @@
  */
 /obj/item/circuit_component/compare/remotecam/proc/init_camera(shell_name)
 	shell_camera.desc = "This camera belongs in a circuit. If you see this, tell a coder!"
+	shell_camera.AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 	current_camera_name = ""
 	if(camera_range_settable)
 		current_camera_range = camera_range.value
@@ -93,8 +99,12 @@
 	close_camera()
 	update_camera_range()
 	update_camera_name_network(shell_name)
+	updating_camera_loc = FALSE
 	if(current_camera_state)
 		start_process()
+		update_camera_location()
+	current_camera_loc = get_turf(src)
+	old_camera_loc = current_camera_loc
 
 /**
  * Remove the camera
@@ -102,7 +112,6 @@
 /obj/item/circuit_component/compare/remotecam/proc/remove_camera()
 	if(shell_camera)
 		QDEL_NULL(shell_camera)
-		shell_camera = null
 
 /**
  * Handle the camera updating logic
@@ -111,11 +120,11 @@
 	update_camera_name_network(shell_name)
 	if(COMPONENT_TRIGGERED_BY(start, port))
 		start_process()
-		current_camera_state = 1
+		current_camera_state = TRUE
 	else if(COMPONENT_TRIGGERED_BY(stop, port))
 		stop_process()
 		close_camera() //Instantly turn off the camera
-		current_camera_state = 0
+		current_camera_state = FALSE
 
 /**
  * Close the camera state (only if it's already active)
@@ -134,7 +143,7 @@
  * Updates the camera name and network
  */
 /obj/item/circuit_component/compare/remotecam/proc/update_camera_name_network(shell_name)
-	if(!parent.display_name || parent.display_name == "")
+	if(!parent || !parent.display_name || parent.display_name == "")
 		shell_camera.c_tag = "[shell_name]: unspecified #[c_tag_random]"
 		current_camera_name = ""
 	else if(current_camera_name != parent.display_name)
@@ -157,6 +166,16 @@
 			shell_camera.network = list("[new_net_name]")
 		else
 			shell_camera.network = list("ss13")
+
+/obj/item/circuit_component/compare/remotecam/proc/update_camera_location()
+	if(updating_camera_loc)
+		return
+	updating_camera_loc = TRUE
+	current_camera_loc = get_turf(src)
+	if(old_camera_loc != current_camera_loc)
+		GLOB.cameranet.updatePortableCamera(shell_camera, 0.5 SECONDS)
+	old_camera_loc = current_camera_loc
+	updating_camera_loc = FALSE
 
 /**
  * Adds the component to the SSclock_component process list
@@ -295,6 +314,8 @@
 		//Set the camera state (if state has been changed)
 		if(current_camera_state ^ shell_camera.camera_enabled)
 			shell_camera.toggle_cam(null, 0)
+		if(current_camera_state)
+			update_camera_location()
 
 /obj/item/circuit_component/compare/remotecam/polaroid/process(seconds_per_tick)
 	if(polaroid && shell_camera)
@@ -306,6 +327,8 @@
 		//Set the camera state (if state has been changed)
 		if(current_camera_state ^ shell_camera.camera_enabled)
 			shell_camera.toggle_cam(null, 0)
+		if(current_camera_state)
+			update_camera_location()
 
 /obj/item/circuit_component/compare/remotecam/bci/process(seconds_per_tick)
 	if(bci && shell_camera)
@@ -330,6 +353,8 @@
 		//Set the camera state (if state has been changed)
 		if(current_camera_state ^ shell_camera.camera_enabled)
 			shell_camera.toggle_cam(null, 0)
+		if(current_camera_state)
+			update_camera_location()
 
 #undef REMOTECAM_RANGE_FAR
 #undef REMOTECAM_RANGE_NEAR
