@@ -131,9 +131,10 @@
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	if(!target.density)
-		jaunt?.teleport(user, target)
-	if(!jaunt.current_charges)
+	if(cyborg.cell.charge <= charge_cost)//Prevents usage when charge is low
+		user.balloon_alert(user, "Low charge!")
+		return
+	if(!target.density && jaunt?.teleport(user, target))
 		cyborg?.cell?.use(charge_cost)
 
 /obj/item/experimental_dash/equipped(mob/user, slot, initial)
