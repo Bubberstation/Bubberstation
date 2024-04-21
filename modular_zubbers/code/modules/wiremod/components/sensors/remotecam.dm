@@ -121,7 +121,7 @@
  * Close the camera state (only if it's already active)
  */
 /obj/item/circuit_component/compare/remotecam/proc/close_camera()
-	if(shell_camera?.status)
+	if(shell_camera?.camera_enabled)
 		shell_camera.toggle_cam(null, 0)
 
 /**
@@ -293,7 +293,7 @@
 			current_camera_range = camera_range.value
 			update_camera_range()
 		//Set the camera state (if state has been changed)
-		if(current_camera_state ^ shell_camera.status)
+		if(current_camera_state ^ shell_camera.camera_enabled)
 			shell_camera.toggle_cam(null, 0)
 
 /obj/item/circuit_component/compare/remotecam/polaroid/process(seconds_per_tick)
@@ -304,7 +304,7 @@
 			close_camera()
 			return
 		//Set the camera state (if state has been changed)
-		if(current_camera_state ^ shell_camera.status)
+		if(current_camera_state ^ shell_camera.camera_enabled)
 			shell_camera.toggle_cam(null, 0)
 
 /obj/item/circuit_component/compare/remotecam/bci/process(seconds_per_tick)
@@ -328,7 +328,7 @@
 			current_camera_range = camera_range.value
 			update_camera_range()
 		//Set the camera state (if state has been changed)
-		if(current_camera_state ^ shell_camera.status)
+		if(current_camera_state ^ shell_camera.camera_enabled)
 			shell_camera.toggle_cam(null, 0)
 
 #undef REMOTECAM_RANGE_FAR
