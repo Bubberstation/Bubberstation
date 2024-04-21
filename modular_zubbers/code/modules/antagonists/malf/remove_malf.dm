@@ -12,7 +12,6 @@
 			. = TRUE
 
 /obj/machinery/computer/aifixer/proc/run_antivirus()
-	use_power(1000)
 	while(occupier && restoring)
 		sleep(2 SECONDS)
 		if(prob(25))
