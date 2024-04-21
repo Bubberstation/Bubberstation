@@ -17,7 +17,7 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
-	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service/dorms
+	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/service
 	spawner_job_path = /datum/job/dauntless
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
