@@ -6,7 +6,7 @@
 /* Bubberstation Removal Start
 
 /datum/map_template/ruin/icemoon/underground/skyrat/syndicate_base
-	name = "Syndicate Ice Base"
+	name = "Ice-Ruin Syndicate Ice Base"
 	id = "ice-base"
 	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
 	suffix = "icemoon_underground_syndicate_base1_skyrat.dmm"
@@ -17,7 +17,7 @@
 Bubberstation Removal End */
 
 /datum/map_template/ruin/icemoon/underground/skyrat/mining_site_below
-	name = "Mining Site Underground"
+	name = "Ice-Ruin Mining Site Underground"
 	id = "miningsite-underground"
 	description = "The Iceminer arena."
 	suffix = "icemoon_underground_mining_site_skyrat.dmm"
