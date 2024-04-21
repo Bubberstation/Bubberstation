@@ -250,7 +250,7 @@
 	background_icon_state = "bg_mod"
 
 /datum/component/soulcatcher/modular_laser
-	max_souls = 1
+	max_mobs = 1
 	communicate_as_parent = TRUE
 
 //Short version of the above modular rifle, has less charge and different modes
