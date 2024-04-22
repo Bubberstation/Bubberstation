@@ -3,20 +3,24 @@
 	desc = "A small electronic device that cuts feed for an entire network."
 	/// Camera network to kill
 	var/camera_network = "dauntless"
-	/// Whether the network is enabled or disabled
-	var/killswitch = FALSE
 
 /obj/item/assembly/control/camkillswitch/activate()
 	if(cooldown)
+		say("Camera network is reloading! Please wait a moment.")
 		return
 
 	cooldown = TRUE
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS)
-	killswitch = !killswitch
 
+	var/killswitch = FALSE
 	var/list/cameras = get_camera_list(camera_network)
+	var/obj/machinery/camera/C
 	for(var/i in cameras)
-		var/obj/machinery/camera/C = cameras[i]
+		C = cameras[i]
+		killswitch = C.camera_enabled
+		break
+	for(var/i in cameras)
+		C = cameras[i]
 		if(killswitch == C.camera_enabled)
 			C.toggle_cam(null, 0)
 
@@ -24,6 +28,7 @@
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS)
 
 /obj/machinery/button/camkillswitch
+	name = "camera kill switch"
 	device_type = /obj/item/assembly/control/camkillswitch
 
 /datum/design/camkillswitch
