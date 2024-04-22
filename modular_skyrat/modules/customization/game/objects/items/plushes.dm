@@ -520,10 +520,12 @@
 	icon_state = "plushie_gamerguy"
 
 // Donation reward for shyshadow
-/obj/item/toy/plush/skyrat/plushie_winrow
+/obj/item/toy/plush/skyrat/chunko/plushie_winrow
 	name = "dark and brooding lizard plush"
 	desc = "An almost intimidating black lizard plush, this one's got a little beret to come with it! Best not to separate the two. Its eyes shine with suggestion, no maidens?"
 	icon_state = "plushie_shyshadow"
+	gender = MALE
+	responses = list("Am I looking in a mirror? Because what I see is beautiful.", "I'm not just a toy. I'm a romantic.", "I'm the diamond, and you're the rough because sooner or later...", "Is that mouth just for talking?", "Come on, don't be so hard on me. I'm so soft!", "Is that a glass of scotch? Because I've been thinking about buttering you up.", "Don't look stare for too long. You might get lost in my eyes.", "Oh wow! Looks like I'm not the only handsome thing around these parts.", "Do NOT the plushie. I am not a voodoo doll.",)
 
 // Donation reward for Dudewithatude
 /obj/item/toy/plush/skyrat/plushie_star
