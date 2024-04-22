@@ -65,7 +65,7 @@
 
 #define BODY_SIZE_NORMAL 1.00
 #define BODY_SIZE_MAX 1.5
-#define BODY_SIZE_MIN 0.8
+#define BODY_SIZE_MIN 0.7
 
 //In inches
 #define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
