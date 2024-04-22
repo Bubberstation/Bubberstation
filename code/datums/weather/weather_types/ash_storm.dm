@@ -34,6 +34,10 @@
 		eligible_areas += SSmapping.areas_in_z["[z]"]
 	for(var/i in 1 to eligible_areas.len)
 		var/area/place = eligible_areas[i]
+		//BUBBER ADDITION BEGIN - This is a HORRIBLE HACK to stop the weather from triggering for these locations
+		if(place.ignore_weather_sfx)
+			continue
+		//BUBBER ADDITION END
 		if(place.outdoors)
 			weak_sounds[place] = /datum/looping_sound/weak_outside_ashstorm
 			strong_sounds[place] = /datum/looping_sound/active_outside_ashstorm
