@@ -24,7 +24,7 @@
 		if(killswitch == C.camera_enabled)
 			C.toggle_cam(null, 0)
 
-	say(killswitch ? "You kill the camera feed." : "You turn on the camera feed.")
+	say(killswitch ? "Camera network shutting down." : "Camera network is now online.")
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS)
 
 /obj/machinery/button/camkillswitch
