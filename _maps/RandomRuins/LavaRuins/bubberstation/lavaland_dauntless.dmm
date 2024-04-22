@@ -848,7 +848,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "ep" = (
 /obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8
+	dir = 8;
+	networks = list("dauntless_xeno")
 	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/effect/turf_decal/siding/wood{
@@ -4055,6 +4056,10 @@
 	req_access = list("syndicate");
 	shoot_cyborgs = 1
 	},
+/obj/machinery/button/camkillswitch{
+	pixel_x = -32;
+	pixel_y = 31
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "ts" = (
@@ -6638,7 +6643,7 @@
 	},
 /obj/effect/turf_decal/trimline/purple/filled/warning,
 /obj/machinery/camera/autoname/directional/east{
-	network = list("dauntless")
+	network = list("dauntless_xeno")
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
