@@ -10,7 +10,7 @@
 
 /datum/quirk/obese
 	name = "Obese"
-	desc = "You weight much more than the average person of your size, and are always fat no matter what. Being fat from food no longer bothers you."
+	desc = "You weigh much much more than the average person of your size, and are always fat no matter what. Being fat from food no longer bothers you."
 	gain_text = span_notice("Your body feels <b>very</b> heavy.")
 	lose_text = span_notice("Your suddenly feel much lighter!")
 	value = -6
