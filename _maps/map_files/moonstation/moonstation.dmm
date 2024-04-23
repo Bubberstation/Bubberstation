@@ -8188,11 +8188,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/item/storage/crayons{
-	pixel_x = 3;
-	pixel_y = 13;
-	name = "box of crayons (NOT SECURITY RATIONS)"
-	},
+/obj/item/toy/crayon/white,
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
 "czX" = (
@@ -27683,8 +27679,10 @@
 /area/station/science/cytology)
 "ird" = (
 /obj/machinery/processor/slime,
-/obj/effect/turf_decal/tile/purple/half/contrasted,
-/turf/open/floor/iron/white,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/engine,
 /area/station/science/xenobiology)
 "irs" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
@@ -47794,8 +47792,11 @@
 /turf/open/floor/grass,
 /area/station/science/genetics)
 "ooc" = (
-/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
-/turf/open/floor/iron/white,
+/obj/machinery/monkey_recycler,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/engine,
 /area/station/science/xenobiology)
 "oof" = (
 /obj/effect/turf_decal/siding/wood{
@@ -48844,10 +48845,7 @@
 	name = "Jim Norton's Quebecois Coffee desk"
 	},
 /obj/machinery/airalarm/directional/north,
-/obj/item/storage/crayons{
-	pixel_y = -2;
-	pixel_x = -3
-	},
+/obj/item/toy/crayon/white,
 /turf/open/floor/iron/dark,
 /area/station/service/cafeteria)
 "oGc" = (
@@ -55529,11 +55527,10 @@
 "qBS" = (
 /obj/machinery/airalarm/directional/north,
 /obj/structure/table/wood,
-/obj/item/storage/crayons{
-	pixel_x = 3;
-	pixel_y = 13
+/obj/item/holosign_creator/robot_seat/bar{
+	pixel_y = 7
 	},
-/obj/item/holosign_creator/robot_seat/bar,
+/obj/item/toy/crayon/white,
 /turf/open/floor/wood,
 /area/station/service/bar)
 "qBW" = (
