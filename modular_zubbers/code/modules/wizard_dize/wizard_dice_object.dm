@@ -22,7 +22,6 @@
 
 /obj/item/dice/d20/teleporting_die_of_fate/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [uses_left ? uses_left : "no"] uses left!")
 	. += span_notice("Roll a 20, and you might become magical...")
 	. += span_warning("Roll a 1, and you will end up in medical! (See: Fucking dead)")
 
@@ -57,8 +56,6 @@
 
 	new/obj/effect/temp_visual/emp/pulse(current_turf) //Does not cause an EMP :^)
 	playsound(current_turf,'sound/magic/magic_missile.ogg',50,8,FALSE)
-
-	uses_left--
 
 	if(roll != 20)
 		if(roll == 1) //lol. lmao
