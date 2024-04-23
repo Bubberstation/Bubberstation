@@ -8,6 +8,7 @@
 	microwave_riggable = FALSE //lol. lmao
 	COOLDOWN_DECLARE(roll_cd) //Prevents exploits
 	var/smite_rng_seed = 1
+	var/do_teleport = TRUE
 
 /obj/item/dice/d20/teleporting_die_of_fate/cursed //Always rolls 1. Careful with this, as this is a reliable way to summon a smite.
 	rigged = DICE_TOTALLY_RIGGED
@@ -66,24 +67,26 @@
 			user.investigate_log("has been smited by a wizardly die of fate.", INVESTIGATE_DEATHS)
 			apply_random_smite(user)
 
-		var/turf/desired_turf = get_safe_random_station_turf()
-		if(!desired_turf) //This should never happen, but you never know.
-			current_turf.visible_message(span_userdanger("[src] is erased from reality! Darn!"))
-			qdel(src)
-			return
+		if(do_teleport)
+			var/turf/desired_turf = get_safe_random_station_turf()
+			if(!desired_turf) //This should never happen, but you never know.
+				current_turf.visible_message(span_userdanger("[src] is erased from reality! Darn!"))
+				qdel(src)
+				return
 
-		current_turf.visible_message(span_warning("[src] phases out to another location!"))
 
-		//Teleport!
-		src.forceMove(desired_turf)
+			current_turf.visible_message(span_warning("[src] phases out to another location!"))
 
-		new/obj/effect/temp_visual/emp/pulse(desired_turf) //Does not cause an EMP :^)
-		playsound(desired_turf,'sound/magic/magic_missile.ogg',50,8,FALSE)
+			//Teleport!
+			src.forceMove(desired_turf)
 
-		notify_ghosts(
-			"[src] has teleported to [desired_turf.loc]!",
-			source = src
-		)
+			new/obj/effect/temp_visual/emp/pulse(desired_turf) //Does not cause an EMP :^)
+			playsound(desired_turf,'sound/magic/magic_missile.ogg',50,8,FALSE)
+
+			notify_ghosts(
+				"[src] has teleported to [desired_turf.loc]!",
+				source = src
+			)
 
 		return
 
@@ -94,6 +97,11 @@
 
 
 /obj/item/dice/d20/teleporting_die_of_fate/proc/apply_random_smite(var/mob/living/target)
+
+	if(!target.client)
+		//Cheater.
+		target.gib(DROP_ALL_REMAINS)
+		return
 
 	var/datum/smite/chosen_smite
 
@@ -113,8 +121,10 @@
 	// /datum/smite/puzzle, see above
 	// /datum/smite/scarify, too minor
 	// /datum/smite/supply_pod, /datum/smite/supply_pod_quick is better
+	// /datum/smite/bloodless, way too loud.
+	// /datum/smite/boneless, way too loud
 
-	switch(smite_rng_seed % 11)
+	switch(smite_rng_seed % 9)
 		if(0)
 			var/datum/smite/bad_luck/bad_luck_smite = new
 			bad_luck_smite.silent = FALSE
@@ -122,33 +132,29 @@
 			chosen_smite = bad_luck_smite
 		if(1)
 			var/datum/smite/berforate/perforate_smite = new
-			perforate_smite.hatred = "A lot"
+			perforate_smite.hatred = "A little" //Actually unironically has a chance to gib.
 			chosen_smite = perforate_smite
 		if(2)
-			chosen_smite = new /datum/smite/bloodless
-		if(3)
-			chosen_smite = new /datum/smite/boneless
-		if(4)
 			chosen_smite = new /datum/smite/brain_damage
-		if(5)
+		if(3)
 			var/datum/smite/curse_of_babel/babel_smite = new
 			babel_smite.duration = 5 MINUTES
 			chosen_smite = babel_smite
-		if(6)
+		if(4)
 			chosen_smite = new /datum/smite/fireball
-		if(7)
+		if(5)
 			chosen_smite = new /datum/smite/lightning
-		if(8)
+		if(6)
 			chosen_smite = new /datum/smite/ocky_icky
-		if(9)
+		if(7)
 			var/datum/smite/rod/rod_smite = new
 			rod_smite.force_looping = FALSE
 			chosen_smite = rod_smite
-		if(10)
+		if(8)
 			var/datum/smite/supply_pod_quick/supply_pod_smite = new
 			supply_pod_smite.target_path = /obj/item/toy/plush/lizard_plushie
 			chosen_smite = supply_pod_smite
 
 	smite_rng_seed++
 
-	chosen_smite.effect(null,target)
+	chosen_smite.effect(target.client,target) //Client is needed here so it is logged properly.
