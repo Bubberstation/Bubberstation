@@ -15,6 +15,7 @@
 /// Add the Radio
 /obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_CONTENTS)
 	radio = new(src)
 	radio.keyslot = new radio_key
 	radio.set_listening(FALSE)
@@ -61,11 +62,15 @@
 		return
 	if (emped)
 		balloon_alert(usr, "Backup Malfunctioning!")
-	else
-		COOLDOWN_START(src, backup_cooldown, 1 MINUTES)
-		radio.talk_into(usr, "Backup Requested in [location]!", RADIO_CHANNEL_SECURITY)
-		usr.audible_message("<font color='red' size='5'><b>BACKUP REQUESTED!</b></font>")
-		balloon_alert_to_viewers("Backup Requested!", "Backup Requested!", 7)
-		log_combat(usr, src, "has called for backup")
-		playsound(usr, 'sound/misc/whistle.ogg', 50, FALSE, 4)
+		return
+	if (!is_station_level(src.z))
+		balloon_alert(usr, "Out of Range!")
+		return
+
+	COOLDOWN_START(src, backup_cooldown, 1 MINUTES)
+	radio.talk_into(usr, "Backup Requested in [location]!", RADIO_CHANNEL_SECURITY)
+	usr.audible_message("<font color='red' size='5'><b>BACKUP REQUESTED!</b></font>")
+	balloon_alert_to_viewers("Backup Requested!", "Backup Requested!", 7)
+	log_combat(usr, src, "has called for backup")
+	playsound(usr, 'sound/misc/whistle.ogg', 50, FALSE, 4)
 
