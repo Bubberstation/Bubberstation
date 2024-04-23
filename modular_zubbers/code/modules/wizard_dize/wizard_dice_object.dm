@@ -1,17 +1,19 @@
 //Gives you wizard if you land on 6. Fail, and the dice teleports somewhere else.
 
+
+
 /obj/item/dice/d20/teleporting_die_of_fate
 	name = "wizardly die of fate"
 	desc = "An absurdly magical d20. Land on 20, and get a chance to win a chance to win a prize!"
 	microwave_riggable = FALSE //lol. lmao
 	COOLDOWN_DECLARE(roll_cd) //Prevents exploits
-	var/forced_smite_number = 0 //For debugging.
+	var/smite_rng_seed = 1
 
-/obj/item/dice/d20/teleporting_die_of_fate/cursed //Always rolls 1
+/obj/item/dice/d20/teleporting_die_of_fate/cursed //Always rolls 1. Careful with this, as this is a reliable way to summon a smite.
 	rigged = DICE_TOTALLY_RIGGED
 	rigged_value = 1
 
-/obj/item/dice/d20/teleporting_die_of_fate/blessed //Always rolls 20
+/obj/item/dice/d20/teleporting_die_of_fate/blessed //Always rolls 20. This is basically single use since it just makes you wizard and deletes itself.
 	rigged = DICE_TOTALLY_RIGGED
 	rigged_value = 20
 
@@ -19,11 +21,12 @@
 	. = ..()
 	src.add_filter("dice_glow", 2, list("type" = "outline", "color" = "#AC14FF30", "size" = 4))
 	src.set_light(5,0.25,"#AC14FF")
+	smite_rng_seed = rand(1,11) //The only reason I do this is for testing :^). It does have some benefit to not having the same 2 effects occur in a row.
 
 /obj/item/dice/d20/teleporting_die_of_fate/examine(mob/user)
 	. = ..()
 	. += span_notice("Roll a 20, and you might become magical...")
-	. += span_warning("Roll a 1, and you will end up in medical! (See: Fucking dead)")
+	. += span_warning("Roll a 1, and you will end up in medical!")
 
 /obj/item/dice/d20/teleporting_die_of_fate/equipped(mob/user, slot)
 	. = ..()
@@ -111,39 +114,41 @@
 	// /datum/smite/scarify, too minor
 	// /datum/smite/supply_pod, /datum/smite/supply_pod_quick is better
 
-	switch(forced_smite_number ? forced_smite_number : rand(1,11))
-		if(1)
+	switch(smite_rng_seed % 11)
+		if(0)
 			var/datum/smite/bad_luck/bad_luck_smite = new
 			bad_luck_smite.silent = FALSE
 			bad_luck_smite.incidents = 7 //7 years bad luck (7 instances)
 			chosen_smite = bad_luck_smite
-		if(2)
+		if(1)
 			var/datum/smite/berforate/perforate_smite = new
 			perforate_smite.hatred = "A lot"
 			chosen_smite = perforate_smite
-		if(3)
+		if(2)
 			chosen_smite = new /datum/smite/bloodless
-		if(4)
+		if(3)
 			chosen_smite = new /datum/smite/boneless
-		if(5)
+		if(4)
 			chosen_smite = new /datum/smite/brain_damage
-		if(6)
+		if(5)
 			var/datum/smite/curse_of_babel/babel_smite = new
 			babel_smite.duration = 5 MINUTES
 			chosen_smite = babel_smite
-		if(7)
+		if(6)
 			chosen_smite = new /datum/smite/fireball
-		if(8)
+		if(7)
 			chosen_smite = new /datum/smite/lightning
-		if(9)
+		if(8)
 			chosen_smite = new /datum/smite/ocky_icky
-		if(10)
+		if(9)
 			var/datum/smite/rod/rod_smite = new
 			rod_smite.force_looping = FALSE
 			chosen_smite = rod_smite
-		if(11)
-			var/datum/smite/supply_pod_quick = new
-			target_path = /obj/item/toy/plush/lizard_plushie
-			chosen_smite = supply_pod_quick
+		if(10)
+			var/datum/smite/supply_pod_quick/supply_pod_smite = new
+			supply_pod_smite.target_path = /obj/item/toy/plush/lizard_plushie
+			chosen_smite = supply_pod_smite
+
+	smite_rng_seed++
 
 	chosen_smite.effect(null,target)
