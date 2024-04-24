@@ -47,8 +47,7 @@
 		/mob/living/basic/mining/watcher = 30,
 		/mob/living/basic/mining/goldgrub = 10,
 		/mob/living/basic/mining/brimdemon = 10,
-		/obj/structure/spawner/mining/goliath = 5,
-		/mob/living/basic/spider/giant/tangle = 5
+		/obj/structure/spawner/mining/goliath = 5
 	)
 
 	weighted_flora_spawn_list = list(
