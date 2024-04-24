@@ -1874,10 +1874,10 @@
 /turf/open/floor/iron/checker,
 /area/ruin/syndicate_ice_base/bar)
 "or" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/flasher/directional/west{
 	id = "IDyneBrigFlash"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
 "ot" = (
@@ -2773,13 +2773,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/medbay)
 "uz" = (
-/obj/machinery/flasher/directional/east{
-	id = "IDyneBrigFlash"
-	},
 /obj/structure/bed/maint,
 /obj/item/reagent_containers/cup/glass/waterbottle{
 	pixel_x = 11
 	},
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/east,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
 "uD" = (
@@ -3050,6 +3048,13 @@
 /obj/structure/dresser,
 /turf/open/floor/carpet/royalblue,
 /area/ruin/syndicate_ice_base/dormitories)
+"wA" = (
+/obj/item/reagent_containers/cup/bucket{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_ice_base/main)
 "wD" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer2{
 	dir = 4;
@@ -3547,7 +3552,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "AJ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -3643,7 +3648,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/door/firedoor,
-/turf/open/floor/plating,
+/turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "Bw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5819,6 +5824,9 @@
 /turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/testlab)
 "QT" = (
+/obj/machinery/flasher/directional/east{
+	id = "IDyneBrigFlash"
+	},
 /obj/item/kirbyplants/random,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
@@ -6481,10 +6489,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "UH" = (
-/obj/item/reagent_containers/cup/bucket{
-	pixel_x = 5;
-	pixel_y = 3
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
@@ -9055,7 +9059,7 @@ Zm
 Mc
 sP
 fb
-Xu
+wA
 UH
 Xo
 KM
