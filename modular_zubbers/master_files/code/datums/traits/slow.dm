@@ -4,7 +4,7 @@
 	gain_text = span_notice("Your body feels heavy.")
 	lose_text = span_notice("Your suddenly feel lighter!")
 	value = -4
-	icon = FA_ICON_BOWL_FOOD
+	icon = FA_ICON_BOWL_RICE
 	medical_record_text = "Patient weighs higher than average."
 	mob_trait = null
 
