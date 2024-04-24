@@ -81,7 +81,7 @@
 /mob/living/basic/frog/icemoon_facility
 	name = "Peter Jr."
 	desc = "They seem a little cold."
-	minimum_survivable_temperature = ICEBOX_MIN_TEMPERATURE
+	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE //BUBBER EDIT Original = ICEBOX_MIN_TEMPERATURE
 	habitable_atmos = null
 	gold_core_spawnable = NO_SPAWN
 
