@@ -17,9 +17,9 @@
 		else if (!((antag_preference || antag_flag) in P.client.prefs.be_special) || is_banned_from(P.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
 			candidates.Remove(P)
 		// SKYRAT EDIT ADDITION - PROTECTED JOBS
-/* 		else if(P.client?.prefs && !P.client.prefs.read_preference(/datum/preference/toggle/be_antag)) // BUBBER EDIT
+		else if(P.client?.prefs && !P.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 			candidates.Remove(P)
-			continue */
+			continue
 		else if(is_banned_from(P.client?.ckey, BAN_ANTAGONIST))
 			candidates.Remove(P)
 			continue
