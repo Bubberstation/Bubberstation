@@ -4773,8 +4773,17 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "vP" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/space/has_grav/bubbers/dauntless/med/viro)
+/obj/machinery/power/shuttle_engine/propulsion,
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "vQ" = (
 /obj/machinery/vending/sustenance{
 	onstation = 0
@@ -9765,8 +9774,19 @@
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Tx" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
+/obj/machinery/porta_turret/syndicate{
+	dir = 4;
+	pixel_x = -20;
+	faction = list("Syndicate","neutral")
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless");
+	pixel_y = -31
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Ty" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/carpet/royalblue,
@@ -13821,7 +13841,7 @@ Ls
 Ls
 Ls
 Ls
-vP
+Ls
 FZ
 FZ
 FZ
@@ -13889,7 +13909,7 @@ Ld
 Ld
 dJ
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -13957,7 +13977,7 @@ Ld
 Ld
 Qr
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -14025,7 +14045,7 @@ Ld
 Ld
 Ld
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -14093,7 +14113,7 @@ Ld
 Ld
 yG
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -14161,7 +14181,7 @@ Ld
 Ld
 Vr
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -14229,7 +14249,7 @@ Ld
 Ld
 tj
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -14297,7 +14317,7 @@ wB
 Ld
 KU
 US
-FZ
+vP
 FZ
 FZ
 FZ
@@ -14364,8 +14384,8 @@ US
 US
 US
 US
-Tx
-FZ
+US
+US
 FZ
 FZ
 FZ
@@ -14425,7 +14445,7 @@ FZ
 FZ
 FZ
 FZ
-cC
+Tx
 FZ
 FZ
 FZ

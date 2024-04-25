@@ -3227,8 +3227,18 @@
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/liason)
 "oZ" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
+/obj/machinery/porta_turret/syndicate{
+	dir = 4;
+	pixel_x = -20
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless");
+	pixel_y = -31
+	},
+/turf/template_noop,
+/area/ruin/space/has_grav/bubbers/dauntless_space/command/vault)
 "pb" = (
 /obj/structure/bed/double,
 /obj/item/bedsheet/brown/double,
@@ -7104,8 +7114,17 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/robotics)
 "GP" = (
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/space/has_grav/bubbers/dauntless_space/med/viro)
+/obj/machinery/power/shuttle_engine/propulsion,
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
 "GQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -13088,7 +13107,7 @@ ss
 ss
 ss
 ss
-GP
+ss
 XG
 "}
 (36,1,1) = {"
@@ -13145,7 +13164,7 @@ iI
 iI
 Qt
 vW
-XG
+GP
 XG
 "}
 (37,1,1) = {"
@@ -13202,7 +13221,7 @@ iI
 iI
 GG
 vW
-XG
+GP
 XG
 "}
 (38,1,1) = {"
@@ -13259,7 +13278,7 @@ iI
 iI
 iI
 vW
-XG
+GP
 XG
 "}
 (39,1,1) = {"
@@ -13316,7 +13335,7 @@ iI
 iI
 ye
 vW
-XG
+GP
 XG
 "}
 (40,1,1) = {"
@@ -13373,7 +13392,7 @@ iI
 iI
 wJ
 vW
-XG
+GP
 XG
 "}
 (41,1,1) = {"
@@ -13430,7 +13449,7 @@ iI
 iI
 Ms
 vW
-XG
+GP
 XG
 "}
 (42,1,1) = {"
@@ -13487,7 +13506,7 @@ Lt
 iI
 iV
 vW
-XG
+GP
 XG
 "}
 (43,1,1) = {"
@@ -13543,8 +13562,8 @@ vW
 vW
 vW
 vW
-oZ
-XG
+vW
+vW
 XG
 "}
 (44,1,1) = {"
@@ -13593,7 +13612,7 @@ XG
 XG
 XG
 XG
-st
+oZ
 XG
 XG
 XG
