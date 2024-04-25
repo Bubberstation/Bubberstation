@@ -4792,17 +4792,17 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless_space/cargo)
 "wa" = (
-/obj/machinery/power/shuttle_engine/propulsion/left{
-	pixel_y = -2
-	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
+/obj/machinery/power/shuttle_engine/propulsion/burst/right{
+	pixel_y = -2
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
 "wd" = (
@@ -7138,11 +7138,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/robotics)
 "GP" = (
-/obj/machinery/power/shuttle_engine/propulsion/burst{
-	pixel_y = -2
-	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
@@ -7331,17 +7328,17 @@
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/dorms)
 "HH" = (
-/obj/machinery/power/shuttle_engine/propulsion/right{
-	pixel_y = -2
-	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
+/obj/machinery/power/shuttle_engine/propulsion/burst/left{
+	pixel_y = -2
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
 "HI" = (
@@ -9355,6 +9352,20 @@
 "RX" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless_space/cargo)
+"RY" = (
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 29
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/obj/machinery/power/shuttle_engine/large{
+	pixel_y = -35
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
 "RZ" = (
 /obj/structure/sign/warning/radiation/directional/south,
 /obj/effect/turf_decal/siding/dark,
@@ -13265,7 +13276,7 @@ iI
 iI
 GG
 vW
-GP
+RY
 XG
 "}
 (38,1,1) = {"
@@ -13379,7 +13390,7 @@ iI
 iI
 ye
 vW
-GP
+vW
 XG
 "}
 (40,1,1) = {"
@@ -13436,7 +13447,7 @@ iI
 iI
 wJ
 vW
-GP
+RY
 XG
 "}
 (41,1,1) = {"

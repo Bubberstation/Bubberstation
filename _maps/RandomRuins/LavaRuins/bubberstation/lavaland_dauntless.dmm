@@ -4784,17 +4784,17 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "vP" = (
-/obj/machinery/power/shuttle_engine/propulsion/burst{
-	pixel_y = -2
-	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
+/obj/machinery/power/shuttle_engine/large{
+	pixel_y = -35
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "vQ" = (
@@ -4870,6 +4870,17 @@
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
+"wg" = (
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 29
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "wh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5265,17 +5276,17 @@
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "yj" = (
-/obj/machinery/power/shuttle_engine/propulsion/left{
-	pixel_y = -2
-	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
+/obj/machinery/power/shuttle_engine/propulsion/burst/right{
+	pixel_y = -2
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "ym" = (
@@ -8366,17 +8377,17 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "ME" = (
-/obj/machinery/power/shuttle_engine/propulsion/right{
-	pixel_y = -2
-	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 30
+	pixel_y = 29
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
+/obj/machinery/power/shuttle_engine/propulsion/burst/left{
+	pixel_y = -2
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "MG" = (
@@ -14089,7 +14100,7 @@ Ld
 Ld
 Ld
 US
-vP
+wg
 FZ
 FZ
 FZ
@@ -14157,7 +14168,7 @@ Ld
 Ld
 yG
 US
-vP
+US
 FZ
 FZ
 FZ
@@ -14293,7 +14304,7 @@ Ld
 Ld
 tj
 US
-vP
+wg
 FZ
 FZ
 FZ
