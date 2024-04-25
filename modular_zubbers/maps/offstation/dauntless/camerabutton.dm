@@ -8,9 +8,7 @@
 	if(cooldown)
 		say("Camera network is reloading! Please wait a moment.")
 		return
-
 	cooldown = TRUE
-	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS)
 
 	var/killswitch = FALSE
 	var/list/cameras = get_camera_list(camera_network)
