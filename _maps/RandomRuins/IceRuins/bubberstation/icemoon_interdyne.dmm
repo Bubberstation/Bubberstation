@@ -1155,16 +1155,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/gym)
 "jq" = (
-/obj/machinery/turretid{
-	ailock = 1;
-	control_area = "/area/ruin/syndicate_ice_base/main";
-	dir = 1;
-	icon_state = "control_kill";
-	lethal = 1;
-	name = "Base turret controls";
-	pixel_y = 30;
-	req_access = list("syndicate")
-	},
 /obj/machinery/light/small/red/directional/west,
 /turf/open/floor/iron/edge{
 	dir = 4
@@ -1716,12 +1706,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/virology)
-"mX" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/syndicate_ice_base/main)
 "mY" = (
 /obj/structure/rack/gunrack,
 /obj/item/ammo_box/magazine/sniper_rounds/soporific,
@@ -2778,6 +2762,17 @@
 	pixel_x = 11
 	},
 /obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/east,
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	broadcasting = 1;
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1255;
+	desc = "A rusty, decrepit intercom. The speaker is incredibly quiet.";
+	dir = 2;
+	pixel_y = -27;
+	pixel_x = 0
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/main)
 "uD" = (
@@ -5344,6 +5339,14 @@
 	id = "IDyneBrig";
 	pixel_y = -7
 	},
+/obj/item/radio/intercom/directional/east{
+	name = "two-way prisoner intercom";
+	freerange = 1;
+	freqlock = 1;
+	frequency = 1255;
+	pixel_y = -4;
+	pixel_x = 38
+	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "Nv" = (
@@ -6059,8 +6062,8 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
 "Sk" = (
-/obj/item/circuitboard/machine/ore_silo,
 /obj/structure/frame/machine/secured,
+/obj/item/circuitboard/machine/ore_silo,
 /turf/open/floor/iron/corner,
 /area/ruin/syndicate_ice_base/main)
 "Sn" = (
@@ -8394,7 +8397,7 @@ eG
 eG
 eG
 JG
-mX
+Ao
 qC
 sM
 DX
