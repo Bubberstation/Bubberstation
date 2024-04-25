@@ -135,6 +135,14 @@
 
 // Codespeak Granter
 
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/special(mob/living/new_spawn)
+	. = ..()
+	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER)
+
+/obj/effect/mob_spawn/ghost_role/human/dauntless/command/special(mob/living/new_spawn)
+	. = ..()
+	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER)
+
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/syndicate/special(mob/living/new_spawn)
 	. = ..()
 	new_spawn.grant_language(/datum/language/codespeak, source = LANGUAGE_SPAWNER)
