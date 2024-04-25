@@ -72,6 +72,11 @@
 	mood_message = "This place is quite relaxing."
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct
+	name = "Construction and Storage"
+	ignore_weather_sfx = FALSE
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+
 // Science
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci
@@ -229,6 +234,10 @@
 	mood_bonus = 5
 	mood_message = "This place is quite relaxing."
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
+/area/ruin/space/has_grav/bubbers/dauntless_space/service/construct
+	name = "Construction and Storage"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 // Science
 
