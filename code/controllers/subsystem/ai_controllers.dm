@@ -28,6 +28,10 @@ SUBSYSTEM_DEF(ai_controllers)
 	return ..()
 
 /datum/controller/subsystem/ai_controllers/fire(resumed)
+	var/timer = TICK_USAGE_REAL
+	cost_idle = MC_AVERAGE(cost_idle, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+
+	timer = TICK_USAGE_REAL
 	for(var/datum/ai_controller/ai_controller as anything in ai_controllers_by_status[AI_STATUS_ON])
 		if(!COOLDOWN_FINISHED(ai_controller, failed_planning_cooldown))
 			continue
@@ -37,6 +41,8 @@ SUBSYSTEM_DEF(ai_controllers)
 		ai_controller.SelectBehaviors(wait * 0.1)
 		if(!LAZYLEN(ai_controller.current_behaviors)) //Still no plan
 			COOLDOWN_START(ai_controller, failed_planning_cooldown, AI_FAILED_PLANNING_COOLDOWN)
+
+	cost_on = MC_AVERAGE(cost_on, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 ///Creates all instances of ai_subtrees and assigns them to the ai_subtrees list.
 /datum/controller/subsystem/ai_controllers/proc/setup_subtrees()
