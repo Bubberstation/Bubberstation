@@ -4791,6 +4791,20 @@
 /obj/effect/turf_decal/box/white/corners,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless_space/cargo)
+"wa" = (
+/obj/machinery/power/shuttle_engine/propulsion/left{
+	pixel_y = -2
+	},
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
 "wd" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/atmospherics/pipe/layer_manifold/pink/hidden{
@@ -7114,13 +7128,15 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/robotics)
 "GP" = (
-/obj/machinery/power/shuttle_engine/propulsion,
+/obj/machinery/power/shuttle_engine/propulsion/burst{
+	pixel_y = -2
+	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 32
+	pixel_y = 30
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
-	pixel_y = 32
+	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
 /turf/open/floor/plating,
@@ -7304,6 +7320,20 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/dorms)
+"HH" = (
+/obj/machinery/power/shuttle_engine/propulsion/right{
+	pixel_y = -2
+	},
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless_space/service/construct)
 "HI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -13165,7 +13195,7 @@ iI
 iI
 Qt
 vW
-GP
+wa
 XG
 "}
 (37,1,1) = {"
@@ -13507,7 +13537,7 @@ Lt
 iI
 iV
 vW
-GP
+HH
 XG
 "}
 (43,1,1) = {"

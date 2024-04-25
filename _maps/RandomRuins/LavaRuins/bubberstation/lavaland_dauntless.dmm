@@ -4774,13 +4774,15 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "vP" = (
-/obj/machinery/power/shuttle_engine/propulsion,
+/obj/machinery/power/shuttle_engine/propulsion/burst{
+	pixel_y = -2
+	},
 /obj/machinery/power/shuttle_engine/heater{
-	pixel_y = 32
+	pixel_y = 30
 	},
 /obj/effect/turf_decal/stripes,
 /obj/structure/window/reinforced/tinted/spawner/directional/north{
-	pixel_y = 32
+	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/dark_red/full,
 /turf/open/floor/plating,
@@ -5252,6 +5254,20 @@
 /obj/machinery/computer/operating,
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"yj" = (
+/obj/machinery/power/shuttle_engine/propulsion/left{
+	pixel_y = -2
+	},
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "ym" = (
 /obj/machinery/door/window/survival_pod/left/directional/west{
 	req_access = list("syndicate_leader");
@@ -8339,6 +8355,20 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
+"ME" = (
+/obj/machinery/power/shuttle_engine/propulsion/right{
+	pixel_y = -2
+	},
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/stripes,
+/obj/structure/window/reinforced/tinted/spawner/directional/north{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/dark_red/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "MG" = (
 /obj/machinery/suit_storage_unit/syndicate/softsuit,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -13910,7 +13940,7 @@ Ld
 Ld
 dJ
 US
-vP
+yj
 FZ
 FZ
 FZ
@@ -14318,7 +14348,7 @@ wB
 Ld
 KU
 US
-vP
+ME
 FZ
 FZ
 FZ
