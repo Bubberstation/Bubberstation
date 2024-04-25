@@ -13,9 +13,14 @@ SUBSYSTEM_DEF(ai_controllers)
 	var/list/ai_controllers_by_status = list(
 		AI_STATUS_ON = list(),
 		AI_STATUS_OFF = list(),
+		AI_STATUS_IDLE = list(),
 	)
 	///Assoc List of all AI controllers and the Z level they are on, which we check when someone enters/leaves a Z level to turn them on/off.
 	var/list/ai_controllers_by_zlevel = list()
+	/// The tick cost of all active AI, calculated on fire.
+	var/cost_on
+	/// The tick cost of all idle AI, calculated on fire.
+	var/cost_idle
 
 /datum/controller/subsystem/ai_controllers/Initialize()
 	setup_subtrees()
@@ -24,7 +29,8 @@ SUBSYSTEM_DEF(ai_controllers)
 /datum/controller/subsystem/ai_controllers/stat_entry(msg)
 	var/list/active_list = ai_controllers_by_status[AI_STATUS_ON]
 	var/list/inactive_list = ai_controllers_by_status[AI_STATUS_OFF]
-	msg = "Active AIs:[length(active_list)]|Inactive:[length(inactive_list)]"
+	var/list/idle_list = ai_controllers_by_status[AI_STATUS_IDLE]
+	msg = "Active AIs:[length(active_list)]/[round(cost_on,1)]%|Inactive:[length(inactive_list)]|Idle:[length(idle_list)]/[round(cost_idle,1)]%"
 	return ..()
 
 /datum/controller/subsystem/ai_controllers/fire(resumed)
