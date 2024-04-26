@@ -82,8 +82,6 @@
 		/obj/item/experi_scanner,
 		/obj/item/bonesetter,
 		/obj/item/stack/medical/gauze,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/dropper,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
 

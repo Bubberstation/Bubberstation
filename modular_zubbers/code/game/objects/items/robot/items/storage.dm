@@ -60,7 +60,6 @@
 	storable = list(
 					/obj/item/mecha_parts/part,
 					/obj/item/mecha_parts/mecha_equipment,
-					/obj/item/mecha_parts/mecha_tracking,
 					/obj/item/mod,
 				)
 /obj/item/borg/apparatus/mech/examine()
