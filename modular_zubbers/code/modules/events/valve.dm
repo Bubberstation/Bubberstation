@@ -9,13 +9,10 @@
 	max_wizard_trigger_potency = 7
 	typepath = /datum/round_event/valve
 
-
-//Called when the tick is equal to the start_when variable.
-//Allows you to start before announcing or vice versa.
-//Only called once.
 /datum/round_event/valve
 	announce_when = 50
 	end_when = 20
+
 /datum/round_event/valve/start()
 	var/list/world_valve_list = list()
 	var/list/station_z = SSmapping.levels_by_trait(ZTRAIT_STATION)
