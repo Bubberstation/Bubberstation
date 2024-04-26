@@ -313,7 +313,7 @@
 		additional_regen = 0.5
 	else if(bloodsucker_blood_volume > max_blood_volume)
 		additional_regen = 1 + round((blood_over_cap / 1000) * 2, 0.1)
-		AddBloodVolume(-1 - blood_over_cap / 100)
+		AdjustBloodVolume(-1 - blood_over_cap / 100)
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()
