@@ -1258,6 +1258,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service)
+"fA" = (
+/obj/structure/sign/warning/vacuum/external/directional/east,
+/obj/machinery/light/small/red/directional/east{
+	pixel_y = 16
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/bubbers/dauntless_space/sec/interrogation)
 "fB" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -3037,8 +3044,16 @@
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/dorms)
 "nS" = (
+/obj/structure/railing/corner/end/flip{
+	dir = 8
+	},
 /obj/structure/lattice/catwalk,
-/obj/structure/railing/corner,
+/obj/structure/railing/corner/end{
+	dir = 8
+	},
+/obj/structure/chair{
+	dir = 4
+	},
 /turf/template_noop,
 /area/template_noop)
 "nU" = (
@@ -3781,6 +3796,15 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison)
+"rz" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/structure/marker_beacon/burgundy,
+/turf/template_noop,
+/area/template_noop)
 "rB" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -4820,14 +4844,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/shower)
 "wg" = (
-/obj/structure/railing/corner/end{
-	dir = 1
-	},
-/obj/structure/railing/corner/end/flip{
-	dir = 1
-	},
 /obj/structure/lattice/catwalk,
-/obj/structure/chair,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/template_noop,
 /area/template_noop)
 "wi" = (
@@ -5384,6 +5404,19 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless_space/engineering)
+"yK" = (
+/obj/effect/turf_decal/stripes/red/full,
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external{
+	name = "Solutions"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless_space/sec/interrogation)
 "yO" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -6353,16 +6386,8 @@
 "Dq" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
-	dir = 8
+	dir = 5
 	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing/corner{
-	dir = 8;
-	pixel_y = 32
-	},
-/obj/structure/marker_beacon/burgundy,
 /turf/template_noop,
 /area/template_noop)
 "Dr" = (
@@ -7898,6 +7923,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/officer)
+"KH" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/bubbers/dauntless_space/sec/interrogation)
 "KK" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/effect/turf_decal/stripes/red/full,
@@ -8868,8 +8896,9 @@
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison)
 "PH" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/railing{
-	dir = 6
+/obj/structure/railing,
+/obj/structure/railing/corner{
+	dir = 4
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -9967,7 +9996,7 @@
 /obj/effect/turf_decal/stripes/red/full,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/interrogation)
 "Vm" = (
@@ -13646,10 +13675,10 @@ Vq
 xz
 qh
 Vl
+KH
+fA
+yK
 LM
-XG
-XG
-XG
 XG
 XG
 XG
@@ -13703,10 +13732,10 @@ pu
 lv
 SJ
 uO
+uO
+uO
+uO
 ac
-XG
-XG
-XG
 XG
 XG
 XG
@@ -13760,10 +13789,10 @@ AU
 lv
 kf
 nU
-nS
+XG
 Dq
 wg
-XG
+PH
 XG
 XG
 XG
@@ -13817,10 +13846,10 @@ YO
 lv
 ej
 nU
-PH
 XG
 XG
 XG
+rz
 XG
 XG
 XG
@@ -13877,7 +13906,7 @@ sh
 XG
 XG
 XG
-XG
+nS
 XG
 XG
 XG
