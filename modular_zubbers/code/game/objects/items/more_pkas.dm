@@ -1,5 +1,5 @@
 //Proto-Kinetic Accelerators
-
+/*
 /obj/item/gun/energy/recharge/kinetic_accelerator/railgun
 	name = "proto-kinetic railgun"
 	desc = "Before the nice streamlined and modern day Proto-Kinetic Accelerator was created, multiple designs were drafted by the Mining Research and Development \
@@ -238,3 +238,4 @@
 	if (is_type_in_list(get_area(user), wastes))
 		return TRUE
 	return FALSE
+*/
