@@ -248,9 +248,9 @@
 			continue
 
 		//SKYRAT EDIT ADDITION
-/* 		if(!candidate_client.prefs?.read_preference(/datum/preference/toggle/be_antag)) // BUBBER EDIT REMOVAL
+		if(!candidate_client.prefs?.read_preference(/datum/preference/toggle/be_antag))
 			candidates.Remove(candidate_player)
-			continue */
+			continue
 
 		if(is_banned_from(candidate_client.ckey, BAN_ANTAGONIST))
 			candidates.Remove(candidate_player)
