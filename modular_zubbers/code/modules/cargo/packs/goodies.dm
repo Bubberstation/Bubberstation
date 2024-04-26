@@ -30,6 +30,13 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
+/datum/supply_pack/goody/miniegun_single
+	name = "Mini E-Gun Single-Pack"
+	desc = "Contains one mini e-gun, for when your Bridge Officer loses theirs to the clown."
+	cost = PAYCHECK_COMMAND * 12
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/e_gun/mini)
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 

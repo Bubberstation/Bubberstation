@@ -113,7 +113,7 @@
 		return TRUE
 	return FALSE  // If the do_after() is interrupted, return FALSE!
 
-/obj/structure/cargo_shelf/deconstruct(disassembled = TRUE)
+/obj/structure/cargo_shelf/atom_deconstruct(disassembled = TRUE)
 	var/turf/dump_turf = drop_location()
 	for(var/obj/structure/closet/crate/crate in shelf_contents)
 		crate.layer = initial(crate.layer) // Reset the crates back to default visual state
@@ -176,11 +176,10 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/cargo_shelf/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		set_density(FALSE)
-		var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
-		transfer_fingerprints_to(newparts)
+/obj/structure/cargo_shelf/atom_deconstruct(disassembled = TRUE)
+	set_density(FALSE)
+	var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
+	transfer_fingerprints_to(newparts)
 	qdel(src)
 
 /obj/item/rack_parts/gun
@@ -202,11 +201,10 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/rack/gunrack/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		set_density(FALSE)
-		var/obj/item/rack_parts/gun/newparts = new(loc)
-		transfer_fingerprints_to(newparts)
+/obj/structure/rack/gunrack/atom_deconstruct(disassembled = TRUE)
+	set_density(FALSE)
+	var/obj/item/rack_parts/gun/newparts = new(loc)
+	transfer_fingerprints_to(newparts)
 	qdel(src)
 
 /obj/item/rack_parts/shelf
@@ -228,9 +226,8 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/rack/shelf/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		set_density(FALSE)
-		var/obj/item/rack_parts/shelf/newparts = new(loc)
-		transfer_fingerprints_to(newparts)
+/obj/structure/rack/shelf/atom_deconstruct(disassembled = TRUE)
+	set_density(FALSE)
+	var/obj/item/rack_parts/shelf/newparts = new(loc)
+	transfer_fingerprints_to(newparts)
 	qdel(src)

@@ -118,19 +118,6 @@
 	if(prob(10)) //A little extra sugar every now and then to shake things up.
 		new /obj/item/switchblade(our_crate)
 
-/datum/supply_pack/imports/blackmarket_telepad
-	name = "Black Market LTSRBT"
-	desc = "Need a faster and better way of transporting your illegal goods from and to the \
-		station? Fear not, the Long-To-Short-Range-Bluespace-Transceiver (LTSRBT for short) \
-		is here to help. Contains a LTSRBT circuit, two bluespace crystals, and one ansible."
-	cost = CARGO_CRATE_VALUE * 20
-	contraband = TRUE
-	contains = list(
-		/obj/item/circuitboard/machine/ltsrbt,
-		/obj/item/stack/ore/bluespace_crystal/artificial = 2,
-		/obj/item/stock_parts/subspace/ansible,
-	)
-
 /datum/supply_pack/imports/contraband
 	name = "'Contraband' Crate"
 	desc = "Psst.. bud... want some contraband? I can get you a poster, some nice cigs, dank, even some \
@@ -303,8 +290,8 @@
 	contraband = TRUE
 	contains = list(/obj/item/weaponcrafting/giant_wrench)
 	crate_name = "unknown parts crate"
-Removal End */
-/datum/supply_pack/imports/materials_market
+
+/datum/supply_pack/imports/materials_market - RENABLE IF FIXED UPSTREAM
 	name = "Galactic Materials Market Crate"
 	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
 	cost = CARGO_CRATE_VALUE * 3
@@ -317,6 +304,7 @@ Removal End */
 	)
 	crate_name = "materials market crate"
 	crate_type = /obj/structure/closet/crate/cargo
+Removal End */
 
 /datum/supply_pack/imports/floortilecamo
 	name = "Floor-tile Camouflage Uniform"
