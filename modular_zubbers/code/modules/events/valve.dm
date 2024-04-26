@@ -1,5 +1,5 @@
 /datum/round_event_control/valve
-	name = "Release Half-Life 3"
+	name = "Faulty Valve"
 	wizardevent = FALSE
 	max_occurrences = 5
 	min_players = 5
@@ -24,4 +24,9 @@
 		valves_to_trip |= pick_n_take(world_valve_list)
 	for(var/obj/machinery/atmospherics/components/binary/valve/current_valve in valves_to_trip)
 		current_valve.interact()
+		current_valve.play_attack_sound(50, BRUTE)
 		announce_to_ghosts(current_valve)
+	announce()
+
+/datum/round_event/valve/announce(fake)
+	priority_announce("Automated monitoring has detected faulty valves within your station. Please locate the defective valves and replace them as needed. ", "Engineering Alert")
