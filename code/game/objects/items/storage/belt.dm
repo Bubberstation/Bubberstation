@@ -246,6 +246,7 @@
 		/obj/item/clothing/mask/muzzle,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/suit/toggle/labcoat/hospitalgown,	//SKYRAT EDIT ADDITION - adds surgery gowns to belts
+		/obj/item/clothing/head/utility/surgerycap,
 		/obj/item/construction/plumbing,
 		/obj/item/dnainjector,
 		/obj/item/extinguisher/mini,
@@ -256,6 +257,7 @@
 		/obj/item/hemostat,
 		/obj/item/holosign_creator/medical,
 		/obj/item/hypospray/mkii, //SKYRAT EDIT ADDITION - HYPOSPRAYS
+		/obj/item/storage/hypospraykit/, //SKYRAT EDIT ADDITION - HYPOSPRAYS
 		/obj/item/implant,
 		/obj/item/implantcase,
 		/obj/item/implanter,

@@ -15,6 +15,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Glass" = 'icons/hud/screen_glass.dmi',
 	"Trasen-Knox" = 'icons/hud/screen_trasenknox.dmi',
 	"Detective" = 'icons/hud/screen_detective.dmi',
+	"Blue - 98" = 'modular_zubbers/master_files/icons/hud/screen_blue98.dmi' // Bubber Addition
 ))
 
 //SKYRAT EDIT - ADDITION - ERP ICONS FIX
@@ -118,6 +119,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/atom/movable/screen/stamina
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/spacesuit
+	var/atom/movable/screen/hunger
 	// subtypes can override this to force a specific UI style
 	var/ui_style
 	var/erp_ui_style //SKYRAT EDIT - ADDITION - ERP ICONS FIX
@@ -264,6 +266,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	stamina = null
 	healthdoll = null
 	spacesuit = null
+	hunger = null
 	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null

@@ -545,7 +545,7 @@
 /obj/item/clothing/head/beret/medical
 	name = "medical beret"
 	desc = "A medical-flavored beret for the doctor in you!"
-	greyscale_colors = "#FFFFFF"
+	greyscale_colors = COLOR_WHITE
 	flags_1 = NONE
 
 /obj/item/clothing/head/beret/medical/paramedic
@@ -562,7 +562,8 @@
 	name = "blue surgery cap"
 	icon_state = "surgicalcap"
 	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
-	//flags_inv = HIDEHAIR (Bubber Edit: Disabled for preview QOL) //BUBBER TODO: Modularise
+	//flags_inv = HIDEHAIR //Cover your head doctor! (Bubber Edit: Disabled for preview QOL) //BUBBER TODO: Modularise
+	w_class = WEIGHT_CLASS_SMALL //surgery cap can be easily crumpled
 
 /obj/item/clothing/head/utility/surgerycap/attack_self(mob/user)
 	. = ..()
