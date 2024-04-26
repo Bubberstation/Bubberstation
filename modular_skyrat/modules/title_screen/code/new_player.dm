@@ -42,12 +42,12 @@
 		return
 	//BUBBER EDIT ADDITION END
 
-/* 	if(href_list["toggle_antag"]) // BUBBER EDIT
+	if(href_list["toggle_antag"])
 		play_lobby_button_sound()
 		var/datum/preferences/preferences = client.prefs
 		preferences.write_preference(GLOB.preference_entries[/datum/preference/toggle/be_antag], !preferences.read_preference(/datum/preference/toggle/be_antag))
 		client << output(preferences.read_preference(/datum/preference/toggle/be_antag), "title_browser:toggle_antag")
-		return */
+		return
 
 	if(href_list["character_setup"])
 		play_lobby_button_sound()
