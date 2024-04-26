@@ -46,14 +46,14 @@
 
 
 //Science inducer
-/obj/item/borg/upgrade/inducer/sci
+/obj/item/borg/upgrade/inducer_sci
 	name = "Research integrated power inducer"
 	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
 
-/obj/item/borg/upgrade/inducer/sci/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/inducer_sci/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		var/obj/item/inducer/cyborg/sci/AC = locate() in R.model.modules
@@ -64,7 +64,7 @@
 		R.model.basic_modules += AC
 		R.model.add_module(AC, FALSE, TRUE)
 
-/obj/item/borg/upgrade/inducer/sci/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/inducer_sci/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		for(var/obj/item/inducer/cyborg/sci/AC in R.model.modules)
