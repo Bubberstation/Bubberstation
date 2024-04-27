@@ -1,32 +1,99 @@
-/datum/round_event_control/valve
-	name = "Faulty Valve"
+/datum/round_event_control/defective
+	name = "Engineering Mishap"
 	wizardevent = FALSE
 	max_occurrences = 5
 	min_players = 5
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Opens or closes random valves on station."
+	description = "Makes a few machines on the station act erroneously."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 7
-	typepath = /datum/round_event/valve
+	typepath = /datum/round_event/defective
 
-/datum/round_event/valve
+/datum/round_event/defective
 	announce_when = 50
 	end_when = 20
 
-/datum/round_event/valve/start()
+/datum/round_event/defective/start()
 	var/list/world_valve_list = list()
+	var/list/world_computer_list = list()
+	var/list/world_pump_list = list()
+	var/list/world_apc_list = list()
+	var/list/world_airlock_list = list()
+	var/list/world_chemistry_disp_list = list()
+	var/list/world_hydroponics_list = list()
+	var/list/world_silicon_list = GLOB.silicon_mobs
 	var/list/station_z = SSmapping.levels_by_trait(ZTRAIT_STATION)
-	for(var/obj/machinery/atmospherics/components/binary/valve/valve in world)
-		if(valve.z == locate(valve.z) in station_z)
-			world_valve_list |= valve
+	for(var/obj/machinery/current_machinery in world)
+		if(current_machinery.z == locate(current_machinery.z) in station_z)
+			if(istype(current_machinery, /obj/machinery/atmospherics/components/binary/valve))
+				world_valve_list |= current_machinery
+			if(istype(current_machinery, /obj/machinery/computer))
+				world_computer_list |= current_machinery
+			if(istype(current_machinery, /obj/machinery/chem_dispenser))
+				world_chemistry_disp_list |= current_machinery
+			if(istype(current_machinery, /obj/machinery/atmospherics/components/binary/pump) || istype(current_machinery, /obj/machinery/atmospherics/components/binary/volume_pump))
+				world_pump_list |= current_machinery
+			if(istype(current_machinery, /obj/machinery/door/airlock))
+				world_airlock_list |= current_machinery
+			if(istype(current_machinery, /obj/machinery/power/apc))
+				world_apc_list |= current_machinery
+/* 	var/list/machines_to_alter = list(
+		world_valve_list,
+		world_computer_list,
+		world_pump_list,
+		world_apc_list,
+		world_airlock_list,
+		world_chemistry_disp_list,
+		world_hydroponics_list,
+	) */
+
 	var/list/valves_to_trip = list()
-	for(var/i in 1 to 5)
+	for(var/i in 0 to rand(0, 3))
 		valves_to_trip |= pick_n_take(world_valve_list)
 	for(var/obj/machinery/atmospherics/components/binary/valve/current_valve in valves_to_trip)
 		current_valve.interact()
 		current_valve.play_attack_sound(50, BRUTE)
 		announce_to_ghosts(current_valve)
+
+	var/list/computers_to_trip = list()
+	for(var/i in 0 to rand(0, 3))
+		computers_to_trip |= world_computer_list
+	for(var/obj/machinery/computer/current_computer in computers_to_trip)
+		current_computer.play_attack_sound(50, BRUTE)
+		current_computer.emp_act(1)
+		announce_to_ghosts(current_computer)
+
+	var/list/pumps_to_trip = list()
+	for(var/i in 0 to rand(0, 3))
+		pumps_to_trip |= pick_n_take(world_pump_list)
+	for(var/obj/machinery/atmospherics/components/binary/pump/pump in pumps_to_trip)
+		pump.play_attack_sound(50, BRUTE)
+		pump.target_pressure = /obj/machinery/atmospherics/components/binary/pump::target_pressure
+		announce_to_ghosts(pump)
+	for(var/obj/machinery/atmospherics/components/binary/volume_pump/vol_pump in pumps_to_trip)
+		vol_pump.play_attack_sound(50, BRUTE)
+		vol_pump.transfer_rate = rand(0, 200)
+		announce_to_ghosts(vol_pump)
+
+	var/list/apcs_to_trip = list()
+	for(var/i in 0 to rand(0, 3))
+		apcs_to_trip |= pick_n_take(world_apc_list)
+	for(var/obj/machinery/power/apc/apc in apcs_to_trip)
+		apc.play_attack_sound(50, BRUTE)
+		apc.set_broken()
+		announce_to_ghosts(apc)
+
+	var/list/chem_dispenser_to_trip = list()
+	for(var/i in 0 to rand(0, 3))
+		chem_dispenser_to_trip |= pick_n_take(world_chemistry_disp_list)
+	for(var/obj/machinery/chem_dispenser/dispensy in chem_dispenser_to_trip)
+		dispensy.play_attack_sound(50, BRUTE)
+		dispensy.emag_act()
+		dispensy.beaker.SplashReagents(dispensy, TRUE, TRUE)
+		announce_to_ghosts(dispensy)
+
+
 	announce()
 
-/datum/round_event/valve/announce(fake)
-	priority_announce("Automated monitoring has detected faulty valves within your station. Please locate the defective valves and replace them as needed. ", "Engineering Alert")
+/datum/round_event/defective/announce(fake)
+	priority_announce("A recall for faulty equipment has been issued. Please consult with your Engineering Supervisor.", "Engineering Alert")
