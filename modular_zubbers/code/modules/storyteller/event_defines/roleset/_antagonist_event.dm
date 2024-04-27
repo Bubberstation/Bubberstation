@@ -64,9 +64,8 @@
 	. = ..()
 	if(!.)
 		return
-	var/antag_amt = get_antag_amount()
 	var/list/candidates = get_candidates()
-	if(candidates.len < antag_amt)
+	if(candidates.len == 0)
 		return FALSE
 
 /datum/round_event_control/antagonist/solo/proc/get_antag_amount()

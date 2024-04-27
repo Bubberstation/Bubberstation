@@ -22,6 +22,9 @@
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)
 
+/datum/round_event_control/radiation_storm
+	max_occurrences = 2
+
 /datum/round_event_control/radiation_leak
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)

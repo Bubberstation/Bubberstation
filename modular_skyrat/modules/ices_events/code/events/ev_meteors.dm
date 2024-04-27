@@ -5,7 +5,7 @@
 #define METEOR_WAVE_THREATENING_WEIGHT 15
 #define METEOR_TICKS_BETWEEN_WAVES 3
 #define METEORS_PER_WAVE 5
-/* // BUBBER EDIT BEGIN
+
 /datum/round_event_control/meteor_wave/ices
 	name = "Meteor Wave: ICES"
 	typepath = /datum/round_event/meteor_wave/ices
@@ -61,7 +61,7 @@
 /datum/round_event/meteor_wave/tick(seconds_between_ticks)
 	if(ISMULTIPLE(activeFor, METEOR_TICKS_BETWEEN_WAVES))
 		spawn_meteors(METEORS_PER_WAVE, wave_type) //meteor list types defined in gamemode/meteor/meteors.dm
- */ // BUBBER EDIT END
+
 #undef METEOR_WAVE_MIN_NOTICE
 #undef METEOR_WAVE_MAX_NOTICE
 #undef METEOR_WAVE_DURATION

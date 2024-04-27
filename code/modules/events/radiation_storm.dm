@@ -1,7 +1,7 @@
 /datum/round_event_control/radiation_storm
 	name = "Radiation Storm"
 	typepath = /datum/round_event/radiation_storm
-	max_occurrences = 2 // BUBBER EDIT
+	max_occurrences = 1
 	category = EVENT_CATEGORY_SPACE
 	description = "Radiation storm affects the station, forcing the crew to escape to maintenance."
 	min_wizard_trigger_potency = 3

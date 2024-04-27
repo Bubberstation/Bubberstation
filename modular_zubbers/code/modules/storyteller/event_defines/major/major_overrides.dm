@@ -20,6 +20,9 @@
 /datum/round_event_control/meteor_wave/meaty
 	weight = 15
 
+/datum/round_event_control/meteor_wave/ices
+	weight = 0
+
 /datum/round_event_control/radiation_storm
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMMUNAL)
@@ -45,3 +48,7 @@
 /datum/round_event_control/anomaly/anomaly_pyro
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_DESTRUCTIVE)
+
+/datum/round_event_control/spider_infestation
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT)
