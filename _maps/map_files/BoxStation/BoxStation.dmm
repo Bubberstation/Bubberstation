@@ -521,9 +521,6 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
-/obj/machinery/ticket_machine{
-	pixel_y = 32
-	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "adW" = (
@@ -1436,6 +1433,7 @@
 	pixel_y = 8;
 	req_access = list("brig")
 	},
+/obj/effect/turf_decal/caution/stand_clear/blue,
 /turf/open/floor/iron,
 /area/station/security/prison/safe)
 "alz" = (
@@ -4604,10 +4602,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "ayv" = (
-/obj/effect/spawner/structure/window,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plating,
-/area/station/hallway/primary/central)
+/obj/effect/turf_decal/trimline/dark_blue/filled/line,
+/obj/structure/table,
+/obj/item/storage/box/prisoner{
+	pixel_y = 2
+	},
+/turf/open/floor/iron/dark,
+/area/station/security/execution/transfer)
 "ayw" = (
 /obj/docking_port/stationary/random{
 	dir = 4;
@@ -15664,9 +15665,7 @@
 /turf/closed/wall,
 /area/station/command/heads_quarters/hop)
 "bmp" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/maintenance,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/station/maintenance/central)
 "bmq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -16184,6 +16183,7 @@
 /area/station/cargo/sorting)
 "bnN" = (
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/bluespace_vendor/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "bnO" = (
@@ -16600,7 +16600,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/delivery,
-/obj/machinery/bluespace_vendor/directional/north,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "bpb" = (
@@ -16989,10 +16988,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/cargo/office)
-"bqv" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/station/hallway/primary/central)
 "bqw" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -17360,28 +17355,27 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/structure/ore_box,
-/turf/open/floor/iron,
-/area/station/cargo/miningdock)
-"bsb" = (
-/obj/structure/rack,
 /obj/item/pickaxe{
 	pixel_x = 5
-	},
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
 	},
 /obj/item/shovel{
 	pixel_x = -5
 	},
+/obj/structure/rack,
+/turf/open/floor/iron,
+/area/station/cargo/miningdock)
+"bsb" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/structure/closet/wardrobe/miner,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bsd" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/closet/l3closet/scientist,
-/obj/item/storage/bag/bio,
+/obj/item/storage/bag/xeno,
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "bse" = (
@@ -20313,10 +20307,10 @@
 /obj/machinery/camera/directional/west{
 	c_tag = "Mining Dock"
 	},
-/obj/effect/turf_decal/bot,
 /obj/machinery/conveyor_switch/oneway{
 	id = "boulderbelt"
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bCp" = (
@@ -20694,10 +20688,13 @@
 /obj/item/restraints/legcuffs/beartrap,
 /obj/item/storage/box/mousetraps,
 /obj/item/storage/box/mousetraps,
+/obj/structure/rack,
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "bDs" = (
 /obj/structure/reagent_dispensers/watertank,
+/obj/item/reagent_containers/cup/bucket,
+/obj/item/mop,
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "bDv" = (
@@ -20769,11 +20766,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/aft)
 "bDJ" = (
-/obj/item/storage/box/lights/mixed,
-/obj/item/storage/box/lights/mixed,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/vehicle/ridden/janicart,
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "bDK" = (
@@ -20783,7 +20779,9 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Custodial Closet"
 	},
-/obj/vehicle/ridden/janicart,
+/obj/structure/rack,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "bDL" = (
@@ -21284,10 +21282,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "bFk" = (
-/obj/item/mop,
-/obj/item/reagent_containers/cup/bucket,
+/obj/machinery/photobooth,
 /turf/open/floor/iron,
-/area/station/service/janitor)
+/area/station/maintenance/central)
 "bFm" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8
@@ -21925,13 +21922,13 @@
 "bHy" = (
 /obj/machinery/light/small/directional/east,
 /obj/item/radio/intercom/directional/east,
-/obj/machinery/computer/shuttle/mining,
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/structure/ore_box,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "bHz" = (
@@ -25855,11 +25852,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 2
-	},
-/obj/item/stack/sheet/iron/fifty,
+/obj/machinery/portable_atmospherics/scrubber/huge,
 /turf/open/floor/engine,
 /area/station/engineering/atmos)
 "bXT" = (
@@ -26293,6 +26286,10 @@
 	pixel_x = -2
 	},
 /obj/effect/spawner/random/engineering/toolbox,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 2
+	},
 /turf/open/floor/engine,
 /area/station/engineering/atmos)
 "bZJ" = (
@@ -30898,6 +30895,7 @@
 /area/space/nearstation)
 "czh" = (
 /obj/effect/spawner/random/structure/closet_maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
 "czk" = (
@@ -35147,6 +35145,7 @@
 "epD" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
+/obj/structure/closet/wardrobe/cargotech,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "epJ" = (
@@ -35739,9 +35738,7 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
-/obj/item/assembly/timer{
-	pixel_y = 6
-	},
+/obj/item/circuitboard/machine/brm,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/miningdock)
 "ePs" = (
@@ -39883,6 +39880,7 @@
 	pixel_x = -25;
 	pixel_y = -10
 	},
+/obj/effect/turf_decal/caution/stand_clear/blue,
 /turf/open/floor/iron,
 /area/station/security/prison/safe)
 "hTU" = (
@@ -45132,6 +45130,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "lHg" = (
@@ -49469,6 +49468,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/ticket_machine/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "oXU" = (
@@ -49901,13 +49901,9 @@
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "pns" = (
-/obj/structure/table,
-/obj/item/storage/box/prisoner{
-	pixel_y = 8
-	},
-/obj/item/storage/box/prisoner,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
 /obj/machinery/light/directional/south,
+/obj/machinery/photobooth/security,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
 "pnD" = (
@@ -52148,6 +52144,10 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/west,
+/obj/machinery/computer/shuttle/mining{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "qTo" = (
@@ -56697,6 +56697,7 @@
 "une" = (
 /obj/structure/table,
 /obj/machinery/light/directional/west,
+/obj/item/storage/box/hug/plushes,
 /turf/open/floor/iron,
 /area/station/security/execution/transfer)
 "unh" = (
@@ -57645,7 +57646,9 @@
 	},
 /area/station/security/prison)
 "uWg" = (
-/obj/machinery/vending/dorms/prison,
+/obj/machinery/vending/dorms/prison{
+	onstation = 0
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -57925,15 +57928,15 @@
 /area/station/security/execution/transfer)
 "vij" = (
 /obj/structure/table,
-/obj/item/storage/box/hug{
-	pixel_x = 4;
-	pixel_y = 3
-	},
 /obj/item/razor{
 	pixel_x = -8;
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
+/obj/item/storage/box/prisoner{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
 "vik" = (
@@ -59511,6 +59514,9 @@
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
 "woJ" = (
+/obj/structure/closet/generic/wall/empty{
+	pixel_y = 32
+	},
 /turf/open/floor/carpet,
 /area/station/security/execution/transfer)
 "woP" = (
@@ -85921,7 +85927,7 @@ xzh
 bta
 osx
 sDW
-vUt
+ayv
 bta
 xzh
 sUX
@@ -86932,7 +86938,7 @@ acd
 acd
 acd
 acd
-ulw
+dyj
 vlB
 vlB
 ulw
@@ -87189,7 +87195,7 @@ sxl
 mWy
 mWy
 mWy
-mWy
+aaw
 mWy
 mWy
 klr
@@ -87778,10 +87784,10 @@ bkT
 bjz
 bjz
 boX
-ayv
-bqv
-bqv
-bqv
+aJn
+aJn
+aJn
+aJn
 adS
 aJw
 aJq
@@ -88033,7 +88039,7 @@ bie
 bjB
 bkW
 bmp
-bjz
+bFk
 bpa
 bqy
 cBr
@@ -93699,8 +93705,8 @@ nXH
 gKt
 bBx
 bCv
+bDL
 apG
-bFk
 bDs
 bCv
 hxs
