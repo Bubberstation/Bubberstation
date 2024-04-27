@@ -15,7 +15,7 @@
 		If you are in desperate need of blood, mice can be fed off of, at a cost.\n\
 		You must use the ability again to stop sucking blood."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS|BP_CAN_USE_WHILE_STAKED
+	check_flags = BP_CANT_USE_IN_TORPOR|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|BP_CAN_USE_WHILE_STAKED
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS

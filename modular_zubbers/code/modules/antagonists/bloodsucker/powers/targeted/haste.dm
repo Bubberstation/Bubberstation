@@ -16,7 +16,7 @@
 		It will also refill your stamina so you can keep moving."
 	prefire_message = "You prepare to dash!"
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
@@ -61,7 +61,7 @@
 		StartCooldown(cooldown_time * 3)
 	if(stuns_mobs)
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-	var/turf/targeted_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
+	var/turf/targeted_turf = isturf(target) ? target : get_turf(target)
 	// Pulled? Not anymore.
 	user.pulledby?.stop_pulling()
 	// Go to target turf

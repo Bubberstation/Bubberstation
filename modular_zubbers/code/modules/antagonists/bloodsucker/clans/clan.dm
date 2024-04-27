@@ -29,6 +29,7 @@
 	var/blood_drink_type = BLOODSUCKER_DRINK_NORMAL
 	/// How much stamina armor we get in frenzy
 	var/frenzy_stamina_mod = 0.4
+	var/buy_power_flags = BLOODSUCKER_CAN_BUY
 
 /datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
@@ -150,7 +151,7 @@
 	// Purchase Power Prompt
 	var/list/options = list()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY && !(locate(power) in bloodsuckerdatum.powers))
+		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in bloodsuckerdatum.powers))
 			options[initial(power.name)] = power
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(options.len < 1)
@@ -187,7 +188,7 @@
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
 /datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
-	bloodsuckerdatum.LevelUpPowers()
+	LevelUpPowers(source)
 	bloodsuckerdatum.bloodsucker_regen_rate += 0.05
 	bloodsuckerdatum.max_blood_volume += 100
 
@@ -228,6 +229,9 @@
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
+
+/datum/bloodsucker_clan/proc/LevelUpPowers(datum/antagonist/bloodsucker/source)
+	bloodsuckerdatum.LevelUpPowers()
 
 /**
  * Called when we are trying to turn someone into a Favorite Vassal

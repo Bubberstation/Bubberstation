@@ -11,81 +11,46 @@
 // Look to /datum/action/cooldown/spell/pointed/void_phase for help.
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex
-	name = "Level 1: Auspex"
-	upgraded_power = /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/two
+	name = "Auspex"
 	level_current = 1
-	desc = "Hide yourself within a Cloak of Darkness, click on an area to teleport up to 2 tiles away."
 	button_icon_state = "power_auspex"
-	power_explanation = "Level 1: Auspex:\n\
-		When Activated, you will be hidden in a Cloak of Darkness.\n\
-		Click any area up to 2 tile away to teleport there, ending the Power.\n\
-		Additionally upon teleporting your Stamina will be restored."
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	bloodcost = 5
 	constant_bloodcost = 2
 	cooldown_time = 12 SECONDS
 	target_range = 2
-	prefire_message = "Where do you wish to teleport to?"
+	prefire_message = "Right click to teleport"
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/two
-	name = "Level 2: Auspex"
-	upgraded_power = /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/three
-	level_current = 2
-	desc = "Hide yourself within a Cloak of Darkness, click on an area to teleport up to 3 tiles away."
-	power_explanation = "Level 2: Auspex:\n\
-		When Activated, you will be hidden in a Cloak of Darkness.\n\
-		Click any area up to 3 tile away to teleport there, ending the Power.\n\
-		Additionally upon teleporting your Stamina will be restored."
-	bloodcost = 10
-	cooldown_time = 10 SECONDS
-	target_range = 3
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc()
+	. = ..()
+	var/old_desc = .
+	return "Hide yourself within a Cloak of Darkness, click on an area to teleport \
+		[target_range ? "up to [target_range] tiles" : "anywhere you can see"] \
+		[level_current >= 4 ? "ending the Power and causing people at your end location to start bleeding" : "."] \
+		[level_current >= 5 ? "and fall asleep" : "."] \n\
+		[old_desc]"
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/three
-	name = "Level 3: Auspex"
-	upgraded_power = /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/advanced
-	level_current = 3
-	desc = "Hide yourself within a Cloak of Darkness, click on an area to teleport."
-	power_explanation = "Level 3: Auspex:\n\
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
+	return "Level [level_current]: [src]:\n\
 		When Activated, you will be hidden in a Cloak of Darkness.\n\
-		Click any area up to teleport there, ending the Power.\n\
-		Additionally upon teleporting your Stamina will be restored."
-	bloodcost = 15
-	cooldown_time = 8 SECONDS
-	target_range = null
-
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/advanced
-	name = "Level 4: Auspex"
-	upgraded_power = /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/advanced/two
-	level_current = 4
-	desc = "Hide yourself within a Cloak of Darkness, click on an area to teleport, leaving nearby people bleeding."
-	power_explanation = "Level 4: Auspex:\n\
-		When Activated, you will be hidden in a Cloak of Darkness.\n\
-		Click any area up to teleport there, ending the Power and causing people at your end location to start bleeding.\n\
-		Additionally upon teleporting your Stamina will be restored."
-	background_icon_state = "tremere_power_gold_off"
-	active_background_icon_state = "tremere_power_gold_on"
-	base_background_icon_state = "tremere_power_gold_off"
-	bloodcost = 20
-	cooldown_time = 6 SECONDS
-	target_range = null
-
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/advanced/two
-	name = "Level 5: Auspex"
-	upgraded_power = null
-	level_current = 5
-	desc = "Hide yourself within a Cloak of Darkness, click on an area to teleport, leaving nearby people bleeding and asleep."
-	power_explanation = "Level 5: Auspex:\n\
-		When Activated, you will be hidden in a Cloak of Darkness.\n\
-		Click any area up to teleport there, ending the Power and causing people at your end location to fall over in pain.\n\
-		Additionally upon teleporting your Stamina will be restored."
-	bloodcost = 25
-	cooldown_time = 8 SECONDS
+		[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"].\n\
+		Teleporting will refill your stamina to full.\n\
+		At level 4 you will cause people at your end location to start bleeding.\n\
+		At level 5 you will cause people at your end location to fall asleep."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
-	return isturf(target_atom)
+	if(!isturf(target_atom))
+		return FALSE
+	var/turf/target_turf = target_atom
+	if(target_turf.is_blocked_turf_ignore_climbable())
+		return FALSE
+	if(!(target_turf in view(owner.client.view, owner)))
+		owner.balloon_alert(owner, "out of view!")
+		return FALSE
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/Activate(trigger_flags)
 	. = ..()
@@ -97,7 +62,7 @@
 	owner.RemoveElement(/datum/element/digitalcamo)
 	return ..()
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/FireTargetedPower(atom/target, params)
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/FireSecondaryTargetedPower(atom/target, params)
 	. = ..()
 	var/mob/living/user = owner
 	var/turf/targeted_turf = get_turf(target)

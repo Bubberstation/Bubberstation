@@ -8,6 +8,7 @@
 	join_icon_state = "tremere"
 	join_description = "You will burn if you enter the Chapel, lose all default powers, \
 		but gain Blood Magic instead, powers you level up overtime."
+	buy_power_flags = TREMERE_CAN_BUY
 
 /datum/bloodsucker_clan/tremere/New(mob/living/carbon/user)
 	. = ..()
@@ -18,7 +19,7 @@
 
 /datum/bloodsucker_clan/tremere/Destroy(force)
 	for(var/datum/action/cooldown/bloodsucker/power in bloodsuckerdatum.powers)
-		if(power.purchase_flags & TREMERE_CAN_BUY)
+		if(power.purchase_flags & buy_power_flags)
 			bloodsuckerdatum.RemovePower(power)
 	return ..()
 
@@ -31,20 +32,19 @@
 		bloodsuckerdatum.owner.current.adjust_fire_stacks(2)
 		bloodsuckerdatum.owner.current.ignite_mob()
 
-/datum/bloodsucker_clan/tremere/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
-	// Purchase Power Prompt
+
+/datum/bloodsucker_clan/remere/LevelUpPowers(datum/antagonist/bloodsucker/source)
 	var/list/options = list()
 	for(var/datum/action/cooldown/bloodsucker/targeted/power as anything in bloodsuckerdatum.powers)
-		if(!(power.purchase_flags & TREMERE_CAN_BUY))
+		if(!(power.purchase_flags & buy_power_flags))
 			continue
 		if(isnull(power.upgraded_power))
 			continue
 		options[initial(power.name)] = power
-
+	
 	if(options.len < 1)
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
-	else
-		// Give them the UI to purchase a power.
+		return
+	// Give them the UI to purchase a power.
 		var/choice = tgui_input_list(bloodsuckerdatum.owner.current, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to upgrade a power.", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
@@ -57,17 +57,6 @@
 		if(!istype(bloodsuckerdatum.owner.current.loc, /obj/structure/closet/crate/coffin))
 			to_chat(bloodsuckerdatum.owner.current, span_warning("You must be in your Coffin to purchase Powers."))
 			return
-
-		// Good to go - Buy Power!
-		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
-		var/datum/action/cooldown/bloodsucker/targeted/tremere_power = purchased_power
-		bloodsuckerdatum.BuyPower(tremere_power.upgraded_power)
-		bloodsuckerdatum.RemovePower(tremere_power)
-		
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "upgraded [choice]!")
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You have upgraded [choice]!"))
-
-	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
 /datum/bloodsucker_clan/tremere/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/datum/action/cooldown/spell/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)

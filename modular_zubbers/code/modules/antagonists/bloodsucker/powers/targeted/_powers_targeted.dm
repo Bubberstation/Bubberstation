@@ -25,17 +25,20 @@
 // For this ability, we call InterceptClickOn to trigger the ability with a target, as we want
 // to be able to use trigger_flags, which mere Activate doesn't have.
 
-/datum/action/cooldown/bloodsucker/targeted/Trigger(trigger_flags, atom/target)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(target)
-		. = FireTargetedPower(target, trigger_flags)
+// /datum/action/cooldown/bloodsucker/targeted/Trigger(trigger_flags, atom/target)
+// 	. = ..()
+// 	if(!.)
+// 		return FALSE
+// 	if(prefire_message)
+// 		to_chat(owner, span_announce("[prefire_message]"))
+// 	if(target)
+// 		. = FireTargetedPower(target, trigger_flags)
 
 // If click_to_activate is true, only these two procs are called when the ability is clicked on
 /datum/action/cooldown/bloodsucker/targeted/set_click_ability(mob/on_who)
 	. = ..()
 	Activate()
+	DisableTargetedPowers()
 	if(prefire_message)
 		to_chat(owner, span_announce("[prefire_message]"))
 
@@ -44,11 +47,14 @@
 	if(power_activates_immediately)
 		DeactivatePower()
 
-/datum/action/cooldown/bloodsucker/targeted/DeactivatePower()
-	if(power_flags & BP_AM_TOGGLE)
-		STOP_PROCESSING(SSprocessing, src)
-	active = FALSE
-	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
+/datum/action/cooldown/bloodsucker/targeted/proc/DisableTargetedPowers()
+	for(var/power in owner.actions)
+		if(!istype(power, /datum/action/cooldown/bloodsucker/targeted) || power == src)
+			continue
+		if(!active)
+			continue
+		var/datum/action/cooldown/bloodsucker/targeted/b_power = power
+		b_power.DeactivatePower()
 
 /// Check if target is VALID (wall, turf, or character?)
 /datum/action/cooldown/bloodsucker/targeted/proc/CheckValidTarget(atom/target_atom)
@@ -78,7 +84,6 @@
 	// Valid? (return true means DON'T cancel power!)
 	if(!can_pay_cost() || !can_use(owner) || !CheckCanTarget(target))
 		return TRUE
-	power_in_use = TRUE // Lock us into this ability until it successfully fires off. Otherwise, we pay the blood even if we fail.
 	if(power_activates_immediately)
 		PowerActivatedSuccesfully() // Mesmerize pays only after success.
 	power_in_use = FALSE
@@ -87,23 +92,44 @@
 /datum/action/cooldown/bloodsucker/targeted/proc/FireTargetedPower(atom/target, params)
 	return FALSE
 
-/// Mostly unused for trigger powers, if you're coding a new bloodsucker ability, use TargetedActivate instead.
+/// Called on right click
+/datum/action/cooldown/bloodsucker/targeted/proc/FireSecondaryTargetedPower(atom/target, params)
+	return FireTargetedPower(target, params)
+
+/// 
 /datum/action/cooldown/bloodsucker/targeted/Activate(atom/target)
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!target)
 		return .
 	log_combat(owner, target, "used [name] on")
+
+/datum/action/cooldown/bloodsucker/targeted/DeactivatePower()
+	if(power_flags & BP_AM_TOGGLE)
+		STOP_PROCESSING(SSprocessing, src)
+	active = FALSE
+	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /// The power went off! We now pay the cost of the power.
 /datum/action/cooldown/bloodsucker/targeted/proc/PowerActivatedSuccesfully(cooldown_override)
 	StartCooldown(cooldown_override)
 	DeactivatePower()
 
+// completely overrides the base type so it won't call pre-activate
 /datum/action/cooldown/bloodsucker/targeted/InterceptClickOn(mob/living/caller, params, atom/target)
-	. = ..()
-	if(!.)
+	if(!IsAvailable(feedback = TRUE))
 		return FALSE
-	// InterceptClickOn already runs PreActivate, so only check if the return value is FALSE.
-	// I would use Activate if it actually had click params, but I want to be able to
-	// check for right clicks.
-	FireTargetedPower(target, params)
+	if(!CheckValidTarget(target) || !can_pay_cost() || !can_use(owner) || !CheckCanTarget(target))
+		return FALSE
+
+	// And if we reach here, the action was complete successfully
+	if(unset_after_click)
+		unset_click_ability(caller, refund_cooldown = FALSE)
+	caller.next_click = world.time + click_cd_override
+
+	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		FireSecondaryTargetedPower(target, modifiers)
+	else
+		FireTargetedPower(target, modifiers)
+	return TRUE

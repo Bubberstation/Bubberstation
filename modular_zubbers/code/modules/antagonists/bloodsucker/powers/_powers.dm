@@ -24,7 +24,7 @@
 	/// The effects on this Power (Toggled/Single Use/Static Cooldown)
 	var/power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	/// Requirement flags for checks
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	/// Who can purchase the Power
 	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER|TREMERE_CAN_BUY|VASSAL_CAN_BUY
 
@@ -37,20 +37,13 @@
 	var/bloodcost = 0
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
-	///The upgraded version of this Power. 'null' means it's the max level.
-	var/upgraded_power = null
 	///Most powers happen the moment you click. Some, like Mesmerize, require time and shouldn't cost you if they fail.
 	var/power_activates_immediately = FALSE
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
 	. = ..()
-	if(bloodcost > 0)
-		desc += "<br><br><b>COST:</b> [bloodcost] Blood"
-	if(constant_bloodcost > 0)
-		desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
-	if(power_flags & BP_AM_SINGLEUSE)
-		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+	desc = get_power_desc()
 
 /datum/action/cooldown/bloodsucker/Destroy()
 	if(active)
@@ -106,12 +99,13 @@
 ///Called when the Power is upgraded.
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	level_current++
+	desc = get_power_desc()
 	build_all_button_icons(UPDATE_BUTTON_NAME)
 
 // Put desc that you want to update every time build_all_button_icons is called here
 /datum/action/cooldown/bloodsucker/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	. = ..()
-	if((purchase_flags & BLOODSUCKER_CAN_BUY) || (purchase_flags & TREMERE_CAN_BUY))
+	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
 		button.desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 ///Checks if the Power is available to use.
@@ -142,11 +136,11 @@
 		to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
 		return FALSE
 	// Conscious? -- We use our own (AB_CHECK_CONSCIOUS) here so we can control it more, like the error message.
-	if((check_flags & BP_CANT_USE_WHILE_UNCONSCIOUS) && user.stat >= UNCONSCIOUS)
+	if((check_flags & AB_CHECK_CONSCIOUS) && user.stat >= UNCONSCIOUS)
 		to_chat(user, span_warning("You can't do this while you are unconcious!"))
 		return FALSE
 	// Incapacitated?
-	if((check_flags & BP_CANT_USE_WHILE_INCAPACITATED) && (user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB)))
+	if((check_flags & AB_CHECK_INCAPACITATED) && (user.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB)))
 		to_chat(user, span_warning("Not while you're incapacitated!"))
 		return FALSE
 	// Constant Cost (out of blood)
@@ -156,11 +150,9 @@
 	return TRUE
 
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.
-/datum/action/cooldown/bloodsucker/StartCooldown()
+/datum/action/cooldown/bloodsucker/StartCooldown(override_cooldown_time, override_melee_cooldown_time)
 	// Calculate Cooldown (by power's level)
-	if(cooldown_override)
-		cooldown_time = cooldown_override
-	else if(power_flags & BP_AM_STATIC_COOLDOWN)
+	if(power_flags & BP_AM_STATIC_COOLDOWN)
 		cooldown_time = initial(cooldown_time)
 	else
 		cooldown_time = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
@@ -189,7 +181,7 @@
 
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
 	active = TRUE
-	if(power_flags & BP_AM_TOGGLE)
+	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
 		START_PROCESSING(SSprocessing, src)
 
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
@@ -198,7 +190,7 @@
 /datum/action/cooldown/bloodsucker/proc/DeactivatePower()
 	if(!active) //Already inactive? Return
 		return
-	if(power_flags & BP_AM_TOGGLE)
+	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
 		STOP_PROCESSING(SSprocessing, src)
 	if(power_flags & BP_AM_SINGLEUSE)
 		remove_after_use()
@@ -207,7 +199,7 @@
 	StartCooldown()
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
-///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
+///Used by powers that are scontinuously active (That have BP_AM_TOGGLE flag)
 /datum/action/cooldown/bloodsucker/process(seconds_per_tick)
 	SHOULD_CALL_PARENT(TRUE) //Need this to call parent so the cooldown system works
 	. = ..()
@@ -218,6 +210,8 @@
 		return FALSE
 	// We can keep this up (For now), so Pay Cost!
 	if(power_flags & BP_AM_COSTLESS_UNCONSCIOUS && owner.stat != CONSCIOUS)
+		return TRUE
+	if(constant_bloodcost < 0)
 		return TRUE
 	if(bloodsuckerdatum_power)
 		bloodsuckerdatum_power.AdjustBloodVolume(-constant_bloodcost * seconds_per_tick)
@@ -238,3 +232,17 @@
 /datum/action/cooldown/bloodsucker/proc/remove_after_use()
 	bloodsuckerdatum_power?.powers -= src
 	Remove(owner)
+
+/datum/action/cooldown/bloodsucker/proc/get_power_explanation()
+	return power_explanation
+
+/datum/action/cooldown/bloodsucker/proc/get_power_desc()
+	SHOULD_CALL_PARENT(TRUE)
+	var/new_desc = initial(desc)
+	if(bloodcost > 0)
+		new_desc += "<br><br><b>COST:</b> [bloodcost] Blood"
+	if(constant_bloodcost > 0)
+		new_desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
+	if(power_flags & BP_AM_SINGLEUSE)
+		new_desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+	return new_desc
