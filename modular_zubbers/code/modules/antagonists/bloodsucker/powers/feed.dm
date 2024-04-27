@@ -188,7 +188,7 @@
 			owner.balloon_alert(owner, "your victim's blood is dangerously low.")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
 			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
-		else if(feed_target.blood_volume >= BLOOD_VOLUME_SAFE && bloodsuckerdatum_power.GetBloodVolume() >= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
+		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && bloodsuckerdatum_power.GetBloodVolume() >= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
 			owner.balloon_alert(owner, "you cannot drink more without first getting a better grip!.")
 			DeactivatePower()
 		warning_target_bloodvol = feed_target.blood_volume
