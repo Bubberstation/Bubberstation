@@ -1,4 +1,4 @@
-/datum/orderable_item/accelerator/gun/repeater
+/* /datum/orderable_item/accelerator/gun/repeater
 	item_path = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater
 	cost_per_order = 1250
 
@@ -21,3 +21,4 @@
 /datum/orderable_item/accelerator/gun/m79
 	item_path = /obj/item/gun/energy/recharge/kinetic_accelerator/m79
 	cost_per_order = 1250
+*/
