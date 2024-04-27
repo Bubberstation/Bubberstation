@@ -5398,9 +5398,7 @@
 "yK" = (
 /obj/effect/turf_decal/stripes/red/full,
 /obj/structure/fans/tiny,
-/obj/machinery/door/airlock/external{
-	name = "Solutions"
-	},
+/obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -6159,6 +6157,12 @@
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/dorms)
+"Co" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/iron/white/diagonal,
+/area/ruin/space/has_grav/bubbers/dauntless_space/med/treatment)
 "Cp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -8354,7 +8358,8 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/shower)
 "MT" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+/obj/effect/turf_decal/trimline/dark_blue/filled/line,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/iron/white/diagonal,
@@ -9974,7 +9979,7 @@
 "Vl" = (
 /obj/machinery/door/airlock/security/old{
 	name = "Solutions";
-	desc = "For when you must find a solution"
+	desc = "For when you must find a solution."
 	},
 /obj/effect/turf_decal/stripes/red/full,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
@@ -10702,13 +10707,6 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/chem)
-"Yv" = (
-/obj/effect/turf_decal/trimline/dark_blue/filled/line,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/iron/white/diagonal,
-/area/ruin/space/has_grav/bubbers/dauntless_space/med/treatment)
 "Yx" = (
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/airalarm/directional/south,
@@ -12549,7 +12547,7 @@ VK
 wz
 SI
 Ya
-MT
+Co
 rW
 Nh
 xR
@@ -12777,7 +12775,7 @@ dK
 wz
 sU
 gA
-Yv
+MT
 UI
 wu
 ss
