@@ -11,6 +11,7 @@
 		One size fits most."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/nerd.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/nerd.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/nerd_digi.dmi'
 	icon_state = "nerd"
 	blood_overlay_type = "suit"
 
