@@ -48,6 +48,7 @@
 	design_ids += list(
 		"borg_upgrade_surgicalprocessor_sci",
 	)
+	return ..()
 
 // Computer Tech
 /datum/techweb_node/computer_board_gaming/New()
