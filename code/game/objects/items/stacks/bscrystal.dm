@@ -31,6 +31,9 @@
 	return 1
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
+	user.visible_message(span_warning("[user] begins to crush [src]!"), span_danger("You begin to crush [src]!")) //BUBBERSTATION ADDITION
+	if(!do_after(user, delay = 3 SECONDS)) //BUBBERSTATION ADDITION
+		return //BUBBERSTATION ADDITION
 	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -74,7 +77,7 @@
 	attack_verb_simple = list("bluespace polybash", "bluespace polybatter", "bluespace polybludgeon", "bluespace polythrash", "bluespace polysmash")
 	novariants = TRUE
 	grind_results = list(/datum/reagent/bluespace = 20)
-	point_value = 30
+	point_value = 90
 	merge_type = /obj/item/stack/sheet/bluespace_crystal
 	material_type = /datum/material/bluespace
 	var/crystal_type = /obj/item/stack/ore/bluespace_crystal/refined

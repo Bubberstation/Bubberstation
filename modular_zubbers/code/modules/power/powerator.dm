@@ -12,3 +12,7 @@
 	divide_ratio = 0.00001
 	/// the account credits will be sent towards
 	credits_account = ACCOUNT_INT
+
+/obj/machinery/powerator/interdyne/RefreshParts()
+	. = ..()
+	divide_ratio *= 2 //Make it easier for the folks down at Interdyne to make some CASH MONEY
