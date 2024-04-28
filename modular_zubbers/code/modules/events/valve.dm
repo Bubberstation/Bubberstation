@@ -101,7 +101,7 @@
 	for(var/obj/machinery/chem_dispenser/dispensy in chem_dispenser_to_trip)
 		dispensy.play_attack_sound(50, BRUTE)
 		dispensy.emag_act()
-		dispensy.beaker.SplashReagents(dispensy, TRUE, TRUE)
+		dispensy.beaker?.SplashReagents(dispensy, TRUE, TRUE)
 		announce_to_ghosts(dispensy)
 
 
