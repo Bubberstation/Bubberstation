@@ -181,6 +181,11 @@
 
 	return ..()
 
+/obj/vehicle/ridden/wheelchair/hardlight/atom_deconstruct(damage_flag)
+	return ..()
+
+/obj/vehicle/ridden/wheelchair/hardlight/wrench_act(mob/living/user, obj/item/tool)
+	return
 
 /obj/vehicle/ridden/wheelchair/hardlight/post_unbuckle_mob()
 	. = ..()
