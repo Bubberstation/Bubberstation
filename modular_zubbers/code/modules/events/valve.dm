@@ -17,6 +17,7 @@
 	var/list/world_valve_list = list()
 	var/list/world_computer_list = list()
 	var/list/world_pump_list = list()
+	var/list/world_scrubber_list = list()
 	var/list/world_apc_list = list()
 	var/list/world_airlock_list = list()
 	var/list/world_chemistry_disp_list = list()
@@ -27,6 +28,8 @@
 		if(current_machinery.z == locate(current_machinery.z) in station_z)
 			if(istype(current_machinery, /obj/machinery/atmospherics/components/binary/valve))
 				world_valve_list |= current_machinery
+			if(istype(current_machinery, /obj/machinery/atmospherics/components/unary/vent_scrubber))
+				world_scrubber_list |= current_machinery
 			if(istype(current_machinery, /obj/machinery/computer))
 				world_computer_list |= current_machinery
 			if(istype(current_machinery, /obj/machinery/chem_dispenser))
@@ -54,6 +57,14 @@
 		current_valve.interact()
 		current_valve.play_attack_sound(50, BRUTE)
 		announce_to_ghosts(current_valve)
+
+	var/list/scrubbers_to_trip = list()
+	for(var/i in 0 to rand(0, 3))
+		scrubbers_to_trip_to_trip |= pick_n_take(world_scrubber_list)
+	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/current_scrubber in scrubbers_to_trip)
+		current_scrubber.set_scrubbing(ATMOS_DIRECTION_RELEASING)
+		current_scrubber.play_attack_sound(50, BRUTE)
+		announce_to_ghosts(current_scrubber)
 
 	var/list/computers_to_trip = list()
 	for(var/i in 0 to rand(0, 3))
