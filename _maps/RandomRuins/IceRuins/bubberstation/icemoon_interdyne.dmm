@@ -1059,9 +1059,6 @@
 "ii" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/airalarm/directional/west{
-	req_access = list("syndicate")
-	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "io" = (
@@ -1203,9 +1200,6 @@
 	amount = 10
 	},
 /obj/item/construction/plumbing/engineering,
-/obj/machinery/airalarm/directional/east{
-	req_access = list("syndicate")
-	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "ji" = (
@@ -1729,6 +1723,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
+"mr" = (
+/obj/machinery/computer/atmos_control/nocontrol/incinerator{
+	atmos_chambers = list("interdyne_turbine_chamber" = "Interdyne Turbine");
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_ice_base/engineering)
 "mv" = (
 /obj/effect/turf_decal/vg_decals/department/bar{
 	dir = 1
@@ -1829,9 +1830,12 @@
 /area/ruin/syndicate_ice_base/armory)
 "ne" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/spare)
+/area/ruin/syndicate_ice_base/engineering)
 "nj" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/stone,
@@ -2238,6 +2242,9 @@
 /obj/item/computer_disk/syndicate/camera_app,
 /obj/item/computer_disk/syndicate/camera_app,
 /obj/item/computer_disk/syndicate/camera_app,
+/obj/machinery/airalarm/directional/east{
+	req_access = list("syndicate")
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "qt" = (
@@ -3211,6 +3218,7 @@
 /area/ruin/syndicate_ice_base/bar)
 "wM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "wN" = (
@@ -3721,6 +3729,7 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "Bc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "Bd" = (
@@ -3904,13 +3913,6 @@
 /obj/effect/turf_decal/tile/dark_blue,
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
-"Cp" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark,
-/obj/machinery/airalarm/directional/west{
-	req_access = list("syndicate")
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/engineering)
 "Cy" = (
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate{
 	dir = 1
@@ -4730,13 +4732,8 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/gym)
 "HN" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/engineering)
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_ice_base/spare)
 "HT" = (
 /obj/structure/flora/rock/icy/style_random,
 /turf/open/misc/asteroid/snow/icemoon,
@@ -5279,12 +5276,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/syndicate_ice_base/telecomms)
-"LQ" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/spare)
 "LR" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/machinery/vending/cigarette/syndicate{
@@ -6551,6 +6542,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/bar)
+"TT" = (
+/obj/machinery/atmospherics/pipe/smart/simple/dark,
+/obj/machinery/airalarm/directional/west{
+	req_access = list("syndicate")
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_ice_base/engineering)
 "TV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -6559,6 +6557,10 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/testlab)
+"TZ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/ruin/syndicate_ice_base/spare)
 "Ua" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -6593,7 +6595,6 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
 "Uj" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "Uk" = (
@@ -6777,7 +6778,10 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/main)
 "Vp" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "Vr" = (
 /obj/machinery/camera/autoname/directional/north{
@@ -7192,13 +7196,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
-"Zs" = (
-/obj/machinery/computer/atmos_control/nocontrol/incinerator{
-	atmos_chambers = list("interdyne_turbine_chamber" = "Interdyne Turbine");
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_ice_base/engineering)
 "Zt" = (
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron,
@@ -7693,16 +7690,16 @@ bN
 IA
 vr
 kE
-Vp
-Vp
-Vp
-Vp
-Vp
-Vp
-Vp
-Vp
-Vp
-Vp
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
 Rp
 Ht
 eG
@@ -7752,17 +7749,17 @@ xj
 iO
 sC
 kE
-Bc
-Bc
-Bc
-Bc
+Uj
+Uj
+Uj
+Uj
 Gr
-Bc
-Bc
+Uj
+Uj
 mb
-Bc
+Uj
 MB
-Vp
+HN
 eG
 eG
 eG
@@ -7812,16 +7809,16 @@ Kh
 rd
 kE
 Xh
-Bc
-Bc
-Bc
-wM
-wM
-LQ
-Bc
-Bc
-lt
+Uj
+Uj
+Uj
+TZ
+TZ
 Vp
+Uj
+Uj
+lt
+HN
 eG
 eG
 eG
@@ -7873,14 +7870,14 @@ kE
 oj
 oj
 FC
+Bc
+wM
 Uj
-ne
-Bc
-Bc
-Bc
-Bc
+Uj
+Uj
+Uj
 co
-Vp
+HN
 eG
 eG
 eG
@@ -7937,9 +7934,9 @@ oW
 hx
 qs
 jd
-Bc
+Uj
 Go
-Vp
+HN
 eG
 eG
 eG
@@ -7993,12 +7990,12 @@ MA
 pH
 oj
 OC
-Vp
-Vp
-Vp
-Vp
-Vp
-Vp
+HN
+HN
+HN
+HN
+HN
+HN
 eG
 eG
 eG
@@ -9823,7 +9820,7 @@ ui
 ag
 cs
 ii
-Cp
+TT
 gD
 uS
 bL
@@ -9940,7 +9937,7 @@ eg
 BR
 eg
 dO
-HN
+ne
 Ne
 OI
 eg
@@ -10059,7 +10056,7 @@ Ys
 eg
 VB
 Ne
-Zs
+mr
 vA
 eg
 ZK
