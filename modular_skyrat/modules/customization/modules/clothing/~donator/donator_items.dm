@@ -180,9 +180,9 @@
 		projector = null
 
 	return ..()
-
-/obj/vehicle/ridden/wheelchair/hardlight/atom_deconstruct(damage_flag)
-	return ..()
+/obj/vehicle/ridden/wheelchair/hardlight/atom_destruction(damage_flag)
+	visible_message(span_notice("[src] flickers and vanishes as the hardlight emitters are interrupted"))
+	qdel(src)
 
 /obj/vehicle/ridden/wheelchair/hardlight/wrench_act(mob/living/user, obj/item/tool)
 	return
