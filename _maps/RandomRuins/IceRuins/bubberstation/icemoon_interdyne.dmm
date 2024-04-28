@@ -266,10 +266,10 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
 "bO" = (
-/obj/structure/bed/double{
+/obj/item/bedsheet/syndie/double{
 	dir = 1
 	},
-/obj/item/bedsheet/syndie/double{
+/obj/structure/bed/double{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblue,
@@ -903,6 +903,9 @@
 	pixel_y = 15;
 	pixel_x = -6
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "gQ" = (
@@ -1390,10 +1393,9 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "kN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "kO" = (
@@ -1603,6 +1605,7 @@
 	normaldoorcontrol = 1;
 	specialfunctions = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "lS" = (
@@ -2141,9 +2144,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate{
-	dir = 1
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "pL" = (
@@ -4192,12 +4193,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/end,
 /turf/open/floor/stone,
 /area/ruin/syndicate_ice_base/bar)
-"Er" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/syndicate_ice_base/dormitories)
 "Ey" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -7865,7 +7860,7 @@ hA
 kE
 oj
 oj
-FC
+oj
 Bc
 wM
 Uj
@@ -7922,10 +7917,10 @@ tU
 Kh
 rd
 kE
-wz
 bO
-Er
-FC
+wz
+oj
+oj
 oW
 hx
 qs
