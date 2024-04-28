@@ -51,7 +51,7 @@
 	) */
 
 	var/list/valves_to_trip = list()
-	for(var/i in 0 to rand(0, 3))
+	for(var/i in 0 to rand(0, 1))
 		valves_to_trip |= pick_n_take(world_valve_list)
 	for(var/obj/machinery/atmospherics/components/binary/valve/current_valve in valves_to_trip)
 		current_valve.interact()
@@ -59,7 +59,7 @@
 		announce_to_ghosts(current_valve)
 
 	var/list/scrubbers_to_trip = list()
-	for(var/i in 0 to rand(0, 3))
+	for(var/i in 0 to rand(0, 2))
 		scrubbers_to_trip |= pick_n_take(world_scrubber_list)
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/current_scrubber in scrubbers_to_trip)
 		current_scrubber.set_scrubbing(0) // todo: make it go REVERSE
@@ -67,15 +67,15 @@
 		announce_to_ghosts(current_scrubber)
 
 	var/list/computers_to_trip = list()
-	for(var/i in 0 to rand(0, 3))
-		computers_to_trip |= world_computer_list
+	for(var/i in 0 to rand(0, 1))
+		computers_to_trip |= pick_n_take(world_computer_list)
 	for(var/obj/machinery/computer/current_computer in computers_to_trip)
 		current_computer.play_attack_sound(50, BRUTE)
 		current_computer.emp_act(1)
 		announce_to_ghosts(current_computer)
 
 	var/list/pumps_to_trip = list()
-	for(var/i in 0 to rand(0, 3))
+	for(var/i in 0 to rand(0, 1))
 		pumps_to_trip |= pick_n_take(world_pump_list)
 	for(var/obj/machinery/atmospherics/components/binary/pump/pump in pumps_to_trip)
 		pump.play_attack_sound(50, BRUTE)
@@ -87,15 +87,16 @@
 		announce_to_ghosts(vol_pump)
 
 	var/list/apcs_to_trip = list()
-	for(var/i in 0 to rand(0, 3))
+	for(var/i in 0 to rand(0, 1))
 		apcs_to_trip |= pick_n_take(world_apc_list)
 	for(var/obj/machinery/power/apc/apc in apcs_to_trip)
 		apc.play_attack_sound(50, BRUTE)
-		apc.set_broken()
+		for(var/mob/living/carbon/human in oview(7, apc))
+			apc.shock(human)
 		announce_to_ghosts(apc)
 
 	var/list/chem_dispenser_to_trip = list()
-	for(var/i in 0 to rand(0, 3))
+	for(var/i in 0 to rand(1, 2))
 		chem_dispenser_to_trip |= pick_n_take(world_chemistry_disp_list)
 	for(var/obj/machinery/chem_dispenser/dispensy in chem_dispenser_to_trip)
 		dispensy.play_attack_sound(50, BRUTE)
