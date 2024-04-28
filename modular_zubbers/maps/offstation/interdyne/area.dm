@@ -36,6 +36,10 @@
 	mood_bonus = 3
 	mood_message = "I feel at ease here."
 
+/area/ruin/syndicate_ice_base/spare
+	name = "Spare Room"
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
 /area/ruin/syndicate_ice_base/telecomms
 	name = "Interdyne Telecommunications"
 
