@@ -60,9 +60,9 @@
 
 	var/list/scrubbers_to_trip = list()
 	for(var/i in 0 to rand(0, 3))
-		scrubbers_to_trip_to_trip |= pick_n_take(world_scrubber_list)
+		scrubbers_to_trip |= pick_n_take(world_scrubber_list)
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/current_scrubber in scrubbers_to_trip)
-		current_scrubber.set_scrubbing(ATMOS_DIRECTION_RELEASING)
+		current_scrubber.set_scrubbing(0) // todo: make it go REVERSE
 		current_scrubber.play_attack_sound(50, BRUTE)
 		announce_to_ghosts(current_scrubber)
 
