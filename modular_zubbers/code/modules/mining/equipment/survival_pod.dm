@@ -3,6 +3,7 @@
 	desc = "A bluespace capsule colored in syndie red and black. It has the letters PLAP written on it."
 	template_id = "shelter_plap"
 	icon_state = "scapsule"
+	icon = 'modular_zubbers/icons/obj/equipment/mining.dmi'
 
 /obj/item/paper/crumpled/plap
 	name = "Guide to your PLAP (Portable Listening Advanced Post)"
