@@ -473,24 +473,6 @@
   aKromatopzia:
   - rscadd: Chaplains can be "Clerics"
 2024-04-28:
-  BurgerBB:
-  - rscadd: Moonstation Upstream Merge and Bonuses
-  - bugfix: Fixes assistants always spawning at the Interlink roundstart.
-  - rscadd: Improves Moonstation Disposals + Fixes missing wires for Medical Storage
-      and NTRep office.
-  Iamgoofball:
-  - balance: Takes the ashwalker translation necklace out of the loadout; ashwalker
-      translation is supposed to be rare/craftable with resource/Curator, not a roundstart
-      thing any crewmember can have.
-  IgiariValkyr:
-  - rscadd: Latex Heels to loadout
-  - qol: Filing cabinets in the Interlink office are now actually stacked together
-  - bugfix: PLAP capsule now has the colors actually described in the description
-  Majkl-J:
-  - bugfix: Fixes horrendous ui design
-  - bugfix: Synth recharging in mechchargers is now fixed
-  - bugfix: Crank cell can now be cranked for 1MJ of energy instead of 100J. How a
-      human manages to pull that off shall not be discussed
   Melbert:
   - qol: Tuberculosis makes you cough more
   - qol: Nicotine Addiciton makes you cough less
@@ -502,10 +484,6 @@
       2x faster.
   - refactor: Ears have been refactored slightly, ear deafness should now update more
       snappily
-  PhazeJump:
-  - rscadd: 'wings: Moth (Bluespace)'
-  - rscadd: 'wings: Moth (Strawberry)'
-  - rscadd: 'wings: Moth (Clockwork)'
   Rhials:
   - qol: Water tiles now extinguish fires on items and people.
   SkyratBot:
@@ -518,33 +496,25 @@
       protolathes
   - qol: There's a bit more user feedback when it comes to attempting to handcuff
       someone.
-  StrangeWeirdKitten:
-  - balance: Abductor sleep is 30 seconds instead of 2 minutes
-  Swiftfeather:
-  - rscadd: Blind crew are no longer barred from being heads of staff (except HoS).
-  - balance: Makes bluespace crystal teleportation take time.
-  - code_imp: The way mobs idle has been refactored, please report any issues with
-      non-reactive mobs
-  VexingRaven:
-  - bugfix: The debug box no longer spills its contents everywhere
-  VrazzleDazzle:
-  - image: Added a new UI theme, Blue-98!
-  - rscdel: The PKA variants have been temporarily pruned due to a licensing issue
-      with Kahraman Industries.
-  destrucktoid:
-  - balance: Bloodsuckers can no longer kill or hurt people by drinking from them
-      without at least a passive grab.
   grungussuss:
   - bugfix: fixed being able to install multiple of the same upgrade to medical cyborgs
-  kaylexis:
-  - rscadd: Adds Plant Gene disk to biogen
-  pixelkitty286:
-  - rscadd: The PKA variants.
-  tmyqlfpir:
-  - qol: Various tweaks to Dauntless service and medical
-  - rscadd: Add new camera kill switches to the Dauntless
-  - rscadd: Add (non-spawned) space version of Dauntless
-  - rscadd: Add new storage room to Dauntless
-  - balance: Dauntless cyborgs will have their cameras automatically removed
-  - balance: Interdyne Powerator has 2x efficiency
-  - rscadd: Created Interdyne injectors to assign non-spawned crew as Syndicate faction
+2024-04-29:
+  LT3:
+  - bugfix: Skyrat specific crew monitors work properly
+  Majkl-J:
+  - bugfix: Synth recharging in mechchargers is now fixed
+  - bugfix: Crank cell can now be cranked for 1MJ of energy instead of 100J. How a
+      human manages to pull that off shall not be discussed
+  Melbert:
+  - bugfix: You can handcuff people with 2 arms and you can no longer handcuff people
+      with 0 arms
+  ReturnToZender:
+  - bugfix: NTC office bugs have received some minor fixes
+  - rscadd: It is now free to exit the NTC office, even if the outer access is not
+      free
+  SpaceLoveSs13:
+  - admin: New verb to play local internet music!
+  StrangeWeirdKitten:
+  - bugfix: Hardlight wheelchair no longer drops metal when deconstructed
+  VexingRaven:
+  - bugfix: The debug box no longer spills its contents everywhere
