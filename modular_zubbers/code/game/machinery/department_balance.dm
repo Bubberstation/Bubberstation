@@ -30,7 +30,7 @@
 			return
 
 	if(display_reset_state)
-		if(display_reset_state < 10) // show a generic splash screen for 10 seconds
+		if(display_reset_state < 5) // show a generic splash screen for 5 seconds
 			display_reset_state++
 			current_mode = SD_PICTURE
 			set_picture(default_logo)
