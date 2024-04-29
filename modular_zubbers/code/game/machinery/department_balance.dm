@@ -10,10 +10,13 @@
 	var/credits_account = ""
 	/// The resolved bank account
 	var/datum/bank_account/synced_bank_account = null
+	/// If the screen is actively resetting or not
+	var/display_reset_state = 0
 
 /obj/machinery/status_display/department_balance/LateInitialize()
 	. = ..()
 	start_process()
+	display_reset_state = 0
 
 /obj/machinery/status_display/department_balance/update_overlays(updates)
 	current_mode = SD_MESSAGE
@@ -22,6 +25,15 @@
 			set_messages("CASH", "", "")
 			. = ..()
 			return
+	if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
+		display_reset_state = 1
+		remove_messages()
+		text_color = COLOR_DISPLAY_GREEN
+		set_messages("CASH", "", "")
+		. = ..()
+		return
+	display_reset_state = 0
+
 	if(isnull(synced_bank_account))
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 	var/balance = !synced_bank_account ? 0 : synced_bank_account.account_balance
