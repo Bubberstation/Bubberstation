@@ -167,3 +167,7 @@
 
 /datum/action/innate/dash/research/HideFrom(mob/viewer)
 	return
+
+//No more ghetto
+/obj/item/screwdriver/cyborg/power
+	sharpness = NONE

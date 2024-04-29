@@ -74,7 +74,6 @@
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/borg/apparatus/research,
-		/obj/item/borg/apparatus/mech,
 		/obj/item/borg/apparatus/circuit_sci,
 		/obj/item/storage/part_replacer/cyborg,
 		/obj/item/surgical_drapes,

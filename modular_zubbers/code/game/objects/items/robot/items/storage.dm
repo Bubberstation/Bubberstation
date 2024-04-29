@@ -20,6 +20,7 @@
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/borg_restart_board, //To allow repairs
 					/obj/item/relic,
+					/obj/item/mod,
 					)
 /obj/item/borg/apparatus/research/examine()
 	. = ..()
@@ -51,22 +52,6 @@
 	if(istype(atom, /obj/item/ai_module) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
 		to_chat(user, span_warning("This circuit board doesn't seem to have standard robot apparatus pin holes. You're unable to pick it up."))
 	return ..()
-
-/obj/item/borg/apparatus/mech
-	name = "Exosuit manipulation gripper"
-	desc = "A large, heavy-duty grasping tool used in construction of exosuits and mod suits."
-	icon = 'modular_zubbers/modules/borgs/sprites/robot_items.dmi'
-	icon_state = "gripper_mech"
-	storable = list(
-					/obj/item/mecha_parts/part,
-					/obj/item/mecha_parts/mecha_equipment,
-					/obj/item/mod,
-				)
-/obj/item/borg/apparatus/mech/examine()
-	. = ..()
-	if(stored)
-		. += "The gripper currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
 
 //Illegal gripper to allow research cyborgs when hacked to do further robotics work
 /obj/item/borg/apparatus/illegal
