@@ -397,167 +397,7 @@
   - rscadd: added the research skill
   - balance: experisci scanner affected by research skill
   - balance: xenoarch affected by research skill
-2024-04-20:
-  '@Crumpaloo, @Majkl-J':
-  - image: New foxtrot peacekeeper borg model, sprites by Crumpaloo
-  - code_imp: Moved around cyborg dmi defines to give the precompiler a break
-  - config: Development config now has both sec and peace cyborg modules enabled
-  Arturlang:
-  - rscadd: Adds backup ways for the book of kindred to spawn, either spawning on
-      a curator or on the codex gigas
-  - rscadd: Decapacitated bloodsuckers can now talk!
-  - rscadd: The stat bar will show you the threshold for exiting frenzy now too when
-      you are frenzying.
-  - rscadd: Bloodsucker abilities now will show their level when you hover over them.
-      Trust me, this was really neccessary.
-  - rscadd: Tremere now also get informed of how much blood they need to pay for level
-      ups.
-  - rscadd: At level 3, haste will now remove stuns and do a non-stunning dash
-  - rscadd: Bloodsucker blood display now always updates when a bloodsucker's blood
-      level is changed
-  - rscadd: Bloodsuckers can now examine hearts to see if they are valid for the heart
-      thief objective
-  - rscadd: Bloodsucker vassals now clean up any traits gained from their tenure as
-      a vampire's minion.
-  - rscadd: Favorite vassals now properly clean up their effects once the antag datum
-      is lost.
-  - rscadd: Bloodsucker synths will be able to heal their prosthetic limbs, but normal
-      bloodsuckers still cannot.
-  - rscadd: When you exiit torpor as a bloodsucker, you will completely heal any toxin
-      and oxygen damage, as you should already be immune to it. This is a safety feature.
-  - rscadd: Entering a coffin will normalize your temperature and extinguish you if
-      you're on fire, if you are a bloodsucker.
-  - bugfix: bloodsucker vampire bats will no longer /list you when attacking
-  - bugfix: Hopefully fixes some torpor loops related to frenzy
-  - bugfix: Hopefully fixes bloodsuckers cryoing not removing vassal datums
-  - bugfix: Bloodsuckers can no longer use veil of many faces while unconcious
-  - bugfix: lizard bloodsuckers will no longer suffer from heat for a long time
-  - bugfix: The ventrue objective now properly succeeds if you have sired a vampire
-  - bugfix: Livers are no longer required for bloodsuckers to live, as it caused them
-      toxin damage which overrode the trait that made them immune to toxins.
-  - bugfix: Entering torpor now accounts for all damage types, even when you should
-      be immune to them. This is to ensure you enter torpor to heal those damage types
-      in the case of odd behaviour.
-  - balance: coffins should now set your temperature to normal and extinguish you.
-  - balance: bloodsucker level up cost is now 15% of max blood, down from 20%
-  - balance: Caps humantiy loss at 50 humanity/500 blood to frenzy, and makes it remove
-      your masquerade ability.
-  - balance: Bloodsucker bats now have human runspeed
-  - balance: Blood cost for vassalizing was almost completely removed, now only taking
-      tiny amounts of blood to do so.
-  - balance: Fortitude now gives you burn resistance, just 20% less than brute resistance
-  - balance: Can no longer gut bloodsuckers
-  - balance: Bloodsuckers loosing their heart will make the vampire unable to use
-      their abilities or even regenerateor revive via torpor, you can however regain
-      your heart if you sleep in a coffin with a heart.
-  - balance: Stakes now have different properties, the normal stake is fast to stick
-      in someone, but can fall out on it's own, the burnt one takes longer to be put
-      in, but doesn't fall out, the silver stake is the slowest to be stuffed in someone's
-      heart, and is the only stake to be able to cause a Final Death to a sleeping
-      or dead bloodsucker
-  - rscdel: Dullahans can't be bloodsuckers since... their head isn't attached
-  - admin: Bloodsuckers and vassals can now be banned like other antags.
-  - bugfix: Borers no longer get wasted by ash storms while inside a host
-  - rscadd: Adds the hemophage-only quirk, Sol weakness
-  - code_imp: Refactors the sol subsystem so that itself decides if it should run
-      or not based on if anyone is using it.
-  - code_imp: Refactors bloodsucker UI elements so that they can function fine outside
-      a bloodsucker antag datum
-  - code_imp: bloodsucker_blood_volume, humanity_lost, bloodsucker_level and bloodsucker_level_unspent
-      are now private variables due to them being used for UI updates, if you need
-      to change them, use the procs that are written in the autodoc
-  - code_imp: Quirk species whitelists no longer use bitflags, but use the species
-      ID's. Easily allowing you to add new whitelists without having to mess around
-      with making a new bitfield
-  - bugfix: Ventrue sired bloodsuckers will no longer have a copy of their abilities
-  - rscadd: Bloodsuckers that start out with no heart will be able to regain one,
-      but it now properly checks if they have one or not, and disables their abiltiies
-      accordingly, go into a coffin with a heart if you want to gain one.
-  - rscadd: Lunge can now take out any organ out of a dead corpse, based on where
-      you are aiming in the targeting doll, it will still prioritize a heart if aimed
-      at chest
-  - bugfix: bloodsucker sol quirk removal is now silent
-  - bugfix: You can no longer unwrench lair coffins
-  - bugfix: gohome will no longer render you stuck in a coffin if it cannot close
-  - bugfix: Malkavians should now spout nonsense less often if you've not lost humantiy
-      yet
-  - bugfix: 'Lunge can now actually stun people if you lunge at them from behind.
-
-      fix; You can no longer spam drink from blood bags.'
-  - code_imp: clan_life now has seconds_per_tick and times_fired
-  - bugfix: Book of kindred display cases should now spawn properly on TG maps.
-  - bugfix: Duplicate books of kindred won't spawn on new curators
-  Azarak:
-  - admin: administrators can now toggle job playtime exemption by job basis for players
-  Boviro:
-  - rscadd: Added butler as assistant title
-  BurgerB:
-  - bugfix: Fixes Moonstation Ministation not counting blob tiles.
-  BurgerBB:
-  - balance: The RBMK can now handle more power generation before going into meltdown
-      with upgraded parts, and also generates less power with upgraded parts.
-  - bugfix: Fixes the RBMK having an infinite meltdown state when safeties trigger
-      at the same time as a meltdown.
-  - balance: After 3 Lichdom resurrections, announcements will be made about your
-      general phylactery location (the area) when you die. Phylactery binding now
-      requires the object to be at least bulky in size, and it cannot be fireproof,
-      lava proof, or indestructible.
-  - rscadd: Adds REAL banhammers send people to the void temporarily (similar to immortality
-      talisman or void genetic power) on hit. Hitting someone on combat mode with
-      it sends them to permabrig instead, if they're not already in the permabrig.
-  - rscdel: Replaces the High Frequency Blade the wizard gets with a REAL banhammer,
-      and reduces the spell cost from 3 to 2.
-  - rscadd: Makes Moon Station actually a moon now because people made fun of me.
-  - bugfix: Hopefully fixes the error handler throwing errors too early.
-  - bugfix: Fixes early runtime issue with loadouts.
-  - bugfix: Fixes fake lattice linters when they spawn on lava
-  - bugfix: Sandstorms on Moon Station are less annoying in terms of notifications
-      and sound. Adds missing miner GPSs to lockers + table. Fixes typo in Moon Station
-      plaque. External airlocks to public areas no longer have access.
-  - rscdel: Removes some over the top abductor victim objectives and adds some new
-      ones.
-  - bugfix: Remaps Moon Station's robotics. Fixes some misplaced objects.
-  - rscdel: Removes Ash Storms from Moon Station Lavaland
-  - rscdel: Disables Lance Shuttle on Moon Station because it caused the crew to get
-      stuck on station for 5 hours once.
-  - rscdel: Replaces the Meteor Shuttle with THE CUBE. It's an emag only emergency
-      shuttle that is literally just a 16x16 cube with some engines on it.
-  - balance: Adds Sex holographic barriers to warn people that there is sex in the
-      next room. It doesn't block air or movement, but it does warn people, and knowing
-      is half the battle. They can be purchased in the LustWish under the premium
-      section.
-  - bugfix: Fixes planetary atmos getting created when turfs inside the station are
-      destroyed.
-  - bugfix: Fixes some Moon Station bugs, such as the funny engineering bridge access
-      bug and a lack of cigarette/coffee vendors.
-  - bugfix: Fixes Moonstation radstorms affecting some places it's not supposed to.
-  - rscdel: Limits Powersinks + Crab-17 purchases to once each per traitor per round.
-  - rscadd: Adds Ashwalkers to Moonstation
-  - bugfix: Fixes traitor announcer double-sanitizing.
-  - rscdel: Removes Xeno Organs from Roundstart Xenomorph Hybrids. They no longer
-      have plasma vessels, resin spinners, or hive nodes.
-  - bugfix: Fixes missing telecomms wire in Moonstation
-  - bugfix: Fixes an atmos oversight with the Voxbox on Moonstation that can lead
-      to superheated distro.
-  - rscadd: Assigns a bunch of code levels for ERT that didn't have it or I thought
-      should have a different one. The changes itself can be seen in the file.
-  - bugfix: The default code for any ERT is now "Green" so it will no longer show
-      a missing word when calling ERT.
-  - bugfix: Fixes various Moon Station issues.
-  - qol: Allows Ashwalkers to Breathe on Station
-  - bugfix: Fixes a few moonstation bugs.
-  - bugfix: Atmos optimization.
-  - bugfix: Oh Hi Daniel shuttle no longer throws.
-  - balance: Reworks the Gifted quirk and just gives everyone 6 free quirk points.
-  - bugfix: Fixes Moonstation Xenobiology Shield Walls
-  - rscdel: Disables Station Blackout and Random Machine Languages Station Traits
-  - rscadd: Adds Moonstation public mining.
-  - bugfix: Fixes various Moonstation bugs.
-  - balance: Xenos can only devour mobs that have a ventcrawler trait (Monkeys, most
-      Simplemobs), assuming all other checks have passed.
-  - balance: Heads can only be dismembered if they have a critical-tier (Compound)
-      fracture. If a head was supposed to be dismembered from a blow, a compound fracture
-      will be applied.
+2024-04-21:
   CliffracerX:
   - rscadd: you can mount Mk. II Hyposprays onto the underside of Hypospray Kits &
       quickdraw them
@@ -572,212 +412,139 @@
   - admin: icspawning supports quirks & loadout items now
   - admin: bluespace technician RPED has been significantly upgraded
   - bugfix: hotfix for loadout wallets not filling properly
-  Erol509:
-  - rscadd: RB-MK2 now has its own tgui panel.
-  - rscadd: Added the icewalker areas to the radstorm protected areas.
-  - bugfix: Bloodsucker braincheck was missing a null check causing runetimes, its
-      been fixed.
-  - rscadd: Added back TEG to techwebs and engineering protolathe
-  - image: Changed TEG sprites from YogStation. Credits to original author.
-  EspeciallyStrange:
-  - bugfix: IDMA donor clothing being improperly offsetted and not correctly
-  Iamgoofball:
-  - rscadd: Re-enables the Galactic Materials Market as it's been fixed upstream.
-  IgiariValkyr:
-  - config: Relocked some donator items from Skyrat on request
-  - config: Relocks another skyrat donor item per request.
-  - rscadd: New Traitor Item (10TC) - Portable Listening Advanced Post
-  Jinshee:
-  - rscadd: Added rattlesnake tail
-  Kegdo:
-  - rscadd: 'more markings: Chestplate, hip, elbow, shoulder, glove, sleeve, sock,
-      longsock, vertical stripe, fangs, lips, facemask, facedisc.'
-  LT3:
-  - balance: Rebalanced alcohol intoxication effects. A unit of alcohol will now produce
-      the same intoxication regardless if you chug it all at once or sip it over a
-      few minutes
-  - qol: Airlocks don't flash constantly on engineering override, override/overlay
-      added for fire alarm
-  - bugfix: Airlock lighting should no longer render on top of player characters
-  - bugfix: Airlock emissives no longer overlap firedoors
-  - bugfix: Fixed missing overlays on various airlock types
-  - bugfix: Fixed status display for epsilon alert
-  - bugfix: Fixed fire alarm for epsilon alert
-  - bugfix: Fixed ineligible airlocks from receiving engineering override when activated
-      from the communications console
-  - bugfix: Various airlock/firelock overlay fixes
-  - code_imp: Parts of firelock code updated to parity with TG
-  - image: Added Moonstation specific tram sprites
-  - bugfix: Fixed Moonstation references to Tramstation's tram
-  - qol: Catbox and Imgbox are now supported hosting services for headshots
-  - qol: 'New moodlet: Status if you''re still processing alcohol you''ve drank previously
-      (and getting more drunk)'
-  - qol: 'New moodlet: Current drunk level'
-  - bugfix: Light drinker quirk should no longer floor you near instantly
+2024-04-24:
   Majkl-J:
-  - rscadd: Ghosts without clients get sent back into the menu after a while.
-  - bugfix: NSFW Headshots no longer override regular ones
-  - bugfix: 'lathes now use moderate power for printing operations /:cl:'
-  - code_imp: Bubber modular greyscale files permitted
-  - bugfix: you can now rightclick to flag in minesweeper
-  - bugfix: Void raptor now has the secmed locker
-  - rscadd: Zombie can now have hair
-  - bugfix: Secmeds no longer limit a few items to themselves only
-  - bugfix: Dauntless frames are no longer broken
-  - bugfix: False walls appear again
-  - balance: Bodyless ghosts and ghostroles can no longer transfervote
-  - refactor: Added support for vote mob conditions
-  - balance: Reagent weapons now get damaged upon reagent transfer
-  - balance: Imbuing once again needs actual skill
-  - bugfix: Minesweeper now properly gives moodlets
-  - bugfix: teshvali no longer have you wear human sprites
-  - image: New rockfruit sprites
-  - code_imp: Modularized hydroponics
-  Makeshift-coder:
-  - rscadd: adds an unpacked colony fabricator
-  - rscadd: replaces the four bluespace beakers on a table with a bluespace beaker
-      box for ease of access
-  - rscdel: Removed a single sink to put the unpacked fabricator on it
-  Odairu:
-  - config: changes law 2 wording
-  PhazeJump:
-  - rscadd: Added Harpy (large) wings
-  ReturnToZender:
-  - balance: NTR's ACCESS_CREMATORIUM replaced with ACCESS_SERVICE
-  - rscadd: Assistants on-station may be pleased to hear that they can now wear Head
-      of Staff pet collars again. ...Again.
-  - rscadd: Nanotrasen has deemed it fit to order an upgrade to all Consultant offices
-      on stations in the Spinward Sector. Check them out!
-  - rscdel: Donors' graceful trenchcoat
-  - rscadd: NTC offices have had their carpet changed out to something less over-the-top.
-      The windows have been expanded as well.
-  ReturnToZender (Writing), LT3, Waterpig (Code assistance):
-  - bugfix: If you have no custom species set, it will now show your default description.
-  ReturnToZender (code):
-  - bugfix: Character Directory sorting now works on all variables.
-  - bugfix: autopunctuation respects prefs again
-  - qol: Advert settings have been moved to a new category, ADVERT.
-  - rscadd: Character directory now has a search function on the name var.
-  - rscadd: Character directory now shows on the Main Menu under the Crew Manifest.
-  - rscadd: Character directory now has a randomizer, which will open a random player's
-      flavor text when clicked. Click if you dare.
-  - rscadd: F-list headshots are now accepted
-  - rscadd: Kiboko 25mm to Armory tab
-  - rscadd: Mini E-Gun to goodies and armory
-  - balance: Reduces the cost of the d'Elite rifle as it is more of a side-grade now
-  ReturnToZender (quirk code), TeshariEnjoer (original PR):
-  - rscadd: New positive trait, featherweight. Allows you to be picked up instead
-      of fireman's carried. This dipshit yours?
-  Shayoki:
-  - rscadd: Adds Boxstation
-  - rscadd: Players can now choose a voice for their characters.
-  - sound: Added a lot of 'borrowed' sounds to use as voices.
-  - admin: Admins can globally disable Bloopers
-  Spicelet:
-  - rscadd: new dogborg shirt
-  StrangeWeirdKitten:
-  - rscdel: Removes the Dauntless cameras
-  - rscdel: Removes the blast cannon from the traitor scientist uplink
-  - rscdel: Removes Dauntless self destruct and dense rock surrounding the base
-  - balance: Dauntless exterior turrets shoot fauna, not people
-  - config: Removes Akula Lore protection (Allows edit to species)
-  - bugfix: Humanoid and Hemophage sprites no longer have base skin tone issues. Added
-      human greyscale sprites.
-  - bugfix: Colossus will properly deaggro when you lose
-  - balance: But colossus bolts will gut you as a consiquence
-  - image: Removes the east and west sprite on the Lips bodymarking
-  - rscadd: Sauna survival pods. Found in mining vendor and occasionally maintenance
-  Swiftfeather:
-  - admin: Will no longer receive supermatter ate a pipe spam in the log.
-  - rscdel: Removed gun safeties.
-  Sylphet:
-  - rscadd: adds lunchboxes that hold food and drinks to the loadout
-  - image: added lunchbox sprites
-  - balance: scrubbers do not overflow with carpet and rainbow stuff anymore
-  Tupina:
-  - balance: Energy weapons can now fire roughly 1.3x more lasers per charge across
-      the board.
-  VrazzleDazzle:
-  - rscadd: Scrying Lens Disks are now available in the loadout.
-  - qol: The ashwalkers' ashen necklaces are now fireproof.
-  - rscdel: Death bolts no longer dust you on death.
-  - rscadd: Six new PKA variants, now in a mining vendor near you.
-  - rscdel: Prybars are no longer available in the Rapid Construction Fabricator.
-  Vynzill:
-  - rscadd: Added more perfumes to loadout.
-  YakumoChen:
-  - balance: Xeno Hybrids take normal heat damage, again.
-  Yanziko:
-  - balance: pet owner is free
+  - bugfix: Basicmob xenos no longer die to lack of heating
+  SkyratBot:
+  - balance: The Bioscrambler will now actively attempt to get closer to living targets
+      rather than chilling in a closet nobody goes into (unless you trap it in a containment
+      field).
+  - balance: Because it can now travel through walls, the Bioscrambler will no longer
+      transform you THROUGH walls.
+  TreePizza:
+  - rscadd: Added a fax machine to the Tarkon bridge, as well as it's unique contact
+      for Tarkon TB (Top Brass).
+  - rscadd: The station can now fax the Tarkon bridge. The Ensign can now finally
+      do their job without having to leave their chair.
+  - rscadd: Added an Ectosniffer to the science lab so ghosts may now request a brain
+      to possess.
+  - rscadd: ~1 "hidden" Xenoplush for Monophobia characters.~ Goodnight sweet prince
+      you were too good for this world.
+  - rscadd: Added a light to the freezer and an additional one to the kitchen.
+  - bugfix: Added that awkwardly missing window to the top airlock and deleted the
+      equally awkward single disposal pipe that was underneath it.
+  - bugfix: 'Moved the glowing resin in the cargo_warehouse variation (the infested
+      one) so that it is no longer under the glass wall.
+
+      ### Charlie:'
+  - qol: 'Charlie pods now have pref and loadout spawning.
+
+      :cl:'
+2024-04-26:
+  Jacquerel and Melbert:
+  - rscadd: A new achievement for moving a boulder from one place to another, at great
+      effort.
+  - balance: Hauling a boulder around makes you move slower, as it does when dragging
+      it.
+  Majkl-J:
+  - bugfix: Medicells now correctly use power
+  - bugfix: MCRs now correctly use power
+  - bugfix: Infinite powercells now have infinite power that's useful and not 2500
+      Joules
+  - qol: slimes will stay active without needing any one to watch over
+  - code_imp: The way mobs idle has been refactored, please report any issues with
+      non-reactive mobs
+  Melbert:
+  - bugfix: Playing Cards memory now reads better
+  SkyratBot:
+  - bugfix: Fixes AI lag by re-adding idle mode to all AI that was lost with the simple
+      mob to basic mob conversion.
+  - bugfix: AI controllers with no clients around for 14 tiles will move into idle
+      mode and stop planning or acting.
+  - bugfix: AI controllers will now record how much time was spent on planning or
+      un-idling AI controllers.
+  - bugfix: The rebar crossbows now properly loosen their bowstring upon firing.
+  - balance: Longfall modules no logner stun you when they activate.
+  - balance: Falling from a height greater than one z-level while using the longfall
+      module will still stagger you.
+  - bugfix: The plasma flower modsuit core now actually contains a reasonable quantity
+      of power.
+2024-04-27:
   aKromatopzia:
-  - rscadd: Unamored versions of the syndicate utility uniforms & half-mask
-  - bugfix: icecats and ashliz can spawn on the ghost cafe.
-  - image: icon was wrongly offset for cybernetic digitigrade right legs
+  - rscadd: Chaplains can be "Clerics"
+2024-04-28:
+  BurgerBB:
+  - rscadd: Moonstation Upstream Merge and Bonuses
+  - bugfix: Fixes assistants always spawning at the Interlink roundstart.
+  - rscadd: Improves Moonstation Disposals + Fixes missing wires for Medical Storage
+      and NTRep office.
+  Iamgoofball:
+  - balance: Takes the ashwalker translation necklace out of the loadout; ashwalker
+      translation is supposed to be rare/craftable with resource/Curator, not a roundstart
+      thing any crewmember can have.
+  IgiariValkyr:
+  - rscadd: Latex Heels to loadout
+  - qol: Filing cabinets in the Interlink office are now actually stacked together
+  - bugfix: PLAP capsule now has the colors actually described in the description
+  Majkl-J:
+  - bugfix: Fixes horrendous ui design
+  - bugfix: Synth recharging in mechchargers is now fixed
+  - bugfix: Crank cell can now be cranked for 1MJ of energy instead of 100J. How a
+      human manages to pull that off shall not be discussed
+  Melbert:
+  - qol: Tuberculosis makes you cough more
+  - qol: Nicotine Addiciton makes you cough less
+  - qol: Medicine Addiction maybe makes you cough more, maybe makes you cough less
+  - rscadd: Being deafnened from a loud sound (flashbang, explosions) will now force
+      people not naturally deaf to shout
+  - rscadd: Ear damage multiplier now only applies to taking damage, not healing damage,
+      meaning Felinids (who take 2x the ear damage) will no longer heal ear damage
+      2x faster.
+  - refactor: Ears have been refactored slightly, ear deafness should now update more
+      snappily
+  PhazeJump:
+  - rscadd: 'wings: Moth (Bluespace)'
+  - rscadd: 'wings: Moth (Strawberry)'
+  - rscadd: 'wings: Moth (Clockwork)'
+  Rhials:
+  - qol: Water tiles now extinguish fires on items and people.
+  SkyratBot:
+  - bugfix: basic bots no longer start with all access
+  - bugfix: being revived with a cyber-heart now properly restarts the cyber heart
+  - rscadd: miners can now purchase grapple guns
+  - bugfix: Fixes clipping in the ESC menu between buttons and long station names.
+  - bugfix: brimbeams no longer make a cog appear above the mob
+  - bugfix: cooling and anti-disruption RCD upgrades can now be printed in ancient
+      protolathes
+  - qol: There's a bit more user feedback when it comes to attempting to handcuff
+      someone.
+  StrangeWeirdKitten:
+  - balance: Abductor sleep is 30 seconds instead of 2 minutes
+  Swiftfeather:
+  - rscadd: Blind crew are no longer barred from being heads of staff (except HoS).
+  - balance: Makes bluespace crystal teleportation take time.
+  - code_imp: The way mobs idle has been refactored, please report any issues with
+      non-reactive mobs
+  VexingRaven:
+  - bugfix: The debug box no longer spills its contents everywhere
+  VrazzleDazzle:
+  - image: Added a new UI theme, Blue-98!
+  - rscdel: The PKA variants have been temporarily pruned due to a licensing issue
+      with Kahraman Industries.
   destrucktoid:
-  - bugfix: Syndicate/Ninja Borg Restorative Nanites now heal Slimepeople just as
-      well as they do other people.
-  - rscadd: Borers back in uplink
-  - bugfix: Slimeperson Clockwork Cultists now heal toxins from the prosperity prism
-      properly.
-  - balance: Ventrue cannot benefit from bloodbags if their blood exceeds BLOOD_VOLUME_NORMAL
-  - refactor: Changed reac_volume to use AddBloodVolume() for consistency reasons
-  iskawhiskers:
-  - image: added monster2_head, monster3_head, weight2_chest_m, weight2_chest_f
-  nevimer:
-  - balance: you now hug and pat lightgeists
-  - admin: added public log folder, and logging.
-  - balance: contractor and ninja modsuits have DNA locked microbombs
-  nikothedude:
-  - bugfix: Death degradation properly DNRs
-  - bugfix: DNR icon has been restored
-  - rscadd: Robos now have a pamphlet in their bag that tells them tips and tricks
-      on how treat synth wounds
-  - rscadd: Roboticists now spawn with synthetic medkits to make their jobs a bit
-      easier
-  - rscadd: New cargo packs for synthetic medkits
-  - balance: Roboticists now spawn with diag huds, welding helmets, and black gloves
-  - balance: Synthetic burn kits now have extra bottles
-  - rscadd: You can now set your characters height
+  - balance: Bloodsuckers can no longer kill or hurt people by drinking from them
+      without at least a passive grab.
+  grungussuss:
+  - bugfix: fixed being able to install multiple of the same upgrade to medical cyborgs
+  kaylexis:
+  - rscadd: Adds Plant Gene disk to biogen
   pixelkitty286:
-  - rscadd: +Peacekeeper cat borg sprites, Spider clan cat borg sprites, Engineer
-      cat borg refreshed sprites
-  - bugfix: Cat cyborg panels not working
-  - image: +Peacekeeper cat borg sprites, Spider clan cat borg sprites, Engineer cat
-      borg refreshed sprites
-  - code_imp: -Duplicate code
-  - rscadd: Added night vision and cold resistance to tajara with their respective
-      debuffs and gave them sensitive hearing. tajara own meat type and cat animal
-      hide when gibed. Cat like grace to tajara.
-  - rscadd: Added modular tajaran.dm, siikmaas.dm, and meatslab.dmi
-  - qol: The Tajara DLC.
-  - balance: rebalanced how the Tajaran species works.
-  - image: added a Tajaran ass picture. Added adhomian_meat (Credit goes to Aurora.3
-      on the sprite)
-  - spellcheck: Corrected siik'tajr to be siik'maas.
-  - code_imp: modular code for tajaran species changes.
-  - refactor: Does refactoring Tajara as a species count?
-  projectkepler-ru:
-  - rscadd: Marketable IDMA Plushie, selectable as ironmoon tajaran plushie
-  - rscadd: Contract from Colt has been secured with NT and now we can buy m1911
-  - image: icon updated for the reshi revolver
-  - balance: Colt reevaluated their contract, the M1911 is cheaper now
+  - rscadd: The PKA variants.
   tmyqlfpir:
-  - qol: Tweak layout of Dauntless kitchen, dorms and medbay
-  - rscadd: Slapping glass tables have a 15% chance (cursed 30%) of breaking on 3rd
-      slap
-  - rscadd: Adds cargo ordering functionality for dauntless base
-  - rscadd: Add bitden to dauntless brig area
-  - rscadd: Add door lock to dauntless restroom, and various map tweaks
-  - rscadd: Dauntless - Add exterior cameras to dauntless, removed many interior ones
-  - bugfix: Dauntless - Removed incorrectly placed decals under hull objects and tweaked
-      brig/dorms
-  - balance: Interdyne powerator is now maxcapped to 1MW
-  - rscadd: Dauntless - Added new bounty pad and bounty console
-  - rscadd: Dauntless - Added new produce order console
-  xXPawnStarrXx:
-  - image: added GAGS versions of command stripper outfits.
-  - code_imp: removed donator requirement from loadout flowers.
-  - qol: made DeForest medipens refillable.
-  - rscadd: Blood filtering now restores toxins.
-  - bugfix: korve skinned advanced tools being invisible.
-  - qol: made endurogrow boost lifespan.
+  - qol: Various tweaks to Dauntless service and medical
+  - rscadd: Add new camera kill switches to the Dauntless
+  - rscadd: Add (non-spawned) space version of Dauntless
+  - rscadd: Add new storage room to Dauntless
+  - balance: Dauntless cyborgs will have their cameras automatically removed
+  - balance: Interdyne Powerator has 2x efficiency
+  - rscadd: Created Interdyne injectors to assign non-spawned crew as Syndicate faction

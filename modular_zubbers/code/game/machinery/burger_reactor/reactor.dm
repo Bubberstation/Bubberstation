@@ -169,7 +169,7 @@
 	return FALSE
 
 //Remove the rod.
-/obj/machinery/power/rbmk2/AltClick(mob/living/user)
+/obj/machinery/power/rbmk2/click_alt(mob/living/user)
 	if(!active && stored_rod)
 		src.add_fingerprint(user)
 		stored_rod.add_fingerprint(user)
