@@ -20,11 +20,12 @@
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	purchase_flags = TREMERE_CAN_BUY
 	// Targeted stuff
-	power_activates_immediately = FALSE
+	unset_after_click = FALSE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/upgrade_power()
+	. = ..()
 	if(level_current > 4)
 		background_icon_state = "tremere_power_gold_off"
 		active_background_icon_state = "tremere_power_gold_on"
 		base_background_icon_state = "tremere_power_gold_off"
-	. = ..()
+		build_all_button_icons(UPDATE_BUTTON_BACKGROUND)

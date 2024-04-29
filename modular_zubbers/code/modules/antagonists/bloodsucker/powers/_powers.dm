@@ -42,10 +42,12 @@
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	desc = get_power_desc()
 
 /datum/action/cooldown/bloodsucker/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
 	if(active)
 		DeactivatePower()
 	bloodsuckerdatum_power = null
@@ -61,13 +63,13 @@
 		bloodsuckerdatum_power = bloodsuckerdatum
 
 //This is when we CLICK on the ability Icon, not USING.
-/datum/action/cooldown/bloodsucker/Trigger(trigger_flags, atom/target)
+/datum/action/cooldown/bloodsucker/PreActivate(atom/target)
 	if(!owner)
 		return FALSE
 	if(!power_activates_immediately && active && can_deactivate()) // Active? DEACTIVATE AND END!
 		DeactivatePower()
-		return ..()
-	if(!can_pay_cost() || !can_use(owner, trigger_flags))
+		return FALSE
+	if(!can_pay_cost() || !can_use(owner))
 		return FALSE
 	. = ..()
 	// base type returns true? Pay costs
@@ -98,6 +100,7 @@
 
 ///Called when the Power is upgraded.
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
+	SHOULD_CALL_PARENT(TRUE)
 	level_current++
 	desc = get_power_desc()
 	build_all_button_icons(UPDATE_BUTTON_NAME)
@@ -109,7 +112,7 @@
 		button.desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 ///Checks if the Power is available to use.
-/datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user, trigger_flags)
+/datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user)
 	if(!owner)
 		return FALSE
 	if(!isliving(user))
@@ -152,10 +155,10 @@
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.
 /datum/action/cooldown/bloodsucker/StartCooldown(override_cooldown_time, override_melee_cooldown_time)
 	// Calculate Cooldown (by power's level)
-	if(power_flags & BP_AM_STATIC_COOLDOWN)
-		cooldown_time = initial(cooldown_time)
-	else
-		cooldown_time = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
+	if(!(power_flags & BP_AM_STATIC_COOLDOWN))
+		var/custom_cooldown = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
+		// calling parent proc with custom args
+		return ..(custom_cooldown, override_melee_cooldown_time)
 	return ..()
 
 /datum/action/cooldown/bloodsucker/proc/can_pay_blood(mob/living/carbon/user)
@@ -167,17 +170,17 @@
 /datum/action/cooldown/bloodsucker/is_action_active()
 	return active
 
-/datum/action/cooldown/bloodsucker/proc/pay_cost()
+/datum/action/cooldown/bloodsucker/proc/pay_cost(cost_override)
 	// Non-bloodsuckers will pay in other ways.
 	if(!bloodsuckerdatum_power)
 		var/mob/living/living_owner = owner
 		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
-			living_owner.blood_volume -= bloodcost
+			living_owner.blood_volume -= cost_override ? cost_override : bloodcost
 		return
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
 	if(bloodsuckerdatum_power.frenzied)
 		return
-	bloodsuckerdatum_power.AdjustBloodVolume(-bloodcost)
+	bloodsuckerdatum_power.AdjustBloodVolume(-cost_override ? cost_override : bloodcost)
 
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
 	active = TRUE
@@ -188,6 +191,7 @@
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/cooldown/bloodsucker/proc/DeactivatePower()
+	SHOULD_CALL_PARENT(TRUE)
 	if(!active) //Already inactive? Return
 		return
 	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
@@ -196,7 +200,8 @@
 		remove_after_use()
 		return
 	active = FALSE
-	StartCooldown()
+	if(!click_to_activate)
+		StartCooldown()
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
 ///Used by powers that are scontinuously active (That have BP_AM_TOGGLE flag)

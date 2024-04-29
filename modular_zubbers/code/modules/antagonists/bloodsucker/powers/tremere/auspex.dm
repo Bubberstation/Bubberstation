@@ -9,25 +9,29 @@
  */
 
 // Look to /datum/action/cooldown/spell/pointed/void_phase for help.
-
+#define AUSPEX_BLOOD_COST_PER_TILE 5
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex
 	name = "Auspex"
 	level_current = 1
 	button_icon_state = "power_auspex"
 	check_flags = BP_CANT_USE_IN_TORPOR|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
-	bloodcost = 5
-	constant_bloodcost = 2
+	bloodcost = 10
+	constant_bloodcost = 1
 	cooldown_time = 12 SECONDS
 	target_range = 2
 	prefire_message = "Right click to teleport"
 
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/upgrade_power()
+	. = ..()
+	target_range = min(level_current + 1, 10)
+
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc()
 	. = ..()
 	var/old_desc = .
-	return "Hide yourself within a Cloak of Darkness, click on an area to teleport \
-		[target_range ? "up to [target_range] tiles" : "anywhere you can see"] \
-		[level_current >= 4 ? "ending the Power and causing people at your end location to start bleeding" : "."] \
-		[level_current >= 5 ? "and fall asleep" : "."] \n\
+	return "Hide yourself within a Cloak of Darkness, click on an area to teleport\
+		[target_range ? " up to [target_range] tiles" : ""]\
+		[level_current >= 4 ? " ending the Power and causing people at your end location to start bleeding" : ""]\
+		[level_current >= 5 ? " and fall asleep." : "."]\n\
 		[old_desc]"
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
@@ -36,7 +40,8 @@
 		[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"].\n\
 		Teleporting will refill your stamina to full.\n\
 		At level 4 you will cause people at your end location to start bleeding.\n\
-		At level 5 you will cause people at your end location to fall asleep."
+		At level 5 you will cause people at your end location to fall asleep. \n\
+		The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/CheckValidTarget(atom/target_atom)
 	. = ..()
@@ -87,4 +92,4 @@
 	
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.adjustStaminaLoss(-user.staminaloss)
-	PowerActivatedSuccesfully()
+	PowerActivatedSuccesfully(cost_override = AUSPEX_BLOOD_COST_PER_TILE * get_dist(user, targeted_turf))

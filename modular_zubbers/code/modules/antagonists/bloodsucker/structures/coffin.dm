@@ -1,14 +1,17 @@
-/datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+/datum/antagonist/bloodsucker/proc/can_claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [src].")
-		else
-			to_chat(owner, "This [src] has already been claimed by another.")
+			claimed.balloon_alert(owner.current, "already claimed by [claimed.resident == owner.current ? "you" : "another"]!")
 		return FALSE
 	if(!(GLOB.the_station_areas.Find(current_area.type)))
 		claimed.balloon_alert(owner.current, "not part of station!")
 		return
+	return TRUE
+
+/datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+	if(!can_claim_coffin(claimed, current_area))
+		return FALSE
 	// This is my Lair
 	coffin = claimed
 	bloodsucker_lair_area = current_area
@@ -234,10 +237,13 @@
 	if(resident == dracula.owner.current)
 		return TRUE
 	var/area/current_area = get_area(src)
-	if(!dracula.coffin && !resident)
-		switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
-			if("Yes")
-				return claim_coffin(dracula.owner.current, current_area)
+	if(!dracula.can_claim_coffin(src, current_area))
+		return FALSE
+	if(!dracula.coffin && resident)
+		return FALSE
+	switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
+		if("Yes")
+			return claim_coffin(dracula.owner.current, current_area)
 	return FALSE
 
 // some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?

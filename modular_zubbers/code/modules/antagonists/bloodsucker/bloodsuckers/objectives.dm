@@ -244,16 +244,17 @@
 /// Max out a Tremere Power - Tremere Clan objective
 /datum/objective/bloodsucker/tremere_power
 	name = "tremerepower"
+	var/power_level = 5
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Upgrade a Blood Magic power to the maximum level, remember that Vassalizing gives more Ranks!"
+	explanation_text = "Upgrade a Blood Magic power to level [power_level], remember that Vassalizing gives more Ranks!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
 	for(var/datum/action/cooldown/bloodsucker/tremere_powers in bloodsuckerdatum.powers)
-		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= 5)
+		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= power_level)
 			return TRUE
 	return FALSE
 

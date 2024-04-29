@@ -14,7 +14,7 @@
 	. = ..()
 	bloodsuckerdatum.remove_nondefault_powers(return_levels = TRUE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if((initial(power.purchase_flags) & TREMERE_CAN_BUY) && initial(power.level_current) == 1)
+		if((initial(power.purchase_flags) & buy_power_flags) && initial(power.level_current) == 1)
 			bloodsuckerdatum.BuyPower(power)
 
 /datum/bloodsucker_clan/tremere/Destroy(force)
@@ -33,30 +33,20 @@
 		bloodsuckerdatum.owner.current.ignite_mob()
 
 
-/datum/bloodsucker_clan/remere/LevelUpPowers(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/tremere/level_up_powers(datum/antagonist/bloodsucker/source)
+	return
+
+/datum/bloodsucker_clan/tremere/level_up_options(datum/antagonist/bloodsucker/source)
 	var/list/options = list()
+	// get current powers to upgrade
 	for(var/datum/action/cooldown/bloodsucker/targeted/power as anything in bloodsuckerdatum.powers)
 		if(!(power.purchase_flags & buy_power_flags))
 			continue
-		if(isnull(power.upgraded_power))
-			continue
 		options[initial(power.name)] = power
-	
-	if(options.len < 1)
-		return
-	// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(bloodsuckerdatum.owner.current, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to upgrade a power.", "Your Blood Thickens...", options)
-		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
-			return
-		// Did you choose a power?
-		if(!choice || !options[choice])
-			to_chat(bloodsuckerdatum.owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
-			return
-		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
-		if(!istype(bloodsuckerdatum.owner.current.loc, /obj/structure/closet/crate/coffin))
-			to_chat(bloodsuckerdatum.owner.current, span_warning("You must be in your Coffin to purchase Powers."))
-			return
+	return options
+
+/datum/bloodsucker_clan/tremere/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
+	purchased_power.upgrade_power()
 
 /datum/bloodsucker_clan/tremere/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/datum/action/cooldown/spell/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)

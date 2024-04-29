@@ -10,38 +10,45 @@
 
 #define BLOOD_SHIELD_BLOCK_CHANCE 75
 #define BLOOD_SHIELD_BLOOD_COST 15
+#define THAUMATURGY_BLOOD_COST_PER_CHARGE 5
+#define THAUMATURGY_COOLDOWN_PER_CHARGE 5 SECONDS
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy
 	name = "Thaumaturgy"
 	level_current = 1
 	button_icon_state = "power_thaumaturgy"
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
-	bloodcost = 20
+	// custom cooldown handling based on charges
+	power_flags = BP_AM_STATIC_COOLDOWN
+	bloodcost = 5
 	constant_bloodcost = 0
-	cooldown_time = 30 SECONDS
-	click_cd_override = 2 SECONDS
+	// 5 seconds per charge
+	cooldown_time = 10 SECONDS 
 	prefire_message = "Right click where you wish to fire."
 	click_to_activate = TRUE // you pay to replenish charges
 	unset_after_click = FALSE // Lets us cast multiple times
-	// how many times you can shoot before you need to recast
+	power_activates_immediately = FALSE
+	/// How many times you can shoot before you need to recast
 	var/charges = 0
+	var/shot_cooldown = 0
 	///Blood shield given while this Power is active.
 	var/datum/weakref/blood_shield
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/upgrade_power()
 	. = ..()
-	click_cd_override = get_shot_cooldown()
-	bloodcost = get_max_charges() * 10
+	cooldown_time = get_max_charges() * THAUMATURGY_COOLDOWN_PER_CHARGE
+	bloodcost = get_max_charges() * THAUMATURGY_BLOOD_COST_PER_CHARGE
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
 	. = ..()
 	var/current_desc = .
 	var/append_string = ""
 	if(level_current >= 3)
-		append_string = " and opening doors/lockers"
+		append_string = "The projectile will open doors/lockers"
 	if(level_current >= 5)	
-		append_string = ", stealing blood" + append_string
-	return "[level_current > 2 ? "Create a Blood shield and fire a blood bolt" : "Fire a blood bolt at your enemy"], \
-		dealing [get_blood_bolt_damage()] Burn damage[append_string].\n\
+		append_string = append_string + " and steal blood from the target"
+	return "[level_current > 2 ? "Create a Blood shield and fire a seeking blood bolt" : "Fire a seeking blood bolt at your enemy"], \
+		you can cast it [get_max_charges()] times, dealing [get_blood_bolt_damage()] burn damage each time. \n\
+		[append_string] \
 		[current_desc]"
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation()
@@ -52,12 +59,13 @@
 		If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] Burn damage.\n\
 		You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())].\n\
 		At level 3 or above, it will also break open lockers and doors.\n\
-		At level 5, it will also steal blood to feed yourself, though at a net-negative."
+		At level 5, it will also steal blood to feed yourself, just as much as each charge costs. \n\
+		The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/Activate(trigger_flags)
 	. = ..()
-	owner.balloon_alert(owner, "you start thaumaturgy")
 	charges = get_max_charges()
+	owner.balloon_alert(owner, "you start thaumaturgy")
 	if(level_current >= 2) // Only if we're at least level 2.
 		var/obj/item/shield/bloodsucker/new_shield = new
 		blood_shield = WEAKREF(new_shield)
@@ -73,23 +81,37 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/DeactivatePower()
 	var/shield = blood_shield?.resolve()
+	var/used_charges = get_max_charges() - charges
 	if(shield)
 		qdel(shield)
 		blood_shield = null
+	if(used_charges > 0)
+		StartCooldown()
 	return ..()
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/StartCooldown(override_cooldown_time, override_melee_cooldown_time)
+	var/used_charges = get_max_charges() - charges
+	// no cooldown if we didn't use any charges
+	if(used_charges <= 0)
+		return
+	charges = get_max_charges()
+	return ..(used_charges * THAUMATURGY_COOLDOWN_PER_CHARGE, override_melee_cooldown_time)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_blood_bolt_damage()
 	if(level_current >= 4)
-		return 40
+		return 30
 	return 20
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_max_charges()
 	return level_current * 2
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_cooldown()
-	return max(2 - (level_current * 0.1), 0)
+	return max(2 - (level_current * 0.1), 0) SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/FireSecondaryTargetedPower(atom/target, params)
+	if(shot_cooldown > world.time)
+		return
+	shot_cooldown = world.time + get_shot_cooldown()
 	var/mob/living/user = owner
 	owner.balloon_alert(owner, "you fire a blood bolt!")
 	owner.visible_message(
@@ -102,17 +124,22 @@
 	user.face_atom(target)
 	var/obj/projectile/magic/arcane_barrage/bloodsucker/magic_9ball = new(user.loc)
 	magic_9ball.power_ref = WEAKREF(src)
-	if(level_current >= 4)
-		magic_9ball.damage = 40
+	magic_9ball.damage = get_blood_bolt_damage()
 	magic_9ball.firer = user
 	magic_9ball.def_zone = ran_zone(user.zone_selected)
 	magic_9ball.preparePixelProjectile(target, user)
+	magic_9ball.homing = TRUE
+	magic_9ball.homing_target = target
+	magic_9ball.homing_turn_speed = 10 * level_current
+	pay_cost(THAUMATURGY_BLOOD_COST_PER_CHARGE)
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
 	charges -= 1
 	if(charges <= 0)
-		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "no charges left!"), 1 SECONDS)
-		PowerActivatedSuccesfully()
+		// delay the message so it doesn't overlap with the cooldown message
+		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "no charges left!"), 0.5 SECONDS)
+		PowerActivatedSuccesfully(cost_override = 0)
+
 
 /**
  * 	# Blood Bolt
@@ -122,7 +149,9 @@
 /obj/projectile/magic/arcane_barrage/bloodsucker
 	name = "blood bolt"
 	icon_state = "mini_leaper"
-	damage = 20
+	damage = 1
+	wound_bonus = 20
+	armour_penetration = 30
 	var/datum/weakref/power_ref
 
 /obj/projectile/magic/arcane_barrage/bloodsucker/on_hit(target, blocked = 0, pierce_hit)
@@ -145,8 +174,8 @@
 	if(ismob(target))
 		if(bloodsucker_power.level_current >= 5)
 			var/mob/living/person_hit = target
-			person_hit.blood_volume -= 60
-			bloodsucker_power.bloodsuckerdatum_power.AdjustBloodVolume(60)
+			person_hit.blood_volume -= THAUMATURGY_BLOOD_COST_PER_CHARGE
+			bloodsucker_power.bloodsuckerdatum_power.AdjustBloodVolume(THAUMATURGY_BLOOD_COST_PER_CHARGE)
 		return ..()
 	. = ..()
 

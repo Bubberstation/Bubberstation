@@ -19,6 +19,7 @@
 	cooldown_time = 30 SECONDS
 	target_range = 8
 	power_activates_immediately = FALSE
+	unset_after_click = FALSE
 	prefire_message = "Whom will you subvert to your will?"
 	///Our mesmerized target - Prevents several mesmerizes.
 	var/datum/weakref/target_ref
@@ -29,7 +30,6 @@
 	var/requires_facing_target = TRUE
 	var/blocked_by_glasses = TRUE
 	var/image/current_overlay
-
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
 	return "[level_current]: src: \n\
@@ -107,7 +107,9 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/cast_mesmerize(atom/target, params)
 	var/mob/living/user = owner
-	var/mob/living/carbon/mesmerized_target = target_ref.resolve()
+	var/mob/living/carbon/mesmerized_target = target_ref?.resolve()
+	if(!mesmerized_target)
+		CRASH("mesmerized_target is null")
 
 	if(issilicon(mesmerized_target))
 		var/mob/living/silicon/mesmerized = mesmerized_target

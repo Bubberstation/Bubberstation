@@ -24,6 +24,11 @@
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
 
+/datum/action/cooldown/bloodsucker/targeted/haste/get_power_desc()
+	. = ..()
+	return "Dash to a location, knocking down anyone in your way, and refilling your stamina. Those nearby may be knocked away, stunned, or left empty-handed. \n\
+		[level_current >= 3 ? "Dashing from lying down will get you up, but won't affect your foes." : ""]"
+
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
 	if(!.)

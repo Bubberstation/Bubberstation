@@ -22,16 +22,23 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	for(var/mob/living/watchers in oviewers(9, owner))
-		owner.balloon_alert(owner, "you can only vanish unseen.")
-		return FALSE
+	if(level_current < 2)
+		for(var/mob/living/watcher in oviewers(9, owner))
+			if(!watcher.mind)
+				continue
+			if(!can_see(watcher, owner))
+				continue
+			if(IS_BLOODSUCKER(watcher) || IS_VASSAL(watcher))
+				continue
+			owner.balloon_alert(owner, "you can only vanish unseen.")
+			return FALSE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/cloak/Activate(atom/target)
 	. = ..()
 	var/mob/living/user = owner
 	was_running = (user.move_intent == MOVE_INTENT_RUN)
-	if(was_running)
+	if(level_current < 4 && was_running)
 		user.toggle_move_intent()
 	user.AddElement(/datum/element/digitalcamo)
 	user.balloon_alert(user, "cloak turned on.")

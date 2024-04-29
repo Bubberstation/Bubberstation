@@ -27,8 +27,7 @@
 	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 15
 	// TODO it should give passive bonus while active (full huds and xray?)
-	constant_bloodcost = 2
-	cooldown_time = 50 SECONDS
+	constant_bloodcost = 0.2
 	target_range = 6
 	mesmerize_delay = 3 SECONDS
 	blind_at_level = 3
@@ -57,12 +56,12 @@
 		Vassalizing or reviving a vassal will make this ability go on cooldown for [DisplayTimeText(get_vassalize_cooldown())]."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
+	var/mob/living/selected_target = target_atom
+	if(DOMINATE_VASSALIZE_LEVEL >= 4 && (IS_VASSAL(selected_target) || selected_target.stat >= SOFT_CRIT))
+		if(selected_target.mind && owner.Adjacent(selected_target))
+			return TRUE
 	. = ..()
 	if(!.)
-		return FALSE
-	var/mob/living/selected_target = target_atom
-	if(level_current > 4 && (IS_VASSAL(selected_target) || selected_target.stat >= SOFT_CRIT) && !owner.Adjacent(selected_target))
-		owner.balloon_alert(owner, "out of range.")
 		return FALSE
 	return TRUE
 
@@ -97,8 +96,8 @@
 			attempt_vassalize(target, user)
 		else 
 			owner.balloon_alert(owner, "too far to vassalize!")
-		return
-	..()
+		return TRUE
+	return ..()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/attempt_vassalize(mob/living/target, mob/living/user)
 	owner.balloon_alert(owner, "attempting to vassalize.")
@@ -116,6 +115,7 @@
 		target.mind.grab_ghost()
 		target.revive(ADMIN_HEAL_ALL)
 		pay_cost(TEMP_VASSALIZE_COST - bloodcost)
+		log_combat(owner, target, "tremere revived", addition="Revived their vassal using dominate")
 		return FALSE
 
 	if(!bloodsuckerdatum_power.make_vassal(target))
@@ -134,6 +134,7 @@
 	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 	vassaldatum.special_type = TREMERE_VASSAL //don't turn them into a favorite please
 	var/living_time = get_vassal_duration()
+	log_combat(owner, target, "tremere mindslaved", addition="Revived and converted [target] into a temporary tremere vassal for [DisplayTimeText(living_time)].")
 	if(level_current <= 4)
 		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	if(!living_time)
