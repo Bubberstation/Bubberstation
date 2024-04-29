@@ -22,8 +22,9 @@
 	prefire_message = "Right click to teleport"
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/upgrade_power()
+	// 1 + for default, the other + is for the upgrade that hasn't been added yet.
+	target_range = min(level_current + 2, 10)
 	. = ..()
-	target_range = min(level_current + 1, 10)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc()
 	. = ..()
@@ -74,6 +75,10 @@
 	auspex_blink(user, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/proc/auspex_blink(mob/living/user, turf/targeted_turf)
+	var/blood_cost = -AUSPEX_BLOOD_COST_PER_TILE * get_dist(user, targeted_turf)
+	if(!can_pay_blood(blood_cost))
+		owner.balloon_alert(owner, "not enough blood!")
+		return
 	playsound(user, 'sound/magic/summon_karp.ogg', 60)
 	playsound(targeted_turf, 'sound/magic/summon_karp.ogg', 60)
 
@@ -92,4 +97,4 @@
 	
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.adjustStaminaLoss(-user.staminaloss)
-	PowerActivatedSuccesfully(cost_override = AUSPEX_BLOOD_COST_PER_TILE * get_dist(user, targeted_turf))
+	PowerActivatedSuccesfully(cost_override = blood_cost)

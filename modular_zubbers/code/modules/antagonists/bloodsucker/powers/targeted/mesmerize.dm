@@ -16,7 +16,7 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
-	cooldown_time = 30 SECONDS
+	cooldown_time = 20 SECONDS
 	target_range = 8
 	power_activates_immediately = FALSE
 	unset_after_click = FALSE
@@ -29,7 +29,6 @@
 	var/blind_at_level = 0
 	var/requires_facing_target = TRUE
 	var/blocked_by_glasses = TRUE
-	var/image/current_overlay
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
 	return "[level_current]: src: \n\
@@ -103,9 +102,6 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target, params)
-	cast_mesmerize(target, params)
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/cast_mesmerize(atom/target, params)
 	var/mob/living/user = owner
 	var/mob/living/carbon/mesmerized_target = target_ref?.resolve()
 	if(!mesmerized_target)
@@ -117,14 +113,6 @@
 		owner.balloon_alert(owner, "temporarily shut [mesmerized] down.")
 		PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 		return
-	if(istype(mesmerized_target))
-		owner.balloon_alert(owner, "attempting to hypnotically gaze [mesmerized_target]...")
-		if(LAZYACCESS(params, RIGHT_CLICK))
-			to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you forget what you're doing for a moment")]...")
-			show_indicator_overlay(mesmerized_target)
-			combat_mesmerize(mesmerized_target)
-			PowerActivatedSuccesfully()
-			return
 	if(!do_after(user, mesmerize_delay, mesmerized_target, NONE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		return
 	show_indicator_overlay(mesmerized_target)
@@ -139,6 +127,25 @@
 	mesmerize_effects(user, mesmerized_target)
 	PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
+	if(!isliving(target))
+		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
+	var/mob/living/mesmerized_target = target
+	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
+	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
+	show_indicator_overlay(mesmerized_target, 2 SECONDS)
+	var/effect_time = combat_mesmerize_time()
+	var/secondary_effect_time = combat_mesmerize_secondary_time()
+	mute_target(mesmerized_target, secondary_effect_time)
+	mesmerized_target.Knockdown(effect_time)
+	mesmerized_target.add_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
+	addtimer(CALLBACK(src, PROC_REF(remove_slowdown), mesmerized_target), secondary_effect_time)
+	PowerActivatedSuccesfully()
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/remove_slowdown()
+	. = ..()
+	target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
+
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	var/power_time = get_power_time()
 	mute_target(mesmerized_target, power_time)
@@ -146,17 +153,6 @@
 	mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
 	ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
 	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
-
-// TODO move some of these effects to only happen at higher level, and add victim/aggresor only eye effect
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize(mob/living/user, mob/living/mesmerized_target)
-	var/effect_time = combat_mesmerize_time()
-	var/secondary_effect_time = combat_mesmerize_secondary_time()
-	mesmerized_target.adjust_confusion(secondary_effect_time)
-	mute_target(mesmerized_target, effect_time)
-	mesmerized_target.Knockdown(effect_time)
-	mesmerized_target.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown, TRUE, secondary_effect_time)
-	addtimer(CALLBACK(src, PROC_REF(remove_slowdown), mesmerized_target), secondary_effect_time)
-	PowerActivatedSuccesfully()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1.5 SECONDS
@@ -183,7 +179,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower()
 	target_ref = null
-	. = ..()
+	. = ..() 
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/remove_slowdown(mob/living/target)
 	target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
@@ -198,13 +194,8 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)
 	return ..() && can_use(user) && CheckCanTarget(target)
 
-
 /// Display an animated overlay over our head to indicate what's going on
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/show_indicator_overlay(mob/target)
-	if (!isnull(current_overlay))
-		remove_image_from_clients(current_overlay, GLOB.clients)
-	current_overlay = null
-	current_overlay = image(icon = 'icons/effects/eldritch.dmi', loc = owner, icon_state = "eye_pulse", pixel_x = -owner.pixel_x, pixel_y = 28, layer = ABOVE_ALL_MOB_LAYER)
-	SET_PLANE_EXPLICIT(current_overlay, ABOVE_LIGHTING_PLANE, owner)
-	target.client.images += current_overlay
-
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/show_indicator_overlay(mob/target, duration)
+	var/image/image = image(icon = 'icons/effects/eldritch.dmi', loc = owner, icon_state = "eye_flash", pixel_x = -owner.pixel_x, pixel_y = 28, layer = ABOVE_ALL_MOB_LAYER)
+	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
+	flick_overlay_global(image, list(owner, target))

@@ -111,6 +111,9 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/FireSecondaryTargetedPower(atom/target, params)
 	if(shot_cooldown > world.time)
 		return
+	if(!can_pay_blood(THAUMATURGY_BLOOD_COST_PER_CHARGE))
+		owner.balloon_alert(owner, "not enough blood!")
+		return
 	shot_cooldown = world.time + get_shot_cooldown()
 	var/mob/living/user = owner
 	owner.balloon_alert(owner, "you fire a blood bolt!")
@@ -131,7 +134,7 @@
 	magic_9ball.homing = TRUE
 	magic_9ball.homing_target = target
 	magic_9ball.homing_turn_speed = 10 * level_current
-	pay_cost(THAUMATURGY_BLOOD_COST_PER_CHARGE)
+	pay_cost(-THAUMATURGY_BLOOD_COST_PER_CHARGE)
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
 	charges -= 1
