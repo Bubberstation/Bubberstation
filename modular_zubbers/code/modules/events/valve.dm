@@ -105,7 +105,5 @@
 		announce_to_ghosts(dispensy)
 
 
-	announce()
-
 /datum/round_event/defective/announce(fake)
 	priority_announce("A recall for faulty equipment has been issued. Please consult with your Engineering Supervisor.", "Engineering Alert")
