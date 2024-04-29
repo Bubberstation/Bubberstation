@@ -39,7 +39,7 @@
 		return
 	. += span_notice(selected_mode.desc)
 
-/obj/item/phystool/AltClick(mob/user)
+/obj/item/phystool/click_alt(mob/user)
 	. = ..()
 	if(selected_mode)
 		qdel(selected_mode)
