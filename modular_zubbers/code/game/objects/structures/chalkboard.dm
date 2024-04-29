@@ -54,7 +54,7 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/chalkboard/wrench_act_secondary(mob/living/user, obj/item/tool)
-	if(obj_flags & NO_DECONSTRUCTION)
+	if(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION)
 		return FALSE
 	to_chat(user, span_notice("You start deconstructing [src]..."))
 	if(tool.use_tool(src, user, 4 SECONDS, volume=50))
@@ -64,7 +64,7 @@
 
 /obj/structure/chalkboard/handle_deconstruct(disassembled = TRUE)
 	. = ..()
-	if(!(obj_flags & NO_DECONSTRUCTION))
+	if(!(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 	qdel(src)
 
