@@ -323,6 +323,9 @@
 /obj/effect/turf_decal/siding/thinplating,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
+"cm" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/syndicate_ice_base/cargo)
 "cn" = (
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/bar)
@@ -392,6 +395,14 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/small,
 /area/ruin/syndicate_ice_base/bar)
+"cB" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_ice_base/cargo)
 "cC" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/door/airlock{
@@ -1002,6 +1013,9 @@
 	},
 /obj/item/gun/ballistic/automatic/pistol,
 /obj/item/modular_computer/laptop/preset/syndicate,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "hL" = (
@@ -1315,6 +1329,12 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
+"kl" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/cargo)
 "kp" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -1334,10 +1354,6 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
-	},
-/obj/machinery/button/door/directional/north{
-	req_access = list("syndicate");
-	id = "interdynecargoshutters"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
@@ -3625,6 +3641,16 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/dormitories)
+"zN" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/button/door/directional/east{
+	req_access = list("syndicate");
+	id = "interdynecargoshutters"
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/syndicate_ice_base/cargo)
 "zZ" = (
 /obj/machinery/door/window/survival_pod{
 	req_access = list("syndicate");
@@ -4084,6 +4110,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/closet/secure_closet/personal/cabinet,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "DJ" = (
@@ -4591,7 +4620,7 @@
 	dir = 2
 	},
 /obj/effect/turf_decal/tile/brown{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
@@ -4837,6 +4866,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/testlab)
+"IC" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_ice_base/cargo)
 "IH" = (
 /obj/machinery/camera/autoname/directional/south{
 	network = list("intd13");
@@ -5016,9 +5053,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/turf_decal/siding/wood,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/cargo)
 "JR" = (
@@ -6735,6 +6769,10 @@
 "UW" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/syndicate_ice_base/bar)
+"UX" = (
+/obj/effect/turf_decal/tile/brown,
+/turf/closed/mineral/random/snow/underground,
+/area/icemoon/underground/explored)
 "UY" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/light/warm/directional/south,
@@ -8239,8 +8277,8 @@ eG
 eG
 eG
 eG
-eG
 Fz
+kl
 EH
 CP
 yK
@@ -8298,8 +8336,8 @@ eG
 eG
 eG
 eG
-eG
 Fz
+zN
 GV
 Xj
 Xj
@@ -8357,7 +8395,7 @@ eG
 eG
 eG
 eG
-eG
+cm
 qC
 ku
 lX
@@ -8484,8 +8522,8 @@ gd
 Zz
 qC
 hE
-TA
-TA
+IC
+cB
 JQ
 Lj
 sH
@@ -8881,7 +8919,7 @@ DW
 DW
 "}
 (28,1,1) = {"
-DW
+UX
 DW
 RM
 MK

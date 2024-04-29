@@ -10,6 +10,7 @@
 	var/credits_account = ""
 	/// The resolved bank account
 	var/datum/bank_account/synced_bank_account = null
+
 	/// If the screen is actively resetting or not
 	var/display_reset_state = 0
 
@@ -18,22 +19,32 @@
 	start_process()
 	display_reset_state = 0
 
-/obj/machinery/status_display/department_balance/update_overlays(updates)
-	current_mode = SD_MESSAGE
+/obj/machinery/status_display/department_balance/proc/update_balance(updates)
 	switch(SSticker.current_state)
 		if(GAME_STATE_STARTUP, GAME_STATE_PREGAME, GAME_STATE_SETTING_UP)
+			current_mode = SD_MESSAGE
 			set_messages("CASH", "", "")
-			. = ..()
+			update_overlays()
 			return
-	if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
-		display_reset_state = 1
-		set_messages("", "", "")
-		text_color = COLOR_DISPLAY_GREEN
-		set_messages("CASH", "", "")
-		. = ..()
-		return
-	display_reset_state = 0
 
+	if(display_reset_state)
+		if(display_reset_state < 10)
+			display_reset_state++
+			return
+		display_reset_state = 0
+		current_mode = SD_MESSAGE
+		text_color = COLOR_DISPLAY_GREEN
+		set_messages(" ", " ", "")
+		update_overlays()
+		return
+	else if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
+		display_reset_state = 1
+		current_mode = SD_PICTURE
+		set_picture("default")
+		update_overlays()
+		return
+
+	current_mode = SD_MESSAGE
 	if(isnull(synced_bank_account))
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 	var/balance = !synced_bank_account ? 0 : synced_bank_account.account_balance
@@ -57,10 +68,10 @@
 		set_messages("CASH", "[round(balance / 1000)].[balance_remainer]K", "")
 	else
 		set_messages("CASH", "[balance]", "")
-	. = ..()
+	update_overlays()
 
 /obj/machinery/status_display/department_balance/process(seconds_per_tick)
-	update_overlays()
+	update_balance()
 
 /obj/machinery/status_display/department_balance/receive_signal(datum/signal/signal)
 	return
