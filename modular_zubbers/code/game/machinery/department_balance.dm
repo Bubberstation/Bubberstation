@@ -8,9 +8,11 @@
 
 	/// The account to display balance
 	var/credits_account = ""
+	/// The account to display balance
+	var/default_logo = "default"
+
 	/// The resolved bank account
 	var/datum/bank_account/synced_bank_account = null
-
 	/// If the screen is actively resetting or not
 	var/display_reset_state = 0
 
@@ -20,31 +22,31 @@
 	display_reset_state = 0
 
 /obj/machinery/status_display/department_balance/proc/update_balance(updates)
+	current_mode = SD_MESSAGE
 	switch(SSticker.current_state)
 		if(GAME_STATE_STARTUP, GAME_STATE_PREGAME, GAME_STATE_SETTING_UP)
-			current_mode = SD_MESSAGE
 			set_messages("CASH", "", "")
 			update_overlays()
 			return
 
 	if(display_reset_state)
-		if(display_reset_state < 10)
+		if(display_reset_state < 10) // show a generic splash screen for 10 seconds
 			display_reset_state++
+			current_mode = SD_PICTURE
+			set_picture(default_logo)
 			return
-		display_reset_state = 0
-		current_mode = SD_MESSAGE
+		display_reset_state = 0 // we now return to our regularly scheduled programming
 		text_color = COLOR_DISPLAY_GREEN
-		set_messages(" ", " ", "")
+		set_messages("CASH", " ", " ")
 		update_overlays()
 		return
 	else if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
 		display_reset_state = 1
-		current_mode = SD_PICTURE
-		set_picture("default")
+		text_color = COLOR_DISPLAY_GREEN
+		set_messages(" ", " ", " ")
 		update_overlays()
 		return
 
-	current_mode = SD_MESSAGE
 	if(isnull(synced_bank_account))
 		synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 	var/balance = !synced_bank_account ? 0 : synced_bank_account.account_balance
