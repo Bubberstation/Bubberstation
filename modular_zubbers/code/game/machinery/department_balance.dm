@@ -13,7 +13,7 @@
 	/// If the screen is actively resetting or not
 	var/display_reset_state = 0
 
-/obj/machinery/status_display/department_balance/LateInitialize()
+/obj/machinery/status_display/department_balance/post_machine_initialize()
 	. = ..()
 	start_process()
 	display_reset_state = 0
