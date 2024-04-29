@@ -18,9 +18,19 @@
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
 	weight = 4
 
+/datum/round_event_control/antagonist/solo/malf/roundstart/can_spawn_event(popchecks, allow_magic)
+	. = ..()
+	if(!.)
+		return .
+
+	var/datum/job/ai_job = SSjob.GetJobType(/datum/job/ai)
+	if(!(ai_job.total_positions - ai_job.current_positions && ai_job.spawn_positions))
+		return FALSE
+	else
+		return TRUE
+
 /datum/round_event/antagonist/solo/malf_ai/roundstart/setup()
 	. = ..()
-	var/datum/job/ai_job = SSjob.GetJobType(/datum/job/ai)
 	for(var/datum/mind/new_malf in setup_minds)
 		GLOB.pre_setup_antags += new_malf
 		LAZYADDASSOC(SSjob.dynamic_forced_occupations, new_malf.current, "AI")
