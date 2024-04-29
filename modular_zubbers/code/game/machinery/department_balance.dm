@@ -36,7 +36,10 @@
 		text_color = COLOR_DISPLAY_ORANGE
 	else
 		text_color = COLOR_DISPLAY_RED
-	if(balance > 99999 || balance > 1000 && balance_remainer == 0)
+	if(balance > 999999)
+		balance_remainer = round((balance % 1000000) / 100000)
+		set_messages("CASH", "[round(balance / 1000000)].[balance_remainer]M", "")
+	else if(balance > 99999 || balance > 1000 && balance_remainer == 0)
 		set_messages("CASH", "[round(balance / 1000)]K", "")
 	else if(balance > 1000)
 		set_messages("CASH", "[round(balance / 1000)].[balance_remainer]K", "")
