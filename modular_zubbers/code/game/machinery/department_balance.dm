@@ -27,7 +27,7 @@
 			return
 	if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
 		display_reset_state = 1
-		remove_messages()
+		set_messages("", "", "")
 		text_color = COLOR_DISPLAY_GREEN
 		set_messages("CASH", "", "")
 		. = ..()
