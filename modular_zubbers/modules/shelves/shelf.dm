@@ -48,7 +48,7 @@
 			. += "	[icon2html(crate, user)] [crate]"
 
 /obj/structure/cargo_shelf/attackby(obj/item/item, mob/living/user, params)
-	if (item.tool_behaviour == TOOL_WRENCH && !(flags_1 & NO_DECONSTRUCTION))
+	if (item.tool_behaviour == TOOL_WRENCH && !(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		item.play_tool_sound(src)
 		if(do_after(user, 3 SECONDS, target = src))
 			deconstruct(TRUE)
@@ -133,7 +133,7 @@
 				crate.visible_message(span_warning("[crate] falls apart!"))
 				crate.deconstruct()
 		shelf_contents[shelf_contents.Find(crate)] = null
-	if(!(flags_1 & NO_DECONSTRUCTION))
+	if(!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		density = FALSE
 		var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
 		transfer_fingerprints_to(newparts)
