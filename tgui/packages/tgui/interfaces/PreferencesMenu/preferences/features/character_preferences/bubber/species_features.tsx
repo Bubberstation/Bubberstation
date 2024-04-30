@@ -1,10 +1,10 @@
 import {
   Feature,
   FeatureChoiced,
-  FeatureDropdownInput,
   FeatureShortTextInput,
   FeatureTextInput,
 } from '../../base';
+import { FeatureDropdownInput } from '../../dropdowns';
 
 export const emote_length: FeatureChoiced = {
   name: 'Preferred Emote Length',
