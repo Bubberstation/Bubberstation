@@ -221,10 +221,11 @@
 		if(!bloodsuckerdatum.my_clan)
 			user.balloon_alert("enter a clan!")
 			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
-		else
+		else if(!bloodsuckerdatum.frenzied)
+			if(bloodsuckerdatum.GetUnspentRank() < 1)
+				bloodsuckerdatum.blood_level_gain()
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
-			if(!bloodsuckerdatum.frenzied)
-				bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
+			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
 		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
 	return TRUE
 
