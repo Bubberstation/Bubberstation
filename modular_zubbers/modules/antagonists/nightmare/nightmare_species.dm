@@ -9,19 +9,19 @@
 	)
 
 /obj/item/bodypart/head/shadow/nightmare
-	burn_modifier = 1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/chest/shadow/nightmare
-	burn_modifier = 1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/arm/left/shadow/nightmare
-	burn_modifier = 1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/arm/right/shadow/nightmare
-	burn_modifier = 1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/leg/left/shadow/nightmare
-	burn_modifier = 1
+	burn_modifier = 1.2
 
 /obj/item/bodypart/leg/right/shadow/nightmare
-	burn_modifier = 1
+	burn_modifier = 1.2
