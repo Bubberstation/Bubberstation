@@ -74,7 +74,7 @@
 /obj/vehicle/ridden/rail_cart/Initialize(mapload)
 	. = ..()
 	attach_trailer()
-	railoverlay = mutable_appearance(icon, "railoverlay", ABOVE_MOB_LAYER, src)
+	railoverlay = mutable_appearance(icon, "railoverlay", ABOVE_MOB_LAYER, src, ABOVE_GAME_PLANE)
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/rail_cart)
 
 	create_storage(max_total_storage = 21, max_slots = 21)
@@ -102,9 +102,9 @@
 		return relaydrive(user, direction)
 	return FALSE
 
-/obj/vehicle/ridden/rail_cart/AltClick(mob/user)
-	. = ..()
+/obj/vehicle/ridden/rail_cart/click_alt(mob/user)
 	attach_trailer()
+	return CLICK_ACTION_SUCCESS
 
 /obj/vehicle/ridden/rail_cart/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

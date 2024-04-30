@@ -40,7 +40,10 @@
 	one_use = TRUE
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user)
-	heldname = sanitize_name(tgui_input_text(user, "Enter new robot name", "Cyborg Reclassification", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
+	var/new_heldname = sanitize_name(tgui_input_text(user, "Enter new robot name", "Cyborg Reclassification", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
+	if(!new_heldname || !user.is_holding(src))
+		return
+	heldname = new_heldname
 	user.log_message("set \"[heldname]\" as a name in a cyborg reclassification board at [loc_name(user)]", LOG_GAME)
 
 /obj/item/borg/upgrade/rename/action(mob/living/silicon/robot/R, user = usr)
@@ -52,7 +55,7 @@
 		R.updatename()
 		if(oldname == R.real_name)
 			R.notify_ai(AI_NOTIFICATION_CYBORG_RENAMED, oldname, R.real_name)
-		usr.log_message("used a cyborg reclassification board to rename [oldkeyname] to [key_name(R)]", LOG_GAME)
+		usr.log_message("used a cyborg reclassification board to rename [oldkeyname] to [key_name(R)]", LOG_GAME, redacted_copy = "used a cyborg reclassification board to rename [oldkeyname] to [R]") // BUBBER EDIT - PUBLIC LOGS
 
 /obj/item/borg/upgrade/disablercooler
 	name = "cyborg rapid disabler cooling module"
@@ -295,7 +298,7 @@
 	/// Minimum time between repairs in seconds
 	var/repair_cooldown = 4
 	var/on = FALSE
-	var/powercost = 10
+	var/energy_cost = 10 KILO JOULES
 	var/datum/action/toggle_action
 
 /obj/item/borg/upgrade/selfrepair/action(mob/living/silicon/robot/R, user = usr)
@@ -355,7 +358,7 @@
 			deactivate_sr()
 			return
 
-		if(cyborg.cell.charge < powercost * 2)
+		if(cyborg.cell.charge < energy_cost * 2)
 			to_chat(cyborg, span_alert("Self-repair module deactivated. Please recharge."))
 			deactivate_sr()
 			return
@@ -363,16 +366,16 @@
 		if(cyborg.health < cyborg.maxHealth)
 			if(cyborg.health < 0)
 				repair_amount = -2.5
-				powercost = 30
+				energy_cost = 30 KILO JOULES
 			else
 				repair_amount = -1
-				powercost = 10
+				energy_cost = 10 KILO JOULES
 			cyborg.adjustBruteLoss(repair_amount)
 			cyborg.adjustFireLoss(repair_amount)
 			cyborg.updatehealth()
-			cyborg.cell.use(powercost)
+			cyborg.cell.use(energy_cost)
 		else
-			cyborg.cell.use(5)
+			cyborg.cell.use(5 KILO JOULES)
 		next_repair = world.time + repair_cooldown * 10 // Multiply by 10 since world.time is in deciseconds
 
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BORG_SELF_REPAIR))
@@ -398,6 +401,10 @@
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
+	var/obj/item/borg/upgrade/hypospray/U = locate() in R
+	if(U)
+		to_chat(user, span_warning("This unit is already equipped with an expanded hypospray synthesiser!")) //check to see if we already have this module
+		return FALSE
 	if(.)
 		for(var/obj/item/reagent_containers/borghypo/medical/H in R.model.modules)
 			H.upgrade_hypo()
@@ -428,6 +435,7 @@
 			found_hypo = TRUE
 
 		if(!found_hypo)
+			to_chat(user, span_warning("This unit is already equipped with a piercing hypospray upgrade!")) //check to see if we already have this module
 			return FALSE
 
 /obj/item/borg/upgrade/piercing_hypospray/deactivate(mob/living/silicon/robot/R, user = usr)
@@ -448,6 +456,10 @@
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
+		var/obj/item/borg/upgrade/defib/U = locate() in R
+		if(U)
+			to_chat(user, span_warning("This unit is already equipped with a defibrillator module!")) //check to see if we already have this module
+			return FALSE
 		var/obj/item/borg/upgrade/defib/backpack/BP = locate() in R //If a full defib unit was used to upgrade prior, we can just pop it out now and replace
 		if(BP)
 			BP.deactivate(R, user)
@@ -504,12 +516,11 @@
 /obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/surgical_processor/SP = locate() in R.model.modules // BUBBER EDIT added duiplication prevention
-		if(SP)
-			to_chat(user, span_warning("This unit is already equipped with A Surgical Processor!!"))
+		var/obj/item/borg/upgrade/processor/U = locate() in R
+		if(U)
+			to_chat(user, span_warning("This unit is already equipped with a surgical processor module!")) //check to see if we already have this module
 			return FALSE
-
-		SP = new(R.model)
+		var/obj/item/surgical_processor/SP = new(R.model)
 		R.model.basic_modules += SP
 		R.model.add_module(SP, FALSE, TRUE)
 
@@ -657,7 +668,6 @@
 
 /obj/item/inducer/cyborg
 	name = "Internal inducer"
-	powertransfer = 1500
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "inducer-engi"
 	cell_type = null
