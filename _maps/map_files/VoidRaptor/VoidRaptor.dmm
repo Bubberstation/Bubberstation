@@ -7570,16 +7570,6 @@
 "cnC" = (
 /turf/closed/wall,
 /area/station/maintenance/port/central)
-"coc" = (
-/obj/structure/sign/nanotrasen{
-	pixel_y = -32
-	},
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
-/obj/structure/cable,
-/turf/open/floor/vault,
-/area/station/ai_monitored/turret_protected/ai)
 "cog" = (
 /obj/machinery/light/floor,
 /turf/open/floor/engine/co2,
@@ -23052,6 +23042,19 @@
 /obj/structure/sign/calendar/directional/south,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
+"gHF" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	dir = 4;
+	location = "QM #1"
+	},
+/obj/effect/turf_decal/box,
+/mob/living/simple_animal/bot/mulebot,
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/storage)
 "gHG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -62150,6 +62153,20 @@
 /obj/structure/window/spawner/directional/north,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
+"roC" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	dir = 4;
+	location = "QM #4"
+	},
+/obj/effect/turf_decal/box,
+/mob/living/simple_animal/bot/mulebot,
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/storage)
 "roK" = (
 /obj/machinery/newscaster/directional/west,
 /obj/structure/table/wood/fancy,
@@ -70742,20 +70759,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/science/ordnance/storage)
-"tEH" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/machinery/firealarm/directional/north,
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	dir = 4;
-	location = "QM #4"
-	},
-/obj/effect/turf_decal/box,
-/mob/living/simple_animal/bot/mulebot,
-/turf/open/floor/iron/smooth_edge,
-/area/station/cargo/storage)
 "tEI" = (
 /obj/structure/table,
 /obj/item/food/ready_donk/mac_n_cheese{
@@ -82959,19 +82962,6 @@
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/iron/dark,
 /area/station/medical/break_room)
-"wVQ" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	dir = 4;
-	location = "QM #1"
-	},
-/obj/effect/turf_decal/box,
-/mob/living/simple_animal/bot/mulebot,
-/turf/open/floor/iron/smooth_edge,
-/area/station/cargo/storage)
 "wWw" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/chair/office{
@@ -84354,6 +84344,16 @@
 	dir = 8
 	},
 /area/station/service/hydroponics)
+"xsi" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = -32
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes/super/full{
+	name = "ai power storage unit"
+	},
+/turf/open/floor/vault,
+/area/station/ai_monitored/turret_protected/ai)
 "xsj" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -102018,7 +102018,7 @@ dYb
 uQi
 bWK
 lvx
-coc
+xsi
 rDp
 rDp
 xMq
@@ -129610,7 +129610,7 @@ gjq
 nyf
 gZb
 wuW
-wVQ
+gHF
 udn
 aRn
 fun
@@ -130381,7 +130381,7 @@ aUA
 pjT
 xMq
 sFi
-tEH
+roC
 udn
 cLG
 sny
