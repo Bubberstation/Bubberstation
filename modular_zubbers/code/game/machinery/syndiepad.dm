@@ -69,7 +69,7 @@
 	/// The resolved bank account
 	var/datum/bank_account/synced_bank_account = null
 
-/obj/machinery/computer/piratepad_control/syndiepad/LateInitialize()
+/obj/machinery/computer/piratepad_control/syndiepad/post_machine_initialize()
 	. = ..()
 	synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
 

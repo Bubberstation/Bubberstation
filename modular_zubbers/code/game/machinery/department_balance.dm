@@ -11,7 +11,7 @@
 	/// The resolved bank account
 	var/datum/bank_account/synced_bank_account = null
 
-/obj/machinery/status_display/department_balance/LateInitialize()
+/obj/machinery/status_display/department_balance/post_machine_initialize()
 	. = ..()
 	start_process()
 
