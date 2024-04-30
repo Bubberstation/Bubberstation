@@ -12,10 +12,12 @@
 	shrapnel_type = null
 	embedding = null
 
+
 /obj/item/ammo_casing/c9mm/flathead
 	name = "9x25mm Mk.12 flathead bullet casing"
 	desc = "A modern 9x25mm Mk.12 flathead bullet casing."
 	projectile_type = /obj/projectile/bullet/c9mm/flathead
+
 
 /obj/item/ammo_box/magazine/m9mm/flathead //m9mm is not a typo
 	name = "pistol magazine (9x25mm flathead)"
@@ -26,6 +28,7 @@
 	name = "pistol magazine (9x25mm rubber)"
 	desc = "A gun magazine. Loaded with less-than-lethal rounds with rubber tips."
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
+
 
 /obj/item/ammo_box/c9mm/flathead
 	name = "9x25mm flathead box"
