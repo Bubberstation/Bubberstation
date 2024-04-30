@@ -13,7 +13,8 @@
 /// Modify description to add notice that this is aimed.
 /datum/action/cooldown/bloodsucker/targeted/get_power_desc()
 	. = ..()
-	var/current_desc = "<br>\[<i>Targeted Power</i>\]"
+	var/current_desc = "\n\[<i>Targeted Power</i>\] \n\
+		Cast Range: [target_range]"
 	current_desc += .
 	return current_desc
 

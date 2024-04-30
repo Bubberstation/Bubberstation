@@ -17,7 +17,7 @@
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 20 SECONDS
-	target_range = 8
+	target_range = 4
 	power_activates_immediately = FALSE
 	unset_after_click = FALSE
 	prefire_message = "Whom will you subvert to your will?"
@@ -115,7 +115,8 @@
 		return
 	if(!do_after(user, mesmerize_delay, mesmerized_target, NONE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		return
-	show_indicator_overlay(mesmerized_target)
+	// Can't quite time it here, but oh well
+	perform_indicators(mesmerized_target, get_power_time())
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
 	/*if(IS_MONSTERHUNTER(mesmerized_target))
 		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
@@ -132,19 +133,20 @@
 		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
 	var/mob/living/mesmerized_target = target
 	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
+	perform_indicators(mesmerized_target, 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
+	if(!ContinueActive(user, mesmerized_target))
+		owner.balloon_alert(owner, "failed!")
+		return
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
-	show_indicator_overlay(mesmerized_target, 2 SECONDS)
 	var/effect_time = combat_mesmerize_time()
 	var/secondary_effect_time = combat_mesmerize_secondary_time()
+	mesmerized_target.adjust_confusion(10 SECONDS)
 	mute_target(mesmerized_target, secondary_effect_time)
 	mesmerized_target.Knockdown(effect_time)
-	mesmerized_target.add_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
-	addtimer(CALLBACK(src, PROC_REF(remove_slowdown), mesmerized_target), secondary_effect_time)
 	PowerActivatedSuccesfully()
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/remove_slowdown()
-	. = ..()
-	target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	var/power_time = get_power_time()
@@ -166,7 +168,7 @@
 	return power_time
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_secondary_time()
-	return combat_mesmerize_time() * 1.5
+	return get_power_time()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/blind_target(mob/living/mesmerized_target)
 	if(!blind_at_level && level_current < blind_at_level)
@@ -181,9 +183,6 @@
 	target_ref = null
 	. = ..() 
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/remove_slowdown(mob/living/target)
-	target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize_slowdown)
-
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT)
 	target.cure_blind(MESMERIZE_TRAIT)
@@ -194,8 +193,16 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)
 	return ..() && can_use(user) && CheckCanTarget(target)
 
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/perform_indicators(mob/target, duration)
+	// Display an animated overlay over our head to indicate what's going on
+	eldritch_eye(target, "eye_open", 1 SECONDS)
+	var/main_duration = max(duration - 2 SECONDS, 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target, "eye_flash", main_duration), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(eldritch_eye), target,  "eye_close", 1 SECONDS), main_duration + 1 SECONDS)
+
 /// Display an animated overlay over our head to indicate what's going on
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/show_indicator_overlay(mob/target, duration)
-	var/image/image = image(icon = 'icons/effects/eldritch.dmi', loc = owner, icon_state = "eye_flash", pixel_x = -owner.pixel_x, pixel_y = 28, layer = ABOVE_ALL_MOB_LAYER)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/eldritch_eye(mob/target, icon_state = "eye_open", duration = 1 SECONDS)
+	var/image/image = image('icons/effects/eldritch.dmi', owner, icon_state, ABOVE_ALL_MOB_LAYER, pixel_x = -owner.pixel_x, pixel_y = 28)
 	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
-	flick_overlay_global(image, list(owner, target))
+	flick_overlay_global(image, list(owner?.client, target?.client), duration)
+
