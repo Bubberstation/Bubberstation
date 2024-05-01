@@ -1486,6 +1486,7 @@
 	name = "SSV Dauntless Fax Machine";
 	syndicate_network = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "gN" = (
@@ -2459,15 +2460,15 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/trimline/dark_red/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
 /obj/item/toy/mecha/darkgygax{
 	pixel_y = 16
 	},
 /obj/item/toy/figure/syndie,
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
@@ -3757,6 +3758,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
+"re" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "rf" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/stockparts/deluxe{
@@ -3928,6 +3933,7 @@
 	name = "Model Nuclear Warhead";
 	desc = "This is a model of the famous Gorlex Marauders nuclear warhead. 'Some call it nuclear terrorism. We call it solutions'"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "rS" = (
@@ -5683,6 +5689,7 @@
 /obj/effect/turf_decal/trimline/dark_red/corner{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 1
 	},
@@ -9433,6 +9440,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/small,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "RU" = (
@@ -9899,6 +9907,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "TR" = (
@@ -11104,6 +11113,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "ZO" = (
@@ -12753,8 +12763,8 @@ FZ
 FZ
 DV
 rR
-Om
-Om
+re
+re
 ZN
 ln
 Bm
@@ -13025,8 +13035,8 @@ FZ
 FZ
 DV
 gJ
-Om
-Om
+re
+re
 gW
 CQ
 CQ

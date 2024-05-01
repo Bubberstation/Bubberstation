@@ -2373,6 +2373,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
 "lr" = (
@@ -3606,6 +3607,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
 "qG" = (
@@ -4573,6 +4575,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/small,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
 "vj" = (
@@ -7098,6 +7101,7 @@
 	name = "Model Nuclear Warhead";
 	desc = "This is a model of the famous Gorlex Marauders nuclear warhead. 'Some call it nuclear terrorism. We call it solutions'"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
 "GG" = (
@@ -7886,6 +7890,7 @@
 /obj/effect/turf_decal/trimline/dark_red/corner{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 1
 	},
@@ -9606,6 +9611,10 @@
 /obj/structure/chair/stool/directional/south,
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison)
+"TJ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
 "TL" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/syndicate_access,
@@ -9821,6 +9830,7 @@
 	name = "SSV Dauntless Fax Machine";
 	syndicate_network = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
 "UD" = (
@@ -10547,15 +10557,15 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/trimline/dark_red/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
 /obj/item/toy/mecha/darkgygax{
 	pixel_y = 16
 	},
 /obj/item/toy/figure/syndie,
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/ruin/space/has_grav/bubbers/dauntless_space/command/bridge)
@@ -12206,8 +12216,8 @@ XG
 XG
 Xy
 GF
-ag
-ag
+TJ
+TJ
 lp
 AE
 yq
@@ -12434,8 +12444,8 @@ XG
 XG
 Xy
 UC
-ag
-ag
+TJ
+TJ
 uB
 ez
 ez
