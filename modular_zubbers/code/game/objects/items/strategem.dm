@@ -23,7 +23,7 @@
 
 /obj/item/choice_beacon/strategem_offensive/generate_display_names()
 	var/static/list/selectable_strategem = list(
-		"500 Kilogram Stinbang Strike" = /obj/item/grenade/flashbang/cluster/strike,
+		"500 Kilogram Stingbang Strike" = /obj/item/grenade/flashbang/cluster/strike,
 		"Orbital Teargas Bombardment" = /obj/vehicle/sealed/mecha/ripley/paddy/preset,
 		"Stunmine Carpet" = /obj/item/mod/control/pre_equipped/security
 	)
