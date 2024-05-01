@@ -39,19 +39,13 @@
 	var/charge_time = 1.5 SECONDS
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
-	var/overrides_main = FALSE //bubber edit //do we override the main init?
-	var/overrides_twohandrequired = FALSE //bubber edit //Do we have the fumble on one handed attack attempt?
-	var/override_markeffect = FALSE //bubber edit //Do we have the default affect on detonating a mark?
-	var/override_twohandedsprite = FALSE //bubber edit //ENABLE THIS FOR ALL NEW CRUSHER VARIANTS OR ELSE IT WILL BREAK
 
 
 /obj/item/kinetic_crusher/Initialize(mapload)
 	. = ..()
-	if(!overrides_main) // Bubber Edit
-		AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
-		AddComponent(/datum/component/butchering, \
-			speed = 6 SECONDS, \
-			effectiveness = 110, \
+	AddComponent(/datum/component/butchering, \
+		speed = 6 SECONDS, \
+		effectiveness = 110, \
 	)
 	//technically it's huge and bulky, but this provides an incentive to use it
 	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
@@ -91,7 +85,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
-	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !overrides_twohandrequired) // Bubber edit
+	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !acts_as_if_wielded) // Bubber edit -  Original: if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_warning("[src] is too heavy to use with one hand! You fumble and drop everything."))
 		user.drop_all_held_items()
 		return
@@ -149,7 +143,7 @@
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /obj/item/kinetic_crusher/afterattack_secondary(atom/target, mob/living/user, proximity_flag, click_parameters)
-	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !overrides_twohandrequired) // Bubber edit
+	if(!HAS_TRAIT(src, TRAIT_WIELDED) && !acts_as_if_wielded) // Bubber edit -  Original: if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		balloon_alert(user, "wield it first!")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(target == user)
@@ -195,7 +189,6 @@
 	return COMSIG_SABOTEUR_SUCCESS
 
 /obj/item/kinetic_crusher/update_icon_state()
-	if(!override_twohandedsprite) // Another zubber edit hee hoo
 		inhand_icon_state = "crusher[HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
 		return ..()
 

@@ -1,3 +1,7 @@
+/obj/item/kinetic_crusher
+	var/overrides_main
+	var/acts_as_if_wielded
+
 /obj/item/kinetic_crusher/machete
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "PKMachete"
@@ -32,8 +36,7 @@
 	detonation_damage = 35
 	backstab_bonus = 20
 	overrides_main = TRUE
-	overrides_twohandrequired = TRUE
-	override_twohandedsprite = TRUE
+	acts_as_if_wielded = TRUE
 
 /obj/item/kinetic_crusher/machete/Initialize(mapload)
 	. = ..()
@@ -76,8 +79,6 @@
 	backstab_bonus = 20
 	reach = 2
 	overrides_main = TRUE
-	overrides_twohandrequired = FALSE
-	override_twohandedsprite = TRUE
 
 /obj/item/kinetic_crusher/spear/Initialize(mapload)
 	. = ..()
@@ -124,8 +125,7 @@
 	detonation_damage = 70
 	backstab_bonus = 0
 	overrides_main = TRUE
-	overrides_twohandrequired = FALSE
-	override_twohandedsprite = TRUE
+	acts_as_if_wielded = FALSE
 
 /obj/item/kinetic_crusher/hammer/Initialize(mapload)
 		. = ..()
@@ -177,8 +177,7 @@
 	detonation_damage = 40
 	backstab_bonus = 120
 	overrides_main = TRUE
-	overrides_twohandrequired = TRUE
-	override_twohandedsprite = TRUE
+	acts_as_if_wielded = TRUE
 
 /obj/item/kinetic_crusher/claw/Initialize(mapload)
 	. = ..()
@@ -186,3 +185,8 @@
 		speed = 5 SECONDS, \
 		effectiveness = 100, \
 	)
+
+/obj/item/kinetic_crusher/claw/update_icon_state()
+	var/previous_inhand_icon_state = inhand_icon_state
+	. = ..()
+	inhand_icon_state = previous_inhand_icon_state
