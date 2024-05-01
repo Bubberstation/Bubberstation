@@ -23,9 +23,9 @@
 
 /obj/item/choice_beacon/strategem_offensive/generate_display_names()
 	var/static/list/selectable_strategem = list(
-		"500 Kilogram Stinbang Strike" = /obj/machinery/deployable_turret/disabler,
-		"Orbital Lube Bombardment" = /obj/vehicle/sealed/mecha/ripley/paddy/preset,
-		"Homing Creampie Strike" = /obj/item/mod/control/pre_equipped/security
+		"500 Kilogram Stinbang Strike" = /obj/item/grenade/flashbang/cluster/strike,
+		"Orbital Teargas Bombardment" = /obj/vehicle/sealed/mecha/ripley/paddy/preset,
+		"Stunmine Carpet" = /obj/item/mod/control/pre_equipped/security
 	)
 
 	return selectable_strategem
