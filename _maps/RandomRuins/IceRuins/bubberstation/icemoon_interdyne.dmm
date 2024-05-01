@@ -274,13 +274,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/ruin/syndicate_ice_base/dormitories)
-"bP" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/plasma/ice_moon,
-/area/icemoon/underground/explored)
 "bR" = (
 /obj/structure/railing{
 	dir = 6
@@ -722,9 +715,6 @@
 /obj/effect/turf_decal/skyrat_decals/syndicate/bottom/right,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
-"fr" = (
-/turf/open/floor/plating/reinforced,
-/area/icemoon/underground/explored)
 "ft" = (
 /obj/structure/dresser,
 /obj/item/flashlight/lamp/green{
@@ -4240,6 +4230,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "EC" = (
@@ -4398,6 +4391,9 @@
 /area/ruin/syndicate_ice_base/bar)
 "FN" = (
 /obj/structure/sign/warning/gas_mask/directional/north,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "FP" = (
@@ -4915,13 +4911,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
-"IU" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/lava/plasma/ice_moon,
-/area/icemoon/underground/explored)
 "IW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
@@ -5141,14 +5130,10 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/syndicate_ice_base/armory)
 "KH" = (
-/obj/machinery/camera/autoname/directional/south{
-	network = list("intd13")
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/structure/lattice/catwalk,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/lava/plasma/ice_moon,
+/turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "KI" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -5267,7 +5252,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
-/obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/plating,
@@ -8799,8 +8783,8 @@ DW
 (26,1,1) = {"
 DW
 DW
-RM
 To
+eG
 eG
 eG
 RM
@@ -8858,10 +8842,10 @@ DW
 (27,1,1) = {"
 DW
 DW
-Sw
 pj
-bP
-xC
+eG
+eG
+eG
 qC
 qC
 qC
@@ -8917,14 +8901,14 @@ DW
 (28,1,1) = {"
 UX
 DW
-RM
 MK
-fr
-fr
+eG
+eG
+eG
 ny
 Ol
 LE
-aE
+KH
 aE
 aE
 aE
@@ -8976,10 +8960,10 @@ DW
 (29,1,1) = {"
 DW
 DW
-RM
 Ju
-IU
-KH
+eG
+eG
+JG
 qC
 qC
 qC
@@ -9035,8 +9019,8 @@ DW
 (30,1,1) = {"
 EY
 DW
-Qy
 Um
+eG
 eG
 eG
 eG
