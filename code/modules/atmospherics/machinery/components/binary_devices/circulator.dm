@@ -1,5 +1,3 @@
-/* Bubberstation edit moved to modular
-
 /*
 
 Skyrat removal START, moved to modular file
@@ -181,7 +179,4 @@ Skyrat removal START, moved to modular file
 	pixel_y = 0
 
 Skyrat removal END
-*/
-
-Bubberstation edit, moved to modular
 */

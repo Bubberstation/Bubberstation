@@ -1,4 +1,3 @@
-/* Bubberstation edit moved to modular
 /*
 
 Skyrat removal START, moved to modular file
@@ -227,7 +226,4 @@ Skyrat removal START, moved to modular file
 #undef TEG_EFFICIENCY
 
 Skyrat removal END
-*/
-
-Bubberstation edit Moved to modular
 */
