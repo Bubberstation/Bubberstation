@@ -157,7 +157,5 @@
 		/obj/item/hypospray/mkii,
 		/obj/item/reagent_containers/cup/vial,
 		/obj/item/weaponcell/medical,
-		// BUBBERSTATION EDIT START - MEDIPENS IN BELTS
 		/obj/item/reagent_containers/hypospray/medipen
-		// BUBBERSTATION EDIT END - MEDIPENS IN BELTS
 		))
