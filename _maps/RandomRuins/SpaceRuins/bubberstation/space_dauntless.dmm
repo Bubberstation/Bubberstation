@@ -530,14 +530,6 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/treatment)
-"cp" = (
-/obj/machinery/vending/cigarette{
-	onstation = 0;
-	onstation_override = 1
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "cq" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -1585,6 +1577,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless_space/engineering/dispolsals)
 "hy" = (
 /obj/effect/turf_decal/siding/wood,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "hz" = (
@@ -2273,6 +2267,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/holding)
 "ld" = (
 /obj/machinery/washing_machine,
+/obj/structure/towel_bin{
+	pixel_y = 9;
+	pixel_x = -1
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "lf" = (
@@ -2345,7 +2343,6 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/structure/towel_bin,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "lo" = (
@@ -3665,11 +3662,9 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/gym)
 "qU" = (
-/obj/machinery/vending/dorms/prison{
-	onstation = 0;
-	onstation_override = 1
+/obj/machinery/computer/arcade/battle{
+	dir = 8
 	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "qV" = (
@@ -7415,6 +7410,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless_space/service/diner)
 "Ib" = (
 /obj/machinery/light/small/red/directional/west,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "Ic" = (
@@ -8755,6 +8752,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "OR" = (
@@ -9786,7 +9784,10 @@
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sci/robotics)
 "Us" = (
-/obj/structure/hedge,
+/obj/machinery/vending/dorms/prison{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "Uu" = (
@@ -10690,9 +10691,10 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless_space/med/chem)
 "Yx" = (
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/airalarm/directional/south,
-/obj/structure/hedge,
+/obj/machinery/vending/cigarette{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/rec)
 "Yz" = (
@@ -13689,7 +13691,7 @@ Ei
 Zy
 si
 hy
-cp
+po
 po
 po
 Us
@@ -13746,9 +13748,9 @@ Ei
 cP
 gi
 hy
-qU
-OC
 NL
+OC
+qU
 Ei
 yg
 XG

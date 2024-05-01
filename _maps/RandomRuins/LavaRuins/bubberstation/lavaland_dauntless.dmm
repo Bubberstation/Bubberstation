@@ -1195,7 +1195,10 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "fE" = (
-/obj/structure/hedge,
+/obj/machinery/vending/dorms/prison{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "fI" = (
@@ -1301,7 +1304,6 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/structure/towel_bin,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "fZ" = (
@@ -2094,14 +2096,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
-"js" = (
-/obj/machinery/vending/cigarette{
-	onstation = 0;
-	onstation_override = 1
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "jt" = (
 /obj/structure/table/reinforced,
 /obj/item/bodybag/environmental/prisoner/syndicate{
@@ -3141,6 +3135,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "oo" = (
 /obj/machinery/light/small/red/directional/west,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "oq" = (
@@ -7205,11 +7201,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "GW" = (
-/obj/machinery/vending/dorms/prison{
-	onstation = 0;
-	onstation_override = 1
+/obj/machinery/computer/arcade/battle{
+	dir = 8
 	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "GX" = (
@@ -7582,6 +7576,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "Jj" = (
@@ -8977,6 +8972,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "PS" = (
 /obj/effect/turf_decal/siding/wood,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "PU" = (
@@ -9536,6 +9533,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "Sp" = (
 /obj/machinery/washing_machine,
+/obj/structure/towel_bin{
+	pixel_y = 9;
+	pixel_x = -1
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "Sq" = (
@@ -9551,9 +9552,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Sr" = (
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/airalarm/directional/south,
-/obj/structure/hedge,
+/obj/machinery/vending/cigarette{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "St" = (
@@ -14522,7 +14524,7 @@ qm
 Dr
 Zs
 PS
-js
+es
 es
 es
 fE
@@ -14590,9 +14592,9 @@ qm
 Fo
 VJ
 PS
-GW
-QS
 Dp
+QS
+GW
 qm
 jk
 FZ
