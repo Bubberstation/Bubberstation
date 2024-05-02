@@ -21,6 +21,8 @@
 					/obj/item/borg_restart_board, //To allow repairs
 					/obj/item/relic,
 					/obj/item/mod,
+					/obj/item/reagent_containers/syringe,
+					/obj/item/reagent_containers/dropper,
 					)
 /obj/item/borg/apparatus/research/examine()
 	. = ..()
