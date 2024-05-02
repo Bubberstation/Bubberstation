@@ -4,6 +4,8 @@
 	icon = 'modular_zubbers/icons/obj/reshirifle.dmi'
 	icon_state = "c20r"
 	inhand_icon_state = "arg"
+	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/carwo_defense_systems/guns_worn.dmi'
+	worn_icon_state = "infanterie_evil"
 	selector_switch_icon = TRUE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m223
 	fire_delay = 1.5
@@ -12,7 +14,7 @@
 	can_bayonet = FALSE
 	can_suppress = TRUE
 	mag_display_ammo = TRUE
-	spread = 18
+	spread = 17
 
 /obj/item/gun/ballistic/automatic/ar23/Initialize(mapload)
 	.=..()
@@ -30,4 +32,4 @@
 
 /obj/item/weaponcrafting/gunkit/liberator_kit
 	name = "Democratic Transition Kit"
-	desc = "Turn your peacemaker into a true liberator"
+	desc = "Turn your peacemaker into a true liberator fitting for this sector."
