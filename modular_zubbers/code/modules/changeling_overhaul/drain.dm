@@ -1,13 +1,7 @@
 /mob/living/carbon/Drain()
 
-	var/obj/item/bodypart/head = src.get_bodypart(BODY_ZONE_HEAD)
-	if(head)
-		src.cause_wound_of_type_and_severity(WOUND_PIERCE, head, WOUND_SEVERITY_SEVERE, wound_source = "inhuman puncture")
-
-	src.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_MILD, BRAIN_DAMAGE_SEVERE)
-
 	src.blood_volume = round(src.blood_volume*0.5,1) //Halves the CURRENT blood volume. Easier to suck more blood when there is more of it.
 
-	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC) //Fixed via cryoxadone!
+	become_husk(CHANGELING_DRAIN)
 
 	return TRUE
