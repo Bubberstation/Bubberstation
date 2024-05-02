@@ -12,6 +12,9 @@
 	var/relocation_timer
 	var/was_touched = FALSE
 
+	var/teleport_delay = 10 MINUTES
+	var/teleport_delay_pickup = 5 MINUTES
+
 /obj/item/dice/d20/teleporting_die_of_fate/no_teleport
 	do_teleport = FALSE
 
@@ -32,11 +35,16 @@
 	smite_rng_seed = rand(1,11) //The only reason I do this is for testing :^). It does have some benefit to not having the same 2 effects occur in a row.
 	SSpoints_of_interest.make_point_of_interest(src)
 	if(do_teleport)
-		relocation_timer = addtimer(CALLBACK(src, PROC_REF(relocate)), 10 MINUTES, TIMER_STOPPABLE | TIMER_LOOP)
+		create_timer(teleport_delay)
 
 /obj/item/dice/d20/teleporting_die_of_fate/Destroy()
-	QDEL_NULL(relocation_timer)
+	relocation_timer = null //Deleted elsewhere.
 	. = ..()
+
+/obj/item/dice/d20/teleporting_die_of_fate/proc/create_timer(desired_time = teleport_delay)
+	relocation_timer = addtimer(CALLBACK(src, PROC_REF(relocate)), desired_time, TIMER_UNIQUE | TIMER_STOPPABLE | TIMER_OVERRIDE)
+	return relocation_timer
+
 
 /obj/item/dice/d20/teleporting_die_of_fate/examine(mob/user)
 	. = ..()
@@ -51,13 +59,10 @@
 		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary humans! You should leave it alone."))
 		user.dropItemToGround(src)
 	else if(do_teleport && !was_touched)
-		updatetimedelay(relocation_timer,5 MINUTES) //5 minute grace period to show all your cool friends what you found
+		create_timer(teleport_delay_pickup)
 		was_touched = TRUE
 
 /obj/item/dice/d20/teleporting_die_of_fate/diceroll(mob/user, in_hand=FALSE)
-
-	if(do_teleport)
-		updatetimedelay(relocation_timer,69 MINUTES) //Dummy value. So it doesn't teleport while being used.
 
 	if(!COOLDOWN_FINISHED(src, roll_cd))
 		to_chat(user, span_warning("Hold on, [src] isn't caught up with your last roll!"))
@@ -98,7 +103,7 @@
 		source = src
 	)
 
-	updatetimedelay(relocation_timer,10 MINUTES)
+	create_timer(teleport_delay)
 
 	was_touched = FALSE //Reset
 
@@ -140,7 +145,7 @@
 			to_chat(target, span_warning("You feel <b>stupid</b> about rolling [src]..."))
 		if(2)
 			//Forced to speak a random language.
-			target.apply_status_effect(/datum/status_effect/tower_of_babel, 5 MINUTES)
+			target.apply_status_effect(/datum/status_effect/tower_of_babel, teleport_delay_pickup)
 			to_chat(target, span_warning("Come, let us go down and confuse their language there, so that they will not understand one another's speech. It'd be fucking hilarious!"))
 		if(3)
 			//Raining fireball.
