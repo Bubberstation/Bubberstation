@@ -17,7 +17,7 @@
 	///Cooldown for toggling the spinner.
 	COOLDOWN_DECLARE(pinwheel_toggle_cooldown)
 
-/obj/item/clothing/head/helmet/toggleable/pinwheel/try_toggle()
+/obj/item/clothing/head/helmet/toggleable/pinwheel/adjust_visor()
 	if(!COOLDOWN_FINISHED(src, pinwheel_toggle_cooldown))
 		return FALSE
 	COOLDOWN_START(src, pinwheel_toggle_cooldown, 1 SECONDS)
