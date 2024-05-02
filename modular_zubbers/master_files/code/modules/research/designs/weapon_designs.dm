@@ -286,3 +286,16 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+// Conversion Kit
+/datum/design/liberator_kit
+	name = "Democratic Weaponry Kit (Very Lethal Against Traitors)"
+	desc = "Turn your WT-551 into something better suited for protecting your corporate interests and Managed Democracy."
+	id = "liberator_kit"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 50, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 100) //It requires oil
+	build_path = /obj/item/weaponcrafting/gunkit/liberator_kit
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
