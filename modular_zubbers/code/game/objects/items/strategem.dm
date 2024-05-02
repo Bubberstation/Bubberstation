@@ -13,7 +13,8 @@
 		"Medical Support" = list(/mob/living/basic/bot/medbot/stationary, /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked),
 		"Medical Bay Kit" = list (/obj/structure/table/optable, /obj/item/construction/rcd/loaded, /obj/item/circuitboard/computer/operating, /obj/item/storage/medkit/surgery, /obj/item/reagent_containers/cup/bottle/formaldehyde, /obj/item/reagent_containers/syringe, /obj/item/storage/toolbox/mechanical),
 		"Security Modsuit Dual Pack" = list(/obj/item/mod/control/pre_equipped/security, /obj/item/mod/control/pre_equipped/security),
-		"Laser Drop" = list (/obj/item/gun/energy/laser, /obj/item/gun/energy/laser, /obj/item/gun/energy/laser, /obj/item/gun/energy/laser/carbine),
+		"Laser Drop" = list(/obj/item/gun/energy/laser, /obj/item/gun/energy/laser, /obj/item/gun/energy/laser, /obj/item/gun/energy/laser/carbine),
+		"AutoRifle Drop" = list(/obj/item/gun/ballistic/automatic/wt550/security,/obj/item/gun/ballistic/automatic/wt550/security, /obj/item/gun/ballistic/automatic/wt550/security),
 		"Recharger" = list(/obj/machinery/recharger, /obj/machinery/recharger, /obj/machinery/recharger, /obj/item/inducer),
 	)
 
@@ -44,7 +45,7 @@
 	projectile_type = /obj/projectile/beam/disabler/weak
 	anchored = TRUE
 	number_of_shots = 3
-	cooldown_duration = 1 SECONDS
+	cooldown_duration = 2 SECONDS
 	spawned_on_undeploy = /obj/item/deployable_turret_folded/disabler
 	can_be_undeployed = TRUE
 	max_integrity = 450
