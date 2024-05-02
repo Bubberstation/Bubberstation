@@ -1,4 +1,4 @@
-/obj/item/gun/ballistic/automatic/wt550/ar23
+/obj/item/gun/ballistic/automatic/ar23
 	name = "\improper AR-550 'Defender' Assault Rifle"
 	desc = "A bullpup full auto assault rifle chambered in .223, Ideal for defending your Managed Democracy."
 	icon = 'modular_zubbers/icons/obj/reshirifle.dmi'
@@ -14,3 +14,5 @@
 	mag_display_ammo = TRUE
 	spread = 15
 
+/obj/item/gun/ballistic/automatic/ar23/Initialize(mapload)
+	AddComponent(/datum/component/automatic_fire, 0.6 SECONDS)
