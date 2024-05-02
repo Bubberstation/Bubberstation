@@ -1,6 +1,6 @@
 /mob/living/carbon/Drain()
 
-	var/obj/item/bodypart/head = carbon_victim.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head = src.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		src.cause_wound_of_type_and_severity(WOUND_PIERCE, head, WOUND_SEVERITY_SEVERE, wound_source = "inhuman puncture")
 
