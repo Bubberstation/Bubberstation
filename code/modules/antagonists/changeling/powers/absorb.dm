@@ -145,7 +145,7 @@
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
-		if(!do_after(owner, 5 SECONDS, target, hidden = TRUE)) //BUBBERSATION CHANGE: 15 SECONDS TO 3 SECONDS.
+		if(!do_after(owner, 5 SECONDS, target, hidden = TRUE)) //BUBBERSATION CHANGE: 15 SECONDS TO 5 SECONDS.
 			owner.balloon_alert(owner, "interrupted!")
 			is_absorbing = FALSE
 			return FALSE
