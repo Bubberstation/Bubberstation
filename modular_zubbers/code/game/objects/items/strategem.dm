@@ -15,21 +15,6 @@
 
 	return selectable_strategem
 
-/obj/item/choice_beacon/strategem_offensive
-	name = "Signal Radio(Offensive)"
-	desc = "Requesting Strategem"
-	company_source = "NanoTrasen War Department"
-	company_message = span_bold("Copy that, Eagle-13 on the way")
-
-/obj/item/choice_beacon/strategem_offensive/generate_display_names()
-	var/static/list/selectable_strategem = list(
-		"500 Kilogram Stingbang Strike" = /obj/item/grenade/flashbang/cluster/strike,
-		"Orbital Teargas Bombardment" = /obj/vehicle/sealed/mecha/ripley/paddy/preset,
-		"Stunmine Carpet" = /obj/item/mod/control/pre_equipped/security
-	)
-
-	return selectable_strategem
-
 // Stuff Here
 
 /obj/machinery/deployable_turret/disabler
@@ -53,4 +38,5 @@
 	slot_flags = ITEM_SLOT_BACK
 
 /obj/item/deployable_turret_folded/disabler/Initialize(mapload)
+	.=..()
 	AddComponent(/datum/component/deployable, 5 SECONDS, /obj/machinery/deployable_turret/disabler)

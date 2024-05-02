@@ -296,6 +296,6 @@
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 50, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 100) //It requires oil
 	build_path = /obj/item/weaponcrafting/gunkit/liberator_kit
 	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
