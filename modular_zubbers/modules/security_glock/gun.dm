@@ -7,9 +7,9 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m9mm
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm
 	fire_sound = 'modular_zubbers/sound/weapons/gun/lock/shot.ogg'
-	fire_delay = 2
+	fire_delay = 3
 	can_suppress = FALSE
-	projectile_damage_multiplier = 0.8
+	projectile_damage_multiplier = 0.75
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/security //This is what you give to Security Officers.
 	name = "\improper C-CK 9x25mm"
@@ -18,9 +18,9 @@
 	icon_state = "black"
 	pin = /obj/item/firing_pin/alert_level
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/flathead
-	fire_delay = 3
+	fire_delay = 4
 	can_suppress = FALSE
-	projectile_damage_multiplier = 0.7
+	projectile_damage_multiplier = 0.65
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/security/rubber //This is what you give to cargo packages.
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/rubber
