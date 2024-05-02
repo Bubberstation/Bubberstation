@@ -1,6 +1,6 @@
 /datum/action/changeling/absorb_dna
 	name = "Absorb DNA"
-	desc = "Absorb the DNA of our victim. Requires us to strangle them."
+	desc = "Absorb the DNA of our victim. Requires a firm grip." //BUBBERSTATION CHANGE: NO NECKGRAB REQUIRED.
 	button_icon_state = "absorb_dna"
 	chemical_cost = 0
 	dna_cost = CHANGELING_POWER_INNATE
@@ -19,7 +19,7 @@
 	if(!owner.pulling || !iscarbon(owner.pulling))
 		owner.balloon_alert(owner, "needs grab!")
 		return
-	if(owner.grab_state <= GRAB_NECK)
+	if(owner.grab_state <= GRAB_AGGRESSIVE) //BUBBERSTATION CHANGE: NO NECKGRAB REQUIRED.
 		owner.balloon_alert(owner, "needs tighter grip!")
 		return
 
@@ -145,7 +145,7 @@
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[absorbing_iteration]"))
-		if(!do_after(owner, 15 SECONDS, target, hidden = TRUE))
+		if(!do_after(owner, 5 SECONDS, target, hidden = TRUE)) //BUBBERSATION CHANGE: 15 SECONDS TO 3 SECONDS.
 			owner.balloon_alert(owner, "interrupted!")
 			is_absorbing = FALSE
 			return FALSE
