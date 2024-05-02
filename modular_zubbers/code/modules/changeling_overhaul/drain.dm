@@ -8,6 +8,6 @@
 
 	src.blood_volume = round(src.blood_volume*0.5,1) //Halves the CURRENT blood volume. Easier to suck more blood when there is more of it.
 
-	ADD_TRAIT(affected_mob, TRAIT_DISFIGURED, TRAIT_GENERIC) //Fixed via cryoxadone!
+	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC) //Fixed via cryoxadone!
 
 	return TRUE
