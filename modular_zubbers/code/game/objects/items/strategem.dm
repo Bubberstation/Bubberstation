@@ -1,19 +1,34 @@
 //Yes, I'm for real
 
 /obj/item/choice_beacon/strategem_utility
-	name = "Signal Radio (Support)"
+	name = "Signal Radio (Utility)"
 	desc = "Requesting Strategem"
 	company_source = "NanoTrasen War Department"
 	company_message = span_bold("Copy that, pod calibrated and launching!")
 
 /obj/item/choice_beacon/strategem_utility/generate_display_names()
-	var/static/list/selectable_strategem = list(
+	var/static/list/selectable_utility_strategem = list(
 		"Heavy Disabler Nest" = /obj/machinery/deployable_turret/disabler,
 		"Orbital Paddy Drop" = /obj/vehicle/sealed/mecha/ripley/paddy/preset,
 		"Modsuit" = /obj/item/mod/control/pre_equipped/security
 	)
 
-	return selectable_strategem
+	return selectable_utility_strategem
+
+/obj/item/choice_beacon/strategem_defensive
+	name = "Signal Radio (Defensive)"
+	desc = "Requesting Strategem"
+	company_source = "NanoTrasen War Department"
+	company_message = span_bold("Copy that, pod calibrated and launching!")
+
+/obj/item/choice_beacon/strategem_defensive/generate_display_names()
+	var/static/list/selectable_defensive_strategem = list(
+		"Heavy Disabler Nest" = /obj/machinery/deployable_turret/disabler,
+		"Orbital Paddy Drop" = /obj/vehicle/sealed/mecha/ripley/paddy/preset,
+		"Modsuit" = /obj/item/mod/control/pre_equipped/security
+	)
+
+	return selectable_defensive_strategem
 
 // Stuff Here
 
