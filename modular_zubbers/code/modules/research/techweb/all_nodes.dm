@@ -58,6 +58,7 @@
 		"s12g_buckshot",
 		"s12g_slug",
 		"sol40_riflstandardemag",
+		"liberator_kit",
 		"solgrenade_extmag",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 20000)
