@@ -33,7 +33,7 @@
 
 /obj/item/choice_beacon/strategem_defensive/generate_display_names()
 	var/static/list/selectable_defensive_strategem = list(
-		"Heavy Disabler Machinegun" = list(/obj/item/deployable_turret_folded/disabler, ),
+		"Heavy Disabler Machinegun" = list(/obj/item/deployable_turret_folded/disabler, /obj/item/wrench),
 		"Orbital Paddy Drop" = list(/obj/vehicle/sealed/mecha/ripley/paddy/preset, /obj/item/clothing/head/utility/hardhat/welding/dblue, /obj/item/weldingtool/largetank),
 		"Portable Flashers" = list(/obj/machinery/flasher/portable, /obj/machinery/flasher/portable, /obj/machinery/flasher/portable),
 		"Barricades" = list(/obj/item/storage/barricade, /obj/item/storage/barricade, /obj/item/grenade/barrier, /obj/item/grenade/barrier, /obj/item/grenade/barrier,/obj/item/door_seal, /obj/item/door_seal, /obj/item/door_seal, /obj/item/door_seal),
