@@ -4,6 +4,7 @@
 	eyes_icon = 'modular_zubbers/icons/mob/human/human_face.dmi'
 	say_mod = "mars"
 	mutanttongue = /obj/item/organ/internal/tongue/shadekin
+	mutantears = /obj/item/organ/internal/ears/shadekin
 	mutant_bodyparts = list()
 	mutanteyes = /obj/item/organ/internal/eyes/shadekin
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
