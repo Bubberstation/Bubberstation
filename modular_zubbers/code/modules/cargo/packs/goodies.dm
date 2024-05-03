@@ -41,9 +41,9 @@
 	name = "Bóbr 12 GA Revolver Single-Pack"
 	desc = "Contains 1 Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
 	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver = 1,
-	/obj/item/ammo_box/advanced/s12gauge/buckshot = 1)
+	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 15
+	cost = PAYCHECK_COMMAND * 18
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
