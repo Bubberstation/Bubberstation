@@ -7,7 +7,7 @@
 	company_message = span_bold("Copy that, pod calibrated and launching!")
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
-	custom_premium_price = PAYCHECK_COMMAND * 8
+	custom_premium_price = PAYCHECK_COMMAND * 10
 
 /obj/item/choice_beacon/strategem_utility/generate_display_names()
 	var/static/list/selectable_utility_strategem = list(
@@ -29,7 +29,7 @@
 	company_message = span_bold("Copy that, pod calibrated and launching!")
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
-	custom_premium_price = PAYCHECK_COMMAND * 18
+	custom_premium_price = PAYCHECK_COMMAND * 22
 
 /obj/item/choice_beacon/strategem_defensive/generate_display_names()
 	var/static/list/selectable_defensive_strategem = list(
