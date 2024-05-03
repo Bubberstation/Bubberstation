@@ -37,7 +37,6 @@
 		"Orbital Paddy Drop" = list(/obj/vehicle/sealed/mecha/ripley/paddy/preset, /obj/item/clothing/head/utility/hardhat/welding/dblue, /obj/item/weldingtool/largetank),
 		"Portable Flashers" = list(/obj/machinery/flasher/portable, /obj/machinery/flasher/portable, /obj/machinery/flasher/portable),
 		"Barricades" = list(/obj/item/storage/barricade, /obj/item/storage/barricade, /obj/item/grenade/barrier, /obj/item/grenade/barrier, /obj/item/grenade/barrier,/obj/item/door_seal, /obj/item/door_seal, /obj/item/door_seal, /obj/item/door_seal),
-		"SecDiver Reinforcement" = /mob/living/simple_animal/bot/secbot/reinforcement
 	)
 
 	return selectable_defensive_strategem
@@ -67,8 +66,3 @@
 /obj/item/deployable_turret_folded/disabler/Initialize(mapload)
 	.=..()
 	AddComponent(/datum/component/deployable, 5 SECONDS, /obj/machinery/deployable_turret/disabler)
-
-/mob/living/simple_animal/bot/secbot/reinforcement
-	name = "SecDiver Reinforcement"
-	health = 35 //Normal Securitron are 25, and beepsky at 45, this is a compromise, still die easily though
-	bot_mode_flags = ~(BOT_MODE_CAN_BE_SAPIENT|BOT_MODE_AUTOPATROL)
