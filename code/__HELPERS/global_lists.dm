@@ -172,8 +172,8 @@
 					GLOB.crafting_recipes += recipe
 
 	var/list/material_stack_recipes = list(
-		SSmaterials.base_stack_recipes,
-		SSmaterials.rigid_stack_recipes,
+		DSmaterials.base_stack_recipes,
+		DSmaterials.rigid_stack_recipes,
 	)
 
 	for(var/list/recipe_list in material_stack_recipes)
@@ -289,6 +289,12 @@ GLOBAL_LIST_INIT(WALLITEMS_INTERIOR, typecacheof(list(
 GLOBAL_LIST_INIT(WALLITEMS_EXTERIOR, typecacheof(list(
 	/obj/machinery/camera,
 	/obj/machinery/light,
-	/obj/structure/camera_assembly,
 	/obj/structure/light_construct,
+)))
+
+/// A static typecache of all the money-based items that can be actively used as currency.
+GLOBAL_LIST_INIT(allowed_money, typecacheof(list(
+	/obj/item/coin,
+	/obj/item/holochip,
+	/obj/item/stack/spacecash,
 )))
