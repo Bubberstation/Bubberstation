@@ -12,12 +12,12 @@
 /obj/item/choice_beacon/strategem_utility/generate_display_names()
 	var/static/list/selectable_utility_strategem = list(
 		"Medical Support" = list(/mob/living/basic/bot/medbot/stationary, /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked),
-		"Medical Bay Kit" = list (/obj/structure/table/optable, /obj/structure/frame/computer, /obj/item/circuitboard/computer/operating, /obj/item/storage/medkit/surgery, /obj/item/reagent_containers/cup/bottle/formaldehyde, /obj/item/reagent_containers/syringe, /obj/item/storage/toolbox/mechanical, /obj/item/stack/sheet/glass = 2, /obj/item/stack/cable_coil/thirty),
+		"Medical Bay Kit" = list (/obj/structure/table/optable, /obj/structure/frame/computer, /obj/item/circuitboard/computer/operating, /obj/item/storage/medkit/surgery, /obj/item/reagent_containers/cup/bottle/formaldehyde, /obj/item/reagent_containers/syringe, /obj/item/storage/toolbox/mechanical, /obj/item/stack/sheet/glass = 2, /obj/item/stack/cable_coil/thirty, /obj/item/holosign_creator/medical/treatment_zone),
 		"Security Modsuit Dual Pack" = list(/obj/item/mod/control/pre_equipped/security = 2),
 		"Laser Drop" = list(/obj/item/gun/energy/laser = 3, /obj/item/gun/energy/laser/carbine),
 		"AutoRifle Drop" = list(/obj/item/gun/ballistic/automatic/wt550/security = 3),
 		"AutoRifle Ammo" = list(/obj/item/ammo_box/magazine/wt550m9 = 9),
-		"Recharger" = list(/obj/machinery/recharger, /obj/machinery/recharger, /obj/machinery/recharger, /obj/item/inducer),
+		"Recharger" = list(/obj/machinery/recharger, /obj/machinery/recharger, /obj/machinery/recharger, /obj/item/inducer, /obj/item/storage/toolbox/mechanical),
 	)
 
 	return selectable_utility_strategem
