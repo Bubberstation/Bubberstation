@@ -3,7 +3,7 @@
 /obj/machinery/power/thermoelectric_generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
-	icon = 'icons/obj/machines/thermoelectric.dmi'
+	icon = 'modular_skyrat/master_files/icons/obj/machines/thermoelectric.dmi'
 	icon_state = "teg-unassembled"
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -91,7 +91,7 @@
 			var/efficiency = TEG_EFFICIENCY
 			var/energy_transfer = delta_temperature*hot_air_heat_capacity*cold_air_heat_capacity/(hot_air_heat_capacity+cold_air_heat_capacity)
 			var/heat = energy_transfer*(1-efficiency)
-			lastgen += (10000000 * (LOGISTIC_FUNCTION(2,0.5,(delta_temperature/10000),0)-1))
+			lastgen += (1000000 * (LOGISTIC_FUNCTION(2,0.5,(delta_temperature/10000),0)-1))
 			hot_air.temperature = hot_air.temperature - energy_transfer/hot_air_heat_capacity
 			cold_air.temperature = cold_air.temperature + heat/cold_air_heat_capacity
 
@@ -193,31 +193,31 @@
 
 	if(!panel_open) //connect/disconnect circulators
 		if(!anchored)
-			balloon_alert(user, "<span class='warning'>Anchor [src] before trying to connect the circulators!</span>")
+			balloon_alert(user, span_warning("Anchor [src] before trying to connect the circulators!"))
 			return TRUE
 		else
 			if(hot_circ && cold_circ)
-				balloon_alert(user, "<span class='notice'>You start removing the circulators...</span>")
+				balloon_alert(user, span_notice("You start removing the circulators..."))
 				if(I.use_tool(src, user, 30, volume=50))
 					null_circulators()
 					update_appearance()
-					balloon_alert(user, "<span class='notice'>You disconnect [src]'s circulator links.</span>")
+					balloon_alert(user, span_notice("You disconnect [src]'s circulator links."))
 					playsound(src, 'sound/misc/box_deploy.ogg', 50)
 				return TRUE
 
-			balloon_alert(user, "<span class='notice'>You attempt to attach the circulators...</span>")
+			balloon_alert(user, span_notice("You attempt to attach the circulators..."))
 			if(I.use_tool(src, user, 30, volume=50))
 				switch(find_circulators())
 					if(0)
-						balloon_alert(user, "<span class='warning'>No circulators found!</span>")
+						balloon_alert(user, span_warning("No circulators found!"))
 					if(1)
-						balloon_alert(user, "<span class='warning'>Only one circulator found!</span>")
+						balloon_alert(user, span_warning("Only one circulator found!"))
 					if(2)
-						balloon_alert(user, "<span class='notice'>You connect [src]'s circulator links.</span>")
+						balloon_alert(user, span_notice("You connect [src]'s circulator links."))
 						playsound(src, 'sound/misc/box_deploy.ogg', 50)
 						return TRUE
 					if(3)
-						balloon_alert(user, "<span class='warning'>Both circulators are the same mode!</span>")
+						balloon_alert(user, span_warning("Both circulators are the same mode!"))
 				return TRUE
 
 	set_anchored(!anchored)
@@ -225,7 +225,7 @@
 	if(!anchored)
 		null_circulators()
 	connect_to_network()
-	balloon_alert(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	balloon_alert(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
 	update_appearance()
 	return TRUE
 
@@ -234,21 +234,21 @@
 		return TRUE
 
 	if(hot_circ && cold_circ)
-		balloon_alert(user, "<span class='warning'>Disconnect the circulators first!</span>")
+		balloon_alert(user, span_warning("Disconnect the circulators first!"))
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	balloon_alert(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	balloon_alert(user, span_notice("You [panel_open?"open":"close"] the panel on [src]."))
 	update_appearance()
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/user, obj/item/I)
 
 	if(anchored)
-		balloon_alert(user, "<span class='warning'>[src] is anchored!</span>")
+		balloon_alert(user, span_warning("[src] is anchored!"))
 		return TRUE
 	else if(!panel_open)
-		balloon_alert(user, "<span class='warning'>Open the panel first!</span>")
+		balloon_alert(user, span_warning("Open the panel first!"))
 		return TRUE
 	else
 		default_deconstruction_crowbar(I)
