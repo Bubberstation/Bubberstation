@@ -62,4 +62,4 @@
 	message = "lets out a mar!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/sound/emotes/sound_voice_mar.ogg'
+	sound = 'modular_zubbers/sound/emotes/sound_voice_mar.ogg' // Credit to vorestation
