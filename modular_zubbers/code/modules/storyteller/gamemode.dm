@@ -272,6 +272,10 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(special_role_flag && is_banned_from(candidate.ckey, list(special_role_flag, ROLE_SYNDICATE)))
 			continue
+		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
+			continue
+		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+			continue
 		candidates += candidate
 	return candidates
 
