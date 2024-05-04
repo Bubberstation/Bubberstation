@@ -22,6 +22,10 @@
 
 	return selectable_utility_stratagam
 
+/obj/item/choice_beacon/stratagam_utility/can_use_beacon(mob/living/user)
+	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+		return ..()
+
 /obj/item/choice_beacon/stratagam_defensive
 	name = "Signal Radio (Defensive)"
 	desc = "Requesting Stratagam"
@@ -40,6 +44,11 @@
 	)
 
 	return selectable_defensive_stratagam
+
+/obj/item/choice_beacon/stratagam_defensive/can_use_beacon(mob/living/user)
+	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+		return ..()
+
 
 // Stuff Here
 
