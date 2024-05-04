@@ -260,7 +260,7 @@
 /obj/machinery/plantgenes/Topic(href, list/href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+//	usr.set_machine(src)
 
 	if(href_list["eject_seed"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
