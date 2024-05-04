@@ -81,6 +81,7 @@
 		custom_species_lore = preferences.read_preference(/datum/preference/text/custom_species_lore/silicon)
 		ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
 		headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
+		name = holder.name
 		//BUBBER EDIT END: SILICON HEADSHOT
 
 	if(ishuman(holder))
