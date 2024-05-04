@@ -28,8 +28,8 @@
 		/obj/item/watertank/pepperspray = 2,
 		/obj/item/storage/belt/holster/energy = 4,
 		/obj/item/storage/box/holobadge = 1,
-		/obj/item/choice_beacon/strategam_utility = 1, //BUBBER ADDITION
-		/obj/item/choice_beacon/strategam_defensive = 1, //BUBBER ADDITION
+		/obj/item/choice_beacon/stratagam_utility = 1, //BUBBER ADDITION
+		/obj/item/choice_beacon/stratagam_defensive = 1, //BUBBER ADDITION
 	)
 
 /obj/item/vending_refill/security
