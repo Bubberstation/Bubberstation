@@ -265,15 +265,6 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/engine,
 /area/ruin/syndicate_ice_base/testlab)
-"bO" = (
-/obj/item/bedsheet/syndie/double{
-	dir = 1
-	},
-/obj/structure/bed/double{
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblue,
-/area/ruin/syndicate_ice_base/dormitories)
 "bR" = (
 /obj/structure/railing{
 	dir = 6
@@ -899,13 +890,13 @@
 /turf/open/floor/iron/white,
 /area/ruin/syndicate_ice_base/medbay)
 "gO" = (
-/obj/structure/table/wood,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/structure/dresser,
 /obj/item/flashlight/lamp/green{
 	pixel_y = 15;
 	pixel_x = -6
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
@@ -1397,9 +1388,8 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_ice_base/medbay)
 "kN" = (
-/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate{
-	dir = 8
-	},
+/obj/structure/bed/double,
+/obj/item/bedsheet/syndie/double,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "kO" = (
@@ -1602,7 +1592,6 @@
 /area/ruin/syndicate_ice_base/testlab)
 "lQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/structure/chair/sofa/left/maroon,
 /obj/machinery/button/door/directional/north{
 	name = "Dorm Bolt Control";
 	id = "IDynbin1";
@@ -1610,6 +1599,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/chair/sofa/left/maroon,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
 "lS" = (
@@ -1802,9 +1792,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "mP" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
 /obj/structure/chair/sofa/right/maroon,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
@@ -2145,9 +2132,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_ice_base/cargo)
 "pH" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
@@ -3184,10 +3168,6 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/bar)
-"wz" = (
-/obj/structure/dresser,
-/turf/open/floor/carpet/royalblue,
-/area/ruin/syndicate_ice_base/dormitories)
 "wA" = (
 /obj/item/reagent_containers/cup/bucket{
 	pixel_x = 5;
@@ -5380,8 +5360,8 @@
 /turf/open/floor/engine/o2,
 /area/ruin/syndicate_ice_base/engineering)
 "MA" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_ice_base/dormitories)
@@ -6960,11 +6940,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "Xh" = (
-/obj/machinery/light/small/red/directional/north{
-	pixel_x = -17
-	},
 /obj/machinery/fishing_portal_generator,
 /obj/item/storage/toolbox/fishing,
+/obj/machinery/light/small/red/directional/north,
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/spare)
 "Xj" = (
@@ -7876,9 +7854,9 @@ xj
 iO
 hA
 kE
-oj
-oj
-oj
+Uj
+Uj
+Uj
 Bc
 wM
 Uj
@@ -7935,8 +7913,8 @@ tU
 Kh
 rd
 kE
-bO
-wz
+oj
+oj
 oj
 oj
 oW
@@ -8114,7 +8092,7 @@ hr
 kE
 gO
 kN
-FC
+oj
 oj
 Rm
 Sn
