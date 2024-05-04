@@ -152,7 +152,7 @@
 
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
-	var/atom/resolve_parent = parent?.resolve()
+	var/atom/resolve_parent = parent
 	if(!resolve_parent)
 		return
 	if(isobserver(user))
@@ -166,7 +166,7 @@
 	if(!isliving(user) || user.incapacitated())
 		return FALSE
 
-	var/obj/item/gun/gun_to_draw = locate() in real_location?.resolve()
+	var/obj/item/gun/gun_to_draw = locate() in real_location
 	if(!gun_to_draw)
 		return ..()
 	resolve_parent.add_fingerprint(user)
@@ -256,7 +256,7 @@
 	user.update_worn_head()
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
-		carbon_user.head_update(src, forced = TRUE)
+		carbon_user.update_worn_head()
 
 
 //Beret replacement
@@ -392,11 +392,11 @@
 		),
 	)
 
-/obj/item/clothing/neck/security_cape/AltClick(mob/user)
-	. = ..()
+/obj/item/clothing/neck/security_cape/click_alt(mob/user)
 	swapped = !swapped
 	to_chat(user, span_notice("You swap which arm [src] will lay over."))
 	update_appearance()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/neck/security_cape/update_appearance(updates)
 	. = ..()

@@ -6,3 +6,6 @@
 		"Brig Physician",
 		"Combat Medic",
 	)
+/datum/job/assistant/New()
+	alt_titles += list("Butler")
+	. = ..()

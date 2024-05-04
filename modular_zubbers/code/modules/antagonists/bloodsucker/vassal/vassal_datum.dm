@@ -7,48 +7,39 @@
 	name = "\improper Vassal"
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
+	job_rank = ROLE_VASSAL
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoVassal"
+	antag_panel_description = "You are a Vassal, a mortal servant of a Bloodsucker."
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
-	/// List of all Purchased Powers, like Bloodsuckers.
+	/// List of all Purchased Powers, to be cleaned up on antag removal.
 	var/list/datum/action/powers = list()
 	///Whether this vassal is already a special type of Vassal.
 	var/special_type = FALSE
-	/// The first textblock text in the antag panel.
-	var/antag_panel_title
-	var/antag_panel_description
 	///Description of what this Vassal does.
 	///  It's shown to the bloodsucker in the radial for setting vassal type
 	var/vassal_description
+	/// inherent traits that are removed and addded on antag datum loss and gain
+	var/list/traits = list()
 
 /datum/antagonist/vassal/antag_panel_data()
-	return "Master : [master.owner.name]"
+	return "Master : [master?.owner.name ? master.owner.name : "Gone"]"
 
+// todo make this into a shared proc that bloodsuckers and vassals share
 /datum/antagonist/vassal/ui_static_data(mob/user)
-	var/list/data = list()
-	data["title"] = "[antag_panel_title]\n[antag_panel_data()]"
-	data["description"] = antag_panel_description
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		var/list/power_data = list()
-
-		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
-		power_data["power_icon"] = power.button_icon_state
-
-		data["powers"] += list(power_data)
-
-	return data + ..()
+	return ability_ui_data(powers) + ..()
 
 /datum/antagonist/vassal/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.apply_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
 	add_team_hud(current_mob)
+	if(length(traits))
+		current_mob.add_traits(traits, VASSAL_TRAIT)
 
 /datum/antagonist/vassal/add_team_hud(mob/target)
 	QDEL_NULL(team_hud_ref)
@@ -76,6 +67,8 @@
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
+	if(length(traits))
+		current_mob.remove_traits(traits, VASSAL_TRAIT)
 
 /datum/antagonist/vassal/pre_mindshield(mob/implanter, mob/living/mob_override)
 	return COMPONENT_MINDSHIELD_PASSED
@@ -114,7 +107,7 @@
 	objectives += vassal_objective
 	/// Give Vampire Language & Hud
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)
-	owner.current.grant_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
+	owner.current.grant_language(/datum/language/vampiric, ALL, LANGUAGE_MIND)
 	return ..()
 
 /datum/antagonist/vassal/on_removal()
@@ -128,14 +121,14 @@
 		owner.enslaved_to = null
 	//Remove ALL Traits, as long as its from BLOODSUCKER_TRAIT's source.
 	for(var/all_status_traits in owner.current._status_traits)
-		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
+		REMOVE_TRAIT(owner.current, all_status_traits, VASSAL_TRAIT)
 	//Remove Recuperate Power
 	remove_powers(powers)
 	//Remove Language & Hud
-	owner.current.remove_language(/datum/language/vampiric, LANGUAGE_SPOKEN, LANGUAGE_MIND)
+	owner.current.remove_language(/datum/language/vampiric, ALL, LANGUAGE_MIND)
 	return ..()
 
-/datum/antagonist/vassal/proc/remove_powers(var/list/removing_powers)
+/datum/antagonist/vassal/proc/remove_powers(list/removing_powers)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in removing_powers)
 		removing_powers -= power
 		if(!(power in owner.current.actions))
@@ -173,7 +166,7 @@
 	owner.current.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 	/// Message told to your (former) Master.
 	if(master && master.owner)
-		to_chat(master.owner, span_cultbold("You feel the bond with your vassal [owner.current] has somehow been broken!"))
+		to_chat(master.owner, span_cult_bold("You feel the bond with your vassal [owner.current] has somehow been broken!"))
 
 /datum/antagonist/vassal/admin_add(datum/mind/new_owner, mob/admin)
 	var/list/datum/mind/possible_vampires = list()
@@ -187,12 +180,12 @@
 			continue
 		possible_vampires += vamp
 	if(!length(possible_vampires))
-		message_admins("[key_name_admin(usr)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
+		message_admins("[key_name_admin(admin)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
 		return
-	var/datum/mind/choice = input("Which bloodsucker should this vassal belong to?", "Bloodsucker") in possible_vampires
+	var/datum/mind/choice = tgui_input_list(admin, "Which bloodsucker should this vassal belong to?", "Bloodsucker", possible_vampires)
 	if(!choice)
 		return
-	log_admin("[key_name_admin(usr)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
+	log_admin("[key_name_admin(admin)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
 	var/datum/antagonist/bloodsucker/vampire = choice.has_antag_datum(/datum/antagonist/bloodsucker)
 	master = vampire
 	new_owner.add_antag_datum(src)

@@ -1,7 +1,11 @@
 /datum/weather/rad_storm/New(...)
-	LAZYOR(protected_areas,/area/station/terminal)
-	LAZYOR(protected_areas,/area/lavaland/underground)
-	LAZYOR(protected_areas,/area/moonstation/underground)
-	LAZYOR(protected_areas,/area/station/cargo/miningelevators)
-	LAZYOR(protected_areas,/area/station/cargo/miningfoundry/event_protected)
+	LAZYOR(protected_areas, list(
+		/area/station/terminal,
+		/area/lavaland/underground,
+		/area/moonstation/underground,
+		/area/station/cargo/miningelevators,
+		/area/station/cargo/miningfoundry/event_protected,
+
+		/area/ruin/unpowered/primitive_catgirl_den,
+	))
 	. = ..()

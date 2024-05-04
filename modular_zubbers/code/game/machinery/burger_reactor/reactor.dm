@@ -104,11 +104,7 @@
 
 	. = ..()
 
-/obj/machinery/power/rbmk2/deconstruct(disassembled = TRUE)
-
-	if(flags_1 & NO_DECONSTRUCTION)
-		return
-
+/obj/machinery/power/rbmk2/on_deconstruction(disassembled = TRUE)
 	if(!disassembled && stored_rod)
 		//Uh oh.
 		var/turf/T = get_turf(src)
@@ -130,7 +126,6 @@
 			stored_rod.take_damage(1000,armour_penetration=100)
 			if(stored_rod) //Just in case.
 				remove_rod()
-
 	. = ..()
 
 /obj/machinery/power/rbmk2/preloaded/Initialize(mapload)
@@ -174,7 +169,7 @@
 	return FALSE
 
 //Remove the rod.
-/obj/machinery/power/rbmk2/AltClick(mob/living/user)
+/obj/machinery/power/rbmk2/click_alt(mob/living/user)
 	if(!active && stored_rod)
 		src.add_fingerprint(user)
 		stored_rod.add_fingerprint(user)

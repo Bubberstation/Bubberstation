@@ -20,7 +20,11 @@
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 35)
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
-	ass_image = 'modular_zubbers/icons/ass/asstajara.png'
+
+/obj/item/bodypart/chest/mutant/tajaran
+/obj/item/bodypart/chest/mutant/tajaran/get_butt_sprite()
+	var/ass_image = 'modular_zubbers/icons/ass/asstajara.png'
+	return ass_image
 
 //Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran
@@ -103,7 +107,8 @@
 	)
 
 	return to_add
-
+/obj/item/bodypart/chest/tajaran/get_butt_sprite()
+	return BUTT_SPRITE_FUZZY
 /datum/species/tajaran/get_species_description() //Something basic until I make lore later
 	return "The Tajara are a race of humanoids that possess markedly felinoid traits that include \
 	 a semi-prehensile tail, a body covered in fur of varying shades, and padded, digitigrade feet. \

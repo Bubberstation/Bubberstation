@@ -22,10 +22,6 @@
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/head/trekcapsec/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
 /datum/loadout_item/head/cowboyhat_sec/New()
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
@@ -38,19 +34,7 @@
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/head/blasthelmet/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
 /datum/loadout_item/head/navyblueofficerberet/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/head/beret_med/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/neck/stethoscope/New()
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
 
@@ -63,10 +47,6 @@
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/brit/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/suit/labcoat_highvis/New()
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
 
@@ -86,30 +66,6 @@
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/under/jumpsuit/utility_med/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
 /datum/loadout_item/under/jumpsuit/utility_sec/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/under/miscellaneous/redscrubs/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/under/miscellaneous/bluescrubs/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/under/miscellaneous/greenscrubs/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/under/miscellaneous/purplescrubs/New()
-	. = ..()
-	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/under/miscellaneous/whitescrubs/New()
 	. = ..()
 	LAZYOR(restricted_roles,JOB_SECURITY_MEDIC)

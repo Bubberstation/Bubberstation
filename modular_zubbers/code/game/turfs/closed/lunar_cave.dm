@@ -56,6 +56,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock/cave
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS_CAVE
+	proximity_based = FALSE
 
 /turf/closed/mineral/random/lunar_cave/mineral_chances()
 	return list(
@@ -80,6 +81,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock/cave
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS_CAVE
+	proximity_based = FALSE
 
 /turf/closed/mineral/random/labormineral/lunar_cave/mineral_chances()
 	return list(
@@ -96,6 +98,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock/cave
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS_CAVE
+	proximity_based = FALSE
 
 /turf/closed/mineral/random/high_chance/lunar_cave/mineral_chances()
 	return list(
@@ -118,6 +121,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock/cave
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS_CAVE
+	proximity_based = FALSE
 
 /turf/closed/mineral/random/low_chance/lunar_cave/mineral_chances()
 	return list(

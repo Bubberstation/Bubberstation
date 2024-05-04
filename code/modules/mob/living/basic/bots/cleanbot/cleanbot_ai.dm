@@ -75,6 +75,8 @@
 	var/list/found = typecache_filter_list(oview(search_range, controller.pawn), locate_paths)
 	var/list/ignore_list = controller.blackboard[BB_TEMPORARY_IGNORE_LIST]
 	for(var/atom/found_item in found)
+		if(QDELETED(controller.pawn))
+			break
 		if(LAZYACCESS(ignore_list, REF(found_item)))
 			continue
 		var/list/path = get_path_to(controller.pawn, found_item, max_distance = BOT_CLEAN_PATH_LIMIT, access = controller.get_access())
@@ -120,16 +122,14 @@
 	set_movement_target(controller, target)
 
 /datum/ai_behavior/execute_clean/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	. = ..()
 	var/mob/living/basic/living_pawn = controller.pawn
 	var/atom/target = controller.blackboard[target_key]
 
 	if(QDELETED(target))
-		finish_action(controller, FALSE, target_key)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	living_pawn.UnarmedAttack(target, proximity_flag = TRUE)
-	finish_action(controller, TRUE, target_key)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/execute_clean/finish_action(datum/ai_controller/controller, succeeded, target_key, targeting_strategy_key, hiding_location_key)
 	. = ..()

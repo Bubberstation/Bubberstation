@@ -4,7 +4,6 @@ Materials are now instanced datums, with an associative list of them being kept 
 These materials call on_applied() on whatever item they are applied to, common effects are adding components, changing color and changing description. This allows us to differentiate items based on the material they are made out of.area
 
 */
-
 SUBSYSTEM_DEF(materials)
 	name = "Materials"
 	flags = SS_NO_FIRE | SS_NO_INIT
@@ -33,6 +32,9 @@ SUBSYSTEM_DEF(materials)
 		new /datum/stack_recipe("Carving block", /obj/structure/carving_block, 5, time = 3 SECONDS, one_per_turf = TRUE, on_solid_ground = TRUE, applies_mats = TRUE, category = CAT_STRUCTURE),
 	)
 
+	///A list of dimensional themes used by the dimensional anomaly and other things, most of which require materials to function.
+	var/list/datum/dimension_theme/dimensional_themes
+
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()
 	materials = list()
@@ -46,6 +48,8 @@ SUBSYSTEM_DEF(materials)
 		if(!(initial(mat_type.init_flags) & MATERIAL_INIT_MAPLOAD))
 			continue // Do not initialize at mapload
 		InitializeMaterial(list(mat_type))
+
+	dimensional_themes = init_subtypes_w_path_keys(/datum/dimension_theme)
 
 /** Creates and caches a material datum.
  *

@@ -70,6 +70,24 @@
 	cost = 2
 	limit = 1
 
+// Lichdom. Imbue an object and that object is basically your mobile respawn point.
+// Funny mechanic, but it was INSANELY generous on what you could imbue, causing near immortality. Mechanical changes are in the non-modular file of lichdom.dm
+/datum/spellbook_entry/lichdom
+	name = "Bind Fiery Soul"
+	desc = "An infernal necromantic pact that can forever bind your soul to a bulky item of your choosing, \
+		turning you into an immortal Lich. So long as the item remains intact, you will revive from death, \
+		no matter the circumstances. Be wary - with each revival, your body will become weaker, and \
+		it will become easier for others to find your item of power. \
+		Note that the fiery nature of the spell also requires it to be cast on a non-fireproof item, as the magic can't penetrate that way."
+
+/datum/action/cooldown/spell/lichdom
+	desc = "A fiery spell from the depths of hell that binds your soul to an item in your hands. \
+		Binding your soul to an item will turn you into an immortal Lich. \
+		So long as the item remains intact, you will revive from death, \
+		no matter the circumstances. \
+		Cannot be used on objects smaller than bulky or fireproof objects."
+
+
 // High Frequency Spellblade. Holy fuck just looking at the code is nonsense holy fuck. Can slash through walls, and also gib people who are dead. Absolutely silly.
 // Replaces it with a banhammer that can send you to the perma brig because that's funnier.
 /datum/spellbook_entry/item/highfrequencyblade

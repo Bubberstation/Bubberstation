@@ -9,7 +9,7 @@
  * viewer - The person examining.
  */
 /datum/antagonist/vassal/proc/return_vassal_examine(mob/living/viewer)
-	if(!viewer.mind || !iscarbon(owner.current))
+	if((!viewer.mind && !isobserver(viewer)) || !iscarbon(owner.current))
 		return FALSE
 	var/mob/living/carbon/carbon_current = owner.current
 	// Target must be a Vassal
@@ -17,14 +17,14 @@
 	var/returnString = "\[<span class='warning'>"
 	var/returnIcon = ""
 	// Vassals and Bloodsuckers recognize eachother, while Monster Hunters can see Vassals.
-	if(!IS_BLOODSUCKER(viewer) && !IS_VASSAL(viewer) && !IS_MONSTERHUNTER(viewer))
+	if(!IS_BLOODSUCKER(viewer) && !IS_VASSAL(viewer) && !IS_MONSTERHUNTER(viewer) && !isobserver(viewer))
 		return FALSE
 	// Am I Viewer's Vassal?
 	if(master.owner == viewer.mind)
 		returnString += "This [carbon_current.dna.species.name] bears YOUR mark!"
 		returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "vassal")]"
 	// Am I someone ELSE'S Vassal?
-	else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer))
+	else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer) || isobserver(viewer))
 		returnString += "This [carbon_current.dna.species.name] bears the mark of <span class='boldwarning'>[master.return_full_name()][master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
 		returnIcon = "[icon2html('modular_zubbers/icons/misc/language.dmi', world, "vassal_grey")]"
 	// Are you serving the same master as I am?
@@ -40,7 +40,7 @@
 	return returnIcon + returnString
 
 /// Used when your Master teaches you a new Power.
-/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power, list_to_add_to = powers)
+/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/power, list_to_add_to = powers)
 	for(var/datum/action/current_powers as anything in list_to_add_to)
 		if(current_powers.type == power.type)
 			return FALSE

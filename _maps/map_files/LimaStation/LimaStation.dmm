@@ -317,10 +317,6 @@
 /obj/item/reagent_containers/pill/patch/aiuri,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
-"aiy" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/service/hydroponics/garden)
 "aiK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/newscaster/directional/east,
@@ -3777,7 +3773,7 @@
 	specialfunctions = 4
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
@@ -4890,7 +4886,7 @@
 /area/station/hallway/primary/starboard)
 "caG" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/prisoner,
 /obj/structure/sign/poster/contraband/random/directional/north,
 /obj/effect/spawner/random/contraband/prison,
@@ -5215,7 +5211,7 @@
 /area/station/security/prison/safe)
 "chK" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
@@ -6082,9 +6078,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/computer/department_orders/security{
-	dir = 8
-	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "czc" = (
@@ -7584,10 +7577,7 @@
 /obj/machinery/computer/upload/ai,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/door/window/left/directional/west{
-	base_state = "right";
-	dir = 2;
-	icon_state = "right";
+/obj/machinery/door/window/left/directional/south{
 	layer = 3.1;
 	name = "Upload Console Window";
 	req_access = list("ai_upload")
@@ -8120,7 +8110,7 @@
 /area/station/engineering/atmos/upper)
 "dpc" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/spawner/random/contraband/prison,
 /turf/open/floor/iron/grimy,
 /area/station/security/prison/safe)
@@ -9551,7 +9541,7 @@
 /area/station/command/bridge)
 "dSX" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/carpet/black,
 /area/station/maintenance/starboard/aft)
 "dTa" = (
@@ -11577,7 +11567,7 @@
 /area/station/maintenance/port/lower)
 "eJK" = (
 /obj/effect/decal/remains/human,
-/obj/item/clothing/under/dress/redeveninggown,
+/obj/item/clothing/under/dress/eveninggown,
 /obj/item/clothing/shoes/roman,
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/plating,
@@ -20266,10 +20256,7 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/upper)
 "hVY" = (
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #1";
-	suffix = "#1"
-	},
+/mob/living/simple_animal/bot/mulebot,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light/directional/south,
 /obj/machinery/navbeacon{
@@ -21923,9 +21910,6 @@
 /obj/machinery/light/directional/east,
 /obj/structure/sign/poster/random/directional/east,
 /obj/effect/turf_decal/bot,
-/obj/machinery/computer/department_orders/service{
-	dir = 8
-	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/hallway/secondary/service)
 "iGx" = (
@@ -29001,7 +28985,6 @@
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
 	},
-/obj/machinery/computer/department_orders/medical,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "ljj" = (
@@ -29490,8 +29473,7 @@
 /obj/machinery/computer/upload/borg,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/door/window/left/directional/west{
-	dir = 2;
+/obj/machinery/door/window/left/directional/south{
 	layer = 3.1;
 	name = "Cyborg Upload Console Window";
 	req_access = list("ai_upload")
@@ -30135,9 +30117,6 @@
 	},
 /obj/effect/turf_decal/tile/brown/opposingcorners,
 /obj/structure/extinguisher_cabinet/directional/south,
-/obj/machinery/computer/department_orders/science{
-	dir = 4
-	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/lab)
 "lFT" = (
@@ -30167,7 +30146,7 @@
 /area/station/command/corporate_showroom)
 "lGt" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/prisoner,
 /obj/effect/spawner/random/contraband/prison,
 /turf/open/floor/iron/grimy,
@@ -36091,7 +36070,7 @@
 	specialfunctions = 4
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/commons/dorms)
@@ -36666,7 +36645,7 @@
 /area/station/engineering/main)
 "nZO" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/structure/sign/poster/contraband/random/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -39931,7 +39910,7 @@
 /area/station/service/hydroponics)
 "piM" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "piN" = (
@@ -40933,10 +40912,7 @@
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "pDY" = (
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #2";
-	suffix = "#2"
-	},
+/mob/living/simple_animal/bot/mulebot,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
@@ -41621,7 +41597,7 @@
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "pQR" = (
-/obj/structure/safe,
+/obj/structure/safe/vault,
 /obj/item/reagent_containers/cup/glass/bottle/vodka/badminka,
 /obj/item/stack/spacecash/c200,
 /obj/item/stack/spacecash/c200,
@@ -47475,7 +47451,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/newscaster/directional/north,
-/obj/machinery/modular_computer/preset/cargochat/science,
+/obj/machinery/modular_computer/preset/cargochat/medical,
 /obj/effect/turf_decal/tile/brown/opposingcorners,
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -49977,7 +49953,7 @@
 /area/station/commons/dorms)
 "sPq" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/prisoner,
 /obj/machinery/newscaster/directional/south,
 /obj/effect/spawner/random/contraband/prison,
@@ -52956,7 +52932,7 @@
 /area/station/service/library)
 "tWJ" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet/any,
 /obj/effect/landmark/start/virologist,
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/showroomfloor,
@@ -57715,9 +57691,6 @@
 /area/station/cargo/office)
 "vQp" = (
 /obj/machinery/airalarm/directional/south,
-/obj/machinery/computer/department_orders/engineering{
-	dir = 1
-	},
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "vQz" = (
@@ -58341,11 +58314,7 @@
 /obj/effect/turf_decal/tile/dark_blue/full,
 /obj/effect/turf_decal/siding/dark_blue/end,
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /obj/item/storage/medkit/tactical/blueshield,
-/obj/item/storage/box/gunset,
 /obj/item/gun_maintenance_supplies{
 	pixel_x = -4;
 	pixel_y = 10
@@ -59189,7 +59158,7 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "wtB" = (
-/mob/living/simple_animal/slime,
+/mob/living/basic/slime,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "wtI" = (
@@ -176595,7 +176564,7 @@ xzK
 kRw
 sxo
 xFB
-aiy
+ivo
 ivo
 ivo
 aCk
@@ -178147,7 +178116,7 @@ xzK
 kRw
 ktz
 lwe
-sMR
+wsx
 tXJ
 vaW
 jtm
@@ -179168,7 +179137,7 @@ xzK
 xzK
 mhL
 mhL
-wsx
+sMR
 kYx
 chi
 chi
