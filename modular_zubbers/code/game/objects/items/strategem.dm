@@ -1,16 +1,16 @@
 //Yes, I'm for real
 
-/obj/item/choice_beacon/strategem_utility
+/obj/item/choice_beacon/stratagam_utility
 	name = "Signal Radio (Utility)"
-	desc = "Requesting Strategem"
+	desc = "Requesting Stratagam"
 	company_source = "NanoTrasen War Department"
 	company_message = span_bold("Copy that, pod calibrated and launching!")
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
 	custom_premium_price = PAYCHECK_COMMAND * 10
 
-/obj/item/choice_beacon/strategem_utility/generate_display_names()
-	var/static/list/selectable_utility_strategem = list(
+/obj/item/choice_beacon/stratagam_utility/generate_display_names()
+	var/static/list/selectable_utility_stratagam = list(
 		"Medical Support" = list(/mob/living/basic/bot/medbot/stationary, /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked),
 		"Medical Bay Kit" = list (/obj/structure/table/optable, /obj/structure/frame/computer, /obj/item/circuitboard/computer/operating, /obj/item/storage/medkit/surgery, /obj/item/reagent_containers/cup/bottle/formaldehyde, /obj/item/reagent_containers/syringe, /obj/item/storage/toolbox/mechanical, /obj/item/stack/sheet/glass = 2, /obj/item/stack/cable_coil/thirty, /obj/item/holosign_creator/medical/treatment_zone),
 		"Security Modsuit Dual Pack" = list(/obj/item/mod/control/pre_equipped/security, /obj/item/mod/control/pre_equipped/security),
@@ -20,26 +20,26 @@
 		"Recharger" = list(/obj/machinery/recharger, /obj/machinery/recharger, /obj/machinery/recharger, /obj/item/inducer, /obj/item/storage/toolbox/mechanical),
 	)
 
-	return selectable_utility_strategem
+	return selectable_utility_stratagam
 
-/obj/item/choice_beacon/strategem_defensive
+/obj/item/choice_beacon/stratagam_defensive
 	name = "Signal Radio (Defensive)"
-	desc = "Requesting Strategem"
+	desc = "Requesting Stratagam"
 	company_source = "NanoTrasen War Department"
 	company_message = span_bold("Copy that, pod calibrated and launching!")
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
 	custom_premium_price = PAYCHECK_COMMAND * 22
 
-/obj/item/choice_beacon/strategem_defensive/generate_display_names()
-	var/static/list/selectable_defensive_strategem = list(
+/obj/item/choice_beacon/stratagam_defensive/generate_display_names()
+	var/static/list/selectable_defensive_stratagam = list(
 		"Heavy Disabler Machinegun" = list(/obj/item/deployable_turret_folded/disabler, /obj/item/wrench),
 		"Orbital Paddy Drop" = list(/obj/vehicle/sealed/mecha/ripley/paddy/preset, /obj/item/clothing/head/utility/hardhat/welding/dblue, /obj/item/weldingtool/largetank),
 		"Portable Flashers" = list(/obj/machinery/flasher/portable, /obj/machinery/flasher/portable, /obj/machinery/flasher/portable),
 		"Barricades" = list(/obj/item/storage/barricade, /obj/item/storage/barricade, /obj/item/grenade/barrier, /obj/item/grenade/barrier, /obj/item/grenade/barrier,/obj/item/door_seal, /obj/item/door_seal, /obj/item/door_seal, /obj/item/door_seal),
 	)
 
-	return selectable_defensive_strategem
+	return selectable_defensive_stratagam
 
 // Stuff Here
 
