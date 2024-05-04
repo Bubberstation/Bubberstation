@@ -7,23 +7,19 @@
 	company_message = span_bold("Copy that, pod calibrated and launching!")
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "radio"
-	custom_premium_price = PAYCHECK_COMMAND * 10
+	custom_premium_price = PAYCHECK_COMMAND * 8
 
 /obj/item/choice_beacon/stratagam_utility/generate_display_names()
 	var/static/list/selectable_utility_stratagam = list(
 		"Medical Support" = list(/mob/living/basic/bot/medbot/stationary, /obj/item/storage/backpack/duffelbag/deforest_medkit/stocked),
 		"Medical Bay Kit" = list (/obj/structure/table/optable, /obj/structure/frame/computer, /obj/item/circuitboard/computer/operating, /obj/item/storage/medkit/surgery, /obj/item/reagent_containers/cup/bottle/formaldehyde, /obj/item/reagent_containers/syringe, /obj/item/storage/toolbox/mechanical, /obj/item/stack/sheet/glass = 2, /obj/item/stack/cable_coil/thirty, /obj/item/holosign_creator/medical/treatment_zone),
-		"Security Modsuit Dual Pack" = list(/obj/item/mod/control/pre_equipped/security, /obj/item/mod/control/pre_equipped/security),
-		"Laser Drop" = list(/obj/item/gun/energy/laser,/obj/item/gun/energy/laser,/obj/item/gun/energy/laser, , /obj/item/gun/energy/laser/carbine),
-		"AutoRifle Drop" = list(/obj/item/gun/ballistic/automatic/wt550/security, /obj/item/gun/ballistic/automatic/wt550/security, /obj/item/gun/ballistic/automatic/wt550/security),
-		"AutoRifle Ammo" = list(/obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9),
 		"Recharger" = list(/obj/machinery/recharger, /obj/machinery/recharger, /obj/machinery/recharger, /obj/item/inducer, /obj/item/storage/toolbox/mechanical),
 	)
 
 	return selectable_utility_stratagam
 
-/obj/item/choice_beacon/stratagam_utility/can_use_beacon(mob/living/user)
-	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+/obj/item/choice_beacon/stratagam_utility/can_use_beacon(user)
+	if(!HAS_TRAIT (user, TRAIT_MINDSHIELD))
 		return ..()
 
 /obj/item/choice_beacon/stratagam_defensive
@@ -45,8 +41,31 @@
 
 	return selectable_defensive_stratagam
 
-/obj/item/choice_beacon/stratagam_defensive/can_use_beacon(mob/living/user)
-	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+/obj/item/choice_beacon/stratagam_defensive/can_use_beacon(user)
+	if(!HAS_TRAIT (user, TRAIT_MINDSHIELD))
+		return ..()
+
+/obj/item/choice_beacon/stratagam_supply
+	name = "Signal Radio (Supply)"
+	desc = "Requesting Stratagam"
+	company_source = "NanoTrasen War Department"
+	company_message = span_bold("Copy that, pod calibrated and launching!")
+	icon = 'icons/obj/devices/voice.dmi'
+	icon_state = "radio"
+	custom_premium_price = PAYCHECK_COMMAND * 10
+
+/obj/item/choice_beacon/stratagam_supply/generate_display_names()
+	var/static/list/selectable_supply_stratagam = list(
+		"Security Modsuit Dual Pack" = list(/obj/item/mod/control/pre_equipped/security, /obj/item/mod/control/pre_equipped/security),
+		"Laser Drop" = list(/obj/item/gun/energy/laser,/obj/item/gun/energy/laser,/obj/item/gun/energy/laser, , /obj/item/gun/energy/laser/carbine),
+		"AutoRifle Drop" = list(/obj/item/gun/ballistic/automatic/wt550/security, /obj/item/gun/ballistic/automatic/wt550/security, /obj/item/gun/ballistic/automatic/wt550/security),
+		"AutoRifle Ammo" = list(/obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9, /obj/item/ammo_box/magazine/wt550m9),
+	)
+
+	return selectable_supply_stratagam
+
+/obj/item/choice_beacon/stratagam_supply/can_use_beacon(user)
+	if(!HAS_TRAIT (user, TRAIT_MINDSHIELD))
 		return ..()
 
 

@@ -30,6 +30,7 @@
 		/obj/item/storage/box/holobadge = 1,
 		/obj/item/choice_beacon/stratagam_utility = 1, //BUBBER ADDITION
 		/obj/item/choice_beacon/stratagam_defensive = 1, //BUBBER ADDITION
+		/obj/item/choice_beacon/stratagam_supply = 1, //BUBBER ADDITION
 	)
 
 /obj/item/vending_refill/security
