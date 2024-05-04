@@ -21,11 +21,6 @@
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
 
-/obj/item/bodypart/chest/mutant/tajaran
-/obj/item/bodypart/chest/mutant/tajaran/get_butt_sprite()
-	var/ass_image = 'modular_zubbers/icons/ass/asstajara.png'
-	return ass_image
-
 //Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran
 	name = "tajaran tongue"
