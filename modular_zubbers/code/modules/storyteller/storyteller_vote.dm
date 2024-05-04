@@ -5,7 +5,7 @@
 
 /datum/vote/storyteller
 	name = "Storyteller"
-	message = "Vote for the storyteller!"
+	default_message = "Vote for the storyteller!"
 	has_desc = TRUE
 	count_method = VOTE_COUNT_METHOD_MULTI
 	winner_method = VOTE_WINNER_METHOD_SIMPLE
@@ -33,7 +33,7 @@
 		return TRUE
 
 	if(SSgamemode.storyteller_voted)
-		message = "The next Storyteller has already been selected."
+		default_message = "The next Storyteller has already been selected."
 		return FALSE
 
 /datum/vote/storyteller/finalize_vote(winning_option)
