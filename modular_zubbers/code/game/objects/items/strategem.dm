@@ -18,8 +18,8 @@
 
 	return selectable_utility_stratagam
 
-/obj/item/choice_beacon/stratagam_utility/can_use_beacon(user)
-	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+/obj/item/choice_beacon/stratagam_utility/can_use_beacon(mob/living/user)
+	if(!HAS_TRAIT (user, TRAIT_MINDSHIELD))
 		return ..()
 
 /obj/item/choice_beacon/stratagam_defensive
@@ -41,8 +41,8 @@
 
 	return selectable_defensive_stratagam
 
-/obj/item/choice_beacon/stratagam_defensive/can_use_beacon(user)
-	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+/obj/item/choice_beacon/stratagam_defensive/can_use_beacon(mob/living/user)
+	if(!HAS_TRAIT (user, TRAIT_MINDSHIELD))
 		return ..()
 
 /obj/item/choice_beacon/stratagam_supply
@@ -64,8 +64,8 @@
 
 	return selectable_supply_stratagam
 
-/obj/item/choice_beacon/stratagam_supply/can_use_beacon(user)
-	if(!HAS_TRAIT (mob/living/user, TRAIT_MINDSHIELD))
+/obj/item/choice_beacon/stratagam_supply/can_use_beacon(mob/living/user)
+	if(!HAS_TRAIT (user, TRAIT_MINDSHIELD))
 		return ..()
 
 
