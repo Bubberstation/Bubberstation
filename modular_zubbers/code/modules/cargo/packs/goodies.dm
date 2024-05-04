@@ -43,7 +43,7 @@
 	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
 	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 26
+	cost = PAYCHECK_COMMAND * 20
 
 /datum/supply_pack/goody/mars_single
 	special = FALSE
