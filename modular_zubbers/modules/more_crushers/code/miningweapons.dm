@@ -65,7 +65,7 @@
 	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*1.15, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*2)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("pierces", "stabs", "impales", "pokes", "jabs")
-	attack_verb_simple = list("imaple", "stab", "pierce", "jab", "poke")
+	attack_verb_simple = list("impale", "stab", "pierce", "jab", "poke")
 	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/toggle_light)
 	obj_flags = UNIQUE_RENAME
