@@ -5389,6 +5389,7 @@
 /obj/machinery/airalarm/directional/north,
 /obj/structure/table/glass,
 /obj/item/watertank,
+/obj/item/construction/plumbing/service,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aBf" = (
@@ -6344,15 +6345,16 @@
 /area/station/service/theater)
 "aFl" = (
 /obj/structure/table/wood,
-/obj/item/lipstick/random{
-	pixel_x = 2;
-	pixel_y = 2
-	},
+/obj/structure/mirror/directional/west,
+/obj/item/storage/box/lipsticks,
 /obj/item/lipstick/random{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/structure/mirror/directional/west,
+/obj/item/lipstick/random{
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /turf/open/floor/iron/white/side{
 	dir = 4
 	},
@@ -7154,6 +7156,8 @@
 	},
 /obj/machinery/airalarm/directional/west,
 /obj/item/balloon_mallet,
+/obj/item/bot_assembly/honkbot,
+/obj/item/choice_beacon/music,
 /obj/structure/closet/crate/wooden/toy,
 /turf/open/floor/iron,
 /area/station/service/theater)
@@ -7636,9 +7640,10 @@
 /turf/open/floor/iron/dark/corner,
 /area/station/service/hydroponics)
 "aJO" = (
-/obj/machinery/light/directional/north,
-/obj/machinery/vending/wardrobe/hydro_wardrobe,
-/turf/open/floor/iron,
+/obj/structure/closet/secure_closet/hydroponics,
+/obj/item/skillchip/basketweaving,
+/obj/item/skillchip/basketweaving,
+/turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "aJQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -8322,10 +8327,8 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 5
-	},
+/obj/machinery/smartfridge/disks,
+/obj/item/disk/plantgene,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMw" = (
@@ -8347,7 +8350,9 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/firealarm/directional/south,
-/obj/item/construction/plumbing/service,
+/obj/machinery/plantgenes{
+	pixel_y = 8
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMB" = (
@@ -8377,24 +8382,20 @@
 /obj/item/reagent_containers/cup/bucket,
 /obj/item/wirecutters,
 /obj/machinery/iv_drip,
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_y = 3
+	},
+/obj/item/grenade/chem_grenade/antiweed,
 /obj/structure/closet/crate/hydroponics,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMI" = (
 /obj/structure/table,
-/obj/item/grenade/chem_grenade/antiweed,
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 13;
+/obj/machinery/light/small/directional/south,
+/obj/machinery/reagentgrinder{
+	desc = "Used to grind things up into raw materials and liquids.";
 	pixel_y = 5
 	},
-/obj/machinery/light/small/directional/south,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMJ" = (
@@ -15864,7 +15865,11 @@
 /area/station/medical/medbay/lobby)
 "bmK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/medkit/regular,
+/obj/effect/spawner/random/medical/medkit,
+/obj/effect/spawner/random/medical/medkit{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "bmL" = (
@@ -17516,6 +17521,7 @@
 /area/station/hallway/primary/central)
 "bsq" = (
 /obj/structure/closet/secure_closet/hydroponics,
+/obj/item/skillchip/basketweaving,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "bsr" = (
@@ -35635,6 +35641,7 @@
 "eHW" = (
 /obj/machinery/light/directional/south,
 /obj/structure/sign/warning/pods/directional/west,
+/obj/structure/sign/warning/docking/directional/south,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "eIf" = (
@@ -39425,6 +39432,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
+"hyp" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Service Hall Maintenance"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/service/hydroponics,
+/turf/open/floor/plating,
+/area/station/service/hydroponics)
 "hyV" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -43429,6 +43443,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/barber)
+"kkg" = (
+/obj/structure/sign/warning/docking/directional/east,
+/turf/open/space/basic,
+/area/space)
 "kkR" = (
 /obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/siding/purple{
@@ -53344,6 +53362,7 @@
 /area/station/medical/medbay/aft)
 "rAx" = (
 /obj/item/radio/intercom/directional/north,
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "rAC" = (
@@ -58370,6 +58389,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/commons/locker)
+"vqW" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/station/service/hydroponics)
 "vrh" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -83096,7 +83119,7 @@ xzh
 xzh
 aWK
 xzh
-xzh
+kkg
 xzh
 xzh
 xzh
@@ -103357,7 +103380,7 @@ alP
 alP
 alP
 atn
-alP
+aIp
 aRJ
 aRJ
 aMt
@@ -103614,7 +103637,7 @@ aCA
 uGz
 awD
 aGW
-alP
+aIp
 rAx
 aRJ
 aMA
@@ -103871,7 +103894,7 @@ aCz
 aUx
 aUx
 aGW
-alP
+aIp
 aBc
 awE
 iYg
@@ -104128,8 +104151,8 @@ alP
 awF
 anf
 bKK
-alP
-aJO
+hyp
+aRJ
 aKU
 aME
 bbB
@@ -104386,7 +104409,7 @@ awG
 anf
 bKK
 alP
-aRJ
+vqW
 aRJ
 aRJ
 aNQ
@@ -104900,7 +104923,7 @@ jaH
 aFs
 aGE
 alP
-bsq
+aJO
 bsq
 bsq
 aFu
