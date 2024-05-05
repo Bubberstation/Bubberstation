@@ -49723,6 +49723,15 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
+"pan" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/iron/dark/textured_large,
+/area/station/hallway/primary/central)
 "paK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -53134,12 +53143,10 @@
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "rtB" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/plaque/static_plaque/golden/commission/box,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/hallway/primary/central)
 "ruv" = (
@@ -56373,13 +56380,6 @@
 /obj/machinery/seed_extractor,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/hydroponics)
-"tQb" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/plaque/static_plaque/golden/commission/box,
-/turf/open/floor/iron/dark/textured_large,
-/area/station/hallway/primary/central)
 "tQk" = (
 /obj/machinery/camera/directional/north{
 	c_tag = "Auxiliary Tool Storage"
@@ -56497,6 +56497,7 @@
 /obj/effect/turf_decal/bot_white/right,
 /obj/structure/closet/crate/goldcrate,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/pen,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
 "tUV" = (
@@ -91605,7 +91606,7 @@ vWb
 aOz
 aPJ
 aga
-tQb
+rtB
 ntZ
 bvW
 bAf
@@ -92373,7 +92374,7 @@ xbg
 xbg
 xbg
 qaR
-rtB
+pan
 iLJ
 tFu
 aJw
