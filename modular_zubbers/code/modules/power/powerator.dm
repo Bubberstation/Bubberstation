@@ -15,4 +15,4 @@
 
 /obj/machinery/powerator/interdyne/RefreshParts()
 	. = ..()
-	max_power = clamp(max_power, 0, 1000000) //limit to 1MW so ghost roles cannot start a war with station using OP gear
+	divide_ratio *= 2 //Make it easier for the folks down at Interdyne to make some CASH MONEY
