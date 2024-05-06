@@ -186,3 +186,9 @@
 	var/previous_inhand_icon_state = inhand_icon_state
 	. = ..()
 	inhand_icon_state = previous_inhand_icon_state
+
+/obj/item/kinetic_crusher/machete/update_icon_state()
+	var/previous_inhand_icon_state = inhand_icon_state
+	. = ..()
+	inhand_icon_state = previous_inhand_icon_state
+
