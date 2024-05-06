@@ -61,7 +61,11 @@ GLOBAL_LIST_INIT(loadout_glasses, generate_loadout_items(/datum/loadout_item/gla
 
 /datum/loadout_item/glasses/prescription_glasses/better
 	name = "Modern Glasses"
-	item_path = /obj/item/clothing/glasses/betterunshit
+	item_path = /obj/item/clothing/glasses/regular/betterunshit
+
+/datum/loadout_item/glasses/prescription_glasses/kim
+	name = "Binoclard Lenses"
+	item_path = /obj/item/clothing/glasses/regular/kim
 
 /*
 *	COSMETIC GLASSES
@@ -144,9 +148,9 @@ GLOBAL_LIST_INIT(loadout_glasses, generate_loadout_items(/datum/loadout_item/gla
 */
 
 /datum/loadout_item/glasses/medicpatch
-	name = "Medical Eyepatch"
+	name = "Medical Eyepatch (Skyrat)"
 	item_path = /obj/item/clothing/glasses/hud/eyepatch/med
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_SECURITY_MEDIC, JOB_ORDERLY, JOB_CORONER) //BUBBER EDIT
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
 /datum/loadout_item/glasses/robopatch
 	name = "Diagnostic Eyepatch"
@@ -181,7 +185,7 @@ GLOBAL_LIST_INIT(loadout_glasses, generate_loadout_items(/datum/loadout_item/gla
 /datum/loadout_item/glasses/medhud_glasses
 	name = "Prescription Medical HUD"
 	item_path = /obj/item/clothing/glasses/hud/health/prescription
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_SECURITY_MEDIC, JOB_ORDERLY, JOB_CORONER) //BUBBER EDIT
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
 /datum/loadout_item/glasses/diaghud_glasses
 	name = "Prescription Diagnostic HUD"
@@ -201,7 +205,7 @@ GLOBAL_LIST_INIT(loadout_glasses, generate_loadout_items(/datum/loadout_item/gla
 /datum/loadout_item/glasses/aviator_health
 	name = "Medical HUD Aviators"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/health
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_SECURITY_MEDIC, JOB_ORDERLY, JOB_CORONER) //BUBBER EDIT
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
 /datum/loadout_item/glasses/aviator_meson
 	name = "Meson HUD Aviators"
@@ -227,7 +231,7 @@ GLOBAL_LIST_INIT(loadout_glasses, generate_loadout_items(/datum/loadout_item/gla
 /datum/loadout_item/glasses/prescription_aviator_health
 	name = "Prescription Medical HUD Aviators"
 	item_path = /obj/item/clothing/glasses/hud/ar/aviator/health/prescription
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_SECURITY_MEDIC, JOB_ORDERLY, JOB_CORONER) //BUBBER EDIT
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
 /datum/loadout_item/glasses/prescription_aviator_meson
 	name = "Prescription Meson HUD Aviators"
@@ -252,7 +256,7 @@ GLOBAL_LIST_INIT(loadout_glasses, generate_loadout_items(/datum/loadout_item/gla
 /datum/loadout_item/glasses/retinal_projector_health
 	name = "Retinal Projector Health HUD"
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/health
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_SECURITY_MEDIC, JOB_ORDERLY, JOB_CORONER) //BUBBER EDIT
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
 /datum/loadout_item/glasses/retinal_projector_meson
 	name = "Retinal Projector Meson HUD"

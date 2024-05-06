@@ -6,6 +6,8 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	var/datum/team/team //An alternative to 'owner': a team. Use this when writing new code.
 	var/name = "generic objective" //Name for admin prompts
 	var/explanation_text = "Nothing" //What that person is supposed to do.
+	///if this objective doesn't print failure or success in the roundend report
+	var/no_failure = FALSE 
 	///name used in printing this objective (Objective #1)
 	var/objective_name = "Objective"
 	var/team_explanation_text //For when there are multiple owners.
@@ -99,6 +101,8 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /// Provides a string describing what a good job you did or did not do
 /datum/objective/proc/get_roundend_success_suffix()
+	if(no_failure)
+		return "" // Just print the objective with no success/fail evaluation, as it has no mechanical backing
 	return check_completion() ? span_greentext("Success!") : span_redtext("Fail.")
 
 /datum/objective/proc/is_unique_objective(possible_target, dupe_search_range)
@@ -125,6 +129,27 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/proc/get_target()
 	return target
 
+/datum/objective/proc/is_valid_target(datum/mind/possible_target)
+	if(!ishuman(possible_target.current))
+		return FALSE
+
+	if(possible_target.current.stat == DEAD)
+		return FALSE
+
+	var/target_area = get_area(possible_target.current)
+	if(!HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS) && istype(target_area, /area/shuttle/arrival))
+		return FALSE
+
+	// SKYRAT EDIT ADDITION
+	if(SSticker.IsRoundInProgress() && istype(target_area, /area/centcom/interlink))
+		return FALSE
+	if(!count_space_areas)
+		if(istype(target_area, /area/space) || istype(target_area, /area/ruin) || istype(target_area, /area/icemoon) || istype(target_area, /area/lavaland))
+			return FALSE
+	// SKYRAT EDIT END
+
+	return TRUE
+
 //dupe_search_range is a list of antag datums / minds / teams
 /datum/objective/proc/find_target(dupe_search_range, list/blacklist)
 	var/list/datum/mind/owners = get_owners()
@@ -137,26 +162,14 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		var/target_area = get_area(possible_target.current)
 		if(possible_target in owners)
-			continue
-		if(!ishuman(possible_target.current))
-			continue
-		if(possible_target.current.stat == DEAD)
 			continue
 		if(!is_unique_objective(possible_target,dupe_search_range))
 			continue
-		if(!HAS_TRAIT(SSstation, STATION_TRAIT_LATE_ARRIVALS) && istype(target_area, /area/shuttle/arrival))
-			continue
 		if(possible_target in blacklist)
 			continue
-		// SKYRAT EDIT ADDITION
-		if(SSticker.IsRoundInProgress() && istype(target_area, /area/centcom/interlink))
+		if(!is_valid_target(possible_target))
 			continue
-		if(!count_space_areas)
-			if(istype(target_area, /area/space) || istype(target_area, /area/ruin) || istype(target_area, /area/icemoon) || istype(target_area, /area/lavaland))
-				continue
-		// SKYRAT EDIT END
 		possible_targets += possible_target
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
@@ -170,7 +183,6 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 		target = pick(possible_targets)
 	update_explanation_text()
 	return target
-
 
 /datum/objective/proc/update_explanation_text()
 	if(team_explanation_text && LAZYLEN(get_owners()) > 1)
@@ -192,7 +204,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/action/special_equipment_fallback
 	name = "Request Objective-specific Equipment"
 	desc = "Call down a supply pod containing the equipment required for specific objectives."
-	button_icon = 'icons/obj/device.dmi'
+	button_icon = 'icons/obj/devices/tracker.dmi'
 	button_icon_state = "beacon"
 
 /datum/action/special_equipment_fallback/Trigger(trigger_flags)
@@ -217,7 +229,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	return TRUE
 
 /datum/objective/assassinate
-	name = "assasinate"
+	name = "assassinate"
 	martyr_compatible = TRUE
 	admin_grantable = TRUE
 	var/target_role_type = FALSE
@@ -348,6 +360,8 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/protect/check_completion()
 	var/obj/item/organ/internal/brain/brain_target
+	if(isnull(target))
+		return FALSE
 	if(human_check)
 		brain_target = target.current?.get_organ_slot(ORGAN_SLOT_BRAIN)
 	//Protect will always suceed when someone suicides
@@ -397,7 +411,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/jailbreak/detain/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] is delivered to nanotrasen alive and in custody."
+		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] is delivered to Nanotrasen alive and in custody."
 	else
 		explanation_text = "Free objective."
 
@@ -516,6 +530,11 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	target = ..()
 	update_explanation_text()
 
+/datum/objective/escape/escape_with_identity/is_valid_target(datum/mind/possible_target)
+	if(HAS_TRAIT(possible_target.current, TRAIT_NO_DNA_COPY))
+		return FALSE
+	return ..()
+
 /datum/objective/escape/escape_with_identity/update_explanation_text()
 	if(target?.current)
 		target_real_name = target.current.real_name
@@ -530,12 +549,12 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 		explanation_text += "." //Proper punctuation is important!
 
 	else
-		explanation_text = "Free objective."
+		explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
 
 /datum/objective/escape/escape_with_identity/check_completion()
-	if(!target || !target_real_name)
-		return TRUE
 	var/list/datum/mind/owners = get_owners()
+	if(!target || !target_real_name)
+		return ..()
 	for(var/datum/mind/M in owners)
 		if(!ishuman(M.current) || !considered_escaped(M))
 			continue
@@ -779,7 +798,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 				n_p ++
 	else if (SSticker.IsRoundInProgress())
 		for(var/mob/living/carbon/human/P in GLOB.player_list)
-			if(!(P.mind.has_antag_datum(/datum/antagonist/changeling)) && !(P.mind in owners))
+			if(!(IS_CHANGELING(P)) && !(P.mind in owners))
 				n_p ++
 	target_amount = min(target_amount, n_p)
 
@@ -979,14 +998,12 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/custom
 	name = "custom"
 	admin_grantable = TRUE
+	no_failure = TRUE
 
 /datum/objective/custom/admin_edit(mob/admin)
 	var/expl = stripped_input(admin, "Custom objective:", "Objective", explanation_text)
 	if(expl)
 		explanation_text = expl
-
-/datum/objective/custom/get_roundend_success_suffix()
-	return "" // Just print the objective with no success/fail evaluation, as it has no mechanical backing
 
 //Ideally this would be all of them but laziness and unusual subtypes
 /proc/generate_admin_objective_list()
@@ -1003,6 +1020,11 @@ GLOBAL_LIST_EMPTY(possible_items)
 	var/payout = 0
 	var/payout_bonus = 0
 	var/area/dropoff = null
+
+/datum/objective/contract/is_valid_target(datum/mind/possible_target)
+	if(HAS_TRAIT(possible_target, TRAIT_HAS_BEEN_KIDNAPPED))
+		return FALSE
+	return ..()
 
 // Generate a random valid area on the station that the dropoff will happen.
 /datum/objective/contract/proc/generate_dropoff()

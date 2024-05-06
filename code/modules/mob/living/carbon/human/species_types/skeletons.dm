@@ -10,19 +10,19 @@
 		TRAIT_FAKEDEATH,
 		TRAIT_GENELESS,
 		TRAIT_LIMBATTACHMENT,
+		TRAIT_NOBLOOD,
 		TRAIT_NOBREATH,
-		TRAIT_NOCLONELOSS,
-		TRAIT_RADIMMUNE,
+		TRAIT_NO_DNA_COPY,
+		TRAIT_NO_UNDERWEAR,
 		TRAIT_PIERCEIMMUNE,
+		TRAIT_RADIMMUNE,
 		TRAIT_RESISTCOLD,
 		TRAIT_RESISTHEAT,
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_TOXIMMUNE,
+		TRAIT_UNHUSKABLE,
 		TRAIT_XENO_IMMUNE,
-		TRAIT_NOBLOOD,
-		TRAIT_NO_DNA_COPY,
-		TRAIT_NO_TRANSFORMATION_STING,
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/internal/tongue/bone
@@ -44,10 +44,6 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/skeleton,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/skeleton,
 	)
-
-/datum/species/skeleton/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	. = ..()
-	C.set_safe_hunger_level()
 
 /datum/species/skeleton/check_roundstart_eligible()
 	if(check_holidays(HALLOWEEN))

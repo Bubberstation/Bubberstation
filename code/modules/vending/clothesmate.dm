@@ -18,6 +18,7 @@
 				/obj/item/clothing/mask/bandana = 3,
 				/obj/item/clothing/mask/bandana/striped = 3,
 				/obj/item/clothing/mask/bandana/skull = 3,
+				/obj/item/clothing/mask/facescarf = 3,
 				/obj/item/clothing/neck/scarf = 6,
 				/obj/item/clothing/neck/large_scarf = 6,
 				/obj/item/clothing/neck/large_scarf/red = 6,
@@ -81,7 +82,7 @@
 				/obj/item/clothing/under/costume/kilt = 1,
 				/obj/item/clothing/under/dress/striped = 1,
 				/obj/item/clothing/under/dress/sailor = 1,
-				/obj/item/clothing/under/dress/redeveninggown = 1,
+				/obj/item/clothing/under/dress/eveninggown = 1,
 				/obj/item/clothing/under/misc/pj/blue = 2,
 				/obj/item/clothing/under/misc/pj/red = 2,
 			),
@@ -161,6 +162,8 @@
 				/obj/item/clothing/suit/hooded/ethereal_raincoat = 3,
 				/obj/item/clothing/under/ethereal_tunic = 3,
 
+				/obj/item/clothing/mask/kitsune = 3,
+				/obj/item/clothing/mask/rebellion = 6,
 				/obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian = 1,
 				/obj/item/clothing/suit/costume/irs = 20,
 				/obj/item/clothing/head/costume/irs = 20,
@@ -209,7 +212,7 @@
 		/obj/item/clothing/under/costume/swagoutfit = 1,
 		/obj/item/clothing/shoes/swagshoes = 1,
 		/obj/item/instrument/piano_synth/headphones/spacepods = 1,
-		/obj/item/clothing/head/helmet/toggleable/pinwheel = 1, //BUBBER EDIT: Pinwheel hat
+		/obj/item/clothing/head/helmet/toggleable/pinwheel = 1, //BUBBER EDIT: Pinwheel hat // BUBBER TODO: Modularize
 	)
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = PAYCHECK_CREW * 0.7 //Default of

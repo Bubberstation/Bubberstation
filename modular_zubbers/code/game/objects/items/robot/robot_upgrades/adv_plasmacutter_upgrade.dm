@@ -1,4 +1,4 @@
-/obj/item/gun/energy/plasmacutter/brg // Bubber Edit Plasma cutter for Mining cyborg, recharges on power.
+/obj/item/gun/energy/plasmacutter/brg // Plasma cutter for Mining cyborg, recharges on power.
 	name = "advanced plasma cutter"
 	icon_state = "adv_plasmacutter"
 	inhand_icon_state = "adv_plasmacutter"

@@ -20,7 +20,6 @@
 		TRAIT_NOHUNGER,
 		TRAIT_NOBLOOD,
 		TRAIT_NO_DNA_COPY,
-		TRAIT_NO_TRANSFORMATION_STING,
 		TRAIT_NODISMEMBER,
 		TRAIT_NEVER_WOUNDED,
 	)
@@ -40,7 +39,6 @@
 	. = ..()
 
 	C.fully_replace_character_name(null, pick(GLOB.nightmare_names))
-	C.set_safe_hunger_level()
 
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE

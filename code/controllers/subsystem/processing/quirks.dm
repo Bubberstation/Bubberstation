@@ -5,6 +5,7 @@
 // Shifted to glob so they are generated at world start instead of risking players doing preference stuff before the subsystem inits
 GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted),
+	list(/datum/quirk/item_quirk/blindness, /datum/quirk/touchy),
 	list(/datum/quirk/jolly, /datum/quirk/depression, /datum/quirk/apathetic, /datum/quirk/hypersensitive),
 	list(/datum/quirk/no_taste, /datum/quirk/vegetarian, /datum/quirk/deviant_tastes, /datum/quirk/gamer),
 	list(/datum/quirk/pineapple_liker, /datum/quirk/pineapple_hater, /datum/quirk/gamer),
@@ -12,7 +13,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/clown_enjoyer, /datum/quirk/item_quirk/mime_fan, /datum/quirk/item_quirk/pride_pin),
 	list(/datum/quirk/bad_touch, /datum/quirk/friendly),
 	list(/datum/quirk/extrovert, /datum/quirk/introvert),
-	list(/datum/quirk/prosthetic_limb, /datum/quirk/quadruple_amputee, /datum/quirk/body_purist),
+	list(/datum/quirk/prosthetic_limb, /datum/quirk/quadruple_amputee, /datum/quirk/transhumanist, /datum/quirk/body_purist),
 	list(/datum/quirk/prosthetic_organ, /datum/quirk/tin_man, /datum/quirk/body_purist),
 	list(/datum/quirk/quadruple_amputee, /datum/quirk/paraplegic, /datum/quirk/hemiplegic),
 	//list(/datum/quirk/quadruple_amputee, /datum/quirk/frail), // SKYRAT EDIT REMOVAL- Since we have synth wounds now, frail has a large downside for prosthetics and such
@@ -31,7 +32,14 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/no_guns, /datum/quirk/nonviolent),
 	list(/datum/quirk/spacer_born, /datum/quirk/oversized),
 	list(/datum/quirk/feline_aspect, /datum/quirk/item_quirk/canine, /datum/quirk/item_quirk/avian),
+	list(/datum/quirk/all_nighter, /datum/quirk/heavy_sleeper),
+	list(/datum/quirk/light_drinker, /datum/quirk/drunkhealing),
+	list(/datum/quirk/oversized, /datum/quirk/freerunning),
+	list(/datum/quirk/oversized, /datum/quirk/item_quirk/settler),
 	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDITION BEGIN
+	list(/datum/quirk/featherweight, /datum/quirk/oversized),
+	//BUBBER EDIT ADDITION END
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
@@ -59,12 +67,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_points = list() //Assoc. list of quirk names and their "point cost"; positive numbers are good traits, and negative ones are bad
 	///An assoc list of quirks that can be obtained as a hardcore character, and their hardcore value.
 	var/list/hardcore_quirks = list()
-	//BUBBER EDIT ADDITION START - Species quirks
-	/// A list of quirks that can only be used by a certain species. Format: list(quirk, species define)
-	var/static/list/quirk_species_whitelist = list(
-		list("Hydrophilic", "[SPECIES_SLIMESTART]")
-	)
-	//BUBBER EDIT ADDITION END
+
 /datum/controller/subsystem/processing/quirks/Initialize()
 	get_quirks()
 	return SS_INIT_SUCCESS
@@ -110,7 +113,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		var/datum/quirk/quirk_type = quirks[quirk_name]
 		if(ispath(quirk_type))
 			if(user.add_quirk(quirk_type, override_client = applied_client))
-				SSblackbox.record_feedback("nested tally", "quirks_taken", 1, list("[quirk_name]"))
+				SSblackbox.record_feedback("tally", "quirks_taken", 1, "[quirk_name]")
 		else
 			stack_trace("Invalid quirk \"[quirk_name]\" in client [applied_client.ckey] preferences")
 			applied_client.prefs.all_quirks -= quirk_name
@@ -125,10 +128,15 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/bonus_quirks = max((length(user.quirks) + rand(-RANDOM_QUIRK_BONUS, RANDOM_QUIRK_BONUS)), MINIMUM_RANDOM_QUIRKS)
 	var/added_quirk_count = 0 //How many we've added
 	var/list/quirks_to_add = list() //Quirks we're adding
-	var/good_count = 0 //Maximum of 6 good perks
+	var/good_count = 0
 	var/score //What point score we're at
 	///Cached list of possible quirks
 	var/list/possible_quirks = quirks.Copy()
+
+	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
+	if(max_positive_quirks < 0)
+		max_positive_quirks = 6
+
 	//Create a random list of stuff to start with
 	while(bonus_quirks > added_quirk_count)
 		var/quirk = pick(possible_quirks) //quirk is a string
@@ -158,19 +166,20 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		quirks_to_add += quirk
 
 	//And have benefits too
-	while(score < 0 && good_count <= MAX_QUIRKS)
-		if(!length(possible_quirks))//Lets not get stuck
-			break
-		var/quirk = pick(quirks)
-		if(quirk in GLOB.quirk_blacklist) //prevent blacklisted
-			possible_quirks -= quirk
-			continue
-		if(!quirk_points[quirk] > 0) //positive only
-			possible_quirks -= quirk
-			continue
-		good_count++
-		score += quirk_points[quirk]
-		quirks_to_add += quirk
+	if(max_positive_quirks > 0)
+		while(score < 0 && good_count <= max_positive_quirks)
+			if(!length(possible_quirks))//Lets not get stuck
+				break
+			var/quirk = pick(quirks)
+			if(quirk in GLOB.quirk_blacklist) //prevent blacklisted
+				possible_quirks -= quirk
+				continue
+			if(!(quirk_points[quirk] > 0)) //positive only
+				possible_quirks -= quirk
+				continue
+			good_count++
+			score += quirk_points[quirk]
+			quirks_to_add += quirk
 
 	for(var/datum/quirk/quirk as anything in user.quirks)
 		if(quirk.name in quirks_to_add) //Don't delete ones we keep
@@ -188,6 +197,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks, list/augments) // SKYRAT EDIT - AUGMENTS+
 	var/list/new_quirks = list()
 	var/list/positive_quirks = list()
+	var/points_enabled = !CONFIG_GET(flag/disable_quirk_points)
+	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
 	var/balance = 0
 
 	var/list/all_quirks = get_quirks()
@@ -224,7 +235,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 
 		var/value = initial(quirk.value)
 		if (value > 0)
-			if (positive_quirks.len == MAX_QUIRKS)
+			if (max_positive_quirks >= 0 && positive_quirks.len == max_positive_quirks)
 				continue
 
 			positive_quirks[quirk_name] = value
@@ -232,7 +243,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		balance += value
 		new_quirks += quirk_name
 
-	if (balance > 0)
+	if (points_enabled && balance > 0)
 		var/balance_left_to_remove = balance
 
 		for (var/positive_quirk in positive_quirks)

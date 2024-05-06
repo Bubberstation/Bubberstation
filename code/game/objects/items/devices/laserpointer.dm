@@ -1,11 +1,11 @@
 /obj/item/laser_pointer
 	name = "laser pointer"
 	desc = "Don't shine it in your eyes!"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "pointer"
 	inhand_icon_state = "pen"
 	worn_icon_state = "pen"
-	flags_1 = CONDUCT_1
+	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
@@ -63,6 +63,15 @@
 	. = ..()
 	diode = new /obj/item/stock_parts/micro_laser/ultra
 
+/obj/item/laser_pointer/infinite_range
+	name = "infinite laser pointer"
+	desc = "Used to shine in the eyes of Cyborgs who need a bit of a push, this works through camera consoles."
+	max_range = INFINITE
+
+/obj/item/laser_pointer/infinite_range/Initialize(mapload)
+	. = ..()
+	diode = new /obj/item/stock_parts/micro_laser/quadultra
+
 /obj/item/laser_pointer/screwdriver_act(mob/living/user, obj/item/tool)
 	if(diode)
 		tool.play_tool_sound(src)
@@ -71,15 +80,16 @@
 		diode = null
 		return TRUE
 
-/obj/item/laser_pointer/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
-	. = ..()
-	if(isnull(crystal_lens) || !(tool.tool_behaviour == TOOL_WIRECUTTER || tool.tool_behaviour == TOOL_HEMOSTAT))
-		return
+/obj/item/laser_pointer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(isnull(crystal_lens))
+		return NONE
+	if(tool_behaviour != TOOL_WIRECUTTER && tool_behaviour != TOOL_HEMOSTAT)
+		return NONE
 	tool.play_tool_sound(src)
 	balloon_alert(user, "removed crystal lens")
 	crystal_lens.forceMove(drop_location())
 	crystal_lens = null
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/laser_pointer/attackby(obj/item/attack_item, mob/user, params)
 	if(istype(attack_item, /obj/item/stock_parts/micro_laser))
@@ -189,16 +199,17 @@
 		to_chat(user, span_warning("Your fingers can't press the button!"))
 		return
 
-	if(!IN_GIVEN_RANGE(target, user, max_range))
-		to_chat(user, span_warning("\The [target] is too far away!"))
-		return
-	if(!(user in (view(max_range, target)))) //check if we are visible from the target's PoV
-		if(isnull(crystal_lens))
-			to_chat(user, span_warning("You can't point with [src] through walls!"))
+	if(max_range != INFINITE)
+		if(!IN_GIVEN_RANGE(target, user, max_range))
+			to_chat(user, span_warning("\The [target] is too far away!"))
 			return
-		if(!((user.sight & SEE_OBJS) || (user.sight & SEE_MOBS))) //only let it work if we have xray or thermals. mesons don't count because they are easier to get.
-			to_chat(user, span_notice("You can't quite make out your target and you fail to shine at it."))
-			return
+		if(!(user in (view(max_range, target)))) //check if we are visible from the target's PoV
+			if(isnull(crystal_lens))
+				to_chat(user, span_warning("You can't point with [src] through walls!"))
+				return
+			if(!((user.sight & SEE_OBJS) || (user.sight & SEE_MOBS))) //only let it work if we have xray or thermals. mesons don't count because they are easier to get.
+				to_chat(user, span_notice("You can't quite make out your target and you fail to shine at it."))
+				return
 
 	add_fingerprint(user)
 
@@ -247,7 +258,7 @@
 	//cameras: chance to EMP the camera
 	else if(istype(target, /obj/machinery/camera))
 		var/obj/machinery/camera/target_camera = target
-		if(!target_camera.status && !target_camera.emped)
+		if(!target_camera.camera_enabled && !target_camera.emped)
 			outmsg = span_notice("You point [src] at [target_camera], but it seems to be disabled.")
 		else if(prob(effectchance * diode.rating))
 			target_camera.emp_act(EMP_HEAVY)
@@ -262,28 +273,16 @@
 			continue
 		if(target_felinid.body_position == STANDING_UP)
 			target_felinid.setDir(get_dir(target_felinid, targloc)) // kitty always looks at the light
-			if(prob(effectchance * diode.rating))
+			//SKYRAT EDIT REMOVAL BEGIN (removes forced felinid movement from laserpointers, also fixes the longstanding windoor negation glitch)
+			/* if(prob(effectchance * diode.rating))
 				target_felinid.visible_message(span_warning("[target_felinid] makes a grab for the light!"), span_userdanger("LIGHT!"))
 				target_felinid.Move(targloc)
 				log_combat(user, target_felinid, "moved with a laser pointer", src)
-			else
-				target_felinid.visible_message(span_notice("[target_felinid] looks briefly distracted by the light."), span_warning("You're briefly tempted by the shiny light..."))
+			else 
+			SKYRAT EDIT REMOVAL END */
+			target_felinid.visible_message(span_notice("[target_felinid] looks briefly distracted by the light."), span_warning("You're briefly tempted by the shiny light...")) //SKYRAT EDIT CHANGE : indent this block if re-enabling above
 		else
 			target_felinid.visible_message(span_notice("[target_felinid] stares at the light."), span_warning("You stare at the light..."))
-
-	//cats! - chance for any cat near the target to pounce at the light, stepping to the target
-	for(var/mob/living/simple_animal/pet/cat/target_kitty in view(1, targloc))
-		if(target_kitty.stat == DEAD)
-			continue
-		if(prob(effectchance * diode.rating))
-			if(target_kitty.resting)
-				target_kitty.set_resting(FALSE, instant = TRUE)
-			target_kitty.visible_message(span_notice("[target_kitty] pounces on the light!"), span_warning("LIGHT!"))
-			target_kitty.Move(targloc)
-			target_kitty.Immobilize(1 SECONDS)
-		else
-			target_kitty.visible_message(span_notice("[target_kitty] looks uninterested in your games."), span_warning("You spot [user] shining [src] at you. How insulting!"))
-
 	//The pointer is shining, change its sprite to show
 	icon_state = "pointer_[pointer_icon_state]"
 
@@ -300,9 +299,9 @@
 		laser.pixel_y = target.pixel_y + rand(-5,5)
 
 	if(outmsg)
-		to_chat(user, outmsg)
+		user.visible_message(span_danger("[user] points [src] at [target]!"), outmsg) //SKYRAT EDIT CHANGE - ORIGINAL: to_chat(user, outmsg)
 	else
-		to_chat(user, span_info("You point [src] at [target]."))
+		user.visible_message(span_notice("[user] points [src] at [target]."), span_notice("You point [src] at [target].")) //SKYRAT EDIT CHANGE - ORIGINAL: to_chat(user, span_info("You point [src] at [target]."))
 
 	//we have successfully shone our pointer, reduce our battery depending on whether we have an extra lens or not
 	energy -= crystal_lens ? 2 : 1

@@ -3,7 +3,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 /obj/item/mmi/posibrain
 	name = "positronic brain"
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
-	icon = 'icons/obj/assemblies/assemblies.dmi'
+	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "posibrain"
 	base_icon_state = "posibrain"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -75,17 +75,16 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(check_success)), ask_delay)
 
-/obj/item/mmi/posibrain/AltClick(mob/living/user)
-	if(!istype(user) || !user.can_perform_action(src))
-		return
+/obj/item/mmi/posibrain/click_alt(mob/living/user)
 	var/input_seed = tgui_input_text(user, "Enter a personality seed", "Enter seed", ask_role, MAX_NAME_LEN)
 	if(isnull(input_seed))
-		return
-	if(!istype(user) || !user.can_perform_action(src))
+		return CLICK_ACTION_BLOCKING
+	if(!user.can_perform_action(src))
 		return
 	to_chat(user, span_notice("You set the personality seed to \"[input_seed]\"."))
 	ask_role = input_seed
 	update_appearance()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/mmi/posibrain/proc/check_success()
 	searching = FALSE
@@ -120,6 +119,12 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 	if(is_occupied() || is_banned_from(user.ckey, ROLE_POSIBRAIN) || QDELETED(src) || QDELETED(user))
 		return
+	//BUBBER EDIT BEGIN: SILICON FLAVOR TEXT
+	if(CONFIG_GET(flag/min_flavor_text))
+		if((length_char(user.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text))) <= CONFIG_GET(number/silicon_flavor_text_character_requirement))
+			to_chat(user, span_warning("Your silicon flavor text needs to be at least [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters to play this role. Head to the character creator and write more!"))
+			return
+	//BUBBER EDIT END: SILICON FLAVOR TEXT
 	var/posi_ask = tgui_alert(user, "Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)", "Confirm", list("Yes","No"))
 	if(posi_ask != "Yes" || QDELETED(src))
 		return
@@ -216,3 +221,10 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 /obj/item/mmi/posibrain/add_mmi_overlay()
 	return
+
+/obj/item/mmi/posibrain/display
+	name = "display positronic brain"
+	desc = "A small positronic brain that doesn't allow the downloading of personalities."
+
+/obj/item/mmi/posibrain/display/is_occupied()
+	return TRUE

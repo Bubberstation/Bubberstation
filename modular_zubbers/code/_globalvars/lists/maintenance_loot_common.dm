@@ -290,13 +290,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stamp/chap = 1,
 		/obj/item/stamp/clown = 1,
 		/obj/item/stamp/denied = 5,
-		/obj/item/stamp/head/captain = 1,
-		/obj/item/stamp/head/ce = 1,
-		/obj/item/stamp/head/cmo = 1,
-		/obj/item/stamp/head/hop = 1,
-		/obj/item/stamp/head/hos = 1,
-		/obj/item/stamp/head/qm = 1,
-		/obj/item/stamp/head/rd = 1,
 		/obj/item/stamp/law = 1,
 		/obj/item/stamp/mime = 1,
 		/obj/item/stamp/syndicate = 1,
@@ -389,7 +382,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/weldingtool = 50,
 		/obj/item/wirebrush = 25,
 		/obj/item/wirecutters = 50,
-		/obj/item/wrench = 50
+		/obj/item/wrench = 50,
+		/obj/item/fish_analyzer = 10
 	) = 200,
 	list(
 		/obj/item/hatchet = 1,
@@ -398,6 +392,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/kitchen/fork = 5,
 		/obj/item/kitchen/rollingpin = 15,
 		/obj/item/kitchen/spoon = 5,
+		/obj/item/kitchen/spoon/soup_ladle = 5,
+		/obj/item/kitchen/tongs = 10,
 		/obj/item/knife/kitchen = 5,
 		/obj/item/knife/butcher = 1,
 		/obj/item/knife/combat/survival = 5,
@@ -466,12 +462,11 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/fishing_rod = 5
 	) = 25,
 	list(
-		/obj/item/bedsheet/dorms = 10,
-		/obj/item/bedsheet/dorms_double = 1
+		/obj/effect/spawner/random/bedsheet = 10,
+		/obj/effect/spawner/random/bedsheet/double = 1
 	) = 10,
 	list(
 		/obj/item/ammo_box/foambox = 5,
-		/obj/item/a_gift = 100,
 		/obj/item/bikehorn = 50,
 		/obj/item/bikehorn/airhorn = 25,
 		/obj/item/bikehorn/rubberducky = 50,
@@ -721,6 +716,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	list(
 		/obj/item/dyespray = 10,
 		/obj/item/razor = 10,
+		/obj/item/razor/surgery = 5,
 		/obj/item/fur_dyer = 5,
 		/obj/item/reagent_containers/spray/baldium = 1,
 		/obj/item/reagent_containers/spray/barbers_aid = 5,
@@ -744,6 +740,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	list(
 		/obj/item/flashlight = 25,
 		/obj/item/flashlight/flare = 50,
+		/obj/item/flashlight/flare/torch = 5,
 		/obj/item/flashlight/glowstick = 10,
 		/obj/item/flashlight/glowstick/blue = 10,
 		/obj/item/flashlight/glowstick/cyan = 10,
@@ -1005,7 +1002,17 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/seeds/replicapod = 75,
 		/obj/item/seeds/shrub = 25,
 		/obj/item/seeds/starthistle/corpse_flower = 10,
-		/obj/item/seeds/tea/catnip = 10
+		/obj/item/seeds/tea/catnip = 10,
+		/obj/item/seeds/rockfruit = 5,
+		/obj/item/seeds/tower = 25,
+		/obj/item/seeds/nettle = 10,
+		/obj/item/seeds/peas/laugh = 1,
+		/obj/item/seeds/vaporsac = 1,
+		/obj/item/seeds/nofruit = 1,
+		/obj/item/seeds/liberty = 10,
+		/obj/item/seeds/reishi = 5,
+		/obj/item/seeds/greenbean/jump = 1,
+		/obj/item/seeds/ambrosia = 1
 	) = 150,
 	list(
 		/obj/item/reagent_containers/cup/glass/bottle/absinthe = 25,
@@ -1071,5 +1078,12 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/instrument/violin = 10,
 		/obj/item/instrument/violin/golden = 1
 	) = 25,
-	/obj/item/paper/fluff/stations/soap = 50
+	/obj/item/paper/fluff/stations/soap = 50,
+	list(
+		/obj/item/soap = 50,
+		/obj/item/soap/deluxe = 10,
+		/obj/item/soap/homemade = 100,
+		/obj/item/soap/nanotrasen = 25,
+		/obj/item/soap/syndie = 10
+	) = 50
 ))

@@ -10,7 +10,6 @@
 	use_power = FALSE
 	circuit = null
 	resistance_flags = FIRE_PROOF
-	flags_1 = NODECONSTRUCT_1
 
 /obj/machinery/primitive_stove/Initialize(mapload)
 	. = ..()
@@ -22,13 +21,20 @@
 
 	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
 
+// previously NO_DECONSTRUCTION
+/obj/machinery/primitive_stove/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
+	return NONE
+
+/obj/machinery/primitive_stove/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct)
+	return NONE
+
 /obj/machinery/primitive_stove/crowbar_act(mob/living/user, obj/item/tool)
 	user.balloon_alert_to_viewers("disassembling...")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/stone(drop_location(), 5)
 	deconstruct(TRUE)
-	return TOOL_ACT_TOOLTYPE_SUCCESS
+	return ITEM_INTERACT_SUCCESS
 
 /// Stove component subtype with changed visuals and not much else
 /datum/component/stove/primitive

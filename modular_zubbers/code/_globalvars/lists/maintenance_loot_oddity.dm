@@ -1,5 +1,4 @@
 GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
-	/obj/item/a_gift/anything = 100,
 	/obj/item/ai_module/toy_ai = 100,
 	/obj/item/anomaly_releaser = 25,
 	/obj/item/bombcore/training = 10,
@@ -50,7 +49,8 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 		/obj/item/clothing/mask/gas/syndicate = 5,
 		/obj/item/clothing/shoes/bhop = 5,
 		/obj/item/clothing/shoes/bhop/rocket = 1,
-		/obj/item/clothing/shoes/gunboots/disabler = 5
+		/obj/item/clothing/shoes/gunboots/disabler = 5,
+		/obj/item/chameleon_scanner = 1
 	) = 100,
 	/obj/item/clothing/glasses/nightmare_vision = 5,
 	/obj/item/clothing/head/helmet/monkey_sentience = 25,
@@ -87,7 +87,10 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/lazarus_injector = 25,
 	/obj/item/lighter/bright = 1,
 	/obj/item/pinata/syndie = 1,
-	/obj/item/pizzabox/bomb/armed = 1,
+	list(
+		/obj/item/pizzabox/bomb = 1,
+		/obj/item/pizzabox/bomb/armed = 3
+	) = 10,
 	/obj/item/reagent_containers/hypospray/medipen/snail = 1,
 	/obj/item/seeds/kudzu = 1,
 	/obj/item/sharpener = 1,
@@ -111,5 +114,18 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/taster = 10,
 	/obj/item/toy/crayon/spraycan/hellcan = 1,
 	/obj/item/toy/plush/carpplushie/dehy_carp = 5,
-	/obj/item/watertank/pepperspray = 1
+	/obj/item/watertank/pepperspray = 1,
+	/obj/item/gravity_harness = 5,
+	/obj/item/wheelchair/gold = 1,
+	/obj/item/spellpacket/lightningbolt = 10, //These do no damage, but they stun.
+	/obj/item/modular_computer/pda/clear = 30,
+	/obj/item/chair/musical = 10,
+	/obj/item/transfer_valve/fake = 1,
+	/obj/item/tailclub = 5,
+	/obj/item/hot_potato/harmless = 1,
+	list(
+		/obj/item/dice/d20/fate/one_use = 1
+	) = 10,
+	/obj/item/grenade/stingbang/mega = 1,
+	/obj/item/card/emag/one_shot = 1
 ))

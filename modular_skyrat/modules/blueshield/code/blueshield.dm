@@ -1,12 +1,12 @@
 /datum/job/blueshield
 	title = JOB_BLUESHIELD
-	description = "Protect the Heads of Staff and get your hands dirty so they can keep theirs clean." // BUBBER EDIT
+	description = "Protect heads of staff, get your fancy gun stolen, cry as the captain touches the supermatter."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list(JOB_NT_REP)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "All Command Staff and Central Command when applicable" // BUBBER EDIT
+	supervisors = "Central Command and the Nanotrasen Consultant"
 	minimal_player_age = 7
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
@@ -59,7 +59,7 @@
 	messenger = /obj/item/storage/backpack/messenger/blueshield
 	head = /obj/item/clothing/head/beret/blueshield
 	box = /obj/item/storage/box/survival/security
-	belt = /obj/item/modular_computer/pda/security
+	belt = /obj/item/modular_computer/pda/blueshield
 
 	id_trim = /datum/id_trim/job/blueshield
 
@@ -68,3 +68,14 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
+
+/obj/item/modular_computer/pda/blueshield
+	name = "blueshield PDA"
+	greyscale_colors = "#2B356D#1E1E1E"
+	inserted_item = /obj/item/pen/red/security
+	starting_programs = list(
+		/datum/computer_file/program/records/security,
+		/datum/computer_file/program/crew_manifest,
+		/datum/computer_file/program/robocontrol,
+		/datum/computer_file/program/radar/lifeline,
+	)

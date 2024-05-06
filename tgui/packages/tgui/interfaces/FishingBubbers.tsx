@@ -1,8 +1,14 @@
-import { clamp } from 'common/math';
 import { KEY_CTRL } from 'common/keycodes';
-import { randomInteger, randomNumber, randomPick, randomProb } from 'common/random';
-import { useDispatch } from 'common/redux';
-import { Component } from 'inferno';
+import { clamp } from 'common/math';
+import {
+  randomInteger,
+  randomNumber,
+  randomPick,
+  randomProb,
+} from 'common/random';
+import { Component } from 'react';
+import { useDispatch } from 'tgui/backend';
+
 import { resolveAsset } from '../assets';
 import { backendSuspendStart, useBackend } from '../backend';
 import { Icon, KeyListener } from '../components';
@@ -177,7 +183,7 @@ class FishingMinigame extends Component<
   moveFish(
     currentState: FishingMinigameState,
     delta: number,
-    timestamp: DOMHighResTimeStamp
+    timestamp: DOMHighResTimeStamp,
   ): FishingMinigameState {
     const seconds = delta / 1000;
     const { fish: currentFishState } = this.state;
@@ -266,7 +272,7 @@ class FishingMinigame extends Component<
     nextFishState.velocity = clamp(
       nextFishState.velocity + this.idleVelocity,
       -this.currentVelocityLimit,
-      this.currentVelocityLimit
+      this.currentVelocityLimit,
     );
 
     nextFishState.position =
@@ -290,7 +296,7 @@ class FishingMinigame extends Component<
 
   moveBait(
     currentState: FishingMinigameState,
-    delta: number
+    delta: number,
   ): FishingMinigameState {
     const seconds = delta / 1000;
     const { fish, bait } = this.state;
@@ -362,7 +368,7 @@ class FishingMinigame extends Component<
 
   updateCompletion(
     currentState: FishingMinigameState,
-    delta: number
+    delta: number,
   ): FishingMinigameState {
     const seconds = delta / 1000;
     const completion_gain_per_second = 10;
@@ -383,7 +389,7 @@ class FishingMinigame extends Component<
       completion: newCompletion,
     };
 
-    const dispatch = useDispatch(this.context);
+    const dispatch = useDispatch();
 
     if (newCompletion <= 0 && !this.no_escape) {
       this.props.lose();
@@ -443,37 +449,42 @@ class FishingMinigame extends Component<
   render() {
     const { completion, fish, bait } = this.state;
     const posToStyle = (value: number) => (value / this.area_height) * 100;
-    const background_image = resolveAsset(this.props.background);
+    const backgroundImage = resolveAsset(this.props.background);
     return (
-      <div class="fishing">
+      <div className="fishing">
         <KeyListener
           onKeyDown={this.handleKeyDown}
           onKeyUp={this.handleKeyUp}
         />
-        <div class="main">
+        <div className="main">
           <div
-            class="background"
-            style={{ 'background-image': `url("${background_image}")` }}>
+            className="background"
+            style={{ backgroundImage: `url("${backgroundImage}")` }}
+          >
             <div
-              class="bait"
+              className="bait"
               style={{
                 height: `${posToStyle(bait.height)}%`,
                 top: `${posToStyle(bait.position)}%`,
               }}
             />
             <div
-              class="fish"
+              className="fish"
               style={{
                 top: `${posToStyle(fish.position)}%`,
                 height: `${posToStyle(fish.height)}%`,
-              }}>
+              }}
+            >
               <Icon name="fish" />
             </div>
           </div>
         </div>
-        <div class="completion">
-          <div class="background">
-            <div class="bar" style={{ height: `${Math.round(completion)}%` }} />
+        <div className="completion">
+          <div className="background">
+            <div
+              className="bar"
+              style={{ height: `${Math.round(completion)}%` }}
+            />
           </div>
         </div>
       </div>
@@ -489,7 +500,7 @@ type FishingData = {
 };
 
 export const Fishing = (props, context) => {
-  const { act, data } = useBackend<FishingData>(context);
+  const { act, data } = useBackend<FishingData>();
   return (
     <Window width={180} height={600}>
       <Window.Content fitted>

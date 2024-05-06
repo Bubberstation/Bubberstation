@@ -65,7 +65,7 @@
 /obj/item/clothing/accessory/badge/holo
 	name = "holobadge"
 	desc = "This glowing blue badge marks the holder as THE LAW."
-	icon_state = "holobadge"
+	icon_state = "holobadge_lopland"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
 
@@ -98,7 +98,7 @@
 		if(istype(object, /obj/item/card/id))
 			id_card = object
 
-		if(ACCESS_BRIG in id_card.access || (obj_flags & EMAGGED))
+		if(ACCESS_SECURITY in id_card.access || (obj_flags & EMAGGED))
 			to_chat(user, "You imprint your ID details onto the badge.")
 			set_name(user.real_name)
 			badge_string = id_card.assignment
@@ -159,21 +159,6 @@
 	new /obj/item/clothing/accessory/badge/holo/hos(src)
 	new /obj/item/clothing/accessory/badge/holo/cord(src)
 	return
-
-// The newbie pin
-/obj/item/clothing/accessory/green_pin
-	name = "green pin"
-	desc = "A pin given to newly hired personnel on deck."
-	icon_state = "green"
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/accessories.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
-
-/obj/item/clothing/accessory/green_pin/examine(mob/user)
-	. = ..()
-	// How many hours of playtime left until the green pin expires
-	var/green_time_remaining = sanitize_integer((PLAYTIME_GREEN - user.client?.get_exp_living(pure_numeric = TRUE) / 60), 0, (PLAYTIME_GREEN / 60))
-	if(green_time_remaining > 0)
-		. += span_nicegreen("It reads '[green_time_remaining] hour[green_time_remaining >= 2 ? "s" : ""].'")
 
 // Pride Pin Over-ride
 /obj/item/clothing/accessory/pride

@@ -38,6 +38,10 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/accessories.dmi'
 	icon_state = "armband_lopland"
 
+/obj/item/clothing/accessory/armband/deputy/lopland/nonsec
+	name = "blue armband"
+	desc = "An armband, worn to signify proficiency in a skill or association with a department. This one is blue."
+
 /obj/item/clothing/accessory/armband/deputy/lopland
 	desc = "A Peacekeeper-blue armband, showing the wearer to be certified by Lopland as a top-of-their-class Security Officer."
 
@@ -148,7 +152,7 @@
 
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
-	var/atom/resolve_parent = parent?.resolve()
+	var/atom/resolve_parent = parent
 	if(!resolve_parent)
 		return
 	if(isobserver(user))
@@ -162,7 +166,7 @@
 	if(!isliving(user) || user.incapacitated())
 		return FALSE
 
-	var/obj/item/gun/gun_to_draw = locate() in real_location?.resolve()
+	var/obj/item/gun/gun_to_draw = locate() in real_location
 	if(!gun_to_draw)
 		return ..()
 	resolve_parent.add_fingerprint(user)
@@ -252,7 +256,7 @@
 	user.update_worn_head()
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
-		carbon_user.head_update(src, forced = TRUE)
+		carbon_user.update_worn_head()
 
 
 //Beret replacement
@@ -388,11 +392,11 @@
 		),
 	)
 
-/obj/item/clothing/neck/security_cape/AltClick(mob/user)
-	. = ..()
+/obj/item/clothing/neck/security_cape/click_alt(mob/user)
 	swapped = !swapped
 	to_chat(user, span_notice("You swap which arm [src] will lay over."))
 	update_appearance()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/neck/security_cape/update_appearance(updates)
 	. = ..()
@@ -437,7 +441,25 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "fightgloves_blue"
-
+	uses_advanced_reskins = TRUE
+	unique_reskin = list(
+		"Black Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_black",
+			RESKIN_WORN_ICON_STATE = "fightgloves_black"
+		),
+		"Blue Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_blue",
+			RESKIN_WORN_ICON_STATE = "fightgloves_blue"
+		),
+		"Red Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves",
+			RESKIN_WORN_ICON_STATE = "fightgloves"
+		),
+		"White Variant" = list(
+			RESKIN_ICON_STATE = "fightgloves_white",
+			RESKIN_WORN_ICON_STATE = "fightgloves_white"
+		),
+	)
 /*
 * SUITS
 */
@@ -783,6 +805,23 @@
 		/obj/item/gun/energy/e_gun/hos,
 		))
 
+/obj/item/storage/belt/holster/energy/Initialize(mapload)
+	. = ..()
+	atom_storage.max_slots = 2
+	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
+	atom_storage.set_holdable(list(
+		/obj/item/gun/energy/e_gun/mini,
+		/obj/item/gun/energy/disabler,
+		/obj/item/gun/energy/dueling,
+		/obj/item/food/grown/banana,
+		/obj/item/gun/energy/laser/thermal,
+		/obj/item/gun/energy/recharge/ebow,
+		/obj/item/gun/energy/laser/captain,
+		/obj/item/gun/energy/e_gun/hos,
+		/obj/item/gun/ballistic/automatic/pistol/plasma_marksman,
+		/obj/item/gun/ballistic/automatic/pistol/plasma_thrower,
+		/obj/item/ammo_box/magazine/recharge/plasma_battery,
+	))
 /*
 *	HEAD
 */

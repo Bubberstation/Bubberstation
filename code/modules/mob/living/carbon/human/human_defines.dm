@@ -5,7 +5,7 @@
 	icon = 'icons/mob/human/human.dmi'
 	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	hud_possible = list(HEALTH_HUD,STATUS_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD,ANTAG_HUD,GLAND_HUD,SENTIENT_DISEASE_HUD,FAN_HUD,PERMIT_HUD, DNR_HUD) //SKYRAT EDIT ADDITION - PERMIT_HUD, DNR_HUD
+	hud_possible = list(HEALTH_HUD,STATUS_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPSEC_FIRST_HUD,IMPSEC_SECOND_HUD,ANTAG_HUD,GLAND_HUD,SENTIENT_DISEASE_HUD,FAN_HUD,PERMIT_HUD, DNR_HUD) //SKYRAT EDIT ADDITION - PERMIT_HUD, DNR_HUD
 	hud_type = /datum/hud/human
 	pressure_resistance = 25
 	can_buckle = TRUE
@@ -13,12 +13,13 @@
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	can_be_shoved_into = TRUE
 	initial_language_holder = /datum/language_holder/empty // We get stuff from our species
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 
 	maxHealth = HUMAN_MAXHEALTH //SKYRAT EDIT ADDITION
 	health = HUMAN_MAXHEALTH //SKYRAT EDIT ADDITION
 
 	//Hair colour and style
-	var/hair_color = "#000000"
+	var/hair_color = COLOR_BLACK
 	var/hairstyle = "Bald"
 
 	///Colours used for hair and facial hair gradients.
@@ -27,12 +28,12 @@
 	var/list/grad_style
 
 	//Facial hair colour and style
-	var/facial_hair_color = "#000000"
+	var/facial_hair_color = COLOR_BLACK
 	var/facial_hairstyle = "Shaved"
 
 	//Eye colour
-	var/eye_color_left = "#000000"
-	var/eye_color_right = "#000000"
+	var/eye_color_left = COLOR_BLACK
+	var/eye_color_right = COLOR_BLACK
 	/// Var used to keep track of a human mob having a heterochromatic right eye. To ensure prefs don't overwrite shit
 	var/eye_color_heterochromatic = FALSE
 
@@ -48,7 +49,7 @@
 
 	//consider updating /mob/living/carbon/human/copy_clothing_prefs() if adding more of these
 	var/underwear = "Nude" //Which underwear the player wants
-	var/underwear_color = "#000000"
+	var/underwear_color = COLOR_BLACK
 	var/undershirt = "Nude" //Which undershirt the player wants
 	var/socks = "Nude" //Which socks the player wants
 	var/backpack = DBACKPACK //Which backpack type the player has chosen.
@@ -70,10 +71,12 @@
 
 	var/datum/physiology/physiology
 
-	var/list/datum/bioware/biowares
-
 	/// What types of mobs are allowed to ride/buckle to this mob
-	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/slime, /mob/living/simple_animal/parrot))
+	var/static/list/can_ride_typecache = typecacheof(list(
+		/mob/living/basic/parrot,
+		/mob/living/carbon/human,
+		/mob/living/basic/slime,
+	))
 	var/lastpuke = 0
 	var/account_id
 

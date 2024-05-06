@@ -5,6 +5,8 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	digitigrade_customization = DIGITIGRADE_OPTIONAL // Doing this so that the legs preference actually works for everyone.
 	///Self explanatory
 	var/can_have_genitals = TRUE
+	/// Whether or not the gender shaping is disabled for this species
+	var/no_gender_shaping
 	///A list of actual body markings on the owner of the species. Associative lists with keys named by limbs defines, pointing to a list with names and colors for the marking to be rendered. This is also stored in the DNA
 	var/list/list/body_markings = list()
 	///Override of the eyes icon file, used for Vox and maybe more in the future - The future is now, with Teshari using it too
@@ -23,36 +25,41 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/veteran_only = FALSE
 	///Flavor text of the species displayed on character creation screeen
 	var/flavor_text = "No description."
-	///Path to BODYTYPE_CUSTOM species worn icons. An assoc list of ITEM_SLOT_X => /icon
+	///Path to BODYSHAPE_CUSTOM species worn icons. An assoc list of ITEM_SLOT_X => /icon
 	var/list/custom_worn_icons = list()
 	///Is this species restricted from changing their body_size in character creation?
 	var/body_size_restricted = FALSE
-	///What accessories can a species have aswell as their default accessory of such type e.g. "frills" = "Aquatic". Default accessory colors is dictated by the accessory properties and mutcolors of the specie
-	var/list/default_mutant_bodyparts = list()
-	/// A static list of all genital slot possibilities.
-	var/static/list/genitals_list = list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_WOMB, ORGAN_SLOT_TESTICLES, ORGAN_SLOT_BREASTS, ORGAN_SLOT_ANUS, ORGAN_SLOT_PENIS)
 	/// Are we lore protected? This prevents people from changing the species lore or species name.
 	var/lore_protected = FALSE
 
+/// Returns a list of the default mutant bodyparts, and whether or not they can be randomized or not
+/datum/species/proc/get_default_mutant_bodyparts()
+	return list()
+
 /datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/owner, forced_colour, force_update = FALSE)
 	return
-
-/datum/species/New()
-	. = ..()
-	if(can_have_genitals)
-		for(var/genital in genitals_list)
-			default_mutant_bodyparts[genital] = "None"
 
 /datum/species/dullahan
 	mutant_bodyparts = list()
 
 /datum/species/human/felinid
 	mutant_bodyparts = list()
-	default_mutant_bodyparts = list("tail" = "Cat", "ears" = "Cat")
+
+/datum/species/human/felinid/get_default_mutant_bodyparts()
+	return list(
+		"tail" = list("Cat", FALSE),
+		"ears" = list("Cat", FALSE),
+	)
 
 /datum/species/human
 	mutant_bodyparts = list()
-	default_mutant_bodyparts = list("ears" = "None", "tail" = "None", "wings" = "None")
+
+/datum/species/human/get_default_mutant_bodyparts()
+	return list(
+		"ears" = list("None", FALSE),
+		"tail" = list("None", FALSE),
+		"wings" = list("None", FALSE),
+	)
 
 /datum/species/mush
 	mutant_bodyparts = list()
@@ -75,20 +82,35 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	always_customizable = TRUE
 
 /datum/species/randomize_features(mob/living/carbon/human/human_mob)
-	return
+	var/list/features = ..()
+	return features
 
-/datum/species/proc/get_random_mutant_bodyparts(list/features) //Needs features to base the colour off of
+/**
+ * Returns a list of mutant_bodyparts
+ *
+ * Gets the default species mutant_bodyparts list for the given species datum and sets up its sprite accessories.
+ *
+ * Arguments:
+ * * features - Features are needed for the part color
+ * * existing_mutant_bodyparts - When passed a list of existing mutant bodyparts, the existing ones will not get overwritten
+ */
+/datum/species/proc/get_mutant_bodyparts(list/features, list/existing_mutant_bodyparts) //Needs features to base the colour off of
 	var/list/mutantpart_list = list()
-	var/list/bodyparts_to_add = default_mutant_bodyparts.Copy()
+	if(LAZYLEN(existing_mutant_bodyparts))
+		mutantpart_list = existing_mutant_bodyparts.Copy()
+	var/list/default_bodypart_data = GLOB.default_mutant_bodyparts[name]
+	var/list/bodyparts_to_add = default_bodypart_data.Copy()
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		for(var/genital in genitals_list)
+		for(var/genital in GLOB.possible_genitals)
 			bodyparts_to_add.Remove(genital)
 	for(var/key in bodyparts_to_add)
+		if(LAZYLEN(existing_mutant_bodyparts) && existing_mutant_bodyparts[key])
+			continue
 		var/datum/sprite_accessory/SP
-		if(bodyparts_to_add[key] == ACC_RANDOM)
+		if(default_bodypart_data[key][MUTANTPART_CAN_RANDOMIZE])
 			SP = random_accessory_of_key_for_species(key, src)
 		else
-			SP = GLOB.sprite_accessories[key][bodyparts_to_add[key]]
+			SP = GLOB.sprite_accessories[key][bodyparts_to_add[key][MUTANTPART_NAME]]
 			if(!SP)
 				CRASH("Cant find accessory of [key] key, [bodyparts_to_add[key]] name, for species [id]")
 		var/list/color_list = SP.get_default_color(features, src)
@@ -115,9 +137,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 
 			if(eye_organ)
 				eye_organ.refresh(call_update = FALSE)
-				for(var/mutable_appearance/eye_overlay in eye_organ.generate_body_overlay(species_human))
-					eye_overlay.pixel_y += height_offset
-					standing += eye_overlay
+				standing += eye_organ.generate_body_overlay(species_human)
 
 	//Underwear, Undershirts & Socks
 	if(!HAS_TRAIT(species_human, TRAIT_NO_UNDERWEAR))
@@ -127,7 +147,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			var/female_sprite_flags = FEMALE_UNIFORM_FULL // the default gender shaping
 			if(underwear)
 				var/icon_state = underwear.icon_state
-				if(underwear.has_digitigrade && (species_human.bodytype & BODYTYPE_DIGITIGRADE))
+				if(underwear.has_digitigrade && (species_human.bodyshape & BODYSHAPE_DIGITIGRADE))
 					icon_state += "_d"
 					female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY // for digi gender shaping
 				if(species_human.dna.species.sexes && species_human.physique == FEMALE && (underwear.gender == MALE))
@@ -169,7 +189,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			if(socks)
 				var/mutable_appearance/socks_overlay
 				var/icon_state = socks.icon_state
-				if((species_human.bodytype & BODYTYPE_DIGITIGRADE))
+				if((species_human.bodyshape & BODYSHAPE_DIGITIGRADE))
 					icon_state += "_d"
 				socks_overlay = mutable_appearance(socks.icon, icon_state, -BODY_LAYER)
 				if(!socks.use_static)
@@ -182,50 +202,10 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	species_human.apply_overlay(BODY_LAYER)
 	handle_mutant_bodyparts(species_human)
 
-/datum/species/spec_stun(mob/living/carbon/human/H,amount)
-	if(H)
-		stop_wagging_tail(H)
-	. = ..()
-
-/*
-*	TAIL WAGGING
-*/
-
-/datum/species/proc/can_wag_tail(mob/living/carbon/human/H)
-	if(!H) //Somewhere in the core code we're getting those procs with H being null
-		return FALSE
-	var/obj/item/organ/external/tail/T = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
-	if(!T)
-		return FALSE
-	if(T.can_wag)
-		return TRUE
-	return FALSE
-
-/datum/species/proc/is_wagging_tail(mob/living/carbon/human/H)
-	if(!H) //Somewhere in the core code we're getting those procs with H being null
-		return FALSE
-	var/obj/item/organ/external/tail/T = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
-	if(!T)
-		return FALSE
-	return T.wagging
-
-/datum/species/proc/start_wagging_tail(mob/living/carbon/human/H)
-	if(!H) //Somewhere in the core code we're getting those procs with H being null
-		return
-	var/obj/item/organ/external/tail/T = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
-	if(!T)
-		return FALSE
-	T.wagging = TRUE
-	H.update_body()
-
-/datum/species/proc/stop_wagging_tail(mob/living/carbon/human/H)
-	if(!H) //Somewhere in the core code we're getting those procs with H being null
-		return
-	var/obj/item/organ/external/tail/T = H.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
-	if(!T)
-		return
-	T.wagging = FALSE
-	H.update_body()
+/datum/species/spec_stun(mob/living/carbon/human/target, amount)
+	if(istype(target))
+		target.unwag_tail()
+	return ..()
 
 /datum/species/regenerate_organs(mob/living/carbon/target, datum/species/old_species, replace_current = TRUE, list/excluded_zones, visual_only = FALSE)
 	. = ..()
@@ -257,7 +237,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 
 				replacement.build_from_dna(target.dna, key)
 				// organ.Insert will qdel any current organs in that slot, so we don't need to.
-				replacement.Insert(target, special = TRUE, drop_if_replaced = FALSE)
+				replacement.Insert(target, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 			// var/obj/item/organ/path = new SA.organ_type
 			// var/obj/item/organ/oldorgan = C.get_organ_slot(path.slot)

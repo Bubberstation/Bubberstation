@@ -1,11 +1,12 @@
 /datum/species/snail
-	name = "Snailperson"
+	name = "\improper Snailperson"
+	plural_form = "Snailpeople"
 	id = SPECIES_SNAIL
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
-		// TRAIT_NO_UNDERWEAR, //SKYRAT EDIT - Snails deserve to wear underwear
+		// TRAIT_NO_UNDERWEAR, //SKYRAT EDIT REMOVAL - Roundstart Snails - Snails deserve to wear underwear
 		TRAIT_NO_SLIP_ALL,
-		TRAIT_WATER_BREATHING, //SKYRAT EDIT - Roundstart Snails
+		TRAIT_WATER_BREATHING, //SKYRAT EDIT ADDITION - Roundstart Snails - Sea snails exist, and land snails can weather being underwater for almost a day.
 	)
 
 	coldmod = 0.5 //snails only come out when its cold and wet
@@ -13,11 +14,9 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP
 	sexes = FALSE //snails are hermaphrodites
 
-	eyes_icon = 'modular_skyrat/modules/organs/icons/snail_eyes.dmi' // SKYRAT EDIT - Roundstart Snails
 	mutanteyes = /obj/item/organ/internal/eyes/snail
 	mutanttongue = /obj/item/organ/internal/tongue/snail
-	mutantliver = /obj/item/organ/internal/liver/snail //SKYRAT EDIT - Roundstart Snails
-	// exotic_blood = /datum/reagent/lube // SKYRAT EDIT REMOVAL: Roundstart Snails - No more lube
+	exotic_blood = /datum/reagent/lube
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/snail,
@@ -28,10 +27,51 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/snail
 	)
 
+/datum/species/snail/prepare_human_for_preview(mob/living/carbon/human/human)
+	human.dna.features["mcolor"] = COLOR_BEIGE
+	human.update_body(is_creating = TRUE)
 
 /datum/species/snail/get_physical_attributes()
 	return "Snailpeople emit a viscous, slippery ooze when crawling along the ground, which they are somewhat faster at than other species. \
 		They are almost purely made of water, making them extremely susceptible to shocks, and salt will scour them heavily."
+
+/datum/species/snail/get_species_description()
+	return "Snailpeople are viscous, slimy beings with a shell on their back."
+
+/datum/species/snail/get_species_lore()
+	return list(
+		"Normally, Snailpeople are a result of a genetic experiment gone wrong, but they have since become recognized species in their own right, \
+		similar to the Felinid.",
+	)
+
+/datum/species/snail/create_pref_unique_perks()
+	var/list/to_add = list()
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = FA_ICON_RUNNING,
+		SPECIES_PERK_NAME = "Turbo",
+		SPECIES_PERK_DESC = "Snailpeople walk and run very slow, but crawl around very fast. While crawling, they leave a trail of slippery slime behind them.",
+	))
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = FA_ICON_SHRIMP,
+		SPECIES_PERK_NAME = "Shelled",
+		SPECIES_PERK_DESC = "The back of a Snailperson is covered in an armored shell, which is effectively an unremovable backpack. \
+			Good for keeping your things from being stolen, but bad for needing to wear a MODsuit, or disguising.",
+	))
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_SKULL_CROSSBONES,
+		SPECIES_PERK_NAME = "Salty",
+		SPECIES_PERK_DESC = "Being evolved from Snails, Snailpeople are extremely susceptible to salt, which burns them.",
+	))
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_HAND_FIST,
+		SPECIES_PERK_NAME = "Squishy",
+		SPECIES_PERK_DESC = "Snailpeople are squishy and slimy, making their punches and kicks far less effective than other species.",
+	))
+	return to_add
 
 /datum/species/snail/handle_chemical(datum/reagent/chem, mob/living/carbon/human/affected, seconds_per_tick, times_fired)
 	. = ..()
@@ -50,9 +90,6 @@
 		if(new_snailperson.dropItemToGround(bag)) //returns TRUE even if its null
 			new_snailperson.equip_to_slot_or_del(new /obj/item/storage/backpack/snail(new_snailperson), ITEM_SLOT_BACK)
 	new_snailperson.AddElement(/datum/element/snailcrawl)
-	new_snailperson.update_icons() //SKYRAT EDIT: Roundstart Snails
-	//if(ishuman(new_snailperson)) //SKYRAT EDIT: Snails don't have exotic blood here!
-	//	update_mail_goodies(new_snailperson) //SKYRAT EDIT END
 
 /datum/species/snail/on_species_loss(mob/living/carbon/former_snailperson, datum/species/new_species, pref_load)
 	. = ..()
@@ -62,13 +99,6 @@
 		bag.emptyStorage()
 		former_snailperson.temporarilyRemoveItemFromInventory(bag, TRUE)
 		qdel(bag)
-
-/*/datum/species/snail/update_quirk_mail_goodies(mob/living/carbon/human/recipient, datum/quirk/quirk, list/mail_goodies = list()) //SKYRAT EDIT: Snails don't have exotic blood here!
-	if(istype(quirk, /datum/quirk/blooddeficiency))
-		mail_goodies += list(
-			/obj/item/reagent_containers/blood/snail
-		)
-	return ..()*/ //SKYRAT EDIT END
 
 /obj/item/storage/backpack/snail
 	name = "snail shell"
@@ -80,81 +110,8 @@
 	armor_type = /datum/armor/backpack_snail
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	//SKYRAT EDIT BEGIN - Roundstart Snails
-	slowdown = 6 // The snail's shell is what's making them slow.
-	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER //This makes them layer over tails like the cult backpack; some tails really shouldn't appear over them!
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Conical Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "coneshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "coneshell"
-		),
-		"Round Shell" = list(
-			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
-			RESKIN_ICON_STATE = "snailshell",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
-			RESKIN_WORN_ICON_STATE = "snailshell"
-		),
-		"Cinnamon Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "cinnamonshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "cinnamonshell"
-		),
-		"Caramel Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "caramelshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "caramelshell"
-		),
-		"Metal Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "mechashell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "mechashell"
-		),
-		"Pyramid Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "pyramidshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "pyramidshell"
-		),
-		"Ivory Pyramid Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "pyramidshellwhite",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "pyramidshellwhite"
-		),
-		"Spiral Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "spiralshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "spiralshell"
-		),
-		"Ivory Spiral Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "spiralshellwhite",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "spiralshellwhite"
-		),
-		"Rocky Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "rockshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "rockshell"
-		),
-		"Ivory Rocky Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "rockshellwhite",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "rockshellwhite"
-		),
-	)
-	//SKYRAT EDIT END - Roundstart Snails
 
-/datum/armor/backpack_snail
+/datum/armor/backpack_snail //SKYRAT COMMENT CLARIFICATION - Roundstart Snails - These armor values don't actually do any protection of the wearer, this is for checking direct damage to the backpack. Damage resistance stuff is in their heart file.
 	melee = 40
 	bullet = 30
 	laser = 30
@@ -170,4 +127,4 @@
 
 /obj/item/storage/backpack/snail/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, "snailshell")
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)

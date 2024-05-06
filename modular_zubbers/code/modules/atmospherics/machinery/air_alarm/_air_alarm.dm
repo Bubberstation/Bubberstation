@@ -3,10 +3,6 @@
 	var/efficiency = 10000
 	desc = "A machine that monitors atmosphere levels. Goes off if the area is dangerous, and activates firelocks. Contains a mini-heater for heating small rooms in cases of extreme cold."
 
-/obj/machinery/airalarm/proc/activate_firedoors(activation_type = FIRELOCK_ALARM_TYPE_GENERIC)
-	for(var/obj/machinery/door/firedoor/firelock as anything in my_area.firedoors)
-		firelock.activate(activation_type)
-
 /obj/machinery/airalarm/proc/heat_environment(datum/gas_mixture/environment)
 
 	if(heating_power <= 0)
@@ -23,4 +19,3 @@
 	if(delta_temperature > 0)
 		environment.temperature += delta_temperature
 		air_update_turf(FALSE, FALSE)
-		use_power(required_energy / efficiency)

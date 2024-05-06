@@ -1,8 +1,15 @@
-GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
+GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NEW PATHS FROM THE COMMENTED PARTS
 	/obj/item/aicard/aitater = 10,
 	/obj/item/ammo_box/foambox/riot = 50,
-	/obj/item/survivalcapsule = 25,
+	list(
+		/obj/item/survivalcapsule = 100,
+		/obj/item/survivalcapsule/luxury = 10,
+		/obj/item/survivalcapsule/luxuryelite = 5,
+		/obj/item/survivalcapsule/sauna = 5,
+		/obj/item/survivalcapsule/bathroom = 1
+	) = 25,
 	/obj/item/table_clock = 50,
+	/obj/item/storage/briefcase/coderbus = 25,
 	list(
 		/obj/item/ammo_casing/shotgun/antitide = 1,
 		/obj/item/ammo_casing/shotgun/beanbag = 1,
@@ -13,19 +20,19 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/ammo_casing/shotgun/express = 1,
 		/obj/item/ammo_casing/shotgun/flechette = 1,
 		/obj/item/ammo_casing/shotgun/frag12 = 1,
-		/obj/item/ammo_casing/shotgun/honk = 25,
-		/obj/item/ammo_casing/shotgun/hp = 1,
+//		/obj/item/ammo_casing/shotgun/honk = 25,
+//		/obj/item/ammo_casing/shotgun/hp = 1,
 		/obj/item/ammo_casing/shotgun/hunter = 1,
-		/obj/item/ammo_casing/shotgun/iceblox = 1,
+//		/obj/item/ammo_casing/shotgun/iceblox = 1,
 		/obj/item/ammo_casing/shotgun/improvised = 200,
 		/obj/item/ammo_casing/shotgun/incapacitate = 1,
 		/obj/item/ammo_casing/shotgun/incendiary = 1,
 		/obj/item/ammo_casing/shotgun/ion = 1,
 		/obj/item/ammo_casing/shotgun/laserslug = 1,
 		/obj/item/ammo_casing/shotgun/magnum = 1,
-		/obj/item/ammo_casing/shotgun/pt20 = 1,
+//		/obj/item/ammo_casing/shotgun/pt20 = 1,
 		/obj/item/ammo_casing/shotgun/pulverizer = 1,
-		/obj/item/ammo_casing/shotgun/rip = 1,
+//		/obj/item/ammo_casing/shotgun/rip = 1,
 		/obj/item/ammo_casing/shotgun/rubbershot = 100,
 		/obj/item/ammo_casing/shotgun/stunslug = 25,
 		/obj/item/ammo_casing/shotgun/techshell = 75
@@ -42,25 +49,21 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/clothing/glasses/hud/ar/projector/meson = 100,
 		/obj/item/clothing/glasses/hud/ar/projector/science = 25,
 		/obj/item/clothing/glasses/hud/ar/projector/security = 10,
-
 		/obj/item/clothing/glasses/hud/eyepatch/diagnostic = 50,
 		/obj/item/clothing/glasses/hud/eyepatch/med = 25,
 		/obj/item/clothing/glasses/hud/eyepatch/meson = 100,
 		/obj/item/clothing/glasses/hud/eyepatch/sci = 25,
 		/obj/item/clothing/glasses/hud/eyepatch/sec = 10,
-
 		/obj/item/clothing/glasses/hud/diagnostic = 50,
 		/obj/item/clothing/glasses/hud/health = 25,
 		/obj/item/clothing/glasses/material/mining = 100,
 		/obj/item/clothing/glasses/meson = 100,
 		/obj/item/clothing/glasses/science = 25,
 		/obj/item/clothing/glasses/hud/security = 10,
-
 		/obj/item/clothing/glasses/hud/gun_permit = 25,
 		/obj/item/clothing/glasses/hud/security/redsec = 5,
 		/obj/item/clothing/glasses/meson/engine = 25,
 		/obj/item/clothing/glasses/meson/engine/tray = 25,
-
 		/obj/item/clothing/glasses/sunglasses/reagent = 1,
 		/obj/item/clothing/glasses/sunglasses/chemical = 1,
 		/obj/item/clothing/glasses/sunglasses/spy = 1
@@ -125,7 +128,11 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/dnainjector/timed/h2m = 1,
 		/obj/item/dnainjector/tourmut = 1,
 		/obj/item/dnainjector/twoleftfeet = 1,
-		/obj/item/dnainjector/wackymut = 10
+		/obj/item/dnainjector/wackymut = 10,
+		/obj/item/dnainjector/spastic = 1,
+		/obj/item/dnainjector/paranoia = 1,
+		/obj/item/dnainjector/coughmut = 1,
+		/obj/item/dnainjector/antenna = 1
 	) = 25,
 	/obj/item/dog_bone = 5,
 	/obj/item/door_seal = 5,
@@ -140,7 +147,8 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/firing_pin/paywall/luxury = 50,
 		/obj/item/firing_pin/tag/blue = 5,
 		/obj/item/firing_pin/tag/red = 5,
-		/obj/item/firing_pin/test_range = 10
+		/obj/item/firing_pin/test_range = 10,
+		/obj/item/firing_pin/monkey = 5
 	) = 10,
 	list(
 		/obj/item/implanter/mortis = 10,
@@ -159,7 +167,8 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/pizzabox/meat = 1,
 		/obj/item/pizzabox/mushroom = 1,
 		/obj/item/pizzabox/pineapple = 1,
-		/obj/item/pizzabox/vegetable = 1
+		/obj/item/pizzabox/vegetable = 1,
+		/obj/item/pizzabox/random = 3 //Mothic.
 	) = 30,
 	list(
 		/obj/item/quickdeploy/barricade = 50,
@@ -182,5 +191,23 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/storage/medkit/o2 = 25,
 		/obj/item/storage/medkit/surgery = 5,
 		/obj/item/storage/medkit/toxin = 25
-	) = 75
+	) = 75,
+	/obj/item/crucifix = 5,
+	list(
+		/obj/item/hairbrush/switchblade = 5,
+		/obj/item/hairbrush/tactical = 1
+	) = 5,
+	/obj/item/geneshears = 10,
+	/obj/item/sign/flag/usa = 5,
+	/obj/item/spess_knife = 5,
+	/obj/item/borg_restart_board = 5,
+	/obj/item/switchblade = 5,
+	/obj/item/throwing_star = 5,
+	/obj/item/grenade/primer/stingbang = 1,
+	list(
+		/obj/item/tank/internals/emergency_oxygen/engi/clown = 1,
+		/obj/item/tank/internals/emergency_oxygen/engi/clown/n2o = 1,
+		/obj/item/tank/internals/emergency_oxygen/engi/clown/bz = 1,
+		/obj/item/tank/internals/emergency_oxygen/engi/clown/helium = 1
+	) = 5
 ))

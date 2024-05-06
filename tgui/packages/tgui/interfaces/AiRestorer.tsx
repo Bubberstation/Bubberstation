@@ -1,6 +1,14 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -24,8 +32,8 @@ export const AiRestorer = () => {
   );
 };
 
-export const AiRestorerContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const AiRestorerContent = (props) => {
+  const { act, data } = useBackend<Data>();
   const {
     AI_present,
     error,
@@ -56,7 +64,8 @@ export const AiRestorerContent = (props, context) => {
             <Box inline bold color={isDead ? 'bad' : 'good'}>
               {isDead ? 'Nonfunctional' : 'Functional'}
             </Box>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Integrity">
               <ProgressBar
@@ -83,6 +92,15 @@ export const AiRestorerContent = (props, context) => {
             disabled={restoring}
             mt={1}
             onClick={() => act('PRG_beginReconstruction')}
+          />
+          {/* BUBBER ADDITION - Malf Remover */}
+          <Button
+            fluid
+            icon="bug"
+            content="Run Dr. Moffson Antivirus"
+            disabled={restoring}
+            mt={1}
+            onClick={() => act('PRG_Moffson')}
           />
           <Section title="Laws">
             {laws.map((law) => (

@@ -13,9 +13,9 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(IS_IN_STASIS(src))
+	if(HAS_TRAIT(src, TRAIT_STASIS))
 		. = ..()
-		reagents.handle_stasis_chems(src, seconds_per_tick, times_fired)
+		reagents?.handle_stasis_chems(src, seconds_per_tick, times_fired)
 	else
 		//Reagent processing needs to come before breathing, to prevent edge cases.
 		handle_dead_metabolization(seconds_per_tick, times_fired) //Dead metabolization first since it can modify life metabolization.
@@ -280,7 +280,8 @@
 	if(!can_breathe_vacuum && (o2_pp < safe_oxygen_min))
 		// Breathe insufficient amount of O2.
 		oxygen_used = handle_suffocation(o2_pp, safe_oxygen_min, breath_gases[/datum/gas/oxygen][MOLES])
-		throw_alert(ALERT_NOT_ENOUGH_OXYGEN, /atom/movable/screen/alert/not_enough_oxy)
+		if(!HAS_TRAIT(src, TRAIT_ANOSMIA))
+			throw_alert(ALERT_NOT_ENOUGH_OXYGEN, /atom/movable/screen/alert/not_enough_oxy)
 	else
 		// Enough oxygen to breathe.
 		failed_last_breath = FALSE
@@ -307,7 +308,8 @@
 		if(!co2overloadtime)
 			co2overloadtime = world.time
 		else if((world.time - co2overloadtime) > 12 SECONDS)
-			throw_alert(ALERT_TOO_MUCH_CO2, /atom/movable/screen/alert/too_much_co2)
+			if(!HAS_TRAIT(src, TRAIT_ANOSMIA))
+				throw_alert(ALERT_TOO_MUCH_CO2, /atom/movable/screen/alert/too_much_co2)
 			Unconscious(6 SECONDS)
 			// Lets hurt em a little, let them know we mean business.
 			adjustOxyLoss(3)
@@ -325,7 +327,8 @@
 		// Plasma side-effects.
 		var/ratio = (breath_gases[/datum/gas/plasma][MOLES] / safe_plas_max) * 10
 		adjustToxLoss(clamp(ratio, MIN_TOXIC_GAS_DAMAGE, MAX_TOXIC_GAS_DAMAGE))
-		throw_alert(ALERT_TOO_MUCH_PLASMA, /atom/movable/screen/alert/too_much_plas)
+		if(!HAS_TRAIT(src, TRAIT_ANOSMIA))
+			throw_alert(ALERT_TOO_MUCH_PLASMA, /atom/movable/screen/alert/too_much_plas)
 	else
 		// Reset side-effects.
 		clear_alert(ALERT_TOO_MUCH_PLASMA)
@@ -356,6 +359,8 @@
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, make_copy = TRUE, del_on_fail = TRUE)
 		// Miasma side-effects.
+		if (HAS_TRAIT(src, TRAIT_ANOSMIA)) //We can't feel miasma without sense of smell
+			return
 		switch(miasma_pp)
 			if(0.25 to 5)
 				// At lower pp, give out a little warning
@@ -386,7 +391,8 @@
 	if(n2o_pp > n2o_para_min)
 		// More N2O, more severe side-effects. Causes stun/sleep.
 		n2o_euphoria = EUPHORIA_ACTIVE
-		throw_alert(ALERT_TOO_MUCH_N2O, /atom/movable/screen/alert/too_much_n2o)
+		if(!HAS_TRAIT(src, TRAIT_ANOSMIA))
+			throw_alert(ALERT_TOO_MUCH_N2O, /atom/movable/screen/alert/too_much_n2o)
 		// give them one second of grace to wake up and run away a bit!
 		if(!HAS_TRAIT(src, TRAIT_SLEEPIMMUNE))
 			Unconscious(6 SECONDS)
@@ -488,15 +494,25 @@
 
 /mob/living/carbon/proc/handle_organs(seconds_per_tick, times_fired)
 	if(stat == DEAD)
-		if(reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/cryostylane)) // No organ decay if the body contains formaldehyde.
+		if(reagents && (reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 1) || reagents.has_reagent(/datum/reagent/cryostylane))) // No organ decay if the body contains formaldehyde.
 			return
+		var/rot_count = 0 //BUBBERSTATION CHANGE: MIASMA ORGAN ROT
 		for(var/obj/item/organ/internal/organ in organs)
 			// On-death is where organ decay is handled
 			if(organ?.owner) // organ + owner can be null due to reagent metabolization causing organ shuffling
-				organ.on_death(seconds_per_tick, times_fired)
+				rot_count += organ.on_death(seconds_per_tick, times_fired) //BUBBERSTATION ADDITION: MIASMA_COUNT. NOTE THIS ISN'T CALLED ON ROBOTIC ORGANS.
 			// We need to re-check the stat every organ, as one of our others may have revived us
 			if(stat != DEAD)
 				break
+		//BUBBERSTATION CHANGE START: MIASMA ORGAN ROT
+		if(rot_count > 0) //This is going to be weird if there are mechanics that cause an organ to heal if you're dead, but at least this saves performance.
+			var/turf/organ_turf = get_turf(src) //We don't check the loc because of lockers. Stasis bodybags would prevent this from running anyways.
+			if(isopenturf(organ_turf) && !isspaceturf(organ_turf)) //Only spawn miasma on floor turfs and not in space turfs.
+				var/turf/open/open_turf = organ_turf
+				if(!open_turf.planetary_atmos) //Don't spawn miasma when there is open air to the sky.
+					var/miasma_to_spawn = (rot_count/(6*100))*30 //There are about 6 rottable organs in each mob, all with 100 health. If a person is 100% rotted, they should spawn 30 moles of miasma. (A 1x1 tile has 104 moles of oxygen+nitrogen).
+					open_turf.atmos_spawn_air("[GAS_MIASMA]=[miasma_to_spawn];[TURF_TEMPERATURE(src.bodytemperature)]")
+		//BUBBERSTATION CHANGE END: MIASMA
 		return
 
 	// NOTE: organs_slot is sorted by GLOB.organ_process_order on insertion
@@ -509,13 +525,13 @@
 
 
 /mob/living/carbon/handle_diseases(seconds_per_tick, times_fired)
-	for(var/thing in diseases)
-		var/datum/disease/D = thing
-		if(SPT_PROB(D.infectivity, seconds_per_tick))
-			D.spread()
-
-		if(stat != DEAD || D.process_dead)
-			D.stage_act(seconds_per_tick, times_fired)
+	for(var/datum/disease/disease as anything in diseases)
+		if(QDELETED(disease)) //Got cured/deleted while the loop was still going.
+			continue
+		if(SPT_PROB(disease.infectivity, seconds_per_tick))
+			disease.spread()
+		if(stat != DEAD || disease.process_dead)
+			disease.stage_act(seconds_per_tick, times_fired)
 
 /mob/living/carbon/handle_wounds(seconds_per_tick, times_fired)
 	for(var/datum/wound/wound as anything in all_wounds)
@@ -569,9 +585,9 @@
  * - times_fired: The number of times SSmobs has ticked.
  */
 /mob/living/carbon/proc/handle_dead_metabolization(seconds_per_tick, times_fired)
-	if (stat != DEAD)
+	if(stat != DEAD)
 		return
-	reagents.metabolize(src, seconds_per_tick, times_fired, can_overdose = TRUE, liverless = TRUE, dead = TRUE) // Your liver doesn't work while you're dead.
+	reagents?.metabolize(src, seconds_per_tick, times_fired, can_overdose = TRUE, liverless = TRUE, dead = TRUE) // Your liver doesn't work while you're dead.
 
 /// Base carbon environment handler, adds natural stabilization
 /mob/living/carbon/handle_environment(datum/gas_mixture/environment, seconds_per_tick, times_fired)
@@ -817,7 +833,7 @@
  * Returns TRUE if heart status was changed (heart attack -> no heart attack, or visa versa)
  */
 /mob/living/carbon/proc/set_heartattack(status)
-	if(!can_heartattack())
+	if(status && !can_heartattack())
 		return FALSE
 
 	var/obj/item/organ/internal/heart/heart = get_organ_slot(ORGAN_SLOT_HEART)

@@ -13,9 +13,6 @@
 	human.set_haircolor("#bb9966", update = FALSE) // brown
 	human.set_hairstyle("Business Hair", update = TRUE)
 
-/datum/species/human/randomize_features(mob/living/carbon/human/human_mob)
-	human_mob.skin_tone = random_skin_tone()
-
 /datum/species/human/get_scream_sound(mob/living/carbon/human/human)
 	if(human.physique == MALE)
 		if(prob(1))
@@ -35,6 +32,53 @@
 		'sound/voice/human/femalescream_3.ogg',
 		'sound/voice/human/femalescream_4.ogg',
 		'sound/voice/human/femalescream_5.ogg',
+	)
+
+/datum/species/human/get_cough_sound(mob/living/carbon/human/human)
+	if(human.physique == FEMALE)
+		return pick(
+			'sound/voice/human/female_cough1.ogg',
+			'sound/voice/human/female_cough2.ogg',
+			'sound/voice/human/female_cough3.ogg',
+			'sound/voice/human/female_cough4.ogg',
+			'sound/voice/human/female_cough5.ogg',
+			'sound/voice/human/female_cough6.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cough1.ogg',
+		'sound/voice/human/male_cough2.ogg',
+		'sound/voice/human/male_cough3.ogg',
+		'sound/voice/human/male_cough4.ogg',
+		'sound/voice/human/male_cough5.ogg',
+		'sound/voice/human/male_cough6.ogg',
+	)
+
+/datum/species/human/get_cry_sound(mob/living/carbon/human/human)
+	if(human.physique == FEMALE)
+		return pick(
+			'sound/voice/human/female_cry1.ogg',
+			'sound/voice/human/female_cry2.ogg',
+		)
+	return pick(
+		'sound/voice/human/male_cry1.ogg',
+		'sound/voice/human/male_cry2.ogg',
+		'sound/voice/human/male_cry3.ogg',
+	)
+
+
+/datum/species/human/get_sneeze_sound(mob/living/carbon/human/human)
+	if(human.physique == FEMALE)
+		return 'sound/voice/human/female_sneeze1.ogg'
+	return 'sound/voice/human/male_sneeze1.ogg'
+
+/datum/species/human/get_laugh_sound(mob/living/carbon/human/human)
+	if(!ishuman(human))
+		return
+	if(human.physique == FEMALE)
+		return 'sound/voice/human/womanlaugh.ogg'
+	return pick(
+		'sound/voice/human/manlaugh1.ogg',
+		'sound/voice/human/manlaugh2.ogg',
 	)
 
 /datum/species/human/get_species_description()
@@ -82,4 +126,3 @@
 		))
 
 	return to_add
-

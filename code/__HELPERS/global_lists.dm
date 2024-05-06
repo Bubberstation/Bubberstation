@@ -17,9 +17,9 @@
 	//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION
 	/*
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, GLOB.body_markings_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails, GLOB.tails_list, add_blank = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, GLOB.tails_list_human, add_blank = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard, GLOB.tails_list_lizard, add_blank = TRUE)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey, GLOB.tails_list_monkey, add_blank = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts, GLOB.snouts_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/horns,GLOB.horns_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ears, GLOB.ears_list)
@@ -27,7 +27,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings_open, GLOB.wings_open_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/frills, GLOB.frills_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/spines, GLOB.spines_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/spines_animated, GLOB.animated_spines_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/tail_spines, GLOB.tail_spines_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/legs, GLOB.legs_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
@@ -38,6 +38,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/bra, GLOB.bra_list, GLOB.bra_m, GLOB.bra_f) // SKYRAT EDIT ADDITION
 
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings/moth, GLOB.moth_wings_list) // SKYRAT EDIT ADDITION - Customization
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey, GLOB.tails_list_monkey, add_blank = TRUE) // SKYRAT EDIT ADDITION - We don't want monkeys getting randomized non-monkey tails
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list, add_blank = TRUE) // SKYRAT EDIT - Customization - ORIGINAL: init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
 
 	//SKYRAT EDIT ADDITION BEGIN
@@ -53,6 +54,13 @@
 		GLOB.laugh_types[L.name] = spath
 	sort_list(GLOB.laugh_types, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	//SKYRAT EDIT END
+		//THE BUBBER EDIT ADDITION BEGIN - Blooper
+	for(var/sound_blooper_path in subtypesof(/datum/blooper))
+		var/datum/blooper/B = new sound_blooper_path()
+		GLOB.blooper_list[B.id] = sound_blooper_path
+		if(B.allow_random)
+			GLOB.blooper_random_list[B.id] = sound_blooper_path
+	//THE BUBBER EDIT END
 
 /// Inits GLOB.species_list. Not using GLOBAL_LIST_INIT b/c it depends on GLOB.string_lists
 /proc/init_species_list()
@@ -281,6 +289,12 @@ GLOBAL_LIST_INIT(WALLITEMS_INTERIOR, typecacheof(list(
 GLOBAL_LIST_INIT(WALLITEMS_EXTERIOR, typecacheof(list(
 	/obj/machinery/camera,
 	/obj/machinery/light,
-	/obj/structure/camera_assembly,
 	/obj/structure/light_construct,
+)))
+
+/// A static typecache of all the money-based items that can be actively used as currency.
+GLOBAL_LIST_INIT(allowed_money, typecacheof(list(
+	/obj/item/coin,
+	/obj/item/holochip,
+	/obj/item/stack/spacecash,
 )))

@@ -13,6 +13,8 @@
 		Soato = list(fax_name = "Soato", fax_id = "Soato", color = "orange", emag_needed = TRUE),
 		SolFed = list(fax_name = "SBI", fax_id = "SBI", color = "orange", emag_needed = FALSE),
 		Irs = list(fax_name = "IRS", fax_id = "IRS", color = "orange", emag_needed = FALSE),
+		Clowns = list(fax_name = "Clown Planet", fax_id = "Clowns", color = "pink", emag_needed = FALSE),
+		Mimes = list(fax_name = "La Pantomime Troupe", fax_id = "Mimes", color = "white", emag_needed = FALSE),
 		WizFed = list(fax_name = "Wizard Fed", fax_id = "WizFed", color = "blue", emag_needed = TRUE),
 		Union = list(fax_name = "Union", fax_id = "Union", color = "orange", emag_needed = TRUE),
 		//Syndicate companies

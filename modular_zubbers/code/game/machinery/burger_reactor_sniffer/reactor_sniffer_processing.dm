@@ -10,7 +10,7 @@
 	for(var/obj/machinery/power/rbmk2/reactor as anything in linked_reactors)
 		if(!reactor.active)
 			continue
-		var/integrity_percent = reactor.atom_integrity/reactor.max_integrity
+		var/integrity_percent = reactor.get_integrity()/reactor.max_integrity
 		if(integrity_percent <= lowest_integrity_percent)
 			lowest_integrity_percent = integrity_percent
 			if(lowest_integrity_percent <= 0.8)

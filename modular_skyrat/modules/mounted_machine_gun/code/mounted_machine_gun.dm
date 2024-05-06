@@ -15,11 +15,11 @@
 	buckle_lying = 0
 	SET_BASE_PIXEL(-8, -8)
 	layer = ABOVE_MOB_LAYER
-	plane = GAME_PLANE_UPPER
+	plane = ABOVE_GAME_PLANE
 	/// The extra range that this turret gives regarding viewrange.
 	var/view_range = 2.5
 	/// Sound to play when overheated
-	var/overheatsound = 'modular_skyrat/modules/gunsgalore/sound/guns/fire/mg_overheat.ogg'
+	var/overheatsound = 'sound/effects/wounds/sizzle2.ogg'
 	/// Sound to play when firing
 	var/firesound = 'modular_skyrat/modules/mounted_machine_gun/sound/50cal_box_01.ogg'
 	/// How long it takes for a wrench user to undeploy the object
@@ -164,18 +164,16 @@
 	register_user(user_to_buckle)
 
 	layer = ABOVE_MOB_LAYER
-	plane = GAME_PLANE_UPPER
+	plane = ABOVE_GAME_PLANE
 	setDir(SOUTH)
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	set_anchored(TRUE)
 
 	update_positioning()
 
-/obj/machinery/mounted_machine_gun/AltClick(mob/user)
-	. = ..()
-	if(!can_interact(user))
-		return
+/obj/machinery/mounted_machine_gun/click_alt(mob/user)
 	toggle_cover(user)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/mounted_machine_gun/attack_hand_secondary(mob/living/user, list/modifiers)
 	. = ..()
@@ -423,7 +421,7 @@
 			user.pixel_y = -8
 		if(EAST)
 			layer = ABOVE_MOB_LAYER
-			plane = GAME_PLANE_UPPER
+			plane = ABOVE_GAME_PLANE
 			user.pixel_x = -22
 			user.pixel_y = 0
 		if(SOUTHEAST)
@@ -433,7 +431,7 @@
 			user.pixel_y = 14
 		if(SOUTH)
 			layer = ABOVE_MOB_LAYER
-			plane = GAME_PLANE_UPPER
+			plane = ABOVE_GAME_PLANE
 			user.pixel_x = 0
 			user.pixel_y = 22
 		if(SOUTHWEST)
@@ -443,7 +441,7 @@
 			user.pixel_y = 14
 		if(WEST)
 			layer = ABOVE_MOB_LAYER
-			plane = GAME_PLANE_UPPER
+			plane = ABOVE_GAME_PLANE
 			user.pixel_x = 22
 			user.pixel_y = 0
 		if(NORTHWEST)

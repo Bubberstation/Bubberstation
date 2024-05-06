@@ -12,6 +12,28 @@
 	else
 		to_chat(src, span_warning("You can't cum right now!"))
 
+/mob/living/verb/reflexes_verb()
+    set name = "Toggle Reflexes"
+    set category = "IC"
+    if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
+        ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
+        to_chat(src, span_notice("[get_reflexes_gain_text()]"))
+    else
+        REMOVE_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
+        to_chat(src, span_notice("[get_reflexes_lose_text()]"))
+
+/mob/living/proc/get_reflexes_gain_text()
+	return "You don't feel like being touched right now."
+
+/mob/living/proc/get_reflexes_lose_text()
+	return "You'll allow yourself to be touched now."
+
+/mob/living/silicon/get_reflexes_gain_text()
+	return "Our systems will disallow platonic contact."
+
+/mob/living/silicon/get_reflexes_lose_text()
+	return "Our systems will allow platonic contact."
+
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
 	if(CONFIG_GET(flag/disable_erp_preferences))
@@ -33,3 +55,44 @@
 		dropItemToGround(equipped_item, TRUE)
 
 	return TRUE
+
+/mob/living/carbon/human/verb/lick(mob/living/carbon/human/target in get_adjacent_humans())
+	set name = "Lick"
+	set category = "IC"
+
+	if(!istype(target))
+		return FALSE
+
+	var/taste = target?.dna?.features["taste"]
+	if(!taste)
+		to_chat(src, span_warning("[target] doesn't seem to have a taste."))
+		return FALSE
+
+	to_chat(src, span_notice("[target] tastes like [taste]."))
+	to_chat(target, span_notice("[src] licks you."))
+
+/mob/living/carbon/human/verb/smell(mob/living/carbon/human/target in get_adjacent_humans())
+	set name = "Smell"
+	set category = "IC"
+
+	if(!istype(target))
+		return FALSE
+
+	var/smell = target?.dna?.features["smell"]
+	if(!smell)
+		to_chat(src, span_warning("[target] doesn't seem to have a smell."))
+		return FALSE
+
+	to_chat(src, span_notice("[target] smells like [smell]."))
+
+/// Returns a list containing all of the humans adjacent to the user.
+/mob/living/proc/get_adjacent_humans()
+	var/list/nearby_humans = orange(1, src)
+	for(var/mob/living/carbon/human/nearby_human as anything in nearby_humans)
+		if(ishuman(nearby_human))
+			continue
+
+		nearby_humans -= nearby_human
+
+	return nearby_humans
+

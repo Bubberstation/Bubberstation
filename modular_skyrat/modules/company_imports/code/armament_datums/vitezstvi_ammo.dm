@@ -10,10 +10,11 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bench_itself
 	item_type = /obj/item/circuitboard/machine/ammo_workbench
 	cost = PAYCHECK_COMMAND * 5
-
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/ammo_disk
 	item_type = /obj/item/disk/ammo_workbench/advanced
 	cost = PAYCHECK_COMMAND * 5
+*/ //BUBBER EDIT REMOVAL END
 
 /datum/armament_entry/company_import/vitezstvi/ammo_bench/bullet_drive
 	item_type = /obj/item/circuitboard/machine/dish_drive/bullet
@@ -42,6 +43,7 @@
 	subcategory = "Ammunition Boxes"
 	cost = PAYCHECK_CREW
 
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/peacekeeper_lethal
 	item_type = /obj/item/ammo_box/c9mm
 
@@ -60,36 +62,39 @@
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/auto10mm_rubber
 	item_type = /obj/item/ammo_box/c10mm/rubber
 
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_lethal
-	item_type = /obj/item/ammo_box/c56mm
-	cost = PAYCHECK_COMMAND
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/strilka_lethal
+	item_type = /obj/item/ammo_box/c310_cargo_box
 
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_rubber
-	item_type = /obj/item/ammo_box/c56mm/rubber
-	cost = PAYCHECK_COMMAND
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/strilka_rubber
+	item_type = /obj/item/ammo_box/c310_cargo_box/rubber
 
-/datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_hunting
-	item_type = /obj/item/ammo_box/c56mm/hunting
-	cost = PAYCHECK_COMMAND
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/strilka_ap
+	item_type = /obj/item/ammo_box/c310_cargo_box/piercing
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/cesarzowa_lethal
+	item_type = /obj/item/ammo_box/c27_54cesarzowa
+
+/datum/armament_entry/company_import/vitezstvi/ammo_boxes/cesarzowa_rubber
+	item_type = /obj/item/ammo_box/c27_54cesarzowa/rubber
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sabel_blank
 	item_type = /obj/item/ammo_box/c56mm/blank
-
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35
 	item_type = /obj/item/ammo_box/c35sol
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_disabler
 	item_type = /obj/item/ammo_box/c35sol/incapacitator
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_ripper
 	item_type = /obj/item/ammo_box/c35sol/ripper
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40
 	item_type = /obj/item/ammo_box/c40sol
-
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40_disabler
 	item_type = /obj/item/ammo_box/c40sol/fragmentation
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40_flame
 	item_type = /obj/item/ammo_box/c40sol/incendiary
 
@@ -98,13 +103,13 @@
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585
 	item_type = /obj/item/ammo_box/c585trappiste
-
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_disabler
 	item_type = /obj/item/ammo_box/c585trappiste/incapacitator
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_hollowpoint
 	item_type = /obj/item/ammo_box/c585trappiste/hollowpoint
-
+*/ //BUBBER EDIT REMOVAL: AMMO TYPES
 // Revolver speedloaders
 
 /datum/armament_entry/company_import/vitezstvi/speedloader
@@ -122,37 +127,43 @@
 
 // Shotgun boxes
 
+
 /datum/armament_entry/company_import/vitezstvi/shot_shells
 	subcategory = "Shotgun Shells"
 	cost = PAYCHECK_COMMAND
-
+/* //BUBBER EDIT REMOVAL BEGIN
 /datum/armament_entry/company_import/vitezstvi/shot_shells/slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge
-	description = "A box of 15 slug shells, large singular shots that pack a punch."
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/buckshot
-	description = "A box of 15 buckshot shells, a modest spread of weaker projectiles."
-
+*/
 /datum/armament_entry/company_import/vitezstvi/shot_shells/beanbag_slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge/bean
-	description = "A box of 15 beanbag slug shells, large singular beanbags that pack a less-lethal punch."
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/rubbershot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/rubber
-	description = "A box of 15 rubbershot shells, a modest spread of weaker less-lethal projectiles."
-
+/*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/magnum_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/magnum
-	description = "A box of 15 magnum buckshot shells, a wider spread of larger projectiles."
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/express_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/express
-	description = "A box of 15 express buckshot shells, a tighter spread of smaller projectiles."
 
+/datum/armament_entry/company_import/vitezstvi/shot_shells/hunter_slug
+	item_type = /obj/item/ammo_box/advanced/s12gauge/hunter
+
+/datum/armament_entry/company_import/vitezstvi/shot_shells/flechettes
+	item_type = /obj/item/ammo_box/advanced/s12gauge/flechette
+
+/datum/armament_entry/company_import/vitezstvi/shot_shells/hornet_nest
+	item_type = /obj/item/ammo_box/advanced/s12gauge/beehive
+
+/datum/armament_entry/company_import/vitezstvi/shot_shells/stardust
+	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide
+*/ //BUBBER EDIT END
 /datum/armament_entry/company_import/vitezstvi/shot_shells/confetti
-	item_type = /obj/item/ammo_box/advanced/s12gauge/honk
-	description = "A box of 35 confetti shells, firing a spread of harmless confetti everywhere, yippie!"
+	item_type = /obj/item/ammo_box/advanced/s12gauge/honkshot
 
 // Boxes of kiboko launcher ammo
 

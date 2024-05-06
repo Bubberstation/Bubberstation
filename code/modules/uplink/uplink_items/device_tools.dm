@@ -66,15 +66,16 @@
 	cost = 1
 	surplus = 20
 
-/* // SKYRAT EDIT REMOVAL
-/datum/uplink_item/device_tools/briefcase_launchpad 
+//Bubber Edit start - This is normally removed on skyrat upstream
+/datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
 	desc = "A briefcase containing a launchpad, a device able to teleport items and people to and from targets up to eight tiles away from the briefcase. \
 			Also includes a remote control, disguised as an ordinary folder. Touch the briefcase with the remote to link it."
 	surplus = 0
 	item = /obj/item/storage/briefcase/launchpad
 	cost = 6
-
+	progression_minimum = 50 MINUTES //Normally this is not there but it exist to delay you just buying it and getting into everywhere before sec is prepared
+/* //Bubber edit - Moves the comment to keep the syndicate teleport commented out. Skyrat commented this out.
 /datum/uplink_item/device_tools/syndicate_teleporter
 	name = "Experimental Syndicate Teleporter"
 	desc = "A handheld device that teleports the user 4-8 meters forward. \
@@ -136,7 +137,7 @@
 /datum/uplink_item/device_tools/failsafe
 	name = "Failsafe Uplink Code"
 	desc = "When entered the uplink will self-destruct immediately."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	cost = 1
 	surplus = 0
 	restricted = TRUE

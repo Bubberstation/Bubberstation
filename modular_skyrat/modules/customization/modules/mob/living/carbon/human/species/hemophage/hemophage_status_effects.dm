@@ -1,11 +1,11 @@
 /// How much brute damage their body regenerates per second while using blood regeneration.
-#define BLOOD_REGEN_BRUTE_AMOUNT 0.75
+#define BLOOD_REGEN_BRUTE_AMOUNT 2
 /// How much burn damage their body regenerates per second while using blood regeneration.
-#define BLOOD_REGEN_BURN_AMOUNT 0.75
+#define BLOOD_REGEN_BURN_AMOUNT 2
 /// How much toxin damage their body regenerates per second while using blood regeneration.
-#define BLOOD_REGEN_TOXIN_AMOUNT 0.5
+#define BLOOD_REGEN_TOXIN_AMOUNT 1.5
 /// How much cellular damage their body regenerates per second while using blood regeneration.
-#define BLOOD_REGEN_CELLULAR_AMOUNT 0.25
+#define BLOOD_REGEN_CELLULAR_AMOUNT 1.50
 
 /datum/status_effect/blood_thirst_satiated
 	id = "blood_thirst_satiated"
@@ -51,6 +51,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/blood_regen_active
 	/// Current multiplier for how much blood they spend healing themselves for every point of damage healed.
 	var/blood_to_health_multiplier = 1
+	var/cost_blood = 1 /// BUBBER CHANGE, allows scaling of hemophage healing blood cost.
 
 
 /datum/status_effect/blood_regen_active/on_apply()
@@ -131,19 +132,11 @@
 		max_blood_for_regen -= toxins_to_heal * blood_to_health_multiplier
 		regenerator.adjustToxLoss(-toxins_to_heal)
 
-	var/cellular_damage = regenerator.getCloneLoss()
-
-	if(cellular_damage && max_blood_for_regen > NONE)
-		var/cells_to_heal = min(max_blood_for_regen, min(BLOOD_REGEN_TOXIN_AMOUNT, cellular_damage) * seconds_between_ticks)
-		blood_used += cells_to_heal * blood_to_health_multiplier
-		max_blood_for_regen -= cells_to_heal * blood_to_health_multiplier
-		regenerator.adjustCloneLoss(-cells_to_heal)
-
 	if(!blood_used)
 		regenerator.remove_status_effect(/datum/status_effect/blood_regen_active)
 		return
 
-	regenerator.blood_volume = max(regenerator.blood_volume - blood_used, MINIMUM_VOLUME_FOR_REGEN)
+	regenerator.blood_volume = max(regenerator.blood_volume - blood_used * cost_blood, MINIMUM_VOLUME_FOR_REGEN) // BUBBER CHANGE, allows scaling of hemophage healing blood cost.
 
 
 /datum/movespeed_modifier/hemophage_dormant_state

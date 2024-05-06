@@ -12,7 +12,7 @@
 /proc/random_eye_color()
 	switch(pick(20;"brown",20;"hazel",20;"grey",15;"blue",15;"green",1;"amber",1;"albino"))
 		if("brown")
-			return "#663300"
+			return COLOR_BROWNER_BROWN
 		if("hazel")
 			return "#554422"
 		if("grey")
@@ -26,7 +26,7 @@
 		if("albino")
 			return "#" + pick("cc","dd","ee","ff") + pick("00","11","22","33","44","55","66","77","88","99") + pick("00","11","22","33","44","55","66","77","88","99")
 		else
-			return "#000000"
+			return COLOR_BLACK
 
 /proc/random_underwear(gender)
 	if(!GLOB.underwear_list.len)
@@ -58,7 +58,7 @@
 /proc/random_backpack()
 	return pick(GLOB.backpacklist)
 
-//SKYRAT EDIT REMOVAL - CUSTOMIZATION (moved to modular)
+// SKYRAT EDIT REMOVAL - CUSTOMIZATION (moved to modular)
 /*
 /proc/random_features()
 	if(!GLOB.tails_list.len)
@@ -113,9 +113,8 @@
 		"tail_monkey" = "Monkey",
 		"pod_hair" = pick(GLOB.pod_hair_list),
 	))
-	*/
-	//SKYRAT EDIT REMOVAL END
-
+*/
+//SKYRAT EDIT REMOVAL END
 
 /proc/random_hairstyle(gender)
 	switch(gender)
@@ -252,9 +251,26 @@ GLOBAL_LIST_EMPTY(species_list)
  *
  * Checks that `user` does not move, change hands, get stunned, etc. for the
  * given `delay`. Returns `TRUE` on success or `FALSE` on failure.
- * Interaction_key is the assoc key under which the do_after is capped, with max_interact_count being the cap. Interaction key will default to target if not set.
+ *
+ * @param {mob} user - The mob performing the action.
+ *
+ * @param {number} delay - The time in deciseconds. Use the SECONDS define for readability. `1 SECONDS` is 10 deciseconds.
+ *
+ * @param {atom} target - The target of the action. This is where the progressbar will display.
+ *
+ * @param {flag} timed_action_flags - Flags to control the behavior of the timed action.
+ *
+ * @param {boolean} progress - Whether to display a progress bar / cogbar.
+ *
+ * @param {datum/callback} extra_checks - Additional checks to perform before the action is executed.
+ *
+ * @param {string} interaction_key - The assoc key under which the do_after is capped, with max_interact_count being the cap. Interaction key will default to target if not set.
+ *
+ * @param {number} max_interact_count - The maximum amount of interactions allowed.
+ *
+ * @param {boolean} hidden - By default, any action 1 second or longer shows a cog over the user while it is in progress. If hidden is set to TRUE, the cog will not be shown.
  */
-/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1)
+/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, hidden = FALSE)
 	if(!user)
 		return FALSE
 	if(!isnum(delay))
@@ -272,7 +288,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
-	if(SSmove_manager.processing_on(user, SSspacedrift))
+	if(GLOB.move_manager.processing_on(user, SSspacedrift))
 		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
@@ -281,8 +297,14 @@ GLOBAL_LIST_EMPTY(species_list)
 		delay *= user.cached_multiplicative_actions_slowdown
 
 	var/datum/progressbar/progbar
+	var/datum/cogbar/cog
+
 	if(progress)
-		progbar = new(user, delay, target || user)
+		if(user.client)
+			progbar = new(user, delay, target || user)
+
+		if(!hidden && delay >= 1 SECONDS)
+			cog = new(user)
 
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
 
@@ -295,7 +317,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(!QDELETED(progbar))
 			progbar.update(world.time - starttime)
 
-		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
+		if(drifting && !GLOB.move_manager.processing_on(user, SSspacedrift))
 			drifting = FALSE
 			user_loc = user.loc
 
@@ -315,6 +337,8 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	if(!QDELETED(progbar))
 		progbar.end_progress()
+
+	cog?.remove()
 
 	if(interaction_key)
 		var/reduced_interaction_count = (LAZYACCESS(user.do_afters, interaction_key) || 0) - 1
@@ -502,6 +526,19 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!HAS_TRAIT(L, TRAIT_PASSTABLE))
 		L.pass_flags &= ~PASSTABLE
 
+/proc/passwindow_on(target, source)
+	var/mob/living/target_mob = target
+	if (!HAS_TRAIT(target_mob, TRAIT_PASSWINDOW) && target_mob.pass_flags & PASSWINDOW)
+		ADD_TRAIT(target_mob, TRAIT_PASSWINDOW, INNATE_TRAIT)
+	ADD_TRAIT(target_mob, TRAIT_PASSWINDOW, source)
+	target_mob.pass_flags |= PASSWINDOW
+
+/proc/passwindow_off(target, source)
+	var/mob/living/target_mob = target
+	REMOVE_TRAIT(target_mob, TRAIT_PASSWINDOW, source)
+	if(!HAS_TRAIT(target_mob, TRAIT_PASSWINDOW))
+		target_mob.pass_flags &= ~PASSWINDOW
+
 /proc/dance_rotate(atom/movable/AM, datum/callback/callperrotate, set_original_dir=FALSE)
 	set waitfor = FALSE
 	var/originaldir = AM.dir
@@ -589,8 +626,6 @@ GLOBAL_LIST_EMPTY(species_list)
 
 #define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER) && !HAS_TRAIT(mob, TRAIT_DISCOORDINATED_TOOL_USER))
 
-#define IS_IN_STASIS(mob) (mob.has_status_effect(/datum/status_effect/grouped/stasis) || mob.has_status_effect(/datum/status_effect/embryonic))
-
 /// Gets the client of the mob, allowing for mocking of the client.
 /// You only need to use this if you know you're going to be mocking clients somewhere else.
 #define GET_CLIENT(mob) (##mob.client || ##mob.mock_client)
@@ -617,21 +652,20 @@ GLOBAL_LIST_EMPTY(species_list)
 		moblist += mob_to_sort
 	for(var/mob/dead/new_player/mob_to_sort in sortmob)
 		moblist += mob_to_sort
-	for(var/mob/living/simple_animal/slime/mob_to_sort in sortmob)
+	for(var/mob/living/basic/slime/mob_to_sort in sortmob)
 		moblist += mob_to_sort
 	for(var/mob/living/simple_animal/mob_to_sort in sortmob)
-		// We've already added slimes.
-		if(isslime(mob_to_sort))
-			continue
 		moblist += mob_to_sort
 	for(var/mob/living/basic/mob_to_sort in sortmob)
 		moblist += mob_to_sort
+		// We've already added slimes.
+		if(isslime(mob_to_sort))
+			continue
 	// SKYRAT EDIT START - SOULCATCHERS
 	for(var/mob/living/soulcatcher_soul/mob_to_sort in sortmob)
 		moblist += mob_to_sort
 	// SKYRAT EDIT END - SOULCATCHERS
 	return moblist
-
 ///returns a mob type controlled by a specified ckey
 /proc/get_mob_by_ckey(key)
 	if(!key)
@@ -710,11 +744,6 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	if(isliving(occupant))
 		mob_occupant = occupant
-
-	else if(isbodypart(occupant))
-		var/obj/item/bodypart/head/head = occupant
-
-		mob_occupant = head.brainmob
 
 	else if(isorgan(occupant))
 		var/obj/item/organ/internal/brain/brain = occupant

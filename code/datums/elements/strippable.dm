@@ -51,7 +51,7 @@
 	if (!isnull(should_strip_proc_path) && !call(source, should_strip_proc_path)(user))
 		return
 
-	var/datum/strip_menu/strip_menu
+	var/datum/strip_menu/strip_menu = LAZYACCESS(strip_menus, source)
 
 	if (isnull(strip_menu))
 		strip_menu = new(source, src)
@@ -143,7 +143,7 @@
 	//SKYRAT EDIT CHANGE END
 
 	to_chat(user, span_danger("You try to remove [source]'s [item.name]..."))
-	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red")
+	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "is stripping [source] of [item].") // BUBBER EDIT - PUBLIC LOGGING
 	source.log_message("is being stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 	item.add_fingerprint(src)
 
@@ -167,18 +167,25 @@
 	SHOULD_NOT_SLEEP(TRUE)
 	return STRIPPABLE_OBSCURING_NONE
 
-/// Returns the ID of this item's strippable action.
-/// Return `null` if there is no alternate action.
-/// Any return value of this must be in StripMenu.
-/datum/strippable_item/proc/get_alternate_action(atom/source, mob/user)
+/**
+ * Returns a list of alternate actions that can be performed on this strippable_item.
+ * All string keys in the list must be inside tgui\packages\tgui\interfaces\StripMenu.tsx
+ * You can also return null if there are no alternate actions.
+ */
+/datum/strippable_item/proc/get_alternate_actions(atom/source, mob/user)
+	RETURN_TYPE(/list)
 	return null
 
-/// Performs an alternative action on this strippable_item.
-/// `has_alternate_action` needs to be TRUE.
-/// Returns FALSE if blocked by signal, TRUE otherwise.
-/datum/strippable_item/proc/alternate_action(atom/source, mob/user)
+/**
+ * Performs an alternate action on this strippable_item.
+ * - source: The source of the action.
+ * - user: The user performing the action.
+ * - action_key: The key of the alternate action to perform.
+ * Returns FALSE if unable to perform the action; whether it be due to the signal or some other factor.
+ */
+/datum/strippable_item/proc/perform_alternate_action(atom/source, mob/user, action_key)
 	SHOULD_CALL_PARENT(TRUE)
-	if(SEND_SIGNAL(user, COMSIG_TRY_ALT_ACTION, source) & COMPONENT_CANT_ALT_ACTION)
+	if(SEND_SIGNAL(user, COMSIG_TRY_ALT_ACTION, source, action_key) & COMPONENT_CANT_ALT_ACTION)
 		return FALSE
 	return TRUE
 
@@ -272,14 +279,12 @@
 
 /// A utility function for `/datum/strippable_item`s to finish equipping an item to a mob.
 /proc/finish_equip_mob(obj/item/item, mob/source, mob/user)
-	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red")
+	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red", redacted_copy = "has put [item] on [source].") // BUBBER EDIT- PUBLIC LOGS
 	source.log_message("had [item] put on them by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
-/proc/start_unequip_mob(obj/item/item, mob/source, mob/user, strip_delay)
-	//SKYRAT EDIT ADDITION - THIEVING GLOVES
-	//if (!do_after(user, strip_delay || item.strip_delay, source, interaction_key = REF(item)))
-	if (!do_after(user, (strip_delay || item.strip_delay) * (HAS_TRAIT(user, TRAIT_STICKY_FINGERS) ? THIEVING_GLOVES_STRIP_SLOWDOWN : NORMAL_STRIP_SLOWDOWN), source, interaction_key = REF(item)))
+/proc/start_unequip_mob(obj/item/item, mob/source, mob/user, strip_delay, hidden = FALSE)
+	if (!do_after(user, (strip_delay || item.strip_delay) * (HAS_TRAIT(user, TRAIT_STICKY_FINGERS) ? THIEVING_GLOVES_STRIP_SLOWDOWN : NORMAL_STRIP_SLOWDOWN), source, interaction_key = REF(item), hidden = hidden)) // SKYRAT EDIT CHANGE - ORIGINAL: if (!do_after(user, strip_delay || item.strip_delay, source, interaction_key = REF(item), hidden = hidden))
 		return FALSE
 
 	return TRUE
@@ -289,7 +294,7 @@
 	if (!item.doStrip(user, source))
 		return FALSE
 
-	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red")
+	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red", redacted_copy = "has stripped [source] of [item])") // BUBBER EDIT - PUBLIC LOGS
 	source.log_message("has been stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 	// Updates speed in case stripped speed affecting item
@@ -359,7 +364,11 @@
 
 		result["icon"] = icon2base64(icon(item.icon, item.icon_state))
 		result["name"] = item.name
-		result["alternate"] = item_data.get_alternate_action(owner, user)
+		result["alternate"] = item_data.get_alternate_actions(owner, user)
+		var/static/list/already_cried = list()
+		if(length(result["alternate"]) > 2 && !(type in already_cried))
+			stack_trace("Too many alternate actions for [type]! Only two are supported at the moment! This will look bad!")
+			already_cried += type
 
 		items[strippable_key] = result
 
@@ -451,6 +460,7 @@
 				strippable_item.finish_unequip(owner, user)
 		if ("alt")
 			var/key = params["key"]
+			var/alt_action = params["alternate_action"]
 			var/datum/strippable_item/strippable_item = strippable.items[key]
 
 			if (isnull(strippable_item))
@@ -466,13 +476,13 @@
 			if (isnull(item))
 				return
 
-			if (isnull(strippable_item.get_alternate_action(owner, user)))
+			if (!(alt_action in strippable_item.get_alternate_actions(owner, user)))
 				return
 
 			LAZYORASSOCLIST(interactions, user, key)
 
 			// Potentially yielding
-			strippable_item.alternate_action(owner, user)
+			strippable_item.perform_alternate_action(owner, user, alt_action)
 
 			LAZYREMOVEASSOC(interactions, user, key)
 

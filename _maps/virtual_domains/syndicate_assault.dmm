@@ -165,6 +165,14 @@
 /obj/item/card/id/advanced/black/syndicate_command/crew_id,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/virtual_domain)
+"fc" = (
+/obj/structure/filingcabinet,
+/obj/machinery/door/window/left/directional/west{
+	name = "Syndicate Interior Door";
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/powered/virtual_domain)
 "fd" = (
 /obj/structure/transit_tube/crossing,
 /turf/open/space/basic,
@@ -182,6 +190,13 @@
 /area/ruin/space/has_grav/powered/virtual_domain)
 "fV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/powered/virtual_domain)
+"gw" = (
+/obj/machinery/door/window/left/directional/north{
+	name = "Spare Equipment";
+	req_access = list("syndicate")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "gD" = (
@@ -251,14 +266,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/virtual_domain)
-"ja" = (
-/obj/machinery/door/window{
-	dir = 1;
-	name = "Spare Equipment";
-	req_access = list("syndicate")
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/powered/virtual_domain)
 "jl" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "fscremate"
@@ -310,7 +317,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "kJ" = (
-/obj/effect/landmark/bitrunning/safehouse_spawn,
+/obj/modular_map_root/safehouse{
+	key = "shuttle_space"
+	},
 /turf/template_noop,
 /area/virtual_domain/safehouse)
 "li" = (
@@ -368,14 +377,6 @@
 "nG" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/powered/virtual_domain)
-"nO" = (
-/obj/machinery/mineral/ore_redemption{
-	name = "Syndicate ore redemption machine";
-	ore_multiplier = 4;
-	req_access = list("syndicate")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "nU" = (
 /obj/structure/sign/poster/contraband/syndicate_pistol,
@@ -476,13 +477,6 @@
 "sg" = (
 /obj/machinery/ore_silo,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/powered/virtual_domain)
-"sq" = (
-/obj/machinery/door/window{
-	name = "Control Room";
-	req_access = list("syndicate")
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "sz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -893,15 +887,6 @@
 /obj/structure/transit_tube/crossing,
 /turf/closed/mineral/random,
 /area/space)
-"Lo" = (
-/obj/structure/filingcabinet,
-/obj/machinery/door/window{
-	dir = 8;
-	name = "Syndicate Interior Door";
-	req_access = list("syndicate")
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/powered/virtual_domain)
 "Mc" = (
 /obj/structure/closet/syndicate{
 	anchored = 1;
@@ -959,10 +944,6 @@
 	},
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/powered/virtual_domain)
-"Nv" = (
-/obj/effect/landmark/bitrunning/mob_segment,
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "Of" = (
 /obj/structure/closet/crate/secure/gear{
@@ -1026,6 +1007,10 @@
 /obj/structure/tank_dispenser/oxygen,
 /turf/closed/mineral/random,
 /area/space)
+"QX" = (
+/obj/effect/landmark/bitrunning/mob_segment,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/powered/virtual_domain)
 "Ra" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2,
 /obj/machinery/light/small/directional/north,
@@ -1185,6 +1170,13 @@
 /area/ruin/space/has_grav/powered/virtual_domain)
 "Zb" = (
 /turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/virtual_domain)
+"Zf" = (
+/obj/machinery/door/window/left/directional/south{
+	name = "Control Room";
+	req_access = list("syndicate")
+	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "ZA" = (
 /obj/machinery/power/shuttle_engine/propulsion{
@@ -2019,7 +2011,7 @@ ru
 Io
 uP
 uP
-Nv
+QX
 lN
 uP
 uP
@@ -2028,7 +2020,7 @@ uP
 uP
 lN
 uP
-Nv
+QX
 uP
 Io
 hA
@@ -2318,7 +2310,7 @@ pM
 vK
 uP
 uP
-Nv
+QX
 sL
 Im
 ru
@@ -2423,7 +2415,7 @@ qx
 qx
 Ig
 ru
-Lo
+fc
 ru
 tv
 ki
@@ -2738,7 +2730,7 @@ nB
 ru
 eB
 uP
-nO
+uP
 uP
 ru
 nB
@@ -3352,7 +3344,7 @@ qx
 ru
 Kz
 dz
-sq
+Zf
 Kz
 CK
 Kz
@@ -3362,7 +3354,7 @@ vU
 Kz
 CK
 Kz
-ja
+gw
 Kz
 Jg
 ru

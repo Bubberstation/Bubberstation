@@ -21,6 +21,10 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 	flick("thermo_deploy", src)
 
+	// Makes for certain that we are visually facing the correct way
+	setDir(dir)
+	update_appearance()
+
 /obj/machinery/atmospherics/components/unary/thermomachine/deployable/RefreshParts()
 	. = ..()
 	heat_capacity = 10000
@@ -47,6 +51,10 @@
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 	)
+
+// This prevents some weird visual bugs with the inlet
+/obj/item/flatpacked_machine/thermomachine/give_deployable_component()
+	AddComponent(/datum/component/deployable, deploy_time, type_to_deploy, direction_setting = FALSE)
 
 // Greyscale config for the light on this machine
 

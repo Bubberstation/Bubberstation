@@ -20,7 +20,7 @@
  *
  * make sure you add an update to the schema_version stable in the db changelog
  */
-#define DB_MINOR_VERSION 25
+#define DB_MINOR_VERSION 26
 
 
 //! ## Timing subsystem
@@ -136,8 +136,9 @@
 #define INIT_ORDER_DBCORE 95
 #define INIT_ORDER_BLACKBOX 94
 #define INIT_ORDER_SERVER_MAINT 93
+#define INIT_ORDER_PLAYER_RANKS 86 // SKYRAT EDIT - Player Ranks Subsystem
 #define INIT_ORDER_INPUT 85
-#define INIT_ORDER_PLAYER_RANKS 84 // SKYRAT EDIT - Player Ranks Subsystem
+#define INIT_ORDER_ADMIN_VERBS 84 // needs to be pretty high, admins cant do much without it
 #define INIT_ORDER_SOUNDS 83
 #define INIT_ORDER_INSTRUMENTS 82
 #define INIT_ORDER_GREYSCALE 81
@@ -164,8 +165,8 @@
 #define INIT_ORDER_ECONOMY 40
 #define INIT_ORDER_OUTPUTS 35
 #define INIT_ORDER_RESTAURANT 34
-#define INIT_ORDER_POLLUTION 32 //SKYRAT EDIT ADDITION - //Needs to be above atoms
 #define INIT_ORDER_TTS 33
+#define INIT_ORDER_POLLUTION 32 //SKYRAT EDIT ADDITION - //Needs to be above atoms
 #define INIT_ORDER_ATOMS 30
 #define INIT_ORDER_ARMAMENTS 27 // SKYRAT EDIT ADDITION - Needs to be between atoms and default so it runs before gun companies
 #define INIT_ORDER_LANGUAGE 25
@@ -187,7 +188,9 @@
 #define INIT_ORDER_SHUTTLE -21
 #define INIT_ORDER_MINOR_MAPPING -40
 #define INIT_ORDER_PATH -50
+#define INIT_ORDER_MATURITY_GUARD -60 //SKYRAT EDIT ADDITION
 #define INIT_ORDER_DECAY -61 //SKYRAT EDIT ADDITION
+#define INIT_ORDER_POWERATOR_PENALITY -62 // SKYRAT EDIT ADDITION
 #define INIT_ORDER_EXPLOSIONS -69
 #define INIT_ORDER_STATPANELS -97
 #define INIT_ORDER_BAN_CACHE -98
@@ -198,7 +201,6 @@
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
 #define FIRE_PRIORITY_PING 10
-#define FIRE_PRIORITY_IDLE_NPC 10
 #define FIRE_PRIORITY_SERVER_MAINT 10
 #define FIRE_PRIORITY_RESEARCH 10
 #define FIRE_PRIORITY_VIS 10
@@ -229,6 +231,7 @@
 #define FIRE_PRIORITY_MOBS 100
 #define FIRE_PRIORITY_TGUI 110
 #define FIRE_PRIORITY_TICKER 200
+#define FIRE_PRIORITY_SINGULO 350
 #define FIRE_PRIORITY_STATPANEL 390
 #define FIRE_PRIORITY_CHAT 400
 #define FIRE_PRIORITY_RUNECHAT 410
@@ -245,10 +248,10 @@
 
 // SS runlevels
 
-#define RUNLEVEL_LOBBY 1
-#define RUNLEVEL_SETUP 2
-#define RUNLEVEL_GAME 4
-#define RUNLEVEL_POSTGAME 8
+#define RUNLEVEL_LOBBY (1<<0)
+#define RUNLEVEL_SETUP (1<<1)
+#define RUNLEVEL_GAME (1<<2)
+#define RUNLEVEL_POSTGAME (1<<3)
 
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 
@@ -301,6 +304,11 @@
 #define SSEXPLOSIONS_MOVABLES 2
 #define SSEXPLOSIONS_THROWS 3
 
+// Machines subsystem subtasks.
+#define SSMACHINES_APCS_EARLY 1
+#define SSMACHINES_MACHINES 2
+#define SSMACHINES_APCS_LATE 3
+
 // Wardrobe subsystem tasks
 #define SSWARDROBE_STOCK 1
 #define SSWARDROBE_INSPECT 2
@@ -338,3 +346,13 @@
 #define VOTE_COUNT_METHOD_SINGLE 1
 /// Approval voting. Any number of selections per person, and the selection with the most votes wins.
 #define VOTE_COUNT_METHOD_MULTI 2
+
+/// The choice with the most votes wins. Ties are broken by the first choice to reach that number of votes.
+#define VOTE_WINNER_METHOD_SIMPLE "Simple"
+/// The winning choice is selected randomly based on the number of votes each choice has.
+#define VOTE_WINNER_METHOD_WEIGHTED_RANDOM "Weighted Random"
+/// There is no winner for this vote.
+#define VOTE_WINNER_METHOD_NONE "None"
+
+/// Returned by [/datum/vote/proc/can_be_initiated] to denote the vote is valid and can be initiated.
+#define VOTE_AVAILABLE "Vote Available"

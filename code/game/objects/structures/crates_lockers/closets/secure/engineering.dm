@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "\proper chief engineer's locker"
+	name = "chief engineer's locker"
 	req_access = list(ACCESS_CE)
 	icon_state = "ce"
 
@@ -27,7 +27,7 @@
 	. = ..()
 
 	// Traitor steal objective
-	new /obj/item/areaeditor/blueprints(src)
+	new /obj/item/blueprints(src)
 	new /obj/item/pipe_dispenser/bluespace(src) // SKYRAT EDIT -- BLUESPACE RPD -- ORIGINAL: new /obj/item/pipe_dispenser(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -83,7 +83,7 @@
 
 
 /obj/structure/closet/secure_closet/atmospherics
-	name = "\proper atmospheric technician's locker"
+	name = "atmospheric technician's locker"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "atmos"
 

@@ -1,7 +1,7 @@
 /// How often the sensor data is updated
 #define SENSORS_UPDATE_PERIOD (10 SECONDS) //How often the sensor data updates.
 /// The job sorting ID associated with otherwise unknown jobs
-#define UNKNOWN_JOB_ID 802 //BUBBERSTATION CHANGE: NEW CREW MONITOR SORTING.
+#define UNKNOWN_JOB_ID 998
 
 /obj/machinery/computer/crew
 	name = "crew monitoring console"
@@ -98,7 +98,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs = list(
 		// Note that jobs divisible by 10 are considered heads of staff, and bolded
 		// 00: Captain
-		JOB_CAPTAIN = 00,
+		JOB_CAPTAIN = 0,
+		JOB_HUMAN_AI = 1,
 		// 10-19: Security
 		JOB_HEAD_OF_SECURITY = 10,
 		JOB_WARDEN = 11,
@@ -138,21 +139,22 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_CARGO_TECHNICIAN = 52,
 		JOB_BITRUNNER = 53,
 		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
-		JOB_BLACKSMITH = 54,	// Bubber Addition!
-		// 60+: Civilian/other
+		JOB_BLACKSMITH = 55,	// Bubber edit Addition!
+		// 60+: Service
 		JOB_HEAD_OF_PERSONNEL = 60,
 		JOB_BARTENDER = 61,
-		JOB_COOK = 62,
-		JOB_BOTANIST = 63,
-		JOB_CURATOR = 64,
-		JOB_CHAPLAIN = 65,
-		JOB_CLOWN = 66,
-		JOB_MIME = 67,
-		JOB_JANITOR = 68,
-		JOB_LAWYER = 69,
-		JOB_BARBER = 71, // SKYRAT EDIT ADDITION
-		JOB_BOUNCER = 72, // SKYRAT EDIT ADDITION
-		// 200-239: Centcom
+		JOB_CHEF = 62,
+		JOB_COOK = 63,
+		JOB_BOTANIST = 64,
+		JOB_CURATOR = 65,
+		JOB_CHAPLAIN = 66,
+		JOB_CLOWN = 67,
+		JOB_MIME = 68,
+		JOB_JANITOR = 69,
+		JOB_LAWYER = 71,
+		JOB_BARBER = 72, // SKYRAT EDIT ADDITION
+		JOB_BOUNCER = 73, // SKYRAT EDIT ADDITION
+		// 200-229: Centcom
 		JOB_CENTCOM_ADMIRAL = 200,
 		JOB_CENTCOM = 201,
 		JOB_CENTCOM_OFFICIAL = 210,
@@ -197,7 +199,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		z = T.z
 	. = list(
 		"sensors" = update_data(z),
-		"link_allowed" = isAI(user)
+		"link_allowed" = HAS_AI_ACCESS(user)
 	)
 
 /datum/crewmonitor/proc/update_data(z)
@@ -238,7 +240,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			continue
 
 		// Check if their uniform is in a compatible mode.
-		if((uniform.has_sensor <= NO_SENSORS) || !uniform.sensor_mode)
+		if((uniform.has_sensor == NO_SENSORS) || !uniform.sensor_mode) //BUBBERSTATION CHANGE: 'uniform.has_sensor <= NO_SENSORS' TO 'uniform.has_sensor == NO_SENSORS'
 			stack_trace("Human without active suit sensors is in suit_sensors_list: [tracked_human] ([tracked_human.type]) ([uniform.type])")
 			continue
 
@@ -248,7 +250,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		var/list/entry = list(
 			"ref" = REF(tracked_living_mob),
 			"name" = "Unknown",
-			"ijob" = UNKNOWN_JOB_ID
+			"ijob" = UNKNOWN_JOB_ID,
 		)
 
 		// ID and id-related data
@@ -260,6 +262,21 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			if (jobs[trim_assignment] != null)
 				entry["ijob"] = jobs[trim_assignment]
 
+		//BUBBERSTATION CHANGE: EMP SENSORS
+		if(uniform.has_sensor == BROKEN_SENSORS)
+			entry["is_robot"] = rand(0,1)
+			entry["life_status"] = rand(0,1)
+			entry["area"] = prob(80) ? pick_list(ION_FILE, "ionarea") : pick("COWGIRL","REVERSE COWGIRL","DOGGYSTYLE","MISSIONARY","69")
+			entry["oxydam"] = rand(0,1000)
+			entry["toxdam"] = rand(0,1000)
+			entry["burndam"] =rand(0,1000)
+			entry["brutedam"] = rand(0,1000)
+			entry["health"] = -50
+			entry["can_track"] = tracked_living_mob.can_track()
+			results[++results.len] = entry
+			continue
+		//BUBBERSTATION CHANGE END
+
 		// SKYRAT EDIT BEGIN: Checking for robotic race
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
@@ -268,7 +285,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// BUBBERSTATION EDIT BEGIN: Add DNR status
 		// If sensors are above living tracking, set DNR state
 		if (sensor_mode >= SENSOR_LIVING)
-			entry["is_dnr"] = HAS_TRAIT(tracked_living_mob, TRAIT_DNR)
+			entry["is_dnr"] = tracked_human.get_dnr()
 		// BUBBERSTATION EDIT END
 
 		// Binary living/dead status
@@ -310,7 +327,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			var/mob/living/silicon/ai/AI = usr
 			if(!istype(AI))
 				return
-			AI.ai_tracking_tool.set_tracked_mob(AI, params["name"])
+			AI.ai_tracking_tool.track_name(AI, params["name"])
 
 #undef SENSORS_UPDATE_PERIOD
 #undef UNKNOWN_JOB_ID

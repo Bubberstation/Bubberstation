@@ -33,7 +33,6 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 /datum/loadout_item/toys/narsie
 	name = "Nar'sie Plushie"
 	item_path = /obj/item/toy/plush/narplush
-	restricted_roles = list(JOB_CHAPLAIN)
 
 /datum/loadout_item/toys/nukie
 	name = "Nukie Plushie"
@@ -50,7 +49,6 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 /datum/loadout_item/toys/ratvar
 	name = "Ratvar Plushie"
 	item_path = /obj/item/toy/plush/ratplush
-	restricted_roles = list(JOB_CHAPLAIN)
 
 /datum/loadout_item/toys/rouny
 	name = "Rouny Plushie"
@@ -403,3 +401,19 @@ GLOBAL_LIST_INIT(loadout_toys, generate_loadout_items(/datum/loadout_item/toys))
 /datum/loadout_item/toys/toykatana
 	name = "Toy Katana"
 	item_path = /obj/item/toy/katana
+
+/datum/loadout_item/toys/red_laser
+	name = "Red Laser Pointer"
+	item_path = /obj/item/laser_pointer/limited/red
+
+/datum/loadout_item/toys/green_laser
+	name = "Green Laser Pointer"
+	item_path = /obj/item/laser_pointer/limited/green
+
+/datum/loadout_item/toys/blue_laser
+	name = "Blue Laser Pointer"
+	item_path = /obj/item/laser_pointer/limited/blue
+
+/datum/loadout_item/toys/purple_laser
+	name = "Purple Laser Pointer"
+	item_path = /obj/item/laser_pointer/limited/purple

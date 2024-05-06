@@ -6,7 +6,7 @@
 	inhand_icon_state = null
 	worn_icon_state = null
 	tank_holder_icon_state = null
-	flags_1 = CONDUCT_1
+	flags_1 = CONDUCTS_ELECTRICITY
 	slot_flags = null //they have no straps!
 	force = 8
 	armor_type = /datum/armor/reactor_rod

@@ -136,7 +136,7 @@
 
 /// Gets the ban cache of the passed in client
 /// If the cache has not been generated, we start off a query
-/// If we still have a query going for this request, we just sleep until it's recieved back
+/// If we still have a query going for this request, we just sleep until it's received back
 /proc/retrieve_ban_cache(client/player_client)
 	if(QDELETED(player_client))
 		return
@@ -428,11 +428,14 @@
 				ROLE_REV_HEAD,
 				ROLE_SENTIENT_DISEASE,
 				ROLE_SPIDER,
+				ROLE_SPY,
 				ROLE_SYNDICATE,
 				ROLE_TRAITOR,
 				ROLE_WIZARD,
 				ROLE_BORER, //SKYRAT EDIT
 				ROLE_ASSAULT_OPERATIVE, //SKYRAT EDIT
+				ROLE_BLOODSUCKER,// BUBBER EDIT,
+				ROLE_VASSAL, // BUBBER EDIT
 			),
 			"Skyrat Ban Options" = list(
 				BAN_PACIFICATION,
@@ -636,7 +639,7 @@
 	duration = text2num(duration)
 	if (!(interval in list("SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR")))
 		interval = "MINUTE"
-	var/time_message = "[duration] [lowertext(interval)]" //no DisplayTimeText because our duration is of variable interval type
+	var/time_message = "[duration] [LOWER_TEXT(interval)]" //no DisplayTimeText because our duration is of variable interval type
 	if(duration > 1) //pluralize the interval if necessary
 		time_message += "s"
 	var/is_server_ban = (roles_to_ban[1] == "Server")

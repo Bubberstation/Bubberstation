@@ -166,6 +166,8 @@
 	desc = "An opulent hat that functions as a radio to God. Or as a lightning rod, depending on who you ask."
 	icon_state = "bishopmitre"
 
+#define CANDY_CD_TIME 2 MINUTES
+
 //Detective
 /obj/item/clothing/head/fedora/det_hat
 	name = "detective's fedora"
@@ -173,10 +175,13 @@
 	armor_type = /datum/armor/fedora_det_hat
 	icon_state = "detective"
 	inhand_icon_state = "det_hat"
-	var/candy_cooldown = 0
+	interaction_flags_click = NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING
 	dog_fashion = /datum/dog_fashion/head/detective
-	///Path for the flask that spawns inside their hat roundstart
+	/// Path for the flask that spawns inside their hat roundstart
 	var/flask_path = /obj/item/reagent_containers/cup/glass/flask/det
+	/// Cooldown for retrieving precious candy corn with rmb
+	COOLDOWN_DECLARE(candy_cooldown)
+
 
 /datum/armor/fedora_det_hat
 	melee = 25
@@ -187,28 +192,45 @@
 	acid = 50
 	wound = 5
 
+
 /obj/item/clothing/head/fedora/det_hat/Initialize(mapload)
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/small/fedora/detective)
 
+	register_context()
+
 	new flask_path(src)
+
 
 /obj/item/clothing/head/fedora/det_hat/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to take a candy corn.")
 
-/obj/item/clothing/head/fedora/det_hat/AltClick(mob/user)
+
+/obj/item/clothing/head/fedora/det_hat/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	if(loc != user || !user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS))
-		return
-	if(candy_cooldown < world.time)
-		var/obj/item/food/candy_corn/CC = new /obj/item/food/candy_corn(src)
-		user.put_in_hands(CC)
-		to_chat(user, span_notice("You slip a candy corn from your hat."))
-		candy_cooldown = world.time+1200
-	else
+
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "Candy Time"
+
+	return CONTEXTUAL_SCREENTIP_SET
+
+
+/// Now to solve where all these keep coming from
+/obj/item/clothing/head/fedora/det_hat/click_alt(mob/user)
+	if(!COOLDOWN_FINISHED(src, candy_cooldown))
 		to_chat(user, span_warning("You just took a candy corn! You should wait a couple minutes, lest you burn through your stash."))
+		return CLICK_ACTION_BLOCKING
+
+	var/obj/item/food/candy_corn/sweets = new /obj/item/food/candy_corn(src)
+	user.put_in_hands(sweets)
+	to_chat(user, span_notice("You slip a candy corn from your hat."))
+	COOLDOWN_START(src, candy_cooldown, CANDY_CD_TIME)
+
+	return CLICK_ACTION_SUCCESS
+
+
+#undef CANDY_CD_TIME
 
 /obj/item/clothing/head/fedora/det_hat/minor
 	flask_path = /obj/item/reagent_containers/cup/glass/flask/det/minor
@@ -221,6 +243,7 @@
 	icon_state = "detective"
 	inhand_icon_state = "det_hat"
 	dog_fashion = /datum/dog_fashion/head/detective
+	interaction_flags_click = FORBID_TELEKINESIS_REACH|ALLOW_RESTING
 	///prefix our phrases must begin with
 	var/prefix = "go go gadget"
 	///an assoc list of phrase = item (like gun = revolver)
@@ -277,7 +300,7 @@
 		return
 
 	var/input = tgui_input_text(user, "What is the activation phrase?", "Activation phrase", "gadget", max_length = 26)
-	if(!input)
+	if(!input || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	if(input in items_by_phrase)
 		balloon_alert(user, "already used!")
@@ -293,16 +316,16 @@
 /obj/item/clothing/head/fedora/inspector_hat/attack_self(mob/user)
 	. = ..()
 	var/phrase = tgui_input_list(user, "What item do you want to remove by phrase?", "Item Removal", items_by_phrase)
-	if(!phrase)
+	if(!phrase || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	user.put_in_inactive_hand(items_by_phrase[phrase])
 
-/obj/item/clothing/head/fedora/inspector_hat/AltClick(mob/user)
-	. = ..()
+/obj/item/clothing/head/fedora/inspector_hat/click_alt(mob/user)
 	var/new_prefix = tgui_input_text(user, "What should be the new prefix?", "Activation prefix", prefix, max_length = 24)
-	if(!new_prefix)
-		return
+	if(!new_prefix || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
+		return CLICK_ACTION_BLOCKING
 	prefix = new_prefix
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/head/fedora/inspector_hat/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -424,19 +447,7 @@
 	name = "warden's hat"
 	desc = "A warden's red hat. Looking at it gives you the feeling of wanting to keep people in cells for as long as possible."
 	icon_state = "wardenhat"
-	armor_type = /datum/armor/warden_red
-	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/warden_red
-
-/datum/armor/warden_red
-	melee = 40
-	bullet = 30
-	laser = 30
-	energy = 40
-	bomb = 25
-	fire = 30
-	acid = 60
-	wound = 6
 
 /obj/item/clothing/head/hats/warden/drill
 	name = "warden's campaign hat"
@@ -557,7 +568,7 @@
 /obj/item/clothing/head/beret/medical
 	name = "medical beret"
 	desc = "A medical-flavored beret for the doctor in you!"
-	greyscale_colors = "#FFFFFF"
+	greyscale_colors = COLOR_WHITE
 	flags_1 = NONE
 
 /obj/item/clothing/head/beret/medical/paramedic
@@ -574,7 +585,8 @@
 	name = "blue surgery cap"
 	icon_state = "surgicalcap"
 	desc = "A blue medical surgery cap to prevent the surgeon's hair from entering the insides of the patient!"
-	//flags_inv = HIDEHAIR (Bubber Edit: Disabled for preview QOL)
+	//flags_inv = HIDEHAIR //Cover your head doctor! (Bubber Edit: Disabled for preview QOL) //BUBBER TODO: Modularise
+	w_class = WEIGHT_CLASS_SMALL //surgery cap can be easily crumpled
 
 /obj/item/clothing/head/utility/surgerycap/attack_self(mob/user)
 	. = ..()

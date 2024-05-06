@@ -2,18 +2,20 @@
 	name = "\improper Plasmaman"
 	plural_form = "Plasmamen"
 	id = SPECIES_PLASMAMAN
-	sexes = TRUE // BUBBER EDIT
+	sexes = FALSE
 	meat = /obj/item/stack/sheet/mineral/plasma
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place
 	inherent_traits = list(
 		TRAIT_GENELESS,
 		TRAIT_HARDLY_WOUNDED,
-		TRAIT_RADIMMUNE,
-		TRAIT_RESISTCOLD,
 		TRAIT_NOBLOOD,
 		TRAIT_NO_DNA_COPY,
-		TRAIT_NO_TRANSFORMATION_STING,
+		TRAIT_NO_PLASMA_TRANSFORM,
+		TRAIT_RADIMMUNE,
+		TRAIT_RESISTCOLD,
+		TRAIT_UNHUSKABLE,
 	)
+
 
 	inherent_biotypes = MOB_HUMANOID|MOB_MINERAL
 	inherent_respiration_type = RESPIRATION_PLASMA
@@ -49,21 +51,22 @@
 	// This effects how fast body temp stabilizes, also if cold resit is lost on the mob
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 50) // about -50c
 
-	ass_image = 'icons/ass/assplasma.png'
-
 	outfit_override_registry = list(
 		/datum/outfit/syndicate = /datum/outfit/syndicate/plasmaman,
 		/datum/outfit/syndicate/full = /datum/outfit/syndicate/full/plasmaman,
 		/datum/outfit/syndicate/leader = /datum/outfit/syndicate/leader/plasmaman,
 		/datum/outfit/syndicate/reinforcement = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/reinforcement/cybersun = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/reinforcement/donk = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/reinforcement/gorlex = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/reinforcement/interdyne = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/reinforcement/mi13 = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/reinforcement/waffle = /datum/outfit/syndicate/reinforcement/plasmaman,
+		/datum/outfit/syndicate/support = /datum/outfit/syndicate/support/plasmaman,
 	)
 
 	/// If the bones themselves are burning clothes won't help you much
 	var/internal_fire = FALSE
-
-/datum/species/plasmaman/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	. = ..()
-	C.set_safe_hunger_level()
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
 	. = ..()
@@ -114,7 +117,7 @@
 	else
 		internal_fire = FALSE
 
-	H.update_fire()
+	H.update_appearance(UPDATE_OVERLAYS)
 
 /datum/species/plasmaman/handle_fire(mob/living/carbon/human/H, seconds_per_tick, no_protection = FALSE)
 	if(internal_fire)

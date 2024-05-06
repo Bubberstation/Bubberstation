@@ -31,9 +31,9 @@
 	icon_dead = "oil_shambler"
 	speak_emote = list("crackles")
 
-	maxHealth = 25 //BUBBERSTATION CHANGE
-	health = 25 //BUBBERSTATION CHANGE
-	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 0) //BUBBERSTATION CHANGE
+	maxHealth = 25 // BUBBERSTATION CHANGE
+	health = 25 // BUBBERSTATION CHANGE
+	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 1, STAMINA = 0, OXY = 0) // BUBBERSTATION CHANGE
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = INFINITY
@@ -48,7 +48,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	death_message = "evaporates!"
 
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_color = LIGHT_COLOR_FIRE
 	light_range = 2
 	light_power = 1
@@ -252,7 +252,7 @@
 	obj_damage = 40
 	attack_sound = 'sound/effects/wounds/crackandbleed.ogg'
 
-	light_system = MOVABLE_LIGHT
+	light_system = OVERLAY_LIGHT
 	light_range = 2
 	light_power = 1
 	light_color = LIGHT_COLOR_GREEN

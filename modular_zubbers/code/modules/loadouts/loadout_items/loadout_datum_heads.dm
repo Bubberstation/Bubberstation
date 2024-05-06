@@ -9,7 +9,7 @@
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
 	name = "magnificent pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
-	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex")
+	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex", "especiallystrange", "ghostie_dwagons", "Kidkirby",)
 //11/08/23: Added as a reward to people who have recommended friends to Bubberstation. Add to this list as you please, you can offer this as a reward for basically anything.
 //Please mark the date and what this was awarded for in code comments here. For example:
 //XX/XX/XX: Added as a reward for EXAMPLE EVENT's winners.
@@ -52,3 +52,32 @@
 	name = "Tactical Maid Headband"
 	item_path = /obj/item/clothing/head/costume/maidheadband/tactical_maid
 	donator_only = TRUE
+
+//Flowers
+/datum/loadout_item/head/donator/poppy
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/lily
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/geranium
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/fraxinella
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/harebell
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/rose
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/carbon_rose
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/sunflower
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/rainbow_bunch
+	donator_only = FALSE
+

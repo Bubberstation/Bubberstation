@@ -12,7 +12,7 @@
 		/obj/item/cautery,
 		/obj/item/circular_saw,
 		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown, // SKYRAT EDIT ADDITION
+		/obj/item/clothing/suit/toggle/labcoat/hospitalgown, // SKYRAT EDIT ADDITION
 		/obj/item/hemostat,
 		/obj/item/razor,
 		/obj/item/reagent_containers/medigel,
@@ -176,12 +176,10 @@
 	for(var/atom/movable/tool as anything in contents)
 		tool.forceMove(drop_point)
 
-/obj/item/surgery_tray/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		dump_contents()
-		new /obj/item/stack/rods(drop_location(), 2)
-		new /obj/item/stack/sheet/mineral/silver(drop_location())
-	return ..()
+/obj/item/surgery_tray/atom_deconstruct(disassembled = TRUE)
+	dump_contents()
+	new /obj/item/stack/rods(drop_location(), 2)
+	new /obj/item/stack/sheet/mineral/silver(drop_location())
 
 /obj/item/surgery_tray/deployed
 	is_portable = FALSE
@@ -197,7 +195,7 @@
 	new /obj/item/cautery(src)
 	new /obj/item/circular_saw(src)
 	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown(src) // SKYRAT EDIT ADDITION
+	new /obj/item/clothing/suit/toggle/labcoat/hospitalgown(src) // SKYRAT EDIT ADDITION
 	new /obj/item/hemostat(src)
 	new /obj/item/razor/surgery(src)
 	new /obj/item/retractor(src)
@@ -219,7 +217,7 @@
 	new /obj/item/cautery/cruel(src)
 	new /obj/item/circular_saw(src)
 	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown(src) // SKYRAT EDIT ADDITION
+	new /obj/item/clothing/suit/toggle/labcoat/hospitalgown(src) // SKYRAT EDIT ADDITION
 	new /obj/item/hemostat/cruel(src)
 	new /obj/item/razor/surgery(src)
 	new /obj/item/retractor/cruel(src)

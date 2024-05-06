@@ -1,19 +1,21 @@
 /datum/species/jelly
-	default_mutant_bodyparts = list(
-		"tail" = "None",
-		"snout" = "None",
-		"ears" = "None",
-		"taur" = "None",
-		"wings" = "None",
-		"legs" = "Normal Legs",
-		"horns" = "None",
-		"spines" = "None",
-		"frills" = "None",
-	)
 	mutant_bodyparts = list()
 	hair_color = "mutcolor"
 	hair_alpha = 160 //a notch brighter so it blends better.
 	facial_hair_alpha = 160
+
+/datum/species/jelly/get_default_mutant_bodyparts()
+	return list(
+		"tail" = list("None", FALSE),
+		"snout" = list("None", FALSE),
+		"ears" = list("None", FALSE),
+		"legs" = list("Normal Legs", FALSE),
+		"taur" = list("None", FALSE),
+		"wings" = list("None", FALSE),
+		"horns" = list("None", FALSE),
+		"spines" = list("None", FALSE),
+		"frills" = list("None", FALSE),
+	)
 
 /datum/species/jelly/get_species_description()
 	return placeholder_description
@@ -33,12 +35,12 @@
 	mutanttongue = /obj/item/organ/internal/tongue/jelly
 
 	bodypart_overrides = list( //Overriding jelly bodyparts
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/slime/roundstart,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/slime/roundstart,
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/slime/roundstart,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/slime/roundstart,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/slime/roundstart,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/slime/roundstart,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/jelly/slime/roundstart,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/jelly/slime/roundstart,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/jelly/slime/roundstart,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/jelly/slime/roundstart,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/jelly/slime/roundstart,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/jelly/slime/roundstart,
 	)
 
 /datum/species/jelly/roundstartslime/create_pref_unique_perks()
@@ -387,7 +389,7 @@
 			if(robot_organs)
 				replacement_organ.organ_flags |= ORGAN_ROBOTIC
 			replacement_organ.build_from_dna(alterer.dna, chosen_key)
-			replacement_organ.Insert(alterer, special = TRUE, drop_if_replaced = FALSE)
+			replacement_organ.Insert(alterer, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 		else
 			var/list/new_acc_list = list()
 			new_acc_list[MUTANT_INDEX_NAME] = selected_sprite_accessory.name

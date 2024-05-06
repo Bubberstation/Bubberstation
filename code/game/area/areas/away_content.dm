@@ -23,6 +23,22 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	has_gravity = STANDARD_GRAVITY
 	ambientsounds = list('sound/ambience/shore.ogg', 'sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag2.ogg','sound/ambience/ambiodd.ogg','sound/ambience/ambinice.ogg')
 
+/area/awaymission/museum
+	name = "Nanotrasen Museum"
+	icon_state = "awaycontent28"
+	sound_environment = SOUND_ENVIRONMENT_CONCERT_HALL
+
+/area/awaymission/museum/mothroachvoid
+	static_lighting = FALSE
+	base_lighting_alpha = 200
+	base_lighting_color = "#FFF4AA"
+	sound_environment = SOUND_ENVIRONMENT_PLAIN
+	ambientsounds = list('sound/ambience/shore.ogg', 'sound/ambience/ambiodd.ogg','sound/ambience/ambinice.ogg')
+
+/area/awaymission/museum/cafeteria
+	name = "Nanotrasen Museum Cafeteria"
+	sound_environment = SOUND_ENVIRONMENT_ROOM
+
 /area/awaymission/errorroom
 	name = "Super Secret Room"
 	static_lighting = FALSE
@@ -52,20 +68,3 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 /area/awaymission/secret/powered/fullbright
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-//BUBBER EDIT BEGIN
-/area/awaymission/secret/powered/construct
-	name = "construct"
-	ambience_index = null
-	ambient_buzz = null
-
-/area/awaymission/secret/unpowered/construct
-	name = "construct unpowered"
-	ambient_buzz = null
-
-/area/awaymission/secret/powered/construct/fullbright
-	static_lighting = FALSE
-	base_lighting_alpha = 255
-
-/area/centcom/central_command_areas/briefing/construct
-	ambient_buzz = null
-// BUBBER EDIT END

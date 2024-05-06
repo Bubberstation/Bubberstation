@@ -3,8 +3,6 @@
 	generic = "Tail"
 	organ_type = /obj/item/organ/external/tail
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
-	special_render_case = TRUE
-	special_colorize = TRUE
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	genetic = TRUE
 	/// Can we use this tail for the fluffy tail turf emote?
@@ -29,9 +27,6 @@
 		else if(wearer.wear_suit.flags_inv & HIDETAIL)
 			return TRUE
 
-/datum/sprite_accessory/tails/get_special_render_state(mob/living/carbon/human/wearer)
-	return icon_state
-
 /datum/sprite_accessory/tails/none
 	name = "None"
 	icon_state = "none"
@@ -43,6 +38,11 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
 	recommended_species = list(SPECIES_LIZARD, SPECIES_LIZARD_ASH, SPECIES_MAMMAL, SPECIES_UNATHI, SPECIES_LIZARD_SILVER)
 	organ_type = /obj/item/organ/external/tail/lizard
+
+/datum/sprite_accessory/tails/lizard/short/twotone
+	name = "Short (Two-Tone)"
+	icon_state = "short2tone"
+	color_src = USE_MATRIXED_COLORS
 
 /datum/sprite_accessory/tails/human
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_MAMMAL, SPECIES_GHOUL)
@@ -433,3 +433,7 @@
 /datum/sprite_accessory/tails/mammal/wagging/australian_shepherd
 	name = "Australian Shepherd"
 	icon_state = "australianshepherd"
+
+/datum/sprite_accessory/tails/mammal/wagging/peacock
+	name = "Peacock"
+	icon_state = "peacock"
