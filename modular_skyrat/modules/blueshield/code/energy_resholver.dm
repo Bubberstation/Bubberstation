@@ -44,7 +44,7 @@
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	var/static/list/selectable_gun_types = list(
 		"Energy Revolver" = /obj/item/gun/energy/e_gun/blueshield,
-		"Energy Carbine" = /obj/item/gun/energy/e_gun/stun/blueshield,
+		//"Energy Carbine" = /obj/item/gun/energy/e_gun/stun/blueshield, //bubber edit removal
 		".585 SMG" = /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo //This can obviously be replaced out with any gun of your choice for future coder
 	)
 
