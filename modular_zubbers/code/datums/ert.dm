@@ -15,7 +15,7 @@
 	code = "Gold"
 
 /datum/ert/inquisition
-	code = "Inquisition"
+	code = "Unexpected"
 
 /datum/ert/janitor
 	code = "Purple"
