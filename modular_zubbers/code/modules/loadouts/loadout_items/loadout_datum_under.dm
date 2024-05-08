@@ -7,7 +7,7 @@
 /datum/loadout_item/under/miscellaneous/command/stripper //Sprites by SierraGenevese
 	name = "command stripper uniform"
 	item_path = /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper
-	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL)
+	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
 
 /datum/loadout_item/under/miscellaneous/nanotrasen_consultant/stripper //Sprites by SierraGenevese
 	name = "consultant stripper uniform"
