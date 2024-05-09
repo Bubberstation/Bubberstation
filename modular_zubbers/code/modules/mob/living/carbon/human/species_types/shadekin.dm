@@ -3,6 +3,8 @@
 	id = SPECIES_SHADEKIN
 	eyes_icon = 'modular_zubbers/icons/mob/human/human_face.dmi'
 	say_mod = "mars"
+	mutanttongue = /obj/item/organ/internal/tongue/shadekin
+	mutantears = /obj/item/organ/internal/ears/shadekin
 	mutant_bodyparts = list()
 	mutanteyes = /obj/item/organ/internal/eyes/shadekin
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -22,6 +24,7 @@
 		TRAIT_SLICK_SKIN,
 		TRAIT_MUTANT_COLORS,
 	)
+	species_language_holder = /datum/language_holder/shadekin
 
 /datum/species/shadekin/get_default_mutant_bodyparts()
 	return list(
