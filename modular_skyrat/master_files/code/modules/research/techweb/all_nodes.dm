@@ -252,6 +252,12 @@
 	)
 	return ..() */ //BUBBERSTATION REMOVAL
 
+/datum/techweb_node/cyborg_upg_serv/New()
+	design_ids += list(
+		"borg_upgrade_artistic"
+	)
+	return ..()
+
 /datum/techweb_node/basic_mining/New()
 	design_ids += list(
 		"borg_upgrade_welding",
