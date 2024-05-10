@@ -24,5 +24,6 @@
 	remove_powers(bloodsucker_powers)
 	. = ..()
 
-/datum/antagonist/vassal/favorite/pre_mindshield(mob/implanter, mob/living/mob_override)
-	return COMPONENT_MINDSHIELD_RESISTED
+// /datum/antagonist/vassal/favorite/pre_mindshield(mob/implanter, mob/living/mob_override)
+//	return COMPONENT_MINDSHIELD_RESISTED
+// Favorite vassals can be deconverted NOW!
