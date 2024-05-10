@@ -1,4 +1,4 @@
-/* #define MIN_MIDROUND_COST 20 // BUBBER EDIT DISABLE
+#define MIN_MIDROUND_COST 20 // BUBBER EDIT DISABLE
 #define ALT_MIDROUND_LOWER_TIME 4500
 #define ALT_MIDROUND_UPPER_TIME 10500
 
@@ -55,7 +55,7 @@
 	if(trait_list_string != "")
 		return "<hr><b>Identified shift divergencies:</b><BR>" + trait_list_string
 	return
-
+/* Bubber disable start
 /datum/controller/subsystem/dynamic
 	/// Desired median point for midrounds, plus or minus the midround_roll_distance.
 	var/midround_median_frequency = 36000
@@ -93,8 +93,7 @@
 /datum/controller/subsystem/dynamic/proc/alternate_midround_injection()
 	next_midround_injection = world.time + rand(ALT_MIDROUND_LOWER_TIME, ALT_MIDROUND_UPPER_TIME)
 	log_dynamic_and_announce("Alternate midround injection in [DisplayTimeText(next_midround_injection - world.time)]")
-
+ Bubber disable end*/
 #undef MIN_MIDROUND_COST
 #undef ALT_MIDROUND_LOWER_TIME
 #undef ALT_MIDROUND_UPPER_TIME
- */ // BUBBER EDIT DISABLE
