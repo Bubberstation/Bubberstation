@@ -71,10 +71,14 @@
 
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
+	SSpowerator_penality.sum_powerators()
+	SSpowerator_penality.calculate_penality()
 	START_PROCESSING(SSobj, src)
 
 /obj/machinery/powerator/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	SSpowerator_penality.remove_deled_powerators(src)
+	SSpowerator_penality.calculate_penality()
 	attached_cable = null
 	return ..()
 
@@ -103,6 +107,8 @@
 
 	. += span_notice("Current Power: [display_power(current_power)]/[display_power(max_power)]")
 	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
+	if(length(SSpowerator_penality.powerator_list) > 1)
+		. += span_notice("Multiple powerators detected, total efficiency reduced by [(SSpowerator_penality.diminishing_gains_multiplier)*100]%")
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
@@ -162,7 +168,7 @@
 		current_power = attached_cable.newavail()
 	attached_cable.add_delayedload(current_power)
 
-	var/money_ratio = round(current_power * divide_ratio)
+	var/money_ratio = round(current_power * divide_ratio) * SSpowerator_penality.diminishing_gains_multiplier
 	//BUBBER EDIT CHANGE BEGIN - Use credits_account variable for our department look up
 	//var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR) - BUBBER EDIT - ORIGINAL
 	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
