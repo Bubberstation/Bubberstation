@@ -45,6 +45,8 @@
 	var/population_min
 	/// If defined, it will not be votable if exceeding the population
 	var/population_max
+	/// The antag divisor, the higher it is the lower the antag cap gets.
+	var/antag_divisor = 1
 
 /datum/storyteller/process(delta_time)
 	if(disable_distribution)

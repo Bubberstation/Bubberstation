@@ -1,6 +1,7 @@
 /datum/storyteller/guide
 	name = "The Guide"
 	desc = "The Guide is the default Storyteller, and the comparison point for every other Storyteller. Best for an average, varied experience."
+	antag_divisor = 8
 
 /datum/storyteller/sleeper
 	name = "The Sleeper"
@@ -14,6 +15,7 @@
 		)
 	guarantees_roundstart_roleset = FALSE
 	tag_multipliers = list(TAG_COMBAT = 0.6, TAG_DESTRUCTIVE = 0.7)
+	antag_divisor = 9
 
 /datum/storyteller/jester
 	name = "The Jester"
@@ -27,6 +29,7 @@
 		EVENT_TRACK_OBJECTIVES = 1
 		)
 	population_min = 35
+	antag_divisor = 4
 
 /datum/storyteller/warrior
 	name = "The Warrior"
@@ -40,6 +43,7 @@
 		)
 	tag_multipliers = list(TAG_COMBAT = 1.5)
 	population_min = 35
+	antag_divisor = 2
 
 /datum/storyteller/demoman
 	name = "The DemoMan"
@@ -54,9 +58,11 @@
 	)
 	tag_multipliers = list(TAG_DESTRUCTIVE = 2.5) // You asked and I delivered. Destructiveness increased
 	population_min = 25
+	antag_divisor = 7
 
 /datum/storyteller/ghost
 	name = "The Ghost"
 	desc = "The Ghost is the absence of a Storyteller. It will not spawn a single event of any sort, or run any Antagonists. Best for rounds where the population is so low that not even the Sleeper is low enough."
 	disable_distribution = TRUE
 	population_max = 35
+	antag_divisor = 16
