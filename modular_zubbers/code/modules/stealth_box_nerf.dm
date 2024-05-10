@@ -1,7 +1,7 @@
 /obj/structure/closet/bust_open() // I'm about to bust.
 
 	for(var/mob/living/person_in_box in contents)
-		person_in_box.Stun(4 SECONDS)
+		person_in_box.Stun(2 SECONDS)
 
 	. = ..()
 
