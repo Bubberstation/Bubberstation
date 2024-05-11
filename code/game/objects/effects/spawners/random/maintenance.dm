@@ -17,6 +17,8 @@
 
 /obj/effect/spawner/random/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
+		loot = prob(80) ? GLOB.rarity_loot : GLOB.oddity_loot
 	return ..()
 
 /obj/effect/spawner/random/maintenance/proc/hide()
@@ -36,10 +38,10 @@
 	//End of blubberstation change.
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
-		effective_lootcount = FLOOR(spawn_loot_count * 1.5, 1)
+		effective_lootcount = CEILING(spawn_loot_count * 1.5, 1)
 
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		effective_lootcount = FLOOR(spawn_loot_count * 0.5, 1)
+		effective_lootcount = CEILING(spawn_loot_count * 0.5, 1)
 
 	return effective_lootcount
 
