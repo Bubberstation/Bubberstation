@@ -18,6 +18,15 @@
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
 	weight = 4
 
+// God has abandoned us
+/datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
+	var/list/candidates = ..()
+	. = list()
+	for(var/mob/candidate as anything in candidates)
+		if(SSjob.check_job_eligibility(candidate, /datum/job/ai))
+			. += candidate
+	return .
+
 /datum/round_event_control/antagonist/solo/malf/roundstart/can_spawn_event(popchecks, allow_magic)
 	. = ..()
 	if(!.)
