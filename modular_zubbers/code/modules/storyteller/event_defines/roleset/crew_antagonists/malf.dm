@@ -23,7 +23,7 @@
 	var/list/candidates = ..()
 	. = list()
 	for(var/mob/candidate as anything in candidates)
-		if(SSjob.check_job_eligibility(candidate, /datum/job/ai) == JOB_AVAILABLE)
+		if(SSjob.check_job_eligibility(candidate, SSjob.GetJob(/datum/job/ai)) == JOB_AVAILABLE)
 			. += candidate
 	return .
 
