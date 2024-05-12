@@ -89,7 +89,6 @@
 
 /obj/item/organ/internal/brain/shadekin/on_life(seconds_per_tick, times_fired)
 	. = ..()
-	var/damage_gate = 50
 	var/stamdamage = 0.5 * seconds_per_tick
 	var/turf/owner_turf = owner.loc
 	if(!isturf(owner_turf))
@@ -101,8 +100,7 @@
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/light_averse)
 	if (!owner.has_status_effect(applied_status))
 		owner.add_movespeed_modifier(/datum/movespeed_modifier/light_averse)
-		if (stamdamage < damage_gate)
-			owner.adjustStaminaLoss(stamdamage, updating_stamina = FALSE)
+		owner.adjustStaminaLoss(stamdamage, updating_stamina = FALSE)
 
 /datum/status_effect/shadekin_regeneration
 	id = "shadekin_regeneration"
@@ -122,7 +120,7 @@
 	heal_owner()
 
 /datum/status_effect/shadekin_regeneration/proc/heal_owner()
-	owner.heal_overall_damage(brute = 0.1, burn = 0.1, required_bodytype = BODYTYPE_ORGANIC)
+	owner.heal_overall_damage(brute = 0.5, burn = 0.5, required_bodytype = BODYTYPE_ORGANIC)
 
 /atom/movable/screen/alert/status_effect/shadekin_regeneration
 	name = "Dark Regeneration"
