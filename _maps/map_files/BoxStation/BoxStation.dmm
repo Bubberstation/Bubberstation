@@ -26248,6 +26248,12 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance,
 /turf/open/floor/iron/cafeteria,
 /area/station/maintenance/abandon_cafeteria)
+"bZm" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/station/commons/vacant_room/office)
 "bZp" = (
 /obj/machinery/exodrone_launcher,
 /obj/effect/turf_decal/box,
@@ -32132,11 +32138,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/table,
-/obj/machinery/computer/order_console/bitrunning{
-	icon_screen = "pod_on";
-	icon_state = "pod_off";
-	icon = 'icons/obj/machines/wallmounts.dmi'
-	},
+/obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/bitrunning/den)
 "cFu" = (
@@ -35901,12 +35903,7 @@
 /area/station/science/explab)
 "eRH" = (
 /obj/structure/table/wood,
-/obj/machinery/modular_computer/preset/civilian{
-	icon = 'icons/obj/machines/computer.dmi';
-	icon_state = "oldcomp";
-	icon_state_powered = "oldcomp";
-	pixel_y = 4
-	},
+/obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/carpet,
 /area/station/commons/vacant_room/office)
 "eRK" = (
@@ -44813,12 +44810,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/explab)
-"ljs" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/station/commons/vacant_room/office)
 "ljx" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -56721,11 +56712,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "tYb" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/station/commons/vacant_room/office)
+/turf/open/floor/iron/dark,
+/area/station/cargo/bitrunning/den)
 "tYi" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -57703,6 +57691,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/corrections_officer)
+"uNm" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/station/commons/vacant_room/office)
 "uOx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -60914,9 +60908,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_cafeteria)
-"wZj" = (
-/turf/open/floor/iron/dark,
-/area/station/cargo/bitrunning/den)
 "wZu" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -82993,7 +82984,7 @@ srx
 dTG
 avf
 vKD
-tYb
+bZm
 mRE
 phz
 lXs
@@ -83508,7 +83499,7 @@ bWw
 asS
 eRH
 kqE
-ljs
+uNm
 srx
 lXs
 aLE
@@ -84837,7 +84828,7 @@ byE
 bsb
 qhp
 kRc
-wZj
+tYb
 nMw
 bCq
 gzL
