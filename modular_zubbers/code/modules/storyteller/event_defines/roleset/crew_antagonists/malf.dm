@@ -22,8 +22,9 @@
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
 	var/list/candidates = ..()
 	. = list()
+	var/datum/job/aijob = SSjob.GetJob(JOB_AI)
 	for(var/mob/candidate as anything in candidates)
-		if(SSjob.check_job_eligibility(candidate, SSjob.GetJob(/datum/job/ai)) == JOB_AVAILABLE)
+		if(SSjob.check_job_eligibility(candidate, aijob) == JOB_AVAILABLE)
 			. += candidate
 	return .
 
