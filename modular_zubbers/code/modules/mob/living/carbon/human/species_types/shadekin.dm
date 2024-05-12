@@ -90,6 +90,7 @@
 /obj/item/organ/internal/brain/shadekin/on_life(seconds_per_tick, times_fired)
 	. = ..()
 	var/damage_gate = 50
+	var/stamdamage = 0.5 * seconds_per_tick
 	var/turf/owner_turf = owner.loc
 	if(!isturf(owner_turf))
 		return
@@ -97,6 +98,11 @@
 
 	if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
 		owner.apply_status_effect(applied_status)
+		owner.remove_movespeed_modifier(/datum/movespeed_modifier/light_averse)
+	if (!owner.has_status_effect(applied_status))
+		owner.add_movespeed_modifier(/datum/movespeed_modifier/light_averse)
+		if (stamdamage < damage_gate)
+			owner.adjustStaminaLoss(stamdamage, updating_stamina = FALSE)
 
 /datum/status_effect/shadekin_regeneration
 	id = "shadekin_regeneration"
