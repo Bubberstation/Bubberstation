@@ -280,7 +280,7 @@
 			continue
 
 		if(isnull(enemy_tile.air))
-			log_runtime("Invalid tile [enemy_tile] lacking air variable at [enemy_tile.x], [enemy_tile.y], [enemy_tile.z]. Tell the maintainers")
+			log_runtime("Invalid tile [enemy_tile] trying to process atmos whilst lacking air variable at [enemy_tile.x], [enemy_tile.y], [enemy_tile.z]. Tell the maintainers")
 			continue
 		LINDA_CYCLE_ARCHIVE(enemy_tile)
 
