@@ -94,6 +94,7 @@
 			custom_species_lore = "Obscured"
 			flavor_text = "Obscured"
 			name = "Unknown"
+			ooc_notes += holder_human.dna.features["ooc_notes"]
 		else
 			headshot += preferences?.read_preference(/datum/preference/text/headshot)
 			flavor_text = holder_human.dna.features["flavor_text"]
