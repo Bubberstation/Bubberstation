@@ -653,7 +653,7 @@
 /datum/loadout_item/gloves/hypnoring_nuke
 	name = "Suspiciously Glossy Ring"
 	item_path = /obj/item/clothing/gloves/ring/hypno/nuke
-	ckeywhitelist = list("sonicgotnuked")
+	ckeywhitelist = list("sonicgotnuked", "tecktonic")
 
 /datum/loadout_item/ears/kinkphone_nuke
 	name = "Suspiciously Glossy Headphones"
