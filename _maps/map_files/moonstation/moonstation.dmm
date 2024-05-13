@@ -3932,12 +3932,6 @@
 /obj/item/kirbyplants/random/fullysynthetic,
 /turf/open/floor/circuit/telecomms,
 /area/station/ai_monitored/turret_protected/ai)
-"beZ" = (
-/obj/structure/chair/office{
-	dir = 3
-	},
-/turf/open/floor/iron/dark,
-/area/station/command/bridge)
 "bfn" = (
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/wood,
@@ -10825,8 +10819,8 @@
 /turf/open/floor/plating/rust/moonstation,
 /area/station/science/ordnance/bomb)
 "dmn" = (
-/obj/machinery/atmospherics/components/binary/valve/on{
-	name = "Air Cooling Shutoff"
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
@@ -26282,7 +26276,9 @@
 /area/station/cargo/storage)
 "hPI" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/binary/valve,
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/waste)
 "hPO" = (
@@ -34400,12 +34396,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/starboard)
-"knZ" = (
-/obj/machinery/atmospherics/components/binary/valve{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/station/engineering/supermatter/waste)
 "koc" = (
 /obj/structure/sign/warning/secure_area{
 	desc = "A warning sign which reads 'BOMB RANGE";
@@ -37845,12 +37835,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"lnU" = (
-/obj/structure/chair/office{
-	dir = 3
-	},
-/turf/open/floor/carpet/executive,
-/area/station/command/meeting_room)
 "lnY" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 4
@@ -44205,14 +44189,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
-"ngo" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/computer/station_goal,
-/turf/open/floor/carpet/green,
-/area/station/command/heads_quarters/nt_rep)
 "ngB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/cyan/visible{
 	dir = 4
@@ -52344,6 +52320,12 @@
 /obj/machinery/modular_computer/preset/civilian,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
+"pCG" = (
+/obj/structure/chair/office{
+	dir = 3
+	},
+/turf/open/floor/iron/dark,
+/area/station/command/bridge)
 "pCJ" = (
 /obj/machinery/computer/order_console/cook,
 /obj/effect/turf_decal/tile/green/anticorner/contrasted{
@@ -63497,7 +63479,7 @@
 /turf/open/floor/wood,
 /area/station/service/bar)
 "sRS" = (
-/obj/machinery/atmospherics/components/binary/valve{
+/obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -64660,6 +64642,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"tiR" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/computer/station_goal,
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
 "tjs" = (
 /obj/structure/table/wood/poker,
 /obj/effect/mapping_helpers/broken_floor,
@@ -64720,7 +64710,7 @@
 /turf/open/floor/plating,
 /area/station/terminal/lobby)
 "tkE" = (
-/obj/machinery/atmospherics/components/binary/valve/on{
+/obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -78481,7 +78471,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/binary/valve{
+/obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -79550,6 +79540,12 @@
 	},
 /turf/open/floor/plating/lavaland_atmos,
 /area/station/cargo/miningelevators)
+"xJM" = (
+/obj/structure/chair/office{
+	dir = 3
+	},
+/turf/open/floor/carpet/executive,
+/area/station/command/meeting_room)
 "xJR" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/visible{
@@ -241732,7 +241728,7 @@ stM
 stM
 stM
 mSV
-ngo
+tiR
 dxC
 xUU
 dfu
@@ -244315,7 +244311,7 @@ rTn
 pzV
 tRu
 qYd
-lnU
+xJM
 vyY
 vrN
 ggl
@@ -244562,7 +244558,7 @@ mAM
 oCM
 hjY
 uXw
-beZ
+pCG
 vVc
 eHO
 lpJ
@@ -244571,7 +244567,7 @@ iJq
 wUf
 qgv
 tRu
-lnU
+xJM
 vpF
 xcK
 tDD
@@ -244819,7 +244815,7 @@ mjK
 rJE
 tfw
 rka
-beZ
+pCG
 aAu
 fCf
 roI
@@ -245076,7 +245072,7 @@ mAM
 fHl
 hjY
 gWO
-beZ
+pCG
 faR
 eHO
 lpJ
@@ -245085,7 +245081,7 @@ iJq
 wUf
 lgd
 tRu
-lnU
+xJM
 dzr
 hbL
 dqs
@@ -245589,9 +245585,9 @@ stM
 stM
 jQi
 qCW
-beZ
-beZ
-beZ
+pCG
+pCG
+pCG
 gzx
 lpJ
 ffn
@@ -248795,7 +248791,7 @@ ngF
 glr
 drP
 xvf
-knZ
+tkE
 kwC
 vjy
 apm
@@ -249309,7 +249305,7 @@ ayn
 ilP
 xVb
 xvf
-knZ
+tkE
 aVD
 vjy
 apm
@@ -249823,7 +249819,7 @@ kjH
 hQr
 pYC
 iDU
-knZ
+tkE
 aVD
 jRJ
 kVO
