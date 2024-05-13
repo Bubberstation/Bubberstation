@@ -89,16 +89,15 @@
 		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && obscurity_examine_pref || (holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref) // BUBBERSTATION EDIT - EXAMINE PREFS
 		//BUBBER EDIT BEGIN: Updates custom species and custom species lore
 		//Check if the mob is obscured, then continue to headshot and species lore
+		ooc_notes += holder_human.dna.features["ooc_notes"]
 		if(obscured || !holder_human.dna)
 			custom_species = "Obscured"
 			custom_species_lore = "Obscured"
 			flavor_text = "Obscured"
 			name = "Unknown"
-			ooc_notes += holder_human.dna.features["ooc_notes"]
 		else
 			headshot += preferences?.read_preference(/datum/preference/text/headshot)
 			flavor_text = holder_human.dna.features["flavor_text"]
-			ooc_notes += holder_human.dna.features["ooc_notes"]
 			name = holder.name
 		//Custom species handling. Reports the normal custom species if there is not one set.
 			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
