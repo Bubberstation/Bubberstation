@@ -74,7 +74,7 @@
 
 	// Now we handle silicon and/or human, order doesn't really matter
 	// If other variants of mob/living need to be handled at some point, put them here
-	if(issilicon(holder))
+	if(preferences && issilicon(holder))
 		flavor_text = preferences?.read_preference(/datum/preference/text/silicon_flavor_text)
 		//BUBBER EDIT BEGIN: SILICON PREFS
 		custom_species = preferences?.read_preference(/datum/preference/text/custom_species/silicon)
