@@ -436,8 +436,9 @@
 	var/obj/item/organ/external/wings/sacker_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(sacker_wing)
 		attack_mod += 2
-	if(HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE)) //Bubberstation Edit -Cat's are particularly good at pouncing
-		attack_mod += 2
+	var/obj/item/organ/internal/ears/cat/tajaran/sacker_tajaran_ears = sacker.get_organ_slot(ORGAN_SLOT_EARS)//Bubberstation Edit start- Cat's are particularly good at pouncing
+	if(HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE) && sacker_tajaran_ears)
+		attack_mod += 2//Bubberstation Edit finish
 
 	if(ishuman(sacker))
 		var/mob/living/carbon/human/human_sacker = sacker
