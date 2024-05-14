@@ -5730,7 +5730,12 @@
 /turf/open/floor/circuit,
 /area/station/maintenance/port/aft)
 "bYN" = (
-/obj/effect/turf_decal/tile/neutral/anticorner/contrasted,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green/half/contrasted{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "bZb" = (
@@ -17157,14 +17162,15 @@
 /area/station/service/theater)
 "gpk" = (
 /obj/structure/table,
-/obj/item/hatchet,
-/obj/item/cultivator,
-/obj/item/crowbar,
-/obj/item/reagent_containers/cup/watering_can,
-/obj/item/plant_analyzer,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/crowbar,
+/obj/item/reagent_containers/cup/watering_can,
+/obj/item/cultivator,
+/obj/item/hatchet,
+/obj/item/plant_analyzer,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "gpv" = (
@@ -23146,12 +23152,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/station/maintenance/port/greater)
-"ivb" = (
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/service/hydroponics/garden)
 "ivc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -26944,9 +26944,10 @@
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "jGE" = (
-/obj/structure/window/spawner/directional/west,
-/obj/structure/window/spawner/directional/north,
-/turf/open/floor/grass,
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "jGG" = (
 /obj/machinery/holopad,
@@ -28041,11 +28042,13 @@
 /turf/open/floor/iron/dark,
 /area/station/command/gateway)
 "jYu" = (
-/mob/living/basic/cow{
-	name = "Betsy";
-	real_name = "Betsy"
+/obj/effect/turf_decal/siding/white{
+	dir = 4
 	},
-/turf/open/floor/grass,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "jYv" = (
 /obj/machinery/meter,
@@ -29014,13 +29017,21 @@
 /turf/open/floor/iron/white,
 /area/station/security/prison)
 "krt" = (
-/obj/item/storage/bag/plants/portaseeder,
-/obj/structure/table,
-/obj/item/plant_analyzer,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
+/obj/item/storage/toolbox/fishing,
+/obj/item/storage/toolbox/fishing,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
+/obj/effect/turf_decal/tile/green/half/contrasted{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "krL" = (
@@ -30946,6 +30957,7 @@
 	name = "Featherbottom";
 	real_name = "Featherbottom"
 	},
+/obj/structure/flora/bush/fullgrass,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "lbL" = (
@@ -31013,10 +31025,12 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
+/obj/effect/landmark/event_spawn,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "lds" = (
@@ -32403,7 +32417,13 @@
 /turf/open/floor/engine/cult,
 /area/station/service/library)
 "lJa" = (
-/turf/open/floor/grass,
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "lJh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -33766,6 +33786,10 @@
 /area/station/maintenance/department/engine)
 "mie" = (
 /obj/structure/window/spawner/directional/south,
+/mob/living/basic/cow{
+	name = "Betsy";
+	real_name = "Betsy"
+	},
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "mig" = (
@@ -35500,6 +35524,11 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/lawyer,
 /turf/open/floor/wood,
 /area/station/security/courtroom)
+"mLR" = (
+/obj/structure/window/spawner/directional/west,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/grass,
+/area/station/service/hydroponics/garden)
 "mLS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -40190,8 +40219,13 @@
 /area/station/science/lab)
 "otG" = (
 /obj/item/radio/intercom/directional/east,
-/obj/structure/window/spawner/directional/north,
-/turf/open/floor/grass,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "otI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -40662,6 +40696,7 @@
 	name = "Kentucky";
 	real_name = "Kentucky"
 	},
+/obj/structure/flora/grass/jungle/b/style_random,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "oCR" = (
@@ -44350,6 +44385,9 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/siding/wideplating_new,
+/obj/structure/railing,
+/obj/effect/turf_decal/tile/green/half/contrasted,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "pSa" = (
@@ -56720,6 +56758,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/break_room)
+"ujI" = (
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
+/area/station/service/hydroponics/garden)
 "ujJ" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/department/science/central)
@@ -64467,8 +64509,14 @@
 /turf/open/floor/iron/white,
 /area/station/science/robotics/lab)
 "wRF" = (
-/obj/structure/window/spawner/directional/west,
-/turf/open/floor/grass,
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/sign/clock/directional/south,
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "wRL" = (
 /obj/effect/turf_decal/stripes/line{
@@ -66287,10 +66335,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
 "xyI" = (
-/obj/machinery/door/window/left/directional/west{
-	name = "Animal Pen B"
+/obj/effect/turf_decal/siding/white{
+	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "xyM" = (
 /obj/structure/cable,
@@ -67399,11 +67447,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/siding/wideplating_new,
+/obj/structure/railing,
+/obj/effect/turf_decal/tile/green/half/contrasted,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "xUH" = (
@@ -105549,7 +105597,7 @@ fzr
 iCJ
 qgy
 ldg
-ivb
+bYN
 bYN
 krt
 qXB
@@ -105802,7 +105850,7 @@ lnc
 fDC
 qdy
 lqQ
-wRF
+mLR
 jzC
 oCO
 xUE
@@ -106060,7 +106108,7 @@ cUP
 mil
 lqQ
 lbH
-lJa
+ujI
 mie
 pRM
 otG
