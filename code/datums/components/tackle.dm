@@ -152,7 +152,7 @@
 		return
 
 	var/mob/living/carbon/target = hit
-	var/tackle_word = isfeline(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle". // SKYRAT EDIT - FELINE TRAITS - ORIGINAL : var/tackle_word = isfelinid(user) ? "pounce" : "tackle" 
+	var/tackle_word = isfeline(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle". // SKYRAT EDIT - FELINE TRAITS - ORIGINAL : var/tackle_word = isfelinid(user) ? "pounce" : "tackle"
 
 	var/roll = rollTackle(target)
 	tackling = FALSE
@@ -435,6 +435,8 @@
 			attack_mod -= 2
 	var/obj/item/organ/external/wings/sacker_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(sacker_wing)
+		attack_mod += 2
+	if(HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE)) //Bubberstation Edit -Cat's are particularly good at pouncing
 		attack_mod += 2
 
 	if(ishuman(sacker))
