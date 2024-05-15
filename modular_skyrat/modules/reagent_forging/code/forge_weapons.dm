@@ -38,7 +38,7 @@
 /obj/item/forging/reagent_weapon/sword/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/katana
 	name = "reagent katana"
@@ -61,7 +61,7 @@
 /obj/item/forging/reagent_weapon/katana/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/dagger
 	name = "reagent dagger"
@@ -83,7 +83,7 @@
 /obj/item/forging/reagent_weapon/dagger/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/dagger/attack(mob/living/M, mob/living/user, params)
 	. = ..()
@@ -132,7 +132,7 @@
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/axe
 	name = "reagent axe"
@@ -156,7 +156,7 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/hammer
 	name = "reagent hammer"
@@ -183,7 +183,7 @@
 	. = ..()
 	AddElement(/datum/element/kneejerk)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/forging/reagent_weapon/hammer/attack_atom(atom/attacked_atom, mob/living/user, params)
 	. = ..()
@@ -215,7 +215,7 @@
 /obj/item/shield/buckler/reagent_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_weapon)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/shield/buckler/reagent_weapon/examine(mob/user)
 	. = ..()
@@ -252,7 +252,7 @@
 /obj/item/shield/buckler/reagent_weapon/pavise/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE, force_multiplier = 2)
-	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	//AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/pickaxe/reagent_weapon
 	name = "reagent pickaxe"
