@@ -55,7 +55,23 @@ GLOBAL_LIST_INIT(ashwalker_consonants,list(
 /proc/generate_ashwalker_name(english_name=!prob(80))
 
 	if(english_name)
-		return "[capitalize(pick(GLOB.verbs))]-The-[capitalize(pick(GLOB.one_word_objects))]"
+
+		var/chosen_verb = capitalize(pick(GLOB.verbs))
+		// Code copied from pronouns. Had to do it raw here since it doesn't work without a datum.
+		switch(copytext_char(chosen_verb, -2))
+			if ("ss")
+				chosen_verb = "[chosen_verb]es"
+			if ("sh")
+				chosen_verb = "[chosen_verb]es"
+			if ("ch")
+				chosen_verb = "[chosen_verb]es"
+			else
+				switch(copytext_char(chosen_verb, -1))
+					if("s", "x", "z")
+						chosen_verb = "[chosen_verb]es"
+					else
+						chosen_verb = "[chosen_verb]s"
+		return "[chosen_verb]-The-[capitalize(pick(GLOB.one_word_objects))]"
 
 	//Unironically can generate slurs or other funny words. If that happens, just use Verbs-the-Noun.
 	. = reject_bad_name("[capitalize(generate_ashwalker_word(3,5))]-[capitalize(generate_ashwalker_word(3,7))]",strict=TRUE)
@@ -69,7 +85,7 @@ ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "Generate Ashwalker Names", "Gener
 
 	var/list/returning_data = ""
 	for(var/i=1,i<=50,i++)
-		returning_data += "[generate_ashwalker_name(i % 2)]\n"
+		returning_data += "[generate_ashwalker_name(i % 2)]<br>"
 
 	user << browse(returning_data, "window=random_ashwalker_names")
 
