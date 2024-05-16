@@ -92,5 +92,5 @@ ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "Generate Ashwalker Names", "Gener
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/generate_pirate_name(spawn_gender)
 	return generate_ashwalker_name(TRUE)
 
-/proc/lizard_name(gender)
+/lizard_name(gender)
 	return generate_ashwalker_name()
