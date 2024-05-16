@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(ashwalker_consonants,list(
 /proc/generate_ashwalker_word(min_chars=3,max_chars=5)
 	. = ""
 	var/is_vowel = !prob(80) //Atmos optimization
-	for(var/i=1,i<=rand(min_chars,max_chars),i++)
+	for(var/i in 1 to rand(min_chars,max_chars))
 		. += is_vowel ? pick(GLOB.ashwalker_vowels) : pick(GLOB.ashwalker_consonants)
 		is_vowel = !is_vowel
 	return .
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(ashwalker_consonants,list(
 ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "Generate Ashwalker Names", "Generate a list of 50 random ashwalker names.", ADMIN_CATEGORY_DEBUG)
 
 	var/list/returning_data = ""
-	for(var/i=1,i<=50,i++)
+	for(var/i in 1 to 50)
 		returning_data += "[generate_ashwalker_name(i % 2)]<br>"
 
 	user << browse(returning_data, "window=random_ashwalker_names")
