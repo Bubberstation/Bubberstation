@@ -1,0 +1,80 @@
+/proc/generate_one_word_objects()
+
+	. = list()
+
+	var/regex/regex_inclusion = regex(@'^(\w+)$',"i") //limits to things with one word
+
+	for(var/obj/object as anything in subtypesof(/obj))
+		var/object_name = initial(object.name)
+		if(!object_name || !regex_inclusion.Find(object_name))
+			continue
+		.[capitalize(lowertext(object_name))] = TRUE
+
+	return .
+
+GLOBAL_LIST_INIT(one_word_objects,generate_one_word_objects())
+
+
+GLOBAL_LIST_INIT(ashwalker_vowels,list(
+	"e",
+	"ee",
+	"ea",
+	"u",
+	"i",
+	"o",
+	"oo",
+	"a"
+))
+
+GLOBAL_LIST_INIT(ashwalker_consonants,list(
+	"w",
+	"r",
+	"t",
+	"th",
+	"s",
+	"d",
+	"g",
+	"h",
+	"k",
+	"z",
+	"x",
+	"v",
+	"b",
+	"n",
+	"m"
+))
+
+/proc/generate_ashwalker_word(min_chars=3,max_chars=5)
+	. = ""
+	var/is_vowel = !prob(80) //Atmos optimization
+	for(var/i=1,i<=rand(min_chars,max_chars),i++)
+		. += is_vowel ? pick(GLOB.ashwalker_vowels) : pick(GLOB.ashwalker_consonants)
+		is_vowel = !is_vowel
+	return .
+
+/proc/generate_ashwalker_name(english_name=!prob(80))
+
+	if(english_name)
+		return "[capitalize(pick(GLOB.verbs))]-The-[capitalize(pick(GLOB.one_word_objects))]"
+
+	//Unironically can generate slurs or other funny words. If that happens, just use Verbs-the-Noun.
+	. = reject_bad_name("[capitalize(generate_ashwalker_word(3,5))]-[capitalize(generate_ashwalker_word(3,7))]",strict=TRUE)
+
+	if(!.)
+		return generate_ashwalker_name(TRUE)
+
+	return .
+
+ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "Generate Ashwalker Names", "Generate a list of 50 random ashwalker names.", ADMIN_CATEGORY_DEBUG)
+
+	var/list/returning_data = ""
+	for(var/i=1,i<=50,i++)
+		returning_data += "[generate_ashwalker_name(i % 2)]\n"
+
+	user << browse(returning_data, "window=random_ashwalker_names")
+
+/obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/generate_pirate_name(spawn_gender)
+	return generate_ashwalker_name(TRUE)
+
+/proc/lizard_name(gender)
+	return generate_ashwalker_name()
