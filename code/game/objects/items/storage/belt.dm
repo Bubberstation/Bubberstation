@@ -292,6 +292,7 @@
 		/obj/item/weaponcell/medical, //SKYRAT EDIT MEDIGUNS
 		/obj/item/handheld_soulcatcher, // SKYRAT EDIT SOULCATCHERS
 		/obj/item/wrench/medical,
+		/obj/item/knife/ritual,
 	))
 
 /obj/item/storage/belt/medical/paramedic
@@ -758,6 +759,7 @@
 		/obj/item/ammo_casing/strilka310,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_casing/a357,
+		/obj/item/ammo_casing/junk,
 	))
 
 /obj/item/storage/belt/fannypack
@@ -839,7 +841,7 @@
 	inhand_icon_state = "sheath"
 	worn_icon_state = "sheath"
 	w_class = WEIGHT_CLASS_BULKY
-	interaction_flags_click = NEED_DEXTERITY|NEED_HANDS
+	interaction_flags_click = parent_type::interaction_flags_click | NEED_DEXTERITY | NEED_HANDS
 
 /obj/item/storage/belt/sabre/Initialize(mapload)
 	. = ..()

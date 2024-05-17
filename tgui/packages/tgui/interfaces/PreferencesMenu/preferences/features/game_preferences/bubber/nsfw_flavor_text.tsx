@@ -1,4 +1,5 @@
-import { FeatureChoiced, FeatureDropdownInput } from '../../base';
+import { FeatureChoiced } from '../../base';
+import { FeatureDropdownInput } from '../../dropdowns';
 
 export const show_flavor_text_nsfw: FeatureChoiced = {
   name: 'Flavor Text (NSFW) Visibility',
