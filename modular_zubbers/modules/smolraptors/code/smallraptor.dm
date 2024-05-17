@@ -1,18 +1,19 @@
 // extra bubber borg sprites in a seperate folder so my github is happy
 
+//haiii - aKhro
 
 #define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
 
-#define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor.dmi'
-#define CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_sci.dmi'
-#define CYBORG_ICON_ENG_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
-#define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
-#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
-#define CYBORG_ICON_MED_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_med.dmi'
-#define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
-#define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
-#define CYBORG_ICON_SYND_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
-#define CYBORG_ICON_NINJ_SMOLRAPTOR 'modular_zubbers/modules/shez_raptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor.dmi'
+#define CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_sci.dmi'
+#define CYBORG_ICON_ENG_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_MED_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_med.dmi'
+#define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_SYND_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#define CYBORG_ICON_NINJ_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
 
 /obj/item/robot_model/standard/Initialize(mapload)
 	. = ..()
