@@ -10,6 +10,7 @@
 #define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
 #define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
 #define CYBORG_ICON_MED_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_med.dmi'
+#define CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_car.dmi'
 #define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
 #define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
 #define CYBORG_ICON_SYND_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
@@ -67,12 +68,19 @@ sciborg isnt in yet
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_JANI_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
 
+/obj/item/robot_model/cargo/Initialize(mapload)
+	. = ..()
+	borg_skins |= list(
+		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_CAR_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
+	)
+
+
 /obj/item/robot_model/syndicate/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_SYND_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
-	
+
 /obj/item/robot_model/ninja/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
