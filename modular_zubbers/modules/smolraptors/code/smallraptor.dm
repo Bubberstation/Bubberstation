@@ -10,9 +10,9 @@
 #define CYBORG_ICON_MED_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_med.dmi'
 #define CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_car.dmi'
 #define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_serv.dmi'
-#define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
-#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
-#define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gem.dmi'
+#define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_pk.dmi'
+#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_jani.dmi'
+#define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_min.dmi'
 
 /* not done yet!
 
