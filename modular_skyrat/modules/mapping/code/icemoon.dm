@@ -3,6 +3,8 @@
 	prefix = "_maps/RandomRuins/IceRuins/skyrat/"
 /*------*/
 
+/* Bubberstation Removal Start
+
 /datum/map_template/ruin/icemoon/underground/skyrat/syndicate_base
 	name = "Ice-Ruin Syndicate Ice Base"
 	id = "ice-base"
@@ -11,6 +13,8 @@
 	allow_duplicates = FALSE
 	// never_spawn_with = list(/datum/map_template/ruin/lavaland/skyrat/syndicate_base) Bubber Removal
 	always_place = TRUE
+
+Bubberstation Removal End */
 
 /datum/map_template/ruin/icemoon/underground/skyrat/mining_site_below
 	name = "Ice-Ruin Mining Site Underground"
