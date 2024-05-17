@@ -72,13 +72,14 @@ sciborg isnt in yet
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_JANI_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
 
-
-/*
 /obj/item/robot_model/miner/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_MIN_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
+
+
+/*
 
 /obj/item/robot_model/syndicate/Initialize(mapload)
 	. = ..()
