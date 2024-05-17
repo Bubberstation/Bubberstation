@@ -60,7 +60,7 @@ sciborg isnt in yet
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_SERV_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
 
-/obj/item/robot_model/pk/Initialize(mapload)
+/obj/item/robot_model/peacekeeper/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_PK_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
