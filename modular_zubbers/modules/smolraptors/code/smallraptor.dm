@@ -27,11 +27,16 @@
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_ENG_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
 
+/*
+sciborg isnt in yet
 /obj/item/robot_model/sci/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_SCI_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
+
+*/
+
 /obj/item/robot_model/medical/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
