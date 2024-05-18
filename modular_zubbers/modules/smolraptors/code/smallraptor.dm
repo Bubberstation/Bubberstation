@@ -13,6 +13,7 @@
 #define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_pk.dmi'
 #define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_jani.dmi'
 #define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_min.dmi'
+#define CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_cc.dmi'
 
 /* not done yet!
 
@@ -78,6 +79,11 @@ sciborg isnt in yet
 		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_MIN_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
 	)
 
+/obj/item/robot_model/centcom/Initialize(mapload)
+	. = ..()
+	borg_skins |= list(
+		"SmolRaptor" = list(SKIN_ICON_STATE = "smolraptor", SKIN_ICON = CYBORG_ICON_CC_SMOLRAPTOR, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
+	)
 
 /*
 
