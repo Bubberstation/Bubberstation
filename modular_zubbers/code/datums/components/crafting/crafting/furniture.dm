@@ -32,7 +32,7 @@
 	)
 	time = 15 SECONDS
 	category = CAT_FURNITURE
-	always_available = FALSE //The sacred coffin!
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/metalcoffin
 	name = "Metal Coffin"
@@ -55,7 +55,7 @@
 	)
 	time = 15 SECONDS
 	category = CAT_FURNITURE
-	always_available = FALSE
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/candelabrum
 	name = "Candelabrum"
@@ -68,7 +68,7 @@
 	)
 	time = 10 SECONDS
 	category = CAT_FURNITURE
-	always_available = FALSE
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/bloodthrone
 	name = "Blood Throne"
@@ -81,4 +81,4 @@
 	)
 	time = 5 SECONDS
 	category = CAT_FURNITURE
-	always_available = FALSE
+	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
