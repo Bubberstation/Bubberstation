@@ -88,11 +88,15 @@
 
 /**
  * Provides feedback when an item isn't related to an experiment, and has fully passed the attack chain
+ * Trys to run an experiment if using a ranged scanner and the attempt would fail due to the CanReach proximity check
  */
 /datum/component/experiment_handler/proc/ignored_handheld_experiment_attempt(datum/source, atom/target, mob/user, proximity_flag, params)
 	SIGNAL_HANDLER
 	if (!proximity_flag)
-		return
+		if (config_flags & EXPERIMENT_CONFIG_WORKS_FROM_RANGE)
+			try_run_handheld_experiment(source, target, user, params)
+		else
+			return
 	. |= COMPONENT_AFTERATTACK_PROCESSED_ITEM
 	if ((selected_experiment == null && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE)) || config_flags & EXPERIMENT_CONFIG_SILENT_FAIL)
 		return .
@@ -132,6 +136,8 @@
 	if(!(config_flags & EXPERIMENT_CONFIG_IMMEDIATE_ACTION) && !do_after(user, 1 SECONDS * skill_modifier, target = target)) //SKYRAT EDIT: Research Skill (simple research)
 		return
 	if(action_experiment(source, target))
+		if (config_flags && EXPERIMENT_CONFIG_WORKS_FROM_RANGE)
+			user.Beam(target, icon_state = "rped_upgrade", time = 0.5 SECONDS)
 		playsound(user, 'sound/machines/ping.ogg', 25)
 		to_chat(user, span_notice("You scan [target]."))
 		user.mind.adjust_experience(/datum/skill/research, 5) //SKYRAT EDIT: Research Skill (simple research)
