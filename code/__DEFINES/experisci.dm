@@ -39,5 +39,3 @@
 #define EXPERIMENT_CONFIG_SILENT_FAIL (1 << 2)
 /// Experiment handlers with this flag will bypass any delay when trying to scan something
 #define EXPERIMENT_CONFIG_IMMEDIATE_ACTION (1 << 3)
-/// Experiment handlers with this flag will bypass the proximity flag check when trying to scan something
-#define EXPERIMENT_CONFIG_WORKS_FROM_RANGE (1 << 4)
