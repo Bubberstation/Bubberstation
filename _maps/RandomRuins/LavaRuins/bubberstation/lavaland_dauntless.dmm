@@ -205,7 +205,7 @@
 	},
 /obj/item/radio/intercom/prison/directional/west{
 	name = "receive-only prisoner intercom";
-	frequency = 1255;
+	frequency = 1245;
 	freqlock = 1;
 	pixel_y = 1;
 	canhear_range = 4;
@@ -1082,7 +1082,7 @@
 	name = "two-way prisoner intercom";
 	freerange = 1;
 	freqlock = 1;
-	frequency = 1255
+	frequency = 1245
 	},
 /obj/machinery/button/camkillswitch{
 	pixel_x = 26;
@@ -1190,7 +1190,10 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "fE" = (
-/obj/structure/hedge,
+/obj/machinery/vending/dorms/prison{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "fI" = (
@@ -1296,7 +1299,6 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/structure/towel_bin,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "fZ" = (
@@ -1479,6 +1481,7 @@
 	name = "SSV Dauntless Fax Machine";
 	syndicate_network = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "gN" = (
@@ -2089,14 +2092,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
-"js" = (
-/obj/machinery/vending/cigarette{
-	onstation = 0;
-	onstation_override = 1
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "jt" = (
 /obj/structure/table/reinforced,
 /obj/item/bodybag/environmental/prisoner/syndicate{
@@ -2217,7 +2212,6 @@
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
@@ -2461,15 +2455,15 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/trimline/dark_red/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
 /obj/item/toy/mecha/darkgygax{
 	pixel_y = 16
 	},
 /obj/item/toy/figure/syndie,
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_half,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
@@ -3132,6 +3126,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "oo" = (
 /obj/machinery/light/small/red/directional/west,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "oq" = (
@@ -3752,6 +3748,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
+"re" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "rf" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/stockparts/deluxe{
@@ -3923,6 +3923,7 @@
 	name = "Model Nuclear Warhead";
 	desc = "This is a model of the famous Gorlex Marauders nuclear warhead. 'Some call it nuclear terrorism. We call it solutions'"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "rS" = (
@@ -4399,6 +4400,7 @@
 /obj/structure/chair/office/light{
 	dir = 1
 	},
+/obj/machinery/biogenerator/medstation/directional/east,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
 "uj" = (
@@ -5019,7 +5021,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/item/radio/intercom/prison/directional/east{
-	frequency = 1255;
+	frequency = 1245;
 	freqlock = 1;
 	name = "receive-only prisoner intercom";
 	freerange = 1;
@@ -5396,7 +5398,7 @@
 	broadcasting = 1;
 	freerange = 1;
 	freqlock = 1;
-	frequency = 1255;
+	frequency = 1245;
 	canhear_range = 1;
 	desc = "A rusty, decrepit intercom. The speaker is incredibly quiet."
 	},
@@ -5673,6 +5675,7 @@
 /obj/effect/turf_decal/trimline/dark_red/corner{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 1
 	},
@@ -6136,7 +6139,8 @@
 /obj/machinery/status_display/department_balance{
 	credits_account = "INT";
 	name = "dauntless budget display";
-	pixel_x = -32
+	pixel_x = -32;
+	default_logo = "synd"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -6862,6 +6866,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/east,
+/obj/machinery/rnd/server/interdyne,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Fh" = (
@@ -6924,8 +6929,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/obj/structure/table,
-/obj/structure/towel_bin,
+/obj/machinery/washing_machine,
+/obj/structure/towel_bin{
+	pixel_y = 9;
+	pixel_x = -1
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "Fx" = (
@@ -7188,11 +7196,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "GW" = (
-/obj/machinery/vending/dorms/prison{
-	onstation = 0;
-	onstation_override = 1
+/obj/machinery/computer/arcade/battle{
+	dir = 8
 	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "GX" = (
@@ -7562,6 +7568,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "Jj" = (
@@ -7717,7 +7724,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "JO" = (
 /obj/item/radio/intercom/prison/directional/east{
-	frequency = 1255;
+	frequency = 1245;
 	freqlock = 1;
 	name = "receive-only prisoner intercom";
 	canhear_range = 7;
@@ -8013,7 +8020,8 @@
 /obj/machinery/status_display/department_balance{
 	credits_account = "INT";
 	name = "dauntless budget display";
-	pixel_y = 30
+	pixel_y = 30;
+	default_logo = "synd"
 	},
 /obj/structure/frame/machine/secured{
 	anchored = 0
@@ -8954,6 +8962,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "PS" = (
 /obj/effect/turf_decal/siding/wood,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "PU" = (
@@ -9413,6 +9423,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/small,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "RU" = (
@@ -9513,6 +9524,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "Sp" = (
 /obj/machinery/washing_machine,
+/obj/structure/towel_bin{
+	pixel_y = 9;
+	pixel_x = -1
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "Sq" = (
@@ -9528,9 +9543,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Sr" = (
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/machinery/airalarm/directional/south,
-/obj/structure/hedge,
+/obj/machinery/vending/cigarette{
+	onstation = 0;
+	onstation_override = 1
+	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "St" = (
@@ -9872,6 +9888,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "TR" = (
@@ -10537,7 +10554,7 @@
 	dir = 4
 	},
 /obj/item/radio/intercom/prison/directional/east{
-	frequency = 1255;
+	frequency = 1245;
 	freqlock = 1;
 	name = "receive-only prisoner intercom";
 	canhear_range = 7;
@@ -11078,6 +11095,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "ZO" = (
@@ -12727,8 +12745,8 @@ FZ
 FZ
 DV
 rR
-Om
-Om
+re
+re
 ZN
 ln
 Bm
@@ -12999,8 +13017,8 @@ FZ
 FZ
 DV
 gJ
-Om
-Om
+re
+re
 gW
 CQ
 CQ
@@ -14498,7 +14516,7 @@ qm
 Dr
 Zs
 PS
-js
+es
 es
 es
 fE
@@ -14566,9 +14584,9 @@ qm
 Fo
 VJ
 PS
-GW
-QS
 Dp
+QS
+GW
 qm
 jk
 FZ
