@@ -7,7 +7,7 @@
 	AddComponent(/datum/component/tippable, \
 		tip_time = 3 SECONDS, \
 		untip_time = 2 SECONDS, \
-		self_right_time = 20 SECONDS, \
+		self_right_time = 20 SECONDS, \ //BUBBER EDIT: REDUCES THE SELF-RIGHT TIME FOR BORGS TO 20 SECONDS
 		post_tipped_callback = CALLBACK(src, PROC_REF(after_tip_over)), \
 		post_untipped_callback = CALLBACK(src, PROC_REF(after_righted)), \
 		roleplay_friendly = TRUE, \
