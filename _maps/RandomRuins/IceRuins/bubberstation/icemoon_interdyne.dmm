@@ -234,7 +234,9 @@
 /obj/machinery/airalarm/directional/east{
 	req_access = list("syndicate")
 	},
-/obj/structure/closet/secure_closet/interdynefob/armory_gear_locker,
+/obj/structure/closet/secure_closet/interdynefob/armory_gear_locker{
+	req_access = list("syndicate")
+	},
 /obj/machinery/light/small/red/directional/east{
 	pixel_y = 16
 	},
@@ -1058,7 +1060,9 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "io" = (
-/obj/structure/closet/secure_closet/interdynefob/mod_locker,
+/obj/structure/closet/secure_closet/interdynefob/mod_locker{
+	req_access = list("syndicate")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
 "is" = (
@@ -3542,7 +3546,7 @@
 	},
 /obj/machinery/suit_storage_unit/syndicate/chameleon{
 	name = "suit storage unit";
-	req_access = list("syndicate_leader")
+	req_access = list("syndicate")
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndicate_ice_base/armory)
