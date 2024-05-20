@@ -5873,22 +5873,14 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "aDg" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/structure/table/glass,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/tower,
-/obj/item/seeds/wheat,
-/obj/item/seeds/sugarcane,
-/obj/item/seeds/orange,
-/obj/item/seeds/grape,
-/obj/item/seeds/cocoapod,
-/obj/item/seeds/banana,
-/obj/item/seeds/apple,
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "aDh" = (
 /obj/machinery/vending/assist,
@@ -6460,6 +6452,8 @@
 	},
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/airalarm/directional/east,
+/obj/item/reagent_containers/cup/bucket,
+/obj/item/reagent_containers/cup/bucket,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "aFP" = (
@@ -7340,23 +7334,17 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
 "aIO" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+/obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "aIP" = (
-/obj/structure/table/glass,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/crowbar,
-/obj/item/plant_analyzer,
-/obj/item/reagent_containers/cup/bucket,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/obj/effect/turf_decal/siding/white{
+	dir = 10
 	},
-/turf/open/floor/iron,
+/obj/structure/railing,
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "aIR" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -7389,11 +7377,11 @@
 	dir = 8
 	},
 /obj/item/plant_analyzer,
-/obj/item/reagent_containers/cup/bucket,
-/obj/item/crowbar,
 /obj/item/cultivator,
 /obj/item/hatchet,
 /obj/item/radio/intercom/directional/east,
+/obj/item/plant_analyzer,
+/obj/item/crowbar,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "aIU" = (
@@ -23394,6 +23382,7 @@
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "bMI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "bMJ" = (
@@ -23626,7 +23615,7 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/medical/virology,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron,
 /area/station/medical/virology)
 "bNt" = (
@@ -23783,7 +23772,7 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/medical/virology,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron,
 /area/station/medical/virology)
 "bNX" = (
@@ -24086,6 +24075,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "bPx" = (
@@ -24795,7 +24785,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/any/medical/virology,
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron/dark,
 /area/station/medical/virology)
 "bSV" = (
@@ -38524,6 +38514,18 @@
 "gOV" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/table/wood,
+/obj/item/storage/toolbox/fishing,
+/obj/item/fishing_rod,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "gPR" = (
@@ -38899,7 +38901,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/medical/virology,
 /obj/machinery/door_buttons/access_button{
 	idDoor = "virology_airlock_interior";
 	idSelf = "virology_airlock_control";
@@ -38908,6 +38909,7 @@
 	req_access = list("virology");
 	pixel_y = 6
 	},
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron,
 /area/station/medical/virology)
 "hfa" = (
@@ -41566,6 +41568,12 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "iWA" = (
@@ -42288,7 +42296,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/medical/virology,
 /obj/machinery/door_buttons/access_button{
 	idDoor = "virology_airlock_exterior";
 	idSelf = "virology_airlock_control";
@@ -42296,6 +42303,7 @@
 	req_access = list("virology");
 	pixel_x = -24
 	},
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron,
 /area/station/medical/virology)
 "jsb" = (
@@ -47850,6 +47858,15 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
+"nCf" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/water,
+/area/station/service/hydroponics/garden)
 "nCr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -48990,6 +49007,15 @@
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/command/gateway)
+"oqL" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/water,
+/area/station/service/hydroponics/garden)
 "oqQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -51231,6 +51257,21 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
+"pWE" = (
+/obj/structure/table/glass,
+/obj/item/crowbar,
+/obj/item/cultivator,
+/obj/item/hatchet,
+/obj/item/food/grown/cocoapod,
+/obj/item/food/grown/grapes,
+/obj/item/food/grown/citrus/orange,
+/obj/item/food/grown/watermelon,
+/obj/item/food/grown/watermelon,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/watermelon,
+/obj/item/food/grown/citrus/lime,
+/turf/open/floor/iron,
+/area/station/service/hydroponics/garden)
 "pXD" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "evashutters";
@@ -51923,6 +51964,9 @@
 /obj/machinery/holopad/secure,
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
+"qxz" = (
+/turf/open/water,
+/area/station/maintenance/port/fore)
 "qyg" = (
 /obj/machinery/atmospherics/components/binary/valve/on/layer4{
 	desc = "Used to isolate the prison's airmix distribution pipeline from the station's main one.";
@@ -52887,10 +52931,19 @@
 	},
 /area/station/engineering/atmos/hfr_room)
 "rdH" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 5
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "rdI" = (
@@ -53353,6 +53406,14 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
+"rvR" = (
+/obj/effect/turf_decal/siding/wideplating_new,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/station/service/hydroponics/garden)
 "rwl" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Brig"
@@ -56267,10 +56328,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/medical/virology,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/any/medical/general,
 /turf/open/floor/iron,
 /area/station/medical/virology)
 "tCN" = (
@@ -56731,6 +56792,15 @@
 /area/station/ai_monitored/command/nuke_storage)
 "tUV" = (
 /obj/structure/cable,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "tUY" = (
@@ -59202,20 +59272,11 @@
 /turf/open/floor/iron/dark/side,
 /area/station/security/prison)
 "vIU" = (
-/obj/structure/table/glass,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/citrus/orange,
-/obj/item/food/grown/grapes,
-/obj/item/food/grown/cocoapod,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/water,
 /area/station/service/hydroponics/garden)
 "vJr" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -62386,6 +62447,16 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
+/obj/structure/table/glass,
+/obj/item/seeds/tower,
+/obj/item/seeds/apple,
+/obj/item/seeds/banana,
+/obj/item/seeds/cocoapod,
+/obj/item/seeds/grape,
+/obj/item/seeds/orange,
+/obj/item/seeds/sugarcane,
+/obj/item/seeds/wheat,
+/obj/item/seeds/watermelon,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "xVA" = (
@@ -77950,7 +78021,7 @@ jXl
 alU
 alU
 alU
-alU
+qxz
 alU
 alU
 aDg
@@ -78209,10 +78280,10 @@ aAS
 aRo
 vks
 tbx
-aAQ
-aAQ
+rvR
+nCf
 aIO
-aAQ
+oqL
 azF
 aLj
 aLC
@@ -79497,7 +79568,7 @@ alU
 alU
 aAP
 iHT
-aAQ
+pWE
 aAQ
 aFO
 aHA
