@@ -10,7 +10,7 @@
 
 /datum/loadout_item/toys/bigdeer_plush
 	name = "big deer plushie"
-	item_path = /obj/item/toy/plush/bigdeer_plush //Donor item for Gavla
+	item_path = /obj/item/toy/plush/bigdeer //Donor item for Gavla
 
 /datum/loadout_item/toys/nobl_plush
 	name = "fluffy skog plushie"

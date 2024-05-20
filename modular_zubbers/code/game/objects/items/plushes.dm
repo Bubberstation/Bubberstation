@@ -35,7 +35,7 @@
 	squeak_override = list('sound/machines/beep.ogg' = 1)
 	gender = FEMALE
 
-/obj/item/toy/plush/bigdeer_plush
+/obj/item/toy/plush/bigdeer
 	name = "big deer plushie"
 	desc = "An incredibly round deer plush. It appears to have had too many berries for snack time."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
@@ -100,3 +100,11 @@
 /obj/item/toy/plush/skyrat/jecca
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+
+/obj/item/toy/plush/purple_cat
+	name = "Purple Cat Plushie"
+	desc = "A small, fluffy purple cat with an even purpler collar and bell. It also has a translucent green tail that is not as fuzzy as the rest of the plush."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "purplecat" //sprited by Bit_Synergy
+	attack_verb_simple = list("mew", "mow")
+	squeak_override = list('modular_zubbers/sound/misc/moew.ogg' = 1)
