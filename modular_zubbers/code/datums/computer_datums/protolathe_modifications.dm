@@ -14,6 +14,15 @@
 /datum/design/board/mining_equipment_vendor
 	build_type = IMPRINTER
 
+/obj/machinery/computer/rdconsole/interdyne
+
+/obj/machinery/computer/rdconsole/interdyne/post_machine_initialize()
+	. = ..()
+	if(!CONFIG_GET(flag/no_default_techweb_link) && !stored_research)
+		CONNECT_TO_LOCAL_SERVER_ROUNDSTART(stored_research, src)
+	if(stored_research)
+		stored_research.consoles_accessing += src
+
 /datum/design/board/interdyne_mining_equipment_vendor
 	name = "Offstation Mining Rewards Vendor Board"
 	desc = "The circuit board for a offstation Mining Rewards Vendor."
