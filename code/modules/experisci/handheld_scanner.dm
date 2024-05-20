@@ -11,7 +11,6 @@
 	icon_state = "experiscanner"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	var/works_from_distance = FALSE // BUBBERSTATION ADDITION
 
 /obj/item/experi_scanner/Initialize(mapload)
 	..()
