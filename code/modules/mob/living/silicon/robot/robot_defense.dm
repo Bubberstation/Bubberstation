@@ -343,7 +343,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	balloon_alert(user, "Hacking interface...") //BUBBER EDIT: CHANGES THIS DESCRIPTION
 	//BUBBER EDIT BEGIN: NERF NO-TALK EMAGS
-	if(do_after(user, 2 SECONDS))
+	if(do_after(user, 3 SECONDS))
 		emag_cooldown = world.time + 100
 
 		if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/malf_ai))
