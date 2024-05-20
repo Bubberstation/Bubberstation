@@ -11,10 +11,7 @@
 	icon_state = "experiscanner"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	/**
-	 * Following variable added for modular bluespace experi-scanner functionality
-	*/
-	var/works_from_distance = FALSE
+	var/works_from_distance = FALSE // BUBBERSTATION ADDITION
 
 /obj/item/experi_scanner/Initialize(mapload)
 	..()
@@ -30,10 +27,6 @@
 		allowed_experiments = list(/datum/experiment/scanning, /datum/experiment/physical), \
 		disallowed_traits = EXPERIMENT_TRAIT_DESTRUCTIVE, \
 		experiment_signals = handheld_signals, \
-		/**
-		 * Following line added for modular bluespace experi-scanner functionality
-		*/
-		config_flags = works_from_distance ? EXPERIMENT_CONFIG_IMMEDIATE_ACTION|EXPERIMENT_CONFIG_WORKS_FROM_RANGE : null , \
 	)
 
 /obj/item/experi_scanner/suicide_act(mob/living/carbon/user)
