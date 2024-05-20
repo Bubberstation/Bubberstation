@@ -3138,11 +3138,12 @@
 /area/station/hallway/primary/central/aft)
 "bcq" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/medkit/regular,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/item/aicard,
+/obj/item/storage/medkit/regular,
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "bcv" = (
@@ -8468,7 +8469,7 @@
 /turf/open/floor/stone,
 /area/station/biodome/aft)
 "cVX" = (
-/obj/structure/safe,
+/obj/structure/safe/vault,
 /obj/item/book{
 	desc = "An undeniably handy book.";
 	icon_state = "bookknock";
@@ -8594,9 +8595,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "cYz" = (
-/obj/machinery/computer/department_orders/service{
-	dir = 8
-	},
 /obj/structure/sign/poster/official/random/directional/south,
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/wood/large,
@@ -15377,7 +15375,6 @@
 /area/station/commons/toilet)
 "fqk" = (
 /obj/structure/chair/office/light,
-/obj/effect/landmark/start/virologist,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "fqq" = (
@@ -15682,15 +15679,6 @@
 "fuT" = (
 /turf/closed/wall/r_wall,
 /area/station/hallway/primary/aft)
-"fvb" = (
-/obj/effect/spawner/random/trash/graffiti{
-	spawn_loot_chance = 35;
-	spawn_loot_count = 3;
-	spawn_random_offset = 1;
-	spawn_scatter_radius = 3
-	},
-/turf/open/floor/plating,
-/area/station/service/janitor)
 "fvj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -21092,9 +21080,6 @@
 /turf/open/floor/wood,
 /area/station/service/janitor)
 "hqo" = (
-/obj/machinery/computer/department_orders/science{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
 	},
@@ -24658,7 +24643,7 @@
 /turf/open/floor/stone,
 /area/station/maintenance/department/cargo)
 "iHC" = (
-/mob/living/simple_animal/slime,
+/mob/living/basic/slime,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "iHH" = (
@@ -25288,15 +25273,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/holofloor/dark,
 /area/station/science/cytology)
-"iUC" = (
-/obj/effect/spawner/random/trash/graffiti{
-	spawn_loot_chance = 35;
-	spawn_loot_count = 3;
-	spawn_random_offset = 1;
-	spawn_scatter_radius = 2
-	},
-/turf/open/floor/plating,
-/area/station/service/janitor)
 "iUL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -31411,10 +31387,6 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai)
-"kVP" = (
-/mob/living/basic/bat,
-/turf/open/misc/asteroid/airless,
-/area/station/asteroid)
 "kVW" = (
 /obj/machinery/shower/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -36011,11 +35983,10 @@
 /area/station/service/chapel/office)
 "mvU" = (
 /obj/structure/table/reinforced,
-/obj/item/aicard,
-/obj/structure/secure_safe/caps_spare/directional/west,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/structure/secure_safe/caps_spare,
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "mvV" = (
@@ -40686,9 +40657,6 @@
 /turf/open/floor/iron,
 /area/station/science/research)
 "oac" = (
-/obj/machinery/computer/department_orders/engineering{
-	dir = 4
-	},
 /obj/item/radio/intercom/directional/west,
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 8
@@ -41247,7 +41215,6 @@
 /area/station/security/brig)
 "oie" = (
 /obj/structure/chair/stool/directional/east,
-/obj/effect/landmark/start/virologist,
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/medical/virology)
@@ -43386,7 +43353,6 @@
 /area/station/maintenance/port/central)
 "oWn" = (
 /obj/effect/decal/cleanable/ants/fire,
-/mob/living/basic/flesh_spider,
 /turf/open/misc/asteroid/dug,
 /area/station/asteroid)
 "oWu" = (
@@ -59930,9 +59896,6 @@
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
 "uMz" = (
-/obj/machinery/computer/department_orders/security{
-	dir = 1
-	},
 /obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /turf/open/floor/iron/dark/smooth_half,
@@ -60973,9 +60936,6 @@
 /turf/open/floor/stone,
 /area/station/biodome/aft)
 "vfF" = (
-/obj/machinery/computer/department_orders/medical{
-	dir = 1
-	},
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
@@ -64758,13 +64718,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
-"wtf" = (
-/obj/effect/spawner/random/trash/graffiti{
-	spawn_loot_chance = 35;
-	spawn_loot_count = 3
-	},
-/turf/open/floor/plating,
-/area/station/service/janitor)
 "wti" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -168552,11 +168505,11 @@ hNy
 hNy
 hNy
 hNy
-kVP
 rRv
-kVP
 rRv
-kVP
+rRv
+rRv
+rRv
 rUv
 rUv
 lUH
@@ -168809,7 +168762,7 @@ hNy
 hNy
 rRv
 rRv
-kVP
+rRv
 ouq
 ouq
 ouq
@@ -174509,7 +174462,7 @@ sZD
 sZD
 eqB
 tpZ
-iUC
+fxy
 lyr
 yhq
 aFm
@@ -175022,9 +174975,9 @@ sZD
 sZD
 sZD
 eqB
-iUC
+fxy
 sVz
-wtf
+fxy
 hxs
 aFm
 uIr
@@ -175537,7 +175490,7 @@ sZD
 sZD
 eqB
 cVF
-fvb
+fxy
 uGj
 ePa
 aFm
@@ -175795,7 +175748,7 @@ sZD
 eqB
 lyr
 uGj
-iUC
+fxy
 dFw
 aFm
 gSe

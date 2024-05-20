@@ -8,8 +8,11 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	if(bloodsuckerdatum.GetBloodVolume() > BLOOD_VOLUME_NORMAL)
-		return
+
+	if(istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
+		return ..()
+	if(bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_MAXIMUM)
+		return ..()
 	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
@@ -55,6 +58,7 @@
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
 		. += "Maximum blood: [bloodsuckerdatum.max_blood_volume]"
+		. += "Blood Thickening: [bloodsuckerdatum.blood_level_gain] / [bloodsuckerdatum.get_level_cost()]"
 		if(bloodsuckerdatum.frenzied)
 			. += "Frenzy exit blood threshold: [bloodsuckerdatum.frenzy_exit_threshold()]"
 		else
@@ -113,5 +117,5 @@
 // prevents players being trapped in their brain, alive, yet limbless and voiceless
 /obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
-	brain.brainmob.death()
+	brain?.brainmob.death()
 	. = ..()

@@ -28,7 +28,7 @@
 	bloodsuckerdatum.owner.current.remove_traits(list(TRAIT_VENTCRAWLER_ALWAYS, TRAIT_DISFIGURED), BLOODSUCKER_TRAIT)
 	return ..()
 
-/datum/bloodsucker_clan/nosferatu/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/nosferatu/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	. = ..()
 	if(!HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_NOBLOOD))
 		bloodsuckerdatum.owner.current.blood_volume = BLOOD_VOLUME_SURVIVE

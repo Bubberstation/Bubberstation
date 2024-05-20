@@ -214,7 +214,7 @@
 					span_userdanger("You're hit by [thrown_item]!"))
 	if(!thrown_item.throwforce)
 		return
-	var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration, "", FALSE, thrown_item.weak_against_armour)
+	var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone_with_bodypart(zone)].", "Your armor has softened hit to your [parse_zone_with_bodypart(zone)].", thrown_item.armour_penetration, "", FALSE, thrown_item.weak_against_armour)
 	apply_damage(thrown_item.throwforce, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
 	if(QDELETED(src)) //Damage can delete the mob.
 		return
@@ -512,7 +512,8 @@
 
 ///As the name suggests, this should be called to apply electric shocks.
 /mob/living/proc/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
-	SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage, source, siemens_coeff, flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage, source, siemens_coeff, flags) & COMPONENT_LIVING_BLOCK_SHOCK)
+		return FALSE
 	shock_damage *= siemens_coeff
 	if((flags & SHOCK_TESLA) && HAS_TRAIT(src, TRAIT_TESLA_SHOCKIMMUNE))
 		return FALSE
@@ -556,8 +557,8 @@
 		if((GLOB.cult_narsie.souls == GLOB.cult_narsie.soul_goal) && (GLOB.cult_narsie.resolved == FALSE))
 			GLOB.cult_narsie.resolved = TRUE
 			sound_to_playing_players('sound/machines/alarm.ogg')
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), CULT_VICTORY_MASS_CONVERSION), 120)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)), 270)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), CULT_VICTORY_MASS_CONVERSION), 12 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)), 27 SECONDS)
 	if(client)
 		make_new_construct(/mob/living/basic/construct/harvester, src, cultoverride = TRUE)
 	else

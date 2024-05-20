@@ -46,16 +46,16 @@
 	var/gas_consumption_base = 0.000005 //How much gas gets consumed, in moles, per cycle.
 	var/gas_consumption_heat = 0.0018 //How much gas gets consumed, in moles, per cycle, per 1000 kelvin.
 
-	var/base_power_generation = 3900000 //How many joules of power to add per mole of tritium processed.
+	var/base_power_generation = 7800000 //How many joules of power to add per mole of tritium processed.
 
 	var/goblin_multiplier = 8 //How many mols of goblin gas produced per mol of tritium. Increases with matter bins.
 
-	var/safeties_max_power_generation = 125000
+	var/safeties_max_power_generation = 230000
 
 	//Upgradable stats.
 	var/power_efficiency = 1 //A multiplier of base_power_generation. Also has an effect on heat generation. Improved via capacitors.
 	var/vent_pressure = 200 //Pressure, in kPa, that the buffer releases the gas to. Improved via servos.
-	var/max_power_generation = 250000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. The absolute max is 20 times this.
+	var/max_power_generation = 350000 //Maximum allowed power generation (joules) per cycle before the rods go apeshit. Improved via matter bins. The absolute max is 20 times this.
 
 	var/list/obj/machinery/rbmk2_sniffer/linked_sniffers = list()
 
@@ -169,7 +169,7 @@
 	return FALSE
 
 //Remove the rod.
-/obj/machinery/power/rbmk2/AltClick(mob/living/user)
+/obj/machinery/power/rbmk2/click_alt(mob/living/user)
 	if(!active && stored_rod)
 		src.add_fingerprint(user)
 		stored_rod.add_fingerprint(user)
@@ -349,7 +349,7 @@
 		goblin_multiplier += (new_matter_bin.tier-1)*0.5
 	max_power_generation = initial(max_power_generation) * (max_power_generation_mul**(1 + (max_power_generation_mul-1)*0.1))
 	max_power_generation = FLOOR(max_power_generation,10000)
-	safeties_max_power_generation = max(125000,FLOOR(max_power_generation*0.75,125000))
+	safeties_max_power_generation = max(initial(safeties_max_power_generation),round(max_power_generation*0.75,125000))
 
 	//Requires x4 servos
 	var/vent_pressure_multiplier = 0
@@ -463,7 +463,7 @@
 	if(allow_cooling_limiter && temperature_change > 0) //Cooling!
 		temperature_change *= clamp(1 - cooling_limiter*0.01,0,1) //Clamped in case of adminbus fuckery.
 
-	rod_mix.temperature -= temperature_change*0.65
+	rod_mix.temperature -= temperature_change*0.85
 	gas_source.temperature += temperature_change
 
 	return TRUE

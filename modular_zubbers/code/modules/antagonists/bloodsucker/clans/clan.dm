@@ -118,7 +118,7 @@
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 
 /**
@@ -157,7 +157,7 @@
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to advance your rank", "Your Blood Thickens...", options)
+		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient.[blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
 		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
 			return
