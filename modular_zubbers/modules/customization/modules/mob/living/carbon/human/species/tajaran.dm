@@ -21,6 +21,8 @@
 	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
 
+/obj/item/bodypart/chest/mutant/tajaran
+
 //Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran
 	name = "tajaran tongue"
