@@ -5,7 +5,6 @@
 	icon_state = "bs_experiscanner"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/devices_righthand.dmi'
-	works_from_distance = TRUE
 
 /obj/item/experi_scanner/bluespace/LateInitialize()
 	var/static/list/handheld_signals = list(
