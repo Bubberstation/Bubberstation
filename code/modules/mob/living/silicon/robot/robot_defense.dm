@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		balloon_alert(user, "expose the fires first!")
 		return FALSE
 
-	balloon_alert(user, "Hacking interface...") //BUBBER EDIT: CHANGES THIS DESCRIPTION
+	balloon_alert(user, "hacking interface...") //BUBBER EDIT: CHANGES THIS DESCRIPTION
 	//BUBBER EDIT BEGIN: NERF NO-TALK EMAGS
 	if(do_after(user, 2 SECONDS))
 		emag_cooldown = world.time + 100
