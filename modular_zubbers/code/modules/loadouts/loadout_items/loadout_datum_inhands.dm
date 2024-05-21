@@ -18,3 +18,8 @@
 
 /datum/loadout_item/inhand/flag_solfed
 	name = "Folded Solarian State Flag"
+
+/datum/loadout_item/inhand/ornate_bottle	//Donator item exclusive for Blovy. Sprited by Casey/Keila.
+	name = "Ornate Bottle"
+	item_path = /obj/item/reagent_containers/cup/glass/bottle/ornate
+	ckeywhitelist = list("blovy")

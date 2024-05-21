@@ -54,9 +54,9 @@
 	item_path = /obj/item/toy/plush/largeredslime
 	ckeywhitelist = list("blovy")
 
-/datum/loadout_item/toys/tunaplush
+/datum/loadout_item/toys/tunafish
 	name = "Tuna Fish Plush"
-	item_path = /obj/item/toy/plush/tunaplush
+	item_path = /obj/item/toy/plush/tunafish
 
 /datum/loadout_item/toys/purplecat
 	name = "Purple Cat Plush"
