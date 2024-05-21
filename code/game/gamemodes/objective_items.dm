@@ -332,6 +332,19 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/automatic/combat/compact)
 
+/datum/objective_item/steal/hoscarbine
+	name = "the head of security's personal carbine"
+	targetitem = /obj/item/gun/energy/modular_laser_rifle/carbine
+	excludefromjob = list(JOB_HEAD_OF_SECURITY)
+	item_owner = list(JOB_HEAD_OF_SECURITY)
+	exists_on_map = TRUE
+	difficulty = 4
+	steal_hint = "The Head of Security's unique multi mode laser carbine. \
+		Always found on their person, if they are alive, but may otherwise be found in their locker."
+
+/obj/item/gun/energy/modular_laser_rifle/carbine/add_stealing_item_objective()
+	return add_item_to_steal(src, /obj/item/gun/energy/modular_laser_rifle/carbine)
+
 /datum/objective_item/steal/handtele
 	name = "a hand teleporter"
 	targetitem = /obj/item/hand_tele
