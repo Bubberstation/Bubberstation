@@ -85,7 +85,7 @@ GLOBAL_LIST(end_titles)
 	direction.Translate(0, CREDIT_ANIMATE_HEIGHT)
 	animate(src, transform = direction, time = CREDIT_ROLL_SPEED)
 	animate(src, alpha = 255, time = CREDIT_EASE_DURATION, flags = ANIMATION_PARALLEL)
-	animate(src, alpha = 0, flags = ANIMATION_PARALLEL, time = CREDIT_EASE_DURATION, delay = CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
+	UNLINT(animate(src, alpha = 0, flags = ANIMATION_PARALLEL, time = CREDIT_EASE_DURATION, delay = CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION))
 	parent?.screen += src
 
 /atom/movable/screen/credit/proc/fadeout(var/matrix/direction)
