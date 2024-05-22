@@ -14,6 +14,7 @@
 	tiled_dirt = FALSE
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/misc/moonstation_rock
+	flags_1 = NONE
 
 /turf/open/misc/moonstation_sand/Initialize(mapload)
 	. = ..()
@@ -36,7 +37,7 @@
 	icon = 'modular_zubbers/icons/turf/lunar_rock.dmi'
 	icon_state = "0,0"
 	planetary_atmos = TRUE
-	baseturfs = /turf/baseturf_bottom //You have hit rock bottom.
+	baseturfs = /turf/open/misc/moonstation_rock //You have hit rock bottom.
 
 /turf/open/misc/moonstation_rock/break_tile()
 	. = ..()
@@ -47,10 +48,16 @@
 
 /turf/open/misc/moonstation_rock/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/diggable, /obj/item/stack/sheet/mineral/stone, 2, worm_chance = 1)
 	icon_state = "[x % 10],[y % 10]"
+
+/turf/open/misc/moonstation_rock/do_not_chasm
+	flags_1 = CAN_BE_DIRTY_1
+	turf_flags = IS_SOLID | NO_RUST | NO_RUINS
 
 /turf/open/misc/moonstation_rock/cave
 	initial_gas_mix = MOONSTATION_ATMOS_CAVE
+	baseturfs = /turf/baseturf_bottom //You have hit rock bottom.
 
 //Misc
 /turf/open/floor/plating/rust/moonstation
@@ -73,3 +80,4 @@
 /turf/open/floor/iron/solarpanel/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS
 	planetary_atmos = TRUE
+
