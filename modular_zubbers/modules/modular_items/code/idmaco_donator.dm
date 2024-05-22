@@ -7,6 +7,12 @@
 
 #define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Snaffle15", "Waterpig", "Mishanok")
 
+/datum/loadout_item/suit/idmavest
+	name = "IDMA service jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
+	ckeywhitelist = IDMA_CKEY_WHITELIST
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
@@ -135,8 +141,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/vest/idma_vest
-	name = "ironmoon service coat"
-	desc = "A heavy jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
+	name = "IDMA Combat Vest"
+	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
 	icon_state = "romfed_armour"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
