@@ -56,8 +56,6 @@
 	turf_flags = IS_SOLID | NO_RUST | NO_RUINS
 
 /turf/open/misc/moonstation_rock/cave
-	initial_gas_mix = MOONSTATION_ATMOS_CAVE
-	baseturfs = /turf/baseturf_bottom //You have hit rock bottom.
 
 //Misc
 /turf/open/floor/plating/rust/moonstation
@@ -65,17 +63,17 @@
 	planetary_atmos = TRUE
 
 /turf/open/floor/plating/rust/moonstation/cave
-	initial_gas_mix = MOONSTATION_ATMOS_CAVE
 
 /turf/open/floor/catwalk_floor/rust
 	baseturfs = /turf/open/floor/plating/rust
 
 /turf/open/floor/catwalk_floor/rust/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS
+	baseturfs = /turf/open/floor/plating/rust/moonstation
 	planetary_atmos = TRUE
 
 /turf/open/floor/catwalk_floor/rust/moonstation/cave
-	initial_gas_mix = MOONSTATION_ATMOS_CAVE
+	baseturfs = /turf/open/floor/plating/rust/moonstation/cave
 
 /turf/open/floor/iron/solarpanel/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS
