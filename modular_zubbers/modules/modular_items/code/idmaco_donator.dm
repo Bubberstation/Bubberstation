@@ -143,7 +143,7 @@
 /obj/item/clothing/suit/armor/vest/idma_vest
 	name = "IDMA Combat Vest"
 	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
-	icon_state = "romfed_armour"
+	icon_state = "romfed_armor"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
