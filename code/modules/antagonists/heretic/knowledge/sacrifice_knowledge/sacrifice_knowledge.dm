@@ -319,7 +319,7 @@
 	if (isplasmaman(sac_target))
 		usable_organs -= /obj/item/organ/internal/lungs/corrupt // Their lungs are already more cursed than anything I could give them
 
-	var/total_implant = rand(2, 4)
+	var/total_implant = 1 //BUBBERSTATION CHANGE: ALWAYS 1 INSTEAD OF 2 TO 4.
 	var/gave_any = FALSE
 
 	for (var/i in 1 to total_implant)
