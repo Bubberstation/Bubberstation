@@ -66,7 +66,8 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	icon_state = "romulusberet"
-//provide no armor because it's a ceremonial piece. meant to be available across all role
+	resistance_flags = FIRE_PROOF
+//provide no armor because it's a ceremonial piece. meant to be available across all role. I would not like to get it burnt off however
 
 /obj/item/clothing/under/rank/security/idma_fatigue
 	name = "ironmoon service fatigue"
@@ -77,6 +78,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
 	can_adjust = FALSE //Yes we have the sprite for them but they look ass so let's not use it
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	name = "argnostan service fatigue"
@@ -144,7 +146,7 @@
 	icon_state = "romuluspolice"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-
+	resistance_flags = FIRE_PROOF
 
 /obj/item/toy/plush/especiallystrange
 	name = "ironmoon tajaran plushie"
@@ -154,3 +156,4 @@
 	attack_verb_continuous = list("cuddles", "meows", "hisses")
 	attack_verb_simple = list("cuddle", "meow", "hiss")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	resistance_flags = FIRE_PROOF
