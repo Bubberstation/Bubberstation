@@ -11,3 +11,7 @@
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/bubberstation/dauntless)
 	always_place = TRUE
+
+/datum/weather/rad_storm/New()
+	. = ..()
+	protected_areas += /area/ruin/syndicate_ice_base
