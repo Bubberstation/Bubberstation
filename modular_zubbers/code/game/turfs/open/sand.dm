@@ -51,18 +51,10 @@
 	AddElement(/datum/element/diggable, /obj/item/stack/sheet/mineral/stone, 2, worm_chance = 1)
 	icon_state = "[x % 10],[y % 10]"
 
-/turf/open/misc/moonstation_rock/do_not_chasm
-	flags_1 = CAN_BE_DIRTY_1
-	turf_flags = IS_SOLID | NO_RUST | NO_RUINS
-
-/turf/open/misc/moonstation_rock/cave
-
 //Misc
 /turf/open/floor/plating/rust/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS
 	planetary_atmos = TRUE
-
-/turf/open/floor/plating/rust/moonstation/cave
 
 /turf/open/floor/catwalk_floor/rust
 	baseturfs = /turf/open/floor/plating/rust
@@ -71,9 +63,6 @@
 	initial_gas_mix = MOONSTATION_ATMOS
 	baseturfs = /turf/open/floor/plating/rust/moonstation
 	planetary_atmos = TRUE
-
-/turf/open/floor/catwalk_floor/rust/moonstation/cave
-	baseturfs = /turf/open/floor/plating/rust/moonstation/cave
 
 /turf/open/floor/iron/solarpanel/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS

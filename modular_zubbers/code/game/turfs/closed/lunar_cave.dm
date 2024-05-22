@@ -3,8 +3,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	initial_gas_mix = MOONSTATION_ATMOS
 
 /turf/closed/mineral/gibtonite/lunar_cave
@@ -12,8 +12,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 
@@ -22,8 +22,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 
@@ -32,8 +32,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 
@@ -42,8 +42,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 
@@ -52,8 +52,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 	proximity_based = FALSE
@@ -77,8 +77,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 	proximity_based = FALSE
@@ -94,8 +94,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 	proximity_based = FALSE
@@ -117,8 +117,8 @@
 	icon_state = "rock_wall"
 	base_icon_state = "rock_wall"
 	color = null
-	turf_type = /turf/open/misc/moonstation_rock/cave
-	baseturfs = /turf/open/misc/moonstation_rock/cave
+	turf_type = /turf/open/misc/moonstation_rock
+	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
 	proximity_based = FALSE
