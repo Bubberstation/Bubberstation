@@ -29,12 +29,12 @@
 	/// Evil organs we can put in people
 	var/static/list/grantable_organs = list(
 		/obj/item/organ/internal/appendix/corrupt,
-		/obj/item/organ/internal/eyes/corrupt,
+		// /obj/item/organ/internal/eyes/corrupt, BUBBERSTATION REMOVAL. AWFUL OVERLAY EFFECT THAT PULSATES. JESUS CHRIST.
 		/obj/item/organ/internal/heart/corrupt,
-		/obj/item/organ/internal/liver/corrupt,
-		/obj/item/organ/internal/lungs/corrupt,
+		// /obj/item/organ/internal/liver/corrupt, BUBBERSTATION REMOVAL. SURE LETS OD PEOPLE WHILE THEY'RE BEING TREATED OK.
+		// /obj/item/organ/internal/lungs/corrupt, BUBBERSTATION REMOVAL. HEY REMEMBER ABDUCTORS? HEY REMEMBER WE REMOVED PLASMA GENERATION FROM ABDUCTOR LUNGS? HEY LETS RE-ADD THAT BACK TO HERETIC LUNGS BECAUSE ????
 		/obj/item/organ/internal/stomach/corrupt,
-		/obj/item/organ/internal/tongue/corrupt,
+		// /obj/item/organ/internal/tongue/corrupt, BUBBERSTATION REMOVAL. LETS SLUR PEOPLE'S SPEECH AND NOT UNDERSTAND WHY THEY'RE DOING IT BECAUSE WE'RE NOT A GAME BASED ON COMMUNICATION OK.
 	)
 
 /datum/heretic_knowledge/hunt_and_sacrifice/Destroy(force)
