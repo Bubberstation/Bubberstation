@@ -2002,7 +2002,7 @@
 "aDr" = (
 /obj/structure/ladder,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/plating/rust/moonstation,
 /area/moonstation/underground)
 "aDz" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -3810,7 +3810,7 @@
 "bbJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/random/trash/grime,
-/turf/open/floor/plating,
+/turf/open/floor/plating/rust/moonstation,
 /area/moonstation/underground)
 "bbK" = (
 /obj/structure/rack,
@@ -4038,7 +4038,9 @@
 /turf/open/floor/plating,
 /area/station/common/pool/sauna)
 "bfV" = (
-/turf/open/floor/catwalk_floor/rust/moonstation,
+/obj/structure/sign/warning/secure_area/directional/south,
+/obj/structure/marker_beacon/fuchsia,
+/turf/open/floor/plating/rust/moonstation,
 /area/moonstation/underground)
 "bgd" = (
 /obj/effect/spawner/random/structure/chair_maintenance{
@@ -12717,13 +12719,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/common/night_club)
-"dMv" = (
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/rust/moonstation,
-/area/moonstation/underground)
 "dMy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -13573,7 +13568,7 @@
 /obj/machinery/door/airlock/maintenance/external{
 	name = "Prison Pit"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/rust/moonstation,
 /area/moonstation/underground)
 "eba" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -27473,7 +27468,7 @@
 /area/station/engineering/storage_shared)
 "iaA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/plating/rust/moonstation,
 /area/moonstation/underground)
 "iaG" = (
 /obj/structure/table,
@@ -39403,9 +39398,7 @@
 "lAX" = (
 /obj/machinery/light/small/broken/directional/east,
 /obj/effect/turf_decal/caution/white,
-/turf/open/floor/plating/lavaland_atmos{
-	initial_gas_mix = s
-	},
+/turf/open/floor/plating/lavaland_atmos,
 /area/station/commons/storage/mining)
 "lBg" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
@@ -63315,10 +63308,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
-"syG" = (
-/obj/structure/marker_beacon/fuchsia,
-/turf/open/floor/catwalk_floor/rust/moonstation,
-/area/moonstation/underground)
 "syH" = (
 /obj/effect/turf_decal/tile/neutral/tram,
 /obj/structure/chair/sofa/bench/tram/left{
@@ -65073,9 +65062,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/hallway/primary/starboard)
-"tbf" = (
-/turf/open/misc/moonstation_rock,
-/area/moonstation/underground)
 "tbz" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
@@ -66521,7 +66507,7 @@
 "txO" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small/directional/north,
-/turf/open/floor/plating,
+/turf/open/floor/plating/rust/moonstation,
 /area/moonstation/underground)
 "txR" = (
 /turf/open/floor/carpet/cyan,
@@ -68423,6 +68409,7 @@
 /obj/effect/turf_decal/trimline/dark/filled/warning{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/security/prison/workout)
 "tZG" = (
@@ -169265,9 +169252,9 @@ ogU
 ogU
 ogU
 ogU
-syG
+sse
 cWP
-syG
+sse
 exa
 ycu
 bLJ
@@ -183580,7 +183567,7 @@ sSg
 sSg
 sSg
 sSg
-ygC
+bfV
 tFE
 txO
 bbJ
@@ -183837,7 +183824,7 @@ sSg
 sSg
 sSg
 sSg
-sSg
+lUL
 eaQ
 iaA
 iaA
@@ -184077,9 +184064,9 @@ jnN
 jnN
 jnN
 sSg
-sSg
 kJH
 kJH
+kJH
 sSg
 sSg
 sSg
@@ -184094,7 +184081,7 @@ sSg
 sSg
 sSg
 sSg
-ygC
+bfV
 tFE
 aDr
 iaA
@@ -184334,7 +184321,7 @@ jnN
 jnN
 jnN
 sSg
-sSg
+kJH
 kJH
 kJH
 kJH
@@ -186133,7 +186120,7 @@ jnN
 sSg
 sSg
 sSg
-sSg
+kJH
 kJH
 sSg
 sSg
@@ -186390,7 +186377,7 @@ jnN
 sSg
 sSg
 sSg
-sSg
+kJH
 kJH
 kJH
 sSg
@@ -186647,7 +186634,7 @@ jnN
 jnN
 sSg
 sSg
-sSg
+kJH
 kJH
 kJH
 kJH
@@ -186904,7 +186891,7 @@ jnN
 jnN
 sSg
 sSg
-sSg
+kJH
 kJH
 kJH
 kJH
@@ -187161,7 +187148,7 @@ jnN
 jnN
 jnN
 sSg
-sSg
+kJH
 kJH
 kJH
 sSg
@@ -192065,7 +192052,7 @@ kJH
 kJH
 kJH
 kJH
-sSg
+kJH
 sSg
 sSg
 sSg
@@ -192835,7 +192822,7 @@ sSg
 tFE
 kJH
 kJH
-tFE
+kJH
 kJH
 kJH
 kJH
@@ -246812,7 +246799,7 @@ lmP
 xoP
 kLY
 iCO
-tbf
+sSg
 jQi
 qCW
 eLu
@@ -247067,9 +247054,9 @@ tVp
 mkV
 jAs
 nhl
-tbf
-tbf
-tbf
+sSg
+sSg
+sSg
 cdq
 jQx
 rqa
@@ -247324,9 +247311,9 @@ gil
 gil
 bAW
 nhl
-tbf
-tbf
-tbf
+sSg
+sSg
+sSg
 jQi
 jQi
 jQi
@@ -247834,8 +247821,8 @@ omS
 rNi
 gil
 gil
-tbf
-tbf
+sSg
+sSg
 wWF
 gpO
 chE
@@ -248091,13 +248078,13 @@ eEW
 eEW
 gil
 drK
-tbf
-tbf
+sSg
+sSg
 ctC
 wlN
 wlN
 wlN
-bfV
+cWP
 uTo
 wnE
 xoP
@@ -248348,15 +248335,15 @@ jzl
 jzl
 dVk
 drK
-tbf
-tbf
-tbf
-tbf
-tbf
-tbf
+sSg
+sSg
+sSg
+sSg
+sSg
+sSg
 wWF
 uTo
-bfV
+cWP
 aUO
 ltP
 tmy
@@ -248605,16 +248592,16 @@ xBk
 wqN
 lEK
 drK
-tbf
-tbf
-tbf
-tbf
-tbf
-tbf
+sSg
+sSg
+sSg
+sSg
+sSg
+sSg
 mrl
 uTo
 sse
-bfV
+cWP
 rtH
 aai
 mtV
@@ -248844,22 +248831,22 @@ sMo
 kUC
 kUC
 saq
-alh
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
-vDs
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
+wjy
 ulH
 mfn
 ulH
@@ -250638,7 +250625,7 @@ stM
 stM
 stM
 stM
-gKF
+stM
 kUC
 kUC
 saq
@@ -252950,7 +252937,7 @@ stM
 stM
 stM
 stM
-stM
+kUC
 kUC
 kUC
 kUC
@@ -255519,12 +255506,12 @@ vmO
 vmO
 stM
 stM
-stM
 kUC
 kUC
 kUC
 kUC
 saq
+wjy
 wjy
 wjy
 ptu
@@ -255780,8 +255767,8 @@ stM
 kUC
 kUC
 kUC
-kUC
 saq
+wjy
 wjy
 wjy
 bcK
@@ -256036,9 +256023,9 @@ stM
 stM
 stM
 kUC
-kUC
 saq
 saq
+wjy
 wjy
 wjy
 ptu
@@ -256292,9 +256279,9 @@ stM
 stM
 stM
 stM
-kUC
 saq
 saq
+wjy
 wjy
 wjy
 wjy
@@ -256550,9 +256537,9 @@ stM
 stM
 kUC
 kUC
-kUC
 saq
 saq
+wjy
 wjy
 wjy
 ptu
@@ -256804,12 +256791,12 @@ vmO
 vmO
 stM
 stM
-stM
 kUC
 kUC
 kUC
 kUC
 saq
+wjy
 wjy
 wjy
 bcK
@@ -257065,8 +257052,8 @@ stM
 kUC
 kUC
 kUC
-kUC
 saq
+wjy
 wjy
 wjy
 ptu
@@ -257850,10 +257837,10 @@ wjy
 wjy
 wjy
 wjy
-wjy
-wjy
-wjy
-wjy
+saq
+saq
+saq
+saq
 alh
 vDs
 vDs
@@ -258095,6 +258082,7 @@ kUC
 kUC
 kUC
 saq
+saq
 wjy
 wjy
 wjy
@@ -258109,12 +258097,11 @@ wjy
 wjy
 wjy
 wjy
-wjy
-wjy
-wjy
-wjy
-wjy
-wjy
+saq
+saq
+saq
+saq
+saq
 eKL
 lZj
 biL
@@ -258352,8 +258339,8 @@ kUC
 kUC
 kUC
 saq
-wjy
-wjy
+saq
+saq
 wjy
 wjy
 wjy
@@ -259129,7 +259116,7 @@ kUC
 saq
 saq
 saq
-wjy
+saq
 wjy
 wjy
 wjy
@@ -259387,7 +259374,7 @@ kUC
 kUC
 saq
 saq
-wjy
+saq
 wjy
 wjy
 wjy
@@ -259645,21 +259632,21 @@ kUC
 saq
 saq
 saq
+saq
+saq
+saq
 wjy
 wjy
 wjy
 wjy
 wjy
-wjy
-wjy
-wjy
-wjy
-wjy
-wjy
-sSp
-wBG
-wBG
-wBG
+saq
+saq
+saq
+alh
+vDs
+vDs
+vDs
 ibq
 gDu
 bit
@@ -259905,18 +259892,18 @@ kUC
 kUC
 kUC
 kUC
+saq
 wjy
 wjy
 wjy
-wjy
-wjy
-wjy
-wjy
+saq
+saq
+saq
 kUC
-alh
-vDs
-vDs
-vDs
+kUC
+stM
+stM
+stM
 ibq
 koC
 lkq
@@ -260164,14 +260151,14 @@ kUC
 kUC
 kUC
 kUC
-wjy
-wjy
-wjy
-wjy
+saq
+saq
+saq
+saq
 kUC
 kUC
-stM
-stM
+kUC
+kUC
 stM
 stM
 cMc
@@ -260427,7 +260414,7 @@ kUC
 kUC
 kUC
 kUC
-stM
+kUC
 stM
 stM
 stM
@@ -260683,7 +260670,7 @@ kUC
 kUC
 kUC
 kUC
-stM
+kUC
 stM
 stM
 stM
@@ -261185,7 +261172,16 @@ stM
 stM
 stM
 stM
-gKF
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+kUC
 stM
 stM
 stM
@@ -261197,21 +261193,12 @@ stM
 stM
 stM
 stM
-gKF
 stM
 stM
 stM
 stM
 stM
 stM
-stM
-stM
-stM
-stM
-stM
-stM
-stM
-gKF
 stM
 stM
 stM
@@ -267991,7 +267978,7 @@ dyf
 dKZ
 dKZ
 dKZ
-dMv
+ltP
 bDU
 mRD
 kGx
