@@ -10,8 +10,11 @@
 	. = ..()
 	// Turns out this is all you need for access to the doors. See code\game\machinery\_machinery.dm
 	R.faction += ROLE_SYNDICATE
-	to_chat(R, span_alert("Additional access detected!"))
-	to_chat(user, span_warning("The cyborg whirrs a bit as additional access levels are added."))
+	to_chat(R, span_alert("Additional access detected! Remote camera interface destroyed."))
+	to_chat(user, span_warning("The cyborg whirrs a bit as additional access levels are added, and the remote camera module shorts out a fuse."))
+	// Remove the camera, much like how the camera is removed for ghost cafe cyborgs
+	if(!QDELETED(R.builtInCamera))
+		QDEL_NULL(R.builtInCamera)
 
 
 /obj/item/borg/upgrade/syndicate_access/deactivate(mob/living/silicon/robot/R, user)
@@ -28,4 +31,3 @@
 	// Yes, this forces out and removes any other keys. Which it should, in this case.
 	R.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/interdyne(src)
 	R.radio.recalculateChannels()
-	
