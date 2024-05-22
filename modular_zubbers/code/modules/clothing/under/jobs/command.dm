@@ -12,6 +12,8 @@
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
 	greyscale_colors = "#081027#41579a#c06822"
 
+	can_adjust = FALSE
+
 /obj/item/clothing/under/rank/civilian/head_of_personnel/stripper/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/gags_recolorable)
@@ -30,6 +32,8 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 	greyscale_colors = "#081027#46b946#e6b917"
+
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/nanotrasen_consultant/stripper/Initialize(mapload)
 	. = ..()
