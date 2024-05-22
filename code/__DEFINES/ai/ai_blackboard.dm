@@ -14,6 +14,11 @@
 #define BB_BREED_READY "BB_breed_ready"
 ///maximum kids we can have
 #define BB_MAX_CHILDREN "BB_max_children"
+///our current happiness level
+#define BB_BASIC_HAPPINESS "BB_basic_happiness"
+///can this mob heal?
+#define BB_BASIC_MOB_HEALER "BB_basic_mob_healer"
+
 
 /// Store a single or list of emotes at this key
 #define BB_EMOTE_KEY "BB_emotes"
@@ -144,3 +149,8 @@
 
 ///Text we display when we befriend someone
 #define BB_FRIENDLY_MESSAGE "friendly_message"
+
+// Keys used by one and only one behavior
+// Used to hold state without making bigass lists
+/// For /datum/ai_behavior/find_potential_targets, what if any field are we using currently
+#define BB_FIND_TARGETS_FIELD(type) "bb_find_targets_field_[type]"
