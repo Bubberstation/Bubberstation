@@ -91,10 +91,9 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/machinery/button/polarizer{
-	pixel_y = 24;
-	name = "Sauna Window Shutters";
-	id = "interdynesaunacargo"
+/obj/machinery/button/door/directional/north{
+	id = "interdynesauna2";
+	name = "Sauna Window Shutters"
 	},
 /turf/open/floor/wood/large,
 /area/ruin/syndicate_ice_base/gym)
@@ -2793,11 +2792,11 @@
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_ice_base/engineering)
 "tR" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "interdynesaunacargo";
-	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
-	},
 /obj/structure/flora/bush/flowers_br,
+/obj/structure/window/reinforced/plasma/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "interdynesauna2"
+	},
 /turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/gym)
 "tS" = (
@@ -3714,11 +3713,11 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_ice_base/engineering)
 "AX" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "interdynesaunacargo";
-	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
-	},
 /obj/structure/flora/bush/flowers_br/style_random,
+/obj/machinery/door/poddoor{
+	id = "interdynesauna2"
+	},
+/obj/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/gym)
 "AZ" = (
@@ -4303,11 +4302,11 @@
 /turf/open/floor/carpet/royalblack,
 /area/ruin/syndicate_ice_base/telecomms)
 "Ff" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "interdynesaunacargo";
-	spawn_list = list(/obj/structure/window/reinforced/plasma/plastitanium)
-	},
 /obj/structure/flora/bush/flowers_yw,
+/obj/machinery/door/poddoor{
+	id = "interdynesauna2"
+	},
+/obj/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/grass,
 /area/ruin/syndicate_ice_base/gym)
 "Fn" = (
