@@ -36,9 +36,13 @@
 	return chosen_turf
 
 /// Generates a new avatar for the bitrunner.
-/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit)
+/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit, datum/preferences/prefs) // BUBBER EDIT - Prefs argument
 	var/mob/living/carbon/human/avatar = new(wayout.loc)
 
+	// BUBBER EDIT BEGIN - PREFS!
+	if(!isnull(prefs))
+		prefs.safe_transfer_prefs_to(avatar)
+	// BUBBER EDIT END
 	var/outfit_path = generated_domain.forced_outfit || netsuit
 	var/datum/outfit/to_wear = new outfit_path()
 
