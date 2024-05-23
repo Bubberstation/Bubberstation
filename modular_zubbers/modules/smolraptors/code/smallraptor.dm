@@ -101,7 +101,7 @@ sciborg isnt in yet
 
 */
 
-#undef CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
+#undef CYBORG_ICON_TYPE_SMOLRAPTOR 
 
 #undef CYBORG_ICON_GEN_SMOLRAPTOR
 #undef CYBORG_ICON_SCI_SMOLRAPTOR
