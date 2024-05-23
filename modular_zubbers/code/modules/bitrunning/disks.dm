@@ -5,6 +5,8 @@
 	base_icon_state = "datadisk"
 	icon_state = "datadisk0"
 
+	w_class = WEIGHT_CLASS_SMALL
+
 	var/datum/preferences/loaded_preference
 
 /obj/item/bitrunning_disk/prefs/examine(mob/user)
@@ -30,3 +32,11 @@
 	loaded_preference.load_character(prefdata_names.Find(choice))
 
 	to_chat(user, span_notice("Character set to [choice] sucessfully!"))
+
+/datum/outfit/job/bitrunner
+	r_pocket = /obj/item/bitrunning_disk/prefs
+
+/datum/orderable_item/bitrunning_tech/pref_item
+	cost_per_order = 500
+	item_path = /obj/item/bitrunning_disk/prefs
+	desc = "This disk contains a program that lets you load in custom characters."
