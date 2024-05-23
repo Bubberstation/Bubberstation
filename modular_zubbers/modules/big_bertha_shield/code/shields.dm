@@ -1,6 +1,6 @@
 /obj/item/shield/big_bertha
 	name = "Big Bertha"
-	desc = "A shield so fat, it should block just about anything. That's why they call her Big Bertha."
+	desc = "A shield so fat and heavy, it should block just about anything. That's why they call her Big Bertha."
 	icon = 'modular_zubbers/modules/big_bertha_shield/icons/shields.dmi'
 	lefthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
 	righthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
