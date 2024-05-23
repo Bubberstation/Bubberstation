@@ -31,17 +31,6 @@
 	fire = 80
 	acid = 70
 
-/datum/area_spawn_over/big_bertha
-	desired_atom = /obj/item/shield/big_bertha
-	target_areas = list(
-		/area/station/ai_monitored/security/armory,
-		/area/station/ai_monitored/security/armory/upper,
-		/area/station/security/warden,
-		/area/station/security/office,
-	)
-	over_atoms = list(
-		/obj/structure/rack,
-		/obj/structure/table,
-		/obj/structure/closet
-	)
-	blacklisted_stations = list("Runtime Station", "MultiZ Debug", "Gateway Test")
+/obj/structure/closet/secure_closet/warden/PopulateContents()
+	..()
+	new /obj/item/shield/big_bertha(src)
