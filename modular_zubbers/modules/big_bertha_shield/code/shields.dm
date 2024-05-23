@@ -18,6 +18,7 @@
 	block_sound = 'sound/weapons/block_shield.ogg'
 	breakable_by_damage = FALSE
 	item_flags = IMMUTABLE_SLOW | SLOWS_WHILE_IN_HAND
+	slowdown = 2
 
 /obj/item/shield/big_bertha/Initialize(mapload)
 	. = ..()
