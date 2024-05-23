@@ -45,3 +45,6 @@
 	name = "High-rise Horns"
 	icon_state = "highrisehorns"
 
+/datum/sprite_accessory/horns/bubber/biterhorns //Kyo's horns, made by Kyo, for Kyo
+	name = "Biter's Horns"
+	icon_state = "bitershorns"
