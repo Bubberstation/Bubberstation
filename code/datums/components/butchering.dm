@@ -172,7 +172,7 @@
 			span_notice("You butcher [target]."))
 	butcher_callback?.Invoke(butcher, target)
 	target.harvest(butcher)
-	target.log_message("has been butchered by [key_name(butcher)]", LOG_ATTACK, redacted_copy = "has been butchered by [butcher]") // BUBBER EDIT - PUBLIC LOGS
+	target.log_message("has been butchered by [key_name(butcher)]", LOG_ATTACK)
 	target.gib(DROP_BRAIN|DROP_ORGANS)
 
 ///Enables the butchering mechanic for the mob who has equipped us.
