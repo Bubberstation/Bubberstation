@@ -4,6 +4,7 @@
 	icon = 'modular_zubbers/modules/big_bertha_shield/icons/shields.dmi'
 	lefthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
 	righthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
+	icon_state = "big_bertha"
 	block_chance = 100
 	slot_flags = null
 	force = 12
