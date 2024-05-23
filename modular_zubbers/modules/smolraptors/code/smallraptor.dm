@@ -100,3 +100,16 @@ sciborg isnt in yet
 	)
 
 */
+
+#undef CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
+
+#undef CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_gen.dmi'
+#undef CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_sci.dmi'
+#undef CYBORG_ICON_ENG_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_eng.dmi'
+#undef CYBORG_ICON_MED_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_med.dmi'
+#undef CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_car.dmi'
+#undef CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_serv.dmi'
+#undef CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_pk.dmi'
+#undef CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_jani.dmi'
+#undef CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_min.dmi'
+#undef CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/modules/smolraptors/icons/smolraptor_cc.dmi'
