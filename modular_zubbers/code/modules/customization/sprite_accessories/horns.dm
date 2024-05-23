@@ -29,6 +29,10 @@
 	name = "Broad Curls"
 	icon_state = "broadcurls"
 
+/datum/sprite_accessory/horns/bubber/biterhorns //Kyo's horns, made by Kyo, for Kyo
+	name = "Biter's Horns"
+	icon_state = "biterhorns"
+
 
 /datum/sprite_accessory/horns/bubber/big
 	icon = 'modular_zubbers/icons/customization/horns_big.dmi'
@@ -44,7 +48,3 @@
 /datum/sprite_accessory/horns/bubber/big/highrisehorns //end of sprites by Scuhf_#6640
 	name = "High-rise Horns"
 	icon_state = "highrisehorns"
-
-/datum/sprite_accessory/horns/bubber/biterhorns //Kyo's horns, made by Kyo, for Kyo
-	name = "Biter's Horns"
-	icon_state = "bitershorns"
