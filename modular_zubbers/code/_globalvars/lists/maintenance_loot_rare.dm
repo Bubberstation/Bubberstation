@@ -1,10 +1,11 @@
-GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
+GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NEW PATHS FROM THE COMMENTED PARTS
 	/obj/item/aicard/aitater = 10,
 	/obj/item/ammo_box/foambox/riot = 50,
 	list(
 		/obj/item/survivalcapsule = 100,
 		/obj/item/survivalcapsule/luxury = 10,
 		/obj/item/survivalcapsule/luxuryelite = 5,
+		/obj/item/survivalcapsule/sauna = 5,
 		/obj/item/survivalcapsule/bathroom = 1
 	) = 25,
 	/obj/item/table_clock = 50,
@@ -19,7 +20,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/ammo_casing/shotgun/express = 1,
 		/obj/item/ammo_casing/shotgun/flechette = 1,
 		/obj/item/ammo_casing/shotgun/frag12 = 1,
-		/obj/item/ammo_casing/shotgun/honk = 25,
+//		/obj/item/ammo_casing/shotgun/honk = 25,
 //		/obj/item/ammo_casing/shotgun/hp = 1,
 		/obj/item/ammo_casing/shotgun/hunter = 1,
 //		/obj/item/ammo_casing/shotgun/iceblox = 1,

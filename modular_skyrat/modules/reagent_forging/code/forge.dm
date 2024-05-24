@@ -334,6 +334,10 @@
 
 	upgrade_forge(user)
 
+/obj/structure/reagent_forge/attack_robot(mob/living/user)
+	. = ..()
+	upgrade_forge(user)
+
 /obj/structure/reagent_forge/proc/upgrade_forge(mob/living/user, forced = FALSE)
 	var/level_to_upgrade_to
 
@@ -394,6 +398,35 @@
 			forge_level = FORGE_LEVEL_LEGENDARY
 
 	playsound(src, 'sound/weapons/parry.ogg', 50, TRUE) // Play a feedback sound to really let players know we just did an upgrade
+
+//this will allow click dragging certain items
+/obj/structure/reagent_forge/MouseDrop_T(obj/attacking_item, mob/living/user)
+	. = ..()
+	if(!isliving(user))
+		return
+
+	if(!isobj(attacking_item))
+		return
+
+	if(istype(attacking_item, /obj/item/stack/sheet/mineral/wood)) // Wood is a weak fuel, and will only get the forge up to 50 temperature
+		refuel(attacking_item, user)
+		return
+
+	if(istype(attacking_item, /obj/item/stack/sheet/mineral/coal)) // Coal is a strong fuel that doesn't need bellows to heat up properly
+		refuel(attacking_item, user, TRUE)
+		return
+
+	if(istype(attacking_item, /obj/item/stack/ore))
+		smelt_ore(attacking_item, user)
+		return
+
+	if(attacking_item.GetComponent(/datum/component/reagent_weapon))
+		handle_weapon_imbue(attacking_item, user)
+		return
+
+	if(attacking_item.GetComponent(/datum/component/reagent_clothing))
+		handle_clothing_imbue(attacking_item, user)
+		return
 
 /obj/structure/reagent_forge/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(!used_tray && istype(attacking_item, /obj/item/plate/oven_tray))
@@ -537,6 +570,11 @@
 
 /// Handles weapon reagent imbuing
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
+	//BUBBER EDIT START - Makes imbuing need skill again
+	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
+		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
+		return
+	//BUBBER EDIT END
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
 	if(!ishuman(user))
 		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
@@ -577,6 +615,11 @@
 
 /// Handles clothing imbuing, extremely similar to weapon imbuing but not in the same proc because of how uhh... goofy the way this has to be done is
 /obj/structure/reagent_forge/proc/handle_clothing_imbue(obj/attacking_item, mob/living/user)
+	//BUBBER EDIT START - Makes imbuing need skill again
+	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
+		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
+		return
+	//BUBBER EDIT END
 	//This code will refuse all non-ashwalkers & non-icecats from imbuing
 	if(!ishuman(user))
 		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
@@ -855,7 +898,7 @@
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/reagent_forge/deconstruct(disassembled)
+/obj/structure/reagent_forge/atom_deconstruct(disassembled)
 	new /obj/item/stack/sheet/iron/ten(get_turf(src))
 	return ..()
 

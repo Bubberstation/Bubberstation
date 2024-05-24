@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	/obj/item/biopsy_tool = 25,
 	/obj/item/pai_card = 10,
 	/obj/item/reagent_containers/spray/cleaner = 50,
+	/obj/item/clothing/neck/stethoscope = 40,
 	list(
 		/obj/item/vending_refill/assist = 1,
 		/obj/item/vending_refill/autodrobe = 1,
@@ -344,7 +345,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/mod/module/constructor = 5,
 		/obj/item/mod/module/criminalcapture/patienttransport = 5,
 		/obj/item/mod/module/defibrillator = 5,
-		/obj/item/mod/module/demoralizer = 25,
 		/obj/item/mod/module/disposal_connector = 25,
 		/obj/item/mod/module/dna_lock = 5,
 		/obj/item/mod/module/drill = 5,
@@ -440,7 +440,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/skillchip/job/chef = 1,
 		/obj/item/skillchip/job/engineer = 10,
 		/obj/item/skillchip/job/psychology = 10,
-		/obj/item/skillchip/job/research_director = 10,
 		/obj/item/skillchip/job/roboticist = 10,
 		/obj/item/skillchip/light_remover = 100,
 		/obj/item/skillchip/sabrage = 100,

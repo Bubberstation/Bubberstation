@@ -15,8 +15,8 @@
 		If you are in desperate need of blood, mice can be fed off of, at a cost.\n\
 		You must use the ability again to stop sucking blood."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS|BP_CAN_USE_WHILE_STAKED
+	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
 	cooldown_time = 15 SECONDS
 
@@ -29,6 +29,8 @@
 	var/datum/weakref/target_ref
 	///Are we feeding with passive grab or not?
 	var/silent_feed = TRUE
+	///Have we notified you already that you are at maximum blood?
+	var/notified_overfeeding = FALSE
 
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -69,10 +71,11 @@
 			bloodsuckerdatum_power.AddHumanityLost(5)
 
 	target_ref = null
-	warning_target_bloodvol = BLOOD_VOLUME_MAX_LETHAL
-	blood_taken = 0
+	warning_target_bloodvol = initial(warning_target_bloodvol)
+	blood_taken = initial(blood_taken)
 	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
+	notified_overfeeding = initial(notified_overfeeding)
 	return ..()
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(trigger_flags)
@@ -84,7 +87,7 @@
 			var/mob/living/user = owner
 			user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
 			bloodsuckerdatum_power.AddHumanityLost(1)
-		bloodsuckerdatum_power.AddBloodVolume(25)
+		bloodsuckerdatum_power.AdjustBloodVolume(25)
 		DeactivatePower()
 		feed_target.death()
 		return
@@ -94,7 +97,7 @@
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	owner.face_atom(feed_target)
-	if(!do_after(owner, feed_timer, feed_target, NONE, TRUE))
+	if(!do_after(owner, feed_timer, feed_target, hidden = TRUE))
 		owner.balloon_alert(owner, "feed stopped")
 		DeactivatePower()
 		return
@@ -111,7 +114,7 @@
 		// Only people who AREN'T the target will notice this action.
 		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not remember this.</i>" : ""
 		owner.visible_message(
-			span_notice("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."), \
+			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."), \
 			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"), \
 			vision_distance = FEED_NOTICE_RANGE, ignored_mobs = feed_target)
 
@@ -188,12 +191,14 @@
 			owner.balloon_alert(owner, "your victim's blood is dangerously low.")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
 			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
+		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && bloodsuckerdatum_power.GetBloodVolume() >= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
+			owner.balloon_alert(owner, "you cannot drink more without first getting a better grip!.")
+			DeactivatePower()
 		warning_target_bloodvol = feed_target.blood_volume
 
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume >= bloodsuckerdatum_power.max_blood_volume)
-		user.balloon_alert(owner, "full on blood!")
-		DeactivatePower()
-		return
+	if(bloodsuckerdatum_power.GetBloodVolume() >= bloodsuckerdatum_power.max_blood_volume && !notified_overfeeding)
+		user.balloon_alert(owner, "full on blood! Anything more we drink now will be burnt on quicker healing")
+		notified_overfeeding = TRUE
 	if(feed_target.blood_volume <= 0)
 		user.balloon_alert(owner, "no blood left!")
 		DeactivatePower()

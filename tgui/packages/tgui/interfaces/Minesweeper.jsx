@@ -65,7 +65,7 @@ export const MinesweeperContent = (props, context) => {
                           flag: false,
                         })
                       }
-                      oncontextmenu={(eve) => {
+                      onContextMenu={(eve) => {
                         eve.preventDefault();
                         act('PRG_do_tile', {
                           x: xind + 1,

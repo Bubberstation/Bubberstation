@@ -12,6 +12,9 @@
 	if(client.interviewee)
 		return FALSE
 
+	if(!client.maturity_prompt_whitelist && !SSmaturity_guard.age_check(src))
+		return
+
 	if(href_list["observe"])
 		play_lobby_button_sound()
 		make_me_an_observer()
@@ -32,12 +35,19 @@
 		ViewManifest()
 		return
 
-/* 	if(href_list["toggle_antag"]) // BUBBER EDIT
+	//BUBBER EDIT ADDITION BEGIN: ADDS CHARACTER DIRECTORY TO LOBBY
+	if(href_list["character_directory"])
+		play_lobby_button_sound()
+		client.show_character_directory()
+		return
+	//BUBBER EDIT ADDITION END
+
+	if(href_list["toggle_antag"])
 		play_lobby_button_sound()
 		var/datum/preferences/preferences = client.prefs
 		preferences.write_preference(GLOB.preference_entries[/datum/preference/toggle/be_antag], !preferences.read_preference(/datum/preference/toggle/be_antag))
 		client << output(preferences.read_preference(/datum/preference/toggle/be_antag), "title_browser:toggle_antag")
-		return */
+		return
 
 	if(href_list["character_setup"])
 		play_lobby_button_sound()
@@ -66,7 +76,7 @@
 				to_chat(src, span_notice("You need at least [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters of Silicon Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/silicon_flavor_text))] characters."))
 				return
 			if(uses_normal_flavortext)
-				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of Silicon Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/silicon_flavor_text))] characters."))
+				to_chat(src, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of Flavor Text to ready up for the round. You have [length_char(client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
 				return
 		//BUBBER EDIT END: SILICON FLAVOR TEXT
 

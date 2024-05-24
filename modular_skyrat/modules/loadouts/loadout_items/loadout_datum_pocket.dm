@@ -38,8 +38,7 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 		id_card.forceMove(wallet)
 
 		if(equipper.back)
-			var/list/backpack_stuff = list()
-			equipper.back.atom_storage?.return_inv(backpack_stuff, FALSE)
+			var/list/backpack_stuff = equipper.back.atom_storage?.return_inv(FALSE)
 			for(var/obj/item/thing in backpack_stuff)
 				if(wallet.contents.len >= 3)
 					break
@@ -48,6 +47,38 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 	else
 		if(!equipper.equip_to_slot_if_possible(wallet, slot = ITEM_SLOT_BACKPACK, initial = TRUE))
 			wallet.forceMove(equipper.drop_location())
+
+/*
+*	LUNCHBOX
+*/
+
+/datum/loadout_item/pocket_items/lunchbox_nanotrasen
+	name = "Nanotrasen Lunchbox"
+	item_path = /obj/item/storage/lunchbox/nanotrasen
+
+/datum/loadout_item/pocket_items/lunchbox_medical
+	name = "Medical Lunchbox"
+	item_path = /obj/item/storage/lunchbox/medical
+
+/datum/loadout_item/pocket_items/lunchbox_bunny
+	name = "Bunny Lunchbox"
+	item_path = /obj/item/storage/lunchbox/bunny
+
+/datum/loadout_item/pocket_items/lunchbox_corgi
+	name = "Corgi Lunchbox"
+	item_path = /obj/item/storage/lunchbox/corgi
+
+/datum/loadout_item/pocket_items/lunchbox_heart
+	name = "Heart Lunchbox"
+	item_path = /obj/item/storage/lunchbox/heart
+
+/datum/loadout_item/pocket_items/lunchbox_safetymoth
+	name = "Safety Moth Lunchbox"
+	item_path = /obj/item/storage/lunchbox/safetymoth
+
+/datum/loadout_item/pocket_items/lunchbox_amongus
+	name = "Suspicious Red Lunchbox"
+	item_path = /obj/item/storage/lunchbox/amongus
 
 /*
 *	GUM
@@ -116,6 +147,10 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 /datum/loadout_item/pocket_items/paicard
 	name = "Personal AI Device"
 	item_path = /obj/item/pai_card
+
+/datum/loadout_item/pocket_items/link_scryer
+	name = "MODlink Scryer"
+	item_path = /obj/item/clothing/neck/link_scryer/loaded
 
 /datum/loadout_item/pocket_items/cigarettes
 	name = "Cigarette Pack"
@@ -200,6 +235,14 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 /datum/loadout_item/pocket_items/medkit
 	name = "First-Aid Kit"
 	item_path = /obj/item/storage/medkit/regular
+
+/datum/loadout_item/pocket_items/deforest_cheesekit
+	name = "Civil Defense Medical Kit"
+	item_path = /obj/item/storage/medkit/civil_defense/stocked
+
+/datum/loadout_item/pocket_items/deforest_frontiermedkit
+	name = "Frontier Medical Kit"
+	item_path = /obj/item/storage/medkit/frontier/stocked
 
 /datum/loadout_item/pocket_items/ingredients
 	name = "Wildcard Ingredient Box"

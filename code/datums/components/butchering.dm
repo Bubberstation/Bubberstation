@@ -107,6 +107,12 @@
 	var/final_effectiveness = effectiveness - target.butcher_difficulty
 	var/bonus_chance = max(0, (final_effectiveness - 100) + bonus_modifier) //so 125 total effectiveness = 25% extra chance
 
+	if(target.flags_1 & HOLOGRAM_1)
+		butcher.visible_message(span_notice("[butcher] tries to butcher [target], but it vanishes."), \
+			span_notice("You try to butcher [target], but it vanishes."))
+		qdel(target)
+		return
+
 	for(var/result_typepath in target.butcher_results)
 		var/obj/remains = result_typepath
 		var/amount = target.butcher_results[remains]
@@ -166,7 +172,7 @@
 			span_notice("You butcher [target]."))
 	butcher_callback?.Invoke(butcher, target)
 	target.harvest(butcher)
-	target.log_message("has been butchered by [key_name(butcher)]", LOG_ATTACK)
+	target.log_message("has been butchered by [key_name(butcher)]", LOG_ATTACK, redacted_copy = "has been butchered by [butcher]") // BUBBER EDIT - PUBLIC LOGS
 	target.gib(DROP_BRAIN|DROP_ORGANS)
 
 ///Enables the butchering mechanic for the mob who has equipped us.

@@ -1,4 +1,3 @@
-import { multiline } from 'common/string';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
   BlockQuote,
@@ -73,7 +72,7 @@ export const NoteKeeper = (props) => {
           <Box color="label" mb={1} mt={1}>
             Content:
           </Box>
-          <BlockQuote wrap>{selectedNote.content}</BlockQuote>
+          <BlockQuote>{selectedNote.content}</BlockQuote>
         </>
       )}
     </Section>
@@ -118,7 +117,7 @@ const NoteTabs = (props) => {
         </Tabs.Tab>
       ))}
       <Tooltip
-        content={multiline`Add a new note. Press enter or escape to exit view.`}
+        content={`Add a new note. Press enter or escape to exit view.`}
         position="bottom"
       >
         <Tabs.Tab onClick={composeNew} selected={writing}>

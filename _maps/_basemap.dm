@@ -16,12 +16,14 @@
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
 		#include "map_files\NSVBlueshift\Blueshift.dmm"
+		#include "map_files\KiloStation\KiloStation.dmm"
 		// SKYRAT EDIT END
 		// BUBBER EDIT ADDITION START
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\LimaStation\LimaStation.dmm"
-		#include "map_files\burgerstation\burgerstation.dmm"
+		#include "map_files\moonstation\moonstation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
+		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\ss13construct\ss13_construct.dmm"
 		// BUBBER EDIT ADDITION END
 

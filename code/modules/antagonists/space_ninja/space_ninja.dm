@@ -2,7 +2,7 @@
 	name = "\improper Space Ninja"
 	antagpanel_category = ANTAG_GROUP_NINJAS
 	job_rank = ROLE_NINJA
-	antag_hud_name = "space_ninja"
+	antag_hud_name = "ninja"
 	hijack_speed = 1
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
@@ -125,7 +125,7 @@
 	owner.current.add_quirk(/datum/quirk/light_step)
 	owner.current.mind.set_assigned_role(SSjob.GetJobType(/datum/job/space_ninja))
 	owner.current.mind.special_role = ROLE_NINJA
-	operative.mind.active = TRUE // BUBBED EDIT END
+	operative.mind.active = TRUE // BUBBER EDIT END
 	return ..()
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
