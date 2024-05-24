@@ -1,7 +1,3 @@
-#define CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND 1
-#define CHANGELING_ZOMBIE_PASSIVE_HEALING 0.5 //Per brute/burn/oxy/tox
-#define REVIVAL_TIME 120 SECONDS
-
 /datum/component/changeling_zombie_infection
 	var/zombified = FALSE
 	var/obj/item/melee/arm_blade_zombie/arm_blade
@@ -12,6 +8,20 @@
 	. = ..()
 	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_UNHUSKABLE) || HAS_TRAIT(parent,TRAIT_GENELESS))
 		return COMPONENT_INCOMPATIBLE
+
+	var/mob/living/carbon/human/host = parent
+
+	if(!host.dna)
+		return COMPONENT_INCOMPATIBLE
+
+	var/datum/species/host_species = host.dna.species
+
+	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
+		return COMPONENT_INCOMPATIBLE
+
+	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
+		return COMPONENT_INCOMPATIBLE
+
 	START_PROCESSING(SSobj, src)
 
 /datum/component/changeling_zombie_infection/Destroy(force, silent)
@@ -24,30 +34,37 @@
 
 	STOP_PROCESSING(SSobj, src)
 
-	UnregisterSignal(host, COMSIG_LIVING_DEATH)
-
 	if(parent)
 		var/mob/living/carbon/human/host = parent
-		playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
-		REMOVE_TRAITS_IN(
-			host,
-			CHANGELING_ZOMBIE_TRAIT
-		)
+		UnregisterSignal(host, COMSIG_LIVING_DEATH)
+		if(zombified)
+			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		REMOVE_TRAITS_IN(host,CHANGELING_ZOMBIE_TRAIT)
 
 	zombified = FALSE
 
 	. = ..()
 
-/datum/component/mutant_infection/process(seconds_per_tick)
+/datum/component/changeling_zombie_infection/process(seconds_per_tick)
 
 	var/mob/living/carbon/human/host = parent
 
 	if(zombified)
-		CHANGELING_ZOMBIE_PASSIVE_HEALING
+		var/list/healing_options = list()
+		if(host.getBruteLoss() > 0)
+			healing_options += BRUTE
+		if(host.getFireLoss() > 0)
+			healing_options += BURN
+		if(host.getToxLoss() > 0)
+			healing_options += TOX
+		if(host.getOxyLoss() > 0)
+			healing_options += OXY
+		if(length(healing_options))
+			host.heal_damage_type(CHANGELING_ZOMBIE_PASSIVE_HEALING,pick(healing_options))
 	else
 		var/current_toxin_damage = host.getToxLoss()
-		var/tox_to_remove = round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND + current_toxin_damage*0.05,1)
-		host.adjust_tox_loss(seconds_per_tick * tox_to_remove)
+		var/tox_to_remove = round(CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND + current_toxin_damage*CHANGELING_ZOMBIE_TOXINS_PER_1_TOXIN_PER_SECOND,1)
+		host.adjustToxLoss(seconds_per_tick * tox_to_remove)
 		if(SPT_PROB(8, seconds_per_tick))
 			if(current_toxin_damage > 50)
 				var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
@@ -78,8 +95,6 @@
 	if(zombified)
 		return FALSE
 
-	zombified = TRUE
-
 	if(revival_timer)
 		deltimer(revival_timer)
 
@@ -97,8 +112,7 @@
 
 	host.revive(TRUE, TRUE)
 
-	ADD_TRAITS(
-		host,
+	host.add_traits(
 		list(
 			TRAIT_HANDS_BLOCKED,
 			TRAIT_ILLITERATE,
@@ -152,11 +166,13 @@
 
 	RegisterSignal(host, COMSIG_LIVING_DEATH, PROC_REF(on_owner_died))
 
+	zombified = TRUE
+
 	return TRUE
 
 /datum/component/changeling_zombie_infection/proc/on_owner_died()
 	//The only cure is death.
 	if(zombified)
-		QDEL(src)
-	else
-		revival_timer = addtimer(CALLBACK(src, PROC_REF(make_zombie), parent), INFECTION_TIME, TIMER_STOPPABLE)
+		qdel(src)
+	else if(!revival_timer)
+		revival_timer = addtimer(CALLBACK(src, PROC_REF(make_zombie), parent), CHANGELING_ZOMBIE_REVIVAL_TIME, TIMER_STOPPABLE)

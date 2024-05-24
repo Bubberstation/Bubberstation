@@ -29,23 +29,46 @@
 
 	COOLDOWN_DECLARE(sound_cooldown)
 
-/obj/item/melee/arm_blade/zombie/attack(mob/living/target_mob, mob/living/user, params)
+/obj/item/melee/arm_blade_zombie/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
-	if(COOLDOWN_FINISHED(src,sound_cooldown) && prob(length(attack_living_sounds)*25)
+	if(COOLDOWN_FINISHED(src,sound_cooldown) && prob(length(attack_living_sounds)*25))
 		playsound(src,pick(attack_living_sounds),50,TRUE,SOUND_RANGE*2)
 		COOLDOWN_START(src, sound_cooldown, 3 SECONDS)
 
-/obj/item/melee/arm_blade/zombie/attack_atom(atom/attacked_atom, mob/living/user, params)
+/obj/item/melee/arm_blade_zombie/attack_atom(atom/attacked_atom, mob/living/user, params)
 	. = ..()
-	if(COOLDOWN_FINISHED(src,sound_cooldown) && prob(length(attack_inanimate_sounds)*25)
+	if(COOLDOWN_FINISHED(src,sound_cooldown) && prob(length(attack_inanimate_sounds)*25))
 		playsound(src,pick(attack_inanimate_sounds),50,TRUE,SOUND_RANGE*2)
 		COOLDOWN_START(src, sound_cooldown, 3 SECONDS)
 
 
-/obj/item/melee/arm_blade/zombie/add_mob_blood(mob/living/injected_mob)
+/obj/item/melee/arm_blade_zombie/add_mob_blood(mob/living/injected_mob)
+
 	. = ..()
-	if(. && is_human(injected_mob) && !HAS_TRAIT(parent,TRAIT_UNHUSKABLE) && !HAS_TRAIT(parent,TRAIT_GENELESS))
-		injected_mob.AddComponent(/datum/component/changeling_zombie_infection)
+
+	if(!.)
+		return
+
+	if(!ishuman(injected_mob))
+		return
+
+	var/mob/living/carbon/human/host = injected_mob
+
+	if(!HAS_TRAIT(host,TRAIT_UNHUSKABLE) || !HAS_TRAIT(host,TRAIT_GENELESS))
+		return
+
+	if(!host.dna)
+		return
+
+	var/datum/species/host_species = host.dna.species
+
+	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
+		return
+
+	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
+		return
+
+	host.AddComponent(/datum/component/changeling_zombie_infection)
 
 /obj/item/clothing/suit/armor/changeling_zombie
 
