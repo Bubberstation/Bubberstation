@@ -1,0 +1,1 @@
+#define CHANGELING_ZOMBIE_TRAIT "changelingzombie"
