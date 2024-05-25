@@ -36,3 +36,12 @@
 	name = "ronin jacket"
 	desc = "A dark leather jacket with the logo of an old Sol Chromerock band on it."
 	icon_state = "ronin"
+
+/obj/item/clothing/suit/jacket/diver //Donor item for patriot210
+	name = "black divers coat"
+	desc = "A dark leather jacket with the logo of an old Sol Chromerock band on it."
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	icon_state = "diver"
+	worn_icon_state = "diver"
+	icon = 'modular_zubbers/icons/obj/clothing/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'

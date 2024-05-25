@@ -134,3 +134,12 @@
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
 	inhand_icon_state = "tunafish"
+
+/obj/item/toy/plush/secoff
+	name = "GalFed Secoff"
+	desc = "A soft toy representing a popular, young officer, representing the alliance between GalFed and NT. The bottom of his work boot says 'Andy'"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "secoff"
+//	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
+//	attack_verb_simple = list("blorble", "slime", "absorb")
+	squeak_override = list('sound/weapons/gun/general/bolt_rack.ogg' = 1)
