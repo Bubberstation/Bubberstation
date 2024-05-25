@@ -589,6 +589,9 @@
 	unique_reskin = null // prevents you from losing the unique sprite
 
 /obj/item/clothing/under/rank/security/officer/skirt
+	alt_covers_chest = FALSE
+
+/obj/item/clothing/under/rank/security/officer/skirt/blue
 	name = "security jumpskirt"
 	desc = "Turtleneck sweater commonly worn by Peacekeepers, attached with a skirt."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
@@ -597,6 +600,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE
 	uses_advanced_reskins = TRUE
+	alt_covers_chest = TRUE
 	unique_reskin = list(
 		"Blue Variant" = list(
 			RESKIN_ICON_STATE = "jumpskirt_blue",
