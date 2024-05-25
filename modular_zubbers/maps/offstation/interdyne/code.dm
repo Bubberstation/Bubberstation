@@ -11,3 +11,4 @@
 	allow_duplicates = FALSE
 	never_spawn_with = list(/datum/map_template/ruin/lavaland/bubberstation/dauntless)
 	always_place = TRUE
+	ruin_type = ZTRAIT_ICE_RUINS_UNDERGROUND
