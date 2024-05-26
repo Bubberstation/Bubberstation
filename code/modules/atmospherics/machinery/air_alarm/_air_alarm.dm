@@ -568,7 +568,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		alarm_manager.send_alarm(ALARM_ATMOS)
 		if(pressure <= WARNING_LOW_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low pressure and temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
+			//heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! Low pressure and high temperature detected."
@@ -578,7 +578,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! High pressure and low temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
+			//heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE)
 			warning_message = "Danger! Low pressure detected."
@@ -588,7 +588,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			return
 		if(temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
+			//heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High temperature detected."
