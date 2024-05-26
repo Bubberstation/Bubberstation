@@ -4654,13 +4654,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/commons/lounge)
-"bpy" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "bpz" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners{
@@ -8113,10 +8106,12 @@
 /turf/open/floor/iron,
 /area/station/science/robotics/mechbay)
 "csQ" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "csS" = (
@@ -17717,18 +17712,17 @@
 /turf/open/floor/plating/rust/moonstation,
 /area/moonstation/surface)
 "ffa" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 1
-	},
+/obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plating,
-/area/station/maintenance/department/medical)
+/area/station/maintenance/aft)
 "ffi" = (
 /obj/machinery/door/airlock/external/glass{
 	name = "External Public Airlock"
@@ -38104,6 +38098,20 @@
 	},
 /turf/open/floor/wood/tile,
 /area/station/hallway/primary/central/aft)
+"lai" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
+/obj/effect/mapping_helpers/airlock/autoname,
+/turf/open/floor/plating,
+/area/station/maintenance/department/medical)
 "lao" = (
 /obj/effect/landmark/start/hangover,
 /obj/effect/landmark/blobstart,
@@ -55299,10 +55307,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
-"pXa" = (
-/obj/effect/spawner/random/trash/mess,
-/turf/open/floor/plating,
-/area/station/maintenance/aft)
 "pXl" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -74787,6 +74791,13 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
+"vEI" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "vEK" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -78628,12 +78639,7 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
 "wMn" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
+/obj/effect/spawner/random/trash/mess,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "wMo" = (
@@ -83191,10 +83197,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/unres,
-/obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "ybw" = (
@@ -260085,7 +260087,7 @@ mbC
 cGL
 cKG
 nOs
-wMn
+csQ
 nIq
 nIq
 jqr
@@ -260336,19 +260338,19 @@ iRL
 gno
 jVf
 xMC
-ffa
+lai
 wfs
 gwz
 gXj
+ffa
 ybt
-csQ
 lkx
 aUm
 bln
 cKG
 pxG
 dvx
-pXa
+wMn
 wsh
 qFK
 iGh
@@ -260596,7 +260598,7 @@ lzw
 lzw
 glO
 ufG
-bpy
+vEI
 tke
 gTd
 vQb
