@@ -54,7 +54,7 @@
 
 	playsound(
 		src,
-		pick('sound/arcade/minesweeper_explosion1.ogg','sound/arcade/minesweeper_explosion2.ogg','sound/arcade/minesweeper_explosion3.ogg'),
+		pick('modular_zubbers/sound/arcade/minesweeper_explosion1.ogg','modular_zubbers/sound/arcade/minesweeper_explosion2.ogg','modular_zubbers/sound/arcade/minesweeper_explosion3.ogg'),
 		50
 	)
 
@@ -69,7 +69,7 @@
 		requirement_timer = null
 		playsound(
 			src,
-			pick('sound/arcade/minesweeper_boardpress.ogg'),
+			pick('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg'),
 			50
 		)
 		say("Anomaly stability now at 100%.")
@@ -82,7 +82,7 @@
 		test_status = "ERROR: No core present during detonation."
 		playsound(
 			src,
-			pick('sound/arcade/minesweeper_winfail.ogg'),
+			pick('modular_zubbers/sound/arcade/minesweeper_winfail.ogg'),
 			50
 		)
 		return COMSIG_CANCEL_EXPLOSION
@@ -104,7 +104,7 @@
 		test_status = "Resultant detonation failed to produce enough implosive power to compress [inserted_core]. Items ejected."
 		playsound(
 			src,
-			pick('sound/arcade/minesweeper_winfail.ogg'),
+			pick('modular_zubbers/sound/arcade/minesweeper_winfail.ogg'),
 			50
 		)
 		return COMSIG_CANCEL_EXPLOSION
@@ -112,7 +112,7 @@
 	if(test_status)
 		playsound(
 			src,
-			pick('sound/arcade/minesweeper_winfail.ogg'),
+			pick('modular_zubbers/sound/arcade/minesweeper_winfail.ogg'),
 			50
 		)
 		return COMSIG_CANCEL_EXPLOSION
@@ -122,7 +122,7 @@
 
 	playsound(
 		src,
-		pick('sound/arcade/minesweeper_win.ogg'),
+		pick('modular_zubbers/sound/arcade/minesweeper_win.ogg'),
 		50
 	)
 
