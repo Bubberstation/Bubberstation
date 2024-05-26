@@ -2925,6 +2925,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/waste)
 "aOC" = (
+/obj/structure/flora/bush/fullgrass/style_random,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "aOE" = (
@@ -8851,6 +8852,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "cHh" = (
@@ -9193,6 +9195,10 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust/moonstation,
 /area/moonstation/surface)
+"cLW" = (
+/obj/structure/flora/bush/flowers_yw/style_random,
+/turf/open/floor/grass,
+/area/station/medical/virology)
 "cMb" = (
 /obj/machinery/door/window/left/directional/east{
 	name = "Genetics Deliveries";
@@ -13726,6 +13732,16 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
+"ebK" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/white,
+/area/station/hallway/secondary/exit)
 "ebL" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -16012,6 +16028,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/item/food/grown/banana/bunch,
 /turf/open/misc/beach/sand,
 /area/station/medical/virology)
 "eGq" = (
@@ -21297,6 +21314,7 @@
 /area/station/medical/chemistry)
 "gdY" = (
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/flora/bush/fullgrass/style_random,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "geb" = (
@@ -23643,6 +23661,7 @@
 /area/station/maintenance/aft)
 "gQb" = (
 /mob/living/carbon/human/species/monkey,
+/obj/structure/flora/bush/flowers_yw/style_random,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "gQd" = (
@@ -24142,7 +24161,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/effect/turf_decal/trimline/blue/filled/warning,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "gXr" = (
@@ -27583,16 +27602,17 @@
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "hXM" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
 /obj/structure/closet/firecloset,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/turf/open/floor/iron/white,
 /area/station/hallway/secondary/exit)
 "hXQ" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -33260,6 +33280,7 @@
 	dir = 9
 	},
 /obj/machinery/light/floor,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "jGX" = (
@@ -37941,6 +37962,11 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"kYu" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/flora/bush/flowers_yw/style_random,
+/turf/open/floor/grass,
+/area/station/medical/virology)
 "kYE" = (
 /obj/structure/railing{
 	dir = 1
@@ -40704,12 +40730,6 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 4
-	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "lKP" = (
@@ -42527,6 +42547,8 @@
 /area/station/cargo/lobby)
 "mmU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general,
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/bush/flowers_yw/style_random,
 /turf/open/floor/grass,
 /area/station/medical/virology)
 "mmV" = (
@@ -55736,21 +55758,15 @@
 /turf/open/floor/wood,
 /area/station/engineering/lobby)
 "qcW" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 8
+/obj/effect/turf_decal/siding/white{
+	dir = 4
 	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
-	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron/white,
 /area/station/hallway/secondary/exit)
 "qde" = (
 /obj/structure/cable,
@@ -63166,6 +63182,11 @@
 /obj/item/hand_labeler,
 /turf/open/floor/glass/reinforced/plasma,
 /area/station/command/heads_quarters/ce)
+"sks" = (
+/mob/living/carbon/human/species/monkey,
+/obj/structure/flora/bush/fullgrass/style_random,
+/turf/open/floor/grass,
+/area/station/medical/virology)
 "skt" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/effect/landmark/start/paramedic,
@@ -63261,7 +63282,7 @@
 	name = "Medbay Emergency Entrance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/general,
-/turf/open/floor/plating,
+/turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "skN" = (
 /obj/machinery/light/small/directional/west,
@@ -66199,6 +66220,12 @@
 /obj/machinery/camera/autoname/armory/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
+"tdW" = (
+/obj/item/assembly/mousetrap/armed{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/aft)
 "tdZ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/mix_input{
 	dir = 4
@@ -76498,7 +76525,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction,
-/obj/effect/turf_decal/trimline/blue/filled/line{
+/obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 1
 	},
 /turf/open/floor/iron/white,
@@ -258548,7 +258575,7 @@ ctL
 giW
 iGY
 nRA
-gdY
+kYu
 hXJ
 gdY
 cKG
@@ -258805,8 +258832,8 @@ eMS
 axW
 udU
 nRA
-aOC
-gQb
+cLW
+sks
 aOC
 gbo
 hvk
@@ -259062,7 +259089,7 @@ nLJ
 via
 nzK
 nRA
-gQb
+sks
 xQa
 mmU
 pxF
@@ -259319,7 +259346,7 @@ owJ
 aiK
 owJ
 owJ
-aOC
+cLW
 aOC
 gQb
 mhf
@@ -259831,7 +259858,7 @@ sHH
 cKG
 iGh
 oxu
-wsh
+tdW
 cKG
 cKG
 cKG
@@ -261110,7 +261137,7 @@ psw
 uLb
 gKE
 qNH
-mMG
+ebK
 qcW
 hXM
 tke
