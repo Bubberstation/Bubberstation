@@ -16,15 +16,12 @@
 	coldmod = 0.45
 	heatmod = 1.25
 	bodytemp_normal = BODYTEMP_NORMAL + 5 //Even more cold resistant, even more flammable
-	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 27)
+	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 25)// Hopefully shows over heating less
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 35)
-	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster!
+	meat = /obj/item/food/meat/slab/human/mutant/feline //you monster! //mmmfghghgf cat meat
 	skinned_type = /obj/item/stack/sheet/animalhide/cat
 
 /obj/item/bodypart/chest/mutant/tajaran
-/obj/item/bodypart/chest/mutant/tajaran/get_butt_sprite()
-	var/ass_image = 'modular_zubbers/icons/ass/asstajara.png'
-	return ass_image
 
 //Tajaran tongue
 /obj/item/organ/internal/tongue/cat/tajaran
@@ -47,7 +44,7 @@
 /obj/item/organ/internal/eyes/tajaran
 	name = "tajaran eyes"
 	desc = "they seem very cat like."
-	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE //sorry cat gamers it's over
+	flash_protect = FLASH_PROTECTION_SENSITIVE //One layer protection
 	color_cutoffs = list(12, 7, 7)
 
 /obj/item/organ/internal/eyes/tajaran/on_mob_insert(mob/living/carbon/human/eyes_owner)
@@ -107,9 +104,11 @@
 	)
 
 	return to_add
+
 /obj/item/bodypart/chest/tajaran/get_butt_sprite()
 	return BUTT_SPRITE_FUZZY
+
 /datum/species/tajaran/get_species_description() //Something basic until I make lore later
 	return "The Tajara are a race of humanoids that possess markedly felinoid traits that include \
-	 a semi-prehensile tail, a body covered in fur of varying shades, and padded, digitigrade feet. \
- 	 Being that they are from a harsh and icy cold planet, Tajara are vulnerable to high temperatures and fire."
+	a semi-prehensile tail, a body covered in fur of varying shades, and padded, digitigrade feet. \
+	Being that they are from a harsh and icy cold planet, Tajara are vulnerable to high temperatures and fire."
