@@ -47,7 +47,7 @@
 /datum/loadout_item/toys/carrotbag
 	name = "Carrot Bag"
 	item_path = /obj/item/sbeacondrop/carrot
-	ckeywhitelist = list("slippyjoe")
+	//ckeywhitelist = list("slippyjoe")
 
 /datum/loadout_item/toys/largeredslime
 	name = "Large Red Slime Plush"
