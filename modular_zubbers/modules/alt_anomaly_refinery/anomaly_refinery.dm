@@ -4,17 +4,14 @@
 /obj/machinery/research/anomaly_refinery
 	desc = "An advanced machine equipped with state of the art bomb prediction software that's capable of implosion-compressing raw anomaly cores into finished artifacts. \
 	Comes with a built-in stabilization and sound-supressant field that consumes a lot of power to prevent obnoxious shaking and sounds heard station-wide, as not to wake up any dorms users."
+	var/requirement_timer
+	var/requirement_mod = 0 //0 to 100. Decreases by 1 every 5 seconds. Increased by 40 after a test.
 
 /obj/machinery/research/anomaly_refinery/examine(mob/user)
 	. = ..()
 	. += span_notice("Usage of the machine will increase the bomb range requirement for the next experiment, however this diminishes with time.")
 	. += span_notice("Requires <b>[display_power(REFINERY_ANOMALY_POWER_REQUIREMENT)]</b> of power in the network to use.")
 	. += span_notice("Each core refinement takes <b>[DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)]</b> to complete.")
-
-/obj/machinery/research/anomaly_refinery
-	var/requirement_timer
-	var/requirement_mod = 0 //0 to 100. Decreases by 1 every 5 seconds. Increased by 40 after a test.
-
 
 /obj/machinery/research/anomaly_refinery/get_required_radius(anomaly_type)
 
