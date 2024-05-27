@@ -1,8 +1,8 @@
 /datum/component/changeling_zombie_infection
 	var/zombified = FALSE
+	var/can_cure = FALSE
 	var/obj/item/melee/arm_blade_zombie/arm_blade
 	var/obj/item/clothing/suit/armor/changeling_zombie/armor
-	var/revival_timer
 
 /datum/component/changeling_zombie_infection/Initialize()
 	. = ..()
@@ -29,9 +29,6 @@
 	QDEL_NULL(arm_blade)
 	QDEL_NULL(armor)
 
-	if(revival_timer)
-		deltimer(revival_timer)
-
 	STOP_PROCESSING(SSobj, src)
 
 	if(parent)
@@ -57,35 +54,44 @@
 			healing_options += BURN
 		if(host.getToxLoss() > 0)
 			healing_options += TOX
-		if(host.getOxyLoss() > 0)
-			healing_options += OXY
 		if(length(healing_options))
 			host.heal_damage_type(CHANGELING_ZOMBIE_PASSIVE_HEALING,pick(healing_options))
 	else
 		var/current_toxin_damage = host.getToxLoss()
-		var/tox_to_remove = round(CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND + current_toxin_damage*CHANGELING_ZOMBIE_TOXINS_PER_1_TOXIN_PER_SECOND,1)
-		host.adjustToxLoss(seconds_per_tick * tox_to_remove)
-		if(SPT_PROB(8, seconds_per_tick))
-			if(current_toxin_damage > 50)
-				var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
-				if(wound_area)
-					var/datum/wound/slash/flesh/moderate/rotting_wound = new
-					rotting_wound.apply_wound(wound_area)
+		if(can_cure && current_toxin_damage <= 0)
+			qdel(src) //Cured!
+		else if(current_toxin_damage >= 200 && host.stat == DEAD)
+			if(zombified)
+				host.revive(HEAL_ADMIN, 300, TRUE)
+			else
+				make_zombie()
+			can_cure = FALSE
+		else
+			if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
+				can_cure = TRUE
+			var/tox_to_remove = round(CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND + (current_toxin_damage*CHANGELING_ZOMBIE_TOXINS_PER_1_TOXIN_PER_SECOND)/seconds_per_tick,1)
+			host.adjustToxLoss(seconds_per_tick * tox_to_remove)
+			if(SPT_PROB(8, seconds_per_tick))
+				if(current_toxin_damage > 50)
+					var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
+					if(wound_area)
+						var/datum/wound/slash/flesh/moderate/flesh_wound = new
+						flesh_wound.apply_wound(wound_area)
+						host.visible_message(
+							span_danger("[host]\s [wound_area] twists and contorts violently, like something is trying to break free!"),
+							span_userdanger("Your [wound_area] twists and contorts violently! What's going on?!"),
+							span_hear("You hear flesh breaking!"),
+							COMBAT_MESSAGE_RANGE
+						)
+						host.emote("scream")
+					else
+						host.emote("groan")
+				else if(current_toxin_damage > 25)
 					host.visible_message(
-						span_danger("[host]\s [wound_area] twists and contorts violently, like something is trying to break free!"),
-						span_userdanger("Your [wound_area] twists and contorts violently! What's going on?!"),
-						span_hear("You hear flesh breaking!"),
-						COMBAT_MESSAGE_RANGE
+						span_warning("[host] doesn't look too good..."),
+						span_warning("You don't feel too good...")
 					)
-					host.emote("scream")
-				else
-					host.emote("groan")
-			else if(current_toxin_damage > 25)
-				host.visible_message(
-					span_warning("[host] doesn't look too good..."),
-					span_warning("You don't feel too good...")
-				)
-				host.emote("cough")
+					host.emote("cough")
 
 
 
@@ -94,9 +100,6 @@
 
 	if(zombified)
 		return FALSE
-
-	if(revival_timer)
-		deltimer(revival_timer)
 
 	var/mob/living/carbon/human/host = parent
 
@@ -110,30 +113,26 @@
 
 	to_chat(host, span_notice("You feel an itching, both inside and outside as your tissues knit and reknit."))
 
-	host.revive(TRUE, TRUE)
+	host.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
+	host.revive(HEAL_ADMIN, 300, TRUE)
 
 	host.add_traits(
 		list(
-			TRAIT_HANDS_BLOCKED,
 			TRAIT_ILLITERATE,
-			TRAIT_HUSK,
 			TRAIT_CHUNKYFINGERS,
-			TRAIT_DISCOORDINATED_TOOL_USER,
-			TRAIT_IGNOREDAMAGESLOWDOWN,
-			TRAIT_NO_TRANSFORM,
+			TRAIT_DISCOORDINATED_TOOL_USER,,
 			TRAIT_AIRLOCK_SHOCKIMMUNE,
 			TRAIT_RESISTCOLD,
 			TRAIT_RESISTLOWPRESSURE,
 			TRAIT_NOHUNGER,
+			TRAIT_NOBREATH,
 			TRAIT_NO_ZOMBIFY,
-			TRAIT_TOXIMMUNE,
 			TRAIT_THERMAL_VISION,
 			TRAIT_STRONG_GRABBER,
 			TRAIT_NEARSIGHTED_CORRECTED,
 			TRAIT_TUMOR_SUPPRESSED,
 			TRAIT_RDS_SUPPRESSED,
-			TRAIT_SNEAK,
-			TRAIT_SPACEBREATHING
+			TRAIT_SNEAK
 		),
 		CHANGELING_ZOMBIE_TRAIT
 	)
@@ -168,11 +167,12 @@
 
 	zombified = TRUE
 
+	if(host.mind)
+		host.mind.add_antag_datum(/datum/antagonist/changeling_zombie)
+
 	return TRUE
 
 /datum/component/changeling_zombie_infection/proc/on_owner_died()
-	//The only cure is death.
+	//Death is a valid cure :)
 	if(zombified)
 		qdel(src)
-	else if(!revival_timer)
-		revival_timer = addtimer(CALLBACK(src, PROC_REF(make_zombie), parent), CHANGELING_ZOMBIE_REVIVAL_TIME, TIMER_STOPPABLE)
