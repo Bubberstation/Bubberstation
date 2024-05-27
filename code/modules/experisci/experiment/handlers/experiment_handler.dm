@@ -93,12 +93,7 @@
 /datum/component/experiment_handler/proc/ignored_handheld_experiment_attempt(datum/source, atom/target, mob/user, proximity_flag, params)
 	SIGNAL_HANDLER
 	if (!proximity_flag)
-		// BUBBERSTATION EDIT START
-		if (config_flags & EXPERIMENT_CONFIG_WORKS_FROM_RANGE)
-			try_run_handheld_experiment(source, target, user, params)
-		else
-		// BUBBERSTATION EDIT END
-			return
+		return
 	. |= COMPONENT_AFTERATTACK_PROCESSED_ITEM
 	if ((selected_experiment == null && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE)) || config_flags & EXPERIMENT_CONFIG_SILENT_FAIL)
 		return .
