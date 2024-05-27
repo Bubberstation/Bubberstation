@@ -36,7 +36,7 @@
 	return chosen_turf
 
 /// Generates a new avatar for the bitrunner.
-/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit, datum/preferences/prefs) // BUBBER EDIT - Prefs argument
+/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit, datum/preferences/prefs, include_loadout = FALSE) // BUBBER EDIT - Prefs argument
 	var/mob/living/carbon/human/avatar = new(wayout.loc)
 
 	// BUBBER EDIT BEGIN - PREFS!
@@ -79,6 +79,7 @@
 			new /obj/item/flashlight,
 		)
 
+	if(include_loadout)	avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
 	var/obj/item/card/id/outfit_id = avatar.wear_id
 	if(outfit_id)
 		outfit_id.assignment = "Bit Avatar"

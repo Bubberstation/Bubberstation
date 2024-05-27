@@ -9,12 +9,19 @@
 
 	var/datum/preferences/loaded_preference
 
+	var/include_loadout = FALSE
+
 /obj/item/bitrunning_disk/prefs/examine(mob/user)
 	. = ..()
 	if(!isnull(loaded_preference))
 		var/name = loaded_preference.read_preference(/datum/preference/name/real_name)
-		. += "It currently has the character [name] loaded."
+		. += "It currently has the character [name] loaded, with loadouts [(include_loadout ? "enabled" : "disabled")]"
+		. += span_notice("Ctrl-Click to change loadout loading")
 
+/obj/item/bitrunning_disk/prefs/CtrlClick(mob/user)
+	. = ..()
+	include_loadout = !include_loadout // We just switch this around. Elegant!
+	balloon_alert(user, include_loadout ? "Loadout enabled" : "Loadout disabled")
 
 /obj/item/bitrunning_disk/prefs/attack_self(mob/user, modifiers)
 	. = ..()
@@ -31,6 +38,7 @@
 	loaded_preference = new(user.client)
 	loaded_preference.load_character(prefdata_names.Find(choice))
 
+	balloon_alert(user, "Character set")
 	to_chat(user, span_notice("Character set to [choice] sucessfully!"))
 
 /datum/outfit/job/bitrunner
