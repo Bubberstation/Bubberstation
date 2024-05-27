@@ -27,6 +27,10 @@
 			to_chat(user, span_alert("Upload failed! Unable to establish a connection to [current.name]. You're too far away!"))
 			current = null
 			return
+		//BUBBER EDIT: MAKES THE UPLOAD CONSOLE TAKE TIME TO COMPLETE
+		if(!do_after(user, 3 SECONDS))
+			return
+		//BUBBER EDIT: MAKES THE UPLOAD CONSOLE TAKE TIME TO COMPLETE
 		M.install(current.laws, user)
 		imprint_gps(gps_tag = "Weak Upload Signal")
 	else
