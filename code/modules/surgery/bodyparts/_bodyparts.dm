@@ -1427,9 +1427,9 @@
 	receive_damage(brute_damage, burn_damage)
 	do_sparks(number = 1, cardinal_only = FALSE, source = owner || src)
 
-	//BUBBERSTATION EDIT START: PARALYSIS ONLY APPLIED IF THERE IS DAMAGE.
+	//BUBBERSTATION EDIT START: LIMB SPECIFIC EFFECTS ONLY APPLIED IF THERE IS DAMAGE.
 	if(protection & EMP_PROTECT_SELF)
-		return TRUE
+		return FALSE
 	//BUBBERSTAION EDIT END.
 
 
