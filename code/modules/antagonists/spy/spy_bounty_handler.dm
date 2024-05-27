@@ -5,7 +5,7 @@
  */
 /datum/spy_bounty_handler
 	/// Timer between when all bounties are refreshed.
-	var/refresh_time = 12 MINUTES
+	var/refresh_time = 23 MINUTES //BUBBER EDIT: FROM 12 MINUTES TO 23 MINUTES
 	/// timerID of the active refresh timer.
 	var/refresh_timer
 	/// Number of times we have refreshed bounties
