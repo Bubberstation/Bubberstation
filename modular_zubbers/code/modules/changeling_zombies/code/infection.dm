@@ -1,8 +1,13 @@
 /datum/component/changeling_zombie_infection
+
 	var/zombified = FALSE
 	var/can_cure = FALSE
-	var/obj/item/melee/arm_blade_zombie/arm_blade
+
+	var/list/obj/item/melee/arm_blade_zombie/arm_blades = list()
 	var/obj/item/clothing/suit/armor/changeling_zombie/armor
+
+	var/list/bodypart_zones_to_regenerate = list()
+	COOLDOWN_DECLARE(limb_regen_cooldown)
 
 /datum/component/changeling_zombie_infection/Initialize()
 	. = ..()
@@ -26,7 +31,7 @@
 
 /datum/component/changeling_zombie_infection/Destroy(force, silent)
 
-	QDEL_NULL(arm_blade)
+	QDEL_LIST(arm_blades)
 	QDEL_NULL(armor)
 
 	STOP_PROCESSING(SSobj, src)
@@ -34,6 +39,8 @@
 	if(parent)
 		var/mob/living/carbon/human/host = parent
 		UnregisterSignal(host, COMSIG_LIVING_DEATH)
+		UnregisterSignal(host, COMSIG_CARBON_REMOVE_LIMB)
+		UnregisterSignal(host, COMSIG_CARBON_ATTACH_LIMB)
 		if(zombified)
 			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
 		REMOVE_TRAITS_IN(host,CHANGELING_ZOMBIE_TRAIT)
@@ -56,15 +63,28 @@
 			healing_options += TOX
 		if(length(healing_options))
 			host.heal_damage_type(CHANGELING_ZOMBIE_PASSIVE_HEALING,pick(healing_options))
+
+		if(host.blood_volume <= BLOOD_VOLUME_BAD)
+			host.blood_volume += 3
+
+		if(length(bodypart_zones_to_regenerate) && COOLDOWN_FINISHED(src,limb_regen_cooldown))
+			var/selected_zone = pick_n_take(bodypart_zones_to_regenerate)
+			if(host.regenerate_limb(selected_zone))
+				var/obj/item/bodypart/regenerated_bodypart = host.get_bodypart(selected_zone)
+				host.visible_message(
+					span_danger("[host] reforms and regenerates their [regenerated_bodypart]!"),
+					span_userdanger("You reform and regenerate your [regenerated_bodypart]!"),
+					span_hear("You hear flesh growing!"),
+					COMBAT_MESSAGE_RANGE
+				)
+				playsound(host, 'sound/effects/splat.ogg', 50)
+
 	else
 		var/current_toxin_damage = host.getToxLoss()
 		if(can_cure && current_toxin_damage <= 0)
 			qdel(src) //Cured!
 		else if(current_toxin_damage >= 200 && host.stat == DEAD)
-			if(zombified)
-				host.revive(HEAL_ADMIN, 300, TRUE)
-			else
-				make_zombie()
+			make_zombie()
 			can_cure = FALSE
 		else
 			if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
@@ -111,16 +131,15 @@
 	else
 		host.grab_ghost()
 
-	to_chat(host, span_notice("You feel an itching, both inside and outside as your tissues knit and reknit."))
+	zombified = TRUE
 
-	host.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
-	host.revive(HEAL_ADMIN, 300, TRUE)
+	to_chat(host, span_notice("You feel an itching, both inside and outside as your tissues knit and reknit."))
 
 	host.add_traits(
 		list(
 			TRAIT_ILLITERATE,
 			TRAIT_CHUNKYFINGERS,
-			TRAIT_DISCOORDINATED_TOOL_USER,,
+			TRAIT_DISCOORDINATED_TOOL_USER,
 			TRAIT_AIRLOCK_SHOCKIMMUNE,
 			TRAIT_RESISTCOLD,
 			TRAIT_RESISTLOWPRESSURE,
@@ -132,30 +151,34 @@
 			TRAIT_NEARSIGHTED_CORRECTED,
 			TRAIT_TUMOR_SUPPRESSED,
 			TRAIT_RDS_SUPPRESSED,
-			TRAIT_SNEAK
+			TRAIT_SNEAK,
+			TRAIT_EASYDISMEMBER
 		),
 		CHANGELING_ZOMBIE_TRAIT
 	)
 
+	host.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
+	host.revive(ADMIN_HEAL_ALL)
+
 	host.do_jitter_animation(10 SECONDS)
 	playsound(host, 'sound/hallucinations/far_noise.ogg', 50, TRUE)
 
-	host.dropItemToGround(host.get_active_held_item())
-	host.dropItemToGround(host.get_inactive_held_item())
+	host.drop_all_held_items()
 
-	var/found_right_hand = host.get_empty_held_index_for_side(RIGHT_HANDS)
-	if(found_right_hand)
-		arm_blade = new(host.loc)
+	//Give armblades.
+	for(var/hand_index=1,hand_index<=4,hand_index++)
+		var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
 		ADD_TRAIT(arm_blade, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
-		host.put_in_hand(arm_blade,found_right_hand)
+		RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
+		host.put_in_hand(arm_blade,hand_index,forced=TRUE)
+		arm_blades += arm_blade
 
+	//Give suit.
 	if(host.wear_suit)
 		host.temporarilyRemoveItemFromInventory(host.wear_suit,TRUE)
 	armor = new(host.loc)
 	ADD_TRAIT(armor, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
 	host.equip_to_slot_if_possible(armor,ITEM_SLOT_OCLOTHING,TRUE,TRUE,TRUE)
-
-	//var/found_left_hand = host.get_empty_held_index_for_side(LEFT_HANDS)
 
 	host.SetKnockdown(0)
 	host.setStaminaLoss(0)
@@ -164,8 +187,8 @@
 	host.reagents.add_reagent(/datum/reagent/medicine/changelinghaste, 3)
 
 	RegisterSignal(host, COMSIG_LIVING_DEATH, PROC_REF(on_owner_died))
-
-	zombified = TRUE
+	RegisterSignal(host, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(on_remove_limb))
+	RegisterSignal(host, COMSIG_CARBON_POST_ATTACH_LIMB, PROC_REF(on_gain_limb))
 
 	if(host.mind)
 		host.mind.add_antag_datum(/datum/antagonist/changeling_zombie)
@@ -173,6 +196,43 @@
 	return TRUE
 
 /datum/component/changeling_zombie_infection/proc/on_owner_died()
+
+	SIGNAL_HANDLER
+
 	//Death is a valid cure :)
 	if(zombified)
 		qdel(src)
+
+/datum/component/changeling_zombie_infection/proc/on_remove_limb(datum/source, obj/item/bodypart/removed_limb, special, dismembered)
+
+	SIGNAL_HANDLER
+
+	if(removed_limb.body_zone == BODY_ZONE_HEAD || removed_limb.body_zone == BODY_ZONE_CHEST)
+		return
+
+	bodypart_zones_to_regenerate += removed_limb.body_zone
+	COOLDOWN_START(src,limb_regen_cooldown,CHANGELING_ZOMBIE_LIMB_REGEN_TIME)
+
+
+/datum/component/changeling_zombie_infection/proc/on_armblade_delete(datum/source)
+
+	SIGNAL_HANDLER
+
+	src.arm_blades -= source
+
+/datum/component/changeling_zombie_infection/proc/on_gain_limb(datum/source, obj/item/bodypart/gained, special)
+
+	SIGNAL_HANDLER
+
+	if(!gained.held_index)
+		return
+
+	var/mob/living/carbon/human/host = parent
+
+	var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
+	ADD_TRAIT(arm_blade, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
+	RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
+	host.put_in_hand(arm_blade,gained.held_index,forced=TRUE)
+	arm_blades += arm_blade
+
+	COOLDOWN_START(src,limb_regen_cooldown,CHANGELING_ZOMBIE_LIMB_REGEN_TIME)
