@@ -42,6 +42,7 @@
 	// BUBBER EDIT BEGIN - PREFS!
 	if(!isnull(prefs))
 		prefs.safe_transfer_prefs_to(avatar)
+	ADD_TRAIT(avatar, TRAIT_CANNOT_CRYSTALIZE, "Bitrunning") // Stops the funny ethereal bug
 	// BUBBER EDIT END
 	var/outfit_path = generated_domain.forced_outfit || netsuit
 	var/datum/outfit/to_wear = new outfit_path()
