@@ -9,13 +9,23 @@
 	lefthand_file = 'modular_zubbers/code/modules/changeling_zombies/icons/inhand_left.dmi'
 	righthand_file = 'modular_zubbers/code/modules/changeling_zombies/icons/inhand_right.dmi'
 
-	force = 20
-	wound_bonus = -50
-	bare_wound_bonus = 20
+	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
+	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+	force = 21 // Just enough to break airlocks with melee attacks
+	armour_penetration = 25
+	wound_bonus = -30
+	bare_wound_bonus = 15
+	demolition_mod = 2 //So it can actually destroy airlocks.
 
 	w_class = WEIGHT_CLASS_HUGE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
+
+	hitsound = SFX_SWING_HIT
+	sharpness = SHARP_EDGED
+
 
 	var/static/list/attack_living_sounds = list(
 		'sound/hallucinations/growl1.ogg',
@@ -28,6 +38,14 @@
 	)
 
 	COOLDOWN_DECLARE(sound_cooldown)
+
+/obj/item/melee/arm_blade_zombie/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/butchering, \
+		speed = 3 SECONDS, \
+		effectiveness = 95, \
+		bonus_modifier = 5, \
+	)
 
 /obj/item/melee/arm_blade_zombie/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
@@ -54,7 +72,7 @@
 
 	var/mob/living/carbon/human/host = injected_mob
 
-	if(!HAS_TRAIT(host,TRAIT_UNHUSKABLE) || !HAS_TRAIT(host,TRAIT_GENELESS))
+	if(HAS_TRAIT(host,TRAIT_UNHUSKABLE) || HAS_TRAIT(host,TRAIT_GENELESS))
 		return
 
 	if(!host.dna)

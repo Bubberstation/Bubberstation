@@ -41,9 +41,11 @@
 		UnregisterSignal(host, COMSIG_LIVING_DEATH)
 		UnregisterSignal(host, COMSIG_CARBON_REMOVE_LIMB)
 		UnregisterSignal(host, COMSIG_CARBON_ATTACH_LIMB)
+		UnregisterSignal(host, COMSIG_MOB_SAY)
 		if(zombified)
 			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
 		REMOVE_TRAITS_IN(host,CHANGELING_ZOMBIE_TRAIT)
+		host.remove_antag_datum(/datum/antagonist/changeling_zombie)
 
 	zombified = FALSE
 
@@ -166,7 +168,7 @@
 	host.drop_all_held_items()
 
 	//Give armblades.
-	for(var/hand_index=1,hand_index<=4,hand_index++)
+	for(var/hand_index=1,hand_index<=length(host.held_items),hand_index++)
 		var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
 		ADD_TRAIT(arm_blade, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
 		RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
@@ -180,6 +182,7 @@
 	ADD_TRAIT(armor, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
 	host.equip_to_slot_if_possible(armor,ITEM_SLOT_OCLOTHING,TRUE,TRUE,TRUE)
 
+	//Extra boost
 	host.SetKnockdown(0)
 	host.setStaminaLoss(0)
 	host.set_resting(FALSE)
@@ -189,6 +192,7 @@
 	RegisterSignal(host, COMSIG_LIVING_DEATH, PROC_REF(on_owner_died))
 	RegisterSignal(host, COMSIG_CARBON_REMOVE_LIMB, PROC_REF(on_remove_limb))
 	RegisterSignal(host, COMSIG_CARBON_POST_ATTACH_LIMB, PROC_REF(on_gain_limb))
+	RegisterSignal(host, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 	if(host.mind)
 		host.mind.add_antag_datum(/datum/antagonist/changeling_zombie)
@@ -236,3 +240,11 @@
 	arm_blades += arm_blade
 
 	COOLDOWN_START(src,limb_regen_cooldown,CHANGELING_ZOMBIE_LIMB_REGEN_TIME)
+
+/datum/component/changeling_zombie_infection/proc/proc/handle_speech(datum/source, list/speech_args)
+
+	SIGNAL_HANDLER
+
+	speech_args[SPEECH_SPANS] |= SPAN_PAPYRUS
+	speech_args[SPEECH_SPANS] |= SPAN_ITALICS
+	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE]," ","... ")
