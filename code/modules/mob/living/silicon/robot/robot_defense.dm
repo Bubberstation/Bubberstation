@@ -343,37 +343,37 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 
 	balloon_alert(user, "hacking interface...") //BUBBER EDIT: CHANGES THIS DESCRIPTION
 	//BUBBER EDIT BEGIN: NERF NO-TALK EMAGS
-	if(do_after(user, 2 SECONDS))
-		emag_cooldown = world.time + 100
-
-		if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/malf_ai))
-			to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
-			logevent("ALERT: Foreign software execution prevented.")
-			to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]\] successfully defended against subversion."))
-			log_silicon("EMAG: [key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
-			return TRUE // emag succeeded, it was just counteracted
-
-		if(shell) //AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
-			to_chat(user, span_danger("[src] is remotely controlled! Your emag attempt has triggered a system reset instead!"))
-			log_silicon("EMAG: [key_name(user)] attempted to emag an AI shell belonging to [key_name(src) ? key_name(src) : connected_ai]. The shell has been reset as a result.")
-			ResetModel()
-			return TRUE
-
-		SetEmagged(1)
-		SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
-		lawupdate = FALSE
-		set_connected_ai(null)
-		message_admins("[ADMIN_LOOKUPFLW(user)] emagged cyborg [ADMIN_LOOKUPFLW(src)].  Laws overridden.")
-		log_silicon("EMAG: [key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
-		var/time = time2text(world.realtime,"hh:mm:ss")
-		if(user)
-			GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-		else
-			GLOB.lawchanges.Add("[time] <B>:</B> [name]([key]) emagged by external event.")
-
-		INVOKE_ASYNC(src, PROC_REF(borg_emag_end), user)
-		return TRUE
+	if(!do_after(user, 2 SECONDS))
+		return FALSE
 	//BUBBER EDIT END: NERF NO-TALK EMAGS
+	emag_cooldown = world.time + 100
+
+	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/malf_ai))
+		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
+		logevent("ALERT: Foreign software execution prevented.")
+		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]\] successfully defended against subversion."))
+		log_silicon("EMAG: [key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
+		return TRUE // emag succeeded, it was just counteracted
+
+	if(shell) //AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
+		to_chat(user, span_danger("[src] is remotely controlled! Your emag attempt has triggered a system reset instead!"))
+		log_silicon("EMAG: [key_name(user)] attempted to emag an AI shell belonging to [key_name(src) ? key_name(src) : connected_ai]. The shell has been reset as a result.")
+		ResetModel()
+		return TRUE
+
+	SetEmagged(1)
+	SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
+	lawupdate = FALSE
+	set_connected_ai(null)
+	message_admins("[ADMIN_LOOKUPFLW(user)] emagged cyborg [ADMIN_LOOKUPFLW(src)].  Laws overridden.")
+	log_silicon("EMAG: [key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
+	var/time = time2text(world.realtime,"hh:mm:ss")
+	if(user)
+		GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
+	else
+		GLOB.lawchanges.Add("[time] <B>:</B> [name]([key]) emagged by external event.")
+		INVOKE_ASYNC(src, PROC_REF(borg_emag_end), user)
+	return TRUE
 
 /// A async proc called from [emag_act] that gives the borg a lot of flavortext, and applies the syndicate lawset after a delay.
 /mob/living/silicon/robot/proc/borg_emag_end(mob/user)
