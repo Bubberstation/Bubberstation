@@ -440,7 +440,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/skillchip/job/chef = 1,
 		/obj/item/skillchip/job/engineer = 10,
 		/obj/item/skillchip/job/psychology = 10,
-		/obj/item/skillchip/job/research_director = 10,
 		/obj/item/skillchip/job/roboticist = 10,
 		/obj/item/skillchip/light_remover = 100,
 		/obj/item/skillchip/sabrage = 100,
