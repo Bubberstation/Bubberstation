@@ -105,6 +105,10 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(!mind) //A player mind is required for law procs to run antag checks.
 			to_chat(user, span_warning("[src] is entirely unresponsive!"))
 			return
+		//BUBBER EDIT BEGIN: DIRECT LAW UPLOADS TAKE 2 SECONDS
+		if(!do_after(user, 2 SECONDS))
+			return
+		//BUBBER EDIT END: DIRECT LAW UPLOADS TAKE 2 SECONDS
 		MOD.install(laws, user) //Proc includes a success mesage so we don't need another one
 		return
 
