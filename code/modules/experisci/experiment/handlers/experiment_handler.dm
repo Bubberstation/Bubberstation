@@ -88,7 +88,6 @@
 
 /**
  * Provides feedback when an item isn't related to an experiment, and has fully passed the attack chain
- * Trys to run an experiment if using a ranged scanner and the attempt would fail due to the CanReach proximity check
  */
 /datum/component/experiment_handler/proc/ignored_handheld_experiment_attempt(datum/source, atom/target, mob/user, proximity_flag, params)
 	SIGNAL_HANDLER
