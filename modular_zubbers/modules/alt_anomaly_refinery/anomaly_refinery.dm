@@ -1,5 +1,5 @@
 #define REFINERY_ANOMALY_REFINEMENT_TIME (5 SECONDS)
-#define REFINERY_ANOMALY_POWER_REQUIREMENT (1.21 MEGA WATTS) //GREAT SCOTT
+#define REFINERY_ANOMALY_POWER_REQUIREMENT (0.25 MEGA WATTS)
 
 /obj/machinery/research/anomaly_refinery
 	desc = "An advanced machine equipped with state of the art bomb prediction software that's capable of implosion-compressing raw anomaly cores into finished artifacts. \
