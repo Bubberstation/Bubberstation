@@ -450,7 +450,7 @@
 	// SKYRAT EDIT END
 
 	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
-	if(target.GetComponent(/datum/component/mutant_infection))
+	if(target.GetComponent(/datum/component/changeling_zombie_infection))
 		render_list += span_userdanger("Classified viral infection detected. Isolate patient immediately and contact your nearest Nanotrasen Representative!")
 	//BUBBERSTATION EDIT END
 
