@@ -20,6 +20,4 @@
 
 /obj/structure/closet/crate/medical/changeling_zombie/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
-	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
-	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus/start_broken(src)

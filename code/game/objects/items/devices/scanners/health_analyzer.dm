@@ -449,6 +449,11 @@
 		render_list += death_consequences_status_text
 	// SKYRAT EDIT END
 
+	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
+	if(target.GetComponent(/datum/component/mutant_infection))
+		render_list += span_userdanger("Classified viral infection detected. Isolate patient immediately and contact your nearest Nanotrasen Representative!")
+	//BUBBERSTATION EDIT END
+
 	if(tochat)
 		to_chat(user, examine_block(jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 	else

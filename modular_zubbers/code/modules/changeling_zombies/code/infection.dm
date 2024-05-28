@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
+
 /proc/can_become_changeling_zombie(var/datum/parent)
 
 	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_NO_ZOMBIFY) || HAS_TRAIT(parent,TRAIT_GENELESS))
@@ -110,8 +112,8 @@
 		else
 			if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
 				can_cure = TRUE
-			var/tox_to_remove = round(CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND + (current_toxin_damage*CHANGELING_ZOMBIE_TOXINS_PER_1_TOXIN_PER_SECOND)/seconds_per_tick,1)
-			host.adjustToxLoss(seconds_per_tick * tox_to_remove)
+			var/tox_to_remove = round(CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND + (current_toxin_damage*CHANGELING_ZOMBIE_TOXINS_PER_1_TOXIN_PER_SECOND),1)
+			host.adjustToxLoss(tox_to_remove * seconds_per_tick)
 			if(SPT_PROB(8, seconds_per_tick))
 				if(current_toxin_damage > 50)
 					var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
@@ -133,9 +135,6 @@
 						span_warning("You don't feel too good...")
 					)
 					host.emote("cough")
-
-
-
 
 /datum/component/changeling_zombie_infection/proc/make_zombie()
 
@@ -172,6 +171,7 @@
 			TRAIT_TUMOR_SUPPRESSED,
 			TRAIT_RDS_SUPPRESSED,
 			TRAIT_EASYDISMEMBER,
+			TRAIT_HARD_SOLES
 		),
 		CHANGELING_ZOMBIE_TRAIT
 	)
@@ -213,6 +213,16 @@
 
 	if(host.mind)
 		host.mind.add_antag_datum(/datum/antagonist/changeling_zombie)
+
+	if(!GLOB.changeling_zombies_detected)
+		var/turf/T = get_turf(host)
+		if(is_station_level(T.z)) //Prevents the announcements if admins are fucking around on centcomm.
+			GLOB.changeling_zombies_detected = TRUE
+			priority_announce(
+				"Notice: A stolen Wizard Federation virus that \"animes(sic) the dead\" may or may not have accidentally been delivered to the station via supply pod. Please return contents of said supply pod to the nearest Nanotrasen representative.",
+				"Reanimation Virus Alert",
+				ANNOUNCER_ANIMES
+			)
 
 	return TRUE
 
