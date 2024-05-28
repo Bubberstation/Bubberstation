@@ -7,6 +7,12 @@
 
 #define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Snaffle15", "Waterpig", "Mishanok")
 
+/datum/loadout_item/suit/idmavest
+	name = "IDMA service jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
+	ckeywhitelist = IDMA_CKEY_WHITELIST
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
@@ -66,7 +72,8 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	icon_state = "romulusberet"
-//provide no armor because it's a ceremonial piece. meant to be available across all role
+	resistance_flags = FIRE_PROOF
+//provide no armor because it's a ceremonial piece. meant to be available across all role. I would not like to get it burnt off however
 
 /obj/item/clothing/under/rank/security/idma_fatigue
 	name = "ironmoon service fatigue"
@@ -77,6 +84,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
 	can_adjust = FALSE //Yes we have the sprite for them but they look ass so let's not use it
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	name = "argnostan service fatigue"
@@ -130,6 +138,15 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/idma_hood
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/armor/vest/idma_vest
+	name = "IDMA Combat Vest"
+	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains ablative plating underneaths to protect the wearer from harms."
+	icon_state = "romfed_armor"
+	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/hooded/winterhood/security/idma_hood
 	name = "ironmoon winterhood"
@@ -144,7 +161,7 @@
 	icon_state = "romuluspolice"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
-
+	resistance_flags = FIRE_PROOF
 
 /obj/item/toy/plush/especiallystrange
 	name = "ironmoon tajaran plushie"
@@ -154,3 +171,4 @@
 	attack_verb_continuous = list("cuddles", "meows", "hisses")
 	attack_verb_simple = list("cuddle", "meow", "hiss")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	resistance_flags = FIRE_PROOF
