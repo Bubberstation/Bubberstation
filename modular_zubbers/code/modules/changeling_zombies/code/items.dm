@@ -72,21 +72,12 @@
 
 	var/mob/living/carbon/human/host = injected_mob
 
-	if(HAS_TRAIT(host,TRAIT_UNHUSKABLE) || HAS_TRAIT(host,TRAIT_GENELESS))
-		return
-
-	if(!host.dna)
-		return
-
-	var/datum/species/host_species = host.dna.species
-
-	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
-		return
-
-	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
-		return
-
-	host.AddComponent(/datum/component/changeling_zombie_infection)
+	if(can_become_changeling_zombie(host) && host.AddComponent(/datum/component/changeling_zombie_infection))
+		var/mob/living/arm_user = src.loc
+		if(istype(arm_user))
+			var/datum/component/changeling_zombie_infection/component = arm_user.GetComponent(/datum/component/changeling_zombie_infection)
+			if(component && component.infect_objective)
+				component.infect_objective.total_infections += 1
 
 /obj/item/clothing/suit/armor/changeling_zombie
 

@@ -1,3 +1,23 @@
+/proc/can_become_changeling_zombie(var/datum/parent)
+
+	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_NO_ZOMBIFY) || HAS_TRAIT(parent,TRAIT_GENELESS))
+		return FALSE
+
+	var/mob/living/carbon/human/host = parent
+
+	if(!host.dna)
+		return FALSE
+
+	var/datum/species/host_species = host.dna.species
+
+	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
+		return FALSE
+
+	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
+		return FALSE
+
+	return TRUE
+
 /datum/component/changeling_zombie_infection
 
 	var/zombified = FALSE
@@ -9,22 +29,21 @@
 	var/list/bodypart_zones_to_regenerate = list()
 	COOLDOWN_DECLARE(limb_regen_cooldown)
 
+	var/datum/objective/changeling_zombie_infect/infect_objective
+
+	var/static/list/random_mumblings = list(
+		"ONE OF US",
+		"BECOME ONE OF US",
+		"BECOME ONE",
+		"WE ARE ONE",
+		"BE CONSUMED"
+	)
+
 /datum/component/changeling_zombie_infection/Initialize()
+
 	. = ..()
-	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_UNHUSKABLE) || HAS_TRAIT(parent,TRAIT_GENELESS))
-		return COMPONENT_INCOMPATIBLE
 
-	var/mob/living/carbon/human/host = parent
-
-	if(!host.dna)
-		return COMPONENT_INCOMPATIBLE
-
-	var/datum/species/host_species = host.dna.species
-
-	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
-		return COMPONENT_INCOMPATIBLE
-
-	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
+	if(!can_become_changeling_zombie(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	START_PROCESSING(SSobj, src)
@@ -45,7 +64,7 @@
 		if(zombified)
 			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
 		REMOVE_TRAITS_IN(host,CHANGELING_ZOMBIE_TRAIT)
-		host.remove_antag_datum(/datum/antagonist/changeling_zombie)
+		host.mind?.remove_antag_datum(/datum/antagonist/changeling_zombie)
 
 	zombified = FALSE
 
@@ -152,7 +171,7 @@
 			TRAIT_NEARSIGHTED_CORRECTED,
 			TRAIT_TUMOR_SUPPRESSED,
 			TRAIT_RDS_SUPPRESSED,
-			TRAIT_EASYDISMEMBER
+			TRAIT_EASYDISMEMBER,
 		),
 		CHANGELING_ZOMBIE_TRAIT
 	)
@@ -239,10 +258,23 @@
 
 	COOLDOWN_START(src,limb_regen_cooldown,CHANGELING_ZOMBIE_LIMB_REGEN_TIME)
 
-/datum/component/changeling_zombie_infection/proc/proc/handle_speech(datum/source, list/speech_args)
+/datum/component/changeling_zombie_infection/proc/handle_speech(datum/source, list/speech_args)
 
 	SIGNAL_HANDLER
 
 	speech_args[SPEECH_SPANS] |= SPAN_PAPYRUS
 	speech_args[SPEECH_SPANS] |= SPAN_ITALICS
-	speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE]," ","... ")
+
+	speech_args[SPEECH_MESSAGE] = ""
+	var/list/exploded_words = splittext(speech_args[SPEECH_MESSAGE]," ")
+	for(var/word in exploded_words)
+		if(prob(25))
+			word = uppertext(word)
+		if(!prob(80))
+			speech_args[SPEECH_MESSAGE] = "[speech_args[SPEECH_MESSAGE]][word] "
+			continue
+		speech_args[SPEECH_MESSAGE] = "[speech_args[SPEECH_MESSAGE]][word]... "
+		if(prob(10))
+			speech_args[SPEECH_MESSAGE] = "[speech_args[SPEECH_MESSAGE]][prob(1) ? "BE CONSUMED (NON-SEXUALLY, THOUGH) " : pick(random_mumblings)]! "
+
+	speech_args[SPEECH_MESSAGE] = trim(speech_args[SPEECH_MESSAGE])

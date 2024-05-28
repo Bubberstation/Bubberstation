@@ -19,14 +19,38 @@
 	antag_hud_name = "zombie"
 
 	antag_memory = "You are a mutated Nanotrasen experiment. Your mind is torn apart, you do not remember who you are. \
-	All you know is that you must kill. \
+	All you know is that you must infect. \
 	Leave no one alive."
 
 	default_custom_objective = "Infect as many crewmembers as possible!"
 
 /datum/antagonist/changeling_zombie/on_gain()
+
 	. = ..()
-	var/component = owner.current?.GetComponent(/datum/component/changeling_zombie_infection)
-	if(!component)
-		owner.current?.AddComponent(/datum/component/changeling_zombie_infection)
+
+	var/datum/component/changeling_zombie_infection/component
+	if(owner.current)
+		component = owner.current.GetComponent(/datum/component/changeling_zombie_infection) || (can_become_changeling_zombie(owner.current) ? owner.current.AddComponent(/datum/component/changeling_zombie_infection) : null)
+
+	if(!component) //uhh
+		stack_trace("Failed to give to changeling zombie component to \[[owner]\].")
+		return
+
+	var/datum/objective/changeling_zombie_infect/infect_objective = new
+	infect_objective.owner = owner
+	objectives += infect_objective
+
 	to_chat(owner, span_boldannounce(antag_memory))
+
+	component.infect_objective = infect_objective
+
+/datum/objective/changeling_zombie_infect
+	explanation_text = "Infect at least 5 other victims."
+	var/required_infections = 5
+	var/total_infections = 0
+
+/datum/objective/changeling_zombie_infect/update_explanation_text()
+	explanation_text = "Infect at least [required_infections] other victims."
+
+/datum/objective/changeling_zombie_infect/check_completion()
+	return total_infections >= required_infections
