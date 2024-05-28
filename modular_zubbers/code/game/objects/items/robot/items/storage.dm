@@ -10,10 +10,6 @@
 	icon_state = "borg_beaker_apparatus"
 	storable = list(/obj/item/tank)
 
-/obj/item/robot_model/roleplay/New(...)
-	. = ..()
-	basic_modules += /obj/item/borg/apparatus/tank_manipulator
-
 /obj/item/robot_model/syndicatejack/New(...)
 	. = ..()
 	basic_modules += /obj/item/borg/apparatus/tank_manipulator
