@@ -25,6 +25,7 @@
 					/obj/item/reagent_containers/syringe,
 					/obj/item/reagent_containers/dropper,
 					)
+
 /obj/item/borg/apparatus/research/examine()
 	. = ..()
 	if(stored)
@@ -45,6 +46,7 @@
 					/obj/item/circuit_component,
 					/obj/item/usb_cable,
 					)
+
 /obj/item/borg/apparatus/circuit_sci/examine()
 	. = ..()
 	if(stored)
@@ -77,3 +79,25 @@
 	if(stored)
 		. += "The apparatus currently has [stored] secured."
 	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
+
+/obj/item/borg/apparatus/tank_manipulator
+	name = "tank manipulation apparatus"
+	desc = "An apparatus for carrying and manipulating handheld tanks."
+	icon_state = "borg_beaker_apparatus"
+	storable = list(/obj/item/tank)
+
+/obj/item/robot_model/syndicatejack/New(...)
+	. = ..()
+	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+
+/obj/item/robot_model/ninja_saboteur/New(...)
+	. = ..()
+	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+
+/obj/item/robot_model/engineering/New(...)
+	. = ..()
+	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+
+/obj/item/robot_model/saboteur/New(...)
+	. = ..()
+	basic_modules += /obj/item/borg/apparatus/tank_manipulator
