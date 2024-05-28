@@ -360,9 +360,9 @@
 /area/ruin/syndicate_lava_base/bar)
 "cs" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/light/cold/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "ct" = (
@@ -554,6 +554,7 @@
 	pixel_x = 16
 	},
 /obj/machinery/power/rtg/advanced,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "dS" = (
@@ -1057,7 +1058,6 @@
 /area/ruin/syndicate_lava_base/dormitories)
 "ii" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "io" = (
@@ -1413,7 +1413,7 @@
 /obj/machinery/power/smes/engineering{
 	charge = 4.5e+006;
 	input_level = 150000;
-	output_level = 40000
+	output_level = 35000
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
@@ -1468,11 +1468,9 @@
 	id = "rad_shutters_interdyne";
 	name = "Radiation Shutters"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/power/rtg/advanced,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "ll" = (
@@ -2259,6 +2257,7 @@
 "qu" = (
 /obj/structure/cable,
 /obj/machinery/power/rtg/advanced,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "qx" = (
@@ -2838,11 +2837,11 @@
 /area/ruin/syndicate_lava_base/bar)
 "ug" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/power/apc/auto_name/directional/north,
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/structure/cable,
 /obj/machinery/space_heater,
-/obj/structure/extinguisher_cabinet/directional/west,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "ui" = (
@@ -3201,13 +3200,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/main)
-"wD" = (
-/obj/machinery/atmospherics/components/binary/pump/on/layer2{
-	dir = 4;
-	target_pressure = 4500
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_lava_base/engineering)
 "wK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -4088,6 +4080,9 @@
 /obj/item/stack/sheet/mineral/titanium{
 	amount = 35
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "Dx" = (
@@ -4808,8 +4803,11 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/components/binary/pump/on/layer2{
+	dir = 4;
+	target_pressure = 4500
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "Ir" = (
@@ -4910,7 +4908,7 @@
 /obj/machinery/power/smes/engineering{
 	charge = 4.5e+006;
 	input_level = 150000;
-	output_level = 40000
+	output_level = 35000
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
@@ -5155,6 +5153,7 @@
 /area/ruin/syndicate_lava_base/engineering)
 "KJ" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "KK" = (
@@ -6337,10 +6336,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/syndicate_lava_base/testlab)
 "Sy" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/engineering)
 "Sz" = (
@@ -9899,7 +9898,7 @@ Bz
 Sz
 eg
 li
-wD
+Bz
 Bz
 aM
 Tt
@@ -9958,8 +9957,8 @@ eg
 BR
 eg
 dO
-Ne
-Ne
+Bz
+Bz
 OI
 eg
 bE
