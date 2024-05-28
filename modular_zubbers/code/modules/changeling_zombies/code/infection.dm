@@ -127,7 +127,7 @@
 
 	if(!host.mind)
 		var/mob/canidate = SSpolling.poll_ghosts_for_target(
-			"Do you want to play as a changeling zombie ([host.name])?", checked_target = host)
+			"Do you want to play as a Changeling Zombie ([host.name])?", checked_target = host)
 		if(istype(canidate))
 			host.key = canidate.key
 	else
@@ -149,11 +149,9 @@
 			TRAIT_NOBREATH,
 			TRAIT_NO_ZOMBIFY,
 			TRAIT_THERMAL_VISION,
-			TRAIT_STRONG_GRABBER,
 			TRAIT_NEARSIGHTED_CORRECTED,
 			TRAIT_TUMOR_SUPPRESSED,
 			TRAIT_RDS_SUPPRESSED,
-			TRAIT_SNEAK,
 			TRAIT_EASYDISMEMBER
 		),
 		CHANGELING_ZOMBIE_TRAIT
