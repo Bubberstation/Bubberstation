@@ -37,13 +37,17 @@
 	. = ..()
 	if (!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
+
+/datum/component/changeling_zombie_infection_item/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equipped))
 
-/datum/component/changeling_zombie_infection_item/Destroy()
-	. = ..()
+/datum/component/changeling_zombie_infection_item/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
 
+
 /datum/component/changeling_zombie_infection_item/proc/on_equipped(datum/source, mob/user, slot)
+
+	SIGNAL_HANDLER
 
 	if(!(slot & ITEM_SLOT_HANDS))
 		return

@@ -19,14 +19,11 @@
 	antag_hud_name = "zombie"
 
 	antag_memory = "You are a mutated Nanotrasen experiment. Your mind is torn apart, you do not remember who you are. \
-	All you know is that you must infect. \
-	Leave no one alive."
+	All you know is that you must infect."
 
 	default_custom_objective = "Infect as many crewmembers as possible!"
 
 /datum/antagonist/changeling_zombie/on_gain()
-
-	. = ..()
 
 	var/datum/component/changeling_zombie_infection/component
 	if(owner.current)
@@ -43,6 +40,8 @@
 	to_chat(owner, span_boldannounce(antag_memory))
 
 	component.infect_objective = infect_objective
+
+	. = ..()
 
 /datum/objective/changeling_zombie_infect
 	explanation_text = "Infect at least 5 other victims."

@@ -50,6 +50,13 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	START_PROCESSING(SSobj, src)
 
+
+/datum/component/changeling_zombie_infection/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_LIVING_DEATH)
+	UnregisterSignal(parent, COMSIG_CARBON_REMOVE_LIMB)
+	UnregisterSignal(parent, COMSIG_CARBON_ATTACH_LIMB)
+	UnregisterSignal(parent, COMSIG_MOB_SAY)
+
 /datum/component/changeling_zombie_infection/Destroy(force, silent)
 
 	QDEL_LIST(arm_blades)
@@ -59,10 +66,6 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	if(parent)
 		var/mob/living/carbon/human/host = parent
-		UnregisterSignal(host, COMSIG_LIVING_DEATH)
-		UnregisterSignal(host, COMSIG_CARBON_REMOVE_LIMB)
-		UnregisterSignal(host, COMSIG_CARBON_ATTACH_LIMB)
-		UnregisterSignal(host, COMSIG_MOB_SAY)
 		if(zombified)
 			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
 		REMOVE_TRAITS_IN(host,CHANGELING_ZOMBIE_TRAIT)
@@ -112,8 +115,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		else
 			if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
 				can_cure = TRUE
-			var/tox_to_remove = round(CHANGELING_ZOMBIE_BASE_TOXINS_PER_SECOND + (current_toxin_damage*CHANGELING_ZOMBIE_TOXINS_PER_1_TOXIN_PER_SECOND),1)
-			host.adjustToxLoss(tox_to_remove * seconds_per_tick)
+			host.adjustToxLoss(CHANGELING_ZOMBIE_TOXINS_PER_SECOND * seconds_per_tick)
 			if(SPT_PROB(8, seconds_per_tick))
 				if(current_toxin_damage > 50)
 					var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
@@ -272,19 +274,20 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	SIGNAL_HANDLER
 
-	speech_args[SPEECH_SPANS] |= SPAN_PAPYRUS
 	speech_args[SPEECH_SPANS] |= SPAN_ITALICS
 
-	speech_args[SPEECH_MESSAGE] = ""
-	var/list/exploded_words = splittext(speech_args[SPEECH_MESSAGE]," ")
-	for(var/word in exploded_words)
-		if(prob(25))
-			word = uppertext(word)
-		if(!prob(80))
-			speech_args[SPEECH_MESSAGE] = "[speech_args[SPEECH_MESSAGE]][word] "
-			continue
-		speech_args[SPEECH_MESSAGE] = "[speech_args[SPEECH_MESSAGE]][word]... "
-		if(prob(10))
-			speech_args[SPEECH_MESSAGE] = "[speech_args[SPEECH_MESSAGE]][prob(1) ? "BE CONSUMED (NON-SEXUALLY, THOUGH) " : pick(random_mumblings)]! "
+	var/message = "[speech_args[SPEECH_MESSAGE]] "
 
-	speech_args[SPEECH_MESSAGE] = trim(speech_args[SPEECH_MESSAGE])
+	if(message[1] != "*")
+		var/list/exploded_words = splittext(message," ")
+		for(var/word in exploded_words)
+			if(prob(25))
+				word = uppertext(word)
+			if(!prob(80))
+				message = "[message][word] "
+				continue
+			message = "[message][word]... "
+			if(prob(10))
+				message = "[message][prob(1) ? "BE CONSUMED (NON-SEXUALLY, THOUGH) " : pick(random_mumblings)]! "
+
+		speech_args[SPEECH_MESSAGE] = trim(message)
