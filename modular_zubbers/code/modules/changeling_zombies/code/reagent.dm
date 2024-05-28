@@ -48,6 +48,11 @@
 	if(!(slot & ITEM_SLOT_HANDS))
 		return
 
+	if(!ishuman(user) && !can_become_changeling_zombie(user))
+		return
+
+	var/mob/living/carbon/human/infecting_human = user
+
 	var/held_index = infecting_human.get_held_index_of_item(parent)
 
 	if(!held_index)
@@ -58,15 +63,12 @@
 	if(!found_hand || !(found_hand.bodytype & BODYTYPE_ORGANIC))
 		return
 
-	if(!ishuman(user) && !can_become_changeling_zombie(user))
-		return
-
-	var/mob/living/carbon/human/infecting_human = user
 	if(isobj(infecting_human.wear_suit) && (infecting_human.wear_suit.body_parts_covered & HANDS) && prob(infecting_human.wear_suit.get_armor_rating(BIO)))
 		return
+
 	if(isobj(infecting_human.gloves) && (infecting_human.gloves.body_parts_covered & HANDS) && prob(infecting_human.gloves.get_armor_rating(BIO)))
 		return
 
 	if(infecting_human.AddComponent(/datum/component/changeling_zombie_infection))
-		to_chat(infecting_human,span_warning("You scratch your [found_hand] on [source]. Ouch."))
+		to_chat(infecting_human,span_warning("You accidentally scratch your [found_hand] on [source]. Ouch."))
 		found_hand.receive_damage(1)
