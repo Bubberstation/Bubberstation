@@ -23,3 +23,6 @@
 	allow_duplicates = FALSE
 	always_place = FALSE
 	unpickable = TRUE
+
+/datum/map_template/ruin/space/skyrat/interdynefob
+	unpickable = TRUE
