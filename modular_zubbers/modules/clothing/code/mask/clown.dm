@@ -25,3 +25,8 @@
 			"Banana Brained" = "yellowclown",
 			"Rhubarb Rubber" = "purpleclown"
 	)
+
+/obj/item/clothing/mask/gas/bubber/clown/reskin_obj(mob/user)
+	. = ..()
+	user.update_worn_mask()
+	voice_filter = null // performer masks expect to be talked through
