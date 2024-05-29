@@ -12,6 +12,7 @@
 				/obj/item/clothing/head/costume/bubber/clussy = 3,
 				/obj/item/clothing/head/costume/bubber/jester = 3,
 				/obj/item/clothing/under/rank/civilian/bubber/clown/jester = 3,
+				/obj/item/clothing/shoes/clown_shoes/bubber/jester = 3,
 			),
 		),
 	)
