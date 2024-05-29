@@ -1070,11 +1070,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/instrument/piano_synth/headphones/spacepods = 1,
 		/obj/item/instrument/recorder = 5,
 		/obj/item/instrument/saxophone = 10,
-		/obj/item/instrument/saxophone/spectral = 1,
 		/obj/item/instrument/trombone = 10,
-		/obj/item/instrument/trombone/spectral = 1,
 		/obj/item/instrument/trumpet = 10,
-		/obj/item/instrument/trumpet/spectral = 1,
 		/obj/item/instrument/violin = 10,
 		/obj/item/instrument/violin/golden = 1
 	) = 25,
