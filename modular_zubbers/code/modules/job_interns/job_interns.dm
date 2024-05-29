@@ -34,7 +34,7 @@
 			config_type = /datum/config_entry/number/intern_threshold_medical
 		if(EXP_TYPE_SCIENCE)
 			config_type = /datum/config_entry/number/intern_threshold_science
-	if(!config_type)
+	if(is_null(config_type))
 		return 0
 	return global.config.Get(config_type) * 60
 
