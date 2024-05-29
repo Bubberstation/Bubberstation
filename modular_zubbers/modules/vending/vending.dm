@@ -9,6 +9,7 @@
 	var/list/zubbers_premium
 	/// Additions to the `contraband` list  of the vending machine, modularly. Will become null after Initialize, to free up memory.
 	var/list/zubbers_contraband
+
 /obj/machinery/vending/Initialize(mapload)
 	if(zubbers_products)
 		// We need this, because duplicates screw up the spritesheet!
