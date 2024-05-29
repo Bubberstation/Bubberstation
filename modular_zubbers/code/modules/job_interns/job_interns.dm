@@ -46,8 +46,7 @@
 		return FALSE
 	if(!SSdbcore.Connect())
 		return FALSE
-	var/player_allows_intern = player_client.prefs.read_preference(/datum/preference/toggle/be_intern)
-	if(!player_allows_intern)
+	if(!player_client.prefs.read_preference(/datum/preference/toggle/be_intern) // If the pref is off, we stop here
 		return FALSE
 	var/required_time
 	var/playtime
