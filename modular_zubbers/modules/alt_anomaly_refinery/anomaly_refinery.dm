@@ -76,8 +76,6 @@
 
 /obj/machinery/research/anomaly_refinery/check_test(atom/source, list/arguments)
 
-	SIGNAL_HANDLER
-
 	if(!inserted_core)
 		test_status = "ERROR: No core present during detonation."
 		playsound(
