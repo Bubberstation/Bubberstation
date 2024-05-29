@@ -17,8 +17,13 @@
 	desc = "Ce n'est pas un clown."
 	icon_state = "clown_skirt_s"
 
-//'Clussy' stuff from Splurt.
+//'Clussy' and Jester stuff from Splurt.
 /obj/item/clothing/under/rank/civilian/bubber/clown/skirt/clussy
 	name = "pink clown skirt"
 	desc = "There's a small sign on the back labelled simply 'Honkland's shame'."
 	icon_state = "clussy_outfit"
+
+/obj/item/clothing/under/rank/civilian/bubber/clown/jester
+	name = "amazing jester outfit"
+	desc = "Update: No dessert based jokes, Central's told us this is a different jester outfit."
+	icon_state = "striped_jester_outfit"
