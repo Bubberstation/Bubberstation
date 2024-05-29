@@ -20,5 +20,14 @@
 
 /obj/structure/closet/crate/medical/changeling_zombie/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
-	var/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/broken_one = new(src)
+	var/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/empty/broken_one = new(src)
 	broken_one.smash(src.loc,null,FALSE,TRUE)
+
+/obj/item/paper/fluff/shuttles/changeling_zombie_instructions
+	default_raw_text = "<h1>NT-CZV-1 Cure Instructions</h1><br>To cure an infected crewmember who has not yet turned, let them have at least 100 units of toxins damage, then purge all those toxins quickly.<br>To cure an already turned crewmember, apply shotgun to head repeatedly."
+
+/obj/structure/closet/crate/medical/changeling_zombie_cure/PopulateContents()
+	new /obj/item/paper/fluff/shuttles/changeling_zombie_instructions(src)
+	new /obj/item/gun/ballistic/shotgun/riot(src)
+	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
+	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)

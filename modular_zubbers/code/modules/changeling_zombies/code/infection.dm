@@ -219,12 +219,25 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(!GLOB.changeling_zombies_detected)
 		var/turf/T = get_turf(host)
 		if(is_station_level(T.z)) //Prevents the announcements if admins are fucking around on centcomm.
-			GLOB.changeling_zombies_detected = TRUE
-			priority_announce(
-				"Notice: A stolen Wizard Federation virus that \"animes(sic) the dead\" may or may not have accidentally been delivered to the station via supply pod. Please return contents of said supply pod to the nearest Nanotrasen representative.",
-				"Reanimation Virus Alert",
-				ANNOUNCER_ANIMES
-			)
+			var/list/turf/found_turfs = get_area_turfs(/area/station/medical,subtypes=TRUE)
+			if(length(found_turfs))
+				var/turf/chosen_turf = pick(found_turfs)
+				if(chosen_turf)
+					GLOB.changeling_zombies_detected = TRUE
+					priority_announce(
+						"Notice: A stolen Wizard Federation virus that \"animes(sic) the dead\" may or may not have accidentally been delivered to the station via supply pod. Please return contents of said supply pod to the nearest Nanotrasen representative. In case of accidental infection, use the cure with the instructions delivered to [chosen_turf.loc].",
+						"Reanimation Virus Alert",
+						ANNOUNCER_ANIMES
+					)
+					podspawn(list(
+						"target" = chosen_turf,
+						"path" = /obj/structure/closet/supplypod/centcompod,
+						"style" = STYLE_CENTCOM,
+						"spawn" = /obj/structure/closet/crate/medical/changeling_zombie_cure,
+						"damage" = 50,
+						"explosionSize" = list(0, 1, 2, 3),
+						"effectStun" = TRUE
+				))
 
 	return TRUE
 

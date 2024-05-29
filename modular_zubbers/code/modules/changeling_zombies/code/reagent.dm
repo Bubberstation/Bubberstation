@@ -21,6 +21,9 @@
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 
+/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/empty
+	list_reagents = list()
+
 /obj/item/reagent_containers/cup/glass/changeling_zombie_virus/smash(...)
 	. = ..()
 	if(.)
