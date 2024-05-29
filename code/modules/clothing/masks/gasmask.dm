@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 		)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
 
-// BUBBERSTATION EDUT
+// BUBBERSTATION EDIT
 //WAS: //AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0) //SKYRAT EDIT REMOVAL
 
 
