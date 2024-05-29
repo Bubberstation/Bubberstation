@@ -4,6 +4,8 @@
 	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
 
+//Sprites from Sojourn Station: https://github.com/sojourn-13/sojourn-station
+
 /obj/item/clothing/mask/gas/bubber/clown
 	name = "coloured clown mask"
 	desc = "After a painful 48 year delay, the matching non-ginger Clown masks have arrived! Shoes are still in transit."
