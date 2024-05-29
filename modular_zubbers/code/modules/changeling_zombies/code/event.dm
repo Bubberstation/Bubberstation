@@ -20,4 +20,5 @@
 
 /obj/structure/closet/crate/medical/changeling_zombie/PopulateContents()
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
-	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus/start_broken(src)
+	var/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/broken_one = new(src)
+	broken_one.smash(src.loc,null,FALSE,TRUE)

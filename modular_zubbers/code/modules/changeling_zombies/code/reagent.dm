@@ -21,17 +21,11 @@
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 
-/obj/item/reagent_containers/cup/glass/changeling_zombie_virus
-
 /obj/item/reagent_containers/cup/glass/changeling_zombie_virus/smash(...)
 	. = ..()
 	if(.)
 		var/datum/D = .
 		D.AddComponent(/datum/component/changeling_zombie_infection_item)
-
-/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/start_broken/Initialize(...)
-	. = ..()
-	src.smash(src.loc,null,FALSE,TRUE)
 
 /datum/component/changeling_zombie_infection_item/Initialize()
 	. = ..()
@@ -74,5 +68,5 @@
 		return
 
 	if(infecting_human.AddComponent(/datum/component/changeling_zombie_infection))
-		to_chat(infecting_human,span_warning("You accidentally scratch your [found_hand] on [source]. Ouch."))
+		to_chat(infecting_human,span_warning("You accidentally scratch your [found_hand.name] on [source]. Ouch."))
 		found_hand.receive_damage(1)
