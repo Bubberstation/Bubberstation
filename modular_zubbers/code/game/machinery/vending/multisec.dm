@@ -20,7 +20,7 @@
 					/obj/item/storage/backpack/duffelbag/sec = 6,
 					/obj/item/storage/backpack/duffelbag/sec = 6,
 					/obj/item/clothing/under/rank/security/officer = 10,
-					/obj/item/clothing/under/rank/security/officer/skirt = 10,
+					/obj/item/clothing/under/rank/security/officer/skirt/blue = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper = 10,
 					/obj/item/clothing/under/rank/security/skyrat/utility = 6,
 					/obj/item/clothing/shoes/jackboots/sec = 10,
