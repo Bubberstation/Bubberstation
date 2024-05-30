@@ -52,8 +52,10 @@
 		//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT. USUALLY
 		if(loot == GLOB.uncommon_loot )
 			effective_lootcount = min(effective_lootcount,3) //Maximum 3.
+		else if(effective_lootcount > 1)
+			effective_lootcount = 1
 		else
-			effective_lootcount = effective_lootcount > 1 ? !prob(80) : 0
+			effective_lootcount = 0
 		//BUBBERSTATION CHANGE END: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT. USUALLY
 
 	return effective_lootcount
