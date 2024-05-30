@@ -43,7 +43,7 @@
 		effective_lootcount = FLOOR(spawn_loot_count * 1.5, 1)
 
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		effective_lootcount = 1 //BUBBERSTATION CHANGE: ALWAYS JUST ONE.
+		effective_lootcount = effective_lootcount > 1 ? !prob(80) : 0 //BUBBERSTATION CHANGE: ALWAYS JUST ONE IF ON A STRUCTURE.
 
 	return effective_lootcount
 
