@@ -295,6 +295,10 @@ SUBSYSTEM_DEF(gamemode)
 		event_track_points[track_type] += refunded.cost
 	remove_scheduled_event(refunded)
 
+/// Schedules an event.
+/datum/controller/subsystem/gamemode/proc/force_event(datum/round_event_control/event)
+	forced_next_events[event.track] = event
+
 /// Removes a scheduled event.
 /datum/controller/subsystem/gamemode/proc/remove_scheduled_event(datum/scheduled_event/removed)
 	scheduled_events -= removed

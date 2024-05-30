@@ -4,7 +4,7 @@
 
 	antag_flag = ROLE_SPY
 	antag_datum = /datum/antagonist/spy
-	weight = 3
+	weight = 4
 
 	tags = list(TAG_CREW_ANTAG)
 

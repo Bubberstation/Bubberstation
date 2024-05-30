@@ -16,7 +16,7 @@
 /datum/round_event_control/antagonist/solo/malf/roundstart
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 4
+	weight = 2
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
@@ -44,24 +44,3 @@
 	for(var/datum/mind/new_malf in setup_minds)
 		GLOB.pre_setup_antags += new_malf
 		LAZYADDASSOC(SSjob.dynamic_forced_occupations, new_malf.current, "AI")
-
-/*
-/datum/round_event_control/antagonist/solo/malf/midround
-	name = "Malfunctioning AI Midround"
-	prompted_picking = TRUE
-	roundstart = FALSE
-	weight = 0
-
-/datum/round_event_control/antagonist/solo/malf/get_candidates()
-	. = ..()
-	if(!.)
-		return
-	var/loop = .
-	var/list/ai_in_round
-	for(var/mob/living/silicon/ai/ai in loop)
-		if(!isAI(ai))
-			continue
-		ai_in_round |= ai
-
-	. = pick(ai_in_round)
-*/
