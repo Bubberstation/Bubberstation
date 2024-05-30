@@ -1,8 +1,9 @@
 /datum/heretic_knowledge/ultimate/moon_final
-	route = null
+	cost = 999
 
 /datum/heretic_knowledge/ultimate/void_final
-	route = null
+	cost = 999
+//Temporarily disables these final ascensions by making their cost so prohibitively high you won't reach them
 
 /datum/status_effect/heretic_curse
 	duration = 20 MINUTES
