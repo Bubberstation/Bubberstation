@@ -10,14 +10,35 @@
 	var/can_be_intern = TRUE
 	/// Whether the job uses its own EXP to define the internship status
 	var/internship_use_self_exp_type = FALSE
-	/// What department EXP to use to determine internship
-	var/internship_dep_exp_type = null
 
+/// Returns the highest priority department this job belongs to
+/datum/job/proc/get_highest_priority_department()
+	if(!length(departments_list))
+		return null
+	// Prioritize command
+	if(/datum/job_department/command in departments_list)
+		return /datum/job_department/command
+	// Then security
+	if(/datum/job_department/security in departments_list)
+		return /datum/job_department/security
+	// Then get any first one
+	return departments_list[1]
+
+/// Returns the type of intern exp used
+/datum/job/proc/get_intern_exp_type()
+	var/prio_department = get_highest_priority_department()
+	if(isnull(prio_department))
+		return
+	var/datum/job_department/department = SSjob.get_department_type(prio_department)
+	return department.department_experience_type
+
+/// Returns the amount of time required to not be intern
 /datum/job/proc/get_intern_time_threshold()
-	if(!internship_dep_exp_type)
+	var/intern_exp_type = get_intern_exp_type()
+	if(!intern_exp_type)
 		return 0
 	var/config_type
-	switch(internship_dep_exp_type)
+	switch(intern_exp_type)
 		if(EXP_TYPE_COMMAND)
 			config_type = /datum/config_entry/number/intern_threshold_command
 		if(EXP_TYPE_SECURITY)
@@ -44,6 +65,8 @@
 		return FALSE
 	if(!SSdbcore.Connect())
 		return FALSE
+	if(job_flags & JOB_HEAD_OF_STAFF)
+		return FALSE
 	if(!player_client.prefs.read_preference(/datum/preference/toggle/be_intern)) // If the pref is off, we stop here
 		return FALSE
 	var/required_time
@@ -54,14 +77,15 @@
 		required_time = get_intern_time_threshold()
 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
 		// Use first department head job as our master job to compare to
-		var/datum/job/master_job = SSjob.name_occupations[department_head[1]]
+		var/datum/job/master_job = SSjob.GetJob(department_head[1])
 		playtime = player_client.calc_exp_type(master_job.get_exp_req_type())
 		required_time = master_job.get_exp_req_amount()
 	else
-		if(!internship_dep_exp_type)
+		var/exp_type = get_intern_exp_type()
+		if(!exp_type)
 			return FALSE
 		required_time = get_intern_time_threshold()
-		playtime = player_client.calc_exp_type(internship_dep_exp_type)
+		playtime = player_client.calc_exp_type(exp_type)
 	if(playtime >= required_time)
 		return FALSE
 	return TRUE
@@ -85,149 +109,34 @@
 		assignment_string = assignment
 	return assignment_string
 
-// Command
-/datum/job/captain
-	internship_dep_exp_type = EXP_TYPE_COMMAND
-
-/datum/job/chief_engineer
-	internship_dep_exp_type = EXP_TYPE_ENGINEERING
-
-/datum/job/chief_medical_officer
-	internship_dep_exp_type = EXP_TYPE_MEDICAL
-
-/datum/job/head_of_security
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-/datum/job/head_of_personnel
-	internship_dep_exp_type = EXP_TYPE_SERVICE
-
-/datum/job/research_director
-	internship_dep_exp_type = EXP_TYPE_SCIENCE
-
-/datum/job/quartermaster
-	internship_dep_exp_type = EXP_TYPE_SUPPLY
-
-/datum/job/blueshield
-	internship_dep_exp_type = EXP_TYPE_COMMAND
-
-/datum/job/nanotrasen_consultant
-	internship_dep_exp_type = EXP_TYPE_COMMAND
-
-// Security
-/datum/job/warden
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-/datum/job/security_officer
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-/datum/job/security_medic
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-/datum/job/corrections_officer
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-/datum/job/detective
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-// Cargo
-/datum/job/cargo_technician
-	internship_dep_exp_type = EXP_TYPE_SUPPLY
-
-/datum/job/shaft_miner
-	internship_dep_exp_type = EXP_TYPE_SUPPLY
-
-/datum/job/bitrunner
-	internship_dep_exp_type = EXP_TYPE_SUPPLY
-
-/datum/job/blacksmith
-	internship_dep_exp_type = EXP_TYPE_SUPPLY
-
-/datum/job/customs_agent
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-// Medical
-/datum/job/doctor
-	internship_dep_exp_type = EXP_TYPE_MEDICAL
-
-/datum/job/chemist
-	internship_dep_exp_type = EXP_TYPE_MEDICAL
-
-/datum/job/paramedic
-	internship_dep_exp_type = EXP_TYPE_MEDICAL
-
-/datum/job/coroner
-	internship_dep_exp_type = EXP_TYPE_MEDICAL
-
-/datum/job/orderly
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-/datum/job/virologist
-	internship_dep_exp_type = EXP_TYPE_MEDICAL
-
-// Science
-/datum/job/scientist
-	internship_dep_exp_type = EXP_TYPE_SCIENCE
-
-/datum/job/geneticist
-	internship_dep_exp_type = EXP_TYPE_SCIENCE
-
-/datum/job/roboticist
-	internship_dep_exp_type = EXP_TYPE_SCIENCE
-
-/datum/job/science_guard
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
-// Engineering
-/datum/job/station_engineer
-	internship_dep_exp_type = EXP_TYPE_ENGINEERING
-
-/datum/job/atmospheric_technician
-	internship_dep_exp_type = EXP_TYPE_ENGINEERING
-
-/datum/job/engineering_guard
-	internship_dep_exp_type = EXP_TYPE_SECURITY
 
 // Service
 /datum/job/bartender
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/janitor
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/botanist
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/cook
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/psychologist
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/curator
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/barber
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/lawyer
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/mime
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
 
 /datum/job/clown
 	internship_use_self_exp_type = TRUE
-	internship_dep_exp_type = EXP_TYPE_SERVICE
-
-/datum/job/bouncer
-	internship_dep_exp_type = EXP_TYPE_SECURITY
-
