@@ -100,11 +100,6 @@
 	greyscale_config_worn = /datum/greyscale_config/collar/bell/worn
 	greyscale_colors = "#663300#FFCC00"
 
-/obj/item/clothing/neck/human_petcollar/locked/bell/Initialize(mapload) //Bubbers additon
-	. = ..()
-	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/misc/collarbell1.ogg'=1,'modular_zubbers/sound/misc/collarbell2.ogg'=1), 50, 100, 5)
-
-
 /obj/item/clothing/neck/human_petcollar/locked/choker
 	name = "choker"
 	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."

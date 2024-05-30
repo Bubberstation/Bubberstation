@@ -140,6 +140,6 @@
 	desc = "A soft toy representing a popular, young officer, representing the alliance between GalFed and NT. The bottom of his work boot says 'Andy'"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "secoff"
-//	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
-//	attack_verb_simple = list("blorble", "slime", "absorb")
+	attack_verb_continuous = list("shoots (and misses)", "batongs", "annoys", "harmbatons", "magdumps")
+	attack_verb_simple = list("shot (and missed)", "batong", "annoy", "harmbaton", "magdump")
 	squeak_override = list('sound/weapons/gun/general/bolt_rack.ogg' = 1)
