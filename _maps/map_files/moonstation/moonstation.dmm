@@ -5117,9 +5117,9 @@
 /turf/open/misc/moonstation_sand,
 /area/station/terminal/tramline)
 "byr" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Pure to Supermatter"
+	name = "Pure to Supermatter";
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
@@ -41904,10 +41904,10 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/terminal/cryo)
 "mcd" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
-	dir = 4
-	},
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
+	dir = 1
+	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "mce" = (
@@ -50979,7 +50979,8 @@
 /turf/open/floor/plating,
 /area/station/science/research/abandoned)
 "oKx" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/purple/visible,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible/layer1,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "oKy" = (
@@ -52907,10 +52908,8 @@
 /turf/open/floor/grass,
 /area/station/security/prison/garden)
 "pmn" = (
-/obj/structure/table,
-/obj/effect/spawner/random/engineering/tool,
-/obj/item/geiger_counter,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/layer_manifold/purple/visible,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "pms" = (
@@ -71621,6 +71620,11 @@
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/wood/tile,
 /area/station/common/pool/sauna)
+"uGG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "uGQ" = (
 /obj/structure/table/glass/plasmaglass,
 /obj/machinery/reagentgrinder{
@@ -80174,7 +80178,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "xkb" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor,
 /area/station/engineering/supermatter/room)
 "xkg" = (
@@ -83174,7 +83178,6 @@
 "yaL" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/meson,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "yaS" = (
@@ -247838,9 +247841,9 @@ vpw
 oXq
 ioc
 tlq
-pmn
-oKx
-byr
+lHU
+wtd
+sei
 mcd
 nFX
 bCF
@@ -248098,7 +248101,7 @@ ujG
 yaL
 wtd
 sei
-wtd
+byr
 cQf
 cQf
 mFM
@@ -248353,9 +248356,9 @@ vkY
 ukp
 cnP
 jyZ
-sei
-sei
-wtd
+oKx
+pmn
+uGG
 cQf
 wtd
 rrU
@@ -248867,9 +248870,9 @@ xCq
 mpg
 vih
 afF
+xkb
 gVK
 xRr
-xkb
 isP
 szJ
 lvC
