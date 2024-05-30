@@ -12,8 +12,6 @@
 	var/internship_use_self_exp_type = FALSE
 	/// What department EXP to use to determine internship
 	var/internship_dep_exp_type = null
-	/// What master job to use for EXP checks if `/datum/config_entry/flag/use_intern_master_job_unlock_threshold` config is enabled
-	var/intern_master_job = null
 
 /datum/job/proc/get_intern_time_threshold()
 	if(!internship_dep_exp_type)
@@ -34,7 +32,7 @@
 			config_type = /datum/config_entry/number/intern_threshold_medical
 		if(EXP_TYPE_SCIENCE)
 			config_type = /datum/config_entry/number/intern_threshold_science
-	if(is_null(config_type))
+	if(isnull(config_type))
 		return 0
 	return global.config.Get(config_type) * 60
 
@@ -46,7 +44,7 @@
 		return FALSE
 	if(!SSdbcore.Connect())
 		return FALSE
-	if(!player_client.prefs.read_preference(/datum/preference/toggle/be_intern) // If the pref is off, we stop here
+	if(!player_client.prefs.read_preference(/datum/preference/toggle/be_intern)) // If the pref is off, we stop here
 		return FALSE
 	var/required_time
 	var/playtime
@@ -54,8 +52,9 @@
 		var/list/play_records = player_client.prefs.exp
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
-	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && intern_master_job)
-		var/datum/job/master_job = SSjob.type_occupations[intern_master_job]
+	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
+		// Use first department head job as our master job to compare to
+		var/datum/job/master_job = SSjob.name_occuprations[department_head[1]]
 		playtime = player_client.calc_exp_type(master_job.get_exp_req_type())
 		required_time = master_job.get_exp_req_amount()
 	else
@@ -117,152 +116,118 @@
 // Security
 /datum/job/warden
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 /datum/job/security_officer
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 /datum/job/security_medic
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 /datum/job/corrections_officer
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 /datum/job/detective
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 // Cargo
 /datum/job/cargo_technician
 	internship_dep_exp_type = EXP_TYPE_SUPPLY
-	intern_master_job = /datum/job/quartermaster
 
 /datum/job/shaft_miner
 	internship_dep_exp_type = EXP_TYPE_SUPPLY
-	intern_master_job = /datum/job/quartermaster
 
 /datum/job/bitrunner
 	internship_dep_exp_type = EXP_TYPE_SUPPLY
-	intern_master_job = /datum/job/quartermaster
 
 /datum/job/blacksmith
 	internship_dep_exp_type = EXP_TYPE_SUPPLY
-	intern_master_job = /datum/job/quartermaster
 
 /datum/job/customs_agent
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 // Medical
 /datum/job/doctor
 	internship_dep_exp_type = EXP_TYPE_MEDICAL
-	intern_master_job = /datum/job/chief_medical_officer
 
 /datum/job/chemist
 	internship_dep_exp_type = EXP_TYPE_MEDICAL
-	intern_master_job = /datum/job/chief_medical_officer
 
 /datum/job/paramedic
 	internship_dep_exp_type = EXP_TYPE_MEDICAL
-	intern_master_job = /datum/job/chief_medical_officer
 
 /datum/job/coroner
 	internship_dep_exp_type = EXP_TYPE_MEDICAL
-	intern_master_job = /datum/job/chief_medical_officer
 
 /datum/job/orderly
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 /datum/job/virologist
 	internship_dep_exp_type = EXP_TYPE_MEDICAL
-	intern_master_job = /datum/job/chief_medical_officer
 
 // Science
 /datum/job/scientist
 	internship_dep_exp_type = EXP_TYPE_SCIENCE
-	intern_master_job = /datum/job/research_director
 
 /datum/job/geneticist
 	internship_dep_exp_type = EXP_TYPE_SCIENCE
-	intern_master_job = /datum/job/research_director
 
 /datum/job/roboticist
 	internship_dep_exp_type = EXP_TYPE_SCIENCE
-	intern_master_job = /datum/job/research_director
 
 /datum/job/science_guard
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 // Engineering
 /datum/job/station_engineer
 	internship_dep_exp_type = EXP_TYPE_ENGINEERING
-	intern_master_job = /datum/job/chief_engineer
 
 /datum/job/atmospheric_technician
 	internship_dep_exp_type = EXP_TYPE_ENGINEERING
-	intern_master_job = /datum/job/chief_engineer
 
 /datum/job/engineering_guard
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
 // Service
 /datum/job/bartender
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/janitor
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/botanist
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/cook
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/psychologist
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/curator
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/barber
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/lawyer
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/mime
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/clown
 	internship_use_self_exp_type = TRUE
 	internship_dep_exp_type = EXP_TYPE_SERVICE
-	intern_master_job = /datum/job/head_of_personnel
 
 /datum/job/bouncer
 	internship_dep_exp_type = EXP_TYPE_SECURITY
-	intern_master_job = /datum/job/head_of_security
 
