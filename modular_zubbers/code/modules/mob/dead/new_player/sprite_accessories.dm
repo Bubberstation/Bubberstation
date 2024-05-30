@@ -38,6 +38,11 @@
 	icon_state = "royal_curls"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+/datum/sprite_accessory/hair/marge
+	name = "Marge"
+	icon_state = "marge"
+	icon = 'modular_zubbers/icons/mob/species/human/monkeymarge.dmi'
+
 //Podpeople hair
 /datum/sprite_accessory/hair/podmale
 	name = "Pod Male"
