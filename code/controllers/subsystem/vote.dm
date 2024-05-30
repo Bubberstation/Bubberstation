@@ -130,10 +130,6 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
-	// BUBBER EDIT START: Modular vote conditions!
-	if(!current_vote.can_mob_vote(voter))
-		return
-	// BUBBER EDIT END
 
 	// If user has already voted, remove their specific vote
 	if(voter.ckey in current_vote.choices_by_ckey)
@@ -158,10 +154,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
-	// BUBBER EDIT START: Modular vote conditions!
-	if(!current_vote.can_mob_vote(voter))
-		return
-	// BUBBER EDIT END
+
 	else
 		voted += voter.ckey
 
