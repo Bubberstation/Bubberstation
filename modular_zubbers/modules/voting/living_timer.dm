@@ -1,7 +1,6 @@
-/client
-	var/minutes_in_round = 0
+GLOBAL_LIST_EMPTY(client_minutes_in_round)
 
 /client/proc/update_living_minutes(mins)
 	if(!isliving(mob))
 		return
-	minutes_in_round += mins
+	GLOB.client_minutes_in_round[ckey] += mins

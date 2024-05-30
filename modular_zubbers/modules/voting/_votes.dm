@@ -9,7 +9,7 @@
 // This is called directly from /datum/controller/subsystem/vote so some nullchecks are excluded as they are included before this is called
 /datum/vote/proc/can_mob_vote(mob/voter)
 	if(SSticker.HasRoundStarted() && !allow_ghosts)
-		if(voter.client.minutes_in_round >= INGAME_TIME_NEEDED)
+		if(GLOB.client_minutes_in_round[voter.client.ckey] >= INGAME_TIME_NEEDED)
 			return TRUE
 		else
 			return FALSE
