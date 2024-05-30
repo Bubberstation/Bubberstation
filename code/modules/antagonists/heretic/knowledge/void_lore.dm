@@ -161,7 +161,7 @@
 	gain_text = "All is fleeting, but what else stays? I'm close to ending what was started. \
 		The Aristocrat reveals themselves to me again. They tell me I am late. Their pull is immense, I cannot turn back."
 	next_knowledge = list(
-		/datum/heretic_knowledge/ultimate/void_final,
+		///datum/heretic_knowledge/ultimate/void_final, //BUBBER EDIT: DISABLES VOID ASCENSION
 		/datum/heretic_knowledge/spell/cleave,
 		/datum/heretic_knowledge/summon/maid_in_mirror,
 	)
