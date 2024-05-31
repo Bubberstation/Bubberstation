@@ -39,6 +39,8 @@
 
 	var/minimum_candidate_base = 1
 
+	var/list/ruleset_lazy_templates
+
 /datum/round_event_control/antagonist/New()
 	. = ..()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -97,6 +99,7 @@
 /datum/round_event/antagonist/setup()
 	load_vars(control)
 	candidate_setup(control)
+	template_setup(control)
 
 /datum/round_event/antagonist/proc/load_vars(datum/round_event_control/antagonist/cast_control)
 	// Set up all the different variables on the round_event. God isn't it ugly
@@ -120,6 +123,10 @@
 
 	candidate.mind.special_role = antag_flag
 	candidate.mind.restricted_roles = restricted_roles
+
+/datum/round_event/antagonist/proc/template_setup(datum/round_event_control/antagonist/cast_control)
+	for(var/template in cast_control.ruleset_lazy_templates)
+		SSmapping.lazy_load_template(template)
 
 /datum/round_event/antagonist/solo/start()
 	for(var/datum/mind/antag_mind as anything in setup_minds)
