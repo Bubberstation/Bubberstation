@@ -9,6 +9,8 @@
 	max_occurrences = 1
 	earliest_start = 80 MINUTES
 
+	min_players = 50
+
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo)
 
 	alert_observers = TRUE
