@@ -1,14 +1,21 @@
 /datum/round_event_control/stray_cargo/changeling_zombie
-	name = "Stray Changeling Zombie Virus Pod"
 	typepath = /datum/round_event/stray_cargo/changeling_zombie
-	weight = 0
-	max_occurrences = 0
-	earliest_start = 60 MINUTES
-	description = "A pod containing a highly infectious (and broken) Changeling Zombie Virus reagent."
+
+	name = "Stray Changeling Zombie Virus Pod"
+	description = "Spawns a pod containing a highly infectious Changeling Zombie Virus reagent."
+	category = EVENT_CATEGORY_INVASION
+
+	weight = 3
+	max_occurrences = 1
+	earliest_start = 80 MINUTES
+
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo)
+
+	alert_observers = TRUE
 
 /datum/round_event/stray_cargo/changeling_zombie
 	possible_pack_types = list(/datum/supply_pack/misc/changeling_zombie)
+	fakeable = FALSE
 
 //The virus.
 /datum/supply_pack/misc/changeling_zombie
@@ -22,7 +29,6 @@
 	new /obj/item/reagent_containers/cup/glass/changeling_zombie_virus(src)
 	var/obj/item/reagent_containers/cup/glass/changeling_zombie_virus/empty/broken_one = new(src)
 	broken_one.smash(src.loc,null,FALSE,TRUE)
-
 
 //The cure.
 /obj/item/paper/fluff/shuttles/changeling_zombie_instructions
