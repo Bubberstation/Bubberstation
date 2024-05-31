@@ -32,7 +32,7 @@
 	/// Cooldown for the echolocation.
 	COOLDOWN_DECLARE(cooldown_last)
 
-/datum/component/echolocation/Initialize(echo_range, cooldown_time, image_expiry_time, fade_in_time, fade_out_time, images_are_static, blocking_trait, echo_group, echo_icon = "echo", color_path)
+/datum/component/echolocation/Initialize(echo_range, cooldown_time, image_expiry_time, fade_in_time, fade_out_time, images_are_static, blocking_trait, echo_group, echo_icon = "echo", color_path, use_echo = TRUE, show_own_outline = FALSE) // Bubber Edit)
 	. = ..()
 	var/mob/living/echolocator = parent
 	if(!istype(echolocator))
