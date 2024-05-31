@@ -11,6 +11,5 @@
 
 /datum/round_event_control/antagonist/solo/changeling/midround
 	name = "Genome Awakening (Changelings)"
-	prompted_picking = TRUE
 	roundstart = FALSE
 	weight = 6 // Outweight the other ghost roles slightly

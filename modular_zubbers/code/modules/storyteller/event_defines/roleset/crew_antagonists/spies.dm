@@ -10,6 +10,5 @@
 
 /datum/round_event_control/antagonist/solo/spy/midround
 	name = "Spies (Midround)"
-	prompted_picking = TRUE
 	roundstart = FALSE
 	weight = 7

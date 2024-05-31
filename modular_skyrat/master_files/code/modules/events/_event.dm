@@ -2,7 +2,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(intensity_restriction && !GLOB.intense_event_credits)
-		return FALSE */
+		return FALSE
 
 /datum/round_event_control/run_event(random = FALSE, announce_chance_override = null, admin_forced = FALSE, event_cause)
 	. = ..()
@@ -17,3 +17,4 @@
 	else
 		log_game("ICES: [src.name] does not need an intensity credit. Intensity credit count: [GLOB.intense_event_credits] credits")
 		message_admins("ICES: [src.name] does not need an intensity credit. Intensity credit count: [GLOB.intense_event_credits] credits")
+*/

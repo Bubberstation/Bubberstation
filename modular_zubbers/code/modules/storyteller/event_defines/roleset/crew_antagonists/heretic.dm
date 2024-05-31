@@ -18,6 +18,5 @@
 
 /datum/round_event_control/antagonist/solo/heretic/midround
 	name = "Midround Heretics"
-	prompted_picking = TRUE
 	roundstart = FALSE
 	weight = 6 // Outweight the other ghost roles slightly
