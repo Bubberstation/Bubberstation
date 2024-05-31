@@ -11,7 +11,7 @@
 
 	min_players = 30
 	max_occurrences = 1
-	weight = 1
+	weight = 3
 	earliest_start = 60 MINUTES
 
 /datum/round_event/wizard_dice
