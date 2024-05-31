@@ -724,6 +724,7 @@
 	user.update_icons()
 	user.model.update_dogborg()
 	user.model.update_tallborg()
+	user.model.update_quadunit() //BUBBER ADDITION
 
 	if(listeningTo == user)
 		return
