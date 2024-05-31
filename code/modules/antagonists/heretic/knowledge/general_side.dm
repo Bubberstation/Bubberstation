@@ -10,7 +10,7 @@
 		/obj/item/book = 1,
 		/obj/item/clothing/under = 1,
 	)
-	cost = 1
+	cost = 0 // BUBBER EDIT
 	route = PATH_SIDE
 
 /datum/heretic_knowledge/reroll_targets/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
