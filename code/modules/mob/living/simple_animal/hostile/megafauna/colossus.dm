@@ -123,7 +123,12 @@
 			shotgun_blast.Trigger(target = target)
 		else
 			dir_shots.Trigger(target = target)
-
+// BUBBER EDIT START - ACTUALLY LOOSE THE TARGET
+	var/mob/living/living_target = target
+	if(!istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
+		LoseTarget()
+		return
+// BUBBER EDIT END
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/telegraph()
 	for(var/mob/viewer as anything in viewers(10, src))
 		if(viewer.client)
@@ -166,7 +171,9 @@
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
 	light_system = OVERLAY_LIGHT
-	light_range = 2
+	light_range = 2.5
+	light_power = 1.2
+	light_color = "#ffff66"
 	duration = 8
 	var/target
 
@@ -193,14 +200,18 @@
 
 /obj/projectile/colossus/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-/** Bubber edit: No more dusting
 	if(isliving(target))
 		var/mob/living/dust_mob = target
-		if(dust_mob.stat == DEAD)
-			dust_mob.investigate_log("has been dusted by a death bolt (colossus).", INVESTIGATE_DEATHS)
-			dust_mob.dust()
+// BUBBER EDIT START - Guts the fucker instead of dusting them
+		if(dust_mob.stat == DEAD && !dust_mob.has_status_effect(/datum/status_effect/gutted))
+			if(iscarbon(dust_mob))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LUNGS))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_HEART))
+				qdel(dust_mob.get_organ_slot(ORGAN_SLOT_LIVER))
+			dust_mob.adjustBruteLoss(500)
+			dust_mob.apply_status_effect(/datum/status_effect/gutted)
 		return
-*/
+// BUBBER EDIT END
 	if(!explode_hit_objects || istype(target, /obj/vehicle/sealed))
 		return
 	if(isturf(target) || isobj(target))
@@ -294,6 +305,7 @@
 		charge_animation()
 	COOLDOWN_START(src, cooldown_timer, cooldown_add)
 	playsound(user, activation_sound, 100, TRUE)
+	log_game("[src] activated by [key_name(user)] in [AREACOORD(src)]. The last fingerprints on the [src] was [fingerprintslast].")
 	return TRUE
 
 /obj/machinery/anomalous_crystal/proc/charge_animation()
@@ -317,9 +329,9 @@
 	ActivationReaction(null, ACTIVATE_BOMB)
 	return TRUE
 
-/obj/machinery/anomalous_crystal/honk //Strips and equips you as a clown. I apologize for nothing
-	observer_desc = "This crystal strips and equips its targets as clowns."
-	possible_methods = list(ACTIVATE_MOB_BUMP, ACTIVATE_SPEECH)
+/obj/machinery/anomalous_crystal/honk //Revives the dead, but strips and equips them as a clown
+	observer_desc = "This crystal revives targets around it as clowns. Oh, that's horrible...."
+	activation_method = ACTIVATE_TOUCH
 	activation_sound = 'sound/items/bikehorn.ogg'
 	use_time = 3 SECONDS
 	/// List of REFs to mobs that have been turned into a clown
@@ -330,19 +342,30 @@
 	if(!.)
 		return FALSE
 
-	if(!ishuman(user))
-		return FALSE
-	if(!(user in viewers(src)))
-		return FALSE
-	var/clown_ref = REF(user)
-	if(clown_ref in clowned_mob_refs)
-		return FALSE
+	for(var/atom/thing as anything in range(1, src))
+		if(isturf(thing))
+			new /obj/effect/decal/cleanable/confetti(thing)
+			continue
 
-	var/mob/living/carbon/human/new_clown = user
-	for(var/obj/item/to_strip in new_clown.get_equipped_items())
-		new_clown.dropItemToGround(to_strip)
-	new_clown.dress_up_as_job(SSjob.GetJobType(/datum/job/clown))
-	clowned_mob_refs += clown_ref
+		if(!ishuman(thing))
+			continue
+
+		var/mob/living/carbon/human/new_clown = thing
+
+		if(new_clown.stat != DEAD)
+			continue
+
+		new_clown.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)
+
+		var/clown_ref = REF(new_clown)
+		if(clown_ref in clowned_mob_refs) //one clowning per person
+			continue
+
+		for(var/obj/item/to_strip in new_clown.get_equipped_items())
+			new_clown.dropItemToGround(to_strip)
+		new_clown.dress_up_as_job(SSjob.GetJobType(/datum/job/clown))
+		clowned_mob_refs += clown_ref
+
 	return TRUE
 
 /// Transforms the area to look like a new one
@@ -402,21 +425,28 @@
 /obj/machinery/anomalous_crystal/dark_reprise/ActivationReaction(mob/user, method)
 	. = ..()
 	if(!.)
-		return
+		return FALSE
+
 	for(var/atom/thing as anything in range(1, src))
 		if(isturf(thing))
 			new /obj/effect/temp_visual/cult/sparks(thing)
 			continue
 
-		if(ishuman(thing))
-			var/mob/living/carbon/human/to_revive = thing
-			if(to_revive.stat != DEAD)
-				continue
-			to_revive.set_species(/datum/species/shadow, TRUE)
-			to_revive.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)
-			//Free revives, but significantly limits your options for reviving except via the crystal
-			//except JK who cares about BADDNA anymore. this even heals suicides.
-			ADD_TRAIT(to_revive, TRAIT_BADDNA, MAGIC_TRAIT)
+		if(!ishuman(thing))
+			continue
+
+		var/mob/living/carbon/human/to_revive = thing
+
+		if(to_revive.stat != DEAD)
+			continue
+
+		to_revive.set_species(/datum/species/shadow, TRUE)
+		to_revive.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)
+		//Free revives, but significantly limits your options for reviving except via the crystal
+		//except JK who cares about BADDNA anymore. this even heals suicides.
+		ADD_TRAIT(to_revive, TRAIT_BADDNA, MAGIC_TRAIT)
+
+	return TRUE
 
 /obj/machinery/anomalous_crystal/helpers //Lets ghost spawn as helpful creatures that can only heal people slightly. Incredibly fragile and they can't converse with humans
 	observer_desc = "This crystal allows ghosts to turn into a fragile creature that can heal people."
@@ -498,6 +528,7 @@
 	if(isanimal_or_basicmob(loc))
 		holder_animal = loc
 		RegisterSignal(holder_animal, COMSIG_LIVING_DEATH, PROC_REF(on_holder_animal_death))
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/structure/closet/stasis/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -525,9 +556,6 @@
 			holder_animal.gib(DROP_ALL_REMAINS)
 			return ..()
 	return ..()
-
-/obj/structure/closet/stasis/emp_act()
-	return
 
 /obj/structure/closet/stasis/ex_act()
 	return FALSE

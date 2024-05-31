@@ -30,7 +30,7 @@
 /datum/loadout_item/pocket_items/nif_disk_med
 	name = "Medical Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/med_hud
-	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_VIROLOGIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
 /datum/loadout_item/pocket_items/nif_disk_diag
 	name = "Diagnostic Scrying Lens Disk"
@@ -50,7 +50,7 @@
 /datum/loadout_item/pocket_items/nif_disk_sci
 	name = "Science Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/sci_hud
-	restricted_roles = list(JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST, JOB_RESEARCH_DIRECTOR, JOB_CHEMIST, JOB_SCIENCE_GUARD, JOB_VIROLOGIST)
+	restricted_roles = list(JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST, JOB_RESEARCH_DIRECTOR, JOB_CHEMIST, JOB_SCIENCE_GUARD)
 
 /datum/loadout_item/pocket_items/nif_disk_meson
 	name = "Meson Scrying Lens Disk"

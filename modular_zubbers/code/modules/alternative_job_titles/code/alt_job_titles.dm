@@ -8,3 +8,4 @@
 	)
 /datum/job/assistant/New()
 	alt_titles += list("Butler")
+	. = ..()

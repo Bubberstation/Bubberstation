@@ -1,7 +1,21 @@
-/mob/living/brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterpoof = null, message_range = 7, datum/saymode/saymode = null)
+/mob/living/brain/say(
+	message,
+	bubble_type,
+	list/spans = list(),
+	sanitize = TRUE,
+	datum/language/language,
+	ignore_spam = FALSE,
+	forced,
+	filterproof = FALSE,
+	message_range = 7,
+	datum/saymode/saymode,
+	list/message_mods = list(),
+)
+	if(prob(emp_damage * 4))
+		if(prob(10)) //10% chance to drop the message entirely
+			return
+		message = Gibberish(message, emp_damage >= 12)//scrambles the message, gets worse when emp_damage is higher
 	// BUBBER CHANGE: funny talking head
-	if(stat == DEAD) // lets you talk in deadchat
-		return ..()
 	var/datum/antagonist/bloodsucker/spooky_vampire_head = mind?.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!container && spooky_vampire_head)
 		var/obj/head = spooky_vampire_head.is_head(src)
@@ -11,16 +25,11 @@
 		head.Shake(duration = animation_time)
 		..()
 	// BUBBER CHANGE END
-	if(!(container && istype(container, /obj/item/mmi)))
-		return //No MMI, can't speak, bucko./N
-	else
-		if(prob(emp_damage*4))
-			if(prob(10))//10% chane to drop the message entirely
-				return
-			else
-				message = Gibberish(message, emp_damage >= 12)//scrambles the message, gets worse when emp_damage is higher
 
-		..()
+	return ..()
+
+/mob/living/brain/can_speak(allow_mimes)
+	return istype(container, /obj/item/mmi) && ..()
 
 /mob/living/brain/radio(message, list/message_mods = list(), list/spans, language)
 	if(message_mods[MODE_HEADSET] && istype(container, /obj/item/mmi))

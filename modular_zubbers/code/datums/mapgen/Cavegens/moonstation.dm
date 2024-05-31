@@ -34,7 +34,7 @@
 //Underground
 /datum/map_generator/cave_generator/moonstation/cave
 
-	weighted_open_turf_types = list(/turf/open/misc/moonstation_rock/cave = 1)
+	weighted_open_turf_types = list(/turf/open/misc/moonstation_rock = 1)
 	weighted_closed_turf_types = list(/turf/closed/mineral/random/lunar_cave = 1)
 
 
@@ -47,8 +47,7 @@
 		/mob/living/basic/mining/watcher = 30,
 		/mob/living/basic/mining/goldgrub = 10,
 		/mob/living/basic/mining/brimdemon = 10,
-		/obj/structure/spawner/mining/goliath = 5,
-		/mob/living/basic/spider/giant/tangle = 5
+		/obj/structure/spawner/mining/goliath = 5
 	)
 
 	weighted_flora_spawn_list = list(

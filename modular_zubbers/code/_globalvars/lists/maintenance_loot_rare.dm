@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/survivalcapsule = 100,
 		/obj/item/survivalcapsule/luxury = 10,
 		/obj/item/survivalcapsule/luxuryelite = 5,
+		/obj/item/survivalcapsule/sauna = 5,
 		/obj/item/survivalcapsule/bathroom = 1
 	) = 25,
 	/obj/item/table_clock = 50,

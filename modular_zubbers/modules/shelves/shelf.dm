@@ -48,7 +48,7 @@
 			. += "	[icon2html(crate, user)] [crate]"
 
 /obj/structure/cargo_shelf/attackby(obj/item/item, mob/living/user, params)
-	if (item.tool_behaviour == TOOL_WRENCH && !(flags_1 & NO_DECONSTRUCTION))
+	if (item.tool_behaviour == TOOL_WRENCH && !(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		item.play_tool_sound(src)
 		if(do_after(user, 3 SECONDS, target = src))
 			deconstruct(TRUE)
@@ -113,7 +113,7 @@
 		return TRUE
 	return FALSE  // If the do_after() is interrupted, return FALSE!
 
-/obj/structure/cargo_shelf/deconstruct(disassembled = TRUE)
+/obj/structure/cargo_shelf/atom_deconstruct(disassembled = TRUE)
 	var/turf/dump_turf = drop_location()
 	for(var/obj/structure/closet/crate/crate in shelf_contents)
 		crate.layer = initial(crate.layer) // Reset the crates back to default visual state
@@ -133,7 +133,7 @@
 				crate.visible_message(span_warning("[crate] falls apart!"))
 				crate.deconstruct()
 		shelf_contents[shelf_contents.Find(crate)] = null
-	if(!(flags_1 & NO_DECONSTRUCTION))
+	if(!(flags_1 & NO_DEBRIS_AFTER_DECONSTRUCTION))
 		density = FALSE
 		var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
 		transfer_fingerprints_to(newparts)
@@ -176,11 +176,10 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/cargo_shelf/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		set_density(FALSE)
-		var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
-		transfer_fingerprints_to(newparts)
+/obj/structure/cargo_shelf/atom_deconstruct(disassembled = TRUE)
+	set_density(FALSE)
+	var/obj/item/rack_parts/cargo_shelf/newparts = new(loc)
+	transfer_fingerprints_to(newparts)
 	qdel(src)
 
 /obj/item/rack_parts/gun
@@ -202,11 +201,10 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/rack/gunrack/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		set_density(FALSE)
-		var/obj/item/rack_parts/gun/newparts = new(loc)
-		transfer_fingerprints_to(newparts)
+/obj/structure/rack/gunrack/atom_deconstruct(disassembled = TRUE)
+	set_density(FALSE)
+	var/obj/item/rack_parts/gun/newparts = new(loc)
+	transfer_fingerprints_to(newparts)
 	qdel(src)
 
 /obj/item/rack_parts/shelf
@@ -228,9 +226,8 @@
 		qdel(src)
 	building = FALSE
 
-/obj/structure/rack/shelf/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
-		set_density(FALSE)
-		var/obj/item/rack_parts/shelf/newparts = new(loc)
-		transfer_fingerprints_to(newparts)
+/obj/structure/rack/shelf/atom_deconstruct(disassembled = TRUE)
+	set_density(FALSE)
+	var/obj/item/rack_parts/shelf/newparts = new(loc)
+	transfer_fingerprints_to(newparts)
 	qdel(src)

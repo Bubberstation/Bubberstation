@@ -55,3 +55,11 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/modules/emotes/sound/voice/foxgecker.ogg'
+
+/datum/emote/living/mar //all shadekin players will love me
+	key = "mar"
+	key_third_person = "lets out a mar!"
+	message = "lets out a mar!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/sound/emotes/sound_voice_mar.ogg' // Credit to vorestation

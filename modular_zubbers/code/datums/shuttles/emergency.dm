@@ -27,7 +27,7 @@
 	occupancy_limit = "5"
 	emag_only = TRUE
 	credit_cost = 4988
-	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 
 /datum/map_template/shuttle/emergency/lance/New()
 	. = ..()

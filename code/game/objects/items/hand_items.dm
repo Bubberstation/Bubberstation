@@ -41,7 +41,7 @@
 
 	if(!istype(sucker) || !in_range(owner, sucker))
 		return
-	addtimer(CALLBACK(src, PROC_REF(waitASecond), owner, sucker), 4)
+	addtimer(CALLBACK(src, PROC_REF(waitASecond), owner, sucker), 0.4 SECONDS)
 
 /// Stage 2: Fear sets in
 /obj/item/hand_item/circlegame/proc/waitASecond(mob/living/owner, mob/living/sucker)
@@ -50,10 +50,10 @@
 
 	if(owner == sucker) // big mood
 		to_chat(owner, span_danger("Wait a second... you just looked at your own [src.name]!"))
-		addtimer(CALLBACK(src, PROC_REF(selfGottem), owner), 10)
+		addtimer(CALLBACK(src, PROC_REF(selfGottem), owner), 1 SECONDS)
 	else
 		to_chat(sucker, span_danger("Wait a second... was that a-"))
-		addtimer(CALLBACK(src, PROC_REF(GOTTEM), owner, sucker), 6)
+		addtimer(CALLBACK(src, PROC_REF(GOTTEM), owner, sucker), 0.6 SECONDS)
 
 /// Stage 3A: We face our own failures
 /obj/item/hand_item/circlegame/proc/selfGottem(mob/living/owner)
@@ -303,6 +303,20 @@
 
 	table_smacks_left--
 	if(table_smacks_left <= 0)
+		//BUBBER ADDITION BEGIN - Potentially break glass tables - This introduces a potential check to break a glass table
+		if(table.type == /obj/structure/table/glass) /// Glass table... roll that dice, dice man
+			if(prob(!HAS_TRAIT(user, TRAIT_CURSED) ? 15 : 30)) /// 15% chance (or double for cursed folk)
+				var/obj/item/bodypart/arm/active_arm = user.get_active_hand()
+				var/extra_wound = 0
+				if(HAS_TRAIT(user, TRAIT_HULK))
+					extra_wound = 20
+				user.visible_message(span_danger("[user.name] slams their hand through \the [table]!"),
+					span_userdanger("You smash your hand through \the [table]!"), span_hear("You hear a loud crash of broken glass!"), COMBAT_MESSAGE_RANGE, user)
+				active_arm?.receive_damage(brute = 10, wound_bonus = extra_wound)
+				user.apply_damage(30, STAMINA)
+				table.deconstruct(FALSE)
+				log_combat(user, user, "hand slammed", null, "through [table]")
+		//BUBBER ADDITION END
 		qdel(src)
 
 /// Slam the table, demand some attention
@@ -491,7 +505,7 @@
 	blown_kiss.original = target
 	blown_kiss.fired_from = user
 	blown_kiss.firer = user // don't hit ourself that would be really annoying
-	blown_kiss.impacted = list(user = TRUE) // just to make sure we don't hit the wearer
+	blown_kiss.impacted = list(WEAKREF(user) = TRUE) // just to make sure we don't hit the wearer
 	blown_kiss.preparePixelProjectile(target, user)
 	blown_kiss.fire()
 	qdel(src)
@@ -517,7 +531,7 @@
 	blown_kiss.original = taker
 	blown_kiss.fired_from = offerer
 	blown_kiss.firer = offerer // don't hit ourself that would be really annoying
-	blown_kiss.impacted = list(offerer = TRUE) // just to make sure we don't hit the wearer
+	blown_kiss.impacted = list(WEAKREF(offerer) = TRUE) // just to make sure we don't hit the wearer
 	blown_kiss.preparePixelProjectile(taker, offerer)
 	blown_kiss.suppressed = SUPPRESSED_VERY // this also means it's a direct offer
 	blown_kiss.fire()

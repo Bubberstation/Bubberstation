@@ -88,28 +88,25 @@ export const CrewConsoleBubbers = () => {
   );
 };
 
-const CrewTable = (props, context) => {
-  const { act, data } = useBackend(context);
-  const sensors = sortBy((s) =>
-    s.brutedam + s.burndam + s.toxdam + s.oxydam > 50
-      ? -(s.brutedam + s.burndam + s.toxdam + s.oxydam)
-      : s.ijob,
-  )(data.sensors ?? []);
+const CrewTable = (props) => {
+  const { act, data } = useBackend();
+  const sensors = sortBy(data.sensors ?? [], (s) => s.ijob);
   return (
-    <Table cellpadding="3">
+    <Table>
       <Table.Row>
-        <Table.Cell bold colspan="2">
-          Name
-        </Table.Cell>
-        <Table.Cell bold collapsing textAlign="center">
-          Status
-        </Table.Cell>
+        <Table.Cell bold>Name</Table.Cell>
+        <Table.Cell bold collapsing />
         <Table.Cell bold collapsing textAlign="center">
           Vitals
         </Table.Cell>
-        <Table.Cell bold width="180px" collapsing textAlign="center">
+        <Table.Cell bold textAlign="center">
           Position
         </Table.Cell>
+        {!!data.link_allowed && (
+          <Table.Cell bold collapsing textAlign="center">
+            Tracking
+          </Table.Cell>
+        )}
       </Table.Row>
       {sensors.map((sensor) => (
         <CrewTableEntry sensor_data={sensor} key={sensor.ref} />

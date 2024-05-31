@@ -165,3 +165,18 @@
 	name = "Deathhawk"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 	icon_state = "hair_deathhawk"
+
+/datum/sprite_accessory/hair/bedheadhline
+	name = "Bedhead (+hairline)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_bedheadhline"
+
+/datum/sprite_accessory/hair/spicyalt
+	name = "Spicy (Alt)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_spicyalt"
+
+/datum/sprite_accessory/hair/honse
+	name = "Honse"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_honse"
