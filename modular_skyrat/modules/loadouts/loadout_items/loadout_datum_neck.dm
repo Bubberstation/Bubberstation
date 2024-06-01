@@ -138,10 +138,6 @@ GLOBAL_LIST_INIT(loadout_necks, generate_loadout_items(/datum/loadout_item/neck)
 	name = "Collar"
 	item_path = /obj/item/clothing/neck/human_petcollar
 
-/datum/loadout_item/neck/ringbell
-	name = "Ringing Bell Collar"
-	item_path = /obj/item/clothing/neck/human_petcollar/locked/ringbell
-
 /datum/loadout_item/neck/leathercollar
 	name = "Leather Collar"
 	item_path = /obj/item/clothing/neck/human_petcollar/leather
