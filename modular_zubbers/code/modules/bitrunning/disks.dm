@@ -28,8 +28,8 @@
 
 	var/list/prefdata_names = user.client.prefs?.create_character_profiles()
 
-	var/warning = tgui_alert(user, message = "This feature is experimental and messing with prefs. I suggest you save your prefs externally via the OOC tab. Proceed anyway?", title = "BEWARE", buttons = list("Yes", "No"))
-	if(isnull(warning) || warning == "No")
+	var/response = tgui_alert(user, message = "Change selected prefs?", title = "Prefchange", buttons = list("Yes", "No"))
+	if(isnull(response) || response == "No")
 		return
 	var/choice = tgui_input_list(user, message = "Select a character",  title = "Character selection", items = prefdata_names)
 	if(isnull(choice) || !user.is_holding(src))
