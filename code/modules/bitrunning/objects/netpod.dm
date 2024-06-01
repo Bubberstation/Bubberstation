@@ -318,10 +318,10 @@
 		// BUBBER EDIT BEGIN - PREFS!
 		var/datum/preferences/pref
 		var/load_loadout = FALSE
-		for(var/obj/item/bitrunning_disk/prefs/prefdisk in neo.get_contents())
+		var/obj/item/bitrunning_disk/prefs/prefdisk = locate() in neo.get_contents())
+		if(prefdisk)
 			load_loadout = prefdisk.include_loadout
 			pref = prefdisk.loaded_preference
-			break
 		current_avatar = server.generate_avatar(wayout, netsuit, pref, include_loadout = load_loadout)  // Added the prefs argument
 		// BUBBER EDIT END
 		avatar_ref = WEAKREF(current_avatar)
