@@ -27,6 +27,8 @@
 	. = ..()
 
 	var/list/prefdata_names = user.client.prefs?.create_character_profiles()
+	if(isnull(prefdata_names))
+		return
 
 	var/response = tgui_alert(user, message = "Change selected prefs?", title = "Prefchange", buttons = list("Yes", "No"))
 	if(isnull(response) || response == "No")
