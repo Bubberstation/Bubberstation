@@ -1,9 +1,8 @@
 // Sponsored by Zubberstation, ported from Nova Sector
 import {
   CheckboxInput,
+  createDropdownInput,
   Feature,
-  FeatureChoiced,
-  FeatureDropdownInput,
   FeatureShortTextInput,
   FeatureToggle,
 } from '../../base';
@@ -15,9 +14,24 @@ export const entombed_deploy_lock: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const entombed_skin: FeatureChoiced = {
+export const entombed_skin: Feature<Number> = {
   name: 'MODsuit Skin',
-  component: FeatureDropdownInput,
+
+  component: createDropdownInput({
+    0: 'Standard',
+    1: 'Civilian',
+    2: 'Advanced',
+    3: 'Atmospheric',
+    4: 'Corpsman',
+    5: 'Cosmohonk',
+    6: 'Engineering',
+    7: 'Loader',
+    8: 'Interdyne',
+    9: 'Medical',
+    10: 'Mining',
+    11: 'Prototype',
+    12: 'Security',
+  }),
 };
 
 export const entombed_mod_name: Feature<string> = {
