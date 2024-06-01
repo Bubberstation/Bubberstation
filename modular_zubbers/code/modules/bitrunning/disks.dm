@@ -27,6 +27,8 @@
 	. = ..()
 
 	var/list/prefdata_names = user.client.prefs?.create_character_profiles()
+	if(isnull(prefdata_names))
+		return
 
 	var/warning = tgui_alert(user, message = "This feature is experimental and messing with prefs. I suggest you save your prefs externally via the OOC tab. Proceed anyway?", title = "BEWARE", buttons = list("Yes", "No"))
 	if(isnull(warning) || warning == "No")
