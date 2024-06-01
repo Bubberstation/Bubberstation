@@ -319,8 +319,8 @@
 		var/datum/preferences/pref
 		for(var/obj/item/bitrunning_disk/prefs/prefdisk in neo.get_contents())
 			pref = prefdisk.loaded_preference
-			current_avatar = server.generate_avatar(wayout, netsuit, pref, include_loadout = prefdisk.include_loadout)  // Added the prefs argument
 			break
+		current_avatar = server.generate_avatar(wayout, netsuit, pref, include_loadout = prefdisk.include_loadout)  // Added the prefs argument
 		// BUBBER EDIT END
 		avatar_ref = WEAKREF(current_avatar)
 		server.stock_gear(current_avatar, neo, generated_domain)
