@@ -755,6 +755,9 @@
 /obj/effect/spawner/random/trash/graffiti,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/official/work_for_a_future/directional/west,
+/obj/item/bedsheet/clown{
+	dir = 4
+	},
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
 "eW" = (
@@ -1017,7 +1020,7 @@
 /turf/open/floor/iron/white,
 /area/mine/laborcamp/production)
 "gm" = (
-/obj/structure/bookcase,
+/obj/machinery/vending/dorms/prison,
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
 "gn" = (
@@ -1835,8 +1838,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/light/small/directional/west,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/west,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp)
 "kt" = (
@@ -2104,9 +2107,9 @@
 	name = "Labor Camp Lockdown";
 	req_access = list("brig")
 	},
-/obj/machinery/light/small/directional/west,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/light/directional/west,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp)
 "ly" = (
@@ -2643,11 +2646,8 @@
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp/security)
 "nq" = (
-/obj/structure/falsewall,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor/pod/dark,
-/area/mine/laborcamp)
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/laborcamp/quarters)
 "nv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -2871,6 +2871,7 @@
 	},
 /obj/item/cigbutt,
 /obj/structure/cable,
+/obj/item/bedsheet/clown,
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
 "oJ" = (
@@ -2905,6 +2906,7 @@
 /obj/structure/sign/poster/contraband/random/directional/south,
 /obj/structure/sign/poster/contraband/random/directional/west,
 /obj/structure/cable,
+/obj/machinery/light/directional/west,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp)
 "oV" = (
@@ -3237,6 +3239,7 @@
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/official/work_for_a_future/directional/east,
+/obj/item/bedsheet/clown,
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
 "qx" = (
@@ -3542,7 +3545,7 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/sign/departments/medbay/alt/directional/north,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp/production)
 "sH" = (
@@ -3719,7 +3722,6 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "tG" = (
-/obj/machinery/light/small/directional/west,
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/mine/laborcamp/security/maintenance)
@@ -4235,6 +4237,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/machinery/light/directional/north,
 /turf/open/floor/plating,
 /area/mine/laborcamp/security/maintenance)
 "wB" = (
@@ -4522,6 +4525,9 @@
 /obj/machinery/camera/autoname/directional/west{
 	network = list("labor")
 	},
+/obj/item/bedsheet/clown{
+	dir = 4
+	},
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
 "yG" = (
@@ -4634,6 +4640,7 @@
 /area/mine/laborcamp/security/maintenance)
 "zi" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/dim/directional/north,
 /turf/open/floor/plating,
 /area/mine/laborcamp/security/maintenance)
 "zk" = (
@@ -6796,6 +6803,9 @@
 	},
 /turf/open/floor/pod/light,
 /area/mine/lounge)
+"Mq" = (
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/lounge)
 "Mr" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -6851,8 +6861,8 @@
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp)
 "My" = (
-/obj/machinery/light/small/directional/east,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/directional/east,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp)
 "MD" = (
@@ -27044,7 +27054,7 @@ Ge
 Ge
 Ge
 fm
-Ge
+nq
 Ge
 pU
 mK
@@ -29096,7 +29106,7 @@ BH
 XW
 Sr
 AC
-nq
+AC
 oT
 Zt
 rF
@@ -43751,7 +43761,7 @@ aj
 oq
 Zq
 bL
-Zq
+Mq
 dk
 aj
 aj
