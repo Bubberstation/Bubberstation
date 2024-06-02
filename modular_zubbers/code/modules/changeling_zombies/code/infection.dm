@@ -47,12 +47,16 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	COOLDOWN_DECLARE(transformation_grace_period)
 
+	var/infection_timestamp = 0
+
 /datum/component/changeling_zombie_infection/Initialize()
 
 	. = ..()
 
 	if(!can_become_changeling_zombie(parent))
 		return COMPONENT_INCOMPATIBLE
+
+	infection_timestamp = world.time
 
 	START_PROCESSING(SSobj, src)
 
@@ -121,19 +125,26 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	else
 		var/current_toxin_damage = host.getToxLoss()
-		if(can_cure && current_toxin_damage <= 0)
+		if(can_cure && current_toxin_damage <= 5) //Not exactly 0 just in case there are race conditions with healing.
 			qdel(src) //Cured!
 		else if(COOLDOWN_FINISHED(src,transformation_grace_period))
 			if(current_toxin_damage >= 200 && host.stat == DEAD)
 				make_zombie()
 				can_cure = FALSE
 			else
-				if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
-					can_cure = TRUE
-				if(host.stat == DEAD)
-					host.adjustToxLoss(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick)
+				var/damage_multiplier = max(1, (world.time - infection_timestamp) / (1 MINUTES) )
+				if(host.stat && host.stat == DEAD)
+					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick * damage_multiplier,0.1))
 				else
-					host.adjustToxLoss(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick)
+					if(!can_cure && current_toxin_damage >= rand(80,120)) // about 100 toxins to cure,
+						can_cure = TRUE
+						host.visible_message(
+							span_danger("[host]'s flesh hardens and shifts around; now would be a good time to cure them!"),
+							span_userdanger("Your flesh shifts and bubbles... this can't be good."),
+							span_hear("You hear flesh growing!"),
+							COMBAT_MESSAGE_RANGE
+						)
+					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick * damage_multiplier,0.1))
 				if(SPT_PROB(4, seconds_per_tick))
 					if(current_toxin_damage > 50)
 						var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
