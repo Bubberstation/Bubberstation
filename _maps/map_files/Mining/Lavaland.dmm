@@ -2695,6 +2695,15 @@
 /obj/machinery/mining_weather_monitor/directional/south,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp/security)
+"nz" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/turf/open/floor/pod/dark,
+/area/mine/production)
 "nA" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/ore_box,
@@ -3078,15 +3087,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp/security)
-"pA" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
-	},
-/turf/open/floor/pod/dark,
-/area/mine/production)
 "pB" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -4007,6 +4007,20 @@
 	name = "Power Wing Shutters"
 	},
 /obj/effect/spawner/random/trash/hobo_squat,
+/obj/item/clothing/mask/cigarette/pipe/crackpipe{
+	pixel_y = 0;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/crack{
+	pixel_y = -8
+	},
+/obj/effect/spawner/random/special_lighter{
+	pixel_y = -12;
+	pixel_x = 14
+	},
+/obj/structure/sign/warning/no_smoking{
+	pixel_y = 30
+	},
 /turf/open/floor/pod/light,
 /area/mine/maintenance/service)
 "vh" = (
@@ -5940,7 +5954,9 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
-/obj/machinery/ntnet_relay,
+/obj/machinery/ntnet_relay{
+	use_power = 1
+	},
 /turf/open/floor/circuit,
 /area/mine/maintenance/service/comms)
 "HB" = (
@@ -7559,12 +7575,6 @@
 /obj/structure/cable,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"QB" = (
-/obj/structure/cable,
-/obj/item/clothing/mask/cigarette/pipe/crackpipe,
-/obj/item/reagent_containers/crack,
-/turf/open/floor/pod/light,
-/area/mine/maintenance/service)
 "QD" = (
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/turf_decal/sand/plating/volcanic,
@@ -38411,7 +38421,7 @@ pU
 Qz
 ON
 vg
-QB
+fi
 fi
 Fv
 GM
@@ -48448,7 +48458,7 @@ NU
 NU
 NU
 Wa
-pA
+nz
 Xj
 QT
 NG
