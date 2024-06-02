@@ -144,12 +144,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/pod/light,
 /area/mine/maintenance/service)
-"aX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/pod/dark,
-/area/space)
 "bb" = (
 /obj/structure/closet/crate/internals,
 /obj/item/tank/internals/emergency_oxygen,
@@ -187,9 +181,8 @@
 /turf/open/floor/pod/light,
 /area/mine/maintenance/service)
 "bu" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/production)
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/laborcamp/quarters)
 "bw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -528,7 +521,6 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dk" = (
-/obj/machinery/porta_turret/aux_base,
 /turf/closed/wall,
 /area/mine/lounge)
 "dq" = (
@@ -644,14 +636,6 @@
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"dX" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "MiningShuttersF"
-	},
-/obj/effect/spawner/structure/electrified_grille,
-/obj/effect/spawner/structure/window/survival_pod,
-/turf/open/floor/pod/dark,
-/area/space)
 "ee" = (
 /obj/machinery/shower/directional/south,
 /obj/machinery/door/window/right/directional/south,
@@ -726,9 +710,11 @@
 /turf/open/floor/pod/light,
 /area/mine/cafeteria)
 "eF" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/maintenance/living/north)
+/obj/machinery/porta_turret/aux_base{
+	use_power = 0
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "eH" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
@@ -1085,15 +1071,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
-"gt" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "MiningShuttersF";
-	dir = 1
-	},
-/obj/effect/spawner/structure/electrified_grille,
-/obj/effect/spawner/structure/window/survival_pod,
-/turf/open/floor/pod/dark,
-/area/space)
 "gx" = (
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1808,9 +1785,13 @@
 /turf/open/floor/pod/dark,
 /area/mine/cafeteria)
 "jT" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/laborcamp/production)
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "MiningShuttersF"
+	},
+/obj/effect/spawner/structure/electrified_grille,
+/obj/effect/spawner/structure/window/survival_pod,
+/turf/open/floor/pod/dark,
+/area/space)
 "jU" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -2669,9 +2650,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp/security)
-"nq" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
-/area/mine/lounge)
 "nv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -2834,9 +2812,8 @@
 /turf/open/floor/pod/dark,
 /area/mine/production)
 "oq" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/lounge)
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/medical)
 "or" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -3674,14 +3651,6 @@
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"tn" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "MiningShuttersF"
-	},
-/obj/effect/spawner/structure/electrified_grille,
-/obj/effect/spawner/structure/window/survival_pod,
-/turf/open/floor/pod/dark,
-/area/mine/laborcamp/production)
 "to" = (
 /obj/structure/railing/wooden_fencing{
 	dir = 1
@@ -3768,8 +3737,10 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "tL" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
-/area/mine/laborcamp/quarters)
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/pod/dark,
+/area/mine/laborcamp/production)
 "tM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -3843,11 +3814,6 @@
 /obj/item/crowbar/large/emergency,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"un" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor/pod/dark,
-/area/mine/laborcamp/production)
 "uq" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -3902,9 +3868,14 @@
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "uF" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall,
-/area/mine/maintenance/living/north)
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "MiningShuttersF";
+	dir = 1
+	},
+/obj/effect/spawner/structure/electrified_grille,
+/obj/effect/spawner/structure/window/survival_pod,
+/turf/open/floor/pod/dark,
+/area/space)
 "uI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4785,9 +4756,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance/departmental,
 /turf/open/floor/pod/light,
 /area/mine/maintenance/service)
-"zN" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
-/area/mine/hydroponics)
 "zO" = (
 /obj/structure/railing{
 	dir = 8
@@ -5046,13 +5014,12 @@
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
 "BR" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/structure/grille,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "MiningShuttersB"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/survival_pod,
 /turf/open/floor/pod/dark,
 /area/mine/maintenance/service/comms)
 "BS" = (
@@ -5473,9 +5440,11 @@
 /turf/open/misc/grass,
 /area/mine/lounge)
 "ED" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/cafeteria)
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/space)
 "EE" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -5934,6 +5903,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/machinery/ntnet_relay,
 /turf/open/floor/pod/dark,
 /area/mine/maintenance/service/comms)
 "HB" = (
@@ -6569,9 +6539,13 @@
 /turf/closed/wall/mineral/titanium/survival/nodiagonal,
 /area/mine/storage)
 "KR" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/maintenance/service/disposals)
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "MiningShuttersF"
+	},
+/obj/effect/spawner/structure/electrified_grille,
+/obj/effect/spawner/structure/window/survival_pod,
+/turf/open/floor/pod/dark,
+/area/mine/laborcamp/production)
 "KV" = (
 /obj/structure/table,
 /obj/machinery/light/directional/east,
@@ -6978,9 +6952,8 @@
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp)
 "Nb" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/maintenance/service)
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/lounge)
 "Nc" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -7098,9 +7071,12 @@
 /turf/open/floor/pod/dark,
 /area/mine/production)
 "NI" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall,
-/area/mine/maintenance/service)
+/obj/structure/lattice/catwalk/mining,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "NL" = (
 /obj/structure/railing,
 /obj/structure/lattice/catwalk/mining,
@@ -7237,9 +7213,8 @@
 /turf/open/floor/pod/light,
 /area/mine/laborcamp/quarters)
 "Ou" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall,
-/area/mine/living_quarters)
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/hydroponics)
 "Ox" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 5
@@ -8045,9 +8020,6 @@
 /obj/effect/turf_decal/tile/brown/fourcorners,
 /turf/open/floor/pod/dark,
 /area/mine/production)
-"TN" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
-/area/mine/medical)
 "TQ" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -9105,10 +9077,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance/living/north)
-"ZS" = (
-/obj/machinery/porta_turret/aux_base,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/mine/laborcamp/security)
 "ZT" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -22972,9 +22940,9 @@ uU
 pU
 pU
 pU
-jT
+ff
 Gf
-jT
+ff
 pU
 pU
 uU
@@ -23229,9 +23197,9 @@ uU
 pU
 pU
 pU
-gt
-aX
-dX
+uF
+ED
+jT
 pU
 pU
 pU
@@ -23488,7 +23456,7 @@ pU
 pU
 ga
 yT
-tn
+KR
 pU
 pU
 pU
@@ -24250,7 +24218,7 @@ aj
 aj
 aj
 pU
-jT
+ff
 eR
 ff
 ff
@@ -24258,7 +24226,7 @@ vB
 AN
 pp
 vJ
-un
+tL
 pw
 kn
 ff
@@ -25278,7 +25246,7 @@ pU
 pU
 aj
 aj
-jT
+ff
 Mw
 ff
 ff
@@ -25527,7 +25495,7 @@ ZY
 ZY
 pU
 aj
-aj
+eF
 pU
 pU
 pU
@@ -25784,7 +25752,7 @@ ZY
 ZY
 ZY
 aj
-aj
+pU
 QD
 NY
 NY
@@ -27093,7 +27061,7 @@ Ge
 Ge
 Ge
 fm
-tL
+bu
 Ge
 pU
 mK
@@ -28611,7 +28579,7 @@ ZY
 pU
 aj
 aj
-pU
+eF
 pU
 pU
 pU
@@ -31712,7 +31680,7 @@ aj
 pU
 pU
 pU
-ZS
+Ia
 Ia
 nQ
 Ia
@@ -32478,7 +32446,7 @@ pU
 aj
 aj
 pU
-pU
+eF
 pU
 Ia
 nL
@@ -32736,7 +32704,7 @@ aj
 aj
 pU
 pU
-ZS
+Ia
 Ia
 vn
 Po
@@ -33764,7 +33732,7 @@ pU
 aj
 aj
 pU
-ZS
+Ia
 Ia
 Fp
 jq
@@ -34020,7 +33988,7 @@ aj
 aj
 aj
 aj
-pU
+eF
 pU
 Ia
 jc
@@ -34293,7 +34261,7 @@ Ia
 Ia
 Ia
 Xt
-ZS
+Ia
 aj
 aj
 aj
@@ -34782,7 +34750,7 @@ pU
 pU
 pU
 pU
-pU
+eF
 pU
 pU
 aj
@@ -35039,9 +35007,9 @@ pU
 pU
 pU
 pU
-pU
-pU
 AQ
+NI
+NI
 ZM
 ZM
 ZM
@@ -35553,7 +35521,7 @@ pU
 pU
 pU
 pU
-pU
+eF
 aj
 aj
 aj
@@ -36569,11 +36537,11 @@ ZY
 pU
 pU
 pU
-KR
 AJ
 AJ
 AJ
-KR
+AJ
+AJ
 pU
 pU
 pU
@@ -37107,7 +37075,7 @@ pU
 fe
 Kp
 Kp
-ED
+fe
 pU
 aj
 aj
@@ -38384,7 +38352,7 @@ rZ
 tF
 Vf
 pU
-ED
+fe
 fe
 fe
 fe
@@ -39134,7 +39102,7 @@ ZY
 pU
 pU
 pU
-pU
+eF
 Ue
 AA
 gB
@@ -39393,7 +39361,7 @@ pU
 pU
 pU
 Qz
-NI
+ON
 ON
 ON
 ON
@@ -39944,9 +39912,9 @@ tF
 aj
 aj
 aj
-zN
-zN
-zN
+Ou
+Ou
+Ou
 yj
 yj
 bw
@@ -40202,7 +40170,7 @@ KI
 KI
 yp
 yp
-TN
+oq
 LG
 so
 It
@@ -40419,7 +40387,7 @@ ZY
 pU
 pU
 pU
-pU
+eF
 pU
 pU
 ON
@@ -40951,7 +40919,7 @@ aj
 aj
 aj
 tF
-uF
+cW
 Am
 cW
 ZP
@@ -41193,7 +41161,7 @@ pU
 pU
 pU
 pU
-Nb
+ON
 ON
 ON
 tW
@@ -41465,7 +41433,7 @@ aj
 aj
 aj
 tF
-uF
+cW
 gF
 cW
 Tx
@@ -43523,7 +43491,7 @@ aj
 aj
 pU
 pU
-eF
+cW
 cW
 cW
 cW
@@ -43532,7 +43500,7 @@ BT
 iu
 kI
 cC
-Ou
+iu
 aj
 aj
 pU
@@ -43797,11 +43765,11 @@ aj
 tF
 aj
 aj
-oq
+Zq
 Zq
 bL
-nq
-dk
+Nb
+Zq
 aj
 aj
 aj
@@ -47116,7 +47084,7 @@ aj
 kG
 dV
 QV
-bu
+NU
 NU
 NU
 NU
@@ -47131,7 +47099,7 @@ QX
 bW
 Xd
 NU
-bu
+NU
 aj
 aj
 aj
@@ -47368,7 +47336,7 @@ pU
 pU
 pU
 pU
-pU
+eF
 aj
 aj
 gA
@@ -48139,7 +48107,7 @@ pU
 pU
 pU
 pU
-pU
+eF
 aj
 aj
 aj
@@ -48159,7 +48127,7 @@ oh
 Ra
 oh
 YK
-bu
+NU
 pU
 aj
 aj
@@ -48401,7 +48369,7 @@ pU
 aj
 aj
 aj
-bu
+NU
 NU
 NU
 NU
@@ -48933,6 +48901,7 @@ dK
 pU
 aj
 aj
+eF
 pU
 pU
 pU
@@ -48945,8 +48914,7 @@ pU
 pU
 pU
 pU
-pU
-pU
+eF
 pU
 aj
 pU
