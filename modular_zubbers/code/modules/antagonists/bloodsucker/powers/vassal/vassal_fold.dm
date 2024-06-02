@@ -51,7 +51,7 @@
 	bloodbag = blood_bag
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/vassal_blood/Activate(trigger_flags)
+/datum/action/cooldown/bloodsucker/vassal_blood/ActivatePower(trigger_flags)
 	. = ..()
 	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/vassal/revenge)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)

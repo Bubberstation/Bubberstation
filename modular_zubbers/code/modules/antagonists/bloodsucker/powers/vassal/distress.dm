@@ -10,7 +10,7 @@
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
 
-/datum/action/cooldown/bloodsucker/distress/Activate(trigger_flags)
+/datum/action/cooldown/bloodsucker/distress/ActivatePower(trigger_flags)
 	. = ..()
 	var/turf/open/floor/target_area = get_area(owner)
 	var/datum/antagonist/vassal/vassaldatum = owner.mind.has_antag_datum(/datum/antagonist/vassal)

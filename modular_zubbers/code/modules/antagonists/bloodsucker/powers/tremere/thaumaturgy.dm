@@ -62,7 +62,7 @@
 		At level 5, it will also steal blood to feed yourself, just as much as each charge costs. \n\
 		The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/Activate(trigger_flags)
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(trigger_flags)
 	. = ..()
 	charges = get_max_charges()
 	owner.balloon_alert(owner, "you start thaumaturgy")

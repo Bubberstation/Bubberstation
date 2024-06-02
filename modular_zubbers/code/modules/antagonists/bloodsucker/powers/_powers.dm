@@ -183,6 +183,10 @@
 	bloodsuckerdatum_power.AdjustBloodVolume(-cost_override ? cost_override : bloodcost)
 
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
+	if(!active)
+		ActivatePower(target)
+
+/datum/action/cooldown/bloodsucker/proc/ActivatePower(atom/target)
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
 		START_PROCESSING(SSprocessing, src)

@@ -28,7 +28,7 @@
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
 
-/datum/action/cooldown/bloodsucker/masquerade/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/masquerade/ActivatePower(atom/target)
 	. = ..()
 	var/mob/living/carbon/user = owner
 	owner.balloon_alert(owner, "masquerade turned on.")

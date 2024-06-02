@@ -44,7 +44,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/gohome/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/gohome/ActivatePower(atom/target)
 	. = ..()
 	owner.balloon_alert(owner, "preparing to teleport...")
 

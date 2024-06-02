@@ -17,7 +17,7 @@
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
 
-/datum/action/cooldown/bloodsucker/fortitude/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/fortitude/ActivatePower(atom/target)
 	. = ..()
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))

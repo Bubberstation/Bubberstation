@@ -24,7 +24,7 @@
 	return TRUE
 
 
-/datum/action/cooldown/bloodsucker/recuperate/Activate(trigger_flags)
+/datum/action/cooldown/bloodsucker/recuperate/ActivatePower(trigger_flags)
 	. = ..()
 	to_chat(owner, span_notice("Your muscles clench as your master's immortal blood mixes with your own, knitting your wounds."))
 	owner.balloon_alert(owner, "recuperate turned on.")

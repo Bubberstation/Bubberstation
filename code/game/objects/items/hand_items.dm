@@ -641,7 +641,7 @@
 /obj/projectile/kiss/chef
 	name = "chef's kiss"
 
-// If our chef's kiss hits a food item, we will improve it with love.
+// If our chef's kiss hits at food item, we will improve it with love.
 /obj/projectile/kiss/chef/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
 	if(!IS_EDIBLE(target) || !target.reagents)

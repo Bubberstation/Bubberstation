@@ -17,7 +17,7 @@
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
 
-/datum/action/cooldown/bloodsucker/targeted/brawn/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(atom/target)
 	// Did we break out of our handcuffs?
 	if(break_restraints())
 		PowerActivatedSuccesfully()

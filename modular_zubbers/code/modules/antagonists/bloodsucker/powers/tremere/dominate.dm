@@ -70,7 +70,7 @@
 		return can_use(user)
 	. = ..()
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/ActivatePower(atom/target)
 	. = ..()
 	if(level_current >= DOMINATE_DOMINATE_XRAY_LEVEL)
 		ADD_TRAIT(owner, TRAIT_XRAY_VISION, DOMINATE_TRAIT)

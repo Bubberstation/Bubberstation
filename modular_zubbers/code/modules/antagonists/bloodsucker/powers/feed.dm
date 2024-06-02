@@ -75,7 +75,7 @@
 	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
 	return ..()
 
-/datum/action/cooldown/bloodsucker/feed/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/feed/ActivatePower(atom/target)
 	silent_feed = TRUE
 	var/mob/living/feed_target = target_ref.resolve()
 	if(istype(feed_target, /mob/living/basic/mouse))

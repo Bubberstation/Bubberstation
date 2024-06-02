@@ -13,15 +13,15 @@
 /// Modify description to add notice that this is aimed.
 /datum/action/cooldown/bloodsucker/targeted/get_power_desc()
 	. = ..()
-	var/current_desc = "\n\[<i>Targeted Power</i>\] \n\
-		Cast Range: [target_range]"
+	var/current_desc = "<br>\[<i>Targeted Power</i>\]"
+	current_desc += "<br>Cast Range: [target_range]"
 	current_desc += .
 	return current_desc
 
 
 // *Don't read this if you don't care about how actions work.*
 // Actions are a wee complicated, but for anyone else who's going to take a look at this, let me explain.
-// Actions satart at Trigger, which is called by the client clicking the action button,
+// Actions start at Trigger, which is/ called by the client clicking the action button,
 // if it's a targeted power, like this one here, it will call set_click_ability,
 // which will set up the click interception. Thus clicking will call Trigger again, but with a target this time.
 // Otherwise, if click_to_activate is false, it will simply always call Trigger without a target,
@@ -82,7 +82,7 @@
 /datum/action/cooldown/bloodsucker/targeted/proc/FireSecondaryTargetedPower(atom/target, params)
 	return FireTargetedPower(target, params)
 
-/datum/action/cooldown/bloodsucker/targeted/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/targeted/ActivatePower(atom/target)
 	. = ..()
 	if(!target)
 		return .

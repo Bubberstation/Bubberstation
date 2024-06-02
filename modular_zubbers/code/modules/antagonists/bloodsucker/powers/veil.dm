@@ -30,7 +30,7 @@
 	var/list/prev_features // For lizards and such
 	var/disguise_name
 
-/datum/action/cooldown/bloodsucker/veil/Activate(atom/target)
+/datum/action/cooldown/bloodsucker/veil/ActivatePower(atom/target)
 	. = ..()
 	cast_effect() // POOF
 //	if(blahblahblah)
