@@ -176,6 +176,9 @@
 	},
 /turf/open/floor/pod/light,
 /area/mine/maintenance/service)
+"bu" = (
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/mine/cafeteria)
 "bw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -3247,7 +3250,7 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/light,
 /area/mine/cafeteria)
 "qq" = (
 /obj/structure/stone_tile,
@@ -3841,7 +3844,7 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 1
 	},
-/turf/open/floor/iron/checker,
+/turf/open/floor/pod/light,
 /area/mine/cafeteria)
 "ul" = (
 /obj/item/crowbar/large/emergency,
@@ -4254,6 +4257,9 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 1
 	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("mine")
+	},
 /turf/open/floor/pod/dark,
 /area/mine/cafeteria)
 "wr" = (
@@ -4451,9 +4457,6 @@
 /area/mine/lounge)
 "xO" = (
 /obj/effect/spawner/random/vending/snackvend,
-/obj/machinery/camera/autoname/directional/east{
-	network = list("mine")
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 1
 	},
@@ -5141,7 +5144,7 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/light,
 /area/mine/cafeteria)
 "Cw" = (
 /obj/machinery/power/colony_wind_turbine,
@@ -5416,13 +5419,17 @@
 /turf/open/floor/pod/dark,
 /area/mine/maintenance/living/north)
 "Ei" = (
+/obj/structure/fans/tiny{
+	pixel_x = 9
+	},
+/obj/effect/turf_decal/caution/stand_clear/blue{
+	dir = 8;
+	pixel_y = 0;
+	pixel_x = -8
+	},
 /obj/machinery/door/poddoor/shutters/colony_fabricator{
 	name = "Garage Door";
 	id = "Chocobo"
-	},
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/caution/stand_clear/blue{
-	dir = 8
 	},
 /turf/open/floor/pod/light,
 /area/mine/lounge)
@@ -7569,6 +7576,16 @@
 /obj/structure/cable,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"QB" = (
+/obj/structure/fans/tiny{
+	pixel_x = 9
+	},
+/obj/machinery/door/poddoor/shutters/colony_fabricator{
+	name = "Garage Door";
+	id = "Chocobo"
+	},
+/turf/open/floor/pod/light,
+/area/mine/lounge)
 "QD" = (
 /obj/structure/marker_beacon/burgundy,
 /obj/effect/turf_decal/sand/plating/volcanic,
@@ -8268,7 +8285,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/no_erp/directional/south,
 /obj/structure/cable,
 /turf/open/floor/pod/dark,
 /area/mine/laborcamp/quarters)
@@ -37411,7 +37427,7 @@ fe
 fe
 gD
 zH
-fe
+bu
 fe
 Kp
 fe
@@ -38158,7 +38174,7 @@ pU
 pU
 fj
 ON
-ON
+Fv
 rA
 Nb
 fi
@@ -46684,9 +46700,9 @@ pU
 pU
 aj
 Zq
+QB
 Ei
-Ei
-Ei
+QB
 Zq
 Zq
 Zq
