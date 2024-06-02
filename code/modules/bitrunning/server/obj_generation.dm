@@ -79,7 +79,8 @@
 			new /obj/item/flashlight,
 		)
 
-	if(include_loadout)	avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
+	if(include_loadout)
+		avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
 	var/obj/item/card/id/outfit_id = avatar.wear_id
 	if(outfit_id)
 		outfit_id.assignment = "Bit Avatar"
