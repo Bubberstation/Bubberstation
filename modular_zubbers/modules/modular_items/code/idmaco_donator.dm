@@ -1,9 +1,8 @@
-//@EspeciallyStrange
+//@EspeciallyStrange @Wolf751  for the sprite if reaching out to us is needed
 // Sprites are donated from either project kepler or hand done by me for this occasion, They can be used for anything else
 //Will also be available for usage in Foundation 19
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
 
-//These are also additionally handed out to snaffle as they were a major player in the NRI events <3
 
 #define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 #define IDMA_RESTRICTED_ROLE list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
