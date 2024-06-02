@@ -438,7 +438,7 @@
 	name = "Bell Collar (Worn)"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/bell_worn.json'
 
-// Chokerss
+// Choker
 /datum/greyscale_config/collar/choker
 	name = "Choker"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/choker.json'
