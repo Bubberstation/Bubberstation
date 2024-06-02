@@ -7,6 +7,9 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	var/mob/living/carbon/human/host = parent
 
+	if(IS_CHANGELING(host))
+		return FALSE
+
 	if(!host.dna)
 		return FALSE
 
@@ -24,6 +27,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	var/zombified = FALSE
 	var/can_cure = FALSE
+	var/was_changeling_husked = FALSE
 
 	var/list/obj/item/melee/arm_blade_zombie/arm_blades = list()
 	var/obj/item/clothing/suit/armor/changeling_zombie/armor
@@ -41,6 +45,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		"BE CONSUMED"
 	)
 
+	COOLDOWN_DECLARE(transformation_grace_period)
+
 /datum/component/changeling_zombie_infection/Initialize()
 
 	. = ..()
@@ -50,12 +56,20 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	START_PROCESSING(SSobj, src)
 
+	if(HAS_TRAIT_FROM(parent,TRAIT_HUSK, CHANGELING_DRAIN))
+		COOLDOWN_START(src, transformation_grace_period, 30 SECONDS)
+		was_changeling_husked = TRUE
+
+	RegisterSignal(parent, SIGNAL_ADDTRAIT(TRAIT_HUSK), PROC_REF(on_husk))
+	RegisterSignal(parent, SIGNAL_REMOVETRAIT(TRAIT_HUSK), PROC_REF(on_unhusk))
 
 /datum/component/changeling_zombie_infection/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_LIVING_DEATH)
 	UnregisterSignal(parent, COMSIG_CARBON_REMOVE_LIMB)
 	UnregisterSignal(parent, COMSIG_CARBON_ATTACH_LIMB)
 	UnregisterSignal(parent, COMSIG_MOB_SAY)
+	UnregisterSignal(parent, SIGNAL_ADDTRAIT(TRAIT_HUSK))
+	UnregisterSignal(parent, SIGNAL_REMOVETRAIT(TRAIT_HUSK))
 
 /datum/component/changeling_zombie_infection/Destroy(force, silent)
 
@@ -109,34 +123,38 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		var/current_toxin_damage = host.getToxLoss()
 		if(can_cure && current_toxin_damage <= 0)
 			qdel(src) //Cured!
-		else if(current_toxin_damage >= 200 && host.stat == DEAD)
-			make_zombie()
-			can_cure = FALSE
-		else
-			if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
-				can_cure = TRUE
-			host.adjustToxLoss(CHANGELING_ZOMBIE_TOXINS_PER_SECOND * seconds_per_tick)
-			if(SPT_PROB(8, seconds_per_tick))
-				if(current_toxin_damage > 50)
-					var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
-					if(wound_area)
-						var/datum/wound/slash/flesh/moderate/flesh_wound = new
-						flesh_wound.apply_wound(wound_area)
+		else if(COOLDOWN_FINISHED(src,transformation_grace_period))
+			if(current_toxin_damage >= 200 && host.stat == DEAD)
+				make_zombie()
+				can_cure = FALSE
+			else
+				if(current_toxin_damage >= 100 && host.stat && host.stat != DEAD) //If you are in crit (but not dead), it means that you can be cured now.
+					can_cure = TRUE
+				if(host.stat == DEAD)
+					host.adjustToxLoss(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick)
+				else
+					host.adjustToxLoss(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick)
+				if(SPT_PROB(4, seconds_per_tick))
+					if(current_toxin_damage > 50)
+						var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
+						if(wound_area)
+							var/datum/wound/slash/flesh/moderate/flesh_wound = new
+							flesh_wound.apply_wound(wound_area)
+							host.visible_message(
+								span_danger("[host]\s [wound_area] twists and contorts violently, like something is trying to break free!"),
+								span_userdanger("Your [wound_area] twists and contorts violently! What's going on?!"),
+								span_hear("You hear flesh breaking!"),
+								COMBAT_MESSAGE_RANGE
+							)
+							host.emote("scream")
+						else
+							host.emote("groan")
+					else if(current_toxin_damage > 25)
 						host.visible_message(
-							span_danger("[host]\s [wound_area] twists and contorts violently, like something is trying to break free!"),
-							span_userdanger("Your [wound_area] twists and contorts violently! What's going on?!"),
-							span_hear("You hear flesh breaking!"),
-							COMBAT_MESSAGE_RANGE
+							span_warning("[host] doesn't look too good..."),
+							span_warning("You don't feel too good...")
 						)
-						host.emote("scream")
-					else
-						host.emote("groan")
-				else if(current_toxin_damage > 25)
-					host.visible_message(
-						span_warning("[host] doesn't look too good..."),
-						span_warning("You don't feel too good...")
-					)
-					host.emote("cough")
+						host.emote("cough")
 
 /datum/component/changeling_zombie_infection/proc/make_zombie()
 
@@ -154,6 +172,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		host.grab_ghost()
 
 	zombified = TRUE
+
+	host.cure_husk(CHANGELING_DRAIN) //If we don't actually cure the husk, weird shit happens.
 
 	to_chat(host, span_notice("You feel an itching, both inside and outside as your tissues knit and reknit."))
 
@@ -216,7 +236,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(host.mind)
 		host.mind.add_antag_datum(/datum/antagonist/changeling_zombie)
 
-	if(!GLOB.changeling_zombies_detected)
+	if(!was_changeling_husked && !GLOB.changeling_zombies_detected) //Only announce if it's from a non-changeling spawn.
 		var/turf/T = get_turf(host)
 		if(is_station_level(T.z)) //Prevents the announcements if admins are fucking around on centcomm.
 			var/list/turf/found_turfs = get_area_turfs(/area/station/medical,subtypes=TRUE)
@@ -241,11 +261,26 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	return TRUE
 
+/datum/component/changeling_zombie_infection/proc/on_husk()
+
+	SIGNAL_HANDLER
+
+	if(HAS_TRAIT_FROM(parent,TRAIT_HUSK, CHANGELING_DRAIN))
+		COOLDOWN_START(src, transformation_grace_period, 30 SECONDS)
+		was_changeling_husked = TRUE //If you were somehow changeling husked after you became a zombie.
+
+/datum/component/changeling_zombie_infection/proc/on_unhusk()
+
+	SIGNAL_HANDLER
+
+	if(was_changeling_husked && !zombified) //Unhusking someone who was ling husked will remove the changeling zombie infection, as long as they aren't a zombie.
+		qdel(src)
+
 /datum/component/changeling_zombie_infection/proc/on_owner_died()
 
 	SIGNAL_HANDLER
 
-	//Death is a valid cure :)
+	//Death is a valid cure, only if you're already transformed.
 	if(zombified)
 		qdel(src)
 
