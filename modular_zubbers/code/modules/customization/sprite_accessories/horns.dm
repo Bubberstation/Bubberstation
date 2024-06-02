@@ -49,3 +49,6 @@
 	name = "High-rise Horns"
 	icon_state = "highrisehorns"
 
+/datum/sprite_accessory/horns/bubber/halo //Sprites from Virgo Station
+	name = "Halo"
+	icon_state = "halo"
