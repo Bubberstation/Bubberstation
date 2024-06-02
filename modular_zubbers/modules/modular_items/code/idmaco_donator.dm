@@ -8,7 +8,7 @@
 #define IDMA_RESTRICTED_ROLE list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmavest
-	name = "IDMA service jacket"
+	name = "IDMA combat vest"
 	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
 	ckeywhitelist = IDMA_CKEY_WHITELIST
 	restricted_roles = IDMA_RESTRICTED_ROLE
