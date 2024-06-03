@@ -3,8 +3,7 @@
 	desc = "eating my coins with the shell on smiley face"
 	icon = 'modular_zubbers/icons/obj/clothing/under/service.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/service.dmi'
-	icon_state = "clown"
-	inhand_icon_state = "clown"
+
 
 /obj/item/clothing/under/rank/civilian/bubber/clown
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
