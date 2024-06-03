@@ -1,4 +1,4 @@
-/datum/round_event_control/can_spawn_event(players_amt, allow_magic = FALSE)
+/* /datum/round_event_control/can_spawn_event(players_amt, allow_magic = FALSE) // BUBBER EDIT REMOVAL
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(intensity_restriction && !GLOB.intense_event_credits)
@@ -17,3 +17,4 @@
 	else
 		log_game("ICES: [src.name] does not need an intensity credit. Intensity credit count: [GLOB.intense_event_credits] credits")
 		message_admins("ICES: [src.name] does not need an intensity credit. Intensity credit count: [GLOB.intense_event_credits] credits")
+*/
