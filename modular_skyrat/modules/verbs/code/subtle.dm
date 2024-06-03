@@ -57,8 +57,8 @@
 		if((ghost.client?.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(ghost in viewers))
 			ghost.show_message(subtle_message)
 
-	for(var/mob/reciever in viewers)
-		reciever.show_message(subtle_message, alt_msg = subtle_message)
+	for(var/mob/receiver in viewers)
+		receiver.show_message(subtle_message, alt_msg = subtle_message)
 
 	return TRUE
 
@@ -168,12 +168,12 @@
 			if(holo?.Impersonation?.client)
 				ghostless |= holo.Impersonation
 
-		for(var/mob/reciever in ghostless)
-			reciever.show_message(subtler_message, alt_msg = subtler_message)
+		for(var/mob/receiver in ghostless)
+			receiver.show_message(subtler_message, alt_msg = subtler_message)
 			// BUBBER EDIT BEGIN - Subtler sounds
-			var/datum/preferences/prefs = reciever.client?.prefs
+			var/datum/preferences/prefs = receiver.client?.prefs
 			if(prefs && prefs.read_preference(/datum/preference/toggle/subtler_sound))
-				reciever.playsound_local(get_turf(reciever), 'sound/effects/glockenspiel_ping.ogg', 50)
+				receiver.playsound_local(get_turf(receiver), 'sound/effects/glockenspiel_ping.ogg', 50)
 			// BUBBER EDIT END
 
 	return TRUE
