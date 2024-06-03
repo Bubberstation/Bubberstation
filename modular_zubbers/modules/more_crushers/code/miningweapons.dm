@@ -31,7 +31,6 @@
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 5
 	light_on = FALSE
-	charged = TRUE
 	charge_time = 10
 	detonation_damage = 35
 	backstab_bonus = 20
@@ -72,7 +71,6 @@
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 8
 	light_on = FALSE
-	charged = TRUE
 	charge_time = 15
 	detonation_damage = 35
 	backstab_bonus = 20
@@ -118,7 +116,6 @@
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 5
 	light_on = FALSE
-	charged = TRUE
 	charge_time = 20
 	detonation_damage = 70
 	backstab_bonus = 0
@@ -126,7 +123,6 @@
 
 /obj/item/kinetic_crusher/hammer/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=0, force_wielded=20)
 
 /obj/item/kinetic_crusher/hammer/attack(mob/living/target, mob/living/user)
 	var/relative_direction = get_cardinal_dir(src, target)
@@ -169,7 +165,6 @@
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
 	light_range = 4
 	light_on = FALSE
-	charged = TRUE
 	charge_time = 2
 	detonation_damage = 40
 	backstab_bonus = 120
