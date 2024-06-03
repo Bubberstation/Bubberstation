@@ -346,7 +346,7 @@ BUBBERSTATION CHANGE END */
 
 /obj/item/clothing/under/CtrlClick(mob/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	if(!can_toggle_sensors(user))
 		return
