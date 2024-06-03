@@ -174,13 +174,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	var/mob/living/carbon/human/host = parent
 
-	if(!host.mind)
-		var/mob/canidate = SSpolling.poll_ghosts_for_target(
-			"Do you want to play as a Changeling Zombie ([host.name])?", checked_target = host)
-		if(istype(canidate))
-			host.key = canidate.key
-	else
-		host.grab_ghost()
+	host.grab_ghost()
 
 	zombified = TRUE
 
