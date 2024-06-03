@@ -26,6 +26,7 @@
 	hitsound = SFX_SWING_HIT
 	sharpness = SHARP_EDGED
 
+	var/blood_chance = 100
 
 	var/static/list/attack_living_sounds = list(
 		'sound/hallucinations/growl1.ogg',
@@ -93,14 +94,14 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
+	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL //Oi, you got a licence for that knife?
 
 /datum/armor/armor_changeling_zombie
-	melee = 20
-	bullet = 20
-	laser = 20
+	melee = 15
+	bullet = 15
+	laser = 15
 	energy = 25
 	bomb = 5
 	bio = 5
-	fire = 45
-	acid = 45
+	fire = 0
+	acid = 75

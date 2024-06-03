@@ -214,6 +214,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	//Give armblades.
 	for(var/hand_index=1,hand_index<=length(host.held_items),hand_index++)
 		var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
+		arm_blade.blood_chance = was_changeling_husked ? 25 : 80 //Less chance to infect if you were made a zombie by a changeling.
 		ADD_TRAIT(arm_blade, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
 		RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
 		host.put_in_hand(arm_blade,hand_index,forced=TRUE)
