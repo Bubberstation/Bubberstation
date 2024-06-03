@@ -1,4 +1,4 @@
-#define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (3 MINUTES) //SKYRAT EDIT CHANGE
+#define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (2 MINUTES) //SKYRAT EDIT CHANGE
 
 //this singleton datum is used by the events controller to dictate how it selects events
 /datum/round_event_control
@@ -74,7 +74,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(occurrences >= max_occurrences)
 		return FALSE
-	if(earliest_start >= world.time-SSticker.round_start_time)
+	if(!roundstart && earliest_start >= world.time-SSticker.round_start_time ) // BUBBER EDIT: Roundstart checks added
 		return FALSE
 	if(!allow_magic && wizardevent != SSevents.wizardmode)
 		return FALSE
@@ -115,19 +115,24 @@
 	// SKYRAT EDIT REMOVAL END - Event notification
 
 	// SKYRAT EDIT ADDITION BEGIN - Event notification
-	message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (\
-		<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
-		<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
-	for(var/client/staff as anything in GLOB.admins)
-		if(staff?.prefs.read_preference(/datum/preference/toggle/comms_notification))
-			SEND_SOUND(staff, sound('sound/misc/server-ready.ogg'))
-	sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)
-
-	if(triggering)
-		message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)]: [name]. (\
-		<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
-		<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
+	// BUBBER EDIT START - Only delay on roundstart
+	if(SSticker.HasRoundStarted())
+		message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (\
+			<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
+			<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
+		for(var/client/staff as anything in GLOB.admins)
+			if(staff?.prefs.read_preference(/datum/preference/toggle/comms_notification))
+				SEND_SOUND(staff, sound('sound/misc/server-ready.ogg'))
 		sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)
+
+		if(triggering)
+			message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)]: [name]. (\
+			<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
+			<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
+			sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME * 0.5)
+	else
+		message_admins("<font color='[COLOR_ADMIN_PINK]'> Roundstart event chosen: [name].")
+	// BUBBER EDIT END
 	// SKYRAT EDIT ADDITION END - Event notification
 
 	if(!triggering)
