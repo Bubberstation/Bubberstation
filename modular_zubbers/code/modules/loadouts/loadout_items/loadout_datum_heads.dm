@@ -13,7 +13,7 @@
 
 /datum/loadout_item/head/hats/bubber/clown/clussy
 	name = "Pink Clown Wig"
-	item_path = /obj/item/clothing/head/costume/bubber/jester
+	item_path = /obj/item/clothing/head/costume/bubber/clussy
 
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
 	name = "magnificent pinwheel hat"
