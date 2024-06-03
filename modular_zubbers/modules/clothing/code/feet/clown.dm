@@ -3,6 +3,7 @@
 	desc = "Finally, you can be an unpaid Discord moderator in space. Clean it up Jannie!"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	icon_state = null
 
 //Clussy and Jester shoes from Splurt.
 /obj/item/clothing/shoes/clown_shoes/bubber/clussy
