@@ -29,6 +29,7 @@
 	item_path = /obj/item/clothing/under/misc/maid/tactical
 	donator_only = TRUE
 
+
 /datum/loadout_item/under/miscellaneous/bubber/clown/skirt
 	name = "Clown Skirt"
 	item_path = /obj/item/clothing/under/rank/civilian/bubber/clown/skirt
@@ -42,3 +43,9 @@
 	name = "Amazing Jester Uniform"
 	item_path = /obj/item/clothing/under/rank/civilian/bubber/clown/jester
 	restricted_roles = list(JOB_CLOWN)
+
+/datum/loadout_item/under/miscellaneous/diver
+	name = "Black Divers Uniform"
+	item_path = /obj/item/clothing/under/misc/diver
+	ckeywhitelist = list("sexmaster, ironknight060")
+

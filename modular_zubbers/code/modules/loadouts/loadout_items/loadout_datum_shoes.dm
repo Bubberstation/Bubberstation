@@ -26,3 +26,8 @@
 /datum/loadout_item/shoes/latex_heels
 	name = "latex heels"
 	item_path = /obj/item/clothing/shoes/latex_heels
+
+/datum/loadout_item/shoes/diver //Donor item for patriot210
+	name = "Black Divers Boots"
+	item_path = /obj/item/clothing/shoes/boots/diver
+	ckeywhitelist = list("sexmaster, ironknight060")
