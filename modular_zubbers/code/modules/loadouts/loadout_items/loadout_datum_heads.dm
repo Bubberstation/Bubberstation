@@ -6,6 +6,15 @@
 	name = "Pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
 
+/datum/loadout_item/head/hats/clown/jester
+	name = "Amazing Jester Hat"
+	item_path = /obj/item/clothing/head/costume/bubber/jester
+	restricted_roles = list(JOB_CLOWN)
+
+/datum/loadout_item/head/hats/clown/clussy
+	name = "Pink Clown Wig"
+	item_path = /obj/item/clothing/head/costume/bubber/jester
+
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
 	name = "magnificent pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
