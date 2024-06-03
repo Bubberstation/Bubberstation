@@ -5,7 +5,7 @@
 	lefthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
 	righthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
 	icon_state = "big_bertha"
-	block_chance = 100
+	block_chance = 95 //d20
 	slot_flags = null
 	force = 12
 	throwforce = 3
@@ -18,7 +18,7 @@
 	block_sound = 'sound/weapons/block_shield.ogg'
 	breakable_by_damage = FALSE
 	item_flags = IMMUTABLE_SLOW | SLOWS_WHILE_IN_HAND
-	slowdown = 2
+	slowdown = 2.5
 
 /obj/item/shield/big_bertha/Initialize(mapload)
 	. = ..()
