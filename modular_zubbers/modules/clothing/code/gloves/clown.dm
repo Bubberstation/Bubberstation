@@ -3,6 +3,7 @@
 	desc = "stop spawning random shit"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
+	icon_state = null
 
 //'Clussy' stuff from Splurt.
 /obj/item/clothing/gloves/bubber/clussy
