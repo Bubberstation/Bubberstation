@@ -6,12 +6,12 @@
 	name = "Pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
 
-/datum/loadout_item/head/hats/clown/jester
+/datum/loadout_item/head/hats/bubber/clown/jester/amazing
 	name = "Amazing Jester Hat"
 	item_path = /obj/item/clothing/head/costume/bubber/jester
 	restricted_roles = list(JOB_CLOWN)
 
-/datum/loadout_item/head/hats/clown/clussy
+/datum/loadout_item/head/hats/bubber/clown/clussy
 	name = "Pink Clown Wig"
 	item_path = /obj/item/clothing/head/costume/bubber/jester
 

@@ -1,4 +1,4 @@
-/datum/loadout_item/gloves/clown //I would job lock these but, they're just gloves.
+/datum/loadout_item/gloves/bubber/clown //I would job lock these but, they're just gloves.
 	name = "Pink Clown Gloves"
 	item_path = /obj/item/clothing/gloves/bubber/clussy
 
