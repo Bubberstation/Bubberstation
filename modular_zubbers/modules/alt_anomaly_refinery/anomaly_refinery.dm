@@ -1,5 +1,5 @@
 #define REFINERY_ANOMALY_REFINEMENT_TIME (5 SECONDS)
-#define REFINERY_ANOMALY_POWER_REQUIREMENT (0.25 MEGA WATTS)
+#define REFINERY_ANOMALY_POWER_REQUIREMENT (1.21 MEGA WATTS) //This is NOT active power use. This is the amount of power it uses for a second when a bomb is detonated.
 
 /obj/machinery/research/anomaly_refinery
 	desc = "An advanced machine equipped with state of the art bomb prediction software that's capable of implosion-compressing raw anomaly cores into finished artifacts. \
@@ -14,12 +14,9 @@
 	. += span_notice("Each core refinement takes <b>[DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)]</b> to complete.")
 
 /obj/machinery/research/anomaly_refinery/get_required_radius(anomaly_type)
-
 	var/explosion_range = max(GLOB.MAX_EX_DEVESTATION_RANGE,GLOB.MAX_EX_HEAVY_RANGE,GLOB.MAX_EX_LIGHT_RANGE,0)
 	var/explosion_mod = 0.25 + (requirement_mod/100)*0.75
-
 	return round(explosion_range * explosion_mod,1)
-
 
 /obj/machinery/research/anomaly_refinery/start_test()
 
@@ -125,3 +122,6 @@
 	)
 
 	return COMSIG_CANCEL_EXPLOSION
+
+#undef REFINERY_ANOMALY_REFINEMENT_TIME
+#undef REFINERY_ANOMALY_POWER_REQUIREMENT
