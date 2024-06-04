@@ -9,9 +9,3 @@
 /obj/item/clothing/neck/human_petcollar/locked/ringbell/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/misc/collarbell1.ogg'=1,'modular_zubbers/sound/misc/collarbell2.ogg'=1), 50, 100, 8)
-
-/obj/machinery/vending/dorms/New(...)
-	. = ..()
-	if(!premium)
-		premium = list()
-	premium[/obj/item/clothing/neck/human_petcollar/locked/ringbell] = 8
