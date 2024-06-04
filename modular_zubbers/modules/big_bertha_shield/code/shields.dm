@@ -33,7 +33,7 @@
 	if(damage < 10) //Most things that deal 10 or more damage are heavy, like toolboxes.
 		return
 
-	if(knockdown_chance > 0 && prob(owner.getStaminaLoss()))
+	if(prob(owner.getStaminaLoss()))
 		owner.visible_message(
 			span_warning("The force of [attack_text] from [hitby] knocks down [owner]!"),
 			span_userdanger("The force of [attack_text] from [hitby] knocks you down!"),
