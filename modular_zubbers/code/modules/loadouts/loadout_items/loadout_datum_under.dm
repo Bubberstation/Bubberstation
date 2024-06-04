@@ -37,6 +37,7 @@
 /datum/loadout_item/under/miscellaneous/bubber/clown/skirt/pink //Shouldn't do too much harm having these unlocked...Right?
 	name = "Pink Clown Skirt"
 	item_path = /obj/item/clothing/under/rank/civilian/bubber/clown/skirt/clussy
+	restricted_roles = null
 
 /datum/loadout_item/under/miscellaneous/bubber/clown/jester/amazing
 	name = "Amazing Jester Uniform"

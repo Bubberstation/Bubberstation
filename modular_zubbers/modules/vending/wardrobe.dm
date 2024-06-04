@@ -17,7 +17,7 @@
 		),
 	)
 
-/obj/machinery/vending/dorms/
+/obj/machinery/vending/dorms
 	zubbers_product_categories = list(
 		list(
 			"name" = "Restraints",
