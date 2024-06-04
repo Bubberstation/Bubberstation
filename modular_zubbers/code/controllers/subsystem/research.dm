@@ -10,7 +10,7 @@
 	var/area/location_area = get_turf(location)
 	var/static/list/syndie_typecache = typecacheof(list(
 		/area/ruin/space/has_grav/skyrat/interdynefob, // DS-2
-		/area/ruin/syndicate_ice_base, // Interdyne (ice moon)
+		/area/ruin/syndicate_lava_base, // Interdyne (ice moon)
 		/area/ruin/space/has_grav/bubbers/dauntless, // SSV Dauntless (lavalands)
 		/area/ruin/space/has_grav/bubbers/dauntless_space, // SSV Dauntless (space)
 	))
