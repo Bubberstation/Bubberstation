@@ -30,4 +30,4 @@
 /datum/loadout_item/shoes/diver //Donor item for patriot210
 	name = "Black Divers Boots"
 	item_path = /obj/item/clothing/shoes/boots/diver
-	ckeywhitelist = list("sexmaster, ironknight060")
+	ckeywhitelist = list("sexmaster, leafydasurvivor")
