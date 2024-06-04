@@ -10,7 +10,7 @@
 
 /datum/loadout_item/toys/bigdeer_plush
 	name = "big deer plushie"
-	item_path = /obj/item/toy/plush/bigdeer_plush //Donor item for Gavla
+	item_path = /obj/item/toy/plush/bigdeer //Donor item for Gavla
 
 /datum/loadout_item/toys/nobl_plush
 	name = "fluffy skog plushie"
@@ -47,4 +47,21 @@
 /datum/loadout_item/toys/carrotbag
 	name = "Carrot Bag"
 	item_path = /obj/item/sbeacondrop/carrot
-	ckeywhitelist = list("slippyjoe")
+	//ckeywhitelist = list("slippyjoe")
+
+/datum/loadout_item/toys/largeredslime
+	name = "Large Red Slime Plush"
+	item_path = /obj/item/toy/plush/largeredslime
+	ckeywhitelist = list("blovy")
+
+/datum/loadout_item/toys/tunafish
+	name = "Tuna Fish Plush"
+	item_path = /obj/item/toy/plush/tunafish
+
+/datum/loadout_item/toys/purplecat
+	name = "Purple Cat Plush"
+	item_path = /obj/item/toy/plush/purplecat
+
+/datum/loadout_item/toys/secoff
+	name = "GalFed Secoff Plush"
+	item_path = /obj/item/toy/plush/secoff

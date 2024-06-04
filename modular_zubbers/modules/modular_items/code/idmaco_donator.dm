@@ -1,23 +1,23 @@
-//@EspeciallyStrange
+//@EspeciallyStrange @Wolf751  for the sprite if reaching out to us is needed
 // Sprites are donated from either project kepler or hand done by me for this occasion, They can be used for anything else
 //Will also be available for usage in Foundation 19
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
 
-//These are also additionally handed out to snaffle as they were a major player in the NRI events <3
 
-#define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Snaffle15", "Waterpig", "Mishanok")
+#define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+#define IDMA_RESTRICTED_ROLE list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmavest
-	name = "IDMA service jacket"
+	name = "IDMA combat vest"
 	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
 	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+	restricted_roles = IDMA_RESTRICTED_ROLE
 
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
 	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+	restricted_roles = IDMA_RESTRICTED_ROLE
 
 /datum/loadout_item/suit/idmardjacket
 	name = "silicon administrator vest"
@@ -29,14 +29,14 @@
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
 	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
-//acts like a security uniform now
+	restricted_roles = IDMA_RESTRICTED_ROLE
+
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
+	restricted_roles = IDMA_RESTRICTED_ROLE
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA beret"
@@ -47,8 +47,7 @@
 	name = "IDMA service helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) //Secure Personnel Only. It is a round start armor even if the actual armor can be ordered for cheap
-//acts like a proper helmet now
+	restricted_roles = IDMA_RESTRICTED_ROLE
 
 /datum/loadout_item/accessory/idmaarmbands
 	name = "IDMA armbands"
@@ -172,3 +171,6 @@
 	attack_verb_simple = list("cuddle", "meow", "hiss")
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
 	resistance_flags = FIRE_PROOF
+
+#undef IDMA_CKEY_WHITELIST
+#undef IDMA_RESTRICTED_ROLE
