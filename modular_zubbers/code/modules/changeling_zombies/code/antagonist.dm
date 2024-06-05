@@ -18,7 +18,7 @@
 	hud_icon = 'modular_zubbers/code/modules/changeling_zombies/icons/antag_hud.dmi'
 	antag_hud_name = "zombie"
 
-	antag_memory = "You are a mutated Nanotrasen experiment. Your mind is torn apart, you do not remember who you are. \
+	antag_memory = "You are a mutated experiment, or a victim of one. Your mind is torn apart, you do not remember who you are. \
 	All you know is that you must infect."
 
 	default_custom_objective = "Infect as many crewmembers as possible!"
@@ -30,7 +30,7 @@
 		component = owner.current.GetComponent(/datum/component/changeling_zombie_infection) || (can_become_changeling_zombie(owner.current) ? owner.current.AddComponent(/datum/component/changeling_zombie_infection) : null)
 
 	if(!component) //uhh
-		stack_trace("Failed to give to changeling zombie component to \[[owner]\].")
+		stack_trace("Failed to give to changeling zombie component to \[[owner]\]!")
 		return
 
 	var/datum/objective/changeling_zombie_infect/infect_objective = new

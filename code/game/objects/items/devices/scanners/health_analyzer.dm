@@ -460,7 +460,7 @@
 			if(cling_infection.was_changeling_husked)
 				render_list += "<span class='alert ml-1'>Treatment Guide: Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u of synthflesh or inject rezadone.</span>"
 			else
-				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than 100 units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
+				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
 				render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
 	//BUBBERSTATION EDIT END
 

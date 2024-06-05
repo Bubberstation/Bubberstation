@@ -33,8 +33,9 @@
 	broken_one.smash(src.loc,null,FALSE,TRUE)
 
 //The cure.
-/obj/item/paper/fluff/shuttles/changeling_zombie_instructions
-	default_raw_text = "<h1>NT-CZV-1 Cure Instructions</h1><br>To cure an infected crewmember who has not yet turned, let them have at least 100 units of toxins damage, then purge all those toxins quickly.<br>To cure an already turned crewmember, apply shotgun to head repeatedly."
+/obj/item/paper/fluff/shuttles/changeling_zombie_instructions/Initialize(...)
+	. = ..()
+	default_raw_text = "<h1>NT-CZV-1 Cure Instructions</h1><br>To cure an infected crewmember who has not yet turned, let them have at least [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxins damage, then purge all those toxins quickly.<br>To cure an already turned crewmember, apply shotgun to head repeatedly."
 
 /obj/structure/closet/crate/medical/changeling_zombie_cure/PopulateContents()
 	new /obj/item/paper/fluff/shuttles/changeling_zombie_instructions(src)

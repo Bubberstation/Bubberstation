@@ -86,7 +86,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		var/mob/living/carbon/human/host = parent
 		if(zombified)
 			playsound(parent, 'sound/magic/demon_consume.ogg', 50, TRUE)
-		REMOVE_TRAITS_IN(host,CHANGELING_ZOMBIE_TRAIT)
+		REMOVE_TRAITS_IN(host,TRAIT_CHANGELING_ZOMBIE)
 		host.mind?.remove_antag_datum(/datum/antagonist/changeling_zombie)
 
 	zombified = FALSE
@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		if(can_cure && current_toxin_damage <= 5) //Not exactly 0 just in case there are race conditions with healing.
 			qdel(src) //Cured!
 		else if(COOLDOWN_FINISHED(src,transformation_grace_period))
-			if(current_toxin_damage >= 200 && host.stat == DEAD)
+			if(current_toxin_damage >= CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_TRANSFORM && host.stat == DEAD)
 				make_zombie()
 				can_cure = FALSE
 			else
@@ -136,7 +136,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				if(host.stat && host.stat == DEAD)
 					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick * damage_multiplier,0.1))
 				else
-					if(!can_cure && current_toxin_damage >= rand(80,120)) // about 100 toxins to cure,
+					if(!can_cure && current_toxin_damage >= CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE) //50 toxins to cure
 						can_cure = TRUE
 						host.visible_message(
 							span_danger("[host]'s flesh hardens and shifts around; now would be a good time to cure them!"),
@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 						)
 					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick * damage_multiplier,0.1))
 				if(SPT_PROB(4, seconds_per_tick))
-					if(current_toxin_damage > 50)
+					if(current_toxin_damage > CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE)
 						var/obj/item/bodypart/wound_area = host.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
 						if(wound_area)
 							var/datum/wound/slash/flesh/moderate/flesh_wound = new
@@ -160,7 +160,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 							host.emote("scream")
 						else
 							host.emote("groan")
-					else if(current_toxin_damage > 25)
+					else if(current_toxin_damage > CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE*0.5)
 						host.visible_message(
 							span_warning("[host] doesn't look too good..."),
 							span_warning("You don't feel too good...")
@@ -200,7 +200,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 			TRAIT_EASYDISMEMBER,
 			TRAIT_HARD_SOLES
 		),
-		CHANGELING_ZOMBIE_TRAIT
+		TRAIT_CHANGELING_ZOMBIE
 	)
 
 	host.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
@@ -214,8 +214,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	//Give armblades.
 	for(var/hand_index=1,hand_index<=length(host.held_items),hand_index++)
 		var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
-		arm_blade.blood_chance = was_changeling_husked ? 25 : 80 //Less chance to infect if you were made a zombie by a changeling.
-		ADD_TRAIT(arm_blade, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
+		arm_blade.blood_chance = was_changeling_husked ? CHANGELING_ZOMBIE_INFECT_CHANCE_LESSER : CHANGELING_ZOMBIE_INFECT_CHANCE //Less chance to infect if you were made a zombie by a changeling.
+		ADD_TRAIT(arm_blade, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
 		RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
 		host.put_in_hand(arm_blade,hand_index,forced=TRUE)
 		arm_blades += arm_blade
@@ -224,7 +224,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(host.wear_suit)
 		host.temporarilyRemoveItemFromInventory(host.wear_suit,TRUE)
 	armor = new(host.loc)
-	ADD_TRAIT(armor, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
+	ADD_TRAIT(armor, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
 	host.equip_to_slot_if_possible(armor,ITEM_SLOT_OCLOTHING,TRUE,TRUE,TRUE)
 
 	//Extra boost
@@ -272,7 +272,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	SIGNAL_HANDLER
 
 	if(HAS_TRAIT_FROM(parent,TRAIT_HUSK, CHANGELING_DRAIN))
-		COOLDOWN_START(src, transformation_grace_period, 30 SECONDS)
+		COOLDOWN_START(src, transformation_grace_period, CHANGELING_ZOMBIE_MINIMUM_TRANSFORM_DELAY)
 		was_changeling_husked = TRUE //If you were somehow changeling husked after you became a zombie.
 
 /datum/component/changeling_zombie_infection/proc/on_unhusk()
@@ -317,7 +317,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	var/mob/living/carbon/human/host = parent
 
 	var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
-	ADD_TRAIT(arm_blade, TRAIT_NODROP, CHANGELING_ZOMBIE_TRAIT)
+	ADD_TRAIT(arm_blade, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
 	RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
 	host.put_in_hand(arm_blade,gained.held_index,forced=TRUE)
 	arm_blades += arm_blade

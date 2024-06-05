@@ -75,11 +75,11 @@
 	if(!injected_mob.stat) //Alive mobs have additional checks.
 		if(!prob(blood_chance))
 			return
-	
+
 		if(!COOLDOWN_FINISHED(src,infection_cooldown))
 			return
 
-	COOLDOWN_START(src, infection_cooldown, 3 SECONDS)
+	COOLDOWN_START(src, infection_cooldown, CHANGELING_ZOMBIE_REINFECT_DELAY)
 
 	var/mob/living/carbon/human/host = injected_mob
 
