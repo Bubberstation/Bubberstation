@@ -1,42 +1,29 @@
 /datum/objective/prank
 	target_amount = 10
-	var/prank_score = 0
 /datum/objective/prank/New()
-	explanation_text = "Prank and humiliate [target_amount] of station crewmembers."
+	explanation_text = "Create a photo blog on the stations newscasters to acheive virality. Create at least [target_amount] entries."
 
 /datum/objective/prank/check_completion()
-	for(var/obj/item/photo/E as anything in GLOB.photos)
-		if(!istype(team, /datum/team/abductor_team))
-			return FALSE
-		var/datum/team/abductor_team/T = team
-		return prank_score >= target_amount
-	return FALSE
+	var/prank_score
+	for(var/datum/feed_channel/feed_channel in GLOB.news_network.network_channels)
+		if(feed_channel.abductor_channel)
+			prank_score += length(feed_channel.messages)
+
+/datum/feed_channel
+	var/abductor_channel = FALSE
 
 
-/obj/item/photo/blogger
+/datum/feed_network/create_feed_channel(channel_name, author, desc, locked, adminChannel = FALSE, hardset_channel)
+	. = ..()
+	var/datum/feed_channel/newChannel = .
+	if (HAS_TRAIT(usr, TRAIT_ABDUCTOR_TRAINING))
+		newChannel.abductor_channel = TRUE
+	if (istype(usr) && HAS_MIND_TRAIT(usr, TRAIT_ABDUCTOR_TRAINING))
+		newChannel.abductor_channel = TRUE
 
-/obj/item/photo/var/stored_shenanigans
+/datum/feed_channel/toggle_censor_author()
 
-/datum/prank
-	var/embarassments = 0
-/datum/prank/proc/check_prank(placeholder, mobs_spotted, dead_spotted, mobs, turfs, blueprints, clone_area)
-	return
-
-/datum/prank/naked/check_prank(placeholder, mobs_spotted, dead_spotted, mobs, turfs, blueprints, clone_area)
-	. = 0
-	for(var/mob/living/carbon/human/human in mobs)
-		var/clothes = locate(/obj/item/clothing) in human.contents
-		if(clothes) // has clothing :()
-			continue
-		else
-			.++
-
-/obj/item/camera/proc/process_pranks(placeholder, mobs_spotted, dead_spotted, mobs, turfs, blueprints, clone_area) // BUBBER EDIT
-	var/datum/objective/prank/prank_objective = locate(/datum/objective/prank) in usr.mind.objectives
-	var/list/pranks = typesof(/datum/prank)
-	for(pranks)
-		var/datum/prank/current_prank = new pranks.type
-		if(current_prank.check_prank(placeholder, mobs_spotted, dead_spotted, mobs, turfs, blueprints, clone_area))
-			prank_objective.prank_score++
-
-GLOBAL_LIST_EMPTY(photos)
+	if(abductor_channel)
+		to_chat(usr, "ACCESS DENIED")
+		return FALSE
+	. = ..()

@@ -207,7 +207,6 @@
 				mobs += M
 			if(locate(/obj/item/blueprints) in placeholder)
 				blueprints = TRUE
-			process_pranks(placeholder, mobs_spotted, dead_spotted, mobs, turfs, blueprints, clone_area) // BUBBER EDIT
 
 	// do this before picture is taken so we can reveal revenants for the photo
 	steal_souls(mobs)
@@ -246,7 +245,6 @@
 /obj/item/camera/proc/printpicture(mob/user, datum/picture/picture) //Normal camera proc for creating photos
 	pictures_left--
 	var/obj/item/photo/new_photo = new(get_turf(src), picture)
-	GLOB.photos |= src // BUBBER EDIT
 	if(user)
 		if(in_range(new_photo, user) && user.put_in_hands(new_photo)) //needed because of TK
 			to_chat(user, span_notice("[pictures_left] photos left."))

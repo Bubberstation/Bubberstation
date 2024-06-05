@@ -194,6 +194,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	if(hardset_channel)
 		newChannel.channel_ID = hardset_channel
 	network_channels += newChannel
+	. = newChannel // BUBBER EDIT ADDITION
 
 /datum/feed_network/proc/submit_article(msg, author, channel_name, datum/picture/picture, adminMessage = FALSE, allow_comments = TRUE, update_alert = TRUE)
 	var/datum/feed_message/newMsg = new /datum/feed_message
