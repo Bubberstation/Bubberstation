@@ -60,12 +60,12 @@
 	cyborg.req_access = list(ACCESS_ROBOTICS)
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
 
-//Quad cyborg command for cyborgs suchs as F3-LINE cyborgs
+//For small quadruped cyborgs suchs as F3-LINE cyborgs
 /obj/item/robot_model/proc/update_quadunit()
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if (model_features && (TRAIT_R_QUADUNIT in model_features))
+	if (model_features && (TRAIT_R_SQUADRUPED in model_features))
 		hat_offset = INFINITY
 		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 		add_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
@@ -95,7 +95,7 @@
 		"F3-LINE-V2" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_GEN_CATBORG,
 		SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_new.dmi',
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_QUADUNIT, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
 		),
 		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
 		SKIN_ICON = CYBORG_ICON_GEN_SMOLRAPTOR,
@@ -168,6 +168,11 @@
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MINE_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		),
+		"F3-LINE-V2" = list(
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MINE_CATBORG,
+		SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_new.dmi',
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
 		),
 		//64x32 Sprites below (Wide)
 		"Corrupt" = list(
