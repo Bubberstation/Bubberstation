@@ -27,3 +27,22 @@
 		to_chat(usr, "ACCESS DENIED")
 		return FALSE
 	. = ..()
+
+/datum/id_trim/chameleon/abductor
+	assignment = "Research Agent"
+	department_color = COLOR_GRAY
+	subdepartment_color = COLOR_GRAY
+	sechud_icon_state = SECHUD_NO_ID
+
+
+/datum/outfit/abductor/agent
+	id = /obj/item/card/id/advanced/chameleon/abductor
+
+/datum/outfit/abductor/scientist
+	id = /obj/item/card/id/advanced/chameleon/abductor
+
+
+/obj/item/card/id/advanced/chameleon/abductor
+	trim = /datum/id_trim/chameleon/abductor
+	wildcard_slots = WILDCARD_LIMIT_CHAMELEON_PLUS
+	anyone = TRUE
