@@ -36,9 +36,14 @@
 	return chosen_turf
 
 /// Generates a new avatar for the bitrunner.
-/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit)
+/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit, datum/preferences/prefs, include_loadout = FALSE) // BUBBER EDIT - Prefs argument
 	var/mob/living/carbon/human/avatar = new(wayout.loc)
 
+	// BUBBER EDIT BEGIN - PREFS!
+	if(!isnull(prefs))
+		prefs.safe_transfer_prefs_to(avatar)
+	ADD_TRAIT(avatar, TRAIT_CANNOT_CRYSTALIZE, "Bitrunning") // Stops the funny ethereal bug
+	// BUBBER EDIT END
 	var/outfit_path = generated_domain.forced_outfit || netsuit
 	var/datum/outfit/to_wear = new outfit_path()
 
@@ -74,6 +79,8 @@
 			new /obj/item/flashlight,
 		)
 
+	if(include_loadout)
+		avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
 	var/obj/item/card/id/outfit_id = avatar.wear_id
 	if(outfit_id)
 		outfit_id.assignment = "Bit Avatar"
