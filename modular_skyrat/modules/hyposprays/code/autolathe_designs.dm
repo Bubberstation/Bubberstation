@@ -78,7 +78,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/design/hypomkii/piercing
+/datum/design/hypomkii/piercing  // BUBBERSTATION ADDITION
 	name = "Combat MkII Hypospray"
 	id = "hypomkii_piercing"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -99,7 +99,7 @@
 	design_ids += list(
 		"hypokit_deluxe",
 		"hypomkii",
-		"hypomkii_piercing",
+		"hypomkii_piercing", // BUBBERSTATION ADDITION
 	)
 	return ..()
 

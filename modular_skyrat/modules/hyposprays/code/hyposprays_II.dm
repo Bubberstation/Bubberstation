@@ -49,7 +49,7 @@
 	/// Used for GAGS-ified hypos.
 	var/gags_bodystate = "hypo2_normal"
 
-/obj/item/hypospray/mkii/piercing
+/obj/item/hypospray/mkii/piercing // BUBBERSTATION ADDITION
 	name = "hypospray mk.II combat"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
 	icon_state = "piercinghypo2"
