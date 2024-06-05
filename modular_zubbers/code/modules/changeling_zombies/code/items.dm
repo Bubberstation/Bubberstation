@@ -1,7 +1,7 @@
 /obj/item/melee/arm_blade_zombie
 
 	name = "prototype arm blade"
-	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
+	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter. Has a chance to infect."
 
 	icon = 'modular_zubbers/code/modules/changeling_zombies/icons/items.dmi'
 	icon_state = "arm_blade"
@@ -15,8 +15,8 @@
 
 	force = 21 // Just enough to break airlocks with melee attacks
 	armour_penetration = 25
-	wound_bonus = -30
-	bare_wound_bonus = 15
+	wound_bonus = -21
+	bare_wound_bonus = 9
 	demolition_mod = 2 //So it can actually destroy airlocks.
 
 	w_class = WEIGHT_CLASS_HUGE
@@ -39,6 +39,7 @@
 	)
 
 	COOLDOWN_DECLARE(sound_cooldown)
+	COOLDOWN_DECLARE(infection_cooldown)
 
 /obj/item/melee/arm_blade_zombie/Initialize(mapload)
 	. = ..()
@@ -70,6 +71,15 @@
 
 	if(!ishuman(injected_mob))
 		return
+
+	if(!injected_mob.stat) //Alive mobs have additional checks.
+		if(!prob(blood_chance))
+			return
+	
+		if(!COOLDOWN_FINISHED(src,infection_cooldown))
+			return
+
+	COOLDOWN_START(src, infection_cooldown, 3 SECONDS)
 
 	var/mob/living/carbon/human/host = injected_mob
 
