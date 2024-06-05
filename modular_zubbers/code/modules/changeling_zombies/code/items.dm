@@ -1,7 +1,7 @@
 /obj/item/melee/arm_blade_zombie
 
 	name = "prototype arm blade"
-	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter. Has a chance to infect."
+	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
 
 	icon = 'modular_zubbers/code/modules/changeling_zombies/icons/items.dmi'
 	icon_state = "arm_blade"
@@ -41,6 +41,13 @@
 	COOLDOWN_DECLARE(sound_cooldown)
 	COOLDOWN_DECLARE(infection_cooldown)
 
+/obj/item/melee/arm_blade_zombie/examine(mob/user)
+	. = ..()
+	if(blood_chance <= 0)
+		. += span_warning("This variant is non-infectious.")
+	else
+		. += span_warning("Has a [blood_chance]% chance to infect when drawing blood on hit, with a [CHANGELING_ZOMBIE_REINFECT_DELAY/10] second cooldown.")
+
 /obj/item/melee/arm_blade_zombie/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, \
@@ -64,6 +71,12 @@
 
 /obj/item/melee/arm_blade_zombie/add_mob_blood(mob/living/injected_mob)
 
+	if(blood_chance <= 0) //Can't infect. Will still draw blood anyways.
+		return ..()
+
+	if(!injected_mob.stat && !prob(blood_chance)) //Alive mobs have additional checks.
+		return
+
 	. = ..()
 
 	if(!.)
@@ -72,12 +85,8 @@
 	if(!ishuman(injected_mob))
 		return
 
-	if(!injected_mob.stat) //Alive mobs have additional checks.
-		if(!prob(blood_chance))
-			return
-
-		if(!COOLDOWN_FINISHED(src,infection_cooldown))
-			return
+	if(!injected_mob.stat && !COOLDOWN_FINISHED(src,infection_cooldown))
+		return
 
 	COOLDOWN_START(src, infection_cooldown, CHANGELING_ZOMBIE_REINFECT_DELAY)
 

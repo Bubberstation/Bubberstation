@@ -213,12 +213,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	//Give armblades.
 	for(var/hand_index=1,hand_index<=length(host.held_items),hand_index++)
-		var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
-		arm_blade.blood_chance = was_changeling_husked ? CHANGELING_ZOMBIE_INFECT_CHANCE_LESSER : CHANGELING_ZOMBIE_INFECT_CHANCE //Less chance to infect if you were made a zombie by a changeling.
-		ADD_TRAIT(arm_blade, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
-		RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
-		host.put_in_hand(arm_blade,hand_index,forced=TRUE)
-		arm_blades += arm_blade
+		generate_armblade(host,hand_index)
 
 	//Give suit.
 	if(host.wear_suit)
@@ -266,6 +261,15 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				))
 
 	return TRUE
+
+/datum/component/changeling_zombie_infection/proc/generate_armblade(mob/living/carbon/human/host,hand_index)
+	var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
+	arm_blade.blood_chance = was_changeling_husked ? CHANGELING_ZOMBIE_INFECT_CHANCE_LESSER : CHANGELING_ZOMBIE_INFECT_CHANCE //Less chance to infect if you were made a zombie by a changeling.
+	ADD_TRAIT(arm_blade, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
+	RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
+	host.put_in_hand(arm_blade,hand_index,forced=TRUE)
+	arm_blades += arm_blade
+	return arm_blade
 
 /datum/component/changeling_zombie_infection/proc/on_husk()
 
@@ -316,11 +320,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	var/mob/living/carbon/human/host = parent
 
-	var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
-	ADD_TRAIT(arm_blade, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
-	RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
-	host.put_in_hand(arm_blade,gained.held_index,forced=TRUE)
-	arm_blades += arm_blade
+	generate_armblade(host,gained.held_index)
 
 	COOLDOWN_START(src,limb_regen_cooldown,CHANGELING_ZOMBIE_LIMB_REGEN_TIME)
 

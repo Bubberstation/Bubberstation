@@ -17,7 +17,7 @@
 #define CHANGELING_ZOMBIE_INFECT_CHANCE 80
 
 //Infection chance per instance when a melee attack is supposed to draw blood. This applies to changeling zombies created by changelings.
-#define CHANGELING_ZOMBIE_INFECT_CHANCE_LESSER 25
+#define CHANGELING_ZOMBIE_INFECT_CHANCE_LESSER 0
 
 //Infection cooldown to be able to infect another person after a successful infection.
 #define CHANGELING_ZOMBIE_REINFECT_DELAY (3 SECONDS)
