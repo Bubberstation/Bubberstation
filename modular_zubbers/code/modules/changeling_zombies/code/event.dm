@@ -7,13 +7,16 @@
 
 	weight = 3
 	max_occurrences = 1
-	earliest_start = 80 MINUTES
+	earliest_start = 60 MINUTES
 
 	min_players = 50
 
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo)
 
 	alert_observers = TRUE
+
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMMUNAL,TAG_COMBAT)
 
 /datum/round_event/stray_cargo/changeling_zombie
 	possible_pack_types = list(/datum/supply_pack/misc/changeling_zombie)
