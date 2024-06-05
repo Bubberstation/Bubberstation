@@ -52,7 +52,7 @@
 /obj/item/hypospray/mkii/piercing
 	name = "hypospray mk.II combat"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
-	icon_state = "combat2"
+	icon_state = "piercinghypo2"
 	desc = "The combat variant of DeForest Mk. II hypospray, able to pierce though armor and quickly inject the chemicals."
 	inject_wait = DELUXE_WAIT_INJECT
 	spray_wait = DELUXE_WAIT_SPRAY
