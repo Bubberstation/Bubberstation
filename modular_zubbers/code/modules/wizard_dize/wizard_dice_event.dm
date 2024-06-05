@@ -14,6 +14,9 @@
 	weight = 3
 	earliest_start = 60 MINUTES
 
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL,TAG_COMBAT)	
+
 /datum/round_event/wizard_dice
 	announce_when = 5
 
