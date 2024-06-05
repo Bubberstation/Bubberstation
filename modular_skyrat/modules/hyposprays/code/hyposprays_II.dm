@@ -53,7 +53,7 @@
 	name = "hypospray mk.II combat"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
 	icon_state = "piercinghypo2"
-	desc = "The combat variant of DeForest Mk. II hypospray, able to pierce though armor and quickly inject the chemicals."
+	desc = "The combat variant of DeForest Mk. II hypospray, able to pierce through thick armor and quickly inject the chemicals."
 	inject_wait = WAIT_INJECT
 	spray_wait = WAIT_SPRAY
 	spray_self = COMBAT_SELF_SPRAY
