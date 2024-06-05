@@ -289,20 +289,17 @@
 				return
 
 /mob/living/get_photo_description(obj/item/camera/camera)
-	var/list/mob_details = list()
 	var/list/holding = list()
 	var/len = length(held_items)
 	if(len)
-		for(var/obj/item/I in held_items)
+		for(var/obj/item/held_item in held_items)
 			if(!holding.len)
-				holding += "[p_They()] [p_are()] holding \a [I]"
-			else if(held_items.Find(I) == len)
-				holding += ", and \a [I]."
+				holding += "[p_They()] [p_are()] holding \a [held_item]"
+			else if(held_items.Find(held_item) == len)
+				holding += ", and \a [held_item]"
 			else
-				holding += ", \a [I]"
-	holding += "."
-	mob_details += "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt":""][holding ? ". [holding.Join("")]":"."]."
-	return mob_details.Join("")
+				holding += ", \a [held_item]"
+	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt":""][holding.len ? ". [holding.Join("")].":"."]"
 
 //Called when we bump onto an obj
 /mob/living/proc/ObjBump(obj/O)
@@ -315,6 +312,8 @@
 	if(moving_diagonally)// no pushing during diagonal moves.
 		return TRUE
 	if(!client && (mob_size < MOB_SIZE_SMALL))
+		return
+	if(SEND_SIGNAL(AM, COMSIG_MOVABLE_BUMP_PUSHED, src, force) & COMPONENT_NO_PUSH)
 		return
 	now_pushing = TRUE
 	SEND_SIGNAL(src, COMSIG_LIVING_PUSHING_MOVABLE, AM)
@@ -634,10 +633,11 @@
  * Returns the access list for this mob
  */
 /mob/living/proc/get_access()
+	var/list/access_list = list()
+	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_SIMPLE_ACCESS, access_list)
 	var/obj/item/card/id/id = get_idcard()
-	if(isnull(id))
-		return list()
-	return id.GetAccess()
+	access_list += id?.GetAccess()
+	return access_list
 
 /mob/living/proc/get_id_in_hand()
 	var/obj/item/held_item = get_active_held_item()
@@ -2220,6 +2220,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			to_chat(src, span_warning("You can't see through the floor above you."))
 			return
 
+	looking_vertically = TRUE
 	reset_perspective(ceiling)
 
 /mob/living/proc/stop_look_up()
@@ -2228,6 +2229,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /mob/living/proc/end_look_up()
 	stop_look_up()
+	looking_vertically = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 
@@ -2270,6 +2272,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			to_chat(src, span_warning("You can't see through the floor below you."))
 			return
 
+	looking_vertically = TRUE
 	reset_perspective(lower_level)
 
 /mob/living/proc/stop_look_down()
@@ -2278,6 +2281,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /mob/living/proc/end_look_down()
 	stop_look_down()
+	looking_vertically = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 
@@ -2775,7 +2779,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	set name = "Look Up"
 	set category = "IC"
 
-	if(client.perspective != MOB_PERSPECTIVE)
+	if(looking_vertically)
 		end_look_up()
 	else
 		look_up()
@@ -2784,7 +2788,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	set name = "Look Down"
 	set category = "IC"
 
-	if(client.perspective != MOB_PERSPECTIVE)
+	if(looking_vertically)
 		end_look_down()
 	else
 		look_down()
@@ -2805,3 +2809,26 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		physical_cash_total += counted_credit.get_item_credit_value()
 		counted_money += counted_credit
 	return round(physical_cash_total)
+
+/// Returns an arbitrary number which very roughly correlates with how buff you look
+/mob/living/proc/calculate_fitness()
+	var/athletics_level = mind?.get_skill_level(/datum/skill/athletics) || 1
+	var/damage = (melee_damage_lower + melee_damage_upper) / 2
+
+	return ceil(damage * (ceil(athletics_level / 2)) * maxHealth)
+
+/// Create a report string about how strong this person looks, generated in a somewhat arbitrary fashion
+/mob/living/proc/compare_fitness(mob/living/scouter)
+	if (HAS_TRAIT(src, TRAIT_UNKNOWN))
+		return span_warning("It's impossible to tell whether this person lifts.")
+
+	var/our_fitness_level = calculate_fitness()
+	var/their_fitness_level = scouter.calculate_fitness()
+
+	var/comparative_fitness = our_fitness_level / their_fitness_level
+
+	if (comparative_fitness > 2)
+		scouter.set_jitter_if_lower(comparative_fitness SECONDS)
+		return "[span_notice("You'd estimate [p_their()] fitness level at about...")] [span_boldwarning("What?!? [our_fitness_level]???")]"
+
+	return span_notice("You'd estimate [p_their()] fitness level at about [our_fitness_level]. [comparative_fitness <= 0.33 ? "Pathetic." : ""]")

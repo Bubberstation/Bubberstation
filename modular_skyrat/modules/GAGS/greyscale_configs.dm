@@ -1489,7 +1489,7 @@ digi
 	name = "Wargame Hologram Projector"
 	icon_file = 'modular_skyrat/modules/wargame_projectors/icons/projectors_and_holograms.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/wargame_holoprojector/projector.json'
-	
+
 /datum/greyscale_config/hypokit
 	name = "Hypospray Kit"
 	icon_file = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'

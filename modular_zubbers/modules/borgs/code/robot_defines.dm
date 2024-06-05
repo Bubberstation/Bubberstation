@@ -37,6 +37,37 @@
 #define CYBORG_ICON_NINJA_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_ninja.dmi'
 
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
+
+//Small raptors I moved it into here to be found easier
+#define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
+
+#define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_gen.dmi'
+#define CYBORG_ICON_SCI_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_sci.dmi'
+#define CYBORG_ICON_ENG_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_eng.dmi'
+#define CYBORG_ICON_MED_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_med.dmi'
+#define CYBORG_ICON_CAR_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_car.dmi'
+#define CYBORG_ICON_SERV_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_serv.dmi'
+#define CYBORG_ICON_PK_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_pk.dmi'
+#define CYBORG_ICON_JANI_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_jani.dmi'
+#define CYBORG_ICON_MIN_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_min.dmi'
+#define CYBORG_ICON_CC_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_cc.dmi'
+
+//F3-LINE cyborgs
+#define CYBORG_ICON_ALL_CATBORG 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi'
+
+#define CYBORG_ICON_TYPE_GEN_CATBORG "FELI-Standard"
+#define CYBORG_ICON_TYPE_SCI_CATBORG "FELI-Research"
+#define CYBORG_ICON_TYPE_ENG_CATBORG "FELI-Engineer"
+#define CYBORG_ICON_TYPE_MED_CATBORG "FELI-Medical"
+#define CYBORG_ICON_TYPE_SERV_CATBORG "FELI-Service"
+#define CYBORG_ICON_TYPE_PK_CATBORG "FELI-Pk"
+#define CYBORG_ICON_TYPE_JANI_CATBORG "FELI-Janitor"
+#define CYBORG_ICON_TYPE_MINE_CATBORG "FELI-Mining"
+#define CYBORG_ICON_TYPE_SEC_CATBORG "FELI-Security"
+#define CYBORG_ICON_TYPE_SYNDI_CATBORG "FELI-Combat"
+#define CYBORG_ICON_TYPE_NINJA_CATBORG "FELI-Ninja"
+
+
 /mob/living/silicon/robot/model/centcom
 	icon = CYBORG_ICON_CENTCOM_WIDE_BUBBER
 	icon_state = "valecc"

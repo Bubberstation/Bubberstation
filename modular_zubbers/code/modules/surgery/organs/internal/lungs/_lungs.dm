@@ -20,11 +20,6 @@
 				if(32 to INFINITY)
 					to_chat(breather, span_warning("The smell of rotting carcasses is unbearable!"))
 					breather.add_mood_event("miasma", /datum/mood_event/miasma/heavy)
-					if(prob(miasma_pp))
-						var/datum/disease/advance/floorfood/miasma/miasma_disease = new
-						if(breather.CanContractDisease(miasma_disease))
-							breather.AirborneContractDisease(miasma_disease, TRUE)
-						breather.vomit(VOMIT_CATEGORY_DEFAULT)
 	else
 		breather.clear_mood_event("miasma")
 
