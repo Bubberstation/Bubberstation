@@ -17,14 +17,16 @@
 	set name = "What are antag tickets?"
 	set category = "OOC"
 
+	var/antag_ticket_rate = CONFIG_GET(number/antag_tickets_per_update)
+
+	if(!antag_ticket_rate)
+		to_chat(span_notice("Antag tickets are currently disabled, so you don't have to worry about them."))
+		return
+
 	var/information = "\
 	Antag tickets are a way to balance playtime between being an antagonist and being a non-antagonist. \
 	Having more antag tickets makes you more likely to be chosen as an antagonist, while having less makes you less likely to be chosen as one. \
-	Antag tickets are gained when you're playing as a crew role while not being an antagonist, while antag tickets are spent when you're playing as an antagonist.
+	Antag tickets are gained when you're playing as a crew role while not being an antagonist, while antag tickets are spent when you're playing as an antagonist. \
+	Note that as an antagonist, you do not lose antag tickets when you're handcuffed, restrained, dead, crit, incapacitated, or in prison."
 
-
-
-
-	"
-
-	to_chat(src,span_notice())
+	to_chat(src,span_notice(information))
