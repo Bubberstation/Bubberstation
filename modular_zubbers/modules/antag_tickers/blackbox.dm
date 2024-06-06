@@ -2,8 +2,8 @@
 
 	. = ..()
 
-	if(SSticker.HasRoundStarted() && (triggertime < 0 || world.time > triggertime + (5 MINUTES)))
-		var/antag_tickets_to_add = CONFIG_GET(number/antag_tickets_per_five_minutes)
+	if(SSticker.HasRoundStarted() && (triggertime < 0 || world.time > triggertime + wait/2))
+		var/antag_tickets_to_add = CONFIG_GET(number/antag_tickets_per_update)
 		if(antag_tickets_to_add > 0)
 			update_antag_tickets(antag_tickets_to_add)
 

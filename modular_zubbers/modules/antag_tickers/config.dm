@@ -1,5 +1,5 @@
-/datum/config_entry/number/antag_tickets_per_five_minutes
-	default = 12
+/datum/config_entry/number/antag_tickets_per_update //Each update is typically 10 minutes.
+	default = 10 //10 per 10 minutes
 	integer = TRUE
 	min_val = 0
 
