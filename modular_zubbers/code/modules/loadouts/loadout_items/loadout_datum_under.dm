@@ -29,7 +29,7 @@
 	item_path = /obj/item/clothing/under/misc/maid/tactical
 	donator_only = TRUE
 
-/datum/loadout_item/under/miscellaneous/bubber/clown/skirt
+/datum/loadout_item/under/miscellaneous/bubber/clown/skirt/red
 	name = "Clown Skirt"
 	item_path = /obj/item/clothing/under/rank/civilian/bubber/clown/skirt
 	restricted_roles = list(JOB_CLOWN)
@@ -37,7 +37,6 @@
 /datum/loadout_item/under/miscellaneous/bubber/clown/skirt/pink //Shouldn't do too much harm having these unlocked...Right?
 	name = "Pink Clown Skirt"
 	item_path = /obj/item/clothing/under/rank/civilian/bubber/clown/skirt/clussy
-	restricted_roles = null
 
 /datum/loadout_item/under/miscellaneous/bubber/clown/jester/amazing
 	name = "Amazing Jester Uniform"
