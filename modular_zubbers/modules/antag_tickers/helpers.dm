@@ -28,7 +28,11 @@
 	if(is_special_character(actual_mob, allow_fake_antags = FALSE)) //Antagonist.
 		if(actual_mob.stat) //Dead. Crit, etc.
 			return 0
-		if(actual_mob.is_imprisoned_by_security()) //Restrained, Incapacitated, in certain security areas.
+		if(HAS_TRAIT(actual_mob, TRAIT_RESTRAINED))
+			return 0
+		if(HAS_TRAIT(actual_mob, TRAIT_INCAPACITATED))
+			return 0
+		if(actual_mob.is_imprisoned_in_security()) //Restrained, Incapacitated, in certain security areas.
 			return 0
 		return -1
 
@@ -47,13 +51,7 @@ GLOBAL_LIST_INIT(imprisoning_areas,list(
 	/area/station/security/prison
 ))
 
-/mob/proc/is_imprisoned_by_security()
-
-	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
-		return TRUE
-
-	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
-		return TRUE
+/mob/proc/is_imprisoned_in_security()
 
 	var/area/mob_area = get_area(src)
 

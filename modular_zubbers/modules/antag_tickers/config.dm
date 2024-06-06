@@ -16,4 +16,3 @@
 /datum/config_entry/number/antag_ticket_default
 	default = 60
 	integer = TRUE
-	max_val = 0
