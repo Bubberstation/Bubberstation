@@ -13,6 +13,7 @@
 		var/ticket_multiplier = found_client.antag_ticket_multiplier()
 		if(!ticket_multiplier)
 			continue
-		update_antag_tickets(ticket_multiplier*amount)
+		found_client.add_antag_tickets(ticket_multiplier*amount)
 
 	return TRUE
+

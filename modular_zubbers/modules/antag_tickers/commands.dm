@@ -12,3 +12,19 @@
 	var/antag_ticket_gain = antag_ticket_multiplier()*antag_ticket_rate
 
 	to_chat(src,span_notice("You currently have <b>[antag_ticket_count]</b> antag tickets, and are [antag_ticket_gain >= 0 ? "gaining" : "losing"] <b>[abs(antag_ticket_gain)]</b> antag tickets every [DisplayTimeText(SSblackbox.wait,1)]."))
+
+/client/verb/antag_tickets_info()
+	set name = "What are antag tickets?"
+	set category = "OOC"
+
+	var/information = "\
+	Antag tickets are a way to balance playtime between being an antagonist and being a non-antagonist. \
+	Having more antag tickets makes you more likely to be chosen as an antagonist, while having less makes you less likely to be chosen as one. \
+	Antag tickets are gained when you're playing as a crew role while not being an antagonist, while antag tickets are spent when you're playing as an antagonist.
+
+
+
+
+	"
+
+	to_chat(src,span_notice())
