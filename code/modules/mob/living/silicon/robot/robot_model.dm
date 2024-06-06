@@ -235,7 +235,10 @@
 	new_model.update_dogborg()
 	new_model.update_tallborg()
 	//SKYRAT EDIT ADDITION END
-	new_model.update_quadunit() //BUBBER ADDTION
+	//BUBBER EDIT ADDTION BEGIN
+	new_model.update_squadruped()
+	new_model.update_lightweight()
+	//BUBBER EDIT ADDTION END
 
 	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
 	qdel(src)

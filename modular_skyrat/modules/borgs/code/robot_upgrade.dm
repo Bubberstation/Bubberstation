@@ -465,7 +465,7 @@
 	if(borg.hasAffection)
 		to_chat(usr, span_warning("This unit already has a affection module installed!"))
 		return FALSE
-	if(!((TRAIT_R_WIDE || TRAIT_R_SQUADRUPED) in borg.model.model_features))//bubber change allows 32x32 quadruped cyborgs as well
+	if(!(TRAIT_R_WIDE in borg.model.model_features))
 		to_chat(usr, span_warning("This unit's chassis does not support this module."))
 		return FALSE
 

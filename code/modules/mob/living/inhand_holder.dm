@@ -76,6 +76,7 @@
 	released_mob.forceMove(drop_location())
 	released_mob.reset_perspective()
 	released_mob.setDir(SOUTH)
+	released_mob.mob_in_holder = FALSE //BUBBER ADDITION - we are no longer being held
 	if(display_messages)
 		released_mob.visible_message(span_warning("[released_mob] uncurls!"))
 	if(del_on_release && !destroying)
