@@ -29,18 +29,17 @@
 	desc = "Ow! Get it out of me!"
 	icon = 'icons/obj/weapons/bows/arrows.dmi'
 	icon_state = "arrow_projectile"
-	damage = 50
+	damage = 25
 	speed = 1
 	range = 25
 	shrapnel_type = null
 	embedding = list(
-		embed_chance = 90,
+		embed_chance = 10,
 		fall_chance = 2,
-		jostle_chance = 2,
+		jostle_chance = 0,
 		ignore_throwspeed_threshold = TRUE,
 		pain_stam_pct = 0.5,
 		pain_mult = 3,
-		jostle_pain_mult = 3,
 		rip_time = 1 SECONDS
 	)
 
@@ -60,7 +59,7 @@
 	icon_state = "holy_arrow_projectile"
 	damage = 20 //still a lot but this is roundstart gear so far less
 	embedding = list(
-		embed_chance = 50,
+		embed_chance = 25,
 		fall_chance = 2,
 		jostle_chance = 0,
 		ignore_throwspeed_threshold = TRUE,
