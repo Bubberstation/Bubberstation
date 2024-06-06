@@ -14,7 +14,7 @@
 //No waddle and no squeak version for all use.
 /obj/item/clothing/shoes/latex_heels/bubber/clussy/mute
 	name = "pink heels"
-	desc = "Annoyed scientists have finally stolen the clowns shoes as an act of revenge and ripped out these heels capibilities to waddle and squeak. Unfortunately, they still barely fit on anyone's feet!"
+	desc = "Annoyed scientists have finally stolen the clowns shoes as an act of revenge and ripped out these heels capabilities to waddle and squeak. Unfortunately, they still barely fit on anyone's feet!"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	icon_state = "clussy_heels"
