@@ -14,6 +14,6 @@
 	AddComponent(/datum/component/experiment_handler, \
 		allowed_experiments = list(/datum/experiment/scanning, /datum/experiment/physical), \
 		disallowed_traits = EXPERIMENT_TRAIT_DESTRUCTIVE, \
-		experiment_signals = handheld_signals, \
 		config_flags = EXPERIMENT_CONFIG_IMMEDIATE_ACTION|EXPERIMENT_CONFIG_WORKS_FROM_RANGE, \
+		experiment_signals = handheld_signals, \
 	)
