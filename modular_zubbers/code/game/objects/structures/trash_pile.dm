@@ -16,8 +16,8 @@
 
 	var/list/searched_by_ckeys = list() //Assoc list of people who searched this trash pile (value is 1), or started searching (value is 0)
 
-	var/trash_delay = 0.25 SECONDS
-	var/funny_sound_delay = 0.1 SECONDS
+	var/trash_delay = 0.5 SECONDS
+	var/funny_sound_delay = 0.2 SECONDS
 
 	COOLDOWN_DECLARE(trash_cooldown)
 	COOLDOWN_DECLARE(funny_sound_cooldown)
@@ -63,6 +63,7 @@
 /obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/elevation, pixel_shift = 12)
 	icon_state = pick(
 		"pile1",
 		"pile2",
@@ -118,7 +119,8 @@
 	if(searched_by_ckeys[user.ckey])
 		balloon_alert(user, "empty...")
 		return TRUE
-	var/obj/item/spawned_item = produce_item_from_list(get_turf(src),GLOB.trash_pile_loot)
+	var/obj/item/spawned_item = prob(25) ? pick_weight_recursive(GLOB.common_loot) : pick_weight_recursive(GLOB.trash_pile_loot)
+	spawned_item = new spawned_item(get_turf(src))
 	if(spawned_item)
 		balloon_alert(user, "found [spawned_item.name]!")
 	else
@@ -186,13 +188,6 @@
 /obj/structure/trash_pile/relaymove(mob/user)
 	container_resist_act(user)
 
-/obj/structure/trash_pile/proc/produce_item_from_list(turf/spawn_loc,list/list_to_use)
-	var/lootspawn = pick_weight(list_to_use)
-	while(islist(lootspawn))
-		lootspawn = pick_weight(lootspawn)
-	var/obj/item/hidden_item = new lootspawn(spawn_loc)
-	return hidden_item
-
 /obj/structure/trash_pile/proc/throw_trash(mob/user)
 
 	if(QDELETED(src) || QDELETED(user)) //Check if valid.
@@ -201,21 +196,24 @@
 	if(isnum(searched_by_ckeys[user.ckey])) //Don't spawn trash!
 		return TRUE
 
-	var/turf/T
+	var/turf/T = get_turf(user)
+	if(get_dist(T,src) > 1) //Distance check for TK fuckery
+		return TRUE
+
 	if(COOLDOWN_FINISHED(src, trash_cooldown))
 		COOLDOWN_START(src, trash_cooldown, trash_delay*0.5 + rand()*trash_delay) // x0.5 to x1.5
-		if(!T)
-			T = get_turf(user)
-		var/obj/item/spawned_item = produce_item_from_list(T,GLOB.trash_loot)
-		if(spawned_item)
-			var/turf/throw_at = get_ranged_target_turf_direct(src, user, 7, rand(-60,60))
-			if(spawned_item.safe_throw_at(throw_at, rand(2,4), rand(1,3), user, spin = TRUE))
-				playsound(T, 'sound/weapons/punchmiss.ogg', 10)
+		var/obj/item/spawned_item
+		if(length(GLOB.one_of_a_kind_loot) && prob(0.1)) //1 in 1000
+			spawned_item = pick_n_take(GLOB.one_of_a_kind_loot)
+		else
+			spawned_item = pick_weight_recursive(GLOB.trash_loot)
+		spawned_item = new spawned_item(T)
+		var/turf/throw_at = get_ranged_target_turf_direct(src, user, 7, rand(-60,60))
+		if(spawned_item.safe_throw_at(throw_at, rand(2,4), rand(1,3), user, spin = TRUE))
+			playsound(T, 'sound/weapons/punchmiss.ogg', 10)
 
 	if(COOLDOWN_FINISHED(src,funny_sound_cooldown))
 		COOLDOWN_START(src, funny_sound_cooldown, funny_sound_delay*0.5 + rand()*funny_sound_delay) // x0.5 to x1.5
-		if(!T)
-			T = get_turf(user)
 		playsound(T,pick_weight(funny_sounds), 25)
 
 	return TRUE

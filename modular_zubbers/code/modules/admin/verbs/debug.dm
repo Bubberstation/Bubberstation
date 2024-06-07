@@ -1,13 +1,10 @@
-/client/proc/debug_maintenance_loot()
-	set category = "Debug"
-	set name = "Debug Missing Maintenance Loot"
-	if(!check_rights(R_DEBUG))
-		return
-	var/confirm = input("Are you sure you wish to debug maintenance loot? This process takes up a lot of the server's resources.","Debug Maintenance Loot","Cancel") as null|anything in list("Yes","No","Cancel")
+ADMIN_VERB(debug_maintenance_loot, R_DEBUG, "Debug Maintenance Loot", "List all items in the game that are not in maintenance loot", ADMIN_CATEGORY_DEBUG)
+
+	var/confirm = input(user,"Are you sure you wish to debug maintenance loot? This process takes up a lot of the server's resources.","Debug Maintenance Loot","Cancel") as null|anything in list("Yes","No","Cancel")
 	if(confirm != "Yes")
 		return
 
-	log_admin("[key_name(src)] has started debugging maintenance loot.")
+	log_admin("[key_name(user)] has started debugging maintenance loot.")
 
 	var/list/every_single_maintenance_item = list()
 	for(var/loot_list in GLOB.maintenance_loot)
@@ -23,6 +20,4 @@
 		if(!every_single_maintenance_item[k])
 			returning_data = "[returning_data]<br>[k]"
 
-	src << browse(returning_data, "window=maintenace_report")
-
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Debug Missing Maintenance Loot") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
+	user << browse(returning_data, "window=maintenace_report")

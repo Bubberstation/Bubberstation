@@ -5,4 +5,3 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	GLOB.arcade_prize_pool_special = 250,
 	GLOB.arcade_prize_pool_oh_god = 1
 ))
- // UNTICKED, COME BACK LATER AND OVERRIDE
