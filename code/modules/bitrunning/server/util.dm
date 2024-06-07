@@ -6,10 +6,9 @@
 	update_appearance()
 	//BUBBER ADDITION BEGIN - This is a HORRIBLE HACK to stop the radio from blurting out on cargo channel for dauntless prisoners
 	//If the dauntless map is removed, remove this hack!
-	//If the server is moved into a different area for dauntless, update this hack!
-	var/turf/curr = get_turf(radio)
-	var/area/dauntless_prison = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
-	if(get_area_name(curr, TRUE) == dauntless_prison.name)
+	var/area/curr = get_area(src)
+	if(istype(curr, /area/ruin/space/has_grav/bubbers/dauntless) || istype(curr, /area/ruin/space/has_grav/bubbers/dauntless_space))
+		balloon_alert_to_viewers("cooldown has completed")
 		return
 	//BUBBER ADDITION END
 	radio.talk_into(src, "Thermal systems within operational parameters. Proceeding to domain configuration.", RADIO_CHANNEL_SUPPLY)
