@@ -10,6 +10,12 @@
 /obj/structure/sink/directional/west,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
+"aO" = (
+/obj/machinery/computer/shuttle/white_ship/miner{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/shuttle/abandoned)
 "aP" = (
 /obj/machinery/smartfridge,
 /turf/open/floor/iron,
@@ -24,11 +30,6 @@
 /area/shuttle/abandoned)
 "ci" = (
 /obj/machinery/rnd/production/circuit_imprinter,
-/turf/open/floor/iron,
-/area/shuttle/abandoned)
-"cH" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/light/directional/north,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "cO" = (
@@ -55,7 +56,7 @@
 /obj/structure/fluff/metalpole/anchor{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/space,
 /area/shuttle/abandoned)
 "eZ" = (
 /obj/machinery/computer/operating/oldstation,
@@ -97,7 +98,7 @@
 /area/shuttle/abandoned)
 "km" = (
 /obj/structure/fluff/metalpole,
-/turf/open/space/basic,
+/turf/open/space,
 /area/shuttle/abandoned)
 "kv" = (
 /obj/machinery/door/airlock/external/glass,
@@ -121,7 +122,7 @@
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "mw" = (
-/turf/open/space/basic,
+/turf/template_noop,
 /area/space)
 "mI" = (
 /turf/open/floor/carpet/royalblue,
@@ -142,6 +143,16 @@
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
+"oO" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/effect/mapping_helpers/airlock/access/any/independent_miner/cap,
+/turf/open/floor/iron,
+/area/shuttle/abandoned)
+"qk" = (
+/obj/structure/table,
+/obj/machinery/griddle/frontier_tabletop,
+/turf/open/floor/iron,
+/area/shuttle/abandoned)
 "rk" = (
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/machinery/airalarm/directional/north,
@@ -152,8 +163,8 @@
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "tp" = (
-/obj/machinery/biogenerator,
 /obj/machinery/light/directional/east,
+/obj/machinery/vending/hydroseeds,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "tx" = (
@@ -167,9 +178,16 @@
 /obj/machinery/door/airlock/external/glass,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
+"uE" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/shuttle/abandoned)
 "uR" = (
 /obj/structure/lattice,
-/turf/open/floor/catwalk_floor/airless,
+/obj/structure/marker_beacon/burgundy,
+/turf/open/space,
 /area/shuttle/abandoned)
 "vT" = (
 /obj/machinery/computer/mech_bay_power_console{
@@ -181,7 +199,7 @@
 /obj/structure/fluff/metalpole{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/space,
 /area/shuttle/abandoned)
 "xN" = (
 /obj/structure/rack/shelf,
@@ -198,7 +216,10 @@
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "yp" = (
-/turf/open/space/basic,
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 "yW" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
@@ -211,13 +232,10 @@
 "zw" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/bedsheet/any,
-/turf/open/floor/carpet/royalblue,
-/area/shuttle/abandoned)
-"Am" = (
-/obj/machinery/power/shuttle_engine/huge{
+/obj/effect/mob_spawn/ghost_role/human/independent_miner{
 	dir = 8
 	},
-/turf/open/space/basic,
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/abandoned)
 "AB" = (
 /obj/structure/table,
@@ -274,6 +292,10 @@
 /obj/structure/closet/crate,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
+"DI" = (
+/obj/structure/marker_beacon/cerulean,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/abandoned)
 "Eh" = (
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/machinery/airalarm/directional/south,
@@ -285,20 +307,28 @@
 /obj/item/radio,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
-"Fk" = (
-/obj/structure/table,
-/obj/item/defibrillator/loaded,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron,
-/area/shuttle/abandoned)
 "FO" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external/glass,
+/obj/docking_port/mobile{
+	port_direction = 8;
+	dir = 2;
+	dwidth = 1;
+	name = "Independent miner ship"
+	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
 "FY" = (
 /obj/structure/frame/machine/secured,
 /turf/open/floor/iron,
+/area/shuttle/abandoned)
+"Gb" = (
+/obj/structure/marker_beacon/burgundy,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/abandoned)
+"Gc" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "Gm" = (
 /turf/closed/wall/mineral/titanium,
@@ -316,21 +346,12 @@
 /obj/item/storage/bag/ore,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
-"HD" = (
-/obj/machinery/griddle/frontier_tabletop,
-/obj/structure/table,
-/turf/open/floor/iron,
-/area/shuttle/abandoned)
 "Kc" = (
 /obj/machinery/mecha_part_fabricator,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "Kk" = (
 /obj/machinery/hydroponics/constructable,
-/turf/open/floor/iron,
-/area/shuttle/abandoned)
-"Kt" = (
-/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "Kv" = (
@@ -371,9 +392,15 @@
 /obj/item/mining_scanner,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
+"Pf" = (
+/obj/item/defibrillator/loaded,
+/obj/machinery/light/directional/north,
+/obj/structure/table,
+/turf/open/floor/iron,
+/area/shuttle/abandoned)
 "PC" = (
 /obj/structure/fluff/metalpole/end/right,
-/turf/open/space/basic,
+/turf/open/space,
 /area/shuttle/abandoned)
 "PU" = (
 /obj/structure/rack,
@@ -386,7 +413,7 @@
 /area/shuttle/abandoned)
 "Qf" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
+/turf/open/space,
 /area/shuttle/abandoned)
 "QY" = (
 /obj/structure/table,
@@ -399,7 +426,11 @@
 /obj/structure/fluff/metalpole/end/right{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/space,
+/area/shuttle/abandoned)
+"Sr" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/iron,
 /area/shuttle/abandoned)
 "UF" = (
 /obj/structure/table,
@@ -408,14 +439,15 @@
 "WY" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned)
+"Xk" = (
+/obj/structure/table,
+/obj/machinery/microwave/frontier_printed,
+/turf/open/floor/iron,
+/area/shuttle/abandoned)
 "Xq" = (
 /obj/machinery/computer/crew{
 	dir = 8
 	},
-/turf/open/floor/iron,
-/area/shuttle/abandoned)
-"Xy" = (
-/obj/machinery/vending/hydroseeds,
 /turf/open/floor/iron,
 /area/shuttle/abandoned)
 "XT" = (
@@ -427,6 +459,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/shuttle/abandoned)
+"Yy" = (
+/obj/effect/mob_spawn/ghost_role/human/independent_miner/captain,
+/turf/open/floor/iron,
 /area/shuttle/abandoned)
 "Za" = (
 /obj/structure/table/optable,
@@ -440,9 +476,6 @@
 
 (1,1,1) = {"
 mw
-yp
-yp
-Am
 mw
 mw
 mw
@@ -451,16 +484,19 @@ mw
 mw
 mw
 mw
-yp
-yp
-Am
+mw
+mw
+mw
+mw
+mw
+mw
 mw
 "}
 (2,1,1) = {"
 mw
-yp
-yp
-yp
+mw
+mw
+mw
 mw
 mw
 Gm
@@ -469,9 +505,9 @@ GD
 Gm
 mw
 mw
-yp
-yp
-yp
+mw
+mw
+mw
 mw
 "}
 (3,1,1) = {"
@@ -583,7 +619,7 @@ xN
 yW
 "}
 (9,1,1) = {"
-WY
+Gm
 De
 mI
 mI
@@ -602,8 +638,8 @@ Gm
 "}
 (10,1,1) = {"
 Gm
-WY
-zw
+mI
+mI
 mI
 Gm
 hx
@@ -614,14 +650,14 @@ hx
 hx
 hx
 hx
+hx
 lU
-WY
 Gm
 "}
 (11,1,1) = {"
-mw
 Gm
-WY
+zw
+zw
 zw
 Gm
 hx
@@ -629,73 +665,71 @@ hx
 hx
 hx
 hx
-UF
-HD
+hx
 bF
-WY
+qk
+Xk
+hx
 Gm
-mw
 "}
 (12,1,1) = {"
-mw
-mw
+Gm
+Gm
 Gm
 WY
 Gm
-Gm
-WY
-Kt
+hx
+hx
+hx
 hx
 hx
 AB
 aP
 WY
 Gm
-mw
-mw
+Gm
+Gm
 "}
 (13,1,1) = {"
-mw
-mw
-mw
 Gm
 eZ
 hx
+hx
 Gm
-Kk
+hx
+hx
+hx
 hx
 hx
 hx
 hx
 es
+hx
+Kk
 Gm
-mw
-mw
 "}
 (14,1,1) = {"
-mw
-mw
-mw
 yW
 Za
 hx
+hx
 Gm
-cH
+mM
+hx
+hx
 hx
 hx
 hx
 hx
 Kk
+hx
+Kk
 yW
-mw
-mw
 "}
 (15,1,1) = {"
-mw
-mw
-mw
 yW
 UF
+hx
 hx
 sC
 hx
@@ -703,31 +737,33 @@ hx
 hx
 hx
 hx
-Kk
-Gm
-mw
-mw
+hx
+hx
+hx
+hx
+hx
+Gc
 "}
 (16,1,1) = {"
-mw
-mw
-mw
 Gm
-Fk
+Pf
 am
+hx
 Gm
+hx
+hx
+hx
+hx
+hx
+hx
 Dt
-Xy
-hx
-hx
-ms
 tp
-WY
-mw
-mw
+ms
+Sr
+Gm
 "}
 (17,1,1) = {"
-WY
+Gm
 Gm
 Gm
 Gm
@@ -840,7 +876,7 @@ mw
 WY
 WY
 Gm
-lu
+oO
 Gm
 Gm
 Gm
@@ -857,11 +893,11 @@ mw
 mw
 mw
 Gm
-hx
+Yy
 hx
 Eh
 Gm
-Gm
+WY
 mw
 yW
 fj
@@ -912,8 +948,8 @@ mw
 mw
 yW
 Xq
-hx
-hx
+aO
+uE
 yW
 wU
 mw
@@ -928,11 +964,11 @@ mw
 mw
 mw
 mw
-Gm
+DI
 yW
 yW
 yW
-Gm
+Gb
 wU
 mw
 mw
@@ -950,7 +986,7 @@ mw
 mw
 mw
 mw
-wU
+Rz
 wU
 mw
 mw
@@ -968,7 +1004,7 @@ mw
 mw
 mw
 mw
-Rz
+mw
 wU
 mw
 mw
