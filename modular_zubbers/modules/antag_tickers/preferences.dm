@@ -3,14 +3,18 @@
 	var/antag_tickets_old = -1
 
 /datum/preferences/load_preferences()
-	. = ..()
-	if(!.)
-		return
+	if(!savefile)
+		stack_trace("Attempted to load the preferences of [parent] without a savefile; did you forget to call load_savefile?")
+		load_savefile()
+		if(!savefile)
+			stack_trace("Failed to load the savefile for [parent] after manually calling load_savefile; something is very wrong.")
+			return FALSE
 	antag_tickets = savefile.get_entry("antag_tickets")
 	if(isnull(antag_tickets))
 		antag_tickets = CONFIG_GET(number/antag_ticket_default)
 	antag_tickets = clamp(antag_tickets, CONFIG_GET(number/antag_ticket_minimum), CONFIG_GET(number/antag_ticket_maximum))
 	antag_tickets_old = antag_tickets
+	. = ..()
 
 /datum/preferences/save_preferences()
 	if(!savefile)
