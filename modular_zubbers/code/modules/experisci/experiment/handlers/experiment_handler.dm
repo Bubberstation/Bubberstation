@@ -7,6 +7,5 @@
 	return .
 
 /datum/component/experiment_handler/proc/bs_try_run_handheld_experiment(datum/source, atom/target, mob/user, params)
-	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(try_run_handheld_experiment_async), source, target, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
