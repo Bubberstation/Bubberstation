@@ -25,7 +25,7 @@
 		inventory_flags = ITEM_SLOT_HEAD, \
 		charges = 1000, \ //BUBBERSTATION CHANGE: NEAR-INFINITE CHARGES (6 TO 1000)
 		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
-		expiration = CALLBACK(src, PROC_REF(warp_up))
+		expiration = CALLBACK(src, PROC_REF(warp_up)) \
 	)
 
 
