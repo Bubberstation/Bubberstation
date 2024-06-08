@@ -23,6 +23,11 @@
 /obj/effect/turf_decal/siding/corner,
 /turf/open/floor/iron/white,
 /area/station/common/cryopods)
+"aI" = (
+/obj/effect/turf_decal/siding,
+/obj/machinery/status_display/evac/directional/south,
+/turf/open/floor/iron/white,
+/area/station/commons)
 "aS" = (
 /obj/structure/table/wood,
 /obj/machinery/fax/auto_name,
@@ -207,6 +212,14 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/white,
 /area/station/commons)
+"hx" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/obj/machinery/light/directional/west,
+/obj/machinery/status_display/evac/directional/west,
+/turf/open/floor/iron/white,
+/area/station/commons)
 "hM" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -388,6 +401,7 @@
 /obj/structure/chair/sofa/bench/tram/right{
 	dir = 1
 	},
+/obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron/white,
 /area/station/commons)
 "ng" = (
@@ -446,6 +460,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/turf/open/floor/iron/white,
+/area/station/commons)
+"pk" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/machinery/light/directional/east,
+/obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/iron/white,
 /area/station/commons)
 "pM" = (
@@ -725,6 +747,12 @@
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/closed/wall,
 /area/station/commons)
+"wi" = (
+/obj/structure/sign/directions/dorms{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/station/service/library)
 "wB" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 9
@@ -751,11 +779,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "xd" = (
-/obj/structure/sign/directions/dorms{
-	dir = 6
-	},
-/turf/closed/wall,
-/area/station/service/library)
+/obj/effect/turf_decal/siding,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/status_display/evac/directional/south,
+/turf/open/floor/iron/white,
+/area/station/commons)
 "xu" = (
 /obj/effect/spawner/random/vending/colavend,
 /obj/machinery/light/directional/east,
@@ -1174,6 +1204,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
+/obj/machinery/status_display/ai/directional/east,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "Lv" = (
@@ -1255,6 +1286,7 @@
 /area/station/service/library)
 "NW" = (
 /obj/effect/spawner/random/vending/colavend,
+/obj/machinery/status_display/ai/directional/south,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/library)
 "Oe" = (
@@ -1741,7 +1773,7 @@ cs
 sq
 vv
 uC
-Si
+pk
 TN
 OO
 CP
@@ -1766,7 +1798,7 @@ ia
 CY
 qs
 qs
-xd
+wi
 Gk
 Gk
 Gk
@@ -1811,7 +1843,7 @@ lE
 yt
 vo
 Jp
-De
+aI
 vZ
 Bc
 Zs
@@ -2104,7 +2136,7 @@ Ju
 Dd
 su
 mR
-im
+hx
 bG
 Yj
 Yp
@@ -2203,7 +2235,7 @@ lE
 Yp
 vo
 Jp
-gH
+xd
 Yp
 at
 at
