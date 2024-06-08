@@ -13,10 +13,9 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/station/maintenance/central/lesser)
 "f" = (
-/obj/machinery/door/window/elevator/right{
-	transport_linked_id = "transport_centre";
-	dir = 4;
-	elevator_mode = 1
+/obj/machinery/door/window/elevator/right/directional/east{
+	elevator_mode = 1;
+	transport_linked_id = "transport_centre"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/iron,
@@ -69,12 +68,11 @@
 /turf/closed/wall,
 /area/station/maintenance/central/lesser)
 "D" = (
-/obj/machinery/door/window/elevator/left{
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/door/window/elevator/left/directional/east{
 	transport_linked_id = "transport_centre";
-	dir = 4;
 	elevator_mode = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/iron,
 /area/station/maintenance/central/lesser)
 "L" = (
@@ -87,7 +85,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "O" = (
-/obj/machinery/door/window/elevator/right{
+/obj/machinery/door/window/elevator/right/directional/south{
 	transport_linked_id = "transport_centre";
 	elevator_mode = 1
 	},
@@ -97,7 +95,7 @@
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "Q" = (
-/obj/machinery/door/window/elevator/left{
+/obj/machinery/door/window/elevator/left/directional/south{
 	transport_linked_id = "transport_centre";
 	elevator_mode = 1
 	},
