@@ -16,7 +16,7 @@
 /obj/item/clothing/head/costume/foilhat/Initialize(mapload)
 	. = ..()
 	if(warped)
-		()
+		warp_up()
 		return
 
 	AddComponent(
@@ -25,7 +25,7 @@
 		inventory_flags = ITEM_SLOT_HEAD, \
 		charges = 6, \
 		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
-		// expiration = CALLBACK(src, PROC_REF()) \ BUBBERSTATION CHANGE: REMOVES ANTI-MIND RESIST EXPIRATION
+		// expiration = CALLBACK(src, PROC_REF(warp_up)) \ BUBBERSTATION CHANGE: REMOVES ANTI-MIND RESIST EXPIRATION
 	)
 
 
@@ -65,7 +65,7 @@
 /obj/item/clothing/head/costume/foilhat/proc/drain_antimagic(mob/user)
 	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
 
-/obj/item/clothing/head/costume/foilhat/proc/()
+/obj/item/clothing/head/costume/foilhat/proc/warp_up()
 	name = "scorched tinfoil hat"
 	desc = "A badly warped up hat. Quite unprobable this will still work against any of fictional and contemporary dangers it used to."
 	warped = TRUE
@@ -93,7 +93,7 @@
 	if(warped)
 		return
 
-	()
+	warp_up()
 	return . | COMPONENT_MICROWAVE_SUCCESS
 
 /obj/item/clothing/head/costume/foilhat/proc/call_suicide(datum/source)
