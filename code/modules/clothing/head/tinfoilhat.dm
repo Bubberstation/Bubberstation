@@ -6,7 +6,7 @@
 	armor_type = /datum/armor/costume_foilhat
 	equip_delay_other = 140
 	clothing_flags = ANTI_TINFOIL_MANEUVER
-	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
+	// var/datum/brain_trauma/mild/phobia/conspiracies/paranoia BUBBERSTATION CHANGE, REMOVES PARANOIA
 	var/warped = FALSE
 
 /datum/armor/costume_foilhat
@@ -16,7 +16,7 @@
 /obj/item/clothing/head/costume/foilhat/Initialize(mapload)
 	. = ..()
 	if(warped)
-		warp_up()
+		()
 		return
 
 	AddComponent(
@@ -25,7 +25,7 @@
 		inventory_flags = ITEM_SLOT_HEAD, \
 		charges = 6, \
 		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
-		expiration = CALLBACK(src, PROC_REF(warp_up)) \
+		// expiration = CALLBACK(src, PROC_REF()) \ BUBBERSTATION CHANGE: REMOVES ANTI-MIND RESIST EXPIRATION
 	)
 
 
@@ -33,9 +33,11 @@
 	. = ..()
 	if(!(slot & ITEM_SLOT_HEAD) || warped)
 		return
+	/* BUBBERSTATION CHANGE START: REMOVES PARANOIA
 	if(paranoia)
 		QDEL_NULL(paranoia)
 	paranoia = new()
+	*/
 
 	RegisterSignal(user, COMSIG_HUMAN_SUICIDE_ACT, PROC_REF(call_suicide))
 
@@ -53,15 +55,17 @@
 
 /obj/item/clothing/head/costume/foilhat/dropped(mob/user)
 	. = ..()
+	/* BUBBERSTATION CHANGE START: REMOVES PARANOIA
 	if(paranoia)
 		QDEL_NULL(paranoia)
+	*/
 	UnregisterSignal(user, COMSIG_HUMAN_SUICIDE_ACT)
 
 /// When the foilhat is drained an anti-magic charge.
 /obj/item/clothing/head/costume/foilhat/proc/drain_antimagic(mob/user)
 	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
 
-/obj/item/clothing/head/costume/foilhat/proc/warp_up()
+/obj/item/clothing/head/costume/foilhat/proc/()
 	name = "scorched tinfoil hat"
 	desc = "A badly warped up hat. Quite unprobable this will still work against any of fictional and contemporary dangers it used to."
 	warped = TRUE
@@ -89,7 +93,7 @@
 	if(warped)
 		return
 
-	warp_up()
+	()
 	return . | COMPONENT_MICROWAVE_SUCCESS
 
 /obj/item/clothing/head/costume/foilhat/proc/call_suicide(datum/source)
