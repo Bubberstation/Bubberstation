@@ -70,13 +70,13 @@
 	desc = "A badly warped up hat. Quite unprobable this will still work against any of fictional and contemporary dangers it used to."
 	warped = TRUE
 	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
-	if(!isliving(loc) || !paranoia)
+	if(!isliving(loc)) //BUBBERSTATION CHANGE, REMOVES PARANOIA
 		return
 	var/mob/living/target = loc
 	UnregisterSignal(target, COMSIG_HUMAN_SUICIDE_ACT)
 	if(target.get_item_by_slot(ITEM_SLOT_HEAD) != src)
 		return
-	QDEL_NULL(paranoia)
+	// QDEL_NULL(paranoia) BUBBERSTATION CHANGE, REMOVES PARANOIA
 	if(target.stat < UNCONSCIOUS)
 		to_chat(target, span_warning("Your zealous conspirationism rapidly dissipates as the donned hat warps up into a ruined mess. All those theories starting to sound like nothing but a ridicolous fanfare."))
 
