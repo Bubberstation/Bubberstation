@@ -23,10 +23,10 @@
 		/datum/component/anti_magic, \
 		antimagic_flags = MAGIC_RESISTANCE_MIND, \
 		inventory_flags = ITEM_SLOT_HEAD, \
-		charges = 1000, \ //BUBBERSTATION CHANGE: NEAR-INFINITE CHARGES (6 TO 1000)
+		charges = 1000, \
 		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
 		expiration = CALLBACK(src, PROC_REF(warp_up)) \
-	)
+	) //BUBBERSTATION CHANGE: NEAR-INFINITE CHARGES (6 TO 1000)
 
 
 /obj/item/clothing/head/costume/foilhat/equipped(mob/living/carbon/human/user, slot)
