@@ -162,8 +162,15 @@
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "H" = (
-/obj/structure/sign/directions/arrival{
-	dir = 9
+/obj/structure/sign/directions/dorms{
+	dir = 8
+	},
+/obj/structure/sign/directions/cryo{
+	pixel_y = 8;
+	dir = 10
+	},
+/obj/structure/sign/directions/evac{
+	pixel_y = -8
 	},
 /turf/closed/wall,
 /area/station/hallway/primary/central)
@@ -173,6 +180,14 @@
 	dir = 4
 	},
 /obj/structure/railing,
+/obj/structure/sign/directions/cryo/directional/west{
+	dir = 6;
+	pixel_y = 5
+	},
+/obj/structure/sign/directions/dorms/directional/west{
+	pixel_y = -3;
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/commons/locker)
 "J" = (
@@ -490,7 +505,7 @@ c
 "}
 (18,1,1) = {"
 c
-c
+H
 c
 c
 c

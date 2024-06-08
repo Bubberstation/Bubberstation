@@ -158,6 +158,7 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
 	},
+/obj/effect/spawner/random/vending/colavend,
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
@@ -342,8 +343,17 @@
 /turf/open/floor/engine,
 /area/station/hallway/secondary/entry)
 "zi" = (
-/obj/effect/spawner/random/vending/colavend,
-/turf/open/floor/iron/dark/textured_large,
+/obj/structure/sign/directions/cryo{
+	pixel_y = 8;
+	dir = 4
+	},
+/obj/structure/sign/directions/dorms{
+	dir = 4
+	},
+/obj/structure/sign/directions/evac{
+	pixel_y = -8
+	},
+/turf/closed/wall,
 /area/station/hallway/secondary/entry)
 "zq" = (
 /obj/structure/cable,
@@ -486,6 +496,7 @@
 	dir = 6
 	},
 /obj/structure/closet/emcloset,
+/obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "HG" = (
@@ -1074,8 +1085,8 @@ fp
 rs
 "}
 (13,1,1) = {"
-jG
-SV
+mT
+Ti
 Qy
 rW
 jd
@@ -1097,8 +1108,8 @@ fp
 rs
 "}
 (14,1,1) = {"
-mT
-Ti
+CZ
+Qy
 Oc
 Ow
 NE

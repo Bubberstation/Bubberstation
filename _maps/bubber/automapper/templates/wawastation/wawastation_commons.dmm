@@ -180,7 +180,6 @@
 /area/station/maintenance/central/greater)
 "gm" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
-/obj/machinery/airalarm/directional/south,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/white,
 /area/station/commons)
@@ -470,6 +469,20 @@
 /obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/iron/white,
 /area/station/commons)
+"pr" = (
+/obj/structure/sign/directions/cryo{
+	pixel_y = 8;
+	dir = 4
+	},
+/obj/structure/sign/directions/dorms{
+	dir = 9
+	},
+/obj/structure/sign/directions/evac{
+	pixel_y = -8;
+	dir = 9
+	},
+/turf/closed/wall,
+/area/station/service/library)
 "pM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -749,7 +762,15 @@
 /area/station/commons)
 "wi" = (
 /obj/structure/sign/directions/dorms{
-	dir = 6
+	dir = 9
+	},
+/obj/structure/sign/directions/cryo{
+	pixel_y = 8;
+	dir = 4
+	},
+/obj/structure/sign/directions/evac{
+	pixel_y = -8;
+	dir = 9
 	},
 /turf/closed/wall,
 /area/station/service/library)
@@ -1413,6 +1434,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/white,
 /area/station/commons)
 "Rk" = (
@@ -2106,7 +2128,7 @@ GQ
 ox
 Ju
 gm
-Gk
+pr
 Gk
 Gk
 Gk
