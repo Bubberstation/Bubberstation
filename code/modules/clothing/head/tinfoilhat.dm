@@ -37,11 +37,11 @@
 	if(paranoia)
 		QDEL_NULL(paranoia)
 	paranoia = new()
-	*/
+	BUBBERSTATION CHANGE END: REMOVES PARANOIA */
 
 	RegisterSignal(user, COMSIG_HUMAN_SUICIDE_ACT, PROC_REF(call_suicide))
 
-	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
+	// user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC ) BUBBERSTATION CHANGE: REMOVES PARANOIA
 	to_chat(user, span_warning("As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. "))
 
 /obj/item/clothing/head/costume/foilhat/MouseDrop(atom/over_object)
