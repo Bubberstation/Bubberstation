@@ -1,8 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "al" = (
-/obj/machinery/light/directional/east,
-/obj/effect/spawner/random/decoration/showcase,
-/turf/open/floor/iron/grimy,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "bb" = (
 /obj/effect/turf_decal/stripes/line{
@@ -209,6 +208,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 1
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "rs" = (
@@ -226,7 +226,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/status_display/evac/directional/south,
+/obj/machinery/status_display/shuttle/directional/south{
+	shuttle_id = "arrivals_shuttle";
+	name = "Interlink shuttle display"
+	},
 /turf/open/floor/catwalk_floor/flat_white,
 /area/station/hallway/secondary/entry)
 "sh" = (
@@ -279,6 +282,14 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
+"wv" = (
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/obj/machinery/light/directional/east,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/white,
+/area/station/hallway/secondary/entry)
 "wP" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/white,
@@ -320,6 +331,7 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/engine,
 /area/station/hallway/secondary/entry)
 "zi" = (
@@ -509,6 +521,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "Lf" = (
@@ -531,6 +544,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "LE" = (
@@ -706,7 +720,10 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 5
 	},
-/obj/machinery/light/directional/east,
+/obj/machinery/button/transport/tram/directional/east{
+	id = 1
+	},
+/obj/machinery/transport/destination_sign/indicator/directional/east,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "UY" = (
@@ -1167,17 +1184,17 @@ uC
 fp
 fp
 fp
+fp
+fp
 zG
+fp
+uC
+fp
+fp
 fp
 fp
 fp
 Gj
-fp
-fp
-fp
-fp
-fp
-uC
 fp
 rs
 "}
@@ -1190,18 +1207,18 @@ Qy
 Qy
 Qy
 ca
+Hc
+Hc
 rU
 Hc
 Hc
-Hc
-rU
 Ha
-Qy
-Qy
-Qy
 Qy
 hI
 kd
+Qy
+al
+Qy
 rs
 "}
 (20,1,1) = {"
@@ -1220,11 +1237,11 @@ Qy
 Qy
 AL
 Qy
-Qy
-Qy
-Qy
 zy
 FD
+Qy
+al
+Qy
 rs
 "}
 (21,1,1) = {"
@@ -1246,7 +1263,7 @@ lO
 bv
 bv
 bv
-bv
+wv
 bv
 ML
 "}
@@ -1269,7 +1286,7 @@ Pz
 AB
 WF
 AB
-AB
+jd
 CJ
 CJ
 "}
@@ -1292,7 +1309,7 @@ vO
 fd
 lb
 fd
-al
+jd
 PR
 jG
 "}
