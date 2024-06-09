@@ -57,7 +57,8 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
 /area/station/maintenance/central/greater)
 "er" = (
 /obj/effect/turf_decal/sand/plating,
@@ -126,6 +127,17 @@
 /obj/machinery/light/small/directional/east,
 /turf/template_noop,
 /area/station/maintenance/central/greater)
+"nf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/caution/white,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/station/maintenance/central/greater)
 "nk" = (
 /obj/structure/transport/linear/tram,
 /obj/structure/tram,
@@ -191,7 +203,8 @@
 	name = "Tram Guideway";
 	desc = "There's always a light at the end of the tunnel. It may seem hard to get to it, but you can do it! Just keep working towards it and you'll find the positive side of things. Alternatively, you'll find a tram to the face."
 	},
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
 /area/station/maintenance/central/greater)
 "rw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -248,7 +261,7 @@
 "vX" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/white/line{
-	dir = 5
+	dir = 8
 	},
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
@@ -296,6 +309,16 @@
 /obj/structure/tram,
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
+"Bt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
+/area/station/maintenance/central/greater)
 "BL" = (
 /obj/effect/turf_decal/tile/neutral/tram,
 /obj/structure/transport/linear/tram,
@@ -328,7 +351,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes/white/line{
-	dir = 9
+	dir = 4
 	},
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
@@ -508,11 +531,6 @@
 	},
 /turf/closed/wall,
 /area/station/maintenance/central/greater)
-"Rf" = (
-/obj/effect/turf_decal/stripes/white/line,
-/obj/effect/turf_decal/caution/white,
-/turf/open/floor/tram/guideway,
-/area/station/maintenance/central/greater)
 "RJ" = (
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
@@ -530,6 +548,19 @@
 	desc = "Coming to the rescue, the paramedic buddies are attached like you wish that severed arm of yours is!"
 	},
 /turf/open/floor/plating,
+/area/station/maintenance/central/greater)
+"Va" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark,
 /area/station/maintenance/central/greater)
 "Vb" = (
 /obj/effect/spawner/random/trash/graffiti{
@@ -848,7 +879,7 @@ Pm
 VV
 Ol
 tK
-HM
+Bt
 Ok
 "}
 (16,1,1) = {"
@@ -863,7 +894,7 @@ Pm
 VV
 dd
 vX
-HM
+Va
 Ok
 "}
 (17,1,1) = {"
@@ -877,8 +908,8 @@ tK
 Pm
 VV
 zv
-Rf
-HM
+tK
+nf
 Ok
 "}
 (18,1,1) = {"
@@ -893,7 +924,7 @@ Pm
 VV
 ph
 DM
-HM
+Va
 Ok
 "}
 (19,1,1) = {"
