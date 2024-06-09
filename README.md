@@ -12,8 +12,7 @@
 | Code                      | [https://github.com/SPLURT-Station/S.P.L.U.R.T-tg](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg) |
 | Wiki                      | [https://splurtstation.com](https://splurtstation.com) |
 | Codedocs                  | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/) |
-| Bubberstation Discord     | [https://discord.gg/x4CVEHy6u7](https://discord.gg/x4CVEHy6u7) |
-| Coderbus Discord          | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9) |
+| S.P.L.U.R.T Station Discord     | [https://discord.gg/wynHVMzHzC](https://discord.gg/wynHVMzHzC) |
 
 This is S.P.L.U.R.T Station's downstream fork of Skyrat, which is in turn a fork of tgstation.
 

@@ -185,10 +185,10 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
-        <h1>Bubberstation 13</h1>
+        <h1>S.P.L.U.R.T Station 13</h1>
         <p>
           <b>Thanks to: </b>
-          /tg/ Station, Skyrat Space Station 13, Traditional Games 13,
+          /tg/ Station, Bubberstation, Skyrat Space Station 13, Traditional Games 13,
           Baystation 12, /vg/station, NTstation, CDK Station
           devs,FacepunchStation, GoonStation devs, the original Space Station 13
           developers, Invisty for the title image and the countless others who
