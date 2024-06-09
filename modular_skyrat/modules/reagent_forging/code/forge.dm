@@ -94,28 +94,25 @@
 	//Bubber Edit: Reverts the removal of blacklisted reagents.
 	/// Blacklist that contains reagents that weapons and armor are unable to be imbued with.
 	var/static/list/disallowed_reagents = typecacheof(list(
-		/datum/reagent/inverse/,
+		/datum/reagent/inverse/,					//This path covers all inverse chems such as Super Melatonin, Corazargh, Oculater and more.
 		/datum/reagent/consumable/entpoly,
 		/datum/reagent/pax,
 		/datum/reagent/consumable/liquidelectricity/enriched,
 		/datum/reagent/teslium,
+		/datum/reagent/yuck,
+		/datum/reagent/toxin/spewium
 		/datum/reagent/eigenstate,
 		/datum/reagent/drug/pcp,
 		/datum/reagent/consumable/cum,
 		/datum/reagent/consumable/femcum,
 		/datum/reagent/consumable/breast_milk,
-		/datum/reagent/drug/aphrodisiac, 			//This path covers lewd chems such as crocin, hexacrocin, succubus milk, and more.
+		/datum/reagent/drug/aphrodisiac, 			//This path covers all lewd chems such as crocin, hexacrocin, succubus milk, and more.
 		/datum/reagent/toxin/acid,
 		/datum/reagent/clf3,
 		/datum/reagent/phlogiston,
 		/datum/reagent/napalm,
-		/datum/reagent/thermite,
-		/datum/reagent/medicine/earthsblood,
-		/datum/reagent/medicine/ephedrine,
 		/datum/reagent/toxin/polonium,
 		/datum/reagent/toxin/mutagen,
-		/datum/reagent/drug/twitch,
-		/datum/reagent/drug/demoneye,
 	))
 
 /obj/structure/reagent_forge/examine(mob/user)
