@@ -101,3 +101,7 @@
 /obj/item/robot_model/saboteur/New(...)
 	. = ..()
 	basic_modules += /obj/item/borg/apparatus/tank_manipulator
+
+/obj/item/borg/apparatus/sheet_manipulator/Initialize()
+	. = ..()
+	storable += /obj/item/stack/rods

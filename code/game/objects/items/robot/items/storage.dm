@@ -262,9 +262,7 @@
 	desc = "An apparatus for carrying, deploying, and manipulating sheets of material. The device can also carry custom floor tiles."
 	icon_state = "borg_stack_apparatus"
 	storable = list(/obj/item/stack/sheet,
-					/obj/item/stack/tile,
-					/obj/item/stack/rods//BUBBEREDIT allow rods to be picked up
-					)
+					/obj/item/stack/tile)
 
 /obj/item/borg/apparatus/sheet_manipulator/Initialize(mapload)
 	update_appearance()

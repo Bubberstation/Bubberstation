@@ -23,26 +23,8 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
-
-/obj/item/borg/upgrade/healthanalyzer/action(mob/living/silicon/robot/borg)
-	. = ..()
-	if(.)
-		for(var/obj/item/healthanalyzer/HA in borg.model.modules)
-			borg.model.remove_module(HA, TRUE)
-
-		var/obj/item/healthanalyzer/advanced/AHA = new /obj/item/healthanalyzer/advanced(borg.model)
-		borg.model.basic_modules += AHA
-		borg.model.add_module(AHA, FALSE, TRUE)
-
-/obj/item/borg/upgrade/healthanalyzer/deactivate(mob/living/silicon/robot/borg, user = usr)
-	. = ..()
-	if(.)
-		for(var/obj/item/healthanalyzer/advanced/AHA in borg.model.modules)
-			borg.model.remove_module(AHA, TRUE)
-
-		var/obj/item/healthanalyzer/HA = new (borg.model)
-		borg.model.basic_modules += HA
-		borg.model.add_module(HA, FALSE, TRUE)
+	items_to_add = list(/obj/item/healthanalyzer/advanced)
+	items_to_remove = list(/obj/item/healthanalyzer)
 
 
 //Science inducer
@@ -52,23 +34,7 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
-
-/obj/item/borg/upgrade/inducer_sci/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/inducer/cyborg/sci/AC = locate() in R.model.modules
-		if(AC)
-			to_chat(user, span_warning("This unit is already equipped with an inducer!"))
-			return FALSE
-		AC = new(R.model)
-		R.model.basic_modules += AC
-		R.model.add_module(AC, FALSE, TRUE)
-
-/obj/item/borg/upgrade/inducer_sci/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		for(var/obj/item/inducer/cyborg/sci/AC in R.model.modules)
-			R.model.remove_module(AC, TRUE)
+	items_to_add = list(/obj/item/inducer/cyborg/sci)
 
 //Bluespace RPED
 /obj/item/borg/upgrade/brped
@@ -78,23 +44,13 @@
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
+	items_to_add = list(/obj/item/storage/part_replacer/bluespace)
+	items_to_remove = list(/obj/item/storage/part_replacer)
 
-/obj/item/borg/upgrade/brped/action(mob/living/silicon/robot/borg)
+// Drapes upgrades
+/obj/item/borg/upgrade/processor/Initialize()
 	. = ..()
-	if(.)
-		for(var/obj/item/storage/part_replacer/RPED in borg.model.modules)
-			borg.model.remove_module(RPED, TRUE)
+	model_type += /obj/item/robot_model/sci
+	model_flags += BORG_MODEL_RESEARCH
+	items_to_remove = list(/obj/item/surgical_drapes)
 
-		var/obj/item/storage/part_replacer/bluespace/BRPED = new /obj/item/storage/part_replacer/bluespace(borg.model)
-		borg.model.basic_modules += BRPED
-		borg.model.add_module(BRPED, FALSE, TRUE)
-
-/obj/item/borg/upgrade/brped/deactivate(mob/living/silicon/robot/borg, user = usr)
-	. = ..()
-	if(.)
-		for(var/obj/item/storage/part_replacer/bluespace/BRPED in borg.model.modules)
-			borg.model.remove_module(BRPED, TRUE)
-
-		var/obj/item/storage/part_replacer/RPED = new (borg.model)
-		borg.model.basic_modules += RPED
-		borg.model.add_module(RPED, FALSE, TRUE)

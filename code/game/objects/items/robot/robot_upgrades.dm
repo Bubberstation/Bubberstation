@@ -523,7 +523,7 @@
 		out procedures"
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
-	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical, /obj/item/robot_model/sci) // BUBBER EDIT Made compatible with Research borgs too
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical)
 	model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_RESEARCH)
 
 	items_to_add = list(/obj/item/surgical_processor)

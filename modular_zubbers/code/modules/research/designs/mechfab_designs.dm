@@ -53,7 +53,7 @@
 	)
 
 //so we have our own category
-/datum/design/borg_upgrade_surgicalprocessor_sci
+/datum/design/borg_upgrade_surgical_processor_sci
 	name = "Research Surgical Processor"
 	id = "borg_upgrade_surgicalprocessor_sci"
 	build_type = MECHFAB
