@@ -14,7 +14,7 @@
 | Codedocs                  | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/) |
 | S.P.L.U.R.T Station Discord     | [https://discord.gg/wynHVMzHzC](https://discord.gg/wynHVMzHzC) |
 
-This is S.P.L.U.R.T Station's downstream fork of Skyrat, which is in turn a fork of tgstation.
+This is S.P.L.U.R.T Station's downstream fork of bubberstation, which is in turn a fork of skyrat, which is in turn a fork of tgstation.
 
 **Please note that this repository contains sexually explicit content and is not suitable for those under the age of 18.**
 
