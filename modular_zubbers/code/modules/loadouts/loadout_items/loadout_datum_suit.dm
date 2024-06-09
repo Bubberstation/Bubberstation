@@ -40,3 +40,12 @@
 	name = "ronin jacket"
 	item_path = /obj/item/clothing/suit/jacket/trucker/ronin
 	donator_only = TRUE //Donator item for arandomhyena
+
+/datum/loadout_item/suit/flight //Donor item for ironknight060
+	name = "MA-1 flight jacket"
+	item_path = /obj/item/clothing/suit/jacket/flight
+
+/datum/loadout_item/suit/diver //Donor item for patriot210
+	name = "Black Divers Coat"
+	item_path = /obj/item/clothing/suit/jacket/diver
+	ckeywhitelist = list("sexmaster, leafydasurvivor")

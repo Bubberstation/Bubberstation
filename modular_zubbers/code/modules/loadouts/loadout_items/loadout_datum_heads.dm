@@ -6,6 +6,15 @@
 	name = "Pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
 
+/datum/loadout_item/head/hats/bubber/clown/jester/amazing
+	name = "Amazing Jester Hat"
+	item_path = /obj/item/clothing/head/costume/bubber/jester
+	restricted_roles = list(JOB_CLOWN)
+
+/datum/loadout_item/head/hats/bubber/clown/clussy
+	name = "Pink Clown Wig"
+	item_path = /obj/item/clothing/head/costume/bubber/clussy
+
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
 	name = "magnificent pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
@@ -21,25 +30,25 @@
 
 /datum/loadout_item/head/hats/caphat/drill
 	name = "Captain's campaign hat"
-	item_path = /obj/item/clothing/head/hats/caphat/drill
+	item_path = /obj/item/clothing/head/hats/warden/drill/captain
 	donator_only = TRUE
 	restricted_roles = list(JOB_CAPTAIN)
 
 /datum/loadout_item/head/hats/blueshield/drill
 	name = "Blueshield's campaign hat"
-	item_path = /obj/item/clothing/head/hats/blueshield/drill
+	item_path = /obj/item/clothing/head/hats/warden/drill/blueshield
 	donator_only = TRUE
 	restricted_roles = list(JOB_BLUESHIELD)
 
 /datum/loadout_item/head/hats/hos/drill
 	name = "Head of Security's campaign hat"
-	item_path = /obj/item/clothing/head/hats/hos/drill
+	item_path = /obj/item/clothing/head/hats/warden/drill/hos
 	donator_only = TRUE
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/head/hats/nanotrasen_consultant/drill
 	name = "Representative's campaign hat"
-	item_path = /obj/item/clothing/head/nanotasen_consultant/drill
+	item_path = /obj/item/clothing/head/hats/warden/drill/nanotrasen
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 

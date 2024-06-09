@@ -44,10 +44,10 @@
 	frequency_upper = CONFIG_GET(number/event_frequency_upper)
 	intensity_credit_rate = CONFIG_GET(number/intensity_credit_rate)
 
-/**
+/** // BUBBER EDIT BEGIN
  * Abductors
  */
-/datum/round_event_control/abductor
+/* /datum/round_event_control/abductor
 	max_occurrences = 1
 	weight = VERY_LOW_EVENT_FREQ
 
@@ -603,7 +603,7 @@
 /datum/round_event_control/wormholes
 	max_occurrences = 2
 	weight = MED_EVENT_FREQ
-
+ */ // BUBBER EDIT END
 
 
 #undef VERY_HIGH_EVENT_FREQ
