@@ -100,7 +100,7 @@
 		/datum/reagent/consumable/liquidelectricity/enriched,
 		/datum/reagent/teslium,
 		/datum/reagent/yuck,
-		/datum/reagent/toxin/spewium
+		/datum/reagent/toxin/spewium,
 		/datum/reagent/eigenstate,
 		/datum/reagent/drug/pcp,
 		/datum/reagent/consumable/cum,
