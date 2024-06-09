@@ -1,8 +1,9 @@
 /obj/projectile/bullet/arrow
 	damage = 20
 	armour_penetration = 0
-	weak_against_armor = TRUE
-	wound_bonus = -30
+	weak_against_armour = TRUE
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = 0
 	range = 16
 	dismemberment = 0
 	catastropic_dismemberment = 0
@@ -30,16 +31,18 @@
 	if(isnull(target))
 		return ..()
 
-	if(user.special_role == ROLE_LAVALAND)
+	if(user?.mind?.special_role == ROLE_LAVALAND)
 		damage += tribal_damage_bonus
+		weak_against_armour = FALSE
 
 	return ..()
 
 /obj/projectile/bullet/arrow/holy
 	damage = 20
 	armour_penetration = 0
-	weak_against_armor = TRUE
-	wound_bonus = -20
+	weak_against_armour = TRUE
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = 0
 	faction_bonus_force = 10
 	embedding = list(
 		embed_chance = 100,
@@ -55,8 +58,9 @@
 /obj/projectile/bullet/arrow/ash
 	damage = 20
 	armour_penetration = 20
-	weak_against_armor = TRUE
-	wound_bonus = -20
+	weak_against_armour = TRUE
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = 0
 	faction_bonus_force = 20
 	embedding = list(
 		embed_chance = 100,
@@ -72,8 +76,9 @@
 /obj/projectile/bullet/arrow/bone
 	damage = 25
 	armour_penetration = 30
-	weak_against_armor = TRUE
-	wound_bonus = -30
+	weak_against_armour = TRUE
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = 0
 	faction_bonus_force = 30
 	embedding = list(
 		embed_chance = 100,
@@ -89,8 +94,9 @@
 /obj/projectile/bullet/arrow/bronze
 	damage = 30
 	armour_penetration = 30
-	weak_against_armor = FALSE
-	wound_bonus = -30
+	weak_against_armour = FALSE
+	wound_bonus = CANT_WOUND
+	bare_wound_bonus = 0
 	faction_bonus_force = 90
 	embedding = list(
 		embed_chance = 100,
