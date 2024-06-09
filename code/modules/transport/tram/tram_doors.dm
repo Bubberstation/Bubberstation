@@ -64,7 +64,7 @@
 
 /obj/machinery/door/airlock/tram/close(forced = DEFAULT_DOOR_CHECKS, force_crush = FALSE)
 	retry_counter++
-	if(retry_counter >= 4 || force_crush || forced == BYPASS_DOOR_CHECKS)
+	if(retry_counter >= 3 || force_crush || forced == BYPASS_DOOR_CHECKS)
 		try_to_close(forced = BYPASS_DOOR_CHECKS)
 		return
 
