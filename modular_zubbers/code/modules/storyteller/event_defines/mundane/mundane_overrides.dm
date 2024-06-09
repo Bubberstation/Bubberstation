@@ -69,4 +69,4 @@
 
 /datum/round_event_control/tram_malfunction
 	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_DESTRUCTIVE)
+	tags = list(TAG_COMMUNAL)
