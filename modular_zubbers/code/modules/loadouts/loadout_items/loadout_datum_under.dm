@@ -47,3 +47,8 @@
 	name = "Black Divers Uniform"
 	item_path = /obj/item/clothing/under/misc/diver
 	ckeywhitelist = list("sexmaster, leafydasurvivor")
+
+/datum/loadout_item/under/miscellaneous/dress_strapped
+	name = "Formal Evening Gown"
+	item_path = /obj/item/clothing/under/dress/bubber/strapped
+

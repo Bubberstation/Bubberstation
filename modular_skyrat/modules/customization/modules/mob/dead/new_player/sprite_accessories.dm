@@ -67,6 +67,8 @@ GLOBAL_LIST_EMPTY(cached_mutant_icon_files)
 		default_color = DEFAULT_MATRIXED
 	if (color_src == USE_MATRIXED_COLORS)
 		color_layer_names = list()
+		if(isnull(GLOB.cached_mutant_icon_files)) // BUBBER EDIT - nullcheck
+			GLOB.cached_mutant_icon_files = list()
 		if (!GLOB.cached_mutant_icon_files[icon])
 			GLOB.cached_mutant_icon_files[icon] = icon_states(new /icon(icon))
 		for (var/layer in relevent_layers)
