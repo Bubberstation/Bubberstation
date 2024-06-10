@@ -2,10 +2,12 @@
 
 	var/list/candidates_tickets = list() //M = ticket count
 
+	var/maximum_tickets_possible = CONFIG_GET(number/antag_ticket_maximum)
+
 	for(var/mob/candidate as anything in cast_control.get_candidates())
 		if(!candidate.client)
 			continue
-		candidates_tickets[candidate] = max(1,candidate.client.get_antag_tickets())
+		candidates_tickets[candidate] = maximum_tickets_possible + candidate.client.get_antag_tickets()
 
 	for(var/i in 1 to antag_count)
 		if(!candidates_tickets.len)
