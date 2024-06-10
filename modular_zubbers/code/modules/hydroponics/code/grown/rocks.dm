@@ -3,7 +3,7 @@
 	desc = "Small seedlings of the golem rockfruit plant. There's a warning label on its packaging: \n\
 	\"Remember: Legally speaking, rocking is more legal than stoning. \n \
 	We are not liable for any injury, death, or complete body evaporation caused by using or growing these plants\""
-	icon = 'modular_zubbers/modules/hydroponics/icons/seeds.dmi'
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/seeds.dmi'
 	icon_state = "seed-rockfruit"
 	species = "rock"
 	plantname = "Rockfruits"
@@ -20,7 +20,7 @@
 
 
 	growthstages = 2
-	growing_icon = 'modular_zubbers/modules/hydroponics/icons/growing_fruits.dmi'
+	growing_icon = 'modular_zubbers/code/modules/hydroponics/icons/growing_fruits.dmi'
 
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy,
 				/datum/plant_gene/trait/fire_resistance,
@@ -40,7 +40,7 @@
 	force = 5 // Comparatively shit considering a nettle is 15
 	throwforce = 10 // Less shit but hey, it is a rock
 
-	icon = 'modular_zubbers/modules/hydroponics/icons/harvest.dmi'
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "rockfruit"
 
 	var/product = /obj/item/food/grown/rockfruit
@@ -71,7 +71,7 @@
 
 	foodtypes = FRUIT
 
-	icon = 'modular_zubbers/modules/hydroponics/icons/harvest.dmi'
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "rockfruit-peeled"
 
 	tastes = list("mountains" = 1)
@@ -81,7 +81,7 @@
 	desc = "The peeled shell of a rockfruit, or as you may call it, \"Literal pile of rocks\". \
 	Probably not edible, but a golem will try to prove you otherwise"
 
-	icon = 'modular_zubbers/modules/hydroponics/icons/harvest.dmi'
+	icon = 'modular_zubbers/code/modules/hydroponics/icons/harvest.dmi'
 	icon_state = "rockfruit-trash"
 
 	foodtypes = STONE
