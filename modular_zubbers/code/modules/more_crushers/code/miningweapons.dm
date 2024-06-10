@@ -3,12 +3,12 @@
 	var/acts_as_if_wielded
 
 /obj/item/kinetic_crusher/machete
-	icon = 'modular_zubbers/modules/more_crushers/icons/items_and_weapons.dmi'
+	icon = 'modular_zubbers/code/modules/more_crushers/icons/items_and_weapons.dmi'
 	icon_state = "PKMachete"
 	inhand_icon_state = "PKMachete0"
-	lefthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_lefthand.dmi'
-	righthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_righthand.dmi'
-	worn_icon = 'modular_zubbers/modules/more_crushers/icons/belt.dmi'
+	lefthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_righthand.dmi'
+	worn_icon = 'modular_zubbers/code/modules/more_crushers/icons/belt.dmi'
 	worn_icon_state = "PKMachete0"
 	name = "proto-kinetic machete"
 	desc = "Recent breakthroughs with proto-kinetic technology have led to improved designs for the early proto-kinetic crusher, namely the ability to pack all \
@@ -44,12 +44,12 @@
 	)
 
 /obj/item/kinetic_crusher/spear
-	icon = 'modular_zubbers/modules/more_crushers/icons/items_and_weapons.dmi'
+	icon = 'modular_zubbers/code/modules/more_crushers/icons/items_and_weapons.dmi'
 	icon_state = "PKSpear"
 	inhand_icon_state = "PKSpear0"
-	lefthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_lefthand.dmi'
-	righthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_righthand.dmi'
-	worn_icon = 'modular_zubbers/modules/more_crushers/icons/back.dmi'
+	lefthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_righthand.dmi'
+	worn_icon = 'modular_zubbers/code/modules/more_crushers/icons/back.dmi'
 	worn_icon_state = "PKSpear0"
 	name = "proto-kinetic spear"
 	desc = "Having finally invested in better Proto-kinetic tech, research and development was able to cobble together this new proto-kinetic weapon. By compacting all the technology \
@@ -89,12 +89,12 @@
 	inhand_icon_state = "PKSpear[HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
 
 /obj/item/kinetic_crusher/hammer
-	icon = 'modular_zubbers/modules/more_crushers/icons/items_and_weapons.dmi'
+	icon = 'modular_zubbers/code/modules/more_crushers/icons/items_and_weapons.dmi'
 	icon_state = "PKHammer"
 	inhand_icon_state = "PKHammer0"
-	lefthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_lefthand.dmi'
-	righthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_righthand.dmi'
-	worn_icon = 'modular_zubbers/modules/more_crushers/icons/back.dmi'
+	lefthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_righthand.dmi'
+	worn_icon = 'modular_zubbers/code/modules/more_crushers/icons/back.dmi'
 	worn_icon_state = "PKHammer0"
 	name = "proto-kinetic hammer"
 	desc = "Somehow research and development managed to make the proto-kinetic crusher even bigger, allowing more parts to be fit inside and increase the power output. \
@@ -139,11 +139,11 @@
 	inhand_icon_state = "PKHammer[HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
 
 /obj/item/kinetic_crusher/claw
-	icon = 'modular_zubbers/modules/more_crushers/icons/items_and_weapons.dmi'
+	icon = 'modular_zubbers/code/modules/more_crushers/icons/items_and_weapons.dmi'
 	icon_state = "PKClaw"
 	inhand_icon_state = "PKClaw0"
-	lefthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_lefthand.dmi'
-	righthand_file = 'modular_zubbers/modules/more_crushers/icons/melee_righthand.dmi'
+	lefthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_lefthand.dmi'
+	righthand_file = 'modular_zubbers/code/modules/more_crushers/icons/melee_righthand.dmi'
 	worn_icon_state = "PKHammer0"
 	slot_flags = NONE
 	name = "proto-kinetic claws"
