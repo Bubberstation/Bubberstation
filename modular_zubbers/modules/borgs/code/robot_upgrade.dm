@@ -61,6 +61,7 @@
 	desc = "A module that upgrades the ability of small quadruped borgs to display affection."
 	icon_state = "cyborg_upgrade3"
 
+// To prevent nonsmalls having this module this is method is depreciated
 /obj/item/borg/upgrade/squadrupedmodule/action(mob/living/silicon/robot/borg)
 	. = ..()
 	if(!.)
