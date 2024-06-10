@@ -10,6 +10,10 @@
 #define BORG_MODEL_ENGINEERING (1<<4)
 /// Module is compatible with Service Cyborg model
 #define BORG_MODEL_SERVICE (1<<5)
+//Bubber addition start
+/// Module is compatible with Research Cyborg model
+#define BORG_MODEL_RESEARCH (1<<6)
+//Bubber addition end
 
 /// Module is compatible with Ripley Exosuit models
 #define EXOSUIT_MODULE_RIPLEY (1<<0)
