@@ -111,12 +111,15 @@
 			SSevents.spawnEvent(excluded_event = src)
 			return EVENT_INTERRUPTED
 
+		// BUBBER EDIT START - Only delay on roundstart
+		if(!SSticker.HasRoundStarted())
+			message_admins("<font color='[COLOR_ADMIN_PINK]'> Roundstart event chosen: [name].")
+			return
+		// BUBBER EDIT END
 	// SKYRAT EDIT ADDITION BEGIN - Event notification
-	// BUBBER EDIT START - Only delay on roundstart
-	if(SSticker.HasRoundStarted())
 		message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (\
 			<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
-			<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
+			<a href='?src=[REF(src)];different_event=1'>SOMETHING ELSE</a></font>")
 		for(var/client/staff as anything in GLOB.admins)
 			if(staff?.prefs.read_preference(/datum/preference/toggle/comms_notification))
 				SEND_SOUND(staff, sound('sound/misc/server-ready.ogg'))
