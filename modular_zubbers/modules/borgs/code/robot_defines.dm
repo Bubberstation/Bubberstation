@@ -38,7 +38,11 @@
 
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
 
-//Small raptors I moved it into here to be found easier
+#define CYBORG_ICON_SCI_WIDE 'modular_zubbers/modules/borgs/sprites/widerobot_sci.dmi'
+#define CYBORG_ICON_SCI_TALL 'modular_zubbers/modules/borgs/sprites/tallrobot_sci.dmi'
+#define CYBORG_ICON_SCI_LARGE_BUBBER 'modular_zubbers/modules/borgs/sprites/largerobot_sci.dmi'
+#define CYBORG_ICON_SCI 'modular_zubbers/modules/borgs/sprites/robot_sci.dmi'
+
 #define CYBORG_ICON_TYPE_SMOLRAPTOR "smolraptor"
 
 #define CYBORG_ICON_GEN_SMOLRAPTOR 'modular_zubbers/modules/borgs/sprites/smallraptors/smolraptor_gen.dmi'
@@ -67,7 +71,6 @@
 #define CYBORG_ICON_TYPE_SYNDI_CATBORG "FELI-Combat"
 #define CYBORG_ICON_TYPE_NINJA_CATBORG "FELI-Ninja"
 
-
 /mob/living/silicon/robot/model/centcom
 	icon = CYBORG_ICON_CENTCOM_WIDE_BUBBER
 	icon_state = "valecc"
@@ -92,3 +95,7 @@
 
 /mob/living/silicon/robot/model/centcom/ResetModel()
 	return
+
+//Research cyborgs
+/mob/living/silicon/robot/model/sci
+	icon_state = "research"
