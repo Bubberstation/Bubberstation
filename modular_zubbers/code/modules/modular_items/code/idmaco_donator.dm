@@ -4,55 +4,55 @@
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
 
 
-#define IDMA_CKEY_WHITELIST list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-#define IDMA_RESTRICTED_ROLE list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
+#define = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok") list= list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+#define list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE) list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmavest
 	name = "IDMA combat vest"
 	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
-	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = IDMA_RESTRICTED_ROLE
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
-	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = IDMA_RESTRICTED_ROLE
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmardjacket
 	name = "silicon administrator vest"
 	item_path = /obj/item/clothing/suit/jacket/vera_jacket
-	ckeywhitelist = IDMA_CKEY_WHITELIST
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
 
 /datum/loadout_item/under/miscellaneous/idmasnowfatigue
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
-	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = IDMA_RESTRICTED_ROLE
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
-	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = IDMA_RESTRICTED_ROLE
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA beret"
 	item_path = /obj/item/clothing/head/idma_beret
-	ckeywhitelist = IDMA_CKEY_WHITELIST
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 
 /datum/loadout_item/head/idmahelmet
 	name = "IDMA service helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
-	ckeywhitelist = IDMA_CKEY_WHITELIST
-	restricted_roles = IDMA_RESTRICTED_ROLE
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/accessory/idmaarmbands
 	name = "IDMA armbands"
 	item_path = /obj/item/clothing/accessory/armband/idmaarmband
-	ckeywhitelist = IDMA_CKEY_WHITELIST
+	ckeywhitelist = = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 
 /datum/loadout_item/toys/especiallystrange
 	name = "Ironmoon Tajaran Plushie"
@@ -172,5 +172,5 @@
 	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
 	resistance_flags = FIRE_PROOF
 
-#undef IDMA_CKEY_WHITELIST
-#undef IDMA_RESTRICTED_ROLE
+#undef = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+#undef list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
