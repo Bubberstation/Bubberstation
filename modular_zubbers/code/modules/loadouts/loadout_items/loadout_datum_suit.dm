@@ -48,4 +48,8 @@
 /datum/loadout_item/suit/diver //Donor item for patriot210
 	name = "Black Divers Coat"
 	item_path = /obj/item/clothing/suit/jacket/diver
-	ckeywhitelist = list("sexmaster, leafydasurvivor")
+	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+/datum/loadout_item/suit/holographic
+    name = "Holographic Suit V4000"
+    item_path = /obj/item/clothing/suit/misc/holographic
+    ckeywhitelist = list("blovy")
