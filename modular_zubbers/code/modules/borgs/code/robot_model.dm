@@ -98,7 +98,7 @@
 	cyborg_base_icon = "research"
 	cyborg_icon_override = CYBORG_ICON_SCI
 	model_select_icon = "research"
-	model_select_alternate_icon = 'modular_zubbers/modules/borgs/sprites/screen_robot.dmi'
+	model_select_alternate_icon = 'modular_zubbers/code/modules/borgs/sprites/screen_robot.dmi'
 	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
 	hat_offset = 0
 	borg_skins = list(
