@@ -11,4 +11,4 @@
 /// 32x32 quadruped skins with resting, sitting, and belly up sprites
 #define TRAIT_R_SQUADRUPED "squadruped_borg"
 // For light weight borgs
-#define TRAIT_R_LIGHT_WEIGHT "lightarmored_borg"
+#define TRAIT_R_LIGHT_WEIGHT "lightweight_borg"
