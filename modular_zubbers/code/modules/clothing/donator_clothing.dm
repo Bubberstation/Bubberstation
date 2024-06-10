@@ -12,49 +12,49 @@
 /datum/loadout_item/suit/idmavest
 	name = "IDMA combat vest"
 	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmarsuit
 	name = "IDMA service jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmardjacket
 	name = "silicon administrator vest"
 	item_path = /obj/item/clothing/suit/jacket/vera_jacket
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list(JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list (JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
 
 /datum/loadout_item/under/miscellaneous/idmasnowfatigue
 	name = "IDMA service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
 	name = "IDMA desert service uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA beret"
 	item_path = /obj/item/clothing/head/idma_beret
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 
 /datum/loadout_item/head/idmahelmet
 	name = "IDMA service helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
-	restricted_roles = list(JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/accessory/idmaarmbands
 	name = "IDMA armbands"
 	item_path = /obj/item/clothing/accessory/armband/idmaarmband
-	ckeywhitelist = list("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
+	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 
 /datum/loadout_item/toys/especiallystrange
 	name = "Ironmoon Tajaran Plushie"
@@ -99,7 +99,7 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	armor_type = /datum/armor/skyrat_rd // It's a really advanced labcoat at the end of the day
-	allowed = list(
+	allowed = list (
 		/obj/item/biopsy_tool,
 		/obj/item/dnainjector,
 		/obj/item/flashlight/pen,
@@ -169,8 +169,8 @@
 	desc = "A small plushie based on the thousand tajaran volunteer, this one in particular seems to be a gun maintainer."
 	icon_state = "travian"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
-	attack_verb_continuous = list("cuddles", "meows", "hisses")
-	attack_verb_simple = list("cuddle", "meow", "hiss")
-	squeak_override = list('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	attack_verb_continuous = list ("cuddles", "meows", "hisses")
+	attack_verb_simple = list ("cuddle", "meow", "hiss")
+	squeak_override = list ('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
 	resistance_flags = FIRE_PROOF
 
