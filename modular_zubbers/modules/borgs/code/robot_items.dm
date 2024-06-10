@@ -115,7 +115,7 @@
 	icon_state = "jetboot"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	var/charge_cost = (STANDARD_CELL_CHARGE * 0.0032)
+	var/charge_cost = (STANDARD_CELL_CHARGE *  3.2)
 	var/datum/effect_system/spark_spread/spark_system
 	var/datum/action/innate/dash/research/jaunt
 	var/mob/living/silicon/robot/cyborg
