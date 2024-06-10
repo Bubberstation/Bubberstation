@@ -6,7 +6,7 @@
 	message = "chirps!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/chirp.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/chirp.ogg'
 
 /datum/emote/living/caw
 	key = "caw"
@@ -14,7 +14,7 @@
 	message = "caws!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/caw.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/caw.ogg'
 
 /datum/emote/living/caw2
 	key = "caw2"
@@ -22,7 +22,7 @@
 	message = "caws twice!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/caw2.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/caw2.ogg'
 
 /datum/emote/living/mrrp //you play like a cat
 	key = "mrrp"
@@ -30,7 +30,7 @@
 	message = "mrrps!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/mrrp.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/mrrp.ogg'
 
 /datum/emote/living/fpurr
 	key = "fpurr"
@@ -38,7 +38,7 @@
 	message = "purrs!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/fox_purr.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/fox_purr.ogg'
 
 /datum/emote/living/prbt //all tesh players will love me
 	key = "prbt"
@@ -46,7 +46,7 @@
 	message = "prbts!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/prbt.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/prbt.ogg'
 
 /datum/emote/living/gecker
 	key = "gecker"
@@ -54,7 +54,7 @@
 	message = "geckers!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
-	sound = 'modular_zubbers/modules/emotes/sound/voice/foxgecker.ogg'
+	sound = 'modular_zubbers/code/modules/emotes/sound/voice/foxgecker.ogg'
 
 /datum/emote/living/mar //all shadekin players will love me
 	key = "mar"
