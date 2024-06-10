@@ -206,6 +206,12 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/white,
 /area/station/commons)
+"hs" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/white,
+/area/station/common/cryopods)
 "hx" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
@@ -632,6 +638,9 @@
 /turf/open/floor/tram/guideway,
 /area/station/maintenance/central/greater)
 "ue" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/common/cryopods)
 "uC" = (
@@ -1074,6 +1083,15 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/commons)
+"FB" = (
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/white,
+/area/station/common/cryopods)
 "FZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1313,6 +1331,13 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
+"MN" = (
+/obj/effect/turf_decal/siding/corner,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/white,
+/area/station/commons)
 "No" = (
 /obj/effect/turf_decal/siding,
 /obj/structure/cable,
@@ -1489,7 +1514,6 @@
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
-/obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "Sa" = (
@@ -1537,6 +1561,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/common/cryopods)
 "TN" = (
@@ -2331,7 +2356,7 @@ eO
 YW
 WX
 Lq
-ue
+hs
 ue
 aG
 lD
@@ -2358,8 +2383,8 @@ yq
 eo
 yq
 PD
-GB
-TB
+MN
+FB
 TB
 vN
 rI
