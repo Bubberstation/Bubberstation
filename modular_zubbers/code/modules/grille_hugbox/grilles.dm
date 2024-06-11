@@ -10,6 +10,6 @@
 /obj/structure/grille/LateInitialize()
 	if(maploaded && density)
 		var/turf/T = get_turf(src)
-		if(T.get_cable_node() && !(locate(/obj/structure/window/) in T)) //Check for cable node and window.
+		if(is_station_level(T.z) && T.get_cable_node() && !(locate(/obj/structure/window/) in T)) //Check for cable node and window.
 			take_damage(max_integrity * 0.9)
 			new /obj/item/storage/box/hug(T)
