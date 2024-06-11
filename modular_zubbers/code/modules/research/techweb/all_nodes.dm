@@ -1,17 +1,5 @@
 // RESEARCH NODES
 
-/datum/techweb_node/botanygene
-	id = "botanygenes"
-	display_name = "Experimental Botanical Engineering"
-	description = "Botanical tools"
-	prereq_ids = list("adv_engi", "biotech")
-	design_ids = list(
-		"diskplantgene",
-		"plantgene",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
-	required_experiments = list(/datum/experiment/scanning/random/plants/wild)
-
 // MEDICAL
 /datum/techweb_node/adv_biotech/New()
 	. = ..()
