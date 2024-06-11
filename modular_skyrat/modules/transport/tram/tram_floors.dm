@@ -3,8 +3,6 @@
 	icon_state = "elevatorshaft"
 	base_icon_state = "elevatorshaft"
 	floor_tile = /obj/item/stack/tile/noslip/tram/guideway
-	liquid_height = -30
-	turf_height = -30
 
 /turf/open/floor/tram/guideway/wrench_act(mob/living/user, obj/item/item)
 	return
