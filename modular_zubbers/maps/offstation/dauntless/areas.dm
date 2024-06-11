@@ -72,6 +72,10 @@
 	name = "Construction and Storage"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
+/area/ruin/space/has_grav/bubbers/dauntless/service/lounge
+	name = "Shared Lounge"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+
 // Science
 
 /area/ruin/space/has_grav/bubbers/dauntless/sci
