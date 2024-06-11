@@ -315,7 +315,15 @@
 		if(isnull(wayout))
 			balloon_alert(neo, "out of bandwidth!")
 			return
-		current_avatar = server.generate_avatar(wayout, netsuit)
+		// BUBBER EDIT BEGIN - PREFS!
+		var/datum/preferences/pref
+		var/load_loadout = FALSE
+		var/obj/item/bitrunning_disk/prefs/prefdisk = locate() in neo.get_contents()
+		if(prefdisk)
+			load_loadout = prefdisk.include_loadout
+			pref = prefdisk.loaded_preference
+		current_avatar = server.generate_avatar(wayout, netsuit, pref, include_loadout = load_loadout)  // Added the prefs argument
+		// BUBBER EDIT END
 		avatar_ref = WEAKREF(current_avatar)
 		server.stock_gear(current_avatar, neo, generated_domain)
 
