@@ -17,6 +17,7 @@
 	. = ..()
 	design_ids += list(
 		"crewmonitor",
+		"borg_upgrade_advancedanalyzer",
 	)
 /datum/techweb_node/xenoorgan_biotech/New()
 	. = ..()
@@ -39,7 +40,16 @@
 	. = ..()
 	design_ids += list(
 		"borg_upgrade_advcutter",
+		"borg_upgrade_inducer_sci",
+		"borg_upgrade_brped"
 	)
+
+/datum/techweb_node/cyborg_upg_med/New()
+	design_ids += list(
+		"borg_upgrade_surgicalprocessor_sci",
+	)
+	return ..()
+
 // Computer Tech
 /datum/techweb_node/computer_board_gaming/New()
 	. = ..()

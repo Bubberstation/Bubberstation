@@ -100,3 +100,74 @@
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/cyborg
 	max_mod_capacity = 100
+
+//Research borg stuff
+/obj/item/inducer/cyborg/sci
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "inducer-sci"
+
+//illegal teleporter module
+/obj/item/experimental_dash
+	name = "Exerimental Dash"
+	desc = "An experimental module that allows for dashing."
+	desc_controls = "Left-click to dash."
+	icon = 'icons/mob/actions/actions_items.dmi'
+	icon_state = "jetboot"
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	var/charge_cost = (STANDARD_CELL_CHARGE *  3.2)
+	var/datum/effect_system/spark_spread/spark_system
+	var/datum/action/innate/dash/research/jaunt
+	var/mob/living/silicon/robot/cyborg
+
+/obj/item/experimental_dash/Initialize(mapload)
+	. = ..()
+	jaunt = new(src)
+	spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+
+/obj/item/experimental_dash/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	if(cyborg.cell.charge <= charge_cost)//Prevents usage when charge is low
+		user.balloon_alert(user, "Low charge!")
+		return
+	if(!target.density && jaunt?.teleport(user, target))
+		cyborg?.cell?.use(charge_cost)
+
+/obj/item/experimental_dash/equipped(mob/user, slot, initial)
+	. = ..()
+	if(!QDELETED(jaunt))
+		jaunt.Grant(user, src)
+	cyborg = user
+
+/obj/item/experimental_dash/dropped(mob/user)
+	. = ..()
+	if(!QDELETED(jaunt))
+		jaunt.Remove(user)
+	cyborg = null
+
+/obj/item/experimental_dash/Destroy()
+	QDEL_NULL(spark_system)
+	QDEL_NULL(jaunt)
+	return ..()
+
+/datum/action/innate/dash/research
+	current_charges = 1
+	max_charges = 1
+	charge_rate = 15 SECONDS
+	beam_length = 1 SECONDS
+	recharge_sound = null
+	beam_effect = "plasmabeam"
+
+/datum/action/innate/dash/research/GiveAction(mob/viewer) //this action should be invisible
+	return
+
+/datum/action/innate/dash/research/HideFrom(mob/viewer)
+	return
+
+//No more ghetto
+/obj/item/screwdriver/cyborg/power
+	sharpness = NONE
