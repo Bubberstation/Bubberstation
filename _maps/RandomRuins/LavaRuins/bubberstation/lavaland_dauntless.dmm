@@ -710,11 +710,9 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "dK" = (
-/obj/effect/turf_decal/stripes/red/line,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
+/obj/machinery/computer/security/dauntless,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "dL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -793,13 +791,15 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "eb" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/airalarm/directional/south,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "ed" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/dryer{
@@ -5861,11 +5861,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "zr" = (
-/obj/machinery/computer/shuttle,
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
-	},
-/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+/obj/effect/turf_decal/stripes/red/line,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "zt" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -6195,9 +6195,13 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "AK" = (
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 9
+/obj/structure/closet/secure_closet/brig{
+	id = "Syndicate Cell";
+	name = "Syndicate Cell locker";
+	req_one_access = null;
+	req_access = list("syndicate")
 	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "AQ" = (
@@ -7588,9 +7592,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
-"Hq" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Hx" = (
 /obj/machinery/light/cold/directional/south,
 /obj/structure/bodycontainer/morgue{
@@ -7785,17 +7786,11 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Ir" = (
-/obj/structure/disposaloutlet{
-	dir = 4
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/mineral/plastitanium/red{
+	icon_state = "plastitanium"
 	},
-/obj/effect/turf_decal/stripes/red/full,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/engine{
-	initial_gas_mix = "LAVALAND_ATMOS"
-	},
-/area/lavaland/surface/outdoors)
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "Is" = (
 /obj/effect/turf_decal/stripes/red/corner,
 /obj/effect/turf_decal/stripes/red/line{
@@ -9002,6 +8997,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+"NP" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/mineral/plastitanium/red{
+	icon_state = "plastitanium"
+	},
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "NS" = (
 /obj/structure/cable,
 /obj/structure/chair/office/tactical{
@@ -9627,6 +9628,18 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
+"QJ" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/full,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/engine{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
+/area/lavaland/surface/outdoors)
 "QK" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -10117,10 +10130,11 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "SI" = (
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 9
 	},
-/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "SJ" = (
 /obj/effect/turf_decal/trimline/dark_red/corner{
 	dir = 4
@@ -10482,16 +10496,6 @@
 /obj/machinery/atmospherics/components/binary/pump/on/supply/visible/layer4,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
-"TW" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Syndicate Cell";
-	name = "Syndicate Cell locker";
-	req_one_access = null;
-	req_access = list("syndicate")
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "TX" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -10500,15 +10504,10 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "Ub" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/turf/open/floor/mineral/plastitanium/red{
+	icon_state = "plastitanium"
 	},
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "Uc" = (
 /obj/machinery/door/airlock/mining{
 	name = "Bitrunning Den"
@@ -10542,9 +10541,13 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Ug" = (
-/obj/machinery/computer/security/dauntless,
-/turf/open/floor/iron/dark/small,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Uh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -11294,11 +11297,8 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "XD" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
-	},
-/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "XE" = (
 /obj/effect/turf_decal/trimline/dark_red/end{
 	dir = 4
@@ -13452,9 +13452,9 @@ Jz
 xR
 Aa
 Xv
-eb
+Ug
 Eh
-Hq
+XD
 FZ
 FZ
 FZ
@@ -13588,7 +13588,7 @@ zq
 PF
 pG
 fk
-eb
+Ug
 Eh
 yL
 FZ
@@ -13743,8 +13743,8 @@ FZ
 DV
 DV
 gY
-XD
-XD
+Ir
+Ir
 sG
 dG
 FR
@@ -13792,7 +13792,7 @@ tb
 GI
 pO
 dU
-Ir
+QJ
 FZ
 FZ
 FZ
@@ -13810,9 +13810,9 @@ FZ
 FZ
 FZ
 DV
-zr
-SI
-SI
+NP
+Ub
+Ub
 WK
 CQ
 bX
@@ -14165,8 +14165,8 @@ rK
 Ij
 Qf
 jE
-dK
-TW
+zr
+AK
 Lj
 Rm
 fo
@@ -14233,9 +14233,9 @@ Gb
 pH
 yR
 wN
-AK
+SI
 JZ
-Ub
+eb
 oZ
 RC
 oZ
@@ -14696,7 +14696,7 @@ bb
 Wa
 bV
 PJ
-Ug
+dK
 WZ
 QL
 CE
