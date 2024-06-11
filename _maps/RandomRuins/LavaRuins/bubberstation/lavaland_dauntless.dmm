@@ -2955,21 +2955,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/button/door/directional/north{
-	name = "Bolt Control";
-	id = "maa_d";
-	normaldoorcontrol = 1;
-	specialfunctions = 4;
-	req_access = list("syndicate_leader");
-	pixel_y = -24;
-	pixel_x = -8
-	},
-/obj/machinery/button/door/directional/south{
-	name = "Window Shutters";
-	id = "maa_w1";
-	pixel_x = 8;
-	req_access = list("syndicate_leader")
-	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/toy/mecha/mauler{
 	pixel_y = 16
@@ -6210,12 +6195,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
-	},
-/obj/machinery/button/door/directional/south{
-	name = "Prisoner Viewing Privlages";
-	id = "prison_shutters";
-	req_access = list("syndicate_leader");
-	pixel_x = -8
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/reagent_containers/cup/glass/trophy/gold_cup{
