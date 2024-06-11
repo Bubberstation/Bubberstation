@@ -38,6 +38,12 @@
 	icon_state = "royal_curls"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+//Sprite from Monkestation: https://github.com/Monkestation/MonkeStation
+/datum/sprite_accessory/hair/marge
+	name = "Marge"
+	icon_state = "marge"
+	icon = 'modular_zubbers/icons/mob/species/human/monkeymarge.dmi'
+
 //Podpeople hair
 /datum/sprite_accessory/hair/podmale
 	name = "Pod Male"
