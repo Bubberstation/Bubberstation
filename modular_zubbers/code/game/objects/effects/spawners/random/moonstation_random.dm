@@ -255,7 +255,6 @@
 		/obj/machinery/dish_drive/bullet = 1,
 		/obj/machinery/fax = 1,
 		/obj/machinery/microwave = 10,
-		/obj/machinery/plantgenes = 5,
 		/obj/machinery/pollution_scrubber = 10,
 		/obj/machinery/reagentgrinder = 20,
 		/obj/machinery/recharger = 5,
