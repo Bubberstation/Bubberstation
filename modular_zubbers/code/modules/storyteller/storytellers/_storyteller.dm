@@ -70,9 +70,6 @@
 	. = FALSE //Has return value for the roundstart loop
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
 	for(var/track in mode.event_track_points)
-		// Check if the track is empty, if so, ignore it
-		if(length(SSgamemode.event_pools[track]) == 0)
-			continue
 		var/points = mode.event_track_points[track]
 		if(points >= mode.point_thresholds[track] && find_and_buy_event_from_track(track))
 			. = TRUE
@@ -110,7 +107,7 @@
 			var/round_started = SSticker.HasRoundStarted()
 			message_admins("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
 			log_admin("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
-			stack_trace("WARNING: Storyteller [src] picked a null from event pool at track [track]. [round_started ? "During a round" : "On roundstart"]")
+			stack_trace("WARNING: Storyteller [src] picked a null from event pool at track [track] [round_started ? "during a round" : "on roundstart"].")
 			return
 	buy_event(picked_event, track)
 	. = TRUE
