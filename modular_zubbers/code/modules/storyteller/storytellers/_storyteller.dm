@@ -104,10 +104,9 @@
 			return
 		picked_event = pick_weight(valid_events)
 		if(!picked_event)
-			var/round_started = SSticker.HasRoundStarted()
 			message_admins("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
 			log_admin("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
-			stack_trace("WARNING: Storyteller [src] picked a null from event pool at track [track] [round_started ? "during a round" : "on roundstart"].")
+			stack_trace("WARNING: Storyteller [src] picked a null from event pool at track [track].")
 			return
 	buy_event(picked_event, track)
 	. = TRUE

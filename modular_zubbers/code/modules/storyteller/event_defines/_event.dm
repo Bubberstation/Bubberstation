@@ -12,15 +12,6 @@
 	/// Whether a roundstart event can happen post roundstart. Very important for events which override job assignments.
 	var/can_run_post_roundstart = TRUE
 
-/datum/round_event_control/can_spawn_event(players_amt, allow_magic)
-	. = ..()
-	if(!.)
-		return .
-	if(weight == 0)
-		return FALSE
-
-	return TRUE
-
 /datum/round_event
 	/// Whether the event called its start() yet or not.
 	var/has_started = FALSE
