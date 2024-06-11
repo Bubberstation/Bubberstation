@@ -70,6 +70,9 @@
 	. = FALSE //Has return value for the roundstart loop
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
 	for(var/track in mode.event_track_points)
+		// Check if the track is empty, if so, ignore it
+		if(length(SSgamemode.event_pools[track]) == 0)
+			continue
 		var/points = mode.event_track_points[track]
 		if(points >= mode.point_thresholds[track] && find_and_buy_event_from_track(track))
 			. = TRUE
