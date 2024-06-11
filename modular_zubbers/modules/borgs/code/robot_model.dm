@@ -60,6 +60,121 @@
 	cyborg.req_access = list(ACCESS_ROBOTICS)
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
 
+
+//Research cyborgs
+/obj/item/robot_model/sci
+	name = "Research"
+	basic_modules = list(
+		/obj/item/assembly/flash/cyborg,
+		/obj/item/extinguisher/mini,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/screwdriver/cyborg/power,
+		/obj/item/crowbar/cyborg/power,
+		/obj/item/multitool/cyborg,
+		/obj/item/analyzer,
+		/obj/item/assembly/signaler/cyborg,
+		/obj/item/borg/apparatus/sheet_manipulator,
+		/obj/item/stack/cable_coil,
+		/obj/item/borg/apparatus/beaker,
+		/obj/item/borg/apparatus/organ_storage,
+		/obj/item/borg/apparatus/research,
+		/obj/item/borg/apparatus/circuit_sci,
+		/obj/item/storage/part_replacer/cyborg,
+		/obj/item/surgical_drapes,
+		/obj/item/healthanalyzer,
+		/obj/item/experi_scanner,
+		/obj/item/bonesetter,
+		/obj/item/stack/medical/gauze,
+		/obj/item/borg/apparatus/tank_manipulator,
+	)
+	radio_channels = list(RADIO_CHANNEL_SCIENCE)
+
+//TODO: Illegal science stuff
+	emag_modules = list(
+		/obj/item/borg/stun,
+		/obj/item/experimental_dash,
+		/obj/item/borg/apparatus/illegal //To replace malf printers
+	)
+	cyborg_base_icon = "research"
+	cyborg_icon_override = CYBORG_ICON_SCI
+	model_select_icon = "research"
+	model_select_alternate_icon = 'modular_zubbers/modules/borgs/sprites/screen_robot.dmi'
+	model_traits = list(TRAIT_KNOW_ROBO_WIRES, TRAIT_RESEARCH_CYBORG)
+	hat_offset = 0
+	borg_skins = list(
+		"F3-LINE" = list(
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SCI_CATBORG,
+		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		),
+		"Vale" = list(
+			SKIN_ICON_STATE = "vale",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Borgi" = list(
+			SKIN_ICON_STATE = "borgi",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Hound" = list(
+			SKIN_ICON_STATE = "hound",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"DarkHound" = list(
+			SKIN_ICON_STATE = "hounddark",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Drake" = list(
+			SKIN_ICON_STATE = "drake",
+			SKIN_ICON = CYBORG_ICON_SCI_WIDE,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Zoomba" = list(
+			SKIN_ICON_STATE = "zoomba",
+			SKIN_ICON = CYBORG_ICON_SCI,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL),
+			SKIN_HAT_OFFSET = -13,
+		),
+		"Eyebot" = list(
+			SKIN_ICON_STATE = "eyebot",
+			SKIN_ICON = CYBORG_ICON_SCI,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL),
+		),
+		"Raptor" = list(
+			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
+			SKIN_ICON = CYBORG_ICON_SCI_LARGE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Meka" = list(
+			SKIN_ICON_STATE = "mekasci",
+			SKIN_ICON = CYBORG_ICON_SCI_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), SKIN_HAT_OFFSET = 15
+		),
+		"NiKA" = list(
+			SKIN_ICON_STATE = "fmekasci",
+			SKIN_ICON = CYBORG_ICON_SCI_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), SKIN_HAT_OFFSET = 15
+		),
+		"NiKO" = list(
+			SKIN_ICON_STATE = "mmekasci",
+			SKIN_ICON = CYBORG_ICON_SCI_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), SKIN_HAT_OFFSET = 15
+		),
+		"K4T (Research)" = list(
+			SKIN_ICON_STATE = "k4tsci",
+			SKIN_ICON = CYBORG_ICON_SCI_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL), SKIN_HAT_OFFSET = 15
+		),
+		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
+		SKIN_ICON = CYBORG_ICON_SCI_SMOLRAPTOR,
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
+		),
+	)
+
+
 /* BUBBER SPRITE ADDITIONS BELOW */
 /obj/item/robot_model/clown/Initialize(mapload)
 	. = ..()
@@ -364,15 +479,6 @@
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
 		),
 	)
-
-
-/*
-/obj/item/robot_model/research/Initialize(mapload)
-	. = ..()
-	borg_skins |= list(
-		"F3-LINE" = list(SKIN_ICON_STATE = "FELI-Research", SKIN_ICON = 'modular_zubbers/modules/borgs/sprites/felibot_all.dmi', SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)),
-	)
-*/
 
 
 /obj/item/robot_model/ninja/Initialize(mapload)
