@@ -5892,14 +5892,15 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "zr" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Syndicate Cell";
-	name = "Syndicate Cell locker";
-	req_one_access = null;
-	req_access = List("syndicate")
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
+/area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "zt" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -8736,7 +8737,7 @@
 	id = "Syndicate Cell";
 	name = "Syndicate Holding Cell";
 	pixel_y = 32;
-	req_access = null
+	req_access = list("syndicate")
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
@@ -8847,11 +8848,14 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "MI" = (
-/obj/machinery/porta_turret/syndicate{
-	faction = list("Syndicate","neutral")
+/obj/structure/closet/secure_closet/brig{
+	id = "Syndicate Cell";
+	name = "Syndicate Cell locker";
+	req_one_access = null;
+	req_access = List("syndicate")
 	},
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "MK" = (
 /obj/machinery/door/airlock/security/old/glass{
 	name = "Brig"
@@ -10560,15 +10564,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Ug" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/porta_turret/syndicate{
+	faction = list("Syndicate","neutral")
 	},
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Uh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -13419,7 +13419,7 @@ Eh
 Eh
 Eh
 Eh
-MI
+Ug
 FZ
 FZ
 FZ
@@ -14031,7 +14031,7 @@ Ju
 Ju
 Ju
 Ju
-MI
+Ug
 FZ
 FZ
 FZ
@@ -14201,7 +14201,7 @@ Ij
 Qf
 jE
 JZ
-zr
+MI
 Lj
 Rm
 fo
@@ -14270,7 +14270,7 @@ yR
 wN
 JZ
 JZ
-Ug
+zr
 oZ
 RC
 oZ
