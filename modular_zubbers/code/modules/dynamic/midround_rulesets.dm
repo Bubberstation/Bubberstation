@@ -27,9 +27,6 @@
 /datum/dynamic_ruleset/midround/from_ghosts/revenant
 	repeatable = FALSE
 
-/datum/dynamic_ruleset/midround/from_ghosts/sentient_disease
-	repeatable = FALSE
-
 /datum/dynamic_ruleset/midround/pirates
 	repeatable = FALSE
 

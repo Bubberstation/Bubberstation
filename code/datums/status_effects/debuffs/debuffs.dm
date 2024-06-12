@@ -343,6 +343,8 @@
 	if(owner.reagents)
 		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
+//SKYRAT EDIT START - OVERRIDEN IN MODULAR
+/*
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
@@ -358,7 +360,7 @@
 		hammer_synced = new_hammer_synced
 
 /datum/status_effect/crusher_mark/on_apply()
-	if(owner.mob_size >= MOB_SIZE_LARGE)
+	if(owner.mob_size >= MOB_SIZE_LARGE && !HAS_TRAIT(owner, TRAIT_OVERSIZED)) // BUBBER EDIT CHANGE - Original: if(owner.mob_size >= MOB_SIZE_LARGE)
 		marked_underlay = mutable_appearance('icons/effects/effects.dmi', "shield2")
 		marked_underlay.pixel_x = -owner.pixel_x
 		marked_underlay.pixel_y = -owner.pixel_y
@@ -376,6 +378,8 @@
 //we will only clear ourselves if the crusher is the one that owns us.
 /datum/status_effect/crusher_mark/before_remove(obj/item/kinetic_crusher/attacking_hammer)
 	return (attacking_hammer == hammer_synced)
+*/
+//SKYRAT EDIT END
 
 /datum/status_effect/stacking/saw_bleed
 	id = "saw_bleed"
@@ -778,7 +782,10 @@
 					span_userdanger(pick("Your lungs hurt!", "It hurts to breathe!")),
 					span_warning(pick("You feel nauseated.", "You feel like you're going to throw up!")))
 				else
-					fake_emote = pick("cough", "sniff", "sneeze")
+					if(prob(40))
+						fake_emote = "cough"
+					else
+						owner.sneeze()
 
 	if(fake_emote)
 		owner.emote(fake_emote)
