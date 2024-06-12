@@ -155,10 +155,7 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/textured_large,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "s" = (
 /turf/open/floor/carpet/green,
@@ -278,7 +275,18 @@
 "N" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood,
+/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/lighter{
+	pixel_x = 5
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "O" = (
@@ -336,8 +344,6 @@
 	dir = 1
 	},
 /obj/machinery/light/warm/directional/east,
-/obj/item/statuebust,
-/obj/structure/table/wood/fancy/green,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "W" = (
@@ -348,21 +354,10 @@
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
-"Y" = (
+"X" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood,
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
-	pixel_x = 4;
-	pixel_y = 7
-	},
-/obj/item/lighter{
-	pixel_x = 5
-	},
+/obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
@@ -407,7 +402,7 @@ R
 (4,1,1) = {"
 a
 v
-N
+X
 I
 t
 C
@@ -416,7 +411,7 @@ R
 (5,1,1) = {"
 a
 g
-Y
+N
 G
 x
 k
