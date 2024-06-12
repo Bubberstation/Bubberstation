@@ -51,7 +51,7 @@
 
 	playsound(
 		src,
-		pick('modular_zubbers/sound/arcade/minesweeper_explosion1.ogg','modular_zubbers/sound/arcade/minesweeper_explosion2.ogg','modular_zubbers/sound/arcade/minesweeper_explosion3.ogg'),
+		pick('sound/effects/explosion1.ogg','sound/effects/explosion2.ogg','sound/effects/explosion3.ogg'),
 		50
 	)
 
