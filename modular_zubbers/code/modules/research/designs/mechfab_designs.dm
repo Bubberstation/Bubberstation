@@ -67,3 +67,17 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
 	)
+
+/datum/design/squadruped_module
+	name = "Small Quadruped Affection Module"
+	id = "saffection_module"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/squadrupedmodule
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	construction_time = 40
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ALL,
+	)
