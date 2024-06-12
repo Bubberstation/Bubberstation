@@ -6,3 +6,4 @@
 	worn_icon_state = "diver"
 	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
+	body_parts_covered = CHEST|LEGS|GROIN
