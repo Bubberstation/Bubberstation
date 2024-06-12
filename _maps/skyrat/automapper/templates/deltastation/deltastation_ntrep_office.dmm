@@ -56,10 +56,8 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "m" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
+/obj/machinery/vending/boozeomat/all_access,
+/turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "n" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -158,16 +156,10 @@
 /mob/living/basic/pet/dog/corgi/lisa,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
-"A" = (
+"B" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark/textured_large,
-/area/station/command/heads_quarters/nt_rep)
-"B" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "C" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -181,8 +173,10 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "D" = (
-/obj/machinery/vending/boozeomat/all_access,
-/turf/closed/wall/r_wall,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "E" = (
 /obj/structure/filingcabinet/medical{
@@ -209,6 +203,11 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
+"G" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/sign/flag/galfed/directional/north,
+/turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
 "H" = (
 /obj/structure/disposalpipe/junction/yjunction{
@@ -347,9 +346,10 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "X" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/sign/flag/galfed/directional/north,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Y" = (
 /obj/effect/turf_decal/siding/wood,
@@ -377,7 +377,7 @@ a
 (3,1,1) = {"
 a
 a
-D
+m
 Y
 b
 J
@@ -405,17 +405,17 @@ a
 a
 U
 k
-A
+B
 n
 y
 s
 "}
 (7,1,1) = {"
 a
-X
+G
 I
-B
-m
+D
+X
 S
 a
 "}

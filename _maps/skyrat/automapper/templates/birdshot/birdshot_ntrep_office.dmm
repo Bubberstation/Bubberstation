@@ -220,10 +220,7 @@
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Ab" = (
-/obj/item/toy/crayon/white{
-	pixel_y = -10;
-	pixel_x = 10
-	},
+/obj/structure/chalkboard,
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "Bv" = (
@@ -234,7 +231,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/station/command/heads_quarters/nt_rep)
+/area/station/maintenance/hallway/abandoned_command)
 "Bw" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/structure/disposalpipe/segment,
@@ -272,7 +269,7 @@
 	},
 /obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/iron/dark/textured_large,
-/area/station/command/heads_quarters/nt_rep)
+/area/station/maintenance/hallway/abandoned_command)
 "EK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/newscaster/directional/north,
@@ -305,6 +302,12 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/captain/private)
+"HS" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
 "Ll" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -349,7 +352,10 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Rk" = (
-/obj/structure/chalkboard,
+/obj/item/toy/crayon/white{
+	pixel_y = -10;
+	pixel_x = 10
+	},
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "TT" = (
@@ -366,12 +372,6 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
-"VM" = (
-/obj/structure/chair/comfy/black{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Yp" = (
 /turf/closed/wall/r_wall,
@@ -445,15 +445,15 @@ au
 "}
 (8,1,1) = {"
 nM
-Rk
-VM
-VM
+Ab
+HS
+HS
 yC
 OS
 "}
 (9,1,1) = {"
 iD
-Ab
+Rk
 Ll
 jh
 pV
@@ -485,10 +485,10 @@ nw
 "}
 (13,1,1) = {"
 ii
-sZ
+Pf
 Bv
 Et
-sZ
+Pf
 Pf
 "}
 (14,1,1) = {"
