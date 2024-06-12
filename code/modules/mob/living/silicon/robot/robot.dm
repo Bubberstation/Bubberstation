@@ -170,6 +170,7 @@
 			"Miner" = /obj/item/robot_model/miner,
 			"Janitor" = /obj/item/robot_model/janitor,
 			"Service" = /obj/item/robot_model/service,
+			"Research" = /obj/item/robot_model/sci,//BUBBEREDIT - Addition of Research borgs
 		)
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper
@@ -970,7 +971,9 @@
 	SIGNAL_HANDLER
 
 	if(model)
-		model.respawn_consumable(src, cell.use(cell.charge * 0.005))
+		if(cell.charge)
+			if(model.respawn_consumable(src, cell.charge * 0.005))
+				cell.use(cell.charge * 0.005)
 		if(sendmats)
 			model.restock_consumable()
 	if(repairs)
