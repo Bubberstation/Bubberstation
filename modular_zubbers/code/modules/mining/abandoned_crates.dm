@@ -1,8 +1,6 @@
 //The value is not rarity, but rather the amount.
 GLOBAL_LIST_INIT(abandoned_crate_disasters,list(
 	/mob/living/basic/cockroach = 20,
-	/mob/living/simple_animal/pet/gondola = 1,
-	/mob/living/simple_animal/bot/secbot/honkbot = 5,
 	/mob/living/basic/bee/toxin = 10,
 ))
 
