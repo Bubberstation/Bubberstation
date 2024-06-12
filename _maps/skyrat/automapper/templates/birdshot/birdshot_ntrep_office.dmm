@@ -4,61 +4,33 @@
 /turf/template_noop,
 /area/template_noop)
 "au" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/rank/centcom/officer,
-/obj/item/clothing/under/rank/centcom/officer_skirt,
-/obj/item/clothing/under/rank/centcom/intern,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/item/clothing/under/rank/centcom/centcom_skirt,
-/obj/item/clothing/head/hats/centcom_cap,
-/obj/item/clothing/suit/hooded/wintercoat/centcom/nt_consultant,
-/obj/item/clothing/head/hats/centhat,
-/obj/item/radio/headset/heads/nanotrasen_consultant/alt,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/suit/armor/centcom_formal/nt_consultant,
-/obj/item/clothing/suit/armor/centcom_formal,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/structure/table/wood,
+/obj/machinery/fax{
+	fax_name = "Nanotrasen Consultant's Office";
+	name = "Nanotrasen Consultant's Fax Machine"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "aU" = (
-/obj/machinery/requests_console/directional/west{
-	name = "Nanotrasen Consultant's Requests Console";
-	department = "Nanotrasen Consultant"
-	},
-/turf/open/floor/carpet/green,
+/obj/machinery/light/directional/west,
+/obj/machinery/light_switch/directional/west,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "bD" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant,
-/obj/item/clothing/accessory/medal/silver/bureaucracy,
-/obj/item/clothing/accessory/medal/gold/nanotrasen_consultant,
-/obj/item/clothing/accessory/medal/gold/ordom,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/item/storage/briefcase/central_command,
-/obj/machinery/light/directional/west,
-/turf/open/floor/wood,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "ca" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue{
-	pixel_y = -2;
-	pixel_x = -2
+/obj/structure/chair/comfy/black{
+	dir = 4
 	},
-/obj/item/pen/fourcolor{
-	pixel_y = -2;
-	pixel_x = -5
-	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "cP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/light/directional/south,
-/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "eD" = (
@@ -120,10 +92,10 @@
 /area/station/maintenance/fore/lesser)
 "jh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/siding/wood{
+/obj/structure/chair/comfy/black{
 	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "lJ" = (
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -134,12 +106,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/fore/lesser)
 "nh" = (
-/obj/structure/chair/office/tactical{
-	dir = 4
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control"
 	},
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/structure/sign/flag/nanotrasen/directional/west,
-/turf/open/floor/carpet/green,
+/obj/structure/sign/calendar/directional/west,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "nw" = (
 /turf/template_noop,
@@ -155,81 +127,76 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/machinery/camera/autoname/directional/east,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "rA" = (
-/obj/structure/table/wood,
-/obj/item/stamp/centcom{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/stamp/denied{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stamp{
-	pixel_x = -8
-	},
-/obj/item/paper_bin{
-	pixel_y = 4;
-	pixel_x = 4
-	},
-/obj/item/pen/fountain{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/radio/intercom/directional/north,
-/turf/open/floor/carpet/green,
+/obj/machinery/modular_computer/preset/command,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "sZ" = (
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "ti" = (
-/obj/item/kirbyplants/random,
-/obj/machinery/light_switch/directional/north,
+/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "vK" = (
-/obj/machinery/vending/boozeomat/all_access,
-/turf/closed/wall/r_wall,
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/machinery/camera/autoname/directional/east,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/landmark/start/nanotrasen_consultant,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "wx" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/lesser)
 "xH" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin/carbon{
+	pixel_y = 4;
+	pixel_x = -4
+	},
+/obj/item/pen/fountain{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/stamp{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/stamp/denied{
+	pixel_x = 8
+	},
 /obj/machinery/button/door/directional/west{
 	id = "nt_rep_priv";
 	name = "Privacy Shutters Control"
 	},
-/obj/machinery/modular_computer/preset/command,
-/obj/structure/sign/calendar/directional/north,
-/obj/machinery/light/directional/west,
-/turf/open/floor/carpet/green,
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "xL" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "yC" = (
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "Ab" = (
-/obj/structure/chalkboard,
-/turf/closed/wall/r_wall,
-/area/station/command/heads_quarters/nt_rep)
+/turf/closed/wall,
+/area/station/maintenance/hallway/abandoned_command)
 "Bv" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/preopen{
 	id = "nt_rep_priv";
-	name = "Privacy Shutters"
+	name = "Privacy Shutter"
 	},
-/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/maintenance/hallway/abandoned_command)
 "Bw" = (
@@ -254,29 +221,18 @@
 /area/station/maintenance/fore/lesser)
 "Et" = (
 /obj/machinery/door/airlock/corporate{
-	name = "Nanotrasen Consultant's Office"
+	name = "NT Consultant's Office"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 8
-	},
-/obj/effect/landmark/navigate_destination/autoname,
-/turf/open/floor/iron/dark/textured_large,
+/turf/open/floor/iron,
 /area/station/maintenance/hallway/abandoned_command)
 "EK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/newscaster/directional/north,
-/obj/structure/table/wood/fancy/green,
-/obj/item/statuebust{
-	pixel_y = 8
-	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "FF" = (
@@ -303,31 +259,31 @@
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/captain/private)
 "HS" = (
-/obj/structure/chair/comfy/black{
-	dir = 8
+/obj/structure/table/wood,
+/obj/item/camera{
+	pixel_x = 6;
+	pixel_y = 3
 	},
-/turf/open/floor/carpet/green,
+/obj/item/camera_film{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/camera_film{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "Ll" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "Nt" = (
 /turf/open/floor/iron,
 /area/station/maintenance/hallway/abandoned_command)
 "OS" = (
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	fax_name = "Nanotrasen Consultant's Office";
-	name = "Nanotrasen Consultant's Fax Machine"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/wood,
+/obj/structure/filingcabinet/employment,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "Pd" = (
 /obj/structure/disposalpipe/segment{
@@ -348,30 +304,25 @@
 "Rb" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
-/obj/machinery/photocopier,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Rk" = (
-/obj/item/toy/crayon/white{
-	pixel_y = -10;
-	pixel_x = 10
-	},
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/station/command/heads_quarters/nt_rep)
 "TT" = (
-/obj/structure/filingcabinet/medical{
-	pixel_x = -10;
-	icon_state = "employmentcabinet"
+/obj/machinery/photocopier,
+/turf/open/floor/carpet/executive,
+/area/station/command/heads_quarters/nt_rep)
+"VM" = (
+/obj/structure/table/wood,
+/obj/item/stamp/centcom{
+	pixel_y = 13;
+	pixel_x = -7
 	},
-/obj/structure/filingcabinet/employment,
-/obj/structure/filingcabinet/security{
-	pixel_x = 10;
-	icon_state = "employmentcabinet"
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/nt_rep)
 "Yp" = (
 /turf/closed/wall/r_wall,
@@ -429,7 +380,7 @@ sZ
 "}
 (6,1,1) = {"
 QJ
-sZ
+Rk
 xH
 nh
 aU
@@ -437,7 +388,7 @@ bD
 "}
 (7,1,1) = {"
 lJ
-sZ
+Rk
 rA
 ca
 yC
@@ -445,9 +396,9 @@ au
 "}
 (8,1,1) = {"
 nM
-Ab
+Rk
 HS
-HS
+VM
 yC
 OS
 "}
@@ -461,7 +412,7 @@ TT
 "}
 (10,1,1) = {"
 QJ
-sZ
+Rk
 Rb
 xL
 vK
@@ -469,7 +420,7 @@ sZ
 "}
 (11,1,1) = {"
 nM
-sZ
+Rk
 EK
 cP
 sZ
@@ -477,7 +428,7 @@ nw
 "}
 (12,1,1) = {"
 eD
-sZ
+Rk
 ti
 ix
 sZ
@@ -485,7 +436,7 @@ nw
 "}
 (13,1,1) = {"
 ii
-Pf
+Ab
 Bv
 Et
 Pf
