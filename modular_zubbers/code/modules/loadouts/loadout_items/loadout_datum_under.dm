@@ -46,4 +46,16 @@
 /datum/loadout_item/under/miscellaneous/diver
 	name = "Black Divers Uniform"
 	item_path = /obj/item/clothing/under/misc/diver
-	ckeywhitelist = list("sexmaster, leafydasurvivor")
+	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+
+/datum/loadout_item/under/miscellaneous/dress_strapped
+	name = "Formal Evening Gown"
+	item_path = /obj/item/clothing/under/dress/bubber/strapped
+
+/datum/loadout_item/under/miscellaneous/syndicate_skyrat_overalls_unarmoured
+	name = "Tacticool Utility Overalls"
+	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured
+
+/datum/loadout_item/under/miscellaneous/syndicate_skyrat_overalls_unarmoured_skirt
+	name = "Tacticool Utility Skirt and Suspenders"
+	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
