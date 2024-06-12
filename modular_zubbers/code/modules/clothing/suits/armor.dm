@@ -35,6 +35,8 @@
 /obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
 	name = "security jacket"
 	desc = "A red jacket in red Security colors. It has hi-vis stripes all over it."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	icon_state = "secjacket"
 	inhand_icon_state = "armor"
 	armor_type = /datum/armor/suit_armor
@@ -53,8 +55,3 @@
 	name = "security jacket"
 	desc = "A blue jacket in blue Peacekeeper colors. It has hi-vis stripes all over it."
 	icon_state = "secjacket_blue"
-
-/obj/item/clothing/suit/armor/vest/secjacket/blue/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
-	. = ..()
-	if(!isinhands)
-		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
