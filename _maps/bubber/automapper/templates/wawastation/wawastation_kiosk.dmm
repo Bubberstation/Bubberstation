@@ -198,10 +198,18 @@
 	pixel_y = -6
 	},
 /obj/machinery/button/door/directional/north{
-	id = "L2_Kiosk";
+	id = "L2_Kiosk_Door";
+	name = "Kiosk Door";
+	pixel_y = 37;
+	pixel_x = 4;
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
+/obj/machinery/button/door/directional/north{
+	id = "L2_Kiosk_Shutters";
 	name = "Kiosk Shutters";
 	pixel_y = 37;
-	pixel_x = -1
+	pixel_x = -5
 	},
 /turf/open/floor/iron/dark,
 /area/station/commons/kiosk)

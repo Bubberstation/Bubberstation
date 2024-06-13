@@ -360,10 +360,10 @@
 /turf/open/floor/iron/white,
 /area/station/common/cryopods)
 "mv" = (
-/obj/machinery/vending/snack/blue,
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "mx" = (
@@ -545,7 +545,8 @@
 /area/station/commons)
 "rN" = (
 /obj/machinery/door/airlock/silver{
-	name = "Kiosk"
+	name = "Kiosk";
+	id_tag = "L2_Kiosk_Door"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1127,7 +1128,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 8;
 	name = "Kiosk Shutters";
-	id = "L2_Kiosk"
+	id = "L2_Kiosk_Shutters"
 	},
 /obj/structure/table/reinforced/titaniumglass,
 /turf/open/floor/iron/white,
@@ -1272,14 +1273,11 @@
 /turf/open/floor/iron/white,
 /area/station/commons)
 "Lt" = (
-/obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /obj/machinery/status_display/ai/directional/east,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
+/obj/machinery/vending/cola/blue,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "Lv" = (
@@ -1522,14 +1520,12 @@
 /turf/open/floor/iron/white,
 /area/station/commons)
 "RW" = (
-/obj/structure/chair/sofa/bench/tram/right{
-	dir = 8
-	},
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/east,
+/obj/structure/closet/emcloset,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "Sa" = (
@@ -1689,11 +1685,23 @@
 /turf/closed/wall,
 /area/station/commons)
 "Yt" = (
-/obj/machinery/vending/cola/blue,
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/textured_large,
+/area/station/commons)
+"Yz" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/structure/closet/emcloset/wall{
+	pixel_x = 32
+	},
+/turf/open/floor/iron/white,
 /area/station/commons)
 "YC" = (
 /obj/machinery/door/airlock/grunge{
@@ -1721,13 +1729,11 @@
 /turf/closed/wall/r_wall,
 /area/station/maintenance/central/greater)
 "Zo" = (
-/obj/structure/chair/sofa/bench/tram/left{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
 /obj/item/radio/intercom/directional/east,
+/obj/machinery/vending/snack/blue,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "Zs" = (
@@ -1885,7 +1891,7 @@ sq
 vv
 uC
 pk
-TN
+Yz
 OO
 CP
 GR
@@ -2404,8 +2410,8 @@ ox
 uS
 Ju
 Mc
-Ju
 VN
+yq
 yq
 yq
 yq
@@ -2432,8 +2438,8 @@ zK
 Si
 RV
 sq
-TN
 Kg
+TN
 TN
 TN
 TN
