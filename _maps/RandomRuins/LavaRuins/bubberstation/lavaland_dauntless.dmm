@@ -1488,13 +1488,6 @@
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
-"gD" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "gF" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/vg_decals/numbers/five{
@@ -2752,7 +2745,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "lN" = (
 /obj/machinery/light/cold/directional/east,
-/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
 	},
@@ -3983,12 +3975,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
-"rE" = (
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
-	},
-/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "rG" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -4204,10 +4190,6 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "sG" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/dark_red/corner,
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 9
 	},
@@ -5892,6 +5874,9 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
@@ -10723,7 +10708,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Vp" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input{
-	dir = 1
+	dir = 1;
+	chamber_id = "syndiship_turbine"
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
@@ -13914,8 +13900,8 @@ FZ
 jy
 ln
 Xp
-rE
-gD
+XD
+rR
 AQ
 CQ
 DM
