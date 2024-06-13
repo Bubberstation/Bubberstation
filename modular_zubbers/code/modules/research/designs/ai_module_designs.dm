@@ -1,4 +1,4 @@
-/datum/design/board/bubber/crewimov
+/datum/design/board/crewimov
 	name = "Crewimov Module"
 	desc = "Allows for the construction of a Crewimov AI Core Module. For when sanity prevails."
 	id = "crewsimov"
@@ -9,7 +9,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design/board/bubber/crewimovpp
+/datum/design/board/crewimovpp
 	name = "Crewimov++ Module"
 	desc = "Allows for the construction of a Crewimov++ AI Core Module."
 	id = "crewsimovpp"
@@ -20,7 +20,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design/board/bubber/ntosthree
+/datum/design/board/ntosthree
 	name = "NTOS V3.0 Module"
 	desc = "Allows for the construction of a NTOS V3.0 AI Core Module. For when a more firm hand from Central is needed."
 	id = "ntos"
