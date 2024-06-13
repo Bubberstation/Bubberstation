@@ -419,11 +419,11 @@
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "cr" = (
-/obj/machinery/light/small/red/directional/west,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command/corporateliaison,
+/obj/machinery/light/small/directional/west,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "ct" = (
@@ -3235,8 +3235,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "oo" = (
 /obj/machinery/light/small/red/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "oq" = (
@@ -3996,7 +3994,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "rK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/light_switch/directional/north,
 /obj/machinery/computer/quantum_console{
 	dir = 4
 	},
@@ -4061,6 +4058,14 @@
 "rV" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
+"rX" = (
+/obj/structure/cable,
+/obj/machinery/computer/atmos_control/nocontrol/incinerator{
+	atmos_chambers = list("interdyne_turbine_chamber" = "Interdyne Turbine");
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "rY" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -4614,9 +4619,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/machinery/oven/range,
-/obj/machinery/light/warm/dim/directional/west,
-/turf/open/floor/iron/white,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "ux" = (
 /obj/machinery/airalarm/directional/south,
@@ -4814,7 +4817,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "vq" = (
 /obj/machinery/computer/order_console/cook/interdyne,
-/obj/machinery/light/small/blacklight/directional/north,
 /turf/open/floor/iron/kitchen{
 	dir = 4
 	},
@@ -4834,13 +4836,8 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/directional/west,
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/cable,
-/obj/item/clothing/accessory/armband/hydro{
-	name = "Service Armband";
-	pixel_y = 1;
-	pixel_x = -3
-	},
+/obj/machinery/oven/range,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "vv" = (
@@ -5623,6 +5620,16 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"yz" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/structure/bed/double,
+/obj/item/bedsheet/brown/double,
+/obj/machinery/light/small/directional/west,
+/turf/open/floor/iron/dark/small,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "yB" = (
 /obj/machinery/button/door/directional/west{
 	id = "turbine_vent";
@@ -6210,6 +6217,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/light/warm/dim/directional/west,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "AX" = (
@@ -6811,6 +6819,11 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Dv" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/clothing/accessory/armband/hydro{
+	name = "Service Armband";
+	pixel_y = 1;
+	pixel_x = -3
+	},
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Dx" = (
@@ -7324,7 +7337,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "FU" = (
 /obj/machinery/air_sensor{
-	chamber_id = "syndiship_turbine"
+	chamber_id = "interdyne_turbine_chamber"
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
@@ -9191,9 +9204,6 @@
 /obj/structure/sign/painting/library{
 	pixel_y = 30
 	},
-/obj/machinery/door/airlock/bathroom{
-	name = "Showers"
-	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "OT" = (
@@ -9960,7 +9970,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/machinery/light/small/red/directional/east,
+/obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/command/maa)
 "Sp" = (
@@ -10710,7 +10720,7 @@
 "Vp" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/incinerator_input{
 	dir = 1;
-	chamber_id = "syndiship_turbine"
+	chamber_id = "dauntless_turbine"
 	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
@@ -12357,7 +12367,7 @@ FZ
 FZ
 FZ
 FZ
-FZ
+XI
 FZ
 FZ
 FZ
@@ -12578,7 +12588,7 @@ rM
 PX
 kJ
 TG
-ee
+rX
 VU
 Vp
 FU
@@ -14994,11 +15004,11 @@ Eu
 Zz
 UV
 Dz
-Dz
+oo
 Dz
 rJ
 sb
-Dx
+yz
 HB
 gC
 gC
@@ -15062,7 +15072,7 @@ fY
 Jh
 SR
 Sr
-oo
+Sr
 tR
 Xh
 vh
