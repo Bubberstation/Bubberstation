@@ -87,8 +87,10 @@
 /turf/open/floor/carpet/purple,
 /area/station/service/library)
 "dG" = (
-/obj/machinery/computer/cryopod/directional/west,
 /obj/effect/turf_decal/siding,
+/obj/structure/sign/timeclock_psa/directional/west{
+	pixel_y = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/common/cryopods)
 "ef" = (
@@ -125,6 +127,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/station/commons)
+"es" = (
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/textured_large,
+/area/station/common/cryopods)
 "eO" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
@@ -533,8 +543,7 @@
 "rI" = (
 /obj/machinery/time_clock/directional/east,
 /obj/effect/turf_decal/bot_blue,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/computer/cryopod/directional/south,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/common/cryopods)
 "rL" = (
@@ -733,13 +742,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/commons)
-"vN" = (
-/obj/effect/turf_decal/siding{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/white,
-/area/station/common/cryopods)
 "vT" = (
 /obj/structure/sign/painting/large/library_private{
 	dir = 8;
@@ -1236,6 +1238,10 @@
 /obj/machinery/photocopier,
 /turf/open/floor/carpet/purple,
 /area/station/service/library)
+"Ka" = (
+/obj/structure/sign/timeclock_psa/directional/west,
+/turf/template_noop,
+/area/template_noop)
 "Ke" = (
 /obj/machinery/light/directional/north,
 /turf/template_noop,
@@ -1441,6 +1447,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/service/library)
+"PA" = (
+/obj/effect/turf_decal/siding{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/white,
+/area/station/common/cryopods)
 "PD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -2421,7 +2434,7 @@ PD
 MN
 FB
 TB
-vN
+PA
 rI
 ql
 ql
@@ -2449,7 +2462,7 @@ TN
 ZI
 AR
 jp
-AR
+es
 ql
 ql
 tp
@@ -2475,10 +2488,10 @@ Yp
 GO
 GO
 rN
-Yp
-Yp
-Yp
-Yp
+ql
+ql
+ql
+ql
 tp
 tp
 tp
@@ -2538,7 +2551,7 @@ tp
 tp
 lE
 lE
-lE
+Ka
 lE
 lE
 lE
