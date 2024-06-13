@@ -8,7 +8,7 @@
 /obj/item/borg/apparatus/research
 	name = "Research manipulation gripper"
 	desc = "A simple grasping tool suited to assist in a wide array of research applications."
-	icon = 'modular_zubbers/modules/borgs/sprites/robot_items.dmi'
+	icon = 'modular_zubbers/code/modules/borgs/sprites/robot_items.dmi'
 	icon_state = "gripper_sci"
 	storable = list(
 					/obj/item/slime_extract,
@@ -35,7 +35,7 @@
 /obj/item/borg/apparatus/circuit_sci
 	name = "Research circuit assembly gripper"
 	desc = "A complex grasping tool used for working with circuitry."
-	icon = 'modular_zubbers/modules/borgs/sprites/robot_items.dmi'
+	icon = 'modular_zubbers/code/modules/borgs/sprites/robot_items.dmi'
 	icon_state = "gripper_circ"
 	storable = list(
 					/obj/item/circuitboard,
