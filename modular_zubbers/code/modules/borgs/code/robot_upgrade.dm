@@ -54,3 +54,8 @@
 	model_flags += BORG_MODEL_RESEARCH
 	items_to_remove = list(/obj/item/surgical_drapes)
 
+/obj/item/borg/upgrade/rped/Initialize()
+	. = ..()
+	items_to_add = list(/obj/item/storage/part_replacer/bluespace)
+	items_to_add -= list(/obj/item/storage/part_replacer)
+
