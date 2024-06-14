@@ -81,7 +81,7 @@
 "l" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/template_noop,
+/turf/open/floor/iron/dark,
 /area/station/command/corporate_showroom)
 "m" = (
 /obj/structure/chair/office/tactical{
@@ -195,11 +195,12 @@
 /area/station/command/heads_quarters/nt_rep)
 "v" = (
 /obj/machinery/newscaster/directional/north,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
-/obj/structure/sign/flag/galfed/directional/north,
 /obj/machinery/modular_computer/preset/command,
+/obj/structure/sign/flag/galfed/directional/north,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "x" = (
@@ -243,16 +244,17 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
-/turf/template_noop,
+/turf/open/floor/iron/dark,
 /area/station/command/corporate_showroom)
 "G" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/template_noop,
+/turf/open/floor/iron/dark,
 /area/station/command/corporate_showroom)
 "I" = (
 /obj/structure/chair/comfy/black,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "J" = (
@@ -302,6 +304,7 @@
 	},
 /obj/item/bedsheet/centcom/double,
 /obj/effect/landmark/start/nanotrasen_consultant,
+/obj/structure/cable,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "P" = (
@@ -317,6 +320,9 @@
 /area/station/command/heads_quarters/nt_rep)
 "Q" = (
 /obj/item/kirbyplants/random,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "R" = (
@@ -399,6 +405,10 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Z" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 
