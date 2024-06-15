@@ -220,6 +220,7 @@
 							/area/icemoon/surface/outdoors/unexplored/rivers/no_monsters,
 							/area/icemoon/underground/unexplored/rivers/deep/shoreline,
 							/area/icemoon/underground/explored,
+							/area/moonstation/surface,
 							/area/moonstation/surface/unexplored,
 							/area/moonstation/underground,
 							/area/moonstation/underground/unexplored,
@@ -230,7 +231,8 @@
 							/area/lavaland/surface/outdoors/unexplored,
 							/area/lavaland/surface/outdoors/explored,
 							/area/ocean/generated,
-							/area/ruin/)
+							/area/ruin/
+						)
 
 /obj/item/firing_pin/wastes/pin_auth(mob/living/user)
 	if(!istype(user))
