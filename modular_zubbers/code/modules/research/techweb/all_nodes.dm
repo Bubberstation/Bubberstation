@@ -12,6 +12,14 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	required_experiments = list(/datum/experiment/scanning/random/plants/wild)
 
+/datum/techweb_node/ai_adv/New()
+	. = ..()
+	design_ids += list(
+		"crewsimov",
+		"crewsimovpp",
+		"ntos",
+	)
+
 // MEDICAL
 /datum/techweb_node/adv_biotech/New()
 	. = ..()
