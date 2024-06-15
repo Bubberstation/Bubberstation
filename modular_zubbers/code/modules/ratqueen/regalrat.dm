@@ -138,44 +138,6 @@
 	icon_state_living = "classic"
 	icon_state_dead = "classic_dead"
 
-/// Floating rat?
-/datum/rat_fashion/supernatural
-	name = "rat king"
-	icon_state_living = "ratking"
-	icon_state_dead = "ratking_dead"
-	/// A halo for a rat
-	var/obj/effect/rat_ring/ring = new()
-
-/datum/rat_fashion/supernatural/apply(mob/living/simple_animal/rat_target)
-	. = ..()
-	ring.layer = rat_target.layer - 0.1
-	rat_target.vis_contents |= ring
-
-/datum/rat_fashion/supernatural/on_death(mob/living/simple_animal/rat_target)
-	rat_target.vis_contents -= ring
-
-/datum/rat_fashion/supernatural/remove(mob/living/simple_animal/rat_target)
-	rat_target.vis_contents -= ring
-
-/datum/rat_fashion/supernatural/Destroy(force, ...)
-	. = ..()
-	QDEL_NULL(ring)
-
-/// Cool particle effect
-/obj/effect/rat_ring
-	icon = 'modular_zubbers/icons/mob/rat.dmi'
-	icon_state = "ratring"
-	color = "#FFFFCC"
-	alpha = 200
-	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE
-	pixel_y = 1
-
-/obj/effect/rat_ring/Initialize(mapload)
-	. = ..()
-	SpinAnimation(30)
-	animate(src, transform = matrix()*0.7, time = 3 SECONDS, loop = -1, flags = ANIMATION_PARALLEL | ANIMATION_RELATIVE)
-	animate(transform = matrix(), time = 3 SECONDS, loop = -1)
-
 /// Rat queen (thicc rat)
 
 /datum/rat_fashion/rat_queen
@@ -198,4 +160,4 @@
 	name = "ringmaster"
 	allow_random = FALSE
 	icon_state_living = "ringmaster"
-	icon_state_dead = "ratqueen_dead" 
+	icon_state_dead = "ratqueen_dead"
