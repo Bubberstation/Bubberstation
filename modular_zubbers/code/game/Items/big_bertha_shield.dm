@@ -1,9 +1,9 @@
 /obj/item/shield/big_bertha
 	name = "Big Bertha"
 	desc = "A shield so fat and heavy, it should block just about anything, as long as you have the stamina for it."
-	icon = 'modular_zubbers/modules/big_bertha_shield/icons/shields.dmi'
-	lefthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
-	righthand_file = 'modular_zubbers/modules/big_bertha_shield/icons/shields_both.dmi'
+	icon = 'modular_zubbers/icons/obj/big_bertha_shield.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/big_bertha_both.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/big_bertha_both.dmi'
 	icon_state = "big_bertha"
 	block_chance = 100
 	slot_flags = null
@@ -54,19 +54,3 @@
 	bomb = 50
 	fire = 80
 	acid = 70
-
-/datum/area_spawn_over/big_bertha
-	target_areas = list(
-		/area/station/ai_monitored/security/armory,
-		/area/station/ai_monitored/security/armory/upper
-	)
-	over_atoms = list(
-		/obj/item/shield/riot
-	)
-	desired_atom = /obj/item/shield/big_bertha
-
-/datum/area_spawn_over/big_bertha/New(...)
-	. = ..()
-	blacklisted_stations = null
-
-
