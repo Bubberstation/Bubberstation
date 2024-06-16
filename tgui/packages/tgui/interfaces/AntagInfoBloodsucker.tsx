@@ -100,7 +100,7 @@ const BloodsuckerIntro = () => {
       </Stack.Item>
       <Stack.Item>
         <Section fill title="Strengths and Weaknesses">
-          <Stack vertical>
+          <Stack vertical height="7rem">
             <Stack.Item>
               <span>
                 You regenerate your health slowly, you&#39;re weak to fire, and
