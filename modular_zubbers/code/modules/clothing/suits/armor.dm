@@ -31,3 +31,27 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
+
+/obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
+	name = "security jacket"
+	desc = "A red jacket in red Security colors. It has hi-vis stripes all over it."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "secjacket"
+	inhand_icon_state = "armor"
+	armor_type = /datum/armor/suit_armor
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS|HANDS
+	heat_protection = CHEST|GROIN|ARMS|HANDS
+	resistance_flags = FLAMMABLE
+	dog_fashion = null
+
+/obj/item/clothing/suit/armor/vest/secjacket/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	. = ..()
+	if(!isinhands)
+		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
+
+/obj/item/clothing/suit/armor/vest/secjacket/blue // Port from TG Station (DrTuxedo)
+	name = "security jacket"
+	desc = "A blue jacket in blue Peacekeeper colors. It has hi-vis stripes all over it."
+	icon_state = "secjacket_blue"
