@@ -3,11 +3,11 @@
 	name = "prototype arm blade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
 
-	icon = 'modular_zubbers/code/modules/changeling_zombies/icons/items.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/czombie.dmi'
 	icon_state = "arm_blade"
 	inhand_icon_state = "arm_blade"
-	lefthand_file = 'modular_zubbers/code/modules/changeling_zombies/icons/inhand_left.dmi'
-	righthand_file = 'modular_zubbers/code/modules/changeling_zombies/icons/inhand_right.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/czombie_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/czombie_righthand.dmi'
 
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -104,10 +104,10 @@
 	name = "prototype chitinous mass"
 	desc = "A tough, hard covering of black chitin."
 
-	icon = 'modular_zubbers/code/modules/changeling_zombies/icons/armor.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/czombie.dmi'
 	icon_state = "lingarmor"
 
-	worn_icon = 'modular_zubbers/code/modules/changeling_zombies/icons/armor_worn.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/czombie.dmi'
 
 	armor_type = /datum/armor/armor_changeling_zombie
 

@@ -15,7 +15,7 @@
 
 	show_in_antagpanel = TRUE
 
-	hud_icon = 'modular_zubbers/code/modules/changeling_zombies/icons/antag_hud.dmi'
+	hud_icon = 'modular_zubbers/icons/mob/huds/czombie.dmi'
 	antag_hud_name = "zombie"
 
 	antag_memory = "You are a mutated experiment, or a victim of one. Your mind is torn apart, you do not remember who you are. \
