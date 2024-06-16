@@ -118,6 +118,11 @@ const BloodsuckerIntro = () => {
                 Avoid using your Feed ability while near others, or else you
                 will risk <i>breaking the Masquerade</i>!
               </span>
+              <span>
+                Loosing your heart will render your powers useless, but going
+                into a coffin with a heart inside will allow you to regenerate
+                it.
+              </span>
             </Stack.Item>
           </Stack>
         </Section>
