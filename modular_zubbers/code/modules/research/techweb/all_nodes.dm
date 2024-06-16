@@ -58,12 +58,6 @@
 	)
 	return ..()
 
-/datum/techweb_node/cyborg/New()
-	. = ..()
-	design_ids += list(
-		"saffection_module",
-	)
-
 // Computer Tech
 /datum/techweb_node/computer_board_gaming/New()
 	. = ..()
