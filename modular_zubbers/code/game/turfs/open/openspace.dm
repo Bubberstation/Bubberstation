@@ -19,3 +19,7 @@
 
 /turf/open/chasm/moonstation/LateInitialize()
 	AddElement(/datum/element/turf_z_transparency)
+	var/turf/T = GET_TURF_BELOW(src)
+	if(ismineralturf(T))
+		var/turf/closed/mineral/M = T
+		M.gets_drilled()
