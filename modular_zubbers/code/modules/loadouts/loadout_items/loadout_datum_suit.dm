@@ -20,6 +20,11 @@
 	item_path = /obj/item/clothing/suit/cloak/shawl
 	ckeywhitelist = list("thedragmeme")
 
+/datum/loadout_item/suit/secjacket
+	name = "High-Vis Security Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
+
 /datum/loadout_item/suit/leather_apron
 	name = "Leather Apron"
 	item_path = /obj/item/clothing/suit/leatherapron
