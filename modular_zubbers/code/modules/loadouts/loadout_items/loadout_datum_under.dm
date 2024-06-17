@@ -62,10 +62,10 @@
 
 /datum/loadout_item/under/miscellaneous/nanotrasen_consultant/centcom
 	name = "CentCom Consultant Suit"
-	item_path = /obj/item/clothing/under/rank/centcom/consultant
+	item_path = /obj/item/clothing/under/rank/centcom/bubber/consultant
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/under/miscellaneous/nanotrasen_consultant/centcom/skirt
 	name = "CentCom Consultant Suitskirt"
-	item_path = /obj/item/clothing/under/rank/centcom/consultant/skirt
+	item_path = /obj/item/clothing/under/rank/centcom/bubber/consultant/skirt
 	restricted_roles = list(JOB_NT_REP)
