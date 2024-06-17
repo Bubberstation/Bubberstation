@@ -792,6 +792,9 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi' // Bubberstation Edit
 	armor_type = /datum/armor/beret_centcom_formal
 	strip_delay = 10 SECONDS
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 
 #undef DRILL_DEFAULT
