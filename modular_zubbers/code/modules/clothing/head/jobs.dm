@@ -56,7 +56,7 @@
 	acid = 50
 	wound = 4
 
-/obj/item/clothing/head/nanotrasen_consultant/beret/centcom
+/obj/item/clothing/head/beret/centcom_formal/nt_consultant/centcom
 	name = "CentCom consultant's beret"
 	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case."
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
