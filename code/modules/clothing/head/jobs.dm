@@ -310,7 +310,7 @@
 		else
 			balloon_alert(wearer, "can't put in hands!")
 			break
-			
+
 	return .
 
 /obj/item/clothing/head/fedora/inspector_hat/attackby(obj/item/item, mob/user, params)
@@ -787,10 +787,9 @@
 /obj/item/clothing/head/beret/centcom_formal
 	name = "\improper CentCom Formal Beret"
 	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case."
-	icon_state = "beret_badge"
-	greyscale_config = /datum/greyscale_config/beret_badge
-	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	greyscale_colors = "#46b946#f2c42e"
+	icon_state = "centberet" // Bubberstation Edit
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi' // Bubberstation Edit
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi' // Bubberstation Edit
 	armor_type = /datum/armor/beret_centcom_formal
 	strip_delay = 10 SECONDS
 

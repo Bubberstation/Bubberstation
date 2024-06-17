@@ -1,11 +1,9 @@
 /obj/item/clothing/head/helmet/space/beret
 	name = "CentCom officer's beret"
 	desc = "An armored beret commonly used by special operations officers. Uses advanced force field technology to protect the head from space."
-	greyscale_config = /datum/greyscale_config/beret_badge
-	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	icon_state = "beret_badge"
-	inhand_icon_state = null
-	greyscale_colors = "#397F3F#FFCE5B"
+	icon_state = "officerberet" // Bubberstation Edit
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi' // Bubberstation Edit
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi' // Bubberstation Edit
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT
 	flags_inv = 0
 	armor_type = /datum/armor/space_beret
@@ -28,8 +26,8 @@
 	name = "CentCom officer's coat"
 	desc = "An armored, space-proof coat used in special operations."
 	icon_state = "centcom_coat"
-	icon = 'icons/obj/clothing/suits/jacket.dmi'
-	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi' // Bubberstation Edit
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi' // Bubberstation Edit
 	inhand_icon_state = "centcom"
 	blood_overlay_type = "coat"
 	slowdown = 0

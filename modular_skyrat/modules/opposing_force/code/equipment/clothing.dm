@@ -162,7 +162,7 @@
 
 /obj/item/storage/backpack/duffelbag/syndie/impostor/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom/officer(src)
-	new /obj/item/clothing/under/rank/centcom/officer_skirt(src)
+	new /obj/item/clothing/under/rank/centcom/officer/skirt(src)
 	new /obj/item/clothing/head/hats/centcom_cap(src)
 	new /obj/item/clothing/suit/armor/centcom_formal(src)
 	new /obj/item/clothing/shoes/combat(src)

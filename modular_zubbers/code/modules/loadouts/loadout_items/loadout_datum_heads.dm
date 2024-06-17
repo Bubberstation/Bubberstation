@@ -90,3 +90,7 @@
 /datum/loadout_item/head/donator/rainbow_bunch
 	donator_only = FALSE
 
+/datum/loadout_item/head/hats/nanotrasen_consultant/beret
+	name = "CentCom Consultant Beret"
+	item_path = /obj/item/clothing/head/nanotrasen_consultant/beret/centcom
+	restricted_roles = list(JOB_NT_REP)

@@ -59,3 +59,13 @@
 /datum/loadout_item/under/miscellaneous/syndicate_skyrat_overalls_unarmoured_skirt
 	name = "Tacticool Utility Skirt and Suspenders"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
+
+/datum/loadout_item/under/miscellaneous/nanotrasen_consultant/centcom
+	name = "CentCom Consultant Suit"
+	item_path = /obj/item/clothing/under/rank/centcom/consultant
+	restricted_roles = list(JOB_NT_REP)
+
+/datum/loadout_item/under/miscellaneous/nanotrasen_consultant/centcom/skirt
+	name = "CentCom Consultant Suitskirt"
+	item_path = /obj/item/clothing/under/rank/centcom/consultant/skirt
+	restricted_roles = list(JOB_NT_REP)
