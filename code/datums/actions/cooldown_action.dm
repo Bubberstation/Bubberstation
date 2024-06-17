@@ -88,7 +88,7 @@
 	// If we don't change the icon state, or don't apply a special overlay,
 	if(active_background_icon_state || active_icon_state || active_overlay_icon_state)
 		return
-	//  ...we need to show it's active somehow. So, make it greeeen
+	// ...we need to show it's active somehow. So, make it greeeen
 	button.color = COLOR_GREEN
 
 /datum/action/cooldown/apply_button_background(atom/movable/screen/movable/action_button/current_button, force)
