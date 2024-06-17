@@ -691,7 +691,7 @@
 		/obj/item/clothing/head/hats/centhat = 3,
 		/obj/item/clothing/head/hats/intern = 3,
 		/obj/item/clothing/under/rank/centcom/commander = 3,
-		/obj/item/clothing/under/rank/centcom/commander/skirt = 3,
+		/obj/item/clothing/under/rank/centcom/centcom_skirt = 3,
 		/obj/item/clothing/under/rank/centcom/intern = 3,
 		/obj/item/clothing/under/rank/centcom/official = 3,
 		/obj/item/clothing/under/rank/centcom/officer = 3,

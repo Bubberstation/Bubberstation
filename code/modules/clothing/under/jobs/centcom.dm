@@ -13,10 +13,9 @@
 	desc = "A suit worn by CentCom Officials, with a silver belt buckle to indicate their rank from a glance."
 	icon_state = "official"
 	inhand_icon_state = "dg_suit"
-	alt_covers_chest = TRUE // Bubberstation Edit
 
 /obj/item/clothing/under/rank/centcom/intern
-name = "\improper CentCom intern's jumpsuit"
+	name = "\improper CentCom intern's jumpsuit"
 	desc = "It's a jumpsuit worn by those interning for CentCom. The top is styled after a polo shirt for easy identification."
 	icon_state = "intern"
 	inhand_icon_state = "dg_suit"
@@ -46,7 +45,6 @@ name = "\improper CentCom intern's jumpsuit"
 /obj/item/clothing/under/rank/centcom/officer_skirt/replica
 	name = "\improper CentCom turtleneck skirt replica"
 	desc = "A cheap copy of the CentCom turtleneck skirt! A Donk Co. logo can be seen on the collar."
-	icon_state = "fakecent_skirt" // Bubberstation Edit
 
 /obj/item/clothing/under/rank/centcom/centcom_skirt
 	name = "\improper CentCom commander's suitskirt"
@@ -57,28 +55,13 @@ name = "\improper CentCom intern's jumpsuit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/under/rank/centcom/consultant // Bubberstation Edit
-	name = "CentCom consultant's suit"
-	desc = "It's a classic CentCom uniform, resembles the Commander's, but is silver and denotes the rank of \"Nanotrasen Consultant\"."
-	icon_state = "ntconsultant"
-	sensor_mode = SENSOR_COORDS
-	random_sensor = FALSE
-
-/obj/item/clothing/under/rank/centcom/consultant/skirt
-	name = "CentCom consultant's suitskirt"
-	desc = "It's a classic CentCom uniform with a skirt, resembles the Commander's, but is silver and denotes the rank of \"Nanotrasen Consultant\"."
-	icon_state = "ntconsultant_skirt"
-	alt_covers_chest = TRUE
-	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	body_parts_covered = CHEST|GROIN|ARMS
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
 /obj/item/clothing/under/rank/centcom/military
 	name = "tactical combat uniform"
 	desc = "A dark colored uniform worn by CentCom's conscripted military forces."
 	icon_state = "military"
 	inhand_icon_state = "bl_suit"
 	armor_type = /datum/armor/clothing_under/centcom_military
+
 /datum/armor/clothing_under/centcom_military
 	melee = 10
 	fire = 50
