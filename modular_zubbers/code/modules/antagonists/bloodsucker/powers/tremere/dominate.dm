@@ -33,17 +33,9 @@
 	/// Data huds to show while the power is active
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/on_power_upgrade()
-	if(level_current > 4)
-		background_icon_state = "tremere_power_gold_off"
-		active_background_icon_state = "tremere_power_gold_on"
-		base_background_icon_state = "tremere_power_gold_off"
-	. = ..()
-
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
 	. = ..()
-	return "Level [level_current]: [src]:\n\
-		Click any person to, after [DisplayTimeText(mesmerize_delay)], Dominate them.\n\
+	return "Click any person to, after [DisplayTimeText(mesmerize_delay)], Dominate them.\n\
 		Right clicking while having the ability selected will apply a knockdown and if above level 4 mute the victim for [DisplayTimeText(combat_mesmerize_time())], and confuse and slow down them for [DisplayTimeText(combat_mesmerize_secondary_time())].\n\
 		A left click will completely immobilize, mute, and blind them for the next [DisplayTimeText(combat_mesmerize_secondary_time())] seconds.\n\
 		While this ability is active, you will be able to see additional information about everyone in the room.\n\

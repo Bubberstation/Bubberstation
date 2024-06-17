@@ -107,6 +107,11 @@
 
 /datum/action/cooldown/bloodsucker/proc/on_power_upgrade()
 	SHOULD_CALL_PARENT(TRUE)
+	if(purchase_flags & TREMERE_CAN_BUY && level_current >= TREMERE_OBJECTIVE_POWER_LEVEL)
+		background_icon_state = "tremere_power_gold_off"
+		active_background_icon_state = "tremere_power_gold_on"
+		base_background_icon_state = "tremere_power_gold_off"
+	. = ..()
 	build_all_button_icons(ALL)
 
 // Put desc that you want to update every time build_all_button_icons is called here

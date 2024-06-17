@@ -244,7 +244,7 @@
 /// Max out a Tremere Power - Tremere Clan objective
 /datum/objective/bloodsucker/tremere_power
 	name = "tremerepower"
-	var/power_level = 5
+	var/power_level = TREMERE_OBJECTIVE_POWER_LEVEL
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()

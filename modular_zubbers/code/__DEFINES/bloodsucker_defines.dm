@@ -123,6 +123,7 @@
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
 
 #define DOMINATE_VASSALIZE_LEVEL 4
+#define TREMERE_OBJECTIVE_POWER_LEVEL 4
 
 /**
  * Torpor check bitflags
