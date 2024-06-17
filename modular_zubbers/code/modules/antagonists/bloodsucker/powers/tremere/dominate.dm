@@ -26,7 +26,6 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_CONSCIOUS
 	purchase_flags = TREMERE_CAN_BUY
 	bloodcost = 15
-	// TODO it should give passive bonus while active (full huds and xray?)
 	constant_bloodcost = 0.2
 	target_range = 6
 	mesmerize_delay = 3 SECONDS
