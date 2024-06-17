@@ -18,7 +18,7 @@
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/upgrade_power()
+/datum/action/cooldown/bloodsucker/targeted/lunge/on_power_upgrade()
 	. = ..()
 	//range is lowered when you get stronger.
 	if(level_current > 3)

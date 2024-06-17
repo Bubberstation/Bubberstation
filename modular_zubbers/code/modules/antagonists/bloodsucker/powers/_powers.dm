@@ -103,7 +103,11 @@
 	SHOULD_CALL_PARENT(TRUE)
 	level_current++
 	desc = get_power_desc()
-	build_all_button_icons(UPDATE_BUTTON_NAME)
+	on_power_upgrade()
+
+/datum/action/cooldown/bloodsucker/proc/on_power_upgrade()
+	SHOULD_CALL_PARENT(TRUE)
+	build_all_button_icons(ALL)
 
 // Put desc that you want to update every time build_all_button_icons is called here
 /datum/action/cooldown/bloodsucker/update_button_name(atom/movable/screen/movable/action_button/button, force)

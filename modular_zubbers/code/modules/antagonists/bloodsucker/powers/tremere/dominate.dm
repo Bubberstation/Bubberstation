@@ -36,12 +36,17 @@
 	/// Data huds to show while the power is active
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/upgrade_power()
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/on_power_upgrade()
 	if(level_current > 4)
 		background_icon_state = "tremere_power_gold_off"
 		active_background_icon_state = "tremere_power_gold_on"
 		base_background_icon_state = "tremere_power_gold_off"
 	. = ..()
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
+	return "
+		
+		"
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
 	return "Level [level_current]: [src]:\n\
@@ -142,17 +147,33 @@
 	user.balloon_alert(user, "only [DisplayTimeText(living_time)] left to live!")
 	to_chat(user, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate, end_possession), target), living_time)
+	// timer that only the master and thrall can see
+	setup_timer(user, target, living_time)
 	RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(end_possession))
 	pay_cost(TEMP_VASSALIZE_COST - bloodcost)
 	return TRUE
 
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/setup_timer(mob/living/user, mob/living/target, living_time)
+	var/atom/movable/screen/text/screen_timer/timer = new(null, null, target, living_time, "Death in ${timer}")
+	timer.invisibility = INVISIBILITY_ABSTRACT
+	timer.mouse_opacity = MOUSE_OPACITY_OPAQUE // debug vv reasons
+	
+	if(user.client)
+		user.client.images += timer
+	if(target.client)
+		target.client.images += timer
+
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/end_possession(mob/living/user)
-	if(!IS_VASSAL(user))
+	if(!user || QDELETED(user))
 		return
 	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
-	user.mind.remove_antag_datum(/datum/antagonist/vassal)
-	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
 	user.blood_volume = BLOOD_VOLUME_BAD
+	user.death()
+	if(!IS_VASSAL(user))
+		to_chat(user, span_warning("You feel the blood keeping you alive run out!"))
+		return
+	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
+	user.mind.remove_antag_datum(/datum/antagonist/vassal)
 	if(user.stat == DEAD)
 		return
 	user.death()

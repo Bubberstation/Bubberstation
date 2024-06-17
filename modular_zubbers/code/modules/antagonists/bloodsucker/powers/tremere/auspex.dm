@@ -21,7 +21,7 @@
 	target_range = 2
 	prefire_message = "Right click to teleport"
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/upgrade_power()
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/on_power_upgrade()
 	// 1 + for default, the other + is for the upgrade that hasn't been added yet.
 	target_range = min(level_current + 2, 10)
 	. = ..()

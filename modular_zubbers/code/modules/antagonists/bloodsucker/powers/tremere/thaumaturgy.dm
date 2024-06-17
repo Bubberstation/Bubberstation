@@ -29,14 +29,17 @@
 	power_activates_immediately = FALSE
 	/// How many times you can shoot before you need to recast
 	var/charges = 0
+	/// How long it takes before you can shoot again
 	var/shot_cooldown = 0
 	///Blood shield given while this Power is active.
 	var/datum/weakref/blood_shield
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/upgrade_power()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/on_power_upgrade()
 	cooldown_time = get_max_charges() * THAUMATURGY_COOLDOWN_PER_CHARGE
 	bloodcost = get_max_charges() * THAUMATURGY_BLOOD_COST_PER_CHARGE
+	// just in case you somehow level up while the power is active
+	charges = get_max_charges()
+	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
 	. = ..()
@@ -70,6 +73,7 @@
 		var/obj/item/shield/bloodsucker/new_shield = new
 		blood_shield = WEAKREF(new_shield)
 		if(!owner.put_in_inactive_hand(new_shield))
+			QDEL_NULL(new_shield)
 			owner.balloon_alert(owner, "off hand is full!")
 			to_chat(owner, span_notice("Blood shield couldn't be activated as your off hand is full."))
 			return FALSE
@@ -108,6 +112,11 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_cooldown()
 	return max(2 - (level_current * 0.1), 0) SECONDS
 
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/update_button_status(atom/movable/screen/movable/action_button/button, force)
+	. = ..()
+	if(active)
+		button.maptext = MAPTEXT_TINY_UNICODE(span_center("[charges]/[get_max_charges()]"))
+
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/FireSecondaryTargetedPower(atom/target, params)
 	if(shot_cooldown > world.time)
 		return
@@ -134,6 +143,7 @@
 	magic_9ball.homing = TRUE
 	magic_9ball.homing_target = target
 	magic_9ball.homing_turn_speed = 10 * level_current
+	magic_9ball.range = initial(magic_9ball.range) + level_current * 3
 	pay_cost(-THAUMATURGY_BLOOD_COST_PER_CHARGE)
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
@@ -155,6 +165,11 @@
 	damage = 1
 	wound_bonus = 20
 	armour_penetration = 30
+	speed = 1
+	pixel_speed_multiplier = 0.3
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	range = 100
+	armor_flag = LASER
 	var/datum/weakref/power_ref
 
 /obj/projectile/magic/arcane_barrage/bloodsucker/on_hit(target, blocked = 0, pierce_hit)

@@ -20,9 +20,11 @@
 	var/maptext_string
 	/// Timer ID that we're tracking, the time left of this is displayed as maptext
 	var/timer_id
-	/// The list of mobs that we're attached to, and care about
+	/// The list of mobs in whose client.screens we are added to
 	var/list/timer_mobs = list()
-	/// Whether or not we're added to the screen of the mobs in timer_mobs, for custom implementations
+	/// The movement detector for staying attached to the following object
+	var/datum/movement_detector/movement_detector
+	/// Whether to add the object to the client.screen of the mobs in the list
 	var/add_to_screen = TRUE
 
 /atom/movable/screen/text/screen_timer/Initialize(
@@ -35,7 +37,6 @@
 		offset_y = -70,
 		style_start,
 		style_end,
-		add_to_screen = TRUE
 	)
 	. = ..()
 
@@ -115,14 +116,21 @@
 		return
 	var/client/client = source.client
 	// this checks if the screen is already added or removed
-	if(add_to_screen == (src in client.screen))
+	do_attach(client, add_to_screen)
+	if(!can_attach(client))
 		return
 	if(!ismob(source))
 		CRASH("Invalid source passed to screen_timer/attach()!")
+	do_attach(client, add_to_screen)
+
+/atom/movable/screen/text/screen_timer/proc/can_attach(client/client)
+	return add_to_screen != (src in client.screen)
+
+/atom/movable/screen/text/screen_timer/proc/do_attach(client/client, add_to_screen)
 	if(add_to_screen)
-		client.screen += src
+		attach(client)
 	else
-		client.screen -= src
+		de_attach(client)
 
 /// Signal handler to run attach with specific args
 /atom/movable/screen/text/screen_timer/proc/de_attach(mob/source)
@@ -140,4 +148,58 @@
 	. = ..()
 	if(add_to_screen && length(timer_mobs))
 		remove_from(timer_mobs)
+
 	STOP_PROCESSING(SSprocessing, src)
+
+/atom/movable/screen/text/screen_timer/attached
+	invisibility = INVISIBILITY_ABSTRACT
+	add_to_screen = FALSE
+	var/following_object
+
+/atom/movable/screen/text/screen_timer/attached/Initialize(
+		mapload,
+		datum/hud/hud_owner,
+		list/mobs,
+		timer,
+		text,
+		offset_x,
+		offset_y,
+		style_start,
+		style_end,
+		following_object,
+	)
+	. = ..()
+
+	if(following_object && istype(following_object, /atom/movable) && get_turf(following_object))
+		attach_self_to(following_object)
+
+/atom/movable/screen/text/screen_timer/attached/proc/attach_self_to(atom/movable/target)
+	movement_detector = new(target, CALLBACK(src, PROC_REF(timer_follow)))
+	set_glide_size(target.glide_size)
+	RegisterSignal(target, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(update_glide_speed), target)
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(hide_timer), target)
+
+/atom/movable/screen/text/screen_timer/attached/proc/hide_timer(atom/movable/target)
+	QDEL_NULL(movement_detector)
+	// move to nullspace if the target is deleted, so we can keep showing the timer to hud's
+	abstract_move(null)
+	unregister_follower()
+
+/atom/movable/screen/text/screen_timer/attached/proc/unregister_follower()
+	if(following_object)
+		UnregisterSignal(following_object, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, COMSIG_QDELETING)
+	following_object = null
+
+/atom/movable/screen/text/screen_timer/attached/proc/update_glide_speed(atom/movable/tracked)
+	set_glide_size(tracked.glide_size)
+
+/atom/movable/screen/text/screen_timer/attached/proc/timer_follow(atom/movable/tracked, atom/mover, atom/oldloc, direction)
+	abstract_move(get_turf(tracked))
+
+/atom/movable/screen/text/screen_timer/attached/Destroy()
+	. = ..()
+	if(movement_detector)
+		QDEL_NULL(movement_detector)
+
+	if(following_object)
+		unregister_follower()

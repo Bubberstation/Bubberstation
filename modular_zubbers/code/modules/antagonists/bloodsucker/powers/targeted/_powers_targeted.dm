@@ -32,8 +32,9 @@
 
 // If click_to_activate is true, only these two procs are called when the ability is clicked on
 /datum/action/cooldown/bloodsucker/targeted/set_click_ability(mob/on_who)
-	. = ..()
+	// activate runs before 
 	Activate()
+	. = ..()
 	if(prefire_message)
 		to_chat(owner, span_announce("[prefire_message]"))
 
