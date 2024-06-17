@@ -647,8 +647,6 @@
 /obj/item/clothing/suit/armor/centcom_formal
 	name = "\improper CentCom formal coat"
 	desc = "A stylish coat given to CentCom Commanders. Perfect for sending ERTs to suicide missions with style!"
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi' // Bubberstation Edit
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi' // Bubberstation Edit
 	icon_state = "centcom_formal"
 	inhand_icon_state = "centcom"
 	body_parts_covered = CHEST|GROIN|ARMS

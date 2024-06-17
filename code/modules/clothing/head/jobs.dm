@@ -787,14 +787,12 @@
 /obj/item/clothing/head/beret/centcom_formal
 	name = "\improper CentCom Formal Beret"
 	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case."
-	icon_state = "centberet" // Bubberstation Edit
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi' // Bubberstation Edit
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi' // Bubberstation Edit
+	icon_state = "beret_badge"
+	greyscale_config = /datum/greyscale_config/beret_badge
+	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_colors = "#46b946#f2c42e"
 	armor_type = /datum/armor/beret_centcom_formal
 	strip_delay = 10 SECONDS
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
 
 
 #undef DRILL_DEFAULT

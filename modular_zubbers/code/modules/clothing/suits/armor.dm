@@ -56,14 +56,14 @@
 	desc = "A blue jacket in blue Peacekeeper colors. It has hi-vis stripes all over it."
 	icon_state = "secjacket_blue"
 
-/obj/item/clothing/suit/armor/vest/intern // Bubberstation Edit
+/obj/item/clothing/suit/armor/vest/intern
 	name = "\improper CentCom head intern vest"
 	desc = "A sort of market employee vest colored black with CentCom markings. Definitely barely deserve even this."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "intern_vest"
 
-/obj/item/clothing/suit/armor/vest/centhazard // Bubberstation Edit
+/obj/item/clothing/suit/armor/vest/centhazard
 	name = "\improper CentCom hazard vest"
 	desc = "A dark green utility vest usually worn by Central Command Safety Inspectors, or what most call OSHA."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
@@ -87,7 +87,7 @@
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
 
-/obj/item/clothing/suit/armor/vest/labcoat // Bubberstation Edit
+/obj/item/clothing/suit/armor/vest/labcoat
 	name = "\improper CentCom labcoat"
 	desc = "A sterile labcoat with green shoulder markings, usually worn by Central Command Medical Officers."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
@@ -133,3 +133,13 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "consultantvest"
+
+/obj/item/clothing/suit/armor/centcom_formal/bubber
+	name = "\improper CentCom formal coat"
+	desc = "A stylish coat given to CentCom Commanders. Perfect for sending ERTs to suicide missions with style!"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "centcom_formal"
+	inhand_icon_state = "centcom"
+	body_parts_covered = CHEST|GROIN|ARMS
+	armor_type = /datum/armor/armor_centcom_formal
