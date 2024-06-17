@@ -38,6 +38,7 @@
 /datum/outfit/centcom/ert/commander
 	name = "ERT Commander"
 
+	uniform = /obj/item/clothing/under/rank/centcom/officer/commander
 	id = /obj/item/card/id/advanced/centcom/ert
 	back = /obj/item/mod/control/pre_equipped/responsory/commander
 	l_hand = /obj/item/gun/energy/e_gun
