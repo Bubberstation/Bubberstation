@@ -10,6 +10,8 @@
 
 // Look to /datum/action/cooldown/spell/pointed/void_phase for help.
 #define AUSPEX_BLOOD_COST_PER_TILE 5
+#define AUSPEX_BLEED_LEVEL 4
+#define AUSPEX_SLEEP_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex
 	name = "Auspex"
 	level_current = 1
@@ -28,20 +30,24 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc()
 	. = ..()
-	var/old_desc = .
-	return "Hide yourself within a Cloak of Darkness, click on an area to teleport\
-		[target_range ? " up to [target_range] tiles" : ""]\
-		[level_current >= 4 ? " ending the Power and causing people at your end location to start bleeding" : ""]\
-		[level_current >= 5 ? " and fall asleep." : "."]\n\
-		[old_desc]"
+	. += "Hide yourself within a Cloak of Darkness, click on a tile to teleport"
+	if(target_range)
+		. += " up to [target_range] tiles away."
+	else
+		. += " anywhere you can see."
+	if(level_current >= AUSPEX_BLEED_LEVEL)
+		if(level_current >= AUSPEX_SLEEP_LEVEL)
+			. += " This will cause people at your destination to start bleeding and fall asleep."
+			return
+		. += " This will cause people at your destination to start bleeding."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
-	return "Level [level_current]: [src]:\n\
-		When Activated, you will be hidden in a Cloak of Darkness.\n\
+	. = ..()
+	. += "When Activated, you will be hidden in a Cloak of Darkness.\n\
 		[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"].\n\
 		Teleporting will refill your stamina to full.\n\
-		At level 4 you will cause people at your end location to start bleeding.\n\
-		At level 5 you will cause people at your end location to fall asleep. \n\
+		At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding.\n\
+		At level [AUSPEX_SLEEP_LEVEL] you will cause people at your end location to fall asleep. \n\
 		The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/CheckValidTarget(atom/target_atom)

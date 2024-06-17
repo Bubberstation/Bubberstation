@@ -247,7 +247,10 @@
 	Remove(owner)
 
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation()
-	return power_explanation
+	SHOULD_CALL_PARENT(TRUE)
+	. = "<b>LEVEL: [level_current] [name] </b>"
+	. += "<br><br><b>DESCRIPTION:</b> [desc]"
+	. += power_explanation
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)

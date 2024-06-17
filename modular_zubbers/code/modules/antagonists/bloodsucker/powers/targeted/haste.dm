@@ -3,17 +3,11 @@
  * Level 3: Stun People Passed
  */
 
+#define HASTE_GETUP_LEVEL 3
 /datum/action/cooldown/bloodsucker/targeted/haste
 	name = "Immortal Haste"
 	desc = "Force yourself to stand up if you're down and dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
 	button_icon_state = "power_speed"
-	power_explanation = "Immortal Haste:\n\
-		Click anywhere to immediately dash towards that location.\n\
-		At level 3, if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby.\n\
-		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
-		Anyone in your way during your Haste will be knocked down.\n\
-		Higher levels will increase the knockdown dealt to enemies.\n\
-		It will also refill your stamina so you can keep moving."
 	prefire_message = "You prepare to dash!"
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
@@ -26,8 +20,20 @@
 
 /datum/action/cooldown/bloodsucker/targeted/haste/get_power_desc()
 	. = ..()
-	return "Dash to a location, knocking down anyone in your way, and refilling your stamina. Those nearby may be knocked away, stunned, or left empty-handed. \n\
-		[level_current >= 3 ? "Dashing from lying down will get you up, but won't affect your foes." : ""]"
+	. += "Dash to a location, knocking down anyone in your way, and refilling your stamina. Those nearby may be knocked away, stunned, or left empty-handed.\n"
+	if(level_current >= HASTE_GETUP_LEVEL)
+		. += "Dashing from lying down will get you up, but won't affect your foes."
+	else
+		. += "You cannot dash while knocked down."
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation()
+	. = ..()
+	. += "Click anywhere to immediately dash towards that location.\n\
+		At level 3, if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby.\n\
+		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
+		Anyone in your way during your Haste will be knocked down.\n\
+		Higher levels will increase the knockdown dealt to enemies.\n\
+		It will also refill your stamina so you can keep moving."
 
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()

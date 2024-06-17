@@ -8,9 +8,10 @@
  */
 
 #define MESMERIZE_MUTE_LEVEL 2
+#define MESMERIZE_GLASSES_LEVEL 3
+#define MESMERIZE_FACING_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/mesmerize
 	name = "Mesmerize"
-	desc = "Dominate the mind of a mortal who can see your eyes."
 	button_icon_state = "power_mez"
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
@@ -30,16 +31,31 @@
 	var/requires_facing_target = TRUE
 	var/blocked_by_glasses = TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
-	return "[level_current]: src: \n\
-		Click any player to attempt to mesmerize them. This will stun them for [DisplayTimeText(get_power_time())].\n\
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc()
+	. = ..()
+	. += "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.\n"
+	. += "This will completely immobilize them for the next [DisplayTimeText(get_power_time())].\n"
+	if(level_current >= MESMERIZE_MUTE_LEVEL)
+		. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].\n"
+	if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
+		. += "Not blocked by glasses."
+	else
+		. += "Blocked by glasses."
+	if(level_current >= MESMERIZE_FACING_LEVEL || !requires_facing_target)
+		. += "Does not require the victim to be facing you."
+	else
+		. += "Requires the victim to be facing you."
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation()
+	. = ..()
+	. += "Click any player to attempt to mesmerize them. This will stun them for [DisplayTimeText(get_power_time())].\n\
 		You cannot wear anything covering your face, and both parties must be facing eachother. Obviously, both parties need to not be blind. \n\
 		Right clicking with the ability will apply a knockdown, but will also confuse your victim.\n\
 		If your target is already mesmerized or a Monster Hunter, the Power will fail.\n\
 		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\
-		At level 2, your target will additionally be muted for [DisplayTimeText(get_mute_time())].\n\
-		At level 3, you will be able to use the power through items covering your face.\n\
-		At level 5, you will be able to mesmerize regardless of your target's direction.\n\
+		At level [MESMERIZE_MUTE_LEVEL], your target will additionally be muted for [DisplayTimeText(get_mute_time())].\n\
+		At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face.\n\
+		At level [MESMERIZE_FACING_LEVEL], you will be able to mesmerize regardless of your target's direction.\n\
 		Higher levels will increase the time of the mesmerize's freeze.\n\
 		Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
 
@@ -206,3 +222,6 @@
 	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
 	flick_overlay_global(image, list(owner?.client, target?.client), duration)
 
+#undef MESMERIZE_MUTE_LEVEL
+#undef MESMERIZE_GLASSES_LEVEL
+#undef MESMERIZE_FACING_LEVEL
