@@ -38,7 +38,7 @@
 /datum/outfit/centcom/ert/commander
 	name = "ERT Commander"
 
-	uniform = /obj/item/clothing/under/rank/centcom/officer/commander
+	uniform = /obj/item/clothing/under/rank/centcom/officer/commander // Bubberstation Edit
 	id = /obj/item/card/id/advanced/centcom/ert
 	back = /obj/item/mod/control/pre_equipped/responsory/commander
 	l_hand = /obj/item/gun/energy/e_gun
@@ -325,8 +325,8 @@
 /datum/outfit/centcom/centcom_intern/leader
 	name = "CentCom Head Intern"
 
-	uniform = /obj/item/clothing/under/rank/centcom/intern/head
-	suit = /obj/item/clothing/suit/armor/vest/intern
+	uniform = /obj/item/clothing/under/rank/centcom/intern/head // Bubberstation Edit
+	suit = /obj/item/clothing/suit/armor/vest/intern // Bubberstation Edit
 	suit_store = /obj/item/gun/ballistic/rifle/boltaction
 	belt = /obj/item/melee/baton/security/loaded
 	head = /obj/item/clothing/head/hats/intern
