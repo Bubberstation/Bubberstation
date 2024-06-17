@@ -111,14 +111,7 @@
 		background_icon_state = "tremere_power_gold_off"
 		active_background_icon_state = "tremere_power_gold_on"
 		base_background_icon_state = "tremere_power_gold_off"
-	. = ..()
 	build_all_button_icons(ALL)
-
-// Put desc that you want to update every time build_all_button_icons is called here
-/datum/action/cooldown/bloodsucker/update_button_name(atom/movable/screen/movable/action_button/button, force)
-	. = ..()
-	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
-		button.desc += "<br><br><b>LEVEL:</b> [level_current]"
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user)
@@ -253,13 +246,19 @@
 
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation()
 	SHOULD_CALL_PARENT(TRUE)
-	. = "<b>LEVEL: [level_current] [name] </b>"
+	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
+		. += "<b>LEVEL: [level_current] [name] </b>"
+	else
+		. += "<b>(Inherent Power) [name]</b>"
+
 	. += "<br><br><b>DESCRIPTION:</b> [desc]"
 	. += power_explanation
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)
 	var/new_desc = initial(desc)
+	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
+		new_desc += "<br><br><b>LEVEL:</b> [level_current]"
 	if(bloodcost > 0)
 		new_desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)
