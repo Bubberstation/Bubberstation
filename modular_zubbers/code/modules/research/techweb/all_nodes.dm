@@ -16,7 +16,7 @@
 	. = ..()
 	design_ids += list(
 		"bs_experi_scanner",
-  )
+	)
 
 /datum/techweb_node/ai_adv/New()
 	. = ..()
