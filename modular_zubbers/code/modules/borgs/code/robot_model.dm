@@ -3,15 +3,19 @@
 // Cyborg model types
 
 //For small quadruped 32 X 32 cyborgs suchs as F3-LINE cyborgs
-/obj/item/robot_model/proc/update_squadruped()
+/obj/item/robot_model/proc/update_quadruped() //yandere dev type shit I HATE skyrat
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if (model_features && (TRAIT_R_SQUADRUPED in model_features))
+	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features)))
 		hat_offset = INFINITY
+		if (model_features && (TRAIT_R_WIDE in model_features))
+			cyborg.set_base_pixel_x(-16)
 		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 		add_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 	else
+		if (model_features && !(TRAIT_R_WIDE in model_features))
+			cyborg.set_base_pixel_x(0)
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 

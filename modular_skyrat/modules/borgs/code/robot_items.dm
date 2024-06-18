@@ -729,9 +729,9 @@
 	user.bubble_icon = "robot"
 	active = TRUE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
-	user.model.update_squadruped() //BUBBER ADDITION
+	user.model.update_quadruped() //BUBBER ADDITION
 
 	if(listeningTo == user)
 		return
@@ -755,8 +755,9 @@
 	user.bubble_icon = saved_bubble_icon
 	active = FALSE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	user.model.update_quadruped() //BUBBER ADDITION
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER

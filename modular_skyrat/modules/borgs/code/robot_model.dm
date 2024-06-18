@@ -28,7 +28,8 @@
 			qdel(cyborg.GetComponent(/datum/component/robot_smoke))
 			QDEL_NULL(cyborg.particles)	// Removing left over particles
 
-
+//BUBBER REMOVAL BEGIN - replaced with update_quadruped()
+/*
 /obj/item/robot_model/proc/update_dogborg()
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
@@ -42,6 +43,8 @@
 		cyborg.set_base_pixel_x(0)
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
+*/
+//BUBBER REMOVAL END
 
 //STANDARD
 /obj/item/robot_model/standard
