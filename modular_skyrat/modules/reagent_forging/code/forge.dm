@@ -101,18 +101,16 @@
 		/datum/reagent/teslium,
 		/datum/reagent/yuck,
 		/datum/reagent/toxin/spewium,
+		/datum/reagent/rat_spit,
 		/datum/reagent/eigenstate,
 		/datum/reagent/drug/pcp,
 		/datum/reagent/consumable/cum,
 		/datum/reagent/consumable/femcum,
 		/datum/reagent/consumable/breast_milk,
 		/datum/reagent/drug/aphrodisiac, 			//This path covers all lewd chems such as crocin, hexacrocin, succubus milk, and more.
-		/datum/reagent/toxin/acid,
-		/datum/reagent/clf3,
-		/datum/reagent/phlogiston,
-		/datum/reagent/napalm,
 		/datum/reagent/toxin/polonium,
 		/datum/reagent/toxin/mutagen,
+		/datum/reagent/zauker,
 	))
 
 /obj/structure/reagent_forge/examine(mob/user)
