@@ -25,16 +25,27 @@
 	if(!actual_mob)
 		return 0
 
-	if(is_special_character(actual_mob, allow_fake_antags = FALSE)) //Antagonist.
-		if(actual_mob.stat) //Dead. Crit, etc.
-			return 0
-		if(HAS_TRAIT(actual_mob, TRAIT_RESTRAINED))
-			return 0
-		if(HAS_TRAIT(actual_mob, TRAIT_INCAPACITATED))
-			return 0
-		if(actual_mob.is_imprisoned_in_security()) //Restrained, Incapacitated, in certain security areas.
-			return 0
-		return -1
+	if(length(our_mind.antag_datums))
+
+		var/highest_result //If this is null, then we're not actually an antagonist.
+		for(var/datum/antagonist/antag as anything in our_mind.antag_datums)
+			var/antag_multiplier = antag.get_antag_ticket_multiplier()
+			if(!isnum(antag_multiplier))
+				continue
+			if(!isnum(highest_result))
+				highest_result = 0
+			highest_result = max(highest_result,antag_multiplier)
+
+		if(isnum(highest_result))
+			if(actual_mob.stat) //Dead. Crit, etc.
+				return 0
+			if(HAS_TRAIT(actual_mob, TRAIT_RESTRAINED))
+				return 0
+			if(HAS_TRAIT(actual_mob, TRAIT_INCAPACITATED))
+				return 0
+			if(actual_mob.is_imprisoned_in_security()) //Restrained, Incapacitated, in certain security areas.
+				return 0
+			return -highest_result
 
 	if(our_mind.assigned_role && our_mind.assigned_role.faction == FACTION_STATION && !src.is_afk()) //Non-antagonist crew.
 		return 1
