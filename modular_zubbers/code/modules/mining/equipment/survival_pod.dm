@@ -17,3 +17,13 @@
 /datum/orderable_item/mining/capsule_sauna
 	item_path = /obj/item/survivalcapsule/sauna
 	cost_per_order = 7000
+
+/obj/item/survivalcapsule/medical
+	name = "medical trauma pod"
+	desc = "A bluespace capsule that deploys a fairly effective medical treatment pod!"
+	template_id = "shelter_4"
+
+/obj/item/survivalcapsule/sauna
+	name = "chemical refinement pod"
+	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
+	template_id = "shelter_5"
