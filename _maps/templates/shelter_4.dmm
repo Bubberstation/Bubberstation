@@ -26,12 +26,8 @@
 /turf/open/floor/pod/dark,
 /area/misc/survivalpod)
 "j" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/wallframe/frontier_medstation,
-/obj/item/reagent_containers/syringe/convermol{
-	list_reagents = list(/datum/reagent/medicine/rezadone = 15);
-	name = "syringe (rezadone) [UNHUSKING USE ONLY]"
-	},
+/obj/item/wallframe/defib_mount,
+/obj/item/defibrillator/loaded,
 /turf/open/floor/pod/dark,
 /area/misc/survivalpod)
 "k" = (
@@ -91,6 +87,12 @@
 /obj/item/stack/medical/gauze/twelve,
 /obj/item/stack/medical/gauze/twelve,
 /obj/item/storage/box/bodybags,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/masks,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
 /turf/open/floor/pod/dark,
 /area/misc/survivalpod)
 "B" = (
@@ -122,6 +124,19 @@
 	},
 /turf/open/floor/pod/light,
 /area/misc/survivalpod)
+"M" = (
+/obj/item/wallframe/frontier_medstation,
+/obj/item/reagent_containers/syringe/convermol{
+	list_reagents = list(/datum/reagent/medicine/rezadone = 15);
+	name = "syringe (rezadone) [UNHUSKING USE ONLY]"
+	},
+/obj/item/reagent_containers/syringe/convermol{
+	list_reagents = list(/datum/reagent/medicine/rezadone = 15);
+	name = "syringe (rezadone) [UNHUSKING USE ONLY]"
+	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/turf/open/floor/pod/dark,
+/area/misc/survivalpod)
 "N" = (
 /obj/machinery/computer/operating{
 	dir = 8
@@ -135,10 +150,14 @@
 /area/misc/survivalpod)
 "S" = (
 /obj/machinery/light/directional/west,
+/obj/structure/fluff/shower_drain,
+/obj/machinery/shower/directional/north,
 /turf/open/floor/pod/light,
 /area/misc/survivalpod)
 "U" = (
 /obj/machinery/light/directional/east,
+/obj/structure/fluff/shower_drain,
+/obj/machinery/shower/directional/north,
 /turf/open/floor/pod/light,
 /area/misc/survivalpod)
 "X" = (
@@ -185,7 +204,7 @@ y
 x
 B
 E
-q
+j
 y
 w
 a
@@ -217,8 +236,8 @@ t
 d
 "}
 (6,1,1) = {"
-d
-j
+R
+y
 y
 c
 x
@@ -248,7 +267,7 @@ a
 a
 a
 y
-q
+M
 a
 a
 c
@@ -263,7 +282,7 @@ y
 x
 k
 E
-q
+j
 y
 w
 a
