@@ -27,3 +27,11 @@
 	name = "chemical refinement pod"
 	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
 	template_id = "shelter_echo"
+
+/datum/armament_entry/company_import/deforest/equipment/medpod
+	item_type = /obj/item/survivalcapsule/medical
+	cost = PAYCHECK_COMMAND * 40
+
+/datum/armament_entry/company_import/deforest/equipment/chempod
+	item_type = /obj/item/survivalcapsule/chemistry
+	cost = PAYCHECK_COMMAND * 20
