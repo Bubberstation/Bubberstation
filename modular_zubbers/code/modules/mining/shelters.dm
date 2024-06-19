@@ -35,8 +35,7 @@
 /datum/map_template/shelter/echo
 	name = "Shelter Echo"
 	shelter_id = "shelter_echo"
-	description = "An emergency medical pod, comes with stasis beds and surgical suites. \
-		Deploy to prevent death."
+	description = "A pod for harvesting geysers"
 	mappath = "_maps/templates/shelter_5.dmm"
 
 /datum/map_template/shelter/echo/New()
