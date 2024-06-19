@@ -68,8 +68,8 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 	var/datum/job/clocked_out_job = current_trim.job
 	SSjob.FreeRole(clocked_out_job.title)
 
-	//radio.talk_into(src, "[authenticated_card.registered_name], [current_assignment] has gone off-duty.", announcement_channel)
-	to_chat(world, span_yellowteamradio("ERP: [authenticated_card.registered_name], [current_assignment] has gone off-duty."))
+	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
+	system.broadcast("[authenticated_card.registered_name], [current_assignment] has gone off-duty.", list(RADIO_CHANNEL_COMMON))
 	computer.update_static_data_for_all_viewers()
 
 	SSid_access.apply_trim_to_card(authenticated_card, target_trim, TRUE)
@@ -93,16 +93,15 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 
 	var/datum/job/clocked_in_job = id_component.stored_trim.job
 	if(!SSjob.OccupyRole(clocked_in_job.title))
-		//say("[capitalize(clocked_in_job.title)] has no free slots available, unable to clock in!")
-		to_chat(world, span_yellowteamradio("ERP: [capitalize(clocked_in_job.title)] has no free slots available, unable to clock in!"))
+		computer.say("[capitalize(clocked_in_job.title)] has no free slots available, unable to clock in!")
 		return FALSE
 
 
 	SSid_access.apply_trim_to_card(authenticated_card, id_component.stored_trim.type, TRUE)
 	authenticated_card.assignment = id_component.stored_assignment
 
-	//radio.talk_into(src, "[authenticated_card.registered_name], [authenticated_card.assignment] has returned to duty.", announcement_channel)
-	to_chat(world, span_yellowteamradio("ERP: [authenticated_card.registered_name], [authenticated_card.assignment] has returned to duty."))
+	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
+	system.broadcast("[authenticated_card.registered_name], [authenticated_card.assignment] has returned to duty.", list(RADIO_CHANNEL_COMMON))
 	GLOB.manifest.modify(authenticated_card.registered_name, authenticated_card.assignment, authenticated_card.get_trim_assignment())
 
 	qdel(id_component)
@@ -267,7 +266,9 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 			continue
 		transferItemToLoc(found_item, shame_box, force = TRUE, silent = TRUE)
 
-	if(shame_box.contents)
+	if(!length(shame_box.contents))
+		qdel(shame_box)
+	else
 		put_in_hands(shame_box)
 
 	return TRUE

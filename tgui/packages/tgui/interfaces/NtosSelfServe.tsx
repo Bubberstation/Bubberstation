@@ -1,3 +1,5 @@
+import { capitalizeFirst } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Button, Input, NoticeBox, Section, Stack } from '../components';
 import { NtosWindow } from '../layouts';
@@ -20,7 +22,7 @@ export const NtosSelfServe = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <NtosWindow width={500} height={670}>
+    <NtosWindow width={400} height={500}>
       <NtosWindow.Content scrollable>
         <Stack>
           <Stack.Item width="100%">
@@ -49,42 +51,21 @@ const SelfServePage = (props) => {
 
   return (
     <Section title="Enterprise Resource Planning">
-      <Section title={authIDName}>
+      <Section title={'Welcome ' + authIDName + '!'}>
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
-            authCard: {authCard || '-----'}
+            Current Assignment: {trimAssignment || '-----'}
           </Stack.Item>
           <Stack.Item width="100%" mt={1} ml={0}>
-            authIDName: {authIDName || '-----'}
+            Current Status: {trimClockedOut ? 'Off-Duty' : 'Active Duty'}
           </Stack.Item>
           <Stack.Item width="100%" mt={1} ml={0}>
-            authIDRank: {authIDRank || '-----'}
+            Station Alert Level: {capitalizeFirst(stationAlertLevel) || '-----'}
           </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            hasTrim: {hasTrim ? 'Yes' : 'No'}
-          </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            trimAssignment: {trimAssignment || '-----'}
-          </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            stationAlertLevel: {stationAlertLevel || '-----'}
-          </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            trimClockedOut: {trimClockedOut ? 'Off Duty' : 'Active Duty'}
-          </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            selfServeBlock: {selfServeBlock ? 'TRUE' : 'FALSE'}
-          </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            authCardHOPLocked: {authCardHOPLocked ? 'TRUE' : 'FALSE'}
-          </Stack.Item>
-          <Stack.Item width="100%" mt={1} ml={0}>
-            authCardTimeLocked: {authCardTimeLocked ? 'TRUE' : 'FALSE'}
+          <Stack.Item align="center" mt={1} ml={0}>
+            Job Title:
           </Stack.Item>
 
-          <Stack.Item align="center" mt={1} ml={0}>
-            Assignment:
-          </Stack.Item>
           <Stack.Item grow={1}>
             <Input
               fluid
@@ -99,15 +80,19 @@ const SelfServePage = (props) => {
             />
           </Stack.Item>
           {selfServeBlock ? (
-            <Stack.Item grow={1}>
+            <Stack.Item width="100%" mt={1} ml={0}>
               <NoticeBox>
-                Changing job trim information is currently blocked, please visit
-                the HoP window for trim changes.
+                Changing job title and trim information is currently blocked,
+                please visit the HoP window for trim changes.
               </NoticeBox>
             </Stack.Item>
           ) : (
             ''
           )}
+        </Stack>
+      </Section>
+      <Section title="Employee Self Serve">
+        <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>
             {authCardHOPLocked ? (
               <NoticeBox>
@@ -128,6 +113,16 @@ const SelfServePage = (props) => {
               </Button>
             )}
           </Stack.Item>
+          {!trimClockedOut ? (
+            <Stack.Item width="100%" mt={1} ml={0}>
+              <NoticeBox info>
+                While off-duty any restricted items will be transferred to a
+                crew equipment lockbox, to be returned upon clocking in.
+              </NoticeBox>
+            </Stack.Item>
+          ) : (
+            ''
+          )}
         </Stack>
       </Section>
     </Section>
