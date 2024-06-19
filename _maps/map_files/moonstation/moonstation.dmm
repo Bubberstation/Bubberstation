@@ -4488,9 +4488,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/item/assembly/mousetrap/armed{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "bno" = (
@@ -14057,6 +14054,8 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_psych)
 "eeW" = (
@@ -18484,6 +18483,8 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_psych)
 "fpQ" = (
@@ -19796,6 +19797,9 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "fGF" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_psych)
 "fGG" = (
@@ -21069,6 +21073,7 @@
 "fYg" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/structure/chair/sofa/left/brown,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_psych)
 "fYk" = (
@@ -26994,6 +26999,9 @@
 "hJG" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/light_switch/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_psych)
 "hJT" = (
@@ -30459,12 +30467,9 @@
 /turf/open/misc/moonstation_rock,
 /area/moonstation/surface)
 "iPF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/port)
+/obj/effect/spawner/random/burgerstation/liquid,
+/turf/open/floor/catwalk_floor,
+/area/station/maintenance/pool_maintenance)
 "iPH" = (
 /obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron,
@@ -32066,8 +32071,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "jkm" = (
-/turf/open/genturf,
-/area/moonstation/underground)
+/obj/effect/spawner/random/burgerstation/blocking,
+/turf/open/floor/plating,
+/area/station/maintenance/port/fore)
 "jkp" = (
 /obj/effect/turf_decal/vg_decals/numbers/one{
 	dir = 4
@@ -33101,6 +33107,7 @@
 /area/station/ai_monitored/turret_protected/aisat/maint)
 "jzo" = (
 /obj/machinery/light/small/directional/south,
+/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "jzq" = (
@@ -38749,6 +38756,7 @@
 /area/station/command/bridge)
 "lfM" = (
 /obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_psych)
 "lgd" = (
@@ -39793,7 +39801,7 @@
 /area/station/cargo/miningelevators)
 "luT" = (
 /obj/structure/sign/warning/electric_shock/directional/north,
-/obj/effect/spawner/random/burgerstation/loot,
+/obj/effect/spawner/random/burgerstation/power,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "luU" = (
@@ -50550,11 +50558,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "oAW" = (
-/obj/effect/mapping_helpers/broken_floor,
 /obj/structure/railing/corner/end/flip{
 	dir = 8
 	},
-/obj/effect/spawner/random/structure/steam_vent,
+/obj/effect/spawner/random/trash/graffiti,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "oBf" = (
@@ -62660,6 +62667,7 @@
 "rYP" = (
 /obj/machinery/light/small/directional/west,
 /obj/effect/spawner/random/burgerstation/loot,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "rYT" = (
@@ -67979,8 +67987,10 @@
 /turf/open/floor/pod,
 /area/station/cargo/miningfoundry/event_protected)
 "tAQ" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/spawner/random/structure/steam_vent,
 /turf/open/floor/plating,
-/area/station/maintenance/port/fore)
+/area/station/maintenance/port)
 "tBs" = (
 /obj/machinery/bookbinder,
 /obj/effect/turf_decal/siding/wood{
@@ -69587,6 +69597,8 @@
 /area/station/science/ordnance)
 "tYn" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "tYp" = (
@@ -73156,11 +73168,10 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "vbT" = (
-/obj/effect/decal/cleanable/greenglow/filled,
-/obj/item/relic,
-/obj/effect/spawner/random/structure/steam_vent,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
-/area/station/maintenance/starboard)
+/area/station/maintenance/port)
 "vca" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/small,
@@ -74112,8 +74123,8 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "voV" = (
+/obj/effect/spawner/random/burgerstation/power,
 /obj/structure/cable,
-/obj/machinery/power/port_gen/pacman/pre_loaded,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "vpd" = (
@@ -77360,6 +77371,8 @@
 /area/station/medical/morgue)
 "wmo" = (
 /obj/structure/chair/sofa/right/brown,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_psych)
 "wmt" = (
@@ -78277,14 +78290,14 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
+"wCd" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard)
 "wCf" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name/directional/north,
+/obj/effect/spawner/random/burgerstation/loot,
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "wCg" = (
@@ -80052,6 +80065,7 @@
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "xbW" = (
+/obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/gamer_lair)
 "xcf" = (
@@ -163758,7 +163772,7 @@ jnN
 jnN
 jnN
 jnN
-jkm
+jnN
 jnN
 jnN
 jnN
@@ -232960,7 +232974,7 @@ tYp
 hNn
 eLk
 eia
-iPF
+bnn
 jTt
 bCp
 gRv
@@ -233218,7 +233232,7 @@ wGm
 ckk
 luT
 eia
-bCp
+tAQ
 pST
 gRv
 stM
@@ -234501,7 +234515,7 @@ ckk
 oEe
 hQf
 ckk
-tCA
+hVa
 eia
 ckk
 eeJ
@@ -234511,7 +234525,7 @@ ckk
 ckk
 toc
 ckk
-caW
+sfN
 lIg
 fAe
 ogU
@@ -234764,11 +234778,11 @@ ckk
 fpO
 ckk
 ckk
-rWl
-rWl
+vbT
+kPE
 bCp
 tCA
-caW
+sfN
 tMa
 ugP
 wYk
@@ -235011,17 +235025,17 @@ oHP
 oHP
 koW
 lcL
-dKC
-tCA
-tCA
 trl
+tCA
+tCA
 ckk
+fTQ
 uoc
 fBv
 iGQ
 iGQ
 ovm
-rWl
+tAQ
 caW
 caW
 caW
@@ -235278,7 +235292,7 @@ tCA
 tCA
 dKC
 tAw
-tCA
+pST
 caW
 sfS
 sfS
@@ -236819,7 +236833,7 @@ rPg
 kkJ
 wdp
 ckk
-dKC
+trl
 tAw
 qna
 aZL
@@ -237076,10 +237090,10 @@ aNC
 rJf
 fhn
 ckk
-tCA
+fXX
 tAw
 ckk
-xbW
+jVm
 hiT
 hZN
 iFD
@@ -237587,8 +237601,8 @@ hPs
 uGA
 eKq
 fNB
-aNC
-aNC
+iPF
+iPF
 ckk
 sdy
 ttK
@@ -239134,8 +239148,8 @@ aLZ
 aLZ
 ckk
 rtn
-ckk
 trl
+kPE
 tAw
 fOC
 vPf
@@ -239907,7 +239921,7 @@ ckk
 ckk
 ckk
 ckk
-wCf
+tAw
 ckk
 xSV
 aYT
@@ -240115,12 +240129,12 @@ mun
 nHm
 dlY
 azR
-aVF
-dRs
+wjz
+jkm
 dho
 jYF
 rap
-tAQ
+dho
 tQo
 kKy
 mYf
@@ -240163,7 +240177,7 @@ ckk
 gjs
 gjs
 ckk
-tCA
+wCf
 tAw
 ckk
 nNl
@@ -240372,7 +240386,7 @@ jYF
 wiN
 tET
 dqz
-wjz
+aVF
 jYF
 fKI
 jYF
@@ -241447,7 +241461,7 @@ bAf
 nKY
 ckk
 ckk
-kPE
+nWw
 oAW
 lGP
 iGQ
@@ -241703,7 +241717,7 @@ wNj
 ofK
 dmy
 ckk
-nWw
+tCA
 vzd
 trl
 rbD
@@ -246342,7 +246356,7 @@ vzl
 oyW
 jva
 bXl
-dKC
+gxW
 ckk
 lyx
 mII
@@ -270532,7 +270546,7 @@ iDF
 iDF
 ctC
 tSk
-nCh
+wCd
 iDF
 qAK
 rIS
@@ -271800,7 +271814,7 @@ oSJ
 pPr
 dCQ
 pir
-xKq
+xGO
 pPr
 dPC
 rBI
@@ -272057,7 +272071,7 @@ nIz
 wuI
 iDF
 dzd
-kiW
+qAK
 pPr
 pPr
 pPr
@@ -272313,7 +272327,7 @@ rIS
 rIS
 pPr
 rIS
-vbT
+mFg
 rIS
 pPr
 ngZ
