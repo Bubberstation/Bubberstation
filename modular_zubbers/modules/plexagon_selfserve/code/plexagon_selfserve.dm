@@ -202,7 +202,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 				var/mob/living/carbon/human/human_user = usr
 				if(human_user)
 					var/obj/item/storage/lockbox/timeclock/shame_box = new /obj/item/storage/lockbox/timeclock(src, authenticated_card)
-					human_user.secure_items(eligible_items = TIME_CLOCK_RETURN_ITEMS, incoming_box = shame_box)
+					human_user.secure_items(eligible_items = SELF_SERVE_RETURN_ITEMS, incoming_box = shame_box)
 
 				var/datum/mind/user_mind = usr.mind
 				if(user_mind)
