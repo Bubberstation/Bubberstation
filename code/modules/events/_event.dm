@@ -110,7 +110,7 @@
 
 		// SKYRAT EDIT ADDITION BEGIN - Event notification Makes an attention-grabbing sound, gives admins two notifications spread over RANDOM_EVENT_ADMIN_INTERVENTION_TIME instead of just the one.
 		// BUBBER EDIT START - Only delay on roundstart
-	if(SSticker.HasRoundStarted())
+	if(!SSticker.HasRoundStarted())  // BUBBER EDIT - We only want ROUNDSTART DELAYS, not double delays!
 		message_admins("<font color='[COLOR_ADMIN_PINK]'>Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (\
 			<a href='?src=[REF(src)];cancel=1'>CANCEL</a> | \
 			<a href='?src=[REF(src)];something_else=1'>SOMETHING ELSE</a>)</font>")
