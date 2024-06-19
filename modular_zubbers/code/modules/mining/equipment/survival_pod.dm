@@ -23,7 +23,7 @@
 	desc = "A bluespace capsule that deploys a fairly effective medical treatment pod!"
 	template_id = "shelter_delta"
 
-/obj/item/survivalcapsule/sauna
+/obj/item/survivalcapsule/chemistry
 	name = "chemical refinement pod"
 	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
 	template_id = "shelter_echo"
