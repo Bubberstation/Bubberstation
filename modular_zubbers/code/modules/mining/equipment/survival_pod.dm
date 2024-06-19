@@ -21,9 +21,9 @@
 /obj/item/survivalcapsule/medical
 	name = "medical trauma pod"
 	desc = "A bluespace capsule that deploys a fairly effective medical treatment pod!"
-	template_id = "shelter_4"
+	template_id = "shelter_delta"
 
 /obj/item/survivalcapsule/sauna
 	name = "chemical refinement pod"
 	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
-	template_id = "shelter_5"
+	template_id = "shelter_echo"
