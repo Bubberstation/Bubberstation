@@ -12,6 +12,7 @@
 /datum/outfit/centcom/commander
 	belt = /obj/item/storage/belt/sabre/centcom
 	suit_store = /obj/item/gun/ballistic/revolver/mateba
+	head = /obj/item/clothing/head/hats/centcom_cap
 
 /datum/outfit/centcom/commander/admiral
 	name = "CentCom Commander (Admiral)"
