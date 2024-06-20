@@ -12,3 +12,4 @@
 	icon_state = "centcom"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
+	inhand_icon_state = null
