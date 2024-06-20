@@ -15,6 +15,8 @@
 	worn_icon_state = "cc-sheath"
 	icon = 'modular_zubbers/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts.dmi'
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/belt_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/belt_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/belt/sabre/centcom/PopulateContents()
