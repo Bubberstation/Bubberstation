@@ -21,9 +21,6 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 /**
  * Authenticates the program based on the specific ID card.
  *
- * If the card has ACCESS_CHANGE_IDs, it authenticates with all options.
- * Otherwise, it authenticates depending on SSid_access.sub_department_managers_tgui
- * compared to the access on the supplied ID card.
  * Arguments:
  * * user - Program's user.
  * * auth_card - The ID card to attempt to authenticate under.
@@ -52,7 +49,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 	else
 		return FALSE
 
-///Clocks out the currently inserted ID Card
+/// Clocks out the currently inserted ID Card
 /datum/computer_file/program/crew_self_serve/proc/clock_out()
 	if(!authenticated_card)
 		return FALSE
@@ -78,7 +75,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 	GLOB.manifest.modify(authenticated_card.registered_name, authenticated_card.assignment, authenticated_card.get_trim_assignment())
 	return TRUE
 
-///Clocks the currently inserted ID Card back in
+/// Clocks the currently inserted ID Card back in
 /datum/computer_file/program/crew_self_serve/proc/clock_in()
 	if(!authenticated_card)
 		return FALSE
@@ -109,7 +106,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 
 	return TRUE
 
-///Is the job of the inserted ID being worked by a job that in an important department? If so, this proc will return TRUE.
+/// Is the job of the inserted ID being worked by a job that in an important department? If so, this proc will return TRUE.
 /datum/computer_file/program/crew_self_serve/proc/important_job_check()
 	if(!authenticated_card)
 		return FALSE
@@ -121,7 +118,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 
 	return FALSE
 
-///Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
+/// Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
 /datum/computer_file/program/crew_self_serve/proc/id_cooldown_check()
 	if(!authenticated_card)
 		return FALSE
@@ -135,7 +132,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 
 	return TRUE
 
-///Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
+/// Is the inserted ID on cooldown? returns TRUE if the ID has a cooldown
 /datum/computer_file/program/crew_self_serve/proc/id_locked_check()
 	if(!authenticated_card)
 		return FALSE
@@ -149,7 +146,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 
 	return FALSE
 
-///Is the inserted ID off-duty? Returns true if the ID is off-duty
+/// Is the inserted ID off-duty? Returns true if the ID is off-duty
 /datum/computer_file/program/crew_self_serve/proc/off_duty_check()
 	if(!authenticated_card)
 		return FALSE
@@ -249,7 +246,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 	target.rank = assignment
 	return TRUE
 
-/// Returns any items inside of the `items_to_secure` list to a cryo console on station.
+/// Places any items inside of the `eligible_items` list to a lockbox, to be opened by the player when they clock back in.
 /mob/living/carbon/human/proc/secure_items(list/eligible_items, obj/incoming_box)
 	var/obj/item/storage/lockbox/timeclock/shame_box = incoming_box
 	if(isnull(shame_box) || !istype(shame_box))
