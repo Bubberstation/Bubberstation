@@ -101,6 +101,10 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					computer.say("Error: CentCom employment protocols restrict prioritising more than 5 jobs.")
 			playsound(computer, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 			return TRUE
+		// BUBBERSTATION EDIT ADD BEGIN - Crew Self Serve
+		if("PRG_selfservetoggle")
+			return TRUE
+		// BUBBERSTATION EDIT ADD END - Crew Self Serve
 
 
 /datum/computer_file/program/job_management/ui_data(mob/user)
@@ -132,4 +136,5 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	data["prioritized"] = priority
 	var/delta = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
 	data["cooldown"] = delta < 0 ? 0 : delta
+	data["selfServeToggle"] = GLOB.block_crew_manifest_selfserve // BUBBERSTATION EDIT ADD - Crew Self Serve
 	return data

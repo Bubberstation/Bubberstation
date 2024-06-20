@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Dimmer, NoticeBox, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -15,6 +17,12 @@ export const NtosJobManager = (props) => {
 export const NtosJobManagerContent = (props) => {
   const { act, data } = useBackend();
   const { authed, cooldown, slots = [], prioritized = [] } = data;
+
+  const [selfServeBlocked, setSelfServeBlocked] = useState('');
+  const updateSelfServeBlocked = () => {
+    setSelfServeBlocked();
+  };
+
   if (!authed) {
     return (
       <NoticeBox>
@@ -32,6 +40,24 @@ export const NtosJobManagerContent = (props) => {
         </Dimmer>
       )}
       <Table>
+        {/* BUBBERSTATION EDIT ADD BEGIN - Crew Self Serve */}
+        <Table.Row header>
+          <Table.Cell>Crew Self Serve</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>
+            <Button.Checkbox
+              checked={selfServeBlocked}
+              onClick={(e) => {
+                updateSelfServeBlocked(!selfServeBlocked);
+              }}
+              tooltip="Enable or disable self serve title edits by crew."
+            >
+              Block crew self serve title editing
+            </Button.Checkbox>
+          </Table.Cell>
+        </Table.Row>
+        {/* BUBBERSTATION EDIT ADD END - Crew Self Serve */}
         <Table.Row header>
           <Table.Cell>Prioritized</Table.Cell>
           <Table.Cell>Slots</Table.Cell>
