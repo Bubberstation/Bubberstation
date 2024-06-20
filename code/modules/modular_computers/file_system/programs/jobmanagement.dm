@@ -103,6 +103,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 			return TRUE
 		// BUBBERSTATION EDIT ADD BEGIN - Crew Self Serve
 		if("PRG_selfservetoggle")
+			GLOB.block_crew_manifest_selfserve = !GLOB.block_crew_manifest_selfserve
 			return TRUE
 		// BUBBERSTATION EDIT ADD END - Crew Self Serve
 
@@ -136,5 +137,5 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	data["prioritized"] = priority
 	var/delta = round(change_position_cooldown - ((world.time / 10) - GLOB.time_last_changed_position), 1)
 	data["cooldown"] = delta < 0 ? 0 : delta
-	data["selfServeToggle"] = GLOB.block_crew_manifest_selfserve // BUBBERSTATION EDIT ADD - Crew Self Serve
+	data["selfServeBlocked"] = GLOB.block_crew_manifest_selfserve // BUBBERSTATION EDIT ADD - Crew Self Serve
 	return data

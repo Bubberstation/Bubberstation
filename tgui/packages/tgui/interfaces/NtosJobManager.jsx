@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { useBackend } from '../backend';
 import { Box, Button, Dimmer, NoticeBox, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -17,11 +15,6 @@ export const NtosJobManager = (props) => {
 export const NtosJobManagerContent = (props) => {
   const { act, data } = useBackend();
   const { authed, cooldown, slots = [], prioritized = [] } = data;
-
-  const [selfServeBlocked, setSelfServeBlocked] = useState('');
-  const updateSelfServeBlocked = () => {
-    setSelfServeBlocked();
-  };
 
   if (!authed) {
     return (
@@ -47,10 +40,8 @@ export const NtosJobManagerContent = (props) => {
         <Table.Row>
           <Table.Cell>
             <Button.Checkbox
-              checked={selfServeBlocked}
-              onClick={(e) => {
-                updateSelfServeBlocked(!selfServeBlocked);
-              }}
+              checked={data.selfServeBlocked}
+              onClick={() => act('PRG_selfservetoggle')}
               tooltip="Enable or disable self serve title edits by crew."
             >
               Block crew self serve title editing
