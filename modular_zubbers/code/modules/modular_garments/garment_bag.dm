@@ -19,5 +19,6 @@
 	new /obj/item/clothing/head/hats/centhat(src)
 	new /obj/item/clothing/under/rank/centcom/intern(src)
 	new /obj/item/clothing/under/rank/centcom/intern/head(src)
+	new /obj/item/clothing/suit/armor/vest/alt(src)
 	new /obj/item/clothing/mask/gas/atmos/centcom(src)
 	new /obj/item/clothing/head/hats/intern(src)
