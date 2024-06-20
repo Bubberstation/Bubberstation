@@ -71,6 +71,9 @@
 	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case. This one has a silver CentCom emblem badge, how fancy."
 	icon_state = "centcom_official"
 
+/obj/item/clothing/head/beret/centcom_formal/official/nt_consultant
+	armor_type = /datum/armor/head_nanotrasen_consultant
+
 /obj/item/clothing/head/hats/centhat
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'

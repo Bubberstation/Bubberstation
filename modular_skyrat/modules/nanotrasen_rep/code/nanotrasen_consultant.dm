@@ -150,7 +150,7 @@
 	new /obj/item/radio/headset/heads/nanotrasen_consultant(src)
 	new /obj/item/storage/photo_album/personal(src)
 	new /obj/item/bedsheet/centcom(src)
-	new /obj/item/storage/bag/garment/nanotrasen_consultant(src)
+	new /obj/item/storage/bag/garment/zubbers/nanotrasen_consultant(src) //Bubberstation Edit
 
 //Choice Beacon, I hope in the future they're going to be given proper unique gun but this will do.
 

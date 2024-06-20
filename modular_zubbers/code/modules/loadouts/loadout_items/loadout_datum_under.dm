@@ -59,3 +59,13 @@
 /datum/loadout_item/under/miscellaneous/syndicate_skyrat_overalls_unarmoured_skirt
 	name = "Tacticool Utility Skirt and Suspenders"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured/skirt
+
+/datum/loadout_item/under/miscellaneous/centcom_turtleneck
+	name = "CentCom Official's Turtleneck"
+	item_path = /obj/item/clothing/under/rank/centcom/official/turtleneck
+	restricted_roles = list(JOB_NT_REP)
+
+/datum/loadout_item/under/miscellaneous/centcom_tactical_turtleneck
+	name = "CentCom Officer's Tactical Turtleneck"
+	item_path = /obj/item/clothing/under/rank/centcom/officer
+	restricted_roles = list(JOB_BLUESHIELD)
