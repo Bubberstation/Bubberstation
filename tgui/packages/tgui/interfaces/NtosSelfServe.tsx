@@ -1,7 +1,7 @@
 import { capitalizeFirst } from 'common/string';
 
 import { useBackend } from '../backend';
-import { Button, Input, NoticeBox, Section, Stack } from '../components';
+import { Button, NoticeBox, Section, Stack } from '../components';
 import { NtosWindow } from '../layouts';
 import { NTOSData } from '../layouts/NtosWindow';
 
@@ -37,16 +37,13 @@ export const NtosSelfServe = (props) => {
 const SelfServePage = (props) => {
   const { act, data } = useBackend<Data>();
   const {
-    authCard,
     authIDName,
     authIDRank,
     authCardHOPLocked,
     authCardTimeLocked,
     stationAlertLevel,
     trimClockedOut,
-    hasTrim,
     trimAssignment,
-    selfServeBlock,
   } = data;
 
   return (
@@ -56,41 +53,18 @@ const SelfServePage = (props) => {
           <Stack.Item width="100%" mt={1} ml={0}>
             Current Assignment: {trimAssignment || '-----'}
           </Stack.Item>
+          <Stack.Item align="center" mt={1} ml={0}>
+            Job Title: {authIDRank || '-----'}
+          </Stack.Item>
           <Stack.Item width="100%" mt={1} ml={0}>
             Current Status: {trimClockedOut ? 'Off-Duty' : 'Active Duty'}
           </Stack.Item>
           <Stack.Item width="100%" mt={1} ml={0}>
             Station Alert Level: {capitalizeFirst(stationAlertLevel) || '-----'}
           </Stack.Item>
-          <Stack.Item align="center" mt={1} ml={0}>
-            Job Title:
-          </Stack.Item>
-
-          <Stack.Item grow={1}>
-            <Input
-              fluid
-              mt={1}
-              disabled={trimClockedOut || selfServeBlock}
-              value={authIDRank}
-              onChange={(e, value) =>
-                act('PRG_assign', {
-                  assignment: value,
-                })
-              }
-            />
-          </Stack.Item>
-          {selfServeBlock ? (
-            <Stack.Item width="100%" mt={1} ml={0}>
-              <NoticeBox>
-                Changing job title and trim information is currently blocked,
-                please visit the HoP window for trim changes.
-              </NoticeBox>
-            </Stack.Item>
-          ) : (
-            ''
-          )}
         </Stack>
       </Section>
+
       <Section title="Employee Self Serve">
         <Stack wrap="wrap">
           <Stack.Item width="100%" mt={1} ml={0}>

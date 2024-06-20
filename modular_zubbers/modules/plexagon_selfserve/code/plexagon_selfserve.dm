@@ -1,5 +1,3 @@
-GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
-
 /datum/computer_file/program/crew_self_serve
 	filename = "plexagonselfserve"
 	filedesc = "Plexagon Crew Self Serve"
@@ -167,20 +165,6 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 	. = ..()
 
 	switch(action)
-		if("PRG_assign")
-			if(!computer || !authenticated_card)
-				return TRUE
-			var/new_asignment = trim(sanitize(params["assignment"]), MAX_NAME_LEN)
-			authenticated_card.assignment = new_asignment
-			playsound(computer, 'sound/machines/terminal_success.ogg', 50, FALSE)
-			if(!GLOB.manifest.modify_rank(authenticated_card.registered_name, authenticated_card.assignment))
-				stack_trace("Attempted trim clock-out failed to update manifest")
-			else
-				authenticated_card.update_label()
-
-			computer.update_static_data_for_all_viewers()
-			return TRUE
-
 		if("PRG_change_status")
 			if(off_duty_check())
 				if(!(clock_in()))
@@ -225,25 +209,13 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 		data["authCardHOPLocked"] = id_locked_check()
 		data["stationAlertLevel"] = SSsecurity_level.get_current_level_as_text()
 		data["trimClockedOut"] = off_duty_check()
-		data["selfServeBlock"] = GLOB.block_crew_manifest_selfserve
 		if(authenticated_card.trim)
 			var/datum/id_trim/card_trim = authenticated_card.trim
-			data["hasTrim"] = TRUE
 			data["trimAssignment"] = card_trim.assignment ? card_trim.assignment : ""
 		else
-			data["hasTrim"] = FALSE
 			data["trimAssignment"] = ""
 
 	return data
-
-/// Edits the job title of the found record.
-/datum/manifest/proc/modify_rank(name, assignment)
-	var/datum/record/crew/target = find_record(name)
-	if(!target)
-		return FALSE
-
-	target.rank = assignment
-	return TRUE
 
 /// Places any items inside of the `eligible_items` list to a lockbox, to be opened by the player when they clock back in.
 /mob/living/carbon/human/proc/secure_items(list/eligible_items, obj/incoming_box)
