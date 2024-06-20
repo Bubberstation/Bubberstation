@@ -21,7 +21,10 @@
 
 #define JOB_DISPLAY_ORDER_BLACKSMITH 48
 
-///What items do we want to remove from the person clocking out?
+/// Time after clocking out before you can clock in again
+#define TIMECLOCK_COOLDOWN 15 MINUTES
+
+/// What items do we want to remove from the person clocking out?
 #define SELF_SERVE_RETURN_ITEMS list( \
 	/obj/item/melee/baton/security, \
 	/obj/item/melee/baton/security/loaded, \

@@ -17,11 +17,8 @@
 	atom_storage.max_slots = 99
 	atom_storage.max_specific_storage = WEIGHT_CLASS_GIGANTIC
 	atom_storage.max_total_storage = 99
-	if(isnull(crew_id) || !istype(crew_id))
-		stack_trace("Something tried to init a crew lockbox without passing a crew ID card!")
-		qdel(src)
-
-	associated_card = crew_id
+	if(!isnull(crew_id) || !istype(crew_id))
+		associated_card = crew_id
 
 /// Timeclock boxes can only be opened while the crew member is on duty, or by a command member with the proper access.
 /obj/item/storage/lockbox/timeclock/check_access(obj/item/crew_id)

@@ -1,5 +1,4 @@
 GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
-#define CLOCK_IN_COOLDOWN 15 SECONDS
 
 /datum/computer_file/program/crew_self_serve
 	filename = "plexagonselfserve"
@@ -58,7 +57,7 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 	if(!authenticated_card)
 		return FALSE
 
-	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, CLOCK_IN_COOLDOWN)
+	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
 	if(important_job_check())
 		timer_component.hop_locked = TRUE
 		log_admin("[authenticated_card.registered_name] clocked out as a head of staff and/or command")
@@ -272,5 +271,3 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
 		put_in_hands(shame_box)
 
 	return TRUE
-
-#undef CLOCK_IN_COOLDOWN
