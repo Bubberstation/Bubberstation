@@ -42,7 +42,7 @@ export type Name = {
 
 export type Species = {
   name: string;
-  desc: string;
+  desc: string[];
   lore: string[];
   icon: string;
 
