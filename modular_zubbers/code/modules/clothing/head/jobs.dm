@@ -55,3 +55,32 @@
 	fire = 20
 	acid = 50
 	wound = 4
+
+/obj/item/clothing/head/beret/centcom_formal
+	name = "\improper CentCom formal beret"
+	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case. This one has a pure golden CentCom emblem badge, how regal."
+	icon_state = "centcom_beret"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
+
+/obj/item/clothing/head/beret/centcom_formal/official
+	name = "\improper CentCom beret"
+	desc = "Sometimes, a compromise between fashion and defense needs to be made. Thanks to Nanotrasen's most recent nano-fabric durability enhancements, this time, it's not the case. This one has a silver CentCom emblem badge, how fancy."
+	icon_state = "centcom_official"
+
+/obj/item/clothing/head/hats/centhat
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+
+/obj/item/clothing/head/hats/centcom_cap
+	name = "\improper CentCom commander cap"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	desc = "A luxurious peaked cap usually worn by CentCom's finest Commanders, wearing this is a dream of itself. It has two faint initials on the inside."
+
+/obj/item/clothing/head/hooded/winterhood/centcom
+	icon = 'modular_zubbers/icons/obj/clothing/head/winterhood.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/winterhood.dmi'
