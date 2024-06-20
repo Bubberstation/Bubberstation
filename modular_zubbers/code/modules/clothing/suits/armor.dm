@@ -75,25 +75,18 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/space/officer
-	name = "CentCom officer's coat"
-	desc = "An armored, space-proof coat used in special operations."
-	icon_state = "centcom_coat"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	inhand_icon_state = "centcom"
-	blood_overlay_type = "coat"
-	slowdown = 0
-	flags_inv = 0
-	w_class = WEIGHT_CLASS_NORMAL
-	allowed = list(/obj/item/gun, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
-	armor_type = /datum/armor/space_officer
-	strip_delay = 130
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/hooded/wintercoat/centcom
-	name = "centcom winter coat"
+	name = "CentCom winter coat"
 	desc = "A luxurious winter coat woven in the bright green and gold colours of Central Command. It has a small pin in the shape of the Nanotrasen logo for a zipper."
 	icon_state = "coatcentcom"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/wintercoat.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/wintercoat.dmi'
+
+/obj/item/clothing/suit/hazardvest/centcom
+	name = "CentCom hazard vest"
+	desc = "A high-visibility vest used in work zones, this one is slightly padded with some armor to help cope with people who dislike inspections."
+	icon_state = "centcom_hazard"
+	armor_type = /datum/armor/suit_armor
