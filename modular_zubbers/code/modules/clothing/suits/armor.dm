@@ -89,4 +89,6 @@
 	name = "CentCom hazard vest"
 	desc = "A high-visibility vest used in work zones, this one is slightly padded with some armor to help cope with people who dislike inspections."
 	icon_state = "centcom_hazard"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	armor_type = /datum/armor/suit_armor
