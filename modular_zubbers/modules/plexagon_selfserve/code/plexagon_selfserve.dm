@@ -25,7 +25,6 @@ GLOBAL_VAR_INIT(block_crew_manifest_selfserve, FALSE)
  * * user - Program's user.
  * * auth_card - The ID card to attempt to authenticate under.
  */
-
 /datum/computer_file/program/crew_self_serve/proc/authenticate(mob/user, obj/item/card/id/id_card)
 	if(isnull(id_card))
 		return FALSE
