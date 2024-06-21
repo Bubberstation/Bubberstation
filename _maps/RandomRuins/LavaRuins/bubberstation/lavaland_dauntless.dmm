@@ -421,10 +421,8 @@
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/dauntless/service/freezer)
 "cq" = (
-/obj/machinery/airalarm/directional/north,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "cr" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -659,6 +657,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "dE" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/paper/fluff/jobs/engineering/frequencies,
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
 	},
@@ -1233,6 +1232,12 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
+"fN" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "fO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -2352,10 +2357,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "ki" = (
-/obj/machinery/computer/station_alert,
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
+/obj/machinery/computer/camera_advanced/syndie,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "kj" = (
 /obj/effect/turf_decal/siding/dark,
@@ -2416,6 +2422,7 @@
 	initialize_directions = 4;
 	dir = 4
 	},
+/obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -2686,6 +2693,8 @@
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "lN" = (
 /obj/machinery/light/cold/directional/east,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/taperecorder,
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
 	},
@@ -2805,18 +2814,14 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "mu" = (
-/obj/machinery/button/door/directional/south{
-	name = "Prisoner Viewing Privlages";
-	id = "prison_shutters";
-	req_access = list("syndicate_leader");
-	pixel_y = -32
-	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
 /obj/machinery/coffeemaker,
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red{
+	icon_state = "plastitanium"
+	},
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "mv" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -3440,18 +3445,11 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/holding)
 "pB" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 4;
-	pixel_x = -20;
-	faction = list("Syndicate","neutral")
-	},
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/burgundy,
-/obj/machinery/camera/autoname/directional/west{
-	network = list("dauntless")
-	},
-/turf/open/lava/smooth/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/effect/turf_decal/vg_decals/numbers/six,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "pC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -4232,9 +4230,6 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "sG" = (
-/obj/effect/turf_decal/trimline/dark_red/line{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -4567,6 +4562,10 @@
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
+"uc" = (
+/obj/machinery/light_switch/directional/north,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "uh" = (
 /obj/structure/fans/tiny/forcefield{
 	dir = 4
@@ -5311,9 +5310,11 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "xf" = (
-/obj/machinery/light_switch/directional/north,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
+/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/effect/turf_decal/vg_decals/numbers/five,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "xg" = (
 /obj/machinery/computer/crew/syndie{
 	dir = 4
@@ -5980,10 +5981,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
+/obj/item/tape/random,
+/obj/item/tape/random,
+/obj/item/tape/random,
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/mineral/plastitanium/red{
+	icon_state = "plastitanium"
 	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "zA" = (
 /obj/effect/turf_decal/siding/dark{
@@ -6001,7 +6005,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "zJ" = (
 /obj/structure/cable,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "zK" = (
 /obj/structure/chair/sofa/bench,
@@ -6276,24 +6280,24 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "AK" = (
-/obj/machinery/computer/shuttle,
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
 	},
+/obj/machinery/computer/station_alert,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "AQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/reagent_containers/cup/glass/trophy/gold_cup{
 	pixel_y = 6;
 	desc = "To the loss of a beloved sister ship. May you rest peacefully beneath the ice.";
 	name = "DS-2 Memorial Trophy"
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/mineral/plastitanium/red{
+	icon_state = "plastitanium"
+	},
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "AS" = (
 /obj/effect/turf_decal/siding/dark,
@@ -8403,9 +8407,12 @@
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Kq" = (
+/obj/machinery/light/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/effect/turf_decal/vg_decals/numbers/six,
+/obj/effect/turf_decal/tile/dark_red{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "Ks" = (
@@ -8446,7 +8453,24 @@
 /turf/open/floor/circuit/telecomms,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "KC" = (
-/turf/closed/wall/r_wall/syndicate,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/box/monkeycubes/syndicate{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/monkeycubes/syndicate{
+	pixel_y = 5
+	},
+/obj/item/slime_extract/grey{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/slime_extract/grey,
+/obj/item/slime_extract/grey{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "KF" = (
 /obj/effect/turf_decal/box/white/corners{
@@ -10328,14 +10352,18 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "SS" = (
-/obj/machinery/light/directional/south,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/effect/turf_decal/tile/dark_red{
-	dir = 4
+/obj/machinery/porta_turret/syndicate{
+	dir = 4;
+	pixel_x = -20;
+	faction = list("Syndicate","neutral")
 	},
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless")
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "SU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -10518,25 +10546,10 @@
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Tx" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/box/monkeycubes/syndicate{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/monkeycubes/syndicate{
-	pixel_y = 5
-	},
-/obj/item/slime_extract/grey{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/slime_extract/grey,
-/obj/item/slime_extract/grey{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "Ty" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -10876,11 +10889,11 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Va" = (
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/effect/turf_decal/vg_decals/numbers/five,
-/turf/open/floor/engine,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "Vd" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -11407,10 +11420,11 @@
 	pixel_y = 30;
 	default_logo = "synd"
 	},
-/obj/machinery/computer/security/dauntless,
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
 	},
+/obj/machinery/computer/security/dauntless,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "Xr" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/hidden/layer2{
@@ -11473,9 +11487,10 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "XD" = (
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
 	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "XE" = (
 /obj/effect/turf_decal/trimline/dark_red/end{
@@ -11603,9 +11618,7 @@
 /obj/structure/chair/office/tactical{
 	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium/red{
-	icon_state = "plastitanium"
-	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "YD" = (
 /obj/effect/turf_decal/siding/wood{
@@ -13990,8 +14003,8 @@ FZ
 FZ
 DV
 AK
-XD
-XD
+Va
+fN
 WK
 CQ
 bX
@@ -14127,7 +14140,7 @@ jy
 ln
 Xp
 XD
-rR
+cR
 AQ
 CQ
 DM
@@ -14643,7 +14656,7 @@ gg
 yI
 qY
 US
-xf
+uc
 RG
 US
 dy
@@ -14711,7 +14724,7 @@ qb
 Os
 Un
 US
-cq
+Tx
 RG
 US
 Ju
@@ -14777,7 +14790,7 @@ mX
 yI
 ra
 yI
-Va
+xf
 US
 Ld
 RG
@@ -14913,7 +14926,7 @@ rS
 yI
 Bz
 yI
-Kq
+pB
 US
 Ld
 GG
@@ -14975,7 +14988,7 @@ uS
 dl
 Tt
 rV
-Tx
+KC
 LP
 rx
 iZ
@@ -15049,7 +15062,7 @@ Oc
 cJ
 EW
 EW
-SS
+Kq
 US
 Ld
 UT
@@ -15253,7 +15266,7 @@ bP
 bP
 bP
 bP
-KC
+cq
 VY
 Ld
 hl
@@ -15321,7 +15334,7 @@ FZ
 FZ
 FZ
 FZ
-pB
+SS
 VY
 US
 US
