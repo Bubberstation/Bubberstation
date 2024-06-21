@@ -116,14 +116,6 @@
 		rat_target.icon_state = icon_state_living
 	rat_target.update_appearance(updates = UPDATE_ICON)
 
-/// Remove any extra accessories we had
-/datum/rat_fashion/proc/remove(mob/living/simple_animal/rat_target)
-	return
-
-/// Called when you die
-/datum/rat_fashion/proc/on_death(mob/living/simple_animal/rat_target)
-	return
-
 /// Normal
 /datum/rat_fashion/default
 	name = "regal rat"
