@@ -23,10 +23,6 @@
 	current_look = pick(valid_starting_styles)
 	current_look.apply(src)
 
-/mob/living/basic/regal_rat/death(gibbed)
-	current_look.on_death(src)
-	return ..()
-
 /mob/living/basic/regal_rat/revive(full_heal_flags, excess_healing, force_grab_ghost)
 	. = ..()
 	if(!.)
@@ -82,7 +78,6 @@
 		owner.balloon_alert(owner, "interrupted!")
 		return
 
-	rat_owner.current_look.remove(rat_owner)
 	rat_owner.current_look = chosen
 	rat_owner.current_look.apply(owner)
 	var/obj/effect/particle_effect/fluid/smoke/poof = new(origin)
