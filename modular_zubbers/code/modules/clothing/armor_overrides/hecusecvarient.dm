@@ -4,7 +4,7 @@
 	armor_type = /datum/armor/head_helmet
 
 /obj/item/clothing/suit/armor/vest/hecu/sec
-	name "retro army vest"
+	name = "retro army vest"
 	desc = "A bundle deal with the plast- err, metal helmet!"
 	armor_type = /datum/armor/suit_armor
 
