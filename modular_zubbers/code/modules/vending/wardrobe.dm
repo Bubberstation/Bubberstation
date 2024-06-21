@@ -17,13 +17,4 @@
 		),
 	)
 
-/obj/machinery/vending/dorms
-	zubbers_product_categories = list(
-		list(
-			"name" = "Restraints",
-			"icon" = FA_ICON_HANDCUFFS,
-			"products" = list(
-				/obj/item/clothing/neck/human_petcollar/locked/ringbell = 8
-			)
-		)
-	)
+
