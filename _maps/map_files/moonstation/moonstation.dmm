@@ -10306,17 +10306,14 @@
 	},
 /area/station/ai_monitored/turret_protected/ai)
 "dbw" = (
-/obj/machinery/atmospherics/components/binary/valve/layer4{
-	dir = 4
+/obj/structure/cable/multilayer/multiz,
+/obj/structure/railing{
+	dir = 10
 	},
-/obj/machinery/atmospherics/components/binary/valve/layer2{
-	dir = 4
+/turf/open/openspace{
+	can_atmos_pass = 0
 	},
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 8
-	},
-/turf/open/floor/plating/rust/moonstation,
-/area/moonstation/underground)
+/area/station/maintenance/department/public_mining)
 "dbM" = (
 /obj/structure/chair/sofa/right/brown{
 	dir = 4
@@ -26804,11 +26801,7 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/security/armory)
 "hHA" = (
-/obj/machinery/door/airlock/maintenance/external,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/station/maintenance/department/public_mining)
 "hHD" = (
@@ -30752,7 +30745,11 @@
 /turf/open/floor/plating,
 /area/station/security/prison/workout)
 "iTd" = (
-/obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
+/obj/structure/rack,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
 /turf/open/floor/plating,
 /area/station/maintenance/department/public_mining)
 "iTi" = (
@@ -50724,6 +50721,16 @@
 /obj/effect/spawner/random/burgerstation/loot/with_maintenance_loot,
 /turf/open/floor/plating,
 /area/station/commons/vacant_room)
+"oCQ" = (
+/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2,
+/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4,
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/openspace{
+	can_atmos_pass = 0
+	},
+/area/station/maintenance/department/public_mining)
 "oCV" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4
@@ -55195,6 +55202,10 @@
 /obj/machinery/door/airlock/maintenance/external,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "public_mining_maint_airlocks"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/supply/mining,
 /turf/open/floor/plating,
 /area/station/maintenance/department/public_mining)
 "pPr" = (
@@ -61704,6 +61715,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
+"rHG" = (
+/obj/structure/ladder,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plating,
+/area/station/maintenance/department/public_mining)
 "rHZ" = (
 /turf/closed/wall/mineral/wood,
 /area/station/service/kitchen)
@@ -63532,6 +63548,9 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "public_mining_maint_airlocks"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/public_mining)
 "sjR" = (
@@ -78240,7 +78259,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/caution/white,
-/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/plating/rust/moonstation,
 /area/station/commons/public_mining)
 "wyj" = (
@@ -82841,6 +82859,12 @@
 /area/station/ai_monitored/turret_protected/ai_upload)
 "xPM" = (
 /obj/effect/spawner/random/maintenance,
+/obj/machinery/atmospherics/components/binary/valve/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/valve/layer2{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/public_mining)
 "xPR" = (
@@ -199488,7 +199512,7 @@ sSg
 sSg
 rxx
 dyI
-dbw
+dyI
 cdV
 sSg
 sSg
@@ -199745,7 +199769,7 @@ sSg
 sSg
 aBu
 aBu
-hHA
+aBu
 aBu
 sSg
 sSg
@@ -200000,10 +200024,10 @@ sSg
 sSg
 sSg
 sSg
-aBu
+jUO
 wqJ
 hCX
-aBu
+jUO
 dyI
 dyI
 dyI
@@ -200257,10 +200281,10 @@ sSg
 sSg
 sSg
 sSg
-aBu
+jUO
 kze
 xPM
-aBu
+jUO
 lUL
 lUL
 lUL
@@ -201543,7 +201567,7 @@ kJH
 sSg
 sSg
 aBu
-iTd
+hHA
 pPx
 gno
 hWa
@@ -201799,10 +201823,10 @@ kJH
 kJH
 sSg
 sSg
-aBu
-iTd
-xPM
-aBu
+jUO
+hHA
+pPx
+jUO
 lUL
 lUL
 lUL
@@ -202056,10 +202080,10 @@ kJH
 sSg
 sSg
 sSg
-aBu
-iTd
+jUO
+hHA
 pPx
-aBu
+jUO
 bjQ
 bjQ
 bjQ
@@ -202315,7 +202339,7 @@ sSg
 sSg
 aBu
 aBu
-pPh
+aBu
 aBu
 sSg
 sSg
@@ -265537,7 +265561,7 @@ rKP
 cbi
 wLU
 kdI
-wqJ
+oCQ
 rUE
 kdI
 qiL
@@ -265794,7 +265818,7 @@ sre
 meD
 cGn
 kdI
-kze
+rHG
 rUE
 kdI
 qxl
@@ -266051,7 +266075,7 @@ yjf
 rgx
 vmI
 kdI
-jkS
+dbw
 rUE
 cHC
 hWa
