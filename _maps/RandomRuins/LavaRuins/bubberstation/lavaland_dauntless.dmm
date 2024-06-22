@@ -1062,7 +1062,6 @@
 "fi" = (
 /obj/machinery/light_switch/directional/north,
 /obj/item/stack/conveyor/thirty,
-/obj/machinery/conveyor_switch,
 /obj/structure/rack/shelf,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
@@ -5210,6 +5209,8 @@
 /obj/item/clothing/suit/toggle/labcoat/interdyne,
 /obj/item/clothing/suit/toggle/labcoat/interdyne,
 /obj/item/clothing/suit/toggle/labcoat/interdyne,
+/obj/item/computer_disk/ordnance,
+/obj/item/computer_disk/ordnance,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "wG" = (
@@ -6736,6 +6737,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/item/modular_computer/laptop/preset/syndicate,
+/obj/item/card/id/advanced/black/syndicate_command/crew_id{
+	desc = "Spare Research ID"
+	},
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "Cp" = (
@@ -7508,6 +7513,7 @@
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/conveyor_switch,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
 "FT" = (
@@ -9464,12 +9470,6 @@
 	},
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
-"Pa" = (
-/obj/effect/spawner/random/structure/shipping_container{
-	pixel_y = 15
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Pc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -10495,6 +10495,12 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
+"Tf" = (
+/obj/machinery/atmospherics/components/trinary/mixer{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "Tg" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -11701,11 +11707,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "YM" = (
-/obj/machinery/atmospherics/components/trinary/mixer{
-	dir = 8
+/obj/effect/spawner/random/structure/shipping_container{
+	pixel_y = 15
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+/area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "YP" = (
 /obj/machinery/disposal/bin,
 /obj/structure/extinguisher_cabinet/directional/north,
@@ -12980,7 +12986,7 @@ PX
 nC
 mm
 uj
-YM
+Tf
 Um
 Um
 FV
@@ -13026,7 +13032,7 @@ iQ
 in
 fq
 wZ
-Pa
+YM
 KF
 mn
 mn

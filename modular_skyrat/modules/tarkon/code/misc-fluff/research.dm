@@ -139,7 +139,7 @@
 
 /obj/item/circuitboard/machine/protolathe/interdyne
 	name = "Interdyne Branded Protolathe"
-	greyscale_colors = CIRCUIT_COLOR_SUPPLY
+	greyscale_colors = CIRCUIT_COLOR_SECURITY
 	build_path = /obj/machinery/rnd/production/protolathe/interdyne
 
 /obj/item/circuitboard/machine/rdserver/interdyne
