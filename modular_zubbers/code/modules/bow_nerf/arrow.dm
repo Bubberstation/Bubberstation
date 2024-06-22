@@ -38,7 +38,7 @@
 	return ..()
 
 /obj/projectile/bullet/arrow/holy
-	damage = 20
+	damage = 25
 	armour_penetration = 0
 	weak_against_armour = TRUE
 	wound_bonus = CANT_WOUND
