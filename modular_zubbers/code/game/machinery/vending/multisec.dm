@@ -117,11 +117,6 @@
 					/obj/item/clothing/suit/fedcoat/modern/sec = 3,
 					/obj/item/clothing/mask/gas/soviet = 3,
 					/obj/item/clothing/mask/gas/german = 3, //As far as I can tell, this is nowhere else in the game.
-					/obj/item/clothing/under/rank/security/officer/hecu = 3,
-					/obj/item/clothing/head/helmet/hecu/sec = 3, //Given default sec armor values.
-					/obj/item/clothing/suit/armor/vest/hecu/sec = 3,
-					/obj/item/clothing/mask/gas/hecu1 = 3, //No idea where to put these.
-					/obj/item/clothing/mask/gas/hecu2 = 3,
 					/obj/item/clothing/under/rank/security/corrections_officer = 2, //If, or more likely when the Brig Officers abandon them, you can now get 'em here! Yay! Wahoo!
 					/obj/item/clothing/under/rank/security/corrections_officer/skirt = 2,
 					/obj/item/clothing/under/rank/security/corrections_officer/sweater = 2,
