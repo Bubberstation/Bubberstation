@@ -8,7 +8,7 @@
 	donator_only = TRUE
 
 /datum/loadout_item/gloves/rubber_gloves
-	name = "Long Rubber Medical Gloves"
+	name = "Long Rubber Gloves"
 	item_path = /obj/item/clothing/gloves/longrubbergloves
 
 /datum/loadout_item/gloves/rubber_gloves/med
