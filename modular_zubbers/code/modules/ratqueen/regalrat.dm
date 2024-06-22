@@ -23,6 +23,7 @@
 	current_look = pick(valid_starting_styles)
 	current_look.apply(src)
 
+
 /mob/living/basic/regal_rat/revive(full_heal_flags, excess_healing, force_grab_ghost)
 	. = ..()
 	if(!.)
