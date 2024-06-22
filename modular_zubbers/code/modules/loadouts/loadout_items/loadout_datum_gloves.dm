@@ -12,7 +12,7 @@
 	item_path = /obj/item/clothing/gloves/longrubbergloves
 
 /datum/loadout_item/gloves/rubber_gloves/med
-	name = "Long Rubber Gloves"
+	name = "Long Rubber Medical Gloves"
 	item_path = /obj/item/clothing/gloves/latex/nitrile/longrubbergloves
 	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_GENETICIST, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CORONER)
 
