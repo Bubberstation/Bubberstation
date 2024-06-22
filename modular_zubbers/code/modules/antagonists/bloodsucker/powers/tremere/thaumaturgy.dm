@@ -15,6 +15,7 @@
 
 #define THAUMATURGY_SHIELD_LEVEL 2
 #define THAUMATURGY_DOOR_BREAK_LEVEL 3
+#define THAUMATURGY_EXTRA_DAMAGE_LEVEL 4
 #define THAUMATURGY_BLOOD_STEAL_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy
 	name = "Thaumaturgy"
@@ -47,7 +48,6 @@
 	cooldown_time = get_max_charges() * THAUMATURGY_COOLDOWN_PER_CHARGE
 	bloodcost = get_max_charges() * THAUMATURGY_BLOOD_COST_PER_CHARGE
 	// just in case you somehow level up while the power is active
-	charges = get_max_charges()
 	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
@@ -67,15 +67,15 @@
 		If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor.\n\
 		You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())].\n\
 		At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time. \n\
-		At level 3, it will also break open lockers and doors.\n\
-		At level 5, it will also steal blood to feed yourself, just as much as each charge costs. \n\
+		At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors.\n\
+		At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs. \n\
 		The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(trigger_flags)
 	. = ..()
 	charges = get_max_charges()
 	owner.balloon_alert(owner, "you start thaumaturgy")
-	if(level_current >= 2) // Only if we're at least level 2.
+	if(level_current >= THAUMATURGY_SHIELD_LEVEL) // Only if we're at least level 2.
 		var/obj/item/shield/bloodsucker/new_shield = new
 		blood_shield = WEAKREF(new_shield)
 		if(!owner.put_in_inactive_hand(new_shield))
@@ -108,8 +108,8 @@
 	return ..(used_charges * THAUMATURGY_COOLDOWN_PER_CHARGE, override_melee_cooldown_time)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_blood_bolt_damage()
-	if(level_current >= 4)
-		return 30
+	if(level_current >= THAUMATURGY_EXTRA_DAMAGE_LEVEL)
+		return 40
 	return 20
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_max_charges()
@@ -140,18 +140,8 @@
 	user.changeNext_move(CLICK_CD_RANGE)
 	user.newtonian_move(get_dir(target, user))
 	user.face_atom(target)
-	magic_9ball = new(user.loc)
-	magic_9ball.power_ref = WEAKREF(src)
-	magic_9ball.damage = get_blood_bolt_damage()
-	magic_9ball.firer = user
-	magic_9ball.def_zone = ran_zone(user.zone_selected)
-	magic_9ball.preparePixelProjectile(target, user)
-	magic_9ball.homing = TRUE
-	magic_9ball.homing_target = target
-	magic_9ball.homing_turn_speed = 10 * level_current
-	magic_9ball.range = initial(magic_9ball.range) + level_current * 3
-	// ditch the pointer to reduce harddels
-	magic_9ball = null
+	handle_shot(user, target)
+
 	pay_cost(-THAUMATURGY_BLOOD_COST_PER_CHARGE)
 	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
@@ -162,6 +152,19 @@
 		PowerActivatedSuccesfully(cost_override = 0)
 
 
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/handle_shot(mob/user, atom/target)
+	magic_9ball = new(get_turf(user))
+	magic_9ball.firer = user
+	magic_9ball.power_ref = WEAKREF(src)
+	magic_9ball.damage = get_blood_bolt_damage()
+	magic_9ball.def_zone = ran_zone(user.zone_selected, min(level_current * 10, 90))
+	magic_9ball.preparePixelProjectile(target, user)
+	magic_9ball.homing = TRUE
+	magic_9ball.homing_target = target
+	magic_9ball.homing_turn_speed = 10 * level_current
+	magic_9ball.range = initial(magic_9ball.range) + level_current * 10
+	// ditch the pointer to reduce harddels
+	magic_9ball = null
 /**
  * 	# Blood Bolt
  *
@@ -176,7 +179,7 @@
 	speed = 1
 	pixel_speed_multiplier = 0.3
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	range = 100
+	range = 50
 	armor_flag = LASER
 	var/datum/weakref/power_ref
 
