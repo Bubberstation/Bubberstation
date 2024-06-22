@@ -28,7 +28,7 @@
 	assignment = "Dauntless Researcher"
 	trim_state = "trim_ds2researcher"
 	sechud_icon_state = SECHUD_DS2_RESEARCHER
-	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS)
+	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS,ACCESS_RESEARCH,ACCESS_SCIENCE)
 
 /datum/id_trim/syndicom/bubberstation/dauntless/enginetechnician
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
