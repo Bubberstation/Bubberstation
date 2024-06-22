@@ -12,6 +12,7 @@
 			"products" = list(
 					/obj/item/clothing/suit/hooded/wintercoat/security = 6,
 					/obj/item/clothing/suit/toggle/jacket/sec = 6,
+					/obj/item/clothing/suit/armor/vest/secjacket/blue = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/brit = 6,
 					/obj/item/clothing/neck/security_cape = 6,
 					/obj/item/clothing/neck/security_cape/armplate = 6,
@@ -51,6 +52,7 @@
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
 					/obj/item/clothing/under/rank/security/skyrat/utility/redsec = 6,
 					/obj/item/clothing/suit/toggle/jacket/sec/old = 6,
+					/obj/item/clothing/suit/armor/vest/secjacket = 6,
 				),
 			),
 		list(
