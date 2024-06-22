@@ -101,6 +101,7 @@
 ///Called when the Power is upgraded.
 /datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	SHOULD_CALL_PARENT(TRUE)
+	DeactivatePower()
 	level_current++
 	desc = get_power_desc()
 	on_power_upgrade()
