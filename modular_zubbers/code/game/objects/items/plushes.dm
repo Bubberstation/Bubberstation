@@ -149,7 +149,7 @@
     desc = "An adorable blue Lizard plushie wearing a Chief Engineer's Uniform, Rocket Boots, and Meson Goggles. It has a strange, silicone pocket on its underside..."
     icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
     icon_state = "cescrewsplush"
-    attack_verb_continuous = list("slaps", "plaps", "bops", "smears")
-    attack_verb_simple = list("slap", "plap", "bops", "smear")
+    attack_verb_continuous = list("slaps", "plaps", "smears")
+    attack_verb_simple = list("slap", "plap", "smear")
     gender = FEMALE
     squeak_override = list('sound/misc/soggy.ogg'=1)
