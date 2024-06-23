@@ -19,11 +19,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "ac" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/red/line,
 /obj/machinery/light/cold/directional/north,
-/obj/structure/frame/machine/secured{
-	anchored = 0
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "af" = (
@@ -834,7 +830,7 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/tank/internals/plasmaman/belt,
-/turf/open/floor/plating,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "ep" = (
 /obj/effect/turf_decal/siding/wood{
@@ -1842,9 +1838,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "id" = (
-/obj/effect/turf_decal/stripes/red/line,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plating,
+/obj/effect/spawner/random/structure/shipping_container{
+	pixel_y = 15;
+	pixel_x = -17
+	},
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "if" = (
 /obj/machinery/computer{
@@ -1928,7 +1926,7 @@
 /obj/structure/frame/computer{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "iv" = (
 /obj/effect/turf_decal/siding/dark{
@@ -2221,6 +2219,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/light/cold/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "jB" = (
@@ -2257,7 +2256,7 @@
 /obj/effect/turf_decal/box/white/corners{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "jM" = (
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -2270,7 +2269,7 @@
 /obj/effect/turf_decal/box/white/corners{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "jQ" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -2640,6 +2639,10 @@
 /obj/effect/turf_decal/box/red/corners{
 	dir = 8
 	},
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = -16
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "lD" = (
@@ -2678,7 +2681,7 @@
 	pixel_x = 6;
 	pixel_y = -3
 	},
-/turf/open/floor/plating,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "lI" = (
 /obj/structure/cable,
@@ -2709,7 +2712,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "lV" = (
 /obj/effect/turf_decal/box/white/corners,
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "lW" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe/red{
@@ -3122,7 +3125,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "nR" = (
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -3354,8 +3357,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "oY" = (
-/obj/structure/frame/computer,
-/turf/open/floor/plating,
+/obj/structure/frame/computer{
+	dir = 8
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "oZ" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -4850,10 +4855,10 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "vk" = (
-/obj/item/toy/figure/syndie{
-	pixel_x = -5
+/obj/structure/frame/machine/secured{
+	anchored = 0
 	},
-/turf/open/floor/plating/elevatorshaft,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "vl" = (
 /obj/structure/cable,
@@ -4981,6 +4986,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "vN" = (
 /obj/effect/turf_decal/stripes/red/line,
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = -16
+	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "vO" = (
@@ -5323,7 +5332,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "wZ" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "xe" = (
@@ -5759,6 +5767,7 @@
 /obj/machinery/door/airlock/science/glass{
 	name = "Research Wing"
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "yE" = (
@@ -5819,6 +5828,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/red/line,
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = -16
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "yO" = (
@@ -6249,7 +6262,7 @@
 	width = 11;
 	dwidth = 5
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "AC" = (
 /obj/structure/closet/secure_closet/freezer/meat{
@@ -8232,6 +8245,9 @@
 /obj/effect/turf_decal/box/red/corners{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "JH" = (
@@ -8506,7 +8522,10 @@
 /obj/effect/turf_decal/box/white/corners{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/item/toy/figure/syndie{
+	pixel_x = -5
+	},
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "KG" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -8607,16 +8626,12 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "Lc" = (
-/obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/bot,
 /obj/machinery/status_display/department_balance{
 	credits_account = "INT";
 	name = "dauntless budget display";
 	pixel_y = 30;
 	default_logo = "synd"
-	},
-/obj/structure/frame/machine/secured{
-	anchored = 0
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
@@ -8764,7 +8779,11 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "LR" = (
 /obj/effect/turf_decal/box/red/corners,
-/turf/open/floor/plating,
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "LT" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -8794,8 +8813,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/smart/simple/dark{
-	dir = 4
+/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
@@ -9316,11 +9335,6 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "Or" = (
-/obj/structure/shipping_container/donk_co{
-	desc = "A standard-measure shipping container for bulk transport of goods. This one is from Donk Co. and so could be carrying just about anything- although it seems this one is overflowing with little Syndicate Figurines, known for being sold at a Loss.";
-	pixel_x = -17;
-	pixel_y = 15
-	},
 /obj/effect/turf_decal/stripes/red/corner,
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
@@ -9710,7 +9724,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/box/red/corners,
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Ql" = (
 /obj/structure/plasticflaps/opaque,
@@ -10637,10 +10651,11 @@
 /turf/open/floor/wood/stairs,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "TE" = (
-/obj/structure/railing/corner{
-	dir = 4
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = -16
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "TF" = (
 /obj/machinery/light/floor{
@@ -11264,18 +11279,17 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "Wv" = (
 /obj/effect/turf_decal/stripes/red/corner{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Wx" = (
-/obj/effect/turf_decal/box/red/corners{
-	dir = 4
+/obj/structure/shipping_container/donk_co{
+	desc = "A standard-measure shipping container for bulk transport of goods. This one is from Donk Co. and so could be carrying just about anything- although it seems this one is overflowing with little Syndicate Figurines, known for being sold at a Loss.";
+	pixel_x = -17;
+	pixel_y = 15
 	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "WB" = (
 /obj/structure/chair/office/light{
@@ -11710,10 +11724,8 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "YM" = (
-/obj/effect/spawner/random/structure/shipping_container{
-	pixel_y = 15
-	},
-/turf/open/floor/plating,
+/obj/structure/frame/computer,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "YP" = (
 /obj/machinery/disposal/bin,
@@ -11900,7 +11912,7 @@
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Zy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -13035,16 +13047,16 @@ iQ
 in
 fq
 wZ
-YM
+Fs
 KF
 mn
 mn
-mn
-mn
+Fs
+Fs
 mn
 mn
 jN
-mn
+Fs
 gx
 fq
 KY
@@ -13103,16 +13115,16 @@ EA
 lW
 fq
 wZ
+Fs
+Wx
 mn
 mn
+Fs
+Fs
 mn
 mn
-mn
-mn
-mn
-mn
-mn
-mn
+Fs
+Fs
 fL
 fq
 OP
@@ -13170,17 +13182,17 @@ Ve
 EA
 dM
 fq
-id
+wZ
+Fs
+Fs
 mn
 mn
+Fs
+Fs
 mn
 mn
-mn
-mn
-mn
-mn
-mn
-mn
+Fs
+Fs
 fL
 fq
 bs
@@ -13239,16 +13251,16 @@ EA
 Ip
 fq
 Lc
+Fs
+mg
 mn
 mn
+Fs
+Fs
 mn
 mn
-mn
-mn
-mn
-mn
-mn
-mn
+Fs
+Fs
 BD
 fq
 ZO
@@ -13307,7 +13319,7 @@ MT
 Jp
 fq
 ac
-oY
+mn
 mn
 mn
 mn
@@ -13375,16 +13387,16 @@ jU
 Br
 fq
 iu
-Wx
-TE
+Fs
+Fs
 mn
 mn
+Fs
+Fs
 mn
 mn
-mn
-mn
-mn
-mn
+Fs
+Fs
 oD
 fq
 bc
@@ -13447,12 +13459,12 @@ Fs
 jK
 mn
 mn
-mn
+Fs
 AB
 mn
 mn
 lV
-mn
+id
 oD
 fq
 SO
@@ -13510,16 +13522,16 @@ ze
 KI
 wf
 fq
-Fs
+vk
 Or
-AZ
+Wv
 hI
 mn
-TF
-mn
+Fs
+Fs
 mn
 hI
-cP
+Or
 Qj
 oH
 fq
@@ -13578,13 +13590,13 @@ eI
 qr
 ux
 fq
-Fs
+YM
 vN
 nN
 AZ
 mn
-mn
-mn
+TE
+Fs
 mn
 cP
 LR
@@ -13646,8 +13658,8 @@ To
 CX
 qu
 fq
-mg
-Wv
+oY
+xl
 eV
 oq
 qN
