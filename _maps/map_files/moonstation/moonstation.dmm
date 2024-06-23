@@ -883,6 +883,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "amM" = (
@@ -4241,6 +4242,9 @@
 /obj/effect/turf_decal/tile/brown/fourcorners,
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "bit" = (
@@ -4959,6 +4963,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "bvw" = (
@@ -6202,6 +6209,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "bPO" = (
@@ -6840,6 +6850,9 @@
 /obj/effect/turf_decal/tile/brown/fourcorners,
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "bYP" = (
@@ -8503,6 +8516,13 @@
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/iron/grimy,
 /area/station/tcommsat/computer)
+"czq" = (
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/light/warm/directional/north,
+/turf/open/floor/iron,
+/area/station/engineering/hallway)
 "czv" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
@@ -13266,6 +13286,9 @@
 	},
 /obj/structure/cable,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "dST" = (
@@ -13817,9 +13840,6 @@
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "ebz" = (
-/obj/machinery/light/warm/directional/south,
-/obj/machinery/camera/autoname/engineering/directional/south,
-/obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "ebK" = (
@@ -13837,6 +13857,9 @@
 	dir = 4
 	},
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/machinery/camera/autoname/engineering/directional/south{
+	dir = 5
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/break_room)
 "ebN" = (
@@ -13981,6 +14004,7 @@
 /obj/machinery/door/airlock/research/glass{
 	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "edE" = (
@@ -19224,6 +19248,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "fyq" = (
@@ -19380,6 +19405,9 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "commandblast";
 	name = "Command Lockdown Blast Door"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
@@ -19878,7 +19906,6 @@
 /turf/open/floor/catwalk_floor,
 /area/station/terminal/maintenance/fore)
 "fHC" = (
-/obj/machinery/light/warm/directional/north,
 /turf/open/floor/iron,
 /area/station/engineering/hallway)
 "fHE" = (
@@ -20563,12 +20590,14 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/underground)
 "fQs" = (
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Engineering Foyer"
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/yellow/fourcorners,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/turf_decal/trimline/yellow/warning,
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "fQu" = (
@@ -28051,6 +28080,9 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "ibe" = (
@@ -31778,6 +31810,7 @@
 	name = "Service Hallway"
 	},
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/service)
 "jfS" = (
@@ -32185,6 +32218,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "jlk" = (
@@ -43931,6 +43965,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "mCT" = (
@@ -44711,6 +44748,7 @@
 /obj/machinery/door/airlock/research/glass{
 	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "mPV" = (
@@ -45071,6 +45109,7 @@
 /obj/machinery/door/airlock/research/glass{
 	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "mTE" = (
@@ -48658,6 +48697,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/supply/maintenance,
 /obj/machinery/door/firedoor,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron/dark,
 /area/station/cargo/drone_bay)
 "nXu" = (
@@ -51624,13 +51664,15 @@
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "oOv" = (
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Engineering Foyer"
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/yellow/fourcorners,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
-/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/yellow/warning,
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "oOE" = (
@@ -52678,6 +52720,14 @@
 	initial_gas_mix = "n2=100;TEMP=293.15"
 	},
 /area/station/maintenance/gag_room)
+"pdj" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/trimline/yellow/warning,
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/station/engineering/break_room)
 "pdl" = (
 /obj/effect/turf_decal/trimline/yellow/warning{
 	dir = 8
@@ -56880,6 +56930,9 @@
 	name = "Command Lockdown Blast Door"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "qlJ" = (
@@ -57061,6 +57114,7 @@
 /obj/machinery/door/airlock/research/glass{
 	name = "Research Division Access"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "qpx" = (
@@ -59957,6 +60011,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "rgr" = (
@@ -60817,6 +60874,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -67644,6 +67704,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "tsr" = (
@@ -70511,6 +70572,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "uig" = (
@@ -74613,6 +74677,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "vsf" = (
@@ -76526,6 +76593,9 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "commandblast";
 	name = "Command Lockdown Blast Door"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
@@ -248450,7 +248520,7 @@ fNl
 hLy
 eXq
 ebz
-ewL
+pdj
 fHC
 dFQ
 bKL
@@ -248965,7 +249035,7 @@ xeE
 bEs
 xZQ
 fRt
-eAg
+czq
 dFQ
 bKL
 xlo
