@@ -20621,6 +20621,9 @@
 	dir = 4
 	},
 /obj/item/xenoarch/tape_measure,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 12
+	},
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "fPD" = (
@@ -24525,6 +24528,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/machinery/newscaster/directional/south,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "gYB" = (
@@ -41095,10 +41099,11 @@
 /area/station/cargo/miningelevators)
 "lIk" = (
 /obj/structure/table,
-/obj/item/paper/fluff/xenoarch_guide,
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/item/pai_card,
+/obj/item/paper/fluff/xenoarch_guide,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "lIx" = (
@@ -44665,7 +44670,6 @@
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/iron/fifty,
-/obj/machinery/light_switch/directional/west,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
@@ -47363,6 +47367,13 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/security/prison/work)
+"nwS" = (
+/obj/structure/chair/office/light,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/effect/mapping_helpers/requests_console/information,
+/obj/effect/mapping_helpers/requests_console/supplies,
+/turf/open/floor/plastic,
+/area/station/commons/public_xenoarch)
 "nxa" = (
 /obj/effect/turf_decal/siding/blue,
 /obj/structure/closet/secure_closet/medical2,
@@ -49754,6 +49765,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/machinery/newscaster/directional/north,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "oga" = (
@@ -52389,6 +52401,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/machinery/requests_console/auto_name/directional/south,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "oUb" = (
@@ -57757,6 +57770,7 @@
 "quw" = (
 /obj/structure/table,
 /obj/item/paper_bin/carbon,
+/obj/item/hand_labeler,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "quy" = (
@@ -58261,7 +58275,10 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "qAF" = (
-/obj/structure/chair/office/light{
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/modular_computer/preset/civilian{
 	dir = 8
 	},
 /turf/open/floor/plastic,
@@ -59339,6 +59356,7 @@
 /obj/item/kitchen/spoon/plastic{
 	pixel_x = -8
 	},
+/obj/item/hand_labeler,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "qRU" = (
@@ -73552,6 +73570,9 @@
 "uUs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/chair/office/light{
+	dir = 4
+	},
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "uUJ" = (
@@ -205809,11 +205830,11 @@ kJH
 kJH
 xPM
 gHz
-qAF
+err
 ajp
 aNk
 ajp
-aEd
+nwS
 oTE
 xPM
 kJH
@@ -206325,7 +206346,7 @@ xPM
 lVh
 fPw
 pPh
-pPh
+qAF
 pPh
 lIk
 ruM
