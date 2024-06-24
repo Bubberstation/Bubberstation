@@ -52,13 +52,13 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
 	. = ..()
-	. += "Projectile range: [get_shot_range()]\n"
+	. += "<br>Projectile range: [get_shot_range()]<br>"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Create a Blood shield and fire a slow seeking blood bolt.\n\"
+		. += "Create a Blood shield and fire a slow seeking blood bolt.<br>"
 	else
-		. += "Fire a slow seeking blood bolt at your enemy."
+		. += "Fire a slow seeking blood bolt at your enemy.<br>"
 	if(level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
-		. += " The projectile will open doors/lockers"
+		. += "The projectile will open doors/lockers"
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 		. += " and steal blood from the target"
 

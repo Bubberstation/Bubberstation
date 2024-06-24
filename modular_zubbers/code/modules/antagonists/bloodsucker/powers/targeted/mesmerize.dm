@@ -39,13 +39,13 @@
 	if(level_current >= MESMERIZE_MUTE_LEVEL)
 		. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
 	if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
-		. += "Not blocked by glasses."
+		. += "Not blocked by glasses.<br>"
 	else
-		. += "Blocked by glasses."
+		. += "Blocked by glasses.<br>"
 	if(level_current >= MESMERIZE_FACING_LEVEL || !requires_facing_target)
-		. += "Does not require the victim to be facing you."
+		. += "Does not require the victim to be facing you.<br>"
 	else
-		. += "Requires the victim to be facing you."
+		. += "Requires the victim to be facing you.<br>"
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation()
 	. = ..()
@@ -124,16 +124,24 @@
 	if(!mesmerized_target)
 		CRASH("mesmerized_target is null")
 
+	perform_indicators(mesmerized_target, mesmerize_delay)
+
 	if(issilicon(mesmerized_target))
 		var/mob/living/silicon/mesmerized = mesmerized_target
 		mesmerized.emp_act(EMP_HEAVY)
 		owner.balloon_alert(owner, "temporarily shut [mesmerized] down.")
 		PowerActivatedSuccesfully() // PAY COST! BEGIN COOLDOWN!
 		return
-	if(!do_after(user, mesmerize_delay, mesmerized_target, NONE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
+	// slow them down during the mesmerize
+	mesmerized_target.add_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
+	if(level_current >= MESMERIZE_MUTE_LEVEL)
+		mute_target(mesmerized_target)
+	if(!do_after(user, mesmerize_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
+		mesmerized_target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
+		StartCooldown(cooldown_time * 0.5)
 		return
+	mesmerized_target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
 	// Can't quite time it here, but oh well
-	perform_indicators(mesmerized_target, get_power_time())
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
 	/*if(IS_MONSTERHUNTER(mesmerized_target))
 		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
@@ -153,6 +161,14 @@
 	perform_indicators(mesmerized_target, 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
 
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
+	var/power_time = get_power_time()
+	mute_target(mesmerized_target)
+	mesmerized_target.Immobilize(power_time)
+	mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
+	ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
+	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
+
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	if(!ContinueActive(user, mesmerized_target))
 		StartCooldown(cooldown_time * 0.5)
@@ -160,19 +176,11 @@
 		return
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
 	var/effect_time = combat_mesmerize_time()
-	var/secondary_effect_time = combat_mesmerize_secondary_time()
-	mesmerized_target.adjust_confusion(10 SECONDS)
-	mute_target(mesmerized_target, secondary_effect_time)
+	var/secondary_effect_time = get_power_time()
+	mesmerized_target.adjust_confusion(secondary_effect_time)
+	mute_target(mesmerized_target)
 	mesmerized_target.Knockdown(effect_time)
 	PowerActivatedSuccesfully()
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
-	var/power_time = get_power_time()
-	mute_target(mesmerized_target, power_time)
-	mesmerized_target.Immobilize(power_time)
-	mesmerized_target.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized_target.changeNext_move(power_time) // check click.dm
-	ADD_TRAIT(mesmerized_target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT) // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
-	addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, mesmerized_target), power_time)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1.5 SECONDS
@@ -181,12 +189,7 @@
 	return get_power_time() * 2
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_time()
-	var/power_time = get_power_time()
-	power_time *= 0.3
-	return power_time
-
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_secondary_time()
-	return get_power_time()
+	return get_power_time() * 0.3
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/blind_target(mob/living/mesmerized_target)
 	if(!blind_at_level && level_current < blind_at_level)
@@ -195,7 +198,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target)
 	if(level_current >= MESMERIZE_MUTE_LEVEL)
-		mesmerized_target.adjust_silence(get_mute_time())
+		mesmerized_target.set_silence_if_lower(get_mute_time())
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower()
 	target_ref = null
