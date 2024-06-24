@@ -75,10 +75,6 @@
 //Every other item in this set is role restricted, and it's like they forgot the boots.
 //I don't think anyone on Skyrat noticed because this is ckey whitelisted there.
 
-/datum/loadout_item/pocket_items/flag_solfed
-	name = "Folded Solarian State Flag"
-
-
 //Flowers
 /datum/loadout_item/head/donator/poppy
 	donator_only = FALSE
