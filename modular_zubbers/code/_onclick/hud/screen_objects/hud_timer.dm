@@ -24,8 +24,6 @@
 	var/list/timer_mobs = list()
 	/// The movement detector for staying attached to the following object
 	var/datum/movement_detector/movement_detector
-	/// Whether to add the object to the client.screen of the mobs in the list
-	var/add_to_screen = TRUE
 
 /atom/movable/screen/text/screen_timer/Initialize(
 		mapload,
@@ -57,7 +55,7 @@
 	maptext_x = offset_x
 	maptext_y = offset_y
 	update_maptext()
-	if(add_to_screen && length(mobs))
+	if(length(mobs))
 		apply_to(mobs)
 
 /atom/movable/screen/text/screen_timer/process()
@@ -116,21 +114,20 @@
 		return
 	var/client/client = source.client
 	// this checks if the screen is already added or removed
-	do_attach(client, add_to_screen)
-	if(!can_attach(client))
+	if(!can_attach(client, add_to_screen))
 		return
 	if(!ismob(source))
 		CRASH("Invalid source passed to screen_timer/attach()!")
 	do_attach(client, add_to_screen)
 
-/atom/movable/screen/text/screen_timer/proc/can_attach(client/client)
-	return add_to_screen != (src in client.screen)
+/atom/movable/screen/text/screen_timer/proc/can_attach(client/client, add_to_screen)
+	return add_to_screen == (src in client.screen)
 
 /atom/movable/screen/text/screen_timer/proc/do_attach(client/client, add_to_screen)
 	if(add_to_screen)
-		attach(client)
+		client.screen += src
 	else
-		de_attach(client)
+		client.screen -= src
 
 /// Signal handler to run attach with specific args
 /atom/movable/screen/text/screen_timer/proc/de_attach(mob/source)
@@ -146,14 +143,14 @@
 
 /atom/movable/screen/text/screen_timer/Destroy()
 	. = ..()
-	if(add_to_screen && length(timer_mobs))
+	if(length(timer_mobs))
 		remove_from(timer_mobs)
 
 	STOP_PROCESSING(SSprocessing, src)
 
 /atom/movable/screen/text/screen_timer/attached
 	invisibility = INVISIBILITY_ABSTRACT
-	add_to_screen = FALSE
+	// add_to_screen = FALSE
 	var/following_object
 
 /atom/movable/screen/text/screen_timer/attached/Initialize(
@@ -172,6 +169,15 @@
 
 	if(following_object && istype(following_object, /atom/movable) && get_turf(following_object))
 		attach_self_to(following_object)
+
+/atom/movable/screen/text/screen_timer/attached/can_attach(client/client)
+	return !(src in client.images)
+
+/atom/movable/screen/text/screen_timer/attached/do_attach(client/client, add_to_screen)
+	if(add_to_screen)
+		client.images += src
+	else
+		client.images -= src
 
 /atom/movable/screen/text/screen_timer/attached/proc/attach_self_to(atom/movable/target)
 	movement_detector = new(target, CALLBACK(src, PROC_REF(timer_follow)))

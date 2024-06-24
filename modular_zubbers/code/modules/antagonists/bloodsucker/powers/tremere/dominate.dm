@@ -35,8 +35,8 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
 	. = ..()
-	return "Click any person to, after [DisplayTimeText(mesmerize_delay)], Dominate them.\n\
-		Right clicking while having the ability selected will apply a knockdown and if above level 4 mute the victim for [DisplayTimeText(combat_mesmerize_time())], and confuse and slow down them for [DisplayTimeText(combat_mesmerize_secondary_time())].\n\
+	return "Click any person to, after [DisplayTimeText(mesmerize_delay)], stun them for [DisplayTimeText(get_power_time())].\n\
+		Right clicking on your victim however will apply a knockdown and if above level [MESMERIZE_MUTE_LEVEL] will mute the victim for [DisplayTimeText(combat_mesmerize_time())], and confuse and slow down them for [DisplayTimeText(combat_mesmerize_secondary_time())].\n\
 		A left click will completely immobilize, mute, and blind them for the next [DisplayTimeText(combat_mesmerize_secondary_time())] seconds.\n\
 		While this ability is active, you will be able to see additional information about everyone in the room.\n\
 		At level [DOMINATE_DOMINATE_XRAY_LEVEL], you will gain X-Ray vision while this ability is active.\n\
@@ -47,7 +47,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
 	var/mob/living/selected_target = target_atom
-	if(DOMINATE_VASSALIZE_LEVEL >= 4 && (IS_VASSAL(selected_target) || selected_target.stat >= SOFT_CRIT))
+	if(level_current >= DOMINATE_VASSALIZE_LEVEL && (IS_VASSAL(selected_target) || selected_target.stat >= SOFT_CRIT))
 		if(selected_target.mind && owner.Adjacent(selected_target))
 			return TRUE
 	. = ..()
@@ -139,14 +139,13 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/setup_timer(mob/living/user, mob/living/target, living_time)
-	var/atom/movable/screen/text/screen_timer/timer = new(null, null, target, living_time, "Death in ${timer}")
+	var/list/show_to = list(user, target)
+	if(bloodsuckerdatum_power && length(bloodsuckerdatum_power.vassals))
+		show_to += bloodsuckerdatum_power.vassals
+	var/atom/movable/screen/text/screen_timer/attached/timer = new(null, list(target), target, living_time, "Death in ${timer}", 32, 0, null, null, target)
+	QDEL_IN(timer, living_time)
 	timer.invisibility = INVISIBILITY_ABSTRACT
 	timer.mouse_opacity = MOUSE_OPACITY_OPAQUE // debug vv reasons
-	
-	if(user.client)
-		user.client.images += timer
-	if(target.client)
-		target.client.images += timer
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/end_possession(mob/living/user)
 	if(!user || QDELETED(user))

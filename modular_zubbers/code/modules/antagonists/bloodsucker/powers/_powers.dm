@@ -1,6 +1,5 @@
 /datum/action/cooldown/bloodsucker
 	name = "Vampiric Gift"
-	desc = "A vampiric gift."
 	background_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
 	background_icon_state = "vamp_power_off"
 	button_icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
@@ -248,11 +247,11 @@
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
-		. += "<b>LEVEL: [level_current] [name] </b>"
+		. += "LEVEL: [level_current] [name]"
 	else
-		. += "<b>(Inherent Power) [name]</b>"
+		. += "\n(Inherent Power) [name]"
 
-	. += "<br><br><b>DESCRIPTION:</b> [desc]"
+	. += "\nDESCRIPTION:\n"
 	. += power_explanation
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
@@ -265,5 +264,6 @@
 	if(constant_bloodcost > 0)
 		new_desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
-		new_desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+		new_desc += "<br><br><br>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
+	new_desc += "<br><br><b>DESCRIPTION:</b> [desc]"
 	return new_desc

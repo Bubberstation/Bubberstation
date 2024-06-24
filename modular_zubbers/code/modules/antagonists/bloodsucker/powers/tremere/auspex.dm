@@ -8,7 +8,6 @@
  *	Level 5 - Cloak of Darkness until clicking an area, teleports the user to the selected area, causes nearby people to fall asleep.
  */
 
-// Look to /datum/action/cooldown/spell/pointed/void_phase for help.
 #define AUSPEX_BLOOD_COST_PER_TILE 5
 #define AUSPEX_BLEED_LEVEL 4
 #define AUSPEX_SLEEP_LEVEL 5
@@ -38,8 +37,8 @@
 	if(level_current >= AUSPEX_BLEED_LEVEL)
 		if(level_current >= AUSPEX_SLEEP_LEVEL)
 			. += " This will cause people at your destination to start bleeding and fall asleep."
-			return
-		. += " This will cause people at your destination to start bleeding."
+		else
+			. += " This will cause people at your destination to start bleeding."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
 	. = ..()

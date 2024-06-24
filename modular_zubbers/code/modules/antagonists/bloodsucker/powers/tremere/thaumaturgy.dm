@@ -128,6 +128,7 @@
 		return
 	if(!can_pay_blood(THAUMATURGY_BLOOD_COST_PER_CHARGE))
 		owner.balloon_alert(owner, "not enough blood!")
+		DeactivatePower()
 		return
 	shot_cooldown = world.time + get_shot_cooldown()
 	var/mob/living/user = owner
@@ -143,9 +144,9 @@
 	handle_shot(user, target)
 
 	pay_cost(-THAUMATURGY_BLOOD_COST_PER_CHARGE)
-	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
 	charges -= 1
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
 	if(charges <= 0)
 		// delay the message so it doesn't overlap with the cooldown message
 		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "no charges left!"), 0.5 SECONDS)
@@ -159,10 +160,23 @@
 	magic_9ball.damage = get_blood_bolt_damage()
 	magic_9ball.def_zone = ran_zone(user.zone_selected, min(level_current * 10, 90))
 	magic_9ball.preparePixelProjectile(target, user)
-	magic_9ball.homing = TRUE
-	magic_9ball.homing_target = target
-	magic_9ball.homing_turn_speed = 10 * level_current
+	// autotarget if we aim at a turf
+	if(isturf(target))
+		var/list/targets = list()
+		for(var/mob/living/possible_target as anything in orange(1, target))
+			if(!ismob(possible_target))
+				continue
+			var/datum/antagonist/vassal/vassal = IS_VASSAL(possible_target)
+			if(length(bloodsuckerdatum_power?.vassals) && vassal && vassal in bloodsuckerdatum_power?.vassals)
+				continue
+			targets += possible_target
+		if(length(targets))
+			magic_9ball.set_homing_target(pick(targets))
+	else if(ismob(target))
+		magic_9ball.homing_target = target
+	magic_9ball.homing_turn_speed = min(10 * level_current, 90)
 	magic_9ball.range = initial(magic_9ball.range) + level_current * 10
+	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/projectile, fire))
 	// ditch the pointer to reduce harddels
 	magic_9ball = null
 /**
@@ -177,7 +191,7 @@
 	wound_bonus = 20
 	armour_penetration = 30
 	speed = 1
-	pixel_speed_multiplier = 0.3
+	pixel_speed_multiplier = 0.6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	range = 50
 	armor_flag = LASER
@@ -187,7 +201,7 @@
 	var/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/bloodsucker_power = power_ref?.resolve()
 	if(!bloodsucker_power)
 		return ..()
-	if(istype(target, /obj/structure/closet) && bloodsucker_power.level_current >= 3)
+	if(istype(target, /obj/structure/closet) && bloodsucker_power.level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
 		var/obj/structure/closet/hit_closet = target
 		if(hit_closet)
 			hit_closet.welded = FALSE
@@ -195,13 +209,13 @@
 			hit_closet.broken = TRUE
 			hit_closet.update_appearance()
 			return ..()
-	if(istype(target, /obj/machinery/door) && bloodsucker_power.level_current >= 3)
+	if(istype(target, /obj/machinery/door) && bloodsucker_power.level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
 		var/obj/machinery/door/hit_airlock = target
 		hit_airlock.open(2)
 		qdel(src)
 		return ..()
 	if(ismob(target))
-		if(bloodsucker_power.level_current >= 5)
+		if(bloodsucker_power.level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 			var/mob/living/person_hit = target
 			person_hit.blood_volume -= THAUMATURGY_BLOOD_COST_PER_CHARGE
 			bloodsucker_power.bloodsuckerdatum_power.AdjustBloodVolume(THAUMATURGY_BLOOD_COST_PER_CHARGE)

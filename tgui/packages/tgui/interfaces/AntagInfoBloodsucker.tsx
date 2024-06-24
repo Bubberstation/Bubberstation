@@ -207,7 +207,10 @@ const BloodsuckerClan = (props: any) => {
                   <Stack.Item fontSize="20px" textAlign="center">
                     You are part of the {ClanInfo.clan_name}
                   </Stack.Item>
-                  <Stack.Item fontSize="16px">
+                  <Stack.Item
+                    fontSize="16px"
+                    style={{ flexBasis: '60% !important' }}
+                  >
                     {ClanInfo.clan_description}
                   </Stack.Item>
                 </>

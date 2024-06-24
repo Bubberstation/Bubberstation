@@ -122,8 +122,11 @@
 /// This Power doesn't cost bloot to run while unconscious
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
 
+// ability levels that are used cross-file
 #define DOMINATE_VASSALIZE_LEVEL 4
 #define TREMERE_OBJECTIVE_POWER_LEVEL 4
+#define MESMERIZE_MUTE_LEVEL 2
+
 
 /**
  * Torpor check bitflags

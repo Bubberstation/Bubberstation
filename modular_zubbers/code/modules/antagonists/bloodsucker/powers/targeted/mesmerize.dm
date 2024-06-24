@@ -7,7 +7,6 @@
  * 	Level 5: Doesn't need to be facing you anymore
  */
 
-#define MESMERIZE_MUTE_LEVEL 2
 #define MESMERIZE_GLASSES_LEVEL 3
 #define MESMERIZE_FACING_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/mesmerize
@@ -28,15 +27,17 @@
 	var/mesmerize_delay = 4 SECONDS
 	/// At what level this ability will blind the target at. Level 0 = never.
 	var/blind_at_level = 0
+	/// if the ability requires you to be physically facing the target
 	var/requires_facing_target = TRUE
+	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc()
 	. = ..()
-	. += "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.\n"
-	. += "This will completely immobilize them for the next [DisplayTimeText(get_power_time())].\n"
+	. += "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.<br>"
+	. += "This will completely immobilize them for the next [DisplayTimeText(get_power_time())].<br>"
 	if(level_current >= MESMERIZE_MUTE_LEVEL)
-		. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].\n"
+		. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
 	if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
 		. += "Not blocked by glasses."
 	else
@@ -154,6 +155,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/combat_mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	if(!ContinueActive(user, mesmerized_target))
+		StartCooldown(cooldown_time * 0.5)
 		owner.balloon_alert(owner, "failed!")
 		return
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
@@ -222,6 +224,5 @@
 	SET_PLANE_EXPLICIT(image, ABOVE_LIGHTING_PLANE, owner)
 	flick_overlay_global(image, list(owner?.client, target?.client), duration)
 
-#undef MESMERIZE_MUTE_LEVEL
 #undef MESMERIZE_GLASSES_LEVEL
 #undef MESMERIZE_FACING_LEVEL
