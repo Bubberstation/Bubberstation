@@ -119,6 +119,9 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /datum/preference/choiced/other_pref/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
+/datum/preference/choiced/other_pref/create_default_value()
+	return "Unset"
+
 /datum/preference/choiced/demihuman_pref
 	savefile_key = "demihuman_pref"
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
