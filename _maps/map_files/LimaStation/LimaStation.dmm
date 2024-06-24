@@ -2753,6 +2753,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "bhz" = (
@@ -10018,6 +10019,12 @@
 /obj/effect/turf_decal/trimline/brown/filled/warning,
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
+"ebd" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/department/cargo)
 "ebi" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/visible,
@@ -10755,6 +10762,7 @@
 "erX" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "esa" = (
@@ -14001,6 +14009,15 @@
 /obj/structure/cable,
 /turf/open/floor/iron/showroomfloor,
 /area/station/ai_monitored/turret_protected/aisat/foyer)
+"fwN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/cargo)
 "fwR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/airalarm/directional/west,
@@ -22263,9 +22280,7 @@
 /area/station/maintenance/port/lower)
 "iGJ" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
+/obj/structure/disposalpipe/rotator/flip,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "iHa" = (
@@ -23411,7 +23426,10 @@
 /area/station/medical/abandoned)
 "iZZ" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "jab" = (
@@ -23800,6 +23818,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/lower)
+"jkC" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/department/cargo)
 "jkF" = (
 /obj/structure/table/wood,
 /obj/effect/landmark/start/hangover,
@@ -153529,14 +153552,14 @@ xzK
 xzK
 nJz
 kLO
-hkm
-hkm
+jkC
+jkC
 apa
 cWn
 apa
 bhp
 erX
-iZZ
+ebd
 iZZ
 vpK
 vpK
@@ -153785,15 +153808,15 @@ xzK
 xzK
 xzK
 nJz
-sen
-ejm
-ejm
-ejm
-ejm
-ejm
-ejm
-ejm
-ejm
+fwN
+hkm
+hkm
+hkm
+hkm
+hkm
+hkm
+hkm
+hkm
 iGJ
 vpK
 cWR
