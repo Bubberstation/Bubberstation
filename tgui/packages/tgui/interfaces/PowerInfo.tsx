@@ -61,7 +61,7 @@ export const PowerDetails = (props: PowerDetailsProps) => {
           <Divider vertical />
         </Stack.Item>
         <Stack.Divider />
-        <Stack.Item grow fontSize="16px">
+        <Stack.Item grow fontSize="16px" width="40%">
           {selectedPower && selectedPower.power_explanation}
         </Stack.Item>
       </Stack>
