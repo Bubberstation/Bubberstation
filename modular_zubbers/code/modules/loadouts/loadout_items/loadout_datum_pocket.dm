@@ -3,7 +3,7 @@
 */
 
 /datum/loadout_item/pocket_items/wine //Beer is already available, so why not wine? Stay classy while drinking on the job.
-	name = "wine bottle"
+	name = "Wine Bottle"
 	item_path = /obj/item/reagent_containers/cup/glass/bottle/wine
 
 /*
@@ -97,6 +97,14 @@
 /datum/loadout_item/pocket_items/transpride
 	name = "Trans Flag"
 	item_path = /obj/item/sign/flag/pride/trans
+
+/datum/loadout_item/pocket_items/flag_galfed //sprites by Crumpaloo
+	name = "Folded Galactic Federation Flag"
+	item_path = /obj/item/sign/flag/galfed
+
+/datum/loadout_item/pocket_items/flag_moghes //sprites by Crumpaloo
+	name = "Folded Tizirian Empire Flag"
+	item_path = /obj/item/sign/flag/tizira
 
 /*
 *	NIF LENSES

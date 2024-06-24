@@ -6,21 +6,21 @@
 */
 
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
-	name = "magnificent pinwheel hat"
+	name = "Magnificent Pinwheel Hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex", "especiallystrange", "ghostie_dwagons", "Kidkirby",)
+
 //11/08/23: Added as a reward to people who have recommended friends to Bubberstation. Add to this list as you please, you can offer this as a reward for basically anything.
 //Please mark the date and what this was awarded for in code comments here. For example:
 //XX/XX/XX: Added as a reward for EXAMPLE EVENT's winners.
 
-
 /datum/loadout_item/head/idmaberet
-	name = "IDMA beret"
+	name = "IDMA Beret"
 	item_path = /obj/item/clothing/head/idma_beret
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 
 /datum/loadout_item/head/idmahelmet
-	name = "IDMA service helmet"
+	name = "IDMA Service Helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
@@ -50,13 +50,13 @@
 	ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /datum/loadout_item/under/miscellaneous/idmasnowfatigue
-	name = "IDMA service uniform"
+	name = "IDMA Service Uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/under/miscellaneous/idmafatigue
-	name = "IDMA desert service uniform"
+	name = "IDMA Desert Service Uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
@@ -67,19 +67,19 @@
 */
 
 /datum/loadout_item/suit/idmavest
-	name = "IDMA combat vest"
+	name = "IDMA Combat Vest"
 	item_path = /obj/item/clothing/suit/armor/vest/idma_vest
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmarsuit
-	name = "IDMA service jacket"
+	name = "IDMA Service Jacket"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/security/idma_jacket
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
 
 /datum/loadout_item/suit/idmardjacket
-	name = "silicon administrator vest"
+	name = "Silicon Administrator Vest"
 	item_path = /obj/item/clothing/suit/jacket/vera_jacket
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 	restricted_roles = list (JOB_RESEARCH_DIRECTOR) // and otherwise if not, specific to the RD
@@ -124,7 +124,7 @@
 */
 
 /datum/loadout_item/accessory/idmaarmbands
-	name = "IDMA armbands"
+	name = "IDMA Armband"
 	item_path = /obj/item/clothing/accessory/armband/idmaarmband
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok")
 
@@ -133,7 +133,7 @@
 */
 
 /datum/loadout_item/toys/nobl_plush
-	name = "fluffy skog plushie"
+	name = "Fluffy Skog Plushie"
 	item_path = /obj/item/toy/plush/nobl
 	ckeywhitelist = list("nobledreameater")
 
@@ -161,7 +161,7 @@
 */
 
 /datum/loadout_item/inhand/korvenbank //sprites by Keila
-	name = "korven bank card"
+	name = "Korven Bank Card"
 	item_path = /obj/item/card/cardboard/korvenbank
 	ckeywhitelist = list("catmanpop")
 
@@ -180,7 +180,7 @@
 */
 
 /datum/loadout_item/pocket_items/starwine //sprites by Keila
-	name = "starwire wine bottle"
+	name = "Starwire Wine Bottle"
 	item_path = /obj/item/reagent_containers/cup/glass/bottle/beer/starwine
 	ckeywhitelist = list("catmanpop") //donator item for Catmanpop
 
