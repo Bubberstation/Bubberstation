@@ -1165,7 +1165,7 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "fy" = (
 /obj/machinery/conveyor{
-	id = "interdynedisp"
+	id = "syndidisp"
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
@@ -1838,9 +1838,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "id" = (
-/obj/effect/spawner/random/structure/shipping_container{
-	pixel_y = 15;
-	pixel_x = -17
+/obj/structure/shipping_container/donk_co{
+	desc = "A standard-measure shipping container for bulk transport of goods. This one is from Donk Co. and so could be carrying just about anything- although it seems this one is overflowing with little Syndicate Figurines, known for being sold at a Loss.";
+	pixel_x = -17;
+	pixel_y = 15
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
@@ -2468,6 +2469,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+"kK" = (
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/north,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("dauntless_xeno")
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "kL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -10651,11 +10660,8 @@
 /turf/open/floor/wood/stairs,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
 "TE" = (
-/obj/machinery/light/floor{
-	pixel_x = 16;
-	pixel_y = -16
-	},
-/turf/open/floor/plating/elevatorshaft,
+/obj/structure/frame/computer,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "TF" = (
 /obj/machinery/light/floor{
@@ -11284,10 +11290,9 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Wx" = (
-/obj/structure/shipping_container/donk_co{
-	desc = "A standard-measure shipping container for bulk transport of goods. This one is from Donk Co. and so could be carrying just about anything- although it seems this one is overflowing with little Syndicate Figurines, known for being sold at a Loss.";
-	pixel_x = -17;
-	pixel_y = 15
+/obj/effect/spawner/random/structure/shipping_container{
+	pixel_y = 15;
+	pixel_x = -17
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
@@ -11724,8 +11729,11 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "YM" = (
-/obj/structure/frame/computer,
-/turf/open/floor/catwalk_floor/iron_dark,
+/obj/machinery/light/floor{
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "YP" = (
 /obj/machinery/disposal/bin,
@@ -13116,7 +13124,7 @@ lW
 fq
 wZ
 Fs
-Wx
+id
 mn
 mn
 Fs
@@ -13464,7 +13472,7 @@ AB
 mn
 mn
 lV
-id
+Wx
 oD
 fq
 SO
@@ -13590,12 +13598,12 @@ eI
 qr
 ux
 fq
-YM
+TE
 vN
 nN
 AZ
 mn
-TE
+YM
 Fs
 mn
 cP
@@ -14699,7 +14707,7 @@ rV
 Pv
 qV
 Ix
-yI
+kK
 gg
 yI
 qY
