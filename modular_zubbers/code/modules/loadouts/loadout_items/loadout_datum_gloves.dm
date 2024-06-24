@@ -17,7 +17,3 @@
 	item_path = /obj/item/clothing/gloves/tactical_maid
 	donator_only = TRUE
 
-/datum/loadout_item/gloves/diver //Donor item for patriot210
-	name = "Black Divers Gloves"
-	item_path = /obj/item/clothing/gloves/misc/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")

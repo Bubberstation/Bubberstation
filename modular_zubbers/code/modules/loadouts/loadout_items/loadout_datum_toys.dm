@@ -12,15 +12,14 @@
 	name = "big deer plushie"
 	item_path = /obj/item/toy/plush/bigdeer //Donor item for Gavla
 
-/datum/loadout_item/toys/nobl_plush
-	name = "fluffy skog plushie"
-	item_path = /obj/item/toy/plush/nobl
-	ckeywhitelist = list("nobledreameater")
-
 /datum/loadout_item/toys/bubbledragon
 	name = "bubbledragon plushie"
 	item_path = /obj/item/toy/plush/bubbledragon
 	donator_only = TRUE
+
+/datum/loadout_item/toys/especiallystrange
+	name = "Ironmoon Tajaran Plushie"
+	item_path = /obj/item/toy/plush/especiallystrange
 
 /datum/loadout_item/toys/headcrab
 	name = "headcrab plushie"
@@ -43,16 +42,6 @@
 /datum/loadout_item/toys/xenomaidplush
 	name = "Xenomorph Maid Plushie"
 	item_path = /obj/item/toy/plush/xenoplush/xenomaidplush
-
-/datum/loadout_item/toys/carrotbag
-	name = "Carrot Bag"
-	item_path = /obj/item/sbeacondrop/carrot
-	//ckeywhitelist = list("slippyjoe")
-
-/datum/loadout_item/toys/largeredslime
-	name = "Large Red Slime Plush"
-	item_path = /obj/item/toy/plush/largeredslime
-	ckeywhitelist = list("blovy")
 
 /datum/loadout_item/toys/tunafish
 	name = "Tuna Fish Plush"

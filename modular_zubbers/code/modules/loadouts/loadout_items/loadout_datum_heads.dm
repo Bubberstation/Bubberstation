@@ -1,7 +1,3 @@
-/datum/loadout_item/head/hats/warden/drill
-	name = "warden's campaign hat"
-	item_path = /obj/item/clothing/head/hats/warden/drill
-
 /datum/loadout_item/head/pinwheel_hat //sprites by Keila.
 	name = "Pinwheel hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel
@@ -16,7 +12,7 @@
 	item_path = /obj/item/clothing/head/costume/bubber/clussy
 
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
-	name = "magnificent pinwheel hat"
+	name = "Magnificent Pinwheel Hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex", "especiallystrange", "ghostie_dwagons", "Kidkirby",)
 //11/08/23: Added as a reward to people who have recommended friends to Bubberstation. Add to this list as you please, you can offer this as a reward for basically anything.
@@ -27,6 +23,10 @@
 	name = "Kabrus Utility Helmet"
 	item_path = /obj/item/clothing/head/helmet/abductor/fake
 	donator_only = TRUE //Dono item for MyphicBowser
+
+/datum/loadout_item/head/hats/warden/drill
+	name = "Warden's campaign hat"
+	item_path = /obj/item/clothing/head/hats/warden/drill
 
 /datum/loadout_item/head/hats/caphat/drill
 	name = "Captain's campaign hat"
