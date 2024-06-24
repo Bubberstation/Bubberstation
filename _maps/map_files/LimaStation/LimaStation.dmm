@@ -2751,11 +2751,8 @@
 /area/station/service/barber)
 "bhp" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/obj/effect/spawner/random/trash/grille_or_waste,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "bhz" = (
@@ -10008,10 +10005,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/captain/private)
-"eav" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/station/cargo/drone_bay)
 "eaw" = (
 /turf/closed/wall,
 /area/station/maintenance/starboard/aft)
@@ -10761,7 +10754,7 @@
 /area/station/ai_monitored/command/storage/satellite)
 "erX" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/random/trash/grille_or_waste,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "esa" = (
@@ -11362,7 +11355,6 @@
 /obj/item/gun/ballistic/shotgun/riot,
 /obj/item/ammo_box/advanced/s12gauge/bean,
 /obj/item/ammo_box/advanced/s12gauge/express,
-/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "eCG" = (
@@ -14266,8 +14258,8 @@
 "fDb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "fDk" = (
@@ -27612,7 +27604,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
-/turf/closed/wall,
+/turf/open/floor/plating,
 /area/station/cargo/drone_bay)
 "kzN" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/visible,
@@ -33131,7 +33123,6 @@
 /obj/structure/closet/secure_closet/tac,
 /obj/item/gun/ballistic/shotgun/riot,
 /obj/item/ammo_box/advanced/s12gauge/bean,
-/obj/structure/closet/secure_closet/tac,
 /obj/structure/cable,
 /obj/item/ammo_box/advanced/s12gauge/rubber,
 /turf/open/floor/wood,
@@ -33301,13 +33292,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
-"mDF" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
 "mDS" = (
 /obj/effect/turf_decal/tile/green/opposingcorners{
 	dir = 1
@@ -44198,12 +44182,6 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/xenobiology)
-"qAp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/hallway/secondary/exit/departure_lounge)
 "qAs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/cable,
@@ -48920,12 +48898,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine/atmos)
-"sma" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/aft)
 "smi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -53644,11 +53616,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
-"tWm" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/station/maintenance/aft)
 "tWo" = (
 /obj/machinery/vending/hydroseeds{
 	slogan_delay = 700
@@ -62908,13 +62875,6 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/lab)
-"xCk" = (
-/obj/effect/spawner/random/trash/grille_or_waste,
-/obj/structure/cable,
-/obj/effect/mapping_helpers/burnt_floor,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/aft)
 "xCq" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/purple/visible,
@@ -64591,13 +64551,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/experiment_room)
-"yjd" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/textured,
-/area/station/cargo/bitrunning/den)
 "yjl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -154091,9 +154044,9 @@ xzK
 nJz
 qam
 ejm
+mBA
 ejm
-ejm
-ejm
+mBA
 ejm
 pyX
 kcs
@@ -155652,7 +155605,7 @@ tYV
 tcC
 tcC
 tcC
-eav
+tcC
 tcC
 tcC
 tcC
@@ -157446,7 +157399,7 @@ gyz
 oqa
 oqa
 sVh
-yjd
+jIz
 jIz
 bnZ
 bnZ
@@ -160535,7 +160488,7 @@ dNw
 dNw
 dNw
 dNw
-mDF
+dNw
 suW
 seh
 rGa
@@ -164651,7 +164604,7 @@ dIP
 uJc
 qnv
 asg
-qAp
+nAp
 cow
 xbv
 fYI
@@ -165149,7 +165102,7 @@ aET
 kBA
 hhh
 bXb
-syo
+bXb
 rqp
 rqp
 rqp
@@ -165406,7 +165359,7 @@ wDH
 nqj
 nfx
 bXb
-syo
+bXb
 rqp
 rqp
 rqp
@@ -165663,7 +165616,7 @@ jQk
 cgu
 sZn
 inz
-syo
+bXb
 rqp
 rqp
 rqp
@@ -165920,7 +165873,7 @@ eve
 dqa
 kTk
 tCk
-syo
+bXb
 rqp
 rqp
 rqp
@@ -166177,21 +166130,21 @@ awG
 dqa
 egA
 bXb
+bXb
+rqp
+rqp
+rqp
+rqp
+kcr
+rqp
+rqp
+rqp
+rqp
+rqp
+rqp
+kcr
 syo
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-rqp
-syo
-xCk
+gec
 iak
 iak
 iak
@@ -166434,7 +166387,7 @@ gAm
 vcz
 sje
 bXb
-syo
+bXb
 sBA
 sBA
 sBA
@@ -166686,13 +166639,13 @@ whG
 whG
 whG
 whG
-syo
-tWm
-iak
-uIV
-uIV
-uIV
-iak
+bXb
+bXb
+bXb
+bXb
+bXb
+bXb
+rHZ
 iak
 iak
 uIV
@@ -166945,11 +166898,11 @@ luh
 whG
 gec
 rHZ
-iak
-uIV
-iak
-iak
-iak
+rHZ
+rHZ
+rHZ
+rHZ
+rHZ
 iak
 iak
 iak
@@ -167203,11 +167156,11 @@ whG
 gJG
 hkK
 iak
-uIV
-bYt
-bYt
-bYt
-bYt
+iak
+iak
+iak
+iak
+iak
 bYt
 bYt
 bYt
@@ -167717,7 +167670,7 @@ whG
 wMr
 sBA
 sBA
-sma
+sBA
 iak
 xzK
 xzK
