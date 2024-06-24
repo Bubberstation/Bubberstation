@@ -77,3 +77,33 @@
 
 /datum/loadout_item/pocket_items/flag_solfed
 	name = "Folded Solarian State Flag"
+
+
+//Flowers
+/datum/loadout_item/head/donator/poppy
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/lily
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/geranium
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/fraxinella
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/harebell
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/rose
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/carbon_rose
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/sunflower
+	donator_only = FALSE
+
+/datum/loadout_item/head/donator/rainbow_bunch
+	donator_only = FALSE
+
