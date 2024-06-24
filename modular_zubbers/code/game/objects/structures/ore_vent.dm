@@ -7,7 +7,7 @@
 		SMALL_VENT_TYPE
 	)
 
-/obj/structure/ore_vent/random/moonstation/caves
+/obj/structure/ore_vent/random/moonstation/cave
 	defending_mobs = list(
 		/mob/living/basic/mining/basilisk,
 		/mob/living/basic/mining/bileworm,
