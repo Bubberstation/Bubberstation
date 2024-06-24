@@ -52,8 +52,9 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
 	. = ..()
+	. += "Projectile range: [get_shot_range()]\n"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Create a Blood shield and fire a slow seeking blood bolt."
+		. += "Create a Blood shield and fire a slow seeking blood bolt.\n\"
 	else
 		. += "Fire a slow seeking blood bolt at your enemy."
 	if(level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
@@ -118,6 +119,9 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_cooldown()
 	return max(2 - (level_current * 0.1), 0) SECONDS
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_range()
+	return initial(magic_9ball.range) + level_current * 10
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/update_button_status(atom/movable/screen/movable/action_button/button, force)
 	. = ..()
@@ -194,7 +198,7 @@
 	speed = 1
 	pixel_speed_multiplier = 0.6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	range = 50
+	range = 30
 	armor_flag = LASER
 	var/datum/weakref/power_ref
 

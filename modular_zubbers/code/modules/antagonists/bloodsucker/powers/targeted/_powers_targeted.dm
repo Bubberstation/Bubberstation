@@ -14,7 +14,8 @@
 /datum/action/cooldown/bloodsucker/targeted/get_power_desc()
 	. = ..()
 	var/current_desc = "<br>\[<i>Targeted Power</i>\]"
-	current_desc += "<br>Cast Range: [target_range]"
+	if(target_range)
+		current_desc += "<br>Cast Range: [target_range]"
 	current_desc += .
 	return current_desc
 
