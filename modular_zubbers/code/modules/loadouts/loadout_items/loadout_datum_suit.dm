@@ -1,3 +1,12 @@
+/datum/loadout_item/suit/secjacket
+	name = "High-Vis Security Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
+
+/datum/loadout_item/suit/leather_apron
+	name = "Leather Apron"
+	item_path = /obj/item/clothing/suit/leatherapron
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
@@ -9,16 +18,6 @@
 	name = "Syndicate Runner Jacket"
 	item_path = /obj/item/clothing/suit/jacket/runner/syndicate
 	donator_only = TRUE //Dono item for Kan3
-
-/datum/loadout_item/suit/secjacket
-	name = "High-Vis Security Jacket"
-	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
-
-/datum/loadout_item/suit/leather_apron
-	name = "Leather Apron"
-	item_path = /obj/item/clothing/suit/leatherapron
-	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/suit/collared_vest
 	name = "Collared Vest"
