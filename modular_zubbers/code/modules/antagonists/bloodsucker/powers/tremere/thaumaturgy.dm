@@ -63,7 +63,8 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation()
 	. = ..()
-	. += "Thaumaturgy grants you the ability to cast and shoot a slow moving blood projectile.\n\
+	. += "Thaumaturgy grants you the ability to cast and shoot a slow moving target seeking blood projectile.\n\
+		The projectile will auto aim to a nearby mob if you aim at the ground. \n\
 		If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor.\n\
 		You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())].\n\
 		At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time. \n\
