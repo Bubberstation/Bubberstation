@@ -167,7 +167,7 @@
 			if(!ismob(possible_target))
 				continue
 			var/datum/antagonist/vassal/vassal = IS_VASSAL(possible_target)
-			if(length(bloodsuckerdatum_power?.vassals) && vassal && vassal in bloodsuckerdatum_power?.vassals)
+			if(length(bloodsuckerdatum_power?.vassals) && vassal && (vassal in bloodsuckerdatum_power?.vassals))
 				continue
 			targets += possible_target
 		if(length(targets))

@@ -247,11 +247,10 @@
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
-		. += "LEVEL: [level_current] [name]"
+		. += "LEVEL: [level_current] [name]:\n"
 	else
-		. += "\n(Inherent Power) [name]"
+		. += "(Inherent Power) [name]:\n"
 
-	. += "\nDESCRIPTION:\n"
 	. += power_explanation
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()

@@ -26,7 +26,7 @@
 	else
 		. += "You cannot dash while knocked down."
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation()
+/datum/action/cooldown/bloodsucker/targeted/haste/get_power_explanation()
 	. = ..()
 	. += "Click anywhere to immediately dash towards that location.\n\
 		At level 3, if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby.\n\
