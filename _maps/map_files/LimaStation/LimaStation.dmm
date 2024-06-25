@@ -1898,6 +1898,7 @@
 /area/station/science/xenobiology)
 "aQc" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "aQn" = (
@@ -22305,6 +22306,7 @@
 "iGJ" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
 /obj/structure/disposalpipe/rotator/flip,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "iHa" = (
@@ -26363,6 +26365,7 @@
 "kcs" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/airalarm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "kcv" = (
@@ -47754,6 +47757,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/closed/wall,
 /area/station/maintenance/disposal)
 "rQE" = (
@@ -56661,6 +56665,11 @@
 /obj/item/paint/paint_remover,
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
+"vek" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/closed/wall,
+/area/station/maintenance/disposal)
 "vem" = (
 /turf/open/floor/iron,
 /area/station/science/robotics/mechbay)
@@ -59648,6 +59657,13 @@
 /obj/structure/sign/poster/contraband/random/directional/west,
 /turf/open/floor/iron/grimy,
 /area/station/service/abandoned_gambling_den)
+"wmf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/maintenance/department/cargo)
 "wmg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -153619,9 +153635,9 @@ bhp
 erX
 ebd
 iZZ
-vpK
-vpK
-vpK
+vek
+vek
+vek
 rQA
 tYV
 tYV
@@ -154132,7 +154148,7 @@ ejm
 pyX
 kcs
 aQc
-ozu
+wmf
 fVH
 wvW
 qZJ
