@@ -6,6 +6,9 @@
 
 // how much to multiply the coffin size by mob_size
 #define COFFIN_ENLARGE_MULT 0.5
+
+/// At what health to burn damage ratio you Final Death
+#define FINAL_DEATH_HEALTH_TO_BURN 2.5
 /**
  * Blood-level defines
  */

@@ -255,7 +255,7 @@
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)
-	var/new_desc = initial(desc)
+	var/new_desc = ""
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
 		new_desc += "<br><br><b>LEVEL:</b> [level_current]"
 	if(bloodcost > 0)
@@ -264,5 +264,6 @@
 		new_desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		new_desc += "<br><br><br>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
-	new_desc += "<br><br><b>DESCRIPTION:</b> [desc]"
+	if(desc && desc != "")
+		new_desc += "<br><br><b>DESCRIPTION:</b> [initial(desc)]"
 	return new_desc

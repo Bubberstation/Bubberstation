@@ -200,7 +200,7 @@
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
 		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
-		current_heart.Stop()
+		current_heart?.Stop()
 	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
@@ -211,6 +211,7 @@
 	var/obj/item/bodypart/chest/target_chest = bloodsuckeruser.get_bodypart(BODY_ZONE_CHEST)
 	if(target_chest && !(target_chest.bodypart_flags & BODYPART_UNREMOVABLE))
 		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
+
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
 	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
 		on_revive()
@@ -239,12 +240,13 @@
 
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
-	// Not "Alive"?
 	if(!owner.current)
-		FinalDeath()
+		if(length(vassals))
+			free_all_vassals()
+		vassals = list()
 		return
 	// Fire Damage? (above double health)
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
+	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN)
 		FinalDeath()
 		return
 	// Staked with a silver stake while "Temp Death" or Asleep
