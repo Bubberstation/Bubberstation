@@ -36,8 +36,8 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
 	. = ..()
 	return "Click any person to, after [DisplayTimeText(mesmerize_delay)], stun them for [DisplayTimeText(get_power_time())].\n\
-		Right clicking on your victim however will apply a knockdown and if above level [MESMERIZE_MUTE_LEVEL] will mute the victim for [DisplayTimeText(combat_mesmerize_time())], and confuse and slow down them for [DisplayTimeText(combat_mesmerize_secondary_time())].\n\
-		A left click will completely immobilize, mute, and blind them for the next [DisplayTimeText(combat_mesmerize_secondary_time())] seconds.\n\
+		Right clicking on your victim however will apply a knockdown and if above level [MESMERIZE_MUTE_LEVEL] will mute the victim for [DisplayTimeText(get_power_time())], and confuse and slow down them for [DisplayTimeText(get_power_time())].\n\
+		A left click will completely immobilize, mute, and blind them for the next [DisplayTimeText(get_power_time())] seconds.\n\
 		While this ability is active, you will be able to see additional information about everyone in the room.\n\
 		At level [DOMINATE_DOMINATE_XRAY_LEVEL], you will gain X-Ray vision while this ability is active.\n\
 		At level [DOMINATE_VASSALIZE_LEVEL], while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Vassal. This will cost 150 blood.\n\
