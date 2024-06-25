@@ -1440,9 +1440,10 @@
 "aGE" = (
 /obj/structure/cable,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/iron/corner,
 /area/station/security/mechbay)
 "aGH" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -3426,9 +3427,7 @@
 	dir = 2
 	},
 /obj/machinery/light/small/directional/north,
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 1
-	},
+/turf/open/floor/iron/corner,
 /area/station/security/mechbay)
 "bvK" = (
 /obj/structure/window/spawner/directional/west,
@@ -7027,9 +7026,9 @@
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/any/security/brig,
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/corner,
 /area/station/security/mechbay)
 "cTQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -11091,9 +11090,10 @@
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
 	},
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
 	},
+/turf/open/floor/iron/corner,
 /area/station/security/mechbay)
 "exN" = (
 /obj/structure/chair/plastic,
@@ -34133,7 +34133,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
-/turf/open/space/basic,
+/turf/open/floor/iron,
 /area/station/cargo/bitrunning)
 "mTk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -53717,9 +53717,8 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/effect/landmark/start/corrections_officer,
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/corner,
 /area/station/security/mechbay)
 "tXJ" = (
 /turf/closed/wall/r_wall,
@@ -59854,7 +59853,7 @@
 /area/station/hallway/secondary/service)
 "wpu" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/space/basic,
+/turf/open/floor/glass,
 /area/station/hallway/secondary/exit)
 "wpO" = (
 /obj/effect/turf_decal/bot_red,
