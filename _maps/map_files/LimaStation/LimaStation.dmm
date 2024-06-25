@@ -4600,6 +4600,11 @@
 "bQw" = (
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/tcommsat_oldaisat)
+"bQy" = (
+/obj/effect/spawner/random/bedsheet/any,
+/obj/structure/bed/maint,
+/turf/open/floor/plating,
+/area/station/cargo/bitrunning)
 "bQz" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -11675,6 +11680,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
+"eIh" = (
+/obj/machinery/button/door/directional/north{
+	id = "Bit Dorm 1";
+	id_tag = "Bit Dorm 1"
+	},
+/turf/open/floor/plating,
+/area/station/cargo/bitrunning)
 "eIj" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -14095,7 +14107,8 @@
 "fzr" = (
 /obj/effect/mapping_helpers/airlock/access/any/supply/general,
 /obj/machinery/door/airlock/mining{
-	name = "Bitrunner Dorm"
+	name = "Bitrunner Dorm";
+	id_tag = "Bit Dorm 2"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -22974,6 +22987,10 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
+"iTa" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/plating,
+/area/station/cargo/bitrunning)
 "iTc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/grimy,
@@ -45912,6 +45929,10 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/xenobiology)
+"rhm" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating,
+/area/station/cargo/bitrunning)
 "rhn" = (
 /obj/structure/table,
 /obj/structure/sign/warning/engine_safety/directional/west,
@@ -46976,6 +46997,16 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
+"rAX" = (
+/obj/effect/mapping_helpers/airlock/access/any/supply/general,
+/obj/machinery/door/airlock/mining{
+	name = "Bitrunner Dorm";
+	id_tag = "Bit Dom 1"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/plating,
+/area/station/cargo/bitrunning)
 "rBw" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -58808,6 +58839,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
+"vXH" = (
+/obj/machinery/button/door/directional/north{
+	id = "Bit Dorm 2";
+	id_tag = "Bit Dorm 2"
+	},
+/turf/open/floor/plating,
+/area/station/cargo/bitrunning)
 "vYb" = (
 /obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -157932,7 +157970,7 @@ slw
 fWw
 bXZ
 jrO
-fzr
+rAX
 lut
 sUm
 feE
@@ -158185,8 +158223,8 @@ ddf
 hPb
 hkm
 uKw
-pyX
-fWw
+slw
+eIh
 fWw
 eaL
 feE
@@ -158443,9 +158481,9 @@ sdD
 sGH
 iiq
 slw
-fWw
-fWw
-fWw
+iTa
+bQy
+rhm
 feE
 lut
 sUm
@@ -158700,7 +158738,7 @@ sdD
 jGt
 agd
 slw
-fWw
+feE
 feE
 feE
 feE
@@ -159214,7 +159252,7 @@ sdD
 nfZ
 iyu
 slw
-fWw
+vXH
 fWw
 eaL
 feE
@@ -159471,9 +159509,9 @@ sdD
 gVI
 rwx
 slw
-fWw
-fWw
-fWw
+iTa
+bQy
+rhm
 feE
 qeQ
 nBE
