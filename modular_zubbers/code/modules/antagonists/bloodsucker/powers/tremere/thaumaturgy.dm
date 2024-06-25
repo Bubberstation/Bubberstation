@@ -27,7 +27,7 @@
 	bloodcost = 5
 	constant_bloodcost = 0
 	// 5 seconds per charge
-	cooldown_time = 10 SECONDS 
+	cooldown_time = 10 SECONDS
 	prefire_message = "Right click where you wish to fire."
 	click_to_activate = TRUE // you pay to replenish charges
 	unset_after_click = FALSE // Lets us cast multiple times
@@ -48,15 +48,15 @@
 	cooldown_time = get_max_charges() * THAUMATURGY_COOLDOWN_PER_CHARGE
 	bloodcost = get_max_charges() * THAUMATURGY_BLOOD_COST_PER_CHARGE
 	// just in case you somehow level up while the power is active
+	charges = get_max_charges()
 	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
 	. = ..()
 	. += "<br>Projectile range: [get_shot_range()]<br>"
+	. += "Fire a slow seeking blood bolt at your enemy.<br>"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Create a Blood shield and fire a slow seeking blood bolt.<br>"
-	else
-		. += "Fire a slow seeking blood bolt at your enemy.<br>"
+		. += "Right click the button to create a blood shield<br>"
 	if(level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
 		. += "The projectile will open doors/lockers"
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
@@ -77,17 +77,38 @@
 	. = ..()
 	charges = get_max_charges()
 	owner.balloon_alert(owner, "you start thaumaturgy")
-	if(level_current >= THAUMATURGY_SHIELD_LEVEL) // Only if we're at least level 2.
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/RightClickActivate(trigger_flags)
+	. = ..()
+	toggle_blood_shield()
+	owner.log_message("used [src] to create a blood shield", LOG_ATTACK, color="red")
+
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/toggle_blood_shield()
+	if(level_current < THAUMATURGY_SHIELD_LEVEL)
+		return
+
+	if(blood_shield)
+		var/shield = blood_shield?.resolve()
+		owner.visible_message(
+			span_warning("[owner]\'s [blood_shield] looses it's form and dissapears into [src]'\s hands "),
+			span_warning("We unform our Blood shield!"),
+			span_hear("You hear liquids sloshing around."),
+		)
+		owner.balloon_alert(owner, "you unform the [shield]")
+		qdel(shield)
+		blood_shield = null
+	else
 		var/obj/item/shield/bloodsucker/new_shield = new
 		blood_shield = WEAKREF(new_shield)
 		if(!owner.put_in_inactive_hand(new_shield))
 			QDEL_NULL(new_shield)
 			owner.balloon_alert(owner, "off hand is full!")
-			to_chat(owner, span_notice("Blood shield couldn't be activated as your off hand is full."))
+			to_chat(owner, span_notice("[capitalize(src)] couldn't be activated as your off hand is full."))
 			return FALSE
+		owner.balloon_alert(owner, "you form the [src]")
 		owner.visible_message(
-			span_warning("[owner]\'s hands begins to bleed and forms into a blood shield!"),
-			span_warning("We activate our Blood shield!"),
+			span_warning("[owner]\'s hands begins to bleed and forms into a [src]!"),
+			span_warning("We form our [src]!"),
 			span_hear("You hear liquids forming together."),
 		)
 
@@ -95,8 +116,7 @@
 	var/shield = blood_shield?.resolve()
 	var/used_charges = get_max_charges() - charges
 	if(shield)
-		qdel(shield)
-		blood_shield = null
+		QDEL_NULL(shield)
 	if(used_charges > 0)
 		StartCooldown()
 	return ..()

@@ -61,6 +61,13 @@
 	if(bloodsuckerdatum)
 		bloodsuckerdatum_power = bloodsuckerdatum
 
+/datum/action/cooldown/bloodsucker/Trigger(trigger_flags, atom/target)
+	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
+		RightClickActivate(trigger_flags)
+		return
+	. = ..()
+
+
 //This is when we CLICK on the ability Icon, not USING.
 /datum/action/cooldown/bloodsucker/PreActivate(atom/target)
 	if(!owner)
@@ -129,7 +136,7 @@
 	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))
 		to_chat(user, span_warning("Not while you're in Torpor."))
 		return FALSE
-	if(!(check_flags & BP_CAN_USE_TRANSFORMED) && user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell))
+	if(!(check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))
 		to_chat(user, span_warning("You can't do this while transformed!"))
 		return FALSE
 	// Frenzy?
@@ -187,6 +194,10 @@
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
 	if(!active)
 		ActivatePower(target)
+
+/datum/action/cooldown/bloodsucker/proc/RightClickActivate(trigger_flags)
+	if(!owner)
+		return FALSE
 
 /datum/action/cooldown/bloodsucker/proc/ActivatePower(atom/target)
 	active = TRUE

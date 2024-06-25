@@ -37,7 +37,7 @@
 	. = ..()
 	return "Click any person to, after [DisplayTimeText(mesmerize_delay)], stun them for [DisplayTimeText(get_power_time())].\n\
 		Right clicking on your victim however will apply a knockdown will confuse and slow them down for [DisplayTimeText(get_power_time())], and additionally mute them if you are if the ability is [MESMERIZE_MUTE_LEVEL] level.\n\
-		A left click will completely immobilize, mute, and blind them for the next [DisplayTimeText(get_power_time())] seconds.\n\
+		A left click will completely immobilize, and blind them for the next [DisplayTimeText(get_power_time())] seconds, and will also mute them if the ability is at level [MESMERIZE_MUTE_LEVEL]\n\
 		While this ability is active, you will be able to see additional information about everyone in the room.\n\
 		At level [DOMINATE_DOMINATE_XRAY_LEVEL], you will gain X-Ray vision while this ability is active.\n\
 		At level [DOMINATE_VASSALIZE_LEVEL], while adjacent to the target, if your target is in critical condition or dead, they will instead be turned into a temporary Vassal. This will cost [TEMP_VASSALIZE_COST] blood.\n\
@@ -84,7 +84,7 @@
 	if(target_mob.stat != CONSCIOUS && level_current >= DOMINATE_VASSALIZE_LEVEL)
 		if(user.Adjacent(target))
 			attempt_vassalize(target, user)
-		else 
+		else
 			owner.balloon_alert(owner, "too far to vassalize!")
 		return TRUE
 	return ..()

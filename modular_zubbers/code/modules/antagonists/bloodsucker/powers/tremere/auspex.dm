@@ -58,7 +58,7 @@
 	var/turf/target_turf = target_atom
 	if(target_turf.is_blocked_turf_ignore_climbable())
 		return FALSE
-	if(!(target_turf in view(owner.client.view, owner)))
+	if(!(target_turf in view(owner.client.view, get_turf(owner))))
 		owner.balloon_alert(owner, "out of view!")
 		return FALSE
 	return TRUE
@@ -66,10 +66,10 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/ActivatePower(trigger_flags)
 	. = ..()
 	owner.AddElement(/datum/element/digitalcamo)
-	animate(owner, alpha = 15, time = 1 SECONDS)
+	animate(owner, alpha = 15, time = 2 SECONDS)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower()
-	animate(owner, alpha = 255, time = 1 SECONDS)
+	animate(owner, alpha = 255, time = 2 SECONDS)
 	owner.RemoveElement(/datum/element/digitalcamo)
 	return ..()
 
@@ -99,7 +99,7 @@
 			living_mob.adjustBruteLoss(15)
 		if(level_current >= 5)
 			living_mob.Knockdown(10 SECONDS, ignore_canstun = TRUE)
-	
+
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.adjustStaminaLoss(-user.staminaloss)
 	PowerActivatedSuccesfully(cost_override = blood_cost)
