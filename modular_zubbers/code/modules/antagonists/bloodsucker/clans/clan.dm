@@ -211,7 +211,7 @@
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.GetRank() == BLOODSUCKER_HIGH_LEVEL)
-		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans is now much more less effective."))
+		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans and blood bags is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
