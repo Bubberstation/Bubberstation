@@ -4,6 +4,7 @@
 	var/datum/rat_fashion/current_look
 	/// Press this to change your rat outfit
 	var/datum/action/cooldown/rat_fashion/fashion_select
+	gender = PLURAL
 
 /mob/living/basic/regal_rat/Initialize(mapload)
 	. = ..()
