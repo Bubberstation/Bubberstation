@@ -24,12 +24,7 @@
 	/// Static list of outfits to select from
 	var/list/cached_outfits = list()
 
-/obj/machinery/netpod/Initialize(mapload)
-	. = ..()
-
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/netpod/LateInitialize()
+/obj/machinery/netpod/post_machine_initialize()
 	. = ..()
 
 	disconnect_damage = BASE_DISCONNECT_DAMAGE
@@ -320,7 +315,15 @@
 		if(isnull(wayout))
 			balloon_alert(neo, "out of bandwidth!")
 			return
-		current_avatar = server.generate_avatar(wayout, netsuit)
+		// BUBBER EDIT BEGIN - PREFS!
+		var/datum/preferences/pref
+		var/load_loadout = FALSE
+		var/obj/item/bitrunning_disk/prefs/prefdisk = locate() in neo.get_contents()
+		if(prefdisk)
+			load_loadout = prefdisk.include_loadout
+			pref = prefdisk.loaded_preference
+		current_avatar = server.generate_avatar(wayout, netsuit, pref, include_loadout = load_loadout)  // Added the prefs argument
+		// BUBBER EDIT END
 		avatar_ref = WEAKREF(current_avatar)
 		server.stock_gear(current_avatar, neo, generated_domain)
 
@@ -443,8 +446,16 @@
 /// Resolves a path to an outfit.
 /obj/machinery/netpod/proc/resolve_outfit(text)
 	var/path = text2path(text)
-	if(ispath(path, /datum/outfit))
-		return path
+	if(!ispath(path, /datum/outfit))
+		return
+
+	for(var/wardrobe in cached_outfits)
+		for(var/outfit in wardrobe["outfits"])
+			if(path == outfit["path"])
+				return path
+
+	message_admins("[usr]:[usr.ckey] attempted to select an unavailable outfit from a netpod")
+	return
 
 /// Severs the connection with the current avatar
 /obj/machinery/netpod/proc/sever_connection()

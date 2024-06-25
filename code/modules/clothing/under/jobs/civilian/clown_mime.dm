@@ -32,14 +32,13 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	can_adjust = FALSE
 
-//SKYRAT EDIT REMOVAL BEGIN
-/*
 /obj/item/clothing/under/rank/civilian/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50, falloff_exponent = 20) //die off quick please
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
-*/
-//SKYRAT EDIT REMOVAL END
+
+// BUBBERSTATION EDIT
+//WAS: //AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0) //SKYRAT EDIT REMOVAL
 
 /obj/item/clothing/under/rank/civilian/clown/blue
 	name = "blue clown suit"
@@ -80,9 +79,15 @@
 /obj/item/clothing/under/rank/civilian/clown/jester
 	name = "jester suit"
 	desc = "A jolly dress, well suited to entertain your master, nuncle."
-	icon_state = "jester"
+	icon_state = "jester_map"
+	greyscale_colors = "#00ff00#ff0000"
+	greyscale_config = /datum/greyscale_config/jester_suit
+	greyscale_config_worn = /datum/greyscale_config/jester_suit/worn
+	flags_1 = IS_PLAYER_COLORABLE_1
 
-/obj/item/clothing/under/rank/civilian/clown/jester/alt
+/obj/item/clothing/under/rank/civilian/clown/jesteralt
+	name = "jester suit"
+	desc = "A jolly dress, well suited to entertain your master, nuncle."
 	icon_state = "jester2"
 
 /obj/item/clothing/under/rank/civilian/clown/sexy

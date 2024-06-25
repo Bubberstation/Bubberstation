@@ -125,6 +125,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	GLOB.air_alarms += src
 	update_appearance()
 	find_and_hang_on_wall()
+	register_context()
 
 /obj/machinery/airalarm/process()
 	if(!COOLDOWN_FINISHED(src, warning_cooldown))
@@ -186,7 +187,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			. += span_notice("Right-click to [locked ? "unlock" : "lock"] the interface.")
 
 /obj/machinery/airalarm/ui_status(mob/user, datum/ui_state/state)
-	if(user.has_unlimited_silicon_privilege && aidisabled)
+	if(HAS_SILICON_ACCESS(user) && aidisabled)
 		to_chat(user, "AI control has been disabled.")
 	else if(!shorted)
 		return ..()
@@ -227,7 +228,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	var/data = list()
 
 	data["locked"] = locked
-	data["siliconUser"] = user.has_unlimited_silicon_privilege
+	data["siliconUser"] = HAS_SILICON_ACCESS(user)
 	data["emagged"] = (obj_flags & EMAGGED ? 1 : 0)
 	data["dangerLevel"] = danger_level
 	data["atmosAlarm"] = !!my_area.active_alarms[ALARM_ATMOS]
@@ -288,7 +289,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		singular_tlv["hazard_max"] = tlv.hazard_max
 		data["tlvSettings"] += list(singular_tlv)
 
-	if(!locked || user.has_unlimited_silicon_privilege)
+	if(!locked || HAS_SILICON_ACCESS(user))
 		data["vents"] = list()
 		for(var/obj/machinery/atmospherics/components/unary/vent_pump/vent as anything in my_area.air_vents)
 			data["vents"] += list(list(
@@ -345,7 +346,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 
 	if(. || buildstage != AIR_ALARM_BUILD_COMPLETE)
 		return
-	if((locked && !usr.has_unlimited_silicon_privilege) || (usr.has_unlimited_silicon_privilege && aidisabled))
+	if((locked && !HAS_SILICON_ACCESS(usr)) || (HAS_SILICON_ACCESS(usr) && aidisabled))
 		return
 
 	var/mob/user = usr
@@ -490,6 +491,10 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			if(allow_link_change)
 				disconnect_sensor()
 
+		if ("lock")
+			togglelock(usr)
+			return TRUE
+
 	update_appearance()
 
 	return TRUE
@@ -567,7 +572,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		alarm_manager.send_alarm(ALARM_ATMOS)
 		if(pressure <= WARNING_LOW_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low pressure and temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! Low pressure and high temperature detected."
@@ -577,7 +581,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! High pressure and low temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE)
 			warning_message = "Danger! Low pressure detected."
@@ -587,7 +590,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			return
 		if(temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High temperature detected."

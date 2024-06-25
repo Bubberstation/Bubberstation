@@ -142,35 +142,6 @@
 	for(var/datum/robot_energy_storage/titanium/titanium_energy in borgo.model.storages)
 		qdel(titanium_energy)
 
-/// funny borg inducer upgrade
-/obj/item/borg/upgrade/inducer
-	name = "engineering cyborg inducer upgrade"
-	desc = "An inducer device for the engineering cyborg."
-	icon_state = "cyborg_upgrade3"
-	require_model = TRUE
-	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
-	model_flags = BORG_MODEL_ENGINEERING
-
-/obj/item/borg/upgrade/inducer/action(mob/living/silicon/robot/target_robot, user = usr)
-	. = ..()
-	if(.)
-
-		var/obj/item/inducer/cyborg/inducer = locate() in target_robot
-		if(inducer)
-			to_chat(user, span_warning("This unit is already equipped with an inducer module!"))
-			return FALSE
-
-		inducer = new(target_robot.model)
-		target_robot.model.basic_modules += inducer
-		target_robot.model.add_module(inducer, FALSE, TRUE)
-
-/obj/item/borg/upgrade/inducer/deactivate(mob/living/silicon/robot/target_robot, user = usr)
-	. = ..()
-	if (.)
-		var/obj/item/inducer/cyborg/inducer = locate() in target_robot.model
-		if (inducer)
-			target_robot.model.remove_module(inducer, TRUE)
-
 /*
 *	ADVANCED MINING CYBORG UPGRADES
 */
@@ -208,7 +179,7 @@
 *	ADVANCED CARGO CYBORG UPGRADES
 */
 /datum/design/borg_upgrade_clamp
-	name = "improved Integrated Hydraulic Clamp Module"
+	name = "Improved Integrated Hydraulic Clamp Module"
 	id = "borg_upgrade_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/better_clamp
@@ -252,7 +223,7 @@
 		cyborg.model.remove_module(big_clamp, TRUE)
 
 /datum/design/borg_upgrade_cargo_tele
-	name = "cargo teleporter module"
+	name = "Cargo teleporter module"
 	id = "borg_upgrade_cargo_tele"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/cargo_tele
@@ -263,7 +234,7 @@
 	)
 
 /obj/item/borg/upgrade/cargo_tele
-	name = "borg cargo teleporter module"
+	name = "cargo teleporter module"
 	desc = "Allows you to upgrade a cargo cyborg with the cargo teleporter"
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
@@ -294,7 +265,7 @@
 		cyborg.model.remove_module(locate_tele, TRUE)
 
 /datum/design/borg_upgrade_forging
-	name = "borg forging module"
+	name = "Forging module"
 	id = "borg_upgrade_forging"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/forging
@@ -305,7 +276,7 @@
 	)
 
 /obj/item/borg/upgrade/forging
-	name = "borg forging module"
+	name = "cyborg forging module"
 	desc = "Allows you to upgrade a cargo cyborg with forging gear"
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
@@ -357,12 +328,67 @@
 		cyborg.model.remove_module(locate_forge, TRUE)
 
 /*
+* SERVICE CYBORG UPGRADES
+*/
+
+/datum/design/borg_upgrade_artistic
+	name = "Artistic module"
+	id = "borg_upgrade_artistic"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/artistic
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,
+					/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
+	construction_time = 10 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ALL
+	)
+
+/obj/item/borg/upgrade/artistic
+	name = "borg artistic module"
+	desc = "Allows you to upgrade a cyborg with tools for creating art."
+	icon_state = "cyborg_upgrade3"
+	items_to_add = list(
+			/obj/item/pen,
+			/obj/item/toy/crayon/spraycan/borg,
+			/obj/item/instrument/guitar,
+			/obj/item/instrument/piano_synth,
+			/obj/item/stack/pipe_cleaner_coil/cyborg,
+			/obj/item/chisel,
+			)
+
+/datum/design/borg_upgrade_botany
+	name = "Botanical Operator Module"
+	id = "borg_upgrade_botany"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/botany
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
+	construction_time = 10 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_SERVICE
+	)
+
+/obj/item/borg/upgrade/botany
+	name = "botanical operator upgrade"
+	desc = "Provides an assortement of tools for dealing with plants."
+	icon_state = "cyborg_upgrade2"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/service)
+	model_flags = BORG_MODEL_SERVICE
+	items_to_add = list(
+		/obj/item/secateurs,
+		/obj/item/cultivator,
+		/obj/item/shovel/spade,
+		/obj/item/plant_analyzer,
+		/obj/item/storage/bag/plants
+	)
+
+/*
 *	UNIVERSAL CYBORG UPGRADES
 */
 
 /// ShapeShifter
 /obj/item/borg/upgrade/borg_shapeshifter
-	name = "Cyborg Shapeshifter Module"
+	name = "cyborg shapeshifter module"
 	desc = "An experimental device which allows a cyborg to disguise themself into another type of cyborg."
 	icon_state = "cyborg_upgrade3"
 
@@ -392,7 +418,7 @@
 	if(borg.hasAffection)
 		to_chat(usr, span_warning("This unit already has a affection module installed!"))
 		return FALSE
-	if(!(TRAIT_R_WIDE in borg.model.model_features))
+	if(!((TRAIT_R_SQUADRUPED in borg.model.model_features) || (TRAIT_R_WIDE in borg.model.model_features)))//BUBBER EDIT - added small quadruped borgs
 		to_chat(usr, span_warning("This unit's chassis does not support this module."))
 		return FALSE
 
@@ -478,39 +504,11 @@
 	desc = "A module that greatly upgrades the ability of borgs to display affection."
 	icon_state = "cyborg_upgrade3"
 	custom_price = 0
+	items_to_add = list(
+		/obj/item/kinky_shocker,
+		/obj/item/clothing/mask/leatherwhip,
+		/obj/item/spanking_pad,
+		/obj/item/tickle_feather,
+		/obj/item/clothing/erp_leash,
+	)
 
-/obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg)
-	. = ..()
-	if(!.)
-		return
-	var/obj/item/kinky_shocker/cur_shocker = locate() in borg.model.modules
-	if(cur_shocker)
-		to_chat(usr, span_warning("This unit already has a dominatrix module installed!"))
-		return FALSE
-
-	var/obj/item/kinky_shocker/shocker = new /obj/item/kinky_shocker()
-	borg.model.basic_modules += shocker
-	borg.model.add_module(shocker, FALSE, TRUE)
-	var/obj/item/clothing/mask/leatherwhip/whipper = new /obj/item/clothing/mask/leatherwhip()
-	borg.model.basic_modules += whipper
-	borg.model.add_module(whipper, FALSE, TRUE)
-	var/obj/item/spanking_pad/spanker = new /obj/item/spanking_pad()
-	borg.model.basic_modules += spanker
-	borg.model.add_module(spanker, FALSE, TRUE)
-	var/obj/item/tickle_feather/tickler = new /obj/item/tickle_feather()
-	borg.model.basic_modules += tickler
-	borg.model.add_module(tickler, FALSE, TRUE)
-
-/obj/item/borg/upgrade/dominatrixmodule/deactivate(mob/living/silicon/robot/borg, user = usr)
-	. = ..()
-	if(!.)
-		return
-
-	for(var/obj/item/kinky_shocker/shocker in borg.model.modules)
-		borg.model.remove_module(shocker, TRUE)
-	for(var/obj/item/clothing/mask/leatherwhip/whipper in borg.model.modules)
-		borg.model.remove_module(whipper, TRUE)
-	for(var/obj/item/spanking_pad/spanker in borg.model.modules)
-		borg.model.remove_module(spanker, TRUE)
-	for(var/obj/item/tickle_feather/tickler in borg.model.modules)
-		borg.model.remove_module(tickler, TRUE)

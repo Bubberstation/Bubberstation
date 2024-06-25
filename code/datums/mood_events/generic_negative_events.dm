@@ -469,10 +469,15 @@
 	mood_change = -3
 	timeout = 5 MINUTES
 
-/datum/mood_event/amulette_insanity
+/datum/mood_event/amulet_insanity
 	description = "I sEe THe LiGHt, It mUsT BE stOPPed"
 	mood_change = -6
 	timeout = 5 MINUTES
+
+/datum/mood_event/mallet_humiliation
+	description = "Getting hit by such a stupid weapon feels rather humiliating..."
+	mood_change = -3
+	timeout = 10 SECONDS
 
 ///Wizard cheesy grand finale - what everyone but the wizard gets
 /datum/mood_event/madness_despair
@@ -483,3 +488,9 @@
 /datum/mood_event/all_nighter
 	description = "I didn't sleep at all last night. I'm exhausted."
 	mood_change = -5
+
+//Used by the Veteran Advisor trait job
+/datum/mood_event/desentized
+	description = "Nothing will ever rival with what I seen in the past..."
+	mood_change = -3
+	special_screen_obj = "mood_desentized"

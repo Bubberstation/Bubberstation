@@ -96,7 +96,6 @@
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/transport/linear/LateInitialize()
-	. = ..()
 	//after everything is initialized the transport controller can order everything
 	transport_controller_datum.order_platforms_by_z_level()
 
@@ -138,7 +137,7 @@
 /obj/structure/transport/linear/proc/add_item_on_transport(datum/source, atom/movable/new_transport_contents)
 	SIGNAL_HANDLER
 	var/static/list/blacklisted_types = typecacheof(list(/obj/structure/fluff/tram_rail, /obj/effect/decal/cleanable, /obj/structure/transport/linear, /mob/camera))
-	if(is_type_in_typecache(new_transport_contents, blacklisted_types) || new_transport_contents.invisibility == INVISIBILITY_ABSTRACT) //prevents the tram from stealing things like landmarks
+	if(is_type_in_typecache(new_transport_contents, blacklisted_types) || new_transport_contents.invisibility == INVISIBILITY_ABSTRACT || HAS_TRAIT(new_transport_contents, TRAIT_UNDERFLOOR)) //prevents the tram from stealing things like landmarks
 		return FALSE
 	if(new_transport_contents in transport_contents)
 		return FALSE
@@ -165,6 +164,12 @@
 					continue
 
 				initial_contents += new_initial_contents
+
+///verify the movables in our list of contents are actually on our loc
+/obj/structure/transport/linear/proc/verify_transport_contents()
+	for(var/atom/movable/movable_contents as anything in transport_contents)
+		if(!(movable_contents.loc in locs))
+			remove_item_from_transport(movable_contents)
 
 ///signal handler for COMSIG_MOVABLE_UPDATE_GLIDE_SIZE: when a movable in transport_contents changes its glide_size independently.
 ///adds that movable to a lazy list, movables in that list have their glide_size updated when the tram next moves
@@ -844,7 +849,6 @@
 	transport_id = TRANSPORT_TYPE_TRAM
 	transport_controller_type = /datum/transport_controller/linear/tram
 	radial_travel = FALSE
-	obj_flags = NONE
 	/// Set by the tram control console in late initialize
 	var/travelling = FALSE
 
@@ -909,7 +913,7 @@
 		new overlay(our_turf)
 		turfs += our_turf
 
-	addtimer(CALLBACK(src, PROC_REF(clear_turfs), turfs, iterations), 1)
+	addtimer(CALLBACK(src, PROC_REF(clear_turfs), turfs, iterations), 0.1 SECONDS)
 
 /obj/structure/transport/linear/tram/proc/clear_turfs(list/turfs_to_clear, iterations)
 	for(var/turf/our_old_turf as anything in turfs_to_clear)
@@ -929,7 +933,7 @@
 		turfs += our_turf
 
 	if(iterations)
-		addtimer(CALLBACK(src, PROC_REF(clear_turfs), turfs, iterations), 1)
+		addtimer(CALLBACK(src, PROC_REF(clear_turfs), turfs, iterations), 0.1 SECONDS)
 
 /obj/structure/transport/linear/tram/proc/estop_throw(throw_direction)
 	for(var/mob/living/passenger in transport_contents)

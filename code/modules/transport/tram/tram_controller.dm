@@ -250,6 +250,7 @@
 	for(var/obj/structure/transport/linear/tram/transport_module as anything in transport_modules) //only thing everyone needs to know is the new location.
 		if(transport_module.travelling) //wee woo wee woo there was a double action queued. damn multi tile structs
 			return //we don't care to undo cover_locked controls, though, as that will resolve itself
+		transport_module.verify_transport_contents()
 		transport_module.glide_size_override = DELAY_TO_GLIDE_SIZE(speed_limiter)
 		transport_module.set_travelling(TRUE)
 
@@ -708,19 +709,20 @@
 
 /obj/machinery/transport/tram_controller/hilbert
 	configured_transport_id = HILBERT_LINE_1
-	obj_flags = parent_type::obj_flags | NO_DECONSTRUCTION
+
+/obj/machinery/transport/tram_controller/wrench_act_secondary(mob/living/user, obj/item/tool)
+	return NONE
 
 /obj/machinery/transport/tram_controller/Initialize(mapload)
 	. = ..()
 	register_context()
 	if(!id_tag)
 		id_tag = assign_random_name()
-	return INITIALIZE_HINT_LATELOAD
 
 /**
  * Mapped or built tram cabinet isn't located on a transport module.
  */
-/obj/machinery/transport/tram_controller/LateInitialize(mapload)
+/obj/machinery/transport/tram_controller/post_machine_initialize()
 	. = ..()
 	SStransport.hello(src, name, id_tag)
 	find_controller()
@@ -848,7 +850,7 @@
 			return
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
 		balloon_alert(user, "unsecured")
-		deconstruct()
+		deconstruct(TRUE)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/transport/tram_controller/screwdriver_act_secondary(mob/living/user, obj/item/tool)
@@ -955,7 +957,7 @@
  * Since the machinery obj is a dumb terminal for the controller datum, sync the display with the status bitfield of the tram
  */
 /obj/machinery/transport/tram_controller/proc/sync_controller(source, controller, controller_status, travel_direction, destination_platform)
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 	if(controller != controller_datum)
 		return
 	update_appearance()
@@ -992,7 +994,7 @@
 /obj/machinery/transport/tram_controller/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 
-	if(!cover_open && !issiliconoradminghost(user) && !isobserver(user))
+	if(!cover_open && !HAS_SILICON_ACCESS(user) && !isobserver(user))
 		return
 
 	if(!is_operational)

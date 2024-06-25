@@ -96,8 +96,6 @@
 	if(multitooled)
 		src.multitooled = multitooled
 
-	RegisterSignal(src, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(on_parent_multitool))
-
 	ADD_TRAIT(mob_parent, TRAIT_STYLISH, REF(src)) // SKYRAT EDIT ADD - allows style meter chads to do flips
 
 /datum/component/style/RegisterWithParent()
@@ -345,12 +343,6 @@
 	INVOKE_ASYNC(source, TYPE_PROC_REF(/mob/living, put_in_hands), target)
 	source.visible_message(span_notice("[source] quickly swaps [weapon] out with [target]!"), span_notice("You quickly swap [weapon] with [target]."))
 
-
-/datum/component/style/proc/on_parent_multitool(datum/source, mob/living/user, obj/item/tool, list/recipes)
-	multitooled = !multitooled
-	user.balloon_alert(user, "meter [multitooled ? "" : "un"]hacked")
-
-
 // Point givers
 /datum/component/style/proc/on_punch(mob/living/carbon/human/punching_person, atom/attacked_atom, proximity)
 	SIGNAL_HANDLER
@@ -424,13 +416,23 @@
 
 	add_action(ACTION_GIBTONITE_DEFUSED, min(40, 20 * (10 - det_time))) // 40 to 180 points depending on speed
 
+//SKYRAT EDIT START
+/*
 /datum/component/style/proc/on_crusher_detonate(datum/source, mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
+*/
+/datum/component/style/proc/on_crusher_detonate(datum/component/kinetic_crusher/source, mob/living/target, obj/item/kinetic_crusher/crusher, backstabbed)
+//SKYRAT EDIT END
 	SIGNAL_HANDLER
 
 	if(target.stat == DEAD)
 		return
 
+	//SKYRAT EDIT START
+	/*
 	var/has_brimdemon_trophy = locate(/obj/item/crusher_trophy/brimdemon_fang) in crusher.trophies
+	*/
+	var/has_brimdemon_trophy = locate(/obj/item/crusher_trophy/brimdemon_fang) in source.stored_trophies
+	//SKYRAT EDIT END
 
 	add_action(ACTION_MARK_DETONATED, round((backstabbed ? 60 : 30) * (ismegafauna(target) ? 1.5 : 1) * (has_brimdemon_trophy ? 1.25 : 1)))
 

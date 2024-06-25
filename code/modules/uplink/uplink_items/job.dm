@@ -28,7 +28,7 @@
 /datum/uplink_item/role_restricted/bureaucratic_error
 	name = "Organic Capital Disturbance Virus"
 	desc = "Randomizes job positions presented to new hires. May lead to too many/too few security officers and/or clowns. Single use."
-	item = /obj/effect/gibspawner/generic
+	item = ABSTRACT_UPLINK_ITEM
 	surplus = 0
 	limited_stock = 1
 	cost = 2
@@ -286,7 +286,14 @@
 	restricted_roles = list(JOB_CLOWN)
 	surplus = 10
 
-/* Bubber Edit Removal, This break vore preferences /datum/uplink_item/role_restricted/his_grace
+/datum/uplink_item/role_restricted/clowncar/spawn_item_for_generic_use(mob/user)
+	var/obj/vehicle/sealed/car/clowncar/car = ..()
+	car.enforce_clown_role = FALSE
+	var/obj/item/key = new car.key_type(user.loc)
+	car.visible_message(span_notice("[key] drops out of [car] onto the floor."))
+	return car
+
+/datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"
 	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
 	His Grace grants gradual regeneration and complete stun immunity to His wielder, but be wary: if He gets too hungry, He will become impossible to drop and eventually kill you if not fed. \
@@ -295,9 +302,10 @@
 	lock_other_purchases = TRUE
 	cant_discount = TRUE
 	item = /obj/item/his_grace
-	cost = 20
+	cost = 500 // BUBBER EDIT
 	surplus = 0
-	restricted_roles = list(JOB_CHAPLAIN) */
+	restricted_roles = list(JOB_CHAPLAIN)
+	purchasable_from = ~UPLINK_SPY
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
@@ -311,7 +319,7 @@
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
 	surplus = 15
 
-/* //SKYRAT REMOVAL START
+/* // SKYRAT EDIT REMOVAL START
 /datum/uplink_item/role_restricted/spider_injector
 	name = "Australicus Slime Mutator"
 	desc = "Crikey mate, it's been a wild travel from the Australicus sector but we've managed to get \
@@ -325,7 +333,7 @@
 	surplus = 10
 
 */
-// SKYRAT EDIT END
+// SKYRAT EDIT REMOVAL END
 /* /datum/uplink_item/role_restricted/blastcannon - BUBBER REMOVE START
 	name = "Blast Cannon"
 	desc = "A highly specialized weapon, the Blast Cannon is actually relatively simple. It contains an attachment for a tank transfer valve mounted to an angled pipe specially constructed \
@@ -384,3 +392,4 @@ BUBBER REMOVE END*/
 	restricted_roles = list(JOB_MIME)
 	restricted = TRUE
 	refundable = FALSE
+	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY

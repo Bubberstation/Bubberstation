@@ -51,6 +51,9 @@
 	/// This is the screen that is given to the user after they get revived. On death, their screen is temporarily set to BSOD before it turns off, hence the need for this var.
 	var/saved_screen = "Blank"
 
+/datum/species/synthetic/allows_food_preferences()
+	return FALSE
+
 /datum/species/synthetic/get_default_mutant_bodyparts()
 	return list(
 		"tail" = list("None", FALSE),
@@ -107,8 +110,8 @@
 	if(!chassis && !head)
 		return
 
-	var/datum/sprite_accessory/synth_chassis/chassis_of_choice = GLOB.sprite_accessories[MUTANT_SYNTH_CHASSIS][chassis[MUTANT_INDEX_NAME]]
-	var/datum/sprite_accessory/synth_head/head_of_choice = GLOB.sprite_accessories[MUTANT_SYNTH_HEAD][head[MUTANT_INDEX_NAME]]
+	var/datum/sprite_accessory/synth_chassis/chassis_of_choice = SSaccessories.sprite_accessories[MUTANT_SYNTH_CHASSIS][chassis[MUTANT_INDEX_NAME]]
+	var/datum/sprite_accessory/synth_head/head_of_choice = SSaccessories.sprite_accessories[MUTANT_SYNTH_HEAD][head[MUTANT_INDEX_NAME]]
 	if(!chassis_of_choice && !head_of_choice)
 		return
 

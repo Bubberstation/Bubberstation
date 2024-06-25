@@ -250,7 +250,7 @@
 
 /datum/antagonist/traitor/proc/forge_single_generic_objective()
 	if(prob(KILL_PROB))
-		var/list/active_ais = active_ais()
+		var/list/active_ais = active_ais(skip_syndicate = TRUE)
 		if(active_ais.len && prob(DESTROY_AI_PROB(GLOB.joined_player_list.len)))
 			var/datum/objective/destroy/destroy_objective = new()
 			destroy_objective.owner = owner
@@ -360,7 +360,7 @@
 			result += contractor_round_end()
 		result += "<br>The traitor had a total of [DISPLAY_PROGRESSION(uplink_handler.progression_points)] Reputation and [uplink_handler.telecrystals] Unused Telecrystals."
 
-	var/special_role_text = lowertext(name)
+	var/special_role_text = LOWER_TEXT(name)
 
 	if(traitor_won)
 		result += span_greentext("The [special_role_text] was successful!")

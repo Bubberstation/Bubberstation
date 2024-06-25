@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	SEND_TEXT(world.log, text)
 #endif
 
-#if defined(REFERENCE_DOING_IT_LIVE)
+#if defined(REFERENCE_TRACKING_LOG_APART)
 #define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
 
 /proc/log_harddel(text)
@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
  * * color - color of the log text
  * * log_globally - boolean checking whether or not we write this log to the log file
  */
-/atom/proc/log_message(message, message_type, color = null, log_globally = TRUE, list/data)
+/atom/proc/log_message(message, message_type, color = null, log_globally = TRUE, list/data, redacted_copy)
 	if(!log_globally)
 		return
 
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		SSdbcore.add_log_to_mass_insert_queue(
 			format_table_name("game_log"),
 			list(
-				"datetime" = SQLtime(),
+				"datetime" = ISOtime(),
 				"round_id" = "[GLOB.round_id]",
 				"ckey" = key_name(src),
 				"loc" = loc_name(src),
@@ -118,16 +118,17 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	#endif
 	//SKYRAT EDIT ADDITION END
 	var/log_text = "[key_name_and_tag(src)] [message] [loc_name(src)]"
+	var/redacted_log_text = "[(src)]: [redacted_copy ? redacted_copy : message] @ [loc_name(src)]" // BUBBER EDIT ADDITION
 	switch(message_type)
 		/// ship both attack logs and victim logs to the end of round attack.log just to ensure we don't lose information
 		if(LOG_ATTACK, LOG_VICTIM)
-			log_attack(log_text, data)
+			log_attack(log_text, data, redacted_log_text) // BUBBER EDIT)
 		if(LOG_SAY)
-			log_say(log_text, data)
+			log_say(log_text, data, redacted_log_text) // BUBBER EDIT
 		if(LOG_WHISPER)
-			log_whisper(log_text, data)
+			log_whisper(log_text, data, redacted_log_text) // BUBBER EDIT
 		if(LOG_EMOTE)
-			log_emote(log_text, data)
+			log_emote(log_text, data, redacted_log_text) // BUBBER EDIT
 		//SKYRAT EDIT ADDITION BEGIN
 		if(LOG_SUBTLE)
 			log_subtle(log_text, data)
@@ -135,7 +136,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 			log_subtler(log_text, data)
 		//SKYRAT EDIT ADDITION END
 		if(LOG_RADIO_EMOTE)
-			log_radio_emote(log_text, data)
+			log_radio_emote(log_text, data, redacted_log_text)
 		if(LOG_DSAY)
 			log_dsay(log_text, data)
 		if(LOG_PDA)
@@ -145,7 +146,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		if(LOG_COMMENT)
 			log_comment(log_text, data)
 		if(LOG_TELECOMMS)
-			log_telecomms(log_text, data)
+			log_telecomms(log_text, data, redacted_log_text) // BUBBER EDIT)
 		if(LOG_TRANSPORT)
 			log_transport(log_text, data)
 		if(LOG_ECON)
@@ -161,16 +162,16 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		if(LOG_OWNERSHIP)
 			log_game(log_text, data)
 		if(LOG_GAME)
-			log_game(log_text, data)
+			log_game(log_text, data, redacted_log_text) // BUBBER EDIT)
 		if(LOG_MECHA)
 			log_mecha(log_text, data)
 		if(LOG_SHUTTLE)
 			log_shuttle(log_text, data)
 		if(LOG_SPEECH_INDICATORS)
-			log_speech_indicators(log_text, data)
+			log_speech_indicators(log_text, data, redacted_log_text) // BUBBER EDIT)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
-			log_game(log_text, data)
+			log_game(log_text, data, redacted_log_text) // BUBBER EDIT
 
 /* For logging round startup. */
 /proc/start_log(log)

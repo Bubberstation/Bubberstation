@@ -32,20 +32,20 @@
 
 /obj/item/clipboard/cyborg/examine()
 	. = ..()
-	. += "Alt-click to synthetize a piece of paper."
+	. += "Alt-click to synthesize a piece of paper."
 	if(!COOLDOWN_FINISHED(src, printer_cooldown))
-		. += "Its integrated paper synthetizer seems to still be on cooldown."
+		. += "Its integrated paper synthesizer seems to still be on cooldown."
 
 
-/obj/item/clipboard/cyborg/AltClick(mob/user)
+/obj/item/clipboard/cyborg/click_alt(mob/user)
 	if(!iscyborg(user))
 		to_chat(user, span_warning("You do not seem to understand how to use [src]."))
-		return
+		return CLICK_ACTION_BLOCKING
 	var/mob/living/silicon/robot/cyborg_user = user
 	// Not enough charge? Tough luck.
 	if(cyborg_user?.cell.charge < paper_charge_cost)
 		to_chat(user, span_warning("Your internal cell doesn't have enough charge left to use [src]'s integrated printer."))
-		return
+		return CLICK_ACTION_BLOCKING
 	// Check for cooldown to avoid paper spamming
 	if(COOLDOWN_FINISHED(src, printer_cooldown))
 		// If there's not too much paper already, let's go
@@ -61,10 +61,12 @@
 			toppaper_ref = WEAKREF(new_paper)
 			update_appearance()
 			to_chat(user, span_notice("[src]'s integrated printer whirs to life, spitting out a fresh piece of paper and clipping it into place."))
+			return CLICK_ACTION_SUCCESS
 		else
 			to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, as [src] already contains enough paper."))
 	else
-		to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, its bluespace paper synthetizer not having finished recovering from its last synthesis."))
+		to_chat(user, span_warning("[src]'s integrated printer refuses to print more paper, its bluespace paper synthesizer not having finished recovering from its last synthesis."))
+	return CLICK_ACTION_BLOCKING
 
 
 /obj/item/hand_labeler/cyborg
@@ -606,7 +608,10 @@
 			"Peacekeeper" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "peace"),
 			"Clown" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "clown"),
 			"Syndicate" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "synd_sec"),
-			"Spider Clan" = image(icon = CYBORG_ICON_NINJA, icon_state = "ninja_engi")
+			"Spider Clan" = image(icon = CYBORG_ICON_NINJA, icon_state = "ninja_engi"),
+			//Bubber addition start
+			"Research" = image(icon = 'modular_zubbers/code/modules/borgs/sprites/robot_sci.dmi', icon_state = "research"),
+			//Bubber addition end
 		))
 		var/model_selection = show_radial_menu(user, user, model_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 		if(!model_selection)
@@ -638,6 +643,10 @@
 				model = new /obj/item/robot_model/syndicatejack
 			if("Spider Clan")
 				model = new /obj/item/robot_model/ninja
+			//Bubber addition start
+			if("Research")
+				model = new /obj/item/robot_model/sci
+			//Bubber addition end
 			else
 				return FALSE
 		if (!set_disguise_vars(model, user))
@@ -660,7 +669,7 @@
 			f = user.filters[start+i]
 			animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
 			animate(offset=f:offset-1, time=rand()*20+10)
-		if (do_after(user, 50, target=user) && user.cell.use(activationCost))
+		if (do_after(user, 5 SECONDS, target=user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
 			to_chat(user, span_notice("You are now disguised."))
 			activate(user)
@@ -722,6 +731,7 @@
 	user.update_icons()
 	user.model.update_dogborg()
 	user.model.update_tallborg()
+	user.model.update_squadruped() //BUBBER ADDITION
 
 	if(listeningTo == user)
 		return

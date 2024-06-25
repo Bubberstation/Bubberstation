@@ -77,6 +77,12 @@
 /area/centcom/central_command_areas/admin/interlink)
 "s" = (
 /obj/structure/filingcabinet/employment,
+/obj/structure/filingcabinet/medical{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet/security{
+	pixel_x = -10
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "t" = (
@@ -90,7 +96,6 @@
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/admin/interlink)
 "x" = (
-/obj/structure/filingcabinet/medical,
 /obj/machinery/light/directional/east,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
@@ -137,6 +142,10 @@
 	pixel_y = -1;
 	pixel_x = 6
 	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = -8;
+	pixel_y = 2
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "I" = (
@@ -154,7 +163,7 @@
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "L" = (
-/obj/structure/filingcabinet/security,
+/obj/structure/bed/dogbed,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "M" = (
@@ -179,7 +188,9 @@
 /area/centcom/central_command_areas/admin/interlink)
 "P" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
+/obj/item/paper_bin{
+	papertype = /obj/item/paper/paperslip/corporate
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "R" = (
@@ -208,7 +219,7 @@
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/admin/interlink)
 "X" = (
-/obj/structure/bed/dogbed,
+/obj/machinery/light_switch/directional/west,
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/admin/interlink)
 
@@ -246,7 +257,7 @@ l
 T
 T
 T
-X
+W
 u
 t
 t
@@ -319,7 +330,7 @@ P
 K
 n
 A
-W
+X
 C
 r
 n

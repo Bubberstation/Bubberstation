@@ -79,6 +79,9 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/nt_rep)
 "az" = (
@@ -110,6 +113,9 @@
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
@@ -190,7 +196,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/left/directional/west{
 	name = "Consultant's Desk";
-	req_access = list("cent_general")
+	req_access = list("cent_general");
+	unres_sides = 8
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
@@ -261,6 +268,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/effect/turf_decal/siding/dark,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "OJ" = (

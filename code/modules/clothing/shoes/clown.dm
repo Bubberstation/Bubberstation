@@ -14,7 +14,10 @@
 
 	create_storage(storage_type = /datum/storage/pockets/shoes/clown)
 	LoadComponent(/datum/component/squeak, squeak_sound, 50, falloff_exponent = 20) //die off quick please
-	//AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0) // SKYRAT EDIT - REMOVAL - NO CLOWN CYTOLOGY
+	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
+
+// BUBBERSTATION EDIT
+//WAS: //AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0) //SKYRAT EDIT REMOVAL
 
 /obj/item/clothing/shoes/clown_shoes/equipped(mob/living/user, slot)
 	. = ..()
@@ -53,3 +56,9 @@
 	desc = "The adorable sound they make when you walk will mean making friends is more likely."
 	icon_state = "meown_shoes"
 	squeak_sound = list('sound/effects/footstep/meowstep1.ogg'=1) //mew mew mew mew
+
+/obj/item/clothing/shoes/clown_shoes/moffers
+	name = "moffers"
+	desc = "No moths were harmed in the making of these slippers."
+	icon_state = "moffers"
+	squeak_sound = list('sound/effects/footstep/moffstep01.ogg'=1) //like sweet music to my ears

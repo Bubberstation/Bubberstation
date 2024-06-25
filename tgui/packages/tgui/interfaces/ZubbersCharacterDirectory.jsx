@@ -13,14 +13,26 @@ import {
 import { Window } from '../layouts';
 
 const erpTagColor = {
-  Unset: 'label',
-  'Yes - Dom': '#570000',
-  'Yes - Sub': '#002B57',
-  'Yes - Switch': '#022E00',
-  Yes: '#022E00',
-  'Check OOC': '#222222',
-  Ask: '#222222',
-  No: '#000000',
+  Unset: '#000000',
+  'Top - Dom': '#410308',
+  'Top - Switch': '#410308',
+  'Top - Sub': '#410308',
+  'Verse-Top - Dom': '#3d003b',
+  'Verse-Top - Switch': '#3d003b',
+  'Verse-Top - Sub': '#3d003b',
+  'Verse - Dom': '#310042',
+  'Verse - Switch': '#310042',
+  'Verse - Sub': '#310042',
+  'Verse-Bottom - Dom': '#29084b',
+  'Verse-Bottom - Switch': '#29084b',
+  'Verse-Bottom - Sub': '#29084b',
+  'Bottom - Dom': '#002f51',
+  'Bottom - Switch': '#002f51',
+  'Bottom - Sub': '#002f51',
+  'Check OOC Notes': '#333333',
+  'Ask (L)OOC': '#333333',
+  No: '#131313',
+  Yes: '#002901',
 };
 
 export const ZubbersCharacterDirectory = (props) => {
