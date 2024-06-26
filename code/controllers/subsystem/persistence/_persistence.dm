@@ -50,6 +50,8 @@ SUBSYSTEM_DEF(persistence)
 	var/tram_hits_this_round = 0
 	var/tram_hits_last_round = 0
 
+	var/last_storyteller = "" // BUBBER EDIT ADD: Storyteller votes
+
 /datum/controller/subsystem/persistence/Initialize()
 	load_poly()
 	load_wall_engravings()
@@ -63,6 +65,7 @@ SUBSYSTEM_DEF(persistence)
 	load_panic_bunker() //SKYRAT EDIT ADDITION - PANICBUNKER
 	load_tram_counter()
 	load_adventures()
+	load_storyteller() //BUBBER EDIT ADD - Storyteller
 	return SS_INIT_SUCCESS
 
 ///Collects all data to persist.

@@ -14,7 +14,7 @@
 	if(check_click_intercept(params,A))
 		return
 
-	if(stat || (lockcharge) || IsParalyzed() || IsStun())
+	if(stat || (lockcharge) || IsParalyzed() || IsStun() || istype(loc, /obj/item/clothing/head/mob_holder)) //BUBBER EDIT - makes it so cyborgs that are holdable can not interact wile being held
 		return
 
 	var/list/modifiers = params2list(params)
