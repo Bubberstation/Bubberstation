@@ -31,7 +31,7 @@
 	/// The presently-inserted vial.
 	var/obj/item/reagent_containers/cup/vial/vial
 	/// If the Hypospray starts with a vial, which vial does it start with?
-	var/start_vial
+	var/obj/item/reagent_containers/cup/vial/start_vial
 
 	/// Time taken to inject others
 	var/inject_wait = WAIT_INJECT
@@ -48,6 +48,19 @@
 	var/penetrates = null
 	/// Used for GAGS-ified hypos.
 	var/gags_bodystate = "hypo2_normal"
+
+/obj/item/hypospray/mkii/piercing
+	name = "hypospray mk.II combat"
+	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
+	desc = "The combat variant of DeForest Mk. II hypospray, able to pierce through thick armor and quickly inject the chemicals."
+	inject_wait = COMBAT_WAIT_INJECT
+	spray_wait = COMBAT_WAIT_SPRAY
+	spray_self = COMBAT_SELF_SPRAY
+	inject_self = COMBAT_SELF_INJECT
+	penetrates = INJECT_CHECK_PENETRATE_THICK
+
+/obj/item/hypospray/mkii/piercing/atropine
+	start_vial = /obj/item/reagent_containers/cup/vial/small/atropine
 
 /obj/item/hypospray/mkii/deluxe
 	name = "hypospray mk.II deluxe"
@@ -103,6 +116,16 @@
 /obj/item/hypospray/mkii/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
+	if(!isnull(start_vial))
+		var/init_vial = new start_vial()
+		vial = init_vial
+		start_vial = null
+
+/obj/item/hypospray/mkii/Destroy()
+	if(!isnull(start_vial))
+		start_vial = null
+
+	return ..()
 
 /obj/item/hypospray/mkii/update_overlays()
 	. = ..()
