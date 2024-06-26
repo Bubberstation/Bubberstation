@@ -13,17 +13,18 @@
 				/obj/item/clothing/head/costume/bubber/jester = 3,
 				/obj/item/clothing/under/rank/civilian/bubber/clown/jester = 3,
 				/obj/item/clothing/shoes/clown_shoes/bubber/jester = 3,
+				/obj/item/clothing/glasses/surgerygoggles = 3,
+				/obj/item/clothing/gloves/longrubbergloves = 3,
+				/obj/item/clothing/suit/leatherapron = 3,
 			),
 		),
 	)
 
-/obj/machinery/vending/dorms
-	zubbers_product_categories = list(
-		list(
-			"name" = "Restraints",
-			"icon" = FA_ICON_HANDCUFFS,
-			"products" = list(
-				/obj/item/clothing/neck/human_petcollar/locked/ringbell = 8
-			)
-		)
+
+/obj/machinery/vending/wardrobe/medi_wardrobe
+	zubbers_products = list(
+
+	/obj/item/clothing/glasses/hud/health/surgerygoggles = 3,
+	/obj/item/clothing/gloves/latex/nitrile/longrubbergloves = 3,
+	/obj/item/clothing/suit/leatherapron = 3,
 	)
