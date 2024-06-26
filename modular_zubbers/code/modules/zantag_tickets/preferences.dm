@@ -2,6 +2,9 @@
 	var/antag_tickets = -1 //Safety
 	var/antag_tickets_old = -1
 
+	var/antag_tickets_spent = 0 //This round.
+	var/antag_tickets_earned = 0 //This round.
+
 /datum/preferences/load_preferences()
 	if(!savefile)
 		stack_trace("Attempted to load the preferences of [parent] without a savefile; did you forget to call load_savefile?")

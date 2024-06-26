@@ -43,7 +43,7 @@
 				return 0
 			if(HAS_TRAIT(actual_mob, TRAIT_INCAPACITATED))
 				return 0
-			if(actual_mob.is_imprisoned_in_security()) //Restrained, Incapacitated, in certain security areas.
+			if(actual_mob.is_imprisoned_in_security())
 				return 0
 			return -highest_result
 
@@ -71,3 +71,15 @@ GLOBAL_LIST_INIT(imprisoning_areas,list(
 			return TRUE
 
 	return FALSE
+
+/proc/candidates_to_tickets(list/possible_candidates)
+	var/base_weight = CONFIG_GET(number/antag_ticket_base_weight)
+	var/list/candidates_tickets = list() //M = ticket count
+	for(var/mob/candidate as anything in possible_candidates)
+		if(!candidate.client)
+			continue
+		var/candidate_tickets = base_weight + candidate.client.get_antag_tickets()
+		if(candidate_tickets <= 0)
+			continue
+		candidates_tickets[candidate] = candidate_tickets
+	return candidates_tickets

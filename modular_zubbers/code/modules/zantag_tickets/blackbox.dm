@@ -9,11 +9,26 @@
 
 /datum/controller/subsystem/blackbox/proc/update_antag_tickets(amount)
 
+	var/max_antag_ticket_gain_per_round = CONFIG_GET(number/antag_ticket_max_earned_per_round)
+	var/max_antag_ticket_loss_per_round = CONFIG_GET(number/antag_ticket_max_spent_per_round)
+
 	for(var/client/found_client as anything in GLOB.clients)
 		var/ticket_multiplier = found_client.antag_ticket_multiplier()
 		if(!ticket_multiplier)
 			continue
-		found_client.add_antag_tickets(ticket_multiplier*amount)
+		var/tickets_to_add = ticket_multiplier*amount
+		if(!tickets_to_add)
+			continue
+		var/datum/preferences/prefs = GLOB.preferences_datums[found_client.ckey]
+		if(tickets_to_add > 0)
+			if(max_antag_ticket_gain_per_round > 0 && prefs.antag_tickets_earned >= max_antag_ticket_gain_per_round)
+				continue
+			prefs.antag_tickets_earned += tickets_to_add
+		else
+			if(max_antag_ticket_loss_per_round > 0 && prefs.antag_tickets_spent >= max_antag_ticket_loss_per_round)
+				continue
+			prefs.antag_tickets_spent -= tickets_to_add
+		found_client.add_antag_tickets(tickets_to_add)
 
 	return TRUE
 
