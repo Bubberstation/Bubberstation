@@ -1,6 +1,8 @@
 /datum/quirk/well_trained
 	name = "Well-Trained"
 	desc = "You absolutely love being dominated. The thought of someone with a stronger character than yours is enough to make you act up."
+	icon = "sort-down"
+	medical_record_text = "Patient can be easily swayed by a sufficiently assertive individual"
 	// Yes, it should be neutral. Yes, this is a bad idea. This is funny and multiple people are saying it's time to be funny.
 	value = -1
 	gain_text = "<span class='notice'>You feel like being someone's pet</span>"
