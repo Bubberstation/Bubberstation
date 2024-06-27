@@ -1,7 +1,7 @@
 /datum/quirk/dominant_aura
 	name = "Dominant Aura"
 	desc = "Your personality is assertive enough to appear as powerful to other people, so much in fact that the weaker kind can't help but throw themselves at your feet on command."
-	icon = "sort-up"
+	icon = "fa-sort-up"
 	medical_record_text = "Patient displays a high level of assertiveness within their personality."
 	value = 1
 	gain_text = span_notice("You feel like making someone your pet.")
