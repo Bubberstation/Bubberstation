@@ -1,6 +1,6 @@
 /datum/quirk/well_trained
 	name = "Well-Trained"
-	desc = "You absolutely love being dominated. The thought of someone with a stronger character than yours is enough to make you act up."
+	desc = "You absolutely love being dominated. The thought of someone with a stronger character than yours is enough to make you act up. They can snap their fingers to send you to the floor."
 	icon = "fa-sort-down"
 	medical_record_text = "Patient can be easily swayed by a sufficiently assertive individual"
 	// Yes, it should be neutral. Yes, this is a bad idea. This is funny and multiple people are saying it's time to be funny.
@@ -67,7 +67,7 @@
 	var/list/notices = list(
 		"You feel someone's presence making you more submissive.",
 		"The thought of being commanded floods you with lust.",
-		"You really want to be called a good [quirk_holder.p_they()].",
+		"You really want to be called a pet.",
 		"Someone's presence is making you all flustered.",
 		"You start getting excited and sweating."
 	)
