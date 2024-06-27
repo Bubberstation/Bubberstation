@@ -86,20 +86,27 @@
 /datum/antagonist/bloodsucker/proc/check_begin_torpor(SkipChecks = NONE)
 	var/mob/living/carbon/user = owner.current
 	/// Are we entering Torpor via Sol/Death? Then entering it isnt optional!
+	// do not skip checking organs for torpor
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.dna.species.mutantheart && !user.get_organ_slot(ORGAN_SLOT_HEART))
+			return FALSE
 	if(SkipChecks & TORPOR_SKIP_CHECK_ALL)
 		if(COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
 			to_chat(user, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
 		torpor_begin(TRUE)
-		return
+		return TRUE
 	/// Prevent Torpor whilst frenzied.
 	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0)))
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
-		return
+		return FALSE
 	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later
 	var/total_damage = getBruteLoss() + getFireLoss() + user.getToxLoss() + user.getOxyLoss()
 	/// Checks - Not daylight & Has more than 10 Brute/Burn & not already in Torpor
 	if(SkipChecks & TORPOR_SKIP_CHECK_DAMAGE || !SSsunlight.sunlight_active && total_damage >= 10 && !HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT))
 		torpor_begin()
+		return TRUE
+	return FALSE
 
 /datum/antagonist/bloodsucker/proc/check_end_torpor()
 	var/mob/living/carbon/user = owner.current
@@ -125,7 +132,7 @@
 			torpor_end()
 	return TRUE
 
-/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)		
+/datum/antagonist/bloodsucker/proc/torpor_begin(silent = FALSE)
 	// slow down bucko
 	if(!COOLDOWN_FINISHED(src, bloodsucker_spam_torpor))
 		return

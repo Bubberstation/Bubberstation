@@ -280,11 +280,6 @@
 	// Temporary Death? Convert to Torpor.
 	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT) || isbrain(owner.current))
 		return
-	// Won't torpor without vital organs, as this means they'd revive without a heart
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/humie = owner.current
-		if(humie.dna.species.mutantheart && !owner.current.get_organ_slot(ORGAN_SLOT_HEART))
-			return
 	check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
