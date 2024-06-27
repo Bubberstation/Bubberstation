@@ -21,12 +21,16 @@
 			continue
 		var/datum/preferences/prefs = GLOB.preferences_datums[found_client.ckey]
 		if(tickets_to_add > 0)
-			if(max_antag_ticket_gain_per_round > 0 && prefs.antag_tickets_earned >= max_antag_ticket_gain_per_round)
-				continue
+			if(max_antag_ticket_gain_per_round > 0)
+				tickets_to_add = min(tickets_to_add,max_antag_ticket_gain_per_round - prefs.antag_tickets_earned)
+				if(tickets_to_add <= 0)
+					continue
 			prefs.antag_tickets_earned += tickets_to_add
 		else
-			if(max_antag_ticket_loss_per_round > 0 && prefs.antag_tickets_spent >= max_antag_ticket_loss_per_round)
-				continue
+			if(max_antag_ticket_loss_per_round > 0)
+				tickets_to_add = max(tickets_to_add,-(max_antag_ticket_loss_per_round - prefs.antag_tickets_spent))
+				if(tickets_to_add > 0)
+					continue
 			prefs.antag_tickets_spent -= tickets_to_add
 		found_client.add_antag_tickets(tickets_to_add)
 

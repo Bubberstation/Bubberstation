@@ -23,10 +23,19 @@
 	integer = TRUE
 
 //The base value for weight-based antag ticket rolling.
-//For calculations, your final number would be this value + your current antag ticket count.
+//For calculations, your final number would be this value + your current antag ticket count. This can be negative, but the final amount will always be at least the value of antag_ticket_roll_minimum .
 /datum/config_entry/number/antag_ticket_base_weight
 	default = 0
 	integer = TRUE
+
+//The minimum possible amount of antag tickets someone can for final calculations.
+//Generally, you should set this to 0 to make it so that if you don't have antag tickets, you can't roll antag.
+//Note that setting this to 0 means that if no one has enough antag tickets to become something, that antag can't roll.
+/datum/config_entry/number/antag_ticket_final_minimum
+	default = 1
+	integer = TRUE
+	min_val = 0
+
 
 //The maximum amount of antag tickets you're allowed to gain per round.
 /datum/config_entry/number/antag_ticket_max_earned_per_round
@@ -36,6 +45,6 @@
 
 //The maximum amount of antag tickets you're allowed to lose per round.
 /datum/config_entry/number/antag_ticket_max_spent_per_round
-	default = 0
+	default = 120
 	integer = TRUE
 	min_val = 0

@@ -74,11 +74,12 @@ GLOBAL_LIST_INIT(imprisoning_areas,list(
 
 /proc/candidates_to_tickets(list/possible_candidates)
 	var/base_weight = CONFIG_GET(number/antag_ticket_base_weight)
+	var/absolute_minimum = CONFIG_GET(number/antag_ticket_final_minimum)
 	var/list/candidates_tickets = list() //M = ticket count
 	for(var/mob/candidate as anything in possible_candidates)
 		if(!candidate.client)
 			continue
-		var/candidate_tickets = base_weight + candidate.client.get_antag_tickets()
+		var/candidate_tickets = max(absolute_minimum,base_weight + candidate.client.get_antag_tickets())
 		if(candidate_tickets <= 0)
 			continue
 		candidates_tickets[candidate] = candidate_tickets
