@@ -25,16 +25,30 @@ SUBSYSTEM_DEF(title)
 	var/progress_reference_time = 0
 	/// A list of station traits that have lobby buttons
 	var/list/available_lobby_station_traits = list()
+	/// Are we on an Effigy promo map
+	var/effigy_promo = FALSE
+	/// Effigy fluff messages
+	var/list/static/effigy_fluff
 
 /datum/controller/subsystem/title/Initialize()
-	var/dat
-	if(!fexists("[global.config.directory]/bubbers/bubbers_title.txt")) // BUBBER EDIT - original title_html.txt
-		to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read bubbers_title.txt, reverting to backup title html, please check your server config and ensure this file exists.")) // BUBBER EDIT - original title_html.txt
-		dat = DEFAULT_TITLE_HTML
-	else
-		dat = file2text("[global.config.directory]/bubbers/bubbers_title.txt") // BUBBER EDIT - original title_html.txt
+	switch(SSmapping.config.map_name)
+		if("Effigy Sigma Octantis")
+			effigy_promo = TRUE
+		if("Effigy RimPoint")
+			effigy_promo = TRUE
 
-	title_html = dat
+	if(effigy_promo)
+		title_html = EFFIGY_TEMP_HTML
+		effigy_fluff = world.file2list('local/interface/effigy_fluff.txt')
+	else
+		var/dat
+		if(!fexists("[global.config.directory]/bubbers/bubbers_title.txt")) // BUBBER EDIT - original title_html.txt
+			to_chat(world, span_boldwarning("CRITICAL ERROR: Unable to read bubbers_title.txt, reverting to backup title html, please check your server config and ensure this file exists.")) // BUBBER EDIT - original title_html.txt
+			dat = DEFAULT_TITLE_HTML
+		else
+			dat = file2text("[global.config.directory]/bubbers/bubbers_title.txt") // BUBBER EDIT - original title_html.txt
+
+		title_html = dat
 
 	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
 	var/list/local_title_screens = list()
@@ -53,10 +67,13 @@ SUBSYSTEM_DEF(title)
 	check_progress_reference_time()
 	load_progress_json()
 
-	if(startup_splash)
-		change_title_screen(startup_splash)
+	if(effigy_promo)
+		change_title_screen(EFFIGY_TEMP_LOADING_SCREEN)
 	else
-		change_title_screen(DEFAULT_TITLE_LOADING_SCREEN)
+		if(startup_splash)
+			change_title_screen(startup_splash)
+		else
+			change_title_screen(DEFAULT_TITLE_LOADING_SCREEN)
 
 	if(length(local_title_screens))
 		for(var/i in local_title_screens)
@@ -200,6 +217,14 @@ SUBSYSTEM_DEF(title)
 	var/msg_key = msg_key_regex.Replace(msg, "#")
 
 	GLOB.startup_messages += msg_html
+
+	// EffigyEdit Addition Start - TM ONLY - EFFIGY PROMO
+	// Effigy fluff text, if available
+	var/fluff_message
+	if(SStitle.effigy_promo && (LAZYLEN(SStitle.effigy_fluff) > 0))
+		fluff_message = pick(SStitle.effigy_fluff)
+		msg_html = {"<p class="terminal_text">[fluff_message]</p>"}
+	// EffigyEdit Addition End - TM ONLY - EFFIGY PROMO
 
 	// If we ran before SStitle initialized, set the ref time now.
 	SStitle.check_progress_reference_time()

@@ -1,0 +1,40 @@
+{
+	"version": 1,
+	"map_name": "Effigy Sigma Octantis",
+	"map_path": "map_files/SigmaOctantis",
+	"map_file": "SigmaOctantis.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"cargo": "cargo_delta",
+		"ferry": "ferry_kilo",
+		"whiteship": "whiteship_birdshot",
+		"emergency": "emergency_sigmaoctantis"
+	},
+	"traits": [
+		{
+			"Up": true,
+			"Mining": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/misc/asteroid",
+			"Trench Ruins": true,
+			"No Parallax": true
+		},
+		{
+			"Down": true,
+			"Baseturf": "/turf/open/openspace",
+			"Linkage": null,
+			"Gravity": true,
+			"Ocean Ruins": true,
+			"No Parallax": true
+		}
+	],
+	"blacklist_file": "oceanruinblacklist.txt",
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": ["/area/station/service/cafeteria"]
+		}
+	}
+}

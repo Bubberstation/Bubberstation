@@ -1,0 +1,43 @@
+{
+	"version": 1,
+	"map_name": "Effigy RimPoint",
+	"map_path": "map_files/RimPoint",
+	"map_file": "RimPoint.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"cargo": "cargo_delta",
+		"ferry": "ferry_kilo",
+		"whiteship": "whiteship_birdshot",
+		"emergency": "emergency_rimpoint"
+	},
+	"traits": [
+		{
+			"Up": true,
+			"Mining": true,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/water",
+			"Weather_Rainstorm": true,
+			"No Parallax": true,
+			"Jungle Ruins": true,
+			"Jungle Cave Ruins": true
+		},
+		{
+			"Down": true,
+			"Baseturf": "/turf/open/openspace",
+			"Linkage": null,
+			"Gravity": true,
+			"Weather_Rainstorm": true,
+			"No Parallax": true,
+			"Jungle Cave Ruins": true
+		}
+	],
+	"blacklist_file": "jungleruinblacklist.txt",
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": ["/area/station/service/cafeteria"]
+		}
+	}
+}

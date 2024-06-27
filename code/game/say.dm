@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_SUPPLY]" = "suppradio",
 	"[FREQ_SERVICE]" = "servradio",
+	"[FREQ_BROADCAST]" = "greenteamradio", // EffigyEdit Addition - TM ONLY - EFFIGY PROMO
 	"[FREQ_SECURITY]" = "secradio",
 	"[FREQ_COMMAND]" = "comradio",
 	"[FREQ_AI_PRIVATE]" = "aiprivradio",
