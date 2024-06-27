@@ -24,10 +24,10 @@
 
 	if(!istype(user))
 		return
-	if(user.stat == DEAD)
-		return
 	var/mob/living/carbon/human/sub = user
 	if(!sub.has_quirk(/datum/quirk/well_trained))
+		return
+	if(sub.stat == DEAD)
 		return
 	examine_list += span_purple("You can sense submissiveness irradiating from them.")
 
@@ -45,7 +45,7 @@
 	if(!TIMER_COOLDOWN_FINISHED(quirk_holder, DOMINANT_COOLDOWN_SNAP))
 		return
 
-	for(var/mob/living/carbon/human/sub in hearers(5, quirk_holder))
+	for(var/mob/living/carbon/human/sub in hearers(world.view / 2, quirk_holder))
 		if(!sub.has_quirk(/datum/quirk/well_trained) || (sub == quirk_holder))
 			continue
 		var/good_x = "pet"
@@ -54,22 +54,26 @@
 				good_x = "boy"
 			if(FEMALE)
 				good_x = "girl"
+
 		switch(emote_args.key)
 			if("snap")
 				sub.dir = get_dir(sub, quirk_holder)
 				sub.emote("me", 1, "faces towards <b>[quirk_holder]</b> at attention!", TRUE)
 				to_chat(sub, span_purple("<b>[quirk_holder]</b>'s snap shoots down your spine and puts you at attention"))
+
 			if("snap2")
 				sub.dir = get_dir(sub, quirk_holder)
 				sub.Immobilize(0.3 SECONDS)
 				sub.emote("me",1,"hunches down in response to <b>[quirk_holder]'s</b> snapping.", TRUE)
 				to_chat(sub, span_purple("You hunch down and freeze in place in response to <b>[quirk_holder]</b> snapping their fingers"))
+
 			if("snap3")
 				sub.KnockToFloor(knockdown_amt = 0.1 SECONDS)
 				step(sub, get_dir(sub, quirk_holder))
 				sub.emote("me",1,"falls to the floor and crawls closer to <b>[quirk_holder]</b>, following their command.",TRUE)
 				sub.do_jitter_animation(0.1 SECONDS)
 				to_chat(sub, "You throw yourself on the floor like a pathetic beast and crawl towards <b>[quirk_holder]</b> like a good, submissive [good_x].")
+
 		. = TRUE
 	if(.)
 		TIMER_COOLDOWN_START(quirk_holder, DOMINANT_COOLDOWN_SNAP, 10 SECONDS) // 1/10th of a second knockdown with a 10 seconds cooldown on a neutral quirk.
