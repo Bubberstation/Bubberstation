@@ -13,6 +13,9 @@
 
 //Additiional Station Areas
 
+/area/station/common/cryopods/aux
+	name = "\improper Aux. Cryopods Room"
+
 /area/station/commons/public_mining
 	name = "\improper Public Mining"
 	icon_state = "mining"
