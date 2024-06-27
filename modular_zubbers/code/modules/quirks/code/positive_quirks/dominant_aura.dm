@@ -72,7 +72,7 @@
 				step(sub, get_dir(sub, quirk_holder))
 				sub.emote("me",1,"falls to the floor and crawls closer to <b>[quirk_holder]</b>, following their command.",TRUE)
 				sub.do_jitter_animation(0.1 SECONDS)
-				to_chat(sub, "You throw yourself on the floor like a pathetic beast and crawl towards <b>[quirk_holder]</b> like a good, submissive [good_x].")
+				to_chat(sub, span_purple("You throw yourself on the floor like a pathetic beast and crawl towards <b>[quirk_holder]</b> like a good, submissive [good_x]."))
 
 		. = TRUE
 	if(.)
