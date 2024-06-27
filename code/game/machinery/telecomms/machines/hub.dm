@@ -33,6 +33,8 @@
 
 	use_energy(idle_power_usage)
 
+	return TRUE //BUBBERSTATION CHANGE: MESSAGE OF THE DAY.
+
 /obj/machinery/telecomms/hub/update_power()
 	var/old_on = on
 	if (toggled && (machine_stat & (BROKEN|NOPOWER|EMPED)))
