@@ -14,8 +14,7 @@
 	if(!. || QDELETED(src) || constant_flickering)
 		return
 
-	switch(severity)
-		if(EXPLODE_HEAVY)
-			start_flickering() //Permanent flicker (fixed via multitool).
-		if(EXPLODE_LIGHT)
-			flicker(rand(3 SECONDS, 5 SECONDS)) //Temp flicker (automatic fix).
+	if(severity >= EXPLODE_HEAVY)
+		start_flickering() //Permanent flicker (fixed via multitool).
+	else
+		flicker(rand(3 SECONDS, 5 SECONDS)) //Temp flicker (automatic fix).
