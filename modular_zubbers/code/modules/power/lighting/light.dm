@@ -1,3 +1,12 @@
+/obj/machinery/light //Light tubes.
+	max_integrity = 150
+
+/obj/machinery/light/small //Light bulbs.
+	max_integrity = 110
+
+/obj/machinery/light/floor //Floor lights.
+	max_integrity = 175
+
 /obj/machinery/light/ex_act(severity, target)
 	. = ..() //Returns false if unaffected.
 	if(. && QDELETED(src) && !constant_flickering)
