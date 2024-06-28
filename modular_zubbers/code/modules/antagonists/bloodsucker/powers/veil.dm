@@ -50,7 +50,7 @@
 	to_chat(owner, span_warning("You mystify the air around your person. Your identity is now altered."))
 
 	// Store Prev Appearance
-	disguise_name = user.dna.species.random_name(user.gender)
+	disguise_name = generate_random_name(user.gender, TRUE)
 	prev_gender = user.gender
 	prev_skin_tone = user.skin_tone
 	prev_hair_style = user.hairstyle
@@ -68,7 +68,7 @@
 
 	// Change Appearance
 	user.gender = pick(MALE, FEMALE, PLURAL, NEUTER)
-	user.skin_tone = random_skin_tone()
+	user.skin_tone = pick(GLOB.skin_tones)
 	user.hairstyle = random_hairstyle(user.gender)
 	user.facial_hairstyle = pick(random_facial_hairstyle(user.gender), "Shaved")
 	user.hair_color = "#[random_short_color()]"
@@ -76,12 +76,12 @@
 	user.underwear = random_underwear(user.gender)
 	user.undershirt = random_undershirt(user.gender)
 	user.socks = random_socks(user.gender)
-	
+
 	//user.eye_color = random_eye_color()
 	if(prev_disfigured)
 		REMOVE_TRAIT(user, TRAIT_DISFIGURED, null)
 	var/datum/dna/dna = user.dna
-	// 
+	//
 	// dna.features = dna.species.randomize_features()
 	dna.features = dna.species.randomize_features(user)
 	// dna.body_markings = dna.species.get_random_body_markings(dna.features)
