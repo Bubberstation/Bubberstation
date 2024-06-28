@@ -1,3 +1,12 @@
+/datum/loadout_item/suit/secjacket
+	name = "High-Vis Security Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
+	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
+
+/datum/loadout_item/suit/leather_apron
+	name = "Leather Apron"
+	item_path = /obj/item/clothing/suit/leatherapron
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
@@ -19,11 +28,6 @@
 	name = "Silk Shawl"
 	item_path = /obj/item/clothing/suit/cloak/shawl
 	ckeywhitelist = list("thedragmeme")
-
-/datum/loadout_item/suit/leather_apron
-	name = "Leather Apron"
-	item_path = /obj/item/clothing/suit/leatherapron
-	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/suit/collared_vest
 	name = "Collared Vest"
@@ -48,4 +52,8 @@
 /datum/loadout_item/suit/diver //Donor item for patriot210
 	name = "Black Divers Coat"
 	item_path = /obj/item/clothing/suit/jacket/diver
-	ckeywhitelist = list("sexmaster, leafydasurvivor")
+	ckeywhitelist = list("sexmaster", "leafydasurvivor")
+/datum/loadout_item/suit/holographic
+    name = "Holographic Suit V4000"
+    item_path = /obj/item/clothing/suit/misc/holographic
+    ckeywhitelist = list("blovy")

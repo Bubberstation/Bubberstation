@@ -34,17 +34,6 @@
 		var/mob/living/carbon/human/H = C
 		handle_mutant_bodyparts(H)
 
-/datum/species/moth/random_name(gender,unique,lastname)
-	if(unique)
-		return random_unique_moth_name()
-
-	var/randname = moth_name()
-
-	if(lastname)
-		randname += " [lastname]"
-
-	return randname
-
 /datum/species/moth/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load)
 	. = ..()
 	RegisterSignal(human_who_gained_species, COMSIG_MOB_APPLY_DAMAGE_MODIFIERS, PROC_REF(damage_weakness))
@@ -61,14 +50,14 @@
 
 /datum/species/moth/randomize_features()
 	var/list/features = ..()
-	features["moth_markings"] = pick(GLOB.moth_wings_list) // SKYRAT EDIT CHANGE - ORIGINAL: features["moth_markings"] = pick(GLOB.moth_markings_list)
+	features["moth_markings"] = pick(SSaccessories.moth_wings_list) // SKYRAT EDIT CHANGE - ORIGINAL: features["moth_markings"] = pick(SSaccessories.moth_markings_list)
 	return features
 
-/datum/species/moth/get_scream_sound(mob/living/carbon/human)
+/datum/species/moth/get_scream_sound(mob/living/carbon/human/moth)
 	return 'sound/voice/moth/scream_moth.ogg'
 
 /datum/species/moth/get_cough_sound(mob/living/carbon/human/moth)
-	if(moth.gender == FEMALE)
+	if(moth.physique == FEMALE)
 		return pick(
 			'sound/voice/human/female_cough1.ogg',
 			'sound/voice/human/female_cough2.ogg',
@@ -88,7 +77,7 @@
 
 
 /datum/species/moth/get_cry_sound(mob/living/carbon/human/moth)
-	if(moth.gender == FEMALE)
+	if(moth.physique == FEMALE)
 		return pick(
 			'sound/voice/human/female_cry1.ogg',
 			'sound/voice/human/female_cry2.ogg',
@@ -101,14 +90,12 @@
 
 
 /datum/species/moth/get_sneeze_sound(mob/living/carbon/human/moth)
-	if(moth.gender == FEMALE)
+	if(moth.physique == FEMALE)
 		return 'sound/voice/human/female_sneeze1.ogg'
 	return 'sound/voice/human/male_sneeze1.ogg'
 
 
-/datum/species/moth/get_laugh_sound(mob/living/carbon/human)
-	if(!istype(human))
-		return
+/datum/species/moth/get_laugh_sound(mob/living/carbon/human/moth)
 	return 'sound/voice/moth/moth_laugh1.ogg'
 
 /datum/species/moth/get_physical_attributes()

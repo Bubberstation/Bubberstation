@@ -170,6 +170,7 @@
 			"Miner" = /obj/item/robot_model/miner,
 			"Janitor" = /obj/item/robot_model/janitor,
 			"Service" = /obj/item/robot_model/service,
+			"Research" = /obj/item/robot_model/sci,//BUBBEREDIT - Addition of Research borgs
 		)
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper
@@ -476,7 +477,8 @@
  */
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
-	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
+	//BUBBER EDIT - Disables flashlight when held
+	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode || istype(loc, /obj/item/clothing/head/mob_holder)))
 		set_light_on(lamp_functional && stat != DEAD && lamp_doom) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
 		set_light_color(COLOR_RED) //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
 		set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
@@ -705,7 +707,6 @@
 	if (hasShrunk)
 		hasShrunk = FALSE
 		update_transform(4/3)
-	hasAffection = FALSE //Just so they can get the affection modules back if they want them.
 	//SKYRAT EDIT ADDITION END
 
 	logevent("Chassis model has been reset.")
@@ -970,7 +971,9 @@
 	SIGNAL_HANDLER
 
 	if(model)
-		model.respawn_consumable(src, cell.use(cell.charge * 0.005))
+		if(cell.charge)
+			if(model.respawn_consumable(src, cell.charge * 0.005))
+				cell.use(cell.charge * 0.005)
 		if(sendmats)
 			model.restock_consumable()
 	if(repairs)
