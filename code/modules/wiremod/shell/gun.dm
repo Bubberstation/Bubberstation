@@ -30,7 +30,7 @@
 	range = 7
 
 /obj/item/stock_parts/cell/emproof/wiremod_gun
-	maxcharge = 100
+	maxcharge = 0.1 * STANDARD_CELL_CHARGE
 
 /obj/item/gun/energy/wiremod_gun/Initialize(mapload)
 	. = ..()
@@ -68,7 +68,7 @@
 /obj/item/circuit_component/wiremod_gun/proc/handle_shot(atom/source, mob/firer, atom/target, angle)
 	SIGNAL_HANDLER
 
-	playsound(source, get_sfx(SFX_TERMINAL_TYPE), 25, FALSE)
+	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	shooter.set_output(firer)
 	shot.set_output(target)
 	signal.set_output(COMPONENT_SIGNAL)

@@ -164,9 +164,13 @@
 	if(HAS_TRAIT(target, TRAIT_HUSK))
 		if(advanced)
 			if(HAS_TRAIT_FROM(target, TRAIT_HUSK, BURN))
-				render_list += "<span class='alert ml-1'>Subject has been husked by severe burns.</span>\n"
+				/* SKYRAT EDIT START: More unhusking information */
+				render_list += "<span class='alert ml-1'>Subject has been husked by severe burns. Proceed by repairing burn damage and following up with \
+								application of [SYNTHFLESH_UNHUSK_AMOUNT]u synthflesh or injection of rezadone as treatment.</span>\n"
 			else if (HAS_TRAIT_FROM(target, TRAIT_HUSK, CHANGELING_DRAIN))
-				render_list += "<span class='alert ml-1'>Subject has been husked by dessication.</span>\n"
+				render_list += "<span class='alert ml-1'>Subject has been husked by dessication. Use application of [SYNTHFLESH_LING_UNHUSK_AMOUNT]u \
+								of synthflesh or injection of rezadone as treatment.</span>\n"
+				/* SKYRAT EDIT END */
 			else
 				render_list += "<span class='alert ml-1'>Subject has been husked by mysterious causes.</span>\n"
 
@@ -224,6 +228,17 @@
 					var/allergies = allergies_quirk.allergy_string
 					render_list += "<span class='alert ml-1'><b>Subject is extremely allergic to the following chemicals:</b></span>\n"
 					render_list += "<span class='alert ml-2'><b>[allergies]</b></span>\n" // BUBBER EDIT END
+
+	// SKYRAT EDIT ADDITION START -- Show increased/decreased brute/burn mods, to "leave a paper trail" for the fragility quirk
+	if(ishuman(target))
+		var/mob/living/carbon/human/humantarget = target
+
+		var/datum/physiology/physiology = humantarget.physiology
+		if (physiology.brute_mod != 1)
+			render_list += "<span class='danger ml-1'>Subject takes [(physiology.brute_mod) * 100]% brute damage.</span>\n"
+		if (physiology.burn_mod != 1)
+			render_list += "<span class='danger ml-1'>Subject takes [(physiology.burn_mod) * 100]% burn damage.</span>\n"
+	// SKYRAT EDIT ADDITION END
 
 	if (HAS_TRAIT(target, TRAIT_IRRADIATED))
 		render_list += "<span class='alert ml-1'>Subject is irradiated. Supply toxin healing.</span>\n"
@@ -300,7 +315,7 @@
 				<td style='width:12em;'><font color='#ff0000'><b>Status</b></font></td>"
 
 			for(var/obj/item/organ/organ as anything in humantarget.organs)
-				var/status = organ.get_status_text()
+				var/status = organ.get_status_text(advanced)
 				if (status != "")
 					render = TRUE
 					toReport += "<tr><td><font color='#cc3333'>[organ.name]:</font></td>\

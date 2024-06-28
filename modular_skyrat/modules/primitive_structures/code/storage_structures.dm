@@ -6,7 +6,7 @@
 	icon = 'modular_skyrat/modules/primitive_structures/icons/storage.dmi'
 	resistance_flags = FLAMMABLE
 
-/obj/structure/rack/wooden/MouseDrop_T(obj/object, mob/user, params)
+/obj/structure/rack/wooden/mouse_drop_receive(atom/movable/object, mob/living/user, params)
 	. = ..()
 	var/list/modifiers = params2list(params)
 	if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
@@ -22,13 +22,9 @@
 	user.balloon_alert_to_viewers("disassembling...")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
-	new /obj/item/stack/sheet/mineral/clay(drop_location(), 5)
+	new /obj/item/stack/sheet/mineral/wood(drop_location(), 2)
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
-
-/obj/structure/rack/wooden/atom_deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/mineral/wood(drop_location(), 2)
-	return ..()
 
 // Barrel but it works like a crate
 
@@ -50,7 +46,7 @@
 	icon_state = "producebin"
 	resistance_flags = FLAMMABLE
 	base_build_path = /obj/machinery/smartfridge/wooden
-	base_icon_state = "producebin"
+	base_icon_state = "produce"
 	use_power = NO_POWER_USE
 	light_power = 0
 	idle_power_usage = 0
@@ -82,9 +78,7 @@
 /obj/machinery/smartfridge/wooden/produce_bin
 	name = "produce bin"
 	desc = "A wooden hamper, used to hold plant products and try to keep them safe from pests."
-	icon_state = "producebin"
 	base_build_path = /obj/machinery/smartfridge/wooden/produce_bin
-	base_icon_state = "producebin"
 
 /obj/machinery/smartfridge/wooden/produce_bin/accept_check(obj/item/item_to_check)
 	var/static/list/accepted_items = list(
@@ -108,7 +102,7 @@
 /obj/machinery/smartfridge/wooden/ration_shelf
 	name = "Ration shelf"
 	desc = "A wooden shelf, used to store food... preferably preserved."
-	icon_state = "rationshelf"
+	icon_state = "seedshelf"
 	base_build_path = /obj/machinery/smartfridge/wooden/ration_shelf
 	base_icon_state = "ration"
 

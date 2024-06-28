@@ -100,12 +100,7 @@
 /obj/item/radio/intercom/directional/north{
 	pixel_y = 32
 	},
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	fax_name = "Law Office";
-	name = "Law Office Fax Machine";
-	pixel_y = 3
-	},
+/obj/structure/aquarium/lawyer,
 /turf/open/floor/iron/grimy,
 /area/station/service/lawoffice)
 "abP" = (
@@ -7570,6 +7565,16 @@
 "cnC" = (
 /turf/closed/wall,
 /area/station/maintenance/port/central)
+"coc" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = -32
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes/super/full{
+	name = "ai power storage unit"
+	},
+/turf/open/floor/vault,
+/area/station/ai_monitored/turret_protected/ai)
 "cog" = (
 /obj/machinery/light/floor,
 /turf/open/floor/engine/co2,
@@ -22256,7 +22261,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/warning{
 	dir = 8
 	},
-/obj/effect/landmark/start/virologist,
 /obj/machinery/duct,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white/smooth_edge{
@@ -23042,19 +23046,6 @@
 /obj/structure/sign/calendar/directional/south,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
-"gHF" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	dir = 4;
-	location = "QM #1"
-	},
-/obj/effect/turf_decal/box,
-/mob/living/simple_animal/bot/mulebot,
-/turf/open/floor/iron/smooth_edge,
-/area/station/cargo/storage)
 "gHG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -30624,6 +30615,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/cargo/miningdock)
 "iNk" = (
@@ -33734,14 +33726,10 @@
 "jEy" = (
 /obj/structure/table/wood,
 /obj/machinery/status_display/ai/directional/north,
-/obj/item/paper_bin{
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_y = 4
-	},
-/obj/item/clothing/glasses/sunglasses/big{
-	pixel_y = -11
+/obj/machinery/fax{
+	fax_name = "Law Office";
+	name = "Law Office Fax Machine";
+	pixel_y = 3
 	},
 /turf/open/floor/iron/grimy,
 /area/station/service/lawoffice)
@@ -37421,6 +37409,19 @@
 /obj/item/clothing/mask/surgical,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/port/greater)
+"kEA" = (
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 6
+	},
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Poppy's bed"
+	},
+/obj/machinery/firealarm/directional/south,
+/mob/living/basic/pet/poppy,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/smooth,
+/area/station/engineering/lobby)
 "kED" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -37442,7 +37443,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/duct,
-/obj/effect/landmark/start/virologist,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -38864,15 +38864,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/central)
-"kYz" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/event_spawn,
-/mob/living/simple_animal/pet/gondola/funky,
-/turf/open/floor/iron/herringbone,
-/area/station/service/theater)
 "kYC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -44557,6 +44548,7 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/disposal/incinerator)
 "mCK" = (
+/obj/vehicle/sealed/mecha/ripley/paddy/preset,
 /turf/open/floor/iron/recharge_floor,
 /area/station/security/office)
 "mCM" = (
@@ -49094,7 +49086,6 @@
 /area/station/commons/lounge)
 "nPC" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/virologist,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -49990,6 +49981,14 @@
 /obj/item/taperecorder{
 	pixel_x = 7;
 	pixel_y = 14
+	},
+/obj/item/paper_bin{
+	pixel_y = 2;
+	pixel_x = 6
+	},
+/obj/item/pen{
+	pixel_y = 2;
+	pixel_x = 6
 	},
 /obj/item/flashlight/lamp{
 	pixel_x = -5;
@@ -57933,6 +57932,20 @@
 	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/central/fore)
+"qfI" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	dir = 4;
+	location = "QM #4"
+	},
+/obj/effect/turf_decal/box,
+/mob/living/simple_animal/bot/mulebot,
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/storage)
 "qfN" = (
 /obj/machinery/airalarm/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -58491,19 +58504,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office)
-"qnW" = (
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 6
-	},
-/obj/structure/bed/dogbed{
-	anchored = 1;
-	name = "Poppy's bed"
-	},
-/obj/machinery/firealarm/directional/south,
-/mob/living/simple_animal/pet/poppy,
-/obj/machinery/light/directional/south,
-/turf/open/floor/iron/smooth,
-/area/station/engineering/lobby)
 "qok" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62153,20 +62153,6 @@
 /obj/structure/window/spawner/directional/north,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
-"roC" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/machinery/firealarm/directional/north,
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	dir = 4;
-	location = "QM #4"
-	},
-/obj/effect/turf_decal/box,
-/mob/living/simple_animal/bot/mulebot,
-/turf/open/floor/iron/smooth_edge,
-/area/station/cargo/storage)
 "roK" = (
 /obj/machinery/newscaster/directional/west,
 /obj/structure/table/wood/fancy,
@@ -64920,7 +64906,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/effect/landmark/start/virologist,
 /turf/open/floor/iron/dark,
 /area/station/medical/break_room)
 "sfG" = (
@@ -65662,7 +65647,6 @@
 /obj/structure/chair/office/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/virologist,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/virology)
 "sqD" = (
@@ -83009,6 +82993,19 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
+"wXO" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	dir = 4;
+	location = "QM #1"
+	},
+/obj/effect/turf_decal/box,
+/mob/living/simple_animal/bot/mulebot,
+/turf/open/floor/iron/smooth_edge,
+/area/station/cargo/storage)
 "wXR" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -84344,16 +84341,6 @@
 	dir = 8
 	},
 /area/station/service/hydroponics)
-"xsi" = (
-/obj/structure/sign/nanotrasen{
-	pixel_y = -32
-	},
-/obj/structure/cable,
-/obj/machinery/power/smes/super/full{
-	name = "ai power storage unit"
-	},
-/turf/open/floor/vault,
-/area/station/ai_monitored/turret_protected/ai)
 "xsj" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -85444,6 +85431,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/engine/atmos)
+"xJO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/mob/living/basic/pet/gondola/funky,
+/turf/open/floor/iron/herringbone,
+/area/station/service/theater)
 "xJW" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
 /obj/machinery/power/shuttle_engine/heater{
@@ -85595,6 +85591,9 @@
 /obj/item/stamp/law,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/item/clothing/glasses/sunglasses/big{
+	pixel_y = 12
 	},
 /turf/open/floor/iron/grimy,
 /area/station/service/lawoffice)
@@ -102018,7 +102017,7 @@ dYb
 uQi
 bWK
 lvx
-xsi
+coc
 rDp
 rDp
 xMq
@@ -116981,7 +116980,7 @@ ebz
 uHZ
 lHQ
 iXY
-kYz
+xJO
 mmy
 hhz
 uHZ
@@ -121405,7 +121404,7 @@ jtO
 gzE
 qff
 lUA
-qnW
+kEA
 rAU
 rAU
 bOD
@@ -129610,7 +129609,7 @@ gjq
 nyf
 gZb
 wuW
-gHF
+wXO
 udn
 aRn
 fun
@@ -130381,7 +130380,7 @@ aUA
 pjT
 xMq
 sFi
-roC
+qfI
 udn
 cLG
 sny

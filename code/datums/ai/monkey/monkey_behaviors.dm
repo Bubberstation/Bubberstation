@@ -120,7 +120,7 @@
 			break
 
 	if(target)
-		DSmove_manager.move_away(living_pawn, target, max_dist=MONKEY_ENEMY_VISION, delay=5)
+		GLOB.move_manager.move_away(living_pawn, target, max_dist=MONKEY_ENEMY_VISION, delay=5)
 		return AI_BEHAVIOR_DELAY
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -161,7 +161,7 @@
 	controller.clear_blackboard_key(target_key)
 	if(QDELETED(living_pawn)) // pawn can be null at this point
 		return
-	DSmove_manager.stop_looping(living_pawn)
+	GLOB.move_manager.stop_looping(living_pawn)
 
 /// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
 /datum/ai_behavior/monkey_attack_mob/proc/monkey_attack(datum/ai_controller/controller, mob/living/target, seconds_per_tick, disarm)
@@ -197,7 +197,7 @@
 		var/can_shoot = gun?.can_shoot() || FALSE
 		if(gun && controller.blackboard[BB_MONKEY_GUN_WORKED] && prob(95))
 			// We attempt to attack even if we can't shoot so we get the effects of pulling the trigger
-			gun.afterattack(real_target, living_pawn, FALSE)
+			gun.melee_attack_chain(living_pawn, real_target)
 			controller.set_blackboard_key(BB_MONKEY_GUN_WORKED, can_shoot ? TRUE : prob(80)) // Only 20% likely to notice it didn't work
 			if(can_shoot)
 				controller.set_blackboard_key(BB_MONKEY_GUN_NEURONS_ACTIVATED, TRUE)

@@ -17,7 +17,7 @@
 	moving_controllers -= controller
 	// We got deleted as we finished an action
 	if(!QDELETED(controller.pawn))
-		DSmove_manager.stop_looping(controller.pawn, SSai_movement)
+		GLOB.move_manager.stop_looping(controller.pawn, SSai_movement)
 
 /datum/ai_movement/proc/increment_pathing_failures(datum/ai_controller/controller)
 	controller.consecutive_pathing_attempts++
@@ -45,6 +45,9 @@
 		var/mob/living/pawn_mob = pawn
 		if(!(pawn_mob.mobility_flags & MOBILITY_MOVE))
 			can_move = FALSE
+
+	if(HAS_TRAIT(pawn, TRAIT_NO_TRANSFORM))
+		can_move = FALSE
 
 	return can_move
 

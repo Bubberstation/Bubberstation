@@ -20,3 +20,19 @@
 	name = "Moth (Clockwork)"
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/moth_wings.dmi'
 	icon_state = "clockwork"
+
+/datum/sprite_accessory/wings/moth/citheroniagrey
+	name = "Citheronia (greyscale)"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/moth_wings.dmi'
+	icon_state = "citheroniagrey"
+	dimension_x = 32
+	dimension_y = 32
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/techarm
+	name = "Tech Arm"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
+	icon_state = "techarm"
+	dimension_x = 32
+	dimension_y = 32
+	color_src = USE_MATRIXED_COLORS
