@@ -27,18 +27,16 @@
 	description = "A powerful stimulant extracted from coca leaves. Reduces stun times, but causes drowsiness and severe brain damage if overdosed."
 	reagent_state = LIQUID
 	color = "#ffffff"
-	overdose_threshold = 20
+	overdose_threshold = 10
 	ph = 9
 	taste_description = "bitterness" //supposedly does taste bitter in real life
 	addiction_types = list(/datum/addiction/stimulants = 14) //5.6 per 2 seconds
 
 /datum/reagent/drug/cocaine/on_mob_metabolize(mob/living/containing_mob)
 	..()
-	containing_mob.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
 	ADD_TRAIT(containing_mob, TRAIT_BATON_RESISTANCE, type)
 
 /datum/reagent/drug/cocaine/on_mob_end_metabolize(mob/living/containing_mob)
-	containing_mob.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
 	REMOVE_TRAIT(containing_mob, TRAIT_BATON_RESISTANCE, type)
 	..()
 
