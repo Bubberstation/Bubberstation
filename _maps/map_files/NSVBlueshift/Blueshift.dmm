@@ -90,6 +90,11 @@
 /obj/item/bedsheet{
 	pixel_y = 8
 	},
+/obj/machinery/flasher{
+	id = "Cell 4";
+	pixel_x = 22;
+	pixel_y = 28
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "abA" = (
@@ -5923,6 +5928,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/test_chambers)
+"biM" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/station/security/brig)
 "biN" = (
 /obj/structure/window/spawner/directional/south,
 /obj/structure/flora/bush/fullgrass/style_random,
@@ -21457,7 +21466,8 @@
 /obj/effect/turf_decal/vg_decals/numbers/six,
 /obj/machinery/door/window/brigdoor/left/directional/east{
 	req_access = list("security");
-	name = "Cell 6"
+	name = "Cell 6";
+	id = "Cell 6"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -25675,6 +25685,11 @@
 	pixel_y = 8
 	},
 /obj/machinery/status_display/evac/directional/east,
+/obj/machinery/flasher{
+	id = "Cell 5";
+	pixel_x = 22;
+	pixel_y = 28
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "eQF" = (
@@ -26399,8 +26414,13 @@
 /area/station/security/prison/workout)
 "eXN" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
+/obj/item/paper_bin{
+	pixel_y = 1;
+	pixel_x = 10
+	},
+/obj/item/pen{
+	pixel_x = 10
+	},
 /obj/effect/turf_decal/tile/red,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/west,
 /obj/machinery/light/directional/west,
@@ -48887,7 +48907,8 @@
 	},
 /obj/machinery/door/window/brigdoor/right/directional/west{
 	req_access = list("security");
-	name = "Cell 1"
+	name = "Cell 1";
+	id = "Cell 1"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -51809,7 +51830,8 @@
 	},
 /obj/machinery/door/window/brigdoor/left/directional/east{
 	req_access = list("security");
-	name = "Cell 4"
+	name = "Cell 4";
+	id = "Cell 4"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -66974,6 +66996,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
+"mPt" = (
+/obj/machinery/door/window/brigdoor/right/directional/west{
+	req_access = list("security");
+	name = "Cell 2"
+	},
+/turf/closed/wall,
+/area/station/security/brig)
 "mPv" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/photocopier,
@@ -85921,12 +85950,22 @@
 	},
 /area/station/service/bar/atrium)
 "qub" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Security Maintenance"
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/bed{
+	dir = 1;
+	pixel_y = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/fore)
+/obj/item/bedsheet{
+	dir = 1;
+	pixel_y = 8
+	},
+/obj/machinery/flasher{
+	id = "Cell 1";
+	pixel_x = -22;
+	pixel_y = 28
+	},
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "qug" = (
 /obj/machinery/air_sensor/nitrogen_tank,
 /turf/open/floor/engine/n2,
@@ -86637,7 +86676,8 @@
 /obj/effect/turf_decal/vg_decals/numbers/three,
 /obj/machinery/door/window/brigdoor/right/directional/west{
 	req_access = list("security");
-	name = "Cell 3"
+	name = "Cell 3";
+	id = "Cell 3"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -89866,6 +89906,11 @@
 /obj/item/bedsheet{
 	dir = 1;
 	pixel_y = 8
+	},
+/obj/machinery/flasher{
+	id = "Cell 2";
+	pixel_x = -22;
+	pixel_y = 28
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
@@ -99441,6 +99486,10 @@
 	icon_state = "dirt-flat-1"
 	},
 /obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/door/window/brigdoor/right/directional/west{
+	req_access = list("security");
+	name = "Cell 2"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "sXG" = (
@@ -112596,7 +112645,8 @@
 /obj/effect/turf_decal/vg_decals/numbers/five,
 /obj/machinery/door/window/brigdoor/left/directional/east{
 	req_access = list("security");
-	name = "Cell 5"
+	name = "Cell 5";
+	id = "Cell 5"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -114750,6 +114800,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron,
 /area/station/security/prison/visit)
+"vQm" = (
+/obj/structure/reagent_dispensers/plumbed{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/right/directional/west{
+	req_access = list("security");
+	name = "Cell 2"
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/fore)
 "vQo" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/light/directional/east,
@@ -116761,6 +116821,11 @@
 	},
 /obj/item/bedsheet{
 	dir = 1
+	},
+/obj/machinery/flasher{
+	id = "Cell 3";
+	pixel_x = -22;
+	pixel_y = 28
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
@@ -118919,6 +118984,11 @@
 "wDy" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
+/obj/machinery/flasher{
+	id = "Cell 6";
+	pixel_x = 22;
+	pixel_y = 28
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "wDB" = (
@@ -121928,7 +121998,8 @@
 /obj/effect/turf_decal/vg_decals/numbers/two,
 /obj/machinery/door/window/brigdoor/right/directional/west{
 	req_access = list("security");
-	name = "Cell 2"
+	name = "Cell 2";
+	id = "Cell 2"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -160507,9 +160578,9 @@ rpA
 cFp
 cEo
 hGf
+biM
 vdZ
-vdZ
-vdZ
+biM
 fVH
 fia
 gda
@@ -160765,10 +160836,10 @@ cFp
 jUO
 wrN
 nha
-rfX
+qub
+biM
 vdZ
-vdZ
-vdZ
+biM
 vdZ
 hGf
 dVy
@@ -161029,7 +161100,7 @@ lRG
 wjF
 hGf
 ekE
-vIU
+vQm
 vIU
 ggP
 vIU
@@ -161538,7 +161609,7 @@ cVu
 qak
 iEG
 xiJ
-vPo
+mPt
 qAC
 vPo
 hGf
@@ -161798,7 +161869,7 @@ qak
 chT
 qak
 gQp
-qub
+hGf
 kgl
 gEV
 uyp
