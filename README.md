@@ -25,9 +25,11 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 **1. Do Not Be A Dick**
 - The S.P.L.U.R.T. main repository is run by and contributed by volunteers. You are not entitled to our time and energy. We reserve the right to permanently remove anyone who does not show both our contributor's and maintainer's common decency.
 
-**2. This repository will only accept feedback that has to do with the functionality of code, sound, and images**
-- To maintain a proper working space for our contributors and to keep the repository free of clutter. All feedback that does not have to do with the functionality, quality, and review of code will be marked off-topic.
-- If you feel like feedback on a controversial PR is required, you are free to open a [feature request](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/new/choose) under the repository issues page and reference the PR number.
+**2. Modularization Standards Will be Upheld**
+- This codebase is a active downstream to Bubberstation with frequent upstream merges.
+- Modularization must be strictly upheld for code stability. (Ask a maintainer if you have any questions!)
+- Basically, **try to edit Modular Splurt files first** Then //SPLURT EDIT comments on any core files (TG, Skyrat, or Bubberstation) for trackability.
+- This is a place for when more concrete guidelines are created.
 
 **3. The Licensing is Non-negotiable**
 - You are free to take, redistribute, modify, and readapt any code or commit found on this repository.
