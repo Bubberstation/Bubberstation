@@ -47,31 +47,24 @@
 	/// Used for GAGS-ified hypos.
 	var/gags_bodystate = "hypo2_normal"
 
-/obj/item/hypospray/mkii/piercing
+/obj/item/hypospray/mkii/combat
 	name = "hypospray mk.II combat"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
-	icon_state = "piercinghypo2"
-	desc = "The combat variant of DeForest Mk. II hypospray, able to pierce through thick armor and quickly inject the chemicals."
+	icon_state = "combathypo2"
+	gags_bodystate = "hypo2_combat"
+	desc = "The combat variant of DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly self-inject the user in combat scenarios."
 	inject_wait = WAIT_INJECT
 	spray_wait = WAIT_SPRAY
 	spray_self = COMBAT_SELF_SPRAY
 	inject_self = COMBAT_SELF_INJECT
 	penetrates = INJECT_CHECK_PENETRATE_THICK
 
-/obj/item/hypospray/mkii/deluxe
-	name = "hypospray mk.II deluxe"
-	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small, /obj/item/reagent_containers/cup/vial/large)
-	icon_state = "bighypo2"
-	gags_bodystate = "hypo2_deluxe"
-	desc = "The deluxe variant in the DeForest Hypospray Mk. II series, able to take both 100u and 50u vials."
-	small_only = FALSE
-
 /obj/item/hypospray/mkii/piercing
 	name = "hypospray mk.II advanced"
 	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
 	icon_state = "piercinghypo2"
 	gags_bodystate = "hypo2_piercing"
-	desc = "The advanced variant in the DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly inject the chemicals."
+	desc = "The advanced variant in the DeForest Hypospray Mk. II series, able to pierce through thick armor and quickly spray or inject the chemicals."
 	inject_wait = DELUXE_WAIT_INJECT
 	spray_wait = DELUXE_WAIT_SPRAY
 	spray_self = DELUXE_SELF_INJECT
@@ -80,6 +73,14 @@
 
 /obj/item/hypospray/mkii/piercing/atropine
 	start_vial = /obj/item/reagent_containers/cup/vial/small/atropine
+
+/obj/item/hypospray/mkii/deluxe
+	name = "hypospray mk.II deluxe"
+	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small, /obj/item/reagent_containers/cup/vial/large)
+	icon_state = "bighypo2"
+	gags_bodystate = "hypo2_deluxe"
+	desc = "The deluxe variant in the DeForest Hypospray Mk. II series, able to take both 100u and 50u vials."
+	small_only = FALSE
 
 // Deluxe hypo upgrade Kit
 /obj/item/device/custom_kit/deluxe_hypo2
