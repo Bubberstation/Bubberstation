@@ -85,6 +85,7 @@
 		if(crate.opened) // If the crate is open, try to close it.
 			if(!crate.close())
 				return FALSE // If we fail to close it, don't load it into the shelf.
+		crate.interaction_flags_atom |= INTERACT_ATOM_MOUSEDROP_IGNORE_ADJACENT // We can't trust the mouse pull adjacency check
 		shelf_contents[next_free] = crate // Insert a reference to the crate into the free slot.
 		crate.forceMove(src) // Insert the crate into the shelf.
 		crate.pixel_y = DEFAULT_SHELF_VERTICAL_OFFSET * (next_free - 1) // Adjust the vertical offset of the crate to look like it's on the shelf.
@@ -109,6 +110,7 @@
 		crate.pixel_y = initial(crate.pixel_y) // Reset the crate back to having no offset, otherwise it will be floating.
 		crate.forceMove(unload_turf)
 		shelf_contents[shelf_contents.Find(crate)] = null // We do this instead of removing it from the list to preserve the order of the shelf.
+		crate.interaction_flags_atom &= ~INTERACT_ATOM_MOUSEDROP_IGNORE_ADJACENT
 		handle_visuals()
 		return TRUE
 	return FALSE  // If the do_after() is interrupted, return FALSE!
@@ -139,15 +141,13 @@
 		transfer_fingerprints_to(newparts)
 	return ..()
 
-/obj/structure/closet/crate/MouseDrop(atom/drop_atom, src_location, over_location)
+/obj/structure/closet/crate/mouse_drop_dragged(atom/drop_atom, src_location, over_location)
 	. = ..()
 	var/mob/living/user = usr
-	if(!isliving(user))
-		return // Ghosts busted.
-	if(!isturf(user.loc) || user.incapacitated() || user.body_position == LYING_DOWN)
-		return // If the user is in a weird state, don't bother trying.
-	if(get_dist(drop_atom, src) != 1 || get_dist(drop_atom, user) != 1)
-		return // Check whether the crate is exactly 1 tile from the shelf and the user.
+//	if(!isliving(user))
+//		return // Ghosts busted.
+//	if(!isturf(user.loc) || user.incapacitated() || user.body_position == LYING_DOWN)
+//		return // If the user is in a weird state, don't bother trying.
 	if(istype(drop_atom, /turf/open) && istype(loc, /obj/structure/cargo_shelf) && user.Adjacent(drop_atom))
 		var/obj/structure/cargo_shelf/shelf = loc
 		return shelf.unload(src, user, drop_atom) // If we're being dropped onto a turf, and we're inside of a crate shelf, unload.

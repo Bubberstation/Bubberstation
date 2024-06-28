@@ -128,6 +128,10 @@
 	if(!(config_flags & EXPERIMENT_CONFIG_IMMEDIATE_ACTION) && !do_after(user, 1 SECONDS * skill_modifier, target = target)) //SKYRAT EDIT: Research Skill (simple research)
 		return
 	if(action_experiment(source, target))
+		// BUBBERSTATION EDIT START
+		if (config_flags && EXPERIMENT_CONFIG_WORKS_FROM_RANGE)
+			user.Beam(target, icon_state = "rped_upgrade", time = 0.5 SECONDS)
+		// BUBBERSTATION EDIT END
 		playsound(user, 'sound/machines/ping.ogg', 25)
 		to_chat(user, span_notice("You scan [target]."))
 		user.mind.adjust_experience(/datum/skill/research, 5) //SKYRAT EDIT: Research Skill (simple research)

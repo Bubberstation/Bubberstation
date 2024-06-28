@@ -11,9 +11,3 @@
 	desc = "The words flicker DON'T SEX OPEN INSIDE. I think this means that there is sex beyond this door and that you should probably not enter, unless of course you are prepared for unforeseen consequences."
 	icon = 'modular_zubbers/icons/effects/sex_barrier.dmi'
 	icon_state = "yes_i_spent_time_on_this"
-
-/obj/machinery/vending/dorms/New(...)
-	. = ..()
-	if(!premium) //Safety
-		premium = list()
-	premium[/obj/item/holosign_creator/sex] = 6
