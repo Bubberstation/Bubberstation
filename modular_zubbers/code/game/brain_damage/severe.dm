@@ -9,5 +9,5 @@
 	for(var/mob/M in owner.held_items) //makes sure to check hands for your tiny friends!
 		if(!isliving(M))
 			continue
-		if(istype(M, /mob/living/simple_animal/pet) || istype(M, /mob/living/basic/pet) || M.ckey)
+		if(istype(M, /mob/living/basic/pet) || M.ckey)
 			return FALSE
