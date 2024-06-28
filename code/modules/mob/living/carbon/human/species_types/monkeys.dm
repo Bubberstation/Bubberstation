@@ -41,15 +41,12 @@
 //	payday_modifier = 1.5  BUBBER DUMB SHIT REMOVAL
 	ai_controlled_species = TRUE
 
-/datum/species/monkey/random_name(gender,unique,lastname)
-	return "monkey ([rand(1, 999)])"
-
-/datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+/datum/species/monkey/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load)
 	. = ..()
-	passtable_on(H, SPECIES_TRAIT)
-	H.dna.add_mutation(/datum/mutation/human/race, MUT_NORMAL)
-	H.dna.activate_mutation(/datum/mutation/human/race)
-	H.AddElement(/datum/element/human_biter)
+	passtable_on(human_who_gained_species, SPECIES_TRAIT)
+	human_who_gained_species.dna.add_mutation(/datum/mutation/human/race, MUT_NORMAL)
+	human_who_gained_species.dna.activate_mutation(/datum/mutation/human/race)
+	human_who_gained_species.AddElement(/datum/element/human_biter)
 
 /datum/species/monkey/on_species_loss(mob/living/carbon/C)
 	. = ..()
@@ -64,15 +61,7 @@
 	return ..()
 
 /datum/species/monkey/get_scream_sound(mob/living/carbon/human/monkey)
-	return pick(
-		'sound/creatures/monkey/monkey_screech_1.ogg',
-		'sound/creatures/monkey/monkey_screech_2.ogg',
-		'sound/creatures/monkey/monkey_screech_3.ogg',
-		'sound/creatures/monkey/monkey_screech_4.ogg',
-		'sound/creatures/monkey/monkey_screech_5.ogg',
-		'sound/creatures/monkey/monkey_screech_6.ogg',
-		'sound/creatures/monkey/monkey_screech_7.ogg',
-	)
+	return get_sfx(SFX_SCREECH)
 
 /datum/species/monkey/get_physical_attributes()
 	return "Monkeys are slippery, can crawl into vents, and are more dextrous than humans.. but only when stealing things. \
