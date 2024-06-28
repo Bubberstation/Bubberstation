@@ -454,6 +454,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/retractor,
 		/obj/item/scalpel,
+		/obj/item/surgical_drapes,
 		/obj/item/stack/medical,
 		/obj/item/stack/sticky_tape,
 		/obj/item/sensor_device,
