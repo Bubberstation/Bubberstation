@@ -28,7 +28,7 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 **2. Modularization Standards Will be Upheld**
 - This codebase is a active downstream to Bubberstation with frequent upstream merges.
 - Modularization must be strictly upheld for code stability. (Ask a maintainer if you have any questions!)
-- Basically, **try to edit Modular Splurt files first** Then //SPLURT EDIT comments on any core files (TG, Skyrat, or Bubberstation) for trackability.
+- Basically, **try to edit Modular Splurt files first** Then ``//SPLURT `` comments on any core files (TG, Skyrat, or Bubberstation) for trackability.
 - This is a place for when more concrete guidelines are created.
 
 **3. The Licensing is Non-negotiable**
