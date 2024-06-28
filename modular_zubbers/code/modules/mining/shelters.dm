@@ -19,3 +19,26 @@
 	. = ..()
 	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/datum/map_template/shelter/delta
+	name = "Shelter Delta"
+	shelter_id = "shelter_delta"
+	description = "An emergency medical pod, comes with stasis beds and surgical suites. \
+		Deploy to prevent death."
+	mappath = "_maps/templates/shelter_4.dmm"
+
+/datum/map_template/shelter/delta/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
+
+/datum/map_template/shelter/echo
+	name = "Shelter Echo"
+	shelter_id = "shelter_echo"
+	description = "A pod for harvesting geysers"
+	mappath = "_maps/templates/shelter_5.dmm"
+
+/datum/map_template/shelter/echo/New()
+	. = ..()
+	whitelisted_turfs = typecacheof(/turf/closed/mineral)
+	banned_objects = typecacheof(/obj/structure/stone_tile)
