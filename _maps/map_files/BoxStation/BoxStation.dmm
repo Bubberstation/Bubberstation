@@ -274,6 +274,9 @@
 "acr" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/landmark/start/head_of_security,
+/obj/item/toy/plush/especiallystrange{
+	name = "Lieutenant Travian"
+	},
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "acs" = (
@@ -368,6 +371,7 @@
 "acR" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
+/obj/item/taperecorder,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "acS" = (
@@ -19636,6 +19640,9 @@
 	name = "SERVER ROOM"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "serverroomrnd'"
+	},
 /turf/open/floor/plating,
 /area/station/science/server)
 "bzx" = (
@@ -19912,6 +19919,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/effect/mapping_helpers/airlock/access/any/science/rd,
+/obj/machinery/door/poddoor/preopen{
+	id = "serverroomrnd'"
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/server)
 "bAC" = (
@@ -20246,6 +20256,9 @@
 	name = "SERVER ROOM"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "serverroomrnd'"
+	},
 /turf/open/floor/plating,
 /area/station/science/server)
 "bBW" = (
@@ -51043,8 +51056,8 @@
 	id = "rdprivacy"
 	},
 /obj/machinery/button/door{
-	id = "Biohazard";
-	name = "Biohazard Shutter Control";
+	id = "serverroomrnd";
+	name = "RnD Serverroom";
 	pixel_x = -6;
 	pixel_y = -25;
 	req_access = list("research")
@@ -52750,10 +52763,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
-"qYD" = (
-/obj/item/taperecorder,
-/turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/hos)
 "qYR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/east,
@@ -52884,6 +52893,12 @@
 /area/station/engineering/main)
 "rcA" = (
 /obj/effect/mapping_helpers/airlock/access/any/science/rd,
+/obj/machinery/button/door{
+	id = "xenobiomain";
+	name = "Xenobiology Containment Blast Doors";
+	pixel_x = -6;
+	pixel_y = -38
+	},
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance)
 "rcG" = (
@@ -57019,6 +57034,7 @@
 	pixel_x = -8;
 	pixel_y = -24
 	},
+/obj/effect/landmark/start/warden,
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "udE" = (
@@ -59173,6 +59189,7 @@
 	pixel_x = -27;
 	pixel_y = -2
 	},
+/obj/effect/landmark/start/warden,
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "vFR" = (
@@ -59376,8 +59393,8 @@
 /area/station/security/prison)
 "vOi" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor{
-	id = "serverroomrd"
+/obj/machinery/door/poddoor/preopen{
+	id = "serverroomrnd'"
 	},
 /turf/open/floor/plating,
 /area/station/science/server)
@@ -95741,7 +95758,7 @@ kTl
 tqp
 abr
 qqw
-qYD
+abV
 acS
 cVN
 mVh
