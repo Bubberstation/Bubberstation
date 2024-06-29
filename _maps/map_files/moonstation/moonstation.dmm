@@ -10130,12 +10130,13 @@
 	pixel_x = -32;
 	pixel_y = 40
 	},
-/obj/structure/sign/directions/dorms/directional/north{
-	pixel_x = -32
-	},
 /obj/structure/sign/directions/upload/directional/north{
 	pixel_x = -32;
 	pixel_y = 24
+	},
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/secondary/recreation)
@@ -20956,6 +20957,9 @@
 /obj/item/storage/toolbox/mechanical{
 	pixel_y = 12
 	},
+/obj/machinery/camera/autoname/mine/directional/east{
+	dir = 6
+	},
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "fPD" = (
@@ -25740,9 +25744,6 @@
 /obj/item/kirbyplants/random/dead/research_director,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/rd)
-"hlo" = (
-/turf/open/genturf,
-/area/moonstation/underground)
 "hlx" = (
 /obj/structure/table/wood,
 /turf/open/floor/iron/checker,
@@ -26630,11 +26631,12 @@
 /obj/structure/sign/directions/command/directional/west{
 	pixel_y = 40
 	},
-/obj/structure/sign/directions/dorms/directional/west{
-	pixel_y = 32
-	},
 /obj/structure/sign/directions/upload/directional/west{
 	pixel_y = 24
+	},
+/obj/structure/sign/directions/dorms/directional/south{
+	pixel_y = 32;
+	pixel_x = -32
 	},
 /turf/open/floor/iron/dark/corner,
 /area/station/hallway/primary/central/fore)
@@ -26941,9 +26943,9 @@
 	pixel_x = -32;
 	pixel_y = 24
 	},
-/obj/structure/sign/directions/dorms/directional/south{
-	pixel_y = 32;
-	pixel_x = -32
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/open/floor/wood/tile,
 /area/station/hallway/primary/central/aft)
@@ -36064,14 +36066,15 @@
 	pixel_x = -32;
 	pixel_y = 24
 	},
-/obj/structure/sign/directions/dorms/directional/west{
-	pixel_y = 32
-	},
 /obj/structure/sign/directions/command/directional/east{
 	pixel_x = -32;
 	pixel_y = 40
 	},
 /obj/machinery/firealarm/directional/north,
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
+	},
 /turf/open/floor/wood/tile,
 /area/station/hallway/primary/central/aft)
 "kiN" = (
@@ -39200,9 +39203,6 @@
 	pixel_x = -32;
 	pixel_y = 40
 	},
-/obj/structure/sign/directions/dorms/directional/north{
-	pixel_x = -32
-	},
 /obj/structure/sign/directions/upload/directional/north{
 	pixel_x = -32;
 	pixel_y = 24
@@ -39210,6 +39210,10 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/machinery/camera/autoname/directional/west{
 	dir = 10
+	},
+/obj/structure/sign/directions/dorms/directional/south{
+	pixel_y = 32;
+	pixel_x = -32
 	},
 /turf/open/floor/wood/tile,
 /area/station/hallway/primary/central/aft)
@@ -59081,12 +59085,13 @@
 	pixel_x = -32;
 	pixel_y = 24
 	},
-/obj/structure/sign/directions/dorms/directional/west{
-	pixel_y = 32
-	},
 /obj/structure/sign/directions/command/directional/north{
 	pixel_x = -32;
 	pixel_y = 40
+	},
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/open/floor/iron/dark/corner{
 	dir = 1
@@ -63720,11 +63725,11 @@
 /obj/structure/sign/directions/command/directional/west{
 	pixel_y = 40
 	},
-/obj/structure/sign/directions/dorms/directional/west{
-	pixel_y = 32
-	},
 /obj/structure/sign/directions/upload/directional/west{
 	pixel_y = 24
+	},
+/obj/structure/sign/directions/dorms/directional/north{
+	pixel_x = -32
 	},
 /turf/open/floor/wood/tile,
 /area/station/hallway/secondary/exit)
@@ -69778,12 +69783,13 @@
 	pixel_x = -32;
 	pixel_y = 40
 	},
-/obj/structure/sign/directions/dorms/directional/north{
-	pixel_x = -32
-	},
 /obj/structure/sign/directions/upload/directional/north{
 	pixel_x = -32;
 	pixel_y = 24
+	},
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit)
@@ -74247,15 +74253,16 @@
 	pixel_x = -32;
 	pixel_y = 40
 	},
-/obj/structure/sign/directions/dorms/directional/north{
-	pixel_x = -32
-	},
 /obj/structure/sign/directions/upload/directional/east{
 	pixel_x = -32;
 	pixel_y = 24
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/open/floor/iron/checker,
 /area/station/hallway/primary/port)
@@ -74823,9 +74830,6 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
-/obj/structure/sign/directions/dorms/directional/west{
-	pixel_y = 32
-	},
 /obj/structure/sign/directions/command/directional/east{
 	pixel_x = -32;
 	pixel_y = 40
@@ -74833,6 +74837,10 @@
 /obj/structure/sign/directions/upload/directional/east{
 	pixel_x = -32;
 	pixel_y = 24
+	},
+/obj/structure/sign/directions/dorms/directional/east{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/open/floor/iron/dark/corner{
 	dir = 1
@@ -77072,13 +77080,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
-"vEf" = (
-/obj/machinery/camera/autoname/mine/directional/west,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plastic,
-/area/station/commons/public_xenoarch)
 "vEm" = (
 /obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
 	dir = 1
@@ -85618,6 +85619,7 @@
 	dir = 8
 	},
 /obj/item/radio/intercom/directional/west,
+/obj/machinery/camera/autoname/mine/directional/west,
 /turf/open/floor/plastic,
 /area/station/commons/public_xenoarch)
 "yar" = (
@@ -205130,7 +205132,7 @@ soE
 soE
 soE
 soE
-hlo
+jnN
 jnN
 jnN
 jnN
@@ -206610,7 +206612,7 @@ mha
 iUK
 gCK
 lKR
-vEf
+oFD
 oFD
 tog
 xPM
@@ -279613,8 +279615,8 @@ stM
 stM
 stM
 stM
-kUC
-kUC
+stM
+stM
 stM
 stM
 stM
@@ -279845,11 +279847,6 @@ vmO
 vmO
 vmO
 vmO
-kUC
-kUC
-kUC
-kUC
-kUC
 stM
 stM
 stM
@@ -279869,10 +279866,15 @@ stM
 stM
 stM
 stM
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -280101,14 +280103,6 @@ vmO
 vmO
 vmO
 vmO
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
 stM
 stM
 stM
@@ -280125,12 +280119,20 @@ stM
 stM
 stM
 stM
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -280357,17 +280359,6 @@ vmO
 vmO
 vmO
 vmO
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
 stM
 stM
 stM
@@ -280380,15 +280371,26 @@ stM
 stM
 stM
 stM
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -280613,19 +280615,6 @@ vmO
 vmO
 vmO
 vmO
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
 stM
 stM
 stM
@@ -280635,19 +280624,32 @@ stM
 stM
 stM
 stM
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -280869,20 +280871,6 @@ vmO
 vmO
 vmO
 vmO
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
 stM
 stM
 stM
@@ -280891,20 +280879,34 @@ stM
 stM
 stM
 stM
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 stM
 stM
 stM
@@ -281123,45 +281125,45 @@ vmO
 vmO
 vmO
 vmO
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
 stM
 stM
 stM
 stM
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 stM
 stM
@@ -281382,42 +281384,42 @@ kUC
 kUC
 kUC
 kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 kUC
 kUC
@@ -281640,38 +281642,38 @@ kUC
 kUC
 kUC
 kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 kUC
 kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 kUC
 kUC
@@ -281897,6 +281899,22 @@ kUC
 kUC
 kUC
 kUC
+stM
+stM
+stM
+stM
+stM
+kUC
+kUC
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 kUC
 kUC
@@ -281904,28 +281922,12 @@ kUC
 kUC
 kUC
 kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 kUC
 kUC
@@ -282153,6 +282155,22 @@ kUC
 kUC
 kUC
 kUC
+stM
+stM
+stM
+stM
+stM
+kUC
+kUC
+kUC
+kUC
+kUC
+stM
+stM
+stM
+stM
+stM
+stM
 kUC
 kUC
 kUC
@@ -282163,25 +282181,9 @@ kUC
 kUC
 kUC
 kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
 kUC
 kUC
 kUC
@@ -282411,6 +282413,8 @@ kUC
 kUC
 kUC
 kUC
+stM
+stM
 kUC
 kUC
 kUC
@@ -282420,11 +282424,9 @@ kUC
 kUC
 kUC
 kUC
-kUC
-kUC
-kUC
-kUC
-kUC
+stM
+stM
+stM
 kUC
 kUC
 kUC

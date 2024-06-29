@@ -1,18 +1,20 @@
 // The actual code to work these in
 
-// Cyborg model types
+// Cyborg model trait procs below
 
-//For small quadruped 32 X 32 cyborgs suchs as F3-LINE cyborgs
-/obj/item/robot_model/proc/update_squadruped()
+//For all quadruped cyborgs
+/obj/item/robot_model/proc/update_quadruped()
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if (model_features && (TRAIT_R_SQUADRUPED in model_features))
+	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features)))
 		hat_offset = INFINITY
-		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
+		if (model_features && (TRAIT_R_WIDE in model_features))
+			cyborg.set_base_pixel_x(-16)
 		add_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 	else
-		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
+		if (model_features && !(TRAIT_R_WIDE in model_features))
+			cyborg.set_base_pixel_x(0)
 		remove_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
 
 //For cyborgs who have a lighter chassis
@@ -27,6 +29,19 @@
 	else
 		cyborg.can_be_held = FALSE
 		cyborg.held_w_class = WEIGHT_CLASS_NORMAL
+
+//For cyborgs that can rest
+// Must have a resting state!
+/obj/item/robot_model/proc/update_robot_rest()
+	var/mob/living/silicon/robot/cyborg = robot || loc
+	if (!istype(robot))
+		return
+	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_TALL in model_features)))
+		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
+	else
+		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
+
+// Cyborg model types below
 
 // Centcom cyborgs
 /obj/item/robot_model/centcom
