@@ -154,7 +154,7 @@
 	density = TRUE
 	anchored = FALSE
 
-/obj/structure/bloodsucker/vassalrack/MouseDrop_T(atom/movable/movable_atom, mob/user)
+/obj/structure/bloodsucker/vassalrack/mouse_drop_receive(atom/movable/movable_atom, mob/user, params)
 	var/mob/living/living_target = movable_atom
 	if(!anchored && IS_BLOODSUCKER(user))
 		user.balloon_alert(user, "not secured!")

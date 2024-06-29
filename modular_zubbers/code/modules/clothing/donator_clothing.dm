@@ -8,7 +8,6 @@
 //Will also be available for usage in Foundation 19
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
 
-
 /obj/item/clothing/head/helmet/sec/sol/idma_helmet
 	name = "ironmoon service helmet."
 	desc = "A helmet worn by the romulus expeditionary force."
