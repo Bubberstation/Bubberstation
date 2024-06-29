@@ -92,15 +92,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		gender = body.gender
 		if(body.mind && body.mind.name)
-			if(body.mind.ghostname)
-				name = body.mind.ghostname
-			else
-				name = body.mind.name
+			name = body.mind.ghostname || body.mind.name
 		else
-			if(body.real_name)
-				name = body.real_name
-			else
-				name = random_unique_name(gender)
+			name = body.real_name || generate_random_mob_name(gender)
+
 
 		mind = body.mind //we don't transfer the mind but we keep a reference to it.
 
@@ -128,8 +123,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	abstract_move(T)
 
-	if(!name) //To prevent nameless ghosts
-		name = random_unique_name(gender)
+	//To prevent nameless ghosts
+	name ||= generate_random_mob_name(FALSE)
 	real_name = name
 
 	if(!fun_verbs)
@@ -714,14 +709,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	GLOB.manifest.ui_interact(src)
 
 //this is called when a ghost is drag clicked to something.
-/mob/dead/observer/MouseDrop(atom/over)
-	if(!usr || !over)
-		return
-	if (isobserver(usr) && usr.client.holder && (isliving(over) || iscameramob(over)) )
-		if (usr.client.holder.cmd_ghost_drag(src,over))
+/mob/dead/observer/mouse_drop_dragged(atom/over, mob/user)
+	if (isobserver(user) && user.client.holder && (isliving(over) || iscameramob(over)))
+		if (user.client.holder.cmd_ghost_drag(src,over))
 			return
-
-	return ..()
 
 /mob/dead/observer/Topic(href, href_list)
 	..()
@@ -859,7 +850,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.prefs.apply_character_randomization_prefs()
 
 	var/species_type = client.prefs.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 	if(species.check_head_flags(HEAD_HAIR))
 		hairstyle = client.prefs.read_preference(/datum/preference/choiced/hairstyle)
 		hair_color = ghostify_color(client.prefs.read_preference(/datum/preference/color/hair_color))
@@ -867,8 +858,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(species.check_head_flags(HEAD_FACIAL_HAIR))
 		facial_hairstyle = client.prefs.read_preference(/datum/preference/choiced/facial_hairstyle)
 		facial_hair_color = ghostify_color(client.prefs.read_preference(/datum/preference/color/facial_hair_color))
-
-	qdel(species)
 
 	update_appearance()
 
@@ -1012,8 +1001,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		game = create_mafia_game()
 	game.ui_interact(usr)
 
-/mob/dead/observer/CtrlShiftClick(mob/user)
-	if(isobserver(user) && check_rights(R_SPAWN))
+/mob/dead/observer/CtrlShiftClickOn(atom/target)
+	if(check_rights(R_SPAWN))
 		change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
 
 /mob/dead/observer/examine(mob/user)

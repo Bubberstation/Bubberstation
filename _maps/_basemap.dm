@@ -18,6 +18,7 @@
 		#include "map_files\NSVBlueshift\Blueshift.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		// SKYRAT EDIT END
+		#include "map_files\wawastation\wawastation.dmm"
 		// BUBBER EDIT ADDITION START
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\LimaStation\LimaStation.dmm"
