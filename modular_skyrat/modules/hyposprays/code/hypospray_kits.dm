@@ -76,6 +76,7 @@
 		"oxy" = image(icon = src.icon, icon_state = "oxy-mini"),
 		"advanced" = image(icon = src.icon, icon_state = "advanced-mini"),
 		"buffs" = image(icon = src.icon, icon_state = "buffs-mini"),
+		"combat" = image(icon = src.icon, icon_state = "combat-mini"),
 		"custom" = image(icon = src.icon, icon_state = "standard-gags-mini"))
 	case_designs_xl = list(
 		"cmo" = image(icon = src.icon, icon_state = "cmo-mini"),
@@ -115,7 +116,7 @@
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	return ..()
 
-/obj/item/storage/hypospraykit/alt_click_secondary(mob/user)
+/obj/item/storage/hypospraykit/click_alt_secondary(mob/user)
 	if(attached_hypo != null)
 		if(user.put_in_hands(attached_hypo))
 			balloon_alert(user, "Removed [attached_hypo].")
@@ -123,10 +124,8 @@
 			attached_hypo = null
 			update_appearance()
 			// Ditto here.
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 		else
 			balloon_alert(user, "Couldn't pull the hypo!")
-	return ..()
 
 /obj/item/storage/hypospraykit/proc/on_attached_hypo_qdel()
 	if(attached_hypo)
@@ -170,7 +169,7 @@
 	return TRUE
 
 
-/obj/item/storage/hypospraykit/CtrlShiftClick(mob/user, obj/item/I)
+/obj/item/storage/hypospraykit/click_ctrl_shift(mob/user, obj/item/I)
 	case_menu(user)
 
 //END OF HYPOSPRAY CASE MENU CODE
