@@ -44,7 +44,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_botany"
-	datum/map_template/shelter/botany
 	used = FALSE
 
 /datum/map_template/shelter/botany
@@ -65,7 +64,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_trays"
-	datum/map_template/shelter/trays
 	used = FALSE
 
 /datum/map_template/shelter/trays
@@ -86,7 +84,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_fan"
-	datum/map_template/shelter/fan
 	used = FALSE
 
 /datum/map_template/shelter/fan
@@ -107,7 +104,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_o2"
-	datum/map_template/shelter/o2
 	used = FALSE
 
 /datum/map_template/shelter/o2
@@ -128,7 +124,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_kitchen"
-	datum/map_template/shelter/kitchen
 	used = FALSE
 
 /datum/map_template/shelter/kitchen
@@ -149,7 +144,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_cabin"
-	datum/map_template/shelter/cabin
 	used = FALSE
 
 /datum/map_template/shelter/cabin
@@ -170,7 +164,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_threebythree"
-	datum/map_template/shelter/threebythree
 	used = FALSE
 
 /datum/map_template/shelter/threebythree
@@ -191,7 +184,6 @@
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	template_id = "shelter_sixbysix"
-	datum/map_template/shelter/sixbysix
 	used = FALSE
 
 /datum/map_template/shelter/sixbysix
