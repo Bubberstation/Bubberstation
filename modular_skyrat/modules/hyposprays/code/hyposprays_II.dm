@@ -316,9 +316,6 @@
 	to_chat(user, span_notice("You [fp_verb] [vial.amount_per_transfer_from_this] units of the solution. The hypospray's cartridge now contains [vial.reagents.total_volume] units."))
 	update_appearance()
 
-/obj/item/hypospray/mkii/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	return ITEM_INTERACT_SUCCESS
-
 /obj/item/hypospray/mkii/attack_hand(mob/living/user)
 	if(user && loc == user && user.is_holding(src))
 		if(user.incapacitated())
