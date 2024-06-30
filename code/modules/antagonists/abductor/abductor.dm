@@ -46,7 +46,7 @@
 	sub_role = "Agent"
 	outfit = /datum/outfit/abductor/agent
 	landmark_type = /obj/effect/landmark/abductor/agent
-	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
+	greet_text = "Use your stealth technology and equipment to incapacitate and prank station crew for your scientist to retrieve." //  BUBBER EDIT
 	show_in_antagpanel = TRUE
 
 /datum/antagonist/abductor/scientist
@@ -88,7 +88,7 @@
 
 /datum/antagonist/abductor/greet()
 	. = ..()
-	to_chat(owner.current, span_notice("With the help of your teammate, kidnap and experiment on station crew members!"))
+	to_chat(owner.current, span_notice("With the help of your teammate, kidnap and prank station crew members!")) // BUBBER EDIT
 	to_chat(owner.current, span_notice("[greet_text]"))
 	owner.announce_objectives()
 
@@ -160,7 +160,7 @@
 	..()
 	team_number = team_count++
 	name = "Mothership [pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
-	add_objective(new /datum/objective/experiment)
+	add_objective(new /datum/objective/prank) // BUBBER EDIT
 
 /datum/team/abductor_team/roundend_report()
 	var/list/result = list()
