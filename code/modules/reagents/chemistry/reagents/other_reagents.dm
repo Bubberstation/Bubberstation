@@ -2230,10 +2230,10 @@
 
 	var/mob/living/carbon/human/exposed_human = exposed_mob
 	if(!HAS_TRAIT(exposed_human, TRAIT_SHAVED))
-		var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hairstyles_list)
+		var/datum/sprite_accessory/facial_hair/picked_beard = pick(SSaccessories.facial_hairstyles_list)
 		exposed_human.set_facial_hairstyle(picked_beard, update = FALSE)
 	if(!HAS_TRAIT(exposed_human, TRAIT_BALD))
-		var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hairstyles_list)
+		var/datum/sprite_accessory/hair/picked_hair = pick(SSaccessories.hairstyles_list)
 		exposed_human.set_hairstyle(picked_hair, update = TRUE)
 	to_chat(exposed_human, span_notice("Hair starts sprouting from your [HAS_TRAIT(exposed_human, TRAIT_BALD) ? "face" : "scalp"]."))
 
@@ -2809,7 +2809,7 @@
 		var/obj/item/bodypart/wounded_part = W.limb
 		if(wounded_part)
 			wounded_part.heal_damage(0.25 * REM * seconds_per_tick, 0.25 * REM * seconds_per_tick)
-		if(affected_mob.adjustStaminaLoss(-0.25 * REM * seconds_per_tick, updating_stamina = FALSE)) // the more wounds, the more stamina regen
+		if(affected_mob.adjustStaminaLoss(-1 * REM * seconds_per_tick, updating_stamina = FALSE)) // the more wounds, the more stamina regen
 			return UPDATE_MOB_HEALTH
 
 // unholy water, but for heretics.
@@ -2993,7 +2993,7 @@
 	. = ..()
 	var/need_mob_update
 	need_mob_update = kronkus_enjoyer.adjustOrganLoss(ORGAN_SLOT_HEART, 0.1)
-	need_mob_update += kronkus_enjoyer.adjustStaminaLoss(-2, updating_stamina = FALSE)
+	need_mob_update += kronkus_enjoyer.adjustStaminaLoss(-6, updating_stamina = FALSE)
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 

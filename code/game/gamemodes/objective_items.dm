@@ -243,8 +243,12 @@
 	difficulty = 3
 	steal_hint = "A self-defense weapon standard-issue for all heads of staffs barring the Head of Security. Rarely found off of their person."
 
+/datum/objective_item/steal/traitor/telebaton/check_special_completion(obj/item/thing)
+	return thing.type == /obj/item/melee/baton/telescopic
+
 /obj/item/melee/baton/telescopic/add_stealing_item_objective()
-	return add_item_to_steal(src, /obj/item/melee/baton/telescopic)
+	if(type == /obj/item/melee/baton/telescopic)
+		return add_item_to_steal(src, /obj/item/melee/baton/telescopic)
 
 /datum/objective_item/steal/traitor/cargo_budget
 	name = "cargo's departmental budget"
@@ -412,8 +416,8 @@
 /datum/objective_item/steal/nukedisc/check_special_completion(obj/item/disk/nuclear/N)
 	return !N.fake
 
-/datum/objective_item/steal/reflector
-	name = "a reflector trenchcoat"
+/datum/objective_item/steal/ablative
+	name = "an ablative trenchcoat"
 	targetitem = /obj/item/clothing/suit/hooded/ablative
 	excludefromjob = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN)
 	item_owner = list(JOB_HEAD_OF_SECURITY)
@@ -514,12 +518,12 @@
 	if(istype(potential_storage, /obj/item/aicard))
 		var/obj/item/aicard/card = potential_storage
 		being = card.AI // why is this one capitalized and the other one not? i wish i knew.
-	// SKYRAT REMOVAL START - MOD PAI
+	// SKYRAT EDIT REMOVAL START - MOD PAI
 	/*else if(istype(potential_storage, /obj/item/mod/control))
 		var/obj/item/mod/control/suit = potential_storage
 		if(isAI(suit.ai_assistant))
 			being = suit.ai_assistant
-	*/ // SKYRAT REMOVAL END
+	*/ // SKYRAT EDIT REMOVAL END
 	else
 		stack_trace("check_special_completion() called on [src] with [potential_storage] ([potential_storage.type])! That's not supposed to happen!")
 		return FALSE

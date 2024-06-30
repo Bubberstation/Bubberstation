@@ -232,33 +232,33 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		user.put_in_inactive_hand(new_item)
 		return ITEM_INTERACT_SUCCESS
 
-/obj/item/stack/sheet/iron/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	if(isopenturf(target))
-		var/turf/open/build_on = target
-		if(!user.Adjacent(build_on))
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		if(isgroundlessturf(build_on))
-			user.balloon_alert(user, "can't place it here!")
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		if(build_on.is_blocked_turf())
-			user.balloon_alert(user, "something is blocking the tile!")
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		if(get_amount() < 2)
-			user.balloon_alert(user, "not enough material!")
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT: Construction Skill
-		if(!do_after(user, 4 SECONDS * skill_modifier, build_on))
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		if(build_on.is_blocked_turf())
-			user.balloon_alert(user, "something is blocking the tile!")
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		if(!use(2))
-			user.balloon_alert(user, "not enough material!")
-			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		new/obj/structure/girder/displaced(build_on)
-		user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
+/obj/item/stack/sheet/iron/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!isopenturf(interacting_with))
+		return NONE
+	var/turf/open/build_on = interacting_with
+	if(!user.Adjacent(build_on))
+		return ITEM_INTERACT_BLOCKING
+	if(isgroundlessturf(build_on))
+		user.balloon_alert(user, "can't place it here!")
+		return ITEM_INTERACT_BLOCKING
+	if(build_on.is_blocked_turf())
+		user.balloon_alert(user, "something is blocking the tile!")
+		return ITEM_INTERACT_BLOCKING
+	if(get_amount() < 2)
+		user.balloon_alert(user, "not enough material!")
+		return ITEM_INTERACT_BLOCKING
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER) //SKYRAT EDIT: Construction Skill
+	if(!do_after(user, 4 SECONDS * skill_modifier, build_on))
+		return ITEM_INTERACT_BLOCKING
+	if(build_on.is_blocked_turf())
+		user.balloon_alert(user, "something is blocking the tile!")
+		return ITEM_INTERACT_BLOCKING
+	if(!use(2))
+		user.balloon_alert(user, "not enough material!")
+		return ITEM_INTERACT_BLOCKING
+	new/obj/structure/girder/displaced(build_on)
+	user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
+	return ITEM_INTERACT_SUCCESS
 
 /*
  * Plasteel
@@ -344,6 +344,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("ore box", /obj/structure/ore_box, 4, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_CONTAINERS),\
 	new/datum/stack_recipe("wooden crate", /obj/structure/closet/crate/wooden, 6, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE),\
 	new/datum/stack_recipe("baseball bat", /obj/item/melee/baseball_bat, 5, time = 1.5 SECONDS, crafting_flags = NONE, category = CAT_WEAPON_MELEE),\
+	new/datum/stack_recipe("wooden crutch", /obj/item/cane/crutch/wood, 5, time = 1.5 SECONDS, crafting_flags = NONE, category = CAT_WEAPON_MELEE),\
 	new/datum/stack_recipe("loom", /obj/structure/loom, 10, time = 1.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS), \
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/cup/mortar, 3, crafting_flags = NONE, category = CAT_CHEMISTRY), \
 	new/datum/stack_recipe("firebrand", /obj/item/match/firebrand, 2, time = 10 SECONDS, crafting_flags = NONE, category = CAT_TOOLS), \

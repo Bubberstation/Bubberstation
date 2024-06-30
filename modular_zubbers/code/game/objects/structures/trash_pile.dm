@@ -149,7 +149,7 @@
 	if(user.transferItemToLoc(attacking_item, src))
 		balloon_alert(user, "item hidden!")
 
-/obj/structure/trash_pile/MouseDrop_T(atom/movable/dropped_atom, mob/user)
+/obj/structure/trash_pile/mouse_drop_receive(atom/movable/dropped_atom, mob/user, params)
 
 	if(user != dropped_atom || !iscarbon(dropped_atom))
 		return ..()

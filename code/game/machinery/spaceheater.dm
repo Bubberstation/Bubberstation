@@ -8,7 +8,7 @@
 	anchored = FALSE
 	density = TRUE
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
-	icon = 'icons/obj/pipes_n_cables/atmos.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
+	icon = 'icons/obj/pipes_n_cables/atmos.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "sheater-off"
 	base_icon_state = "sheater"
 	name = "space heater"
@@ -413,7 +413,7 @@
 	//Dropper tools
 	if(beaker)
 		if(is_type_in_list(item, list(/obj/item/reagent_containers/dropper, /obj/item/ph_meter, /obj/item/ph_paper, /obj/item/reagent_containers/syringe)))
-			item.afterattack(beaker, user, 1)
+			item.interact_with_atom(beaker, user)
 		return
 
 /obj/machinery/space_heater/improvised_chem_heater/on_deconstruction(disassembled = TRUE)
