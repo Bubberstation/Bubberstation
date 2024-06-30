@@ -1,11 +1,14 @@
+/*
+*	BOOZE
+*/
+
 /datum/loadout_item/pocket_items/wine //Beer is already available, so why not wine? Stay classy while drinking on the job.
-	name = "wine bottle"
+	name = "Wine Bottle"
 	item_path = /obj/item/reagent_containers/cup/glass/bottle/wine
 
-/datum/loadout_item/pocket_items/starwine //sprites by Keila
-	name = "starwire wine bottle"
-	item_path = /obj/item/reagent_containers/cup/glass/bottle/beer/starwine
-	ckeywhitelist = list("catmanpop") //donator item for Catmanpop
+/*
+*	PERFUME
+*/
 
 /datum/loadout_item/pocket_items/fragrance_ash
 	name = "Ash Perfume"
@@ -55,15 +58,17 @@
 	name = "Petrichor Perfume"
 	item_path = /obj/item/perfume/petrichor
 
-/datum/loadout_item/pocket_items/stamp/donator/crow
-	name = "Mitchell Inc. Stamp"
-	item_path = /obj/item/stamp/donator/crow
-//	ckeywhitelist = list("slippyjoe") //donator item for SlippyJoe, who woulda guessed.
+/*
+*	OTHER
+*/
 
 /datum/loadout_item/pocket_items/royalzippo //donator item for UltimariFox, available for all
 	name = "Royal Zippo"
 	item_path = /obj/item/lighter/royal
 
+/datum/loadout_item/pocket_items/pocketwatch //The Hypnowatch, but uncracked, with the ability to tell time. Best of both worlds!
+	name = "Pocket Watch"
+	item_path = /obj/item/clothing/accessory/pocketwatch
 
 /*
 *	FLAGS
@@ -92,6 +97,22 @@
 /datum/loadout_item/pocket_items/transpride
 	name = "Trans Flag"
 	item_path = /obj/item/sign/flag/pride/trans
+
+/datum/loadout_item/pocket_items/flag_galfed //sprites by Crumpaloo
+	name = "Folded Galactic Federation Flag"
+	item_path = /obj/item/sign/flag/galfed
+
+/datum/loadout_item/pocket_items/flag_moghes //sprites by Crumpaloo
+	name = "Folded Tizirian Empire Flag"
+	item_path = /obj/item/sign/flag/tizira
+
+/*
+*	NIF LENSES
+*/
+
+/datum/loadout_item/pocket_items/nif_hud_adapter
+	name = "Scrying Lens Adapter"
+	item_path = /obj/item/nif_hud_adapter
 
 /datum/loadout_item/pocket_items/nif_disk_med
 	name = "Medical Scrying Lens Disk"
@@ -122,7 +143,3 @@
 	name = "Meson Scrying Lens Disk"
 	item_path = /obj/item/disk/nifsoft_uploader/meson_hud
 	restricted_roles = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN, JOB_SHAFT_MINER, JOB_CUSTOMS_AGENT, JOB_CHIEF_ENGINEER, JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEERING_GUARD)
-
-/datum/loadout_item/pocket_items/nif_hud_adapter
-	name = "Scrying Lens Adapter"
-	item_path = /obj/item/nif_hud_adapter
