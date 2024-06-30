@@ -55,7 +55,7 @@
 
 	///How many ranks we have, don't modify this directly, use AdjustRank() and use GetRank() to get the current value.
 	VAR_PRIVATE/bloodsucker_level = 0
-	/// Unspent ranks, don't modify this directly, use AdjustUnspentRanks() and use GetUnspentRanks() to get the current value.
+	/// Unspent ranks, don't modify this directly, use AdjustUnspentRank() and use GetUnspentRank() to get the current value.
 	VAR_PRIVATE/bloodsucker_level_unspent = 1
 	var/additional_regen
 	var/blood_over_cap = 0
@@ -494,6 +494,8 @@
 
 /datum/antagonist/bloodsucker/proc/remove_invalid_quirks()
 	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/sol_weakness)
+	if(!bad_quirk)
+		return
 	// silently remove the quirk if it's not valid
 	bad_quirk.remove_from_current_holder(TRUE)
 	owner.current.remove_quirk(/datum/quirk/sol_weakness)
