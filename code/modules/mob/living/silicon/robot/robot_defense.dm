@@ -187,8 +187,33 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		floppy.forceMove(modularInterface)
 		modularInterface.inserted_disk = floppy
 		return
+	//BUBBER ADDITION START - COMPONENTS!
+	if(istype(W, /obj/item/robot_parts/robot_component))
+		var/obj/item/robot_parts/robot_component/U = W
+		if(!user.canUnEquip(U))
+			to_chat(user, span_warning("The component is stuck to you and you can't seem to let go of it!"))
+			return
+		if(opened) // Are they trying to insert something?
+			for(var/V in components)
+				var/datum/robot_component/C = components[V]
+				if(!C.installed && istype(W, C.external_type))
+					if(!user.dropItemToGround(W))
+						return
+					C.wrapped = W
+					C.install_component()
+					W.forceMove(src)
 
+					var/obj/item/robot_parts/robot_component/WC = W
+					if(istype(WC))
+						C.brute_damage = WC.brute
+						C.electronics_damage = WC.burn
+
+					to_chat(usr, span_blue("You install the [W.name]."))
+
+					return
+	//BUBBER ADDITION END
 	return ..()
+
 
 /mob/living/silicon/robot/attack_alien(mob/living/carbon/alien/adult/user, list/modifiers)
 	if (LAZYACCESS(modifiers, RIGHT_CLICK))

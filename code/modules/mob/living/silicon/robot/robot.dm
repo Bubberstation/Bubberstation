@@ -572,6 +572,15 @@
 
 /mob/living/silicon/robot/updatehealth()
 	..()
+	//BUBBER Addition - Components
+	if(status_flags & GODMODE)
+		health = getMaxHealth()
+		set_stat(CONSCIOUS)
+		return
+	set_health(maxHealth - getFireLoss() - getBruteLoss())
+
+	//BUBBER Addition END - Components
+
 	if(!model.breakable_modules)
 		return
 
@@ -598,6 +607,8 @@
 			repair_cyborg_slot(1)
 
 	previous_health = health
+
+	return //BUBBER Addition - Components
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
