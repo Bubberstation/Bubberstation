@@ -83,6 +83,9 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /// Pref for all the things with the same "Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe" setting
 /// Saves us on copypaste code
 /datum/preference/choiced/directory_character_prefs
+#ifdef UNIT_TESTS
+	savefile_key = "char_directory_char_prefs" // This is so unit checks don't scream
+#endif
 
 /datum/preference/choiced/directory_character_prefs/init_possible_values()
 	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
