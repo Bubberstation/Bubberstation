@@ -39,7 +39,7 @@
 /datum/emote/living/cough/get_sound(mob/living/user)
 	if(isvox(user))
 		return 'modular_skyrat/modules/emotes/sound/emotes/voxcough.ogg'
-	if(isnabber(user))
+	if(isgas(user))
 		return 'modular_skyrat/modules/emotes/sound/emotes/nabbercough.ogg'
 	if(iscarbon(user))
 		if(user.gender == MALE)
@@ -57,7 +57,7 @@
 /datum/emote/living/sneeze/get_sound(mob/living/user)
 	if(isvox(user))
 		return 'modular_skyrat/modules/emotes/sound/emotes/voxsneeze.ogg'
-	if(isnabber(user))
+	if(isgas(user))
 		return 'modular_skyrat/modules/emotes/sound/emotes/nabbersneeze.ogg'
 	if(iscarbon(user))
 		if(user.gender == MALE)

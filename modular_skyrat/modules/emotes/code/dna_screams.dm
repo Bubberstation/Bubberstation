@@ -67,6 +67,6 @@
 	screamsounds = list('modular_skyrat/modules/emotes/sound/emotes/raptorscream.ogg')
 	femalescreamsounds = null
 
-/datum/species/nabber
+/datum/species/gas
 	screamsounds = list('modular_skyrat/modules/emotes/sound/emotes/nabberscream.ogg')
 	femalescreamsounds = null

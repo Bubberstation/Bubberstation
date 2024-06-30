@@ -1,11 +1,11 @@
-#define NABBER_PUNCH_LOW 3 // Humanoid pair of hands is extremely weak and deals reduced damage.
-#define NABBER_PUNCH_HIGH 5
+#define GAS_PUNCH_LOW 3 // Humanoid pair of hands is extremely weak and deals reduced damage.
+#define GAS_PUNCH_HIGH 5
 //GAS
 
 /obj/item/bodypart/head/mutant/nabber
-	icon_greyscale = BODYPART_ICON_NABBER
+	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
-	limb_id = SPECIES_NABBER
+	limb_id = SPECIES_GAS
 	head_flags = HEAD_EYESPRITES|HEAD_EYECOLOR|HEAD_EYEHOLES|HEAD_DEBRAIN
 
 /obj/item/bodypart/head/mutant/nabber/Initialize(mapload)
@@ -28,9 +28,9 @@
 
 
 /obj/item/bodypart/chest/mutant/nabber
-	icon_greyscale = BODYPART_ICON_NABBER
+	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
-	limb_id = SPECIES_NABBER
+	limb_id = SPECIES_GAS
 
 /obj/item/bodypart/chest/mutant/nabber/Initialize(mapload)
 	worn_back_offset = new(
@@ -47,11 +47,11 @@
 
 
 /obj/item/bodypart/arm/left/mutant/nabber
-	icon_greyscale = BODYPART_ICON_NABBER
+	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
-	limb_id = SPECIES_NABBER
-	unarmed_damage_low = NABBER_PUNCH_LOW
-	unarmed_damage_high = NABBER_PUNCH_HIGH
+	limb_id = SPECIES_GAS
+	unarmed_damage_low = GAS_PUNCH_LOW
+	unarmed_damage_high = GAS_PUNCH_HIGH
 
 
 	brute_modifier = 0.8
@@ -59,33 +59,33 @@
 
 
 /obj/item/bodypart/arm/right/mutant/nabber
-	icon_greyscale = BODYPART_ICON_NABBER
+	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
-	limb_id = SPECIES_NABBER
-	unarmed_damage_low = NABBER_PUNCH_LOW
-	unarmed_damage_high = NABBER_PUNCH_HIGH
+	limb_id = SPECIES_GAS
+	unarmed_damage_low = GAS_PUNCH_LOW
+	unarmed_damage_high = GAS_PUNCH_HIGH
 
 	brute_modifier = 0.8
 	burn_modifier = 1.4
 
 
 /obj/item/bodypart/leg/left/mutant/nabber
-	icon_greyscale = BODYPART_ICON_NABBER
+	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
-	limb_id = SPECIES_NABBER
+	limb_id = SPECIES_GAS
 
 	brute_modifier = 0.8
 	burn_modifier = 1.4
 
 
 /obj/item/bodypart/leg/right/mutant/nabber
-	icon_greyscale = BODYPART_ICON_NABBER
+	icon_greyscale = BODYPART_ICON_GAS
 	bodytype = BODYTYPE_ORGANIC
-	limb_id = SPECIES_NABBER
+	limb_id = SPECIES_GAS
 	brute_modifier = 0.8
 	burn_modifier = 1.4
 
 
 
-#undef NABBER_PUNCH_LOW
-#undef NABBER_PUNCH_HIGH
+#undef GAS_PUNCH_LOW
+#undef GAS_PUNCH_HIGH

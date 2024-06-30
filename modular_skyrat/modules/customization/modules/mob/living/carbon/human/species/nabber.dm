@@ -9,9 +9,9 @@
 #define NABBER_HEAT_THRESHOLD_2 440
 #define NABBER_HEAT_THRESHOLD_3 600
 
-/datum/species/nabber
+/datum/species/gas
 	name = "Giant Armored Serpentid"
-	id = SPECIES_NABBER
+	id = SPECIES_GAS
 	eyes_icon = 'modular_skyrat/modules/organs/icons/nabber_eyes.dmi'
 	can_augment = FALSE
 	veteran_only = FALSE //Change in the future.
@@ -72,7 +72,7 @@
 		LOADOUT_ITEM_EARS = NABBER_EARS_ICON
 	)
 
-/datum/species/nabber/randomize_features(mob/living/carbon/human/human_mob)
+/datum/species/gas/randomize_features(mob/living/carbon/human/human_mob)
 	. = ..()
 	var/main_color
 	var/random = rand(1,6)
@@ -93,7 +93,7 @@
 	human_mob.dna.features["mcolor2"] = main_color
 	human_mob.dna.features["mcolor3"] = main_color
 
-/datum/species/nabber/prepare_human_for_preview(mob/living/carbon/human/nabber)
+/datum/species/gas/prepare_human_for_preview(mob/living/carbon/human/nabber)
 	var/nabber_color = "#00ac1d"
 	nabber.dna.features["mcolor"] = nabber_color
 	nabber.dna.features["mcolor2"] = nabber_color
@@ -101,7 +101,7 @@
 	regenerate_organs(nabber, src, visual_only = TRUE)
 	nabber.update_body(TRUE)
 
-/datum/species/nabber/create_pref_unique_perks()
+/datum/species/gas/create_pref_unique_perks()
 	var/list/perk_descriptions = list()
 
 	perk_descriptions += list(list(
@@ -127,18 +127,10 @@
 
 	return perk_descriptions
 
-/datum/species/nabber/random_name(gender, unique, lastname)
-	if(unique)
-		return random_unique_name(gender)
-
-	var/random_name
-	random_name += (pick("Alpha","Delta","Dzetta","Phi","Epsilon","Gamma","Tau","Omega") + " [rand(1, 199)]")
-	return random_name
-
-/datum/species/nabber/get_species_description()
+/datum/species/gas/get_species_description()
 	return placeholder_description
 
-/datum/species/nabber/get_species_lore()
+/datum/species/gas/get_species_lore()
 	return list(placeholder_lore)
 
 /obj/item/organ/internal/ears/nabber
@@ -196,16 +188,16 @@
 /obj/item
 	var/datum/greyscale_config/greyscale_config_worn_nabber_fallback
 
-/datum/species/nabber/get_custom_worn_icon(item_slot, obj/item/item)
-	return item.worn_icon_nabber
+/datum/species/gas/get_custom_worn_icon(item_slot, obj/item/item)
+	return item.worn_icon_gas
 
-/datum/species/nabber/set_custom_worn_icon(item_slot, obj/item/item, icon/icon)
-	item.worn_icon_nabber = icon
+/datum/species/gas/set_custom_worn_icon(item_slot, obj/item/item, icon/icon)
+	item.worn_icon_gas = icon
 
-/datum/species/nabber/get_custom_worn_config_fallback(item_slot, obj/item/item)
+/datum/species/gas/get_custom_worn_config_fallback(item_slot, obj/item/item)
 	return item.greyscale_config_worn_nabber_fallback
 
-/datum/species/nabber/generate_custom_worn_icon(item_slot, obj/item/item, mob/living/carbon/human/human_owner)
+/datum/species/gas/generate_custom_worn_icon(item_slot, obj/item/item, mob/living/carbon/human/human_owner)
 	. = ..()
 	if(.)
 		return

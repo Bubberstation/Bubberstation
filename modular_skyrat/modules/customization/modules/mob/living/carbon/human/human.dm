@@ -69,7 +69,7 @@
 	race = /datum/species/skrell
 
 /mob/living/carbon/human/species/nabber
-	race = /datum/species/nabber
+	race = /datum/species/gas
 
 /mob/living/carbon/human/verb/toggle_undies()
 	set category = "IC"
