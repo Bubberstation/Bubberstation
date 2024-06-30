@@ -280,6 +280,8 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
         ) : (
           <Icon name="skull" color="#801308" size={1} />
         )}
+      </Table.Cell>
+      <Table.Cell collapsing textAlign="center">
         {life_status === STAT_DEAD && is_dnr ? ' (DNR)' : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
