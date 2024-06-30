@@ -8,3 +8,5 @@
 	attachment_slot_override = CHEST
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	body_parts_covered = CHEST|GROIN
+
+
