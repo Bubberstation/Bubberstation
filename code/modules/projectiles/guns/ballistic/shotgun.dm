@@ -151,8 +151,9 @@
 	projectile_damage_multiplier = 1.2
 	weapon_weight = WEAPON_MEDIUM
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m12g
-	can_suppress = FALSE
-	fire_delay = 1 //Bubber edit - Original: 1, then 10
+	can_suppress = FALSE	
+	burst_size = 2
+	fire_delay = 10 //Skyrat edit - Original: 1
 	pin = /obj/item/firing_pin/implant/pindicate
 	fire_sound = 'sound/weapons/gun/shotgun/shot_alt.ogg'
 	actions_types = list(/datum/action/item_action/toggle_firemode)
