@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;accessories - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/accessories.html#var">Var Details</a> - <a href="datum/controller/subsystem/accessories.html#proc">Proc Details</a></header>
+<main>
+<h1>accessories <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/accessories.html">accessories</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 10"/></a></h1>
+
+<p>stores /datum/sprite_accessory/hair indexed by name
+stores only hair names
+stores only hair names
+stores /datum/sprite_accessory/facial_hair indexed by name
+stores only hair names
+stores only hair names
+stores /datum/sprite_accessory/hair_gradient indexed by name
+stores /datum/sprite_accessory/facial_hair_gradient indexed by name
+stores /datum/sprite_accessory/underwear indexed by name
+stores only underwear name
+stores only underwear name
+stores /datum/sprite_accessory/undershirt indexed by name
+stores only undershirt name
+stores only undershirt name
+stores /datum/sprite_accessory/socks indexed by name</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/bra_f">bra_f</a></th><td>Stores only the bra names for female-compatible bras.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/bra_list">bra_list</a></th><td>Stores all /datum/sprite_accessory/bra indexed by name.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/bra_m">bra_m</a></th><td>Stores only the bra names for male-compatible bras.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/caps_list">caps_list</a></th><td>Shroom caps.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/moth_wings_list">moth_wings_list</a></th><td>Stores moth wings, both open and closed</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/scream_types">scream_types</a></th><td>All the different scream types</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#var/tails_list_monkey">tails_list_monkey</a></th><td>Monkey tail list</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#proc/init_hair_gradients">init_hair_gradients</a></th><td>This proc just intializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#proc/init_sprite_accessory_subtypes">init_sprite_accessory_subtypes</a></th><td>This reads the applicable sprite accessory datum's subtypes and adds it to the subsystem's list of sprite accessories.
+The boolean <code>add_blank</code> argument just adds a &quot;None&quot; option to the list of sprite accessories, like if a felinid doesn't want a tail or something, typically good for gated-off things.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/accessories.html#proc/setup_lists">setup_lists</a></th><td>Sets up all of the lists for later utilization in the round and building sprites.
+In an ideal world we could tack everything that just needed <code>DEFAULT_SPRITE_LIST</code> into static variables on the top, but due to the initialization order
+where this subsystem will initialize BEFORE statics, it's just not feasible since this all needs to be ready for actual subsystems to use.
+Sorry.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/bra_f"><aside class="declaration">var </aside>bra_f
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 70"/></a></h3>
+        <p>Stores only the bra names for female-compatible bras.</p><h3 id="var/bra_list"><aside class="declaration">var </aside>bra_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 66"/></a></h3>
+        <p>Stores all /datum/sprite_accessory/bra indexed by name.</p><h3 id="var/bra_m"><aside class="declaration">var </aside>bra_m
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 68"/></a></h3>
+        <p>Stores only the bra names for male-compatible bras.</p><h3 id="var/caps_list"><aside class="declaration">var </aside>caps_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 73"/></a></h3>
+        <p>Shroom caps.</p><h3 id="var/moth_wings_list"><aside class="declaration">var </aside>moth_wings_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 75"/></a></h3>
+        <p>Stores moth wings, both open and closed</p><h3 id="var/scream_types"><aside class="declaration">var </aside>scream_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 82"/></a></h3>
+        <p>All the different scream types</p><h3 id="var/tails_list_monkey"><aside class="declaration">var </aside>tails_list_monkey
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 77"/></a></h3>
+        <p>Monkey tail list</p><h2 id="proc">Proc Details</h2><h3 id="proc/init_hair_gradients"><aside class="declaration">proc </aside>init_hair_gradients<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 154"/></a></aside>
+        </h3>
+        <p>This proc just intializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name</p><h3 id="proc/init_sprite_accessory_subtypes"><aside class="declaration">proc </aside>init_sprite_accessory_subtypes<aside>(prototype, add_blank) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 166"/></a></aside>
+        </h3>
+        <p>This reads the applicable sprite accessory datum's subtypes and adds it to the subsystem's list of sprite accessories.
+The boolean <code>add_blank</code> argument just adds a &quot;None&quot; option to the list of sprite accessories, like if a felinid doesn't want a tail or something, typically good for gated-off things.</p><h3 id="proc/setup_lists"><aside class="declaration">proc </aside>setup_lists<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/controllers/subsystem/sprite_accessories.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sprite_accessories.dm 90"/></a></aside>
+        </h3>
+        <p>Sets up all of the lists for later utilization in the round and building sprites.
+In an ideal world we could tack everything that just needed <code>DEFAULT_SPRITE_LIST</code> into static variables on the top, but due to the initialization order
+where this subsystem will initialize BEFORE statics, it's just not feasible since this all needs to be ready for actual subsystems to use.
+Sorry.</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/64c8d3bcfbbff9e21f982287ae8322d7578aec60">64c8d3b</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

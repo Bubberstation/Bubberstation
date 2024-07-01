@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;borg&#x2F;cyborg_omnitool - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/borg/cyborg_omnitool.html#var">Var Details</a> - <a href="obj/item/borg/cyborg_omnitool.html#proc">Proc Details</a></header>
+<main>
+<h1>cyborg_omnitool <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/borg/cyborg_omnitool.html">borg/cyborg_omnitool</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 180"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#var/radial_menu_options">radial_menu_options</a></th><td>our tools</td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#var/reference">reference</a></th><td>object we are referencing to for force, sharpness and sound</td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#var/upgraded_toolspeed">upgraded_toolspeed</a></th><td>how much faster should the toolspeed be?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#proc/downgrade_omnitool">downgrade_omnitool</a></th><td>proc that's used when a cyborg with an upgraded omnitool is downgraded</td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#proc/reference_item_for_parameters">reference_item_for_parameters</a></th><td>Used to get reference item for the tools</td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#proc/update_tool_parameters">update_tool_parameters</a></th><td>Used to update sounds and tool parameters during switching</td></tr>
+            <tr><th><a href="obj/item/borg/cyborg_omnitool.html#proc/upgrade_omnitool">upgrade_omnitool</a></th><td>proc that's used when cyborg is upgraded with an omnitool upgrade board</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/radial_menu_options"><aside class="declaration">var </aside>radial_menu_options
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 186"/></a></h3>
+        <p>our tools</p><h3 id="var/reference"><aside class="declaration">var </aside>reference
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L188">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 188"/></a></h3>
+        <p>object we are referencing to for force, sharpness and sound</p><h3 id="var/upgraded_toolspeed"><aside class="declaration">var </aside>upgraded_toolspeed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 192"/></a></h3>
+        <p>how much faster should the toolspeed be?</p><h2 id="proc">Proc Details</h2><h3 id="proc/downgrade_omnitool"><aside class="declaration">proc </aside>downgrade_omnitool<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 289"/></a></aside>
+        </h3>
+        <p>proc that's used when a cyborg with an upgraded omnitool is downgraded</p>
+<p>reverts all name and desc changes to it's initial variables. also changes tools to default configuration to indicate it's been downgraded
+changes the toolspeed to default variable</p><h3 id="proc/reference_item_for_parameters"><aside class="declaration">proc </aside>reference_item_for_parameters<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 226"/></a></aside>
+        </h3>
+        <p>Used to get reference item for the tools</p><h3 id="proc/update_tool_parameters"><aside class="declaration">proc </aside>update_tool_parameters<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/reference) 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 235"/></a></aside>
+        </h3>
+        <p>Used to update sounds and tool parameters during switching</p><h3 id="proc/upgrade_omnitool"><aside class="declaration">proc </aside>upgrade_omnitool<aside>() 
+        
+    
+            <a href="https://github.com/Bubberstation/Bubberstation/blob/64c8d3bcfbbff9e21f982287ae8322d7578aec60/code/game/objects/items/robot/items/tools.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;items&#x2F;tools.dm 272"/></a></aside>
+        </h3>
+        <p>proc that's used when cyborg is upgraded with an omnitool upgrade board</p>
+<p>adds name and desc changes. also changes tools to default configuration to indicate it's been sucessfully upgraded
+changes the toolspeed to the upgraded_toolspeed variable</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Bubberstation/Bubberstation/tree/64c8d3bcfbbff9e21f982287ae8322d7578aec60">64c8d3b</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
