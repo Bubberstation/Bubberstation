@@ -78,7 +78,7 @@
 /obj/item/borg/hydraulic_clamp
 	name = "integrated hydraulic clamp"
 	desc = "A neat way to lift and move around few small packages for quick and painless deliveries!"
-	icon = 'icons/mob/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
+	icon = 'icons/obj/devices/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
 	icon_state = "mecha_clamp"
 	/// How much power does it draw per operation?
 	var/charge_cost = 20
@@ -729,8 +729,12 @@
 	user.bubble_icon = "robot"
 	active = TRUE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 	if(listeningTo == user)
 		return
@@ -754,8 +758,12 @@
 	user.bubble_icon = saved_bubble_icon
 	active = FALSE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER

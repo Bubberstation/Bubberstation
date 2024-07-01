@@ -109,6 +109,11 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 	/datum/wound = list(
 		"TRAIT_WOUND_SCANNED" = TRAIT_WOUND_SCANNED,
 	),
+	// SKYRAT EDIT ADDITON BEGIN - Synthetic wounds
+	/datum/wound/electrical_damage = list(
+		"TRAIT_ELECTRICAL_DAMAGE_REPAIRING" = TRAIT_ELECTRICAL_DAMAGE_REPAIRING,
+	),
+	// SKYRAT EDIT ADDITON END - Synthetic wounds
 	/obj = list(
 		"TRAIT_WALLMOUNTED" = TRAIT_WALLMOUNTED,
 	),
@@ -678,6 +683,8 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_R_TALL" = TRAIT_R_TALL,
 		"TRAIT_R_SMALL" = TRAIT_R_SMALL,
 		"TRAIT_R_UNIQUEPANEL" = TRAIT_R_UNIQUEPANEL,
+		"TRAIT_R_SQUADRUPED" = TRAIT_R_SQUADRUPED, //BUBBER addition - for small quadruped 32x32 cyborgs
+		"TRAIT_R_LIGHT_WEIGHT" = TRAIT_R_LIGHT_WEIGHT, //BUBBER addition for small light weighted cyborgs
 		"TRAIT_REAGENT" = TRAIT_REAGENT,
 		"TRAIT_REVIVES_BY_HEALING" = TRAIT_REVIVES_BY_HEALING,
 		"TRAIT_RIGGER" = TRAIT_RIGGER,
