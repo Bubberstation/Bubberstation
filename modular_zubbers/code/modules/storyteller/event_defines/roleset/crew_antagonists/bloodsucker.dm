@@ -4,7 +4,7 @@
 
 	antag_flag = ROLE_BLOODSUCKER
 	antag_datum = /datum/antagonist/bloodsucker
-	weight = 2
+	weight = 8
 	min_players = 20
 
 	base_antags = 2
@@ -15,4 +15,3 @@
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
 	name = "Vampiric Accident"
 	roundstart = FALSE
-	weight = 6 // Outweight the other ghost roles slightly
