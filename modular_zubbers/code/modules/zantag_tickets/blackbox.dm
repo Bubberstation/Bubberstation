@@ -35,4 +35,3 @@
 		found_client.add_antag_tickets(tickets_to_add)
 
 	return TRUE
-

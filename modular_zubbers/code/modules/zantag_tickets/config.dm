@@ -48,3 +48,5 @@
 	default = 120
 	integer = TRUE
 	min_val = 0
+
+/datum/config_entry/flag/log_antag_tickets

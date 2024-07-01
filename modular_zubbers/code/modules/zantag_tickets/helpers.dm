@@ -84,3 +84,6 @@ GLOBAL_LIST_INIT(imprisoning_areas,list(
 			continue
 		candidates_tickets[candidate] = candidate_tickets
 	return candidates_tickets
+
+/proc/log_antag_tickets(text, list/data)
+	logger.Log(LOG_CATEGORY_ANTAG_TICKETS, text, data)
