@@ -412,7 +412,7 @@
 	user.client?.give_award(/datum/award/achievement/misc/blade_ascension, user)
 	ADD_TRAIT(user, TRAIT_NEVER_WOUNDED, name)
 	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
-	user.apply_status_effect(/datum/status_effect/protective_blades/recharging, null, 8, 30, 0.25 SECONDS, 1 MINUTES)
+	user.apply_status_effect(/datum/status_effect/protective_blades/recharging, null, 4, 30, 0.25 SECONDS, 1 MINUTES) //BUBBER EDIT: 4 MAX BLADES, ORIGINAL 8
 	user.add_stun_absorption(
 		source = name,
 		message = span_warning("%EFFECT_OWNER throws off the stun!"),
@@ -450,7 +450,8 @@
 		sharpness = SHARP_EDGED,
 		attack_direction = get_dir(source, target),
 	)
-
+/* BUBBER EDIT: DISABLES SELF-HEAL ON BLADE ASCENSION
 	if(target.stat != DEAD)
 		// And! Get some free healing for a portion of the bonus damage dealt.
 		source.heal_overall_damage(bonus_damage / 2, bonus_damage / 2)
+*/
