@@ -250,7 +250,7 @@
 	if(humanc) //These procs all expect humans
 		// BEGIN SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES
 		var/chosen_rank = humanc.client?.prefs.alt_job_titles[rank] || rank
-		GLOB.manifest.inject(humanc, humanc.client)
+		// GLOB.manifest.inject(humanc, humanc.client) BUBBERSTATION CHANGE: FIXES DUPLICATE MANIFEST ENTRY
 		if(SSshuttle.arrivals)
 			SSshuttle.arrivals.QueueAnnounce(humanc, chosen_rank)
 		else
