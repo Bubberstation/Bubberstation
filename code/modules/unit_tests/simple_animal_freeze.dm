@@ -130,7 +130,7 @@
 		/mob/living/simple_animal/hostile/looter/ranged/space/laser,
 		/mob/living/simple_animal/hostile/mannequin,
 		/mob/living/simple_animal/hostile/megafauna/bubblegum/no_gps,
-		/mob/living/simple_animal/hostile/megafauna/gladiator,
+		///mob/living/simple_animal/hostile/megafauna/gladiator,
 		/mob/living/simple_animal/hostile/megafauna/hierophant/astrum,
 		/mob/living/simple_animal/hostile/mutantliz,
 		/mob/living/simple_animal/hostile/plantmutant,
