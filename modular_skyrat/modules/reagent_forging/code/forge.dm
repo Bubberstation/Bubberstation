@@ -91,6 +91,28 @@
 	/// List of possible choices for the selection radial
 	var/list/radial_choice_list = list()
 
+	//Bubber Edit: Reverts the removal of blacklisted reagents.
+	/// Blacklist that contains reagents that weapons and armor are unable to be imbued with.
+	var/static/list/disallowed_reagents = typecacheof(list(
+		/datum/reagent/inverse/,					//This path covers all inverse chems such as Super Melatonin, Corazargh, Oculater and more.
+		/datum/reagent/consumable/entpoly,
+		/datum/reagent/pax,
+		/datum/reagent/consumable/liquidelectricity/enriched,
+		/datum/reagent/teslium,
+		/datum/reagent/yuck,
+		/datum/reagent/toxin/spewium,
+		/datum/reagent/rat_spit,
+		/datum/reagent/eigenstate,
+		/datum/reagent/drug/pcp,
+		/datum/reagent/consumable/cum,
+		/datum/reagent/consumable/femcum,
+		/datum/reagent/consumable/breast_milk,
+		/datum/reagent/drug/aphrodisiac, 			//This path covers all lewd chems such as crocin, hexacrocin, succubus milk, and more.
+		/datum/reagent/toxin/polonium,
+		/datum/reagent/toxin/mutagen,
+		/datum/reagent/zauker,
+	))
+
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
 
@@ -603,6 +625,11 @@
 			attacking_weapon.reagents.remove_reagent(weapon_reagent.type)
 			continue
 
+		if(is_type_in_typecache(weapon_reagent, disallowed_reagents))
+			balloon_alert(user, "cannot imbue with [weapon_reagent.name]")
+			attacking_weapon.reagents.remove_reagent(weapon_reagent.type, include_subtypes = TRUE)
+			continue
+
 		weapon_component.imbued_reagent += weapon_reagent.type
 		attacking_weapon.name = "[weapon_reagent.name] [attacking_weapon.name]"
 
@@ -645,6 +672,11 @@
 
 	for(var/datum/reagent/clothing_reagent as anything in attacking_clothing.reagents.reagent_list)
 		if(clothing_reagent.volume < MINIMUM_IMBUING_REAGENT_AMOUNT)
+			attacking_clothing.reagents.remove_reagent(clothing_reagent.type, include_subtypes = TRUE)
+			continue
+
+		if(is_type_in_typecache(clothing_reagent, disallowed_reagents))
+			balloon_alert(user, "cannot imbue with [clothing_reagent.name]")
 			attacking_clothing.reagents.remove_reagent(clothing_reagent.type, include_subtypes = TRUE)
 			continue
 
