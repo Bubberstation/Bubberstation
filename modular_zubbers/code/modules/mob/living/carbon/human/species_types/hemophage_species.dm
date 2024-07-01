@@ -28,3 +28,9 @@
 
 /datum/species/hemophage/on_bloodsucker_loss(mob/living/carbon/human/target)
 	normalize_organs(target)
+
+
+/datum/species/hemophage/get_species_description()
+	return list("Oftentimes feared or pushed out of society for the predatory nature of their condition, \
+		Hemophages are typically mixed around various Frontier populations, keeping their true nature hidden while \
+		reaping both the benefits and easy access to prey, enjoying unpursued existences on the Frontier.",)
