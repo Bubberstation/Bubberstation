@@ -2,9 +2,7 @@
 
 #define TRAIT_HYDROPHILIC "hydrophilic"
 #define TRAIT_CAN_BE_PICKED_UP "can_be_picked_up"
-
-//Cyborg traits
-
+#define TRAIT_CHANGELING_ZOMBIE "changelingzombie"
 #define TRAIT_RESEARCH_CYBORG "research_cyborg"
 
 /// Cyborgs with unique sprites
