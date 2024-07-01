@@ -63,3 +63,11 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/sound/emotes/sound_voice_mar.ogg' // Credit to vorestation
+
+/datum/emote/living/flutter //Moth flutter
+	key = "flutter"
+	key_third_person = "rapidly flutters their wings!"
+	message = "rapidly flutters their wings!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'sound/voice/moth/moth_flutter.ogg'
