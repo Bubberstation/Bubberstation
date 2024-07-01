@@ -63,5 +63,11 @@
 /datum/storyteller/ghost
 	name = "The Ghost"
 	desc = "The Ghost is the absence of a Storyteller. It will not spawn a single event of any sort, or run any Antagonists. Best for rounds where the population is so low that not even the Sleeper is low enough."
-	disable_distribution = TRUE
+	point_gains_multipliers = list(
+		EVENT_TRACK_MUNDANE = 0.5,
+		EVENT_TRACK_MODERATE = 0.2,
+		EVENT_TRACK_MAJOR = 0,
+		EVENT_TRACK_ROLESET = 0,
+		EVENT_TRACK_OBJECTIVES = 0
+	)
 	antag_divisor = 32
