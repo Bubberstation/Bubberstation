@@ -1,8 +1,8 @@
 /obj/item/clothing/mask/gas/bubber //Saves having to type the icon stuff, means you just type in the state, smiley face emoji heart
 	name = "EMERGENCY!!"
 	desc = "The next 72 hours are going to be dangerous."
-	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/mask.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/mask.dmi'
 	icon_state = null
 
 //Sprites from Sojourn Station: https://github.com/sojourn-13/sojourn-station
