@@ -244,6 +244,10 @@
 
 	var/turf/our_turf = get_turf(loc)
 	RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results))
+	// EffigyEdit Add - Water Detection
+	if(water_sensor)
+		RegisterSignal(our_turf, COMSIG_TURF_LIQUIDS_CHANGE, PROC_REF(process_results))
+	// EffigyEdit Add End
 	for(var/dir in GLOB.cardinals)
 		var/turf/checked_turf = get_step(our_turf, dir)
 
@@ -252,6 +256,10 @@
 
 		RegisterSignal(checked_turf, COMSIG_TURF_CHANGE, PROC_REF(adjacent_change))
 		RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results))
+		// EffigyEdit Add - Water Detection
+		if(water_sensor)
+			RegisterSignal(checked_turf, COMSIG_TURF_LIQUIDS_CHANGE, PROC_REF(process_results))
+		// EffigyEdit Add End
 		if(!isopenturf(checked_turf))
 			continue
 		process_results(checked_turf)
@@ -262,6 +270,7 @@
 
 	var/turf/our_turf = get_turf(old_loc)
 	UnregisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS)
+	UnregisterSignal(our_turf, COMSIG_TURF_LIQUIDS_CHANGE) // EffigyEdit Add - Water Detection
 	for(var/dir in GLOB.cardinals)
 		var/turf/checked_turf = get_step(our_turf, dir)
 
@@ -270,6 +279,7 @@
 
 		UnregisterSignal(checked_turf, COMSIG_TURF_CHANGE)
 		UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE)
+		UnregisterSignal(checked_turf, COMSIG_TURF_LIQUIDS_CHANGE) // EffigyEdit Add - Water Detection
 
 // If a turf adjacent to us changes, recalc our affecting areas when it's done yeah?
 /obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
@@ -298,7 +308,7 @@
 			return
 
 	var/turf/checked_turf = source
-	var/result = check_atmos(checked_turf)
+	var/result = water_sensor ? (check_atmos(checked_turf) || check_liquids(checked_turf)) : check_atmos(checked_turf) // EffigyEdit Change - Water Detection
 
 	if(result && TURF_SHARES(checked_turf))
 		issue_turfs |= checked_turf
