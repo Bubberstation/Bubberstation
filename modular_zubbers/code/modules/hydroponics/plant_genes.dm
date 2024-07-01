@@ -1,17 +1,7 @@
-/datum/plant_gene
-	mutability_flags = PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
-
-/datum/plant_gene/reagent
-	mutability_flags = PLANT_GENE_REMOVABLE | PLANT_GENE_MUTATABLE | PLANT_GENE_GRAFTABLE
-
-/datum/plant_gene/trait/backfire
-	mutability_flags = PLANT_GENE_GRAFTABLE //Making this mutatable causes bugs and linters to fail.
-
 /datum/plant_gene/trait/repeated_harvest/New(...)
 	seed_blacklist += /obj/item/seeds/seedling
 	seed_blacklist += /obj/item/seeds/seedling/evil
 	. = ..()
-
 
 /*
  * Returns the formatted name of the plant gene.
