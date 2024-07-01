@@ -1,3 +1,4 @@
+/*
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
@@ -34,3 +35,4 @@
 //we will only clear ourselves if the crusher is the one that owns us.
 /datum/status_effect/crusher_mark/before_remove(datum/component/kinetic_crusher/attacking_hammer)
 	return (attacking_hammer == hammer_synced)
+*/

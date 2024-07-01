@@ -32,6 +32,7 @@
 	var/obj/item/kinetic_gauntlet/left/left_gauntlet = null
 	var/obj/item/kinetic_gauntlet/right_gauntlet = null
 
+/*
 /obj/item/clothing/gloves/kinetic_gauntlets/Initialize(mapload)
 	. = ..()
 	left_gauntlet = new(src)
@@ -40,6 +41,7 @@
 	var/datum/component/crusher_comp = AddComponent(/datum/component/kinetic_crusher, 50, 30, 1.5 SECONDS, CALLBACK(src, PROC_REF(attack_check)), CALLBACK(src, PROC_REF(detonate_check)), CALLBACK(src, PROC_REF(after_detonate)))
 	crusher_comp.RegisterWithParent(left_gauntlet)
 	crusher_comp.RegisterWithParent(right_gauntlet)
+*/
 
 /obj/item/clothing/gloves/kinetic_gauntlets/Destroy()
 	QDEL_NULL(left_gauntlet)

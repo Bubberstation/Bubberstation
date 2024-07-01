@@ -29,6 +29,7 @@
 	. = ..()
 	QDEL_NULL(ability)
 
+/*
 /obj/item/crusher_trophy/bileworm_spewlet/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	. = ..()
 	if(.)
@@ -37,7 +38,7 @@
 /obj/item/crusher_trophy/bileworm_spewlet/remove_from(obj/item/kinetic_crusher/crusher, mob/living/user)
 	. = ..()
 	crusher.remove_item_action(ability)
-
+*/
 /obj/item/crusher_trophy/bileworm_spewlet/effect_desc()
 	return "mark detonation launches projectiles in cardinal directions on a 10 second cooldown"
 
