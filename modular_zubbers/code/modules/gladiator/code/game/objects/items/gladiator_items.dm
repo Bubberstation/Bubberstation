@@ -1,3 +1,4 @@
+/*
 /obj/structure/closet/crate/necropolis/gladiator/PopulateContents()
 	new /obj/item/claymore/dragonslayer(src)
 	new /obj/item/clothing/suit/hooded/berserker/gatsu(src)
@@ -14,3 +15,4 @@
 
 /obj/item/clothing/head/hooded/berserker/gatsu/IsReflect()
 	return FALSE
+*/

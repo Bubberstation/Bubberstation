@@ -1,3 +1,4 @@
+/*
 /obj/item/kinetic_crusher
 	name = "proto-kinetic crusher"
 	desc = "An early design of the proto-kinetic accelerator, it is little more than a combination of various mining tools cobbled together, forming a high-tech club. \
@@ -225,3 +226,4 @@
 	marker.icon = 'modular_skyrat/master_files/icons/obj/weapons/guns/projectiles.dmi'
 	marker.icon_state = "pulse1_g"
 	marker.color = used_color
+*/

@@ -1,4 +1,3 @@
-/* SKYRAT EDIT START - OVERRIDEN IN modular_skyrat/master_files/code/modules/mining/equipment/kinetic_crusher.dm
 /**
  * Kinetic Crusher
  *
@@ -69,8 +68,8 @@
 
 /obj/item/kinetic_crusher/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/crusher_trophy))
-		var/obj/item/crusher_trophy/crusher_trophy = attacking_item
-		crusher_trophy.add_to(src, user)
+		//var/obj/item/crusher_trophy/crusher_trophy = attacking_item
+		//crusher_trophy.add_to(src, user)
 		return
 	return ..()
 
@@ -82,7 +81,7 @@
 	user.balloon_alert(user, "trophies removed")
 	tool.play_tool_sound(src)
 	for(var/obj/item/crusher_trophy/crusher_trophy as anything in trophies)
-		crusher_trophy.remove_from(src, user)
+		//crusher_trophy.remove_from(src, user)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/kinetic_crusher/pre_attack(atom/A, mob/living/user, params)
@@ -236,8 +235,6 @@
 		new /obj/effect/temp_visual/kinetic_blast(hit_mineral)
 		hit_mineral.gets_drilled(firer)
 	return ..()
-*/
-//SKYRAT EDIT END
 
 //trophies
 /obj/item/crusher_trophy

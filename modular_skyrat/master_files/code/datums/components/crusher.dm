@@ -1,3 +1,4 @@
+/*
 /datum/component/kinetic_crusher
 	/// The attached trophies.
 	var/list/stored_trophies = list()
@@ -216,3 +217,4 @@
 	crusher.update_appearance()
 	playsound(crusher.loc, 'sound/weapons/kinetic_reload.ogg', 60, TRUE)
 
+*/
