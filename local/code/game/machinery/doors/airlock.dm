@@ -10,5 +10,5 @@
 	name = "studio airlock assembly"
 	icon = 'local/icons/obj/doors/airlocks/station/studio.dmi'
 	base_name = "studio airlock"
-	glass_type = /obj/machinery/door/airlock/studio/glass
-	airlock_type = /obj/machinery/door/airlock/studio
+	glass_type = /obj/machinery/door/airlock/service/studio/glass
+	airlock_type = /obj/machinery/door/airlock/service/studio
