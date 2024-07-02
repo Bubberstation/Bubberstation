@@ -4776,10 +4776,12 @@
 /turf/open/floor/iron/white/diagonal,
 /area/station/command/heads_quarters/rd)
 "bdt" = (
-/obj/machinery/rnd/production/circuit_imprinter/offstation/but_actually_not_just_unlinked_and_less_cool,
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 4
 	},
+/obj/structure/frame/machine,
+/obj/item/stack/cable_coil/five,
+/obj/item/circuitboard/machine/circuit_imprinter/offstation,
 /turf/open/floor/iron/smooth_large,
 /area/station/service/studio)
 "bdw" = (
@@ -6557,6 +6559,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/effect/landmark/start/security_medic,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "bzv" = (
@@ -23269,6 +23272,7 @@
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/duct/waste,
+/obj/effect/landmark/start/engineering_guard,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/checkpoint/engineering)
 "fth" = (
@@ -41798,11 +41802,9 @@
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 1
 	},
-/obj/structure/bed/medical/anchored{
-	dir = 4
-	},
-/obj/item/bedsheet/medical,
+/obj/structure/bed/medical/emergency,
 /obj/machinery/light/directional/south,
+/obj/machinery/iv_drip,
 /turf/open/floor/iron/dark,
 /area/station/security/medical)
 "jOE" = (
@@ -52991,9 +52993,10 @@
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
 	},
-/obj/structure/bed/medical/emergency,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
+/obj/structure/table,
+/obj/item/surgery_tray/full,
 /turf/open/floor/iron/dark,
 /area/station/security/medical)
 "mzo" = (
@@ -53475,6 +53478,10 @@
 /obj/machinery/duct/waste,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/engineering/lobby)
+"mFM" = (
+/obj/effect/landmark/start/bouncer,
+/turf/open/floor/glass/reinforced,
+/area/station/hallway/secondary/service)
 "mFQ" = (
 /obj/machinery/duct/waste,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
@@ -56593,6 +56600,7 @@
 	},
 /obj/structure/sink/supply_layer/directional/south,
 /obj/machinery/camera/autoname/directional/east,
+/obj/structure/closet/secure_closet/security_medic,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "npR" = (
@@ -59093,6 +59101,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
 /obj/machinery/duct/waste,
+/obj/effect/landmark/start/orderly,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/security/checkpoint/medical)
 "nXV" = (
@@ -88646,6 +88655,7 @@
 	dir = 8
 	},
 /obj/machinery/plumbing/floor_pump/input/on/waste/directional/north,
+/obj/effect/landmark/start/science_guard,
 /turf/open/floor/iron/dark/small,
 /area/station/security/checkpoint/science)
 "vea" = (
@@ -94441,6 +94451,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/effect/landmark/start/customs_agent,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
 "wxg" = (
@@ -100393,9 +100404,8 @@
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
 	},
-/obj/structure/bed/medical/emergency,
-/obj/machinery/iv_drip,
 /obj/machinery/airalarm/directional/north,
+/obj/structure/table/optable,
 /turf/open/floor/iron/dark,
 /area/station/security/medical)
 "xPr" = (
@@ -215508,7 +215518,7 @@ vVR
 qTk
 wUV
 xhu
-xhu
+mFM
 xhu
 tzz
 kJf
