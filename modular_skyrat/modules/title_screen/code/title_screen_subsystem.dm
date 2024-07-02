@@ -53,15 +53,16 @@ SUBSYSTEM_DEF(title)
 	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
 	var/list/local_title_screens = list()
 
-	for(var/screen in provisional_title_screens)
-		var/list/formatted_list = splittext(screen, "+")
-		if((LAZYLEN(formatted_list) == 1 && (formatted_list[1] != "exclude" && formatted_list[1] != "blank.png" && formatted_list[1] != "startup_splash")))
-			local_title_screens += screen
+	if(!effigy_promo)
+		for(var/screen in provisional_title_screens)
+			var/list/formatted_list = splittext(screen, "+")
+			if((LAZYLEN(formatted_list) == 1 && (formatted_list[1] != "exclude" && formatted_list[1] != "blank.png" && formatted_list[1] != "startup_splash")))
+				local_title_screens += screen
 
-		if(LAZYLEN(formatted_list) > 1 && lowertext(formatted_list[1]) == "startup_splash")
-			var/file_path = "[global.config.directory]/title_screens/images/[screen]"
-			ASSERT(fexists(file_path))
-			startup_splash = new(fcopy_rsc(file_path))
+			if(LAZYLEN(formatted_list) > 1 && lowertext(formatted_list[1]) == "startup_splash")
+				var/file_path = "[global.config.directory]/title_screens/images/[screen]"
+				ASSERT(fexists(file_path))
+				startup_splash = new(fcopy_rsc(file_path))
 
 	// Progress stuff
 	check_progress_reference_time()
@@ -182,6 +183,8 @@ SUBSYSTEM_DEF(title)
 	else
 		if(LAZYLEN(title_screens))
 			current_title_screen = pick(title_screens)
+		else if(effigy_promo)
+			current_title_screen = EFFIGY_TEMP_TITLE_SCREEN
 		else
 			current_title_screen = DEFAULT_TITLE_SCREEN_IMAGE
 

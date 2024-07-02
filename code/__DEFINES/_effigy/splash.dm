@@ -1,4 +1,5 @@
 #define EFFIGY_TEMP_LOADING_SCREEN 'local/interface/title-x3.png'
+#define EFFIGY_TEMP_TITLE_SCREEN 'local/interface/effigy_splash.png'
 
 #define EFFIGY_TEMP_HTML {"
 	<html>
@@ -105,8 +106,7 @@
 					transform: translate(-50%, -50%);
 					z-index: 1;
 					border-radius: 0;
-					background: #202020;
-					opacity: 75%;
+					background: rgba(32,32,32,0.9);
 					padding: 1em;
 				}
 
@@ -202,3 +202,13 @@
 		</head>
 		<body>
 			"}
+
+#define EFFIGY_WELCOME_MESSAGE {"Welcome to this promotional map courtesy of a collaboration between Bubberstation x Effigy!<br/>
+Effigy is a server with an anthro friendly atmosphere, along with a focus of a mix of roleplay, gameplay and light antagonism.<br/>
+Unlike Bubberstation, Effigy is not a downstream of either Skyrat or Nova Sector. With its own code, maps, and assets, it is a more direct /tg/station downstream. Character customization is familiar, and the server supports importing your characters and preferences from Bubberstation!<br/>
+<a href="https://effigy.se">Visit effigy.se for more details or to apply to the whitelist.</a>"}
+
+#define EFFIGY_END_MESSAGE {"Thanks for playing this promotional map courtesy of a collaboration between Bubberstation x Effigy!<br/>
+Effigy is a server with an anthro friendly atmosphere, along with a focus of a mix of roleplay, gameplay and light antagonism.<br/>
+Unlike Bubberstation, Effigy is not a downstream of either Skyrat or Nova Sector. With its own code, maps, and assets, it is a more direct /tg/station downstream. Character customization is familiar, and the server supports importing your characters and preferences from Bubberstation!<br/>
+<a href="https://effigy.se">Visit effigy.se for more details or to apply to the whitelist.</a>"}

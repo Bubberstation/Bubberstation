@@ -92,6 +92,11 @@
 		title_screen_is_ready = TRUE
 		return
 
+	// EffigyEdit Addition Start - TM ONLY - EFFIGY PROMO
+	if(href_list["effigy_link"])
+		client << link("https://effigy.se")
+	// EffigyEdit Addition End - TM ONLY - EFFIGY PROMO
+
 
 /mob/dead/new_player/Login()
 	. = ..()
