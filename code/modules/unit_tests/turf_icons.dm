@@ -32,8 +32,8 @@
 	ignored_types += typesof(/turf/open/openspace/ocean)
 	ignored_types += typesof(/turf/open/floor/plating/ocean_plating) // Effigy promo note: this isn't tenable long-term; but I'm being consistent.
 	ignored_types += typesof(/turf/open/misc/ocean)
-	ignored_types += typesof(/turf/open/misc/ironsand/oceans)
-	ignored_types += typesof(/turf/open/floor/iron/oceans)
+	ignored_types += typesof(/turf/open/misc/ironsand/ocean)
+	ignored_types += typesof(/turf/open/floor/iron/ocean)
 	ignored_types += typesof(/turf/open/floor/iron/solarpanel/ocean)
 	ignored_types += typesof(/turf/open/floor/engine/hull/ocean)
 	ignored_types += typesof(/turf/open/floor/engine/hull/reinforced/ocean)
