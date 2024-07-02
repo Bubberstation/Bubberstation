@@ -10,5 +10,6 @@
 	)
 
 	zubbers_premium = list(
+		/obj/item/clothing/neck/kink_collar/locked/gps = 3,
 		/obj/item/holosign_creator/sex = 6,
 	)

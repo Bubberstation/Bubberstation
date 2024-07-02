@@ -12,7 +12,7 @@
 
 /** Requirements:
  * [x] Send-only GPS
- * [ ] Add to premium Lustwish
+ * [x] Add to premium Lustwish
  * [ ] Collar name is GPS signal name
  * [ ] alt clicking it turns it on and off
  * [ ] locking it prevents toggling the GPS on/off status or changing the name
