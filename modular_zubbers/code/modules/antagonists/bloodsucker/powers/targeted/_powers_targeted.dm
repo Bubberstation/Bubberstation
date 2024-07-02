@@ -22,6 +22,8 @@
 		unset_click_ability(remove_from)
 
 /datum/action/cooldown/bloodsucker/targeted/Trigger(trigger_flags, atom/target)
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
 	if((active) && can_deactivate())
 		DeactivatePower()
 		return FALSE
