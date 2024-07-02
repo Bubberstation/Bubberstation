@@ -260,11 +260,11 @@
 		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
 		// LU
 		if(use_glow)
-			var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, ABOVE_LIGHTING_PLANE, 100, offset_const = offset)
+			var/mutable_appearance/glow_overlay = mutable_appearance(glow_overlay_icon, weather_state, overlay_layer, null, ABOVE_LIGHTING_PLANE, 100, offset_const = offset) // EffigyEdit Change - swapped 'icons/effects/glow_weather.dmi' for glow_overlay_icon, see /local/ counterpart
 			glow_overlay.color = weather_color
 			gen_overlay_cache += glow_overlay
 
-		var/mutable_appearance/weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
+		var/mutable_appearance/weather_overlay = mutable_appearance(weather_overlay_icon, weather_state, overlay_layer, plane = overlay_plane, offset_const = offset) // EffigyEdit Change - swapped 'icons/effects/weather_effects.dmi' for weather_overlay_icon, see /local/ counterpart
 		weather_overlay.color = weather_color
 		gen_overlay_cache += weather_overlay
 
