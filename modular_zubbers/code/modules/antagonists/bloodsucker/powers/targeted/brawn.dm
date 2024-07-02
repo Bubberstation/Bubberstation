@@ -11,8 +11,8 @@
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
-	bloodcost = 8
-	cooldown_time = 9 SECONDS
+	bloodcost = 10
+	cooldown_time = 12 SECONDS
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
