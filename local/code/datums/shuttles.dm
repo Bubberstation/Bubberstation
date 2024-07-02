@@ -1,10 +1,5 @@
 /// RIMPOINT ///
 
-/datum/map_template/shuttle/arrival/rimpoint
-	prefix = "_maps/shuttles/"
-	suffix = "rimpoint"
-	name = "arrival shuttle (RimPoint)"
-
 /datum/map_template/shuttle/emergency/rimpoint
 	prefix = "_maps/shuttles/"
 	suffix = "rimpoint"
@@ -15,11 +10,6 @@
 	occupancy_limit = "50"
 
 /// SIGMA OCTANTIS ///
-
-/datum/map_template/shuttle/arrival/sigma_octantis
-	prefix = "_maps/shuttles/"
-	suffix = "sigmaoctantis"
-	name = "arrival shuttle (Sigma Octantis)"
 
 /datum/map_template/shuttle/emergency/sigma_octantis
 	prefix = "_maps/shuttles/"
