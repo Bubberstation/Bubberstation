@@ -3727,7 +3727,10 @@
 /turf/open/floor/iron,
 /area/station/security/brig/entrance)
 "bAq" = (
-/obj/effect/spawner/random/vending/colavend,
+/obj/machinery/vending/cola/pwr_game{
+	use_power = 0;
+	active_power_usage = 0
+	},
 /turf/open/floor/stone,
 /area/taeloth)
 "bAA" = (
@@ -47967,7 +47970,10 @@
 /turf/open/floor/stone,
 /area/taeloth)
 "tug" = (
-/obj/effect/spawner/random/vending/snackvend,
+/obj/machinery/vending/imported/tiziran{
+	active_power_usage = 0;
+	use_power = 0
+	},
 /turf/open/floor/stone,
 /area/taeloth)
 "tuv" = (
