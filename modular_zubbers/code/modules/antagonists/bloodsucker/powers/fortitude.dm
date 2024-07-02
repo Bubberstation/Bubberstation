@@ -11,6 +11,7 @@
 	power_flags = BP_AM_TOGGLE|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	cooldown_time = 20 SECONDS
 	bloodcost = 30
 	cooldown_time = 8 SECONDS
 	constant_bloodcost = 0.2
