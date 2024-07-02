@@ -17,6 +17,7 @@
 	constant_bloodcost = 0.2
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
+	var/list/trigger_listening = list()
 
 /datum/action/cooldown/bloodsucker/fortitude/ActivatePower(trigger_flags)
 	. = ..()
@@ -36,6 +37,15 @@
 	was_running = (bloodsucker_user.move_intent == MOVE_INTENT_RUN)
 	if(was_running)
 		bloodsucker_user.toggle_move_intent()
+	for(var/power in bloodsuckerdatum_power.powers)
+		if(!istype(power, /datum/action/cooldown/bloodsucker/targeted/haste))
+			continue
+		RegisterSignal(power, COMSIG_FIRE_TARGETED_POWER, PROC_REF(on_action_trigger))
+		trigger_listening += power
+
+/datum/action/cooldown/bloodsucker/fortitude/proc/on_action_trigger(datum/action, mob/target)
+	SIGNAL_HANDLER
+	DeactivatePower()
 
 /datum/action/cooldown/bloodsucker/fortitude/process(seconds_per_tick)
 	// Checks that we can keep using this.
@@ -55,6 +65,10 @@
 		user.buckled.unbuckle_mob(src, force=TRUE)
 
 /datum/action/cooldown/bloodsucker/fortitude/DeactivatePower()
+	if(length(trigger_listening))
+		for(var/power in trigger_listening)
+			UnregisterSignal(power, COMSIG_FIRE_TARGETED_POWER)
+			trigger_listening -= power
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/bloodsucker_user = owner
