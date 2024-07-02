@@ -62,22 +62,25 @@
 /obj/item/claymore/cutlass/luna/attack_secondary(atom/target, mob/living/user, clickparams)
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
-/obj/item/claymore/cutlass/luna/afterattack_secondary(atom/target, mob/living/user, proximity_flag, click_parameters)
+/obj/item/claymore/cutlass/luna/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!can_bloodbeam)
 		return
-	if(target == user)
+	if(interacting_with == user)
 		balloon_alert(user, "can't aim at yourself!")
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	send_sword_laser(target, user, click_parameters)
+		return ITEM_INTERACT_BLOCKING
+	send_sword_laser(interacting_with, user, modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ITEM_INTERACT_SUCCESS
 
-/obj/item/claymore/cutlass/luna/proc/send_sword_laser(atom/target, mob/living/user)
+/obj/item/claymore/cutlass/luna/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	return interact_with_atom_secondary(interacting_with, user, modifiers)
+
+/obj/item/claymore/cutlass/luna/proc/send_sword_laser(atom/target, mob/living/user, list/modifiers)
 	var/turf/proj_turf = user.loc
 	if(!isturf(proj_turf))
 		return
 	var/obj/projectile/beam/weak/penetrator/sord_beam = new(proj_turf)
-	sord_beam.preparePixelProjectile(target, user)
+	sord_beam.preparePixelProjectile(target, user, modifiers)
 	sord_beam.firer = user
 	playsound(user, 'sound/weapons/resonator_blast.ogg', 90, TRUE)
 	sord_beam.fire()
