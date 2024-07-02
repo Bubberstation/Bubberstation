@@ -13,7 +13,6 @@
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	cooldown_time = 20 SECONDS
 	bloodcost = 30
-	cooldown_time = 8 SECONDS
 	constant_bloodcost = 0.2
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
