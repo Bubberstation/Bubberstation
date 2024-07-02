@@ -32,4 +32,4 @@
 /area/taeloth/underground/unexplored
 	icon_state = "unexplored"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
-	map_generator = /datum/map_generator/cave_generator/jungle
+	map_generator = /datum/map_generator/cave_generator/rimpoint_jungle
