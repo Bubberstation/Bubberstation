@@ -1,5 +1,5 @@
 #define EFFIGY_TEMP_LOADING_SCREEN 'local/interface/title-x3.png'
-#define EFFIGY_TEMP_TITLE_SCREEN 'local/interface/effigy_splash.png'
+#define EFFIGY_TEMP_TITLE_SCREEN 'local/interface/promo_bubber_splash.png'
 
 #define EFFIGY_TEMP_HTML {"
 	<html>
