@@ -10,5 +10,5 @@
 	)
 
 	zubbers_premium = list(
-	/obj/item/holosign_creator/sex = 6,
+		/obj/item/holosign_creator/sex = 6,
 	)
