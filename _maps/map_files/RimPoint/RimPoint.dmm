@@ -2260,7 +2260,7 @@
 /area/station/medical/patients_rooms/room_a)
 "aXI" = (
 /obj/structure/fake_stairs/wood/directional/west,
-/obj/structure/railing/wooden_fence,
+/obj/structure/railing,
 /turf/open/misc/dirt/jungle,
 /area/taeloth)
 "aXZ" = (
@@ -2805,7 +2805,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/office)
 "bha" = (
-/obj/structure/chair/sofa/bench/right,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
@@ -3774,6 +3773,16 @@
 "bzv" = (
 /turf/closed/wall/r_wall,
 /area/station/security/courtroom)
+"bzC" = (
+/obj/machinery/time_clock/directional/east{
+	use_power = 0;
+	active_power_usage = 0
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 1
+	},
+/turf/open/misc/dirt/jungle,
+/area/taeloth)
 "bzO" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -4400,6 +4409,9 @@
 	},
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 6
+	},
+/obj/machinery/solarlight/camera_installed{
+	c_tag = "Exterior -  Cargo, Blacksmith"
 	},
 /turf/open/floor/iron/diagonal,
 /area/taeloth)
@@ -10672,7 +10684,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 6
 	},
 /obj/machinery/camera/directional/north{
@@ -12343,7 +12355,7 @@
 /area/station/science/xenobiology)
 "eRJ" = (
 /obj/structure/fake_stairs/wood/directional/east,
-/obj/structure/railing/wooden_fence,
+/obj/structure/railing,
 /turf/open/misc/beach/sand,
 /area/taeloth)
 "eRK" = (
@@ -21629,7 +21641,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/chair/sofa/bench/left,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
@@ -25285,7 +25296,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -30720,7 +30731,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/obj/structure/railing/wooden_fence,
+/obj/structure/railing,
 /turf/open/floor/wood,
 /area/taeloth)
 "mln" = (
@@ -39930,7 +39941,9 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat/foyer)
 "pUx" = (
-/obj/structure/railing/corner/end/flip/wooden_fence,
+/obj/structure/railing/corner/end{
+	dir = 4
+	},
 /obj/machinery/time_clock/directional/north{
 	use_power = 0;
 	active_power_usage = 0
@@ -40992,6 +41005,9 @@
 /obj/machinery/time_clock/directional/west{
 	active_power_usage = 0;
 	use_power = 0
+	},
+/obj/structure/railing/corner/end{
+	dir = 1
 	},
 /turf/open/misc/dirt/jungle,
 /area/taeloth)
@@ -43276,7 +43292,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -46786,7 +46802,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/obj/structure/railing/wooden_fence,
+/obj/structure/railing,
 /obj/machinery/camera/directional/north{
 	c_tag = "Civil - Cabin 1 Patio";
 	use_power = 0;
@@ -46928,7 +46944,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -46941,7 +46957,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 4
 	},
 /obj/machinery/camera/directional/west{
@@ -48608,7 +48624,7 @@
 /area/station/medical/patients_rooms)
 "tjq" = (
 /obj/structure/fake_stairs/wood/directional/north,
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 8
 	},
 /turf/open/misc/dirt/jungle,
@@ -49014,7 +49030,7 @@
 /area/taeloth)
 "ttM" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/structure/railing/wooden_fence,
+/obj/structure/railing,
 /turf/open/floor/wood,
 /area/taeloth)
 "ttQ" = (
@@ -55522,7 +55538,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 8
 	},
 /obj/machinery/camera/directional/east{
@@ -56279,7 +56295,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -56987,7 +57003,9 @@
 /turf/open/floor/iron,
 /area/station/security/brig)
 "wDL" = (
-/obj/structure/railing/corner/end/wooden_fence,
+/obj/structure/railing/corner/end/flip{
+	dir = 8
+	},
 /obj/machinery/time_clock/directional/north{
 	use_power = 0;
 	active_power_usage = 0
@@ -58019,7 +58037,7 @@
 /area/taeloth)
 "wYE" = (
 /obj/structure/fake_stairs/wood/directional/north,
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 4
 	},
 /turf/open/misc/dirt/jungle,
@@ -59781,7 +59799,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/structure/railing/wooden_fence{
+/obj/structure/railing{
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -75841,7 +75859,7 @@ xGl
 rgY
 vYu
 tjq
-uFT
+bzC
 spK
 sAb
 sAb
