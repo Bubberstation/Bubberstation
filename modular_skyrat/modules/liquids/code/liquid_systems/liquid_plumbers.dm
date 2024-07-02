@@ -40,7 +40,7 @@
 /obj/machinery/plumbing/floor_pump/update_appearance(updates)
 	. = ..()
 	layer = tile_placed ? GAS_SCRUBBER_LAYER : BELOW_OBJ_LAYER
-	plane = tile_placed ? FLOOR_PLANE : GAME_PLANE
+	SET_PLANE_IMPLICIT(src, tile_placed ? FLOOR_PLANE : GAME_PLANE)
 
 /obj/machinery/plumbing/floor_pump/update_icon_state()
 	. = ..()

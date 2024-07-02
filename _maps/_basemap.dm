@@ -26,6 +26,8 @@
 		#include "map_files\KiloStation\KiloStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\ss13construct\ss13_construct.dmm"
+		#include "map_files\RimPoint\RimPoint.dmm"
+		#include "map_files\SigmaOctantis\SigmaOctantis.dmm"
 		// BUBBER EDIT ADDITION END
 
 		#ifdef CIBUILDING
