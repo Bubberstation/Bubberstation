@@ -1,4 +1,5 @@
 /// RIMPOINT ///
+/datum/map_template/shuttle/emergency/rimpoint
 	prefix = "_maps/shuttles/"
 	suffix = "rimpoint"
 	name = "RimPoint Emergency Shuttle"
