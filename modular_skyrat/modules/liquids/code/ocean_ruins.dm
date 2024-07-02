@@ -1,3 +1,4 @@
+/*
 /datum/map_template/ruin/ocean
 	prefix = "_maps/RandomRuins/OceanRuins/"
 
@@ -94,3 +95,4 @@
 	id = "ocean-fissure-diag"
 	description = "A horizontal tear in the ocean."
 	suffix = "ocean_fissure_diag.dmm"
+*/ // Effigy Promo removal - these are (at least what remains) all in /local/ now. I don't want to double define these. Or worse; have INVISIBLE psuedo-ruins. Eek!
