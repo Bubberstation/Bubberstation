@@ -16,5 +16,9 @@
 		/obj/structure/flora/rock/pile/jungle/style_random = 2,
 	)
 
+	weighted_feature_spawn_list = list(
+			/obj/structure/geyser/random = 1,
+		) // Ore vents really shouldn't be out here. Chemists get a little treat though.
+
 	mob_spawn_chance = 1
 	smoothing_iterations = 50
