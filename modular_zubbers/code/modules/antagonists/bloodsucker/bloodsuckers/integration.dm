@@ -8,6 +8,8 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
+	if(!(methods & (INJECT|INGEST)))
+		return ..()
 
 	if(bloodsuckerdatum.my_clan && istype(bloodsuckerdatum.my_clan, /datum/bloodsucker_clan/ventrue) && bloodsuckerdatum.GetBloodVolume() >= BLOOD_VOLUME_SAFE)
 		return ..()
