@@ -11616,8 +11616,8 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/station/cargo/storage)
 "cIX" = (
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
-	dir = 4
+/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 4
@@ -11625,10 +11625,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/railing/corner/end{
+/obj/structure/railing/corner/end/flip{
 	dir = 1
 	},
-/turf/open/floor/iron/diagonal,
+/turf/open/floor/iron/herringbone,
 /area/station/hallway/secondary/entry)
 "cIZ" = (
 /obj/effect/turf_decal/tile/purple{
@@ -18261,6 +18261,7 @@
 /obj/machinery/duct/waste,
 /obj/structure/cable,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/iron/herringbone,
 /area/station/hallway/secondary/entry)
 "emT" = (
@@ -25415,9 +25416,6 @@
 /obj/structure/sign/flag/nanotrasen/directional/north,
 /obj/machinery/duct/waste,
 /obj/structure/cable,
-/obj/structure/railing{
-	dir = 4
-	},
 /turf/open/floor/iron/diagonal,
 /area/station/hallway/secondary/entry)
 "fSy" = (
@@ -38257,6 +38255,7 @@
 	dir = 10
 	},
 /obj/machinery/duct/supply,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/herringbone,
 /area/station/hallway/secondary/entry)
 "iVj" = (
@@ -44084,16 +44083,23 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "krc" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 2;
-	height = 12;
-	name = "sigma octantis arrivals";
-	roundstart_template = /datum/map_template/shuttle/arrival/sigma_octantis;
-	shuttle_id = "arrival_stationary";
-	width = 6
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/turf/open/floor/plating/elevatorshaft,
+/obj/machinery/duct/waste,
+/obj/structure/cable,
+/obj/machinery/computer/shuttle/arrivals/recall{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/status_display/shuttle/directional/north{
+	shuttle_id = "arrivals_shuttle";
+	use_power = 0;
+	active_power_usage = 0
+	},
+/turf/open/floor/iron/herringbone,
 /area/station/hallway/secondary/entry)
 "krl" = (
 /obj/effect/spawner/liquids_spawner/fulltile,
@@ -53546,17 +53552,6 @@
 	},
 /turf/open/floor/plating/ocean_plating,
 /area/ocean)
-"mGO" = (
-/obj/effect/turf_decal/tile/blue/diagonal_centre,
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
-/obj/machinery/duct/waste,
-/obj/structure/cable,
-/obj/machinery/light/directional/north,
-/obj/machinery/camera/autoname/directional/north,
-/turf/open/floor/iron/diagonal,
-/area/station/hallway/secondary/entry)
 "mGR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -68984,9 +68979,15 @@
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/greater)
 "qqH" = (
-/obj/machinery/door/firedoor/water_sensor,
-/obj/machinery/duct/waste,
-/turf/open/floor/iron/smooth_large,
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 1;
+	height = 13;
+	name = "arrivals";
+	shuttle_id = "arrivals_stationary";
+	width = 5
+	},
+/turf/open/floor/plating/elevatorshaft,
 /area/station/hallway/secondary/entry)
 "qqJ" = (
 /obj/structure/chair/office/light{
@@ -85121,7 +85122,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/machinery/light/small/directional/south,
 /turf/open/floor/catwalk_floor,
 /area/station/hallway/secondary/entry)
 "ujK" = (
@@ -99706,8 +99706,12 @@
 /turf/open/floor/carpet/royalblack,
 /area/station/service/chapel/funeral)
 "xHw" = (
-/obj/machinery/door/firedoor/water_sensor,
-/turf/open/floor/iron/smooth_large,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/duct/waste,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/catwalk_floor,
 /area/station/hallway/secondary/entry)
 "xHF" = (
 /obj/effect/turf_decal/stripes/line,
@@ -101483,6 +101487,11 @@
 	},
 /obj/machinery/duct/waste,
 /obj/structure/cable,
+/obj/machinery/status_display/shuttle/directional/north{
+	shuttle_id = "arrivals_shuttle";
+	use_power = 0;
+	active_power_usage = 0
+	},
 /turf/open/floor/iron/herringbone,
 /area/station/hallway/secondary/entry)
 "yfs" = (
@@ -136328,7 +136337,7 @@ jtm
 jtm
 uSK
 fSw
-cIX
+oUZ
 gqt
 nqt
 gdy
@@ -136840,8 +136849,8 @@ wfP
 wfP
 wfP
 ujF
-uSK
-mGO
+ejn
+uXL
 xjn
 hLe
 prQ
@@ -137091,11 +137100,11 @@ rbu
 rbu
 uSK
 uSK
-xHw
-xHw
-xHw
-qqH
-xHw
+nmb
+cLv
+cLv
+cLv
+cLv
 xHw
 uSK
 emS
@@ -137347,14 +137356,14 @@ psC
 psC
 psC
 psC
+opZ
+jtm
+jtm
+jtm
+jtm
+jtm
+jtm
 uSK
-nmb
-cLv
-cLv
-cLv
-cLv
-cLv
-ejn
 mkB
 mYr
 cRX
@@ -137612,8 +137621,8 @@ jtm
 jtm
 jtm
 uSK
-mkB
-dGr
+krc
+cIX
 aiK
 ohr
 jPT
@@ -137868,7 +137877,7 @@ jtm
 jtm
 jtm
 jtm
-uSK
+vrH
 mkB
 uXk
 vQo
@@ -138125,7 +138134,7 @@ jtm
 jtm
 jtm
 jtm
-vrH
+uSK
 mkB
 iJk
 cRX
@@ -138382,7 +138391,7 @@ jtm
 jtm
 jtm
 jtm
-uSK
+rbu
 mkB
 ljF
 suG
@@ -140435,8 +140444,8 @@ fiQ
 jtm
 jtm
 jtm
-krc
 jtm
+qqH
 jtm
 uSK
 ygD

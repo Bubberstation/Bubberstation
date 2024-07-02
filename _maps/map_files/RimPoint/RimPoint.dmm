@@ -875,7 +875,10 @@
 /turf/open/floor/wood/large,
 /area/station/security/courtroom)
 "auT" = (
-/obj/machinery/computer/shuttle/arrivals/recall,
+/obj/machinery/computer/shuttle/arrivals/recall{
+	active_power_usage = 0;
+	use_power = 0
+	},
 /turf/open/floor/stone,
 /area/taeloth)
 "auV" = (
@@ -19881,7 +19884,9 @@
 "hZY" = (
 /obj/structure/marker_beacon/burgundy,
 /obj/machinery/status_display/shuttle/directional/north{
-	shuttle_id = "arrivals_shuttle"
+	shuttle_id = "arrivals_shuttle";
+	use_power = 0;
+	active_power_usage = 0
 	},
 /turf/open/misc/dirt/jungle,
 /area/taeloth)
@@ -87859,7 +87864,7 @@ vMS
 vMS
 sAb
 sAb
-sAb
+vSj
 sAb
 sAb
 sAb
@@ -88117,7 +88122,7 @@ vMS
 vSj
 sAb
 sAb
-sAb
+vSj
 sAb
 vSj
 vSj
@@ -88632,7 +88637,7 @@ vSj
 xtP
 sAb
 vpS
-sAb
+vSj
 sAb
 sAb
 sAb
@@ -88892,7 +88897,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+vSj
 sAb
 sAb
 sAb
@@ -89149,8 +89154,8 @@ sAb
 sAb
 sAb
 vSj
-sAb
-sAb
+vSj
+vSj
 sAb
 sAb
 sAb
@@ -89409,7 +89414,7 @@ xEZ
 sAb
 sAb
 sAb
-sAb
+vSj
 sAb
 sAb
 sAb
@@ -89924,7 +89929,7 @@ ykk
 mdx
 sAb
 sAb
-sAb
+vSj
 sAb
 jVU
 sAb
@@ -90180,7 +90185,7 @@ mhb
 wck
 cgF
 sAb
-sAb
+vSj
 sAb
 sAb
 sAb
