@@ -81,4 +81,5 @@
 	if(was_running && bloodsucker_user.move_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.toggle_move_intent()
 	owner.balloon_alert(owner, "fortitude turned off.")
+	fortitude_resist = 1
 	return ..()
