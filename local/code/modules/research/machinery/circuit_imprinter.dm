@@ -2,4 +2,4 @@
 /// We should also not hand out free gamer tools to anyone and everyone.
 /obj/machinery/rnd/production/circuit_imprinter/offstation/but_actually_not_just_unlinked_and_less_cool/Initialize(mapload)
 	. = ..()
-	materials.disconnect_from(silo) // Makes it significantly harder to abuse the out-and-open lathe for AI parts and the like.
+	materials.disconnect_from(materials.silo) // Makes it significantly harder to abuse the out-and-open lathe for AI parts and the like.
