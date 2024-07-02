@@ -86,6 +86,12 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/garbagetruck/squat)
+"dK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/power_store/cell/lead,
+/turf/open/floor/iron/smooth,
+/area/ruin/space/has_grav/garbagetruck/squat)
 "dL" = (
 /obj/item/toy/mecha/marauder,
 /obj/structure/closet/cardboard,
@@ -93,11 +99,48 @@
 /obj/item/storage/fancy/cigarettes/cigpack_robust,
 /turf/open/floor/plating/dumpsterair,
 /area/ruin/space/has_grav/garbagetruck/squat)
+"es" = (
+/obj/item/clothing/head/cone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/machinery/light/warm,
+/obj/machinery/power/apc/auto_name/directional/south{
+	cell_type = /obj/item/stock_parts/cell/lead
+	},
+/obj/effect/mapping_helpers/apc/no_charge,
+/obj/effect/mapping_helpers/apc/unlocked,
+/obj/structure/cable,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/item/clothing/head/cone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/machinery/light/warm,
+/obj/machinery/power/apc{
+	locked = 0;
+	pixel_y = -25;
+	start_charge = 0
+	},
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron,
+/area/ruin/space/has_grav/garbagetruck/squat)
 "fF" = (
 /obj/item/clothing/suit/caution,
 /obj/item/trash/syndi_cakes,
 /obj/effect/decal/cleanable/plastic,
 /obj/item/t_scanner,
+/turf/open/floor/plating/dumpsterair,
+/area/ruin/space/has_grav/garbagetruck/squat)
+"fN" = (
+/obj/effect/decal/cleanable/fuel_pool,
+/obj/item/stock_parts/power_store/cell/crap/empty,
+/obj/effect/decal/cleanable/plastic,
+/obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plating/dumpsterair,
 /area/ruin/space/has_grav/garbagetruck/squat)
 "gq" = (
@@ -187,7 +230,7 @@
 /area/ruin/space/has_grav/garbagetruck/squat)
 "kb" = (
 /obj/effect/decal/cleanable/fuel_pool,
-/obj/item/stock_parts/cell/crap/empty,
+/obj/item/stock_parts/power_store/cell/crap/empty,
 /obj/effect/decal/cleanable/plastic,
 /obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plating/dumpsterair,
@@ -323,6 +366,26 @@
 /obj/structure/bed/dogbed,
 /turf/open/floor/plating/dumpsterair,
 /area/ruin/space/has_grav/garbagetruck/squat)
+"rX" = (
+/obj/item/stock_parts/power_store/cell/crap/empty{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/item/clothing/mask/cigarette/space_cigarette{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/fuel_pool,
+/obj/item/crowbar/hammer{
+	desc = "A large claw hammer. It's been heavily used, as evidenced by the dents and scratches covering its head.";
+	name = "claw hammer"
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/dumpsterair,
+/area/ruin/space/has_grav/garbagetruck/squat)
 "sb" = (
 /obj/effect/decal/cleanable/fuel_pool,
 /obj/item/folder/yellow,
@@ -447,7 +510,7 @@
 /obj/structure/broken_flooring/pile,
 /obj/item/food/deadmouse/moldy,
 /obj/item/stock_parts/water_recycler,
-/obj/item/stock_parts/cell/lead,
+/obj/item/stock_parts/power_store/cell/lead,
 /turf/open/floor/plating/dumpsterair,
 /area/ruin/space/has_grav/garbagetruck/squat)
 "vW" = (
@@ -469,11 +532,11 @@
 	pixel_y = 8
 	},
 /obj/machinery/light/warm,
-/obj/machinery/power/apc/auto_name/directional/south{
-	cell_type = /obj/item/stock_parts/cell/lead
+/obj/machinery/power/apc{
+	locked = 0;
+	pixel_y = -25;
+	start_charge = 0
 	},
-/obj/effect/mapping_helpers/apc/no_charge,
-/obj/effect/mapping_helpers/apc/unlocked,
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/garbagetruck/squat)
@@ -668,7 +731,7 @@
 "HN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/lead,
+/obj/item/stock_parts/power_store/cell/lead,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/garbagetruck/squat)
 "HZ" = (
@@ -754,7 +817,7 @@
 /turf/open/space/basic,
 /area/ruin/space/has_grav/garbagetruck/squat)
 "MQ" = (
-/obj/item/stock_parts/cell/crap/empty{
+/obj/item/stock_parts/power_store/cell/crap/empty{
 	pixel_x = -4;
 	pixel_y = 10
 	},
@@ -856,6 +919,15 @@
 "TD" = (
 /obj/item/food/deadmouse,
 /obj/item/trash/candy,
+/turf/open/floor/plating/dumpsterair,
+/area/ruin/space/has_grav/garbagetruck/squat)
+"UU" = (
+/obj/effect/decal/cleanable/fuel_pool,
+/obj/effect/decal/cleanable/molten_object/large,
+/obj/structure/broken_flooring/pile,
+/obj/item/food/deadmouse/moldy,
+/obj/item/stock_parts/water_recycler,
+/obj/item/stock_parts/power_store/cell/lead,
 /turf/open/floor/plating/dumpsterair,
 /area/ruin/space/has_grav/garbagetruck/squat)
 "Vw" = (
@@ -981,7 +1053,7 @@ mV
 la
 gq
 sF
-HN
+dK
 dC
 HZ
 mV
@@ -1016,7 +1088,7 @@ za
 aG
 zo
 HD
-MQ
+rX
 qF
 Cm
 mV
@@ -1039,7 +1111,7 @@ uW
 XS
 nX
 BN
-vJ
+UU
 vW
 mV
 "}
@@ -1061,7 +1133,7 @@ Hk
 vq
 zY
 Hn
-kb
+fN
 le
 mV
 "}
@@ -1114,7 +1186,7 @@ la
 gq
 Gn
 dF
-yo
+es
 HZ
 mV
 ui

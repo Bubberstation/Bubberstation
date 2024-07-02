@@ -489,6 +489,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dumpsterair,
 /area/ruin/space/has_grav/garbagetruck/foodwaste)
+"xc" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/power_store/cell/lead,
+/turf/open/floor/iron/smooth,
+/area/ruin/space/has_grav/garbagetruck/foodwaste)
 "xf" = (
 /obj/item/trash/tray,
 /obj/item/trash/waffles,
@@ -754,7 +760,7 @@
 "Fz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/lead,
+/obj/item/stock_parts/power_store/cell/lead,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/garbagetruck/foodwaste)
 "FL" = (
@@ -789,6 +795,36 @@
 /obj/item/reagent_containers/cup/glass/waterbottle/empty,
 /obj/effect/decal/cleanable/wrapping,
 /turf/open/floor/plating/dumpsterair,
+/area/ruin/space/has_grav/garbagetruck/foodwaste)
+"GX" = (
+/obj/item/clothing/head/cone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/machinery/light/warm,
+/obj/machinery/power/apc/auto_name/directional/south{
+	cell_type = /obj/item/stock_parts/cell/lead
+	},
+/obj/effect/mapping_helpers/apc/no_charge,
+/obj/effect/mapping_helpers/apc/unlocked,
+/obj/structure/cable,
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/item/clothing/head/cone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/machinery/light/warm,
+/obj/machinery/power/apc{
+	locked = 0;
+	pixel_y = -25;
+	start_charge = 0
+	},
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/garbagetruck/foodwaste)
 "Hh" = (
 /obj/structure/closet/crate/trashcart/filled,
@@ -1069,11 +1105,11 @@
 	pixel_y = 8
 	},
 /obj/machinery/light/warm,
-/obj/machinery/power/apc/auto_name/directional/south{
-	cell_type = /obj/item/stock_parts/cell/lead
+/obj/machinery/power/apc{
+	locked = 0;
+	pixel_y = -25;
+	start_charge = 0
 	},
-/obj/effect/mapping_helpers/apc/no_charge,
-/obj/effect/mapping_helpers/apc/unlocked,
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/ruin/space/has_grav/garbagetruck/foodwaste)
@@ -1282,7 +1318,7 @@ Sa
 XY
 Od
 kJ
-Fz
+xc
 gI
 OD
 Sa
@@ -1415,7 +1451,7 @@ XY
 Od
 fI
 bF
-PU
+GX
 OD
 Sa
 Qi
