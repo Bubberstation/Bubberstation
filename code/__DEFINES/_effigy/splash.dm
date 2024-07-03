@@ -1,5 +1,5 @@
 #define EFFIGY_TEMP_LOADING_SCREEN 'local/interface/title-x3.png'
-#define EFFIGY_TEMP_TITLE_SCREEN 'local/interface/promo_bubber_splash.png'
+#define EFFIGY_TEMP_TITLE_SCREEN 'local/interface/promo_bubber_splash_1066.png'
 
 #define EFFIGY_TEMP_HTML {"
 	<html>
@@ -212,3 +212,49 @@ Unlike Bubberstation, Effigy is not a downstream of either Skyrat or Nova Sector
 Effigy is a server with an anthro friendly atmosphere, along with a focus of a mix of roleplay, gameplay and light antagonism.<br/>
 Unlike Bubberstation, Effigy is not a downstream of either Skyrat or Nova Sector. With its own code, maps, and assets, it is a more direct /tg/station downstream. Character customization is familiar, and the server supports importing your characters and preferences from Bubberstation!<br/>
 <a href="https://effigy.se">Visit effigy.se for more details or to apply to the whitelist.</a>"}
+
+GLOBAL_VAR_INIT(effigy_promo, FALSE)
+
+GLOBAL_LIST_INIT(effigy_fluff, list(
+	"Filling Poly's speech buffer...",
+	"Sending departmental orders...",
+	"Clearing tram scoreboard...",
+	"Caffeinating admins...",
+	"Charging beep speakers...",
+	"Unlawing all borgs...",
+	"Giving synths freedom...",
+	"Pre-charging headpats...",
+	"Grabbing tails...",
+	"Restocking Lustwish machines...",
+	"Removing soul...",
+	"Hacking into tech storage...",
+	"Hiding wizard token...",
+	"Repairing cabling...",
+	"Spreading misinformation...",
+	"Bombing medbay...",
+	"Checking bully capacity...",
+	"Overpressurizing distro...",
+	"Killing botanists...",
+	"Refilling ERP tokens...",
+	"Revving up purr motor...",
+	"Rotating sharks...",
+	"Reticulating splines...",
+	"Reticulating pythons...",
+	"Refuelling shuttle...",
+	"Locating escape pods...",
+	"Touching fluffy tail...",
+	"Petting the catte...",
+	"Generating snappy comeback...",
+	"Re-opening /tgstation/pull/45022 (Lockable Schoolgirl Dresses)...",
+	"Changing laundry...",
+	"Refilling water bowl...",
+	"Rebuilding Engineering...",
+	"Deadminning to ERP...",
+	"Bullying protogens...",
+	"Spinning moff logo...",
+	"Mapping in tram...",
+	"Sabotaging delam counter...",
+	"Opening salt PR...",
+	"Blaming storyteller...",
+	"oh god how did this get here i am not good with mapping...",
+))

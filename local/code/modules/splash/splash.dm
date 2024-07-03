@@ -1,11 +1,11 @@
 /datum/controller/subsystem/ticker/PostSetup()
 	. = ..()
-	if(SStitle.effigy_promo)
+	if(GLOB.effigy_promo)
 		to_chat(world, create_ooc_announcement_div(EFFIGY_WELCOME_MESSAGE))
 
 /datum/controller/subsystem/ticker/handle_hearts()
 	. = ..()
-	if(SStitle.effigy_promo)
+	if(GLOB.effigy_promo)
 		to_chat(world, create_ooc_announcement_div(EFFIGY_END_MESSAGE))
 
 /client/verb/webmap()
