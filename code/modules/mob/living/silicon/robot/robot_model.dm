@@ -53,9 +53,17 @@
 	var/list/ride_offset_y = list("north" = 4, "south" = 4, "east" = 3, "west" = 3)
 	///List of skins the borg can be reskinned to, optional
 	var/list/borg_skins
+	///Omnitoolbox, holder of certain borg tools. Not all models have one
+	var/obj/item/cyborg_omnitoolbox/toolbox
+	///Path to toolbox, if a model gets one
+	var/toolbox_path
 
 /obj/item/robot_model/Initialize(mapload)
 	. = ..()
+
+	if(toolbox_path)
+		toolbox = new toolbox_path(src)
+
 	for(var/path in basic_modules)
 		var/obj/item/new_module = new path(src)
 		basic_modules += new_module
@@ -434,6 +442,7 @@
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
 	hat_offset = -4
+	toolbox_path = /obj/item/cyborg_omnitoolbox/engineering
 
 /obj/item/robot_model/janitor
 	name = "Janitor"
@@ -714,6 +723,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/borg/cyborg_omnitool/medical,
+		/obj/item/surgical_drapes/cyborg,
 		/obj/item/blood_filter,
 		/obj/item/extinguisher/mini,
 		/obj/item/emergency_bed/silicon,
@@ -731,6 +741,11 @@
 	model_select_icon = "medical"
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = 3
+	toolbox_path = /obj/item/cyborg_omnitoolbox/medical
+	borg_skins = list(
+		"Machinified Doctor" = list(SKIN_ICON_STATE = "medical"),
+		"Qualified Doctor" = list(SKIN_ICON_STATE = "qualified_doctor"),
+	)
 
 /obj/item/robot_model/miner
 	name = "Miner"
@@ -929,6 +944,7 @@
 		/obj/item/healthanalyzer,
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/borg/cyborg_omnitool/medical,
+		/obj/item/surgical_drapes/cyborg,
 		/obj/item/blood_filter,
 		/obj/item/melee/energy/sword/cyborg/saw,
 		/obj/item/emergency_bed/silicon,
@@ -944,6 +960,7 @@
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = 3
+	toolbox_path = /obj/item/cyborg_omnitoolbox/medical
 
 /obj/item/robot_model/saboteur
 	name = "Syndicate Saboteur"
@@ -973,6 +990,7 @@
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY)
 	hat_offset = -4
+	toolbox_path = /obj/item/cyborg_omnitoolbox/engineering
 	canDispose = TRUE
 
 /obj/item/robot_model/syndicate/kiltborg
