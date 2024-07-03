@@ -11,15 +11,15 @@
 	build_path = /obj/item/circuit_component/item_interact
 
 /datum/techweb_node/comp_advanced_interacts
-	id = "comp_advanced_interacts"
+	id = TECHWEB_NODE_COMP_INTERACTION_COMPONENT
 	display_name = "Advanced Action Components"
 	description = "Grants access to more advanced action components for the drone shell."
-	prereq_ids = list("movable_shells")
+	prereq_ids = list(TECHWEB_NODE_PROGRAMMED_ROBOT)
 	design_ids = list(
 		"comp_mine",
 		"comp_iinteract",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 
 //Target Scanner Component
 /datum/design/component/radar_scanner
