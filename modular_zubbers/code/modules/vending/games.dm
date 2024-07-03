@@ -93,7 +93,7 @@
 				/obj/item/toy/plush/skyrat/plushie_synthia = 3,
 				/obj/item/toy/plush/skyrat/jecca = 3,
 				/obj/item/toy/plush/skyrat/courier_synth = 3,
-		),
+			),
 
 		list(
 			"name" = "Other",
@@ -115,9 +115,3 @@
 		)
 	)
 
-	zubbers_contraband = list(
-		/obj/item/hairbrush/tactical = 3,
-		/obj/item/toy/plush/whiny_plushie = 1,
-		/obj/item/instrument/musicalduffy = 1,
-		/obj/item/toy/plush/skyrat/lizzyplush = 3,
-	)
