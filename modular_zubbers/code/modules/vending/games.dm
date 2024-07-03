@@ -7,7 +7,7 @@
 				/obj/item/toy/plush/skyrat/fox/mia = 3,
 				/obj/item/toy/plush/skyrat/fox/kailyn = 3,
 				/obj/item/toy/plush/skyrat/voodoo = 5,
-				/obj/item/toy/plush/skyrat/immovable_rod = 3
+				/obj/item/toy/plush/skyrat/immovable_rod = 3,
 				/obj/item/toy/plush/skyrat/tesh = 3,
 				/obj/item/toy/plush/skyrat/roselia = 3,
 				/obj/item/toy/plush/skyrat/chunko/plushie_winrow = 3,
@@ -56,7 +56,7 @@
 				/obj/item/toy/plush/plasmamanplushie = 3,
 				/obj/item/toy/plush/skyrat/borbplushie = 3,
 				/obj/item/toy/plush/skyrat/deer = 3,
-				/obj/item/toy/plush/skyrat/leaplush = 3
+				/obj/item/toy/plush/skyrat/leaplush = 3,
 				/obj/item/toy/plush/skyrat/fermis = 3,
 				/obj/item/toy/plush/skyrat/fermis/chen = 3,
 				/obj/item/toy/plush/skyrat/fox = 3,
@@ -93,7 +93,6 @@
 				/obj/item/toy/plush/skyrat/plushie_synthia = 3,
 				/obj/item/toy/plush/skyrat/jecca = 3,
 				/obj/item/toy/plush/skyrat/courier_synth = 3,
-
 		),
 
 		list(
