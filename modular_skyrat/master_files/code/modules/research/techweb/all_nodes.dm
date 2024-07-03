@@ -290,8 +290,7 @@
 	design_ids += list(
 		"borg_upgrade_surgicaltools",
 	)
-	return ..() // Bubber Edit - Moves this up because it doesn't compile otherwise
-/*	design_ids -= list(
+	design_ids -= list(
 		"borg_upgrade_pinpointer",
 	)
 	return ..()
