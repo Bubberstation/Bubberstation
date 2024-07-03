@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 /mob/dead/new_player/proc/get_title_html()
 	var/dat = SStitle.title_html
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		if(SStitle.effigy_promo)
+		if(GLOB.effigy_promo)
 			dat += {"<img src="title-x3.png" class="bg" alt="">"}
 		else
 			dat += {"<img src="loading_screen.gif" class="bg" alt="">"}
@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		"}
 
 	else
-		if(SStitle.effigy_promo)
+		if(GLOB.effigy_promo)
 			dat += {"<img src="title-x3.png" class="bg" alt="">"}
 		else
 			dat += {"<img src="loading_screen.gif" class="bg" alt="">"}
@@ -105,7 +105,7 @@ GLOBAL_LIST_EMPTY(startup_messages)
 
 		dat += {"<div class="container_nav">"}
 
-		if(SStitle.effigy_promo)
+		if(GLOB.effigy_promo)
 			dat += get_effigy_menu_html()
 
 		else

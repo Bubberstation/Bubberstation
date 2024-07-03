@@ -123,7 +123,7 @@
 /mob/dead/new_player/proc/update_title_screen()
 	var/dat = get_title_html()
 
-	if(SStitle.effigy_promo)
+	if(GLOB.effigy_promo)
 		src << browse(SStitle.current_title_screen, "file=title-x3.png;display=0")
 	else
 		src << browse(SStitle.current_title_screen, "file=loading_screen.gif;display=0")

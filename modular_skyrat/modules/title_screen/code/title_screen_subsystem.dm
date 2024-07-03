@@ -25,21 +25,16 @@ SUBSYSTEM_DEF(title)
 	var/progress_reference_time = 0
 	/// A list of station traits that have lobby buttons
 	var/list/available_lobby_station_traits = list()
-	/// Are we on an Effigy promo map
-	var/effigy_promo = FALSE
-	/// Effigy fluff messages
-	var/list/static/effigy_fluff
 
 /datum/controller/subsystem/title/Initialize()
 	switch(SSmapping.config.map_name)
 		if("Effigy Sigma Octantis")
-			effigy_promo = TRUE
+			GLOB.effigy_promo = TRUE
 		if("Effigy RimPoint")
-			effigy_promo = TRUE
+			GLOB.effigy_promo = TRUE
 
-	if(effigy_promo)
+	if(GLOB.effigy_promo)
 		title_html = EFFIGY_TEMP_HTML
-		effigy_fluff = world.file2list('local/interface/effigy_fluff.txt')
 	else
 		var/dat
 		if(!fexists("[global.config.directory]/bubbers/bubbers_title.txt")) // BUBBER EDIT - original title_html.txt
@@ -53,7 +48,7 @@ SUBSYSTEM_DEF(title)
 	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
 	var/list/local_title_screens = list()
 
-	if(!effigy_promo)
+	if(!GLOB.effigy_promo)
 		for(var/screen in provisional_title_screens)
 			var/list/formatted_list = splittext(screen, "+")
 			if((LAZYLEN(formatted_list) == 1 && (formatted_list[1] != "exclude" && formatted_list[1] != "blank.png" && formatted_list[1] != "startup_splash")))
@@ -68,7 +63,7 @@ SUBSYSTEM_DEF(title)
 	check_progress_reference_time()
 	load_progress_json()
 
-	if(effigy_promo)
+	if(GLOB.effigy_promo)
 		change_title_screen(EFFIGY_TEMP_LOADING_SCREEN)
 	else
 		if(startup_splash)
@@ -183,7 +178,7 @@ SUBSYSTEM_DEF(title)
 	else
 		if(LAZYLEN(title_screens))
 			current_title_screen = pick(title_screens)
-		else if(effigy_promo)
+		else if(GLOB.effigy_promo)
 			current_title_screen = EFFIGY_TEMP_TITLE_SCREEN
 		else
 			current_title_screen = DEFAULT_TITLE_SCREEN_IMAGE
@@ -224,8 +219,8 @@ SUBSYSTEM_DEF(title)
 	// EffigyEdit Addition Start - TM ONLY - EFFIGY PROMO
 	// Effigy fluff text, if available
 	var/fluff_message
-	if(SStitle.effigy_promo && (LAZYLEN(SStitle.effigy_fluff) > 0))
-		fluff_message = pick(SStitle.effigy_fluff)
+	if(GLOB.effigy_promo)
+		fluff_message = pick(GLOB.effigy_fluff)
 		msg_html = {"<p class="terminal_text">[fluff_message]</p>"}
 	// EffigyEdit Addition End - TM ONLY - EFFIGY PROMO
 
