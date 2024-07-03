@@ -12749,7 +12749,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/security,
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/duct/waste,
@@ -15170,7 +15170,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/security,
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
@@ -42250,7 +42250,7 @@
 /obj/machinery/door/window/brigdoor/left/directional/south{
 	id = "medcell";
 	name = "Medical Cell";
-	req_access = list("security")
+	req_access = list("brig_entrance")
 	},
 /obj/effect/turf_decal/siding/wideplating_new/dark,
 /obj/machinery/status_display/door_timer{
@@ -42310,7 +42310,7 @@
 /obj/machinery/door/window/brigdoor/left/directional/south{
 	id = "scicell";
 	name = "Science Cell";
-	req_access = list("security")
+	req_access = list("brig_entrance")
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
@@ -47619,7 +47619,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/brigdoor/left/directional/west{
-	req_access = list("security");
+	req_access = list("brig_entrance");
 	name = "Engineering Cell";
 	id = "engcell"
 	},
@@ -49488,7 +49488,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/security,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
@@ -54027,7 +54027,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/security,
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
@@ -54722,7 +54722,6 @@
 /turf/open/floor/iron/kitchen,
 /area/station/commons/dorms/apartment1)
 "mSO" = (
-/obj/structure/rack,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 4
@@ -61224,6 +61223,9 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/machinery/computer/pod/old/mass_driver_controller/ordnancedriver{
+	pixel_y = 26
+	},
 /turf/open/floor/iron/white/diagonal,
 /area/station/science/ordnance/testlab)
 "owq" = (
@@ -87126,6 +87128,9 @@
 "uFF" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/light/directional/south,
+/obj/machinery/computer/order_console/cook{
+	dir = 1
+	},
 /turf/open/floor/iron/freezer,
 /area/station/service/kitchen/coldroom)
 "uFR" = (
