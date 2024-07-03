@@ -13,7 +13,7 @@
 		/obj/item/clothing/head/hats/warden/drill/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/alt/roselia = 1,
 		/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia = 1,
-		/obj/item/clothing/head/hats/hos/elofy 1,
+		/obj/item/clothing/head/hats/hos/elofy = 1,
 		/obj/item/clothing/suit/armor/hos/elofy = 1,
 		/obj/item/clothing/gloves/elofy = 1, //Part of a set so...
 		/obj/item/clothing/shoes/jackboots/elofy = 1,
