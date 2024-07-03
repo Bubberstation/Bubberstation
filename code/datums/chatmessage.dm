@@ -121,11 +121,11 @@
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
-	// Calculate target color if not already present - BUBBER EDIT ADDTION
+	// Calculate target color if not already present
 	if (!target.chat_color || target.chat_color_name != target.name)
-		target.chat_color = get_chat_color_string(target.name) // BUBBER EDIT CHANGE - ORIGINAL: target.chat_color = colorize_string(target.name)
-		target.chat_color_darkened = get_chat_color_string(target.name, darkened = TRUE) // BUBBER EDIT CHANGE - ORIGINAL: target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
-		target.chat_color_name = target.name // BUBBER EDIT END
+		target.chat_color = get_chat_color_string(target.name) // SKYRAT EDIT CHANGE - ORIGINAL: target.chat_color = colorize_string(target.name)
+		target.chat_color_darkened = get_chat_color_string(target.name, darkened = TRUE) // SKYRAT EDIT CHANGE - ORIGINAL: target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
+		target.chat_color_name = target.name
 
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")

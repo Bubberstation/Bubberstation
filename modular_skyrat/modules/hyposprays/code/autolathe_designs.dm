@@ -13,7 +13,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/techweb_node/basic_medical/New()
+/datum/techweb_node/medbay_equip/New()
 	design_ids += list(
 		"hypovial",
 	)
@@ -44,7 +44,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/techweb_node/biotech/New()
+/datum/techweb_node/chem_synthesis/New()
 	design_ids += list(
 		"large_hypovial",
 		"hypokit",
@@ -94,7 +94,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/hypomkii/piercing
 	name = "Hypospray Mk. II Advanced"
@@ -111,7 +111,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED,
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/medbay_equip_adv/New()
 	design_ids += list(
@@ -137,7 +137,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/techweb_node/alien_bio/New()
+/datum/techweb_node/alien_surgery/New()
 	design_ids += list(
 		"hypomkii_deluxe",
 		"hypomkii_advanced",
