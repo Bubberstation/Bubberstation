@@ -103,15 +103,15 @@
 				/obj/item/canvas/drawingtablet = 3,
 				/obj/item/toy/darksabre = 3,
 				/obj/item/storage/belt/sabre/darksabre = 3,
-				obj/item/clothing/mask/holocigarette/cigar = 6,
+				/obj/item/clothing/mask/holocigarette/cigar = 6,
 				/obj/item/card/fuzzy_license = 3,
 				/obj/item/poster/korpstech = 3,
-				/obj/item/clothing/accessory/pocketwatch = 3,
 				/obj/item/coin/donator/marsoc = 3,
 				/obj/item/donator/transponder = 3,
 				/obj/item/hairbrush/switchblade = 3,
 				/obj/item/holosign_creator/hardlight_wheelchair = 3,
 				/obj/item/instrument/piano_synth/headphones/catear_headphone = 3,
+				/obj/item/clothing/accessory/pocketwatch = 3,
 			),
 		)
 	)
