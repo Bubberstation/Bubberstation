@@ -10,21 +10,41 @@
 	. = ..()
 	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/misc/collarbell1.ogg'=1,'modular_zubbers/sound/misc/collarbell2.ogg'=1), 50, 100, 8)
 
-/** Requirements:
- * [x] Send-only GPS
- * [x] Add to premium Lustwish
- * [ ] Collar name is GPS signal name
- * [ ] alt clicking it turns it on and off
- * [ ] locking it prevents toggling the GPS on/off status or changing the name
- */
+
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere!"
-	//icon_state = // TODO
-	//greyscale_config = // TODO
-	//greyscale_config_worn = // TODO
-	//greyscale_colors = // TODO
+	var/datum/component/gps/gps
 
 /obj/item/clothing/neck/kink_collar/locked/gps/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/gps, name)
+	gps = GetComponent(/datum/component/gps)
+
+/obj/item/clothing/neck/kink_collar/locked/gps/attack_self(mob/user)
+	. = ..()
+	gps.gpstag = .
+
+/obj/item/clothing/neck/kink_collar/locked/gps/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-right-click to [gps.tracking ? "disable":"enable"] tracking.")
+
+///Calls toggletracking
+/obj/item/clothing/neck/kink_collar/locked/gps/click_alt_secondary(mob/user)
+	if(locked)
+		balloon_alert(user, "it's locked!")
+		playsound(src, 'sound/items/click.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+	else
+		toggletracking(user)
+		balloon_alert(user, "tracking [gps.tracking ? "enabled":"disabled"]")
+		playsound(src, 'sound/machines/click.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
+	return CLICK_ACTION_SUCCESS
+
+/obj/item/clothing/neck/kink_collar/locked/gps/proc/toggletracking(mob/user)
+	gps.tracking = !gps.tracking
+	// here's where we'd update the icon's tracking light! If we had one!
+
+/obj/item/clothing/neck/kink_collar/locked/gps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(!locked)
+		context[SCREENTIP_CONTEXT_ALT_RMB] = "[gps.tracking ? "Disable":"Enable"] tracking"
