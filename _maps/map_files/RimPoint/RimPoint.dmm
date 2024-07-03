@@ -17680,15 +17680,15 @@
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "gYU" = (
-/obj/machinery/computer/pod/old/mass_driver_controller/ordnancedriver{
-	pixel_y = -24
-	},
 /obj/machinery/computer/security/telescreen/ordnance{
 	dir = 8;
 	pixel_x = 26
 	},
 /obj/structure/chair/office/light{
 	dir = 4
+	},
+/obj/machinery/computer/pod/old/mass_driver_controller/ordnancedriver/longrange{
+	pixel_y = -24
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/science/ordnance/testlab)
@@ -41083,6 +41083,13 @@
 	dir = 8
 	},
 /area/station/service/chapel)
+"qqd" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/delivery_chute,
+/turf/open/misc/dirt/jungle,
+/area/taeloth/underground)
 "qqe" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -50895,6 +50902,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
+"uga" = (
+/obj/structure/disposalpipe/trunk,
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/turf/open/misc/dirt/jungle,
+/area/taeloth/underground)
 "ugd" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/end{
 	dir = 8
@@ -156054,16 +156068,16 @@ cbZ
 ybK
 ebI
 ebI
-ebI
-ebI
-ebI
-ebI
-ebI
-ebI
-ebI
-ebI
-ebI
-ebI
+uga
+rIy
+rIy
+rIy
+rIy
+rIy
+rIy
+rIy
+rIy
+qqd
 ebI
 ebI
 ebI
