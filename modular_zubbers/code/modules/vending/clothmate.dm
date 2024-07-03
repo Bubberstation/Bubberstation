@@ -41,7 +41,7 @@
 				/obj/item/clothing/under/custom/lannese = 5,
 				/obj/item/clothing/under/custom/lannese/vambrace = 5,
 				/obj/item/clothing/under/tactichill = 5,
-				/obj/item/clothing/under/caged_dress = 5,
+				/obj/item/clothing/under/caged_dress/skirt = 5,
 				/obj/item/clothing/under/costume/skyrat/kimono/sigmar = 5,
 				/obj/item/clothing/under/pants/skyy = 5,
 			),
