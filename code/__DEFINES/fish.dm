@@ -9,8 +9,8 @@
 #define FAV_BAIT_DIFFICULTY_MOD -10 //Bubberstation change: -5 to -10
 /// Difficulty modifier when bait is fish's disliked
 #define DISLIKED_BAIT_DIFFICULTY_MOD 10 //Bubberstation change: 15 to 10.
-/// Difficulty modifier when our fisherman has the trait TRAIT_SETTLER
-#define SETTLER_DIFFICULTY_MOD -5
+/// Difficulty modifier when our fisherman has the trait TRAIT_EXPERT_FISHER
+#define EXPERT_FISHER_DIFFICULTY_MOD -5
 
 #define FISH_TRAIT_MINOR_DIFFICULTY_BOOST 5
 

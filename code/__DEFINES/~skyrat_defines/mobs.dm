@@ -33,3 +33,7 @@
 #define BODYPART_ICON_IPC 'modular_skyrat/modules/bodyparts/icons/ipc_parts.dmi'
 #define BODYPART_ICON_SYNTHLIZARD 'modular_skyrat/modules/bodyparts/icons/synthliz_parts_greyscale.dmi'
 #define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/nabber_parts_greyscale.dmi'
+
+#define BUTT_SPRITE_PODPERSON "podperson"
+#define BUTT_SPRITE_VOX "vox"
+#define BUTT_SPRITE_VULP "vulp"
