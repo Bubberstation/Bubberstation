@@ -20482,6 +20482,10 @@
 "eKb" = (
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"eKg" = (
+/obj/structure/sign/delam_procedure,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter/room)
 "eKm" = (
 /obj/machinery/duct/waste,
 /obj/machinery/duct/supply,
@@ -21117,6 +21121,7 @@
 	dir = 4
 	},
 /obj/machinery/duct/supply,
+/obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "eQn" = (
@@ -21641,6 +21646,10 @@
 	dir = 1
 	},
 /area/station/medical/morgue)
+"eXv" = (
+/obj/effect/turf_decal/stripes/red/box,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "eXw" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /obj/effect/turf_decal/siding/wideplating_new{
@@ -24806,6 +24815,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/atmospherics/components/unary/delam_scram/directional/east,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "fJL" = (
@@ -36542,7 +36552,7 @@
 /obj/structure/cable,
 /obj/machinery/duct/supply,
 /obj/machinery/duct/waste,
-/obj/structure/extinguisher_cabinet/directional/south,
+/obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "ixT" = (
@@ -44821,6 +44831,10 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
+"kwS" = (
+/obj/machinery/button/delam_scram,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter/room)
 "kwY" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -47988,6 +48002,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
+"lia" = (
+/obj/structure/cable/layer3,
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/directional/east,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "lic" = (
 /obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/engine,
@@ -55411,6 +55431,12 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/glass/reinforced,
 /area/station/medical/pharmacy)
+"mXG" = (
+/obj/structure/cable/layer3,
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "mXN" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -56365,6 +56391,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "njt" = (
@@ -60751,6 +60778,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/science/ordnance)
+"omv" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter)
 "omy" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 8
@@ -72857,6 +72888,10 @@
 "rbX" = (
 /turf/closed/wall,
 /area/station/service/library/lounge)
+"rca" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter)
 "rcc" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -91186,6 +91221,10 @@
 "vAd" = (
 /turf/closed/wall/r_wall,
 /area/station/security/brig)
+"vAr" = (
+/obj/machinery/status_display/evac/directional/north,
+/turf/open/floor/iron,
+/area/station/engineering/main)
 "vAE" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -135686,7 +135725,7 @@ fGX
 mWj
 pZb
 mWj
-sXu
+vAr
 gtj
 jju
 bsC
@@ -135697,7 +135736,7 @@ jRW
 fsx
 gtj
 xBk
-bHx
+mXG
 bHx
 udI
 uQw
@@ -135959,11 +135998,11 @@ eKb
 pKP
 pXV
 kCk
-eMY
+omv
 eVg
 heC
 eVg
-eMY
+rca
 lic
 qMO
 eKb
@@ -136724,7 +136763,7 @@ pKV
 nsF
 uxI
 nnb
-rqT
+eKg
 eKb
 eKb
 vJS
@@ -137238,8 +137277,8 @@ pKV
 mWR
 uwp
 ixS
-rqT
-eKb
+kwS
+eXv
 eKb
 bTp
 kRc
@@ -138019,7 +138058,7 @@ eMY
 lWh
 ojk
 lWh
-eMY
+omv
 hbl
 dBk
 eKb
@@ -138267,7 +138306,7 @@ nFC
 vOk
 gtj
 xBk
-bHx
+lia
 bHx
 jmr
 yhr

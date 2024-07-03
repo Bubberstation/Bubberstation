@@ -768,10 +768,8 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/service/studio)
 "asl" = (
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 4
-	},
-/obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/atmospherics/pipe/smart/simple/green/visible,
+/obj/structure/sign/delam_procedure/directional/west,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "asY" = (
@@ -12346,6 +12344,10 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
+"eQP" = (
+/obj/machinery/button/delam_scram,
+/turf/closed/wall/r_wall,
+/area/station/engineering/supermatter/room)
 "eQT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
@@ -30203,6 +30205,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/tcommsat/server)
+"mbL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/delam_scram/directional/east,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter)
 "mbQ" = (
 /turf/open/floor/iron/dark/smooth_corner,
 /area/station/science/xenobiology)
@@ -30938,6 +30947,11 @@
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/iron/textured_large,
 /area/station/science/xenobiology)
+"moJ" = (
+/obj/structure/cable/layer3,
+/obj/structure/extinguisher_cabinet/directional/east,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/station/engineering/supermatter/room)
 "moO" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 6
@@ -39929,6 +39943,9 @@
 /obj/machinery/light/directional/east,
 /obj/structure/cable/layer3,
 /obj/structure/cable,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "pUm" = (
@@ -48078,6 +48095,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"sYJ" = (
+/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
+/obj/structure/sign/delam_procedure/directional/east,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "sYK" = (
 /obj/effect/turf_decal/trimline/dark/warning,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
@@ -57408,6 +57430,7 @@
 /turf/open/floor/engine/hull/taeloth,
 /area/taeloth)
 "wLh" = (
+/obj/effect/turf_decal/stripes/red/box,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "wLv" = (
@@ -59383,6 +59406,9 @@
 /obj/machinery/light/directional/west,
 /obj/structure/cable/layer3,
 /obj/structure/cable,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "xzx" = (
@@ -93160,7 +93186,7 @@ ggo
 frG
 imr
 eBw
-imr
+eQP
 qjL
 imr
 hha
@@ -93419,7 +93445,7 @@ eBw
 cnb
 wLh
 oZW
-bOG
+asl
 bOG
 ejr
 jgU
@@ -94964,7 +94990,7 @@ oyy
 lnD
 chl
 bqC
-mOF
+mbL
 mOF
 mOF
 dWm
@@ -95989,7 +96015,7 @@ eBw
 jnB
 wLh
 tZV
-daj
+sYJ
 daj
 utd
 daj
@@ -96244,10 +96270,10 @@ rSM
 vWD
 imr
 eBw
-imr
+eQP
 qjL
 imr
-asl
+siW
 siW
 siW
 wXB
@@ -96504,7 +96530,7 @@ ueU
 xzw
 xcn
 aFi
-pjx
+moJ
 pjx
 gIz
 mUw
