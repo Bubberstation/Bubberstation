@@ -18,6 +18,14 @@
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere!"
 	var/datum/component/gps/gps
+	icon_state = "gps"
+	greyscale_config = /datum/greyscale_config/collar/gps
+	greyscale_config_worn = /datum/greyscale_config/collar/gps/worn
+	greyscale_config_inhand_left = /datum/greyscale_config/collar/gps/lefthand
+	greyscale_config_inhand_right = /datum/greyscale_config/collar/gps/righthand
+	greyscale_colors = "#FFFFFF#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	unique_reskin = null
 
 /obj/item/clothing/neck/kink_collar/locked/gps/Initialize(mapload)
 	. = ..()
@@ -30,10 +38,10 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-right-click to [gps.tracking ? "disable":"enable"] tracking.")
+	. += span_notice("Alt-click to [gps.tracking ? "disable":"enable"] tracking.")
 
 ///Calls toggletracking
-/obj/item/clothing/neck/kink_collar/locked/gps/click_alt_secondary(mob/user)
+/obj/item/clothing/neck/kink_collar/locked/gps/click_alt(mob/user)
 	if(locked)
 		balloon_alert(user, "it's locked!")
 		playsound(src, 'sound/items/click.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
@@ -45,9 +53,14 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/proc/toggletracking(mob/user)
 	gps.tracking = !gps.tracking
-	// here's where we'd update the icon's tracking light! If we had one!
+	update_overlays()
 
 /obj/item/clothing/neck/kink_collar/locked/gps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	. = ..()
 	if(!locked)
-		context[SCREENTIP_CONTEXT_ALT_RMB] = "[gps.tracking ? "Disable":"Enable"] tracking"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "[gps.tracking ? "Disable":"Enable"] tracking"
+
+/obj/item/clothing/neck/kink_collar/locked/gps/update_overlays()
+	. = ..()
+	if(gps.tracking)
+		. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light")
+		. += emissive_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light", src, alpha = src.alpha)
