@@ -51,8 +51,8 @@
 /datum/species/zombie/get_scream_sound(mob/living/carbon/human/teshari)
 	return 'modular_skyrat/modules/emotes/sound/emotes/zombie_scream.ogg'
 
-/datum/species/gas/get_scream_sound(mob/living/carbon/human
-	return ('modular_skyrat/modules/emotes/sound/emotes/nabberscream.ogg')
+/datum/species/gas/get_scream_sound(mob/living/carbon/human)
+	return 'modular_skyrat/modules/emotes/sound/emotes/nabberscream.ogg'
 
 /datum/species/teshari/get_scream_sound(mob/living/carbon/human/teshari)
 	return 'modular_skyrat/modules/emotes/sound/emotes/raptorscream.ogg'
