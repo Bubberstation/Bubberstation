@@ -14,7 +14,7 @@
 	..()
 	return tagname
 // make sec contraband item from armadyne peacekeeper vendor todo
-// add fire resist todo
+// add to loadouts todo
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere!"
@@ -34,7 +34,7 @@
 	atom_storage.click_alt_open = FALSE
 	gps = AddComponent(/datum/component/gps, name)
 	register_context()
-	update_icon(UPDATE_OVERLAYS)
+	update_appearance()
 
 /obj/item/clothing/neck/kink_collar/locked/gps/attack_self(mob/user)
 	. = ..()
@@ -57,23 +57,22 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/proc/toggletracking(mob/user)
 	gps.tracking = !gps.tracking
-	update_overlays()
+	update_appearance()
 
 /obj/item/clothing/neck/kink_collar/locked/gps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!locked)
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "[gps.tracking ? "Disable":"Enable"] tracking"
 		return CONTEXTUAL_SCREENTIP_SET
-	return
 
 /obj/item/clothing/neck/kink_collar/locked/gps/update_overlays()
 	. = ..()
 	if(gps.tracking)
-		//. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light")
+		. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light")
 		. += emissive_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light", src, alpha = src.alpha)
 
 /obj/item/clothing/neck/kink_collar/locked/gps/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
 	if(gps.tracking && !isinhands)
-		//. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "collar_mob_tracker_light")
+		. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "collar_mob_tracker_light")
 		. += emissive_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "collar_mob_tracker_light", src, alpha = src.alpha)
