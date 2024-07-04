@@ -16,7 +16,7 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
-	desc = "A collar that lets you find your pet anywhere!"
+	desc = "A collar that lets you find your pet anywhere with GPS!"
 	var/datum/component/gps/gps
 	icon_state = "gps"
 	greyscale_config = /datum/greyscale_config/collar/gps
