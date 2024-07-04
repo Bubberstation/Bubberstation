@@ -8173,7 +8173,7 @@
 	use_power = 0
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "aLU" = (
 /obj/machinery/chem_master/condimaster{
 	desc = "Looks like a knock-off chem-master. Perhaps useful for separating liquids when mixing drinks precisely. Also dispenses condiments.";
@@ -9295,7 +9295,7 @@
 "aQB" = (
 /obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "aQC" = (
 /obj/structure/chair/comfy{
 	color = "#596479"
@@ -22127,7 +22127,7 @@
 	start_active = 1
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bIc" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -22224,7 +22224,7 @@
 	start_active = 1
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bIr" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -22540,7 +22540,7 @@
 	start_active = 1
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bJq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22577,7 +22577,7 @@
 	start_active = 1
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bJw" = (
 /obj/machinery/camera/directional/north{
 	c_tag = "MiniSat External South";
@@ -22585,7 +22585,7 @@
 	start_active = 1
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bJx" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue{
@@ -22770,7 +22770,7 @@
 	dir = 6
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bKt" = (
 /obj/structure/table,
 /obj/item/stock_parts/micro_laser,
@@ -23022,7 +23022,7 @@
 	dir = 4
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bLo" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
@@ -23035,7 +23035,7 @@
 	dir = 10
 	},
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bLq" = (
 /turf/closed/indestructible/riveted{
 	desc = "A wall impregnated with Fixium, able to withstand massive explosions with ease";
@@ -23084,7 +23084,7 @@
 "bLw" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "bLx" = (
 /obj/structure/table,
 /obj/item/stock_parts/subspace/transmitter,
@@ -49420,6 +49420,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"oDt" = (
+/obj/structure/lattice/catwalk,
+/obj/item/stack/cable_coil,
+/turf/open/space/basic,
+/area/station/solars/port/fore)
 "oDF" = (
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating,
@@ -59434,9 +59439,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
 "vPR" = (
+/obj/structure/lattice,
 /obj/item/stack/cable_coil,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "vQK" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -62135,6 +62141,12 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
+"xLo" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk,
+/obj/item/stack/cable_coil,
+/turf/open/space/basic,
+/area/station/solars/starboard/fore)
 "xLr" = (
 /turf/open/floor/wood,
 /area/station/hallway/secondary/service)
@@ -77490,7 +77502,7 @@ xzh
 xzh
 xzh
 xzh
-vPR
+xzh
 xzh
 xzh
 xzh
@@ -78091,7 +78103,7 @@ xzh
 xzh
 xzh
 bJc
-sUX
+vPR
 atY
 atY
 atY
@@ -79290,7 +79302,7 @@ ufm
 ufm
 ufm
 ufm
-ufm
+oDt
 ufm
 ufm
 ufm
@@ -79633,7 +79645,7 @@ xzh
 xzh
 xzh
 bJc
-vPR
+xzh
 atY
 atY
 atY
@@ -103185,7 +103197,7 @@ xzh
 bJc
 xzh
 age
-aee
+xLo
 age
 xzh
 age
@@ -111265,7 +111277,7 @@ bJc
 xzh
 sUX
 xzh
-vPR
+xzh
 xzh
 xzh
 xzh
@@ -111523,7 +111535,7 @@ xzh
 aud
 jSK
 aud
-sUX
+vPR
 aud
 jSK
 aud
