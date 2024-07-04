@@ -34,7 +34,7 @@
 	atom_storage.click_alt_open = FALSE
 	gps = AddComponent(/datum/component/gps, name)
 	register_context()
-	update_appearance()
+	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/neck/kink_collar/locked/gps/attack_self(mob/user)
 	. = ..()
@@ -57,7 +57,8 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/proc/toggletracking(mob/user)
 	gps.tracking = !gps.tracking
-	update_appearance()
+	update_icon(UPDATE_OVERLAYS)
+	user.update_worn_neck()
 
 /obj/item/clothing/neck/kink_collar/locked/gps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
