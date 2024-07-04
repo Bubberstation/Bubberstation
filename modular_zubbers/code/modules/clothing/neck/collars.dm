@@ -13,7 +13,8 @@
 /obj/item/clothing/neck/kink_collar/attack_self(mob/user)
 	..()
 	return tagname
-
+// make sec contraband item from armadyne peacekeeper vendor todo
+// add fire resist todo
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere!"
@@ -23,14 +24,17 @@
 	greyscale_config_worn = /datum/greyscale_config/collar/gps/worn
 	greyscale_config_inhand_left = /datum/greyscale_config/collar/gps/lefthand
 	greyscale_config_inhand_right = /datum/greyscale_config/collar/gps/righthand
-	greyscale_colors = "#FFFFFF#FFFFFF"
+	greyscale_colors = "#8B96B7#505665"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	unique_reskin = null
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/kink_collar/locked/gps/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/gps, name)
-	gps = GetComponent(/datum/component/gps)
+	atom_storage.click_alt_open = FALSE
+	gps = AddComponent(/datum/component/gps, name)
+	register_context()
+	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/neck/kink_collar/locked/gps/attack_self(mob/user)
 	. = ..()
@@ -56,11 +60,20 @@
 	update_overlays()
 
 /obj/item/clothing/neck/kink_collar/locked/gps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
 	if(!locked)
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "[gps.tracking ? "Disable":"Enable"] tracking"
+		return CONTEXTUAL_SCREENTIP_SET
+	return
 
 /obj/item/clothing/neck/kink_collar/locked/gps/update_overlays()
 	. = ..()
 	if(gps.tracking)
-		. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light")
+		//. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light")
 		. += emissive_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "light", src, alpha = src.alpha)
+
+/obj/item/clothing/neck/kink_collar/locked/gps/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
+	. = ..()
+	if(gps.tracking && !isinhands)
+		//. += mutable_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "collar_mob_tracker_light")
+		. += emissive_appearance('modular_zubbers/code/modules/GAGS/icons/collar.dmi', "collar_mob_tracker_light", src, alpha = src.alpha)
