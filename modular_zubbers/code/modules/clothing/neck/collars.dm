@@ -13,8 +13,7 @@
 /obj/item/clothing/neck/kink_collar/attack_self(mob/user)
 	..()
 	return tagname
-// make sec contraband item from armadyne peacekeeper vendor todo
-// add to loadouts todo
+
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere!"
