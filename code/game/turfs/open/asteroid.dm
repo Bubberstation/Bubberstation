@@ -50,9 +50,6 @@
 	if(has_floor_variance && prob(floor_variance))
 		icon_state = "[base_icon_state][rand(0,12)]"
 
-/turf/open/misc/asteroid/burn_tile()
-	return
-
 /turf/open/misc/asteroid/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
 
@@ -226,7 +223,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 		return TRUE
 	return FALSE
 
-/turf/open/misc/grass/burnt_states()
+/turf/open/misc/asteroid/snow/burnt_states()
 	return list("snow_dug")
 
 /turf/open/misc/asteroid/snow/icemoon
