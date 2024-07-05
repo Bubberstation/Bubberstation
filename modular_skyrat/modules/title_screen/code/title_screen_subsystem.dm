@@ -179,7 +179,7 @@ SUBSYSTEM_DEF(title)
 		if(LAZYLEN(title_screens))
 			current_title_screen = pick(title_screens)
 		else if(GLOB.effigy_promo)
-			current_title_screen = EFFIGY_TEMP_TITLE_SCREEN
+			current_title_screen = PROMO_TEMP_TITLE_SCREEN
 		else
 			current_title_screen = DEFAULT_TITLE_SCREEN_IMAGE
 
