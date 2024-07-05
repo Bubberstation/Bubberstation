@@ -206,12 +206,12 @@
 #define EFFIGY_WELCOME_MESSAGE {"Welcome to this promotional map courtesy of a collaboration between Bubberstation x Effigy!<br/>
 Effigy is a server with an anthro friendly atmosphere, along with a focus of a mix of roleplay, gameplay and light antagonism.<br/>
 Unlike Bubberstation, Effigy is not a downstream of either Skyrat or Nova Sector. With its own code, maps, and assets, it is a more direct /tg/station downstream. Character customization is familiar, and the server supports importing your characters and preferences from Bubberstation!<br/>
-<a href="https://effigy.se">Visit effigy.se for more details or to apply to the whitelist.</a>"}
+<a href="https://effigy.se/bubberstation-invite/">Visit effigy.se for more details or to apply to the whitelist.</a>"}
 
 #define EFFIGY_END_MESSAGE {"Thanks for playing this promotional map courtesy of a collaboration between Bubberstation x Effigy!<br/>
 Effigy is a server with an anthro friendly atmosphere, along with a focus of a mix of roleplay, gameplay and light antagonism.<br/>
 Unlike Bubberstation, Effigy is not a downstream of either Skyrat or Nova Sector. With its own code, maps, and assets, it is a more direct /tg/station downstream. Character customization is familiar, and the server supports importing your characters and preferences from Bubberstation!<br/>
-<a href="https://effigy.se">Visit effigy.se for more details or to apply to the whitelist.</a>"}
+<a href="https://effigy.se/bubberstation-invite/">Visit effigy.se for more details or to apply to the whitelist.</a>"}
 
 GLOBAL_VAR_INIT(effigy_promo, FALSE)
 

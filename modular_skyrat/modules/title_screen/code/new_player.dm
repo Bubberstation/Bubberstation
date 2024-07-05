@@ -94,7 +94,7 @@
 
 	// EffigyEdit Addition Start - TM ONLY - EFFIGY PROMO
 	if(href_list["effigy_link"])
-		client << link("https://effigy.se")
+		client << link("https://effigy.se/bubberstation-invite/")
 	// EffigyEdit Addition End - TM ONLY - EFFIGY PROMO
 
 
