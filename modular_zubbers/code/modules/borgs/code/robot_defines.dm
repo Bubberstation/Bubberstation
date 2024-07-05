@@ -63,6 +63,7 @@
 #define CYBORG_ICON_TYPE_SCI_CATBORG "FELI-Research"
 #define CYBORG_ICON_TYPE_ENG_CATBORG "FELI-Engineer"
 #define CYBORG_ICON_TYPE_MED_CATBORG "FELI-Medical"
+#define CYBORG_ICON_TYPE_CAR_CATBORG "FELI-Cargo"
 #define CYBORG_ICON_TYPE_SERV_CATBORG "FELI-Service"
 #define CYBORG_ICON_TYPE_PK_CATBORG "FELI-Pk"
 #define CYBORG_ICON_TYPE_JANI_CATBORG "FELI-Janitor"
@@ -81,7 +82,7 @@
 	ionpulse = TRUE
 	var/playstyle_string = "<span class='big bold'>You are a Central Command cyborg!</span><br>"
 	set_model = /obj/item/robot_model/centcom
-	cell = /obj/item/stock_parts/cell/bluespace
+	cell = /obj/item/stock_parts/power_store/cell/bluespace
 
 /mob/living/silicon/robot/model/centcom/Initialize(mapload)
 	laws = new /datum/ai_laws/central_override()
