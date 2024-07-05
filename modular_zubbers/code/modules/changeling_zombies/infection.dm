@@ -18,8 +18,10 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
 		return FALSE
 
+	/* Uncommented until loadouts are complete.
 	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
 		return FALSE
+	*/
 
 	return TRUE
 
