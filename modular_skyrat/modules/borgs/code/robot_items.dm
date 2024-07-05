@@ -22,7 +22,7 @@
 	/// How long is the integrated printer's cooldown?
 	var/printer_cooldown_time = 10 SECONDS
 	/// How much charge is required to print a piece of paper?
-	var/paper_charge_cost = 50
+	var/paper_charge_cost = STANDARD_CELL_CHARGE * 0.05
 
 
 /obj/item/clipboard/cyborg/Initialize(mapload)
@@ -78,10 +78,10 @@
 /obj/item/borg/hydraulic_clamp
 	name = "integrated hydraulic clamp"
 	desc = "A neat way to lift and move around few small packages for quick and painless deliveries!"
-	icon = 'icons/mob/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
+	icon = 'icons/obj/devices/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
 	icon_state = "mecha_clamp"
 	/// How much power does it draw per operation?
-	var/charge_cost = 20
+	var/charge_cost = STANDARD_CELL_CHARGE * 0.02
 	/// How many items can it hold at once in its internal storage?
 	var/storage_capacity = 5
 	/// Does it require the items it takes in to be wrapped in paper wrap? Can have unforeseen consequences, change to FALSE at your own risks.
@@ -377,7 +377,7 @@
 	check_amount()
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/robot_user = user
-		if(!robot_user.cell.use(10))
+		if(!robot_user.cell.use(STANDARD_CELL_CHARGE * 0.1))
 			to_chat(user, span_warning("Not enough power."))
 			return FALSE
 		shoot(target, user, click_params)
@@ -527,8 +527,8 @@
 	var/saved_special_light_key
 	var/saved_hat_offset
 	var/active = FALSE
-	var/activationCost = 100
-	var/activationUpkeep = 5
+	var/activationCost = STANDARD_CELL_CHARGE * 0.1
+	var/activationUpkeep = STANDARD_CELL_CHARGE * 0.005
 	var/disguise_model_name
 	var/disguise
 	var/disguise_icon_override
@@ -729,8 +729,12 @@
 	user.bubble_icon = "robot"
 	active = TRUE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 	if(listeningTo == user)
 		return
@@ -754,8 +758,12 @@
 	user.bubble_icon = saved_bubble_icon
 	active = FALSE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
