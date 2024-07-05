@@ -40,6 +40,8 @@ GLOBAL_LIST_INIT(identity_block_lengths, list(
 		"[DNA_FACIAL_HAIR_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 		"[DNA_EYE_COLOR_LEFT_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 		"[DNA_EYE_COLOR_RIGHT_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
+		"[DNA_HAIR_COLOR_GRADIENT_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
+		"[DNA_FACIAL_HAIR_COLOR_GRADIENT_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 	))
 
 /**
@@ -228,6 +230,10 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_SKIN_TONE_BLOCK] = construct_block(GLOB.skin_tones.Find(H.skin_tone), GLOB.skin_tones.len)
 		L[DNA_EYE_COLOR_LEFT_BLOCK] = sanitize_hexcolor(H.eye_color_left, include_crunch = FALSE)
 		L[DNA_EYE_COLOR_RIGHT_BLOCK] = sanitize_hexcolor(H.eye_color_right, include_crunch = FALSE)
+		L[DNA_HAIRSTYLE_GRADIENT_BLOCK] = construct_block(SSaccessories.hair_gradients_list.Find(H.grad_style[GRADIENT_HAIR_KEY]), length(SSaccessories.hair_gradients_list))
+		L[DNA_HAIR_COLOR_GRADIENT_BLOCK] = sanitize_hexcolor(H.grad_color[GRADIENT_HAIR_KEY], include_crunch = FALSE)
+		L[DNA_FACIAL_HAIRSTYLE_GRADIENT_BLOCK] = construct_block(SSaccessories.facial_hair_gradients_list.Find(H.grad_style[GRADIENT_FACIAL_HAIR_KEY]), length(SSaccessories.facial_hair_gradients_list))
+		L[DNA_FACIAL_HAIR_COLOR_GRADIENT_BLOCK] = sanitize_hexcolor(H.grad_color[GRADIENT_FACIAL_HAIR_KEY], include_crunch = FALSE)
 
 	for(var/blocknum in 1 to DNA_UNI_IDENTITY_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
@@ -242,8 +248,8 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_MUTANT_COLOR_BLOCK] = sanitize_hexcolor(features["mcolor"], include_crunch = FALSE)
 	if(features["ethcolor"])
 		L[DNA_ETHEREAL_COLOR_BLOCK] = sanitize_hexcolor(features["ethcolor"], include_crunch = FALSE)
-	if(features["body_markings"])
-		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(SSaccessories.body_markings_list.Find(features["body_markings"]), length(SSaccessories.body_markings_list))
+	if(features["lizard_markings"])
+		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(SSaccessories.lizard_markings_list.Find(features["lizard_markings"]), length(SSaccessories.lizard_markings_list))
 	if(features["tail_cat"])
 		L[DNA_TAIL_BLOCK] = construct_block(SSaccessories.tails_list_human.Find(features["tail_cat"]), length(SSaccessories.tails_list_human))
 	if(features["tail_lizard"])
@@ -373,6 +379,14 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_identity_block(blocknumber, construct_block(SSaccessories.facial_hairstyles_list.Find(H.facial_hairstyle), length(SSaccessories.facial_hairstyles_list)))
 		if(DNA_HAIRSTYLE_BLOCK)
 			set_uni_identity_block(blocknumber, construct_block(SSaccessories.hairstyles_list.Find(H.hairstyle), length(SSaccessories.hairstyles_list)))
+		if(DNA_HAIRSTYLE_GRADIENT_BLOCK)
+			set_uni_identity_block(blocknumber, construct_block(SSaccessories.hair_gradients_list.Find(H.grad_style[GRADIENT_HAIR_KEY]), length(SSaccessories.hair_gradients_list)))
+		if(DNA_FACIAL_HAIRSTYLE_GRADIENT_BLOCK)
+			set_uni_identity_block(blocknumber, construct_block(SSaccessories.facial_hair_gradients_list.Find(H.grad_style[GRADIENT_FACIAL_HAIR_KEY]), length(SSaccessories.facial_hair_gradients_list)))
+		if(DNA_HAIR_COLOR_GRADIENT_BLOCK)
+			set_uni_identity_block(blocknumber, sanitize_hexcolor(H.grad_color[GRADIENT_HAIR_KEY], include_crunch = FALSE))
+		if(DNA_FACIAL_HAIR_COLOR_GRADIENT_BLOCK)
+			set_uni_identity_block(blocknumber, sanitize_hexcolor(H.grad_color[GRADIENT_FACIAL_HAIR_KEY], include_crunch = FALSE))
 
 //SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular_skyrat/modules/customization/code/datums/dna.dm)
 /*
@@ -387,7 +401,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		if(DNA_ETHEREAL_COLOR_BLOCK)
 			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["ethcolor"], include_crunch = FALSE))
 		if(DNA_LIZARD_MARKINGS_BLOCK)
-			set_uni_feature_block(blocknumber, construct_block(SSaccessories.body_markings_list.Find(features["body_markings"]), length(SSaccessories.body_markings_list)))
+			set_uni_feature_block(blocknumber, construct_block(SSaccessories.lizard_markings_list.Find(features["lizard_markings"]), length(SSaccessories.lizard_markings_list)))
 		if(DNA_TAIL_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(SSaccessories.tails_list_human.Find(features["tail_cat"]), length(SSaccessories.tails_list_human)))
 		if(DNA_LIZARD_TAIL_BLOCK)
@@ -458,7 +472,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 /datum/dna/proc/update_instability(alert=TRUE)
 	stability = 100
 	for(var/datum/mutation/human/M in mutations)
-		if(M.class == MUT_EXTRA)
+		if(M.class == MUT_EXTRA || M.instability < 0)
 			stability -= M.instability * GET_MUTATION_STABILIZER(M)
 	if(holder)
 		var/message
@@ -507,10 +521,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			for(var/species_path in subtypesof(/datum/species))
 				all_species_protoypes += new species_path()
 
-		for(var/datum/species/random_species as anything in all_species_protoypes)
-			features |= random_species.randomize_features()
+		for(var/species_type in GLOB.species_prototypes)
+			features |= GLOB.species_prototypes[species_type].randomize_features()
 		SKYRAT EDIT REMOVAL END */
-
 		features = species.randomize_features() | features // SKYRAT EDIT CHANGE - Where applicable, replace features with the features generated by species/randomize_features() - Original: features["mcolor"] = "#[random_color()]"
 		body_markings = species.get_random_body_markings(features) // SKYRAT EDIT ADDITION
 
@@ -699,23 +712,29 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	eye_color_right = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_RIGHT_BLOCK))
 	set_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_BLOCK)), update = FALSE)
 	set_facial_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_BLOCK)), update = FALSE)
+	set_hair_gradient_color(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_GRADIENT_BLOCK)), update = FALSE)
+	set_facial_hair_gradient_color(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_GRADIENT_BLOCK)), update = FALSE)
 	if(HAS_TRAIT(src, TRAIT_SHAVED))
 		set_facial_hairstyle("Shaved", update = FALSE)
 	else
 		var/style = SSaccessories.facial_hairstyles_list[deconstruct_block(get_uni_identity_block(structure, DNA_FACIAL_HAIRSTYLE_BLOCK), length(SSaccessories.facial_hairstyles_list))]
+		var/gradient_style = SSaccessories.facial_hair_gradients_list[deconstruct_block(get_uni_identity_block(structure, DNA_FACIAL_HAIRSTYLE_GRADIENT_BLOCK), length(SSaccessories.facial_hair_gradients_list))]
 		set_facial_hairstyle(style, update = FALSE)
+		set_facial_hair_gradient_style(gradient_style, update = FALSE)
 	if(HAS_TRAIT(src, TRAIT_BALD))
 		set_hairstyle("Bald", update = FALSE)
 	else
 		var/style = SSaccessories.hairstyles_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIRSTYLE_BLOCK), length(SSaccessories.hairstyles_list))]
+		var/gradient_style = SSaccessories.hair_gradients_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIRSTYLE_GRADIENT_BLOCK), length(SSaccessories.hair_gradients_list))]
 		set_hairstyle(style, update = FALSE)
+		set_hair_gradient_style(gradient_style, update = FALSE)
 	var/features = dna.unique_features
 	if(dna.features["mcolor"])
 		dna.features["mcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_BLOCK))
 	if(dna.features["ethcolor"])
 		dna.features["ethcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_ETHEREAL_COLOR_BLOCK))
-	if(dna.features["body_markings"])
-		dna.features["body_markings"] = SSaccessories.body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_MARKINGS_BLOCK), length(SSaccessories.body_markings_list))]
+	if(dna.features["lizard_markings"])
+		dna.features["lizard_markings"] = SSaccessories.lizard_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_MARKINGS_BLOCK), length(SSaccessories.lizard_markings_list))]
 	if(dna.features["snout"])
 		dna.features["snout"] = SSaccessories.snouts_list[deconstruct_block(get_uni_feature_block(features, DNA_SNOUT_BLOCK), length(SSaccessories.snouts_list))]
 	if(dna.features["horns"])
@@ -727,6 +746,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(dna.features["tail_cat"])
 		dna.features["tail_cat"] = SSaccessories.tails_list_human[deconstruct_block(get_uni_feature_block(features, DNA_TAIL_BLOCK), length(SSaccessories.tails_list_human))]
 	if(dna.features["tail_lizard"])
+		dna.features["tail_cat"] = GLOB.tails_list_lizard[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_TAIL_BLOCK), GLOB.tails_list_lizard.len)]
 		dna.features["tail_lizard"] = SSaccessories.tails_list_lizard[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_TAIL_BLOCK), length(SSaccessories.tails_list_lizard))]
 	if(dna.features["tail_monkey"])
 		dna.features["tail_monkey"] = SSaccessories.tails_list_monkey[deconstruct_block(get_uni_feature_block(features, DNA_MONKEY_TAIL_BLOCK), length(SSaccessories.tails_list_monkey))]
@@ -753,12 +773,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		external_organ.mutate_feature(features, src)
 
 	if(icon_update)
-		if(mutcolor_update)
-			update_body(is_creating = TRUE)
-		else
-			update_body()
-		if(mutations_overlay_update)
-			update_mutations_overlay()
+		update_body(is_creating = mutcolor_update)
 */
 //SKYRAT EDIT REMOVAL END
 
