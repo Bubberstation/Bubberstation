@@ -91,7 +91,7 @@
 	ionpulse = TRUE
 	var/playstyle_string = "<span class='big bold'>You are a Central Command cyborg!</span><br>"
 	set_model = /obj/item/robot_model/centcom
-	cell = /obj/item/stock_parts/cell/bluespace
+	cell = /obj/item/stock_parts/power_store/cell/bluespace
 
 /mob/living/silicon/robot/model/centcom/Initialize(mapload)
 	laws = new /datum/ai_laws/central_override()
