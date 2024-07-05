@@ -55,4 +55,4 @@
 
 /datum/armament_entry/company_import/allstar/experimental_energy/tesla_cannon
 	item_type = /obj/item/gun/energy/tesla_cannon
-/*
+*/
