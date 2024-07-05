@@ -1,5 +1,5 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
-#define KEEP_ROUNDS_MAP 3
+#define KEEP_ROUNDS_MAP 2 //BUBBERSTATION CHANGE: 3 TO 2.
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
