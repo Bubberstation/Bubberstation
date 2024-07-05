@@ -485,7 +485,10 @@
 /area/station/medical/patients_rooms)
 "ajX" = (
 /obj/structure/sign/poster/official/random/directional/north,
-/turf/open/misc/dirt/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "akb" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
@@ -1595,12 +1598,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/openspace,
 /area/station/maintenance/starboard/aft)
-"aJW" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Sinner's Trail, Northwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "aJX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -2158,10 +2155,13 @@
 /turf/open/floor/iron,
 /area/station/security/brig/entrance)
 "aVG" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Chief Medical Officer, Northwest"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 10
 	},
-/turf/open/misc/grass/jungle,
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "aVM" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -2194,6 +2194,9 @@
 	location = "outdoors1"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
+	},
 /turf/open/floor/stone,
 /area/taeloth)
 "aWa" = (
@@ -2668,10 +2671,13 @@
 /turf/open/floor/iron/dark,
 /area/station/service/studio)
 "bfe" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Public Mining Bay, South"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "bfn" = (
 /obj/structure/cable,
@@ -2971,10 +2977,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bjY" = (
-/obj/structure/fence/post{
-	dir = 4
+/obj/effect/turf_decal/loading_area{
+	dir = 1
 	},
-/turf/open/misc/grass/jungle,
+/turf/open/misc/asteroid/moon,
 /area/taeloth)
 "bkn" = (
 /obj/structure/rack,
@@ -3157,6 +3163,7 @@
 	pixel_y = -24;
 	dir = 8
 	},
+/obj/machinery/solarlight/camera_installed,
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "bnB" = (
@@ -3789,7 +3796,10 @@
 /obj/structure/railing/corner/end/flip{
 	dir = 1
 	},
-/turf/open/misc/dirt/jungle,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "bzO" = (
 /obj/structure/chair/comfy/black{
@@ -3962,6 +3972,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster/random/directional/north,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/small,
 /area/station/security/prison/safe)
 "bCR" = (
@@ -4155,10 +4166,24 @@
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "bGZ" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Pharmacy"
+/obj/structure/sign/directions/dorms/directional/south{
+	pixel_y = -42;
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/structure/sign/directions/command/directional/south{
+	pixel_y = -36;
+	dir = 5
+	},
+/obj/structure/sign/directions/supply/directional/south{
+	pixel_y = -30;
+	dir = 4
+	},
+/obj/structure/sign/directions/evac/directional/south{
+	pixel_y = -24;
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "bHk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -4335,12 +4360,6 @@
 	},
 /turf/open/floor/iron/white/small,
 /area/station/medical/surgery)
-"bJZ" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Annex, Southeast"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "bKg" = (
 /obj/structure/cable/layer1,
 /obj/structure/cable,
@@ -4951,11 +4970,12 @@
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/captain)
 "bXP" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Crew Facilities, East"
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/machinery/light/directional/south,
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "bXS" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/smartfridge/chemistry/preloaded,
@@ -5484,10 +5504,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/upper)
 "chY" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - MedSci Concourse, North"
-	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/floor/stone,
 /area/taeloth)
 "chZ" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -5548,10 +5566,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "ciO" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Lakeside, Southeast"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
 	},
-/turf/open/misc/beach/sand,
+/obj/effect/turf_decal/trimline/dark_red/line{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "cjo" = (
 /obj/structure/sink/directional/south,
@@ -5849,12 +5870,6 @@
 	dir = 1
 	},
 /area/station/command/heads_quarters/hop)
-"coi" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bathroom, Northeast"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "coj" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 9
@@ -6293,7 +6308,7 @@
 /obj/structure/disposaloutlet{
 	dir = 8
 	},
-/turf/open/misc/dirt/jungle,
+/turf/open/floor/plating,
 /area/taeloth)
 "cwL" = (
 /obj/effect/turf_decal/sand/plating,
@@ -8920,12 +8935,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/library)
-"dBZ" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Sinner's Trail, Node #2"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "dCg" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 6
@@ -9143,11 +9152,11 @@
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/lobby)
 "dEC" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Lake Dock, South"
+/obj/structure/chair/sofa/corp/left{
+	dir = 1
 	},
-/turf/open/misc/beach/sand,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "dEQ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w,
 /obj/effect/decal/cleanable/dirt,
@@ -9280,11 +9289,8 @@
 /turf/open/floor/iron/diagonal,
 /area/station/security/brig)
 "dHE" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Annex, Northeast"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/station/commons/dorms/vacantroom)
 "dHJ" = (
 /obj/machinery/vending/security,
 /obj/effect/turf_decal/bot_red,
@@ -11242,13 +11248,16 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "euR" = (
-/obj/structure/railing/corner/end/flip{
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line,
+/obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Auxillary Base, West"
+/obj/structure/fence/post{
+	dir = 4;
+	pixel_y = -2
 	},
-/turf/open/misc/grass/jungle,
+/turf/open/floor/plating,
 /area/taeloth)
 "euS" = (
 /obj/structure/railing,
@@ -11456,6 +11465,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/prison/safe)
 "exX" = (
@@ -12028,11 +12038,10 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/checkpoint/escape)
 "eKw" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Crew Facilities, South"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/security/prison/safe)
 "eKx" = (
 /obj/structure/bed/double,
 /obj/item/bedsheet/hos/double,
@@ -12728,9 +12737,6 @@
 	},
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 8
-	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Security Lobby, West"
 	},
 /turf/open/floor/iron/small,
 /area/taeloth)
@@ -13878,12 +13884,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
-"ftr" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Service, Southwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "ftL" = (
 /obj/effect/turf_decal/weather/dirt,
 /turf/open/floor/engine/hull/taeloth,
@@ -14700,12 +14700,6 @@
 /obj/effect/baseturf_helper/reinforced_plating/ceiling,
 /turf/closed/wall/r_wall,
 /area/station/command/teleporter)
-"fLi" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Annex, Northwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "fLt" = (
 /obj/structure/sign/warning/rad_shelter/directional/west,
 /turf/open/misc/grass/jungle,
@@ -15340,9 +15334,7 @@
 /turf/open/floor/iron/dark,
 /area/station/science/robotics)
 "fYT" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Gateway, Southeast"
-	},
+/obj/machinery/solarlight/camera_installed,
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "fZb" = (
@@ -15616,10 +15608,11 @@
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "ggA" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Public Dock"
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 1
 	},
-/turf/open/misc/grass/jungle,
+/turf/open/floor/stone,
 /area/taeloth)
 "ggB" = (
 /obj/structure/cable,
@@ -15694,6 +15687,9 @@
 	codes_txt = "patrol;next_patrol=outdoors4";
 	location = "outdoors3"
 	},
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/taeloth)
 "gii" = (
@@ -15713,7 +15709,7 @@
 /obj/structure/railing/corner{
 	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/turf/open/floor/stone,
 /area/taeloth)
 "giK" = (
 /obj/effect/turf_decal/siding/wideplating_new{
@@ -16973,12 +16969,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
-"gHZ" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Sinner's Trail, Node #1"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "gIz" = (
 /obj/structure/cable/layer3,
 /turf/open/floor/iron/dark/textured_large,
@@ -17053,10 +17043,13 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/dock)
 "gJv" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Service, Northwest Crossroads"
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "gJI" = (
 /obj/effect/turf_decal/caution/stand_clear{
@@ -17586,9 +17579,6 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 10
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Telecommunications"
-	},
 /obj/structure/railing{
 	dir = 10
 	},
@@ -17771,11 +17761,8 @@
 /turf/open/floor/plastic,
 /area/taeloth)
 "gZb" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Arrivals, East"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/iron/dark,
+/area/station/commons/dorms/vacantroom)
 "gZe" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/plasma_input{
 	dir = 8
@@ -19268,12 +19255,6 @@
 /obj/structure/flora/rock/style_3,
 /turf/open/misc/dirt/jungle,
 /area/taeloth/underground)
-"hDJ" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bridge Deck, East"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "hDT" = (
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/plating,
@@ -19594,11 +19575,10 @@
 /turf/open/floor/wood/parquet,
 /area/taeloth)
 "hLr" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Crew Facilities, Southeast"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/station/security/prison/mess)
 "hLu" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 10
@@ -20165,11 +20145,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "hXb" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Lakeside, Northeast"
+/obj/structure/table/wood,
+/obj/machinery/coffeemaker{
+	pixel_y = 15
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "hXs" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/stack/tile/iron/base,
@@ -20982,11 +20963,14 @@
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
 "iqk" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Dockside, South"
+/obj/structure/chair/sofa/corp/corner{
+	desc = "Looks like someone threw it out. Covered in donut crumbs.";
+	dir = 1;
+	name = "couch"
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/machinery/light/directional/south,
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "iqq" = (
 /obj/structure/closet/crate/goldcrate,
 /obj/effect/turf_decal/delivery,
@@ -21174,6 +21158,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/effect/landmark/start/detective,
 /turf/open/floor/iron/dark,
 /area/station/security/detectives_office)
 "ium" = (
@@ -21315,7 +21300,6 @@
 /obj/effect/turf_decal/trimline/dark/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/wideplating_new,
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 1
 	},
@@ -21501,10 +21485,8 @@
 /turf/open/floor/iron,
 /area/station/medical/storage)
 "iAq" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Sinner's Trail, Beachside"
-	},
-/turf/open/misc/beach/sand,
+/obj/structure/lattice/catwalk,
+/turf/open/openspace,
 /area/taeloth)
 "iAB" = (
 /obj/machinery/porta_turret/ai,
@@ -22044,11 +22026,11 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "iLq" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Lake Trail, Southeast"
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "iLE" = (
 /turf/closed/wall/r_wall,
 /area/station/security/processing)
@@ -22081,10 +22063,16 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
 "iMG" = (
-/obj/structure/railing{
-	dir = 5
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/turf/open/misc/dirt/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "iMX" = (
 /obj/machinery/door/airlock/security/glass,
@@ -22173,10 +22161,11 @@
 /turf/closed/wall/r_wall,
 /area/station/security/prison/garden)
 "iNL" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Lakeside, South"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 1
 	},
-/turf/open/misc/beach/sand,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/floor/stone,
 /area/taeloth)
 "iNX" = (
 /obj/structure/cable,
@@ -22524,7 +22513,8 @@
 /obj/structure/sign/directions/engineering/directional/south{
 	pixel_y = -24
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "iVg" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
@@ -22684,6 +22674,7 @@
 "iYo" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/small,
 /area/station/security/prison/safe)
 "iYy" = (
@@ -23403,12 +23394,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /turf/open/floor/iron/dark/small,
 /area/station/science/robotics)
-"joi" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Public Dock, Southeast"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "jom" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/dark_blue{
@@ -23434,12 +23419,6 @@
 /obj/structure/ladder,
 /turf/open/openspace,
 /area/station/maintenance/department/cargo)
-"jpo" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Armory, Southeast"
-	},
-/turf/open/misc/dirt/jungle,
-/area/taeloth)
 "jpx" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/turf_decal/stripes/asteroid/line{
@@ -23811,11 +23790,15 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/captain/private)
 "jvH" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bathroom, Southeast"
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer{
+	pixel_y = 14
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/machinery/vending/boozeomat/all_access{
+	pixel_x = 31
+	},
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "jvO" = (
 /obj/structure/barricade/wooden,
 /turf/open/misc/dirt/jungle,
@@ -24673,7 +24656,6 @@
 /obj/effect/turf_decal/trimline/dark/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/wideplating_new,
 /obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 1
 	},
@@ -24682,6 +24664,9 @@
 	},
 /obj/structure/railing/corner{
 	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 8
 	},
 /turf/open/floor/stone,
 /area/taeloth)
@@ -25078,12 +25063,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/service/library)
-"jUl" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Trail, Southwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "jUn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/stripes/corner{
@@ -25148,12 +25127,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /turf/open/floor/iron/dark,
 /area/station/science/server)
-"jUZ" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Gateway, Southwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "jVj" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -25865,10 +25838,11 @@
 /turf/open/floor/iron/large,
 /area/station/security/medical)
 "khM" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Southern Service Crossroads"
+/obj/effect/turf_decal/trimline/blue/warning{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/floor/stone,
 /area/taeloth)
 "khP" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner,
@@ -25969,10 +25943,16 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/department/science)
 "kjE" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bar, Northwest"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "kjV" = (
 /obj/item/kirbyplants/random,
@@ -26365,10 +26345,8 @@
 /turf/open/floor/iron/large,
 /area/station/command/heads_quarters/cmo)
 "krN" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Lake Dock, North"
-	},
-/turf/open/misc/beach/sand,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/misc/asteroid/moon,
 /area/taeloth)
 "krW" = (
 /obj/effect/turf_decal/siding/wideplating_new{
@@ -26626,10 +26604,6 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
-	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bridge Deck";
-	desc = "A solar-charged piece of machinery for lighting roadways. Generates electricity when in contact with even the most distant sunlight. This one... who put this under a roof? Are they stupid?"
 	},
 /turf/open/floor/wood/parquet,
 /area/taeloth)
@@ -27655,11 +27629,8 @@
 /turf/open/floor/carpet/neon/simple/purple,
 /area/station/service/cafeteria)
 "kUk" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Engineering Intersection"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/taeloth/unexplored)
 "kUl" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
 	dir = 10
@@ -29062,10 +29033,17 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
 "lAP" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Trail, East"
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/structure/fence/post{
+	pixel_x = 12
+	},
+/turf/open/floor/plating,
 /area/taeloth)
 "lAR" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -29516,10 +29494,8 @@
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
 "lLR" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Lakeside, North"
-	},
-/turf/open/misc/grass/jungle,
+/obj/machinery/solarlight/camera_installed,
+/turf/open/misc/dirt/jungle,
 /area/taeloth)
 "lLU" = (
 /turf/closed/wall,
@@ -29812,7 +29788,8 @@
 	pixel_y = -24;
 	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "lRj" = (
 /obj/machinery/power/shieldwallgen,
@@ -31462,10 +31439,13 @@
 /turf/open/floor/iron,
 /area/station/medical/morgue)
 "mwH" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Public Mining Bay, West"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "mwN" = (
 /obj/machinery/conveyor{
@@ -31699,9 +31679,6 @@
 	},
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 4
-	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Security Lobby, East"
 	},
 /turf/open/floor/iron/small,
 /area/taeloth)
@@ -32624,7 +32601,6 @@
 /obj/effect/turf_decal/trimline/dark/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/wideplating_new,
 /obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 4
 	},
@@ -32634,6 +32610,7 @@
 /obj/structure/railing/corner{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/wideplating_new/corner,
 /turf/open/floor/stone,
 /area/taeloth)
 "mSW" = (
@@ -33271,10 +33248,8 @@
 /turf/closed/wall/r_wall,
 /area/station/security/brig/entrance)
 "njr" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Cryopods"
-	},
-/turf/open/misc/dirt/jungle,
+/obj/structure/lattice/catwalk,
+/turf/closed/wall/mineral/wood/nonmetal,
 /area/taeloth)
 "njt" = (
 /obj/structure/cable,
@@ -33571,10 +33546,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "npe" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Virology, Monkey Pen, Northwest"
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 1
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/floor/stone,
 /area/taeloth)
 "nph" = (
 /turf/open/floor/grass,
@@ -33890,14 +33866,11 @@
 /turf/open/floor/catwalk_floor/iron,
 /area/station/cargo/office)
 "nwk" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 4
+/obj/machinery/door/airlock/wood{
+	name = "The Lounge"
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Arrivals, East"
-	},
-/turf/open/floor/stone,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "nwm" = (
 /obj/effect/spawner/random/engineering/atmospherics_portable,
 /turf/open/floor/plating,
@@ -34262,7 +34235,7 @@
 /turf/open/misc/dirt/jungle,
 /area/station/security/prison/garden)
 "nDe" = (
-/turf/open/chasm/jungle,
+/turf/open/lava,
 /area/taeloth)
 "nDf" = (
 /obj/structure/closet/firecloset,
@@ -35208,10 +35181,17 @@
 /turf/open/floor/plating,
 /area/station/security/prison/safe)
 "nWT" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bar, West"
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
 	},
-/turf/open/floor/stone,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/structure/fence/post{
+	pixel_x = -11
+	},
+/turf/open/floor/plating,
 /area/taeloth)
 "nWV" = (
 /obj/effect/turf_decal/siding/wideplating_new/end,
@@ -35815,14 +35795,8 @@
 /turf/open/floor/iron/dark/small,
 /area/station/commons/locker)
 "omc" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Medical, Rooftop Garden"
-	},
-/turf/open/floor/engine/hull/reinforced/taeloth,
-/area/taeloth)
+/turf/open/floor/light/colour_cycle/dancefloor_b,
+/area/station/commons/dorms/vacantroom)
 "omj" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security E.V.A. Storage"
@@ -36825,6 +36799,7 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /obj/structure/sign/poster/random/directional/south,
+/obj/structure/cable,
 /turf/open/floor/iron/dark/small,
 /area/station/security/prison/safe)
 "oGF" = (
@@ -36901,10 +36876,13 @@
 /turf/open/floor/iron/white,
 /area/station/engineering/transit_tube)
 "oIx" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - MedSci Concourse, South"
+/obj/effect/turf_decal/trimline/dark_blue/warning{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "oIA" = (
 /obj/structure/bed/double{
@@ -37330,7 +37308,8 @@
 /obj/structure/sign/directions/engineering/directional/south{
 	pixel_y = -40
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "oPr" = (
 /obj/structure/cable,
@@ -40446,11 +40425,12 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "qbS" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Engineering Radiation Shelter"
+/obj/structure/railing{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/commons/dorms/vacantroom)
 "qbU" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 8
@@ -41190,7 +41170,7 @@
 /obj/structure/railing/corner/end{
 	dir = 1
 	},
-/turf/open/misc/dirt/jungle,
+/turf/open/floor/stone,
 /area/taeloth)
 "qpT" = (
 /obj/structure/cable,
@@ -41387,10 +41367,8 @@
 /turf/open/floor/engine/hull/taeloth,
 /area/taeloth)
 "qtg" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Chemistry, East"
-	},
-/turf/open/misc/grass/jungle,
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/turf/open/floor/plating,
 /area/taeloth)
 "qtn" = (
 /obj/machinery/light_switch/directional/north,
@@ -41598,11 +41576,9 @@
 /turf/open/floor/carpet/neon/simple/purple,
 /area/station/service/bar/backroom)
 "qxd" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Lakeside, Northwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/structure/railing,
+/turf/open/floor/iron/dark,
+/area/station/commons/dorms/vacantroom)
 "qxf" = (
 /obj/machinery/module_duplicator,
 /obj/effect/turf_decal/bot_purple/left,
@@ -41623,11 +41599,8 @@
 /turf/open/floor/wood/large,
 /area/station/service/chapel)
 "qxv" = (
-/obj/effect/turf_decal/siding/wideplating_new,
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bathroom, South"
-	},
-/turf/open/floor/stone,
+/obj/structure/rack,
+/turf/open/misc/asteroid/moon,
 /area/taeloth)
 "qxC" = (
 /obj/structure/railing,
@@ -41783,11 +41756,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "qzQ" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/blue/warning{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 4
 	},
 /turf/open/floor/stone,
 /area/taeloth)
@@ -41954,6 +41927,7 @@
 /area/taeloth)
 "qCH" = (
 /obj/structure/flora/grass/jungle/b/style_5,
+/obj/machinery/solarlight/camera_installed,
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "qCI" = (
@@ -42023,9 +41997,6 @@
 /obj/structure/railing{
 	dir = 6
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Departures, North"
-	},
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "qDG" = (
@@ -42045,11 +42016,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/bar)
 "qDM" = (
-/obj/structure/stripper_pole{
-	desc = "Possibly less embarassing than sticking your tongue to a pole in the middle of winter. Also definitely was meant to display a flag, at some point."
-	},
-/turf/open/misc/asteroid,
-/area/taeloth)
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/station/commons/dorms/vacantroom)
 "qDN" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/effect/mapping_helpers/airlock/autoname,
@@ -42389,9 +42357,6 @@
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 10
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Cargo, West"
-	},
 /turf/open/misc/asteroid/moon,
 /area/taeloth)
 "qLK" = (
@@ -42580,9 +42545,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "qPj" = (
-/obj/structure/flora/bush/large,
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/commons/dorms/vacantroom)
 "qPk" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -43185,10 +43153,16 @@
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
 "qZD" = (
-/obj/structure/railing/corner{
-	dir = 1
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "qZI" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark,
@@ -43404,9 +43378,6 @@
 /area/station/science/breakroom)
 "rfX" = (
 /obj/structure/flora/rock/pile/jungle/style_random,
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Departures, South"
-	},
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "rgi" = (
@@ -43658,9 +43629,6 @@
 "rll" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 4
-	},
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 8
 	},
 /obj/structure/sign/departments/telecomms/directional/south,
 /turf/open/floor/stone,
@@ -44039,9 +44007,7 @@
 /turf/open/floor/plating/rust,
 /area/station/maintenance/department/medical/central)
 "rsh" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Sinner's Trail, Southeast"
-	},
+/obj/machinery/solarlight,
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "rsB" = (
@@ -44065,12 +44031,6 @@
 "rtr" = (
 /obj/structure/lattice,
 /turf/open/openspace,
-/area/taeloth)
-"rts" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Annex, Southwest"
-	},
-/turf/open/misc/grass/jungle,
 /area/taeloth)
 "rtz" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
@@ -44639,10 +44599,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
 "rDx" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Virology, Monkey Pen, Southeast"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/floor/stone,
 /area/taeloth)
 "rDB" = (
 /obj/machinery/rnd/production/circuit_imprinter/department/science,
@@ -44778,10 +44739,8 @@
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
 "rFM" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Lake Trail, West"
-	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/box,
+/turf/open/misc/asteroid/moon,
 /area/taeloth)
 "rGb" = (
 /obj/machinery/suit_storage_unit/medical,
@@ -44964,11 +44923,13 @@
 /turf/open/floor/plating,
 /area/station/medical/cryo)
 "rJO" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Kitchen, West"
+/obj/structure/chair/sofa/corp/left{
+	desc = "Looks like someone threw it out. Covered in donut crumbs.";
+	dir = 4;
+	name = "couch"
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "rJX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -45023,10 +44984,13 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "rKB" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - EVA"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 1
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "rKC" = (
 /obj/machinery/door/firedoor,
@@ -45380,7 +45344,7 @@
 /area/station/command/heads_quarters/captain)
 "rSD" = (
 /obj/effect/landmark/navigate_destination/dorms,
-/turf/open/misc/asteroid,
+/turf/open/floor/stone,
 /area/taeloth)
 "rSM" = (
 /obj/structure/cable/layer3,
@@ -45401,12 +45365,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
-"rSY" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bathroom, North"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "rTo" = (
 /mob/living/basic/lizard/wags_his_tail,
 /obj/effect/turf_decal/trimline/dark_green/warning{
@@ -45460,11 +45418,12 @@
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "rUc" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Trail, Northwest"
+/obj/structure/table/wood{
+	pixel_y = -9;
+	pixel_x = -3
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "rUg" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/siding/wood{
@@ -46293,10 +46252,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
-"skd" = (
-/obj/structure/flora/tree/jungle/small/style_4,
-/turf/open/misc/beach/sand,
-/area/taeloth)
 "skk" = (
 /obj/structure/dresser,
 /turf/open/floor/carpet/orange,
@@ -46827,6 +46782,7 @@
 "stD" = (
 /obj/effect/turf_decal/siding/dark/corner,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron/cafeteria,
 /area/station/security/prison/mess)
 "stE" = (
@@ -46862,12 +46818,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/main)
-"stS" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Auxillary Base, East"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "stX" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 1
@@ -47837,11 +47787,8 @@
 /turf/open/floor/plating/rust,
 /area/station/maintenance/department/crew_quarters/bar)
 "sPv" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Virology, Monkey Pen, Southwest"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "sPL" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -48067,10 +48014,9 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/ai_monitored/security/armory)
 "sUb" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Lake Trail, North"
-	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new,
+/obj/effect/turf_decal/trimline/blue/line,
+/turf/open/floor/stone,
 /area/taeloth)
 "sUh" = (
 /obj/structure/extinguisher_cabinet/directional/south,
@@ -48163,7 +48109,7 @@
 /area/station/maintenance/starboard/aft)
 "sWc" = (
 /obj/structure/railing/corner/end/flip,
-/turf/open/misc/dirt/jungle,
+/turf/open/floor/stone,
 /area/taeloth)
 "sWF" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -48331,10 +48277,13 @@
 /turf/closed/wall,
 /area/station/cargo/sorting)
 "tad" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Lake Trail, East"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "tae" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
@@ -48665,15 +48614,16 @@
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/qm)
 "tgF" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Service, Northwest #2"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
-"tgK" = (
-/obj/structure/flora/bush/flowers_br,
-/obj/structure/flora/bush/lavendergrass,
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "tgP" = (
 /obj/structure/cable,
@@ -49369,18 +49319,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/captain/private)
-"txl" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 8
-	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Head of Personnel Line"
-	},
-/turf/open/floor/stone,
-/area/taeloth)
 "txo" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
@@ -50042,6 +49980,10 @@
 /obj/effect/turf_decal/stripes/asteroid/line,
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
+	},
+/obj/structure/fence/post{
+	dir = 4;
+	pixel_y = 26
 	},
 /turf/open/floor/plating,
 /area/taeloth)
@@ -51432,10 +51374,10 @@
 /area/station/hallway/secondary/dock)
 "uoe" = (
 /obj/effect/turf_decal/siding/wideplating_new{
-	dir = 8
+	dir = 9
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bathroom, West"
+/obj/structure/railing{
+	dir = 9
 	},
 /turf/open/floor/stone,
 /area/taeloth)
@@ -51524,6 +51466,7 @@
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark/herringbone,
 /area/station/security/prison/mess)
 "uqc" = (
@@ -52954,10 +52897,13 @@
 /turf/open/misc/grass/jungle,
 /area/taeloth)
 "uSo" = (
-/obj/structure/railing{
+/obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 1
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 6
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "uSz" = (
 /obj/effect/turf_decal/stripes/line{
@@ -54101,10 +54047,13 @@
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/storage)
 "vpS" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Chemistry, North"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 1
 	},
-/turf/open/misc/grass/jungle,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "vpW" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -55025,11 +54974,9 @@
 /area/station/maintenance/department/science)
 "vII" = (
 /obj/effect/turf_decal/siding/wideplating_new{
-	dir = 5
+	dir = 1
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Research Desks"
-	},
+/obj/effect/turf_decal/siding/wideplating_new,
 /turf/open/floor/stone,
 /area/taeloth)
 "vIM" = (
@@ -55426,10 +55373,11 @@
 /turf/open/misc/dirt/jungle,
 /area/taeloth)
 "vSq" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bathroom, East"
+/obj/effect/turf_decal/trimline/dark_blue/warning{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner,
+/turf/open/floor/stone,
 /area/taeloth)
 "vSs" = (
 /obj/structure/transit_tube/station/dispenser/reverse/flipped,
@@ -55780,10 +55728,13 @@
 /turf/closed/wall/r_wall,
 /area/station/security/brig)
 "vYs" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Service, Northwest"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/trimline/dark_red/line{
+	dir = 4
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "vYu" = (
 /obj/effect/turf_decal/siding/wood{
@@ -57169,10 +57120,10 @@
 /turf/open/floor/glass,
 /area/station/service/kitchen)
 "wBn" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Sinner's Trail, Node #3"
+/obj/effect/turf_decal/trimline/purple/warning{
+	dir = 8
 	},
-/turf/open/misc/grass/jungle,
+/turf/open/floor/stone,
 /area/taeloth)
 "wBT" = (
 /obj/machinery/door/airlock/public/glass,
@@ -57265,7 +57216,8 @@
 	use_power = 0;
 	active_power_usage = 0
 	},
-/turf/open/misc/dirt/jungle,
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "wDW" = (
 /turf/closed/wall/r_wall/rust,
@@ -57370,16 +57322,28 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/misc/dirt/jungle,
+/turf/open/floor/stone,
 /area/taeloth)
 "wGl" = (
 /turf/open/floor/carpet/red,
 /area/station/security/detectives_office)
 "wGo" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Psychology"
+/obj/structure/sign/directions/science/directional/south{
+	pixel_y = -42
 	},
-/turf/open/misc/grass/jungle,
+/obj/structure/sign/directions/security/directional/south{
+	pixel_y = -36;
+	dir = 1
+	},
+/obj/structure/sign/directions/medical/directional/south{
+	pixel_y = -30;
+	dir = 9
+	},
+/obj/structure/sign/directions/engineering/directional/south{
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "wGr" = (
 /obj/structure/chair/office/light,
@@ -57946,11 +57910,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/upper)
 "wRC" = (
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/purple/warning{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 4
 	},
 /turf/open/floor/stone,
 /area/taeloth)
@@ -58046,12 +58010,6 @@
 "wTV" = (
 /turf/open/floor/iron,
 /area/station/cargo/storage)
-"wUc" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Bridge, Lakeside"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "wUL" = (
 /obj/machinery/oven,
 /obj/effect/turf_decal/siding/wideplating_new/dark,
@@ -58457,9 +58415,6 @@
 /turf/open/floor/engine/hull/taeloth,
 /area/taeloth)
 "xcX" = (
-/obj/effect/turf_decal/siding/wideplating_new/corner{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/purple/corner{
 	dir = 1
 	},
@@ -59209,11 +59164,13 @@
 /turf/open/floor/wood/tile,
 /area/station/medical/break_room)
 "xrP" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Bridge, Southeast"
+/obj/structure/chair/sofa/corp/right{
+	desc = "Looks like someone threw it out. Covered in donut crumbs.";
+	dir = 1;
+	name = "couch"
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "xsp" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
@@ -59283,10 +59240,13 @@
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
 "xti" = (
-/obj/structure/railing{
-	dir = 9
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "xtk" = (
 /obj/structure/rack,
@@ -59746,10 +59706,13 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit/escape_pod)
 "xAy" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Annex, South"
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 4
 	},
-/turf/open/misc/grass/jungle,
+/obj/effect/turf_decal/siding/wideplating_new/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
 /area/taeloth)
 "xAG" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
@@ -59851,10 +59814,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
 "xCd" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/misc/dirt/jungle/dark,
+/turf/closed/wall/r_wall,
 /area/taeloth)
 "xCe" = (
 /turf/open/floor/iron/white/side{
@@ -59902,12 +59862,6 @@
 	dir = 1
 	},
 /area/station/science/robotics)
-"xCE" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Chief Medical Officer, Northeast"
-	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
 "xCK" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 5
@@ -60860,10 +60814,9 @@
 	},
 /area/station/science)
 "xVa" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Lakeside, East"
-	},
-/turf/open/misc/beach/sand,
+/obj/structure/sign/warning/rad_shelter/directional/south,
+/obj/effect/turf_decal/siding/wideplating_new,
+/turf/open/floor/stone,
 /area/taeloth)
 "xVl" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -61333,11 +61286,13 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/patients_rooms/room_b)
 "yfA" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Cargo, East"
+/obj/structure/stripper_pole{
+	desc = "Possibly less embarassing than sticking your tongue to a pole in the middle of winter. Also definitely was meant to display a flag, at some point.";
+	pixel_y = 12
 	},
-/turf/open/misc/asteroid/moon,
-/area/taeloth)
+/obj/structure/railing,
+/turf/open/floor/iron/dark,
+/area/station/commons/dorms/vacantroom)
 "yfL" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -61457,11 +61412,12 @@
 /turf/open/floor/iron/diagonal,
 /area/station/medical/patients_rooms)
 "yhB" = (
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior - Cabin Annex"
+/obj/structure/table/wood{
+	pixel_y = -6;
+	pixel_x = 3
 	},
-/turf/open/misc/grass/jungle,
-/area/taeloth)
+/turf/open/floor/wood,
+/area/station/commons/dorms/vacantroom)
 "yia" = (
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
@@ -61529,13 +61485,10 @@
 /turf/open/floor/iron/herringbone,
 /area/station/service/hydroponics)
 "ykk" = (
-/obj/effect/turf_decal/siding/wideplating_new{
+/obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 8
 	},
-/obj/machinery/solarlight/camera_installed{
-	c_tag = "Exterior -  Arrivals, West"
-	},
-/turf/open/floor/stone,
+/turf/open/misc/asteroid/moon,
 /area/taeloth)
 "ykv" = (
 /obj/effect/turf_decal/stripes/line,
@@ -64516,7 +64469,7 @@ rQL
 rQL
 rQL
 rQL
-iAq
+rQL
 rQL
 rQL
 abe
@@ -65026,7 +64979,7 @@ bJh
 bJh
 itC
 itC
-rQL
+aEl
 rQL
 rQL
 rQL
@@ -66569,7 +66522,7 @@ itC
 itC
 itC
 itC
-sAb
+rsh
 sAb
 xtP
 sAb
@@ -66831,7 +66784,7 @@ abe
 abe
 abe
 abe
-aJW
+sAb
 sAb
 sAb
 sAb
@@ -67353,7 +67306,7 @@ sAb
 sAb
 vSj
 sAb
-wBn
+sAb
 abe
 abe
 abe
@@ -68178,7 +68131,7 @@ nlR
 dhw
 vMS
 rQL
-dEC
+rQL
 rQL
 rQL
 rQL
@@ -68428,7 +68381,7 @@ rQL
 rQL
 rQL
 rQL
-krN
+rQL
 rQL
 rQL
 rQL
@@ -69411,7 +69364,7 @@ abe
 abe
 abe
 abe
-dBZ
+sAb
 sAb
 vSj
 vSj
@@ -70190,7 +70143,7 @@ sAb
 vSj
 sAb
 sAb
-gHZ
+sAb
 abe
 abe
 abe
@@ -70451,8 +70404,8 @@ sAb
 sAb
 sAb
 abe
-abe
-abe
+kUk
+kUk
 abe
 abe
 abe
@@ -70485,7 +70438,7 @@ abe
 abe
 abe
 abe
-rFM
+sAb
 vSj
 vSj
 sAb
@@ -70708,8 +70661,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-abe
+rsh
+kUk
 abe
 abe
 abe
@@ -71476,7 +71429,7 @@ abe
 abe
 abe
 sAb
-xtP
+sAb
 sAb
 sAb
 sAb
@@ -71732,15 +71685,15 @@ abe
 abe
 abe
 abe
-abe
-sAb
+kUk
+rsh
 jqs
 sAb
 sAb
 vSj
 vSj
 sAb
-sAb
+fYT
 xtP
 sAb
 cND
@@ -71989,8 +71942,8 @@ abe
 abe
 abe
 abe
-abe
-abe
+kUk
+kUk
 abe
 sAb
 sAb
@@ -72001,17 +71954,17 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 jZu
 sAz
 sAH
 wYE
 qpQ
+cgF
 sAb
 sAb
 sAb
 sAb
-sAb
 abe
 abe
 abe
@@ -72030,7 +71983,7 @@ abe
 abe
 sAb
 sAb
-iLq
+sAb
 abe
 abe
 abe
@@ -72249,8 +72202,8 @@ abe
 abe
 abe
 sAb
-sAb
-rsh
+xtP
+vSj
 sAb
 sAb
 sAb
@@ -72262,10 +72215,10 @@ sAb
 sAb
 sAb
 sAb
+fYT
+xrm
+cgF
 sAb
-sAb
-gQU
-rts
 sAb
 sAb
 sAb
@@ -72506,10 +72459,10 @@ abe
 abe
 abe
 sAb
-xtP
+jvO
 vSj
-sAb
-sAb
+vSj
+vSj
 sAb
 sAb
 vSj
@@ -72520,8 +72473,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -72763,22 +72716,22 @@ abe
 abe
 abe
 sAb
-jvO
+xtP
+vCk
 vSj
 vSj
-vSj
+xtP
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-vSj
 sAb
 sAb
 vSj
+sAb
+sAb
 vSj
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -73020,22 +72973,22 @@ abe
 abe
 abe
 sAb
-xtP
-vCk
-vSj
-vSj
-xtP
+bhS
+bhS
+bhS
+bhS
+bhS
 sAb
 sAb
 sAb
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
+qDM
+qDM
+qDM
+qDM
+qDM
+qDM
+xrm
+cgF
 vSj
 sAb
 spK
@@ -73278,21 +73231,21 @@ abe
 abe
 sAb
 bhS
+xYH
+teM
+oAj
 bhS
-bhS
-bhS
-bhS
-fLi
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-gQU
+qDM
+hXb
+sPv
+rJO
+iqk
+qDM
+xrm
+cgF
 vSj
 vSj
 vSj
@@ -73534,22 +73487,22 @@ abe
 abe
 sAb
 sAb
+epl
+xvw
+gCO
+tHI
 bhS
-xYH
-teM
-oAj
-bhS
+fYT
 sAb
 sAb
-sAb
-sAb
-sAb
-gQU
-sAb
-sAb
-vSj
-sAb
-kvh
+qDM
+qbS
+gZb
+rUc
+xrP
+qDM
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -73791,27 +73744,27 @@ abe
 abe
 sAb
 sAb
-epl
-xvw
-gCO
-tHI
 bhS
+vJB
+xGQ
+coK
+wCS
 wpj
 sAb
 vSj
+qDM
+qxd
+dHE
+omc
+dHE
+nwk
+ryA
+cgF
+fYT
 sAb
 sAb
 sAb
 sAb
-vSj
-iYL
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-xAy
 sAb
 sAb
 sAb
@@ -74049,21 +74002,21 @@ abe
 wvK
 sAb
 bhS
-vJB
-xGQ
-coK
-wCS
+fTF
+jel
+pSe
+bhS
 ttM
 sAb
 sAb
-sAb
-vSj
-sAb
-vSj
-iYL
+qDM
+yfA
+omc
+dHE
+omc
 qDM
 rSD
-iYL
+cgF
 vSj
 vSj
 sAb
@@ -74084,7 +74037,7 @@ vSj
 sAb
 sAb
 sAb
-tad
+sAb
 sAb
 wKe
 wKe
@@ -74305,22 +74258,22 @@ abe
 abe
 sAb
 sAb
-bhS
-fTF
-jel
-pSe
+epl
+lWS
+iQY
+sHc
 bhS
 sxv
 sAb
 sAb
-sAb
-sAb
-jVU
-bah
-iYL
-iYL
-iYL
-vSj
+qDM
+qxd
+dHE
+omc
+dHE
+nwk
+ryA
+cgF
 vSj
 sAb
 sAb
@@ -74562,22 +74515,22 @@ abe
 abe
 sAb
 sAb
-epl
-lWS
-iQY
-sHc
+bhS
+ttu
+xmh
+coK
 bhS
 aXI
 sAb
 vSj
-vSj
+qDM
 qPj
-tYX
+gZb
 yhB
-vSj
-vSj
-vSj
-sAb
+dEC
+qDM
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -74590,7 +74543,7 @@ sAb
 sAb
 sAb
 jVU
-sUb
+sAb
 sAb
 sAb
 sAb
@@ -74820,27 +74773,27 @@ abe
 sAb
 sAb
 bhS
-ttu
-xmh
-coK
+bhS
+bhS
+dcM
 bhS
 wDL
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+qDM
+jvH
+sPv
+iLq
+bXP
+qDM
+xrm
+cgF
 sAb
 spK
 sAb
 sAb
 sAb
-sAb
+fYT
 vSj
 sAb
 sAb
@@ -75076,27 +75029,27 @@ abe
 abe
 sAb
 sAb
+rQh
+jtJ
+lpV
+qDn
 bhS
-bhS
-bhS
-dcM
-bhS
+cgF
 sAb
 sAb
+qDM
+qDM
+qDM
+qDM
+qDM
+qDM
+xrm
+cgF
 sAb
-sAb
-sAb
+vSj
 vSj
 sAb
 sAb
-tgK
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-jVU
 sAb
 sAb
 vSj
@@ -75333,12 +75286,12 @@ abe
 abe
 sAb
 sAb
-rQh
-jtJ
-lpV
-qDn
 bhS
-sAb
+laQ
+euh
+gOt
+bhS
+cgF
 spK
 sAb
 sAb
@@ -75347,8 +75300,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 vSj
 vSj
 sAb
@@ -75591,21 +75544,21 @@ abe
 sAb
 sAb
 bhS
-laQ
-euh
-gOt
 bhS
-sAb
-sAb
+bhS
+bhS
+bhS
+cgF
+fYT
 sAb
 vSj
 sAb
 sAb
 sAb
 vSj
-sAb
-sAb
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -75847,23 +75800,23 @@ abe
 abe
 abe
 sAb
-bhS
-bhS
-bhS
-bhS
-bhS
-dHE
+fYT
 sAb
 sAb
+xrm
+ryA
+lOz
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+oIU
+cgF
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-bJZ
 sAb
 sAb
 sAb
@@ -76107,20 +76060,20 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+xrm
+chY
+buI
+buI
+buI
+buI
+buI
 xGl
 rgY
 vYu
 tjq
 bzC
+llU
 spK
-sAb
 sAb
 sAb
 sAb
@@ -76364,11 +76317,11 @@ sAb
 wvK
 sAb
 sAb
-xtP
-sAb
+xrm
+cgF
 sAb
 vSj
-sAb
+fYT
 qbn
 qbn
 qbn
@@ -76620,9 +76573,9 @@ abe
 sAb
 sAb
 wvK
-sAb
-sAb
-sAb
+fYT
+xrm
+cgF
 sAb
 vSj
 sAb
@@ -76878,8 +76831,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 vSj
 vSj
 sAb
@@ -77135,9 +77088,9 @@ sAb
 sAb
 sAb
 jVU
-sAb
-sAb
-sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 qbn
@@ -77389,11 +77342,11 @@ abe
 sAb
 sAb
 sAb
-rUc
 sAb
 sAb
 sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -77408,7 +77361,7 @@ qbn
 hgR
 qbn
 qbn
-sAb
+fYT
 rQL
 vMS
 vMS
@@ -77649,8 +77602,8 @@ wvK
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -77906,8 +77859,8 @@ sAb
 sAb
 sAb
 vSj
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 jVU
@@ -78163,8 +78116,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -78413,16 +78366,16 @@ kBt
 eiu
 kBt
 kBt
+fYT
 sAb
 sAb
 sAb
 sAb
 sAb
 sAb
+xrm
+cgF
 sAb
-sAb
-sAb
-wvK
 sAb
 sAb
 sAb
@@ -78668,7 +78621,7 @@ tTX
 fNx
 sAb
 vSj
-vSj
+lLR
 fLt
 sAb
 sAb
@@ -78676,10 +78629,10 @@ sAb
 sAb
 vSj
 sAb
-sAb
-sAb
-sAb
-jUl
+fYT
+xrm
+cgF
+fYT
 sAb
 sAb
 sAb
@@ -78934,8 +78887,8 @@ vSj
 vSj
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 wvK
@@ -79191,8 +79144,8 @@ sAb
 sAb
 sAb
 sAb
-wvK
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -79444,12 +79397,12 @@ vSj
 sAb
 sAb
 sAb
-sAb
+fYT
 xtP
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -79694,7 +79647,7 @@ fNx
 tTX
 tTX
 tTX
-eKw
+sAb
 sAb
 sAb
 sAb
@@ -79705,7 +79658,12 @@ sAb
 sAb
 sAb
 sAb
+xrm
+cgF
 sAb
+sAb
+sAb
+wvK
 sAb
 sAb
 sAb
@@ -79714,15 +79672,10 @@ wvK
 sAb
 sAb
 sAb
-sAb
 wvK
 sAb
 sAb
-sAb
-wvK
-sAb
-sAb
-sAb
+fYT
 rQL
 vMS
 vMS
@@ -79962,8 +79915,8 @@ sAb
 sAb
 sAb
 wvK
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -80215,19 +80168,19 @@ sAb
 vSj
 vSj
 sAb
-lAP
 sAb
 sAb
 sAb
 sAb
+xrm
+cgF
 sAb
-wvK
 sAb
 sAb
 sAb
 jVU
 xtP
-sAb
+fYT
 sAb
 sAb
 sAb
@@ -80476,9 +80429,9 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 sAb
@@ -80733,8 +80686,8 @@ sAb
 wvK
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -80978,20 +80931,20 @@ dJX
 dJX
 rkC
 vmT
-vSj
+lLR
 sAb
 sAb
 sAb
 sAb
 sAb
+fYT
 sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-jVU
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -81235,20 +81188,20 @@ inM
 inM
 nkf
 cGt
-vSj
-vSj
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+oIU
+cgF
 sAb
 sAb
 sAb
@@ -81264,7 +81217,7 @@ sAb
 wvK
 sAb
 sAb
-sAb
+fYT
 rQL
 vMS
 vMS
@@ -81492,21 +81445,21 @@ gBc
 lkA
 qOs
 hqm
-vSj
-vSj
-vSj
+xrm
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+cgF
 sAb
-sAb
-sAb
-sAb
-wvK
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-wvK
 sAb
 sAb
 sAb
@@ -81749,20 +81702,20 @@ pmZ
 uli
 psH
 cGt
-vSj
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-wvK
-sAb
-sAb
-sAb
+ryA
+chY
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+llU
 sAb
 sAb
 sAb
@@ -82006,11 +81959,11 @@ uVc
 iVl
 jjw
 vmT
-sAb
-sAb
-sAb
+xrm
+cgF
+fYT
 vSj
-hLr
+sAb
 sAb
 sAb
 sAb
@@ -82019,7 +81972,7 @@ sAb
 sAb
 sAb
 wvK
-sAb
+fYT
 sAb
 vpw
 vyl
@@ -82031,8 +81984,8 @@ etf
 rQT
 vyl
 mhb
-mhb
-giI
+fYT
+sAb
 sAb
 jVU
 sAb
@@ -82051,7 +82004,7 @@ wKe
 wKe
 wKe
 sAb
-vSj
+lLR
 hjY
 qjc
 hjY
@@ -82263,6 +82216,8 @@ hqm
 hqm
 vmT
 vmT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -82270,8 +82225,6 @@ sAb
 sAb
 sAb
 sAb
-sAb
-wvK
 sAb
 sAb
 sAb
@@ -82279,18 +82232,18 @@ sAb
 sAb
 sAb
 fww
-npe
+sAb
 sAb
 pyP
 sAb
 rtz
 sAb
 rtz
-sPv
+sAb
 fww
-nDe
-iMG
-giI
+sAb
+sAb
+sAb
 sAb
 sAb
 sAb
@@ -82520,8 +82473,8 @@ vMS
 sAb
 sAb
 sAb
-sAb
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -82536,7 +82489,7 @@ wCp
 wCp
 wCp
 wCp
-sAb
+fYT
 ggt
 sAb
 sAb
@@ -82544,10 +82497,10 @@ sAb
 vSj
 sAb
 sAb
-bjY
-nDe
-nDe
-uSo
+xCd
+xCd
+xCd
+sAb
 sAb
 sAb
 sAb
@@ -82777,8 +82730,8 @@ vMS
 sAb
 wvK
 sAb
-vSj
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -82803,8 +82756,8 @@ sAb
 sAb
 xCd
 nDe
-nDe
-uSo
+xCd
+sAb
 sAb
 sAb
 sAb
@@ -83030,12 +82983,12 @@ vMS
 vMS
 vMS
 vMS
-bXP
 sAb
 sAb
 sAb
 sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -83058,13 +83011,13 @@ xtP
 rtz
 bah
 rtz
-fww
+xCd
 nDe
-nDe
-xOx
+qtg
 sAb
 sAb
-wvK
+sAb
+sAb
 sAb
 sAb
 sAb
@@ -83084,7 +83037,7 @@ vSj
 sAb
 sAb
 sAb
-vSj
+lLR
 iHe
 vSj
 rCE
@@ -83291,9 +83244,9 @@ wvK
 sAb
 sAb
 sAb
-sAb
-vSj
-sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 sAb
@@ -83315,10 +83268,10 @@ bah
 sAb
 sAb
 sAb
-dKq
+xCd
 nDe
-nDe
-xOx
+xCd
+sAb
 sAb
 sAb
 sAb
@@ -83548,8 +83501,8 @@ sAb
 jVU
 sAb
 vSj
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -83572,16 +83525,16 @@ usT
 bah
 vSj
 sAb
-abJ
+xCd
 cwJ
-xti
-qZD
+xCd
+fYT
 sAb
 sAb
 sAb
 sAb
 sAb
-sAb
+wvK
 sAb
 sAb
 vSj
@@ -83804,10 +83757,10 @@ sAb
 sAb
 sAb
 vSj
-vSj
+lLR
+xrm
+cgF
 sAb
-sAb
-wGo
 sAb
 sAb
 sAb
@@ -83827,20 +83780,20 @@ tFG
 tFG
 sAb
 bah
-rDx
+sAb
 lnQ
 lnQ
 ndQ
-rbk
+lnQ
 rbk
 uUJ
 lnQ
 lnQ
 lnQ
 lnQ
+fYT
 sAb
 sAb
-wvK
 sAb
 rQL
 vMS
@@ -84061,11 +84014,11 @@ wvK
 sAb
 sAb
 vSj
+ilo
+oIU
+cgF
 sAb
 sAb
-sAb
-sAb
-wvK
 sAb
 sAb
 sAb
@@ -84318,9 +84271,9 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
+xrm
+chY
+llU
 sAb
 sAb
 sAb
@@ -84353,7 +84306,7 @@ cMo
 oSc
 uxW
 lnQ
-sAb
+fYT
 sAb
 sAb
 sAb
@@ -84369,7 +84322,7 @@ sAb
 sAb
 sAb
 sAb
-vSj
+lLR
 bgq
 kfM
 rWY
@@ -84575,9 +84528,9 @@ sAb
 wvK
 sAb
 sAb
-sAb
-sAb
-sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 wvK
@@ -84832,8 +84785,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -85088,10 +85041,10 @@ vMS
 sAb
 sAb
 vSj
-sAb
-sAb
-sAb
-wvK
+fYT
+xrm
+iVc
+xtP
 sAb
 sAb
 jVU
@@ -85123,7 +85076,7 @@ lnQ
 lnQ
 lnQ
 lnQ
-sAb
+fYT
 sAb
 sAb
 sAb
@@ -85344,11 +85297,11 @@ dMg
 vMS
 sAb
 vSj
-vSj
+xEo
 sAb
-sAb
-sAb
-sAb
+xrm
+lQP
+xtP
 sAb
 sAb
 sAb
@@ -85598,16 +85551,16 @@ cHD
 dMg
 dMg
 dMg
-vSj
+lLR
 sAb
 vSj
 sAb
 sAb
-aVG
+xrm
+cgF
 sAb
 sAb
 sAb
-wvK
 sAb
 sAb
 eQo
@@ -85654,7 +85607,7 @@ sAb
 sAb
 sAb
 sAb
-vSj
+lLR
 iHe
 vSj
 vSj
@@ -85860,8 +85813,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -85904,7 +85857,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 sAb
 sAb
 sAb
@@ -86114,11 +86067,11 @@ huf
 vMS
 tAk
 sAb
-vSj
-vSj
 sAb
 sAb
 sAb
+xrm
+cgF
 sAb
 eQo
 eQo
@@ -86158,12 +86111,12 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 atM
 atM
 atM
 atM
-sAb
+fYT
 sAb
 sAb
 sAb
@@ -86370,12 +86323,12 @@ izh
 izh
 vMS
 leD
+pbK
 sAb
-vSj
-vSj
 sAb
-jVU
-sAb
+fYT
+xrm
+cgF
 eQo
 eQo
 krB
@@ -86406,12 +86359,12 @@ vCa
 nRG
 vCa
 vCa
-sAb
+fYT
 sAb
 bah
 bah
 bah
-sAb
+fYT
 atM
 atM
 atM
@@ -86627,12 +86580,12 @@ pTp
 oAk
 ejP
 jMy
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+ciO
+ciO
+ciO
+ciO
+oIU
+cgF
 eQo
 vYw
 gID
@@ -86884,12 +86837,12 @@ huf
 uor
 wWf
 ixa
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
+ryA
+ryA
+ryA
+ryA
+ryA
+cgF
 nnY
 cho
 iEA
@@ -87102,7 +87055,7 @@ rCE
 rCE
 rCE
 fGk
-fGk
+hLr
 fGk
 pAs
 tph
@@ -87141,12 +87094,12 @@ pTp
 jsg
 lrL
 mSS
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
+vYs
+vYs
+vYs
+vYs
+vYM
+cgF
 eQo
 iKW
 oYX
@@ -87398,12 +87351,12 @@ izh
 izh
 vMS
 leD
-vSj
+pbK
 sAb
 sAb
-sAb
-sAb
-sAb
+fYT
+xrm
+cgF
 eQo
 eQo
 tMX
@@ -87659,8 +87612,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 eQo
 eQo
@@ -87916,8 +87869,8 @@ sAb
 sAb
 vSj
 sAb
-sAb
-jVU
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -88168,13 +88121,13 @@ aZH
 klL
 klL
 klL
-vSj
+lLR
 sAb
 sAb
 sAb
 sAb
-sAb
-xCE
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -88430,8 +88383,8 @@ vSj
 sAb
 sAb
 vSj
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 wvK
@@ -88685,10 +88638,10 @@ klL
 vMS
 vSj
 sAb
+wvK
 sAb
-sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -88941,11 +88894,11 @@ jEW
 klL
 vMS
 vMS
-vSj
+lLR
 sAb
 vSj
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -89201,8 +89154,8 @@ vMS
 vSj
 sAb
 sAb
-sAb
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -89458,8 +89411,8 @@ vMS
 vMS
 sAb
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -89715,16 +89668,16 @@ vMS
 vMS
 vSj
 sAb
-sAb
+xrm
+cgF
+fYT
+vSj
 vSj
 sAb
-vSj
-vSj
 sAb
 sAb
 sAb
-sAb
-sAb
+fYT
 sAb
 hDW
 nxi
@@ -89972,16 +89925,16 @@ vMS
 vMS
 vSj
 sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
+xrm
+lOz
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+mdx
 sAb
 hDW
 nxi
@@ -90229,16 +90182,16 @@ vMS
 vMS
 vSj
 xtP
-sAb
-vpS
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+lln
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+vYM
+cgF
 sAb
 gLY
 veS
@@ -90491,11 +90444,11 @@ sAb
 sAb
 sAb
 sAb
-vSj
 sAb
 sAb
 sAb
-jVU
+xrm
+cgF
 sAb
 gLY
 gym
@@ -90745,14 +90698,14 @@ sAb
 wvK
 sAb
 sAb
-sAb
+uRT
 sAb
 vSj
 vSj
 vSj
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 gLY
 gLY
@@ -91003,14 +90956,14 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 xEZ
 sAb
 sAb
 sAb
-vSj
-sAb
-sAb
+xrm
+cgF
+uRT
 sAb
 gLY
 gLY
@@ -91265,8 +91218,8 @@ mhb
 hZY
 sAb
 xtP
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -91519,11 +91472,11 @@ iYL
 iYL
 iYL
 xyM
-ykk
+nCB
 mdx
 sAb
-sAb
-vSj
+xrm
+cgF
 sAb
 jVU
 sAb
@@ -91731,9 +91684,9 @@ aWQ
 aWQ
 bhF
 aWQ
+eKw
 aWQ
-aWQ
-aWQ
+eKw
 aWQ
 aWQ
 qoF
@@ -91778,9 +91731,9 @@ iYL
 mhb
 wck
 cgF
-sAb
-vSj
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -92034,19 +91987,19 @@ iYL
 iYL
 fSN
 ryA
+uVJ
+hNM
+xti
 cgF
-vSj
-vSj
-vSj
-sAb
-sAb
-sAb
-wvK
 sAb
 sAb
 sAb
 sAb
-qtg
+sAb
+uRT
+sAb
+sAb
+sAb
 sAb
 sAb
 sAb
@@ -92062,7 +92015,7 @@ sAb
 sAb
 idd
 qzQ
-qzQ
+khM
 ioW
 sAb
 sAb
@@ -92079,7 +92032,7 @@ puz
 nyj
 nyj
 tYX
-sAb
+fYT
 kaZ
 ryA
 ryA
@@ -92293,36 +92246,36 @@ mhb
 auT
 cgF
 sAb
-sAb
-vSj
-sAb
-sAb
-sAb
+xrm
+wGo
+xtP
 sAb
 sAb
 sAb
 sAb
 sAb
 sAb
-wvK
-sAb
-sAb
-sAb
-sAb
-vCP
-vCP
-vCP
-vCP
-vCP
-sAb
-sAb
-sAb
-sAb
-vSj
-vSj
 sAb
 sAb
 wvK
+sAb
+sAb
+sAb
+sAb
+vCP
+vCP
+vCP
+vCP
+vCP
+sAb
+sAb
+sAb
+sAb
+rKB
+sUb
+sAb
+sAb
+sAb
 sAb
 nyj
 nyj
@@ -92339,8 +92292,8 @@ sAb
 sAb
 wow
 wRC
-wRC
-wRC
+wBn
+wBn
 xcX
 ryA
 xby
@@ -92550,26 +92503,12 @@ xyM
 tug
 cgF
 sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-jVU
-sAb
-sAb
-sAb
-sAb
+xrm
 bGZ
+xtP
+vSj
+sAb
+fYT
 sAb
 sAb
 vSj
@@ -92579,26 +92518,40 @@ sAb
 sAb
 sAb
 sAb
+fYT
+sAb
+sAb
+sAb
+uRT
+sAb
+sAb
+vSj
+sAb
+fYT
+rKB
+sUb
 sAb
 sAb
 sAb
 sAb
+sAb
+fYT
 xrm
 oWq
 vvN
 vvN
 hlM
 cgF
+fYT
 sAb
 sAb
 sAb
-wvK
 sAb
 vSj
-sAb
-sAb
-sAb
-vII
+xrm
+ryA
+chY
+buI
 vYM
 ryA
 nul
@@ -92807,60 +92760,60 @@ xyM
 pDL
 cgF
 sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-vSj
-vSj
-sAb
-sAb
+xrm
+lOz
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
 aVV
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+oIU
+cgF
 sAb
 vSj
-vSj
+uRT
 sAb
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-chY
 sAb
 sAb
 lln
 buI
-buI
-buI
+vYM
+chY
 buI
 xEu
 sAb
 sAb
-oIx
 sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
+xrm
+ryA
+cgF
+fYT
 lln
 buI
 quj
-xCM
-xCM
+oIx
+vSq
 xCM
 aPb
 vSj
@@ -93063,34 +93016,34 @@ iYL
 xyM
 jvq
 cgF
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+fYT
+xrm
+chY
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+vYM
+cgF
 sAb
 vSj
 sAb
@@ -93099,8 +93052,8 @@ vSj
 sAb
 tnL
 sAb
-sAb
-sAb
+rKB
+sUb
 sAb
 sAb
 sAb
@@ -93109,15 +93062,15 @@ vSj
 vSj
 sAb
 sAb
-vSj
+xrm
+ryA
+cgF
 sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 vSj
@@ -93309,8 +93262,8 @@ uLy
 vMS
 vMS
 vMS
-jpo
-sAb
+vSj
+fYT
 tRL
 iYL
 iYL
@@ -93321,61 +93274,61 @@ xyM
 qxV
 muW
 sAb
-sAb
-vSj
+xrm
+cgF
 sAb
 kUA
-mwH
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+fYT
 sAb
 sAb
 sAb
 sAb
 sAb
 vSj
+fYT
+sAb
+sAb
+vSj
+vSj
+sAb
+sAb
+sAb
+sAb
+sAb
+sAb
+xrm
+cgF
+sAb
+sAb
+sAb
+sAb
+sAb
+sAb
+sAb
+sAb
+rKB
+sUb
+sAb
+sAb
+vSj
 sAb
 vSj
 sAb
 sAb
-vSj
-vSj
+lLR
+xrm
+ryA
+cgF
 sAb
 sAb
-wvK
 sAb
+fYT
+xrm
+cgF
 sAb
-sAb
-vSj
-sAb
-vSj
 sAb
 mjD
 lHY
@@ -93578,8 +93531,8 @@ xyM
 bAq
 jNe
 ffT
-sAb
-sAb
+xrm
+cgF
 sAb
 nif
 nif
@@ -93596,45 +93549,45 @@ vSj
 sAb
 sAb
 vSj
-sAb
+fYT
 kMZ
 fAA
 fAA
 sOd
 sOd
-jUZ
+sAb
+xrm
+lOz
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+oIU
+lOz
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+oIU
+ryA
+lOz
+nCB
+nCB
+nCB
+nCB
+oIU
+cgF
 sAb
 sAb
 sAb
-sAb
-vSj
-vSj
-sAb
-vSj
-sAb
-vSj
-vSj
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-pbK
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-qbS
 lHY
 lHY
 fpk
@@ -93835,7 +93788,7 @@ mhb
 auT
 cgF
 sAb
-sAb
+xrm
 oPc
 nif
 nif
@@ -93860,35 +93813,35 @@ mgh
 xat
 sOd
 sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-vSj
-sAb
-vSj
+iNL
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+vYM
 sWc
 wGc
 giI
-sAb
-vSj
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
+chY
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+vYM
+cgF
 sAb
 tZp
 sAb
@@ -94092,8 +94045,8 @@ cKR
 ryA
 cgF
 sAb
-sAb
-vSj
+xrm
+cgF
 nif
 eOk
 hiA
@@ -94116,9 +94069,9 @@ gXS
 wxW
 euc
 fAA
-vSj
 sAb
-sAb
+vII
+fYT
 kvh
 sAb
 sAb
@@ -94127,13 +94080,13 @@ vSj
 vSj
 sAb
 sAb
-vSj
-sAb
-vSj
+lLR
+xrm
+ryA
 pre
 mhb
-vSj
-vSj
+cgF
+lLR
 vSj
 mhb
 sAb
@@ -94143,10 +94096,10 @@ sAb
 sAb
 vSj
 vSj
+fYT
+xrm
+cgF
 sAb
-sAb
-sAb
-wvK
 sAb
 sAb
 fmw
@@ -94348,9 +94301,9 @@ iYL
 mhb
 tca
 cgF
-sAb
-sAb
-vSj
+fYT
+xrm
+ryA
 mGN
 mzm
 cEL
@@ -94366,44 +94319,44 @@ sAb
 sAb
 sAb
 vSj
-sAb
+fYT
 sOd
 ewh
 pHB
 ewh
 nht
 kHo
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-vSj
+hNM
+uSo
 sAb
 sAb
 sAb
 sAb
 vSj
 vSj
+sAb
+sAb
+sAb
+sAb
+xrm
+ryA
 uZF
 mhb
 ajX
-vSj
-vSj
-vSj
-sAb
-sAb
-sAb
+mdx
 vSj
 vSj
 sAb
 sAb
 sAb
+vSj
+vSj
 sAb
 sAb
 sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 jVU
@@ -94603,11 +94556,11 @@ iYL
 rco
 iYL
 xyM
-nwk
+buI
 llU
 sAb
-sAb
-vSj
+xrm
+cgF
 ubT
 mzm
 nOn
@@ -94619,7 +94572,7 @@ qlq
 qlq
 qlq
 ubT
-bfe
+sAb
 sAb
 sAb
 sAb
@@ -94630,8 +94583,8 @@ uGW
 cwo
 bVM
 fAA
-vSj
-vSj
+sAb
+sAb
 sAb
 vSj
 vSj
@@ -94641,8 +94594,8 @@ sAb
 sAb
 swY
 hNM
-txl
 hNM
+xAy
 rll
 yma
 yma
@@ -94658,7 +94611,7 @@ vSj
 vSj
 sAb
 sAb
-sAb
+xrm
 iVc
 xtP
 mdN
@@ -94863,8 +94816,8 @@ mhb
 hZY
 sAb
 sAb
-vSj
-vSj
+xrm
+ryA
 mGN
 cEL
 cEL
@@ -94893,7 +94846,7 @@ vSj
 sAb
 sAb
 sAb
-sAb
+wvK
 sAb
 fCi
 poQ
@@ -94911,11 +94864,11 @@ xfQ
 xfQ
 xfQ
 xfQ
-rKB
+sAb
 sAb
 vSj
 vSj
-sAb
+xrm
 lQP
 xtP
 sAb
@@ -95115,13 +95068,13 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 xEZ
 sAb
 sAb
-sAb
-sAb
-sAb
+ilo
+ggA
+llU
 nif
 unS
 eGJ
@@ -95138,7 +95091,7 @@ sAb
 vSj
 vSj
 sAb
-sAb
+fYT
 sOd
 elK
 fAA
@@ -95172,15 +95125,15 @@ xfQ
 okR
 vSj
 sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-vSj
-vSj
+xrm
+lOz
+nCB
+rDx
+qZD
+qZD
+qZD
+tgF
+bfe
 giK
 cfQ
 slG
@@ -95376,8 +95329,8 @@ sAb
 sAb
 sAb
 wvK
-sAb
-sAb
+xrm
+cgF
 bLw
 bLw
 bLw
@@ -95405,7 +95358,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+uRT
 sAb
 sAb
 sAb
@@ -95427,17 +95380,17 @@ mvo
 tXn
 tSJ
 xfQ
-vSj
+lLR
 sAb
+xrm
+ryA
+ryA
+cgF
 sAb
-vSj
+fYT
 sAb
-vSj
-vSj
-sAb
-bah
-sAb
-sAb
+xrm
+ryA
 wNm
 vmR
 pJn
@@ -95633,8 +95586,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-vSj
+xrm
+cgF
 bLw
 xjk
 bLw
@@ -95686,15 +95639,15 @@ uZx
 fpt
 ePa
 nzq
-vSj
-vSj
-bah
-vSj
-vSj
-vSj
-vSj
-sAb
-bah
+lln
+buI
+buI
+mwH
+kjE
+kjE
+kjE
+iMG
+tad
 giK
 odP
 nyi
@@ -95889,9 +95842,9 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-vSj
+fYT
+xrm
+cgF
 jpR
 sFi
 qHX
@@ -95922,7 +95875,7 @@ sAb
 wvK
 sAb
 vSj
-vSj
+lLR
 rTR
 vMh
 wVn
@@ -95947,7 +95900,7 @@ nzq
 vSj
 vSj
 vSj
-kUk
+sAb
 sAb
 sAb
 sAb
@@ -96147,8 +96100,8 @@ sAb
 wvK
 sAb
 sAb
-vSj
-mjD
+xrm
+xVa
 bLw
 lac
 qWR
@@ -96390,6 +96343,12 @@ sAb
 sAb
 sAb
 sAb
+fYT
+sAb
+sAb
+sAb
+sAb
+fYT
 sAb
 sAb
 sAb
@@ -96398,14 +96357,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
+xrm
+cgF
 bLw
 bLw
 qFV
@@ -96461,7 +96414,7 @@ bOP
 hMz
 sAb
 sAb
-xEo
+vSj
 rQL
 vMS
 vMS
@@ -96643,7 +96596,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 sAb
 tac
 tac
@@ -96661,8 +96614,8 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 bLw
 bLw
@@ -96676,7 +96629,7 @@ iYL
 iYL
 yjA
 sAb
-iqk
+sAb
 sAb
 lKj
 sAb
@@ -96716,7 +96669,7 @@ vlO
 vPQ
 vPQ
 fMA
-sAb
+fYT
 sAb
 rQL
 vMS
@@ -96909,7 +96862,7 @@ lNH
 wdx
 udu
 xzy
-cBl
+bjY
 cBl
 cBl
 cBl
@@ -96917,9 +96870,9 @@ fyD
 vSj
 sAb
 sAb
-sAb
-sAb
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -97168,17 +97121,17 @@ inj
 tac
 cBl
 cBl
+rFM
 cBl
-cBl
-fyD
-vSj
+ykk
+nCB
+nCB
+nCB
+nCB
+oIU
+cgF
 sAb
 sAb
-vSj
-sAb
-sAb
-sAb
-ggA
 sAb
 jVU
 sAb
@@ -97198,7 +97151,7 @@ vSj
 sAb
 sAb
 sAb
-qxd
+sAb
 sAb
 rQL
 rQL
@@ -97425,18 +97378,18 @@ xCg
 rZC
 cBl
 cBl
+qxv
 cBl
-cBl
-fyD
-sAb
-sAb
+krN
+buI
+buI
 gia
+buI
+vYM
+cgF
 sAb
 sAb
-vSj
-sAb
-sAb
-sAb
+wvK
 sAb
 sAb
 cwc
@@ -97455,7 +97408,7 @@ vSj
 sAb
 sAb
 sAb
-skd
+rQL
 rQL
 rQL
 gLz
@@ -97682,15 +97635,15 @@ tea
 oom
 cBl
 cBl
-cBl
+rFM
 cBl
 fyD
 sAb
 vSj
 vSj
-sAb
-sAb
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -97939,33 +97892,33 @@ vwv
 tac
 cBl
 cBl
-cBl
+qxv
 cBl
 fyD
 vSj
 vSj
 sAb
 sAb
+xrm
+cgF
+fYT
 vSj
 sAb
 sAb
-vSj
+sAb
+sAb
+fYT
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-joi
+fYT
 sAb
 sAb
 wvK
 sAb
 sAb
 sAb
-vSj
+lLR
 sAb
 sAb
 rQL
@@ -98001,8 +97954,8 @@ ukN
 ukN
 ukN
 mhb
+fYT
 sAb
-wvK
 sAb
 sAb
 wKe
@@ -98196,32 +98149,32 @@ htN
 wOz
 cBl
 cBl
-cBl
+rFM
 cBl
 fyD
 vSj
 sAb
 sAb
 sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-lKj
-sAb
-sAb
+xrm
+lOz
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+mdx
 vSj
 sAb
 sAb
@@ -98254,7 +98207,7 @@ pnN
 pnN
 pnN
 pnN
-sAb
+fYT
 vSj
 sAb
 sAb
@@ -98438,7 +98391,7 @@ vSj
 sAb
 sAb
 sAb
-vSj
+lLR
 jPz
 eRK
 jHy
@@ -98451,7 +98404,7 @@ xhI
 xQP
 inu
 tac
-yfA
+cBl
 cBl
 cBl
 cBl
@@ -98460,25 +98413,25 @@ sAb
 sAb
 sAb
 sAb
-vSj
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+lln
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+ryA
+buI
+buI
+vYM
+cgF
 vSj
 sAb
 sAb
@@ -98514,7 +98467,7 @@ cgF
 vSj
 sAb
 sAb
-hDJ
+sAb
 xtP
 sAb
 wvK
@@ -98713,6 +98666,7 @@ dEx
 mMu
 jyd
 jEz
+fYT
 sAb
 sAb
 sAb
@@ -98720,8 +98674,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
-sAb
+fYT
 vSj
 sAb
 sAb
@@ -98733,9 +98686,9 @@ tsm
 tsm
 tsm
 kvh
-sAb
-sAb
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -98981,7 +98934,7 @@ sAb
 vSj
 ilo
 nCB
-uoe
+nCB
 tsm
 oTo
 oiA
@@ -98991,11 +98944,11 @@ ime
 tsm
 mdx
 sAb
+xrm
+cgF
 sAb
-vSj
 sAb
 sAb
-lLR
 sAb
 sAb
 rQL
@@ -99205,7 +99158,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 sAb
 sAb
 xEZ
@@ -99231,7 +99184,7 @@ sAb
 vSj
 sAb
 sAb
-rSY
+sAb
 sAb
 jVU
 sAb
@@ -99248,8 +99201,8 @@ dKt
 mOm
 cgF
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -99280,7 +99233,7 @@ lhE
 lhE
 lhE
 lhE
-sAb
+fYT
 sAb
 vSj
 sAb
@@ -99458,13 +99411,13 @@ vMS
 vSj
 xEZ
 mhb
-jpx
-jpx
-jpx
-jpx
-jpx
-jpx
-jpx
+nWT
+nWT
+nWT
+nWT
+nWT
+nWT
+nWT
 mhb
 xEZ
 jPz
@@ -99505,8 +99458,8 @@ udv
 mOm
 cgF
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -99722,7 +99675,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 jPz
 jPz
@@ -99762,8 +99715,8 @@ wMT
 tsm
 iIz
 sAb
-vSj
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -99801,7 +99754,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 wKe
 wKe
 wKe
@@ -99979,7 +99932,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 jtE
 xIp
@@ -100000,7 +99953,7 @@ seO
 mMu
 sAb
 sAb
-sAb
+wvK
 sAb
 bqr
 qAl
@@ -100019,9 +99972,9 @@ wMT
 gYn
 cgF
 sAb
-vSj
-vSj
-sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 sAb
@@ -100258,7 +100211,7 @@ jEz
 eAl
 vSj
 sAb
-sAb
+fYT
 bqr
 cHq
 bgk
@@ -100274,10 +100227,10 @@ ena
 ena
 tsm
 tsm
-qxv
+cgF
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -100295,7 +100248,7 @@ vMS
 vMS
 vMS
 rQL
-wUc
+sAb
 rQL
 vMS
 vMS
@@ -100312,7 +100265,7 @@ sAb
 sAb
 sAb
 sAb
-xrP
+sAb
 sAb
 sAb
 sAb
@@ -100533,8 +100486,8 @@ cfU
 bqr
 cgF
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 vSj
@@ -100768,7 +100721,7 @@ kSD
 wnu
 tJN
 vfm
-gZb
+fYT
 sAb
 sAb
 sAb
@@ -100790,8 +100743,8 @@ hzm
 bqr
 cgF
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 itw
 sAb
@@ -100820,9 +100773,9 @@ vMS
 vMS
 vMS
 rQL
-iNL
+rQL
 sAb
-sAb
+fYT
 vSj
 vSj
 sAb
@@ -101033,7 +100986,7 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 bqr
 kcI
 laD
@@ -101047,8 +101000,8 @@ sse
 bqr
 nCY
 sAb
-sAb
-sAb
+xrm
+cgF
 sAb
 sAb
 vSj
@@ -101304,8 +101257,8 @@ lsh
 jUv
 cgF
 sAb
-vSj
-sAb
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -101545,7 +101498,7 @@ vSj
 giU
 sAb
 sAb
-coi
+sAb
 sAb
 sAb
 sAb
@@ -101560,9 +101513,9 @@ wXL
 plD
 bqr
 llU
-sAb
-vSj
-sAb
+fYT
+xrm
+cgF
 sAb
 sAb
 lKj
@@ -101818,13 +101771,13 @@ bqr
 bqr
 sAb
 sAb
-vSj
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
 hxv
-hXb
+sAb
 sAb
 sAb
 sAb
@@ -102035,7 +101988,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 jtE
 tCS
@@ -102057,7 +102010,7 @@ sAb
 jVU
 sAb
 sAb
-sAb
+fYT
 sAb
 sAb
 vSj
@@ -102073,10 +102026,10 @@ sAb
 sAb
 sAb
 sAb
-jvH
 sAb
 sAb
-vSj
+xrm
+cgF
 sAb
 sAb
 sAb
@@ -102292,7 +102245,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 jtE
 tti
@@ -102310,7 +102263,7 @@ vGs
 vGs
 vGs
 vGs
-sAb
+fYT
 sAb
 jVU
 sAb
@@ -102332,8 +102285,8 @@ jVU
 sAb
 sAb
 sAb
-sAb
-sAb
+xrm
+cgF
 vSj
 sAb
 sAb
@@ -102358,7 +102311,7 @@ vMS
 vMS
 vMS
 rQL
-ciO
+rQL
 rQL
 sAb
 wvK
@@ -102549,7 +102502,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 sAb
 tti
@@ -102579,8 +102532,8 @@ sAb
 sAb
 sAb
 sAb
+wvK
 sAb
-vSq
 sAb
 sAb
 wvK
@@ -102589,8 +102542,8 @@ sAb
 sAb
 sAb
 wvK
-sAb
-sAb
+xrm
+cgF
 vSj
 vSj
 vSj
@@ -102604,7 +102557,7 @@ sAb
 sAb
 sAb
 sAb
-xVa
+rQL
 rQL
 rQL
 rQL
@@ -102624,7 +102577,7 @@ vSj
 sAb
 sAb
 sAb
-khM
+sAb
 sAb
 sAb
 sAb
@@ -102799,13 +102752,13 @@ rCE
 rCE
 rCE
 mhb
-jpx
-jpx
-jpx
-jpx
-jpx
-jpx
-jpx
+lAP
+lAP
+lAP
+lAP
+lAP
+lAP
+lAP
 mhb
 xEZ
 sAb
@@ -102846,20 +102799,20 @@ sAb
 sAb
 sAb
 sAb
+xrm
+cgF
+fYT
 sAb
 sAb
 sAb
 sAb
 sAb
 sAb
+fYT
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
+fYT
 sAb
 hxv
 sAb
@@ -102869,7 +102822,7 @@ rQL
 rQL
 rQL
 rQL
-sAb
+fYT
 sAb
 sAb
 jVU
@@ -103064,7 +103017,7 @@ sAb
 sAb
 sAb
 xEZ
-sAb
+fYT
 sAb
 clH
 hBc
@@ -103103,19 +103056,19 @@ vSj
 vSj
 sAb
 sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
-sAb
-wvK
+xrm
+ryA
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+nCB
+mdx
 sAb
 sAb
 sAb
@@ -103360,19 +103313,19 @@ sAb
 vSj
 vSj
 sAb
-sAb
-vSj
-sAb
-sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-sAb
+lln
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+buI
+vYM
+ryA
+cgF
 sAb
 sAb
 sAb
@@ -103616,38 +103569,38 @@ sAb
 sAb
 sAb
 vSj
-sAb
-sAb
-vSj
+fYT
 sAb
 vSj
-sAb
-sAb
 sAb
 vSj
 sAb
 sAb
 sAb
+lLR
+sAb
+sAb
+xrm
+ryA
+cgF
+vSj
+vSj
+sAb
+sAb
 sAb
 vSj
 vSj
-vSj
 sAb
-sAb
-sAb
-vSj
-vSj
-sAb
-sAb
-sAb
-sAb
-vSj
 sAb
 sAb
 sAb
 vSj
 sAb
 sAb
+sAb
+vSj
+sAb
+wvK
 sAb
 vSj
 sAb
@@ -103860,7 +103813,7 @@ sAb
 sAb
 sAb
 wvK
-gJv
+sAb
 sAb
 jVU
 sAb
@@ -103884,9 +103837,9 @@ sAb
 sAb
 sAb
 ilo
-nCB
-nCB
-nCB
+npe
+buI
+gJv
 mdx
 sAb
 sAb
@@ -104094,19 +104047,19 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 mda
 mft
 tgu
 gze
 mda
-jpx
-jpx
+nWT
+nWT
 eog
 ndx
 eog
-jpx
-jpx
+nWT
+nWT
 mhb
 xEZ
 sAb
@@ -104127,7 +104080,6 @@ sAb
 sAb
 jVU
 sAb
-tgF
 sAb
 sAb
 sAb
@@ -104135,16 +104087,18 @@ sAb
 sAb
 sAb
 sAb
-kjE
+sAb
+sAb
 sAb
 sAb
 sAb
 sAb
 xrm
-ryA
-nWT
-ryA
 cgF
+fYT
+xrm
+cgF
+fYT
 sAb
 sAb
 sAb
@@ -104152,15 +104106,14 @@ sAb
 sAb
 sAb
 sAb
-rJO
+sAb
+sAb
+sAb
+fYT
 sAb
 sAb
 sAb
 sAb
-sAb
-sAb
-sAb
-ftr
 sAb
 sAb
 sAb
@@ -104364,7 +104317,7 @@ pey
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 sAb
 sAb
@@ -104621,7 +104574,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 sAb
 sAb
@@ -104679,11 +104632,11 @@ isj
 vyH
 vyH
 pzM
-sAb
+fYT
 vSj
 vSj
 uFT
-njr
+vSj
 sAb
 sAb
 sAb
@@ -104878,7 +104831,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 sAb
 sAb
@@ -105135,8 +105088,8 @@ iYL
 iYL
 iYL
 iYL
-tNM
-sAb
+euR
+fYT
 sAb
 wKe
 wKe
@@ -105392,7 +105345,7 @@ iYL
 iYL
 iYL
 iYL
-tNM
+euR
 sAb
 wKe
 wKe
@@ -105404,7 +105357,7 @@ wKe
 sAb
 sAb
 sAb
-vYs
+sAb
 sAb
 sAb
 vSj
@@ -105638,17 +105591,17 @@ sAb
 sAb
 sAb
 sAb
-sAb
+fYT
 sAb
 xEZ
 mhb
-jpx
-jpx
-jpx
-jpx
-jpx
-jpx
-jpx
+lAP
+lAP
+lAP
+lAP
+lAP
+lAP
+lAP
 mhb
 xEZ
 wKe
@@ -106230,7 +106183,7 @@ rCm
 wNI
 wNI
 wNI
-euR
+tba
 sAb
 vSj
 sAb
@@ -107262,7 +107215,7 @@ sAb
 sAb
 vSj
 sAb
-vSj
+lLR
 sTW
 dNW
 cWT
@@ -107769,7 +107722,7 @@ fub
 ird
 wVe
 rCm
-sAb
+fYT
 sAb
 sAb
 oos
@@ -108800,7 +108753,7 @@ gMo
 gMo
 gMo
 gMo
-stS
+sAb
 vSj
 vSj
 sAb
@@ -109060,7 +109013,7 @@ gMo
 gMo
 gMo
 gMo
-sAb
+fYT
 sAb
 sAb
 sAb
@@ -132105,12 +132058,12 @@ nlR
 nlR
 nlR
 dhw
-kPv
-kPv
+iAq
+iAq
 xtP
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 oxP
 tPl
 kPv
@@ -132368,7 +132321,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -132626,7 +132579,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -132884,7 +132837,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
 kPv
 kPv
@@ -133141,7 +133094,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 qag
 tPl
@@ -133398,9 +133351,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xtP
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -133658,7 +133611,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
 kPv
 kPv
@@ -133915,7 +133868,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -134173,7 +134126,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -134431,7 +134384,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -134689,7 +134642,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
 kPv
 kPv
@@ -134946,7 +134899,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -135204,7 +135157,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 qag
 qag
@@ -135462,8 +135415,8 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 xtP
 dSS
 kPv
@@ -135721,7 +135674,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 tPl
 kPv
@@ -135979,7 +135932,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
 kPv
 kPv
@@ -136236,7 +136189,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 qag
 qag
@@ -136494,9 +136447,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 oxP
 tPl
 kPv
@@ -136754,7 +136707,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 qag
 tPl
@@ -137013,7 +136966,7 @@ kPv
 kPv
 kPv
 xtP
-kPv
+iAq
 oxP
 qag
 tPl
@@ -137271,8 +137224,8 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 oxP
 tPl
 kPv
@@ -137530,13 +137483,13 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 oxP
 qag
 tPl
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -137788,12 +137741,12 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 oxP
 pKl
 qKX
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -138049,7 +138002,7 @@ kPv
 kPv
 kPv
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -138306,7 +138259,7 @@ kPv
 kPv
 jAC
 cMM
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -138562,8 +138515,8 @@ kPv
 kPv
 kPv
 dSS
-kPv
-kPv
+iAq
+iAq
 kPv
 kPv
 kPv
@@ -138819,7 +138772,7 @@ bsy
 wiL
 sQk
 cMM
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -139075,8 +139028,8 @@ kjk
 awN
 kSd
 cze
-kPv
-kPv
+iAq
+iAq
 kPv
 kPv
 kPv
@@ -141645,8 +141598,8 @@ kPv
 kPv
 oxP
 tPl
-kPv
-kPv
+iAq
+iAq
 kPv
 kPv
 kPv
@@ -141904,7 +141857,7 @@ xtP
 oxP
 qag
 tPl
-kPv
+iAq
 wYr
 wiL
 wiL
@@ -143193,7 +143146,7 @@ kPv
 kPv
 kPv
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -143446,11 +143399,11 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 xtP
 qpT
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -143701,8 +143654,8 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 hdy
 orX
 xek
@@ -143957,13 +143910,13 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 hdy
 nFB
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -144212,15 +144165,15 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 hdy
 orX
 nFB
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -144466,9 +144419,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 hdy
 orX
 nFB
@@ -144477,7 +144430,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -144721,8 +144674,8 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 hdy
 xek
 orX
@@ -144734,7 +144687,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -144976,8 +144929,8 @@ qyg
 kPv
 kPv
 kPv
-kPv
-kPv
+iAq
+iAq
 hdy
 orX
 hZy
@@ -144991,7 +144944,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -145232,7 +145185,7 @@ nHD
 ltX
 kPv
 kPv
-kPv
+iAq
 hdy
 orX
 nFB
@@ -145248,7 +145201,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -145487,8 +145440,8 @@ jYV
 jYV
 jYV
 nHD
-kPv
-kPv
+iAq
+iAq
 hdy
 nFB
 kPv
@@ -145505,7 +145458,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -146019,7 +145972,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 pPu
 nXL
 kPv
@@ -146277,7 +146230,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -146534,7 +146487,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -146791,7 +146744,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -147048,7 +147001,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -147305,7 +147258,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -147562,7 +147515,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -147819,7 +147772,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -148076,7 +148029,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -148333,7 +148286,7 @@ hnw
 hnw
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -148590,7 +148543,7 @@ cZu
 hnw
 hnw
 kPv
-xtP
+njr
 rLt
 kPv
 kPv
@@ -148847,7 +148800,7 @@ ejN
 ueD
 hnw
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -149104,7 +149057,7 @@ cZu
 cZu
 hnw
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -149361,7 +149314,7 @@ hnw
 hnw
 hnw
 hnw
-kPv
+iAq
 xgg
 kPv
 mhb
@@ -154241,7 +154194,7 @@ jpK
 pRd
 tUG
 tUG
-omc
+tUG
 tUG
 tUG
 myV
@@ -156017,9 +155970,9 @@ oEM
 bSd
 gDc
 kdA
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 pPu
 xek
 orX
@@ -156277,9 +156230,9 @@ qyg
 kPv
 kPv
 kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 pPu
 orX
 orX
@@ -156537,9 +156490,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 pPu
 orX
 orX
@@ -156797,9 +156750,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
 xtP
 qpT
 kPv
@@ -159098,7 +159051,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -159355,7 +159308,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -159612,7 +159565,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -159641,11 +159594,11 @@ heL
 vGt
 wPH
 nHD
-kPv
-kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
+iAq
+iAq
 mOo
 diy
 dfz
@@ -159869,7 +159822,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -160126,7 +160079,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -160155,11 +160108,11 @@ dAO
 dAO
 dAO
 pLR
-kPv
-kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
+iAq
+iAq
 bMq
 bii
 tEO
@@ -160640,7 +160593,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -160897,7 +160850,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -161154,7 +161107,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -161411,7 +161364,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -161668,7 +161621,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -161925,7 +161878,7 @@ kPv
 kPv
 kPv
 xnE
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -162458,9 +162411,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -162715,9 +162668,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -162972,9 +162925,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -163229,9 +163182,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -163486,9 +163439,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -163743,9 +163696,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -164000,9 +163953,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -164257,17 +164210,17 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
+iAq
 kPv
-kPv
-ilo
-nCB
-nCB
-nCB
-nCB
-nCB
-mdx
+uoe
+szV
+szV
+szV
+szV
+szV
+aVG
 kPv
 kPv
 kPv
@@ -164514,17 +164467,17 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 dSS
+iAq
 kPv
-kPv
-xrm
+vpS
 oMI
 wtC
 wVC
 beB
 gbr
-cgF
+kwP
 kPv
 kPv
 kPv
@@ -164781,7 +164734,7 @@ oxw
 oxw
 oxw
 ehl
-cgF
+kwP
 kPv
 kPv
 kPv
@@ -165038,7 +164991,7 @@ qcB
 qcB
 qcB
 hOf
-cgF
+kwP
 kPv
 kPv
 kPv
@@ -165295,7 +165248,7 @@ ryA
 ryA
 ryA
 ryA
-cgF
+kwP
 kPv
 kPv
 kPv
@@ -165791,10 +165744,10 @@ qUe
 vnj
 kMH
 kMH
-kPv
-kPv
-kPv
-kPv
+iAq
+iAq
+iAq
+iAq
 mPB
 wGD
 liW
@@ -166048,7 +166001,7 @@ kMH
 kMH
 kMH
 nHD
-kPv
+iAq
 sMa
 hSp
 hSp
@@ -167086,7 +167039,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 kPv
 xrm
 rPX
@@ -167343,7 +167296,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 kPv
 lln
 ttQ
@@ -167856,7 +167809,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -168113,7 +168066,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 kPv
 kPv
@@ -168627,9 +168580,9 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -168884,10 +168837,10 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 pPu
 nXL
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -169144,7 +169097,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -169401,7 +169354,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -169659,7 +169612,7 @@ kPv
 kPv
 pPu
 nXL
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -169916,7 +169869,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 kPv
 kPv
 kPv
@@ -170173,7 +170126,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 gAj
 gAj
 gAj
@@ -170430,7 +170383,7 @@ kPv
 kPv
 kPv
 xgg
-kPv
+iAq
 gAj
 nJi
 nJi
@@ -170943,7 +170896,7 @@ kPv
 kPv
 kPv
 kPv
-kPv
+iAq
 xgg
 pgX
 nJi
