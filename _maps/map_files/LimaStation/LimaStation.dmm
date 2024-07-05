@@ -3286,7 +3286,7 @@
 	network = list("minisat")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "bst" = (
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron,
@@ -4583,7 +4583,7 @@
 	dir = 4
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "bPS" = (
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/ai_monitored/security/armory)
@@ -5035,7 +5035,7 @@
 "cca" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/bot/firebot,
+/mob/living/basic/bot/firebot,
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
 "ccb" = (
@@ -9034,8 +9034,8 @@
 /obj/machinery/cell_charger{
 	pixel_y = 5
 	},
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high,
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_y = -4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -9185,7 +9185,7 @@
 "dHq" = (
 /obj/structure/sign/warning/electric_shock/directional/south,
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "dHF" = (
 /obj/machinery/airalarm/directional/west,
 /turf/open/openspace,
@@ -9321,13 +9321,6 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/cyan,
 /area/station/hallway/primary/starboard)
-"dKg" = (
-/obj/item/flashlight/lamp/green{
-	pixel_x = -3;
-	pixel_y = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "dKo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9955,7 +9948,7 @@
 	network = list("minisat")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "dZj" = (
 /obj/structure/table/wood,
 /obj/machinery/requests_console{
@@ -11903,8 +11896,8 @@
 "eKW" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /obj/machinery/camera{
 	c_tag = "Science - Experimentor Lab";
 	dir = 9;
@@ -13585,17 +13578,17 @@
 "fqE" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_y = 5
 	},
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_y = 2
 	},
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_y = -1
 	},
 /obj/item/multitool{
@@ -17651,10 +17644,10 @@
 /obj/machinery/cell_charger{
 	pixel_y = 5
 	},
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_y = 3
 	},
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
 	},
@@ -19185,7 +19178,7 @@
 	network = list("minisat")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "htc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -22859,7 +22852,7 @@
 	start_active = 1
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "iPV" = (
 /obj/machinery/light/small/directional/north,
 /obj/structure/cable,
@@ -24221,7 +24214,7 @@
 "jqO" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/science/research/abandoned)
@@ -26797,7 +26790,7 @@
 	network = list("minisat")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "klc" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue/opposingcorners{
@@ -29511,7 +29504,7 @@
 	},
 /obj/structure/sign/warning/electric_shock/directional/south,
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "ljn" = (
 /obj/machinery/door/airlock/hydroponics{
 	name = "Hydroponics Access"
@@ -29938,7 +29931,7 @@
 "lrl" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /obj/machinery/requests_console{
 	department = "Tool Storage";
 	name = "Tool Storage RC";
@@ -31189,7 +31182,7 @@
 	network = list("ss13","prison")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "lNY" = (
 /obj/structure/chair/stool,
 /turf/open/floor/iron/grimy,
@@ -37285,8 +37278,8 @@
 /obj/machinery/cell_charger{
 	pixel_y = 2
 	},
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 8
@@ -40144,14 +40137,14 @@
 	pixel_y = -30
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "pby" = (
 /obj/structure/table,
 /obj/machinery/cell_charger{
 	pixel_y = 5
 	},
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /turf/open/floor/iron,
 /area/station/science/robotics/lab)
 "pbR" = (
@@ -42710,8 +42703,11 @@
 /turf/open/floor/plating,
 /area/station/service/kitchen/abandoned)
 "pYZ" = (
-/turf/closed/wall,
-/area/space)
+/obj/item/toy/plush/lizard_plushie/space{
+	name = "Hides-On-Station"
+	},
+/turf/open/space/openspace,
+/area/space/nearstation)
 "pZh" = (
 /obj/machinery/button/door{
 	id = "xenobio6";
@@ -43556,7 +43552,7 @@
 	network = list("ss13","prison")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "qoJ" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/maintenance/two,
@@ -44157,6 +44153,7 @@
 /obj/structure/chair/office{
 	dir = 1
 	},
+/obj/effect/landmark/start/telecomms_specialist,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
 "qyF" = (
@@ -44506,6 +44503,16 @@
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/break_room)
+"qFc" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/yellow/opposingcorners{
+	dir = 1
+	},
+/obj/effect/landmark/start/telecomms_specialist,
+/turf/open/floor/iron,
+/area/station/engineering/storage)
 "qFh" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/portable_atmospherics/canister/air,
@@ -47483,7 +47490,7 @@
 "rLf" = (
 /obj/structure/sign/warning/electric_shock/directional/north,
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "rLg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -49797,7 +49804,7 @@
 	dir = 4
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "sBA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -50013,7 +50020,7 @@
 /obj/item/clothing/glasses/meson{
 	pixel_y = 4
 	},
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/power_store/cell/high,
 /mob/living/basic/parrot/poly,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
@@ -52352,6 +52359,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/holopad/secure,
 /obj/effect/turf_decal/bot,
+/obj/effect/landmark/start/telecomms_specialist,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
 "tvB" = (
@@ -54094,7 +54102,7 @@
 	network = list("ss13","prison")
 	},
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "udL" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/any/security/armory,
@@ -55137,9 +55145,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/sepia,
 /area/station/service/chapel)
-"uyH" = (
-/turf/open/floor/plating,
-/area/space)
 "uyQ" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/light/directional/east,
@@ -62541,7 +62546,7 @@
 	},
 /obj/structure/sign/warning/electric_shock/directional/east,
 /turf/open/space/openspace,
-/area/space)
+/area/space/nearstation)
 "xtd" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -63451,7 +63456,7 @@
 "xMr" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	charge = 100;
 	maxcharge = 15000
 	},
@@ -79665,7 +79670,7 @@ ymg
 ymg
 ymg
 ymg
-dKg
+ymg
 ymg
 ymg
 ymg
@@ -91914,18 +91919,18 @@ pai
 pai
 aYp
 pAf
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 uaw
 aRR
@@ -92164,25 +92169,25 @@ cNx
 fDp
 iIH
 iIH
-uyH
-uyH
+pbi
+pbi
 pbi
 pai
 pan
 oMB
 pAf
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 fDp
 jXw
@@ -92420,26 +92425,26 @@ abc
 owa
 iIH
 iIH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
 pbi
 pbi
 pbi
 pbi
 pAf
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 fKP
 jXw
@@ -92676,27 +92681,27 @@ iIH
 uaw
 owa
 iIH
-uyH
-uyH
-uyH
-uyH
 pbi
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
 pbi
 pbi
 pAf
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 iIH
 eJJ
@@ -92933,27 +92938,27 @@ kwo
 owa
 ezZ
 iIH
-uyH
-uyH
-uyH
-uyH
 pbi
-uyH
-uyH
 pbi
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 fDp
 jXw
@@ -93190,27 +93195,27 @@ iGx
 fDp
 ctw
 fZY
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 fDp
 rbW
@@ -93447,27 +93452,27 @@ iIH
 iIH
 fZY
 iIH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 viA
 hlk
@@ -93704,27 +93709,27 @@ lxb
 iIH
 fDp
 iIH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 uaw
 jXw
@@ -93961,27 +93966,27 @@ rRi
 iIH
 owa
 iIH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 kOk
 mLJ
@@ -94231,14 +94236,14 @@ iIH
 iIH
 iIH
 iIH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 foi
 ptl
@@ -94488,14 +94493,14 @@ kyH
 wPR
 fDp
 iIH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
-uyH
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
+pbi
 iIH
 myC
 vsz
@@ -94745,9 +94750,9 @@ iIH
 jXg
 iIH
 iIH
-pYZ
-pYZ
-pYZ
+pAf
+pAf
+pAf
 jLf
 jLf
 xKy
@@ -147430,7 +147435,7 @@ wkl
 nFM
 kmL
 xSq
-uVR
+qFc
 iNm
 dKN
 gOW
@@ -164132,7 +164137,7 @@ bXk
 uOm
 kCy
 ufw
-xzK
+pYZ
 ufw
 okU
 rAj
