@@ -99,8 +99,8 @@
 		for(var/mob/living/soul as anything in current_mobs)
 			var/datum/carrier_room/current_room = soul.current_room.resolve()
 			if(istype(current_room))
-				current_room.transfer_soul(soul, target_room)
-			current_room.transfer_soul(soul, target_room)
+				current_room.transfer_mob(soul, target_room)
+			current_room.transfer_mob(soul, target_room)
 
 	if(destroy_on_use)
 		qdel(src)
