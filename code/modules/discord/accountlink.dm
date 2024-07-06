@@ -25,12 +25,22 @@
 
 
 	else
-		// Will generate one if an expired one doesn't exist already, otherwise will grab existing token
-		var/one_time_token = SSdiscord.get_or_generate_one_time_token_for_ckey(ckey)
-		SSdiscord.reverify_cache[usr.ckey] = one_time_token
-		message = "Your one time token is: [one_time_token]. Assuming you have the required living minutes in game, you can now verify yourself on Discord by using the command: <span class='code user-select'>[prefix]verify [one_time_token]</span>"
+		//SPLURT EDIT - Only one linked account
+		var/datum/discord_link_record/existing_link = SSdiscord.find_discord_link_by_ckey(usr?.ckey, only_valid = TRUE)
+		//Do not create a new entry if they already have a linked account
+		if(existing_link?.discord_id)
+			message = "You already have a linked account with discord ID ([existing_link.discord_id]) linked on [existing_link.timestamp]. If you desire to change your account please contact staff."
+		else
+			// Will generate one if an expired one doesn't exist already, otherwise will grab existing token
+			var/one_time_token = SSdiscord.get_or_generate_one_time_token_for_ckey(ckey)
+			SSdiscord.reverify_cache[usr.ckey] = one_time_token
+			message = "Your one time token is: [one_time_token]. Assuming you have the required living minutes in game, you can now verify yourself on Discord by using the command: <span class='code user-select'>[prefix]verify [one_time_token]</span>"
+		//SPLURT EDIT END
 
 	//Now give them a browse window so they can't miss whatever we told them
+	//SPLURT EDIT - Notify if they must stay in our discord server
+	if(CONFIG_GET(flag/forced_discord_stay))
+		message += span_warning("Remember that to mantain verification you MUST stay in the discord server")
 	var/datum/browser/window = new/datum/browser(usr, "discordverification", "Discord Verification")
 	window.set_content("<div>[message]</div>")
 	window.open()
