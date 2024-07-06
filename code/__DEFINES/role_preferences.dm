@@ -142,6 +142,8 @@
 #define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker (Latejoin)"
 #define ROLE_MONSTERHUNTER "Monster Hunter"
 #define ROLE_VASSAL "Vassal"
+
+#define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
 //BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.
@@ -205,6 +207,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_VAMPIRICACCIDENT = 14,
 	ROLE_BLOODSUCKERBREAKOUT = 14,
 	ROLE_MONSTERHUNTER = 14,
+	ROLE_CHANGELING_ZOMBIE = 0
 	//BUBBER EDIT END
 ))
 
