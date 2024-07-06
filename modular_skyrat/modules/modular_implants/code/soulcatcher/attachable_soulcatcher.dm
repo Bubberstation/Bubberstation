@@ -85,19 +85,19 @@
 		balloon_alert(user, "incompatible!")
 		return NONE
 
-	if(interacting_with.GetComponent(/datum/component/soulcatcher))
+	if(interacting_with.GetComponent(/datum/component/carrier))
 		balloon_alert(user, "already attached!")
 		return ITEM_INTERACT_BLOCKING
 
 
-	var/datum/component/soulcatcher/new_soulcatcher = interacting_with.AddComponent(/datum/component/soulcatcher/attachable_soulcatcher)
+	var/datum/component/carrier/soulcatcher/attachable/new_soulcatcher = interacting_with.AddComponent(/datum/component/soulcatcher/attachable_soulcatcher)
 	playsound(interacting_with.loc, 'sound/weapons/circsawhit.ogg', 50, vary = TRUE)
 
-	var/datum/soulcatcher_room/target_room = new_soulcatcher.soulcatcher_rooms[1]
-	var/list/current_souls = linked_soulcatcher.get_current_souls()
-	if(current_souls)
-		for(var/mob/living/soulcatcher_soul/soul as anything in current_souls)
-			var/datum/soulcatcher_room/current_room = soul.current_room.resolve()
+	var/datum/carrier_room/target_room = new_soulcatcher.carrier_rooms[1]
+	var/list/current_mobs = linked_soulcatcher.get_current_mobs()
+	if(current_mobs)
+		for(var/mob/living/soul as anything in current_mobs)
+			var/datum/carrier_room/current_room = soul.current_room.resolve()
 			if(istype(current_room))
 				current_room.transfer_soul(soul, target_room)
 			current_room.transfer_soul(soul, target_room)
