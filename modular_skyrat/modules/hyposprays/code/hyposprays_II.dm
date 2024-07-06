@@ -74,6 +74,14 @@
 /obj/item/hypospray/mkii/piercing/atropine
 	start_vial = /obj/item/reagent_containers/cup/vial/small/atropine
 
+/obj/item/hypospray/mkii/deluxe
+	name = "hypospray mk.II deluxe"
+	allowed_containers = list(/obj/item/reagent_containers/cup/vial/small, /obj/item/reagent_containers/cup/vial/large)
+	icon_state = "bighypo2"
+	gags_bodystate = "hypo2_deluxe"
+	desc = "The deluxe DeForest Mk. II hypospray, able to take both 100u and 50u vials."
+	small_only = FALSE
+
 // Deluxe hypo upgrade Kit
 /obj/item/device/custom_kit/deluxe_hypo2
 	name = "DeForest Mk. II Hypospray Deluxe Bodykit"
