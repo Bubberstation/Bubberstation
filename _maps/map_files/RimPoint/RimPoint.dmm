@@ -12880,6 +12880,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/departments/psychology/directional/west,
 /turf/open/floor/wood/tile,
 /area/station/medical/break_room)
 "eZc" = (
@@ -27863,6 +27864,9 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/command/heads_quarters/hos)
+"kYX" = (
+/turf/closed/wall,
+/area/station/medical/patients_rooms)
 "kYZ" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/effect/turf_decal/bot/left,
@@ -40177,6 +40181,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/all/medical/psychology,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/wood/large,
 /area/station/medical/psychology)
 "pWj" = (
@@ -41531,9 +41537,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/medical{
+	name = "Psychology"
+	},
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 4
@@ -41542,7 +41549,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood/large,
-/area/station/medical/break_room)
+/area/station/medical/patients_rooms)
 "qvy" = (
 /obj/machinery/computer/records/security{
 	dir = 1
@@ -86403,9 +86410,9 @@ jRm
 rrJ
 hNy
 eQo
-wNr
+kYX
 qvw
-wNr
+kYX
 wNr
 daM
 jVr
