@@ -31509,6 +31509,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "atmoscrosssection"
+	},
 /turf/open/floor/iron/textured_large,
 /area/station/engineering/atmos/office)
 "mxy" = (
@@ -46226,6 +46229,9 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/effect/landmark/navigate_destination/atmos,
 /obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "atmoscrosssection"
+	},
 /turf/open/floor/iron/textured_large,
 /area/station/engineering/atmos/office)
 "sjj" = (
@@ -56009,6 +56015,16 @@
 	},
 /turf/open/floor/engine/hull/reinforced/taeloth,
 /area/taeloth)
+"wba" = (
+/obj/machinery/door/airlock/atmos,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "atmoscrosssection"
+	},
+/turf/open/floor/iron/textured_large,
+/area/station/engineering/atmos/office)
 "wbr" = (
 /turf/open/misc/asteroid,
 /area/taeloth/underground)
@@ -96992,7 +97008,7 @@ sji
 uYY
 rBx
 jwP
-oWs
+wba
 qEC
 iYI
 tbE
@@ -97249,7 +97265,7 @@ aoM
 eOw
 bgl
 oIG
-oWs
+aoM
 rMZ
 nPL
 mih
@@ -97506,7 +97522,7 @@ aoM
 llL
 jyQ
 kBW
-aoM
+oWs
 lgj
 vxq
 mzn
