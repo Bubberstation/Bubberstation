@@ -89,18 +89,14 @@
 		balloon_alert(user, "already attached!")
 		return ITEM_INTERACT_BLOCKING
 
-
-	var/datum/component/carrier/soulcatcher/attachable/new_soulcatcher = interacting_with.AddComponent(/datum/component/soulcatcher/attachable_soulcatcher)
+	var/datum/component/carrier/soulcatcher/attachable/new_soulcatcher = interacting_with.AddComponent(/datum/component/carrier/soulcatcher/attachable)
 	playsound(interacting_with.loc, 'sound/weapons/circsawhit.ogg', 50, vary = TRUE)
 
 	var/datum/carrier_room/target_room = new_soulcatcher.carrier_rooms[1]
 	var/list/current_mobs = linked_soulcatcher.get_current_mobs()
 	if(current_mobs)
 		for(var/mob/living/soul as anything in current_mobs)
-			var/datum/carrier_room/current_room = soul.current_room.resolve()
-			if(istype(current_room))
-				current_room.transfer_mob(soul, target_room)
-			current_room.transfer_mob(soul, target_room)
+			linked_soulcatcher.transfer_mob(soul, target_room)
 
 	if(destroy_on_use)
 		qdel(src)
