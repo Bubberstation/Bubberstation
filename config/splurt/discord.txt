@@ -1,0 +1,20 @@
+# Discord verification channel name
+## This config has no actual function, it's only aesthetic lol ##
+## Use the actual name of the channel ##
+#VERIFICATION_CHANNEL verification
+
+# Discord verification command name
+## The name of the command you use for verification, only in case you've set up an alias for it ##
+## Defaults to "verify" ##
+#VERIFICATION_COMMAND verify
+
+# Need discord account to join
+## Uncomment to make players need to link their discord accounts to ckeys in order to join the game_mode ##
+## The discord verification system makes use of https://github.com/optimumtact/orangescogs ##
+## Needs a working database with the station's current schema ##
+#DISCORD_BUNKER
+
+# Discord forcing mode
+## Uncomment this if your players need to remain in the discord to keep verification ##
+## Note, this only produces aesthetic changes, the real magic happens with the redbot modules
+#FORCED_DISCORD_STAY
