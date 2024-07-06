@@ -34,6 +34,11 @@
 	gps = AddComponent(/datum/component/gps, name)
 	register_context()
 	update_icon(UPDATE_OVERLAYS)
+	RegisterSignal(src, COMSIG_NAME_CHANGED, PROC_REF(on_update_name))
+
+/obj/item/clothing/neck/kink_collar/locked/gps/proc/on_update_name(new_name)
+	SIGNAL_HANDLER
+	gps.gpstag = name
 
 /obj/item/clothing/neck/kink_collar/locked/gps/attack_self(mob/user)
 	. = ..()
