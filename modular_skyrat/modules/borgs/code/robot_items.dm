@@ -355,12 +355,12 @@
 
 
 /// A proc for shooting a projectile at the target, it's just that simple, really.
-/obj/item/borg/paperplane_crossbow/proc/shoot(atom/target, mob/living/user, params)
+/obj/item/borg/paperplane_crossbow/proc/shoot(atom/target, mob/living/user)
 	if(!COOLDOWN_FINISHED(src, shooting_cooldown))
-		return
+		return ITEM_INTERACT_BLOCKING
 	if(planes <= 0)
 		to_chat(user, span_warning("Not enough paper planes left!"))
-		return FALSE
+		return ITEM_INTERACT_BLOCKING
 	planes--
 
 	var/obj/item/paperplane/syndicate/hardlight/plane_to_fire = new /obj/item/paperplane/syndicate/hardlight(get_turf(src.loc))
@@ -370,18 +370,19 @@
 	COOLDOWN_START(src, shooting_cooldown, shooting_delay)
 	user.visible_message(span_warning("[user] shoots a paper plane at [target]!"))
 	check_amount()
+	return ITEM_INTERACT_SUCCESS
 
 
-/obj/item/borg/paperplane_crossbow/afterattack(atom/target, mob/living/user, proximity, click_params)
-	. = ..()
+/obj/item/borg/paperplane_crossbow/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	check_amount()
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/robot_user = user
-		if(!robot_user.cell.use(10))
-			to_chat(user, span_warning("Not enough power."))
-			return FALSE
-		shoot(target, user, click_params)
+	if(!iscyborg(user))
+		return ITEM_INTERACT_BLOCKING
 
+	var/mob/living/silicon/robot/robot_user = user
+	if(!robot_user.cell.use(10))
+		to_chat(user, span_warning("Not enough power."))
+		return ITEM_INTERACT_BLOCKING
+	return shoot(interacting_with, user)
 
 /// Holders for the package wrap and the wrapping paper synthetizers.
 
@@ -774,22 +775,20 @@
 	desc = "For giving affectionate kisses."
 	item_flags = NOBLUDGEON
 
-/obj/item/quadborg_tongue/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity || !isliving(target))
-		return
+/obj/item/quadborg_tongue/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/mob/living/silicon/robot/borg = user
-	var/mob/living/mob = target
-
-	if(!HAS_TRAIT(target, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		if(check_zone(borg.zone_selected) == "head")
-			borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]'s face!"), span_notice("You affectionally lick \the [mob]'s face!"))
-			playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
-		else
-			borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
-			playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
+	var/mob/living/mob = interacting_with
+	if(!istype(mob))
+		return ITEM_INTERACT_BLOCKING
+	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
+		to_chat(user, span_warning("ERROR: [interacting_with] is on the Do Not Lick registry!"))
+		return ITEM_INTERACT_BLOCKING
+	if(check_zone(borg.zone_selected) == "head")
+		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]'s face!"), span_notice("You affectionally lick \the [mob]'s face!"))
 	else
-		to_chat(user, span_warning("ERROR: [target] is on the Do Not Lick registry!"))
+		borg.visible_message(span_warning("\the [borg] affectionally licks \the [mob]!"), span_notice("You affectionally lick \the [mob]!"))
+	playsound(borg, 'sound/effects/attackblob.ogg', 50, 1)
+	return ITEM_INTERACT_SUCCESS
 
 // Quadruped nose - Boop
 /obj/item/quadborg_nose
@@ -801,16 +800,14 @@
 	item_flags = NOBLUDGEON
 	force = 0
 
-/obj/item/quadborg_nose/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
+/obj/item/quadborg_nose/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(HAS_TRAIT(interacting_with, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
+		to_chat(user, span_warning("ERROR: [interacting_with] is on the No Nosing registry!"))
+		return ITEM_INTERACT_BLOCKING
 
-	if(!HAS_TRAIT(target, TRAIT_AFFECTION_AVERSION)) // Checks for Affection Aversion trait
-		do_attack_animation(target, null, src)
-		user.visible_message(span_notice("[user] [pick("nuzzles", "pushes", "boops")] \the [target.name] with their nose!"))
-	else
-		to_chat(user, span_warning("ERROR: [target] is on the No Nosing registry!"))
+	do_attack_animation(interacting_with, null, src)
+	user.visible_message(span_notice("[user] [pick("nuzzles", "pushes", "boops")] \the [interacting_with.name] with their nose!"))
+	return ITEM_INTERACT_SUCCESS
 
 /// Better Clamp
 /obj/item/borg/hydraulic_clamp/better
