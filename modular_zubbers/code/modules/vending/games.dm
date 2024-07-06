@@ -85,7 +85,6 @@
 				/obj/item/toy/plush/skyrat/blue_cat = 3,
 				/obj/item/toy/plush/skyrat/igneous_synth = 3,
 				/obj/item/toy/plush/skyrat/edgy_bird = 3,
-				/obj/item/toy/plush/skyrat/tree_ferret = 3,
 				/obj/item/toy/plush/skyrat/xixi = 3,
 				/obj/item/toy/plush/skyrat/rubi = 3,
 				/obj/item/toy/plush/skyrat/derg_plushie = 3,
