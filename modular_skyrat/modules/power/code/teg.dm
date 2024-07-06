@@ -25,4 +25,3 @@
 	prereq_ids = list("parts_adv")
 	design_ids = list("teg", "circulator")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10)
-	discount_experiments = list(/datum/experiment/scanning/points/machinery_pinpoint_scan/tier2_capacitors = 500)
