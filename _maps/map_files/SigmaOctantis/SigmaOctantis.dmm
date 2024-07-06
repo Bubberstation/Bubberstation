@@ -7142,6 +7142,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/cafeteria,
 /area/station/maintenance/department/engine)
+"bEX" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron/dark,
+/area/station/science/ordnance)
 "bFg" = (
 /obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 4
@@ -9560,6 +9564,10 @@
 	},
 /turf/open/floor/iron/lowered,
 /area/station/maintenance/floor1/port/aft)
+"chV" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron/white/diagonal,
+/area/station/science/ordnance/testlab)
 "chZ" = (
 /obj/machinery/door/firedoor/water_sensor,
 /obj/machinery/vending/boozeomat/all_access,
@@ -12733,6 +12741,7 @@
 "cTV" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
+/obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/science/research)
 "cTW" = (
@@ -16143,6 +16152,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 5
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "dJM" = (
@@ -16588,6 +16598,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/science/auxlab/firing_range)
 "dOR" = (
@@ -19737,6 +19748,18 @@
 /obj/machinery/duct/waste,
 /turf/open/floor/iron/diagonal,
 /area/station/commons/vacant_room)
+"eAx" = (
+/obj/effect/turf_decal/siding/wideplating_new,
+/obj/effect/turf_decal/siding/wideplating_new{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/duct/waste,
+/obj/machinery/holopad,
+/turf/open/floor/iron/diagonal,
+/area/station/command/heads_quarters/hos)
 "eAy" = (
 /obj/effect/spawner/structure/electrified_grille,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
@@ -21199,7 +21222,10 @@
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
 	},
-/obj/machinery/door/window/survival_pod/left/directional/east,
+/obj/machinery/door/window/survival_pod/left/directional/east{
+	name = "Freezer Storage";
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "eQp" = (
@@ -28652,6 +28678,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
+"gzV" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron/textured_half,
+/area/station/science/xenobiology)
 "gzW" = (
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
@@ -29141,6 +29171,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron/dark/herringbone,
 /area/station/security/warden)
 "gEG" = (
@@ -31305,6 +31336,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
+/obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "hfQ" = (
@@ -34879,6 +34911,7 @@
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 8
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron/large,
 /area/station/security/brig)
 "hZB" = (
@@ -58538,6 +58571,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -59041,6 +59075,14 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer1,
 /turf/open/floor/iron,
 /area/station/ai_monitored/turret_protected/ai)
+"nMT" = (
+/obj/effect/turf_decal/trimline/dark_red/warning,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 1
+	},
+/obj/machinery/holopad,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/lab)
 "nMU" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -75351,6 +75393,10 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/engineering/atmos/hfr_room)
+"rDu" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron,
+/area/station/engineering/atmos)
 "rDv" = (
 /obj/item/stack/tile/iron/base,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
@@ -79036,6 +79082,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron/smooth_large,
 /area/station/cargo/lobby)
 "sxA" = (
@@ -79835,6 +79882,7 @@
 /obj/structure/railing/corner{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron/corner{
 	dir = 8
 	},
@@ -83268,7 +83316,9 @@
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 1
 	},
-/obj/machinery/computer/records/medical,
+/obj/machinery/computer/records/medical{
+	req_one_access = s
+	},
 /turf/open/floor/iron/smooth,
 /area/station/medical/medbay/central)
 "tAg" = (
@@ -97553,6 +97603,7 @@
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 5
 	},
+/obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/science/genetics)
 "wTO" = (
@@ -101672,6 +101723,16 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/greater)
+"xPU" = (
+/obj/effect/turf_decal/siding/wideplating_new,
+/obj/effect/turf_decal/trimline/purple/line{
+	dir = 1
+	},
+/obj/machinery/duct/waste,
+/obj/structure/cable,
+/obj/machinery/holopad,
+/turf/open/floor/iron/herringbone,
+/area/station/hallway/secondary/exit/departure_lounge)
 "xPV" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 1
@@ -101703,7 +101764,10 @@
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
 	},
-/obj/machinery/door/window/survival_pod/left/directional/east,
+/obj/machinery/door/window/survival_pod/left/directional/east{
+	name = "Freezer Storage";
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "xQh" = (
@@ -116520,7 +116584,7 @@ qSW
 wZd
 lYV
 nBM
-kXf
+eAx
 kgI
 sfW
 hwD
@@ -119319,7 +119383,7 @@ rfY
 wnh
 quu
 eSR
-eSR
+chV
 jwQ
 qpz
 wPd
@@ -122408,7 +122472,7 @@ ktj
 sSw
 ktj
 uoa
-itG
+bEX
 lup
 xTK
 gEa
@@ -127556,7 +127620,7 @@ owD
 ras
 rHj
 rHj
-rEV
+nMT
 qMG
 qUL
 mfx
@@ -131136,7 +131200,7 @@ xes
 iLh
 aPg
 jwF
-buC
+gzV
 qlW
 vSo
 wCq
@@ -145828,7 +145892,7 @@ kTQ
 esj
 dwf
 spt
-xKH
+rDu
 bhX
 jFc
 kWu
@@ -207472,7 +207536,7 @@ tDh
 mgR
 tDh
 iZN
-rBv
+xPU
 aUd
 pqH
 uIG
