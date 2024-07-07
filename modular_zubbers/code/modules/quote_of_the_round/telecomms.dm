@@ -59,7 +59,9 @@
 		SSticker.quote_of_the_round_text = found_message
 		SSticker.quote_of_the_round_attribution = "[found_name], [found_job]"
 		SSticker.quote_of_the_round_record_start = null //Chosen!
-		message_admins("[found_message] by [ADMIN_LOOKUPFLW(found_user)] has been randomly selected as quote of the round. <a href='?src=[REF(src)];cancel_quote=1'>Click here</a> to change.")
+		SSticker.quote_of_the_round_ckey = found_user.ckey
+		message_admins("[found_message] by [ADMIN_LOOKUPFLW(found_user)] has been randomly selected as quote of the round. <a href='?src=[REF(src)];cancel_quote=1'>Click here to change</a>.")
+		log_world("[key_name(found_user)] has been randomly selected for quote of the round with the quote \"[found_message]\".")
 
 /obj/machinery/telecomms/hub/Topic(href, href_list)
 	. = ..()
@@ -67,8 +69,10 @@
 		if(!SSticker.quote_of_the_round_text)
 			to_chat(usr, span_warning("This quote of the day has already been changed."), confidential = TRUE)
 			return
-		log_admin_private("[key_name_admin(usr)] has rerolled the quote of the round, which was: [SSticker.quote_of_the_round_text].")
+		log_admin("[key_name_admin(usr)] has rerolled the quote of the round, which was: \"[SSticker.quote_of_the_round_text]\" by CKEY [key_name(SSticker.quote_of_the_round_ckey)].")
 		SSticker.quote_of_the_round_text = null
 		SSticker.quote_of_the_round_attribution = null
-		SSticker.quote_of_the_round_record_start = world.time + 10 MINUTES
-		message_admins("[key_name_admin(usr)] has rerolled the quote of the round. A new one will be chosen in 10 minutes.")
+		SSticker.quote_of_the_round_ckey = null
+		SSticker.quote_of_the_round_record_start = world.time + 5 MINUTES
+		message_admins("[key_name_admin(usr)] has rerolled the quote of the round. A new one will be chosen in 5 minutes.")
+

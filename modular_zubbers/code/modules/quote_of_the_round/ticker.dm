@@ -2,6 +2,7 @@
 	var/quote_of_the_round_record_start
 	var/quote_of_the_round_text
 	var/quote_of_the_round_attribution
+	var/quote_of_the_round_ckey
 
 /datum/controller/subsystem/ticker/Initialize()
 	. = ..()
@@ -19,6 +20,12 @@
 				CONFIG_GET(string/channel_announce_new_game)
 			)
 		)
+		log_world("Notice: A quote of the round was found, and should have been sent to discord.")
+	else
+		if(world.time <= quote_of_the_round_record_start)
+			log_runtime("Error: A quote of the round could not be found due to the round being too short.")
+		else
+			log_runtime("Error: A quote of the round could not be found. Perhaps the config settings are too strict?")
 
 	. = ..()
 

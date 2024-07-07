@@ -9,7 +9,7 @@
 	min_val = 0
 
 /datum/config_entry/number/quote_of_the_round_letter_min
-	default = 50
+	default = 42
 	integer = TRUE
 	min_val = 0
 
@@ -19,13 +19,11 @@
 	min_val = 0
 
 /datum/config_entry/number/quote_of_the_round_word_min
-	default = 10
+	default = 6
 	integer = TRUE
 	min_val = 0
 
 /datum/config_entry/number/quote_of_the_round_word_max
-	default = 20
+	default = 30
 	integer = TRUE
 	min_val = 0
-
-
