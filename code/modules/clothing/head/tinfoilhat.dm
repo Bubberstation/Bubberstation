@@ -6,7 +6,7 @@
 	armor_type = /datum/armor/costume_foilhat
 	equip_delay_other = 140
 	clothing_flags = ANTI_TINFOIL_MANEUVER
-	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
+	// var/datum/brain_trauma/mild/phobia/conspiracies/paranoia BUBBERSTATION CHANGE, REMOVES PARANOIA
 	var/warped = FALSE
 	interaction_flags_mouse_drop = NEED_HANDS
 
@@ -24,23 +24,25 @@
 		/datum/component/anti_magic, \
 		antimagic_flags = MAGIC_RESISTANCE_MIND, \
 		inventory_flags = ITEM_SLOT_HEAD, \
-		charges = 6, \
+		charges = 1000, \
 		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
 		expiration = CALLBACK(src, PROC_REF(warp_up)) \
-	)
+	) //BUBBERSTATION CHANGE: NEAR-INFINITE CHARGES (6 TO 1000)
 
 
 /obj/item/clothing/head/costume/foilhat/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(!(slot & ITEM_SLOT_HEAD) || warped)
 		return
+	/* BUBBERSTATION CHANGE START: REMOVES PARANOIA
 	if(paranoia)
 		QDEL_NULL(paranoia)
 	paranoia = new()
+	BUBBERSTATION CHANGE END: REMOVES PARANOIA */
 
 	RegisterSignal(user, COMSIG_HUMAN_SUICIDE_ACT, PROC_REF(call_suicide))
 
-	user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC)
+	// user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC ) BUBBERSTATION CHANGE: REMOVES PARANOIA
 	to_chat(user, span_warning("As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. "))
 
 /obj/item/clothing/head/costume/foilhat/mouse_drop_dragged(atom/over_object, mob/user)
@@ -54,8 +56,10 @@
 
 /obj/item/clothing/head/costume/foilhat/dropped(mob/user)
 	. = ..()
+	/* BUBBERSTATION CHANGE START: REMOVES PARANOIA
 	if(paranoia)
 		QDEL_NULL(paranoia)
+	*/
 	UnregisterSignal(user, COMSIG_HUMAN_SUICIDE_ACT)
 
 /// When the foilhat is drained an anti-magic charge.
@@ -67,13 +71,13 @@
 	desc = "A badly warped up hat. Quite unprobable this will still work against any of fictional and contemporary dangers it used to."
 	warped = TRUE
 	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
-	if(!isliving(loc) || !paranoia)
+	if(!isliving(loc)) //BUBBERSTATION CHANGE, REMOVES PARANOIA
 		return
 	var/mob/living/target = loc
 	UnregisterSignal(target, COMSIG_HUMAN_SUICIDE_ACT)
 	if(target.get_item_by_slot(ITEM_SLOT_HEAD) != src)
 		return
-	QDEL_NULL(paranoia)
+	// QDEL_NULL(paranoia) BUBBERSTATION CHANGE, REMOVES PARANOIA
 	if(target.stat < UNCONSCIOUS)
 		to_chat(target, span_warning("Your zealous conspirationism rapidly dissipates as the donned hat warps up into a ruined mess. All those theories starting to sound like nothing but a ridicolous fanfare."))
 
