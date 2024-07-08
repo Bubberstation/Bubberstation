@@ -64,7 +64,6 @@
 	design_ids = list(
 		"plumbing_rcd",
 		"plumbing_rcd_service",
-		"plumbing_rcd_sci",
 		"plunger",
 		"fluid_ducts",
 		"meta_beaker",
@@ -78,6 +77,7 @@
 	description = "State-of-the-art medical gear for keeping the crew in one piece — mostly."
 	prereq_ids = list(TECHWEB_NODE_PLUMBING)
 	design_ids = list(
+		"smoke_machine",
 		"chem_mass_spec",
 		"healthanalyzer_advanced",
 		"mod_health_analyzer",

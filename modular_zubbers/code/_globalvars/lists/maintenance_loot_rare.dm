@@ -71,7 +71,6 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/construction/plumbing = 1,
 		/obj/item/construction/plumbing/engineering = 1,
 		/obj/item/construction/plumbing/mining = 1,
-		/obj/item/construction/plumbing/research = 1,
 		/obj/item/construction/plumbing/service = 1,
 		/obj/item/construction/rcd = 1,
 		/obj/item/construction/rld = 10,
