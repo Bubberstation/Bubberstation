@@ -11,7 +11,7 @@
 		span_notice("Notice: The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
 	)
 
-/datum/controller/subsystem/ticker/OnRoundend(datum/callback/cb)
+/datum/controller/subsystem/ticker/declare_completion(force_ending)
 
 	if(quote_of_the_round_text)
 		send2chat(
@@ -20,12 +20,12 @@
 				CONFIG_GET(string/channel_announce_new_game)
 			)
 		)
-		log_runtime("Notice: A quote of the round was found, and should have been sent to discord.")
+		to_chat(world, span_notice("A quote of the round was found, and should have been sent to discord."))
 	else
 		if(world.time <= quote_of_the_round_record_start)
-			log_runtime("Error: A quote of the round could not be found due to the round being too short.")
+			to_chat(world, span_notice("A quote of the round could not be found due to the round being too short."))
 		else
-			log_runtime("Error: A quote of the round could not be found. Perhaps the config settings are too strict?")
+			to_chat(world, span_notice("A quote of the round could not be found. Perhaps the crew should be more memorable."))
 
 	. = ..()
 
