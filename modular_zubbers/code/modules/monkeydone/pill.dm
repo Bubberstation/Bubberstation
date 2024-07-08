@@ -2,7 +2,7 @@
 	name = "monkeydone pill"
 	desc = "Used to make monkeys return to human. Now banana flavored!"
 	icon_state = "pill22"
-	list_reagents = list(/datum/reagent/medicine/mutadone = 5, /datum/reagent/consumable/banana = 10)
+	list_reagents = list(/datum/reagent/medicine/monkeydone = 5, /datum/reagent/consumable/banana = 10)
 	rename_with_volume = TRUE
 
 /obj/item/storage/pill_bottle/monkeydone
