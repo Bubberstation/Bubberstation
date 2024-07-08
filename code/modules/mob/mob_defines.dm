@@ -171,9 +171,6 @@
 	var/list/client_colours = list()
 	var/hud_type = /datum/hud
 
-	// Admin player panel for this mob
-	var/datum/player_panel/mob_panel
-
 	var/datum/focus //What receives our keyboard inputs. src by default
 
 	/// Used for tracking last uses of emotes for cooldown purposes

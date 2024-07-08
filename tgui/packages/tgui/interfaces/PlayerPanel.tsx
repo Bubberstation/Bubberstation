@@ -14,6 +14,7 @@ import {
   Section,
   Slider,
   Tabs,
+  Tooltip,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -23,6 +24,7 @@ type Data = {
   admin_mob_type: string;
   client_ckey: string;
   client_rank: string;
+  ranks: string;
   last_ckey: string;
   playtimes_enabled: boolean;
   playtime: string;
@@ -36,6 +38,7 @@ type Data = {
   data_player_join_date: string;
   data_account_join_date: string;
   data_byond_version: string;
+  data_old_names: string;
 
   glob_mute_bits: {
     name: string;
@@ -108,6 +111,7 @@ export const PlayerPanel = () => {
     mob_type,
     client_ckey,
     client_rank,
+    ranks,
     last_ckey,
     playtimes_enabled,
     playtime,
@@ -183,21 +187,32 @@ export const PlayerPanel = () => {
               <Flex.Item width="80px" color="label">
                 {client_ckey ? 'Client:' : 'Last client:'}
               </Flex.Item>
-              <Flex.Item grow={1}>{client_ckey || last_ckey}</Flex.Item>
-
-              {!client_ckey && last_ckey && (
-                <Flex.Item>
-                  <Button
-                    // minWidth="11rem"
-                    // textAlign="center"
-                    // mx=".5rem"
-                    icon="comment-dots"
-                    onClick={() => act('open_latest_panel')}
+              <Flex.Item tooltip grow={1}>
+                <Tooltip
+                  position="bottom"
+                  content={ranks || 'No additional ranks'}
+                >
+                  <Box
+                    inline
+                    style={{
+                      borderBottom: ranks
+                        ? '2px dotted rgba(255, 255, 255, 0.8)'
+                        : 'none',
+                    }}
                   >
-                    Find updated panel
-                  </Button>
-                </Flex.Item>
-              )}
+                    {client_ckey || last_ckey}
+                  </Box>
+                </Tooltip>
+
+                {!client_ckey && !!last_ckey && (
+                  <Button
+                    ml={1}
+                    icon="magnifying-glass"
+                    tooltip="Get player's current panel"
+                    onClick={() => act('open_latest_panel')}
+                  />
+                )}
+              </Flex.Item>
 
               {!!client_ckey && (
                 <Flex.Item align="right">
@@ -432,17 +447,38 @@ const PhysicalActions = () => {
           >
             Quirks
           </Button>
-          <Button width="100%" icon="magic" onClick={() => act('spell')}>
-            Spells
-          </Button>
           <Button
             width="100%"
             height="100%"
+            icon="magic"
+            onClick={() => act('spell')}
+          >
+            Spells
+          </Button>
+        </Flex>
+        <Flex>
+          <Button
+            width="100%"
             icon="fist-raised"
             disabled={!mob_type.includes('/mob/living/carbon/human')}
             onClick={() => act('martial_art')}
           >
             Martial Arts
+          </Button>
+          <Button
+            width="100%"
+            icon="lightbulb"
+            onClick={(e) => act('skill_panel')}
+          >
+            Skills
+          </Button>
+          <Button
+            width="100%"
+            height="100%"
+            icon="comment-dots"
+            onClick={(e) => act('languages')}
+          >
+            Languages
           </Button>
         </Flex>
       </Section>
@@ -624,6 +660,7 @@ const PunishmentActions = () => {
     data_byond_version,
     data_player_join_date,
     data_account_join_date,
+    data_old_names,
     current_time,
   } = data;
   return (
@@ -814,6 +851,9 @@ const PunishmentActions = () => {
             </LabeledList.Item>
             <LabeledList.Item label="Byond version">
               {data_byond_version}
+            </LabeledList.Item>
+            <LabeledList.Item label="Old names">
+              {data_old_names}
             </LabeledList.Item>
           </LabeledList>
         </Collapsible>
@@ -1078,16 +1118,6 @@ const OtherActions = () => {
           p=".5rem"
           mb=".5rem"
           textAlign="center"
-          disabled={!mob_type.includes('/mob/living')}
-          onClick={(e) => act('languages')}
-        >
-          Languages
-        </Button>
-        <Button
-          width="100%"
-          p=".5rem"
-          mb=".5rem"
-          textAlign="center"
           disabled={!client_ckey}
           onClick={(e) => act('job_exemption_panel')}
         >
@@ -1099,9 +1129,29 @@ const OtherActions = () => {
           mb=".5rem"
           textAlign="center"
           disabled={!client_ckey}
-          onClick={(e) => act('skill_panel')}
+          onClick={(e) => act('commend')}
         >
-          Skill Panel
+          Commend Behavior
+        </Button>
+        <Button
+          width="100%"
+          p=".5rem"
+          mb=".5rem"
+          textAlign="center"
+          disabled={!client_ckey}
+          onClick={(e) => act('play_sound_to')}
+        >
+          Play Sound To
+        </Button>
+        <Button
+          width="100%"
+          p=".5rem"
+          mb=".5rem"
+          textAlign="center"
+          disabled={!client_ckey}
+          onClick={(e) => act('apply_client_quirks')}
+        >
+          Apply Client Quirks
         </Button>
       </Section>
     </Section>

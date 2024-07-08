@@ -1,6 +1,7 @@
 GLOBAL_LIST_INIT(mute_bits, list(
 	list(name = "IC", bitflag = MUTE_IC),
 	list(name = "OOC", bitflag = MUTE_OOC),
+	list(name = "LOOC", bitflag = MUTE_LOOC),
 	list(name = "Pray", bitflag = MUTE_PRAY),
 	list(name = "Ahelp", bitflag = MUTE_ADMINHELP),
 	list(name = "Deadchat", bitflag = MUTE_DEADCHAT)
@@ -13,16 +14,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	"Left arm" 	= BODY_ZONE_L_ARM,
 	"Right arm" = BODY_ZONE_R_ARM
 ))
-
-ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2", mob/player in world)
-	if(!player)
-		to_chat(user, span_warning("You seem to be selecting a mob that doesn't exist anymore."), confidential = TRUE)
-		return
-
-	if(!player.mob_panel)
-		player.create_player_panel()
-
-	player.mob_panel.ui_interact(user.mob)
 
 /datum/player_panel
 	var/mob/targetMob
@@ -72,7 +63,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 	else
 		targetClient = null
 		.["client_ckey"] = null
-		.["last_ckey"] = targetMob.ckey
+
+		if (targetMob.ckey)
+			.["last_ckey"] = copytext(targetMob.ckey, 2)
 
 /datum/player_panel/ui_static_data()
 	. = list()
@@ -91,6 +84,20 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 		.["data_account_join_date"] = targetClient.account_join_date
 		.["data_related_cid"] = targetClient.related_accounts_cid
 		.["data_related_ip"] = targetClient.related_accounts_ip
+
+		var/datum/player_details/deets = GLOB.player_details[targetClient.ckey]
+		.["data_old_names"] = deets.get_played_names() || null
+
+		var/list/player_ranks = list()
+		if(SSplayer_ranks.is_donator(targetClient, admin_bypass = FALSE))
+			player_ranks += "Donator"
+		if(SSplayer_ranks.is_mentor(targetClient, admin_bypass = FALSE))
+			player_ranks += "Mentor"
+		if(SSplayer_ranks.is_veteran(targetClient, admin_bypass = FALSE))
+			player_ranks += "Veteran"
+		if(SSplayer_ranks.is_vetted(targetClient, admin_bypass = FALSE))
+			player_ranks |= "Vetted"
+		.["ranks"] = length(player_ranks) ? player_ranks.Join(", ") : null
 
 		if(CONFIG_GET(flag/use_exp_tracking))
 			.["playtimes_enabled"] = TRUE
@@ -113,7 +120,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 			if (targetMob.client || !targetMob.ckey)
 				return
 
-			var/mob/latestMob = get_mob_by_ckey(targetMob.ckey)
+			// Remove '@' from the start of the ckey.
+			var/ckey = copytext(targetMob.ckey, 2)
+			var/mob/latestMob = get_mob_by_ckey(ckey)
 
 			if(!latestMob)
 				to_chat(adminClient, span_warning("That ckey is not controlling a mob."))
@@ -151,7 +160,35 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/cmd_admin_pm_context, targetMob)
 
 		if ("subtle_message")
-			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/cmd_admin_subtle_message, targetMob)
+			var/list/subtle_message_options = list("Voice in head", RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_SYNDICATE)
+			var/sender = tgui_input_list(adminClient, "Choose the method of subtle messaging", "Subtle Message", subtle_message_options)
+			if (!sender)
+				return
+
+			var/msg = input("Contents of the message", text("Subtle PM to [targetMob.key]")) as text
+			if (!msg)
+				return
+
+			if (sender == "Voice in head")
+				to_chat(targetMob, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+			else
+				var/mob/living/carbon/human/H = targetMob
+
+				if(!istype(H))
+					to_chat(adminClient, "The person you are trying to contact is not human. Unsent message: [msg]")
+					return
+
+				if(!istype(H.ears, /obj/item/radio/headset))
+					to_chat(adminClient, "The person you are trying to contact is not wearing a headset. Unsent message: [msg]")
+					return
+
+				to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from [sender == RADIO_CHANNEL_SYNDICATE ? "your benefactor" : "Central Command"].  Message as follows[sender == RADIO_CHANNEL_SYNDICATE ? ", agent." : ":"] <span class='bold'>[msg].</span> Message ends.\"")
+
+
+			log_admin("SubtlePM ([sender]): [key_name(adminClient)] -> [key_name(targetMob)] : [msg]")
+			msg = span_adminnotice("<b> SubtleMessage ([sender]): [key_name_admin(adminClient)] -> [key_name_admin(targetMob)] :</b> [msg]")
+			message_admins(msg)
+			admin_ticket_log(targetMob, msg)
 
 		if ("set_name")
 			targetMob.vv_auto_rename(params["name"])
@@ -203,12 +240,12 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 		if ("freeze")
 			var/mob/living/L = targetMob
 			if (istype(L))
-				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/toggle_admin_freeze, L)
+				L.toggle_admin_freeze(adminClient)
 
 		if ("sleep")
 			var/mob/living/L = targetMob
 			if (istype(L))
-				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/toggle_admin_sleep, L)
+				L.toggle_admin_sleep(adminClient)
 
 		if ("lobby")
 			if(!isobserver(targetMob))
@@ -240,10 +277,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 			targetMob.say(params["to_say"], forced="admin")
 
 		if ("force_emote")
-			message_admins("force emote called")
-			targetMob.emote("me", EMOTE_VISIBLE|EMOTE_AUDIBLE, "Test 123")
-			targetMob.emote("me", EMOTE_VISIBLE|EMOTE_AUDIBLE, params["to_emote"])
-			QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(targetMob, TYPE_PROC_REF(/mob, emote), "me", EMOTE_VISIBLE|EMOTE_AUDIBLE, params["to_emote"]), SSspeech_controller)
+			if (params["to_emote"])
+				QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(targetMob, TYPE_PROC_REF(/mob, emote), "me", EMOTE_VISIBLE|EMOTE_AUDIBLE, params["to_emote"], TRUE), SSspeech_controller)
 
 		if ("prison")
 			if(isAI(targetMob))
@@ -411,4 +446,33 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel2, R_ADMIN, "Show Player Panel 2",
 
 		if ("skill_panel")
 			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/show_skill_panel, targetMob)
+
+		if ("commend")
+			if(!targetMob.ckey)
+				to_chat(adminClient, span_warning("This mob either no longer exists or no longer is being controlled by someone!"))
+				return
+
+			switch(tgui_alert(adminMob, "Would you like the effects to apply immediately or at the end of the round? Applying them now will make it clear it was an admin commendation.", "<3?", list("Apply now", "Apply at round end", "Cancel")))
+				if("Apply now")
+					targetMob.receive_heart(adminMob, instant = TRUE)
+				if("Apply at round end")
+					targetMob.receive_heart(adminMob)
+
+		if ("play_sound_to")
+			var/soundFile = input("", "Select a sound file",) as null|sound
+
+			if(soundFile && targetMob)
+				SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/play_direct_mob_sound, soundFile, targetMob)
+
+		if ("apply_client_quirks")
+			var/mob/living/carbon/human/H = targetMob
+			if(!istype(H))
+				to_chat(adminClient, "this can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
+				return
+			if(!H.client)
+				to_chat(adminClient, "[H] has no client!", confidential = TRUE)
+				return
+			SSquirks.AssignQuirks(H, H.client)
+			log_admin("[key_name(adminClient)] applied client quirks to [key_name(H)].")
+			message_admins(span_adminnotice("[key_name_admin(adminClient)] applied client quirks to [key_name_admin(H)]."))
 
