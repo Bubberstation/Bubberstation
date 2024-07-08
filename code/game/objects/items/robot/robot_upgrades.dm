@@ -57,7 +57,7 @@
 // Handles adding items with the module
 /obj/item/borg/upgrade/proc/install_items(mob/living/silicon/robot/borg, mob/living/user = usr, list/items)
 	for(var/item_to_add in items)
-		var/obj/item/module_item = new item_to_add(borg.model.modules)
+		var/obj/item/module_item = new item_to_add(borg.model)
 		borg.model.basic_modules += module_item
 		borg.model.add_module(module_item, FALSE, TRUE)
 	return TRUE
@@ -421,23 +421,25 @@
 	model_type = list(/obj/item/robot_model/medical,  /obj/item/robot_model/syndicate_medical)
 	model_flags = BORG_MODEL_MEDICAL
 
+	items_to_add = list(/obj/item/healthanalyzer/advanced)
+	items_to_remove = list(/obj/item/healthanalyzer)
+
 /obj/item/borg/upgrade/surgery_omnitool/action(mob/living/silicon/robot/cyborg, mob/living/user = usr)
 	. = ..()
 	if(!.)
 		return .
-	for(var/obj/item/borg/cyborg_omnitool/medical/omnitool_upgrade in cyborg.model.modules)
-		if(omnitool_upgrade.upgraded)
-			to_chat(user, span_warning("This unit is already equipped with an omnitool upgrade!"))
-			return FALSE
-	for(var/obj/item/borg/cyborg_omnitool/medical/omnitool in cyborg.model.modules)
-		omnitool.upgrade_omnitool()
+	if(cyborg.model.toolbox.currently_upgraded)
+		to_chat(user, span_warning("This unit is already equipped with an omnitool upgrade!"))
+		return FALSE
+	cyborg.model.toolbox.set_upgrade(TRUE)
+	ADD_TRAIT(cyborg, TRAIT_FASTMED, REF(src))
 
 /obj/item/borg/upgrade/surgery_omnitool/deactivate(mob/living/silicon/robot/cyborg, mob/living/user = usr)
 	. = ..()
 	if(!.)
 		return .
-	for(var/obj/item/borg/cyborg_omnitool/omnitool in cyborg.model.modules)
-		omnitool.downgrade_omnitool()
+	cyborg.model.toolbox.set_upgrade(FALSE)
+	REMOVE_TRAIT(cyborg, TRAIT_FASTMED, REF(src))
 
 /obj/item/borg/upgrade/engineering_omnitool
 	name = "cyborg engineering omni-tool upgrade"
@@ -452,19 +454,16 @@
 	. = ..()
 	if(!.)
 		return .
-	for(var/obj/item/borg/cyborg_omnitool/engineering/omnitool_upgrade in cyborg.model.modules)
-		if(omnitool_upgrade.upgraded)
-			to_chat(user, span_warning("This unit is already equipped with an omnitool upgrade!"))
-			return FALSE
-	for(var/obj/item/borg/cyborg_omnitool/engineering/omnitool in cyborg.model.modules)
-		omnitool.upgrade_omnitool()
+	if(cyborg.model.toolbox.currently_upgraded)
+		to_chat(user, span_warning("This unit is already equipped with an omnitool upgrade!"))
+		return FALSE
+	cyborg.model.toolbox.set_upgrade(TRUE)
 
 /obj/item/borg/upgrade/engineering_omnitool/deactivate(mob/living/silicon/robot/cyborg, mob/living/user = usr)
 	. = ..()
 	if(!.)
 		return .
-	for(var/obj/item/borg/cyborg_omnitool/omnitool in cyborg.model.modules)
-		omnitool.downgrade_omnitool()
+	cyborg.model.toolbox.set_upgrade(FALSE)
 
 /obj/item/borg/upgrade/defib
 	name = "medical cyborg defibrillator"
@@ -764,8 +763,10 @@
 	desc = "An upgrade to the service model cyborg, to help provide mobile service."
 	icon_state = "cyborg_upgrade3"
 	require_model = TRUE
-	model_type = list(/obj/item/rolling_table_dock)
+	model_type = list(/obj/item/robot_model/service)
 	model_flags = BORG_MODEL_SERVICE
+
+	items_to_add = list(/obj/item/rolling_table_dock)
 
 /obj/item/borg/upgrade/service_cookbook
 	name = "Service Cyborg Cookbook"
@@ -775,7 +776,7 @@
 	model_type = list(/obj/item/robot_model/service)
 	model_flags = BORG_MODEL_SERVICE
 
-	model_type = list(/obj/item/borg/cookbook)
+	items_to_add = list(/obj/item/borg/cookbook)
 
 ///This isn't an upgrade or part of the same path, but I'm gonna just stick it here because it's a tool used on cyborgs.
 //A reusable tool that can bring borgs back to life. They gotta be repaired first, though.

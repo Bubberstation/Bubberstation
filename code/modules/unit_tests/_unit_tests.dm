@@ -119,6 +119,7 @@
 #include "closets.dm"
 #include "clothing_under_armor_subtype_check.dm"
 #include "combat.dm"
+#include "combat_stamina.dm"
 #include "combat_welder.dm"
 #include "component_tests.dm"
 #include "confusion.dm"
@@ -126,6 +127,7 @@
 #include "container_sanity.dm"
 #include "crayons.dm"
 #include "create_and_destroy.dm"
+#include "cyborg_tool.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dcs_get_id_from_elements.dm"
 #include "designs.dm"
@@ -178,6 +180,7 @@
 #include "map_landmarks.dm"
 #include "mapload_space_verification.dm"
 #include "mapping.dm"
+#include "mapping_nearstation_test.dm"
 #include "mecha_damage.dm"
 #include "medical_wounds.dm"
 #include "merge_type.dm"
@@ -204,6 +207,7 @@
 #include "organ_bodypart_shuffle.dm"
 #include "organ_set_bonus.dm"
 #include "organs.dm"
+#include "orphaned_genturf.dm"
 #include "outfit_sanity.dm"
 #include "oxyloss_suffocation.dm"
 #include "paintings.dm"
@@ -253,6 +257,7 @@
 #include "spell_mindswap.dm"
 #include "spell_names.dm"
 #include "spell_shapeshift.dm"
+#include "spell_timestop.dm"
 #include "spies.dm"
 #include "spritesheets.dm"
 #include "stack_singular_name.dm"
@@ -284,7 +289,6 @@
 #include "worn_icons.dm"
 // SKYRAT EDIT START
 #include "~skyrat\automapper.dm"
-#include "~skyrat\loadout_dupes.dm"
 #include "~skyrat\opposing_force.dm"
 // SKYRAT EDIT END
 // END_INCLUDE

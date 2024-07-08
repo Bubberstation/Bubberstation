@@ -162,7 +162,7 @@
 	pixel_y = 5
 	},
 /obj/item/storage/toolbox/syndicate,
-/obj/item/stock_parts/cell/infinite,
+/obj/item/stock_parts/power_store/cell/infinite,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "aT" = (
@@ -667,6 +667,27 @@
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
+/area/station/medical/medbay)
+"cK" = (
+/obj/machinery/light/directional/south,
+/obj/structure/table/glass,
+/obj/item/disk/surgery/debug,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/disk/data/debug{
+	pixel_y = 9;
+	pixel_x = 7
+	},
+/turf/open/floor/iron/white/corner,
 /area/station/medical/medbay)
 "cL" = (
 /obj/item/surgery_tray/full/advanced,
@@ -1916,27 +1937,6 @@
 /obj/machinery/door/airlock/shell,
 /turf/open/floor/iron/dark,
 /area/station/construction)
-"tz" = (
-/obj/machinery/light/directional/south,
-/obj/structure/table/glass,
-/obj/item/disk/surgery/debug,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 6;
-	pixel_y = 1
-	},
-/obj/item/storage/box/monkeycubes{
-	pixel_x = -6;
-	pixel_y = 2
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/disk/data/debug{
-	pixel_y = 9;
-	pixel_x = 7
-	},
-/turf/open/floor/iron/white/corner,
-/area/station/medical/medbay)
 "tE" = (
 /obj/machinery/door/airlock/research,
 /turf/open/floor/iron/dark,
@@ -2338,9 +2338,9 @@
 "Ov" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/bluespace,
-/obj/item/stock_parts/cell/bluespace,
-/obj/item/stock_parts/cell/bluespace,
+/obj/item/stock_parts/power_store/cell/bluespace,
+/obj/item/stock_parts/power_store/cell/bluespace,
+/obj/item/stock_parts/power_store/cell/bluespace,
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
 "OU" = (
@@ -8271,7 +8271,7 @@ is
 cy
 Ut
 cm
-tz
+cK
 by
 dB
 dx

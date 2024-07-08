@@ -592,16 +592,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/eva)
-"dL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/effect/mob_spawn/corpse/human/skeleton,
-/obj/item/clothing/under/rank/cargo/miner/lavaland,
-/obj/item/storage/backpack/duffelbag/explorer,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "dP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1016,15 +1006,15 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_x = 6;
 	pixel_y = 7
 	},
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_x = -3;
 	pixel_y = 5
 	},
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_x = 3
 	},
 /turf/open/floor/plating,
@@ -4400,7 +4390,7 @@
 /area/mine/maintenance/public/south)
 "zd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stock_parts/cell/crap{
+/obj/item/stock_parts/power_store/cell/crap{
 	desc = "A legendary infinite-capacity power cell. This one looks like a poor quality AA battery with a coat of flaking gold paint.";
 	icon_state = "icell";
 	name = "infinite-capacity power cell"
@@ -5497,6 +5487,16 @@
 	dir = 1
 	},
 /area/mine/lounge)
+"Hz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/mob_spawn/corpse/human/skeleton,
+/obj/item/clothing/under/rank/cargo/miner/lavaland,
+/obj/item/storage/backpack/duffelbag/explorer,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "HA" = (
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/camera/autoname/directional/west{
@@ -6728,8 +6728,8 @@
 /obj/machinery/cell_charger{
 	pixel_y = 3
 	},
-/obj/item/stock_parts/cell/high,
-/obj/item/stock_parts/cell/high{
+/obj/item/stock_parts/power_store/cell/high,
+/obj/item/stock_parts/power_store/cell/high{
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -42239,7 +42239,7 @@ iu
 yH
 KW
 iu
-dL
+Hz
 iu
 pU
 pU

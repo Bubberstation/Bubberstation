@@ -6,7 +6,6 @@
  * * GLOB.dead_mob_list
  * * GLOB.alive_mob_list
  * * GLOB.all_clockwork_mobs
- * * GLOB.mob_directory
  *
  * Unsets the focus var
  *
@@ -67,7 +66,6 @@
  *
  * Adds to global lists
  * * GLOB.mob_list
- * * GLOB.mob_directory (by tag)
  * * GLOB.dead_mob_list - if mob is dead
  * * GLOB.alive_mob_list - if the mob is alive
  *
@@ -944,20 +942,6 @@
 	set category = null
 	return
 
-/**
- * Controls if a mouse drop succeeds (return null if it doesnt)
- */
-/mob/MouseDrop(mob/M)
-	. = ..()
-	if(M != usr)
-		return
-	if(usr == src)
-		return
-	if(!Adjacent(usr))
-		return
-	if(isAI(M))
-		return
-
 ///Is the mob muzzled (default false)
 /mob/proc/is_muzzled()
 	return FALSE
@@ -1227,11 +1211,14 @@
  * * ALLOW_SILICON_REACH - If silicons are allowed to perform action from a distance (silicons can operate airlocks from far away)
  * * ALLOW_RESTING - If resting on the floor is allowed to perform action ()
  * * ALLOW_VENTCRAWL - Mobs with ventcrawl traits can alt-click this to vent
+ * * BYPASS_ADJACENCY - The target does not have to be adjacent
+ * * SILENT_ADJACENCY - Adjacency is required but errors are not printed
+ * * NOT_INSIDE_TARGET - The target maybe adjacent but the mob should not be inside the target
  *
  * silence_adjacency: Sometimes we want to use this proc to check interaction without allowing it to throw errors for base case adjacency
  * Alt click uses this, as otherwise you can detect what is interactable from a distance via the error message
 **/
-/mob/proc/can_perform_action(atom/movable/target, action_bitflags)
+/mob/proc/can_perform_action(atom/target, action_bitflags)
 	return
 
 ///Can this mob use storage
@@ -1307,12 +1294,11 @@
 				// Only update if this player is a target
 				if(obj.target && obj.target.current && obj.target.current.real_name == name)
 					obj.update_explanation_text()
+		if(client) // NOVA EDIT ADDITION - Update the mob chat color list, removing the old name
+			GLOB.chat_colors_by_mob_name -= oldname // NOVA EDIT ADDITION
 
-		if(client) // BUBBER EDIT ADDITION - Update the mob chat color list, removing the old name
-			GLOB.chat_colors_by_mob_name -= oldname // BUBBER EDIT ADDITION
-
-	if(client) // BUBBER EDIT ADDITION - Update the mob chat color list, adding the new name
-		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened) // BUBBER EDIT ADDITION
+	if(client) // NOVA EDIT ADDITION - Update the mob chat color list, adding the new name
+		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened) // NOVA EDIT ADDITION
 	log_mob_tag("TAG: [tag] RENAMED: [key_name(src)]")
 
 	return TRUE
@@ -1611,8 +1597,8 @@
 		else
 			speedies += thing.slowdown
 
-	//if our movespeed mod is in the negatives, we don't modify it since that's a benefit
-	if(speedies > 0 && HAS_TRAIT(src, TRAIT_SETTLER))
+	//if  we have TRAIT_STURDY_FRAME, we reduce our overall speed penalty UNLESS that penalty would be a negative value, and therefore a speed boost.
+	if(speedies > 0 && HAS_TRAIT(src, TRAIT_STURDY_FRAME))
 		speedies *= 0.2
 
 	if(immutable_speedies)
