@@ -8123,6 +8123,11 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Jc" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/middle,
+/mob/living/simple_animal/bot/secbot/grievous/toy{
+	radio_key = /obj/item/encryptionkey/syndicate;
+	radio_channel = "Syndicate";
+	faction = list("neutral","silicon","turret","Syndicate")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "Jd" = (
@@ -10933,7 +10938,8 @@
 	faction = list("Syndicate");
 	req_one_access = list("syndicate");
 	name = "Insurgent Care";
-	radio_channel = "Syndicate"
+	radio_channel = "Syndicate";
+	radio_key = /obj/item/encryptionkey/syndicate
 	},
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
