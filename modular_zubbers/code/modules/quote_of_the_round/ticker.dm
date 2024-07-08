@@ -8,7 +8,7 @@
 	. = ..()
 	quote_of_the_round_record_start = rand(CONFIG_GET(number/quote_of_the_round_time_random_start), CONFIG_GET(number/quote_of_the_round_time_random_end))
 	message_admins(
-		log_runtime("Notice: The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
+		span_notice("Notice: The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
 	)
 
 /datum/controller/subsystem/ticker/OnRoundend(datum/callback/cb)
