@@ -15,10 +15,8 @@
 
 	if(quote_of_the_round_text)
 		send2chat(
-			new /datum/tgs_message_content(
-				generate_quote_of_the_round(),
-				CONFIG_GET(string/channel_announce_new_game)
-			)
+			new /datum/tgs_message_content(generate_quote_of_the_round()),
+			CONFIG_GET(string/channel_announce_new_game)
 		)
 		to_chat(world, span_notice("A quote of the round was found, and should have been sent to discord."))
 	else
