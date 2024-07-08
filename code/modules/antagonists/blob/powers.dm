@@ -389,6 +389,11 @@
 			if (!isnull(initial(strain.analyzerdesceffect)))
 				info_text += "<br>[span_notice("[initial(strain.analyzerdesceffect)]")]"
 
+			//BUBBERSATION CHANGE START: INSTANT ALERT WARNING
+			if(initial(strain.instant_alert_on_change))
+				info_text += "<br>[span_danger("WARNING: Changing your strain to this will instantly alert everyone to your presence!")]"
+			//BUBBERSTATION CHANGE END: INSTANT ALERT WARNING
+
 			var/datum/radial_menu_choice/choice = new
 			choice.image = strain_icon
 			choice.info = info_text
