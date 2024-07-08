@@ -341,7 +341,7 @@ ADMIN_VERB(remove_mob_action, R_FUN, "Remove Mob Action", ADMIN_VERB_NO_DESCRIPT
 	if(!length(target_abilities))
 		return
 
-	var/chosen_ability = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "Depower", sort_list(target_abilities))
+	var/chosen_ability = tgui_input_list(user, "Choose the action to remove from [removal_target]", "Depower", sort_list(target_abilities))
 	if(isnull(chosen_ability))
 		return
 	var/datum/action/cooldown/mob_cooldown/to_remove = target_abilities[chosen_ability]

@@ -1,3 +1,8 @@
+/mob/proc/create_player_panel()
+	QDEL_NULL(mob_panel)
+
+	mob_panel = new(src)
+
 /**
  * Delete a mob
  *
@@ -44,6 +49,7 @@
 			observe.reset_perspective(null)
 
 	qdel(hud_used)
+	QDEL_NULL(mob_panel)
 	QDEL_LIST(client_colours)
 	ghostize(can_reenter_corpse = FALSE) //False, since we're deleting it currently
 	if(mind?.current == src) //Let's just be safe yeah? This will occasionally be cleared, but not always. Can't do it with ghostize without changing behavior
@@ -95,6 +101,7 @@
 	update_config_movespeed()
 	initialize_actionspeed()
 	update_movespeed(TRUE)
+	create_player_panel()
 	become_hearing_sensitive()
 	log_mob_tag("TAG: [tag] CREATED: [key_name(src)] \[[type]\]")
 
