@@ -52,3 +52,7 @@
 /datum/sprite_accessory/horns/bubber/halo //Sprites from Aurora Station
 	name = "Halo"
 	icon_state = "halo"
+
+/datum/sprite_accessory/horns/bubber/big/antlersmore
+	name = "Regal Antlers"
+	icon_state = "antlersmore"
