@@ -12855,9 +12855,10 @@
 	},
 /obj/machinery/door/airlock/security,
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/cable,
 /obj/machinery/duct/waste,
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/iron/smooth_large,
 /area/station/security/checkpoint/supply)
 "cVm" = (
@@ -79634,7 +79635,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/iron/smooth_large,
 /area/station/maintenance/department/cargo)
@@ -101278,7 +101278,7 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/door/window/brigdoor/right/directional/north{
 	name = "Security Desk";
-	req_access = list("security")
+	req_access = list("security","cargo")
 	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/supply)
