@@ -292,7 +292,21 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			message_admins("[key_name_admin(adminClient)] has sent [key_name_admin(targetMob)] to Prison!")
 
 		if ("kick")
-			SSadmin_verbs.dynamic_invoke_verb(adminClient, /datum/admin_verb/kick, targetMob)
+			if(!check_if_greater_rights_than(targetClient))
+				to_chat(adminClient, span_danger("Error: They have more rights than you do."), confidential = TRUE)
+				return
+			if(tgui_alert(adminMob, "Kick [key_name(targetMob)]?", "Confirm", list("Yes", "No")) != "Yes")
+				return
+			if(!targetMob)
+				to_chat(adminClient, span_danger("Error: [targetMob] no longer exists!"), confidential = TRUE)
+				return
+			if(!targetClient)
+				to_chat(adminClient, span_danger("Error: [targetMob] no longer has a client!"), confidential = TRUE)
+				return
+			to_chat(targetMob, span_danger("You have been kicked from the server by [adminClient.holder.fakekey ? "an Administrator" : "[adminClient.key]"]."), confidential = TRUE)
+			log_admin("[key_name(adminClient)] kicked [key_name(targetMob)].")
+			message_admins(span_adminnotice("[key_name_admin(adminClient)] kicked [key_name_admin(targetMob)]."))
+			qdel(targetClient)
 
 		if ("ban")
 			var/player_key = targetMob.key

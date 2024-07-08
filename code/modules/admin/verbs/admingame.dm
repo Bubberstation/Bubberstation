@@ -7,9 +7,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		return
 
 	var/useModern = user.prefs.read_preference(/datum/preference/toggle/use_tgui_player_panel)
-
-	message_admins(useModern)
-
 	if (useModern)
 		if(!player.mob_panel)
 			player.create_player_panel()
