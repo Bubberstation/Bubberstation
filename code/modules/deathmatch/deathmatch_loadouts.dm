@@ -352,7 +352,8 @@
 	name = "Deathmatch: Cowboy"
 	display_name = "Cowboy"
 	desc = "Yeehaw partner"
-	r_hand  = /obj/item/clothing/mask/cigarette/cigar
+
+	r_hand  = /obj/item/cigarette/cigar
 	l_hand = /obj/item/melee/curator_whip
 	l_pocket = /obj/item/lighter
 	accessory = /obj/item/clothing/accessory/vest_sheriff
@@ -386,7 +387,7 @@
 
 	suit = /obj/item/clothing/suit/wizrobe/red
 	head = /obj/item/clothing/head/wizard/red
-	mask = /obj/item/clothing/mask/cigarette
+	mask = /obj/item/cigarette
 	granted_spells = list(
 		/datum/action/cooldown/spell/pointed/projectile/fireball,
 		/datum/action/cooldown/spell/smoke,
@@ -654,7 +655,7 @@
 
 /datum/outfit/deathmatch_loadout/battler/clown/upgraded
 	name = "Deathmatch: Clown (Syndicate Gear)"
-	display_name = "Clown"
+	display_name = "Clown Commando"
 	desc = "They were bound to show up sooner or later."
 
 	shoes = /obj/item/clothing/shoes/clown_shoes/combat
@@ -708,7 +709,7 @@
 
 /datum/outfit/deathmatch_loadout/chef/upgraded
 	name = "Deathmatch: Master Chef"
-	display_name = "Chef"
+	display_name = "Master Chef"
 	desc = "Let him cook."
 
 	belt = /obj/item/gun/magic/hook
