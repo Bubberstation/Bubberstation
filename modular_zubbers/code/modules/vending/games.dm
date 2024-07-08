@@ -102,7 +102,7 @@
 				/obj/item/canvas/drawingtablet = 3,
 				/obj/item/toy/darksabre = 3,
 				/obj/item/storage/belt/sabre/darksabre = 3,
-				/obj/item/clothing/mask/holocigarette/cigar = 6,
+				/obj/item/holocigarette/cigar = 6,
 				/obj/item/card/fuzzy_license = 3,
 				/obj/item/poster/korpstech = 3,
 				/obj/item/coin/donator/marsoc = 3,
