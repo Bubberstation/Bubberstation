@@ -118,7 +118,7 @@ export const PlayerPanel = () => {
   } = data;
 
   return (
-    <Window title={`${mob_name} Player Panel`} width={600} height={500}>
+    <Window title={`${mob_name} Player Panel`} width={650} height={500}>
       <Window.Content scrollable>
         <Section>
           <Flex>
@@ -468,7 +468,7 @@ const PhysicalActions = () => {
           <Button
             width="100%"
             icon="lightbulb"
-            onClick={(e) => act('skill_panel')}
+            onClick={() => act('skill_panel')}
           >
             Skills
           </Button>
@@ -476,7 +476,7 @@ const PhysicalActions = () => {
             width="100%"
             height="100%"
             icon="comment-dots"
-            onClick={(e) => act('languages')}
+            onClick={() => act('languages')}
           >
             Languages
           </Button>
@@ -1069,7 +1069,7 @@ const FunActions = () => {
             p=".5rem"
             textAlign="center"
             disabled={!narrateMessage}
-            onClick={(e) =>
+            onClick={() =>
               act('narrate', {
                 message: narrateMessage,
                 classes: narrateStyles,
@@ -1109,7 +1109,7 @@ const OtherActions = () => {
           mb=".5rem"
           textAlign="center"
           disabled={!client_ckey}
-          onClick={(e) => act('traitor_panel')}
+          onClick={() => act('traitor_panel')}
         >
           Traitor Panel
         </Button>
@@ -1119,7 +1119,7 @@ const OtherActions = () => {
           mb=".5rem"
           textAlign="center"
           disabled={!client_ckey}
-          onClick={(e) => act('job_exemption_panel')}
+          onClick={() => act('job_exemption_panel')}
         >
           Job Exemption Panel
         </Button>
@@ -1129,7 +1129,7 @@ const OtherActions = () => {
           mb=".5rem"
           textAlign="center"
           disabled={!client_ckey}
-          onClick={(e) => act('commend')}
+          onClick={() => act('commend')}
         >
           Commend Behavior
         </Button>
@@ -1139,7 +1139,7 @@ const OtherActions = () => {
           mb=".5rem"
           textAlign="center"
           disabled={!client_ckey}
-          onClick={(e) => act('play_sound_to')}
+          onClick={() => act('play_sound_to')}
         >
           Play Sound To
         </Button>
@@ -1148,8 +1148,10 @@ const OtherActions = () => {
           p=".5rem"
           mb=".5rem"
           textAlign="center"
-          disabled={!client_ckey}
-          onClick={(e) => act('apply_client_quirks')}
+          disabled={
+            !client_ckey || !mob_type.includes('/mob/living/carbon/human')
+          }
+          onClick={() => act('apply_client_quirks')}
         >
           Apply Client Quirks
         </Button>

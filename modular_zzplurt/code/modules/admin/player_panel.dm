@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "PlayerPanel", "[targetMob.name] Player Panel")
+		ui = new(user, src, "PlayerPanel", "[targetMob.real_name] Player Panel")
 		ui.open()
 
 /datum/player_panel/ui_state(mob/user)
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	var/client/adminClient = adminMob.client
 
 	if(. || !check_rights_for(adminClient, R_ADMIN))
-		message_admins(span_adminhelp("WARNING: NON-ADMIN [ADMIN_LOOKUPFLW(adminMob)] ATTEMPTED TO ACCESS ADMIN PANEL. WARN Casper3044."))
+		message_admins(span_adminhelp("WARNING: NON-ADMIN [ADMIN_LOOKUPFLW(adminMob)] ATTEMPTED TO ACCESS ADMIN PANEL. NOTIFY Casper3044."))
 		to_chat(adminClient, "Error: you are not an admin!")
 		return
 
@@ -414,7 +414,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 			var/mob/living/L = targetMob
 			if(!isnull(params["new_scale"]) && istype(L))
 				L.vv_edit_var("current_size", params["new_scale"])
-				// mobSize = params["new_scale"]
 
 		if ("explode")
 			var/power = text2num(params["power"])
