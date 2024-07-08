@@ -1240,11 +1240,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "fM" = (
-/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
-	dir = 6
+/obj/machinery/atmospherics/pipe/smart/manifold/pink/hidden{
+	dir = 1
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
+/area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "fN" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
@@ -1570,6 +1570,7 @@
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "gX" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/pink/hidden,
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "gY" = (
@@ -2830,9 +2831,10 @@
 	id = "sci_w";
 	name = "Science Shutters"
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/smart/manifold/pink/hidden{
+	dir = 4
 	},
+/obj/machinery/atmospherics/components/binary/pump/on/general/hidden/layer2,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "mu" = (
@@ -3845,10 +3847,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
-	dir = 10
-	},
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "qU" = (
@@ -5118,13 +5118,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/button/door/directional/south{
-	name = "Prisoner Viewing Privlages";
-	id = "prison_shutters";
-	req_access = list("syndicate_leader");
-	pixel_y = 0;
-	pixel_x = 32
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "wo" = (
@@ -6798,6 +6791,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "Cy" = (
@@ -7845,9 +7839,6 @@
 "HN" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
-	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
@@ -9755,6 +9746,10 @@
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/researcher{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold/pink/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/color_adapter/layer2,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -15095,7 +15090,7 @@ cF
 fp
 hr
 HW
-fM
+KG
 HN
 tD
 XE
@@ -15162,7 +15157,7 @@ fp
 fp
 fp
 HW
-HW
+fM
 oB
 qR
 OC
