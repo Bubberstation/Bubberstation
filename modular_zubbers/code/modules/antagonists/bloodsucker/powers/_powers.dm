@@ -257,6 +257,7 @@
 
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation()
 	SHOULD_CALL_PARENT(TRUE)
+	. = list()
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
 		. += "LEVEL: [level_current] [name]:\n"
 	else
@@ -269,6 +270,8 @@
 	var/new_desc = ""
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
 		new_desc += "<br><br><b>LEVEL:</b> [level_current]"
+	else
+		new_desc += "<br><br><b>(Innate Power)</b>"
 	if(bloodcost > 0)
 		new_desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)

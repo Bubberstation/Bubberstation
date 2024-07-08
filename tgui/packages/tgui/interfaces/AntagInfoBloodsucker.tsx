@@ -21,7 +21,7 @@ export type ClanInfo = {
 
 export type PowerInfo = {
   power_name: string;
-  power_explanation: string;
+  power_explanation: string[];
   power_icon: string;
 };
 
@@ -55,7 +55,7 @@ const ObjectivePrintout = (props: any) => {
 export const AntagInfoBloodsucker = (props: any) => {
   const [tab, setTab] = useState(1);
   return (
-    <Window width={620} height={580} theme="spookyconsole">
+    <Window width={620} height={700} theme="spookyconsole">
       <Window.Content>
         <Tabs>
           <Tabs.Tab
@@ -218,8 +218,8 @@ const BloodsuckerClan = (props: any) => {
             </Stack.Item>
           </Stack>
         </Section>
-        <PowerDetails powers={powers} />
       </Stack.Item>
+      <PowerDetails powers={powers} />
     </Stack>
   );
 };

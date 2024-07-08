@@ -14,19 +14,21 @@
 	name = "Masquerade"
 	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
 	button_icon_state = "power_human"
-	power_explanation = "Masquerade:\n\
-		Activating Masquerade will forge your identity to be practically identical to that of a human;\n\
-		- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity.\n\
-		- Your eyes turn to that of a regular human as your heart begins to beat.\n\
-		- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer.\n\
-		- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden.\n\
-		At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 10
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
+
+/datum/action/cooldown/bloodsucker/masquerade/get_power_explanation()
+	. = ..()
+	. += "Masquerade will forge your identity to be practically identical to that of a human."
+	. += "- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity."
+	. += "- Your eyes turn to that of a regular human as your heart begins to beat."
+	. += "- You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer."
+	. += "- You will not appear as Pale when examined. Anything further than Pale, however, will not be hidden."
+	. += "At the end of a Masquerade, you will re-gain your Vampiric abilities, as well as lose any diseases you might have."
 
 /datum/action/cooldown/bloodsucker/masquerade/ActivatePower(atom/target)
 	. = ..()
@@ -40,7 +42,7 @@
 
 	// Handle Traits
 	user.remove_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
-	
+
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	var/obj/item/bodypart/chest/target_chest = user.get_bodypart(BODY_ZONE_CHEST)
 	if(target_chest)

@@ -1,3 +1,7 @@
+
+#define USE_SEEN_CLOAK_LEVEL 2
+#define USE_RUN_CLOAK_LEVEL 4
+
 /datum/action/cooldown/bloodsucker/cloak
 	name = "Cloak of Darkness"
 	desc = "Blend into the shadows and become invisible to the untrained and Artificial eye."

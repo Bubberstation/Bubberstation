@@ -2,18 +2,21 @@
 	name = "Trespass"
 	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
 	button_icon_state = "power_tres"
-	power_explanation = "Trespass:\n\
-		Click anywhere from 1-2 tiles away from you to teleport.\n\
-		This power goes through all obstacles except Walls.\n\
-		Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 10
 	cooldown_time = 8 SECONDS
 	prefire_message = "Select a destination."
-	//target_range = 2
+	target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
+
+/datum/action/cooldown/bloodsucker/targeted/trespass/get_power_explanation()
+	. = ..()
+	. += "Click anywhere [target_range] tiles away from you to teleport."
+	. += "This power goes through all obstacles except Walls."
+	. += "Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
+	. += "It takes [DisplayTimeText(GetTeleportDelay())] to teleport."
 
 /datum/action/cooldown/bloodsucker/targeted/trespass/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -76,7 +79,7 @@
 	puff.set_up(3, 0, my_turf)
 	puff.start()
 
-	var/mist_delay = max(5, 20 - level_current * 2.5) // Level up and do this faster.
+	var/mist_delay = GetTeleportDelay() // Level up and do this faster.
 
 	// Freeze Me
 	user.Stun(mist_delay, ignore_canstun = TRUE)
@@ -104,3 +107,6 @@
 	puff.effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke
 	puff.set_up(3, 0, target_turf)
 	puff.start()
+
+/datum/action/cooldown/bloodsucker/targeted/trespass/GetTeleportDelay()
+	return max(5, 20 - level_current * 2.5)

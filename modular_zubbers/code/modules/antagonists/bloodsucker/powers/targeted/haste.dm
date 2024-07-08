@@ -28,12 +28,13 @@
 
 /datum/action/cooldown/bloodsucker/targeted/haste/get_power_explanation()
 	. = ..()
-	. += "Click anywhere to immediately dash towards that location.\n\
-		At level 3, if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby.\n\
-		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
-		Anyone in your way during your Haste will be knocked down.\n\
-		Higher levels will increase the knockdown dealt to enemies.\n\
-		It will also refill your stamina so you can keep moving."
+	. += "Click anywhere to immediately dash towards that location."
+	. += "At level [HASTE_GETUP_LEVEL], if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby."
+	. += "Haste will knockdown your enemies for [DisplayTimeText(GetKnockdown())] and refill your stamina, but using haste while knocked down will make it go on cooldown for [DisplayTimeText(cooldown_time * 3)]"
+	. += "The Power will not work if you are lying down, in no gravity, or are aggressively grabbed."
+	. += "Anyone in your way during your Haste will be knocked down."
+	. += "Higher levels will increase the knockdown dealt to enemies."
+	. += "It will also refill your stamina so you can keep moving."
 
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -63,13 +64,13 @@
 	. = ..()
 	var/mob/living/user = owner
 	var/stuns_mobs = TRUE
-	if(level_current >= 3 && user.body_position == LYING_DOWN)
+	if(level_current >= HASTE_GETUP_LEVEL && user.body_position == LYING_DOWN)
 		to_chat(user, span_danger("Your heart takes a beat, and you force yourself to stand up!"))
 		user.SetKnockdown(0)
 		user.setStaminaLoss(0)
 		user.set_resting(FALSE, FALSE, TRUE)
 		stuns_mobs = FALSE
-		StartCooldown(cooldown_time * 3)
+		StartCooldown(GetGetupCooldown())
 	if(stuns_mobs)
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/turf/targeted_turf = isturf(target) ? target : get_turf(target)
@@ -97,6 +98,12 @@
 			sleep(world.tick_lag)
 	user.adjustStaminaLoss(-user.staminaloss)
 
+/datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()
+	return 10 + level_current * 4
+
+/datum/action/cooldown/bloodsucker/targeted/haste/proc/GetGetupCooldown()
+	return cooldown_time * 3
+
 /datum/action/cooldown/bloodsucker/targeted/haste/PowerActivatedSuccesfully()
 	. = ..()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
@@ -108,5 +115,7 @@
 			continue
 		hit += hit_living
 		playsound(hit_living, "sound/weapons/punch[rand(1,4)].ogg", 15, 1, -1)
-		hit_living.Knockdown(10 + level_current * 4)
+		hit_living.Knockdown(GetKnockdown())
 		hit_living.spin(10, 1)
+
+#undef HASTE_GETUP_LEVEL

@@ -1,13 +1,10 @@
+
+#define BRAWN_BREAKOUT_LEVEL 3
+#define BRAWN_AIRLOCK_LEVEL 4
 /datum/action/cooldown/bloodsucker/targeted/brawn
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	power_explanation = "Brawn:\n\
-		Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use.\n\
-		Punching a Cyborg will heavily EMP them in addition to deal damage.\n\
-		At level 3, you get the ability to break closets open, additionally can both break restraints AND knock a grabber down in the same use.\n\
-		At level 4, you get the ability to bash airlocks open, as long as they aren't bolted.\n\
-		Higher levels will increase the damage and knockdown when punching someone."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
@@ -16,6 +13,15 @@
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/get_power_explanation()
+	. = ..()
+	. += "Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use."
+	. += "Brawn will do [GetDamage()] brute damage to the target and knockdown them for [DisplayTimeText(GetKnockdown())]."
+	. += "Punching a Cyborg will heavily EMP them in addition to deal damage."
+	. += "At level [BRAWN_BREAKOUT_LEVEL], you get the ability to break closets open, additionally can both break restraints AND knock a grabber down in the same use."
+	. += "At level [BRAWN_AIRLOCK_LEVEL], you get the ability to bash airlocks open, as long as they aren't bolted."
+	. += "Higher levels will increase the damage and knockdown when punching someone."
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(atom/target)
 	// Did we break out of our handcuffs?
@@ -117,7 +123,7 @@
 		var/mob/living/carbon/carbonuser = user
 		//You know what I'm just going to take the average of the user's limbs max damage instead of dealing with 2 hands
 		var/obj/item/bodypart/user_active_arm = carbonuser.get_active_hand()
-		var/hitStrength = user_active_arm.unarmed_damage_high * 1.25 + 2
+		var/hitStrength = GetDamage()
 		// Knockdown!
 		var/powerlevel = min(5, 1 + level_current)
 		if(rand(5 + powerlevel) >= 5)
@@ -125,7 +131,7 @@
 				span_danger("[user] lands a vicious punch, sending [target_atom] away!"), \
 				span_userdanger("[user] has landed a horrifying punch on you, sending you flying!"),
 			)
-			target_atom.Knockdown(min(5, rand(10, 10 * powerlevel)))
+			target_atom.Knockdown(GetKnockdown())
 		// Attack!
 		owner.balloon_alert(owner, "you punch [target_atom]!")
 		playsound(get_turf(target_atom), 'sound/weapons/punch4.ogg', 60, 1, -1)
@@ -142,7 +148,7 @@
 			target_atom.emp_act(EMP_HEAVY)
 	// Target Type: Locker
 	else if(istype(target, /obj/structure/closet))
-		if(level_current <= 3)
+		if(level_current <= BRAWN_BREAKOUT_LEVEL)
 			target.balloon_alert(user, "ability level too low to break open!")
 			return FALSE
 		var/obj/structure/closet/target_closet = target
@@ -155,7 +161,7 @@
 		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	// Target Type: Door
 	else if(istype(target, /obj/machinery/door))
-		if(level_current <= 4)
+		if(level_current <= BRAWN_AIRLOCK_LEVEL)
 			target.balloon_alert(user, "ability level too low to break open!")
 			return FALSE
 		var/obj/machinery/door/target_airlock = target
@@ -170,6 +176,12 @@
 			user.do_attack_animation(target_airlock, ATTACK_EFFECT_SMASH)
 			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetKnockdown()
+	return min(5, rand(10, 10 * powerlevel))
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetDamage()
+	return user_active_arm.unarmed_damage_high * 1.25 + 2
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
 	. = ..()
@@ -195,3 +207,6 @@
 	else if(istype(target_atom, /obj/structure/closet))
 		return TRUE
 	return FALSE
+
+#undef BRAWN_BREAKOUT_LEVEL
+#undef BRAWN_AIRLOCK_LEVEL

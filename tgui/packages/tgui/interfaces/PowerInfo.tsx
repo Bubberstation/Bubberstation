@@ -62,7 +62,20 @@ export const PowerDetails = (props: PowerDetailsProps) => {
         </Stack.Item>
         <Stack.Divider />
         <Stack.Item grow fontSize="16px" width="40%">
-          {selectedPower && selectedPower.power_explanation}
+          {selectedPower?.power_explanation?.length &&
+            selectedPower.power_explanation.map((line, index) => {
+              if (index !== 0) {
+                return line;
+              } else {
+                return (
+                  <>
+                    <br />
+                    \n
+                    {line}
+                  </>
+                );
+              }
+            })}
         </Stack.Item>
       </Stack>
     </Section>

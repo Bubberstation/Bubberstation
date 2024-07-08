@@ -14,11 +14,6 @@
 	button_icon_state = "power_gohome"
 	active_background_icon_state = "vamp_power_off_oneshot"
 	base_background_icon_state = "vamp_power_off_oneshot"
-	power_explanation = "Vanishing Act: \n\
-		Activating Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin. \n\
-		The power will cancel out if the Claimed Coffin is somehow destroyed. \n\
-		Immediately after activating, lights around the user will begin to flicker. \n\
-		Once the user teleports to their coffin, in their place will be a Rat or Bat."
 	power_flags = BP_AM_TOGGLE|BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = NONE
@@ -33,6 +28,14 @@
 		/mob/living/basic/mouse = 3,
 		/mob/living/basic/bat = 1,
 	)
+
+/datum/action/cooldown/bloodsucker/gohome/get_power_explanation()
+	. = ..()
+	. += "Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin."
+	. += "The user will drop all belongings if seen by a mortal."
+	. += "The power will cancel out if the Claimed Coffin is somehow destroyed."
+	. += "Immediately after activating, lights around the user will begin to flicker."
+	. += "Once the user teleports to their coffin, in their place will be a Rat or Bat."
 
 /datum/action/cooldown/bloodsucker/gohome/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()

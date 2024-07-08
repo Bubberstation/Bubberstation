@@ -1,16 +1,10 @@
+
+#define LUNGE_INSTANT_LEVEL 4
+#define LUNGE_INSTANT_RANGE 6
 /datum/action/cooldown/bloodsucker/targeted/lunge
 	name = "Predatory Lunge"
 	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
 	button_icon_state = "power_lunge"
-	power_explanation = "Predatory Lunge:\n\
-		Click any player to start spinning wildly and, after a short delay, dash at them.\n\
-		When lunging at someone, you will grab them, immediately starting off at aggressive.\n\
-		Riot gear and Monster Hunters are protected and will only be passively grabbed.\n\
-		You cannot use the Power if you are already grabbing someone, or are being grabbed.\n\
-		If you grab from behind, or while using cloak of darkness, you will knock the target down.\n\
-		If used on a dead body, will tear out a random organ from the zone you are targeting.\n\
-		Higher levels increase the knockdown dealt to enemies.\n\
-		At level 4, you will no longer spin, but you will be limited to tackling from only 6 tiles away."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
@@ -18,11 +12,22 @@
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
 
+/datum/action/cooldown/bloodsucker/targeted/lunge/get_power_explanation()
+	. = ..()
+	. += "Click any player to start spinning wildly and, after a short delay, dash at them."
+	. += "When lunging at someone, you will grab them, immediately starting off at aggressive."
+	. += "Riot gear and Monster Hunters are protected and will only be passively grabbed."
+	. += "You cannot use the Power if you are already grabbing someone, or are being grabbed."
+	. += "If you grab from behind, or while using cloak of darkness, you will knock the target down."
+	. += "If used on a dead body, will tear out a random organ from the zone you are targeting."
+	. += "Higher levels increase how long enemies are knocked down."
+	. += "At level [LUNGE_INSTANT_LEVEL], you will no longer spin, but you will be limited to tackling from only [LUNGE_INSTANT_RANGE] tiles away."
+
 /datum/action/cooldown/bloodsucker/targeted/lunge/on_power_upgrade()
 	. = ..()
 	//range is lowered when you get stronger.
-	if(level_current > 3)
-		target_range = 6
+	if(level_current > LUNGE_INSTANT_LEVEL)
+		target_range = LUNGE_INSTANT_RANGE
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -65,7 +70,7 @@
 /datum/action/cooldown/bloodsucker/targeted/lunge/FireTargetedPower(atom/target, params)
 	. = ..()
 	owner.face_atom(target)
-	if(level_current > 3)
+	if(level_current >= LUNGE_INSTANT_LEVEL)
 		do_lunge(target)
 		return
 
@@ -183,3 +188,6 @@
 /datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower()
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, BLOODSUCKER_TRAIT)
 	return ..()
+
+#undef LUNGE_INSTANT_LEVEL
+#undef LUNGE_INSTANT_RANGE

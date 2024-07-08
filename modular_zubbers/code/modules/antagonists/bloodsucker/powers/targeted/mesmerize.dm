@@ -7,6 +7,7 @@
  * 	Level 5: Doesn't need to be facing you anymore
  */
 
+#define MESMERIZE_SLOWDOWN_LEVEL 2
 #define MESMERIZE_GLASSES_LEVEL 3
 #define MESMERIZE_FACING_LEVEL 5
 /datum/action/cooldown/bloodsucker/targeted/mesmerize
@@ -49,16 +50,23 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation()
 	. = ..()
-	. += "Click any player to attempt to mesmerize them. This will stun them for [DisplayTimeText(get_power_time())].\n\
-		You cannot wear anything covering your face, and both parties must be facing eachother. Obviously, both parties need to not be blind. \n\
-		Right clicking with the ability will apply a knockdown, but will also confuse your victim.\n\
-		If your target is already mesmerized or a Monster Hunter, the Power will fail.\n\
-		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\
-		At level [MESMERIZE_MUTE_LEVEL], your target will additionally be muted for [DisplayTimeText(get_mute_time())].\n\
-		At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face.\n\
-		At level [MESMERIZE_FACING_LEVEL], you will be able to mesmerize regardless of your target's direction.\n\
-		Higher levels will increase the time of the mesmerize's freeze.\n\
-		Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
+	. += "Click any player to attempt to mesmerize them. This will stun and mute the victim."
+	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_SLOWDOWN_LEVEL] they will be also slowed down."
+	if(blocked_by_glasses && requires_facing_target)
+		. += "Mesmerize requires you to not be wearing glasses and to be facing your target."
+	else
+	if(blocked_by_glasses)
+		. += "Mesmerize requires you to not be wearing glasses."
+	if(requires_facing_target)
+		. += "Mesmerize requires you to be facing your target."
+	. += "You cannot wear anything covering your face, and both parties must be facing eachother."
+	. += "Obviously, both parties need to not be blind."
+	. += "Right clicking with the ability will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())], but will also confuse your victim for [DisplayTimeText(get_power_time())]."
+	. += "If your target is already mesmerized or a bloodsucker, the Power will fail.""
+	. += "Once mesmerized, the target will be unable to move for [DisplayTimeText(get_power_time())] and muted for [DisplayTimeText(get_mute_time())], scaling with level."
+	. += "At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face."
+	. += "At level [MESMERIZE_FACING_LEVEL], you will be able to mesmerize regardless of your target's direction."
+	. += "Additionally it works on silicon lifeforms, causing a EMP effect instead of a freeze."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -134,8 +142,7 @@
 		return
 	// slow them down during the mesmerize
 	mesmerized_target.add_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
-	if(level_current >= MESMERIZE_MUTE_LEVEL)
-		mute_target(mesmerized_target)
+	mute_target(mesmerized_target)
 	if(!do_after(user, mesmerize_delay, mesmerized_target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		mesmerized_target.remove_movespeed_modifier(/datum/movespeed_modifier/mesmerize)
 		StartCooldown(cooldown_time * 0.5)
@@ -197,18 +204,17 @@
 	mesmerized_target.become_blind(MESMERIZE_TRAIT)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target)
-	if(level_current >= MESMERIZE_MUTE_LEVEL)
-		mesmerized_target.set_silence_if_lower(get_mute_time())
+	mesmerized_target.set_silence_if_lower(get_mute_time())
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower()
 	target_ref = null
-	. = ..() 
+	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT)
 	target.cure_blind(MESMERIZE_TRAIT)
 	// They Woke Up! (Notice if within view)
-	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
+	if(istype(user) && target.stat == CONSCIOUS && (target in view(target_range, get_turf(user))))
 		owner.balloon_alert(owner, "[target] snapped out of their trance.")
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)
@@ -229,3 +235,4 @@
 
 #undef MESMERIZE_GLASSES_LEVEL
 #undef MESMERIZE_FACING_LEVEL
+#undef MESMERIZE_SLOWDOWN_LEVEL

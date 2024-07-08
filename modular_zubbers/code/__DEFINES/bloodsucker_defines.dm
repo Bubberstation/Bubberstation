@@ -130,7 +130,6 @@
 // ability levels that are used cross-file
 #define DOMINATE_VASSALIZE_LEVEL 4
 #define TREMERE_OBJECTIVE_POWER_LEVEL 4
-#define MESMERIZE_MUTE_LEVEL 2
 
 
 /**

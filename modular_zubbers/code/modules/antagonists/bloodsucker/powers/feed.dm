@@ -5,15 +5,16 @@
 	name = "Feed"
 	desc = "Feed blood off of a living creature."
 	button_icon_state = "power_feed"
-	power_explanation = "Feed:\n\
-		Activate Feed while next to someone and you will begin to feed blood off of them.\n\
-		The time needed before you start feeding speeds up the higher level you are.\n\
-		Feeding off of someone while you have them aggressively grabbed will put them to sleep.\n\
-		While feeding, you can't speak, as your mouth is covered.\n\
-		Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction\n\
-		If you get too many Masquerade Infractions, you will break the Masquerade.\n\
-		If you are in desperate need of blood, mice can be fed off of, at a cost.\n\
-		You must use the ability again to stop sucking blood."
+	power_explanation = list(
+		"Activate Feed while next to someone and you will begin to feed blood off of them.",
+		"The time needed before you start feeding speeds up the higher level you are.",
+		"Feeding off of someone while you have them aggressively grabbed will put them to sleep.",
+		"While feeding, you can't speak, as your mouth is covered.",
+		"Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction",
+		"If you get too many Masquerade Infractions, you will break the Masquerade.",
+		"If you are in desperate need of blood, mice can be fed off of, at a cost.",
+		"You must use the ability again to stop sucking blood.",
+	)
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR|AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS|BP_CAN_USE_WHILE_STAKED
 	purchase_flags = BLOODSUCKER_DEFAULT_POWER
@@ -31,6 +32,17 @@
 	var/silent_feed = TRUE
 	///Have we notified you already that you are at maximum blood?
 	var/notified_overfeeding = FALSE
+
+/datum/action/cooldown/bloodsucker/feed/get_power_explanation()
+	. = ..()
+	. += "Activate Feed while next to someone and you will begin to feed blood off of them."
+	. += "The time needed before you start feeding is [DisplayTimeText(FEED_DEFAULT_TIMER)]."
+	. += "Feeding off of someone while you have them aggressively grabbed will put them to sleep for [DisplayTimeText(get_sleep_time())]."
+	. += "While feeding, you can't speak, as you are using your mouth to drink blood."
+	. += "Feeding while nearby ([FEED_NOTICE_RANGE] tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction"
+	. += "If you get too many Masquerade Infractions, you will break the Masquerade."
+	. += "If you are in desperate need of blood, mice can be fed off of, at a cost to your humanity."
+	. += "You must use the ability again to stop sucking blood."
 
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -91,9 +103,9 @@
 		DeactivatePower()
 		feed_target.death()
 		return
-	var/feed_timer = clamp(round(FEED_DEFAULT_TIMER / (1.25 * (level_current || 1))), 1, FEED_DEFAULT_TIMER)
+	var/feed_timer = get_feed_start_time()
 	if(bloodsuckerdatum_power.frenzied)
-		feed_timer = 2 SECONDS
+		feed_timer = min(2 SECONDS, feed_timer)
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	owner.face_atom(feed_target)
@@ -103,7 +115,7 @@
 		return
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))
-			feed_target.Unconscious((5 + level_current) SECONDS)
+			feed_target.Unconscious(get_sleep_time())
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
 		owner.visible_message(
@@ -266,6 +278,12 @@
 			owner.balloon_alert(owner, "too much garlic!")
 		return FALSE
 	return TRUE
+
+/datum/action/cooldown/bloodsucker/feed/proc/get_sleep_time()
+	return (5 + level_current) SECONDS
+
+/datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
+	return clamp(round(FEED_DEFAULT_TIMER / (1.25 * (level_current || 1))), 1, FEED_DEFAULT_TIMER)
 
 /datum/action/cooldown/bloodsucker/feed/proc/notify_move_block()
 	SIGNAL_HANDLER

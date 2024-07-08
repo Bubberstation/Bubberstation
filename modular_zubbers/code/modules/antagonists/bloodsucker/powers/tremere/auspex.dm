@@ -42,12 +42,12 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
 	. = ..()
-	. += "When Activated, you will be hidden in a Cloak of Darkness.\n\
-		[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"].\n\
-		Teleporting will refill your stamina to full.\n\
-		At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding.\n\
-		At level [AUSPEX_SLEEP_LEVEL] you will cause people at your end location to fall asleep. \n\
-		The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
+	. += "When Activated, you will be hidden in a Cloak of Darkness."
+	. += "[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"].""
+	. += "Teleporting will refill your stamina to full."
+	. += "At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding.""
+	. += "At level [AUSPEX_SLEEP_LEVEL] you will cause people at your end location to fall asleep."
+	. += "The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/CheckValidTarget(atom/target_atom)
 	. = ..()
@@ -103,3 +103,7 @@
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.adjustStaminaLoss(-user.staminaloss)
 	PowerActivatedSuccesfully(cost_override = blood_cost)
+
+#undef AUSPEX_BLOOD_COST_PER_TILE
+#undef AUSPEX_BLEED_LEVEL
+#undef AUSPEX_SLEEP_LEVEL

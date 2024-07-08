@@ -41,8 +41,8 @@
 	var/obj/projectile/magic/arcane_barrage/bloodsucker/magic_9ball
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/Grant()
-	. = ..()
 	charges = get_max_charges()
+	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/on_power_upgrade()
 	cooldown_time = get_max_charges() * THAUMATURGY_COOLDOWN_PER_CHARGE
@@ -64,16 +64,16 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation()
 	. = ..()
-	. += "Thaumaturgy grants you the ability to cast and shoot a slow moving target seeking blood projectile.\n\
-		The projectile will auto aim to a nearby mob if you aim at the ground. \n\
-		If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor.\n\
-		You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())].\n\
-		At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time. \n\
-		At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors.\n\
-		At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs. \n\
-		The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
+	. += "Thaumaturgy grants you the ability to cast and shoot a slow moving target seeking blood projectile."
+	. += "The projectile will auto aim to a nearby mob if you aim at the ground."
+	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."
+	. += "You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())]."
+	. += "At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time."
+	. += "At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors."
+	. += "At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs."
+	. += "The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(trigger_flags)
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(mob/target)
 	. = ..()
 	charges = get_max_charges()
 	owner.balloon_alert(owner, "you start thaumaturgy")
