@@ -5,7 +5,7 @@
 	var/nextsoundemote = 1 //Time at which the next emote can be played
 
 /datum/emote
-	cooldown = EMOTE_DELAY
+	// cooldown = EMOTE_DELAY BUBBERSTATION CHANGE: REMOVES ABSURD EMOTE DELAY
 
 //Disables the custom emote blacklist from TG that normally applies to slimes.
 /datum/emote/living/custom
@@ -60,6 +60,22 @@
 			return 'modular_skyrat/modules/emotes/sound/emotes/male/male_sneeze.ogg'
 		return 'modular_skyrat/modules/emotes/sound/emotes/female/female_sneeze.ogg'
 	return
+
+/datum/emote/living/yawn
+	message_robot = "synthesizes a yawn."
+	message_AI = "synthesizes a yawns."
+
+/datum/emote/living/sniff/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(.)
+		var/turf/open/current_turf = get_turf(user)
+		if(istype(current_turf) && current_turf.pollution)
+			if(iscarbon(user))
+				var/mob/living/carbon/carbon_user = user
+				if(carbon_user.internal) //Breathing from internals means we cant smell
+					return
+				carbon_user.next_smell = world.time + SMELL_COOLDOWN
+			current_turf.pollution.smell_act(user)
 
 /datum/emote/flip/can_run_emote(mob/user, status_check, intentional)
 	if(intentional && (!HAS_TRAIT(user, TRAIT_FREERUNNING) && !HAS_TRAIT(user, TRAIT_STYLISH)) && !isobserver(user))
@@ -374,12 +390,6 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/caw2.ogg'
-
-/datum/emote/living/whistle
-	key = "whistle"
-	key_third_person = "whistles"
-	message = "whistles."
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/blep
 	key = "blep"
