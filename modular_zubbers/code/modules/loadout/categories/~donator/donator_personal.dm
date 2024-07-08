@@ -183,7 +183,7 @@
 /datum/loadout_item/inhand/kanken_pack // donator item for LT3
     name = "Kånken Backpack"
     item_path = /obj/item/storage/backpack/kanken
-    ckeywhitelist = list("lt3")
+    ckeywhitelist = list("lt3", "gavla")
 
 /*
 *	POCKETS
