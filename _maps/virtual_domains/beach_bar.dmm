@@ -83,6 +83,10 @@
 /obj/structure/flora/bush/sparsegrass/style_random,
 /turf/open/water/beach,
 /area/virtual_domain/fullbright)
+"db" = (
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_booze,
+/turf/open/floor/wood,
+/area/virtual_domain/fullbright)
 "di" = (
 /obj/machinery/vending/boozeomat,
 /obj/effect/mapping_helpers/atom_injector/obj_flag{
@@ -186,11 +190,6 @@
 "jl" = (
 /obj/structure/flora/rock/pile/jungle/style_random,
 /turf/open/misc/beach/sand,
-/area/virtual_domain/fullbright)
-"jp" = (
-/obj/machinery/light/small/directional/east,
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
-/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "jy" = (
 /obj/effect/turf_decal/sand{
@@ -296,6 +295,15 @@
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/wood,
 /area/virtual_domain/fullbright)
+"pL" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/chair/stool/directional/south,
+/obj/item/storage/backpack/duffelbag,
+/obj/item/clothing/under/shorts/red,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/wood,
+/area/virtual_domain/fullbright)
 "pT" = (
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
@@ -367,6 +375,11 @@
 "uc" = (
 /obj/machinery/light/small/directional/east,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/virtual_domain/fullbright)
+"ug" = (
+/obj/machinery/light/small/directional/east,
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
+/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "uk" = (
 /obj/structure/closet/crate/hydroponics,
@@ -483,17 +496,6 @@
 	},
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/neck/beads,
-/turf/open/floor/wood,
-/area/virtual_domain/fullbright)
-"xR" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/north{
-	layer = 2.9
-	},
-/obj/structure/chair/stool/directional/south,
-/obj/item/storage/backpack/duffelbag,
-/obj/item/clothing/under/shorts/red,
-/obj/item/clothing/glasses/sunglasses,
 /turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "xW" = (
@@ -680,16 +682,6 @@
 /obj/effect/baseturf_helper/virtual_domain,
 /turf/closed/wall/mineral/sandstone,
 /area/virtual_domain/fullbright)
-"Em" = (
-/obj/item/reagent_containers/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 5
-	},
-/obj/structure/table,
-/turf/open/floor/wood,
-/area/virtual_domain/fullbright)
 "Et" = (
 /obj/machinery/light/small/directional/east,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -749,10 +741,6 @@
 /obj/structure/table/wood,
 /obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/brute,
-/turf/open/floor/wood,
-/area/virtual_domain/fullbright)
-"GG" = (
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_booze,
 /turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "Hs" = (
@@ -857,6 +845,15 @@
 "Nr" = (
 /obj/machinery/light/directional/north,
 /turf/open/misc/beach/sand,
+/area/virtual_domain/fullbright)
+"Nw" = (
+/obj/effect/spawner/random/bedsheet{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "NM" = (
 /obj/structure/closet/crate/hydroponics,
@@ -1051,15 +1048,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/virtual_domain/fullbright)
-"Xj" = (
-/obj/effect/spawner/random/bedsheet{
-	dir = 4
-	},
-/obj/structure/bed{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/virtual_domain/fullbright)
 "Xt" = (
 /turf/open/misc/beach/coast/corner{
 	dir = 4
@@ -1089,6 +1077,14 @@
 /obj/structure/flora/bush/sparsegrass/style_random,
 /obj/item/toy/seashell,
 /turf/open/misc/beach/sand,
+/area/virtual_domain/fullbright)
+"Yj" = (
+/obj/item/reagent_containers/condiment/enzyme,
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 5
+	},
+/obj/structure/table,
+/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "Yq" = (
 /obj/machinery/portable_atmospherics/canister/air,
@@ -1625,7 +1621,7 @@ wD
 Bw
 JY
 Fn
-GG
+db
 TG
 TG
 TG
@@ -1668,7 +1664,7 @@ wD
 wD
 OR
 Fn
-jp
+ug
 TG
 TG
 TG
@@ -2127,7 +2123,7 @@ Gz
 WX
 wD
 BM
-Em
+Yj
 TG
 mq
 ri
@@ -2308,7 +2304,7 @@ Ud
 Ud
 YN
 wD
-xR
+pL
 CA
 Uh
 wD
@@ -2473,7 +2469,7 @@ Fn
 Fn
 dZ
 OE
-Xj
+Nw
 Fn
 Fn
 qR
@@ -2520,7 +2516,7 @@ TG
 Fn
 dZ
 OE
-Xj
+Nw
 Fn
 Gz
 uV
