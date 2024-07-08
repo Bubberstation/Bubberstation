@@ -8,7 +8,7 @@
 	. = ..()
 	quote_of_the_round_record_start = rand(CONFIG_GET(number/quote_of_the_round_time_random_start), CONFIG_GET(number/quote_of_the_round_time_random_end))
 	message_admins(
-		span_notice("The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
+		log_runtime("Notice: The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
 	)
 
 /datum/controller/subsystem/ticker/OnRoundend(datum/callback/cb)
@@ -20,7 +20,7 @@
 				CONFIG_GET(string/channel_announce_new_game)
 			)
 		)
-		log_world("Notice: A quote of the round was found, and should have been sent to discord.")
+		log_runtime("Notice: A quote of the round was found, and should have been sent to discord.")
 	else
 		if(world.time <= quote_of_the_round_record_start)
 			log_runtime("Error: A quote of the round could not be found due to the round being too short.")
