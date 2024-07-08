@@ -33,6 +33,15 @@
 		var/found_message = vsignal.data["message"]
 		var/found_job = vsignal.data["job"]
 
+		//Desanitize the contents, but reject the text for anything that may cause issues, such as code injection.
+		found_name = reject_bad_text(html_decode(found_name))
+		found_message = reject_bad_text(html_decode(found_message))
+		found_job = reject_bad_text(html_decode(found_job))
+
+		//These can be null due to reject_bad_text
+		if(!found_name || !found_message || !found_job)
+			return
+
 		//Check if the name and message are suitable (sometimes these can be bypassed).
 		if(is_ic_filtered(found_name) || is_ic_filtered(found_message) || is_ic_filtered(found_job))
 			return
@@ -59,7 +68,7 @@
 		SSticker.quote_of_the_round_text = found_message
 		SSticker.quote_of_the_round_attribution = "[found_name], [found_job]"
 		SSticker.quote_of_the_round_record_start = null //Chosen!
-		SSticker.quote_of_the_round_ckey = found_user.ckey
+		SSticker.quote_of_the_round_ckey = found_user.ckey ? found_user.ckey : "NO CKEY" //It's possible to be null.
 		message_admins("[found_message] by [ADMIN_LOOKUPFLW(found_user)] has been randomly selected as quote of the round. <a href='?src=[REF(src)];cancel_quote=1'>Click here to change</a>.")
 		log_world("[key_name(found_user)] has been randomly selected for quote of the round with the quote \"[found_message]\".")
 
