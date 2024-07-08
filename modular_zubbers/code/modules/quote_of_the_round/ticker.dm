@@ -10,6 +10,7 @@
 	message_admins(
 		span_notice("Notice: The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
 	)
+	log_runtime("The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
 
 /datum/controller/subsystem/ticker/declare_completion(force_ending)
 
@@ -19,11 +20,15 @@
 			CONFIG_GET(string/channel_announce_new_game)
 		)
 		to_chat(world, span_notice("A quote of the round was found, and should have been sent to discord."))
+		log_runtime("A quote of the round was found, and should have been sent to discord.")
+
 	else
 		if(world.time <= quote_of_the_round_record_start)
 			to_chat(world, span_notice("A quote of the round could not be found due to the round being too short."))
+			log_runtime("A quote of the round could not be found. The round ended too early.")
 		else
 			to_chat(world, span_notice("A quote of the round could not be found. Perhaps the crew should be more memorable."))
+			log_runtime("A quote of the round could not be found. Perhaps the filters are too strict?")
 
 	. = ..()
 
