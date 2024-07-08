@@ -107,7 +107,7 @@
 /datum/loadout_item/suit/skyymed_jacket // donator item for LT3
 	name = "Expedition Medical Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed
-	ckeywhitelist = list("lt3")
+	ckeywhitelist = list("lt3", "gavla")
 	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
 
 /*
