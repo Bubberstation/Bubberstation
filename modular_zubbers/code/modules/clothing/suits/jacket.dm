@@ -62,7 +62,7 @@
 	icon_state = "labcoat_skyymed"
 	worn_icon_state = "skyymed_worn"
 	icon = 'modular_zubbers/icons/donator/skyymed.dmi'
-	worn_icon_state = 'modular_zubbers/icons/donator/skyymed.dmi'
+	worn_icon = 'modular_zubbers/icons/donator/skyymed.dmi'
 	armor_type = /datum/armor/hazardvest_security_medic
 	blood_overlay_type = "armor"
 
