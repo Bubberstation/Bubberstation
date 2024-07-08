@@ -54,3 +54,18 @@
 	worn_icon_state = "flight"
 	icon = 'modular_zubbers/icons/obj/clothing/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+
+/obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed  //Donor item for LT3
+	name = "expedition medical jacket"
+	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	icon_state = "labcoat_skyymed"
+	worn_icon_state = "skyymed_worn"
+	icon = 'modular_zubbers/icons/donator/skyymed.dmi'
+	worn_icon_state = 'modular_zubbers/icons/donator/skyymed.dmi'
+	armor_type = /datum/armor/hazardvest_security_medic
+	blood_overlay_type = "armor"
+
+/obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed/Initialize(mapload)
+	. = ..()
+	allowed += list(/obj/item/gun, /obj/item/melee/baton/telescopic)
