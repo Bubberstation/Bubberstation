@@ -87,13 +87,6 @@
 	var/light = arguments[EXARG_KEY_LIGHT_RANGE]
 	var/explosion_range = max(heavy, medium, light, 0)
 	var/required_range = get_required_radius(inserted_core.anomaly_type)
-	var/turf/location = get_turf(src)
-
-	var/cap_multiplier = SSmapping.level_trait(location.z, ZTRAIT_BOMBCAP_MULTIPLIER)
-	if(isnull(cap_multiplier))
-		cap_multiplier = 1
-	var/capped_heavy = min(GLOB.MAX_EX_DEVESTATION_RANGE * cap_multiplier, heavy)
-	var/capped_medium = min(GLOB.MAX_EX_HEAVY_RANGE * cap_multiplier, medium)
 
 	if(explosion_range < required_range)
 		test_status = "Resultant detonation failed to produce enough implosive power to compress [inserted_core]. Items ejected."
