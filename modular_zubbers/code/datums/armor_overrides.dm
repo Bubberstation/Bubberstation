@@ -119,7 +119,7 @@
 	wound = 20
 
 /obj/item/mod/control/pre_equipped/blueshield/
-	applied_cell = /obj/item/stock_parts/cell/high
+	applied_cell = /obj/item/stock_parts/power_store/cell/high
 	applied_modules = list(
 		/obj/item/mod/module/storage,
 		/obj/item/mod/module/magnetic_harness,

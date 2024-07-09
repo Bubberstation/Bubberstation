@@ -532,6 +532,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/cargodise_freighter/bridge)
+"ih" = (
+/obj/structure/safe,
+/obj/item/mod/module/jetpack,
+/obj/item/mod/control/pre_equipped/standard,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/cargodise_freighter/vault)
 "is" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/cargodise_freighter/utility)
@@ -1085,11 +1091,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/cargodise_freighter/bridge)
-"rQ" = (
-/obj/structure/bed/double,
-/obj/effect/spawner/random/bedsheet/double,
-/turf/open/floor/wood/parquet,
-/area/ruin/space/has_grav/cargodise_freighter/kitchen)
 "rR" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -1153,6 +1154,29 @@
 "th" = (
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/cargodise_freighter/kitchen)
+"ti" = (
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/circuitboard/machine/ore_silo,
+/obj/item/circuitboard/machine/ore_redemption{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/circuitboard/machine/protolathe/offstation,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/item/circuitboard/machine/circuit_imprinter/department,
+/obj/item/circuitboard/machine/rtg/advanced,
+/obj/item/circuitboard/machine/rtg/advanced,
+/obj/item/circuitboard/machine/rtg/advanced,
+/obj/item/folded_navigation_gigabeacon,
+/obj/structure/cable,
+/obj/item/circuitboard/computer/powermonitor,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/cargodise_freighter/utility)
 "ty" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1199,6 +1223,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall)
+"tW" = (
+/obj/structure/bed/double,
+/obj/effect/spawner/random/bedsheet/double,
+/turf/open/floor/wood/parquet,
+/area/ruin/space/has_grav/cargodise_freighter/kitchen)
 "tY" = (
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 8
@@ -1405,29 +1434,6 @@
 "xF" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/cargodise_freighter/exterior)
-"xQ" = (
-/obj/item/stack/sheet/iron/twenty,
-/obj/item/circuitboard/machine/ore_silo,
-/obj/item/circuitboard/machine/ore_redemption{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/obj/item/storage/box/stockparts/deluxe,
-/obj/item/storage/box/stockparts/deluxe,
-/obj/structure/closet/crate,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/circuitboard/machine/protolathe/offstation,
-/obj/effect/spawner/random/engineering/toolbox,
-/obj/item/circuitboard/machine/circuit_imprinter/department,
-/obj/item/circuitboard/machine/rtg/advanced,
-/obj/item/circuitboard/machine/rtg/advanced,
-/obj/item/circuitboard/machine/rtg/advanced,
-/obj/item/folded_navigation_gigabeacon,
-/obj/structure/cable,
-/obj/item/circuitboard/computer/powermonitor,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/cargodise_freighter/utility)
 "xX" = (
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/cargodise_freighter/cargo)
@@ -1558,6 +1564,15 @@
 /obj/item/pen,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/cargodise_freighter/bridge)
+"zY" = (
+/obj/structure/bed/double{
+	dir = 1
+	},
+/obj/effect/spawner/random/bedsheet/double{
+	dir = 4
+	},
+/turf/open/floor/wood/parquet,
+/area/ruin/space/has_grav/cargodise_freighter/kitchen)
 "Aa" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/cargodise_freighter/kitchen)
@@ -1573,18 +1588,6 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark/smooth_half,
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall)
-"Ai" = (
-/obj/structure/closet/crate/secure/engineering,
-/obj/item/storage/toolbox/electrical,
-/obj/item/storage/toolbox/electrical,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/construction/rcd/loaded,
-/obj/item/pipe_dispenser,
-/obj/item/construction/plumbing/research,
-/obj/item/construction/plumbing/engineering,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/cargodise_freighter/utility)
 "Aj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -2493,12 +2496,6 @@
 	},
 /turf/open/floor/iron/kitchen,
 /area/ruin/space/has_grav/cargodise_freighter/kitchen)
-"NQ" = (
-/obj/structure/safe,
-/obj/item/mod/module/jetpack/advanced,
-/obj/item/mod/control/pre_equipped/standard,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/cargodise_freighter/vault)
 "NV" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/cargodise_freighter/quarters)
@@ -2623,15 +2620,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_half,
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall)
-"PT" = (
-/obj/structure/bed/double{
-	dir = 1
-	},
-/obj/effect/spawner/random/bedsheet/double{
-	dir = 4
-	},
-/turf/open/floor/wood/parquet,
-/area/ruin/space/has_grav/cargodise_freighter/kitchen)
 "PU" = (
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 8
@@ -3124,6 +3112,17 @@
 	dir = 4
 	},
 /area/ruin/space/has_grav/cargodise_freighter/bridge)
+"XQ" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/construction/rcd/loaded,
+/obj/item/pipe_dispenser,
+/obj/item/construction/plumbing/engineering,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/cargodise_freighter/utility)
 "XT" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/cargodise_freighter/quarters)
@@ -3650,7 +3649,7 @@ pm
 dp
 SZ
 VL
-Ai
+XQ
 is
 Mu
 NE
@@ -3774,7 +3773,7 @@ ok
 SP
 Bl
 wQ
-xQ
+ti
 Nr
 NE
 Dn
@@ -4050,7 +4049,7 @@ Gh
 Gh
 Gh
 Gg
-rQ
+tW
 Ey
 WQ
 Gg
@@ -4132,7 +4131,7 @@ Gh
 Gh
 Gh
 Gg
-PT
+zY
 Ey
 Fu
 Gg
@@ -4995,7 +4994,7 @@ Gh
 Gh
 Gh
 vh
-NQ
+ih
 Eo
 dT
 mL
