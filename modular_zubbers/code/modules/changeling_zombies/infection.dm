@@ -135,6 +135,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				can_cure = FALSE
 			else
 				var/damage_multiplier = max(1, (world.time - infection_timestamp) / (1 MINUTES) )
+				if(can_cure)
+					damage_multiplier = min(2,damage_multiplier) //Caps it to double.
 				if(host.stat && host.stat == DEAD)
 					host.adjustToxLoss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_DEAD * seconds_per_tick * damage_multiplier,0.1))
 				else
