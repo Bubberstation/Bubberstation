@@ -18,7 +18,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
-	can_bayonet = TRUE
 	max_mod_capacity = 15 // A crumb of mod capacity as a treat
 	recoil = 3 //railgun go brrrrr
 	gun_flags = NOT_A_REAL_GUN
@@ -38,9 +37,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
-	knife_x_offset = 20
-	knife_y_offset = 12
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun
@@ -58,9 +54,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
-	knife_x_offset = 20
-	knife_y_offset = 12
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
@@ -78,7 +71,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
 	max_mod_capacity = 200
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave
@@ -95,7 +87,6 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	can_bayonet = TRUE
 	max_mod_capacity = 75
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/m79
@@ -113,9 +104,11 @@
 	obj_flags = UNIQUE_RENAME
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
-	can_bayonet = FALSE
 	max_mod_capacity = 0
 	disablemodification = TRUE
+
+/obj/item/gun/energy/recharge/kinetic_accelerator/m79/add_bayonet_point()
+	return
 
 //Accelerator Casing
 //Fixed maths to use new standards
