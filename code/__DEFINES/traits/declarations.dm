@@ -1153,7 +1153,4 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Does this item bypass ranged armor checks?
 #define TRAIT_BYPASS_RANGED_ARMOR "bypass_ranged_armor"
 
-//For sodium sensetivity quirk
-#define TRAIT_SALT_SENSITIVE "salt_sensitive" //SPLURT addition
-
 // END TRAIT DEFINES
