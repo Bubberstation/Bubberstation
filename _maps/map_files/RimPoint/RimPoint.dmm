@@ -11349,11 +11349,7 @@
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 8
 	},
-/obj/machinery/computer/security/telescreen/interrogation{
-	name = "isolation room monitor";
-	network = list("isolation");
-	pixel_y = 26
-	},
+/obj/machinery/computer/security/telescreen/isolation/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
@@ -11936,6 +11932,7 @@
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
 	},
+/obj/machinery/computer/security/telescreen/broadcast_team/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/service/studio)
 "eGo" = (
@@ -17845,10 +17842,7 @@
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "gYU" = (
-/obj/machinery/computer/security/telescreen/ordnance{
-	dir = 8;
-	pixel_x = 26
-	},
+/obj/machinery/computer/security/telescreen/ordnance/directional/east,
 /obj/structure/chair/office/light{
 	dir = 4
 	},
@@ -32289,10 +32283,7 @@
 /area/station/engineering/atmos/hfr_room)
 "mIF" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen/ordnance{
-	dir = 4;
-	pixel_x = -26
-	},
+/obj/machinery/computer/security/telescreen/ordnance/directional/west,
 /obj/item/assembly/timer{
 	pixel_x = 5;
 	pixel_y = 4
@@ -40198,10 +40189,6 @@
 /area/station/science)
 "pQP" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen/broadcast_team{
-	dir = 4;
-	pixel_y = 3
-	},
 /turf/open/floor/iron/dark,
 /area/station/service/studio)
 "pQV" = (
@@ -46898,9 +46885,6 @@
 /area/station/security/checkpoint/supply)
 "sqW" = (
 /obj/structure/table/wood,
-/obj/machinery/computer/security/telescreen/interrogation{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/iron/checker,
 /area/station/security/interrogation)
@@ -54902,9 +54886,7 @@
 /area/station/science)
 "vAM" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen/minisat{
-	dir = 8
-	},
+/obj/machinery/computer/security/telescreen/minisat/directional/east,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/white,
 /area/station/engineering/transit_tube)
@@ -59058,6 +59040,7 @@
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/machinery/computer/security/telescreen/interrogation/directional/east,
 /turf/open/floor/iron/checker,
 /area/station/security/interrogation)
 "xid" = (

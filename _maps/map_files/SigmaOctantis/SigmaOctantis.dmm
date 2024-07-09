@@ -7150,6 +7150,7 @@
 /obj/effect/turf_decal/siding/wideplating_new/corner{
 	dir = 4
 	},
+/obj/machinery/computer/security/telescreen/broadcast_team/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/service/studio)
 "bFp" = (
@@ -29591,9 +29592,6 @@
 /area/station/medical/surgery)
 "gJF" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen/broadcast_team{
-	pixel_y = 3
-	},
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 4
 	},
@@ -70391,10 +70389,7 @@
 /area/station/medical/medbay/lobby)
 "qxy" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen/ordnance{
-	dir = 8;
-	pixel_y = 3
-	},
+/obj/machinery/computer/security/telescreen/ordnance/directional/east,
 /turf/open/floor/iron/white/diagonal,
 /area/station/science/ordnance/testlab)
 "qxB" = (
@@ -79983,13 +79978,7 @@
 	name = "AI Upload Turret Control";
 	pixel_y = 28
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the ai_upload.";
-	dir = 4;
-	name = "AI Upload Monitor";
-	network = list("aiupload");
-	pixel_x = -29
-	},
+/obj/machinery/computer/security/telescreen/aiupload/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
@@ -93098,10 +93087,7 @@
 /area/station/tcommsat/server)
 "vRu" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen/interrogation{
-	dir = 8;
-	pixel_y = 3
-	},
+/obj/machinery/computer/security/telescreen/interrogation/directional/north,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/security/interrogation)
@@ -95613,12 +95599,7 @@
 /turf/open/floor/plating/reinforced,
 /area/station/maintenance/port/greater)
 "wwo" = (
-/obj/machinery/computer/security/telescreen/interrogation{
-	name = "isolation room monitor";
-	network = list("isolation");
-	pixel_y = -26;
-	dir = 1
-	},
+/obj/machinery/computer/security/telescreen/isolation/directional/south,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
