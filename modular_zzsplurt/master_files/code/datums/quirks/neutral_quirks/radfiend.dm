@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(traits_by_type_radfiend, list(
 	// Remove glow
 	action_mob.remove_filter("rad_fiend_glow")
 
-/datum/action/rad_fiend/update_glow/Trigger()
+/datum/action/rad_fiend/update_glow/Trigger(trigger_flags)
 	. = ..()
 
 	// Define user mob
