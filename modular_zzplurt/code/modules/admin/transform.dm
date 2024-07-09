@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(pp_transformables, list(
 		newTypeName = newType
 
 	log_admin("[key_name(usr)] transformed [key_name(M)] into a [newTypeName].")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] transformed [key_name_admin(M)] into a [newTypeName].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] transformed [key_name_admin(M)] into a [newTypeName]."))
 
 	var/mob/newMob = M.change_mob_type(newType, delete_old_mob = TRUE)
 
