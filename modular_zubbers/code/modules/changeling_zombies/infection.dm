@@ -99,6 +99,15 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	var/mob/living/carbon/human/host = parent
 
+	if(SPT_PROB(2, seconds_per_tick) && istype(host.loc,/obj/machinery/cryo_cell))
+		var/obj/machinery/cryo_cell/gay_baby_jail = host.loc
+		if(gay_baby_jail.on)
+			gay_baby_jail.visible_message(
+				span_danger("Something thrashes inside [gay_baby_jail]!")
+			)
+			gay_baby_jail.Shake()
+			gay_baby_jail.take_damage(10,armour_penetration=100)
+
 	if(zombified)
 		var/list/healing_options = list()
 		if(host.getBruteLoss() > 0)
