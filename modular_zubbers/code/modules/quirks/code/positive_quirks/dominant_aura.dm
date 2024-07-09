@@ -48,6 +48,8 @@
 	for(var/mob/living/carbon/human/sub in hearers(world.view / 2, quirk_holder))
 		if(!sub.has_quirk(/datum/quirk/well_trained) || (sub == quirk_holder))
 			continue
+		if(sub.stat == DEAD)
+			continue
 		var/good_x = "pet"
 		switch(sub.gender)
 			if(MALE)

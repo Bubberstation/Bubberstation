@@ -10,7 +10,7 @@
 	weak_against_armour = TRUE
 	sharpness = NONE
 	shrapnel_type = null
-	embedding = null
+	embed_type = null
 
 
 /obj/item/ammo_casing/c9mm/flathead
