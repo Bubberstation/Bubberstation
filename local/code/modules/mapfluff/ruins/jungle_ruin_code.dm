@@ -161,12 +161,12 @@
 	update_inhand_icon(user)
 	upgrade_appliable.set_light_on(TRUE)
 	playsound(upgrade_appliable, 'sound/weapons/saberon.ogg', 35, TRUE)
-	force = /obj/item/melee/energy::force
-	throwforce = /obj/item/melee/energy::throwforce
-	bare_wound_bonus = /obj/item/melee/energy::bare_wound_bonus
-	demolition_mod = /obj/item/melee/energy::demolition_mod
-	armour_penetration = /obj/item/melee/energy::armour_penetration
-	block_chance = /obj/item/melee/energy::block_chance
+	force = /obj/item/melee/energy/sword::active_force
+	throwforce = /obj/item/melee/energy/sword::active_throwforce
+	bare_wound_bonus = /obj/item/melee/energy/sword::bare_wound_bonus
+	demolition_mod = /obj/item/melee/energy/sword::demolition_mod
+	armour_penetration = /obj/item/melee/energy/sword::armour_penetration
+	block_chance = /obj/item/melee/energy/sword::block_chance
 	return ..()
 
 /obj/item/luna_fragment/energy_retrofit/remove_upgrade(our_sord, mob/living/user)
