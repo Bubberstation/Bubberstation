@@ -61,9 +61,5 @@
 	icon_state = "labcoat_skyymed"
 	icon = 'modular_zubbers/icons/donator/skyymed.dmi'
 	worn_icon = 'modular_zubbers/icons/donator/skyymed_worn.dmi'
-	armor_type = /datum/armor/hazardvest_security_medic
+	armor_type = /datum/armor/toggle_labcoat
 	toggle_noun = "zipper"
-
-/obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed/Initialize(mapload)
-	. = ..()
-	allowed += list(/obj/item/gun, /obj/item/melee/baton/telescopic)
