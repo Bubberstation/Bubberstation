@@ -1,6 +1,8 @@
 /obj/item/gun/ballistic/automatic/wt550
-	can_bayonet = FALSE
 	can_suppress = FALSE
+
+/obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
+	return
 
 /obj/item/gun/ballistic/automatic/wt550/security
 	name = "\improper WT-551 Autorifle"
