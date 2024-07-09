@@ -26,8 +26,9 @@
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
-	if(shoes && body_position == STANDING_UP && loc == NewLoc && has_gravity(loc))
-		SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION)
+	if(shoes && body_position == STANDING_UP && has_gravity(loc))
+		if((. && !moving_diagonally) || (!. && moving_diagonally == SECOND_DIAG_STEP))
+			SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION)
 	if(wear_neck && body_position == STANDING_UP && loc == NewLoc && has_gravity(loc))
 		SEND_SIGNAL(wear_neck, COMSIG_NECK_STEP_ACTION) //Bubbers addition: Bell collars ring. (#1537) todo: modularize this
 

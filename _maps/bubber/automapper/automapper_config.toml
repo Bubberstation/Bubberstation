@@ -228,15 +228,15 @@ trait_name = "Station"
 map_files = ["birdshot_cryo.dmm"]
 directory = "_maps/skyrat/automapper/templates/birdshot/"
 required_map = "birdshot.dmm"
-coordinates = [147, 142, 1]
+coordinates = [136, 157, 1]
 trait_name = "Station"
 
 # Birdshot Barber
 [templates.birdshot_barber]
 map_files = ["birdshot_barber.dmm"]
-directory = "_maps/bubber/automapper/templates/Birdshot/barber.dmm"
+directory = "_maps/skyrat/automapper/templates/birdshot/"
 required_map = "birdshot.dmm"
-coordinates = [118, 145, 1]
+coordinates = [129, 127, 1]
 trait_name = "Station"
 
 # Birdshot NTR Office
@@ -255,12 +255,20 @@ required_map = "birdshot.dmm"
 coordinates = [188, 72, 1]
 trait_name = "Station"
 
+# Birdshot Vacant Room (to replace the mapped barber with ours)
+[templates.birdshot_vacant]
+map_files = ["birdshot_vacant.dmm"]
+directory = "_maps/skyrat/automapper/templates/birdshot/"
+required_map = "birdshot.dmm"
+coordinates = [117, 145, 1]
+trait_name = "Station"
+
 # Birdshot Supermatter Chamber
 [templates.birdshot_supermatter]
 map_files = ["birdshot_supermatter.dmm"]
 directory = "_maps/skyrat/automapper/templates/birdshot/"
 required_map = "birdshot.dmm"
-coordinates = [41, 201, 1]
+coordinates = [71, 211, 1]
 trait_name = "Station"
 
 # NORTHSTAR MAP EDITS
