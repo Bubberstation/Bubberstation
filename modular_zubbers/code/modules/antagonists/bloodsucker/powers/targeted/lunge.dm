@@ -25,7 +25,7 @@
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/on_power_upgrade()
 	. = ..()
-	//range is lowered when you get stronger.
+	//range is lowered when you get stronger, since it's instant now.
 	if(level_current > LUNGE_INSTANT_LEVEL)
 		target_range = LUNGE_INSTANT_RANGE
 

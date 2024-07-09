@@ -37,8 +37,7 @@
 	. = ..()
 	. += "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.<br>"
 	. += "This will completely immobilize them for the next [DisplayTimeText(get_power_time())].<br>"
-	if(level_current >= MESMERIZE_MUTE_LEVEL)
-		. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
+	. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
 	if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
 		. += "Not blocked by glasses.<br>"
 	else
@@ -54,15 +53,14 @@
 	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_SLOWDOWN_LEVEL] they will be also slowed down."
 	if(blocked_by_glasses && requires_facing_target)
 		. += "Mesmerize requires you to not be wearing glasses and to be facing your target."
-	else
-	if(blocked_by_glasses)
+	else if(blocked_by_glasses)
 		. += "Mesmerize requires you to not be wearing glasses."
-	if(requires_facing_target)
+	else if(requires_facing_target)
 		. += "Mesmerize requires you to be facing your target."
 	. += "You cannot wear anything covering your face, and both parties must be facing eachother."
 	. += "Obviously, both parties need to not be blind."
 	. += "Right clicking with the ability will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())], but will also confuse your victim for [DisplayTimeText(get_power_time())]."
-	. += "If your target is already mesmerized or a bloodsucker, the Power will fail.""
+	. += "If your target is already mesmerized or a bloodsucker, the Power will fail."
 	. += "Once mesmerized, the target will be unable to move for [DisplayTimeText(get_power_time())] and muted for [DisplayTimeText(get_mute_time())], scaling with level."
 	. += "At level [MESMERIZE_GLASSES_LEVEL], you will be able to use the power through items covering your face."
 	. += "At level [MESMERIZE_FACING_LEVEL], you will be able to mesmerize regardless of your target's direction."

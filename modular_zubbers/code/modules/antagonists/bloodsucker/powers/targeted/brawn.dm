@@ -120,12 +120,10 @@
 	// Target Type: Mob
 	if(isliving(target))
 		var/mob/living/target_atom = target
-		var/mob/living/carbon/carbonuser = user
 		//You know what I'm just going to take the average of the user's limbs max damage instead of dealing with 2 hands
-		var/obj/item/bodypart/user_active_arm = carbonuser.get_active_hand()
 		var/hitStrength = GetDamage()
 		// Knockdown!
-		var/powerlevel = min(5, 1 + level_current)
+		var/powerlevel = GetPowerLevel()
 		if(rand(5 + powerlevel) >= 5)
 			target_atom.visible_message(
 				span_danger("[user] lands a vicious punch, sending [target_atom] away!"), \
@@ -177,11 +175,22 @@
 			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
 
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetPowerLevel()
+	return min(5, 1 + level_current)
+
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetKnockdown()
-	return min(5, rand(10, 10 * powerlevel))
+	return min(5, rand(10, 10 * GetPowerLevel()))
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetDamage()
-	return user_active_arm.unarmed_damage_high * 1.25 + 2
+	var/mob/living/carbon/human/user = owner
+	var/obj/item/bodypart/user_active_arm
+	user_active_arm = user.get_active_hand()
+	if(!user || !user_active_arm)
+		return GetPunchDamage(initial(user_active_arm.unarmed_damage_high))
+	return GetPunchDamage(user_active_arm.unarmed_damage_high)
+
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/GetPunchDamage(punch_damage)
+	return punch_damage * 1.25 + 2
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
 	. = ..()

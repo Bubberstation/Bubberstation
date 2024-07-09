@@ -43,9 +43,9 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
 	. = ..()
 	. += "When Activated, you will be hidden in a Cloak of Darkness."
-	. += "[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"].""
+	. += "[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"]."
 	. += "Teleporting will refill your stamina to full."
-	. += "At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding.""
+	. += "At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding."
 	. += "At level [AUSPEX_SLEEP_LEVEL] you will cause people at your end location to fall asleep."
 	. += "The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
 

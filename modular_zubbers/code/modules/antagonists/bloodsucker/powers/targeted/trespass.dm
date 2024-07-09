@@ -108,5 +108,5 @@
 	puff.set_up(3, 0, target_turf)
 	puff.start()
 
-/datum/action/cooldown/bloodsucker/targeted/trespass/GetTeleportDelay()
+/datum/action/cooldown/bloodsucker/targeted/trespass/proc/GetTeleportDelay()
 	return max(5, 20 - level_current * 2.5)
