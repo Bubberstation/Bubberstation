@@ -39735,6 +39735,11 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
+/obj/machinery/button/door/directional/south{
+	id = "engstorage";
+	req_access = list("engine_equip");
+	name = "Secure Storage Access"
+	},
 /turf/open/floor/iron/white/side{
 	dir = 8
 	},

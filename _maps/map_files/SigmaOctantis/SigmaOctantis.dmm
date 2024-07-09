@@ -25338,6 +25338,11 @@
 	},
 /obj/item/folder/yellow,
 /obj/item/stamp/head/ce,
+/obj/machinery/button/door/directional/south{
+	id = "engstorage";
+	req_access = list("engine_equip");
+	name = "Secure Storage Access"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "fNF" = (
@@ -65288,6 +65293,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/button/door/directional/west{
+	id = "engstorage";
+	name = "Engineering Secure Storage Control";
+	req_access = list("engine_equip")
+	},
 /turf/open/floor/iron,
 /area/station/engineering/hallway)
 "pmz" = (
@@ -82836,20 +82846,18 @@
 /turf/open/floor/iron/goonplaque,
 /area/station/hallway/secondary/entry)
 "ttH" = (
-/obj/effect/turf_decal/siding/wideplating_new,
-/obj/effect/turf_decal/siding/wideplating_new{
-	dir = 1
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/obj/machinery/door/poddoor{
-	id = "engstorage";
-	name = "Engineering Secure Storage Lockdown"
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/button/door/directional/west{
-	id = "engstorage";
-	name = "Engineering Secure Storage Control";
-	req_access = list("engine_equip")
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/holopad,
+/turf/open/floor/iron/half{
+	dir = 8
 	},
-/turf/open/floor/iron/smooth_large,
 /area/station/engineering/hallway)
 "ttK" = (
 /obj/structure/cable,
@@ -136631,7 +136639,7 @@ bMs
 sul
 eYp
 pmp
-ttH
+tTK
 ipC
 vOw
 ogN
@@ -136891,7 +136899,7 @@ huT
 fIh
 qMl
 uts
-atP
+ttH
 evS
 atP
 wbi
