@@ -23930,6 +23930,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/button/crematorium{
+	id = "crematoriumCold";
+	pixel_x = -26
+	},
 /turf/open/floor/fake_snow/safe{
 	initial_gas_mix = "o2=26;n2=97;TEMP=259.15"
 	},
@@ -32302,9 +32306,11 @@
 /turf/open/floor/iron,
 /area/station/terminal/lobby)
 "jbu" = (
-/obj/effect/gibspawner/human/bodypartless,
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
+	},
+/obj/structure/bodycontainer/crematorium/creamatorium{
+	id = "crematoriumCold"
 	},
 /turf/open/floor/fake_snow/safe{
 	initial_gas_mix = "o2=26;n2=97;TEMP=259.15"
@@ -44096,6 +44102,7 @@
 /obj/effect/mapping_helpers/airlock/welded,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/fake_snow/safe{
 	initial_gas_mix = "o2=26;n2=97;TEMP=259.15"
 	},
