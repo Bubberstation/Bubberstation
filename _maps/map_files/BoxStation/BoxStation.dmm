@@ -72,7 +72,8 @@
 "aaD" = (
 /obj/structure/table/wood/fancy/orange,
 /obj/item/clothing/head/costume/crown{
-	pixel_y = 10
+	pixel_y = 10;
+	name = "cargonian crown"
 	},
 /obj/item/gun/ballistic/revolver/golden{
 	spawnwithmagazine = 0;
@@ -382,6 +383,10 @@
 	},
 /obj/item/clothing/accessory/badge/holo/hos{
 	pixel_x = -6
+	},
+/obj/item/food/burger/red{
+	desc = "Made from the meat of the first Clown to slip a Head of Security. Illegal in every sector but when has that ever stopped Security from throwing their own laws to the wind?";
+	name = "security burger"
 	},
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
@@ -6075,6 +6080,7 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Theater Storage"
 	},
+/mob/living/basic/pet/dog/breaddog,
 /turf/open/floor/iron/white/side{
 	dir = 4
 	},
@@ -6340,6 +6346,10 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
+/obj/item/clothing/head/costume/crown{
+	name = "crown of clown";
+	desc = "A crown fit for a king, a king of comedy."
+	},
 /turf/open/floor/iron/white/side{
 	dir = 4
 	},
@@ -6531,6 +6541,7 @@
 	pixel_x = 7;
 	pixel_y = -2
 	},
+/obj/item/clothing/head/hats/warden/drill/blueshield,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "aFY" = (
@@ -6895,8 +6906,8 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
 "aHi" = (
-/obj/structure/closet/crate/coffin,
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/closet/crate/coffin/securecoffin,
 /turf/open/floor/iron/smooth_large,
 /area/station/service/chapel/office)
 "aHj" = (
@@ -7293,8 +7304,8 @@
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
 "aID" = (
-/obj/structure/closet/crate/coffin,
 /obj/structure/window/spawner/directional/east,
+/obj/structure/closet/crate/coffin/metalcoffin,
 /turf/open/floor/iron/smooth_large,
 /area/station/service/chapel/office)
 "aIF" = (
@@ -8359,6 +8370,7 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "aMF" = (
+/obj/effect/gibspawner/human,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/service/kitchen)
 "aMG" = (
@@ -10797,7 +10809,7 @@
 	dir = 8
 	},
 /obj/item/radio/intercom/directional/west,
-/obj/effect/spawner/random/burgerstation/vending,
+/obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/iron/white/corner{
 	dir = 1
 	},
@@ -13901,11 +13913,9 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "bfO" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/emergency,
-/obj/effect/turf_decal/trimline/blue/filled/corner,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/obj/structure/sign/departments/morgue,
+/turf/closed/wall,
+/area/station/medical/surgery)
 "bfR" = (
 /obj/structure/table/reinforced,
 /obj/item/hand_labeler{
@@ -15051,6 +15061,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/light/small/directional/east,
+/obj/structure/mannequin/skeleton,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "bkg" = (
@@ -30677,6 +30688,10 @@
 	pixel_x = 5;
 	pixel_y = -24
 	},
+/obj/item/food/burger/black{
+	name = "silicon burger";
+	desc = "Who put this here? Those things don't even eat."
+	},
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai)
 "cwT" = (
@@ -30884,6 +30899,7 @@
 	name = "janitorial supplies"
 	},
 /obj/item/storage/box/bodybags,
+/obj/item/folder/white,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "cyT" = (
@@ -30940,7 +30956,7 @@
 /turf/open/floor/plating/airless,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "czn" = (
-/obj/effect/spawner/random/burgerstation/vending,
+/obj/machinery/vending/hotdog,
 /turf/open/floor/wood,
 /area/station/hallway/secondary/service)
 "czu" = (
@@ -32112,6 +32128,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/table,
 /obj/item/modular_computer/laptop/preset/civilian,
+/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic/gamer,
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/bitrunning/den)
 "cFu" = (
@@ -34266,6 +34283,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
+"dFq" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/closet/crate/coffin/blackcoffin,
+/turf/open/floor/iron/smooth_large,
+/area/station/service/chapel/office)
 "dFs" = (
 /obj/structure/rack,
 /obj/item/electronics/apc,
@@ -35991,7 +36013,7 @@
 /area/station/medical/medbay/central)
 "eWy" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
-/obj/effect/spawner/random/burgerstation/vending,
+/obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "eYn" = (
@@ -36108,6 +36130,10 @@
 	pixel_y = 5
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 5
+	},
 /obj/item/soulstone/anybody/chaplain{
 	pixel_x = 5;
 	pixel_y = -2
@@ -36267,7 +36293,6 @@
 	dir = 8;
 	pixel_y = 1
 	},
-/obj/item/folder/white,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/dark,
@@ -37009,6 +37034,7 @@
 	pixel_x = -26;
 	pixel_y = 6
 	},
+/obj/item/clothing/head/hats/warden/drill/nanotrasen,
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "fJv" = (
@@ -39504,6 +39530,10 @@
 /obj/item/clipboard,
 /obj/item/toy/figure/cmo,
 /obj/structure/table/wood/fancy/blue,
+/obj/item/food/burger/blue{
+	desc = "Do no harm. Except to your waistline.";
+	name = "medical burger"
+	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "hAu" = (
@@ -42286,6 +42316,7 @@
 /area/station/medical/medbay/lobby)
 "jsP" = (
 /obj/structure/table/optable,
+/obj/item/paper/guides/jobs/medical/morgue,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "jsT" = (
@@ -43462,12 +43493,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "kjH" = (
-/obj/structure/closet/firecloset,
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 8
-	},
-/obj/machinery/light/directional/south,
-/turf/open/floor/iron,
+/turf/closed/wall,
 /area/station/hallway/primary/starboard)
 "kjN" = (
 /obj/structure/disposalpipe/segment,
@@ -44409,10 +44435,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port)
 "kQk" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/maintenance/two,
-/turf/open/floor/plating,
-/area/station/maintenance/department/medical/morgue)
+/obj/machinery/door/window/right/directional/west{
+	name = "Secure Storage";
+	req_access = list("morgue_secure")
+	},
+/turf/open/floor/iron/dark,
+/area/station/medical/morgue)
 "kQl" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/warning{
 	dir = 1
@@ -46187,9 +46215,9 @@
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/rd)
 "mkV" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/obj/structure/sign/warning/no_smoking/circle/directional/east,
+/turf/closed/wall,
+/area/station/medical/medbay)
 "mlh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -46278,6 +46306,7 @@
 /area/station/maintenance/port/fore)
 "mqX" = (
 /obj/structure/table/wood,
+/obj/item/clothing/head/hats/warden/drill/captain,
 /turf/open/floor/iron/grimy,
 /area/station/command/heads_quarters/captain)
 "mrc" = (
@@ -47529,6 +47558,18 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron,
 /area/station/science/cytology)
+"nos" = (
+/obj/structure/cable,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/iron/dark,
+/area/station/medical/morgue)
 "noK" = (
 /obj/structure/girder,
 /turf/open/floor/iron/dark,
@@ -50176,10 +50217,10 @@
 /turf/open/floor/iron/kitchen,
 /area/station/security/prison)
 "plW" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/tile/basalt,
+/turf/open/floor/plating,
+/area/station/maintenance/starboard/fore)
 "pmh" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -51150,6 +51191,11 @@
 /obj/item/pen/red,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
+	},
+/mob/living/basic/snake{
+	faction = list(FACTION_NEUTRAL);
+	name = "Saul";
+	desc = "Called."
 	},
 /turf/open/floor/carpet/blue,
 /area/station/service/lawoffice)
@@ -52454,6 +52500,13 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/cytology)
+"qSO" = (
+/obj/structure/bodycontainer/morgue/beeper_off{
+	dir = 2
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/iron/dark,
+/area/station/medical/morgue)
 "qSS" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron/white,
@@ -52508,7 +52561,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/structure/sign/warning/no_smoking/circle/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
 "qUe" = (
@@ -52599,7 +52651,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "qWu" = (
-/obj/machinery/plumbing/growing_vat,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/small/directional/east,
 /obj/effect/turf_decal/stripes/red/line{
@@ -53880,6 +53931,12 @@
 	pixel_x = 3
 	},
 /obj/structure/window/plasma/spawner/directional/east,
+/obj/item/food/burger/purple{
+	pixel_y = -8;
+	pixel_x = -14;
+	name = "science burger";
+	desc = "Rumoured to be the first ever burger made by Albert Einstein. KFT chef, no relation."
+	},
 /turf/open/floor/glass/plasma,
 /area/station/command/heads_quarters/rd)
 "rQj" = (
@@ -56766,7 +56823,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/obj/item/chair/plastic,
+/obj/item/food/burger/green{
+	name = "service burger";
+	desc = "Made by one of the first ever Nanotrasen chefs. Maybe...Skip this one, actually."
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "tXK" = (
@@ -56824,6 +56884,10 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 4
+	},
+/obj/item/food/burger/yellow{
+	desc = "Somehow, some utterly insane Chief Engineer made this out of a decommissioned crystal. How it doesn't kill you is a question for the ages.";
+	name = "supermatter burger"
 	},
 /turf/open/floor/iron/white/corner{
 	dir = 8
@@ -57290,15 +57354,7 @@
 /turf/open/floor/iron/recharge_floor,
 /area/station/science/robotics/mechbay)
 "uvG" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/cable,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "uvK" = (
@@ -61831,6 +61887,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"xAD" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/vending/vendcation,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/station/commons/fitness)
 "xAH" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -61971,6 +62036,13 @@
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/station/maintenance/port/fore)
+"xHD" = (
+/obj/item/food/burger/orange{
+	name = "telecommunication burger";
+	desc = "Frozen to a crisp."
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/station/tcommsat/server)
 "xHG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -88821,7 +88893,7 @@ bWE
 bXB
 bYC
 bWB
-bWB
+xHD
 bXC
 cch
 cde
@@ -99841,7 +99913,7 @@ pnL
 bln
 hHU
 boj
-wed
+mkV
 jib
 bsx
 jsH
@@ -100306,7 +100378,7 @@ xzh
 xzh
 xzh
 arq
-aCv
+xAD
 axm
 azd
 azd
@@ -102411,7 +102483,7 @@ bfL
 vki
 bfL
 bmY
-gbO
+bfO
 gbO
 gbO
 gbO
@@ -103432,9 +103504,9 @@ pJI
 aYV
 dCL
 aYV
-bfO
-bfL
+kjH
 esZ
+bhm
 bhm
 bhm
 sPM
@@ -103689,9 +103761,9 @@ bam
 aYV
 iKz
 aYV
-plW
-bfL
+kjH
 hkm
+bhm
 bhm
 fYZ
 dXT
@@ -103947,7 +104019,7 @@ aYV
 dCL
 aYV
 kjH
-bfL
+nos
 uvG
 bkf
 xdk
@@ -104203,9 +104275,9 @@ aYO
 aYV
 iKz
 bez
-mkV
-bfL
-bfL
+kjH
+qSO
+kQk
 bfL
 bfL
 bfL
@@ -104462,7 +104534,7 @@ bci
 beB
 bfS
 bfS
-kQk
+bfS
 sJG
 gbT
 ipA
@@ -109324,7 +109396,7 @@ alP
 bWL
 aEe
 alP
-aHi
+dFq
 aHi
 gVj
 aFw
@@ -110606,8 +110678,8 @@ ayj
 qYR
 biM
 alP
-auG
-fzr
+anf
+plW
 fzr
 mrX
 alP
