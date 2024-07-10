@@ -1,7 +1,7 @@
 /datum/quirk/masquerade_food
 	name = "Masquerade"
 	desc = "A hemophage that has adapted to be able to consume normal food and drink.  Such an act is merely for pleasure, as they derive no nutritional benefit from such."
-	icon = FA_ICON_SMILE_BEAM
+	icon = FA_ICON_MASKS_THEATER
 	value = 2
 	species_whitelist = list(SPECIES_HEMOPHAGE)
 	mob_trait = TRAIT_MASQUERADE_FOOD
