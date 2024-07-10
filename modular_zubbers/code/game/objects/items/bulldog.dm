@@ -1,3 +1,3 @@
 /obj/item/gun/ballistic/shotgun/bulldog
-  burst_size: NULL
-  fire_delay: 1
+	burst_size = 1
+	fire_delay = 1
