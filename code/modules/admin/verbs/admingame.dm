@@ -6,12 +6,14 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		to_chat(user, span_warning("You seem to be selecting a mob that doesn't exist anymore."), confidential = TRUE)
 		return
 
+	// SPLURT EDIT START
 	var/useModern = user.prefs.read_preference(/datum/preference/toggle/use_tgui_player_panel)
 	if (useModern)
 		if(!player.mob_panel)
 			player.create_player_panel()
 		player.mob_panel.ui_interact(user.mob)
 		return
+	// SPLURT EDIT END
 
 	log_admin("[key_name(user)] checked the individual player panel for [key_name(player)][isobserver(user.mob)?"":" while in game"].")
 
