@@ -24,6 +24,7 @@
 					/obj/item/mod,
 					/obj/item/reagent_containers/syringe,
 					/obj/item/reagent_containers/dropper,
+					/obj/item/food/monkeycube,
 					)
 
 /obj/item/borg/apparatus/research/examine()

@@ -127,15 +127,18 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-/obj/item/experimental_dash/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+
+/obj/item/experimental_dash/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
+		return ITEM_INTERACT_SUCCESS
 	if(cyborg.cell.charge <= charge_cost)//Prevents usage when charge is low
 		user.balloon_alert(user, "Low charge!")
-		return
-	if(!target.density && jaunt?.teleport(user, target))
+		return ITEM_INTERACT_SUCCESS
+	if(!interacting_with.density && jaunt?.teleport(user, interacting_with))
 		cyborg?.cell?.use(charge_cost)
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/experimental_dash/equipped(mob/user, slot, initial)
 	. = ..()
