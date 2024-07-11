@@ -196,6 +196,16 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/indestructible,
 /area/deathmatch)
+"cQ" = (
+/obj/structure/chair/stool/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/obj/machinery/flasher/directional/north{
+	id = "visitorflash"
+	},
+/turf/open/floor/iron,
+/area/deathmatch)
 "cW" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
@@ -449,20 +459,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/deathmatch)
-"hS" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = 30
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/turf/open/floor/carpet,
-/area/deathmatch)
 "hY" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -612,6 +608,15 @@
 /obj/machinery/syndicatebomb/training,
 /turf/open/indestructible,
 /area/deathmatch)
+"kM" = (
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/light/directional/west,
+/obj/machinery/light_switch/directional/west,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/indestructible,
+/area/deathmatch)
 "kU" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/indestructible,
@@ -725,16 +730,6 @@
 	},
 /obj/structure/cable,
 /turf/open/indestructible,
-/area/deathmatch)
-"mz" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/light_switch/directional/east,
-/turf/open/indestructible/dark,
 /area/deathmatch)
 "mC" = (
 /obj/effect/turf_decal/bot,
@@ -893,6 +888,14 @@
 	dir = 4
 	},
 /turf/open/indestructible,
+/area/deathmatch)
+"oc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/stool/directional/east,
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 4
+	},
+/turf/open/floor/iron,
 /area/deathmatch)
 "os" = (
 /obj/structure/sign/warning/pods{
@@ -1187,6 +1190,18 @@
 /obj/item/storage/toolbox/emergency/old,
 /turf/open/indestructible/dark,
 /area/deathmatch)
+"sd" = (
+/obj/machinery/door/window/brigdoor/security/holding/left/directional/south{
+	id = "Holding Cell";
+	name = "Holding Cell"
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/indestructible,
+/area/deathmatch)
 "sg" = (
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/iron/grimy,
@@ -1274,14 +1289,6 @@
 	},
 /turf/open/indestructible/dark,
 /area/deathmatch)
-"sN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/chair/stool/directional/east,
-/obj/effect/turf_decal/trimline/red/warning{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/deathmatch)
 "sR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -1347,6 +1354,10 @@
 	dir = 6
 	},
 /turf/open/indestructible,
+/area/deathmatch)
+"tW" = (
+/obj/machinery/light_switch/directional/west,
+/turf/open/floor/iron/grimy,
 /area/deathmatch)
 "ua" = (
 /obj/machinery/door/poddoor/preopen{
@@ -1549,16 +1560,6 @@
 /obj/effect/landmark/deathmatch_player_spawn,
 /turf/open/indestructible,
 /area/deathmatch)
-"xd" = (
-/obj/structure/chair/stool/directional/east,
-/obj/effect/turf_decal/trimline/red/warning{
-	dir = 4
-	},
-/obj/machinery/flasher/directional/north{
-	id = "visitorflash"
-	},
-/turf/open/floor/iron,
-/area/deathmatch)
 "xi" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/red{
@@ -1710,6 +1711,15 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/indestructible/dark,
 /area/deathmatch)
+"zn" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/telescreen/prison/directional/north,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
 "zq" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/grimy,
@@ -1804,6 +1814,11 @@
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/light/directional/north,
 /turf/open/indestructible,
+/area/deathmatch)
+"AG" = (
+/obj/machinery/light_switch/directional/south,
+/obj/structure/cable,
+/turf/open/floor/carpet,
 /area/deathmatch)
 "AS" = (
 /obj/machinery/door/firedoor,
@@ -2014,13 +2029,6 @@
 	},
 /obj/structure/grille/broken,
 /turf/open/indestructible/dark,
-/area/deathmatch)
-"DS" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/machinery/light_switch/directional/east,
-/turf/open/indestructible,
 /area/deathmatch)
 "Eb" = (
 /obj/machinery/door/window/brigdoor/left/directional/south{
@@ -2323,6 +2331,16 @@
 "HK" = (
 /turf/closed/indestructible/fakeglass,
 /area/deathmatch)
+"HP" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light_switch/directional/east,
+/turf/open/indestructible/dark,
+/area/deathmatch)
 "HV" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/blue{
@@ -2379,6 +2397,10 @@
 "IU" = (
 /obj/structure/sign/warning/pods,
 /turf/closed/wall/r_wall,
+/area/deathmatch)
+"IZ" = (
+/obj/machinery/light_switch/directional/west,
+/turf/open/indestructible/dark,
 /area/deathmatch)
 "Jb" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -2649,6 +2671,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/iron/grimy,
 /area/deathmatch)
+"Mt" = (
+/obj/machinery/computer/security/telescreen/prison/directional/south,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/indestructible,
+/area/deathmatch)
 "Mx" = (
 /obj/structure/table,
 /obj/item/clothing/mask/gas/sechailer{
@@ -2861,6 +2891,13 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/deathmatch)
+"Po" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/machinery/light_switch/directional/east,
+/turf/open/indestructible,
+/area/deathmatch)
 "Pt" = (
 /turf/open/floor/iron/grimy,
 /area/deathmatch)
@@ -2892,20 +2929,6 @@
 /obj/structure/cable,
 /turf/open/indestructible,
 /area/deathmatch)
-"PV" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	dir = 1;
-	name = "Prison Monitor";
-	network = list("prison");
-	pixel_y = -30
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/indestructible,
-/area/deathmatch)
 "Qd" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/sunglasses{
@@ -2929,10 +2952,6 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/dark,
-/area/deathmatch)
-"Qh" = (
-/obj/machinery/light_switch/directional/west,
-/turf/open/floor/iron/grimy,
 /area/deathmatch)
 "Qp" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -2973,15 +2992,6 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 10
-	},
-/turf/open/indestructible,
-/area/deathmatch)
-"Rl" = (
-/obj/effect/turf_decal/tile/red,
-/obj/machinery/light/directional/west,
-/obj/machinery/light_switch/directional/west,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
 	},
 /turf/open/indestructible,
 /area/deathmatch)
@@ -3124,11 +3134,6 @@
 "SR" = (
 /obj/structure/cable,
 /turf/open/indestructible/dark,
-/area/deathmatch)
-"Tw" = (
-/obj/machinery/light_switch/directional/south,
-/obj/structure/cable,
-/turf/open/floor/carpet,
 /area/deathmatch)
 "Tx" = (
 /obj/machinery/status_display/evac/directional/north,
@@ -3441,10 +3446,6 @@
 /obj/effect/decal/cleanable/oil/slippery,
 /turf/open/indestructible,
 /area/deathmatch)
-"XM" = (
-/obj/machinery/light_switch/directional/west,
-/turf/open/indestructible/dark,
-/area/deathmatch)
 "XS" = (
 /obj/machinery/light/directional/east,
 /obj/structure/table,
@@ -3494,17 +3495,19 @@
 	},
 /turf/open/indestructible,
 /area/deathmatch)
-"YC" = (
-/obj/machinery/door/window/brigdoor/security/holding/left/directional/south{
-	id = "Holding Cell";
-	name = "Holding Cell"
+"YG" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/structure/cable,
-/turf/open/indestructible,
+/obj/machinery/light_switch/directional/west{
+	pixel_y = -12
+	},
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/indestructible/dark,
 /area/deathmatch)
 "YI" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -3653,20 +3656,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/indestructible,
 /area/deathmatch)
-"ZN" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/light_switch/directional/west{
-	pixel_y = -12
-	},
-/obj/structure/extinguisher_cabinet/directional/west,
-/turf/open/indestructible/dark,
-/area/deathmatch)
 "ZO" = (
 /obj/effect/decal/cleanable/robot_debris/down,
 /turf/open/floor/plating,
@@ -3678,9 +3667,9 @@ IJ
 Yh
 Yh
 Yh
-xd
+cQ
 YW
-sN
+oc
 IJ
 IJ
 IJ
@@ -4132,7 +4121,7 @@ tH
 xi
 Am
 EP
-mz
+HP
 Kh
 Rv
 UU
@@ -4187,7 +4176,7 @@ yH
 uD
 xk
 Bf
-XM
+IZ
 JU
 YW
 yy
@@ -4292,7 +4281,7 @@ IJ
 Yh
 sw
 sJ
-ZN
+YG
 YW
 nB
 GM
@@ -4329,7 +4318,7 @@ ob
 ob
 tQ
 mS
-Rl
+kM
 Ux
 YW
 yy
@@ -4363,7 +4352,7 @@ AS
 Nw
 pc
 WI
-YC
+sd
 xu
 bM
 nI
@@ -4441,7 +4430,7 @@ vt
 CS
 bA
 GU
-PV
+Mt
 XK
 XK
 XI
@@ -4477,7 +4466,7 @@ Hz
 Ik
 Zv
 ad
-Qh
+tW
 Pt
 eD
 QG
@@ -4560,7 +4549,7 @@ Ik
 Os
 mE
 Yh
-hS
+zn
 FY
 dp
 Pt
@@ -4578,7 +4567,7 @@ Cx
 ri
 yO
 cW
-DS
+Po
 Os
 Hp
 UQ
@@ -4686,7 +4675,7 @@ cf
 cf
 YN
 aE
-Tw
+AG
 Yh
 Wg
 qP
