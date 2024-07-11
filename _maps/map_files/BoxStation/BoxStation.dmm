@@ -3846,6 +3846,10 @@
 /area/station/construction/mining/aux_base)
 "avQ" = (
 /obj/structure/table/reinforced,
+/obj/item/food/burger/orange{
+	desc = "Made by those abandoned by society.";
+	name = "prison burger"
+	},
 /turf/open/floor/iron/cafeteria,
 /area/station/security/prison)
 "avR" = (
@@ -40148,7 +40152,6 @@
 /area/station/service/chapel)
 "hQn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/item/clothing/under/rank/prisoner/classic,
 /turf/open/floor/plating,
 /area/station/security/prison)
 "hQu" = (
@@ -52973,11 +52976,8 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/hydroponics)
 "qTr" = (
-/obj/item/food/burger/orange{
-	desc = "Made by those abandoned by society.";
-	name = "prison burger"
-	},
-/turf/open/floor/plating,
+/obj/item/clothing/under/rank/prisoner/classic,
+/turf/closed/wall/r_wall,
 /area/station/security/prison)
 "qTC" = (
 /obj/structure/disposalpipe/segment{
@@ -60605,6 +60605,7 @@
 /obj/structure/closet/generic/wall/empty{
 	pixel_y = 32
 	},
+/obj/item/clothing/under/rank/prisoner/classic,
 /turf/open/floor/carpet,
 /area/station/security/execution/transfer)
 "woP" = (
@@ -85312,7 +85313,7 @@ acd
 kcz
 pqf
 lFg
-aai
+qTr
 woJ
 nlM
 hIM
@@ -85801,7 +85802,7 @@ bJc
 sUX
 aai
 xFA
-qTr
+hnO
 wOx
 acd
 acd
