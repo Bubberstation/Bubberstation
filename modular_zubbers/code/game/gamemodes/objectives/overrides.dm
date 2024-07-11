@@ -9,7 +9,3 @@
 	steal_objective.owner = owner
 	steal_objective.find_target()
 	return steal_objective
-
-/datum/uplink_handler/generate_objectives()
-	on_update()
-	return FALSE
