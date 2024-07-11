@@ -14,11 +14,14 @@ type Props = Partial<{
   open: boolean;
   title: ReactNode;
   icon: string;
+  // SPLURT EDIT START
+  disabled: boolean;
+  // SPLURT EDIT END
 }> &
   BoxProps;
 
 export function Collapsible(props: Props) {
-  const { children, color, title, buttons, icon, ...rest } = props;
+  const { children, color, title, buttons, icon, disabled, ...rest } = props;
   const [open, setOpen] = useState(props.open);
 
   return (
@@ -29,6 +32,9 @@ export function Collapsible(props: Props) {
             fluid
             color={color}
             icon={icon ? icon : open ? 'chevron-down' : 'chevron-right'}
+            // SPLURT EDIT START
+            disabled={disabled}
+            // SPLURT EDIT END
             onClick={() => setOpen(!open)}
             {...rest}
           >
@@ -39,7 +45,12 @@ export function Collapsible(props: Props) {
           <div className="Table__cell Table__cell--collapsing">{buttons}</div>
         )}
       </div>
-      {open && <Box mt={1}>{children}</Box>}
+      {open &&
+        // SPLURT EDIT START
+        !disabled && (
+          // SPLURT EDIT END
+          <Box mt={1}>{children}</Box>
+        )}
     </Box>
   );
 }
