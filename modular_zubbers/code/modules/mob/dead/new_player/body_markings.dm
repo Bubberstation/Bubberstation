@@ -35,13 +35,15 @@
 
 /datum/body_marking/bubber/clowncross
 	name = "Clown Cross"
-	icon_state = "clowncross_head"
+	icon_state = "clowncross"
 	affected_bodyparts = HEAD
+	gendered = FALSE
 
 /datum/body_marking/bubber/clownlips
 	name = "Clown Lips"
-	icon_state = "clownlips_head"
+	icon_state = "clownlips"
 	affected_bodyparts = HEAD
+	gendered = FALSE
 
 /datum/body_marking/bubber/longsock
 	name = "Longsock"
