@@ -42,7 +42,9 @@ ADMIN_VERB(cmd_admin_check_player_exp, R_ADMIN, "Player Playtime", "View player 
 		to_chat(user, span_warning("Tracking is disabled in the server configuration file."), confidential = TRUE)
 		return
 
+	// SPLURT EDIT START
 	new /datum/player_playtime(usr)
+	// SPLURT EDIT END
 
 /client/proc/trigger_centcom_recall()
 	if(!check_rights(R_ADMIN))

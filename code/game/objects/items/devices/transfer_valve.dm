@@ -119,7 +119,6 @@
 //Triggers mousetraps
 /obj/item/transfer_valve/attack_hand(mob/user, list/modifiers)
 	. = ..()
-
 	if(.)
 		return
 	if(attached_device)

@@ -536,7 +536,6 @@
 	. = ..()
 	if(.)
 		return
-
 	switch(action)
 		if("make", "make_mass")
 			var/mob/user = usr
@@ -551,7 +550,6 @@
 					to_chat(user, span_notice("You made [crafted_items] item\s."))
 			else
 				make_action(crafting_recipe, user)
-
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
