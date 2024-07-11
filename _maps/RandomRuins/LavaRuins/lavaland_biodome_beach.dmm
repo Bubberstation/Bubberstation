@@ -278,9 +278,21 @@
 	dir = 4
 	},
 /turf/open/floor/iron{
-	icon = 'icons/misc/beach.dmi';
+	icon = 'icons/obj/fluff/beach.dmi';
 	icon_state = "sand"
 	},
+/area/ruin/powered/beach)
+"hq" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/spawner/random/bedsheet{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "hy" = (
 /obj/machinery/chem_master/condimaster{
@@ -467,7 +479,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/iron{
-	icon = 'icons/misc/beach.dmi';
+	icon = 'icons/obj/fluff/beach.dmi';
 	icon_state = "sand"
 	},
 /area/ruin/powered/beach)
@@ -530,16 +542,6 @@
 "rK" = (
 /obj/item/toy/beach_ball,
 /turf/open/misc/beach/sand,
-/area/ruin/powered/beach)
-"rU" = (
-/obj/item/reagent_containers/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 5
-	},
-/obj/structure/table,
-/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "sa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
@@ -863,11 +865,6 @@
 	},
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/powered/beach)
-"Ft" = (
-/obj/machinery/light/small/directional/east,
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "FC" = (
 /obj/structure/sink/kitchen/directional/west{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -905,17 +902,6 @@
 "Gf" = (
 /obj/structure/sign/poster/contraband/space_cola/directional/north,
 /turf/open/misc/beach/sand,
-/area/ruin/powered/beach)
-"GA" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/north{
-	layer = 2.9
-	},
-/obj/structure/chair/stool/directional/south,
-/obj/item/storage/backpack/duffelbag,
-/obj/item/clothing/under/shorts/red,
-/obj/item/clothing/glasses/sunglasses,
-/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "GB" = (
 /obj/structure/table/wood,
@@ -1102,6 +1088,11 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
+"OU" = (
+/obj/machinery/light/small/directional/east,
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "Pr" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/iron/grimy,
@@ -1167,6 +1158,16 @@
 /turf/open/misc/beach/coast{
 	dir = 8
 	},
+/area/ruin/powered/beach)
+"RB" = (
+/obj/structure/closet/cabinet,
+/obj/item/storage/backpack/duffelbag,
+/obj/item/clothing/under/shorts/blue,
+/obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian,
+/obj/item/clothing/shoes/sandal/beach,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/clothing/neck/beads,
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "RE" = (
 /turf/closed/wall/mineral/wood/nonmetal,
@@ -1265,14 +1266,13 @@
 /obj/structure/noticeboard/staff,
 /turf/closed/wall/mineral/wood/nonmetal,
 /area/ruin/powered/beach)
-"UI" = (
-/obj/structure/closet/cabinet,
+"UQ" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/chair/stool/directional/south,
 /obj/item/storage/backpack/duffelbag,
-/obj/item/clothing/under/shorts/blue,
-/obj/item/clothing/suit/costume/wellworn_shirt/graphic/ian,
-/obj/item/clothing/shoes/sandal/beach,
+/obj/item/clothing/under/shorts/red,
 /obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/neck/beads,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "UT" = (
@@ -1365,21 +1365,17 @@
 	},
 /turf/open/misc/beach/sand,
 /area/ruin/powered/beach)
+"Xj" = (
+/obj/item/reagent_containers/condiment/enzyme,
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 5
+	},
+/obj/structure/table,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "Xt" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "Surfer Shack 1"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
-"XL" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/spawner/random/bedsheet{
-	dir = 4
-	},
-/obj/structure/bed{
-	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
@@ -1546,7 +1542,7 @@ VI
 VI
 FH
 aj
-Ft
+OU
 aC
 aC
 CK
@@ -1884,7 +1880,7 @@ hj
 CT
 VI
 tQ
-rU
+Xj
 aC
 Ds
 ww
@@ -2021,7 +2017,7 @@ Lm
 Lm
 rv
 VI
-GA
+UQ
 bH
 bM
 VI
@@ -2142,7 +2138,7 @@ BE
 Mf
 de
 TC
-XL
+hq
 Fr
 qF
 ZA
@@ -2178,7 +2174,7 @@ kh
 aj
 de
 TC
-XL
+hq
 MZ
 hj
 mw
@@ -2206,7 +2202,7 @@ aC
 aj
 EE
 Rk
-UI
+RB
 aj
 tB
 aC
