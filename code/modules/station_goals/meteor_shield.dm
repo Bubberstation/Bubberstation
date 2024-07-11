@@ -171,8 +171,9 @@
 			say("Warning. Further tampering has been reported.")
 			priority_announce("Warning. Tampering of meteor satellites puts the station at risk of exotic, deadly meteor collisions. Please intervene by checking your GPS devices for strange signals, and dismantling the tampered meteor shields.", "Strange Meteor Signal Warning")
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_FOUR)
-			say("Warning. Warning. Dark Matt-eor on course for station.")
-			force_event_async(/datum/round_event_control/dark_matteor, "an array of tampered meteor satellites")
+			say("Warning. Warning. Twin tunguska meteors on course for station.")
+			//force_event_async(/datum/round_event_control/dark_matteor, "an array of tampered meteor satellites") BUBBER EDIT
+			spawn_meteors(2, /obj/effect/meteor/tunguska) // BUBBER EDIT END
 
 /obj/machinery/satellite/meteor_shield/proc/change_meteor_chance(mod)
 	// Update the weight of all meteor events
