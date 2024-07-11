@@ -33,6 +33,21 @@
 	icon_state = "fangs"
 	affected_bodyparts = HEAD
 
+/datum/body_marking/bubber/clowncross
+	name = "Clown Cross"
+	icon_state = "clowncross_head"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/clownlips
+	name = "Clown Lips"
+	icon_state = "clownlips_head"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/clownlipsdark
+	name = "Clown Lips (Dark)"
+	icon_state = "clownlipsdark_head"
+	affected_bodyparts = HEAD
+
 /datum/body_marking/bubber/longsock
 	name = "Longsock"
 	icon_state = "longsock"

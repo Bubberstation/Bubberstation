@@ -38,6 +38,11 @@
 	icon_state = "royal_curls"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+/datum/sprite_accessory/hair/bubberclown
+	name = "Clown"
+	icon_state = "hair_clown"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+
 //Sprite from Monkestation: https://github.com/Monkestation/MonkeStation
 /datum/sprite_accessory/hair/marge
 	name = "Marge"
