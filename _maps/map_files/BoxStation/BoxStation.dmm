@@ -36615,6 +36615,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/contraband/prison,
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/iron/kitchen{
 	dir = 1
@@ -51621,12 +51622,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/service/library)
-"pVc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable,
-/obj/effect/spawner/random/contraband/prison,
-/turf/open/floor/plating,
-/area/station/security/prison/safe)
 "pVi" = (
 /obj/structure/closet/crate/trashcart/laundry,
 /obj/effect/turf_decal/bot,
@@ -52976,9 +52971,12 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/hydroponics)
 "qTr" = (
+/obj/structure/bed,
+/obj/structure/cable,
+/obj/item/radio/intercom/prison/directional/north,
 /obj/item/clothing/under/rank/prisoner/classic,
-/turf/closed/wall/r_wall,
-/area/station/security/prison)
+/turf/open/floor/iron,
+/area/station/security/prison/safe)
 "qTC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -60605,7 +60603,6 @@
 /obj/structure/closet/generic/wall/empty{
 	pixel_y = 32
 	},
-/obj/item/clothing/under/rank/prisoner/classic,
 /turf/open/floor/carpet,
 /area/station/security/execution/transfer)
 "woP" = (
@@ -82478,7 +82475,7 @@ fFP
 fFP
 aaJ
 fFP
-pVc
+fFP
 aaJ
 fFP
 fFP
@@ -82728,13 +82725,13 @@ aaJ
 ikZ
 rTk
 abz
-ikZ
+qTr
 oLv
 abz
 jYu
 iBu
 abz
-ikZ
+qTr
 oLv
 abz
 ikZ
@@ -85313,7 +85310,7 @@ acd
 kcz
 pqf
 lFg
-qTr
+aai
 woJ
 nlM
 hIM
