@@ -149,8 +149,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 /// Cuts all the indicators on a mob in a loop.
 /datum/component/status_indicator/proc/cut_indicators_overlays()
 	SIGNAL_HANDLER
-	for(var/prospective_indicator in status_indicators)
-		attached_mob.cut_overlay(prospective_indicator)
+	attached_mob.cut_overlay(status_indicators)
 
 /// Refreshes the indicators over a mob's head. Should only be called when adding or removing a status indicator with the above procs,
 /// or when the mob changes size visually for some reason.
