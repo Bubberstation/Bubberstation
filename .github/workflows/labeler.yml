@@ -1,7 +1,8 @@
 name: PR Labeling
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  pull_request:
+    types: [synchronize]
+
 jobs:
   labeler:
     runs-on: ubuntu-latest

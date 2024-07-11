@@ -731,6 +731,10 @@
 	model_select_icon = "medical"
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = 3
+	borg_skins = list(
+		"Machinified Doctor" = list(SKIN_ICON_STATE = "medical"),
+		"Qualified Doctor" = list(SKIN_ICON_STATE = "qualified_doctor"),
+	)
 
 /obj/item/robot_model/miner
 	name = "Miner"
