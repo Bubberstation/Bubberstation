@@ -699,6 +699,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
+/obj/structure/window/spawner/directional/east,
 /turf/open/floor/iron/small,
 /area/station/medical/pharmacy)
 "aqg" = (
@@ -7153,6 +7154,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
+/obj/structure/window/spawner/directional/west,
 /turf/open/floor/iron/white/small,
 /area/station/medical/pharmacy)
 "cNt" = (
@@ -34366,8 +34368,40 @@
 /obj/item/stack/sheet/mineral/plasma{
 	pixel_y = 4
 	},
-/obj/item/clothing/glasses/science,
 /obj/structure/cable,
+/obj/item/assembly/timer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/assembly/timer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/assembly/timer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/assembly/timer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/assembly/igniter{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/assembly/igniter{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/assembly/igniter{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/assembly/igniter{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/clothing/glasses/science,
 /turf/open/floor/iron/white/small,
 /area/station/medical/pharmacy)
 "nzW" = (
@@ -51537,6 +51571,15 @@
 /obj/machinery/light/directional/north,
 /obj/structure/disposalpipe/segment{
 	dir = 8
+	},
+/obj/item/storage/box/syringes{
+	pixel_y = 4
+	},
+/obj/item/storage/box/syringes,
+/obj/item/gun/syringe,
+/obj/machinery/door/window/right/directional/south{
+	name = "Secure Supplies";
+	req_access = list("pharmacy")
 	},
 /turf/open/floor/iron/white/smooth_half{
 	dir = 1
