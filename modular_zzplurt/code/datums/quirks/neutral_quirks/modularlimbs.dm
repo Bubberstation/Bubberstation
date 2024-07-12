@@ -1,8 +1,9 @@
 /datum/quirk/modularlimbs
 	name = "Modular Limbs"
 	desc = "Your limbs are able to be attached and detached easily... Unfortunately, everyone around you can alter your limbs too!"
-	icon = FA_ICON_HAND
+	icon = FA_ICON_PUZZLE_PIECE
 	value = 0
+	medical_record_text = "Patient's limbs seem to be easily detachable and reattachable."
 
 /datum/quirk/modularlimbs/add()
 	var/mob/living/carbon/human/C = quirk_holder
