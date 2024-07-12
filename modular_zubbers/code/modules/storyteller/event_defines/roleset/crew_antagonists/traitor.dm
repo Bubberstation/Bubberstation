@@ -4,7 +4,10 @@
 
 	antag_flag = ROLE_TRAITOR
 	antag_datum = /datum/antagonist/traitor
-	weight = 6
+	min_players = 40
+	weight = 5
+	base_antags = 1
+	maximum_antags = 2
 
 	tags = list(TAG_CREW_ANTAG)
 
@@ -12,3 +15,4 @@
 	name = "Sleeper Agents (Traitors)"
 	roundstart = FALSE
 	weight = 7
+	antag_datum = /datum/antagonist/traitor/infiltrator/sleeper_agent
