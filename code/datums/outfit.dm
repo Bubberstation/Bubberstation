@@ -107,6 +107,19 @@
 	///ID of the slot containing a gas tank
 	var/internals_slot = null
 
+	//sandstorm edit
+	///Slot for underwear like boxers and panties
+	var/underwear = null
+	///Slot for socks, yes, the thing that usually goes before your shoes
+	var/socks = null
+	///Slot for the undershirt (which is quite a foreign concept to me) or bras
+	var/shirt = null
+	///Slot for the opposite ear.
+	var/ears_extra = null
+	///Slot for the part of your arms that isn't quite hands yet.
+	var/wrists = null
+	// worst feature in the game below
+
 	/**
 	  * Any skillchips the mob should have in their brain.
 	  *
@@ -116,11 +129,6 @@
 
 	///Should we preload some of this job's items?
 	var/preload = FALSE
-
-	/// Any undershirt. While on humans it is a string, here we use paths to stay consistent with the rest of the equips.
-	var/datum/sprite_accessory/undershirt = null
-	var/datum/sprite_accessory/underwear = null
-	var/datum/sprite_accessory/socks = null
 
 /**
  * Called at the start of the equip proc
@@ -189,7 +197,7 @@
 	if(neck)
 		EQUIP_OUTFIT_ITEM(neck, ITEM_SLOT_NECK)
 	if(ears)
-		EQUIP_OUTFIT_ITEM(ears, ITEM_SLOT_EARS)
+		EQUIP_OUTFIT_ITEM(ears, ITEM_SLOT_EARS_LEFT)
 	if(glasses)
 		EQUIP_OUTFIT_ITEM(glasses, ITEM_SLOT_EYES)
 	if(back)
@@ -210,6 +218,19 @@
 
 	if(suit_store)
 		EQUIP_OUTFIT_ITEM(suit_store, ITEM_SLOT_SUITSTORE)
+
+	// Sandstorm edit
+	if(ears_extra)
+		EQUIP_OUTFIT_ITEM(ears_extra, ITEM_SLOT_EARS_RIGHT)
+	if(underwear)
+		EQUIP_OUTFIT_ITEM(underwear, ITEM_SLOT_UNDERWEAR)
+	if(socks)
+		EQUIP_OUTFIT_ITEM(socks, ITEM_SLOT_SOCKS)
+	if(shirt)
+		EQUIP_OUTFIT_ITEM(shirt, ITEM_SLOT_SHIRT)
+	if(wrists)
+		EQUIP_OUTFIT_ITEM(wrists, ITEM_SLOT_WRISTS)
+	//
 
 	if(undershirt)
 		user.undershirt = initial(undershirt.name)

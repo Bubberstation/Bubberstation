@@ -932,6 +932,18 @@
 		owner.update_worn_oversuit()
 	if(flags & ITEM_SLOT_ICLOTHING)
 		owner.update_worn_undersuit()
+	//skyrat edit
+	if(flags & ITEM_SLOT_UNDERWEAR)
+		owner.update_worn_underwear()
+	if(flags & ITEM_SLOT_SOCKS)
+		owner.update_worn_socks()
+	if(flags & ITEM_SLOT_SHIRT)
+		owner.update_worn_shirt()
+	if(flags & ITEM_SLOT_EARS)
+		owner.update_worn_ears_extra()
+	if(flags & ITEM_SLOT_WRISTS)
+		owner.update_worn_wrists()
+	//
 	if(flags & ITEM_SLOT_GLOVES)
 		owner.update_worn_gloves()
 	if(flags & ITEM_SLOT_EYES)
