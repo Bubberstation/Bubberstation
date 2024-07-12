@@ -31,6 +31,25 @@
 				/obj/item/clothing/head/costume/strigihat = 3,
 				/obj/item/clothing/head/anubite = 3,
 				/obj/item/clothing/under/costume/dragon_maid = 3,
+				/obj/item/clothing/head/playbunnyears = 6,
+				/obj/item/clothing/neck/tie/bunnytie = 6,
+				/obj/item/clothing/under/costume/playbunny = 6,
+				/obj/item/clothing/suit/jacket/tailcoat = 6,
+				/obj/item/clothing/neck/tie/bunnytie/magician = 6,
+				/obj/item/clothing/under/costume/playbunny/magician = 6,
+				/obj/item/clothing/suit/wizrobe/magician = 6,
+				/obj/item/clothing/head/playbunnyears/british = 6,
+				/obj/item/clothing/neck/tie/bunnytie/blue = 6,
+				/obj/item/clothing/under/costume/playbunny/british = 6,
+				/obj/item/clothing/suit/jacket/tailcoat/british = 6,
+				/obj/item/clothing/head/playbunnyears/communist = 6,
+				/obj/item/clothing/neck/tie/bunnytie/communist = 6,
+				/obj/item/clothing/under/costume/playbunny/communist = 6,
+				/obj/item/clothing/suit/jacket/tailcoat/communist = 6,
+				/obj/item/clothing/head/playbunnyears/usa = 6,
+				/obj/item/clothing/under/costume/playbunny/usa = 6,
+				/obj/item/clothing/suit/jacket/tailcoat/usa = 6,
+				/obj/item/clothing/suit/jacket/tailcoat/plasmaman = 6,
 			),
 		),
 	)
@@ -44,6 +63,10 @@
 		/obj/item/clothing/under/syndicate/skyrat/enclave = 3,
 		/obj/item/clothing/under/syndicate/skyrat/enclave/officer = 3,
 		/obj/item/clothing/under/rank/security/detective/cowboy/armorless = 3,
+		/obj/item/clothing/head/playbunnyears/syndicate/fake = 3,
+		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3, //Armored but it's only Fire and Acid, not a balance concern
+		/obj/item/clothing/under/syndicate/syndibunny/fake = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/syndicate/fake = 3,
 	)
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
@@ -81,4 +104,27 @@
 /obj/machinery/vending/wardrobe/jani_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/under/costume/dragon_maid = 3,
+	)
+
+/obj/machinery/vending/wardrobe/bar_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/suit/jacket/tailcoat/bartender = 2,
+		/obj/item/clothing/neck/tie/bunnytie = 2,
+		/obj/item/clothing/head/playbunnyears = 2,
+		/obj/item/clothing/under/costume/playbunny = 2,
+	)
+
+/obj/machinery/vending/wardrobe/syndie_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/syndicate = 3,
+		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3,
+		/obj/item/clothing/under/syndicate/syndibunny = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/syndicate = 3,
+	)
+
+/obj/machinery/vending/magivend
+	zubbers_products = list(
+		/obj/item/clothing/neck/tie/bunnytie/magician = 3,
+		/obj/item/clothing/under/costume/playbunny/magician = 3,
+		/obj/item/clothing/suit/wizrobe/magician = 3,
 	)

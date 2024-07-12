@@ -60,6 +60,7 @@
 				/obj/item/clothing/suit/short_coat = 5,
 				/obj/item/clothing/suit/hooded/sigmarcoat = 5,
 				/obj/item/clothing/suit/jacket/skyy = 5,
+				/obj/item/clothing/suit/jacket/tailcoat = 5,
 			),
 		),
 
