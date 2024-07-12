@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(traits_by_type_radfiend, list(
 	mob_trait = TRAIT_RAD_FIEND
 	gain_text = span_notice("You feel empowered by Cherenkov's glow.")
 	lose_text = span_notice("You realize that rads aren't so rad.")
+	medical_record_text = "Patient is slightly radioactive."
 
 /datum/quirk/rad_fiend/add()
 	// Define quirk holder mob
