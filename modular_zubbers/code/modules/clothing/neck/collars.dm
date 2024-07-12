@@ -36,7 +36,7 @@
 	update_icon(UPDATE_OVERLAYS)
 	RegisterSignal(src, COMSIG_NAME_CHANGED, PROC_REF(on_update_name))
 
-/obj/item/clothing/neck/kink_collar/locked/gps/proc/on_update_name(new_name)
+/obj/item/clothing/neck/kink_collar/locked/gps/proc/on_update_name()
 	SIGNAL_HANDLER
 	gps.gpstag = name
 
