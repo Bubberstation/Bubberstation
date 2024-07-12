@@ -40,7 +40,7 @@
 	create_storage(storage_type = /datum/storage/pockets/small)
 
 /obj/item/clothing/under/syndicate/syndibunny/fake
-	armor_type = /datum/armor/none
+	armor_type = /datum/armor/clothing_under/none
 
 /obj/item/clothing/under/costume/playbunny/magician
 	name = "magician's bunny suit"
