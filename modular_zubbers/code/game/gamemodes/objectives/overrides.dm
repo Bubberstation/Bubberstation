@@ -15,7 +15,7 @@
 	objectives = list(
 //		/datum/traitor_objective/ultimate/battlecruiser = 1, Debatable.
 		/datum/traitor_objective/ultimate/battle_royale = 1,
-		/datum/traitor_objective/ultimate/dark_matteor = 1,
+//		/datum/traitor_objective/ultimate/dark_matteor = 1, This is broken and I need to fix it
 		/datum/traitor_objective/ultimate/infect_ai = 1,
 //		/datum/traitor_objective/ultimate/romerol = 1, Meh.
 //		/datum/traitor_objective/ultimate/supermatter_cascade = 1, Engineering doesn't need to cook this spaghetti today.
