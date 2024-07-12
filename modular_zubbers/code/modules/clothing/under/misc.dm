@@ -49,7 +49,6 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
-	greyscale_config_worn_digitigrade = null
 
 /obj/item/clothing/under/costume/playbunny/magician/Initialize(mapload)
 	. = ..()
@@ -71,7 +70,6 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
-	greyscale_config_worn_digitigrade = null
 
 /obj/item/clothing/under/costume/playbunny/british
 	name = "british bunny suit"
@@ -80,7 +78,6 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
-	greyscale_config_worn_digitigrade = null
 
 /obj/item/clothing/under/costume/playbunny/communist
 	name = "really red bunny suit"
@@ -89,7 +86,6 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
-	greyscale_config_worn_digitigrade = null
 
 /obj/item/clothing/under/costume/playbunny/usa
 	name = "striped bunny suit"
@@ -98,4 +94,3 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
-	greyscale_config_worn_digitigrade = null

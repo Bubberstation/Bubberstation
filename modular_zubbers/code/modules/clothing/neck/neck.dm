@@ -1,3 +1,20 @@
+/obj/item/clothing/neck/tie
+	var/tie_type = "tie_greyscale"
+
+/obj/item/clothing/neck/tie/update_icon()
+	. = ..()
+	// Normal strip & equip delay, along with 2 second self equip since you need to squeeze your head through the hole.
+	if(is_tied)
+		icon_state = "[tie_type]_tied"
+		strip_delay = 4 SECONDS
+		equip_delay_other = 4 SECONDS
+		equip_delay_self = 2 SECONDS
+	else // Extremely quick strip delay, it's practically a ribbon draped around your neck
+		icon_state = "[tie_type]_untied"
+		strip_delay = 1 SECONDS
+		equip_delay_other = 1 SECONDS
+		equip_delay_self = 0
+
 /obj/item/clothing/neck/tie/bunnytie
 	name = "bowtie collar"
 	desc = "A fancy tie that includes a collar. Looking snazzy!"

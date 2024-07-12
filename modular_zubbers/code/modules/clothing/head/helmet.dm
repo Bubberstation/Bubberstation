@@ -67,7 +67,7 @@
 	name = "bunny ears headband"
 	desc = "A pair of bunny ears attached to a headband. One of the ears is already crooked."
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	icon_state = "playbunny_ears"
 	greyscale_colors = "#39393f"
 	greyscale_config = /datum/greyscale_config/playbunnyears

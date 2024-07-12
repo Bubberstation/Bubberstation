@@ -30,7 +30,7 @@
 
 /datum/greyscale_config/tailcoat_worn
 	name = "Worn Tailcoat"
-	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/tailcoat_worn.json'
 
 /datum/greyscale_config/tailcoat_bar
@@ -40,7 +40,7 @@
 
 /datum/greyscale_config/tailcoat_bar_worn
 	name = "Worn Bartender's Tailcoat"
-	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/tailcoat_bar_worn.json'
 
 /datum/greyscale_config/bowtie_collar
@@ -55,7 +55,7 @@
 
 /datum/greyscale_config/playbunnyears
 	name = "Playbunny Ears"
-	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/playbunny_ears.json'
 
 /datum/greyscale_config/playbunnyears_worn

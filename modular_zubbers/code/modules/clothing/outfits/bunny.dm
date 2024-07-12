@@ -66,7 +66,7 @@
 	uniform = /obj/item/clothing/under/costume/playbunny/magician
 	suit = /obj/item/clothing/suit/wizrobe/magician
 	back = /obj/item/storage/backpack/satchel/leather
-	head = /obj/item/clothing/head/wizard/magician
+	head = /obj/item/clothing/head/playbunnyears
 	shoes = /obj/item/clothing/shoes/sandal
 	neck = /obj/item/clothing/neck/tie/bunnytie/magician/tied
 	l_hand = /obj/item/gun/magic/wand/nothing
