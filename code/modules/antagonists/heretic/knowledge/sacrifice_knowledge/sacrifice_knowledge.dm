@@ -149,6 +149,15 @@
 			valid_targets -= department_mind
 			break
 
+///Bubber Edit begin - Heretics now always get another heretic as a sacrifice target (if there is one)
+	for(var/datum/mind/heretic_mind as anything in shuffle(valid_targets))
+		var/datum/antagonist/heretic/heretic_sac = heretic_mind.has_antag_datum(/datum/antagonist/heretic)
+		if(heretic_sac)
+			final_targets += heretic_mind
+			valid_targets -= heretic_mind
+			break
+///Bubber Edit end
+
 	// Now grab completely random targets until we'll full
 	var/target_sanity = 0
 	while(length(final_targets) < num_targets_to_generate && length(valid_targets) > num_targets_to_generate && target_sanity < 25)
