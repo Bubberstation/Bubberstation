@@ -186,6 +186,7 @@
 
 	var/datum/antagonist/heretic/heretic_datum = IS_HERETIC(user)
 	var/mob/living/carbon/human/sacrifice = locate() in selected_atoms
+	var/datum/antagonist/heretic/amongus_sacrifice = sacrifice.mind.has_antag_datum(/datum/antagonist/heretic)//bubberstation edit - allows heretics to count as heads of staff for objective purposes
 	if(!sacrifice)
 		CRASH("[type] sacrifice_process didn't have a human in the atoms list. How'd it make it so far?")
 	if(!(sacrifice in heretic_datum.sac_targets))
@@ -197,7 +198,7 @@
 
 	var/feedback = "Your patrons accept your offer"
 	var/sac_job_flag = sacrifice.mind?.assigned_role?.job_flags | sacrifice.last_mind?.assigned_role?.job_flags
-	if(sac_job_flag & JOB_HEAD_OF_STAFF)
+	if(sac_job_flag & JOB_HEAD_OF_STAFF || amongus_sacrifice)//bubberstation edit - allows heretics to count as heads of staff for objective purposes
 		heretic_datum.knowledge_points++
 		heretic_datum.high_value_sacrifices++
 		feedback += " <i>graciously</i>"
