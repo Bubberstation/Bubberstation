@@ -517,6 +517,7 @@
 	ADD_TRAIT(src, TRAIT_DISFIGURED, "husk")
 	update_body()
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_UNHUSKABLE), PROC_REF(became_unhuskable))
+	return TRUE //MODULAR ZUBBERS CHANGE: RETURN TRUE
 
 /// Called when we become unhuskable while already husked
 /mob/living/proc/became_unhuskable()
