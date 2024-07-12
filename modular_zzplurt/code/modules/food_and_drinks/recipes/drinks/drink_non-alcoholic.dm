@@ -1,5 +1,4 @@
 //SPLURT drinks
-
 /datum/chemical_reaction/drink/wockyslush
 	results = list(/datum/reagent/consumable/wockyslush = 5)
 	required_reagents = list(/datum/reagent/toxin/fentanyl = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/lemon_lime = 1)
