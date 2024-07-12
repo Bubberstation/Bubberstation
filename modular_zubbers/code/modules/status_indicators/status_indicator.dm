@@ -195,6 +195,7 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 		indicator.appearance_flags = PIXEL_SCALE|TILE_BOUND|NO_CLIENT_COLOR|RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM|KEEP_APART
 		indicator.pixel_y = y_offset
 		indicator.pixel_x = current_x_position
+		my_carbon_mob.cut_overlay(indicator) // if case of race leftovers
 		my_carbon_mob.add_overlay(indicator)
 		// Adding the margin space every time saves a conditional check on the last iteration,
 		// and it won't cause any issues since no more icons will be added, and the var is not used for anything else.
