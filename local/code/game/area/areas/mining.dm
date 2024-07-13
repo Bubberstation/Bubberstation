@@ -9,7 +9,6 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambience_index = AMBIENCE_MINING
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | FLORA_ALLOWED
