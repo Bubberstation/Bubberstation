@@ -1,7 +1,7 @@
 /datum/bounty/item/security/recharger
 	name = "Rechargers"
 	description = "Nanotrasen military academy is conducting marksmanship exercises. They request that rechargers be shipped."
-	reward = CARGO_CRATE_VALUE * 4
+	reward = CARGO_CRATE_VALUE * 8
 	required_count = 3
 	wanted_types = list(/obj/machinery/recharger = TRUE)
 
@@ -29,13 +29,14 @@
 /datum/bounty/item/security/earmuffs
 	name = "Earmuffs"
 	description = "Central Command is getting tired of your station's messages. They've ordered that you ship some earmuffs to lessen the annoyance."
-	reward = CARGO_CRATE_VALUE * 2
+	reward = CARGO_CRATE_VALUE * 5
+	required_count = 3
 	wanted_types = list(/obj/item/clothing/ears/earmuffs = TRUE)
 
 /datum/bounty/item/security/handcuffs
 	name = "Handcuffs"
 	description = "A large influx of escaped convicts have arrived at Central Command. Now is the perfect time to ship out spare handcuffs (or restraints)."
-	reward = CARGO_CRATE_VALUE * 2
+	reward = CARGO_CRATE_VALUE * 7
 	required_count = 5
 	wanted_types = list(/obj/item/restraints/handcuffs = TRUE)
 
@@ -46,7 +47,7 @@
 	description = "Perform a routine security inspection using an N-spect scanner on the following station area:"
 	required_count = 1
 	wanted_types = list(/obj/item/paper/report = TRUE)
-	reward = CARGO_CRATE_VALUE * 5
+	reward = CARGO_CRATE_VALUE * 8
 	var/area/demanded_area
 
 /datum/bounty/item/security/paperwork/New()
