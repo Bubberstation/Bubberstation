@@ -21,6 +21,7 @@
 /obj/structure/dresser/atom_deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 10)
 
+/* The way dressers worked was never cool anyways
 /obj/structure/dresser/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
@@ -81,3 +82,4 @@
 
 	add_fingerprint(dressing_human)
 	dressing_human.update_body()
+*/

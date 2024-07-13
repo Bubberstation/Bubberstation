@@ -394,6 +394,10 @@
 
 		if(isnull(tackle_target.wear_suit) && isnull(tackle_target.w_uniform)) // who honestly puts all of their effort into tackling a naked guy?
 			defense_mod += 2
+			// Extra inventory
+			if(isnull(tackle_target.underwear) && isnull(tackle_target.socks) && isnull(tackle_target.shirt))
+				defense_mod += 1
+			//
 		if(tackle_target.mob_negates_gravity())
 			defense_mod += 1
 		if(HAS_TRAIT(tackle_target, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)) // riot armor and such

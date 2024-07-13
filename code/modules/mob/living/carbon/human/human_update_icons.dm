@@ -51,11 +51,16 @@ There are several things that need to be remembered:
 
 	if(!..())
 		update_worn_undersuit()
+		update_worn_shirt()
+		update_worn_underwear()
 		update_worn_id()
 		update_worn_glasses()
 		update_worn_gloves()
+		update_worn_wrists()
 		update_worn_ears()
+		update_worn_ears_extra()
 		update_worn_shoes()
+		update_worn_socks()
 		update_suit_storage()
 		update_worn_mask()
 		update_worn_head()
@@ -163,6 +168,136 @@ There are several things that need to be remembered:
 
 	update_mutant_bodyparts()
 
+/mob/living/carbon/human/update_worn_underwear(update_obscured = TRUE)
+	remove_overlay(UNDERWEAR_LAYER)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_UNDERWEAR) + 1]
+		inv.update_icon()
+
+	if(istype(underwear, /obj/item/clothing/underwear))
+		var/obj/item/clothing/underwear/undies = w_underwear
+		update_hud_underwear(undies)
+
+		if(update_obscured)
+			update_obscured_slots(undies.flags_inv)
+
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_UNDERWEAR)
+			return
+
+		var/target_overlay = undies.icon_state
+		var/mutable_appearance/underwear_overlay
+		var/icon_file = 'icons/mob/clothing/underwear.dmi'
+		var/handled_by_bodyshape = TRUE
+		var/woman
+		var/digi
+		var/female_sprite_flags = undies.female_sprite_flags
+		var/mutant_styles = NONE
+		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undies.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
+			icon_file = undies.worn_icon_digi || DIGITIGRADE_UNDERWEAR_FILE
+			digi = TRUE
+
+		else if(bodyshape & BODYSHAPE_CUSTOM)
+			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNDERWEAR, underwear, src)
+
+		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNDERWEAR))
+			woman = TRUE
+			if(digi)
+				mutant_styles |= STYLE_DIGI
+				if(!(female_sprite_flags & FEMALE_UNDERWEAR_DIGI_FULL))
+					female_sprite_flags &= ~FEMALE_UNDERWEAR_FULL
+					female_sprite_flags |= FEMALE_UNDERWEAR_TOP_ONLY
+
+		if(!icon_exists(icon_file, RESOLVE_ICON_STATE(undies)))
+			icon_file = DEFAULT_UNDERWEAR_FILE
+			handled_by_bodyshape = FALSE
+
+		if(bodyshape & BODYSHAPE_TAUR)
+			if(istype(undies) && undies.gets_cropped_on_taurs)
+				mutant_styles |= get_taur_mode()
+
+		underwear_overlay = undies.build_worn_icon(
+			default_layer = UNDERWEAR_LAYER,
+			default_icon_file = icon_file,
+			isinhands = FALSE,
+			female_uniform = woman ? female_sprite_flags : null,
+			override_state = target_overlay,
+			override_file = handled_by_bodyshape ? icon_file : null,
+			mutant_styles = mutant_styles,
+		)
+
+		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
+		my_chest?.worn_underwear_offset?.apply_offset(underwear_overlay)
+		overlays_standing[UNDERWEAR_LAYER] = underwear_overlay
+		apply_overlay(UNDERWEAR_LAYER)
+
+	update_mutant_bodyparts()
+
+/mob/living/carbon/human/update_worn_shirt(update_obscured = TRUE)
+    remove_overlay(SHIRT_LAYER)
+
+    if(client && hud_used)
+        var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT) + 1]
+        inv.update_icon()
+
+    if(istype(shirt, /obj/item/clothing/shirt))
+        var/obj/item/clothing/shirt/undershirt = w_shirt
+        update_hud_shirt(undershirt)
+
+        if(update_obscured)
+            update_obscured_slots(undershirt.flags_inv)
+
+        if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SHIRT)
+            return
+
+        var/target_overlay = undershirt.icon_state
+        var/mutable_appearance/shirt_overlay
+        var/icon_file = 'icons/mob/clothing/shirt.dmi'
+        var/handled_by_bodyshape = TRUE
+        var/woman
+        var/digi
+        var/female_sprite_flags = undershirt.female_sprite_flags
+        var/mutant_styles = NONE
+        if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undershirt.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
+            icon_file = undershirt.worn_icon_digi || DIGITIGRADE_SHIRT_FILE
+            digi = TRUE
+
+        else if(bodyshape & BODYSHAPE_CUSTOM)
+            icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, shirt, src)
+
+        if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_SHIRT))
+            woman = TRUE
+            if(digi)
+                mutant_styles |= STYLE_DIGI
+                if(!(female_sprite_flags & FEMALE_SHIRT_DIGI_FULL))
+                    female_sprite_flags &= ~FEMALE_SHIRT_FULL
+                    female_sprite_flags |= FEMALE_SHIRT_TOP_ONLY
+
+        if(!icon_exists(icon_file, RESOLVE_ICON_STATE(undershirt)))
+            icon_file = DEFAULT_SHIRT_FILE
+            handled_by_bodyshape = FALSE
+
+        if(bodyshape & BODYSHAPE_TAUR)
+            if(istype(undershirt) && undershirt.gets_cropped_on_taurs)
+                mutant_styles |= get_taur_mode()
+
+        shirt_overlay = undershirt.build_worn_icon(
+            default_layer = SHIRT_LAYER,
+            default_icon_file = icon_file,
+            isinhands = FALSE,
+            female_uniform = woman ? female_sprite_flags : null,
+            override_state = target_overlay,
+            override_file = handled_by_bodyshape ? icon_file : null,
+            mutant_styles = mutant_styles,
+        )
+
+        var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
+        my_chest?.worn_shirt_offset?.apply_offset(shirt_overlay)
+        overlays_standing[SHIRT_LAYER] = shirt_overlay
+        apply_overlay(SHIRT_LAYER)
+
+    update_mutant_bodyparts()
+
 /mob/living/carbon/human/update_worn_id(update_obscured = TRUE)
 	remove_overlay(ID_LAYER)
 
@@ -248,6 +383,40 @@ There are several things that need to be remembered:
 		overlays_standing[GLOVES_LAYER] = gloves_overlay
 	apply_overlay(GLOVES_LAYER)
 
+//Extra inventory
+/mob/living/carbon/human/update_worn_wrists(update_obscured = TRUE)
+	remove_overlay(WRISTS_LAYER)
+
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS) + 1]
+		inv.update_icon()
+
+	if(wrists)
+		var/obj/item/worn_item = wrists
+		update_hud_wrists(worn_item)
+
+		if(update_obscured)
+			update_obscured_slots(worn_item.flags_inv)
+
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_GLOVES)
+			return
+
+		var/icon_file = 'icons/mob/clothing/wrists.dmi'
+
+		// SKYRAT EDIT ADDITION
+		var/mutant_override = FALSE
+		if(bodyshape & BODYSHAPE_CUSTOM)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_WRISTS, wrists, src)
+			if(species_icon_file)
+				icon_file = species_icon_file
+				mutant_override = TRUE
+		// SKYRAT EDIT END
+
+		var/mutable_appearance/wrists_overlay = wrists.build_worn_icon(default_layer = WRISTS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+
+		overlays_standing[WRISTS_LAYER] = wrists_overlay
+	apply_overlay(WRISTS_LAYER)
+//
 
 /mob/living/carbon/human/update_worn_glasses(update_obscured = TRUE)
 	remove_overlay(GLASSES_LAYER)
@@ -299,7 +468,7 @@ There are several things that need to be remembered:
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS_LEFT) + 1]
 		inv.update_icon()
 
 	if(ears)
@@ -309,7 +478,7 @@ There are several things that need to be remembered:
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS)
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS_LEFT)
 			return
 
 		var/icon_file = 'icons/mob/clothing/ears.dmi'
@@ -331,6 +500,47 @@ There are several things that need to be remembered:
 		// SKYRAT EDIT END
 		overlays_standing[EARS_LAYER] = ears_overlay
 	apply_overlay(EARS_LAYER)
+
+/mob/living/carbon/human/update_worn_ears_extra(update_obscured = TRUE)
+	remove_overlay(EARS_EXTRA_LAYER)
+
+	var/obj/item/bodypart/head/my_head = get_bodypart(BODY_ZONE_HEAD)
+	if(isnull(my_head)) //decapitated
+		return
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS_RIGHT) + 1]
+		inv.update_icon()
+
+	if(ears)
+		var/obj/item/worn_item = ears
+		update_hud_ears(worn_item)
+
+		if(update_obscured)
+			update_obscured_slots(worn_item.flags_inv)
+
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS_RIGHT)
+			return
+
+		var/icon_file = 'icons/mob/clothing/ears.dmi'
+
+		// SKYRAT EDIT ADDITION
+		var/mutant_override = FALSE
+		if(bodyshape & BODYSHAPE_CUSTOM)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_EARS, ears, src)
+			if(species_icon_file)
+				icon_file = species_icon_file
+				mutant_override = TRUE
+		// SKYRAT EDIT END
+
+		var/mutable_appearance/ears_overlay = ears.build_worn_icon(default_layer = EARS_EXTRA_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+
+		// SKYRAT EDIT ADDITION
+		if(!mutant_override)
+			my_head.worn_ears_offset?.apply_offset(ears_overlay)
+		// SKYRAT EDIT END
+		overlays_standing[EARS_EXTRA_LAYER] = ears_overlay
+	apply_overlay(EARS_EXTRA_LAYER)
 
 /mob/living/carbon/human/update_worn_neck(update_obscured = TRUE)
 	remove_overlay(NECK_LAYER)
@@ -437,6 +647,65 @@ There are several things that need to be remembered:
 
 	update_body_parts()
 
+/mob/living/carbon/human/update_worn_socks(update_obscured = TRUE)
+	remove_overlay(SOCKS_LAYER)
+
+	if(num_legs < 2)
+		return
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SOCKS) + 1]
+		inv.update_icon()
+
+	if(socks)
+		var/obj/item/worn_item = socks
+		update_hud_socks(worn_item)
+
+		if(update_obscured)
+			update_obscured_slots(worn_item.flags_inv)
+
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SOCKS)
+			return
+
+		var/icon_file = DEFAULT_SOCKS_FILE
+
+		// SKYRAT EDIT ADDITION START
+		var/mutant_override = FALSE
+
+		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (worn_item.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
+			var/obj/item/bodypart/leg = src.get_bodypart(BODY_ZONE_L_LEG)
+			if(leg.limb_id == "digitigrade" || leg.bodyshape & BODYSHAPE_DIGITIGRADE)//Snowflakey and bad. But it makes it look consistent.
+				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SOCKS_FILE // SKYRAT EDIT CHANGE
+				mutant_override = TRUE // SKYRAT EDIT ADDITION
+		if(!mutant_override && bodyshape & BODYSHAPE_CUSTOM)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_SOCKS, socks, src)
+			if(species_icon_file)
+				icon_file = species_icon_file
+				mutant_override = TRUE
+		if(bodyshape & BODYSHAPE_HIDE_SHOES)
+			return // We just don't want socks that float if we're not displaying legs (useful for taurs, for now)
+		// SKYRAT EDIT END
+
+		var/mutable_appearance/socks_overlay = socks.build_worn_icon(default_layer = SOCKS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+
+		if(!socks_overlay)
+			return
+
+		var/feature_y_offset = 0
+		for (var/body_zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+			var/obj/item/bodypart/leg/my_leg = get_bodypart(body_zone)
+			if(isnull(my_leg))
+				continue
+			var/list/foot_offset = my_leg.worn_foot_offset?.get_offset()
+			if (foot_offset && foot_offset["y"] > feature_y_offset)
+				feature_y_offset = foot_offset["y"]
+
+		socks_overlay.pixel_y += feature_y_offset
+		overlays_standing[SOCKS_LAYER] = socks_overlay
+
+	apply_overlay(SOCKS_LAYER)
+
+	update_body_parts()
 
 /mob/living/carbon/human/update_suit_storage(update_obscured = TRUE)
 	remove_overlay(SUIT_STORE_LAYER)
@@ -758,6 +1027,18 @@ There are several things that need to be remembered:
 		client.screen += worn_item
 	update_observer_view(worn_item,TRUE)
 
+/mob/living/carbon/human/proc/update_hud_shirt(obj/item/worn_item)
+	worn_item.screen_loc = ui_shirt
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_underwear(obj/item/worn_item)
+	worn_item.screen_loc = ui_underwear
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
 /mob/living/carbon/human/proc/update_hud_id(obj/item/worn_item)
 	worn_item.screen_loc = ui_id
 	if((client && hud_used?.hud_shown))
@@ -767,6 +1048,12 @@ There are several things that need to be remembered:
 /mob/living/carbon/human/proc/update_hud_gloves(obj/item/worn_item)
 	worn_item.screen_loc = ui_gloves
 	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_wrists(obj/item/worn_item)
+	worn_item.screen_loc = ui_wrists
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
 		client.screen += worn_item
 	update_observer_view(worn_item,TRUE)
 
@@ -782,9 +1069,21 @@ There are several things that need to be remembered:
 		client.screen += worn_item
 	update_observer_view(worn_item,TRUE)
 
+/mob/living/carbon/human/proc/update_hud_ears_extra(obj/item/worn_item)
+	worn_item.screen_loc = ui_ears_extra
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
 /mob/living/carbon/human/proc/update_hud_shoes(obj/item/worn_item)
 	worn_item.screen_loc = ui_shoes
 	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_socks(obj/item/worn_item)
+	worn_item.screen_loc = ui_socks
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
 		client.screen += worn_item
 	update_observer_view(worn_item,TRUE)
 

@@ -166,6 +166,20 @@
 	if(w_uniform)
 		if(w_uniform.max_heat_protection_temperature && w_uniform.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= w_uniform.heat_protection
+	//skyrat edit
+	if(underwear)
+		if(underwear.max_heat_protection_temperature && underwear.max_heat_protection_temperature >= temperature)
+			thermal_protection_flags |= underwear.heat_protection
+	if(socks)
+		if(socks.max_heat_protection_temperature && socks.max_heat_protection_temperature >= temperature)
+			thermal_protection_flags |= socks.heat_protection
+	if(shirt)
+		if(shirt.max_heat_protection_temperature && shirt.max_heat_protection_temperature >= temperature)
+			thermal_protection_flags |= shirt.heat_protection
+	if(wrists)
+		if(wrists.max_heat_protection_temperature && wrists.max_heat_protection_temperature >= temperature)
+			thermal_protection_flags |= wrists.heat_protection
+	//
 	if(shoes)
 		if(shoes.max_heat_protection_temperature && shoes.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= shoes.heat_protection

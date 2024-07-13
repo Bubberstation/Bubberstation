@@ -109,6 +109,16 @@
 				continue //So all they're left with are shoes and uniform.
 			if(person_contents == human_sent.shoes)
 				continue
+
+			// Extra inventory - and underwear
+			if(person_contents == human_sent.underwear)
+				continue
+			if(person_contents == human_sent.socks)
+				continue
+			if(person_contents == human_sent.shirt)
+				continue
+			if(person_contents == human_sent.wrists) // once wrists actually have a danger item, you have my blessing to remove
+				continue
 		person_sent.transferItemToLoc(person_contents)
 		victim_belongings.Add(WEAKREF(person_contents))
 
@@ -241,6 +251,16 @@
 			if(belonging == human_victim.w_uniform)
 				continue
 			if(belonging == human_victim.shoes)
+				continue
+
+			// Extra inventory - and underwear
+			if(belonging == human_victim.underwear)
+				continue
+			if(belonging == human_victim.socks)
+				continue
+			if(belonging == human_victim.shirt)
+				continue
+			if(belonging == human_victim.wrists) // once wrists actually have a danger item, you have my blessing to remove
 				continue
 		belonging.forceMove(dropoff_location)
 

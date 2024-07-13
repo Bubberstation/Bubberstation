@@ -622,6 +622,21 @@
 	if(!is_mouth_covered() && clean_lips())
 		. = TRUE
 
+	// Extra inventory
+	if(!(obcured & ITEM_SLOT_UNDERWEAR) && underwear?.wash(clean_types))
+		update_worn_underwear()
+		. = TRUE
+	if(!(obscured & ITEM_SLOT_SOCKS) && socks?.wash(clean_types))
+		update_worn_socks()
+		. = TRUE
+	if(!(obscured & ITEM_SLOT_SHIRT) && shirt?.wash(clean_types))
+		update_worn_shirt()
+		. = TRUE
+	if(!(obscured & ITEM_SLOT_WRISTS) && wrists?.wash(clean_types))
+		update_worn_wrists()
+		. = TRUE
+	//
+
 	// Wash hands if exposed
 	if(!gloves && (clean_types & CLEAN_TYPE_BLOOD) && blood_in_hands > 0 && !(obscured & ITEM_SLOT_GLOVES))
 		blood_in_hands = 0
