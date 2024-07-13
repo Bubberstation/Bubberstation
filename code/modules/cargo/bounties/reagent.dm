@@ -114,7 +114,7 @@
 
 /datum/bounty/reagent/chemical_simple
 	name = "Simple Chemical"
-	reward = CARGO_CRATE_VALUE * 8
+	reward = CARGO_CRATE_VALUE * 10
 	required_volume = 30
 
 /datum/bounty/reagent/chemical_simple/New()
@@ -151,7 +151,7 @@
 
 /datum/bounty/reagent/chemical_complex
 	name = "Rare Chemical"
-	reward = CARGO_CRATE_VALUE * 12
+	reward = CARGO_CRATE_VALUE * 15
 	required_volume = 20
 
 /datum/bounty/reagent/chemical_complex/New()
