@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	///bubber edit begin - soapbox maxxing
 	var/obj/structure/closet/crate/soapbox = locate(/obj/structure/closet/crate) in T
 	if(soapbox)
-		if(!soapbox.opened)
+		if(!soapbox.opened && !ismovable(loc))
 			spans |= SPAN_COMMAND
 	///bubber edit end
 
