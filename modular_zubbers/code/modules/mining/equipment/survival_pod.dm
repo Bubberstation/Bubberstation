@@ -50,7 +50,7 @@
 	name = "Botany Control"
 	shelter_id = "shelter_botany"
 	description = "A contained and interconnectable botany pod."
-	mappath = "_maps/templates/shelter_botany.dmm"
+	mappath = "_maps/bubber/pods/shelter_botany.dmm"
 
 /datum/map_template/shelter/botany/New()
 	. = ..()
@@ -70,7 +70,7 @@
 	name = "Botany Trays"
 	shelter_id = "shelter_trays"
 	description = "A contained and interconnectable botany pod."
-	mappath = "_maps/templates/shelter_trays.dmm"
+	mappath = "_maps/bubber/pods/shelter_trays.dmm"
 
 /datum/map_template/shelter/trays/New()
 	. = ..()
@@ -90,7 +90,7 @@
 	name = "Airlock fan deployer"
 	shelter_id = "shelter_fan"
 	description = "A contained and interconnectable botany pod."
-	mappath = "_maps/templates/shelter_fan.dmm"
+	mappath = "_maps/bubber/pods/shelter_fan.dmm"
 
 /datum/map_template/shelter/fan/New()
 	. = ..()
@@ -110,7 +110,7 @@
 	name = "o2 harvester deployer"
 	shelter_id = "shelter_o2"
 	description = "A contained O2 harvesting pod, for planetary use."
-	mappath = "_maps/templates/shelter_o2.dmm"
+	mappath = "_maps/bubber/pods/shelter_o2.dmm"
 
 /datum/map_template/shelter/o2/New()
 	. = ..()
@@ -130,7 +130,7 @@
 	name = "kitchen deployer"
 	shelter_id = "shelter_kitchen"
 	description = "A contained kitchen."
-	mappath = "_maps/templates/shelter_kitchen.dmm"
+	mappath = "_maps/bubber/pods/shelter_kitchen.dmm"
 
 /datum/map_template/shelter/kitchen/New()
 	. = ..()
@@ -150,7 +150,7 @@
 	name = "comfort cabin deployer"
 	shelter_id = "shelter_cabin"
 	description = "A contained comfort cabin."
-	mappath = "_maps/templates/shelter_cabin.dmm"
+	mappath = "_maps/bubber/pods/shelter_cabin.dmm"
 
 /datum/map_template/shelter/cabin/New()
 	. = ..()
@@ -170,7 +170,7 @@
 	name = "small capsule deployer"
 	shelter_id = "shelter_threebythree"
 	description = "A contained small capsule."
-	mappath = "_maps/templates/shelter_3x3.dmm"
+	mappath = "_maps/bubber/pods/shelter_3x3.dmm"
 
 /datum/map_template/shelter/threebythree/New()
 	. = ..()
@@ -190,7 +190,7 @@
 	name = "large capsule deployer"
 	shelter_id = "shelter_sixbysix"
 	description = "A contained large capsule."
-	mappath = "_maps/templates/shelter_6x6.dmm"
+	mappath = "_maps/bubber/pods/shelter_6x6.dmm"
 
 /datum/map_template/shelter/sixbysix/New()
 	. = ..()
