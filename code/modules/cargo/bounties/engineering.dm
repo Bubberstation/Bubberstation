@@ -1,7 +1,7 @@
 /datum/bounty/item/engineering/emitter
 	name = "Emitter"
 	description = "We think there may be a defect in your station's emitter designs, based on the sheer number of delaminations your sector seems to see. Ship us one of yours."
-	reward = CARGO_CRATE_VALUE * 5
+	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(/obj/machinery/power/emitter = TRUE)
 
 /datum/bounty/item/engineering/hydro_tray
@@ -13,13 +13,13 @@
 /datum/bounty/item/engineering/cyborg_charger
 	name = "Recharging Station"
 	description = "We don't have enough rechargers to fit all of our MODsuits. Ship us one of yours."
-	reward = CARGO_CRATE_VALUE * 5
+	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/machinery/recharge_station = TRUE)
 
 /datum/bounty/item/engineering/smes_unit
 	name = "Power Storage Unit"
 	description = "We need to store more power. Get us a SMES unit."
-	reward = CARGO_CRATE_VALUE * 6
+	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(/obj/machinery/power/smes = TRUE)
 
 /datum/bounty/item/engineering/pacman
@@ -31,13 +31,13 @@
 /datum/bounty/item/engineering/field_gen
 	name = "Field Generator"
 	description = "One of our protective generator's warranties has expired, we need a new one to replace it."
-	reward = CARGO_CRATE_VALUE * 6
+	reward = CARGO_CRATE_VALUE * 7
 	wanted_types = list(/obj/machinery/field/generator = TRUE)
 
 /datum/bounty/item/engineering/tesla_coil
 	name = "Tesla Coil"
 	description = "Our electricity bill is too high, get us a tesla coil to offset this."
-	reward = CARGO_CRATE_VALUE * 5
+	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/machinery/power/energy_accumulator/tesla_coil = TRUE)
 
 /datum/bounty/item/engineering/welding_tank
