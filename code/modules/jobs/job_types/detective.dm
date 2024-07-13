@@ -26,6 +26,7 @@
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
+	bounty_types = CIV_JOB_SEC
 
 	mail_goodies = list(
 		/obj/item/storage/fancy/cigarettes = 25,
