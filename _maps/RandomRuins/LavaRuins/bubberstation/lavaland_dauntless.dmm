@@ -93,12 +93,10 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "aC" = (
-/obj/machinery/light/cold/directional/north,
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
-/turf/open/floor/iron/dark/smooth_large,
+/turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "aJ" = (
 /obj/effect/turf_decal/siding/dark{
@@ -208,9 +206,6 @@
 	dir = 4;
 	pixel_y = 4
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
@@ -227,6 +222,9 @@
 	pixel_y = 1;
 	canhear_range = 4;
 	freerange = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -275,11 +273,12 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/brig)
 "bw" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
+/obj/machinery/light/cold/directional/north,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/plantgenes,
+/obj/item/storage/box/disks_plantgene,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "by" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
@@ -289,9 +288,9 @@
 	dir = 8;
 	icon_state = "siding_plain_end"
 	},
-/obj/machinery/vending/cigarette/syndicate{
-	onstation = 0;
-	onstation_override = 1
+/obj/machinery/jukebox{
+	req_access = list("syndicate");
+	anchored = 0
 	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -382,6 +381,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "cc" = (
@@ -469,6 +471,9 @@
 	dir = 4
 	},
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command/admiral,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "cC" = (
@@ -716,24 +721,13 @@
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "dL" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/machinery/button/door/directional/north{
-	name = "Bolt Control";
-	id = "liason_d";
-	normaldoorcontrol = 1;
-	specialfunctions = 4;
-	req_access = list("syndicate_leader");
-	pixel_y = 0;
-	pixel_x = -24
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "dM" = (
@@ -801,10 +795,14 @@
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
+/obj/machinery/light/small/directional/east,
 /obj/effect/turf_decal/siding{
-	dir = 4
+	dir = 6
 	},
-/obj/structure/chair/comfy/black,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/effect/spawner/random/food_or_drink/pizzaparty{
+	loot = list(/obj/item/pizzabox/margherita = 2, /obj/item/pizzabox/meat = 2, /obj/item/pizzabox/mushroom = 2, /obj/item/pizzabox/pineapple = 2, /obj/item/pizzabox/vegetable = 2)
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "ee" = (
@@ -880,20 +878,20 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "eD" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "eE" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
 	},
-/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "eF" = (
@@ -1702,12 +1700,11 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "hD" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	dir = 10
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
 	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
@@ -1729,11 +1726,11 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "hJ" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 8
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
@@ -1943,10 +1940,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/table/wood/fancy/black,
-/obj/machinery/coffeemaker/impressa{
-	pixel_y = 4;
-	pixel_x = 2
-	},
+/obj/machinery/coffeemaker,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "iz" = (
@@ -2170,13 +2164,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "ju" = (
-/obj/structure/table/wood/fancy/black,
-/obj/item/paper_bin/carbon{
-	pixel_y = 3
-	},
-/obj/item/pen/fountain/captain{
-	name = "admiral's fountain pen";
-	pixel_y = 5
+/obj/structure/chair/sofa/corp/left{
+	color = "#DE3A3A";
+	dir = 8
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
@@ -2317,9 +2307,6 @@
 "jZ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
@@ -2754,7 +2741,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
@@ -2899,12 +2885,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/personal{
-	anchored = 1
-	},
-/obj/item/towel,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/dark,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "mL" = (
 /obj/structure/cable,
@@ -2950,13 +2931,13 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "mQ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
 /obj/structure/bed/dogbed,
 /mob/living/basic/pet/fox{
 	name = "Rhials";
 	faction = list("neutral","Syndicate")
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
@@ -3115,19 +3096,7 @@
 "nJ" = (
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/airalarm/directional/south,
-/obj/structure/rack,
-/obj/item/secateurs,
-/obj/item/gun/energy/floragun,
-/obj/item/hatchet,
-/obj/item/geneshears,
-/obj/item/plant_analyzer,
-/obj/item/shovel/spade,
-/obj/item/cultivator,
-/obj/item/clothing/accessory/armband/hydro{
-	name = "Service Armband";
-	pixel_y = 1;
-	pixel_x = -3
-	},
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "nM" = (
@@ -3183,9 +3152,9 @@
 	id = "admiral_w";
 	name = "Office Shutters"
 	},
-/obj/structure/bed/dogbed,
-/mob/living/basic/pet/syndifox{
-	faction = list("neutral","Syndicate")
+/obj/structure/chair/sofa/corp/right{
+	color = "#DE3A3A";
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
@@ -3230,9 +3199,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "ol" = (
-/obj/machinery/light/cold/directional/north,
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/open/floor/iron/dark/smooth_large,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "oo" = (
 /obj/machinery/light/small/red/directional/west,
@@ -3420,10 +3390,6 @@
 /obj/machinery/mineral/stacking_unit_console{
 	pixel_y = -32
 	},
-/obj/machinery/jukebox{
-	req_access = list("syndicate");
-	anchored = 0
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/dispolsals)
 "pl" = (
@@ -3434,9 +3400,13 @@
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "pn" = (
-/obj/structure/chair/sofa/corp/right{
-	color = "#DE3A3A";
-	dir = 4
+/obj/structure/table/wood/fancy/black,
+/obj/item/pen/fountain/captain{
+	name = "admiral's fountain pen";
+	pixel_y = 5
+	},
+/obj/item/paper_bin/carbon{
+	pixel_y = 3
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
@@ -3452,6 +3422,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
+/obj/machinery/smartfridge/food,
+/obj/structure/curtain/cloth{
+	color = "#333333"
+	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "px" = (
@@ -3664,6 +3639,13 @@
 /obj/machinery/light/red/directional/south,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/mining)
+"qe" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "qg" = (
 /obj/effect/spawner/liquids_spawner{
 	reagent_list = list(/datum/reagent/water=250)
@@ -3808,13 +3790,10 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "qL" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
-	polarizer_id = "dauntbar_w"
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
-/obj/structure/curtain/cloth{
-	color = "#333333"
-	},
-/turf/open/floor/plating/reinforced,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "qM" = (
 /obj/machinery/computer/operating,
@@ -3855,11 +3834,8 @@
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "qU" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
@@ -4235,7 +4211,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "st" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/structure/closet/secure_closet/interdynefob/cl_locker,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "sv" = (
@@ -4382,6 +4357,7 @@
 	pixel_x = 7;
 	pixel_y = -9
 	},
+/obj/item/storage/hypospraykit/cmo/combat,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
 "td" = (
@@ -4518,9 +4494,9 @@
 "tI" = (
 /obj/structure/cable,
 /mob/living/simple_animal/hostile/syndimouse{
-	aggro_vision_range = 0;
 	name = "Syndicate Chefpretive";
-	desc = "A strange mouse in a Syndicate combat MODsuit, built for mice!"
+	desc = "A strange mouse in a Syndicate combat MODsuit, built for mice!";
+	faction = list("Syndicate,neutral")
 	},
 /turf/open/floor/iron/kitchen{
 	dir = 4
@@ -4570,13 +4546,20 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "ua" = (
-/obj/effect/turf_decal/bot_blue,
-/obj/machinery/light/cold/directional/east,
-/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service{
+/obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
-/turf/open/floor/iron/white,
-/area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
+/obj/effect/turf_decal/siding{
+	dir = 8
+	},
+/obj/machinery/vending/cigarette/syndicate{
+	onstation = 0;
+	onstation_override = 1;
+	density = 0;
+	pixel_x = -29
+	},
+/turf/open/floor/iron/cafeteria,
+/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "uc" = (
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/plating,
@@ -4694,7 +4677,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "uD" = (
-/turf/open/floor/iron/dark/smooth_large,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "uF" = (
 /obj/effect/turf_decal/siding/wood{
@@ -5033,19 +5019,23 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "vR" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/carpet/red,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "vT" = (
 /obj/machinery/vending/hydronutrients{
 	onstation = 0;
-	onstation_override = 1
+	onstation_override = 1;
+	pixel_x = -28
 	},
-/turf/open/floor/iron/dark/smooth_large,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "vX" = (
 /obj/machinery/vending/boozeomat/syndicate_access{
@@ -5298,9 +5288,6 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "wS" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
@@ -5716,14 +5703,21 @@
 /turf/open/floor/circuit/telecomms,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/xenobio)
 "yu" = (
-/obj/effect/turf_decal/tile/bar/opposingcorners{
-	dir = 8
+/obj/machinery/button/door/directional/north{
+	name = "Bolt Control";
+	id = "liason_d";
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	req_access = list("syndicate_leader");
+	pixel_y = 0;
+	pixel_x = -24
 	},
-/obj/effect/turf_decal/siding/corner{
-	dir = 8
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
-/turf/open/floor/iron/cafeteria,
-/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
+/obj/structure/closet/secure_closet/interdynefob/cl_locker,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "yv" = (
 /obj/machinery/sleeper/syndie/fullupgrade{
 	dir = 8
@@ -5787,12 +5781,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "yH" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
@@ -5943,8 +5931,12 @@
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "zl" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "zm" = (
@@ -6018,8 +6010,6 @@
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "zy" = (
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
@@ -6027,6 +6017,7 @@
 /obj/item/tape/random,
 /obj/item/tape/random,
 /obj/structure/filingcabinet/chestdrawer,
+/obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/mineral/plastitanium/red{
 	icon_state = "plastitanium"
 	},
@@ -6559,13 +6550,6 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
-/obj/structure/table/wood/fancy/red,
-/obj/machinery/fax{
-	fax_name = "Interdyne Pharmaceuticals";
-	pixel_y = 7;
-	name = "Interdyne Fax Machine";
-	syndicate_network = 1
-	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "Bz" = (
@@ -6756,6 +6740,7 @@
 	dir = 1
 	},
 /obj/item/modular_computer/laptop/preset/syndicate,
+/obj/item/computer_disk/ordnance,
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "Cp" = (
@@ -6962,11 +6947,16 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/service/construct)
 "Do" = (
-/obj/structure/chair/sofa/corp/left{
-	color = "#DE3A3A";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/table/wood/fancy/black,
+/obj/item/camera{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/storage/photo_album/syndicate{
+	pixel_x = 8;
+	pixel_y = 5
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "Dp" = (
@@ -7065,6 +7055,9 @@
 	dir = 8
 	},
 /obj/machinery/light_switch/directional/north,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "DO" = (
@@ -7145,11 +7138,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Eb" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
@@ -7523,6 +7516,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/machinery/button/door/directional/west{
+	req_access = list("syndicate_leader");
+	id = "admiral_w";
+	name = "Office Shutters"
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "FS" = (
@@ -7613,9 +7614,10 @@
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "Gz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 1
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "GC" = (
@@ -7785,7 +7787,9 @@
 "Hx" = (
 /obj/machinery/light/cold/directional/south,
 /obj/structure/bodycontainer/morgue{
-	dir = 1
+	dir = 1;
+	density = 0;
+	pixel_y = -32
 	},
 /obj/effect/turf_decal/siding/white,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -7987,17 +7991,12 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "It" = (
-/obj/structure/chair/stool/bar{
-	dir = 8
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/bar/opposingcorners{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding{
-	dir = 10
-	},
-/turf/open/floor/iron/cafeteria,
-/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
+/turf/open/floor/wood/large,
+/area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "Ix" = (
 /obj/item/storage/box/syringes{
 	pixel_x = 5;
@@ -8123,11 +8122,6 @@
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Jc" = (
 /obj/effect/turf_decal/skyrat_decals/syndicate/middle/middle,
-/mob/living/simple_animal/bot/secbot/grievous/toy{
-	radio_key = /obj/item/encryptionkey/syndicate;
-	radio_channel = "Syndicate";
-	faction = list("neutral","silicon","turret","Syndicate")
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
 "Jd" = (
@@ -8691,10 +8685,12 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
 "Lr" = (
-/obj/effect/turf_decal/siding/thinplating/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
 	dir = 9
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
 	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
@@ -8734,18 +8730,9 @@
 	},
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "LD" = (
-/obj/effect/turf_decal/tile/bar/opposingcorners{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding{
-	dir = 10
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/west,
-/turf/open/floor/iron/cafeteria,
-/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "LF" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -9159,10 +9146,6 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "Nw" = (
-/obj/structure/chair/sofa/corp/left{
-	color = "#DE3A3A";
-	dir = 8
-	},
 /obj/machinery/light/cold/directional/south,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
@@ -9283,9 +9266,6 @@
 "Od" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -9811,12 +9791,14 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Qz" = (
-/obj/machinery/smartfridge/food,
-/obj/machinery/door/firedoor,
-/obj/structure/curtain/cloth{
-	color = "#333333"
+/obj/machinery/firealarm/directional/south,
+/obj/effect/turf_decal/tile/bar/opposingcorners{
+	dir = 8
 	},
-/turf/open/floor/iron/white,
+/obj/effect/turf_decal/siding{
+	dir = 10
+	},
+/turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "QC" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -9835,6 +9817,9 @@
 /obj/structure/cable,
 /obj/machinery/light/cold/directional/north,
 /obj/structure/extinguisher_cabinet/directional/west,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "QE" = (
@@ -9844,6 +9829,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/corner,
+/obj/structure/chair/comfy/black,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "QF" = (
@@ -9854,8 +9840,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/machinery/airalarm/directional/east,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
@@ -9986,6 +9970,8 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 6
 	},
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
 "Rp" = (
@@ -10180,21 +10166,10 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "Sa" = (
-/obj/machinery/light/small/directional/east,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding{
-	dir = 6
-	},
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/effect/spawner/random/food_or_drink/pizzaparty{
-	loot = list(/obj/item/pizzabox/margherita = 2, /obj/item/pizzabox/meat = 2, /obj/item/pizzabox/mushroom = 2, /obj/item/pizzabox/pineapple = 2, /obj/item/pizzabox/vegetable = 2)
-	},
-/turf/open/floor/iron/cafeteria,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Sb" = (
 /obj/effect/turf_decal/siding/dark{
@@ -10224,11 +10199,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/bar/opposingcorners{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding,
+/obj/structure/chair/comfy/black{
+	dir = 4
 	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -10701,8 +10677,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/airalarm/directional/south,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
@@ -10729,16 +10703,14 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "TU" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
+/obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
 	},
-/turf/open/floor/stone,
-/area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/bubbers/dauntless/service/gym)
 "TV" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/binary/pump/on/supply/visible/layer4,
@@ -10770,7 +10742,8 @@
 	},
 /obj/machinery/vending/imported/tiziran{
 	onstation = 0;
-	onstation_override = 1
+	onstation_override = 1;
+	density = 0
 	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/bubbers/dauntless/service/diner)
@@ -10879,6 +10852,9 @@
 	dir = 6
 	},
 /obj/machinery/firealarm/directional/north,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "UB" = (
@@ -10887,9 +10863,6 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering)
 "UD" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -11129,6 +11102,12 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/structure/table/wood/fancy/red,
+/obj/machinery/fax{
+	fax_name = "Unknown Syndicate Fax";
+	name = "Syndicate Company Representative Fax Machine";
+	syndicate_network = 1
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
 "VG" = (
@@ -11259,16 +11238,11 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Wr" = (
-/obj/structure/table/wood/fancy/black,
-/obj/item/camera{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/obj/item/storage/photo_album/syndicate{
-	pixel_x = 8;
-	pixel_y = 5
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/structure/chair/sofa/corp/right{
+	color = "#DE3A3A";
 	dir = 8
 	},
 /turf/open/floor/carpet/red,
@@ -11472,7 +11446,9 @@
 "Xn" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/hidden,
 /obj/structure/bodycontainer/morgue{
-	dir = 1
+	dir = 1;
+	density = 0;
+	pixel_y = -32
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -11480,12 +11456,14 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Xo" = (
-/obj/structure/chair/sofa/corp/right{
-	color = "#DE3A3A";
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/mob/living/basic/mothroach/bar{
+	faction = list("neutral", "Syndicate")
 	},
-/turf/open/floor/carpet/red,
-/area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/service/diner)
 "Xp" = (
 /obj/machinery/status_display/department_balance{
 	credits_account = "INT";
@@ -11534,12 +11512,12 @@
 	req_access = list("syndicate")
 	},
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
-/mob/living/carbon/human/species/monkey/humand_legged,
 /obj/machinery/light/cold/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "Xx" = (
@@ -11574,9 +11552,15 @@
 "XF" = (
 /obj/machinery/vending/hydroseeds{
 	onstation = 0;
-	onstation_override = 1
+	onstation_override = 1;
+	density = 0;
+	pixel_x = -28
 	},
-/turf/open/floor/iron/dark/smooth_large,
+/obj/structure/sink/kitchen/directional/north,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "XG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -11618,6 +11602,16 @@
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
+"XZ" = (
+/obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate/service{
+	dir = 8
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/kitchen{
+	dir = 4
+	},
+/area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "Ya" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 5
@@ -11647,8 +11641,17 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "Ys" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end,
-/obj/structure/sink/kitchen/directional/north,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/obj/structure/rack,
+/obj/item/hatchet,
+/obj/item/secateurs,
+/obj/item/geneshears,
+/obj/item/gun/energy/floragun,
+/obj/item/plant_analyzer,
+/obj/item/shovel/spade,
+/obj/item/cultivator,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
 "Yu" = (
@@ -11942,6 +11945,14 @@
 /obj/machinery/dna_infuser,
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"ZE" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/chair/sofa/corp/left{
+	color = "#DE3A3A";
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "ZF" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/command/liason)
@@ -12046,12 +12057,14 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/interrogation)
 "ZT" = (
-/obj/machinery/door/firedoor,
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/survival_pod/left/directional/east,
-/obj/item/circuitboard/machine/plantgenes,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/bubbers/dauntless/service/hydro)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/cold/directional/north,
+/turf/open/floor/iron/kitchen{
+	dir = 4
+	},
+/area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "ZU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -12065,6 +12078,13 @@
 "ZV" = (
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
+"ZX" = (
+/obj/structure/bed/dogbed,
+/mob/living/basic/pet/syndifox{
+	faction = list("neutral","Syndicate")
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bubbers/dauntless/command/admiral)
 "ZY" = (
 /obj/structure/frame/machine/secured,
 /obj/item/circuitboard/machine/destructive_analyzer,
@@ -13042,7 +13062,7 @@ Aj
 Aj
 mI
 Ok
-bI
+TU
 Lz
 OA
 JM
@@ -13107,7 +13127,7 @@ jQ
 af
 cr
 mQ
-jQ
+yu
 Hz
 Ok
 BI
@@ -13747,7 +13767,7 @@ fq
 fq
 fq
 SO
-jn
+ZT
 CI
 Rk
 fC
@@ -13880,11 +13900,11 @@ BM
 Oj
 vF
 bC
-bC
-bC
+Xo
+qe
 pF
 BE
-CI
+XZ
 yW
 yW
 Md
@@ -13952,8 +13972,8 @@ uP
 VZ
 qL
 pw
-ua
-yW
+SO
+LD
 ol
 Eb
 uD
@@ -13997,7 +14017,7 @@ dG
 FR
 vR
 Gg
-Gg
+ZE
 nX
 CQ
 ul
@@ -14017,12 +14037,12 @@ BG
 yp
 Di
 Di
-It
-vn
+Di
+ua
 Qz
 vn
-vn
 Vq
+aC
 yH
 Od
 jZ
@@ -14063,8 +14083,8 @@ fN
 WK
 CQ
 bX
-bw
-Cy
+Sd
+ZX
 Do
 pn
 CQ
@@ -14085,14 +14105,14 @@ UY
 Vo
 LO
 LO
-yu
+LO
 eE
 Sf
-LD
-vn
+Sa
 xB
+aC
 wS
-TZ
+GT
 TZ
 nJ
 yW
@@ -14157,8 +14177,8 @@ do
 QE
 ed
 Sa
-vn
 kk
+aC
 wS
 GT
 TZ
@@ -14201,7 +14221,7 @@ CQ
 DM
 hD
 Cy
-Xo
+Cy
 Nw
 CQ
 aS
@@ -14225,7 +14245,7 @@ Qn
 Ud
 vn
 vn
-vn
+bw
 aC
 wS
 GT
@@ -14267,7 +14287,7 @@ zy
 mu
 CQ
 sI
-zl
+It
 Cy
 Cy
 Hb
@@ -14295,7 +14315,7 @@ yW
 QD
 hJ
 qU
-TU
+wS
 GT
 TZ
 GT
@@ -14429,8 +14449,8 @@ BM
 vn
 yW
 Jw
+yW
 fh
-ZT
 fh
 fh
 fh
