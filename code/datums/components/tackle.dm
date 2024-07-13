@@ -152,7 +152,7 @@
 		return
 
 	var/mob/living/carbon/target = hit
-	var/tackle_word = isfeline(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle". // SKYRAT EDIT - FELINE TRAITS - ORIGINAL : var/tackle_word = isfelinid(user) ? "pounce" : "tackle" 
+	var/tackle_word = isfeline(user) ? "pounce" : "tackle" //If cat, "pounce" instead of "tackle". // SKYRAT EDIT - FELINE TRAITS - ORIGINAL : var/tackle_word = isfelinid(user) ? "pounce" : "tackle"
 
 	var/roll = rollTackle(target)
 	tackling = FALSE
@@ -436,6 +436,11 @@
 	var/obj/item/organ/external/wings/sacker_wing = sacker.get_organ_slot(ORGAN_SLOT_EXTERNAL_WINGS)
 	if(sacker_wing)
 		attack_mod += 2
+	// BUBBER EDIT START - Taj tackle bonus
+	var/obj/item/organ/internal/ears/cat/tajaran/sacker_tajaran_ears = sacker.get_organ_slot(ORGAN_SLOT_EARS)
+	if(istype(sacker_tajaran_ears) && HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE))
+		attack_mod += 2 // UwU pounces on you
+	// BUBBER EDIT END
 
 	if(ishuman(sacker))
 		var/mob/living/carbon/human/human_sacker = sacker
@@ -596,11 +601,9 @@
 	if(W.type in list(/obj/structure/window, /obj/structure/window/fulltile, /obj/structure/window/unanchored, /obj/structure/window/fulltile/unanchored)) // boring unreinforced windows
 		for(var/i in 1 to speed)
 			var/obj/item/shard/shard = new /obj/item/shard(get_turf(user))
-			shard.embedding = list(embed_chance = 100, ignore_throwspeed_threshold = TRUE, impact_pain_mult=3, pain_chance=5)
-			shard.updateEmbedding()
+			shard.set_embed(/datum/embed_data/glass_candy)
 			user.hitby(shard, skipcatch = TRUE, hitpush = FALSE)
-			shard.embedding = null
-			shard.updateEmbedding()
+			shard.set_embed(initial(shard.embed_type))
 		W.atom_destruction()
 		user.adjustStaminaLoss(10 * speed)
 		user.Paralyze(3 SECONDS)

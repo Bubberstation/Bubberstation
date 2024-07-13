@@ -1,9 +1,9 @@
-import { Color } from 'common/color';
-import { decodeHtmlEntities, multiline } from 'common/string';
 import { Component, createRef, RefObject } from 'react';
+import { Color } from 'tgui-core/color';
+import { Box, Button, Flex, Icon, Tooltip } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 const LEFT_CLICK = 0;
@@ -278,11 +278,11 @@ export const Canvas = (props) => {
             <Flex.Item>
               <Tooltip
                 content={
-                  multiline`
+                  `
                   Right-Click a pixel on the canvas to copy its color.
                 ` +
                   (data.editable
-                    ? multiline`
+                    ? `
                   \n Left-Click the palette at the
                   bottom of the UI to select a color,
                   or input a new one with Right-Click.

@@ -16,8 +16,8 @@
 		return
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/xraylaser, /datum/crafting_recipe/hellgun, /datum/crafting_recipe/ioncarbine)
 
-	AddComponent(
-		/datum/component/slapcrafting,\
+	AddElement(
+		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
 
@@ -143,7 +143,8 @@
 /obj/projectile/beam/laser/accelerator/Range()
 	..()
 	damage += 7
-	transform *= 1 + ((damage/7) * 0.2)//20% larger per tile
+	transform = 0
+	transform *= 1 + (((damage - 6)/7) * 0.2)//20% larger per tile
 
 ///X-ray gun
 

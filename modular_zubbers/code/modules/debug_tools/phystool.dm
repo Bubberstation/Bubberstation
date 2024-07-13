@@ -66,7 +66,7 @@
 	do_work_effect(target, user)
 	playsound(user, 'modular_zubbers/sound/phystools/toolgun_shot1.ogg', 100, TRUE)
 
-/obj/item/phystool/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/phystool/ranged_interact_with_atom_secondary(atom/target, mob/user, proximity_flag, list/modifiers)
 	. = ..()
 	if(!selected_mode)
 		return

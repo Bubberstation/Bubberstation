@@ -17,6 +17,16 @@
 
 /obj/effect/spawner/random/maintenance/Initialize(mapload)
 	loot = GLOB.maintenance_loot
+	//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
+		if(prob(80))
+			loot = GLOB.uncommon_loot
+		else if(prob(80))
+			loot = GLOB.rarity_loot
+		else
+			loot = GLOB.oddity_loot
+
+	//BUBBERSTATION CHANGE END
 	return ..()
 
 /obj/effect/spawner/random/maintenance/proc/hide()
@@ -39,7 +49,14 @@
 		effective_lootcount = FLOOR(spawn_loot_count * 1.5, 1)
 
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		effective_lootcount = FLOOR(spawn_loot_count * 0.5, 1)
+		//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT. USUALLY
+		if(loot == GLOB.uncommon_loot )
+			effective_lootcount = min(effective_lootcount,3) //Maximum 3.
+		else if(effective_lootcount > 1)
+			effective_lootcount = 1
+		else
+			effective_lootcount = 0
+		//BUBBERSTATION CHANGE END: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT. USUALLY
 
 	return effective_lootcount
 

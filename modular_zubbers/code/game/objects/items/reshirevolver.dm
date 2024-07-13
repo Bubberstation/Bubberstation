@@ -26,7 +26,7 @@
 	icon_state = "reloadpouch"
 	slot_flags = ITEM_SLOT_POCKETS | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
-	resistance_flags = FLAMMABLE
+	resistance_flags = FIRE_PROOF | INDESTRUCTIBLE
 
 /obj/item/storage/bag/b460reloadpouch/Initialize(mapload)
 	. = ..()

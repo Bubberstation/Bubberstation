@@ -37,6 +37,14 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/e_gun/mini)
 
+/datum/supply_pack/goody/shotgun_revolver
+	name = "Bóbr 12 GA Revolver Single-Pack"
+	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
+	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
+	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 20
+
 /datum/supply_pack/goody/mars_single
 	special = FALSE
 

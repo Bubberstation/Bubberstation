@@ -99,7 +99,7 @@
 		modsuit.theme.name = lowertext(modsuit_skin_prefix)
 
 	// ensure we're applying our config theme changes, just in case
-	for(var/obj/item/part as anything in modsuit.mod_parts)
+	for(var/obj/item/part as anything in modsuit.get_parts())
 		part.name = "[modsuit.theme.name] [initial(part.name)]"
 		part.desc = "[initial(part.desc)] [modsuit.theme.desc]"
 

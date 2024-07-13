@@ -91,3 +91,29 @@
 	icon_state = "weight2"
 	default_color = DEFAULT_PRIMARY
 	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/bellybutton //a literal pixel addition
+	icon_state = "bellybutton"
+	name = "Belly Button"
+	default_color = DEFAULT_PRIMARY
+	affected_bodyparts = CHEST
+	gendered = FALSE
+
+/datum/body_marking/bubber/bellymonster
+	icon_state = "bellymonster"
+	name = "Belly Monster"
+	default_color = "#CCCCCC"
+	affected_bodyparts = CHEST
+	gendered = FALSE
+
+/datum/body_marking/bubber/bellymonster_alt
+	icon_state = "bellymonster_alt"
+	name = "Belly Monster (Alt)"
+	default_color = "#CCCCCC"
+	affected_bodyparts = CHEST
+	gendered = FALSE
+
+/* /datum/body_marking/bubber/talons //still no digitigrade feet fix
+	icon_state = "talon"
+	affected_bodyparts = LEG_LEFT | LEG_RIGHT
+*/

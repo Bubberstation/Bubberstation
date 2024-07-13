@@ -315,7 +315,7 @@
 				<td style='width:12em;'><font color='#ff0000'><b>Status</b></font></td>"
 
 			for(var/obj/item/organ/organ as anything in humantarget.organs)
-				var/status = organ.get_status_text()
+				var/status = organ.get_status_text(advanced)
 				if (status != "")
 					render = TRUE
 					toReport += "<tr><td><font color='#cc3333'>[organ.name]:</font></td>\
@@ -448,6 +448,21 @@
 	if(death_consequences_status_text)
 		render_list += death_consequences_status_text
 	// SKYRAT EDIT END
+
+	//BUBBERSTATION EDIT ADDITION - CHANGELING ZOMBIE STUFF
+	var/datum/component/changeling_zombie_infection/cling_infection = target.GetComponent(/datum/component/changeling_zombie_infection)
+	if(cling_infection)
+		if(cling_infection.zombified)
+			render_list += span_userdanger("Classified viral infection detected.")
+			render_list += "<span class='alert ml-1'>Treatment Guide: Euthanasia.</span>"
+		else
+			render_list += span_userdanger("Classified viral infection detected.")
+			if(cling_infection.was_changeling_husked)
+				render_list += "<span class='alert ml-1'>Treatment Guide: Apply [SYNTHFLESH_LING_UNHUSK_AMOUNT]u of synthflesh or inject rezadone.</span>"
+			else
+				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
+				render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
+	//BUBBERSTATION EDIT END
 
 	if(tochat)
 		to_chat(user, examine_block(jointext(render_list, "")), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)

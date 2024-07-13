@@ -147,9 +147,9 @@
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
 	var/airlock_material
-	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
+	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	/// Used for papers and photos pinned to the airlock
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'//OVERRIDEN IN SKYRAT AESTHETICS - SEE MODULE
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'//OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 
 	var/cyclelinkeddir = 0
 	var/obj/machinery/door/airlock/cyclelinkedairlock
@@ -615,13 +615,19 @@
 			if(!machine_stat)
 				update_icon(ALL, AIRLOCK_DENY)
 				playsound(src,doorDeni,50,FALSE,3)
-				addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon), ALL, AIRLOCK_CLOSED), AIRLOCK_DENY_ANIMATION_TIME)
+				addtimer(CALLBACK(src, PROC_REF(handle_deny_end)), AIRLOCK_DENY_ANIMATION_TIME)
+
+/obj/machinery/door/airlock/proc/handle_deny_end()
+	if(airlock_state == AIRLOCK_DENY)
+		update_icon(ALL, AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
 	if(closeOtherId)
 		. += span_warning("This airlock cycles on ID: [sanitize(closeOtherId)].")
-	else if(!closeOtherId)
+	else if(cyclelinkedairlock)
+		. += span_warning("This airlock cycles with: [cyclelinkedairlock.name].")
+	else
 		. += span_warning("This airlock does not cycle.")
 	if(obj_flags & EMAGGED)
 		. += span_warning("Its access panel is smoking slightly.")
@@ -1545,10 +1551,12 @@
 		var/obj/item/electronics/airlock/ae
 		if(!electronics)
 			ae = new/obj/item/electronics/airlock(loc)
+			if(closeOtherId)
+				ae.passed_cycle_id = closeOtherId
 			if(length(req_one_access))
 				ae.one_access = 1
 				ae.accesses = req_one_access
-			else
+			else if(length(req_access))
 				ae.accesses = req_access
 		else
 			ae = electronics

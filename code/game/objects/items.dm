@@ -69,6 +69,8 @@
 	var/hitsound
 	///Played when the item is used, for example tools
 	var/usesound
+	///Played when item is used for long progress
+	var/operating_sound
 	///Used when yate into a mob
 	var/mob_throw_hit_sound
 	///Sound used when equipping the item into a valid slot
@@ -161,8 +163,10 @@
 	///the icon to indicate this object is being dragged
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-	///Does it embed and if yes, what kind of embed
-	var/list/embedding
+	/// Does it embed and if yes, what kind of embed
+	var/embed_type
+	/// Stores embedding data
+	var/datum/embed_data/embed_data
 
 	///for flags such as [GLASSESCOVERSEYES]
 	var/flags_cover = 0
@@ -265,12 +269,10 @@
 	add_weapon_description()
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_ITEM, src)
-	if(LAZYLEN(embedding))
-		updateEmbedding()
+	if(get_embed())
+		AddElement(/datum/element/embed)
 
-	if(unique_reskin)
-		RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(on_click_alt_reskin))
-		register_context()
+	setup_reskinning()
 
 
 /obj/item/Destroy(force)
@@ -294,12 +296,24 @@
 	if(!unique_reskin)
 		return
 
-	if(current_skin && !(item_flags & INFINITE_RESKIN))
+	if(current_skin && !(obj_flags & INFINITE_RESKIN))
 		return
 
 	context[SCREENTIP_CONTEXT_ALT_LMB] = "Reskin"
 	return CONTEXTUAL_SCREENTIP_SET
 
+/obj/item/click_ctrl(mob/user)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	//If the item is on the ground & not anchored we allow the player to drag it
+	. = item_ctrl_click(user)
+	if(. & CLICK_ACTION_ANY)
+		return (isturf(loc) && !anchored) ? NONE : . //allow the object to get dragged on the floor
+
+/// Subtypes only override this proc for ctrl click purposes. obeys same principles as ctrl_click()
+/obj/item/proc/item_ctrl_click(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
+	return NONE
 
 /// Called when an action associated with our item is deleted
 /obj/item/proc/on_action_deleted(datum/source)
@@ -1010,7 +1024,7 @@
 
 	return SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, microwave_source, microwaver, randomize_pixel_offset)
 
-//Used to check for extra requirements for blending(grinding or juicing) an object
+///Used to check for extra requirements for blending(grinding or juicing) an object
 /obj/item/proc/blend_requirements(obj/machinery/reagentgrinder/R)
 	return TRUE
 
@@ -1020,15 +1034,16 @@
 
 ///Grind item, adding grind_results to item's reagents and transfering to target_holder if specified
 /obj/item/proc/grind(datum/reagents/target_holder, mob/user)
+	. = FALSE
 	if(on_grind() == -1)
-		return FALSE
+		return
 
 	if(length(grind_results))
 		target_holder.add_reagent_list(grind_results)
+		. = TRUE
 	if(reagents?.total_volume)
 		reagents.trans_to(target_holder, reagents.total_volume, transferred_by = user)
-
-	return TRUE
+		. = TRUE
 
 ///Called BEFORE the object is ground up - use this to change grind results based on conditions. Return "-1" to prevent the grinding from occurring
 /obj/item/proc/on_juice()
@@ -1042,7 +1057,8 @@
 		return FALSE
 
 	if(ispath(juice_typepath))
-		reagents.convert_reagent(/datum/reagent/consumable, juice_typepath, include_source_subtypes = TRUE)
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment, juice_typepath, include_source_subtypes = FALSE)
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment/vitamin, juice_typepath, include_source_subtypes = FALSE)
 	reagents.trans_to(target_holder, reagents.total_volume, transferred_by = user)
 
 	return TRUE
@@ -1086,8 +1102,11 @@
 			else
 				apply_outline() //if the player's alive and well we send the command with no color set, so it uses the theme's color
 
-/obj/item/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+/obj/item/base_mouse_drop_handler(atom/over, src_location, over_location, params)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	. = ..()
+
 	remove_filter(HOVER_OUTLINE_FILTER) //get rid of the hover effect in case the mouse exit isn't called if someone drags and drops an item and somthing goes wrong
 
 /obj/item/MouseExited()
@@ -1138,6 +1157,12 @@
 			if(user.mind.get_skill_level(/datum/skill/mining) >= SKILL_LEVEL_JOURNEYMAN && prob(user.mind.get_skill_modifier(/datum/skill/mining, SKILL_PROBS_MODIFIER))) // we check if the skill level is greater than Journeyman and then we check for the probality for that specific level.
 				mineral_scan_pulse(get_turf(user), SKILL_LEVEL_JOURNEYMAN - 2, scanner = src) //SKILL_LEVEL_JOURNEYMAN = 3 So to get range of 1+ we have to subtract 2 from it,.
 
+	//SKYRAT EDIT START: Construction Skill
+	var/construction_tools = list(TOOL_CROWBAR, TOOL_MULTITOOL, TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_WELDER)
+	for(var/checking_behavior in construction_tools)
+		if(tool_behaviour == checking_behavior && user.mind)
+			skill_modifier = user.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER)
+	//SKYRAT EDIT STOP: Construction Skill
 	delay *= toolspeed * skill_modifier
 
 	// Play tool sound at the beginning of tool usage.
@@ -1146,6 +1171,9 @@
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
+
+		if(delay >= MIN_TOOL_OPERATING_DELAY)
+			play_tool_operating_sound(target, volume)
 
 		if(!do_after(user, delay, target=target, extra_checks=tool_check))
 			return
@@ -1163,6 +1191,11 @@
 	if(delay >= MIN_TOOL_SOUND_DELAY)
 		play_tool_sound(target, volume)
 
+	//SKYRAT EDIT START: Construction Skill
+	for(var/checking_behavior in construction_tools)
+		if(tool_behaviour == checking_behavior && user.mind)
+			user.mind.adjust_experience(/datum/skill/construction, 2)
+	//SKYRAT EDIT STOP: Construction Skill
 	return TRUE
 
 /// Called before [obj/item/proc/use_tool] if there is a delay, or by [obj/item/proc/use_tool] if there isn't. Only ever used by welding tools and stacks, so it's not added on any other [obj/item/proc/use_tool] checks.
@@ -1188,6 +1221,19 @@
 			played_sound = pick(usesound)
 
 		playsound(target, played_sound, volume, TRUE)
+
+///Play item's operating sound
+/obj/item/proc/play_tool_operating_sound(atom/target, volume=50)
+	if(target && operating_sound && volume)
+		var/played_sound = operating_sound
+
+		if(islist(operating_sound))
+			played_sound = pick(operating_sound)
+
+		if(!TIMER_COOLDOWN_FINISHED(src, COOLDOWN_TOOL_SOUND))
+			return
+		playsound(target, played_sound, volume, TRUE)
+		TIMER_COOLDOWN_START(src, COOLDOWN_TOOL_SOUND, 4 SECONDS) //based on our longest sound clip
 
 /// Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
 /obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
@@ -1244,9 +1290,11 @@
 
 
 ///Does the current embedding var meet the criteria for being harmless? Namely, does it have a pain multiplier and jostle pain mult of 0? If so, return true.
-/obj/item/proc/isEmbedHarmless()
-	if(embedding)
-		return !isnull(embedding["pain_mult"]) && !isnull(embedding["jostle_pain_mult"]) && embedding["pain_mult"] == 0 && embedding["jostle_pain_mult"] == 0
+/obj/item/proc/is_embed_harmless()
+	if (!get_embed())
+		return FALSE
+
+	return !isnull(embed_data.pain_mult) && !isnull(embed_data.jostle_pain_mult) && embed_data.pain_mult == 0 && embed_data.jostle_pain_mult == 0
 
 ///In case we want to do something special (like self delete) upon failing to embed in something.
 /obj/item/proc/failedEmbed()
@@ -1279,40 +1327,19 @@
 /obj/item/proc/tryEmbed(atom/target, forced=FALSE)
 	if(!isbodypart(target) && !iscarbon(target))
 		return NONE
-	if(!forced && !LAZYLEN(embedding))
+
+	if(!forced && !get_embed())
 		return NONE
 
 	if(SEND_SIGNAL(src, COMSIG_EMBED_TRY_FORCE, target = target, forced = forced))
 		return COMPONENT_EMBED_SUCCESS
+
 	failedEmbed()
 
 ///For when you want to disable an item's embedding capabilities (like transforming weapons and such), this proc will detach any active embed elements from it.
 /obj/item/proc/disableEmbedding()
 	SEND_SIGNAL(src, COMSIG_ITEM_DISABLE_EMBED)
 	return
-
-///For when you want to add/update the embedding on an item. Uses the vars in [/obj/item/var/embedding], and defaults to config values for values that aren't set. Will automatically detach previous embed elements on this item.
-/obj/item/proc/updateEmbedding()
-	SHOULD_CALL_PARENT(TRUE)
-
-	SEND_SIGNAL(src, COMSIG_ITEM_EMBEDDING_UPDATE)
-	if(!LAZYLEN(embedding))
-		disableEmbedding()
-		return
-
-	AddElement(/datum/element/embed,\
-		embed_chance = (!isnull(embedding["embed_chance"]) ? embedding["embed_chance"] : EMBED_CHANCE),\
-		fall_chance = (!isnull(embedding["fall_chance"]) ? embedding["fall_chance"] : EMBEDDED_ITEM_FALLOUT),\
-		pain_chance = (!isnull(embedding["pain_chance"]) ? embedding["pain_chance"] : EMBEDDED_PAIN_CHANCE),\
-		pain_mult = (!isnull(embedding["pain_mult"]) ? embedding["pain_mult"] : EMBEDDED_PAIN_MULTIPLIER),\
-		remove_pain_mult = (!isnull(embedding["remove_pain_mult"]) ? embedding["remove_pain_mult"] : EMBEDDED_UNSAFE_REMOVAL_PAIN_MULTIPLIER),\
-		rip_time = (!isnull(embedding["rip_time"]) ? embedding["rip_time"] : EMBEDDED_UNSAFE_REMOVAL_TIME),\
-		ignore_throwspeed_threshold = (!isnull(embedding["ignore_throwspeed_threshold"]) ? embedding["ignore_throwspeed_threshold"] : FALSE),\
-		impact_pain_mult = (!isnull(embedding["impact_pain_mult"]) ? embedding["impact_pain_mult"] : EMBEDDED_IMPACT_PAIN_MULTIPLIER),\
-		jostle_chance = (!isnull(embedding["jostle_chance"]) ? embedding["jostle_chance"] : EMBEDDED_JOSTLE_CHANCE),\
-		jostle_pain_mult = (!isnull(embedding["jostle_pain_mult"]) ? embedding["jostle_pain_mult"] : EMBEDDED_JOSTLE_PAIN_MULTIPLIER),\
-		pain_stam_pct = (!isnull(embedding["pain_stam_pct"]) ? embedding["pain_stam_pct"] : EMBEDDED_PAIN_STAM_PCT))
-	return TRUE
 
 /// How many different types of mats will be counted in a bite?
 #define MAX_MATS_PER_BITE 2
@@ -1424,7 +1451,7 @@
 		mob_loc.update_clothing(slot_flags)
 
 /// Called on [/datum/element/openspace_item_click_handler/proc/on_afterattack]. Check the relative file for information.
-/obj/item/proc/handle_openspace_click(turf/target, mob/user, proximity_flag, click_parameters)
+/obj/item/proc/handle_openspace_click(turf/target, mob/user, list/modifiers)
 	stack_trace("Undefined handle_openspace_click() behaviour. Ascertain the openspace_item_click_handler element has been attached to the right item and that its proc override doesn't call parent.")
 
 /**
@@ -1526,10 +1553,6 @@
 /obj/item/proc/on_outfit_equip(mob/living/carbon/human/outfit_wearer, visuals_only, item_slot)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_AS_OUTFIT, outfit_wearer, visuals_only, item_slot)
-
-/// Whether or not this item can be put into a storage item through attackby
-/obj/item/proc/attackby_storage_insert(datum/storage, atom/storage_holder, mob/user)
-	return TRUE
 
 /obj/item/proc/do_pickup_animation(atom/target, turf/source)
 	if(!source)
@@ -1803,3 +1826,29 @@
 	if(!isnull(loc))
 		SEND_SIGNAL(loc, COMSIG_ATOM_CONTENTS_WEIGHT_CLASS_CHANGED, src, old_w_class, new_w_class)
 	return TRUE
+
+/// Fetches embedding data
+/obj/item/proc/get_embed()
+	RETURN_TYPE(/datum/embed_data)
+	return embed_type ? (embed_data ||= get_embed_by_type(embed_type)) : null
+
+/obj/item/proc/set_embed(datum/embed_data/embed)
+	if(embed_data == embed)
+		return
+	if(!GLOB.embed_by_type[embed_data?.type])
+		qdel(embed_data)
+	embed_data = ispath(embed) ? get_embed_by_type(armor) : embed
+	SEND_SIGNAL(src, COMSIG_ITEM_EMBEDDING_UPDATE)
+
+/**
+ * Returns the atom(either itself or an internal module) that will interact/attack the target on behalf of us
+ * For example an object can have different `tool_behaviours` (e.g borg omni tool) but will return an internal reference of that tool to attack for us
+ * You can use it for general purpose polymorphism if you need a proxy atom to interact in a specific way
+ * with a target on behalf on this atom
+ *
+ * Currently used only in the object melee attack chain but can be used anywhere else or even moved up to the atom level if required
+ */
+/obj/item/proc/get_proxy_attacker_for(atom/target, mob/user)
+	RETURN_TYPE(/obj/item)
+
+	return src

@@ -57,7 +57,7 @@
 	ADD_TRAIT(src, TRAIT_AGEUSIA, NO_TONGUE_TRAIT)
 
 /mob/living/carbon/human/proc/setup_human_dna()
-	randomize_human(src, randomize_mutations = TRUE)
+	randomize_human_normie(src, randomize_mutations = TRUE)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
@@ -675,12 +675,12 @@
 		visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
 		to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
 		return TRUE
-	//SKYRAT ERP UPDATE ADDITION: NOW GLOVES CAN RESTRAIN PLAYERS
+	// SKYRAT EDIT ADDITION: NOW GLOVES CAN RESTRAIN PLAYERS
 	if(I == gloves)
 		visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
 		to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
 		return TRUE
-	//SKYRAT ERP UPDATE ADDITION END
+	// SKYRAT EDIT ADDITION END
 
 /mob/living/carbon/human/replace_records_name(oldname, newname) // Only humans have records right now, move this up if changed.
 	var/datum/record/crew/crew_record = find_record(oldname)
@@ -765,6 +765,10 @@
 
 /mob/living/carbon/human/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, mob_height))
+		var/static/list/monkey_heights = list(
+			MONKEY_HEIGHT_DWARF,
+			MONKEY_HEIGHT_MEDIUM,
+		)
 		var/static/list/heights = list(
 			HUMAN_HEIGHT_SHORTEST,
 			HUMAN_HEIGHT_SHORT,
@@ -773,7 +777,10 @@
 			HUMAN_HEIGHT_TALLER,
 			HUMAN_HEIGHT_TALLEST
 		)
-		if(!(var_value in heights))
+		if(ismonkey(src))
+			if(!(var_value in monkey_heights))
+				return
+		else if(!(var_value in heights))
 			return
 
 		. = set_mob_height(var_value)
@@ -854,7 +861,7 @@
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
+		var/result = input(usr, "Please choose a new species","Species") as null|anything in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
 		if(result)
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
@@ -1085,7 +1092,7 @@
 /mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE, list/override_features, list/override_mutantparts, list/override_markings, retain_features = FALSE, retain_mutantparts = FALSE) // SKYRAT EDIT - Customization
 	. = ..()
 	if(use_random_name)
-		fully_replace_character_name(real_name, dna.species.random_name())
+		fully_replace_character_name(real_name, generate_random_mob_name())
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor

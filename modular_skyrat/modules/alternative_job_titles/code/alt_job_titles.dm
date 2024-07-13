@@ -234,6 +234,10 @@
 		"Physician",
 		"Surgeon",
 		"Medical Student",
+		"Virologist",
+		"Epidemiologist",
+		"Pathologist",
+		"Junior Pathologist",
 	)
 
 /datum/job/engineering_guard //see orderly
@@ -407,13 +411,15 @@
 		"Apprentice Engineer",
 	)
 
-/datum/job/virologist
+/datum/job/telecomms_specialist
 	alt_titles = list(
-		"Virologist",
-		"Epidemiologist",
-		"Pathologist",
-		"Junior Pathologist",
+		"Telecomms Specialist",
+		"Wireless Operator",
+		"Network Engineer",
+		"Sysadmin",
+		"Tram Technician",
 	)
+
 
 /datum/job/warden
 	alt_titles = list(

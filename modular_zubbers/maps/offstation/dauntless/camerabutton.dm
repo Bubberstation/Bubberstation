@@ -3,6 +3,7 @@
 	desc = "A small electronic device that cuts feed for an entire network."
 	/// Camera network to kill
 	var/camera_network = "dauntless"
+	verb_say = "beeps"
 
 /obj/item/assembly/control/camkillswitch/activate()
 	if(cooldown)

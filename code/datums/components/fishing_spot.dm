@@ -17,6 +17,7 @@
 	RegisterSignal(parent, COMSIG_FISHING_ROD_CAST, PROC_REF(handle_cast))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examined))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examined_more))
+	ADD_TRAIT(parent, TRAIT_FISHING_SPOT, REF(src))
 
 /datum/component/fishing_spot/Destroy()
 	fish_source = null
@@ -41,7 +42,7 @@
 		return
 
 	var/has_known_fishes = FALSE
-	for(var/reward in fish_source.fish_counts)
+	for(var/reward in fish_source.fish_table)
 		if(!ispath(reward, /obj/item/fish))
 			continue
 		var/obj/item/fish/prototype = reward
@@ -59,7 +60,7 @@
 		return
 
 	var/list/known_fishes = list()
-	for(var/reward in fish_source.fish_counts)
+	for(var/reward in fish_source.fish_table)
 		if(!ispath(reward, /obj/item/fish))
 			continue
 		var/obj/item/fish/prototype = reward
@@ -83,6 +84,8 @@
 	if(denial_reason)
 		to_chat(user, span_warning(denial_reason))
 		return COMPONENT_NO_AFTERATTACK
+	// In case the fishing source has anything else to do before beginning to fish.
+	fish_source.on_start_fishing(rod, user, parent)
 	start_fishing_challenge(rod, user)
 	return COMPONENT_NO_AFTERATTACK
 

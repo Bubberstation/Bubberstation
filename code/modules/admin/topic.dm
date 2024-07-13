@@ -113,8 +113,8 @@
 	else if(href_list["gamemode_panel"])
 		if(!check_rights(R_ADMIN))
 			return
-		SSdynamic.admin_panel()
-
+		//SSdynamic.admin_panel() // BUBBER EDIT - STORYTELLER
+		SSgamemode.admin_panel(usr) // BUBBER EDIT - STORYTELLER
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1467,7 +1467,7 @@
 			if(response.body == "[]")
 				dat += "<center><b>0 bans detected for [ckey]</b></center>"
 			else
-				bans = json_decode(response["body"])
+				bans = json_decode(response.body)
 
 				//Ignore bans from non-whitelisted sources, if a whitelist exists
 				var/list/valid_sources
@@ -1776,7 +1776,7 @@
 		if(!paper_to_show)
 			return
 		paper_to_show.ui_interact(usr)
-	// SKYRAT ADDITION START
+	// SKYRAT EDIT ADDITION START
 	else if(href_list["pass_opfor_candidate"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1784,7 +1784,7 @@
 		if(!SSdynamic.picking_specific_rule(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, forced = TRUE, ignore_cost = TRUE))
 			message_admins("An OPFOR candidate could not be selected.")
 
-	// SKYRAT ADDITION END
+	// SKYRAT EDIT ADDITION END
 	else if(href_list["play_internet"])
 		if(!check_rights(R_SOUND))
 			return

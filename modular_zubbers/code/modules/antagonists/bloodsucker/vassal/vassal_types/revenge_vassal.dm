@@ -10,9 +10,9 @@
 	show_in_antagpanel = FALSE
 	antag_hud_name = "vassal4"
 	special_type = REVENGE_VASSAL
-	vassal_description = "The Revenge Vassal will not deconvert on your Final Death, \
+	vassal_description = "The Revenge Vassal will not deconvert on a Bloodsucker's Final Death, \
 		instead they will gain all your Powers, and the objective to take revenge for your demise. \
-		They additionally maintain your Vassals after your departure, rather than become aimless."
+		They additionally maintain Vassals their Master's departure, rather than become aimless."
 
 	///all ex-vassals brought back into the fold.
 	var/list/datum/antagonist/ex_vassal/ex_vassals = list()
@@ -59,7 +59,7 @@
 	new_objective.explanation_text = "Avenge your Bloodsucker's death by felling the ones that killed them, and by recruiting their ex-vassals and continuing their operations."
 	new_objective.owner = owner
 	objectives += new_objective
-	
+
 	antag_panel_title = "You are a Vassal tasked with taking revenge for the death of your Master!"
 	antag_panel_description = "You have gained your Master&#39;s old Powers, and a brand new \
 		power. You will have to survive and maintain your old \

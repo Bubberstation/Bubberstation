@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	///Does the mask have an FOV?
 	var/has_fov = TRUE
 	///Cigarette in the mask
-	var/obj/item/clothing/mask/cigarette/cig
+	var/obj/item/cigarette/cig
 	voice_filter = "lowpass=f=750,volume=2"
 
 /datum/armor/mask_gas
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 /obj/item/clothing/mask/gas/attackby(obj/item/tool, mob/user)
 	var/valid_wearer = ismob(loc)
 	var/mob/wearer = loc
-	if(istype(tool, /obj/item/clothing/mask/cigarette))
+	if(istype(tool, /obj/item/cigarette))
 		if(flags_cover & MASKCOVERSMOUTH)
 			balloon_alert(user, "mask's mouth is covered!")
 			return ..()
@@ -221,6 +221,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	visor_flags_cover = MASKCOVERSEYES
 	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
 	resistance_flags = FIRE_PROOF
+	clothing_flags = parent_type::clothing_flags | INTERNALS_ADJUST_EXEMPT
 
 /datum/armor/gas_welding
 	melee = 10
@@ -277,6 +278,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	dye_color = DYE_CLOWN
 	w_class = WEIGHT_CLASS_SMALL
 	flags_cover = MASKCOVERSEYES
+	clothing_traits = list(TRAIT_PERCEIVED_AS_CLOWN)
 	resistance_flags = FLAMMABLE
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = /datum/dog_fashion/head/clown
@@ -296,7 +298,11 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 		"The Madman" = image(icon = src.icon, icon_state = "joker"),
 		"The Rainbow Color" = image(icon = src.icon, icon_state = "rainbow")
 		)
-	//AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0) //SKYRAT EDIT REMOVAL
+	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
+
+// BUBBERSTATION EDIT
+//WAS: //AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0) //SKYRAT EDIT REMOVAL
+
 
 /obj/item/clothing/mask/gas/clown_hat/ui_action_click(mob/user)
 	if(!istype(user) || user.incapacitated())
@@ -367,7 +373,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 		return FALSE
 
 	if(src && choice && !user.incapacitated() && in_range(user,src))
-		// SKYRAT ADDITION - More mask variations
+		// SKYRAT EDIT ADDITION START - More mask variations
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.dna.species.mutant_bodyparts["snout"])
 			icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
@@ -379,7 +385,7 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 			icon = 'icons/obj/clothing/masks.dmi'
 			worn_icon = 'icons/mob/clothing/mask.dmi'
 			icon_state = options[choice]
-		/* SKYRAT ADDITION END
+		/* SKYRAT EDIT ADDITION END
 		icon_state = options[choice]
 		*/
 		user.update_worn_mask()

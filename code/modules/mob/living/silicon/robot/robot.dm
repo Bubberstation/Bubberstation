@@ -7,12 +7,13 @@
 	AddComponent(/datum/component/tippable, \
 		tip_time = 3 SECONDS, \
 		untip_time = 2 SECONDS, \
-		self_right_time = 60 SECONDS, \
+		self_right_time = 20 SECONDS, \
 		post_tipped_callback = CALLBACK(src, PROC_REF(after_tip_over)), \
 		post_untipped_callback = CALLBACK(src, PROC_REF(after_righted)), \
 		roleplay_friendly = TRUE, \
 		roleplay_emotes = list(/datum/emote/living/human/buzz, /datum/emote/living/human/buzz2, /datum/emote/living/beep, /datum/emote/living/human/beep2), /* SKYRAT EDIT CHANGE - ORIGINAL: roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/living/beep), */ \
 		roleplay_callback = CALLBACK(src, PROC_REF(untip_roleplay)))
+		//BUBBER EDIT: REDUCES THE SELF-RIGHT TIME FOR BORGS TO 20 SECONDS, FROM 60 SECONDS
 
 	set_wires(new /datum/wires/robot(src))
 	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
@@ -169,6 +170,7 @@
 			"Miner" = /obj/item/robot_model/miner,
 			"Janitor" = /obj/item/robot_model/janitor,
 			"Service" = /obj/item/robot_model/service,
+			"Research" = /obj/item/robot_model/sci,//BUBBEREDIT - Addition of Research borgs
 		)
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper
@@ -327,7 +329,7 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /mob/living/silicon/robot/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
-	if(same_z_layer)
+	if(same_z_layer || QDELING(src))
 		return ..()
 	cut_overlay(eye_lights)
 	SET_PLANE_EXPLICIT(eye_lights, PLANE_TO_TRUE(eye_lights.plane), src)
@@ -475,7 +477,8 @@
  */
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
-	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
+	//BUBBER EDIT - Disables flashlight when held
+	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode || istype(loc, /obj/item/clothing/head/mob_holder)))
 		set_light_on(lamp_functional && stat != DEAD && lamp_doom) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
 		set_light_color(COLOR_RED) //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
 		set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
@@ -561,7 +564,7 @@
 		if(AI_NOTIFICATION_CYBORG_DISCONNECTED) //Tampering with the wires
 			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Remote telemetry lost with [name].")]<br>")
 
-/mob/living/silicon/robot/can_perform_action(atom/movable/target, action_bitflags)
+/mob/living/silicon/robot/can_perform_action(atom/target, action_bitflags)
 	if(lockcharge || low_power_mode)
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
@@ -704,7 +707,6 @@
 	if (hasShrunk)
 		hasShrunk = FALSE
 		update_transform(4/3)
-	hasAffection = FALSE //Just so they can get the affection modules back if they want them.
 	//SKYRAT EDIT ADDITION END
 
 	logevent("Chassis model has been reset.")
@@ -967,13 +969,16 @@
 
 /mob/living/silicon/robot/proc/charge(datum/source, datum/callback/charge_cell, seconds_per_tick, repairs, sendmats)
 	SIGNAL_HANDLER
-	charge_cell.Invoke(cell, seconds_per_tick)
+
 	if(model)
-		model.respawn_consumable(src, cell.use(cell.chargerate * 0.005))
+		if(cell.charge)
+			if(model.respawn_consumable(src, cell.charge * 0.005))
+				cell.use(cell.charge * 0.005)
 		if(sendmats)
 			model.restock_consumable()
 	if(repairs)
 		heal_bodypart_damage(repairs, repairs)
+	charge_cell.Invoke(cell, seconds_per_tick)
 
 /mob/living/silicon/robot/proc/set_connected_ai(new_ai)
 	if(connected_ai == new_ai)
