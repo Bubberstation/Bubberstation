@@ -25,7 +25,7 @@
 /datum/bounty/item/science/genetics
 	name = "Genetics Disability Mutator"
 	description = "Understanding the humanoid genome is the first step to curing many spaceborn genetic defects, and exceeding our basest limits."
-	reward = CARGO_CRATE_VALUE * 2
+	reward = CARGO_CRATE_VALUE * 4
 	wanted_types = list(/obj/item/dnainjector = TRUE)
 	///What's the instability
 	var/desired_instability = 0
@@ -73,14 +73,14 @@
 /datum/bounty/item/science/ntnet/laptops
 	name = "Modular Laptops"
 	description = "Central command brass need something more powerful than a tablet, but more portable than a console. Help these old fogeys out by shipping us some working laptops. Send them turned on."
-	reward = CARGO_CRATE_VALUE * 3
-	required_count = 2
+	reward = CARGO_CRATE_VALUE * 5
+	required_count = 3
 	wanted_types = list(/obj/item/modular_computer/laptop = TRUE)
 
 /datum/bounty/item/science/ntnet/console
 	name = "Modular Computer Console"
 	description = "Our big data division needs more powerful hardware to play 'Outbomb Cuban Pe-', err, to closely monitor threats in your sector. Send us a working modular computer console."
-	reward = CARGO_CRATE_VALUE * 6
+	reward = CARGO_CRATE_VALUE * 8
 	required_count = 1
 	wanted_types = list(/obj/machinery/modular_computer = TRUE)
 	require_powered = FALSE
@@ -98,7 +98,7 @@
 /datum/bounty/item/science/ref_anomaly
 	name = "Refined Bluespace Core"
 	description = "We need a bluespace core to assemble a bag of holding. Ship us one, please."
-	reward = CARGO_CRATE_VALUE * 20
+	reward = CARGO_CRATE_VALUE * 40
 	wanted_types = list(/obj/item/assembly/signaler/anomaly/bluespace = TRUE)
 
 /datum/bounty/item/science/ref_anomaly/can_get(obj/O)
