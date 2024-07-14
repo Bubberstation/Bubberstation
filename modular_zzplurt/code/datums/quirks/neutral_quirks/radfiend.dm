@@ -1,11 +1,3 @@
-#define TRAIT_RAD_FIEND "rad_fiend"
-
-GLOBAL_LIST_INIT(traits_by_type_radfiend, list(
-	/obj/item/toy/plush/skyrat = list(
-		"TRAIT_RAD_FIEND" = TRAIT_RAD_FIEND, //SPLURT addition - for sodium sensetivity quirk
-	),
-))
-
 /datum/quirk/rad_fiend
 	name = "Rad Fiend"
 	desc = "You've been blessed by Cherenkov's warming light, causing you to emit a subtle glow at all times. Only -very- intense radiation is capable of penetrating your protective barrier"

@@ -1,11 +1,3 @@
-#define TRAIT_SALT_SENSITIVE "salt_sensitive"
-
-GLOBAL_LIST_INIT(traits_by_type_saltsensetive, list(
-	/obj/item/toy/plush/skyrat = list(
-		"TRAIT_SALT_SENSITIVE" = TRAIT_SALT_SENSITIVE, //SPLURT addition - for sodium sensetivity quirk
-	),
-))
-
 /datum/quirk/sodiumsensetivity
 	name = "Sodium Sensitivity"
 	desc = "Your body is sensitive to sodium, and is burnt upon contact. Ingestion or contact with it is not advised."
