@@ -85,7 +85,7 @@
 		)
 	)
 
-	zubbers_premium = list( //being here means you're artificially rare, congratulations
+	zubbers_premium = list( //being here means you're even more artificially rare, congratulations
 		/obj/item/clothing/head/razurathhat = 2,
 		/obj/item/clothing/suit/razurathcoat = 2,
 		/obj/item/clothing/suit/hooded/colorblockhoodie = 2,
