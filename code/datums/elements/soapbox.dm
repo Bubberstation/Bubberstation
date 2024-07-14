@@ -1,4 +1,4 @@
-/datum/element/soapbox
+/*/datum/element/soapbox
 	/// The person standing on parent
 	var/list/speakers = list()
 	/// List of spans we add to the speaker
@@ -33,3 +33,4 @@
 	SIGNAL_HANDLER
 
 	speech_args[SPEECH_SPANS] |= voicespan
+*/
