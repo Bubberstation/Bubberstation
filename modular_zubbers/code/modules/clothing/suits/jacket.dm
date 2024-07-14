@@ -64,6 +64,8 @@
 	armor_type = /datum/armor/toggle_labcoat
 	toggle_noun = "zipper"
 
+//Monke Station Bunnies
+
 /obj/item/clothing/suit/jacket/tailcoat //parent type
 	name = "tailcoat"
 	desc = "A coat usually worn by bunny themed waiters and the like."
@@ -82,17 +84,8 @@
 	greyscale_colors = "#39393f#ffffff"
 	greyscale_config = /datum/greyscale_config/tailcoat_bar
 	greyscale_config_worn = /datum/greyscale_config/tailcoat_bar_worn
-	armor_type = /datum/armor/tailcoat_bar
+	armor_type = /datum/armor/suit_armor
 
-/datum/armor/tailcoat_bar
-	melee = 15
-	bullet = 10
-	laser = 10
-	energy = 15
-	fire = 20
-	bomb = 10
-	acid = 20
-	wound = 5
 
 /obj/item/clothing/suit/jacket/tailcoat/bartender/Initialize(mapload) //so bartenders can use cram their shotgun inside
 	. = ..()
@@ -107,21 +100,10 @@
 	name = "suspicious tailcoat"
 	desc = "A oddly intimidating coat usually worn by bunny themed assassins. It's reinforced with some extremely flexible lightweight alloy. How much did they pay for this?"
 	icon_state = "tailcoat_syndi"
-	armor_type = /datum/armor/tailcoat_syndi
+	armor_type = /datum/armor/wintercoat_syndicate
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
-
-
-/datum/armor/tailcoat_syndi
-	melee = 30
-	bullet = 25
-	laser = 30
-	energy = 35
-	fire = 50
-	bomb = 20
-	acid = 50
-	wound = 10
 
 
 /obj/item/clothing/suit/jacket/tailcoat/syndicate/Initialize(mapload)

@@ -1,3 +1,5 @@
+//Override thing from Monkey. Lets us tie bowties.
+
 /obj/item/clothing/neck/tie
 	var/tie_type = "tie_greyscale"
 
@@ -14,6 +16,8 @@
 		strip_delay = 1 SECONDS
 		equip_delay_other = 1 SECONDS
 		equip_delay_self = 0
+
+//Bunny Stuff from Monkee
 
 /obj/item/clothing/neck/tie/bunnytie
 	name = "bowtie collar"
@@ -36,7 +40,7 @@
 	desc = "A fancy tie that includes a red collar. Looking sinister..."
 	icon_state = "bowtie_collar_syndi_tied"
 	tie_type = "bowtie_collar_syndi"
-	armor_type = /datum/armor/bunnytie_syndicate
+	armor_type = /datum/armor/large_scarf_syndie
 	tie_timer = 2 SECONDS //Tactical tie
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -44,10 +48,6 @@
 
 /obj/item/clothing/neck/tie/bunnytie/syndicate/tied
 	is_tied = TRUE
-
-/datum/armor/bunnytie_syndicate
-	fire = 30
-	acid = 20
 
 /obj/item/clothing/neck/tie/bunnytie/magician
 	name = "magician's bowtie collar"

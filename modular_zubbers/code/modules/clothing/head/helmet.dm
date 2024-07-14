@@ -63,6 +63,8 @@
 	icon_state = "clussy_wig"
 	flags_inv = HIDEHAIR
 
+//Bunny Ears from Monkee.
+
 /obj/item/clothing/head/playbunnyears
 	name = "bunny ears headband"
 	desc = "A pair of bunny ears attached to a headband. One of the ears is already crooked."
@@ -79,20 +81,10 @@
 	desc = "An unusually suspicious pair of bunny ears attached to a headband. The headband looks reinforced with plasteel... but why?"
 	icon_state = "syndibunny_ears"
 	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/playbunnyears_syndicate
+	armor_type = /datum/armor/head_helmet
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
-
-/datum/armor/playbunnyears_syndicate
-	melee = 30
-	bullet = 20
-	laser = 30
-	energy = 35
-	fire = 20
-	bomb = 15
-	acid = 50
-	wound = 5
 
 /obj/item/clothing/head/playbunnyears/syndicate/fake
 	armor_type = /datum/armor/none
