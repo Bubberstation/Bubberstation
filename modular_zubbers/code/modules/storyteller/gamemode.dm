@@ -211,7 +211,9 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Gets the number of antagonists the antagonist injection events will stop rolling after.
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
-	return round(get_correct_popcount() / storyteller?.antag_divisor) + (sec_crew ? sec_crew : ANTAG_CAP_FLAT) // Population divide by storyeteller's divisor, add one antag per sec.
+	if(isnull(storyteller))
+		return 0
+	return round(get_correct_popcount() / storyteller.antag_divisor) + (sec_crew ? sec_crew : ANTAG_CAP_FLAT) // Population divide by storyeteller's divisor, add one antag per sec.
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
