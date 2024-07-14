@@ -28,6 +28,10 @@
 		/obj/item/clothing/under/rank/nanotrasen_consultant/hubert = 1,
 		/obj/item/clothing/head/razurathhat = 1,
 		/obj/item/clothing/suit/razurathcoat = 1,
+		/obj/item/clothing/head/playbunnyears/centcom = 1,
+		/obj/item/clothing/neck/tie/bunnytie/centcom = 1,
+		/obj/item/clothing/suit/jacket/tailcoat/centcom = 1,
+		/obj/item/clothing/under/costume/playbunny/centcom = 1,
 	)
 
 	access_lists["[ACCESS_COMMAND]"] += list(
