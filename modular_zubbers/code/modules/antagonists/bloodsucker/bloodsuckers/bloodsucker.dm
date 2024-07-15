@@ -106,8 +106,8 @@
 		TRAIT_STABLELIVER
 	)
 	var/static/biotype = MOB_VAMPIRIC
-	/// Weakref to the owner mob's heart, without bloodsucker_life stops and they die. Handled via signals due to the fact that
-	/// Bloodsuckers don't take damage from lacking a heart due to TRAIT_NOBREATH
+	/// Weakref to the owner mob's heart, without it they loose their powers. Handled via signals due to the fact that
+	/// bloodsuckers don't take damage from lacking a heart due to TRAIT_NOBREATH
 	/// Saved here so we can keep a track of it and remove signals properly
 	var/datum/weakref/heart
 
@@ -164,7 +164,8 @@
 		QDEL_NULL(vamprank_display)
 
 	SSsunlight.remove_sun_sufferer(owner.current) //check if sunlight should end
-	current_mob.dna?.species?.on_bloodsucker_loss(current_mob)
+	if(iscarbon(current_mob))
+		current_mob.dna.species?.on_bloodsucker_loss(current_mob)
 	if(current_mob.client)
 		// We need to let the bloodsucker antag datum get removed before we can re-add quirks
 		addtimer(CALLBACK(SSquirks, TYPE_PROC_REF(/datum/controller/subsystem/processing/quirks, AssignQuirks), current_mob, current_mob.client), 1 SECONDS)
@@ -198,7 +199,11 @@
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
 	.["Set blood level"] = CALLBACK(src, PROC_REF(admin_set_blood))
-	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp), TRUE)
+	.["Give Level"] = CALLBACK(src, PROC_REF(admin_rankup))
+	// I know admins can technically do it via VV's dropdown, but it's super inconvenient.
+	.["Give Power"] = CALLBACK(src, PROC_REF(admin_give_power))
+	.["Remove Power"] = CALLBACK(src, PROC_REF(admin_remove_power))
+	.["Set Power Level"] = CALLBACK(src, PROC_REF(admin_set_power_level))
 	if(bloodsucker_level_unspent >= 1)
 		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
@@ -317,7 +322,7 @@
 
 // Called when using admin tools to give antag status
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
-	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
+	var/levels = tgui_input_number(admin, "How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", GetUnspentRank(), 100, 0)
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
 	if(levels > 1)
 		bloodsucker_level_unspent = levels

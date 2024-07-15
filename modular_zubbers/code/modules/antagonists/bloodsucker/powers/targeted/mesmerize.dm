@@ -92,9 +92,11 @@
 		return FALSE
 	var/mob/living/current_target = target_atom // We already know it's carbon due to CheckValidTarget()
 	// No mind
+#ifndef BLOODSUCKER_TESTING
 	if(!current_target.mind)
 		owner.balloon_alert(owner, "[current_target] is mindless.")
 		return FALSE
+#endif
 	// Bloodsucker
 	if(IS_BLOODSUCKER(current_target))
 		owner.balloon_alert(owner, "bloodsuckers are immune to [src].")
@@ -205,8 +207,8 @@
 	mesmerized_target.set_silence_if_lower(get_mute_time())
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower()
-	target_ref = null
 	. = ..()
+	target_ref = null
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT)

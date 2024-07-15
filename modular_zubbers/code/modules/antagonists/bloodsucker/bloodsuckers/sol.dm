@@ -147,9 +147,11 @@
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/torpor_end(quiet = FALSE)
+	if(!owner.current)
+		return
 	if(quiet)
-		owner.current.grab_ghost()
 		to_chat(owner.current, span_warning("You have recovered from Torpor."))
+	owner.current.grab_ghost()
 	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
 	if(!HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT))
 		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)

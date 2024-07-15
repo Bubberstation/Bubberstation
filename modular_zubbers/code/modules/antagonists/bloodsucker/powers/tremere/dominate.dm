@@ -48,7 +48,7 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/CheckCanTarget(atom/target_atom)
 	var/mob/living/selected_target = target_atom
 	if(level_current >= DOMINATE_VASSALIZE_LEVEL && (IS_VASSAL(selected_target) || selected_target.stat >= SOFT_CRIT))
-		if(selected_target.mind && owner.Adjacent(selected_target))
+		if(selected_target?.mind && owner.Adjacent(selected_target))
 			return TRUE
 	. = ..()
 	if(!.)
@@ -71,6 +71,8 @@
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/DeactivatePower()
 	. = ..()
+	if(!.)
+		return
 	if(level_current >= DOMINATE_DOMINATE_XRAY_LEVEL)
 		REMOVE_TRAIT(owner, TRAIT_XRAY_VISION, DOMINATE_TRAIT)
 	for(var/hudtype in datahuds)
@@ -102,24 +104,21 @@
 		PowerActivatedSuccesfully(get_vassalize_cooldown())
 		to_chat(user, span_warning("We revive [target]!"))
 		owner.balloon_alert(owner, "successfully revived!")
-		target.mind.grab_ghost()
+		target.mind?.grab_ghost()
 		target.revive(ADMIN_HEAL_ALL)
 		pay_cost(TEMP_VASSALIZE_COST - bloodcost)
 		log_combat(owner, target, "tremere revived", addition="Revived their vassal using dominate")
 		return FALSE
-
-	if(!bloodsuckerdatum_power.make_vassal(target))
+	if(!bloodsuckerdatum_power.make_vassal(target) )
 		owner.balloon_alert(owner, "not a valid target for vassalization!.")
 		return
 
 	/*if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_notice("Their body refuses to react..."))
 		return*/
-	if(!bloodsuckerdatum_power.make_vassal(target))
-		return
 	PowerActivatedSuccesfully(get_vassalize_cooldown())
 	to_chat(user, span_warning("We revive [target]!"))
-	target.mind.grab_ghost()
+	target.mind?.grab_ghost()
 	target.revive(ADMIN_HEAL_ALL)
 	var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 	vassaldatum.special_type = TREMERE_VASSAL //don't turn them into a favorite please
@@ -151,13 +150,14 @@
 	if(!user || QDELETED(user))
 		return
 	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
-	user.blood_volume = BLOOD_VOLUME_BAD
+	if(!HAS_TRAIT(user, TRAIT_NOBLOOD))
+		user.blood_volume = BLOOD_VOLUME_BAD
 	user.death()
 	if(!IS_VASSAL(user))
 		to_chat(user, span_warning("You feel the blood keeping you alive run out!"))
 		return
 	to_chat(user, span_warning("You feel the Blood of your Master run out!"))
-	user.mind.remove_antag_datum(/datum/antagonist/vassal)
+	user.mind?.remove_antag_datum(/datum/antagonist/vassal)
 	if(user.stat == DEAD)
 		return
 	user.death()

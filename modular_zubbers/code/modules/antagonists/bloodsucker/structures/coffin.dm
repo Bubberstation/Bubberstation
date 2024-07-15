@@ -131,7 +131,7 @@
 
 /// NOTE: This can be any coffin that you are resting AND inside of.
 /obj/structure/closet/crate/coffin/proc/claim_coffin(mob/living/claimant, area/current_area)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = claimant.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(claimant)
 	// Successfully claimed?
 	if(bloodsuckerdatum.claim_coffin(src, current_area))
 		resident = claimant
@@ -176,7 +176,7 @@
 		return
 	un_enlarge(resident)
 	// Unclaiming
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = resident.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(resident)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
 		bloodsuckerdatum.coffin = null
 		bloodsuckerdatum.bloodsucker_lair_area = null

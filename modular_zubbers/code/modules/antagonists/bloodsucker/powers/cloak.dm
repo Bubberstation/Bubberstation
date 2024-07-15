@@ -73,10 +73,12 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/cloak/DeactivatePower()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/user = owner
 	animate(user, alpha = 255, time = 1 SECONDS)
 	user.RemoveElement(/datum/element/digitalcamo)
 	if(level_current < 4 && was_running && user.move_intent == MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 	user.balloon_alert(user, "cloak turned off.")
-	return ..()

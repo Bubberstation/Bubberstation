@@ -241,7 +241,7 @@
 		on_revive()
 	if(bloodsuckeruser.stat == DEAD)
 		bloodsuckeruser.revive()
-	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
+	for(var/datum/wound/iter_wound in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
@@ -344,6 +344,7 @@
 		return
 	// Ensure that the HUD updates (We might have lost the heart at some point)
 	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
+	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))

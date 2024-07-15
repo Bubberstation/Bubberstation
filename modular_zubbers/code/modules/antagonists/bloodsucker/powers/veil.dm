@@ -105,7 +105,7 @@
 
 /datum/action/cooldown/bloodsucker/veil/DeactivatePower()
 	. = ..()
-	if(!ishuman(owner))
+	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/user = owner
 	// Revert Identity

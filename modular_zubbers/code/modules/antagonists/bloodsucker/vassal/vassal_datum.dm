@@ -186,7 +186,7 @@
 	if(!choice)
 		return
 	log_admin("[key_name_admin(admin)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
-	var/datum/antagonist/bloodsucker/vampire = choice.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(choice.current)
 	master = vampire
 	new_owner.add_antag_datum(src)
 	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))

@@ -235,6 +235,7 @@
 #define IS_FAVORITE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/favorite))
 ///Whether a mob is a Revenge Vassal
 #define IS_REVENGE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/revenge))
+#define IS_EX_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/ex_vassal))
 
 ///Whether a mob is a Monster Hunter-NOT NEEDED RIGHT NOW
 // #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))

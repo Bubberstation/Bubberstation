@@ -44,6 +44,12 @@
 	charges = get_max_charges()
 	. = ..()
 
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/Remove()
+	. = ..()
+	var/shield = blood_shield?.resolve()
+	if(shield)
+		QDEL_NULL(shield)
+
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/on_power_upgrade()
 	cooldown_time = get_max_charges() * THAUMATURGY_COOLDOWN_PER_CHARGE
 	bloodcost = get_max_charges() * THAUMATURGY_BLOOD_COST_PER_CHARGE
@@ -113,13 +119,13 @@
 		)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/DeactivatePower()
-	var/shield = blood_shield?.resolve()
+	. = ..()
+	if(!.)
+		return
 	var/used_charges = get_max_charges() - charges
-	if(shield)
-		QDEL_NULL(shield)
+
 	if(used_charges > 0)
 		StartCooldown()
-	return ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/StartCooldown(override_cooldown_time, override_melee_cooldown_time)
 	var/used_charges = get_max_charges() - charges
@@ -269,7 +275,7 @@
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
 /obj/item/shield/bloodsucker/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum.AdjustBloodVolume(-BLOOD_SHIELD_BLOOD_COST)
 	return ..()

@@ -186,8 +186,10 @@
 
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower()
+	. = ..()
+	if(!.)
+		return
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, BLOODSUCKER_TRAIT)
-	return ..()
 
 #undef LUNGE_INSTANT_LEVEL
 #undef LUNGE_INSTANT_RANGE

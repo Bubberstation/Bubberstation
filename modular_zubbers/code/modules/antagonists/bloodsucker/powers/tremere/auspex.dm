@@ -69,9 +69,11 @@
 	animate(owner, alpha = 15, time = 2 SECONDS)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower()
+	. = ..()
+	if(!.)
+		return
 	animate(owner, alpha = 255, time = 2 SECONDS)
 	owner.RemoveElement(/datum/element/digitalcamo)
-	return ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/FireSecondaryTargetedPower(atom/target, params)
 	. = ..()

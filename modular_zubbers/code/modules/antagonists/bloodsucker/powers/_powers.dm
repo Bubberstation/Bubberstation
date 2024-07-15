@@ -109,11 +109,11 @@
 	SHOULD_CALL_PARENT(TRUE)
 	DeactivatePower()
 	level_current++
-	desc = get_power_desc()
 	on_power_upgrade()
 
 /datum/action/cooldown/bloodsucker/proc/on_power_upgrade()
 	SHOULD_CALL_PARENT(TRUE)
+	desc = get_power_desc()
 	if(purchase_flags & TREMERE_CAN_BUY && level_current >= TREMERE_OBJECTIVE_POWER_LEVEL)
 		background_icon_state = "tremere_power_gold_off"
 		active_background_icon_state = "tremere_power_gold_on"
@@ -183,8 +183,11 @@
 	// Non-bloodsuckers will pay in other ways.
 	if(!bloodsuckerdatum_power)
 		var/mob/living/living_owner = owner
-		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
-			living_owner.blood_volume -= cost_override ? cost_override : bloodcost
+		var/blood_cost = cost_override ? cost_override : bloodcost
+		if(HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
+			living_owner.adjustBruteLoss(blood_cost * 0.1)
+		else
+			living_owner.blood_volume = max(0, living_owner.blood_volume - blood_cost)
 		return
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
 	if(bloodsuckerdatum_power.frenzied)
@@ -238,9 +241,7 @@
 	if(bloodsuckerdatum_power)
 		bloodsuckerdatum_power.AdjustBloodVolume(-constant_bloodcost * seconds_per_tick)
 	else
-		var/mob/living/living_owner = owner
-		if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
-			living_owner.blood_volume -= constant_bloodcost * seconds_per_tick
+		pay_cost(constant_bloodcost * seconds_per_tick)
 	return TRUE
 
 /// Checks to make sure this power can stay active
@@ -271,7 +272,7 @@
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
 		new_desc += "<br><br><b>LEVEL:</b> [level_current]"
 	else
-		new_desc += "<br><br><b>(Innate Power)</b>"
+		new_desc += "<br><br><b>(Inherent Power)</b>"
 	if(bloodcost > 0)
 		new_desc += "<br><br><b>COST:</b> [bloodcost] Blood"
 	if(constant_bloodcost > 0)

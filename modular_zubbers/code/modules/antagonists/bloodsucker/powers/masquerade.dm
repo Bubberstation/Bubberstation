@@ -61,6 +61,8 @@
 /// todo, make bloodsuckerification into it's own proc, ie, eyes, traits, and such
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
+	if(!.)
+		return
 	var/mob/living/carbon/user = owner
 	owner.balloon_alert(owner, "masquerade turned off.")
 

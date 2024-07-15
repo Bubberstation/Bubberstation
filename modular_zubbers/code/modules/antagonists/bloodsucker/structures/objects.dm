@@ -174,7 +174,7 @@
 		return
 	if(!target.mind)
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
 	if(bloodsuckerdatum)
 		// If silver stake and DEAD or TORPOR... Kill the Bloodsucker!
 		if(target.StakeCanKillMe())

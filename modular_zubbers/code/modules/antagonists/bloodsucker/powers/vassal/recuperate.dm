@@ -61,5 +61,8 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/recuperate/DeactivatePower()
+	. = ..()
+	if(!.)
+		return
 	owner.balloon_alert(owner, "recuperate turned off.")
 	return ..()

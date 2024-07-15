@@ -51,7 +51,7 @@
 	owner.add_client_colour(/datum/client_colour/manual_heart_blood)
 	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
-	if(user.handcuffed || user.legcuffed)
+	if((user.handcuffed && cuffs) || (user.legcuffed && legcuffs))
 		user.clear_cuffs(cuffs, TRUE)
 		user.clear_cuffs(legcuffs, TRUE)
 	bloodsuckerdatum.frenzied = TRUE

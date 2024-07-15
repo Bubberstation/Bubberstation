@@ -92,6 +92,8 @@
 
 /datum/action/cooldown/bloodsucker/targeted/DeactivatePower()
 	. = ..()
+	if(!.)
+		return
 	// sometimes things will call DeactivatePower, but not unset_click_ability, so we have to unset the click interception here.
 	if(owner.click_intercept == src)
 		owner.click_intercept = null

@@ -31,7 +31,7 @@
 
 /// Check Vassals and get their occupations
 /datum/objective/bloodsucker/proc/get_vassal_occupations()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum || !bloodsuckerdatum.vassals.len)
 		return FALSE
 	var/list/all_vassal_jobs = list()
@@ -70,7 +70,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/lair/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin && bloodsuckerdatum.bloodsucker_lair_area)
 		return TRUE
 	return FALSE
@@ -200,7 +200,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/gourmand/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 	var/stolen_blood = bloodsuckerdatum.total_blood_drank
@@ -229,7 +229,7 @@
 /datum/objective/bloodsucker/kindred/check_completion()
 	if(!owner.current)
 		return FALSE
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 
@@ -252,7 +252,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	for(var/datum/action/cooldown/bloodsucker/tremere_powers in bloodsuckerdatum.powers)
 		if(tremere_powers.purchase_flags & TREMERE_CAN_BUY && tremere_powers.level_current >= power_level)
 			return TRUE
@@ -271,7 +271,7 @@
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/embrace/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner.current)
 	if(!bloodsuckerdatum)
 		return FALSE
 	for(var/datum/antagonist/bloodsucker/sired_vamp in GLOB.antagonists)

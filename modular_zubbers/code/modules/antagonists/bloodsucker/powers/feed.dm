@@ -70,6 +70,9 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/feed/DeactivatePower()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref?.resolve()
 	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
@@ -88,7 +91,6 @@
 	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
 	notified_overfeeding = initial(notified_overfeeding)
-	return ..()
 
 /datum/action/cooldown/bloodsucker/feed/ActivatePower(atom/target)
 	silent_feed = TRUE

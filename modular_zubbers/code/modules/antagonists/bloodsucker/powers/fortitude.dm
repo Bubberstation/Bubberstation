@@ -64,10 +64,11 @@
 		user.buckled.unbuckle_mob(src, force=TRUE)
 
 /datum/action/cooldown/bloodsucker/fortitude/DeactivatePower()
-	if(!ishuman(owner))
+	. = ..()
+	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
+	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner) && fortitude_resist)
 		bloodsucker_user.physiology.brute_mod /= fortitude_resist
 		bloodsucker_user.physiology.burn_mod /= fortitude_resist + 0.2
 		bloodsucker_user.physiology.stamina_mod /= fortitude_resist
@@ -77,4 +78,3 @@
 	if(was_running && bloodsucker_user.move_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.toggle_move_intent()
 	owner.balloon_alert(owner, "fortitude turned off.")
-	return ..()
