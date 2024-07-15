@@ -8,6 +8,7 @@
 	layer = ABOVE_OPEN_TURF_LAYER
 	appearance_flags = TILE_BOUND
 
+
 	color = "#DDF"
 
 	//For being on fire

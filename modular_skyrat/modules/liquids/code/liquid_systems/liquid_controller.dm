@@ -17,6 +17,7 @@ SUBSYSTEM_DEF(liquids)
 	var/list/processing_fire = list()
 	var/fire_counter = 0 //Only process fires on intervals
 
+	// format: list[path, list[str, instance]]
 	var/list/singleton_immutables = list()
 
 	var/run_type = SSLIQUIDS_RUN_TYPE_TURFS
