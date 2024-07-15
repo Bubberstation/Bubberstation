@@ -3,7 +3,7 @@
 
 /datum/blobstrain/on_gain()
 	. = ..()
-	if(!has_announced && instant_alert_on_change)
+	if(!overmind.has_announced && instant_alert_on_change)
 		overmind.announcement_size = 0
 
 /datum/blobstrain/reagent/networked_fibers
