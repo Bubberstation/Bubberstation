@@ -64,17 +64,17 @@
 		paint_jobs = crate_paint_jobs
 
 	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-		COMSIG_ATOM_EXITED = PROC_REF(on_exited)
+		COMSIG_ATOM_ENTERED = PROC_REF(on_loc_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(on_loc_exited)
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/structure/closet/crate/proc/on_entered(datum/source, atom/movable/soapbox_arrive)
+/obj/structure/closet/crate/proc/on_loc_entered(datum/source, atom/movable/soapbox_arrive)
 	SIGNAL_HANDLER
 	if(!opened)
 		RegisterSignal(soapbox_arrive, COMSIG_MOB_SAY, PROC_REF(soapbox_speech))
 
-/obj/structure/closet/crate/proc/on_exited(datum/source, atom/movable/soapbox_leave)
+/obj/structure/closet/crate/proc/on_loc_exited(datum/source, atom/movable/soapbox_leave)
 	SIGNAL_HANDLER
 	UnregisterSignal(soapbox_leave, COMSIG_MOB_SAY)
 
