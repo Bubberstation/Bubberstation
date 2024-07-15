@@ -7,8 +7,6 @@
 	plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	appearance_flags = TILE_BOUND
-
-
 	color = "#DDF"
 
 	//For being on fire
@@ -660,6 +658,7 @@
 	plane = ABOVE_GAME_PLANE
 	starting_temp = T20C-150
 	no_effects = TRUE
+	vis_flags = NONE
 
 /obj/effect/abstract/liquid_turf/immutable/ocean/warm
 	starting_temp = T20C+20
