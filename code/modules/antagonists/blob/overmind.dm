@@ -50,8 +50,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/announcement_time
 	var/has_announced = FALSE
 
-	/// The list of strains the blob can reroll for.
-	var/list/strain_choices
+	/// The list of s the blob can reroll for.
+	var/list/_choices
 
 /mob/camera/blob/Initialize(mapload, starting_points = OVERMIND_STARTING_POINTS)
 	ADD_TRAIT(src, TRAIT_BLOB_ALLY, INNATE_TRAIT)
@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	name = new_name
 	real_name = new_name
 	last_attack = world.time
-	var/datum/blobstrain/BS = /datum/reagent/blob/reactive_spines //BUBBERSTATION CHANGE, YOUR STRAIN WILL ALWAYS BE THE SAME.
+	var/datum/blob/BS = /datum/blobstrain/reagent/reactive_spines //BUBBERSTATION CHANGE, YOUR STRAIN WILL ALWAYS BE THE SAME.
 	set_strain(BS)
 	color = blobstrain.complementary_color
 	if(blob_core)
