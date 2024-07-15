@@ -64,4 +64,5 @@
 	name = "The Ghost"
 	desc = "The Ghost is the absence of a Storyteller. It will not spawn a single event of any sort, or run any Antagonists. Best for rounds where the population is so low that not even the Sleeper is low enough."
 	disable_distribution = TRUE
+	population_max = 30
 	antag_divisor = 32
