@@ -1,7 +1,7 @@
 /datum/loadout_item/toys/miafoxplush
 	name = "silver fox plushie" //bubber edit on request
 	item_path = /obj/item/toy/plush/skyrat/fox/mia
-//ckeywhitelist = list("fuzlet")
+	//ckeywhitelist = list("fuzlet")
 
 /datum/loadout_item/toys/teasefoxplush
 	name = "Teasable fox plushie"
