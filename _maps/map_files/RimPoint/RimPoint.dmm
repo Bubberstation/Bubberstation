@@ -716,9 +716,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "aqI" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 1;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
@@ -6785,7 +6784,8 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm"
+	id = "engsm";
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
@@ -9955,7 +9955,7 @@
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
 "dSY" = (
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "dTt" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -14516,7 +14516,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm"
+	id = "engsm";
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
@@ -25478,7 +25479,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "jXa" = (
 /obj/structure/disposalpipe/segment{
@@ -27648,7 +27649,7 @@
 "kQf" = (
 /obj/machinery/shower/directional/south,
 /obj/structure/curtain,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "kQj" = (
 /obj/machinery/vending/tool,
@@ -31268,7 +31269,7 @@
 /area/station/medical/medbay/lobby)
 "mon" = (
 /obj/structure/sign/poster/official/random/directional/south,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "moo" = (
 /obj/machinery/light/directional/east,
@@ -32208,7 +32209,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "mFB" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
@@ -37338,7 +37339,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 9
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "oJx" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/visible/layer2{
@@ -39293,7 +39294,8 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm"
+	id = "engsm";
+	dir = 4
 	},
 /obj/structure/cable/layer3,
 /turf/open/floor/plating,
@@ -41653,7 +41655,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/ordnance/testlab)
 "qrt" = (
 /obj/structure/disposalpipe/segment,
@@ -47715,9 +47717,8 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/station/service/cafeteria)
 "sEE" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/heater{
-	dir = 1;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/heater/layer2{
+	dir = 1
 	},
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron,
@@ -49748,7 +49749,7 @@
 "txo" = (
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "txs" = (
 /obj/structure/cable,
@@ -52611,14 +52612,15 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 9
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/ordnance/testlab)
 "uBN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm"
+	id = "engsm";
+	dir = 8
 	},
 /obj/structure/cable/layer3,
 /turf/open/floor/plating,
@@ -54108,7 +54110,7 @@
 "vhS" = (
 /obj/machinery/shower/directional/north,
 /obj/structure/curtain,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/command/heads_quarters/captain/private)
 "vhW" = (
 /obj/structure/chair/office{
@@ -57159,9 +57161,8 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/station/service/cafeteria)
 "wvs" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 1;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)

@@ -761,7 +761,7 @@
 /turf/open/floor/iron,
 /area/station/maintenance/floor1/starboard/aft)
 "aiA" = (
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/lab)
 "aiF" = (
 /obj/vehicle/ridden/janicart,
@@ -6195,7 +6195,7 @@
 	dir = 4
 	},
 /obj/machinery/duct/waste,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/medical/medbay/central)
 "bty" = (
 /obj/structure/transport/linear/tram/corner/northeast,
@@ -6503,7 +6503,7 @@
 /area/station/maintenance/port/lesser)
 "bxY" = (
 /obj/machinery/shower/supply_layer/directional/east,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "byb" = (
 /obj/structure/marker_beacon/burgundy,
@@ -6599,9 +6599,8 @@
 /turf/open/floor/iron,
 /area/station/maintenance/floor2/starboard/aft)
 "byY" = (
-/obj/machinery/atmospherics/components/tank/air{
-	dir = 5;
-	piping_layer = 4
+/obj/machinery/atmospherics/components/tank/air/layer4{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
@@ -11479,7 +11478,7 @@
 /obj/machinery/duct/supply,
 /obj/machinery/duct/waste,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "cFw" = (
 /obj/machinery/camera/directional/south{
@@ -21570,7 +21569,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
-	name = "Radiation Chamber Shutters"
+	name = "Radiation Chamber Shutters";
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
@@ -24339,7 +24339,7 @@
 /obj/machinery/duct/supply,
 /obj/structure/cable,
 /obj/machinery/duct/waste,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/medical/medbay/central)
 "fCj" = (
 /obj/structure/fireplace{
@@ -24865,7 +24865,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/lab)
 "fII" = (
 /obj/effect/turf_decal/siding/wideplating_new{
@@ -26748,7 +26748,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "geT" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -26855,7 +26855,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "ggq" = (
 /obj/structure/rack,
@@ -30803,7 +30803,7 @@
 /area/station/security/checkpoint/science)
 "gZQ" = (
 /obj/machinery/shower/supply_layer/directional/west,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/xenobiology)
 "gZX" = (
 /obj/effect/turf_decal/siding/wideplating_new{
@@ -31238,7 +31238,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
-	name = "Radiation Chamber Shutters"
+	name = "Radiation Chamber Shutters";
+	dir = 8
 	},
 /obj/structure/cable/layer3,
 /turf/open/floor/plating,
@@ -32139,7 +32140,7 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/mail_sorting/science/genetics,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "hqh" = (
 /obj/effect/turf_decal/trimline/dark/warning{
@@ -32421,7 +32422,7 @@
 	dir = 8
 	},
 /obj/machinery/duct/waste,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/medical/medbay/central)
 "hsX" = (
 /obj/item/stack/tile/iron/base,
@@ -43357,7 +43358,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "kdb" = (
 /obj/effect/turf_decal/tile/dark_red/opposingcorners,
@@ -45750,7 +45751,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "kDT" = (
 /obj/effect/turf_decal/siding/wood{
@@ -47854,9 +47855,8 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "lcD" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 4;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 4
 	},
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/iron,
@@ -49958,7 +49958,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "lEC" = (
 /obj/structure/chair/sofa/corp/right,
@@ -51280,7 +51280,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
-	name = "Radiation Chamber Shutters"
+	name = "Radiation Chamber Shutters";
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
@@ -52420,7 +52421,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "mkd" = (
 /obj/machinery/holopad,
@@ -55083,7 +55084,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "mQp" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -57362,7 +57363,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "nqt" = (
 /obj/effect/turf_decal/stripes/line,
@@ -60237,7 +60238,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/lab)
 "obW" = (
 /obj/structure/ladder,
@@ -60847,7 +60848,8 @@
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
-	name = "Radiation Chamber Shutters"
+	name = "Radiation Chamber Shutters";
+	dir = 4
 	},
 /obj/structure/cable/layer3,
 /turf/open/floor/plating,
@@ -65376,7 +65378,7 @@
 /area/station/service/studio)
 "pnk" = (
 /obj/machinery/shower/supply_layer/directional/east,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/commons/toilet/locker)
 "pnl" = (
 /obj/effect/turf_decal/siding/wood{
@@ -74451,7 +74453,7 @@
 	dir = 6
 	},
 /obj/machinery/duct/waste,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/medical/medbay/central)
 "rsr" = (
 /obj/effect/turf_decal/trimline/dark_blue/corner{
@@ -74925,7 +74927,7 @@
 /area/station/medical/medbay/central)
 "ryw" = (
 /obj/machinery/shower/supply_layer/directional/north,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/commons/toilet/locker)
 "ryA" = (
 /obj/structure/reagent_forge,
@@ -75264,7 +75266,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "rCb" = (
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
@@ -82033,7 +82035,7 @@
 	dir = 4
 	},
 /obj/machinery/duct/waste,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/medical/medbay/central)
 "tiT" = (
 /turf/open/floor/iron/dark/corner{
@@ -83422,7 +83424,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "tAP" = (
 /obj/effect/spawner/random/trash/grille_or_waste,
@@ -86523,7 +86525,7 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/mail_sorting/science/xenobiology,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "uoQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -89527,7 +89529,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 5
 	},
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/research)
 "vbm" = (
 /obj/effect/turf_decal/siding/wood,
@@ -90739,7 +90741,7 @@
 /obj/effect/spawner/random/medical/memeorgans,
 /obj/effect/spawner/random/medical/surgery_tool,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/maintenance/floor1/starboard/aft)
 "vpk" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle{
@@ -91327,7 +91329,7 @@
 /area/station/hallway/floor1/aft)
 "vxi" = (
 /obj/effect/spawner/random/structure/tank_holder,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/maintenance/floor1/starboard/aft)
 "vxl" = (
 /obj/effect/spawner/random/vending/snackvend,
@@ -91795,7 +91797,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/maintenance/floor1/starboard/aft)
 "vDc" = (
 /obj/structure/cable,
@@ -96287,7 +96289,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
 /obj/machinery/duct/waste,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/medical/medbay/central)
 "wEo" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -97324,7 +97326,7 @@
 /area/station/holodeck/rec_center)
 "wPZ" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2,
-/turf/open/floor/catwalk_floor/flat_white,
+/turf/open/floor/catwalk_floor/iron_white,
 /area/station/science/lab)
 "wQt" = (
 /obj/effect/turf_decal/siding/thinplating_new/end{
