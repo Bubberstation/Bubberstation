@@ -67,10 +67,10 @@
 	if(wounding_type != WOUND_BURN && isturf(chest_owner.loc) && can_bleed())
 		chest_owner.add_splatter_floor(chest_owner.loc)
 	playsound(get_turf(chest_owner), 'sound/misc/splort.ogg', 80, TRUE)
-	var/list/organs_in_body_to_maybe_drop = list()// BUBBER EDIT BEGIN - One at a time
-	for(var/obj/item/organ/dropped_this in contents)
-		organs_in_body_to_maybe_drop |= dropped_this
-	var/obj/item/organ/organ = pick(organs_in_body_to_maybe_drop)// BUBBER EDIT - Random organ Drop
+	var/list/droppable_organs= list()// BUBBER EDIT BEGIN - One at a time
+	for(var/obj/item/organ/droppable in contents)
+		droppable_organs |= droppable
+	var/obj/item/organ/organ = pick(droppable_organs)// BUBBER EDIT - Random organ Drop
 	if(organ)// BUBBER EDIT: OG: for(var/obj/item/organ/organ in contents) -- BUBBER EDIT END
 		// SKYRAT EDIT START - Non-spillable organs
 		if(!organ.drop_when_organ_spilling)
