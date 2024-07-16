@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	name = new_name
 	real_name = new_name
 	last_attack = world.time
-	var/datum/blob/BS = /datum/blobstrain/reagent/reactive_spines //BUBBERSTATION CHANGE, YOUR STRAIN WILL ALWAYS BE THE SAME.
+	var/datum/blobstrain/BS = /datum/blobstrain/reagent/reactive_spines //BUBBERSTATION CHANGE, YOUR STRAIN WILL ALWAYS BE THE SAME.
 	set_strain(BS)
 	color = blobstrain.complementary_color
 	if(blob_core)
