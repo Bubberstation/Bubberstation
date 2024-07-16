@@ -60,8 +60,9 @@
 		var/datum/action/avatar_domain_info/action = new(help_datum)
 		action.Grant(avatar)
 
-	var/client/our_client = old_body.client
-	var/alias = our_client?.prefs?.read_preference(/datum/preference/name/hacker_alias) || pick(GLOB.hacker_aliases)
+	var/client/our_client = avatar.client
+	var/alias = null// BUBBER EDIT - removes random aliases - original: var/alias = our_client?.prefs?.read_preference(/datum/preference/name/hacker_alias) || pick(GLOB.hacker_aliases)
+
 
 	if(alias && avatar.real_name != alias)
 		avatar.fully_replace_character_name(avatar.real_name, alias)

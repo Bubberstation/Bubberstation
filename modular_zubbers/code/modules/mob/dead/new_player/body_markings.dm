@@ -9,7 +9,7 @@
 	recommended_species = null
 
 /datum/body_marking/bubber/facedisc
-	name = "Face disc"
+	name = "Face Disc"
 	icon_state = "facedisc"
 	affected_bodyparts = HEAD
 
@@ -19,7 +19,7 @@
 	affected_bodyparts = HEAD
 
 /datum/body_marking/bubber/verticalstripe
-	name = "Vertical stripe"
+	name = "Vertical Stripe"
 	icon_state = "verticalstripe"
 	affected_bodyparts = HEAD
 
@@ -32,6 +32,18 @@
 	name = "Fangs"
 	icon_state = "fangs"
 	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/clowncross
+	name = "Clown Cross"
+	icon_state = "clowncross"
+	affected_bodyparts = HEAD
+	gendered = FALSE
+
+/datum/body_marking/bubber/clownlips
+	name = "Clown Lips"
+	icon_state = "clownlips"
+	affected_bodyparts = HEAD
+	gendered = FALSE
 
 /datum/body_marking/bubber/longsock
 	name = "Longsock"

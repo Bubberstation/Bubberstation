@@ -461,7 +461,7 @@
 				// this way, we only visibly try to examine ourselves if we have something embedded, otherwise we'll still hug ourselves :)
 				visible_message(span_notice("[src] examines [p_them()]self."), \
 					span_notice("You check yourself for shrapnel."))
-			if(I.isEmbedHarmless())
+			if(I.is_embed_harmless())
 				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
 			else
 				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
@@ -591,10 +591,10 @@
 */
 /mob/living/carbon/proc/check_passout()
 	var/mob_oxyloss = getOxyLoss()
-	if(mob_oxyloss >= 50)
+	if(mob_oxyloss >= OXYLOSS_PASSOUT_THRESHOLD)
 		if(!HAS_TRAIT_FROM(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT))
 			ADD_TRAIT(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT)
-	else if(mob_oxyloss < 50)
+	else if(mob_oxyloss < OXYLOSS_PASSOUT_THRESHOLD)
 		REMOVE_TRAIT(src, TRAIT_KNOCKEDOUT, OXYLOSS_TRAIT)
 
 /mob/living/carbon/get_organic_health()
@@ -742,7 +742,9 @@
 /mob/living/carbon/get_shove_flags(mob/living/shover, obj/item/weapon)
 	. = ..()
 	. |= SHOVE_CAN_STAGGER
-	if(IsKnockdown() && !IsParalyzed())
+	if(IsKnockdown() && !IsParalyzed() && HAS_TRAIT(src, TRAIT_STUN_ON_NEXT_SHOVE))
 		. |= SHOVE_CAN_KICK_SIDE
+	if(HAS_TRAIT(src, TRAIT_NO_SIDE_KICK)) // added as an extra check, just in case
+		. &= ~SHOVE_CAN_KICK_SIDE
 
 #undef SHAKE_ANIMATION_OFFSET

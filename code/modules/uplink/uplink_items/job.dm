@@ -4,7 +4,7 @@
 
 /datum/uplink_item/role_restricted
 	category = /datum/uplink_category/role_restricted
-	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/role_restricted/haunted_magic_eightball
 	name = "Haunted Magic Eightball"
@@ -393,3 +393,4 @@ BUBBER REMOVE END*/
 	restricted = TRUE
 	refundable = FALSE
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY
+
