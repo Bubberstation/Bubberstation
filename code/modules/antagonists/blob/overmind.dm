@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/has_announced = FALSE
 
 	/// The list of s the blob can reroll for.
-	var/list/_choices
+	var/list/strain_choices
 
 /mob/camera/blob/Initialize(mapload, starting_points = OVERMIND_STARTING_POINTS)
 	ADD_TRAIT(src, TRAIT_BLOB_ALLY, INNATE_TRAIT)
