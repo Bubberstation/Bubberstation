@@ -683,23 +683,3 @@
 /datum/sprite_accessory/facial_hair/skyrat/squid
 	name = "Tentacle Beard"
 	icon_state = "facial_squid"
-
-/datum/sprite_accessory/facial_hair/faciallizardlick
-	name = "Lizard Tongue Flick"
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/facialhair.dmi'
-	icon_state = "facial_lizardlick_s"
-
-/datum/sprite_accessory/facial_hair/faciallizardlickslow
-	name = "Lizard Tongue Flick Slow"
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/facialhair.dmi'
-	icon_state = "facial_lizardlickslow_s"
-
-/datum/sprite_accessory/facial_hair/faciallizardlickfast
-	name = "Lizard Tongue Flick Fast"
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/facialhair.dmi'
-	icon_state = "facial_lizardlickfast_s"
-
-/datum/sprite_accessory/facial_hair/noselick
-	name = "Nose Lick"
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/facialhair.dmi'
-	icon_state = "noselick"
