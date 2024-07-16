@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/announcement_time
 	var/has_announced = FALSE
 
-	/// The list of s the blob can reroll for.
+	/// The list of strains the blob can reroll for.
 	var/list/strain_choices
 
 /mob/camera/blob/Initialize(mapload, starting_points = OVERMIND_STARTING_POINTS)
