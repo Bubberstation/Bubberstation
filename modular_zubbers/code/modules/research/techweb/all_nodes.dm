@@ -25,12 +25,6 @@
 		"ntos",
 	)
 
-/datum/techweb_node/borg_utility/New()
-	. = ..()
-	design_ids += list(
-		"dominatrixmodule"
-	)
-
 // MEDICAL
 /datum/techweb_node/medbay_equip_adv/New()
 	. = ..()
