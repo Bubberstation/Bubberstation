@@ -22,7 +22,7 @@
 /datum/quirk/well_trained/proc/on_dom_examine(atom/source, mob/living/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	if(!ishuman(user))
+	if(!isliving(user))
 		return
 	var/mob/living/carbon/human/dom = user
 	if(!dom.has_quirk(/datum/quirk/dominant_aura) || (dom == quirk_holder))

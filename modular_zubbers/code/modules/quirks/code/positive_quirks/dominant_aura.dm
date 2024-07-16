@@ -6,7 +6,7 @@
 	value = 1
 	gain_text = span_notice("You feel like making someone your pet.")
 	lose_text = span_notice("You feel less assertive than before")
-	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN
+	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	erp_quirk = TRUE // Disables on ERP config.
 
 /datum/quirk/dominant_aura/add(client/client_source)
@@ -22,7 +22,7 @@
 /datum/quirk/dominant_aura/proc/on_sub_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	if(!istype(user))
+	if(!isliving(user))
 		return
 	var/mob/living/carbon/human/sub = user
 	if(!sub.has_quirk(/datum/quirk/well_trained))
