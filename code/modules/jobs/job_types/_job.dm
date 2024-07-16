@@ -588,11 +588,6 @@
 				player_client.prefs.read_preference(/datum/preference/choiced/species),
 			)
 	dna.update_dna_identity()
-	// BUBBER EDIT START
-	if(get_taur_mode() == STYLE_TAUR_SNAKE)
-		RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 0.6, -6)
-		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SNAKE, 15, -6)
-	// BUBBER EDIT END
 
 	updateappearance()
 
