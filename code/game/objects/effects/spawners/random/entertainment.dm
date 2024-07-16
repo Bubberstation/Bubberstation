@@ -237,7 +237,7 @@
 	loot = list()
 
 /obj/effect/spawner/random/entertainment/toy/Initialize(mapload)
-	loot += GLOB.arcade_prize_pool
+	loot += GLOB.arcade_prize_pool_toy // BUBBERSTATION CHANGE: USES TOY POOL
 	return ..()
 
 /obj/effect/spawner/random/entertainment/plushie

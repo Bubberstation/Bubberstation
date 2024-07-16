@@ -60,3 +60,11 @@
 	items_to_add = list(/obj/item/storage/part_replacer/bluespace)
 	items_to_add -= list(/obj/item/storage/part_replacer)
 
+// Borg Dom Aura :)
+/obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	borg.add_quirk(/datum/quirk/dominant_aura)
+
+/obj/item/borg/upgrade/dominatrixmodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	borg.remove_quirk(/datum/quirk/dominant_aura)
