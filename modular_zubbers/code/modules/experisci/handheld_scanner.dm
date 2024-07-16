@@ -9,7 +9,8 @@
 /obj/item/experi_scanner/bluespace/LateInitialize()
 	var/static/list/handheld_signals = list(
 		COMSIG_ITEM_PRE_ATTACK = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_handheld_experiment),
-		COMSIG_ITEM_AFTERATTACK = TYPE_PROC_REF(/datum/component/experiment_handler, bs_ignored_handheld_experiment_attempt),
+		COMSIG_ITEM_AFTERATTACK = TYPE_PROC_REF(/datum/component/experiment_handler, ignored_handheld_experiment_attempt),
+		COMSIG_RANGED_ITEM_INTERACTING_WITH_ATOM = TYPE_PROC_REF(/datum/component/experiment_handler, bs_ignored_handheld_experiment_attempt),
 	)
 	AddComponent(/datum/component/experiment_handler, \
 		allowed_experiments = list(/datum/experiment/scanning, /datum/experiment/physical), \
