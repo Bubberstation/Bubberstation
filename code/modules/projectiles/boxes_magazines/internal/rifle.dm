@@ -9,6 +9,9 @@
 /obj/item/ammo_box/magazine/internal/boltaction/surplus
 	ammo_type = /obj/item/ammo_casing/strilka310/surplus
 
+/obj/item/ammo_box/magazine/internal/boltaction/phasic
+	ammo_type = /obj/item/ammo_casing/strilka310/phasic
+
 /obj/item/ammo_box/magazine/internal/boltaction/pipegun
 	name = "pipegun internal magazine"
 	caliber = CALIBER_JUNK
@@ -54,8 +57,5 @@
 /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/syndie
 	max_ammo = 3
 	caliber = CALIBER_REBAR_SYNDIE
-	ammo_type = /obj/item/ammo_casing/rebar/syndie
-
-/obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/syndie/normal
-	caliber = CALIBER_REBAR_SYNDIE_NORMAL
 	ammo_type = /obj/item/ammo_casing/rebar
+

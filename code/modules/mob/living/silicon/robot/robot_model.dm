@@ -65,6 +65,9 @@
 		emag_modules += new_module
 		emag_modules -= path
 
+	if(check_holidays(ICE_CREAM_DAY) && !(locate(/obj/item/borg/lollipop) in basic_modules))
+		basic_modules += new /obj/item/borg/lollipop/ice_cream(src)
+
 /obj/item/robot_model/Destroy()
 	basic_modules.Cut()
 	emag_modules.Cut()
@@ -247,9 +250,14 @@
 	log_silicon("CYBORG: [key_name(cyborg)] has transformed into the [new_model] model.")
 
 	//SKYRAT EDIT ADDITION BEGIN - ALTBORGS - Old check for 'dogborg' var no longer necessary, refactored into model_features instead.
-	new_model.update_dogborg()
+	//new_model.update_dogborg() // BUBBER REMOVAL
 	new_model.update_tallborg()
 	//SKYRAT EDIT ADDITION END
+	//BUBBER EDIT ADDTION BEGIN
+	new_model.update_quadruped()
+	new_model.update_lightweight()
+	new_model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
 	qdel(src)
@@ -726,6 +734,10 @@
 	model_select_icon = "medical"
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = 3
+	borg_skins = list(
+		"Machinified Doctor" = list(SKIN_ICON_STATE = "medical"),
+		"Qualified Doctor" = list(SKIN_ICON_STATE = "qualified_doctor"),
+	)
 
 /obj/item/robot_model/miner
 	name = "Miner"

@@ -1,4 +1,49 @@
 // The actual code to work these in
+
+// Cyborg model trait procs below
+
+//For all quadruped cyborgs
+/obj/item/robot_model/proc/update_quadruped()
+	var/mob/living/silicon/robot/cyborg = robot || loc
+	if (!istype(robot))
+		return
+	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features)))
+		hat_offset = INFINITY
+		if (model_features && (TRAIT_R_WIDE in model_features))
+			cyborg.set_base_pixel_x(-16)
+		add_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
+	else
+		if (model_features && !(TRAIT_R_WIDE in model_features))
+			cyborg.set_base_pixel_x(0)
+		remove_verb(cyborg, /mob/living/silicon/robot/proc/rest_style)
+
+//For cyborgs who have a lighter chassis
+// NOTE WORKS BEST WITH ONLY 32 X 32 CYBORBG SPRITES!!!
+/obj/item/robot_model/proc/update_lightweight()
+	var/mob/living/silicon/robot/cyborg = robot || loc
+	if (!istype(robot))
+		return
+	if (model_features && (TRAIT_R_LIGHT_WEIGHT in model_features))
+		cyborg.can_be_held = TRUE
+		cyborg.held_w_class = WEIGHT_CLASS_HUGE
+	else
+		cyborg.can_be_held = FALSE
+		cyborg.held_w_class = WEIGHT_CLASS_NORMAL
+
+//For cyborgs that can rest
+// Must have a resting state!
+/obj/item/robot_model/proc/update_robot_rest()
+	var/mob/living/silicon/robot/cyborg = robot || loc
+	if (!istype(robot))
+		return
+	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_WIDE in model_features) || (TRAIT_R_TALL in model_features)))
+		add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
+	else
+		remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)
+
+// Cyborg model types below
+
+// Centcom cyborgs
 /obj/item/robot_model/centcom
 	name = "Central Command"
 	basic_modules = list(
@@ -60,7 +105,6 @@
 	cyborg.req_access = list(ACCESS_ROBOTICS)
 	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
 
-
 //Research cyborgs
 /obj/item/robot_model/sci
 	name = "Research"
@@ -105,7 +149,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SCI_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		"Vale" = list(
 			SKIN_ICON_STATE = "vale",
@@ -172,6 +216,13 @@
 		SKIN_ICON = CYBORG_ICON_SCI_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahansci",
+			SKIN_ICON = CYBORG_ICON_SCI_TALL,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
+
 	)
 
 
@@ -192,7 +243,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_GEN_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
 		SKIN_ICON = CYBORG_ICON_GEN_SMOLRAPTOR,
@@ -206,7 +257,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MED_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		"Raptor" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
@@ -217,6 +268,12 @@
 		SKIN_ICON = CYBORG_ICON_MED_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanmed",
+			SKIN_ICON = CYBORG_ICON_MED_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
 	)
 
 /obj/item/robot_model/engineering/Initialize(mapload)
@@ -225,7 +282,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_ENG_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		"Raptor" = list(
 			SKIN_ICON_STATE = CYBORG_ICON_TYPE_RAPTOR,
@@ -236,6 +293,12 @@
 		SKIN_ICON = CYBORG_ICON_ENG_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahaneng",
+			SKIN_ICON = CYBORG_ICON_ENG_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
 	)
 
 /obj/item/robot_model/janitor/Initialize(mapload)
@@ -244,7 +307,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_JANI_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		//64x48 sprites below (Raptor)
 		"Raptor" = list(
@@ -256,6 +319,12 @@
 		SKIN_ICON = CYBORG_ICON_JANI_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanjani",
+			SKIN_ICON = CYBORG_ICON_JANI_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
 	)
 
 /obj/item/robot_model/miner/Initialize(mapload)
@@ -264,7 +333,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_MINE_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		//64x32 Sprites below (Wide)
 		"Corrupt" = list(
@@ -287,6 +356,12 @@
 		SKIN_ICON = CYBORG_ICON_MIN_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanmine",
+			SKIN_ICON = CYBORG_ICON_MINING_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
 	)
 
 /obj/item/robot_model/security/Initialize(mapload)
@@ -295,7 +370,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SEC_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		//32x64 Sprites below (Tall)
 		"Meka - Bluesec" = list(
@@ -318,7 +393,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_PK_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		//32x64 Sprites below (Tall)
 		"Meka - Bluesec" = list(
@@ -344,6 +419,12 @@
 		SKIN_ICON = CYBORG_ICON_PK_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanpeace",
+			SKIN_ICON = CYBORG_ICON_PEACEKEEPER_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
 	)
 
 /obj/item/robot_model/service/Initialize(mapload)
@@ -352,7 +433,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SERV_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
 		),
 		"Fancy Raptor" = list(
 			SKIN_ICON_STATE = "fancyraptor",
@@ -363,6 +444,18 @@
 		SKIN_ICON = CYBORG_ICON_SERV_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanserv",
+			SKIN_ICON = CYBORG_ICON_SERVICE_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanserv_alt",
+			SKIN_ICON = CYBORG_ICON_SERVICE_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
 	)
 
 /obj/item/robot_model/cargo/Initialize(mapload)
@@ -371,6 +464,17 @@
 		"SmolRaptor" = list(SKIN_ICON_STATE = CYBORG_ICON_TYPE_SMOLRAPTOR,
 		SKIN_ICON = CYBORG_ICON_CAR_SMOLRAPTOR,
 		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SMALL, TRAIT_R_WIDE)
+		),
+		"F3-LINE" = list(
+		SKIN_ICON_STATE = CYBORG_ICON_TYPE_CAR_CATBORG,
+		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL, TRAIT_R_LIGHT_WEIGHT)
+		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahancargo",
+			SKIN_ICON = CYBORG_ICON_CARGO_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
 		),
 	)
 
@@ -405,7 +509,13 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
+		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahansyndi",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
 		),
 
 	)
@@ -430,8 +540,15 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahansyndi",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
+
 	)
 
 /obj/item/robot_model/syndicate_medical
@@ -456,8 +573,15 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahansyndi",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
+
 	)
 
 /obj/item/robot_model/saboteur
@@ -476,8 +600,15 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_SYNDI_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
 		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahansyndi",
+			SKIN_ICON = CYBORG_ICON_SYNDIE_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
+		),
+
 	)
 
 
@@ -499,7 +630,13 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_NINJA_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
+		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanninja",
+			SKIN_ICON = CYBORG_ICON_NINJA_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			SKIN_HAT_OFFSET = 18
 		),
 	)
 
@@ -509,7 +646,7 @@
 		"F3-LINE" = list(
 		SKIN_ICON_STATE = CYBORG_ICON_TYPE_NINJA_CATBORG,
 		SKIN_ICON = CYBORG_ICON_ALL_CATBORG,
-		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE, TRAIT_R_SMALL)
+		SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_SQUADRUPED, TRAIT_R_SMALL)
 		),
 	)
 

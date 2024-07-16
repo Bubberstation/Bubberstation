@@ -17,20 +17,6 @@
 		CRASH("Cant find random accessory of [key] key, for species [S.id]")
 	return SP
 
-/proc/random_unique_vox_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(vox_name())
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_teshari_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(teshari_name())
-
-		if(!findname(.))
-			break
-
 /proc/assemble_body_markings_from_set(datum/body_marking_set/BMS, list/features, datum/species/pref_species)
 	var/list/body_markings = list()
 	for(var/set_name in BMS.body_marking_list)
@@ -44,9 +30,6 @@
 	return body_markings
 
 /proc/random_bra(gender)
-	if(!length(SSaccessories.bra_list))
-		SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/bra, SSaccessories.bra_list, SSaccessories.bra_m, SSaccessories.bra_f)
-
 	switch(gender)
 		if(MALE)
 			return pick(SSaccessories.bra_m)
