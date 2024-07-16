@@ -59,7 +59,9 @@
 		return
 	climbed_thing.add_fingerprint(user)
 	//bubber edit, climbing under climbable objects
-	if(user.body_position == LYING_DOWN)
+	var/turf/crawlable = get_turf(climbed_thing)
+	var/is_table = locate(/obj/structure/table) in crawlable
+	if(user.body_position == LYING_DOWN && is_table)
 		user.visible_message(span_warning("[user] starts crawling under [climbed_thing]."), \
 			span_notice("You start crawling under [climbed_thing]..."))
 	else
@@ -84,7 +86,7 @@
 			return
 		if(do_climb(climbed_thing, user, params))
 // bubber edit begin crawling under climbables
-			if(user.body_position == LYING_DOWN)
+			if(user.body_position == LYING_DOWN && is_table)
 				user.layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 				RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shift_layer))
 				user.visible_message(span_warning("[user] crawls under [climbed_thing]."), \
@@ -143,5 +145,8 @@
 /datum/element/climbable/proc/shift_layer(atom/movable/crawler)
 	SIGNAL_HANDLER
 	var/mob/living/littleguy = crawler
-	littleguy.layer = MOB_LAYER
-	UnregisterSignal(crawler, COMSIG_MOVABLE_MOVED)
+	var/turf/crawler_turf = get_turf(crawler)
+	var/has_table = locate(/obj/structure/table) in crawler_turf
+	if(!has_table)
+		littleguy.layer = MOB_LAYER
+		UnregisterSignal(crawler, COMSIG_MOVABLE_MOVED)
