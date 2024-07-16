@@ -423,7 +423,7 @@
 				return
 
 			set_strain(other_strain)
-
+// BUBBER REFACTOR END
 			last_reroll_time = world.time
 			strain_choices = null
 
