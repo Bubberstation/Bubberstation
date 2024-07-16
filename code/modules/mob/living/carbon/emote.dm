@@ -182,7 +182,7 @@
 		qdel(hand)
 		to_chat(user, span_warning("You're incapable of using your hand in your current state."))
 
-
+/* Bubber removal begin - moved to modular_zubbers\code\modules\emotes\emotes.dm - /datum/emote/living/snap
 /datum/emote/living/carbon/snap
 	key = "snap"
 	key_third_person = "snaps"
@@ -195,6 +195,7 @@
 	if(ishuman(user))
 		return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
 	return null
+Bubber removal end */
 
 /datum/emote/living/carbon/shoesteal
 	key = "shoesteal"

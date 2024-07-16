@@ -52,6 +52,20 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_RESEARCH
 	)
 
+/datum/design/borg_dominatrix
+	name = "borg dominatrix module"
+	id = "dominatrixmodule"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/dominatrixmodule
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ALL
+	)
+
 //so we have our own category
 /datum/design/borg_upgrade_surgical_processor_sci
 	name = "Research Surgical Processor"

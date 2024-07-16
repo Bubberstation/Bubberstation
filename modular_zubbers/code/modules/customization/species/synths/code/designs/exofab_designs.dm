@@ -1,6 +1,9 @@
 /datum/techweb_node/base/New()
 	. = ..()
-	design_ids += "blanksynth"
+	design_ids += list(
+		"blanksynth",
+		"dominatrixmodule",
+	)
 
 /datum/design/synthclone
 	name = "Blank synthetic shell"
