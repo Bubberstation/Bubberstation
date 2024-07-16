@@ -22,7 +22,7 @@
 /datum/quirk/dominant_aura/proc/on_sub_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	if(!isliving(user))
+	if(!istype(user))
 		return
 	var/mob/living/carbon/human/sub = user
 	if(!sub.has_quirk(/datum/quirk/well_trained))
