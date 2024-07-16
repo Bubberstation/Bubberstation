@@ -19,7 +19,7 @@
 	. = ..()
 	UnregisterSignal(quirk_holder, COMSIG_MOB_EXAMINING)
 
-/datum/quirk/well_trained/proc/on_dom_examine(atom/source, mob/living/user, list/examine_list)
+/datum/quirk/well_trained/proc/on_dom_examine(atom/source, mob/living/dom, list/examine_list)
 	SIGNAL_HANDLER
 
 	if(!istype(user))
