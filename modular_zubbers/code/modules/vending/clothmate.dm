@@ -60,6 +60,7 @@
 				/obj/item/clothing/suit/short_coat = 5,
 				/obj/item/clothing/suit/hooded/sigmarcoat = 5,
 				/obj/item/clothing/suit/jacket/skyy = 5,
+				/obj/item/clothing/suit/jacket/tailcoat = 5,
 			),
 		),
 
@@ -84,7 +85,7 @@
 		)
 	)
 
-	zubbers_premium = list( //being here means you're artificially rare, congratulations
+	zubbers_premium = list( //being here means you're even more artificially rare, congratulations
 		/obj/item/clothing/head/razurathhat = 2,
 		/obj/item/clothing/suit/razurathcoat = 2,
 		/obj/item/clothing/suit/hooded/colorblockhoodie = 2,
