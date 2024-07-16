@@ -60,3 +60,13 @@
 	items_to_add = list(/obj/item/storage/part_replacer/bluespace)
 	items_to_add -= list(/obj/item/storage/part_replacer)
 
+//Upgrade for the experi scanner
+/obj/item/borg/upgrade/experi_scanner
+	name = "Research cyborg BlueSpace Experi-Scanner"
+	desc = "An upgrade to the Research model cyborg's standard health analyzer."
+	icon_state = "cyborg_upgrade3"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/sci)
+	model_flags = BORG_MODEL_RESEARCH
+	items_to_add = list(/obj/item/experi_scanner/bluespace)
+	items_to_remove = list(/obj/item/experi_scanner)

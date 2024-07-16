@@ -110,8 +110,9 @@
 	name = "Research"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/extinguisher/mini,
+		/obj/item/extinguisher,
 		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/borg/cyborg_omnitool/engineering,// no upgrades to not replace engie borg
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/crowbar/cyborg/power,
 		/obj/item/multitool/cyborg,
