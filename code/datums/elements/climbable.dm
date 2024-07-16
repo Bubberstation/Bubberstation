@@ -58,7 +58,13 @@
 	if(!can_climb(climbed_thing, user))
 		return
 	climbed_thing.add_fingerprint(user)
-	user.visible_message(span_warning("[user] starts climbing onto [climbed_thing]."), \
+	//bubber edit, climbing under climbable objects
+	if(user.body_position == LYING_DOWN)
+		user.visible_message(span_warning("[user] starts crawling under [climbed_thing]."), \
+			span_notice("You start crawling under [climbed_thing]..."))
+	else
+	//bubber edit end
+		user.visible_message(span_warning("[user] starts climbing onto [climbed_thing]."), \
 								span_notice("You start climbing onto [climbed_thing]..."))
 	var/adjusted_climb_time = climb_time
 	var/adjusted_climb_stun = climb_stun
@@ -77,7 +83,15 @@
 		if(QDELETED(climbed_thing)) //Checking if structure has been destroyed
 			return
 		if(do_climb(climbed_thing, user, params))
-			user.visible_message(span_warning("[user] climbs onto [climbed_thing]."), \
+// bubber edit begin crawling under climbables
+			if(user.body_position == LYING_DOWN)
+				user.layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+				RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shift_layer))
+				user.visible_message(span_warning("[user] crawls under [climbed_thing]."), \
+								span_notice("You crawl under [climbed_thing]."))
+			else
+//bubber edit end
+				user.visible_message(span_warning("[user] climbs onto [climbed_thing]."), \
 								span_notice("You climb onto [climbed_thing]."))
 			log_combat(user, climbed_thing, "climbed onto")
 			if(adjusted_climb_stun)
@@ -124,3 +138,10 @@
 	if(living_target.mobility_flags & MOBILITY_MOVE)
 		INVOKE_ASYNC(src, PROC_REF(climb_structure), climbed_thing, living_target, params)
 	return COMPONENT_CANCEL_MOUSEDROPPED_ONTO
+
+// Bubber edit, proc to bring you back to the normal mob layer and unregister moved signal
+/datum/element/climbable/proc/shift_layer(atom/movable/crawler)
+	SIGNAL_HANDLER
+	var/mob/living/littleguy = crawler
+	littleguy.layer = MOB_LAYER
+	UnregisterSignal(crawler, COMSIG_MOVABLE_MOVED)
