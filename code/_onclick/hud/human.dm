@@ -34,7 +34,7 @@
 	//
 
 //skyrat edit
-/obj/screen/human/toggle/extra
+/atom/movable/screen/human/toggle/extra
 	name = "toggle extra"
 	icon_state = "toggle_extra"
 
