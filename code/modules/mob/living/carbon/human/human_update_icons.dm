@@ -189,9 +189,7 @@ There are several things that need to be remembered:
 		var/mutable_appearance/underwear_overlay
 		var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
 		var/handled_by_bodyshape = TRUE
-		var/woman
 		var/digi
-		var/female_sprite_flags = undies.female_sprite_flags
 		var/mutant_styles = NONE
 		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undies.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
 			icon_file = undies.worn_icon_digi || DIGITIGRADE_UNDERWEAR_FILE
@@ -200,27 +198,17 @@ There are several things that need to be remembered:
 		else if(bodyshape & BODYSHAPE_CUSTOM)
 			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNDERWEAR, w_underwear, src)
 
-		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNDERWEAR))
-			woman = TRUE
-			if(digi)
-				mutant_styles |= STYLE_DIGI
-				if(!(female_sprite_flags & FEMALE_UNDERWEAR_DIGI_FULL))
-					female_sprite_flags &= ~FEMALE_UNDERWEAR_FULL
-					female_sprite_flags |= FEMALE_UNDERWEAR_TOP_ONLY
+		if(digi)
+			mutant_styles |= STYLE_DIGI
 
 		if(!icon_exists(icon_file, RESOLVE_ICON_STATE(undies)))
 			icon_file = DEFAULT_UNDERWEAR_FILE
 			handled_by_bodyshape = FALSE
 
-		if(bodyshape & BODYSHAPE_TAUR)
-			if(istype(undies) && undies.gets_cropped_on_taurs)
-				mutant_styles |= get_taur_mode()
-
 		underwear_overlay = undies.build_worn_icon(
 			default_layer = UNDERWEAR_LAYER,
 			default_icon_file = icon_file,
 			isinhands = FALSE,
-			female_uniform = woman ? female_sprite_flags : null,
 			override_state = target_overlay,
 			override_file = handled_by_bodyshape ? icon_file : null,
 			mutant_styles = mutant_styles,
@@ -234,69 +222,57 @@ There are several things that need to be remembered:
 	update_mutant_bodyparts()
 
 /mob/living/carbon/human/update_worn_shirt(update_obscured = TRUE)
-    remove_overlay(SHIRT_LAYER)
+	remove_overlay(SHIRT_LAYER)
 
-    if(client && hud_used)
-        var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT) + 1]
-        inv.update_icon()
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT) + 1]
+		inv.update_icon()
 
-    if(istype(w_shirt, /obj/item/clothing/underwear/shirt))
-        var/obj/item/clothing/underwear/shirt/undershirt = w_shirt
-        update_hud_shirt(undershirt)
+	if(istype(w_shirt, /obj/item/clothing/underwear/shirt))
+		var/obj/item/clothing/underwear/shirt/undershirt = w_shirt
+		update_hud_shirt(undershirt)
 
-        if(update_obscured)
-            update_obscured_slots(undershirt.flags_inv)
+		if(update_obscured)
+			update_obscured_slots(undershirt.flags_inv)
 
-        if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SHIRT)
-            return
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SHIRT)
+			return
 
-        var/target_overlay = undershirt.icon_state
-        var/mutable_appearance/shirt_overlay
-        var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
-        var/handled_by_bodyshape = TRUE
-        var/woman
-        var/digi
-        var/female_sprite_flags = undershirt.female_sprite_flags
-        var/mutant_styles = NONE
-        if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undershirt.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
-            icon_file = undershirt.worn_icon_digi || DIGITIGRADE_SHIRT_FILE
-            digi = TRUE
+		var/target_overlay = undershirt.icon_state
+		var/mutable_appearance/shirt_overlay
+		var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
+		var/handled_by_bodyshape = TRUE
+		var/digi
+		var/mutant_styles = NONE
+		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undershirt.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
+			icon_file = undershirt.worn_icon_digi || DIGITIGRADE_SHIRT_FILE
+			digi = TRUE
 
-        else if(bodyshape & BODYSHAPE_CUSTOM)
-            icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, w_shirt, src)
+		else if(bodyshape & BODYSHAPE_CUSTOM)
+			icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, w_shirt, src)
 
-        if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_SHIRT))
-            woman = TRUE
-            if(digi)
-                mutant_styles |= STYLE_DIGI
-                if(!(female_sprite_flags & FEMALE_SHIRT_DIGI_FULL))
-                    female_sprite_flags &= ~FEMALE_SHIRT_FULL
-                    female_sprite_flags |= FEMALE_SHIRT_TOP_ONLY
+		if(digi)
+			mutant_styles |= STYLE_DIGI
 
-        if(!icon_exists(icon_file, RESOLVE_ICON_STATE(undershirt)))
-            icon_file = DEFAULT_SHIRT_FILE
-            handled_by_bodyshape = FALSE
+		if(!icon_exists(icon_file, RESOLVE_ICON_STATE(undershirt)))
+			icon_file = DEFAULT_SHIRT_FILE
+			handled_by_bodyshape = FALSE
 
-        if(bodyshape & BODYSHAPE_TAUR)
-            if(istype(undershirt) && undershirt.gets_cropped_on_taurs)
-                mutant_styles |= get_taur_mode()
+		shirt_overlay = undershirt.build_worn_icon(
+			default_layer = SHIRT_LAYER,
+			default_icon_file = icon_file,
+			isinhands = FALSE,
+			override_state = target_overlay,
+			override_file = handled_by_bodyshape ? icon_file : null,
+			mutant_styles = mutant_styles,
+		)
 
-        shirt_overlay = undershirt.build_worn_icon(
-            default_layer = SHIRT_LAYER,
-            default_icon_file = icon_file,
-            isinhands = FALSE,
-            female_uniform = woman ? female_sprite_flags : null,
-            override_state = target_overlay,
-            override_file = handled_by_bodyshape ? icon_file : null,
-            mutant_styles = mutant_styles,
-        )
+		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
+		my_chest?.worn_shirt_offset?.apply_offset(shirt_overlay)
+		overlays_standing[SHIRT_LAYER] = shirt_overlay
+		apply_overlay(SHIRT_LAYER)
 
-        var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
-        my_chest?.worn_shirt_offset?.apply_offset(shirt_overlay)
-        overlays_standing[SHIRT_LAYER] = shirt_overlay
-        apply_overlay(SHIRT_LAYER)
-
-    update_mutant_bodyparts()
+	update_mutant_bodyparts()
 
 /mob/living/carbon/human/update_worn_id(update_obscured = TRUE)
 	remove_overlay(ID_LAYER)

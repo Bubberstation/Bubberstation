@@ -38,7 +38,7 @@
 		if(ITEM_SLOT_WRISTS)
 			wrists = item_path
 		if(ITEM_SLOT_SHIRT)
-			shirt = item_path
+			w_shirt = item_path
 		if(ITEM_SLOT_UNDERWEAR)
 			underwear = item_path
 		if(ITEM_SLOT_SOCKS)

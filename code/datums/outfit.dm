@@ -109,11 +109,11 @@
 
 	//sandstorm edit
 	///Slot for underwear like boxers and panties
-	var/underwear = null
+	var/w_underwear = null
 	///Slot for socks, yes, the thing that usually goes before your shoes
-	var/socks = null
+	var/w_socks = null
 	///Slot for the undershirt (which is quite a foreign concept to me) or bras
-	var/shirt = null
+	var/w_shirt = null
 	///Slot for the opposite ear.
 	var/ears_extra = null
 	///Slot for the part of your arms that isn't quite hands yet.
@@ -129,6 +129,11 @@
 
 	///Should we preload some of this job's items?
 	var/preload = FALSE
+
+	/// Any undershirt. While on humans it is a string, here we use paths to stay consistent with the rest of the equips.
+	var/datum/sprite_accessory/undershirt = null
+	var/datum/sprite_accessory/underwear = null
+	var/datum/sprite_accessory/socks = null
 
 /**
  * Called at the start of the equip proc
@@ -219,15 +224,24 @@
 	if(suit_store)
 		EQUIP_OUTFIT_ITEM(suit_store, ITEM_SLOT_SUITSTORE)
 
+	if(undershirt)
+		user.undershirt = initial(undershirt.name)
+
+	if(underwear)
+		user.underwear = initial(underwear.name)
+
+	if(socks)
+		user.socks = initial(socks.name)
+
 	// Sandstorm edit
 	if(ears_extra)
 		EQUIP_OUTFIT_ITEM(ears_extra, ITEM_SLOT_EARS_RIGHT)
-	if(underwear)
-		EQUIP_OUTFIT_ITEM(underwear, ITEM_SLOT_UNDERWEAR)
-	if(socks)
-		EQUIP_OUTFIT_ITEM(socks, ITEM_SLOT_SOCKS)
-	if(shirt)
-		EQUIP_OUTFIT_ITEM(shirt, ITEM_SLOT_SHIRT)
+	if(w_underwear)
+		EQUIP_OUTFIT_ITEM(w_underwear, ITEM_SLOT_UNDERWEAR)
+	if(w_socks)
+		EQUIP_OUTFIT_ITEM(w_socks, ITEM_SLOT_SOCKS)
+	if(w_shirt)
+		EQUIP_OUTFIT_ITEM(w_shirt, ITEM_SLOT_SHIRT)
 	if(wrists)
 		EQUIP_OUTFIT_ITEM(wrists, ITEM_SLOT_WRISTS)
 	//
@@ -323,6 +337,10 @@
 		user.wear_id.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.w_uniform)
 		user.w_uniform.add_fingerprint(user, ignoregloves = TRUE)
+	if(user.w_underwear)
+		user.w_underwear.add_fingerprint(user, ignoregloves = TRUE)
+	if(user.w_shirt)
+		user.w_shirt.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.wear_suit)
 		user.wear_suit.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.wear_mask)
@@ -333,10 +351,16 @@
 		user.head.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.shoes)
 		user.shoes.add_fingerprint(user, ignoregloves = TRUE)
+	if(user.w_socks)
+		user.w_socks.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.gloves)
 		user.gloves.add_fingerprint(user, ignoregloves = TRUE)
+	if(user.wrists)
+		user.wrists.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.ears)
 		user.ears.add_fingerprint(user, ignoregloves = TRUE)
+	if(user.ears_extra)
+		user.ears_extra.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.glasses)
 		user.glasses.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.belt)
@@ -366,6 +390,10 @@
 		id = H.wear_id.type
 	if(H.w_uniform)
 		uniform = H.w_uniform.type
+	if(H.w_underwear)
+		w_underwear = H.w_underwear.type
+	if(H.w_shirt)
+		w_shirt = H.w_shirt.type
 	if(H.wear_suit)
 		suit = H.wear_suit.type
 	if(H.wear_mask)
@@ -376,10 +404,16 @@
 		head = H.head.type
 	if(H.shoes)
 		shoes = H.shoes.type
+	if(H.w_socks)
+		w_socks = H.w_socks.type
 	if(H.gloves)
 		gloves = H.gloves.type
+	if(H.wrists)
+		wrists = H.wrists.type
 	if(H.ears)
 		ears = H.ears.type
+	if(H.ears_extra)
+		ears_extra = H.ears_extra.type
 	if(H.glasses)
 		glasses = H.glasses.type
 	if(H.belt)
@@ -402,6 +436,8 @@
 	var/list/preload = list()
 	preload += id
 	preload += uniform
+	preload += w_underwear
+	preload += w_shirt
 	preload += suit
 	preload += suit_store
 	preload += back
@@ -411,12 +447,15 @@
 			preload += type_to_load
 	preload += belt
 	preload += ears
+	preload += ears_extra
 	preload += glasses
 	preload += gloves
+	preload += wrists
 	preload += head
 	preload += mask
 	preload += neck
 	preload += shoes
+	preload += w_socks
 	preload += l_pocket
 	preload += r_pocket
 	preload += l_hand
@@ -438,15 +477,20 @@
 	.["outfit_type"] = type
 	.["name"] = name
 	.["uniform"] = uniform
+	.["w_underwear"] = w_underwear
+	.["w_shirt"] = w_shirt
 	.["suit"] = suit
 	.["back"] = back
 	.["belt"] = belt
 	.["gloves"] = gloves
+	.["wrists"] = wrists
 	.["shoes"] = shoes
+	.["w_socks"] = w_socks
 	.["head"] = head
 	.["mask"] = mask
 	.["neck"] = neck
 	.["ears"] = ears
+	.["ears_extra"] = ears_extra
 	.["glasses"] = glasses
 	.["id"] = id
 	.["id_trim"] = id_trim
@@ -465,15 +509,20 @@
 /datum/outfit/proc/copy_from(datum/outfit/target)
 	name = target.name
 	uniform = target.uniform
+	w_underwear = target.w_underwear
+	w_shirt = target.w_shirt
 	suit = target.suit
 	back = target.back
 	belt = target.belt
 	gloves = target.gloves
+	wrists = target.wrists
 	shoes = target.shoes
+	w_socks = target.w_socks
 	head = target.head
 	mask = target.mask
 	neck = target.neck
 	ears = target.ears
+	ears_extra = target.ears_extra
 	glasses = target.glasses
 	id = target.id
 	id_trim = target.id_trim
@@ -503,15 +552,20 @@
 	//This could probably use more strict validation
 	name = outfit_data["name"]
 	uniform = text2path(outfit_data["uniform"])
+	w_underwear = text2path(outfit_data["w_underwear"])
+	w_shirt = text2path(outfit_data["w_shirt"])
 	suit = text2path(outfit_data["suit"])
 	back = text2path(outfit_data["back"])
 	belt = text2path(outfit_data["belt"])
 	gloves = text2path(outfit_data["gloves"])
+	wrists = text2path(outfit_data["wrists"])
 	shoes = text2path(outfit_data["shoes"])
+	w_socks = text2path(outfit_data["w_socks"])
 	head = text2path(outfit_data["head"])
 	mask = text2path(outfit_data["mask"])
 	neck = text2path(outfit_data["neck"])
 	ears = text2path(outfit_data["ears"])
+	ears_extra = text2path(outfit_data["ears_extra"])
 	glasses = text2path(outfit_data["glasses"])
 	id = text2path(outfit_data["id"])
 	id_trim = text2path(outfit_data["id_trim"])
