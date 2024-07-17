@@ -1,11 +1,14 @@
 // THIS IS A BUBBER UI FILE
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts/Window';
 import {
   Box,
   Button,
+  Flex,
+  Icon,
+  Image,
   Input,
   LabeledList,
   Section,
@@ -14,12 +17,16 @@ import {
   TextArea,
 } from 'tgui-core/components';
 
+import { FitText } from '../components';
+
 type Prey = {
   name: string;
   ref: string;
+  appearance: string;
 };
 
 type Belly = {
+  index: number;
   name: string;
   desc: string;
   ref: string;
@@ -64,7 +71,7 @@ const VoreMain = (props) => {
 const BelliesList = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const [selectedBelly, setSelectedBelly] = useState<string | null>(null);
+  const [selectedBelly, setSelectedBelly] = useState<number>(-1);
 
   const { bellies } = data;
 
@@ -72,20 +79,62 @@ const BelliesList = (props) => {
     <Box height="90%">
       <Stack fill>
         <Stack.Item>
-          <Tabs vertical fill>
-            {bellies.map((belly) => (
-              <Tabs.Tab
-                key={belly.name}
-                selected={selectedBelly === belly.name}
-                onClick={() => setSelectedBelly(belly.name)}
-              >
-                {belly.name}
-              </Tabs.Tab>
-            ))}
-            <Button color="good" icon="plus">
-              Add Belly
-            </Button>
-          </Tabs>
+          <Section fill scrollable width={15} p={0} m={0}>
+            <Stack vertical ml={1} fill>
+              {bellies.map((belly) => (
+                <>
+                  <Stack.Item key={belly.index}>
+                    <Stack>
+                      <Stack.Item>
+                        <Button.Checkbox
+                          checked={belly.index === data.selected_belly}
+                          selected={0}
+                          onClick={() =>
+                            act('select_belly', { ref: belly.ref })
+                          }
+                          ml={-2}
+                          mr={-2}
+                        />
+                      </Stack.Item>
+                      <Stack.Item grow>
+                        <Button
+                          color={
+                            selectedBelly === belly.index
+                              ? 'good'
+                              : 'transparent'
+                          }
+                          selected={selectedBelly === belly.index}
+                          onClick={() => setSelectedBelly(belly.index)}
+                          textAlign="center"
+                          fluid
+                        >
+                          <FitText maxFontSize={12} maxWidth={100}>
+                            {belly.name}
+                          </FitText>
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
+                  </Stack.Item>
+                  <Stack.Divider ml={-2} pt={0.4} mt={0} mb={-1} />
+                </>
+              ))}
+              <Stack.Item>
+                <Button
+                  color="good"
+                  icon="plus"
+                  onClick={() => act('create_belly')}
+                  fluid
+                  disabled={data.bellies.length >= data.max_bellies}
+                  textAlign="center"
+                  ml={-2}
+                >
+                  Add Belly{' '}
+                  {data.bellies.length >= data.max_bellies &&
+                    '(Max: ' + data.max_bellies + ')'}
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Section>
         </Stack.Item>
         <Stack.Divider ml={0} mr={0} />
         <Stack.Item grow>
@@ -96,11 +145,53 @@ const BelliesList = (props) => {
   );
 };
 
-const BellyUI = (props: { selectedBelly: string | null }) => {
+/**
+ * Waits until two XMLHttpRequests have loaded at iconSrc before calling cb().
+ * @param iconSrc
+ * @param cb
+ */
+function getTwice(iconSrc: string, cb: () => void) {
+  const xhr = new XMLHttpRequest();
+  // Block effect until we load
+  xhr.open('GET', iconSrc + '?preload');
+  xhr.send();
+  xhr.onload = () => {
+    const xhr = new XMLHttpRequest();
+    // Block effect until we load
+    xhr.open('GET', iconSrc + '?preload2');
+    xhr.send();
+    xhr.onload = cb;
+  };
+}
+
+const AppearanceDisplay = (props: { iconSrc: string }) => {
+  const { iconSrc } = props;
+  const [icon, setIcon] = useState<string>();
+
+  // This forces two XMLHttpRequests to go through
+  // before we try and render the icon for real.
+  // Basically just makes sure BYOND knows we really want this icon instead of possibly getting back a transparent png.
+  useEffect(() => {
+    getTwice(iconSrc, () => {
+      setIcon(iconSrc);
+    });
+  }, [iconSrc]);
+
+  if (icon) {
+    return (
+      <Image fixErrors src={icon} ml={-1} mt={-1} height="64px" width="64px" />
+    );
+  } else {
+    return <Icon name="spinner" size={2.2} spin color="gray" />;
+  }
+};
+
+const BellyUI = (props: { selectedBelly: number | null }) => {
   const { act, data } = useBackend<Data>();
   const { selectedBelly } = props;
 
-  const belly = data.bellies.find((v) => v.name === selectedBelly);
+  const belly = data.bellies.find((v) => v.index === selectedBelly);
+
   if (!belly) {
     return (
       <Section mt={0} fill>
@@ -132,7 +223,11 @@ const BellyUI = (props: { selectedBelly: string | null }) => {
             {editing ? (
               <TextArea value={belly.desc} height={5} />
             ) : (
-              <Box backgroundColor="#000" height={5} p={1}>
+              <Box
+                height={5}
+                p={1}
+                style={{ border: '1px solid #6992c2', borderRadius: '0.16em' }}
+              >
                 {belly.desc}
               </Box>
             )}
@@ -140,22 +235,25 @@ const BellyUI = (props: { selectedBelly: string | null }) => {
         </LabeledList>
         <Section title="Contents">
           {belly.contents.length ? (
-            <LabeledList>
+            <Flex wrap="wrap" justify="center" align="center">
               {belly.contents.map((prey) => (
-                <LabeledList.Item
-                  label={prey.name}
-                  key={prey.name}
-                  buttons={
-                    <Button
-                      icon="eject"
-                      onClick={() => act('eject', { ref: prey.ref })}
-                    >
-                      Eject
-                    </Button>
-                  }
-                />
+                <Flex.Item key={prey.name} basis="33%">
+                  <Stack vertical align="center" justify="center">
+                    <Stack.Item>
+                      <Button
+                        width="64px"
+                        height="64px"
+                        style={{ verticalAlign: 'middle' }}
+                        onClick={() => act('eject', { ref: prey.ref })}
+                      >
+                        <AppearanceDisplay iconSrc={prey.appearance} />
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>{prey.name}</Stack.Item>
+                  </Stack>
+                </Flex.Item>
               ))}
-            </LabeledList>
+            </Flex>
           ) : (
             'Nothing is inside this belly.'
           )}

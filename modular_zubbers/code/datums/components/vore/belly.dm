@@ -1,12 +1,10 @@
 /obj/vore_belly
 	// name = ""
+	name = "Default Belly"
+	desc = "It's very bland!"
 	// desc = ""
 	var/datum/component/vore/owner
 	var/datum/digest_mode/digest_mode
-
-/obj/vore_belly/default
-	name = "Default Belly"
-	desc = "It's very bland!"
 
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
 	. = ..()
@@ -34,6 +32,7 @@
 		UNTYPED_LIST_ADD(contents_data, list(
 			"name" = A.name,
 			"ref" = REF(A),
+			"appearance" = REF(A.appearance),
 		))
 	data["contents"] = contents_data
 
@@ -51,3 +50,16 @@
 /obj/vore_belly/return_air()
 	var/turf/T = get_turf(src)
 	return T.return_air()
+
+/obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	owner.appearance_holder.vis_contents += arrived
+
+/obj/vore_belly/Exited(atom/movable/gone, direction)
+	. = ..()
+	owner.appearance_holder.vis_contents -= gone
+
+/obj/vore_belly/relaymove(mob/living/user, direction)
+	// Do not call parent, hides the "you can't move while buckled" message
+	// TODO: Squelchy!
+	return
