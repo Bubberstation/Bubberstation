@@ -59439,21 +59439,6 @@
 /obj/item/pen,
 /turf/open/floor/iron/dark,
 /area/station/engineering/transit_tube)
-"lrX" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	piping_layer = 4
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/ordnance)
 "lsb" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -84866,11 +84851,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
-"qlB" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/machinery/incident_display/bridge/directional/south,
-/turf/open/floor/iron/dark/side,
-/area/station/hallway/secondary/command)
 "qlC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -96607,6 +96587,19 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/armory,
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
+"swn" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer4,
+/turf/open/floor/iron/dark,
+/area/station/science/ordnance)
 "swr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -110814,6 +110807,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/command/teleporter)
+"vgR" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/incident_display/bridge/directional/south,
+/turf/open/floor/iron/dark/side,
+/area/station/hallway/secondary/command)
 "vgV" = (
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
@@ -223217,7 +223215,7 @@ duP
 gRC
 wZW
 gwW
-qlB
+vgR
 xai
 wEl
 vre
@@ -229727,7 +229725,7 @@ hDu
 eoz
 yjD
 hJE
-lrX
+swn
 leC
 dxT
 xbd

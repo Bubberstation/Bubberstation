@@ -12307,10 +12307,9 @@
 /area/station/maintenance/department/engine/atmos)
 "eSZ" = (
 /obj/machinery/duct,
-/obj/machinery/atmospherics/components/binary/pump/off{
+/obj/machinery/atmospherics/components/binary/pump/layer4{
 	dir = 8;
-	name = "Supplementary Air Supply";
-	piping_layer = 4
+	name = "Supplementary Air Supply"
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
@@ -14838,10 +14837,9 @@
 /area/station/maintenance/starboard/lower)
 "fNn" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/binary/pump/on{
+/obj/machinery/atmospherics/components/binary/pump/on/layer4{
 	dir = 4;
-	name = "Air to Sat";
-	piping_layer = 4
+	name = "Air to Sat"
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/engineering/transit_tube)
@@ -26441,10 +26439,9 @@
 "keD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/binary/pump/on{
+/obj/machinery/atmospherics/components/binary/pump/on/layer4{
 	dir = 1;
-	name = "Prison Air Supply";
-	piping_layer = 4
+	name = "Prison Air Supply"
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
@@ -31172,9 +31169,8 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "lOM" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 1;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
