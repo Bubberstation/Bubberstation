@@ -70,3 +70,12 @@
 	model_flags = BORG_MODEL_RESEARCH
 	items_to_add = list(/obj/item/experi_scanner/bluespace)
 	items_to_remove = list(/obj/item/experi_scanner)
+
+// Borg Dom Aura :)
+/obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	borg.add_quirk(/datum/quirk/dominant_aura)
+
+/obj/item/borg/upgrade/dominatrixmodule/deactivate(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	borg.remove_quirk(/datum/quirk/dominant_aura)
