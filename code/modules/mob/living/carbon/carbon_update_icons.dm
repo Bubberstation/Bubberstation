@@ -487,8 +487,10 @@
 	var/limb_count_update = FALSE
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 
+		// BUBBER EDIT BEGIN - Remedy taurs exceeding 100 overlays
 		if (istype(limb, /obj/item/bodypart/leg/right/taur) || istype(limb, /obj/item/bodypart/leg/left/taur))
 			continue
+		// BUBBER EDIT END
 
 		limb.update_limb(is_creating = update_limb_data) //Update limb actually doesn't do much, get_limb_icon is the cpu eater.
 
@@ -511,8 +513,10 @@
 	var/list/new_limbs = list()
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 
+		// BUBBER EDIT BEGIN - Remedy taurs exceeding 100 overlays
 		if (istype(limb, /obj/item/bodypart/leg/right/taur) || istype(limb, /obj/item/bodypart/leg/left/taur))
 			continue
+		// BUBBER EDIT END
 
 		if(limb in needs_update)
 			var/bodypart_icon = limb.get_limb_icon()
