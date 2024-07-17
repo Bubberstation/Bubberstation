@@ -139,8 +139,8 @@ GLOBAL_LIST_EMPTY(customizable_races)
 				standing += eye_organ.generate_body_overlay(species_human)
 
 	//Underwear, Undershirts & Socks
+	/*
 	if(!HAS_TRAIT(species_human, TRAIT_NO_UNDERWEAR))
-		/*
 		if(species_human.underwear && !(species_human.underwear_visibility & UNDERWEAR_HIDE_UNDIES))
 			var/datum/sprite_accessory/underwear/underwear = SSaccessories.underwear_list[species_human.underwear]
 			var/mutable_appearance/underwear_overlay

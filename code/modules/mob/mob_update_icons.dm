@@ -27,14 +27,22 @@
 		update_worn_glasses()
 	if(slot_flags & ITEM_SLOT_GLOVES)
 		update_worn_gloves()
+	if(slot_flags & ITEM_SLOT_WRISTS)
+		update_worn_wrists()
 	if(slot_flags & ITEM_SLOT_HEAD)
 		update_worn_head()
 	if(slot_flags & ITEM_SLOT_FEET)
 		update_worn_shoes()
+	if(slot_flags & ITEM_SLOT_SOCKS)
+		update_worn_socks()
 	if(slot_flags & ITEM_SLOT_OCLOTHING)
 		update_worn_oversuit()
 	if(slot_flags & ITEM_SLOT_ICLOTHING)
 		update_worn_undersuit()
+	if(slot_flags & ITEM_SLOT_UNDERWEAR)
+		update_worn_underwear()
+	if(slot_flags & ITEM_SLOT_SHIRT)
+		update_worn_shirt()
 	if(slot_flags & ITEM_SLOT_SUITSTORE)
 		update_suit_storage()
 	if(slot_flags & (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET))
@@ -46,10 +54,16 @@
 /mob/proc/update_obscured_slots(obscured_flags)
 	if(obscured_flags & HIDEGLOVES)
 		update_worn_gloves(update_obscured = FALSE)
+	if(obscured_flags & HIDEWRISTS)
+		update_worn_wrists(update_obscured = FALSE)
 	if(obscured_flags & HIDESUITSTORAGE)
 		update_suit_storage(update_obscured = FALSE)
 	if(obscured_flags & HIDEJUMPSUIT)
 		update_worn_undersuit(update_obscured = FALSE)
+	if(obscured_flags & HIDEUNDERWEAR)
+		update_worn_underwear(update_obscured = FALSE)
+		update_worn_shirt(update_obscured = FALSE)
+		update_worn_socks(update_obscured = FALSE)
 	if(obscured_flags & HIDESHOES)
 		update_worn_shoes(update_obscured = FALSE)
 	if(obscured_flags & HIDEMASK)
@@ -99,6 +113,14 @@
 /mob/proc/update_worn_undersuit(update_obscured = FALSE)
 	return
 
+///Updates the underwear overlay & HUD element.
+/mob/proc/update_worn_underwear(update_obscured = FALSE)
+	return
+
+///Updates the shirt overlay & HUD element.
+/mob/proc/update_worn_shirt(update_obscured = FALSE)
+	return
+
 ///Updates the belt overlay & HUD element.
 /mob/proc/update_worn_belt(update_obscured = FALSE)
 	return
@@ -126,8 +148,16 @@
 /mob/proc/update_worn_shoes(update_obscured = FALSE)
 	return
 
+///Updates the socks overlay & HUD element.
+/mob/proc/update_worn_socks(update_obscured = FALSE)
+	return
+
 ///Updates the glasses overlay & HUD element.
 /mob/proc/update_worn_gloves(update_obscured = FALSE)
+	return
+
+///Updates the wrists overlay & HUD element.
+/mob/proc/update_worn_wrists(update_obscured = FALSE)
 	return
 
 ///Updates the suit storage overlay & HUD element.
@@ -140,4 +170,8 @@
 
 ///Updates the headset overlay & HUD element.
 /mob/proc/update_worn_ears(update_obscured = FALSE)
+	return
+
+///Updates the headset on the other side overlay & HUD element.
+/mob/proc/update_worn_ears_extra(update_obscured = FALSE)
 	return

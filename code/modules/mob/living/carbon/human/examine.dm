@@ -75,11 +75,11 @@
 
 		. += "[t_He] [t_is] wearing [w_uniform.get_examine_string(user)][accessory_message]."
 	//shirt
-	if(shirt && !(obscured & ITEM_SLOT_SHIRT) && !(shirt.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [shirt.get_examine_string(user)]."
+	if(w_shirt && !(obscured & ITEM_SLOT_SHIRT) && !(w_shirt.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_shirt.get_examine_string(user)]."
 	//underwear
-	if(underwear && !(obscured & ITEM_SLOT_UNDERWEAR) && !(underwear.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [underwear.get_examine_string(user)]."
+	if(w_underwear && !(obscured & ITEM_SLOT_UNDERWEAR) && !(w_underwear.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_underwear.get_examine_string(user)]."
 	//head
 	if(head && !(obscured & ITEM_SLOT_HEAD) && !(head.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
@@ -126,8 +126,8 @@
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
 
 	//socks
-	if(socks && !(obscured & ITEM_SLOT_SOCKS) && !(socks.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [socks.get_examine_string(user)] on [t_his] feet."
+	if(w_socks && !(obscured & ITEM_SLOT_SOCKS) && !(w_socks.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_socks.get_examine_string(user)] on [t_his] feet."
 
 	//mask
 	if(wear_mask && !(obscured & ITEM_SLOT_MASK)  && !(wear_mask.item_flags & EXAMINE_SKIP))

@@ -38,7 +38,7 @@
 		if(ITEM_SLOT_GLOVES)
 			return gloves
 		// Extra inventory
-		if(SLOT_WRISTS)
+		if(ITEM_SLOT_WRISTS)
 			return wrists
 		//
 		if(ITEM_SLOT_FEET)
@@ -49,11 +49,11 @@
 			return w_uniform
 		// Extra inventory
 		if(ITEM_SLOT_UNDERWEAR)
-			return underwear
+			return w_underwear
 		if(ITEM_SLOT_SOCKS)
-			return socks
+			return w_socks
 		if(ITEM_SLOT_SHIRT)
-			return shirt
+			return w_shirt
 		//
 		if(ITEM_SLOT_LPOCKET)
 			return l_store
@@ -91,16 +91,19 @@
 	if(looking_for == shoes)
 		return ITEM_SLOT_FEET
 
+	if(looking_for == w_socks)
+		return ITEM_SLOT_SOCKS
+
 	if(looking_for == wear_suit)
 		return ITEM_SLOT_OCLOTHING
 
 	if(looking_for == w_uniform)
 		return ITEM_SLOT_ICLOTHING
 
-	if(looking_for == underwear)
+	if(looking_for == w_underwear)
 		return ITEM_SLOT_UNDERWEAR
 
-	if(looking_for == shirt)
+	if(looking_for == w_shirt)
 		return ITEM_SLOT_SHIRT
 
 	if(looking_for == wrists)
@@ -239,19 +242,19 @@
 			update_suit_sensors()
 			update_worn_undersuit()
 		if(ITEM_SLOT_UNDERWEAR)
-			if(underwear)
+			if(w_underwear)
 				return
-			underwear = equipping
+			w_underwear = equipping
 			update_worn_underwear()
 		if(ITEM_SLOT_SHIRT)
-			if(shirt)
+			if(w_shirt)
 				return
-			shirt = equipping
+			w_shirt = equipping
 			update_worn_shirt()
 		if(ITEM_SLOT_SOCKS)
-			if(socks)
+			if(w_socks)
 				return
-			socks = equipping
+			w_socks = equipping
 			update_worn_socks()
 		if(ITEM_SLOT_LPOCKET)
 			l_store = equipping
@@ -311,16 +314,16 @@
 			if(belt && !can_equip(belt, ITEM_SLOT_BELT, TRUE, ignore_equipped = TRUE))
 				dropItemToGround(belt)
 	// Extra inventory
-	else if(I == underwear)
-		underwear = null
+	else if(I == w_underwear)
+		w_underwear = null
 		if(!QDELETED(src))
 			update_worn_underwear()
-	else if(I == socks)
-		socks = null
+	else if(I == w_socks)
+		w_socks = null
 		if(!QDELETED(src))
 			update_worn_socks()
-	else if(I == shirt)
-		shirt = null
+	else if(I == w_shirt)
+		w_shirt = null
 		if(!QDELETED(src))
 			update_worn_shirt()
 	else if(I == wrists)

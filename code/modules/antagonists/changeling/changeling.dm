@@ -99,9 +99,9 @@
 		"s_store" = /obj/item/changeling,
 
 		// Extra inventory
-		"underwear" = /obj/item/changeling,
-		"socks" = /obj/item/changeling,
-		"shirt" = /obj/item/changeling,
+		"w_underwear" = /obj/item/changeling,
+		"w_socks" = /obj/item/changeling,
+		"w_shirt" = /obj/item/changeling,
 		"ears_extra" = /obj/item/changeling,
 		"wrists" = /obj/item/changeling,
 	)

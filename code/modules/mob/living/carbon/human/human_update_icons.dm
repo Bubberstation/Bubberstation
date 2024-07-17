@@ -175,8 +175,8 @@ There are several things that need to be remembered:
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_UNDERWEAR) + 1]
 		inv.update_icon()
 
-	if(istype(underwear, /obj/item/clothing/underwear))
-		var/obj/item/clothing/underwear/undies = w_underwear
+	if(istype(w_underwear, /obj/item/clothing/underwear/briefs))
+		var/obj/item/clothing/underwear/briefs/undies = w_underwear
 		update_hud_underwear(undies)
 
 		if(update_obscured)
@@ -187,7 +187,7 @@ There are several things that need to be remembered:
 
 		var/target_overlay = undies.icon_state
 		var/mutable_appearance/underwear_overlay
-		var/icon_file = 'icons/mob/clothing/underwear.dmi'
+		var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
 		var/handled_by_bodyshape = TRUE
 		var/woman
 		var/digi
@@ -198,7 +198,7 @@ There are several things that need to be remembered:
 			digi = TRUE
 
 		else if(bodyshape & BODYSHAPE_CUSTOM)
-			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNDERWEAR, underwear, src)
+			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNDERWEAR, w_underwear, src)
 
 		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNDERWEAR))
 			woman = TRUE
@@ -240,8 +240,8 @@ There are several things that need to be remembered:
         var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT) + 1]
         inv.update_icon()
 
-    if(istype(shirt, /obj/item/clothing/shirt))
-        var/obj/item/clothing/shirt/undershirt = w_shirt
+    if(istype(w_shirt, /obj/item/clothing/underwear/shirt))
+        var/obj/item/clothing/underwear/shirt/undershirt = w_shirt
         update_hud_shirt(undershirt)
 
         if(update_obscured)
@@ -252,7 +252,7 @@ There are several things that need to be remembered:
 
         var/target_overlay = undershirt.icon_state
         var/mutable_appearance/shirt_overlay
-        var/icon_file = 'icons/mob/clothing/shirt.dmi'
+        var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
         var/handled_by_bodyshape = TRUE
         var/woman
         var/digi
@@ -263,7 +263,7 @@ There are several things that need to be remembered:
             digi = TRUE
 
         else if(bodyshape & BODYSHAPE_CUSTOM)
-            icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, shirt, src)
+            icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, w_shirt, src)
 
         if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_SHIRT))
             woman = TRUE
@@ -401,7 +401,7 @@ There are several things that need to be remembered:
 		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_GLOVES)
 			return
 
-		var/icon_file = 'icons/mob/clothing/wrists.dmi'
+		var/icon_file = 'modular_zzplurt/icons/mob/clothing/wrists.dmi'
 
 		// SKYRAT EDIT ADDITION
 		var/mutant_override = FALSE
@@ -657,8 +657,8 @@ There are several things that need to be remembered:
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SOCKS) + 1]
 		inv.update_icon()
 
-	if(socks)
-		var/obj/item/worn_item = socks
+	if(w_socks)
+		var/obj/item/worn_item = w_socks
 		update_hud_socks(worn_item)
 
 		if(update_obscured)
@@ -678,7 +678,7 @@ There are several things that need to be remembered:
 				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SOCKS_FILE // SKYRAT EDIT CHANGE
 				mutant_override = TRUE // SKYRAT EDIT ADDITION
 		if(!mutant_override && bodyshape & BODYSHAPE_CUSTOM)
-			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_SOCKS, socks, src)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_SOCKS, w_socks, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
@@ -686,7 +686,7 @@ There are several things that need to be remembered:
 			return // We just don't want socks that float if we're not displaying legs (useful for taurs, for now)
 		// SKYRAT EDIT END
 
-		var/mutable_appearance/socks_overlay = socks.build_worn_icon(default_layer = SOCKS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
+		var/mutable_appearance/socks_overlay = w_socks.build_worn_icon(default_layer = SOCKS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null) // SKYRAT EDIT CHANGE
 
 		if(!socks_overlay)
 			return
@@ -1034,7 +1034,7 @@ There are several things that need to be remembered:
 	update_observer_view(worn_item,TRUE)
 
 /mob/living/carbon/human/proc/update_hud_underwear(obj/item/worn_item)
-	worn_item.screen_loc = ui_underwear
+	worn_item.screen_loc = ui_boxers
 	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
 		client.screen += worn_item
 	update_observer_view(worn_item,TRUE)

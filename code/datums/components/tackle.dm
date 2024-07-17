@@ -395,7 +395,7 @@
 		if(isnull(tackle_target.wear_suit) && isnull(tackle_target.w_uniform)) // who honestly puts all of their effort into tackling a naked guy?
 			defense_mod += 2
 			// Extra inventory
-			if(isnull(tackle_target.underwear) && isnull(tackle_target.socks) && isnull(tackle_target.shirt))
+			if(isnull(tackle_target.w_underwear) && isnull(tackle_target.w_socks) && isnull(tackle_target.w_shirt))
 				defense_mod += 1
 			//
 		if(tackle_target.mob_negates_gravity())

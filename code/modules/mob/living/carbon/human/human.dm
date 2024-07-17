@@ -623,13 +623,13 @@
 		. = TRUE
 
 	// Extra inventory
-	if(!(obcured & ITEM_SLOT_UNDERWEAR) && underwear?.wash(clean_types))
+	if(!(obscured & ITEM_SLOT_UNDERWEAR) && w_underwear?.wash(clean_types))
 		update_worn_underwear()
 		. = TRUE
-	if(!(obscured & ITEM_SLOT_SOCKS) && socks?.wash(clean_types))
+	if(!(obscured & ITEM_SLOT_SOCKS) && w_socks?.wash(clean_types))
 		update_worn_socks()
 		. = TRUE
-	if(!(obscured & ITEM_SLOT_SHIRT) && shirt?.wash(clean_types))
+	if(!(obscured & ITEM_SLOT_SHIRT) && w_shirt?.wash(clean_types))
 		update_worn_shirt()
 		. = TRUE
 	if(!(obscured & ITEM_SLOT_WRISTS) && wrists?.wash(clean_types))

@@ -35,13 +35,12 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 // Extra inventory
 
 GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
-	'icons/mob/screen_midnight.dmi' = 'sandcode/icons/mob/screen_midnight.dmi',
-	'icons/mob/screen_retro.dmi' = 'sandcode/icons/mob/screen_retro.dmi',
-	'icons/mob/screen_plasmafire.dmi' = 'sandcode/icons/mob/screen_plasmafire.dmi',
-	'icons/mob/screen_slimecore.dmi' = 'sandcode/icons/mob/screen_slimecore.dmi',
-	'icons/mob/screen_operative.dmi' = 'sandcode/icons/mob/screen_operative.dmi',
-	'icons/mob/screen_clockwork.dmi' = 'sandcode/icons/mob/screen_clockwork.dmi',
-	'sandcode/icons/mob/screen_liteweb.dmi' = 'sandcode/icons/mob/screen_liteweb.dmi'
+	'icons/hud/screen_midnight.dmi' = 'modular_zzplurt/icons/hud/screen_midnight.dmi',
+	'icons/hud/screen_retro.dmi' = 'modular_zzplurt/icons/hud/screen_retro.dmi',
+	'icons/hud/screen_plasmafire.dmi' = 'modular_zzplurt/icons/hud/screen_plasmafire.dmi',
+	'icons/hud/screen_slimecore.dmi' = 'modular_zzplurt/icons/hud/screen_slimecore.dmi',
+	'icons/hud/screen_operative.dmi' = 'modular_zzplurt/icons/hud/screen_operative.dmi',
+	'icons/hud/screen_clockwork.dmi' = 'modular_zzplurt/icons/hud/screen_clockwork.dmi',
 ))
 
 //

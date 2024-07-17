@@ -468,27 +468,27 @@
 		if(H.ears_extra)
 			H.ears_extra.screen_loc = ui_ears_extra
 			screenmob.client.screen += H.ears_extra
-		if(H.underwear)
+		if(H.w_underwear)
 			H.w_underwear.screen_loc = ui_boxers
-			screenmob.client.screen += H.underwear
-		if(H.socks)
-			H.socks.screen_loc = ui_socks
-			screenmob.client.screen += H.socks
-		if(H.shirt)
-			H.shirt.screen_loc = ui_shirt
-			screenmob.client.screen += H.shirt
+			screenmob.client.screen += H.w_underwear
+		if(H.w_socks)
+			H.w_socks.screen_loc = ui_socks
+			screenmob.client.screen += H.w_socks
+		if(H.w_shirt)
+			H.w_shirt.screen_loc = ui_shirt
+			screenmob.client.screen += H.w_shirt
 		if(H.wrists)
 			H.wrists.screen_loc = ui_wrists
 			screenmob.client.screen += H.wrists
 	else
 		if(H.ears_extra)
 			screenmob.client.screen -= H.ears_extra
-		if(H.underwear)
-			screenmob.client.screen -= H.underwear
-		if(H.socks)
-			screenmob.client.screen -= H.socks
-		if(H.shirt)
-			screenmob.client.screen -= H.shirt
+		if(H.w_underwear)
+			screenmob.client.screen -= H.w_underwear
+		if(H.w_socks)
+			screenmob.client.screen -= H.w_socks
+		if(H.w_shirt)
+			screenmob.client.screen -= H.w_shirt
 		if(H.wrists)
 			screenmob.client.screen -= H.wrists
 //

@@ -109,7 +109,7 @@
 		damage *= 0.75
 	// Extra inventory
 	if(digitigrade_fan.socks)
-		if(digitigrade_fan.socks.body_parts_covered & FEET)
+		if(digitigrade_fan.w_socks.body_parts_covered & FEET)
 			damage *= 0.75
 	//
 

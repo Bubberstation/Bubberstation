@@ -855,7 +855,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_WRISTS))
 				return FALSE
-			if(num_arms < 2)
+			if(H.num_hands < 2)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		//
@@ -903,19 +903,19 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_UNDERWEAR)
-			if(H.underwear)
+			if(H.w_underwear)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_UNDERWEAR) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_SOCKS)
-			if(H.socks)
+			if(H.w_socks)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_SOCKS) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_SHIRT)
-			if(H.shirt)
+			if(H.w_shirt)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_SHIRT) )
 				return FALSE
