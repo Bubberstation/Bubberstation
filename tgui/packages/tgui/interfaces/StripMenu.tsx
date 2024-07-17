@@ -88,6 +88,12 @@ const SLOTS: Record<
     additionalComponent?: JSX.Element;
   }
 > = {
+  undershirt: {
+    displayName: 'shirt',
+    gridSpot: getGridSpotKey([0, 0]),
+    image: 'inventory-undershirt.png',
+  },
+
   eyes: {
     displayName: 'eyewear',
     gridSpot: getGridSpotKey([0, 1]),
@@ -98,6 +104,18 @@ const SLOTS: Record<
     displayName: 'headwear',
     gridSpot: getGridSpotKey([0, 2]),
     image: 'inventory-head.png',
+  },
+
+  ears_extra: {
+    displayName: 'right ear',
+    gridSpot: getGridSpotKey([0, 3]),
+    image: 'inventory-ears_extra.png',
+  },
+
+  socks: {
+    displayName: 'socks',
+    gridSpot: getGridSpotKey([1, 0]),
+    image: 'inventory-socks.png',
   },
 
   neck: {
@@ -119,7 +137,7 @@ const SLOTS: Record<
   },
 
   ears: {
-    displayName: 'earwear',
+    displayName: 'left ear',
     gridSpot: getGridSpotKey([1, 3]),
     image: 'inventory-ears.png',
   },
@@ -138,6 +156,12 @@ const SLOTS: Record<
   legcuffs: {
     displayName: 'legcuffs',
     gridSpot: getGridSpotKey([1, 5]),
+  },
+
+  underwear: {
+    displayName: 'underwear',
+    gridSpot: getGridSpotKey([2, 0]),
+    image: 'inventory-underwear.png',
   },
 
   jumpsuit: {
@@ -176,6 +200,12 @@ const SLOTS: Record<
     displayName: 'shoes',
     gridSpot: getGridSpotKey([3, 2]),
     image: 'inventory-shoes.png',
+  },
+
+  wrists: {
+    displayName: 'wrists',
+    gridSpot: getGridSpotKey([3, 3]),
+    image: 'inventory-wrists.png',
   },
 
   suit_storage: {
