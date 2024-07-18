@@ -10,6 +10,7 @@
 	blueprints += new /datum/design/high_micro_laser
 	blueprints += new /datum/design/adv_matter_bin
 	blueprints += new /datum/design/super_cell
+	blueprints += new /datum/design/super_battery
 	blueprints += new /datum/design/water_recycler
 	blueprints += new /datum/design/card_reader
 
@@ -41,6 +42,7 @@
 	blueprints += new /datum/design/ultra_micro_laser
 	blueprints += new /datum/design/super_matter_bin
 	blueprints += new /datum/design/hyper_cell
+	blueprints += new /datum/design/hyper_battery
 
 /datum/design/super_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -54,6 +56,8 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/hyper_cell
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+/datum/design/hyper_battery
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 /obj/item/disk/design_disk/bluespace_parts
 	name = "Bluespace components autolathe design disk"
@@ -66,6 +70,7 @@
 	blueprints += new /datum/design/quadultra_micro_laser
 	blueprints += new /datum/design/bluespace_matter_bin
 	blueprints += new /datum/design/bluespace_cell
+	blueprints += new /datum/design/bluespace_battery
 
 /datum/design/quadratic_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -79,6 +84,8 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/bluespace_cell
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+/datum/design/bluespace_battery
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 /datum/design/adv_part_disk
 	name = "Advanced components design disk"
@@ -86,7 +93,7 @@
 	id = "adv_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
-	build_path = /obj/item/disk/design_disk/advanced_parts
+	build_path = q
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2
 	)
