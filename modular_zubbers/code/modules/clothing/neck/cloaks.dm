@@ -3,4 +3,4 @@
 	desc = "It's a sad piece of clothing where one finds many graves."
 	icon = 'modular_zubbers/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck.dmi'
-	icon_state = "binarycloak
+	icon_state = "binarycloak"
