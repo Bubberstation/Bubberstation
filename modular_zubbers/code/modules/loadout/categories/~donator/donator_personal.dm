@@ -104,6 +104,11 @@
     item_path = /obj/item/clothing/suit/misc/holographic
     ckeywhitelist = list("blovy")
 
+/datum/loadout_item/suit/skyymed_jacket // donator item for LT3
+	name = "Expedition Medical Jacket"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/skyymed
+	ckeywhitelist = list("lt3", "gavla")
+	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
 
 /*
 *	SHOES
@@ -174,6 +179,11 @@
 	name = "Vaporsac Seeds"
 	item_path = /obj/item/seeds/vaporsac
 	ckeywhitelist = list("MyGuy49")
+
+/datum/loadout_item/inhand/kanken_pack // donator item for LT3
+    name = "Kånken Backpack"
+    item_path = /obj/item/storage/backpack/kanken
+    ckeywhitelist = list("lt3", "gavla")
 
 /*
 *	POCKETS

@@ -294,9 +294,9 @@ BUBBER EDIT END*/
 	name = "MOD injector module"
 	item_type = /obj/item/mod/module/injector
 
-/datum/armament_entry/company_import/deforest/medical_modules/organ_thrower
-	name = "MOD organ thrower module"
-	item_type = /obj/item/mod/module/organ_thrower
+/datum/armament_entry/company_import/deforest/medical_modules/organizer
+	name = "MOD organizer module"
+	item_type = /obj/item/mod/module/organizer
 
 /datum/armament_entry/company_import/deforest/medical_modules/patient_transport
 	name = "MOD patient transport module"

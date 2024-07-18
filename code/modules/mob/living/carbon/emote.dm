@@ -22,7 +22,6 @@
 	key = "clap"
 	key_third_person = "claps"
 	message = "claps."
-	muzzle_ignore = TRUE
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	audio_cooldown = 5 SECONDS
@@ -183,7 +182,7 @@
 		qdel(hand)
 		to_chat(user, span_warning("You're incapable of using your hand in your current state."))
 
-
+/* Bubber removal begin - moved to modular_zubbers\code\modules\emotes\emotes.dm - /datum/emote/living/snap
 /datum/emote/living/carbon/snap
 	key = "snap"
 	key_third_person = "snaps"
@@ -191,12 +190,12 @@
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	hands_use_check = TRUE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/carbon/snap/get_sound(mob/living/user)
 	if(ishuman(user))
 		return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
 	return null
+Bubber removal end */
 
 /datum/emote/living/carbon/shoesteal
 	key = "shoesteal"

@@ -395,7 +395,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/mod/module/mister/atmos = 25,
 		/obj/item/mod/module/mouthhole = 100,
 		/obj/item/mod/module/orebag = 25,
-		/obj/item/mod/module/organ_thrower = 100,
+		/obj/item/mod/module/organizer = 100,
 		/obj/item/mod/module/paper_dispenser = 100,
 		/obj/item/mod/module/pathfinder = 5,
 		/obj/item/mod/module/plasma_stabilizer = 50,
