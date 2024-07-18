@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(fish_traits, init_subtypes_w_path_keys(/datum/fish_trait, list(
 /datum/fish_trait/toxic/apply_to_fish(obj/item/fish/fish)
 	RegisterSignal(fish, COMSIG_ATOM_PROCESSED, PROC_REF(add_toxin))
 	RegisterSignal(fish, COMSIG_FISH_EATEN_BY_OTHER_FISH, PROC_REF(on_eaten))
-	LAZYSET(fish.grind_results, /datum/reagent/toxin/tetrodotoxin, 0.5)
+	LAZYSET(fish.grind_results, /datum/reagent/toxin/tetrodotoxin, 2.5)
 
 /datum/fish_trait/toxic/proc/add_toxin(obj/item/fish/source, mob/living/user, obj/item/process_item, list/results)
 	var/amount = source.grind_results[ /datum/reagent/toxin/tetrodotoxin] / length(results)
@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(fish_traits, init_subtypes_w_path_keys(/datum/fish_trait, list(
 	var/fish_tolerance = 3
 	if(!fish.loc || fish.status == FISH_DEAD)
 		return
-	for(var/obj/item/other_fish in fish.loc.contents)
+	for(var/obj/item/fish/other_fish in fish.loc.contents)
 		if(fish_tolerance <= 0)
 			fish.loc.visible_message(span_warning("[fish] seems to freak out for a moment, then it stops moving..."))
 			fish.set_status(FISH_DEAD)

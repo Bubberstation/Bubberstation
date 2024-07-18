@@ -165,7 +165,7 @@
 		lower_half.Blend(icon('icons/mob/human/bodyparts_greyscale.dmi', "human_r_leg"), ICON_OVERLAY)
 		lower_half.Blend(icon('icons/mob/human/bodyparts_greyscale.dmi', "human_l_leg"), ICON_OVERLAY)
 
-	return generate_underwear_icon(SSaccessories.underwear_list[value], lower_half, COLOR_ALMOST_BLACK)
+	return generate_underwear_icon(SSaccessories.underwear_list[value], lower_half, COLOR_ALMOST_BLACK, icon_offset = 5) // SKYRAT EDIT CHANGE : ICON_OFFSET // SKYRAT EDIT CHANGE - ORIGINAL: return generate_underwear_icon(SSaccessories.underwear_list[value], lower_half, COLOR_ALMOST_BLACK)
 
 /datum/preference/choiced/underwear/apply_to_human(mob/living/carbon/human/target, value)
 	target.underwear = value
@@ -175,7 +175,7 @@
 		return FALSE
 
 	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 	return !(TRAIT_NO_UNDERWEAR in species.inherent_traits)
 
 /datum/preference/choiced/underwear/compile_constant_data()
