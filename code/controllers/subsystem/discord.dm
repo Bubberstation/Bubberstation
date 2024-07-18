@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(discord)
 
 /datum/controller/subsystem/discord/proc/get_or_generate_one_time_token_for_ckey(ckey)
 	// Is there an existing valid one time token
-	var/datum/discord_link_record/link = find_discord_link_by_ckey(ckey, timebound = TRUE)
+	var/datum/discord_link_record/link = find_discord_link_by_ckey(ckey, timebound = TRUE, only_valid = TRUE) // BUBBER EDIT - LOOKUP ONLY VALID
 	if(link)
 		return link.one_time_token
 
@@ -191,7 +191,7 @@ SUBSYSTEM_DEF(discord)
 	var/timeboundsql = ""
 	if(timebound)
 		timeboundsql = "AND timestamp >= Now() - INTERVAL 4 HOUR"
-	var/query = "SELECT CAST(discord_id AS CHAR(25)), ckey, MAX(timestamp), one_time_token FROM [format_table_name("discord_links")] WHERE one_time_token = :one_time_token [timeboundsql] GROUP BY ckey, discord_id, one_time_token LIMIT 1"
+	var/query = "SELECT CAST(discord_id AS CHAR(25)), ckey, MAX(timestamp), one_time_token FROM [format_table_name("discord_links")] WHERE one_time_token = :one_time_token [timeboundsql] GROUP BY ckey, discord_id, one_time_token ORDER BY timestamp DESC LIMIT 1" // BUBBER EDIT - Order by Timestamp
 	var/datum/db_query/query_get_discord_link_record = SSdbcore.NewQuery(
 		query,
 		list("one_time_token" = one_time_token)
@@ -227,7 +227,7 @@ SUBSYSTEM_DEF(discord)
 	if(only_valid)
 		validsql = "AND valid = 1"
 
-	var/query = "SELECT CAST(discord_id AS CHAR(25)), ckey, MAX(timestamp), one_time_token FROM [format_table_name("discord_links")] WHERE ckey = :ckey [timeboundsql]  [validsql] GROUP BY ckey, discord_id, one_time_token LIMIT 1"
+	var/query = "SELECT CAST(discord_id AS CHAR(25)), ckey, MAX(timestamp), one_time_token FROM [format_table_name("discord_links")] WHERE ckey = :ckey [timeboundsql]  [validsql] GROUP BY ckey, discord_id, one_time_token ORDER BY timestamp DESC LIMIT 1" // BUBBER EDIT - Order by Timestamp
 	var/datum/db_query/query_get_discord_link_record = SSdbcore.NewQuery(
 		query,
 		list("ckey" = ckey)
@@ -265,7 +265,7 @@ SUBSYSTEM_DEF(discord)
 	if(only_valid)
 		validsql = "AND valid = 1"
 
-	var/query = "SELECT CAST(discord_id AS CHAR(25)), ckey, MAX(timestamp), one_time_token FROM [format_table_name("discord_links")] WHERE discord_id = :discord_id [timeboundsql] [validsql] GROUP BY ckey, discord_id, one_time_token LIMIT 1"
+	var/query = "SELECT CAST(discord_id AS CHAR(25)), ckey, MAX(timestamp), one_time_token FROM [format_table_name("discord_links")] WHERE discord_id = :discord_id [timeboundsql] [validsql] GROUP BY ckey, discord_id, one_time_token ORDER BY timestamp DESC LIMIT 1" // BUBBER EDIT - Order by Timestamp
 	var/datum/db_query/query_get_discord_link_record = SSdbcore.NewQuery(
 		query,
 		list("discord_id" = discord_id)
