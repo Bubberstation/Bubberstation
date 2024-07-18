@@ -13,6 +13,7 @@
 	blueprints += new /datum/design/super_battery
 	blueprints += new /datum/design/water_recycler
 	blueprints += new /datum/design/card_reader
+	blueprints += new /datum/design/rped
 
 /datum/design/adv_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -30,6 +31,8 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/card_reader
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+/datum/design/rped
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 /obj/item/disk/design_disk/high_tech_parts
 	name = "high-tech components autolathe design disk"
@@ -43,6 +46,7 @@
 	blueprints += new /datum/design/super_matter_bin
 	blueprints += new /datum/design/hyper_cell
 	blueprints += new /datum/design/hyper_battery
+	blueprints += new /datum/design/bs_rped
 
 /datum/design/super_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -57,6 +61,8 @@
 /datum/design/hyper_cell
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/hyper_battery
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+/datum/design/bs_rped
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 //Disabled due to balance concerns
