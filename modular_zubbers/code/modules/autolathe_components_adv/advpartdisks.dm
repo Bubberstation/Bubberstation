@@ -60,7 +60,7 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 /obj/item/disk/design_disk/bluespace_parts
-	name = "Bluespace components autolathe design disk"
+	name = "bluespace components autolathe design disk"
 
 /obj/item/disk/design_disk/bluespace_parts/Initialize(mapload)
 	. = ..()
