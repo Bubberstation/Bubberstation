@@ -72,6 +72,7 @@
 	blueprints += new /datum/design/bluespace_cell
 	blueprints += new /datum/design/bluespace_battery
 
+/*
 /datum/design/quadratic_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/triphasic_scanning
@@ -86,6 +87,7 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/bluespace_battery
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+*/
 
 /datum/design/adv_part_disk
 	name = "Advanced components design disk"
@@ -113,7 +115,7 @@
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL
 
-/datum/design/bluepspace_part_disk
+/*/datum/design/bluepspace_part_disk
 	name = "Bluespace components design disk"
 	desc = "A disk for an autolathe containing bluespace component designs."
 	id = "bluespace_part_disk"
@@ -125,6 +127,7 @@
 	)
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL
+*/
 
 /datum/techweb_node/parts_upg/New()
 	design_ids += list(
@@ -139,8 +142,9 @@
 	return ..()
 
 
-/datum/techweb_node/parts_bluespace/New()
+/*/datum/techweb_node/parts_bluespace/New()
 	design_ids += list(
 		"bluespace_part_disk",
 	)
 	return ..()
+*/
