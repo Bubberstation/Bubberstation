@@ -126,7 +126,7 @@
 	desc = "A disk for an autolathe containing bluespace component designs."
 	id = "bluespace_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*1.5)
 	build_path = /obj/item/disk/design_disk/bluespace_parts
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2 + RND_SUBCATEGORY_STOCK_PARTS_3 + RND_SUBCATEGORY_STOCK_PARTS_4
