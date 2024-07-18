@@ -65,3 +65,17 @@
 				pred.visible_message(span_danger("[pred] squelches out [prey]!"), span_notice("You squelch out [prey]."))
 				// TODO: noise
 			. = TRUE
+		if("edit_belly")
+			var/obj/vore_belly/target = locate(params["ref"])
+			if(!istype(target))
+				return
+			if(target.owner != src)
+				return
+
+			switch(params["var"])
+				if("name")
+					// TODO: MAX_NAME_LENGTH/sanitize
+					target.name = params["value"]
+				if("desc")
+					// TODO: Limit/sanitize
+					target.desc = params["value"]

@@ -15,7 +15,8 @@
 	digest_mode = GLOB.digest_modes["None"]
 
 /obj/vore_belly/Destroy(force)
-	LAZYREMOVE(owner.vore_bellies, src)
+	if(owner)
+		LAZYREMOVE(owner.vore_bellies, src)
 	owner = null
 	digest_mode = null
 	. = ..()
