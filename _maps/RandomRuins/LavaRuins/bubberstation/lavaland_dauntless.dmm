@@ -1454,8 +1454,6 @@
 	},
 /obj/effect/turf_decal/trimline/yellow/line,
 /obj/machinery/light/cold/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/structure/sign/warning/radiation/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -1948,12 +1946,6 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
-"iv" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "ix" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -3453,12 +3445,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
-"px" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 6
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "py" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/comfy/carp,
@@ -4159,13 +4145,13 @@
 /turf/open/floor/iron/white/diagonal,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "sb" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/airalarm/directional/west,
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "sc" = (
@@ -4382,12 +4368,6 @@
 /obj/machinery/shower/directional/north,
 /turf/open/floor/iron/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
-"td" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 2
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/robotics)
 "ti" = (
 /obj/effect/turf_decal/stripes/red/full,
 /obj/structure/cable,
@@ -5778,13 +5758,15 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/treatment)
 "yz" = (
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
 /obj/structure/bed/double,
 /obj/item/bedsheet/brown/double,
 /obj/machinery/light/small/directional/west,
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "yB" = (
@@ -6727,10 +6709,6 @@
 "BP" = (
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/sauna)
-"BQ" = (
-/obj/effect/turf_decal/siding/dark,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
 "BS" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 2
@@ -7902,12 +7880,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/bubbers/dauntless/med/chem)
-"HN" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "HO" = (
 /obj/structure/table/wood/fancy/red,
 /obj/item/canvas/drawingtablet,
@@ -8384,7 +8356,6 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "JW" = (
-/obj/effect/turf_decal/trimline/dark_red/line,
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 1
 	},
@@ -8419,6 +8390,9 @@
 	},
 /obj/item/stack/sheet/plastic/five,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/effect/turf_decal/trimline/dark_red/end{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "JY" = (
@@ -8459,11 +8433,13 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/officer)
 "Kf" = (
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/small/directional/south,
 /obj/structure/dresser,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -9901,14 +9877,14 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
 "QK" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/machinery/firealarm/directional/north,
 /obj/structure/bed/double,
 /obj/item/bedsheet/brown/double,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison)
@@ -10282,11 +10258,11 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/trimline/dark_blue/corner{
-	dir = 4
-	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
+	},
+/obj/effect/turf_decal/trimline/dark_blue/line{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/bubbers/dauntless/service)
@@ -11602,12 +11578,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/command/bridge)
-"XE" = (
-/obj/effect/turf_decal/trimline/dark_red/end{
-	dir = 4
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sci/rnd)
 "XF" = (
 /obj/structure/sink/kitchen/directional/north,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -12030,12 +12000,6 @@
 /obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/armory)
-"ZJ" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "ZK" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south,
 /obj/effect/turf_decal/tile/dark_red{
@@ -15179,14 +15143,14 @@ fp
 hr
 HW
 KG
-HN
+KG
 tD
-XE
+KG
 KG
 rV
 MC
 rV
-td
+rV
 rV
 YI
 GQ
@@ -15296,11 +15260,11 @@ Mf
 im
 qm
 qm
-ZJ
-px
 qm
-iv
-BQ
+qm
+qm
+yR
+yR
 Ut
 HT
 FT
