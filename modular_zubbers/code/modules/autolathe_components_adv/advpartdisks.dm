@@ -1,6 +1,6 @@
 //Disks that let autolathes print upgraded parts!
 /obj/item/disk/design_disk/advanced_parts
-	name = "Advanced components autolathe design disk"
+	name = "advanced components autolathe design disk"
 
 /obj/item/disk/design_disk/advanced_parts/Initialize(mapload)
 	. = ..()
