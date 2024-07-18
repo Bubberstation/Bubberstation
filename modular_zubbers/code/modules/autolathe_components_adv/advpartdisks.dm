@@ -59,6 +59,8 @@
 /datum/design/hyper_battery
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
+//Disabled due to balance concerns
+/*
 /obj/item/disk/design_disk/bluespace_parts
 	name = "bluespace components autolathe design disk"
 
@@ -71,7 +73,9 @@
 	blueprints += new /datum/design/bluespace_matter_bin
 	blueprints += new /datum/design/bluespace_cell
 	blueprints += new /datum/design/bluespace_battery
+*/
 
+//Disabled due to balance concerns
 /*
 /datum/design/quadratic_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -115,7 +119,9 @@
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL
 
-/*/datum/design/bluepspace_part_disk
+//Disabled due to balance concerns
+/*
+/datum/design/bluepspace_part_disk
 	name = "Bluespace components design disk"
 	desc = "A disk for an autolathe containing bluespace component designs."
 	id = "bluespace_part_disk"
@@ -141,8 +147,9 @@
 	)
 	return ..()
 
-
-/*/datum/techweb_node/parts_bluespace/New()
+//Disabled due to balance concerns
+/*
+/datum/techweb_node/parts_bluespace/New()
 	design_ids += list(
 		"bluespace_part_disk",
 	)
