@@ -93,7 +93,7 @@
 	id = "adv_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
-	build_path = q
+	build_path = /obj/item/disk/design_disk/advanced_parts
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2
 	)
