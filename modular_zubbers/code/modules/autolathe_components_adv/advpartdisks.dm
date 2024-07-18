@@ -32,7 +32,7 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 /obj/item/disk/design_disk/high_tech_parts
-	name = "High-tech components autolathe design disk"
+	name = "high-tech components autolathe design disk"
 
 /obj/item/disk/design_disk/high_tech_parts/Initialize(mapload)
 	. = ..()
