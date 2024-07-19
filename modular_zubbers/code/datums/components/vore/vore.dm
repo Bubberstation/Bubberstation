@@ -136,6 +136,7 @@
 		return FALSE
 	var/datum/component/vore/pred_component = pred.GetComponent(/datum/component/vore)
 	if(!pred_component)
+		log_game("[user] tried to feed [prey] to [pred] but pred had vore disabled")
 		to_chat(user, span_danger("[pred] isn't interested in mechanical vore."))
 		return FALSE
 	if(!pred_component.selected_belly)
@@ -144,6 +145,7 @@
 	// TODO: Limit how many prey fit in a pred
 	var/datum/component/vore/prey_component = prey.GetComponent(/datum/component/vore)
 	if(!prey_component)
+		log_game("[user] tried to feed [prey] to [pred] but prey had vore disabled")
 		to_chat(user, span_danger("[prey] isn't interested in mechanical vore."))
 		return FALSE
 	#if MATRYOSHKA_BANNED
@@ -152,9 +154,11 @@
 	#endif
 	#if REQUIRES_PLAYER
 	if(!pred.client)
+		log_game("[user] tried to feed [prey] to [pred] but pred was logged off")
 		to_chat(user, span_danger("[pred] isn't logged on."))
 		return FALSE
 	if(!prey.client)
+		log_game("[user] tried to feed [prey] to [pred] but prey was logged off")
 		to_chat(user, span_danger("[prey] isn't logged on."))
 		return FALSE
 	#endif
@@ -179,6 +183,7 @@
 				allowed_to_pred = TRUE
 
 		if(!allowed_to_pred)
+			log_game("[key_name(user)] tried to feed [key_name(prey)] to [key_name(pred)] and was rejected by pred [key_name(pred)]")
 			to_chat(user, span_warning("[pred] isn't interested in being a pred."))
 			return FALSE
 
@@ -198,6 +203,7 @@
 				allowed_to_prey = TRUE
 
 		if(!allowed_to_prey)
+			log_game("[key_name(user)] tried to feed [key_name(prey)] to [key_name(pred)] and was rejected by prey [key_name(prey)]")
 			to_chat(user, span_warning("[prey] isn't interested in being prey."))
 			return FALSE
 
