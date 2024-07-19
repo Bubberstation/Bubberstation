@@ -17,11 +17,4 @@
 		"inventory-back.png" = 'icons/ui/inventory/back.png',
 		"inventory-pocket.png" = 'icons/ui/inventory/pocket.png',
 		"inventory-collar.png" = 'icons/ui/inventory/collar.png',
-
-		///Extra inventory
-		"inventory-ears_extra.png" = 'modular_zzplurt/icons/ui/inventory/ears_extra.png',
-		"inventory-underwear.png" = 'modular_zzplurt/icons/ui/inventory/underwear.png',
-		"inventory-socks.png" = 'modular_zzplurt/icons/ui/inventory/socks.png',
-		"inventory-undershirt.png" = 'modular_zzplurt/icons/ui/inventory/undershirt.png',
-		"inventory-wrists.png" = 'modular_zzplurt/icons/ui/inventory/wrists.png',
 	)

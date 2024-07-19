@@ -56,7 +56,7 @@
 		ADD_TRAIT(clown_mask, TRAIT_NODROP, CLOWN_NUKE_TRAIT)
 		clowned_on.equip_to_slot_or_del(clown_mask, ITEM_SLOT_MASK)
 
-	//sandstorm edit
+	// SPLURT EDIT - Extra inventory
 	if(!clowned_on.w_shirt || clowned_on.dropItemToGround(clowned_on.w_shirt))
 		var/obj/item/clothing/clown_undershirt = new /obj/item/clothing/underwear/shirt/clown(clowned_on)
 		ADD_TRAIT(clown_undershirt, TRAIT_NODROP, CLOWN_NUKE_TRAIT)

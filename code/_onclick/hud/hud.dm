@@ -32,19 +32,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 //SKYRAT EDIT - ADDITION - ERP ICONS FIX - END
 
-// Extra inventory
-
-GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
-	'icons/hud/screen_midnight.dmi' = 'modular_zzplurt/icons/hud/screen_midnight.dmi',
-	'icons/hud/screen_retro.dmi' = 'modular_zzplurt/icons/hud/screen_retro.dmi',
-	'icons/hud/screen_plasmafire.dmi' = 'modular_zzplurt/icons/hud/screen_plasmafire.dmi',
-	'icons/hud/screen_slimecore.dmi' = 'modular_zzplurt/icons/hud/screen_slimecore.dmi',
-	'icons/hud/screen_operative.dmi' = 'modular_zzplurt/icons/hud/screen_operative.dmi',
-	'icons/hud/screen_clockwork.dmi' = 'modular_zzplurt/icons/hud/screen_clockwork.dmi',
-))
-
-//
-
 /proc/ui_style2icon(ui_style)
 	return GLOB.available_ui_styles[ui_style] || GLOB.available_ui_styles[GLOB.available_ui_styles[1]]
 
@@ -55,12 +42,6 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 
 //SKYRAT EDIT - ADDITION - ERP ICONS FIX - END
 
-// Extra inventory
-
-/proc/extra_inventory_ui_style(ui_style)
-	return GLOB.extra_inventory_ui_styles[ui_style] || GLOB.extra_inventory_ui_styles[GLOB.extra_inventory_ui_styles[1]]
-
-//
 
 /datum/hud
 	var/mob/mymob
@@ -68,9 +49,6 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 	var/hud_shown = TRUE //Used for the HUD toggle (F12)
 	var/hud_version = HUD_STYLE_STANDARD //Current displayed version of the HUD
 	var/inventory_shown = FALSE //Equipped item inventory
-	// Extra inventory
-	var/extra_shown = FALSE
-	//
 	var/hotkey_ui_hidden = FALSE //This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
 	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
@@ -91,9 +69,6 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 
 	var/list/static_inventory = list() //the screen objects which are static
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
-	// Extra inventory
-	var/list/extra_inventory = list() //equipped item screens that don't show up even if using the initial toggle
-	//
 	var/list/atom/movable/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
 	/// Screen objects that never exit view.
@@ -284,7 +259,7 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 	hand_slots.Cut()
 
 	QDEL_LIST(toggleable_inventory)
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	QDEL_LIST(extra_inventory)
 	//
 	QDEL_LIST(hotkeybuttons)
@@ -391,7 +366,7 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 				screenmob.client.screen += static_inventory
 			if(toggleable_inventory.len && screenmob.hud_used && screenmob.hud_used.inventory_shown)
 				screenmob.client.screen += toggleable_inventory
-			// Extra inventory
+			// SPLURT EDIT - Extra inventory
 			if(extra_inventory.len && screenmob.hud_used && screenmob.hud_used.extra_shown)
 				screenmob.client.screen += extra_inventory
 			//
@@ -413,7 +388,7 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
 				screenmob.client.screen -= toggleable_inventory
-			// Extra inventory
+			// SPLURT EDIT - Extra inventory
 			if(extra_inventory.len)
 				screenmob.client.screen -= extra_inventory
 			//
@@ -439,7 +414,7 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
 				screenmob.client.screen -= toggleable_inventory
-			// Extra inventory
+			// SPLURT EDIT - Extra inventory
 			if(extra_inventory.len)
 				screenmob.client.screen -= extra_inventory
 			//
@@ -494,11 +469,6 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 /datum/hud/proc/hidden_inventory_update()
 	return
 
-// Extra inventory
-/datum/hud/proc/extra_inventory_update()
-	return
-//
-
 /datum/hud/proc/persistent_inventory_update(mob/viewer)
 	if(!mymob)
 		return
@@ -508,7 +478,7 @@ GLOBAL_LIST_INIT(extra_inventory_ui_styles, list(
 	if (initial(ui_style) || ui_style == new_ui_style)
 		return
 
-	// Extra inventory added
+	// SPLURT EDIT - Extra inventory added
 	for(var/atom/item in static_inventory + toggleable_inventory + extra_inventory + hotkeybuttons + infodisplay + always_visible_inventory + inv_slots)
 		if (item.icon == ui_style)
 			item.icon = new_ui_style

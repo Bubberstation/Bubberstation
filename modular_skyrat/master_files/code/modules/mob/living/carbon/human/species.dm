@@ -14,12 +14,8 @@
 	///Clothing offsets. If a species has a different body than other species, you can offset clothing so they look less weird.
 	var/list/offset_features = list(
 		OFFSET_UNIFORM = list(0,0),
-		OFFSET_UNDERWEAR = list(0,0),
-		OFFSET_SOCKS = list(0,0),
-		OFFSET_SHIRT = list(0,0),
 		OFFSET_ID = list(0,0),
 		OFFSET_GLOVES = list(0,0),
-		OFFSET_WRISTS = list(0,0),
 		OFFSET_GLASSES = list(0,0),
 		OFFSET_EARS = list(0,0),
 		OFFSET_SHOES = list(0,0),

@@ -17,44 +17,21 @@
 	if(usr.hud_used.inventory_shown && targetmob.hud_used)
 		usr.hud_used.inventory_shown = FALSE
 		usr.client.screen -= targetmob.hud_used.toggleable_inventory
-		// Extra inventory
+		// SPLURT EDIT - Extra inventory
 		usr.client.screen -= targetmob.hud_used.extra_inventory
 		//
 	else
 		usr.hud_used.inventory_shown = TRUE
 		usr.client.screen += targetmob.hud_used.toggleable_inventory
-		// Extra inventory
+		// SPLURT EDIT - Extra inventory
 		if(usr.hud_used.extra_shown)
 			usr.client.screen += targetmob.hud_used.extra_inventory
 		//
 
 	targetmob.hud_used.hidden_inventory_update(usr)
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	targetmob.hud_used.extra_inventory_update(usr)
 	//
-
-//skyrat edit
-/atom/movable/screen/human/toggle/extra
-	name = "toggle extra"
-	icon_state = "toggle_extra"
-
-/atom/movable/screen/human/toggle/extra/Click()
-	var/mob/targetmob = usr
-
-	if(isobserver(usr))
-		if(ishuman(usr.client.eye) && (usr.client.eye != usr))
-			var/mob/M = usr.client.eye
-			targetmob = M
-
-	if(usr.hud_used.extra_shown && targetmob.hud_used)
-		usr.hud_used.extra_shown = FALSE
-		usr.client.screen -= targetmob.hud_used.extra_inventory
-	else
-		usr.hud_used.extra_shown = TRUE
-		usr.client.screen += targetmob.hud_used.extra_inventory
-
-	targetmob.hud_used.extra_inventory_update(usr)
-//
 
 /atom/movable/screen/human/equip
 	name = "equip"
@@ -253,12 +230,12 @@
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "left ear" // Extra inventory
+	inv_box.name = "left ear" // SPLURT EDIT - Extra inventory
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
 	inv_box.icon_full = "template"
 	inv_box.screen_loc = ui_ears
-	inv_box.slot_id = ITEM_SLOT_EARS_LEFT
+	inv_box.slot_id = ITEM_SLOT_EARS_LEFT // SPLURT EDIT - Extra inventory
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory(null, src)
@@ -279,7 +256,7 @@
 	inv_box.slot_id = ITEM_SLOT_FEET
 	toggleable_inventory += inv_box
 
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	using = new /atom/movable/screen/human/toggle/extra(null, src)
 	using.icon = extra_inventory_ui_style(ui_style)
 	using.screen_loc = ui_inventory_extra
@@ -378,7 +355,7 @@
 	ammo_counter = new /atom/movable/screen/ammo_counter(null, src) //SKYRAT EDIT ADDITION
 	infodisplay += ammo_counter //SKYRAT EDIT ADDITION
 
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory + extra_inventory))
 		if(inv.slot_id)
 			inv_slots[TOBITSHIFT(inv.slot_id) + 1] = inv
@@ -393,7 +370,7 @@
 	if(!istype(H) || !H.dna.species)
 		return
 	var/datum/species/S = H.dna.species
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory + extra_inventory))
 		if(inv.slot_id)
 			if(S.no_equip_flags & inv.slot_id)
@@ -455,43 +432,6 @@
 			screenmob.client.screen -= H.wear_neck
 		if(H.head)
 			screenmob.client.screen -= H.head
-
-// Extra inventory
-/datum/hud/human/extra_inventory_update(mob/viewer)
-	if(!mymob)
-		return
-	var/mob/living/carbon/human/H = mymob
-
-	var/mob/screenmob = viewer || H
-
-	if(screenmob.hud_used.extra_shown && screenmob.hud_used.inventory_shown && screenmob.hud_used.hud_shown)
-		if(H.ears_extra)
-			H.ears_extra.screen_loc = ui_ears_extra
-			screenmob.client.screen += H.ears_extra
-		if(H.w_underwear)
-			H.w_underwear.screen_loc = ui_boxers
-			screenmob.client.screen += H.w_underwear
-		if(H.w_socks)
-			H.w_socks.screen_loc = ui_socks
-			screenmob.client.screen += H.w_socks
-		if(H.w_shirt)
-			H.w_shirt.screen_loc = ui_shirt
-			screenmob.client.screen += H.w_shirt
-		if(H.wrists)
-			H.wrists.screen_loc = ui_wrists
-			screenmob.client.screen += H.wrists
-	else
-		if(H.ears_extra)
-			screenmob.client.screen -= H.ears_extra
-		if(H.w_underwear)
-			screenmob.client.screen -= H.w_underwear
-		if(H.w_socks)
-			screenmob.client.screen -= H.w_socks
-		if(H.w_shirt)
-			screenmob.client.screen -= H.w_shirt
-		if(H.wrists)
-			screenmob.client.screen -= H.wrists
-//
 
 /datum/hud/human/persistent_inventory_update(mob/viewer)
 	if(!mymob)

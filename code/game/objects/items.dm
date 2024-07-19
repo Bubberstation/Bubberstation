@@ -236,9 +236,6 @@
 	/// Do we apply a click cooldown when resisting this object if it is restraining them?
 	var/resist_cooldown = CLICK_CD_BREAKOUT
 
-	// Extra inventory
-	var/hide_underwear_examine = FALSE
-
 /obj/item/Initialize(mapload)
 	if(attack_verb_continuous)
 		attack_verb_continuous = string_list(attack_verb_continuous)
@@ -955,18 +952,6 @@
 		owner.update_worn_back()
 	if(flags & ITEM_SLOT_NECK)
 		owner.update_worn_neck()
-	// Extra inventory
-	if(flags & ITEM_SLOT_UNDERWEAR)
-		owner.update_worn_underwear()
-	if(flags & ITEM_SLOT_SOCKS)
-		owner.update_worn_socks()
-	if(flags & ITEM_SLOT_SHIRT)
-		owner.update_worn_shirt()
-	if(flags & ITEM_SLOT_EARS)
-		owner.update_worn_ears_extra()
-	if(flags & ITEM_SLOT_WRISTS)
-		owner.update_worn_wrists()
-	//
 
 ///Returns the temperature of src. If you want to know if an item is hot use this proc.
 /obj/item/proc/get_temperature()

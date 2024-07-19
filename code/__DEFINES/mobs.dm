@@ -439,12 +439,6 @@
 #define OFFSET_HELD "held"
 #define OFFSET_ACCESSORY "accessory" // Skyrat edit - addition
 #define OFFSET_HAIR "hair" // Skyrat edit - addition - Akulas
-//skyrat edit
-#define OFFSET_UNDERWEAR "underwear"
-#define	OFFSET_SOCKS "socks"
-#define OFFSET_SHIRT "shirt"
-#define OFFSET_WRISTS "wrist"
-//
 
 //MINOR TWEAKS/MISC
 //#define AGE_MIN 17	//youngest a character can be //ORIGINAL
@@ -712,13 +706,13 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 /// This layer is used for things that shouldn't be over clothes, but should be over mutations
 #define BODY_FRONT_UNDER_CLOTHES 38
 // SKYRAT EDIT ADDITION END
+// SPLURT EDIT undies
+#define UNDERWEAR_LAYER			37
+#define SOCKS_LAYER				36
+#define SHIRT_LAYER				35
+// SPLURT EDIT END
 /// Jumpsuit clothing layer
-#define UNIFORM_LAYER 37 // SKYRAT EDIT CHANGE - ORIGINAL: 27
-// undies
-#define UNDERWEAR_LAYER			36
-#define SOCKS_LAYER				35
-#define SHIRT_LAYER				34
-// undies
+#define UNIFORM_LAYER 34 // SKYRAT EDIT CHANGE - ORIGINAL: 27 //SPLURT EDIT undies
 // SKYRAT EDIT ADDITION BEGIN - cursed layers under clothing
 #define ANUS_LAYER 33
 #define VAGINA_LAYER 32
@@ -740,8 +734,9 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 #define SHOES_LAYER 23
 /// Layer for masks that are worn below ears and eyes (like Balaclavas) (layers below hair, use flagsinv=HIDEHAIR as needed)
 #define LOW_FACEMASK_LAYER 22
-/// Ears layer (Spessmen have ears? Wow)
+/// SPLURT EDIT - Extra ears layer
 #define EARS_EXTRA_LAYER 21
+/// Ears layer (Spessmen have ears? Wow)
 #define EARS_LAYER 20
 /// Layer for neck apperal that should appear below the suit slot (like neckties)
 #define LOW_NECK_LAYER 19

@@ -123,7 +123,7 @@
 	throwforce = 0
 	attack_verb_simple = list("whipped", "repented", "lashed", "flagellated")
 	attack_verb_continuous = list("whipped", "repented", "lashed", "flagellated")
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_WRISTS
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_WRISTS // SPLURT EDIT - Extra inventory
 	var/praying = FALSE
 	var/deity_name = "Coderbus" // This is the default, hopefully won't actually appear if the religion subsystem is running properly
 

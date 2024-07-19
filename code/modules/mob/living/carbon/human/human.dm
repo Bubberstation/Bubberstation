@@ -622,7 +622,7 @@
 	if(!is_mouth_covered() && clean_lips())
 		. = TRUE
 
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	if(!(obscured & ITEM_SLOT_UNDERWEAR) && w_underwear?.wash(clean_types))
 		update_worn_underwear()
 		. = TRUE

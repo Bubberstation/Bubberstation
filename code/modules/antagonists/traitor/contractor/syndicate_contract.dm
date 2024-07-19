@@ -110,7 +110,7 @@
 			if(person_contents == human_sent.shoes)
 				continue
 
-			// Extra inventory - and underwear
+			// SPLURT EDIT - Extra inventory - and underwear
 			if(person_contents == human_sent.w_underwear)
 				continue
 			if(person_contents == human_sent.w_socks)
@@ -253,7 +253,7 @@
 			if(belonging == human_victim.shoes)
 				continue
 
-			// Extra inventory - and underwear
+			// SPLURT EDIT - Extra inventory - and underwear
 			if(belonging == human_victim.w_underwear)
 				continue
 			if(belonging == human_victim.w_socks)

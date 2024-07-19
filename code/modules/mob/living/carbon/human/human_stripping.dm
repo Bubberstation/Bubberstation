@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	/datum/strippable_item/mob_item_slot/handcuffs,
 	/datum/strippable_item/mob_item_slot/legcuffs,
 
-	// Extra inventory
+	// SPLURT EDIT - Extra inventory
 	/datum/strippable_item/mob_item_slot/ears_extra,
 	/datum/strippable_item/mob_item_slot/wrists,
 	/datum/strippable_item/mob_item_slot/socks,

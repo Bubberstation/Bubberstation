@@ -487,7 +487,7 @@
 	var/slot_priority = W.slot_equipment_priority
 
 	if(!slot_priority)
-		// Extra inventory
+		// SPLURT EDIT - Extra inventory
 		slot_priority = list( \
 			ITEM_SLOT_BACK, ITEM_SLOT_ID,\
 			ITEM_SLOT_UNDERWEAR,\

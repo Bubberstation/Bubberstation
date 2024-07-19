@@ -32,7 +32,7 @@
 /// Glasses slot
 #define ITEM_SLOT_EYES (1<<3)
 /// Ear slot (radios, earmuffs)
-#define ITEM_SLOT_EARS_LEFT (1<<4)
+#define ITEM_SLOT_EARS_LEFT (1<<4) //SPLURT EDIT
 /// Mask slot
 #define ITEM_SLOT_MASK (1<<5)
 /// Head slot (helmets, hats, etc.)
@@ -59,7 +59,7 @@
 #define ITEM_SLOT_LPOCKET (1<<16)
 /// Right Pocket slot
 #define ITEM_SLOT_RPOCKET (1<<17)
-// -- Sandstorm edit --
+// SPLURT EDIT underwear, socks, shirt, right ear, wrists
 /// Underwear slot
 #define ITEM_SLOT_UNDERWEAR (1<<18)
 /// Socks slot
@@ -70,7 +70,7 @@
 #define ITEM_SLOT_EARS_RIGHT (1<<21)
 /// Wrist slot
 #define ITEM_SLOT_WRISTS (1<<22)
-// -- End edit --
+// SPLURT EDIT END
 /// Handcuff slot
 #define ITEM_SLOT_HANDCUFFED (1<<23)
 /// Legcuff slot (bolas, beartraps)
@@ -96,7 +96,7 @@ DEFINE_BITFIELD(no_equip_flags, list(
 //SLOT GROUP HELPERS
 #define ITEM_SLOT_POCKETS (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET)
 
-//EARS HELPER
+// SPLURT EDIT - EARS HELPER
 #define ITEM_SLOT_EARS (ITEM_SLOT_EARS_LEFT|ITEM_SLOT_EARS_RIGHT)
 
 /// Slots that are physically on you
@@ -136,10 +136,12 @@ DEFINE_BITFIELD(no_equip_flags, list(
 #define HIDETAUR (1<<18)
 //SKYRAT EDIT ADDITION END
 
-//sandstorm edit
-#define HIDEUNDERWEAR	(1<<14) //hides underwear, socks and shirt
-#define HIDEWRISTS		(1<<15) //hides wrists
-//
+//SPLURT EDIT
+/// hides underwear, socks and shirt
+#define HIDEUNDERWEAR	(1<<19)
+/// hides wrists
+#define HIDEWRISTS		(1<<20)
+// SPLURT EDIT END
 
 //bitflags for clothing coverage - also used for limbs
 #define HEAD (1<<0)
