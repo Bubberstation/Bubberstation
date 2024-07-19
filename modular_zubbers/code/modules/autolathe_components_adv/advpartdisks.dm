@@ -13,7 +13,6 @@
 	blueprints += new /datum/design/super_battery
 	blueprints += new /datum/design/water_recycler
 	blueprints += new /datum/design/card_reader
-	blueprints += new /datum/design/rped
 
 /datum/design/adv_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
