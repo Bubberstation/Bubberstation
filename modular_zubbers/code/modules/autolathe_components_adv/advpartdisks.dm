@@ -31,8 +31,6 @@
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/card_reader
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/rped
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 /obj/item/disk/design_disk/high_tech_parts
 	name = "high-tech components autolathe design disk"
