@@ -26,6 +26,7 @@
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper/shortskirt = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 10,
+					/obj/item/clothing/under/rank/security/officer/blueshirt = 10,
 					/obj/item/clothing/under/rank/security/peacekeeper/trousers = 5,
 					/obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts = 5,
 					/obj/item/clothing/under/rank/security/skyrat/utility = 6,
