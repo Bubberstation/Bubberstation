@@ -59,40 +59,6 @@
 /datum/design/hyper_battery
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
-//Disabled due to balance concerns
-/*
-/obj/item/disk/design_disk/bluespace_parts
-	name = "bluespace components autolathe design disk"
-
-/obj/item/disk/design_disk/bluespace_parts/Initialize(mapload)
-	. = ..()
-	blueprints += new /datum/design/quadratic_capacitor
-	blueprints += new /datum/design/triphasic_scanning
-	blueprints += new /datum/design/femto_servo
-	blueprints += new /datum/design/quadultra_micro_laser
-	blueprints += new /datum/design/bluespace_matter_bin
-	blueprints += new /datum/design/bluespace_cell
-	blueprints += new /datum/design/bluespace_battery
-*/
-
-//Disabled due to balance concerns
-/*
-/datum/design/quadratic_capacitor
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/triphasic_scanning
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/femto_servo
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/quadultra_micro_laser
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/bluespace_matter_bin
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/bluespace_cell
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/bluespace_battery
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-*/
-
 /datum/design/adv_part_disk
 	name = "Advanced components design disk"
 	desc = "A disk for an autolathe containing advanced component designs."
