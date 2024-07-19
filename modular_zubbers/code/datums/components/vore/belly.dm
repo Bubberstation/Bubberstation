@@ -75,6 +75,17 @@
 	// TODO: Squelchy!
 	return
 
+/obj/vore_belly/container_resist_act(mob/living/user)
+	// TODO: Pred-customizable chance
+	// TODO: Squelchies
+	to_chat(user, span_notice("You start to squirm out of [owner.parent]'s [src]..."))
+	to_chat(owner.parent, span_warning("[user] starts to squirm out of your [src]..."))
+	if(!do_after(user, RESIST_ESCAPE_DELAY, owner.parent, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
+		return
+	user.forceMove(get_turf(src))
+	user.visible_message(span_danger("[user] squirms out of [owner.parent]'s [src]!"), span_notice("You squirm out of [owner.parent]'s [src]!"))
+
+
 /obj/vore_belly/proc/serialize()
 	return list(
 		"name" = name,

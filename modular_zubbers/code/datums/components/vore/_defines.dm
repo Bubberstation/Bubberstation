@@ -1,6 +1,7 @@
 #define MAX_BELLIES 10
 #define MAX_PREY 3
 #define VORE_DELAY 1 SECONDS // TODO: Change to 30 SECONDS
+#define RESIST_ESCAPE_DELAY 15 SECONDS // TODO: find something to change this to
 #define MATRYOSHKA_BANNED FALSE // TODO: Change this
 #define FRIES_SENSORS TRUE
 #define REQUIRES_PLAYER FALSE // TODO: Change this
