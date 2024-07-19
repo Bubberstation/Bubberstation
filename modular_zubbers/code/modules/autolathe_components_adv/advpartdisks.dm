@@ -46,7 +46,6 @@
 	blueprints += new /datum/design/super_matter_bin
 	blueprints += new /datum/design/hyper_cell
 	blueprints += new /datum/design/hyper_battery
-	blueprints += new /datum/design/bs_rped
 
 /datum/design/super_capacitor
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
@@ -61,8 +60,6 @@
 /datum/design/hyper_cell
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 /datum/design/hyper_battery
-	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
-/datum/design/bs_rped
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 
 //Disabled due to balance concerns
