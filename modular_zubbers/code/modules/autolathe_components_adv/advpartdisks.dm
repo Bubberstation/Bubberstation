@@ -147,11 +147,3 @@
 	)
 	return ..()
 
-//Disabled due to balance concerns
-/*
-/datum/techweb_node/parts_bluespace/New()
-	design_ids += list(
-		"bluespace_part_disk",
-	)
-	return ..()
-*/
