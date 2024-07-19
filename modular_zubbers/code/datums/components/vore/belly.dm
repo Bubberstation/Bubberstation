@@ -61,6 +61,10 @@
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	owner.appearance_holder.vis_contents += arrived
+	if(ismob(arrived))
+		// TODO: Noises
+		// TODO: Insertion Verb
+		to_chat(arrived, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
 
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()

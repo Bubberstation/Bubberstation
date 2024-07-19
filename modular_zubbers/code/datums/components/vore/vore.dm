@@ -267,6 +267,4 @@
 
 /datum/component/vore/proc/complete_vore(mob/living/prey)
 	prey.forceMove(selected_belly)
-	// TODO: Maybe this should be in belly/Entered?
-	to_chat(prey, examine_block(selected_belly.desc))
 	// TODO: Squelch
