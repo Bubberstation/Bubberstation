@@ -131,7 +131,7 @@
 /// 2. Prey feeding themselves to pred, user = prey
 /// 3. A feeder feeding prey to pred, user = feeder
 /// assume_active_consent is used for the secondary check after the do_after to avoid prompting prey/preds twice
-/proc/check_vore_preferences(mob/living/user, mob/living/pred, mob/living/prey, assume_active_consent = TRUE)
+/proc/check_vore_preferences(mob/living/user, mob/living/pred, mob/living/prey, assume_active_consent = FALSE)
 	if(!istype(pred) || !istype(prey))
 		return FALSE
 	var/datum/component/vore/pred_component = pred.GetComponent(/datum/component/vore)
@@ -177,7 +177,7 @@
 				allowed_to_pred = FALSE
 			if(PREF_TRINARY_PROMPT)
 				// presumably they consent to what they're doing if they initiated it
-				if(pred != user && tgui_alert(pred, "[user] is trying to feed [prey] to you, are you okay with this?", "Pred Pref", list("Yes", "No")) == "Yes")
+				if(assume_active_consent || (pred != user && tgui_alert(pred, "[user] is trying to feed [prey] to you, are you okay with this?", "Pred Pref", list("Yes", "No")) == "Yes"))
 					allowed_to_pred = TRUE
 			if(PREF_TRINARY_ALWAYS)
 				allowed_to_pred = TRUE
@@ -197,7 +197,7 @@
 				allowed_to_prey = FALSE
 			if(PREF_TRINARY_PROMPT)
 				// presumably they consent to what they're doing if they initiated it
-				if(prey != user && tgui_alert(prey, "[user] is trying to feed you to [pred], are you okay with this?", "Prey Pref", list("Yes", "No")) == "Yes")
+				if(assume_active_consent || (prey != user && tgui_alert(prey, "[user] is trying to feed you to [pred], are you okay with this?", "Prey Pref", list("Yes", "No")) == "Yes"))
 					allowed_to_prey = TRUE
 			if(PREF_TRINARY_ALWAYS)
 				allowed_to_prey = TRUE
