@@ -35,6 +35,9 @@
 
 	. = ..()
 	if(. || world.time < next_move || !can_perform_action(target, NOT_INSIDE_TARGET | SILENT_ADJACENCY | ALLOW_RESTING | FORBID_TELEKINESIS_REACH))
+		message_admins(world.time)
+		message_admins(next_move)
+		message_admins(world.time < next_move ? "TRUE" : "FALSE")
 		return
 
 	. = TRUE

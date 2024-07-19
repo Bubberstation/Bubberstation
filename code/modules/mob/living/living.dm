@@ -173,7 +173,12 @@
 
 	if(isliving(M))
 		var/mob/living/L = M
+		//SPLURT EDIT START
+		/*
 		their_combat_mode = L.combat_mode
+		*/
+		their_combat_mode = L.combat_mode != INTENT_HELP
+		//SKYRAT EDIT END
 		they_can_move = L.mobility_flags & MOBILITY_MOVE
 		//Also spread diseases
 		for(var/thing in diseases)
@@ -232,7 +237,12 @@
 			else if(
 				!(HAS_TRAIT(M, TRAIT_NOMOBSWAP) || HAS_TRAIT(src, TRAIT_NOMOBSWAP)) &&\
 				((HAS_TRAIT(M, TRAIT_RESTRAINED) && !too_strong) || !their_combat_mode) &&\
+				//SPLURT EDIT START
+				/*
 				(HAS_TRAIT(src, TRAIT_RESTRAINED) || !combat_mode)
+				*/
+				(HAS_TRAIT(src, TRAIT_RESTRAINED) || combat_mode == INTENT_HELP)
+				//SPLURT EDIT END
 			)
 				mob_swap = TRUE
 		if(mob_swap)
@@ -275,7 +285,12 @@
 	//If they're a human, and they're not in help intent, block pushing
 	if(ishuman(M))
 		var/mob/living/carbon/human/human = M
+		//SPLURT EDIT START
+		/*
 		if(human.combat_mode)
+		*/
+		if(human.combat_mode != INTENT_HELP)
+		//SPLURT EDIT END
 			return TRUE
 	//if they are a cyborg, and they're alive and in combat mode, block pushing
 	if(iscyborg(M))
