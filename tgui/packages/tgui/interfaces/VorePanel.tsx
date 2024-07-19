@@ -143,7 +143,11 @@ const BelliesList = (props) => {
         </Stack.Item>
         <Stack.Divider ml={0} mr={0} />
         <Stack.Item grow>
-          <BellyUI selectedBelly={selectedBelly} />
+          <BellyUI
+            key={selectedBelly}
+            selectedBelly={selectedBelly}
+            setSelectedBelly={setSelectedBelly}
+          />
         </Stack.Item>
       </Stack>
     </Box>
@@ -191,9 +195,12 @@ const AppearanceDisplay = (props: { iconSrc: string }) => {
   }
 };
 
-const BellyUI = (props: { selectedBelly: number | null }) => {
+const BellyUI = (props: {
+  selectedBelly: number | null;
+  setSelectedBelly: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const { act, data } = useBackend<Data>();
-  const { selectedBelly } = props;
+  const { selectedBelly, setSelectedBelly } = props;
 
   const belly = data.bellies.find((v) => v.index === selectedBelly);
 
@@ -224,13 +231,43 @@ const BellyUI = (props: { selectedBelly: number | null }) => {
         )
       }
       buttons={
-        <Button
-          icon="pencil"
-          selected={editing}
-          onClick={() => setEditing(!editing)}
-        >
-          Edit
-        </Button>
+        <>
+          <Button
+            disabled={belly.index === data.bellies.length}
+            onClick={() => {
+              act('move_belly', { dir: 'down', ref: belly.ref });
+              setSelectedBelly(belly.index + 1); // this will keep our belly selected
+            }}
+          >
+            <Icon name="arrow-down" />
+          </Button>
+          <Button
+            disabled={belly.index === 1}
+            onClick={() => {
+              act('move_belly', { dir: 'up', ref: belly.ref });
+              setSelectedBelly(belly.index - 1); // this will keep our belly selected
+            }}
+          >
+            <Icon name="arrow-up" />
+          </Button>
+          <Button
+            icon="pencil"
+            selected={editing}
+            onClick={() => setEditing(!editing)}
+          >
+            Edit
+          </Button>
+          <Button.Confirm
+            color="bad"
+            icon="trash"
+            onClick={() => {
+              act('delete_belly', { ref: belly.ref });
+              setSelectedBelly(-1);
+            }}
+          >
+            Delete
+          </Button.Confirm>
+        </>
       }
     >
       <Box>
@@ -318,7 +355,19 @@ const PrefTrinary = (props: { key: string; name: string; value: number }) => {
   const { key, name, value } = props;
 
   return (
-    <Button onClick={() => act('set_pref', { key, value: (value + 1) % 3 })}>
+    <Button
+      fluid
+      textAlign="center"
+      tooltipPosition="bottom"
+      onClick={() => act('set_pref', { key, value: (value + 1) % 3 })}
+      tooltip={
+        value === 2
+          ? 'You will automatically accept vore of this type'
+          : value === 1
+            ? 'You will always be prompted whether you are okay with vore of this type'
+            : 'You will automatically reject vore of this type'
+      }
+    >
       {name} - {value === 2 ? 'Always' : value === 1 ? 'Prompt' : 'Never'}
     </Button>
   );

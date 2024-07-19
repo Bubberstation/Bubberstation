@@ -99,3 +99,34 @@
 			if(!vore_prefs.write_preference(P, value))
 				CRASH("Couldn't write value for [key] ([P]) ([value])")
 			. = TRUE
+		if("move_belly")
+			var/obj/vore_belly/target = locate(params["ref"])
+			if(!istype(target))
+				return
+			if(target.owner != src)
+				return
+			var/index = vore_bellies.Find(target)
+			if(!index)
+				return
+
+			var/dir = params["dir"]
+			if(dir == "up" && index > 1)
+				vore_bellies.Swap(index - 1, index)
+			else if(index < LAZYLEN(vore_bellies))
+				vore_bellies.Swap(index, index + 1)
+
+			save_bellies()
+			. = TRUE
+		if("delete_belly")
+			var/obj/vore_belly/target = locate(params["ref"])
+			if(!istype(target))
+				return
+			if(target.owner != src)
+				return
+			if(LAZYLEN(vore_bellies) == 1)
+				to_chat(usr, span_danger("You can't delete your last belly, modify it or make a new one to take it's place."))
+				return
+
+			qdel(target)
+			save_bellies()
+			. = TRUE

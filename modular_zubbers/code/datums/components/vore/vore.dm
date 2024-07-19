@@ -109,7 +109,7 @@
 		var/list/current_prefs = prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
 
 		var/list/bellies = list()
-		for(var/obj/vore_belly/B)
+		for(var/obj/vore_belly/B in vore_bellies)
 			UNTYPED_LIST_ADD(bellies, B.serialize())
 
 		if(!("vore" in current_prefs))
