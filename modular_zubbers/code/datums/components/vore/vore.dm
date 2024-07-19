@@ -20,6 +20,10 @@
 /// Prey must have this component to handle the prey panel
 /// Feeders must have this component to handle feeding preys to preds
 /datum/component/vore
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+
+	var/datum/vore_preferences/vore_prefs
+
 	var/obj/vore_belly/selected_belly = null
 	var/list/obj/vore_belly/vore_bellies = null
 	var/datum/action/innate/vore/panel/panel_action = null
@@ -31,7 +35,7 @@
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-	load_bellies_from_prefs(parent)
+	load_vore_prefs(parent)
 
 	panel_action = new(src)
 	RegisterSignal(panel_action, COMSIG_ACTION_TRIGGER, PROC_REF(open_ui))
@@ -64,12 +68,19 @@
 	QDEL_NULL(panel_action)
 	return ..()
 
-/datum/component/vore/proc/load_bellies_from_prefs(mob/living/parent)
-	// TODO: actually make prefs
-	// if(parent.prefs.vore)
-	//	something
-	// else
-	selected_belly = new /obj/vore_belly(parent, src)
+/datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
+	if(living_parent.client?.prefs?.savefile)
+		vore_prefs = new(living_parent.client?.prefs?.savefile)
+		// load bellies
+
+	selected_belly = new /obj/vore_belly(living_parent, src)
+
+/// Returns TRUE if any of our bellies have prey in them
+/datum/component/vore/proc/has_prey()
+	for(var/obj/vore_belly/B in vore_bellies)
+		if(length(B.contents))
+			return TRUE
+	return FALSE
 
 /datum/component/vore/proc/open_ui()
 	SIGNAL_HANDLER // We do call a blocking proc, ui_interact, but it's brief
@@ -79,7 +90,8 @@
 /// 1. Pred eating prey, user = pred
 /// 2. Prey feeding themselves to pred, user = prey
 /// 3. A feeder feeding prey to pred, user = feeder
-/proc/check_vore_preferences(mob/living/user, mob/living/pred, mob/living/prey)
+/// assume_active_consent is used for the secondary check after the do_after to avoid prompting prey/preds twice
+/proc/check_vore_preferences(mob/living/user, mob/living/pred, mob/living/prey, assume_active_consent = TRUE)
 	if(!istype(pred) || !istype(prey))
 		return FALSE
 	var/datum/component/vore/pred_component = pred.GetComponent(/datum/component/vore)
@@ -94,28 +106,61 @@
 	if(!prey_component)
 		to_chat(user, span_danger("[prey] isn't interested in mechanical vore."))
 		return FALSE
+	#if MATRYOSHKA_BANNED
+	if(prey_component.has_prey())
+		return FALSE
+	#endif
 	#if REQUIRES_PLAYER
-	if(!pred.ckey)
+	if(!pred.client)
 		to_chat(user, span_danger("[pred] isn't logged on."))
 		return FALSE
-	if(!prey.ckey)
+	if(!prey.client)
 		to_chat(user, span_danger("[prey] isn't logged on."))
 		return FALSE
 	#endif
-	#if HUMAN_ONLY
-	if(!ishuman(pred))
-		to_chat(user, span_danger("[pred] isn't human."))
+	if(!is_type_in_typecache(pred, GLOB.vore_allowed_mob_types))
 		return FALSE
-	if(!ishuman(prey))
-		to_chat(user, span_danger("[prey] isn't human."))
+	if(!is_type_in_typecache(prey, GLOB.vore_allowed_mob_types))
 		return FALSE
-	#endif
-	// TODO: Check Player Prefs
-	// if(!pred.is_pred && !pred.is_switch)
-	// return FALSE
-	// if(!prey.is_prey && !prey.is_switch)
-	// return FALSE
-	// TODO: Prevent Matryoshka
+
+	// Check pred prefs
+	if(pred_component.vore_prefs)
+		var/allowed_to_pred = FALSE
+
+		var/pred_trinary = pred_component.vore_prefs.read_preference(/datum/vore_pref/trinary/pred)
+		switch(pred_trinary)
+			if(PREF_TRINARY_NEVER)
+				allowed_to_pred = FALSE
+			if(PREF_TRINARY_PROMPT)
+				// presumably they consent to what they're doing if they initiated it
+				if(pred != user && tgui_alert(pred, "[user] is trying to feed [prey] to you, are you okay with this?", "Pred Pref", list("Yes", "No")) == "Yes")
+					allowed_to_pred = TRUE
+			if(PREF_TRINARY_ALWAYS)
+				allowed_to_pred = TRUE
+
+		if(!allowed_to_pred)
+			to_chat(user, span_warning("[pred] isn't interested in being a pred."))
+			return FALSE
+
+	// Check prey prefs
+	if(prey_component.vore_prefs)
+		var/allowed_to_prey = FALSE
+
+		var/prey_trinary = prey_component.vore_prefs.read_preference(/datum/vore_pref/trinary/prey)
+		switch(prey_trinary)
+			if(PREF_TRINARY_NEVER)
+				allowed_to_prey = FALSE
+			if(PREF_TRINARY_PROMPT)
+				// presumably they consent to what they're doing if they initiated it
+				if(prey != user && tgui_alert(prey, "[user] is trying to feed you to [pred], are you okay with this?", "Prey Pref", list("Yes", "No")) == "Yes")
+					allowed_to_prey = TRUE
+			if(PREF_TRINARY_ALWAYS)
+				allowed_to_prey = TRUE
+
+		if(!allowed_to_prey)
+			to_chat(user, span_warning("[prey] isn't interested in being prey."))
+			return FALSE
+
 	return TRUE
 
 /proc/check_vore_grab(mob/living/grabber)
@@ -143,7 +188,7 @@
 	if(!do_after(pred, VORE_DELAY, prey))
 		pred.visible_message(span_notice("[pred] fails to devour [prey]."), span_notice("You fail to devour [prey]."))
 		return
-	if(!check_vore_grab(pred) || !check_vore_preferences(parent, pred, prey))
+	if(!check_vore_grab(pred) || !check_vore_preferences(parent, pred, prey, assume_active_consent = TRUE))
 		return
 	#endif
 	pred.visible_message(span_danger("[pred] devours [prey] whole!"), span_notice("You devour [prey] into your [selected_belly]."))
@@ -168,7 +213,7 @@
 	if(!do_after(prey, VORE_DELAY, pred))
 		prey.visible_message(span_notice("[prey] fails to feed themselves to [pred]."), span_notice("You fail to feed yourself to [pred]."))
 		return
-	if(!check_vore_grab(prey) || !check_vore_preferences(parent, pred, prey))
+	if(!check_vore_grab(prey) || !check_vore_preferences(parent, pred, prey, assume_active_consent = TRUE))
 		return
 	#endif
 	prey.visible_message(span_danger("[prey] feeds themselves to [pred]!"), span_notice("You feed yourself to [pred]."))

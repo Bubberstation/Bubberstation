@@ -35,6 +35,9 @@
 
 	data["bellies"] = bellies
 
+	if(vore_prefs)
+		data += vore_prefs.ui_data(user)
+
 	return data
 
 /datum/component/vore/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -79,3 +82,18 @@
 				if("desc")
 					// TODO: Limit/sanitize
 					target.desc = params["value"]
+		if("set_pref")
+			if(!vore_prefs)
+				to_chat(usr, span_danger("You cannot save vore preferences as your savefile was not loaded by the vore component."))
+				return
+
+			var/key = params["key"]
+			var/value = params["value"]
+
+			var/datum/vore_pref/P = GLOB.vore_preference_entries_by_key[key]
+			if(!istype(P))
+				CRASH("Bad pref key: [key]")
+
+			if(!vore_prefs.write_preference(P, value))
+				CRASH("Couldn't write value for [key] ([P]) ([value])")
+			. = TRUE

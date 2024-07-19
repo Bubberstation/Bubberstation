@@ -13,12 +13,18 @@
 	owner = new_owner
 	LAZYADD(owner.vore_bellies, src)
 	digest_mode = GLOB.digest_modes["None"]
+	START_PROCESSING(SSvore, src)
 
 /obj/vore_belly/Destroy(force)
+	STOP_PROCESSING(SSvore, src)
 	if(owner)
 		LAZYREMOVE(owner.vore_bellies, src)
 	owner = null
 	digest_mode = null
+	// Safely yeet everything out
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/A as anything in contents)
+		A.forceMove(T)
 	. = ..()
 
 /obj/vore_belly/ui_data(mob/user)

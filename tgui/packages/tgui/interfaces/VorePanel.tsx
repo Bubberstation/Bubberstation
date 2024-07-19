@@ -38,6 +38,7 @@ type Data = {
   max_prey: number;
   selected_belly: number;
   bellies: Belly[];
+  preferences: { [key: string]: any };
 };
 
 export const VorePanel = (props) => {
@@ -60,10 +61,14 @@ const VoreMain = (props) => {
           Bellies
         </Tabs.Tab>
         <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
+          Inside
+        </Tabs.Tab>
+        <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
           Preferences
         </Tabs.Tab>
       </Tabs>
       {tab === 0 && <BelliesList />}
+      {tab === 2 && <Preferences />}
     </Section>
   );
 };
@@ -261,4 +266,48 @@ const BellyUI = (props: { selectedBelly: number | null }) => {
       </Box>
     </Section>
   );
+};
+
+const Preferences = (props) => {
+  const { data } = useBackend<Data>();
+  const { preferences } = data;
+
+  return (
+    <Section title="Vore Preferences">
+      <Flex wrap>
+        {Object.entries(preferences).map(([key, value]) => {
+          const data = PREF_TYPE_MAP[key];
+          if (data) {
+            return (
+              <Flex.Item basis="33%" key={key}>
+                {data.component({ key, name: data.name, value })}
+              </Flex.Item>
+            );
+          } else {
+            return (
+              <Flex.Item key={key} basis="33%">
+                Unknown pref: {key}
+              </Flex.Item>
+            );
+          }
+        })}
+      </Flex>
+    </Section>
+  );
+};
+
+const PrefTrinary = (props: { key: string; name: string; value: number }) => {
+  const { act } = useBackend();
+  const { key, name, value } = props;
+
+  return (
+    <Button onClick={() => act('set_pref', { key, value: (value + 1) % 3 })}>
+      {name} - {value === 2 ? 'Always' : value === 1 ? 'Prompt' : 'Never'}
+    </Button>
+  );
+};
+
+const PREF_TYPE_MAP = {
+  prey_toggle: { component: PrefTrinary, name: 'Prey Toggle' },
+  pred_toggle: { component: PrefTrinary, name: 'Pred Toggle' },
 };
