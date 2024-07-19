@@ -53,6 +53,7 @@
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/beret/sec = 6,
+					/obj/item/clothing/head/helmet/sec/redsec = 6,
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/beaniesec = 6,
