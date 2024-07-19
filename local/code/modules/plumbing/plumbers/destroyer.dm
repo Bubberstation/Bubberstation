@@ -21,5 +21,6 @@
 /obj/machinery/plumbing/disposer/upgraded
 	bs_crystal_attached = TRUE
 	disposal_rate = DISPOSER_UPGRADED_RATE
+	processing_flags = START_PROCESSING_ON_INIT // For Sigma Octantis
 
 #undef DISPOSER_UPGRADED_RATE
