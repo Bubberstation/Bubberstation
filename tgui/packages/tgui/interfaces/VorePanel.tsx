@@ -211,7 +211,18 @@ const BellyUI = (props: { selectedBelly: number | null }) => {
     <Section
       mt={0}
       fill
-      title={editing ? <Input value={belly.name} /> : belly.name}
+      title={
+        editing ? (
+          <Input
+            value={belly.name}
+            onChange={(e, value) =>
+              act('edit_belly', { ref: belly.ref, var: 'name', value })
+            }
+          />
+        ) : (
+          belly.name
+        )
+      }
       buttons={
         <Button
           icon="pencil"
@@ -226,7 +237,13 @@ const BellyUI = (props: { selectedBelly: number | null }) => {
         <LabeledList>
           <LabeledList.Item label="Description" verticalAlign="top">
             {editing ? (
-              <TextArea value={belly.desc} height={5} />
+              <TextArea
+                value={belly.desc}
+                height={5}
+                onChange={(e, value) =>
+                  act('edit_belly', { ref: belly.ref, var: 'desc', value })
+                }
+              />
             ) : (
               <Box
                 height={5}

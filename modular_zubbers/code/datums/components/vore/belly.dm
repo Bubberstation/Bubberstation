@@ -70,3 +70,13 @@
 	// Do not call parent, hides the "you can't move while buckled" message
 	// TODO: Squelchy!
 	return
+
+/obj/vore_belly/proc/serialize()
+	return list(
+		"name" = name,
+		"desc" = desc
+	)
+
+/obj/vore_belly/proc/deserialize(list/data)
+	name = data["name"]
+	desc = data["desc"]

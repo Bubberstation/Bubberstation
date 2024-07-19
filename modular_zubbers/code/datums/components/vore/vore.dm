@@ -70,10 +70,30 @@
 
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
 	if(living_parent.client?.prefs?.savefile)
-		vore_prefs = new(living_parent.client?.prefs?.savefile)
-		// load bellies
+		vore_prefs = new(living_parent.client.prefs.savefile)
 
-	selected_belly = new /obj/vore_belly(living_parent, src)
+		var/list/pref_tree = living_parent.client.prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
+		var/list/vore_tree = pref_tree["vore"]
+		if(!LAZYLEN(vore_tree))
+			return create_default_belly()
+
+		var/list/belly_tree = vore_tree["bellies"]
+		if(!LAZYLEN(belly_tree))
+			return create_default_belly()
+
+		for(var/belly in belly_tree)
+			var/obj/vore_belly/new_belly = new /obj/vore_belly(parent, src)
+			if(!selected_belly)
+				selected_belly = new_belly
+			new_belly.deserialize(belly)
+		return
+
+	return create_default_belly()
+
+
+/datum/component/vore/proc/create_default_belly()
+	selected_belly = new /obj/vore_belly(parent, src)
+	save_bellies()
 
 /// Returns TRUE if any of our bellies have prey in them
 /datum/component/vore/proc/has_prey()
@@ -81,6 +101,26 @@
 		if(length(B.contents))
 			return TRUE
 	return FALSE
+
+/datum/component/vore/proc/save_bellies()
+	var/mob/living/living_parent = parent
+	if(living_parent.client)
+		var/datum/preferences/prefs = living_parent.client.prefs
+		var/list/current_prefs = prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
+
+		var/list/bellies = list()
+		for(var/obj/vore_belly/B)
+			UNTYPED_LIST_ADD(bellies, B.serialize())
+
+		if(!("vore" in current_prefs))
+			current_prefs["vore"] = list()
+		var/list/vore = current_prefs["vore"]
+		vore["bellies"] = bellies
+
+		current_prefs["vore"] = vore
+
+		prefs.save_preferences()
+
 
 /datum/component/vore/proc/open_ui()
 	SIGNAL_HANDLER // We do call a blocking proc, ui_interact, but it's brief

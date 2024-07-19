@@ -67,10 +67,12 @@
 /datum/vore_preferences/proc/write_preference(datum/vore_pref/preference, preference_value)
 	var/new_value = preference.deserialize(preference_value, src)
 	var/success = preference.write(pref_map, new_value)
-	if(success)
-		savefile.set_entry("vore", pref_map)
-		savefile.save()
+	save()
 	return success
+
+/datum/vore_preferences/proc/save()
+	savefile.set_entry("vore", pref_map)
+	savefile.save()
 
 /// An assoc list list of types to instantiated `/datum/preference` instances
 GLOBAL_LIST_INIT(vore_preference_entries, init_vore_preference_entries())

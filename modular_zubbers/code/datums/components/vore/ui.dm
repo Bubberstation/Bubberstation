@@ -52,7 +52,7 @@
 				to_chat(usr, span_warning("You can only have [MAX_BELLIES] bellies."))
 				return TRUE
 			// TODO: Rate limit this
-			new /obj/vore_belly(pred, src)
+			create_default_belly()
 			. = TRUE
 		if("select_belly")
 			var/obj/vore_belly/new_selected = locate(params["ref"])
@@ -82,6 +82,8 @@
 				if("desc")
 					// TODO: Limit/sanitize
 					target.desc = params["value"]
+
+			save_bellies()
 		if("set_pref")
 			if(!vore_prefs)
 				to_chat(usr, span_danger("You cannot save vore preferences as your savefile was not loaded by the vore component."))
