@@ -530,7 +530,7 @@
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
 
-/obj/item/clothing/under/rank/civilian/clown_bunnysuit
+/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit
 	name = "clown's bunny suit"
 	desc = "The staple of any bunny themed clowns. Now this is just ridiculous."
 	icon_state = "bunnysuit_clown"

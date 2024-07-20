@@ -603,7 +603,7 @@
 
 /obj/item/clothing/suit/jacket/tailcoat/chaplain
 	name = "chaplain's tailcoat"
-	desc = "A gilded black coat worn by bunny themed chaplains. Traditional vestments of the lagomorphic cult."
+	desc = "A gilded black coat worn by bunny themed chaplains. Traditional vestments of the lagomorphic cults of Cairead."
 	icon_state = "chaplain"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'

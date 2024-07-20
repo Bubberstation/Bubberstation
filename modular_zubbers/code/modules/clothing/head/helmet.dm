@@ -338,6 +338,8 @@
 	acid = 30
 	wound = 10
 
+//TODO: Find a way to add Warden stuff that isn't hack-y.
+
 /obj/item/clothing/head/playbunnyears/warden
 	name = "warden's bunny ears"
 	desc = "Red and white bunny ears attached to a headband. Keeps the hair out of the face when checking on cameras."
@@ -345,20 +347,10 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/playbunnyears_warden
+	armor_type = /datum/armor/playbunnyears_security
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
-
-/datum/armor/playbunnyears_warden
-	melee = 30
-	bullet = 30
-	laser = 20
-	energy = 30
-	fire = 30
-	bomb = 20
-	acid = 30
-	wound = 10
 
 /obj/item/clothing/head/playbunnyears/brig_phys
 	name = "brig physician's bunny ears"
@@ -425,7 +417,7 @@
 
 /obj/item/clothing/head/playbunnyears/hop
 	name = "head of personnel's bunny ears"
-	desc = "A pair of muted blue bunny ears attached to a headband. The preferred color of bureaucrats everywhere."
+	desc = "A pair of muted blue bunny ears attached to a headband. The preferred color of bunnycrats everywhere."
 	icon_state = "hop"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
@@ -506,7 +498,7 @@
 
 /obj/item/clothing/head/playbunnyears/chaplain
 	name = "chaplain's bunny ears"
-	desc = "A pair of black and white bunny ears attached to a headband. Worn in worship of The Great Hare"
+	desc = "A pair of black and white bunny ears attached to a headband. Worn in worship of The Gardener of Carota."
 	icon_state = "chaplain"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'

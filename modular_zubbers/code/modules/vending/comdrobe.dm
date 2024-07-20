@@ -17,10 +17,23 @@
 		/obj/item/clothing/head/hats/warden/drill/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/alt/roselia = 1,
 		/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/redsec = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/redsec = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec = 1,
 		/obj/item/clothing/head/hats/hos/elofy = 1,
 		/obj/item/clothing/suit/armor/hos/elofy = 1,
 		/obj/item/clothing/gloves/elofy = 1, //Part of a set so...
 		/obj/item/clothing/shoes/jackboots/elofy = 1,
+		/obj/item/clothing/head/playbunnyears/hos = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
+		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
+	)
+
+	access_lists["[ACCESS_HOP]"] = list(
+		/obj/item/clothing/head/playbunnyears/hop = 1,
+		/obj/item/clothing/under/rank/civilian/hop_bunnysuit = 1,
+		/obj/item/clothing/suit/armor/hop_tailcoat = 1,
+		/obj/item/clothing/neck/tie/bunnytie/hop = 1,
 	)
 
 	access_lists["[ACCESS_CMO]"] = list(
