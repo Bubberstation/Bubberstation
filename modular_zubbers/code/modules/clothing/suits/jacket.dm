@@ -181,7 +181,7 @@
 	icon_state = "captain"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	dog_fashion = null
@@ -193,10 +193,10 @@
 	desc = "A fancy brown coat worn by bunny themed quartermasters. The gold accents show everyone who's in charge."
 	icon_state = "qm"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/cargo
@@ -204,10 +204,10 @@
 	desc = "A simple brown coat worn by bunny themed cargo technicians. Significantly less stripy than the quartermasters."
 	icon_state = "cargo_tech"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/miner
@@ -215,10 +215,10 @@
 	desc = "An adapted explorer suit worn by bunny themed shaft miners. It has attachment points for goliath plates but comparatively little armor."
 	icon_state = "explorer"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
-	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 	cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -261,7 +261,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 	allowed = list(
 		/obj/item/fireaxe/metal_h2_axe,
@@ -535,7 +535,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/cook
@@ -546,7 +546,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 	allowed = list(
 		/obj/item/kitchen,
@@ -562,7 +562,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 	allowed = list(
 		/obj/item/cultivator,
@@ -587,7 +587,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/mime
@@ -598,7 +598,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/chaplain
@@ -609,7 +609,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 	allowed = list(
 		/obj/item/nullrod,
@@ -628,7 +628,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/curator_green
@@ -639,7 +639,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/curator_teal
@@ -650,7 +650,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_black
@@ -661,7 +661,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_blue
@@ -672,7 +672,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_red
@@ -683,7 +683,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/lawyer_good
@@ -694,7 +694,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/psychologist
@@ -705,5 +705,5 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-	
+
 	greyscale_colors = null

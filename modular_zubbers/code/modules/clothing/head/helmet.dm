@@ -128,6 +128,8 @@
 	desc = "A pair of dark blue bunny ears attached to a headband. Worn in lieu of the more traditional bicorn hat."
 	icon_state = "captain"
 	inhand_icon_state = "that"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	dog_fashion = null
 
 //CARGO
