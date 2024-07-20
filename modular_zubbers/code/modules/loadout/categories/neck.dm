@@ -6,3 +6,7 @@
 /datum/loadout_item/neck/ringbell
 	name = "Ringing Bell Collar"
 	item_path = /obj/item/clothing/neck/human_petcollar/locked/ringbell
+
+/datum/loadout_item/neck/binary
+	name = "Crow Feather Cloak"
+	item_path = /obj/item/clothing/neck/binary
