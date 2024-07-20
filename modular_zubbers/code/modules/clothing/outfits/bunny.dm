@@ -41,7 +41,7 @@
 	name = "Bunny Waiter (British)"
 	uniform = /obj/item/clothing/under/costume/playbunny/british
 	suit = /obj/item/clothing/suit/jacket/tailcoat/british
-	shoes = /obj/item/clothing/shoes/heels/blue
+	shoes = /obj/item/clothing/shoes/fancy_heels/blue
 	head = /obj/item/clothing/head/playbunnyears/british
 	neck = /obj/item/clothing/neck/tie/bunnytie/blue
 

@@ -7,4 +7,4 @@
 
 /obj/item/clothing/gloves/combat/white
 	icon_state = "white"
-	greyscale_colors = NULL
+	greyscale_colors = "#FFFFFF"

@@ -103,8 +103,8 @@
 /obj/item/clothing/neck/tie/bunnytie/captain
 	name = "captain's bowtie"
 	desc = "A blue tie that includes a collar. Looking commanding!"
-	icon = 'monkestation/icons/obj/clothing/costumes/bunnysprites/neckwear.dmi'
-	worn_icon = 'monkestation/icons/mob/clothing/costumes/bunnysprites/neckwear_worn.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	icon_state = "bowtie_collar_captain_tied"
 	tie_type = "bowtie_collar_captain"
 	greyscale_colors = null

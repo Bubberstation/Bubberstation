@@ -102,8 +102,8 @@
 	name = "captain's bunnysuit"
 	icon_state = "bunnysuit_captain"
 	inhand_icon_state = null
-	icon = 'monkestation/icons/obj/clothing/costumes/bunnysprites/bunnysuits.dmi'
-	worn_icon = 'monkestation/icons/mob/clothing/costumes/bunnysprites/bunnysuits_worn.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
