@@ -14,6 +14,7 @@
 				modifiers -= LEFT_CLICK
 				modifiers[RIGHT_CLICK] = TRUE
 			if(INTENT_GRAB)
+				//CtrlClickOn checks for next_move.. which ClickOn has just set right before calling this.
 				next_move = _last_next_move
 				CtrlClickOn(attack_target)
 				return
