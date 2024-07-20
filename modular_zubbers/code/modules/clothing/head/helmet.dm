@@ -121,12 +121,16 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 
+//CAPTAIN
+
 /obj/item/clothing/head/hats/caphat/bunnyears_captain
 	name = "captain's bunny ears"
 	desc = "A pair of dark blue bunny ears attached to a headband. Worn in lieu of the more traditional bicorn hat."
 	icon_state = "captain"
 	inhand_icon_state = "that"
 	dog_fashion = null
+
+//CARGO
 
 /obj/item/clothing/head/playbunnyears/quartermaster
 	name = "quartermaster's bunny ears"
@@ -167,6 +171,8 @@
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
+
+//ENGI
 
 /obj/item/clothing/head/playbunnyears/engineer
 	name = "engineering bunny ears"

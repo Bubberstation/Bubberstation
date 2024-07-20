@@ -173,6 +173,8 @@
 	greyscale_config_worn = null
 	greyscale_colors = null
 
+//CAPTAIN
+
 /obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain
 	name = "captain's tailcoat"
 	desc = "A nautical coat usually worn by bunny themed captains. It’s reinforced with genetically modified armored blue rabbit fluff."
@@ -183,6 +185,8 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	dog_fashion = null
+
+//CARGO
 
 /obj/item/clothing/suit/jacket/tailcoat/quartermaster
 	name = "quartermaster's tailcoat"
@@ -245,6 +249,9 @@
 /obj/item/clothing/suit/jacket/tailcoat/miner/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
+
+
+//ENGI
 
 /obj/item/clothing/suit/jacket/tailcoat/engineer
 	name = "engineering tailcoat"

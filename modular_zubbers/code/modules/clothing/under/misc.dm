@@ -95,6 +95,8 @@
 	greyscale_config_worn = null
 	greyscale_colors = null
 
+//CAPTAIN
+
 /obj/item/clothing/under/rank/captain/bunnysuit
 	desc = "The staple of any bunny themed captains. Great for securing the disk."
 	name = "captain's bunnysuit"
@@ -109,6 +111,8 @@
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+//CARGO
 
 /obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit
 	name = "quartermaster's bunny suit"
@@ -169,6 +173,8 @@
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+//ENGI
 
 /obj/item/clothing/under/rank/engineering/engineer_bunnysuit
 	name = "engineering bunny suit"

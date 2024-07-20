@@ -98,6 +98,8 @@
 /obj/item/clothing/neck/tie/bunnytie/blue/tied
 	is_tied = TRUE
 
+//CAPTAIN
+
 /obj/item/clothing/neck/tie/bunnytie/captain
 	name = "captain's bowtie"
 	desc = "A blue tie that includes a collar. Looking commanding!"
@@ -113,6 +115,7 @@
 /obj/item/clothing/neck/tie/bunnytie/captain/tied
 	is_tied = TRUE
 
+//CARGO
 
 /obj/item/clothing/neck/tie/bunnytie/cargo
 	name = "cargo bowtie"
@@ -158,6 +161,8 @@
 
 /obj/item/clothing/neck/tie/bunnytie/mail/tied
 	is_tied = TRUE
+
+//ENGI
 
 /obj/item/clothing/neck/tie/bunnytie/engineer
 	name = "engineering bowtie"

@@ -74,11 +74,55 @@
 	/obj/item/clothing/glasses/hud/health/surgerygoggles = 3,
 	/obj/item/clothing/gloves/latex/nitrile/longrubbergloves = 3,
 	/obj/item/clothing/suit/leatherapron = 3,
+	/obj/item/clothing/head/playbunnyears/doctor = 3,
+	/obj/item/clothing/under/rank/medical/doctor_bunnysuit = 3,
+	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat = 3,
+	/obj/item/clothing/neck/tie/bunnytie/doctor = 3,
+	/obj/item/clothing/head/playbunnyears/paramedic = 3,
+	/obj/item/clothing/under/rank/medical/paramedic_bunnysuit = 3,
+	/obj/item/clothing/suit/toggle/labcoat/paramedic_tailcoat = 3,
+	/obj/item/clothing/neck/tie/bunnytie/paramedic = 3,
+	)
+
+/obj/machinery/vending/wardrobe/chem_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/chemist = 2,
+		/obj/item/clothing/under/rank/medical/chemist/bunnysuit = 2,
+		/obj/item/clothing/suit/toggle/labcoat/chemist_tailcoat = 2,
+		/obj/item/clothing/neck/tie/bunnytie/chemist = 2,
+)
+
+/obj/machinery/vending/wardrobe/viro_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/pathologist = 2,
+		/obj/item/clothing/under/rank/medical/pathologist_bunnysuit = 2,
+		/obj/item/clothing/suit/toggle/labcoat/pathologist_tailcoat = 2,
+		/obj/item/clothing/neck/tie/bunnytie/pathologist = 2,
+	)
+
+/obj/machinery/vending/wardrobe/science_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/scientist = 3,
+		/obj/item/clothing/under/rank/rnd/scientist/bunnysuit = 3,
+		/obj/item/clothing/suit/toggle/labcoat/science_tailcoat = 3,
+		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
 	)
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
 	zubbers_products = list(
 	/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
+	/obj/item/clothing/head/playbunnyears/roboticist = 2,
+	/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
+	/obj/item/clothing/suit/toggle/labcoat/roboticist_tailcoat = 2,
+	/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
+	)
+
+/obj/machinery/vending/wardrobe/gene_wardrobe
+	zubbers_products = list(
+	/obj/item/clothing/head/playbunnyears/geneticist = 2,
+	/obj/item/clothing/under/rank/rnd/geneticist/bunnysuit = 2,
+	/obj/item/clothing/suit/toggle/labcoat/geneticist_tailcoat = 2,
+	/obj/item/clothing/neck/tie/bunnytie/geneticist = 2,
 	)
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
@@ -86,6 +130,13 @@
 		/obj/item/clothing/head/caligram_cap_tan = 3,
 		/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan = 3,
 		/obj/item/clothing/suit/jacket/caligram_parka_tan = 3,
+		/obj/item/clothing/head/playbunnyears/cargo = 3,
+		/obj/item/clothing/under/rank/cargo/cargo_bunnysuit = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/cargo = 3,
+		/obj/item/clothing/neck/tie/bunnytie/cargo = 3,
+		/obj/item/clothing/head/playbunnyears/mailman = 1,
+		/obj/item/clothing/under/rank/cargo/mailman_bunnysuit = 1,
+		/obj/item/clothing/neck/tie/bunnytie/mailman = 1,
 	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
@@ -127,4 +178,22 @@
 		/obj/item/clothing/neck/tie/bunnytie/magician = 3,
 		/obj/item/clothing/under/costume/playbunny/magician = 3,
 		/obj/item/clothing/suit/wizrobe/magician = 3,
+	)
+
+/obj/machinery/vending/wardrobe/engi_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/engineer = 3,
+		/obj/item/clothing/under/rank/engineering/engineer_bunnysuit = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/engineer = 3,
+		/obj/item/clothing/neck/tie/bunnytie/engineer = 3,
+		/obj/item/clothing/shoes/workboots/heeled = 3,
+	)
+
+/obj/machinery/vending/wardrobe/atmos_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/atmos_tech = 3,
+		/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit = 3,
+		/obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat = 3,
+		/obj/item/clothing/neck/tie/bunnytie/atmos_tech = 3,
+		/obj/item/clothing/shoes/workboots/heeled = 3,
 	)
