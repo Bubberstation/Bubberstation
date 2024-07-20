@@ -30,7 +30,7 @@
 	name = "Syndicate Bunny Assassin"
 	uniform = /obj/item/clothing/under/syndicate/syndibunny
 	suit = /obj/item/clothing/suit/jacket/tailcoat/syndicate
-	shoes = /obj/item/storage/box/syndibunny
+	shoes = /obj/item/clothing/shoes/fancy_heels/syndi
 	neck = /obj/item/clothing/neck/tie/bunnytie/syndicate/tied
 	ears = /obj/item/radio/headset/syndicate
 	id = /obj/item/card/id/advanced/chameleon
