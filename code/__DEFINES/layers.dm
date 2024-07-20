@@ -3,7 +3,7 @@
 
 //NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -50
-#define EMISSIVE_PLANE -46
+#define EMISSIVE_PLANE -46 // BUBBER EDIT: Was 13, caused issues with rendering via \ref[appearance]
 
 // Doesn't really layer, just throwing this in here cause it's the best place imo
 #define FIELD_OF_VISION_BLOCKER_PLANE -45

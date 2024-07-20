@@ -16,6 +16,8 @@
 	LAZYADD(owner.vore_bellies, src)
 	digest_mode = GLOB.digest_modes["None"]
 	START_PROCESSING(SSvore, src)
+	// Do our best not to get dropped
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/vore_belly/Destroy(force)
 	STOP_PROCESSING(SSvore, src)
@@ -110,6 +112,9 @@
 	var/list/all_contents = arrived.get_contents()
 	for(var/atom/movable/AM as anything in all_contents)
 		if(is_type_in_list(AM, GLOB.vore_blacklist_types))
+			// If it's directly in their inventory, call dropItemToGround so that it cleans up the hud
+			if(AM in arrived)
+				arrived.dropItemToGround(AM, TRUE)
 			AM.forceMove(reject_location)
 
 /// Handles prey leaving a belly
