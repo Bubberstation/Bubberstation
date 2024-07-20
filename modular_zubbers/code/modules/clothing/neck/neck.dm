@@ -97,3 +97,65 @@
 
 /obj/item/clothing/neck/tie/bunnytie/blue/tied
 	is_tied = TRUE
+
+/obj/item/clothing/neck/tie/bunnytie/captain
+	name = "captain's bowtie"
+	desc = "A blue tie that includes a collar. Looking commanding!"
+	icon = 'monkestation/icons/obj/clothing/costumes/bunnysprites/neckwear.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/costumes/bunnysprites/neckwear_worn.dmi'
+	icon_state = "bowtie_collar_captain_tied"
+	tie_type = "bowtie_collar_captain"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/captain/tied
+	is_tied = TRUE
+
+
+/obj/item/clothing/neck/tie/bunnytie/cargo
+	name = "cargo bowtie"
+	desc = "A brown tie that includes a collar. Looking unionized!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_cargo_tied"
+	tie_type = "bowtie_collar_cargo"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/cargo/tied
+	is_tied = TRUE
+
+/obj/item/clothing/neck/tie/bunnytie/miner
+	name = "shaft miner's bowtie"
+	desc = "A purple tie that includes a collar. Looking hardy!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_explorer_tied"
+	tie_type = "bowtie_collar_explorer"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/miner/tied
+	is_tied = TRUE
+
+/obj/item/clothing/neck/tie/bunnytie/mailman
+	name = "mailman's bowtie"
+	desc = "A red tie that includes a collar. Looking unstoppable!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_mail_tied"
+	tie_type = "bowtie_collar_mail"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/mail/tied
+	is_tied = TRUE
+

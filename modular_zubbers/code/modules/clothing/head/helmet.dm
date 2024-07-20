@@ -120,3 +120,51 @@
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
+
+/obj/item/clothing/head/hats/caphat/bunnyears_captain
+	name = "captain's bunny ears"
+	desc = "A pair of dark blue bunny ears attached to a headband. Worn in lieu of the more traditional bicorn hat."
+	icon_state = "captain"
+	inhand_icon_state = "that"
+	dog_fashion = null
+
+/obj/item/clothing/head/playbunnyears/quartermaster
+	name = "quartermaster's bunny ears"
+	desc = "Brown and gray bunny ears attached to a headband. The brown headband denotes relative importance."
+	icon_state = "qm"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
+/obj/item/clothing/head/playbunnyears/cargo
+	name = "cargo bunny ears"
+	desc = "Brown and gray bunny ears attached to a headband. The gray headband denotes relative unimportance."
+	icon_state = "cargo_tech"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
+/obj/item/clothing/head/playbunnyears/miner
+	name = "shaft miner's bunny ears"
+	desc = "Muddy gray bunny ears attached to a headband. Has zero resistance against the hostile lavaland atmosphere."
+	icon_state = "explorer"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
+/obj/item/clothing/head/playbunnyears/mailman
+	name = "mailman's bunny ears"
+	desc = "Blue and red bunny ears attached to a headband. Shows everyone your commitment to speed and efficiency."
+	icon_state = "mail"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+

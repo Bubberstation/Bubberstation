@@ -172,3 +172,77 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
+
+/obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain
+	name = "captain's tailcoat"
+	desc = "A nautical coat usually worn by bunny themed captains. It’s reinforced with genetically modified armored blue rabbit fluff."
+	icon_state = "captain"
+	inhand_icon_state = null
+	icon = 'monkestation/icons/obj/clothing/costumes/bunnysprites/tailcoats.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/costumes/bunnysprites/tailcoats_worn.dmi'
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	dog_fashion = null
+
+/obj/item/clothing/suit/jacket/tailcoat/quartermaster
+	name = "quartermaster's tailcoat"
+	desc = "A fancy brown coat worn by bunny themed quartermasters. The gold accents show everyone who's in charge."
+	icon_state = "qm"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_worn_digitigrade = null
+	greyscale_colors = null
+
+/obj/item/clothing/suit/jacket/tailcoat/cargo
+	name = "cargo tailcoat"
+	desc = "A simple brown coat worn by bunny themed cargo technicians. Significantly less stripy than the quartermasters."
+	icon_state = "cargo_tech"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_worn_digitigrade = null
+	greyscale_colors = null
+
+/obj/item/clothing/suit/jacket/tailcoat/miner
+	name = "explorer tailcoat"
+	desc = "An adapted explorer suit worn by bunny themed shaft miners. It has attachment points for goliath plates but comparatively little armor."
+	icon_state = "explorer"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_worn_digitigrade = null
+	greyscale_colors = null
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	heat_protection = CHEST|GROIN|ARMS
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	armor_type = /datum/armor/tailcoat_miner
+	allowed = list(
+		/obj/item/flashlight,
+		/obj/item/gun/energy/recharge/kinetic_accelerator,
+		/obj/item/mining_scanner,
+		/obj/item/pickaxe,
+		/obj/item/resonator,
+		/obj/item/storage/bag/ore,
+		/obj/item/t_scanner/adv_mining_scanner,
+		/obj/item/tank/internals,
+		)
+	resistance_flags = FIRE_PROOF
+	clothing_traits = list(TRAIT_SNOWSTORM_IMMUNE)
+
+/datum/armor/tailcoat_miner
+	melee = 30
+	bullet = 10
+	laser = 10
+	energy = 20
+	bomb = 50
+	fire = 50
+	acid = 50
+/obj/item/clothing/suit/jacket/tailcoat/miner/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/armor_plate)
+

@@ -30,7 +30,7 @@
 	name = "Syndicate Bunny Assassin"
 	uniform = /obj/item/clothing/under/syndicate/syndibunny
 	suit = /obj/item/clothing/suit/jacket/tailcoat/syndicate
-	shoes = /obj/item/clothing/shoes/high_heels
+	shoes = /obj/item/storage/box/syndibunny
 	neck = /obj/item/clothing/neck/tie/bunnytie/syndicate/tied
 	ears = /obj/item/radio/headset/syndicate
 	id = /obj/item/card/id/advanced/chameleon
@@ -41,7 +41,7 @@
 	name = "Bunny Waiter (British)"
 	uniform = /obj/item/clothing/under/costume/playbunny/british
 	suit = /obj/item/clothing/suit/jacket/tailcoat/british
-	shoes = /obj/item/clothing/shoes/high_heels
+	shoes = /obj/item/clothing/shoes/heels/blue
 	head = /obj/item/clothing/head/playbunnyears/british
 	neck = /obj/item/clothing/neck/tie/bunnytie/blue
 
@@ -49,7 +49,7 @@
 	name = "Bunny Waiter (Communist)"
 	uniform = /obj/item/clothing/under/costume/playbunny/communist
 	suit = /obj/item/clothing/suit/jacket/tailcoat/communist
-	shoes = /obj/item/clothing/shoes/high_heels
+	shoes = /obj/item/clothing/shoes/fancy_heels/red
 	head = /obj/item/clothing/head/playbunnyears/communist
 	neck = /obj/item/clothing/neck/tie/bunnytie/communist
 
@@ -57,7 +57,7 @@
 	name = "Bunny Waiter (USA)"
 	uniform = /obj/item/clothing/under/costume/playbunny/usa
 	suit = /obj/item/clothing/suit/jacket/tailcoat/usa
-	shoes = /obj/item/clothing/shoes/high_heels
+	shoes = /obj/item/clothing/shoes/fancy_heels/red
 	head = /obj/item/clothing/head/playbunnyears/usa
 	neck = /obj/item/clothing/neck/tie/bunnytie/blue
 
@@ -67,7 +67,7 @@
 	suit = /obj/item/clothing/suit/wizrobe/magician
 	back = /obj/item/storage/backpack/satchel/leather
 	head = /obj/item/clothing/head/playbunnyears
-	shoes = /obj/item/clothing/shoes/sandal
+	shoes = /obj/item/clothing/shoes/fancy_heels/wizard
 	neck = /obj/item/clothing/neck/tie/bunnytie/magician/tied
 	l_hand = /obj/item/gun/magic/wand/nothing
 	l_pocket = /obj/item/toy/cards/deck/tarot
@@ -80,7 +80,7 @@
 	box = /obj/item/storage/box/survival
 	suit = /obj/item/clothing/suit/jacket/tailcoat/centcom
 	gloves = /obj/item/clothing/gloves/color/white
-	shoes = /obj/item/clothing/shoes/sandal
+	shoes = /obj/item/clothing/shoes/fancy_heels/cc
 	head = /obj/item/clothing/head/playbunnyears/centcom
 	neck = /obj/item/clothing/neck/tie/bunnytie/centcom/tied
 	ears = /obj/item/radio/headset/headset_cent

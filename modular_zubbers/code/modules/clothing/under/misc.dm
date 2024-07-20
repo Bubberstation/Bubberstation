@@ -94,3 +94,79 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 	greyscale_colors = null
+
+/obj/item/clothing/under/rank/captain/bunnysuit
+	desc = "The staple of any bunny themed captains. Great for securing the disk."
+	name = "captain's bunnysuit"
+	icon_state = "bunnysuit_captain"
+	inhand_icon_state = null
+	icon = 'monkestation/icons/obj/clothing/costumes/bunnysprites/bunnysuits.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/costumes/bunnysprites/bunnysuits_worn.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/captain/bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit
+	name = "quartermaster's bunny suit"
+	desc = "The staple of any bunny themed quartermasters. Complete with gold buttons and a nametag."
+	icon_state = "bunnysuit_qm"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/cargo/quartermaster_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/cargo/cargo_bunnysuit
+	name = "cargo bunny suit"
+	desc = "The staple of any bunny themed cargo technicians. Nigh indistinguishable from the quartermasters bunny suit."
+	icon_state = "bunnysuit_cargo"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/cargo/cargo_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/cargo/miner/bunnysuit
+	name = "shaft miner's bunny suit"
+	desc = "The staple of any bunny themed shaft miners. The perfect outfit for fighting demons on an ash choked hell planet."
+	icon_state = "bunnysuit_miner"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/cargo/miner/bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/cargo/mailman_bunnysuit
+	name = "mailman's bunny suit"
+	desc = "The staple of any bunny themed mailmen. A sleek mailman outfit for when you need to deliver mail as quickly and with as little wind resistance possible."
+	icon_state = "bunnysuit_mail"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/cargo/mailman_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+

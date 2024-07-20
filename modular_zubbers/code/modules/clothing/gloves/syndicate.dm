@@ -4,3 +4,7 @@
 	name = "tactical maid sleeves"
 	desc = "'Tactical' cleaning gloves."
 	icon_state = "syndimaid_arms"
+
+/obj/item/clothing/gloves/combat/white
+	icon_state = "white"
+	greyscale_colors = NULL
