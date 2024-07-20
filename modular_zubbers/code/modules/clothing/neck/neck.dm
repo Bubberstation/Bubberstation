@@ -159,3 +159,49 @@
 /obj/item/clothing/neck/tie/bunnytie/mail/tied
 	is_tied = TRUE
 
+/obj/item/clothing/neck/tie/bunnytie/engineer
+	name = "engineering bowtie"
+	desc = "An orange tie that includes a collar. Looking industrious!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_engi_tied"
+	tie_type = "bowtie_collar_engi"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/engineer/tied
+	is_tied = TRUE
+
+
+/obj/item/clothing/neck/tie/bunnytie/atmos_tech
+	name = "atmospheric technician's bowtie"
+	desc = "A blue tie that includes a collar. Looking inflammable!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_atmos_tied"
+	tie_type = "bowtie_collar_atmos"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/atmos_tech/tied
+	is_tied = TRUE
+
+/obj/item/clothing/neck/tie/bunnytie/ce
+	name = "chief engineer's bowtie"
+	desc = "A green tie that includes a collar. Looking managerial!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_ce_tied"
+	tie_type = "bowtie_collar_ce"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/ce/tied
+	is_tied = TRUE
+

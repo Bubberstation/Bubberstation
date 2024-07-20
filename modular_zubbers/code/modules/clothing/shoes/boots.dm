@@ -58,3 +58,17 @@
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	species_exception = null
+
+/obj/item/clothing/shoes/fancy_heels/navyblue
+	name = "navy blue heels"
+	greyscale_colors = "#362f68"
+	flags_1 = null
+
+/obj/item/clothing/shoes/workboots/heeled
+	name = "heeled work boots"
+	desc = "Nanotrasen-issue Engineering lace-up work heels that seem almost especially designed to cause a workplace accident."
+	icon_state = "workboots_heeled"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	species_exception = null
+

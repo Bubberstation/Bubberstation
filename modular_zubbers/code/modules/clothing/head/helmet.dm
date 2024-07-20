@@ -168,3 +168,27 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 
+/obj/item/clothing/head/playbunnyears/engineer
+	name = "engineering bunny ears"
+	desc = "Yellow and orange bunny ears attached to a headband. Likely to get caught in heavy machinery."
+	icon_state = "engi"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
+/obj/item/clothing/head/playbunnyears/atmos_tech
+	name = "atmospheric technician's bunny ears"
+	desc = "Yellow and blue bunny ears attached to a headband. Gives zero protection against both fires and extreme pressures."
+	icon_state = "atmos"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
+/obj/item/clothing/head/playbunnyears/ce
+	name = "chief engineer's bunny ears"
+	desc = "Green and white bunny ears attached to a headband. Just keep them away from the supermatter."
+	icon_state = "ce"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+

@@ -170,3 +170,47 @@
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
 
+/obj/item/clothing/under/rank/engineering/engineer_bunnysuit
+	name = "engineering bunny suit"
+	desc = "The staple of any bunny themed engineers. Keeps loose clothing to a minimum in a fashionable manner."
+	icon_state = "bunnysuit_engi"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/engineering/engineer_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit
+	name = "atmospheric technician's bunny suit"
+	desc = "The staple of any bunny themed atmospheric technicians. Perfect for any blue collar worker wanting to keep up with fashion trends."
+	icon_state = "bunnysuit_atmos"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit
+	name = "chief engineer's bunny suit"
+	desc = "The staple of any bunny themed chief engineers. The airy design helps with keeping cool when  engine fires get too hot to handle."
+	icon_state = "bunnysuit_ce"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/engineering/chief_engineer/bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)

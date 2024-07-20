@@ -246,3 +246,82 @@
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
 
+/obj/item/clothing/suit/jacket/tailcoat/engineer
+	name = "engineering tailcoat"
+	desc = "A high visibility tailcoat worn by bunny themed engineers. Great for working in low-light conditions."
+	icon_state = "engi"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_config_worn_digitigrade = null
+	greyscale_colors = null
+	allowed = list(
+		/obj/item/fireaxe/metal_h2_axe,
+		/obj/item/flashlight,
+		/obj/item/radio,
+		/obj/item/storage/bag/construction,
+		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tank/internals/plasmaman,
+		/obj/item/t_scanner,
+		/obj/item/gun/ballistic/rifle/boltaction/pipegun/prime,
+	)
+
+/obj/item/clothing/suit/jacket/tailcoat/engineer/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	. = ..()
+	if(!isinhands)
+		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
+
+/obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat
+	name = "atmospheric technician's tailcoat"
+	desc = "A heavy duty fire-tailcoat worn by bunny themed atmospheric technicians. Reinforced with asbestos weave that makes this both stylish and lung-cancer inducing."
+	icon_state = "atmos"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	body_parts_covered = CHEST|GROIN|ARMS
+	slowdown = 0
+	armor_type = /datum/armor/atmos_tech_tailcoat
+	flags_inv = null
+	clothing_flags = null
+	min_cold_protection_temperature = null
+	max_heat_protection_temperature = null
+	strip_delay = 30
+	equip_delay_other = 30
+
+/datum/armor/atmos_tech_tailcoat
+	melee = 10
+	bullet = 5
+	laser = 10
+	energy = 10
+	bomb = 20
+	bio = 50
+	fire = 100
+	acid = 50
+
+/obj/item/clothing/suit/utility/fire/ce_tailcoat
+	name = "chief engineer's tailcoat"
+	desc = "A heavy duty green and white coat worn by bunny themed chief engineers. Made of a three layered composite fabric that is both insulating and fireproof, it also has an open face rendering all this useless."
+	icon_state = "ce"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	body_parts_covered = CHEST|GROIN|ARMS
+	slowdown = 0
+	armor_type = /datum/armor/ce_tailcoat
+	flags_inv = null
+	clothing_flags = null
+	min_cold_protection_temperature = null
+	max_heat_protection_temperature = null
+	strip_delay = 30
+	equip_delay_other = 30
+
+/datum/armor/ce_tailcoat
+	melee = 10
+	bullet = 5
+	laser = 10
+	energy = 10
+	bomb = 20
+	bio = 50
+	fire = 100
+	acid = 50
