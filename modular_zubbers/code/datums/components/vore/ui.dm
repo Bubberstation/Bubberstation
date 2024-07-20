@@ -41,6 +41,11 @@
 	if(vore_prefs)
 		data += vore_prefs.ui_data(user)
 
+	data["inside"] = null
+	if(istype(user.loc, /obj/vore_belly))
+		var/obj/vore_belly/tummy = user.loc
+		data["inside"] = tummy.ui_data(user)
+
 	return data
 
 /datum/component/vore/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -48,7 +53,7 @@
 	if(.)
 		return
 
-	var/mob/living/pred = parent
+	var/mob/living/living_parent = parent
 	switch(action)
 		if("create_belly")
 			if(LAZYLEN(vore_bellies) >= MAX_BELLIES)
@@ -65,19 +70,32 @@
 			. = TRUE
 		if("click_prey")
 			var/mob/prey = locate(params["ref"])
-			if(istype(prey) && pred.contains(prey))
-				var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer"))
-				switch(what_to_do)
-					if("Examine")
-						pred.examinate(prey)
-					if("Eject")
-						prey.forceMove(pred.loc)
-						// TODO: custom exit messages
-						pred.visible_message(span_danger("[pred] squelches out [prey]!"), span_notice("You squelch out [prey]."))
-						// TODO: noise
-					if("Transfer")
-						// TODO: Transfers
-						to_chat(pred, "Not implemented yet :)")
+			if(prey == living_parent)
+				living_parent.examinate(living_parent)
+			else if(istype(prey))
+				// We are prey next to them
+				if(istype(living_parent.loc, /obj/vore_belly) && prey.loc == living_parent.loc)
+					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Help Out"))
+					switch(what_to_do)
+						if("Examine")
+							living_parent.examinate(prey)
+						// if("Eat") // Not implemented on Bubbers at all
+						if("Help Out")
+							to_chat(living_parent, "Not implemented yet :)")
+				// We ate them
+				else if(living_parent.contains(prey))
+					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer"))
+					switch(what_to_do)
+						if("Examine")
+							living_parent.examinate(prey)
+						if("Eject")
+							prey.forceMove(living_parent.loc)
+							// TODO: custom exit messages
+							living_parent.visible_message(span_danger("[living_parent] squelches out [prey]!"), span_notice("You squelch out [prey]."))
+							// TODO: noise
+						if("Transfer")
+							// TODO: Transfers
+							to_chat(living_parent, "Not implemented yet :)")
 			. = TRUE
 		if("edit_belly")
 			var/obj/vore_belly/target = locate(params["ref"])

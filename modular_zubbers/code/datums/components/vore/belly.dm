@@ -37,11 +37,16 @@
 
 /// Called from /datum/component/vore/ui_data to display belly settings
 /obj/vore_belly/ui_data(mob/user)
+	var/user_is_parent = user == owner.parent
 	var/list/data = list()
 
 	data["name"] = name
 	data["desc"] = desc
-	data["ref"] = REF(src)
+	// Try not to leak refs too much
+	if(user_is_parent)
+		data["ref"] = REF(src)
+	else
+		data["owner_name"] = "[owner.parent]"
 
 	var/list/contents_data = list()
 	for(var/atom/A as anything in contents)
@@ -101,10 +106,14 @@
 	. = ..()
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
-		deep_search_prey(arrived)
+		var/mob/M = arrived
+		deep_search_prey(M)
 		// TODO: Noises
 		// TODO: Insertion Verb
-		to_chat(arrived, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
+		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
+		// Add the appearance_holder to prey so they can see fellow prey
+		if(M.client)
+			M.client.screen += owner.appearance_holder
 
 /// Search through prey's recursive contents to prevent smuggling any GLOB.vore_blacklist_types items around
 /obj/vore_belly/proc/deep_search_prey(mob/arrived)
@@ -121,6 +130,11 @@
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()
 	owner.appearance_holder.vis_contents -= gone
+	if(ismob(gone))
+		var/mob/M = gone
+		// We added it so let's take it away
+		if(M.client)
+			M.client.screen -= owner.appearance_holder
 
 /// Does not call parent, which hides the "you can't move while buckled" message
 /// Also makes squelchy sounds when prey tries to squirm.

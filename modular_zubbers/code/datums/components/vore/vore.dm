@@ -47,19 +47,20 @@
 	appearance_holder = new()
 
 /datum/component/vore/RegisterWithParent()
-	panel_action.Grant(parent)
-	vore_mode_action.Grant(parent)
+	panel_action?.Grant(parent)
+	vore_mode_action?.Grant(parent)
 
 	var/mob/living/L = parent
-	if(L.client)
+	if(L.client && appearance_holder)
 		L.client.screen += appearance_holder
 
+// This has to be careful because it's called as a result of COMPONENT_INCOMPATIBLE
 /datum/component/vore/UnregisterFromParent()
-	panel_action.Remove(parent)
-	vore_mode_action.Remove(parent)
+	panel_action?.Remove(parent)
+	vore_mode_action?.Remove(parent)
 
 	var/mob/living/L = parent
-	if(L.client)
+	if(L.client && appearance_holder)
 		L.client.screen += appearance_holder
 
 /datum/component/vore/Destroy(force)
@@ -67,8 +68,8 @@
 		var/mob/living/pred = parent
 		pred.client?.screen -= appearance_holder
 	selected_belly = null
+	QDEL_LAZYLIST(vore_bellies)
 	QDEL_NULL(appearance_holder)
-	QDEL_LIST(vore_bellies)
 	QDEL_NULL(panel_action)
 	QDEL_NULL(vore_mode_action)
 	return ..()

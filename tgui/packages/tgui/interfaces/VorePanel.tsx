@@ -6,6 +6,7 @@ import { Window } from 'tgui/layouts/Window';
 import {
   Box,
   Button,
+  Collapsible,
   Dropdown,
   Flex,
   Icon,
@@ -44,6 +45,10 @@ type Belly = {
   brute_damage: number;
 };
 
+type PreyBellyView = Omit<Belly, 'index' | 'ref'> & {
+  owner_name: string;
+};
+
 type Data = {
   max_bellies: number;
   max_prey: number;
@@ -52,6 +57,7 @@ type Data = {
   selected_belly: number;
   bellies: Belly[];
   preferences: { [key: string]: any };
+  inside: PreyBellyView | null;
 };
 
 export const VorePanel = (props) => {
@@ -81,6 +87,7 @@ const VoreMain = (props) => {
         </Tabs.Tab>
       </Tabs>
       {tab === 0 && <BelliesList />}
+      {tab === 1 && <Inside />}
       {tab === 2 && <Preferences />}
     </Section>
   );
@@ -210,6 +217,35 @@ const AppearanceDisplay = (props: { iconSrc: string }) => {
   }
 };
 
+const BellyContents = (props: { contents: Prey[] }) => {
+  const { act } = useBackend();
+  const { contents } = props;
+
+  return contents.length ? (
+    <Flex wrap="wrap" justify="center" align="center">
+      {contents.map((prey) => (
+        <Flex.Item key={prey.name} basis="33%">
+          <Stack vertical align="center" justify="center">
+            <Stack.Item>
+              <Button
+                width="64px"
+                height="64px"
+                style={{ verticalAlign: 'middle' }}
+                onClick={() => act('click_prey', { ref: prey.ref })}
+              >
+                <AppearanceDisplay iconSrc={prey.appearance} />
+              </Button>
+            </Stack.Item>
+            <Stack.Item>{prey.name}</Stack.Item>
+          </Stack>
+        </Flex.Item>
+      ))}
+    </Flex>
+  ) : (
+    'Nothing is inside this belly.'
+  );
+};
+
 const BellyUI = (props: {
   selectedBelly: number | null;
   setSelectedBelly: React.Dispatch<React.SetStateAction<number>>;
@@ -276,30 +312,7 @@ const BellyUI = (props: {
         </>
       }
     >
-      {selectedTab === 0 &&
-        (belly.contents.length ? (
-          <Flex wrap="wrap" justify="center" align="center">
-            {belly.contents.map((prey) => (
-              <Flex.Item key={prey.name} basis="33%">
-                <Stack vertical align="center" justify="center">
-                  <Stack.Item>
-                    <Button
-                      width="64px"
-                      height="64px"
-                      style={{ verticalAlign: 'middle' }}
-                      onClick={() => act('click_prey', { ref: prey.ref })}
-                    >
-                      <AppearanceDisplay iconSrc={prey.appearance} />
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>{prey.name}</Stack.Item>
-                </Stack>
-              </Flex.Item>
-            ))}
-          </Flex>
-        ) : (
-          'Nothing is inside this belly.'
-        ))}
+      {selectedTab === 0 && <BellyContents contents={belly.contents} />}
       {selectedTab === 1 && (
         <LabeledList>
           <LabeledList.Item label="Options" verticalAlign="top">
@@ -423,6 +436,55 @@ const BellyUI = (props: {
             )}
           </LabeledList.Item>
         </LabeledList>
+      )}
+    </Section>
+  );
+};
+
+const digestModeToPreyMode = {
+  [DigestMode.None]: { text: 'being held.', color: 'good' },
+  [DigestMode.Digest]: { text: 'being digested.', color: 'bad' },
+};
+
+const Inside = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { inside } = data;
+
+  if (!inside) {
+    return <Section title="Inside!">You are not inside anyone!</Section>;
+  }
+
+  const preyMode = digestModeToPreyMode[inside.digest_mode];
+
+  return (
+    <Section title="Inside!">
+      <Box>
+        <Box color="yellow" inline>
+          You are currently inside
+        </Box>{' '}
+        <Box inline color="blue">
+          {inside.owner_name || 'someone'}
+          &apos;s
+        </Box>{' '}
+        <Box inline color="red">
+          {inside.name}
+        </Box>{' '}
+        <Box inline color="yellow">
+          and you are
+        </Box>{' '}
+        <Box inline color={preyMode.color}>
+          {preyMode.text}
+        </Box>
+      </Box>
+      <Box mb={1} color="label">
+        {inside.desc}
+      </Box>
+      {inside.contents.length ? (
+        <Collapsible title="Belly Contents">
+          <BellyContents contents={inside.contents} />
+        </Collapsible>
+      ) : (
+        'There is nothing else around you.'
       )}
     </Section>
   );
