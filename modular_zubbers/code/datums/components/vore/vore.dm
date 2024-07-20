@@ -3,11 +3,14 @@
 /datum/action/innate/vore/panel
 	name = "Vore Panel"
 
-/datum/action/innate/vore/pred
-	name = "Vore Grabbed"
+/datum/action/innate/vore/vore_mode
+	name = "Vore Mode"
+	click_action = TRUE
+	ranged_mousepointer = 'modular_zubbers/icons/effects/mouse_pointers/vore.dmi'
 
-/datum/action/innate/vore/prey
-	name = "Feed Self to Grabbed"
+/datum/action/innate/vore/vore_mode/do_ability(mob/living/caller, atom/clicked_on)
+	var/datum/component/vore/V = target
+	return V.on_voremode_click(caller, clicked_on)
 
 /// This is a tricky little thing to guarantee that `\ref[prey.appearance]` works in the vore panel
 /// Basically, we force the pred to load the prey's appearance by putting the prey in this screen object's vis_contents
@@ -27,8 +30,8 @@
 	var/obj/vore_belly/selected_belly = null
 	var/list/obj/vore_belly/vore_bellies = null
 	var/datum/action/innate/vore/panel/panel_action = null
-	var/datum/action/innate/vore/pred/pred_action = null
-	var/datum/action/innate/vore/prey/prey_action = null
+	var/datum/action/innate/vore/vore_mode/vore_mode_action = null
+	var/vore_mode = FALSE
 	var/atom/movable/screen/secret_appearance_holder/appearance_holder = null
 
 /datum/component/vore/Initialize(...)
@@ -39,22 +42,25 @@
 
 	panel_action = new(src)
 	RegisterSignal(panel_action, COMSIG_ACTION_TRIGGER, PROC_REF(open_ui))
-	panel_action.Grant(parent)
-
-	/// TODO: Only show pred action/appearance_holder to preds/switches
-	pred_action = new(src)
-	RegisterSignal(pred_action, COMSIG_ACTION_TRIGGER, PROC_REF(initiate_vore_other))
-	pred_action.Grant(parent)
+	vore_mode_action = new(src)
 
 	appearance_holder = new()
+
+/datum/component/vore/RegisterWithParent()
+	panel_action.Grant(parent)
+	vore_mode_action.Grant(parent)
+
 	var/mob/living/L = parent
 	if(L.client)
 		L.client.screen += appearance_holder
 
-	/// TODO: Only show pred action to preys/switches
-	prey_action = new(src)
-	RegisterSignal(prey_action, COMSIG_ACTION_TRIGGER, PROC_REF(initiate_feed_self_to_other))
-	prey_action.Grant(parent)
+/datum/component/vore/UnregisterFromParent()
+	panel_action.Remove(parent)
+	vore_mode_action.Remove(parent)
+
+	var/mob/living/L = parent
+	if(L.client)
+		L.client.screen += appearance_holder
 
 /datum/component/vore/Destroy(force)
 	if(isliving(parent))
@@ -63,9 +69,8 @@
 	selected_belly = null
 	QDEL_NULL(appearance_holder)
 	QDEL_LIST(vore_bellies)
-	QDEL_NULL(pred_action)
-	QDEL_NULL(prey_action)
 	QDEL_NULL(panel_action)
+	QDEL_NULL(vore_mode_action)
 	return ..()
 
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
@@ -120,6 +125,33 @@
 		current_prefs["vore"] = vore
 
 		prefs.save_preferences()
+
+/datum/component/vore/proc/on_voremode_click(mob/living/user, mob/living/clicked_on)
+	if(user != parent)
+		return FALSE
+
+	if(!istype(clicked_on))
+		return FALSE
+
+	if(!user.can_perform_action(clicked_on, clicked_on.interaction_flags_click | FORBID_TELEKINESIS_REACH))
+		return
+
+	if(user.click_intercept == vore_mode_action)
+		vore_mode_action.unset_ranged_ability(user)
+		vore_mode_action.build_all_button_icons(UPDATE_BUTTON_BACKGROUND | UPDATE_BUTTON_STATUS)
+
+	if(!check_vore_grab(user))
+		to_chat(user, span_danger("You must have an aggressive grab to do vore."))
+		return TRUE
+	var/mob/living/pulled = user.pulling
+
+	if(clicked_on == user) // Parent wants to eat pulled
+		vore_other()
+	else if(clicked_on == pulled) // Parent wants to feed themselves to pulled
+		feed_self_to_other()
+	else // Parent wants to feed pulled to clicked_on
+		feed_other_to_other(clicked_on)
+	return TRUE
 
 
 /datum/component/vore/proc/open_ui()
@@ -177,8 +209,12 @@
 				allowed_to_pred = FALSE
 			if(PREF_TRINARY_PROMPT)
 				// presumably they consent to what they're doing if they initiated it
-				if(assume_active_consent || (pred != user && tgui_alert(pred, "[user] is trying to feed [prey] to you, are you okay with this?", "Pred Pref", list("Yes", "No")) == "Yes"))
+				if(assume_active_consent || pred == user)
 					allowed_to_pred = TRUE
+				else
+					to_chat(user, span_warning("Please wait, [pred] is deciding if they want to eat [prey]..."))
+					if(tgui_alert(pred, "[user] is trying to feed [prey] to you, are you okay with this?", "Pred Pref", list("Yes", "No")) == "Yes")
+						allowed_to_pred = TRUE
 			if(PREF_TRINARY_ALWAYS)
 				allowed_to_pred = TRUE
 
@@ -197,8 +233,12 @@
 				allowed_to_prey = FALSE
 			if(PREF_TRINARY_PROMPT)
 				// presumably they consent to what they're doing if they initiated it
-				if(assume_active_consent || (prey != user && tgui_alert(prey, "[user] is trying to feed you to [pred], are you okay with this?", "Prey Pref", list("Yes", "No")) == "Yes"))
+				if(assume_active_consent || prey == user)
 					allowed_to_prey = TRUE
+				else
+					to_chat(user, span_warning("Please wait, [prey] is deciding if they want to be fed to [pred]..."))
+					if(tgui_alert(prey, "[user] is trying to feed you to [pred], are you okay with this?", "Prey Pref", list("Yes", "No")) == "Yes")
+						allowed_to_prey = TRUE
 			if(PREF_TRINARY_ALWAYS)
 				allowed_to_prey = TRUE
 
@@ -265,6 +305,30 @@
 	prey.visible_message(span_danger("[prey] feeds themselves to [pred]!"), span_notice("You feed yourself to [pred]."))
 	pred_component.complete_vore(prey)
 
+/datum/component/vore/proc/feed_other_to_other(mob/living/pred)
+	var/mob/living/feeder = parent
+	if(!check_vore_grab(feeder))
+		to_chat(feeder, span_danger("You must have an aggressive grab to feed someone to someone else."))
+		return
+	if(!feeder.can_perform_action(pred, pred.interaction_flags_click | FORBID_TELEKINESIS_REACH))
+		return
+	var/mob/living/prey = feeder.pulling
+	if(!check_vore_preferences(feeder, pred, prey))
+		return
+	// check_vore_preferences asserts this exists
+	var/datum/component/vore/pred_component = pred.GetComponent(/datum/component/vore)
+	#ifdef VORE_DELAY
+	feeder.visible_message(span_danger("[feeder] starts to feed [prey] to [pred]!"), span_notice("You start feeding [prey] to [pred]."))
+	if(!do_after(feeder, VORE_DELAY, pred))
+		feeder.visible_message(span_notice("[feeder] fails to feed [prey] to [pred]."), span_notice("You fail to feed [prey] to [pred]."))
+		return
+	if(!check_vore_grab(feeder) || !check_vore_preferences(feeder, pred, prey, assume_active_consent = TRUE))
+		return
+	if(!feeder.can_perform_action(pred, pred.interaction_flags_click | FORBID_TELEKINESIS_REACH))
+		return
+	#endif
+	feeder.visible_message(span_danger("[feeder] feeds [prey] to [pred]!"), span_notice("You feed [prey] to [pred]."))
+	pred_component.complete_vore(prey)
+
 /datum/component/vore/proc/complete_vore(mob/living/prey)
 	prey.forceMove(selected_belly)
-	// TODO: Squelch
