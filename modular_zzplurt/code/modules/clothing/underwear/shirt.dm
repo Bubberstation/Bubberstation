@@ -4,9 +4,18 @@
 	icon_state = "undershirt"
 	body_parts_covered = CHEST | ARMS
 	slot_flags = ITEM_SLOT_SHIRT
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/underwear/shirt/bra
+	name = "bra"
+	desc = "A bra."
+	icon_state = "bra"
+	body_parts_covered = CHEST
+	female_sprite_flags = NO_FEMALE_UNIFORM
 
 // please make sure they're sorted alphabetically and categorized, above is the only exception
 
+/* Old shirt objects, already handled by the sprite accessories
 /obj/item/clothing/underwear/shirt/alien
 	name = "alien shirt"
 	desc = "I regret nothing."
@@ -356,3 +365,4 @@
 	name = "usa shirt"
 	desc = "Freedom and obesity."
 	icon_state = "undershirt_assblastusa"
+*/

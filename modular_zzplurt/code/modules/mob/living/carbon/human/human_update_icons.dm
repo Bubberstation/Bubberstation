@@ -32,13 +32,29 @@
 		var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
 		var/handled_by_bodyshape = TRUE
 		var/digi
+		var/woman
+		var/female_sprite_flags = w_underwear.female_sprite_flags
 		var/mutant_styles = NONE
 		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undies.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
 			icon_file = undies.worn_icon_digi || DIGITIGRADE_UNDERWEAR_FILE
 			digi = TRUE
 
+			// Edit for legacy sprites
+			if(undies.worn_icon_digi == undies.worn_icon)
+				target_overlay += "_d"
+
 		else if(bodyshape & BODYSHAPE_CUSTOM)
 			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNDERWEAR, w_underwear, src)
+
+		//Female sprites have lower priority than digitigrade sprites
+		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNIFORM))
+			woman = TRUE
+			// SKYRAT EDIT ADDITION START - Digi female gender shaping
+			if(digi)
+				if(!(female_sprite_flags & FEMALE_UNIFORM_DIGI_FULL))
+					female_sprite_flags &= ~FEMALE_UNIFORM_FULL // clear the FEMALE_UNIFORM_DIGI_FULL bit if it was set, we don't want that.
+					female_sprite_flags |= FEMALE_UNIFORM_TOP_ONLY // And set the FEMALE_UNIFORM_TOP bit if it is unset.
+			// SKYRAT EDIT ADDITION END
 
 		if(digi)
 			mutant_styles |= STYLE_DIGI
@@ -51,6 +67,7 @@
 			default_layer = UNDERWEAR_LAYER,
 			default_icon_file = icon_file,
 			isinhands = FALSE,
+			female_uniform = woman ? female_sprite_flags : null,
 			override_state = target_overlay,
 			override_file = handled_by_bodyshape ? icon_file : null,
 			mutant_styles = mutant_styles,
@@ -85,13 +102,29 @@
 		var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
 		var/handled_by_bodyshape = TRUE
 		var/digi
+		var/woman
+		var/female_sprite_flags = w_shirt.female_sprite_flags
 		var/mutant_styles = NONE
 		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (undershirt.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
 			icon_file = undershirt.worn_icon_digi || DIGITIGRADE_SHIRT_FILE
 			digi = TRUE
 
+			// Edit for legacy sprites
+			if(undershirt.worn_icon_digi == undershirt.worn_icon)
+				target_overlay += "_d"
+
 		else if(bodyshape & BODYSHAPE_CUSTOM)
 			icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, w_shirt, src)
+
+		//Female sprites have lower priority than digitigrade sprites
+		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNIFORM))
+			woman = TRUE
+			// SKYRAT EDIT ADDITION START - Digi female gender shaping
+			if(digi)
+				if(!(female_sprite_flags & FEMALE_UNIFORM_DIGI_FULL))
+					female_sprite_flags &= ~FEMALE_UNIFORM_FULL // clear the FEMALE_UNIFORM_DIGI_FULL bit if it was set, we don't want that.
+					female_sprite_flags |= FEMALE_UNIFORM_TOP_ONLY // And set the FEMALE_UNIFORM_TOP bit if it is unset.
+			// SKYRAT EDIT ADDITION END
 
 		if(digi)
 			mutant_styles |= STYLE_DIGI
@@ -104,6 +137,7 @@
 			default_layer = SHIRT_LAYER,
 			default_icon_file = icon_file,
 			isinhands = FALSE,
+			female_uniform = woman ? female_sprite_flags : null,
 			override_state = target_overlay,
 			override_file = handled_by_bodyshape ? icon_file : null,
 			mutant_styles = mutant_styles,
@@ -200,8 +234,8 @@
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SOCKS) + 1]
 		inv.update_icon()
 
-	if(w_socks)
-		var/obj/item/worn_item = w_socks
+	if(istype(w_socks, /obj/item/clothing/underwear/socks))
+		var/obj/item/clothing/underwear/socks/worn_item = w_socks
 		update_hud_socks(worn_item)
 
 		if(update_obscured)
@@ -210,6 +244,7 @@
 		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SOCKS)
 			return
 
+		var/target_overlay = worn_item.icon_state
 		var/icon_file = DEFAULT_SOCKS_FILE
 
 		// SKYRAT EDIT ADDITION START
@@ -220,6 +255,10 @@
 			if(leg.limb_id == "digitigrade" || leg.bodyshape & BODYSHAPE_DIGITIGRADE)//Snowflakey and bad. But it makes it look consistent.
 				icon_file = worn_item.worn_icon_digi || DIGITIGRADE_SOCKS_FILE // SKYRAT EDIT CHANGE
 				mutant_override = TRUE // SKYRAT EDIT ADDITION
+
+				// Edit for legacy sprites
+				if(worn_item.worn_icon_digi == worn_item.worn_icon)
+					target_overlay += "_d"
 		if(!mutant_override && bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_SOCKS, w_socks, src)
 			if(species_icon_file)

@@ -7,6 +7,7 @@
 
 // please make sure they're sorted alphabetically and categorized, above is the only exception
 
+/* Old briefs objects, already handled by the sprite accessories
 /obj/item/clothing/underwear/briefs/boxer_briefs //this typepath jesus
 	name = "boxer briefs"
 	icon_state = "boxer_briefs"
@@ -123,3 +124,4 @@
 	name = "usa panties"
 	desc = "Not nearly as free as not wearing any."
 	icon_state = "panties_assblastusa"
+*/

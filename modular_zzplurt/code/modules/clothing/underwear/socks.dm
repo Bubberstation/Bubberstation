@@ -4,9 +4,11 @@
 	icon_state = "socks"
 	body_parts_covered = FEET
 	slot_flags = ITEM_SLOT_SOCKS
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 // please make sure they're sorted alphabetically and categorized, above is the only exception
 
+/* Old socks items, already handled by sprite accessories
 /obj/item/clothing/underwear/socks/bee
 	name = "bee socks"
 	icon_state = "socks_bee"
@@ -244,3 +246,4 @@
 	name = "thigh-high rainbow stirrups"
 	icon_state = "rainbow_thigh-stir"
 	polychromic = FALSE
+*/

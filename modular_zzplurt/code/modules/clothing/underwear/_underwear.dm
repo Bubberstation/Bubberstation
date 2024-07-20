@@ -10,6 +10,9 @@
 
 	w_class = WEIGHT_CLASS_SMALL
 
+	// Adding support for female sprites
+	var/female_sprite_flags = NO_FEMALE_UNIFORM
+
 /obj/item/clothing/underwear/Move()
 	..()
 	setDir(SOUTH) //should prevent underwear from facing any direction but south while on the floor, uses same code as pipes, PLEASE, THIS IS A BAD SOLUTION, SOMEONE MAKE ME UNDERWEAR SPRITES ASAP
