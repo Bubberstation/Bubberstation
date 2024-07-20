@@ -257,10 +257,6 @@
 		return FALSE
 	return TRUE
 
-/datum/component/vore/proc/initiate_vore_other()
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(vore_other))
-
 /datum/component/vore/proc/vore_other()
 	var/mob/living/pred = parent
 	if(!check_vore_grab(pred))
@@ -279,10 +275,6 @@
 	#endif
 	pred.visible_message(span_danger("[pred] devours [prey] whole!"), span_notice("You devour [prey] into your [selected_belly]."))
 	complete_vore(prey)
-
-/datum/component/vore/proc/initiate_feed_self_to_other()
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(feed_self_to_other))
 
 /datum/component/vore/proc/feed_self_to_other()
 	var/mob/living/prey = parent

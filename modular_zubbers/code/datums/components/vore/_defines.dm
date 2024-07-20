@@ -19,6 +19,14 @@ GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(
 	// /mob/living/silicon/robot
 )))
 
+// Belly Planet! Used to return always-safe air to prey.
+/datum/gas_mixture/immutable/planetary/belly
+GLOBAL_DATUM_INIT(belly_air, /datum/gas_mixture/immutable/planetary, init_belly_air())
+/proc/init_belly_air()
+	var/datum/gas_mixture/immutable/planetary/belly_air = new()
+	belly_air.parse_string_immutable(OPENTURF_DEFAULT_ATMOS)
+	return belly_air
+
 #define PREF_TRINARY_NEVER 0
 #define PREF_TRINARY_PROMPT 1
 #define PREF_TRINARY_ALWAYS 2

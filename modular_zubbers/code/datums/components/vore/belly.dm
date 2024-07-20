@@ -73,16 +73,20 @@
 
 // Bellies always just make mobs inside them breath whatever is on the turf
 /obj/vore_belly/assume_air(datum/gas_mixture/giver)
-	var/turf/T = get_turf(src)
-	return T.assume_air(giver)
+	return null
 
 /obj/vore_belly/remove_air(amount)
-	var/turf/T = get_turf(src)
-	return T.remove_air(amount)
+	return null
 
 /obj/vore_belly/return_air()
-	var/turf/T = get_turf(src)
-	return T.return_air()
+	return null
+
+/obj/vore_belly/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
+	if(breath_request > 0)
+		var/breath_percentage = breath_request / GLOB.belly_air.return_volume()
+		return GLOB.belly_air.remove(GLOB.belly_air.total_moles() * breath_percentage)
+	else
+		return null
 
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
