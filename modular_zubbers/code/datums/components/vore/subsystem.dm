@@ -2,7 +2,7 @@
 PROCESSING_SUBSYSTEM_DEF(vore)
 	name = "Vore Belly Ticker"
 	wait = 2 SECONDS
-	flags = SS_KEEP_TIMING | SS_TICKER
+	flags = SS_KEEP_TIMING
 
 /datum/controller/subsystem/processing/vore/Initialize()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGGED_IN, PROC_REF(on_mob_login))

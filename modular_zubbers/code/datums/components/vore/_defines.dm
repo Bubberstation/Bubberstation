@@ -9,6 +9,9 @@
 #define DIGEST_MODE_NONE "None"
 #define DIGEST_MODE_DIGEST "Digest"
 
+#define MAX_BURN_DAMAGE 2.5
+#define MAX_BRUTE_DAMAGE 2.5
+
 GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(
 	/mob/living
 	// TODO: Change to

@@ -1,21 +1,24 @@
 // THIS IS A BUBBER UI FILE
 
 import { useEffect, useState } from 'react';
-import { useBackend } from 'tgui/backend';
+import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts/Window';
 import {
   Box,
   Button,
+  Dropdown,
   Flex,
   Icon,
   Image,
   Input,
   LabeledList,
+  NumberInput,
   Section,
   Stack,
   Tabs,
   TextArea,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { FitText } from '../components';
 
@@ -25,17 +28,27 @@ type Prey = {
   appearance: string;
 };
 
+enum DigestMode {
+  None = 'None',
+  Digest = 'Digest',
+}
+
 type Belly = {
   index: number;
   name: string;
   desc: string;
   ref: string;
   contents: Prey[];
+  digest_mode: DigestMode;
+  burn_damage: number;
+  brute_damage: number;
 };
 
 type Data = {
   max_bellies: number;
   max_prey: number;
+  max_burn_damage: number;
+  max_brute_damage: number;
   selected_belly: number;
   bellies: Belly[];
   preferences: { [key: string]: any };
@@ -106,7 +119,9 @@ const BelliesList = (props) => {
                           color={
                             selectedBelly === belly.index
                               ? 'good'
-                              : 'transparent'
+                              : belly.digest_mode === DigestMode.Digest
+                                ? 'bad'
+                                : 'transparent'
                           }
                           selected={selectedBelly === belly.index}
                           onClick={() => setSelectedBelly(belly.index)}
@@ -212,6 +227,12 @@ const BellyUI = (props: {
     );
   }
 
+  // Little niceity, this makes it so that it whatever tab the user was last
+  // looking at opens automatically when they switch back to this belly
+  const [selectedTab, setSelectedTab] = useSharedState(
+    'bellyTab-' + belly.name,
+    1,
+  );
   const [editing, setEditing] = useState(false);
 
   return (
@@ -233,45 +254,103 @@ const BellyUI = (props: {
       buttons={
         <>
           <Button
-            disabled={belly.index === data.bellies.length}
+            color="transparent"
+            selected={selectedTab === 0}
             onClick={() => {
-              act('move_belly', { dir: 'down', ref: belly.ref });
-              setSelectedBelly(belly.index + 1); // this will keep our belly selected
+              setSelectedTab(0);
+              setEditing(false);
             }}
           >
-            <Icon name="arrow-down" />
+            Contents
           </Button>
           <Button
-            disabled={belly.index === 1}
+            color="transparent"
+            selected={selectedTab === 1}
             onClick={() => {
-              act('move_belly', { dir: 'up', ref: belly.ref });
-              setSelectedBelly(belly.index - 1); // this will keep our belly selected
+              setSelectedTab(1);
+              setEditing(false);
             }}
           >
-            <Icon name="arrow-up" />
+            Settings
           </Button>
-          <Button
-            icon="pencil"
-            selected={editing}
-            onClick={() => setEditing(!editing)}
-          >
-            Edit
-          </Button>
-          <Button.Confirm
-            color="bad"
-            icon="trash"
-            onClick={() => {
-              act('delete_belly', { ref: belly.ref });
-              setSelectedBelly(-1);
-            }}
-          >
-            Delete
-          </Button.Confirm>
         </>
       }
     >
-      <Box>
+      {selectedTab === 0 &&
+        (belly.contents.length ? (
+          <Flex wrap="wrap" justify="center" align="center">
+            {belly.contents.map((prey) => (
+              <Flex.Item key={prey.name} basis="33%">
+                <Stack vertical align="center" justify="center">
+                  <Stack.Item>
+                    <Button
+                      width="64px"
+                      height="64px"
+                      style={{ verticalAlign: 'middle' }}
+                      onClick={() => act('click_prey', { ref: prey.ref })}
+                    >
+                      <AppearanceDisplay iconSrc={prey.appearance} />
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>{prey.name}</Stack.Item>
+                </Stack>
+              </Flex.Item>
+            ))}
+          </Flex>
+        ) : (
+          'Nothing is inside this belly.'
+        ))}
+      {selectedTab === 1 && (
         <LabeledList>
+          <LabeledList.Item label="Options" verticalAlign="top">
+            <Stack align="center" justify="flex-end">
+              <Stack.Item>
+                <Button
+                  disabled={belly.index === data.bellies.length}
+                  onClick={() => {
+                    act('move_belly', { dir: 'down', ref: belly.ref });
+                    setSelectedBelly(belly.index + 1); // this will keep our belly selected
+                  }}
+                  tooltip="Move belly down in the list"
+                >
+                  <Icon name="arrow-down" />
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  disabled={belly.index === 1}
+                  onClick={() => {
+                    act('move_belly', { dir: 'up', ref: belly.ref });
+                    setSelectedBelly(belly.index - 1); // this will keep our belly selected
+                  }}
+                  tooltip="Move belly up in the list"
+                >
+                  <Icon name="arrow-up" />
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="pencil"
+                  selected={editing}
+                  onClick={() => setEditing(!editing)}
+                >
+                  Edit
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button.Confirm
+                  color="bad"
+                  icon="trash"
+                  onClick={() => {
+                    act('delete_belly', { ref: belly.ref });
+                    setSelectedBelly(-1);
+                  }}
+                >
+                  Delete
+                </Button.Confirm>
+              </Stack.Item>
+            </Stack>
+          </LabeledList.Item>
           <LabeledList.Item label="Description" verticalAlign="top">
             {editing ? (
               <TextArea
@@ -291,33 +370,60 @@ const BellyUI = (props: {
               </Box>
             )}
           </LabeledList.Item>
+          <LabeledList.Item label="Belly Mode" verticalAlign="top">
+            <Dropdown
+              color={
+                belly.digest_mode === DigestMode.Digest ? 'bad' : 'default'
+              }
+              options={Object.values(DigestMode)}
+              selected={belly.digest_mode}
+              onSelected={(value) =>
+                act('edit_belly', { ref: belly.ref, var: 'digest_mode', value })
+              }
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Burn Damage">
+            {editing ? (
+              <NumberInput
+                value={belly.burn_damage}
+                minValue={0}
+                maxValue={data.max_burn_damage}
+                step={0.1}
+                format={(val) => toFixed(val, 2)}
+                onChange={(value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'burn_damage',
+                    value,
+                  })
+                }
+              />
+            ) : (
+              toFixed(belly.burn_damage, 2)
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Brute Damage">
+            {editing ? (
+              <NumberInput
+                value={belly.brute_damage}
+                minValue={0}
+                maxValue={data.max_brute_damage}
+                step={0.1}
+                format={(val) => toFixed(val, 2)}
+                onChange={(value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'brute_damage',
+                    value,
+                  })
+                }
+              />
+            ) : (
+              toFixed(belly.brute_damage, 2)
+            )}
+          </LabeledList.Item>
         </LabeledList>
-        <Section title="Contents">
-          {belly.contents.length ? (
-            <Flex wrap="wrap" justify="center" align="center">
-              {belly.contents.map((prey) => (
-                <Flex.Item key={prey.name} basis="33%">
-                  <Stack vertical align="center" justify="center">
-                    <Stack.Item>
-                      <Button
-                        width="64px"
-                        height="64px"
-                        style={{ verticalAlign: 'middle' }}
-                        onClick={() => act('eject', { ref: prey.ref })}
-                      >
-                        <AppearanceDisplay iconSrc={prey.appearance} />
-                      </Button>
-                    </Stack.Item>
-                    <Stack.Item>{prey.name}</Stack.Item>
-                  </Stack>
-                </Flex.Item>
-              ))}
-            </Flex>
-          ) : (
-            'Nothing is inside this belly.'
-          )}
-        </Section>
-      </Box>
+      )}
     </Section>
   );
 };

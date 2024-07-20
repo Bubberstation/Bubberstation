@@ -19,6 +19,9 @@
 	data["max_bellies"] = MAX_BELLIES
 	data["max_prey"] = MAX_PREY
 
+	data["max_burn_damage"] = MAX_BURN_DAMAGE
+	data["max_brute_damage"] = MAX_BRUTE_DAMAGE
+
 	return data
 
 /datum/component/vore/ui_data(mob/user)
@@ -60,13 +63,21 @@
 				selected_belly = new_selected
 				to_chat(usr, span_notice("Prey will now go into [selected_belly]."))
 			. = TRUE
-		if("eject")
+		if("click_prey")
 			var/mob/prey = locate(params["ref"])
 			if(istype(prey) && pred.contains(prey))
-				prey.forceMove(pred.loc)
-				// TODO: custom exit messages
-				pred.visible_message(span_danger("[pred] squelches out [prey]!"), span_notice("You squelch out [prey]."))
-				// TODO: noise
+				var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer"))
+				switch(what_to_do)
+					if("Examine")
+						pred.examinate(prey)
+					if("Eject")
+						prey.forceMove(pred.loc)
+						// TODO: custom exit messages
+						pred.visible_message(span_danger("[pred] squelches out [prey]!"), span_notice("You squelch out [prey]."))
+						// TODO: noise
+					if("Transfer")
+						// TODO: Transfers
+						to_chat(pred, "Not implemented yet :)")
 			. = TRUE
 		if("edit_belly")
 			var/obj/vore_belly/target = locate(params["ref"])
@@ -74,16 +85,9 @@
 				return
 			if(target.owner != src)
 				return
-
-			switch(params["var"])
-				if("name")
-					// TODO: MAX_NAME_LENGTH/sanitize
-					target.name = params["value"]
-				if("desc")
-					// TODO: Limit/sanitize
-					target.desc = params["value"]
-
+			target.ui_modify_var(params["var"], params["value"])
 			save_bellies()
+			. = TRUE
 		if("set_pref")
 			if(!vore_prefs)
 				to_chat(usr, span_danger("You cannot save vore preferences as your savefile was not loaded by the vore component."))

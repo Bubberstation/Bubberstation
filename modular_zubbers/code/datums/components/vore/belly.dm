@@ -1,10 +1,12 @@
 /obj/vore_belly
-	// name = ""
 	name = "Default Belly"
 	desc = "It's very bland!"
-	// desc = ""
+
 	var/datum/component/vore/owner
 	var/datum/digest_mode/digest_mode
+
+	var/brute_damage = 0
+	var/burn_damage = 1
 
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
 	. = ..()
@@ -27,6 +29,9 @@
 		A.forceMove(T)
 	. = ..()
 
+/obj/vore_belly/process(seconds_per_tick)
+	digest_mode?.handle_belly(src, seconds_per_tick)
+
 /obj/vore_belly/ui_data(mob/user)
 	var/list/data = list()
 
@@ -43,7 +48,28 @@
 		))
 	data["contents"] = contents_data
 
+	data["digest_mode"] = digest_mode?.name
+	data["brute_damage"] = brute_damage
+	data["burn_damage"] = burn_damage
+
 	return data
+
+/obj/vore_belly/proc/ui_modify_var(var_name, value)
+	switch(var_name)
+		if("name")
+			var/new_name = permissive_sanitize_name(value)
+			if(new_name)
+				name = new_name
+		if("desc")
+			desc = strip_html_full(value)
+		if("digest_mode")
+			var/datum/digest_mode/new_digest_mode = GLOB.digest_modes[value]
+			if(istype(new_digest_mode))
+				digest_mode = new_digest_mode
+		if("brute_damage")
+			brute_damage = clamp(value, 0, MAX_BRUTE_DAMAGE)
+		if("burn_damage")
+			burn_damage = clamp(value, 0, MAX_BURN_DAMAGE)
 
 // Bellies always just make mobs inside them breath whatever is on the turf
 /obj/vore_belly/assume_air(datum/gas_mixture/giver)
@@ -89,9 +115,13 @@
 /obj/vore_belly/proc/serialize()
 	return list(
 		"name" = name,
-		"desc" = desc
+		"desc" = desc,
+		"brute_damage" = brute_damage,
+		"burn_damage" = burn_damage
 	)
 
 /obj/vore_belly/proc/deserialize(list/data)
-	name = data["name"]
-	desc = data["desc"]
+	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
+	desc = strip_html_full(data["desc"]) || "(Bad Desc)"
+	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
+	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
