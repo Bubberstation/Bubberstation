@@ -12,12 +12,19 @@
 #define MAX_BURN_DAMAGE 2.5
 #define MAX_BRUTE_DAMAGE 2.5
 
+/// What types of mobs are allowed to participate in vore at all?
+/// This controls whether vore components are added on any mob Login for vore-enabled clients
 GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(
 	/mob/living
 	// TODO: Change to
 	// /mob/living/carbon/human,
 	// /mob/living/silicon/robot
 )))
+
+/// List of types that will be automatically ejected from prey when they enter a belly
+GLOBAL_LIST_INIT(vore_blacklist_types, list(
+	/obj/item/disk/nuclear,
+))
 
 // Belly Planet! Used to return always-safe air to prey.
 /datum/gas_mixture/immutable/planetary/belly

@@ -36,7 +36,7 @@
 
 /datum/component/vore/Initialize(...)
 	. = ..()
-	if(!isliving(parent))
+	if(!is_type_in_typecache(parent, GLOB.vore_allowed_mob_types))
 		return COMPONENT_INCOMPATIBLE
 	load_vore_prefs(parent)
 
