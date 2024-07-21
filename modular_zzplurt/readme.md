@@ -83,7 +83,7 @@ Modular overrides should be used whenever possible to keep the core codebase cle
 
 - **Use modular overrides when they won't cause more issues than not modularizing them:** If a modular override would introduce significant complexity, performance issues, or maintenance challenges, it may be better to make a non-modular edit with proper commenting.
 - **Avoid unnecessary overrides:** Do not override procs or variables unless it is necessary for your feature or fix. Unnecessary overrides can lead to maintenance headaches and potential conflicts with upstream changes.
-- **Document your overrides:** Clearly documenting any modular overrides in your code and helps maintainers and other contributors understand the changes and their purpose.
+- **Document your overrides:** Clearly documenting any modular overrides in your code helps maintainers and other contributors understand your changes and their purpose.
 By following these guidelines, we can ensure that our codebase remains clean, maintainable, and easy to navigate, while still allowing for the flexibility to add new features and make necessary changes.
 
 ## Folder Structure
