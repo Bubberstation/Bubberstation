@@ -23,43 +23,43 @@
 /// Create shirt from undershirt sprite accessories
 #define SHIRT_FROM_SPRITE_ACCESSORY(class_name) \
 /obj/item/clothing/underwear/shirt/##class_name {\
-    name = /datum/sprite_accessory/undershirt/##class_name::name; \
-    icon = /datum/sprite_accessory/undershirt/##class_name::icon; \
-    worn_icon = /datum/sprite_accessory/undershirt/##class_name::icon; \
-    worn_icon_digi = /datum/sprite_accessory/undershirt/##class_name::icon; \
-    icon_state = /datum/sprite_accessory/undershirt/##class_name::icon_state; \
-    gender = /datum/sprite_accessory/undershirt/##class_name::gender; \
+	name = /datum/sprite_accessory/undershirt/##class_name::name; \
+	icon = /datum/sprite_accessory/undershirt/##class_name::icon; \
+	worn_icon = /datum/sprite_accessory/undershirt/##class_name::icon; \
+	worn_icon_digi = /datum/sprite_accessory/undershirt/##class_name::icon; \
+	icon_state = /datum/sprite_accessory/undershirt/##class_name::icon_state; \
+	gender = /datum/sprite_accessory/undershirt/##class_name::gender; \
 	flags_1 = /obj/item/clothing/underwear/shirt::flags_1 | (IS_PLAYER_COLORABLE_1 * !(/datum/sprite_accessory/undershirt/##class_name::use_static)); \
-    body_parts_covered = /obj/item/clothing/underwear/shirt::body_parts_covered | GROIN * /datum/sprite_accessory/undershirt/##class_name::hides_groin; \
+	body_parts_covered = /obj/item/clothing/underwear/shirt::body_parts_covered | GROIN * /datum/sprite_accessory/undershirt/##class_name::hides_groin; \
 };\
 /obj/item/clothing/underwear/shirt/##class_name/Initialize(mapload) {\
 	if(isnull(female_sprite_flags)) {\
-        female_sprite_flags = NO_FEMALE_UNIFORM;\
-    } else if(female_sprite_flags == /obj/item/clothing/underwear::female_sprite_flags) {\
-        female_sprite_flags = gender == MALE ? (FEMALE_UNIFORM_FULL | FEMALE_UNIFORM_DIGI_FULL) : NO_FEMALE_UNIFORM;\
-    };\
-    . = ..();\
+		female_sprite_flags = NO_FEMALE_UNIFORM;\
+	} else if(female_sprite_flags == /obj/item/clothing/underwear::female_sprite_flags) {\
+		female_sprite_flags = gender == MALE ? (FEMALE_UNIFORM_FULL | FEMALE_UNIFORM_DIGI_FULL) : NO_FEMALE_UNIFORM;\
+	};\
+	. = ..();\
 };
 
 /// Create bra from bra sprite accessories
 #define BRA_FROM_SPRITE_ACCESSORY(class_name) \
 /obj/item/clothing/underwear/shirt/bra/##class_name {\
-    name = /datum/sprite_accessory/bra/##class_name::name; \
-    icon = /datum/sprite_accessory/bra/##class_name::icon; \
-    worn_icon = /datum/sprite_accessory/bra/##class_name::icon; \
+	name = /datum/sprite_accessory/bra/##class_name::name; \
+	icon = /datum/sprite_accessory/bra/##class_name::icon; \
+	worn_icon = /datum/sprite_accessory/bra/##class_name::icon; \
 	worn_icon_digi = /datum/sprite_accessory/bra/##class_name::icon; \
-    icon_state = /datum/sprite_accessory/bra/##class_name::icon_state; \
-    gender = /datum/sprite_accessory/bra/##class_name::gender; \
+	icon_state = /datum/sprite_accessory/bra/##class_name::icon_state; \
+	gender = /datum/sprite_accessory/bra/##class_name::gender; \
 	flags_1 = /obj/item/clothing/underwear/shirt/bra::flags_1 | (IS_PLAYER_COLORABLE_1 * !(/datum/sprite_accessory/bra/##class_name::use_static)); \
 };
 
 /// Create socks from socks sprite accessories
 #define SOCKS_FROM_SPRITE_ACCESSORY(class_name) \
 /obj/item/clothing/underwear/socks/##class_name {\
-    name = /datum/sprite_accessory/socks/##class_name::name; \
-    icon = /datum/sprite_accessory/socks/##class_name::icon; \
-    worn_icon = /datum/sprite_accessory/socks/##class_name::icon; \
-    worn_icon_digi = /datum/sprite_accessory/socks/##class_name::icon; \
-    icon_state = /datum/sprite_accessory/socks/##class_name::icon_state; \
+	name = /datum/sprite_accessory/socks/##class_name::name; \
+	icon = /datum/sprite_accessory/socks/##class_name::icon; \
+	worn_icon = /datum/sprite_accessory/socks/##class_name::icon; \
+	worn_icon_digi = /datum/sprite_accessory/socks/##class_name::icon; \
+	icon_state = /datum/sprite_accessory/socks/##class_name::icon_state; \
 	flags_1 = /obj/item/clothing/underwear/socks::flags_1 | (IS_PLAYER_COLORABLE_1 * !(/datum/sprite_accessory/socks/##class_name::use_static)); \
 };
