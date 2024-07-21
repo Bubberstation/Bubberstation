@@ -106,6 +106,17 @@
 			target.ui_modify_var(params["var"], params["value"])
 			save_bellies()
 			. = TRUE
+		if("test_sound")
+			var/obj/vore_belly/target = locate(params["ref"])
+			if(!istype(target))
+				return
+			if(target.owner != src)
+				return
+			switch(params["sound"])
+				if("insert_sound")
+					SEND_SOUND(usr, sound(target.get_insert_sound()))
+				if("release_sound")
+					SEND_SOUND(usr, sound(target.get_release_sound()))
 		if("set_pref")
 			if(!vore_prefs)
 				to_chat(usr, span_danger("You cannot save vore preferences as your savefile was not loaded by the vore component."))

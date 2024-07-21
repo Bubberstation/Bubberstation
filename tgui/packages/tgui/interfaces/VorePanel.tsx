@@ -494,6 +494,14 @@ const BellyUI = (props: {
             ) : (
               belly.insert_sound
             )}
+            <Button
+              ml={1}
+              onClick={() =>
+                act('test_sound', { ref: belly.ref, sound: 'insert_sound' })
+              }
+            >
+              <Icon name="volume-up" />
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Release Sound">
             {editing ? (
@@ -512,6 +520,14 @@ const BellyUI = (props: {
             ) : (
               belly.release_sound
             )}
+            <Button
+              ml={1}
+              onClick={() =>
+                act('test_sound', { ref: belly.ref, sound: 'release_sound' })
+              }
+            >
+              <Icon name="volume-up" />
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       )}

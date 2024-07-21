@@ -91,6 +91,9 @@
 			burn_damage = clamp(value, 0, MAX_BURN_DAMAGE)
 		if("fancy_sounds")
 			fancy_sounds = !fancy_sounds
+			// Different sound set, switching between these could cause issues
+			insert_sound = "Gulp"
+			release_sound = "Splatter"
 		if("insert_sound")
 			var/list/sounds_to_pick_from
 			if(fancy_sounds)
@@ -130,13 +133,22 @@
 	else
 		return null
 
+/obj/vore_belly/proc/get_insert_sound()
+	if(fancy_sounds)
+		return GLOB.vore_sounds_insert_fancy[insert_sound]
+	else
+		return GLOB.vore_sounds_insert_classic[insert_sound]
+
+/obj/vore_belly/proc/get_release_sound()
+	if(fancy_sounds)
+		return GLOB.vore_sounds_release_fancy[release_sound]
+	else
+		return GLOB.vore_sounds_release_classic[release_sound]
+
 /// Handles prey entering a belly, and starts deep_search_prey
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(fancy_sounds)
-		owner.play_vore_sound(GLOB.vore_sounds_insert_fancy[insert_sound])
-	else
-		owner.play_vore_sound(GLOB.vore_sounds_insert_classic[insert_sound])
+	owner.play_vore_sound(get_insert_sound())
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
 		var/mob/M = arrived
@@ -162,10 +174,7 @@
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()
-	if(fancy_sounds)
-		owner.play_vore_sound(GLOB.vore_sounds_release_fancy[release_sound])
-	else
-		owner.play_vore_sound(GLOB.vore_sounds_release_classic[release_sound])
+	owner.play_vore_sound(get_release_sound())
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone
