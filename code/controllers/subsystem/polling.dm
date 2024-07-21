@@ -176,8 +176,21 @@ SUBSYSTEM_DEF(polling)
 	UNTIL(new_poll.finished)
 	if(!(amount_to_pick > 0))
 		return new_poll.signed_up
+
+	//BUBBERSTATION CHANGE START: ANTAG TICKETS INTEGRATION
+	var/list/candidate_tickets = candidates_to_tickets(new_poll.signed_up)
+	for(var/pick in 1 to amount_to_pick)
+		if(!length(candidate_tickets))
+			continue
+		var/mob/chosen_mob = pick_weight(candidate_tickets)
+		candidate_tickets -= chosen_mob
+		new_poll.chosen_candidates += chosen_mob
+	/*
 	for(var/pick in 1 to amount_to_pick)
 		new_poll.chosen_candidates += pick_n_take(new_poll.signed_up)
+	*/
+	//BUBBERSTATION CHANGE END: ANTAG TICKETS INTEGRATION
+
 	if(announce_chosen)
 		new_poll.announce_chosen(group)
 	if(new_poll.chosen_candidates.len == 1)

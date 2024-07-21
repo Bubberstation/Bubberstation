@@ -405,6 +405,10 @@
 		if(el_tail && (el_tail.wag_flags & WAG_WAGGING)) // lizard tail wagging is robust and can swat away assailants!
 			defense_mod += 1
 
+		var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = tackle_target.get_organ_slot(ORGAN_SLOT_SPINE)
+		if(istype(potential_spine))
+			defense_mod += potential_spine.strength_bonus
+
 	// OF-FENSE
 	var/mob/living/carbon/sacker = parent
 	var/sacker_drunkenness = sacker.get_drunk_amount()
@@ -441,6 +445,10 @@
 	if(istype(sacker_tajaran_ears) && HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE))
 		attack_mod += 2 // UwU pounces on you
 	// BUBBER EDIT END
+
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = sacker.get_organ_slot(ORGAN_SLOT_SPINE)
+	if(istype(potential_spine))
+		attack_mod += potential_spine.strength_bonus
 
 	if(ishuman(sacker))
 		var/mob/living/carbon/human/human_sacker = sacker
@@ -504,6 +512,10 @@
 		oopsie_mod -= 6
 	if(HAS_TRAIT(user, TRAIT_HEAD_INJURY_BLOCKED))
 		oopsie_mod -= 6
+
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = user.get_organ_slot(ORGAN_SLOT_SPINE) // Can't snap that spine if it's made of metal.
+	if(istype(potential_spine))
+		oopsie_mod -= potential_spine.strength_bonus
 
 	if(HAS_TRAIT(user, TRAIT_CLUMSY))
 		oopsie_mod += 6 //honk!
