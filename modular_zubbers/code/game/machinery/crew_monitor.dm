@@ -1,9 +1,10 @@
-#define SENSORS_UPDATE_PERIOD 15 SECONDS //Why is this not a global define, why do I have to define it again
+#define SENSORS_UPDATE_PERIOD 30 SECONDS //Why is this not a global define, why do I have to define it again
 
 
 /obj/machinery/computer/crew
 	luminosity = 1
-	light_power = 3
+	light_power = 1.4
+	light_range = 2
 	var/canalarm = FALSE
 
 
@@ -28,11 +29,15 @@
 			break // Why wasn't this here?
 
 	if(canalarm)
+		icon_keyboard = "syndie_key"
+		update_appearance()
 		playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
-		set_light((initial(light_range) + 3), 3, CIRCUIT_COLOR_SECURITY, TRUE)
+		set_light(l_range = light_range, l_power = 3, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
 		spasm_animation(10)
 	else
-		set_light((initial(light_range)), initial(light_power), initial(light_color), TRUE)
+		icon_keyboard = "med_key"
+		update_appearance()
+		set_light(l_range = light_range, l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
 	addtimer(CALLBACK(src, .proc/alarm), SENSORS_UPDATE_PERIOD) // Fix this for 515
 
 	return canalarm
