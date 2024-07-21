@@ -1,12 +1,12 @@
-#define SENSORS_UPDATE_PERIOD 30 SECONDS //Why is this not a global define, why do I have to define it again
-
+#define SENSORS_UPDATE_PERIOD 15 SECONDS //Why is this not a global define, why do I have to define it again
+#define ALARM_PERIOD 45 SECONDS
 
 /obj/machinery/computer/crew
 	luminosity = 1
 	light_power = 1.4
 	light_range = 2
 	var/canalarm = FALSE
-
+	COOLDOWN_DECLARE(alarm_cooldown)
 
 /obj/machinery/computer/crew/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -31,9 +31,11 @@
 	if(canalarm)
 		icon_keyboard = "syndie_key"
 		update_appearance()
-		playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
 		set_light(l_range = light_range, l_power = 3, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
-		spasm_animation(10)
+		if(COOLDOWN_FINISHED(src, alarm_cooldown))
+			playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
+			spasm_animation(10)
+			COOLDOWN_START(src, alarm_cooldown, ALARM_PERIOD)
 	else
 		icon_keyboard = "med_key"
 		update_appearance()
@@ -43,3 +45,4 @@
 	return canalarm
 
 #undef SENSORS_UPDATE_PERIOD
+#undef ALARM_PERIOD
