@@ -1,14 +1,37 @@
-/datum/action/innate/vore
-
-/datum/action/innate/vore/panel
-	name = "Vore Panel"
-
-/datum/action/innate/vore/vore_mode
+/datum/action/innate/vore_mode
 	name = "Vore Mode"
+	desc = "<b>Left Click</b> to switch into vore mode<br><b>Right click</b> to see the vore UI<br>When aggressively grabbing someone in vore mode:<br><ul><li>Click on <b>yourself</b> to eat them</li><li>Click on <b>them</b> to feed yourself to them</li><li>Click on <b>someone else</b> to feed them who you're holding</li></ul>"
 	click_action = TRUE
 	ranged_mousepointer = 'modular_zubbers/icons/effects/mouse_pointers/vore.dmi'
+	default_button_position = "EAST-4:6,SOUTH:5"
 
-/datum/action/innate/vore/vore_mode/do_ability(mob/living/caller, atom/clicked_on)
+	background_icon = 'modular_zubbers/icons/mob/actions/vore.dmi'
+	background_icon_state = "bg"
+	button_icon = 'modular_zubbers/icons/mob/actions/vore.dmi'
+	button_icon_state = "nom"
+
+// This is here so that we can use our custom background with support for bg_active
+/datum/action/innate/vore_mode/apply_button_background(atom/movable/screen/movable/action_button/current_button, force = FALSE)
+	// Determine which icon to use
+	background_icon_state = is_action_active(current_button) ? "bg_active" : "bg"
+
+	if(current_button.active_underlay_icon_state == background_icon_state && !force)
+		return
+
+	// Make the underlay
+	current_button.underlays.Cut()
+	current_button.underlays += image(icon = background_icon, icon_state = background_icon_state)
+	current_button.active_underlay_icon_state = background_icon_state
+
+/datum/action/innate/vore_mode/Trigger(trigger_flags)
+	var/datum/component/vore/V = target
+	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
+		V.ui_interact(owner)
+		return TRUE
+	return ..()
+
+
+/datum/action/innate/vore_mode/do_ability(mob/living/caller, atom/clicked_on)
 	var/datum/component/vore/V = target
 	return V.on_voremode_click(caller, clicked_on)
 
@@ -29,8 +52,7 @@
 
 	var/obj/vore_belly/selected_belly = null
 	var/list/obj/vore_belly/vore_bellies = null
-	var/datum/action/innate/vore/panel/panel_action = null
-	var/datum/action/innate/vore/vore_mode/vore_mode_action = null
+	var/datum/action/innate/vore_mode/vore_mode_action = null
 	var/vore_mode = FALSE
 	var/atom/movable/screen/secret_appearance_holder/appearance_holder = null
 
@@ -39,15 +61,10 @@
 	if(!is_type_in_typecache(parent, GLOB.vore_allowed_mob_types))
 		return COMPONENT_INCOMPATIBLE
 	load_vore_prefs(parent)
-
-	panel_action = new(src)
-	RegisterSignal(panel_action, COMSIG_ACTION_TRIGGER, PROC_REF(open_ui))
 	vore_mode_action = new(src)
-
 	appearance_holder = new()
 
 /datum/component/vore/RegisterWithParent()
-	panel_action?.Grant(parent)
 	vore_mode_action?.Grant(parent)
 
 	var/mob/living/L = parent
@@ -56,7 +73,6 @@
 
 // This has to be careful because it's called as a result of COMPONENT_INCOMPATIBLE
 /datum/component/vore/UnregisterFromParent()
-	panel_action?.Remove(parent)
 	vore_mode_action?.Remove(parent)
 
 	var/mob/living/L = parent
@@ -70,7 +86,6 @@
 	selected_belly = null
 	QDEL_LAZYLIST(vore_bellies)
 	QDEL_NULL(appearance_holder)
-	QDEL_NULL(panel_action)
 	QDEL_NULL(vore_mode_action)
 	return ..()
 
@@ -153,11 +168,6 @@
 	else // Parent wants to feed pulled to clicked_on
 		feed_other_to_other(clicked_on)
 	return TRUE
-
-
-/datum/component/vore/proc/open_ui()
-	SIGNAL_HANDLER // We do call a blocking proc, ui_interact, but it's brief
-	INVOKE_ASYNC(src, PROC_REF(ui_interact), parent)
 
 /// This is so complicated because we have to support three distinct use cases all in one proc:
 /// 1. Pred eating prey, user = pred
