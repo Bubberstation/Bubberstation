@@ -21876,24 +21876,11 @@
 /turf/open/floor/iron,
 /area/station/hallway/floor1/aft)
 "eWC" = (
-/obj/machinery/computer/records/medical{
+/obj/machinery/computer/crew{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
-	},
-/obj/machinery/button/door/directional/west{
-	id = "MedbayFoyer";
-	name = "Medbay Doors Control";
-	normaldoorcontrol = 1;
-	pixel_y = 6;
-	req_access = list("medical")
-	},
-/obj/machinery/button/door/directional/west{
-	id = "paramed_dispatch_desk";
-	name = "Desk Shutter Control";
-	pixel_y = -4;
-	req_access = list("medical")
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
@@ -26873,13 +26860,26 @@
 /turf/open/floor/iron/small,
 /area/station/construction/mining/aux_base)
 "gdF" = (
-/obj/machinery/computer/crew{
+/obj/machinery/computer/records/medical{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /obj/machinery/camera/autoname/directional/south,
+/obj/machinery/button/door/directional/west{
+	id = "paramed_dispatch_desk";
+	name = "Desk Shutter Control";
+	pixel_y = -4;
+	req_access = list("medical")
+	},
+/obj/machinery/button/door/directional/west{
+	id = "MedbayFoyer";
+	name = "Medbay Doors Control";
+	normaldoorcontrol = 1;
+	pixel_y = 6;
+	req_access = list("medical")
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "gdG" = (
@@ -33411,6 +33411,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct/waste,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "hBJ" = (
@@ -52630,17 +52631,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/hallway)
 "mif" = (
-/obj/structure/table/glass,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/item/clipboard,
-/obj/item/toy/figure/md{
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/hypospray/medipen{
-	pixel_y = -4
-	},
+/obj/machinery/light/directional/east,
+/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "mig" = (
@@ -57506,9 +57501,9 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
-/obj/structure/extinguisher_cabinet/directional/west,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct/waste,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "nmX" = (
@@ -59316,11 +59311,17 @@
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/greater)
 "nJs" = (
-/obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/machinery/light/directional/east,
+/obj/structure/table/glass,
+/obj/item/toy/figure/md{
+	pixel_y = 4
+	},
+/obj/item/clipboard,
+/obj/item/reagent_containers/hypospray/medipen{
+	pixel_y = -4
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "nJw" = (
@@ -78205,7 +78206,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer4,
-/obj/machinery/airalarm/directional/west,
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 1
 	},
@@ -131183,7 +131183,7 @@ oCA
 bLR
 gcP
 kCN
-kCN
+ycX
 kCN
 kCN
 oSI
@@ -132468,7 +132468,7 @@ niE
 gUL
 reV
 kCN
-kCN
+ycX
 kCN
 kCN
 qgJ
