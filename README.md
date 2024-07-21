@@ -23,7 +23,7 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 ## Contribution Rules and Guidelines
 
 **1. Do Not Be A Dick**
-- The S.P.L.U.R.T. main repository is run by and contributed by volunteers. Please be considerate with the people who help maintaining our station. We reserve the right to permanently remove anyone who does not show both our contributor's and maintainer's common decency.
+- The S.P.L.U.R.T. main repository is run by and contributed by volunteers. Please be considerate with the people who help maintain our codebase. We reserve the right to permanently remove anyone who does not show both our contributors and maintainers common decency.
 
 **2. Modularization Standards Will be Upheld**
 - This codebase is a active downstream to Bubberstation with frequent upstream merges.
