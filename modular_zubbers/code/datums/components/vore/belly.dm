@@ -153,7 +153,6 @@
 	if(ismob(arrived))
 		var/mob/M = arrived
 		deep_search_prey(M)
-		// TODO: Noises
 		// TODO: Insertion Verb
 		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
 		// Add the appearance_holder to prey so they can see fellow prey
@@ -202,7 +201,8 @@
 /obj/vore_belly/proc/serialize()
 	return list(
 		"name" = name,
-		"desc" = desc, // TODO: Save digest mode
+		"desc" = desc,
+		"digest_mode" = digest_mode?.name,
 		"brute_damage" = brute_damage,
 		"burn_damage" = burn_damage,
 		"fancy_sounds" = fancy_sounds,
@@ -214,6 +214,7 @@
 /obj/vore_belly/proc/deserialize(list/data)
 	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
+	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes["None"]
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
 	fancy_sounds = isnum(data["fancy_sounds"]) ? !!data["fancy_sounds"] : TRUE // if there's no data, make it true by default

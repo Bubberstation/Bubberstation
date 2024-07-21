@@ -404,16 +404,31 @@ const BellyUI = (props: {
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Belly Mode" verticalAlign="top">
-            <Dropdown
-              color={
-                belly.digest_mode === DigestMode.Digest ? 'bad' : 'default'
-              }
-              options={Object.values(DigestMode)}
-              selected={belly.digest_mode}
-              onSelected={(value) =>
-                act('edit_belly', { ref: belly.ref, var: 'digest_mode', value })
-              }
-            />
+            {editing ? (
+              <Dropdown
+                color={
+                  belly.digest_mode === DigestMode.Digest ? 'bad' : 'default'
+                }
+                options={Object.values(DigestMode)}
+                selected={belly.digest_mode}
+                onSelected={(value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'digest_mode',
+                    value,
+                  })
+                }
+              />
+            ) : (
+              <Box
+                inline
+                color={
+                  belly.digest_mode === DigestMode.Digest ? 'bad' : 'default'
+                }
+              >
+                {belly.digest_mode}
+              </Box>
+            )}
           </LabeledList.Item>
           <LabeledList.Item label="Burn Damage">
             {editing ? (
