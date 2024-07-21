@@ -8,6 +8,11 @@
 	var/brute_damage = 0
 	var/burn_damage = 1
 
+	// Sounds
+	var/fancy_sounds = TRUE
+	var/insert_sound = "Gulp"
+	var/release_sound = "Splatter"
+
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
 	. = ..()
 	if(!istype(new_owner))
@@ -61,6 +66,10 @@
 	data["brute_damage"] = brute_damage
 	data["burn_damage"] = burn_damage
 
+	data["fancy_sounds"] = fancy_sounds
+	data["insert_sound"] = insert_sound
+	data["release_sound"] = release_sound
+
 	return data
 
 /// Called from /datum/component/vore/ui_act to update belly settings
@@ -80,6 +89,26 @@
 			brute_damage = clamp(value, 0, MAX_BRUTE_DAMAGE)
 		if("burn_damage")
 			burn_damage = clamp(value, 0, MAX_BURN_DAMAGE)
+		if("fancy_sounds")
+			fancy_sounds = !fancy_sounds
+		if("insert_sound")
+			var/list/sounds_to_pick_from
+			if(fancy_sounds)
+				sounds_to_pick_from = GLOB.vore_sounds_insert_fancy
+			else
+				sounds_to_pick_from = GLOB.vore_sounds_insert_classic
+			var/new_sound = tgui_input_list(usr, "Pick an insert sound", "Insert Sound", sounds_to_pick_from, insert_sound)
+			if(new_sound)
+				insert_sound = new_sound
+		if("release_sound")
+			var/list/sounds_to_pick_from
+			if(fancy_sounds)
+				sounds_to_pick_from = GLOB.vore_sounds_release_fancy
+			else
+				sounds_to_pick_from = GLOB.vore_sounds_release_classic
+			var/new_sound = tgui_input_list(usr, "Pick an release sound", "Release Sound", sounds_to_pick_from, release_sound)
+			if(new_sound)
+				release_sound = new_sound
 
 // Disables assume_air
 /obj/vore_belly/assume_air(datum/gas_mixture/giver)
@@ -158,7 +187,10 @@
 		"name" = name,
 		"desc" = desc,
 		"brute_damage" = brute_damage,
-		"burn_damage" = burn_damage
+		"burn_damage" = burn_damage,
+		"fancy_sounds" = fancy_sounds,
+		"insert_sound" = insert_sound,
+		"release_sound" = release_sound,
 	)
 
 /// Deserializes this belly from savefile data
@@ -167,3 +199,20 @@
 	desc = strip_html_full(data["desc"]) || "(Bad Desc)"
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
+	fancy_sounds = isnum(data["fancy_sounds"]) ? !!data["fancy_sounds"] : TRUE // if there's no data, make it true by default
+
+	if(istext(data["insert_sound"]))
+		var/new_insert_sound = trim(sanitize(data["insert_sound"]), MAX_MESSAGE_LEN)
+		if(new_insert_sound)
+			if(fancy_sounds && (new_insert_sound in GLOB.vore_sounds_insert_fancy))
+				insert_sound = new_insert_sound
+			if(!fancy_sounds && (new_insert_sound in GLOB.vore_sounds_insert_classic))
+				insert_sound = new_insert_sound
+
+	if(istext(data["release_sound"]))
+		var/new_release_sound = trim(sanitize(data["release_sound"]), MAX_MESSAGE_LEN)
+		if(new_release_sound)
+			if(fancy_sounds && (new_release_sound in GLOB.vore_sounds_release_fancy))
+				release_sound = new_release_sound
+			if(!fancy_sounds && (new_release_sound in GLOB.vore_sounds_release_classic))
+				release_sound = new_release_sound

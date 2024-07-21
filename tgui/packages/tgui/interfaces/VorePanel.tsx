@@ -20,6 +20,7 @@ import {
   TextArea,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 import { FitText } from '../components';
 
@@ -43,6 +44,9 @@ type Belly = {
   digest_mode: DigestMode;
   burn_damage: number;
   brute_damage: number;
+  fancy_sounds: BooleanLike;
+  insert_sound: string;
+  release_sound: string;
 };
 
 type PreyBellyView = Omit<Belly, 'index' | 'ref'> & {
@@ -435,6 +439,64 @@ const BellyUI = (props: {
               toFixed(belly.brute_damage, 2)
             )}
           </LabeledList.Item>
+          <LabeledList.Divider />
+          <LabeledList.Item label="Fancy Sounds">
+            {editing ? (
+              <Button
+                icon="pencil"
+                onClick={() =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'fancy_sounds',
+                    value: '',
+                  })
+                }
+                selected={belly.fancy_sounds}
+              >
+                {belly.fancy_sounds ? 'On' : 'Off'}
+              </Button>
+            ) : belly.fancy_sounds ? (
+              'On'
+            ) : (
+              'Off'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Insertion Sound">
+            {editing ? (
+              <Button
+                icon="pencil"
+                onClick={() =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'insert_sound',
+                    value: '',
+                  })
+                }
+              >
+                {belly.insert_sound}
+              </Button>
+            ) : (
+              belly.insert_sound
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Release Sound">
+            {editing ? (
+              <Button
+                icon="pencil"
+                onClick={() =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'release_sound',
+                    value: '',
+                  })
+                }
+              >
+                {belly.release_sound}
+              </Button>
+            ) : (
+              belly.release_sound
+            )}
+          </LabeledList.Item>
         </LabeledList>
       )}
     </Section>
@@ -447,7 +509,7 @@ const digestModeToPreyMode = {
 };
 
 const Inside = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
   const { inside } = data;
 
   if (!inside) {
