@@ -21,7 +21,7 @@
 		if(mob.z != src.z  && !HAS_TRAIT(mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
 		var/obj/item/clothing/under/uniform = mob.w_uniform
-		if(uniform.sensor_mode >= SENSOR_VITALS && (HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD))
+		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && (HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD))
 			if(mob.get_dnr()) // DNR won't beep anymore
 				continue
 			canalarm = TRUE
