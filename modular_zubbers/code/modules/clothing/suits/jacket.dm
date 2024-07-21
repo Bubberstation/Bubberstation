@@ -64,7 +64,7 @@
 	armor_type = /datum/armor/toggle_labcoat
 	toggle_noun = "zipper"
 
-//Monke Station Bunnies
+//ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/suit/jacket/tailcoat //parent type
 	name = "tailcoat"

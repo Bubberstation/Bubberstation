@@ -17,7 +17,7 @@
 		equip_delay_other = 1 SECONDS
 		equip_delay_self = 0
 
-//Bunny Stuff from Monkee
+//ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/neck/tie/bunnytie
 	name = "bowtie collar"

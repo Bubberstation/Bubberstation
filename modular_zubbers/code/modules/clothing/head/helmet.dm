@@ -63,7 +63,7 @@
 	icon_state = "clussy_wig"
 	flags_inv = HIDEHAIR
 
-//Bunny Ears from Monkee.
+//ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/head/playbunnyears
 	name = "bunny ears headband"

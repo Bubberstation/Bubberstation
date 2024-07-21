@@ -8,6 +8,8 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
 	body_parts_covered = CHEST|LEGS|GROIN
 
+//ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
+
 /obj/item/clothing/under/costume/playbunny
 	name = "bunny suit"
 	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."

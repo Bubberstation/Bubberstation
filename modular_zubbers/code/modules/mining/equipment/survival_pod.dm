@@ -20,7 +20,6 @@
 
 /obj/item/storage/backpack/duffelbag/mining_bunny
 	name = "Bunny Kit"
-	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
 	icon_state = "duffel-explorer"
 	inhand_icon_state = "duffel-explorer"
 
