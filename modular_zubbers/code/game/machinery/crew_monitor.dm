@@ -32,7 +32,7 @@
 		icon_keyboard = "syndie_key" // first just a red keyboard
 		set_light(l_range = 1.9, l_power = 3, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
 		if(COOLDOWN_FINISHED(src, alarm_cooldown))
-			icon_screen = "commsyndie" // okay pay attention nerds, full red screen
+			icon_screen = "syndishuttle" // okay pay attention nerds, full red screen
 			update_appearance()
 			playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
 			spasm_animation(10)
