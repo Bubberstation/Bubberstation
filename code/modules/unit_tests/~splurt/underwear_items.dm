@@ -31,6 +31,7 @@
 		var/current = file2text(file("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm")) //Apparently unix doesn't like rustg file procs
 		if(current != output_file)
 			log_test("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm is out of date.")
+			log_test(current)
 			fail = TRUE
 
 	if(fail)
