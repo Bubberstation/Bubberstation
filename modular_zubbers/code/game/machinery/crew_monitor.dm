@@ -29,18 +29,14 @@
 			break // Why wasn't this here?
 
 	if(canalarm)
-		icon_keyboard = "syndie_key" // first just a red keyboard
+		icon_keyboard = "syndie_key"
+		update_appearance()
 		set_light(l_range = 1.9, l_power = 3, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
 		if(COOLDOWN_FINISHED(src, alarm_cooldown))
-			icon_screen = "syndishuttle" // okay pay attention nerds, full red screen
-			update_appearance()
-			playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
-			spasm_animation(10)
+			playsound(source = src, soundin = 'sound/machines/twobeep.ogg', vol = 50, vary = TRUE)
+			spasm_animation(1 SECONDS)
 			COOLDOWN_START(src, alarm_cooldown, ALARM_PERIOD)
-		else
-			update_appearance()
 	else
-		icon_screen = "crew"
 		icon_keyboard = "med_key"
 		update_appearance()
 		set_light(l_range = initial(light_range), l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
