@@ -42,7 +42,7 @@ Our modularization protocols are founded on three pillars:
 
 1. **Modularize anything that's reasonable to modularize:** This includes anything that can be modularized without decreasing its quality or the quality of existing code, and won't logically cause more issues by modularizing than not doing it.
 2. **Use commenting conventions for non-modular edits:** When editing non-modular code, make sure to adequately use the [commenting conventions](#commenting-conventions) to ensure it is known that it's a non-modular edit.
-3. **It's ok to mess up:** These rules are intended less as a set of guidelines for contributors to strictly follow, but rather coding standards that we all collectively help to attain, for examble through maintainers helping any contributors fulfill them in their pull requests.
+3. **It's ok to mess up:** These guidelines are intended less as a set of ironclad rules for contributors to strictly follow, but rather coding standards that we all collectively help to attain, for example through maintainers helping any contributors fulfill them in their pull requests.
 
 ### Modular Overrides
 
