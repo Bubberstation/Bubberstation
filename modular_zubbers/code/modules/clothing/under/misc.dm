@@ -176,6 +176,19 @@
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
 
+/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit
+	name = "bunrunner suit"
+	desc = "The staple of any bunny themed gamer. Has enough space for one extra soda, if you're worthy."
+	icon_state = "bunnysuit_bitrunner"
+	inhand_icon_state = null
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit/Initialize(mapload)
+	. = ..()
+
 //ENGI
 
 /obj/item/clothing/under/rank/engineering/engineer_bunnysuit
@@ -277,6 +290,20 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/medical/pathologist_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/medical/coroner_bunnysuit
+	desc = "The staple of any bunny themed coroners. A rejected mime costume."
+	name = "coroner's bunnysuit"
+	icon_state = "bunnysuit_coroner"
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/medical/coroner_bunnysuit/Initialize(mapload)
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
@@ -416,6 +443,20 @@
 	desc = "The staple of any bunny themed detectives. Capable of storing precious candy corns."
 	name = "detective's bunnysuit"
 	icon_state = "bunnysuit_det"
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/rank/security/detective_bunnysuit/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+/obj/item/clothing/under/rank/security/detective_bunnysuit/noir
+	desc = "The staple of any noir bunny themed detectives. Capable of storing precious candy corns."
+	name = "noir detective's bunnysuit"
+	icon_state = "bunnysuit_det_noir"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS

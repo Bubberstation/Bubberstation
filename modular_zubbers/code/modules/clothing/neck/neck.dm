@@ -162,6 +162,21 @@
 /obj/item/clothing/neck/tie/bunnytie/mail/tied
 	is_tied = TRUE
 
+/obj/item/clothing/neck/tie/bunnytie/bitrunner
+	name = "bitrunner's bowtie"
+	desc = "Bitrunners were told that wearing a novelty shirt with a printed bow tie wasn't enough for formal events."
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_bitrunner_tied"
+	tie_type = "bowtie_collar_bitrunner"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/bitrunner/tied
+	is_tied = TRUE
+
 //ENGI
 
 /obj/item/clothing/neck/tie/bunnytie/engineer
@@ -270,6 +285,21 @@
 	flags_1 = null
 
 /obj/item/clothing/neck/tie/bunnytie/pathologist/tied
+	is_tied = TRUE
+
+/obj/item/clothing/neck/tie/bunnytie/coroner
+	name = "coroner's bowtie"
+	desc = "A black tie that includes a collar. Looking dead...Dead good!"
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "bowtie_collar_virologist_tied"
+	tie_type = "bowtie_collar_virologist"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+	flags_1 = null
+
+/obj/item/clothing/neck/tie/bunnytie/coroner/tied
 	is_tied = TRUE
 
 /obj/item/clothing/neck/tie/bunnytie/cmo

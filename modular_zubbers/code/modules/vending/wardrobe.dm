@@ -112,6 +112,15 @@
 		/obj/item/clothing/neck/tie/bunnytie/pathologist = 2,
 	)
 
+/obj/machinery/vending/wardrobe/coroner_wardrobe
+	zubbers_products = list(
+		/obj/item/clothing/head/playbunnyears/coroner = 2,
+		/obj/item/clothing/under/rank/medical/coroner_bunnysuit = 2,
+		/obj/item/clothing/suit/toggle/labcoat/coroner_tailcoat = 2,
+		/obj/item/clothing/neck/tie/bunnytie/coroner = 2,
+	)
+
+
 /obj/machinery/vending/wardrobe/science_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/scientist = 3,
@@ -143,6 +152,9 @@
 		/obj/item/clothing/under/rank/security/detective_bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/det_suit/tailcoat = 2,
 		/obj/item/clothing/neck/tie/bunnytie/detective = 2,
+		/obj/item/clothing/head/playbunnyears/detective/noir = 2,
+		/obj/item/clothing/under/rank/security/detective_bunnysuit/noir = 2,
+		/obj/item/clothing/suit/jacket/det_suit/tailcoat/noir = 2,
 	)
 
 
@@ -158,6 +170,10 @@
 		/obj/item/clothing/head/playbunnyears/mailman = 1,
 		/obj/item/clothing/under/rank/cargo/mailman_bunnysuit = 1,
 		/obj/item/clothing/neck/tie/bunnytie/mailman = 1,
+		/obj/item/clothing/head/playbunnyears/bitrunner = 3,
+		/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit = 3,
+		/obj/item/clothing/neck/tie/bunnytie/bitrunner = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/bitrunner = 3,
 	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe

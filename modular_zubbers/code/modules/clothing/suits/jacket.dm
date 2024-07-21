@@ -196,7 +196,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/cargo
@@ -207,7 +206,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-
 	greyscale_colors = null
 
 /obj/item/clothing/suit/jacket/tailcoat/miner
@@ -218,7 +216,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-
 	greyscale_colors = null
 	cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -250,6 +247,16 @@
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
 
+
+/obj/item/clothing/suit/jacket/tailcoat/bitrunner
+	name = "bitrunner tailcoat"
+	desc = "A black and gold coat worn by bunny themed cargo technicians. Open your Space Colas and let's fuckin' game!"
+	icon_state = "bitrunner"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 //ENGI
 
@@ -366,6 +373,15 @@
 	name = "pathologist's tailcoat"
 	desc = "A sterile white and green coat worn by bunny themed pathologists. The more stylish and ineffective alternative to a biosuit."
 	icon_state = "virologist"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	body_parts_covered = CHEST|ARMS|GROIN
+	species_exception = null
+
+/obj/item/clothing/suit/toggle/labcoat/coroner_tailcoat
+	name = "pathologist's tailcoat"
+	desc = "A sterile black and white coat worn by bunny themed coroners. Adorned with a skull on the back."
+	icon_state = "coroner"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	body_parts_covered = CHEST|ARMS|GROIN
@@ -488,6 +504,13 @@
 	name = "detective's tailcoat"
 	desc = "A reinforced tailcoat worn by bunny themed detectives. Perfect for a hard boiled no-nonsense type of gal."
 	icon_state = "detective"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+
+/obj/item/clothing/suit/jacket/det_suit/tailcoat/noir
+	name = "noir detective's tailcoat"
+	desc = "A reinforced tailcoat worn by noir bunny themed detectives. Perfect for a hard boiled no-nonsense type of gal."
+	icon_state = "detective_noir"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 

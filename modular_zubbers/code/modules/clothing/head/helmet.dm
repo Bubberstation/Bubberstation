@@ -174,6 +174,16 @@
 	greyscale_config = null
 	greyscale_config_worn = null
 
+/obj/item/clothing/head/playbunnyears/bitrunner
+	name = "bunrunner's bunny ears"
+	desc = "Black and gold with stains of space mountain. The official wear of the Carota E-Sports team.."
+	icon_state = "bitrunner"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
 //ENGI
 
 /obj/item/clothing/head/playbunnyears/engineer
@@ -236,6 +246,16 @@
 	name = "pathologist's bunny ears"
 	desc = "White and green bunny ears attached to a headband. This is not proper PPE gear."
 	icon_state = "virologist"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
+
+/obj/item/clothing/head/playbunnyears/coroner
+	name = "coroner's bunny ears"
+	desc = "Black and white bunny ears attached to a headband. Please don't wear this to a funeral."
+	icon_state = "coroner"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
@@ -382,6 +402,14 @@
 	fire = 30
 	acid = 50
 	wound = 5
+
+/obj/item/clothing/head/playbunnyears/detective/noir
+	name = "noir detective's bunny ears"
+	desc = "Black bunny ears attached to a white headband. Big ears for listening to calls from hysteric dames. In glorious black and white!"
+	icon_state = "detective_noir"
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/prisoner
 	name = "prisoner's bunny ears"
