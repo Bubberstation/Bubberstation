@@ -18,6 +18,12 @@
 		socks = list()
 	)
 
+	var/list/files_by_type = list(
+		briefs = 'modular_zzplurt/code/modules/clothing/underwear/~generated_files/briefs.dm',
+		shirt = 'modular_zzplurt/code/modules/clothing/underwear/~generated_files/shirt.dm',
+		socks = 'modular_zzplurt/code/modules/clothing/underwear/~generated_files/socks.dm'
+	)
+
 /datum/unit_test/underwear_items/Run()
 	outputs["briefs"] = generate_objects_file(/datum/sprite_accessory/underwear)
 	outputs["shirt"] = generate_objects_file(/datum/sprite_accessory/undershirt) + generate_objects_file(/datum/sprite_accessory/bra, FALSE)
@@ -28,10 +34,10 @@
 		var/list/lines = outputs[object_type]
 		var/output_file = "[lines.Join("\n")]"
 		rustg_file_write(output_file, "data/~generated_files/[object_type].dm")
-		var/current = file2text(file("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm")) //Apparently unix doesn't like rustg file procs
+		var/current = file2text(files_by_type[object_type])
+		log_test("[files_by_type[object_type]]: [current]")
 		if(current != output_file)
-			log_test("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm is out of date.")
-			log_test(current)
+			log_test("[files_by_type[object_type]] is out of date.")
 			fail = TRUE
 
 	if(fail)
