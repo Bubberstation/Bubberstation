@@ -160,6 +160,7 @@
 	icon_state = "explorer"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	armor_type = /datum/armor/hooded_explorer
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
