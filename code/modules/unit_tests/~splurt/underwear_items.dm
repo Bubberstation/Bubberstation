@@ -28,9 +28,9 @@
 		var/list/lines = outputs[object_type]
 		var/output_file = "[lines.Join("\n")]"
 		rustg_file_write(output_file, "data/~generated_files/[object_type].dm")
-		var/current = world.system_type == UNIX ? file2text(file("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm")) : rustg_file_read("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm") //Apparently unix doesn't like rustg file procs
+		var/current = file2text(file("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm")) //Apparently unix doesn't like rustg file procs
 		if(current != output_file)
-			log_test("[object_type] is out of date.")
+			log_test("modular_zzplurt/code/modules/clothing/underwear/~generated_files/[object_type].dm is out of date.")
 			fail = TRUE
 
 	if(fail)
