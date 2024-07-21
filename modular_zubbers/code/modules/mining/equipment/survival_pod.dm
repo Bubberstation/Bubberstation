@@ -20,6 +20,7 @@
 
 /obj/item/storage/backpack/duffelbag/mining_bunny
 	name = "Bunny Kit"
+	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
 	icon_state = "duffel-explorer"
 	inhand_icon_state = "duffel-explorer"
 
@@ -32,6 +33,7 @@
 
 /datum/orderable_item/mining/bunny
 	item_path = /obj/item/storage/backpack/duffelbag/mining_bunny
+	desc = "A mining outfit kit themed around bunnies, they do live in burrows after all..."
 	cost_per_order = 500
 
 /obj/item/survivalcapsule/medical
