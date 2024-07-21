@@ -18,6 +18,9 @@
 #define PREF_TRINARY_PROMPT 1
 #define PREF_TRINARY_ALWAYS 2
 
+#define CHANNEL_PREYLOOP 1004
+#define COOLDOWN_PREYLOOP "preyloop"
+
 /// What types of mobs are allowed to participate in vore at all?
 /// This controls whether vore components are added on any mob Login for vore-enabled clients
 GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(

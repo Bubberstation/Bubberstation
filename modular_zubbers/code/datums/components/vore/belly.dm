@@ -9,6 +9,9 @@
 	var/burn_damage = 1
 
 	// Sounds
+	var/is_wet = TRUE // TODO: Implement changing
+	var/wet_loop = TRUE // TODO: Implement changing
+
 	var/fancy_sounds = TRUE
 	var/insert_sound = "Gulp"
 	var/release_sound = "Splatter"
@@ -39,6 +42,7 @@
 /// On process, bellies ask their digestion mode (if there is one) to process them
 /obj/vore_belly/process(seconds_per_tick)
 	digest_mode?.handle_belly(src, seconds_per_tick)
+	prey_loop()
 
 /// Called from /datum/component/vore/ui_data to display belly settings
 /obj/vore_belly/ui_data(mob/user)
@@ -133,6 +137,7 @@
 	else
 		return null
 
+/// Sounds
 /obj/vore_belly/proc/get_insert_sound()
 	if(fancy_sounds)
 		return GLOB.vore_sounds_insert_fancy[insert_sound]
@@ -144,6 +149,37 @@
 		return GLOB.vore_sounds_release_fancy[release_sound]
 	else
 		return GLOB.vore_sounds_release_classic[release_sound]
+
+/obj/vore_belly/proc/prey_loop()
+	if(!is_wet || !wet_loop)
+		return
+
+	// Matryoshkaless systems can save some cpu here
+	#if MATRYOSHKA_BANNED
+	for(var/mob/living/listening_mob in src)
+	#else
+	for(var/mob/living/listening_mob in get_hearers_in_view(0, src) - owner.parent) // don't listen to your own tummy...
+	#endif
+		var/datum/component/vore/listener_vore = listening_mob.GetComponent(/datum/component/vore)
+		if(!listener_vore || !listener_vore.vore_prefs)
+			continue
+		var/datum/vore_preferences/listener_vore_prefs = listener_vore.vore_prefs
+		var/pref_enabled = listener_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion_noises)
+		//We don't bother executing any other code if the prey doesn't want to hear the noises.
+		if(!pref_enabled)
+			// In case someone turns off their pref
+			listening_mob.stop_sound_channel(CHANNEL_PREYLOOP)
+			continue
+
+		// We don't want the sounds to overlap, but we do want them to steadily replay.
+		// We also don't want the sounds to play if the pred hasn't marked this belly as fleshy, or doesn't
+		// have the right sounds to play.
+		if(TIMER_COOLDOWN_FINISHED(listening_mob, COOLDOWN_PREYLOOP))
+			listening_mob.stop_sound_channel(CHANNEL_PREYLOOP)
+			// Must reload each time because playsound_local modifies the sound datum
+			var/sound/preyloop = sound('modular_zubbers/sound/vore/sunesound/prey/loop.ogg')
+			listening_mob.playsound_local(get_turf(src), preyloop, 80, 0, channel = CHANNEL_PREYLOOP)
+			TIMER_COOLDOWN_START(listening_mob, COOLDOWN_PREYLOOP, 52 SECONDS)
 
 /// Handles prey entering a belly, and starts deep_search_prey
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -177,6 +213,13 @@
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone
+		// If matryoshka is banned, they can't end up in another belly
+		#if MATRYOSHKA_BANNED
+		M.stop_sound_channel(CHANNEL_PREYLOOP)
+		#else
+		if(!istype(M.loc, /obj/vore_belly))
+			M.stop_sound_channel(CHANNEL_PREYLOOP)
+		#endif
 		// We added it so let's take it away
 		if(M.client)
 			M.client.screen -= owner.appearance_holder

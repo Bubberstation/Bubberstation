@@ -372,21 +372,18 @@
 /************/
 /datum/component/vore/proc/play_vore_sound(soundin, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
 	var/turf/turf_source = get_turf(parent)
-	var/source_z = turf_source.z
-
 	var/sound/S = isdatum(soundin) ? soundin : sound(get_vore_sfx(soundin))
 
 	// We never go through walls so get_hearers_in_view is fine
 	// It'll also cover our parent and their belly contents via spatial_grid
 	var/list/listeners = get_hearers_in_view(range, parent)
 
-	for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[source_z])
+	// Note: because ghosts can't have vore prefs, we can't send sounds to them :(
+	for(var/mob/living/listening_mob in listeners)
 		if(get_dist(listening_mob, turf_source) > range)
 			continue
 		var/datum/component/vore/listener_vore = listening_mob.GetComponent(/datum/component/vore)
-		if(!listener_vore)
-			continue
-		if(!listener_vore.vore_prefs)
+		if(!listener_vore || !listener_vore.vore_prefs)
 			continue
 		var/datum/vore_preferences/listener_vore_prefs = listener_vore.vore_prefs
 		var/pref_enabled = listener_vore_prefs.read_preference(pref)
