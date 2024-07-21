@@ -609,3 +609,6 @@
 
 /obj/item/clothing/neck/tie/bunnytie/lawyer_good/tied
 	is_tied = TRUE
+
+//BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+

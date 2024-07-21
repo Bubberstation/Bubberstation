@@ -730,5 +730,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
 	greyscale_config = null
 	greyscale_config_worn = null
-
 	greyscale_colors = null
+
+//BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION

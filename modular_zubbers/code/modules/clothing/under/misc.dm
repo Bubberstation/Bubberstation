@@ -739,3 +739,5 @@
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)
+
+//BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION

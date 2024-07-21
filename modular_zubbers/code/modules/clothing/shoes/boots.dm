@@ -51,6 +51,8 @@
 	greyscale_colors = "#d0d7da"
 	flags_1 = null
 
+//HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
+
 /obj/item/clothing/shoes/workboots/mining/heeled
 	name = "heeled mining boots"
 	desc = "Steel-toed mining heels for mining in hazardous environments. This was an awful idea."
@@ -117,6 +119,8 @@
 	greyscale_colors = "#ff8d1e"
 	flags_1 = null
 
+//HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
+
 /obj/item/clothing/shoes/jackboots/gogo_boots
 	name = "tactical go-go boots"
 	desc = "Highly tactical footwear designed to give you a better view of the battlefield."
@@ -131,6 +135,8 @@
 	greyscale_colors = "#3e6588"
 	flags_1 = null
 
+//HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
+
 /obj/item/clothing/shoes/galoshes/heeled
 	name = "heeled galoshes"
 	desc = "A pair of yellow rubber heels, designed to prevent slipping on wet surfaces. These are even harder to walk in than normal heels."
@@ -143,6 +149,8 @@
 	name = "green heels"
 	greyscale_colors = "#50d967"
 	flags_1 = null
+
+//HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/shoes/clown_shoes/heeled
 	name = "honk heels"
