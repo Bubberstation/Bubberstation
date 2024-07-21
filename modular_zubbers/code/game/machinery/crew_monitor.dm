@@ -4,7 +4,7 @@
 /obj/machinery/computer/crew
 	luminosity = 1
 	light_power = 1.4
-	light_range = 2
+	light_range = 1.7
 	var/canalarm = FALSE
 	COOLDOWN_DECLARE(alarm_cooldown)
 
@@ -31,7 +31,7 @@
 	if(canalarm)
 		icon_keyboard = "syndie_key"
 		update_appearance()
-		set_light(l_range = light_range, l_power = 3, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
+		set_light(l_range = 1.9, l_power = 3, l_color = CIRCUIT_COLOR_SECURITY, l_on = TRUE)
 		if(COOLDOWN_FINISHED(src, alarm_cooldown))
 			playsound(src, 'sound/machines/twobeep.ogg', 50, TRUE)
 			spasm_animation(10)
@@ -39,7 +39,7 @@
 	else
 		icon_keyboard = "med_key"
 		update_appearance()
-		set_light(l_range = light_range, l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
+		set_light(l_range = initial(light_range), l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
 	addtimer(CALLBACK(src, .proc/alarm), SENSORS_UPDATE_PERIOD) // Fix this for 515
 
 	return canalarm
