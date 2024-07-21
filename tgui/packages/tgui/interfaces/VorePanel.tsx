@@ -587,9 +587,11 @@ const PrefTrinary = (props: { key: string; name: string; value: number }) => {
   return (
     <Button
       fluid
+      icon={value === 2 ? 'star' : value === 1 ? 'star-half-alt' : 'star-o'}
       textAlign="center"
       tooltipPosition="bottom"
       onClick={() => act('set_pref', { key, value: (value + 1) % 3 })}
+      selected={value === 2}
       tooltip={
         value === 2
           ? 'You will automatically accept vore of this type'
@@ -603,7 +605,29 @@ const PrefTrinary = (props: { key: string; name: string; value: number }) => {
   );
 };
 
+const PrefBinary = (props: { key: string; name: string; value: number }) => {
+  const { act } = useBackend();
+  const { key, name, value } = props;
+
+  return (
+    <Button
+      fluid
+      icon={value ? 'toggle-on' : 'toggle-off'}
+      textAlign="center"
+      tooltipPosition="bottom"
+      onClick={() => act('set_pref', { key, value: !value })}
+      tooltip={value ? 'Enabled' : 'Disabled'}
+      selected={value}
+    >
+      {name} - {value ? 'Enabled' : 'Disabled'}
+    </Button>
+  );
+};
+
 const PREF_TYPE_MAP = {
   prey_toggle: { component: PrefTrinary, name: 'Prey Toggle' },
   pred_toggle: { component: PrefTrinary, name: 'Pred Toggle' },
+  eating_noises: { component: PrefBinary, name: 'Eating Noises' },
+  digestion_noises: { component: PrefBinary, name: 'Digestion Noises' },
+  belch_noises: { component: PrefBinary, name: 'Belch Noises' },
 };

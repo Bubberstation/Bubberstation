@@ -192,3 +192,27 @@ GLOBAL_LIST_INIT(vore_preference_entries_by_key, init_vore_preference_entries_by
 
 /datum/vore_pref/trinary/pred
 	savefile_key = "pred_toggle"
+
+/datum/vore_pref/toggle
+	abstract_type = /datum/vore_pref/toggle
+
+/datum/vore_pref/toggle/is_valid(value)
+	return isnum(value) && (value == FALSE || value == TRUE)
+
+/datum/vore_pref/toggle/deserialize(input, datum/vore_preferences/preferences)
+	return !!input
+
+/datum/vore_pref/toggle/serialize(input)
+	return !!input
+
+/datum/vore_pref/toggle/create_default_value()
+	return TRUE
+
+/datum/vore_pref/toggle/eating_noises
+	savefile_key = "eating_noises"
+
+/datum/vore_pref/toggle/digestion_noises
+	savefile_key = "digestion_noises"
+
+/datum/vore_pref/toggle/belch_noises
+	savefile_key = "belch_noises"
