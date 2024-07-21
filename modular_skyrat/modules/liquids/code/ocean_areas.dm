@@ -10,6 +10,7 @@
 	outdoors = TRUE
 	ambience_index = AMBIENCE_SPACE
 	flags_1 = CAN_BE_DIRTY_1
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | FLORA_ALLOWED
 	sound_environment = SOUND_AREA_SPACE
 
 /area/ocean/generated
@@ -17,7 +18,7 @@
 	map_generator = /datum/map_generator/ocean_generator
 
 /area/ocean/trench
-	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	name = "The Trench"
 
 /area/ocean/trench/generated
