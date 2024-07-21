@@ -13,6 +13,9 @@
 		/obj/item/clothing/head/hats/warden/drill/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/alt/roselia = 1,
 		/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/redsec = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/redsec = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec = 1,
 		/obj/item/clothing/head/hats/hos/elofy = 1,
 		/obj/item/clothing/suit/armor/hos/elofy = 1,
 		/obj/item/clothing/gloves/elofy = 1, //Part of a set so...
@@ -28,6 +31,10 @@
 		/obj/item/clothing/under/rank/nanotrasen_consultant/hubert = 1,
 		/obj/item/clothing/head/razurathhat = 1,
 		/obj/item/clothing/suit/razurathcoat = 1,
+		/obj/item/clothing/head/playbunnyears/centcom = 1,
+		/obj/item/clothing/neck/tie/bunnytie/centcom = 1,
+		/obj/item/clothing/suit/jacket/tailcoat/centcom = 1,
+		/obj/item/clothing/under/costume/playbunny/centcom = 1,
 	)
 
 	access_lists["[ACCESS_COMMAND]"] += list(
