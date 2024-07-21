@@ -10,10 +10,6 @@
 	. = ..()
 	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/misc/collarbell1.ogg'=1,'modular_zubbers/sound/misc/collarbell2.ogg'=1), 50, 100, 8)
 
-/obj/item/clothing/neck/kink_collar/attack_self(mob/user)
-	..()
-	return tagname
-
 /obj/item/clothing/neck/kink_collar/locked/gps
 	name = "tracking collar"
 	desc = "A collar that lets you find your pet anywhere with GPS!"
@@ -42,7 +38,7 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/attack_self(mob/user)
 	. = ..()
-	gps.gpstag = .
+	gps.gpstag = tagname
 
 /obj/item/clothing/neck/kink_collar/locked/gps/examine(mob/user)
 	. = ..()
