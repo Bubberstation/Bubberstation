@@ -2,7 +2,6 @@
 #define ALARM_PERIOD 45 SECONDS
 
 /obj/machinery/computer/crew
-	icon = 'icons/obj/machines/computer.dmi'
 	luminosity = 1
 	light_power = 1.4
 	light_range = 1.7
