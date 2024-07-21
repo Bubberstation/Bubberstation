@@ -133,6 +133,10 @@
 /// Handles prey entering a belly, and starts deep_search_prey
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
+	if(fancy_sounds)
+		owner.play_vore_sound(GLOB.vore_sounds_insert_fancy[insert_sound])
+	else
+		owner.play_vore_sound(GLOB.vore_sounds_insert_classic[insert_sound])
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
 		var/mob/M = arrived
@@ -158,6 +162,10 @@
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()
+	if(fancy_sounds)
+		owner.play_vore_sound(GLOB.vore_sounds_release_fancy[release_sound])
+	else
+		owner.play_vore_sound(GLOB.vore_sounds_release_classic[release_sound])
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone

@@ -365,3 +365,45 @@
 
 /datum/component/vore/proc/complete_vore(mob/living/prey)
 	prey.forceMove(selected_belly)
+
+
+/************/
+/*  Sounds  */
+/************/
+/datum/component/vore/proc/play_vore_sound(soundin, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
+	var/turf/turf_source = get_turf(parent)
+	var/source_z = turf_source.z
+
+	var/sound/S = isdatum(soundin) ? soundin : sound(get_vore_sfx(soundin))
+
+	// We never go through walls so get_hearers_in_view is fine
+	// It'll also cover our parent and their belly contents via spatial_grid
+	var/list/listeners = get_hearers_in_view(range, parent)
+
+	for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[source_z])
+		if(get_dist(listening_mob, turf_source) > range)
+			continue
+		var/datum/component/vore/listener_vore = listening_mob.GetComponent(/datum/component/vore)
+		if(!listener_vore)
+			continue
+		if(!listener_vore.vore_prefs)
+			continue
+		var/datum/vore_preferences/listener_vore_prefs = listener_vore.vore_prefs
+		var/pref_enabled = listener_vore_prefs.read_preference(pref)
+		if(!pref_enabled)
+			continue
+
+		// Needed because playsound_local runtimes at range = 1
+		var/range_to_use = range
+		if(range_to_use < 2)
+			range_to_use = 0
+
+		listening_mob.playsound_local(
+			turf_source, soundin, volume, vary,
+			sound_to_use = S,
+			max_distance = range,
+		)
+
+
+/datum/component/vore/proc/get_vore_sfx(soundin)
+	return soundin
