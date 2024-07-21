@@ -52,8 +52,12 @@
 
 	var/obj/vore_belly/selected_belly = null
 	var/list/obj/vore_belly/vore_bellies = null
-	var/datum/action/innate/vore_mode/vore_mode_action = null
+
+	// Save backups
+	var/backup_number = 0
+
 	var/vore_mode = FALSE
+	var/datum/action/innate/vore_mode/vore_mode_action = null
 	var/atom/movable/screen/secret_appearance_holder/appearance_holder = null
 
 /datum/component/vore/Initialize(...)
@@ -123,6 +127,31 @@
 			return TRUE
 	return FALSE
 
+/datum/component/vore/proc/download_belly_backup()
+	var/mob/living/living_parent = parent
+	if(living_parent.ckey)
+		var/full_path = "data/player_saves/[living_parent.ckey[1]]/[living_parent.ckey]/"
+		var/list/all_savefiles = flist(full_path)
+
+		var/list/entries_to_show = list()
+		for(var/name in all_savefiles)
+			if(findtext(name, "vore_backup_"))
+				entries_to_show += "[name] - [time2text(ftime("[full_path][name]"))]"
+
+		var/selected = tgui_input_list(usr, "Select a backup to download", "Vore Backups", entries_to_show)
+		if(selected)
+			var/filename = splittext(selected, " - ")[1]
+			usr << ftp(file("[full_path][filename]"))
+			to_chat(usr, "Attempting to send [selected], this may take a few minutes.")
+
+/datum/component/vore/proc/save_belly_backup(list/only_bellies)
+	var/mob/living/living_parent = parent
+	if(living_parent.ckey)
+		backup_number = (backup_number + 1) % BELLY_BACKUP_COUNT
+		var/savefile_path = "data/player_saves/[living_parent.ckey[1]]/[living_parent.ckey]/vore_backup_[backup_number].json"
+		if(savefile_path)
+			rustg_file_write(json_encode(only_bellies, JSON_PRETTY_PRINT), savefile_path)
+
 /datum/component/vore/proc/save_bellies()
 	var/mob/living/living_parent = parent
 	if(living_parent.client)
@@ -136,6 +165,7 @@
 		if(!("vore" in current_prefs))
 			current_prefs["vore"] = list()
 		var/list/vore = current_prefs["vore"]
+		save_belly_backup(vore["bellies"])
 		vore["bellies"] = bellies
 
 		current_prefs["vore"] = vore

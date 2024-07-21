@@ -75,10 +75,26 @@ export const VorePanel = (props) => {
 };
 
 const VoreMain = (props) => {
+  const { act } = useBackend();
   const [tab, setTab] = useState(0);
 
   return (
-    <Section title="Vore" fill>
+    <Section
+      title="Vore"
+      fill
+      buttons={
+        <>
+          <Button icon="upload">Import</Button> {/* TODO: make work */}
+          <Button icon="download">Export</Button> {/* TODO: make work */}
+          <Button
+            icon="cloud-download-alt"
+            onClick={() => act('belly_backups')}
+          >
+            Get Backup
+          </Button>
+        </>
+      }
+    >
       <Tabs fluid>
         <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
           Bellies

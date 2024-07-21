@@ -152,3 +152,6 @@
 			qdel(target)
 			save_bellies()
 			. = TRUE
+		if("belly_backups")
+			download_belly_backup()
+			. = TRUE

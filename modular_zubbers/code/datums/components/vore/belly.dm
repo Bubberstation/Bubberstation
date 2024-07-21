@@ -80,7 +80,7 @@
 			if(new_name)
 				name = new_name
 		if("desc")
-			desc = strip_html_full(value)
+			desc = STRIP_HTML_SIMPLE(value, MAX_FLAVOR_LEN)
 		if("digest_mode")
 			var/datum/digest_mode/new_digest_mode = GLOB.digest_modes[value]
 			if(istype(new_digest_mode))
@@ -185,7 +185,7 @@
 /obj/vore_belly/proc/serialize()
 	return list(
 		"name" = name,
-		"desc" = desc,
+		"desc" = desc, // TODO: Save digest mode
 		"brute_damage" = brute_damage,
 		"burn_damage" = burn_damage,
 		"fancy_sounds" = fancy_sounds,
@@ -196,7 +196,7 @@
 /// Deserializes this belly from savefile data
 /obj/vore_belly/proc/deserialize(list/data)
 	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
-	desc = strip_html_full(data["desc"]) || "(Bad Desc)"
+	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
 	fancy_sounds = isnum(data["fancy_sounds"]) ? !!data["fancy_sounds"] : TRUE // if there's no data, make it true by default
