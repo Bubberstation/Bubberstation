@@ -15,6 +15,7 @@
 	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
 	icon_state = "playbunny"
 	greyscale_colors = "#39393f#39393f#ffffff#87502e"
 	greyscale_config = /datum/greyscale_config/bunnysuit
@@ -33,6 +34,7 @@
 	desc = "The staple of any bunny themed syndicate assassins. Are those carbon nanotube stockings?"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
 	icon_state = "syndibunny"
 	body_parts_covered = CHEST|GROIN|LEGS
 

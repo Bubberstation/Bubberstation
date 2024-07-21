@@ -70,6 +70,7 @@
 	name = "tailcoat"
 	desc = "A coat usually worn by bunny themed waiters and the like."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat"
 	greyscale_colors = "#39393f"
@@ -125,6 +126,7 @@
 	name = "magician's tailcoat"
 	desc = "A magnificent, gold-lined tailcoat that seems to radiate power."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	icon_state = "tailcoat_wiz"
 	inhand_icon_state = null
