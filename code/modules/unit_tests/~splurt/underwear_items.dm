@@ -18,7 +18,7 @@
 		socks = list()
 	)
 
-	var/list/files_by_type = list(
+	var/list/files_by_type = list( // thanks linux for not using the fucking root directory
 		briefs = 'modular_zzplurt/code/modules/clothing/underwear/~generated_files/briefs.dm',
 		shirt = 'modular_zzplurt/code/modules/clothing/underwear/~generated_files/shirt.dm',
 		socks = 'modular_zzplurt/code/modules/clothing/underwear/~generated_files/socks.dm'
@@ -35,7 +35,6 @@
 		var/output_file = "[lines.Join("\n")]"
 		rustg_file_write(output_file, "data/~generated_files/[object_type].dm")
 		var/current = file2text(files_by_type[object_type])
-		log_test("[files_by_type[object_type]]: [current]")
 		if(current != output_file)
 			log_test("[files_by_type[object_type]] is out of date.")
 			fail = TRUE
