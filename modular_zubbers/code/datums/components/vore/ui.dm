@@ -75,10 +75,12 @@
 			else if(istype(prey))
 				// We are prey next to them
 				if(istype(living_parent.loc, /obj/vore_belly) && prey.loc == living_parent.loc)
-					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Help Out"))
+					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Interact", "Help Out"))
 					switch(what_to_do)
 						if("Examine")
 							living_parent.examinate(prey)
+						if("Interact")
+							living_parent.CtrlShiftClickOn(prey)
 						// if("Eat") // Not implemented on Bubbers at all
 						if("Help Out")
 							to_chat(living_parent, "Not implemented yet :)")
