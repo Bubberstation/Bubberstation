@@ -134,13 +134,13 @@
 	/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
 	/obj/item/clothing/head/playbunnyears/roboticist = 2,
 	/obj/item/clothing/under/rank/rnd/scientist/roboticist_bunnysuit = 2,
-	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/robotics = 2,
+	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/science/robotics = 2,
 	/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
 	)
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
 	zubbers_products = list(
-	/obj/item/clothing/head/playbunnyears/geneticist = 2,
+	/obj/item/clothing/head/playbunnyears/science/geneticist = 2,
 	/obj/item/clothing/under/rank/rnd/geneticist/bunnysuit = 2,
 	/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/genetics = 2,
 	/obj/item/clothing/neck/tie/bunnytie/geneticist = 2,
