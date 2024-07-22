@@ -1,9 +1,9 @@
 /datum/action/cooldown/bloodsucker/fortitude
 	name = "Fortitude"
-	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
+	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings, but will render you unable to heal."
 	button_icon_state = "power_fortitude"
 	power_explanation = "Fortitude:\n\
-		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
+		Activating Fortitude will provide pierce, stun and dismember immunity, however making you unable to regenerate wounds any way whatsoever\n\
 		You will additionally gain resistance to both physical and stamina damage, scaling with level.\n\
 		While using Fortitude, attempting to run will crush you, and you will be unable to heal while it is active.\n\
 		At level 4, you gain complete stun immunity.\n\
