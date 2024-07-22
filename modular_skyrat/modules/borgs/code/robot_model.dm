@@ -13,7 +13,7 @@
 		return
 	if (model_features && (TRAIT_R_TALL in model_features))
 		cyborg.maptext_height = 48 //Runechat blabla
-		cyborg.AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)
+		//cyborg.AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)// BUBBER REMOVAL - Moved into update_footsteps()
 		//add_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)// BUBBER REMOVAL - Moved into update_robot_rest()
 		switch(cyborg_base_icon)
 			if("mekamine")
@@ -22,7 +22,7 @@
 
 	else
 		cyborg.maptext_height = initial(cyborg.maptext_height)
-		cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)
+		//cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)// BUBBER REMOVAL - Moved into update_footsteps()
 		//remove_verb(cyborg, /mob/living/silicon/robot/proc/robot_lay_down)// BUBBER REMOVAL - Moved into update_robot_rest()
 		if(cyborg.GetComponent(/datum/component/robot_smoke))
 			qdel(cyborg.GetComponent(/datum/component/robot_smoke))
