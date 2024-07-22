@@ -324,20 +324,11 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/playbunnyears_security
+	armor_type = /datum/armor/head_helmet
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
 
-/datum/armor/playbunnyears_security
-	melee = 30
-	bullet = 30
-	laser = 20
-	energy = 30
-	fire = 30
-	bomb = 20
-	acid = 30
-	wound = 10
 
 /obj/item/clothing/head/playbunnyears/security_assistant
 	name = "security assistant's bunny ears"
@@ -346,20 +337,10 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/playbunnyears_security
+	armor_type = /datum/armor/head_helmet
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
-
-/datum/armor/playbunnyears_security
-	melee = 30
-	bullet = 30
-	laser = 20
-	energy = 30
-	fire = 30
-	bomb = 20
-	acid = 30
-	wound = 10
 
 //TODO: Find a way to add Warden stuff that isn't hack-y.
 
@@ -370,7 +351,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/playbunnyears_security
+	armor_type = /datum/armor/head_helmet
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -391,18 +372,11 @@
 	icon_state = "detective"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
-	armor_type = /datum/armor/playbunnyears_detective
+	armor_type = /datum/armor/fedora_det_hat
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
 
-/datum/armor/playbunnyears_detective
-	melee = 20
-	laser = 20
-	energy = 30
-	fire = 30
-	acid = 50
-	wound = 5
 
 /obj/item/clothing/head/playbunnyears/detective/noir
 	name = "noir detective's bunny ears"
@@ -429,20 +403,10 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/playbunnyears_hos
+	armor_type = /datum/armor/hats_hos
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
-
-/datum/armor/playbunnyears_hos
-	melee = 30
-	bullet = 30
-	laser = 20
-	energy = 30
-	fire = 30
-	bomb = 20
-	acid = 30
-	wound = 10
 
 //SERVICE
 
@@ -452,19 +416,10 @@
 	icon_state = "hop"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
-	armor_type = /datum/armor/playbunnyears_hop
+	armor_type = /datum/armor/hats_hopcap
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
-
-/datum/armor/playbunnyears_hop
-	melee = 20
-	bullet = 10
-	laser = 20
-	energy = 30
-	bomb = 20
-	fire = 50
-	acid = 50
 
 /obj/item/clothing/head/playbunnyears/janitor
 	name = "janitor's bunny ears"

@@ -223,7 +223,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
-	armor_type = /datum/armor/tailcoat_miner
+	armor_type = /datum/armor/hooded_explorer
 	allowed = list(
 		/obj/item/flashlight,
 		/obj/item/gun/energy/recharge/kinetic_accelerator,
@@ -237,14 +237,6 @@
 	resistance_flags = FIRE_PROOF
 	clothing_traits = list(TRAIT_SNOWSTORM_IMMUNE)
 
-/datum/armor/tailcoat_miner
-	melee = 30
-	bullet = 10
-	laser = 10
-	energy = 20
-	bomb = 50
-	fire = 50
-	acid = 50
 /obj/item/clothing/suit/jacket/tailcoat/miner/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
@@ -447,17 +439,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	dog_fashion = null
-	armor_type = /datum/armor/security_tailcoat
-
-/datum/armor/security_tailcoat
-	melee = 30
-	bullet = 30
-	laser = 30
-	energy = 40
-	bomb = 25
-	fire = 70
-	acid = 90
-	wound = 10
+	armor_type = /datum/armor/suit_armor
 
 /obj/item/clothing/suit/armor/security_assistant_tailcoat
 	name = "security assistant's tailcoat"
@@ -466,10 +448,6 @@
 	inhand_icon_state = "armor"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
-	body_parts_covered = CHEST|GROIN|ARMS
-	cold_protection = CHEST|GROIN|ARMS
-	dog_fashion = null
-	armor_type = /datum/armor/security_tailcoat
 
 /obj/item/clothing/suit/armor/warden_tailcoat
 	name = "warden's tailcoat"
@@ -481,17 +459,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	dog_fashion = null
-	armor_type = /datum/armor/warden_tailcoat
-
-/datum/armor/warden_tailcoat
-	melee = 30
-	bullet = 35
-	laser = 30
-	energy = 25
-	bomb = 20
-	fire = 50
-	acid = 50
-	wound = 10
+	armor_type = /datum/armor/suit_armor
 
 /obj/item/clothing/suit/toggle/labcoat/brig_phys_tailcoat
 	name = "brig physician's tailcoat"
@@ -526,19 +494,8 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	dog_fashion = null
-	armor_type = /datum/armor/hos_tailcoat
+	armor_type = /datum/armor/armor_hos
 	strip_delay = 80
-
-/datum/armor/hos_tailcoat
-	melee = 30
-	bullet = 30
-	laser = 30
-	energy = 40
-	bomb = 25
-	fire = 70
-	acid = 90
-	wound = 10
-
 //SERVICE
 
 /obj/item/clothing/suit/armor/hop_tailcoat
