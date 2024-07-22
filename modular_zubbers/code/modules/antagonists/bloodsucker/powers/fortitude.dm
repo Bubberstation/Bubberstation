@@ -29,7 +29,7 @@
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
-		fortitude_resist = max(0.3, 0.7 - level_current * 0.1)
+		fortitude_resist = max(0.3, 0.7 - level_current * 0.05)
 		bloodsucker_user.physiology.brute_mod *= fortitude_resist
 		bloodsucker_user.physiology.burn_mod *= fortitude_resist + 0.2
 		bloodsucker_user.physiology.stamina_mod *= fortitude_resist
