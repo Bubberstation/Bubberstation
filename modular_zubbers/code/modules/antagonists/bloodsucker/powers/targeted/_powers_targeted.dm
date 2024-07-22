@@ -15,7 +15,7 @@
 	. = ..()
 	var/current_desc = "<br>\[<i>Targeted Power</i>\]"
 	if(target_range)
-		current_desc += "<br>Cast Range: [target_range]"
+		current_desc += "<br>Cast Range: [target_range]<br>"
 	current_desc += .
 	return current_desc
 

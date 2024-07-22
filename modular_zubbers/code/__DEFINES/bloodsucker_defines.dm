@@ -20,6 +20,7 @@
 #define TORTURE_CONVERSION_COST 10
 /// How much blood it costs you to make a vassal into a special vassal
 #define SPECIAL_VASSAL_COST 150
+/// Minimum and maximum frenzy blood thresholds
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 25
 /// Once blood is this high, will exit Frenzy

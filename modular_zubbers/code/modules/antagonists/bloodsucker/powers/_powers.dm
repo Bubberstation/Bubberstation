@@ -213,16 +213,17 @@
 /datum/action/cooldown/bloodsucker/proc/DeactivatePower()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!active) //Already inactive? Return
-		return
+		return FALSE
 	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
 		STOP_PROCESSING(SSprocessing, src)
 	if(power_flags & BP_AM_SINGLEUSE)
 		remove_after_use()
-		return
+		return FALSE
 	active = FALSE
 	if(!click_to_activate)
 		StartCooldown()
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
+	return TRUE
 
 ///Used by powers that are scontinuously active (That have BP_AM_TOGGLE flag)
 /datum/action/cooldown/bloodsucker/process(seconds_per_tick)

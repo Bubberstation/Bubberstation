@@ -71,7 +71,7 @@
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower()
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	animate(owner, alpha = 255, time = 2 SECONDS)
 	owner.RemoveElement(/datum/element/digitalcamo)
 
