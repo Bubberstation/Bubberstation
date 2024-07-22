@@ -17,7 +17,7 @@
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
 	var/list/trigger_listening = list()
-	var/traits_to_add = list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_BATON_RESISTANCE)
+	var/traits_to_add = list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE)
 
 /datum/action/cooldown/bloodsucker/fortitude/ActivatePower(trigger_flags)
 	. = ..()
