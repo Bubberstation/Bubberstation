@@ -46,7 +46,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_ADJUST_BURN_DAMAGE, PROC_REF(on_heal))
 
 /datum/action/cooldown/bloodsucker/fortitude/proc/on_heal(mob/current_mob, type, amount, forced)
-	if(!forced && && active && amount < 0)
+	if(!forced && active && amount < 0)
 		return COMPONENT_IGNORE_CHANGE
 	return NONE
 
