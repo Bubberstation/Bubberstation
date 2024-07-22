@@ -18,6 +18,9 @@
 		female_sprite_flags = gender == MALE ? (FEMALE_UNIFORM_FULL | FEMALE_UNIFORM_DIGI_FULL) : NO_FEMALE_UNIFORM; \
 	};\
 	. = ..();\
+};\
+/datum/sprite_accessory/underwear/##class_name{\
+	briefs_obj = /obj/item/clothing/underwear/briefs/##class_name; \
 };
 
 /// Create shirt from undershirt sprite accessories
@@ -39,6 +42,9 @@
 		female_sprite_flags = gender == MALE ? (FEMALE_UNIFORM_FULL | FEMALE_UNIFORM_DIGI_FULL) : NO_FEMALE_UNIFORM;\
 	};\
 	. = ..();\
+};\
+/datum/sprite_accessory/undershirt/##class_name {\
+	shirt_obj = /obj/item/clothing/underwear/shirt/##class_name; \
 };
 
 /// Create bra from bra sprite accessories
@@ -51,6 +57,9 @@
 	icon_state = /datum/sprite_accessory/bra/##class_name::icon_state; \
 	gender = /datum/sprite_accessory/bra/##class_name::gender; \
 	flags_1 = /obj/item/clothing/underwear/shirt/bra::flags_1 | (IS_PLAYER_COLORABLE_1 * !(/datum/sprite_accessory/bra/##class_name::use_static)); \
+};\
+/datum/sprite_accessory/bra/##class_name {\
+	bra_obj = /obj/item/clothing/underwear/shirt/bra/##class_name; \
 };
 
 /// Create socks from socks sprite accessories
@@ -62,4 +71,7 @@
 	worn_icon_digi = /datum/sprite_accessory/socks/##class_name::icon; \
 	icon_state = /datum/sprite_accessory/socks/##class_name::icon_state; \
 	flags_1 = /obj/item/clothing/underwear/socks::flags_1 | (IS_PLAYER_COLORABLE_1 * !(/datum/sprite_accessory/socks/##class_name::use_static)); \
+};\
+/datum/sprite_accessory/socks/##class_name {\
+	socks_obj = /obj/item/clothing/underwear/socks/##class_name; \
 };

@@ -118,9 +118,11 @@
 	var/preload = FALSE
 
 	/// Any undershirt. While on humans it is a string, here we use paths to stay consistent with the rest of the equips.
-	var/datum/sprite_accessory/undershirt = null
-	var/datum/sprite_accessory/underwear = null
-	var/datum/sprite_accessory/socks = null
+	// SPLURT EDIT - Extra Inventory - use the correct paths
+	var/datum/sprite_accessory/undershirt/undershirt = null
+	var/datum/sprite_accessory/underwear/underwear = null
+	var/datum/sprite_accessory/socks/socks = null
+	// SPLURT EDIT END
 
 /**
  * Called at the start of the equip proc
@@ -212,13 +214,16 @@
 		EQUIP_OUTFIT_ITEM(suit_store, ITEM_SLOT_SUITSTORE)
 
 	if(undershirt)
-		user.undershirt = initial(undershirt.name)
+		w_shirt = w_shirt || initial(undershirt.shirt_obj) //SPLURT EDIT - Extra inventory - original: user.undershirt = initial(undershirt.name)
+
+	if(bra)
+		w_shirt = w_shirt || initial(bra.bra_obj) //SPLURT EDIT - Extra inventory - original: user.bra = initial(bra.name)
 
 	if(underwear)
-		user.underwear = initial(underwear.name)
+		w_underwear = w_underwear || initial(underwear.briefs_obj) //SPLURT EDIT - Extra inventory - original: user.underwear = initial(underwear.name)
 
 	if(socks)
-		user.socks = initial(socks.name)
+		w_socks = w_socks || initial(socks.socks_obj) //SPLURT EDIT - Extra inventory - original: user.socks = initial(socks.name)
 
 	// SPLURT EDIT - Extra inventory
 	if(ears_extra)
@@ -233,10 +238,12 @@
 		EQUIP_OUTFIT_ITEM(wrists, ITEM_SLOT_WRISTS)
 	//
 
+	/* SPLURT EDIT - Extra inventory
 	// SKYRAT EDIT ADDITION START - Underwear and bra split
 	if(bra)
 		user.bra = initial(bra.name)
 	// SKYRAT EDIT END
+	*/
 
 	if(accessory)
 		var/obj/item/clothing/under/U = user.w_uniform
