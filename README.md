@@ -23,13 +23,11 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 ## Contribution Rules and Guidelines
 
 **1. Do Not Be A Dick**
-- The S.P.L.U.R.T. main repository is run by and contributed by volunteers. You are not entitled to our time and energy. We reserve the right to permanently remove anyone who does not show both our contributor's and maintainer's common decency.
+- The S.P.L.U.R.T. main repository is run by and contributed by volunteers. Please be considerate with the people who help maintain our codebase. We reserve the right to permanently remove anyone who does not show both our contributors and maintainers common decency.
 
 **2. Modularization Standards Will be Upheld**
 - This codebase is a active downstream to Bubberstation with frequent upstream merges.
-- Modularization must be strictly upheld for code stability. (Ask a maintainer if you have any questions!)
-- Basically, **try to edit Modular Splurt files first** Then ``//SPLURT EDIT`` comments on any core files (TG, Skyrat, or Bubberstation) for trackability.
-- This is a place for when more concrete guidelines are created.
+- Modularization is key to attain code stability, please read our [modularization guide](./modular_zzplurt/readme.md) for more information, or ask any of our maintainers in our discord.
 
 **3. The Licensing is Non-negotiable**
 - You are free to take, redistribute, modify, and readapt any code or commit found on this repository.
@@ -42,7 +40,7 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 - You are entitled to credit yourself with comments and you are entitled to waive the attribution requirement choosing not to be identified as the creator if you wish.
 - If you do not like how your assets were modified or used, it is required that the other person [remove the attribution information upon request](https://wiki.creativecommons.org/wiki/License_Versions#Licensors_may_request_removal_of_attribution).
 - Modifications or adaptions must disclose the source, the author, and [any changes you've made](https://wiki.creativecommons.org/wiki/License_Versions#Modifications_and_adaptations_must_be_indicated).
-- Goonstation code is incompatible with this codebase and will not be accepted.
+- Goonstation code is incompatible with this codebase due to its licensing.
 
 *Credit: [Goonstation contribution guidelines](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fcontribute#What-if-I-change-my-mind-about-my-contributions-being-published)*
 
