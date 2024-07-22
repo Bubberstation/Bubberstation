@@ -20,12 +20,14 @@
 	var/body_type
 	/// Material we're used of, wood or plastic?
 	var/material
+	/* SPLURT EDIT REMOVAL - Extra Inventory
 	/// String for the underwear we use.
 	var/underwear_name
 	/// String for the undershirt we use.
 	var/undershirt_name
 	/// String for the socks we use.
 	var/socks_name
+	*/
 	/// Static list of slot flags we have clothing slots for.
 	var/static/list/slot_flags = list(
 		ITEM_SLOT_HEAD,
@@ -40,6 +42,12 @@
 		ITEM_SLOT_OCLOTHING,
 		ITEM_SLOT_GLOVES,
 		ITEM_SLOT_FEET,
+		// SPLURT EDIT ADDITION - Extra Inventory
+		ITEM_SLOT_UNDERWEAR,
+		ITEM_SLOT_SOCKS,
+		ITEM_SLOT_SHIRT,
+		ITEM_SLOT_WRISTS,
+		// SPLURT EDIT END
 	)
 	/// Assoc list of all item slots (turned to strings) to the items they hold.
 	var/list/worn_items = list()
@@ -95,6 +103,7 @@
 	var/mutable_appearance/pedestal = mutable_appearance(icon, "pedestal_[material]")
 	pedestal.pixel_y = -3
 	. += pedestal
+	/* SPLURT EDIT REMOVAL - Extra Inventory
 	var/datum/sprite_accessory/underwear/underwear = SSaccessories.underwear_list[underwear_name]
 	if(underwear)
 		if(body_type == FEMALE && underwear.gender == MALE)
@@ -115,7 +124,7 @@
 	if(bra)
 		. += mutable_appearance(bra.icon, bra.icon_state, -BODY_LAYER)
 	//SKYRAT EDIT END
-
+	*/
 	for(var/slot_flag in worn_items)
 		var/obj/item/worn_item = worn_items[slot_flag]
 		if(!worn_item)
@@ -163,8 +172,23 @@
 			if(ITEM_SLOT_FEET)
 				default_layer = SHOES_LAYER
 				default_icon = DEFAULT_SHOES_FILE
+			// SPLURT EDIT ADDITION - Extra Inventory
+			if(ITEM_SLOT_UNDERWEAR)
+				default_layer = UNDERWEAR_LAYER
+				default_icon = 'icons/mob/clothing/underwear.dmi'
+			if(ITEM_SLOT_SOCKS)
+				default_layer = SOCKS_LAYER
+				default_icon = 'icons/mob/clothing/underwear.dmi'
+			if(ITEM_SLOT_SHIRT)
+				default_layer = SHIRT_LAYER
+				default_icon = 'icons/mob/clothing/underwear.dmi'
+			if(ITEM_SLOT_WRISTS)
+				default_layer = WRISTS_LAYER
+				//default_icon = 'modular_zzplurt/icons/mob/clothing/wrists.dmi' //No wrists icon yet
+			// SPLURT EDIT END
 		. += worn_item.build_worn_icon(default_layer, default_icon, female_uniform = female_icon)
 
+/* SPLURT EDIT REMOVAL - Extra Inventory
 /obj/structure/mannequin/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
@@ -192,6 +216,7 @@
 				bra_name = new_bra
 		//SKYRAT EDIT END
 	update_appearance()
+*/
 
 /obj/structure/mannequin/wood
 	material = MANNEQUIN_WOOD
