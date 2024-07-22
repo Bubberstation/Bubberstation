@@ -585,7 +585,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
-/obj/item/clothing/under/rank/civilian/clown_bunnysuit/Initialize(mapload)
+/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit/Initialize(mapload)
 	. = ..()
 
 	create_storage(storage_type = /datum/storage/pockets/tiny)

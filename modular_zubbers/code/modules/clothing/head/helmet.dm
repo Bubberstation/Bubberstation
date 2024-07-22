@@ -138,8 +138,6 @@
 	name = "quartermaster's bunny ears"
 	desc = "Brown and gray bunny ears attached to a headband. The brown headband denotes relative importance."
 	icon_state = "qm"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -148,8 +146,6 @@
 	name = "cargo bunny ears"
 	desc = "Brown and gray bunny ears attached to a headband. The gray headband denotes relative unimportance."
 	icon_state = "cargo_tech"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -158,8 +154,6 @@
 	name = "shaft miner's bunny ears"
 	desc = "Muddy gray bunny ears attached to a headband. Has zero resistance against the hostile lavaland atmosphere."
 	icon_state = "explorer"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	armor_type = /datum/armor/hooded_explorer
 	greyscale_colors = null
 	greyscale_config = null
@@ -169,18 +163,14 @@
 	name = "mailman's bunny ears"
 	desc = "Blue and red bunny ears attached to a headband. Shows everyone your commitment to speed and efficiency."
 	icon_state = "mail"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/bitrunner
 	name = "bunrunner's bunny ears"
-	desc = "Black and gold with stains of space mountain. The official wear of the Carota E-Sports team.."
+	desc = "Black and gold with stains of space mountain. The official wear of the Carota E-Sports team."
 	icon_state = "bitrunner"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -217,8 +207,6 @@
 	name = "medical bunny ears"
 	desc = "White and blue bunny ears attached to a headband. Certainly cuter than a head mirror."
 	icon_state = "doctor"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -227,8 +215,6 @@
 	name = "paramedic's bunny ears"
 	desc = "Blue and white bunny ears attached to a headband. Marks you clearly as a bunny first responder, allowing you a high degree of respect and deference… yeah right."
 	icon_state = "paramedic"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -237,8 +223,6 @@
 	name = "chemist's bunny ears"
 	desc = "White and orange bunny ears attached to a headband. One of the ears is already crooked."
 	icon_state = "chem"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -247,8 +231,6 @@
 	name = "pathologist's bunny ears"
 	desc = "White and green bunny ears attached to a headband. This is not proper PPE gear."
 	icon_state = "virologist"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -257,8 +239,6 @@
 	name = "coroner's bunny ears"
 	desc = "Black and white bunny ears attached to a headband. Please don't wear this to a funeral."
 	icon_state = "coroner"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -267,8 +247,6 @@
 	name = "chief medical officer's bunny ears"
 	desc = "White and blue bunny ears attached to a headband. A headband that commands respect from the entire medical team."
 	icon_state = "cmo"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -279,8 +257,6 @@
 	name = "scientist's bunny ears"
 	desc = "Purple and white bunny ears attached to a headband. Completes the look for lagomorphic studies."
 	icon_state = "science"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -289,8 +265,6 @@
 	name = "roboticist's bunny ears"
 	desc = "Black and red bunny ears attached to a headband. Installed with servos to imitate the movement of real bunny ears."
 	icon_state = "roboticist"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -299,8 +273,6 @@
 	name = "geneticist's bunny ears"
 	desc = "Blue and white bunny ears attached to a headband. For when you have no bunnies to splice your genes with."
 	icon_state = "genetics"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -309,8 +281,6 @@
 	name = "research director's bunny ears"
 	desc = "Purple and black bunny ears attached to a headband. Large amounts of funding went into creating a piece of headgear capable of increasing the wearers height, this is what was produced."
 	icon_state = "rd"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -321,8 +291,6 @@
 	name = "security bunny ears"
 	desc = "Red and black bunny ears attached to a headband. The band is made out of hardened steel."
 	icon_state = "sec"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
 	armor_type = /datum/armor/head_helmet
 	greyscale_colors = null
@@ -330,17 +298,10 @@
 	greyscale_config_worn = null
 
 
-/obj/item/clothing/head/playbunnyears/security_assistant
+/obj/item/clothing/head/playbunnyears/security/assistant
 	name = "security assistant's bunny ears"
 	desc = "A pair of red and grey bunny ears attatched to a headband. Snugly fit, to keep it attatched during long distance tackles."
 	icon_state = "sec_assistant"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
-	clothing_flags = SNUG_FIT
-	armor_type = /datum/armor/head_helmet
-	greyscale_colors = null
-	greyscale_config = null
-	greyscale_config_worn = null
 
 //TODO: Find a way to add Warden stuff that isn't hack-y.
 
@@ -348,8 +309,6 @@
 	name = "warden's bunny ears"
 	desc = "Red and white bunny ears attached to a headband. Keeps the hair out of the face when checking on cameras."
 	icon_state = "warden"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
 	armor_type = /datum/armor/head_helmet
 	greyscale_colors = null
@@ -360,8 +319,6 @@
 	name = "brig physician's bunny ears"
 	desc = "A pair of red and grey bunny ears attatched to a headband. Whoever's wearing these is surely a professional... right?"
 	icon_state = "brig_phys"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -370,8 +327,6 @@
 	name = "detective's bunny ears"
 	desc = "Brown bunny ears attached to a headband. Big ears for listening to calls from hysteric dames."
 	icon_state = "detective"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	armor_type = /datum/armor/fedora_det_hat
 	greyscale_colors = null
 	greyscale_config = null
@@ -382,16 +337,11 @@
 	name = "noir detective's bunny ears"
 	desc = "Black bunny ears attached to a white headband. Big ears for listening to calls from hysteric dames. In glorious black and white!"
 	icon_state = "detective_noir"
-	greyscale_colors = null
-	greyscale_config = null
-	greyscale_config_worn = null
 
 /obj/item/clothing/head/playbunnyears/prisoner
 	name = "prisoner's bunny ears"
 	desc = "Black and orange bunny ears attached to a headband. This outfit was long ago outlawed under the space geneva convention for being a “cruel and unusual punishment”."
 	icon_state = "prisoner"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -400,8 +350,6 @@
 	name = "head of security's bunny ears"
 	desc = "Red and gold bunny ears attached to a headband. Shows your authority over all bunny officers."
 	icon_state = "hos"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	clothing_flags = SNUG_FIT
 	armor_type = /datum/armor/hats_hos
 	greyscale_colors = null
@@ -414,8 +362,6 @@
 	name = "head of personnel's bunny ears"
 	desc = "A pair of muted blue bunny ears attached to a headband. The preferred color of bunnycrats everywhere."
 	icon_state = "hop"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	armor_type = /datum/armor/hats_hopcap
 	greyscale_colors = null
 	greyscale_config = null
@@ -425,8 +371,6 @@
 	name = "janitor's bunny ears"
 	desc = "A pair of purple bunny ears attached to a headband. Kept meticulously clean."
 	icon_state = "janitor"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -435,8 +379,6 @@
 	name = "bartender's bunny ears"
 	desc = "A pair of classy black and white bunny ears attached to a headband. They smell faintly of alchohol."
 	icon_state = "bar"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -446,8 +388,6 @@
 	name = "cook's bunny ears"
 	desc = "A pair of white and red bunny ears attached to a headband. Helps keep hair out of the food."
 	icon_state = "chef"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -456,8 +396,6 @@
 	name = "botanist's bunny ears"
 	desc = "A pair of green and blue bunny ears attached to a headband. Good for keeping the sweat out of your eyes during long days on the farm."
 	icon_state = "botany"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -466,8 +404,6 @@
 	name = "clown's bunny ears"
 	desc = "A pair of orange and pink bunny ears. They even squeak."
 	icon_state = "clown"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -476,8 +412,6 @@
 	name = "mime's bunny ears"
 	desc = "Red and black bunny ears attached to a headband. Great for street performers sick of the standard beret."
 	icon_state = "mime"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -486,8 +420,6 @@
 	name = "chaplain's bunny ears"
 	desc = "A pair of black and white bunny ears attached to a headband. Worn in worship of The Gardener of Carota."
 	icon_state = "chaplain"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -496,8 +428,6 @@
 	name = "curator's red bunny ears"
 	desc = "A pair of red and beige bunny ears attached to a headband. Marks you as an expert in all things bunny related."
 	icon_state = "curator_red"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -506,8 +436,6 @@
 	name = "curator's green bunny ears"
 	desc = "A pair of green and black bunny ears attached to a headband. Marks you as an expert in all things bunny related."
 	icon_state = "curator_green"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -516,8 +444,6 @@
 	name = "curator's teal bunny ears"
 	desc = "A pair of teal bunny ears attached to a headband. Marks you as an expert in all things bunny related."
 	icon_state = "curator_teal"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -526,8 +452,6 @@
 	name = "lawyer's black bunny ears"
 	desc = "A pair of black bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
 	icon_state = "lawyer_black"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -536,8 +460,6 @@
 	name = "lawyer's blue bunny ears"
 	desc = "A pair of blue and white bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
 	icon_state = "lawyer_blue"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -546,8 +468,6 @@
 	name = "lawyer's red bunny ears"
 	desc = "A pair of red and white bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
 	icon_state = "lawyer_red"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -556,8 +476,6 @@
 	name = "good lawyer's bunny ears"
 	desc = "A pair of beige and blue bunny ears attached to a headband. The perfect headband to wear while negotiating a settlement."
 	icon_state = "lawyer_good"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -566,8 +484,6 @@
 	name = "psychologist's bunny ears"
 	desc = "A pair of black bunny ears. And how do they make you feel?"
 	icon_state = "psychologist"
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null

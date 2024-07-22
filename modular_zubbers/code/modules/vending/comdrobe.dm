@@ -39,7 +39,7 @@
 	access_lists["[ACCESS_CMO]"] += list(
 		/obj/item/clothing/head/playbunnyears/cmo = 1,
 		/obj/item/clothing/under/rank/medical/cmo_bunnysuit = 1,
-		/obj/item/clothing/suit/toggle/labcoat/cmo_tailcoat = 1,
+		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cmo = 1,
 	)
 
