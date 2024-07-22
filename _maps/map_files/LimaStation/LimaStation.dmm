@@ -12307,10 +12307,9 @@
 /area/station/maintenance/department/engine/atmos)
 "eSZ" = (
 /obj/machinery/duct,
-/obj/machinery/atmospherics/components/binary/pump/off{
+/obj/machinery/atmospherics/components/binary/pump/layer4{
 	dir = 8;
-	name = "Supplementary Air Supply";
-	piping_layer = 4
+	name = "Supplementary Air Supply"
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
@@ -13312,6 +13311,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/prison/visit)
+"flV" = (
+/obj/machinery/vatgrower,
+/turf/open/floor/circuit/telecomms,
+/area/station/science/xenobiology)
 "fmd" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -14834,10 +14837,9 @@
 /area/station/maintenance/starboard/lower)
 "fNn" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/binary/pump/on{
+/obj/machinery/atmospherics/components/binary/pump/on/layer4{
 	dir = 4;
-	name = "Air to Sat";
-	piping_layer = 4
+	name = "Air to Sat"
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/engineering/transit_tube)
@@ -26437,10 +26439,9 @@
 "keD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/binary/pump/on{
+/obj/machinery/atmospherics/components/binary/pump/on/layer4{
 	dir = 1;
-	name = "Prison Air Supply";
-	piping_layer = 4
+	name = "Prison Air Supply"
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
@@ -31168,9 +31169,8 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "lOM" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 1;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
@@ -43966,7 +43966,6 @@
 "qwY" = (
 /obj/structure/table,
 /obj/item/stack/ducts/fifty,
-/obj/item/construction/plumbing/research,
 /obj/item/wrench{
 	pixel_x = 8;
 	pixel_y = 6
@@ -60292,9 +60291,9 @@
 /area/station/cargo/bitrunning)
 "wzY" = (
 /obj/machinery/door/airlock/research{
-	name = "Kill Chamber";
-	req_access = list("xenobiology")
+	name = "Kill Chamber"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/science/xenobio,
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/xenobiology)
 "wAe" = (
@@ -93866,7 +93865,7 @@ tGM
 tGM
 tGM
 iIH
-fDp
+owa
 lBY
 mbH
 mbH
@@ -110616,7 +110615,7 @@ qyy
 tXY
 qbt
 jLm
-aGz
+flV
 nWO
 wWd
 fEz
