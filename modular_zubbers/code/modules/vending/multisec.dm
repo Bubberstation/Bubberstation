@@ -90,7 +90,7 @@
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
 					/obj/item/clothing/head/playbunnyears/brig_phys = 3,
 					/obj/item/clothing/under/rank/security/brig_phys_bunnysuit = 3,
-					/obj/item/clothing/suit/toggle/labcoat/brig_phys_tailcoat = 3,
+					/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/sec = 3,
 					/obj/item/clothing/neck/tie/bunnytie/brig_phys = 3,
 					/obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec = 3,
 					/obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate = 3,
