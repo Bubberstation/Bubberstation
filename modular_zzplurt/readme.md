@@ -46,7 +46,9 @@ Our modularization protocols are founded on three pillars:
 
 ### Modular Overrides
 
-Modular overrides allow us to extend or modify the behavior of existing code without directly editing the core files. This is done by creating new definitions or modifying existing ones in a way that they can be easily integrated into the core codebase. There are two main types of modular overrides: Variable Overrides and Proc Overrides.
+Modular overrides allow us to extend or modify the behavior of existing code without directly editing the core files. This is done by creating new definitions or modifying existing ones in a way that they can be easily integrated into the core codebase.
+
+There are two main types of modular overrides: Variable Overrides and Proc Overrides.
 
 #### Variable Overrides
 
@@ -77,13 +79,23 @@ Proc overrides allow you to extend or modify the behavior of existing procedures
 
 In this example, the shoot_live_shot proc is overridden to add a new behavior (spawning sparks) after calling the original proc. This ensures that the new behavior is added without modifying the core code.
 
+#### How and Why Modular Overrides Work
+
+Modular overrides work by leveraging BYOND's file inclusion and proc definition order. When BYOND compiles the code, it processes files and definitions in the order that they're included in [tgstation.dme](./../tgstation.dme). BYOND orders said includes in alphabetical order, with `_` being before all letters, and `~` being after.
+
+Proc overrides run in the order of last-defined to first-defined. This means that the most recently defined proc will be the one that is executed. By placing our overrides in files that are included later in the compilation process, we ensure that they take precedence over earlier definitions.
+
+#### Why modular_zzplurt?
+
+The folder is named `modular_zzplurt` rather than `modular_splurt` to ensure that it comes after all other `modular_` folders in the alphabetical order. This guarantees that our modular overrides are processed last, allowing them to effectively override any previous definitions.
+
 #### When to Use Modular Overrides
 
 Modular overrides should be used whenever possible to keep the core codebase clean and maintainable. However, it's important to use them judiciously and ensure that they do not introduce performance issues or make the code harder to understand and maintain. Specifically:
 
 - **Use modular overrides when they won't cause more issues than not modularizing them:** If a modular override would introduce significant complexity, performance issues, or maintenance challenges, it may be better to make a non-modular edit with proper commenting.
-- **Avoid unnecessary overrides:** Do not override procs or variables unless it is necessary for your feature or fix. Unnecessary overrides can lead to maintenance headaches and potential conflicts with upstream changes.
 - **Document your overrides:** Clearly documenting any modular overrides in your code helps maintainers and other contributors understand your changes and their purpose.
+
 By following these guidelines, we can ensure that our codebase remains clean, maintainable, and easy to navigate, while still allowing for the flexibility to add new features and make necessary changes.
 
 ## Folder Structure
@@ -138,6 +150,8 @@ Our modular defines are located at `code/__DEFINES/~~~splurt_defines`. If you ha
 ## Binary Files and Maps
 
 It's preferable to use modular binary files (sounds, icons, assets, etc.) to add content rather than editing non-modular binary files. This should always be your first option when working with binary files. However, if it is absolutely necessary, you may edit non-modular binary files. Remember, if you want to edit maps or binary files, you must install the hooks located in tools/hooks/install.bat.
+
+**For sound files** the only accepted format to use in the codebase is `.ogg`. All files should be as compressed as possible to not bloat our rsc files.
 
 ### Maps
 
