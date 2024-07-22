@@ -111,14 +111,14 @@
 		/obj/item/ammo_box/c980grenade/riot = 3,
 	)
 
-/datum/supply_pack/security/secmed_medical
-	name = "Security Medic Kit Crate - Medical"
+/datum/supply_pack/security/secmed_technician
+	name = "Security Medic Kit Crate - Technician"
 	crate_name = "security medic crate"
-	desc = "Contains a large satchel medical kit."
+	desc = "Contains a medical technician kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 3.75
+	cost = CARGO_CRATE_VALUE * 5.5
 	contains = list(
-		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
+		/obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked,
 	)
 
 /datum/supply_pack/security/secmed_surgical
@@ -126,17 +126,17 @@
 	crate_name = "security medic crate"
 	desc = "Contains a first responder surgical kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 3.75
+	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/storage/backpack/duffelbag/deforest_surgical/stocked,
 	)
 
-/datum/supply_pack/security/secmed_technician
-	name = "Security Medic Kit Crate - Technician"
+/datum/supply_pack/security/secmed_medical
+	name = "Security Medic Kit Crate - Medical"
 	crate_name = "security medic crate"
-	desc = "Contains a medical technician kit."
+	desc = "Contains a large satchel medical kit."
 	access = ACCESS_SECURITY
-	cost = CARGO_CRATE_VALUE * 3.75
+	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(
-		/obj/item/storage/backpack/duffelbag/deforest_paramedic/stocked,
+		/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 	)
