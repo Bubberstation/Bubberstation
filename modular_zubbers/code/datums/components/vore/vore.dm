@@ -55,6 +55,8 @@
 
 	// Save backups
 	var/backup_number = 0
+	// Used to make it harder to overwrite character data by accident
+	var/expected_real_name = ""
 
 	var/vore_mode = FALSE
 	var/datum/action/innate/vore_mode/vore_mode_action = null
@@ -96,6 +98,8 @@
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
 	if(living_parent.client?.prefs?.savefile)
 		vore_prefs = new(living_parent.client.prefs.savefile)
+
+		expected_real_name = living_parent.client.prefs.read_preference(/datum/preference/name/real_name)
 
 		var/list/pref_tree = living_parent.client.prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
 		var/list/vore_tree = pref_tree["vore"]
@@ -156,6 +160,13 @@
 	var/mob/living/living_parent = parent
 	if(living_parent.client)
 		var/datum/preferences/prefs = living_parent.client.prefs
+
+		var/current_real_name = prefs.read_preference(/datum/preference/name/real_name)
+		if(expected_real_name != current_real_name)
+			var/answer = tgui_alert(usr, "Save data mismatch: This belly expected to save to [expected_real_name] but found [current_real_name] loaded. Are you sure you want to overwrite data for [current_real_name]?", "Save Data Mismatch", list("No", "Yes"))
+			if(answer != "Yes")
+				return
+
 		var/list/current_prefs = prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
 
 		var/list/bellies = list()
