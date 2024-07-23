@@ -8,6 +8,8 @@
 	var/brute_damage = 0
 	var/burn_damage = 1
 
+	var/muffles_radio = TRUE // muffles radios used inside it // TODO: Implement changing
+
 	// Sounds
 	var/is_wet = TRUE // TODO: Implement changing
 	var/wet_loop = TRUE // TODO: Implement changing
@@ -70,6 +72,10 @@
 	data["brute_damage"] = brute_damage
 	data["burn_damage"] = burn_damage
 
+	data["is_wet"] = is_wet
+	data["wet_loop"] = wet_loop
+	data["muffles_radio"] = muffles_radio
+
 	data["fancy_sounds"] = fancy_sounds
 	data["insert_sound"] = insert_sound
 	data["release_sound"] = release_sound
@@ -93,6 +99,12 @@
 			brute_damage = clamp(value, 0, MAX_BRUTE_DAMAGE)
 		if("burn_damage")
 			burn_damage = clamp(value, 0, MAX_BURN_DAMAGE)
+		if("is_wet")
+			is_wet = !is_wet
+		if("wet_loop")
+			wet_loop = !wet_loop
+		if("muffles_radio")
+			muffles_radio = !muffles_radio
 		if("fancy_sounds")
 			fancy_sounds = !fancy_sounds
 			// Different sound set, switching between these could cause issues
@@ -187,12 +199,18 @@
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
 		var/mob/M = arrived
+		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
 		deep_search_prey(M)
 		// TODO: Insertion Verb
 		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
 		// Add the appearance_holder to prey so they can see fellow prey
 		if(M.client)
 			M.client.screen += owner.appearance_holder
+
+/obj/vore_belly/proc/try_deny_radio()
+	if(muffles_radio)
+		return COMPONENT_CANNOT_USE_RADIO
+	return null
 
 /// Search through prey's recursive contents to prevent smuggling any GLOB.vore_blacklist_types items around
 /obj/vore_belly/proc/deep_search_prey(mob/arrived)
@@ -212,6 +230,7 @@
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone
+		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
 		// If matryoshka is banned, they can't end up in another belly
 		#if MATRYOSHKA_BANNED
 		M.stop_sound_channel(CHANNEL_PREYLOOP)
@@ -247,6 +266,9 @@
 		"digest_mode" = digest_mode?.name,
 		"brute_damage" = brute_damage,
 		"burn_damage" = burn_damage,
+		"is_wet" = is_wet,
+		"wet_loop" = wet_loop,
+		"muffles_radio" = muffles_radio,
 		"fancy_sounds" = fancy_sounds,
 		"insert_sound" = insert_sound,
 		"release_sound" = release_sound,
@@ -259,6 +281,9 @@
 	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes["None"]
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
+	is_wet = isnum(data["is_wet"]) ? !!data["is_wet"] : TRUE // make true by default
+	wet_loop = isnum(data["wet_loop"]) ? !!data["wet_loop"] : TRUE // make true by default
+	muffles_radio = isnum(data["muffles_radio"]) ? !!data["muffles_radio"] : TRUE // make false by default
 	fancy_sounds = isnum(data["fancy_sounds"]) ? !!data["fancy_sounds"] : TRUE // if there's no data, make it true by default
 
 	if(istext(data["insert_sound"]))
