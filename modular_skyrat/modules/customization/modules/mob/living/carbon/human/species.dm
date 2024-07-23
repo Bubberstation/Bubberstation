@@ -146,8 +146,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			if(underwear && !species_human.w_underwear)
 				var/obj/item/clothing/underwear/briefs/briefs_obj = new underwear.briefs_obj(species_human)
 				species_human.equip_to_slot_or_del(briefs_obj, ITEM_SLOT_UNDERWEAR)
-				if(!(underwear == species_human.w_underwear))
-					qdel(underwear)
 			/*
 			var/mutable_appearance/underwear_overlay
 			var/female_sprite_flags = FEMALE_UNIFORM_FULL // the default gender shaping
@@ -170,8 +168,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			if(bra && !species_human.w_shirt)
 				var/obj/item/clothing/underwear/shirt/bra/bra_obj = new bra.bra_obj(species_human)
 				species_human.equip_to_slot_or_del(bra_obj, ITEM_SLOT_SHIRT)
-				if(!(bra == species_human.w_shirt))
-					qdel(bra)
 			/*
 			if(bra)
 				var/mutable_appearance/bra_overlay
@@ -187,8 +183,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			if(undershirt && !species_human.w_shirt)
 				var/obj/item/clothing/underwear/shirt/shirt_obj = new undershirt.shirt_obj(species_human)
 				species_human.equip_to_slot_or_del(shirt_obj, ITEM_SLOT_SHIRT)
-				if(!(undershirt == species_human.w_shirt))
-					qdel(undershirt)
 			/*
 			if(undershirt)
 				var/mutable_appearance/undershirt_overlay
@@ -205,8 +199,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 			if(socks && !species_human.w_socks)
 				var/obj/item/clothing/underwear/socks/socks_obj = new socks.socks_obj(species_human)
 				species_human.equip_to_slot_or_del(socks_obj, ITEM_SLOT_SOCKS)
-				if(!(socks == species_human.w_socks))
-					qdel(socks)
 			/*
 			if(socks)
 				var/mutable_appearance/socks_overlay
