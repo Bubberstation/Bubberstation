@@ -196,7 +196,8 @@ GLOBAL_LIST_INIT(potential_indicators, list(
 		indicator.pixel_y = y_offset
 		indicator.pixel_x = current_x_position
 		my_carbon_mob.cut_overlay(indicator) // if case of race leftovers
-		my_carbon_mob.add_overlay(indicator)
+		if(!length(my_carbon_mob.overlays) => MAX_ATOM_OVERLAYS - 1)
+			my_carbon_mob.add_overlay(indicator)
 		// Adding the margin space every time saves a conditional check on the last iteration,
 		// and it won't cause any issues since no more icons will be added, and the var is not used for anything else.
 		current_x_position += STATUS_INDICATOR_ICON_X_SIZE + STATUS_INDICATOR_ICON_MARGIN
