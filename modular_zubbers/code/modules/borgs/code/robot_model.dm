@@ -480,7 +480,7 @@
 			SKIN_ICON_STATE = "HaydeeSlutviceClasic",
 			SKIN_ICON = CYBORG_ICON_SERVICE_HAYDEE_BUBBER,
 		),
-		"Haydee" = list(
+		"Bundee" = list(
 			SKIN_ICON_STATE = "HaydeeBunviceClassic",
 			SKIN_ICON = CYBORG_ICON_SERVICE_BUNDEE_BUBBER,
 		),
