@@ -11,6 +11,24 @@
 	name = "Ring Bell Collar (Worn)"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/ringbell_worn.json'
 
+
+/datum/greyscale_config/collar/gps
+	name = "GPS Collar"
+	icon_file = 'modular_zubbers/code/modules/GAGS/icons/collar.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps.json'
+
+/datum/greyscale_config/collar/gps/worn
+	name = "GPS Collar (Worn)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps_worn.json'
+
+/datum/greyscale_config/collar/gps/lefthand
+	name = "GPS Collar (Left hand)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps_lefthand.json'
+
+/datum/greyscale_config/collar/gps/righthand
+	name = "GPS Collar (Right hand)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/gps_righthand.json'
+
 //Bunny stuff, sprites from MonkieStation
 
 /datum/greyscale_config/bunnysuit
@@ -62,3 +80,4 @@
 	name = "Worn Playbunny Ears"
 	icon_file = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/playbunny_ears_worn.json'
+
