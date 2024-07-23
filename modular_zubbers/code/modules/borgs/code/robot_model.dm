@@ -477,7 +477,7 @@
 			SKIN_HAT_OFFSET = 18
 		),
 		"Haydee" = list(
-			SKIN_ICON_STATE = "HaydeeSlutviceClasic",
+			SKIN_ICON_STATE = "HaydeeSlutviceClassic",
 			SKIN_ICON = CYBORG_ICON_SERVICE_HAYDEE_BUBBER,
 		),
 		"Bundee" = list(
