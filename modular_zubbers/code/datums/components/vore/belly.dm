@@ -160,10 +160,9 @@
 	#else
 	for(var/mob/living/listening_mob in get_hearers_in_view(0, src) - owner.parent) // don't listen to your own tummy...
 	#endif
-		var/datum/component/vore/listener_vore = listening_mob.GetComponent(/datum/component/vore)
-		if(!listener_vore || !listener_vore.vore_prefs)
+		var/datum/vore_preferences/listener_vore_prefs = listening_mob.get_vore_prefs()
+		if(!listener_vore_prefs)
 			continue
-		var/datum/vore_preferences/listener_vore_prefs = listener_vore.vore_prefs
 		var/pref_enabled = listener_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion_noises)
 		//We don't bother executing any other code if the prey doesn't want to hear the noises.
 		if(!pref_enabled)

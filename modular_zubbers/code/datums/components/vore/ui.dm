@@ -27,7 +27,7 @@
 /datum/component/vore/ui_data(mob/user)
 	var/list/data = list()
 
-	data["selected_belly"] = vore_bellies.Find(selected_belly)
+	data["selected_belly"] = LAZYFIND(vore_bellies, selected_belly)
 
 	var/list/bellies = list()
 
@@ -38,6 +38,8 @@
 
 	data["bellies"] = bellies
 
+	// Always their own prefs
+	var/datum/vore_preferences/vore_prefs = user.get_vore_prefs()
 	if(vore_prefs)
 		data += vore_prefs.ui_data(user)
 
@@ -120,6 +122,7 @@
 				if("release_sound")
 					SEND_SOUND(usr, sound(target.get_release_sound()))
 		if("set_pref")
+			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
 				to_chat(usr, span_danger("You cannot save vore preferences as your savefile was not loaded by the vore component."))
 				return
@@ -169,17 +172,30 @@
 			download_belly_backup()
 			. = TRUE
 		if("load_slot")
+			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			if(!vore_prefs)
+				return
+
 			// returns true if the user doesn't decline to load a slot
 			if(vore_prefs.load_slot())
-				QDEL_LAZYLIST(vore_bellies)
+				clear_bellies()
 				load_bellies_from_prefs()
 			. = TRUE
 		if("set_slot_name")
+			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			if(!vore_prefs)
+				return
+
 			var/name = permissive_sanitize_name(params["name"])
 			vore_prefs.set_slot_name(name)
 			. = TRUE
 		if("copy_to_slot")
+			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			if(!vore_prefs)
+				return
+
 			var/slot_to_save_over = vore_prefs.copy_to_slot()
 			if(slot_to_save_over != null)
 				save_bellies(slot_to_save_over)
+				to_chat(usr, span_notice("Copied belly loadout to slot [slot_to_save_over]."))
 			. = TRUE

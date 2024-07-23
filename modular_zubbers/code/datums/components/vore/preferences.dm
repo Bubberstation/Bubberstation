@@ -15,34 +15,48 @@
 /proc/get_player_save_folder(ckey)
 	return "data/player_saves/[ckey[1]]/[ckey]"
 
+/client
+	var/datum/vore_preferences/vore_prefs
+
+/// Returns null if the client is not interested in vore at all and therefore has no opinions
+/client/proc/get_vore_prefs()
+	if(vore_prefs)
+		return vore_prefs
+
+	// do not create the prefs at all for normies
+	// default pref values are not safe for them and they cannot configure them without the vore component
+	var/enable_vore = prefs.read_preference(/datum/preference/toggle/erp/vore_enable)
+	if(!enable_vore)
+		return null
+	vore_prefs = new(src)
+	return vore_prefs
+
+/mob/proc/get_vore_prefs()
+	if(client)
+		return client.get_vore_prefs()
+	return null
+
 // Lightweight-ish reimplementation of /datum/preferences
 /datum/vore_preferences
-	var/owner
+	var/client/owner
 	// TODO: LUT when loading
 	var/belly_layout_slot = 0
 	var/list/pref_map = null
 	var/datum/json_savefile/savefile
 
-/datum/vore_preferences/New(mob/M)
-	invalidate(M)
+/datum/vore_preferences/New(client/C)
+	owner = C
+	savefile = new("[get_player_save_folder(C.ckey)]/vore.json")
+	pref_map = savefile.get_entry("vore", list())
 
 /datum/vore_preferences/Destroy(force)
 	QDEL_NULL(savefile)
 	LAZYNULL(pref_map)
 	. = ..()
 
-/// When someone other than our owner tries to use this preference (say, an admin posessing someone),
-/// we invalidate ourselves and reload our config
-/datum/vore_preferences/proc/load_savefile(mob/M)
-	owner = M.ckey
-	savefile = new("[get_player_save_folder(M.ckey)]/vore.json")
-	pref_map = savefile.get_entry("vore", list())
-
-/datum/vore_preferences/proc/invalidate(mob/M)
-	to_chat(M, span_warning("Loading vore preferences..."))
-	load_savefile(M)
-
 /datum/vore_preferences/ui_data(mob/user)
+	if(user.client != owner)
+		CRASH("[key_name(user)] managed to access [key_name(owner)]'s vore preferences")
 	var/list/data = list()
 
 	var/list/prefs = list()
@@ -51,53 +65,41 @@
 		prefs[pref.savefile_key] = read_preference(type)
 
 	data["preferences"] = prefs
-	data["current_slot"] = list(
-		"name" = get_slot_name(),
-		"owned" = (user.ckey == owner)
-	)
+	data["current_slot"] = get_slot_name()
 
 	return data
 
 /datum/vore_preferences/proc/get_slot_metadata()
-	// We deliberately do NOT invalidate here to let people see slot name in the UI
 	return savefile.get_entry("slot_metadata", list())
 
 /datum/vore_preferences/proc/get_slot_name(slot = belly_layout_slot)
-	// We deliberately do NOT invalidate here to let people see slot name in the UI
 	var/list/slot_metadata = get_slot_metadata()
 	if("[slot]" in slot_metadata)
 		return slot_metadata["[slot]"]["name"]
 	return "New Slot ([slot])"
 
 /datum/vore_preferences/proc/set_slot_metadata(list/data)
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
 	savefile.set_entry("slot_metadata", data)
+	savefile.save()
 
-/datum/vore_preferences/proc/set_slot_name(name)
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
+/datum/vore_preferences/proc/set_slot_name(name, slot = belly_layout_slot)
 	var/list/slot_metadata = get_slot_metadata()
-	LAZYSET(slot_metadata["[belly_layout_slot]"], "name", name)
-
+	LAZYSET(slot_metadata["[slot]"], "name", name)
 	set_slot_metadata(slot_metadata)
 
 /datum/vore_preferences/proc/generate_slot_choice_list()
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
 	var/list/choices = list()
 	for(var/i in 0 to MAX_BELLY_LAYOUTS)
-		choices["[get_slot_name(i)]"] = i
+		var/name = get_slot_name(i)
+		// avoid duplicates
+		if(name in choices)
+			name = "[name] ([i])"
+		choices["[name]"] = i
 	return choices
 
 /datum/vore_preferences/proc/load_slot()
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
 	var/list/choices = generate_slot_choice_list()
-	var/choice = tgui_input_list(usr, "Choose a slot to load", "Belly Slot", choices)
+	var/choice = tgui_input_list(usr, "Choose a slot to load", "Belly Slot", choices, get_slot_name())
 	if(choice)
 		if(tgui_alert(usr, "Are you SURE you want to delete all current bellies and replace them with the slot '[choice]'?", "Slot Loading", list("No", "Yes")) != "Yes")
 			return FALSE
@@ -106,32 +108,24 @@
 	return FALSE
 
 /datum/vore_preferences/proc/copy_to_slot()
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
 	var/list/choices = generate_slot_choice_list()
 	var/choice = tgui_input_list(usr, "Choose a slot to copy over", "Belly Slot", choices)
 	if(choice)
 		if(tgui_alert(usr, "Are you SURE you want to overwrite '[choice]' with current bellies?", "Slot Copying", list("No", "Yes")) != "Yes")
 			return null
 
+		set_slot_name("[get_slot_name()] (Copy)", choices[choice])
 		return choices[choice]
 	return null
 
 /datum/vore_preferences/proc/get_bellies()
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
 	return savefile.get_entry("bellies[belly_layout_slot]")
 
 /datum/vore_preferences/proc/set_bellies(list/data, slot = belly_layout_slot)
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
 	savefile.set_entry("bellies[slot]", data)
+	savefile.save()
 
 /datum/vore_preferences/proc/read_preference(preference_type)
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
 	var/datum/vore_pref/preference_entry = GLOB.vore_preference_entries[preference_type]
 	if(isnull(preference_entry))
 		var/extra_info = ""
@@ -155,18 +149,12 @@
 	return value
 
 /datum/vore_preferences/proc/write_preference(datum/vore_pref/preference, preference_value)
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
 	var/new_value = preference.deserialize(preference_value, src)
 	var/success = preference.write(pref_map, new_value)
 	save()
 	return success
 
 /datum/vore_preferences/proc/save()
-	if(usr && usr.ckey != owner)
-		invalidate(usr)
-
 	savefile.set_entry("vore", pref_map)
 	savefile.save()
 

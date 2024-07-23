@@ -48,8 +48,6 @@
 /datum/component/vore
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
-	var/datum/vore_preferences/vore_prefs
-
 	var/obj/vore_belly/selected_belly = null
 	var/list/obj/vore_belly/vore_bellies = null
 
@@ -97,14 +95,22 @@
 
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
 	if(living_parent.client)
-		vore_prefs = new(living_parent)
 		expected_real_name = living_parent.client.prefs.read_preference(/datum/preference/name/real_name)
-		load_bellies_from_prefs()
+		load_bellies_from_prefs(living_parent.client)
 		return
 
 	return create_default_belly()
 
+/datum/component/vore/proc/get_parent_vore_prefs()
+	var/mob/living/living_parent = parent
+	if(living_parent.client)
+		return living_parent.get_vore_prefs()
+	return null
+
 /datum/component/vore/proc/load_bellies_from_prefs()
+	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
+	if(!vore_prefs)
+		return create_default_belly() // We always have to have our default belly
 	// TODO: LUT
 	var/list/belly_tree = vore_prefs.get_bellies()
 	if(!LAZYLEN(belly_tree))
@@ -112,9 +118,13 @@
 
 	for(var/belly in belly_tree)
 		var/obj/vore_belly/new_belly = new /obj/vore_belly(parent, src)
+		new_belly.deserialize(belly)
 		if(!selected_belly)
 			selected_belly = new_belly
-		new_belly.deserialize(belly)
+
+/datum/component/vore/proc/clear_bellies()
+	selected_belly = null
+	QDEL_LAZYLIST(vore_bellies)
 
 /datum/component/vore/proc/create_default_belly()
 	selected_belly = new /obj/vore_belly(parent, src)
@@ -131,7 +141,7 @@
 	var/mob/living/living_parent = parent
 	if(living_parent.ckey)
 		var/full_path = get_player_save_folder(living_parent.ckey)
-		var/list/all_savefiles = flist(full_path)
+		var/list/all_savefiles = flist("[full_path]/")
 
 		var/list/entries_to_show = list()
 		for(var/name in all_savefiles)
@@ -154,15 +164,17 @@
 
 /// Slot argument allows you to forcibly save to a different slot
 /datum/component/vore/proc/save_bellies(slot)
-	if(vore_prefs)
-		var/list/current_bellies = vore_prefs.get_bellies()
-		save_belly_backup(current_bellies)
+	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
+	if(!vore_prefs)
+		return
+	var/list/current_bellies = vore_prefs.get_bellies()
+	save_belly_backup(current_bellies)
 
-		var/list/bellies = list()
-		for(var/obj/vore_belly/B in vore_bellies)
-			UNTYPED_LIST_ADD(bellies, B.serialize())
+	var/list/bellies = list()
+	for(var/obj/vore_belly/B in vore_bellies)
+		UNTYPED_LIST_ADD(bellies, B.serialize())
 
-		vore_prefs.set_bellies(bellies, slot)
+	vore_prefs.set_bellies(bellies, slot)
 
 /datum/component/vore/proc/on_voremode_click(mob/living/user, mob/living/clicked_on)
 	if(user != parent)
@@ -233,10 +245,13 @@
 		return FALSE
 
 	// Check pred prefs
-	if(pred_component.vore_prefs)
+	// These are structured like this so that we automatically succeed for components without a client
+	// REQUIRES_PLAYER is checked above
+	var/datum/vore_preferences/pred_prefs = pred.get_vore_prefs()
+	if(pred_prefs)
 		var/allowed_to_pred = FALSE
 
-		var/pred_trinary = pred_component.vore_prefs.read_preference(/datum/vore_pref/trinary/pred)
+		var/pred_trinary = pred_prefs.read_preference(/datum/vore_pref/trinary/pred)
 		switch(pred_trinary)
 			if(PREF_TRINARY_NEVER)
 				allowed_to_pred = FALSE
@@ -257,10 +272,11 @@
 			return FALSE
 
 	// Check prey prefs
-	if(prey_component.vore_prefs)
+	var/datum/vore_preferences/prey_prefs = prey.get_vore_prefs()
+	if(prey_prefs)
 		var/allowed_to_prey = FALSE
 
-		var/prey_trinary = prey_component.vore_prefs.read_preference(/datum/vore_pref/trinary/prey)
+		var/prey_trinary = prey_prefs.read_preference(/datum/vore_pref/trinary/prey)
 		switch(prey_trinary)
 			if(PREF_TRINARY_NEVER)
 				allowed_to_prey = FALSE
@@ -374,10 +390,9 @@
 	for(var/mob/living/listening_mob in listeners)
 		if(get_dist(listening_mob, turf_source) > range)
 			continue
-		var/datum/component/vore/listener_vore = listening_mob.GetComponent(/datum/component/vore)
-		if(!listener_vore || !listener_vore.vore_prefs)
+		var/datum/vore_preferences/listener_vore_prefs = listening_mob.get_vore_prefs()
+		if(!listener_vore_prefs)
 			continue
-		var/datum/vore_preferences/listener_vore_prefs = listener_vore.vore_prefs
 		var/pref_enabled = listener_vore_prefs.read_preference(pref)
 		if(!pref_enabled)
 			continue

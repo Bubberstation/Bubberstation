@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Collapsible,
+  Dimmer,
   Dropdown,
   Flex,
   Icon,
@@ -61,7 +62,7 @@ type Data = {
   selected_belly: number;
   bellies: Belly[];
   preferences: { [key: string]: any };
-  current_slot: { name: string; owned: BooleanLike };
+  current_slot: string;
   inside: PreyBellyView | null;
 };
 
@@ -76,24 +77,21 @@ export const VorePanel = (props) => {
 };
 
 const VoreMain = (props) => {
-  const { act } = useBackend();
+  const { data, act } = useBackend<Data>();
   const [tab, setTab] = useState(0);
 
   return (
     <Section
-      title="Vore"
+      title={`Vore - ${data.current_slot}`}
       fill
       buttons={
-        <>
-          <Button icon="upload">Import</Button> {/* TODO: make work */}
-          <Button icon="download">Export</Button> {/* TODO: make work */}
-          <Button
-            icon="cloud-download-alt"
-            onClick={() => act('belly_backups')}
-          >
-            Get Backup
-          </Button>
-        </>
+        <Button
+          icon="cloud-download-alt"
+          selected={tab === 100}
+          onClick={() => setTab(tab === 100 ? 0 : 100)}
+        >
+          Belly Savefile Management
+        </Button>
       }
     >
       <Tabs fluid>
@@ -110,7 +108,78 @@ const VoreMain = (props) => {
       {tab === 0 && <BelliesList />}
       {tab === 1 && <Inside />}
       {tab === 2 && <Preferences />}
+      {tab === 100 && <SavefilePopup setTab={setTab} />}
     </Section>
+  );
+};
+
+const SavefilePopup = (props: {
+  setTab: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  const { act, data } = useBackend<Data>();
+  const { setTab } = props;
+  const [editing, setEditing] = useState(false);
+
+  return (
+    <Dimmer>
+      <Section
+        title="Belly Savefile Management"
+        width={40}
+        buttons={
+          <Button onClick={() => setTab(0)} color="red">
+            <Icon name="window-close-o" />
+          </Button>
+        }
+      >
+        <LabeledList>
+          <LabeledList.Item
+            label="Currently Loaded"
+            buttons={
+              <Button selected={editing} onClick={() => setEditing(!editing)}>
+                <Icon name="pencil" />
+              </Button>
+            }
+          >
+            {editing ? (
+              <Input
+                width={26}
+                value={data.current_slot}
+                onChange={(e, name) => act('set_slot_name', { name })}
+              />
+            ) : (
+              data.current_slot
+            )}
+          </LabeledList.Item>
+        </LabeledList>
+        <Box>
+          <Button
+            mt={1}
+            icon="tasks"
+            onClick={() => {
+              act('load_slot');
+              setTab(0);
+            }}
+          >
+            Load Slot
+          </Button>
+          <Button icon="copy" onClick={() => act('copy_to_slot')}>
+            Copy To Slot
+          </Button>
+        </Box>
+        <Box>
+          {/* TODO: Make these work */}
+          <Button icon="upload">Import</Button>
+          <Button icon="download">Export</Button>
+          <Button
+            mt={1}
+            icon="cloud-download-alt"
+            onClick={() => act('belly_backups')}
+          >
+            Download Backup
+          </Button>
+        </Box>
+      </Section>
+    </Dimmer>
   );
 };
 
