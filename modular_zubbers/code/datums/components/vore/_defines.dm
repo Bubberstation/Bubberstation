@@ -7,6 +7,7 @@
 #define REQUIRES_PLAYER FALSE // TODO: Change this
 #define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS // Makes every mob into a vore mob for testing
 #define BELLY_BACKUP_COUNT 5 // Number of rolling backups bellies will keep
+#define MAX_BELLY_LAYOUTS 20
 
 #define DIGEST_MODE_NONE "None"
 #define DIGEST_MODE_DIGEST "Digest"

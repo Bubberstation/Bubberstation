@@ -168,3 +168,18 @@
 		if("belly_backups")
 			download_belly_backup()
 			. = TRUE
+		if("load_slot")
+			// returns true if the user doesn't decline to load a slot
+			if(vore_prefs.load_slot())
+				QDEL_LAZYLIST(vore_bellies)
+				load_bellies_from_prefs()
+			. = TRUE
+		if("set_slot_name")
+			var/name = permissive_sanitize_name(params["name"])
+			vore_prefs.set_slot_name(name)
+			. = TRUE
+		if("copy_to_slot")
+			var/slot_to_save_over = vore_prefs.copy_to_slot()
+			if(slot_to_save_over != null)
+				save_bellies(slot_to_save_over)
+			. = TRUE

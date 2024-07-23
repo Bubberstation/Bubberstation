@@ -61,6 +61,7 @@ type Data = {
   selected_belly: number;
   bellies: Belly[];
   preferences: { [key: string]: any };
+  current_slot: { name: string; owned: BooleanLike };
   inside: PreyBellyView | null;
 };
 

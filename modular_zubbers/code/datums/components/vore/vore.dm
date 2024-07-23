@@ -96,29 +96,25 @@
 	return ..()
 
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
-	if(living_parent.client?.prefs?.savefile)
-		vore_prefs = new(living_parent.client.prefs.savefile)
-
+	if(living_parent.client)
+		vore_prefs = new(living_parent)
 		expected_real_name = living_parent.client.prefs.read_preference(/datum/preference/name/real_name)
-
-		var/list/pref_tree = living_parent.client.prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
-		var/list/vore_tree = pref_tree["vore"]
-		if(!LAZYLEN(vore_tree))
-			return create_default_belly()
-
-		var/list/belly_tree = vore_tree["bellies"]
-		if(!LAZYLEN(belly_tree))
-			return create_default_belly()
-
-		for(var/belly in belly_tree)
-			var/obj/vore_belly/new_belly = new /obj/vore_belly(parent, src)
-			if(!selected_belly)
-				selected_belly = new_belly
-			new_belly.deserialize(belly)
+		load_bellies_from_prefs()
 		return
 
 	return create_default_belly()
 
+/datum/component/vore/proc/load_bellies_from_prefs()
+	// TODO: LUT
+	var/list/belly_tree = vore_prefs.get_bellies()
+	if(!LAZYLEN(belly_tree))
+		return create_default_belly()
+
+	for(var/belly in belly_tree)
+		var/obj/vore_belly/new_belly = new /obj/vore_belly(parent, src)
+		if(!selected_belly)
+			selected_belly = new_belly
+		new_belly.deserialize(belly)
 
 /datum/component/vore/proc/create_default_belly()
 	selected_belly = new /obj/vore_belly(parent, src)
@@ -134,54 +130,39 @@
 /datum/component/vore/proc/download_belly_backup()
 	var/mob/living/living_parent = parent
 	if(living_parent.ckey)
-		var/full_path = "data/player_saves/[living_parent.ckey[1]]/[living_parent.ckey]/"
+		var/full_path = get_player_save_folder(living_parent.ckey)
 		var/list/all_savefiles = flist(full_path)
 
 		var/list/entries_to_show = list()
 		for(var/name in all_savefiles)
 			if(findtext(name, "vore_backup_"))
-				entries_to_show += "[name] - [time2text(ftime("[full_path][name]"))]"
+				entries_to_show += "[name] - [time2text(ftime("[full_path]/[name]"))]"
 
 		var/selected = tgui_input_list(usr, "Select a backup to download", "Vore Backups", entries_to_show)
 		if(selected)
 			var/filename = splittext(selected, " - ")[1]
-			usr << ftp(file("[full_path][filename]"))
+			usr << ftp(file("[full_path]/[filename]"))
 			to_chat(usr, "Attempting to send [selected], this may take a few minutes.")
 
 /datum/component/vore/proc/save_belly_backup(list/only_bellies)
 	var/mob/living/living_parent = parent
 	if(living_parent.ckey)
 		backup_number = (backup_number + 1) % BELLY_BACKUP_COUNT
-		var/savefile_path = "data/player_saves/[living_parent.ckey[1]]/[living_parent.ckey]/vore_backup_[backup_number].json"
+		var/savefile_path = "[get_player_save_folder(living_parent.ckey)]/vore_backup_[backup_number].json"
 		if(savefile_path)
 			rustg_file_write(json_encode(only_bellies, JSON_PRETTY_PRINT), savefile_path)
 
-/datum/component/vore/proc/save_bellies()
-	var/mob/living/living_parent = parent
-	if(living_parent.client)
-		var/datum/preferences/prefs = living_parent.client.prefs
-
-		var/current_real_name = prefs.read_preference(/datum/preference/name/real_name)
-		if(expected_real_name != current_real_name)
-			var/answer = tgui_alert(usr, "Save data mismatch: This belly expected to save to [expected_real_name] but found [current_real_name] loaded. Are you sure you want to overwrite data for [current_real_name]?", "Save Data Mismatch", list("No", "Yes"))
-			if(answer != "Yes")
-				return
-
-		var/list/current_prefs = prefs.get_save_data_for_savefile_identifier(PREFERENCE_CHARACTER)
+/// Slot argument allows you to forcibly save to a different slot
+/datum/component/vore/proc/save_bellies(slot)
+	if(vore_prefs)
+		var/list/current_bellies = vore_prefs.get_bellies()
+		save_belly_backup(current_bellies)
 
 		var/list/bellies = list()
 		for(var/obj/vore_belly/B in vore_bellies)
 			UNTYPED_LIST_ADD(bellies, B.serialize())
 
-		if(!("vore" in current_prefs))
-			current_prefs["vore"] = list()
-		var/list/vore = current_prefs["vore"]
-		save_belly_backup(vore["bellies"])
-		vore["bellies"] = bellies
-
-		current_prefs["vore"] = vore
-
-		prefs.save_preferences()
+		vore_prefs.set_bellies(bellies, slot)
 
 /datum/component/vore/proc/on_voremode_click(mob/living/user, mob/living/clicked_on)
 	if(user != parent)
