@@ -200,6 +200,7 @@
 	if(ismob(arrived))
 		var/mob/M = arrived
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
+		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
 		// TODO: Insertion Verb
 		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
@@ -231,6 +232,7 @@
 	if(ismob(gone))
 		var/mob/M = gone
 		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
+		REMOVE_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		// If matryoshka is banned, they can't end up in another belly
 		#if MATRYOSHKA_BANNED
 		M.stop_sound_channel(CHANNEL_PREYLOOP)

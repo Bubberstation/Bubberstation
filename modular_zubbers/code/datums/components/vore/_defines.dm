@@ -9,6 +9,8 @@
 #define BELLY_BACKUP_COUNT 5 // Number of rolling backups bellies will keep
 #define MAX_BELLY_LAYOUTS 20
 
+#define TRAIT_SOURCE_VORE "vore"
+
 #define DIGEST_MODE_NONE "None"
 #define DIGEST_MODE_DIGEST "Digest"
 
