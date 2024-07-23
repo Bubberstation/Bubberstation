@@ -25,6 +25,12 @@
 		obscured |= ITEM_SLOT_SUITSTORE
 	if(hidden_slots & HIDEHEADGEAR)
 		obscured |= ITEM_SLOT_HEAD
+	// SPLURT EDIT ADDITION - Extra inventory
+	if(hidden_slots & HIDEUNDERWEAR)
+		obscured |= ITEM_SLOT_UNDERWEAR | ITEM_SLOT_SHIRT | ITEM_SLOT_SOCKS
+	if(hidden_slots & HIDEWRISTS)
+		obscured |= ITEM_SLOT_WRISTS
+	// SPLURT EDIT END
 
 	return obscured
 

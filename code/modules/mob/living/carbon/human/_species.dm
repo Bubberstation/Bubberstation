@@ -851,10 +851,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		// SPLURT EDIT - Extra inventory
 		if(ITEM_SLOT_WRISTS)
-			if(H.wrists)
-				return FALSE
-			if(!(I.slot_flags & ITEM_SLOT_WRISTS))
-				return FALSE
 			if(H.num_hands < 2)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
@@ -895,30 +891,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		// SPLURT EDIT - Extra inventory
 		if(ITEM_SLOT_EARS_RIGHT)
-			if(H.ears_extra)
-				return FALSE
-			if(!(I.slot_flags & ITEM_SLOT_EARS))
-				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_UNDERWEAR)
-			if(H.w_underwear)
-				return FALSE
-			if( !(I.slot_flags & ITEM_SLOT_UNDERWEAR) )
-				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_SOCKS)
-			if(H.w_socks)
-				return FALSE
-			if( !(I.slot_flags & ITEM_SLOT_SOCKS) )
-				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_SHIRT)
-			if(H.w_shirt)
-				return FALSE
-			if( !(I.slot_flags & ITEM_SLOT_SHIRT) )
-				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		//
 		if(ITEM_SLOT_ICLOTHING)

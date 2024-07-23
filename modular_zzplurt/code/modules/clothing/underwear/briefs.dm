@@ -5,6 +5,16 @@
 	body_parts_covered = GROIN
 	slot_flags = ITEM_SLOT_UNDERWEAR
 
+/obj/item/clothing/underwear/briefs/equipped(mob/living/user, slot)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	if(slot == ITEM_SLOT_UNDERWEAR)
+		human.underwear = name
+	else
+		human.underwear = "Nude"
+
 // please make sure they're sorted alphabetically and categorized, above is the only exception
 
 /* Old briefs objects, already handled by the sprite accessories

@@ -6,6 +6,16 @@
 	slot_flags = ITEM_SLOT_SOCKS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
+/obj/item/clothing/underwear/socks/equipped(mob/living/user, slot)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	if(slot == ITEM_SLOT_SOCKS)
+		human.socks = name
+	else
+		human.socks = "Nude"
+
 // please make sure they're sorted alphabetically and categorized, above is the only exception
 
 /* Old socks items, already handled by sprite accessories

@@ -23,6 +23,7 @@
 			if(istype(target_mob.wear_suit, /obj/item/clothing/suit/toggle/labcoat/hospitalgown))
 				return TRUE
 
+			/* SPLURT EDIT REMOVAL - Extra Inventory
 			//Are they wearing an Undershirt?
 			if(target_mob.undershirt != "Nude" && !(target_mob.underwear_visibility & UNDERWEAR_HIDE_SHIRT))
 				var/datum/sprite_accessory/undershirt/worn_undershirt = SSaccessories.undershirt_list[target_mob.undershirt]
@@ -50,7 +51,7 @@
 			//Nothing they're wearing will cover them
 			else
 				return FALSE
-
+			*/
 		//If not always shown or hidden by clothes, then it defaults to always hidden
 		else
 			return TRUE

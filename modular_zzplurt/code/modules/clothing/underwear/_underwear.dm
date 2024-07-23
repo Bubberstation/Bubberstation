@@ -13,6 +13,11 @@
 	// Adding support for female sprites
 	var/female_sprite_flags = NO_FEMALE_UNIFORM
 
+/obj/item/clothing/underwear/mob_can_equip(mob/living/user, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_NO_UNDERWEAR))
+		return FALSE
+
 /obj/item/clothing/underwear/Move()
 	..()
 	setDir(SOUTH) //should prevent underwear from facing any direction but south while on the floor, uses same code as pipes, PLEASE, THIS IS A BAD SOLUTION, SOMEONE MAKE ME UNDERWEAR SPRITES ASAP

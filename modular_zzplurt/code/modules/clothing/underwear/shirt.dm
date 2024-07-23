@@ -6,6 +6,24 @@
 	slot_flags = ITEM_SLOT_SHIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
+/obj/item/clothing/underwear/shirt/equipped(mob/living/user, slot)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	if(slot == ITEM_SLOT_SHIRT)
+		if(istype(src, /obj/item/clothing/underwear/shirt/bra))
+			human.bra = name
+			human.undershirt = "Nude"
+		else
+			human.undershirt = name
+			human.bra = "Nude"
+	else
+		if(istype(src, /obj/item/clothing/underwear/shirt/bra))
+			human.bra = "Nude"
+		else
+			human.undershirt = "Nude"
+
 /obj/item/clothing/underwear/shirt/bra
 	name = "bra"
 	desc = "A bra."

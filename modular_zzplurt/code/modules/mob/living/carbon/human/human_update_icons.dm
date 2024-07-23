@@ -24,7 +24,7 @@
 		if(update_obscured)
 			update_obscured_slots(undies.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_UNDERWEAR)
+		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_UNDERWEAR) || underwear_hidden())
 			return
 
 		var/target_overlay = undies.icon_state
@@ -73,6 +73,9 @@
 			mutant_styles = mutant_styles,
 		)
 
+		if(undies.flags_1 & IS_PLAYER_COLORABLE_1)
+			underwear_overlay.color = underwear_color
+
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
 		my_chest?.worn_underwear_offset?.apply_offset(underwear_overlay)
 		overlays_standing[UNDERWEAR_LAYER] = underwear_overlay
@@ -94,7 +97,7 @@
 		if(update_obscured)
 			update_obscured_slots(undershirt.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SHIRT)
+		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SHIRT) || undershirt_hidden())
 			return
 
 		var/target_overlay = undershirt.icon_state
@@ -142,6 +145,9 @@
 			override_file = handled_by_bodyshape ? icon_file : null,
 			mutant_styles = mutant_styles,
 		)
+
+		if(undershirt.flags_1 & IS_PLAYER_COLORABLE_1)
+			shirt_overlay.color = undershirt_color
 
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
 		my_chest?.worn_shirt_offset?.apply_offset(shirt_overlay)
@@ -241,7 +247,7 @@
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SOCKS)
+		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SOCKS) || socks_hidden())
 			return
 
 		var/target_overlay = worn_item.icon_state
@@ -281,6 +287,9 @@
 			var/list/foot_offset = my_leg.worn_foot_offset?.get_offset()
 			if (foot_offset && foot_offset["y"] > feature_y_offset)
 				feature_y_offset = foot_offset["y"]
+
+		if(worn_item.flags_1 & IS_PLAYER_COLORABLE_1)
+			socks_overlay.color = socks_color
 
 		socks_overlay.pixel_y += feature_y_offset
 		overlays_standing[SOCKS_LAYER] = socks_overlay
