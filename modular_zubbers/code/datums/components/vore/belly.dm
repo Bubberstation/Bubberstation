@@ -223,6 +223,15 @@
 			if(AM in arrived)
 				arrived.dropItemToGround(AM, TRUE)
 			AM.forceMove(reject_location)
+		#if DISABLES_SENSORS
+		if(istype(AM, /obj/item/clothing/under))
+			var/obj/item/clothing/under/sensor_clothing = AM
+			sensor_clothing.sensor_mode = NO_SENSORS
+			if(ishuman(arrived))
+				var/mob/living/carbon/human/H = arrived
+				if(H.w_uniform == sensor_clothing)
+					H.update_suit_sensors()
+		#endif
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
