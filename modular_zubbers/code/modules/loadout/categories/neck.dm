@@ -14,3 +14,7 @@
 /datum/loadout_item/neck/binary
 	name = "Crow Feather Cloak"
 	item_path = /obj/item/clothing/neck/binary
+
+/datum/loadout_item/neck/bunnypendant
+	name = "Rabbit Pendant"
+	item_path = /obj/item/clothing/neck/bunny_pendant

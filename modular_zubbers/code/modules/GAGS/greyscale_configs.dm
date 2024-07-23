@@ -81,3 +81,12 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/playbunny_ears_worn.json'
 
+/datum/greyscale_config/henchmen
+	name = "Henchmen"
+	icon_file = 'monkestation/icons/mob/clothing/costumes/henchmen/henchmen_item.dmi'
+	json_config = 'monkestation/code/datums/greyscale/json_configs/henchmen.json'
+
+/datum/greyscale_config/henchmen_worn
+	name = "Henchmen_Worn"
+	icon_file = 'monkestation/icons/mob/clothing/costumes/henchmen/henchmen_worn.dmi'
+	json_config = 'monkestation/code/datums/greyscale/json_configs/henchmen.json'
