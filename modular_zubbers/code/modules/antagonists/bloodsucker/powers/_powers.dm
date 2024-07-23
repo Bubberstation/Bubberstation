@@ -192,7 +192,7 @@
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
 	if(bloodsuckerdatum_power.frenzied)
 		return
-	bloodsuckerdatum_power.AdjustBloodVolume(-cost_override ? cost_override : bloodcost)
+	bloodsuckerdatum_power.AdjustBloodVolume(cost_override ? -cost_override : -bloodcost)
 
 /datum/action/cooldown/bloodsucker/Activate(atom/target)
 	if(!active)
