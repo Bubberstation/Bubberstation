@@ -1,3 +1,6 @@
+/datum/component/vore
+	var/ui_editing_lookuptable = FALSE
+
 /datum/component/vore/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -21,6 +24,19 @@
 
 	data["max_burn_damage"] = MAX_BURN_DAMAGE
 	data["max_brute_damage"] = MAX_BRUTE_DAMAGE
+
+	data["character_slots"] = null
+	data["vore_slots"] = null
+	data["lookup_table"] = null
+
+	if(ui_editing_lookuptable)
+		var/datum/vore_preferences/vore_prefs = user.client.get_vore_prefs()
+		if(!vore_prefs)
+			return data
+
+		data["character_slots"] = user.client.prefs.create_character_profiles()
+		data["vore_slots"] = vore_prefs.generate_slot_choice_list()
+		data["lookup_table"] = vore_prefs.get_lookup_table()
 
 	return data
 
@@ -198,4 +214,35 @@
 			if(slot_to_save_over != null)
 				save_bellies(slot_to_save_over)
 				to_chat(usr, span_notice("Copied belly loadout to slot [slot_to_save_over]."))
+			. = TRUE
+		if("toggle_lookup_data")
+			ui_editing_lookuptable = !ui_editing_lookuptable
+			update_static_data(usr, ui)
+			. = TRUE
+		if("set_lookup_table_entry")
+			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			if(!vore_prefs)
+				return
+			var/from_slot = params["from"]
+			var/to_slot = text2num(params["to"])
+			if(isnull(to_slot))
+				return
+
+			var/list/lookup_table = vore_prefs.get_lookup_table()
+			lookup_table["[from_slot]"] = to_slot
+			vore_prefs.set_lookup_table(lookup_table)
+			update_static_data(usr, ui)
+
+			. = TRUE
+		if("delete_lookup_table_entry")
+			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			if(!vore_prefs)
+				return
+			var/slot_to_delete = "[params["slot_to_delete"]]"
+
+			var/list/lookup_table = vore_prefs.get_lookup_table()
+			lookup_table -= slot_to_delete
+			vore_prefs.set_lookup_table(lookup_table)
+			update_static_data(usr, ui)
+
 			. = TRUE

@@ -48,6 +48,12 @@
 	owner = C
 	savefile = new("[get_player_save_folder(C.ckey)]/vore.json")
 	pref_map = savefile.get_entry("vore", list())
+	reset_belly_layout_slot()
+
+/datum/vore_preferences/proc/reset_belly_layout_slot()
+	var/new_belly_layout_slot = LAZYACCESS(get_lookup_table(), "[owner.prefs.default_slot]")
+	if(!isnull(new_belly_layout_slot))
+		belly_layout_slot = new_belly_layout_slot
 
 /datum/vore_preferences/Destroy(force)
 	QDEL_NULL(savefile)
@@ -72,20 +78,27 @@
 /datum/vore_preferences/proc/get_slot_metadata()
 	return savefile.get_entry("slot_metadata", list())
 
+/datum/vore_preferences/proc/set_slot_metadata(list/data)
+	savefile.set_entry("slot_metadata", data)
+	savefile.save()
+
 /datum/vore_preferences/proc/get_slot_name(slot = belly_layout_slot)
 	var/list/slot_metadata = get_slot_metadata()
 	if("[slot]" in slot_metadata)
 		return slot_metadata["[slot]"]["name"]
 	return "New Slot ([slot])"
 
-/datum/vore_preferences/proc/set_slot_metadata(list/data)
-	savefile.set_entry("slot_metadata", data)
-	savefile.save()
-
 /datum/vore_preferences/proc/set_slot_name(name, slot = belly_layout_slot)
 	var/list/slot_metadata = get_slot_metadata()
 	LAZYSET(slot_metadata["[slot]"], "name", name)
 	set_slot_metadata(slot_metadata)
+
+/datum/vore_preferences/proc/get_lookup_table()
+	return savefile.get_entry("slot_lookup_table", list())
+
+/datum/vore_preferences/proc/set_lookup_table(list/data)
+	savefile.set_entry("slot_lookup_table", data)
+	savefile.save()
 
 /datum/vore_preferences/proc/generate_slot_choice_list()
 	var/list/choices = list()
