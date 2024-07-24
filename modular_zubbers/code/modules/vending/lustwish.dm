@@ -23,10 +23,11 @@
 	)
 
 	zubbers_premium = list(
-	/obj/item/holosign_creator/sex = 6,
-	/obj/item/clothing/under/mikubikini = 3,
-	/obj/item/clothing/suit/mikujacket = 3,
-	/obj/item/clothing/head/mikuhair = 3,
-	/obj/item/clothing/gloves/mikugloves = 3,
-	/obj/item/clothing/shoes/sneakers/mikuleggings = 3,
+		/obj/item/clothing/neck/kink_collar/locked/gps = 3,
+		/obj/item/holosign_creator/sex = 6,
+		/obj/item/clothing/under/mikubikini = 3,
+		/obj/item/clothing/suit/mikujacket = 3,
+		/obj/item/clothing/head/mikuhair = 3,
+		/obj/item/clothing/gloves/mikugloves = 3,
+		/obj/item/clothing/shoes/sneakers/mikuleggings = 3,
 	)
