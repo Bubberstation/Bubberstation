@@ -48,6 +48,9 @@ type Belly = {
   fancy_sounds: BooleanLike;
   insert_sound: string;
   release_sound: string;
+  muffles_radio: BooleanLike;
+  is_wet: BooleanLike;
+  wet_loop: BooleanLike;
 };
 
 type PreyBellyView = Omit<Belly, 'index' | 'ref'> & {
@@ -68,7 +71,7 @@ type Data = {
 
 export const VorePanel = (props) => {
   return (
-    <Window width={640} height={480}>
+    <Window width={750} height={540}>
       <Window.Content>
         <VoreMain />
       </Window.Content>
@@ -365,6 +368,7 @@ const BellyUI = (props: {
     <Section
       mt={0}
       fill
+      scrollable
       title={
         editing ? (
           <Input
@@ -540,11 +544,29 @@ const BellyUI = (props: {
               toFixed(belly.brute_damage, 2)
             )}
           </LabeledList.Item>
+          <LabeledList.Item label="Muffle Radio">
+            {editing ? (
+              <Button
+                icon={belly.muffles_radio ? 'toggle-on' : 'toggle-off'}
+                selected={belly.muffles_radio}
+                onClick={() =>
+                  act('edit_belly', { ref: belly.ref, var: 'muffles_radio' })
+                }
+              >
+                {belly.muffles_radio ? 'Yes' : 'No'}
+              </Button>
+            ) : belly.muffles_radio ? (
+              'Yes'
+            ) : (
+              'No'
+            )}
+          </LabeledList.Item>
           <LabeledList.Divider />
           <LabeledList.Item label="Fancy Sounds">
             {editing ? (
               <Button
-                icon="pencil"
+                icon={belly.fancy_sounds ? 'toggle-on' : 'toggle-off'}
+                selected={belly.fancy_sounds}
                 onClick={() =>
                   act('edit_belly', {
                     ref: belly.ref,
@@ -552,14 +574,47 @@ const BellyUI = (props: {
                     value: '',
                   })
                 }
-                selected={belly.fancy_sounds}
               >
-                {belly.fancy_sounds ? 'On' : 'Off'}
+                {belly.fancy_sounds ? 'Yes' : 'No'}
               </Button>
             ) : belly.fancy_sounds ? (
               'On'
             ) : (
               'Off'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Fleshy Belly">
+            {editing ? (
+              <Button
+                icon={belly.is_wet ? 'toggle-on' : 'toggle-off'}
+                selected={belly.is_wet}
+                onClick={() =>
+                  act('edit_belly', { ref: belly.ref, var: 'is_wet' })
+                }
+              >
+                {belly.is_wet ? 'Yes' : 'No'}
+              </Button>
+            ) : belly.is_wet ? (
+              'Yes'
+            ) : (
+              'No'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Internal Sound Loop">
+            {editing ? (
+              <Button
+                icon={belly.wet_loop ? 'toggle-on' : 'toggle-off'}
+                selected={belly.wet_loop}
+                onClick={() =>
+                  act('edit_belly', { ref: belly.ref, var: 'wet_loop' })
+                }
+              >
+                {belly.wet_loop ? 'Yes' : 'No'}
+              </Button>
+            ) : belly.wet_loop ? (
+              'Yes'
+            ) : (
+              'No'
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Insertion Sound">

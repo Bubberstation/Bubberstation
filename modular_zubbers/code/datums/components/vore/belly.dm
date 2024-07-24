@@ -8,11 +8,11 @@
 	var/brute_damage = 0
 	var/burn_damage = 1
 
-	var/muffles_radio = TRUE // muffles radios used inside it // TODO: Implement changing
+	var/muffles_radio = TRUE // muffles radios used inside it
 
 	// Sounds
-	var/is_wet = TRUE // TODO: Implement changing
-	var/wet_loop = TRUE // TODO: Implement changing
+	var/is_wet = TRUE
+	var/wet_loop = TRUE
 
 	var/fancy_sounds = TRUE
 	var/insert_sound = "Gulp"
@@ -72,9 +72,10 @@
 	data["brute_damage"] = brute_damage
 	data["burn_damage"] = burn_damage
 
+	data["muffles_radio"] = muffles_radio
+
 	data["is_wet"] = is_wet
 	data["wet_loop"] = wet_loop
-	data["muffles_radio"] = muffles_radio
 
 	data["fancy_sounds"] = fancy_sounds
 	data["insert_sound"] = insert_sound
@@ -99,12 +100,12 @@
 			brute_damage = clamp(value, 0, MAX_BRUTE_DAMAGE)
 		if("burn_damage")
 			burn_damage = clamp(value, 0, MAX_BURN_DAMAGE)
+		if("muffles_radio")
+			muffles_radio = !muffles_radio
 		if("is_wet")
 			is_wet = !is_wet
 		if("wet_loop")
 			wet_loop = !wet_loop
-		if("muffles_radio")
-			muffles_radio = !muffles_radio
 		if("fancy_sounds")
 			fancy_sounds = !fancy_sounds
 			// Different sound set, switching between these could cause issues
