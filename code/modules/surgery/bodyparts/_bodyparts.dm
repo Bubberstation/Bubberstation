@@ -1437,12 +1437,6 @@
 	receive_damage(brute_damage, burn_damage)
 	do_sparks(number = 1, cardinal_only = FALSE, source = owner || src)
 
-	//BUBBERSTATION EDIT START: LIMB SPECIFIC EFFECTS ONLY APPLIED IF THERE IS DAMAGE, OR IF IT'S A JOINTED LIMB (LIKE LEGS, ARMS, OR HEAD)
-	if(protection & EMP_PROTECT_SELF)
-		return FALSE
-	//BUBBERSTAION EDIT END.
-
-
 	if(can_be_disabled && (get_damage() / max_damage) >= robotic_emp_paralyze_damage_percent_threshold)
 		ADD_TRAIT(src, TRAIT_PARALYSIS, EMP_TRAIT)
 		addtimer(TRAIT_CALLBACK_REMOVE(src, TRAIT_PARALYSIS, EMP_TRAIT), time_needed)
