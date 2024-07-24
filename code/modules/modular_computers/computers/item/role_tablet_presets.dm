@@ -52,7 +52,7 @@
 	starting_programs = list(
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/status,
-		/datum/computer_file/program/science,
+		///datum/computer_file/program/science, //BUBBER EDIT: HOS CANNOT HAVE RESEARCH APP
 		/datum/computer_file/program/robocontrol,
 		/datum/computer_file/program/budgetorders,
 		/datum/computer_file/program/records/security,
@@ -112,7 +112,7 @@
 	starting_programs = list(
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/status,
-		/datum/computer_file/program/science,
+		///datum/computer_file/program/science, //BUBBER EDIT: QM CANNOT HAVE RESEARCH APP
 		/datum/computer_file/program/robocontrol,
 		/datum/computer_file/program/budgetorders,
 		/datum/computer_file/program/shipping,
