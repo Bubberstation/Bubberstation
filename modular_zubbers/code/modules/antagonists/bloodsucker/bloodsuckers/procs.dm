@@ -15,12 +15,12 @@
 /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
 		if(current_powers.type == power.type)
-			return FALSE
+			return null
 	power = new power()
 	powers += power
 	power.Grant(owner.current)
 	log_uplink("[key_name(owner.current)] purchased [power].")
-	return TRUE
+	return power
 
 ///Called when a Bloodsucker loses a power: (power)
 /datum/antagonist/bloodsucker/proc/RemovePower(datum/action/cooldown/bloodsucker/power)
@@ -278,10 +278,11 @@
 	RankUp()
 
 /datum/antagonist/bloodsucker/proc/admin_give_power(mob/admin)
-	var/datum/action/cooldown/bloodsucker/power = tgui_input_list(admin, "What power to give [owner.current]?", "Might is right.", all_bloodsucker_powers)
-	if(!power)
+	var/power_type = tgui_input_list(admin, "What power to give [owner.current]?", "Might is right.", all_bloodsucker_powers)
+	if(!power_type)
 		return
-	BuyPower(power)
+	var/datum/action/cooldown/bloodsucker/power = BuyPower(power_type)
+	power.upgrade_power()
 
 /datum/antagonist/bloodsucker/proc/admin_remove_power(mob/admin)
 	var/datum/action/cooldown/bloodsucker/power = tgui_input_list(admin, "What power to remove from [owner.current]?", "Might is right.", powers)

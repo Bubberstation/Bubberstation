@@ -51,6 +51,13 @@
 	. = ..()
 	owner.balloon_alert(owner, "preparing to teleport...")
 
+/datum/action/cooldown/bloodsucker/gohome/DeactivatePower(deactivate_flags)
+	if(teleporting_stage != GOHOME_TELEPORT)
+		owner.balloon_alert(owner, "teleportation cancelled.")
+		teleporting_stage = GOHOME_START
+		return . = ..(DEACTIVATE_POWER_DO_NOT_REMOVE)
+	. = ..()
+
 /datum/action/cooldown/bloodsucker/gohome/process(seconds_per_tick)
 	. = ..()
 	if(!.)

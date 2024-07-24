@@ -342,8 +342,6 @@
 	// Don't do anything if we're not actually inside a brain and a head
 	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
-	// Ensure that the HUD updates (We might have lost the heart at some point)
-	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
 	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS

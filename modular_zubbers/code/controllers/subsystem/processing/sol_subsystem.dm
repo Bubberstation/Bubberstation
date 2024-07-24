@@ -72,7 +72,6 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 /datum/controller/subsystem/processing/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)
 	SEND_SIGNAL(src, COMSIG_SOL_WARNING_GIVEN, danger_level, vampire_warning_message, vassal_warning_message)
 
-
 /datum/controller/subsystem/processing/sunlight/proc/add_sun_sufferer(mob/victim)
 	var/sufferer_list = is_sufferer(victim)
 	if(sufferer_list)
@@ -81,11 +80,16 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 	victim.hud_used.infodisplay += sun_hud
 	victim.hud_used.show_hud(victim.hud_used.hud_version)
 	sun_hud.update_sol_hud()
-	sun_sufferers += list(list("victim" = WEAKREF(victim), "sun_hud" = sun_hud))
+	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(remove_sun_sufferer), victim)
+	RegisterSignal(sun_hud, COMSIG_QDELETING, PROC_REF(remove_sun_sufferer), victim)
+	sun_sufferers += list(list("victim" = victim, "sun_hud" = sun_hud))
 	if(length(sun_sufferers))
 		can_fire = TRUE
 
 	return TRUE
+
+/datum/controller/subsystem/processing/sunlight/proc/signal_remove_sun_sufferer(subsystem, mob/victim)
+	remove_sun_sufferer(victim)
 
 /datum/controller/subsystem/processing/sunlight/proc/remove_sun_sufferer(mob/victim)
 	var/sufferer_list = is_sufferer(victim)
@@ -94,9 +98,11 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = sufferer_list["sun_hud"]
 	if(sun_hud)
 		victim?.hud_used.infodisplay -= sun_hud
+		UnregisterSignal(sun_hud, COMSIG_QDELETING)
 		qdel(sun_hud)
 	// We have to use the index here as -= won't work with two lists
-	sun_sufferers.Cut(sufferer_list["index"])
+	UnregisterSignal(victim, COMSIG_QDELETING)
+	sun_sufferers.Cut(sufferer_list)
 	if(!length(sun_sufferers))
 		can_fire = FALSE
 		sunlight_active = initial(sunlight_active)
@@ -121,18 +127,15 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 		if(DANGER_LEVEL_SOL_ENDED)
 			target.playsound_local(null, 'sound/misc/ghosty_wind.ogg', 90, TRUE)
 
-
 /datum/controller/subsystem/processing/sunlight/proc/is_sufferer(mob/victim)
 	for(var/i in 1 to length(sun_sufferers))
-		var/list/sufferers_original = sun_sufferers[i]
-		var/list/sufferer_list = sufferers_original?.Copy()
-		if(!sufferer_list)
+		var/list/sufferer_contents = sun_sufferers[i]
+		if(!sufferer_contents)
 			continue
-		sufferer_list["index"] = i
-		var/datum/weakref/sufferer_ref = sufferer_list["victim"]
-		if(!sufferer_ref)
+		var/mob/sufferer = sufferer_contents["victim"]
+		if(!sufferer)
+			sun_sufferers.Cut(i)
 			continue
-		var/sufferer = sufferer_ref.resolve()
 		if(sufferer == victim)
-			return sufferer_list
+			return sufferer_contents
 	return null

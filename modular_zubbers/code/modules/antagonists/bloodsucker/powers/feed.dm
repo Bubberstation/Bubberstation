@@ -49,7 +49,11 @@
 	if(!.)
 		return FALSE
 	if(target_ref) //already sucking blood.
-		return FALSE
+		if(!ContinueActive(user, target_ref?.resolve(), !silent_feed, !silent_feed))
+			target_ref = null
+		else
+			owner.balloon_alert(owner, "already feeding!")
+			return FALSE
 	if(user.is_mouth_covered() && !isplasmaman(user))
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
@@ -69,7 +73,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/feed/DeactivatePower()
+/datum/action/cooldown/bloodsucker/feed/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return
@@ -78,6 +82,7 @@
 	UnregisterSignal(user, COMSIG_MOB_CLIENT_PRE_LIVING_MOVE)
 	if(isnull(feed_target))
 		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
+		stack_trace("[src] ended feeding with no target")
 	else
 		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
 		to_chat(user, span_notice("You slowly release [feed_target]."))
@@ -113,7 +118,7 @@
 	owner.face_atom(feed_target)
 	if(!do_after(owner, feed_timer, feed_target, hidden = TRUE))
 		owner.balloon_alert(owner, "feed stopped")
-		DeactivatePower()
+		target_ref = null
 		return
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		if(!IS_BLOODSUCKER(feed_target) && !IS_VASSAL(feed_target) && !IS_MONSTERHUNTER(feed_target))

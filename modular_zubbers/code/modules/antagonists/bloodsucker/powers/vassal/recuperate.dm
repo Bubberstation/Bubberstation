@@ -60,7 +60,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/recuperate/DeactivatePower()
+/datum/action/cooldown/bloodsucker/recuperate/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return

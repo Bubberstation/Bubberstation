@@ -15,12 +15,12 @@
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
 	target_range = 15
+	power_activates_immediately = FALSE
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
 
-/datum/action/cooldown/bloodsucker/targeted/haste/get_power_desc()
-	. = ..()
-	. += "Dash to a location, knocking down anyone in your way, and refilling your stamina. Those nearby may be knocked away, stunned, or left empty-handed.\n"
+/datum/action/cooldown/bloodsucker/targeted/haste/get_power_desc_extended()
+	. = "Dash to a location, knocking down anyone in your way, and refilling your stamina. Those nearby may be knocked away, stunned, or left empty-handed.\n"
 	if(level_current >= HASTE_GETUP_LEVEL)
 		. += "Dashing from lying down will get you up, but won't affect your foes."
 	else
@@ -47,7 +47,7 @@
 	if(!user.has_gravity(user.loc)) //We dont want people to be able to use this to fly around in space
 		user.balloon_alert(user, "you cannot dash while floating!")
 		return FALSE
-	if(level_current < 3 && user.body_position == LYING_DOWN)
+	if(level_current < HASTE_GETUP_LEVEL && user.body_position == LYING_DOWN)
 		user.balloon_alert(user, "you must be standing to dash!")
 		return FALSE
 	return TRUE
@@ -82,6 +82,7 @@
 	playsound(get_turf(owner), 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	var/safety = get_dist(user, targeted_turf) * 3 + 1
 	var/consequetive_failures = 0
+	active = TRUE
 	while(--safety && (get_turf(user) != targeted_turf))
 		var/success = step_towards(user, targeted_turf) //This does not try to go around obstacles.
 		if(!success)
@@ -97,6 +98,7 @@
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)
 	user.adjustStaminaLoss(-user.staminaloss)
+	PowerActivatedSuccesfully()
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()
 	return 10 + level_current * 4
@@ -110,6 +112,8 @@
 	hit.Cut()
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/on_move()
+	if(!active)
+		return
 	for(var/mob/living/hit_living in dview(1, get_turf(owner)) - owner)
 		if(hit.Find(hit_living))
 			continue

@@ -90,7 +90,7 @@
 		return .
 	log_combat(owner, target, "used [name] on [target].")
 
-/datum/action/cooldown/bloodsucker/targeted/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return

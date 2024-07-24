@@ -72,7 +72,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/cloak/DeactivatePower()
+/datum/action/cooldown/bloodsucker/cloak/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return

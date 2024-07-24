@@ -27,9 +27,8 @@
 	target_range = min(level_current + 2, 10)
 	. = ..()
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc()
-	. = ..()
-	. += "Hide yourself within a Cloak of Darkness, click on a tile to teleport"
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc_extended()
+	. = "Hide yourself within a Cloak of Darkness, click on a tile to teleport"
 	if(target_range)
 		. += " up to [target_range] tiles away."
 	else
@@ -68,7 +67,7 @@
 	owner.AddElement(/datum/element/digitalcamo)
 	animate(owner, alpha = 15, time = 2 SECONDS)
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return FALSE

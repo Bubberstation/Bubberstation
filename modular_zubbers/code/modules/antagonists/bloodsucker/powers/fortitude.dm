@@ -63,7 +63,7 @@
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
 		user.buckled.unbuckle_mob(src, force=TRUE)
 
-/datum/action/cooldown/bloodsucker/fortitude/DeactivatePower()
+/datum/action/cooldown/bloodsucker/fortitude/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!. || !ishuman(owner))
 		return

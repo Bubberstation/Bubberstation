@@ -33,9 +33,8 @@
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc()
-	. = ..()
-	. += "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.<br>"
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
+	. = "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.<br>"
 	. += "This will completely immobilize them for the next [DisplayTimeText(get_power_time())].<br>"
 	. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
 	if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
@@ -206,7 +205,7 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mute_target(mob/living/mesmerized_target)
 	mesmerized_target.set_silence_if_lower(get_mute_time())
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower(deactivate_flags)
 	. = ..()
 	target_ref = null
 

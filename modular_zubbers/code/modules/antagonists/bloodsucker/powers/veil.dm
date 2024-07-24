@@ -103,7 +103,7 @@
 	identity[VISIBLE_NAME_FACE] = disguise_name
 	user.SetSpecialVoice(disguise_name)
 
-/datum/action/cooldown/bloodsucker/veil/DeactivatePower()
+/datum/action/cooldown/bloodsucker/veil/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!. || !ishuman(owner))
 		return

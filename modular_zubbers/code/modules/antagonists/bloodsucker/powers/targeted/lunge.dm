@@ -185,7 +185,7 @@
 		// Did we knock them down?
 
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/lunge/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return

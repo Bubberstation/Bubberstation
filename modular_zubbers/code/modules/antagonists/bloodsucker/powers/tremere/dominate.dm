@@ -69,7 +69,7 @@
 		data_hud.show_to(owner)
 	owner.update_sight()
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return

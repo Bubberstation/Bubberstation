@@ -59,7 +59,7 @@
 		user.update_sight()
 
 /// todo, make bloodsuckerification into it's own proc, ie, eyes, traits, and such
-/datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
+/datum/action/cooldown/bloodsucker/masquerade/DeactivatePower(deactivate_flags)
 	. = ..() // activate = FALSE
 	if(!.)
 		return

@@ -79,7 +79,7 @@
 		return FALSE
 	. = ..()
 	// base type returns true? Pay costs
-	if(. && !click_to_activate)
+	if(!click_to_activate)
 		pay_cost()
 
 /datum/action/cooldown/bloodsucker/proc/can_pay_cost()
@@ -210,13 +210,13 @@
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	build_all_button_icons(UPDATE_BUTTON_BACKGROUND)
 
-/datum/action/cooldown/bloodsucker/proc/DeactivatePower()
+/datum/action/cooldown/bloodsucker/proc/DeactivatePower(deactivate_flags)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!active) //Already inactive? Return
 		return FALSE
 	if(power_flags & BP_AM_TOGGLE || constant_bloodcost)
 		STOP_PROCESSING(SSprocessing, src)
-	if(power_flags & BP_AM_SINGLEUSE)
+	if(power_flags & BP_AM_SINGLEUSE && !(deactivate_flags & DEACTIVATE_POWER_DO_NOT_REMOVE))
 		remove_after_use()
 		return FALSE
 	active = FALSE
@@ -281,5 +281,9 @@
 	if(power_flags & BP_AM_SINGLEUSE)
 		new_desc += "<br><br><br>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
 	if(desc && desc != "")
-		new_desc += "<br><br><b>DESCRIPTION:</b> [initial(desc)]"
+		new_desc += "<br><br><b>DESCRIPTION:</b> [get_power_desc_extended()]"
+	new_desc += "<br>"
 	return new_desc
+
+/datum/action/cooldown/bloodsucker/proc/get_power_desc_extended()
+	return initial(desc)

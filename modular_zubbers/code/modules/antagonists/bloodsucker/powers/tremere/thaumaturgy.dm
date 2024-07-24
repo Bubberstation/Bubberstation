@@ -57,9 +57,8 @@
 	charges = get_max_charges()
 	. = ..()
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc()
-	. = ..()
-	. += "<br>Projectile range: [get_shot_range()]<br>"
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_desc_extended()
+	. = "<br>Projectile can seek for [get_shot_range()] tiles.<br>"
 	. += "Fire a slow seeking blood bolt at your enemy.<br>"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
 		. += "Right click the button to create a blood shield<br>"
@@ -118,7 +117,7 @@
 			span_hear("You hear liquids forming together."),
 		)
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/DeactivatePower(deactivate_flags)
 	. = ..()
 	if(!.)
 		return
