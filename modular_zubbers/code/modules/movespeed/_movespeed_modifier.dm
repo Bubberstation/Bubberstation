@@ -1,7 +1,10 @@
-//Remember, this is a multiplier for delay.
-//This means that 0.5 is double your movespeed (1/2)
-//This means that 0.25 is quadruple your movespeed (1/4)
-#define MOVEMENT_DELAY_MULTIPLIER_LIMIT 0.25
+
+//EXPLAINATION
+//The code is weird and multiplies movespeed by 1.5, so that is what the default is. This means by default, you are 50% slower than what the config is.
+//This is fucking weird, but whatever. We'll work with it.
+//Changeling haste, which is the fastest movespeed modifier in the game, subtracts 0.8
+//Thus the value here is 0.7
+#define MOVEMENT_DELAY_MULTIPLIER_LIMIT 0.7
 
 /mob/living/update_movespeed()
 	. = ..()
