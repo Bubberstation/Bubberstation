@@ -12,8 +12,6 @@
 #define MAX_PREY 3
 /// Amount of time it takes for players to eat someone
 #define VORE_DELAY 1 SECONDS // TODO: Change to 30 SECONDS
-/// Amount of time it takes for players to resist-squirm out of a belly
-#define RESIST_ESCAPE_DELAY 15 SECONDS // TODO: find something to change this to
 /// If true, prevents people with prey inside them from being eaten
 #define MATRYOSHKA_BANNED FALSE // TODO: Change this
 /// If true, automatically disables sensors when prey is eaten
@@ -42,6 +40,10 @@
 #define MAX_BURN_DAMAGE 2.5
 /// Max brute damage a player is allowed to set their belly to
 #define MAX_BRUTE_DAMAGE 2.5
+/// Minimum time that can be set for escaping a belly
+#define MIN_ESCAPE_TIME 2 SECONDS
+#define DEFAULT_ESCAPE_TIME 15 SECONDS
+#define MAX_ESCAPE_TIME 60 SECONDS
 
 /// Amount of nutrition given per point of damage dealt
 #define NUTRITION_PER_DAMAGE 2
@@ -56,6 +58,9 @@
 
 #define CHANNEL_PREYLOOP 1004
 #define COOLDOWN_PREYLOOP "preyloop"
+#define COOLDOWN_ESCAPE "vore_escape"
+/// Cooldown on trying to escape, reduces amount of noise they can make
+#define COOLDOWN_ESCAPE_TIME 5 SECONDS
 
 /proc/detect_vrdb(list/data)
 	if(LAZYLEN(data) < 1)
@@ -260,3 +265,54 @@ GLOBAL_LIST_INIT(digest_messages_prey, list(
 		"%pred's %belly groans as you fall apart into a thick soup. Your remains soon flow deeper into %pred's body to be absorbed.",
 		"%pred's %belly kneads on every fiber of your body, softening you down into mush to fuel their next hunt.",
 		"%pred's %belly churns you down into a hot slush. Your nutrient-rich remains course through their digestive track with a series of long, wet glorps."))
+
+GLOBAL_LIST_INIT(struggle_messages_outside, list(
+	"%pred's %belly wobbles with a squirming meal.",
+	"%pred's %belly jostles with movement.",
+	"%pred's %belly briefly swells outward as someone pushes from inside.",
+	"%pred's %belly fidgets with a trapped victim.",
+	"%pred's %belly jiggles with motion from inside.",
+	"%pred's %belly sloshes around.",
+	"%pred's %belly gushes softly.",
+	"%pred's %belly lets out a wet squelch."))
+
+GLOBAL_LIST_INIT(struggle_messages_inside, list(
+	"Your useless squirming only causes %pred's slimy %belly to squelch over your body.",
+	"Your struggles only cause %pred's %belly to gush softly around you.",
+	"Your movement only causes %pred's %belly to slosh around you.",
+	"Your motion causes %pred's %belly to jiggle.",
+	"You fidget around inside of %pred's %belly.",
+	"You shove against the walls of %pred's %belly, making it briefly swell outward.",
+	"You jostle %pred's %belly with movement.",
+	"You squirm inside of %pred's %belly, making it wobble around."))
+
+GLOBAL_LIST_INIT(absorbed_struggle_messages_outside, list(
+	"%pred's %belly wobbles, seemingly on its own.",
+	"%pred's %belly jiggles without apparent cause.",
+	"%pred's %belly seems to shake for a second without an obvious reason."))
+
+GLOBAL_LIST_INIT(absorbed_struggle_messages_inside, list(
+	"You try and resist %pred's %belly, but only cause it to jiggle slightly.",
+	"Your fruitless mental struggles only shift %pred's %belly a tiny bit.",
+	"You can't make any progress freeing yourself from %pred's %belly."))
+
+GLOBAL_LIST_INIT(escape_attempt_messages_owner, list(
+	"%prey is attempting to free themselves from your %belly!"))
+
+GLOBAL_LIST_INIT(escape_attempt_messages_prey, list(
+	"You start to climb out of %pred's %belly."))
+
+GLOBAL_LIST_INIT(escape_messages_owner, list(
+	"%prey climbs out of your %belly!"))
+
+GLOBAL_LIST_INIT(escape_messages_prey, list(
+	"You climb out of %pred's %belly."))
+
+GLOBAL_LIST_INIT(escape_messages_outside, list(
+	"%prey climbs out of %pred's %belly!"))
+
+GLOBAL_LIST_INIT(escape_fail_messages_owner, list(
+	"%prey's attempt to escape from your %belly has failed!"))
+
+GLOBAL_LIST_INIT(escape_fail_messages_prey, list(
+	"Your attempt to escape %pred's %belly has failed!"))

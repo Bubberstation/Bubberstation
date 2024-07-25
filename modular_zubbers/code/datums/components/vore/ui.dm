@@ -25,6 +25,8 @@
 
 	data["max_burn_damage"] = MAX_BURN_DAMAGE
 	data["max_brute_damage"] = MAX_BRUTE_DAMAGE
+	data["max_escape_time"] = MAX_ESCAPE_TIME
+	data["min_escape_time"] = MIN_ESCAPE_TIME
 
 	data["character_slots"] = null
 	data["vore_slots"] = null

@@ -45,10 +45,12 @@ type Belly = {
   digest_mode: DigestMode;
   burn_damage: number;
   brute_damage: number;
+  muffles_radio: BooleanLike;
+  escape_chance: number;
+  escape_time: number;
   fancy_sounds: BooleanLike;
   insert_sound: string;
   release_sound: string;
-  muffles_radio: BooleanLike;
   is_wet: BooleanLike;
   wet_loop: BooleanLike;
 };
@@ -62,6 +64,8 @@ type Data = {
   max_prey: number;
   max_burn_damage: number;
   max_brute_damage: number;
+  max_escape_time: number;
+  min_escape_time: number;
   selected_belly: number;
   bellies: Belly[];
   preferences: { [key: string]: any };
@@ -835,6 +839,46 @@ const BellyUI = (props: {
               'Yes'
             ) : (
               'No'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Chance To Escape">
+            {editing ? (
+              <NumberInput
+                value={belly.escape_chance}
+                minValue={0}
+                maxValue={100}
+                step={1}
+                format={(v) => v + '%'}
+                onChange={(value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'escape_chance',
+                    value,
+                  })
+                }
+              />
+            ) : (
+              belly.escape_chance + '%'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Time To Escape">
+            {editing ? (
+              <NumberInput
+                value={belly.escape_time / 10}
+                minValue={data.min_escape_time / 10}
+                maxValue={data.max_escape_time / 10}
+                step={1}
+                format={(v) => v + ' seconds'}
+                onChange={(value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'escape_time',
+                    value: value * 10,
+                  })
+                }
+              />
+            ) : (
+              belly.escape_time / 10 + ' seconds'
             )}
           </LabeledList.Item>
           <LabeledList.Divider />

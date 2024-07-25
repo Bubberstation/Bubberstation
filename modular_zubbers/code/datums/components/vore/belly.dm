@@ -9,7 +9,10 @@
 	var/brute_damage = 0
 	var/burn_damage = 1
 
+	// Mean things
 	var/muffles_radio = TRUE // muffles radios used inside it
+	var/escape_chance = 100
+	var/escape_time = DEFAULT_ESCAPE_TIME
 
 	// Sounds
 	var/is_wet = TRUE
@@ -74,6 +77,8 @@
 	data["burn_damage"] = burn_damage
 
 	data["muffles_radio"] = muffles_radio
+	data["escape_chance"] = escape_chance
+	data["escape_time"] = escape_time
 
 	data["is_wet"] = is_wet
 	data["wet_loop"] = wet_loop
@@ -103,6 +108,10 @@
 			burn_damage = clamp(value, 0, MAX_BURN_DAMAGE)
 		if("muffles_radio")
 			muffles_radio = !muffles_radio
+		if("escape_chance")
+			escape_chance = clamp(value, 0, 100)
+		if("escape_time")
+			escape_time = clamp(value, MIN_ESCAPE_TIME, MAX_ESCAPE_TIME)
 		if("is_wet")
 			is_wet = !is_wet
 		if("wet_loop")
@@ -255,18 +264,86 @@
 /// Does not call parent, which hides the "you can't move while buckled" message
 /// Also makes squelchy sounds when prey tries to squirm.
 /obj/vore_belly/relaymove(mob/living/user, direction)
-	// TODO: Squelchy!
-	return
+	return container_resist_act(user)
+
+/obj/vore_belly/proc/escapable(mob/living/user)
+	var/mob/living/living_parent = owner.parent
+	if(!escape_chance && !living_parent.stat)
+		return FALSE
+	// TODO: absorbed
+	return TRUE
 
 /obj/vore_belly/container_resist_act(mob/living/user)
-	// TODO: Pred-customizable chance
-	// TODO: Squelchies
-	to_chat(user, span_notice("You start to squirm out of [owner.parent]'s [src]..."))
-	to_chat(owner.parent, span_warning("[user] starts to squirm out of your [src]..."))
-	if(!do_after(user, RESIST_ESCAPE_DELAY, owner.parent, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
+	// This sets a hard limit on how often the user can try to escape or squirm
+	if(!TIMER_COOLDOWN_FINISHED(user, COOLDOWN_ESCAPE))
 		return
-	user.forceMove(get_turf(src))
-	user.visible_message(span_danger("[user] squirms out of [owner.parent]'s [src]!"), span_notice("You squirm out of [owner.parent]'s [src]!"))
+	TIMER_COOLDOWN_START(user, COOLDOWN_ESCAPE, COOLDOWN_ESCAPE_TIME)
+
+	var/mob/living/living_parent = owner.parent
+
+	var/escape_attempt_prey_message = span_warning(format_message(pick(GLOB.escape_attempt_messages_prey), user))
+	var/escape_attempt_owner_message = span_warning(format_message(pick(GLOB.escape_attempt_messages_owner), user))
+	var/escape_fail_prey_message = span_warning(format_message(pick(GLOB.escape_fail_messages_prey), user))
+	var/escape_fail_owner_message = span_notice(format_message(pick(GLOB.escape_fail_messages_owner), user))
+
+	if(living_parent.stat) // If owner is dead, we can actually escape
+		to_chat(user, escape_attempt_prey_message)
+		to_chat(living_parent, escape_attempt_owner_message)
+
+		if(do_after(user, escape_time, living_parent, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
+			if(user.loc != src) // ignore if they're not in the belly
+				return
+			else if(escapable(user))
+				release(user)
+			else
+				to_chat(user, escape_fail_prey_message)
+				to_chat(living_parent, escape_fail_owner_message)
+			return
+
+	var/struggle_outer_message = span_warning(format_message(pick(GLOB.struggle_messages_outside), user))
+	var/struggle_user_message = span_warning(format_message(pick(GLOB.struggle_messages_inside), user))
+
+	// Only show the owner the outside message
+	to_chat(living_parent, struggle_outer_message)
+
+	if(is_wet)
+		owner.play_vore_sound(fancy_sounds ? "vore_sounds_struggle_fancy" : "vore_sounds_struggle_classic", 75, vary = TRUE, pref = /datum/vore_pref/toggle/digestion_noises)
+	else
+		owner.play_vore_sound("rustle", 75, vary = TRUE, pref = /datum/vore_pref/toggle/digestion_noises)
+
+	if(escapable(user))
+		if(prob(escape_chance))
+			to_chat(user, escape_attempt_prey_message)
+			to_chat(living_parent, escape_attempt_owner_message)
+
+			if(do_after(user, escape_time, living_parent, timed_action_flags = IGNORE_TARGET_LOC_CHANGE))
+				if(user.loc != src) // ignore if they're not in the belly
+					return
+				else if(escapable(user)) // Still escapable
+					var/escape_owner_message = span_warning(format_message(pick(GLOB.escape_messages_owner), user))
+					var/escape_prey_message = span_warning(format_message(pick(GLOB.escape_messages_prey), user))
+
+					to_chat(living_parent, escape_owner_message)
+					to_chat(user, escape_prey_message)
+					// If you want others to see this happen, this is where you'd put it
+					release(user)
+				else // Belly became unescapable
+					to_chat(user, escape_fail_prey_message)
+					to_chat(living_parent, escape_fail_owner_message)
+				return // don't print struggle message
+		else
+			to_chat(living_parent, span_warning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]"))
+
+	to_chat(user, struggle_user_message)
+
+
+/// Do NOT do cleanup in here, clean up in /Exited
+/// This is just a helper proc for showing a message
+/obj/vore_belly/proc/release(atom/movable/AM)
+	var/mob/living/living_parent = owner.parent
+	AM.forceMove(living_parent.loc)
+	// TODO: release verb
+	AM.visible_message(span_warning("[living_parent] releases [AM] from their [lowertext(name)]"), vision_distance = SAMETILE_MESSAGE_RANGE)
 
 /// Formats a vore message
 /obj/vore_belly/proc/format_message(message, mob/prey)
@@ -286,9 +363,11 @@
 		"digest_mode" = digest_mode?.name,
 		"brute_damage" = brute_damage,
 		"burn_damage" = burn_damage,
+		"muffles_radio" = muffles_radio,
+		"escape_chance" = escape_chance,
+		"escape_time" = escape_time,
 		"is_wet" = is_wet,
 		"wet_loop" = wet_loop,
-		"muffles_radio" = muffles_radio,
 		"fancy_sounds" = fancy_sounds,
 		"insert_sound" = insert_sound,
 		"release_sound" = release_sound,
@@ -314,9 +393,13 @@
 	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes["None"]
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
+
+	muffles_radio = isnum(data["muffles_radio"]) ? !!data["muffles_radio"] : TRUE // make false by default
+	escape_chance = sanitize_integer(data["escape_chance"], 0, 100, 100)
+	escape_time = sanitize_integer(data["escape_time"], MIN_ESCAPE_TIME, MAX_ESCAPE_TIME, DEFAULT_ESCAPE_TIME)
+
 	is_wet = isnum(data["is_wet"]) ? !!data["is_wet"] : TRUE // make true by default
 	wet_loop = isnum(data["wet_loop"]) ? !!data["wet_loop"] : TRUE // make true by default
-	muffles_radio = isnum(data["muffles_radio"]) ? !!data["muffles_radio"] : TRUE // make false by default
 	fancy_sounds = isnum(data["fancy_sounds"]) ? !!data["fancy_sounds"] : TRUE // if there's no data, make it true by default
 
 	if(istext(data["insert_sound"]))
@@ -342,6 +425,10 @@
 	name = permissive_sanitize_name(maybe_name) || "(Bad Name)"
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
 	digest_mode = GLOB.digest_modes[sanitize_text(data["mode"])] || GLOB.digest_modes["None"]
+
+	escape_chance = sanitize_integer(data["escapechance"], 0, 100, 100)
+	escape_time = sanitize_integer(data["escapetime"], MIN_ESCAPE_TIME, MAX_ESCAPE_TIME, DEFAULT_ESCAPE_TIME)
+
 	is_wet = isnum(data["is_wet"]) ? !!data["is_wet"] : TRUE // make true by default
 	wet_loop = isnum(data["wet_loop"]) ? !!data["wet_loop"] : TRUE // make true by default
 	fancy_sounds = isnum(data["fancy_vore"]) ? !!data["fancy_vore"] : TRUE // if there's no data, make it true by default

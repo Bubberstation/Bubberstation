@@ -481,4 +481,10 @@
 			return pick(GLOB.vore_sounds_digestion_fancy)
 		if("vore_sounds_digestion_fancy_prey")
 			return pick(GLOB.vore_sounds_digestion_fancy_prey)
+		if("vore_sounds_struggle_fancy")
+			return pick(GLOB.vore_sounds_struggle_fancy)
+		if("vore_sounds_struggle_classic")
+			return pick(GLOB.vore_sounds_struggle_classic)
+		if("rustle")
+			return get_sfx(SFX_RUSTLE)
 	return soundin
