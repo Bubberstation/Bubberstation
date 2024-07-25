@@ -9,9 +9,7 @@
 	min_players = 40
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
-	description = "A Void Walker rips people out of the station and into the abyss"
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_SPOOKY)
+	description = "A Void Walker that drags people out of the station and into the abyss"
 
 /datum/round_event/ghost_role/void_walker
 	minimum_required = 40
