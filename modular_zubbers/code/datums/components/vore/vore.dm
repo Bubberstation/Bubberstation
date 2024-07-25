@@ -53,8 +53,6 @@
 
 	// Save backups
 	var/backup_number = 0
-	// Used to make it harder to overwrite character data by accident
-	var/expected_real_name = ""
 
 	var/vore_mode = FALSE
 	var/datum/action/innate/vore_mode/vore_mode_action = null
@@ -95,7 +93,6 @@
 
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
 	if(living_parent.client)
-		expected_real_name = living_parent.client.prefs.read_preference(/datum/preference/name/real_name)
 		// Used for when people infect a second mob with vore, like aghosting
 		var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 		vore_prefs?.reset_belly_layout_slot()
