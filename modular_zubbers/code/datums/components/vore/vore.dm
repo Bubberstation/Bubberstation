@@ -332,14 +332,13 @@
 	if(!check_vore_preferences(parent, pred, prey))
 		return
 	#ifdef VORE_DELAY
-	pred.visible_message(span_danger("[pred] starts to devour [prey] whole!"), span_danger("You start devouring [prey] into your [selected_belly]!"))
+	pred.visible_message(span_danger("[pred] is attempting to [lowertext(selected_belly.insert_verb)] [prey] into their [lowertext(selected_belly.name)]!"), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 	if(!do_after(pred, VORE_DELAY, prey))
-		pred.visible_message(span_notice("[pred] fails to devour [prey]."), span_notice("You fail to devour [prey]."))
 		return
 	if(!check_vore_grab(pred) || !check_vore_preferences(parent, pred, prey, assume_active_consent = TRUE))
 		return
 	#endif
-	pred.visible_message(span_danger("[pred] devours [prey] whole!"), span_notice("You devour [prey] into your [selected_belly]."))
+	pred.visible_message(span_danger("[pred] manages to [lowertext(selected_belly.insert_verb)] [prey] into their [lowertext(selected_belly.name)]!"), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 	complete_vore(prey)
 
 /datum/component/vore/proc/feed_self_to_other()
@@ -353,14 +352,13 @@
 	// check_vore_preferences asserts this exists
 	var/datum/component/vore/pred_component = pred.GetComponent(/datum/component/vore)
 	#ifdef VORE_DELAY
-	prey.visible_message(span_danger("[prey] starts to feed themselves to [pred]!"), span_notice("You start feeding yourself to [pred]."))
+	prey.visible_message(span_danger("[prey] is attempting to make [pred] [lowertext(pred_component.selected_belly.insert_verb)] [prey] into their [lowertext(pred_component.selected_belly.name)]!"), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 	if(!do_after(prey, VORE_DELAY, pred))
-		prey.visible_message(span_notice("[prey] fails to feed themselves to [pred]."), span_notice("You fail to feed yourself to [pred]."))
 		return
 	if(!check_vore_grab(prey) || !check_vore_preferences(parent, pred, prey, assume_active_consent = TRUE))
 		return
 	#endif
-	prey.visible_message(span_danger("[prey] feeds themselves to [pred]!"), span_notice("You feed yourself to [pred]."))
+	prey.visible_message(span_danger("[prey] manages to make [pred] [lowertext(pred_component.selected_belly.insert_verb)] [prey] into their [lowertext(pred_component.selected_belly.name)]!"), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 	pred_component.complete_vore(prey)
 
 /datum/component/vore/proc/feed_other_to_other(mob/living/pred)
@@ -376,16 +374,15 @@
 	// check_vore_preferences asserts this exists
 	var/datum/component/vore/pred_component = pred.GetComponent(/datum/component/vore)
 	#ifdef VORE_DELAY
-	feeder.visible_message(span_danger("[feeder] starts to feed [prey] to [pred]!"), span_notice("You start feeding [prey] to [pred]."))
+	feeder.visible_message(span_danger("[feeder] is attempting to make [pred] [lowertext(pred_component.selected_belly.insert_verb)] [prey] into their [lowertext(pred_component.selected_belly.name)]!"), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 	if(!do_after(feeder, VORE_DELAY, pred))
-		feeder.visible_message(span_notice("[feeder] fails to feed [prey] to [pred]."), span_notice("You fail to feed [prey] to [pred]."))
 		return
 	if(!check_vore_grab(feeder) || !check_vore_preferences(feeder, pred, prey, assume_active_consent = TRUE))
 		return
 	if(!feeder.can_perform_action(pred, pred.interaction_flags_click | FORBID_TELEKINESIS_REACH))
 		return
 	#endif
-	feeder.visible_message(span_danger("[feeder] feeds [prey] to [pred]!"), span_notice("You feed [prey] to [pred]."))
+	feeder.visible_message(span_danger("[feeder] manages to make [pred] [lowertext(pred_component.selected_belly.insert_verb)] [prey] into their [lowertext(pred_component.selected_belly.name)]!"), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 	pred_component.complete_vore(prey)
 
 /datum/component/vore/proc/complete_vore(mob/living/prey)

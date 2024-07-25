@@ -45,6 +45,9 @@ type Belly = {
   digest_mode: DigestMode;
   burn_damage: number;
   brute_damage: number;
+  can_taste: BooleanLike;
+  insert_verb: string;
+  release_verb: string;
   muffles_radio: BooleanLike;
   escape_chance: number;
   escape_time: number;
@@ -62,6 +65,7 @@ type PreyBellyView = Omit<Belly, 'index' | 'ref'> & {
 type Data = {
   max_bellies: number;
   max_prey: number;
+  max_verb_length: number;
   max_burn_damage: number;
   max_brute_damage: number;
   max_escape_time: number;
@@ -879,6 +883,60 @@ const BellyUI = (props: {
               />
             ) : (
               belly.escape_time / 10 + ' seconds'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Can Taste">
+            {editing ? (
+              <Button
+                icon={belly.can_taste ? 'toggle-on' : 'toggle-off'}
+                selected={belly.can_taste}
+                onClick={() =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'can_taste',
+                    value: '',
+                  })
+                }
+              >
+                {belly.can_taste ? 'Yes' : 'No'}
+              </Button>
+            ) : belly.can_taste ? (
+              'Yes'
+            ) : (
+              'No'
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Insertion Verb">
+            {editing ? (
+              <Input
+                value={belly.insert_verb}
+                onChange={(e, value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'insert_verb',
+                    value,
+                  })
+                }
+                maxLength={data.max_verb_length}
+              />
+            ) : (
+              belly.insert_verb
+            )}
+          </LabeledList.Item>
+          <LabeledList.Item label="Release Verb">
+            {editing ? (
+              <Input
+                value={belly.release_verb}
+                onChange={(e, value) =>
+                  act('edit_belly', {
+                    ref: belly.ref,
+                    var: 'release_verb',
+                    value,
+                  })
+                }
+              />
+            ) : (
+              belly.release_verb
             )}
           </LabeledList.Item>
           <LabeledList.Divider />

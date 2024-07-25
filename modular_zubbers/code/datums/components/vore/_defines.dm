@@ -11,9 +11,11 @@
 /// Maximum amount of prey that can be eaten at once
 #define MAX_PREY 3
 /// Amount of time it takes for players to eat someone
-#define VORE_DELAY 1 SECONDS // TODO: Change to 30 SECONDS
+#define VORE_DELAY 4 SECONDS
+/// Amount of time it takes for players to eject someone
+#define VORE_EJECT_DELAY 2 SECONDS
 /// If true, prevents people with prey inside them from being eaten
-#define MATRYOSHKA_BANNED FALSE // TODO: Change this
+#define MATRYOSHKA_BANNED TRUE
 /// If true, automatically disables sensors when prey is eaten
 #define DISABLES_SENSORS TRUE
 /// If true, prevents mobs in crit or death from engaging in vore
@@ -21,14 +23,17 @@
 /// If true, mobs with no player cannot be pred or prey
 #define REQUIRES_PLAYER FALSE // TODO: Change this
 /// Makes every mob spawn with a vore component, just for testing
-#define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
+#define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS // TODO: Comment out
 /// Number of rolling backups bellies will keep
 #define BELLY_BACKUP_COUNT 5
 /// Maximum number of belly layout slots
 #define MAX_BELLY_LAYOUTS 20
 /// Rate limit on belly creation, as it can get a little expensive
 #define BELLY_CREATION_COOLDOWN 2 SECONDS
-#define MAX_JSON_CHARACTERS 20000
+/// Maximum length() of a json file's text before we refuse to parse it
+/// Default here is to support at least MAX_BELLIES with maxxed descriptions, plus their metadata
+#define MAX_JSON_CHARACTERS MAX_FLAVOR_LEN * MAX_BELLIES * 3
+/// Maximum length() of a parsed json file before we refuse to parse it further
 #define MAX_JSON_ENTRIES 100
 
 #define TRAIT_SOURCE_VORE "vore"
@@ -44,6 +49,7 @@
 #define MIN_ESCAPE_TIME 2 SECONDS
 #define DEFAULT_ESCAPE_TIME 15 SECONDS
 #define MAX_ESCAPE_TIME 60 SECONDS
+#define MAX_VERB_LENGTH 20
 
 /// Amount of nutrition given per point of damage dealt
 #define NUTRITION_PER_DAMAGE 2

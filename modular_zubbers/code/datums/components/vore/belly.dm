@@ -6,6 +6,10 @@
 	var/datum/digest_mode/digest_mode
 	var/noise_cooldown = 0
 
+	var/can_taste = TRUE
+	var/insert_verb = "ingest"
+	var/release_verb = "expels"
+
 	var/brute_damage = 0
 	var/burn_damage = 1
 
@@ -73,6 +77,11 @@
 	data["contents"] = contents_data
 
 	data["digest_mode"] = digest_mode?.name
+
+	data["can_taste"] = can_taste
+	data["insert_verb"] = insert_verb
+	data["release_verb"] = release_verb
+
 	data["brute_damage"] = brute_damage
 	data["burn_damage"] = burn_damage
 
@@ -102,6 +111,12 @@
 			var/datum/digest_mode/new_digest_mode = GLOB.digest_modes[value]
 			if(istype(new_digest_mode))
 				digest_mode = new_digest_mode
+		if("can_taste")
+			can_taste = !can_taste
+		if("insert_verb")
+			insert_verb = STRIP_HTML_SIMPLE(value, MAX_VERB_LENGTH)
+		if("release_verb")
+			release_verb = STRIP_HTML_SIMPLE(value, MAX_VERB_LENGTH)
 		if("brute_damage")
 			brute_damage = clamp(value, 0, MAX_BRUTE_DAMAGE)
 		if("burn_damage")
@@ -200,17 +215,21 @@
 
 /// Handles prey entering a belly, and starts deep_search_prey
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	var/mob/living/living_parent = owner.parent
 	. = ..()
 	owner.play_vore_sound(get_insert_sound())
+	to_chat(living_parent, span_notice("[arrived] slides into your [lowertext(name)]."))
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
 		var/mob/M = arrived
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
 		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
-		// TODO: Insertion Verb
-		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(name)]!\n[desc]"))
+		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(lowertext(name))]!\n[format_message(desc, M)]"))
 		// Add the appearance_holder to prey so they can see fellow prey
+		if(can_taste && iscarbon(M))
+			var/mob/living/carbon/H = M
+			to_chat(living_parent, span_notice("[H] tastes of [H.dna.features["taste"] || "nothing"]."))
 		if(M.client)
 			M.client.screen += owner.appearance_holder
 
@@ -328,7 +347,7 @@
 					to_chat(living_parent, escape_fail_owner_message)
 				return // don't print struggle message
 		else
-			to_chat(living_parent, span_warning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]"))
+			to_chat(living_parent, span_warning("Your prey appears to be unable to make any progress in escaping your [lowertext(name)]."))
 
 	to_chat(user, struggle_user_message)
 
@@ -338,8 +357,7 @@
 /obj/vore_belly/proc/release(atom/movable/AM)
 	var/mob/living/living_parent = owner.parent
 	AM.forceMove(living_parent.loc)
-	// TODO: release verb
-	AM.visible_message(span_warning("[living_parent] releases [AM] from their [lowertext(name)]"), vision_distance = SAMETILE_MESSAGE_RANGE)
+	AM.visible_message(span_warning("[living_parent] [lowertext(release_verb)] [AM] from their [lowertext(name)]."), pref_to_check = /datum/preference/toggle/erp/vore_enable)
 
 /// Formats a vore message
 /obj/vore_belly/proc/format_message(message, mob/prey)
@@ -357,6 +375,9 @@
 		"name" = name,
 		"desc" = desc,
 		"digest_mode" = digest_mode?.name,
+		"can_taste" = can_taste,
+		"insert_verb" = insert_verb,
+		"release_verb" = release_verb,
 		"brute_damage" = brute_damage,
 		"burn_damage" = burn_damage,
 		"muffles_radio" = muffles_radio,
@@ -387,6 +408,11 @@
 	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
 	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes["None"]
+
+	can_taste = sanitize_integer(data["can_taste"], FALSE, TRUE, TRUE)
+	insert_verb = STRIP_HTML_SIMPLE(data["insert_verb"], MAX_VERB_LENGTH) || "ingest"
+	release_verb = STRIP_HTML_SIMPLE(data["release_verb"], MAX_VERB_LENGTH) || "expels"
+
 	brute_damage = sanitize_integer(data["brute_damage"], 0, MAX_BRUTE_DAMAGE, 0)
 	burn_damage = sanitize_integer(data["burn_damage"], 0, MAX_BURN_DAMAGE, 1)
 
@@ -394,9 +420,9 @@
 	escape_chance = sanitize_integer(data["escape_chance"], 0, 100, 100)
 	escape_time = sanitize_integer(data["escape_time"], MIN_ESCAPE_TIME, MAX_ESCAPE_TIME, DEFAULT_ESCAPE_TIME)
 
-	is_wet = isnum(data["is_wet"]) ? !!data["is_wet"] : TRUE // make true by default
-	wet_loop = isnum(data["wet_loop"]) ? !!data["wet_loop"] : TRUE // make true by default
-	fancy_sounds = isnum(data["fancy_sounds"]) ? !!data["fancy_sounds"] : TRUE // if there's no data, make it true by default
+	is_wet = sanitize_integer(data["is_wet"], FALSE, TRUE, TRUE) // make true by default
+	wet_loop = sanitize_integer(data["wet_loop"], FALSE, TRUE, TRUE) // make true by default
+	fancy_sounds = sanitize_integer(data["fancy_sounds"], FALSE, TRUE, TRUE) // if there's no data, make it true by default
 
 	if(istext(data["insert_sound"]))
 		var/new_insert_sound = trim(sanitize(data["insert_sound"]), MAX_MESSAGE_LEN)
@@ -422,12 +448,16 @@
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
 	digest_mode = GLOB.digest_modes[sanitize_text(data["mode"])] || GLOB.digest_modes["None"]
 
+	can_taste = sanitize_integer(data["can_taste"], FALSE, TRUE, TRUE)
+	insert_verb = STRIP_HTML_SIMPLE(data["vore_verb"], MAX_VERB_LENGTH) || "ingest"
+	release_verb = STRIP_HTML_SIMPLE(data["release_verb"], MAX_VERB_LENGTH) || "expels"
+
 	escape_chance = sanitize_integer(data["escapechance"], 0, 100, 100)
 	escape_time = sanitize_integer(data["escapetime"], MIN_ESCAPE_TIME, MAX_ESCAPE_TIME, DEFAULT_ESCAPE_TIME)
 
-	is_wet = isnum(data["is_wet"]) ? !!data["is_wet"] : TRUE // make true by default
-	wet_loop = isnum(data["wet_loop"]) ? !!data["wet_loop"] : TRUE // make true by default
-	fancy_sounds = isnum(data["fancy_vore"]) ? !!data["fancy_vore"] : TRUE // if there's no data, make it true by default
+	is_wet = sanitize_integer(data["is_wet"], FALSE, TRUE, TRUE) // make true by default
+	wet_loop = sanitize_integer(data["wet_loop"], FALSE, TRUE, TRUE) // make true by default
+	fancy_sounds = sanitize_integer(data["fancy_vore"], FALSE, TRUE, TRUE) // if there's no data, make it true by default
 
 	if(istext(data["vore_sound"]))
 		var/new_insert_sound = trim(sanitize(data["vore_sound"]), MAX_MESSAGE_LEN)

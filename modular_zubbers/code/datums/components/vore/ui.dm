@@ -22,6 +22,7 @@
 
 	data["max_bellies"] = MAX_BELLIES
 	data["max_prey"] = MAX_PREY
+	data["max_verb_length"] = MAX_VERB_LENGTH
 
 	data["max_burn_damage"] = MAX_BURN_DAMAGE
 	data["max_brute_damage"] = MAX_BRUTE_DAMAGE
@@ -134,12 +135,17 @@
 						if("Examine")
 							living_parent.examinate(prey)
 						if("Eject")
+							#ifdef VORE_EJECT_DELAY
+							to_chat(living_parent, span_notice("You start to work [prey] out of your [lowertext(prey_loc.name)]..."))
+							to_chat(prey, span_notice("[living_parent] starts to work you out of their [lowertext(prey_loc.name)]..."))
+							if(!do_after(living_parent, VORE_EJECT_DELAY, interaction_key = "vore_eject"))
+								return
+							#endif
 							prey_loc.release(prey)
 						if("Transfer")
 							var/obj/vore_belly/which_belly = tgui_input_list(usr, "Which belly do you want to transfer them to?", "Belly Transfer", vore_bellies)
 							if(which_belly && prey.loc == prey_loc)
 								prey.forceMove(which_belly)
-								to_chat(living_parent, span_notice("You transfer [prey] into your [lowertext(which_belly.name)]"))
 						if("Digest")
 							if(!prey_loc.digestion_death(prey))
 								to_chat(living_parent, span_warning("Prey isn't interested in being fully digested."))
