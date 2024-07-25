@@ -242,21 +242,17 @@
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()
-	// Deleted mobs don't play exit sounds
-	if(gone.loc != null)
+	// Deleted/transferred mobs don't play exit sounds
+	var/mob/living/living_parent = owner.parent
+	if(!living_parent.contains(gone))
 		owner.play_vore_sound(get_release_sound())
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone
 		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
 		REMOVE_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
-		// If matryoshka is banned, they can't end up in another belly
-		#if MATRYOSHKA_BANNED
-		M.stop_sound_channel(CHANNEL_PREYLOOP)
-		#else
 		if(!istype(M.loc, /obj/vore_belly))
 			M.stop_sound_channel(CHANNEL_PREYLOOP)
-		#endif
 		// We added it so let's take it away
 		if(M.client)
 			M.client.screen -= owner.appearance_holder

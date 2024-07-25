@@ -45,6 +45,23 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 
 	return vore_can_negatively_affect()
 
+/obj/vore_belly/proc/digestion_death(mob/living/L)
+	if(!L.vore_can_qdel())
+		return FALSE
+	var/mob/living/living_parent = owner.parent
+
+	if(fancy_sounds)
+		play_vore_sound_preypred("vore_sounds_death_fancy_prey", "vore_sounds_death_fancy", pref = /datum/vore_pref/toggle/digestion_noises)
+	else
+		play_vore_sound_preypred("vore_sounds_death_classic", "vore_sounds_death_classic", pref = /datum/vore_pref/toggle/digestion_noises)
+	living_parent.adjust_nutrition(NUTRITION_PER_KILL)
+
+	to_chat(living_parent, span_notice(format_message(pick(GLOB.digest_messages_pred), L)))
+	to_chat(L, span_notice(format_message(pick(GLOB.digest_messages_prey), L)))
+
+	qdel(L)
+	return TRUE
+
 /datum/digest_mode/digest/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)
 	var/mob/living/living_parent = vore_belly.owner.parent
 	if(COOLDOWN_FINISHED(vore_belly, noise_cooldown))
@@ -65,16 +82,7 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 			continue
 		if(L.stat == DEAD)
 			if(L.vore_can_qdel())
-				if(vore_belly.fancy_sounds)
-					vore_belly.play_vore_sound_preypred("vore_sounds_death_fancy_prey", "vore_sounds_death_fancy", pref = /datum/vore_pref/toggle/digestion_noises)
-				else
-					vore_belly.play_vore_sound_preypred("vore_sounds_death_classic", "vore_sounds_death_classic", pref = /datum/vore_pref/toggle/digestion_noises)
-				living_parent.adjust_nutrition(NUTRITION_PER_KILL)
-
-				to_chat(living_parent, span_notice(vore_belly.format_message(pick(GLOB.digest_messages_pred), L)))
-				to_chat(L, span_notice(vore_belly.format_message(pick(GLOB.digest_messages_prey), L)))
-
-				qdel(L)
+				vore_belly.digestion_death(L)
 			continue
 		if(vore_belly.brute_damage > 0)
 			L.adjustBruteLoss(vore_belly.brute_damage * seconds_per_tick)
