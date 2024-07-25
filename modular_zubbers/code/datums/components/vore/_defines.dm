@@ -1,17 +1,34 @@
+/// Key used for versioning savefiles
 #define VORE_DB_REPO "bubber_vore"
+/// Value used for versioning savefiles
 #define VORE_DB_VERSION "1.0"
+/// Key used for belly versioning independent of savefile version
 #define VORE_BELLY_KEY "version"
+/// Value used for belly versioning independent of savefile version
 #define VORE_BELLY_VERSION "1.0"
+/// Maximum amount of bellies allowed within one layout
 #define MAX_BELLIES 10
+/// Maximum amount of prey that can be eaten at once
 #define MAX_PREY 3
+/// Amount of time it takes for players to eat someone
 #define VORE_DELAY 1 SECONDS // TODO: Change to 30 SECONDS
+/// Amount of time it takes for players to resist-squirm out of a belly
 #define RESIST_ESCAPE_DELAY 15 SECONDS // TODO: find something to change this to
+/// If true, prevents people with prey inside them from being eaten
 #define MATRYOSHKA_BANNED FALSE // TODO: Change this
+/// If true, automatically disables sensors when prey is eaten
 #define DISABLES_SENSORS TRUE
+/// If true, prevents mobs in crit or death from engaging in vore
+#define NO_DEAD TRUE
+/// If true, mobs with no player cannot be pred or prey
 #define REQUIRES_PLAYER FALSE // TODO: Change this
-#define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS // Makes every mob into a vore mob for testing
-#define BELLY_BACKUP_COUNT 5 // Number of rolling backups bellies will keep
+/// Makes every mob spawn with a vore component, just for testing
+#define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
+/// Number of rolling backups bellies will keep
+#define BELLY_BACKUP_COUNT 5
+/// Maximum number of belly layout slots
 #define MAX_BELLY_LAYOUTS 20
+/// Rate limit on belly creation, as it can get a little expensive
 #define BELLY_CREATION_COOLDOWN 2 SECONDS
 
 #define TRAIT_SOURCE_VORE "vore"
@@ -19,7 +36,9 @@
 #define DIGEST_MODE_NONE "None"
 #define DIGEST_MODE_DIGEST "Digest"
 
+/// Max burn damage a player is allowed to set their belly to
 #define MAX_BURN_DAMAGE 2.5
+/// Max brute damage a player is allowed to set their belly to
 #define MAX_BRUTE_DAMAGE 2.5
 
 #define PREF_TRINARY_NEVER 0
