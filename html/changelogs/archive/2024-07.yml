@@ -1153,6 +1153,115 @@
       Pitbull-Toddler-Eating suppression system was made. Pitbulls will now murder
       small animals if left unattended.
 2024-07-25:
+  Arturlang:
+  - balance: Bloodsuckers can only reach 560 max blood via drinking blood bags or
+      the blood reagent, and bloodsuckers above level 4 will get 30% less blood and
+      be disgusted by it.
+  BurgerB:
+  - rscadd: Overhauls the design of Moonstation Engineering
+  - bugfix: Fixes Arcade Loot not properly spawning
+  BurgerBB:
+  - balance: You only get 1 corrupt organ when sacrificed, instead of 2 to 4.
+  - qol: Removes some corruption options because they are extremely annoying / don't
+      even work properly.
+  - rscadd: Adds Big Bertha, a unique one-of-a-kind two-handed shield for security
+      that blocks literally everything. It spawns in the Armory.
+  - rscadd: Adds Changeling Zombies to the game. This is meant to replace RNA zombies
+      and Tumor Zombies as a balanced, updated, and functional alternative.
+  - rscadd: Being husked/absorbed from a regular Changeling turns you into an unaligned/unaffiliated
+      changeling zombie. Note that this also cures your husk infection once turned.
+  - rscadd: Adds Antag Tickets, a new currency that determines who gets antagonist
+      roles.
+  - rscadd: Overhauls loot that can spawn in abandoned crates, maintenance, and trash
+      piles.
+  - qol: Map Voting Occurs when the shuttle is called and cannot be recalled.
+  - balance: Wearing the tinfoil hat no longer gives you a phobia of conspiracy theories.
+      Tinfoil hat is no longer single use and will work indefinitely until removed.
+  - balance: Only melee weapons can disembowel/dismember via damage via wounds. This
+      does not affect other sources of disembowel/dismember.
+  - balance: Significantly nerfs all arrows across the board.
+  - balance: Adds Monkeydone, a chemical that transforms monkeys into humans. It can
+      be made by mixing 10u Unstable Mutagen + 10u Mutadone + 1u Salt to make 1u Monkeydone.
+  - rscdel: Removes the hardcoded 5 second emote delay for all emotes. Most emotes
+      now have a cooldown of 0.8 seconds, with some being increased based on what
+      /tg/ set.
+  - rscadd: Fixes some Moonstation bugs and expands maintenance a little.
+  - rscadd: Adds Quote of the Round, an entirely cosmetic way of showing off a random
+      ass message said on Common Radio. This does not ping people. By default, it
+      is posted in the same channel as roundstart announcements.
+  - bugfix: Fixes incorrect Moonstation Dorms directions.
+  - bugfix: Fixes the Moonstation Shuttle failing to dock properly
+  - rscdel: You can no longer vote for a map if it was the last 2 maps played, or
+      the current map.
+  - balance: Your blob strain on start will always be Distributed Neurons, instead
+      of a random strain. The cost to reroll for the first time is still free.
+  - balance: Changing to Networked Fibers will instantly alert the crew that you exist
+      (With a level 5 blob biohazard announcement), regardless of how many tiles you
+      have.
+  - bugfix: Fixes moonstation having space turfs on turf destruction on the upper
+      level. Fixes weirdly placed camera monitors due to upstream changes. Fixes a
+      few randomly placed doors in some areas.
+  - rscadd: Improves Moonstation Janitorial by adding missing items found on other
+      maps.
+  Cecily-C-Catherine:
+  - rscadd: Added new sprites and code to allow the choosing of sprites
+  DimWhat for spriting, SigmaPredator for helping me with organizing this, and my (theselfish) poor keyboard.:
+  - rscadd: Nearly every job has a Bunny outfit. I am not joking. Check your vendors.
+  Doomtail:
+  - image: added new beard icons
+  Erol509:
+  - rscadd: Added synth version of Big Legs taur sprite.
+  ForrestWick:
+  - balance: lowered Empath cost from 6 to 3.
+  GoreDem:
+  - rscadd: buffed bulldog back to a usable state
+  Icarus-The-Sun:
+  - bugfix: Prevents Departmental Guards from rolling antagonist roles.
+  - rscadd: Added C4 Moth as a C4 reskin
+  LT3:
+  - rscadd: New DeForest heavy medical kit, technician satchel
+  - rscadd: Security medic can now order a single heavy medical kit using departmental
+      order
+  - bugfix: Hyposprays that are supposed to have a starting vial now actually start
+      with the vial
+  - bugfix: Combat hypospray correctly has the combat cooldown
+  - bugfix: Hypospray switches vials as expected
+  - bugfix: Piercing hypospray now has inject/spray delay
+  - bugfix: Hypospray right click works again
+  - qol: Crew monitor now has sort options and a search box
+  - bugfix: Fixed certain jobs being categorized as unknown on the crew monitor
+  - qol: Improved alarm function on medbay's crew monitor console
+  Majkl-J:
+  - bugfix: Fixes atmos dying
+  - bugfix: Captain office access can't magically grant you AA anymore
+  - balance: Weight 8 for BS, Ling, Heretic
+  - balance: Weight 10 for malf
+  - balance: Weight 8 for spy and traitor
+  - bugfix: Fixes runtime in get_antag_cap()
+  - bugfix: Fixes maps failing unit tests
+  - rscdel: Removed damage emp protection as the current strength of the emp does
+      not justify it.
+  - bugfix: Loadouts in bitrunning work again
+  - bugfix: Names in bitrunning work again
+  - balance: The ninja bomb objective is now available from 30 pop
+  - bugfix: Ninja no longer spawns with quirks, making you not to randomly die and
+      have a fighting chance
+  - bugfix: Blue 98 UI Style fixes
+  MonkeStation (sprites) TheSelfish (Port):
+  - rscadd: Multiple new Bunny Outfits are in the vendors now!
+  Odairu:
+  - server: ghost only votable up to 40 pop
+  - rscadd: DomAura quirk to dom borg module, and adds it to the tech tree
+  - spellcheck: Untility Cyborg Upgrades -> Utility Cyborg Upgrades
+  Rathen Ivanov:
+  - rscadd: Added Employee Of The Month Special "Chief Screws Plush" for your use
+      and carrying!
+  SciDragon:
+  - rscadd: Telecomms Specialist job, with a niche carved out of an underutilized
+      engineering department.
+  Shroopy:
+  - bugfix: fixed a copy-paste error in character_directory.dm
+  - rscadd: Added a GPS tracking collar to the LustWish
   SkyratBot:
   - bugfix: Borgs and AI can now use research queue
   - bugfix: You can no longer dupe metal by breaking walls under small light fixtures
@@ -1199,8 +1308,91 @@
   - image: Updated the color palette of Smart Fridge
   - bugfix: Having your liver fail no longer keeps drug traits active without metabolizing
       them
+  'Sprites: axietheaxolotl Code: VioletN':
+  - image: Added three new selectable "rat queen" skins to the royal rat.
+  StrangeWeirdKitten:
+  - rscadd: 'Adds two new quirks: Dominant Aura and Well-Trained'
+  - bugfix: Dead well-trained quirk holders will no longer respond to snaps
+  - bugfix: Borg Pinpointers and synthshells are now printable once more.
+  - balance: Emote delay has been set to 1 second
+  TheSelfish (code) CannibalHunter of MonkeStation (sprites):
+  - rscadd: Traitors may goon. Gooning is also in the clothes mate and the vendor.
+  - rscadd: Oh and the rabbit pendant is in the loadout, the rest of the bunny stuff
+      won't be added, but this isn't especially out there.
   Vekter:
   - spellcheck: Reworded Voidwalker's objectives to be more descriptive of their actual
       goals as opposed to just fluff.
+  YakumoChen:
+  - balance: Reverts buff to the TEG making it output up to 20MW, now outputs 10x
+      less with a decent setup
+  - bugfix: Fixes guns being in imports again due to code reversion
+  codehonky:
+  - rscadd: Added new bluespace experi-scanner.
+  - image: Added a simple reskin of the experi-scanner for the bluespace variant.
+  nevimer:
+  - bugfix: Storyteller should only take two minutes instead of five to spawn events.
+  - balance: chest dismember only removes one organ per occurance
+  - qol: allows the ghost to be voted for at any pop
+  nikothedude:
+  - spellcheck: Fixed a typo in systemic fault's examine text
+  - balance: Synthetic electrical damage can no longer worsen if its currently being
+      repaired
+  - bugfix: Nagas off-station or restored with the SAD should now properly have their
+      footstep sound
+  - bugfix: Losing your naga lower body now tries to restore normal footsteps
+  - rscadd: Mothroaches can now be milked for moth milk
+  - bugfix: Naga footstep sounds now work properly
+  - rscadd: Taurs now have custom leg names
+  - bugfix: Synth taur legs now have all attributes of a organic taur leg except the
+      fact theyre robotic
+  - bugfix: Markings no longer render on taur legs
+  - bugfix: Clothing with taur-specific clothing sprites now render those sprites
+      properly
+  - code_imp: Various improvements to taur leg code
+  - code_imp: Taur bodies are properly subtyped
+  - rscadd: Reimplemented taur sprites for a bunch of clothing items
+  pixelkitty286:
+  - rscdel: dogborgs (they are quadrupeds now)
+  - bugfix: Verbs not being available to both tall and dog borgs to rest
+  - code_imp: See refactor. Removed dogborg procs(commented them out)
+  - refactor: small quadrupeds, large quadrupeds, and Tall cyborgs resting verb and
+      how it populates
+  plsleavemealon:
+  - rscadd: 'New Quirk: Masquerade, exclusive to hemophages'
+  projectkepler-ru:
+  - rscadd: Maint area somewhat expanded, blueshield has an office, QM has a bedroom.
+      Bitrunning den their own area
+  - bugfix: Paddy not being present on this map
+  - bugfix: TEG Research cost not being accomodated
+  shayoki:
+  - rscadd: Added more telescreens to BoxStation.
+  - bugfix: Fixed BoxStation broken Telescreens.
+  thegrb93:
+  - bugfix: Tajaran photocopier booty sprite fixed
   theselfish:
   - rscadd: Clowns now have a beret. A rainbow one, too.
+  - bugfix: Sex Barrier is now back. Scene? Scene? Scene? Scene? Scene?
+  - rscadd: Added some unused clothing items to the MultiSec Vendor. Perhaps you can
+      find them if you're savvy enough with a Multitool.
+  - bugfix: Fixed a few missing items not being in the MultiSec Vendor. Also removed
+      a duplicate item.
+  - image: New Multisec Vendor sprite. Two-Face edition.
+  - rscadd: The Outlast items are no longer stuck in Loadout hell, yay!
+  - rscadd: Someone finally repaired the damn pocket watches (may need to check your
+      loadouts)
+  - spellcheck: Made a few loadout item names headline consistent.
+  - code_imp: Moved ckey locked loadout items to their own folder.
+  - rscadd: The Rat Monarch gender reveal party has been cancelled.
+  - rscadd: Non-locked Donator have been added to vendors. Collect them all!
+  - rscadd: A bunch of stuff is now on box. Minor, but it's there!
+  - bugfix: Weird vendors no longer spawn in front of Security on Box.
+  - bugfix: Lima and Box now compile.
+  - rscadd: Clown Hair! Woo! Markings too!
+  - rscadd: New cloak to the loadout. Caw.
+  - rscadd: Some redsec strays have been added to the ComDrobe and SecVend. Stay tuned.
+  - code_imp: Moved the SecVend to be with the rest of the vending overrides.
+  xXPawnStarrXx:
+  - rscadd: Added new survival capsules themed for medical trauma and geyser harvesting.
+  - rscadd: Added new pods!
+  - qol: made it once again possible to print parts from autolathes! You just need
+      the disk <3
