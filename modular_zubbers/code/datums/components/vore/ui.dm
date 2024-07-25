@@ -99,6 +99,7 @@
 			else if(istype(prey))
 				// We are prey next to them
 				if(istype(living_parent.loc, /obj/vore_belly) && prey.loc == living_parent.loc)
+					var/obj/vore_belly/belly_we_are_in = living_parent.loc
 					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Interact", "Help Out"))
 					switch(what_to_do)
 						if("Examine")
@@ -107,7 +108,25 @@
 							living_parent.CtrlShiftClickOn(prey)
 						// if("Eat") // Not implemented on Bubbers at all
 						if("Help Out")
-							to_chat(living_parent, "Not implemented yet :)")
+							// TODO: check if absorbed
+							if(living_parent.incapacitated())
+								return
+
+							to_chat(living_parent, span_notice(span_green("You begin to push [prey] to freedom!")))
+							to_chat(prey, span_notice("[living_parent] begins to push you to freedom!"))
+							to_chat(belly_we_are_in.owner.parent, span_warning("Someone is trying to escape from inside you!"))
+
+							if(do_after(living_parent, 5 SECONDS, belly_we_are_in.owner.parent, timed_action_flags = IGNORE_TARGET_LOC_CHANGE) && prob(33))
+								if(prey.loc != belly_we_are_in)
+									return
+								belly_we_are_in.release(prey)
+								to_chat(living_parent, span_notice(span_green("You manage to help [prey] to safety!")))
+								to_chat(prey,  span_notice(span_green("[living_parent] pushes you free!")))
+								to_chat(belly_we_are_in.owner.parent, span_alert("[prey] forces free of the confines of your body!"))
+							else
+								to_chat(living_parent, span_alert("[prey] slips back down inside despite your efforts."))
+								to_chat(prey, span_alert("Even with [living_parent]'s help, you slip back inside again."))
+								to_chat(belly_we_are_in.owner.parent, span_notice(span_green("Your body efficiently shoves [prey] back where they belong.")))
 				// We ate them
 				else if(living_parent.contains(prey))
 					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer"))
@@ -118,7 +137,6 @@
 							prey.forceMove(living_parent.loc)
 							// TODO: custom exit messages
 							living_parent.visible_message(span_danger("[living_parent] squelches out [prey]!"), span_notice("You squelch out [prey]."))
-							// TODO: noise
 						if("Transfer")
 							// TODO: Transfers
 							to_chat(living_parent, "Not implemented yet :)")
