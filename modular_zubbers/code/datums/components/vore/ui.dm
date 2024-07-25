@@ -256,7 +256,7 @@
 				return
 
 			// Nearly straight from CHOMP
-			var/panel_choice = tgui_input_list(usr, "Belly Import (NOTE: VRDB Is Not Supported)", "Pick an option", list("Import all bellies from JSON", "Import one belly from JSON"))
+			var/panel_choice = tgui_input_list(usr, "Belly Import (NOTE: VRDB Is Barely Supported)", "Pick an option", list("Import all bellies from JSON", "Import one belly from JSON"))
 			if(!panel_choice)
 				return
 			var/pickOne = FALSE
@@ -265,18 +265,30 @@
 			var/input_file = input(usr, "Please choose a valid JSON file to import from.", "Belly Import") as file
 			var/input_data
 			try
-				input_data = json_decode(file2text(input_file))
+				var/text = file2text(input_file)
+
+				if(LAZYLEN(text) > MAX_JSON_CHARACTERS)
+					CRASH("The supplied file is too large and cannot be parsed.")
+
+				input_data = json_decode(text)
 
 				if(!islist(input_data))
 					CRASH("The supplied file was not a valid JSON file!")
 
-				if(input_data["db_repo"] != VORE_DB_REPO)
-					CRASH("Unable to load file - db_repo was expected to be '[VORE_DB_REPO]' but was '[input_data["db_repo"]]'")
+				if(LAZYLEN(input_data) > MAX_JSON_ENTRIES)
+					CRASH("The supplied file is too large and cannot be parsed.")
 
-				if(input_data["db_version"] != VORE_DB_VERSION)
-					CRASH("Unable to load file - db_version was expected to be '[VORE_DB_VERSION]' but was '[input_data["db_version"]]'")
+				var/is_vrdb = detect_vrdb(input_data)
+				if(is_vrdb)
+					to_chat(usr, span_danger("WARNING: This file will be parsed as a VRDB file. This conversion is best-effort only, and may not produce satisfactory results."))
+				else
+					if(input_data["db_repo"] != VORE_DB_REPO)
+						CRASH("Unable to load file - db_repo was expected to be '[VORE_DB_REPO]' but was '[input_data["db_repo"]]'")
 
-				var/list/bellies_to_import = input_data["bellies"]
+					if(input_data["db_version"] != VORE_DB_VERSION)
+						CRASH("Unable to load file - db_version was expected to be '[VORE_DB_VERSION]' but was '[input_data["db_version"]]'")
+
+				var/list/bellies_to_import = is_vrdb ? input_data : input_data["bellies"]
 
 				if(LAZYLEN(bellies_to_import) < 1)
 					CRASH("No bellies found!")

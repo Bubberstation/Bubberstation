@@ -301,9 +301,11 @@
 /// Deserializes this belly from savefile data
 /obj/vore_belly/proc/deserialize(list/data)
 	if(!(VORE_BELLY_KEY in data)) // We've been passed invalid data, probably VRDB
-		// TODO: Detect VRDB and migrate as best we can
 		var/maybe_name = data["name"]
-		to_chat(usr, span_warning("Unable to load belly '[maybe_name]': Missing '[VORE_BELLY_KEY]' signature"))
+		if(maybe_name)
+			deserialize_vrdb(data)
+		else
+			to_chat(usr, span_warning("Unable to load belly, missing '[VORE_BELLY_KEY]' signature and cannot detect VRBD"))
 		return
 	if(data[VORE_BELLY_KEY] != VORE_BELLY_VERSION)
 		apply_migrations(data)
@@ -319,6 +321,33 @@
 
 	if(istext(data["insert_sound"]))
 		var/new_insert_sound = trim(sanitize(data["insert_sound"]), MAX_MESSAGE_LEN)
+		if(new_insert_sound)
+			if(fancy_sounds && (new_insert_sound in GLOB.vore_sounds_insert_fancy))
+				insert_sound = new_insert_sound
+			if(!fancy_sounds && (new_insert_sound in GLOB.vore_sounds_insert_classic))
+				insert_sound = new_insert_sound
+
+	if(istext(data["release_sound"]))
+		var/new_release_sound = trim(sanitize(data["release_sound"]), MAX_MESSAGE_LEN)
+		if(new_release_sound)
+			if(fancy_sounds && (new_release_sound in GLOB.vore_sounds_release_fancy))
+				release_sound = new_release_sound
+			if(!fancy_sounds && (new_release_sound in GLOB.vore_sounds_release_classic))
+				release_sound = new_release_sound
+
+/// Special handler that tries to deserialize as much of a VRDB save as it can
+/obj/vore_belly/proc/deserialize_vrdb(list/data)
+	var/maybe_name = data["name"]
+	to_chat(usr, span_warning("Attempting to load VRDB belly '[maybe_name]'..."))
+	name = permissive_sanitize_name(maybe_name) || "(Bad Name)"
+	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
+	digest_mode = GLOB.digest_modes[sanitize_text(data["mode"])] || GLOB.digest_modes["None"]
+	is_wet = isnum(data["is_wet"]) ? !!data["is_wet"] : TRUE // make true by default
+	wet_loop = isnum(data["wet_loop"]) ? !!data["wet_loop"] : TRUE // make true by default
+	fancy_sounds = isnum(data["fancy_vore"]) ? !!data["fancy_vore"] : TRUE // if there's no data, make it true by default
+
+	if(istext(data["vore_sound"]))
+		var/new_insert_sound = trim(sanitize(data["vore_sound"]), MAX_MESSAGE_LEN)
 		if(new_insert_sound)
 			if(fancy_sounds && (new_insert_sound in GLOB.vore_sounds_insert_fancy))
 				insert_sound = new_insert_sound

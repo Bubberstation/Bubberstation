@@ -30,6 +30,8 @@
 #define MAX_BELLY_LAYOUTS 20
 /// Rate limit on belly creation, as it can get a little expensive
 #define BELLY_CREATION_COOLDOWN 2 SECONDS
+#define MAX_JSON_CHARACTERS 20000
+#define MAX_JSON_ENTRIES 100
 
 #define TRAIT_SOURCE_VORE "vore"
 
@@ -54,6 +56,18 @@
 
 #define CHANNEL_PREYLOOP 1004
 #define COOLDOWN_PREYLOOP "preyloop"
+
+/proc/detect_vrdb(list/data)
+	if(LAZYLEN(data) < 1)
+		return FALSE
+	// For non-VRDB, the first item will not be a belly, it'll be a list
+	var/list/first_item = data[1]
+	if(!islist(first_item))
+		return FALSE
+	if("name" in first_item)
+		return TRUE
+	return FALSE
+
 
 /// What types of mobs are allowed to participate in vore at all?
 /// This controls whether vore components are added on any mob Login for vore-enabled clients

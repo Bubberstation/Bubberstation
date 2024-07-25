@@ -624,7 +624,7 @@ const BellyUI = (props: {
   // looking at opens automatically when they switch back to this belly
   const [selectedTab, setSelectedTab] = useSharedState(
     'bellyTab-' + belly.name,
-    1,
+    0,
   );
   const [editing, setEditing] = useState(false);
 
@@ -722,21 +722,32 @@ const BellyUI = (props: {
               </Stack.Item>
             </Stack>
           </LabeledList.Item>
-          <LabeledList.Item label="Description" verticalAlign="top">
+          <LabeledList.Item
+            label="Description"
+            tooltip="The following text replacements are available: %pred - Your name | %prey - Prey's name | %belly - Belly name | %count - Prey count"
+            verticalAlign="top"
+          >
             {editing ? (
               <TextArea
                 value={belly.desc}
-                height={5}
-                scrollbar
+                height={10}
+                className={'VorePanel__AdvancedTextArea'}
                 onChange={(e, value) =>
                   act('edit_belly', { ref: belly.ref, var: 'desc', value })
                 }
               />
             ) : (
               <Box
-                height={5}
+                height={10}
                 p={1}
-                style={{ border: '1px solid #6992c2', borderRadius: '0.16em' }}
+                style={{
+                  border: '1px solid #6992c2',
+                  borderRadius: '0.16em',
+                  overflow: 'auto',
+                  overflowX: 'hidden',
+                  overflowY: 'scroll',
+                }}
+                preserveWhitespace
               >
                 {belly.desc}
               </Box>

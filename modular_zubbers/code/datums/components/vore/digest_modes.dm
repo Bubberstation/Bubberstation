@@ -60,7 +60,6 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 			vore_belly.play_vore_sound_preypred(prey_sound, pred_sound, pref = /datum/vore_pref/toggle/digestion_noises)
 			COOLDOWN_START(vore_belly, noise_cooldown, DIGESTION_NOISE_COOLDOWN)
 
-	// TODO: cute health bars?
 	for(var/mob/living/L in vore_belly)
 		if(!L.vore_can_digest())
 			continue
