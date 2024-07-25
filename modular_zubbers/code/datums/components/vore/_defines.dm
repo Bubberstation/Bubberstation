@@ -235,13 +235,6 @@ GLOBAL_LIST_INIT(vore_sounds_death_fancy_prey, list(
 	'modular_zubbers/sound/vore/sunesound/prey/death_10.ogg'
 ))
 
-GLOBAL_LIST_INIT(vore_sounds_belches, list(
-	'modular_zubbers/sound/vore/belches/belch1.ogg','modular_zubbers/sound/vore/belches/belch2.ogg','modular_zubbers/sound/vore/belches/belch3.ogg','modular_zubbers/sound/vore/belches/belch4.ogg',
-	'modular_zubbers/sound/vore/belches/belch5.ogg','modular_zubbers/sound/vore/belches/belch6.ogg','modular_zubbers/sound/vore/belches/belch7.ogg','modular_zubbers/sound/vore/belches/belch8.ogg',
-	'modular_zubbers/sound/vore/belches/belch9.ogg','modular_zubbers/sound/vore/belches/belch10.ogg','modular_zubbers/sound/vore/belches/belch11.ogg','modular_zubbers/sound/vore/belches/belch12.ogg',
-	'modular_zubbers/sound/vore/belches/belch13.ogg','modular_zubbers/sound/vore/belches/belch14.ogg','modular_zubbers/sound/vore/belches/belch15.ogg'
-))
-
 GLOBAL_LIST_INIT(digest_messages_pred, list(
 		"You feel %prey's body succumb to your digestive system, which breaks it apart into soft slurry.",
 		"You hear a lewd glorp as your %belly muscles grind %prey into a warm pulp.",
