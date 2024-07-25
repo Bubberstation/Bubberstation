@@ -4,6 +4,7 @@
 
 	var/datum/component/vore/owner
 	var/datum/digest_mode/digest_mode
+	var/noise_cooldown = 0
 
 	var/brute_damage = 0
 	var/burn_damage = 1
@@ -167,12 +168,7 @@
 	if(!is_wet || !wet_loop)
 		return
 
-	// Matryoshkaless systems can save some cpu here
-	#if MATRYOSHKA_BANNED
 	for(var/mob/living/listening_mob in src)
-	#else
-	for(var/mob/living/listening_mob in get_hearers_in_view(0, src) - owner.parent) // don't listen to your own tummy...
-	#endif
 		var/datum/vore_preferences/listener_vore_prefs = listening_mob.get_vore_prefs()
 		if(!listener_vore_prefs)
 			continue
@@ -237,7 +233,9 @@
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()
-	owner.play_vore_sound(get_release_sound())
+	// Deleted mobs don't play exit sounds
+	if(gone.loc != null)
+		owner.play_vore_sound(get_release_sound())
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone
@@ -325,3 +323,42 @@
 				release_sound = new_release_sound
 			if(!fancy_sounds && (new_release_sound in GLOB.vore_sounds_release_classic))
 				release_sound = new_release_sound
+
+/// Plays sound just to pred and prey in this stomach
+/obj/vore_belly/proc/play_vore_sound_preypred(preysound, predsound, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
+	var/turf/turf_source = get_turf(owner.parent)
+	var/sound/prey_sound = isdatum(preysound) ? preysound : sound(get_vore_sfx(preysound))
+	var/sound/pred_sound = isdatum(predsound) ? predsound : sound(get_vore_sfx(predsound))
+
+	// Needed because playsound_local runtimes at range = 1
+	var/range_to_use = range
+	if(range_to_use < 2)
+		range_to_use = 0
+
+	for(var/mob/living/listening_mob in src)
+		var/datum/vore_preferences/listener_vore_prefs = listening_mob.get_vore_prefs()
+		if(!listener_vore_prefs)
+			continue
+		var/pref_enabled = listener_vore_prefs.read_preference(pref)
+		if(!pref_enabled)
+			continue
+
+		listening_mob.playsound_local(
+			turf_source, preysound, volume, vary,
+			sound_to_use = prey_sound,
+			max_distance = range,
+		)
+
+	var/mob/living/living_parent = owner.parent
+	var/datum/vore_preferences/owner_prefs = living_parent.get_vore_prefs()
+	if(!owner_prefs)
+		return
+	var/pref_enabled = owner_prefs.read_preference(pref)
+	if(!pref_enabled)
+		return
+
+	living_parent.playsound_local(
+		turf_source, predsound, volume, vary,
+		sound_to_use = pred_sound,
+		max_distance = range,
+	)

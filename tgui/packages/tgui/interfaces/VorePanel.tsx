@@ -1066,4 +1066,6 @@ const PREF_TYPE_MAP = {
   eating_noises: { component: PrefBinary, name: 'Eating Noises' },
   digestion_noises: { component: PrefBinary, name: 'Digestion Noises' },
   belch_noises: { component: PrefBinary, name: 'Belch Noises' },
+  digestion_allowed: { component: PrefBinary, name: 'Take Digestion Damage' },
+  qdel_allowed: { component: PrefBinary, name: 'Deleted After Digestion' },
 };

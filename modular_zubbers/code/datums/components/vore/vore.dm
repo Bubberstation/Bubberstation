@@ -398,6 +398,45 @@
 /************/
 /*  Sounds  */
 /************/
+/// Plays a different prey and pred sound to our owner and ALL of our prey
+/datum/component/vore/proc/play_vore_sound_preypred(preysound, predsound, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
+	var/turf/turf_source = get_turf(parent)
+	var/sound/prey_sound = isdatum(preysound) ? preysound : sound(get_vore_sfx(preysound))
+	var/sound/pred_sound = isdatum(predsound) ? predsound : sound(get_vore_sfx(predsound))
+
+	// We never go through walls so get_hearers_in_view is fine
+	// It'll also cover our parent and their belly contents via spatial_grid
+	var/list/listeners = get_hearers_in_view(range, parent)
+
+	// Note: because ghosts can't have vore prefs, we can't send sounds to them :(
+	for(var/mob/living/listening_mob in listeners)
+		if(get_dist(listening_mob, turf_source) > range)
+			continue
+		var/datum/vore_preferences/listener_vore_prefs = listening_mob.get_vore_prefs()
+		if(!listener_vore_prefs)
+			continue
+		var/pref_enabled = listener_vore_prefs.read_preference(pref)
+		if(!pref_enabled)
+			continue
+
+		// Needed because playsound_local runtimes at range = 1
+		var/range_to_use = range
+		if(range_to_use < 2)
+			range_to_use = 0
+
+		if(istype(listening_mob.loc, /obj/vore_belly))
+			listening_mob.playsound_local(
+				turf_source, preysound, volume, vary,
+				sound_to_use = prey_sound,
+				max_distance = range,
+			)
+		else
+			listening_mob.playsound_local(
+				turf_source, predsound, volume, vary,
+				sound_to_use = pred_sound,
+				max_distance = range,
+			)
+
 /datum/component/vore/proc/play_vore_sound(soundin, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
 	var/turf/turf_source = get_turf(parent)
 	var/sound/S = isdatum(soundin) ? soundin : sound(get_vore_sfx(soundin))
@@ -428,6 +467,18 @@
 			max_distance = range,
 		)
 
-
-/datum/component/vore/proc/get_vore_sfx(soundin)
+/proc/get_vore_sfx(soundin)
+	switch(soundin)
+		if("vore_sounds_death_fancy")
+			return pick(GLOB.vore_sounds_death_fancy)
+		if("vore_sounds_death_fancy_prey")
+			return pick(GLOB.vore_sounds_death_fancy_prey)
+		if("vore_sounds_death_classic")
+			return pick(GLOB.vore_sounds_death_classic)
+		if("vore_sounds_digestion_classic")
+			return pick(GLOB.vore_sounds_digestion_classic)
+		if("vore_sounds_digestion_fancy")
+			return pick(GLOB.vore_sounds_digestion_fancy)
+		if("vore_sounds_digestion_fancy_prey")
+			return pick(GLOB.vore_sounds_digestion_fancy_prey)
 	return soundin

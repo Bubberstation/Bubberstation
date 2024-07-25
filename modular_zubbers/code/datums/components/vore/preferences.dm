@@ -333,3 +333,9 @@ GLOBAL_LIST_INIT(vore_preference_entries_by_key, init_vore_preference_entries_by
 
 /datum/vore_pref/toggle/belch_noises
 	savefile_key = "belch_noises"
+
+/datum/vore_pref/toggle/digestion
+	savefile_key = "digestion_allowed"
+
+/datum/vore_pref/toggle/digestion_qdel
+	savefile_key = "qdel_allowed"

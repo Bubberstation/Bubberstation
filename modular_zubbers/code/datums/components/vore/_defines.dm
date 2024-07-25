@@ -41,6 +41,13 @@
 /// Max brute damage a player is allowed to set their belly to
 #define MAX_BRUTE_DAMAGE 2.5
 
+/// Amount of nutrition given per point of damage dealt
+#define NUTRITION_PER_DAMAGE 2
+/// Amount of nutrition given when digesting something fully
+#define NUTRITION_PER_KILL 50
+
+#define DIGESTION_NOISE_COOLDOWN 10 SECONDS
+
 #define PREF_TRINARY_NEVER 0
 #define PREF_TRINARY_PROMPT 1
 #define PREF_TRINARY_ALWAYS 2
