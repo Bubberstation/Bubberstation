@@ -352,6 +352,7 @@
 
 				// Directly scale cooldown with how much they're creating
 				COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN * amount_to_import)
+				to_chat(usr, span_notice("All done importing bellies!"))
 
 			catch(var/exception/e)
 				tgui_alert(usr, "The supplied file contains errors: [e]", "Error!")
