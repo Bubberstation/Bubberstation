@@ -727,6 +727,7 @@ const BellyUI = (props: {
               <TextArea
                 value={belly.desc}
                 height={5}
+                scrollbar
                 onChange={(e, value) =>
                   act('edit_belly', { ref: belly.ref, var: 'desc', value })
                 }

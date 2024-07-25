@@ -268,6 +268,15 @@
 	user.forceMove(get_turf(src))
 	user.visible_message(span_danger("[user] squirms out of [owner.parent]'s [src]!"), span_notice("You squirm out of [owner.parent]'s [src]!"))
 
+/// Formats a vore message
+/obj/vore_belly/proc/format_message(message, mob/prey)
+	message = replacetext(message, "%pred", owner.parent)
+	message = replacetext(message, "%prey", prey)
+	message = replacetext(message, "%belly", src)
+	message = replacetext(message, "%count", LAZYLEN(contents))
+	return message
+
+
 /// Serializes this belly to store in savefile data.
 /obj/vore_belly/proc/serialize()
 	return list(

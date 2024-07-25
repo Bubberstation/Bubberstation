@@ -60,6 +60,7 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 			vore_belly.play_vore_sound_preypred(prey_sound, pred_sound, pref = /datum/vore_pref/toggle/digestion_noises)
 			COOLDOWN_START(vore_belly, noise_cooldown, DIGESTION_NOISE_COOLDOWN)
 
+	// TODO: cute health bars?
 	for(var/mob/living/L in vore_belly)
 		if(!L.vore_can_digest())
 			continue
@@ -70,6 +71,10 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 				else
 					vore_belly.play_vore_sound_preypred("vore_sounds_death_classic", "vore_sounds_death_classic", pref = /datum/vore_pref/toggle/digestion_noises)
 				living_parent.adjust_nutrition(NUTRITION_PER_KILL)
+
+				to_chat(living_parent, span_notice(vore_belly.format_message(pick(GLOB.digest_messages_pred), L)))
+				to_chat(L, span_notice(vore_belly.format_message(pick(GLOB.digest_messages_prey), L)))
+
 				qdel(L)
 			continue
 		if(vore_belly.brute_damage > 0)

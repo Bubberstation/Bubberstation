@@ -222,3 +222,27 @@ GLOBAL_LIST_INIT(vore_sounds_belches, list(
 	'modular_zubbers/sound/vore/belches/belch9.ogg','modular_zubbers/sound/vore/belches/belch10.ogg','modular_zubbers/sound/vore/belches/belch11.ogg','modular_zubbers/sound/vore/belches/belch12.ogg',
 	'modular_zubbers/sound/vore/belches/belch13.ogg','modular_zubbers/sound/vore/belches/belch14.ogg','modular_zubbers/sound/vore/belches/belch15.ogg'
 ))
+
+GLOBAL_LIST_INIT(digest_messages_pred, list(
+		"You feel %prey's body succumb to your digestive system, which breaks it apart into soft slurry.",
+		"You hear a lewd glorp as your %belly muscles grind %prey into a warm pulp.",
+		"Your %belly lets out a rumble as it melts %prey into sludge.",
+		"You feel a soft gurgle as %prey's body loses form in your %belly. They're nothing but a soft mass of churning slop now.",
+		"Your %belly begins gushing %prey's remains through your system, adding some extra weight to your thighs.",
+		"Your %belly begins gushing %prey's remains through your system, adding some extra weight to your rump.",
+		"Your %belly begins gushing %prey's remains through your system, adding some extra weight to your belly.",
+		"Your %belly groans as %prey falls apart into a thick soup. You can feel their remains soon flowing deeper into your body to be absorbed.",
+		"Your %belly kneads on every fiber of %prey, softening them down into mush to fuel your next hunt.",
+		"Your %belly churns %prey down into a hot slush. You can feel the nutrients coursing through your digestive track with a series of long, wet glorps."))
+
+GLOBAL_LIST_INIT(digest_messages_prey, list(
+		"Your body succumbs to %pred's digestive system, which breaks you apart into soft slurry.",
+		"%pred's %belly lets out a lewd glorp as their muscles grind you into a warm pulp.",
+		"%pred's %belly lets out a rumble as it melts you into sludge.",
+		"%pred feels a soft gurgle as your body loses form in their %belly. You're nothing but a soft mass of churning slop now.",
+		"%pred's %belly begins gushing your remains through their system, adding some extra weight to %pred's thighs.",
+		"%pred's %belly begins gushing your remains through their system, adding some extra weight to %pred's rump.",
+		"%pred's %belly begins gushing your remains through their system, adding some extra weight to %pred's belly.",
+		"%pred's %belly groans as you fall apart into a thick soup. Your remains soon flow deeper into %pred's body to be absorbed.",
+		"%pred's %belly kneads on every fiber of your body, softening you down into mush to fuel their next hunt.",
+		"%pred's %belly churns you down into a hot slush. Your nutrient-rich remains course through their digestive track with a series of long, wet glorps."))
