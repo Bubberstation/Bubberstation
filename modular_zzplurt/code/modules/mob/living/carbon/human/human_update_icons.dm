@@ -156,6 +156,81 @@
 
 	update_mutant_bodyparts()
 
+
+/mob/living/carbon/human/update_worn_bra(update_obscured = TRUE)
+	remove_overlay(BRA_LAYER)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BRA) + 1]
+		inv.update_icon()
+
+	if(istype(w_bra, /obj/item/clothing/underwear/shirt/bra))
+		var/obj/item/clothing/underwear/shirt/bra/bra = w_bra
+		update_hud_bra(bra)
+
+		if(update_obscured)
+			update_obscured_slots(bra.flags_inv)
+
+		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_BRA) || bra_hidden())
+			return
+
+		var/target_overlay = bra.icon_state
+		var/mutable_appearance/bra_overlay
+		var/icon_file = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
+		var/handled_by_bodyshape = TRUE
+		var/digi
+		var/woman
+		var/female_sprite_flags = w_bra.female_sprite_flags
+		var/mutant_styles = NONE
+
+		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (bra.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
+			icon_file = bra.worn_icon_digi || DIGITIGRADE_SHIRT_FILE
+			digi = TRUE
+
+			// Edit for legacy sprites
+			if(bra.worn_icon_digi == bra.worn_icon)
+				target_overlay += "_d"
+
+		else if(bodyshape & BODYSHAPE_CUSTOM)
+			icon_file = dna.species.generate_custom_worn_icon(OFFSET_SHIRT, w_bra, src)
+
+		//Female sprites have lower priority than digitigrade sprites
+		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNIFORM))
+			woman = TRUE
+			// SKYRAT EDIT ADDITION START - Digi female gender shaping
+			if(digi)
+				if(!(female_sprite_flags & FEMALE_UNIFORM_DIGI_FULL))
+					female_sprite_flags &= ~FEMALE_UNIFORM_FULL // clear the FEMALE_UNIFORM_DIGI_FULL bit if it was set, we don't want that.
+					female_sprite_flags |= FEMALE_UNIFORM_TOP_ONLY // And set the FEMALE_UNIFORM_TOP bit if it is unset.
+			// SKYRAT EDIT ADDITION END
+
+		if(digi)
+			mutant_styles |= STYLE_DIGI
+
+		if(!icon_exists(icon_file, RESOLVE_ICON_STATE(bra)))
+			icon_file = DEFAULT_SHIRT_FILE
+			handled_by_bodyshape = FALSE
+
+		bra_overlay = bra.build_worn_icon(
+			default_layer = BRA_LAYER,
+			default_icon_file = icon_file,
+			isinhands = FALSE,
+			female_uniform = woman ? female_sprite_flags : null,
+			override_state = target_overlay,
+			override_file = handled_by_bodyshape ? icon_file : null,
+			mutant_styles = mutant_styles,
+		)
+
+		if(bra.flags_1 & IS_PLAYER_COLORABLE_1)
+			bra_overlay.color = bra_color
+
+		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
+		my_chest?.worn_shirt_offset?.apply_offset(bra_overlay)
+		overlays_standing[BRA_LAYER] = bra_overlay
+		apply_overlay(BRA_LAYER)
+
+	update_mutant_bodyparts()
+
 /mob/living/carbon/human/update_worn_wrists(update_obscured = TRUE)
 	remove_overlay(WRISTS_LAYER)
 
@@ -300,6 +375,12 @@
 
 /mob/living/carbon/human/proc/update_hud_shirt(obj/item/worn_item)
 	worn_item.screen_loc = ui_shirt
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_bra(obj/item/worn_item)
+	worn_item.screen_loc = ui_bra
 	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown && hud_used.extra_shown))
 		client.screen += worn_item
 	update_observer_view(worn_item,TRUE)

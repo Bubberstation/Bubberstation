@@ -17,3 +17,7 @@
 /datum/strippable_item/mob_item_slot/undershirt
 	key = STRIPPABLE_ITEM_UNDERSHIRT
 	item_slot = ITEM_SLOT_SHIRT
+
+/datum/strippable_item/mob_item_slot/bra
+	key = STRIPPABLE_ITEM_BRA
+	item_slot = ITEM_SLOT_BRA

@@ -3,8 +3,10 @@
 	var/w_underwear = null
 	///Slot for socks, yes, the thing that usually goes before your shoes
 	var/w_socks = null
-	///Slot for the undershirt (which is quite a foreign concept to me) or bras
+	///Slot for the undershirt (which is quite a foreign concept to me)
 	var/w_shirt = null
+	///Slot for the bra.
+	var/w_bra = null
 	///Slot for the opposite ear.
 	var/ears_extra = null
 	///Slot for the part of your arms that isn't quite hands yet.

@@ -632,6 +632,9 @@
 	if(!(obscured & ITEM_SLOT_SHIRT) && w_shirt?.wash(clean_types))
 		update_worn_shirt()
 		. = TRUE
+	if(!(obscured & ITEM_SLOT_BRA) && w_bra?.wash(clean_types))
+		update_worn_bra()
+		. = TRUE
 	if(!(obscured & ITEM_SLOT_WRISTS) && wrists?.wash(clean_types))
 		update_worn_wrists()
 		. = TRUE

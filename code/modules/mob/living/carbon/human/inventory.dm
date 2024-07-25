@@ -221,6 +221,11 @@
 				return
 			w_shirt = equipping
 			update_worn_shirt()
+		if(ITEM_SLOT_BRA)
+			if(w_bra)
+				return
+			w_bra = equipping
+			update_worn_bra()
 		if(ITEM_SLOT_SOCKS)
 			if(w_socks)
 				return
@@ -297,6 +302,10 @@
 		w_shirt = null
 		if(!QDELETED(src))
 			update_worn_shirt()
+	else if(I == w_bra)
+		w_bra = null
+		if(!QDELETED(src))
+			update_worn_bra()
 	else if(I == wrists)
 		wrists = null
 		if(!QDELETED(src))

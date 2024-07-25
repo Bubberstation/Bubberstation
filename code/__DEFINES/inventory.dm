@@ -66,18 +66,20 @@
 #define ITEM_SLOT_SOCKS (1<<19)
 /// Shirt slot
 #define ITEM_SLOT_SHIRT (1<<20)
+/// Bra slot
+#define ITEM_SLOT_BRA (1<<21)
 /// Right ear slot
-#define ITEM_SLOT_EARS_RIGHT (1<<21)
+#define ITEM_SLOT_EARS_RIGHT (1<<22)
 /// Wrist slot
-#define ITEM_SLOT_WRISTS (1<<22)
+#define ITEM_SLOT_WRISTS (1<<23)
 // SPLURT EDIT END
 /// Handcuff slot
-#define ITEM_SLOT_HANDCUFFED (1<<23)
+#define ITEM_SLOT_HANDCUFFED (1<<24)
 /// Legcuff slot (bolas, beartraps)
-#define ITEM_SLOT_LEGCUFFED (1<<24)
+#define ITEM_SLOT_LEGCUFFED (1<<25)
 
 /// Total amount of slots
-#define SLOTS_AMT 25 // Keep this up to date!
+#define SLOTS_AMT 26 // Keep this up to date!
 
 ///Inventory slots that can be blacklisted by a species from being equipped into
 DEFINE_BITFIELD(no_equip_flags, list(

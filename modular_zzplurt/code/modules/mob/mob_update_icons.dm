@@ -8,6 +8,8 @@
 		update_worn_underwear()
 	if(slot_flags & ITEM_SLOT_SHIRT)
 		update_worn_shirt()
+	if(slot_flags & ITEM_SLOT_BRA)
+		update_worn_bra()
 
 /mob/update_obscured_slots(obscured_flags)
 	. = ..()
@@ -24,6 +26,10 @@
 
 ///Updates the shirt overlay & HUD element.
 /mob/proc/update_worn_shirt(update_obscured = FALSE)
+	return
+
+///Updates the bra overlay & HUD element.
+/mob/proc/update_worn_bra(update_obscured = FALSE)
 	return
 
 ///Updates the socks overlay & HUD element.

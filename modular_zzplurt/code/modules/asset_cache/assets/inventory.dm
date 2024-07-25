@@ -6,6 +6,7 @@
 		"inventory-socks.png" = 'modular_zzplurt/icons/ui/inventory/socks.png',
 		"inventory-undershirt.png" = 'modular_zzplurt/icons/ui/inventory/undershirt.png',
 		"inventory-wrists.png" = 'modular_zzplurt/icons/ui/inventory/wrists.png',
+		"inventory-bra.png" = 'modular_zzplurt/icons/ui/inventory/bra.png',
 	)
 	LAZYADD(assets, extra_assets)
 	. = ..()

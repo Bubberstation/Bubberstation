@@ -287,6 +287,14 @@
 	extra_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "bra"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "bra"
+	inv_box.screen_loc = ui_bra
+	inv_box.slot_id = ITEM_SLOT_BRA
+	extra_inventory += inv_box
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
 	inv_box.name = "right ear"
 	inv_box.icon = extra_inventory_ui_style(ui_style)
 	inv_box.icon_state = "ears_extra"

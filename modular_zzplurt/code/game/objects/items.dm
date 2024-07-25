@@ -15,6 +15,8 @@
 		owner.update_worn_socks()
 	if(flags & ITEM_SLOT_SHIRT)
 		owner.update_worn_shirt()
+	if(flags & ITEM_SLOT_BRA)
+		owner.update_worn_bra()
 	if(flags & ITEM_SLOT_EARS)
 		owner.update_worn_ears_extra()
 	if(flags & ITEM_SLOT_WRISTS)

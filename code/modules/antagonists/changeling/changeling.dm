@@ -815,6 +815,7 @@
 		"w_underwear" = ITEM_SLOT_UNDERWEAR,
 		"w_socks" = ITEM_SLOT_SOCKS,
 		"w_shirt" = ITEM_SLOT_SHIRT,
+		"w_bra" = ITEM_SLOT_BRA,
 		"ears_extra" = ITEM_SLOT_EARS_RIGHT,
 		"wrists" = ITEM_SLOT_WRISTS,
 	)

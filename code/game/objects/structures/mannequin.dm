@@ -46,6 +46,7 @@
 		ITEM_SLOT_UNDERWEAR,
 		ITEM_SLOT_SOCKS,
 		ITEM_SLOT_SHIRT,
+		ITEM_SLOT_BRA,
 		ITEM_SLOT_WRISTS,
 		// SPLURT EDIT END
 	)
@@ -181,6 +182,9 @@
 				default_icon = 'icons/mob/clothing/underwear.dmi'
 			if(ITEM_SLOT_SHIRT)
 				default_layer = SHIRT_LAYER
+				default_icon = 'icons/mob/clothing/underwear.dmi'
+			if(ITEM_SLOT_BRA)
+				default_layer = BRA_LAYER
 				default_icon = 'icons/mob/clothing/underwear.dmi'
 			if(ITEM_SLOT_WRISTS)
 				default_layer = WRISTS_LAYER

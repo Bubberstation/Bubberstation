@@ -900,6 +900,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_SHIRT)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
+		if(ITEM_SLOT_BRA)
+			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		//
 		if(ITEM_SLOT_ICLOTHING)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)

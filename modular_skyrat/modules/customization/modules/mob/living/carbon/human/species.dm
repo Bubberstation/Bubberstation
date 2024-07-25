@@ -165,9 +165,9 @@ GLOBAL_LIST_EMPTY(customizable_races)
 
 		if(species_human.bra && species_human.bra != "Nude")
 			var/datum/sprite_accessory/bra/bra = SSaccessories.bra_list[species_human.bra]
-			if(bra && !species_human.w_shirt)
+			if(bra && !species_human.w_bra)
 				var/obj/item/clothing/underwear/shirt/bra/bra_obj = new bra.bra_obj(species_human)
-				species_human.equip_to_slot_or_del(bra_obj, ITEM_SLOT_SHIRT)
+				species_human.equip_to_slot_or_del(bra_obj, ITEM_SLOT_BRA)
 			/*
 			if(bra)
 				var/mutable_appearance/bra_overlay

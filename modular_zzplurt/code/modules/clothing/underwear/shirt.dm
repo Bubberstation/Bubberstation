@@ -8,28 +8,31 @@
 
 /obj/item/clothing/underwear/shirt/equipped(mob/living/user, slot)
 	. = ..()
-	if(!istype(user, /mob/living/carbon/human))
+	if(!istype(user, /mob/living/carbon/human) || istype(src, /obj/item/clothing/underwear/shirt/bra))
 		return
 	var/mob/living/carbon/human/human = user
 	if(slot == ITEM_SLOT_SHIRT)
-		if(istype(src, /obj/item/clothing/underwear/shirt/bra))
-			human.bra = name
-			human.undershirt = "Nude"
-		else
-			human.undershirt = name
-			human.bra = "Nude"
+		human.undershirt = name
 	else
-		if(istype(src, /obj/item/clothing/underwear/shirt/bra))
-			human.bra = "Nude"
-		else
-			human.undershirt = "Nude"
+		human.undershirt = "Nude"
 
 /obj/item/clothing/underwear/shirt/bra
 	name = "bra"
 	desc = "A bra."
 	icon_state = "bra"
 	body_parts_covered = CHEST
+	slot_flags = ITEM_SLOT_BRA
 	female_sprite_flags = NO_FEMALE_UNIFORM
+
+/obj/item/clothing/underwear/shirt/bra/equipped(mob/living/user, slot)
+	. = ..()
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/human = user
+	if(slot == ITEM_SLOT_BRA)
+		human.bra = name
+	else
+		human.bra = "Nude"
 
 // please make sure they're sorted alphabetically and categorized, above is the only exception
 

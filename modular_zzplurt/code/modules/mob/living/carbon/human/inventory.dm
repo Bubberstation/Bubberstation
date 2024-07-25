@@ -10,6 +10,8 @@
 			return w_socks
 		if(ITEM_SLOT_SHIRT)
 			return w_shirt
+		if(ITEM_SLOT_BRA)
+			return w_bra
 	. = ..()
 
 /mob/living/carbon/human/get_slot_by_item(obj/item/looking_for)

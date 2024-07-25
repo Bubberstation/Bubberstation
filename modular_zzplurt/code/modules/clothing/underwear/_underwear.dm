@@ -29,6 +29,13 @@
 			return TRUE
 	return FALSE
 
+///Proc to check if bra is hidden.
+/mob/living/carbon/human/proc/bra_hidden()
+	for(var/obj/item/I in list(w_uniform, wear_suit))
+		if(istype(I) && ((I.body_parts_covered & CHEST) || (I.flags_inv & HIDEUNDERWEAR)))
+			return TRUE
+	return FALSE
+
 ///Proc to check if underwear is hidden.
 /mob/living/carbon/human/proc/underwear_hidden()
 	for(var/obj/item/I in list(w_uniform, wear_suit))

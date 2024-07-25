@@ -100,18 +100,18 @@
 			if(new_bra)
 				dressing_human.bra = new_bra
 				// SPLURT EDIT ADDITION - Extra Inventory
-				dressing_human.dropItemToGround(dressing_human.w_shirt)
+				dressing_human.dropItemToGround(dressing_human.w_bra)
 				var/datum/sprite_accessory/bra/sprite = SSaccessories.bra_list[new_bra]
-				dressing_human.equip_to_slot_or_del(new sprite.bra_obj(dressing_human), ITEM_SLOT_SHIRT)
+				dressing_human.equip_to_slot_or_del(new sprite.bra_obj(dressing_human), ITEM_SLOT_BRA)
 				// SPLURT EDIT END
 		if("Bra Color")
 			var/new_bra_color = input(dressing_human, "Choose your Bra color", "Bra Color", dressing_human.bra_color) as color|null
 			if(new_bra_color)
 				dressing_human.bra_color = sanitize_hexcolor(new_bra_color)
 				// SPLURT EDIT ADDITION - Extra Inventory
-				var/obj/item/clothing/underwear/shirt/bra = dressing_human.w_shirt
+				var/obj/item/clothing/underwear/shirt/bra = dressing_human.w_bra
 				dressing_human.dropItemToGround(bra)
-				dressing_human.equip_to_slot_or_del(bra, ITEM_SLOT_SHIRT)
+				dressing_human.equip_to_slot_or_del(bra, ITEM_SLOT_BRA)
 				// SPLURT EDIT END
 
 		//SKYRAT EDIT ADDITION END - Colorable Undershirt/Socks/Bras

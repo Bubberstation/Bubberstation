@@ -77,6 +77,9 @@
 	//SPLURT EDIT - shirt
 	if(w_shirt && !(obscured & ITEM_SLOT_SHIRT) && !(w_shirt.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [w_shirt.get_examine_string(user)]."
+	//SPLURT EDIT - bra
+	if(w_bra && !(obscured & ITEM_SLOT_BRA) && !(w_bra.item_flags & EXAMINE_SKIP))
+		. += "[t_He] [t_is] wearing [w_bra.get_examine_string(user)]."
 	//SPLURT EDIT - underwear
 	if(w_underwear && !(obscured & ITEM_SLOT_UNDERWEAR) && !(w_underwear.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [w_underwear.get_examine_string(user)]."

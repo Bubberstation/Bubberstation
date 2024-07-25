@@ -217,7 +217,7 @@
 		w_shirt = w_shirt || initial(undershirt.shirt_obj) //SPLURT EDIT - Extra inventory - original: user.undershirt = initial(undershirt.name)
 
 	if(bra)
-		w_shirt = w_shirt || initial(bra.bra_obj) //SPLURT EDIT - Extra inventory - original: user.bra = initial(bra.name)
+		w_bra = w_bra || initial(bra.bra_obj) //SPLURT EDIT - Extra inventory - original: user.bra = initial(bra.name)
 
 	if(underwear)
 		w_underwear = w_underwear || initial(underwear.briefs_obj) //SPLURT EDIT - Extra inventory - original: user.underwear = initial(underwear.name)
@@ -234,6 +234,8 @@
 		EQUIP_OUTFIT_ITEM(w_socks, ITEM_SLOT_SOCKS)
 	if(w_shirt)
 		EQUIP_OUTFIT_ITEM(w_shirt, ITEM_SLOT_SHIRT)
+	if(w_bra)
+		EQUIP_OUTFIT_ITEM(w_bra, ITEM_SLOT_BRA)
 	if(wrists)
 		EQUIP_OUTFIT_ITEM(wrists, ITEM_SLOT_WRISTS)
 	//
