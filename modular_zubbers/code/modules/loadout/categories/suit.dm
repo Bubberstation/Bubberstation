@@ -7,6 +7,10 @@
 	name = "Leather Apron"
 	item_path = /obj/item/clothing/suit/leatherapron
 
+/datum/loadout_item/suit/bubber/hench
+	name = "Henchmen Coat"
+	item_path = /obj/item/clothing/suit/jacket/henchmen_coat
+
 //Donator items V V V
 
 /datum/loadout_item/suit/runner_engi
