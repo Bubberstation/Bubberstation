@@ -92,6 +92,8 @@
 	if(antag_datum && maximum_antags_global > 0)
 		var/antag_slots_left = maximum_antags_global
 		for(var/datum/antagonist/existing_antagonist as anything in GLOB.antagonists)
+			if(QDELETED(existing_antagonist) || QDELETED(existing_antagonist.owner) || QDELETED(existing_antagonist.owner.current)) //This feels messy, but it just werks.
+				continue
 			if(!istype(existing_antagonist,antag_datum)) //Obviously ignore other antagonists.
 				continue
 			antag_slots_left-- //Slot is occupied.
