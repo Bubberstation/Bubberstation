@@ -134,10 +134,17 @@
 
 /// Returns TRUE if any of our bellies have prey in them
 /datum/component/vore/proc/has_prey()
-	for(var/obj/vore_belly/B in vore_bellies)
+	for(var/obj/vore_belly/B as anything in vore_bellies)
 		if(length(B.contents))
 			return TRUE
 	return FALSE
+
+/datum/component/vore/proc/count_prey()
+	var/count = 0
+	for(var/obj/vore_belly/B as anything in vore_bellies)
+		// Note: this must be changed if object vore is ever a thing
+		count += LAZYLEN(B.contents)
+	return count
 
 /datum/component/vore/proc/download_belly_backup()
 	var/mob/living/living_parent = parent
@@ -156,21 +163,22 @@
 			usr << ftp(file("[full_path]/[filename]"))
 			to_chat(usr, "Attempting to send [selected], this may take a few minutes.")
 
-/datum/component/vore/proc/save_belly_backup(list/only_bellies)
+/datum/component/vore/proc/save_belly_backup()
+	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
+	if(!vore_prefs)
+		return
 	var/mob/living/living_parent = parent
 	if(living_parent.ckey)
 		backup_number = (backup_number + 1) % BELLY_BACKUP_COUNT
 		var/savefile_path = "[get_player_save_folder(living_parent.ckey)]/vore_backup_[backup_number].json"
-		if(savefile_path)
-			rustg_file_write(json_encode(only_bellies, JSON_PRETTY_PRINT), savefile_path)
+		rustg_file_write(json_encode(vore_prefs.get_belly_export(), JSON_PRETTY_PRINT), savefile_path)
 
 /// Slot argument allows you to forcibly save to a different slot
 /datum/component/vore/proc/save_bellies(slot)
 	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 	if(!vore_prefs)
 		return
-	var/list/current_bellies = vore_prefs.get_bellies()
-	save_belly_backup(current_bellies)
+	save_belly_backup()
 
 	var/list/bellies = list()
 	for(var/obj/vore_belly/B in vore_bellies)
@@ -221,7 +229,9 @@
 	if(!pred_component.selected_belly)
 		to_chat(user, span_danger("[pred] doesn't have a belly selected."))
 		return FALSE
-	// TODO: Limit how many prey fit in a pred
+	if(pred_component.count_prey() >= MAX_PREY)
+		to_chat(user, span_danger("[pred] is too full to eat more."))
+		return FALSE
 	var/datum/component/vore/prey_component = prey.GetComponent(/datum/component/vore)
 	if(!prey_component)
 		log_game("[user] tried to feed [prey] to [pred] but prey had vore disabled")

@@ -392,7 +392,11 @@ const Savefile = (props: {
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
-                    <Button fluid icon="upload">
+                    <Button
+                      fluid
+                      icon="upload"
+                      onClick={() => act('import_bellies')}
+                    >
                       Import
                     </Button>
                   </Stack.Item>
@@ -410,7 +414,11 @@ const Savefile = (props: {
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
-                    <Button fluid icon="download">
+                    <Button
+                      fluid
+                      icon="download"
+                      onClick={() => act('export_bellies')}
+                    >
                       Export
                     </Button>
                   </Stack.Item>

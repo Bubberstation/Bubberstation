@@ -39,7 +39,6 @@
 // Lightweight-ish reimplementation of /datum/preferences
 /datum/vore_preferences
 	var/client/owner
-	// TODO: LUT when loading
 	var/belly_layout_slot = 0
 	var/list/pref_map = null
 	var/datum/json_savefile/savefile
@@ -131,8 +130,29 @@
 		return choices[choice]
 	return null
 
+/datum/vore_preferences/proc/export_slot()
+	var/list/choices = generate_slot_choice_list()
+	var/choice = tgui_input_list(usr, "Choose a slot to export", "Belly Slot", choices)
+	if(choice)
+		var/slot_index = choices[choice]
+		var/data = get_belly_export(slot_index)
+		var/path = "[get_player_save_folder(usr.ckey)]/vore_export.json"
+		rustg_file_write(json_encode(data, JSON_PRETTY_PRINT), path)
+		to_chat(usr, span_notice("Sending you [choice], this may take a moment..."))
+		usr << ftp(file(path))
+		fdel(path)
+
 /datum/vore_preferences/proc/get_bellies()
 	return savefile.get_entry("bellies[belly_layout_slot]")
+
+/datum/vore_preferences/proc/get_belly_export(slot = belly_layout_slot)
+	var/list/bellies = savefile.get_entry("bellies[slot]")
+
+	return list(
+		"db_version" = VORE_DB_VERSION,
+		"db_repo" = VORE_DB_REPO,
+		"bellies" = bellies
+	)
 
 /datum/vore_preferences/proc/set_bellies(list/data, slot = belly_layout_slot)
 	savefile.set_entry("bellies[slot]", data)

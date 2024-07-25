@@ -1,5 +1,6 @@
 /datum/component/vore
 	var/ui_editing_lookuptable = FALSE
+	var/rate_limit_belly_creation = 0
 
 /datum/component/vore/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -74,11 +75,14 @@
 	var/mob/living/living_parent = parent
 	switch(action)
 		if("create_belly")
+			if(!COOLDOWN_FINISHED(src, rate_limit_belly_creation))
+				to_chat(usr, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
+				return
 			if(LAZYLEN(vore_bellies) >= MAX_BELLIES)
 				to_chat(usr, span_warning("You can only have [MAX_BELLIES] bellies."))
 				return TRUE
-			// TODO: Rate limit this
 			create_default_belly()
+			COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN)
 			. = TRUE
 		if("select_belly")
 			var/obj/vore_belly/new_selected = locate(params["ref"])
@@ -245,4 +249,75 @@
 			vore_prefs.set_lookup_table(lookup_table)
 			update_static_data(usr, ui)
 
+			. = TRUE
+		if("import_bellies")
+			if(!COOLDOWN_FINISHED(src, rate_limit_belly_creation))
+				to_chat(usr, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
+				return
+
+			// Nearly straight from CHOMP
+			var/panel_choice = tgui_input_list(usr, "Belly Import (NOTE: VRDB Is Not Supported)", "Pick an option", list("Import all bellies from JSON", "Import one belly from JSON"))
+			if(!panel_choice)
+				return
+			var/pickOne = FALSE
+			if(panel_choice == "Import one belly from JSON")
+				pickOne = TRUE
+			var/input_file = input(usr, "Please choose a valid JSON file to import from.", "Belly Import") as file
+			var/input_data
+			try
+				input_data = json_decode(file2text(input_file))
+
+				if(!islist(input_data))
+					CRASH("The supplied file was not a valid JSON file!")
+
+				if(input_data["db_repo"] != VORE_DB_REPO)
+					CRASH("Unable to load file - db_repo was expected to be '[VORE_DB_REPO]' but was '[input_data["db_repo"]]'")
+
+				if(input_data["db_version"] != VORE_DB_VERSION)
+					CRASH("Unable to load file - db_version was expected to be '[VORE_DB_VERSION]' but was '[input_data["db_version"]]'")
+
+				var/list/bellies_to_import = input_data["bellies"]
+
+				if(LAZYLEN(bellies_to_import) < 1)
+					CRASH("No bellies found!")
+
+				if(pickOne)
+					var/list/choices = list()
+					var/index = 0
+					var/list/repeat_items = list()
+					for(var/list/V in bellies_to_import)
+						index++
+						var/name = V["name"]
+						if(!istext(name))
+							name = "<unnamed>"
+						name = avoid_assoc_duplicate_keys(name, repeat_items)
+						choices[name] = index
+					var/picked = tgui_input_list(usr, "Belly Import", "Which belly?", choices)
+					if(picked)
+						bellies_to_import = list(bellies_to_import[choices[picked]])
+
+				var/current_belly_count = LAZYLEN(vore_bellies)
+				var/amount_to_import = min(LAZYLEN(bellies_to_import), MAX_BELLIES - LAZYLEN(current_belly_count))
+				if(amount_to_import != LAZYLEN(bellies_to_import))
+					to_chat(usr, span_warning("You have selected too many bellies to import. Only the first [amount_to_import] will be imported."))
+
+				for(var/i in 1 to amount_to_import)
+					var/list/belly = bellies_to_import[i]
+					var/obj/vore_belly/new_belly = new /obj/vore_belly(parent, src)
+					new_belly.deserialize(belly)
+					CHECK_TICK
+
+				// Directly scale cooldown with how much they're creating
+				COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN * amount_to_import)
+
+			catch(var/exception/e)
+				tgui_alert(usr, "The supplied file contains errors: [e]", "Error!")
+				return FALSE
+
+			. = TRUE
+		if("export_bellies")
+			var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
+			if(!vore_prefs)
+				return
+			vore_prefs.export_slot()
 			. = TRUE

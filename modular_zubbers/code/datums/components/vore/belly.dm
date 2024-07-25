@@ -273,6 +273,7 @@
 /// Serializes this belly to store in savefile data.
 /obj/vore_belly/proc/serialize()
 	return list(
+		VORE_BELLY_KEY = VORE_BELLY_VERSION,
 		"name" = name,
 		"desc" = desc,
 		"digest_mode" = digest_mode?.name,
@@ -286,8 +287,19 @@
 		"release_sound" = release_sound,
 	)
 
+// Called when a savefile passed to us does not match our expected version
+/obj/vore_belly/proc/apply_migrations(list/data)
+	data[VORE_BELLY_KEY] = VORE_BELLY_VERSION
+
 /// Deserializes this belly from savefile data
 /obj/vore_belly/proc/deserialize(list/data)
+	if(!(VORE_BELLY_KEY in data)) // We've been passed invalid data, probably VRDB
+		// TODO: Detect VRDB and migrate as best we can
+		var/maybe_name = data["name"]
+		to_chat(usr, span_warning("Unable to load belly '[maybe_name]': Missing '[VORE_BELLY_KEY]' signature"))
+		return
+	if(data[VORE_BELLY_KEY] != VORE_BELLY_VERSION)
+		apply_migrations(data)
 	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
 	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes["None"]

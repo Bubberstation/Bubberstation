@@ -1,3 +1,7 @@
+#define VORE_DB_REPO "bubber_vore"
+#define VORE_DB_VERSION "1.0"
+#define VORE_BELLY_KEY "version"
+#define VORE_BELLY_VERSION "1.0"
 #define MAX_BELLIES 10
 #define MAX_PREY 3
 #define VORE_DELAY 1 SECONDS // TODO: Change to 30 SECONDS
@@ -8,6 +12,7 @@
 #define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS // Makes every mob into a vore mob for testing
 #define BELLY_BACKUP_COUNT 5 // Number of rolling backups bellies will keep
 #define MAX_BELLY_LAYOUTS 20
+#define BELLY_CREATION_COOLDOWN 2 SECONDS
 
 #define TRAIT_SOURCE_VORE "vore"
 
