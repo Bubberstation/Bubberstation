@@ -111,4 +111,4 @@
 /datum/species/tajaran/get_species_description() //Something basic until I make lore later
 	return list("The Tajara are a race of humanoids that possess markedly felinoid traits that include \
 	a semi-prehensile tail, a body covered in fur of varying shades, and padded, digitigrade feet. \
-	Being that they are from a harsh and icy cold planet, Tajara are vulnerable to high temperatures and fire.",) // Bubber edit
+	Being that they are from a harsh and icy cold planet, Tajara are vulnerable to high temperatures and fire.",)
