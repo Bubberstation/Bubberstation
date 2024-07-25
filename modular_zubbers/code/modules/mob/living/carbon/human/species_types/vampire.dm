@@ -14,4 +14,4 @@
 
 
 /datum/species/vampire/get_species_description()
-	return list("A classy Vampire! They descend upon Space Station Thirteen Every year to spook the crew! \"Bleeg!!\"",) // Bubber edit
+	return list("A classy Vampire! They descend upon Space Station Thirteen Every year to spook the crew! \"Bleeg!!\"",)

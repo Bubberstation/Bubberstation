@@ -11,4 +11,4 @@
 	return list("The militaristic Lizardpeople hail originally from Tizira, but have grown \
 		throughout their centuries in the stars to possess a large spacefaring \
 		empire: though now they must contend with their younger, more \
-		technologically advanced Human neighbours.",) // Bubber edit
+		technologically advanced Human neighbours.",)

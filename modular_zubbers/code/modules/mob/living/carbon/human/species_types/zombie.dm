@@ -10,4 +10,4 @@
 	. = ..()
 
 /datum/species/zombie/get_species_description()
-	return list("A rotting zombie! They descend upon Space Station Thirteen Every year to spook the crew! \"Sincerely, the Zombies!\"",) // Bubber edit
+	return list("A rotting zombie! They descend upon Space Station Thirteen Every year to spook the crew! \"Sincerely, the Zombies!\"",)

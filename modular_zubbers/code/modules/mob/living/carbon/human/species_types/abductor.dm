@@ -15,4 +15,4 @@
 
 /datum/species/abductor/get_species_description()
 	return list("Abductors, colloquially known as \"Greys\" (or \"Grays\"), \
-		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member.",) // Bubber edit
+		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member.",)
