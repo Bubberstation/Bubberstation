@@ -9,6 +9,7 @@
 
 	base_antags = 2
 	maximum_antags = 3
+	maximum_antags_global = 4
 
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 
