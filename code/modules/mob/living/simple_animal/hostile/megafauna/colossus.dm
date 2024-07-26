@@ -125,7 +125,7 @@
 			dir_shots.Trigger(target = target)
 // BUBBER EDIT START - ACTUALLY LOOSE THE TARGET
 	var/mob/living/living_target = target
-	if(!istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
+	if(istype(living_target) && living_target.stat == DEAD && living_target.has_status_effect(/datum/status_effect/gutted))
 		LoseTarget()
 		return
 // BUBBER EDIT END

@@ -341,6 +341,10 @@
 #define COMSIG_GUN_CHAMBER_PROCESSED "gun_chamber_processed"
 ///called in /obj/item/gun/ballistic/process_chamber (casing)
 #define COMSIG_CASING_EJECTED "casing_ejected"
+///called in /obj/item/gun/ballistic/sawoff(mob/user, obj/item/saw, handle_modifications) : (mob/user)
+#define COMSIG_GUN_BEING_SAWNOFF "gun_being_sawnoff"
+	#define COMPONENT_CANCEL_SAWING_OFF (1<<0)
+#define COMSIG_GUN_SAWN_OFF "gun_sawn_off"
 
 // Jetpack things
 // Please kill me
@@ -523,5 +527,5 @@
 
 /// Sent from /obj/item/update_weight_class(). (old_w_class, new_w_class)
 #define COMSIG_ITEM_WEIGHT_CLASS_CHANGED "item_weight_class_changed"
-/// Sent from /obj/item/update_weight_class(), to it's loc. (obj/item/changed_item, old_w_class, new_w_class)
+/// Sent from /obj/item/update_weight_class(), to its loc. (obj/item/changed_item, old_w_class, new_w_class)
 #define COMSIG_ATOM_CONTENTS_WEIGHT_CLASS_CHANGED "atom_contents_weight_class_changed"

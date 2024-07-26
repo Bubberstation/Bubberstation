@@ -259,6 +259,11 @@
 	if(!SSdbcore.Connect())
 		return 0
 
+	// If they have been exempted from date availability checks, we assume they are old enough for all jobs.
+	// This is only added whenever an admin manually ticks the box for this player.
+	if(player.prefs?.db_flags & DB_FLAG_EXEMPT)
+		return 0
+
 	// As of the time of writing this comment, verifying database connection isn't "solved". Sometimes rust-g will report a
 	// connection mid-shift despite the database dying.
 	// If the client age is -1, it means that no code path has overwritten it. Even first time connections get it set to 0,
@@ -588,11 +593,6 @@
 				player_client.prefs.read_preference(/datum/preference/choiced/species),
 			)
 	dna.update_dna_identity()
-	// BUBBER EDIT START
-	if(get_taur_mode() == STYLE_TAUR_SNAKE)
-		RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 0.6, -6)
-		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SNAKE, 15, -6)
-	// BUBBER EDIT END
 
 	updateappearance()
 
