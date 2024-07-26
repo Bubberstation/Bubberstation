@@ -64,6 +64,22 @@
 	armor_type = /datum/armor/toggle_labcoat
 	toggle_noun = "zipper"
 
+// Henchmen Sprites by Cannibal Hunter of MonkeStation
+
+/obj/item/clothing/suit/jacket/henchmen_coat
+	name = "henchmen coat"
+	desc = "Alright boss.. I'll handle it."
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/jacket_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
+	icon_state = "greyscale_coat"
+	greyscale_colors = "#201b1a"
+	greyscale_config = /datum/greyscale_config/henchmen
+	greyscale_config_worn = /datum/greyscale_config/henchmen/worn
+	flags_1 = IS_PLAYER_COLORABLE_1
+/obj/item/clothing/suit/jacket/henchmen_coat/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/toggle_icon)
+
 //ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/suit/jacket/tailcoat //parent type
