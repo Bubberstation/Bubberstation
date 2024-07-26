@@ -30,6 +30,9 @@
 	if(looking_for == w_shirt)
 		return ITEM_SLOT_SHIRT
 
+	if(looking_for == w_bra)
+		return ITEM_SLOT_BRA
+
 	. = ..()
 
 /mob/living/carbon/human/get_body_slots()
