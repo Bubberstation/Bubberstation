@@ -48,6 +48,13 @@
 		"interdyne_mining_equipment_vendor",
 	)
 
+// MACHINES
+/datum/techweb_node/office_equip/New()
+	. = ..()
+	design_ids += list(
+		"export_gate",
+	)
+
 // Robotics Tech
 
 /datum/techweb_node/borg_engi/New()

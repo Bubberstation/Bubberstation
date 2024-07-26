@@ -10,9 +10,25 @@
 /obj/item/flatpack/export_gate
 	board = /obj/item/circuitboard/machine/export_gate
 
+/obj/item/flatpack/export_gate/multitool_act(mob/living/user, obj/item/tool)
+	if(isturf(loc))
+		var/turf/location = loc
+		if(!locate(/obj/machinery/conveyor) in location)
+			balloon_alert(user, "needs conveyor belt!")
+			return ITEM_INTERACT_BLOCKING
+
+	return ..()
+
+/datum/supply_pack/service/export_gate
+	name = "Bounty Cube Export Gate"
+	desc = "Automatically registers bounty cube exports, for the logistics automation nerd in you."
+	cost = CARGO_CRATE_VALUE * 2
+	contains = list(/obj/item/flatpack/export_gate)
+	crate_name = "export gate crate"
+
 /obj/machinery/export_gate
 	name = "export gate"
-	desc = "A conveyor belt gate that automatically registers bounty cube exports, paying out to a list of crew accounts. For the logistics automation nerd in you."
+	desc = "Automatically registers bounty cube exports, for the logistics automation nerd in you. Pays out to active cargo techs."
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate_black"
 	circuit = /obj/item/circuitboard/machine/export_gate
@@ -24,6 +40,10 @@
 	var/datum/bank_account/holding_account
 	/// List of crew accounts who split the scanned bounties
 	var/list/payment_accounts
+	///Our internal radio
+	var/obj/item/radio/radio
+	///The key our internal radio uses
+	var/radio_key = /obj/item/encryptionkey/headset_cargo
 
 /obj/machinery/export_gate/Initialize(mapload)
 	. = ..()
@@ -33,17 +53,41 @@
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
+	register_context()
 	AddElement(/datum/element/connect_loc, loc_connections)
 	holding_account = new(name, player_account = FALSE)
 	holding_account.replaceable = FALSE
+	radio = new(src)
+	radio.keyslot = new radio_key
+	radio.set_listening(FALSE)
+	radio.recalculateChannels()
+	align_to_belt()
+
+/obj/machinery/export_gate/proc/align_to_belt()
+	if(isturf(loc))
+		var/turf/location = loc
+		var/obj/machinery/conveyor/my_conveyor = locate(/obj/machinery/conveyor) in location
+		if(my_conveyor)
+			dir = my_conveyor.dir
+			update_appearance()
 
 /obj/machinery/export_gate/Destroy()
+	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/export_gate/can_interact(mob/user)
-	if(locked)
-		return FALSE
-	return ..()
+/obj/machinery/export_gate/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(held_item?.tool_behaviour == TOOL_WRENCH)
+		context[SCREENTIP_CONTEXT_RMB] = "[anchored ? "un" : ""]anchor gate"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "close" : "open"] maintenance panel"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER && panel_open)
+		context[SCREENTIP_CONTEXT_LMB] = "deconstruct gate"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/export_gate/update_overlays()
 	. = ..()
@@ -56,8 +100,22 @@
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(auto_scan), package)
 
+/obj/machinery/export_gate/wrench_act(mob/living/user, obj/item/tool)
+	default_unfasten_wrench(user, tool)
+	density = !anchored
+	if(anchored)
+		align_to_belt()
+	return ITEM_INTERACT_SUCCESS
+
+/obj/machinery/export_gate/crowbar_act(mob/living/user, obj/item/tool)
+	default_deconstruction_crowbar(tool)
+	return TRUE
+
+/obj/machinery/export_gate/screwdriver_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), tool)
+
 /obj/machinery/export_gate/proc/auto_scan(atom/movable/package)
-	if(!(machine_stat & (BROKEN|NOPOWER)) && istype(package, /obj/item/bounty_cube) & (!panel_open))
+	if(is_operational && istype(package, /obj/item/bounty_cube) & (!panel_open))
 		perform_scan(package)
 
 /obj/machinery/export_gate/proc/perform_scan(obj/item/package)
@@ -65,9 +123,8 @@
 	cut_overlays()
 	if(cube.bounty_handler_account)
 		flick_overlay_view("alarm", 1 SECONDS)
-		return
 
-	if(!isnull(cube.bounty_value))
+	else if(!isnull(cube.bounty_value))
 		flick_overlay_view("scanning", 1 SECONDS)
 		process_cube(cube)
 
@@ -119,9 +176,13 @@
 	var/total_accounts = LAZYLEN(payment_accounts)
 	if(!total_accounts)
 		return
+	if(holding_account.account_balance < 50)
+		radio.talk_into(src, "No export scan income processed this cycle.", RADIO_CHANNEL_SUPPLY)
+		return
 
 	var/payout = floor(holding_account.account_balance / total_accounts)
 	log_econ("[src.name] is dispersing [payout * total_accounts] credits to associated accounts.")
+	radio.talk_into(src, "Dispersing bounty cube export scan income of [payout * total_accounts] credits to associated accounts.", RADIO_CHANNEL_SUPPLY)
 	for(var/datum/bank_account/payout_account as anything in payment_accounts)
 		if(payout_account.transfer_money(from = holding_account, amount = payout, transfer_reason = "Export gate: bounty cube earnings"))
 			payout_account.bank_card_talk("Export gate payment of [payout] cr. processed, account now holds [payout_account.account_balance] cr.")
@@ -129,9 +190,10 @@
 			stack_trace("[src.name] attempted to perform a bounty cube export payment to [payout_account.account_holder], but it failed!")
 
 /datum/controller/subsystem/economy/issue_paydays()
-	. = ..()
 	for(var/obj/machinery/export_gate/payout_gate as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/export_gate))
 		payout_gate.disperse_earnings()
+
+	return ..()
 
 /obj/machinery/conveyor
 	speed = 0.55 // the items move at the same speed as the belt animation. ~aesthetics~
