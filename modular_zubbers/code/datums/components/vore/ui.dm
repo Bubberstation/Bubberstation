@@ -68,6 +68,8 @@
 		var/obj/vore_belly/tummy = user.loc
 		data["inside"] = tummy.ui_data(user)
 
+	data["not_our_owner"] = (user.ckey != our_owner_ckey)
+
 	return data
 
 /datum/component/vore/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -192,7 +194,7 @@
 		if("set_pref")
 			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
-				to_chat(usr, span_danger("You cannot save vore preferences as your savefile was not loaded by the vore component."))
+				to_chat(usr, span_danger("You cannot save your vore preferences as they cannot be loaded."))
 				return
 
 			var/key = params["key"]
@@ -237,9 +239,15 @@
 			save_bellies()
 			. = TRUE
 		if("belly_backups")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			download_belly_backup()
 			. = TRUE
 		if("load_slot")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
 				return
@@ -250,6 +258,9 @@
 				load_bellies_from_prefs()
 			. = TRUE
 		if("set_slot_name")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
 				return
@@ -258,6 +269,9 @@
 			vore_prefs.set_slot_name(name)
 			. = TRUE
 		if("copy_to_slot")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
 				return
@@ -268,10 +282,16 @@
 				to_chat(usr, span_notice("Copied belly loadout to slot [slot_to_save_over]."))
 			. = TRUE
 		if("toggle_lookup_data")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			ui_editing_lookuptable = !ui_editing_lookuptable
 			update_static_data(usr, ui)
 			. = TRUE
 		if("set_lookup_table_entry")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
 				return
@@ -287,6 +307,9 @@
 
 			. = TRUE
 		if("delete_lookup_table_entry")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
 			if(!vore_prefs)
 				return
@@ -370,13 +393,16 @@
 				// Directly scale cooldown with how much they're creating
 				COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN * amount_to_import)
 				to_chat(usr, span_notice("All done importing bellies!"))
-
+				save_bellies()
 			catch(var/exception/e)
 				tgui_alert(usr, "The supplied file contains errors: [e]", "Error!")
 				return FALSE
 
 			. = TRUE
 		if("export_bellies")
+			if(usr.ckey != our_owner_ckey)
+				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+				return
 			var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 			if(!vore_prefs)
 				return

@@ -29,12 +29,16 @@ export const Savefile = (props: {
           <LabeledList.Item
             label="Currently Loaded Belly Slot"
             buttons={
-              <Button selected={editing} onClick={() => setEditing(!editing)}>
+              <Button
+                selected={editing}
+                onClick={() => setEditing(!editing)}
+                disabled={data.not_our_owner}
+              >
                 <Icon name="pencil" />
               </Button>
             }
           >
-            {editing ? (
+            {editing && !data.not_our_owner ? (
               <Input
                 width={21}
                 value={data.current_slot}
@@ -58,6 +62,7 @@ export const Savefile = (props: {
                         act('load_slot');
                         setTab(0);
                       }}
+                      disabled={data.not_our_owner}
                     >
                       Load Slot
                     </Button>
@@ -80,6 +85,7 @@ export const Savefile = (props: {
                       fluid
                       icon="copy"
                       onClick={() => act('copy_to_slot')}
+                      disabled={data.not_our_owner}
                     >
                       Copy To Slot
                     </Button>
@@ -89,6 +95,7 @@ export const Savefile = (props: {
                       fluid
                       icon="download"
                       onClick={() => act('export_bellies')}
+                      disabled={data.not_our_owner}
                     >
                       Export
                     </Button>
@@ -102,6 +109,7 @@ export const Savefile = (props: {
               fluid
               icon="cloud-download-alt"
               onClick={() => act('belly_backups')}
+              disabled={data.not_our_owner}
             >
               Download Backup
             </Button>
@@ -111,6 +119,7 @@ export const Savefile = (props: {
               fluid
               icon="magnifying-glass"
               onClick={() => act('toggle_lookup_data')}
+              disabled={data.not_our_owner}
             >
               Associate Character Slots with Belly Layouts
             </Button>

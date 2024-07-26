@@ -49,7 +49,11 @@ const VoreMain = (props) => {
 
   return (
     <Section
-      title={`Vore Panel - ${data.current_slot}`}
+      title={
+        data.not_our_owner
+          ? 'Vore Panel - WARNING: Saving is disabled'
+          : `Vore Panel - ${data.current_slot}`
+      }
       fill
       buttons={
         <Button

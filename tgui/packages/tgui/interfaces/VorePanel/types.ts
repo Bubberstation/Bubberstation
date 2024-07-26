@@ -53,6 +53,7 @@ export type Data = {
   character_slots: string[] | null;
   vore_slots: { [key: string]: number } | null;
   lookup_table: { [key: string]: number } | null;
+  not_our_owner: BooleanLike;
 };
 
 export const digestModeToPreyMode = {

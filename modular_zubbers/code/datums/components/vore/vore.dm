@@ -53,6 +53,8 @@
 
 	// Save backups
 	var/backup_number = 0
+	var/our_owner_ckey = null
+	var/non_owner_modified_settings = null
 
 	var/vore_mode = FALSE
 	var/datum/action/innate/vore_mode/vore_mode_action = null
@@ -65,6 +67,8 @@
 	load_vore_prefs(parent)
 	vore_mode_action = new(src)
 	appearance_holder = new()
+	var/mob/living/living_parent = parent
+	our_owner_ckey = living_parent.ckey
 
 /datum/component/vore/RegisterWithParent()
 	vore_mode_action?.Grant(parent)
@@ -160,7 +164,7 @@
 			usr << ftp(file("[full_path]/[filename]"))
 			to_chat(usr, "Attempting to send [selected], this may take a few minutes.")
 
-/datum/component/vore/proc/save_belly_backup()
+/datum/component/vore/proc/save_belly_backup(special_name)
 	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 	if(!vore_prefs)
 		return
@@ -168,10 +172,33 @@
 	if(living_parent.ckey)
 		backup_number = (backup_number + 1) % BELLY_BACKUP_COUNT
 		var/savefile_path = "[get_player_save_folder(living_parent.ckey)]/vore_backup_[backup_number].json"
+		if(special_name)
+			savefile_path = "[get_player_save_folder(living_parent.ckey)]/vore_backup_[special_name].json"
 		rustg_file_write(json_encode(vore_prefs.get_belly_export(), JSON_PRETTY_PRINT), savefile_path)
 
 /// Slot argument allows you to forcibly save to a different slot
 /datum/component/vore/proc/save_bellies(slot)
+	// No usr, no save
+	if(!usr?.ckey)
+		return
+
+	// Do not save if they are not our owner
+	if(usr.ckey != our_owner_ckey)
+		non_owner_modified_settings = usr.real_name
+		return
+
+	if(non_owner_modified_settings)
+		var/confirmation = tgui_alert(usr, "Warning: Your bellies were changed by [non_owner_modified_settings]. Do you want to save these changes permanently?", "Dirty Belly Prefs", list("No", "Yes"))
+		if(confirmation != "Yes")
+			var/restore = tgui_alert(usr, "Do you want to undo all changes by [non_owner_modified_settings] and revert to your preferences? A backup of their changes will be created.", "Revert?", list("No", "Yes"))
+			if(restore == "Yes")
+				save_belly_backup("modified_[sanitize_filename(non_owner_modified_settings)]")
+				clear_bellies()
+				load_bellies_from_prefs()
+			return
+		save_belly_backup("modified_[sanitize_filename(non_owner_modified_settings)]")
+		non_owner_modified_settings = null
+
 	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 	if(!vore_prefs)
 		return
