@@ -60,7 +60,10 @@
 	var/list/data = list()
 
 	data["name"] = name
-	data["desc"] = desc
+	if(user_is_parent)
+		data["desc"] = desc
+	else
+		data["desc"] = format_message(desc, user)
 	// Try not to leak refs too much
 	if(user_is_parent)
 		data["ref"] = REF(src)
@@ -215,8 +218,10 @@
 
 /// Handles prey entering a belly, and starts deep_search_prey
 /obj/vore_belly/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	var/mob/living/living_parent = owner.parent
 	. = ..()
+	if(!owner)
+		return
+	var/mob/living/living_parent = owner.parent
 	owner.play_vore_sound(get_insert_sound())
 	to_chat(living_parent, span_notice("[arrived] slides into your [lowertext(name)]."))
 	owner.appearance_holder.vis_contents += arrived
@@ -261,6 +266,8 @@
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
 	. = ..()
+	if(!owner)
+		return
 	// Deleted/transferred mobs don't play exit sounds
 	var/mob/living/living_parent = owner.parent
 	if(!living_parent.contains(gone))

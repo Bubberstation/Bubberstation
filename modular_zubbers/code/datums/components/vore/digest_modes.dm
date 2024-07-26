@@ -59,7 +59,9 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 	to_chat(living_parent, span_notice(format_message(pick(GLOB.digest_messages_pred), L)))
 	to_chat(L, span_notice(format_message(pick(GLOB.digest_messages_prey), L)))
 
+	L.ghostize(FALSE)
 	qdel(L)
+
 	return TRUE
 
 /datum/digest_mode/digest/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)

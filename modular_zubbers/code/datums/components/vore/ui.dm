@@ -147,8 +147,25 @@
 							if(which_belly && prey.loc == prey_loc)
 								prey.forceMove(which_belly)
 						if("Digest")
-							if(!prey_loc.digestion_death(prey))
-								to_chat(living_parent, span_warning("Prey isn't interested in being fully digested."))
+							#if !REQUIRES_PLAYER
+							if(!prey.mind)
+								prey_loc.digestion_death(prey)
+								return
+							#endif
+							var/datum/vore_preferences/prey_vore_prefs = prey.get_vore_prefs()
+							if(!prey_vore_prefs)
+								to_chat(usr, span_warning("[prey] isn't interested in being digested."))
+								return
+							if(!prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion) || !prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion_qdel))
+								to_chat(usr, span_warning("[prey] isn't interested in being digested."))
+								return
+
+							var/consents = tgui_alert(prey, "[living_parent] wants to instantly digest you, is this okay?", "Instant Gurgle", list("No", "Yes"))
+							if(consents == "Yes")
+								if(!prey_loc.digestion_death(prey))
+									to_chat(living_parent, span_warning("[prey] isn't interested in being fully digested."))
+							else
+								to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
 						// TODO: Absorbs
 
 			. = TRUE

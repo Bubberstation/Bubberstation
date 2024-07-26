@@ -6,8 +6,11 @@
 	if(istype(L))
 		// Only add if in vore_allowed_mob_types, but always remove
 		if(value && is_type_in_typecache(L, GLOB.vore_allowed_mob_types))
-			AddComponent(/datum/component/vore, L)
+			L.AddComponent(/datum/component/vore, L)
 		else
+			// instantly eject them when consent is removed
+			if(istype(L.loc, /obj/vore_belly))
+				L.forceMove(get_turf(L))
 			var/datum/component/C = L.GetComponent(/datum/component/vore)
 			if(C)
 				qdel(C)

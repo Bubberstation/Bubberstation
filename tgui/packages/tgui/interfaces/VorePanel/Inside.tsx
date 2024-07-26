@@ -34,7 +34,7 @@ export const Inside = (props) => {
           {preyMode.text}
         </Box>
       </Box>
-      <Box mb={1} color="label">
+      <Box mb={1} color="label" preserveWhitespace>
         {inside.desc}
       </Box>
       {inside.contents.length ? (
