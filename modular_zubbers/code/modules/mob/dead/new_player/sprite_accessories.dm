@@ -38,6 +38,81 @@
 	icon_state = "royal_curls"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 
+/datum/sprite_accessory/hair/bubberclown
+	name = "Clown"
+	icon_state = "hair_clown"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+
+/datum/sprite_accessory/hair/emma
+	name = "Emma"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_emma"
+
+/datum/sprite_accessory/hair/immovable
+	name = "Ozen"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_immovable"
+
+/datum/sprite_accessory/hair/damsel
+	name = "Damsel"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_damsel"
+
+/datum/sprite_accessory/hair/wavylong
+	name = "Long Wavy"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_wavylong"
+
+/datum/sprite_accessory/hair/wavyovereye
+	name = "Wavy over eye"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_wavyovereye"
+
+/datum/sprite_accessory/hair/straightovereye
+	name = "Straight over eye"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightovereye"
+
+/datum/sprite_accessory/hair/straightside
+	name = "Side Straight"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightside"
+
+/datum/sprite_accessory/hair/straightshort
+	name = "Straight Long"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightshort"
+
+/datum/sprite_accessory/hair/straightlong
+	name = "Straight Long"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightlong"
+
+/datum/sprite_accessory/hair/straightfloorlength
+	name = "Straight Long (Very)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_straightfloorlength"
+
+/datum/sprite_accessory/hair/deathhawk
+	name = "Deathhawk"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_deathhawk"
+
+/datum/sprite_accessory/hair/bedheadhline
+	name = "Bedhead (+hairline)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_bedheadhline"
+
+/datum/sprite_accessory/hair/spicyalt
+	name = "Spicy (Alt)"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_spicyalt"
+
+/datum/sprite_accessory/hair/honse
+	name = "Honse"
+	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
+	icon_state = "hair_honse"
+
 //Sprite from Monkestation: https://github.com/Monkestation/MonkeStation
 /datum/sprite_accessory/hair/marge
 	name = "Marge"
@@ -117,72 +192,3 @@
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
 	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
 
-/datum/sprite_accessory/hair/emma
-	name = "Emma"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_emma"
-
-/datum/sprite_accessory/hair/immovable
-	name = "Ozen"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_immovable"
-
-/datum/sprite_accessory/hair/damsel
-	name = "Damsel"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_damsel"
-
-/datum/sprite_accessory/hair/wavylong
-	name = "Long Wavy"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_wavylong"
-
-/datum/sprite_accessory/hair/wavyovereye
-	name = "Wavy over eye"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_wavyovereye"
-
-/datum/sprite_accessory/hair/straightovereye
-	name = "Straight over eye"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightovereye"
-
-/datum/sprite_accessory/hair/straightside
-	name = "Side Straight"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightside"
-
-/datum/sprite_accessory/hair/straightshort
-	name = "Straight Long"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightshort"
-
-/datum/sprite_accessory/hair/straightlong
-	name = "Straight Long"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightlong"
-
-/datum/sprite_accessory/hair/straightfloorlength
-	name = "Straight Long (Very)"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_straightfloorlength"
-
-/datum/sprite_accessory/hair/deathhawk
-	name = "Deathhawk"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_deathhawk"
-
-/datum/sprite_accessory/hair/bedheadhline
-	name = "Bedhead (+hairline)"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_bedheadhline"
-
-/datum/sprite_accessory/hair/spicyalt
-	name = "Spicy (Alt)"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_spicyalt"
-
-/datum/sprite_accessory/hair/honse
-	name = "Honse"
-	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	icon_state = "hair_honse"
