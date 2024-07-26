@@ -3,7 +3,7 @@
 	desc = "Circumstances have rendered this protective suit into someone's second skin. Literally."
 	extended_desc = "Some great aspect of someone's past has permanently bound them to this device, for better or worse."
 
-	default_skin = "civilian"
+	default_skin = "standard"
 	armor_type = /datum/armor/mod_entombed
 	resistance_flags = FIRE_PROOF | ACID_PROOF // It is better to die for the Emperor than live for yourself.
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT

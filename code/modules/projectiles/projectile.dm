@@ -583,7 +583,7 @@
  */
 /obj/projectile/proc/select_target(turf/our_turf, atom/target, atom/bumped)
 	// 1. special bumped border object check
-	if((bumped?.flags_1 & ON_BORDER_1) && can_hit_target(bumped, original == bumped, FALSE, TRUE))
+	if((bumped?.flags_1 & ON_BORDER_1) && can_hit_target(bumped, original == bumped, TRUE, TRUE))
 		return bumped
 	// 2. original
 	if(can_hit_target(original, TRUE, FALSE, original == bumped))
@@ -807,7 +807,7 @@
 	if(!log_override && firer && original && !do_not_log)
 		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
 			//note: mecha projectile logging is handled in /obj/item/mecha_parts/mecha_equipment/weapon/action(). try to keep these messages roughly the sameish just for consistency's sake.
-	if(direct_target && (get_dist(direct_target, get_turf(fired_from)) <= 1)) // point blank shots // SKYRAT EDIT - ORIGINAL: if(direct_target && (get_dist(direct_target, get_turf(src)) <= 1))
+	if(direct_target && (get_dist(direct_target, get_turf(src)) <= 1)) // point blank shots
 		process_hit(get_turf(direct_target), direct_target)
 		if(QDELETED(src))
 			return
@@ -1215,7 +1215,8 @@
 
 /// Fetches embedding data
 /obj/projectile/proc/get_embed()
-	return embed_type ? (embed_data ||= get_embed_by_type(embed_type)) : null
+	RETURN_TYPE(/datum/embed_data)
+	return embed_type ? (embed_data ||= get_embed_by_type(embed_type)) : embed_data
 
 /obj/projectile/proc/set_embed(datum/embed_data/embed)
 	if(embed_data == embed)
