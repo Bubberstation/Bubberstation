@@ -72,6 +72,7 @@
 			update_appearance()
 
 /obj/machinery/export_gate/Destroy()
+	disperse_earnings()
 	QDEL_NULL(radio)
 	return ..()
 
