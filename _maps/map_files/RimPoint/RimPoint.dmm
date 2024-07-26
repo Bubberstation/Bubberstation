@@ -26397,7 +26397,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/computer)
 "jYQ" = (
@@ -31872,6 +31871,8 @@
 	id = "TelecommsAirlock";
 	name = "Bolt Control"
 	},
+/obj/structure/cable,
+/obj/machinery/power/smes/full,
 /turf/open/floor/catwalk_floor/iron,
 /area/station/tcommsat/computer)
 "mft" = (
@@ -52587,6 +52588,10 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer2{
 	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/computer)
