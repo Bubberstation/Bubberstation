@@ -25,3 +25,4 @@
 
 /obj/item/circuitboard/machine/mechfab/interdyne
 	name = "Syndicate Exosuit Fabricator"
+	build_path = /obj/machinery/mecha_part_fabricator/interdyne
