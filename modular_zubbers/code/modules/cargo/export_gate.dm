@@ -176,6 +176,9 @@
 		if(isnull(tech_account))
 			continue
 
+		if(tech_account.off_duty_check())
+			continue
+
 		LAZYADD(manifest_accounts, tech_account)
 
 	payment_accounts = manifest_accounts
@@ -209,3 +212,11 @@
 
 /obj/machinery/conveyor_switch
 	conveyor_speed = 0.55 // the items move at the same speed as the belt animation. ~aesthetics~
+
+/datum/bank_account/proc/off_duty_check()
+	for(var/obj/item/card/id/registered_card in bank_cards)
+		var/datum/component/off_duty_timer/id_component = registered_card.GetComponent(/datum/component/off_duty_timer)
+		if(!isnull(id_component))
+			return TRUE
+
+	return FALSE
