@@ -1,6 +1,8 @@
 # Modular DCS Vore
 This is an implementation of vore made entirely using components.
 
+By [Shadow Larkens](https://github.com/ShadowLarkens/)
+
 ## Configuration
 Most critical options are in [_defines.dm](./_defines.dm) including things such as the max amount of bellies that can
 be created, how many prey can be eaten, etc.

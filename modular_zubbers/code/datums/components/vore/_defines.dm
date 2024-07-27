@@ -35,10 +35,14 @@
 #define MAX_JSON_CHARACTERS MAX_FLAVOR_LEN * MAX_BELLIES * 3
 /// Maximum length() of a parsed json file before we refuse to parse it further
 #define MAX_JSON_ENTRIES 100
+/// Volume used for all vore noises
+#define VORE_SOUND_VOLUME 35
+/// Volume used specifically for the preyloop
+#define PREYLOOP_VOLUME 70
 
 #define TRAIT_SOURCE_VORE "vore"
 
-#define DIGEST_MODE_NONE "None"
+#define DIGEST_MODE_SAFE "Safe"
 #define DIGEST_MODE_DIGEST "Digest"
 
 /// Max burn damage a player is allowed to set their belly to

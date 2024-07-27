@@ -3,7 +3,7 @@
 	desc = "<b>Left Click</b> to switch into vore mode<br><b>Right click</b> to see the vore UI<br>When aggressively grabbing someone in vore mode:<br><ul><li>Click on <b>yourself</b> to eat them</li><li>Click on <b>them</b> to feed yourself to them</li><li>Click on <b>someone else</b> to feed them who you're holding</li></ul>"
 	click_action = TRUE
 	ranged_mousepointer = 'modular_zubbers/icons/effects/mouse_pointers/vore.dmi'
-	default_button_position = "EAST-4:6,SOUTH:5"
+	default_button_position = "EAST-4:6,SOUTH+1:5" // We're bottom left, it's bottom right, it's perfect
 
 	background_icon = 'modular_zubbers/icons/mob/actions/vore.dmi'
 	background_icon_state = "bg"
@@ -30,10 +30,14 @@
 		return TRUE
 	return ..()
 
-
 /datum/action/innate/vore_mode/do_ability(mob/living/caller, atom/clicked_on)
 	var/datum/component/vore/V = target
 	return V.on_voremode_click(caller, clicked_on)
+
+/datum/action/innate/vore_mode/create_button()
+	var/atom/movable/screen/movable/action_button/button = ..()
+	button.mouse_drag_pointer = 'modular_zubbers/icons/effects/mouse_pointers/vore_drag.dmi'
+	return button
 
 /// This is a tricky little thing to guarantee that `\ref[prey.appearance]` works in the vore panel
 /// Basically, we force the pred to load the prey's appearance by putting the prey in this screen object's vis_contents
@@ -66,13 +70,22 @@
 		return COMPONENT_INCOMPATIBLE
 	load_vore_prefs(parent)
 	vore_mode_action = new(src)
+	// Set screen_loc
+	if(issilicon(parent))
+		vore_mode_action.default_button_position = "CENTER+4:-30,SOUTH+1:6"
+	if(isanimal_or_basicmob(parent))
+		vore_mode_action.default_button_position = "EAST-2:-8,SOUTH+1:6"
 	appearance_holder = new()
 	var/mob/living/living_parent = parent
 	our_owner_ckey = living_parent.ckey
 
 /datum/component/vore/RegisterWithParent()
 	vore_mode_action?.Grant(parent)
+	add_appearance_holder()
+	// Add the appearance holder back every time they login
+	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(add_appearance_holder))
 
+/datum/component/vore/proc/add_appearance_holder()
 	var/mob/living/L = parent
 	if(L.client && appearance_holder)
 		L.client.screen += appearance_holder
@@ -80,10 +93,10 @@
 // This has to be careful because it's called as a result of COMPONENT_INCOMPATIBLE
 /datum/component/vore/UnregisterFromParent()
 	vore_mode_action?.Remove(parent)
-
 	var/mob/living/L = parent
 	if(L.client && appearance_holder)
-		L.client.screen += appearance_holder
+		L.client.screen -= appearance_holder
+	UnregisterSignal(parent, COMSIG_MOB_LOGIN)
 
 /datum/component/vore/Destroy(force)
 	if(isliving(parent))
@@ -346,14 +359,14 @@
 	var/mob/living/grabee = grabber.pulling
 	if(!istype(grabee))
 		return FALSE
-	if(grabber.grab_state < GRAB_AGGRESSIVE)
+	if(ishuman(grabber) && grabber.grab_state < GRAB_AGGRESSIVE)
 		return FALSE
 	return TRUE
 
 /datum/component/vore/proc/vore_other()
 	var/mob/living/pred = parent
 	if(!check_vore_grab(pred))
-		to_chat(parent, span_danger("You must have an aggressive grab to eat someone."))
+		to_chat(parent, span_danger("You must have a[ishuman(pred) ? "n aggressive" : ""] grab to eat someone."))
 		return
 	var/mob/living/prey = pred.pulling
 	if(!check_vore_preferences(parent, pred, prey))
@@ -371,7 +384,7 @@
 /datum/component/vore/proc/feed_self_to_other()
 	var/mob/living/prey = parent
 	if(!check_vore_grab(prey))
-		to_chat(parent, span_danger("You must have an aggressive grab to feed yourself to someone."))
+		to_chat(parent, span_danger("You must have a[ishuman(prey) ? "n aggressive" : ""] grab to feed yourself to someone."))
 		return
 	var/mob/living/pred = prey.pulling
 	if(!check_vore_preferences(parent, pred, prey))
@@ -391,7 +404,7 @@
 /datum/component/vore/proc/feed_other_to_other(mob/living/pred)
 	var/mob/living/feeder = parent
 	if(!check_vore_grab(feeder))
-		to_chat(feeder, span_danger("You must have an aggressive grab to feed someone to someone else."))
+		to_chat(feeder, span_danger("You must have a[ishuman(feeder) ? "n aggressive" : ""] grab to feed someone to someone else."))
 		return
 	if(!feeder.can_perform_action(pred, pred.interaction_flags_click | FORBID_TELEKINESIS_REACH))
 		return
@@ -420,7 +433,7 @@
 /*  Sounds  */
 /************/
 /// Plays a different prey and pred sound to our owner and ALL of our prey
-/datum/component/vore/proc/play_vore_sound_preypred(preysound, predsound, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
+/datum/component/vore/proc/play_vore_sound_preypred(preysound, predsound, volume = VORE_SOUND_VOLUME, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
 	var/turf/turf_source = get_turf(parent)
 	var/sound/prey_sound = isdatum(preysound) ? preysound : sound(get_vore_sfx(preysound))
 	var/sound/pred_sound = isdatum(predsound) ? predsound : sound(get_vore_sfx(predsound))
@@ -458,7 +471,7 @@
 				max_distance = range,
 			)
 
-/datum/component/vore/proc/play_vore_sound(soundin, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
+/datum/component/vore/proc/play_vore_sound(soundin, volume = VORE_SOUND_VOLUME, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
 	var/turf/turf_source = get_turf(parent)
 	var/sound/S = isdatum(soundin) ? soundin : sound(get_vore_sfx(soundin))
 

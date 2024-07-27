@@ -13,8 +13,8 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 /datum/digest_mode/proc/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)
 	return
 
-/datum/digest_mode/none
-	name = DIGEST_MODE_NONE
+/datum/digest_mode/safe
+	name = DIGEST_MODE_SAFE
 
 /datum/digest_mode/digest
 	name = DIGEST_MODE_DIGEST

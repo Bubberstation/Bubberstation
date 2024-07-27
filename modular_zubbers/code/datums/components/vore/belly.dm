@@ -32,7 +32,7 @@
 		return INITIALIZE_HINT_QDEL
 	owner = new_owner
 	LAZYADD(owner.vore_bellies, src)
-	digest_mode = GLOB.digest_modes["None"]
+	digest_mode = GLOB.digest_modes[DIGEST_MODE_SAFE]
 	START_PROCESSING(SSvore, src)
 	// Do our best not to get dropped
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
@@ -213,7 +213,7 @@
 			listening_mob.stop_sound_channel(CHANNEL_PREYLOOP)
 			// Must reload each time because playsound_local modifies the sound datum
 			var/sound/preyloop = sound('modular_zubbers/sound/vore/sunesound/prey/loop.ogg')
-			listening_mob.playsound_local(get_turf(src), preyloop, 80, 0, channel = CHANNEL_PREYLOOP)
+			listening_mob.playsound_local(get_turf(src), preyloop, PREYLOOP_VOLUME, 0, channel = CHANNEL_PREYLOOP)
 			TIMER_COOLDOWN_START(listening_mob, COOLDOWN_PREYLOOP, 52 SECONDS)
 
 /// Handles prey entering a belly, and starts deep_search_prey
@@ -414,7 +414,7 @@
 		apply_migrations(data)
 	name = permissive_sanitize_name(data["name"]) || "(Bad Name)"
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
-	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes["None"]
+	digest_mode = GLOB.digest_modes[sanitize_text(data["digest_mode"])] || GLOB.digest_modes[DIGEST_MODE_SAFE]
 
 	can_taste = sanitize_integer(data["can_taste"], FALSE, TRUE, TRUE)
 	insert_verb = STRIP_HTML_SIMPLE(data["insert_verb"], MAX_VERB_LENGTH) || "ingest"
@@ -453,7 +453,7 @@
 	to_chat(usr, span_warning("Attempting to load VRDB belly '[maybe_name]'..."))
 	name = permissive_sanitize_name(maybe_name) || "(Bad Name)"
 	desc = STRIP_HTML_SIMPLE(data["desc"], MAX_FLAVOR_LEN) || "(Bad Desc)"
-	digest_mode = GLOB.digest_modes[sanitize_text(data["mode"])] || GLOB.digest_modes["None"]
+	digest_mode = GLOB.digest_modes[sanitize_text(data["mode"])] || GLOB.digest_modes[DIGEST_MODE_SAFE]
 
 	can_taste = sanitize_integer(data["can_taste"], FALSE, TRUE, TRUE)
 	insert_verb = STRIP_HTML_SIMPLE(data["vore_verb"], MAX_VERB_LENGTH) || "ingest"
@@ -483,7 +483,7 @@
 				release_sound = new_release_sound
 
 /// Plays sound just to pred and prey in this stomach
-/obj/vore_belly/proc/play_vore_sound_preypred(preysound, predsound, volume = 100, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
+/obj/vore_belly/proc/play_vore_sound_preypred(preysound, predsound, volume = VORE_SOUND_VOLUME, range = 2, vary = FALSE, pref = /datum/vore_pref/toggle/eating_noises)
 	var/turf/turf_source = get_turf(owner.parent)
 	var/sound/prey_sound = isdatum(preysound) ? preysound : sound(get_vore_sfx(preysound))
 	var/sound/pred_sound = isdatum(predsound) ? predsound : sound(get_vore_sfx(predsound))
