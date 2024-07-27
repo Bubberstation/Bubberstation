@@ -32,8 +32,10 @@
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate_black"
 	circuit = /obj/item/circuitboard/machine/export_gate
-	/// Internal timer to prevent audio spam.
+	/// Cooldown on the scanner's beep
 	COOLDOWN_DECLARE(scanner_beep)
+	/// Internal timer for scanlines
+	var/scanline_timer
 	/// Bool to check if the scanner's controls are locked by an ID.
 	var/locked = FALSE
 	/// The holding bank account used for the export gate
@@ -54,6 +56,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	register_context()
+	set_scanline("passive")
 	AddElement(/datum/element/connect_loc, loc_connections)
 	holding_account = new(name, player_account = FALSE)
 	holding_account.replaceable = FALSE
@@ -95,7 +98,7 @@
 	if(!is_operational)
 		return
 
-	. += mutable_appearance(icon, "passive")
+	set_scanline("passive")
 
 /obj/machinery/export_gate/proc/on_entered(datum/source, atom/movable/package)
 	SIGNAL_HANDLER
@@ -115,6 +118,13 @@
 /obj/machinery/export_gate/screwdriver_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), tool)
 
+/obj/machinery/export_gate/proc/set_scanline(type, duration)
+	cut_overlays()
+	deltimer(scanline_timer)
+	add_overlay(type)
+	if(duration)
+		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
+
 /obj/machinery/export_gate/proc/auto_scan(atom/movable/package)
 	if(is_operational && istype(package, /obj/item/bounty_cube) & (!panel_open))
 		perform_scan(package)
@@ -123,18 +133,16 @@
 	var/obj/item/bounty_cube/cube = package
 	cut_overlays()
 	if(cube.bounty_handler_account)
-		flick_overlay_view("alarm", 1 SECONDS)
+		set_scanline("alarm", 1 SECONDS)
 
 	else if(!isnull(cube.bounty_value))
-		flick_overlay_view("scanning", 1 SECONDS)
+		set_scanline("scanning", 1 SECONDS)
 		process_cube(cube)
 
 	else
-		flick_overlay_view("alarm", 1 SECONDS)
+		set_scanline("alarm", 1 SECONDS)
 
 	use_energy(active_power_usage)
-	sleep(1 SECONDS)
-	add_overlay(mutable_appearance(icon, "passive"))
 
 /obj/machinery/export_gate/proc/process_cube(obj/item/incoming_cube)
 	var/obj/item/bounty_cube/cube = incoming_cube
