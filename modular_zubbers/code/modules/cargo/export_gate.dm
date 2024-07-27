@@ -145,7 +145,7 @@
 
 	cube.AddComponent(/datum/component/pricetag, holding_account, cube.handler_tip, FALSE)
 	cube.bounty_handler_account = holding_account
-	var/message = "Cube value [cube_value ? "+[floor(cube_value * cube.handler_tip)]+ credits " : ""]successfully registered."
+	var/message = "Cube value of [cube_value ? "+[floor(cube_value * cube.handler_tip)]+ credits " : ""]successfully registered."
 	say(message)
 	for(var/datum/bank_account/tech_account as anything in payment_accounts)
 		tech_account.bank_card_talk(message)
