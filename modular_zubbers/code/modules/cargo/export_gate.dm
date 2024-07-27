@@ -34,6 +34,8 @@
 	circuit = /obj/item/circuitboard/machine/export_gate
 	/// Cooldown on the scanner's beep
 	COOLDOWN_DECLARE(scanner_beep)
+	/// Cooldown on payout calculation
+	COOLDOWN_DECLARE(export_payout)
 	/// Internal timer for scanlines
 	var/scanline_timer
 	/// Bool to check if the scanner's controls are locked by an ID.
@@ -184,8 +186,13 @@
 	payment_accounts = manifest_accounts
 
 /obj/machinery/export_gate/proc/disperse_earnings()
+	if(!COOLDOWN_FINISHED(src, export_payout))
+		return
+
+	COOLDOWN_START(src, export_payout, 3 MINUTES)
 	refresh_payment_accounts()
 	var/total_accounts = LAZYLEN(payment_accounts)
+
 	if(!total_accounts)
 		return
 	if(holding_account.account_balance < 50)
