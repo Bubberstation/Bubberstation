@@ -93,13 +93,6 @@
 		context[SCREENTIP_CONTEXT_LMB] = "deconstruct gate"
 		return CONTEXTUAL_SCREENTIP_SET
 
-/obj/machinery/export_gate/update_overlays()
-	. = ..()
-	if(!is_operational)
-		return
-
-	set_scanline("passive")
-
 /obj/machinery/export_gate/proc/on_entered(datum/source, atom/movable/package)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(auto_scan), package)
@@ -109,6 +102,7 @@
 	density = !anchored
 	if(anchored)
 		align_to_belt()
+	set_scanline("passive")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/export_gate/crowbar_act(mob/living/user, obj/item/tool)
