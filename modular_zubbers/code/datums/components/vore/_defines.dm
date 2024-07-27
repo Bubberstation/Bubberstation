@@ -21,9 +21,9 @@
 /// If true, prevents mobs in crit or death from engaging in vore
 #define NO_DEAD TRUE
 /// If true, mobs with no player cannot be pred or prey
-#define REQUIRES_PLAYER FALSE // TODO: Change this
+#define REQUIRES_PLAYER TRUE
 /// Makes every mob spawn with a vore component, just for testing
-#define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS // TODO: Comment out
+// #define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
 /// Number of rolling backups bellies will keep
 #define BELLY_BACKUP_COUNT 5
 /// Maximum number of belly layout slots
@@ -83,10 +83,9 @@
 /// What types of mobs are allowed to participate in vore at all?
 /// This controls whether vore components are added on any mob Login for vore-enabled clients
 GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(
-	/mob/living
-	// TODO: Change to
-	// /mob/living/carbon/human,
-	// /mob/living/silicon/robot
+	// /mob/living,
+	/mob/living/carbon/human,
+	/mob/living/silicon/robot
 )))
 
 /// List of types that will be automatically ejected from prey when they enter a belly
