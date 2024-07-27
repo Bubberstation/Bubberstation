@@ -56,7 +56,6 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	register_context()
-	set_scanline("passive")
 	AddElement(/datum/element/connect_loc, loc_connections)
 	holding_account = new(name, player_account = FALSE)
 	holding_account.replaceable = FALSE
@@ -72,7 +71,9 @@
 		var/obj/machinery/conveyor/my_conveyor = locate(/obj/machinery/conveyor) in location
 		if(my_conveyor)
 			dir = my_conveyor.dir
-			update_appearance()
+			set_scanline("passive")
+		else
+			clear_scanline()
 
 /obj/machinery/export_gate/Destroy()
 	disperse_earnings()
@@ -102,7 +103,9 @@
 	density = !anchored
 	if(anchored)
 		align_to_belt()
-	set_scanline("passive")
+	else
+		clear_scanline()
+
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/export_gate/crowbar_act(mob/living/user, obj/item/tool)
@@ -112,6 +115,10 @@
 /obj/machinery/export_gate/screwdriver_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), tool)
 
+/obj/machinery/export_gate/proc/clear_scanline()
+	cut_overlays()
+	deltimer(scanline_timer)
+
 /obj/machinery/export_gate/proc/set_scanline(type, duration)
 	cut_overlays()
 	deltimer(scanline_timer)
@@ -120,12 +127,11 @@
 		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
 
 /obj/machinery/export_gate/proc/auto_scan(atom/movable/package)
-	if(is_operational && istype(package, /obj/item/bounty_cube) & (!panel_open))
+	if(is_operational && istype(package, /obj/item/bounty_cube) && (!panel_open) && anchored)
 		perform_scan(package)
 
 /obj/machinery/export_gate/proc/perform_scan(obj/item/package)
 	var/obj/item/bounty_cube/cube = package
-	cut_overlays()
 	if(cube.bounty_handler_account)
 		set_scanline("alarm", 1 SECONDS)
 
