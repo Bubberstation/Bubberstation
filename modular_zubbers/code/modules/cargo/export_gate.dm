@@ -10,6 +10,11 @@
 /obj/item/flatpack/export_gate
 	board = /obj/item/circuitboard/machine/export_gate
 
+/obj/item/flatpack/export_gate/Initialize(mapload)
+	. = ..()
+	var/turf/our_turf = get_turf(src)
+	new /obj/item/paper/fluff/export_gate(our_turf)
+
 /obj/item/flatpack/export_gate/multitool_act(mob/living/user, obj/item/tool)
 	if(isturf(loc))
 		var/turf/location = loc
@@ -66,6 +71,12 @@
 	radio.set_listening(FALSE)
 	radio.recalculateChannels()
 	align_to_belt()
+
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/export_gate/post_machine_initialize()
+	. = ..()
+	set_scanline("passive")
 
 /obj/machinery/export_gate/proc/align_to_belt()
 	if(isturf(loc))
@@ -227,3 +238,16 @@
 			return TRUE
 
 	return FALSE
+
+/// Small explanation for engineering on how to set-up the radioactive nebula shielding
+/obj/item/paper/fluff/export_gate
+	name = "bounty cube export gate"
+	default_raw_text = {"Export Gate Setup:<br>
+		Set up the export gate on a conveyor belt, and anchor it to start scanning bounty cubes.<br>
+		The gate will automatically register bounty cube exports and pay out to active cargo techs, split equally.<br>
+		Never manually scan a bounty cube ever again! Get those belts and disposal pipes running.
+	"}
+
+/datum/area_spawn/export_gate
+	target_areas = list(/area/station/cargo/storage)
+	desired_atom = /obj/item/flatpack/export_gate
