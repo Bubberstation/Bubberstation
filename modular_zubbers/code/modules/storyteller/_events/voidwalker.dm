@@ -5,14 +5,14 @@
 	typepath = /datum/round_event/ghost_role/void_walker
 	max_occurrences = 1
 	weight = 3
-	earliest_start = 30 MINUTES
-	min_players = 40
+	earliest_start = 20 MINUTES
+	min_players = 30
 	dynamic_should_hijack = TRUE
 	category = EVENT_CATEGORY_ENTITIES
 	description = "A Void Walker that drags people out of the station and into the abyss"
 
 /datum/round_event/ghost_role/void_walker
-	minimum_required = 40
+	minimum_required = 30
 	fakeable = FALSE
 	role_name = "Void Walker"
 
