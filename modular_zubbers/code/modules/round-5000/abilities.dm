@@ -23,9 +23,28 @@
 
 	button_icon = 'icons/obj/devices/stock_parts.dmi'
 	button_icon_state = "box_1"
+	cooldown_time = 30 SECONDS
 
 	summon_radius = 0
 	summon_type = list(/obj/structure/frame/machine/secured)
+
+/datum/action/cooldown/spell/conjure/machineframe/advanced
+	name = "Summon arcane machine"
+	desc = "Create anything!"
+
+	button_icon_state = "box_2"
+	summon_type = list(/obj/structure/frame/machine/secured/random_board)
+
+/obj/structure/frame/machine/secured/random_board/Initialize(mapload)
+	. = ..()
+	var/picked = pick(typesof(/obj/item/circuitboard/machine))
+	var/obj/item/circuitboard/machine/new_board = new picked(src)
+	circuit = new_board
+	circuit_added(new_board)
+
+/datum/action/cooldown/spell/conjure_item/infinite_guns/hos
+	cooldown_time = 10 SECONDS
+	cooldown_reduction_per_rank = 0 SECONDS
 
 /datum/action/cooldown/spell/conjure/cheese/food
 	name = "Summon Food"

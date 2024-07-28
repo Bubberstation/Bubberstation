@@ -34,7 +34,7 @@
 /datum/job/chief_engineer
 	abilities = list(/datum/action/cooldown/spell/conjure/foam_wall/fast,
 					/datum/action/cooldown/spell/conjure/extinguisher,
-					/datum/action/cooldown/spell/conjure/machineframe,
+					/datum/action/cooldown/spell/conjure/machineframe/advanced,
 					/datum/action/cooldown/spell/charged/beam/fire_blast)
 
 /datum/job/chief_medical_officer
@@ -81,7 +81,7 @@
 /datum/job/head_of_security
 	abilities = list(/datum/action/cooldown/mob_cooldown/charge/triple_charge,
 					/datum/action/cooldown/spell/teleport/area_teleport,
-					/datum/action/cooldown/spell/conjure_item/infinite_guns)
+					/datum/action/cooldown/spell/conjure_item/infinite_guns/hos)
 
 /datum/job/janitor
 
@@ -103,6 +103,7 @@
 /datum/job/quartermaster
 
 /datum/job/research_director
+	abilities = list(/datum/action/cooldown/spell/rod_form)
 
 /datum/job/roboticist
 
@@ -112,14 +113,23 @@
 	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
 
 /datum/job/shaft_miner
-	abilities = list(/datum/action/cooldown/spell/rod_form)
+	abilities = list(/datum/action/cooldown/spell/aoe/repulse,
+					/datum/action/cooldown/mob_cooldown/charge)
 
 /datum/job/station_engineer
-	abilities = list(/datum/action/cooldown/spell/conjure/machineframe)
+	abilities = list(/datum/action/cooldown/spell/conjure/machineframe,
+					/datum/action/cooldown/spell/charge)
 
 /datum/job/warden
 	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun,
 					/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
 
 /datum/job/assistant
-	abilities = list(/datum/action/cooldown/spell/aoe/knock)
+	abilities = list(/datum/action/cooldown/spell/aoe/knock,
+					/datum/action/cooldown/mob_cooldown/charge,)
+
+/datum/job/bitrunner
+	abilities = list(/datum/action/cooldown/spell/charge)
+
+/datum/outfit/job/bitrunner
+	belt = /obj/item/storage/belt/wands/full
