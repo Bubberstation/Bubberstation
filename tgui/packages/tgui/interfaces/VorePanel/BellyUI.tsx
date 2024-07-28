@@ -1,5 +1,5 @@
 import { toFixed } from 'common/math';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
@@ -164,6 +164,16 @@ export const BellyUI = (props: {
               setEditing(false);
             }}
           >
+            Messages
+          </Button>
+          <Button
+            color="transparent"
+            selected={selectedTab === 2}
+            onClick={() => {
+              setSelectedTab(2);
+              setEditing(false);
+            }}
+          >
             Settings
           </Button>
         </>
@@ -171,6 +181,9 @@ export const BellyUI = (props: {
     >
       {selectedTab === 0 && <BellyContents contents={belly.contents} />}
       {selectedTab === 1 && (
+        <BellyMessages belly_ref={belly.ref} messages={belly.messages} />
+      )}
+      {selectedTab === 2 && (
         <LabeledList>
           <LabeledList.Item label="Options" verticalAlign="top">
             <Stack align="center" justify="flex-end">
@@ -575,5 +588,153 @@ export const BellyContents = (props: { contents: types.Prey[] }) => {
     </Flex>
   ) : (
     'Nothing is inside this belly.'
+  );
+};
+
+const BellyMessages = (
+  props: Pick<types.Belly, 'messages'> & { belly_ref: string },
+) => {
+  const { act } = useBackend();
+  const { messages, belly_ref } = props;
+
+  return (
+    <>
+      {Object.entries(messages).map(([key, values]) => (
+        <BellyMessageSection
+          key={key}
+          belly_ref={belly_ref}
+          message_key={key}
+          values={values}
+        />
+      ))}
+    </>
+  );
+};
+
+const BellyMessageSection = (props: {
+  belly_ref: string;
+  message_key: string;
+  values: string[];
+}) => {
+  const { act, data } = useBackend<types.Data>();
+  const { belly_ref, message_key, values } = props;
+
+  const [bellyValues, setBellyValues] = useState(values);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  // Conditional synchronization on next reactive value change
+  // Allows us to effectively "fetch" data from the game at will
+  const [dueRefresh, setDueRefresh] = useState(false);
+  useEffect(() => {
+    if (dueRefresh) {
+      setBellyValues(values);
+      setDueRefresh(false);
+    }
+  }, [values]);
+
+  return (
+    <Section
+      title={types.bellyKeyToText[message_key] || `Unknown key ${message_key}`}
+      buttons={
+        <>
+          {dueRefresh && <Icon name="spinner" spin mr={2} />}
+          <Button
+            disabled={!hasChanges}
+            tooltip="Save Changes"
+            onClick={() => {
+              act('edit_belly', {
+                ref: belly_ref,
+                var: message_key,
+                value: bellyValues,
+              });
+              setHasChanges(false);
+              setDueRefresh(true);
+            }}
+          >
+            <Icon name="save" />
+          </Button>
+          <Button
+            color={hasChanges ? 'bad' : ''}
+            disabled={!hasChanges}
+            tooltip="Discard Changes"
+            onClick={() => {
+              setBellyValues(values);
+              setHasChanges(false);
+            }}
+          >
+            <Icon name="undo" />
+          </Button>
+          <Button
+            disabled={hasChanges}
+            color="bad"
+            tooltip="Reset all descriptions."
+            onClick={() => {
+              act('edit_belly', {
+                ref: belly_ref,
+                var: message_key,
+                value: [],
+              });
+              setHasChanges(false);
+              setDueRefresh(true);
+            }}
+          >
+            <Icon name="trash" />
+          </Button>
+        </>
+      }
+    >
+      {bellyValues.map((v, i) => (
+        <Stack key={i.toString() + hasChanges}>
+          <Stack.Item grow>
+            <Input
+              value={v}
+              fluid
+              maxLength={data.max_vore_message_length}
+              onChange={(e, val) => {
+                setBellyValues(
+                  bellyValues.map((oldVal, index) => {
+                    if (index === i) {
+                      return val;
+                    } else {
+                      return oldVal;
+                    }
+                  }),
+                );
+                setHasChanges(true);
+              }}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              color="bad"
+              disabled={bellyValues.length === 1}
+              onClick={() => {
+                setBellyValues(
+                  bellyValues.filter((_val, index) => index !== i),
+                );
+                setHasChanges(true);
+              }}
+            >
+              <Icon name="trash" />
+            </Button>
+          </Stack.Item>
+        </Stack>
+      ))}
+      <Input
+        disabled={bellyValues.length >= 10}
+        placeholder={
+          bellyValues.length >= 10
+            ? 'Description Limit (10) Reached'
+            : 'Add New Message'
+        }
+        fluid
+        maxLength={data.max_vore_message_length}
+        onEnter={(e, val) => {
+          setBellyValues([...bellyValues, val]);
+          setHasChanges(true);
+        }}
+        selfClear
+      />
+    </Section>
   );
 };

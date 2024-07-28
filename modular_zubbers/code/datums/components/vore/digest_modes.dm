@@ -88,8 +88,8 @@ GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/mach
 		play_vore_sound_preypred("vore_sounds_death_classic", "vore_sounds_death_classic", pref = /datum/vore_pref/toggle/digestion_noises)
 	living_parent.adjust_nutrition(NUTRITION_PER_KILL)
 
-	to_chat(living_parent, span_notice(format_message(pick(GLOB.digest_messages_pred), L)))
-	to_chat(L, span_notice(format_message(pick(GLOB.digest_messages_prey), L)))
+	to_chat(living_parent, span_notice(get_digest_messages_pred(L)))
+	to_chat(L, span_notice(get_digest_messages_prey(L)))
 
 	living_parent.log_message("digested and qdel'd [key_name(L)].", LOG_ATTACK)
 	L.log_message("was digested and qdel'd by [key_name(living_parent)].", LOG_VICTIM)
@@ -141,8 +141,8 @@ GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/mach
 	ADD_TRAIT(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
 	ADD_TRAIT(L, TRAIT_STASIS, TRAIT_SOURCE_VORE)
 
-	to_chat(living_parent, span_notice(format_message(pick(GLOB.absorb_messages_owner), L)))
-	to_chat(L, span_notice(format_message(pick(GLOB.absorb_messages_prey), L)))
+	to_chat(living_parent, span_notice(get_absorb_messages_owner(L)))
+	to_chat(L, span_notice(get_absorb_messages_prey(L)))
 
 	return TRUE
 
@@ -177,8 +177,8 @@ GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/mach
 	REMOVE_TRAIT(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
 	REMOVE_TRAIT(L, TRAIT_STASIS, TRAIT_SOURCE_VORE)
 
-	to_chat(living_parent, span_notice(format_message(pick(GLOB.unabsorb_messages_owner), L)))
-	to_chat(L, span_notice(format_message(pick(GLOB.unabsorb_messages_prey), L)))
+	to_chat(living_parent, span_notice(get_unabsorb_messages_owner(L)))
+	to_chat(L, span_notice(get_unabsorb_messages_prey(L)))
 
 	// Unabsorbs kick them back out
 	var/datum/component/absorb_control/AC = living_parent.GetComponent(/datum/component/absorb_control)

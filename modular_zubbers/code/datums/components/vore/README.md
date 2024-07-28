@@ -11,6 +11,8 @@ be created, how many prey can be eaten, etc.
 [_defines.dm](./_defines.dm) - Settings and constants.
 [absorb_control.dm](./absorb_control.dm) - Component used for prey controlling preds temporarily
 [belly.dm](./belly.dm) - Individual areas that have their own name, description and digestion mode.
+[belly_messages.dm](./belly_messages.dm) - Contains helpers for all of the many different customizable messages a belly can produce.
+[belly_serde.dm](./belly_serd.dm) - Controls belly serialization and deserialization.
 [digest_modes.dm](./digest_modes.dm) - Singletons that handle affecting a belly's contents on each process.
 [preferences.dm](./preferences.dm) - Vore related preferences
 [subsystem.dm](./subsystem.dm) - Belly processing subsystem / global event listener

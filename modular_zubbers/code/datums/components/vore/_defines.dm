@@ -58,6 +58,8 @@
 #define DEFAULT_ESCAPE_TIME 15 SECONDS
 #define MAX_ESCAPE_TIME 60 SECONDS
 #define MAX_VERB_LENGTH 20
+#define MAX_VORE_MESSAGE_LENGTH 160
+#define MIN_VORE_MESSAGE_LENGTH 10
 
 /// Amount of nutrition given per point of damage dealt
 #define NUTRITION_PER_DAMAGE 2
@@ -255,6 +257,8 @@ GLOBAL_LIST_INIT(vore_sounds_death_fancy_prey, list(
 	'modular_zubbers/sound/vore/sunesound/prey/death_07.ogg','modular_zubbers/sound/vore/sunesound/prey/death_08.ogg','modular_zubbers/sound/vore/sunesound/prey/death_09.ogg',
 	'modular_zubbers/sound/vore/sunesound/prey/death_10.ogg'
 ))
+
+// Default messages
 
 GLOBAL_LIST_INIT(digest_messages_pred, list(
 		"You feel %prey's body succumb to your digestive system, which breaks it apart into soft slurry.",

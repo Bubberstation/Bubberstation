@@ -23,6 +23,8 @@
 	data["max_bellies"] = MAX_BELLIES
 	data["max_prey"] = MAX_PREY
 	data["max_verb_length"] = MAX_VERB_LENGTH
+	data["max_vore_message_length"] = MAX_VORE_MESSAGE_LENGTH
+	data["min_vore_message_length"] = MIN_VORE_MESSAGE_LENGTH
 
 	data["max_burn_damage"] = MAX_BURN_DAMAGE
 	data["max_brute_damage"] = MAX_BRUTE_DAMAGE
