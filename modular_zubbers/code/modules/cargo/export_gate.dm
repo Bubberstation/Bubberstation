@@ -53,6 +53,14 @@
 	var/obj/item/radio/radio
 	///The key our internal radio uses
 	var/radio_key = /obj/item/encryptionkey/headset_cargo
+	/// The amount of cubes scanned
+	var/cubes_registered = 0
+	/// The share paid to each cargo tech last cycle
+	var/income_share = 0
+	/// Total payments sent out last cycle
+	var/income_previous = 0
+	/// Total payments sent lifetime
+	var/income_total = 0
 
 /obj/machinery/export_gate/Initialize(mapload)
 	. = ..()
@@ -111,6 +119,15 @@
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(auto_scan), package)
 
+/obj/machinery/export_gate/examine()
+	. = ..()
+	. += span_notice("The status display reads:")
+	. += span_info("Income last cycle: <b>[income_previous] cr.</b>")
+	. += span_info("Share per account last cycle: <b>[income_share] cr.</b>")
+	. += span_info("Registered crew accounts last cycle: <b>[LAZYLEN(payment_accounts)]</b>")
+	. += span_info("Total cubes registered: <b>[cubes_registered]</b>")
+	. += span_info("Total income: <b>[income_total] cr.</b>")
+
 /obj/machinery/export_gate/wrench_act(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
 	density = !anchored
@@ -138,6 +155,9 @@
 	add_overlay(type)
 	if(duration)
 		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
+	if(COOLDOWN_FINISHED(src, scanner_beep) && type != "passive")
+		COOLDOWN_START(src, scanner_beep, 0.5 SECONDS)
+		playsound(src, type == "alarm" ? 'sound/machines/buzz-sigh.ogg' : 'sound/machines/chime.ogg', 45, TRUE)
 
 /obj/machinery/export_gate/proc/auto_scan(atom/movable/package)
 	if(is_operational && istype(package, /obj/item/bounty_cube) && (!panel_open) && anchored)
@@ -147,13 +167,19 @@
 	var/obj/item/bounty_cube/cube = package
 	if(cube.bounty_handler_account)
 		set_scanline("alarm", 1 SECONDS)
+		say("Scan rejected. Error 403: Bank account for handling tip already registered!")
 
-	else if(!isnull(cube.bounty_value))
+	else if(cube.bounty_value)
 		set_scanline("scanning", 1 SECONDS)
 		process_cube(cube)
 
+	else if(cube.bounty_value == 0)
+		set_scanline("alarm", 1 SECONDS)
+		say("Scan rejected. Error 404: Bounty value not found!")
+
 	else
 		set_scanline("alarm", 1 SECONDS)
+		say("Scan rejected. Error 500: Check cube for errors and try again.")
 
 	use_energy(active_power_usage)
 
@@ -166,13 +192,11 @@
 
 	cube.AddComponent(/datum/component/pricetag, holding_account, cube.handler_tip, FALSE)
 	cube.bounty_handler_account = holding_account
+	cubes_registered += 1
 	var/message = "Cube value of [cube_value ? "+[floor(cube_value * cube.handler_tip)]+ credits " : ""]successfully registered."
 	say(message)
 	for(var/datum/bank_account/tech_account as anything in payment_accounts)
 		tech_account.bank_card_talk(message)
-	if(COOLDOWN_FINISHED(src, scanner_beep))
-		COOLDOWN_START(src, scanner_beep, 0.5 SECONDS)
-		playsound(src, 'sound/machines/chime.ogg', 30, TRUE)
 
 /obj/machinery/export_gate/proc/refresh_payment_accounts()
 	var/list/manifest_accounts = list()
@@ -210,12 +234,15 @@
 		radio.talk_into(src, "No export scan income processed this cycle.", RADIO_CHANNEL_SUPPLY)
 		return
 
-	var/payout = floor(holding_account.account_balance / total_accounts)
-	log_econ("[src.name] is dispersing [payout * total_accounts] credits to associated accounts.")
-	radio.talk_into(src, "Dispersing bounty cube export scan income of [payout * total_accounts] credits to associated accounts.", RADIO_CHANNEL_SUPPLY)
+	income_previous = 0
+	income_share = floor(holding_account.account_balance / total_accounts)
+	log_econ("[src.name] is dispersing [income_share * total_accounts] credits to associated accounts.")
+	radio.talk_into(src, "Dispersing bounty cube export scan income of [income_share * total_accounts] credits to associated accounts.", RADIO_CHANNEL_SUPPLY)
 	for(var/datum/bank_account/payout_account as anything in payment_accounts)
-		if(payout_account.transfer_money(from = holding_account, amount = payout, transfer_reason = "Export gate: bounty cube earnings"))
-			payout_account.bank_card_talk("Export gate payment of [payout] cr. processed, account now holds [payout_account.account_balance] cr.")
+		if(payout_account.transfer_money(from = holding_account, amount = income_share, transfer_reason = "Export gate: bounty cube earnings"))
+			income_previous += income_share
+			income_total += income_share
+			payout_account.bank_card_talk("Export gate payment of [income_share] cr. processed, account now holds [payout_account.account_balance] cr.")
 		else
 			stack_trace("[src.name] attempted to perform a bounty cube export payment to [payout_account.account_holder], but it failed!")
 
@@ -251,3 +278,23 @@
 /datum/area_spawn/export_gate
 	target_areas = list(/area/station/cargo/storage)
 	desired_atom = /obj/item/flatpack/export_gate
+
+/datum/area_spawn/export_gate/try_spawn()
+	// Turfs that are available
+	var/list/available_turfs
+
+	for(var/area_type in target_areas)
+		var/area/found_area = GLOB.areas_by_type[area_type]
+		if(!found_area)
+			continue
+		available_turfs = SSarea_spawn.get_turf_candidates(found_area, mode)
+		if(LAZYLEN(available_turfs))
+			break
+
+	if(!LAZYLEN(available_turfs))
+		return
+
+	for(var/i in 1 to amount_to_spawn)
+		var/turf/candidate_turf = SSarea_spawn.pick_turf_candidate(available_turfs)
+		var/final_desired_atom = desired_atom
+		new final_desired_atom(candidate_turf)
