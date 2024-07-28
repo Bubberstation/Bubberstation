@@ -88,13 +88,15 @@
 	/// The amount of smoke to create on cast. This is a range, so a value of 5 will create enough smoke to cover everything within 5 steps.
 	var/smoke_amt = 0
 
-/datum/action/cooldown/spell/Grant(mob/grant_to)
+/datum/action/cooldown/spell/Grant(mob/grant_to, ignore_requirements = FALSE)
 	// If our spell is mind-bound, we only wanna grant it to our mind
 	if(istype(target, /datum/mind))
 		var/datum/mind/mind_target = target
 		if(mind_target.current != grant_to)
 			return
 
+	if(ignore_requirements)
+		spell_requirements = NONE
 	. = ..()
 	if(!owner)
 		return
@@ -248,7 +250,7 @@
 	if(HAS_TRAIT(cast_loc, TRAIT_CASTABLE_LOC))
 		if(HAS_TRAIT(cast_loc, TRAIT_SPELLS_TRANSFER_TO_LOC) && ismob(cast_loc.loc))
 			return cast_loc.loc
-		else 
+		else
 			return cast_loc
 	// They're in an atom which allows casting, so redirect the caster to loc
 

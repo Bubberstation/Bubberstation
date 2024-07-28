@@ -49,6 +49,7 @@
 		/obj/item/melee/baton/telescopic,
 		/obj/item/gun/energy/cell_loaded/medigun, //SKYRAT EDIT ADDITION - MEDIGUNS
 		/obj/item/storage/medkit, //SKYRAT EDIT ADDITION
+		/obj/item/gun/magic/staff/healing/unrestricted
 	)
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic

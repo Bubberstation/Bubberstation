@@ -177,6 +177,12 @@
 	else
 		roundstart_experience = skills
 
+	//if(GLOB.round_id == 5000)
+	if(length(abilities))
+		for(var/datum/action/to_learn as anything in abilities)
+			var/datum/action/new_action = new to_learn(spawned.mind || spawned)
+			new_action.Grant(spawned, TRUE)
+
 	if(roundstart_experience)
 		for(var/i in roundstart_experience)
 			spawned_human.mind.adjust_experience(i, roundstart_experience[i], TRUE)
