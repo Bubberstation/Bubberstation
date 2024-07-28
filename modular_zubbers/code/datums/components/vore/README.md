@@ -9,6 +9,7 @@ be created, how many prey can be eaten, etc.
 
 ## Code Overview
 [_defines.dm](./_defines.dm) - Settings and constants.
+[absorb_control.dm](./absorb_control.dm) - Component used for prey controlling preds temporarily
 [belly.dm](./belly.dm) - Individual areas that have their own name, description and digestion mode.
 [digest_modes.dm](./digest_modes.dm) - Singletons that handle affecting a belly's contents on each process.
 [preferences.dm](./preferences.dm) - Vore related preferences

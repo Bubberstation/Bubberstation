@@ -132,7 +132,7 @@
 								to_chat(prey_loc.owner.parent, span_notice(span_green("Your body efficiently shoves [prey] back where they belong.")))
 				// We ate them
 				else if(prey_loc.owner == src)
-					var/what_to_do = tgui_input_list(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer", "Digest"))
+					var/what_to_do = tgui_input_list(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer", "Digest", "Put In Charge"))
 					switch(what_to_do)
 						if("Examine")
 							living_parent.examinate(prey)
@@ -168,7 +168,18 @@
 									to_chat(living_parent, span_warning("[prey] isn't interested in being fully digested."))
 							else
 								to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
-						// TODO: Absorbs
+						// TODO: Require absorbed
+						if("Put In Charge")
+							if(usr.ckey != our_owner_ckey)
+								to_chat(usr, span_warning("This is not available on vore components you do not own."))
+								return
+
+							if(!prey.mind)
+								return
+
+							var/consents = tgui_alert(prey, "[living_parent] wants to let you take control of their body, is this okay?", "Prey Control", list("No", "Yes"))
+							if(consents == "Yes")
+								living_parent.AddComponent(/datum/component/absorb_control, prey)
 
 			. = TRUE
 		if("edit_belly")
