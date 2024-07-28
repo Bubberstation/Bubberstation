@@ -13428,6 +13428,10 @@
 /obj/effect/turf_decal/tile/red/anticorner/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"dmU" = (
+/obj/effect/spawner/random/structure/twelve_percent_spirit_board,
+/turf/open/floor/iron/grimy,
+/area/station/service/chapel/office)
 "dnd" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -16228,7 +16232,7 @@
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/incident_display/delam/directional/south,
+/obj/machinery/incident_display/bridge/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "dXO" = (
@@ -22835,9 +22839,8 @@
 /turf/open/floor/iron,
 /area/station/security/checkpoint/medical/medsci)
 "fGn" = (
-/obj/machinery/deepfryer,
-/obj/effect/turf_decal/bot,
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/machinery/smartfridge/drying,
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
 "fGt" = (
@@ -32145,15 +32148,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/science/research/abandoned)
-"hXQ" = (
-/obj/machinery/door/window/left/directional/east{
-	name = "'Monkey Pen";
-	req_access = list("genetics")
-	},
-/obj/structure/flora/bush/lavendergrass,
-/obj/structure/flora/bush/flowers_yw,
-/turf/open/floor/grass,
-/area/station/science/genetics)
 "hXZ" = (
 /obj/item/storage/box/teargas{
 	pixel_x = 3;
@@ -33170,10 +33164,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
-"ikB" = (
-/obj/effect/spawner/random/structure/twelve_percent_spirit_board,
-/turf/open/floor/iron/grimy,
-/area/station/service/chapel/office)
 "ikD" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
@@ -49217,15 +49207,19 @@
 "mna" = (
 /obj/machinery/firealarm/directional/south,
 /obj/structure/table/reinforced,
-/obj/item/storage/box/monkeycubes{
-	pixel_y = 3
-	},
-/obj/item/storage/box/monkeycubes,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 10;
+	pixel_x = 1
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_y = 3;
+	pixel_x = -13
+	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "mnl" = (
@@ -50660,6 +50654,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/scanner_gate/preset_guns,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "mEH" = (
@@ -53145,6 +53140,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 1
+	},
+/obj/item/seeds/soya{
+	pixel_x = 11;
+	pixel_y = -2
 	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
@@ -72283,6 +72282,15 @@
 /obj/structure/sign/warning/biohazard/directional/south,
 /turf/open/floor/iron,
 /area/station/maintenance/department/science)
+"sbn" = (
+/obj/machinery/door/window/left/directional/east{
+	name = "Monkey Pen";
+	req_access = list("genetics")
+	},
+/obj/structure/flora/bush/lavendergrass,
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
+/area/station/science/genetics)
 "sbP" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -80357,6 +80365,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/scanner_gate/preset_guns,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "ucA" = (
@@ -90433,9 +90442,8 @@
 /turf/open/misc/grass,
 /area/station/hallway/primary/fore)
 "wCh" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 1;
-	piping_layer = 2
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2{
+	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/siding/thinplating/dark,
@@ -132877,7 +132885,7 @@ rcW
 oJy
 oFr
 pXk
-hXQ
+sbn
 lfz
 fvi
 nlK
@@ -145241,7 +145249,7 @@ dKz
 dpO
 asS
 iVj
-ikB
+dmU
 tdC
 kZc
 mVY

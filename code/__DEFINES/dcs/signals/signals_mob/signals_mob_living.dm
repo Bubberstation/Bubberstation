@@ -21,6 +21,8 @@
 ///from base of mob/update_transform()
 #define COMSIG_LIVING_POST_UPDATE_TRANSFORM "living_post_update_transform"
 
+/// from /datum/status_effect/incapacitating/stamcrit/on_apply()
+#define COMSIG_LIVING_ENTER_STAMCRIT "living_enter_stamcrit"
 ///from /obj/structure/door/crush(): (mob/living/crushed, /obj/machinery/door/crushing_door)
 #define COMSIG_LIVING_DOORCRUSHED "living_doorcrush"
 ///from base of mob/living/resist() (/mob/living)
@@ -275,6 +277,9 @@
 #define COMSIG_LIVING_GRAB "living_grab"
 	// Return COMPONENT_CANCEL_ATTACK_CHAIN / COMPONENT_SKIP_ATTACK_CHAIN to stop the grab
 
+///Called when living finish eat (/datum/component/edible/proc/On_Consume)
+#define COMSIG_LIVING_FINISH_EAT "living_finish_eat"
+
 /// From /datum/element/basic_eating/try_eating()
 #define COMSIG_MOB_PRE_EAT "mob_pre_eat"
 	///cancel eating attempt
@@ -289,3 +294,8 @@
 #define COMSIG_MOB_HAPPINESS_CHANGE "happiness_change"
 /// From /obj/item/melee/baton/baton_effect(): (datum/source, mob/living/user, /obj/item/melee/baton)
 #define COMSIG_MOB_BATONED "mob_batoned"
+
+/// Sent to the mob when their mind is slaved
+#define COMSIG_MOB_ENSLAVED_TO "mob_enslaved_to"
+/// From /obj/item/proc/attack_atom: (mob/living/attacker, atom/attacked)
+#define COMSIG_LIVING_ATTACK_ATOM "living_attack_atom"
