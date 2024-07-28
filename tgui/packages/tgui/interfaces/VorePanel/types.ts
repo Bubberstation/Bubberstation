@@ -4,11 +4,14 @@ export type Prey = {
   name: string;
   ref: string;
   appearance: string;
+  absorbed: BooleanLike;
 };
 
 export enum DigestMode {
-  None = 'None',
+  Safe = 'Safe',
   Digest = 'Digest',
+  Absorb = 'Absorb',
+  Unabsorbed = 'Unabsorb',
 }
 
 export type Belly = {
@@ -57,6 +60,8 @@ export type Data = {
 };
 
 export const digestModeToPreyMode = {
-  [DigestMode.None]: { text: 'being held.', color: 'good' },
+  [DigestMode.Safe]: { text: 'being held.', color: 'good' },
   [DigestMode.Digest]: { text: 'being digested.', color: 'bad' },
+  [DigestMode.Absorb]: { text: 'being absorbed.', color: 'purple' },
+  [DigestMode.Unabsorbed]: { text: 'being reformed.', color: 'good' },
 };

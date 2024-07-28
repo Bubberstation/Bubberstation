@@ -1,3 +1,5 @@
+/// If you want to make everything as easy to test as possible, uncomment this for maximum permissiveness
+// #define VORE_DEBUG
 /// Key used for versioning savefiles
 #define VORE_DB_REPO "bubber_vore"
 /// Value used for versioning savefiles
@@ -44,6 +46,8 @@
 
 #define DIGEST_MODE_SAFE "Safe"
 #define DIGEST_MODE_DIGEST "Digest"
+#define DIGEST_MODE_ABSORB "Absorb"
+#define DIGEST_MODE_UNABSORB "Unabsorb"
 
 /// Max burn damage a player is allowed to set their belly to
 #define MAX_BURN_DAMAGE 2.5
@@ -59,6 +63,8 @@
 #define NUTRITION_PER_DAMAGE 2
 /// Amount of nutrition given when digesting something fully
 #define NUTRITION_PER_KILL 50
+/// Once prey goes below this nutrition barrier, they will be absorbed
+#define ABSORB_NUTRITION_BARRIER 100
 
 #define DIGESTION_NOISE_COOLDOWN 10 SECONDS
 
@@ -86,11 +92,17 @@
 
 /// What types of mobs are allowed to participate in vore at all?
 /// This controls whether vore components are added on any mob Login for vore-enabled clients
+#ifndef VORE_DEBUG
 GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(
-	// /mob/living,
 	/mob/living/carbon/human,
 	/mob/living/silicon/robot
 )))
+#else
+// Vore debug mode: all mobs are fair game
+GLOBAL_LIST_INIT(vore_allowed_mob_types, typecacheof(list(
+	/mob/living,
+)))
+#endif
 
 /// List of types that will be automatically ejected from prey when they enter a belly
 GLOBAL_LIST_INIT(vore_blacklist_types, list(
@@ -268,6 +280,22 @@ GLOBAL_LIST_INIT(digest_messages_prey, list(
 		"%pred's %belly kneads on every fiber of your body, softening you down into mush to fuel their next hunt.",
 		"%pred's %belly churns you down into a hot slush. Your nutrient-rich remains course through their digestive track with a series of long, wet glorps."))
 
+GLOBAL_LIST_INIT(absorb_messages_owner, list(
+	"You feel %prey becoming part of you."
+))
+
+GLOBAL_LIST_INIT(absorb_messages_prey, list(
+	"You feel yourself becoming part of %pred's %belly!"
+))
+
+GLOBAL_LIST_INIT(unabsorb_messages_owner, list(
+	"You feel %prey reform into a recognizable state again."
+))
+
+GLOBAL_LIST_INIT(unabsorb_messages_prey, list(
+	"You are released from being part of %pred's %belly."
+))
+
 GLOBAL_LIST_INIT(struggle_messages_outside, list(
 	"%pred's %belly wobbles with a squirming meal.",
 	"%pred's %belly jostles with movement.",
@@ -318,3 +346,17 @@ GLOBAL_LIST_INIT(escape_fail_messages_owner, list(
 
 GLOBAL_LIST_INIT(escape_fail_messages_prey, list(
 	"Your attempt to escape %pred's %belly has failed!"))
+
+// Override settings for vore debug mode
+#ifdef VORE_DEBUG
+
+#warn Vore debugging mode is on! This will allow all mobs to participate in vore, client or not!
+
+#undef REQUIRES_PLAYER
+#define REQUIRES_PLAYER FALSE
+
+#ifndef VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
+#define VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
+#endif
+
+#endif

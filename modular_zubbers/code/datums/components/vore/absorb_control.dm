@@ -1,3 +1,20 @@
+/datum/action/innate/absorb_control
+	name = "Take Back Control"
+	desc = "Take control of your body back."
+
+	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
+	background_icon_state = "android"
+	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
+	button_icon_state = "soulcatcher_exit"
+
+/datum/action/innate/absorb_control/Trigger(trigger_flags)
+	var/datum/component/absorb_control/AC = target
+	AC.revert()
+
+/datum/action/innate/absorb_control/prey
+	name = "Yield Control"
+	desc = "Yield control to the body's rightful owner and go back to being absorbed."
+
 /datum/component/absorb_control
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
@@ -5,14 +22,23 @@
 	var/mob/living/controller
 	var/mob/living/pred_backseat/pred_backseat
 
+	var/datum/action/innate/absorb_control/prey/absorb_control_prey
+	var/datum/action/innate/absorb_control/absorb_control_pred
+
 /datum/component/absorb_control/Initialize(mob/living/new_controller)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(!istype(new_controller))
 		return COMPONENT_INCOMPATIBLE
+	absorb_control_prey = new(src)
+	absorb_control_pred = new(src)
+
 	controller = new_controller
+	// Not to the controller, that body is now uninhabitated!
+	absorb_control_prey.Grant(parent)
 	pred_backseat = new(parent, src)
+	absorb_control_pred.Grant(pred_backseat)
 
 	RegisterSignal(controller, COMSIG_QDELETING, PROC_REF(revert))
 	RegisterSignal(controller, COMSIG_MOVABLE_MOVED, PROC_REF(revert))
@@ -22,6 +48,8 @@
 /datum/component/absorb_control/Destroy()
 	revert()
 	QDEL_NULL(pred_backseat)
+	QDEL_NULL(absorb_control_prey)
+	QDEL_NULL(absorb_control_pred)
 	UnregisterSignal(controller, COMSIG_QDELETING)
 	UnregisterSignal(controller, COMSIG_MOVABLE_MOVED)
 	controller = null
@@ -85,7 +113,8 @@
 	if(pred_backseat.ckey)
 		unsafe_swap()
 
-	qdel(src)
+	if(!QDELING(src))
+		qdel(src)
 
 /mob/living/pred_backseat
 	name = "pred backseat"

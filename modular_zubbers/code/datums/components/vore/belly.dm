@@ -2,10 +2,12 @@
 	name = "Default Belly"
 	desc = "It's very bland!"
 
+	// Internal state
 	var/datum/component/vore/owner
 	var/datum/digest_mode/digest_mode
 	var/noise_cooldown = 0
 
+	// Settings
 	var/can_taste = TRUE
 	var/insert_verb = "ingest"
 	var/release_verb = "expels"
@@ -76,6 +78,7 @@
 			"name" = A.name,
 			"ref" = REF(A),
 			"appearance" = REF(A.appearance),
+			"absorbed" = HAS_TRAIT_FROM(A, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE),
 		))
 	data["contents"] = contents_data
 
@@ -230,7 +233,7 @@
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
 		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
-		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(lowertext(name))]!\n[format_message(desc, M)]"))
+		to_chat(M, examine_block("You slide into [span_notice("[owner.parent]")]'s [span_green(lowertext(name))]!\n[EXAMINE_SECTION_BREAK][format_message(desc, M)]"))
 		// Add the appearance_holder to prey so they can see fellow prey
 		if(can_taste && iscarbon(M))
 			var/mob/living/carbon/H = M
@@ -256,7 +259,7 @@
 		#if DISABLES_SENSORS
 		if(istype(AM, /obj/item/clothing/under))
 			var/obj/item/clothing/under/sensor_clothing = AM
-			sensor_clothing.sensor_mode = NO_SENSORS
+			sensor_clothing.sensor_mode = SENSOR_OFF
 			if(ishuman(arrived))
 				var/mob/living/carbon/human/H = arrived
 				if(H.w_uniform == sensor_clothing)
@@ -277,6 +280,10 @@
 		var/mob/M = gone
 		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
 		REMOVE_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
+		// Unabsorb if they leave by any method
+		REMOVE_TRAIT(M, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
+		REMOVE_TRAIT(M, TRAIT_STASIS, TRAIT_SOURCE_VORE)
+		// Absorb control handles deleting itself with binding to COMSIG_MOVABLE_MOVED
 		if(!istype(M.loc, /obj/vore_belly))
 			M.stop_sound_channel(CHANNEL_PREYLOOP)
 		// We added it so let's take it away
@@ -289,10 +296,12 @@
 	return container_resist_act(user)
 
 /obj/vore_belly/proc/escapable(mob/living/user)
+	// Cannot escape on their own if absorbed
+	if(HAS_TRAIT_FROM(user, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+		return FALSE
 	var/mob/living/living_parent = owner.parent
 	if(!escape_chance && !living_parent.stat)
 		return FALSE
-	// TODO: absorbed
 	return TRUE
 
 /obj/vore_belly/container_resist_act(mob/living/user)
@@ -520,3 +529,18 @@
 		sound_to_use = pred_sound,
 		max_distance = range,
 	)
+
+// Driven by /datum/digest_mode but put here for reusablity
+/obj/vore_belly/proc/try_play_gurgle_sound()
+	if(COOLDOWN_FINISHED(src, noise_cooldown))
+		if(LAZYLEN(contents) && prob(50))
+			var/prey_sound = null
+			var/pred_sound = null
+			if(fancy_sounds)
+				prey_sound = "vore_sounds_digestion_fancy_prey"
+				pred_sound = "vore_sounds_digestion_fancy"
+			else
+				prey_sound = "vore_sounds_digestion_classic"
+				pred_sound = "vore_sounds_digestion_classic"
+			play_vore_sound_preypred(prey_sound, pred_sound, pref = /datum/vore_pref/toggle/digestion_noises)
+			COOLDOWN_START(src, noise_cooldown, DIGESTION_NOISE_COOLDOWN)

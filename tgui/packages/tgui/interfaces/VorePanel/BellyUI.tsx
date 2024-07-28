@@ -563,6 +563,7 @@ export const BellyContents = (props: { contents: types.Prey[] }) => {
                 height="64px"
                 style={{ verticalAlign: 'middle' }}
                 onClick={() => act('click_prey', { ref: prey.ref })}
+                color={prey.absorbed ? 'purple' : ''}
               >
                 <AppearanceDisplay iconSrc={prey.appearance} />
               </Button>

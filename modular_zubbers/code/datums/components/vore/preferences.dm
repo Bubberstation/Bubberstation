@@ -342,3 +342,6 @@ GLOBAL_LIST_INIT(vore_preference_entries_by_key, init_vore_preference_entries_by
 
 /datum/vore_pref/toggle/digestion_qdel
 	savefile_key = "qdel_allowed"
+
+/datum/vore_pref/toggle/absorb
+	savefile_key = "absorb_allowed"

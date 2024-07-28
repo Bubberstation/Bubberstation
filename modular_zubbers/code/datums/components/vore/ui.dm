@@ -78,13 +78,17 @@
 		return
 
 	var/mob/living/living_parent = parent
+	if(usr != living_parent)
+		stack_trace("Vore component ui_act triggered by [key_name(usr)] who IS NOT OUR PARENT [key_name(living_parent)]")
+		return
+
 	switch(action)
 		if("create_belly")
 			if(!COOLDOWN_FINISHED(src, rate_limit_belly_creation))
-				to_chat(usr, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
+				to_chat(living_parent, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
 				return
 			if(LAZYLEN(vore_bellies) >= MAX_BELLIES)
-				to_chat(usr, span_warning("You can only have [MAX_BELLIES] bellies."))
+				to_chat(living_parent, span_warning("You can only have [MAX_BELLIES] bellies."))
 				return TRUE
 			create_default_belly()
 			COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN)
@@ -93,94 +97,12 @@
 			var/obj/vore_belly/new_selected = locate(params["ref"])
 			if(istype(new_selected) && new_selected.owner == src)
 				selected_belly = new_selected
-				to_chat(usr, span_notice("Prey will now go into [selected_belly]."))
+				to_chat(living_parent, span_notice("Prey will now go into [selected_belly]."))
 			. = TRUE
 		if("click_prey")
 			var/mob/prey = locate(params["ref"])
-			if(prey == living_parent)
-				living_parent.examinate(living_parent)
-			else if(istype(prey))
-				var/obj/vore_belly/prey_loc = prey.loc
-				// We are prey next to them
-				if(istype(living_parent.loc, /obj/vore_belly) && prey_loc == living_parent.loc)
-					var/what_to_do = tgui_alert(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Interact", "Help Out"))
-					switch(what_to_do)
-						if("Examine")
-							living_parent.examinate(prey)
-						if("Interact")
-							living_parent.CtrlShiftClickOn(prey)
-						// if("Eat") // Not implemented on Bubbers at all
-						if("Help Out")
-							// TODO: check if absorbed
-							if(living_parent.incapacitated())
-								return
-
-							to_chat(living_parent, span_notice(span_green("You begin to push [prey] to freedom!")))
-							to_chat(prey, span_notice("[living_parent] begins to push you to freedom!"))
-							to_chat(prey_loc.owner.parent, span_warning("Someone is trying to escape from inside you!"))
-
-							if(do_after(living_parent, 5 SECONDS, prey_loc.owner.parent, timed_action_flags = IGNORE_TARGET_LOC_CHANGE) && prob(33))
-								if(prey.loc != prey_loc)
-									return
-								prey_loc.release(prey)
-								to_chat(living_parent, span_notice(span_green("You manage to help [prey] to safety!")))
-								to_chat(prey,  span_notice(span_green("[living_parent] pushes you free!")))
-								to_chat(prey_loc.owner.parent, span_alert("[prey] forces free of the confines of your body!"))
-							else
-								to_chat(living_parent, span_alert("[prey] slips back down inside despite your efforts."))
-								to_chat(prey, span_alert("Even with [living_parent]'s help, you slip back inside again."))
-								to_chat(prey_loc.owner.parent, span_notice(span_green("Your body efficiently shoves [prey] back where they belong.")))
-				// We ate them
-				else if(prey_loc.owner == src)
-					var/what_to_do = tgui_input_list(usr, "What do you want to do to [prey]?", "Prey Options", list("Examine", "Eject", "Transfer", "Digest", "Put In Charge"))
-					switch(what_to_do)
-						if("Examine")
-							living_parent.examinate(prey)
-						if("Eject")
-							#ifdef VORE_EJECT_DELAY
-							to_chat(living_parent, span_notice("You start to work [prey] out of your [lowertext(prey_loc.name)]..."))
-							to_chat(prey, span_notice("[living_parent] starts to work you out of their [lowertext(prey_loc.name)]..."))
-							if(!do_after(living_parent, VORE_EJECT_DELAY, interaction_key = "vore_eject"))
-								return
-							#endif
-							prey_loc.release(prey)
-						if("Transfer")
-							var/obj/vore_belly/which_belly = tgui_input_list(usr, "Which belly do you want to transfer them to?", "Belly Transfer", vore_bellies)
-							if(which_belly && prey.loc == prey_loc)
-								prey.forceMove(which_belly)
-						if("Digest")
-							#if !REQUIRES_PLAYER
-							if(!prey.mind)
-								prey_loc.digestion_death(prey)
-								return
-							#endif
-							var/datum/vore_preferences/prey_vore_prefs = prey.get_vore_prefs()
-							if(!prey_vore_prefs)
-								to_chat(usr, span_warning("[prey] isn't interested in being digested."))
-								return
-							if(!prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion) || !prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion_qdel))
-								to_chat(usr, span_warning("[prey] isn't interested in being digested."))
-								return
-
-							var/consents = tgui_alert(prey, "[living_parent] wants to instantly digest you, is this okay?", "Instant Gurgle", list("No", "Yes"))
-							if(consents == "Yes")
-								if(!prey_loc.digestion_death(prey))
-									to_chat(living_parent, span_warning("[prey] isn't interested in being fully digested."))
-							else
-								to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
-						// TODO: Require absorbed
-						if("Put In Charge")
-							if(usr.ckey != our_owner_ckey)
-								to_chat(usr, span_warning("This is not available on vore components you do not own."))
-								return
-
-							if(!prey.mind)
-								return
-
-							var/consents = tgui_alert(prey, "[living_parent] wants to let you take control of their body, is this okay?", "Prey Control", list("No", "Yes"))
-							if(consents == "Yes")
-								living_parent.AddComponent(/datum/component/absorb_control, prey)
-
+			if(istype(prey))
+				click_prey(prey)
 			. = TRUE
 		if("edit_belly")
 			var/obj/vore_belly/target = locate(params["ref"])
@@ -199,13 +121,13 @@
 				return
 			switch(params["sound"])
 				if("insert_sound")
-					SEND_SOUND(usr, sound(target.get_insert_sound()))
+					SEND_SOUND(living_parent, sound(target.get_insert_sound()))
 				if("release_sound")
-					SEND_SOUND(usr, sound(target.get_release_sound()))
+					SEND_SOUND(living_parent, sound(target.get_release_sound()))
 		if("set_pref")
-			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
-				to_chat(usr, span_danger("You cannot save your vore preferences as they cannot be loaded."))
+				to_chat(living_parent, span_danger("You cannot save your vore preferences as they cannot be loaded."))
 				return
 
 			var/key = params["key"]
@@ -243,23 +165,23 @@
 			if(target.owner != src)
 				return
 			if(LAZYLEN(vore_bellies) == 1)
-				to_chat(usr, span_danger("You can't delete your last belly, modify it or make a new one to take it's place."))
+				to_chat(living_parent, span_danger("You can't delete your last belly, modify it or make a new one to take it's place."))
 				return
 
 			qdel(target)
 			save_bellies()
 			. = TRUE
 		if("belly_backups")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
 			download_belly_backup()
 			. = TRUE
 		if("load_slot")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
-			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
 				return
 
@@ -269,10 +191,10 @@
 				load_bellies_from_prefs()
 			. = TRUE
 		if("set_slot_name")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
-			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
 				return
 
@@ -280,30 +202,30 @@
 			vore_prefs.set_slot_name(name)
 			. = TRUE
 		if("copy_to_slot")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
-			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
 				return
 
 			var/slot_to_save_over = vore_prefs.copy_to_slot()
 			if(slot_to_save_over != null)
 				save_bellies(slot_to_save_over)
-				to_chat(usr, span_notice("Copied belly loadout to slot [slot_to_save_over]."))
+				to_chat(living_parent, span_notice("Copied belly loadout to slot [slot_to_save_over]."))
 			. = TRUE
 		if("toggle_lookup_data")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
 			ui_editing_lookuptable = !ui_editing_lookuptable
-			update_static_data(usr, ui)
+			update_static_data(living_parent, ui)
 			. = TRUE
 		if("set_lookup_table_entry")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
-			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
 				return
 			var/from_slot = params["from"]
@@ -314,14 +236,14 @@
 			var/list/lookup_table = vore_prefs.get_lookup_table()
 			lookup_table["[from_slot]"] = to_slot
 			vore_prefs.set_lookup_table(lookup_table)
-			update_static_data(usr, ui)
+			update_static_data(living_parent, ui)
 
 			. = TRUE
 		if("delete_lookup_table_entry")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
-			var/datum/vore_preferences/vore_prefs = usr.get_vore_prefs()
+			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
 				return
 			var/slot_to_delete = "[params["slot_to_delete"]]"
@@ -329,22 +251,22 @@
 			var/list/lookup_table = vore_prefs.get_lookup_table()
 			lookup_table -= slot_to_delete
 			vore_prefs.set_lookup_table(lookup_table)
-			update_static_data(usr, ui)
+			update_static_data(living_parent, ui)
 
 			. = TRUE
 		if("import_bellies")
 			if(!COOLDOWN_FINISHED(src, rate_limit_belly_creation))
-				to_chat(usr, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
+				to_chat(living_parent, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
 				return
 
 			// Nearly straight from CHOMP
-			var/panel_choice = tgui_input_list(usr, "Belly Import (NOTE: VRDB Is Barely Supported)", "Pick an option", list("Import all bellies from JSON", "Import one belly from JSON"))
+			var/panel_choice = tgui_input_list(living_parent, "Belly Import (NOTE: VRDB Is Barely Supported)", "Pick an option", list("Import all bellies from JSON", "Import one belly from JSON"))
 			if(!panel_choice)
 				return
 			var/pickOne = FALSE
 			if(panel_choice == "Import one belly from JSON")
 				pickOne = TRUE
-			var/input_file = input(usr, "Please choose a valid JSON file to import from.", "Belly Import") as file
+			var/input_file = input(living_parent, "Please choose a valid JSON file to import from.", "Belly Import") as file
 			var/input_data
 			try
 				var/text = file2text(input_file)
@@ -362,7 +284,7 @@
 
 				var/is_vrdb = detect_vrdb(input_data)
 				if(is_vrdb)
-					to_chat(usr, span_danger("WARNING: This file will be parsed as a VRDB file. This conversion is best-effort only, and may not produce satisfactory results."))
+					to_chat(living_parent, span_danger("WARNING: This file will be parsed as a VRDB file. This conversion is best-effort only, and may not produce satisfactory results."))
 				else
 					if(input_data["db_repo"] != VORE_DB_REPO)
 						CRASH("Unable to load file - db_repo was expected to be '[VORE_DB_REPO]' but was '[input_data["db_repo"]]'")
@@ -386,14 +308,14 @@
 							name = "<unnamed>"
 						name = avoid_assoc_duplicate_keys(name, repeat_items)
 						choices[name] = index
-					var/picked = tgui_input_list(usr, "Belly Import", "Which belly?", choices)
+					var/picked = tgui_input_list(living_parent, "Belly Import", "Which belly?", choices)
 					if(picked)
 						bellies_to_import = list(bellies_to_import[choices[picked]])
 
 				var/current_belly_count = LAZYLEN(vore_bellies)
 				var/amount_to_import = min(LAZYLEN(bellies_to_import), MAX_BELLIES - LAZYLEN(current_belly_count))
 				if(amount_to_import != LAZYLEN(bellies_to_import))
-					to_chat(usr, span_warning("You have selected too many bellies to import. Only the first [amount_to_import] will be imported."))
+					to_chat(living_parent, span_warning("You have selected too many bellies to import. Only the first [amount_to_import] will be imported."))
 
 				for(var/i in 1 to amount_to_import)
 					var/list/belly = bellies_to_import[i]
@@ -403,19 +325,189 @@
 
 				// Directly scale cooldown with how much they're creating
 				COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN * amount_to_import)
-				to_chat(usr, span_notice("All done importing bellies!"))
+				to_chat(living_parent, span_notice("All done importing bellies!"))
 				save_bellies()
 			catch(var/exception/e)
-				tgui_alert(usr, "The supplied file contains errors: [e]", "Error!")
+				tgui_alert(living_parent, "The supplied file contains errors: [e]", "Error!")
 				return FALSE
 
 			. = TRUE
 		if("export_bellies")
-			if(usr.ckey != our_owner_ckey)
-				to_chat(usr, span_warning("This is not available on vore components you do not own."))
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
 				return
 			var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 			if(!vore_prefs)
 				return
 			vore_prefs.export_slot()
 			. = TRUE
+
+/datum/component/vore/proc/click_prey(mob/living/prey)
+	var/mob/living/living_parent = parent
+
+	if(prey == living_parent)
+		living_parent.examinate(living_parent)
+		return
+
+	var/obj/vore_belly/prey_loc = prey.loc
+	if(!istype(prey_loc))
+		return
+
+	// We are prey next to them
+	if(prey_loc == living_parent.loc)
+		click_fellow_prey(prey)
+	// We ate them
+	else if(prey_loc.owner == src)
+		click_our_prey(prey)
+
+/datum/component/vore/proc/click_fellow_prey(mob/living/prey)
+	var/obj/vore_belly/prey_loc = prey.loc
+	var/mob/living/pred = prey_loc.owner.parent
+	var/mob/living/living_parent = parent
+
+	var/list/options = list("Examine")
+
+	// If not absorbed, able to do these
+	if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE) && !HAS_TRAIT_FROM(living_parent, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+		options += list("Interact", "Help Out")
+
+	var/what_to_do = tgui_alert(living_parent, "What do you want to do to [prey]?", "Prey Options", options)
+	// We have to check all of the conditions inside each of these branches because things could have changed while the
+	// dialog was open.
+	switch(what_to_do)
+		if("Examine")
+			living_parent.examinate(prey)
+		if("Interact")
+			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, "[prey] is absorbed, you can't help them.")
+				return
+			if(HAS_TRAIT_FROM(living_parent, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, "You're absorbed, you can't help someone out.")
+				return
+			living_parent.CtrlShiftClickOn(prey)
+		if("Help Out")
+			if(HAS_TRAIT_FROM(living_parent, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, "You're absorbed, you can't help someone out.")
+				return
+			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, "[prey] is absorbed, you can't help them.")
+				return
+			// If they're otherwise incapacitated
+			if(living_parent.incapacitated())
+				return
+
+			to_chat(living_parent, span_notice(span_green("You begin to push [prey] to freedom!")))
+			to_chat(prey, span_notice("[living_parent] begins to push you to freedom!"))
+			to_chat(pred, span_warning("Someone is trying to escape from inside you!"))
+
+			if(do_after(living_parent, 5 SECONDS, pred, timed_action_flags = IGNORE_TARGET_LOC_CHANGE) && prob(33))
+				if(prey.loc != prey_loc)
+					return
+				prey_loc.release(prey)
+				to_chat(living_parent, span_notice(span_green("You manage to help [prey] to safety!")))
+				to_chat(prey,  span_notice(span_green("[living_parent] pushes you free!")))
+				to_chat(pred, span_alert("[prey] forces free of the confines of your body!"))
+			else
+				to_chat(living_parent, span_alert("[prey] slips back down inside despite your efforts."))
+				to_chat(prey, span_alert("Even with [living_parent]'s help, you slip back inside again."))
+				to_chat(pred, span_notice(span_green("Your body efficiently shoves [prey] back where they belong.")))
+
+/datum/component/vore/proc/click_our_prey(mob/living/prey)
+	var/obj/vore_belly/prey_loc = prey.loc
+	var/mob/living/living_parent = parent
+
+	var/list/options = list("Examine")
+
+	if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+		options += list("Eject", "Transfer", "Digest", "Absorb")
+	else
+		options += "Unabsorb"
+		if(living_parent.ckey == our_owner_ckey)
+			options += "Put In Charge"
+
+	var/what_to_do = tgui_input_list(living_parent, "What do you want to do to [prey]?", "Prey Options", options)
+	// We have to check all of the conditions inside each of these branches because things could have changed while the
+	// dialog was open.
+	switch(what_to_do)
+		if("Examine")
+			living_parent.examinate(prey)
+		if("Eject")
+			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, span_warning("You cannot eject absorbed prey."))
+				return
+			#ifdef VORE_EJECT_DELAY
+			to_chat(living_parent, span_notice("You start to work [prey] out of your [lowertext(prey_loc.name)]..."))
+			to_chat(prey, span_notice("[living_parent] starts to work you out of their [lowertext(prey_loc.name)]..."))
+			if(!do_after(living_parent, VORE_EJECT_DELAY, interaction_key = "vore_eject"))
+				return
+			#endif
+			prey_loc.release(prey)
+		if("Transfer")
+			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, span_warning("You cannot transfer absorbed prey."))
+				return
+			var/obj/vore_belly/which_belly = tgui_input_list(living_parent, "Which belly do you want to transfer them to?", "Belly Transfer", vore_bellies)
+			if(which_belly && prey.loc == prey_loc)
+				prey.forceMove(which_belly)
+		if("Digest")
+			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, span_warning("You cannot digest absorbed prey."))
+				return
+			#if !REQUIRES_PLAYER
+			if(!prey.mind)
+				prey_loc.digestion_death(prey)
+				return
+			#endif
+			var/datum/vore_preferences/prey_vore_prefs = prey.get_vore_prefs()
+			if(!prey_vore_prefs)
+				to_chat(living_parent, span_warning("[prey] isn't interested in being digested."))
+				return
+			if(!prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion) || !prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion_qdel))
+				to_chat(living_parent, span_warning("[prey] isn't interested in being digested."))
+				return
+
+			var/consents = tgui_alert(prey, "[living_parent] wants to instantly digest you, is this okay?", "Instant Gurgle", list("No", "Yes"))
+			if(consents == "Yes")
+				if(!prey_loc.digestion_death(prey))
+					to_chat(living_parent, span_warning("[prey] isn't interested in being fully digested."))
+			else
+				to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
+		if("Absorb")
+			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, span_warning("[prey] is already absorbed!"))
+				return
+			if(!prey.vore_can_absorb())
+				to_chat(living_parent, "[prey] isn't interested in absorption.")
+				return
+			var/consents = tgui_alert(prey, "[living_parent] wants to instantly absorb you, is this okay?", "Instant Absorb", list("No", "Yes"))
+			if(consents == "Yes")
+				// Get the nutrition
+				var/nutrition = prey.nutrition - ABSORB_NUTRITION_BARRIER
+				if(nutrition > 0)
+					prey.set_nutrition(ABSORB_NUTRITION_BARRIER)
+					living_parent.adjust_nutrition(nutrition)
+				if(!prey_loc.absorb(prey))
+					to_chat(living_parent, "[prey] isn't interested in absorption.")
+			else
+				to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
+		if("Unabsorb")
+			if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, span_warning("[prey] is not absorbed!"))
+				return
+			if(living_parent.nutrition < ABSORB_NUTRITION_BARRIER)
+				to_chat(living_parent, span_warning("You are too hungry to reform [prey]."))
+				return
+			living_parent.adjust_nutrition(-ABSORB_NUTRITION_BARRIER)
+			prey_loc.unabsorb(prey)
+		if("Put In Charge")
+			if(living_parent.ckey != our_owner_ckey)
+				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				return
+
+			if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+				to_chat(living_parent, span_warning("[prey] must be absorbed to be able to be put in control."))
+				return
+
+			var/consents = tgui_alert(prey, "[living_parent] wants to let you take control of their body, is this okay?", "Prey Control", list("No", "Yes"))
+			if(consents == "Yes")
+				living_parent.AddComponent(/datum/component/absorb_control, prey)

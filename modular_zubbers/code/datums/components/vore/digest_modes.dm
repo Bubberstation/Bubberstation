@@ -9,15 +9,19 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 
 /datum/digest_mode
 	var/name = ""
+	var/gurgle_noises = FALSE
 
 /datum/digest_mode/proc/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)
-	return
+	if(gurgle_noises)
+		vore_belly.try_play_gurgle_sound()
 
 /datum/digest_mode/safe
 	name = DIGEST_MODE_SAFE
+	gurgle_noises = TRUE
 
 /datum/digest_mode/digest
 	name = DIGEST_MODE_DIGEST
+	gurgle_noises = TRUE
 
 /mob/living/proc/vore_can_negatively_affect()
 	#if REQUIRES_PLAYER
@@ -66,18 +70,6 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 
 /datum/digest_mode/digest/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)
 	var/mob/living/living_parent = vore_belly.owner.parent
-	if(COOLDOWN_FINISHED(vore_belly, noise_cooldown))
-		if(LAZYLEN(vore_belly.contents) && prob(50))
-			var/prey_sound = null
-			var/pred_sound = null
-			if(vore_belly.fancy_sounds)
-				prey_sound = "vore_sounds_digestion_fancy_prey"
-				pred_sound = "vore_sounds_digestion_fancy"
-			else
-				prey_sound = "vore_sounds_digestion_classic"
-				pred_sound = "vore_sounds_digestion_classic"
-			vore_belly.play_vore_sound_preypred(prey_sound, pred_sound, pref = /datum/vore_pref/toggle/digestion_noises)
-			COOLDOWN_START(vore_belly, noise_cooldown, DIGESTION_NOISE_COOLDOWN)
 
 	for(var/mob/living/L in vore_belly)
 		if(!L.vore_can_digest())
@@ -92,3 +84,88 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 		if(vore_belly.burn_damage > 0)
 			L.adjustFireLoss(vore_belly.burn_damage * seconds_per_tick)
 			living_parent.adjust_nutrition(NUTRITION_PER_DAMAGE * vore_belly.burn_damage * seconds_per_tick)
+
+/datum/digest_mode/absorb
+	name = DIGEST_MODE_ABSORB
+	gurgle_noises = TRUE
+
+/mob/living/proc/vore_can_absorb()
+	if(client)
+		var/datum/vore_preferences/vore_prefs = client.get_vore_prefs()
+		return vore_prefs?.read_preference(/datum/vore_pref/toggle/absorb)
+
+	// Arguably, absorption is completely reversable and therefore harmless
+	// and this could just return TRUE
+	// But in case there's a player that logs out and really really doesn't like absorption...
+	return vore_can_negatively_affect()
+
+/obj/vore_belly/proc/absorb(mob/living/L)
+	if(!L.vore_can_absorb())
+		return FALSE
+	// Already absorbed
+	if(HAS_TRAIT_FROM(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+		return FALSE
+
+	var/mob/living/living_parent = owner.parent
+
+	// Add full restraints
+	ADD_TRAIT(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
+	ADD_TRAIT(L, TRAIT_STASIS, TRAIT_SOURCE_VORE)
+
+	to_chat(living_parent, span_notice(format_message(pick(GLOB.absorb_messages_owner), L)))
+	to_chat(L, span_notice(format_message(pick(GLOB.absorb_messages_prey), L)))
+
+	return TRUE
+
+/datum/digest_mode/absorb/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)
+	var/mob/living/living_parent = vore_belly.owner.parent
+
+	for(var/mob/living/L in vore_belly)
+		if(!L.vore_can_absorb())
+			continue
+		if(HAS_TRAIT_FROM(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+			continue
+		if(L.nutrition < ABSORB_NUTRITION_BARRIER)
+			vore_belly.absorb(L)
+			continue
+		// Times 2 because we assume a baseline of 2 "damage" in absorb mode
+		var/nutrition_transfer = NUTRITION_PER_DAMAGE * 2 * seconds_per_tick
+		L.adjust_nutrition(-nutrition_transfer)
+		living_parent.adjust_nutrition(nutrition_transfer)
+
+/datum/digest_mode/unabsorb
+	name = DIGEST_MODE_UNABSORB
+	gurgle_noises = TRUE
+
+/obj/vore_belly/proc/unabsorb(mob/living/L)
+	// Not absorbed
+	if(!HAS_TRAIT_FROM(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+		return FALSE
+
+	var/mob/living/living_parent = owner.parent
+
+	// Remove full restraints
+	REMOVE_TRAIT(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
+	REMOVE_TRAIT(L, TRAIT_STASIS, TRAIT_SOURCE_VORE)
+
+	to_chat(living_parent, span_notice(format_message(pick(GLOB.unabsorb_messages_owner), L)))
+	to_chat(L, span_notice(format_message(pick(GLOB.unabsorb_messages_prey), L)))
+
+	// Unabsorbs kick them back out
+	var/datum/component/absorb_control/AC = living_parent.GetComponent(/datum/component/absorb_control)
+	if(AC && AC.controller == L)
+		AC.revert()
+
+	return TRUE
+
+/datum/digest_mode/unabsorb/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)
+	var/mob/living/living_parent = vore_belly.owner.parent
+
+	for(var/mob/living/L in vore_belly)
+		if(!HAS_TRAIT_FROM(L, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
+			continue
+		// Parent can only reform if they have ABSORB_NUTRITION_BARRIER worth of nutrition
+		// Note that this nutrition is deliberately lost and not given back to the prey
+		if(living_parent.nutrition > ABSORB_NUTRITION_BARRIER)
+			living_parent.adjust_nutrition(-ABSORB_NUTRITION_BARRIER)
+			vore_belly.unabsorb(L)

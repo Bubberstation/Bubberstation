@@ -17,3 +17,6 @@ be created, how many prey can be eaten, etc.
 [ui.dm](./ui.dm) - tgui interface for managing the component
 [vore.dm](./vore.dm) - The main component that orchestrates everything else.
 [z_undefs.dm](./z_undefs.dm) - undefs to keep defines from escaping.
+
+## Special Notes
+- Being absorbed is marked by TRAIT_RESTRAINED and TRAIT_STASIS with a source of TRAIT_SOURCE_VORE.
