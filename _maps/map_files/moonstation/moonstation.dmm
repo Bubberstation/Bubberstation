@@ -14956,7 +14956,7 @@
 /obj/item/reagent_containers/cup/glass/bottle/holywater{
 	desc = "A flask of holy water allegedly containing the first seed planted in the Garden of Eden";
 	name = "flask of the first holy seed";
-	list_reagents = list(/datum/reagent/consumable/cum = 100);
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/water/holywater = 95);
 	pixel_y = 2
 	},
 /turf/open/floor/iron/dark,
@@ -21955,7 +21955,7 @@
 /turf/open/floor/plating,
 /area/station/security/prison/work)
 "gcc" = (
-/obj/machinery/power/smes/engineering,
+/obj/machinery/power/smes/full,
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/tcommsat/computer)
@@ -43460,7 +43460,7 @@
 /turf/open/floor/plating,
 /area/station/engineering/asteroid_lobby)
 "mdP" = (
-/obj/machinery/smartfridge/drying_rack,
+/obj/machinery/smartfridge/drying/rack,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -64492,7 +64492,7 @@
 /obj/effect/turf_decal/siding/dark_green,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/station/tcommsat/server)
 "rYe" = (
