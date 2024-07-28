@@ -49,6 +49,34 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 
 	return vore_can_negatively_affect()
 
+/obj/machinery/cryopod/quiet/vore
+	name = "vore cryopod"
+
+/obj/machinery/cryopod/quiet/vore/process()
+	return
+
+/obj/machinery/cryopod/quiet/vore/find_control_computer(urgent)
+	return
+
+GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/machinery/cryopod/quiet/vore(null))
+
+// This is hilariously cursed
+/proc/remove_player_from_round_safely(mob/living/L)
+	// Immediately kick them out of their body so they don't get ghosted in nullspace
+	L.ghostize(FALSE)
+
+	// Have to do this before we let the cryopod have them, or it'll throw all their items into nullspace without qdeling them
+	for(var/obj/item/item_content as anything in L)
+		if(!istype(item_content) || HAS_TRAIT(item_content, TRAIT_NODROP))
+			continue
+		if(issilicon(L) && istype(item_content, /obj/item/mmi))
+			continue
+		qdel(item_content)
+
+	GLOB.vore_cryopod.close_machine(L)
+	L = null // make sure we're not keeping a ref
+	GLOB.vore_cryopod.despawn_occupant()
+
 /obj/vore_belly/proc/digestion_death(mob/living/L)
 	if(!L.vore_can_qdel())
 		return FALSE
@@ -63,9 +91,10 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 	to_chat(living_parent, span_notice(format_message(pick(GLOB.digest_messages_pred), L)))
 	to_chat(L, span_notice(format_message(pick(GLOB.digest_messages_prey), L)))
 
-	L.ghostize(FALSE)
-	qdel(L)
+	living_parent.log_message("digested and qdel'd [key_name(L)].", LOG_ATTACK)
+	L.log_message("was digested and qdel'd by [key_name(living_parent)].", LOG_VICTIM)
 
+	remove_player_from_round_safely(L)
 	return TRUE
 
 /datum/digest_mode/digest/handle_belly(obj/vore_belly/vore_belly, seconds_per_tick)

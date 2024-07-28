@@ -22,7 +22,7 @@ import * as types from './types';
 export const BelliesList = (props) => {
   const { act, data } = useBackend<types.Data>();
 
-  const [selectedBelly, setSelectedBelly] = useState<number>(-1);
+  const [selectedBelly, setSelectedBelly] = useState<number>(1);
 
   const { bellies } = data;
 
@@ -213,7 +213,7 @@ export const BellyUI = (props: {
                   icon="trash"
                   onClick={() => {
                     act('delete_belly', { ref: belly.ref });
-                    setSelectedBelly(-1);
+                    setSelectedBelly(1);
                   }}
                 >
                   Delete
