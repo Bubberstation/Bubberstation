@@ -39,8 +39,7 @@
 		else
 			. += " This will cause people at your destination to start bleeding."
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_explanation_extended()
 	. += "When Activated, you will be hidden in a Cloak of Darkness."
 	. += "[target_range ? "Click to teleport up to [target_range] tiles away, as long as you can see it" : "You can teleport anywhere you can see"]."
 	. += "Teleporting will refill your stamina to full."

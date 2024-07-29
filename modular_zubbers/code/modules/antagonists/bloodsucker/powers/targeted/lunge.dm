@@ -12,8 +12,7 @@
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
 
-/datum/action/cooldown/bloodsucker/targeted/lunge/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/lunge/get_power_explanation_extended()
 	. += "Click any player to start spinning wildly and, after a short delay, dash at them."
 	. += "When lunging at someone, you will grab them, immediately starting off at aggressive."
 	. += "Riot gear and Monster Hunters are protected and will only be passively grabbed."

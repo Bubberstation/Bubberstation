@@ -29,7 +29,7 @@
 		/mob/living/basic/bat = 1,
 	)
 
-/datum/action/cooldown/bloodsucker/gohome/get_power_explanation()
+/datum/action/cooldown/bloodsucker/gohome/get_power_explanation_extended()
 	. = ..()
 	. += "Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin."
 	. += "The user will drop all belongings if seen by a mortal."

@@ -21,8 +21,7 @@
 	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
 
-/datum/action/cooldown/bloodsucker/masquerade/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/masquerade/get_power_explanation_extended()
 	. += "Masquerade will forge your identity to be practically identical to that of a human."
 	. += "- You lose nearly all Bloodsucker benefits, including healing, sleep, radiation, crit, virus, gutting and cold immunity."
 	. += "- Your eyes turn to that of a regular human as your heart begins to beat."

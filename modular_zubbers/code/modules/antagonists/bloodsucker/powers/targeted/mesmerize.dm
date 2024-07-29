@@ -32,22 +32,31 @@
 	var/requires_facing_target = TRUE
 	/// if the ability requires you to not have your eyes covered
 	var/blocked_by_glasses = TRUE
+	/// if the ability will knockdown on secondary click
+	var/knockdown_on_secondary = FALSE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
-	. = "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, Mesmerize them.<br>"
-	. += "This will completely immobilize them for the next [DisplayTimeText(get_power_time())].<br>"
-	. += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
-	if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
-		. += "Not blocked by glasses.<br>"
+	. = "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, [src] them.<br>"
+	. += "This will completely immobilize for  them, and mute them<br>"
+	if(knockdown_on_secondary)
+		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
 	else
-		. += "Blocked by glasses.<br>"
-	if(level_current >= MESMERIZE_FACING_LEVEL || !requires_facing_target)
-		. += "Does not require the victim to be facing you.<br>"
-	else
-		. += "Requires the victim to be facing you.<br>"
+		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
+	// . += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
+	// if(knockdown_on_secondary)
+	// 	. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
+	// else
+	// 	. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
+	// if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
+	// 	. += "Not blocked by glasses.<br>"
+	// else
+	// 	. += "Blocked by glasses.<br>"
+	// if(level_current >= MESMERIZE_FACING_LEVEL || !requires_facing_target)
+	// 	. += "Does not require the victim to be facing you.<br>"
+	// else
+	// 	. += "Requires the victim to be facing you.<br>"
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
 	. += "Click any player to attempt to mesmerize them. This will stun and mute the victim."
 	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_SLOWDOWN_LEVEL] they will be also slowed down."
 	if(blocked_by_glasses && requires_facing_target)
@@ -182,10 +191,11 @@
 		return
 	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("your head becomes fuzzy for a moment")]...")
 	var/effect_time = combat_mesmerize_time()
-	var/secondary_effect_time = get_power_time()
-	mesmerized_target.adjust_confusion(secondary_effect_time)
 	mute_target(mesmerized_target)
-	mesmerized_target.Knockdown(effect_time)
+	if(knockdown_on_secondary)
+		mesmerized_target.Knockdown(effect_time)
+	else
+		mesmerized_target.adjust_confusion(effect_time)
 	PowerActivatedSuccesfully()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()

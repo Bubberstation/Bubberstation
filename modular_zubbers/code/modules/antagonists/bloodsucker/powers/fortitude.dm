@@ -12,8 +12,7 @@
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
 
-/datum/action/cooldown/bloodsucker/fortitude/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/fortitude/get_power_explanation_extended()
 	. += "Fortitude will provide pierce, stun and dismember immunity."
 	. += "You will additionally gain resistance to both brute, burn and stamina damage, scaling with level."
 	. += "Fortitude will make you receive [GetFortitudeResist() * 10]% less brute and and stamina and [GetBurnResist() * 10]% less burn damage."

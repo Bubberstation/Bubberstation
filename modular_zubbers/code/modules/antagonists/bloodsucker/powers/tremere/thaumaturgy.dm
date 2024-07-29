@@ -67,8 +67,7 @@
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
 		. += " and steal blood from the target"
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/get_power_explanation_extended()
 	. += "Thaumaturgy grants you the ability to cast and shoot a slow moving target seeking blood projectile."
 	. += "The projectile will auto aim to a nearby mob if you aim at the ground."
 	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."

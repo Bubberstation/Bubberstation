@@ -265,7 +265,10 @@
 	else
 		. += "(Inherent Power) [name]:\n"
 
-	. += power_explanation
+	. += get_power_explanation_extended()
+
+/datum/action/cooldown/bloodsucker/proc/get_power_explanation_extended()
+	return initial(get_power_explanation())
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)
@@ -280,8 +283,7 @@
 		new_desc += "<br><br><b>CONSTANT COST:</b><i> [name] costs [constant_bloodcost] blood per second to keep it active.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
 		new_desc += "<br><br><br>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
-	if(desc && desc != "")
-		new_desc += "<br><br><b>DESCRIPTION:</b> [get_power_desc_extended()]"
+	new_desc += "<br><br><b>DESCRIPTION:</b> [get_power_desc_extended()]"
 	new_desc += "<br>"
 	return new_desc
 

@@ -30,11 +30,20 @@
 	blind_at_level = 3
 	requires_facing_target = FALSE
 	blocked_by_glasses = FALSE
+	knockdown_on_secondary = TRUE
 	/// Data huds to show while the power is active
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)
+	var/list/thralls = list()
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation()
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/Remove(mob/removed_from)
 	. = ..()
+	for(var/thrall in thralls)
+		if(thrall)
+			continue
+		end_possession(thrall)
+
+
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation_extended()
 	. += "Click any person to, after [DisplayTimeText(mesmerize_delay)], stun them for [DisplayTimeText(get_power_time())]."
 	. += "Right clicking on your victim however will apply a knockdown will confuse and slow them down for [DisplayTimeText(get_power_time())]."
 	. += "A left click will completely immobilize, and blind them for the next [DisplayTimeText(get_power_time())] seconds, and will also mute them for [DisplayTimeText(get_power_time())] seconds."
@@ -128,25 +137,29 @@
 		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
 	if(!living_time)
 		return
-	user.balloon_alert(user, "only [DisplayTimeText(living_time)] left to live!")
-	to_chat(user, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate, end_possession), target), living_time)
+	user.balloon_alert(target, "only [DisplayTimeText(living_time)] left to live!")
+	to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
+	var/timer_id = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate, end_possession), target), living_time, TIMER_STOPPABLE)
 	// timer that only the master and thrall can see
-	setup_timer(user, target, living_time)
-	RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(end_possession))
+	setup_timer(user, target, living_time, timer_id)
+	thralls += target
+	RegisterSignals(target, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(end_possession))
 	pay_cost(TEMP_VASSALIZE_COST - bloodcost)
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/setup_timer(mob/living/user, mob/living/target, living_time)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/setup_timer(mob/living/user, mob/living/target, living_time, timer_id)
 	var/list/show_to = list(user, target)
 	if(bloodsuckerdatum_power && length(bloodsuckerdatum_power.vassals))
 		show_to += bloodsuckerdatum_power.vassals
-	var/atom/movable/screen/text/screen_timer/attached/timer = new(null, list(target), target, living_time, "Death in ${timer}", 32, 0, null, null, target)
-	QDEL_IN(timer, living_time)
-	timer.invisibility = INVISIBILITY_ABSTRACT
-	timer.mouse_opacity = MOUSE_OPACITY_OPAQUE // debug vv reasons
+	var/atom/movable/screen/text/screen_timer/attached/external_timer = new(null, user, timer_id, "Dies in ${timer}", 32, 0, null, null, target)
+	var/atom/movable/screen/text/screen_timer/hud_timer = new(null, user, timer_id, "Death in ${timer}", 32, 0, null, null)
+	QDEL_IN(external_timer, living_time)
+	QDEL_IN(hud_timer, living_time)
+	// external_timer.invisibility = INVISIBILITY_ABSTRACT
+	external_timer.mouse_opacity = MOUSE_OPACITY_OPAQUE // debug vv reasons
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/end_possession(mob/living/user)
+	thralls -= user
 	if(!user || QDELETED(user))
 		return
 	user.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)

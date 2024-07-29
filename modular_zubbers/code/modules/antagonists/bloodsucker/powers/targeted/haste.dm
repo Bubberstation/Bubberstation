@@ -26,8 +26,7 @@
 	else
 		. += "You cannot dash while knocked down."
 
-/datum/action/cooldown/bloodsucker/targeted/haste/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/haste/get_power_explanation_extended()
 	. += "Click anywhere to immediately dash towards that location."
 	. += "At level [HASTE_GETUP_LEVEL], if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby."
 	. += "Haste will knockdown your enemies for [DisplayTimeText(GetKnockdown())] and refill your stamina, but using haste while knocked down will make it go on cooldown for [DisplayTimeText(cooldown_time * 3)]"

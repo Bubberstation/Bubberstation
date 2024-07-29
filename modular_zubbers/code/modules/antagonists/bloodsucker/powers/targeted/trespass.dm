@@ -11,8 +11,7 @@
 	target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
 
-/datum/action/cooldown/bloodsucker/targeted/trespass/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/trespass/get_power_explanation_extended()
 	. += "Click anywhere [target_range] tiles away from you to teleport."
 	. += "This power goes through all obstacles except Walls."
 	. += "Higher levels decrease the sound played from using the Power, and increase the speed of the transition."

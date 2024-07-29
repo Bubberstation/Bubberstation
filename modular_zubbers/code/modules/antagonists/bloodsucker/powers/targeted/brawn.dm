@@ -14,8 +14,7 @@
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
 
-/datum/action/cooldown/bloodsucker/targeted/brawn/get_power_explanation()
-	. = ..()
+/datum/action/cooldown/bloodsucker/targeted/brawn/get_power_explanation_extended()
 	. += "Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use."
 	. += "Brawn will do [GetDamage()] brute damage to the target and knockdown them for [DisplayTimeText(GetKnockdown())]."
 	. += "Punching a Cyborg will heavily EMP them in addition to deal damage."
