@@ -9,7 +9,6 @@
 	idle_power_usage = 10
 	active_power_usage = 1000
 	buffer = 300
-	layer = PLUMBING_PIPE_VISIBILE_LAYER // BUBBERSTATION ADDITION - Adding to test with CI, to fix runtimes on Moonstation.
 
 	/// Pump is turned on by engineer, etc.
 	var/turned_on = FALSE
