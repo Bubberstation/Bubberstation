@@ -185,6 +185,10 @@
 
 /datum/job/chaplain
 
+
+/datum/job/blacksmith
+	abilities = list(/datum/action/cooldown/spell/summonitem)
+
 /datum/outfit/job/blacksmith
 	backpack_contents = list(
 		/obj/item/forging/hammer = 1,
@@ -192,9 +196,9 @@
 		/obj/item/forging/billow = 1,
 		/obj/item/banhammer/real = 1,
 	)
-	l_pocket = /obj/item/singularityhammer/pocket
+	l_pocket = /obj/item/mjollnir/pocket
 
-/obj/item/singularityhammer/pocket
+/obj/item/mjollnir/pocket
 	w_class = WEIGHT_CLASS_TINY
 
 /datum/job/corrections_officer
