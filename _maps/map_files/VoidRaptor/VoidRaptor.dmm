@@ -2645,6 +2645,38 @@
 	dir = 4
 	},
 /area/station/engineering/gravity_generator)
+"aNF" = (
+/obj/machinery/camera/directional/south{
+	c_tag = "Bridge - Starboard";
+	name = "command camera"
+	},
+/obj/effect/turf_decal/siding/dark_blue{
+	dir = 6
+	},
+/obj/structure{
+	density = 1;
+	icon = 'icons/obj/machines/shuttle_manipulator.dmi';
+	icon_state = "hologram_on";
+	light_color = "#2cb2e8";
+	light_range = 2;
+	mouse_opacity = 0;
+	name = "holographic projection";
+	pixel_x = -32;
+	pixel_y = 17
+	},
+/obj/structure{
+	desc = "This is the ship we're on. It's amazing what Nanotrasen can do once they actually put more than ten seconds of effort into their projects.";
+	icon = 'icons/obj/machines/shuttle_manipulator.dmi';
+	icon_state = "hologram_whiteship";
+	light_color = "#2cb2e8";
+	light_range = 7;
+	name = "Ship Hologram";
+	pixel_x = -32;
+	pixel_y = 27
+	},
+/obj/machinery/incident_display/bridge/directional/south,
+/turf/open/floor/iron/dark/smooth_large,
+/area/station/command/bridge)
 "aNG" = (
 /obj/structure/closet/secure_closet/hop,
 /obj/item/storage/box/silver_ids,
@@ -27803,6 +27835,12 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /turf/open/floor/pod/dark,
 /area/station/service/chapel)
+"hXI" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/smooth_edge,
+/area/station/science/ordnance)
 "hXP" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs/cable/red,
@@ -30735,12 +30773,6 @@
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron/smooth,
 /area/station/hallway/secondary/construction)
-"iOh" = (
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer2,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/smooth_edge,
-/area/station/science/ordnance)
 "iOx" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/dark_blue{
@@ -36184,38 +36216,6 @@
 /obj/machinery/light_switch/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/storage)
-"koc" = (
-/obj/machinery/camera/directional/south{
-	c_tag = "Bridge - Starboard";
-	name = "command camera"
-	},
-/obj/effect/turf_decal/siding/dark_blue{
-	dir = 6
-	},
-/obj/structure{
-	density = 1;
-	icon = 'icons/obj/machines/shuttle_manipulator.dmi';
-	icon_state = "hologram_on";
-	light_color = "#2cb2e8";
-	light_range = 2;
-	mouse_opacity = 0;
-	name = "holographic projection";
-	pixel_x = -32;
-	pixel_y = 17
-	},
-/obj/structure{
-	desc = "This is the ship we're on. It's amazing what Nanotrasen can do once they actually put more than ten seconds of effort into their projects.";
-	icon = 'icons/obj/machines/shuttle_manipulator.dmi';
-	icon_state = "hologram_whiteship";
-	light_color = "#2cb2e8";
-	light_range = 7;
-	name = "Ship Hologram";
-	pixel_x = -32;
-	pixel_y = 27
-	},
-/obj/machinery/incident_display/bridge/directional/south,
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/command/bridge)
 "koi" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/power/apc/auto_name/directional/north,
@@ -108811,7 +108811,7 @@ ncR
 vHj
 dou
 ciZ
-iOh
+hXI
 iue
 otw
 fDb
@@ -121880,7 +121880,7 @@ xbj
 ydE
 qcR
 oTz
-koc
+aNF
 xlE
 xlE
 xlE
