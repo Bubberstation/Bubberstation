@@ -80,3 +80,19 @@
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	sound = 'sound/misc/fingersnap1.ogg'
+
+/datum/emote/living/meow_alt
+	key = "meow1"
+	key_third_person = "meows"
+	message = "meows!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/sound/emotes/meow1.ogg'
+
+/datum/emote/living/mrowl
+	key = "mrowl"
+	key_third_person = "mrowls"
+	message = "mrowls!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_zubbers/sound/emotes/mrowl.ogg'
