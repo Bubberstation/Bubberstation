@@ -193,7 +193,7 @@
 					/datum/action/cooldown/mob_cooldown/blood_warp)
 
 /datum/job/chaplain
-	abilities = list(/datum/spellbook_entry/item/necrostone)
+	abilities = list(/datum/action/cooldown/spell/conjure/stone)
 
 /datum/outfit/job/chaplain/New()
 	. = ..()

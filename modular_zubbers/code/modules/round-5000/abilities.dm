@@ -89,3 +89,13 @@
 
 	summon_radius = 0
 	summon_type = list(/obj/item/grenade/chem_grenade/cleaner)
+
+
+
+/datum/action/cooldown/spell/conjure/stone
+	name = "Summon Necromantic Stone"
+	desc = ""
+	cooldown_time = 30 SECONDS
+
+	summon_radius = 0
+	summon_type = list(/obj/item/necromantic_stone)
