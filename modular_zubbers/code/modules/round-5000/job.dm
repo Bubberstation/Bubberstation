@@ -26,7 +26,7 @@
 	abilities = list(/datum/action/cooldown/spell/conjure/simian)
 
 /datum/job/cargo_technician
-
+	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
 
 /datum/job/chemist
 	abilities = list(/obj/item/book/granter/action/spell/fireball)
@@ -66,7 +66,7 @@
 	abilities = list(/datum/action/cooldown/spell/charged/beam/tesla)
 
 /datum/job/detective
-	abilities = list()
+	abilities = list(/datum/action/cooldown/spell/sanguine_strike)
 
 /datum/job/doctor
 	abilities = list(/datum/action/cooldown/spell/touch/flesh_surgery,
@@ -74,9 +74,14 @@
 					)
 
 /datum/job/geneticist
-	abilities = list()
+	abilities = list(/datum/action/cooldown/spell/apply_mutations/mutate)
 
 /datum/job/head_of_personnel
+	abilities = list(/datum/action/cooldown/mob_cooldown/tentacle_grasp,
+					/datum/action/cooldown/spell/pointed/projectile/furious_steel,
+					/datum/action/cooldown/spell/teleport/area_teleport,
+					/datum/action/cooldown/spell/conjure/contract,
+					/datum/action/cooldown/spell/forcewall)
 
 /datum/job/head_of_security
 	abilities = list(/datum/action/cooldown/mob_cooldown/charge/triple_charge,
@@ -84,8 +89,13 @@
 					/datum/action/cooldown/spell/conjure_item/infinite_guns/hos)
 
 /datum/job/janitor
+	abilities = list(/datum/action/cooldown/mob_cooldown/expel_gas/janitor,
+					/datum/action/cooldown/mob_cooldown/bot/foam,
+					/datum/action/cooldown/spell/conjure/cleaner)
 
 /datum/job/lawyer
+	abilities = list(/datum/action/cooldown/spell/conjure/contract,
+					/datum/action/cooldown/spell/forcewall) // When you need to build up a good defense for your client
 
 /datum/job/mime
 	abilities = list(/datum/action/cooldown/spell/pointed/projectile/finger_guns,
@@ -99,15 +109,32 @@
 	abilities = list(/datum/action/cooldown/spell/pointed/swap)
 
 /datum/job/psychologist
+	abilities = list(/datum/action/cooldown/spell/conjure/cosmic_expansion,
+					/datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon,
+					)
 
 /datum/job/quartermaster
+	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
+
+/datum/outfit/job/quartermaster
+	backpack_contents = list(
+		/obj/item/melee/baton/telescopic = 1,
+		/obj/item/physic_manipulation_tool = 1,
+	)
 
 /datum/job/research_director
-	abilities = list(/datum/action/cooldown/spell/rod_form)
+	abilities = list(/datum/action/cooldown/spell/rod_form,
+					/datum/action/cooldown/mob_cooldown/create_legion_turrets,
+					/datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/netguardian,
+					/datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire)
 
 /datum/job/roboticist
+	abilities = list(/datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/netguardian,
+					/datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire)
 
 /datum/job/scientist
+	abilities = list(/datum/action/cooldown/spell/aoe/repulse,
+					/datum/action/cooldown/mob_cooldown/create_legion_turrets)
 
 /datum/job/security_officer
 	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
@@ -118,7 +145,8 @@
 
 /datum/job/station_engineer
 	abilities = list(/datum/action/cooldown/spell/conjure/machineframe,
-					/datum/action/cooldown/spell/charge)
+					/datum/action/cooldown/spell/charge,
+					/datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/netguardian)
 
 /datum/job/warden
 	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun,
@@ -133,3 +161,24 @@
 
 /datum/outfit/job/bitrunner
 	belt = /obj/item/storage/belt/wands/full
+
+
+
+/datum/job/science_guard
+	abilities = list(/datum/action/cooldown/spell/aoe/magic_missile/lesser)
+
+/datum/job/orderly
+	abilities = list(/datum/action/cooldown/spell/aoe/magic_missile/lesser)
+
+/datum/job/engineering_guard
+	abilities = list(/datum/action/cooldown/spell/aoe/magic_missile/lesser)
+
+/datum/job/customs_agent
+	abilities = list(/datum/action/cooldown/spell/aoe/magic_missile/lesser)
+
+/datum/job/bouncer
+	abilities = list(/datum/action/cooldown/spell/aoe/magic_missile/lesser)
+
+/datum/job/security_medic
+	abilities = list(/datum/action/cooldown/spell/stimpack,
+					/datum/action/cooldown/mob_cooldown/blood_warp)

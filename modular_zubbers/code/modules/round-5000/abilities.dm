@@ -43,6 +43,7 @@
 	circuit_added(new_board)
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/hos
+	name = "Summon Guns"
 	cooldown_time = 10 SECONDS
 	cooldown_reduction_per_rank = 0 SECONDS
 
@@ -67,3 +68,24 @@
 	var/drink_type = get_random_drink()
 	new drink_type(get_turf(src))
 	return INITIALIZE_HINT_QDEL
+
+/datum/action/cooldown/spell/conjure/contract
+	name = "Summon Contract"
+	desc = ""
+	cooldown_time = 30 SECONDS
+
+	summon_radius = 0
+	summon_type = list(/obj/item/antag_spawner/contract)
+
+/datum/action/cooldown/mob_cooldown/expel_gas/janitor
+	possible_gases = list(
+		/datum/gas/water_vapor = 5,
+	)
+
+/datum/action/cooldown/spell/conjure/cleaner
+	name = "Summon Cleaner Grenade"
+	desc = ""
+	cooldown_time = 30 SECONDS
+
+	summon_radius = 0
+	summon_type = list(/obj/item/grenade/chem_grenade/cleaner)

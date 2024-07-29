@@ -86,7 +86,7 @@
 	/// Gas being expelled.
 	var/active_gas = null
 	/// Associative list of types of gases to moles we create every life tick.
-	var/static/list/possible_gases = list(
+	var/list/possible_gases = list(
 		/datum/gas/oxygen = 50,
 		/datum/gas/nitrogen = 750, //overpressurizing is hard!.
 		/datum/gas/water_vapor = 1, //you need incredibly little water vapor for the effects to kick in
