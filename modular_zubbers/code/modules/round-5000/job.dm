@@ -40,15 +40,19 @@
 /datum/job/chief_medical_officer
 	abilities = list(/datum/action/cooldown/spell/touch/flesh_surgery)
 
-/datum/outfit/job/cmo
-	suit_store = /obj/item/gun/magic/staff/healing/unrestricted
+/datum/outfit/job/cmo/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		suit_store = /obj/item/gun/magic/staff/healing/unrestricted
 
 /datum/job/clown
 	abilities = list(/datum/action/cooldown/spell/voice_of_god/clown)
 
-/datum/outfit/job/clown
-	uniform = /obj/item/clothing/under/rank/civilian/clown/magic
-	l_hand = /obj/item/gun/magic/staff/honk
+/datum/outfit/job/clown/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		uniform = /obj/item/clothing/under/rank/civilian/clown/magic
+		l_hand = /obj/item/gun/magic/staff/honk
 
 /datum/job/cook
 	abilities = list(/datum/action/cooldown/spell/conjure/cheese,
@@ -67,6 +71,11 @@
 
 /datum/job/detective
 	abilities = list(/datum/action/cooldown/spell/sanguine_strike)
+
+/datum/outfit/job/detective/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		r_hand = /obj/item/scrying
 
 /datum/job/doctor
 	abilities = list(/datum/action/cooldown/spell/touch/flesh_surgery,
@@ -116,11 +125,13 @@
 /datum/job/quartermaster
 	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun)
 
-/datum/outfit/job/quartermaster
-	backpack_contents = list(
-		/obj/item/melee/baton/telescopic = 1,
-		/obj/item/physic_manipulation_tool = 1,
-	)
+/datum/outfit/job/quartermaster/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		backpack_contents = list(
+			/obj/item/melee/baton/telescopic = 1,
+			/obj/item/physic_manipulation_tool = 1,
+		)
 
 /datum/job/research_director
 	abilities = list(/datum/action/cooldown/spell/rod_form,
@@ -159,10 +170,11 @@
 /datum/job/bitrunner
 	abilities = list(/datum/action/cooldown/spell/charge)
 
-/datum/outfit/job/bitrunner
-	belt = /obj/item/storage/belt/wands/full
-
-
+/datum/outfit/job/bitrunner/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		belt = /obj/item/storage/belt/wands/full
+		l_pocket = /obj/item/modular_computer/pda/bitrunner
 
 /datum/job/science_guard
 	abilities = list(/datum/action/cooldown/spell/aoe/magic_missile/lesser)
@@ -184,25 +196,43 @@
 					/datum/action/cooldown/mob_cooldown/blood_warp)
 
 /datum/job/chaplain
+	abilities = list(/datum/spellbook_entry/item/necrostone)
 
+/datum/outfit/job/chaplain/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		back = /obj/item/mod/control/pre_equipped/enchanted
 
 /datum/job/blacksmith
 	abilities = list(/datum/action/cooldown/spell/summonitem)
 
-/datum/outfit/job/blacksmith
-	backpack_contents = list(
-		/obj/item/forging/hammer = 1,
-		/obj/item/forging/tongs = 1,
-		/obj/item/forging/billow = 1,
-		/obj/item/banhammer/real = 1,
-	)
-	l_pocket = /obj/item/mjollnir/pocket
+/datum/outfit/job/blacksmith/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		backpack_contents = list(
+			/obj/item/forging/hammer = 1,
+			/obj/item/forging/tongs = 1,
+			/obj/item/forging/billow = 1,
+			/obj/item/banhammer/real = 1,
+		)
+		l_pocket = /obj/item/mjollnir/pocket
 
 /obj/item/mjollnir/pocket
 	w_class = WEIGHT_CLASS_TINY
 
 /datum/job/corrections_officer
+	abilities = list(/datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage)
+
+/datum/outfit/job/corrections_officer/New()
+	. = ..()
+	if(GLOB.round_id == 5000)
+		l_hand =  /obj/item/gun/magic/staff/spellblade
+
 
 /datum/job/blueshield
+	abilities = list(/datum/action/cooldown/spell/touch/flesh_to_stone)
 
 /datum/job/nanotrasen_consultant
+	abilities = list(/datum/action/cooldown/spell/conjure/the_traps,
+					/datum/action/cooldown/spell/spacetime_dist,
+					/datum/action/cooldown/spell/tap)
