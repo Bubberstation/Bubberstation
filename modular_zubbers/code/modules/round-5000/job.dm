@@ -1,9 +1,6 @@
 /datum/job
 	var/list/abilities
 
-/datum/job/ai
-	abilities = list(/datum/action/cooldown/spell/charged/beam/tesla)
-
 /datum/job/atmospheric_technician
 	abilities = list(/datum/action/cooldown/spell/conjure/foam_wall/fast,
 					/datum/action/cooldown/spell/conjure/extinguisher,
