@@ -182,3 +182,13 @@
 /datum/job/security_medic
 	abilities = list(/datum/action/cooldown/spell/stimpack,
 					/datum/action/cooldown/mob_cooldown/blood_warp)
+
+/datum/job/chaplain
+
+/datum/job/blacksmith
+
+/datum/job/corrections_officer
+
+/datum/job/blueshield
+
+/datum/job/nanotrasen_consultant
