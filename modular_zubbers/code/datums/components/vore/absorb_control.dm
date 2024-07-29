@@ -70,7 +70,7 @@
 	else
 		puppetmaster = controller
 		backseat = pred_backseat
-		backseat.name = puppet.name
+		backseat.name = "[puppet.real_name] (Backseat)"
 
 	to_chat(puppetmaster, span_userdanger("You take control of [puppet]!"))
 
@@ -123,6 +123,7 @@
 
 /mob/living/pred_backseat/Initialize(mapload, datum/component/absorb_control/new_absorb_control)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 	if(isliving(loc))
 		body = loc
 		absorb_control = new_absorb_control
@@ -138,17 +139,3 @@
 		absorb_control.revert()
 
 	. = ..()
-
-/mob/living/pred_backseat/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced, filterproof, message_range, datum/saymode/saymode, list/message_mods)
-	SHOULD_CALL_PARENT(FALSE)
-	if(!message)
-		return
-	if(!try_speak(message, ignore_spam, forced, filterproof))
-		return
-
-	to_chat(src, span_notice("You whisper into [body]'s mind, ") + span_game_say("\"[message]\""))
-	to_chat(body, span_notice("You hear [src]'s voice in your head... ") + span_game_say("\"[message]\""))
-	return FALSE
-
-/mob/living/pred_backseat/emote(act, m_type = null, message = null, intentional = FALSE, force_silence = FALSE)
-	return FALSE
