@@ -46,7 +46,7 @@
 	icon_state = "producebin"
 	resistance_flags = FLAMMABLE
 	base_build_path = /obj/machinery/smartfridge/wooden
-	base_icon_state = "produce"
+	base_icon_state = "producebin"
 	use_power = NO_POWER_USE
 	light_power = 0
 	idle_power_usage = 0
@@ -54,6 +54,7 @@
 	has_emissive = FALSE
 	can_atmos_pass = ATMOS_PASS_YES
 	visible_contents = TRUE
+	contents_overlay_icon = "produce"
 
 /obj/machinery/smartfridge/wooden/Initialize(mapload)
 	. = ..()
@@ -94,7 +95,8 @@
 	desc = "A wooden shelf, used to hold seeds preventing them from germinating early."
 	icon_state = "seedshelf"
 	base_build_path = /obj/machinery/smartfridge/wooden/seed_shelf
-	base_icon_state = "seed"
+	base_icon_state = "seedshelf"
+	contents_overlay_icon = "seed"
 
 /obj/machinery/smartfridge/wooden/seedshelf/wooden/accept_check(obj/item/weapon)
 	return istype(weapon, /obj/item/seeds)
@@ -104,7 +106,8 @@
 	desc = "A wooden shelf, used to store food... preferably preserved."
 	icon_state = "seedshelf"
 	base_build_path = /obj/machinery/smartfridge/wooden/ration_shelf
-	base_icon_state = "ration"
+	base_icon_state = "seedshelf"
+	contents_overlay_icon = "ration"
 
 /obj/machinery/smartfridge/wooden/rationshelf/wooden/accept_check(obj/item/weapon)
 	return (IS_EDIBLE(weapon) || (istype(weapon,/obj/item/reagent_containers/cup/bowl) && length(weapon.reagents?.reagent_list)))
@@ -114,7 +117,8 @@
 	desc = "A wooden table with awning, used to display produce items."
 	icon_state = "producedisplay"
 	base_build_path = /obj/machinery/smartfridge/wooden/produce_display
-	base_icon_state = "nonfood"
+	base_icon_state = "producedisplay"
+	contents_overlay_icon = "nonfood"
 
 /obj/machinery/smartfridge/wooden/producedisplay/accept_check(obj/item/weapon)
 	return (istype(weapon, /obj/item/grown) || istype(weapon, /obj/item/bouquet) || istype(weapon, /obj/item/clothing/head/costume/garland))
