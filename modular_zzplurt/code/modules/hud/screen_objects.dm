@@ -42,7 +42,7 @@
 		return
 
 	var/mob/living/carbon/human/owner = usr
-	owner.set_combat_focus(!owner.focus_mode, FALSE)
+	owner.set_combat_focus(!owner.combat_focus, FALSE)
 	update_appearance()
 
 /atom/movable/screen/focus_toggle/update_icon_state()
@@ -50,5 +50,5 @@
 	if(!istype(user) || !user.client)
 		return ..()
 
-	icon_state = user.focus_mode ? "combat" : "combat_off"
+	icon_state = user.combat_focus ? "combat" : "combat_off"
 	return ..()
