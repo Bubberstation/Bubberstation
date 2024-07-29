@@ -185,7 +185,17 @@
 
 /datum/job/chaplain
 
-/datum/job/blacksmith
+/datum/outfit/job/blacksmith
+	backpack_contents = list(
+		/obj/item/forging/hammer = 1,
+		/obj/item/forging/tongs = 1,
+		/obj/item/forging/billow = 1,
+		/obj/item/banhammer/real = 1,
+	)
+	l_pocket = /obj/item/singularityhammer/pocket
+
+/obj/item/singularityhammer/pocket
+	w_class = WEIGHT_CLASS_TINY
 
 /datum/job/corrections_officer
 
