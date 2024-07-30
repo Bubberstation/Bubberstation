@@ -35,6 +35,17 @@
 	data["vore_slots"] = null
 	data["lookup_table"] = null
 
+	var/list/overlay_data = list()
+	for(var/atom/movable/screen/fullscreen/carrier/vore/type as anything in subtypesof(/atom/movable/screen/fullscreen/carrier/vore))
+		UNTYPED_LIST_ADD(overlay_data, list(
+			"path" = type,
+			"name" = initial(type.name),
+			"icon" = initial(type.icon),
+			"icon_state" = initial(type.icon_state),
+			"recolorable" = initial(type.recolorable),
+		))
+	data["available_overlays"] = overlay_data
+
 	if(ui_editing_lookuptable)
 		var/datum/vore_preferences/vore_prefs = user.client.get_vore_prefs()
 		if(!vore_prefs)
@@ -343,6 +354,26 @@
 				return
 			vore_prefs.export_slot()
 			. = TRUE
+		if("test_fullscreen")
+			if(living_parent.screens["vore"])
+				to_chat(living_parent, span_warning("You can't preview belly fullscreens when you already have one visible."))
+				return
+			if(!living_parent.wants_vore_fullscreen())
+				to_chat(living_parent, span_warning("You can't preview belly fullscreens when your preference is turned off."))
+				return
+			// We need a belly for this to be relative to, for recoloring
+			var/obj/vore_belly/target = locate(params["ref"])
+			if(!istype(target))
+				return
+			if(target.owner != src)
+				return
+			target.show_fullscreen(living_parent)
+			addtimer(CALLBACK(src, PROC_REF(reset_vore_fullscreen)), 2 SECONDS)
+			. = TRUE
+
+/datum/component/vore/proc/reset_vore_fullscreen()
+	var/mob/living/living_parent = parent
+	living_parent.clear_fullscreen("vore", 1 SECONDS)
 
 /datum/component/vore/proc/click_prey(mob/living/prey)
 	var/mob/living/living_parent = parent

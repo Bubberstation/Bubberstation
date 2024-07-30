@@ -19,6 +19,8 @@
 	var/muffles_radio = TRUE // muffles radios used inside it
 	var/escape_chance = 100
 	var/escape_time = DEFAULT_ESCAPE_TIME
+	var/overlay_path = null
+	var/overlay_color = "#ffffff"
 
 	// Sounds
 	var/is_wet = TRUE
@@ -27,7 +29,6 @@
 	var/fancy_sounds = TRUE
 	var/insert_sound = "Gulp"
 	var/release_sound = "Splatter"
-
 
 /obj/vore_belly/Initialize(mapload, datum/component/vore/new_owner)
 	. = ..()
@@ -95,6 +96,8 @@
 	data["muffles_radio"] = muffles_radio
 	data["escape_chance"] = escape_chance
 	data["escape_time"] = escape_time
+	data["overlay_path"] = overlay_path
+	data["overlay_color"] = overlay_color
 
 	data["is_wet"] = is_wet
 	data["wet_loop"] = wet_loop
@@ -155,6 +158,23 @@
 			escape_chance = clamp(value, 0, 100)
 		if("escape_time")
 			escape_time = clamp(value, MIN_ESCAPE_TIME, MAX_ESCAPE_TIME)
+		if("overlay_path")
+			if(value == null)
+				overlay_path = null
+			else
+				var/maybe_path = text2path(value)
+				if(ispath(maybe_path, /atom/movable/screen/fullscreen/carrier/vore))
+					overlay_path = maybe_path
+			for(var/mob/living/prey in src)
+				prey.clear_fullscreen("vore", FALSE)
+				show_fullscreen(prey)
+		if("overlay_color")
+			var/new_color = input(usr, "Pick a belly color", "Belly Color", overlay_color) as color|null
+			if(new_color)
+				overlay_color = new_color
+			for(var/mob/living/prey in src)
+				prey.clear_fullscreen("vore", FALSE)
+				show_fullscreen(prey)
 		if("is_wet")
 			is_wet = !is_wet
 		if("wet_loop")
@@ -287,6 +307,7 @@
 	owner.appearance_holder.vis_contents += arrived
 	if(ismob(arrived))
 		var/mob/M = arrived
+		show_fullscreen(M)
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
 		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
@@ -335,6 +356,7 @@
 	owner.appearance_holder.vis_contents -= gone
 	if(ismob(gone))
 		var/mob/M = gone
+		M.clear_fullscreen("vore")
 		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
 		REMOVE_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		// Unabsorb if they leave by any method
@@ -487,3 +509,24 @@
 				pred_sound = "vore_sounds_digestion_classic"
 			play_vore_sound_preypred(prey_sound, pred_sound, pref = /datum/vore_pref/toggle/digestion_noises)
 			COOLDOWN_START(src, noise_cooldown, DIGESTION_NOISE_COOLDOWN)
+
+/mob/proc/wants_vore_fullscreen()
+	var/datum/vore_preferences/vore_prefs = get_vore_prefs()
+	if(!vore_prefs)
+		return FALSE
+	if(!vore_prefs.read_preference(/datum/vore_pref/toggle/overlays))
+		return FALSE
+	return TRUE
+
+/obj/vore_belly/proc/set_fullscreen_overlay(path)
+	overlay_path = path
+
+	for(var/mob/M in src)
+		M.clear_fullscreen("vore", FALSE)
+		show_fullscreen(M)
+
+/obj/vore_belly/proc/show_fullscreen(mob/M)
+	if(M.wants_vore_fullscreen() && ispath(overlay_path))
+		var/atom/movable/screen/fullscreen/carrier/vore/V = M.overlay_fullscreen("vore", overlay_path)
+		if(V.recolorable)
+			V.color = overlay_color

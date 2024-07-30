@@ -1,9 +1,10 @@
 import { toFixed } from 'common/math';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
   Button,
+  ColorBox,
   Dropdown,
   Flex,
   Icon,
@@ -16,7 +17,7 @@ import {
 } from 'tgui-core/components';
 
 import { FitText } from '../../components';
-import { AppearanceDisplay } from './AppearanceDisplay';
+import { AppearanceDisplay, BellyFullscreenIcon } from './AppearanceDisplay';
 import * as types from './types';
 
 export const BelliesList = (props) => {
@@ -175,6 +176,16 @@ export const BellyUI = (props: {
             }}
           >
             Settings
+          </Button>
+          <Button
+            color="transparent"
+            selected={selectedTab === 3}
+            onClick={() => {
+              setSelectedTab(3);
+              setEditing(false);
+            }}
+          >
+            Visuals
           </Button>
         </>
       }
@@ -557,6 +568,7 @@ export const BellyUI = (props: {
           </LabeledList.Item>
         </LabeledList>
       )}
+      {selectedTab === 3 && <BellyVisuals belly={belly} />}
     </Section>
   );
 };
@@ -736,5 +748,98 @@ const BellyMessageSection = (props: {
         selfClear
       />
     </Section>
+  );
+};
+
+const BellyVisuals = (props: { belly: types.Belly }) => {
+  const { act, data } = useBackend<types.Data>();
+  const { belly } = props;
+  const { available_overlays } = data;
+
+  return (
+    <Stack fill wrap m={0}>
+      <Box
+        position="fixed"
+        left={17}
+        bottom={1.8}
+        pl={1}
+        pr={1}
+        pt={0.5}
+        pb={0.5}
+        style={{
+          zIndex: 100,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          borderRadius: '5px',
+        }}
+      >
+        <Stack align="center">
+          <Stack.Item>
+            <Button
+              color="transparent"
+              onClick={() =>
+                act('edit_belly', {
+                  ref: belly.ref,
+                  var: 'overlay_color',
+                })
+              }
+            >
+              <ColorBox fontSize={2} color={belly.overlay_color} />
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="eye"
+              onClick={() =>
+                act('test_fullscreen', {
+                  ref: belly.ref,
+                })
+              }
+            >
+              Test Overlay
+            </Button>
+          </Stack.Item>
+        </Stack>
+      </Box>
+      <Stack.Item basis="100%" mb={1} ml={0}>
+        <Button
+          fluid
+          selected={belly.overlay_path === null}
+          onClick={() =>
+            act('edit_belly', {
+              ref: belly.ref,
+              var: 'overlay_path',
+              value: null,
+            })
+          }
+          icon="eye-slash"
+        >
+          No Overlay
+        </Button>
+      </Stack.Item>
+      {available_overlays.map((overlay) => (
+        <Stack.Item key={overlay.path} basis="50%" m={0}>
+          <Button
+            pt={1}
+            color="transparent"
+            selected={overlay.path === belly.overlay_path}
+            onClick={() =>
+              act('edit_belly', {
+                ref: belly.ref,
+                var: 'overlay_path',
+                value: overlay.path,
+              })
+            }
+            tooltip={overlay.name}
+          >
+            <BellyFullscreenIcon
+              icon={overlay.icon}
+              icon_state={overlay.icon_state}
+              color={belly.overlay_color}
+              recolorable={overlay.recolorable}
+            />
+          </Button>
+        </Stack.Item>
+      ))}
+    </Stack>
   );
 };

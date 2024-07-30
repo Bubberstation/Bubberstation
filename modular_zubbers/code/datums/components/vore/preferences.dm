@@ -188,6 +188,8 @@
 	var/new_value = preference.deserialize(preference_value, src)
 	var/success = preference.write(pref_map, new_value)
 	save()
+	if(success)
+		preference.on_change(src, new_value)
 	return success
 
 /datum/vore_preferences/proc/save()
@@ -292,6 +294,9 @@ GLOBAL_LIST_INIT(vore_preference_entries_by_key, init_vore_preference_entries_by
 
 	return TRUE
 
+/datum/vore_pref/proc/on_change(datum/vore_preferences/vore_prefs, new_value)
+	return
+
 /datum/vore_pref/trinary
 	abstract_type = /datum/vore_pref/trinary
 
@@ -345,3 +350,18 @@ GLOBAL_LIST_INIT(vore_preference_entries_by_key, init_vore_preference_entries_by
 
 /datum/vore_pref/toggle/absorb
 	savefile_key = "absorb_allowed"
+
+/datum/vore_pref/toggle/overlays
+	savefile_key = "fullscreen_overlays_allowed"
+
+/datum/vore_pref/toggle/overlays/on_change(datum/vore_preferences/vore_prefs, new_value)
+	var/mob/living/owner_mob = vore_prefs?.owner?.mob
+	if(!istype(owner_mob))
+		return
+
+	if(new_value)
+		if(istype(owner_mob.loc, /obj/vore_belly))
+			var/obj/vore_belly/belly = owner_mob.loc
+			belly.show_fullscreen(owner_mob)
+	else
+		owner_mob.clear_fullscreen("vore")

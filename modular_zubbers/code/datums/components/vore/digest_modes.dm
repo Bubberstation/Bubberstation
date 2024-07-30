@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(digest_modes, init_digest_modes())
 
 /datum/digest_mode/safe
 	name = DIGEST_MODE_SAFE
-	gurgle_noises = TRUE
+	gurgle_noises = FALSE
 
 /datum/digest_mode/digest
 	name = DIGEST_MODE_DIGEST

@@ -29,6 +29,8 @@ export type Belly = {
   muffles_radio: BooleanLike;
   escape_chance: number;
   escape_time: number;
+  overlay_path: string | null;
+  overlay_color: string;
   fancy_sounds: BooleanLike;
   insert_sound: string;
   release_sound: string;
@@ -39,6 +41,14 @@ export type Belly = {
 
 export type PreyBellyView = Omit<Belly, 'index' | 'ref'> & {
   owner_name: string;
+};
+
+export type FullscreenOverlay = {
+  path: string;
+  name: string;
+  icon: string;
+  icon_state: string;
+  recolorable: BooleanLike;
 };
 
 export type Data = {
@@ -59,6 +69,7 @@ export type Data = {
   character_slots: string[] | null;
   vore_slots: { [key: string]: number } | null;
   lookup_table: { [key: string]: number } | null;
+  available_overlays: FullscreenOverlay[];
   not_our_owner: BooleanLike;
 };
 

@@ -92,4 +92,8 @@ export const PREF_TYPE_MAP = {
   digestion_allowed: { component: PrefBinary, name: 'Take Digestion Damage' },
   qdel_allowed: { component: PrefBinary, name: 'Deleted After Digestion' },
   absorb_allowed: { component: PrefBinary, name: 'Absorption Allowed' },
+  fullscreen_overlays_allowed: {
+    component: PrefBinary,
+    name: 'Fullscreen Overlays',
+  },
 };

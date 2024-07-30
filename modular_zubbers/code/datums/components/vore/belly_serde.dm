@@ -13,6 +13,8 @@
 		"muffles_radio" = muffles_radio,
 		"escape_chance" = escape_chance,
 		"escape_time" = escape_time,
+		"overlay_path" = overlay_path,
+		"overlay_color" = overlay_color,
 		"is_wet" = is_wet,
 		"wet_loop" = wet_loop,
 		"fancy_sounds" = fancy_sounds,
@@ -66,6 +68,12 @@
 	muffles_radio = isnum(data["muffles_radio"]) ? !!data["muffles_radio"] : TRUE // make false by default
 	escape_chance = sanitize_integer(data["escape_chance"], 0, 100, 100)
 	escape_time = sanitize_integer(data["escape_time"], MIN_ESCAPE_TIME, MAX_ESCAPE_TIME, DEFAULT_ESCAPE_TIME)
+
+	var/maybe_overlay_path = text2path(data["overlay_path"])
+	if(ispath(maybe_overlay_path, /atom/movable/screen/fullscreen/carrier/vore))
+		overlay_path = maybe_overlay_path
+
+	overlay_color = sanitize_hexcolor(data["overlay_color"])
 
 	is_wet = sanitize_integer(data["is_wet"], FALSE, TRUE, TRUE) // make true by default
 	wet_loop = sanitize_integer(data["wet_loop"], FALSE, TRUE, TRUE) // make true by default

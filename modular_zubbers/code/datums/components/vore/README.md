@@ -7,6 +7,10 @@ By [Shadow Larkens](https://github.com/ShadowLarkens/)
 Most critical options are in [_defines.dm](./_defines.dm) including things such as the max amount of bellies that can
 be created, how many prey can be eaten, etc.
 
+## Debugging
+If you need to debug this system, go to the top of [_defines.dm](./_defines.dm) and uncomment `#define VORE_TESTING`
+to enable helpful debugging features such as not needing clients and working on all living mobs.
+
 ## Code Overview
 [_defines.dm](./_defines.dm) - Settings and constants.
 [absorb_control.dm](./absorb_control.dm) - Component used for prey controlling preds temporarily
