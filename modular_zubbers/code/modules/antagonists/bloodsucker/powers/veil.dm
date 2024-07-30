@@ -27,6 +27,7 @@
 	var/disguise_name
 
 /datum/action/cooldown/bloodsucker/veil/get_power_explanation_extended()
+	. = list()
 	. += "Activating Veil of Many Faces will shroud you in smoke and forge you a new identity."
 	. += "Your name and appearance will be completely randomized, and turning the ability off again will undo it all."
 	. += "Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."

@@ -34,6 +34,7 @@
 	var/notified_overfeeding = FALSE
 
 /datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
+	. = list()
 	. += "Activate Feed while next to someone and you will begin to feed blood off of them."
 	. += "The time needed before you start feeding is [DisplayTimeText(FEED_DEFAULT_TIMER)]."
 	. += "Feeding off of someone while you have them aggressively grabbed will put them to sleep for [DisplayTimeText(get_sleep_time())]."

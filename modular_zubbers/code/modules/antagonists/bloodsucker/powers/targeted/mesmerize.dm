@@ -34,29 +34,20 @@
 	var/blocked_by_glasses = TRUE
 	/// if the ability will knockdown on secondary click
 	var/knockdown_on_secondary = FALSE
+	// string id timer of the current cast, used for combat glare
+	var/timer
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
 	. = "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, [src] them.<br>"
-	. += "This will completely immobilize for  them, and mute them<br>"
+	. += "This will completely immobilize for [DisplayTimeText(get_power_time())].<br>"
+	. += "Additionally, they will be muted for [DisplayTimeText(get_mute_time())] with both the primray and secondary casts.<br>"
 	if(knockdown_on_secondary)
-		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
+		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())].<br>"
 	else
-		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
-	// . += " Additionally, they will be muted for [DisplayTimeText(get_mute_time())].<br>"
-	// if(knockdown_on_secondary)
-	// 	. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
-	// else
-	// 	. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())] and mute them for [DisplayTimeText(get_power_time())].<br>"
-	// if(level_current >= MESMERIZE_GLASSES_LEVEL || !blocked_by_glasses)
-	// 	. += "Not blocked by glasses.<br>"
-	// else
-	// 	. += "Blocked by glasses.<br>"
-	// if(level_current >= MESMERIZE_FACING_LEVEL || !requires_facing_target)
-	// 	. += "Does not require the victim to be facing you.<br>"
-	// else
-	// 	. += "Requires the victim to be facing you.<br>"
+		. += "Right clicking on your victim will confuse them for [DisplayTimeText(combat_mesmerize_time())].<br>"
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_explanation_extended()
+	. = list()
 	. += "Click any player to attempt to mesmerize them. This will stun and mute the victim."
 	. += "The victim will realize they are being mesmerized, but will be unable to talk, but at level [MESMERIZE_SLOWDOWN_LEVEL] they will be also slowed down."
 	if(blocked_by_glasses && requires_facing_target)
@@ -171,10 +162,12 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/FireSecondaryTargetedPower(atom/target, params)
 	if(!isliving(target))
 		CRASH("[src] somehow casted on a non-living target, should have been stopped by CheckCanTarget.")
+	if(timer)
+		return
 	var/mob/living/mesmerized_target = target
 	owner.balloon_alert(owner, "gazing [mesmerized_target]...")
 	perform_indicators(mesmerized_target, 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
+	timer = addtimer(CALLBACK(src, PROC_REF(combat_mesmerize_effects), owner, mesmerized_target), 2 SECONDS)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/mesmerize_effects(mob/living/user, mob/living/mesmerized_target)
 	var/power_time = get_power_time()
@@ -218,13 +211,14 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/DeactivatePower(deactivate_flags)
 	. = ..()
 	target_ref = null
+	timer = null
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT)
 	target.cure_blind(MESMERIZE_TRAIT)
 	// They Woke Up! (Notice if within view)
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(target_range, get_turf(user))))
-		owner.balloon_alert(owner, "[target] snapped out of their trance.")
+		target.balloon_alert(owner, "[target] snapped out of their trance.")
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)
 	return ..() && can_use(user) && CheckCanTarget(target)

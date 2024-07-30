@@ -64,13 +64,12 @@ export const PowerDetails = (props: PowerDetailsProps) => {
         <Stack.Item grow fontSize="16px" width="40%">
           {selectedPower?.power_explanation?.length &&
             selectedPower.power_explanation.map((line, index) => {
-              if (index !== 0) {
+              if (index === 0) {
                 return line;
               } else {
                 return (
                   <>
                     <br />
-                    \n
                     {line}
                   </>
                 );

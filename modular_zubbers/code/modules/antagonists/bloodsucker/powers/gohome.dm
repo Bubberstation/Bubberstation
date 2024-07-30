@@ -30,7 +30,7 @@
 	)
 
 /datum/action/cooldown/bloodsucker/gohome/get_power_explanation_extended()
-	. = ..()
+	. = list()
 	. += "Vanishing Act will, after a short delay, teleport the user to their Claimed Coffin."
 	. += "The user will drop all belongings if seen by a mortal."
 	. += "The power will cancel out if the Claimed Coffin is somehow destroyed."

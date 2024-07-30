@@ -261,9 +261,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
-		. += "LEVEL: [level_current] [name]:\n"
+		. += "LEVEL: [level_current] [name]:"
 	else
-		. += "(Inherent Power) [name]:\n"
+		. += "(Inherent Power) [name]:"
 
 	. += get_power_explanation_extended()
 
