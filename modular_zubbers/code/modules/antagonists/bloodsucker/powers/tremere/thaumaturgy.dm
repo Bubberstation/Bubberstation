@@ -142,7 +142,7 @@
 	return level_current * 2
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_cooldown()
-	return max(2 - (level_current * 0.1), 0) SECONDS
+	return max(1.5 - (level_current * 0.1), 0) SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/get_shot_range()
 	return initial(magic_9ball.range) + level_current * 10
