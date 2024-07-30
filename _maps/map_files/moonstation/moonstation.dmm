@@ -14815,12 +14815,17 @@
 	pixel_x = 7;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/cup/beaker/large,
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 8;
-	pixel_y = 2
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 3;
+	pixel_x = -5
 	},
-/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = -5
+	},
 /obj/structure/table,
 /obj/effect/turf_decal/tile/yellow/diagonal_edge,
 /turf/open/floor/iron/white/diagonal,
@@ -24773,11 +24778,6 @@
 /area/moonstation/surface)
 "gUK" = (
 /obj/structure/extinguisher_cabinet/directional/east,
-/obj/machinery/requests_console/auto_name/directional/north,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/effect/mapping_helpers/requests_console/information,
-/obj/effect/mapping_helpers/requests_console/supplies,
-/obj/effect/mapping_helpers/requests_console/ore_update,
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
@@ -26810,7 +26810,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/item/book/manual/wiki/chemistry,
 /obj/item/clothing/glasses/science,
-/obj/item/hand_labeler,
 /obj/item/stack/package_wrap{
 	pixel_y = 13
 	},
@@ -26819,6 +26818,7 @@
 	},
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/table,
+/obj/item/hand_labeler,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
 "hyc" = (
@@ -41037,7 +41037,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/newscaster/directional/west,
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -41067,6 +41066,11 @@
 	pixel_y = -5;
 	pixel_x = 4
 	},
+/obj/machinery/requests_console/auto_name/directional/west,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/effect/mapping_helpers/requests_console/ore_update,
+/obj/effect/mapping_helpers/requests_console/supplies,
+/obj/effect/mapping_helpers/requests_console/information,
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
 "lvs" = (
@@ -68520,13 +68524,18 @@
 	pixel_x = 7;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/cup/beaker/large,
-/obj/item/reagent_containers/cup/beaker{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/dropper,
 /obj/structure/table,
+/obj/item/reagent_containers/cup/beaker/large{
+	pixel_y = 3;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = -5
+	},
 /turf/open/floor/iron/white/diagonal,
 /area/station/medical/pharmacy)
 "tdl" = (
@@ -75417,6 +75426,12 @@
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/wood/parquet,
 /area/station/commons/lounge)
+"vaM" = (
+/obj/machinery/chem_master,
+/obj/effect/turf_decal/tile/yellow/diagonal_edge,
+/obj/machinery/newscaster/directional/east,
+/turf/open/floor/iron/white/diagonal,
+/area/station/medical/pharmacy)
 "vbi" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/stripes/line{
@@ -257181,7 +257196,7 @@ eqL
 oXp
 ozu
 hxQ
-cYo
+vaM
 dwR
 bhV
 bpZ
