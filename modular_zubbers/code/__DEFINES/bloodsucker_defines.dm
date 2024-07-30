@@ -131,7 +131,7 @@
 #define DEACTIVATE_POWER_DO_NOT_REMOVE (1<<0)
 
 // ability levels that are used cross-file
-#define DOMINATE_VASSALIZE_LEVEL 4
+#define DOMINATE_VASSALIZE_LEVEL 2
 #define TREMERE_OBJECTIVE_POWER_LEVEL 4
 
 
