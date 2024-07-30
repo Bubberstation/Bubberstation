@@ -11,7 +11,6 @@
 	name = "Ring Bell Collar (Worn)"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/collar/ringbell_worn.json'
 
-
 /datum/greyscale_config/collar/gps
 	name = "GPS Collar"
 	icon_file = 'modular_zubbers/code/modules/GAGS/icons/collar.dmi'
@@ -80,4 +79,14 @@
 	name = "Worn Playbunny Ears"
 	icon_file = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/bunny_stuff/playbunny_ears_worn.json'
+
+/datum/greyscale_config/henchmen
+	name = "Henchmen"
+	icon_file = 'modular_zubbers/code/modules/GAGS/icons/monkehenchmenobj.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
+
+/datum/greyscale_config/henchmen/worn
+	name = "Henchmen Worn"
+	icon_file = 'modular_zubbers/code/modules/GAGS/icons/monkehenchmenmob.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/henchmen/henchmen.json'
 

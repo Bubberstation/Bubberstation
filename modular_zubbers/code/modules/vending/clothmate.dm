@@ -4,6 +4,7 @@
 			"name" = "Head",
 			"icon" = "hat-cowboy",
 			"products" = list(
+				/obj/item/clothing/head/henchmen_hat = 5,
 				/obj/item/clothing/head/avipilot = 5,
 				/obj/item/clothing/head/costume/ushanka/frosty = 5,
 
@@ -51,6 +52,7 @@
 			"name" = "Suits & Skirts",
 			"icon" = "vest",
 			"products" = list(
+				/obj/item/clothing/suit/jacket/henchmen_coat = 5,
 				/obj/item/clothing/suit/furcoat = 5,
 				/obj/item/clothing/suit/jacket/cherno = 5,
 				/obj/item/clothing/suit/jacket/hydrogenrobes = 5,
