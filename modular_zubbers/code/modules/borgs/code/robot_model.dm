@@ -275,18 +275,6 @@
 
 	)
 
-
-/* BUBBER SPRITE ADDITIONS BELOW */
-/obj/item/robot_model/clown/Initialize(mapload)
-	. = ..()
-	borg_skins |= list(
-		"Vale" = list(
-			SKIN_ICON_STATE = "vale",
-			SKIN_ICON = CYBORG_ICON_CLOWN_WIDE_BUBBER,
-			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
-		),
-	)
-
 /obj/item/robot_model/standard/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(
