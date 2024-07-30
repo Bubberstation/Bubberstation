@@ -73,7 +73,7 @@
 	if(ispath(maybe_overlay_path, /atom/movable/screen/fullscreen/carrier/vore))
 		overlay_path = maybe_overlay_path
 
-	overlay_color = sanitize_hexcolor(data["overlay_color"])
+	overlay_color = sanitize_hexcolor(data["overlay_color"], default = "#ffffff")
 
 	is_wet = sanitize_integer(data["is_wet"], FALSE, TRUE, TRUE) // make true by default
 	wet_loop = sanitize_integer(data["wet_loop"], FALSE, TRUE, TRUE) // make true by default
