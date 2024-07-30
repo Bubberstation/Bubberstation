@@ -42,6 +42,13 @@
 	trim_state = "trim_ds2medicalofficer"
 	sechud_icon_state = SECHUD_DS2_DOCTOR
 
+/datum/id_trim/syndicom/bubberstation/dauntless/miner
+	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	assignment = "Dauntless Mining Officer"
+	trim_state = "trim_ds2miningofficer"
+	sechud_icon_state = SECHUD_DS2_MININGOFFICER
+	access = list(ACCESS_SYNDICATE)
+
 /datum/id_trim/syndicom/bubberstation/dauntless/masteratarms
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	assignment = "Dauntless Master At Arms"
@@ -69,4 +76,6 @@
 	trim_state = "trim_ds2admiral"
 	sechud_icon_state = SECHUD_DS2_ADMIRAL
 	access = list(ACCESS_SYNDICATE, ACCESS_ROBOTICS, ACCESS_SYNDICATE_LEADER)
+
+
 
