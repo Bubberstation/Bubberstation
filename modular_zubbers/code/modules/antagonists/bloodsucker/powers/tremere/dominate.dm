@@ -170,8 +170,11 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/setup_timer(mob/living/user, mob/living/target, living_time, timer_id)
 	var/list/show_to = list(user, target)
 	if(bloodsuckerdatum_power && length(bloodsuckerdatum_power.vassals))
-		show_to += bloodsuckerdatum_power.vassals
-	new /atom/movable/screen/text/screen_timer/attached(null, list(user, target), timer_id, "Dies in ${timer}", 0, 16, null, null, target)
+		for(var/datum/antagonist/vassal in bloodsuckerdatum_power.vassals)
+			if(!vassal?.owner?.current)
+				continue
+			show_to += vassal.owner.current
+	new /atom/movable/screen/text/screen_timer/attached(null, show_to, timer_id, "Dies in ${timer}", 0, 16, null, null, target)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/on_antag_datum_removal(datum/antagonist/vassal, mob/living/thrall)
 	end_possession(thrall)

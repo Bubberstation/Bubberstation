@@ -11,6 +11,7 @@
 #define AUSPEX_BLOOD_COST_PER_TILE 5
 #define AUSPEX_BLEED_LEVEL 4
 #define AUSPEX_SLEEP_LEVEL 5
+#define AUSPEX_ANYWHERE_LEVEL 6
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex
 	name = "Auspex"
 	level_current = 1
@@ -24,7 +25,10 @@
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/on_power_upgrade()
 	// 1 + for default, the other + is for the upgrade that hasn't been added yet.
-	target_range = min(level_current + 2, 10)
+	if(level_current >= AUSPEX_ANYWHERE_LEVEL)
+		target_range = 0
+	else
+		target_range = min(level_current + 2, 10)
 	. = ..()
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/get_power_desc_extended()
@@ -46,6 +50,7 @@
 	. += "Teleporting will refill your stamina to full."
 	. += "At level [AUSPEX_BLEED_LEVEL] you will cause people at your end location to start bleeding."
 	. += "At level [AUSPEX_SLEEP_LEVEL] you will cause people at your end location to fall asleep."
+	. += "At level [AUSPEX_ANYWHERE_LEVEL] you will be able to teleport anywhere, even if you cannot properly see the tile."
 	. += "The power will cost [AUSPEX_BLOOD_COST_PER_TILE] blood per tile that you teleport."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/CheckValidTarget(atom/target_atom)
@@ -81,7 +86,7 @@
 	auspex_blink(user, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/proc/auspex_blink(mob/living/user, turf/targeted_turf)
-	var/blood_cost = -AUSPEX_BLOOD_COST_PER_TILE * get_dist(user, targeted_turf)
+	var/blood_cost = AUSPEX_BLOOD_COST_PER_TILE * get_dist(user, targeted_turf)
 	if(!can_pay_blood(blood_cost))
 		owner.balloon_alert(owner, "not enough blood!")
 		return
@@ -108,3 +113,4 @@
 #undef AUSPEX_BLOOD_COST_PER_TILE
 #undef AUSPEX_BLEED_LEVEL
 #undef AUSPEX_SLEEP_LEVEL
+#undef AUSPEX_ANYWHERE_LEVEL

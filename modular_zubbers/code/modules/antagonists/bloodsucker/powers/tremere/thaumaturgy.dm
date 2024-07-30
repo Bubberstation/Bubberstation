@@ -36,7 +36,6 @@
 	var/charges = 0
 	/// How long it takes before you can shoot again
 	var/shot_cooldown = 0
-	///Blood shield given while this Power is active.
 	var/datum/weakref/blood_shield
 	var/obj/projectile/magic/arcane_barrage/bloodsucker/magic_9ball
 
@@ -74,6 +73,7 @@
 	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."
 	. += "You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())]."
 	. += "At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time."
+	. += "To activate the shield, right click the action button."
 	. += "At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors."
 	. += "At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs."
 	. += "The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
@@ -82,14 +82,13 @@
 	. = ..()
 	charges = get_max_charges()
 	owner.balloon_alert(owner, "you start thaumaturgy")
+	toggle_blood_shield(TRUE)
 
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/RightClickActivate(trigger_flags)
-	. = ..()
-	toggle_blood_shield()
-	owner.log_message("used [src] to create a blood shield", LOG_ATTACK, color="red")
-
-/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/toggle_blood_shield()
+/datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/toggle_blood_shield(toggle)
 	if(level_current < THAUMATURGY_SHIELD_LEVEL)
+		return
+	// don't toggle if we're already in the state we want to be in
+	if(toggle == !!blood_shield)
 		return
 
 	if(blood_shield)
@@ -122,7 +121,7 @@
 	if(!.)
 		return
 	var/used_charges = get_max_charges() - charges
-
+	toggle_blood_shield(FALSE)
 	if(used_charges > 0)
 		StartCooldown()
 
@@ -173,7 +172,7 @@
 	user.face_atom(target)
 	handle_shot(user, target)
 
-	pay_cost(-THAUMATURGY_BLOOD_COST_PER_CHARGE)
+	pay_cost(THAUMATURGY_BLOOD_COST_PER_CHARGE)
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
 	charges -= 1
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
@@ -181,7 +180,6 @@
 		// delay the message so it doesn't overlap with the cooldown message
 		addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "no charges left!"), 0.5 SECONDS)
 		PowerActivatedSuccesfully(cost_override = 0)
-
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/proc/handle_shot(mob/user, atom/target)
 	magic_9ball = new(get_turf(user))
