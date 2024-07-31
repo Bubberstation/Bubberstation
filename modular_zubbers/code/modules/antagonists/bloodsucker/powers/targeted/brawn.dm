@@ -29,7 +29,7 @@
 		return FALSE
 	// Did we knock a grabber down? We can only do this while not also breaking restraints if strong enough.
 	if(owner.pulledby)
-		if(level_current >= 3 && escape_puller())
+		if(level_current >= BRAWN_BREAKOUT_LEVEL && escape_puller())
 			PowerActivatedSuccesfully()
 			return FALSE
 		owner.balloon_alert(owner, "ability level too low to break free!")
