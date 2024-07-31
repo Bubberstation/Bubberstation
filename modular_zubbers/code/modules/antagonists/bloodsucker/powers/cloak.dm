@@ -26,7 +26,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(level_current < 2)
+	if(level_current < USE_SEEN_CLOAK_LEVEL)
 		for(var/mob/living/watcher in oviewers(9, owner))
 			if(!watcher.mind)
 				continue
@@ -42,7 +42,7 @@
 	. = ..()
 	var/mob/living/user = owner
 	was_running = (user.move_intent == MOVE_INTENT_RUN)
-	if(level_current < 4 && was_running)
+	if(level_current < USE_RUN_CLOAK_LEVEL && was_running)
 		user.toggle_move_intent()
 	user.AddElement(/datum/element/digitalcamo)
 	user.balloon_alert(user, "cloak turned on.")
@@ -57,7 +57,7 @@
 	var/mob/living/user = owner
 	animate(user, alpha = max(25, owner.alpha - min(75, 10 + 5 * level_current)), time = 1.5 SECONDS)
 	// Prevents running while on Cloak of Darkness
-	if(level_current < 4 && user.move_intent != MOVE_INTENT_WALK)
+	if(level_current < USE_RUN_CLOAK_LEVEL && user.move_intent != MOVE_INTENT_WALK)
 		owner.balloon_alert(owner, "you attempt to run, crushing yourself.")
 		user.toggle_move_intent()
 		user.adjustBruteLoss(rand(5, 15))
@@ -79,6 +79,6 @@
 	var/mob/living/user = owner
 	animate(user, alpha = 255, time = 1 SECONDS)
 	user.RemoveElement(/datum/element/digitalcamo)
-	if(level_current < 4 && was_running && user.move_intent == MOVE_INTENT_WALK)
+	if(level_current < USE_RUN_CLOAK_LEVEL && was_running && user.move_intent == MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 	user.balloon_alert(user, "cloak turned off.")

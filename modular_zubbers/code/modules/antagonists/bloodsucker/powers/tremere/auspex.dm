@@ -100,11 +100,11 @@
 	for(var/mob/living/carbon/living_mob in range(1, targeted_turf)-user)
 		if(IS_BLOODSUCKER(living_mob) || IS_VASSAL(living_mob))
 			continue
-		if(level_current >= 4)
+		if(level_current >= AUSPEX_BLEED_LEVEL)
 			var/obj/item/bodypart/bodypart = pick(living_mob.bodyparts)
 			bodypart.force_wound_upwards(/datum/wound/slash/flesh/critical)
 			living_mob.adjustBruteLoss(15)
-		if(level_current >= 5)
+		if(level_current >= AUSPEX_SLEEP_LEVEL)
 			living_mob.Knockdown(10 SECONDS, ignore_canstun = TRUE)
 
 	do_teleport(owner, targeted_turf, no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
