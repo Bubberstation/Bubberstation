@@ -24,8 +24,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/onehuman_module
-	name = "OneHuman Module"
-	desc = "Allows for the construction of a OneHuman AI Module."
+	//bubber edit begin - makes OneHuman Suitable for Safeguard
+	name = "OneCrew Module"
+	desc = "Allows for the construction of a OneCrew AI Module."
+	//bubber edit end
 	id = "onehuman_module"
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 3, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ai_module/zeroth/onehuman
