@@ -2,7 +2,6 @@
 /datum/action/cooldown/bloodsucker/targeted
 	power_flags = BP_AM_TOGGLE
 	click_to_activate = TRUE
-	power_activates_immediately = TRUE
 	///If set, how far the target has to be for the power to work.
 	var/target_range
 	///Message sent to chat when clicking on the power, before you use it.

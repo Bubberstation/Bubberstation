@@ -15,7 +15,6 @@
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
 	target_range = 15
-	power_activates_immediately = FALSE
 	///List of all people hit by our power, so we don't hit them again.
 	var/list/hit = list()
 
@@ -98,7 +97,6 @@
 		if(success) //don't sleep if we failed to move.
 			sleep(world.tick_lag)
 	user.adjustStaminaLoss(-user.staminaloss)
-	PowerActivatedSuccesfully()
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()
 	return 10 + level_current * 4

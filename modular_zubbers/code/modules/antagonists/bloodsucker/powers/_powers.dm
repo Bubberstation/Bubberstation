@@ -37,7 +37,7 @@
 	///The cost to MAINTAIN this Power - Only used for Constant Cost Powers
 	var/constant_bloodcost = 0
 	///Most powers happen the moment you click. Some, like Mesmerize, require time and shouldn't cost you if they fail.
-	var/power_activates_immediately = FALSE
+	var/power_activates_immediately = TRUE
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
@@ -72,14 +72,14 @@
 /datum/action/cooldown/bloodsucker/PreActivate(atom/target)
 	if(!owner)
 		return FALSE
-	if(!power_activates_immediately && active && can_deactivate()) // Active? DEACTIVATE AND END!
+	if(active && can_deactivate()) // Active? DEACTIVATE AND END!
 		DeactivatePower()
 		return FALSE
 	if(!can_pay_cost() || !can_use(owner))
 		return FALSE
 	. = ..()
 	// base type returns true? Pay costs
-	if(!click_to_activate)
+	if(!click_to_activate && power_activates_immediately)
 		pay_cost()
 
 /datum/action/cooldown/bloodsucker/proc/can_pay_cost()
@@ -274,7 +274,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	var/new_desc = ""
 	if(!(purchase_flags & BLOODSUCKER_DEFAULT_POWER))
-		new_desc += "<br><br><b>LEVEL:</b> [level_current]"
+		new_desc += "<br><b>LEVEL:</b> [level_current]"
 	else
 		new_desc += "<br><br><b>(Inherent Power)</b>"
 	if(bloodcost > 0)

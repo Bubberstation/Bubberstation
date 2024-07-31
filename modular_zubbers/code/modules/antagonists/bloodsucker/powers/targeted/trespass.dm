@@ -26,7 +26,6 @@
 		return FALSE
 	return TRUE
 
-
 /datum/action/cooldown/bloodsucker/targeted/trespass/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
@@ -35,7 +34,6 @@
 	if(target_atom == get_turf(owner) || get_turf(target_atom) == get_turf(owner))
 		return FALSE
 	return TRUE // All we care about is destination. Anything you click is fine.
-
 
 /datum/action/cooldown/bloodsucker/targeted/trespass/CheckCanTarget(atom/target_atom)
 	// NOTE: Do NOT use ..()! We don't want to check distance or anything.

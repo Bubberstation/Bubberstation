@@ -11,7 +11,6 @@
 	bloodcost = 8
 	cooldown_time = 9 SECONDS
 	target_range = 1
-	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/get_power_explanation_extended()

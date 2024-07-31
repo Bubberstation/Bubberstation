@@ -174,7 +174,9 @@
 			return
 
 		// Good to go - Buy Power!
-		purchase_choice(bloodsuckerdatum, options[choice])
+		if(!purchase_choice(bloodsuckerdatum, options[choice]))
+			to_chat(human_user, span_warning("Cannot buy duplicate powers!"))
+			return
 
 		human_user.balloon_alert(human_user, "learned [choice]!")
 		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
@@ -238,7 +240,7 @@
 	if(purchased_power in bloodsuckerdatum.powers)
 		to_chat(source.owner.current, span_notice("You already have this power!"))
 		return
-	bloodsuckerdatum.BuyPower(purchased_power)
+	return bloodsuckerdatum.BuyPower(purchased_power)
 
 /**
  * Called when we are trying to turn someone into a Favorite Vassal

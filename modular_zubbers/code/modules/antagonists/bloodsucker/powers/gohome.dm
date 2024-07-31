@@ -18,8 +18,8 @@
 	check_flags = BP_CANT_USE_IN_FRENZY
 	purchase_flags = NONE
 	bloodcost = 100
-	constant_bloodcost = 2
-	cooldown_time = 100 SECONDS
+	cooldown_time = 10 SECONDS
+	power_activates_immediately = FALSE
 
 	///What stage of the teleportation are we in
 	var/teleporting_stage = GOHOME_START
@@ -132,6 +132,7 @@
 	bloodsuckerdatum_power.coffin.force_enter(user)
 
 	DeactivatePower()
+	pay_cost()
 
 /datum/effect_system/steam_spread/bloodsucker
 	effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke

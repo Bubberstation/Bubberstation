@@ -30,8 +30,8 @@
 	cooldown_time = 10 SECONDS
 	prefire_message = "Right click where you wish to fire."
 	click_to_activate = TRUE // you pay to replenish charges
-	unset_after_click = FALSE // Lets us cast multiple times
 	power_activates_immediately = FALSE
+	unset_after_click = FALSE // Lets us cast multiple times
 	/// How many times you can shoot before you need to recast
 	var/charges = 0
 	/// How long it takes before you can shoot again

@@ -21,6 +21,7 @@
 	constant_bloodcost = 1
 	cooldown_time = 12 SECONDS
 	target_range = 2
+	power_activates_immediately = FALSE
 	prefire_message = "Right click to teleport"
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/auspex/on_power_upgrade()

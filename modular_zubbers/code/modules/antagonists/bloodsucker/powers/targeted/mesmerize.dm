@@ -189,7 +189,7 @@
 		mesmerized_target.Knockdown(effect_time)
 	else
 		mesmerized_target.adjust_confusion(effect_time)
-	PowerActivatedSuccesfully()
+	PowerActivatedSuccesfully(cost_override = bloodcost * 0.5)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1.5 SECONDS
