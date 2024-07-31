@@ -3944,10 +3944,11 @@
 /area/station/cargo/miningelevators)
 "bbu" = (
 /obj/structure/plasticflaps/opaque,
-/obj/machinery/conveyor{
-	dir = 1
-	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cratedelivery"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "bbw" = (
@@ -4654,8 +4655,13 @@
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "bnp" = (
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/lavaland_atmos,
+/obj/structure/transport/linear/public,
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/openspace{
+	can_atmos_pass = 0
+	},
 /area/station/commons/public_mining)
 "bnu" = (
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
@@ -4848,8 +4854,13 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/asteroid)
 "bpP" = (
-/obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/plating/lavaland_atmos,
+/obj/structure/transport/linear/public,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/openspace{
+	can_atmos_pass = 0
+	},
 /area/station/commons/public_mining)
 "bpZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -34387,10 +34398,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "QMLoad"
-	},
 /obj/machinery/light/warm/directional/west,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
@@ -36183,8 +36190,12 @@
 /turf/open/floor/plating/rust/moonstation,
 /area/moonstation/surface)
 "kfZ" = (
-/turf/open/floor/plating/elevatorshaft{
-	initial_gas_mix = "LAVALAND_ATMOS"
+/obj/structure/transport/linear/public,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/openspace{
+	can_atmos_pass = 0
 	},
 /area/station/commons/public_mining)
 "kgs" = (
@@ -40118,6 +40129,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
+"ljq" = (
+/obj/structure/transport/linear,
+/obj/effect/landmark/transport/transport_id{
+	specific_transport_id = "tram_mining_lift"
+	},
+/turf/open/floor/plating/elevatorshaft,
+/area/station/cargo/miningelevators)
 "ljs" = (
 /obj/machinery/light/warm/directional/east,
 /turf/open/floor/iron/dark,
@@ -46612,10 +46630,6 @@
 "mYK" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 8
-	},
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "QMLoad"
 	},
 /obj/machinery/door/window/right/directional/south{
 	name = "Cargo Crate Delivery";
@@ -63612,6 +63626,20 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
+"rKD" = (
+/obj/structure/transport/linear/public,
+/obj/machinery/elevator_control_panel/directional/north{
+	linked_elevator_id = "tram_public_mining_lift";
+	preset_destination_names = list("2" = "Lavaland (NOT IN SERVICE)", "3" = "Rock Caves", "4" = "Surface");
+	pixel_y = 36
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/openspace{
+	can_atmos_pass = 0
+	},
+/area/station/commons/public_mining)
 "rKP" = (
 /mob/living/basic/chicken{
 	name = "Featherbottom";
@@ -83194,9 +83222,8 @@
 /area/station/science/robotics/augments)
 "xpe" = (
 /obj/structure/transport/linear/public,
-/obj/machinery/elevator_control_panel/directional/north{
-	linked_elevator_id = "tram_public_mining_lift";
-	preset_destination_names = list("2" = "Lavaland (NOT IN SERVICE)", "3" = "Rock Caves", "4" = "Surface")
+/obj/structure/railing{
+	dir = 9
 	},
 /turf/open/openspace{
 	can_atmos_pass = 0
@@ -104960,7 +104987,7 @@ iOs
 dnh
 rly
 coy
-aOF
+ljq
 xOR
 xJF
 vlw
@@ -135536,7 +135563,7 @@ vfM
 iOs
 iOs
 pxh
-kfZ
+xpe
 kfZ
 kfZ
 wLf
@@ -135792,10 +135819,10 @@ vfM
 vfM
 iOs
 iOs
-pxh
-kfZ
-bnp
-bnp
+xfP
+rKD
+nEN
+hDJ
 wFU
 eLM
 iOs
@@ -136051,7 +136078,7 @@ iOs
 iOs
 pxh
 bnp
-bnp
+bpP
 bpP
 bKA
 lAX
@@ -201069,12 +201096,12 @@ kJH
 sSg
 sSg
 aBu
-kdI
-sjH
-gno
-hDJ
-hDJ
-hDJ
+pPx
+eyN
+jUO
+hvR
+hvR
+hvR
 teh
 nFN
 lUL
@@ -201326,12 +201353,12 @@ kJH
 sSg
 sSg
 aBu
-iTd
-eyN
+kdI
+sjH
 nCn
-xpe
-nEN
-hDJ
+hvR
+hvR
+hvR
 nXF
 wyf
 lUL
@@ -201583,12 +201610,12 @@ kJH
 sSg
 sSg
 aBu
-pPx
-rmY
-gno
-hDJ
-hDJ
-hDJ
+iTd
+eyN
+jUO
+hvR
+hvR
+hvR
 sEj
 abR
 lUL
@@ -201841,7 +201868,7 @@ sSg
 sSg
 aBu
 hHA
-eyN
+rmY
 gno
 hWa
 hWa
