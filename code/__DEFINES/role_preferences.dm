@@ -144,7 +144,6 @@
 #define ROLE_VASSAL "Vassal"
 
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
-#define ROLE_ROGUE_CYBORG "Rogue Cyborg"
 //BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.
