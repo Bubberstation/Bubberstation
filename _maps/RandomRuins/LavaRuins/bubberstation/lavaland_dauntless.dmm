@@ -841,6 +841,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/engineering/turbine)
+"eg" = (
+/obj/machinery/vending/dorms/prison{
+	onstation = 0;
+	onstation_override = 1;
+	density = 0;
+	pixel_x = -27
+	},
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "ej" = (
 /obj/structure/frame/machine/secured{
 	anchored = 0
@@ -1241,10 +1250,8 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/service/kitchen)
 "fE" = (
-/obj/machinery/vending/dorms/prison{
-	onstation = 0;
-	onstation_override = 1
-	},
+/obj/item/stack/license_plates/empty/fifty,
+/obj/machinery/plate_press,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
 "fI" = (
@@ -6361,6 +6368,9 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/spawner/random/entertainment/plushie_delux,
+/obj/structure/sign/painting/library{
+	pixel_y = 30
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "AJ" = (
@@ -7525,6 +7535,9 @@
 /obj/structure/bed/double,
 /obj/item/bedsheet/brown/double,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/sign/painting/library{
+	pixel_y = 30
+	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "FA" = (
@@ -8573,6 +8586,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/green/hidden{
 	dir = 9
 	},
+/obj/item/mod/control/pre_equipped/interdyne,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/bubbers/dauntless/med/storage)
 "KO" = (
@@ -8639,13 +8653,13 @@
 "Lc" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/rack/shelf,
-/obj/item/construction/rcd,
 /obj/item/clothing/glasses/meson/night,
 /obj/item/clothing/glasses/meson/night,
 /obj/item/pickaxe,
 /obj/item/pickaxe,
 /obj/item/suit_voucher,
 /obj/item/mining_voucher,
+/obj/item/construction/rcd/loaded/upgraded,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bubbers/dauntless/cargo)
 "Ld" = (
@@ -9928,6 +9942,9 @@
 	pixel_x = -4;
 	pixel_y = 15
 	},
+/obj/structure/sign/painting/library{
+	pixel_y = 30
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Rd" = (
@@ -10553,6 +10570,9 @@
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/spawner/random/entertainment/plushie_delux,
+/obj/structure/sign/painting/library{
+	pixel_y = 30
+	},
 /turf/open/floor/wood/large,
 /area/ruin/space/has_grav/bubbers/dauntless/service/dorms)
 "Tp" = (
@@ -10952,7 +10972,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/vending/cigarette{
 	onstation = 0;
-	onstation_override = 1
+	onstation_override = 1;
+	density = 0;
+	pixel_x = -27
 	},
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/dauntless/sec/prison/rec)
@@ -15336,7 +15358,7 @@ IC
 Eu
 Zz
 UV
-Dz
+eg
 oo
 Dz
 rJ
