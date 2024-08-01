@@ -9,7 +9,7 @@
 	name = "4.6x30mm armor-piercing bullet"
 	damage = 15
 	armour_penetration = 40
-	embedding = null
+	embed_type = null
 
 /obj/projectile/bullet/incendiary/c46x30mm //Not a typo. /obj/projectile/bullet/incendiary is a type.
 	name = "4.6x30mm incendiary bullet"
@@ -28,7 +28,7 @@
 	weak_against_armour = TRUE
 	sharpness = NONE
 	shrapnel_type = null
-	embedding = null
+	embed_type = null
 
 /obj/projectile/bullet/c46x30mm/rubber
 	name = "4.6x30mm rubber-tipped bullet"
@@ -41,7 +41,7 @@
 	weak_against_armour = TRUE
 	sharpness = NONE
 	shrapnel_type = null
-	embedding = null
+	embed_type = null
 
 	ricochets_max = 3
 	ricochet_incidence_leeway = 0

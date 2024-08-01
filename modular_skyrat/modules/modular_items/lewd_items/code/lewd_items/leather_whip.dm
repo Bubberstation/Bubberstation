@@ -14,8 +14,8 @@
 	hitsound = 'sound/weapons/whip.ogg'
 	clothing_flags = INEDIBLE_CLOTHING
 	//When taking that thing in mouth
-	modifies_speech = TRUE
 	flags_cover = MASKCOVERSMOUTH
+	var/modifies_speech = TRUE
 	/// If the color of the toy has been changed before
 	var/color_changed = FALSE
 	/// If the form (or size) of the toy has been changed before
@@ -50,8 +50,20 @@
 	if(!isinhands)
 		. += whip_overlay
 
+/obj/item/clothing/mask/leatherwhip/equipped(mob/equipper, slot)
+	. = ..()
+	if ((slot & ITEM_SLOT_MASK) && modifies_speech)
+		RegisterSignal(equipper, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	else
+		UnregisterSignal(equipper, COMSIG_MOB_SAY)
+
+/obj/item/clothing/mask/leatherwhip/dropped(mob/dropper)
+	. = ..()
+	UnregisterSignal(dropper, COMSIG_MOB_SAY)
+
 // Speech handler for moansing when talking
-/obj/item/clothing/mask/leatherwhip/handle_speech(datum/source, list/speech_args)
+/obj/item/clothing/mask/leatherwhip/proc/handle_speech(datum/source, list/speech_args)
+	SIGNAL_HANDLER
 	speech_args[SPEECH_MESSAGE] = pick((prob(moans_alt_probability) && LAZYLEN(moans_alt)) ? moans_alt : moans)
 	play_lewd_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/under_moan_f1.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/under_moan_f2.ogg',
@@ -145,21 +157,26 @@
 	worn_icon_state = "[base_icon_state]_[current_whip_form]"
 
 //safely discipline someone without damage
-/obj/item/clothing/mask/leatherwhip/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+/obj/item/clothing/mask/leatherwhip/attack(mob/living/target, mob/living/user)
 	. = ..()
-	if(!istype(target))
+	var/mob/living/carbon/human/carbon_target
+	if(istype(target,/mob/living/carbon/human))
+		carbon_target = target
+	else if(istype(target,/mob/living/silicon/robot))
+		// Just use target var, return if it isn't human or robot
+	else
+		return
+	if(!istype(user,/mob/living/carbon/human) && !istype(user,/mob/living/silicon/robot))
 		return
 
 	var/message = ""
-	var/targetedsomewhere = FALSE
 //and there is code for successful check, so we are whipping someone
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
 		to_chat(user, span_danger("[target] doesn't want you to do that."))
 		return
 	switch(user.zone_selected) //to let code know what part of body we gonna whip
 		if(BODY_ZONE_L_LEG)
-			targetedsomewhere = TRUE
-			if(!target.has_feet())
+			if(carbon_target && !carbon_target.has_feet())
 				to_chat(user, span_danger("[target] is missing their left leg!"))
 				return
 			if(current_whip_type == "hard")
@@ -184,8 +201,7 @@
 				play_lewd_sound(loc, 'sound/weapons/whip.ogg', 60)
 
 		if(BODY_ZONE_R_LEG)
-			targetedsomewhere = TRUE
-			if(!target.has_feet())
+			if(carbon_target && !carbon_target.has_feet())
 				to_chat(user, span_danger("[target] is missing their right leg!"))
 				return
 			if(current_whip_type == "hard")
@@ -210,17 +226,16 @@
 				play_lewd_sound(loc, 'sound/weapons/whip.ogg', 60)
 
 		if(BODY_ZONE_HEAD)
-			targetedsomewhere = TRUE
 			message = (user == target) ? pick("wraps [src] around [target.p_their()] neck, choking [target.p_them()]self", "chokes [target.p_them()]self with [src]") : pick("chokes [target] with [src]", "twines [src] around [target]'s neck!")
 			if(prob(70) && (target.stat != DEAD))
 				target.try_lewd_autoemote(pick("gasp", "choke", "moan"))
-			target.adjust_arousal(3)
+			if(carbon_target)
+				carbon_target.adjust_arousal(3)
 			target.adjust_pain(5)
 			play_lewd_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 80)
 
 		if(BODY_ZONE_PRECISE_GROIN)
-			targetedsomewhere = TRUE
-			if(!target.is_bottomless())
+			if(carbon_target && !carbon_target.is_bottomless())
 				to_chat(user, span_danger("[target]'s butt is covered!"))
 				return
 			if(current_whip_type == "weak")
@@ -230,7 +245,8 @@
 						target.try_lewd_autoemote(pick("moan", "twitch"))
 					if(prob(10))
 						target.apply_status_effect(/datum/status_effect/subspace)
-				target.adjust_arousal(5)
+				if(carbon_target)
+					carbon_target.adjust_arousal(5)
 				target.adjust_pain(5)
 				target.apply_status_effect(/datum/status_effect/spanked)
 				if(HAS_TRAIT(target, TRAIT_MASOCHISM || TRAIT_BIMBO))
@@ -244,7 +260,8 @@
 						target.try_lewd_autoemote(pick("moan", "twitch", "twitch_s", "scream"))
 					if(prob(10))
 						target.apply_status_effect(/datum/status_effect/subspace)
-				target.adjust_arousal(3)
+				if(carbon_target)
+					carbon_target.adjust_arousal(3)
 				target.adjust_pain(8)
 				target.apply_status_effect(/datum/status_effect/spanked)
 				if(HAS_TRAIT(target, TRAIT_MASOCHISM || TRAIT_BIMBO))
@@ -271,10 +288,10 @@
 						target.apply_status_effect(/datum/status_effect/subspace)
 					target.do_jitter_animation()
 				target.adjust_pain(4)
-				target.adjust_arousal(5)
+				if(carbon_target)
+					carbon_target.adjust_arousal(5)
 				play_lewd_sound(loc, 'sound/weapons/whip.ogg', 60)
-	if(!targetedsomewhere)
-		return
+
 	user.visible_message(span_purple("[user] [message]!"))
 
 //toggle low pain mode. Because sometimes screaming isn't good

@@ -268,7 +268,7 @@
 
 		var/flags = SEND_SIGNAL(parent, COMSIG_CIRCUIT_PRE_POWER_USAGE, energy_usage_per_input)
 		if(!(flags & COMPONENT_OVERRIDE_POWER_USAGE))
-			var/obj/item/stock_parts/cell/cell = parent.get_cell()
+			var/obj/item/stock_parts/power_store/cell = parent.get_cell()
 			if(!cell?.use(energy_usage_per_input))
 				return FALSE
 
@@ -410,7 +410,7 @@
  * Called when a circuit component requests to send Ntnet data signal.
  *
  * Arguments:
- * * port - The required list port needed by the Ntnet recieve
+ * * port - The required list port needed by the Ntnet receive
  * * key - The encryption key
  * * signal_type - The signal type used for sending this global signal (optional, default is COMSIG_GLOB_CIRCUIT_NTNET_DATA_SENT)
  */

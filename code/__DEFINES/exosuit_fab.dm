@@ -10,6 +10,10 @@
 #define BORG_MODEL_ENGINEERING (1<<4)
 /// Module is compatible with Service Cyborg model
 #define BORG_MODEL_SERVICE (1<<5)
+//Bubber addition start
+/// Module is compatible with Research Cyborg model
+#define BORG_MODEL_RESEARCH (1<<6)
+//Bubber addition end
 
 /// Module is compatible with Ripley Exosuit models
 #define EXOSUIT_MODULE_RIPLEY (1<<0)
@@ -35,10 +39,12 @@
 #define EXOSUIT_MODULE_MARAUDER (1<<10)
 /// Module is compatible with Paddy models
 #define EXOSUIT_MODULE_PADDY (1<<11)
+/// Module is compatible with Justice models
+#define EXOSUIT_MODULE_JUSTICE (1<<12)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING (EXOSUIT_MODULE_RIPLEY | EXOSUIT_MODULE_CLARKE)
 /// Module is compatible with "Combat" Exosuit models - Gygax, H.O.N.K, Durand and Phazon, or any Exosuit with an empty Concealed Weapon Bay
-#define EXOSUIT_MODULE_COMBAT (EXOSUIT_MODULE_GYGAX | EXOSUIT_MODULE_HONK | EXOSUIT_MODULE_DURAND | EXOSUIT_MODULE_PHAZON | EXOSUIT_MODULE_SAVANNAH | EXOSUIT_MODULE_RETICENCE | EXOSUIT_MODULE_MARAUDER | EXOSUIT_MODULE_PADDY | EXOSUIT_MODULE_CONCEALED_WEP_BAY)
+#define EXOSUIT_MODULE_COMBAT (EXOSUIT_MODULE_GYGAX | EXOSUIT_MODULE_HONK | EXOSUIT_MODULE_DURAND | EXOSUIT_MODULE_PHAZON | EXOSUIT_MODULE_SAVANNAH | EXOSUIT_MODULE_RETICENCE | EXOSUIT_MODULE_MARAUDER | EXOSUIT_MODULE_PADDY | EXOSUIT_MODULE_JUSTICE | EXOSUIT_MODULE_CONCEALED_WEP_BAY)
 /// Module is compatible with "Medical" Exosuit modelsm - Odysseus
 #define EXOSUIT_MODULE_MEDICAL EXOSUIT_MODULE_ODYSSEUS

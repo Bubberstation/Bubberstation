@@ -19,7 +19,7 @@
 	name = "security utility uniform"
 	desc = "A utility uniform worn by Lopland-certified Security officers."
 	icon_state = "util_sec"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION | CLOTHING_MONKEY_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/skyrat/utility/redsec
@@ -100,20 +100,8 @@
 	desc = "Turtleneck sweater commonly worn by Peacekeepers, attached with a skirt."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	icon_state = "jumpskirt_blue"
-	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	gets_cropped_on_taurs = FALSE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "jumpskirt_blue",
-			RESKIN_WORN_ICON_STATE = "jumpskirt_blue"
-        ),
-		"Black Variant" = list(
-			RESKIN_ICON_STATE = "jumpskirt_black",
-			RESKIN_WORN_ICON_STATE = "jumpskirt_black"
-		),
-	)
+	icon_state = "secskirt"
+
 
 /obj/item/clothing/under/rank/security/peacekeeper/shortskirt
 	name = "security shortskirt"
@@ -156,10 +144,3 @@
 	desc = "A tar black naval suit and a rank badge denoting the Officer of The Internal Security Division. Be careful your underlings don't bump their head on a door."
 	name = "head of security's naval jumpsuit"
 	icon_state = "imphos"
-
-/*
-*	PRISONER
-*/
-
-/obj/item/clothing/under/rank/prisoner
-	greyscale_config_worn_monkey = /datum/greyscale_config/jumpsuit/prison/worn/monkey

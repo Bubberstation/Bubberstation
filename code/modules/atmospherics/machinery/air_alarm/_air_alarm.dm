@@ -137,7 +137,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 /obj/machinery/airalarm/Destroy()
 	if(my_area)
 		my_area = null
-	QDEL_NULL(wires)
 	QDEL_NULL(alarm_manager)
 	GLOB.air_alarms -= src
 	return ..()
@@ -145,6 +144,8 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 /obj/machinery/airalarm/proc/check_enviroment()
 	var/turf/our_turf = connected_sensor ? get_turf(connected_sensor) : get_turf(src)
 	var/datum/gas_mixture/environment = our_turf.return_air()
+	if(isnull(environment))
+		return
 	check_danger(our_turf, environment, environment.temperature)
 
 /obj/machinery/airalarm/proc/get_enviroment()
@@ -491,6 +492,10 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			if(allow_link_change)
 				disconnect_sensor()
 
+		if ("lock")
+			togglelock(usr)
+			return TRUE
+
 	update_appearance()
 
 	return TRUE
@@ -550,6 +555,9 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		return
 
+	if(!environment)
+		return
+
 	var/old_danger = danger_level
 	danger_level = AIR_ALARM_ALERT_NONE
 
@@ -568,7 +576,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		alarm_manager.send_alarm(ALARM_ATMOS)
 		if(pressure <= WARNING_LOW_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low pressure and temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE && temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! Low pressure and high temperature detected."
@@ -578,7 +585,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			return
 		if(pressure >= WARNING_HIGH_PRESSURE && temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! High pressure and low temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(pressure <= WARNING_LOW_PRESSURE)
 			warning_message = "Danger! Low pressure detected."
@@ -588,7 +594,6 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			return
 		if(temp <= BODYTEMP_COLD_WARNING_1+10)
 			warning_message = "Danger! Low temperature detected."
-			heat_environment(environment) //BUBBERSTATION CHANGE: ADDS HEATING
 			return
 		if(temp >= BODYTEMP_HEAT_WARNING_1-27)
 			warning_message = "Danger! High temperature detected."

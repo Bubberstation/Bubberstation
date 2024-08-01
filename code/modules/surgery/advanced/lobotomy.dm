@@ -34,6 +34,7 @@
 	preop_sound = 'sound/surgery/scalpel1.ogg'
 	success_sound = 'sound/surgery/scalpel2.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
+	surgery_effects_mood = TRUE
 
 	//Start of Bubberstation change: Adds optional chems.
 	var/list/chems_needed_optional = list(

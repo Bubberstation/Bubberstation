@@ -178,7 +178,7 @@
 			podspawn(list(
 				"target" = get_turf(target),
 				"path" = /obj/structure/closet/supplypod/centcompod,
-				"style" = STYLE_CENTCOM,
+				"style" = /datum/pod_style/centcom,
 				"spawn" = /obj/item/toy/plush/lizard_plushie,
 				"damage" = 50,
 				"explosionSize" = list(0, 0, 2, 4),
