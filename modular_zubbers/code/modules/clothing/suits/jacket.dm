@@ -365,7 +365,7 @@
 	icon_state = "virologist"
 
 /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/coroner
-	name = "pathologist's tailcoat"
+	name = "coroner's tailcoat"
 	desc = "A sterile black and white coat worn by bunny themed coroners. Adorned with a skull on the back."
 	icon_state = "coroner"
 
