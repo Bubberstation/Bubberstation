@@ -151,7 +151,7 @@
 
 
 /obj/item/circuitboard/computer/syndiepad/tarkon
-	name = "Tarkon Bounty Control Terminal"
+	name = "tarkon bounty control terminal"
 	build_path = /obj/machinery/computer/piratepad_control/syndiepad/tarkon
 
 /obj/machinery/computer/piratepad_control/syndiepad/tarkon
