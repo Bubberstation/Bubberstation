@@ -262,7 +262,11 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		if(locked)
 			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
 		else
-			to_chat(user, span_notice("You open the cover."))
+			// BUBBER EDIT START
+			to_chat(user, span_notice("Opening Cover..."))
+			if(!do_after(user, 0.5 SECONDS))
+				return FALSE
+			// BUBBER EDIT START
 			opened = TRUE
 			update_icons()
 
@@ -356,6 +360,7 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 		ResetModel()
 		return TRUE
 
+	scrambledcodes = TRUE // BUBBER EDIT START
 	SetEmagged(1)
 	SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
 	lawupdate = FALSE
