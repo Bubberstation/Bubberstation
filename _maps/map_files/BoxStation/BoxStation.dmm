@@ -6043,13 +6043,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/common/cryopods)
-"aDN" = (
-/obj/machinery/camera/directional/south{
-	c_tag = "Bathroom"
-	},
-/obj/structure/urinal/directional/north,
-/turf/open/floor/mineral/titanium/blue,
-/area/station/commons/toilet)
 "aDO" = (
 /obj/docking_port/stationary/escape_pod{
 	dir = 8
@@ -10359,6 +10352,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/machinery/incident_display/bridge/directional/north,
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "aUc" = (
@@ -26105,6 +26099,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "bYr" = (
@@ -26526,9 +26521,7 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/station/tcommsat/server)
 "cai" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/full,
 /obj/structure/cable,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/station/tcommsat/server)
@@ -27458,7 +27451,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/engine_smes)
 "ceo" = (
-/obj/machinery/keycard_auth/directional/south,
+/obj/machinery/keycard_auth/wall_mounted/directional/south,
 /obj/machinery/computer/station_alert{
 	dir = 4
 	},
@@ -28955,8 +28948,8 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "cnY" = (
-/obj/structure/sign/warning/no_smoking/directional/north,
 /obj/structure/cable,
+/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "cnZ" = (
@@ -31839,6 +31832,7 @@
 	dir = 1
 	},
 /obj/item/pipe_dispenser,
+/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/main)
 "cDi" = (
@@ -46091,6 +46085,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light/directional/north,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/station/tcommsat/server)
 "lTQ" = (
@@ -61173,7 +61168,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/gravity_generator)
 "wIx" = (
-/obj/machinery/keycard_auth/directional/west,
+/obj/machinery/keycard_auth/wall_mounted/directional/west,
 /obj/machinery/pdapainter/supply,
 /obj/machinery/computer/security/telescreen/cargo/directional/north,
 /obj/machinery/camera/directional/west{
@@ -89013,7 +89008,7 @@ ckB
 ckB
 ckB
 cjJ
-ckH
+cnY
 kja
 cBO
 cgR
@@ -89270,7 +89265,7 @@ ckB
 ckB
 ckC
 cjJ
-cnY
+ckH
 kja
 cgR
 cgR
@@ -96653,7 +96648,7 @@ aAh
 aAh
 aAh
 aAh
-aDN
+feM
 aAh
 aMo
 vYr
