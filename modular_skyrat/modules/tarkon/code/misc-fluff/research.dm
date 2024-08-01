@@ -23,7 +23,6 @@
 		/obj/item/mod/construction/plating/tarkon,
 		/obj/item/construction/rcd/arcd/tarkon,
 		/obj/item/gun/energy/recharge/resonant_system,
-
 	)
 	design_ids = list(
 		"mod_plating_tarkon",
