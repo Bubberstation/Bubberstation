@@ -63,6 +63,20 @@
 	icon_state = "clussy_wig"
 	flags_inv = HIDEHAIR
 
+// Henchmen Sprites by Cannibal Hunter of MonkeStation
+
+/obj/item/clothing/head/henchmen_hat
+	name = "henchmen cap"
+	desc = "Alright boss.. I'll handle it."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "greyscale_cap"
+	greyscale_colors = "#201b1a"
+	greyscale_config = /datum/greyscale_config/henchmen
+	greyscale_config_worn = /datum/greyscale_config/henchmen/worn
+	flags_1 = IS_PLAYER_COLORABLE_1
+
+
 //ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/head/playbunnyears
@@ -71,6 +85,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
 	icon_state = "playbunny_ears"
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	greyscale_colors = "#39393f"
 	greyscale_config = /datum/greyscale_config/playbunnyears
 	greyscale_config_worn = /datum/greyscale_config/playbunnyears_worn
@@ -130,6 +145,7 @@
 	inhand_icon_state = "that"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/bunnyears.dmi'
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	dog_fashion = null
 
 //CARGO

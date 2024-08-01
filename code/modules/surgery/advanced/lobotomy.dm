@@ -22,7 +22,7 @@
 	return TRUE
 
 /datum/surgery_step/lobotomize
-	name = "perform lobotomy (scalpel, optional holy water + neurine mix to cure magic traumas)" //Bubberstation change: Holywater + Neurine cures magic traumas.
+	name = "perform lobotomy (scalpel)"
 	implements = list(
 		TOOL_SCALPEL = 85,
 		/obj/item/melee/energy/sword = 55,
@@ -35,33 +35,6 @@
 	success_sound = 'sound/surgery/scalpel2.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
 	surgery_effects_mood = TRUE
-
-	//Start of Bubberstation change: Adds optional chems.
-	var/list/chems_needed_optional = list(
-		/datum/reagent/water/holywater,
-		/datum/reagent/medicine/neurine
-	)
-	//End of Bubberstation change: Holywater + Neurine cures magic traumas.
-
-//Start of Bubberstation change: Holywater + Neurine cures magic traumas.
-/datum/surgery_step/lobotomize/get_chem_list()
-
-	. = ..()
-
-	if(!LAZYLEN(chems_needed_optional))
-		return .
-
-	var/list/chems = list()
-	for(var/reagent in chems_needed_optional)
-		var/datum/reagent/temp = GLOB.chemical_reagents_list[reagent]
-		if(temp)
-			var/chemname = temp.name
-			chems += chemname
-	if(.)
-		return "[.]. [english_list(chems)]"
-
-	return english_list(chems)
-//End of Bubberstation change: Holywater + Neurine cures magic traumas.
 
 /datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
@@ -88,19 +61,7 @@
 	)
 	display_pain(target, "Your head goes totally numb for a moment, the pain is overwhelming!")
 
-	//Start of Bubberstation change: Holywater + Neurine cures magic traumas.
-	var/cure_magic = TRUE
-	for(var/reagent in chems_needed_optional)
-		if(!target.reagents.has_reagent(reagent))
-			cure_magic = FALSE
-			break
-	if(cure_magic)
-		playsound(get_turf(target), 'sound/magic/repulse.ogg', 75, TRUE, falloff_exponent = 12, falloff_distance = 1)
-		target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
-	else
-		target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
-	//End of Bubberstation change: Holywater + Neurine cures magic traumas.
-
+	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 	if(prob(75)) // 75% chance to get a trauma from this
