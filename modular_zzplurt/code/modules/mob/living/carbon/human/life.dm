@@ -10,6 +10,9 @@
 	if(w_shirt)
 		if(w_shirt.max_heat_protection_temperature && w_shirt.max_heat_protection_temperature >= temperature)
 			. |= w_shirt.heat_protection
+	if(w_bra)
+		if(w_bra.max_heat_protection_temperature && w_bra.max_heat_protection_temperature >= temperature)
+			. |= w_bra.heat_protection
 	if(wrists)
 		if(wrists.max_heat_protection_temperature && wrists.max_heat_protection_temperature >= temperature)
 			. |= wrists.heat_protection

@@ -400,7 +400,7 @@
 /// Return a list of all the types that are required to disguise as this outfit type
 /datum/outfit/proc/get_chameleon_disguise_info()
 	var/list/types = list(uniform, suit, back, belt, gloves, shoes, head, mask, neck, ears, glasses, id, l_pocket, r_pocket, suit_store, r_hand, l_hand,
-	w_underwear, w_socks, w_shirt, ears_extra, wrists) // SPLURT EDIT - Extra inventory
+	w_underwear, w_socks, w_shirt, w_bra, ears_extra, wrists) // SPLURT EDIT - Extra inventory
 	types += chameleon_extras
 	types += skillchips
 	list_clear_nulls(types)
@@ -448,20 +448,15 @@
 	.["outfit_type"] = type
 	.["name"] = name
 	.["uniform"] = uniform
-	.["w_underwear"] = w_underwear
-	.["w_shirt"] = w_shirt
 	.["suit"] = suit
 	.["back"] = back
 	.["belt"] = belt
 	.["gloves"] = gloves
-	.["wrists"] = wrists
 	.["shoes"] = shoes
-	.["w_socks"] = w_socks
 	.["head"] = head
 	.["mask"] = mask
 	.["neck"] = neck
 	.["ears"] = ears
-	.["ears_extra"] = ears_extra
 	.["glasses"] = glasses
 	.["id"] = id
 	.["id_trim"] = id_trim

@@ -623,19 +623,19 @@
 		. = TRUE
 
 	// SPLURT EDIT - Extra inventory
-	if(!(obscured & ITEM_SLOT_UNDERWEAR) && w_underwear?.wash(clean_types))
+	if(!((obscured & ITEM_SLOT_UNDERWEAR) && (obscured & ITEM_SLOT_EXTRA)) && w_underwear?.wash(clean_types))
 		update_worn_underwear()
 		. = TRUE
-	if(!(obscured & ITEM_SLOT_SOCKS) && w_socks?.wash(clean_types))
+	if(!((obscured & ITEM_SLOT_SOCKS) && (obscured & ITEM_SLOT_EXTRA)) && w_socks?.wash(clean_types))
 		update_worn_socks()
 		. = TRUE
-	if(!(obscured & ITEM_SLOT_SHIRT) && w_shirt?.wash(clean_types))
+	if(!((obscured & ITEM_SLOT_SHIRT) && (obscured & ITEM_SLOT_EXTRA)) && w_shirt?.wash(clean_types))
 		update_worn_shirt()
 		. = TRUE
-	if(!(obscured & ITEM_SLOT_BRA) && w_bra?.wash(clean_types))
+	if(!((obscured & ITEM_SLOT_BRA) && (obscured & ITEM_SLOT_EXTRA)) && w_bra?.wash(clean_types))
 		update_worn_bra()
 		. = TRUE
-	if(!(obscured & ITEM_SLOT_WRISTS) && wrists?.wash(clean_types))
+	if(!((obscured & ITEM_SLOT_WRISTS) && (obscured & ITEM_SLOT_EXTRA)) && wrists?.wash(clean_types))
 		update_worn_wrists()
 		. = TRUE
 	//

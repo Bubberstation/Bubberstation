@@ -59,24 +59,10 @@
 #define ITEM_SLOT_LPOCKET (1<<16)
 /// Right Pocket slot
 #define ITEM_SLOT_RPOCKET (1<<17)
-// SPLURT EDIT underwear, socks, shirt, right ear, wrists
-/// Underwear slot
-#define ITEM_SLOT_UNDERWEAR (1<<18)
-/// Socks slot
-#define ITEM_SLOT_SOCKS (1<<19)
-/// Shirt slot
-#define ITEM_SLOT_SHIRT (1<<20)
-/// Bra slot
-#define ITEM_SLOT_BRA (1<<21)
-/// Right ear slot
-#define ITEM_SLOT_EARS_RIGHT (1<<22)
-/// Wrist slot
-#define ITEM_SLOT_WRISTS (1<<23)
-// SPLURT EDIT END
 /// Handcuff slot
-#define ITEM_SLOT_HANDCUFFED (1<<24)
+#define ITEM_SLOT_HANDCUFFED (1<<18)
 /// Legcuff slot (bolas, beartraps)
-#define ITEM_SLOT_LEGCUFFED (1<<25)
+#define ITEM_SLOT_LEGCUFFED (1<<19)
 
 /// Total amount of slots
 #define SLOTS_AMT 26 // Keep this up to date!

@@ -9,16 +9,16 @@
 	var/mob/owner = loc
 	var/flags = slot_flags
 	// Extra inventory
-	if(flags & ITEM_SLOT_UNDERWEAR)
+	if((flags & ITEM_SLOT_UNDERWEAR) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_underwear()
-	if(flags & ITEM_SLOT_SOCKS)
+	if((flags & ITEM_SLOT_SOCKS) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_socks()
-	if(flags & ITEM_SLOT_SHIRT)
+	if((flags & ITEM_SLOT_SHIRT) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_shirt()
-	if(flags & ITEM_SLOT_BRA)
+	if((flags & ITEM_SLOT_BRA) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_bra()
-	if(flags & ITEM_SLOT_EARS)
+	if((flags & ITEM_SLOT_EARS) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_ears_extra()
-	if(flags & ITEM_SLOT_WRISTS)
+	if((flags & ITEM_SLOT_WRISTS) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_wrists()
 	//

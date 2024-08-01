@@ -715,8 +715,8 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 // SPLURT EDIT undies
 #define UNDERWEAR_LAYER			38
 #define SOCKS_LAYER				37
-#define SHIRT_LAYER				36
-#define BRA_LAYER				35
+#define BRA_LAYER				36
+#define SHIRT_LAYER				35
 // SPLURT EDIT END
 /// Jumpsuit clothing layer
 #define UNIFORM_LAYER 34 // SKYRAT EDIT CHANGE - ORIGINAL: 27 //SPLURT EDIT undies

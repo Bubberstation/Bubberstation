@@ -14,7 +14,7 @@
 	remove_overlay(UNDERWEAR_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_UNDERWEAR) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[21]
 		inv.update_icon()
 
 	if(istype(w_underwear, /obj/item/clothing/underwear/briefs))
@@ -24,7 +24,8 @@
 		if(update_obscured)
 			update_obscured_slots(undies.flags_inv)
 
-		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_UNDERWEAR) || underwear_hidden())
+		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
+		if(((obscured_slots & ITEM_SLOT_UNDERWEAR) && (obscured_slots & ITEM_SLOT_EXTRA)) || underwear_hidden())
 			return
 
 		var/target_overlay = undies.icon_state
@@ -87,7 +88,7 @@
 	remove_overlay(SHIRT_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[23]
 		inv.update_icon()
 
 	if(istype(w_shirt, /obj/item/clothing/underwear/shirt))
@@ -97,7 +98,8 @@
 		if(update_obscured)
 			update_obscured_slots(undershirt.flags_inv)
 
-		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SHIRT) || undershirt_hidden())
+		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
+		if(((obscured_slots & ITEM_SLOT_SHIRT) && (obscured_slots & ITEM_SLOT_EXTRA)) || undershirt_hidden())
 			return
 
 		var/target_overlay = undershirt.icon_state
@@ -161,7 +163,7 @@
 	remove_overlay(BRA_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BRA) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[24]
 		inv.update_icon()
 
 	if(istype(w_bra, /obj/item/clothing/underwear/shirt/bra))
@@ -171,7 +173,8 @@
 		if(update_obscured)
 			update_obscured_slots(bra.flags_inv)
 
-		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_BRA) || bra_hidden())
+		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
+		if(((obscured_slots & ITEM_SLOT_BRA) && (obscured_slots & ITEM_SLOT_EXTRA)) || bra_hidden())
 			return
 
 		var/target_overlay = bra.icon_state
@@ -234,8 +237,8 @@
 /mob/living/carbon/human/update_worn_wrists(update_obscured = TRUE)
 	remove_overlay(WRISTS_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS) + 1])
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS) + 1]
+	if(client && hud_used && hud_used.inv_slots[26])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
 	if(wrists)
@@ -245,7 +248,8 @@
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_GLOVES)
+		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
+		if((obscured_slots & ITEM_SLOT_GLOVES) && (obscured_slots & ITEM_SLOT_EXTRA))
 			return
 
 		var/icon_file = 'modular_zzplurt/icons/mob/clothing/wrists.dmi'
@@ -272,7 +276,7 @@
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS_RIGHT) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[25]
 		inv.update_icon()
 
 	if(ears)
@@ -282,7 +286,8 @@
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS_RIGHT)
+		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
+		if((obscured_slots & ITEM_SLOT_EARS_RIGHT) && (obscured_slots & ITEM_SLOT_EXTRA))
 			return
 
 		var/icon_file = 'icons/mob/clothing/ears.dmi'
@@ -312,7 +317,7 @@
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SOCKS) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[22]
 		inv.update_icon()
 
 	if(istype(w_socks, /obj/item/clothing/underwear/socks))
@@ -322,7 +327,8 @@
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		if((check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SOCKS) || socks_hidden())
+		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
+		if(((obscured_slots & ITEM_SLOT_SOCKS) && (obscured_slots & ITEM_SLOT_EXTRA)) || socks_hidden())
 			return
 
 		var/target_overlay = worn_item.icon_state

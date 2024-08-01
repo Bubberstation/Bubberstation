@@ -256,61 +256,6 @@
 	inv_box.slot_id = ITEM_SLOT_FEET
 	toggleable_inventory += inv_box
 
-	// SPLURT EDIT - Extra inventory
-	using = new /atom/movable/screen/human/toggle/extra(null, src)
-	using.icon = extra_inventory_ui_style(ui_style)
-	using.screen_loc = ui_inventory_extra
-	toggleable_inventory += using
-
-	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "underwear"
-	inv_box.icon = extra_inventory_ui_style(ui_style)
-	inv_box.icon_state = "underwear"
-	inv_box.screen_loc = ui_boxers
-	inv_box.slot_id = ITEM_SLOT_UNDERWEAR
-	extra_inventory += inv_box
-
-	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "socks"
-	inv_box.icon = extra_inventory_ui_style(ui_style)
-	inv_box.icon_state = "socks"
-	inv_box.screen_loc = ui_socks
-	inv_box.slot_id = ITEM_SLOT_SOCKS
-	extra_inventory += inv_box
-
-	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "shirt"
-	inv_box.icon = extra_inventory_ui_style(ui_style)
-	inv_box.icon_state = "shirt"
-	inv_box.screen_loc = ui_shirt
-	inv_box.slot_id = ITEM_SLOT_SHIRT
-	extra_inventory += inv_box
-
-	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "bra"
-	inv_box.icon = extra_inventory_ui_style(ui_style)
-	inv_box.icon_state = "bra"
-	inv_box.screen_loc = ui_bra
-	inv_box.slot_id = ITEM_SLOT_BRA
-	extra_inventory += inv_box
-
-	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "right ear"
-	inv_box.icon = extra_inventory_ui_style(ui_style)
-	inv_box.icon_state = "ears_extra"
-	inv_box.screen_loc = ui_ears_extra
-	inv_box.slot_id = ITEM_SLOT_EARS_RIGHT
-	extra_inventory += inv_box
-
-	inv_box = new /atom/movable/screen/inventory(null, src)
-	inv_box.name = "wrists"
-	inv_box.icon = extra_inventory_ui_style(ui_style)
-	inv_box.icon_state = "wrists"
-	inv_box.screen_loc = ui_wrists
-	inv_box.slot_id = ITEM_SLOT_WRISTS
-	extra_inventory += inv_box
-	//
-
 	inv_box = new /atom/movable/screen/inventory(null, src)
 	inv_box.name = "belt"
 	inv_box.icon = ui_style
@@ -363,8 +308,7 @@
 	ammo_counter = new /atom/movable/screen/ammo_counter(null, src) //SKYRAT EDIT ADDITION
 	infodisplay += ammo_counter //SKYRAT EDIT ADDITION
 
-	// SPLURT EDIT - Extra inventory
-	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory + extra_inventory))
+	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
 			inv_slots[TOBITSHIFT(inv.slot_id) + 1] = inv
 			inv.update_appearance()

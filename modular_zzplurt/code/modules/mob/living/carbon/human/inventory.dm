@@ -42,6 +42,7 @@
 		w_underwear,
 		w_socks,
 		w_shirt,
+		w_bra,
 	)
 	LAZYADD(., extra_body_slots)
 

@@ -1,15 +1,15 @@
 /datum/outfit
-	///Slot for underwear like boxers and panties
+	/// Slot for underwear like boxers and panties
 	var/w_underwear = null
-	///Slot for socks, yes, the thing that usually goes before your shoes
+	/// Slot for socks, yes, the thing that usually goes before your shoes
 	var/w_socks = null
-	///Slot for the undershirt (which is quite a foreign concept to me)
+	/// Slot for the undershirt (which is quite a foreign concept to me)
 	var/w_shirt = null
-	///Slot for the bra.
+	/// Slot for the bra.
 	var/w_bra = null
-	///Slot for the opposite ear.
+	/// Slot for the opposite ear.
 	var/ears_extra = null
-	///Slot for the part of your arms that isn't quite hands yet.
+	/// Slot for the part of your arms that isn't quite hands yet.
 	var/wrists = null
 
 /datum/outfit/apply_fingerprints(mob/living/carbon/human/user)
@@ -21,6 +21,8 @@
 		user.w_underwear.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.w_shirt)
 		user.w_shirt.add_fingerprint(user, ignoregloves = TRUE)
+	if(user.w_bra)
+		user.w_bra.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.w_socks)
 		user.w_socks.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.wrists)
@@ -37,6 +39,8 @@
 		w_underwear = H.w_underwear.type
 	if(H.w_shirt)
 		w_shirt = H.w_shirt.type
+	if(H.w_bra)
+		w_bra = H.w_bra.type
 	if(H.w_socks)
 		w_socks = H.w_socks.type
 	if(H.wrists)
@@ -48,6 +52,7 @@
 	. = ..()
 	. += w_underwear
 	. += w_shirt
+	. += w_bra
 	. += ears_extra
 	. += wrists
 	. += w_socks
@@ -56,6 +61,7 @@
 	. = ..()
 	.["w_underwear"] = w_underwear
 	.["w_shirt"] = w_shirt
+	.["w_bra"] = w_bra
 	.["ears_extra"] = ears_extra
 	.["wrists"] = wrists
 	.["w_socks"] = w_socks
@@ -64,6 +70,7 @@
 	. = ..()
 	w_underwear = target.w_underwear
 	w_shirt = target.w_shirt
+	w_bra = target.w_bra
 	wrists = target.wrists
 	ears_extra = target.ears_extra
 	w_socks = target.w_socks
@@ -72,6 +79,7 @@
 	. = ..()
 	w_underwear = text2path(outfit_data["w_underwear"])
 	w_shirt = text2path(outfit_data["w_shirt"])
+	w_bra = text2path(outfit_data["w_bra"])
 	wrists = text2path(outfit_data["wrists"])
 	w_socks = text2path(outfit_data["w_socks"])
 	ears_extra = text2path(outfit_data["ears_extra"])

@@ -102,6 +102,7 @@
 		"w_underwear" = /obj/item/changeling,
 		"w_socks" = /obj/item/changeling,
 		"w_shirt" = /obj/item/changeling,
+		"w_bra" = /obj/item/changeling,
 		"ears_extra" = /obj/item/changeling,
 		"wrists" = /obj/item/changeling,
 	)

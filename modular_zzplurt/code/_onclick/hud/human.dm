@@ -1,3 +1,80 @@
+/datum/hud/human/New(mob/living/carbon/human/owner)
+	var/atom/movable/screen/using
+	var/atom/movable/screen/inventory/inv_box
+
+	// SPLURT EDIT - Extra inventory
+	using = new /atom/movable/screen/human/toggle/extra(null, src)
+	using.icon = extra_inventory_ui_style(ui_style)
+	using.screen_loc = ui_inventory_extra
+	toggleable_inventory += using
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "underwear"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "underwear"
+	inv_box.icon_full = "template"
+	inv_box.icon_empty = "underwear"
+	inv_box.screen_loc = ui_boxers
+	inv_box.slot_id = ITEM_SLOT_UNDERWEAR
+	extra_inventory += inv_box
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "socks"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "socks"
+	inv_box.icon_full = "template"
+	inv_box.icon_empty = "socks"
+	inv_box.screen_loc = ui_socks
+	inv_box.slot_id = ITEM_SLOT_SOCKS
+	extra_inventory += inv_box
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "shirt"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "shirt"
+	inv_box.icon_full = "template"
+	inv_box.icon_empty = "shirt"
+	inv_box.screen_loc = ui_shirt
+	inv_box.slot_id = ITEM_SLOT_SHIRT
+	extra_inventory += inv_box
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "bra"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "bra"
+	inv_box.icon_full = "template"
+	inv_box.icon_empty = "bra"
+	inv_box.screen_loc = ui_bra
+	inv_box.slot_id = ITEM_SLOT_BRA
+	extra_inventory += inv_box
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "right ear"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "ears_extra"
+	inv_box.icon_full = "template"
+	inv_box.icon_empty = "ears_extra"
+	inv_box.screen_loc = ui_ears_extra
+	inv_box.slot_id = ITEM_SLOT_EARS_RIGHT
+	extra_inventory += inv_box
+
+	inv_box = new /atom/movable/screen/inventory(null, src)
+	inv_box.name = "wrists"
+	inv_box.icon = extra_inventory_ui_style(ui_style)
+	inv_box.icon_state = "wrists"
+	inv_box.icon_full = "template"
+	inv_box.icon_empty = "wrists"
+	inv_box.screen_loc = ui_wrists
+	inv_box.slot_id = ITEM_SLOT_WRISTS
+	extra_inventory += inv_box
+	//
+
+	for(var/atom/movable/screen/inventory/inv in extra_inventory)
+		if(inv.slot_id)
+			inv_slots[TOBITSHIFT(inv.slot_id & ~ITEM_SLOT_EXTRA) + 21] = inv
+			inv.update_appearance()
+	. = ..()
+
 /atom/movable/screen/human/toggle/extra
 	name = "toggle extra"
 	icon_state = "toggle_extra"
@@ -39,6 +116,9 @@
 		if(H.w_shirt)
 			H.w_shirt.screen_loc = ui_shirt
 			screenmob.client.screen += H.w_shirt
+		if(H.w_bra)
+			H.w_bra.screen_loc = ui_bra
+			screenmob.client.screen += H.w_bra
 		if(H.wrists)
 			H.wrists.screen_loc = ui_wrists
 			screenmob.client.screen += H.wrists
@@ -51,5 +131,7 @@
 			screenmob.client.screen -= H.w_socks
 		if(H.w_shirt)
 			screenmob.client.screen -= H.w_shirt
+		if(H.w_bra)
+			screenmob.client.screen -= H.w_bra
 		if(H.wrists)
 			screenmob.client.screen -= H.wrists
