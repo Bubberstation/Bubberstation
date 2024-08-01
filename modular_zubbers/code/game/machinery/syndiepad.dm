@@ -138,7 +138,7 @@
 
 //Tarkon Pad
 /obj/item/circuitboard/machine/syndiepad/tarkon
-	name = "Tarkon bounty pad"
+	name = "tarkon bounty pad"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/piratepad/syndiepad/tarkon
 
