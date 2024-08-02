@@ -33,7 +33,7 @@
 	blocked_by_glasses = FALSE
 	knockdown_on_secondary = TRUE
 	/// Data huds to show while the power is active
-	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC)
+	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_BOT_PATH)
 	var/list/thralls = list()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/Remove(mob/removed_from)
