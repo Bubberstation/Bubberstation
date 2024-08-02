@@ -21,11 +21,11 @@
 	var/dna_block
 
 	///Set to EXTERNAL_BEHIND, EXTERNAL_FRONT or EXTERNAL_ADJACENT if you want to draw one of those layers as the object sprite. FALSE to use your own
-	///This will not work if it doesn't have a limb to generate it's icon with
+	///This will not work if it doesn't have a limb to generate its icon with
 	var/use_mob_sprite_as_obj_sprite = FALSE
-	///Does this organ have any bodytypes to pass to it's bodypart_owner?
+	///Does this organ have any bodytypes to pass to its bodypart_owner?
 	var/external_bodytypes = NONE
-	///Does this organ have any bodyshapes to pass to it's bodypart_owner?
+	///Does this organ have any bodyshapes to pass to its bodypart_owner?
 	var/external_bodyshapes = NONE
 	///Which flags does a 'modification tool' need to have to restyle us, if it all possible (located in code/_DEFINES/mobs)
 	var/restyle_flags = NONE
@@ -41,7 +41,7 @@
 
 	// cache_key = jointext(generate_icon_cache(), "_") // SKYRAT EDIT - Species stuff that Goofball ported from /tg/, apparently. Commented for now, to see if I can make it work without it.
 	// SKYRAT EDIT: we have like 145+ fucking dna blocks lmao
-	dna_block = GLOB.dna_mutant_bodypart_blocks[preference]
+	dna_block = SSaccessories.dna_mutant_bodypart_blocks[preference]
 
 	accessory_type = accessory_type ? accessory_type : sprite_accessory_override
 	var/update_overlays = TRUE

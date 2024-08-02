@@ -3,17 +3,17 @@
 	plural_form = "Mothmen"
 	id = SPECIES_MOTH
 	inherent_traits = list(
-		TRAIT_HAS_MARKINGS,
 		TRAIT_TACKLING_WINGED_ATTACKER,
 		TRAIT_ANTENNAE,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
-	mutant_bodyparts = list("moth_markings" = "None")
+	mutant_bodyparts = list("moth_markings" = "None") // SKYRAT EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/moth = "None")
 	// external_organs = list(/obj/item/organ/external/wings/moth = "Plain", /obj/item/organ/external/antennae = "Plain") // SKYRAT EDIT REMOVAL - Fixing moths
 	meat = /obj/item/food/meat/slab/human/mutant/moth
 	mutanttongue = /obj/item/organ/internal/tongue/moth
 	mutanteyes = /obj/item/organ/internal/eyes/moth
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	species_cookie = /obj/item/food/muffin/moffin
 	species_language_holder = /datum/language_holder/moth
 	death_sound = 'sound/voice/moth/moth_death.ogg'
 	payday_modifier = 1.0
@@ -97,6 +97,16 @@
 
 /datum/species/moth/get_laugh_sound(mob/living/carbon/human/moth)
 	return 'sound/voice/moth/moth_laugh1.ogg'
+
+/datum/species/moth/get_sigh_sound(mob/living/carbon/human/moth)
+	if(moth.physique == FEMALE)
+		return 'sound/voice/human/female_sigh.ogg'
+	return 'sound/voice/human/male_sigh.ogg'
+
+/datum/species/moth/get_sniff_sound(mob/living/carbon/human/moth)
+	if(moth.physique == FEMALE)
+		return 'sound/voice/human/female_sniff.ogg'
+	return 'sound/voice/human/male_sniff.ogg'
 
 /datum/species/moth/get_physical_attributes()
 	return "Moths have large and fluffy wings, which help them navigate the station if gravity is offline by pushing the air around them. \
