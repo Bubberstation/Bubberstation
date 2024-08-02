@@ -11,11 +11,10 @@
 	siemens_coeff = 0.5 //They thrive on energy
 	payday_modifier = 1.0
 	inherent_traits = list(
-		// TRAIT_NO_UNDERWEAR, // SKYRAT EDIT - LET THEM WEAR PANTIES
+		// TRAIT_NO_UNDERWEAR, // SKYRAT EDIT - LET THEM WEAR PANTIES //BUBBER EDIT - LET THEM HAVE GENDER
 		TRAIT_MUTANT_COLORS,
 		TRAIT_FIXED_MUTANT_COLORS,
 		TRAIT_FIXED_HAIRCOLOR,
-		TRAIT_AGENDER,
 	)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_cookie = /obj/item/food/energybar
