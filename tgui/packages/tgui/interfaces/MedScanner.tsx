@@ -30,7 +30,7 @@ type MedScannerData = {
   chemicals_lists: object;
   limb_data_lists: object;
   limbs_damaged: object;
-  damaged_organs: any;
+  damaged_organs: any[];
   ssd: string;
   blood_type: string;
   blood_amount: number;
@@ -238,21 +238,19 @@ const PatientBasics = () => {
             </>
           ) : null}
         </LabeledList.Item>
-      </LabeledList>
-      <LabeledList>
         <LabeledList.Item label="Species">
-          <Box width="20px" bold color="#42bff5">
+          <Box width="50px" bold color="#42bff5" nowrap maxWidth="100px">
             {species}
           </Box>
         </LabeledList.Item>
         {majquirks ? (
           <LabeledList.Item label="Quirks">
-            <Box width="100%">Subject Major Disabilities: {majquirks}</Box>
+            <Box width="100%">Subject Major Disabilities:{majquirks}</Box>
           </LabeledList.Item>
         ) : null}
         {majquirks ? (
           <LabeledList.Item>
-            <Box width="100%">Subject Minor Disabilities: {majquirks}</Box>
+            <Box width="100%">Subject Minor Disabilities: {minquirks}</Box>
           </LabeledList.Item>
         ) : null}
       </LabeledList>
@@ -334,9 +332,7 @@ const PatientLimbs = () => {
             {limb.missing ? (
               <Tooltip
                 content={
-                  species === 'robot'
-                    ? 'Missing limbs on robotic patients can be fixed easily through a robotic cradle. Head reattachment can only be done through surgical intervention.'
-                    : 'Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.'
+                  'Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.'
                 }
               >
                 <Stack.Item color={'red'} bold>
@@ -414,7 +410,7 @@ const PatientLimbs = () => {
                       content={
                         limb.limb_type === 'Robotic'
                           ? 'Robotic limbs are only fixed by welding or cable coils.'
-                          : 'Biotic limbs take more damage, but can be fixed through normal methods.'
+                          : null
                       }
                     >
                       <Box

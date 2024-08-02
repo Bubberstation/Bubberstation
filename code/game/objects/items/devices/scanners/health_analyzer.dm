@@ -92,6 +92,7 @@
 		if (SCANMODE_HEALTH)
 			healthscan(user, M, mode, advanced)
 			ui_interact(usr) // BUBBER EDIT
+			update_static_data(usr)
 		if (SCANMODE_WOUND)
 			woundscan(user, M, src)
 

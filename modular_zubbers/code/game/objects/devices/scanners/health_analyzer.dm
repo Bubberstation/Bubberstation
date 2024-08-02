@@ -66,20 +66,23 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 			"brute" = round(limb.brute_dam),
 			"burn" = round(limb.burn_dam),
 			"bandaged" = limb.current_gauze,
-			"missing" = !limb,
+			"missing" = !limb ? TRUE: FALSE,
 			"limb_status" = null,
 			"limb_type" = null,
-			"bleeding" = limb.can_bleed(),
+			"bleeding" = limb.get_wound_type(/datum/wound/slash) ? limb : null,
+			"infection" = limb.get_wound_type(/datum/wound/burn) ? TRUE : FALSE
 		)
-		//if()
-		//	limb_status = "Fracture"
-		//else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
-			//limb_status = "Stabilized"
-		//else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
-		//	limb_status = "Splinted"
+		var/limb_status = ""
+		var/limb_type = ""
+		if(IS_ROBOTIC_LIMB(limb))
+			limb_type = "Robotic"
+		if(limb.get_wound_type(/datum/wound/blunt))
+			limb_status = "Fracture"
+		else if(limb.current_gauze)
+			limb_status = "Stabilized"
+		else if((limb.get_wound_type(/datum/wound/blunt)) && limb.current_gauze)
+			limb_status = "Splinted"
 
-		var/limb_status = "Uh"
-		var/limb_type = "Oh"
 		current_list["limb_type"] = limb_type
 		current_list["limb_status"] = limb_status
 		limb_data_lists["[capitalize(limb.name)]"] = current_list
@@ -112,11 +115,11 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	else if(heart.organ_flags & ORGAN_FAILING || !heart)
 		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		data["revivable_boolean"] = FALSE
-	else if((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+	else if(!(patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to [patient ? "defibrillate" : "reboot"] - repair damage above [((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)) / patient.maxHealth * 100]%"
+		data["revivable_string"] = "Not ready to [patient ? "defibrillate" : "reboot"] - repair damage above [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]%"
 		data["revivable_boolean"] = FALSE
 
 
