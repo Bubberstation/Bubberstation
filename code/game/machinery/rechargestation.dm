@@ -62,9 +62,9 @@
 
 	var/charge_amount = recharge_speed * seconds_per_tick
 	if(charge_limit)
-		charge_amount = max(min(charge_amount, charge_limit - target.charge),0) //END BUBBER EDIT, adds new argument
+		charge_amount = max(min(charge_amount, charge_limit - target.charge),0)
 	//charge the cell, account for heat loss from work done
-	var/charge_given = charge_cell(charge_amount, target, grid_only = TRUE)
+	var/charge_given = charge_cell(charge_amount, target, grid_only = TRUE) //END BUBBER EDIT, adds new argument
 	if(charge_given)
 		use_energy((charge_given + active_power_usage) * 0.01)
 
