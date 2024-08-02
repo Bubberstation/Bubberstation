@@ -46,7 +46,7 @@
 	return options
 
 /datum/bloodsucker_clan/tremere/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
-	purchased_power.upgrade_power()
+	return purchased_power.upgrade_power()
 
 /datum/bloodsucker_clan/tremere/favorite_vassal_gain(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/datum/action/cooldown/spell/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)

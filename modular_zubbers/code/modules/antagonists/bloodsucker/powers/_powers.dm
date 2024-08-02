@@ -110,6 +110,7 @@
 	DeactivatePower()
 	level_current++
 	on_power_upgrade()
+	return TRUE
 
 /datum/action/cooldown/bloodsucker/proc/on_power_upgrade()
 	SHOULD_CALL_PARENT(TRUE)
