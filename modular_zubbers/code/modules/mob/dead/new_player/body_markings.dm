@@ -33,6 +33,16 @@
 	icon_state = "fangs"
 	affected_bodyparts = HEAD
 
+/datum/body_marking/bubber/anime_inner
+	name = "Anime Eyes (Inner)
+	icon_state = "eyes_inner"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/anime_outer
+	name = "Anime Eyes (Outer)"
+	icon_state = "eyes_outer"
+	affected_bodyparts = HEAD
+
 /datum/body_marking/bubber/clowncross
 	name = "Clown Cross"
 	icon_state = "clowncross"
