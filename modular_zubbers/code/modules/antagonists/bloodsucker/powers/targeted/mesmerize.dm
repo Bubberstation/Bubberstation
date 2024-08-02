@@ -40,7 +40,7 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/get_power_desc_extended()
 	. = "Click any person to, after a [DisplayTimeText(mesmerize_delay)] timer, [src] them.<br>"
 	. += "This will completely immobilize for [DisplayTimeText(get_power_time())].<br>"
-	. += "Additionally, they will be muted for [DisplayTimeText(get_mute_time())] with both the primray and secondary casts.<br>"
+	. += "Additionally, they will be muted for [DisplayTimeText(get_mute_time())] with both the primary and secondary casts.<br>"
 	if(knockdown_on_secondary)
 		. += "Right clicking on your victim will apply a knockdown for [DisplayTimeText(combat_mesmerize_time())].<br>"
 	else
