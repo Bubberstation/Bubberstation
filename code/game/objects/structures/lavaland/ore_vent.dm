@@ -84,6 +84,8 @@
 		add_overlay(mutable_appearance('icons/obj/mining_zones/terrain.dmi', "well", ABOVE_MOB_LAYER))
 
 	RegisterSignal(src, COMSIG_SPAWNER_SPAWNED_DEFAULT, PROC_REF(anti_cheese))
+	RegisterSignal(src, COMSIG_SPAWNER_SPAWNED, PROC_REF(log_mob_spawned))
+	AddElement(/datum/element/give_turf_traits, string_list(list(TRAIT_NO_TERRAFORM)))
 	return ..()
 
 /obj/structure/ore_vent/Destroy()
@@ -157,7 +159,7 @@
  * This proc is called when the ore vent is initialized, in order to determine what minerals boulders it spawns can contain.
  * The materials available are determined by SSore_generation.ore_vent_minerals, which is a list of all minerals that can be contained in ore vents for a given cave generation.
  * As a result, minerals use a weighted list as seen by ore_vent_minerals_lavaland, which is then copied to ore_vent_minerals.
- * Once a material is picked from the weighted list, it's removed from ore_vent_minerals, so that it can't be picked again and provided it's own internal weight used when assigning minerals to boulders spawned by this vent.
+ * Once a material is picked from the weighted list, it's removed from ore_vent_minerals, so that it can't be picked again and provided its own internal weight used when assigning minerals to boulders spawned by this vent.
  * May also be called after the fact, as seen in SSore_generation's initialize, to add more minerals to an existing vent.
  *
  * The above applies only when spawning in at mapload, otherwise we pick randomly from ore_vent_minerals_lavaland.
@@ -282,6 +284,8 @@
 
 		tapped = TRUE //The Node Drone has survived the wave defense, and the ore vent is tapped.
 		SSore_generation.processed_vents += src
+		log_game("Ore vent [key_name_and_tag(src)] was tapped")
+		SSblackbox.record_feedback("tally", "ore_vent_completed", 1, type)
 		balloon_alert_to_viewers("vent tapped!")
 		icon_state = icon_state_tapped
 		update_appearance(UPDATE_ICON_STATE)
@@ -427,6 +431,23 @@
 /obj/structure/ore_vent/proc/anti_cheese()
 	explosion(src, heavy_impact_range = 1, light_impact_range = 3, flame_range = 0, flash_range = 0, adminlog = FALSE)
 
+/**
+ * Handle logging for mobs spawned
+ */
+/obj/structure/ore_vent/proc/log_mob_spawned(datum/source, mob/living/created)
+	SIGNAL_HANDLER
+	log_game("Ore vent [key_name_and_tag(src)] spawned the following mob: [key_name_and_tag(created)]")
+	SSblackbox.record_feedback("tally", "ore_vent_mobs_spawned", 1, created.type)
+	RegisterSignal(created, COMSIG_LIVING_DEATH, PROC_REF(log_mob_killed))
+
+/**
+ * Handle logging for mobs killed
+ */
+/obj/structure/ore_vent/proc/log_mob_killed(datum/source, mob/living/killed)
+	SIGNAL_HANDLER
+	log_game("Vent-spawned mob [key_name_and_tag(killed)] was killed")
+	SSblackbox.record_feedback("tally", "ore_vent_mobs_killed", 1, killed.type)
+
 //comes with the station, and is already tapped.
 /obj/structure/ore_vent/starter_resources
 	name = "active ore vent"
@@ -540,7 +561,7 @@
 			boss_string = "A giant, armored behemoth"
 		if(/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner)
 			boss_string = "A bloody drillmark"
-		if(/mob/living/simple_animal/hostile/megafauna/wendigo)
+		if(/mob/living/simple_animal/hostile/megafauna/wendigo/noportal)
 			boss_string = "A chilling skull"
 	. += span_notice("[boss_string] is etched onto the side of the vent.")
 
@@ -550,11 +571,13 @@
 	// Completely override the normal wave defense, and just spawn the boss.
 	var/mob/living/simple_animal/hostile/megafauna/boss = new summoned_boss(loc)
 	RegisterSignal(boss, COMSIG_LIVING_DEATH, PROC_REF(handle_wave_conclusion))
+	SSblackbox.record_feedback("tally", "ore_vent_mobs_spawned", 1, summoned_boss)
 	COOLDOWN_START(src, wave_cooldown, INFINITY) //Basically forever
 	boss.say(boss.summon_line) //Pull their specific summon line to say. Default is meme text so make sure that they have theirs set already.
 
 /obj/structure/ore_vent/boss/handle_wave_conclusion()
 	node = new /mob/living/basic/node_drone(loc) //We're spawning the vent after the boss dies, so the player can just focus on the boss.
+	SSblackbox.record_feedback("tally", "ore_vent_mobs_killed", 1, summoned_boss)
 	COOLDOWN_RESET(src, wave_cooldown)
 	return ..()
 
@@ -563,7 +586,7 @@
 	icon_state_tapped = "ore_vent_ice_active"
 	defending_mobs = list(
 		/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner,
-		/mob/living/simple_animal/hostile/megafauna/wendigo,
+		/mob/living/simple_animal/hostile/megafauna/wendigo/noportal,
 		/mob/living/simple_animal/hostile/megafauna/colossus,
 	)
 

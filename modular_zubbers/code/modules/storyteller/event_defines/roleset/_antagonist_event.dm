@@ -22,7 +22,15 @@
 		JOB_CORRECTIONS_OFFICER,
 		JOB_PRISONER,
 		JOB_SECURITY_MEDIC,
+
+		// Department Guards-Additional
+		JOB_BOUNCER,
+		JOB_ORDERLY,
+		JOB_CUSTOMS_AGENT,
+		JOB_ENGINEERING_GUARD,
+		JOB_SCIENCE_GUARD,
 		)
+
 	/// Restricted roles from the antag roll
 	var/restricted_roles = list(JOB_AI, JOB_CYBORG)
 
@@ -30,6 +38,8 @@
 	var/base_antags = 2
 	/// How many maximum antags can we spawn
 	var/maximum_antags = 6
+	/// Strict limit on how many antagonists of this type that should be in this round. 0 to ignore.
+	var/maximum_antags_global = 0
 	/// For this many players we'll add 1 up to the maximum antag amount
 	var/denominator = 20
 	/// The antag flag to be used
@@ -75,8 +85,22 @@
 	typepath = /datum/round_event/antagonist/solo
 
 /datum/round_event_control/antagonist/proc/get_antag_amount()
+
 	var/people = SSgamemode.get_correct_popcount()
 	var/amount = base_antags + FLOOR(people / denominator, 1)
+
+	if(antag_datum && maximum_antags_global > 0)
+		var/antag_slots_left = maximum_antags_global
+		for(var/datum/antagonist/existing_antagonist as anything in GLOB.antagonists)
+			if(QDELETED(existing_antagonist) || QDELETED(existing_antagonist.owner) || QDELETED(existing_antagonist.owner.current)) //This feels messy, but it just werks.
+				continue
+			if(!istype(existing_antagonist,antag_datum)) //Obviously ignore other antagonists.
+				continue
+			antag_slots_left-- //Slot is occupied.
+			if(antag_slots_left <= 0) //No point in checking anymore.
+				break
+		amount = min(amount,antag_slots_left)
+
 	return min(amount, maximum_antags)
 
 /datum/round_event/antagonist

@@ -47,6 +47,7 @@
 #define ROLE_MUTANT "Mutated Abomination"
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 // SKYRAT EDIT END
+#define ROLE_VOIDWALKER "Voidwalker"
 
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"
@@ -142,6 +143,8 @@
 #define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker (Latejoin)"
 #define ROLE_MONSTERHUNTER "Monster Hunter"
 #define ROLE_VASSAL "Vassal"
+
+#define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
 //BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.
@@ -188,6 +191,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BORER = 0,
 	ROLE_MUTANT = 0,
 	//SKYRAT EDIT END
+	ROLE_VOIDWALKER = 0,
 
 	// Latejoin
 	ROLE_HERETIC_SMUGGLER = 0,
@@ -205,6 +209,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_VAMPIRICACCIDENT = 14,
 	ROLE_BLOODSUCKERBREAKOUT = 14,
 	ROLE_MONSTERHUNTER = 14,
+	ROLE_CHANGELING_ZOMBIE = 0
 	//BUBBER EDIT END
 ))
 

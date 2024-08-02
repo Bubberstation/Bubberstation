@@ -75,6 +75,7 @@ GLOBAL_PROTECT(exp_to_update)
 		if(L.is_afk())
 			continue
 		L.update_exp_list(mins)
+		L.update_living_minutes(mins) // BUBBER EDIT BEGIN - Voting timers
 
 /datum/controller/subsystem/blackbox/proc/update_exp_db()
 	set waitfor = FALSE
@@ -207,6 +208,6 @@ GLOBAL_PROTECT(exp_to_update)
 	if(flags_read.NextRow())
 		prefs.db_flags = text2num(flags_read.item[1])
 	else if(isnull(prefs.db_flags))
-		prefs.db_flags = 0 //This PROBABLY won't happen, but better safe than sorry.
+		prefs.db_flags = NONE //This PROBABLY won't happen, but better safe than sorry.
 	qdel(flags_read)
 	return TRUE

@@ -10,16 +10,14 @@
  * explicitly equal 0 for all compatible wildcard slots.
  */
 
-/// Wildcard slot define for basic grey cards. Only hold 2 common wildcards.
-#define WILDCARD_LIMIT_GREY list(WILDCARD_NAME_COMMON = list(limit = 5, usage = list())) //Bubberstation edit: original 2
-
-/// Wildcard slot define for Head of Staff silver cards. Can hold 3 common, 1 command and 1 private command.
+/// Wildcard slot define for basic grey cards. Only hold 4 common wildcards.
+#define WILDCARD_LIMIT_GREY list(WILDCARD_NAME_COMMON = list(limit = 4, usage = list()))
+/// Wildcard slot define for Head of Staff silver cards. Can hold 6 common, 2 command and 1 private command.
 #define WILDCARD_LIMIT_SILVER list( \
-	WILDCARD_NAME_COMMON = list(limit = 5, usage = list()), \
-	WILDCARD_NAME_COMMAND = list(limit = 3, usage = list()), \
-	WILDCARD_NAME_PRV_COMMAND = list(limit = 2, usage = list()) \
-) // BUBBERSTATION EDIT: COMMON 2 > 5 | COMMAND 1 > 3 | CAPTAIN 1 > 2
-
+	WILDCARD_NAME_COMMON = list(limit = 6, usage = list()), \
+	WILDCARD_NAME_COMMAND = list(limit = 2, usage = list()), \
+	WILDCARD_NAME_PRV_COMMAND = list(limit = 1, usage = list()) \
+)
 /// Wildcard slot define for Captain gold cards. Can hold infinite of any Captain level wildcard.
 #define WILDCARD_LIMIT_GOLD list(WILDCARD_NAME_CAPTAIN = list(limit = -1, usage = list()))
 /// Wildcard slot define for select Syndicate-affiliated cards. Can hold infinite of any Syndicate level wildcard. Syndicate includes all station accesses.

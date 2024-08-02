@@ -143,3 +143,13 @@
 	attack_verb_continuous = list("shoots (and misses)", "batongs", "annoys", "harmbatons", "magdumps")
 	attack_verb_simple = list("shot (and missed)", "batong", "annoy", "harmbaton", "magdump")
 	squeak_override = list('sound/weapons/gun/general/bolt_rack.ogg' = 1)
+
+/obj/item/toy/plush/cescrewsplush
+	name = "Chief Screws Plush" //Plush for Steals The Screwdriver/SteamStucKobold, sprited by stickygoat. and Amorbis
+	desc = "An adorable blue Lizard plushie wearing a Chief Engineer's Uniform, Rocket Boots, and Meson Goggles. It has a strange, silicone pocket on its underside..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "cescrewsplush"
+	attack_verb_continuous = list("slaps", "plaps", "smears")
+	attack_verb_simple = list("slap", "plap", "smear")
+	gender = FEMALE
+	squeak_override = list('sound/misc/soggy.ogg'=1)

@@ -12,6 +12,22 @@
 
 
 //Additiional Station Areas
+
+/area/station/common/cryopods/aux
+	name = "\improper Aux. Cryopods Room"
+
+/area/station/commons/public_mining
+	name = "\improper Public Mining"
+	icon_state = "mining"
+
+/area/station/commons/public_xenoarch
+	name = "\improper Public Xenoarchaeology"
+	icon_state = "exp_lab"
+
+/area/station/maintenance/department/public_mining
+	name = "\improper Public Mining Maintenance"
+	icon_state = "centralmaint"
+
 /area/station/engineering/supermatter/emitter
 	name = "\improper Supermatter Emitter Room"
 	icon_state = "engine_control"
