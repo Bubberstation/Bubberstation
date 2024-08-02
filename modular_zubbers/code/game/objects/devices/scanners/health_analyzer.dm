@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	"ntos_healthy",
 ))
 
+
 /obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -126,5 +127,198 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	/*
 	ADVICE
 	*/
-
+	var/list/advice = list()
+	var/list/temp_advice = list()
+	if(!HAS_TRAIT(patient, TRAIT_DNR)) // only show advice at all if the patient is coming back
+		//random stuff that docs should be aware of. possible todo: make a system so we can put these in a collapsible tgui element if there's more added here.
+		if(patient.maxHealth != HUMAN_MAXHEALTH)
+			advice += list(list(
+				"advice" = "Patient has [patient.maxHealth / HUMAN_MAXHEALTH * 100]% constitution.",
+				"tooltip" = patient.maxHealth < HUMAN_MAXHEALTH ? "Patient has less maximum health than most humans." : "Patient has more maximum health than most humans.",
+				"icon" = patient.maxHealth < HUMAN_MAXHEALTH ? "heart-broken" : "heartbeat",
+				"color" = patient.maxHealth < HUMAN_MAXHEALTH ? "grey" : "pink"
+			))
+		//species advice. possible todo: make a system so we can put these in a collapsible tgui element
+		if(patient.dna.species == "Synthetic Humanoid") //specifically checking synth/robot here as these are specific to whichever species
+			advice += list(list(
+				"advice" = "Synthetic: Patient does not heal on defibrillation.",
+				"tooltip" = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]% health.",
+				"icon" = "robot",
+				"color" = "label"
+			))
+			advice += list(list(
+				"advice" = "Synthetic: Patient overheats while lower than [patient.crit_threshold / patient.maxHealth * 100]% health.",
+				"tooltip" = "Synthetics overheat rapidly while their health is lower than [patient.crit_threshold / patient.maxHealth * 100]%. When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",
+				"icon" = "robot",
+				"color" = "label"
+			))
+			advice += list(list(
+				"advice" = "Synthetic: Patient does not suffer from brain-death.",
+				"tooltip" = "Synthetics don't expire after 5 minutes of death.",
+				"icon" = "robot",
+				"color" = "label"
+			))
+		if(patient.stat == DEAD) // death advice
+			if(patient.wear_suit && patient.wear_suit.armor_type)
+				advice += list(list(
+					"advice" = "Remove patient's suit or armor.",
+					"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
+					"icon" = "shield-alt",
+					"color" = "blue"
+					))
+			if((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+				advice += list(list(
+					"advice" = "Administer shock via defibrillator!",
+					"tooltip" = "The patient is ready to be revived, defibrillate them as soon as possible!",
+					"icon" = "bolt",
+					"color" = "yellow"
+					))
+		if(patient.getBruteLoss() > 5)
+			if(patient.dna.species == "Synthetic Humanoid")
+				advice += list(list(
+					"advice" = "Use Brute healing medicine or sutures to repair the bruised areas.",
+					"tooltip" = "Brute damage can be cured with sutures, or administer some brute healing medicine.",
+					"icon" = "band-aid",
+					"color" = "green"
+					))
+			else
+				advice += list(list(
+					"advice" = "Use a welding tool to repair the dented areas.",
+					"tooltip" = "Only a welding tool can repair dented robotic limbs.",
+					"icon" = "tools",
+					"color" = "red"
+				))
+		if(patient.getFireLoss() > 5)
+			if(patient.dna.species == "Synthetic Humanoid")
+				advice += list(list(
+					"advice" = "Use Burn healing medicine or sutures to repair the burned areas.",
+					"tooltip" = "Regenerative Mesh will heal burn damage, or you can administer burn healing medicine.",
+					"icon" = "band-aid",
+					"color" = "orange"
+					))
+			else
+				advice += list(list(
+					"advice" = "Use cable coils to repair the scorched areas.",
+					"tooltip" = "Only cable coils can repair scorched robotic limbs.",
+					"icon" = "plug",
+					"color" = "orange"
+				)) /*
+			if(infection_message)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of spaceacillin - infections detected.",
+					"tooltip" = "There are one or more infections detected. If left untreated, they may worsen into Necrosis and require surgery.",
+					"icon" = "biohazard",
+					"color" = "olive"
+					))
+				if(chemicals_lists["Spaceacillin"])
+					if(chemicals_lists["Spaceacillin"]["amount"] < 2)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/datum/internal_organ/brain/brain = patient.internal_organs_by_name["brain"]
+			if(brain.organ_status != ORGAN_HEALTHY)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of mannitol.",
+					"tooltip" = "Significant brain damage detected. Mannitol heals brain damage. If left untreated, patient may be unable to function well.",
+					"icon" = "syringe",
+					"color" = "blue"
+					))
+				if(chemicals_lists["Mannitol"])
+					if(chemicals_lists["Mannitol"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			var/datum/internal_organ/eyes/eyes = patient.internal_organs_by_name["eyes"]
+			if(eyes.organ_status != ORGAN_HEALTHY)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of occuline.",
+					"tooltip" = "Eye damage detected. Occuline heals eye damage. If left untreated, patient may be unable to see properly.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["Occuline"])
+					if(chemicals_lists["Occuline"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of Libital or Salicylic Acid to reduce physical trauma.",
+					"tooltip" = "Significant physical trauma detected. Libital and Salicylic Acid both reduce brute damage.",
+					"icon" = "syringe",
+					"color" = "red"
+					))
+				if(chemicals_lists["Libital"])
+					if(chemicals_lists["Libital"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of Aiuri or Oxandrolone to reduce burns.",
+					"tooltip" = "Significant tissue burns detected. Aiuri and Oxandrolone both reduces burn damage.",
+					"icon" = "syringe",
+					"color" = "yellow"
+					))
+				if(chemicals_lists["Aiuri"])
+					if(chemicals_lists["Aiuri"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getToxLoss() > 15)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of multiver or pentetic acid.",
+					"tooltip" = "Significant blood toxins detected. Multiver and Pentetic Acid both will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
+					"icon" = "syringe",
+					"color" = "green"
+					))
+				if(chemicals_lists["Multiver"])
+					if(chemicals_lists["Dylovene"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.getOxyLoss() > 30)
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of salbutamol plus to re-oxygenate patient's blood.",
+					"tooltip" = "If you don't have Salbutamol, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
+					"icon" = "syringe",
+					"color" = "blue"
+					))
+				if(chemicals_lists["Salbutamol"])
+					if(chemicals_lists["Salbutamol"]["amount"] < 3)
+						advice += temp_advice
+				else
+					advice += temp_advice
+			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
+				advice += list(list(
+					"advice" = "Administer a single dose of Saline-Glucose or Iron.",
+					"tooltip" = "The patient has lost a significant amount of blood. Saline-Glucose or Iron speeds up blood regeneration significantly.",
+					"icon" = "syringe",
+					"color" = "cyan"
+					))
+				advice += temp_advice
+			if(patient.stat != DEAD && patient.health < patient.get_crit_threshold())
+				temp_advice = list(list(
+					"advice" = "Administer a single dose of epinephrine.",
+					"tooltip" = "When used in hard critical condition, Epinephrine prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
+					"icon" = "syringe",
+					"color" = "purple"
+					))
+				if(chemicals_lists["Epinephrine"])
+					if(chemicals_lists["Epinephrine"]["amount"] < 5)
+						advice += temp_advice
+				else
+					advice += temp_advice
+					*/
+	else
+		advice += list(list(
+			"advice" = "Patient is unrevivable.",
+			"tooltip" = "The patient is permanently deceased. Can occur through being decapitated, DNR on record, or soullessness.",
+			"icon" = "ribbon",
+			"color" = "white"
+			))
+	if(advice.len)
+		data["advice"] = advice
+	else
+		data["advice"] = null
 	return data
