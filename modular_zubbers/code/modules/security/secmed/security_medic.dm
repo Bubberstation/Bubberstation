@@ -100,7 +100,6 @@
 	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
 	icon_state = "hud"
 	worn_icon_state = "healthhud"
-	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
 
 /obj/item/clothing/glasses/hud/secmed/equipped(mob/living/carbon/human/user, slot)
