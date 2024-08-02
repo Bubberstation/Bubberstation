@@ -149,14 +149,10 @@
 	STOP_PROCESSING(SSprocessing, src)
 
 /atom/movable/screen/text/screen_timer/attached
-	// alpha = 0
 	maptext_height = 32
 	maptext_width = 32
-	// add_to_screen = FALSE
 	var/following_object
 	var/image/text_image
-	/// The movement detector for staying attached to the following object
-	// var/datum/movement_detector/movement_detector
 
 /atom/movable/screen/text/screen_timer/attached/Initialize(
 		mapload,
@@ -184,11 +180,6 @@
 		client.images -= text_image
 
 /atom/movable/screen/text/screen_timer/attached/proc/attach_self_to(atom/movable/target, maptext_x, maptext_y)
-	// movement_detector = new(target, CALLBACK(src, PROC_REF(timer_follow)))
-	// abstract_move(get_turf(target))
-	// set_glide_size(target.glide_size)
-	// RegisterSignal(target, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(update_glide_speed), target)
-	// RegisterSignal(target, COMSIG_QDELETING, PROC_REF(hide_timer), target)
 	text_image = image(src, target)
 
 	text_image.maptext_x = maptext_x
@@ -204,14 +195,9 @@
 	text_image.maptext = result_text
 
 /atom/movable/screen/text/screen_timer/attached/proc/hide_timer(atom/movable/target)
-	// QDEL_NULL(movement_detector)
-	// move to nullspace if the target is deleted, so we can keep showing the timer to hud's
-	// abstract_move(null)
 	unregister_follower()
 
 /atom/movable/screen/text/screen_timer/attached/proc/unregister_follower()
-	// if(following_object)
-	// 	UnregisterSignal(following_object, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, COMSIG_QDELETING)
 	following_object = null
 	text_image = null
 
@@ -223,8 +209,5 @@
 
 /atom/movable/screen/text/screen_timer/attached/Destroy()
 	. = ..()
-	// if(movement_detector)
-	// 	QDEL_NULL(movement_detector)
-
 	if(following_object)
 		unregister_follower()
