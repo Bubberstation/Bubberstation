@@ -33,7 +33,7 @@
 	icon_state = "fangs"
 	affected_bodyparts = HEAD
 
-/datum/body_marking/bubber/deer
+/datum/body_marking/bubber/deer //Sprites by AP Will on Sojourn :)
 	name = "Deer Snout (Marking)"
 	icon_state = "deer"
 	affected_bodyparts = HEAD
