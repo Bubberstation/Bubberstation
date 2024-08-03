@@ -13,16 +13,16 @@
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_MAJOR = 1,
-		EVENT_TRACK_ROLESET = 1,
-		EVENT_TRACK_OBJECTIVES = 1
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 1
 		)
 	/// Multipliers for point gains.
 	var/list/point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_MAJOR = 1,
-		EVENT_TRACK_ROLESET = 1,
-		EVENT_TRACK_OBJECTIVES = 1
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 1
 		)
 	/// Multipliers of weight to apply for each tag of an event.
 	var/list/tag_multipliers
@@ -33,8 +33,8 @@
 	/// Variance in the budget of roundstart points.
 	var/roundstart_points_variance = 15
 
-	/// Whether the storyteller guaranteed a roleset roll (antag) on roundstart. (Still needs to pass pop check)
-	var/guarantees_roundstart_roleset = TRUE
+	/// Whether the storyteller guaranteed a crewset roll (crew antag) on roundstart. (Still needs to pass pop check)
+	var/guarantees_roundstart_crewset = TRUE
 
 	/// Whether the storyteller has the distributions disabled. Important for ghost storytellers
 	var/disable_distribution = FALSE

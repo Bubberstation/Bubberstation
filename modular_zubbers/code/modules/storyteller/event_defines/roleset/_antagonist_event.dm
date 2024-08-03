@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist
 	reoccurence_penalty_multiplier = 0
-	track = EVENT_TRACK_ROLESET
+	track = EVENT_TRACK_CREWSET
 	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
 	var/protected_roles = list(
 		JOB_CAPTAIN,

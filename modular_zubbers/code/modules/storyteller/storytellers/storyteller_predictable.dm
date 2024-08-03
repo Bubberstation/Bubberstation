@@ -21,16 +21,16 @@
 		EVENT_TRACK_MUNDANE = 2,
 		EVENT_TRACK_MODERATE = 2,
 		EVENT_TRACK_MAJOR = 2,
-		EVENT_TRACK_ROLESET = 2,
-		EVENT_TRACK_OBJECTIVES = 2
+		EVENT_TRACK_CREWSET = 2,
+		EVENT_TRACK_GHOSTSET = 2
 	)
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 2,
 		EVENT_TRACK_MODERATE = 2,
 		EVENT_TRACK_MAJOR = 2,
-		EVENT_TRACK_ROLESET = 2,
-		EVENT_TRACK_OBJECTIVES = 2
+		EVENT_TRACK_CREWSET = 2,
+		EVENT_TRACK_GHOSTSET = 2
 	)
 
 	event_repetition_multiplier = 0.25 //Repeat events are boring.
@@ -135,7 +135,7 @@
 		return FALSE
 
 	if(SSshuttle.emergency.mode == SHUTTLE_IDLE) //Only do serious shit if the emergency shuttle is at Central Command and not in transit.
-		if(storyteller_get_antag_to_crew_ratio() < (1/crew_per_antag) && find_and_buy_event_from_track(EVENT_TRACK_ROLESET))
+		if(storyteller_get_antag_to_crew_ratio() < (1/crew_per_antag) && find_and_buy_event_from_track(EVENT_TRACK_CREWSET))
 			COOLDOWN_START(src,antag_event_cooldown,antag_event_delay)
 			return TRUE
 		if(COOLDOWN_FINISHED(src,major_event_cooldown) && find_and_buy_event_from_track(EVENT_TRACK_MAJOR))

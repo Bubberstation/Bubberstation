@@ -10,10 +10,10 @@
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 0.7,
 		EVENT_TRACK_MAJOR = 0.7,
-		EVENT_TRACK_ROLESET = 0.7,
-		EVENT_TRACK_OBJECTIVES = 1
+		EVENT_TRACK_CREWSET = 0.7,
+		EVENT_TRACK_GHOSTSET = 1
 		)
-	guarantees_roundstart_roleset = FALSE
+	guarantees_roundstart_crewset = FALSE
 	tag_multipliers = list(TAG_COMBAT = 0.1, TAG_DESTRUCTIVE = 0.3)
 	antag_divisor = 32
 
@@ -25,8 +25,8 @@
 		EVENT_TRACK_MUNDANE = 1.2,
 		EVENT_TRACK_MODERATE = 1.4,
 		EVENT_TRACK_MAJOR = 1.4,
-		EVENT_TRACK_ROLESET = 1,
-		EVENT_TRACK_OBJECTIVES = 1
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 1
 		)
 	population_min = 35
 	antag_divisor = 8
@@ -38,8 +38,8 @@
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 1.3,
 		EVENT_TRACK_MAJOR = 1.3,
-		EVENT_TRACK_ROLESET = 1,
-		EVENT_TRACK_OBJECTIVES = 1
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 1
 		)
 	tag_multipliers = list(TAG_COMBAT = 1.5)
 	population_min = 35
@@ -53,8 +53,8 @@
 		EVENT_TRACK_MUNDANE = 0.5,
 		EVENT_TRACK_MODERATE = 1.4,
 		EVENT_TRACK_MAJOR = 1.5,
-		EVENT_TRACK_ROLESET = 1,
-		EVENT_TRACK_OBJECTIVES = 0.8
+		EVENT_TRACK_CREWSET = 1,
+		EVENT_TRACK_GHOSTSET = 0.8
 	)
 	tag_multipliers = list(TAG_DESTRUCTIVE = 2.5) // You asked and I delivered. Destructiveness increased
 	population_min = 25
