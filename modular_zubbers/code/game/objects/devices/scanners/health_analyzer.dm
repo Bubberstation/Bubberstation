@@ -99,12 +99,14 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	for(var/obj/item/organ/internal/organ as anything in patient.organs)
 		if(!organ.damage)
 			continue
+		if(!organ)
+			return
 		var/current_organ = list(
-			"name" = organ.name,
-			"status" = organ.get_organ_status(advanced),
-			"damage" = organ.damage,
+					"name" = organ.name,
+					"status" = organ.get_organ_status(advanced),
+					"damage" = organ.damage,
 			"effects" = organ.damage_description,
-		)
+				)
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
@@ -113,9 +115,9 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	if(HAS_TRAIT(patient, TRAIT_DNR))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
-	else if(heart.organ_flags & ORGAN_FAILING || !heart)
-		data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
-		data["revivable_boolean"] = FALSE
+	//else if((heart.organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
+		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
+		//data["revivable_boolean"] = FALSE
 	else if(!(patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
@@ -139,9 +141,9 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 				"color" = patient.maxHealth < HUMAN_MAXHEALTH ? "grey" : "pink"
 			))
 		//species advice. possible todo: make a system so we can put these in a collapsible tgui element
-		if(patient.dna.species == "Synthetic Humanoid") //specifically checking synth/robot here as these are specific to whichever species
+		if(issynthetic(patient)) //specifically checking synth/robot here as these are specific to whichever species
 			advice += list(list(
-				"advice" = "Synthetic: Patient does not heal on defibrillation.",
+				"advice" = "Synthetic: Patient is not revived by defibrillation.",
 				"tooltip" = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]% health.",
 				"icon" = "robot",
 				"color" = "label"
@@ -153,13 +155,13 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 				"color" = "label"
 			))
 			advice += list(list(
-				"advice" = "Synthetic: Patient does not suffer from brain-death.",
-				"tooltip" = "Synthetics don't expire after 5 minutes of death.",
+				"advice" = "Synthetic: Patient does not suffer from blood loss.",
+				"tooltip" = "Synthetics don't lose health normaly.",
 				"icon" = "robot",
 				"color" = "label"
 			))
 		if(patient.stat == DEAD) // death advice
-			if(patient.wear_suit && patient.wear_suit.armor_type)
+			if(patient.wear_suit)
 				advice += list(list(
 					"advice" = "Remove patient's suit or armor.",
 					"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
@@ -174,7 +176,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 					"color" = "yellow"
 					))
 		if(patient.getBruteLoss() > 5)
-			if(patient.dna.species == "Synthetic Humanoid")
+			if(!issynthetic(patient))
 				advice += list(list(
 					"advice" = "Use Brute healing medicine or sutures to repair the bruised areas.",
 					"tooltip" = "Brute damage can be cured with sutures, or administer some brute healing medicine.",
@@ -189,7 +191,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 					"color" = "red"
 				))
 		if(patient.getFireLoss() > 5)
-			if(patient.dna.species == "Synthetic Humanoid")
+			if(!issynthetic(patient))
 				advice += list(list(
 					"advice" = "Use Burn healing medicine or sutures to repair the burned areas.",
 					"tooltip" = "Regenerative Mesh will heal burn damage, or you can administer burn healing medicine.",
