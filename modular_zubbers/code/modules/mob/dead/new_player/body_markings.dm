@@ -35,12 +35,12 @@
 
 /datum/body_marking/bubber/anime_inner
 	name = "Anime Eyes (Inner)
-	icon_state = "eyes_inner"
+	icon_state = "eyesinner"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/bubber/anime_outer
 	name = "Anime Eyes (Outer)"
-	icon_state = "eyes_outer"
+	icon_state = "eyesouter"
 	affected_bodyparts = HEAD
 
 /datum/body_marking/bubber/clowncross
