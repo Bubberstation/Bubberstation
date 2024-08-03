@@ -2,14 +2,17 @@
 	name = "maintenance loot spawner"
 	desc = "Come on Lady Luck, spawn me a pair of sunglasses."
 	icon_state = "loot"
+	remove_if_cant_spawn = FALSE //don't remove stuff from the global maint list, which other can use.
 	// see code/_globalvars/lists/maintenance_loot.dm for loot table
 
 /// A subtype of maintenance loot spawner that does not spawn any decals, for when you want to place them on chasm turfs and such
 /// decals such as ashes will cause NeverShouldHaveComeHere() to fail on such turfs, which creates annoying rng based CI failures
 /obj/effect/spawner/random/maintenance/no_decals
 
-/obj/effect/spawner/random/maintenance/no_decals/can_spawn(atom/loot)
-	return !ispath(loot, /obj/effect/decal)
+/obj/effect/spawner/random/maintenance/no_decals/can_spawn(loot)
+	if(ispath(loot, /obj/effect/decal))
+		return FALSE
+	return ..()
 
 /obj/effect/spawner/random/maintenance/examine(mob/user)
 	. = ..()
@@ -19,8 +22,22 @@
 	loot = GLOB.maintenance_loot
 	//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		loot = prob(80) ? GLOB.rarity_loot : GLOB.oddity_loot
+		if(prob(80))
+			loot = GLOB.uncommon_loot
+		else if(prob(80))
+			loot = GLOB.rarity_loot
+		else
+			loot = GLOB.oddity_loot
+
 	//BUBBERSTATION CHANGE END
+	return ..()
+
+/obj/effect/spawner/random/maintenance/skew_loot_weights(list/loot_list, exponent)
+	///We only need to skew the weights once, since it's a global list used by all maint spawners.
+	var/static/already_done = FALSE
+	if(loot_list == GLOB.maintenance_loot && already_done)
+		return
+	already_done = TRUE
 	return ..()
 
 /obj/effect/spawner/random/maintenance/proc/hide()
@@ -43,7 +60,14 @@
 		effective_lootcount = FLOOR(spawn_loot_count * 1.5, 1)
 
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		effective_lootcount = 1 //BUBBERSTATION CHANGE: ALWAYS JUST ONE.
+		//BUBBERSTATION CHANGE START: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT. USUALLY
+		if(loot == GLOB.uncommon_loot )
+			effective_lootcount = min(effective_lootcount,3) //Maximum 3.
+		else if(effective_lootcount > 1)
+			effective_lootcount = 1
+		else
+			effective_lootcount = 0
+		//BUBBERSTATION CHANGE END: EMPTY MAINT LOOT TRAIT ONLY SPAWNS THE BEST LOOT. USUALLY
 
 	return effective_lootcount
 

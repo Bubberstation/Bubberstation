@@ -211,7 +211,7 @@
 
 	// Ranked up enough to get your true Reputation?
 	if(bloodsuckerdatum.GetRank() == BLOODSUCKER_HIGH_LEVEL)
-		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans is now much more less effective."))
+		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans and blood bags is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
@@ -241,14 +241,16 @@
 	INVOKE_ASYNC(src, PROC_REF(interact_with_vassal), bloodsuckerdatum, vassaldatum)
 
 /datum/bloodsucker_clan/proc/interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	if(vassaldatum.special_type || IS_BLOODSUCKER(vassaldatum.owner.current))
-		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal was already assigned a special position."))
+	var/mob/living/carbon/human/master = bloodsuckerdatum.owner.current
+	var/mob/living/carbon/human/servant = vassaldatum.owner.current
+	if(vassaldatum.special_type || IS_BLOODSUCKER(servant))
+		to_chat(master, span_notice("This Vassal was already assigned a special position."))
 		return FALSE
 	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
-		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
+		to_chat(master, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
 		return FALSE
-	if(bloodsuckerdatum.GetBloodVolume() < 150)
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
+	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
+		to_chat(master, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
 		return FALSE
 	var/list/options = list()
 	var/list/radial_display = list()
@@ -265,17 +267,26 @@
 		radial_display[initial(vassaldatums.name)] = option
 
 	if(!options.len)
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "Out of Special Vassal slots!")
+		master.balloon_alert(master, "Out of Special Vassal slots!")
 		return
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
-	var/vassal_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, radial_display)
+	to_chat(master, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
+	var/vassal_response = show_radial_menu(master, servant, radial_display)
 	if(!vassal_response)
 		return
-	vassal_response = options[vassal_response]
-	if(QDELETED(src) || QDELETED(bloodsuckerdatum.owner.current) || QDELETED(vassaldatum.owner.current))
+	var/datum/antagonist/vassal/vassal_type = options[vassal_response]
+	// let's ask if the vassal themselves actually wants to be a favorite
+	servant.balloon_alert(master, "asking...")
+	var/vassal_permission = tgui_alert(servant, initial(vassal_type.vassal_description), "Become a Special Vassal?", list("Yes", "No"), 1 MINUTES) == "Yes"
+	if(!vassal_permission)
+		servant.balloon_alert(master, "refused!")
 		return FALSE
-	vassaldatum.make_special(vassal_response)
+	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !vassal_type)
+		return FALSE
+	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
+		to_chat(master, span_notice("You took too long to make your vassal, you no longer have enough blood!"))
+		return FALSE
+	vassaldatum.make_special(vassal_type)
 	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_VASSAL_COST)
 	return TRUE
 
