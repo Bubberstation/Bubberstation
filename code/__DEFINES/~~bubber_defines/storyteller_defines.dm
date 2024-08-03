@@ -42,11 +42,12 @@
 #define GAMEMODE_PANEL_MAIN "Main"
 #define GAMEMODE_PANEL_VARIABLES "Variables"
 
-#define MUNDANE_POINT_THRESHOLD 40
-#define MODERATE_POINT_THRESHOLD 70
-#define MAJOR_POINT_THRESHOLD 130
-#define CREWSET_POINT_THRESHOLD 50
-#define GHOSTSET_POINT_THRESHOLD 170
+/// Reused for multipliers of the thresholds
+#define MUNDANE_POINT_THRESHOLD 1
+#define MODERATE_POINT_THRESHOLD 1
+#define MAJOR_POINT_THRESHOLD 1
+#define CREWSET_POINT_THRESHOLD 1
+#define GHOSTSET_POINT_THRESHOLD 1
 
 #define MUNDANE_MIN_POP 0
 #define MODERATE_MIN_POP 0
@@ -59,7 +60,7 @@
 #define MODERATE_POP_SCALE_THRESHOLD 32
 #define MAJOR_POP_SCALE_THRESHOLD 45
 #define CREWSET_POP_SCALE_THRESHOLD 45
-#defineGHOSTSET_POP_SCALE_THRESHOLD 45
+#define GHOSTSET_POP_SCALE_THRESHOLD 45
 
 /// The maximum penalty coming from pop scalling, when we're at the most minimum point, easing into 0 as we reach the SCALE_THRESHOLD. This is treated as a percentage.
 #define MUNDANE_POP_SCALE_PENALTY 35
@@ -77,7 +78,7 @@
 #define ANTAG_CAP_FLAT 1
 #define ANTAG_CAP_DENOMINATOR 9
 
-///Below are defines for the percentage fill that the tracks should start on
+///Below are defines for the percentage fill that the tracks should start on. +- 50% of the value will be added
 #define ROUNDSTART_MUNDANE_BASE 20
 
 #define ROUNDSTART_MODERATE_BASE 35

@@ -6,13 +6,6 @@
 /datum/storyteller/sleeper
 	name = "The Sleeper"
 	desc = "The Sleeper will be light on events compared to the Guide, especially so on ones involving combat or destruction. Best for more chill rounds."
-	point_gains_multipliers = list(
-		EVENT_TRACK_MUNDANE = 1,
-		EVENT_TRACK_MODERATE = 0.7,
-		EVENT_TRACK_MAJOR = 0.7,
-		EVENT_TRACK_CREWSET = 0.7,
-		EVENT_TRACK_GHOSTSET = 1
-		)
 	guarantees_roundstart_crewset = FALSE
 	tag_multipliers = list(TAG_COMBAT = 0.1, TAG_DESTRUCTIVE = 0.3)
 	antag_divisor = 32
@@ -21,26 +14,12 @@
 	name = "The Jester"
 	desc = "The Jester will create the most events overall, with higher chances of repeating. Best for the most hectic rounds."
 	event_repetition_multiplier = 0.8
-	point_gains_multipliers = list(
-		EVENT_TRACK_MUNDANE = 1.2,
-		EVENT_TRACK_MODERATE = 1.4,
-		EVENT_TRACK_MAJOR = 1.4,
-		EVENT_TRACK_CREWSET = 1,
-		EVENT_TRACK_GHOSTSET = 1
-		)
 	population_min = 35
 	antag_divisor = 8
 
 /datum/storyteller/warrior
 	name = "The Warrior"
 	desc = "The Warrior will create more antag-focused events than the Guide, but will spawn less events overall than the Jester. Best for more hectic rounds with a dash of combat."
-	point_gains_multipliers = list(
-		EVENT_TRACK_MUNDANE = 1,
-		EVENT_TRACK_MODERATE = 1.3,
-		EVENT_TRACK_MAJOR = 1.3,
-		EVENT_TRACK_CREWSET = 1,
-		EVENT_TRACK_GHOSTSET = 1
-		)
 	tag_multipliers = list(TAG_COMBAT = 1.5)
 	population_min = 35
 	antag_divisor = 5
@@ -49,13 +28,6 @@
 	name = "The DemoMan"
 	desc = "The Demoman will focus on impactful environmental events, best for hectic shifts with relatively normal antagonists."
 	welcome_text = "What makes me a good demoman?"
-	point_gains_multipliers = list(
-		EVENT_TRACK_MUNDANE = 0.5,
-		EVENT_TRACK_MODERATE = 1.4,
-		EVENT_TRACK_MAJOR = 1.5,
-		EVENT_TRACK_CREWSET = 1,
-		EVENT_TRACK_GHOSTSET = 0.8
-	)
 	tag_multipliers = list(TAG_DESTRUCTIVE = 2.5) // You asked and I delivered. Destructiveness increased
 	population_min = 25
 	antag_divisor = 10

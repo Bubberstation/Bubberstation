@@ -8,7 +8,7 @@
 	var/welcome_text = "The storyteller has been selected. Get ready!"
 	/// This is the multiplier for repetition penalty in event weight. The lower the harsher it is
 	var/event_repetition_multiplier = 0.6
-	/// Multipliers for starting points.
+	/// Multipliers for starting points. // TODO - Rewrite into some variation
 	var/list/starting_point_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 1,
@@ -16,22 +16,17 @@
 		EVENT_TRACK_CREWSET = 1,
 		EVENT_TRACK_GHOSTSET = 1
 		)
-	/// Multipliers for point gains.
-	var/list/point_gains_multipliers = list(
-		EVENT_TRACK_MUNDANE = 1,
-		EVENT_TRACK_MODERATE = 1,
-		EVENT_TRACK_MAJOR = 1,
-		EVENT_TRACK_CREWSET = 1,
-		EVENT_TRACK_GHOSTSET = 1
-		)
+
+	var/datum/storyteller_data/tracks/track_data = /datum/storyteller_data/tracks
+
+	/// +- Multiplicative variance in the budget of roundstart points.
+	var/roundstart_points_variance = 0.25
+
 	/// Multipliers of weight to apply for each tag of an event.
 	var/list/tag_multipliers
 
 	/// Variance in cost of the purchased events. Effectively affects frequency of events
 	var/cost_variance = 15
-
-	/// Variance in the budget of roundstart points.
-	var/roundstart_points_variance = 15
 
 	/// Whether the storyteller guaranteed a crewset roll (crew antag) on roundstart. (Still needs to pass pop check)
 	var/guarantees_roundstart_crewset = TRUE
@@ -57,11 +52,8 @@
 /// Add points to all tracks while respecting the multipliers.
 /datum/storyteller/proc/add_points(delta_time)
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
-	var/base_point = EVENT_POINT_GAINED_PER_SECOND * delta_time * mode.event_frequency_multiplier
 	for(var/track in mode.event_track_points)
-		var/point_gain = base_point * point_gains_multipliers[track] * mode.point_gain_multipliers[track]
-		if(mode.allow_pop_scaling)
-			point_gain *= mode.current_pop_scale_multipliers[track]
+		var/point_gain = delta_time
 		mode.event_track_points[track] += point_gain
 		mode.last_point_gains[track] = point_gain
 

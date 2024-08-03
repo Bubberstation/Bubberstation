@@ -25,14 +25,6 @@
 		EVENT_TRACK_GHOSTSET = 2
 	)
 
-	point_gains_multipliers = list(
-		EVENT_TRACK_MUNDANE = 2,
-		EVENT_TRACK_MODERATE = 2,
-		EVENT_TRACK_MAJOR = 2,
-		EVENT_TRACK_CREWSET = 2,
-		EVENT_TRACK_GHOSTSET = 2
-	)
-
 	event_repetition_multiplier = 0.25 //Repeat events are boring.
 
 	var/last_crew_score = 0
