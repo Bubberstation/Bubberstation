@@ -17,10 +17,12 @@
 	. = ..()
 	apply_components(mapload)
 
+/* BUBBERSTATION CHANGE START: CHASM HUGBOX
 /// Lets people walk into chasms.
 /turf/open/chasm/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
 	return TRUE
+BUBBERSTATION CHANGE END: CHASM HUBOX */
 
 /turf/open/chasm/proc/set_target(turf/target)
 	var/datum/component/chasm/chasm_component = GetComponent(/datum/component/chasm)
