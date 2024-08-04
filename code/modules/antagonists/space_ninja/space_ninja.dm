@@ -118,7 +118,6 @@
 	operative.dna.update_dna_identity()
 	operative.dna.species.pre_equip_species_outfit(null, operative)
 	operative.regenerate_icons()
-	SSquirks.AssignQuirks(operative, operative.client, TRUE, TRUE, null, FALSE, operative)
 
 	equip_space_ninja(owner.current)
 	owner.current.add_quirk(/datum/quirk/freerunning)
