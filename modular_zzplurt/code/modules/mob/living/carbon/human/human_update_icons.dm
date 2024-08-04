@@ -14,7 +14,7 @@
 	remove_overlay(UNDERWEAR_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[21]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_UNDERWEAR & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
 	if(istype(w_underwear, /obj/item/clothing/underwear/briefs))
@@ -88,7 +88,7 @@
 	remove_overlay(SHIRT_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[23]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
 	if(istype(w_shirt, /obj/item/clothing/underwear/shirt))
@@ -163,7 +163,7 @@
 	remove_overlay(BRA_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[24]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BRA & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
 	if(istype(w_bra, /obj/item/clothing/underwear/shirt/bra))
@@ -237,7 +237,7 @@
 /mob/living/carbon/human/update_worn_wrists(update_obscured = TRUE)
 	remove_overlay(WRISTS_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[26])
+	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
@@ -276,12 +276,12 @@
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[25]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS_RIGHT & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
 	if(ears)
 		var/obj/item/worn_item = ears
-		update_hud_ears(worn_item)
+		update_hud_ears_extra(worn_item)
 
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
@@ -317,7 +317,7 @@
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[22]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SOCKS & ~ITEM_SLOT_EXTRA) + 21]
 		inv.update_icon()
 
 	if(istype(w_socks, /obj/item/clothing/underwear/socks))

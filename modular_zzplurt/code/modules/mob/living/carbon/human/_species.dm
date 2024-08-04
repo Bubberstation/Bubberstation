@@ -1,7 +1,7 @@
 /datum/species/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self, ignore_equipped, indirect_action)
 	if(!(slot & ITEM_SLOT_EXTRA))
-		//If it's an extra item it should only be handled in this override
-		if((I.slot_flags & ITEM_SLOT_EXTRA) && !(I.slot_flags & ITEM_SLOT_EARS & ~ITEM_SLOT_EXTRA))
+		//If it's an extra item it should only be handled in this override. THIS CHECK WILL ONLY WORK AS LONG AS TG DOESN'T USE SLOTS UNDER 1<<6 FOR ANY OF THESE SLOTS
+		if((I.slot_flags & ITEM_SLOT_EXTRA) && !((I.slot_flags & slot & ITEM_SLOT_EARS & ~ITEM_SLOT_EXTRA) || (slot & ITEM_SLOT_RPOCKET|ITEM_SLOT_LPOCKET|ITEM_SLOT_SUITSTORE|ITEM_SLOT_BACKPACK|ITEM_SLOT_HANDS)))
 			slot = NONE
 		return ..()
 

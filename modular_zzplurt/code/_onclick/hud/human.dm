@@ -1,4 +1,5 @@
 /datum/hud/human/New(mob/living/carbon/human/owner)
+	. = ..()
 	var/atom/movable/screen/using
 	var/atom/movable/screen/inventory/inv_box
 
@@ -73,7 +74,6 @@
 		if(inv.slot_id)
 			inv_slots[TOBITSHIFT(inv.slot_id & ~ITEM_SLOT_EXTRA) + 21] = inv
 			inv.update_appearance()
-	. = ..()
 
 /atom/movable/screen/human/toggle/extra
 	name = "toggle extra"
