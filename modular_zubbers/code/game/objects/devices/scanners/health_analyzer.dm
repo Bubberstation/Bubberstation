@@ -161,13 +161,13 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 				"color" = "label"
 			))
 		if(patient.stat == DEAD) // death advice
-			if(patient.wear_suit)
-				advice += list(list(
-					"advice" = "Remove patient's suit or armor.",
-					"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
-					"icon" = "shield-alt",
-					"color" = "blue"
-					))
+			//if(patient.wear_suit)
+			//	advice += list(list(
+			//		"advice" = "Remove patient's suit or armor.",
+			//		"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
+			//		"icon" = "shield-alt",
+			//		"color" = "blue"
+			//		))
 			if((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
