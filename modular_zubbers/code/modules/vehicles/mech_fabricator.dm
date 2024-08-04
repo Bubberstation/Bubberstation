@@ -27,8 +27,4 @@
 /obj/item/circuitboard/machine/mechfab/interdyne
 	name = "Syndicate Exosuit Fabricator"
 	build_path = /obj/machinery/mecha_part_fabricator/interdyne
-	req_components = list(
-		/datum/stock_part/matter_bin = 2,
-		/datum/stock_part/servo = 1,
-		/datum/stock_part/micro_laser = 1,
-		/obj/item/stack/sheet/glass = 1)
+
