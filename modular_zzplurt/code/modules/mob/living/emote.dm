@@ -729,13 +729,538 @@
 	key_third_person = "yippees"
 	message = "lets out a yippee!"
 	message_mime = "acts out a yippee!"
-	sound =
+	sound = 'modular_zzplurt/sound/voice/yippee.ogg'
 	cooldown = 1.2 SECONDS
 
 /datum/emote/living/mewo
 	key = "mewo"
-	key_thr
+	key_third_person = "mewos"
+	message = "mewos!"
+	message_mime = "mewos silently!"
+	sound = 'modular_zzplurt/sound/voice/mewo.ogg'
+	cooldown = 0.7 SECONDS
 
+/datum/emote/living/ara_ara
+	key = "ara"
+	key_third_person = "aras"
+	message = "coos with sultry surprise~..."
+	message_mime = "exudes a sultry aura~"
+	sound = 'modular_zzplurt/sound/voice/ara-ara.ogg'
+	cooldown = 1.25 SECONDS
+
+/datum/emote/living/ara_ara/alt
+	key = "ara2"
+	sound = 'modular_zzplurt/sound/voice/ara-ara2.ogg'
+	cooldown = 1.25 SECONDS
+
+/datum/emote/living/missouri
+	key = "missouri"
+	key_third_person = "missouris"
+	message = "has relocated to Missouri."
+	message_mime = "starts thinking about Missouri."
+	sound = 'modular_zzplurt/sound/voice/missouri.ogg'
+	cooldown = 3.4 SECONDS
+
+/datum/emote/living/missouri/run_emote(mob/user, params, type_override, intentional)
+	// Set message pronouns
+	message = "appears to believe [user.p_theyre()] in Missouri."
+
+	// Return normally
+	. = ..()
+
+/datum/emote/living/facemetacarpus
+	key = "facehand"
+	key_third_person = "facepalms"
+	message = "creates an error in the code."
+	muzzle_ignore = TRUE
+//	restraint_check = TRUE
+	sound = 'modular_zzplurt/sound/effects/slap.ogg'
+	var/metacarous_type = "palm"
+	cooldown = 0.25 SECONDS
+
+/datum/emote/living/facemetacarpus/run_emote(mob/user, params, type_override, intentional)
+	message = pick(list(
+		"places [usr.p_their()] [metacarpus_type] across [usr.p_their()] face.",
+			"lowers [usr.p_their()] face into [usr.p_their()] [metacarpus_type].",
+			"face[metacarpus_type]s",
+	))
+	. = ..()
+
+/datum/emote/living/facemetacarpus/paw
+	key = "facepaw"
+	key_third_person = "facepaws"
+	metacarpus_type = "paw"
+
+/datum/emote/living/facemetacarpus/claw
+	key = "faceclaw"
+	key_third_person = "faceclaws"
+	metacarous_type = "claw"
+
+/datum/emote/living/facemetacarpus/wing
+	key = "facewing"
+	key_third_person = "facewings"
+	metacarous_type = "wing"
+
+/datum/emote/living/facemetacarpus/hoof
+	key = "facehoof"
+	key_third_person = "facehoofs"
+	metacarpus_type = "hoof"
+
+/datum/emote/living/poyo
+	key = "poyo"
+	key_third_person = "poyos"
+	message = "%SAYS, \"Poyo!\""
+	message_mime = "acts out an excited motion!"
+	sound = 'modular_zzplurt/sound/voice/barks/poyo.ogg'
+
+/datum/emote/living/poyo/run_emote(mob/user, params, type_override, intentional)
+	var/datum/dna/D = user.has_dna()
+	var/say_mod = (D ? D.species.say_mod : "says")
+	message = replacetextEx(message, "%SAYS", say_mod)
+	. = ..()
+
+/datum/emote/living/rizz
+	key = "rizz"
+	key_third_person = "rizzes"
+	message = "gives <b>\[<u><i>The Look</i></u>\]</b>."
+	message_param = "looks at %t with bedroom eyes."
+	message_mime = "makes bedroom eyes."
+	sound = 'modular_zzplurt/sound/voice/rizz.ogg'
+	cooldown = 1.43 SECONDS
+
+/datum/emote/living/buff
+	key = "buff"
+	key_third_person = "buffs"
+	message = "shows off their muscles."
+	message_param = "shows off their muscles to %t."
+	sound = 'modular_zzplurt/sound/voice/buff.ogg'
+	cooldown = 4.77 SECONDS
+//  emote_pitch_variance = FALSE
+
+/datum/emote/living/merowr
+	key = "merowr"
+	key_third_person = "merowrs"
+	message = "merowrs!"
+	message_mime = "acts out a merowr!"
+	sound = 'modular_zzplurt/sound/voice/merowr.ogg'
+	cooldown = 1.2 SECONDS
+
+/datum/emote/living/untitledgoose
+	key = "goosehonk"
+	key_third_person = "honks"
+	message = "honks!"
+	message_mime = "looks like a duck from hell!"
+	sound = 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg'
+	cooldown = 0.8 SECONDS
+
+/datum/emote/living/untitledgoose/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_02.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_03.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_06.ogg')
+	. = ..()
+
+/datum/emote/living/untitledgooseB
+	key = "goosehonkb"
+	key_third_person = "honks differently!"
+	message_mime = "looks like a duck from hell!"
+	sound = 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg'
+	cooldown = 0.8 SECONDS
+
+/datum/emote/untitledgooseB/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_02.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_03.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_04.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_06.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_07.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_08.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_09.ogg')
+	. = ..()
+
+/datum/emote/living/scream2
+	key = "scream2"
+	key_third_person = "screams2"
+	message = "screams!"
+	message_mime = "acts out a rather silly scream!"
+	sound = 'modular_zzplurt/sound/voice/cscream1.ogg'
+// 	emote_pitch_variance = FALSE
+
+/datum/emote/living/scream2/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/cscream1.ogg', 'modular_zzplurt/sound/voice/cscream2.ogg', 'modular_zzplurt/sound/voice/cscream3.ogg', 'modular_zzplurt/sound/voice/cscream4.ogg', 'modular_zzplurt/sound/voice/cscream5.ogg', 'modular_zzplurt/sound/voice/cscream6.ogg', 'modular_zzplurt/sound/voice/cscream7.ogg', 'modular_zzplurt/sound/voice/cscream8.ogg', 'modular_zzplurt/sound/voice/cscream9.ogg', 'modular_zzplurt/sound/voice/cscream10.ogg', 'modular_zzplurt/sound/voice/cscream11.ogg', 'modular_zzplurt/sound/voice/cscream12.ogg')
+	. = ..()
+
+/datum/emote/living/scream3
+	key = "scream3"
+	key_third_person = "screams3"
+	message = "screams manly!"
+	message_mime = "acts out a rather manly scream!"
+	sound = 'modular_zzplurt/sound/voice/gachi/scream1.ogg'
+
+/datum/emote/living/scream3/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/gachi/scream1.ogg', 'modular_zzplurt/sound/voice/gachi/scream2.ogg', 'modular_zzplurt/sound/voice/gachi/scream3.ogg', 'modular_zzplurt/sound/voice/gachi/scream4.ogg')
+	. = ..()
+
+/datum/emote/living/moan2
+	key = "moan2"
+	key_third_person = "moans2"
+	message = "moans somewhat manly!!"
+	message_mime = "acts out a rather manly scream!"
+	sound = 'modular_zzplurt/sound/voice/gachi/moan1.ogg'
+
+/datum/emote/living/scream3/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/gachi/moan1.ogg', 'modular_zzplurt/sound/voice/gachi/moan2.ogg', 'modular_zzplurt/sound/voice/gachi/moan3.ogg', 'modular_zzplurt/sound/voice/gachi/moan4.ogg')
+	. = ..()
+
+/datum/emote/living/woop
+	key = "woop"
+	key_third_person = "woops"
+	message = "woops!"
+	message_mime = "silently woops!"
+	sound = 'modular_zzplurt/sound/voice/gachi/woop.ogg'
+	sound_volume = 35
+	cooldown = 0.4 SECONDS
+
+/datum/emote/living/whatthehell/right
+	key = "wth2"
+	key_third_person = "wths2"
+	sound = 'modular_zzplurt/sound/voice/gachi/wth2.ogg'
+	sound_volume = 100
+	cooldown = 1.0 SECONDS
+
+/datum/emote/living/pardon
+	key = "sorry"
+	key_third_person = "sorrys"
+	message = "exclaims, \"Oh shit, I am sorry!\""
+	sound = 'modular_zzplurt/sound/voice/gachi/sorry.ogg'
+	cooldown = 1.3 SECONDS
+
+/datum/emote/living/pardonfor
+	key = "sorryfor"
+	key_third_person = "sorrysfor"
+	message = "asks, \"Sorry for what?\""
+	message_param = "curses %t!"
+	message_mime = "silently curses someone!"
+	sound = 'modular_zzplurt/sound/voice/gachi/sorryfor.ogg'
+	cooldown = 0.9 SECONDS
+
+/datum/emote/living/fock
+	key = "fuckyou"
+	key_third_person = "fuckyous"
+	message = "curses someone!"
+	message_param = "curses %t!"
+	message_mime = "silently curses someone!"
+	sound = 'modular_zzplurt/sound/voice/gachi/fockyou1.ogg'
+	cooldown = 1.18 SECONDS
+
+/datum/emote/living/fock/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/gachi/fockyou1.ogg','modular_zzplurt/sound/voice/gachi/fockyou2.ogg')
+	. = ..()
+
+
+/datum/emote/living/letsgo
+	key = "go"
+	key_third_person = "goes"
+	message = "yells, \"Come on, lets go!\""
+	message_mime = "motions moving forward!"
+	sound = 'modular_zzplurt/sound/voice/gachi/go.ogg'
+	cooldown = 1.6
+
+/datum/emote/living/chuckle2
+	key = "chuckle2"
+	key_third_person = "chuckles2"
+	message = "chuckles."
+	message_mime = "chuckles silently."
+	sound = 'modular_zzplurt/sound/voice/gachi/chuckle.ogg'
+	cooldown = 1.01 SECONDS
+
+/datum/emote/living/fockslaves
+	key = "slaves"
+	key_third_person = "slaves"
+	message = "curses slaves!"
+	message_mime = "silently curses slaves!"
+	sound = 'modular_zzplurt/sound/voice/gachi/fokensleves.ogg'
+	cooldown = 1.2 SECONDS
+
+/datum/emote/living/getbuttback
+	key = "assback"
+	key_third_person = "assbacks"
+	message = "demands someone's ass to get back here!"
+	message_param = "demands %t's ass to get back here!"
+	message_mime = "motions for someone's ass to get back here!"
+	sound = 'modular_zzplurt/sound/voice/gachi/assback.ogg'
+	cooldown = 1.9 SECONDS
+
+/datum/emote/living/boss
+	key = "boss"
+	key_third_person = "boss"
+	message = "seeks the boss of this place!"
+	message_mime = "stares at the potential boss of this place!"
+	sound = 'modular_zzplurt/sound/voice/gachi/boss.ogg'
+	cooldown = 1.68 SECONDS
+
+/datum/emote/living/attention
+	key = "attention"
+	key_third_person = "attentions"
+	message = "demands an attention!"
+	message_mime = "seems to be looking for an attention."
+	sound_volume = 100
+	sound = 'modular_zzplurt/sound/voice/gachi/attention.ogg'
+	cooldown = 1.36 SECONDS
+
+/datum/emote/living/ah
+	key_third_person = "ahs"
+	message = "ahs!"
+	message_mime = "ahs silently!"
+	sound = 'modular_zzplurt/sound/voice/gachi/ah.ogg'
+	cooldown = 0.67 SECONDS
+	sound_volume = 25
+
+/datum/emote/living/boolets
+	key = "ammo"
+	key_third_person = "ammos"
+	message = "is requesting ammo!"
+	message_mime = "seem to ask for ammo!"
+	sound = 'modular_zzplurt/sound/voice/gachi/boolets.ogg'
+	cooldown = 1.1 SECONDS
+	sound_volume = 10
+
+/datum/emote/living/boolets/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_zzplurt/sound/voice/gachi/boolets.ogg','modular_zzplurt/sound/voice/gachi/boolets2.ogg')
+	. = ..()
+
+/datum/emote/living/wepon
+	key = "wepon"
+	key_third_person = "wepons"
+	message = "is requesting bigger weapons!"
+	message_mime = "seem to ask for weapons!"
+	sound = 'modular_zzplurt/sound/voice/gachi/wepons.ogg'
+	cooldown = 1.07 SECONDS
+	sound_volume = 10
+
+/datum/emote/living/sciteam
+	key = "sciteam"
+	key_third_person = "sciteams"
+	message = "exclaims, \"I am with the <b>Science</b> team!\""
+	message_mime = "gestures being with the Science team!"
+	sound = 'modular_zzplurt/sound/voice/sciteam.ogg'
+	cooldown = 1.32 SECONDS
+	sound_volume = 90
+
+/datum/emote/living/ambatukam
+	key = "ambatukam"
+	key_third_person = "ambatukams"
+	message = "is about to come!"
+	message_mime = "seems like about to come!"
+	sound = 'modular_zzplurt/sound/voice/ambatukam.ogg'
+	cooldown = 2.75 SECONDS
+
+/datum/emote/living/ambatukam2
+	key = "ambatukam2"
+	key_third_person = "ambatukams2"
+	message = "is about to come in harmony!"
+	message_mime = "seems like about to come in harmony!"
+	sound = 'modular_zzplurt/sound/voice/ambatukam_harmony.ogg'
+	cooldown = 3.42 SECONDS
+
+/datum/emote/living/eekum
+	key = "eekumbokum"
+	key_third_person = "eekumbokums"
+	message = "eekum-bokums!"
+	message_mime = "seems to eekum-bokum!"
+	sound = 'modular_zzplurt/sound/voice/eekum-bokum.ogg'
+	cooldown = 0.9
+
+/datum/emote/living/eekum/run_emote(mob/user, params, type_override, intentional)
+	switch(user.gender)
+		if(MALE)
+			sound = 'modular_zzplurt/sound/voice/eekum-bokum.ogg'
+		if(FEMALE)
+			sound = pick('modular_zzplurt/sound/voice/eekum-bokum_f1.ogg','modular_zzplurt/sound/voice/eekum-bokum_f2.ogg')
+		else
+			sound = pick('modular_zzplurt/sound/voice/eekum-bokum.ogg','modular_zzplurt/sound/voice/eekum-bokum_f1.ogg','modular_zzplurt/sound/voice/eekum-bokum_f2.ogg')
+	. = ..()
+
+/datum/emote/living/bazinga
+	key = "bazinga"
+	key_third_person = "bazingas"
+	message = "exclaims, \"<i>Bazinga!</i>\""
+	message_mime = "fools someone, silently."
+	sound = 'modular_zzplurt/sound/voice/bazinga.ogg'
+	cooldown = 0.65 SECONDS
+
+/datum/emote/living/bazinga/run_emote(mob/user, params, type_override, intentional)
+	if(prob(1))
+		sound = 'modular_zzplurt/sound/voice/bazinga_ebil.ogg'
+		//emote_pitch_variance = FALSE
+		cooldown = 1.92 SECONDS
+		sound_volume - 110
+	else
+		sound = 'modular_zzplurt/sound/voice/bazinga.ogg'
+		//emote_pitch_variance = TRUE
+		cooldown = 0.65 SECONDS
+		sound_volume - 50
+	. = ..()
+
+/datum/emote/living/yooo
+	key = "yooo"
+	key_third_person = "yooos"
+	message = "thinks they are part of Kabuki play."
+	sound = 'modular_zzplurt/sound/voice/yooo.ogg'
+	cooldown = 2.54 SECONDS
+
+/datum/emote/living/buzzer_correct
+	key = "correct"
+	key_third_person = "corrects"
+	message = "thinks someone is correct."
+	message_param = "thinks %t is correct."
+	sound = 'modular_zzplurt/sound/voice/buzzer_correct.ogg'
+	cooldown = 0.84 SECONDS
+
+/datum/emote/living/buzzer_incorrect
+	key = "incorrect"
+	key_third_person = "incorrects"
+	message = "thinks someone is incorrect."
+	message_param = "thinks %t is incorrect."
+	sound = 'modular_zzplurt/sound/voice/buzzer_incorrect.ogg'
+	cooldown = 1.21 SECONDS
+
+/datum/emote/living/ace/
+	key = "objection0"
+	key_third_person = "objections0"
+	message = "<b><i>\<\< OBJECTION!! \>\></i></b>"
+	message_mime = "points their finger with determination!"
+	sound = 'modular_zzplurt/sound/voice/ace/ace_objection_generic.ogg'
+	cooldown = 6.0 SECONDS
+	sound_volume = 30
+
+/datum/emote/living/ace/objection
+	key = "objection"
+	key_third_person = "objections"
+	sound = ''
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/ace/objection/run_emote(mob/user, params, type_override, intentional)
+	switch(user.gender)
+		if(MALE)
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_objection_m1.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_m2.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_m3.ogg')
+		if(FEMALE)
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_objection_f1.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_f2.ogg')
+		else
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_objection_m1.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_m2.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_m3.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_f1.ogg', 'modular_zzplurt/sound/voice/ace/ace_objection_f2.ogg')
+	. = ..()
+
+/datum/emote/living/ace/takethat
+	key = "takethat"
+	key_third_person = "tkakesthat"
+	message = "<b><i>\<\< TAKE THAT!! \>\></i></b>"
+	sound = 'modular_zzplurt/sound/voice/ace/ace_takethat_m1.ogg'
+
+/datum/emote/living/ace/takethat/run_emote(mob/user, params, type_override, intentional)
+	switch(user.gender)
+		if(MALE)
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_takethat_m1.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_m2.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_m3.ogg')
+		if(FEMALE)
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_takethat_f1.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_f2.ogg')
+		else
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_takethat_m1.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_m2.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_m3.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_f1.ogg', 'modular_zzplurt/sound/voice/ace/ace_takethat_f2.ogg')
+	. = ..()
+
+/datum/emote/living/ace/hold_it
+	key = "holdit"
+	key_third_person = "holdsit"
+	message = "<b><i>\<\< HOLD IT!! \>\></i></b>"
+	sound = 'modular_zzplurt/sound/voice/ace/ace_holdit_m1.ogg'
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/ace/hold_it/run_emote(mob/user, params, type_override, intentional)
+	switch(user.gender)
+		if(MALE)
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_holdit_m1.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_m2.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_m3.ogg')
+		if(FEMALE)
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_holdit_f1.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_f2.ogg')
+		else
+			sound = pick('modular_zzplurt/sound/voice/ace/ace_holdit_m1.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_m2.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_m3.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_f1.ogg', 'modular_zzplurt/sound/voice/ace/ace_holdit_f2.ogg')
+	. = ..()
+
+/datum/emote/living/smirk2
+	key = "smirk2"
+	key_third_person = "smirks2"
+	message = "<i>smirks</i>."
+	sound = 'modular_zzplurt/sound/voice/ace/ace_wubs.ogg'
+	cooldown = 0.5 SECONDS
+
+/datum/emote/living/nani
+	key = "nani"
+	key_third_person = "nanis"
+	message = "seems confused."
+	sound = 'modular_zzplurt/sound/voice/nani.ogg'
+	cooldown = 0.5 SECONDS
+
+/datum/emote/living/canonevent
+	key = "2099"
+	key_third_person = "canons"
+	message = "thinks this is a canon event."
+	sound = 'modular_zzplurt\sound\voice\canon_event.ogg'
+	cooldown = 5.0 SECONDS
+	sound_volume = 27
+
+/datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_splurt/sound/voice/catpeople/cat_meow1.ogg', 'modular_splurt/sound/voice/catpeople/cat_meow2.ogg', 'modular_splurt/sound/voice/catpeople/cat_meow3.ogg')
+	. = ..()
+
+
+/datum/emote/living/meow2
+	key = "meow2"
+	key_third_person = "meows"
+	message = "meows!"
+	sound = 'modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg'
+	cooldowns = 0.8 SECONDS
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
+	sound = pick('modular_splurt/sound/voice/catpeople/cat_mew1.ogg', 'modular_splurt/sound/voice/catpeople/cat_mew2.ogg')
+	. = ..()
+
+/datum/emote/living/meow3
+	key = "meow3"
+	key_third_person = "mews!"
+	message = "mews!"
+	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg'
+	cooldowns = 0.8 SECONDS
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/mrrp
+	key = "mrrp"
+	key_third_person = "mrrps"
+	message = "trills like a cat!"
+	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp1.ogg'
+	cooldowns = 0.8 SECONDS
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/mrrp2
+	key = "mrrp2"
+	key_third_person = "mrrps"
+	message = "trills like a cat!"
+	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp2.ogg'
+	cooldowns = 0.8 SECONDS
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/gay
+	key = "gay"
+	key_third_person = "points at a player"
+	message = "saw something gay."
+	sound = 'modular_zzplurt/sound/voice/gay-echo.ogg'
+	cooldown = 0.95 SECONDS
+	//emote_pitch_variance = FALSE
+
+/datum/emote/living/flabbergast
+	key = "flabbergast"
+	key_third_person = "is flabbergasted"
+	message = "looks flabbergasted!"
+	sound = 'modular_zzplurt/sound/voice/flabbergasted.ogg'
+	cooldown = 3.0 SECONDS
+	//emote_pitch_variance = FALSE
+	emote_volume = 70
+
+/datum/emote/living/sadness
+	key = "sadness"
+	key_third_person = "feels sadness"
+	message = "is experiencing <b><i>Profound Sadness</i></b>!"
+	sound = 'modular_zzplurt/sound/voice/sadness.ogg'
+	cooldown = 4.0 SECONDS
+	//emote_pitch_variance = FALSE
+	emote_volume = 30
 
 /*
 #undef BEYBLADE_PUKE_THRESHOLD
