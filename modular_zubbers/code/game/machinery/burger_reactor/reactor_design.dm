@@ -32,13 +32,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/techweb_node/rbmk2
-	id = "rbmk2"
+	id = TECHWEB_NODE_RMBK
 	display_name = "RB-MK2"
 	description = "The latest in non-dangerous Nanotrasen power generation!"
-	prereq_ids = list("engineering")
+	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
 		"rbmk2_reactor",
 		"rbmk2_rod",
 		"rbmk2_sniffer"
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)

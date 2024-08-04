@@ -54,14 +54,17 @@
  * Mobs & borgs invoke this through a callback to recharge their cells
  * Arguments
  *
- * * obj/item/stock_parts/cell/target - the cell to charge, optional if provided else will draw power used directly
+ * * obj/item/stock_parts/power_store/cell/target - the cell to charge, optional if provided else will draw power used directly
  * * seconds_per_tick - supplied from process()
  */
-/obj/machinery/recharge_station/proc/charge_target_cell(obj/item/stock_parts/cell/target, seconds_per_tick)
+/obj/machinery/recharge_station/proc/charge_target_cell(obj/item/stock_parts/power_store/cell/target, seconds_per_tick, charge_limit) //BUBBER EDIT BEGIN
 	PRIVATE_PROC(TRUE)
 
+	var/charge_amount = recharge_speed * seconds_per_tick
+	if(charge_limit)
+		charge_amount = max(min(charge_amount, charge_limit - target.charge),0)
 	//charge the cell, account for heat loss from work done
-	var/charge_given = charge_cell(recharge_speed * seconds_per_tick, target, grid_only = TRUE)
+	var/charge_given = charge_cell(charge_amount, target, grid_only = TRUE) //BUBBER EDIT END
 	if(charge_given)
 		use_energy((charge_given + active_power_usage) * 0.01)
 
@@ -75,7 +78,7 @@
 		recharge_speed += (capacitor.tier * STANDARD_CELL_CHARGE * 0.1)
 	for(var/datum/stock_part/servo/servo in component_parts)
 		repairs += servo.tier - 1
-	for(var/obj/item/stock_parts/cell/cell in component_parts)
+	for(var/obj/item/stock_parts/power_store/cell in component_parts)
 		recharge_speed *= cell.maxcharge
 
 /obj/machinery/recharge_station/examine(mob/user)
