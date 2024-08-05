@@ -29,17 +29,6 @@
 	)
 	no_equip_flags = ITEM_SLOT_FEET | ITEM_SLOT_OCLOTHING | ITEM_SLOT_SUITSTORE
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
-/* 	default_mutant_bodyparts = list(
-		"tail" = "None",
-		"snout" = "None",
-		"horns" = "None",
-		"ears" = "None",
-		"legs" = "Normal Legs",
-		"taur" = "None",
-		"fluff" = "None",
-		"wings" = "None",
-		"moth_antennae" = "None"
-	) */
 	mutanttongue = /obj/item/organ/internal/tongue/insect
 
 	always_customizable = FALSE
@@ -126,12 +115,6 @@
 	))
 
 	return perk_descriptions
-
-/datum/species/gas/get_species_description()
-	return placeholder_description
-
-/datum/species/gas/get_species_lore()
-	return list(placeholder_lore)
 
 /obj/item/organ/internal/ears/nabber
 	name = "nabber ears"
