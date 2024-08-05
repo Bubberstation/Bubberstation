@@ -73,6 +73,10 @@
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
+"aba" = (
+/obj/machinery/smartfridge/drying,
+/turf/open/floor/iron/cafeteria,
+/area/station/service/kitchen)
 "abj" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -3347,6 +3351,11 @@
 /obj/machinery/duct,
 /turf/open/floor/wood,
 /area/station/common/pool)
+"aIg" = (
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/incident_display/bridge/directional/south,
+/turf/open/floor/iron/dark/side,
+/area/station/hallway/secondary/command)
 "aIi" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -4821,7 +4830,7 @@
 /area/station/command/heads_quarters/captain)
 "aXW" = (
 /obj/machinery/photocopier,
-/obj/machinery/keycard_auth/directional/south,
+/obj/machinery/keycard_auth/wall_mounted/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "aXX" = (
@@ -11933,7 +11942,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/keycard_auth/directional/south{
+/obj/machinery/keycard_auth/wall_mounted/directional/south{
 	pixel_x = 6
 	},
 /obj/machinery/light_switch/directional/south{
@@ -15725,7 +15734,7 @@
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/mapping_helpers/requests_console/assistance,
-/obj/machinery/keycard_auth/directional/north,
+/obj/machinery/keycard_auth/wall_mounted/directional/north,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
@@ -19718,10 +19727,6 @@
 /turf/open/floor/wood,
 /area/station/security/courtroom)
 "dJR" = (
-/obj/machinery/camera/directional/south{
-	c_tag = " Prison - Locker Room";
-	network = list("ss13","prison")
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/security/prison/shower)
@@ -30935,6 +30940,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/camera/directional/north{
+	c_tag = "Medbay - Psych Ward Airlock";
+	network = list("ss13","medbay")
+	},
 /turf/open/floor/iron,
 /area/station/medical/aslyum)
 "fRu" = (
@@ -31651,7 +31660,7 @@
 /obj/item/toy/figure/qm{
 	pixel_y = 18
 	},
-/obj/machinery/keycard_auth/directional/west,
+/obj/machinery/keycard_auth/wall_mounted/directional/west,
 /obj/machinery/light/directional/west,
 /obj/machinery/fax{
 	fax_name = "Quartermaster's Office";
@@ -31941,6 +31950,16 @@
 	},
 /turf/open/floor/iron/dark/smooth_large/airless,
 /area/space/nearstation)
+"gbm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/machinery/smartfridge/drying/rack,
+/turf/open/floor/wood,
+/area/station/service/chapel)
 "gbv" = (
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
@@ -33090,6 +33109,10 @@
 "gmN" = (
 /obj/structure/chair/sofa/bench/left,
 /obj/machinery/light/small/directional/north,
+/obj/machinery/camera/directional/north{
+	network = list("ss13","prison");
+	c_tag = "Prison - Locker Room"
+	},
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -37623,33 +37646,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/central)
-"hhx" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/flasher{
-	id = "secentranceflasher";
-	pixel_x = 25
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "brig-enterance"
-	},
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "outerbrig";
-	name = "Brig"
-	},
-/obj/effect/decal/cleanable/dirt{
-	icon_state = "dirt-flat-1"
-	},
-/obj/effect/turf_decal/delivery/blue,
-/obj/machinery/door/poddoor/preopen{
-	id = "brigfront";
-	name = "Brig Blast Door"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/obj/machinery/scanner_gate/preset_guns,
-/turf/open/floor/iron/dark,
-/area/station/security/brig)
 "hhy" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "ceblast";
@@ -39224,19 +39220,6 @@
 /obj/item/folder/red,
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_holding_cell)
-"hyk" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer4,
-/turf/open/floor/iron/dark,
-/area/station/science/ordnance)
 "hym" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -40734,11 +40717,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/service)
-"hMR" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/obj/machinery/incident_display/bridge/directional/south,
-/turf/open/floor/iron/dark/side,
-/area/station/hallway/secondary/command)
 "hMW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -55071,7 +55049,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "kwr" = (
-/obj/machinery/keycard_auth/directional/east{
+/obj/machinery/keycard_auth/wall_mounted/directional/east{
 	pixel_y = -8
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -59660,6 +59638,19 @@
 /obj/item/pen,
 /turf/open/floor/iron/dark,
 /area/station/engineering/transit_tube)
+"lrX" = (
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/layer4,
+/turf/open/floor/iron/dark,
+/area/station/science/ordnance)
 "lsb" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -62866,6 +62857,29 @@
 	dir = 4
 	},
 /area/station/hallway/primary/central/aft)
+"lXP" = (
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "brig-enterance"
+	},
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "outerbrig";
+	name = "Brig"
+	},
+/obj/effect/decal/cleanable/dirt{
+	icon_state = "dirt-flat-1"
+	},
+/obj/effect/turf_decal/delivery/blue,
+/obj/machinery/door/poddoor/preopen{
+	id = "brigfront";
+	name = "Brig Blast Door"
+	},
+/obj/effect/landmark/navigate_destination,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
+/obj/machinery/scanner_gate/preset_guns,
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "lXQ" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/records/medical/laptop,
@@ -70250,6 +70264,33 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
+"nxd" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/flasher{
+	id = "secentranceflasher";
+	pixel_x = 25
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "brig-enterance"
+	},
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "outerbrig";
+	name = "Brig"
+	},
+/obj/effect/decal/cleanable/dirt{
+	icon_state = "dirt-flat-1"
+	},
+/obj/effect/turf_decal/delivery/blue,
+/obj/machinery/door/poddoor/preopen{
+	id = "brigfront";
+	name = "Brig Blast Door"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
+/obj/machinery/scanner_gate/preset_guns,
+/turf/open/floor/iron/dark,
+/area/station/security/brig)
 "nxf" = (
 /obj/structure/railing,
 /obj/item/cigbutt,
@@ -76398,10 +76439,6 @@
 "oCn" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
-/obj/machinery/camera/directional/west{
-	c_tag = "Primary Restroom";
-	name = "restroom camera"
-	},
 /turf/open/floor/iron/white,
 /area/station/commons/toilet/restrooms)
 "oCp" = (
@@ -78240,6 +78277,9 @@
 "oUO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/camera/directional/north{
+	c_tag = "Prison - Locker Room"
+	},
 /turf/open/floor/iron,
 /area/station/common/locker_room_shower)
 "oUS" = (
@@ -82844,10 +82884,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
 "pQQ" = (
-/obj/machinery/camera/directional/south{
-	c_tag = " Prison - Showers";
-	network = list("ss13","prison")
-	},
 /obj/item/bikehorn/rubberducky,
 /turf/open/floor/iron/freezer,
 /area/station/security/prison/shower)
@@ -87077,7 +87113,7 @@
 	dir = 1;
 	pixel_y = 3
 	},
-/obj/machinery/keycard_auth/directional/south{
+/obj/machinery/keycard_auth/wall_mounted/directional/south{
 	pixel_y = -23
 	},
 /obj/machinery/requests_console/directional/south{
@@ -92199,29 +92235,6 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/iron/dark,
 /area/station/engineering/break_room)
-"rCE" = (
-/obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "brig-enterance"
-	},
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "outerbrig";
-	name = "Brig"
-	},
-/obj/effect/decal/cleanable/dirt{
-	icon_state = "dirt-flat-1"
-	},
-/obj/effect/turf_decal/delivery/blue,
-/obj/machinery/door/poddoor/preopen{
-	id = "brigfront";
-	name = "Brig Blast Door"
-	},
-/obj/effect/landmark/navigate_destination,
-/obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/obj/machinery/scanner_gate/preset_guns,
-/turf/open/floor/iron/dark,
-/area/station/security/brig)
 "rCH" = (
 /obj/structure/rack/wooden,
 /obj/item/clothing/under/color/yellow{
@@ -96588,11 +96601,6 @@
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/ears/earmuffs,
-/obj/machinery/camera/directional/east{
-	c_tag = "Medbay - Psych Ward Airlock";
-	name = "medbay camera";
-	network = list("ss13","medbay")
-	},
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
@@ -97902,7 +97910,7 @@
 /obj/machinery/computer/atmos_alert{
 	dir = 4
 	},
-/obj/machinery/keycard_auth/directional/west,
+/obj/machinery/keycard_auth/wall_mounted/directional/west,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/ce)
 "sHU" = (
@@ -110162,17 +110170,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
-"uYQ" = (
-/obj/structure/closet/athletic_mixed,
-/obj/effect/turf_decal/bot,
-/obj/machinery/camera{
-	c_tag = "Recreation - Gym Lockers";
-	dir = 5;
-	name = "hallway camera"
-	},
-/obj/item/clothing/shoes/sports,
-/turf/open/floor/iron/dark,
-/area/station/common/locker_room_shower)
 "uYS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -110748,16 +110745,6 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/construction,
 /turf/open/floor/engine,
 /area/station/ai_monitored/turret_protected/aisat_interior)
-"vfU" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
-/obj/machinery/smartfridge/drying/rack,
-/turf/open/floor/wood,
-/area/station/service/chapel)
 "vfY" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks{
@@ -112833,10 +112820,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/engineering/main)
-"vyB" = (
-/obj/machinery/smartfridge/drying,
-/turf/open/floor/iron/cafeteria,
-/area/station/service/kitchen)
 "vyF" = (
 /obj/structure/bed/medical/anchored{
 	dir = 1
@@ -114802,11 +114785,6 @@
 /area/station/command/heads_quarters/captain/private)
 "vRe" = (
 /obj/item/kirbyplants/random,
-/obj/machinery/camera/directional/east{
-	c_tag = "Medbay - Starboard Psych Ward";
-	name = "medbay camera";
-	network = list("ss13","medbay")
-	},
 /turf/open/floor/iron/white/textured,
 /area/station/medical/aslyum)
 "vRh" = (
@@ -145894,7 +145872,7 @@ eqf
 bRp
 dcJ
 qxs
-uYQ
+qxs
 eqf
 vzT
 iGE
@@ -151317,7 +151295,7 @@ vHZ
 hyA
 hyF
 rlC
-vfU
+gbm
 hyA
 hyA
 hyA
@@ -157675,7 +157653,7 @@ msQ
 hlp
 vxA
 sqV
-rCE
+lXP
 sjH
 tOv
 weu
@@ -158189,7 +158167,7 @@ qhq
 rsX
 lze
 jPv
-hhx
+nxd
 tUK
 ush
 cbm
@@ -162594,7 +162572,7 @@ vsd
 kcP
 tWO
 gWE
-vyB
+aba
 vpa
 mNS
 qkB
@@ -223217,7 +223195,7 @@ duP
 gRC
 wZW
 gwW
-hMR
+aIg
 xai
 wEl
 vre
@@ -229727,7 +229705,7 @@ hDu
 eoz
 yjD
 hJE
-hyk
+lrX
 leC
 dxT
 xbd
