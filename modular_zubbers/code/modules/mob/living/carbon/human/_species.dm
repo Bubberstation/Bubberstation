@@ -32,3 +32,10 @@
 	mutantstomach = initial(mutantstomach)
 	mutanttongue = initial(mutanttongue)
 	regenerate_organs(target, replace_current = TRUE)
+
+
+/datum/species/get_species_description()
+	SHOULD_CALL_PARENT(FALSE)
+
+	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.")
+	return list("No species description set, file a bug report!",)
