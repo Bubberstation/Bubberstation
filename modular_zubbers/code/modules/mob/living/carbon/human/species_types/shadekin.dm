@@ -125,3 +125,6 @@
 	name = "Dark Regeneration"
 	desc = "Feeling the tug of home on your fur, some of its soothing warmth comes to ease your burdens"
 	icon_state = "lightless"
+
+/datum/movespeed_modifier/light_averse
+	multiplicative_slowdown = 0.3
