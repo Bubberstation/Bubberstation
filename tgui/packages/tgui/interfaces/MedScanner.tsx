@@ -181,8 +181,8 @@ const PatientBasics = () => {
           <Tooltip
             content={
               species === 'robot'
-                ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a blowtorch or robotic cradle.'
-                : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
+                ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a welding tool or surgery.'
+                : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Libital or sutures.'
             }
           >
             <Box inline>
@@ -198,8 +198,8 @@ const PatientBasics = () => {
           <Tooltip
             content={
               species === 'robot'
-                ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
-                : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
+                ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils.'
+                : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Airui or regenerative mesh.'
             }
           >
             <Box inline>
@@ -214,7 +214,7 @@ const PatientBasics = () => {
           {species !== 'robot' ? (
             <>
               <Box inline width={'5px'} />
-              <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene.">
+              <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with toxin healing medicine.">
                 <Box inline>
                   <ProgressBar value={0}>
                     Tox:{' '}
@@ -225,7 +225,7 @@ const PatientBasics = () => {
                 </Box>
               </Tooltip>
               <Box inline width={'5px'} />
-              <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin Plus or decreases on its own if the patient isn't in critical condition.">
+              <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, oxygen healing medicine or decreases on its own if the patient isn't in critical condition.">
                 <Box inline>
                   <ProgressBar value={0}>
                     Oxy:{' '}
@@ -332,7 +332,7 @@ const PatientLimbs = () => {
             {limb.missing ? (
               <Tooltip
                 content={
-                  'Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.'
+                  'Missing limbs can only be fixed through surgical intervention.'
                 }
               >
                 <Stack.Item color={'red'} bold>
@@ -345,7 +345,7 @@ const PatientLimbs = () => {
                   <Tooltip
                     content={
                       limb.limb_type === 'Robotic'
-                        ? 'Limb denting. Can be welded with a blowtorch or nanopaste.'
+                        ? 'Limb denting. Can be welded with a welding tool.'
                         : limb.bandaged
                           ? 'Treated wounds will slowly heal on their own, or can be healed faster with chemicals.'
                           : 'Untreated physical trauma. Can be bandaged with gauze or advanced trauma kits.'
@@ -363,7 +363,7 @@ const PatientLimbs = () => {
                   <Tooltip
                     content={
                       limb.limb_type === 'Robotic'
-                        ? 'Wire scorching. Can be repaired with a cable coil or nanopaste.'
+                        ? 'Wire scorching. Can be repaired with a cable coil.'
                         : limb.salved
                           ? 'Salved burns will slowly heal on their own, or can be healed faster with chemicals.'
                           : 'Unsalved burns. Can be salved with ointment or advanced burn kits.'
@@ -431,7 +431,7 @@ const PatientLimbs = () => {
                     </Tooltip>
                   ) : null}
                   {limb.bleeding ? (
-                    <Tooltip content="This limb is bleeding and the patient is losing blood. Can be stopped with gauze or an advanced trauma kit.">
+                    <Tooltip content="This limb is bleeding and the patient is losing blood. Can be stopped with gauze or with a suture.">
                       <Box inline color={'red'} bold>
                         [Bleeding]
                       </Box>
