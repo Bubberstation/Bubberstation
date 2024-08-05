@@ -357,6 +357,7 @@
 	if(ismob(gone))
 		var/mob/M = gone
 		M.clear_fullscreen("vore")
+		M.reset_perspective()
 		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
 		REMOVE_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
 		// Unabsorb if they leave by any method

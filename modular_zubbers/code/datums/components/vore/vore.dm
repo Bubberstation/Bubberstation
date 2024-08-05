@@ -301,6 +301,13 @@
 	if(!is_type_in_typecache(prey, GLOB.vore_allowed_mob_types))
 		return FALSE
 
+	if(prey.buckled)
+		to_chat(user, span_danger("[prey] is buckled."))
+		return FALSE
+	if(prey.has_buckled_mobs())
+		to_chat(user, span_danger("[prey] has buckled mobs."))
+		return FALSE
+
 	// Check pred prefs
 	// These are structured like this so that we automatically succeed for components without a client
 	// REQUIRES_PLAYER is checked above
