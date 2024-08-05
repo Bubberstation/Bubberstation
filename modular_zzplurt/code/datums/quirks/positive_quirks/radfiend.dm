@@ -8,7 +8,7 @@
 	lose_text = span_notice("You realize that rads aren't so rad.")
 	medical_record_text = "Patient is slightly radioactive."
 
-/datum/quirk/rad_fiend/add()
+/datum/quirk/rad_fiend/add(client/client_source)
 	// Define quirk holder mob
 	var/mob/living/carbon/human/quirk_mob = quirk_holder
 	// Add glow control action

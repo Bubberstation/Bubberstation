@@ -5,7 +5,7 @@
 	value = 0
 	medical_record_text = "Patient's limbs seem to be easily detachable and reattachable."
 
-/datum/quirk/modularlimbs/add()
+/datum/quirk/modularlimbs/add(client/client_source)
 	var/mob/living/carbon/human/C = quirk_holder
 	add_verb(C,/mob/living/proc/alterlimbs)
 

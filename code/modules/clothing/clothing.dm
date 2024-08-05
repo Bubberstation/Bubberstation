@@ -100,7 +100,7 @@
 		qdel(src)
 
 /obj/item/clothing/attack(mob/living/target, mob/living/user, params)
-	if(user.combat_mode || !ismoth(target) || ispickedupmob(src))
+	if(user.combat_mode || !(ismoth(target) || HAS_TRAIT(target, TRAIT_CLOTH_EATER)) || ispickedupmob(src)) // SPLURT EDIT - cloth eather trait
 		return ..()
 	if((clothing_flags & INEDIBLE_CLOTHING) || (resistance_flags & INDESTRUCTIBLE))
 		return ..()
