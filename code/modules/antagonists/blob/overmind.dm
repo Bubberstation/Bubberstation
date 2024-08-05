@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	name = new_name
 	real_name = new_name
 	last_attack = world.time
-	var/datum/blobstrain/BS = pick(GLOB.valid_blobstrains)
+	var/datum/blobstrain/BS = /datum/blobstrain/reagent/reactive_spines //BUBBERSTATION CHANGE, YOUR STRAIN WILL ALWAYS BE THE SAME.
 	set_strain(BS)
 	color = blobstrain.complementary_color
 	if(blob_core)
@@ -206,7 +206,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			if(live_guy.stat != DEAD)
 				live_guy.investigate_log("has died from blob takeover.", INVESTIGATE_DEATHS)
 			live_guy.death()
-			create_spore(guy_turf)
+			create_spore(guy_turf, spore_type = /mob/living/basic/blob_minion/spore)
 		else
 			live_guy.fully_heal()
 

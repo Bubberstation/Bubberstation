@@ -30,6 +30,7 @@
 	B.mimic_broken(src, target, break_top)
 	qdel(src)
 	target.Bumped(B)
+	return B //BUBBERSTATION CHANGE: RETURNS THE BROKEN BOTTLE.
 
 /obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/P)
 	. = ..()
@@ -316,7 +317,7 @@
 		var/mob/living/thrower = throwingdatum?.get_thrower()
 		if(thrower)
 			thrower.add_mood_event("bottle_flip", /datum/mood_event/bottle_flip)
-	else // landed on it's side
+	else // landed on its side
 		animate(src, transform = matrix(prob(50)? 90 : -90, MATRIX_ROTATE), time = 3, loop = 0)
 
 /obj/item/reagent_containers/cup/glass/waterbottle/pickup(mob/user)
