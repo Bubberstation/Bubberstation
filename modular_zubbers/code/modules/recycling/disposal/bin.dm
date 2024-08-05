@@ -1,21 +1,22 @@
 /obj/machinery/disposal/delivery_chute/tagger
-	var/currTag = 0 //Destinations are stored in code\globalvars\lists\flavor_misc.dm
+	var/currTag = SORT_TYPE_CARGO_BAY //Check out code/__DEFINES/sort_types.dm
 
-/obj/machinery/disposal/delivery_chute/tagger/Initialize(...)
-	mounted_tagger = new /obj/item/dest_tagger(null)
-	mounted_tagget.currTag = src.currTag
+/obj/machinery/disposal/delivery_chute/tagger/newHolderDestination(obj/structure/disposalholder/H)
+	. = ..()
+	if(currTag)
+		H.destinationTag = currTag
 
 /obj/machinery/disposal/delivery_chute/tagger/engineering
-	currTag = 4
+	currTag = SORT_TYPE_ENGINEERING
 
 /obj/machinery/disposal/delivery_chute/tagger/security
-	currTag = 7
+	currTag = SORT_TYPE_SECURITY
 
 /obj/machinery/disposal/delivery_chute/tagger/medbay
-	currTag = 9
+	currTag = SORT_TYPE_MEDBAY
 
 /obj/machinery/disposal/delivery_chute/tagger/research
-	currTag = 12
+	currTag = SORT_TYPE_RESEARCH
 
 /obj/machinery/disposal/delivery_chute/tagger/kitchen
-	currTag = 20
+	currTag = SORT_TYPE_KITCHEN
