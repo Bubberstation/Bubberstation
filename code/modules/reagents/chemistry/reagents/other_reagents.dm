@@ -561,6 +561,16 @@
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
+	//SPLURT EDIT ADDITION - cursed blood
+	if(HAS_TRAIT(affected_mob, TRAIT_CURSED_BLOOD))
+		affected_mob.adjustToxLoss(-0.75*REAGENTS_EFFECT_MULTIPLIER, 0)
+		affected_mob.adjustOxyLoss(-0.75*REAGENTS_EFFECT_MULTIPLIER, 0)
+		affected_mob.adjustBruteLoss(-0.75*REAGENTS_EFFECT_MULTIPLIER, 0)
+		affected_mob.adjustFireLoss(-0.75*REAGENTS_EFFECT_MULTIPLIER, 0)
+		affected_mob.extinguish_mob()
+		holder.remove_reagent(type, 1)
+		return
+	//SPLURT EDIT END
 	affected_mob.set_fire_stacks(min(affected_mob.fire_stacks + (1.5 * seconds_per_tick), 5))
 	affected_mob.ignite_mob() //Only problem with igniting people is currently the commonly available fire suits make you immune to being on fire
 	var/need_mob_update
