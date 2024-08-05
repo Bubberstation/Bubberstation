@@ -4,4 +4,4 @@
 	multiplicative_slowdown = -0.4
 
 /datum/movespeed_modifier/light_averse
-	multiplicative_slowdown = 1
+	multiplicative_slowdown = 0.3

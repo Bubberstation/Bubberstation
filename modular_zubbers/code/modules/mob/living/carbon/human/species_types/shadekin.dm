@@ -98,7 +98,7 @@
 	if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
 		owner.apply_status_effect(applied_status)
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/light_averse)
-	if (!owner.has_status_effect(applied_status))
+	else
 		owner.add_movespeed_modifier(/datum/movespeed_modifier/light_averse)
 
 /datum/status_effect/shadekin_regeneration
