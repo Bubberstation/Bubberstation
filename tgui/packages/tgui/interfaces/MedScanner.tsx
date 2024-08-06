@@ -58,10 +58,10 @@ export const MedScanner = () => {
       height={615}
       theme={
         accessible_theme
-          ? species === 'robot'
+          ? species === 'Synthetic Humanoid'
             ? 'hackerman'
             : 'default'
-          : species === 'robot'
+          : species === 'Synthetic Humanoid'
             ? 'ntos_rusty'
             : 'ntos_healthy'
       }
@@ -107,7 +107,9 @@ const PatientBasics = () => {
   } = data;
   return (
     <Section
-      title={(species === 'robot' ? 'Robot: ' : 'Patient: ') + patient}
+      title={
+        (species === 'Synthetic Humanoid' ? 'Unit: ' : 'Patient: ') + patient
+      }
       buttons={
         <Button
           icon="info"
@@ -115,7 +117,11 @@ const PatientBasics = () => {
           color="transparent"
           mt={
             /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
-            accessible_theme ? (species === 'robot' ? '-5px' : '0px') : '0px'
+            accessible_theme
+              ? species === 'Synthetic Humanoid'
+                ? '-5px'
+                : '0px'
+              : '0px'
           }
         >
           Tooltips - hover for info
@@ -130,7 +136,7 @@ const PatientBasics = () => {
           <Tooltip
             content={
               'How healthy the patient is.' +
-              (species === 'robot'
+              (species === 'Synthetic Humanoid'
                 ? ''
                 : " If the patient's health dips below " +
                   crit_threshold +
@@ -180,7 +186,7 @@ const PatientBasics = () => {
         <LabeledList.Item label="Damage">
           <Tooltip
             content={
-              species === 'robot'
+              species === 'Synthetic Humanoid'
                 ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a welding tool or surgery.'
                 : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Libital or sutures.'
             }
@@ -197,7 +203,7 @@ const PatientBasics = () => {
           <Box inline width={'5px'} />
           <Tooltip
             content={
-              species === 'robot'
+              species === 'Synthetic Humanoid'
                 ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils.'
                 : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Airui or regenerative mesh.'
             }
@@ -211,7 +217,7 @@ const PatientBasics = () => {
               </ProgressBar>
             </Box>
           </Tooltip>
-          {species !== 'robot' ? (
+          {species !== 'Synthetic Humanoid' ? (
             <>
               <Box inline width={'5px'} />
               <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with toxin healing medicine.">
@@ -417,7 +423,7 @@ const PatientLimbs = () => {
                         inline
                         color={
                           limb.limb_type === 'Robotic'
-                            ? species === 'robot'
+                            ? species === 'Synthetic Humanoid'
                               ? accessible_theme
                                 ? 'lime'
                                 : 'label'
@@ -522,7 +528,7 @@ const PatientAdvice = () => {
                   color={
                     accessible_theme
                       ? advice.color
-                      : species === 'robot'
+                      : species === 'Synthetic Humanoid'
                         ? 'label'
                         : advice.color
                   }

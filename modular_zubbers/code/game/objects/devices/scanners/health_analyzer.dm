@@ -156,19 +156,20 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 			))
 			advice += list(list(
 				"advice" = "Synthetic: Patient does not suffer from blood loss.",
-				"tooltip" = "Synthetics don't lose health normaly.",
+				"tooltip" = "Synthetics don't lose blood normaly.",
 				"icon" = "robot",
 				"color" = "label"
 			))
 		if(patient.stat == DEAD) // death advice
-			//if(patient.wear_suit)
-			//	advice += list(list(
-			//		"advice" = "Remove patient's suit or armor.",
-			//		"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
-			//		"icon" = "shield-alt",
-			//		"color" = "blue"
-			//		))
-			if((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+			for(var/obj/item/clothing/C in patient.get_equipped_items())
+				if((C.body_parts_covered & CHEST) && (C.clothing_flags & THICKMATERIAL))
+					advice += list(list(
+						"advice" = "Remove patient's suit or armor.",
+						"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
+						"icon" = "shield-alt",
+						"color" = "blue"
+						))
+			if((patient.getBruteLoss() <= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() <= MAX_REVIVE_FIRE_DAMAGE))
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"tooltip" = "The patient is ready to be revived, defibrillate them as soon as possible!",
@@ -242,8 +243,8 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 					if(chemicals_lists["Occuline"]["amount"] < 3)
 						advice += temp_advice
 				else
-					advice += temp_advice
-			if(patient.getBruteLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+					advice += temp_advice */
+			if(patient.getBruteLoss() > 30 && (!issynthetic(patient)))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of Libital or Salicylic Acid to reduce physical trauma.",
 					"tooltip" = "Significant physical trauma detected. Libital and Salicylic Acid both reduce brute damage.",
@@ -255,7 +256,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getFireLoss(organic_only = TRUE) > 30 && !chemicals_lists["Medical nanites"])
+			if(patient.getFireLoss() && (!issynthetic(patient)))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of Aiuri or Oxandrolone to reduce burns.",
 					"tooltip" = "Significant tissue burns detected. Aiuri and Oxandrolone both reduces burn damage.",
@@ -267,7 +268,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getToxLoss() > 15)
+			if(patient.getToxLoss() > 15 && (!issynthetic(patient)))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of multiver or pentetic acid.",
 					"tooltip" = "Significant blood toxins detected. Multiver and Pentetic Acid both will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
@@ -275,11 +276,11 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 					"color" = "green"
 					))
 				if(chemicals_lists["Multiver"])
-					if(chemicals_lists["Dylovene"]["amount"] < 5)
+					if(chemicals_lists["Multiver"]["amount"] < 5)
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getOxyLoss() > 30)
+			if(patient.getOxyLoss() > 30 && (!issynthetic(patient)))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of salbutamol plus to re-oxygenate patient's blood.",
 					"tooltip" = "If you don't have Salbutamol, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
@@ -299,7 +300,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 					"color" = "cyan"
 					))
 				advice += temp_advice
-			if(patient.stat != DEAD && patient.health < patient.get_crit_threshold())
+			if(patient.stat != DEAD && patient.health < patient.crit_threshold)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of epinephrine.",
 					"tooltip" = "When used in hard critical condition, Epinephrine prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
@@ -311,7 +312,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice
-					*/
+
 	else
 		advice += list(list(
 			"advice" = "Patient is unrevivable.",
