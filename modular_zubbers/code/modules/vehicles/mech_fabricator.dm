@@ -1,6 +1,7 @@
 /obj/machinery/mecha_part_fabricator/interdyne
 	name="Syndicate Branded Exosuit Fabricator"
 	link_on_init = FALSE
+	circuit=/obj/machinery/mecha_part_fabricator/interdyne
 
 /obj/machinery/mecha_part_fabricator/interdyne/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -26,3 +27,4 @@
 /obj/item/circuitboard/machine/mechfab/interdyne
 	name = "Syndicate Exosuit Fabricator"
 	build_path = /obj/machinery/mecha_part_fabricator/interdyne
+
