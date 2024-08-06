@@ -1,0 +1,3 @@
+#define COMSIG_KB_MOB_PIXEL_TILT "keybinding_mob_pixeltilt"
+#define COMSIG_KB_MOB_PIXEL_TILT_DOWN "keybinding_mob_pixeltilt_down"
+#define COMSIG_KB_MOB_PIXEL_TILT_UP "keybinding_mob_pixeltilt_up"
