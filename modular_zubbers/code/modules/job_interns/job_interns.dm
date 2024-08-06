@@ -73,6 +73,8 @@
 	var/playtime
 	if(internship_use_self_exp_type)
 		var/list/play_records = player_client?.prefs?.exp
+		if(!play_records | !islist(play_records))
+			return FALSE
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
@@ -86,7 +88,7 @@
 			return FALSE
 		required_time = get_intern_time_threshold()
 		playtime = player_client?.calc_exp_type(exp_type)
-	if(playtime >= required_time)
+	if(!playtime || !required_time || playtime >= required_time)
 		return FALSE
 	return TRUE
 
