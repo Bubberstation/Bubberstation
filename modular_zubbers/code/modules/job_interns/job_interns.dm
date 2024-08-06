@@ -67,25 +67,25 @@
 		return FALSE
 	if(job_flags & JOB_HEAD_OF_STAFF)
 		return FALSE
-	if(!player_client.prefs.read_preference(/datum/preference/toggle/be_intern)) // If the pref is off, we stop here
+	if(!player_client?.prefs?.read_preference(/datum/preference/toggle/be_intern)) // If the pref is off, we stop here
 		return FALSE
 	var/required_time
 	var/playtime
 	if(internship_use_self_exp_type)
-		var/list/play_records = player_client.prefs.exp
+		var/list/play_records = player_client?.prefs?.exp
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
 		// Use first department head job as our master job to compare to
 		var/datum/job/master_job = SSjob.GetJob(department_head[1])
-		playtime = player_client.calc_exp_type(master_job.get_exp_req_type())
+		playtime = player_client?.calc_exp_type(master_job.get_exp_req_type())
 		required_time = master_job.get_exp_req_amount()
 	else
 		var/exp_type = get_intern_exp_type()
 		if(!exp_type)
 			return FALSE
 		required_time = get_intern_time_threshold()
-		playtime = player_client.calc_exp_type(exp_type)
+		playtime = player_client?.calc_exp_type(exp_type)
 	if(playtime >= required_time)
 		return FALSE
 	return TRUE
