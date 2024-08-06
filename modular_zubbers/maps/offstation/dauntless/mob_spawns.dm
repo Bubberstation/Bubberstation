@@ -4,6 +4,11 @@
 	akula_outfit = /datum/outfit/akula
 	antagonist_restricted = TRUE
 
+/datum/job/dauntless/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	if(!ishuman(spawned))
+		return
+	spawned.apply_pref_name(/datum/preference/name/syndicate, player_client)
 // Dauntless Ghost Spawners (Lava)
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless
@@ -169,7 +174,7 @@
 		id_card.registered_name = syndicate.real_name
 		id_card.update_label()
 		id_card.update_icon()
-
+	syndicate.apply_pref_name(/datum/preference/name/syndicate, syndicate.client)
 	handlebank(syndicate)
 	return ..()
 

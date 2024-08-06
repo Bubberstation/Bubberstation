@@ -6,9 +6,17 @@
 
 /datum/antagonist/traitor/lone_infiltrator/on_gain()
 	var/mob/living/carbon/human/current = owner.current
+	//Bubber Edit: Adds automatic antag names
+	var/mob/living/carbon/human/person = owner.current
+	if(iscarbon(person))
+		person.apply_pref_name(/datum/preference/name/syndicate, person.client)
+		person.dna.update_dna_identity()
+	//Bubber edit END: Adds automatic antag name
 	current.equipOutfit(infil_outfit)
+	/* Bubber edit Removal : Antag Names
 	var/chosen_name = generate_random_name_species_based(current.gender, TRUE, species_type = current.dna.species.type)
 	current.fully_replace_character_name(current.real_name, chosen_name)
+	*/
 	return ..()
 
 /datum/outfit/lone_infiltrator_preview
