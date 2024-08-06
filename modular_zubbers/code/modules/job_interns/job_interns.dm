@@ -73,8 +73,9 @@
 	var/playtime
 	if(internship_use_self_exp_type)
 		var/list/play_records = player_client?.prefs?.exp
-		if(!play_records | !islist(play_records))
-			return FALSE
+        if(!play_records || !islist(play_records))
+            stack_trace("[src] client [player_client] checking for play records resulted in invalid record data")
+            return FALSE
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
@@ -85,11 +86,21 @@
 	else
 		var/exp_type = get_intern_exp_type()
 		if(!exp_type)
+            stack_trace("[src] failed to get intern exp type")
 			return FALSE
 		required_time = get_intern_time_threshold()
 		playtime = player_client?.calc_exp_type(exp_type)
-	if(!playtime || !required_time || playtime >= required_time)
-		return FALSE
+    if(isnull(playtime))
+        if(!player_client)
+            stack_trace("[src] tried to check playtime against no player client")
+        else
+            stack_trace("[src] client [player_client] checking for playtime resulted in null")
+        return FALSE
+    if(!required_time)
+        stack_trace("[src] job has no intern time threshold set")
+        return FALSE
+    if(playtime >= required_time)
+        return FALSE
 	return TRUE
 
 /obj/item/card/id
