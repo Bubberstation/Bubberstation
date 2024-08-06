@@ -4,11 +4,6 @@
 	akula_outfit = /datum/outfit/akula
 	antagonist_restricted = TRUE
 
-/datum/job/dauntless/after_spawn(mob/living/spawned, client/player_client)
-	. = ..()
-	if(!ishuman(spawned))
-		return
-	spawned.apply_pref_name(/datum/preference/name/syndicate, player_client)
 // Dauntless Ghost Spawners (Lava)
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless
