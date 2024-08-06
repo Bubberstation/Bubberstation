@@ -1082,14 +1082,14 @@
 /datum/emote/living/bazinga/run_emote(mob/user, params, type_override, intentional)
 	if(prob(1))
 		sound = 'modular_zzplurt/sound/voice/bazinga_ebil.ogg'
-		//emote_pitch_variance = FALSE
+		vary = FALSE
 		cooldown = 1.92 SECONDS
-		sound_volume - 110
+		sound_volume = 110
 	else
 		sound = 'modular_zzplurt/sound/voice/bazinga.ogg'
-		//emote_pitch_variance = TRUE
+		vary = TRUE
 		cooldown = 0.65 SECONDS
-		sound_volume - 50
+		sound_volume = 50
 	. = ..()
 
 /datum/emote/living/yooo
@@ -1128,7 +1128,7 @@
 	key = "objection"
 	key_third_person = "objections"
 	sound = ''
-	//emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/ace/objection/run_emote(mob/user, params, type_override, intentional)
 	switch(user.gender)
@@ -1161,7 +1161,7 @@
 	key_third_person = "holdsit"
 	message = "<b><i>\<\< HOLD IT!! \>\></i></b>"
 	sound = 'modular_zzplurt/sound/voice/ace/ace_holdit_m1.ogg'
-	//emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/ace/hold_it/run_emote(mob/user, params, type_override, intentional)
 	switch(user.gender)
@@ -1191,12 +1191,12 @@
 	key = "2099"
 	key_third_person = "canons"
 	message = "thinks this is a canon event."
-	sound = 'modular_zzplurt\sound\voice\canon_event.ogg'
+	sound = 'modular_zzplurt/sound/voice/canon_event.ogg'
 	cooldown = 5.0 SECONDS
 	sound_volume = 27
 
 /datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_splurt/sound/voice/catpeople/cat_meow1.ogg', 'modular_splurt/sound/voice/catpeople/cat_meow2.ogg', 'modular_splurt/sound/voice/catpeople/cat_meow3.ogg')
+	sound = pick('modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow2.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow3.ogg')
 	. = ..()
 
 
@@ -1206,10 +1206,10 @@
 	message = "meows!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_splurt/sound/voice/catpeople/cat_mew1.ogg', 'modular_splurt/sound/voice/catpeople/cat_mew2.ogg')
+	sound = pick('modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_mew2.ogg')
 	. = ..()
 
 /datum/emote/living/meow3
@@ -1218,7 +1218,7 @@
 	message = "mews!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/mrrp
 	key = "mrrp"
@@ -1226,7 +1226,7 @@
 	message = "trills like a cat!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp1.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/mrrp2
 	key = "mrrp2"
@@ -1234,7 +1234,7 @@
 	message = "trills like a cat!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp2.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
+	emote_pitch_variance = FALSE
 
 /datum/emote/living/gay
 	key = "gay"
@@ -1242,7 +1242,7 @@
 	message = "saw something gay."
 	sound = 'modular_zzplurt/sound/voice/gay-echo.ogg'
 	cooldown = 0.95 SECONDS
-	//emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/flabbergast
 	key = "flabbergast"
@@ -1250,8 +1250,8 @@
 	message = "looks flabbergasted!"
 	sound = 'modular_zzplurt/sound/voice/flabbergasted.ogg'
 	cooldown = 3.0 SECONDS
-	//emote_pitch_variance = FALSE
-	emote_volume = 70
+	emote_pitch_variance = FALSE
+	sound_volume = 70
 
 /datum/emote/living/sadness
 	key = "sadness"
@@ -1259,8 +1259,8 @@
 	message = "is experiencing <b><i>Profound Sadness</i></b>!"
 	sound = 'modular_zzplurt/sound/voice/sadness.ogg'
 	cooldown = 4.0 SECONDS
-	//emote_pitch_variance = FALSE
-	emote_volume = 30
+	emote_pitch_variance = FALSE
+	sound_volume = 30
 
 /*
 #undef BEYBLADE_PUKE_THRESHOLD
