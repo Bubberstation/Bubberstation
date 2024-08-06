@@ -97,7 +97,7 @@
             stack_trace("[src] client [player_client] checking for playtime resulted in null")
         return FALSE
     if(!required_time)
-        stack_trace("[src] job has no intern time threshold set")
+		stack_trace("[src] job failed to set intern time threshold")
         return FALSE
     if(playtime >= required_time)
         return FALSE
