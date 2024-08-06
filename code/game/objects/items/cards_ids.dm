@@ -841,7 +841,7 @@
 
 /// Returns the trim assignment name.
 /obj/item/card/id/proc/get_trim_assignment()
-	return get_job_title() // BUBBER EDIT: uses the `get_job_title()` proc instead
+	return trim?.assignment || assignment
 
 /// Returns the trim sechud icon state.
 /obj/item/card/id/proc/get_trim_sechud_icon_state()
