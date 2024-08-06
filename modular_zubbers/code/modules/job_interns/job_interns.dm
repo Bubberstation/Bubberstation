@@ -92,11 +92,11 @@
 		playtime = player_client?.calc_exp_type(exp_type)
 	if(isnull(playtime))
 		if(!player_client)
-		stack_trace("[src] tried to check playtime against no player client")
+			stack_trace("[src] tried to check playtime against no player client")
 		else
 			stack_trace("[src] client [player_client] checking for playtime resulted in null")
 		return FALSE
-    if(!required_time)
+	if(!required_time)
 		stack_trace("[src] job failed to set intern time threshold")
 		return FALSE
 	if(playtime >= required_time)
