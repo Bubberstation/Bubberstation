@@ -122,21 +122,3 @@
 
 /datum/job/cook
 	internship_use_self_exp_type = TRUE
-
-/datum/job/psychologist
-	internship_use_self_exp_type = TRUE
-
-/datum/job/curator
-	internship_use_self_exp_type = TRUE
-
-/datum/job/barber
-	internship_use_self_exp_type = TRUE
-
-/datum/job/lawyer
-	internship_use_self_exp_type = TRUE
-
-/datum/job/mime
-	internship_use_self_exp_type = TRUE
-
-/datum/job/clown
-	internship_use_self_exp_type = TRUE
