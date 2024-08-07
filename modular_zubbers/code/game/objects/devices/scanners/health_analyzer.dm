@@ -5,6 +5,15 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	"ntos_healthy",
 ))
 
+#define MAX_HEALTH_ANALYZER_UPDATE_RANGE 3
+
+/obj/item/healthanalyzer/process(seconds_per_tick)
+	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > MAX_HEALTH_ANALYZER_UPDATE_RANGE || patient == current_user)
+		STOP_PROCESSING(SSobj, src)
+		patient = null
+		current_user = null
+		return
+	update_static_data(current_user)
 
 /obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -49,6 +58,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
 	data["species"] = patient.dna.species
+	data["custom_species"] = patient.client?.prefs.read_preference(/datum/preference/text/custom_species)
 
 	/*
 	LIMBS
@@ -77,9 +87,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		var/limb_type = ""
 		if(IS_ROBOTIC_LIMB(limb))
 			limb_type = "Robotic"
-		if(limb.get_wound_type(/datum/wound/blunt))
-			limb_status = "Fractured"
-		else if(limb.current_gauze)
+		else if((limb.get_wound_type(/datum/wound/blunt)) && limb.current_gauze)
 			limb_status = "Stabilized"
 		else if((limb.get_wound_type(/datum/wound/blunt)) && limb.current_gauze)
 			limb_status = "Splinted"
@@ -244,74 +252,74 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice */
-			if(patient.getBruteLoss() > 30)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of Libital or Salicylic Acid to reduce physical trauma.",
-					"tooltip" = "Significant physical trauma detected. Libital and Salicylic Acid both reduce brute damage.",
-					"icon" = "syringe",
-					"color" = "red"
-					))
-				if(chemicals_lists["Libital"])
-					if(chemicals_lists["Libital"]["amount"] < 3)
-						advice += temp_advice
-				else
+		if(patient.getBruteLoss() > 30)
+			temp_advice = list(list(
+				"advice" = "Administer a single dose of Libital or Salicylic Acid to reduce physical trauma.",
+				"tooltip" = "Significant physical trauma detected. Libital and Salicylic Acid both reduce brute damage.",
+				"icon" = "syringe",
+				"color" = "red"
+				))
+			if(chemicals_lists["Libital"])
+				if(chemicals_lists["Libital"]["amount"] < 3)
 					advice += temp_advice
-			if(patient.getFireLoss() > 30)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of Aiuri or Oxandrolone to reduce burns.",
-					"tooltip" = "Significant tissue burns detected. Aiuri and Oxandrolone both reduces burn damage.",
-					"icon" = "syringe",
-					"color" = "yellow"
-					))
-				if(chemicals_lists["Aiuri"])
-					if(chemicals_lists["Aiuri"]["amount"] < 3)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			if(patient.getToxLoss() > 15)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of multiver or pentetic acid.",
-					"tooltip" = "Significant blood toxins detected. Multiver and Pentetic Acid both will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
-					"icon" = "syringe",
-					"color" = "green"
-					))
-				if(chemicals_lists["Multiver"])
-					if(chemicals_lists["Multiver"]["amount"] < 5)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			if(patient.getOxyLoss() > 30)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of salbutamol plus to re-oxygenate patient's blood.",
-					"tooltip" = "If you don't have Salbutamol, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
-					"icon" = "syringe",
-					"color" = "blue"
-					))
-				if(chemicals_lists["Salbutamol"])
-					if(chemicals_lists["Salbutamol"]["amount"] < 3)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
-				advice += list(list(
-					"advice" = "Administer a single dose of Saline-Glucose or Iron.",
-					"tooltip" = "The patient has lost a significant amount of blood. Saline-Glucose or Iron speeds up blood regeneration significantly.",
-					"icon" = "syringe",
-					"color" = "cyan"
-					))
+			else
 				advice += temp_advice
-			if(patient.stat != DEAD && patient.health < patient.crit_threshold)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of epinephrine.",
-					"tooltip" = "When used in hard critical condition, Epinephrine prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
-					"icon" = "syringe",
-					"color" = "purple"
-					))
-				if(chemicals_lists["Epinephrine"])
-					if(chemicals_lists["Epinephrine"]["amount"] < 5)
-						advice += temp_advice
-				else
+		if(patient.getFireLoss() > 30)
+			temp_advice = list(list(
+				"advice" = "Administer a single dose of Aiuri or Oxandrolone to reduce burns.",
+				"tooltip" = "Significant tissue burns detected. Aiuri and Oxandrolone both reduces burn damage.",
+				"icon" = "syringe",
+				"color" = "yellow"
+				))
+			if(chemicals_lists["Aiuri"])
+				if(chemicals_lists["Aiuri"]["amount"] < 3)
 					advice += temp_advice
+			else
+				advice += temp_advice
+		if(patient.getToxLoss() > 15)
+			temp_advice = list(list(
+				"advice" = "Administer a single dose of multiver or pentetic acid.",
+				"tooltip" = "Significant blood toxins detected. Multiver and Pentetic Acid both will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
+				"icon" = "syringe",
+				"color" = "green"
+				))
+			if(chemicals_lists["Multiver"])
+				if(chemicals_lists["Multiver"]["amount"] < 5)
+					advice += temp_advice
+			else
+				advice += temp_advice
+		if(patient.getOxyLoss() > 30)
+			temp_advice = list(list(
+				"advice" = "Administer a single dose of salbutamol to re-oxygenate patient's blood.",
+				"tooltip" = "If you don't have Salbutamol, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
+				"icon" = "syringe",
+				"color" = "blue"
+				))
+			if(chemicals_lists["Salbutamol"])
+				if(chemicals_lists["Salbutamol"]["amount"] < 3)
+					advice += temp_advice
+			else
+				advice += temp_advice
+		if(patient.blood_volume <= 500 && !chemicals_lists["Saline-Glucose"])
+			advice += list(list(
+				"advice" = "Administer a single dose of Saline-Glucose or Iron.",
+				"tooltip" = "The patient has lost a significant amount of blood. Saline-Glucose or Iron speeds up blood regeneration significantly.",
+				"icon" = "syringe",
+				"color" = "cyan"
+				))
+			advice += temp_advice
+		if(patient.stat != DEAD && patient.health < patient.crit_threshold)
+			temp_advice = list(list(
+				"advice" = "Administer a single dose of epinephrine.",
+				"tooltip" = "When used in hard critical condition, Epinephrine prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
+				"icon" = "syringe",
+				"color" = "purple"
+				))
+			if(chemicals_lists["Epinephrine"])
+				if(chemicals_lists["Epinephrine"]["amount"] < 5)
+					advice += temp_advice
+			else
+				advice += temp_advice
 
 	else
 		advice += list(list(
@@ -325,3 +333,6 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	else
 		data["advice"] = null
 	return data
+
+
+#undef MAX_HEALTH_ANALYZER_UPDATE_RANGE

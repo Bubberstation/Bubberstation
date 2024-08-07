@@ -39,6 +39,7 @@ type MedScannerData = {
   accessible_theme: string;
   majquirks: any;
   minquirks: any;
+  custom_species: string;
 };
 
 export const MedScanner = () => {
@@ -92,6 +93,7 @@ const PatientBasics = () => {
 
     majquirks,
     minquirks,
+    custom_species,
   } = data;
   return (
     <Section
@@ -230,7 +232,7 @@ const PatientBasics = () => {
         </LabeledList.Item>
         <LabeledList.Item label="Species">
           <Box width="50px" bold color="#42bff5" nowrap maxWidth="100px">
-            {species}
+            {species + (custom_species ? ' | ' + custom_species : ' ')}
           </Box>
         </LabeledList.Item>
         {majquirks ? (
