@@ -7,6 +7,14 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 
 #define MAX_HEALTH_ANALYZER_UPDATE_RANGE 3
 
+/obj/item/healthanalyzer/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
+
+/obj/item/healthanalyzer/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
+
 /obj/item/healthanalyzer/process(seconds_per_tick)
 	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > MAX_HEALTH_ANALYZER_UPDATE_RANGE || patient == current_user)
 		STOP_PROCESSING(SSobj, src)
@@ -76,7 +84,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 			"name" = limb.name,
 			"brute" = round(limb.brute_dam),
 			"burn" = round(limb.burn_dam),
-			"bandaged" = limb.current_gauze,
+			"bandaged" = limb.current_gauze ? TRUE : null,
 			"missing" = !limb ? TRUE: FALSE,
 			"limb_status" = null,
 			"limb_type" = null,
@@ -87,8 +95,8 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		var/limb_type = ""
 		if(IS_ROBOTIC_LIMB(limb))
 			limb_type = "Robotic"
-		else if((limb.get_wound_type(/datum/wound/blunt)) && limb.current_gauze)
-			limb_status = "Stabilized"
+		else if((limb.get_wound_type(/datum/wound/blunt)) && (!limb.current_gauze))
+			limb_status = "Fractured"
 		else if((limb.get_wound_type(/datum/wound/blunt)) && limb.current_gauze)
 			limb_status = "Splinted"
 
@@ -334,5 +342,10 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		data["advice"] = null
 	return data
 
+/// Handles UI closing when item is dropped
+/obj/item/healthanalyzer/proc/on_drop(mob/user)
+	SIGNAL_HANDLER
+	STOP_PROCESSING(SSobj, src)
+	src.ui_close()
 
 #undef MAX_HEALTH_ANALYZER_UPDATE_RANGE

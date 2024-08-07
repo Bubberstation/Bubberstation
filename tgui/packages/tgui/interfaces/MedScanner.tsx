@@ -377,9 +377,7 @@ const PatientLimbs = () => {
                       content={
                         limb.limb_status === 'Splinted'
                           ? 'This fracture is stabilized by a splint, suppressing most of its symptoms. If this limb sustains damage, the splint might come off. It can be fully treated with surgery or cryo treatment.'
-                          : limb.limb_status === 'Stabilized'
-                            ? "This fracture is stabilized by the patient's armor, suppressing most of its symptoms. If their armor is removed, it'll stop being stabilized. It can be fully treated with surgery or cryo treatment."
-                            : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.'
+                          : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.'
                       }
                     >
                       <Box
@@ -473,7 +471,7 @@ const PatientBlood = () => {
     <Section>
       <LabeledList>
         <LabeledList.Item label={'Blood Levels:'}>
-          <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution.">
+          <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Iron or temporarly by Saline.">
             <ProgressBar
               value={blood_amount / 560}
               ranges={{
