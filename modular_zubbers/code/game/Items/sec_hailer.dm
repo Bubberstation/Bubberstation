@@ -19,7 +19,6 @@
 	radio.set_frequency(FREQ_SECURITY)
 	radio.set_listening(FALSE, FALSE)
 	radio.recalculateChannels()
-	radio.canhear_range = 0
 
 /obj/item/clothing/mask/gas/sechailer/Destroy()
 	QDEL_NULL(radio)
