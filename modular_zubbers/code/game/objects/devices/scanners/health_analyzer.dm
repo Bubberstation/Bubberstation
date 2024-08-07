@@ -342,10 +342,12 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		data["advice"] = null
 	return data
 
+/obj/item/healthanalyzer/ui_state(mob/user)
+	return GLOB.hands_state
+
 /// Handles UI closing when item is dropped
 /obj/item/healthanalyzer/proc/on_drop(mob/user)
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSobj, src)
-	src.ui_close()
 
 #undef MAX_HEALTH_ANALYZER_UPDATE_RANGE
