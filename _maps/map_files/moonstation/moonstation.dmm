@@ -66900,8 +66900,11 @@
 /turf/open/floor/iron/checker,
 /area/station/engineering/atmos/control_center)
 "sBv" = (
-/turf/open/openspace/moonstation,
-/area/station/medical/virology)
+/obj/item/paper/crumpled/bloody{
+	default_raw_text = "Pool's closed."
+	},
+/turf/open/misc/moonstation_rock,
+/area/moonstation/underground)
 "sBx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -79926,9 +79929,8 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison/safe)
 "wkp" = (
-/obj/effect/spawner/liquids_spawner/puddle,
-/turf/open/floor/iron/pool,
-/area/moonstation/underground)
+/turf/open/openspace/moonstation,
+/area/station/medical/virology)
 "wku" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/spawner/random/structure/chair_maintenance{
@@ -83162,6 +83164,10 @@
 /obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/floor/plating/rust,
 /area/station/maintenance/space_hut/cabin)
+"xhk" = (
+/obj/effect/spawner/liquids_spawner/puddle,
+/turf/open/floor/iron/pool,
+/area/moonstation/underground)
 "xhn" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /turf/open/floor/iron,
@@ -87214,12 +87220,6 @@
 /obj/effect/spawner/random/medical/medkit,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
-"ylo" = (
-/obj/item/paper/crumpled/bloody{
-	default_raw_text = "Pool's closed."
-	},
-/turf/open/misc/moonstation_rock,
-/area/moonstation/underground)
 "ylq" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -192288,7 +192288,7 @@ kJH
 kJH
 kJH
 tFE
-wkp
+xhk
 sSg
 sSg
 sSg
@@ -192545,8 +192545,8 @@ kJH
 kJH
 kJH
 tFE
-wkp
-ylo
+xhk
+sBv
 sSg
 sSg
 sSg
@@ -257824,7 +257824,7 @@ ncI
 nud
 cgU
 kZo
-sBv
+wkp
 eOD
 xCf
 dEY
@@ -258081,7 +258081,7 @@ kzW
 pKW
 rYm
 bsN
-sBv
+wkp
 eOD
 hFK
 sSh
