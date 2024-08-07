@@ -1,8 +1,7 @@
 /obj/item/clothing/mask/gas/sechailer
 	// Did the hailer get EMP'd?
 	var/emped = FALSE
-	var/radio_key = /obj/item/encryptionkey/headset_sec
-	var/obj/item/radio/radio
+	var/obj/item/radio/intercom/radio
 	COOLDOWN_DECLARE(backup_cooldown)
 	actions_types = list(/datum/action/item_action/backup, /datum/action/item_action/halt, /datum/action/item_action/adjust)
 
@@ -17,7 +16,7 @@
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_CONTENTS)
 	radio = new(src)
-	radio.keyslot = new radio_key
+	radio.set_frequency(FREQ_SECURITY)
 	radio.set_listening(FALSE, FALSE)
 	radio.recalculateChannels()
 	radio.canhear_range = 0
