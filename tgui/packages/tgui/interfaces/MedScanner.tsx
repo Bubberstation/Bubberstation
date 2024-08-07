@@ -36,7 +36,7 @@ type MedScannerData = {
   blood_amount: number;
   body_temperature: string;
   advice: any;
-  accessible_theme: boolean;
+  accessible_theme: string;
   majquirks: any;
   minquirks: any;
 };
@@ -53,19 +53,7 @@ export const MedScanner = () => {
     accessible_theme,
   } = data;
   return (
-    <Window
-      width={515}
-      height={615}
-      theme={
-        accessible_theme
-          ? species === 'Synthetic Humanoid'
-            ? 'hackerman'
-            : 'default'
-          : species === 'Synthetic Humanoid'
-            ? 'ntos_rusty'
-            : 'ntos_healthy'
-      }
-    >
+    <Window width={515} height={615} theme={accessible_theme}>
       <Window.Content scrollable>
         <PatientBasics />
         {has_chemicals ? <PatientChemicals /> : null}
@@ -217,32 +205,28 @@ const PatientBasics = () => {
               </ProgressBar>
             </Box>
           </Tooltip>
-          {species !== 'Synthetic Humanoid' ? (
-            <>
-              <Box inline width={'5px'} />
-              <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with toxin healing medicine.">
-                <Box inline>
-                  <ProgressBar value={0}>
-                    Tox:{' '}
-                    <Box inline bold color={'green'}>
-                      {toxin}
-                    </Box>
-                  </ProgressBar>
+          <Box inline width={'5px'} />
+          <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with toxin healing medicine.">
+            <Box inline>
+              <ProgressBar value={0}>
+                Tox:{' '}
+                <Box inline bold color={'green'}>
+                  {toxin}
                 </Box>
-              </Tooltip>
-              <Box inline width={'5px'} />
-              <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, oxygen healing medicine or decreases on its own if the patient isn't in critical condition.">
-                <Box inline>
-                  <ProgressBar value={0}>
-                    Oxy:{' '}
-                    <Box inline bold color={'blue'}>
-                      {oxy}
-                    </Box>
-                  </ProgressBar>
+              </ProgressBar>
+            </Box>
+          </Tooltip>
+          <Box inline width={'5px'} />
+          <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, oxygen healing medicine or decreases on its own if the patient isn't in critical condition.">
+            <Box inline>
+              <ProgressBar value={0}>
+                Oxy:{' '}
+                <Box inline bold color={'blue'}>
+                  {oxy}
                 </Box>
-              </Tooltip>
-            </>
-          ) : null}
+              </ProgressBar>
+            </Box>
+          </Tooltip>
         </LabeledList.Item>
         <LabeledList.Item label="Species">
           <Box width="50px" bold color="#42bff5" nowrap maxWidth="100px">
@@ -251,7 +235,7 @@ const PatientBasics = () => {
         </LabeledList.Item>
         {majquirks ? (
           <LabeledList.Item label="Quirks">
-            <Box width="100%">Subject Major Disabilities:{majquirks}</Box>
+            <Box width="100%">Subject Major Disabilities: {majquirks}</Box>
           </LabeledList.Item>
         ) : null}
         {majquirks ? (
@@ -372,7 +356,7 @@ const PatientLimbs = () => {
                         ? 'Wire scorching. Can be repaired with a cable coil.'
                         : limb.salved
                           ? 'Salved burns will slowly heal on their own, or can be healed faster with chemicals.'
-                          : 'Unsalved burns. Can be salved with ointment or advanced burn kits.'
+                          : 'Unsalved burns. Can be salved with ointment or regenerative mesh.'
                     }
                   >
                     <Box
@@ -486,7 +470,7 @@ const PatientBlood = () => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label={'Blood Type: ' + blood_type}>
+        <LabeledList.Item label={'Blood Levels:'}>
           <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution.">
             <ProgressBar
               value={blood_amount / 560}
@@ -500,6 +484,9 @@ const PatientBlood = () => {
         </LabeledList.Item>
         <LabeledList.Item label={'Body Temperature'}>
           {body_temperature}
+        </LabeledList.Item>
+        <LabeledList.Item color="cyan" label={'Blood Type:'}>
+          {blood_type}
         </LabeledList.Item>
       </LabeledList>
     </Section>

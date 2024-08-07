@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		"blood_amount" = patient.blood_volume,
 		"majquirks" = patient.get_quirk_string(FALSE, CAT_QUIRK_MAJOR_DISABILITY, from_scan = TRUE),
 		"minquirks" = patient.get_quirk_string(FALSE, CAT_QUIRK_MINOR_DISABILITY, TRUE),
-		"accessible_theme" = lowertext(user.client?.prefs.read_preference(/datum/preference/choiced/health_analyzer_theme)),
+		"accessible_theme" = lowertext(user.client?.prefs.read_preference(/datum/preference/choiced/health_analyzer_themes)),
 	)
 	/*
 	CHEMICALS
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		if(IS_ROBOTIC_LIMB(limb))
 			limb_type = "Robotic"
 		if(limb.get_wound_type(/datum/wound/blunt))
-			limb_status = "Fracture"
+			limb_status = "Fractured"
 		else if(limb.current_gauze)
 			limb_status = "Stabilized"
 		else if((limb.get_wound_type(/datum/wound/blunt)) && limb.current_gauze)
@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
 
-	var/obj/item/organ/internal/heart = patient.get_organ_by_type(/obj/item/organ/internal/heart)
+	//var/obj/item/organ/internal/heart = patient.get_organ_by_type(/obj/item/organ/internal/heart)
 
 	if(HAS_TRAIT(patient, TRAIT_DNR))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	//else if((heart.organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
 		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		//data["revivable_boolean"] = FALSE
-	else if(!(patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+	else if(!(patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || !(patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice */
-			if(patient.getBruteLoss() > 30 && (!issynthetic(patient)))
+			if(patient.getBruteLoss() > 30)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of Libital or Salicylic Acid to reduce physical trauma.",
 					"tooltip" = "Significant physical trauma detected. Libital and Salicylic Acid both reduce brute damage.",
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getFireLoss() && (!issynthetic(patient)))
+			if(patient.getFireLoss() > 30)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of Aiuri or Oxandrolone to reduce burns.",
 					"tooltip" = "Significant tissue burns detected. Aiuri and Oxandrolone both reduces burn damage.",
@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getToxLoss() > 15 && (!issynthetic(patient)))
+			if(patient.getToxLoss() > 15)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of multiver or pentetic acid.",
 					"tooltip" = "Significant blood toxins detected. Multiver and Pentetic Acid both will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 						advice += temp_advice
 				else
 					advice += temp_advice
-			if(patient.getOxyLoss() > 30 && (!issynthetic(patient)))
+			if(patient.getOxyLoss() > 30)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of salbutamol plus to re-oxygenate patient's blood.",
 					"tooltip" = "If you don't have Salbutamol, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",

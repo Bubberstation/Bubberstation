@@ -3,6 +3,7 @@ import { FeatureDropdownInput } from '../../dropdowns';
 
 export const health_analyzer_themes: FeatureChoiced = {
   name: 'Health Analyzer Theme',
-  category: 'GAMEPLAY',
+  description:
+    'This option will apply different color varriants of health analyzer gui, if you have it ON.',
   component: FeatureDropdownInput,
 };
