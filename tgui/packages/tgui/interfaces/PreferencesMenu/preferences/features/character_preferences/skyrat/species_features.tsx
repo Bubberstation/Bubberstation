@@ -765,3 +765,65 @@ export const pod_hair_emissive: Feature<boolean> = {
   description: 'Emissive parts glow in the dark.',
   component: CheckboxInput,
 };
+
+
+
+export const mandibles_toggle: FeatureToggle = {
+  name: 'Mandibles',
+  component: CheckboxInput,
+};
+
+export const feature_mandibles: Feature<string> = {
+  name: 'Mandible Selection',
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  ) => {
+    return <FeatureDropdownInput buttons {...props} />;
+  },
+};
+
+export const mandibles_color: Feature<string[]> = {
+  name: 'Mandible Color',
+  component: FeatureColorInput,
+};
+
+
+
+export const spinneret_toggle: FeatureToggle = {
+  name: 'Spinneret',
+  component: CheckboxInput,
+};
+
+export const feature_spinneret: Feature<string> = {
+  name: 'Spinneret Selection',
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  ) => {
+    return <FeatureDropdownInput buttons {...props} />;
+  },
+};
+
+export const spinneret_color: Feature<string[]> = {
+  name: 'Mandible Color',
+  component: FeatureColorInput,
+};
+
+
+export const arachnid_legs_toggle: FeatureToggle = {
+  name: 'Arachnid Legs',
+  component: CheckboxInput,
+};
+
+export const feature_arachnid_legs: Feature<string> = {
+  name: 'Arachnid Leg Selection',
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  ) => {
+    return <FeatureDropdownInput buttons {...props} />;
+  },
+};
+
+export const arachnid_legs_color: Feature<string[]> = {
+  name: 'Arachnid Leg Color',
+  component: FeatureColorInput,
+};
