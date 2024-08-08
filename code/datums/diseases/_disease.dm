@@ -266,6 +266,10 @@
 	if(!istype(mob_loc))
 		return FALSE
 	for(var/mob/living/carbon/to_infect in oview(spread_range, affected_mob))
+		// BUBBER EDIT ADDITION START - Disease Transmission
+		if(!prob(infectivity))
+			continue
+		// BUBBER EDIT ADDITION END - Disease Transmission
 		var/turf/infect_loc = to_infect.loc
 		if(!istype(infect_loc))
 			continue
@@ -373,9 +377,10 @@
 /datum/disease/proc/on_breath(datum/source, seconds_per_tick, ...)
 	SIGNAL_HANDLER
 
-	//if(SPT_PROB(infectivity * 4, seconds_per_tick))
-	if(prob(infectivity)) // BUBBER EDIT CHANGE - Disease Transmission
-		airborne_spread()
+	/* BUBBER EDIT REMOVE START - Disease Transmission
+	if(SPT_PROB(infectivity * 4, seconds_per_tick))
+	*/// BUBBER EDIT REMOVE END - Disease Transmission
+	airborne_spread()
 
 //Use this to compare severities
 /proc/get_disease_severity_value(severity)

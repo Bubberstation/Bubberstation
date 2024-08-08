@@ -6,6 +6,7 @@
 	if(!debug_id)
 		debug_id = assign_random_name()
 	log_game("VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]")
+	//to_chat(world, span_yellowteamradio("VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]"))
 
 /**
  * Check if the station manifest has at least a certain amount of this staff type

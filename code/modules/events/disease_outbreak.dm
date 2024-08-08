@@ -376,6 +376,30 @@
 				/datum/symptom/visionloss,
 			)
 
+	visibility_flags |= HIDDEN_MEDHUD
+	var/transmissibility = requested_transmissibility
+
+	if(isnull(transmissibility))
+		transmissibility = rand(1,100)
+
+	if(requested_transmissibility == ADV_SPREAD_FORCED_LOW) // Admin forced
+		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
+
+	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
+		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD as soon as event starts
+		set_spread(DISEASE_SPREAD_AIRBORNE)
+		if(prob(66))
+			var/list/datum/symptom/airborne_modifiers = list(
+				/datum/symptom/cough,
+				/datum/symptom/sneeze,
+			)
+			var/datum/symptom/chosen_modifier = pick(airborne_modifiers)
+			possible_symptoms -= chosen_modifier
+			symptoms += new chosen_modifier
+
+	else
+		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
+
 	var/current_severity = 0
 
 	while(symptoms.len < max_symptoms)
@@ -396,22 +420,6 @@
 
 		if(new_symptom.severity > current_severity)
 			current_severity = new_symptom.severity
-
-	visibility_flags |= HIDDEN_MEDHUD
-	var/transmissibility = requested_transmissibility
-
-	if(isnull(transmissibility))
-		transmissibility = rand(1,100)
-
-	if(requested_transmissibility == ADV_SPREAD_FORCED_LOW) // Admin forced
-		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
-
-	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
-		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD as soon as event starts
-		set_spread(DISEASE_SPREAD_AIRBORNE)
-
-	else
-		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
 
 	//Illness name from one of the symptoms
 	var/datum/symptom/picked_name = pick(symptoms)
