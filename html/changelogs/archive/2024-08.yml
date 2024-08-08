@@ -125,39 +125,6 @@
   - bugfix: Coroner Bunny stuff got fixed.
   - bugfix: Digi tailcoats should work. They make look a bit weird.
   - rscdel: Clown Dogborg is gone thank fuck.
-2024-08-05:
-  BurgerBB:
-  - bugfix: Fixes some moonstation issues.
-  LT3:
-  - code_imp: Holy Water lobotomies are now a standalone surgery operation named Blessed
-      Lobotomy
-  Nerev4r (Code), ReturnToZender (port):
-  - rscadd: Moths now get a dash at the cost of stamina. You can use at most 3 dashes
-      before entering stamcrit.
-  - rscadd: Flutter emote for moths
-  ReturnToZender (code), APWill (Sprites):
-  - rscadd: Deer snout to the character creator
-  Szyszkrzyneczka:
-  - code_imp: lore updates + species lore is now a list of strings instead of a string
-  plsleavemealon:
-  - rscdel: Removed the agender trait from ethereals.
-  - rscadd: Add new argument to cyborg rechargers, allowing an optional limit to be
-      placed upon amount charged.
-  - rscadd: Add new entry within ethereal stomach taking advantage of the new argument
-  - balance: lessened ethereal revive penalty
-  - balance: rebalanced (buffed) ethereal's interior power cell
-  - balance: rebalanced entombed modsuit starting storage
-  shellspeed1:
-  - bugfix: Made interdyne exofab circuit board actually work and made the exofab
-      drop the right board
-  theselfish:
-  - rscdel: Deleted duplicate Language files.
-  - rscdel: Duplicate Butler title is gone.
-2024-08-07:
-  BurgerBB:
-  - bugfix: Fixes some Moonstation bugs.
-  NullDagaf:
-  - rscadd: adds combat mode
 2024-08-02:
   SkyratBot:
   - bugfix: Flashdarks now broduce darkness upon toggling
@@ -174,13 +141,21 @@
   - qol: Machines check their parts during initialization now; this will usually apply
       in cases such as a machine in a prefab having been varedited to be upgraded.
   - code_imp: All machines check their parts during initialization.
+  BurgerBB:
+  - bugfix: Fixes some moonstation issues.
   LT3:
-  - bugfix: Bouncer now shows up as part of the service department
-  - bugfix: Synths have their own version of Blessed Lobotomy
+  - code_imp: Holy Water lobotomies are now a standalone surgery operation named Blessed
+      Lobotomy
   Majkl-J:
   - bugfix: Fixed harpy wing subtypes incorrectly fetching their icons
+  Nerev4r (Code), ReturnToZender (port):
+  - rscadd: Moths now get a dash at the cost of stamina. You can use at most 3 dashes
+      before entering stamcrit.
+  - rscadd: Flutter emote for moths
   ReturnToZender (code):
   - bugfix: Runechat now properly has its saturation capped at 90%.
+  ReturnToZender (code), APWill (Sprites):
+  - rscadd: Deer snout to the character creator
   Rhials:
   - qol: Sentience potions can now be used without a provided summon reason.
   SkyratBot:
@@ -247,6 +222,8 @@
       screen connection, and once again convey pressure and temperature
   - rscadd: Adds a bronze dimensional theme
   - bugfix: AI mech control beacons and malf AI dominate mech work again.
+  Szyszkrzyneczka:
+  - code_imp: lore updates + species lore is now a list of strings instead of a string
   Tattle:
   - qol: dead cyborgs now blink yellow lights
   - qol: damaged cyborgs have smoke particles when they've taken brute damage, and
@@ -262,6 +239,20 @@
       a separate component
 
       :cl:'
+  plsleavemealon:
+  - rscdel: Removed the agender trait from ethereals.
+  - rscadd: Add new argument to cyborg rechargers, allowing an optional limit to be
+      placed upon amount charged.
+  - rscadd: Add new entry within ethereal stomach taking advantage of the new argument
+  - balance: lessened ethereal revive penalty
+  - balance: rebalanced (buffed) ethereal's interior power cell
+  - balance: rebalanced entombed modsuit starting storage
+  shellspeed1:
+  - bugfix: Made interdyne exofab circuit board actually work and made the exofab
+      drop the right board
+  theselfish:
+  - rscdel: Deleted duplicate Language files.
+  - rscdel: Duplicate Butler title is gone.
   xXPawnStarrXx:
   - bugfix: fixed bounty pads accepting synthetic organs, which are basically cybernetic
       tier 1's.
@@ -274,6 +265,8 @@
   - image: added and updated belt/suit/mask storage sprites for several knives missing
       them
 2024-08-07:
+  BurgerBB:
+  - bugfix: Fixes some Moonstation bugs.
   HometownFunky:
   - image: added shading to valeborg sprites and updated the colors for the vale jani/medical
       models.
@@ -281,6 +274,8 @@
   - rscadd: Wallet to the Loadout menu in the accesory tab
   MrMelbert, SmArtKar:
   - bugfix: Holding someone at gunpoint no longer makes all shots count as point blank
+  NullDagaf:
+  - rscadd: adds combat mode
   Odairu:
   - rscadd: adds pixel shifting items, and pixel tilting mobs
   - code_imp: optimizes pixelshifting
@@ -315,15 +310,26 @@
   - bugfix: Bostaff no longer disappears forever when wielded
   - rscdel: Remove narsie and ratvar plushies from loadout
 2024-08-08:
+  BurgerBB:
+  - bugfix: Fixes even more moonstation issues.
   LT3:
   - bugfix: Fixed players being incorrectly immune to certain virus severities
   Majkl-J:
   - bugfix: Fixes guest accounts not having keybinds and getting constant runtimes
+  - bugfix: Prescription huds work again
   Odairu:
   - qol: SAD now applies quirks
   - rscadd: Adds a name pref for interdyne and lone infiltrators
+  - refactor: modularizes a few things
+  - code_imp: changed basic sec hud into a trait
   Rhials:
   - sound: Zipties no longer make handcuff noises when picked up or dropped.
   SkyratBot:
   - image: Updated clipboard sprite, adds white and black clipboard skins for med/sci
       and security
+  - bugfix: Smartfridges properly dispense `\Improper` items
+  StrangeWeirdKitten:
+  - balance: Emagging a borg will now scramble its codes plus opening the cover has
+      a delay
+  xXPawnStarrXx:
+  - bugfix: fixed gaian soilbins losing their autotend function by making it togglable.
