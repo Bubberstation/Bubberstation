@@ -2,7 +2,7 @@
 */
 
 
-///How confused a carbon must be before they will vomit
+/*///How confused a carbon must be before they will vomit
 #define BEYBLADE_PUKE_THRESHOLD (30 SECONDS)
 ///How must nutrition is lost when a carbon pukes
 #define BEYBLADE_PUKE_NUTRIENT_LOSS 60
@@ -14,12 +14,12 @@
 #define BEYBLADE_CONFUSION_INCREMENT (10 SECONDS)
 ///A max for how much confusion a carbon will be for beyblading
 #define BEYBLADE_CONFUSION_LIMIT (40 SECONDS)
+*/
 
 /datum/emote/living/ruffle
 	key = "ruffle"
 	key_third_person = "ruffles"
-	message = "ruffles thier wings for a moment."
-	emote_type = EMOTE_VISIBLE
+	message = "ruffles [user.p_their()] wings for a moment."
 
 /datum/emote/living/mew
 	key = "mew"
@@ -28,7 +28,6 @@
 	message_mime = "makes a cat face!"
 	sound = 'modular_zzplurt/sound/voice/meow_meme.ogg'
 	cooldown = 1 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fart
@@ -36,7 +35,6 @@
 	key_third_person = "farts"
 	message = "farts out shitcode."
 	cooldown = 3 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fart/run_emote(mob/user, params, type_override, intentional)
@@ -95,8 +93,6 @@
 	message_mime = "speeeeens silently!"
 	sound = 'modular_zzplurt/sound/voice/speen.ogg'
 	hands_use_check = TRUE
-	vary = TRUE
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/speen/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -139,8 +135,28 @@
 	message_mime = "bleats silently!"
 	sound = 'modular_zzplurt/sound/voice/bleat.ogg'
 	cooldown = 0.7 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
+
+/*
+/datum/emote/living/carbon/moan/run_emote(mob/user, params, type_override, intentional)
+	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
+		return
+	var/sound
+	var/miming = user.mind ? user.mind.miming : 0
+	if(!user.is_muzzled() && !miming)
+		user.nextsoundemote = world.time + 7
+		sound = pick('modular_zzplurt/soundvoice/moan_m1.ogg','modular_zzplurt/sound/voice/moan_m2.ogg','modular_zzplurt/sound/voice/moan_m3.ogg')
+		if(user.gender == FEMALE)
+			sound - pick('modular_zzplurt/sound/voice/moan_f1.ogg','modular_zzplurt/sound/voice/moan_f2.ogg','modular_zzplurt/sound/voice/moan_f3.ogg','modular_zzplurt/sound/voice/moan_f4.ogg','modular_zzplurt/sound/voice/moan_f5.ogg','modular_zzplurt/sound/voice/moan_f6.ogg','modular_zzplurt/sound/voice/moan_f7.ogg')
+		if(isalien(user))
+			sound = 'sound/voice/hiss6.ogg'
+		//playlewdinteractionsound(user.loc, sound, 50, 1, 4, 1.2)
+		message = "moans!"
+	else if(minming)
+		message = "acts out a moan."
+	else
+		message = "makes a very loud noise."
+	. = ..()
+*/
 
 /datum/emote/living/chitter2
 	key = "chitter2"
@@ -149,7 +165,6 @@
 	message_mime = "chitters silently!"
 	sound = 'modular_zzplurt/sound/voice/moth/mothchitter2.ogg'
 	audio_cooldown = 0.3 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/monkeytwerk
@@ -167,7 +182,6 @@
 	message_mime = "silently acknowledges the bruh moment."
 	sound = 'modular_zzplurt/sound/voice/bruh.ogg'
 	audio_cooldown = 0.6 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/bababooey
@@ -175,24 +189,23 @@
 	key_third_person = "bababooeys"
 	message = "spews bababooey."
 	message_mime = "spews something silently."
-	sound = 'modular_zzplurt/sound/voice/bababooey/bababooey.ogg'
+	sound = 'modt/sound/voice/bababooey/bababooey.ogg'
 	audio_cooldown = 0.9 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
-// /datum/emote/living/bababooey/run_emote(mob/user, params)
-//  	// Check if user is muzzled
-// 	if(user.is_muzzled())
-//  		// Set muzzled sound
-// 		sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
+/datum/emote/living/bababooey/run_emote(mob/user, params)
+ 	// Check if user is muzzled
+	if(user.is_muzzled())
+ 		// Set muzzled sound
+		sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
 
-// // 	// User is not muzzled
-// 	else
-// 		// Set random emote sound
-// 		sound = pick('modular_zzplurt/sound/voice/bababooey/bababooey.ogg', 'modular_zzplurt/sound/voice/bababooey/bababooey2.ogg')
+// 	// User is not muzzled
+	else
+		// Set random emote sound
+		sound = pick('modular_zzplurt/sound/voice/bababooey/bababooey.ogg', 'modular_zzplurt/sound/voice/bababooey/bababooey2.ogg')
 
-//  	// Return normally
-// 	. = ..()
+ 	// Return normally
+	. = ..()
 
 /datum/emote/living/babafooey
 	key = "babafooey"
@@ -201,7 +214,6 @@
 	message_mime = "spews something silently."
 	sound = 'modular_zzplurt/sound/voice/bababooey/babafooey.ogg'
 	audio_cooldown = 0.85 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fafafooey
@@ -211,22 +223,21 @@
 	message_mime = "spews something silently."
 	sound = 'modular_zzplurt/sound/voice/bababooey/fafafooey.ogg'
 	audio_cooldown = 0.7 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
-// /datum/emote/living/fafafooey/run_emote(mob/user, params)
-//  	// Check if user is muzzled
-// 	if(user.is_muzzled())
-// 		// Set muzzled sound
-// 		sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
+/datum/emote/living/fafafooey/run_emote(mob/user, params)
+ 	// Check if user is muzzled
+	if(user.is_muzzled())
+		// Set muzzled sound
+		sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
 
-// 	// User is not muzzled
-// 	else
-// 		// Set random emote sound
-// 		sound = pick('modular_zzplurt/sound/voice/bababooey/fafafooey.ogg', 'modular_zzplurt/sound/voice/bababooey/fafafooey2.ogg', 'modular_zzplurt/sound/voice/bababooey/fafafooey3.ogg')
+	// User is not muzzled
+	else
+		// Set random emote sound
+		sound = pick('modular_zzplurt/sound/voice/bababooey/fafafooey.ogg', 'modular_zzplurt/sound/voice/bababooey/fafafooey2.ogg', 'modular_zzplurt/sound/voice/bababooey/fafafooey3.ogg')
 
-// 	// Return normally
-// 	. = ..()
+	// Return normally
+	. = ..()
 
 /datum/emote/living/fafafoggy
 	key = "fafafoggy"
@@ -235,22 +246,21 @@
 	message_mime = "spews something silently."
 	sound = 'modular_zzplurt/sound/voice/bababooey/fafafoggy.ogg'
 	audio_cooldown = 0.9 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
-// /datum/emote/living/fafafoggy/run_emote(mob/user, params)
-// 	// Check if user is muzzled
-// 	if(user.is_muzzled())
-// 		// Set muzzled sound
-// 		sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
+/datum/emote/living/fafafoggy/run_emote(mob/user, params)
+	// Check if user is muzzled
+	if(user.is_muzzled())
+		// Set muzzled sound
+		sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
 
-// 	// User is not muzzled
-// 	else
-// 		// Set random emote sound
-// 		sound = pick('modular_zzplurt/sound/voice/bababooey/fafafoggy.ogg', 'modular_zzplurt/sound/voice/bababooey/fafafoggy2.ogg')
+	// User is not muzzled
+	else
+		// Set random emote sound
+		sound = pick('modular_zzplurt/sound/voice/bababooey/fafafoggy.ogg', 'modular_zzplurt/sound/voice/bababooey/fafafoggy2.ogg')
 
-// 	// Return normally
-// 	. = ..()
+	// Return normally
+	. = ..()
 
 /datum/emote/living/hohohoy
 	key = "hohohoy"
@@ -259,7 +269,6 @@
 	message_mime = "spews something silently."
 	sound = 'modular_zzplurt/sound/voice/bababooey/hohohoy.ogg'
 	audio_cooldown = 0.7 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ffff
@@ -270,7 +279,6 @@
 	muzzle_ignore = TRUE
 	sound = 'modular_zzplurt/sound/voice/bababooey/ffff.ogg'
 	audio_cooldown = 0.85 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fafafail
@@ -280,7 +288,6 @@
 	message_mime = "spews something silent."
 	sound = 'modular_zzplurt/sound/voice/bababooey/ffffhvh.ogg'
 	audio_cooldown = 1.15 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/boowomp
@@ -290,9 +297,7 @@
 	message_mime = "produces a silent boowomp."
 	sound = 'modular_zzplurt/sound/voice/boowomp.ogg'
 	audio_cooldown = 0.4 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/swaos
 	key = "swaos"
@@ -301,7 +306,6 @@
 	message_mime = "imitates swaos."
 	sound = 'modular_zzplurt/sound/voice/swaos.ogg'
 	audio_cooldown = 0.7 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/eyebrow2
@@ -312,7 +316,6 @@
 	sound = 'modular_zzplurt/sound/voice/vineboom.ogg'
 	audio_cooldown = 2.9 SECONDS
 	emote_type = EMOTE_VISIBLE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/eyebrow3
 	key = "eyebrow3"
@@ -321,7 +324,6 @@
 	sound = 'modular_zzplurt/sound/voice/moonmen.ogg'
 	audio_cooldown = 7 SECONDS
 	emote_type = EMOTE_VISIBLE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/blink3
 	key = "blink3"
@@ -331,7 +333,6 @@
 	sound = 'modular_zzplurt/sound/voice/blink.ogg'
 	audio_cooldown = 0.25 SECONDS
 	emote_type = EMOTE_VISIBLE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/laugh2
 	key = "laugh2"
@@ -341,8 +342,6 @@
 	sound = 'modular_zzplurt/sound/voice/laugh_king.ogg'
 	// No cooldown var required
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
-
 
 /datum/emote/living/laugh3
 	key = "laugh3"
@@ -352,8 +351,6 @@
 	sound = 'modular_zzplurt/sound/voice/lol.ogg'
 	audio_cooldown = 6.1 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
-	vary = TRUE
 
 /datum/emote/living/laugh4
 	key = "laugh4"
@@ -363,7 +360,6 @@
 	sound = 'modular_zzplurt/sound/voice/laugh_muta.ogg'
 	audio_cooldown = 3 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/laugh5
 	key = "laugh5"
@@ -373,7 +369,6 @@
 	sound = 'modular_zzplurt/sound/voice/laugh_deman.ogg'
 	audio_cooldown = 2.75 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/laugh6
 	key = "laugh6"
@@ -383,7 +378,6 @@
 	sound = 'modular_zzplurt/sound/voice/laugh6.ogg'
 	audio_cooldown = 4.45 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/breakbad
 	key = "breakbad"
@@ -392,8 +386,6 @@
 	sound = 'modular_zzplurt/sound/voice/breakbad.ogg'
 	audio_cooldown = 6.4 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/lawyerup
 	key = "lawyerup"
@@ -402,7 +394,6 @@
 	sound = 'modular_zzplurt/sound/voice/lawyerup.ogg'
 	audio_cooldown = 7.5 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/goddamn
 	key = "damn"
@@ -412,7 +403,6 @@
 	sound = 'modular_zzplurt/sound/voice/god_damn.ogg'
 	audio_cooldown = 1.25 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/spoonful
 	key = "spoonful"
@@ -422,7 +412,6 @@
 	sound = 'modular_zzplurt/sound/voice/spoonful.ogg'
 	// No cooldown var required
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/ohhmygod
 	key = "mygod"
@@ -432,7 +421,6 @@
 	sound = 'modular_zzplurt/sound/voice/OMG.ogg'
 	audio_cooldown = 1.6 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/whatthehell
 	key = "wth"
@@ -442,7 +430,6 @@
 	sound = 'modular_zzplurt/sound/voice/WTH.ogg'
 	audio_cooldown = 4.4 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/fusrodah
 	key = "fusrodah"
@@ -452,7 +439,6 @@
 	sound = 'modular_zzplurt/sound/voice/fusrodah.ogg'
 	audio_cooldown = 7 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/skibidi
 	key = "skibidi"
@@ -462,7 +448,6 @@
 	sound = 'modular_zzplurt/sound/voice/skibidi.ogg'
 	audio_cooldown = 1.1 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/fbi
 	key = "fbi"
@@ -480,7 +465,6 @@
 	sound = 'modular_zzplurt/sound/voice/illuminati.ogg'
 	audio_cooldown = 7.8 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	muzzle_ignore = TRUE
 
 /datum/emote/living/bonerif
 	key = "bonerif"
@@ -490,7 +474,6 @@
 	sound = 'modular_zzplurt/sound/voice/bonerif.ogg'
 	audio_cooldown = 2 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/cry2
 	key = "cry2"
@@ -500,7 +483,6 @@
 	sound = 'modular_zzplurt/sound/voice/cry_king.ogg'
 	audio_cooldown = 1.6 SECONDS // Uses longest sound's time
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/cry2/run_emote(mob/user, params)
 	// Set random emote sound
@@ -516,7 +498,6 @@
 	message_mime = "acts out a choir."
 	sound = 'modular_zzplurt/sound/voice/choir.ogg'
 	audio_cooldown = 6 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/agony
@@ -526,7 +507,6 @@
 	message_mime = "is visibly in agony."
 	sound = 'modular_zzplurt/sound/voice/agony.ogg'
 	audio_cooldown = 7 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/wtune
@@ -536,7 +516,6 @@
 	message_mime = "makes an expression as if whistling."
 	sound = 'modular_zzplurt/sound/voice/wtune1.ogg'
 	audio_cooldown = 4.55 SECONDS // Uses longest sound's time.
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/wtune/run_emote(mob/user, params)
@@ -580,7 +559,7 @@
 	sound = 'modular_zzplurt/sound/voice/deathglare.ogg'
 	audio_cooldown = 4.4 SECONDS
 	emote_type = EMOTE_VISIBLE
-	muzzle_ignore = TRUE
+	is_muzzled = FALSE
 
 /datum/emote/living/sicko
 	key = "sicko"
@@ -598,7 +577,6 @@
 	message_mime = "acts out a chill running down their spine..."
 	sound = 'modular_zzplurt/sound/voice/waterphone.ogg'
 	audio_cooldown = 3.4 SECONDS
-	muzzle_ignore = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/taunt
@@ -608,8 +586,7 @@
 	message_param = "taunts %t!"
 	sound = 'modular_zzplurt/sound/voice/phillyhit.ogg'
 	emote_type = EMOTE_VISIBLE
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
+	is_muzzled = FALSE
 
 /datum/emote/living/taunt/alt
 	key = "tt2"
@@ -617,8 +594,6 @@
 	sound_volume = 100
 	sound = 'modular_zzplurt/sound/voice/orchestrahit.ogg'
 	emote_type = EMOTE_VISIBLE
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
 
 /datum/emote/living/weh2
 	key = "weh2"
@@ -628,7 +603,6 @@
 	sound = 'modular_zzplurt/sound/voice/weh2.ogg'
 	audio_cooldown = 0.25 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/weh3
 	key = "weh3"
@@ -638,7 +612,6 @@
 	sound = 'modular_zzplurt/sound/voice/weh3.ogg'
 	audio_cooldown = 0.25 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/weh4
 	key = "weh4"
@@ -648,7 +621,6 @@
 	sound = 'modular_zzplurt/sound/voice/weh_s.ogg'
 	audio_cooldown = 0.35 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/waa
 	key = "waa"
@@ -658,7 +630,6 @@
 	sound = 'modular_zzplurt/sound/voice/waa.ogg'
 	audio_cooldown = 3.5 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/bark2
 	key = "bark2"
@@ -668,7 +639,6 @@
 	sound = 'modular_zzplurt/sound/voice/bark_alt.ogg'
 	audio_cooldown = 0.35 SECONDS
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
 
 /datum/emote/living/yap
 	key = "yap"
@@ -677,7 +647,6 @@
 	message_mime = "acts out a yap!"
 	sound = 'modular_zzplurt/sound/voice/yap.ogg'
 	audio_cooldown = 0.28 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/yip
@@ -687,7 +656,6 @@
 	message_mime = "acts out a yip!"
 	sound = 'modular_zzplurt/sound/voice/yip.ogg'
 	audio_cooldown = 0.2 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/woof/alt
@@ -695,7 +663,6 @@
 	key_third_person = "woofs2"
 	sound = 'modular_zzplurt/sound/voice/woof2.ogg'
 	audio_cooldown = 0.3 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/coyhowl
@@ -705,7 +672,6 @@
 	message_mime = "acts out a coyote's howl!"
 	sound = 'modular_zzplurt/sound/voice/coyotehowl.ogg'
 	audio_cooldown = 2.94 SECONDS // Uses longest sound's time
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/coyhowl/run_emote(mob/user, params)
@@ -725,7 +691,6 @@
 	message_mime = "lets out an <b>inaudible</b> snore!"
 	sound = 'modular_zzplurt/sound/voice/aauugghh1.ogg'
 	audio_cooldown = 2.1 SECONDS
-	vary = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/snore/snore2/run_emote(mob/user, params)
@@ -748,7 +713,6 @@
 	key = "pant"
 	key_third_person = "pants"
 	message = "pants!"
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/pant/run_emote(mob/user, params, type_override, intentional)
 	var/list/pants = list(
@@ -767,8 +731,6 @@
 	message_mime = "acts out a yippee!"
 	sound = 'modular_zzplurt/sound/voice/yippee.ogg'
 	cooldown = 1.2 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/mewo
 	key = "mewo"
@@ -777,8 +739,6 @@
 	message_mime = "mewos silently!"
 	sound = 'modular_zzplurt/sound/voice/mewo.ogg'
 	cooldown = 0.7 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ara_ara
 	key = "ara"
@@ -787,15 +747,11 @@
 	message_mime = "exudes a sultry aura~"
 	sound = 'modular_zzplurt/sound/voice/ara-ara.ogg'
 	cooldown = 1.25 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ara_ara/alt
 	key = "ara2"
 	sound = 'modular_zzplurt/sound/voice/ara-ara2.ogg'
 	cooldown = 1.25 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/missouri
 	key = "missouri"
@@ -804,7 +760,6 @@
 	message_mime = "starts thinking about Missouri."
 	sound = 'modular_zzplurt/sound/voice/missouri.ogg'
 	cooldown = 3.4 SECONDS
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/missouri/run_emote(mob/user, params, type_override, intentional)
 	// Set message pronouns
@@ -818,51 +773,38 @@
 	key_third_person = "facepalms"
 	message = "creates an error in the code."
 	muzzle_ignore = TRUE
-	hands_use_check = TRUE
+//	restraint_check = TRUE
 	sound = 'modular_zzplurt/sound/effects/slap.ogg'
 	var/metacarous_type = "palm"
 	cooldown = 0.25 SECONDS
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/facemetacarpus/run_emote(mob/user, params, type_override, intentional)
 	message = pick(list(
-		"places [usr.p_their()] [metacarous_type] across [usr.p_their()] face.",
-			"lowers [usr.p_their()] face into [usr.p_their()] [metacarous_type].",
-			"face[metacarous_type]s",
+		"places [usr.p_their()] [metacarpus_type] across [usr.p_their()] face.",
+			"lowers [usr.p_their()] face into [usr.p_their()] [metacarpus_type].",
+			"face[metacarpus_type]s",
 	))
 	. = ..()
 
 /datum/emote/living/facemetacarpus/paw
 	key = "facepaw"
 	key_third_person = "facepaws"
-	metacarous_type = "paw"
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
-	emote_type =  EMOTE_VISIBLE
+	metacarpus_type = "paw"
 
 /datum/emote/living/facemetacarpus/claw
 	key = "faceclaw"
 	key_third_person = "faceclaws"
 	metacarous_type = "claw"
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/facemetacarpus/wing
 	key = "facewing"
 	key_third_person = "facewings"
 	metacarous_type = "wing"
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/facemetacarpus/hoof
 	key = "facehoof"
 	key_third_person = "facehoofs"
-	metacarous_type = "hoof"
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
-	emote_type = EMOTE_VISIBLE
+	metacarpus_type = "hoof"
 
 /datum/emote/living/poyo
 	key = "poyo"
@@ -870,8 +812,6 @@
 	message = "%SAYS, \"Poyo!\""
 	message_mime = "acts out an excited motion!"
 	sound = 'modular_zzplurt/sound/voice/barks/poyo.ogg'
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/poyo/run_emote(mob/user, params, type_override, intentional)
 	var/datum/dna/D = user.has_dna()
@@ -885,10 +825,8 @@
 	message = "gives <b>\[<u><i>The Look</i></u>\]</b>."
 	message_param = "looks at %t with bedroom eyes."
 	message_mime = "makes bedroom eyes."
-	muzzle_ignore = TRUE
 	sound = 'modular_zzplurt/sound/voice/rizz.ogg'
 	cooldown = 1.43 SECONDS
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/buff
 	key = "buff"
@@ -897,10 +835,7 @@
 	message_param = "shows off their muscles to %t."
 	sound = 'modular_zzplurt/sound/voice/buff.ogg'
 	cooldown = 4.77 SECONDS
-	muzzle_ignore = TRUE
-	hands_use_check = TRUE
 //  emote_pitch_variance = FALSE
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/merowr
 	key = "merowr"
@@ -909,8 +844,6 @@
 	message_mime = "acts out a merowr!"
 	sound = 'modular_zzplurt/sound/voice/merowr.ogg'
 	cooldown = 1.2 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/untitledgoose
 	key = "goosehonk"
@@ -919,8 +852,6 @@
 	message_mime = "looks like a duck from hell!"
 	sound = 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg'
 	cooldown = 0.8 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/untitledgoose/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_02.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_03.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_06.ogg')
@@ -932,8 +863,6 @@
 	message_mime = "looks like a duck from hell!"
 	sound = 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg'
 	cooldown = 0.8 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/untitledgooseB/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_02.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_03.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_04.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_06.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_07.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_08.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_09.ogg')
@@ -946,7 +875,6 @@
 	message_mime = "acts out a rather silly scream!"
 	sound = 'modular_zzplurt/sound/voice/cscream1.ogg'
 // 	emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/scream2/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/cscream1.ogg', 'modular_zzplurt/sound/voice/cscream2.ogg', 'modular_zzplurt/sound/voice/cscream3.ogg', 'modular_zzplurt/sound/voice/cscream4.ogg', 'modular_zzplurt/sound/voice/cscream5.ogg', 'modular_zzplurt/sound/voice/cscream6.ogg', 'modular_zzplurt/sound/voice/cscream7.ogg', 'modular_zzplurt/sound/voice/cscream8.ogg', 'modular_zzplurt/sound/voice/cscream9.ogg', 'modular_zzplurt/sound/voice/cscream10.ogg', 'modular_zzplurt/sound/voice/cscream11.ogg', 'modular_zzplurt/sound/voice/cscream12.ogg')
@@ -958,8 +886,6 @@
 	message = "screams manly!"
 	message_mime = "acts out a rather manly scream!"
 	sound = 'modular_zzplurt/sound/voice/gachi/scream1.ogg'
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/scream3/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/gachi/scream1.ogg', 'modular_zzplurt/sound/voice/gachi/scream2.ogg', 'modular_zzplurt/sound/voice/gachi/scream3.ogg', 'modular_zzplurt/sound/voice/gachi/scream4.ogg')
@@ -971,8 +897,6 @@
 	message = "moans somewhat manly!!"
 	message_mime = "acts out a rather manly scream!"
 	sound = 'modular_zzplurt/sound/voice/gachi/moan1.ogg'
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/scream3/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/gachi/moan1.ogg', 'modular_zzplurt/sound/voice/gachi/moan2.ogg', 'modular_zzplurt/sound/voice/gachi/moan3.ogg', 'modular_zzplurt/sound/voice/gachi/moan4.ogg')
@@ -984,10 +908,8 @@
 	message = "woops!"
 	message_mime = "silently woops!"
 	sound = 'modular_zzplurt/sound/voice/gachi/woop.ogg'
-	vary = TRUE
 	sound_volume = 35
 	cooldown = 0.4 SECONDS
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/whatthehell/right
 	key = "wth2"
@@ -995,8 +917,6 @@
 	sound = 'modular_zzplurt/sound/voice/gachi/wth2.ogg'
 	sound_volume = 100
 	cooldown = 1.0 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/pardon
 	key = "sorry"
@@ -1004,8 +924,6 @@
 	message = "exclaims, \"Oh shit, I am sorry!\""
 	sound = 'modular_zzplurt/sound/voice/gachi/sorry.ogg'
 	cooldown = 1.3 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/pardonfor
 	key = "sorryfor"
@@ -1015,8 +933,6 @@
 	message_mime = "silently curses someone!"
 	sound = 'modular_zzplurt/sound/voice/gachi/sorryfor.ogg'
 	cooldown = 0.9 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fock
 	key = "fuckyou"
@@ -1026,8 +942,6 @@
 	message_mime = "silently curses someone!"
 	sound = 'modular_zzplurt/sound/voice/gachi/fockyou1.ogg'
 	cooldown = 1.18 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fock/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/gachi/fockyou1.ogg','modular_zzplurt/sound/voice/gachi/fockyou2.ogg')
@@ -1041,8 +955,6 @@
 	message_mime = "motions moving forward!"
 	sound = 'modular_zzplurt/sound/voice/gachi/go.ogg'
 	cooldown = 1.6
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/chuckle2
 	key = "chuckle2"
@@ -1051,8 +963,6 @@
 	message_mime = "chuckles silently."
 	sound = 'modular_zzplurt/sound/voice/gachi/chuckle.ogg'
 	cooldown = 1.01 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/fockslaves
 	key = "slaves"
@@ -1061,8 +971,6 @@
 	message_mime = "silently curses slaves!"
 	sound = 'modular_zzplurt/sound/voice/gachi/fokensleves.ogg'
 	cooldown = 1.2 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/getbuttback
 	key = "assback"
@@ -1072,8 +980,6 @@
 	message_mime = "motions for someone's ass to get back here!"
 	sound = 'modular_zzplurt/sound/voice/gachi/assback.ogg'
 	cooldown = 1.9 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/boss
 	key = "boss"
@@ -1082,8 +988,6 @@
 	message_mime = "stares at the potential boss of this place!"
 	sound = 'modular_zzplurt/sound/voice/gachi/boss.ogg'
 	cooldown = 1.68 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/attention
 	key = "attention"
@@ -1093,8 +997,6 @@
 	sound_volume = 100
 	sound = 'modular_zzplurt/sound/voice/gachi/attention.ogg'
 	cooldown = 1.36 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ah
 	key_third_person = "ahs"
@@ -1102,9 +1004,7 @@
 	message_mime = "ahs silently!"
 	sound = 'modular_zzplurt/sound/voice/gachi/ah.ogg'
 	cooldown = 0.67 SECONDS
-	vary = TRUE
 	sound_volume = 25
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/boolets
 	key = "ammo"
@@ -1114,8 +1014,6 @@
 	sound = 'modular_zzplurt/sound/voice/gachi/boolets.ogg'
 	cooldown = 1.1 SECONDS
 	sound_volume = 10
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/boolets/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/gachi/boolets.ogg','modular_zzplurt/sound/voice/gachi/boolets2.ogg')
@@ -1129,8 +1027,6 @@
 	sound = 'modular_zzplurt/sound/voice/gachi/wepons.ogg'
 	cooldown = 1.07 SECONDS
 	sound_volume = 10
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/sciteam
 	key = "sciteam"
@@ -1140,8 +1036,6 @@
 	sound = 'modular_zzplurt/sound/voice/sciteam.ogg'
 	cooldown = 1.32 SECONDS
 	sound_volume = 90
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ambatukam
 	key = "ambatukam"
@@ -1150,8 +1044,6 @@
 	message_mime = "seems like about to come!"
 	sound = 'modular_zzplurt/sound/voice/ambatukam.ogg'
 	cooldown = 2.75 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ambatukam2
 	key = "ambatukam2"
@@ -1160,8 +1052,6 @@
 	message_mime = "seems like about to come in harmony!"
 	sound = 'modular_zzplurt/sound/voice/ambatukam_harmony.ogg'
 	cooldown = 3.42 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/eekum
 	key = "eekumbokum"
@@ -1169,9 +1059,7 @@
 	message = "eekum-bokums!"
 	message_mime = "seems to eekum-bokum!"
 	sound = 'modular_zzplurt/sound/voice/eekum-bokum.ogg'
-	vary = TRUE
 	cooldown = 0.9
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/eekum/run_emote(mob/user, params, type_override, intentional)
 	switch(user.gender)
@@ -1190,18 +1078,16 @@
 	message_mime = "fools someone, silently."
 	sound = 'modular_zzplurt/sound/voice/bazinga.ogg'
 	cooldown = 0.65 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/bazinga/run_emote(mob/user, params, type_override, intentional)
 	if(prob(1))
 		sound = 'modular_zzplurt/sound/voice/bazinga_ebil.ogg'
-		//emote_pitch_variance = FALSE
+		vary = FALSE
 		cooldown = 1.92 SECONDS
 		sound_volume = 110
 	else
 		sound = 'modular_zzplurt/sound/voice/bazinga.ogg'
-		//emote_pitch_variance = TRUE
+		vary = TRUE
 		cooldown = 0.65 SECONDS
 		sound_volume = 50
 	. = ..()
@@ -1212,7 +1098,6 @@
 	message = "thinks they are part of Kabuki play."
 	sound = 'modular_zzplurt/sound/voice/yooo.ogg'
 	cooldown = 2.54 SECONDS
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/buzzer_correct
 	key = "correct"
@@ -1221,8 +1106,6 @@
 	message_param = "thinks %t is correct."
 	sound = 'modular_zzplurt/sound/voice/buzzer_correct.ogg'
 	cooldown = 0.84 SECONDS
-	muzzle_ignore = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/buzzer_incorrect
 	key = "incorrect"
@@ -1231,8 +1114,6 @@
 	message_param = "thinks %t is incorrect."
 	sound = 'modular_zzplurt/sound/voice/buzzer_incorrect.ogg'
 	cooldown = 1.21 SECONDS
-	muzzle_ignore = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/ace/
 	key = "objection0"
@@ -1242,15 +1123,12 @@
 	sound = 'modular_zzplurt/sound/voice/ace/ace_objection_generic.ogg'
 	cooldown = 6.0 SECONDS
 	sound_volume = 30
-	hands_use_check = TRUE
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/ace/objection
 	key = "objection"
 	key_third_person = "objections"
-	sound = 'modular_zzplurt/sound/voice/ace/ace_objection_m1.ogg'
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	sound = ''
+	vary = FALSE
 
 /datum/emote/living/ace/objection/run_emote(mob/user, params, type_override, intentional)
 	switch(user.gender)
@@ -1267,7 +1145,6 @@
 	key_third_person = "tkakesthat"
 	message = "<b><i>\<\< TAKE THAT!! \>\></i></b>"
 	sound = 'modular_zzplurt/sound/voice/ace/ace_takethat_m1.ogg'
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 
 /datum/emote/living/ace/takethat/run_emote(mob/user, params, type_override, intentional)
 	switch(user.gender)
@@ -1284,8 +1161,7 @@
 	key_third_person = "holdsit"
 	message = "<b><i>\<\< HOLD IT!! \>\></i></b>"
 	sound = 'modular_zzplurt/sound/voice/ace/ace_holdit_m1.ogg'
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	vary = FALSE
 
 /datum/emote/living/ace/hold_it/run_emote(mob/user, params, type_override, intentional)
 	switch(user.gender)
@@ -1303,7 +1179,6 @@
 	message = "<i>smirks</i>."
 	sound = 'modular_zzplurt/sound/voice/ace/ace_wubs.ogg'
 	cooldown = 0.5 SECONDS
-	emote_type = EMOTE_VISIBLE
 
 /datum/emote/living/nani
 	key = "nani"
@@ -1311,8 +1186,6 @@
 	message = "seems confused."
 	sound = 'modular_zzplurt/sound/voice/nani.ogg'
 	cooldown = 0.5 SECONDS
-	vary = TRUE
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/canonevent
 	key = "2099"
@@ -1321,7 +1194,6 @@
 	sound = 'modular_zzplurt/sound/voice/canon_event.ogg'
 	cooldown = 5.0 SECONDS
 	sound_volume = 27
-	muzzle_ignore = TRUE
 
 /datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow2.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow3.ogg')
@@ -1334,8 +1206,7 @@
 	message = "meows!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE
+	vary = FALSE
 
 /datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_mew2.ogg')
@@ -1347,8 +1218,7 @@
 	message = "mews!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE
+	vary = FALSE
 
 /datum/emote/living/mrrp
 	key = "mrrp"
@@ -1356,8 +1226,7 @@
 	message = "trills like a cat!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp1.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE
+	vary = FALSE
 
 /datum/emote/living/mrrp2
 	key = "mrrp2"
@@ -1365,8 +1234,7 @@
 	message = "trills like a cat!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp2.ogg'
 	cooldowns = 0.8 SECONDS
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE
+	emote_pitch_variance = FALSE
 
 /datum/emote/living/gay
 	key = "gay"
@@ -1374,9 +1242,7 @@
 	message = "saw something gay."
 	sound = 'modular_zzplurt/sound/voice/gay-echo.ogg'
 	cooldown = 0.95 SECONDS
-	muzzle_ignore = TRUE
-	//emote_pitch_variance = FALSE
-	emote_type = EMOTE_AUDIBLE
+	vary = FALSE
 
 /datum/emote/living/flabbergast
 	key = "flabbergast"
@@ -1384,9 +1250,8 @@
 	message = "looks flabbergasted!"
 	sound = 'modular_zzplurt/sound/voice/flabbergasted.ogg'
 	cooldown = 3.0 SECONDS
-	//emote_pitch_variance = FALSE
+	emote_pitch_variance = FALSE
 	sound_volume = 70
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/sadness
 	key = "sadness"
@@ -1394,15 +1259,14 @@
 	message = "is experiencing <b><i>Profound Sadness</i></b>!"
 	sound = 'modular_zzplurt/sound/voice/sadness.ogg'
 	cooldown = 4.0 SECONDS
-	//emote_pitch_variance = FALSE
+	emote_pitch_variance = FALSE
 	sound_volume = 30
-	muzzle_ignore = TRUE
-	emote_type = EMOTE_AUDIBLE
 
+/*
 #undef BEYBLADE_PUKE_THRESHOLD
 #undef BEYBLADE_PUKE_NUTRIENT_LOSS
 #undef BEYBLADE_DIZZINESS_PROBABILITY
 #undef BEYBLADE_DIZZINESS_DURATION
 #undef BEYBLADE_CONFUSION_INCREMENT
 #undef BEYBLADE_CONFUSION_LIMIT
-
+*/
