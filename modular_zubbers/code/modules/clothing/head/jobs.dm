@@ -46,6 +46,9 @@
 	icon_state = "beanie_sec"
 	armor_type = /datum/armor/beanie_sec
 
+/obj/item/clothing/head/utility/surgerycap
+	flags_inv = null
+
 /datum/armor/beanie_sec
 	melee = 30
 	bullet = 25
