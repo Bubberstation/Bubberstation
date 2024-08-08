@@ -168,7 +168,7 @@
 			log_game("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [key_name(victim)].")
 			announce_to_ghosts(victim)
 			infected++ // BUBBER EDIT ADDITION - Disease Transmission
-			return
+			// return // BUBBER EDIT REMOVAL - Disease Transmission
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target.")
@@ -314,7 +314,7 @@
 			log_virus("Disease Outbreak: Advanced has triggered a custom virus outbreak of [advanced_disease.admin_details()] in [victim]!")
 			announce_to_ghosts(victim)
 			infected++ // BUBBER EDIT ADDITION - Disease Transmission
-			return
+			// return // BUBBER EDIT REMOVAL - Disease Transmission
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
