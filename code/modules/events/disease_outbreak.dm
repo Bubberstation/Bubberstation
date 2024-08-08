@@ -44,6 +44,10 @@
 	generate_candidates()
 	if(length(disease_candidates))
 		return TRUE
+	// BUBBER EDIT ADDITION START - Disease Transmission
+	if(SSjob.is_skeleton_medical(4))
+		return FALSE
+	// BUBBER EDIT ADDITION END - Disease Transmission
 
 /**
  * Creates a list of people who are elligible to become disease carriers for the event
