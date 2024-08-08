@@ -1,25 +1,13 @@
-/* Certain emotes are currently missing mime varaints.
-*/
 
-
-/*///How confused a carbon must be before they will vomit
-#define BEYBLADE_PUKE_THRESHOLD (30 SECONDS)
-///How must nutrition is lost when a carbon pukes
-#define BEYBLADE_PUKE_NUTRIENT_LOSS 60
-///How often a carbon becomes penalized
-#define BEYBLADE_DIZZINESS_PROBABILITY 20
-///How long the screenshake lasts
-#define BEYBLADE_DIZZINESS_DURATION (20 SECONDS)
-///How much confusion a carbon gets every time they are penalized
-#define BEYBLADE_CONFUSION_INCREMENT (10 SECONDS)
-///A max for how much confusion a carbon will be for beyblading
-#define BEYBLADE_CONFUSION_LIMIT (40 SECONDS)
-*/
 
 /datum/emote/living/ruffle
 	key = "ruffle"
 	key_third_person = "ruffles"
+	message = "ruffles their wings for a moment."
+
+/datum/emote/living/ruffle/run_emote(mob/user, params, type_override, intentional)
 	message = "ruffles [user.p_their()] wings for a moment."
+	. = ..()
 
 /datum/emote/living/mew
 	key = "mew"
@@ -97,7 +85,7 @@
 /datum/emote/living/speen/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	user.spin(20, 1)
-/*
+
 /datum/emote/living/speen/check_cooldown(mob/user, intentional)
 	. = ..()
 	if(.)
@@ -107,15 +95,6 @@
 	if(!iscarbon(user))
 		return
 
-	if(user.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
-		user.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
-		return
-
-	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))
-		to_chat(user, span_warning("You feel woozy from spinning."))
-		user.set_dizzy_if_lower(BEYBLADE_DIZZINESS_DURATION)
-		user.adjust_confusion_up_to(BEYBLADE_CONFUSION_INCREMENT, BEYBLADE_CONFUSION_LIMIT)
-*/
 
 /datum/emote/living/burp/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -189,10 +168,11 @@
 	key_third_person = "bababooeys"
 	message = "spews bababooey."
 	message_mime = "spews something silently."
-	sound = 'modt/sound/voice/bababooey/bababooey.ogg'
+	sound = 'modular_zzplurt/sound/voice/bababooey/bababooey.ogg'
 	audio_cooldown = 0.9 SECONDS
 	emote_type = EMOTE_AUDIBLE
 
+/*
 /datum/emote/living/bababooey/run_emote(mob/user, params)
  	// Check if user is muzzled
 	if(user.is_muzzled())
@@ -206,6 +186,7 @@
 
  	// Return normally
 	. = ..()
+*/
 
 /datum/emote/living/babafooey
 	key = "babafooey"
@@ -225,6 +206,7 @@
 	audio_cooldown = 0.7 SECONDS
 	emote_type = EMOTE_AUDIBLE
 
+/*
 /datum/emote/living/fafafooey/run_emote(mob/user, params)
  	// Check if user is muzzled
 	if(user.is_muzzled())
@@ -238,6 +220,7 @@
 
 	// Return normally
 	. = ..()
+*/
 
 /datum/emote/living/fafafoggy
 	key = "fafafoggy"
@@ -248,6 +231,7 @@
 	audio_cooldown = 0.9 SECONDS
 	emote_type = EMOTE_AUDIBLE
 
+/*
 /datum/emote/living/fafafoggy/run_emote(mob/user, params)
 	// Check if user is muzzled
 	if(user.is_muzzled())
@@ -261,6 +245,7 @@
 
 	// Return normally
 	. = ..()
+*/
 
 /datum/emote/living/hohohoy
 	key = "hohohoy"
@@ -559,7 +544,7 @@
 	sound = 'modular_zzplurt/sound/voice/deathglare.ogg'
 	audio_cooldown = 4.4 SECONDS
 	emote_type = EMOTE_VISIBLE
-	is_muzzled = FALSE
+	//is_muzzled = FALSE
 
 /datum/emote/living/sicko
 	key = "sicko"
@@ -586,7 +571,7 @@
 	message_param = "taunts %t!"
 	sound = 'modular_zzplurt/sound/voice/phillyhit.ogg'
 	emote_type = EMOTE_VISIBLE
-	is_muzzled = FALSE
+	//is_muzzled = FALSE
 
 /datum/emote/living/taunt/alt
 	key = "tt2"
@@ -772,10 +757,10 @@
 	key = "facehand"
 	key_third_person = "facepalms"
 	message = "creates an error in the code."
-	muzzle_ignore = TRUE
+	//muzzle_ignore = TRUE
 //	restraint_check = TRUE
 	sound = 'modular_zzplurt/sound/effects/slap.ogg'
-	var/metacarous_type = "palm"
+	var/metacarpus_type = "palm"
 	cooldown = 0.25 SECONDS
 
 /datum/emote/living/facemetacarpus/run_emote(mob/user, params, type_override, intentional)
@@ -794,12 +779,12 @@
 /datum/emote/living/facemetacarpus/claw
 	key = "faceclaw"
 	key_third_person = "faceclaws"
-	metacarous_type = "claw"
+	metacarpus_type = "claw"
 
 /datum/emote/living/facemetacarpus/wing
 	key = "facewing"
 	key_third_person = "facewings"
-	metacarous_type = "wing"
+	metacarpus_type = "wing"
 
 /datum/emote/living/facemetacarpus/hoof
 	key = "facehoof"
@@ -835,7 +820,7 @@
 	message_param = "shows off their muscles to %t."
 	sound = 'modular_zzplurt/sound/voice/buff.ogg'
 	cooldown = 4.77 SECONDS
-//  emote_pitch_variance = FALSE
+//  vary = FALSE
 
 /datum/emote/living/merowr
 	key = "merowr"
@@ -874,7 +859,7 @@
 	message = "screams!"
 	message_mime = "acts out a rather silly scream!"
 	sound = 'modular_zzplurt/sound/voice/cscream1.ogg'
-// 	emote_pitch_variance = FALSE
+// 	vary = FALSE
 
 /datum/emote/living/scream2/run_emote(mob/user, params, type_override, intentional)
 	sound = pick('modular_zzplurt/sound/voice/cscream1.ogg', 'modular_zzplurt/sound/voice/cscream2.ogg', 'modular_zzplurt/sound/voice/cscream3.ogg', 'modular_zzplurt/sound/voice/cscream4.ogg', 'modular_zzplurt/sound/voice/cscream5.ogg', 'modular_zzplurt/sound/voice/cscream6.ogg', 'modular_zzplurt/sound/voice/cscream7.ogg', 'modular_zzplurt/sound/voice/cscream8.ogg', 'modular_zzplurt/sound/voice/cscream9.ogg', 'modular_zzplurt/sound/voice/cscream10.ogg', 'modular_zzplurt/sound/voice/cscream11.ogg', 'modular_zzplurt/sound/voice/cscream12.ogg')
@@ -998,13 +983,6 @@
 	sound = 'modular_zzplurt/sound/voice/gachi/attention.ogg'
 	cooldown = 1.36 SECONDS
 
-/datum/emote/living/ah
-	key_third_person = "ahs"
-	message = "ahs!"
-	message_mime = "ahs silently!"
-	sound = 'modular_zzplurt/sound/voice/gachi/ah.ogg'
-	cooldown = 0.67 SECONDS
-	sound_volume = 25
 
 /datum/emote/living/boolets
 	key = "ammo"
@@ -1127,7 +1105,7 @@
 /datum/emote/living/ace/objection
 	key = "objection"
 	key_third_person = "objections"
-	sound = ''
+	sound = 'modular_zzplurt/sound/voice/ace/ace_objection_m1.ogg'
 	vary = FALSE
 
 /datum/emote/living/ace/objection/run_emote(mob/user, params, type_override, intentional)
@@ -1234,7 +1212,7 @@
 	message = "trills like a cat!"
 	sound = 'modular_zzplurt/sound/voice/catpeople/cat_mrrp2.ogg'
 	cooldowns = 0.8 SECONDS
-	emote_pitch_variance = FALSE
+	vary = FALSE
 
 /datum/emote/living/gay
 	key = "gay"
@@ -1250,7 +1228,7 @@
 	message = "looks flabbergasted!"
 	sound = 'modular_zzplurt/sound/voice/flabbergasted.ogg'
 	cooldown = 3.0 SECONDS
-	emote_pitch_variance = FALSE
+	vary = FALSE
 	sound_volume = 70
 
 /datum/emote/living/sadness
@@ -1259,14 +1237,14 @@
 	message = "is experiencing <b><i>Profound Sadness</i></b>!"
 	sound = 'modular_zzplurt/sound/voice/sadness.ogg'
 	cooldown = 4.0 SECONDS
-	emote_pitch_variance = FALSE
+	vary = FALSE
 	sound_volume = 30
 
-/*
-#undef BEYBLADE_PUKE_THRESHOLD
-#undef BEYBLADE_PUKE_NUTRIENT_LOSS
-#undef BEYBLADE_DIZZINESS_PROBABILITY
-#undef BEYBLADE_DIZZINESS_DURATION
-#undef BEYBLADE_CONFUSION_INCREMENT
-#undef BEYBLADE_CONFUSION_LIMIT
-*/
+/datum/emote/living/ah
+	key = "ah"
+	key_third_person = "ahs"
+	message = "ahs!"
+	message_mime = "ahs silently"
+	sound = 'modular_zzplurt/sound/voice/gachi/ah.ogg'
+	cooldown = 0.67 SECONDS
+	sound_volume = 25
