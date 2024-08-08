@@ -4,3 +4,5 @@
 #define COMSIG_NAME_CHANGED "name_changed"
 ///from [/mob/living/carbon/human/Move]: ()
 #define COMSIG_NECK_STEP_ACTION "neck_step_action"
+//signal sent when a mob tries to de-prone
+#define COMSIG_MOVABLE_REMOVE_PRONE_STATE "living_remove_prone_state"

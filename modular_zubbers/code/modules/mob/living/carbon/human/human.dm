@@ -10,3 +10,9 @@
 	. = ..()
 	if(wear_neck && body_position == STANDING_UP && loc == NewLoc && has_gravity(loc))
 		SEND_SIGNAL(wear_neck, COMSIG_NECK_STEP_ACTION)
+
+/mob/living/carbon/human/can_use_guns(obj/item/G)
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_PRONE))
+		to_chat(src, span_warning("you are crawling too low to used a ranged weapon!"))
+		return FALSE

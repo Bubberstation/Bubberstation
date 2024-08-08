@@ -13,3 +13,6 @@
 
 //For the hemophage quirk that allows hemophages to eat/drink normal food/drink.
 #define TRAIT_MASQUERADE_FOOD "masquerade_food"
+
+//for if we are army crawling or not
+#define TRAIT_PRONE "prone"
