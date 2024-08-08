@@ -80,6 +80,7 @@
 /// Like ActivatePower, but specific to Targeted (and takes an atom input). We don't use ActivatePower for targeted.
 /datum/action/cooldown/bloodsucker/targeted/proc/FireTargetedPower(atom/target_atom)
 	log_combat(owner, target_atom, "used [name] on")
+	SEND_SIGNAL(src, COMSIG_FIRE_TARGETED_POWER, target_atom)
 
 /// The power went off! We now pay the cost of the power.
 /datum/action/cooldown/bloodsucker/targeted/proc/power_activated_sucessfully()

@@ -160,6 +160,8 @@
 #define BLOODSUCKER_EXITS_FRENZY "bloodsucker_exits_frenzy"
 // Called when anyone enters the coffin
 #define COMSIG_ENTER_COFFIN "comsig_enter_coffin"
+// called when a targeted ability is cast
+#define COMSIG_FIRE_TARGETED_POWER "comsig_fire_targeted_power"
 
 /**
  * Sol signals & Defines

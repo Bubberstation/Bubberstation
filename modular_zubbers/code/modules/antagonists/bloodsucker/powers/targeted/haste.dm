@@ -13,12 +13,13 @@
 		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
 		Anyone in your way during your Haste will be knocked down.\n\
 		Higher levels will increase the knockdown dealt to enemies.\n\
-		It will also refill your stamina so you can keep moving."
+		It will also refill your stamina so you can keep moving.\n\
+		If fortitude is active, using haste will disable it."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
-	bloodcost = 6
-	cooldown_time = 12 SECONDS
+	bloodcost = 9
+	cooldown_time = 15 SECONDS
 	target_range = 15
 	power_activates_immediately = TRUE
 	///List of all people hit by our power, so we don't hit them again.

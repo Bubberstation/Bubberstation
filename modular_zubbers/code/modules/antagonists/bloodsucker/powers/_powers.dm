@@ -63,8 +63,9 @@
 	if(bloodsuckerdatum)
 		bloodsuckerdatum_power = bloodsuckerdatum
 
-//This is when we CLICK on the ability Icon, not USING.
 /datum/action/cooldown/bloodsucker/Trigger(trigger_flags, atom/target)
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
 	if(active && can_deactivate()) // Active? DEACTIVATE AND END!
 		DeactivatePower()
 		return FALSE
