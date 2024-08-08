@@ -15,7 +15,7 @@
 /// Percentile for mid severity advanced virus
 #define ADV_RNG_MID 85
 /// Percentile for high vs. low transmissibility
-#define ADV_SPREAD_THRESHOLD 85
+#define ADV_SPREAD_THRESHOLD 80
 /// Admin custom low spread
 #define ADV_SPREAD_FORCED_LOW 0
 /// Admin custom med spread
