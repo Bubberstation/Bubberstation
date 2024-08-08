@@ -1,4 +1,4 @@
-/mob/verb/army_crawl()
+/mob/living/verb/army_crawl()
 	set name = "Army Crawl"
 	set category = "IC"
 
@@ -10,7 +10,7 @@
 			balloon_alert_to_viewers("[crawler] begins to lower themself all the way to the ground.")
 			if(!do_after(crawler, 3 SECONDS))
 				return
-			crawler.AddComponent(/datum/component/prone_mob)
+			crawler.AddElement(/datum/element/prone_mob)
 		if(TRUE)
 			balloon_alert_to_viewers("[crawler] begins to get back up from their crawl.")
 			if(!do_after(crawler, 3 SECONDS))

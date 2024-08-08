@@ -9,4 +9,5 @@
 	. = ..()
 	if(.)
 		return
-	user.mob.army_crawl()
+	var/mob/living/crawler = user.mob
+	crawler.army_crawl()
