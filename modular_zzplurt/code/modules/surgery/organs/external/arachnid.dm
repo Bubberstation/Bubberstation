@@ -62,7 +62,7 @@
 	name = "spider legs"
 	desc = "Objectively inferior to regular legs." //idk i suck at descs
 	icon = 'modular_zzplurt/icons/obj/medical/organs/organs.dmi'
-	icon_state = "spider_legs"
+	icon_state = "arachnid_legs"
 	preference = "feature_arachnid_legs"
 
 	mutantpart_key = "spinneret"
