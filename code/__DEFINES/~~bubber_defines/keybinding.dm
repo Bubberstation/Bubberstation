@@ -1,0 +1,1 @@
+#define COMSIG_KB_MOVEMENT_ARMY_CRAWL_DOWN "keybinding_movement_army_crawl_down"
