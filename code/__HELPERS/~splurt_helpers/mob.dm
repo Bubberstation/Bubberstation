@@ -1,5 +1,4 @@
-GLOBAL_LIST_INIT(arachnid_first, world.file2list("strings/names/arachnid_first.txt"))
-GLOBAL_LIST_INIT(arachnid_last, world.file2list("strings/names/arachnid_last.txt"))
+
 
 /proc/random_unique_arachnid_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
