@@ -152,13 +152,22 @@
 	new_disease.carrier = TRUE
 	illness_type = new_disease.name
 
+	// BUBBER EDIT ADDITION START - Disease Transmission
+	var/to_infect = 2
+	if(length(GLOB.alive_player_list) > 65)
+		to_infect = 3
+
+	var/infected = 0
+	// BUBBER EDIT ADDITION END - Disease Transmission
+
 	var/mob/living/carbon/human/victim
-	while(length(afflicted))
+	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - Disease Transmission
 		victim = pick_n_take(afflicted)
 		if(victim.ForceContractDisease(new_disease, FALSE))
 			message_admins("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [ADMIN_LOOKUPFLW(victim)]!")
 			log_game("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [key_name(victim)].")
 			announce_to_ghosts(victim)
+			infected++ // BUBBER EDIT ADDITION - Disease Transmission
 			return
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
@@ -288,14 +297,23 @@
 
 	illness_type = advanced_disease.name
 
+	// BUBBER EDIT ADDITION START - Disease Transmission
+	var/to_infect = 2
+	if(length(GLOB.alive_player_list) > 65)
+		to_infect = 3
+
+	var/infected = 0
+	// BUBBER EDIT ADDITION END - Disease Transmission
+
 	var/mob/living/carbon/human/victim
-	while(length(afflicted))
+	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - Disease Transmission
 		victim = pick_n_take(afflicted)
 		if(victim.ForceContractDisease(advanced_disease, FALSE))
 			message_admins("Event triggered: Disease Outbreak: Advanced - starting with patient zero [ADMIN_LOOKUPFLW(victim)]! Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_game("Event triggered: Disease Outbreak: Advanced - starting with patient zero [key_name(victim)]. Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_virus("Disease Outbreak: Advanced has triggered a custom virus outbreak of [advanced_disease.admin_details()] in [victim]!")
 			announce_to_ghosts(victim)
+			infected++ // BUBBER EDIT ADDITION - Disease Transmission
 			return
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
