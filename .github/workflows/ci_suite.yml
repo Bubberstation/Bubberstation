@@ -74,12 +74,14 @@ jobs:
         run: |
           bash tools/ci/check_grep.sh
           bash skyrat/tools/skyrat_check_grep.sh # SKYRAT EDIT ADDITION - checking modular_skyrat code
+          bash modular_zubbers/tools/ci/zubbers_check_grep.sh # BUBBER EDIT ADDITION - checking modular_zubbers code
       - name: Ticked File Enforcement
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: |
           tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/tgstation_dme.json
           tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/unit_tests.json
           tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/modular_skyrat.json # SKYRAT EDIT ADDITION - modular tick enforcement
+          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/modular_zubbers.json # BUBBER EDIT ADDITION - modular tick enforcement
       - name: Check Define Sanity
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: tools/bootstrap/python -m define_sanity.check
