@@ -193,6 +193,7 @@
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 1
 	},
+/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "adI" = (
@@ -1351,7 +1352,7 @@
 /obj/machinery/computer/communications{
 	dir = 4
 	},
-/obj/machinery/keycard_auth/directional/west{
+/obj/machinery/keycard_auth/wall_mounted/directional/west{
 	pixel_x = -32;
 	pixel_y = 6
 	},
@@ -1398,7 +1399,7 @@
 	pixel_y = 9
 	},
 /obj/item/pen,
-/obj/machinery/keycard_auth/directional/west{
+/obj/machinery/keycard_auth/wall_mounted/directional/west{
 	pixel_y = -9
 	},
 /turf/open/floor/wood,
@@ -5226,7 +5227,6 @@
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "bPZ" = (
-/obj/machinery/incident_display/delam/directional/north,
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
 	name = "Gas to Chamber"
@@ -7199,7 +7199,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
 "cyC" = (
-/obj/machinery/keycard_auth/directional/north,
+/obj/machinery/keycard_auth/wall_mounted/directional/north,
 /obj/machinery/newscaster/directional/west,
 /obj/machinery/computer/security/qm{
 	dir = 4
@@ -8004,6 +8004,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/mix)
+"cMl" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/obj/machinery/incident_display/delam/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/engineering/supermatter/room)
 "cMp" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/refreshing_beverage,
@@ -9353,7 +9359,6 @@
 /area/station/security/courtroom)
 "dmv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/sign/clock/directional/south,
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/storage/gas)
@@ -12536,9 +12541,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/obj/machinery/camera/directional/east{
-	c_tag = "Service - Auxiliary Toilets"
-	},
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/auxiliary)
@@ -15235,6 +15237,7 @@
 /area/station/maintenance/fore/greater)
 "foC" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/structure/sign/clock/directional/south,
 /turf/open/floor/iron/dark/textured,
 /area/station/engineering/atmos/storage/gas)
 "foJ" = (
@@ -15266,10 +15269,6 @@
 "fpk" = (
 /obj/machinery/duct,
 /obj/machinery/light/small/directional/north,
-/obj/machinery/camera/directional/north{
-	c_tag = "Prison - Showers";
-	network = list("ss13","prison")
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/freezer,
 /area/station/security/prison/shower)
@@ -27243,6 +27242,7 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/machinery/light/directional/north,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/station/tcommsat/server)
 "jGl" = (
@@ -42165,7 +42165,7 @@
 /obj/item/computer_disk/engineering,
 /obj/item/computer_disk/engineering,
 /obj/item/computer_disk/engineering,
-/obj/machinery/keycard_auth/directional/east,
+/obj/machinery/keycard_auth/wall_mounted/directional/east,
 /obj/effect/turf_decal/tile/neutral/full,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
@@ -42760,9 +42760,6 @@
 /turf/closed/wall/mineral/wood,
 /area/station/service/theater)
 "oMa" = (
-/obj/machinery/camera/directional/south{
-	c_tag = "Civilian - Restrooms"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/generic_maintenance_landmark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -43567,6 +43564,10 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/misc/dirt/jungle/wasteland,
 /area/station/maintenance/central/greater)
+"pbY" = (
+/obj/machinery/incident_display/bridge/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/command/bridge)
 "pcf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -43989,6 +43990,15 @@
 /obj/structure/railing/corner,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
+"phY" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "External Gas to Loop"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/incident_display/delam/directional/south,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/room)
 "pil" = (
 /obj/machinery/newscaster/directional/south,
 /obj/structure/hedge,
@@ -49867,6 +49877,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "rkF" = (
@@ -50570,6 +50581,7 @@
 /obj/structure/chair/stool{
 	dir = 4
 	},
+/obj/machinery/incident_display/delam/directional/north,
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
 "rwa" = (
@@ -52365,10 +52377,6 @@
 "scm" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
-/obj/machinery/camera/directional/north{
-	c_tag = "Prison - Bathroom";
-	network = list("ss13","prison")
-	},
 /turf/open/floor/iron/freezer,
 /area/station/security/prison/shower)
 "scp" = (
@@ -54258,7 +54266,7 @@
 	pixel_x = 32;
 	pixel_y = 4
 	},
-/obj/machinery/keycard_auth/directional/east{
+/obj/machinery/keycard_auth/wall_mounted/directional/east{
 	pixel_x = 33;
 	pixel_y = -6
 	},
@@ -61560,7 +61568,6 @@
 /turf/open/floor/iron/white/diagonal,
 /area/station/science/robotics/lab)
 "vtC" = (
-/obj/structure/sign/clock/directional/north,
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
@@ -66036,7 +66043,7 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/keycard_auth/directional/east{
+/obj/machinery/keycard_auth/wall_mounted/directional/east{
 	pixel_x = 37;
 	pixel_y = -8
 	},
@@ -66518,9 +66525,7 @@
 /area/station/commons/vacant_room/office)
 "wZi" = (
 /obj/structure/cable,
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/full,
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "wZn" = (
@@ -67511,7 +67516,7 @@
 "xsl" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/keycard_auth/directional/west,
+/obj/machinery/keycard_auth/wall_mounted/directional/west,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet,
@@ -106579,13 +106584,13 @@ mDF
 bGq
 fjh
 lBW
-lBW
+phY
 uXD
 uve
 tkq
 wAi
 uXD
-tnA
+cMl
 tnA
 vUr
 nlO
@@ -176421,7 +176426,7 @@ cFv
 cFv
 cFv
 ofe
-gRD
+pbY
 gRD
 ofe
 rAq
@@ -176434,7 +176439,7 @@ fQs
 fQs
 fQs
 ofe
-gRD
+pbY
 uVv
 nOL
 lcS
