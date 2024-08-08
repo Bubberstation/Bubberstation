@@ -70,7 +70,7 @@
 
 	D.after_add()
 	infectee.med_hud_set_status()
-	register_disease_signals()
+	D.register_disease_signals() // BUBBER EDIT CHANGE - Disease Transmission
 
 	var/turf/source_turf = get_turf(infectee)
 	log_virus("[key_name(infectee)] was infected by virus: [src.admin_details()] at [loc_name(source_turf)]")
@@ -256,7 +256,7 @@
 		return FALSE
 	if(!(spread_flags & DISEASE_SPREAD_AIRBORNE) && !force_spread)
 		return FALSE
-	if(affected_mob.can_spread_airborne_diseases())
+	if(!affected_mob.can_spread_airborne_diseases()) // BUBBER EDIT CHANGE - Disease Transmission
 		return FALSE
 	if(!has_required_infectious_organ(affected_mob, ORGAN_SLOT_LUNGS)) //also if you lack lungs
 		return FALSE
@@ -373,7 +373,8 @@
 /datum/disease/proc/on_breath(datum/source, seconds_per_tick, ...)
 	SIGNAL_HANDLER
 
-	if(SPT_PROB(infectivity * 4, seconds_per_tick))
+	//if(SPT_PROB(infectivity * 4, seconds_per_tick))
+	if(prob(infectivity)) // BUBBER EDIT CHANGE - Disease Transmission
 		airborne_spread()
 
 //Use this to compare severities

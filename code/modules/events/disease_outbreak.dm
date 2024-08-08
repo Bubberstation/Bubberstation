@@ -375,7 +375,7 @@
 		if(new_symptom.severity > current_severity)
 			current_severity = new_symptom.severity
 
-	visibility_flags |= HIDDEN_SCANNER
+	visibility_flags |= HIDDEN_MEDHUD
 	var/transmissibility = requested_transmissibility
 
 	if(isnull(transmissibility))
@@ -384,21 +384,12 @@
 	if(requested_transmissibility == ADV_SPREAD_FORCED_LOW) // Admin forced
 		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
 
-	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH) // Admin forced
+	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
+		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD
 		set_spread(DISEASE_SPREAD_AIRBORNE)
-
-	//If severe enough, alert immediately on scanners, limit transmissibility
-	else if(current_severity >= ADV_DISEASE_DANGEROUS)
-		visibility_flags &= ~HIDDEN_SCANNER
-		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
-
-	else if(transmissibility < ADV_SPREAD_THRESHOLD)
-		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
 
 	else
-		visibility_flags &= ~HIDDEN_SCANNER
-		set_spread(DISEASE_SPREAD_AIRBORNE)
-
+		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
 
 	//Illness name from one of the symptoms
 	var/datum/symptom/picked_name = pick(symptoms)
@@ -434,8 +425,13 @@
 		return
 
 	incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
-	properties["transmittable"] = rand(4,7)
-	spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
+	// BUBBER EDIT CHANGE START - Disease Transmission
+	//properties["transmittable"] = rand(4,7)
+	//spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
+	properties["transmittable"] = rand(6,9)
+	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
+	infectivity = clamp(7 + (spreading_modifier * 7), 14, 35)
+	// BUBBER EDIT CHANGE END - Disease Transmission
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
 	stage_prob = max(0.4 * properties["stage_rate"], 1)
 	set_severity(properties["severity"])
@@ -444,6 +440,7 @@
 	if(properties["stage_rate"] >= 7)
 		name = "Advanced [name]"
 
+	log_virus_debug("spreading modifier is [spreading_modifier], infectivity is [infectivity]") // BUBBER EDIT ADDITION - Disease Transmission
 	generate_cure(properties)
 
 /**

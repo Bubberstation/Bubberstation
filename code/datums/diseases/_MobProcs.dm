@@ -37,14 +37,21 @@
 		return FALSE
 
 	var/passed = TRUE
+	var/pass_message // BUBBER EDIT ADDITION - Disease Transmission
 
 	var/head_chance = 80
 	var/body_chance = 100
 	var/hands_chance = 35/2
 	var/feet_chance = 15/2
 
-	if(prob(15/disease.spreading_modifier))
+	// BUBBER EDIT CHANGE START - Disease Transmission
+	// if(prob(15/disease.spreading_modifier))
+	var/infect_chance = clamp(7 + (disease.spreading_modifier * 7), 14, 35)
+	if(!prob(infect_chance))
 		return
+	// BUBBER EDIT CHANGE END - Disease Transmission
+
+	disease.log_virus_debug("[name] - CONTACT - passed infection checks for CONTACT transmission. ([infect_chance]% chance)")
 
 	if(satiety>0 && prob(satiety/2)) // positive satiety makes it harder to contract the disease.
 		return
@@ -67,31 +74,61 @@
 		if(HAS_TRAIT(infecting_human, TRAIT_VIRUS_RESISTANCE) && prob(75))
 			return
 
+		var/armor_check = 0 // BUBBER EDIT ADDITION - Disease Transmission
+		// BUBBER EDIT CHANGE START - Disease Transmission
 		switch(target_zone)
 			if(BODY_ZONE_HEAD)
 				if(isobj(infecting_human.head))
-					passed = prob(100-infecting_human.head.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.head.get_armor_rating(BIO)) // commented out because we're temporarily doing armor_check for logging
+					armor_check = 100-infecting_human.head.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for HEAD. (Armor rating: [infecting_human.head.get_armor()] [armor_check]%)"
 				if(passed && isobj(infecting_human.wear_mask))
-					passed = prob(100-infecting_human.wear_mask.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.wear_mask.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.wear_mask.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for MASK. (Armor rating: [infecting_human.wear_mask.get_armor()] [armor_check]%)"
 				if(passed && isobj(infecting_human.wear_neck))
-					passed = prob(100-infecting_human.wear_neck.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.wear_neck.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.wear_neck.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for NECK. (Armor rating: [infecting_human.wear_neck.get_armor()] [armor_check]%)"
 			if(BODY_ZONE_CHEST)
 				if(isobj(infecting_human.wear_suit))
-					passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for SUIT. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
 				if(passed && isobj(infecting_human.w_uniform))
-					passed = prob(100-infecting_human.w_uniform.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.w_uniform.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.w_uniform.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for UNIFORM. (Armor rating: [infecting_human.w_uniform.get_armor()] [armor_check]%)"
 			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 				if(isobj(infecting_human.wear_suit) && infecting_human.wear_suit.body_parts_covered&HANDS)
-					passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for HANDS. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
 				if(passed && isobj(infecting_human.gloves))
-					passed = prob(100-infecting_human.gloves.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.gloves.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for GLOVES. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
 			if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 				if(isobj(infecting_human.wear_suit) && infecting_human.wear_suit.body_parts_covered&FEET)
-					passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
+					//passed = prob(100-infecting_human.wear_suit.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.wear_suit.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for LEGS. (Armor rating: [infecting_human.wear_suit.get_armor()] [armor_check]%)"
 				if(passed && isobj(infecting_human.shoes))
-					passed = prob(100-infecting_human.shoes.get_armor_rating(BIO))
-
+					//passed = prob(100-infecting_human.shoes.get_armor_rating(BIO))
+					armor_check = 100-infecting_human.shoes.get_armor_rating(BIO)
+					passed = prob(armor_check)
+					pass_message = "protection pass checked for SHOES. (Armor rating: [infecting_human.shoes.get_armor()] [armor_check]%)"
+		// BUBBER EDIT CHANGE END - Disease Transmission
 	if(passed)
+		disease.log_virus_debug("[name] - CONTACT - [pass_message]") // BUBBER EDIT ADDITION - Disease Transmission
 		disease.try_infect(src)
 
 /**
@@ -100,6 +137,7 @@
  * * disease - the disease datum that's infecting us
  */
 /mob/living/proc/contract_airborne_disease(datum/disease/disease)
+	/* BUBBER EDIT CHANGE START - Disease Transmission
 	if(!can_be_spread_airborne_disease())
 		return FALSE
 	if(!prob(min((50 * disease.spreading_modifier - 1), 50)))
@@ -107,9 +145,24 @@
 	if(!disease.has_required_infectious_organ(src, ORGAN_SLOT_LUNGS))
 		return FALSE
 	return ForceContractDisease(disease)
+	*/
+
+	if(!can_be_spread_airborne_disease())
+		return FALSE
+	var/infect_chance = clamp(7 + (disease.spreading_modifier * 7), 14, 35)
+	if(!prob(infect_chance))
+		return FALSE
+	if(!disease.has_required_infectious_organ(src, ORGAN_SLOT_LUNGS))
+		return FALSE
+
+	var/final_infectivity = ((infect_chance / 100) * (disease.infectivity / 100)) * 100
+
+	return ForceContractDisease(disease, TRUE, FALSE, "AIRBORNE", final_infectivity)
+	// BUBBER EDIT CHANGE END - Disease Transmission
 
 //Proc to use when you 100% want to try to infect someone (ignoreing protective clothing and such), as long as they aren't immune
-/mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE)
+// /mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE)
+/mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE, infect_vector, final_infectivity) // BUBBER EDIT CHANGE - Disease Transmission
 	if(!CanContractDisease(D))
 		if(del_on_fail)
 			qdel(D)
@@ -118,6 +171,7 @@
 		if(del_on_fail)
 			qdel(D)
 		return FALSE
+	D.log_virus_debug("[name] - [infect_vector] - passed infection checks for [infect_vector] transmission. ([final_infectivity]% chance)") // BUBBER EDIT ADDITION - Disease Transmission
 	return TRUE
 
 
