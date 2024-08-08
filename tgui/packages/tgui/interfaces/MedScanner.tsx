@@ -573,26 +573,26 @@ const Wounds = () => {
                 boxSizing: 'border-box',
               }}
             >
-              <div
-                style={{
-                  flex: 1,
-                  textAlign: 'center',
-                }}
+              <Tooltip
+                content={
+                  wound.description
+                    ? wound.description
+                    : 'No tooltip entry for this advice.'
+                }
               >
-                <Tooltip
-                  content={
-                    wound.description
-                      ? wound.description
-                      : 'No tooltip entry for this advice.'
-                  }
+                <div
+                  style={{
+                    flex: 1,
+                    textAlign: 'center',
+                  }}
                 >
                   {wound.severity +
                     ' ' +
                     wound.type +
                     ' detected on ' +
                     wound.where}
-                </Tooltip>
-              </div>
+                </div>
+              </Tooltip>
             </div>
             <div
               style={{

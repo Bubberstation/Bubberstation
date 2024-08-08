@@ -134,11 +134,11 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	//else if((heart.organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
 		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		//data["revivable_boolean"] = FALSE
-	else if((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+	else if((patient.getBruteLoss() <= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() <= MAX_REVIVE_FIRE_DAMAGE))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to [patient ? "defibrillate" : "reboot"] - repair damage above [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]%"
+		data["revivable_string"] = "Not ready to [patient ? "defibrillate" : "reboot"] - damage left to repair [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]"
 		data["revivable_boolean"] = FALSE
 
 
