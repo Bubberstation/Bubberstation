@@ -134,13 +134,30 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	//else if((heart.organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
 		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		//data["revivable_boolean"] = FALSE
-	else if(!(patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || !(patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
+	else if((patient.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
 		data["revivable_string"] = "Not ready to [patient ? "defibrillate" : "reboot"] - repair damage above [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]%"
 		data["revivable_boolean"] = FALSE
 
+
+	/*
+	WOUNDS
+	*/
+	var/list/render_list = list()
+	for(var/limb in patient.get_wounded_bodyparts())
+		var/obj/item/bodypart/wounded_part = limb
+		for(var/limb_wound in wounded_part.wounds)
+			var/datum/wound/current_wound = limb_wound
+			render_list += list(list(
+				"type" = current_wound.name,
+				"where" = wounded_part.name,
+				"severity" = current_wound.severity_text(simple = FALSE),
+				"description" = current_wound.desc,
+				"recomended_treatement" = current_wound.treat_text,
+			))
+	data["wounds"] = render_list
 
 	/*
 	ADVICE
@@ -233,33 +250,41 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 					if(chemicals_lists["Spaceacillin"]["amount"] < 2)
 						advice += temp_advice
 				else
-					advice += temp_advice
-			var/datum/internal_organ/brain/brain = patient.internal_organs_by_name["brain"]
-			if(brain.organ_status != ORGAN_HEALTHY)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of mannitol.",
-					"tooltip" = "Significant brain damage detected. Mannitol heals brain damage. If left untreated, patient may be unable to function well.",
-					"icon" = "syringe",
-					"color" = "blue"
-					))
-				if(chemicals_lists["Mannitol"])
-					if(chemicals_lists["Mannitol"]["amount"] < 3)
-						advice += temp_advice
-				else
-					advice += temp_advice
-			var/datum/internal_organ/eyes/eyes = patient.internal_organs_by_name["eyes"]
-			if(eyes.organ_status != ORGAN_HEALTHY)
-				temp_advice = list(list(
-					"advice" = "Administer a single dose of occuline.",
-					"tooltip" = "Eye damage detected. Occuline heals eye damage. If left untreated, patient may be unable to see properly.",
-					"icon" = "syringe",
-					"color" = "yellow"
-					))
-				if(chemicals_lists["Occuline"])
-					if(chemicals_lists["Occuline"]["amount"] < 3)
-						advice += temp_advice
-				else
 					advice += temp_advice */
+
+		for(var/obj/item/organ/internal/organs as anything in patient.organs)
+			if(organs.name == "brain")
+				var/obj/item/organ/internal/brain/brain = patient.get_organ_by_type(/obj/item/organ/internal/brain)
+				if(brain.damage > 5)
+					temp_advice = list(list(
+						"advice" = "Administer a single dose of mannitol.",
+						"tooltip" = "Significant brain damage detected. Mannitol heals brain damage. If left untreated, patient may be unable to function well.",
+						"icon" = "syringe",
+						"color" = "blue"
+						))
+					if(chemicals_lists["Mannitol"])
+						if(chemicals_lists["Mannitol"]["amount"] < 3)
+							advice += temp_advice
+					else
+						advice += temp_advice
+			else
+				continue
+			if(organs.name == "eyes")
+				var/obj/item/organ/internal/eyes/eyes = patient.get_organ_by_type(/obj/item/organ/internal/eyes)
+				if(eyes.damage > 5)
+					temp_advice = list(list(
+						"advice" = "Administer a single dose of occuline.",
+						"tooltip" = "Eye damage detected. Occuline heals eye damage. If left untreated, patient may be unable to see properly.",
+						"icon" = "syringe",
+						"color" = "yellow"
+						))
+					if(chemicals_lists["Occuline"])
+						if(chemicals_lists["Occuline"]["amount"] < 3)
+							advice += temp_advice
+					else
+						advice += temp_advice
+			else
+				continue
 		if(patient.getBruteLoss() > 30)
 			temp_advice = list(list(
 				"advice" = "Administer a single dose of Libital or Salicylic Acid to reduce physical trauma.",
