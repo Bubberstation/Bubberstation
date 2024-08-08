@@ -780,9 +780,9 @@ export const feature_mandibles: Feature<string> = {
   },
 };
 
-export const mandibles_color: Feature<string> = {
+export const mandibles_color: Feature<string[]> = {
   name: 'Mandible Color',
-  component: FeatureColorInput,
+  component: FeatureTriColorInput,
 };
 
 export const spinneret_toggle: FeatureToggle = {
@@ -799,9 +799,9 @@ export const feature_spinneret: Feature<string> = {
   },
 };
 
-export const spinneret_color: Feature<string> = {
+export const spinneret_color: Feature<string[]> = {
   name: 'Mandible Color',
-  component: FeatureColorInput,
+  component: FeatureTriColorInput,
 };
 
 export const arachnid_legs_toggle: FeatureToggle = {
@@ -818,7 +818,7 @@ export const feature_arachnid_legs: Feature<string> = {
   },
 };
 
-export const arachnid_legs_color: Feature<string> = {
+export const arachnid_legs_color: Feature<string[]> = {
   name: 'Arachnid Leg Color',
-  component: FeatureColorInput,
+  component: FeatureTriColorInput,
 };
