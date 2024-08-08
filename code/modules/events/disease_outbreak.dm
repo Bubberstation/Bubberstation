@@ -407,7 +407,7 @@
 		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
 
 	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
-		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD
+		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD as soon as event starts
 		set_spread(DISEASE_SPREAD_AIRBORNE)
 
 	else
