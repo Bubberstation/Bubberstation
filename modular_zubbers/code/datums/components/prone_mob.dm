@@ -6,7 +6,7 @@
 	if(!iscarbon(parent))
 		return COMPONENT_INCOMPATIBLE
 	pronemob = parent
-	pronemob.add_traits(list(TRAIT_PRONE, TRAIT_NOGUNS, TRAIT_FLOORED, TRAIT_NO_THROWING), type)
+	pronemob.add_traits(list(TRAIT_PRONE, TRAIT_FLOORED, TRAIT_NO_THROWING), type)
 	passtable_on(pronemob)
 	pronemob.layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 
@@ -25,7 +25,7 @@
 	pronemob.layer = MOB_LAYER
 /datum/component/prone_mob/proc/stop_army_crawl(mob/living/source)
 	SIGNAL_HANDLER
-	pronemob.remove_traits(list(TRAIT_PRONE, TRAIT_NOGUNS, TRAIT_FLOORED, TRAIT_NO_THROWING), type)
+	pronemob.remove_traits(list(TRAIT_PRONE, TRAIT_FLOORED, TRAIT_NO_THROWING), type)
 	passtable_off(pronemob)
 	qdel(src)
 
