@@ -26,6 +26,9 @@
 	var/min_wchance = 67
 	var/min_wrate = 10
 
+/datum/plant_gene/reagent
+	mutability_flags = PLANT_GENE_GRAFTABLE | PLANT_GENE_REMOVABLE
+
 /obj/machinery/plantgenes/RefreshParts() // Comments represent the max you can set per tier, respectively. seeds.dm [219] clamps these for us but we don't want to mislead the viewer.
 	. = ..()
 	for(var/datum/stock_part/servo/M in component_parts)
