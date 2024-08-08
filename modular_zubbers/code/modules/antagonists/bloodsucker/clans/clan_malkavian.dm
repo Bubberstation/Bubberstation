@@ -83,7 +83,10 @@
 
 /datum/bloodsucker_clan/malkavian/on_final_death(datum/antagonist/bloodsucker/source)
 	var/obj/item/soulstone/bloodsucker/stone = new /obj/item/soulstone/bloodsucker(get_turf(bloodsuckerdatum.owner.current))
-	ASYNC	stone.capture_soul(bloodsuckerdatum.owner.current, forced = TRUE, bloodsuckerdatum = bloodsuckerdatum)
+	if(!bloodsuckerdatum.owner.current.ckey)
+		return
+	ASYNC
+		stone.capture_soul(bloodsuckerdatum.owner.current, forced = TRUE)
 	return DONT_DUST
 
 /datum/bloodsucker_clan/malkavian/proc/on_bloodsucker_broke_masquerade(datum/antagonist/bloodsucker/masquerade_breaker)

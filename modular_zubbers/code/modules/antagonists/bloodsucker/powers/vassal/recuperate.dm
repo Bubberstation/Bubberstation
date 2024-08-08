@@ -9,7 +9,7 @@
 		If you aren't a bloodless race, you will additionally heal Burn damage.\n\
 		The power will cancel out if you are dead or unconcious."
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = AB_CHECK_CONSCIOUS
 	purchase_flags = NONE
 	bloodcost = 1.5
 	cooldown_time = 10 SECONDS
@@ -60,6 +60,9 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/bloodsucker/recuperate/DeactivatePower()
+/datum/action/cooldown/bloodsucker/recuperate/DeactivatePower(deactivate_flags)
+	. = ..()
+	if(!.)
+		return
 	owner.balloon_alert(owner, "recuperate turned off.")
 	return ..()

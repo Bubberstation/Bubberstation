@@ -21,11 +21,13 @@
 	bloodsuckerdatum.owner.current.add_traits(list(TRAIT_VENTCRAWLER_ALWAYS, TRAIT_DISFIGURED), BLOODSUCKER_TRAIT)
 
 /datum/bloodsucker_clan/nosferatu/Destroy(force)
-	for(var/datum/action/cooldown/bloodsucker/power in bloodsuckerdatum.powers)
-		bloodsuckerdatum.RemovePower(power)
+	var/datum/action/cooldown/bloodsucker/feed/suck = locate() in bloodsuckerdatum.powers
+	if(suck)
+		bloodsuckerdatum.RemovePower(suck)
 	bloodsuckerdatum.give_starting_powers()
 	bloodsuckerdatum.owner.current.remove_quirk(/datum/quirk/badback)
 	bloodsuckerdatum.owner.current.remove_traits(list(TRAIT_VENTCRAWLER_ALWAYS, TRAIT_DISFIGURED), BLOODSUCKER_TRAIT)
+	UnregisterSignal(bloodsuckerdatum, BLOODSUCKER_UPDATE_BLOOD)
 	return ..()
 
 /datum/bloodsucker_clan/nosferatu/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)

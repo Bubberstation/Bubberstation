@@ -29,6 +29,8 @@
 	var/blood_drink_type = BLOODSUCKER_DRINK_NORMAL
 	/// How much stamina armor we get in frenzy
 	var/frenzy_stamina_mod = 0.4
+	var/buy_power_flags = BLOODSUCKER_CAN_BUY
+	var/level_up_percentage_cost = 0.1
 
 /datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
@@ -148,10 +150,7 @@
 
 /datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
 	// Purchase Power Prompt
-	var/list/options = list()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY && !(locate(power) in bloodsuckerdatum.powers))
-			options[initial(power.name)] = power
+	var/list/options = level_up_options()
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 	if(options.len < 1)
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
@@ -169,25 +168,23 @@
 		if(!choice || !options[choice])
 			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
-		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(locate(options[choice]) in bloodsuckerdatum.powers)
-			to_chat(human_user, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
-			return
 		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
 		if(!istype(human_user.loc, /obj/structure/closet/crate/coffin))
 			to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
 			return
 
 		// Good to go - Buy Power!
-		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
-		bloodsuckerdatum.BuyPower(purchased_power)
+		if(!purchase_choice(bloodsuckerdatum, options[choice]))
+			to_chat(human_user, span_warning("Cannot buy duplicate powers!"))
+			return
+
 		human_user.balloon_alert(human_user, "learned [choice]!")
 		to_chat(human_user, span_notice("You have learned how to use [choice]!"))
 
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
 
 /datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
-	bloodsuckerdatum.LevelUpPowers()
+	level_up_powers(source)
 	bloodsuckerdatum.bloodsucker_regen_rate += 0.05
 	bloodsuckerdatum.max_blood_volume += 100
 
@@ -228,6 +225,22 @@
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Vassalization unlocked!")
+
+/datum/bloodsucker_clan/proc/level_up_options()
+	var/list/options = list()
+	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
+		if(initial(power.purchase_flags) & buy_power_flags && !(locate(power) in bloodsuckerdatum.powers))
+			options[initial(power.name)] = power
+	return options
+
+/datum/bloodsucker_clan/proc/level_up_powers(datum/antagonist/bloodsucker/source)
+	bloodsuckerdatum.LevelUpPowers()
+
+/datum/bloodsucker_clan/proc/purchase_choice(datum/antagonist/bloodsucker/source, datum/action/cooldown/bloodsucker/purchased_power)
+	if(purchased_power in bloodsuckerdatum.powers)
+		to_chat(source.owner.current, span_notice("You already have this power!"))
+		return
+	return bloodsuckerdatum.BuyPower(purchased_power)
 
 /**
  * Called when we are trying to turn someone into a Favorite Vassal

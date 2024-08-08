@@ -94,7 +94,7 @@
 			traits_to_add = list(TRAIT_NOHARDCRIT, TRAIT_HARDLY_WOUNDED)
 			to_chat(target, span_notice("You feel yourself able to take cuts and stabbings like it's nothing."))
 		if(4 to INFINITY)
-			var/datum/antagonist/bloodsucker/bloodsucker_target = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+			var/datum/antagonist/bloodsucker/bloodsucker_target = IS_BLOODSUCKER(target)
 			if(!bloodsucker_target)
 				to_chat(target, span_notice("You feel your heart stop pumping for the last time as you begin to thirst for blood, you feel... dead."))
 				// Unfavorites you, so the ventrue isn't stuck with you forever

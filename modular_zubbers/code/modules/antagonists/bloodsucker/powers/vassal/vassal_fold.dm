@@ -22,7 +22,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/ex_vassal)
+	var/datum/antagonist/vassal/revenge/revenge_vassal = IS_REVENGE_VASSAL(owner)
 	if(revenge_vassal)
 		return FALSE
 
@@ -34,7 +34,7 @@
 
 	if(owner.pulling && isliving(owner.pulling))
 		var/mob/living/pulled_target = owner.pulling
-		var/datum/antagonist/ex_vassal/former_vassal = pulled_target.mind.has_antag_datum(/datum/antagonist/ex_vassal)
+		var/datum/antagonist/ex_vassal/former_vassal = IS_EX_VASSAL(pulled_target)
 		if(!former_vassal)
 			owner.balloon_alert(owner, "not a former vassal!")
 			return FALSE
@@ -53,7 +53,7 @@
 
 /datum/action/cooldown/bloodsucker/vassal_blood/ActivatePower(trigger_flags)
 	. = ..()
-	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/vassal/revenge)
+	var/datum/antagonist/vassal/revenge/revenge_vassal = IS_REVENGE_VASSAL(owner)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		for(var/datum/antagonist/ex_vassal/former_vassals as anything in revenge_vassal.ex_vassals)
 			var/information = "[former_vassals.owner.current]"
@@ -71,7 +71,7 @@
 
 	if(target_ref)
 		var/mob/living/target = target_ref.resolve()
-		var/datum/antagonist/ex_vassal/former_vassal = target.mind.has_antag_datum(/datum/antagonist/ex_vassal)
+		var/datum/antagonist/ex_vassal/former_vassal = IS_EX_VASSAL(target)
 		if(!former_vassal || former_vassal.revenge_vassal)
 			target_ref = null
 			return

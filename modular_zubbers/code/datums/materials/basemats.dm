@@ -4,4 +4,4 @@
 
 /datum/material/silver/on_removed(atom/source, amount, material_flags)
 	. = ..()
-	source.RemoveElement(/datum/element/bane)
+	source.RemoveElement(/datum/element/bane, mob_biotypes = MOB_VAMPIRIC, damage_multiplier = 0.5)

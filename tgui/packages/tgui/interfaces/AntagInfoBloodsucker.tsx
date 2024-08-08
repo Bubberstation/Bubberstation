@@ -21,7 +21,7 @@ export type ClanInfo = {
 
 export type PowerInfo = {
   power_name: string;
-  power_explanation: string;
+  power_explanation: string[];
   power_icon: string;
 };
 
@@ -55,7 +55,7 @@ const ObjectivePrintout = (props: any) => {
 export const AntagInfoBloodsucker = (props: any) => {
   const [tab, setTab] = useState(1);
   return (
-    <Window width={620} height={580} theme="spookyconsole">
+    <Window width={620} height={700} theme="spookyconsole">
       <Window.Content>
         <Tabs>
           <Tabs.Tab
@@ -100,7 +100,7 @@ const BloodsuckerIntro = () => {
       </Stack.Item>
       <Stack.Item>
         <Section fill title="Strengths and Weaknesses">
-          <Stack vertical>
+          <Stack vertical height="7rem">
             <Stack.Item>
               <span>
                 You regenerate your health slowly, you&#39;re weak to fire, and
@@ -117,6 +117,11 @@ const BloodsuckerIntro = () => {
               <span>
                 Avoid using your Feed ability while near others, or else you
                 will risk <i>breaking the Masquerade</i>!
+              </span>
+              <span>
+                Loosing your heart will render your powers useless, but going
+                into a coffin with a heart inside will allow you to regenerate
+                it.
               </span>
             </Stack.Item>
           </Stack>
@@ -202,7 +207,10 @@ const BloodsuckerClan = (props: any) => {
                   <Stack.Item fontSize="20px" textAlign="center">
                     You are part of the {ClanInfo.clan_name}
                   </Stack.Item>
-                  <Stack.Item fontSize="16px">
+                  <Stack.Item
+                    fontSize="16px"
+                    style={{ flexBasis: '60% !important' }}
+                  >
                     {ClanInfo.clan_description}
                   </Stack.Item>
                 </>
@@ -210,8 +218,8 @@ const BloodsuckerClan = (props: any) => {
             </Stack.Item>
           </Stack>
         </Section>
-        <PowerDetails powers={powers} />
       </Stack.Item>
+      <PowerDetails powers={powers} />
     </Stack>
   );
 };

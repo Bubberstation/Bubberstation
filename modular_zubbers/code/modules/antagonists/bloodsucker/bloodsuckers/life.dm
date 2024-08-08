@@ -224,7 +224,7 @@
 		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
 		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
-		current_heart.Stop()
+		current_heart?.Stop()
 	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
@@ -235,12 +235,13 @@
 	var/obj/item/bodypart/chest/target_chest = bloodsuckeruser.get_bodypart(BODY_ZONE_CHEST)
 	if(target_chest && !(target_chest.bodypart_flags & BODYPART_UNREMOVABLE))
 		target_chest.bodypart_flags |= BODYPART_UNREMOVABLE
+
 	// Sometimes bloodsuckers can get into a loop of reviving and dying, if they somehow get a new body without being revived.
 	if(_listen_lookup?[COMSIG_BLOODSUCKER_ON_LIFETICK] || bloodsuckeruser._listen_lookup?[COMSIG_LIVING_REVIVE])
 		on_revive()
 	if(bloodsuckeruser.stat == DEAD)
 		bloodsuckeruser.revive()
-	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
+	for(var/datum/wound/iter_wound in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
@@ -263,12 +264,13 @@
 
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
-	// Not "Alive"?
 	if(!owner.current)
-		FinalDeath()
+		if(length(vassals))
+			free_all_vassals()
+		vassals = list()
 		return
 	// Fire Damage? (above double health)
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2.5)
+	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN)
 		FinalDeath()
 		return
 	// Staked with a silver stake while "Temp Death" or Asleep
@@ -278,11 +280,6 @@
 	// Temporary Death? Convert to Torpor.
 	if(HAS_TRAIT_FROM_ONLY(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT) || isbrain(owner.current))
 		return
-	// Won't torpor without vital organs, as this means they'd revive without a heart
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/humie = owner.current
-		if(humie.dna.species.mutantheart && !owner.current.get_organ_slot(ORGAN_SLOT_HEART))
-			return
 	check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
@@ -322,6 +319,8 @@
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()
+	if(SEND_SIGNAL(src, BLOODSUCKER_UPDATE_BLOOD) & BLOODSUCKER_UPDATE_BLOOD_DISABLED)
+		return
 	if(HAS_TRAIT(owner.current, TRAIT_NOBLOOD))
 		return
 	//If we're on Masquerade, we appear to have full blood, unless we are REALLY low, in which case we don't look as bad.
@@ -343,8 +342,7 @@
 	// Don't do anything if we're not actually inside a brain and a head
 	if(!is_head(poor_fucker) || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
-	// Ensure that the HUD updates (We might have lost the heart at some point)
-	RegisterSignal(poor_fucker, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
+	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
 	poor_fucker.stat = CONSCIOUS
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))

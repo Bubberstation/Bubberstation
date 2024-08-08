@@ -1,14 +1,17 @@
-/datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+/datum/antagonist/bloodsucker/proc/can_claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [src].")
-		else
-			to_chat(owner, "This [src] has already been claimed by another.")
+			claimed.balloon_alert(owner.current, "already claimed by [claimed.resident == owner.current ? "you" : "another"]!")
 		return FALSE
 	if(!(GLOB.the_station_areas.Find(current_area.type)))
 		claimed.balloon_alert(owner.current, "not part of station!")
 		return
+	return TRUE
+
+/datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
+	if(!can_claim_coffin(claimed, current_area))
+		return FALSE
 	// This is my Lair
 	coffin = claimed
 	bloodsucker_lair_area = current_area
@@ -128,7 +131,7 @@
 
 /// NOTE: This can be any coffin that you are resting AND inside of.
 /obj/structure/closet/crate/coffin/proc/claim_coffin(mob/living/claimant, area/current_area)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = claimant.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(claimant)
 	// Successfully claimed?
 	if(bloodsuckerdatum.claim_coffin(src, current_area))
 		resident = claimant
@@ -173,7 +176,7 @@
 		return
 	un_enlarge(resident)
 	// Unclaiming
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = resident.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(resident)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
 		bloodsuckerdatum.coffin = null
 		bloodsuckerdatum.bloodsucker_lair_area = null
@@ -226,7 +229,8 @@
 				bloodsuckerdatum.blood_level_gain()
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
 			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
+		if(!bloodsuckerdatum.check_begin_torpor())
+			bloodsuckerdatum.heal_vampire_organs()
 	return TRUE
 
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)
@@ -235,10 +239,13 @@
 	if(resident == dracula.owner.current)
 		return TRUE
 	var/area/current_area = get_area(src)
-	if(!dracula.coffin && !resident)
-		switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
-			if("Yes")
-				return claim_coffin(dracula.owner.current, current_area)
+	if(!dracula.can_claim_coffin(src, current_area))
+		return FALSE
+	if(!dracula.coffin && resident)
+		return FALSE
+	switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
+		if("Yes")
+			return claim_coffin(dracula.owner.current, current_area)
 	return FALSE
 
 // some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
