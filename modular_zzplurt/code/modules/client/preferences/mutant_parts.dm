@@ -2,15 +2,6 @@
 	savefile_key = "mandibles_toggle"
 	relevant_mutant_bodypart = "mandibles"
 
-/*
-//ive been sitting at this shit for a literal day
-//if you care to figure out how to make these appear for arachnids, be my guest
-//i dont
-/datum/preference/toggle/mutant_toggle/mandibles/is_accessible(datum/preferences/preferences)
-	SHOULD_CALL_PARENT(FALSE)
-	return preferences.read_preference(/datum/preference/choiced/species) == /datum/species/arachnid || preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts)
-*/
-
 /datum/preference/choiced/mutant_choice/mandibles
 	savefile_key = "feature_mandibles"
 	relevant_mutant_bodypart = "mandibles"
@@ -29,13 +20,6 @@
 	savefile_key = "spinneret_toggle"
 	relevant_mutant_bodypart = "spinneret"
 
-//ditto here
-/*
-/datum/preference/toggle/mutant_toggle/spinneret/is_accessible(datum/preferences/preferences)
-	SHOULD_CALL_PARENT(FALSE)
-	return preferences.read_preference(/datum/preference/choiced/species) == /datum/species/arachnid || preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts)
-*/
-
 /datum/preference/choiced/mutant_choice/spinneret
 	savefile_key = "feature_spinneret"
 	relevant_mutant_bodypart = "spinneret"
@@ -53,13 +37,6 @@
 /datum/preference/toggle/mutant_toggle/arachnid_legs
 	savefile_key = "arachnid_legs_toggle"
 	relevant_mutant_bodypart = "arachnid_legs"
-
-/*
-//ditto here
-/datum/preference/toggle/mutant_toggle/arachnid_legs/is_accessible(datum/preferences/preferences)
-	SHOULD_CALL_PARENT(FALSE)
-	return preferences.read_preference(/datum/preference/choiced/species) == /datum/species/arachnid || preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts)
-*/
 
 /datum/preference/choiced/mutant_choice/arachnid_legs
 	savefile_key = "feature_arachnid_legs"
