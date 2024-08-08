@@ -26,6 +26,8 @@ import './styles/themes/syndicate.scss';
 import './styles/themes/wizard.scss';
 import './styles/themes/admin.scss';
 import './styles/themes/clockwork.scss'; // SKYRAT EDIT ADDITION
+import './styles/themes/ntos_healthy.scss'; // BUBBER EDIT ADDITION
+import './styles/themes/ntos_rusty.scss'; // BUBBER EDIT ADDITION
 
 import { perf } from 'common/perf';
 import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';

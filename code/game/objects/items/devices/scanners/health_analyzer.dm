@@ -30,6 +30,10 @@
 	custom_price = PAYCHECK_COMMAND
 	/// If this analyzer will give a bonus to wound treatments apon woundscan.
 	var/give_wound_treatment_bonus = FALSE
+	///Current mob being tracked by the scanner BUBBER EDIT
+	var/mob/living/carbon/human/patient // BUBBER EDIT
+	///Current user of the scanner
+	var/mob/living/carbon/human/current_user // BUBBER EDIT
 
 /obj/item/healthanalyzer/Initialize(mapload)
 	. = ..()
@@ -63,6 +67,8 @@
 
 	var/mob/living/M = interacting_with
 
+	current_user = user
+	patient = interacting_with
 	. = ITEM_INTERACT_SUCCESS
 
 	flick("[icon_state]-scan", src) //makes it so that it plays the scan animation upon scanning, including clumsy scanning
@@ -87,7 +93,13 @@
 
 	switch (scanmode)
 		if (SCANMODE_HEALTH)
-			healthscan(user, M, mode, advanced)
+			if(user.client?.prefs.read_preference(/datum/preference/toggle/health_analyzer_toggle) == TRUE)
+				healthscan(user, M, mode, advanced)
+				ui_interact(usr) // BUBBER EDIT
+				update_static_data(usr)
+				START_PROCESSING(SSobj, src)
+			else
+				healthscan(user, M, mode, advanced)
 		if (SCANMODE_WOUND)
 			woundscan(user, M, src)
 
