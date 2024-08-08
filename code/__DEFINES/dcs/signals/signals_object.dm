@@ -266,7 +266,6 @@
 
 ///from [/mob/living/carbon/human/Move]: ()
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"
-#define COMSIG_NECK_STEP_ACTION "neck_step_action"	//Bubbers addition
 
 // /obj/item/implant signals
 ///from base of /obj/item/implant/proc/activate(): ()
