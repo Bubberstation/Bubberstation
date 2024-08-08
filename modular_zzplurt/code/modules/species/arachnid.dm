@@ -21,9 +21,9 @@
 	say_mod = "chitters"
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	external_organs = list(
-		/obj/item/organ/external/mandibles = "None",
-		/obj/item/organ/external/spinneret = "None",
-		/obj/item/organ/external/arachnid_legs = "None",
+		/obj/item/organ/external/mandibles = "Plain",
+		/obj/item/organ/external/spinneret = "Plain",
+		/obj/item/organ/external/arachnid_legs = "Plain",
 	)
 	meat = /obj/item/food/meat/slab/spider
 	species_language_holder = /datum/language_holder/arachnid

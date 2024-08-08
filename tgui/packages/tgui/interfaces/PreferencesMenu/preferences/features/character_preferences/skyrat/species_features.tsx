@@ -766,8 +766,6 @@ export const pod_hair_emissive: Feature<boolean> = {
   component: CheckboxInput,
 };
 
-
-
 export const mandibles_toggle: FeatureToggle = {
   name: 'Mandibles',
   component: CheckboxInput,
@@ -782,12 +780,10 @@ export const feature_mandibles: Feature<string> = {
   },
 };
 
-export const mandibles_color: Feature<string[]> = {
+export const mandibles_color: Feature<string> = {
   name: 'Mandible Color',
   component: FeatureColorInput,
 };
-
-
 
 export const spinneret_toggle: FeatureToggle = {
   name: 'Spinneret',
@@ -803,11 +799,10 @@ export const feature_spinneret: Feature<string> = {
   },
 };
 
-export const spinneret_color: Feature<string[]> = {
+export const spinneret_color: Feature<string> = {
   name: 'Mandible Color',
   component: FeatureColorInput,
 };
-
 
 export const arachnid_legs_toggle: FeatureToggle = {
   name: 'Arachnid Legs',
@@ -823,7 +818,7 @@ export const feature_arachnid_legs: Feature<string> = {
   },
 };
 
-export const arachnid_legs_color: Feature<string[]> = {
+export const arachnid_legs_color: Feature<string> = {
   name: 'Arachnid Leg Color',
   component: FeatureColorInput,
 };

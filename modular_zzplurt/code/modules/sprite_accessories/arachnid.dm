@@ -10,7 +10,7 @@
 	icon = 'modular_zzplurt/icons/mob/human/species/arachnid_misc.dmi'
 
 /datum/sprite_accessory/arachnid_legs/none
-	name = "None"
+	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	factual = FALSE
 
@@ -39,7 +39,7 @@
 	icon = 'modular_zzplurt/icons/mob/human/species/arachnid_misc.dmi'
 
 /datum/sprite_accessory/arachnid_spinneret/none
-	name = "None"
+	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	factual = FALSE
 
@@ -68,7 +68,7 @@
 	icon = 'modular_zzplurt/icons/mob/human/species/arachnid_misc.dmi'
 
 /datum/sprite_accessory/arachnid_mandibles/none
-	name = "None"
+	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	factual = FALSE
 
