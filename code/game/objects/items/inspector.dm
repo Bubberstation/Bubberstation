@@ -107,7 +107,7 @@
 	if(!cell || !cell.use(INSPECTOR_ENERGY_USAGE_LOW))
 		balloon_alert(user, "check cell!")
 		return ITEM_INTERACT_BLOCKING
-
+/* BUBBER EDIT REMOVAL
 	if(iscarbon(interacting_with)) //Prevents insta scanning people
 		if(!COOLDOWN_FINISHED(src, scanning_person))
 			return ITEM_INTERACT_BLOCKING
@@ -119,7 +119,7 @@
 		COOLDOWN_START(src, scanning_person, 4 SECONDS)
 		if(!do_after(user, 4 SECONDS, interacting_with))
 			return ITEM_INTERACT_BLOCKING
-
+BUBBER EDIT REMOVAL END */
 	if(contraband_scan(interacting_with, user))
 		playsound(src, 'sound/machines/uplinkerror.ogg', 40)
 		balloon_alert(user, "contraband detected!")
