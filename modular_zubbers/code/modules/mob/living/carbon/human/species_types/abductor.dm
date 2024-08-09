@@ -24,5 +24,7 @@
 
 /datum/outfit/deathmatch_loadout/abductor/post_equip(mob/living/carbon/human/user, visualsOnly)
 	. = ..()
-	var/obj/item/organ/internal/tongue/abductor/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
-	tongue.mothership = "deathmatch"
+	var/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
+	if(istype(/obj/item/organ/internal/tongue/abductor)
+		tongue.mothership = "deathmatch"
+	else return
