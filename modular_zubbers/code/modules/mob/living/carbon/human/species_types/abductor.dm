@@ -12,7 +12,7 @@
 /datum/species/abductor/lesser/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	var/tongue = C.get_organ_slot(ORGAN_SLOT_TONGUE)
-	if(istype(/obj/item/organ/internal/tongue/abductor))
+	if(istype(tongue, /obj/item/organ/internal/tongue/abductor))
 		tongue.mothership = "SpaceStation13"
 	else
 		return
@@ -28,7 +28,7 @@
 /datum/outfit/deathmatch_loadout/abductor/post_equip(mob/living/carbon/human/user, visualsOnly)
 	. = ..()
 	var/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
-	if(istype(/obj/item/organ/internal/tongue/abductor))
+	if(istype(tongue, /obj/item/organ/internal/tongue/abductor))
 		tongue.mothership = "deathmatch"
 	else
 		return
