@@ -40,6 +40,7 @@
 //// HYPEREUTACTIC BLADE /////
 /////////////////////////////
 /obj/item/dualsaber/chaplain
+	// Original from Citadel by Sishen1542
 	icon = 'modular_zubbers/icons/obj/weapons/1x2.dmi'
 	icon_state = "hypereutactic"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
