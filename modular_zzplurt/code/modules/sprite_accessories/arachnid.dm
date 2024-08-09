@@ -13,6 +13,7 @@
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	factual = FALSE
+	natural_spawn = FALSE
 
 /datum/sprite_accessory/arachnid_legs/plain
 	name = "Plain"
@@ -42,6 +43,7 @@
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	factual = FALSE
+	natural_spawn = FALSE
 
 /datum/sprite_accessory/arachnid_spinneret/plain
 	name = "Plain"
@@ -71,6 +73,7 @@
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 	factual = FALSE
+	natural_spawn = FALSE
 
 /datum/sprite_accessory/arachnid_mandibles/plain
 	name = "Plain"
