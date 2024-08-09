@@ -15,7 +15,7 @@
 /// Percentile for mid severity advanced virus
 #define ADV_RNG_MID 85
 /// Percentile for high vs. low transmissibility
-#define ADV_SPREAD_THRESHOLD 85
+#define ADV_SPREAD_THRESHOLD 80
 /// Admin custom low spread
 #define ADV_SPREAD_FORCED_LOW 0
 /// Admin custom med spread
@@ -44,6 +44,10 @@
 	generate_candidates()
 	if(length(disease_candidates))
 		return TRUE
+	// BUBBER EDIT ADDITION START - Disease Transmission
+	if(SSjob.is_skeleton_medical(4))
+		return FALSE
+	// BUBBER EDIT ADDITION END - Disease Transmission
 
 /**
  * Creates a list of people who are elligible to become disease carriers for the event
@@ -152,14 +156,23 @@
 	new_disease.carrier = TRUE
 	illness_type = new_disease.name
 
+	// BUBBER EDIT ADDITION START - Disease Transmission
+	var/to_infect = 2
+	if(length(GLOB.alive_player_list) > 65)
+		to_infect = 3
+
+	var/infected = 0
+	// BUBBER EDIT ADDITION END - Disease Transmission
+
 	var/mob/living/carbon/human/victim
-	while(length(afflicted))
+	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - Disease Transmission
 		victim = pick_n_take(afflicted)
 		if(victim.ForceContractDisease(new_disease, FALSE))
 			message_admins("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [ADMIN_LOOKUPFLW(victim)]!")
 			log_game("Event triggered: Disease Outbreak - [new_disease.name] starting with patient zero [key_name(victim)].")
 			announce_to_ghosts(victim)
-			return
+			infected++ // BUBBER EDIT ADDITION - Disease Transmission
+			// return // BUBBER EDIT REMOVAL - Disease Transmission
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Classic attempted to start, but failed to find a candidate target.")
@@ -288,15 +301,24 @@
 
 	illness_type = advanced_disease.name
 
+	// BUBBER EDIT ADDITION START - Disease Transmission
+	var/to_infect = 2
+	if(length(GLOB.alive_player_list) > 65)
+		to_infect = 3
+
+	var/infected = 0
+	// BUBBER EDIT ADDITION END - Disease Transmission
+
 	var/mob/living/carbon/human/victim
-	while(length(afflicted))
+	while(length(afflicted) && infected < to_infect) // BUBBER EDIT CHANGE - Disease Transmission
 		victim = pick_n_take(afflicted)
 		if(victim.ForceContractDisease(advanced_disease, FALSE))
 			message_admins("Event triggered: Disease Outbreak: Advanced - starting with patient zero [ADMIN_LOOKUPFLW(victim)]! Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_game("Event triggered: Disease Outbreak: Advanced - starting with patient zero [key_name(victim)]. Details: [advanced_disease.admin_details()] sp:[advanced_disease.spread_flags] ([advanced_disease.spread_text])")
 			log_virus("Disease Outbreak: Advanced has triggered a custom virus outbreak of [advanced_disease.admin_details()] in [victim]!")
 			announce_to_ghosts(victim)
-			return
+			infected++ // BUBBER EDIT ADDITION - Disease Transmission
+			// return // BUBBER EDIT REMOVAL - Disease Transmission
 		CHECK_TICK //don't lag the server to death
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
@@ -354,6 +376,30 @@
 				/datum/symptom/visionloss,
 			)
 
+	visibility_flags |= HIDDEN_MEDHUD
+	var/transmissibility = requested_transmissibility
+
+	if(isnull(transmissibility))
+		transmissibility = rand(1,100)
+
+	if(requested_transmissibility == ADV_SPREAD_FORCED_LOW) // Admin forced
+		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
+
+	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
+		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD as soon as event starts
+		set_spread(DISEASE_SPREAD_AIRBORNE)
+		if(prob(66))
+			var/list/datum/symptom/airborne_modifiers = list(
+				/datum/symptom/cough,
+				/datum/symptom/sneeze,
+			)
+			var/datum/symptom/chosen_modifier = pick(airborne_modifiers)
+			possible_symptoms -= chosen_modifier
+			symptoms += new chosen_modifier
+
+	else
+		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
+
 	var/current_severity = 0
 
 	while(symptoms.len < max_symptoms)
@@ -374,31 +420,6 @@
 
 		if(new_symptom.severity > current_severity)
 			current_severity = new_symptom.severity
-
-	visibility_flags |= HIDDEN_SCANNER
-	var/transmissibility = requested_transmissibility
-
-	if(isnull(transmissibility))
-		transmissibility = rand(1,100)
-
-	if(requested_transmissibility == ADV_SPREAD_FORCED_LOW) // Admin forced
-		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
-
-	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH) // Admin forced
-		set_spread(DISEASE_SPREAD_AIRBORNE)
-
-	//If severe enough, alert immediately on scanners, limit transmissibility
-	else if(current_severity >= ADV_DISEASE_DANGEROUS)
-		visibility_flags &= ~HIDDEN_SCANNER
-		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
-
-	else if(transmissibility < ADV_SPREAD_THRESHOLD)
-		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
-
-	else
-		visibility_flags &= ~HIDDEN_SCANNER
-		set_spread(DISEASE_SPREAD_AIRBORNE)
-
 
 	//Illness name from one of the symptoms
 	var/datum/symptom/picked_name = pick(symptoms)
@@ -434,8 +455,13 @@
 		return
 
 	incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
-	properties["transmittable"] = rand(4,7)
-	spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
+	// BUBBER EDIT CHANGE START - Disease Transmission
+	//properties["transmittable"] = rand(4,7)
+	//spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
+	properties["transmittable"] = rand(6,9)
+	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
+	infectivity = clamp(7 + (spreading_modifier * 7), 14, 35)
+	// BUBBER EDIT CHANGE END - Disease Transmission
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
 	stage_prob = max(0.4 * properties["stage_rate"], 1)
 	set_severity(properties["severity"])
@@ -444,6 +470,7 @@
 	if(properties["stage_rate"] >= 7)
 		name = "Advanced [name]"
 
+	log_virus_debug("spreading modifier is [spreading_modifier], infectivity is [infectivity]") // BUBBER EDIT ADDITION - Disease Transmission
 	generate_cure(properties)
 
 /**

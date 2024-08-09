@@ -571,4 +571,5 @@
  */
 /datum/disease/advance/proc/make_visible()
 	visibility_flags &= ~HIDDEN_SCANNER
+	visibility_flags &= ~HIDDEN_MEDHUD // BUBBER EDIT ADDITION - Disease Transmission
 	affected_mob.med_hud_set_status()
