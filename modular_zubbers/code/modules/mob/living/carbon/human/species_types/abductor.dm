@@ -11,8 +11,11 @@
 
 /datum/species/abductor/lesser/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	var/obj/item/organ/internal/tongue/abductor/tongue = C.get_organ_slot(ORGAN_SLOT_TONGUE)
-	tongue.mothership = "SpaceStation13"
+	var/tongue = C.get_organ_slot(ORGAN_SLOT_TONGUE)
+	if(istype(/obj/item/organ/internal/tongue/abductor)
+		tongue.mothership = "SpaceStation13"
+	else
+		return
 
 /datum/species/abductor/lesser/get_physical_attributes()
 	return "Abductors do not need to breathe, eat, do not have blood, a heart, stomach, or lungs and cannot be infected by human viruses. \
