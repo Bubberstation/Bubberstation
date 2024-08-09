@@ -30,6 +30,14 @@
  */
 /proc/generate_random_name_species_based(gender, unique, datum/species/species_type, include_all = FALSE)
 	ASSERT(ispath(species_type, /datum/species))
+	// BUBBER EDIT START
+	if(locate(species_type) in typesof(/datum/species/lizard))
+		return generate_ashwalker_name()
+
+	if(locate(species_type) in typesof(/datum/species/gas))
+		return generate_gas_name()
+	// BUBBER EDIT END
+
 	var/datum/language_holder/holder = GLOB.prototype_language_holders[species_type::species_language_holder]
 
 	var/list/languages_to_pick_from = list()
