@@ -9,11 +9,21 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
-	var/list/static/hotel_maps = list("Generic", "Apartment")
+	//var/list/static/hotel_maps = list("Generic", "Apartment")
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
-	var/datum/map_template/ghost_cafe_rooms/ghost_cafe_rooms_apartment
+	//var/datum/map_template/ghost_cafe_rooms/ghost_cafe_rooms_apartment
 	//SKYRAT EDIT END
+
+	//Bubber EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
+	var/list/static/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side")
+	//standart - hilber's hotel room
+	//apartment - see /datum/map_template/ghost_cafe_rooms
+	var/datum/map_template/ghost_cafe_rooms/apartment/ghost_cafe_rooms_apartment
+	var/datum/map_template/ghost_cafe_rooms/beach_condo/ghost_cafe_rooms_beach_condo
+	var/datum/map_template/ghost_cafe_rooms/stationside/ghost_cafe_rooms_stationside
+	//Bubber EDIT END
+
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
 	var/datum/map_template/hilbertshotel/empty/hotelRoomTempEmpty
 	var/datum/map_template/hilbertshotel/lore/hotelRoomTempLore
@@ -33,8 +43,15 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	hotelRoomTempEmpty = new()
 	hotelRoomTempLore = new()
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
-	ghost_cafe_rooms_apartment = new()
+	//ghost_cafe_rooms_apartment = new()
 	//SKYRAT EDIT END
+
+	//BUBBER EDIT ADDITION - GHOST HOTEL UPDATE
+	ghost_cafe_rooms_apartment = new()
+	ghost_cafe_rooms_beach_condo = new()
+	ghost_cafe_rooms_stationside = new()
+	//BUBBER EDIT END
+
 	var/area/currentArea = get_area(src)
 	if(currentArea.type == /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom)
 		ruinSpawned = TRUE
@@ -176,9 +193,20 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(ruinSpawned && roomNumber == GLOB.hhMysteryRoomNumber)
 		load_from = hotelRoomTempLore
 	//SKYRAT EDIT ADDITION START - GHOST HOTEL UPDATE
+	//else if(chosen_room == "Apartment")
+	//	load_from = ghost_cafe_rooms_apartment
+	//SKYRAT EDIT ADDITION END
+
+	//BUBBER EDIT ADDITION START - GHOST HOTEL UPDATE
 	else if(chosen_room == "Apartment")
 		load_from = ghost_cafe_rooms_apartment
-	//SKYRAT EDIT ADDITION END
+
+	else if(chosen_room == "Beach Condo")
+		load_from = ghost_cafe_rooms_beach_condo
+
+	else if(chosen_room == "Station Side")
+		load_from = ghost_cafe_rooms_stationside
+	//BUBBER EDIT ADDITION END
 
 	load_from.load(bottom_left)
 	activeRooms["[roomNumber]"] = roomReservation

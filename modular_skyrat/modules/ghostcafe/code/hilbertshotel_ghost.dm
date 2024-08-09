@@ -13,6 +13,21 @@
 /obj/item/hilbertshotel/ghostdojo/attack_robot(mob/living/user)
 	attack_hand(user)
 
-/datum/map_template/ghost_cafe_rooms
+/datum/map_template/ghost_cafe_rooms/apartment
 	name = "Apartment"
 	mappath = "modular_skyrat/modules/hotel_rooms/apartment.dmm"
+
+//Bubberstation edit - ports Beach Condo from Nova
+
+/datum/map_template/ghost_cafe_rooms/beach_condo
+	name = "Beach Condo"
+	mappath = "modular_skyrat/modules/hotel_rooms/beach_condo.dmm"
+
+//Bubberstation edit end
+
+//Bubberstation edit - new ghost cafe rooms
+/datum/map_template/ghost_cafe_rooms/stationside
+	name = "Station Side"
+	mappath = "modular_skyrat/modules/hotel_rooms/stationside.dmm"
+
+//Bubberstation edit end
