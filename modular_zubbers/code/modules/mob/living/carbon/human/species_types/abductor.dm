@@ -27,4 +27,5 @@
 	var/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(istype(/obj/item/organ/internal/tongue/abductor)
 		tongue.mothership = "deathmatch"
-	else return
+	else
+		return
