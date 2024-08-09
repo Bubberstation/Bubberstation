@@ -45,7 +45,7 @@
 	if(length(disease_candidates))
 		return TRUE
 	// BUBBER EDIT ADDITION START - Disease Transmission
-	if(SSjob.is_skeleton_medical(4))
+	if(SSjob.is_skeleton_medical(3))
 		return FALSE
 	// BUBBER EDIT ADDITION END - Disease Transmission
 
