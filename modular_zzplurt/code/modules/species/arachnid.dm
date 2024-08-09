@@ -32,9 +32,9 @@
 //i hate this place
 /datum/species/arachnid/get_default_mutant_bodyparts()
 	return list(
-		"mandibles" = list("Plain", TRUE),
-		"spinneret" = list("Plain", TRUE),
-		"arachnid_legs" = list("Plain", TRUE),
+		"mandibles" = list("Plain", FALSE),
+		"spinneret" = list("Plain", FALSE),
+		"arachnid_legs" = list("Plain", FALSE),
 	)
 
 /datum/species/arachnid/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load)
