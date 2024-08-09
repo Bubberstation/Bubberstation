@@ -387,6 +387,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/flashlight/seclite,
 		/obj/item/food/donut,
+		/obj/item/grenade,
 		/obj/item/holosign_creator/security,
 		/obj/item/knife/combat,
 		/obj/item/melee/baton,
