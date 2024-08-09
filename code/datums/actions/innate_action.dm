@@ -21,7 +21,7 @@
 			unset_ranged_ability(owner, disable_text)
 		else
 			set_ranged_ability(owner, enable_text)
-		build_all_button_icons(UPDATE_BUTTON_STATUS)
+		build_all_button_icons(UPDATE_BUTTON_BACKGROUND | UPDATE_BUTTON_STATUS) // BUBBER EDIT: This is just an upstream error, it should have BUTTON_BACKGROUND
 		return TRUE
 
 	// We're not a click action (we're a toggle or otherwise)
