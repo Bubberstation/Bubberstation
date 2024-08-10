@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	if(ears)
 		if(spawning.ears)
 			qdel(spawning.ears)
-		spawning.equip_to_slot_or_del(new ears(spawning),ITEM_SLOT_EARS)
+		spawning.equip_to_slot_or_del(new ears(spawning),ITEM_SLOT_EARS_LEFT) //SPLURT EDIT - Extra Inventory
 
 	// If there's a departmental sec trim to apply to the card, overwrite.
 	if(dep_trim)
