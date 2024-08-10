@@ -16,9 +16,3 @@
 /datum/species/abductor/get_species_description()
 	return list("Abductors, colloquially known as \"Greys\" (or \"Grays\"), \
 		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member.",)
-
-/datum/outfit/deathmatch_loadout/abductor/post_equip(mob/living/carbon/human/user, visualsOnly)
-	. = ..()
-	var/obj/item/organ/internal/tongue/abductor/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
-	if(istype(tongue, /obj/item/organ/internal/tongue/abductor))
-		tongue.mothership = "deathmatch"
