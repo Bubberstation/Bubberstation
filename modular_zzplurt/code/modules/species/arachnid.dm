@@ -83,18 +83,15 @@
 			to_chat(owner, span_warning("You need to wait a while to regenerate web fluid."))
 		return FALSE
 
-/datum/action/innate/arachnid/Activate()
-	. = ..()
-	if(.)
-		var/mob/living/owner = src.owner
-		owner.apply_status_effect(/datum/status_effect/web_cooldown)
-
 
 /datum/action/innate/arachnid/spin_web
 	name = "Spin Web"
 	button_icon_state = "spider_web"
 
-/datum/action/innate/spin_web/Activate()
+/datum/action/innate/arachnid/spin_web/Activate()
+	if(DOING_INTERACTION(owner, SPECIES_ARACHNID))
+		return FALSE
+
 	if(owner.nutrition < WEB_SPIN_NUTRITION_LOSS)
 		to_chat(owner, span_warning("You're too hungry to spin web right now, eat something first!"))
 		return FALSE
@@ -110,7 +107,7 @@
 
 	 // Should have some minimum amount of food before trying to activate
 	to_chat(owner, "<i>You begin spinning some web...</i>")
-	if(!do_after(owner, 10 SECONDS, target_turf))
+	if(!do_after(owner, 10 SECONDS, target_turf, interaction_key = SPECIES_ARACHNID))
 		to_chat(owner, span_warning("Your web spinning was interrupted!"))
 		return FALSE
 
@@ -118,6 +115,7 @@
 		return FALSE
 
 	owner.adjust_nutrition(-WEB_SPIN_NUTRITION_LOSS)
+	owner:apply_status_effect(/datum/status_effect/web_cooldown)
 	to_chat(owner, "<i>You use up a fair amount of energy weaving a web on the ground with your spinneret!</i>")
 	new /obj/structure/spider/stickyweb(target_turf, owner)
 	return TRUE
@@ -128,6 +126,7 @@
 	button_icon_state = "wrap_0"
 	enable_text = "You pull out a strand from your spinneret, ready to wrap a target.."
 	disable_text = "You discard the strand."
+	click_action = TRUE
 
 /datum/action/innate/arachnid/spin_cocoon/set_ranged_ability(mob/living/on_who, text_to_show)
 	if(owner.nutrition < COCOON_NUTRITION_LOSS)
@@ -138,7 +137,7 @@
 	return ..()
 
 /datum/action/innate/arachnid/spin_cocoon/do_ability(mob/living/caller, atom/movable/clicked_on)
-	if(!caller.Adjacent(clicked_on) || !istype(clicked_on))
+	if(!caller.Adjacent(clicked_on) || !istype(clicked_on) || DOING_INTERACTION(caller, SPECIES_ARACHNID))
 		return FALSE
 
 	. = TRUE
@@ -149,29 +148,39 @@
 		/atom/movable/screen //???
 	))
 	if(is_type_in_typecache(clicked_on, blacklisted_types))
-		to_chat(caller, span_warning("You cannot wrap this."))
+		to_chat(caller, span_warning("You cannot wrap this!"))
 		return FALSE
 
 	if(!isliving(clicked_on) && clicked_on.anchored)
 		to_chat(caller, span_warning("[clicked_on] is bolted to the floor!"))
-		return
+		return FALSE
 
-	caller.visible_message(
-		span_danger("[caller] starts to wrap [clicked_on] into a cocoon!"),
-		span_warning("You start to wrap [clicked_on] into a cocoon.")
-	)
+	if(clicked_on == caller)
+		caller.visible_message(
+			span_danger("[caller] starts to wrap themselves into a cocoon!"),
+			span_danger("You start to wrap yourself into a cocoon!")
+		)
+	else
+		caller.visible_message(
+			span_danger("[caller] starts to wrap [clicked_on] into a cocoon!"),
+			span_warning("You start to wrap [clicked_on] into a cocoon.")
+		)
 
 	caller.apply_status_effect(/datum/status_effect/web_cooldown)
-	if(!do_after(caller, 10 SECONDS, clicked_on))
+	if(!do_after(caller, 10 SECONDS, clicked_on, interaction_key = SPECIES_ARACHNID))
 		to_chat(caller, span_warning("Your web spinning was interrupted!"))
-		return
+		return FALSE
 
 	caller.adjust_nutrition(-COCOON_NUTRITION_LOSS * 0.75)
+	caller.apply_status_effect(/datum/status_effect/web_cooldown)
 	var/obj/structure/spider/cocoon/casing = new(clicked_on.loc)
 
 	clicked_on.forceMove(casing)
 	if(clicked_on.density || ismob(clicked_on))
-		caller.visible_message(span_danger("[caller] wraps [clicked_on] into a large cocoon!"))
+		if(clicked_on == caller)
+			caller.visible_message(span_danger("[caller] wraps themselves into a large cocoon!"))
+		else
+			caller.visible_message(span_danger("[caller] wraps [clicked_on] into a large cocoon!"))
 		casing.icon_state = pick("cocoon_large1", "cocoon_large2", "cocoon_large3")
 	else
 		caller.visible_message(span_danger("[caller] wraps [clicked_on] into a cocoon!"))
