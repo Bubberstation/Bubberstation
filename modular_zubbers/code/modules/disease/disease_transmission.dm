@@ -5,7 +5,9 @@
 /datum/disease/proc/log_virus_debug(text)
 	if(!debug_id)
 		debug_id = assign_random_name()
-	log_game("VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]")
+	var/log_message = "VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]"
+	log_game(log_message)
+	log_public_file(log_message)
 	//to_chat(world, span_yellowteamradio("VIRUS_DEBUG: [debug_id] [name != "No disease" ? "[name]" : "virus init"]: [text]"))
 
 /**

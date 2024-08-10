@@ -42,12 +42,12 @@
 	if(!.)
 		return .
 	generate_candidates()
-	if(length(disease_candidates))
+	// BUBBER EDIT CHANGE START - Disease Transmission
+	if(length(disease_candidates) && !SSjob.is_skeleton_medical(3))
+		log_public_file("Disease outbreak passed launch parameters with [length(disease_candidates)] candidates. Skeleton check passed.")
 		return TRUE
-	// BUBBER EDIT ADDITION START - Disease Transmission
-	if(SSjob.is_skeleton_medical(3))
-		return FALSE
-	// BUBBER EDIT ADDITION END - Disease Transmission
+	log_public_file("Disease outbreak failed launch parameters with candidates, or skeleton check failed.")
+	// BUBBER EDIT CHANGE END - Disease Transmission
 
 /**
  * Creates a list of people who are elligible to become disease carriers for the event
