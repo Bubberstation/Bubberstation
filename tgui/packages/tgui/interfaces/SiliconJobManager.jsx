@@ -14,7 +14,7 @@ export const SiliconJobManager = (props) => {
 
 export const SiliconManagerContent = (props) => {
   const { act, data } = useBackend();
-  const { authed, cooldown, slots = [], prioritized = [] } = data;
+  const { authed, slots = [], prioritized = [] } = data;
   if (!authed) {
     return (
       <NoticeBox>
@@ -24,13 +24,6 @@ export const SiliconManagerContent = (props) => {
   }
   return (
     <Section>
-      {cooldown > 0 && (
-        <Dimmer>
-          <Box bold textAlign="center" fontSize="20px">
-            On Cooldown: {cooldown}s
-          </Box>
-        </Dimmer>
-      )}
       <Table>
         <Table.Row header>
           <Table.Cell>Prioritized</Table.Cell>
