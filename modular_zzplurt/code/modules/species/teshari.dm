@@ -28,7 +28,7 @@
 
 /datum/action/cooldown/sonar_ping/Activate(atom/target)
 	var/heard_something = FALSE
-	to_chat(src, span_notice("You take a moment to listen in to your environment..."))
+	to_chat(owner, span_notice("You take a moment to listen in to your environment..."))
 	for(var/mob/living/living in range(owner.client?.view, owner))
 		if(living == owner || living.stat == DEAD)
 			continue
@@ -57,10 +57,10 @@
 			feedback += "right on top of you."
 
 		heard_something = TRUE
-		to_chat(src, span_notice(jointext(feedback, null)))
+		to_chat(owner, span_notice(jointext(feedback, null)))
 
 	if(!heard_something)
-		to_chat(src, "<span class='notice'>You hear no movement but your own.</span>")
+		to_chat(owner, span_notice("You hear no movement but your own."))
 
 	StartCooldown()
 	return TRUE

@@ -3,12 +3,10 @@
 /datum/species/xeno/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load)
 	. = ..()
 	var/datum/action/innate/reconstitute_form/reconstitute_form = new(human_who_gained_species) //shit ahh var name
+	var/datum/action/cooldown/sonar_ping/sonar_ping = new(human_who_gained_species)
 	reconstitute_form.Grant(human_who_gained_species)
+	sonar_ping.Grant(human_who_gained_species)
 
-
-		// C.verbs += /mob/living/carbon/human/proc/reconstitute_form
-		// C.verbs += /mob/living/carbon/human/proc/sonar_ping
-		// C.verbs += /mob/living/carbon/human/proc/tie_hair
 	human_who_gained_species.add_movespeed_modifier(/datum/movespeed_modifier/xenochimera)
 
 /datum/species/xeno/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
@@ -59,7 +57,9 @@
 			if(tgui_alert(owner, alert, "Confirm Regeneration", list("Yes", "No")) != "Yes")
 				return FALSE
 
-			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+			to_chat(owner, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+			owner.Stun(INFINITY, TRUE)
+
 			revive_timer = addtimer(CALLBACK(src, PROC_REF(ready_revive)), time, TIMER_UNIQUE | TIMER_STOPPABLE)
 			if(owner.stat == DEAD)
 				RegisterSignal(owner, COMSIG_LIVING_REVIVE, PROC_REF(on_revive))
