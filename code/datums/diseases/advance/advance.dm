@@ -56,13 +56,17 @@
 			/datum/reagent/consumable/salt,
 			/datum/reagent/consumable/sugar,
 			/datum/reagent/consumable/tomatojuice,
+			/datum/reagent/consumable/ethanol/antifreeze,
+			/datum/reagent/consumable/ethanol/bug_spray,
+			/datum/reagent/space_cleaner,
 		),
 		list( //level 4
 			/datum/reagent/fuel/oil,
 			/datum/reagent/medicine/c2/multiver,
 			/datum/reagent/medicine/epinephrine,
 			/datum/reagent/medicine/haloperidol,
-			/datum/reagent/medicine/mine_salve,
+			/datum/reagent/medicine/c2/libital,
+			/datum/reagent/medicine/c2/lenturi,
 			/datum/reagent/medicine/salglu_solution,
 		),
 		list( //level 5
@@ -70,18 +74,25 @@
 			/datum/reagent/medicine/mannitol,
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/cryptobiolin,
+			/datum/reagent/medicine/c2/convermol,
 		),
 		list( // level 6
 			/datum/reagent/medicine/antihol,
 			/datum/reagent/medicine/inacusiate,
 			/datum/reagent/medicine/oculine,
 			/datum/reagent/phenol,
+			/datum/reagent/medicine/neurine,
+			/datum/reagent/medicine/ondansetron,
+
 		),
 		list( // level 7
 			/datum/reagent/medicine/higadrite,
 			/datum/reagent/medicine/leporazine,
 			/datum/reagent/toxin/mindbreaker,
 			/datum/reagent/acetaldehyde,
+			/datum/reagent/medicine/sal_acid,
+			/datum/reagent/medicine/pen_acid,
+			/datum/reagent/medicine/psicodine,
 		),
 		list( // level 8
 			/datum/reagent/drug/happiness,
@@ -89,7 +100,7 @@
 			/datum/reagent/pax,
 		),
 		list( // level 9
-			/datum/reagent/medicine/sal_acid,
+			/datum/reagent/drug/blastoff,
 			/datum/reagent/toxin/chloralhydrate,
 			/datum/reagent/toxin/lipolicide,
 		),

@@ -501,12 +501,18 @@
 		stack_trace("Advanced virus properties were empty or null!")
 		return
 
-	var/res = rand(4, 7)
-	cures = list(pick(advance_cures[res]))
-	oldres = res
-	// Get the cure name from the cure_id
-	var/datum/reagent/cure = GLOB.chemical_reagents_list[cures[1]]
-	cure_text = cure.name
+	// BUBBER EDIT CHANGE START - Disease Transmission
+	var/list/cures_list = advance_cures.Copy()
+	if(properties["stage_rate"] >= 7)
+		cures = list(pick_n_take(cures_list[rand(3, 7)]), pick_n_take(cures_list[rand(4, 7)]))
+		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
+		var/datum/reagent/cure_2 = GLOB.chemical_reagents_list[cures[2]]
+		cure_text = "[cure_1.name] and [cure_2.name]"
+	else
+		cures = list(pick_n_take(cures_list[rand(3, 7)]))
+		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
+		cure_text = cure_1.name
+	// BUBBER EDIT CHANGE END - Disease Transmission
 
 #undef ADV_MIN_SYMPTOMS
 #undef ADV_MAX_SYMPTOMS
