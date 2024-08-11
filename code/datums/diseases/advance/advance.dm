@@ -75,6 +75,7 @@
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/cryptobiolin,
 			/datum/reagent/medicine/c2/convermol,
+			/datum/reagent/fluorosurfactant,
 		),
 		list( // level 6
 			/datum/reagent/medicine/antihol,
