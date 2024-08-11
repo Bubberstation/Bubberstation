@@ -70,6 +70,8 @@
 		// SKYRAT EDIT ADDITION START - Station/area event candidate filtering.
 		if(engaged_role_play_check(candidate, station = TRUE, dorms = TRUE))
 			continue
+		if(issynthetic(candidate)) // BUBBER EDIT ADDITION - Disease Transmission
+			continue
 		// SKYRAT EDIT ADDITION END
 		disease_candidates += candidate
 
@@ -324,6 +326,9 @@
 	if(isnull(victim))
 		message_admins("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
 		log_game("Event Disease Outbreak: Advanced attempted to start, but failed to find a candidate target.")
+		return
+
+	deadchat_broadcast("Disease Outbreak: Advanced starting with [advanced_disease.name]! Symptoms: [advanced_disease.symptoms_list()]")
 
 /datum/disease/advance/random/event
 	name = "Event Disease"
@@ -464,7 +469,7 @@
 	infectivity = clamp(7 + (spreading_modifier * 7), 14, 35)
 	// BUBBER EDIT CHANGE END - Disease Transmission
 	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
-	stage_prob = max(0.4 * properties["stage_rate"], 1)
+	stage_prob = max(0.3 * properties["stage_rate"], 1)
 	set_severity(properties["severity"])
 
 	//If we have an advanced (high stage) disease, add it to the name.

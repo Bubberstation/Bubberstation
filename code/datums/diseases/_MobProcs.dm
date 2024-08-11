@@ -176,6 +176,8 @@
 
 
 /mob/living/carbon/human/CanContractDisease(datum/disease/disease)
+	if(issynthetic(src)) // BUBBER EDIT ADDITION - Disease Transmission
+		return FALSE
 	if(dna)
 		if(HAS_TRAIT(src, TRAIT_VIRUSIMMUNE) && !disease.bypasses_immunity)
 			return FALSE
