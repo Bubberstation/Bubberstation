@@ -84,7 +84,6 @@
 			/datum/reagent/phenol,
 			/datum/reagent/medicine/neurine,
 			/datum/reagent/medicine/ondansetron,
-
 		),
 		list( // level 7
 			/datum/reagent/medicine/higadrite,
