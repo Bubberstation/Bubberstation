@@ -178,6 +178,9 @@
 // Tell symptoms stage changed
 /datum/disease/advance/update_stage(new_stage)
 	..()
+	if(!isnull(incubation_time) && incubation_time < world.time)
+		make_visible()
+
 	for(var/datum/symptom/S in symptoms)
 		S.on_stage_change(src)
 
@@ -560,22 +563,6 @@
 
 /datum/disease/advance/proc/totalTransmittable()
 	return properties["transmittable"]
-
-/**
- *  If the disease has an incubation time (such as event diseases) start the timer, let properties determine if there's no timer set.
- */
-/datum/disease/advance/after_add()
-	. = ..()
-
-	if(isnull(incubation_time))
-		return
-
-	if(incubation_time < world.time)
-		make_visible()
-		return
-
-	addtimer(CALLBACK(src, PROC_REF(make_visible)), incubation_time - world.time)
-
 
 /**
  *  Make virus visible to heath scanners

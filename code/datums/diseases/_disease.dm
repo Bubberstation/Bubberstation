@@ -230,6 +230,7 @@
 
 /datum/disease/proc/update_stage(new_stage)
 	stage = new_stage
+	affected_mob.med_hud_set_status()
 	if(new_stage == max_stages && !(stage_peaked)) //once a virus has hit its peak, set it to have done so
 		stage_peaked = TRUE
 
