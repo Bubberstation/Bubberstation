@@ -149,7 +149,7 @@
 
 	if(!can_be_spread_airborne_disease())
 		return FALSE
-	var/infect_chance = clamp(14 + (disease.spreading_modifier * 7), 21, 49)
+	var/infect_chance = clamp(7 + (disease.spreading_modifier * 7), 14, 42)
 	if(!prob(infect_chance))
 		return FALSE
 	if(!disease.has_required_infectious_organ(src, ORGAN_SLOT_LUNGS))
