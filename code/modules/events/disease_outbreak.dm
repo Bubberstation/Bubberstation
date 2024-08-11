@@ -394,7 +394,7 @@
 	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
 		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD as soon as event starts
 		set_spread(DISEASE_SPREAD_AIRBORNE)
-		if(prob(66))
+		if(prob(40))
 			var/list/datum/symptom/airborne_modifiers = list(
 				/datum/symptom/cough,
 				/datum/symptom/sneeze,
