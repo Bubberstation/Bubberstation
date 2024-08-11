@@ -6,7 +6,8 @@
 	worn_icon = 'modular_zzplurt/icons/mob/clothing/underwear.dmi'
 	worn_icon_digi = 'modular_zzplurt/icons/mob/clothing/underwear_digi.dmi'
 	body_parts_covered = GROIN
-	slot_flags = ITEM_SLOT_UNDERWEAR
+	slot_flags = null //These should use the extra slots
+	extra_slot_flags = NONE
 
 	w_class = WEIGHT_CLASS_SMALL
 

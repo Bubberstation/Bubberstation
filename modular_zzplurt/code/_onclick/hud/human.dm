@@ -72,7 +72,7 @@
 
 	for(var/atom/movable/screen/inventory/inv in extra_inventory)
 		if(inv.slot_id)
-			inv_slots[TOBITSHIFT(inv.slot_id & ~ITEM_SLOT_EXTRA) + 21] = inv
+			inv_slots.Add(inv) // Bit shift stuffs don't work for this situation
 			inv.update_appearance()
 
 /atom/movable/screen/human/toggle/extra

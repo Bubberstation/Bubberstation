@@ -1,7 +1,7 @@
 /obj/item
 	// Extra inventory
 	var/hide_underwear_examine = FALSE
-
+	/// Underwear and extra slots
 	var/extra_slot_flags = NONE
 
 /obj/item/update_slot_icon()
@@ -19,7 +19,7 @@
 		owner.update_worn_shirt()
 	if((flags & ITEM_SLOT_BRA) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_bra()
-	if((flags & ITEM_SLOT_EARS_RIGHT) && (flags & ITEM_SLOT_EXTRA))
+	if((flags & ITEM_SLOT_EARS_RIGHT))
 		owner.update_worn_ears_extra()
 	if((flags & ITEM_SLOT_WRISTS) && (flags & ITEM_SLOT_EXTRA))
 		owner.update_worn_wrists()

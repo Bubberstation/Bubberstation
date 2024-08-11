@@ -1,5 +1,12 @@
 #define RESOLVE_ICON_STATE(worn_item) (worn_item.worn_icon_state || worn_item.icon_state)
 
+#define UNDERWEAR_INDEX 1
+#define SOCKS_INDEX 2
+#define SHIRT_INDEX 3
+#define BRA_INDEX 4
+#define EARS_EXTRA_INDEX 5
+#define WRISTS_INDEX 6
+
 /mob/living/carbon/human/regenerate_icons()
 	. = ..()
 	if(.)
@@ -14,7 +21,7 @@
 	remove_overlay(UNDERWEAR_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_UNDERWEAR & ~ITEM_SLOT_EXTRA) + 21]
+		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[UNDERWEAR_INDEX]
 		inv.update_icon()
 
 	if(istype(w_underwear, /obj/item/clothing/underwear/briefs))
@@ -88,7 +95,7 @@
 	remove_overlay(SHIRT_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SHIRT & ~ITEM_SLOT_EXTRA) + 21]
+		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[SHIRT_INDEX]
 		inv.update_icon()
 
 	if(istype(w_shirt, /obj/item/clothing/underwear/shirt))
@@ -163,7 +170,7 @@
 	remove_overlay(BRA_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BRA & ~ITEM_SLOT_EXTRA) + 21]
+		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[BRA_INDEX]
 		inv.update_icon()
 
 	if(istype(w_bra, /obj/item/clothing/underwear/shirt/bra))
@@ -238,8 +245,7 @@
 	remove_overlay(WRISTS_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_WRISTS & ~ITEM_SLOT_EXTRA) + 21]
-		inv.update_icon()
+		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[WRISTS_INDEX]
 
 	if(wrists)
 		var/obj/item/worn_item = wrists
@@ -276,7 +282,7 @@
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS_RIGHT & ~ITEM_SLOT_EXTRA) + 21]
+		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[EARS_EXTRA_INDEX]
 		inv.update_icon()
 
 	if(ears)
@@ -317,7 +323,7 @@
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SOCKS & ~ITEM_SLOT_EXTRA) + 21]
+		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[SOCKS_INDEX]
 		inv.update_icon()
 
 	if(istype(w_socks, /obj/item/clothing/underwear/socks))
@@ -416,3 +422,10 @@
 	update_observer_view(worn_item,TRUE)
 
 #undef RESOLVE_ICON_STATE
+
+#undef UNDERWEAR_INDEX
+#undef SOCKS_INDEX
+#undef SHIRT_INDEX
+#undef BRA_INDEX
+#undef EARS_EXTRA_INDEX
+#undef WRISTS_INDEX

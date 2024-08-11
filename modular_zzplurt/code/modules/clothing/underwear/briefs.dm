@@ -3,7 +3,7 @@
 	desc = "Not going commando."
 	icon_state = "briefs"
 	body_parts_covered = GROIN
-	slot_flags = ITEM_SLOT_UNDERWEAR
+	extra_slot_flags = ITEM_SLOT_UNDERWEAR
 
 /obj/item/clothing/underwear/briefs/equipped(mob/living/user, slot)
 	. = ..()

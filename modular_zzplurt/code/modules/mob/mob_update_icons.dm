@@ -10,6 +10,8 @@
 		update_worn_shirt()
 	if((slot_flags & ITEM_SLOT_BRA) && (slot_flags & ITEM_SLOT_EXTRA))
 		update_worn_bra()
+	if((slot_flags & ITEM_SLOT_EARS_RIGHT))
+		update_worn_ears_extra()
 
 /mob/update_obscured_slots(obscured_flags)
 	. = ..()

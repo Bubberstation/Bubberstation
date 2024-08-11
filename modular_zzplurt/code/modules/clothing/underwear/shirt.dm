@@ -3,7 +3,7 @@
 	desc = "A shirt."
 	icon_state = "undershirt"
 	body_parts_covered = CHEST | ARMS
-	slot_flags = ITEM_SLOT_SHIRT
+	extra_slot_flags = ITEM_SLOT_SHIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/underwear/shirt/equipped(mob/living/user, slot)
@@ -21,7 +21,7 @@
 	desc = "A bra."
 	icon_state = "bra"
 	body_parts_covered = CHEST
-	slot_flags = ITEM_SLOT_BRA
+	extra_slot_flags = ITEM_SLOT_BRA
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/underwear/shirt/bra/equipped(mob/living/user, slot)

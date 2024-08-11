@@ -3,7 +3,7 @@
 	desc = "A pair of socks."
 	icon_state = "socks"
 	body_parts_covered = FEET
-	slot_flags = ITEM_SLOT_SOCKS
+	extra_slot_flags = ITEM_SLOT_SOCKS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/underwear/socks/equipped(mob/living/user, slot)
