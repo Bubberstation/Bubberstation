@@ -5,3 +5,5 @@
 #define OFFSET_BRA "bra"
 #define OFFSET_WRISTS "wrist"
 //
+
+#define SPECIES_ARACHNID "arachnid"
