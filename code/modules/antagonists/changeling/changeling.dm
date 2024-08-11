@@ -575,11 +575,13 @@
 	new_profile.laugh_type = target.selected_laugh?.type || /datum/laugh_type/none
 	//SKYRAT EDIT ADDITION END
 	// Hair and facial hair gradients, alongside their colours.
-	//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
+	//THE BUBBER EDIT ADDITION BEGIN - Voice Bark and mob height/scaling
 	new_profile.blooper_id = target.blooper_id
 	new_profile.blooper_pitch = target.blooper_pitch
 	new_profile.blooper_speed = target.blooper_speed
 	new_profile.blooper_pitch_range = target.blooper_pitch_range
+	new_profile.target_body_scaling = target.get_mob_height()
+	new_profile.target_size = target.mob_size
 	//THE BUBBER EDIT END
 	// Grab skillchips they have
 	new_profile.skillchips = target.clone_skillchip_list(TRUE)
@@ -962,6 +964,8 @@
 	user.blooper_pitch = chosen_profile.blooper_pitch
 	user.blooper_speed = chosen_profile.blooper_speed
 	user.blooper_pitch_range = chosen_profile.blooper_pitch_range
+	user.mob_size = chosen_profile.target_size
+	user.set_mob_height(chosen_profile.target_body_scaling)
 	//THE BUBBER EDIT END
 // Changeling profile themselves. Store a data to store what every DNA instance looked like.
 /datum/changeling_profile
