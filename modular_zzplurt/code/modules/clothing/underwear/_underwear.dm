@@ -25,6 +25,8 @@
 
 ///Proc to check if undershirt is hidden.
 /mob/living/carbon/human/proc/undershirt_hidden()
+	if(underwear_visibility & UNDERWEAR_HIDE_SHIRT)
+		return TRUE
 	for(var/obj/item/I in list(w_uniform, wear_suit))
 		if(istype(I) && ((I.body_parts_covered & CHEST) || (I.flags_inv & HIDEUNDERWEAR)))
 			return TRUE
@@ -32,6 +34,8 @@
 
 ///Proc to check if bra is hidden.
 /mob/living/carbon/human/proc/bra_hidden()
+	if(underwear_visibility & UNDERWEAR_HIDE_BRA)
+		return TRUE
 	for(var/obj/item/I in list(w_uniform, wear_suit))
 		if(istype(I) && ((I.body_parts_covered & CHEST) || (I.flags_inv & HIDEUNDERWEAR)))
 			return TRUE
@@ -39,6 +43,8 @@
 
 ///Proc to check if underwear is hidden.
 /mob/living/carbon/human/proc/underwear_hidden()
+	if(underwear_visibility & UNDERWEAR_HIDE_UNDIES)
+		return TRUE
 	for(var/obj/item/I in list(w_uniform, wear_suit))
 		if(istype(I) && ((I.body_parts_covered & GROIN) || (I.flags_inv & HIDEUNDERWEAR)))
 			return TRUE
@@ -46,6 +52,8 @@
 
 ///Proc to check if socks are hidden.
 /mob/living/carbon/human/proc/socks_hidden()
+	if(underwear_visibility & UNDERWEAR_HIDE_SOCKS)
+		return TRUE
 	for(var/obj/item/I in list(shoes, wear_suit))
 		if(istype(I) && ((I.body_parts_covered & FEET) || (I.flags_inv & HIDEUNDERWEAR)))
 			return TRUE

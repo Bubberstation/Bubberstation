@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 					socks_overlay.color = species_human.socks_color
 				standing += socks_overlay
 			*/
-			// SPLURT EDIT END
+	// SPLURT EDIT END
 	if(standing.len)
 		species_human.overlays_standing[BODY_LAYER] = standing
 

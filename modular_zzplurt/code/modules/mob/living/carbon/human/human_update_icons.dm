@@ -246,6 +246,7 @@
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.extra_inventory[WRISTS_INDEX]
+		inv.update_icon()
 
 	if(wrists)
 		var/obj/item/worn_item = wrists
