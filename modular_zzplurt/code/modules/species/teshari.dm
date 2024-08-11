@@ -39,10 +39,10 @@
 
 		var/feedback = list()
 		feedback += "There are noises of movement "
-		var/direction = get_dir(src, living)
+		var/direction = get_dir(owner, living)
 		if(direction)
 			feedback += "towards the [dir2text(direction)], "
-			switch(get_dist(src, living) / 7)
+			switch(get_dist(owner, living) / 7)
 				if(0 to 0.2)
 					feedback += "very close by."
 				if(0.2 to 0.4)

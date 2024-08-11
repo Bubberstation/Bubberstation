@@ -90,7 +90,7 @@
 					owner.dropItemToGround(wielded, force = TRUE, silent = TRUE)
 
 				new /obj/effect/gibspawner/human(get_turf(owner), owner)
-				owner.visible_message(span_danger("<p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p>")) //Bloody hell...
+				owner.visible_message(span_danger("<p><font size=4>The lifeless husk of [owner] bursts open, revealing a new, intact copy in the pool of viscera.</font></p>")) //Bloody hell...
 
 			owner.nutrition = result_nutrition
 			COOLDOWN_START(src, revive_cd, 10 MINUTES)
@@ -117,7 +117,7 @@
 	action_state = ACTION_STATE_STANDBY
 
 /datum/action/innate/reconstitute_form/proc/ready_revive()
-	to_chat(src, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch."))
+	to_chat(owner, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch."))
 
 	revive_timer = 0
 	action_state = ACTION_STATE_HATCH
