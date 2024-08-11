@@ -8,6 +8,7 @@
 // Swat Mask too
 /obj/item/clothing/mask/gas/sechailer/swat
 	actions_types = list(/datum/action/item_action/backup, /datum/action/item_action/halt)
+
 /datum/action/item_action/backup
 	name = "BACKUP!"
 
@@ -47,12 +48,9 @@
 	else
 		adjust_visor(user)
 
-/// Main backup UI button
-/obj/item/clothing/mask/gas/sechailer/verb/backup()
-	set category = "Object"
-	set category = "BACKUP!"
-	set src in usr
-	var/location = get_area_name(get_turf(src))
+/obj/item/clothing/mask/gas/sechailer/proc/backup()
+	var/turf/turf_location = get_turf(src)
+	var/location = get_area_name(turf_location)
 
 	if (!isliving(usr) || !can_use(usr))
 		return
@@ -62,7 +60,7 @@
 	if (emped)
 		balloon_alert(usr, "Backup Malfunctioning!")
 		return
-	if (!is_station_level(src.z))
+	if (!is_station_level(turf_location.z))
 		balloon_alert(usr, "Out of Range!")
 		return
 
