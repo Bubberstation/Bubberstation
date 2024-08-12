@@ -392,16 +392,15 @@
 		set_spread(DISEASE_SPREAD_CONTACT_FLUIDS)
 
 	else if(requested_transmissibility == ADV_SPREAD_FORCED_HIGH || transmissibility >= ADV_SPREAD_THRESHOLD)
-		visibility_flags &= ~HIDDEN_MEDHUD // airborne are visible on medHUD as soon as event starts
 		set_spread(DISEASE_SPREAD_AIRBORNE)
 		if(prob(40))
 			var/list/datum/symptom/airborne_modifiers = list(
 				/datum/symptom/cough,
 				/datum/symptom/sneeze,
 			)
-			var/datum/symptom/chosen_modifier = pick(airborne_modifiers)
-			possible_symptoms -= chosen_modifier
-			symptoms += new chosen_modifier
+			var/datum/symptom/chosen_airborne = pick(airborne_modifiers)
+			possible_symptoms -= chosen_airborne
+			symptoms += new chosen_airborne
 
 	else
 		set_spread(DISEASE_SPREAD_CONTACT_SKIN)
@@ -435,13 +434,19 @@
 	//Eternal Youth for +4 to resistance and stage speed.
 	//Viral modifiers to slow down/resist or go fast and loud.
 	if(prob(66))
-		var/list/datum/symptom/possible_modifiers = list(
+		var/list/datum/symptom/viral_modifiers = list(
 			/datum/symptom/viraladaptation,
 			/datum/symptom/viralevolution,
 		)
-		var/datum/symptom/chosen_modifier = pick(possible_modifiers)
-		symptoms += new chosen_modifier
+		var/datum/symptom/chosen_viral = pick(viral_modifiers)
+		symptoms += new chosen_viral
 		symptoms += new /datum/symptom/youth
+
+	if(spread_flags & DISEASE_SPREAD_AIRBORNE)
+		for(var/datum/symptom/final_symptom in symptoms)
+			if(istype(final_symptom, /datum/symptom/cough) || istype(final_symptom, /datum/symptom/sneeze))
+				visibility_flags &= ~HIDDEN_MEDHUD // transmissible symptoms make it visible on medHUD as soon as they reach stage 2
+				break
 
 	Refresh()
 
