@@ -135,3 +135,6 @@
 
 /datum/job/cook
 	internship_use_self_exp_type = TRUE
+
+/datum/job/prisoner
+	can_be_intern = FALSE
