@@ -598,6 +598,7 @@
 	audio_cooldown = 0.25 SECONDS
 	emote_type = EMOTE_AUDIBLE
 
+
 /datum/emote/living/weh4
 	key = "weh4"
 	key_third_person = "wehs4"
