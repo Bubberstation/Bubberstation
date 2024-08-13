@@ -39,10 +39,10 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		"max_health" = patient.maxHealth,
 		"crit_threshold" = patient.crit_threshold,
 		"dead_threshold" = HEALTH_THRESHOLD_DEAD,
-		"total_brute" = round(patient.getBruteLoss()),
-		"total_burn" = round(patient.getFireLoss()),
-		"toxin" = round(patient.getToxLoss()),
-		"oxy" = round(patient.getOxyLoss()),
+		"total_brute" = ceil(patient.getBruteLoss()),
+		"total_burn" = ceil(patient.getFireLoss()),
+		"toxin" = ceil(patient.getToxLoss()),
+		"oxy" = ceil(patient.getOxyLoss()),
 		"ssd" = (!patient.client),
 		"blood_type" = patient.dna.blood_type,
 		"blood_amount" = patient.blood_volume,
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	//else if((heart.organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
 		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		//data["revivable_boolean"] = FALSE
-	else if((patient.getBruteLoss() <= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() <= MAX_REVIVE_FIRE_DAMAGE))
+	else if((patient.getBruteLoss() <= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() <= MAX_REVIVE_FIRE_DAMAGE) && (!HAS_TRAIT(patient, TRAIT_HUSK)))
 		data["revivable_string"] = "Ready to [patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
