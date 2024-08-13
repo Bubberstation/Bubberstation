@@ -43,10 +43,14 @@
 		return .
 	generate_candidates()
 	// BUBBER EDIT CHANGE START - Disease Transmission
-	if(length(disease_candidates) && !SSjob.is_skeleton_medical(3))
-		log_public_file("Disease outbreak passed launch parameters with [length(disease_candidates)] candidates. Skeleton check passed.")
-		return TRUE
-	log_public_file("Disease outbreak failed launch parameters with candidates, or skeleton check failed.")
+	if(!SSjob.is_skeleton_medical(3))
+		log_public_file("Disease outbreak check passed medbay staffing parameters with 3 or more staff.")
+		if(length(disease_candidates))
+			log_public_file("Disease outbreak check passed candidate parameters with [length(disease_candidates)] candidates.")
+			return TRUE
+		log_public_file("Disease outbreak check failed catastrophically. oh god how did we get here, there are zero candidates? this should never happen.")
+	else
+		log_public_file("Disease outbreak check failed medbay staffing parameters due to less than 3 staff.")
 	// BUBBER EDIT CHANGE END - Disease Transmission
 
 /**
