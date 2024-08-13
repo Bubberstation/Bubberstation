@@ -75,3 +75,57 @@
 /datum/sprite_accessory/socks/##class_name {\
 	socks_obj = /obj/item/clothing/underwear/socks/##class_name; \
 };
+
+/// Create briefs directly as an object, and its sprite accessory
+#define BRIEFS_OBJECT(class_name) \
+/datum/sprite_accessory/underwear/##class_name{ \
+	name = /obj/item/clothing/underwear/briefs/##class_name::name;\
+	icon = /obj/item/clothing/underwear/briefs/##class_name::icon;\
+	gender = /obj/item/clothing/underwear/briefs/##class_name::gender;\
+	icon_state = /obj/item/clothing/underwear/briefs/##class_name::icon_state;\
+	use_static = !(/obj/item/clothing/underwear/briefs/##class_name::flags_1 & IS_PLAYER_COLORABLE_1);\
+	hides_breasts = !!(/obj/item/clothing/underwear/briefs/##class_name::body_parts_covered & CHEST);\
+	briefs_obj = /obj/item/clothing/underwear/briefs/##class_name;\
+	from_object = TRUE;\
+};\
+/obj/item/clothing/underwear/briefs/##class_name
+
+/// Create shirt directly as an object, and its sprite accessory
+#define SHIRT_OBJECT(class_name) \
+/datum/sprite_accessory/undershirt/##class_name{ \
+	name = /obj/item/clothing/underwear/shirt/##class_name::name;\
+	icon = /obj/item/clothing/underwear/shirt/##class_name::icon;\
+	gender = /obj/item/clothing/underwear/shirt/##class_name::gender;\
+	icon_state = /obj/item/clothing/underwear/shirt/##class_name::icon_state;\
+	use_static = !(/obj/item/clothing/underwear/shirt/##class_name::flags_1 & IS_PLAYER_COLORABLE_1);\
+	hides_groin = !!(/obj/item/clothing/underwear/shirt/##class_name::body_parts_covered & CHEST);\
+	shirt_obj = /obj/item/clothing/underwear/shirt/##class_name;\
+	from_object = TRUE;\
+};\
+/obj/item/clothing/underwear/shirt/##class_name
+
+/// Create bra directly as an object, and its sprite accessory
+#define BRA_OBJECT(class_name) \
+/datum/sprite_accessory/bra/##class_name{ \
+	name = /obj/item/clothing/underwear/shirt/bra/##class_name::name;\
+	icon = /obj/item/clothing/underwear/shirt/bra/##class_name::icon;\
+	gender = /obj/item/clothing/underwear/shirt/bra/##class_name::gender;\
+	icon_state = /obj/item/clothing/underwear/shirt/bra/##class_name::icon_state;\
+	use_static = !(/obj/item/clothing/underwear/shirt/bra/##class_name::flags_1 & IS_PLAYER_COLORABLE_1);\
+	bra_obj = /obj/item/clothing/underwear/shirt/bra/##class_name;\
+	from_object = TRUE;\
+};\
+/obj/item/clothing/underwear/shirt/bra/##class_name
+
+/// Create socks directly as an object, and its sprite accessory
+#define SOCKS_OBJECT(class_name) \
+/datum/sprite_accessory/socks/##class_name{ \
+	name = /obj/item/clothing/underwear/socks/##class_name::name;\
+	icon = /obj/item/clothing/underwear/socks/##class_name::icon;\
+	gender = /obj/item/clothing/underwear/socks/##class_name::gender;\
+	icon_state = /obj/item/clothing/underwear/socks/##class_name::icon_state;\
+	use_static = !(/obj/item/clothing/underwear/socks/##class_name::flags_1 & IS_PLAYER_COLORABLE_1);\
+	socks_obj = /obj/item/clothing/underwear/socks/##class_name;\
+	from_object = TRUE;\
+};\
+/obj/item/clothing/underwear/socks/##class_name

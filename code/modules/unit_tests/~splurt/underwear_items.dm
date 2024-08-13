@@ -57,6 +57,8 @@
 	output += ""
 
 	for(var/sprite in subtypesof(sprite_type))
+		if(initial(sprite:from_object))
+			continue
 		var/sprite_name = "[sprite]"
 		sprite_name = replacetext(sprite_name, PATH_REGEX, "")
 		output += "[clothing_name]_FROM_SPRITE_ACCESSORY([sprite_name])"

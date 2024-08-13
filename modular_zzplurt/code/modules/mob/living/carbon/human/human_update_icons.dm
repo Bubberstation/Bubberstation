@@ -12,6 +12,7 @@
 	if(.)
 		return
 	update_worn_shirt()
+	update_worn_bra()
 	update_worn_underwear()
 	update_worn_wrists()
 	update_worn_ears_extra()
