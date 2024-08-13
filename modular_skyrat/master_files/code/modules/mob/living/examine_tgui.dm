@@ -110,10 +110,16 @@
 				var/list/species_lore = holder_human.dna.species.get_species_lore()
 				for(var/i = 1; i <= species_description.len; i++)
 					custom_species_lore += LAZYACCESS(holder_human.dna.species.get_species_description(), i)
+					if(i < species_description.len)
+						//there isn't a space between the period in the last sentence of an item in the list, and the first word in the next item
+						custom_species_lore += " "
 				custom_species_lore += "\n"
 				custom_species_lore += "\n"
 				for(var/i = 1; i <= species_lore.len; i++)
 					custom_species_lore += LAZYACCESS(holder_human.dna.species.get_species_lore(), i)
+					if(i < species_lore.len)
+						//there isn't a space between the period in the last sentence of an item in the list, and the first word in the next item
+						custom_species_lore += " "
 			else
 				custom_species_lore = holder_human.dna.features["custom_species_lore"]
 		//BUBBER EDIT END: Panel refactor
