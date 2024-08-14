@@ -58,3 +58,10 @@
 		if(istype(I) && ((I.body_parts_covered & FEET) || (I.flags_inv & HIDEUNDERWEAR)))
 			return TRUE
 	return FALSE
+
+///Proc to check if wrists are hidden.
+/mob/living/carbon/human/proc/wrists_hidden()
+	for(var/obj/item/I in list(w_uniform, wear_suit, w_shirt, w_underwear))
+		if(istype(I) && (I.body_parts_covered & ARMS) && (I.flags_inv & HIDEWRISTS))
+			return TRUE
+	return FALSE

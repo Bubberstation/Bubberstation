@@ -32,8 +32,7 @@
 		if(update_obscured)
 			update_obscured_slots(undies.flags_inv)
 
-		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
-		if(((obscured_slots & ITEM_SLOT_UNDERWEAR) && (obscured_slots & ITEM_SLOT_EXTRA)) || underwear_hidden())
+		if(underwear_hidden())
 			return
 
 		var/target_overlay = undies.icon_state
@@ -106,8 +105,7 @@
 		if(update_obscured)
 			update_obscured_slots(undershirt.flags_inv)
 
-		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
-		if(((obscured_slots & ITEM_SLOT_SHIRT) && (obscured_slots & ITEM_SLOT_EXTRA)) || undershirt_hidden())
+		if(undershirt_hidden())
 			return
 
 		var/target_overlay = undershirt.icon_state
@@ -181,8 +179,7 @@
 		if(update_obscured)
 			update_obscured_slots(bra.flags_inv)
 
-		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
-		if(((obscured_slots & ITEM_SLOT_BRA) && (obscured_slots & ITEM_SLOT_EXTRA)) || bra_hidden())
+		if(bra_hidden())
 			return
 
 		var/target_overlay = bra.icon_state
@@ -256,8 +253,7 @@
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
-		if((obscured_slots & ITEM_SLOT_GLOVES) && (obscured_slots & ITEM_SLOT_EXTRA))
+		if(wrists_hidden())
 			return
 
 		var/icon_file = 'modular_zzplurt/icons/mob/clothing/wrists.dmi'
@@ -295,7 +291,7 @@
 			update_obscured_slots(worn_item.flags_inv)
 
 		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
-		if((obscured_slots & ITEM_SLOT_EARS_RIGHT) && (obscured_slots & ITEM_SLOT_EXTRA))
+		if(obscured_slots & ITEM_SLOT_EARS_RIGHT)
 			return
 
 		var/icon_file = 'icons/mob/clothing/ears.dmi'
@@ -335,8 +331,7 @@
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		var/obscured_slots = check_obscured_slots(transparent_protection = TRUE)
-		if(((obscured_slots & ITEM_SLOT_SOCKS) && (obscured_slots & ITEM_SLOT_EXTRA)) || socks_hidden())
+		if(socks_hidden())
 			return
 
 		var/target_overlay = worn_item.icon_state
