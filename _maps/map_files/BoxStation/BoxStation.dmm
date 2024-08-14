@@ -6043,13 +6043,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/common/cryopods)
-"aDN" = (
-/obj/machinery/camera/directional/south{
-	c_tag = "Bathroom"
-	},
-/obj/structure/urinal/directional/north,
-/turf/open/floor/mineral/titanium/blue,
-/area/station/commons/toilet)
 "aDO" = (
 /obj/docking_port/stationary/escape_pod{
 	dir = 8
@@ -10348,17 +10341,6 @@
 /area/station/command/bridge)
 "aUa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/command/bridge)
-"aUb" = (
-/obj/machinery/modular_computer/preset/engineering,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "aUc" = (
@@ -26099,14 +26081,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
-"bYq" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/machinery/light/directional/south,
-/turf/open/floor/iron,
-/area/station/hallway/primary/aft)
 "bYr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -27455,19 +27429,6 @@
 	},
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/engine_smes)
-"ceo" = (
-/obj/machinery/keycard_auth/directional/south,
-/obj/machinery/computer/station_alert{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
-	dir = 8
-	},
-/obj/machinery/computer/security/telescreen/ce/directional/west,
-/turf/open/floor/iron/white/corner{
-	dir = 4
-	},
-/area/station/command/heads_quarters/ce)
 "cer" = (
 /obj/structure/cable,
 /obj/machinery/hydroponics/constructable,
@@ -28950,11 +28911,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/smooth_large,
-/area/station/engineering/main)
-"cnY" = (
-/obj/structure/sign/warning/no_smoking/directional/north,
-/obj/structure/cable,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "cnZ" = (
@@ -31827,16 +31783,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/station/engineering/main)
-"cDh" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/flashlight,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/pipe_dispenser,
 /turf/open/floor/engine,
 /area/station/engineering/main)
 "cDi" = (
@@ -35769,6 +35715,17 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
+"eGp" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/flashlight,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/pipe_dispenser,
+/obj/machinery/incident_display/delam/directional/north,
+/turf/open/floor/engine,
+/area/station/engineering/main)
 "eGE" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern,
@@ -52693,6 +52650,15 @@
 /obj/effect/landmark/navigate_destination,
 /turf/open/floor/mineral/titanium/blue,
 /area/station/commons/toilet)
+"qKh" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/light/directional/south,
+/obj/machinery/incident_display/delam/directional/south,
+/turf/open/floor/iron,
+/area/station/hallway/primary/aft)
 "qKp" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -56334,6 +56300,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/lesser)
+"tiA" = (
+/obj/structure/cable,
+/obj/machinery/incident_display/delam/directional/north,
+/turf/open/floor/iron/smooth_large,
+/area/station/engineering/main)
 "tiR" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
 	dir = 8
@@ -60289,6 +60260,18 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/security/office)
+"wdv" = (
+/obj/machinery/modular_computer/preset/engineering,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/incident_display/bridge/directional/north,
+/turf/open/floor/iron,
+/area/station/command/bridge)
 "wdA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /turf/open/floor/iron/white,
@@ -61171,16 +61154,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/gravity_generator)
-"wIx" = (
-/obj/machinery/keycard_auth/directional/west,
-/obj/machinery/pdapainter/supply,
-/obj/machinery/computer/security/telescreen/cargo/directional/north,
-/obj/machinery/camera/directional/west{
-	c_tag = "Quartermaster's Office";
-	network = list("ss13","cargo")
-	},
-/turf/open/floor/carpet/royalblack,
-/area/station/command/heads_quarters/qm)
 "wIK" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
 /obj/item/radio/intercom/directional/west,
@@ -62138,6 +62111,19 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
+"xmV" = (
+/obj/machinery/keycard_auth/wall_mounted/directional/south,
+/obj/machinery/computer/station_alert{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
+	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/ce/directional/west,
+/turf/open/floor/iron/white/corner{
+	dir = 4
+	},
+/area/station/command/heads_quarters/ce)
 "xne" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /turf/open/floor/engine,
@@ -62550,6 +62536,16 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"xCB" = (
+/obj/machinery/keycard_auth/wall_mounted/directional/west,
+/obj/machinery/pdapainter/supply,
+/obj/machinery/computer/security/telescreen/cargo/directional/north,
+/obj/machinery/camera/directional/west{
+	c_tag = "Quartermaster's Office";
+	network = list("ss13","cargo")
+	},
+/turf/open/floor/carpet/royalblack,
+/area/station/command/heads_quarters/qm)
 "xCD" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible/layer2,
@@ -84331,7 +84327,7 @@ aPz
 aav
 abK
 abX
-wIx
+xCB
 aed
 aea
 aem
@@ -89012,7 +89008,7 @@ ckB
 ckB
 ckB
 cjJ
-ckH
+tiA
 kja
 cBO
 cgR
@@ -89269,7 +89265,7 @@ ckB
 ckB
 ckC
 cjJ
-cnY
+ckH
 kja
 cgR
 cgR
@@ -91840,7 +91836,7 @@ lZH
 cTf
 cgR
 ccw
-cDh
+eGp
 cDp
 cDv
 cDD
@@ -92599,7 +92595,7 @@ bSw
 cbr
 cau
 bXk
-bYq
+qKh
 cfb
 ceW
 cjM
@@ -93376,7 +93372,7 @@ cfH
 cSL
 cim
 hjs
-ceo
+xmV
 cfb
 cfa
 aiN
@@ -94090,7 +94086,7 @@ aOG
 aPR
 aPR
 aPR
-aUb
+wdv
 aVq
 aWM
 aYr
@@ -96652,7 +96648,7 @@ aAh
 aAh
 aAh
 aAh
-aDN
+feM
 aAh
 aMo
 vYr
