@@ -42,7 +42,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 //SKYRAT EDIT - ADDITION - ERP ICONS FIX - END
 
-
 /datum/hud
 	var/mob/mymob
 
