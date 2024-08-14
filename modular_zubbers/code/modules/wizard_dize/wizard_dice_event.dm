@@ -11,7 +11,7 @@
 
 	min_players = 30
 	max_occurrences = 1
-	weight = 3
+	weight = 10
 	earliest_start = 60 MINUTES
 
 	track = EVENT_TRACK_MODERATE
