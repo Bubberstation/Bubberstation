@@ -96,16 +96,15 @@
 		return
 
 
-/datum/emote/living/burp/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/burp/get_sound(mob/living/user)
 	. = ..()
-	var/list/burp_noises = list(
-		'modular_zzplurt/sound/voice/burps/belch1.ogg','modular_zzplurt/sound/voice/burps/belch2.ogg','modular_zzplurt/sound/voice/burps/belch3.ogg','modular_zzplurt/sound/voice/burps/belch4.ogg',
+	sound_volume = 50
+	vary = TRUE
+	return pick('modular_zzplurt/sound/voice/burps/belch1.ogg','modular_zzplurt/sound/voice/burps/belch2.ogg','modular_zzplurt/sound/voice/burps/belch3.ogg','modular_zzplurt/sound/voice/burps/belch4.ogg',
 		'modular_zzplurt/sound/voice/burps/belch5.ogg','modular_zzplurt/sound/voice/burps/belch6.ogg','modular_zzplurt/sound/voice/burps/belch7.ogg','modular_zzplurt/sound/voice/burps/belch8.ogg',
 		'modular_zzplurt/sound/voice/burps/belch9.ogg','modular_zzplurt/sound/voice/burps/belch10.ogg','modular_zzplurt/sound/voice/burps/belch11.ogg','modular_zzplurt/sound/voice/burps/belch12.ogg',
-		'modular_zzplurt/sound/voice/burps/belch13.ogg','modular_zzplurt/sound/voice/burps/belch14.ogg','modular_zzplurt/sound/voice/burps/belch15.ogg'
-	)
-	if(.)
-		playsound(user, pick(burp_noises), 50, 1)
+		'modular_zzplurt/sound/voice/burps/belch13.ogg','modular_zzplurt/sound/voice/burps/belch14.ogg','modular_zzplurt/sound/voice/burps/belch15.ogg')
+
 
 /datum/emote/living/bleat
 	key = "bleat"
@@ -469,12 +468,9 @@
 	audio_cooldown = 1.6 SECONDS // Uses longest sound's time
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/cry2/run_emote(mob/user, params)
-	// Set random emote sound
-	sound = pick('modular_zzplurt/sound/voice/cry_king.ogg', 'modular_zzplurt/sound/voice/cry_king2.ogg')
-
-	// Return normally
+/datum/emote/living/cry2/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/cry_king.ogg', 'modular_zzplurt/sound/voice/cry_king2.ogg')
 
 /datum/emote/living/choir
 	key = "choir"
@@ -503,12 +499,9 @@
 	audio_cooldown = 4.55 SECONDS // Uses longest sound's time.
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/wtune/run_emote(mob/user, params)
-	// Set random emote sound
-	sound = pick('modular_zzplurt/sound/voice/wtune1.ogg', 'modular_zzplurt/sound/voice/wtune2.ogg')
-
-	// Return normally
+/datum/emote/living/wtune/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/wtune1.ogg', 'modular_zzplurt/sound/voice/wtune2.ogg')
 
 /datum/emote/living/fiufiu
 	key = "wolfwhistle"
@@ -529,12 +522,9 @@
 	audio_cooldown = 13.07 SECONDS // Uses longest sound's time.
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/terror/run_emote(mob/user, params)
-	// Set random emote sound
-	sound = pick('modular_zzplurt/sound/voice/terror1.ogg', 'modular_zzplurt/sound/voice/terror2.ogg')
-
-	// Return normally
+/datum/emote/living/terror/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/terror1.ogg', 'modular_zzplurt/sound/voice/terror2.ogg')
 
 /datum/emote/living/deathglare
 	key = "glare2"
@@ -660,9 +650,9 @@
 	audio_cooldown = 2.94 SECONDS // Uses longest sound's time
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/coyhowl/run_emote(mob/user, params)
-	sound = pick('modular_zzplurt/sound/voice/coyotehowl.ogg', 'modular_zzplurt/sound/voice/coyotehowl2.ogg', 'modular_zzplurt/sound/voice/coyotehowl3.ogg', 'modular_zzplurt/sound/voice/coyotehowl4.ogg', 'modular_zzplurt/sound/voice/coyotehowl5.ogg')
+/datum/emote/living/coyhowl/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/coyotehowl.ogg', 'modular_zzplurt/sound/voice/coyotehowl2.ogg', 'modular_zzplurt/sound/voice/coyotehowl3.ogg', 'modular_zzplurt/sound/voice/coyotehowl4.ogg', 'modular_zzplurt/sound/voice/coyotehowl5.ogg')
 
 /datum/emote/living/mlem
 	key = "mlem"
@@ -839,9 +829,9 @@
 	sound = 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg'
 	cooldown = 0.8 SECONDS
 
-/datum/emote/living/untitledgoose/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_02.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_03.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_06.ogg')
+/datum/emote/living/untitledgoose/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_02.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_03.ogg','modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_06.ogg')
 
 /datum/emote/living/untitledgooseB
 	key = "goosehonkb"
@@ -850,9 +840,9 @@
 	sound = 'modular_zzplurt/sound/voice/goosehonk/sfx_goose_honk_b_01.ogg'
 	cooldown = 0.8 SECONDS
 
-/datum/emote/untitledgooseB/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_02.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_03.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_04.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_06.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_07.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_08.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_09.ogg')
+/datum/emote/untitledgooseB/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_02.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_03.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_04.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_06.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_07.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_08.ogg', 'modular_zzplurt/sound/voice/goosehonk/sfx_gooseB_honk_09.ogg')
 
 /datum/emote/living/scream2
 	key = "scream2"
@@ -862,9 +852,9 @@
 	sound = 'modular_zzplurt/sound/voice/cscream1.ogg'
 // 	vary = FALSE
 
-/datum/emote/living/scream2/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/cscream1.ogg', 'modular_zzplurt/sound/voice/cscream2.ogg', 'modular_zzplurt/sound/voice/cscream3.ogg', 'modular_zzplurt/sound/voice/cscream4.ogg', 'modular_zzplurt/sound/voice/cscream5.ogg', 'modular_zzplurt/sound/voice/cscream6.ogg', 'modular_zzplurt/sound/voice/cscream7.ogg', 'modular_zzplurt/sound/voice/cscream8.ogg', 'modular_zzplurt/sound/voice/cscream9.ogg', 'modular_zzplurt/sound/voice/cscream10.ogg', 'modular_zzplurt/sound/voice/cscream11.ogg', 'modular_zzplurt/sound/voice/cscream12.ogg')
+/datum/emote/living/scream2/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/cscream1.ogg', 'modular_zzplurt/sound/voice/cscream2.ogg', 'modular_zzplurt/sound/voice/cscream3.ogg', 'modular_zzplurt/sound/voice/cscream4.ogg', 'modular_zzplurt/sound/voice/cscream5.ogg', 'modular_zzplurt/sound/voice/cscream6.ogg', 'modular_zzplurt/sound/voice/cscream7.ogg', 'modular_zzplurt/sound/voice/cscream8.ogg', 'modular_zzplurt/sound/voice/cscream9.ogg', 'modular_zzplurt/sound/voice/cscream10.ogg', 'modular_zzplurt/sound/voice/cscream11.ogg', 'modular_zzplurt/sound/voice/cscream12.ogg')
 
 /datum/emote/living/scream3
 	key = "scream3"
@@ -873,9 +863,9 @@
 	message_mime = "acts out a rather manly scream!"
 	sound = 'modular_zzplurt/sound/voice/gachi/scream1.ogg'
 
-/datum/emote/living/scream3/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/gachi/scream1.ogg', 'modular_zzplurt/sound/voice/gachi/scream2.ogg', 'modular_zzplurt/sound/voice/gachi/scream3.ogg', 'modular_zzplurt/sound/voice/gachi/scream4.ogg')
+/datum/emote/living/scream3/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/gachi/scream1.ogg', 'modular_zzplurt/sound/voice/gachi/scream2.ogg', 'modular_zzplurt/sound/voice/gachi/scream3.ogg', 'modular_zzplurt/sound/voice/gachi/scream4.ogg')
 
 /datum/emote/living/moan2
 	key = "moan2"
@@ -884,9 +874,9 @@
 	message_mime = "acts out a rather manly scream!"
 	sound = 'modular_zzplurt/sound/voice/gachi/moan1.ogg'
 
-/datum/emote/living/scream3/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/gachi/moan1.ogg', 'modular_zzplurt/sound/voice/gachi/moan2.ogg', 'modular_zzplurt/sound/voice/gachi/moan3.ogg', 'modular_zzplurt/sound/voice/gachi/moan4.ogg')
+/datum/emote/living/scream3/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/gachi/moan1.ogg', 'modular_zzplurt/sound/voice/gachi/moan2.ogg', 'modular_zzplurt/sound/voice/gachi/moan3.ogg', 'modular_zzplurt/sound/voice/gachi/moan4.ogg')
 
 /datum/emote/living/woop
 	key = "woop"
@@ -929,10 +919,9 @@
 	sound = 'modular_zzplurt/sound/voice/gachi/fockyou1.ogg'
 	cooldown = 1.18 SECONDS
 
-/datum/emote/living/fock/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/gachi/fockyou1.ogg','modular_zzplurt/sound/voice/gachi/fockyou2.ogg')
+/datum/emote/living/fock/get_sound(mob/living/user)
 	. = ..()
-
+	return pick('modular_zzplurt/sound/voice/gachi/fockyou1.ogg','modular_zzplurt/sound/voice/gachi/fockyou2.ogg')
 
 /datum/emote/living/letsgo
 	key = "go"
@@ -994,9 +983,9 @@
 	cooldown = 1.1 SECONDS
 	sound_volume = 10
 
-/datum/emote/living/boolets/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/gachi/boolets.ogg','modular_zzplurt/sound/voice/gachi/boolets2.ogg')
+/datum/emote/living/boolets/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/gachi/boolets.ogg','modular_zzplurt/sound/voice/gachi/boolets2.ogg')
 
 /datum/emote/living/wepon
 	key = "wepon"
@@ -1174,9 +1163,9 @@
 	cooldown = 5.0 SECONDS
 	sound_volume = 27
 
-/datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow2.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow3.ogg')
+/datum/emote/living/meow2/get_sound(mob/living/user)
 	. = ..()
+	return  pick('modular_zzplurt/sound/voice/catpeople/cat_meow1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow2.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_meow3.ogg')
 
 
 /datum/emote/living/meow2
@@ -1187,9 +1176,9 @@
 	cooldowns = 0.8 SECONDS
 	vary = FALSE
 
-/datum/emote/living/meow2/run_emote(mob/user, params, type_override, intentional)
-	sound = pick('modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_mew2.ogg')
+/datum/emote/living/meow2/get_sound(mob/living/user)
 	. = ..()
+	return pick('modular_zzplurt/sound/voice/catpeople/cat_mew1.ogg', 'modular_zzplurt/sound/voice/catpeople/cat_mew2.ogg')
 
 /datum/emote/living/meow3
 	key = "meow3"
