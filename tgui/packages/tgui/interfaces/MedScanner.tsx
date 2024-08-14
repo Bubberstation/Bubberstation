@@ -41,7 +41,9 @@ type MedScannerData = {
   majquirks: any;
   minquirks: any;
   custom_species: string;
-  wounds: any;
+  wounds: any[];
+  brain_traumas: any;
+  viruses: any[];
 };
 
 export const MedScanner = () => {
@@ -55,6 +57,7 @@ export const MedScanner = () => {
     advice,
     accessible_theme,
     wounds,
+    viruses,
   } = data;
   return (
     <Window width={515} height={615} theme={accessible_theme}>
@@ -65,7 +68,8 @@ export const MedScanner = () => {
         {damaged_organs.length ? <PatientOrgans /> : null}
         {blood_amount ? <PatientBlood /> : null}
         {advice ? <PatientAdvice /> : null}
-        {wounds ? <Wounds /> : null}
+        {wounds.length ? <Wounds /> : null}
+        {viruses.length ? <Viruses /> : null}
       </Window.Content>
     </Window>
   );
@@ -98,6 +102,7 @@ const PatientBasics = () => {
     majquirks,
     minquirks,
     custom_species,
+    brain_traumas,
   } = data;
   return (
     <Section
@@ -241,12 +246,22 @@ const PatientBasics = () => {
         </LabeledList.Item>
         {majquirks ? (
           <LabeledList.Item label="Quirks">
-            <Box width="100%">Subject Major Disabilities: {majquirks}</Box>
+            <Box width="100%">
+              Subject Major Disabilities: <b className="quirks">{majquirks} </b>
+            </Box>
           </LabeledList.Item>
         ) : null}
         {majquirks ? (
           <LabeledList.Item>
-            <Box width="100%">Subject Minor Disabilities: {minquirks}</Box>
+            <Box width="100%">
+              Subject Minor Disabilities:{' '}
+              <b className="quirks"> {minquirks} </b>
+            </Box>
+          </LabeledList.Item>
+        ) : null}
+        {brain_traumas ? (
+          <LabeledList.Item label="Brain traumas" labelWrap>
+            <Box width="100%">{brain_traumas}</Box>
           </LabeledList.Item>
         ) : null}
       </LabeledList>
@@ -461,10 +476,12 @@ const PatientOrgans = () => {
                   color={organ.status === 'Midly Damaged' ? 'orange' : 'red'}
                   bold
                 >
-                  {organ.status +
-                    ' with ' +
-                    Math.ceil(organ.damage) +
-                    ' damage'}
+                  {organ.status === 'Missing'
+                    ? organ.status
+                    : organ.status +
+                      ' with ' +
+                      Math.ceil(organ.damage) +
+                      ' damage'}
                 </Box>
               </Tooltip>
             </LabeledList.Item>
@@ -546,65 +563,134 @@ const Wounds = () => {
   const { data } = useBackend<MedScannerData>();
   const { wounds } = data;
 
-  return (
-    <Section title="Wounds Advice">
-      <Stack vertical>
-        {wounds.map((wound) => (
-          <Stack.Item
-            key={wound.type}
-            className="woundborder"
-            style={{
-              background: 'rgba(36, 50, 67, 0.5)',
-              padding: '10px',
-              borderRadius: '1em',
-              border: '3px solid white',
-              marginBottom: '10px',
-              boxSizing: 'border-box',
-            }}
-          >
-            <div
+  return wounds ? (
+    <Collapsible open title="Wounds">
+      <Section title="Wounds List">
+        <Stack vertical>
+          {wounds.map((wound) => (
+            <Stack.Item
+              key={wound.type}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                padding: '5px',
+                background: 'rgba(36, 50, 67, 0.5)',
+                padding: '10px',
                 borderRadius: '1em',
-                background: 'rgba(36, 50, 67, 0.7)',
+                border: '3px solid grey',
                 marginBottom: '10px',
                 boxSizing: 'border-box',
               }}
             >
-              <Tooltip
-                content={
-                  wound.description
-                    ? wound.description
-                    : 'No tooltip entry for this advice.'
-                }
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '5px',
+                  borderRadius: '1em',
+                  background: 'rgba(36, 50, 67, 0.7)',
+                  marginBottom: '10px',
+                  boxSizing: 'border-box',
+                }}
               >
-                <div
-                  style={{
-                    flex: 1,
-                    textAlign: 'center',
-                  }}
+                <Tooltip
+                  content={
+                    wound.description
+                      ? wound.description
+                      : 'No tooltip entry for this advice.'
+                  }
                 >
-                  {wound.severity +
-                    ' ' +
-                    wound.type +
-                    ' detected on ' +
-                    wound.where}
-                </div>
-              </Tooltip>
-            </div>
-            <div
+                  <div
+                    style={{
+                      flex: 1,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {wound.severity +
+                      ' ' +
+                      wound.type +
+                      ' detected on ' +
+                      wound.where}
+                  </div>
+                </Tooltip>
+              </div>
+              <div
+                style={{
+                  padding: '10px',
+                  background: 'rgba(36, 50, 67, 0.3)',
+                  borderRadius: '1em',
+                  boxSizing: 'border-box',
+                }}
+              >
+                {wound.recomended_treatement}
+              </div>
+            </Stack.Item>
+          ))}
+        </Stack>
+      </Section>
+    </Collapsible>
+  ) : null;
+};
+
+const Viruses = () => {
+  const { data } = useBackend<MedScannerData>();
+  const { viruses } = data;
+
+  return (
+    <Section title="Diseases">
+      <Stack>
+        {viruses.map((virus) => (
+          <Box
+            key={virus.form}
+            style={{
+              padding: '10px',
+              marginBottom: '10px',
+              borderRadius: '8px',
+              boxSizing: 'border-box',
+            }}
+          >
+            <Box
               style={{
-                padding: '10px',
-                background: 'rgba(36, 50, 67, 0.3)',
-                borderRadius: '1em',
-                boxSizing: 'border-box',
+                marginBottom: '5px',
+                fontWeight: 'bold',
+                fontSize: '16px',
               }}
             >
-              {wound.recomended_treatement}
-            </div>
-          </Stack.Item>
+              <b className="virus_label"> {'Warning: '}</b>
+              {virus.form + ' detected'}
+            </Box>
+            <Box
+              style={{
+                marginBottom: '5px',
+                fontSize: '14px',
+              }}
+            >
+              <b className="virus_label"> {'Name: '}</b>
+              {virus.name}
+            </Box>
+            <Box
+              style={{
+                marginBottom: '5px',
+                fontSize: '14px',
+              }}
+            >
+              <b className="virus_label"> {'Type: '}</b>
+              {virus.type}
+            </Box>
+            <Box
+              style={{
+                marginBottom: '5px',
+                fontSize: '14px',
+              }}
+            >
+              <b className="virus_label"> {'Stage: '} </b>
+              {+virus.stage + '/' + virus.maxstage}
+            </Box>
+            <Box
+              style={{
+                fontSize: '14px',
+              }}
+            >
+              <b className="virus_label"> {'Possible Cure: '} </b> {virus.cure}
+            </Box>
+          </Box>
         ))}
       </Stack>
     </Section>

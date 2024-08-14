@@ -118,20 +118,20 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 		if(!organ)
 			return
 		var/current_organ = list(
-					"name" = organ.name,
-					"status" = organ.get_organ_status(advanced),
-					"damage" = organ.damage,
+			"name" = organ.name,
+			"status" = organ.get_organ_status(advanced),
+			"damage" = organ.damage,
 			"effects" = organ.damage_description,
 				)
 		damaged_organs += list(current_organ)
 	data["damaged_organs"] = damaged_organs
+	data["damaged_organs"] += get_missing_organs(patient)
 
 	//var/obj/item/organ/internal/heart = patient.get_organ_by_type(/obj/item/organ/internal/heart)
-
 	if(HAS_TRAIT(patient, TRAIT_DNR))
 		data["revivable_string"] = "Permanently deceased" // the actual information shown next to "revivable:" in tgui. "too much damage" etc.
 		data["revivable_boolean"] = FALSE // the actual TRUE/FALSE entry used by tgui. if false, revivable text is red. if true, revivable text is yellow
-	//else if((heart.organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
+	//else if((patient.get_organ_slot(ORGAN_SLOT_HEART).organ_flags & ORGAN_FAILING) || (!patient.get_organ_slot(ORGAN_SLOT_HEART)))
 		//data["revivable_string"] = "Not ready to defibrillate - heart too damaged"
 		//data["revivable_boolean"] = FALSE
 	else if((patient.getBruteLoss() <= MAX_REVIVE_BRUTE_DAMAGE) && (patient.getFireLoss() <= MAX_REVIVE_FIRE_DAMAGE) && (!HAS_TRAIT(patient, TRAIT_HUSK)))
@@ -140,7 +140,6 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	else
 		data["revivable_string"] = "Not ready to [patient ? "defibrillate" : "reboot"] - damage left to repair [(round((patient.getBruteLoss() - MAX_REVIVE_BRUTE_DAMAGE) || (patient.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE)))]"
 		data["revivable_boolean"] = FALSE
-
 
 	/*
 	WOUNDS
@@ -160,6 +159,44 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 	data["wounds"] = render_list
 
 	/*
+	Viruses and brain traumas
+	*/
+	var/list/virus_list = list()
+	for(var/datum/disease/disease as anything in patient.diseases)
+		if(!(disease.visibility_flags & HIDDEN_SCANNER))
+			virus_list += list(list(
+				"form" = disease.form,
+				"name" = disease.name,
+				"type" = disease.spread_text,
+				"stage" = disease.stage,
+				"maxstage" = disease.max_stages,
+				"cure" = disease.cure_text,
+			))
+	data["viruses"] = virus_list
+
+	var/list/trauma_list = list()
+	if(iscarbon(patient))
+		if(LAZYLEN(patient.get_traumas()))
+			var/list/trauma_text = list()
+			for(var/datum/brain_trauma/trauma in patient.get_traumas())
+				var/trauma_desc = ""
+				switch(trauma.resilience)
+					if(TRAUMA_RESILIENCE_SURGERY)
+						trauma_desc += "severe "
+					if(TRAUMA_RESILIENCE_LOBOTOMY)
+						trauma_desc += "deep-rooted "
+					if(TRAUMA_RESILIENCE_WOUND)
+						trauma_desc += "fracture-derived "
+					// SKYRAT EDIT CHANGE BEGIN - Curable permanent traumas
+					if(TRAUMA_RESILIENCE_MAGIC)
+						trauma_desc += "soul-bound "
+					if(TRAUMA_RESILIENCE_ABSOLUTE)
+						trauma_desc += "permanent "
+				trauma_desc += trauma.scan_desc
+				trauma_text += trauma_desc
+			trauma_list += "Cerebral traumas detected: subject appears to be suffering from [english_list(trauma_text)]."
+	data["brain_traumas"] = trauma_list ? trauma_list : null
+		/*
 	ADVICE
 	*/
 	var/list/advice = list()
@@ -374,5 +411,67 @@ GLOBAL_LIST_INIT(analyzerthemes, list(
 /obj/item/healthanalyzer/proc/on_drop(mob/user)
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSobj, src)
+
+/obj/item/healthanalyzer/proc/get_missing_organs(mob/living/carbon/target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/humantarget = target
+		var/missing_organs = list()
+		if(!humantarget.get_organ_slot(ORGAN_SLOT_BRAIN))
+			missing_organs += list(list(
+				"name" = "Brain",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/brain::damage_description,
+				))
+		if(!HAS_TRAIT_FROM(humantarget, TRAIT_NOBLOOD, SPECIES_TRAIT) && !humantarget.get_organ_slot(ORGAN_SLOT_HEART))
+			missing_organs += list(list(
+				"name" = "Heart",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/heart::damage_description,
+				))
+		if(!HAS_TRAIT_FROM(humantarget, TRAIT_NOBREATH, SPECIES_TRAIT) && !humantarget.get_organ_slot(ORGAN_SLOT_LUNGS))
+			missing_organs += list(list(
+				"name" = "Lungs",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/lungs::damage_description,
+				))
+		if(!HAS_TRAIT_FROM(humantarget, TRAIT_LIVERLESS_METABOLISM, SPECIES_TRAIT) && !humantarget.get_organ_slot(ORGAN_SLOT_LIVER))
+			missing_organs += list(list(
+				"name" = "Liver",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/liver::damage_description,
+				))
+		if(!HAS_TRAIT_FROM(humantarget, TRAIT_NOHUNGER, SPECIES_TRAIT) && !humantarget.get_organ_slot(ORGAN_SLOT_STOMACH))
+			missing_organs += list(list(
+				"name" = "Stomach",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/stomach::damage_description,
+				))
+		if(!humantarget.get_organ_slot(ORGAN_SLOT_TONGUE))
+			missing_organs += list(list(
+				"name" = "Tongue",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/tongue::damage_description,
+				))
+		if(!humantarget.get_organ_slot(ORGAN_SLOT_EARS))
+			missing_organs += list(list(
+				"name" = "Ears",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/ears::damage_description,
+				))
+		if(!humantarget.get_organ_slot(ORGAN_SLOT_EYES))
+			missing_organs += list(list(
+				"name" = "Eyes",
+				"status" = "Missing",
+				"damage" = "",
+				"effects" = /obj/item/organ/internal/eyes::damage_description,
+				))
+		return missing_organs
 
 #undef MAX_HEALTH_ANALYZER_UPDATE_RANGE

@@ -1,5 +1,5 @@
 /obj/item/organ/internal
-	///The effects when this limb is damaged. Used by health analyzers.
+	///String based effect when this organ is damaged. Used by health analyzers.
 	var/damage_description
 
 /obj/item/organ/internal/brain
@@ -35,5 +35,7 @@
 
 	if (damage > low_threshold)
 		return "Mildly Damaged"
+	if (damage < low_threshold)
+		return "Bruised"
 
 	return ""
