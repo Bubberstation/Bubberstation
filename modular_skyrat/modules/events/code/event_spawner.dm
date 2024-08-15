@@ -99,12 +99,12 @@
 
 	//Override headset here
 	if(headset_override)
-		var/obj/item/headset_slot = H.get_item_by_slot(ITEM_SLOT_EARS)
+		var/obj/item/headset_slot = H.get_item_by_slot(ITEM_SLOT_EARS_LEFT) || H.get_item_by_slot(ITEM_SLOT_EARS_RIGHT) // SPLURT EDIT - Extra Inventory
 		if(headset_slot)
 			qdel(headset_slot)
 		var/obj/item/new_headset = new headset_override()
 		if(new_headset)
-			if(!H.equip_to_slot_if_possible(new_headset, ITEM_SLOT_EARS, disable_warning = TRUE, bypass_equip_delay_self = TRUE))
+			if(!H.equip_to_slot_if_possible(new_headset, ITEM_SLOT_EARS_LEFT, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // SPLURT EDIT - Extra Inventory
 				new_headset.forceMove(get_turf(H))
 
 	var/obj/item/back_item

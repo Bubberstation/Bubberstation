@@ -1,0 +1,6 @@
+#define STRIPPABLE_ITEM_EARS_EXTRA "ears_extra"
+#define STRIPPABLE_ITEM_WRISTS "wrists"
+#define STRIPPABLE_ITEM_SOCKS "socks"
+#define STRIPPABLE_ITEM_UNDERSHIRT "undershirt"
+#define STRIPPABLE_ITEM_BRA "bra"
+#define STRIPPABLE_ITEM_UNDERWEAR "underwear"

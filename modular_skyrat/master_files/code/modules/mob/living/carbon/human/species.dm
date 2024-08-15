@@ -29,4 +29,4 @@
 		OFFSET_NECK = list(0,0),
 		OFFSET_ACCESSORY = list(0, 0),
 		OFFSET_HAIR = list(0, 0),
-	)
+	) //Extra inventory

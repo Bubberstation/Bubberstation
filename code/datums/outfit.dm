@@ -118,9 +118,11 @@
 	var/preload = FALSE
 
 	/// Any undershirt. While on humans it is a string, here we use paths to stay consistent with the rest of the equips.
-	var/datum/sprite_accessory/undershirt = null
-	var/datum/sprite_accessory/underwear = null
-	var/datum/sprite_accessory/socks = null
+	// SPLURT EDIT - Extra Inventory - use the correct paths
+	var/datum/sprite_accessory/undershirt/undershirt = null
+	var/datum/sprite_accessory/underwear/underwear = null
+	var/datum/sprite_accessory/socks/socks = null
+	// SPLURT EDIT END
 
 /**
  * Called at the start of the equip proc
@@ -189,7 +191,7 @@
 	if(neck)
 		EQUIP_OUTFIT_ITEM(neck, ITEM_SLOT_NECK)
 	if(ears)
-		EQUIP_OUTFIT_ITEM(ears, ITEM_SLOT_EARS)
+		EQUIP_OUTFIT_ITEM(ears, ITEM_SLOT_EARS_LEFT) // SPLURT EDIT - Extra inventory
 	if(glasses)
 		EQUIP_OUTFIT_ITEM(glasses, ITEM_SLOT_EYES)
 	if(back)
@@ -212,19 +214,38 @@
 		EQUIP_OUTFIT_ITEM(suit_store, ITEM_SLOT_SUITSTORE)
 
 	if(undershirt)
-		user.undershirt = initial(undershirt.name)
+		w_shirt = w_shirt || initial(undershirt.shirt_obj) //SPLURT EDIT - Extra inventory - original: user.undershirt = initial(undershirt.name)
+
+	if(bra)
+		w_bra = w_bra || initial(bra.bra_obj) //SPLURT EDIT - Extra inventory - original: user.bra = initial(bra.name)
 
 	if(underwear)
-		user.underwear = initial(underwear.name)
+		w_underwear = w_underwear || initial(underwear.briefs_obj) //SPLURT EDIT - Extra inventory - original: user.underwear = initial(underwear.name)
 
 	if(socks)
-		user.socks = initial(socks.name)
+		w_socks = w_socks || initial(socks.socks_obj) //SPLURT EDIT - Extra inventory - original: user.socks = initial(socks.name)
 
+	// SPLURT EDIT - Extra inventory
+	if(ears_extra)
+		EQUIP_OUTFIT_ITEM(ears_extra, ITEM_SLOT_EARS_RIGHT)
+	if(w_underwear)
+		EQUIP_OUTFIT_ITEM(w_underwear, ITEM_SLOT_UNDERWEAR)
+	if(w_socks)
+		EQUIP_OUTFIT_ITEM(w_socks, ITEM_SLOT_SOCKS)
+	if(w_shirt)
+		EQUIP_OUTFIT_ITEM(w_shirt, ITEM_SLOT_SHIRT)
+	if(w_bra)
+		EQUIP_OUTFIT_ITEM(w_bra, ITEM_SLOT_BRA)
+	if(wrists)
+		EQUIP_OUTFIT_ITEM(wrists, ITEM_SLOT_WRISTS)
+	//
 
+	/* SPLURT EDIT - Extra inventory
 	// SKYRAT EDIT ADDITION START - Underwear and bra split
 	if(bra)
 		user.bra = initial(bra.name)
 	// SKYRAT EDIT END
+	*/
 
 	if(accessory)
 		var/obj/item/clothing/under/U = user.w_uniform
@@ -378,7 +399,8 @@
 
 /// Return a list of all the types that are required to disguise as this outfit type
 /datum/outfit/proc/get_chameleon_disguise_info()
-	var/list/types = list(uniform, suit, back, belt, gloves, shoes, head, mask, neck, ears, glasses, id, l_pocket, r_pocket, suit_store, r_hand, l_hand)
+	var/list/types = list(uniform, suit, back, belt, gloves, shoes, head, mask, neck, ears, glasses, id, l_pocket, r_pocket, suit_store, r_hand, l_hand,
+	w_underwear, w_socks, w_shirt, w_bra, ears_extra, wrists) // SPLURT EDIT - Extra inventory
 	types += chameleon_extras
 	types += skillchips
 	list_clear_nulls(types)
