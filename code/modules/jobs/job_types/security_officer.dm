@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	if(ears)
 		if(spawning.ears)
 			qdel(spawning.ears)
-		spawning.equip_to_slot_or_del(new ears(spawning),ITEM_SLOT_EARS)
+		spawning.equip_to_slot_or_del(new ears(spawning),ITEM_SLOT_EARS_LEFT) //SPLURT EDIT - Extra Inventory
 
 	// If there's a departmental sec trim to apply to the card, overwrite.
 	if(dep_trim)
@@ -223,10 +223,9 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/flashlight/seclite = 1,
-		/obj/item/modular_computer/pda/security = 1,
+		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
-	belt = /obj/item/storage/belt/security/full
+	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black/security
 	head = /obj/item/clothing/head/security_garrison //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/head/helmet/sec

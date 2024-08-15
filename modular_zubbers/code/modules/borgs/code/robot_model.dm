@@ -275,6 +275,24 @@
 
 	)
 
+
+/* BUBBER SPRITE ADDITIONS BELOW */
+/obj/item/robot_model/clown/Initialize(mapload)
+	. = ..()
+	borg_skins |= list(
+		"Vale" = list(
+			SKIN_ICON_STATE = "vale",
+			SKIN_ICON = CYBORG_ICON_CLOWN_WIDE_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_WIDE),
+		),
+		"Dullahan" = list(
+			SKIN_ICON_STATE = "dullahanclown",
+			SKIN_ICON = CYBORG_ICON_CLOWN_TALL_BUBBER,
+			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUETIP, TRAIT_R_TALL),
+			DULLAHAN_HAT_OFFSET
+		),
+	)
+
 /obj/item/robot_model/standard/Initialize(mapload)
 	. = ..()
 	borg_skins |= list(

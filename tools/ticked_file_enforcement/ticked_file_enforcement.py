@@ -61,6 +61,10 @@ with open(file_reference, 'r') as file:
         elif line == "// SKYRAT EDIT END":
             continue
         # SKYRAT EDIT END
+        # SPLURT EDIT START - Modular unit tests
+        elif line == "// SPLURT EDIT START" or line == "// SPLURT EDIT END":
+            continue
+        # SPLURT EDIT END
 
         lines.append(line)
 
@@ -88,6 +92,10 @@ for code_file in scannable_files:
         if("~skyrat/" in code_file):
             dm_path = "~skyrat\\" + dm_path
         # SKYRAT EDIT END
+        # SPLURT EDIT START - Modular unit tests - guess
+        if("~splurt/" in code_file):
+            dm_path = "~splurt\\" + dm_path
+        # SPLURT EDIT END
 
     included = f"#include \"{dm_path}\"" in lines
 

@@ -27,7 +27,7 @@
 			return belt
 		if(ITEM_SLOT_ID)
 			return wear_id
-		if(ITEM_SLOT_EARS)
+		if(ITEM_SLOT_EARS_LEFT) // SPLURT EDIT - Extra inventory
 			return ears
 		if(ITEM_SLOT_EYES)
 			return glasses
@@ -55,13 +55,16 @@
 		return ITEM_SLOT_ID
 
 	if(looking_for == ears)
-		return ITEM_SLOT_EARS
+		return ITEM_SLOT_EARS_LEFT // SPLURT EDIT - Extra inventory
 
 	if(looking_for == glasses)
 		return ITEM_SLOT_EYES
 
 	if(looking_for == gloves)
 		return ITEM_SLOT_GLOVES
+
+	if(looking_for == wrists)
+		return ITEM_SLOT_WRISTS
 
 	if(looking_for == head)
 		return ITEM_SLOT_HEAD
@@ -94,6 +97,7 @@
 		legcuffed,
 		wear_suit,
 		gloves,
+		wrists,
 		shoes,
 		belt,
 		wear_id,
@@ -108,7 +112,7 @@
 		wear_mask,
 		wear_neck,
 		glasses,
-		ears,
+		ears
 		)
 
 /mob/living/carbon/human/proc/get_storage_slots()
@@ -146,11 +150,18 @@
 			wear_id = equipping
 			sec_hud_set_ID()
 			update_worn_id()
-		if(ITEM_SLOT_EARS)
+		if(ITEM_SLOT_EARS_LEFT) // SPLURT EDIT - Extra inventory
 			if(ears)
 				return
 			ears = equipping
 			update_worn_ears()
+		// SPLURT EDIT - Extra inventory
+		if(ITEM_SLOT_EARS_RIGHT)
+			if(ears_extra)
+				return
+			ears_extra = equipping
+			update_worn_ears_extra()
+		//
 		if(ITEM_SLOT_EYES)
 			if(glasses)
 				return
@@ -170,6 +181,13 @@
 				update_mob_action_buttons()
 			//SKYRAT EDIT ADDITION END
 			update_worn_gloves()
+		// SPLURT EDIT - Extra inventory
+		if(ITEM_SLOT_WRISTS)
+			if(wrists)
+				return
+			wrists = equipping
+			update_worn_wrists()
+		//
 		if(ITEM_SLOT_FEET)
 			if(shoes)
 				return
@@ -192,6 +210,28 @@
 			w_uniform = equipping
 			update_suit_sensors()
 			update_worn_undersuit()
+		// SPLURT EDIT - Extra inventory
+		if(ITEM_SLOT_UNDERWEAR)
+			if(w_underwear)
+				return
+			w_underwear = equipping
+			update_worn_underwear()
+		if(ITEM_SLOT_SHIRT)
+			if(w_shirt)
+				return
+			w_shirt = equipping
+			update_worn_shirt()
+		if(ITEM_SLOT_BRA)
+			if(w_bra)
+				return
+			w_bra = equipping
+			update_worn_bra()
+		if(ITEM_SLOT_SOCKS)
+			if(w_socks)
+				return
+			w_socks = equipping
+			update_worn_socks()
+		//
 		if(ITEM_SLOT_LPOCKET)
 			l_store = equipping
 			update_pockets()
@@ -249,6 +289,28 @@
 				dropItemToGround(wear_id)
 			if(belt && !can_equip(belt, ITEM_SLOT_BELT, TRUE, ignore_equipped = TRUE))
 				dropItemToGround(belt)
+	// SPLURT EDIT - Extra inventory
+	else if(I == w_underwear)
+		w_underwear = null
+		if(!QDELETED(src))
+			update_worn_underwear()
+	else if(I == w_socks)
+		w_socks = null
+		if(!QDELETED(src))
+			update_worn_socks()
+	else if(I == w_shirt)
+		w_shirt = null
+		if(!QDELETED(src))
+			update_worn_shirt()
+	else if(I == w_bra)
+		w_bra = null
+		if(!QDELETED(src))
+			update_worn_bra()
+	else if(I == wrists)
+		wrists = null
+		if(!QDELETED(src))
+			update_worn_wrists()
+	//
 	else if(I == gloves)
 		//SKYRAT EDIT ADDITION - ERP UPDATE
 		if(gloves.breakouttime) //when unequipping a straightjacket
@@ -270,6 +332,12 @@
 		ears = null
 		if(!QDELETED(src))
 			update_worn_ears()
+	// SPLURT EDIT - Extra inventory
+	else if(I == ears_extra)
+		ears_extra = null
+		if(!QDELETED(src))
+			update_worn_ears_extra()
+	//
 	else if(I == shoes)
 		shoes = null
 		if(!QDELETED(src))
