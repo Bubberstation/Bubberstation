@@ -357,7 +357,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	if(!istype(master_mob) || !istype(H))
 		return
 	if(master_mob.ears)
-		H.equip_to_slot_or_del(new master_mob.ears.type, ITEM_SLOT_EARS)
+		H.equip_to_slot_or_del(new master_mob.ears.type, pick(ITEM_SLOT_EARS_LEFT, ITEM_SLOT_EARS_RIGHT)) //SPLURT EDIT - Extra inventory
 	if(master_mob.w_uniform)
 		H.equip_to_slot_or_del(new master_mob.w_uniform.type, ITEM_SLOT_ICLOTHING)
 	if(master_mob.shoes)

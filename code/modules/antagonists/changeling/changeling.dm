@@ -97,6 +97,14 @@
 		"ears" = /obj/item/changeling,
 		"wear_id" = /obj/item/changeling/id,
 		"s_store" = /obj/item/changeling,
+
+		// SPLURT EDIT - Extra inventory
+		"w_underwear" = /obj/item/changeling,
+		"w_socks" = /obj/item/changeling,
+		"w_shirt" = /obj/item/changeling,
+		"w_bra" = /obj/item/changeling,
+		"ears_extra" = /obj/item/changeling,
+		"wrists" = /obj/item/changeling,
 	)
 
 	/// A list of all memories we've stolen through absorbs.
@@ -802,9 +810,17 @@
 		"belt" = ITEM_SLOT_BELT,
 		"gloves" = ITEM_SLOT_GLOVES,
 		"glasses" = ITEM_SLOT_EYES,
-		"ears" = ITEM_SLOT_EARS,
+		"ears" = ITEM_SLOT_EARS_LEFT, // SPLURT EDIT - Extra inventory
 		"wear_id" = ITEM_SLOT_ID,
 		"s_store" = ITEM_SLOT_SUITSTORE,
+
+		// SPLURT EDIT - Extra inventory
+		"w_underwear" = ITEM_SLOT_UNDERWEAR,
+		"w_socks" = ITEM_SLOT_SOCKS,
+		"w_shirt" = ITEM_SLOT_SHIRT,
+		"w_bra" = ITEM_SLOT_BRA,
+		"ears_extra" = ITEM_SLOT_EARS_RIGHT,
+		"wrists" = ITEM_SLOT_WRISTS,
 	)
 
 	var/datum/dna/chosen_dna = chosen_profile.dna

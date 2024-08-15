@@ -109,6 +109,19 @@
 				continue //So all they're left with are shoes and uniform.
 			if(person_contents == human_sent.shoes)
 				continue
+
+			// SPLURT EDIT - Extra inventory - and underwear
+			if(person_contents == human_sent.w_underwear)
+				continue
+			if(person_contents == human_sent.w_socks)
+				continue
+			if(person_contents == human_sent.w_shirt)
+				continue
+			if(person_contents == human_sent.w_bra)
+				continue
+			if(person_contents == human_sent.wrists) // once wrists actually have a danger item, you have my blessing to remove
+				continue
+			// SPLURT EDIT END
 		person_sent.transferItemToLoc(person_contents)
 		victim_belongings.Add(WEAKREF(person_contents))
 
@@ -242,6 +255,19 @@
 				continue
 			if(belonging == human_victim.shoes)
 				continue
+
+			// SPLURT EDIT - Extra inventory - and underwear
+			if(belonging == human_victim.w_underwear)
+				continue
+			if(belonging == human_victim.w_socks)
+				continue
+			if(belonging == human_victim.w_shirt)
+				continue
+			if(belonging == human_victim.w_bra)
+				continue
+			if(belonging == human_victim.wrists) // once wrists actually have a danger item, you have my blessing to remove
+				continue
+			// SPLURT EDIT END
 		belonging.forceMove(dropoff_location)
 
 	for(var/obj/item/item in victim_belongings)

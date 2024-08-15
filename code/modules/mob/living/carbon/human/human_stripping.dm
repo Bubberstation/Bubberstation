@@ -21,6 +21,15 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	/datum/strippable_item/hand/right,
 	/datum/strippable_item/mob_item_slot/handcuffs,
 	/datum/strippable_item/mob_item_slot/legcuffs,
+
+	// SPLURT EDIT - Extra inventory
+	/datum/strippable_item/mob_item_slot/ears_extra,
+	/datum/strippable_item/mob_item_slot/wrists,
+	/datum/strippable_item/mob_item_slot/socks,
+	/datum/strippable_item/mob_item_slot/underwear,
+	/datum/strippable_item/mob_item_slot/undershirt,
+	/datum/strippable_item/mob_item_slot/bra,
+	// SPLURT EDIT END
 )))
 
 /mob/living/carbon/human/proc/should_strip(mob/user)
@@ -39,7 +48,7 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 
 /datum/strippable_item/mob_item_slot/ears
 	key = STRIPPABLE_ITEM_EARS
-	item_slot = ITEM_SLOT_EARS
+	item_slot = ITEM_SLOT_EARS_LEFT //SPLURT EDIT - Extra inventory
 
 /datum/strippable_item/mob_item_slot/jumpsuit
 	key = STRIPPABLE_ITEM_JUMPSUIT
