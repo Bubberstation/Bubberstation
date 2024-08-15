@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 	for(var/group_key as anything in master_groups)
 		var/datum/plane_master_group/group = master_groups[group_key]
-		group.transform_lower_turfs(src, current_plane_offset)
+		group.build_planes_offset(src, current_plane_offset)
 
 /datum/hud/proc/should_use_scale()
 	return should_sight_scale(mymob.sight)
@@ -230,10 +230,9 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	current_plane_offset = new_offset
 
 	SEND_SIGNAL(src, COMSIG_HUD_OFFSET_CHANGED, old_offset, new_offset)
-	if(should_use_scale())
-		for(var/group_key as anything in master_groups)
-			var/datum/plane_master_group/group = master_groups[group_key]
-			group.transform_lower_turfs(src, new_offset)
+	for(var/group_key as anything in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		group.build_planes_offset(src, new_offset)
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -258,6 +257,9 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	hand_slots.Cut()
 
 	QDEL_LIST(toggleable_inventory)
+	// SPLURT EDIT - Extra inventory
+	QDEL_LIST(extra_inventory)
+	//
 	QDEL_LIST(hotkeybuttons)
 	throw_icon = null
 	QDEL_LIST(infodisplay)
@@ -362,6 +364,10 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 				screenmob.client.screen += static_inventory
 			if(toggleable_inventory.len && screenmob.hud_used && screenmob.hud_used.inventory_shown)
 				screenmob.client.screen += toggleable_inventory
+			// SPLURT EDIT - Extra inventory
+			if(extra_inventory.len && screenmob.hud_used && screenmob.hud_used.extra_shown)
+				screenmob.client.screen += extra_inventory
+			//
 			if(hotkeybuttons.len && !hotkey_ui_hidden)
 				screenmob.client.screen += hotkeybuttons
 			if(infodisplay.len)
@@ -380,6 +386,10 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
 				screenmob.client.screen -= toggleable_inventory
+			// SPLURT EDIT - Extra inventory
+			if(extra_inventory.len)
+				screenmob.client.screen -= extra_inventory
+			//
 			if(hotkeybuttons.len)
 				screenmob.client.screen -= hotkeybuttons
 			if(infodisplay.len)
@@ -402,6 +412,10 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
 				screenmob.client.screen -= toggleable_inventory
+			// SPLURT EDIT - Extra inventory
+			if(extra_inventory.len)
+				screenmob.client.screen -= extra_inventory
+			//
 			if(hotkeybuttons.len)
 				screenmob.client.screen -= hotkeybuttons
 			if(infodisplay.len)
@@ -462,7 +476,8 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	if (initial(ui_style) || ui_style == new_ui_style)
 		return
 
-	for(var/atom/item in static_inventory + toggleable_inventory + hotkeybuttons + infodisplay + always_visible_inventory + inv_slots)
+	// SPLURT EDIT - Extra inventory added
+	for(var/atom/item in static_inventory + toggleable_inventory + extra_inventory + hotkeybuttons + infodisplay + always_visible_inventory + inv_slots)
 		if (item.icon == ui_style)
 			item.icon = new_ui_style
 

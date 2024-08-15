@@ -29,7 +29,7 @@
 		"arcs",
 		"rcd_tarkon"
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 
 /datum/design/mod_plating/tarkon
@@ -37,10 +37,10 @@
 	id = "mod_plating_tarkon"
 	build_path = /obj/item/mod/construction/plating/tarkon
 	materials = list(
-		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
-		/datum/material/uranium =SHEET_MATERIAL_AMOUNT,
-		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	research_icon_state = "tarkon-plating"
@@ -51,11 +51,11 @@
 	id = "arcs"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 3,
-		/datum/material/silver =SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/uranium =SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/diamond =SHEET_MATERIAL_AMOUNT
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/gun/energy/recharge/resonant_system
 	category = list(
@@ -69,10 +69,10 @@
 	id = "rcd_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
-		/datum/material/iron =SHEET_MATERIAL_AMOUNT*30,
-		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 10,
-		/datum/material/uranium =SHEET_MATERIAL_AMOUNT * 4,
-		/datum/material/diamond =SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 3
 		)
 	build_path = /obj/item/construction/rcd/arcd/tarkon
@@ -123,10 +123,24 @@
 	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
 	circuit = /obj/item/circuitboard/machine/protolathe/tarkon
 	stripe_color = "#350f04"
+
 /obj/item/circuitboard/machine/protolathe/tarkon
 	name = "Tarkon Industries Protolathe"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/rnd/production/protolathe/tarkon
+
+//Interdyne equipment
+
+/obj/machinery/rnd/production/protolathe/interdyne
+	name = "Interdyne Branded Protolathe"
+	desc = "Converts raw materials into useful objects. Refurbished and updated from its previous, limited capabilities."
+	circuit = /obj/item/circuitboard/machine/protolathe/interdyne
+	stripe_color = "#d40909"
+
+/obj/item/circuitboard/machine/protolathe/interdyne
+	name = "Interdyne Branded Protolathe"
+	greyscale_colors = CIRCUIT_COLOR_SECURITY
+	build_path = /obj/machinery/rnd/production/protolathe/interdyne
 
 /obj/item/circuitboard/machine/rdserver/interdyne
 	name = "Interdyne Pharmaceutics R&D Server"

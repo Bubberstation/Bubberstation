@@ -118,7 +118,12 @@ There are several things that need to be remembered:
 		var/mutant_styles = NONE // SKYRAT EDIT ADDITON - mutant styles to pass down to build_worn_icon.
 		//BEGIN SPECIES HANDLING
 		if((bodyshape & BODYSHAPE_DIGITIGRADE) && (uniform.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
-			icon_file = DIGITIGRADE_UNIFORM_FILE
+			icon_file = uniform.worn_icon_digi || DIGITIGRADE_UNIFORM_FILE // SKYRAT EDIT CHANGE - ORIGINAL: icon_file = DIGITIGRADE_UNIFORM_FILE
+			digi = TRUE // SKYRAT EDIT ADDITION - Digi female gender shaping
+		// SKYRAT EDIT ADDITION - birbs
+		else if(bodyshape & BODYSHAPE_CUSTOM)
+			icon_file = dna.species.generate_custom_worn_icon(OFFSET_UNIFORM, w_uniform, src) // Might have to refactor how this works eventually, maybe.
+		// SKYRAT EDIT END
 		//Female sprites have lower priority than digitigrade sprites
 		if(!dna.species.no_gender_shaping && dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(female_sprite_flags & NO_FEMALE_UNIFORM)) // SKYRAT EDIT CHANGE - ORIGINAL: else if(dna.species.sexes && (bodyshape & BODYSHAPE_HUMANOID) && physique == FEMALE && !(uniform.female_sprite_flags & NO_FEMALE_UNIFORM)) //Agggggggghhhhh
 			woman = TRUE
@@ -243,7 +248,6 @@ There are several things that need to be remembered:
 		overlays_standing[GLOVES_LAYER] = gloves_overlay
 	apply_overlay(GLOVES_LAYER)
 
-
 /mob/living/carbon/human/update_worn_glasses(update_obscured = TRUE)
 	remove_overlay(GLASSES_LAYER)
 
@@ -294,7 +298,7 @@ There are several things that need to be remembered:
 		return
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS) + 1]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS_LEFT) + 1] // SPLURT EDIT - Extra inventory
 		inv.update_icon()
 
 	if(ears)
@@ -304,7 +308,7 @@ There are several things that need to be remembered:
 		if(update_obscured)
 			update_obscured_slots(worn_item.flags_inv)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS)
+		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS_LEFT) // SPLURT EDIT - Extra inventory
 			return
 
 		var/icon_file = 'icons/mob/clothing/ears.dmi'
@@ -431,7 +435,6 @@ There are several things that need to be remembered:
 	apply_overlay(SHOES_LAYER)
 
 	update_body_parts()
-
 
 /mob/living/carbon/human/update_suit_storage(update_obscured = TRUE)
 	remove_overlay(SUIT_STORE_LAYER)
@@ -679,7 +682,7 @@ There are several things that need to be remembered:
 		// SKYRAT EDIT ADDITION
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
-			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_HELD, back, src)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_BACK, back, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE

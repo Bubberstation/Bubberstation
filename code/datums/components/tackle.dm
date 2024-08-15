@@ -43,7 +43,7 @@
 	src.min_distance = min_distance
 
 	var/mob/P = parent
-	to_chat(P, span_notice("You are now able to launch tackles! You can do so by activating throw mode, and clicking on your target with an empty hand."))
+	to_chat(P, span_notice("You are now able to launch tackles! You can do so by activating throw mode, and ") + span_boldnotice("RIGHT-CLICKING on your target with an empty hand."))
 
 	addtimer(CALLBACK(src, PROC_REF(resetTackle)), base_knockdown, TIMER_STOPPABLE)
 
@@ -72,6 +72,9 @@
 	SIGNAL_HANDLER
 
 	if(modifiers[ALT_CLICK] || modifiers[SHIFT_CLICK] || modifiers[CTRL_CLICK] || modifiers[MIDDLE_CLICK])
+		return
+
+	if(!modifiers[RIGHT_CLICK])
 		return
 
 	if(!user.throw_mode || user.get_active_held_item() || user.pulling || user.buckled || user.incapacitated())
@@ -394,6 +397,10 @@
 
 		if(isnull(tackle_target.wear_suit) && isnull(tackle_target.w_uniform)) // who honestly puts all of their effort into tackling a naked guy?
 			defense_mod += 2
+			// SPLURT EDIT - Extra inventory
+			if(isnull(tackle_target.w_underwear) && isnull(tackle_target.w_socks) && isnull(tackle_target.w_shirt))
+				defense_mod += 1
+			//
 		if(tackle_target.mob_negates_gravity())
 			defense_mod += 1
 		if(HAS_TRAIT(tackle_target, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)) // riot armor and such
@@ -404,6 +411,10 @@
 			defense_mod -= 1
 		if(el_tail && (el_tail.wag_flags & WAG_WAGGING)) // lizard tail wagging is robust and can swat away assailants!
 			defense_mod += 1
+
+		var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = tackle_target.get_organ_slot(ORGAN_SLOT_SPINE)
+		if(istype(potential_spine))
+			defense_mod += potential_spine.strength_bonus
 
 	// OF-FENSE
 	var/mob/living/carbon/sacker = parent
@@ -441,6 +452,10 @@
 	if(istype(sacker_tajaran_ears) && HAS_TRAIT(sacker, TRAIT_CATLIKE_GRACE))
 		attack_mod += 2 // UwU pounces on you
 	// BUBBER EDIT END
+
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = sacker.get_organ_slot(ORGAN_SLOT_SPINE)
+	if(istype(potential_spine))
+		attack_mod += potential_spine.strength_bonus
 
 	if(ishuman(sacker))
 		var/mob/living/carbon/human/human_sacker = sacker
@@ -504,6 +519,10 @@
 		oopsie_mod -= 6
 	if(HAS_TRAIT(user, TRAIT_HEAD_INJURY_BLOCKED))
 		oopsie_mod -= 6
+
+	var/obj/item/organ/internal/cyberimp/chest/spine/potential_spine = user.get_organ_slot(ORGAN_SLOT_SPINE) // Can't snap that spine if it's made of metal.
+	if(istype(potential_spine))
+		oopsie_mod -= potential_spine.strength_bonus
 
 	if(HAS_TRAIT(user, TRAIT_CLUMSY))
 		oopsie_mod += 6 //honk!
@@ -601,11 +620,9 @@
 	if(W.type in list(/obj/structure/window, /obj/structure/window/fulltile, /obj/structure/window/unanchored, /obj/structure/window/fulltile/unanchored)) // boring unreinforced windows
 		for(var/i in 1 to speed)
 			var/obj/item/shard/shard = new /obj/item/shard(get_turf(user))
-			shard.embedding = list(embed_chance = 100, ignore_throwspeed_threshold = TRUE, impact_pain_mult=3, pain_chance=5)
-			shard.updateEmbedding()
+			shard.set_embed(/datum/embed_data/glass_candy)
 			user.hitby(shard, skipcatch = TRUE, hitpush = FALSE)
-			shard.embedding = null
-			shard.updateEmbedding()
+			shard.set_embed(initial(shard.embed_type))
 		W.atom_destruction()
 		user.adjustStaminaLoss(10 * speed)
 		user.Paralyze(3 SECONDS)

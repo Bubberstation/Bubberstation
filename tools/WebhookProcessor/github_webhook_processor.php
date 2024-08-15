@@ -48,7 +48,10 @@ $game_announce_whitelist = array(
 	"tgstation",
 	"TerraGov-Marine-Corps",
 	// ORIGINAL END - SKYRAT EDIT: */
-	"Skyrat-tg",
+	// SPLURT EDIT - We'll use our repo
+	//"Skyrat-tg",
+	"S.P.L.U.R.T-tg",
+	// SPLURT EDIT END
 );
 
 // Any repository that matches in this blacklist will not appear on Discord.

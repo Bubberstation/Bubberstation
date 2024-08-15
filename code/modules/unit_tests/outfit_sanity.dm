@@ -16,7 +16,7 @@
 
 	uniform = /obj/item/clothing/under/suit/tuxedo
 	glasses = /obj/item/clothing/glasses/sunglasses
-	mask = /obj/item/clothing/mask/cigarette/cigar/havana
+	mask = /obj/item/cigarette/cigar/havana
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/stack/spacecash/c1000
 	r_hand = /obj/item/stack/spacecash/c1000
@@ -25,19 +25,19 @@
 /datum/outfit/duffel_user
 	name = "Mr. Runtime"
 	back = /obj/item/storage/backpack/duffelbag
-	backpack_contents = list(/obj/item/clothing/mask/cigarette/cigar/havana)
+	backpack_contents = list(/obj/item/cigarette/cigar/havana)
 
 /// Satchels too
 /datum/outfit/stachel_user
 	name = "Mr. Runtime"
 	back = /obj/item/storage/backpack/satchel
-	backpack_contents = list(/obj/item/clothing/mask/cigarette/cigar/havana)
+	backpack_contents = list(/obj/item/cigarette/cigar/havana)
 
 /// And just in case we'll check backpacks
 /datum/outfit/backpack_user
 	name = "Mr. Runtime"
 	back = /obj/item/storage/backpack
-	backpack_contents = list(/obj/item/clothing/mask/cigarette/cigar/havana)
+	backpack_contents = list(/obj/item/cigarette/cigar/havana)
 
 /datum/unit_test/outfit_sanity/Run()
 	var/datum/outfit/prototype_outfit = /datum/outfit
@@ -66,7 +66,7 @@
 		CHECK_OUTFIT_SLOT(head, ITEM_SLOT_HEAD)
 		CHECK_OUTFIT_SLOT(mask, ITEM_SLOT_MASK)
 		CHECK_OUTFIT_SLOT(neck, ITEM_SLOT_NECK)
-		CHECK_OUTFIT_SLOT(ears, ITEM_SLOT_EARS)
+		CHECK_OUTFIT_SLOT(ears, ITEM_SLOT_EARS_LEFT)
 		CHECK_OUTFIT_SLOT(glasses, ITEM_SLOT_EYES)
 		CHECK_OUTFIT_SLOT(back, ITEM_SLOT_BACK)
 		CHECK_OUTFIT_SLOT(id, ITEM_SLOT_ID)

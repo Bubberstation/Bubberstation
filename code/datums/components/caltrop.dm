@@ -107,7 +107,11 @@
 	var/damage = rand(min_damage, max_damage)
 	if(HAS_TRAIT(digitigrade_fan, TRAIT_LIGHT_STEP))
 		damage *= 0.75
-
+	// SPLURT EDIT - Extra inventory
+	if(digitigrade_fan.socks)
+		if(digitigrade_fan.w_socks.body_parts_covered & FEET)
+			damage *= 0.75
+	//
 
 	if(!(flags & CALTROP_SILENT) && !digitigrade_fan.has_status_effect(/datum/status_effect/caltropped))
 		digitigrade_fan.apply_status_effect(/datum/status_effect/caltropped)

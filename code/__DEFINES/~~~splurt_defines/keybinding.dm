@@ -1,0 +1,4 @@
+#define COMSIG_KB_HUMAN_SET_INTENT_HELP_DOWN "keybinding_human_set_intent_help_down"
+#define COMSIG_KB_HUMAN_SET_INTENT_DISARM_DOWN "keybinding_human_set_intent_disarm_down"
+#define COMSIG_KB_HUMAN_SET_INTENT_GRAB_DOWN "keybinding_human_set_intent_grab_down"
+#define COMSIG_KB_HUMAN_SET_INTENT_HARM_DOWN "keybinding_human_set_intent_harm_down"

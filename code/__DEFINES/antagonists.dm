@@ -113,6 +113,7 @@
 #define CONSTRUCT_JUGGERNAUT "Juggernaut"
 #define CONSTRUCT_WRAITH "Wraith"
 #define CONSTRUCT_ARTIFICER "Artificer"
+#define CONSTRUCT_HARVESTER "Harvester"
 
 /// The Classic Wizard wizard loadout.
 #define WIZARD_LOADOUT_CLASSIC "loadout_classic"
@@ -312,6 +313,11 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 /// Stock keys for items that share inventory stock
 #define UPLINK_SHARED_STOCK_KITS "uplink_shared_stock_kits"
 #define UPLINK_SHARED_STOCK_SURPLUS "uplink_shared_stock_surplus"
+
+/// Does this item provide illegal tech?
+#define SYNDIE_ILLEGAL_TECH (1 << 0)
+/// Does this item go off when scanned by a contraband scanner?
+#define SYNDIE_TRIPS_CONTRABAND (1 << 1)
 
 // Used for traitor objectives
 /// If the objective hasn't been taken yet

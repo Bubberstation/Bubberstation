@@ -3,7 +3,7 @@
 	desc = "Circumstances have rendered this protective suit into someone's second skin. Literally."
 	extended_desc = "Some great aspect of someone's past has permanently bound them to this device, for better or worse."
 
-	default_skin = "civilian"
+	default_skin = "standard"
 	armor_type = /datum/armor/mod_entombed
 	resistance_flags = FIRE_PROOF | ACID_PROOF // It is better to die for the Emperor than live for yourself.
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
@@ -48,7 +48,7 @@
 	theme = /datum/mod_theme/entombed
 	applied_cell = /obj/item/stock_parts/power_store/cell/high
 	applied_modules = list(
-		/obj/item/mod/module/storage
+		/obj/item/mod/module/storage/large_capacity
 	)
 
 /obj/item/mod/control/pre_equipped/entombed/canStrip(mob/who)

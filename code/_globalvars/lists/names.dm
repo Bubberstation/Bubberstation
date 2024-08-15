@@ -31,6 +31,7 @@ GLOBAL_LIST_INIT(guardian_first_names, world.file2list("strings/names/guardian_d
 GLOBAL_LIST_INIT(guardian_tech_surnames, world.file2list("strings/names/guardian_gamepieces.txt"))
 GLOBAL_LIST_INIT(guardian_fantasy_surnames, world.file2list("strings/names/guardian_tarot.txt"))
 GLOBAL_LIST_INIT(operative_aliases, world.file2list("strings/names/operative_alias.txt"))
+GLOBAL_LIST_INIT(voidwalker_names, world.file2list("strings/names/voidwalker.txt"))
 
 GLOBAL_LIST_INIT(verbs, world.file2list("strings/names/verbs.txt"))
 GLOBAL_LIST_INIT(ing_verbs, world.file2list("strings/names/ing_verbs.txt"))
@@ -44,3 +45,6 @@ GLOBAL_LIST_INIT(greek_alphabet, world.file2list("strings/greek_alphabet.txt"))
 GLOBAL_LIST_INIT(hive_names,  world.file2list("strings/names/hive_names.txt"))
 //loaded on startup because of "
 //would include in rsc if ' was used
+//splurt names
+GLOBAL_LIST_INIT(arachnid_first, world.file2list("strings/names/arachnid_first.txt"))
+GLOBAL_LIST_INIT(arachnid_last, world.file2list("strings/names/arachnid_last.txt"))
