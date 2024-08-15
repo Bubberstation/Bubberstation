@@ -12,3 +12,11 @@
 	desc = "A set of five armored henchmen outfits! Each set comes with a cap, coat, uniform, gloves, shoes, and a switchblade!"
 	item = /obj/item/storage/backpack/duffelbag/henchmen_traitor_outfits
 	cost = 4
+
+/datum/uplink_item/bundles_tc/ninja
+	name = "Spider Clan Starter Kit"
+	desc = "A box that contains all you need raise your own spider clan (within yourself).\
+	Does not contain actual spiders."
+	item = /obj/item/antag_granter/ninja
+	cost = 20
+	purchasable_from = UPLINK_TRAITORS

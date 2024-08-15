@@ -46,3 +46,17 @@
 	)
 	generate_items_inside(items_inside,src)
 
+
+
+/obj/item/antag_granter/ninja
+	name = "spider serum"
+	desc = "A needle that's contents look like liquid wax. Warning, don't breathe this."
+	icon_state = "changeling_injector"
+	antag_datum = /datum/antagonist/ninja
+	user_message = "As you inject the substance into yourself, you feel the overwhelming sensation of speed."
+
+/obj/item/antag_granter/ninja/attack_self(mob/user, modifiers)
+
+	var/mob/living/carbon/ninja = user
+	ninja.drop_everything(FALSE, TRUE, FALSE)
+	. = ..()
