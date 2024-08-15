@@ -1,5 +1,5 @@
 #define REVENANT_DEFILE_MIN_DAMAGE 30
-#define REVENANT_DEFILE_MAX_DAMAGE 50
+#define REVENANT_DEFILE_MAX_DAMAGE 200 // BUBBER EDIT
 
 //Transmit: the revemant's only direct way to communicate. Sends a single message silently to a single mob
 /datum/action/cooldown/spell/list_target/telepathy/revenant

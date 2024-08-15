@@ -142,6 +142,6 @@
 	if(target.stat != DEAD)
 		target.investigate_log("has died from revenant harvest.", INVESTIGATE_DEATHS)
 	target.death(FALSE)
-
+	essence_regen_amount = initial(essence_regen_amount) // BUBBER EDIT
 	qdel(draining_beam)
 	return TRUE

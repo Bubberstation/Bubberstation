@@ -16,7 +16,7 @@
 
 /obj/item/ectoplasm/revenant/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(try_reform)), 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(try_reform)), 15 SECONDS) // BUBBER EDIT
 
 /obj/item/ectoplasm/revenant/Destroy()
 	if(!QDELETED(revenant))
@@ -31,14 +31,16 @@
 		span_notice("You scatter [src] across the area. The particles slowly fade away."),
 	)
 	user.dropItemToGround(src)
-	qdel(src)
+//	qdel(src) // BUBBER EDIT
+	become_defeated() // BUBBER EDIT
 
 /obj/item/ectoplasm/revenant/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(inert)
 		return
 	visible_message(span_notice("[src] breaks into particles upon impact, which fade away to nothingness."))
-	qdel(src)
+//	qdel(src) // BUBBER EDIT
+	become_defeated() // BUBBER EDIT
 
 /obj/item/ectoplasm/revenant/examine(mob/user)
 	. = ..()
@@ -49,7 +51,8 @@
 
 /obj/item/ectoplasm/revenant/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is inhaling [src]! It looks like [user.p_theyre()] trying to visit the shadow realm!"))
-	qdel(src)
+//	qdel(src) // BUBBER EDIT
+	become_defeated() // BUBBER EDIT
 	return OXYLOSS
 
 /obj/item/ectoplasm/revenant/proc/try_reform()
