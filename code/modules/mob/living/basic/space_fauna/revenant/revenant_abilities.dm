@@ -1,6 +1,3 @@
-#define REVENANT_DEFILE_MIN_DAMAGE 30
-#define REVENANT_DEFILE_MAX_DAMAGE 200 // BUBBER EDIT
-
 //Transmit: the revemant's only direct way to communicate. Sends a single message silently to a single mob
 /datum/action/cooldown/spell/list_target/telepathy/revenant
 	name = "Revenant Transmit"
@@ -180,8 +177,7 @@
 	for(var/obj/machinery/dna_scannernew/dna in victim)
 		dna.open_machine()
 	for(var/obj/structure/window/window in victim)
-		if(window.get_integrity() > REVENANT_DEFILE_MAX_DAMAGE)
-			window.take_damage(rand(REVENANT_DEFILE_MIN_DAMAGE, REVENANT_DEFILE_MAX_DAMAGE))
+		window.take_damage(rand(30, 80)) // BUBBER EDIT - RESTORE TO TG
 		if(window.fulltile)
 			new /obj/effect/temp_visual/revenant/cracks(window.loc)
 	for(var/obj/machinery/light/light in victim)
@@ -335,6 +331,3 @@
 		spawn_message = span_revenwarning("[victim] begins to float and twirl into the air as it glows a ghastly purple!"), \
 		despawn_message = span_revenwarning("[victim] falls back to the ground, stationary once more."), \
 	)
-
-#undef REVENANT_DEFILE_MIN_DAMAGE
-#undef REVENANT_DEFILE_MAX_DAMAGE
