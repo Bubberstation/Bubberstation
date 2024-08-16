@@ -18,5 +18,7 @@
 	desc = "A box that contains all you need raise your own spider clan (within yourself).\
 	Does not contain actual spiders."
 	item = /obj/item/antag_granter/ninja
-	cost = 20
+	cost = 25
 	purchasable_from = UPLINK_TRAITORS
+	limited_stock = 1
+	progression_minimum = 30 MINUTES
