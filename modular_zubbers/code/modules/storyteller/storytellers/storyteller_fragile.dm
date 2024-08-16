@@ -32,3 +32,5 @@
 		TAG_TEAM_ANTAG = 0.5,
 		TAG_OUTSIDER_ANTAG = 0.25
 	)
+
+	antag_divisor = 8
