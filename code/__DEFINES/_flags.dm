@@ -54,6 +54,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Flag as an optimization, don't make this a trait without profiling
 /// Yes I know this is a stupid flag, no you can't take him from me
 #define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<17)
+/// This atom always returns its turf in get_turf_pixel instead of the turf from its offsets
+#define IGNORE_TURF_PIXEL_OFFSET_1 (1<<18)
 
 //BUBBER EDIT START - Flags
 //Does item send log notices to admin log when consumed by supermatter?
@@ -137,6 +139,10 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define QUIET_LOGS (1<<15)
 /// This area does not allow virtual entities to enter.
 #define VIRTUAL_SAFE_AREA (1<<16)
+/// This area does not allow the Binary channel
+#define BINARY_JAMMING (1<<17)
+/// This area prevents Bag of Holding rifts from being opened.
+#define NO_BOH (1<<18)
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask

@@ -15,6 +15,7 @@
 	new /obj/structure/closet/crate/secure/bitrunning/encrypted(chosen_turf)
 	return TRUE
 
+
 /// Attempts to spawn a lootbox
 /obj/machinery/quantum_server/proc/attempt_spawn_curiosity(list/possible_turfs)
 	if(!length(possible_turfs)) // Out of turfs to place a curiosity
@@ -35,9 +36,10 @@
 	new /obj/item/storage/lockbox/bitrunning/encrypted(chosen_turf)
 	return chosen_turf
 
+
 /// Generates a new avatar for the bitrunner.
-/obj/machinery/quantum_server/proc/generate_avatar(obj/structure/hololadder/wayout, datum/outfit/netsuit, datum/preferences/prefs, include_loadout = FALSE) // BUBBER EDIT - Prefs argument
-	var/mob/living/carbon/human/avatar = new(wayout.loc)
+/obj/machinery/quantum_server/proc/generate_avatar(turf/destination, datum/outfit/netsuit, datum/preferences/prefs, load_loadout = FALSE) // BUBBER EDIT - Prefs and loadout argument
+	var/mob/living/carbon/human/avatar = new(destination)
 
 	// BUBBER EDIT BEGIN - PREFS!
 	if(!isnull(prefs))
@@ -66,8 +68,9 @@
 	if(istype(hat))
 		hat.set_armor(/datum/armor/none)
 
-	for(var/obj/thing in avatar.held_items)
-		qdel(thing)
+	if(!generated_domain.forced_outfit)
+		for(var/obj/thing in avatar.held_items)
+			qdel(thing)
 
 	var/obj/item/storage/backpack/bag = avatar.back
 	if(istype(bag))
@@ -79,8 +82,9 @@
 			new /obj/item/flashlight,
 		)
 
-	if(include_loadout)
+	if(load_loadout)
 		avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs) // BUBBER EDIT - LOADOUTS
+
 	var/obj/item/card/id/outfit_id = avatar.wear_id
 	if(outfit_id)
 		outfit_id.registered_account = new()
@@ -95,32 +99,9 @@
 		network = BITRUNNER_CAMERA_NET, \
 		emp_proof = TRUE, \
 	)
+
 	return avatar
 
-/// Generates a new hololadder for the bitrunner. Effectively a respawn attempt.
-/obj/machinery/quantum_server/proc/generate_hololadder()
-	if(!length(exit_turfs))
-		return
-
-	if(retries_spent >= length(exit_turfs))
-		return
-
-	var/turf/destination
-	for(var/turf/dest_turf in exit_turfs)
-		if(!locate(/obj/structure/hololadder) in dest_turf)
-			destination = dest_turf
-			break
-
-	if(isnull(destination))
-		return
-
-	var/obj/structure/hololadder/wayout = new(destination, src)
-	if(isnull(wayout))
-		return
-
-	retries_spent += 1
-
-	return wayout
 
 /// Loads in any mob segments of the map
 /obj/machinery/quantum_server/proc/load_mob_segments()
@@ -148,6 +129,7 @@
 		qdel(landmark)
 
 	return TRUE
+
 
 /// Scans over neo's contents for bitrunning tech disks. Loads the items or abilities onto the avatar.
 /obj/machinery/quantum_server/proc/stock_gear(mob/living/carbon/human/avatar, mob/living/carbon/human/neo, datum/lazy_template/virtual_domain/generated_domain)

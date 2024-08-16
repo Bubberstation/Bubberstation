@@ -180,6 +180,14 @@
 	if(roundstart_experience)
 		for(var/i in roundstart_experience)
 			spawned_human.mind.adjust_experience(i, roundstart_experience[i], TRUE)
+	// BUBBER EDIT START - Intern jobs
+	var/obj/item/card/id/id_card = spawned.get_idcard()
+	if(id_card && istype(id_card))
+		id_card.set_intern_status(player_joins_as_intern(player_client))
+		var/obj/item/modular_computer/pda/pda = spawned.get_item_by_slot(ITEM_SLOT_BELT)
+		if(pda && istype(pda))
+			pda.imprint_id(job_name = id_card.get_job_title())
+	// BUBBER EDIT END
 
 /// Return the outfit to use
 /datum/job/proc/get_outfit(consistent)
@@ -257,6 +265,11 @@
 
 	//Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
 	if(!SSdbcore.Connect())
+		return 0
+
+	// If they have been exempted from date availability checks, we assume they are old enough for all jobs.
+	// This is only added whenever an admin manually ticks the box for this player.
+	if(player.prefs?.db_flags & DB_FLAG_EXEMPT)
 		return 0
 
 	// As of the time of writing this comment, verifying database connection isn't "solved". Sometimes rust-g will report a
@@ -588,11 +601,6 @@
 				player_client.prefs.read_preference(/datum/preference/choiced/species),
 			)
 	dna.update_dna_identity()
-	// BUBBER EDIT START
-	if(get_taur_mode() == STYLE_TAUR_SNAKE)
-		RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 0.6, -6)
-		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SNAKE, 15, -6)
-	// BUBBER EDIT END
 
 	updateappearance()
 

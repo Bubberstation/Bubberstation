@@ -4,6 +4,7 @@
 
 	base_antags = 1
 	maximum_antags = 1
+	maximum_antags_global = 1
 
 	min_players = 20
 
@@ -16,7 +17,7 @@
 /datum/round_event_control/antagonist/solo/malf/roundstart
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 2
+	weight = 10
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()

@@ -61,7 +61,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	allowed = list(
 		/obj/item/assembly/flash/handheld,
-		/obj/item/clothing/mask/cigarette,
+		/obj/item/cigarette,
 		/obj/item/disk,
 		/obj/item/lighter,
 		/obj/item/melee,
@@ -234,7 +234,7 @@
 
 /obj/item/clothing/suit/jacket/quartermaster
 	name = "quartermaster's overcoat"
-	desc = "A luxury, brown double-breasted overcoat made from kangaroo skin. It's gold cuffs are linked and styled on the credits symbol. It makes you feel more important than you probably are."
+	desc = "A luxury, brown double-breasted overcoat made from kangaroo skin. Its gold cuffs are linked and styled on the credits symbol. It makes you feel more important than you probably are."
 	icon_state = "qm_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS

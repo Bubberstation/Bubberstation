@@ -13,7 +13,8 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/clown_enjoyer, /datum/quirk/item_quirk/mime_fan),
 	list(/datum/quirk/bad_touch, /datum/quirk/friendly),
 	list(/datum/quirk/extrovert, /datum/quirk/introvert),
-	list(/datum/quirk/prosthetic_limb, /datum/quirk/quadruple_amputee, /datum/quirk/transhumanist, /datum/quirk/body_purist),
+	list(/datum/quirk/prosthetic_limb, /datum/quirk/quadruple_amputee, /datum/quirk/body_purist),
+	list(/datum/quirk/transhumanist, /datum/quirk/body_purist),
 	list(/datum/quirk/prosthetic_organ, /datum/quirk/tin_man, /datum/quirk/body_purist),
 	list(/datum/quirk/quadruple_amputee, /datum/quirk/paraplegic, /datum/quirk/hemiplegic),
 	//list(/datum/quirk/quadruple_amputee, /datum/quirk/frail), // SKYRAT EDIT REMOVAL- Since we have synth wounds now, frail has a large downside for prosthetics and such
@@ -36,6 +37,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/light_drinker, /datum/quirk/drunkhealing),
 	list(/datum/quirk/oversized, /datum/quirk/freerunning),
 	list(/datum/quirk/oversized, /datum/quirk/item_quirk/settler),
+	list(/datum/quirk/echolocation, /datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted, /datum/quirk/item_quirk/deafness),
 	//SKYRAT EDIT ADDITION END
 	//BUBBER EDIT ADDITION BEGIN
 	list(/datum/quirk/featherweight, /datum/quirk/oversized),

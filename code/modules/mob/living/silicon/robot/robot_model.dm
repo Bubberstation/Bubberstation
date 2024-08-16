@@ -45,25 +45,17 @@
 	var/allow_riding = TRUE
 	///Whether the borg can stuff itself into disposals
 	var/canDispose = FALSE
-	///The y offset of  the hat put on
-	var/hat_offset = -3
+	///The pixel offset of the hat. List of "north" "south" "east" "west" x, y offsets
+	var/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
 	///The x offsets of a person riding the borg
 	var/list/ride_offset_x = list("north" = 0, "south" = 0, "east" = -6, "west" = 6)
 	///The y offsets of a person riding the borg
 	var/list/ride_offset_y = list("north" = 4, "south" = 4, "east" = 3, "west" = 3)
 	///List of skins the borg can be reskinned to, optional
 	var/list/borg_skins
-	///Omnitoolbox, holder of certain borg tools. Not all models have one
-	var/obj/item/cyborg_omnitoolbox/toolbox
-	///Path to toolbox, if a model gets one
-	var/toolbox_path
 
 /obj/item/robot_model/Initialize(mapload)
 	. = ..()
-
-	if(toolbox_path)
-		toolbox = new toolbox_path(src)
-
 	for(var/path in basic_modules)
 		var/obj/item/new_module = new path(src)
 		basic_modules += new_module
@@ -72,6 +64,9 @@
 		var/obj/item/new_module = new path(src)
 		emag_modules += new_module
 		emag_modules -= path
+
+	if(check_holidays(ICE_CREAM_DAY) && !(locate(/obj/item/borg/lollipop) in basic_modules))
+		basic_modules += new /obj/item/borg/lollipop/ice_cream(src)
 
 /obj/item/robot_model/Destroy()
 	basic_modules.Cut()
@@ -243,6 +238,7 @@
 	if(!new_model.be_transformed_to(src, forced))
 		qdel(new_model)
 		return
+	cyborg.drop_all_held_items()
 	cyborg.model = new_model
 	cyborg.update_module_innate()
 	new_model.rebuild_modules()
@@ -262,6 +258,7 @@
 	new_model.update_quadruped()
 	new_model.update_lightweight()
 	new_model.update_robot_rest()
+	new_model.update_footsteps()
 	//BUBBER EDIT ADDTION END
 
 	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
@@ -311,6 +308,8 @@
 		//SKYRAT EDIT ADDITION
 		if(!isnull(details[SKIN_FEATURES]))
 			model_features += details[SKIN_FEATURES]
+		if (!isnull(details[SKIN_HAT_REST_OFFSET]))
+			rest_hat_offset = details[SKIN_HAT_REST_OFFSET]
 		//SKYRAT EDIT END
 	for(var/i in old_model.added_modules)
 		added_modules += i
@@ -395,7 +394,7 @@
 	)
 	model_select_icon = "service"
 	cyborg_base_icon = "clown"
-	hat_offset = -2
+	hat_offset = list("north" = list(0, -2), "south" = list(0, -2), "east" = list(4, -2), "west" = list(-4, -2))
 
 /obj/item/robot_model/clown/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
 	. = ..()
@@ -441,8 +440,7 @@
 	cyborg_base_icon = "engineer"
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
-	hat_offset = -4
-	toolbox_path = /obj/item/cyborg_omnitoolbox/engineering
+	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
 
 /obj/item/robot_model/janitor
 	name = "Janitor"
@@ -469,7 +467,7 @@
 	)
 	cyborg_base_icon = "janitor"
 	model_select_icon = "janitor"
-	hat_offset = -5
+	hat_offset = list("north" = list(0, -5), "south" = list(0, -5), "east" = list(4, -5), "west" = list(-4, -5))
 	/// Weakref to the wash toggle action we own
 	var/datum/weakref/wash_toggle_ref
 
@@ -723,7 +721,6 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/borg/cyborg_omnitool/medical,
-		/obj/item/surgical_drapes/cyborg,
 		/obj/item/blood_filter,
 		/obj/item/extinguisher/mini,
 		/obj/item/emergency_bed/silicon,
@@ -740,11 +737,9 @@
 	cyborg_base_icon = "medical"
 	model_select_icon = "medical"
 	model_traits = list(TRAIT_PUSHIMMUNE)
-	hat_offset = 3
-	toolbox_path = /obj/item/cyborg_omnitoolbox/medical
 	borg_skins = list(
-		"Machinified Doctor" = list(SKIN_ICON_STATE = "medical"),
-		"Qualified Doctor" = list(SKIN_ICON_STATE = "qualified_doctor"),
+		"Machinified Doctor" = list(SKIN_ICON_STATE = "medical", SKIN_HAT_OFFSET = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))),
+		"Qualified Doctor" = list(SKIN_ICON_STATE = "qualified_doctor", SKIN_HAT_OFFSET = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(1, 3), "west" = list(-1, 3))),
 	)
 
 /obj/item/robot_model/miner
@@ -771,10 +766,10 @@
 	)
 	cyborg_base_icon = "miner"
 	model_select_icon = "miner"
-	hat_offset = 0
+	hat_offset = list("north" = list(0, 0), "south" = list(0, 0), "east" = list(0, 0), "west" = list(0, 0))
 	borg_skins = list(
 		"Asteroid Miner" = list(SKIN_ICON_STATE = "minerOLD"),
-		"Spider Miner" = list(SKIN_ICON_STATE = "spidermin"),
+		"Spider Miner" = list(SKIN_ICON_STATE = "spidermin", SKIN_HAT_OFFSET = list("north" = list(0, -2), "south" = list(0, -2), "east" = list(-2, -2), "west" = list(2, -2))),
 		"Lavaland Miner" = list(SKIN_ICON_STATE = "miner"),
 	)
 
@@ -796,7 +791,7 @@
 	cyborg_base_icon = "peace"
 	model_select_icon = "standard"
 	model_traits = list(TRAIT_PUSHIMMUNE)
-	hat_offset = -2
+	hat_offset = list("north" = list(0, -2), "south" = list(0, -2), "east" = list(1, -2), "west" = list(-1, -2))
 
 /obj/item/robot_model/peacekeeper/do_transform_animation()
 	..()
@@ -820,7 +815,7 @@
 	cyborg_base_icon = "sec"
 	model_select_icon = "security"
 	model_traits = list(TRAIT_PUSHIMMUNE)
-	hat_offset = 3
+	hat_offset = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(1, 3), "west" = list(-1, 3))
 
 /obj/item/robot_model/security/do_transform_animation()
 	..()
@@ -890,11 +885,11 @@
 	cyborg_base_icon = "service_m" // display as butlerborg for radial model selection
 	model_select_icon = "service"
 	special_light_key = "service"
-	hat_offset = 0
+	hat_offset = list("north" = list(0, 0), "south" = list(0, 0), "east" = list(0, 0), "west" = list(0, 0))
 	borg_skins = list(
 		"Bro" = list(SKIN_ICON_STATE = "brobot"),
 		"Butler" = list(SKIN_ICON_STATE = "service_m"),
-		"Kent" = list(SKIN_ICON_STATE = "kent", SKIN_LIGHT_KEY = "medical", SKIN_HAT_OFFSET = 3),
+		"Kent" = list(SKIN_ICON_STATE = "kent", SKIN_LIGHT_KEY = "medical", SKIN_HAT_OFFSET = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))),
 		"Tophat" = list(SKIN_ICON_STATE = "tophat", SKIN_LIGHT_KEY = NONE, SKIN_HAT_OFFSET = INFINITY),
 		"Waitress" = list(SKIN_ICON_STATE = "service_f"),
 	)
@@ -923,7 +918,7 @@
 	cyborg_base_icon = "synd_sec"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE)
-	hat_offset = 3
+	hat_offset = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(4, 3), "west" = list(-4, 3))
 
 /obj/item/robot_model/syndicate/rebuild_modules()
 	..()
@@ -944,7 +939,6 @@
 		/obj/item/healthanalyzer,
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/borg/cyborg_omnitool/medical,
-		/obj/item/surgical_drapes/cyborg,
 		/obj/item/blood_filter,
 		/obj/item/melee/energy/sword/cyborg/saw,
 		/obj/item/emergency_bed/silicon,
@@ -959,8 +953,7 @@
 	cyborg_base_icon = "synd_medical"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE)
-	hat_offset = 3
-	toolbox_path = /obj/item/cyborg_omnitoolbox/medical
+	hat_offset = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))
 
 /obj/item/robot_model/saboteur
 	name = "Syndicate Saboteur"
@@ -989,8 +982,7 @@
 	cyborg_base_icon = "synd_engi"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY)
-	hat_offset = -4
-	toolbox_path = /obj/item/cyborg_omnitoolbox/engineering
+	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
 	canDispose = TRUE
 
 /obj/item/robot_model/syndicate/kiltborg
@@ -1001,7 +993,7 @@
 	)
 	model_select_icon = "kilt"
 	cyborg_base_icon = "kilt"
-	hat_offset = -2
+	hat_offset = list("north" = list(0, -2), "south" = list(0, -2), "east" = list(4, -2), "west" = list(-4, -2))
 	breakable_modules = FALSE
 	locked_transform = FALSE //GO GO QUICKLY AND SLAUGHTER THEM ALL
 
