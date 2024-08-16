@@ -1,4 +1,3 @@
-/*
 /datum/storyteller/fragile
 	name = "The Fragile"
 	desc = "The Fragile will limit destructive and combat-focused events, and you'll rarely see midround antagonist roles that usually cause it."
@@ -33,4 +32,3 @@
 		TAG_TEAM_ANTAG = 0.5,
 		TAG_OUTSIDER_ANTAG = 0.25
 	)
-*/
