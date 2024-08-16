@@ -38,15 +38,15 @@
 	var/mob/living/silicon/robot/cyborg = robot || loc
 	if (!istype(robot))
 		return
-	if (model_features && ((TRAIT_R_SQUADRUPED in model_features) || (TRAIT_R_TALL in model_features) || (TRAIT_R_WIDE in model_features)))
-		if (model_features && (TRAIT_R_SQUADRUPED in model_features))
+	if (model_features)
+		if (TRAIT_R_SQUADRUPED in model_features)
 			cyborg.AddElement(/datum/element/footstep, FOOTSTEP_ROBOT_SMALL, 6, -6, sound_vary = TRUE)
-		if (model_features && (TRAIT_R_TALL in model_features))
+		else if (TRAIT_R_TALL in model_features)
 			cyborg.AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)
-	else
-		if (model_features && !(TRAIT_R_SQUADRUPED in model_features))
+	else if(model_features)
+		if (!(TRAIT_R_SQUADRUPED in model_features))
 			cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_ROBOT_SMALL, 6, -6, sound_vary = TRUE)
-		if (model_features && !(TRAIT_R_TALL in model_features))
+		if (!(TRAIT_R_TALL in model_features))
 			cyborg.RemoveElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 2, -6, sound_vary = TRUE)
 
 
