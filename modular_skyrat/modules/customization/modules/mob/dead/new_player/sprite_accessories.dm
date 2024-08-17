@@ -127,7 +127,7 @@
 /datum/sprite_accessory/pod_hair
 	icon = 'modular_skyrat/master_files/icons/mob/species/podperson_hair.dmi'
 	key = "pod_hair"
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 	organ_type = /obj/item/organ/external/pod_hair
 
 /datum/sprite_accessory/pod_hair/none

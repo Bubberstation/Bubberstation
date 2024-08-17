@@ -124,71 +124,71 @@
 	name = "Pod Male"
 	icon_state = "pod_hair_m"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/podfemale
 	name = "Pod Female"
 	icon_state = "pod_hair_f"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/ivy
 	name = "Ivy"
 	icon_state = "pod_hair_ivy"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/cabbage
 	name = "Cabbage"
 	icon_state = "pod_hair_cabbage"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/spinach
 	name = "Spinach"
 	icon_state = "pod_hair_spinach"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/prayer
 	name = "Prayer"
 	icon_state = "pod_hair_prayer"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/vine
 	name = "Vine"
 	icon_state = "pod_hair_vine"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/shrub
 	name = "Shrub"
 	icon_state = "pod_hair_shrub"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/rose
 	name = "Rose"
 	icon_state = "pod_hair_rose"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/orchid
 	name = "Orchid"
 	icon_state = "pod_hair_orchid"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/fig
 	name = "Fig"
 	icon_state = "pod_hair_fig"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
 /datum/sprite_accessory/hair/hibiscus
 	name = "Hibiscus"
 	icon_state = "pod_hair_hibiscus"
 	icon = 'modular_zubbers/icons/mob/species/human/humanface.dmi'
-	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK)
+	recommended_species = list(SPECIES_PODPERSON, SPECIES_PODPERSON_WEAK, SPECIES_XIARN)
 
