@@ -46,7 +46,7 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_desc_extended()
 	. = ..()
 	if(level_current >= DOMINATE_VASSALIZE_LEVEL)
-		. += "If your target is in critical condition or dead, they will instead be turned into a temporary Vassal. This will cost [TEMP_VASSALIZE_COST] blood."
+		. += "If your target is in critical condition or dead, they will instead be turned into a temporary Vassal. This will cost [TEMP_VASSALIZE_COST] blood. Pre-existing dead vassals will simply be revived."
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/get_power_explanation_extended()
 	. = list()
@@ -104,7 +104,10 @@
 		if(user.Adjacent(target))
 			attempt_vassalize(target, user)
 		else
-			owner.balloon_alert(owner, "too far to vassalize!")
+			if(IS_VASSAL(target_mob))
+				owner.balloon_alert(owner, "too far to revive!")
+			else
+				owner.balloon_alert(owner, "too far to vassalize!")
 		return TRUE
 	return ..()
 
@@ -113,7 +116,10 @@
 	var/datum/antagonist/vassal/vassal = IS_VASSAL(target)
 	if(!victim_has_blood(target))
 		return FALSE
-	owner.balloon_alert(owner, "attempting to vassalize.")
+	if(vassal)
+		owner.balloon_alert(owner, "attempting to revive.")
+	else
+		owner.balloon_alert(owner, "attempting to vassalize.")
 	if(!do_after(user, 6 SECONDS, target, NONE, TRUE))
 		return FALSE
 	if(!victim_has_blood(target))
@@ -148,8 +154,6 @@
 	log_combat(owner, target, "tremere mindslaved", addition="Revived and converted [target] into a temporary tremere vassal for [DisplayTimeText(living_time)].")
 	if(level_current <= DOMINATE_NON_MUTE_VASSALIZE_LEVEL)
 		target.add_traits(list(TRAIT_MUTE, TRAIT_DEAF), DOMINATE_TRAIT)
-	if(!living_time)
-		return
 	user.balloon_alert(target, "only [DisplayTimeText(living_time)] left to live!")
 	to_chat(target, span_warning("You will only live for [DisplayTimeText(living_time)]! Obey your master and go out in a blaze of glory!"))
 	var/timer_id = addtimer(CALLBACK(src, PROC_REF(end_possession), target), living_time, TIMER_STOPPABLE)
@@ -162,6 +166,9 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/victim_has_blood(mob/living/target)
+	// you can always revive non-temporary vassals
+	if(IS_VASSAL(target))
+		return TRUE
 	if(target.blood_volume < BLOOD_VOLUME_BAD)
 		owner.balloon_alert(owner, "not enough blood in victim!")
 		return FALSE
@@ -174,10 +181,11 @@
 			if(!vassal?.owner?.current)
 				continue
 			show_to += vassal.owner.current
-	new /atom/movable/screen/text/screen_timer/attached(null, show_to, timer_id, "Dies in ${timer}", 0, 16, null, null, target)
+	new /atom/movable/screen/text/screen_timer/attached(null, show_to, timer_id, "Dies in ${timer}", null, null, target)
+	new /atom/movable/screen/text/screen_timer(null, target, timer_id, "You die in ${timer}")
 
-/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/on_antag_datum_removal(datum/antagonist/vassal, mob/living/thrall)
-	end_possession(thrall)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/on_antag_datum_removal(datum/antagonist/vassal, mob/living/thrall, timer_id)
+	end_possession(thrall, timer_id)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/end_possession(mob/living/user, timer_id)
 	if(timer_id)
@@ -200,7 +208,7 @@
 	user.death()
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_vassal_duration()
-	return (1 MINUTES) * level_current
+	return (1 MINUTES) * min(level_current, 1)
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/proc/get_vassalize_cooldown()
 	return cooldown_time * 3

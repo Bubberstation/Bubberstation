@@ -1,2 +1,2 @@
 
-#define span_center(str) ("<span class='center'>" + str + "</span>")
+#define span_center(str) ("<span class='center'>[str]</span>")
