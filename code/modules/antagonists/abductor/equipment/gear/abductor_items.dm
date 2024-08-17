@@ -76,7 +76,8 @@
 	if(marked == target)
 		to_chat(user, span_warning("This specimen is already marked!"))
 		return
-	if(isabductor(target) || iscow(target))
+	var/mob/target_mob = target // # BUBBER CHANGE START, abductor machinery checks for abductor training
+	if(ismob(target) && HAS_MIND_TRAIT(target_mob, TRAIT_ABDUCTOR_TRAINING) || iscow(target)) // # BUBBER END
 		marked_target_weakref = WEAKREF(target)
 		to_chat(user, span_notice("You mark [target] for future retrieval."))
 	else
@@ -228,7 +229,7 @@
 	fail_message = "<span class='abductor'>Firing error, please contact Command.</span>"
 
 /obj/item/firing_pin/abductor/pin_auth(mob/living/user)
-	. = isabductor(user)
+	. = HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING) // # BUBBER CHANGE, abductor machinery checks for abductor training
 
 /obj/item/gun/energy/alien
 	name = "alien pistol"

@@ -133,7 +133,7 @@
 	return can_interact(user)
 
 /obj/machinery/computer/camera_advanced/abductor/can_use(mob/user)
-	if(!isabductor(user))
+	if(user && !HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING)) // # BUBBER CHANGE, abductor machinery checks for abductor training
 		return FALSE
 	return ..()
 

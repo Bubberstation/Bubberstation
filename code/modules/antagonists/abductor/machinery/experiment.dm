@@ -24,7 +24,7 @@
 	return ..()
 
 /obj/machinery/abductor/experiment/mouse_drop_receive(mob/target, mob/user, params)
-	if(!ishuman(target) || isabductor(target))
+	if(!ishuman(target) || HAS_MIND_TRAIT(target, TRAIT_ABDUCTOR_TRAINING)) // # BUBBER CHANGE, abductor machinery checks for abductor training
 		return
 	close_machine(target)
 
@@ -34,7 +34,8 @@
 
 /obj/machinery/abductor/experiment/close_machine(mob/target, density_to_set = TRUE)
 	for(var/A in loc)
-		if(isabductor(A))
+		var/mob/mob_target = A // BUBBER CHANGE START, abductor machinery checks for abductor training
+		if(ismob(A) && HAS_MIND_TRAIT(mob_target, TRAIT_ABDUCTOR_TRAINING)) // # BUBBER END
 			return
 	if(state_open && !panel_open)
 		..(target)

@@ -72,7 +72,7 @@
 			TeleporterSend()
 
 /obj/machinery/abductor/console/ui_status(mob/user, datum/ui_state/state)
-	if(!isabductor(user) && !isobserver(user))
+	if(!HAS_MIND_TRAIT(user, TRAIT_ABDUCTOR_TRAINING) && !isobserver(user)) // # BUBBER CHANGE, abductor machinery checks for abductor training
 		return UI_CLOSE
 	return ..()
 
@@ -257,10 +257,10 @@
 	vest = V
 	return TRUE
 
-/obj/machinery/abductor/console/attackby(obj/O, mob/user, params)
-	if(istype(O, /obj/item/abductor/gizmo) && AddGizmo(O))
+/obj/machinery/abductor/console/base_item_interaction(mob/living/user, obj/item/tool, list/modifiers) // BUBBER CHANGE, attack_by no longer runs on item interact
+	if(istype(tool, /obj/item/abductor/gizmo) && AddGizmo(tool))
 		to_chat(user, span_notice("You link the tool to the console."))
-	else if(istype(O, /obj/item/clothing/suit/armor/abductor/vest) && AddVest(O))
+	else if(istype(tool, /obj/item/clothing/suit/armor/abductor/vest) && AddVest(tool))
 		to_chat(user, span_notice("You link the vest to the console."))
 	else
 		return ..()
