@@ -46,7 +46,7 @@
 
 /atom/movable/screen/text/screen_timer/process()
 	if(!timeleft(timer_id))
-		delete_self()
+		qdel(src)
 		return
 	update_maptext()
 
@@ -132,11 +132,6 @@
 /atom/movable/screen/text/screen_timer/proc/de_attach(mob/source)
 	SIGNAL_HANDLER
 	attach(source, FALSE)
-
-/// Mainly a signal handler so we can run qdel()
-/atom/movable/screen/text/screen_timer/proc/delete_self()
-	SIGNAL_HANDLER
-	qdel(src)
 
 /atom/movable/screen/text/screen_timer/Destroy()
 	. = ..()
