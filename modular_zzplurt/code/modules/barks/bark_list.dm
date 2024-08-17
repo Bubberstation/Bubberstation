@@ -22,7 +22,7 @@
 	minspeed = 7
 	maxspeed = 12
 
-datum/blooper/ahuh
+/datum/blooper/ahuh
 	name = "Ahuh"
 	id = "ahuh"
 	soundpath = 'modular_zzplurt/code/modules/barks/voice/kazooie/ahuh.ogg'
