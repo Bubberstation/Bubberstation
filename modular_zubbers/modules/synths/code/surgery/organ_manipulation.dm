@@ -47,9 +47,9 @@
 	)
 	num_opening_steps = 2
 	num_steps_until_closing = 4
-	close_surgery = /datum/surgery/robot/organ_manipulation/soft/close
+	close_surgery = /datum/surgery/robot/close_organ_manipulation/soft
 
-/datum/surgery/robot/organ_manipulation/soft/close
+/datum/surgery/robot/close_organ_manipulation/soft
 	name = "Close Surgery (Hardware Manipulation)"
 	steps = list(
 		/datum/surgery_step/reattach_plating,
@@ -77,9 +77,9 @@
 	)
 	num_opening_steps = 2
 	num_steps_until_closing = 3
-	close_surgery = /datum/surgery/robot/organ_manipulation/external/close
+	close_surgery = /datum/surgery/robot/close_organ_manipulation/external
 
-/datum/surgery/robot/organ_manipulation/external/close
+/datum/surgery/robot/close_organ_manipulation/external
 	name = "Close Surgery (Chassis Manipulation)"
 	steps = list(
 		/datum/surgery_step/reattach_plating,
