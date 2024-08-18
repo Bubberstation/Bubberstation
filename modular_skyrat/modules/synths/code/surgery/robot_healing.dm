@@ -161,20 +161,20 @@
 
 /***************************TYPES***************************/
 /datum/surgery/robot_healing/basic
-	name = "Repair robotic limbs (Basic)"
+	name = "Repair robotics (Basic)"
 	desc = "A surgical procedure that provides repairs and maintenance to robotic limbs. Is slightly more efficient when the patient is severely damaged."
 	healing_step_type = /datum/surgery_step/robot_heal/basic
 	replaced_by = /datum/surgery/robot_healing/upgraded
 
 /datum/surgery/robot_healing/upgraded
-	name = "Repair robotic limbs (Adv.)"
+	name = "Repair robotics (Adv.)"
 	desc = "A surgical procedure that provides highly effective repairs and maintenance to robotic limbs. Is somewhat more efficient when the patient is severely damaged."
 	healing_step_type = /datum/surgery_step/robot_heal/upgraded
 	replaced_by = /datum/surgery/robot_healing/experimental
 	requires_tech = TRUE
 
 /datum/surgery/robot_healing/experimental
-	name = "Repair robotic limbs (Exp.)"
+	name = "Repair robotics (Exp.)"
 	desc = "A surgical procedure that quickly provides highly effective repairs and maintenance to robotic limbs. Is moderately more efficient when the patient is severely damaged."
 	healing_step_type = /datum/surgery_step/robot_heal/experimental
 	replaced_by = null

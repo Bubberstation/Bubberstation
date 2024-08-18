@@ -12,12 +12,12 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/surgery/healing/robotic_healing_upgrade
-	name = "Repair robotic limbs upgrade: Advanced"
+	name = "Repair robotics upgrade: Advanced"
 	surgery = /datum/surgery/robot_healing/upgraded
 	id = "robotic_heal_surgery_upgrade"
 
 /datum/design/surgery/healing/robotic_healing_upgrade_2
-	name = "Repair robotic limbs upgrade: Experimental"
+	name = "Repair robotics upgrade: Experimental"
 	surgery = /datum/surgery/robot_healing/experimental
 	id = "robotic_heal_surgery_upgrade_2"
 
