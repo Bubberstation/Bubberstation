@@ -33,7 +33,7 @@
 	return ..()
 
 /datum/surgery_step/stomach_pump/mechanic
-	name = "pump bioprocessor (hand)"
+	name = "pump bioreactor (hand)"
 	accept_hand = TRUE
 	repeatable = TRUE
 	time = 20
