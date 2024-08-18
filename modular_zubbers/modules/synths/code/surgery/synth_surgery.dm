@@ -6,7 +6,7 @@
 
 //reattach plating
 /datum/surgery_step/reattach_plating
-	name = "reattach plating"
+	name = "reattach plating (crowbar)"
 	implements = list(
 		TOOL_CROWBAR = 100,
 		TOOL_HEMOSTAT = 10,
