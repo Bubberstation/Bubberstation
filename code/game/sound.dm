@@ -559,4 +559,15 @@
 				'sound/creatures/cat/cat_purr3.ogg',
 				'sound/creatures/cat/cat_purr4.ogg',
 			)
+		if(SFX_STONE_DROP)
+			soundin = pick(
+				'sound/items/stones/stone_drop1.ogg',
+				'sound/items/stones/stone_drop2.ogg',
+				'sound/items/stones/stone_drop3.ogg',
+			)
+		if(SFX_STONE_PICKUP)
+			soundin = pick(
+				'sound/items/stones/stone_pick_up1.ogg',
+				'sound/items/stones/stone_pick_up2.ogg',
+			)
 	return soundin

@@ -53,6 +53,17 @@
 	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
 	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
 
+/datum/surgery_step/pacify/mechanic
+	name = "delete aggression programming (multitool)"
+	implements = list(
+		TOOL_MULTITOOL = 100,
+		TOOL_HEMOSTAT = 35,
+		TOOL_SCREWDRIVER = 35,
+		/obj/item/pen = 15,
+	)
+	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
+
 /datum/surgery_step/pacify/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
 		user,
