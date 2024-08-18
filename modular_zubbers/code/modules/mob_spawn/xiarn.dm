@@ -9,7 +9,7 @@
 	mob_species = /datum/species/pod/xiarn
 	random_appearance = TRUE
 	quirks_enabled = TRUE
-	faction = ROLE_SYNDICATE
+	faction = list(ROLE_SYNDICATE)
 	restricted_species = list(/datum/species/pod/xiarn)
 	var/list/traits = list(TRAIT_PACIFISM, TRAIT_ABDUCTOR_TRAINING)
 
@@ -17,7 +17,6 @@
 	. = ..()
 	if(!new_spawn)
 		return
-	new_spawn.faction += (ROLE_SYNDICATE)
 	new_spawn.add_traits(traits, "xiarn_spawner")
 
 /obj/effect/mob_spawn/ghost_role/human/xiarn/scientist
