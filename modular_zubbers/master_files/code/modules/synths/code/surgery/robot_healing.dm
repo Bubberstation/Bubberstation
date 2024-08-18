@@ -1,6 +1,6 @@
 // Override of skyrat code
 
-/datum/surgery/robot_healing
+/datum/surgery/robot_healing // This doesn't need to be a /robot surgery because close is already an alternate step
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/robot_heal,
