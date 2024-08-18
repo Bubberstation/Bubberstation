@@ -91,7 +91,7 @@
 	RegisterSignal(src, COMSIG_MACHINERY_POWER_LOST, PROC_REF(on_power_loss))
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/door/firedoor/LateInitialize()
+/obj/machinery/door/firedoor/post_machine_initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_MERGER_ADDING, PROC_REF(merger_adding))
 	RegisterSignal(src, COMSIG_MERGER_REMOVING, PROC_REF(merger_removing))
@@ -230,7 +230,6 @@
 	var/list/shared_problems = list() // We only want to do this once, this is a nice way of pulling that off
 	for(var/obj/machinery/door/firedoor/firelock as anything in temp_group.members)
 		firelock.issue_turfs = shared_problems
-		/* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 		for(var/dir in GLOB.cardinals)
 			var/turf/checked_turf = get_step(get_turf(firelock), dir)
 			if(!checked_turf)
@@ -238,14 +237,13 @@
 			if(isclosedturf(checked_turf))
 				continue
 			process_results(checked_turf)
-		BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 /obj/machinery/door/firedoor/proc/register_adjacent_turfs()
 	if(!loc)
 		return
 
 	var/turf/our_turf = get_turf(loc)
-	//RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results)) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
+	RegisterSignal(our_turf, COMSIG_TURF_CALCULATED_ADJACENT_ATMOS, PROC_REF(process_results))
 	for(var/dir in GLOB.cardinals)
 		var/turf/checked_turf = get_step(our_turf, dir)
 
@@ -253,10 +251,10 @@
 			continue
 
 		RegisterSignal(checked_turf, COMSIG_TURF_CHANGE, PROC_REF(adjacent_change))
-		//RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results)) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
+		RegisterSignal(checked_turf, COMSIG_TURF_EXPOSE, PROC_REF(process_results))
 		if(!isopenturf(checked_turf))
 			continue
-		//process_results(checked_turf) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
+		process_results(checked_turf)
 
 /obj/machinery/door/firedoor/proc/unregister_adjacent_turfs(atom/old_loc)
 	if(!loc)
@@ -271,22 +269,24 @@
 			continue
 
 		UnregisterSignal(checked_turf, COMSIG_TURF_CHANGE)
-		// UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE) BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
+		UnregisterSignal(checked_turf, COMSIG_TURF_EXPOSE)
 
 // If a turf adjacent to us changes, recalc our affecting areas when it's done yeah?
 /obj/machinery/door/firedoor/proc/adjacent_change(turf/changed, path, list/new_baseturfs, flags, list/post_change_callbacks)
 	SIGNAL_HANDLER
 	post_change_callbacks += CALLBACK(src, PROC_REF(CalculateAffectingAreas))
-	// post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) // BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
+	post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
 
-/* BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS.
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
+	if(!environment)
+		stack_trace("We tried to check a gas_mixture that doesn't exist for its firetype, what are you DOING")
+		return
 
-	var/pressure = environment?.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
-	if(environment?.temperature >= BODYTEMP_HEAT_DAMAGE_LIMIT || pressure > WARNING_HIGH_PRESSURE) //SKYRAT EDIT CHANGE - BETTER LOCKS
+	var/pressure = environment.return_pressure() //SKYRAT EDIT ADDITION - Micro optimisation
+	if(environment.temperature >= BODYTEMP_HEAT_WARNING_2 || pressure > HAZARD_HIGH_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_HOT
-	if(environment?.temperature <= BODYTEMP_COLD_DAMAGE_LIMIT || pressure < WARNING_LOW_PRESSURE) //SKYRAT EDIT CHANGE - BETTER LOCKS
+	if(environment.temperature <= BODYTEMP_COLD_WARNING_2 || pressure < HAZARD_LOW_PRESSURE) //BUBBER EDIT CHANGE - FIRELOCKS
 		return FIRELOCK_ALARM_TYPE_COLD
 	return
 
@@ -315,7 +315,7 @@
 		alarm_type = null
 		if(!ignore_alarms)
 			start_deactivation_process()
-BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
+
 
 /**
  * Begins activation process of us and our neighbors.
@@ -432,6 +432,10 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 	ignore_alarms = FALSE
 	if(!alarm_type || active) // If we have no alarm type, or are already active, go away
 		return
+	// Do we even care about temperature?
+	for(var/area/place in affecting_areas)
+		if(!place.fire_detect) // If any area is set to disable detection
+			return
 	// Otherwise, reactivate ourselves
 	start_activation_process(alarm_type)
 
@@ -547,7 +551,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 	if(density)
 		being_held_open = TRUE
-		user.balloon_alert_to_viewers("holding [src] open", "holding [src] open")
+		user.balloon_alert_to_viewers("holding firelock open", "holding firelock open")
 		COOLDOWN_START(src, activation_cooldown, REACTIVATION_DELAY)
 		open()
 		if(QDELETED(user))
@@ -586,7 +590,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 	UnregisterSignal(user, COMSIG_LIVING_SET_BODY_POSITION)
 	UnregisterSignal(user, COMSIG_QDELETING)
 	if(user)
-		user.balloon_alert_to_viewers("released [src]", "released [src]")
+		user.balloon_alert_to_viewers("released firelock", "released firelock")
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	add_fingerprint(user)
@@ -606,22 +610,43 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 /obj/machinery/door/firedoor/attack_alien(mob/user, list/modifiers)
 	add_fingerprint(user)
 	if(welded)
-		to_chat(user, span_warning("[src] refuses to budge!"))
+		balloon_alert(user, "refuses to budge!")
 		return
 	open()
 	if(active)
 		addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
 
-/obj/machinery/door/firedoor/do_animate(animation)
-	switch(animation)
-		if("opening")
-			flick("[base_icon_state]_opening", src)
-		if("closing")
-			flick("[base_icon_state]_closing", src)
-
 /obj/machinery/door/firedoor/update_icon_state()
 	. = ..()
-	icon_state = "[base_icon_state]_[density ? "closed" : "open"]"
+	switch(animation)
+		if(DOOR_OPENING_ANIMATION)
+			icon_state = "[base_icon_state]_opening"
+		if(DOOR_CLOSING_ANIMATION)
+			icon_state = "[base_icon_state]_closing"
+		if(DOOR_DENY_ANIMATION)
+			icon_state = "[base_icon_state]_deny"
+		else
+			icon_state = "[base_icon_state]_[density ? "closed" : "open"]"
+
+/obj/machinery/door/firedoor/animation_length(animation)
+	switch(animation)
+		if(DOOR_OPENING_ANIMATION)
+			return 1.2 SECONDS
+		if(DOOR_CLOSING_ANIMATION)
+			return 1.2 SECONDS
+		if(DOOR_DENY_ANIMATION)
+			return 0.3 SECONDS
+
+/obj/machinery/door/firedoor/animation_segment_delay(animation)
+	switch(animation)
+		if(DOOR_OPENING_PASSABLE)
+			return 1.0 SECONDS
+		if(DOOR_OPENING_FINISHED)
+			return 1.2 SECONDS
+		if(DOOR_CLOSING_UNPASSABLE)
+			return 0.2 SECONDS
+		if(DOOR_CLOSING_FINISHED)
+			return 1.2 SECONDS
 
 /obj/machinery/door/firedoor/update_overlays()
 	. = ..()
@@ -760,7 +785,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"
-	icon = 'icons/obj/doors/Doorfire.dmi'  //SKYRAT EDIT - ICON OVERRIDEN IN AESTHETICS MODULE
+	icon = 'icons/obj/doors/Doorfire.dmi'  // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
@@ -775,7 +800,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 /obj/structure/firelock_frame
 	name = "firelock frame"
 	desc = "A partially completed firelock."
-	icon = 'icons/obj/doors/Doorfire.dmi' //SKYRAT EDIT - ICON OVERRIDEN IN AESTHETICS MODULE
+	icon = 'icons/obj/doors/Doorfire.dmi' // SKYRAT EDIT - ICON OVERRIDDEN IN AESTHETICS MODULE
 	icon_state = "frame1"
 	base_icon_state = "frame"
 	anchored = FALSE
@@ -889,7 +914,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 				return
 			if(istype(attacking_object, /obj/item/electroadaptive_pseudocircuit))
 				var/obj/item/electroadaptive_pseudocircuit/raspberrypi = attacking_object
-				if(!raspberrypi.adapt_circuit(user, DEFAULT_STEP_TIME * 0.5))
+				if(!raspberrypi.adapt_circuit(user, circuit_cost = DEFAULT_STEP_TIME * 0.0005 * STANDARD_CELL_CHARGE))
 					return
 				user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 				span_notice("You adapt a firelock circuit and slot it into the assembly."))

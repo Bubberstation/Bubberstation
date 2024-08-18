@@ -181,7 +181,7 @@
 	var/the_toy
 	for(var/i in 1 to num_contained)
 		if(prob(50))
-			the_toy = pick_weight(GLOB.arcade_prize_pool)
+			the_toy = pick_weight_recursive(GLOB.arcade_prize_pool) //BUBBERSTATION CHANGE: USES PICK_WEIGHT_RECURSIVE
 		else
 			the_toy = pick(subtypesof(/obj/item/toy/plush))
 		new the_toy(C)
@@ -250,8 +250,9 @@
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/costumes_toys/stickers/fill(obj/structure/closet/crate/crate)
-	for(var/i in 1 to rand(1,2))
+	for(var/i in 1 to rand(1, 2))
 		new /obj/item/storage/box/stickers(crate)
+
 	if(prob(30)) // a pair of googly eyes because funny
 		new /obj/item/storage/box/stickers/googly(crate)
 
@@ -265,5 +266,17 @@
 		/obj/item/clothing/glasses/blindfold,
 	)
 	crate_name = "corgi pinata kit"
+	crate_type = /obj/structure/closet/crate/wooden
+	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
+
+/datum/supply_pack/costumes_toys/balloons
+	name = "Long Balloons Kit"
+	desc = "This crate contains a box of long balloons, plus a skillchip for non-clowns to join the fun! Extra layer of safety so clowns at CentCom won't get to them."
+	cost = CARGO_CRATE_VALUE * 4
+	contains = list(
+		/obj/item/storage/box/balloons,
+		/obj/item/skillchip/job/clown,
+	)
+	crate_name = "long balloons kit"
 	crate_type = /obj/structure/closet/crate/wooden
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE

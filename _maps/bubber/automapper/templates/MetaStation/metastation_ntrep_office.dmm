@@ -24,11 +24,6 @@
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "f" = (
-/obj/machinery/button/door/directional/west{
-	id = "nt_rep_priv";
-	name = "Privacy Shutters Control";
-	pixel_y = 8
-	},
 /obj/structure/table/wood,
 /obj/item/table_clock{
 	pixel_y = 5
@@ -205,6 +200,11 @@
 	name = "Nanotrasen Consultant's Fax Machine"
 	},
 /obj/structure/table/wood,
+/obj/machinery/button/door/directional/west{
+	id = "nt_rep_priv";
+	name = "Privacy Shutters Control";
+	pixel_y = 8
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
@@ -236,6 +236,9 @@
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/siding/wood,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Q" = (
@@ -250,6 +253,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "S" = (
@@ -269,6 +273,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/siding/wood{
 	dir = 7
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/station/maintenance/port)

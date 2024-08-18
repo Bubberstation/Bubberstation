@@ -8,14 +8,6 @@
 /obj/structure/sign/warning/biohazard/directional/north,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"ah" = (
-/obj/machinery/door/window/survival_pod/left/directional/east,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 5
-	},
-/obj/item/stack/cable_coil/cut,
-/turf/open/floor/mineral/titanium/tiled/purple,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "am" = (
 /obj/machinery/research/anomaly_refinery,
 /turf/open/floor/plating/airless,
@@ -71,18 +63,6 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"cz" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/syringe/bluespace{
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/syringe/bluespace{
-	pixel_y = 8
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
-/obj/machinery/door/window/survival_pod/left/directional/south,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "cE" = (
 /obj/structure/closet{
@@ -191,11 +171,6 @@
 "eE" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"fL" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/bedsheet,
-/turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "fQ" = (
 /obj/structure/hedge/opaque,
@@ -315,14 +290,6 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"iC" = (
-/obj/machinery/door/window/survival_pod/left/directional/east,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/titanium/tiled/purple,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "iO" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/engine,
@@ -360,19 +327,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"jB" = (
-/obj/effect/decal/remains/human,
-/obj/machinery/door/window/survival_pod/left/directional/east,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 6
-	},
-/turf/open/floor/mineral/titanium/tiled/purple,
+"jt" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/bedsheet,
+/turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "jC" = (
-/mob/living/simple_animal/slime{
-	rabid = 1;
-	slime_type = /datum/slime_type/bluespace
-	},
+/mob/living/basic/slime/hilbert,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
@@ -513,6 +474,14 @@
 /obj/item/transfer_valve,
 /turf/open/floor/plating/airless,
 /area/ruin/space)
+"mz" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/bio_suit/cmo,
+/obj/item/clothing/head/bio_hood/cmo,
+/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
+/obj/machinery/door/window/survival_pod/left/directional/south,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "mC" = (
 /obj/machinery/chem_mass_spec,
 /turf/open/floor/mineral/titanium/tiled/blue,
@@ -529,10 +498,6 @@
 "mU" = (
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"mV" = (
-/obj/machinery/transport/tram_controller/hilbert,
-/turf/closed/indestructible/riveted/plastinum/nodiagonal,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "ng" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -559,6 +524,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"nv" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/syringe/bluespace{
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/syringe/bluespace{
+	pixel_y = 8
+	},
+/obj/structure/window/reinforced/survival_pod/spawner/directional/east,
+/obj/machinery/door/window/survival_pod/left/directional/south,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "nx" = (
 /obj/machinery/door/window/left/directional/south,
 /obj/effect/decal/cleanable/dirt,
@@ -573,6 +550,12 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"nK" = (
+/obj/structure/rack,
+/obj/item/gun/syringe,
+/obj/machinery/door/window/survival_pod/left/directional/west,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "nM" = (
 /obj/structure/lattice,
@@ -597,6 +580,14 @@
 /obj/item/assembly/signaler,
 /turf/open/floor/plating/airless,
 /area/ruin/space)
+"nY" = (
+/obj/machinery/door/window/survival_pod/left/directional/east,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 5
+	},
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/mineral/titanium/tiled/purple,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "og" = (
 /obj/item/slime_extract/bluespace,
 /obj/effect/decal/cleanable/dirt,
@@ -673,6 +664,18 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"qj" = (
+/obj/machinery/door/window/survival_pod/left/directional/west,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/tiled/purple,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"qC" = (
+/obj/machinery/transport/tram_controller/hilbert,
+/turf/closed/indestructible/riveted/plastinum/nodiagonal,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "qI" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/stack/sheet/bluespace_crystal{
@@ -738,14 +741,6 @@
 "sj" = (
 /turf/open/floor/circuit/green/anim,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom)
-"sn" = (
-/obj/machinery/door/window/survival_pod/left/directional/west,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 9
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/titanium/tiled/purple,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "sz" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
@@ -803,13 +798,6 @@
 /obj/structure/transport/linear/tram,
 /obj/structure/thermoplastic/light,
 /turf/open/floor/engine,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"ud" = (
-/obj/machinery/door/window/survival_pod/left/directional/west,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 9
-	},
-/turf/open/floor/mineral/titanium/tiled/purple,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "uf" = (
 /obj/effect/turf_decal/trimline/neutral/arrow_cw,
@@ -902,10 +890,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "wY" = (
-/mob/living/simple_animal/slime{
-	rabid = 1;
-	slime_type = /datum/slime_type/bluespace
-	},
+/mob/living/basic/slime/hilbert,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "xb" = (
@@ -1231,6 +1216,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"CB" = (
+/obj/machinery/door/window/survival_pod/left/directional/west,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/tiled/purple,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "CO" = (
 /turf/open/floor/glass,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
@@ -1361,6 +1353,13 @@
 /obj/item/paper_bin,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"Fy" = (
+/obj/machinery/door/window/survival_pod/left/directional/west,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium/tiled/purple,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "FB" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
@@ -1386,6 +1385,15 @@
 "Gl" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"Gr" = (
+/obj/machinery/door/window/survival_pod/left/directional/west,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/slime/hilbert,
+/turf/open/floor/mineral/titanium/tiled/purple,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Gs" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -1424,18 +1432,6 @@
 "Hf" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"Ht" = (
-/obj/machinery/door/window/survival_pod/left/directional/west,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/slime{
-	rabid = 1;
-	slime_type = /datum/slime_type/bluespace
-	},
-/turf/open/floor/mineral/titanium/tiled/purple,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Hu" = (
 /obj/machinery/door/puzzle/keycard/hilbert,
@@ -1594,6 +1590,14 @@
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"JW" = (
+/obj/effect/decal/remains/human,
+/obj/machinery/door/window/survival_pod/left/directional/east,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 6
+	},
+/turf/open/floor/mineral/titanium/tiled/purple,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Kd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden,
@@ -1619,14 +1623,6 @@
 "Lh" = (
 /obj/structure/fluff/tram_rail/end,
 /turf/open/floor/engine,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"Li" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/bio_suit/cmo,
-/obj/item/clothing/head/bio_hood/cmo,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/west,
-/obj/machinery/door/window/survival_pod/left/directional/south,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Lr" = (
 /obj/machinery/photocopier,
@@ -1958,7 +1954,7 @@
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Sn" = (
 /obj/structure/table/wood,
-/obj/item/stock_parts/cell/bluespace{
+/obj/item/stock_parts/power_store/cell/bluespace{
 	pixel_y = 4
 	},
 /obj/machinery/cell_charger{
@@ -1989,6 +1985,14 @@
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "SH" = (
 /obj/effect/decal/remains/human,
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/tiled/purple,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"SL" = (
+/obj/machinery/door/window/survival_pod/left/directional/east,
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 5
 	},
@@ -2162,13 +2166,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"WE" = (
-/obj/machinery/door/window/survival_pod/left/directional/west,
-/obj/effect/turf_decal/siding/wideplating_new/dark{
-	dir = 10
-	},
-/turf/open/floor/mineral/titanium/tiled/purple,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "WI" = (
 /obj/structure/table/wood,
 /obj/item/food/cornchips/blue,
@@ -2289,10 +2286,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Ze" = (
-/mob/living/simple_animal/slime{
-	rabid = 1;
-	slime_type = /datum/slime_type/bluespace
-	},
+/mob/living/basic/slime/hilbert,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
@@ -2302,12 +2296,6 @@
 	dir = 10
 	},
 /turf/open/floor/iron/grimy,
-/area/ruin/space/has_grav/powered/hilbertresearchfacility)
-"Zs" = (
-/obj/structure/rack,
-/obj/item/gun/syringe,
-/obj/machinery/door/window/survival_pod/left/directional/west,
-/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Zy" = (
 /obj/machinery/washing_machine,
@@ -3151,7 +3139,7 @@ Bo
 Bo
 Bo
 Bo
-cz
+nv
 sz
 Bo
 Dk
@@ -3190,7 +3178,7 @@ Dk
 Dk
 Dk
 Bo
-Li
+mz
 te
 Bo
 Dk
@@ -3230,7 +3218,7 @@ Dk
 Dk
 Bo
 Ok
-Zs
+nK
 Bo
 Dk
 Dk
@@ -3593,11 +3581,11 @@ Bo
 Bk
 Bk
 Bo
-ah
-jB
+nY
+JW
 Bo
-iC
-jB
+SL
+JW
 Bo
 Dk
 Dk
@@ -3662,7 +3650,7 @@ ZV
 YV
 Ok
 Bo
-mV
+qC
 Xi
 hk
 KC
@@ -3905,11 +3893,11 @@ Bo
 Dk
 Dk
 Bo
-sn
-WE
+qj
+CB
 Bo
-ud
-Ht
+Fy
+Gr
 Bo
 Dk
 Dk
@@ -4336,7 +4324,7 @@ Dk
 Dk
 Bo
 Th
-fL
+jt
 az
 Bo
 Vn
@@ -4379,7 +4367,7 @@ Bo
 Cq
 Bo
 Th
-fL
+jt
 az
 Bo
 Dk
@@ -4539,7 +4527,7 @@ BY
 BY
 OA
 az
-fL
+jt
 Bo
 "}
 (57,1,1) = {"
@@ -4649,7 +4637,7 @@ Dk
 Dk
 Bo
 Th
-fL
+jt
 az
 Bo
 Gi

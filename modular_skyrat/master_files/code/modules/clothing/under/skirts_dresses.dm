@@ -15,6 +15,10 @@
 /obj/item/clothing/under/dress/skirt/skyrat	//Just so they can stay under TG's skirts in case code needs subtypes of them (also SDMM dropdown looks nicer like this)
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
+	// TG gave these greyscales but ours don't get them yet
+	greyscale_config = null
+	greyscale_config_worn = null
+	greyscale_colors = null
 
 //TG's icons only have a dress.dmi, but that means its not ABC-sorted to be beside shorts_pants_shirts.dmi. So its skirts_dresses for us.
 
@@ -77,7 +81,6 @@
 	name = "jean skirt"
 	desc = "Technically, is there much difference between these and jorts? It's just one big hole instead of two. Does that make this a jirt?"
 	icon_state = "jean_skirt"
-	can_adjust = TRUE // BUBBER ADD
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	greyscale_config = /datum/greyscale_config/jean_skirt

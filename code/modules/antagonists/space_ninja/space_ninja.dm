@@ -2,7 +2,7 @@
 	name = "\improper Space Ninja"
 	antagpanel_category = ANTAG_GROUP_NINJAS
 	job_rank = ROLE_NINJA
-	antag_hud_name = "space_ninja"
+	antag_hud_name = "ninja"
 	hijack_speed = 1
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
@@ -118,7 +118,6 @@
 	operative.dna.update_dna_identity()
 	operative.dna.species.pre_equip_species_outfit(null, operative)
 	operative.regenerate_icons()
-	SSquirks.AssignQuirks(operative, operative.client, TRUE, TRUE, null, FALSE, operative)
 
 	equip_space_ninja(owner.current)
 	owner.current.add_quirk(/datum/quirk/freerunning)

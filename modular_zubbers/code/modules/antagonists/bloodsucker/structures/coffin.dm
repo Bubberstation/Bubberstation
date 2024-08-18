@@ -30,7 +30,7 @@
 		. += span_cult("This is your Claimed Coffin.")
 		. += span_cult("Rest in it while injured to enter Torpor. Entering it with unspent Ranks will allow you to spend one.")
 		. += span_cult("Going inside while it contains a heart will put it in your chest, letting you regain your might.")
-		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock.")
+		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock. This also fixes the lock if it's broken.")
 		. += span_cult("Alt-Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
 
 /obj/structure/closet/crate/coffin/blackcoffin
@@ -181,9 +181,9 @@
 		if(bloodsucker_structure.owner == resident)
 			bloodsucker_structure.unbolt()
 	if(manual)
-		to_chat(resident, span_cultitalic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
+		to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
 	else
-		to_chat(resident, span_cultitalic("You sense that the link with your coffin and your sacred lair has been broken! You will need to seek another."))
+		to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred lair has been broken! You will need to seek another."))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
 
@@ -200,9 +200,8 @@
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
-
 /obj/structure/closet/crate/coffin/close(mob/living/user)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user?.mind?.has_antag_datum(/datum/antagonist/bloodsucker)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	if(bloodsuckerdatum && user.mob_size > max_mob_size)
 		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
 			if(prompt_coffin_claim(bloodsuckerdatum))
@@ -215,25 +214,26 @@
 	for(var/atom/thing as anything in contents)
 		SEND_SIGNAL(thing, COMSIG_ENTER_COFFIN, src, user)
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
-	if(user in src)
-		if(!resident && !prompt_coffin_claim(bloodsuckerdatum))
-			return FALSE
-		LockMe(user)
+	if(bloodsuckerdatum && (user in src))
+		if(prompt_coffin_claim(bloodsuckerdatum))
+			LockMe(user)
 		//Level up if possible.
 		if(!bloodsuckerdatum.my_clan)
 			user.balloon_alert("enter a clan!")
 			to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
-		else
+		else if(!bloodsuckerdatum.frenzied)
+			if(bloodsuckerdatum.GetUnspentRank() < 1)
+				bloodsuckerdatum.blood_level_gain()
 			// Level ups cost 30% of your max blood volume, which scales with your rank.
-			if(!bloodsuckerdatum.frenzied)
-				bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
-		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the opportunity to do so.
+			bloodsuckerdatum.SpendRank(blood_cost = bloodsuckerdatum.max_blood_volume * BLOODSUCKER_LEVELUP_PERCENTAGE)
 		bloodsuckerdatum.check_begin_torpor(TORPOR_SKIP_CHECK_DAMAGE)
 	return TRUE
 
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)
 	if(!dracula)
 		return FALSE
+	if(resident == dracula.owner.current)
+		return TRUE
 	var/area/current_area = get_area(src)
 	if(!dracula.coffin && !resident)
 		switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
@@ -259,33 +259,51 @@
 	animate(src, 1 SECONDS, FALSE, transform = normal)
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
-/obj/structure/closet/crate/coffin/attackby(obj/item/item, mob/user, params)
-	if(!resident)
-		return ..()
-	if(user != resident)
-		if(istype(item, cutting_tool))
-			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
-			return
-	if(anchored && (item.tool_behaviour == TOOL_WRENCH))
+/obj/structure/closet/crate/coffin/wrench_act_secondary(mob/living/user, obj/item/tool)
+	if(resident && anchored)
 		to_chat(user, span_danger("The coffin won't come unanchored from the floor.[user == resident ? " You can Alt-Click to unclaim and unwrench your Coffin." : ""]"))
-		return
+		return TRUE
+	. = ..()
 
-	if(locked && (item.tool_behaviour == TOOL_CROWBAR))
-		var/pry_time = pry_lid_timer * item.toolspeed // Pry speed must be affected by the speed of the tool.
+/obj/structure/closet/crate/coffin/tool_interact(obj/item/weapon, mob/living/user)
+	if(locked && (weapon.tool_behaviour == TOOL_CROWBAR))
+		var/pry_time = pry_lid_timer * weapon.toolspeed // Pry speed must be affected by the speed of the tool.
 		user.visible_message(
-			span_notice("[user] tries to pry the lid off of [src] with [item]."),
-			span_notice("You begin prying the lid off of [src] with [item]. This should take about [DisplayTimeText(pry_time)]."))
+			span_notice("[user] tries to pry the lid off of [src] with [weapon]."),
+			span_notice("You begin prying the lid off of [src] with [weapon]. This should take about [DisplayTimeText(pry_time)].")
+		)
 		if(!do_after(user, pry_time, src))
-			return
+			return TRUE
 		bust_open()
 		user.visible_message(
 			span_notice("[user] snaps the door of [src] wide open."),
-			span_notice("The door of [src] snaps open."))
-		return
-	return ..()
+			span_notice("The door of [src] snaps open.")
+		)
+		return TRUE
+	if(!resident)
+		. = ..()
+	if(user != resident)
+		if(istype(weapon, cutting_tool))
+			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
+			return TRUE
+	. = ..()
+
+/// Forces the coffin to get contents
+/obj/structure/closet/proc/force_enter(mob/living/user)
+	SEND_SIGNAL(src, COMSIG_CLOSET_PRE_CLOSE, user)
+	take_contents()
+	var/inserted = insert(user)
+	playsound(loc, close_sound, close_sound_volume, TRUE, -3)
+	opened = FALSE
+	set_density(TRUE)
+	animate_door(TRUE)
+	update_appearance()
+	after_close(user)
+	SEND_SIGNAL(src, COMSIG_CLOSET_POST_CLOSE, user)
+	return inserted
 
 /// Distance Check (Inside Of)
-/obj/structure/closet/crate/coffin/AltClick(mob/user)
+/obj/structure/closet/crate/coffin/click_alt(mob/user)
 	. = ..()
 	if(user in src)
 		LockMe(user, !locked)

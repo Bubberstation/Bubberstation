@@ -17,6 +17,7 @@
 #define ishemophage(A) (is_species(A, /datum/species/hemophage))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isluminescent(A) (is_species(A, /datum/species/jelly/luminescent))
+#define isprimitivedemihuman(A) (is_species(A, /datum/species/human/felinid/primitive))
 #define isshadekin(A) (is_species(A, /datum/species/shadekin)) //BUBBERSTATION EDIT
 //Antags
 #define ishorrorling(A) (istype(A, /mob/living/simple_animal/hostile/true_changeling))

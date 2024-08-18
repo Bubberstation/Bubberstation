@@ -1,3 +1,5 @@
+#define DEFAULT_RESTOCK_COST 675
+
 /obj/item/circuitboard/machine/ltsrbt
 	name = "LTSRBT (Machine Board)"
 	icon_state = "bluespacearray"
@@ -13,47 +15,72 @@
 	name = "Long-To-Short-Range-Bluespace-Transceiver"
 	desc = "The LTSRBT is a compact teleportation machine for receiving and sending items outside the station and inside the station.\nUsing teleportation frequencies stolen from NT it is near undetectable.\nEssential for any illegal market operations on NT stations.\n"
 	icon = 'icons/obj/machines/telecomms.dmi'
-	icon_state = "exonet_node"
+	icon_state = "exonet_node_idle"
+	base_icon_state = "exonet_node"
 	circuit = /obj/item/circuitboard/machine/ltsrbt
 	density = TRUE
 
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 2
 
-	/// Divider for power_usage_per_teleport.
+	/// Divider for energy_usage_per_teleport.
 	var/power_efficiency = 1
 	/// Power used per teleported which gets divided by power_efficiency.
-	var/power_usage_per_teleport = 10000
+	var/energy_usage_per_teleport = 10 KILO JOULES
 	/// The time it takes for the machine to recharge before being able to send or receive items.
 	var/recharge_time = 0
 	/// Current recharge progress.
-	var/recharge_cooldown = 0
+	COOLDOWN_DECLARE(recharge_cooldown)
 	/// Base recharge time in seconds which is used to get recharge_time.
-	var/base_recharge_time = 100
+	var/base_recharge_time = 10 SECONDS
 	/// Current /datum/market_purchase being received.
-	var/receiving
+	var/datum/market_purchase/receiving
 	/// Current /datum/market_purchase being sent to the target uplink.
-	var/transmitting
+	var/datum/market_purchase/transmitting
 	/// Queue for purchases that the machine should receive and send.
 	var/list/datum/market_purchase/queue = list()
+	/**
+	 * Attacking the machinery with enough credits will restock the markets, allowing for more/better items.
+	 * The cost doubles each time this is done.
+	 */
+	var/static/restock_cost = DEFAULT_RESTOCK_COST
 
 /obj/machinery/ltsrbt/Initialize(mapload)
 	. = ..()
-	SSblackmarket.telepads += src
+	register_context()
+	SSmarket.telepads += src
 
 /obj/machinery/ltsrbt/Destroy()
-	SSblackmarket.telepads -= src
+	SSmarket.telepads -= src
 	// Bye bye orders.
-	if(SSblackmarket.telepads.len)
+	if(length(SSmarket.telepads))
 		for(var/datum/market_purchase/P in queue)
-			SSblackmarket.queue_item(P)
+			SSmarket.queue_item(P)
 	. = ..()
+
+/obj/machinery/ltsrbt/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(held_item && held_item.get_item_credit_value())
+		context[SCREENTIP_CONTEXT_LMB] = "Restock"
+		return CONTEXTUAL_SCREENTIP_SET
+	return NONE
+
+/obj/machinery/ltsrbt/examine(mob/user)
+	. = ..()
+	if(machine_stat & NOPOWER)
+		. += span_info("A display reads: \"Current market restock price: [EXAMINE_HINT("[restock_cost] cr")]\".")
+
+/obj/machinery/ltsrbt/update_icon_state()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		icon_state = "[base_icon_state]_off"
+	else
+		icon_state = "[base_icon_state][(receiving || length(queue)) ? "" : "_idle"]"
 
 /obj/machinery/ltsrbt/RefreshParts()
 	. = ..()
 	recharge_time = base_recharge_time
 	// On tier 4 recharge_time should be 20 and by default it is 80 as scanning modules should be tier 1.
 	for(var/datum/stock_part/scanning_module/scanning_module in component_parts)
-		recharge_time -= scanning_module.tier * 10
+		recharge_time -= scanning_module.tier * 1 SECONDS
 	recharge_cooldown = recharge_time
 
 	power_efficiency = 0
@@ -67,51 +94,81 @@
 /obj/machinery/ltsrbt/proc/add_to_queue(datum/market_purchase/purchase)
 	if(!recharge_cooldown && !receiving && !transmitting)
 		receiving = purchase
-		return
-	queue += purchase
+		update_appearance(UPDATE_ICON_STATE)
+	else
+		queue += purchase
+
+	RegisterSignal(purchase, COMSIG_QDELETING, PROC_REF(on_purchase_del))
+
+/obj/machinery/ltsrbt/proc/on_purchase_del(datum/market_purchase/purchase)
+	SIGNAL_HANDLER
+	queue -= purchase
+	if(receiving == purchase)
+		receiving = null
+	if(transmitting == purchase)
+		transmitting = null
+
+	update_appearance(UPDATE_ICON_STATE)
 
 /obj/machinery/ltsrbt/process(seconds_per_tick)
 	if(machine_stat & NOPOWER)
 		return
 
-	if(recharge_cooldown > 0)
-		recharge_cooldown -= seconds_per_tick
+	if(!COOLDOWN_FINISHED(src, recharge_cooldown) && isnull(receiving) && isnull(transmitting))
 		return
 
-	var/turf/T = get_turf(src)
+	var/turf/turf = get_turf(src)
 	if(receiving)
-		var/datum/market_purchase/P = receiving
 
-		if(!P.item || ispath(P.item))
-			P.item = P.entry.spawn_item(T)
-		else
-			var/atom/movable/M = P.item
-			M.forceMove(T)
+		receiving.item = receiving.entry.spawn_item(turf, receiving)
+		receiving.post_purchase_effects(receiving.item)
 
-		use_power(power_usage_per_teleport / power_efficiency)
+		use_energy(energy_usage_per_teleport / power_efficiency)
 		var/datum/effect_system/spark_spread/sparks = new
 		sparks.set_up(5, 1, get_turf(src))
-		sparks.attach(P.item)
+		sparks.attach(receiving.item)
 		sparks.start()
 
+		transmitting = receiving
 		receiving = null
-		transmitting = P
 
-		recharge_cooldown = recharge_time
+		COOLDOWN_START(src, recharge_cooldown, recharge_time)
 		return
-	else if(transmitting)
-		var/datum/market_purchase/P = transmitting
-		if(!P.item)
-			QDEL_NULL(transmitting)
-		if(!(P.item in T.contents))
-			QDEL_NULL(transmitting)
-			return
-		do_teleport(P.item, get_turf(P.uplink))
-		use_power(power_usage_per_teleport / power_efficiency)
+	if(transmitting)
+		if(transmitting.item.loc == turf)
+			do_teleport(transmitting.item, get_turf(transmitting.uplink))
+			use_energy(energy_usage_per_teleport / power_efficiency)
 		QDEL_NULL(transmitting)
-
-		recharge_cooldown = recharge_time
 		return
 
-	if(queue.len)
+	if(length(queue))
 		receiving = pick_n_take(queue)
+
+/obj/machinery/ltsrbt/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	var/creds_value = tool.get_item_credit_value()
+	if(!creds_value)
+		return NONE
+
+	. = ITEM_INTERACT_SUCCESS
+
+	if(machine_stat & NOPOWER)
+		return
+
+	if(creds_value < restock_cost)
+		say("Insufficient credits!")
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 40, FALSE)
+		return
+
+	if(istype(tool, /obj/item/holochip))
+		var/obj/item/holochip/chip = tool
+		chip.spend(restock_cost)
+	else
+		qdel(tool)
+		if(creds_value != restock_cost)
+			var/obj/item/holochip/change = new(creds_value - restock_cost)
+			user.put_in_hands(change)
+
+	SSmarket.restock()
+	restock_cost *= 2
+
+#undef DEFAULT_RESTOCK_COST

@@ -12,6 +12,22 @@
 
 
 //Additiional Station Areas
+
+/area/station/common/cryopods/aux
+	name = "\improper Aux. Cryopods Room"
+
+/area/station/commons/public_mining
+	name = "\improper Public Mining"
+	icon_state = "mining"
+
+/area/station/commons/public_xenoarch
+	name = "\improper Public Xenoarchaeology"
+	icon_state = "exp_lab"
+
+/area/station/maintenance/department/public_mining
+	name = "\improper Public Mining Maintenance"
+	icon_state = "centralmaint"
+
 /area/station/engineering/supermatter/emitter
 	name = "\improper Supermatter Emitter Room"
 	icon_state = "engine_control"
@@ -21,7 +37,9 @@
 	name = "\improper Service Lathe"
 	icon_state = "hall_service"
 
-
+/area/station/medical/morgue/office
+	name = "\improper Coroner's Office"
+	icon_state = "ass_line" //You try finding a matching area icon, fucko.
 
 /area/station/terminal
 	name = "\improper Arrivals Terminal"

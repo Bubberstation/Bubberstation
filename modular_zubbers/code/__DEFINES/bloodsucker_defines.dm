@@ -26,10 +26,32 @@
 #define HUMANITY_LOST_MAXIMUM 50
 
 /// Level up blood cost define, max_blood * this = blood cost
-#define BLOODSUCKER_LEVELUP_PERCENTAGE 0.15
+#define BLOODSUCKER_LEVELUP_PERCENTAGE 0
+/// Upper bound for Blood cost increase; used for blood thickening
+#define BLOOD_LEVEL_GAIN_MAX 0.9
 
 ///The level when at a bloodsucker becomes snobby about who they drink from and gain their non-fledling reputation
 #define BLOODSUCKER_HIGH_LEVEL 4
+
+/**
+ * Sol defines
+ */
+///How long Sol will last until it's night again.
+#define TIME_BLOODSUCKER_DAY 60
+///Base time nighttime should be in for, until Sol rises.
+// Can't put defines in defines, so we have to use deciseconds.
+#define TIME_BLOODSUCKER_NIGHT_MAX 1320 // 22 minutes
+#define TIME_BLOODSUCKER_NIGHT_MIN 1020 // 17 minutes
+
+///Time left to send an alert to Bloodsuckers about an incoming Sol.
+#define TIME_BLOODSUCKER_DAY_WARN 90
+///Time left to send an urgent alert to Bloodsuckers about an incoming Sol.
+#define TIME_BLOODSUCKER_DAY_FINAL_WARN 30
+///Time left to alert that Sol is rising.
+#define TIME_BLOODSUCKER_BURN_INTERVAL 5
+
+///How much time Sol can be 'off' by, keeping the time inconsistent.
+#define TIME_BLOODSUCKER_SOL_DELAY 90
 
 /**
  * Vassal defines

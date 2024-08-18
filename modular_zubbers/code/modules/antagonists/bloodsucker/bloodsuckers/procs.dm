@@ -39,7 +39,7 @@
 	if(broke_masquerade)
 		return
 	owner.current.playsound_local(null, 'modular_zubbers/sound/bloodsucker/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
-	to_chat(owner.current, span_cultboldtalic("You have broken the Masquerade!"))
+	to_chat(owner.current, span_cult_bold_italic("You have broken the Masquerade!"))
 	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Vassals are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
 	broke_masquerade = TRUE
 	antag_hud_name = "masquerade_broken"
@@ -50,7 +50,7 @@
 /datum/antagonist/bloodsucker/proc/fix_masquerade(mob/admin)
 	if(!broke_masquerade)
 		return
-	to_chat(owner.current, span_cultboldtalic("You have re-entered the Masquerade."))
+	to_chat(owner.current, span_cult_bold_italic("You have re-entered the Masquerade."))
 	broke_masquerade = FALSE
 	antag_hud_name = "bloodsucker"
 	add_team_hud(owner.current)
@@ -62,12 +62,12 @@
 	if(masquerade_infractions >= 3)
 		break_masquerade()
 	else
-		to_chat(owner.current, span_cultbold("You violated the Masquerade! Break the Masquerade [3 - masquerade_infractions] more times and you will become a criminal to the Bloodsucker's Cause!"))
+		to_chat(owner.current, span_cult_bold("You violated the Masquerade! Break the Masquerade [3 - masquerade_infractions] more times and you will become a criminal to the Bloodsucker's Cause!"))
 
 /datum/antagonist/bloodsucker/proc/RankUp(force = FALSE)
 	if(!owner || !owner.current)
 		return
-	bloodsucker_level_unspent++
+	AdjustUnspentRank(1)
 	if(!my_clan)
 		to_chat(owner.current, span_notice("You have gained a rank. Join a Clan to spend it."))
 		return
@@ -80,7 +80,7 @@
 	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()
-	bloodsucker_level_unspent--
+	AdjustUnspentRank(-1)
 
 /datum/antagonist/bloodsucker/proc/remove_nondefault_powers(return_levels = FALSE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
@@ -88,7 +88,7 @@
 			continue
 		RemovePower(power)
 		if(return_levels)
-			bloodsucker_level_unspent++
+			AdjustUnspentRank(1)
 
 /datum/antagonist/bloodsucker/proc/LevelUpPowers()
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
@@ -108,6 +108,19 @@
 		return
 	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
 
+/datum/antagonist/bloodsucker/proc/GetRank()
+	return bloodsucker_level
+
+/datum/antagonist/bloodsucker/proc/AdjustRank(amount)
+	bloodsucker_level = max(bloodsucker_level + amount, 0)
+	update_rank_hud()
+
+/datum/antagonist/bloodsucker/proc/GetUnspentRank()
+	return bloodsucker_level_unspent
+
+/datum/antagonist/bloodsucker/proc/AdjustUnspentRank(amount)
+	bloodsucker_level_unspent = max(bloodsucker_level_unspent + amount, 0)
+	update_rank_hud()
 /**
  * Called when a Bloodsucker reaches Final Death
  * Releases all Vassals and gives them the ex_vassal datum.
@@ -152,6 +165,24 @@
 	//returnString += "\n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
 	return returnIcon + returnString
 
+// Blood level gain is used to give Bloodsuckers more levels if they are being agressive and drinking from real, sentient people.
+// The maximum blood that counts towards this
+/datum/antagonist/bloodsucker/proc/blood_level_gain()
+	var/level_cost = get_level_cost()
+	if(blood_level_gain >= level_cost && bloodsucker_blood_volume >= level_cost) // Checks if we have drunk enough blood from the living to allow us to gain a level up as well as checking if we have enough blood to actually use on the level up
+		switch(tgui_alert(owner.current, "You have drunk enough blood from the living to thicken your blood, this will cost you [level_cost] blood and give you another level",  "Thicken your blood?.", list("Yes", "No"))) //asks user if they want to spend their blood on a level
+			if("Yes")
+				AdjustUnspentRank(1) // gives level
+				blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
+				AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
+				blood_level_gain_amount += 1 // Increments the variable that makes future levels more expensive
+
+/datum/antagonist/bloodsucker/proc/get_level_cost()
+	var/level_cost = (0.3 + (0.05 * blood_level_gain_amount))
+	level_cost = min(level_cost, BLOOD_LEVEL_GAIN_MAX)
+	level_cost = max_blood_volume * level_cost
+	return level_cost
+
 
 /datum/antagonist/bloodsucker/proc/max_vassals()
 	return bloodsucker_level
@@ -179,7 +210,7 @@
 		return
 	UnregisterSignal(organ, COMSIG_ORGAN_REMOVED)
 	UnregisterSignal(organ, COMSIG_ORGAN_BEING_REPLACED)
-	organ = null
+	heart = null
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(obj/item/organ/organ, mob/living/carbon/old_owner)
 	SIGNAL_HANDLER
@@ -207,7 +238,7 @@
 		RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE)
 		CRASH("What the fuck, somehow called on_organ_gain signal on [src] without current_mob being the antag datum's owner?")
 	UnregisterSignal(current_mob, COMSIG_ENTER_COFFIN)
-	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick), TRUE) // overriding here due to the fact this can without removing the signal due to before_organ_replace()
 	add_signals_to_heart(current_mob)
 
 /// This handles regen_organs replacing organs, without this the bloodsucker would die for a moment due to their heart being removed for a moment
@@ -241,7 +272,6 @@
 	if(blood == null)
 		return
 	SetBloodVolume(blood)
-	update_hud()
 
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/coffin_dweller, obj/structure/closet/crate/coffin/coffin, mob/user)
 	SIGNAL_HANDLER

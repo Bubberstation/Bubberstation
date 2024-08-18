@@ -57,7 +57,7 @@
 // BUBBER EDIT
 /*
 /datum/surgery/organ_manipulation/mechanic
-	name = "Prosthesis organ manipulation"
+	name = "Hardware Manipulation"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
@@ -112,7 +112,7 @@
 	)
 
 /datum/surgery/organ_manipulation/mechanic/external
-	name = "Prosthetic feature manipulation"
+	name = "Chassis Manipulation"
 	possible_locs = list(
 		BODY_ZONE_CHEST,
 		BODY_ZONE_HEAD,
@@ -131,7 +131,7 @@
 	)
 */
 
-///Organ manipulation base class. Do not use, it wont work. Use it's subtypes
+///Organ manipulation base class. Do not use, it wont work. Use its subtypes
 /datum/surgery_step/manipulate_organs
 	name = "manipulate organs"
 	repeatable = TRUE
@@ -161,7 +161,7 @@
 		if(!isorgan(target_organ))
 			if (target_zone == BODY_ZONE_PRECISE_EYES)
 				target_zone = check_zone(target_zone)
-			to_chat(user, span_warning("You cannot put [target_organ] into [target]'s [parse_zone(target_zone)]!"))
+			to_chat(user, span_warning("You cannot put [target_organ] into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"))
 			return SURGERY_STEP_FAIL
 		tool = target_organ
 	if(isorgan(tool))
@@ -170,7 +170,7 @@
 		success_sound = 'sound/surgery/organ2.ogg'
 		target_organ = tool
 		if(target_zone != target_organ.zone || target.get_organ_slot(target_organ.slot))
-			to_chat(user, span_warning("There is no room for [target_organ] in [target]'s [parse_zone(target_zone)]!"))
+			to_chat(user, span_warning("There is no room for [target_organ] in [target]'s [target.parse_zone_with_bodypart(target_zone)]!"))
 			return SURGERY_STEP_FAIL
 		var/obj/item/organ/meatslab = tool
 		if(!meatslab.useable)
@@ -185,11 +185,11 @@
 		display_results(
 			user,
 			target,
-			span_notice("You begin to insert [tool] into [target]'s [parse_zone(target_zone)]..."),
-			span_notice("[user] begins to insert [tool] into [target]'s [parse_zone(target_zone)]."),
-			span_notice("[user] begins to insert something into [target]'s [parse_zone(target_zone)]."),
+			span_notice("You begin to insert [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
+			span_notice("[user] begins to insert [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+			span_notice("[user] begins to insert something into [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
 		)
-		display_pain(target, "You can feel something being placed in your [parse_zone(target_zone)]!")
+		display_pain(target, "You can feel something being placed in your [target.parse_zone_with_bodypart(target_zone)]!")
 
 
 	else if(implement_type in implements_extract)
@@ -202,7 +202,7 @@
 		if (target_zone == BODY_ZONE_PRECISE_EYES)
 			target_zone = check_zone(target_zone)
 		if(!length(organs))
-			to_chat(user, span_warning("There are no removable organs in [target]'s [parse_zone(target_zone)]!"))
+			to_chat(user, span_warning("There are no removable organs in [target]'s [target.parse_zone_with_bodypart(target_zone)]!"))
 			return SURGERY_STEP_FAIL
 		else
 			for(var/obj/item/organ/organ in organs)
@@ -224,11 +224,11 @@
 				display_results(
 					user,
 					target,
-					span_notice("You begin to extract [target_organ] from [target]'s [parse_zone(target_zone)]..."),
-					span_notice("[user] begins to extract [target_organ] from [target]'s [parse_zone(target_zone)]."),
-					span_notice("[user] begins to extract something from [target]'s [parse_zone(target_zone)]."),
+					span_notice("You begin to extract [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]..."),
+					span_notice("[user] begins to extract [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+					span_notice("[user] begins to extract something from [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
 				)
-				display_pain(target, "You can feel your [target_organ.name] being removed from your [parse_zone(target_zone)]!")
+				display_pain(target, "You can feel your [target_organ.name] being removed from your [target.parse_zone_with_bodypart(target_zone)]!")
 			else
 				return SURGERY_STEP_FAIL
 
@@ -250,11 +250,12 @@
 			display_results(
 				user,
 				target,
-				span_notice("You insert [tool] into [target]'s [parse_zone(target_zone)]."),
-				span_notice("[user] inserts [tool] into [target]'s [parse_zone(target_zone)]!"),
-				span_notice("[user] inserts something into [target]'s [parse_zone(target_zone)]!"),
+				span_notice("You insert [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+				span_notice("[user] inserts [tool] into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_notice("[user] inserts something into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
 			)
-			display_pain(target, "Your [parse_zone(target_zone)] throbs with pain as your new [tool.name] comes to life!")
+			display_pain(target, "Your [target.parse_zone_with_bodypart(target_zone)] throbs with pain as your new [tool.name] comes to life!")
+			target_organ.on_surgical_insertion(user, target, target_zone, tool)
 		else
 			target_organ.forceMove(target.loc)
 
@@ -263,11 +264,11 @@
 			display_results(
 				user,
 				target,
-				span_notice("You successfully extract [target_organ] from [target]'s [parse_zone(target_zone)]."),
-				span_notice("[user] successfully extracts [target_organ] from [target]'s [parse_zone(target_zone)]!"),
-				span_notice("[user] successfully extracts something from [target]'s [parse_zone(target_zone)]!"),
+				span_notice("You successfully extract [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]."),
+				span_notice("[user] successfully extracts [target_organ] from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_notice("[user] successfully extracts something from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
 			)
-			display_pain(target, "Your [parse_zone(target_zone)] throbs with pain, you can't feel your [target_organ.name] anymore!")
+			display_pain(target, "Your [target.parse_zone_with_bodypart(target_zone)] throbs with pain, you can't feel your [target_organ.name] anymore!")
 			log_combat(user, target, "surgically removed [target_organ.name] from", addition="COMBAT MODE: [uppertext(user.combat_mode)]")
 			target_organ.Remove(target)
 			target_organ.forceMove(get_turf(target))
@@ -276,9 +277,9 @@
 			display_results(
 				user,
 				target,
-				span_warning("You can't extract anything from [target]'s [parse_zone(target_zone)]!"),
-				span_notice("[user] can't seem to extract anything from [target]'s [parse_zone(target_zone)]!"),
-				span_notice("[user] can't seem to extract anything from [target]'s [parse_zone(target_zone)]!"),
+				span_warning("You can't extract anything from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_notice("[user] can't seem to extract anything from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
+				span_notice("[user] can't seem to extract anything from [target]'s [target.parse_zone_with_bodypart(target_zone)]!"),
 			)
 	if(HAS_MIND_TRAIT(user, TRAIT_MORBID) && ishuman(user))
 		var/mob/living/carbon/human/morbid_weirdo = user

@@ -4,19 +4,27 @@
 
 #define BLOODBAG_GULP_SIZE 5
 
+/obj/item/reagent_containers/blood
+	var/being_drunk = FALSE
+
 /// Taken from drinks.dm
 /obj/item/reagent_containers/blood/attack(mob/living/victim, mob/living/attacker, params)
-	if(!can_drink(victim, attacker))
+	if(!can_drink(victim, attacker) || being_drunk)
 		return
-
+	being_drunk = TRUE
 	if(victim != attacker)
-		if(!do_after(victim, 5 SECONDS, attacker))
+		// show to both victim and attacker
+		INVOKE_ASYNC(src, GLOBAL_PROC_REF(do_after), victim, 5 SECONDS, attacker)
+		do_after(victim, 5 SECONDS, attacker)
+		if(!do_after(attacker, 5 SECONDS, victim))
+			being_drunk = FALSE
 			return
 		attacker.visible_message(
 			span_notice("[attacker] forces [victim] to drink from the [src]."),
 			span_notice("You put the [src] up to [victim]'s mouth."))
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
+		being_drunk = FALSE
 		return TRUE
 
 	while(do_after(victim, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(can_drink), attacker, victim)))
@@ -26,6 +34,7 @@
 		)
 		reagents.trans_to(victim, BLOODBAG_GULP_SIZE, transferred_by = attacker, methods = INGEST)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
+	being_drunk = FALSE
 	return TRUE
 
 #undef BLOODBAG_GULP_SIZE
@@ -103,6 +112,9 @@
 				return TRUE
 	return FALSE
 
+/datum/embed_data/stake
+	embed_chance = 20
+
 /obj/item/stake
 	name = "wooden stake"
 	desc = "A simple wooden stake carved to a sharp point."
@@ -117,7 +129,7 @@
 	attack_verb_continuous = list("staked", "stabbed", "tore into")
 	attack_verb_simple = list("staked", "stabbed", "tore into")
 	sharpness = SHARP_EDGED
-	embedding = list("embed_chance" = 20)
+	embed_data = /datum/embed_data/stake
 	force = 6
 	throwforce = 10
 	max_integrity = 30
@@ -183,6 +195,10 @@
 		return TRUE
 	return FALSE
 
+/datum/embed_data/stake/hardened
+	embed_chance = 35
+	fall_chance = 0
+
 /// Created by welding and acid-treating a simple stake.
 /obj/item/stake/hardened
 	name = "hardened stake"
@@ -191,12 +207,16 @@
 	force = 8
 	throwforce = 12
 	armour_penetration = 10
-	embedding = list("embed_chance" = 35, "fall_chance" = 0)
+	embed_data = /datum/embed_data/stake/hardened
 	staketime = 12 SECONDS
 
 /obj/item/stake/hardened/examine_more(mob/user)
 	. = ..()
 	. += span_notice("The [src] won't fall out by itself, if embedded in someone.")
+
+/datum/embed_data/stake/silver
+	embed_chance = 65
+	fall_chance = 0
 
 /obj/item/stake/hardened/silver
 	name = "silver stake"
@@ -207,7 +227,7 @@
 	force = 9
 	armour_penetration = 25
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
-	embedding = list("embed_chance" = 65, "fall_chance" = 0)
+	embed_data = /datum/embed_data/stake/silver
 	staketime = 15 SECONDS
 	kills_blodsuckers = TRUE
 
@@ -247,6 +267,10 @@
 	///Boolean on whether the book is currently being used, so you can only use it on one person at a time.
 	COOLDOWN_DECLARE(bloodsucker_check_cooldown)
 	var/cooldown_time = 1 MINUTES
+
+/obj/item/book/kindred/Initialize(mapload)
+	. = ..()
+	SSpoints_of_interest.make_point_of_interest(src)
 
 /obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
 	to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [starting_title]."))

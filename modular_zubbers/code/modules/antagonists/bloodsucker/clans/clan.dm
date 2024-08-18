@@ -118,7 +118,7 @@
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source)
+/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 
 /**
@@ -157,11 +157,11 @@
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You grow more ancient by the night!"))
 	else
 		// Give them the UI to purchase a power.
-		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient. Spend [round(blood_cost, 1)] blood to advance your rank", "Your Blood Thickens...", options)
+		var/choice = tgui_input_list(human_user, "You have the opportunity to grow more ancient.[blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
+		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
 			return
-		if(blood_cost && bloodsuckerdatum.bloodsucker_blood_volume < blood_cost)
+		if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
 			human_user.balloon_alert(human_user, "not enough blood!")
 			to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
 			return
@@ -202,23 +202,23 @@
 		user_right_hand.unarmed_damage_high += 0.5
 
 	// We're almost done - Spend your Rank now.
-	bloodsuckerdatum.bloodsucker_level++
+	bloodsuckerdatum.AdjustRank(1)
 	if(cost_rank)
-		bloodsuckerdatum.bloodsucker_level_unspent--
+		bloodsuckerdatum.AdjustUnspentRank(-1)
+
 	if(blood_cost)
 		bloodsuckerdatum.AdjustBloodVolume(-blood_cost)
 
 	// Ranked up enough to get your true Reputation?
-	if(bloodsuckerdatum.bloodsucker_level == BLOODSUCKER_HIGH_LEVEL)
-		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans is now much more less effective."))
+	if(bloodsuckerdatum.GetRank() == BLOODSUCKER_HIGH_LEVEL)
+		to_chat(bloodsuckerdatum.owner.current, span_warning("Drinking from mindless humans and blood bags is now much more less effective."))
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.bloodsucker_level] Bloodsucker. \
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.GetRank()] Bloodsucker. \
 		Your strength, feed rate, regen rate, and maximum blood capacity have all increased! \n\
 		* Your existing powers have all ranked up as well!"))
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
-	bloodsuckerdatum.update_hud()
 	bloodsuckerdatum.update_static_data_for_all_viewers()
 
 	// unlock vassalizing if we have a vassal slot
@@ -241,14 +241,16 @@
 	INVOKE_ASYNC(src, PROC_REF(interact_with_vassal), bloodsuckerdatum, vassaldatum)
 
 /datum/bloodsucker_clan/proc/interact_with_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	if(vassaldatum.special_type || IS_BLOODSUCKER(vassaldatum.owner.current))
-		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal was already assigned a special position."))
+	var/mob/living/carbon/human/master = bloodsuckerdatum.owner.current
+	var/mob/living/carbon/human/servant = vassaldatum.owner.current
+	if(vassaldatum.special_type || IS_BLOODSUCKER(servant))
+		to_chat(master, span_notice("This Vassal was already assigned a special position."))
 		return FALSE
 	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
-		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
+		to_chat(master, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
 		return FALSE
-	if(bloodsuckerdatum.bloodsucker_blood_volume < 150)
-		to_chat(bloodsuckerdatum.owner.current, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
+	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
+		to_chat(master, span_notice("You need at least 150 blood to make a Vassal a Favorite Vassal."))
 		return FALSE
 	var/list/options = list()
 	var/list/radial_display = list()
@@ -265,17 +267,26 @@
 		radial_display[initial(vassaldatums.name)] = option
 
 	if(!options.len)
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "Out of Special Vassal slots!")
+		master.balloon_alert(master, "Out of Special Vassal slots!")
 		return
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
-	var/vassal_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, radial_display)
+	to_chat(master, span_notice("You can change who this Vassal is, who are they to you? This will cost [SPECIAL_VASSAL_COST] blood."))
+	var/vassal_response = show_radial_menu(master, servant, radial_display)
 	if(!vassal_response)
 		return
-	vassal_response = options[vassal_response]
-	if(QDELETED(src) || QDELETED(bloodsuckerdatum.owner.current) || QDELETED(vassaldatum.owner.current))
+	var/datum/antagonist/vassal/vassal_type = options[vassal_response]
+	// let's ask if the vassal themselves actually wants to be a favorite
+	servant.balloon_alert(master, "asking...")
+	var/vassal_permission = tgui_alert(servant, initial(vassal_type.vassal_description), "Become a Special Vassal?", list("Yes", "No"), 1 MINUTES) == "Yes"
+	if(!vassal_permission)
+		servant.balloon_alert(master, "refused!")
 		return FALSE
-	vassaldatum.make_special(vassal_response)
+	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !vassal_type)
+		return FALSE
+	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_VASSAL_COST)
+		to_chat(master, span_notice("You took too long to make your vassal, you no longer have enough blood!"))
+		return FALSE
+	vassaldatum.make_special(vassal_type)
 	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_VASSAL_COST)
 	return TRUE
 

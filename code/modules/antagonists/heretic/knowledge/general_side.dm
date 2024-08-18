@@ -10,8 +10,11 @@
 		/obj/item/book = 1,
 		/obj/item/clothing/under = 1,
 	)
-	cost = 1
+	cost = 0 // BUBBER EDIT
 	route = PATH_SIDE
+	depth = 8
+	research_tree_icon_path = 'icons/mob/actions/actions_animal.dmi'
+	research_tree_icon_state = "gaze"
 
 /datum/heretic_knowledge/reroll_targets/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 

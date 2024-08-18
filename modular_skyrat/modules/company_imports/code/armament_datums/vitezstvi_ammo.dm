@@ -1,5 +1,5 @@
 /datum/armament_entry/company_import/vitezstvi
-	category = VITEZSTVI_AMMO_NAME
+	category = COMPANY_NAME_VITEZSTVI_AMMO
 	company_bitflag = CARGO_COMPANY_VITEZSTVI_AMMO
 
 // Ammo bench and the lethals disk
@@ -82,19 +82,19 @@
 */
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35
 	item_type = /obj/item/ammo_box/c35sol
-/* //BUBBER EDIT: NONE OF OUR GUNS USE THIS AMMO
+
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_disabler
 	item_type = /obj/item/ammo_box/c35sol/incapacitator
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol35_ripper
 	item_type = /obj/item/ammo_box/c35sol/ripper
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40
 	item_type = /obj/item/ammo_box/c40sol
-
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40_disabler
 	item_type = /obj/item/ammo_box/c40sol/fragmentation
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/sol40_flame
 	item_type = /obj/item/ammo_box/c40sol/incendiary
 
@@ -103,10 +103,10 @@
 
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585
 	item_type = /obj/item/ammo_box/c585trappiste
-
+*/
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_disabler
 	item_type = /obj/item/ammo_box/c585trappiste/incapacitator
-
+/*
 /datum/armament_entry/company_import/vitezstvi/ammo_boxes/trappiste585_hollowpoint
 	item_type = /obj/item/ammo_box/c585trappiste/hollowpoint
 */ //BUBBER EDIT REMOVAL: AMMO TYPES
@@ -137,13 +137,13 @@
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/buckshot
-
+*/
 /datum/armament_entry/company_import/vitezstvi/shot_shells/beanbag_slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge/bean
 
 /datum/armament_entry/company_import/vitezstvi/shot_shells/rubbershot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/rubber
-
+/*
 /datum/armament_entry/company_import/vitezstvi/shot_shells/magnum_buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/magnum
 

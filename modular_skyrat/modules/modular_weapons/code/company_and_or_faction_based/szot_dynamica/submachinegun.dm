@@ -20,7 +20,7 @@
 
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_OCLOTHING
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/miecz
 
@@ -28,8 +28,6 @@
 	can_suppress = TRUE
 	suppressor_x_offset = 0
 	suppressor_y_offset = 0
-
-	can_bayonet = FALSE
 
 	burst_size = 1
 	fire_delay = 0.2 SECONDS

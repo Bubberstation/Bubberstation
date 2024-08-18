@@ -7,8 +7,8 @@
 	name = "\improper Favorite Vassal"
 	antag_hud_name = "vassal6"
 	special_type = FAVORITE_VASSAL
-	vassal_description = "The Favorite Vassal gets unique abilities over other Vassals depending on your Clan \
-		and becomes completely immune to Mindshields. If part of Ventrue, this is the Vassal you will rank up."
+	vassal_description = "The Favorite Vassal gets unique abilities over other Vassals depending on the Master's Clan \
+		and becomes completely immune to Mindshields. If part of Ventrue, this is the Vassal a Bloodsucker will rank up."
 
 	///Bloodsucker levels, but for Vassals, used by Ventrue. Used for ventrue creating a new bloodsucker.
 	var/vassal_level

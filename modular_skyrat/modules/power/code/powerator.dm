@@ -32,13 +32,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/techweb_node/powerator
-	id = "powerator"
+	id = TECHWEB_NODE_POWERATOR
 	display_name = "Powerator"
 	description = "We've been saved by it in the past, we should send some power ourselves!"
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	prereq_ids = list("base")
+	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
 	design_ids = list(
 		"powerator",
 	)
@@ -54,9 +54,9 @@
 	idle_power_usage = 100
 
 	/// the current amount of power that we are trying to process
-	var/current_power = 10000
-	/// the max amount of power that can be sent per process, from 100000 (t1) to 10000000 (t4)
-	var/max_power = 100000
+	var/current_power = 10 KILO WATTS
+	/// the max amount of power that can be sent per process, from 100 KW (t1) to 10000 KW (t4)
+	var/max_power = 100 KILO WATTS
 	/// how much the current_power is divided by to determine the profit
 	var/divide_ratio = 0.00001
 	/// the attached cable to the machine
@@ -64,12 +64,21 @@
 	/// how many credits this machine has actually made so far
 	var/credits_made = 0
 
+	//BUBBER ADDITION BEGIN - This is required since we now allow dauntless to have a powerator, and we need to overwrite the default account
+	/// the account credits will be sent towards
+	var/credits_account = ""
+	//BUBBER ADDITION END
+
 /obj/machinery/powerator/Initialize(mapload)
 	. = ..()
+	SSpowerator_penality.sum_powerators()
+	SSpowerator_penality.calculate_penality()
 	START_PROCESSING(SSobj, src)
 
 /obj/machinery/powerator/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	SSpowerator_penality.remove_deled_powerators(src)
+	SSpowerator_penality.calculate_penality()
 	attached_cable = null
 	return ..()
 
@@ -98,15 +107,17 @@
 
 	. += span_notice("Current Power: [display_power(current_power)]/[display_power(max_power)]")
 	. += span_notice("This machine has made [credits_made] credits from selling power so far.")
+	if(length(SSpowerator_penality.powerator_list) > 1)
+		. += span_notice("Multiple powerators detected, total efficiency reduced by [(SSpowerator_penality.diminishing_gains_multiplier)*100]%")
 
 /obj/machinery/powerator/RefreshParts()
 	. = ..()
 
 	var/efficiency = -2 //set to -2 so that tier 1 parts do nothing
-	max_power = 100000
+	max_power = 100 KILO WATTS
 	for(var/datum/stock_part/micro_laser/laser_part in component_parts)
 		efficiency += laser_part.tier
-	max_power += (efficiency * 1650000)
+	max_power += (efficiency * 1650 KILO WATTS)
 
 	efficiency = -2
 	divide_ratio = 0.00001
@@ -157,8 +168,11 @@
 		current_power = attached_cable.newavail()
 	attached_cable.add_delayedload(current_power)
 
-	var/money_ratio = round(current_power * divide_ratio)
-	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	var/money_ratio = round(current_power * divide_ratio) * SSpowerator_penality.diminishing_gains_multiplier
+	//BUBBER EDIT CHANGE BEGIN - Use credits_account variable for our department look up
+	//var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR) - BUBBER EDIT - ORIGINAL
+	var/datum/bank_account/synced_bank_account = SSeconomy.get_dep_account(credits_account == "" ? ACCOUNT_CAR : credits_account)
+	//BUBBER EDIT CHANGE END
 	synced_bank_account.adjust_money(money_ratio)
 	credits_made += money_ratio
 
@@ -166,9 +180,9 @@
 
 /obj/machinery/powerator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	current_power = tgui_input_number(user, "How much power would you like to draw? Max: [display_power(max_power)]", "Power Draw", current_power, max_power, 0)
+	current_power = tgui_input_number(user, "How much power (in Watts) would you like to draw? Max: [display_power(max_power)]", "Power Draw", current_power, max_power, 0)
 	if(isnull(current_power))
-		current_power = 10000
+		current_power = 10 KILO WATTS
 		return
 
 /obj/machinery/powerator/screwdriver_act(mob/living/user, obj/item/tool)

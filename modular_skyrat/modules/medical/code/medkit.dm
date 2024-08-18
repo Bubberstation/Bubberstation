@@ -178,3 +178,37 @@
 
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/advanced/unzipped
 	zipped_up = FALSE
+
+// basetype, do not use
+/obj/item/storage/medkit/mechanical
+	name = "mechanical medkit"
+	desc = "For those mechanical booboos."
+
+	icon = 'modular_skyrat/modules/medical/code/medkit.dmi'
+	icon_state = "medkit_mechanical"
+	inhand_icon_state = "medkit_mechanical"
+	lefthand_file = 'modular_skyrat/modules/medical/code/medical_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/medical/code/medical_righthand.dmi'
+
+/obj/item/storage/medkit/mechanical/Initialize(mapload)
+	. = ..()
+
+	var/static/list/list_of_everything_mechanical_medkits_can_hold = list_of_everything_medkits_can_hold + list(
+		/obj/item/stack/cable_coil,
+		/obj/item/crowbar,
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/weldingtool,
+		/obj/item/wirecutters,
+		/obj/item/multitool,
+		/obj/item/plunger,
+		/obj/item/clothing/head/utility/welding,
+		/obj/item/clothing/glasses/welding,
+	)
+	var/static/list/exception_cache = typecacheof(
+		/obj/item/clothing/head/utility/welding
+	)
+
+	atom_storage.set_holdable(list_of_everything_mechanical_medkits_can_hold)
+	LAZYINITLIST(atom_storage.exception_hold)
+	atom_storage.exception_hold = atom_storage.exception_hold + exception_cache

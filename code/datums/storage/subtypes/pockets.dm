@@ -4,7 +4,7 @@
 	max_total_storage = 50
 	rustle_sound = FALSE
 
-/datum/storage/pockets/attempt_insert(obj/item/to_insert, mob/user, override, force)
+/datum/storage/pockets/attempt_insert(obj/item/to_insert, mob/user, override, force, messages)
 	. = ..()
 	if(!.)
 		return
@@ -45,6 +45,7 @@
 
 /datum/storage/pockets/small/fedora/detective
 	attack_hand_interact = TRUE // so the detectives would discover pockets in their hats
+	click_alt_open = FALSE
 
 /datum/storage/pockets/chefhat
 	attack_hand_interact = TRUE
@@ -107,7 +108,7 @@
 		/obj/item/ammo_box/magazine/toy/pistol,
 		/obj/item/ammo_casing,
 		/obj/item/lipstick,
-		/obj/item/clothing/mask/cigarette,
+		/obj/item/cigarette,
 		/obj/item/lighter,
 		/obj/item/match,
 		/obj/item/holochip,
@@ -115,8 +116,8 @@
 		/obj/item/reagent_containers/cup/glass/flask),
 		list(/obj/item/screwdriver/power,
 		/obj/item/ammo_casing/rocket,
-		/obj/item/clothing/mask/cigarette/pipe,
-		/obj/item/toy/crayon/spraycan, // BUBBER EDIT ADDITION // BUBBER TODO: See if this can be modularized
+		/obj/item/cigarette/pipe,
+		/obj/item/toy/crayon/spraycan,
 		/obj/item/seeds, // BUBBER EDIT ADDITION
 		/obj/item/card, // BUBBER EDIT ADDITION
 		)
@@ -136,7 +137,7 @@
 			/obj/item/ammo_box/magazine/m9mm,
 			/obj/item/ammo_casing,
 			/obj/item/bikehorn,
-			/obj/item/clothing/mask/cigarette,
+			/obj/item/cigarette,
 			/obj/item/dnainjector,
 			/obj/item/firing_pin,
 			/obj/item/holochip,
@@ -160,7 +161,7 @@
 		),
 		cant_hold_list = list(
 			/obj/item/ammo_casing/rocket,
-			/obj/item/clothing/mask/cigarette/pipe,
+			/obj/item/cigarette/pipe,
 			/obj/item/screwdriver/power,
 			/obj/item/toy/crayon/spraycan,
 		),

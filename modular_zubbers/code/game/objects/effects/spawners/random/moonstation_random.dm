@@ -317,7 +317,7 @@
 		/obj/machinery/self_actualization_device = 5,
 		/obj/machinery/sheetifier = 30,
 		/obj/machinery/skill_station = 30,
-		/obj/machinery/smartfridge/drying_rack = 80,
+		/obj/machinery/smartfridge/drying/rack = 80,
 		/obj/machinery/smoke_machine = 10,
 		/obj/machinery/space_heater/improvised_chem_heater = 200,
 		/obj/machinery/stasis = 10,
@@ -343,5 +343,18 @@
 		/obj/structure/sauna_oven = 25,
 		/obj/structure/spirit_board = 50,
 		/obj/structure/toiletbong = 100,
-		/obj/structure/training_machine = 10
+		/obj/structure/training_machine = 10,
+		/obj/effect/spawner/random/burgerstation/loot/odd_safe = 400
 	)
+
+/obj/effect/spawner/random/burgerstation/loot/odd_safe
+	loot = null
+	additional_loot = list(
+		/obj/structure/safe = 1,
+		/obj/structure/safe/floor = 1
+	)
+
+/obj/effect/spawner/random/burgerstation/loot/odd_safe/Initialize(mapload)
+	loot = GLOB.oddity_loot
+	. = ..()
+

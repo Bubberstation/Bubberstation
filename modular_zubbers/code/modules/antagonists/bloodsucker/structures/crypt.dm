@@ -72,7 +72,7 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/bloodsucker/AltClick(mob/user)
+/obj/structure/bloodsucker/click_alt(mob/user)
 	. = ..()
 	if(user == owner && user.Adjacent(src))
 		balloon_alert(user, "unbolt [src]?")
@@ -138,7 +138,7 @@
 		. += span_cult("You can support a total of [convert_integer_to_words(bloodsuckerdatum.max_vassals())] [bloodsuckerdatum.max_vassals() == 1 ? "vassal" : "vassals"], \
 		with [convert_integer_to_words(bloodsuckerdatum.free_vassal_slots())] [bloodsuckerdatum.free_vassal_slots() == 1 ? "slot" : "slots"] remaining.")
 
-/obj/structure/bloodsucker/vassalrack/deconstruct(disassembled = TRUE)
+/obj/structure/bloodsucker/vassalrack/atom_deconstruct(disassembled = TRUE)
 	. = ..()
 	new /obj/item/stack/sheet/iron(src.loc, 4)
 	new /obj/item/stack/rods(loc, 4)
@@ -154,7 +154,7 @@
 	density = TRUE
 	anchored = FALSE
 
-/obj/structure/bloodsucker/vassalrack/MouseDrop_T(atom/movable/movable_atom, mob/user)
+/obj/structure/bloodsucker/vassalrack/mouse_drop_receive(atom/movable/movable_atom, mob/user, params)
 	var/mob/living/living_target = movable_atom
 	if(!anchored && IS_BLOODSUCKER(user))
 		user.balloon_alert(user, "not secured!")
@@ -593,7 +593,7 @@
 		return
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	var/rendered = span_cultlarge("<b>[user.real_name]:</b> [capitalize(message)]")
+	var/rendered = span_cult_large("<b>[user.real_name]:</b> [capitalize(message)]")
 	user.log_talk(message, LOG_SAY, tag = ROLE_BLOODSUCKER)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	for(var/datum/antagonist/vassal/receiver as anything in bloodsuckerdatum.vassals)

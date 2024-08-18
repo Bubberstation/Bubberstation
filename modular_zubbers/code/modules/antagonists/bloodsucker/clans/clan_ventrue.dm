@@ -54,7 +54,7 @@
 		// Give them the UI to purchase a power.
 		var/choice = tgui_input_list(bloodsuckerdatum.owner.current, "You have the opportunity to level up your Favorite Vassal. Select a power you wish them to recieve.", "Your Blood Thickens...", options)
 		// Prevent Bloodsuckers from closing/reopning their coffin to spam Levels.
-		if(cost_rank && bloodsuckerdatum.bloodsucker_level_unspent <= 0)
+		if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
 			return
 		// Did you choose a power?
 		if(!choice || !options[choice])
@@ -125,10 +125,10 @@
 		return TRUE
 	if(!istype(vassaldatum))
 		return FALSE
-	if(!bloodsuckerdatum.bloodsucker_level_unspent <= 0)
+	if(!bloodsuckerdatum.GetUnspentRank() <= 0)
 		bloodsuckerdatum.SpendRank(vassaldatum.owner.current)
 		return TRUE
-	if(bloodsuckerdatum.bloodsucker_blood_volume >= BLOODSUCKER_BLOOD_RANKUP_COST)
+	if(bloodsuckerdatum.GetBloodVolume() >= BLOODSUCKER_BLOOD_RANKUP_COST)
 		// We don't have any ranks to spare? Let them upgrade... with enough Blood.
 		to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to spend [BLOODSUCKER_BLOOD_RANKUP_COST] Blood to Rank [vassaldatum.owner.current] up?"))
 		var/static/list/rank_options = list(

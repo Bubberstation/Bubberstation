@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/datum/mind/minds = list() //The characters in the game. Used for objective tracking.
 
-	var/delay_end = FALSE //if set true, the round will not restart on it's own
+	var/delay_end = FALSE //if set true, the round will not restart on its own
 	var/admin_delay_notice = "" //a message to display to anyone who tries to restart the world after a delay
 	var/ready_for_reboot = FALSE //all roundend preparation done with, all that's left is reboot
 
@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(ticker)
 	var/use_rare_music = prob(1)
 
 	for(var/S in provisional_title_music)
-		var/lower = lowertext(S)
+		var/lower = LOWER_TEXT(S)
 		var/list/L = splittext(lower,"+")
 		switch(L.len)
 			if(3) //rare+MAP+sound.ogg or MAP+rare.sound.ogg -- Rare Map-specific sounds
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/S in music)
 		var/list/L = splittext(S,".")
 		if(L.len >= 2)
-			var/ext = lowertext(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
+			var/ext = LOWER_TEXT(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
 			if(byond_sound_formats[ext])
 				continue
 		music -= S
@@ -169,6 +169,7 @@ SUBSYSTEM_DEF(ticker)
 				send2chat(new /datum/tgs_message_content("<@&[CONFIG_GET(string/game_alert_role_id)]> Round **[GLOB.round_id]** starting on [SSmapping.config.map_name], [CONFIG_GET(string/servername)]! \nIf you wish to be pinged for game related stuff, go to <#[CONFIG_GET(string/role_assign_channel_id)]> and assign yourself the roles."), CONFIG_GET(string/channel_announce_new_game)) // SKYRAT EDIT - Role ping and round ID in game-alert
 			// SKYRAT EDIT END
 			current_state = GAME_STATE_PREGAME
+			SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE) // BUBBER EDIT ADDITION
 			SStitle.change_title_screen() //SKYRAT EDIT ADDITION - Title screen
 			addtimer(CALLBACK(SStitle, TYPE_PROC_REF(/datum/controller/subsystem/title, change_title_screen)), 1 SECONDS) //SKYRAT EDIT ADDITION - Title screen
 			//Everyone who wants to be an observer is now spawned
@@ -246,7 +247,12 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 	//Configure mode and assign player to antagonists
 	var/can_continue = FALSE
-	can_continue = SSdynamic.pre_setup() //Choose antagonists
+//	can_continue = SSdynamic.pre_setup() //Choose antagonists // BUBBER EDIT - STORYTELLER (note: maybe disable)
+	//BUBBER EDIT BEGIN - STORYTELLER
+	SSgamemode.init_storyteller()
+	can_continue = SSgamemode.pre_setup()
+	//BUBBER EDIT END - STORYTELLER
+
 	CHECK_TICK
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PRE_JOBS_ASSIGNED, src)
 	can_continue = can_continue && SSjob.DivideOccupations() //Distribute jobs
@@ -296,8 +302,8 @@ SUBSYSTEM_DEF(ticker)
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
 
-	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
-	alert_sound_to_playing(sound(SSstation.announcer.get_rand_welcome_sound())) //SKYRAT EDIT CHANGE
+	to_chat(world, span_notice(span_bold("Welcome to [station_name()], enjoy your stay!")))
+	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -315,6 +321,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
 	SSdynamic.post_setup()
+	SSgamemode.post_setup() // BUBBER EDIT - Storyteller
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()
 
@@ -450,13 +457,6 @@ SUBSYSTEM_DEF(ticker)
 				new_player_mob.client.prefs.hardcore_random_setup(new_player_living)
 			SSquirks.AssignQuirks(new_player_living, new_player_mob.client)
 
-		//SKYRAT EDIT ADDITION
-		if(ishuman(new_player_living))
-			for(var/datum/loadout_item/item as anything in loadout_list_to_datums(new_player_mob.client?.prefs?.loadout_list))
-				if (item.restricted_roles && length(item.restricted_roles) && !(player_assigned_role.title in item.restricted_roles))
-					continue
-				item.post_equip_item(new_player_mob.client?.prefs, new_player_living)
-		//SKYRAT EDIT END
 		CHECK_TICK
 
 	if(captainless)
@@ -494,8 +494,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
-	for(var/i in GLOB.new_player_list)
-		var/mob/dead/new_player/player = i
+	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 		var/mob/living = player.transfer_character()
 		if(living)
 			qdel(player)
@@ -744,6 +743,13 @@ SUBSYSTEM_DEF(ticker)
 
 	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 
+	var/statspage = CONFIG_GET(string/roundstatsurl)
+	var/gamelogloc = CONFIG_GET(string/gamelogurl)
+	if(statspage)
+		to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
+	else if(gamelogloc)
+		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
+
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
 	sleep(delay - (world.time - start_wait))
@@ -754,21 +760,12 @@ SUBSYSTEM_DEF(ticker)
 	if(end_string)
 		end_state = end_string
 
-	var/statspage = CONFIG_GET(string/roundstatsurl)
-	var/gamelogloc = CONFIG_GET(string/gamelogurl)
-	if(statspage)
-		to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
-	else if(gamelogloc)
-		to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
-
 	log_game(span_boldannounce("Rebooting World. [reason]"))
 
 	world.Reboot()
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()
 	if(!round_end_sound)
 		round_end_sound = choose_round_end_song()
 	///The reference to the end of round sound that we have chosen.
