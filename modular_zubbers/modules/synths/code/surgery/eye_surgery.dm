@@ -27,7 +27,10 @@
 /datum/surgery_step/robot_fix_eyes
 	name = "fix eyes (multitool)"
 	implements = list(
-		TOOL_MULTITOOL = 100,)
+		TOOL_MULTITOOL = 100,
+		TOOL_HEMOSTAT = 35,
+		/obj/item/pen = 15
+	)
 	time = 6.4 SECONDS
 
 /datum/surgery/robot/eye_surgery/can_start(mob/user, mob/living/carbon/target)
