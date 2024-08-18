@@ -47,6 +47,9 @@
 
 /datum/surgery_step/robot_sever_limb
 	name = "disconnect limb (wirecutters)"
+	implements = list(
+		TOOL_HEMOSTAT = 75,
+	)
 	accept_hand = TRUE // Just pull it off, like putting a limb on
 	time = 2 SECONDS // It's not a slow procedure
 	// TODO add sounds
