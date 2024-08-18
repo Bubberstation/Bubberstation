@@ -46,7 +46,7 @@
 	return ..()
 
 /datum/surgery_step/robot_sever_limb
-	name = "disconnect limb (wirecutters)"
+	name = "disconnect limb (hand)"
 	implements = list(
 		TOOL_CROWBAR = 100,
 		TOOL_HEMOSTAT = 75,
