@@ -1,5 +1,5 @@
 /datum/surgery/robot/organ_manipulation
-	name = "Prosthesis organ manipulation"
+	name = "Hardware Manipulation"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
@@ -18,7 +18,7 @@
 	close_surgery = /datum/surgery/robot/close_organ_manipulation
 
 /datum/surgery/robot/close_organ_manipulation/
-	name = "Close Surgery (Prosthesis organ manipulation)"
+	name = "Close Surgery (Hardware Manipulation)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
@@ -50,7 +50,7 @@
 	close_surgery = /datum/surgery/robot/organ_manipulation/soft/close
 
 /datum/surgery/robot/organ_manipulation/soft/close
-	name = "Close Surgery (Prosthesis organ manipulation)"
+	name = "Close Surgery (Hardware Manipulation)"
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
@@ -58,7 +58,7 @@
 	is_closer = TRUE
 
 /datum/surgery/robot/organ_manipulation/external
-	name = "Prosthetic feature manipulation"
+	name = "Chassis Manipulation"
 	possible_locs = list(
 		BODY_ZONE_CHEST,
 		BODY_ZONE_HEAD,
@@ -80,7 +80,7 @@
 	close_surgery = /datum/surgery/robot/organ_manipulation/external/close
 
 /datum/surgery/robot/organ_manipulation/external/close
-	name = "Close Surgery (Prosthetic feature manipulation)"
+	name = "Close Surgery (Chassis Manipulation)"
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
