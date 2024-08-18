@@ -33,7 +33,6 @@
 		TOOL_HEMOSTAT = 10,
 	)
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/crowbar_prying.ogg'
 	success_sound = 'sound/items/crowbar.ogg'
 
 /datum/surgery_step/pry_off_plating/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
