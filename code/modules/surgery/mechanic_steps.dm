@@ -84,7 +84,7 @@
 
 //unwrench
 /datum/surgery_step/mechanic_unwrench
-	name = "unwrench bolts (wrench or retractor)"
+	name = "unwrench bolts (wrench)"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 75)
@@ -109,7 +109,7 @@
 
 //wrench
 /datum/surgery_step/mechanic_wrench
-	name = "wrench bolts (wrench or retractor)"
+	name = "wrench bolts (wrench)"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 75)
