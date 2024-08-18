@@ -78,7 +78,7 @@
 
 	ui_interact(user)
 
-// BUBBBER EDIT Overriden by surger_initiator in modular_zubbers
+// BUBBER EDIT Overriden by surgery_initiator in modular_zubbers
 /datum/component/surgery_initiator/proc/get_available_surgeries(mob/user, mob/living/target)
 	var/list/available_surgeries = list()
 
@@ -111,7 +111,7 @@
 
 	return available_surgeries
 
-// BUBBBER EDIT Overriden by surger_initiator in modular_zubbers
+// BUBBER EDIT Overriden by surgery_initiator in modular_zubbers
 /// Does the surgery de-initiation.
 /datum/component/surgery_initiator/proc/attempt_cancel_surgery(datum/surgery/the_surgery, mob/living/patient, mob/user)
 	var/selected_zone = user.zone_selected
