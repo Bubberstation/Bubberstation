@@ -4,7 +4,8 @@
 		TOOL_CROWBAR = 100,
 		TOOL_HEMOSTAT = 75,
 		/obj/item/kitchen/fork = 55)
-	// TODO add sound
+	preop_sound = 'sound/items/crowbar_prying.ogg'
+	success_sound = 'sound/items/deconstruct.ogg'
 
 /datum/surgery/robot/implant_removal
 	name = "Uninstall Implant"
