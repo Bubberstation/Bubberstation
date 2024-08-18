@@ -23,27 +23,3 @@
 		"[user] begins to reattach [target]'s [parse_zone(target_zone)] plating.",
 		"[user] begins to reattach [target]'s [parse_zone(target_zone)] plating.",
 	)
-
-/datum/surgery/robot/next_step(mob/living/user, modifiers)
-	if(location != user.zone_selected)
-		return FALSE
-	if(user.combat_mode)
-		return FALSE
-	if(step_in_progress)
-		return TRUE
-
-	var/try_to_fail = FALSE
-	if(LAZYACCESS(modifiers, RIGHT_CLICK))
-		try_to_fail = TRUE
-
-	var/datum/surgery_step/step = get_surgery_step()
-	if(isnull(step))
-		return FALSE
-	var/obj/item/tool = user.get_active_held_item()
-	if(step.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
-		return TRUE
-	if(tool && tool.tool_behaviour) //Mechanic surgery isn't done with just surgery tools
-		to_chat(user, span_warning("This step requires a different tool!"))
-		return TRUE
-
-	return FALSE
