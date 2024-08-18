@@ -47,10 +47,9 @@
 
 /datum/surgery_step/robot_sever_limb
 	name = "disconnect limb (wirecutters)"
-	implements = list(
-		/obj/item/shears = 300,
-		TOOL_WIRECUTTER = 100,)
-	time = 2 SECONDS // Just pull it off, it's not a slow procedure
+	accept_hand = TRUE // Just pull it off, like putting a limb on
+	time = 2 SECONDS // It's not a slow procedure
+	// TODO add sounds
 	//preop_sound = 'sound/surgery/scalpel1.ogg'
 	//success_sound = 'sound/surgery/organ2.ogg'
 
