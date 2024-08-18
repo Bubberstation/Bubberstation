@@ -1,9 +1,10 @@
 /datum/surgery_step/extract_implant/robot
-	name = "extract implant (wirecutters)"
+	name = "extract implant (crowbar)"
 	implements = list(
-		TOOL_WIRECUTTER = 100,
-		TOOL_HEMOSTAT = 65,
-		/obj/item/kitchen/fork = 35)
+		TOOL_CROWBAR = 100,
+		TOOL_HEMOSTAT = 75,
+		/obj/item/kitchen/fork = 55)
+	// TODO add sound
 
 /datum/surgery/robot/implant_removal
 	name = "Uninstall Implant"
