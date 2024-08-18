@@ -28,7 +28,7 @@
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB | SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/reattach_plating,
-		/datum/surgery_step/weld_plating
+		/datum/surgery_step/weld_plating,
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
