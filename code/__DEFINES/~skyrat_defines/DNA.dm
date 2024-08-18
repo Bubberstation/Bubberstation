@@ -128,7 +128,7 @@
 #define SPECIES_INSECT "insect"
 #define SPECIES_MAMMAL "mammal"
 #define SPECIES_PODPERSON_WEAK "podweak"
-#define SPECIES_XIARN "SPECIES_XIARN" // BUBBER CHANGE, xiarn
+#define SPECIES_XIARN "xiarn" // BUBBER CHANGE, xiarn
 #define SPECIES_SYNTH "synth"
 #define SPECIES_SLIMESTART "slimeperson"	//There's already SPECIES_SLIMEPERSON in tg
 #define SPECIES_SKRELL "skrell"
