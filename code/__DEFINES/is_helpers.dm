@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(turfs_pass_meteor, typecacheof(list(
 #define isflyperson(A) (is_species(A, /datum/species/fly))
 #define isjellyperson(A) (is_species(A, /datum/species/jelly))
 #define isslimeperson(A) (is_species(A, /datum/species/jelly/slime))
-#define iszombie(A) (is_species(A, /datum/species/zombie))
+#define iszombie(A) (is_species(A, /datum/species/zombie) || HAS_TRAIT(A, TRAIT_UNDEAD)) // SPLURT EDIT - Quirks
 #define isskeleton(A) (is_species(A, /datum/species/skeleton))
 #define ismoth(A) (is_species(A, /datum/species/moth))
 #define isfelinid(A) (is_species(A, /datum/species/human/felinid))

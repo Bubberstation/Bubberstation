@@ -130,7 +130,10 @@
 
 	switch(mob_parent.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
-			add_mood_event(MOOD_CATEGORY_NUTRITION, HAS_TRAIT(mob_parent, TRAIT_VORACIOUS) ? /datum/mood_event/wellfed : /datum/mood_event/too_wellfed)
+			// SPLURT EDIT CHANGE - Incubus and Succubus traits - No bad fat mood for incubi/succubi.
+			if(!HAS_TRAIT(mob_parent, TRAIT_INCUBUS) && !HAS_TRAIT(mob_parent, TRAIT_SUCCUBUS))
+				add_mood_event(MOOD_CATEGORY_NUTRITION, HAS_TRAIT(mob_parent, TRAIT_VORACIOUS) ? /datum/mood_event/wellfed : /datum/mood_event/too_wellfed)
+			// SPLURT EDIT CHANGE END
 		if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
 			add_mood_event(MOOD_CATEGORY_NUTRITION, /datum/mood_event/wellfed)
 		if( NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
@@ -418,7 +421,7 @@
 				msg += "[span_boldnicegreen("I love life!")]\n"
 	else
 		msg += "[span_notice("No clue.")]\n"
-	
+
 	msg += "[span_notice("Moodlets:")]\n"//All moodlets
 	msg += get_alcohol_processing(user)
 	msg += get_drunk_mood(user)
