@@ -60,6 +60,6 @@
 				span_notice("You begin to close [patient]'s [patient.parse_zone_with_bodypart(selected_zone)]."),
 			)
 
-			patient.balloon_alert(user, "beginning to close up [patient.parse_zone_with_bodypart(selected_zone)]")
+			patient.balloon_alert(user, "starting to close up [patient.parse_zone_with_bodypart(selected_zone)]")
 
 	qdel(the_surgery)
