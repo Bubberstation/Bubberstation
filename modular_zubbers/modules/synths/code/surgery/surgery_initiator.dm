@@ -1,41 +1,5 @@
 // Override of tg code
 
-/datum/component/surgery_initiator/get_available_surgeries(mob/user, mob/living/target)
-	var/list/available_surgeries = list()
-
-	var/mob/living/carbon/carbon_target
-	var/obj/item/bodypart/affecting
-	if (iscarbon(target))
-		carbon_target = target
-		affecting = carbon_target.get_bodypart(check_zone(user.zone_selected))
-
-	for(var/datum/surgery/surgery as anything in GLOB.surgeries_list)
-		if(!surgery.possible_locs.Find(user.zone_selected))
-			continue
-		if(affecting)
-			if(!(surgery.surgery_flags & SURGERY_REQUIRE_LIMB))
-				continue
-			if(surgery.requires_bodypart_type && !(affecting.bodytype & surgery.requires_bodypart_type))
-				continue
-			if((surgery.surgery_flags & SURGERY_REQUIRES_REAL_LIMB) && (affecting.bodypart_flags & BODYPART_PSEUDOPART))
-				continue
-		else if(carbon_target && (surgery.surgery_flags & SURGERY_REQUIRE_LIMB)) //mob with no limb in surgery zone when we need a limb
-			continue
-		if(IS_IN_INVALID_SURGICAL_POSITION(target, surgery))
-			continue
-		if(!surgery.can_start(user, target))
-			continue
-		if(istype(surgery, /datum/surgery/robot))
-			var/datum/surgery/robot/robot_surgery = surgery
-			if(robot_surgery.is_closer)
-				continue
-		for(var/path in surgery.target_mobtypes)
-			if(istype(target, path))
-				available_surgeries += surgery
-				break
-
-	return available_surgeries
-
 /// Does the surgery de-initiation.
 /datum/component/surgery_initiator/attempt_cancel_surgery(datum/surgery/the_surgery, mob/living/patient, mob/user)
 	var/selected_zone = user.zone_selected

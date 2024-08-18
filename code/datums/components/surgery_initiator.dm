@@ -107,6 +107,12 @@
 			continue
 		if(!surgery.can_start(user, target))
 			continue
+		// BUBBER EDIT START
+		if(istype(surgery, /datum/surgery/robot))
+			var/datum/surgery/robot/robot_surgery = surgery
+			if(robot_surgery.is_closer)
+				continue
+		// BUBBER EDIT END
 
 		available_surgeries += surgery
 
