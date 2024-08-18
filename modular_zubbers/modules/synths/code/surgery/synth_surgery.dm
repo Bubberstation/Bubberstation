@@ -42,7 +42,7 @@
 	var/obj/item/tool = user.get_active_held_item()
 	if(step.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
 		return TRUE
-	if(tool && tool.tool_behaviour) //Mechanic surgery isn't done with just surgery tools
+	if(tool && (tool.tool_behaviour in MECHANICAL_TOOLS)) //Mechanic surgery should be done with mechanical tools
 		to_chat(user, span_warning("This step requires a different tool!"))
 		return TRUE
 
