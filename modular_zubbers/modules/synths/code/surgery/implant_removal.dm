@@ -6,7 +6,7 @@
 		/obj/item/kitchen/fork = 35)
 
 /datum/surgery/robot/implant_removal
-	name = "Implant Removal"
+	name = "Uninstall Implant"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
 	target_mobtypes = list(/mob/living/carbon/human) // Simpler mobs don't have bodypart types
@@ -22,7 +22,7 @@
 	close_surgery = /datum/surgery/robot/close_implant_removal
 
 /datum/surgery/robot/close_implant_removal
-	name = "Close Surgery (Implant Removal)"
+	name = "Close Surgery (Uninstall Implant)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
 	target_mobtypes = list(/mob/living/carbon/human) // Simpler mobs don't have bodypart types
