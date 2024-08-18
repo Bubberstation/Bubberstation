@@ -43,7 +43,7 @@ BUBBER REMOVAL END */
 		span_notice("[user] begins to repair [target]'s hydraulic pump with [tool]!"),
 		span_notice("[user] begins to repair [target]'s hydraulic pump!"),
 	)
-	display_pain(target, "Your systems disconnect from your hydraulic pump, avoiding unnecessary errors.") // BUBBER EDIT // TODO give a cooler description
+	display_pain(target, "The pain in your chest is unbearable! You can barely take it anymore!")
 
 /datum/surgery_step/hydraulic/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
@@ -58,7 +58,7 @@ BUBBER REMOVAL END */
 		span_notice("[user] finishes clamping tubing down around [target]'s hydraulic pump with [tool]."),
 		span_notice("[user] finishes clamping tubing down around [target]'s hydraulic pump."),
 	)
-	display_pain(target, "The warnings, but your pump is as strong as ever!") // TODO give a cooler description
+	display_pain(target, "The warnings, but your pump is as strong as ever!")
 	return ..()
 
 /datum/surgery_step/hydraulic/repair/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
