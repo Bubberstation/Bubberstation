@@ -282,18 +282,6 @@
 	icon_state = "sand"
 	},
 /area/ruin/powered/beach)
-"hq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/spawner/random/bedsheet{
-	dir = 4
-	},
-/obj/structure/bed{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "hy" = (
 /obj/machinery/chem_master/condimaster{
 	name = "CondiMaster Neo";
@@ -522,11 +510,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/closed/wall/mineral/sandstone,
-/area/ruin/powered/beach)
-"qK" = (
-/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "qT" = (
 /obj/machinery/light/directional/east,
@@ -879,6 +862,11 @@
 	dir = 10
 	},
 /turf/closed/wall/mineral/sandstone,
+/area/ruin/powered/beach)
+"Ft" = (
+/obj/machinery/light/small/directional/east,
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
+/turf/open/floor/wood,
 /area/ruin/powered/beach)
 "FC" = (
 /obj/structure/sink/kitchen/directional/west{
@@ -1383,6 +1371,18 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
+"XL" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/spawner/random/bedsheet{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "XM" = (
 /obj/structure/fluff/beach_umbrella/science,
 /turf/open/misc/beach/sand,
@@ -1546,7 +1546,7 @@ VI
 VI
 FH
 aj
-qK
+Ft
 aC
 aC
 CK
@@ -2142,7 +2142,7 @@ BE
 Mf
 de
 TC
-hq
+XL
 Fr
 qF
 ZA
@@ -2178,7 +2178,7 @@ kh
 aj
 de
 TC
-hq
+XL
 MZ
 hj
 mw

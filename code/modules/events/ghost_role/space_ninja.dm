@@ -44,6 +44,10 @@
 	else
 		ninja.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
 		ninja.dna.update_dna_identity()
+	//BUBBER EDIT BEGIN
+	var/obj/item/mod/control/ninjamod = locate(/obj/item/mod/control/pre_equipped/ninja) in ninja.contents
+	var/obj/item/mod/module/dna_lock/reinforced/ninja_dna_lock = locate(/obj/item/mod/module/dna_lock/reinforced) in ninjamod.contents
+	ninja_dna_lock.on_use()// BUBBER EDIT END
 
 // SKYRAT EDIT ADDITION END: Preference Ninjas
 	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a space ninja by an event.")

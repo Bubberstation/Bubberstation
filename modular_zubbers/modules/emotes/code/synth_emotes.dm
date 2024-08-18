@@ -3,7 +3,6 @@
 	message = "emits a disconcerting tone."
 	vary = FALSE
 	sound = 'modular_zubbers/modules/emotes/sound/synth_voice/synth_scary.ogg'
-	silicon_allowed = TRUE
 	allowed_species = list(/datum/species/synthetic)
 	cooldown = 2 SECONDS
 
@@ -12,7 +11,6 @@
 	message = "experiences a system error."
 	vary = FALSE
 	sound = 'modular_zubbers/modules/emotes/sound/synth_voice/synth_error.ogg'
-	silicon_allowed = TRUE
 	allowed_species = list(/datum/species/synthetic)
 	cooldown = 2 SECONDS
 
@@ -21,7 +19,6 @@
 	message = "chimes to life."
 	vary = FALSE
 	sound = 'modular_zubbers/modules/emotes/sound/synth_voice/synth_startup.ogg'
-	silicon_allowed = TRUE
 	allowed_species = list(/datum/species/synthetic)
 	cooldown = 2 SECONDS
 
@@ -30,6 +27,5 @@
 	message = "emits a nostalgic tone as they fall silent."
 	vary = FALSE
 	sound = 'modular_zubbers/modules/emotes/sound/synth_voice/synth_shutdown.ogg'
-	silicon_allowed = TRUE
 	allowed_species = list(/datum/species/synthetic)
 	cooldown = 2 SECONDS

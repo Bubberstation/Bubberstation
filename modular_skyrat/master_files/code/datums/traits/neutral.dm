@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /// Adds the DNR HUD element if src has TRAIT_DNR. Removes it otherwise.
 /mob/living/proc/update_dnr_hud()
-/* 	var/image/dnr_holder = hud_list?[DNR_HUD] // BUBBER EDIT - more DNR fixing
+	var/image/dnr_holder = hud_list?[DNR_HUD]
 	if(isnull(dnr_holder))
 		return
 
@@ -80,7 +80,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 		set_hud_image_active(DNR_HUD)
 		dnr_holder.icon_state = "hud_dnr"
 	else
-		set_hud_image_inactive(DNR_HUD) */
+		set_hud_image_inactive(DNR_HUD)
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()

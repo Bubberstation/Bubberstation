@@ -83,37 +83,6 @@
 /obj/structure/flora/bush/sparsegrass/style_random,
 /turf/open/water/beach,
 /area/virtual_domain/fullbright)
-"db" = (
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/vending_refill/cigarette,
-/obj/item/vending_refill/boozeomat,
-/obj/structure/closet/secure_closet{
-	icon_state = "cabinet";
-	name = "booze storage";
-	req_access = list("bar")
-	},
-/obj/item/storage/backpack/duffelbag,
-/obj/item/etherealballdeployer,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/bottle/beer/light,
-/obj/item/reagent_containers/cup/glass/colocup,
-/obj/item/reagent_containers/cup/glass/colocup,
-/obj/item/reagent_containers/cup/glass/colocup,
-/obj/item/reagent_containers/cup/glass/colocup,
-/obj/item/reagent_containers/cup/glass/colocup,
-/turf/open/floor/wood,
-/area/virtual_domain/fullbright)
 "di" = (
 /obj/machinery/vending/boozeomat,
 /obj/effect/mapping_helpers/atom_injector/obj_flag{
@@ -217,6 +186,11 @@
 "jl" = (
 /obj/structure/flora/rock/pile/jungle/style_random,
 /turf/open/misc/beach/sand,
+/area/virtual_domain/fullbright)
+"jp" = (
+/obj/machinery/light/small/directional/east,
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_clothes,
+/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "jy" = (
 /obj/effect/turf_decal/sand{
@@ -393,22 +367,6 @@
 "uc" = (
 /obj/machinery/light/small/directional/east,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/virtual_domain/fullbright)
-"ug" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cabinet";
-	name = "bartender's closet";
-	req_access = list("bar")
-	},
-/obj/item/clothing/shoes/sandal{
-	desc = "A very fashionable pair of flip-flops.";
-	name = "flip-flops"
-	},
-/obj/item/clothing/neck/beads,
-/obj/item/clothing/glasses/sunglasses/reagent,
-/obj/item/clothing/suit/costume/hawaiian,
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "uk" = (
 /obj/structure/closet/crate/hydroponics,
@@ -793,6 +751,10 @@
 /obj/item/storage/medkit/brute,
 /turf/open/floor/wood,
 /area/virtual_domain/fullbright)
+"GG" = (
+/obj/structure/closet/secure_closet/bar/lavaland_bartender_booze,
+/turf/open/floor/wood,
+/area/virtual_domain/fullbright)
 "Hs" = (
 /obj/machinery/shower/directional/west,
 /turf/open/floor/iron/white,
@@ -895,15 +857,6 @@
 "Nr" = (
 /obj/machinery/light/directional/north,
 /turf/open/misc/beach/sand,
-/area/virtual_domain/fullbright)
-"Nw" = (
-/obj/effect/spawner/random/bedsheet{
-	dir = 4
-	},
-/obj/structure/bed{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "NM" = (
 /obj/structure/closet/crate/hydroponics,
@@ -1097,6 +1050,15 @@
 	name = "Soaks-The-Rays"
 	},
 /turf/open/floor/carpet/orange,
+/area/virtual_domain/fullbright)
+"Xj" = (
+/obj/effect/spawner/random/bedsheet{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/virtual_domain/fullbright)
 "Xt" = (
 /turf/open/misc/beach/coast/corner{
@@ -1663,7 +1625,7 @@ wD
 Bw
 JY
 Fn
-db
+GG
 TG
 TG
 TG
@@ -1706,7 +1668,7 @@ wD
 wD
 OR
 Fn
-ug
+jp
 TG
 TG
 TG
@@ -2511,7 +2473,7 @@ Fn
 Fn
 dZ
 OE
-Nw
+Xj
 Fn
 Fn
 qR
@@ -2558,7 +2520,7 @@ TG
 Fn
 dZ
 OE
-Nw
+Xj
 Fn
 Gz
 uV

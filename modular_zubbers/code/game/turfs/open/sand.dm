@@ -68,7 +68,7 @@
 	planetary_atmos = TRUE
 
 /turf/open/floor/catwalk_floor/rust/moonstation/cave
-	initial_gas_mix = MOONSTATION_ATMOS
+	initial_gas_mix = MOONSTATION_ATMOS_CAVE
 
 /turf/open/floor/iron/solarpanel/moonstation
 	initial_gas_mix = MOONSTATION_ATMOS

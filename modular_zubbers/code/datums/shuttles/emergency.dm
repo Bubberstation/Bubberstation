@@ -1,3 +1,14 @@
+/datum/map_template/shuttle/emergency/meteor
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "cube"
+	name = "THE CUBE"
+	description = "A massive 16x16 solid chunk of metal with a bunch of engines strapped to it. The thing flies like shit so expect it to crash into departures. All worth it for THE CUBE."
+	admin_notes = "This shuttle will crush escape, killing anyone there. Also a huge bitch to get in and requires people to actually break through several metal walls."
+	credit_cost = CARGO_CRATE_VALUE * 30
+	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
+	occupancy_limit = "4^3"
+	emag_only = TRUE
+
 /datum/map_template/shuttle/emergency/burgerstation
 	prefix = "_maps/shuttles/zubbers/"
 	suffix = "moonstation"

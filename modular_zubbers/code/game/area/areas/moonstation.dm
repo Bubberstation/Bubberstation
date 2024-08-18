@@ -137,3 +137,13 @@
 
 /area/station/cargo/miningfoundry/event_protected
 	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+
+//Missing Lavaland Generators
+/area/lavaland/underground/unexplored
+	icon_state = "unexplored"
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/lavaland
+
+/area/lavaland/underground/unexplored/danger
+	icon_state = "danger"
+	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED

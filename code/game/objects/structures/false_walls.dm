@@ -43,12 +43,12 @@
 		return
 
 	opening = TRUE
-	update_appearance()
 	if(!density)
 		var/srcturf = get_turf(src)
 		for(var/mob/living/obstacle in srcturf) //Stop people from using this as a shield
 			opening = FALSE
 			return
+	update_appearance()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/falsewall, toggle_open)), 5)
 
 /obj/structure/falsewall/proc/toggle_open()
@@ -73,14 +73,14 @@
 
 /obj/structure/falsewall/update_icon_state()
 	if(opening)
-		icon = fake_icon
+		icon = initial(icon)
 		icon_state = "[base_icon_state]-[density ? "opening" : "closing"]"
 		return ..()
 	if(density)
-		icon = initial(icon)
+		icon = fake_icon
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 	else
-		icon = fake_icon
+		icon = initial(icon)
 		icon_state = "[base_icon_state]-open"
 	return ..()
 

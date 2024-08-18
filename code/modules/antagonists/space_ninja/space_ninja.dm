@@ -125,7 +125,7 @@
 	owner.current.add_quirk(/datum/quirk/light_step)
 	owner.current.mind.set_assigned_role(SSjob.GetJobType(/datum/job/space_ninja))
 	owner.current.mind.special_role = ROLE_NINJA
-	operative.mind.active = TRUE // BUBBED EDIT END
+	operative.mind.active = TRUE // BUBBER EDIT END
 	return ..()
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)

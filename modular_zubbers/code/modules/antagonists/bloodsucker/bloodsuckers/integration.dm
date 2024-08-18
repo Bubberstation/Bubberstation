@@ -8,20 +8,21 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
 	if(!bloodsuckerdatum)
 		return ..()
-	bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
-
+	if(bloodsuckerdatum.bloodsucker_blood_volume > BLOOD_VOLUME_NORMAL)
+		return
+	bloodsuckerdatum.AdjustBloodVolume(round(reac_volume, 0.1))
 
 /mob/living/carbon/transfer_blood_to(atom/movable/AM, amount, forced)
 	. = ..()
-
 	if(!mind)
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum)
 		return
-	bloodsuckerdatum.bloodsucker_blood_volume -= amount
+	bloodsuckerdatum.AdjustBloodVolume(-amount)
 
-/// Prevents using a Memento Mori
+// Prevents using a Memento Mori
+// todo move this to it's own trait
 /obj/item/clothing/neck/necklace/memento_mori/memento(mob/living/carbon/human/user)
 	if(IS_BLOODSUCKER(user))
 		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
@@ -35,6 +36,7 @@
 	return ..()
 
 // Used when analyzing a Bloodsucker, Masquerade will hide brain traumas (Unless you're a Beefman)
+/// todo move this to it's own trait or something
 /mob/living/carbon/get_traumas()
 	if(!mind)
 		return ..()
@@ -52,7 +54,11 @@
 	if(bloodsuckerdatum)
 		. += ""
 		. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-		. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
+		. += "Maximum blood: [bloodsuckerdatum.max_blood_volume]"
+		if(bloodsuckerdatum.frenzied)
+			. += "Frenzy exit blood threshold: [bloodsuckerdatum.frenzy_exit_threshold()]"
+		else
+			. += "Frenzy blood threshold: [bloodsuckerdatum.frenzy_enter_threshold()]"
 
 /datum/outfit/bloodsucker_outfit
 	name = "Bloodsucker outfit (Preview only)"
@@ -96,3 +102,16 @@
 			continue
 		amount += chosen_bodypart.burn_dam
 	return amount
+
+/mob/living/brain/can_be_revived()
+	if(health <= HEALTH_THRESHOLD_DEAD)
+		return FALSE
+	if(IS_BLOODSUCKER(src))
+		return TRUE
+	. =..()
+
+// prevents players being trapped in their brain, alive, yet limbless and voiceless
+/obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
+	var/obj/item/organ/internal/brain/brain = locate(/obj/item/organ/internal/brain) in src
+	brain.brainmob.death()
+	. = ..()

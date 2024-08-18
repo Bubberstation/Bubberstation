@@ -1,8 +1,12 @@
 /datum/quirk/dnr/post_add()
 	quirk_holder.AddElement(/datum/element/dnr)
 
+	return ..()
+
 /datum/quirk/dnr/remove()
 	quirk_holder.RemoveElement(/datum/element/dnr)
+
+	return ..()
 
 /datum/element/dnr/
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
