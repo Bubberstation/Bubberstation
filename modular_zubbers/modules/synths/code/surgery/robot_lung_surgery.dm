@@ -10,7 +10,7 @@
 		/datum/surgery_step/prepare_electronics,
 		/datum/surgery_step/heatsink/repair,
 		/datum/surgery_step/reattach_plating,
-		/datum/surgery_step/weld_plating
+		/datum/surgery_step/weld_plating,
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
