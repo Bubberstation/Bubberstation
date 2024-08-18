@@ -1,5 +1,5 @@
 /datum/surgery/robot/ear_surgery
-	name = "Ear surgery"
+	name = "Repair mics"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	organ_to_manipulate = ORGAN_SLOT_EARS
 	possible_locs = list(BODY_ZONE_HEAD)
@@ -17,7 +17,7 @@
 	close_surgery = /datum/surgery/robot/close_ear_surgery
 
 /datum/surgery/robot/close_ear_surgery
-	name = "Close Surgery (Ear surgery)"
+	name = "Close Surgery (Repair mics)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	organ_to_manipulate = ORGAN_SLOT_EARS
 	possible_locs = list(BODY_ZONE_HEAD)

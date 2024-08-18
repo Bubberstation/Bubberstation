@@ -1,5 +1,5 @@
 /datum/surgery/robot/eye_surgery
-	name = "Eye surgery"
+	name = "Repair optics"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	organ_to_manipulate = ORGAN_SLOT_EYES
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
@@ -13,7 +13,7 @@
 	close_surgery = /datum/surgery/robot/close_eye_surgery
 
 /datum/surgery/robot/close_eye_surgery
-	name = "Close Surgery (Eye surgery)"
+	name = "Close Surgery (Repair optics)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	organ_to_manipulate = ORGAN_SLOT_EYES
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
