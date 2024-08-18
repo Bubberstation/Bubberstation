@@ -51,7 +51,7 @@
 		TOOL_CROWBAR = 100,
 		TOOL_HEMOSTAT = 75,
 	)
-	accept_hand = TRUE // Just pull it off, like putting a limb on
+	accept_hand = TRUE // You can just pull it off, like putting a limb on
 	time = 2 SECONDS // It's not a slow procedure
 	// TODO add sounds
 	//preop_sound = 'sound/surgery/scalpel1.ogg'
