@@ -39,6 +39,7 @@
 	is_closer = TRUE
 
 /datum/surgery/robot/prosthetic_replacement/can_start(mob/user, mob/living/carbon/target)
+	..()
 	if(!iscarbon(target))
 		return FALSE
 	var/mob/living/carbon/carbon_target = target
