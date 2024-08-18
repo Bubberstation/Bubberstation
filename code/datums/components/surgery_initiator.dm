@@ -78,7 +78,6 @@
 
 	ui_interact(user)
 
-// BUBBER EDIT Overridden by surgery_initiator in modular_zubbers
 /datum/component/surgery_initiator/proc/get_available_surgeries(mob/user, mob/living/target)
 	var/list/available_surgeries = list()
 
