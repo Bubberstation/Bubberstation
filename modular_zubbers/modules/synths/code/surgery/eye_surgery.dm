@@ -32,6 +32,8 @@
 		/obj/item/pen = 15
 	)
 	time = 6.4 SECONDS
+	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
 
 /datum/surgery/robot/eye_surgery/can_start(mob/user, mob/living/carbon/target)
 	..()
