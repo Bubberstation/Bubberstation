@@ -1,4 +1,5 @@
 /// Bioreactor Maintenance
+/* BUBBER REMOVAL START
 /datum/surgery/bioreactor
 	name = "Bioreactor Maintenance"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
@@ -21,6 +22,7 @@
 	if(isnull(bioreactor) || !issynthetic(target) || bioreactor.damage < 10)
 		return FALSE
 	return ..()
+BUBBER REMOVAL END */
 
 /datum/surgery_step/bioreactor/repair
 	name = "perform bioreactor maintenance (screwdriver)"
@@ -42,7 +44,7 @@
 		span_notice("[user] begins to delicately repair [target]'s bioreactor using [tool]."),
 		span_notice("[user] begins to delicately repair [target]'s bioreactor."),
 	)
-	display_pain(target, "You feel a horrible stab in your gut!")
+	display_pain(target, "You feel a horrible stab in your gut!")  // TODO give a cooler description
 
 /datum/surgery_step/bioreactor/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target

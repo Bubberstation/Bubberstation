@@ -1,4 +1,5 @@
 /// Hydraulic Pump Surgery
+/* BUBBER REMOVAL START
 /datum/surgery/hydraulic_maintenance
 	name = "Hydraulic Pump Maintenance"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -21,6 +22,7 @@
 	if(isnull(hydraulic_pump) || !issynthetic(target) || hydraulic_pump.damage < 10)
 		return FALSE
 	return ..()
+BUBBER REMOVAL END */
 
 /datum/surgery_step/hydraulic/repair
 	name = "tighten seals (screwdriver or wrench)"
@@ -30,7 +32,7 @@
 		TOOL_WIRECUTTER = 35,
 		/obj/item/stack/package_wrap = 15,
 	)
-	preop_sound = 'sound/items/ratchet_slow.ogg'
+	preop_sound = 'sound/items/ratchet_slow.ogg' // NOTE TO SELF: sounds
 	success_sound = 'sound/machines/doorclick.ogg'
 
 /datum/surgery_step/hydraulic/repair/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -41,7 +43,7 @@
 		span_notice("[user] begins to repair [target]'s hydraulic pump with [tool]!"),
 		span_notice("[user] begins to repair [target]'s hydraulic pump!"),
 	)
-	display_pain(target, "The pain in your chest is unbearable! You can barely take it anymore!")
+	display_pain(target, "Your systems disconnect from your hydraulic pump, avoiding unnecessary errors.") // BUBBER EDIT // TODO give a cooler description
 
 /datum/surgery_step/hydraulic/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
@@ -56,7 +58,7 @@
 		span_notice("[user] finishes clamping tubing down around [target]'s hydraulic pump with [tool]."),
 		span_notice("[user] finishes clamping tubing down around [target]'s hydraulic pump."),
 	)
-	display_pain(target, "The warnings, but your pump is as strong as ever!")
+	display_pain(target, "The warnings, but your pump is as strong as ever!") // TODO give a cooler description
 	return ..()
 
 /datum/surgery_step/hydraulic/repair/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

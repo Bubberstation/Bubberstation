@@ -1,4 +1,5 @@
 /// Reagent Processor Repair surgery
+/* BUBBER REMOVAL START
 /datum/surgery/reagent_pump
 	name = "Reagent Processor Manual Reset"
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
@@ -21,6 +22,7 @@
 	if(isnull(reagent_processor) || !issynthetic(target) || reagent_processor.damage < 10)
 		return FALSE
 	return ..()
+BUBBER REMOVAL END */
 
 /datum/surgery_step/reagent_pump/repair
 	name = "perform valve adjustment (screwdriver)"
