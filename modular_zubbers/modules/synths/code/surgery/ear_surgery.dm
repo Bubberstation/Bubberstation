@@ -15,6 +15,7 @@
 	num_opening_steps = 3
 	num_steps_until_closing = 5
 	close_surgery = /datum/surgery/robot/close_ear_surgery
+	surgery_flags = SURGERY_SELF_OPERABLE
 
 /datum/surgery/robot/close_ear_surgery
 	name = "Close Surgery (Repair mics)"
@@ -27,6 +28,7 @@
 		/datum/surgery_step/mechanic_close,
 	)
 	is_closer = TRUE
+	surgery_flags = SURGERY_SELF_OPERABLE
 
 /datum/surgery_step/robot_fix_ears
 	name = "fix ears (multitool)"

@@ -18,6 +18,7 @@
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	desc = "A surgical procedure that restores the default behavior logic and personality matrix of an IPC posibrain."
+	surgery_flags = SURGERY_SELF_OPERABLE
 
 /datum/surgery/robot/close_brain_surgery
 	name = "Close Surgery (Reset Posibrain Logic (Brain Surgery))"
@@ -30,6 +31,7 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
+	surgery_flags = SURGERY_SELF_OPERABLE
 
 /datum/surgery/robot/brain_surgery/can_start(mob/user, mob/living/carbon/target, obj/item/tool)
 	..()

@@ -20,6 +20,7 @@
 	num_opening_steps = 2
 	num_steps_until_closing = 5
 	close_surgery = /datum/surgery/robot/close_implant_removal
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_SELF_OPERABLE
 
 /datum/surgery/robot/close_implant_removal
 	name = "Close Surgery (Uninstall Implant)"
@@ -30,3 +31,4 @@
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,)
 	is_closer = TRUE
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_SELF_OPERABLE

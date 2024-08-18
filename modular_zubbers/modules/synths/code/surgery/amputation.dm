@@ -1,7 +1,7 @@
 /datum/surgery/robot/amputation
 	name = "Disassemble"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY | SURGERY_SELF_OPERABLE
 	target_mobtypes = list(/mob/living/carbon/human/species/synth)
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
@@ -25,7 +25,7 @@
 /datum/surgery/robot/close_amputation
 	name = "Close Surgery (Disassemble)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY | SURGERY_SELF_OPERABLE
 	possible_locs = list(
 		BODY_ZONE_R_ARM,
 		BODY_ZONE_L_ARM,

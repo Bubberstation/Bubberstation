@@ -15,3 +15,4 @@
 			healing_step_type,
 			/datum/surgery_step/mechanic_close,
 		)
+	surgery_flags |= SURGERY_SELF_OPERABLE
