@@ -32,7 +32,7 @@ BUBBER REMOVAL END */
 		TOOL_WIRECUTTER = 35,
 		/obj/item/stack/package_wrap = 15,
 	)
-	preop_sound = 'sound/items/ratchet_slow.ogg' // NOTE TO SELF: sounds
+	preop_sound = 'sound/items/ratchet_slow.ogg'
 	success_sound = 'sound/machines/doorclick.ogg'
 
 /datum/surgery_step/hydraulic/repair/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
