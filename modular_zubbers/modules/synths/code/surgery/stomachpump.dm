@@ -22,6 +22,7 @@
 		/datum/surgery_step/mechanic_close,
 	)
 	is_closer = TRUE
+	surgery_flags = SURGERY_SELF_OPERABLE
 
 /datum/surgery/stomach_pump/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/stomach/target_stomach = target.get_organ_slot(ORGAN_SLOT_STOMACH)
@@ -46,7 +47,7 @@
 		span_notice("[user] begins to pump [target]'s stomach."),
 		span_notice("[user] begins to press on [target]'s chest."),
 	)
-	display_pain(target, "You feel a horrible sloshing feeling in your gut! You're going to be sick!")
+	display_pain(target, "You feel a horrible sloshing feeling in your gut! You're going to be sick!") // TODO change to a cooler message
 
 /datum/surgery_step/stomach_pump/mechanic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	if(ishuman(target))
@@ -73,3 +74,4 @@
 		)
 		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5)
 		target_human.adjustBruteLoss(5)
+	// TODO add "pain" message
