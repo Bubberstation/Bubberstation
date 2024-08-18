@@ -52,12 +52,10 @@
 	close_surgery = /datum/surgery/robot/close_organ_manipulation/soft
 
 /datum/surgery/robot/close_organ_manipulation/soft
-	name = "Close Surgery (Hardware Manipulation)"
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
-	is_closer = TRUE
 
 /datum/surgery/robot/organ_manipulation/external
 	name = "Chassis Manipulation"
@@ -87,7 +85,6 @@
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
-	is_closer = TRUE
 
 /datum/surgery_step/manipulate_organs/internal/mechanic
 	implements_extract = list(TOOL_HEMOSTAT = 75, TOOL_CROWBAR = 100, /obj/item/kitchen/fork = 55)
