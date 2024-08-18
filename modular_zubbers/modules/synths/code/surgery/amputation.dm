@@ -1,5 +1,5 @@
 /datum/surgery/robot/amputation
-	name = "Amputation (Synthetic)"
+	name = "Disassemble"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
 	target_mobtypes = list(/mob/living/carbon/human/species/synth)
@@ -23,7 +23,7 @@
 	num_steps_until_closing = 6 // last step automatically closes
 
 /datum/surgery/robot/close_amputation
-	name = "Close Surgery (Amputation (Synthetic))"
+	name = "Close Surgery (Disassemble)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_MORBID_CURIOSITY
 	possible_locs = list(
