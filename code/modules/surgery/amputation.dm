@@ -18,13 +18,6 @@
 	)
 	removes_target_bodypart = TRUE // SKYRAT EDIT ADDITION - Surgically unremovable limbs
 
-/datum/surgery/amputation/peg
-	name = "Detach"
-	requires_bodypart_type = BODYTYPE_PEG
-	steps = list(
-		/datum/surgery_step/sever_limb/peg,	//Easy come, easy go
-	)
-
 /* BUBBER EDIT START
 /datum/surgery/amputation/mechanic
 	name = "Disassemble"
@@ -35,6 +28,13 @@
 		/datum/surgery_step/sever_limb/mechanic, //The benefit of being robotic; people can pull you apart in an instant! Wait, that's not a benefit...
 	)
 BUBBER EDIT END */
+
+/datum/surgery/amputation/peg
+	name = "Detach"
+	requires_bodypart_type = BODYTYPE_PEG
+	steps = list(
+		/datum/surgery_step/sever_limb/peg,	//Easy come, easy go
+	)
 
 /datum/surgery/amputation/can_start(mob/user, mob/living/patient)
 	if(HAS_TRAIT(patient, TRAIT_NODISMEMBER))
