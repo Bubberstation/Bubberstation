@@ -54,21 +54,21 @@
 	icon_state = "halo"
 
 /datum/sprite_accessory/horns/bubber/big/antlersmore //sprites by Gavla
-	name = "Complex Antlers"
+	name = "Aged Antlers"
 	icon_state = "antlersmore"
 
 /datum/sprite_accessory/horns/bubber/big/antlersmost
-	name = "Regal Antlers"
+	name = "Large Antlers"
 	icon_state = "antlersmost"
 
-/datum/sprite_accessory/horns/bubber/big/antlersmost_alt
-	name = "Regal Antlers (Alt)"
-	icon_state = "antlersmostalt"
+/datum/sprite_accessory/horns/bubber/big/antlersregal
+	name = "Regal Antlers"
+	icon_state = "antlersregal"
 
-/datum/sprite_accessory/horns/bubber/big/antlersless
+/datum/sprite_accessory/horns/bubber/big/antlersmonarch
+	name = "Monarch Antlers"
+	icon_state = "antlersmonarch"
+
+/datum/sprite_accessory/horns/bubber/big/antlersless	//end of sprites by Gavla
 	name = "Short Antlers"
 	icon_state = "antlersless"
-
-/datum/sprite_accessory/horns/bubber/big/antlersleast	//end of sprites by Gavla
-	name = "Antler Nubs"
-	icon_state = "antlersleast"
