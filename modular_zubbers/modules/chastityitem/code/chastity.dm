@@ -54,7 +54,7 @@
 /obj/item/clothing/sextoy/chastity/belt
 	name = "chastity belt"
 	desc = "They say codpieces are back in vogue, after all."
-	var/devicetype = "belt"
+	devicetype = "belt"
 	icon_state = "chastitybelt"
 	inhand_icon_state = "chastitybelt"
 	worn_icon_state = "chastitybelt"
@@ -64,7 +64,7 @@
 /obj/item/clothing/sextoy/chastity/cage
 	name = "chastity cage"
 	desc = "They say codpieces are back in vogue, after all."
-	var/devicetype = "cage"
+	devicetype = "cage"
 	icon_state = "chastitycage"
 	inhand_icon_state = "chastitycage"
 	worn_icon_state = "chastitycage"
