@@ -49,9 +49,9 @@
 		return NONE
 
 	var/arms_needed = 0
-	if(ride_check_flags & RIDER_NEEDS_ARMS)
+	if(ride_check_flags & RIDER_NEEDS_ARMS && !potential_rider.has_quirk(/datum/quirk/featherweight)) // BUBBER EDIT CHANGE - FEATHERWEIGHT - ORIGINAL: if(ride_check_flags & RIDER_NEEDS_ARMS)
 		arms_needed = 2
-	else if(ride_check_flags & RIDER_NEEDS_ARM)
+	else if(ride_check_flags & RIDER_NEEDS_ARM || potential_rider.has_quirk(/datum/quirk/featherweight)) // BUBBER EDIT CHANGE - FEATHERWEIGHT - ORIGINAL: else if(ride_check_flags & RIDER_NEEDS_ARM)
 		arms_needed = 1
 		ride_check_flags &= ~RIDER_NEEDS_ARM
 		ride_check_flags |= RIDER_NEEDS_ARMS
