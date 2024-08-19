@@ -9,6 +9,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/autopsy/mechanic
 	name = "System Failure Analysis"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -18,6 +19,7 @@
 		/datum/surgery_step/autopsy,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/autopsy/can_start(mob/user, mob/living/patient)
 	if(!..())
