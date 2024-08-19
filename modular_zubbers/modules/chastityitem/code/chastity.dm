@@ -8,7 +8,7 @@
 	clothing_flags = INEDIBLE_CLOTHING
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	var/locked = FALSE
-	var/devicetype
+	var/devicetype = null
 
 /obj/item/clothing/sextoy/chastity/Initialize(mapload)
 	. = ..()
