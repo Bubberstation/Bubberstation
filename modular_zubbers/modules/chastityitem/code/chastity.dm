@@ -5,7 +5,7 @@
 	worn_icon = 'modular_zubbers/modules/chastityitem/mob/lewd_chastity.dmi'
 	clothing_flags = INEDIBLE_CLOTHING
 	alternate_worn_layer = UNDER_SUIT_LAYER
-	base_icon_state "chastity"
+	base_icon_state = "chastity"
 	var/locked = FALSE
 	var/devicetype = ""
 
