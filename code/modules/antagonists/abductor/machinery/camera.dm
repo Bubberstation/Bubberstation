@@ -27,6 +27,10 @@
 	eyeobj.icon_state = "abductor_camera"
 	eyeobj.SetInvisibility(INVISIBILITY_OBSERVER)
 
+/obj/machinery/computer/camera_advanced/abductor/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	networks += "[port.shuttle_id]"
+	return
+
 /obj/machinery/computer/camera_advanced/abductor/GrantActions(mob/living/carbon/user)
 	if(!abduct_created)
 		abduct_created = TRUE
