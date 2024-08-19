@@ -52,6 +52,13 @@
 	close_surgery = /datum/surgery/robot/close_organ_manipulation/soft
 
 /datum/surgery/robot/close_organ_manipulation/soft
+	possible_locs = list(
+		BODY_ZONE_PRECISE_GROIN,
+		BODY_ZONE_PRECISE_EYES,
+		BODY_ZONE_PRECISE_MOUTH,
+		BODY_ZONE_L_ARM,
+		BODY_ZONE_R_ARM,
+	)
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
@@ -81,6 +88,15 @@
 
 /datum/surgery/robot/close_organ_manipulation/external
 	name = "Close Surgery (Chassis Manipulation)"
+	possible_locs = list(
+		BODY_ZONE_CHEST,
+		BODY_ZONE_HEAD,
+		BODY_ZONE_PRECISE_GROIN,
+		BODY_ZONE_L_ARM,
+		BODY_ZONE_R_ARM,
+		BODY_ZONE_L_LEG,
+		BODY_ZONE_R_LEG,
+	)
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
