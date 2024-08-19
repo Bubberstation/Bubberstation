@@ -33,14 +33,14 @@
 /obj/item/clothing/sextoy/chastity/equipped(mob/user, slot)
 	var/mob/living/carbon/human/chasted = user
 	if(ishuman(user)
-		lockee.add_overlay(chasted.overlays_standing[BODY_ADJ_LAYER])
-		lockee.regenerate_icons()
+		chasted.add_overlay(chasted.overlays_standing[BODY_ADJ_LAYER])
+		chasted.regenerate_icons()
 	. = ..()
 
 /obj/item/clothing/sextoy/chastity/dropped(mob/user)
 	var/mob/living/carbon/human/chasted = user
 	if(ishuman(user)
-		lockee.cut_overlay(chasted.overlays_standing[BODY_ADJ_LAYER])
+		chasted.cut_overlay(chasted.overlays_standing[BODY_ADJ_LAYER])
 	. = ..()
 
 /obj/item/key/chastity
