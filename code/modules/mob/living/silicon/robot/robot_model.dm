@@ -258,6 +258,7 @@
 	new_model.update_quadruped()
 	new_model.update_lightweight()
 	new_model.update_robot_rest()
+	new_model.update_footsteps()
 	//BUBBER EDIT ADDTION END
 
 	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))

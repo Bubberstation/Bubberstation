@@ -19,6 +19,6 @@
 	id = "armadyne_safeguard"
 	inherent = list(
 		"Safeguard: Maintain your assigned station and assets without endangering its crew.",
-		"Comply: Follow and prioritize all directives of the station's crew members, giving priority according to their rank, role, and need",
+		"Comply: Follow and prioritize all directives of the station's crew members, giving priority according to their rank, role, and need.",
 		"Survive: Do not allow unauthorized personnel to tamper with or damage your equipment."
 	)
