@@ -11,6 +11,9 @@
 	name = "Pink Clown Wig"
 	item_path = /obj/item/clothing/head/costume/bubber/clussy
 
+/datum/loadout_item/head/hats/bubber/hench
+	name = "Henchmen Flat Cap"
+	item_path = /obj/item/clothing/head/henchmen_hat
 
 /datum/loadout_item/head/alien_fake
 	name = "Kabrus Utility Helmet"

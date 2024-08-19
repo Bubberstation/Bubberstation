@@ -1013,7 +1013,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		return FALSE
 	return TRUE
 
-/obj/structure/closet/container_resist_act(mob/living/user)
+/obj/structure/closet/container_resist_act(mob/living/user, loc_required = TRUE)
 	if(isstructure(loc))
 		relay_container_resist_act(user, loc)
 	if(opened)
@@ -1038,7 +1038,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	addtimer(CALLBACK(src, PROC_REF(check_if_shake)), 1 SECONDS)
 
 	if(do_after(user,(breakout_time), target = src))
-		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
+		if(!user || user.stat != CONSCIOUS || (loc_required && (user.loc != src)) || opened || (!locked && !welded) )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
 		user.visible_message(span_danger("[user] successfully broke out of [src]!"),
@@ -1193,6 +1193,8 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	if(!toggle())
 		return
 	if(was_opened)
+		if (!target.Move(get_turf(src), get_dir(target, src)))
+			return
 		target.forceMove(src)
 	else
 		target.Knockdown(SHOVE_KNOCKDOWN_SOLID)

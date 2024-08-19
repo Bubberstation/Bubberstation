@@ -130,10 +130,9 @@ SUBSYSTEM_DEF(polling)
 
 		// Image to display
 		var/image/poll_image
-		if(ispath(alert_pic, /atom))
-			poll_image = image(alert_pic)
-		else if(isatom(alert_pic))
+		if(ispath(alert_pic, /atom) || isatom(alert_pic))
 			poll_image = new /mutable_appearance(alert_pic)
+			poll_image.pixel_z = 0
 		else if(!isnull(alert_pic))
 			poll_image = alert_pic
 		else
@@ -176,8 +175,21 @@ SUBSYSTEM_DEF(polling)
 	UNTIL(new_poll.finished)
 	if(!(amount_to_pick > 0))
 		return new_poll.signed_up
+
+	//BUBBERSTATION CHANGE START: ANTAG TICKETS INTEGRATION
+	var/list/candidate_tickets = candidates_to_tickets(new_poll.signed_up)
+	for(var/pick in 1 to amount_to_pick)
+		if(!length(candidate_tickets))
+			continue
+		var/mob/chosen_mob = pick_weight(candidate_tickets)
+		candidate_tickets -= chosen_mob
+		new_poll.chosen_candidates += chosen_mob
+	/*
 	for(var/pick in 1 to amount_to_pick)
 		new_poll.chosen_candidates += pick_n_take(new_poll.signed_up)
+	*/
+	//BUBBERSTATION CHANGE END: ANTAG TICKETS INTEGRATION
+
 	if(announce_chosen)
 		new_poll.announce_chosen(group)
 	if(new_poll.chosen_candidates.len == 1)
@@ -206,6 +218,12 @@ SUBSYSTEM_DEF(polling)
 		return
 	for(var/mob/dead/observer/ghost_player in GLOB.player_list)
 		candidates += ghost_player
+
+#ifdef TESTING
+	for(var/mob/dude in GLOB.player_list)
+		candidates |= dude
+#endif
+
 	return poll_candidates(question, role, check_jobban, poll_time, ignore_category, flashwindow, candidates, alert_pic, jump_target, role_name_text, custom_response_messages, start_signed_up, amount_to_pick, chat_text_border_icon, announce_chosen)
 
 /datum/controller/subsystem/polling/proc/poll_ghosts_for_target(
