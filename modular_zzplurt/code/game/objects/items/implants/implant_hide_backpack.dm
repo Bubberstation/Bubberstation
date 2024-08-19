@@ -88,10 +88,10 @@
 		button_icon_state = "backpack"
 
 	// Update icon state
-	UpdateButtons()
+	build_all_button_icons()
 
 	// Display fake sparks to match flavor text
-	do_fake_sparks(2,FALSE,action_owner)
+	do_fake_sparks(2, FALSE, action_owner)
 
 	// Set toggle text based on active state
 	var/implant_toggle_text = (!ability_active ? "discernible" : "imperceptible")
