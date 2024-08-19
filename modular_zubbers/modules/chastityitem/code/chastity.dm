@@ -7,7 +7,7 @@
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	base_icon_state = "chastity"
 	var/locked = FALSE
-	var/devicetype = ""
+	var/devicetype
 
 /obj/item/clothing/sextoy/chastity/Initialize(mapload)
 	. = ..()
