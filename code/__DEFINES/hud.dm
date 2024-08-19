@@ -77,7 +77,7 @@
 #define ui_building "EAST-4:22,SOUTH:21"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
 #define ui_navigate_menu "EAST-4:22,SOUTH:5"
-#define ui_floor_menu "EAST-4:14,SOUTH:37"
+#define ui_floor_menu "EAST-4:22,SOUTH:37" // BUBBER EDIT: Shift over a bit for the vore button to sit nicely
 
 //Upper left (action buttons)
 #define ui_action_palette "WEST+0:23,NORTH-1:5"
