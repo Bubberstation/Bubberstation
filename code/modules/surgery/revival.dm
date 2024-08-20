@@ -15,6 +15,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/revival/mechanic
 	name = "Full System Reboot"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -27,6 +28,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/revival/can_start(mob/user, mob/living/target)
 	if(!..())

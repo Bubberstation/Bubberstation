@@ -13,6 +13,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/hepatectomy/mechanic
 	name = "Impurity Management System Diagnostic"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -24,6 +25,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/hepatectomy/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/liver/target_liver = target.get_organ_slot(ORGAN_SLOT_LIVER)

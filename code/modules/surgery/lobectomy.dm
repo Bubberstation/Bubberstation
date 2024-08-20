@@ -11,6 +11,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/lobectomy/mechanic
 	name = "Air Filtration Diagnostic"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -22,6 +23,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/lobectomy/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/lungs/target_lungs = target.get_organ_slot(ORGAN_SLOT_LUNGS)
