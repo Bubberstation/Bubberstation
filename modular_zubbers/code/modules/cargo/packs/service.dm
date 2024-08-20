@@ -5,7 +5,3 @@
 	contains = list(/obj/machinery/jukebox)
 	crate_type = /obj/structure/closet/crate/large
 	access_view = ACCESS_BAR
-
-/datum/supply_pack/organic/exoticseeds/New()
-	. = ..()
-	contains += /obj/item/seeds/vaporsac

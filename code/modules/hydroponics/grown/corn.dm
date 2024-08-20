@@ -1,6 +1,6 @@
 // Corn
 /obj/item/seeds/corn
-	name = "corn seed pack"
+	name = "pack of corn seeds"
 	desc = "I don't mean to sound corny..."
 	icon_state = "seed-corn"
 	species = "corn"
@@ -57,7 +57,7 @@
 
 // Snapcorn
 /obj/item/seeds/corn/snapcorn
-	name = "snapcorn seed pack"
+	name = "pack of snapcorn seeds"
 	desc = "Oh snap!"
 	icon_state = "seed-snapcorn"
 	species = "snapcorn"
@@ -100,7 +100,7 @@
 
 //Pepper-corn - Heh funny.
 /obj/item/seeds/corn/pepper
-	name = "pepper-corn seed pack"
+	name = "pack of pepper-corn seeds"
 	desc = "If Peter picked a pack of pepper-corn..."
 	icon_state = "seed-peppercorn"
 	species = "peppercorn"

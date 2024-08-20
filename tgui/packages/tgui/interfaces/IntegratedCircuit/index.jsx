@@ -535,7 +535,6 @@ export class IntegratedCircuit extends Component {
             height="100%"
             backgroundImage={resolveAsset('grid_background.png')}
             imageWidth={900}
-            scalePadding={componentMenuOpen ? '300px' : '0'}
             onZoomChange={this.handleZoomChange}
             onBackgroundMoved={this.handleBackgroundMoved}
             initialLeft={screen_x}

@@ -1,6 +1,6 @@
 // Herbs
 /obj/item/seeds/herbs
-	name = "herb seed pack"
+	name = "pack of herb seeds"
 	desc = "These seeds grow to produce an assortment of herbs and seasonings."
 	icon_state = "seed-herbs"
 	species = "herbs"

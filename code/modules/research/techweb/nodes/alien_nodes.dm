@@ -75,7 +75,6 @@
 		"alien_saw",
 		"alien_scalpel",
 		"surgery_brainwashing",
-		"surgery_brainwashing_mechanic",
 		"surgery_heal_combo_upgrade_femto",
 		"surgery_zombie",
 	)

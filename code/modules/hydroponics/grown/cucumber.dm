@@ -1,6 +1,6 @@
 // CUCUMBERS YEAH
 /obj/item/seeds/cucumber
-	name = "cucumber seed pack"
+	name = "pack of cucumber seeds"
 	desc = "These seeds grow into cucumber plants."
 	icon_state = "seed-cucumber"
 	species = "cucumber"

@@ -193,7 +193,7 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(being_drained)
-		loc.balloon_alert(user, "already being drained!")
+		balloon_alert(user, "already being drained!")
 	else
 		INVOKE_ASYNC(src, PROC_REF(drain_influence), user, 1)
 
@@ -225,15 +225,15 @@
 /obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain)
 
 	being_drained = TRUE
-	loc.balloon_alert(user, "draining influence...")
+	balloon_alert(user, "draining influence...")
 
 	if(!do_after(user, 10 SECONDS, src, hidden = TRUE))
 		being_drained = FALSE
-		loc.balloon_alert(user, "interrupted!")
+		balloon_alert(user, "interrupted!")
 		return
 
 	// We don't need to set being_drained back since we delete after anyways
-	loc.balloon_alert(user, "influence drained")
+	balloon_alert(user, "influence drained")
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	heretic_datum.knowledge_points += knowledge_to_gain

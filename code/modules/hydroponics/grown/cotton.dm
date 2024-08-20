@@ -1,5 +1,5 @@
 /obj/item/seeds/cotton
-	name = "cotton seed pack"
+	name = "pack of cotton seeds"
 	desc = "A pack of seeds that'll grow into a cotton plant. Assistants make good free labor if neccesary."
 	icon_state = "seed-cotton"
 	species = "cotton"
@@ -45,7 +45,7 @@
 
 //reinforced mutated variant
 /obj/item/seeds/cotton/durathread
-	name = "durathread seed pack"
+	name = "pack of durathread seeds"
 	desc = "A pack of seeds that'll grow into an extremely durable thread that could easily rival plasteel if woven properly."
 	icon_state = "seed-durathread"
 	species = "durathread"

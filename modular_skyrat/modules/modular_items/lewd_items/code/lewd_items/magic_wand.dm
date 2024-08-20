@@ -1,8 +1,3 @@
-#define MAGIC_WAND_MODE_OFF "off"
-#define MAGIC_WAND_MODE_LOW "low"
-#define MAGIC_WAND_MODE_MEDIUM "medium"
-#define MAGIC_WAND_MODE_HIGH "high"
-
 /obj/item/clothing/sextoy/magic_wand
 	name = "magic wand"
 	desc = "Not sure where is magic in this thing, but if you press button - it makes funny vibrations"
@@ -15,7 +10,7 @@
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
 	/// What mode the vibrator is on
-	var/vibration_mode = MAGIC_WAND_MODE_OFF
+	var/vibration_mode = "off"
 	/// Looping sound called on process()
 	var/datum/looping_sound/lewd/vibrator/low/soundloop1
 	/// Looping sound called on process()
@@ -38,7 +33,7 @@
 /obj/item/clothing/sextoy/magic_wand/Initialize(mapload)
 	. = ..()
 
-	magicwand_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_items/lewd_items.dmi', "magicwand", -BODY_FRONT_UNDER_CLOTHES) //two arguments
+	magicwand_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_items/lewd_items.dmi', "magicwand", ABOVE_MOB_LAYER + 0.1) //two arguments
 
 	update_icon_state()
 	update_icon()
@@ -61,7 +56,7 @@
 
 /obj/item/clothing/sextoy/magic_wand/lewd_equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(vibration_mode == MAGIC_WAND_MODE_OFF || !istype(user))
+	if(vibration_mode == "off" || !istype(user))
 		return
 	if(src == user.penis || src == user.vagina)
 		START_PROCESSING(SSobj, src)
@@ -77,15 +72,15 @@
 
 	var/adjustment_amount = 0
 	switch(vibration_mode)
-		if(MAGIC_WAND_MODE_LOW)
+		if("low")
 			if(current_user.arousal < 30)
 				adjustment_amount = 0.6
 
-		if(MAGIC_WAND_MODE_MEDIUM)
+		if("medium")
 			if(current_user.arousal < 60)
 				adjustment_amount = 0.8
 
-		if(MAGIC_WAND_MODE_HIGH)
+		if("high")
 			adjustment_amount = 1
 
 	if(!adjustment_amount)
@@ -96,35 +91,37 @@
 
 /obj/item/clothing/sextoy/magic_wand/attack(mob/living/target, mob/living/user)
 	. = ..()
-	if(target.stat == DEAD)
-		return
 
 	var/mob/living/carbon/human/carbon_target
-	if(ishuman(target))
+	if(istype(target,/mob/living/carbon/human))
 		carbon_target = target
-	else if(!iscyborg(target))
-		return
-
-	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("Looks like [target] don't want you to do that."))
+	else if(istype(target,/mob/living/silicon/robot))
+		// Just use target var, return if it isn't human or robot
+	else
+		return FALSE
+	if(!istype(user,/mob/living/carbon/human) && !istype(user,/mob/living/silicon/robot))
 		return FALSE
 
 	var/message = ""
-	if(vibration_mode == MAGIC_WAND_MODE_OFF)
+	if(vibration_mode == "off")
 		to_chat(user, span_warning("You must turn on the toy, to use it!"))
+		return FALSE
+
+	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
+		to_chat(user, span_danger("Looks like [target] don't want you to do that."))
 		return FALSE
 
 	var/first_adjective = ""
 	var/second_adjective = ""
 
 	switch(vibration_mode)
-		if(MAGIC_WAND_MODE_LOW)
-			first_adjective = "gently"
-			second_adjective = "delicately"
+		if("low")
+			first_adjective = "gently "
+			second_adjective = "delicately "
 
-		if(MAGIC_WAND_MODE_HIGH)
-			first_adjective = "roughly"
-			second_adjective = "aggressively"
+		if("high")
+			first_adjective = "roughly "
+			second_adjective = "aggressively "
 
 	switch(user.zone_selected)
 		if(BODY_ZONE_PRECISE_GROIN)
@@ -135,78 +132,59 @@
 				if(!vagina && !penis)
 					return FALSE
 
-				if(!(vagina?.is_exposed() || penis?.is_exposed()))
+				var/currently_bottomless = carbon_target.is_bottomless()
+				if(!currently_bottomless && !vagina?.visibility_preference && !penis?.visibility_preference)
 					to_chat(user, span_danger("Looks like [carbon_target]'s groin is covered!"))
 					return FALSE
 
 				var/target_organs = list()
-				if(penis?.is_exposed())
+				if(currently_bottomless || penis.visibility_preference == GENITAL_ALWAYS_SHOW)
 					target_organs += "penis"
 
-				if(vagina?.is_exposed())
+				if(currently_bottomless || vagina.visibility_preference == GENITAL_ALWAYS_SHOW)
 					target_organs += "vagina"
 
 				if(!length(target_organs))
 					return FALSE
 
 				var/organ_to_use = pick(target_organs)
-				message = (user == target) ? pick("massages their [organ_to_use] with the [src]",
-						"[first_adjective] teases their [organ_to_use] with [src]") \
-					: pick("[second_adjective] massages [target]'s [organ_to_use] with [src]",
-						"uses [src] to [first_adjective] massage [target]'s [organ_to_use]",
-						"leans the vibrator against [target]'s [organ_to_use]")
-				carbon_target.adjust_arousal(vibration_mode == MAGIC_WAND_MODE_LOW ? 4 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 8 : 5))
-				carbon_target.adjust_pleasure(vibration_mode == MAGIC_WAND_MODE_LOW ? 2 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 10 : 5))
+				message = (user == target) ? pick("massages their [organ_to_use] with the [src]", "[first_adjective]teases their [organ_to_use] with [src]") : pick("[second_adjective]massages [target]'s [organ_to_use] with [src]", "uses [src] to [first_adjective]massage [target]'s [organ_to_use]", "leans the vibrator against [target]'s [organ_to_use]")
+				carbon_target.adjust_arousal((vibration_mode == "low" ? 4 : (vibration_mode == "high" ? 8 : 5)))
+				carbon_target.adjust_pleasure((vibration_mode == "low" ? 2 : (vibration_mode == "high" ? 10 : 5)))
 			else
-				message = (user == target) ? pick("massages their synthetic genitals with the [src]",
-						"[first_adjective] teases their synthetic genitals with [src]") \
-					: pick("[second_adjective] massages [target]'s synthetic genitals with [src]",
-						"uses [src] to [first_adjective] massage [target]'s synthetic genitals",
-						"leans the vibrator against [target]'s synthetic genitals")
+				message = (user == target) ? pick("massages their synthetic genitals with the [src]", "[first_adjective]teases their synthetic genitals with [src]") : pick("[second_adjective]massages [target]'s synthetic genitals with [src]", "uses [src] to [first_adjective]massage [target]'s synthetic genitals", "leans the vibrator against [target]'s synthetic genitals")
 
 		if(BODY_ZONE_CHEST)
 			if(carbon_target)
 				var/obj/item/organ/external/genital/breasts = carbon_target.get_organ_slot(ORGAN_SLOT_BREASTS)
-				if(!breasts?.is_exposed())
+				if(!(carbon_target.is_topless() || breasts.visibility_preference == GENITAL_ALWAYS_SHOW))
 					to_chat(user, span_danger("Looks like [target]'s chest is covered!"))
 					return FALSE
 
 				var/breasts_or_nipples = breasts ? ORGAN_SLOT_BREASTS : ORGAN_SLOT_NIPPLES
-				message = (user == target) ? pick("massages their [breasts_or_nipples] with the [src]",
-						"[first_adjective] teases their [breasts ? "tits" : ORGAN_SLOT_NIPPLES] with [src]") \
-					: pick("[second_adjective] teases [target]'s [breasts_or_nipples] with [src]",
-						"uses [src] to [vibration_mode == MAGIC_WAND_MODE_LOW ? "slowly" : ""] massage [target]'s [breasts ? "tits" : ORGAN_SLOT_NIPPLES]",
-						"uses [src] to tease [target]'s [breasts ? "boobs" : ORGAN_SLOT_NIPPLES]")
-				carbon_target.adjust_arousal((vibration_mode == MAGIC_WAND_MODE_LOW ? 3 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 7 : 4)))
-				carbon_target.adjust_pleasure((vibration_mode == MAGIC_WAND_MODE_LOW ? 1 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 9 : 4)))
+				message = (user == target) ? pick("massages their [breasts_or_nipples] with the [src]", "[first_adjective]teases their [breasts ? "tits" : ORGAN_SLOT_NIPPLES] with [src]") : pick("[second_adjective]teases [target]'s [breasts_or_nipples] with [src]", "uses [src] to[vibration_mode == " low" ? "  slowly" : ""] massage [target]'s [breasts ? "tits" : ORGAN_SLOT_NIPPLES]", "uses [src] to tease [target]'s [breasts ? "boobs" : ORGAN_SLOT_NIPPLES]")
+				carbon_target.adjust_arousal((vibration_mode == "low" ? 3 : (vibration_mode == "high" ? 7 : 4)))
+				carbon_target.adjust_pleasure((vibration_mode == "low" ? 1 : (vibration_mode == "high" ? 9 : 4)))
 			else
-				message = (user == target) ? pick("massages their touch sensors with the [src]",
-						"[first_adjective] teases their touch sensors with [src]") \
-					: pick("[second_adjective] teases [target]'s touch sensors with [src]",
-						"uses [src] to [vibration_mode == MAGIC_WAND_MODE_LOW ? "slowly" : ""] massage [target]'s touch sensors",
-						"uses [src] to tease [target]'s touch sensors")
-		else
-			to_chat(user, span_warning("Use the wand on their groin or chest!"))
-			return FALSE
+				message = (user == target) ? pick("massages their bodily touch sensors with the [src]", "[first_adjective]teases their bodily touch sensors with [src]") : pick("[second_adjective]teases [target]'s bodily touch sensors with [src]", "uses [src] to[vibration_mode == " low" ? "  slowly" : ""] massage [target]'s bodily touch sensors", "uses [src] to tease [target]'s bodily touch sensors")
 
 	if(prob(30))
 		target.try_lewd_autoemote(pick("twitch_s", "moan"))
 
 	user.visible_message(span_purple("[user] [message]!"))
-	conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/vibrate.ogg', (vibration_mode == MAGIC_WAND_MODE_LOW ? 10 : (vibration_mode == MAGIC_WAND_MODE_HIGH ? 30 : 20)), TRUE, pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds)
+	play_lewd_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/vibrate.ogg', (vibration_mode == "low" ? 10 : (vibration_mode == "high" ? 30 : 20)), TRUE, pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds)
 
 /obj/item/clothing/sextoy/magic_wand/attack_self(mob/user)
 	toggle_mode()
-
 	switch(vibration_mode)
-		if(MAGIC_WAND_MODE_LOW)
-			to_chat(user, span_notice("Vibrator mode switched to low. Bzzz..."))
-		if(MAGIC_WAND_MODE_MEDIUM)
-			to_chat(user, span_notice("Vibrator mode switched to medium. Bzzzz!"))
-		if(MAGIC_WAND_MODE_HIGH)
-			to_chat(user, span_notice("Vibrator mode switched to high. Careful with that thing."))
-		if(MAGIC_WAND_MODE_OFF)
-			to_chat(user, span_notice("[src] is turned off. Fun time's over?"))
+		if("low")
+			to_chat(user, span_notice("Vibration mode now is low. Bzzz..."))
+		if("medium")
+			to_chat(user, span_notice("Vibration mode now is medium. Bzzzz!"))
+		if("high")
+			to_chat(user, span_notice("Vibration mode now is high. Careful with that thing."))
+		if("off")
+			to_chat(user, span_notice("[src] is now turned off. Fun time's over?"))
 
 	update_icon()
 	update_icon_state()
@@ -214,29 +192,24 @@
 /// Toggle between toy modes in a specific order
 /obj/item/clothing/sextoy/magic_wand/proc/toggle_mode()
 	if(vibration_mode != "high")
-		conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
+		play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
 
 	switch(vibration_mode)
 		if("off")
 			soundloop1.start()
-			vibration_mode = MAGIC_WAND_MODE_LOW
+			vibration_mode = "low"
 
 		if("low")
 			soundloop1.stop()
 			soundloop2.start()
-			vibration_mode = MAGIC_WAND_MODE_MEDIUM
+			vibration_mode = "medium"
 
 		if("medium")
 			soundloop2.stop()
 			soundloop3.start()
-			vibration_mode = MAGIC_WAND_MODE_HIGH
+			vibration_mode = "high"
 
 		if("high")
-			conditional_pref_sound(loc, 'sound/items/weapons/magout.ogg', 20, TRUE)
+			play_lewd_sound(loc, 'sound/weapons/magout.ogg', 20, TRUE)
 			soundloop3.stop()
-			vibration_mode = MAGIC_WAND_MODE_OFF
-
-#undef MAGIC_WAND_MODE_OFF
-#undef MAGIC_WAND_MODE_LOW
-#undef MAGIC_WAND_MODE_MEDIUM
-#undef MAGIC_WAND_MODE_HIGH
+			vibration_mode = "off"

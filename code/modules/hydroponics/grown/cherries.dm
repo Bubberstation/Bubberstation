@@ -1,6 +1,6 @@
 // Cherries
 /obj/item/seeds/cherry
-	name = "cherry pit pack"
+	name = "pack of cherry pits"
 	desc = "Careful not to crack a tooth on one... That'd be the pits."
 	icon_state = "seed-cherry"
 	species = "cherry"
@@ -34,7 +34,7 @@
 
 // Blue Cherries
 /obj/item/seeds/cherry/blue
-	name = "blue cherry pit pack"
+	name = "pack of blue cherry pits"
 	desc = "The blue kind of cherries."
 	icon_state = "seed-bluecherry"
 	species = "bluecherry"
@@ -57,7 +57,7 @@
 
 //Cherry Bulbs
 /obj/item/seeds/cherry/bulb
-	name = "cherry bulb pit pack"
+	name = "pack of cherry bulb pits"
 	desc = "The glowy kind of cherries."
 	icon_state = "seed-cherrybulb"
 	species = "cherrybulb"
@@ -82,7 +82,7 @@
 
 //Cherry Bombs
 /obj/item/seeds/cherry/bomb
-	name = "cherry bomb pit pack"
+	name = "pack of cherry bomb pits"
 	desc = "They give you vibes of dread and frustration."
 	icon_state = "seed-cherry_bomb"
 	species = "cherry_bomb"

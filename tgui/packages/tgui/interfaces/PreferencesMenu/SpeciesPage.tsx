@@ -327,23 +327,9 @@ const SpeciesPageInner = (props: {
                       }
                     >
                       {/* SKYRAT EDIT CHANGE START - Adds maxHeight, scrollable*/}
-                      <Section
-                        title="Description"
-                        maxHeight="14vh"
-                        overflowY="auto"
-                      >
+                      <Section title="Description" maxHeight="14vh" scrollable>
                         {/* SKYRAT EDIT CHANGE END */}
-                        {currentSpecies.desc.map((text, index) => (
-                          <Box key={index} maxWidth="100%">
-                            {text}
-                            {index !== currentSpecies.desc.length - 1 && (
-                              <>
-                                <br />
-                                <br />
-                              </>
-                            )}
-                          </Box>
-                        ))}
+                        {currentSpecies.desc}
                       </Section>
 
                       <Section title="Features">
@@ -368,7 +354,17 @@ const SpeciesPageInner = (props: {
                     maxHeight="45vh"
                     mr={-1} /* SKYRAT EDIT END */
                   >
-                    {currentSpecies.desc}
+                    {currentSpecies.lore.map((text, index) => (
+                      <Box key={index} maxWidth="100%">
+                        {text}
+                        {index !== currentSpecies.lore.length - 1 && (
+                          <>
+                            <br />
+                            <br />
+                          </>
+                        )}
+                      </Box>
+                    ))}
                   </BlockQuote>
                 </Section>
               </Box>

@@ -1,5 +1,5 @@
 /obj/item/seeds/surik
-	name = "surik seed pack"
+	name = "pack of surik seeds"
 	desc = "These seeds grow into surik plants. Said to contain the very essence of Indecipheres."
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "surik"

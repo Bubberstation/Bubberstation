@@ -1,6 +1,6 @@
 // Poppy
 /obj/item/seeds/poppy
-	name = "poppy seed pack"
+	name = "pack of poppy seeds"
 	desc = "These seeds grow into poppies."
 	icon_state = "seed-poppy"
 	species = "poppy"
@@ -32,7 +32,7 @@
 
 // Lily
 /obj/item/seeds/poppy/lily
-	name = "lily seed pack"
+	name = "pack of lily seeds"
 	desc = "These seeds grow into lilies."
 	icon_state = "seed-lily"
 	species = "lily"
@@ -52,7 +52,7 @@
 
 	//Spacemans's Trumpet
 /obj/item/seeds/poppy/lily/trumpet
-	name = "spaceman's trumpet seed pack"
+	name = "pack of spaceman's trumpet seeds"
 	desc = "A plant sculped by extensive genetic engineering. The spaceman's trumpet is said to bear no resemblance to its wild ancestors. Inside NT AgriSci circles it is better known as NTPW-0372."
 	icon_state = "seed-trumpet"
 	species = "spacemanstrumpet"
@@ -86,7 +86,7 @@
 
 // Geranium
 /obj/item/seeds/poppy/geranium
-	name = "geranium seed pack"
+	name = "pack of geranium seeds"
 	desc = "These seeds grow into geranium."
 	icon_state = "seed-geranium"
 	species = "geranium"
@@ -106,7 +106,7 @@
 
 ///Fraxinella seeds.
 /obj/item/seeds/poppy/geranium/fraxinella
-	name = "fraxinella seed pack"
+	name = "pack of fraxinella seeds"
 	desc = "These seeds grow into fraxinella."
 	icon_state = "seed-fraxinella"
 	species = "fraxinella"
@@ -130,7 +130,7 @@
 
 // Harebell
 /obj/item/seeds/harebell
-	name = "harebell seed pack"
+	name = "pack of harebell seeds"
 	desc = "These seeds grow into pretty little flowers."
 	icon_state = "seed-harebell"
 	plant_icon_offset = 1
@@ -162,7 +162,7 @@
 
 // Sunflower
 /obj/item/seeds/sunflower
-	name = "sunflower seed pack"
+	name = "pack of sunflower seeds"
 	desc = "These seeds grow into sunflowers."
 	icon_state = "seed-sunflower"
 	species = "sunflower"
@@ -203,7 +203,7 @@
 
 // Moonflower
 /obj/item/seeds/sunflower/moonflower
-	name = "moonflower seed pack"
+	name = "pack of moonflower seeds"
 	desc = "These seeds grow into moonflowers."
 	icon_state = "seed-moonflower"
 	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
@@ -231,7 +231,7 @@
 
 // Novaflower
 /obj/item/seeds/sunflower/novaflower
-	name = "novaflower seed pack"
+	name = "pack of novaflower seeds"
 	desc = "These seeds grow into novaflowers."
 	icon_state = "seed-novaflower"
 	species = "novaflower"
@@ -266,7 +266,7 @@
 
 // Rose
 /obj/item/seeds/rose
-	name = "rose seed pack"
+	name = "pack of rose seeds"
 	desc = "These seeds grow into roses."
 	icon_state = "seed-rose"
 	species = "rose"
@@ -311,7 +311,7 @@
 
 // Carbon Rose
 /obj/item/seeds/carbon_rose
-	name = "carbon rose seed pack"
+	name = "pack of carbon rose seeds"
 	desc = "These seeds grow into carbon roses."
 	icon_state = "seed-carbonrose"
 	species = "carbonrose"

@@ -16,15 +16,10 @@ ADMIN_VERB(toggle_hub, R_SERVER, "Toggle Hub", "Toggles the server's visilibilit
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Hub Visibility", "[GLOB.hub_visibility ? "Enabled" : "Disabled"]")) // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
-#define REGULAR_RESTART "Regular Restart"
-#define REGULAR_RESTART_DELAYED "Regular Restart (with delay)"
-#define HARD_RESTART "Hard Restart (No Delay/Feedback Reason)"
-#define HARDEST_RESTART "Hardest Restart (No actions, just reboot)"
-#define TGS_RESTART "Server Restart (Kill and restart DD)"
 ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", ADMIN_CATEGORY_SERVER)
-	var/list/options = list(REGULAR_RESTART, REGULAR_RESTART_DELAYED, HARD_RESTART, HARDEST_RESTART)
+	var/list/options = list("Regular Restart", "Regular Restart (with delay)", "Hard Restart (No Delay/Feeback Reason)", "Hardest Restart (No actions, just reboot)")
 	if(world.TgsAvailable())
-		options += TGS_RESTART;
+		options += "Server Restart (Kill and restart DD)";
 
 	if(SSticker.admin_delay_notice)
 		if(alert(user, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
@@ -37,12 +32,12 @@ ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.",
 	BLACKBOX_LOG_ADMIN_VERB("Reboot World")
 	var/init_by = "Initiated by [user.holder.fakekey ? "Admin" : user.key]."
 	switch(result)
-		if(REGULAR_RESTART)
+		if("Regular Restart")
 			if(!user.is_localhost())
 				if(alert(user, "Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
 					return FALSE
 			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", 10)
-		if(REGULAR_RESTART_DELAYED)
+		if("Regular Restart (with delay)")
 			var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
 			if(!delay)
 				return FALSE
@@ -50,21 +45,15 @@ ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.",
 				if(alert(user,"Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
 					return FALSE
 			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", delay * 10)
-		if(HARD_RESTART)
+		if("Hard Restart (No Delay, No Feeback Reason)")
 			to_chat(world, "World reboot - [init_by]")
 			world.Reboot()
-		if(HARDEST_RESTART)
+		if("Hardest Restart (No actions, just reboot)")
 			to_chat(world, "Hard world reboot - [init_by]")
 			world.Reboot(fast_track = TRUE)
-		if(TGS_RESTART)
+		if("Server Restart (Kill and restart DD)")
 			to_chat(world, "Server restart - [init_by]")
 			world.TgsEndProcess()
-
-#undef REGULAR_RESTART
-#undef REGULAR_RESTART_DELAYED
-#undef HARD_RESTART
-#undef HARDEST_RESTART
-#undef TGS_RESTART
 
 ADMIN_VERB(end_round, R_SERVER, "End Round", "Forcibly ends the round and allows the server to restart normally.", ADMIN_CATEGORY_SERVER)
 	var/confirm = tgui_alert(user, "End the round and  restart the game world?", "End Round", list("Yes", "Cancel"))

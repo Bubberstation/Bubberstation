@@ -9,7 +9,7 @@
 
 // Lime
 /obj/item/seeds/lime
-	name = "lime seed pack"
+	name = "pack of lime seeds"
 	desc = "These are very sour seeds."
 	icon_state = "seed-lime"
 	species = "lime"
@@ -33,7 +33,7 @@
 
 // Orange
 /obj/item/seeds/orange
-	name = "orange seed pack"
+	name = "pack of orange seeds"
 	desc = "Sour seeds."
 	icon_state = "seed-orange"
 	species = "orange"
@@ -61,7 +61,7 @@
 
 // Lemon
 /obj/item/seeds/lemon
-	name = "lemon seed pack"
+	name = "pack of lemon seeds"
 	desc = "These are sour seeds."
 	icon_state = "seed-lemon"
 	species = "lemon"
@@ -86,7 +86,7 @@
 
 // Combustible lemon
 /obj/item/seeds/firelemon //combustible lemon is too long so firelemon
-	name = "combustible lemon seed pack"
+	name = "pack of combustible lemon seeds"
 	desc = "When life gives you lemons, don't make lemonade. Make life take the lemons back! Get mad! I don't want your damn lemons!"
 	icon_state = "seed-firelemon"
 	species = "firelemon"
@@ -112,7 +112,7 @@
 
 //3D Orange
 /obj/item/seeds/orange_3d
-	name = "extradimensional orange seed pack"
+	name = "pack of extradimensional orange seeds"
 	desc = "Polygonal seeds."
 	icon_state = "seed-orange"
 	species = "orange"

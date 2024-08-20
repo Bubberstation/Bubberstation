@@ -1,5 +1,5 @@
 /obj/item/seeds/nofruit
-	name = "nofruit seed pack"
+	name = "pack of nofruit seeds"
 	desc = "These seeds grow into nofruit plants. A strange plant often cultivated by silent performers."
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "nofruit"

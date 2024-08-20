@@ -1,5 +1,5 @@
 /obj/item/seeds/nettle
-	name = "nettle seed pack"
+	name = "pack of nettle seeds"
 	desc = "These seeds grow into nettles."
 	icon_state = "seed-nettle"
 	plant_icon_offset = 0
@@ -17,7 +17,7 @@
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
 
 /obj/item/seeds/nettle/death
-	name = "death-nettle seed pack"
+	name = "pack of death-nettle seeds"
 	desc = "These seeds grow into death-nettles."
 	icon_state = "seed-deathnettle"
 	species = "deathnettle"

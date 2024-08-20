@@ -1,5 +1,5 @@
 /obj/item/seeds/rainbow_bunch
-	name = "rainbow bunch seed pack"
+	name = "pack of rainbow bunch seeds"
 	desc = "A pack of seeds that'll grow into a beautiful bush of various colored flowers."
 	icon_state = "seed-rainbowbunch"
 	species = "rainbowbunch"

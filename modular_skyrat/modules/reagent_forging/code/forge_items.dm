@@ -257,7 +257,7 @@
 	icon_state = "coil"
 
 /obj/item/forging/incomplete_bow
-	name = "incomplete longbow"
+	name = "incomplete bow"
 	desc = "A wooden bow that has yet to be strung."
 	icon_state = "nostring_bow"
 

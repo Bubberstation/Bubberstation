@@ -1,6 +1,6 @@
 // Finally, peas. Base plant.
 /obj/item/seeds/peas
-	name = "pea pod pack"
+	name = "pack of pea pods"
 	desc = "These seeds grows into vitamin rich peas!"
 	icon_state = "seed-peas"
 	species = "peas"
@@ -29,7 +29,7 @@
 
 // Laughin' Peas
 /obj/item/seeds/peas/laugh
-	name = "laughin' pea pack"
+	name = "pack of laughin' peas"
 	desc = "These seeds give off a very soft purple glow.. they should grow into Laughin' Peas."
 	icon_state = "seed-laughpeas"
 	species = "laughpeas"
@@ -61,7 +61,7 @@
 
 // World Peas - Peace at last, peace at last...
 /obj/item/seeds/peas/laugh/peace
-	name = "world pea pack"
+	name = "pack of world peas"
 	desc = "These rather large seeds give off a soothing blue glow..."
 	icon_state = "seed-worldpeas"
 	species = "worldpeas"

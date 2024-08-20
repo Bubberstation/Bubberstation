@@ -1,7 +1,7 @@
 
 // Sugarcane
 /obj/item/seeds/sugarcane
-	name = "sugarcane seed pack"
+	name = "pack of sugarcane seeds"
 	desc = "These seeds grow into sugarcane."
 	icon_state = "seed-sugarcane"
 	species = "sugarcane"
@@ -28,7 +28,7 @@
 
 ///and bamboo!
 /obj/item/seeds/bamboo
-	name = "bamboo seed pack"
+	name = "pack of bamboo seeds"
 	desc = "A plant known for its flexible and resistant logs."
 	icon_state = "seed-bamboo"
 	species = "bamboo"
@@ -59,7 +59,7 @@
 
 //Saltcane - Gross, salty shafts!
 /obj/item/seeds/sugarcane/saltcane
-	name = "saltcane seed pack"
+	name = "pack of saltcane seeds"
 	desc = "These seeds grow into saltcane."
 	icon_state = "seed-saltcane"
 	species = "saltcane"

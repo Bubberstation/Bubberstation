@@ -2,11 +2,6 @@
 *	VIBRATING EGG
 */
 
-#define EGGVIB_OFF "off"
-#define EGGVIB_LOW "low"
-#define EGGVIB_MEDIUM "medium"
-#define EGGVIB_HIGH "high"
-
 /obj/item/clothing/sextoy/eggvib
 	name = "vibrating egg"
 	desc = "A simple, vibrating sex toy."
@@ -25,7 +20,9 @@
 	/// Bool of if the color's been changed or not before
 	var/color_changed = FALSE
 	/// The current mode of the toy, affects sprite
-	var/vibration_mode = EGGVIB_OFF
+	var/vibration_mode = "off"
+	/// Assoc list of modes, used to transfer between them
+	var/list/modes = list("low" = "medium", "medium" = "high", "high" = "off", "off" = "low")
 	/// A looping sound called on process()
 	var/datum/looping_sound/lewd/vibrator/low/soundloop1
 	/// A looping sound called on process()
@@ -42,13 +39,6 @@
 		"pink" = image(icon = src.icon, icon_state = "[initial(base_icon_state)]_pink_low[(istype(src, /obj/item/clothing/sextoy/eggvib/signalvib)) ? "_on" : ""]"),
 		"teal" = image(icon = src.icon, icon_state = "[initial(base_icon_state)]_teal_low[(istype(src, /obj/item/clothing/sextoy/eggvib/signalvib)) ? "_on" : ""]"))
 
-/obj/item/clothing/sextoy/eggvib/examine(mob/user)
-	. = ..()
-	if(!color_changed)
-		. += span_notice("Alt-click to change it's colors.")
-	else
-		. += span_notice("Alt-click to toggle vibration modes.")
-
 /obj/item/clothing/sextoy/eggvib/click_alt(mob/user)
 	if(!color_changed)
 		var/choice = show_radial_menu(user, src, vib_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
@@ -60,13 +50,13 @@
 	else
 		toggle_mode()
 		switch(vibration_mode)
-			if(EGGVIB_LOW)
+			if("low")
 				to_chat(user, span_notice("You set the vibration mode to low. Bzzz..."))
-			if(EGGVIB_MEDIUM)
+			if("medium")
 				to_chat(user, span_notice("You set the vibration mode to medium. Bzzzz!"))
-			if(EGGVIB_HIGH)
+			if("high")
 				to_chat(user, span_notice("You set the vibration mode to high. Careful with that thing."))
-			if(EGGVIB_OFF)
+			if("off")
 				to_chat(user, span_notice("You turn off the vibrating egg. Fun time's over."))
 		update_icon()
 		update_icon_state()
@@ -97,27 +87,26 @@
 
 /// Toggles between vibration modes seuentially
 /obj/item/clothing/sextoy/eggvib/proc/toggle_mode()
+	vibration_mode = modes[vibration_mode]
+	soundloop1.stop()
+	soundloop2.stop()
+	soundloop3.stop()
 	switch(vibration_mode)
-		if(EGGVIB_OFF)
-			vibration_mode = EGGVIB_LOW
+		if("low")
 			toy_on = TRUE
-			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
+			play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
 			soundloop1.start()
-		if(EGGVIB_LOW)
-			vibration_mode = EGGVIB_MEDIUM
-			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
-			soundloop1.stop()
+		if("medium")
+			toy_on = TRUE
+			play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
 			soundloop2.start()
-		if(EGGVIB_MEDIUM)
-			vibration_mode = EGGVIB_HIGH
-			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
-			soundloop2.stop()
+		if("high")
+			toy_on = TRUE
+			play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
 			soundloop3.start()
-		if(EGGVIB_HIGH)
-			vibration_mode = EGGVIB_OFF
+		if("off")
 			toy_on = FALSE
-			conditional_pref_sound(loc, 'sound/items/weapons/magout.ogg', 20, TRUE)
-			soundloop3.stop()
+			play_lewd_sound(loc, 'sound/weapons/magout.ogg', 20, TRUE)
 
 /obj/item/clothing/sextoy/eggvib/lewd_equipped(mob/living/carbon/human/user, slot, initial)
 	. = ..()
@@ -136,16 +125,15 @@
 	var/mob/living/carbon/human/target = loc
 	if(!istype(target))
 		return
-	switch(vibration_mode)
-		if(EGGVIB_LOW)
-			target.adjust_arousal(0.5 * seconds_per_tick)
-			target.adjust_pleasure(0.5 * seconds_per_tick)
-		if(EGGVIB_MEDIUM)
-			target.adjust_arousal(0.6 * seconds_per_tick)
-			target.adjust_pleasure(0.6 * seconds_per_tick)
-		if(EGGVIB_HIGH)
-			target.adjust_arousal(0.7 * seconds_per_tick)
-			target.adjust_pleasure(0.7 * seconds_per_tick)
+	if(vibration_mode == "low")
+		target.adjust_arousal(0.5 * seconds_per_tick)
+		target.adjust_pleasure(0.5 * seconds_per_tick)
+	if(vibration_mode == "medium")
+		target.adjust_arousal(0.6 * seconds_per_tick)
+		target.adjust_pleasure(0.6 * seconds_per_tick)
+	if(vibration_mode == "high")
+		target.adjust_arousal(0.7 * seconds_per_tick)
+		target.adjust_pleasure(0.7 * seconds_per_tick)
 
 /*
 *	SIGNALLER CONTROLLED EGG
@@ -157,7 +145,8 @@
 	icon_state = "signalvib_pink_low_off"
 	base_icon_state = "signalvib"
 	inhand_icon_state = "signalvib_pink"
-	vibration_mode = EGGVIB_LOW
+	modes = list("low" = "medium", "medium" = "high", "high" = "low")
+	vibration_mode = "low"
 	/// If TRUE, the code and frequency will be random on initialize()
 	var/random = TRUE
 	/// If TRUE, the set code and frequency will be appended to the toy's name
@@ -186,7 +175,7 @@
 
 /obj/item/clothing/sextoy/eggvib/signalvib/update_icon_state()
 	. = ..()
-	icon_state = "[base_icon_state]_[current_color]_[vibration_mode == EGGVIB_OFF ? "low_off" : (toy_on ? "[vibration_mode]_on" : "[vibration_mode]_off")]"
+	icon_state = "[base_icon_state]_[current_color]_[vibration_mode == "off" ? "low_off" : (toy_on ? "[vibration_mode]_on" : "[vibration_mode]_off")]"
 	inhand_icon_state = "[base_icon_state]_[current_color]"
 
 /obj/item/clothing/sextoy/eggvib/signalvib/proc/set_frequency(new_frequency)
@@ -216,13 +205,13 @@
 		soundloop2.stop()
 		soundloop3.stop()
 		switch(vibration_mode)
-			if(EGGVIB_LOW)
+			if("low")
 				to_chat(user, span_notice("You set the vibration mode to low. Bzzz..."))
 				soundloop1.start()
-			if(EGGVIB_MEDIUM)
+			if("medium")
 				to_chat(user, span_notice("You set the vibration mode to medium. Bzzzz!"))
 				soundloop2.start()
-			if(EGGVIB_HIGH)
+			if("high")
 				to_chat(user, span_notice("You set the vibration mode to high. Careful with that thing!"))
 				soundloop3.start()
 		update_icon()
@@ -241,11 +230,11 @@
 		soundloop1.stop()
 		soundloop2.stop()
 		soundloop3.stop()
-		if(vibration_mode == EGGVIB_LOW)
+		if(vibration_mode == "low")
 			soundloop1.start()
-		if(vibration_mode == EGGVIB_MEDIUM)
+		if(vibration_mode == "medium")
 			soundloop2.start()
-		if(vibration_mode == EGGVIB_HIGH)
+		if(vibration_mode == "high")
 			soundloop3.start()
 	else
 		soundloop1.stop()
@@ -300,13 +289,14 @@
 			soundloop2.stop()
 			soundloop3.stop()
 			if(toy_on)
-				if(vibration_mode == EGGVIB_LOW)
+				if(vibration_mode == "low")
 					soundloop1.start()
-				if(vibration_mode == EGGVIB_MEDIUM)
+				if(vibration_mode == "medium")
 					soundloop2.start()
-				if(vibration_mode == EGGVIB_HIGH)
+				if(vibration_mode == "high")
 					soundloop3.start()
-			else
+
+			if(!toy_on)
 				soundloop1.stop()
 				soundloop2.stop()
 				soundloop3.stop()
@@ -332,18 +322,14 @@
 				. = TRUE
 
 /obj/item/clothing/sextoy/eggvib/signalvib/toggle_mode()
+	vibration_mode = modes[vibration_mode]
 	switch(vibration_mode)
-		if(EGGVIB_LOW)
-			vibration_mode = EGGVIB_MEDIUM
-			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
-		if(EGGVIB_MEDIUM)
-			vibration_mode = EGGVIB_HIGH
-			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
-		if(EGGVIB_HIGH)
-			vibration_mode = EGGVIB_LOW
-			conditional_pref_sound(loc, 'sound/items/weapons/magin.ogg', 20, TRUE)
-
-#undef EGGVIB_OFF
-#undef EGGVIB_LOW
-#undef EGGVIB_HIGH
-#undef EGGVIB_MEDIUM
+		if("low")
+			vibration_mode = "low"
+			play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+		if("medium")
+			vibration_mode = "medium"
+			play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)
+		if("high")
+			vibration_mode = "high"
+			play_lewd_sound(loc, 'sound/weapons/magin.ogg', 20, TRUE)

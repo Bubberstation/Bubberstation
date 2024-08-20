@@ -8,7 +8,6 @@
 	worn_icon_state = "harpoon_quiver"
 	/// type of arrow the quivel should hold
 	var/arrow_path = /obj/item/ammo_casing/arrow
-	var/max_slots = 40
 
 /obj/item/storage/bag/quiver/Initialize(mapload)
 	. = ..()
@@ -18,10 +17,7 @@
 	atom_storage.max_total_storage = 100
 	atom_storage.set_holdable(/obj/item/ammo_casing/arrow)
 
-/obj/item/storage/bag/quiver/lesser
-	max_slots = 10
-
-/obj/item/storage/bag/quiver/full/PopulateContents()
+/obj/item/storage/bag/quiver/PopulateContents()
 	. = ..()
 	for(var/i in 1 to 10)
 		new arrow_path(src)
@@ -33,8 +29,3 @@
 	inhand_icon_state = "holyquiver"
 	worn_icon_state = "holyquiver"
 	arrow_path = /obj/item/ammo_casing/arrow/holy
-
-/obj/item/storage/bag/quiver/holy/PopulateContents()
-	. = ..()
-	for(var/i in 1 to 10)
-		new arrow_path(src)

@@ -152,7 +152,7 @@
 	head = /obj/item/clothing/head/utility/hardhat/orange
 	shoes = /obj/item/clothing/shoes/workboots
 	glasses = /obj/item/clothing/glasses/meson
-	faction = "Donk Company"
+	faction = "the Donk Corporation"
 
 /datum/outfit/syndicate/reinforcement/waffle
 	name = "Syndicate Operative - Waffle Reinforcement"

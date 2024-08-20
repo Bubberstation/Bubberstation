@@ -1,6 +1,6 @@
 // Pumpkin
 /obj/item/seeds/pumpkin
-	name = "pumpkin seed pack"
+	name = "pack of pumpkin seeds"
 	desc = "These seeds grow into pumpkin vines."
 	icon_state = "seed-pumpkin"
 	plant_icon_offset = 4
@@ -40,7 +40,7 @@
 
 // Blumpkin
 /obj/item/seeds/pumpkin/blumpkin
-	name = "blumpkin seed pack"
+	name = "pack of blumpkin seeds"
 	desc = "These seeds grow into blumpkin vines."
 	icon_state = "seed-blumpkin"
 	species = "blumpkin"

@@ -48,7 +48,7 @@ export const InteractionMenu = (props) => {
         {(block_interact && <NoticeBox>Unable to Interact</NoticeBox>) || (
           <NoticeBox>Able to Interact</NoticeBox>
         )}
-        <Stack vertical>
+        <Stack fill vertical>
           <Section key="interactions">
             {categories.map((category) => (
               <Collapsible key={category} title={category}>
@@ -78,60 +78,59 @@ export const InteractionMenu = (props) => {
               </Collapsible>
             ))}
           </Section>
-          {lewd_slots.length > 0 ? (
-            <Section key="item_slots" title={'Lewd Slots'}>
-              <Stack fill>
-                {lewd_slots.map((element: LewdSlot) => {
-                  return (
-                    <Stack.Item key={element.name}>
-                      <Button
-                        onClick={() =>
-                          act('remove_lewd_item', {
-                            item_slot: element.name,
-                            selfref: ref_self,
-                            userref: ref_user,
-                          })
-                        }
-                        color="pink"
-                        tooltip={element.name}
-                      >
-                        <Box
-                          style={{
-                            width: '32px',
-                            height: '32px',
-                            margin: '0.5em 0',
-                          }}
-                        >
-                          {element.img ? (
-                            <img
-                              src={'data:image/png;base64,' + element.img}
-                              style={{
-                                width: '100%',
-                                height: '100%',
-                              }}
-                            />
-                          ) : (
-                            <Icon
-                              name="eye-slash"
-                              size={2}
-                              ml={0}
-                              mt={0.75}
-                              style={{
-                                textAlign: 'center',
-                              }}
-                            />
-                          )}
-                        </Box>
-                      </Button>
-                    </Stack.Item>
-                  );
-                })}
-              </Stack>
-            </Section>
-          ) : (
-            ''
-          )}
         </Stack>
+        {lewd_slots.length > 0 ? (
+          <Section key="item_slots" title={'Lewd Slots'}>
+            <Stack fill>
+              {lewd_slots.map((element: LewdSlot) => {
+                return (
+                  <Stack.Item key={element.name}>
+                    <Button
+                      onClick={() =>
+                        act('remove_lewd_item', {
+                          item_slot: element.name,
+                          selfref: ref_self,
+                          userref: ref_user,
+                        })
+                      }
+                      tooltip={element.name}
+                    >
+                      <Box
+                        style={{
+                          width: '32px',
+                          height: '32px',
+                          margin: '0.5em 0',
+                        }}
+                      >
+                        {element.img ? (
+                          <img
+                            src={'data:image/png;base64,' + element.img}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                            }}
+                          />
+                        ) : (
+                          <Icon
+                            name="eye-slash"
+                            size={2}
+                            ml={0}
+                            mt={0.75}
+                            style={{
+                              textAlign: 'center',
+                            }}
+                          />
+                        )}
+                      </Box>
+                    </Button>
+                  </Stack.Item>
+                );
+              })}
+            </Stack>
+          </Section>
+        ) : (
+          ''
+        )}
       </Window.Content>
     </Window>
   );

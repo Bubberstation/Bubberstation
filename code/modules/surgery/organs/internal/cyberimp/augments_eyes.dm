@@ -2,6 +2,7 @@
 	name = "cybernetic eye implant"
 	desc = "Implants for your eyes."
 	icon_state = "eye_implant"
+	implant_overlay = "eye_implant_overlay"
 	slot = ORGAN_SLOT_EYES
 	zone = BODY_ZONE_PRECISE_EYES
 	w_class = WEIGHT_CLASS_TINY
@@ -40,25 +41,21 @@
 	toggled_on = FALSE
 
 /obj/item/organ/internal/cyberimp/eyes/hud/medical
-	name = "medical HUD implant"
+	name = "Medical HUD implant"
 	desc = "These cybernetic eye implants will display a medical HUD over everything you see."
-	icon_state = "eye_implant_medical"
 	HUD_traits = list(TRAIT_MEDICAL_HUD)
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security
-	name = "security HUD implant"
+	name = "Security HUD implant"
 	desc = "These cybernetic eye implants will display a security HUD over everything you see."
-	icon_state = "eye_implant_security"
 	HUD_traits = list(TRAIT_SECURITY_HUD)
 
 /obj/item/organ/internal/cyberimp/eyes/hud/diagnostic
-	name = "diagnostic HUD implant"
+	name = "Diagnostic HUD implant"
 	desc = "These cybernetic eye implants will display a diagnostic HUD over everything you see."
-	icon_state = "eye_implant_diagnostic"
 	HUD_traits = list(TRAIT_DIAGNOSTIC_HUD, TRAIT_BOT_PATH_HUD)
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security/syndicate
-	name = "contraband security HUD implant"
+	name = "Contraband Security HUD Implant"
 	desc = "A Cybersun Industries brand Security HUD Implant. These illicit cybernetic eye implants will display a security HUD over everything you see."
-	icon_state = "eye_implant_syndicate"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_HIDDEN

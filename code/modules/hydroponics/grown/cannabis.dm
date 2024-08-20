@@ -1,6 +1,6 @@
 // Cannabis
 /obj/item/seeds/cannabis
-	name = "cannabis seed pack"
+	name = "pack of cannabis seeds"
 	desc = "Taxable."
 	icon_state = "seed-cannabis"
 	plant_icon_offset = 6
@@ -24,7 +24,7 @@
 
 
 /obj/item/seeds/cannabis/rainbow
-	name = "rainbow weed seed pack"
+	name = "pack of rainbow weed seeds"
 	desc = "These seeds grow into rainbow weed. Groovy... and also highly addictive."
 	icon_state = "seed-megacannabis"
 	icon_grow = "megacannabis-grow"
@@ -36,7 +36,7 @@
 	rarity = 40
 
 /obj/item/seeds/cannabis/death
-	name = "deathweed seed pack"
+	name = "pack of deathweed seeds"
 	desc = "These seeds grow into deathweed. Not groovy."
 	icon_state = "seed-blackcannabis"
 	icon_grow = "blackcannabis-grow"
@@ -48,7 +48,7 @@
 	rarity = 40
 
 /obj/item/seeds/cannabis/white
-	name = "lifeweed seed pack"
+	name = "pack of lifeweed seeds"
 	desc = "I will give unto him that is munchies of the fountain of the cravings of life, freely."
 	icon_state = "seed-whitecannabis"
 	icon_grow = "whitecannabis-grow"
@@ -62,7 +62,7 @@
 
 
 /obj/item/seeds/cannabis/ultimate
-	name = "omega weed seed pack"
+	name = "pack of omega weed seeds"
 	desc = "These seeds grow into omega weed."
 	icon_state = "seed-ocannabis"
 	plant_icon_offset = 0

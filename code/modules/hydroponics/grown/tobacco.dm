@@ -1,6 +1,6 @@
 // Tobacco
 /obj/item/seeds/tobacco
-	name = "tobacco seed pack"
+	name = "pack of tobacco seeds"
 	desc = "These seeds grow into tobacco plants."
 	icon_state = "seed-tobacco"
 	species = "tobacco"
@@ -24,7 +24,7 @@
 
 // Space Tobacco
 /obj/item/seeds/tobacco/space
-	name = "space tobacco seed pack"
+	name = "pack of space tobacco seeds"
 	desc = "These seeds grow into space tobacco plants."
 	icon_state = "seed-stobacco"
 	species = "stobacco"

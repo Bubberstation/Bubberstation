@@ -1,6 +1,6 @@
 // Banana
 /obj/item/seeds/banana
-	name = "banana seed pack"
+	name = "pack of banana seeds"
 	desc = "They're seeds that grow into banana trees. When grown, keep away from clown."
 	icon_state = "seed-banana"
 	species = "banana"
@@ -91,7 +91,7 @@
 
 // Mimana - invisible sprites are totally a feature!
 /obj/item/seeds/banana/mime
-	name = "mimana seed pack"
+	name = "pack of mimana seeds"
 	desc = "They're seeds that grow into mimana trees. When grown, keep away from mime."
 	icon_state = "seed-mimana"
 	species = "mimana"
@@ -119,7 +119,7 @@
 
 // Bluespace Banana
 /obj/item/seeds/banana/bluespace
-	name = "bluespace banana seed pack"
+	name = "pack of bluespace banana seeds"
 	desc = "They're seeds that grow into bluespace banana trees. When grown, keep away from bluespace clown."
 	icon_state = "seed-banana-blue"
 	species = "bluespacebanana"

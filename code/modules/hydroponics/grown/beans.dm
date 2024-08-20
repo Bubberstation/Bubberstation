@@ -1,6 +1,6 @@
 // Soybeans
 /obj/item/seeds/soya
-	name = "soybean seed pack"
+	name = "pack of soybean seeds"
 	desc = "These seeds grow into soybean plants."
 	icon_state = "seed-soybean"
 	species = "soybean"
@@ -30,7 +30,7 @@
 
 // Koibean
 /obj/item/seeds/soya/koi
-	name = "koibean seed pack"
+	name = "pack of koibean seeds"
 	desc = "These seeds grow into koibean plants."
 	icon_state = "seed-koibean"
 	species = "koibean"
@@ -63,7 +63,7 @@
 //Butterbeans, the beans wid da butta!
 // Butterbeans! - Squeeze for a single butter slice!
 /obj/item/seeds/soya/butter
-	name = "butterbean seed pack"
+	name = "pack of butterbean seeds"
 	desc = "These seeds grow into butterbean plants."
 	icon_state = "seed-butterbean"
 	species = "butterbean"
@@ -94,7 +94,7 @@
 
 // Green Beans
 /obj/item/seeds/greenbean
-	name = "green bean seed pack"
+	name = "pack of green bean seeds"
 	desc = "These seeds grow into green bean plants."
 	icon_state = "seed-greenbean"
 	species = "greenbean"
@@ -123,7 +123,7 @@
 
 // Jumping Bean
 /obj/item/seeds/greenbean/jump
-	name = "jumping bean seed pack"
+	name = "pack of jumping bean seeds"
 	desc = "These seeds grow into jumping bean plants."
 	icon_state = "seed-jumpingbean"
 	species = "jumpingbean"

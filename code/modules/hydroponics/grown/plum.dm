@@ -1,6 +1,6 @@
 // Plum
 /obj/item/seeds/plum
-	name = "plum seed pack"
+	name = "pack of plum seeds"
 	desc = "These seeds grow into plum trees."
 	icon_state = "seed-plum"
 	species = "plum"
@@ -28,7 +28,7 @@
 
 // Plumb
 /obj/item/seeds/plum/plumb
-	name = "plumb seed pack"
+	name = "pack of plumb seeds"
 	desc = "These seeds grow into plumb trees."
 	icon_state = "seed-plumb"
 	species = "plumb"

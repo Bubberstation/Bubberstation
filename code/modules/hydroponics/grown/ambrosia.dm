@@ -11,7 +11,7 @@
 
 // Ambrosia Vulgaris
 /obj/item/seeds/ambrosia
-	name = "ambrosia vulgaris seed pack"
+	name = "pack of ambrosia vulgaris seeds"
 	desc = "These seeds grow into common ambrosia, a plant grown by and from medicine."
 	icon_state = "seed-ambrosiavulgaris"
 	plant_icon_offset = 0
@@ -36,7 +36,7 @@
 
 // Ambrosia Deus
 /obj/item/seeds/ambrosia/deus
-	name = "ambrosia deus seed pack"
+	name = "pack of ambrosia deus seeds"
 	desc = "These seeds grow into ambrosia deus. Could it be the food of the gods..?"
 	icon_state = "seed-ambrosiadeus"
 	species = "ambrosiadeus"
@@ -55,7 +55,7 @@
 
 //Ambrosia Gaia
 /obj/item/seeds/ambrosia/gaia
-	name = "ambrosia gaia seed pack"
+	name = "pack of ambrosia gaia seeds"
 	desc = "These seeds grow into ambrosia gaia, filled with infinite potential."
 	icon_state = "seed-ambrosia_gaia"
 	species = "ambrosia_gaia"

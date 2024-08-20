@@ -1,5 +1,5 @@
 /obj/item/seeds/poppy/opiumpoppy
-	name = "opium poppy seed pack"
+	name = "pack of opium poppy seeds"
 	desc = "These seeds grow into real opium poppies."
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/seeds.dmi'
 	growing_icon = 'modular_skyrat/master_files/icons/obj/hydroponics/growing.dmi'

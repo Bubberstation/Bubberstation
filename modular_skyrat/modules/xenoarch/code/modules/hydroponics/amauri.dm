@@ -1,5 +1,5 @@
 /obj/item/seeds/amauri
-	name = "amauri seed pack"
+	name = "pack of amauri seeds"
 	desc = "These seeds grow into amauri plants. Grows bulbs full of potent toxins."
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "amauri"

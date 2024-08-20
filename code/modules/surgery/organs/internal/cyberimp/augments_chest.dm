@@ -1,12 +1,15 @@
 /obj/item/organ/internal/cyberimp/chest
 	name = "cybernetic torso implant"
 	desc = "Implants for the organs in your torso."
+	icon_state = "chest_implant"
+	implant_overlay = "chest_implant_overlay"
 	zone = BODY_ZONE_CHEST
 
 /obj/item/organ/internal/cyberimp/chest/nutriment
-	name = "nutriment pump implant"
+	name = "Nutriment pump implant"
 	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
-	icon_state = "nutriment_implant"
+	icon_state = "chest_implant"
+	implant_color = "#00AA00"
 	var/hunger_threshold = NUTRITION_LEVEL_STARVING
 	var/synthesizing = 0
 	var/poison_amount = 5
@@ -34,16 +37,18 @@
 
 
 /obj/item/organ/internal/cyberimp/chest/nutriment/plus
-	name = "nutriment pump implant PLUS"
+	name = "Nutriment pump implant PLUS"
 	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
-	icon_state = "adv_nutriment_implant"
+	icon_state = "chest_implant"
+	implant_color = "#006607"
 	hunger_threshold = NUTRITION_LEVEL_HUNGRY
 	poison_amount = 10
 
 /obj/item/organ/internal/cyberimp/chest/reviver
-	name = "reviver implant"
+	name = "Reviver implant"
 	desc = "This implant will attempt to revive and heal you if you lose consciousness. For the faint of heart!"
-	icon_state = "reviver_implant"
+	icon_state = "chest_implant"
+	implant_color = "#AD0000"
 	slot = ORGAN_SLOT_HEART_AID
 	var/revive_cost = 0
 	var/reviving = FALSE
@@ -159,6 +164,7 @@
 	slot = ORGAN_SLOT_THRUSTERS
 	icon_state = "imp_jetpack"
 	base_icon_state = "imp_jetpack"
+	implant_overlay = null
 	implant_color = null
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	w_class = WEIGHT_CLASS_NORMAL
@@ -261,7 +267,7 @@
 	name = "\improper Herculean gravitronic spinal implant"
 	desc = "This gravitronic spinal interface is able to improve the athletics of a user, allowing them greater physical ability. \
 		Contains a slot which can be upgraded with a gravity anomaly core, improving its performance."
-	icon_state = "herculean_implant"
+	implant_color = "#15704c"
 	slot = ORGAN_SLOT_SPINE
 	/// How much faster does the spinal implant improve our lifting speed, workout ability, reducing falling damage and improving climbing and standing speed
 	var/athletics_boost_multiplier = 0.8
@@ -311,7 +317,5 @@
 		name = "\improper Atlas gravitonic spinal implant"
 		desc = "This gravitronic spinal interface is able to improve the athletics of a user, allowing them greater physical ability. \
 			This one has been improved through the installation of a gravity anomaly core, allowing for personal gravity manipulation."
-		icon_state = "herculean_implant_core"
-		update_appearance()
 		qdel(tool)
 		return ITEM_INTERACT_SUCCESS

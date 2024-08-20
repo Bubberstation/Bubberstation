@@ -146,7 +146,7 @@
 			return /datum/sprite_accessory/undershirt/sports_bra::name
 
 	return ..()
-*/ // SKYRAT EDIT REMOVAL END
+*/ // NOVA EDIT REMOVAL END
 
 /datum/preference/choiced/undershirt/icon_for(value)
 	var/static/icon/body

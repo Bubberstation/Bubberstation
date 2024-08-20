@@ -1,6 +1,6 @@
 // Potato
 /obj/item/seeds/potato
-	name = "potato seed pack"
+	name = "pack of potato seeds"
 	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
 	icon_state = "seed-potato"
 	species = "potato"
@@ -50,7 +50,7 @@
 
 // Sweet Potato
 /obj/item/seeds/potato/sweet
-	name = "sweet potato seed pack"
+	name = "pack of sweet potato seeds"
 	desc = "These seeds grow into sweet potato plants."
 	icon_state = "seed-sweetpotato"
 	species = "sweetpotato"
