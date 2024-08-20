@@ -11,6 +11,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/lobotomy/mechanic
 	name = "Wetware OS Destructive Defragmentation"
 	desc = "A destructive robotic defragmentation method which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
@@ -23,6 +24,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/advanced/lobotomy/can_start(mob/user, mob/living/carbon/target)
 	. = ..()
@@ -52,14 +54,20 @@
 	name = "execute neural defragging (multitool)"
 	implements = list(
 		TOOL_MULTITOOL = 85,
+		/* BUBBER REMOVAL START
 		/obj/item/melee/energy/sword = 55,
 		/obj/item/knife = 35,
 		/obj/item/shard = 25,
 		/obj/item = 20,
+		BUBBER REMOVAL END */
+		// BUBBER ADDITION START
+		TOOL_HEMOSTAT = 35,
+		/obj/item/pen = 15
+		// BUBBER ADDITION END
+
 	)
 	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
-	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
-
+	success_sound = 'sound/weapons/taser.ogg' // BUBBER EDIT
 /datum/surgery_step/lobotomize/tool_check(mob/user, obj/item/tool)
 	if(implement_type == /obj/item && !tool.get_sharpness())
 		return FALSE
