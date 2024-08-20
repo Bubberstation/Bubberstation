@@ -54,8 +54,7 @@
 		/datum/surgery_step/close,
 	)
 
-// BUBBER EDIT
-/*
+/* BUBBER REMOVAL START
 /datum/surgery/organ_manipulation/mechanic
 	name = "Hardware Manipulation"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
@@ -129,7 +128,7 @@
 		/datum/surgery_step/manipulate_organs/external/mechanic,
 		/datum/surgery_step/mechanic_close,
 	)
-*/
+BUBBER REMOVAL END */
 
 ///Organ manipulation base class. Do not use, it wont work. Use its subtypes
 /datum/surgery_step/manipulate_organs

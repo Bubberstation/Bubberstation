@@ -106,18 +106,18 @@
 			continue
 		if(!surgery.can_start(user, target))
 			continue
-		// BUBBER EDIT START
+		// BUBBER ADDITION START
 		if(istype(surgery, /datum/surgery/robot))
 			var/datum/surgery/robot/robot_surgery = surgery
 			if(robot_surgery.is_closer)
 				continue
-		// BUBBER EDIT END
+		// BUBBER ADDITION END
 
 		available_surgeries += surgery
 
 	return available_surgeries
 
-// BUBBER EDIT Overridden by surgery_initiator in modular_zubbers
+// BUBBER COMMENT Overridden by surgery_initiator in modular_zubbers
 /// Does the surgery de-initiation.
 /datum/component/surgery_initiator/proc/attempt_cancel_surgery(datum/surgery/the_surgery, mob/living/patient, mob/user)
 	var/selected_zone = user.zone_selected
