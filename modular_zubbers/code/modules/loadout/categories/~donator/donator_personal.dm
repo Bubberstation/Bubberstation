@@ -44,11 +44,6 @@
 	item_path = /obj/item/clothing/under/rank/lace
 	ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/uniform/miscellaneous/diver
-	name = "Black Divers Uniform"
-	item_path = /obj/item/clothing/under/misc/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
-
 /datum/loadout_item/uniform/miscellaneous/idmasnowfatigue
 	name = "IDMA Service Uniform"
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue
@@ -60,7 +55,6 @@
 	item_path = /obj/item/clothing/under/rank/security/idma_fatigue/alt
 	ckeywhitelist = list ("EspeciallyStrange", "Wolf751", "Waterpig", "Mishanok", "Raxraus")
 	restricted_roles = list (JOB_BLUESHIELD, JOB_CAPTAIN, JOB_NT_REP, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER, JOB_HEAD_OF_PERSONNEL, JOB_QUARTERMASTER, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_SECURITY_MEDIC, JOB_DETECTIVE)
-
 
 /*
 *	SUIT
@@ -94,11 +88,6 @@
 	item_path = /obj/item/clothing/suit/cloak/shawl
 	ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/suit/diver //Donor item for patriot210
-	name = "Black Divers Coat"
-	item_path = /obj/item/clothing/suit/jacket/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
-
 /datum/loadout_item/suit/holographic
     name = "Holographic Suit V4000"
     item_path = /obj/item/clothing/suit/misc/holographic
@@ -110,6 +99,11 @@
 	ckeywhitelist = list("lt3", "gavla")
 	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
 
+/datum/loadout_item/suit/flight //Donor item for ironknight060
+	name = "MA-1 flight jacket"
+	item_path = /obj/item/clothing/suit/jacket/flight
+	ckeywhitelist = list("ironknight060")
+
 /*
 *	SHOES
 */
@@ -118,11 +112,6 @@
 	name = "Elegant Heels"
 	item_path = /obj/item/clothing/shoes/heels/drag/lace
 	ckeywhitelist = list("thedragmeme")
-
-/datum/loadout_item/shoes/diver //Donor item for patriot210
-	name = "Black Divers Boots"
-	item_path = /obj/item/clothing/shoes/boots/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /*
 *	ACCESSORIES
@@ -156,10 +145,6 @@
 *	GLOVES
 */
 
-/datum/loadout_item/gloves/diver //Donor item for patriot210
-	name = "Black Divers Gloves"
-	item_path = /obj/item/clothing/gloves/misc/diver
-	ckeywhitelist = list("sexmaster", "leafydasurvivor")
 
 /*
 *	IN-HAND
