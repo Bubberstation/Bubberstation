@@ -101,7 +101,7 @@ obj/item/clothing/sextoy/chastity/remote/belt
 		return
 	to_chat(user, span_warning("This isn't the correct key!"))
 
-keep it on
+// keep it on
 
 /obj/item/clothing/sextoy/chastity/attack_hand(mob/user)
 	if(loc == user && is_inside_lewd_slot(user) && locked)
