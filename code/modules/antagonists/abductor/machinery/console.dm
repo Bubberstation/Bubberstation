@@ -200,8 +200,14 @@
 
 /obj/machinery/abductor/console/post_machine_initialize()
 	. = ..()
+	link_machines()
+
+/obj/machinery/abductor/console/proc/link_machines()
 	if(!team_number)
 		return
+	experiment = null
+	pad = null
+	camera = null
 
 	for(var/obj/machinery/abductor/pad/p as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/abductor/pad))
 		if(p.team_number == team_number)
@@ -257,13 +263,25 @@
 	vest = V
 	return TRUE
 
-/obj/machinery/abductor/console/base_item_interaction(mob/living/user, obj/item/tool, list/modifiers) // BUBBER CHANGE, attack_by no longer runs on item interact
+/obj/machinery/abductor/console/item_interaction(mob/living/user, obj/item/tool, list/modifiers) // BUBBER CHANGE, attack_by no longer runs on item interact
 	if(istype(tool, /obj/item/abductor/gizmo) && AddGizmo(tool))
 		to_chat(user, span_notice("You link the tool to the console."))
+		return ITEM_INTERACT_SUCCESS
 	else if(istype(tool, /obj/item/clothing/suit/armor/abductor/vest) && AddVest(tool))
 		to_chat(user, span_notice("You link the vest to the console."))
+		return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
+
+/obj/machinery/abductor/console/attack_ghost(mob/user)
+	if(!user?.client.holder)
+		return ..()
+	var/input = tgui_input_number(user, "Set a new team number for the console.", "Team Number", 0, INFINITY, 0, round_value = 1)
+	if(!input)
+		return
+	to_chat(user, span_notice("Team number set to [input], remember to set the team_number on the other machines beforehand!"))
+	team_number = input
+	link_machines()
 
 /obj/machinery/abductor/console/proc/Dispense(items_list, cost=1)
 	if(experiment && experiment.credits >= cost)

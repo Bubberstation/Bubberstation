@@ -50,6 +50,20 @@
 	new /obj/effect/temp_visual/teleport_abductor(place)
 	addtimer(CALLBACK(src, PROC_REF(doPadToLoc), place), 8 SECONDS)
 
+/obj/machinery/abductor/pad/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	var/obj/item/abductor/gizmo/science_tool = tool
+	if(!HAS_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING) || !istype(science_tool))
+		return NONE
+	if(science_tool?.console && science_tool.console.team_number != null)
+		balloon_alert(user, "linked camera console to controller console!")
+		team_number = science_tool.console.team_number
+		science_tool.console.pad = src
+		console = science_tool.console
+	else
+		balloon_alert(user, "[tool] is not linked to controller console!")
+	return ITEM_INTERACT_SUCCESS
+
 /obj/effect/temp_visual/teleport_abductor
 	name = "Huh"
 	icon = 'icons/obj/antags/abductor.dmi'

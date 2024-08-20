@@ -197,3 +197,18 @@
 /obj/machinery/abductor/experiment/update_icon_state()
 	icon_state = "experiment[state_open ? "-open" : null]"
 	return ..()
+
+
+/obj/machinery/abductor/experiment/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	var/obj/item/abductor/gizmo/science_tool = tool
+	if(!HAS_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING) || !istype(science_tool))
+		return NONE
+	if(science_tool?.console && science_tool.console.team_number != null)
+		balloon_alert(user, "linked [src] to controller console!")
+		team_number = science_tool.console.team_number
+		science_tool.console.experiment = src
+		console = science_tool.console
+	else
+		balloon_alert(user, "[tool] is not linked to controller console!")
+	return ITEM_INTERACT_SUCCESS

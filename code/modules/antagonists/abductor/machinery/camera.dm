@@ -13,6 +13,8 @@
 	icon_keyboard = null
 	icon_screen = null
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	var/list/pad_actions = list(/datum/action/innate/teleport_in, /datum/action/innate/teleport_self)
+	var/list/console_actions = list(/datum/action/innate/teleport_out, /datum/action/innate/vest_mode_swap, /datum/action/innate/vest_disguise_swap, /datum/action/innate/set_droppoint)
 
 /obj/machinery/computer/camera_advanced/abductor/Destroy()
 	if(console)
@@ -28,18 +30,54 @@
 	eyeobj.SetInvisibility(INVISIBILITY_OBSERVER)
 
 /obj/machinery/computer/camera_advanced/abductor/GrantActions(mob/living/carbon/user)
-	if(!abduct_created)
+	if(!abduct_created && console?.pad)
 		abduct_created = TRUE
-		actions += new /datum/action/innate/teleport_in(console.pad)
-		actions += new /datum/action/innate/teleport_out(console)
-		actions += new /datum/action/innate/teleport_self(console.pad)
-		actions += new /datum/action/innate/vest_mode_swap(console)
-		actions += new /datum/action/innate/vest_disguise_swap(console)
-		actions += new /datum/action/innate/set_droppoint(console)
+		for(var/action in pad_actions)
+			actions += new action(console.pad)
+		for(var/action in console_actions)
+			actions += new action(console)
+	if(!abduct_created)
+		if(!console)
+			to_chat(user, span_warning("[src] is not linked to a abductor console!"))
+		else if(!console.pad)
+			to_chat(user, span_warning("[src] is not linked to a abductor pad!"))
 	..()
 
 /obj/machinery/computer/camera_advanced/abductor/proc/IsScientist(mob/living/carbon/human/H)
 	return HAS_TRAIT(H, TRAIT_ABDUCTOR_SCIENTIST_TRAINING)
+
+/obj/machinery/computer/camera_advanced/abductor/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	return
+
+/obj/machinery/computer/camera_advanced/abductor/proc/link_to_team(team_id)
+	unset_machine()
+	team_number = team_id
+	abduct_created = FALSE
+	// remove pad_actions and console_actions otherwise they will teleport to the old pad
+	// for(var/action_instance as anything in actions)
+
+	var/remove_actions = list()
+	remove_actions += pad_actions
+	remove_actions += console_actions
+	for(var/action_type as anything in remove_actions)
+		var/action_instance = locate(action_type) in actions
+		if(action_instance)
+			actions -= action_instance
+
+
+/obj/machinery/computer/camera_advanced/abductor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	var/obj/item/abductor/gizmo/science_tool = tool
+	if(!IsScientist(user) || !istype(science_tool))
+		return NONE
+	if(science_tool?.console && science_tool.console.team_number != null)
+		balloon_alert(user, "linked camera console to controller console!")
+		link_to_team(science_tool.console.team_number)
+		science_tool.console.camera = src
+		console = science_tool.console
+	else
+		balloon_alert(user, "[tool] is not linked to controller console!")
+	return ITEM_INTERACT_SUCCESS
 
 /datum/action/innate/teleport_in
 ///Is the amount of time required between uses

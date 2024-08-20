@@ -178,6 +178,7 @@
 			eyeobj.setLoc(camera_location)
 		else
 			unset_machine()
+			to_chat(user, span_warning("[src] could not find a valid camera to connect to."))
 	else
 		give_eye_control(L)
 		eyeobj.setLoc(eyeobj.loc)
