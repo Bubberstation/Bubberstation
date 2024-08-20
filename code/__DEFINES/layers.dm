@@ -3,7 +3,6 @@
 
 //NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -50
-#define EMISSIVE_PLANE -46 // BUBBER EDIT: Was 13, caused issues with rendering via \ref[appearance]
 
 // Doesn't really layer, just throwing this in here cause it's the best place imo
 #define FIELD_OF_VISION_BLOCKER_PLANE -45
@@ -47,6 +46,7 @@
 #define O_LIGHTING_VISUAL_PLANE 11
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
+#define EMISSIVE_PLANE 13
 /// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
 #define EMISSIVE_RENDER_PLATE 14
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
