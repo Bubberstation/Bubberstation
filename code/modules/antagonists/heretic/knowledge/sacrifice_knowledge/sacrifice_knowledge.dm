@@ -417,21 +417,14 @@
 	if (isplasmaman(sac_target))
 		usable_organs -= /obj/item/organ/internal/lungs/corrupt // Their lungs are already more cursed than anything I could give them
 
-	var/total_implant = 1 //BUBBERSTATION CHANGE: ALWAYS 1 INSTEAD OF 2 TO 4.
-	var/gave_any = FALSE
+	var/total_implant = 1 //BUBBERSTATION CHANGE: ALWAYS 1 INSTEAD OF 2 TO 4. ORIGINAL: var/total_implant = rand(2, 4)
 
 	for (var/i in 1 to total_implant)
 		if (!length(usable_organs))
-			break
+			return
 		var/organ_path = pick_n_take(usable_organs)
 		var/obj/item/organ/internal/to_give = new organ_path
-		if (!to_give.Insert(sac_target))
-			qdel(to_give)
-		else
-			gave_any = TRUE
-
-	if (!gave_any)
-		return
+		to_give.Insert(sac_target)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target))
 	sac_target.visible_message(span_boldwarning("Several organs force themselves out of [sac_target]!"))
