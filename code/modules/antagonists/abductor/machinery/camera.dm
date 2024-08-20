@@ -47,6 +47,7 @@
 	return HAS_TRAIT(H, TRAIT_ABDUCTOR_SCIENTIST_TRAINING)
 
 /obj/machinery/computer/camera_advanced/abductor/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	networks += "[port.shuttle_id]_[CAMERANET_NETWORK_ABDUCTOR]"
 	return
 
 /obj/machinery/computer/camera_advanced/abductor/proc/link_to_team(team_id)
