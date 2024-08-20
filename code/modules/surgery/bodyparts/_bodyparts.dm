@@ -77,7 +77,7 @@
 	///Controls if the limb is disabled. TRUE means it is disabled (similar to being removed, but still present for the sake of targeted interactions).
 	var/bodypart_disabled = FALSE
 	///Handles limb disabling by damage. If 0 (0%), a limb can't be disabled via damage. If 1 (100%), it is disabled at max limb damage. Anything between is the percentage of damage against maximum limb damage needed to disable the limb.
-	var/disabling_threshold_percentage = 1 //SKYRAT EDIT CHANGE - COMBAT - ORIGINAL : var/disabling_threshold_percentage = 0
+	var/disabling_threshold_percentage = 0
 
 	// Damage variables
 	///A mutiplication of the burn and brute damage that the limb's stored damage contributes to its attached mob's overall wellbeing.
@@ -174,8 +174,8 @@
 	/// what visual effect is used when this limb is used to strike someone.
 	var/unarmed_attack_effect = ATTACK_EFFECT_PUNCH
 	/// Sounds when this bodypart is used in an umarmed attack
-	var/sound/unarmed_attack_sound = 'sound/items/weapons/punch1.ogg'
-	var/sound/unarmed_miss_sound = 'sound/items/weapons/punchmiss.ogg'
+	var/sound/unarmed_attack_sound = 'sound/weapons/punch1.ogg'
+	var/sound/unarmed_miss_sound = 'sound/weapons/punchmiss.ogg'
 	///Lowest possible punch damage this bodypart can give. If this is set to 0, unarmed attacks will always miss.
 	var/unarmed_damage_low = 1
 	///Highest possible punch damage this bodypart can ive.
@@ -203,10 +203,6 @@
 	var/robotic_emp_paralyze_damage_percent_threshold = 0.3
 	/// A potential texturing overlay to put on the limb
 	var/datum/bodypart_overlay/texture/texture_bodypart_overlay
-	// SKYRAT EDIT BEGIN
-	/// If we even wanna try and handle icons/overlays of the limb (Taurs don't, f.e.). See update_body_parts
-	var/show_icon = TRUE
-	// SKYRAT EDIT END
 
 /obj/item/bodypart/apply_fantasy_bonuses(bonus)
 	. = ..()
@@ -354,17 +350,13 @@
 	for(var/datum/wound/wound as anything in wounds)
 		switch(wound.severity)
 			if(WOUND_SEVERITY_TRIVIAL)
-				// check_list += "\t [span_danger("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)].")]" // SKYRAT EDIT - Medical overhaul-ish - ORIGINAL
-				check_list += "\t [span_danger("Your [name] is suffering [wound.a_or_from] [wound.get_topic_name(owner)].")]" // SKYRAT EDIT - Medical overhaul-ish
+				check_list += "\t [span_danger("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)].")]"
 			if(WOUND_SEVERITY_MODERATE)
-				// check_list += "\t [span_warning("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)]!")]" // SKYRAT EDIT - Medical overhaul-ish - ORIGINAL
-				check_list += "\t [span_warning("Your [name] is suffering [wound.a_or_from] [wound.get_topic_name(owner)]!")]" // SKYRAT EDIT - Medical overhaul-ish
+				check_list += "\t [span_warning("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)]!")]"
 			if(WOUND_SEVERITY_SEVERE)
-				// check_list += "\t [span_boldwarning("Your [name] is suffering [wound.a_or_from] [lLOWER_TEXT(wound.name)]!")]" // SKYRAT EDIT - Medical overhaul-ish - ORIGINAL
-				check_list += "\t [span_boldwarning("Your [name] is suffering [wound.a_or_from] [wound.get_topic_name(owner)]!")]" // SKYRAT EDIT - Medical overhaul-ish
+				check_list += "\t [span_boldwarning("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)]!!")]"
 			if(WOUND_SEVERITY_CRITICAL)
-				// check_list += "\t [span_boldwarning("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)]!!")]" // SKYRAT EDIT - Medical overhaul-ish - ORIGINAL
-				check_list += "\t [span_boldwarning("Your [name] is suffering [wound.a_or_from] [wound.get_topic_name(owner)]!!")]" // SKYRAT EDIT - Medical overhaul-ish
+				check_list += "\t [span_boldwarning("Your [name] is suffering [wound.a_or_from] [LOWER_TEXT(wound.name)]!!!")]"
 
 	for(var/obj/item/embedded_thing in embedded_objects)
 		var/stuck_word = embedded_thing.is_embed_harmless() ? "stuck" : "embedded"
@@ -404,7 +396,7 @@
 		if(!contents.len)
 			to_chat(user, span_warning("There is nothing left inside [src]!"))
 			return
-		playsound(loc, 'sound/items/weapons/slice.ogg', 50, TRUE, -1)
+		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
 		user.visible_message(span_warning("[user] begins to cut open [src]."),\
 			span_notice("You begin to cut open [src]..."))
 		if(do_after(user, 5.4 SECONDS, target = src))
@@ -465,12 +457,11 @@
  * required_bodytype - A bodytype flag requirement to get this damage (ex: BODYTYPE_ORGANIC)
  * wound_bonus - Additional bonus chance to get a wound.
  * bare_wound_bonus - Additional bonus chance to get a wound if the bodypart is naked.
- * wound_clothing - If this should damage clothing.
  * sharpness - Flag on whether the attack is edged or pointy
  * attack_direction - The direction the bodypart is attacked from, used to send blood flying in the opposite direction.
  * damage_source - The source of damage, typically a weapon.
  */
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, blocked = 0, updating_health = TRUE, forced = FALSE, required_bodytype = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = NONE, attack_direction = null, damage_source, wound_clothing = TRUE)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, blocked = 0, updating_health = TRUE, forced = FALSE, required_bodytype = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = NONE, attack_direction = null, damage_source)
 	SHOULD_CALL_PARENT(TRUE)
 
 	var/hit_percent = forced ? 1 : (100-blocked)/100
@@ -478,7 +469,7 @@
 		return FALSE
 	if (!forced)
 		if(!isnull(owner))
-			if (HAS_TRAIT(owner, TRAIT_GODMODE))
+			if (owner.status_flags & GODMODE)
 				return FALSE
 			if (SEND_SIGNAL(owner, COMSIG_CARBON_LIMB_DAMAGED, src, brute, burn) & COMPONENT_PREVENT_LIMB_DAMAGE)
 				return FALSE
@@ -544,20 +535,7 @@
 			return
 		// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 		if(wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
-			//SKYRAT EDIT ADDITION - MEDICAL
-			//This makes it so the more damaged bodyparts are, the more likely they are to get wounds
-			//However, this bonus isn't applied when the object doesn't pass the initial wound threshold, nor is it when it already has enough wounding dmg
-			/* if(wounding_dmg < DAMAGED_BODYPART_BONUS_WOUNDING_BONUS) // BUBBER EDIT REMOVAL
-				var/damaged_percent = (brute_dam + burn_dam) / max_damage
-				if(damaged_percent > DAMAGED_BODYPART_BONUS_WOUNDING_THRESHOLD)
-					damaged_percent = DAMAGED_BODYPART_BONUS_WOUNDING_THRESHOLD
-				wounding_dmg = min(DAMAGED_BODYPART_BONUS_WOUNDING_BONUS, wounding_dmg + (damaged_percent * DAMAGED_BODYPART_BONUS_WOUNDING_COEFF))
-			*/// BUBBER EDIT REMOVAL
-			if (istype(current_gauze, /obj/item/stack/medical/gauze))
-				var/obj/item/stack/medical/gauze/our_gauze = current_gauze
-				our_gauze.get_hit()
-			//SKYRAT EDIT ADDITION END - MEDICAL
-			check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, attack_direction, damage_source = damage_source, wound_clothing = wound_clothing)
+			check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, attack_direction, damage_source = damage_source)
 
 	for(var/datum/wound/iter_wound as anything in wounds)
 		iter_wound.receive_damage(wounding_type, wounding_dmg, wound_bonus, damage_source)
@@ -683,12 +661,6 @@
 			update_disabled()
 		if(updating_health)
 			owner.updatehealth()
-		//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
-		//Consider moving this to a new species proc "spec_heal" maybe?
-		if(owner.stat == DEAD && HAS_TRAIT(owner, TRAIT_REVIVES_BY_HEALING))
-			if(owner.health > 50)
-				owner.revive(FALSE)
-		//SKYRAT EDIT ADDITION END
 	cremation_progress = min(0, cremation_progress - ((brute_dam + burn_dam)*(100/max_damage)))
 	return update_bodypart_damage_state()
 
@@ -981,18 +953,7 @@
 	if(should_draw_greyscale) //Should the limb be colored?
 		draw_color ||= species_color || (skin_tone ? skintone2hex(skin_tone) : null)
 
-	// SKYRAT EDIT ADDITION
-	var/datum/species/owner_species = human_owner.dna.species
-
-	if(owner_species && owner_species.specific_alpha != 255)
-		alpha = owner_species.specific_alpha
-
-	markings = LAZYCOPY(owner_species.body_markings[body_zone])
-	if(aux_zone)
-		aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
-	markings_alpha = owner_species.markings_alpha
-	// SKYRAT EDIT END
-	recolor_external_organs()
+	recolor_bodypart_overlays()
 	return TRUE
 
 //to update the bodypart's icon when not attached to a mob
@@ -1065,10 +1026,9 @@
 			huskify_image(thing_to_husk = aux)
 		draw_color = husk_color
 	if(draw_color)
-		var/limb_color = alpha != 255 ? "[draw_color][num2hex(alpha, 2)]" : "[draw_color]" // SKYRAT EDIT ADDITION - Alpha values on limbs. We check if the limb is attached and if the owner has an alpha value to append
-		limb.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: limb.color = "[draw_color]"
+		limb.color = "[draw_color]"
 		if(aux_zone)
-			aux.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: aux.color = "[draw_color]"
+			aux.color = "[draw_color]"
 
 		//EMISSIVE CODE START
 		// For some reason this was applied as an overlay on the aux image and limb image before.
@@ -1109,62 +1069,6 @@
 					. += overlay.get_overlay(external_layer, src)
 			for(var/datum/layer in .)
 				overlay.modify_bodypart_appearance(layer)
-	// SKYRAT EDIT ADDITION BEGIN - MARKINGS CODE
-	var/override_color
-	var/atom/offset_spokesman = owner || src
-	// First, check to see if this bodypart is husked. If so, we don't want to apply our sparkledog colors to the limb.
-	if(is_husked)
-		override_color = "#888888"
-	// We need to check that the owner exists(could be a placed bodypart) and that it's not a chainsawhand and that they're a human with usable DNA.
-	if(!(bodypart_flags & BODYPART_PSEUDOPART) && (!(bodyshape & BODYSHAPE_TAUR))) // taur legs never ever render
-		for(var/key in markings) // Cycle through all of our currently selected markings.
-			var/datum/body_marking/body_marking = GLOB.body_markings[key]
-			if (!body_marking) // Edge case prevention.
-				continue
-
-			var/render_limb_string = limb_id == "digitigrade" ? ("digitigrade_1_" + body_zone) : body_zone // I am not sure why there are _1 and _2 versions of digi, so, it's staying like this.
-
-			var/gender_modifier = ""
-			if(body_zone == BODY_ZONE_CHEST) // Chest markings have male and female versions.
-				if(body_marking.gendered)
-					gender_modifier = is_dimorphic ? "_[limb_gender]" : "_m"
-
-			var/mutable_appearance/accessory_overlay
-			var/mutable_appearance/emissive
-			accessory_overlay = mutable_appearance(body_marking.icon, "[body_marking.icon_state]_[render_limb_string][gender_modifier]", -BODYPARTS_LAYER)
-			accessory_overlay.alpha = markings_alpha
-			if(markings[key][2])
-				emissive = emissive_appearance_copy(accessory_overlay, offset_spokesman)
-			if(override_color)
-				accessory_overlay.color = override_color
-			else
-				accessory_overlay.color = markings[key][1]
-			. += accessory_overlay
-			if (emissive)
-				. += emissive
-
-		if(aux_zone)
-			for(var/key in aux_zone_markings)
-				var/datum/body_marking/body_marking = GLOB.body_markings[key]
-				if (!body_marking) // Edge case prevention.
-					continue
-
-				var/render_limb_string = aux_zone
-
-				var/mutable_appearance/emissive
-				var/mutable_appearance/accessory_overlay
-				accessory_overlay = mutable_appearance(body_marking.icon, "[body_marking.icon_state]_[render_limb_string]", -aux_layer)
-				accessory_overlay.alpha = markings_alpha
-				if (aux_zone_markings[key][2])
-					emissive = emissive_appearance_copy(accessory_overlay, offset_spokesman)
-				if(override_color)
-					accessory_overlay.color = override_color
-				else
-					accessory_overlay.color = aux_zone_markings[key][1]
-				. += accessory_overlay
-				if (emissive)
-					. += emissive
-	// SKYRAT EDIT END - MARKINGS CODE END
 	return .
 
 /obj/item/bodypart/proc/huskify_image(image/thing_to_husk, draw_blood = TRUE)
@@ -1283,6 +1187,11 @@
 		bleed_rate *= 0.7
 	return bleed_rate
 
+// how much blood the limb needs to be losing per tick (not counting laying down/self grasping modifiers) to get the different bleed icons
+#define BLEED_OVERLAY_LOW 0.5
+#define BLEED_OVERLAY_MED 1.5
+#define BLEED_OVERLAY_GUSH 3.25
+
 /obj/item/bodypart/proc/update_part_wound_overlay()
 	if(!owner)
 		return FALSE
@@ -1291,9 +1200,6 @@
 			bleed_overlay_icon = null
 			owner.update_wound_overlays()
 		return FALSE
-
-	if (SEND_SIGNAL(src, COMSIG_BODYPART_UPDATE_WOUND_OVERLAY, cached_bleed_rate) & COMPONENT_PREVENT_WOUND_OVERLAY_UPDATE)
-		return
 
 	var/bleed_rate = cached_bleed_rate
 	var/new_bleed_icon = null
@@ -1317,6 +1223,10 @@
 	if(new_bleed_icon != bleed_overlay_icon)
 		bleed_overlay_icon = new_bleed_icon
 		owner.update_wound_overlays()
+
+#undef BLEED_OVERLAY_LOW
+#undef BLEED_OVERLAY_MED
+#undef BLEED_OVERLAY_GUSH
 
 /obj/item/bodypart/proc/can_bleed()
 	SHOULD_BE_PURE(TRUE)
@@ -1364,7 +1274,7 @@
 		QDEL_NULL(current_gauze)
 
 ///Loops through all of the bodypart's external organs and update's their color.
-/obj/item/bodypart/proc/recolor_external_organs()
+/obj/item/bodypart/proc/recolor_bodypart_overlays()
 	for(var/datum/bodypart_overlay/mutant/overlay in bodypart_overlays)
 		overlay.inherit_color(src, force = TRUE)
 
@@ -1437,8 +1347,8 @@
 	var/burn_damage = AUGGED_LIMB_EMP_BURN_DAMAGE
 	if(severity == EMP_HEAVY)
 		time_needed *= 2
-		brute_damage *= 1.3 // SKYRAT EDIT : Balance - Lowers total damage from ~125 Brute to ~30
-		burn_damage *= 1.3 // SKYRAT EDIT : Balance - Lowers total damage from ~104 Burn to ~24
+		brute_damage *= 2
+		burn_damage *= 2
 
 	receive_damage(brute_damage, burn_damage)
 	do_sparks(number = 1, cardinal_only = FALSE, source = owner || src)

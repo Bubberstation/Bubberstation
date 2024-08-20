@@ -4,16 +4,15 @@
 	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
-	visual = FALSE
 	gender = PLURAL
 
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
-	low_threshold_passed = span_info("Your ears begin to resonate with an internal ring sometimes.")
-	now_failing = span_warning("You are unable to hear at all!")
-	now_fixed = span_info("Noise slowly begins filling your ears once more.")
-	low_threshold_cleared = span_info("The ringing in your ears has died down.")
+	low_threshold_passed = "<span class='info'>Your ears begin to resonate with an internal ring sometimes.</span>"
+	now_failing = "<span class='warning'>You are unable to hear at all!</span>"
+	now_fixed = "<span class='info'>Noise slowly begins filling your ears once more.</span>"
+	low_threshold_cleared = "<span class='info'>The ringing in your ears has died down.</span>"
 
 	/// `deaf` measures "ticks" of deafness. While > 0, the person is unable to hear anything.
 	var/deaf = 0
@@ -43,7 +42,7 @@
 	adjustEarDamage(0, -0.5 * seconds_per_tick)
 	if((damage > low_threshold) && SPT_PROB(damage / 60, seconds_per_tick))
 		adjustEarDamage(0, 4)
-		SEND_SOUND(owner, sound('sound/items/weapons/flash_ring.ogg'))
+		SEND_SOUND(owner, sound('sound/weapons/flash_ring.ogg'))
 
 /obj/item/organ/internal/ears/apply_organ_damage(damage_amount, maximum, required_organ_flag)
 	. = ..()
@@ -58,22 +57,6 @@
 	UnregisterSignal(organ_owner, COMSIG_MOB_SAY)
 	REMOVE_TRAIT(organ_owner, TRAIT_DEAF, EAR_DAMAGE)
 
-/obj/item/organ/internal/ears/get_status_appendix(advanced, add_tooltips)
-	if(owner.stat == DEAD || !HAS_TRAIT(owner, TRAIT_DEAF))
-		return
-	if(advanced)
-		if(HAS_TRAIT_FROM(owner, TRAIT_DEAF, QUIRK_TRAIT))
-			return conditional_tooltip("Subject is permanently deaf.", "Irreparable under normal circumstances.", add_tooltips)
-		if(HAS_TRAIT_FROM(owner, TRAIT_DEAF, GENETIC_MUTATION))
-			return conditional_tooltip("Subject is genetically deaf.", "Use medication such as [/datum/reagent/medicine/mutadone::name].", add_tooltips)
-		if(HAS_TRAIT_FROM(owner, TRAIT_DEAF, EAR_DAMAGE))
-			return conditional_tooltip("Subject is [(organ_flags & ORGAN_FAILING) ? "permanently": "temporarily"] deaf from ear damage.", "Repair surgically, use medication such as [/datum/reagent/medicine/inacusiate::name], or protect ears with earmuffs.", add_tooltips)
-	return "Subject is deaf."
-
-/obj/item/organ/internal/ears/show_on_condensed_scans()
-	// Always show if we have an appendix
-	return ..() || (owner.stat != DEAD && HAS_TRAIT(owner, TRAIT_DEAF))
-
 /**
  * Snowflake proc to handle temporary deafness
  *
@@ -81,7 +64,7 @@
  * * ddeaf: Handles temporary deafness, 1 ddeaf = 2 seconds of deafness, by default (with no multiplier)
  */
 /obj/item/organ/internal/ears/proc/adjustEarDamage(ddmg = 0, ddeaf = 0)
-	if(HAS_TRAIT(owner, TRAIT_GODMODE))
+	if(owner.status_flags & GODMODE)
 		update_temp_deafness()
 		return
 
@@ -102,7 +85,7 @@
 	if(isnull(owner))
 		return
 
-	if(HAS_TRAIT(owner, TRAIT_GODMODE))
+	if(owner.status_flags & GODMODE)
 		deaf = 0
 
 	if(deaf > 0)
@@ -145,7 +128,6 @@
 /obj/item/organ/internal/ears/invincible
 	damage_multiplier = 0
 
-
 /obj/item/organ/internal/ears/cat
 	name = "cat ears"
 	icon = 'icons/obj/clothing/head/costume.dmi'
@@ -153,44 +135,21 @@
 	icon_state = "kitty"
 	visual = TRUE
 	damage_multiplier = 2
-	// Keeps track of which cat ears sprite is associated with this.
-	var/variant = "Cat"
 
-/obj/item/organ/internal/ears/cat/Initialize(mapload, variant_pref)
-	. = ..()
-	if(variant_pref)
-		variant = variant_pref
+	preference = "feature_human_ears"
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION
-/*
-/obj/item/organ/internal/ears/cat/on_mob_insert(mob/living/carbon/human/ear_owner)
-	. = ..()
-	if(istype(ear_owner) && ear_owner.dna)
-		color = ear_owner.hair_color
-		ear_owner.dna.features["ears"] = ear_owner.dna.species.mutant_bodyparts["ears"] = variant
-		ear_owner.dna.update_uf_block(DNA_EARS_BLOCK)
-		ear_owner.update_body()
+	dna_block = DNA_EARS_BLOCK
 
-// BUBBER EDIT - OR BEGIN
-/obj/item/organ/internal/ears/cat/on_mob_remove(mob/living/carbon/human/ear_owner)
-	. = ..()
-	if(istype(ear_owner) && ear_owner.dna)
-		color = ear_owner.hair_color
-		ear_owner.dna.species.mutant_bodyparts -= "ears"
-		ear_owner.update_body()
-*/
-//SKYRAT EDIT REMOVAL END
-/*
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears
 
 /// Bodypart overlay for the horrible cat ears
 /datum/bodypart_overlay/mutant/cat_ears
-	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layers = EXTERNAL_FRONT | EXTERNAL_ADJACENT
 	color_source = ORGAN_COLOR_HAIR
 	feature_key = "ears"
 
-	/// Layer upon which we add the inner ears overlay
-	var/inner_layer = EXTERNAL_FRONT
+	/// We dont color the inner part, which is the front layer
+	var/colorless_layer = EXTERNAL_FRONT
 
 /datum/bodypart_overlay/mutant/cat_ears/get_global_feature_list()
 	return SSaccessories.ears_list
@@ -200,22 +159,10 @@
 		return FALSE
 	return TRUE
 
-/datum/bodypart_overlay/mutant/cat_ears/get_image(image_layer, obj/item/bodypart/limb)
-	var/mutable_appearance/base_ears = ..()
-
-	// Only add inner ears on the inner layer
-	if(image_layer != bitflag_to_layer(inner_layer))
-		return base_ears
-
-	// Construct image of inner ears, apply to base ears as an overlay
-	feature_key += "inner"
-	var/mutable_appearance/inner_ears = ..()
-	inner_ears.appearance_flags = RESET_COLOR
-	feature_key = initial(feature_key)
-
-	base_ears.overlays += inner_ears
-	return base_ears
-*/ // // BUBBER EDIT - OR END
+/datum/bodypart_overlay/mutant/cat_ears/color_image(image/overlay, draw_layer, obj/item/bodypart/limb)
+	if(draw_layer != bitflag_to_layer(colorless_layer))
+		return ..()
+	return overlay
 
 /obj/item/organ/internal/ears/penguin
 	name = "penguin ears"
