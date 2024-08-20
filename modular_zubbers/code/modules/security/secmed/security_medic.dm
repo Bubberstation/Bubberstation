@@ -100,22 +100,7 @@
 	icon = 'modular_zubbers/code/modules/security/secmed/icons/secmed_equipment.dmi'
 	icon_state = "hud"
 	worn_icon_state = "healthhud"
-	clothing_traits = list(TRAIT_MEDICAL_HUD)
-
-/obj/item/clothing/glasses/hud/secmed/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(!(slot & ITEM_SLOT_EYES))
-		return
-	// Extra hud because the bloody code doesn't support multihuds yet. I'll probably add multihud support soon enough. If you see this I didn't. ~Waterpig
-	var/datum/atom_hud/extra_hud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
-	extra_hud.show_to(user)
-
-/obj/item/clothing/glasses/hud/secmed/dropped(mob/living/carbon/human/user)
-	. = ..()
-	if(!istype(user) || user.glasses != src)
-		return
-	var/datum/atom_hud/extra_hud = GLOB.huds[DATA_HUD_SECURITY_BASIC]
-	extra_hud.hide_from(user)
+	clothing_traits = list(TRAIT_MEDICAL_HUD, TRAIT_BASIC_SECURITY_HUD)
 
 /obj/item/clothing/glasses/hud/secmed/sunglasses
 	name = "security-medical HUD sunglasses"

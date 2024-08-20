@@ -20,12 +20,12 @@
 		/mob/living/basic/wumborian_fugu,
 	)
 
-/obj/projectile/bullet/arrow/prehit_pierce(mob/living/target, mob/living/carbon/human/user)
-
+/obj/projectile/bullet/arrow/prehit_pierce(mob/living/target)
+	var/mob/living/carbon/human/user = firer
 	if(isnull(target))
 		return ..()
 
-	if(user?.mind?.special_role == ROLE_LAVALAND)
+	if(istype(user?.mind?.assigned_role, /datum/job/ash_walker) || istype(user?.mind?.assigned_role, /datum/job/primitive_catgirl))
 		damage += tribal_damage_bonus
 		weak_against_armour = FALSE
 

@@ -40,7 +40,7 @@
 /obj/item/organ/internal/stomach/ethereal/proc/charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
 	SIGNAL_HANDLER
 
-	charge_cell.Invoke(cell, seconds_per_tick / 3.5) // Ethereals don't have NT designed charging ports, so they charge slower.
+	charge_cell.Invoke(cell, seconds_per_tick / 3.5, ETHEREAL_CHARGE_FULL) // Ethereals don't have NT designed charging ports, so they charge slower. //BUBBER EDIT
 
 /obj/item/organ/internal/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, shock_source, siemens_coeff = 1, flags = NONE)
 	SIGNAL_HANDLER

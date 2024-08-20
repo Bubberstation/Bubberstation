@@ -88,3 +88,11 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_zubbers/sound/emotes/mrowl.ogg'
+
+/datum/emote/living/flutter //Moth flutter
+	key = "flutter"
+	key_third_person = "rapidly flutters their wings!"
+	message = "rapidly flutters their wings!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'sound/voice/moth/moth_flutter.ogg'
