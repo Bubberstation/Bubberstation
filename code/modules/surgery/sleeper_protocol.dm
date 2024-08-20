@@ -20,6 +20,7 @@
 		/datum/surgery_step/close,
 	)
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/brainwashing_sleeper/mechanic
 	name = "Sleeper Agent Reprogramming"
 	desc = "Malware which directly implants the sleeper protocol directive into the robotic patient's operating system, making it their absolute priority. It can be cleared using a mindshield implant."
@@ -32,6 +33,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/advanced/brainwashing_sleeper/can_start(mob/user, mob/living/carbon/target)
 	. = ..()
@@ -65,10 +67,13 @@
 		TOOL_MULTITOOL = 85,
 		TOOL_HEMOSTAT = 50,
 		TOOL_WIRECUTTER = 50,
+		/* BUBBER REMOVAL START
 		/obj/item/stack/package_wrap = 35,
-		/obj/item/stack/cable_coil = 15)
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-	success_sound = 'sound/surgery/hemostat1.ogg'
+		/obj/item/stack/cable_coil = 15
+		BUBBER REMOVAL END */
+		)
+	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
 
 /datum/surgery_step/brainwash/sleeper_agent/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	objective = pick(possible_objectives)
