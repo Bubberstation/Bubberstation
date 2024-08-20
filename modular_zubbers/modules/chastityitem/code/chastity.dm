@@ -2,9 +2,9 @@
 	name = "DEBUG ITEM"
 	desc = "call an admin probably"
 	icon = 'modular_zubbers/modules/chastityitem/obj/lewd_chastity.dmi'
-	lefthand_file = 'modular_zubbers/icons/mob/chastity_inhands/lewd_chastity_inhand_left.dmi'
-	righthand_file = 'modular_zubbers/icons/mob/chastity_inhands/lewd_chastity_inhand_right.dmi'
-	worn_icon = 'modular_zubbers/icons/obj/lewd_chastity.dmi'
+	lefthand_file = 'modular_zubbers/modules/chastityitem/mob/chastity_inhands/lewd_chastity_inhand_left.dmi'
+	righthand_file = 'modular_zubbers/modules/chastityitem/mob/chastity_inhands/lewd_chastity_inhand_right.dmi'
+	worn_icon = 'modular_zubbers/modules/chastityitem/mob/chastity_clothing/lewd_chastity.dmi'
 	clothing_flags = INEDIBLE_CLOTHING
 	interaction_flags_click = NEED_DEXTERITY
 	alternate_worn_layer = UNDER_SUIT_LAYER
