@@ -24,7 +24,7 @@
 	is_closer = TRUE
 	surgery_flags = SURGERY_SELF_OPERABLE
 
-/datum/surgery/stomach_pump/can_start(mob/user, mob/living/carbon/target)
+/datum/surgery/robot/stomach_pump/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/stomach/target_stomach = target.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(HAS_TRAIT(target, TRAIT_HUSK))
 		return FALSE
