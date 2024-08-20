@@ -12,15 +12,11 @@
 	var/broken = FALSE
 	var/devicetype = null
 
-/obj/item/clothing/sextoy/chastity/Initialize(mapload)
-	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(try_lock))
-
 //borrowing code from the locked collars
 
 /obj/item/clothing/sextoy/chastity/proc/IsLocked(to_lock, mob/user)
 	if(!broken)
-		to_chat(user, span_warning("The [devicetype] is" "[to_lock ? "bolted tight" : "unbolted"]."))
+		to_chat(user, span_warning("The [devicetype] is [to_lock ? "bolted tight." : "unbolted."]"))
 		locked = (to_lock ? TRUE : FALSE)
 		if(!to_lock)
 			REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_NODROP)
@@ -29,7 +25,7 @@
 	locked = FALSE
 	REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_NODROP)
 
-/obj/item/clothing/sextoy/chastity/attackby(/obj/item/key/chastity/attack_item, mob/user, params)
+/obj/item/clothing/sextoy/chastity/attackby(obj/item/key/chastity/attack_item, mob/user, params)
 	if(!istype(attack_item))
 		return
 	if(attack_item.key_id == REF(src))
@@ -85,6 +81,8 @@
 	name = "chastity key"
 	desc = "A hex key meant for the bolt on a chastity device. Don't lose this. Or do."
 	interaction_flags_click = NEED_DEXTERITY
+	var/key_id = null
+	var/keyname = null
 	
 /obj/item/key/chastity/attack_self(mob/user)
 	keyname = stripped_input(user, "Would you like to change the name on the key?", "Renaming key", "Key", MAX_NAME_LEN)
@@ -95,7 +93,7 @@
 	if(!istype(target))
 		return
 	. = ..()
-	if(!istype(target.wear_neck, /obj/item/clothing/neck/kink_collar/locked))
+	if(!istype(target.wear_vagina | target.wear_penis, /obj/item/clothing/neck/kink_collar/locked))
 		return
 	var/obj/item/clothing/neck/kink_collar/locked/collar = target.wear_neck
 	if(REF(collar) == src.key_id)
