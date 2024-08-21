@@ -1,5 +1,5 @@
 /datum/surgery/robot
-	var/name = "robot surgery"
+	name = "robot surgery"
 	var/num_opening_steps
 	var/num_steps_until_closing
 	var/close_surgery
