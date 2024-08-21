@@ -269,7 +269,7 @@
 	. += get_power_explanation_extended()
 
 /datum/action/cooldown/bloodsucker/proc/get_power_explanation_extended()
-	return initial(get_power_explanation())
+	return list()
 
 /datum/action/cooldown/bloodsucker/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)
