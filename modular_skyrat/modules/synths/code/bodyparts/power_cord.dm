@@ -1,10 +1,3 @@
-#define SYNTH_CHARGE_MAX 1.1 MEGA JOULES
-#define SYNTH_CHARGE_ALMOST_FULL 900 KILO JOULES
-#define SYNTH_JOULES_PER_NUTRITION 2000
-#define SYNTH_CHARGE_RATE 250 KILO WATTS
-#define SYNTH_APC_MINIMUM_PERCENT 20
-#define SSMACHINES_SECONDS_PER_TICK 2
-
 /obj/item/organ/internal/cyberimp/arm/power_cord
 	name = "charging implant"
 	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
@@ -98,7 +91,7 @@
 		// Ensures minimum draw is always lower than this margin.
 		nutrition_level_joules = user.nutrition * SYNTH_JOULES_PER_NUTRITION
 		energy_needed = SYNTH_CHARGE_MAX - nutrition_level_joules
-		if(energy_needed < SYNTH_CHARGE_MAX - SYNTH_CHARGE_ALMOST_FULL - 125 KILO JOULES)
+		if(energy_needed < (SYNTH_CHARGE_MAX - SYNTH_CHARGE_ALMOST_FULL))
 			user.balloon_alert(user, "cell fully charged!")
 			break
 
@@ -113,7 +106,7 @@
 			break
 
 		// Calculate how much to draw from the cell this cycle.
-		var/current_draw = min(energy_needed, SYNTH_CHARGE_RATE * SSMACHINES_SECONDS_PER_TICK)
+		var/current_draw = min(energy_needed, SYNTH_CHARGE_RATE * SSmachines.wait)
 
 		var/energy_delivered = target_cell.use(current_draw)
 		if(!energy_delivered)
@@ -124,7 +117,7 @@
 			break
 
 		// If charging was successful, then increase user nutrition and emit sparks.
-		var/nutrition_gained = (energy_delivered / SYNTH_JOULES_PER_NUTRITION) / SSMACHINES_SECONDS_PER_TICK
+		var/nutrition_gained = (energy_delivered / SYNTH_JOULES_PER_NUTRITION) / SSmachines.wait
 		user.nutrition += nutrition_gained
 		do_sparks(1, FALSE, target_cell.loc)
 
@@ -132,9 +125,3 @@
 	if(target_apc && !QDELETED(target_apc) && !QDELETED(target_apc.cell) && target_apc.main_status > APC_NO_POWER)
 		target_apc.charging = APC_CHARGING
 		target_apc.update_appearance()
-
-#undef SYNTH_CHARGE_MAX
-#undef SYNTH_JOULES_PER_NUTRITION
-#undef SYNTH_CHARGE_RATE
-#undef SYNTH_APC_MINIMUM_PERCENT
-#undef SSMACHINES_SECONDS_PER_TICK
