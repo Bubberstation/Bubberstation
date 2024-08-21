@@ -9,12 +9,12 @@
 
 /datum/round_event_control/blob
 	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT)
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_CHAOTIC)
 	weight = 10
 
 /datum/round_event_control/meteor_wave
 	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_DESTRUCTIVE)
+	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_DESTRUCTIVE, TAG_CHAOTIC)
 	weight = 10
 
 /datum/round_event_control/meteor_wave/meaty
@@ -56,7 +56,7 @@
 
 /datum/round_event_control/abductor
 	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_SPOOKY)
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CHAOTIC)
 
 /datum/round_event_control/fugitives
 	track = EVENT_TRACK_MAJOR
