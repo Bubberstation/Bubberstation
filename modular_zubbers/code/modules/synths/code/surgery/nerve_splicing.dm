@@ -9,7 +9,7 @@
 		/datum/surgery_step/mechanic_unwrench,
 		/datum/surgery_step/prepare_electronics,
 		/datum/surgery_step/prepare_electronics,
-		/datum/surgery_step/apply_bioware/splice_nerves,
+		/datum/surgery_step/apply_bioware/splice_nerves/mechanic,
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
