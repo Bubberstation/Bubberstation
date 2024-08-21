@@ -53,22 +53,22 @@
 	name = "Halo"
 	icon_state = "halo"
 
-/datum/sprite_accessory/horns/bubber/big/antlersmore //sprites by Gavla
+/datum/sprite_accessory/horns/bubber/big/antlers //sprites by Gavla
 	name = "Aged Antlers"
 	icon_state = "antlersmore"
 
-/datum/sprite_accessory/horns/bubber/big/antlersmost
+/datum/sprite_accessory/horns/bubber/big/antlers/large
 	name = "Large Antlers"
 	icon_state = "antlersmost"
 
-/datum/sprite_accessory/horns/bubber/big/antlersregal
+/datum/sprite_accessory/horns/bubber/big/antlers/regal
 	name = "Regal Antlers"
 	icon_state = "antlersregal"
 
-/datum/sprite_accessory/horns/bubber/big/antlersmonarch
+/datum/sprite_accessory/horns/bubber/big/antlers/monarch
 	name = "Monarch Antlers"
 	icon_state = "antlersmonarch"
 
-/datum/sprite_accessory/horns/bubber/big/antlersless	//end of sprites by Gavla
+/datum/sprite_accessory/horns/bubber/big/antlers/short	//end of sprites by Gavla
 	name = "Short Antlers"
 	icon_state = "antlersless"
