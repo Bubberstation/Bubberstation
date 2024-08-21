@@ -15,6 +15,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/ligaments/hooked
 
+/* BUBBER REMOVAL START - This one isn't getting replaced, this is already a mechanic!
 /datum/surgery/advanced/bioware/ligament_hook/mechanic
 	name = "Anchor Point Snaplocks"
 	desc = "A robotic upgrade which installs rapid detachment anchor points, making it so limbs can be attached manually if detached. \
@@ -30,6 +31,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/apply_bioware/reshape_ligaments
 	name = "reshape ligaments (hand)"
