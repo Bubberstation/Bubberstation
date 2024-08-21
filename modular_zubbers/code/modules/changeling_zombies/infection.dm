@@ -18,11 +18,6 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	if(host_species.no_equip_flags & ITEM_SLOT_OCLOTHING)
 		return FALSE
 
-	/* Uncommented until loadouts are complete.
-	if(length(host_species.custom_worn_icons) && host_species.custom_worn_icons[LOADOUT_ITEM_SUIT])
-		return FALSE
-	*/
-
 	return TRUE
 
 /datum/component/changeling_zombie_infection
@@ -31,8 +26,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	var/can_cure = FALSE
 	var/was_changeling_husked = FALSE
 
-	var/list/obj/item/melee/arm_blade_zombie/arm_blades = list()
-	var/obj/item/clothing/suit/armor/changeling_zombie/armor
+	var/list/obj/item/melee/arm_blade/changeling_zombie/arm_blades = list()
+	var/obj/item/clothing/suit/armor/changeling/prototype/armor
 
 	var/list/bodypart_zones_to_regenerate = list()
 	COOLDOWN_DECLARE(limb_regen_cooldown)
@@ -50,6 +45,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	COOLDOWN_DECLARE(transformation_grace_period)
 
 	var/infection_timestamp = 0
+
+	var/spaceacillin_resistance = 0
 
 /datum/component/changeling_zombie_infection/Initialize()
 
@@ -134,10 +131,17 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				)
 				playsound(host, 'sound/effects/splat.ogg', 50)
 
+	else if(spaceacillin_resistance < 100 && host.reagents?.has_reagent(/datum/reagent/medicine/spaceacillin))
+		var/current_toxin_damage = host.getToxLoss()
+		if(can_cure || current_toxin_damage > CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE*0.5 + spaceacillin_resistance)
+			qdel(src)
+			return
+		spaceacillin_resistance += seconds_per_tick
 	else
 		var/current_toxin_damage = host.getToxLoss()
 		if(can_cure && current_toxin_damage <= 5) //Not exactly 0 just in case there are race conditions with healing.
 			qdel(src) //Cured!
+			return
 		else if(COOLDOWN_FINISHED(src,transformation_grace_period))
 			if(current_toxin_damage >= CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_TRANSFORM && host.stat == DEAD)
 				make_zombie()
@@ -276,7 +280,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	return TRUE
 
 /datum/component/changeling_zombie_infection/proc/generate_armblade(mob/living/carbon/human/host,hand_index)
-	var/obj/item/melee/arm_blade_zombie/arm_blade = new(host.loc)
+	var/obj/item/melee/arm_blade/changeling_zombie/arm_blade = new(host.loc)
 	arm_blade.blood_chance = was_changeling_husked ? CHANGELING_ZOMBIE_INFECT_CHANCE_LESSER : CHANGELING_ZOMBIE_INFECT_CHANCE //Less chance to infect if you were made a zombie by a changeling.
 	ADD_TRAIT(arm_blade, TRAIT_NODROP, TRAIT_CHANGELING_ZOMBIE)
 	RegisterSignal(arm_blade, COMSIG_QDELETING, PROC_REF(on_armblade_delete))
