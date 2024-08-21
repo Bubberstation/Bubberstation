@@ -3,6 +3,7 @@
 
 //NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
 #define LOWEST_EVER_PLANE -50
+#define EMISSIVE_PLANE -46 // BUBBER EDIT: Was 13, caused issues with rendering via \ref[appearance]
 
 // Doesn't really layer, just throwing this in here cause it's the best place imo
 #define FIELD_OF_VISION_BLOCKER_PLANE -45
@@ -45,7 +46,6 @@
 #define O_LIGHTING_VISUAL_PLANE 11
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define EMISSIVE_PLANE 13
 /// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
 #define EMISSIVE_RENDER_PLATE 14
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
@@ -146,9 +146,9 @@
 #define WIRE_LAYER (9 + TOPDOWN_LAYER)
 #define GLASS_FLOOR_LAYER (10 + TOPDOWN_LAYER)
 #define TRAM_RAIL_LAYER (11 + TOPDOWN_LAYER)
+#define ABOVE_OPEN_TURF_LAYER (12 + TOPDOWN_LAYER)
 ///catwalk overlay of /turf/open/floor/plating/catwalk_floor
-#define CATWALK_LAYER (12 + TOPDOWN_LAYER)
-#define ABOVE_OPEN_TURF_LAYER (13 + TOPDOWN_LAYER)
+#define CATWALK_LAYER (13 + TOPDOWN_LAYER)
 
 //WALL_PLANE layers
 #define BELOW_CLOSED_TURF_LAYER 2.053
