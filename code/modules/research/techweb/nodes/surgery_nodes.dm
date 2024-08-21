@@ -50,7 +50,7 @@
 		"surgery_cortex_imprint_mechanic",
 		"surgery_heal_combo_upgrade",
 		"surgery_ligament_hook",
-		"surgery_ligament_hook_mechanic",
+		// "surgery_ligament_hook_mechanic", // BUBBER REMOVAL
 		"surgery_ligament_reinforcement",
 		"surgery_ligament_reinforcement_mechanic",
 		"surgery_muscled_veins",
