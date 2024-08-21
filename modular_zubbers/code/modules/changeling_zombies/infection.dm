@@ -270,7 +270,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 					podspawn(list(
 						"target" = chosen_turf,
 						"path" = /obj/structure/closet/supplypod/centcompod,
-						"style" = STYLE_CENTCOM,
+						"style" = /datum/pod_style/centcom,
 						"spawn" = /obj/structure/closet/crate/medical/changeling_zombie_cure,
 						"damage" = 50,
 						"explosionSize" = list(0, 1, 2, 3),

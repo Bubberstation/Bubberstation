@@ -718,6 +718,13 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/vending_refill/donksoft = 1)
 
+/obj/item/circuitboard/machine/vending/donksnackvendor
+	name = "Donk Co Snack Vendor"
+	build_path = /obj/machinery/vending/donksnack
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/vending_refill/donksnackvendor = 1)
+
 /obj/item/circuitboard/machine/bountypad
 	name = "Civilian Bounty Pad"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
@@ -1287,6 +1294,15 @@
 		/datum/stock_part/servo = 1,
 		/obj/item/stack/sheet/glass = 1)
 	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/hydroponics/fullupgrade
+	build_path = /obj/machinery/hydroponics/constructable/fullupgrade
+	specific_parts = TRUE
+	req_components = list(
+		/datum/stock_part/matter_bin/tier4 = 2,
+		/datum/stock_part/servo/tier4 = 1,
+		/obj/item/stack/sheet/glass = 1
+	)
 
 /obj/item/circuitboard/machine/microwave
 	name = "Microwave"
