@@ -1,7 +1,7 @@
 /datum/storyteller/peaceful
 	name = "The Chill"
 	desc = "The Chill will be light on events compared to other storytellers, especially so on ones involving combat, destruction, or chaos. Best for more chill rounds."
-	welcome_text = "If you vote for this storyteller on icebox, you have no originality."
+	welcome_text = "If you vote for this storyteller on Ice Box, you have no originality."
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
 		EVENT_TRACK_MODERATE = 0.7,
@@ -16,8 +16,3 @@
 		TAG_CHAOTIC = 0.1
 	)
 	antag_divisor = 32
-
-/datum/controller/subsystem/gamemode/set_storyteller(...)
-	if(SSmapping.config.map_name == "Ice Box Station")
-		welcome_text = "Voting for The Chill on Ice Box? Really?"
-	. = ..()

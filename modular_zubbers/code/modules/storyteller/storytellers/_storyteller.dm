@@ -45,7 +45,7 @@
 	var/population_min
 	/// If defined, it will not be votable if exceeding the population
 	var/population_max
-	/// The antag divisor, the higher it is the lower the antag cap gets.
+	/// The antag divisor, the higher it is the lower the antag cap gets. Basically means "for every antag_divisor crew, spawn 1 antag".
 	var/antag_divisor = 8
 
 /datum/storyteller/process(delta_time)
