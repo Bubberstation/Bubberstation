@@ -14,6 +14,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/cortex/imprinted
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/cortex_imprint/mechanic
 	name = "Wetware OS Ver 2.0"
 	desc = "A robotic upgrade which updates the patient's operating system to the 'latest version', whatever that means, making the brain able to bypass damage caused by minor brain traumas. \
@@ -29,6 +30,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery/advanced/bioware/cortex_imprint/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/brain/target_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
