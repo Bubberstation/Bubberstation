@@ -22,8 +22,10 @@
 	if(!iscarbon(target))
 		return FALSE
 	var/mob/living/carbon/carbon_target = target
-	if(carbon_target.get_bodypart(BODY_ZONE_CHEST).bodytype & BODYTYPE_ROBOTIC) // BUBBER EDIT
-		return FALSE // BUBBER EDIT
+	// BUBBER ADDITION START
+	if(carbon_target.get_bodypart(BODY_ZONE_CHEST).bodytype & BODYTYPE_ROBOTIC)
+		return FALSE
+	// BUBBER ADDITION END
 	if(!carbon_target.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return TRUE
 	return FALSE
