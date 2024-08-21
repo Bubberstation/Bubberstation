@@ -14,6 +14,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/nerves/spliced
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/nerve_splicing/mechanic
 	name = "System Automatic Reset Subroutine"
 	desc = "A robotic upgrade which upgrades a robotic patient's automatic systems, making them more resistant to stuns."
@@ -28,6 +29,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/apply_bioware/splice_nerves
 	name = "splice nerves (hand)"
