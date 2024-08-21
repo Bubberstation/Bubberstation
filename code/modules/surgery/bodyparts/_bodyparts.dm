@@ -388,10 +388,10 @@
 				if(check_for_frankenstein(victim))
 					bodypart_flags |= BODYPART_IMPLANTED
 				if(human_victim == user)
-					human_victim.visible_message(span_notice("[human_victim] inserts [src] into [human_victim.p_their()] empty socket!"),\
+					human_victim.visible_message(span_notice("[human_victim] inserts [src] into [human_victim.p_their()] empty socket!"),\ // BUBBER EDIT
 					span_notice("You force [src] into your empty socket, and it locks into place!"))
 				else
-					human_victim.visible_message(span_notice("[user] inserts [src] into [human_victim]'s empty socket!"),\
+					human_victim.visible_message(span_notice("[user] inserts [src] into [human_victim]'s empty socket!"),\ // BUBBER EDIT
 					span_notice("[user] forces [src] into your empty socket, and it locks into place!"))
 				return
 	return ..()
