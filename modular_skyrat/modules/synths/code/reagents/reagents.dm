@@ -44,8 +44,10 @@
 	process_flags = REAGENT_SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick)
+	// BUBBER EDIT START
 	for(var/obj/item/organ/organ in affected_mob.organs)
 		affected_mob.adjustOrganLoss(organ.slot, -3 * REM * seconds_per_tick)
+	// BUBBER EDIT END
 	if(prob(10))
 		affected_mob.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 	return ..()

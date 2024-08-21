@@ -12,13 +12,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/surgery/healing/robotic_healing_upgrade
-	name = "Repair robotics upgrade: Advanced"
-	surgery = /datum/surgery/robot/healing/upgraded
+	name = "Repair robotics upgrade: Advanced" // BUBBER EDIT
+	surgery = /datum/surgery/robot/healing/upgraded // BUBBER EDIT
 	id = "robotic_heal_surgery_upgrade"
 
 /datum/design/surgery/healing/robotic_healing_upgrade_2
-	name = "Repair robotics upgrade: Experimental"
-	surgery = /datum/surgery/robot/healing/experimental
+	name = "Repair robotics upgrade: Experimental" // BUBBER EDIT
+	surgery = /datum/surgery/robot/healing/experimental // BUBBER EDIT
 	id = "robotic_heal_surgery_upgrade_2"
 
 //Limb Grower

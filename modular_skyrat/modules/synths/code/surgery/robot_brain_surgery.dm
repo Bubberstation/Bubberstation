@@ -1,5 +1,4 @@
-// BUBBER EDIT
-/*
+/* BUBBER REMOVAL START
 /datum/surgery/robot_brain_surgery
 	name = "Reset Posibrain Logic (Brain Surgery)"
 	steps = list(
@@ -26,7 +25,7 @@
 		return FALSE
 	else
 		return TRUE
-*/
+BUBBER REMOVAL END */
 
 /datum/surgery_step/fix_robot_brain
 	name = "fix posibrain (multitool)"

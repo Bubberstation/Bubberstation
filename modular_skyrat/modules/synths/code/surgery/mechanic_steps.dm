@@ -8,8 +8,8 @@
 		/obj/item = 10,
 	) // 10% success with any sharp item.
 	time = 2.4 SECONDS
-	preop_sound = 'sound/items/wirecutter_cut.ogg'
-	success_sound = 'sound/items/wirecutter.ogg'
+	preop_sound = 'sound/items/wirecutter_cut.ogg' // BUBBER EDIT
+	success_sound = 'sound/items/wirecutter.ogg' // BUBBER ADDITION
 
 /datum/surgery_step/cut_wires/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
@@ -33,7 +33,7 @@
 		TOOL_HEMOSTAT = 10,
 	)
 	time = 2.4 SECONDS
-	success_sound = 'sound/items/crowbar.ogg'
+	success_sound = 'sound/items/crowbar.ogg' // BUBBER EDIT
 
 /datum/surgery_step/pry_off_plating/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	do_sparks(rand(5, 9), FALSE, target.loc)
@@ -100,7 +100,7 @@
 	implements = list(/obj/item/stack/cable_coil = 100)
 	time = 2.4 SECONDS
 	var/cableamount = 5
-	success_sound = 'sound/items/deconstruct.ogg'
+	success_sound = 'sound/items/deconstruct.ogg' // BUBBER EDIT
 
 /datum/surgery_step/replace_wires/tool_check(mob/user, obj/item/tool)
 	var/obj/item/stack/cable_coil/coil = tool
@@ -130,7 +130,7 @@
 	implements = list(/obj/item/stack/sheet/iron = 100)
 	time = 2.4 SECONDS
 	var/ironamount = 5
-	success_sound = 'sound/items/deconstruct.ogg'
+	success_sound = 'sound/items/deconstruct.ogg' // BUBBER EDIT
 
 /datum/surgery_step/add_plating/tool_check(mob/user, obj/item/tool)
 	var/obj/item/stack/sheet/iron/plat = tool
