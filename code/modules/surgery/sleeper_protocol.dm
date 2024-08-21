@@ -3,7 +3,7 @@
 	desc = "The disk provides instructions on how to turn someone into a sleeper agent for the Syndicate."
 	surgeries = list(
 		/datum/surgery/advanced/brainwashing_sleeper,
-		/datum/surgery/advanced/brainwashing_sleeper/mechanic,
+		/datum/surgery/robot/advanced/brainwashing_sleeper // BUBBER EDIT
 		)
 
 /datum/surgery/advanced/brainwashing_sleeper
