@@ -15,6 +15,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/ligaments/reinforced
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/ligament_reinforcement/mechanic
 	name = "Anchor Point Reinforcement"
 	desc = "A surgical procedure which adds reinforced limb anchor points to the patient's chassis, preventing dismemberment. \
@@ -30,6 +31,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/apply_bioware/reinforce_ligaments
 	name = "reinforce ligaments (hand)"
