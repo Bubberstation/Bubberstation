@@ -14,6 +14,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/heart/threaded_veins
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/vein_threading/mechanic
 	name = "Hydraulics Routing Optimization"
 	desc = "A robotic upgrade which severely reduces the amount of hydraulic fluid lost in case of injury."
@@ -28,6 +29,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/apply_bioware/thread_veins
 	name = "thread veins (hand)"
