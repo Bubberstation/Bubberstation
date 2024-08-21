@@ -18,6 +18,8 @@
 	num_steps_until_closing = 7
 	close_surgery = /datum/surgery/robot/advanced/bioware/close_vein_threading
 
+	status_effect_gained = /datum/status_effect/bioware/heart/threaded_veins
+
 /datum/surgery/robot/advanced/bioware/close_vein_threading
 	name = "Close Surgery (Hydraulics Routing Optimization)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
