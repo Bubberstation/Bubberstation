@@ -44,7 +44,7 @@ BUBBER REMOVAL END */
 		span_notice("[user] begins to delicately repair [target]'s bioreactor using [tool]."),
 		span_notice("[user] begins to delicately repair [target]'s bioreactor."),
 	)
-	display_pain(target, "You feel a horrible stab in your gut!")  // TODO give a cooler description
+	display_pain(target, "You feel a horrible stab in your gut!")
 
 /datum/surgery_step/bioreactor/repair/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/patient = target
