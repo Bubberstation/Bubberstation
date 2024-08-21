@@ -1082,7 +1082,7 @@
 	name = "Wetware OS Destructive Defragmentation"
 	desc = "A destructive robotic defragmentation method which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
 	id = "surgery_lobotomy_mechanic"
-	surgery = /datum/surgery/advanced/lobotomy/mechanic
+	surgery = /datum/surgery/robot/advanced/lobotomy
 
 /datum/design/surgery/pacify
 	name = "Pacification"
@@ -1095,7 +1095,7 @@
 	name = "Aggression Suppression Programming"
 	desc = "Malware which permanently inhibits the aggression programming of the patient's neural network, making the patient unwilling to cause direct harm."
 	id = "surgery_pacify_mechanic"
-	surgery = /datum/surgery/advanced/pacify/mechanic
+	surgery = /datum/surgery/robot/advanced/pacify
 
 /datum/design/surgery/viral_bonding
 	name = "Viral Bonding"
@@ -1159,7 +1159,7 @@
 	name = "Reprogramming"
 	desc = "Malware which directly implants a directive into the robotic patient's operating system, making it their absolute priority. It can be cleared using a mindshield implant."
 	id = "surgery_brainwashing_mechanic"
-	surgery = /datum/surgery/advanced/brainwashing/mechanic
+	surgery = /datum/surgery/robot/advanced/brainwashing
 
 /datum/design/surgery/nerve_splicing
 	name = "Nerve Splicing"
@@ -1172,7 +1172,7 @@
 	name = "System Automatic Reset Subroutine"
 	desc = "A robotic upgrade which upgrades a robotic patient's automatic systems, making them more resistant to stuns."
 	id = "surgery_nerve_splice_mechanic"
-	surgery = /datum/surgery/advanced/bioware/nerve_splicing/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/nerve_splicing
 
 /datum/design/surgery/nerve_grounding
 	name = "Nerve Grounding"
@@ -1185,7 +1185,7 @@
 	name = "System Shock Dampening"
 	desc = "A robotic upgrade which installs grounding rods into the robotic patient's system, protecting them from electrical shocks."
 	id = "surgery_nerve_ground_mechanic"
-	surgery = /datum/surgery/advanced/bioware/nerve_grounding/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/nerve_grounding
 
 /datum/design/surgery/vein_threading
 	name = "Vein Threading"
@@ -1198,7 +1198,7 @@
 	name = "Hydraulics Routing Optimization"
 	desc = "A robotic upgrade which severely reduces the amount of hydraulic fluid lost in case of injury."
 	id = "surgery_vein_thread_mechanic"
-	surgery = /datum/surgery/advanced/bioware/vein_threading/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/vein_threading
 
 /datum/design/surgery/muscled_veins
 	name = "Vein Muscle Membrane"
@@ -1211,7 +1211,7 @@
 	name = "Hydraulics Redundancy Subroutine"
 	desc = "A robotic upgrade which adds sophisticated hydraulics redundancies, allowing a patient to pump hydraulic fluid without an engine."
 	id = "surgery_muscled_veins_mechanic"
-	surgery = /datum/surgery/advanced/bioware/muscled_veins/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/muscled_veins
 
 /datum/design/surgery/ligament_hook
 	name = "Ligament Hook"
@@ -1226,7 +1226,7 @@
 	desc = "A robotic upgrade which installs rapid detachment anchor points, making it so limbs can be attached manually if detached. \
 		However this weakens the connection, making them easier to detach as well."
 	id = "surgery_ligament_hook_mechanic"
-	surgery = /datum/surgery/advanced/bioware/ligament_hook/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/ligament_hook
 
 /datum/design/surgery/ligament_reinforcement
 	name = "Ligament Reinforcement"
@@ -1241,7 +1241,7 @@
 	desc = "A surgical procedure which adds reinforced limb anchor points to the patient's chassis, preventing dismemberment. \
 		However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
 	id = "surgery_ligament_reinforcement_mechanic"
-	surgery = /datum/surgery/advanced/bioware/ligament_reinforcement/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/ligament_reinforcement
 
 /datum/design/surgery/cortex_imprint
 	name = "Cortex Imprint"
@@ -1255,7 +1255,7 @@
 	desc = "A surgical procedure which updates the patient's operating system to the 'latest version', whatever that means, making the brain able to bypass damage caused by minor brain traumas. \
 		Shame about all the adware."
 	id = "surgery_cortex_imprint_mechanic"
-	surgery = /datum/surgery/advanced/bioware/cortex_imprint/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/cortex_imprint
 
 /datum/design/surgery/cortex_folding
 	name = "Cortex Folding"
@@ -1268,7 +1268,7 @@
 	name = "Wetware OS Labyrinthian Programming"
 	desc = "A robotic upgrade which reprograms the patient's neural network in a downright eldritch programming language, giving space to non-standard neural patterns."
 	id = "surgery_cortex_folding_mechanic"
-	surgery = /datum/surgery/advanced/bioware/cortex_folding/mechanic
+	surgery = /datum/surgery/robot/advanced/bioware/cortex_folding
 
 /datum/design/surgery/necrotic_revival
 	name = "Necrotic Revival"
