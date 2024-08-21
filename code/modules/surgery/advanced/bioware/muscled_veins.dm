@@ -14,6 +14,7 @@
 
 	status_effect_gained = /datum/status_effect/bioware/heart/muscled_veins
 
+/* BUBBER REMOVAL START
 /datum/surgery/advanced/bioware/muscled_veins/mechanic
 	name = "Hydraulics Redundancy Subroutine"
 	desc = "A robotic upgrade which adds sophisticated hydraulics redundancies, allowing a patient to pump hydraulic fluid without an engine."
@@ -28,6 +29,7 @@
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL END */
 
 /datum/surgery_step/apply_bioware/muscled_veins
 	name = "shape vein muscles (hand)"
