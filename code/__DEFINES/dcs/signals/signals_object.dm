@@ -266,7 +266,6 @@
 
 ///from [/mob/living/carbon/human/Move]: ()
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"
-#define COMSIG_NECK_STEP_ACTION "neck_step_action"	//Bubbers addition
 
 // /obj/item/implant signals
 ///from base of /obj/item/implant/proc/activate(): ()
@@ -530,6 +529,9 @@
 
 /// from /datum/component/dart_insert/on_reskin()
 #define COMSIG_DART_INSERT_PARENT_RESKINNED "dart_insert_parent_reskinned"
+
+/// from /datum/element/undertile/hide()
+#define COMSIG_UNDERTILE_UPDATED "undertile_updated"
 
 /// Sent from /obj/item/update_weight_class(). (old_w_class, new_w_class)
 #define COMSIG_ITEM_WEIGHT_CLASS_CHANGED "item_weight_class_changed"

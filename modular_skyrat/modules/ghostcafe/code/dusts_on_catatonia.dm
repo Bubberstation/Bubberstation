@@ -24,7 +24,7 @@
 
 /datum/element/dusts_on_catatonia/process()
 	for(var/mob/living/attached as anything in attached_mobs)
-		if(attached.key || attached.get_ghost())
+		if(attached.key || attached.get_ghost() || istype(attached.loc, /obj/vore_belly)) // BUBBER EDIT: Dusting ssd prey in a belly breaks absorb control
 			continue
 
 		attached.investigate_log("was dusted due to no longer being linked to a player or ghost.", INVESTIGATE_DEATHS)

@@ -16,7 +16,9 @@
 	name = "syndiheels"
 	desc = "Heel in more way than one."
 	greyscale_colors = "#18191E"
+	body_parts_covered = parent_type::body_parts_covered | LEGS
 	armor_type = /datum/armor/shoes_combat
+
 	lace_time = 12 SECONDS
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	strip_delay = 2 SECONDS
