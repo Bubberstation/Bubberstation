@@ -127,7 +127,7 @@
 	examine_list += span_purple(examine_text)
 
 /// Infection stage handling.
-/datum/component/dollification/proc/progress_stage(level)
+/datum/component/dollification/proc/progress_stage(level, forced = FALSE)
 	if(!isnull(level))
 		stage = level
 	else
@@ -150,7 +150,7 @@
 							"Your heeled feet clack on the hard station floor. Each click a little shockwave tingling up your rubberized legs.",
 							"The creeping elastic yearns to assimilate your flesh. You're becoming more <b>thing</b> than person as the long seconds tick by.")
 
-			if(doll.get_item_by_slot(ITEM_SLOT_FEET))
+			if(doll.get_item_by_slot(ITEM_SLOT_FEET) && !forced)
 				doll.dropItemToGround(doll.shoes, TRUE)
 
 			heels = new(doll.loc)
@@ -167,7 +167,7 @@
 							"You're feeling more and more rewired- trained- alert to any sudden demands.",
 							"Your name is slipping from you like sand. <b>Shit</b>, what-t was it again? [new_name]? No- it's [old_name], right?")
 
-			if(doll.get_item_by_slot(ITEM_SLOT_MASK))
+			if(doll.get_item_by_slot(ITEM_SLOT_MASK) && !forced)
 				doll.dropItemToGround(doll.wear_mask, TRUE)
 
 			gag = new(doll.loc)
@@ -187,7 +187,7 @@
 	dollified = TRUE
 	action = tgui_alert(doll, "Warning: This is unrevertable through ordinary means", "Do you wish to become a doll permanently?", list("No", "Yes"))
 	if(action == "No")
-		progress_stage(3)
+		progress_stage(3, TRUE)
 		to_chat(doll, span_purple("The changes have finished and you're now settling into your new roll. Perhaps there's a way to escape?"))
 
 	if(action == "Yes")
