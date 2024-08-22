@@ -20,6 +20,9 @@
 	)
 
 /datum/round_event/ghost_role/derelict_ai
+	minimum_required = 1
+	role_name = "Derelict AI"
+	announce_when = 5
 
 /datum/round_event/ghost_role/derelict_ai/announce(fake)
 	priority_announce("We're getting some strange readings from your station. It seems a foreign intelligence has landed in your vicinity.", "NanoTrasen Silicon Detection")
@@ -32,11 +35,13 @@
 	if(!spawn_turf)
 		return
 	var/obj/item/mod/control/pre_equipped/derelict/created_modsuit = new(spawn_turf)
-	created_modsuit.ai_assistant.key = chosen_candidate.key
-	created_modsuit.ai_assistant.mind.add_antag_datum(/datum/antagonist/derelict_modsuit)
-	message_admins("[ADMIN_LOOKUPFLW(created_modsuit.ai_assistant)] has been made into a Derelict AI by an event.")
-	created_modsuit.ai_assistant.log_message("was spawned as a Derelict AI by an event.", LOG_GAME)
-	spawned_mobs += created_modsuit.ai_assistant
+	var/mob/living/silicon/ai/suitai = new(created_modsuit)
+	suitai.key = chosen_candidate.key
+	created_modsuit.ai_enter_mod(suitai)
+	suitai.mind.add_antag_datum(/datum/antagonist/derelict_modsuit)
+	message_admins("[ADMIN_LOOKUPFLW(suitai)] has been made into a Derelict AI by an event.")
+	suitai.log_message("was spawned as a Derelict AI by an event.", LOG_GAME)
+	spawned_mobs += suitai
 	return SUCCESSFUL_SPAWN
 
 
