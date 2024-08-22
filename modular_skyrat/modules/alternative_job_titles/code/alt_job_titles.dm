@@ -93,6 +93,7 @@
 		"Blueshield",
 		"Command Bodyguard",
 		"Executive Protection Agent",
+		"Henchman",
 	)
 
 /datum/job/botanist
