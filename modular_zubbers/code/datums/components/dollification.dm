@@ -5,7 +5,7 @@
 	desc = "Your lips are stuck open like this. No matter how much you prod at them, you can't close them!"
 
 /obj/item/clothing/shoes/fancy_heels/doll
-	name = "attatched high heels"
+	name = "attached high heels"
 	desc = "These obsidian heels refuse to detatch from your feet. They feel a part of you now."
 	greyscale_colors = "#1b1b1b"
 
@@ -142,7 +142,7 @@
 							"It's feeling tight around your [origin], as a million lines of tension slowly sculpt away imperfection",
 							"A pleasent tingling crawls through your body.")
 		if(2)
-			to_chat(doll, span_purple("<b>Wait are those heels? Sheets of obsidian black spontaniously wrap around and attatch to both your feet.</b>"))
+			to_chat(doll, span_purple("<b>Wait are those heels? Sheets of obsidian black spontaniously wrap around and attach to both your feet.</b>"))
 			examine_text = "The rubbery sheen continues to spread, overtaking more and more of their body."
 			infection_text = list(
 							"You're becoming more rubbery as time goes on and it's feeling really good.",
