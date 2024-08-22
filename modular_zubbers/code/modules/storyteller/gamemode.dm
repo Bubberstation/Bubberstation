@@ -215,7 +215,7 @@ SUBSYSTEM_DEF(gamemode)
 		return 0
 	if(storyteller.antag_divisor == 0)
 		return 0
-	return CEILING( clamp(get_correct_popcount() / storyteller.antag_divisor + sec_crew,ANTAG_CAP_FLAT,sec_crew*1.5), 1 )
+	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew,sec_crew*1.5),ANTAG_CAP_FLAT))
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
