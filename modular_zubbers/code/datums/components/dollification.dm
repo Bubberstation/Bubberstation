@@ -86,7 +86,7 @@
 	. = ..()
 
 /datum/component/dollification/process(seconds_per_tick)
-	var/probability = 3
+	var/probability = 5
 	if(doll.stat >= HARD_CRIT) // You shouldn't progress if you're fucked up.
 		return
 	if(stage == 0 || uncurable) // Kills processing when it's not needed anymore.
