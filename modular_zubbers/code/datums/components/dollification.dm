@@ -31,8 +31,10 @@
 /datum/component/dollification
 	/// There are 4 stages. Only progresses to stage 4 (permanent) if the prompt is accepted.
 	var/stage = 0
-	/// Is the change permanent?
+	/// Are the changes finished?
 	var/dollified = FALSE
+	/// Are they permanent?
+	var/uncurable = FALSE
 
 	/// Item handling
 	var/obj/item/clothing/mask/muzzle/ring/doll/gag
@@ -51,7 +53,7 @@
 	var/old_name
 	var/new_name
 
-	COOLDOWN_DECLARE(transformation_grace_period)
+	COOLDOWN_DECLARE(doll_grace_period)
 
 /datum/component/dollification/Initialize()
 	. = ..()
@@ -84,17 +86,17 @@
 	. = ..()
 
 /datum/component/dollification/process(seconds_per_tick)
-	var/probability = 2
+	var/probability = 10
 	if(doll.stat >= HARD_CRIT) // You shouldn't progress if you're fucked up.
 		return
-	if(stage == 0 || dollified) // Kills processing when it's not needed.
+	if(stage == 0 || uncurable) // Kills processing when it's not needed anymore.
 		STOP_PROCESSING(SSobj, src)
 		return
 
 	if(doll.reagents.has_reagent(/datum/reagent/dinitrogen_plasmide, 20)) // The cure
 		qdel(src)
 
-	if(!COOLDOWN_FINISHED(doll, transformation_grace_period)) // Have a little bit of time between stages.
+	if(!COOLDOWN_FINISHED(src, doll_grace_period)) // Have a little bit of time between stages.
 		return
 
 	/// Progresses the infestation based on a probability and runs through each stage's transformation descriptions before moving on.
@@ -135,7 +137,7 @@
 		if(1)
 			examine_text = "There is a festing splotch of smoothness slowly encompassing their [origin]"
 			infection_text = list(
-							"You feel the elastic oozing into your [origin]",
+							"You feel the elastic oozing into your [origin]. Into the muscle itself.",
 							"Your [origin] is tingling as the slick, cool smear fully encompasses it.",
 							"It's feeling tight around your [origin], as a million lines of tension slowly sculpt away imperfection",
 							"A pleasent tingling crawls through your body.")
@@ -144,8 +146,8 @@
 			examine_text = "The rubbery sheen continues to spread, overtaking more and more of their body."
 			infection_text = list(
 							"You're becoming more rubbery as time goes on and it's feeling really good.",
-							"You're starting to walk in a seductive saunter. You just can't seem to keep your hips straight.",
-							"Your heeled feet clack on the hard station floor. Each click a little shockwave tingling up your leg.",
+							"You're starting to walk in a seductive saunter. You just can't seem to keep your hips straight!",
+							"Your heeled feet clack on the hard station floor. Each click a little shockwave tingling up your rubberized legs.",
 							"The creeping elastic yearns to assimilate your flesh. You're becoming more <b>thing</b> than person as the long seconds tick by.")
 
 			if(doll.get_item_by_slot(ITEM_SLOT_FEET))
@@ -176,18 +178,19 @@
 			examine_text = "Every movement is a subtle squrk: a walking, talking, breathing doll!"
 			permanency_prompt()
 
-	COOLDOWN_START(src, transformation_grace_period, 20 SECONDS)
+	COOLDOWN_START(src, doll_grace_period, 20 SECONDS)
 
 /// Ask them if they want this to be permanent. Also changes their name when they reach this point.
 /datum/component/dollification/proc/permanency_prompt()
 	var/action
 	doll.fully_replace_character_name(old_name, new_name)
+	dollified = TRUE
 	action = tgui_alert(doll, "Warning: This is unrevertable through ordinary means", "Do you wish to become a doll permanently?", list("No", "Yes"))
 	if(action == "No")
 		progress_stage(3)
 		to_chat(doll, span_purple("The changes have finished and you're now settling into your new roll. Perhaps there's a way to escape?"))
 
 	if(action == "Yes")
-		dollified = TRUE
+		uncurable = TRUE
 		to_chat(doll, span_purple("You can feel your entire body succumbing to its fate. The glossy sheen not just soaking through your flesh, but muscle and bone. <b>Fuck</b>, You're stuck like this... and it feels permanent."))
 
