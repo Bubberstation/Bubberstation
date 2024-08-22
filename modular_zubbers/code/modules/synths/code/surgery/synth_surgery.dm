@@ -1,5 +1,6 @@
 /datum/surgery/robot
 	name = "robot surgery"
+	requires_bodypart_type = BODYTYPE_ROBOTIC
 	var/num_opening_steps
 	var/num_steps_until_closing
 	var/close_surgery
