@@ -86,7 +86,7 @@
 	. = ..()
 
 /datum/component/dollification/process(seconds_per_tick)
-	var/probability = 10
+	var/probability = 3
 	if(doll.stat >= HARD_CRIT) // You shouldn't progress if you're fucked up.
 		return
 	if(stage == 0 || uncurable) // Kills processing when it's not needed anymore.
@@ -178,7 +178,7 @@
 			examine_text = "Every movement is a subtle squrk: a walking, talking, breathing doll!"
 			permanency_prompt()
 
-	COOLDOWN_START(src, doll_grace_period, 20 SECONDS)
+	COOLDOWN_START(src, doll_grace_period, 10 SECONDS)
 
 /// Ask them if they want this to be permanent. Also changes their name when they reach this point.
 /datum/component/dollification/proc/permanency_prompt()
