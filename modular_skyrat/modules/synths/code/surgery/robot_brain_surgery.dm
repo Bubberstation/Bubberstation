@@ -82,6 +82,7 @@ BUBBER REMOVAL END */
 
 	return FALSE
 
+/* BUBBER REMOVAL
 /datum/surgery/robot_trauma_surgery
 	name = "Reticulate Posibrain Splines (Blessed Lobotomy)"
 	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
@@ -96,6 +97,7 @@ BUBBER REMOVAL END */
 		/datum/surgery_step/fix_robot_brain/advanced,
 		/datum/surgery_step/mechanic_close,
 	)
+BUBBER REMOVAL */
 
 /datum/surgery_step/fix_robot_brain/advanced
 	name = "reticulate splines (multitool)"
