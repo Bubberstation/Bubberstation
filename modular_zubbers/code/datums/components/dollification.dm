@@ -126,7 +126,7 @@
 		return
 	examine_list += span_purple(examine_text)
 
-/// Infection stage handling.
+/// Infection stage handling. Forced is an extra logic check so that undroppable gags are not duplicating.
 /datum/component/dollification/proc/progress_stage(level, forced = FALSE)
 	if(!isnull(level))
 		stage = level
@@ -149,6 +149,8 @@
 							"You're starting to walk in a seductive saunter. You just can't seem to keep your hips straight!",
 							"Your heeled feet clack on the hard station floor. Each click a little shockwave tingling up your rubberized legs.",
 							"The creeping elastic yearns to assimilate your flesh. You're becoming more <b>thing</b> than person as the long seconds tick by.")
+			if(forced)
+				return
 
 			if(doll.get_item_by_slot(ITEM_SLOT_FEET) && !forced)
 				doll.dropItemToGround(doll.shoes, TRUE)
@@ -166,8 +168,10 @@
 							"Your mouth is tingling as the rubbery materal begins spreading inwards.",
 							"You're feeling more and more rewired- trained- alert to any sudden demands.",
 							"Your name is slipping from you like sand. <b>Shit</b>, what-t was it again? [new_name]? No- it's [old_name], right?")
+			if(forced)
+				return
 
-			if(doll.get_item_by_slot(ITEM_SLOT_MASK) && !forced)
+			if(doll.get_item_by_slot(ITEM_SLOT_MASK))
 				doll.dropItemToGround(doll.wear_mask, TRUE)
 
 			gag = new(doll.loc)
