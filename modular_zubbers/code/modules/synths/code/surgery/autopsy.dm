@@ -23,6 +23,7 @@
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
+	is_closer = TRUE
 
 /datum/surgery/robot/autopsy/can_start(mob/user, mob/living/patient)
 	if(!..())

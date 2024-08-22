@@ -23,3 +23,4 @@
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
 	)
+	is_closer = TRUE

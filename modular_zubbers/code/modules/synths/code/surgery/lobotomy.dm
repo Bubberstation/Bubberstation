@@ -16,6 +16,7 @@
 	)
 	num_opening_steps = 3
 	num_steps_until_closing = 6
+	close_surgery = /datum/surgery/robot/advanced/close_lobotomy
 
 /datum/surgery/robot/advanced/close_lobotomy
 	name = "Close Surgery (Destructive Posibrain Defragmentation)"
@@ -96,3 +97,33 @@
 	else
 		user.visible_message(span_warning("[user] suddenly notices that the posibrain [user.p_they()] [user.p_were()] working on is not there anymore."), span_warning("You suddenly notice that the posibrain you were working on is not there anymore."))
 	return FALSE
+
+/datum/surgery/robot/advanced/blessed_lobotomy
+	name = "Blessed Destructive Posibrain Defragmentation"
+	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
+	possible_locs = list(BODY_ZONE_HEAD)
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	steps = list(
+		/datum/surgery_step/mechanic_open,
+		/datum/surgery_step/pry_off_plating,
+		/datum/surgery_step/mechanic_unwrench,
+		/datum/surgery_step/prepare_electronics,
+		/datum/surgery_step/lobotomize/blessed,
+		/datum/surgery_step/mechanic_wrench,
+		/datum/surgery_step/reattach_plating,
+		/datum/surgery_step/mechanic_close,
+	)
+	num_opening_steps = 3
+	num_steps_until_closing = 6
+	close_surgery = /datum/surgery/robot/advanced/close_blessed_lobotomy
+
+/datum/surgery/robot/advanced/close_blessed_lobotomy
+	name = "Close Surgery (Blessed Destructive Posibrain Defragmentation)"
+	possible_locs = list(BODY_ZONE_HEAD)
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	steps = list(
+		/datum/surgery_step/mechanic_wrench,
+		/datum/surgery_step/reattach_plating,
+		/datum/surgery_step/mechanic_close,
+	)
+	is_closer = TRUE

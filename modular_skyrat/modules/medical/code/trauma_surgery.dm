@@ -42,7 +42,7 @@
 	return TRUE
 
 /datum/surgery_step/lobotomize/blessed
-	name = "perform blessed lobotomy (scalpel)"
+	name = "perform blessed lobotomy (holy water/neurine)"
 	chems_needed = list(
 		/datum/reagent/water/holywater,
 		/datum/reagent/medicine/neurine,
