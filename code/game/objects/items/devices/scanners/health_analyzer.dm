@@ -462,6 +462,14 @@
 			else
 				render_list += "<span class='alert ml-1'>Treatment Guide: Wait until patient receives more than [CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE] units of toxin damage to expose the infection from the incubation stage, then treat toxins to cure.</span>"
 				render_list += "<span class='alert ml-1'>Patient's infection is currently <b><i>[cling_infection.can_cure ? "EXPOSED" : "INCUBATING"]</i></b>.</span>"
+	/// Dollification stuff. You can cure it fairly easily
+	var/datum/component/dollification/dollification = target.GetComponent(/datum/component/dollification)
+	if(dollification)
+		render_list += span_userdanger("Hyperactive Conversion Nanites")
+		if(dollification.dollified)
+			render_list += "<span class='alert ml-1'>Treatment Guide: Nanites are permanently rooted inside host. Condition untreatable by ordinary means.</span>"
+		else
+			render_list += "<span class='alert ml-1'>Treatment Guide: Apply <b>20u Dinitrogen Plasmide</b> to destroy conversion process.</span>"
 	//BUBBERSTATION EDIT END
 
 	if(tochat)

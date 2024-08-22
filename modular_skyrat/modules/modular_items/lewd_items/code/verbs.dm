@@ -71,6 +71,11 @@
 	if(istype(loc, /obj/vore_belly))
 		forceMove(get_turf(src))
 
+	// Completely removes the dollification component and reverts the player back to normal.
+	var/datum/component/dollification/dollification = src?.GetComponent(/datum/component/dollification)
+	if(dollification)
+		qdel(dollification)
+
 	return TRUE
 /* BUBBER EDIT END */
 
