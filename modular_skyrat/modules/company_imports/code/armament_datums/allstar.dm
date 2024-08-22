@@ -1,4 +1,4 @@
-/* //BUBBER REMOVAL: Re-removes guns from imports (buy goodies instead)
+
 /datum/armament_entry/company_import/allstar
 	category = COMPANY_NAME_ALLSTAR_ENERGY
 	company_bitflag = CARGO_COMPANY_ALLSTAR_ENERGY
@@ -7,6 +7,7 @@
 
 /datum/armament_entry/company_import/allstar/basic_energy_weapons
 	subcategory = "Basic Energy Smallarms"
+	restricted = TRUE
 
 /datum/armament_entry/company_import/allstar/basic_energy_weapons/disabler
 	item_type = /obj/item/gun/energy/disabler
@@ -38,7 +39,7 @@
 /datum/armament_entry/company_import/allstar/basic_energy_long_weapons/egun
 	item_type = /obj/item/gun/energy/e_gun
 	cost = PAYCHECK_COMMAND * 4
-
+/*
 /datum/armament_entry/company_import/allstar/experimental_energy
 	subcategory = "Experimental Energy Weapons"
 	cost = PAYCHECK_COMMAND * 6
