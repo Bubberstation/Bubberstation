@@ -15,6 +15,7 @@
 /datum/surgery/robot/close_cavity_implant
 	name = "Close Surgery (Cavity implant)"
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,

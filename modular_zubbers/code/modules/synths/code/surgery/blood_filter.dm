@@ -2,6 +2,7 @@
 	name = "Hydraulics Purge"
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYTYPE_ROBOTIC
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
@@ -17,6 +18,7 @@
 	name = "Close Surgery (Hydraulics Purge)"
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYTYPE_ROBOTIC
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,

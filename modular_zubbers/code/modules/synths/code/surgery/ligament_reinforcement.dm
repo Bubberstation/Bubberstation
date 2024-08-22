@@ -4,6 +4,7 @@
 		However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
@@ -24,6 +25,7 @@
 /datum/surgery/robot/advanced/bioware/close_ligament_reinforcement
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,

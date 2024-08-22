@@ -3,6 +3,7 @@
 	desc = "A robotic upgrade which adds sophisticated hydraulics redundancies, allowing a patient to pump hydraulic fluid without a dedicated pump."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
@@ -23,6 +24,7 @@
 /datum/surgery/robot/advanced/bioware/close_muscled_veins
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,

@@ -1,7 +1,7 @@
 /datum/surgery/robot/organ_manipulation
 	name = "Hardware Manipulation"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB | SURGERY_MORBID_CURIOSITY | SURGERY_SELF_OPERABLE
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/mechanic_open,
@@ -21,7 +21,7 @@
 /datum/surgery/robot/close_organ_manipulation/
 	name = "Close Surgery (Hardware Manipulation)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB | SURGERY_MORBID_CURIOSITY | SURGERY_SELF_OPERABLE
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
@@ -66,6 +66,7 @@
 
 /datum/surgery/robot/organ_manipulation/external
 	name = "Chassis Manipulation"
+	surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB | SURGERY_SELF_OPERABLE
 	possible_locs = list(
 		BODY_ZONE_CHEST,
 		BODY_ZONE_HEAD,

@@ -3,6 +3,7 @@
 	desc = "A robotic upgrade which upgrades a patient's automatic systems, making them more resistant to stuns."
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
@@ -19,6 +20,7 @@
 	name = "Close Surgery (System Automatic Reset Subroutine)"
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	possible_locs = list(BODY_ZONE_CHEST)
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,
