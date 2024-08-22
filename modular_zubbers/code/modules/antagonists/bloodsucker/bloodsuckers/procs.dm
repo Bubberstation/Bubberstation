@@ -103,10 +103,10 @@
 			if(power.active)
 				power.DeactivatePower()
 
-/datum/antagonist/bloodsucker/proc/SpendRank(mob/living/carbon/human/target, cost_rank = TRUE, blood_cost)
+/datum/antagonist/bloodsucker/proc/SpendRank(cost_rank = TRUE, blood_cost)
 	if(!owner || !owner.current || !owner.current.client || (cost_rank && bloodsucker_level_unspent <= 0))
 		return
-	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
+	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, cost_rank, blood_cost)
 
 /datum/antagonist/bloodsucker/proc/GetRank()
 	return bloodsucker_level
@@ -175,17 +175,13 @@
 				AdjustUnspentRank(1) // gives level
 				blood_level_gain -= level_cost // Subtracts the cost from the pool of drunk blood
 				AdjustBloodVolume(-level_cost) // Subtracts the cost from the bloodsucker's actual blood
-				blood_level_gain_amount += 1 // Increments the variable that makes future levels more expensive
 
 /datum/antagonist/bloodsucker/proc/get_level_cost()
-	var/level_cost = (0.3 + (0.05 * blood_level_gain_amount))
-	level_cost = min(level_cost, BLOOD_LEVEL_GAIN_MAX)
-	level_cost = max_blood_volume * level_cost
-	return level_cost
-
+	var/percentage_needed = my_clan ? my_clan.level_cost : BLOODSUCKER_LEVELUP_PERCENTAGE
+	return max_blood_volume * percentage_needed
 
 /datum/antagonist/bloodsucker/proc/max_vassals()
-	return bloodsucker_level
+	return round(bloodsucker_level * 2)
 
 /datum/antagonist/bloodsucker/proc/free_vassal_slots()
 	return max(max_vassals() - length(vassals), 0)

@@ -31,7 +31,7 @@
 		bloodsuckerdatum.owner.current.adjust_fire_stacks(2)
 		bloodsuckerdatum.owner.current.ignite_mob()
 
-/datum/bloodsucker_clan/tremere/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
+/datum/bloodsucker_clan/tremere/spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
 	// Purchase Power Prompt
 	var/list/options = list()
 	for(var/datum/action/cooldown/bloodsucker/targeted/tremere/power as anything in bloodsuckerdatum.powers)
