@@ -1,6 +1,8 @@
 /datum/surgery/robot/cavity_implant
 	name = "Cavity implant"
 	possible_locs = list(BODY_ZONE_CHEST)
+	requires_bodypart_type = BODYTYPE_ROBOTIC
+	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
@@ -15,6 +17,7 @@
 /datum/surgery/robot/close_cavity_implant
 	name = "Close Surgery (Cavity implant)"
 	possible_locs = list(BODY_ZONE_CHEST)
+	requires_bodypart_type = BODYTYPE_ROBOTIC
 	surgery_flags = SURGERY_SELF_OPERABLE
 	steps = list(
 		/datum/surgery_step/reattach_plating,
