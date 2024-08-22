@@ -99,16 +99,17 @@
 	return FALSE
 
 /datum/surgery/robot/advanced/blessed_lobotomy
-	name = "Blessed Destructive Posibrain Defragmentation"
-	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
-	possible_locs = list(BODY_ZONE_HEAD)
+	name = "Reticulate Posibrain Splines"
+	desc = "A surgical procedure that refurbishes low level components in the posibrain, to fix the strongest trauma errors."
+	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
+	target_mobtypes = list(/mob/living/carbon/human)
 	steps = list(
 		/datum/surgery_step/mechanic_open,
 		/datum/surgery_step/pry_off_plating,
 		/datum/surgery_step/mechanic_unwrench,
 		/datum/surgery_step/prepare_electronics,
-		/datum/surgery_step/lobotomize/blessed,
+		/datum/surgery_step/fix_robot_brain/advanced,
 		/datum/surgery_step/mechanic_wrench,
 		/datum/surgery_step/reattach_plating,
 		/datum/surgery_step/mechanic_close,
@@ -118,8 +119,8 @@
 	close_surgery = /datum/surgery/robot/advanced/close_blessed_lobotomy
 
 /datum/surgery/robot/advanced/close_blessed_lobotomy
-	name = "Close Surgery (Blessed Destructive Posibrain Defragmentation)"
-	possible_locs = list(BODY_ZONE_HEAD)
+	name = "Close Surgery (Reticulate Posibrain Splines)"
+	possible_locs = list(BODY_ZONE_CHEST) // The brains are in the chest
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	steps = list(
 		/datum/surgery_step/mechanic_wrench,
