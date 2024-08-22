@@ -6,7 +6,7 @@
 
 /obj/item/clothing/shoes/fancy_heels/doll
 	name = "attached high heels"
-	desc = "These obsidian heels refuse to detatch from your feet. They feel a part of you now."
+	desc = "These obsidian heels refuse to detatch from your feet. They feel like a part of you now."
 	greyscale_colors = "#1b1b1b"
 
 /// Admin Smite
@@ -21,7 +21,7 @@
 		return
 
 	if(!target.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)) // Another pref check.
-		to_chat(user, span_warning("ERP sex toy prefrences not enabled."), confidential = TRUE)
+		to_chat(user, span_warning("ERP sex toy preferences not enabled."), confidential = TRUE)
 		return
 
 	var/mob/living/carbon/carbon_target = target
@@ -80,7 +80,7 @@
 	QDEL_NULL(gag)
 	QDEL_NULL(heels)
 	UnregisterSignal(doll, COMSIG_ATOM_EXAMINE)
-	to_chat(doll, span_alert("You feel the rubbery changes hault in their tracks before reverting you back to normal."))
+	to_chat(doll, span_alert("You feel the rubbery changes halt in their tracks before reverting you back to normal."))
 	doll.fully_replace_character_name(new_name, old_name) // Reset their name back.
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -98,7 +98,8 @@
 
 	if(!COOLDOWN_FINISHED(src, doll_grace_period)) // Have a little bit of time between stages.
 		return
-
+	if(dollified)
+		return
 	/// Progresses the infestation based on a probability and runs through each stage's transformation descriptions before moving on.
 	if(SPT_PROB(probability, seconds_per_tick))
 		var/picked_text = pick_n_take(infection_text)
@@ -140,12 +141,12 @@
 							"You feel the elastic oozing into your [origin]. Into the muscle itself.",
 							"Your [origin] is tingling as the slick, cool smear fully encompasses it.",
 							"It's feeling tight around your [origin], as a million lines of tension slowly sculpt away imperfection",
-							"A pleasent tingling crawls through your body.")
+							"A pleasant tingling crawls through your body.")
 		if(2)
 			to_chat(doll, span_purple("<b>Wait are those heels? Sheets of obsidian black spontaniously wrap around and attach to both your feet.</b>"))
 			examine_text = "The rubbery sheen continues to spread, overtaking more and more of their body."
 			infection_text = list(
-							"You're becoming more rubbery as time goes on and it's feeling really good.",
+							"You're becoming more rubbery as time goes on, and it's feeling really good.",
 							"You're starting to walk in a seductive saunter. You just can't seem to keep your hips straight!",
 							"Your heeled feet clack on the hard station floor. Each click a little shockwave tingling up your rubberized legs.",
 							"The creeping elastic yearns to assimilate your flesh. You're becoming more <b>thing</b> than person as the long seconds tick by.")
