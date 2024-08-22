@@ -145,6 +145,8 @@
 #define ROLE_VASSAL "Vassal"
 
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
+
+#define ROLE_DERELICT_MODSUIT "Derelict Modsuit"
 //BUBBER EDIT END
 
 /// This defines the antagonists you can operate with in the settings.
