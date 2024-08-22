@@ -94,7 +94,7 @@
 	if(doll.reagents.has_reagent(/datum/reagent/dinitrogen_plasmide, 20)) // The cure
 		qdel(src)
 
-	if(!COOLDOWN_FINISH(src, transformation_grace_period)) // Have a little bit of time between stages.
+	if(!COOLDOWN_FINISHED(doll, transformation_grace_period)) // Have a little bit of time between stages.
 		return
 
 	/// Progresses the infestation based on a probability and runs through each stage's transformation descriptions before moving on.
