@@ -93,13 +93,15 @@
 
 	switch (scanmode)
 		if (SCANMODE_HEALTH)
+			if(!ishuman(patient)) // BUBBER EDIT START
+				return
 			if(user.client?.prefs.read_preference(/datum/preference/toggle/health_analyzer_toggle) == TRUE)
 				healthscan(user, M, mode, advanced)
-				ui_interact(usr) // BUBBER EDIT
+				ui_interact(usr)
 				update_static_data(usr)
 				START_PROCESSING(SSobj, src)
 			else
-				healthscan(user, M, mode, advanced)
+				healthscan(user, M, mode, advanced) // BUBBER EDIT END
 		if (SCANMODE_WOUND)
 			woundscan(user, M, src)
 
