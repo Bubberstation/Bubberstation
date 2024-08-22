@@ -1,4 +1,4 @@
-/* //BUBBER REMOVAL: Re-removes guns from imports (buy goodies instead)
+
 /datum/armament_entry/company_import/allstar
 	category = COMPANY_NAME_ALLSTAR_ENERGY
 	company_bitflag = CARGO_COMPANY_ALLSTAR_ENERGY

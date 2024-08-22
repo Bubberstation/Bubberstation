@@ -95,7 +95,6 @@
 
 /datum/armament_entry/company_import/nri_surplus/firearm
 	subcategory = "Firearms"
-/* BUBBER EDIT REMOVAL - SOMEONE CAN BALANCE THESE IF THEY CARE
 /datum/armament_entry/company_import/nri_surplus/firearm/shotgun_revolver
 	item_type = /obj/item/gun/ballistic/revolver/shotgun_revolver
 	cost = PAYCHECK_COMMAND * 6
@@ -129,7 +128,8 @@
 	contraband = TRUE
 	cost = PAYCHECK_COMMAND * 14
 	restricted = TRUE
-//Begone 
+
+//Begone
 /*
 /datum/armament_entry/company_import/nri_surplus/firearm/anti_materiel_rifle
 	item_type = /obj/item/gun/ballistic/automatic/wylom
