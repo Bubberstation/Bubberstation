@@ -9,7 +9,8 @@
 /datum/armament_entry/company_import/micron/rifle/mcr
 	item_type = /obj/item/gun/microfusion/mcr01
 	cost = PAYCHECK_COMMAND * 4
-*/ //BUBBER REMOVAL - No import guns
+
+*/
 
 /datum/armament_entry/company_import/micron/ammo
 	subcategory = ARMAMENT_SUBCATEGORY_AMMO
