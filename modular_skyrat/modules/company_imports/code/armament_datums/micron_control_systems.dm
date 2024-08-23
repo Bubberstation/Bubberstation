@@ -5,6 +5,7 @@
 
 /datum/armament_entry/company_import/micron/rifle
 	subcategory = ARMAMENT_SUBCATEGORY_SPECIAL
+
 /*
 /datum/armament_entry/company_import/micron/rifle/mcr
 	item_type = /obj/item/gun/microfusion/mcr01

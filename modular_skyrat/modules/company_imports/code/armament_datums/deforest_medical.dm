@@ -196,7 +196,7 @@
 /datum/armament_entry/company_import/deforest/equipment/loaded_belt_defib
 	item_type = /obj/item/defibrillator/compact/loaded
 	cost = PAYCHECK_COMMAND*2
- 
+
 /datum/armament_entry/company_import/deforest/equipment/surgical_tools
 	item_type = /obj/item/surgery_tray/full
 	cost = PAYCHECK_COMMAND
