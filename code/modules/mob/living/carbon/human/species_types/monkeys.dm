@@ -38,7 +38,7 @@
 	dust_anim = "dust-m"
 	gib_anim = "gibbed-m"
 
-	payday_modifier = 1.5
+//	payday_modifier = 1.5  BUBBER DUMB SHIT REMOVAL
 	ai_controlled_species = TRUE
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load)

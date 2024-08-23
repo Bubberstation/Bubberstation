@@ -7,7 +7,7 @@
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
 	taste_description = "alcohol"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	metabolization_rate = 0.3 * REAGENTS_METABOLISM // BUBBER EDIT CHANGE - Original: 0.5 * REAGENTS_METABOLISM
 	creation_purity = 1 // impure base reagents are a big no-no
 	ph = 7.33
 	burning_temperature = 2193//ethanol burns at 1970C (at its peak)

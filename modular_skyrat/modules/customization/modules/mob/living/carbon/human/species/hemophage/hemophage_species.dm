@@ -14,7 +14,6 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_LITERATE,
 		TRAIT_DRINKS_BLOOD,
-		TRAIT_USES_SKINTONES,
 	)
 	inherent_biotypes = MOB_HUMANOID | MOB_ORGANIC
 	exotic_bloodtype = "U"

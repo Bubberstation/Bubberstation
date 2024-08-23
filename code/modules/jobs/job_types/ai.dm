@@ -44,7 +44,7 @@
 			continue
 		sync_target.notify_ai(AI_NOTIFICATION_CYBORG_DISCONNECTED)
 		sync_target.set_connected_ai(ai_spawn)
-		log_combat(ai_spawn, sync_target, "synced cyborg [ADMIN_LOOKUP(sync_target)] to [ADMIN_LOOKUP(ai_spawn)] (AI spawn syncage)")
+		log_combat(ai_spawn, sync_target, "synced cyborg [sync_target] to [ai_spawn] (AI spawn syncage)") // BUBBER EDIT - PUBLIC LOGS CLEANUP
 		if(sync_target.shell)
 			sync_target.undeploy()
 			sync_target.notify_ai(AI_NOTIFICATION_AI_SHELL)

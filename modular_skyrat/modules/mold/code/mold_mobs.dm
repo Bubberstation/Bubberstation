@@ -31,16 +31,16 @@
 	icon_dead = "oil_shambler"
 	speak_emote = list("crackles")
 
-	maxHealth = 150
-	health = 150
-	damage_coeff = list(BRUTE = 1, BURN = 0, TOX = 1, STAMINA = 0, OXY = 0)
+	maxHealth = 25 // BUBBERSTATION CHANGE
+	health = 25 // BUBBERSTATION CHANGE
+	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 1, STAMINA = 0, OXY = 0) // BUBBERSTATION CHANGE
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = INFINITY
 
 	melee_damage_type = BURN
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 5 //BUBBERSTATION CHANGE
+	melee_damage_upper = 10 //BUBBERSTATION CHANGE
 	obj_damage = 40
 	attack_sound = 'sound/effects/attackblob.ogg'
 
@@ -115,8 +115,8 @@
 	icon_dead = "diseased_rat_dead"
 	speak_emote = list("chitters")
 
-	maxHealth = 70
-	health = 70
+	maxHealth = 30 //BUBBERSTATION CHANGE
+	health = 30 //BUBBERSTATION CHANGE
 
 	melee_damage_lower = 7
 	melee_damage_upper = 13
@@ -133,7 +133,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/diseased_rat
 
 	/// The disease given on melee attacks
-	var/datum/disease/given_disease = /datum/disease/cryptococcus
+	var/datum/disease/given_disease = /datum/disease/advance/gastritium //BUBBERSTATION CHANGE
 
 /mob/living/basic/mold/diseased_rat/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
@@ -180,11 +180,11 @@
 	icon_dead = "electric_mosquito_dead"
 	speak_emote = list("buzzes")
 
-	maxHealth = 70
-	health = 70
+	maxHealth = 20 //BUBBERSTATION CHANGE
+	health = 20 //BUBBERSTATION CHANGE
 
-	melee_damage_lower = 7
-	melee_damage_upper = 10
+	melee_damage_lower = 5 // BUBBERSTATION CHANGE
+	melee_damage_upper = 8 // BUBBERSTATION CHANGE
 	obj_damage = 20
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "sting"
@@ -198,7 +198,7 @@
 	/// What the mob injects per bite
 	var/inject_reagent = /datum/reagent/teslium
 	/// How many units to inject per bite
-	var/inject_amount = 2
+	var/inject_amount = 0 // BUBBERSTATION CHANGE 2 -> 0
 
 /mob/living/basic/mold/electric_mosquito/Initialize(mapload)
 	. = ..()
@@ -237,18 +237,18 @@
 	icon_dead = "centaur_dead"
 	speak_emote = list("groans")
 
-	maxHealth = 120
-	health = 120
+	maxHealth = 60 //BUBBERSTATION CHANGE
+	health = 60 //BUBBERSTATION CHANGE
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = INFINITY
 
 	speed = 0.5
 
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 6 //BUBBERSTATION CHANGE
+	melee_damage_upper = 12 //BUBBERSTATION CHANGE
 	basic_mob_flags = DEL_ON_DEATH
-	wound_bonus = 15
+	wound_bonus = 5 //BUBBERSTATION CHANGE
 	obj_damage = 40
 	attack_sound = 'sound/effects/wounds/crackandbleed.ogg'
 

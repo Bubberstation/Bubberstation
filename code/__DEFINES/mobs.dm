@@ -69,6 +69,8 @@
 #define MOB_PLANT (1 << 10)
 ///The mob is a goopy creature, probably coming from xenobiology.
 #define MOB_SLIME (1 << 11)
+///The mob is some kind of vampire, species or antag
+#define MOB_VAMPIRIC (1 << 12)
 
 //Lung respiration type flags
 #define RESPIRATION_OXYGEN (1 << 0)
@@ -301,12 +303,12 @@
 
 //Charge levels for Ethereals, in joules.
 #define ETHEREAL_CHARGE_NONE 0
-#define ETHEREAL_CHARGE_LOWPOWER (0.4 * STANDARD_CELL_CHARGE)
-#define ETHEREAL_CHARGE_NORMAL (1 * STANDARD_CELL_CHARGE)
-#define ETHEREAL_CHARGE_ALMOSTFULL (1.5 * STANDARD_CELL_CHARGE)
-#define ETHEREAL_CHARGE_FULL (2 * STANDARD_CELL_CHARGE)
-#define ETHEREAL_CHARGE_OVERLOAD (2.5 * STANDARD_CELL_CHARGE)
-#define ETHEREAL_CHARGE_DANGEROUS (3 * STANDARD_CELL_CHARGE)
+#define ETHEREAL_CHARGE_LOWPOWER (2 * STANDARD_CELL_CHARGE)   //BUBBER EDIT OG = 0.4
+#define ETHEREAL_CHARGE_NORMAL (5 * STANDARD_CELL_CHARGE)     //BUBBER EDIT OG = 1
+#define ETHEREAL_CHARGE_ALMOSTFULL (7.5 * STANDARD_CELL_CHARGE) //BUBBER EDIT OG = 1.5
+#define ETHEREAL_CHARGE_FULL (11 * STANDARD_CELL_CHARGE)        //BUBBER EDIT OG = 2
+#define ETHEREAL_CHARGE_OVERLOAD (11.5 * STANDARD_CELL_CHARGE)   //BUBBER EDIT OG = 2.5
+#define ETHEREAL_CHARGE_DANGEROUS (12 * STANDARD_CELL_CHARGE)    //BUBBER EDIT OG = 3
 
 
 #define CRYSTALIZE_COOLDOWN_LENGTH (120 SECONDS)
@@ -454,7 +456,7 @@
 #define POCKET_STRIP_DELAY (4 SECONDS) //time taken to search somebody's pockets
 #define DOOR_CRUSH_DAMAGE 15 //the amount of damage that airlocks deal when they crush you
 
-#define HUNGER_FACTOR 0.05 //factor at which mob nutrition decreases
+#define HUNGER_FACTOR 0.025 //factor at which mob nutrition decreases //BUBBERS EDIT
 #define ETHEREAL_DISCHARGE_RATE (8e-4 * STANDARD_CELL_CHARGE) // Rate at which ethereal stomach charge decreases
 /// How much nutrition eating clothes as moth gives and drains
 #define CLOTHING_NUTRITION_GAIN 15

@@ -52,6 +52,12 @@
 			footstep_sounds = 'sound/effects/tank_treads.ogg'
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep_machine))
 			return
+		// BUBBER EDIT START
+		if(FOOTSTEP_MOB_SNAKE)
+			footstep_sounds = 'sound/effects/footstep/crawl1.ogg'
+		if(FOOTSTEP_ROBOT_SMALL)
+			footstep_sounds = 'sound/effects/servostep.ogg'
+		// BUBBER EDIT END
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep))
 	steps_for_living[target] = 0
 

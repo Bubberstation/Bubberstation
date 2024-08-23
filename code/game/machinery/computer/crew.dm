@@ -45,6 +45,7 @@
 		"name",
 		"job",
 		"is_robot", //SKYRAT EDIT ADDITION - Displaying robotic species Icon
+		"is_dnr", //BUBBERSTATION EDIT ADDITION - Displays DNR status
 		"life_status",
 		"suffocation",
 		"toxin",
@@ -109,8 +110,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_SECURITY_OFFICER_SCIENCE = 15,
 		JOB_SECURITY_OFFICER_SUPPLY = 16,
 		*/
-		JOB_CORRECTIONS_OFFICER = 13, // SKYRAT EDIT ADDITION
-		JOB_DETECTIVE = 14,
+		JOB_SECURITY_MEDIC = 13, // BUBBER EDIT ADDITION
+		JOB_CORRECTIONS_OFFICER = 14, // SKYRAT EDIT ADDITION
+		JOB_DETECTIVE = 15,
 		// 20-29: Medbay
 		JOB_CHIEF_MEDICAL_OFFICER = 20,
 		JOB_CHEMIST = 21,
@@ -137,6 +139,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_CARGO_TECHNICIAN = 52,
 		JOB_BITRUNNER = 53,
 		JOB_CUSTOMS_AGENT = 54, // SKYRAT EDIT ADDITION
+		JOB_BLACKSMITH = 55,	// Bubber edit Addition!
 		// 60+: Service
 		JOB_HEAD_OF_PERSONNEL = 60,
 		JOB_BARTENDER = 61,
@@ -237,7 +240,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			continue
 
 		// Check if their uniform is in a compatible mode.
-		if((uniform.has_sensor <= NO_SENSORS) || !uniform.sensor_mode)
+		if((uniform.has_sensor == NO_SENSORS) || !uniform.sensor_mode) //BUBBERSTATION CHANGE: 'uniform.has_sensor <= NO_SENSORS' TO 'uniform.has_sensor == NO_SENSORS'
 			stack_trace("Human without active suit sensors is in suit_sensors_list: [tracked_human] ([tracked_human.type]) ([uniform.type])")
 			continue
 
@@ -259,10 +262,31 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			if (jobs[trim_assignment] != null)
 				entry["ijob"] = jobs[trim_assignment]
 
+		//BUBBERSTATION CHANGE: EMP SENSORS
+		if(uniform.has_sensor == BROKEN_SENSORS)
+			entry["is_robot"] = rand(0,1)
+			entry["life_status"] = rand(0,1)
+			entry["area"] = prob(80) ? pick_list(ION_FILE, "ionarea") : pick("COWGIRL","REVERSE COWGIRL","DOGGYSTYLE","MISSIONARY","69")
+			entry["oxydam"] = rand(0,1000)
+			entry["toxdam"] = rand(0,1000)
+			entry["burndam"] =rand(0,1000)
+			entry["brutedam"] = rand(0,1000)
+			entry["health"] = -50
+			entry["can_track"] = tracked_living_mob.can_track()
+			results[++results.len] = entry
+			continue
+		//BUBBERSTATION CHANGE END
+
 		// SKYRAT EDIT BEGIN: Checking for robotic race
 		if (issynthetic(tracked_human))
 			entry["is_robot"] = TRUE
 		// SKYRAT EDIT END
+
+		// BUBBERSTATION EDIT BEGIN: Add DNR status
+		// If sensors are above living tracking, set DNR state
+		if (sensor_mode >= SENSOR_LIVING)
+			entry["is_dnr"] = tracked_human.get_dnr()
+		// BUBBERSTATION EDIT END
 
 		// Binary living/dead status
 		// Current status

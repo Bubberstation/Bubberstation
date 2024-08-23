@@ -609,7 +609,10 @@
 			"Peacekeeper" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "peace"),
 			"Clown" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "clown"),
 			"Syndicate" = image(icon = 'icons/mob/silicon/robots.dmi', icon_state = "synd_sec"),
-			"Spider Clan" = image(icon = CYBORG_ICON_NINJA, icon_state = "ninja_engi")
+			"Spider Clan" = image(icon = CYBORG_ICON_NINJA, icon_state = "ninja_engi"),
+			//Bubber addition start
+			"Research" = image(icon = 'modular_zubbers/code/modules/borgs/sprites/robot_sci.dmi', icon_state = "research"),
+			//Bubber addition end
 		))
 		var/model_selection = show_radial_menu(user, user, model_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 		if(!model_selection)
@@ -641,6 +644,10 @@
 				model = new /obj/item/robot_model/syndicatejack
 			if("Spider Clan")
 				model = new /obj/item/robot_model/ninja
+			//Bubber addition start
+			if("Research")
+				model = new /obj/item/robot_model/sci
+			//Bubber addition end
 			else
 				return FALSE
 		if (!set_disguise_vars(model, user))
@@ -723,8 +730,12 @@
 	user.bubble_icon = "robot"
 	active = TRUE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 	if(listeningTo == user)
 		return
@@ -748,8 +759,12 @@
 	user.bubble_icon = saved_bubble_icon
 	active = FALSE
 	user.update_icons()
-	user.model.update_dogborg()
+	//user.model.update_dogborg() //BUBBER REMOVAL
 	user.model.update_tallborg()
+	//BUBBER EDIT ADDTION BEGIN
+	user.model.update_quadruped()
+	user.model.update_robot_rest()
+	//BUBBER EDIT ADDTION END
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER

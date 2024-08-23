@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(summoned_magic, list(
 	/obj/item/melee/ghost_sword))
 
 GLOBAL_LIST_INIT(summoned_special_magic, list(
-	/obj/item/gun/magic/staff/change,
+	// /obj/item/gun/magic/staff/change, //BUBBERSTATION CHANGE: REMOVES STAFF OF CHANGE.
 	/obj/item/gun/magic/staff/animate,
 	/obj/item/storage/belt/wands/full,
 	/obj/item/antag_spawner/contract,

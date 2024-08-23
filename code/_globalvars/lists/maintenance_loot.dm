@@ -1,3 +1,4 @@
+/* This file is now unused in favor of the one in the modular zubbers file.
 //as of:10/28/2019:
 //boxstation: ~153 loot items spawned
 //metastation: ~183 loot items spawned
@@ -417,3 +418,4 @@ GLOBAL_LIST_INIT(ratking_coins, list(//Coins: Used by the regal rat mob when spa
 			/obj/item/coin/silver,
 			/obj/item/coin/titanium,
 		))
+*/

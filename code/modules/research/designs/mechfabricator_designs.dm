@@ -1685,7 +1685,7 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/expand
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT*100,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT*1, // BUBBER EDIT - 100 -> 1
 		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5,
 	)
 	construction_time = 12 SECONDS

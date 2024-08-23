@@ -203,26 +203,33 @@ GLOBAL_VAR(tracy_log)
 		var/realtime = world.realtime
 		var/texttime = time2text(realtime, "YYYY/MM/DD")
 		GLOB.log_directory = "data/logs/[texttime]/round-"
+		GLOB.public_log_directory = "data/public/logs/[texttime]/round-" // BUBBER EDIT ADDITION
 		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD")]_"
 		GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
+			GLOB.public_log_directory += "[GLOB.round_id]" // BUBBER EDIT ADDITION
 			GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
 			GLOB.picture_log_directory += "[GLOB.round_id]"
 		else
 			var/timestamp = replacetext(time_stamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
+			GLOB.public_log_directory += "[timestamp]" // BUBBER EDIT ADDITION
 			GLOB.picture_log_directory += "[timestamp]"
 			GLOB.picture_logging_prefix += "T_[timestamp]_"
 	else
 		GLOB.log_directory = "data/logs/[override_dir]"
+		GLOB.public_log_directory = "data/logs/public/[override_dir]" // BUBBER EDIT ADDITION
 		GLOB.picture_logging_prefix = "O_[override_dir]_"
 		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
-
+	GLOB.master_public_log_file = "[GLOB.public_log_directory]/round_log.txt" // BUBBER EDIT ADDITON
 	logger.init_logging()
 
 	if(GLOB.tracy_log)
 		rustg_file_write("[GLOB.tracy_log]", "[GLOB.log_directory]/tracy.loc")
+
+	if(!fexists(GLOB.master_public_log_file)) // BUBBER EDIT ADDITION
+		rustg_file_write("Starting up round ID [GLOB.round_id].\n --------------------------\n", GLOB.master_public_log_file) // BUBBER EDIT ADDITION
 
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently

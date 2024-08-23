@@ -1,38 +1,53 @@
-## Skyrat 13 (/tg/station Downstream)
+## Bubberstation (A Skyrat Downstream)
 
-[![CI Suite](https://github.com/Skyrat-SS13/Skyrat-tg/workflows/CI%20Suite/badge.svg)](https://github.com/Skyrat-SS13/Skyrat-tg/actions?query=workflow%3A%22CI+Suite%22)
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/Skyrat-SS13/Skyrat-tg.svg)](https://isitmaintained.com/project/Skyrat-SS13/Skyrat-tg "Percentage of issues still open")
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/Skyrat-SS13/Skyrat-tg.svg)](https://isitmaintained.com/project/Skyrat-SS13/Skyrat-tg "Average time to resolve an issue")
-![Coverage](https://img.shields.io/codecov/c/github/Skyrat-SS13/Skyrat-tg)
+[![CI Suite](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml/badge.svg)](https://github.com/Bubberstation/Bubberstation/actions/workflows/ci_suite.yml)
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
 | Git / GitHub cheatsheet   | [https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833](https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833) |
-| Guide to Modularization   | [./modular_skyrat/readme.md](./modular_skyrat/readme.md)            |
-| Website                   | [https://www.tgstation13.org](https://www.tgstation13.org)          |
-| Code                      | [https://github.com/Skyrat-SS13/Skyrat-tg](https://github.com/Skyrat-SS13/Skyrat-tg)    |
-| Wiki                      | [https://wiki.skyrat13.space/index.php/Main_Page](https://wiki.skyrat13.space/index.php/Main_Page)   |
-| Codedocs                  | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/)       |
-| Skyrat 13 Discord         | [https://discord.com/invite/hGpZ4Z3](https://discord.com/invite/hGpZ4Z3) |
-| Coderbus Discord          | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)               |
+| Guide to Modularization   | [./modular_skyrat/readme.md](./modular_skyrat/readme.md) |
+| Website                   | [https://wiki.bubberstation.org/index.php?title=Main_Page](https://wiki.bubberstation.org/index.php?title=Main_Page) |
+| Code                      | [https://github.com/Bubberstation/Bubberstation](https://github.com/Bubberstation/Bubberstation) |
+| Wiki                      | [https://tgstation13.org/wiki/Main_Page](https://tgstation13.org/wiki/Main_Page) |
+| Codedocs                  | [https://skyrat-ss13.github.io/Skyrat-tg/](https://skyrat-ss13.github.io/Skyrat-tg/) |
+| Bubberstation Discord     | [https://discord.gg/x4CVEHy6u7](https://discord.gg/x4CVEHy6u7) |
+| Coderbus Discord          | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9) |
 
-This is Skyrat's downstream fork of /tg/station created in byond.
+This is Bubberstation's downstream fork of Skyrat, which is in turn a fork of tgstation.
 
 **Please note that this repository contains sexually explicit content and is not suitable for those under the age of 18.**
 
 Space Station 13 is a paranoia-laden round-based roleplaying game set against the backdrop of a nonsensical, metal death trap masquerading as a space station, with charming spritework designed to represent the sci-fi setting and its dangerous undertones. Have fun, and survive!
 
+## Contribution Rules and Guidelines
+
+**1. Do Not Be A Dick**
+- The Bubberstation main repository is run by and contributed by volunteers. You are not entitled to our time and energy. We reserve the right to permanently remove anyone who does not show both our contributor's and maintainer's common decency.
+
+**2. This repository will only accept feedback that has to do with the functionality of code, sound, and images**
+- To maintain a proper working space for our contributors and to keep the repository free of clutter. All feedback that does not have to do with the functionality, quality, and review of code will be marked off-topic.
+- If you feel like feedback on a controversial PR is required, you are free to open a [feature request](https://github.com/Bubberstation/Bubberstation/issues/new/choose) under the repository issues page and reference the PR number.
+
+**3. The Licensing is Non-negotiable**
+- You are free to take, redistribute, modify, and readapt any code or commit found on this repository. 
+- All code files are under **GNU AGPL V3** 
+- All asset files (images and sound) are **CC-BY-SA 3.0** unless otherwise stated
+- The license information, including the MIT license and its exceptions, can be found at the bottom of this readme. 
+- What does this mean to our contributors? **The** [GNU AGPL V3](https://www.gnu.org/licenses/agpl-3.0.html) **licensing on this codebase is non-negotiable** and **irrevocable** the moment you open a PR. We are incapable of privatizing this codebase and you are incapable of restricting your code contributions even if you close the PR. Do not open a contribution if you do not feel comfortable with your code being permanent across the entirety of the community. **All contributions are preserved in commit history**
+- What does this mean to our spriters and sound designers? [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) **is the only license that this project will accept**
+- It is prohibited to use the attribution requirement to [suggest that you endorse or support a particular use](https://creativecommons.org/faq/#do-i-need-to-be-aware-of-anything-else-when-providing-attribution) of your assets.
+- You are entitled to credit yourself with comments and you are entitled to waive the attribution requirement choosing not to be identified as the creator if you wish.
+- If you do not like how your assets were modified or used, it is required that the other person [remove the attribution information upon request](https://wiki.creativecommons.org/wiki/License_Versions#Licensors_may_request_removal_of_attribution).
+- Modifications or adaptions must disclose the source, the author, and [any changes you've made](https://wiki.creativecommons.org/wiki/License_Versions#Modifications_and_adaptations_must_be_indicated). 
+- Goonstation code is incompatible with this codebase and will not be accepted.
+
+*Credit: [Goonstation contribution guidelines](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fcontribute#What-if-I-change-my-mind-about-my-contributions-being-published)*
+
 ## Important note - TEST YOUR PULL REQUESTS
 
-You are responsible for the testing of your content and providing proof of such in your pull request. You should not mark a pull request ready for review until you have actually tested it. If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server. Test merges are not for bug finding, they are for stress tests where local testing simply doesn't allow for this.
-
-## DEVELOPMENT FLOWCHART
-
-![image](https://i.imgur.com/aJnE4WT.png)
-
-[Modularisation Guide](./modular_skyrat/readme.md)
+You are responsible for the testing of your content. You should not mark a pull request ready for review until you have actually tested it. If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server.
 
 ## DOWNLOADING
 
@@ -52,13 +67,8 @@ Find `BUILD.bat` here in the root folder of tgstation, and double click it to in
 
 **[How to compile in VSCode and other build options](tools/build/README.md).**
 
-## Contributors
-
+## TG Guide Contributors
 [Guides for Contributors](.github/CONTRIBUTING.md)
-
-[/tg/station HACKMD account](https://hackmd.io/@tgstation) - Design documentation here
-
-[Interested in some starting lore?](https://github.com/tgstation/common_core)
 
 ## LICENSE
 

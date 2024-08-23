@@ -82,6 +82,7 @@
 	serialized["snapshots"] = serialized_snapshots
 
 	rustg_file_write(json_encode(serialized), "[GLOB.log_directory]/dynamic.json")
+	rustg_file_write(json_encode(serialized), "[GLOB.public_log_directory]/dynamic.json") // BUBBER EDIT
 
 /// Creates a new snapshot with the given rulesets chosen, and writes to the JSON output.
 /datum/controller/subsystem/dynamic/proc/new_snapshot(datum/dynamic_ruleset/ruleset_chosen)

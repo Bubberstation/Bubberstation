@@ -318,7 +318,7 @@
 	//SKYRAT EDIT ADDITION BEGIN - EMOTES -- SENSITIVE SNOUT TRAIT ADDITION
 	else if(helper.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		nosound = TRUE
-		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))
+		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && !(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && (src.stat != UNCONSCIOUS) && !src.incapacitated(IGNORE_RESTRAINTS))) // Bubberstation Edit
 			visible_message(span_warning("[helper] tries to boop [src] on the nose, but [p_they()] move[p_s()] out of the way."))
 			return
 		else
@@ -735,7 +735,7 @@
 		body_parts -= part
 	GLOB.bioscrambler_valid_parts = body_parts
 
-	var/list/organs = subtypesof(/obj/item/organ/internal) + subtypesof(/obj/item/organ/external)
+	var/list/organs = subtypesof(/obj/item/organ/external) - typesof(/obj/item/organ/external/genital) //BUBBERSTATION CHANGE, REMOVES INTERANL ORGAN SWAPPING AND REMOVES GENITALS.
 	for(var/obj/item/organ/organ_type as anything in organs)
 		if(!is_type_in_typecache(organ_type, GLOB.bioscrambler_organs_blacklist) && !(initial(organ_type.organ_flags) & ORGAN_ROBOTIC))
 			continue

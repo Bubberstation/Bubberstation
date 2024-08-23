@@ -33,6 +33,10 @@
   - bugfix: Fixes tramstation gravgen wiring
   - bugfix: Fixes tramstation turbine wiring
   - bugfix: Fixes northstar cmo button name
+  - rscadd: trainship hijack deathmatch map
+  - bugfix: The syndicate infiltrator has no weak spots anymore
+  - bugfix: Monkey changelings that are disguised as someone can now take off their
+      flesh clothes.
   aKromatopzia:
   - rscadd: teshari move speed change applies to raptor cybernetics
   jjpark-kb:
@@ -375,10 +379,17 @@
   - balance: requires journeyman research level to change empty circuits from forging
   - bugfix: added a hardcap to the added force for forging weapons
 2024-05-18:
+  BurgerBB:
+  - rscadd: Makes Ashwalker/Lizard names use a special name generator
   Melbert:
   - bugfix: After 3 years, radiation now causes you to go bald and mutate again
+  - rscadd: Adds Minecarts, (possibly admin only depending on when this PR is merged
+      in relation to the Icebox Bar PR)
   NullDagaf:
   - rscadd: added an explorer suit side-grade, the H.I.F.L. suit
+  - rscadd: worm fertilizer now imcreases plant potency
+  - refactor: refactored simple farm code
+  - image: added a new frill option
   Rengan:
   - bugfix: Officers sabre and grilles now conducts electricity as it should.
   Seven:
@@ -386,6 +397,9 @@
   ShizCalev:
   - bugfix: Atoms on the border of a tile will now only trigger landmines if they
       ACTUALLY pass over said mine.
+  - bugfix: Malf AI can now override/overload closed turrets.
+  - bugfix: Fixed a scenario in which a turret would have its covers closed while
+      still firing.
   SkyratBot:
   - bugfix: Fixes engineering cyborg screwdriver not being pointy. Fixes engineering
       cyborg crowbar from being pointy.
@@ -433,6 +447,50 @@
   - bugfix: Pyre chaplains can no longer generate infinite favour for free by buying
       and selling candles. Candles now offer for 40 favour, down from 50.
   - bugfix: fixes metastation science scrubber pipeline
+  - rscdel: Due to a need for company restructuring, virologists have been laid off
+      by CentCom and doctors can optionally take their place.
+  - bugfix: cell chargers, mechbay port chargers & recharge stations heat lost is
+      directly proportional to energy drawn from the grid to charge their respective
+      cells
+  - bugfix: cyborgs should charge more frequently & to their max capacity at recharge
+      stations
+  - qol: Neckties are now worn underneath suit items and accessories, they can still
+      be optionally worn over them in case you want the "business space suit" look
+  - bugfix: Fixed a bug where accessories wouldn't correctly apply over suits if you
+      equipped the jumpsuit they're attached to after the suit
+  - bugfix: Simplebot UI won't display '0' anymore when locked
+  - spellcheck: Fixes some typos in the goodies section and makes it look a bit more
+      consistent.
+  - rscadd: mobile defibrillator mount
+  - bugfix: Snails no longer move at normal speed while resting.
+  - bugfix: Snails can no longer get insane speed from getting their legs replaced.
+  - bugfix: Humans don't become immensely slow when getting a Snail leg.
+  - admin: lube walking element is now much easier to mess with to fit however you
+      want to use it for.
+  - bugfix: You will now be ejected from Space Phase if you lose your focus or lose
+      consciousness somehow during the jaunt.
+  - bugfix: Fixes a bunch of hearts turning into errors when you try to eat them
+  - bugfix: adds missing prefix to name of The Lizard's Gas Lava land ruin.
+  - balance: Nukies ordnance now include more gasses and stock parts
+  - qol: The Ansem, suppressor, and SC/FISHER included in the Fisher gimmick bundle
+      now come together as one whole gun, the Ansem/SC. It's integrally suppressed,
+      and fires the disruptor on right-click.
+  - bugfix: The SC/FISHER disrupts APCs for an appropriate amount of time, not ten
+      times the intended disruption length.
+  - bugfix: fixed malf AI being able to overload shuttle consoles and the gateway
+      control console
+  - bugfix: Mob spawners (such as lavaland tendrils) won't spawn more mobs than they
+      are supposed to, faster than they should.
+  grungussuss:
+  - qol: suit sensors can now be maxed by ctrl clicking your jumpsuit
+  jjpark-kb:
+  - rscadd: 'added two new skills: construction and primitive'
+  kaylexis:
+  - rscadd: Added more stuff to the seed vault.
+  nevimer:
+  - rscadd: Round end credits
+  sheets, spacemenart, ben10omintrix, goofball, infrared baron, aofie:
+  - rscadd: adds lavaland raptors and the raptor ranch
   tmyqlfpir:
   - rscadd: Added new BCI eye camera circuit component
   - rscadd: Added new movable drone camera component
@@ -441,6 +499,15 @@
   - qol: Lowered pathfinder component cooldown to 15 seconds
   - qol: Target scanner component moved to advanced shell research tech node
   - qol: Cell charge component moved to advanced shell research tech node
+  - rscadd: Restore classic Interdyne base for Ice Moon
+  - bugfix: Department display screen no longer calls itself recursively
+  - bugfix: Fixes vents in Dauntless bridge
+  - qol: Adds new battle attack arcade machine in Dauntless prison
+  - bugfix: Changed Dauntless brig radio freq
+  - rscadd: Add R&D servers to Dauntless/Interdyne ruins
+  - qol: Only allow machines located within Syndie areas to connect to Syndie R&D
+      servers (and vice versa)
+  - bugfix: Interdyne brig closets can be accessed by regular crew
 2024-05-19:
   Melbert:
   - rscadd: Adds Minecarts, (possibly admin only depending on when this PR is merged

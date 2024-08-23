@@ -119,6 +119,12 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 	if(is_occupied() || is_banned_from(user.ckey, ROLE_POSIBRAIN) || QDELETED(src) || QDELETED(user))
 		return
+	//BUBBER EDIT BEGIN: SILICON FLAVOR TEXT
+	if(CONFIG_GET(flag/min_flavor_text))
+		if((length_char(user.client?.prefs.read_preference(/datum/preference/text/silicon_flavor_text))) <= CONFIG_GET(number/silicon_flavor_text_character_requirement))
+			to_chat(user, span_warning("Your silicon flavor text needs to be at least [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters to play this role. Head to the character creator and write more!"))
+			return
+	//BUBBER EDIT END: SILICON FLAVOR TEXT
 	var/posi_ask = tgui_alert(user, "Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)", "Confirm", list("Yes","No"))
 	if(posi_ask != "Yes" || QDELETED(src))
 		return

@@ -7,12 +7,13 @@
 	AddComponent(/datum/component/tippable, \
 		tip_time = 3 SECONDS, \
 		untip_time = 2 SECONDS, \
-		self_right_time = 60 SECONDS, \
+		self_right_time = 20 SECONDS, \
 		post_tipped_callback = CALLBACK(src, PROC_REF(after_tip_over)), \
 		post_untipped_callback = CALLBACK(src, PROC_REF(after_righted)), \
 		roleplay_friendly = TRUE, \
 		roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep, /datum/emote/silicon/beep2), /* SKYRAT EDIT CHANGE - ORIGINAL: roleplay_emotes = list(/datum/emote/silicon/buzz, /datum/emote/silicon/buzz2, /datum/emote/silicon/beep)*/ \
 		roleplay_callback = CALLBACK(src, PROC_REF(untip_roleplay)))
+		//BUBBER EDIT: REDUCES THE SELF-RIGHT TIME FOR BORGS TO 20 SECONDS, FROM 60 SECONDS
 
 	set_wires(new /datum/wires/robot(src))
 	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
@@ -169,6 +170,7 @@
 			"Miner" = /obj/item/robot_model/miner,
 			"Janitor" = /obj/item/robot_model/janitor,
 			"Service" = /obj/item/robot_model/service,
+			"Research" = /obj/item/robot_model/sci,//BUBBEREDIT - Addition of Research borgs
 		)
 		if(!CONFIG_GET(flag/disable_peaceborg))
 			GLOB.cyborg_model_list["Peacekeeper"] = /obj/item/robot_model/peacekeeper
@@ -497,7 +499,8 @@
  */
 /mob/living/silicon/robot/proc/toggle_headlamp(turn_off = FALSE, update_color = FALSE)
 	//if both lamp is enabled AND the update_color flag is on, keep the lamp on. Otherwise, if anything listed is true, disable the lamp.
-	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode))
+	//BUBBER EDIT - Disables flashlight when held
+	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || stat || low_power_mode || istype(loc, /obj/item/clothing/head/mob_holder)))
 		set_light_on(lamp_functional && stat != DEAD && lamp_doom) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
 		set_light_color(COLOR_RED) //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
 		set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
