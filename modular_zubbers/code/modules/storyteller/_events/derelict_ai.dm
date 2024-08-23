@@ -35,10 +35,14 @@
 	if(!spawn_turf)
 		return
 	var/obj/item/mod/control/pre_equipped/derelict/created_modsuit = new(spawn_turf)
-	var/mob/living/silicon/ai/suitai = new(created_modsuit)
-	suitai.key = chosen_candidate.key
-	created_modsuit.ai_enter_mod(suitai)
+	var/mob/living/silicon/ai/suitai = new /mob/living/silicon/ai(get_turf(created_modsuit), new /datum/ai_laws/syndicate_override, chosen_candidate)
 	suitai.mind.add_antag_datum(/datum/antagonist/derelict_modsuit)
+	suitai.mind.special_role = ROLE_DERELICT_MODSUIT
+
+	created_modsuit.ai_enter_mod(suitai)
+	var/obj/structure/ai_core/deactivated/left_over_core = locate() in get_turf(created_modsuit)
+	qdel(left_over_core)
+
 	message_admins("[ADMIN_LOOKUPFLW(suitai)] has been made into a Derelict AI by an event.")
 	suitai.log_message("was spawned as a Derelict AI by an event.", LOG_GAME)
 	spawned_mobs += suitai
